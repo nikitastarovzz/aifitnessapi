@@ -13,7 +13,7 @@ const UPDATED = "2026-07-08";
 export const metadata: Metadata = {
   title: "How to Add AI Workout Tracking to Your App",
   description:
-    "A builder's guide to adding AI workout tracking — camera pose detection, rep counting, and form feedback — to iOS, Android, React Native, Flutter, and web apps.",
+    "A builder's guide to adding AI workout tracking — pose detection, rep counting, and form feedback — on iOS, Android, React Native, Flutter, and web.",
   alternates: { canonical: GUIDES_PATH },
   openGraph: {
     type: "website",
