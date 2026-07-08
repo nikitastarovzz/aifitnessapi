@@ -10,12 +10,18 @@ export default function Footer() {
         <p className="text-sm text-[var(--muted)]">
           © {year} {site.name}. All rights reserved.
         </p>
-        <nav className="flex items-center gap-5 text-sm text-[var(--muted)]">
+        <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-[var(--muted)]">
+          <Link href="/fitness-apis" className="hover:text-[var(--fg)]">
+            Fitness APIs
+          </Link>
           <Link href="/blog" className="hover:text-[var(--fg)]">
             Blog
           </Link>
           <Link href="/about" className="hover:text-[var(--fg)]">
             About
+          </Link>
+          <Link href="/site-index" className="hover:text-[var(--fg)]">
+            Site index
           </Link>
           <a href="/feed.xml" className="hover:text-[var(--fg)]">
             RSS

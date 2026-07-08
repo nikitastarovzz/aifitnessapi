@@ -3,6 +3,7 @@ import Container from "./Container";
 import { site } from "@/lib/site";
 
 const nav = [
+  { href: "/fitness-apis", label: "Fitness APIs" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
 ];

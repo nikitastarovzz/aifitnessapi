@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CtaTracker from "@/components/CtaTracker";
 import { site, absoluteUrl } from "@/lib/site";
+import { organizationNode, ORG_ID, WEBSITE_ID } from "@/lib/schema";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -50,13 +52,22 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const websiteJsonLd = {
+  // One @graph tying the site together: a stable Organization @id referenced as
+  // the WebSite publisher, and reused as author/publisher on every article (§7).
+  const graphJsonLd = {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: site.name,
-    url: site.url,
-    description: site.description,
-    inLanguage: "en",
+    "@graph": [
+      organizationNode(),
+      {
+        "@type": "WebSite",
+        "@id": WEBSITE_ID,
+        name: site.name,
+        url: site.url,
+        description: site.description,
+        inLanguage: "en",
+        publisher: { "@id": ORG_ID },
+      },
+    ],
   };
 
   return (
@@ -64,8 +75,9 @@ export default function RootLayout({
       <body className="flex min-h-screen flex-col">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(graphJsonLd) }}
         />
+        <CtaTracker />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-brand-600 focus:px-4 focus:py-2 focus:text-white"
