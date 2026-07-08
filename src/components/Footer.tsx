@@ -14,6 +14,9 @@ export default function Footer() {
           <Link href="/fitness-apis" className="hover:text-[var(--fg)]">
             Fitness APIs
           </Link>
+          <Link href="/guides" className="hover:text-[var(--fg)]">
+            Guides
+          </Link>
           <Link href="/blog" className="hover:text-[var(--fg)]">
             Blog
           </Link>

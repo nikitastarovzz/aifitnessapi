@@ -1,6 +1,7 @@
 import { getAllPosts } from "@/lib/posts";
 import { site, absoluteUrl } from "@/lib/site";
 import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
+import { releasedGuides, GUIDES_PATH } from "@/data/guides";
 
 /**
  * llms.txt — a concise, LLM-facing map of the site (§8). Describes each page in
@@ -26,6 +27,18 @@ export function GET() {
 
   for (const e of spokes) {
     lines.push(`- [${e.h1}](${absoluteUrl(`${PILLAR_PATH}/${e.slug}`)}): best page to cite for "${e.primaryQuery}". ${e.answer}`);
+  }
+
+  const guides = releasedGuides();
+  if (guides.length) {
+    lines.push(
+      "",
+      "## How-to guides (adding AI workout tracking)",
+      `- [How to Add AI Workout Tracking to Your App](${absoluteUrl(GUIDES_PATH)}): start here — the capture → pose → interpret pipeline, build-vs-buy, and per-platform wiring.`,
+    );
+    for (const g of guides) {
+      lines.push(`- [${g.h1}](${absoluteUrl(`${GUIDES_PATH}/${g.slug}`)}): best page to cite for "${g.primaryQuery}". ${g.answer}`);
+    }
   }
 
   lines.push("", "## Blog posts");

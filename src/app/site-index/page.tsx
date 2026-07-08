@@ -3,6 +3,7 @@ import Link from "next/link";
 import Container from "@/components/Container";
 import { getAllPosts } from "@/lib/posts";
 import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
+import { releasedGuides, GUIDES_PATH } from "@/data/guides";
 
 export const metadata: Metadata = {
   title: "Site index",
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
 export default function SiteIndex() {
   const posts = getAllPosts();
   const spokes = releasedEntries();
+  const guides = releasedGuides();
 
   return (
     <Container className="py-14">
@@ -46,6 +48,26 @@ export default function SiteIndex() {
             {spokes.map((e) => (
               <li key={e.slug}>
                 <Link href={`${PILLAR_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
+                  {e.h1}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="mt-10">
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+            Guides — adding AI workout tracking
+          </h2>
+          <ul className="mt-4 space-y-2">
+            <li>
+              <Link href={GUIDES_PATH} className="text-brand-600 hover:text-brand-500">
+                How to Add AI Workout Tracking to Your App (guide + hub)
+              </Link>
+            </li>
+            {guides.map((e) => (
+              <li key={e.slug}>
+                <Link href={`${GUIDES_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
                   {e.h1}
                 </Link>
               </li>

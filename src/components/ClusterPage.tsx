@@ -7,16 +7,24 @@ import { Mdx } from "@/components/mdx";
 import { formatDate } from "@/lib/posts";
 import { site, absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
-import { PILLAR_PATH, type ClusterEntry } from "@/data/fitnessApis";
+import type { ClusterEntry, ClusterConfig } from "@/lib/cluster";
 
 /**
  * The fixed spoke anatomy (§3), top to bottom:
  * breadcrumbs → H1 → answer capsule (speakable) → body → FAQ → related → CTA →
- * disclaimer. Plus Article + FAQPage JSON-LD. BreadcrumbList is emitted by the
- * <Breadcrumbs> component only (no duplicate here).
+ * disclaimer. Plus Article (and HowTo when the entry has steps) + FAQPage
+ * JSON-LD. BreadcrumbList is emitted by the <Breadcrumbs> component only.
+ * Shared across clusters via `config` (base path + hub label).
  */
-export default function ClusterPage({ entry }: { entry: ClusterEntry }) {
-  const url = absoluteUrl(`${PILLAR_PATH}/${entry.slug}`);
+export default function ClusterPage({
+  entry,
+  config,
+}: {
+  entry: ClusterEntry;
+  config: ClusterConfig;
+}) {
+  const { basePath, hubLabel } = config;
+  const url = absoluteUrl(`${basePath}/${entry.slug}`);
   const capsuleId = "answer";
 
   const articleJsonLd = {
@@ -36,6 +44,22 @@ export default function ClusterPage({ entry }: { entry: ClusterEntry }) {
     },
   };
 
+  // Emit HowTo alongside Article for step-based how-to pages (§7).
+  const howToJsonLd = entry.steps?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        name: entry.h1,
+        description: entry.metaDescription,
+        step: entry.steps.map((s, i) => ({
+          "@type": "HowToStep",
+          position: i + 1,
+          name: s.name,
+          text: s.text,
+        })),
+      }
+    : null;
+
   const faqJsonLd = entry.faqs.length
     ? {
         "@context": "https://schema.org",
@@ -54,6 +78,12 @@ export default function ClusterPage({ entry }: { entry: ClusterEntry }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
+      {howToJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
+        />
+      )}
       {faqJsonLd && (
         <script
           type="application/ld+json"
@@ -65,8 +95,8 @@ export default function ClusterPage({ entry }: { entry: ClusterEntry }) {
         <Breadcrumbs
           trail={[
             { name: "Home", path: "/" },
-            { name: "Fitness APIs", path: PILLAR_PATH },
-            { name: entry.h1, path: `${PILLAR_PATH}/${entry.slug}` },
+            { name: hubLabel, path: basePath },
+            { name: entry.h1, path: `${basePath}/${entry.slug}` },
           ]}
         />
 
@@ -130,8 +160,8 @@ export default function ClusterPage({ entry }: { entry: ClusterEntry }) {
         <ClusterDisclaimer updated={entry.updated} />
 
         <p className="mt-8 text-sm">
-          <Link href={PILLAR_PATH} className="text-brand-600 hover:text-brand-500">
-            ← All fitness &amp; workout APIs
+          <Link href={basePath} className="text-brand-600 hover:text-brand-500">
+            ← All {hubLabel.toLowerCase()}
           </Link>{" "}
           <span className="text-[var(--muted)]">· by {site.name}</span>
         </p>

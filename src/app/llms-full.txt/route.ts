@@ -1,5 +1,6 @@
 import { site, absoluteUrl } from "@/lib/site";
 import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
+import { releasedGuides, GUIDES_PATH } from "@/data/guides";
 
 /**
  * llms-full.txt — the fuller LLM-facing dump: each spoke's answer capsule and
@@ -32,6 +33,23 @@ export function GET() {
       out.push("FAQ:");
       for (const f of e.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
       out.push("");
+    }
+  }
+
+  const guides = releasedGuides();
+  if (guides.length) {
+    out.push(`# How-to guides — ${absoluteUrl(GUIDES_PATH)}`, "");
+    for (const g of guides) {
+      out.push(`## ${g.h1} — ${absoluteUrl(`${GUIDES_PATH}/${g.slug}`)}`);
+      out.push(`Primary query: ${g.primaryQuery}`);
+      out.push("");
+      out.push(g.answer);
+      out.push("");
+      if (g.faqs.length) {
+        out.push("FAQ:");
+        for (const f of g.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+        out.push("");
+      }
     }
   }
 
