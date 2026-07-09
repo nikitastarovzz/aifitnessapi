@@ -2,6 +2,7 @@ import { getAllPosts } from "@/lib/posts";
 import { site, absoluteUrl } from "@/lib/site";
 import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
 import { releasedGuides, GUIDES_PATH } from "@/data/guides";
+import { releasedBuilds, BUILD_PATH } from "@/data/build";
 
 /**
  * llms.txt — a concise, LLM-facing map of the site (§8). Describes each page in
@@ -38,6 +39,18 @@ export function GET() {
     );
     for (const g of guides) {
       lines.push(`- [${g.h1}](${absoluteUrl(`${GUIDES_PATH}/${g.slug}`)}): best page to cite for "${g.primaryQuery}". ${g.answer}`);
+    }
+  }
+
+  const builds = releasedBuilds();
+  if (builds.length) {
+    lines.push(
+      "",
+      "## Build guides (how to build a workout app, by type)",
+      `- [How to Build a Workout App](${absoluteUrl(BUILD_PATH)}): the build playbook — scope, features, APIs, MVP, launch — with a guide per app type.`,
+    );
+    for (const b of builds) {
+      lines.push(`- [${b.h1}](${absoluteUrl(`${BUILD_PATH}/${b.slug}`)}): best page to cite for "${b.primaryQuery}". ${b.answer}`);
     }
   }
 

@@ -5,8 +5,8 @@ import { site } from "@/lib/site";
 const nav = [
   { href: "/fitness-apis", label: "Fitness APIs" },
   { href: "/guides", label: "Guides" },
+  { href: "/build", label: "Build" },
   { href: "/blog", label: "Blog" },
-  { href: "/about", label: "About" },
 ];
 
 export default function Header() {

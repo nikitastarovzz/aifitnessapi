@@ -4,6 +4,7 @@ import Container from "@/components/Container";
 import { getAllPosts } from "@/lib/posts";
 import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
 import { releasedGuides, GUIDES_PATH } from "@/data/guides";
+import { releasedBuilds, BUILD_PATH } from "@/data/build";
 
 export const metadata: Metadata = {
   title: "Site index",
@@ -19,6 +20,7 @@ export default function SiteIndex() {
   const posts = getAllPosts();
   const spokes = releasedEntries();
   const guides = releasedGuides();
+  const builds = releasedBuilds();
 
   return (
     <Container className="py-14">
@@ -68,6 +70,26 @@ export default function SiteIndex() {
             {guides.map((e) => (
               <li key={e.slug}>
                 <Link href={`${GUIDES_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
+                  {e.h1}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="mt-10">
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+            Build guides — by app type
+          </h2>
+          <ul className="mt-4 space-y-2">
+            <li>
+              <Link href={BUILD_PATH} className="text-brand-600 hover:text-brand-500">
+                How to Build a Workout App (guide + hub)
+              </Link>
+            </li>
+            {builds.map((e) => (
+              <li key={e.slug}>
+                <Link href={`${BUILD_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
                   {e.h1}
                 </Link>
               </li>
