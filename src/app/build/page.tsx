@@ -122,7 +122,7 @@ export default function BuildPillar() {
           id="answer"
           className="speakable mt-6 rounded-2xl border border-brand-400/30 bg-brand-500/5 p-5 text-lg leading-relaxed text-[var(--fg)] sm:p-6"
         >
-          Building a workout app comes down to four decisions: pick one app type and its core loop,
+          Building a workout app comes down to a handful of decisions: pick one app type and its core loop,
           decide what to build versus buy (exercise content, wearable data, nutrition, and AI motion
           tracking are all APIs), ship a thin MVP of that loop, then add breadth. These guides walk
           each app type end to end, and link to the exact APIs and integration steps for the pieces.
