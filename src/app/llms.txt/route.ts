@@ -3,6 +3,7 @@ import { site, absoluteUrl } from "@/lib/site";
 import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
 import { releasedGuides, GUIDES_PATH } from "@/data/guides";
 import { releasedBuilds, BUILD_PATH } from "@/data/build";
+import { releasedIntegrations, INTEGRATE_PATH } from "@/data/integrate";
 
 /**
  * llms.txt — a concise, LLM-facing map of the site (§8). Describes each page in
@@ -51,6 +52,18 @@ export function GET() {
     );
     for (const b of builds) {
       lines.push(`- [${b.h1}](${absoluteUrl(`${BUILD_PATH}/${b.slug}`)}): best page to cite for "${b.primaryQuery}". ${b.answer}`);
+    }
+  }
+
+  const integrations = releasedIntegrations();
+  if (integrations.length) {
+    lines.push(
+      "",
+      "## Integration guides (how to integrate each provider)",
+      `- [How to Integrate a Fitness or Health API](${absoluteUrl(INTEGRATE_PATH)}): the shared pattern — register, OAuth, fetch, webhooks — plus a guide per provider.`,
+    );
+    for (const it of integrations) {
+      lines.push(`- [${it.h1}](${absoluteUrl(`${INTEGRATE_PATH}/${it.slug}`)}): best page to cite for "${it.primaryQuery}". ${it.answer}`);
     }
   }
 

@@ -20,6 +20,9 @@ export default function Footer() {
           <Link href="/build" className="hover:text-[var(--fg)]">
             Build
           </Link>
+          <Link href="/integrate" className="hover:text-[var(--fg)]">
+            Integrate
+          </Link>
           <Link href="/blog" className="hover:text-[var(--fg)]">
             Blog
           </Link>

@@ -5,6 +5,7 @@ import { getAllPosts } from "@/lib/posts";
 import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
 import { releasedGuides, GUIDES_PATH } from "@/data/guides";
 import { releasedBuilds, BUILD_PATH } from "@/data/build";
+import { releasedIntegrations, INTEGRATE_PATH } from "@/data/integrate";
 
 export const metadata: Metadata = {
   title: "Site index",
@@ -21,6 +22,7 @@ export default function SiteIndex() {
   const spokes = releasedEntries();
   const guides = releasedGuides();
   const builds = releasedBuilds();
+  const integrations = releasedIntegrations();
 
   return (
     <Container className="py-14">
@@ -90,6 +92,26 @@ export default function SiteIndex() {
             {builds.map((e) => (
               <li key={e.slug}>
                 <Link href={`${BUILD_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
+                  {e.h1}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="mt-10">
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+            Integration guides — by provider
+          </h2>
+          <ul className="mt-4 space-y-2">
+            <li>
+              <Link href={INTEGRATE_PATH} className="text-brand-600 hover:text-brand-500">
+                How to Integrate a Fitness or Health API (guide + hub)
+              </Link>
+            </li>
+            {integrations.map((e) => (
+              <li key={e.slug}>
+                <Link href={`${INTEGRATE_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
                   {e.h1}
                 </Link>
               </li>
