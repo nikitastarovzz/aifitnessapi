@@ -23,6 +23,9 @@ export default function Footer() {
           <Link href="/integrate" className="hover:text-[var(--fg)]">
             Integrate
           </Link>
+          <Link href="/fix" className="hover:text-[var(--fg)]">
+            Troubleshooting
+          </Link>
           <Link href="/blog" className="hover:text-[var(--fg)]">
             Blog
           </Link>

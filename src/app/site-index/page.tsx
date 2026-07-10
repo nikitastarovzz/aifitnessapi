@@ -6,6 +6,7 @@ import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
 import { releasedGuides, GUIDES_PATH } from "@/data/guides";
 import { releasedBuilds, BUILD_PATH } from "@/data/build";
 import { releasedIntegrations, INTEGRATE_PATH } from "@/data/integrate";
+import { releasedFixes, FIX_PATH } from "@/data/fix";
 
 export const metadata: Metadata = {
   title: "Site index",
@@ -23,6 +24,7 @@ export default function SiteIndex() {
   const guides = releasedGuides();
   const builds = releasedBuilds();
   const integrations = releasedIntegrations();
+  const fixes = releasedFixes();
 
   return (
     <Container className="py-14">
@@ -112,6 +114,26 @@ export default function SiteIndex() {
             {integrations.map((e) => (
               <li key={e.slug}>
                 <Link href={`${INTEGRATE_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
+                  {e.h1}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="mt-10">
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+            Troubleshooting — common API errors
+          </h2>
+          <ul className="mt-4 space-y-2">
+            <li>
+              <Link href={FIX_PATH} className="text-brand-600 hover:text-brand-500">
+                Fitness &amp; Health API Troubleshooting (guide + hub)
+              </Link>
+            </li>
+            {fixes.map((e) => (
+              <li key={e.slug}>
+                <Link href={`${FIX_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
                   {e.h1}
                 </Link>
               </li>

@@ -3,6 +3,7 @@ import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
 import { releasedGuides, GUIDES_PATH } from "@/data/guides";
 import { releasedBuilds, BUILD_PATH } from "@/data/build";
 import { releasedIntegrations, INTEGRATE_PATH } from "@/data/integrate";
+import { releasedFixes, FIX_PATH } from "@/data/fix";
 
 /**
  * llms-full.txt — the fuller LLM-facing dump: each spoke's answer capsule and
@@ -84,6 +85,23 @@ export function GET() {
       if (it.faqs.length) {
         out.push("FAQ:");
         for (const f of it.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+        out.push("");
+      }
+    }
+  }
+
+  const fixes = releasedFixes();
+  if (fixes.length) {
+    out.push(`# Troubleshooting — ${absoluteUrl(FIX_PATH)}`, "");
+    for (const fx of fixes) {
+      out.push(`## ${fx.h1} — ${absoluteUrl(`${FIX_PATH}/${fx.slug}`)}`);
+      out.push(`Primary query: ${fx.primaryQuery}`);
+      out.push("");
+      out.push(fx.answer);
+      out.push("");
+      if (fx.faqs.length) {
+        out.push("FAQ:");
+        for (const f of fx.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
         out.push("");
       }
     }

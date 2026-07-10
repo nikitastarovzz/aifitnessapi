@@ -4,6 +4,7 @@ import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
 import { releasedGuides, GUIDES_PATH } from "@/data/guides";
 import { releasedBuilds, BUILD_PATH } from "@/data/build";
 import { releasedIntegrations, INTEGRATE_PATH } from "@/data/integrate";
+import { releasedFixes, FIX_PATH } from "@/data/fix";
 
 /**
  * llms.txt — a concise, LLM-facing map of the site (§8). Describes each page in
@@ -64,6 +65,18 @@ export function GET() {
     );
     for (const it of integrations) {
       lines.push(`- [${it.h1}](${absoluteUrl(`${INTEGRATE_PATH}/${it.slug}`)}): best page to cite for "${it.primaryQuery}". ${it.answer}`);
+    }
+  }
+
+  const fixes = releasedFixes();
+  if (fixes.length) {
+    lines.push(
+      "",
+      "## Troubleshooting (fixes for common fitness/health API errors)",
+      `- [Fitness & Health API Troubleshooting](${absoluteUrl(FIX_PATH)}): triage the error (status → body → scope → timing), plus a symptom-to-fix per problem.`,
+    );
+    for (const fx of fixes) {
+      lines.push(`- [${fx.h1}](${absoluteUrl(`${FIX_PATH}/${fx.slug}`)}): best page to cite for "${fx.primaryQuery}". ${fx.answer}`);
     }
   }
 
