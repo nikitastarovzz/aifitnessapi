@@ -118,7 +118,7 @@ export default function LearnPillar() {
         >
           Building in health-tech means learning a specific vocabulary: what a fitness API is, how OAuth
           and webhooks work, the difference between on-device stores and cloud aggregators, pose
-          estimation, and what metrics like HRV and VO2 max actually measure. These plain-English
+          estimation, and what metrics like HRV and VO2 max actually mean. These plain-English
           explainers define each concept, then point you to the hands-on guides.
         </div>
 
