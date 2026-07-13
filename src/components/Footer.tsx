@@ -29,6 +29,9 @@ export default function Footer() {
           <Link href="/learn" className="hover:text-[var(--fg)]">
             Concepts
           </Link>
+          <Link href="/alternatives" className="hover:text-[var(--fg)]">
+            Alternatives
+          </Link>
           <Link href="/blog" className="hover:text-[var(--fg)]">
             Blog
           </Link>

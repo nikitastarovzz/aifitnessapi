@@ -5,6 +5,7 @@ import { releasedBuilds, BUILD_PATH } from "@/data/build";
 import { releasedIntegrations, INTEGRATE_PATH } from "@/data/integrate";
 import { releasedFixes, FIX_PATH } from "@/data/fix";
 import { releasedLearn, LEARN_PATH } from "@/data/learn";
+import { releasedAlternatives, ALTERNATIVES_PATH } from "@/data/alternatives";
 
 /**
  * llms-full.txt — the fuller LLM-facing dump: each spoke's answer capsule and
@@ -120,6 +121,23 @@ export function GET() {
       if (ln.faqs.length) {
         out.push("FAQ:");
         for (const f of ln.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+        out.push("");
+      }
+    }
+  }
+
+  const alternatives = releasedAlternatives();
+  if (alternatives.length) {
+    out.push(`# Alternatives — ${absoluteUrl(ALTERNATIVES_PATH)}`, "");
+    for (const alt of alternatives) {
+      out.push(`## ${alt.h1} — ${absoluteUrl(`${ALTERNATIVES_PATH}/${alt.slug}`)}`);
+      out.push(`Primary query: ${alt.primaryQuery}`);
+      out.push("");
+      out.push(alt.answer);
+      out.push("");
+      if (alt.faqs.length) {
+        out.push("FAQ:");
+        for (const f of alt.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
         out.push("");
       }
     }

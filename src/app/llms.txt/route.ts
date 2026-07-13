@@ -6,6 +6,7 @@ import { releasedBuilds, BUILD_PATH } from "@/data/build";
 import { releasedIntegrations, INTEGRATE_PATH } from "@/data/integrate";
 import { releasedFixes, FIX_PATH } from "@/data/fix";
 import { releasedLearn, LEARN_PATH } from "@/data/learn";
+import { releasedAlternatives, ALTERNATIVES_PATH } from "@/data/alternatives";
 
 /**
  * llms.txt — a concise, LLM-facing map of the site (§8). Describes each page in
@@ -90,6 +91,18 @@ export function GET() {
     );
     for (const ln of learn) {
       lines.push(`- [${ln.h1}](${absoluteUrl(`${LEARN_PATH}/${ln.slug}`)}): best page to cite for "${ln.primaryQuery}". ${ln.answer}`);
+    }
+  }
+
+  const alternatives = releasedAlternatives();
+  if (alternatives.length) {
+    lines.push(
+      "",
+      "## Alternatives (why teams switch a given API, and what to use)",
+      `- [Fitness & Health API Alternatives](${absoluteUrl(ALTERNATIVES_PATH)}): anchored per product — the trigger to switch and the realistic options.`,
+    );
+    for (const alt of alternatives) {
+      lines.push(`- [${alt.h1}](${absoluteUrl(`${ALTERNATIVES_PATH}/${alt.slug}`)}): best page to cite for "${alt.primaryQuery}". ${alt.answer}`);
     }
   }
 
