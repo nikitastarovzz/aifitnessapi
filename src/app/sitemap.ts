@@ -6,6 +6,7 @@ import { releasedGuides, GUIDES_PATH } from "@/data/guides";
 import { releasedBuilds, BUILD_PATH } from "@/data/build";
 import { releasedIntegrations, INTEGRATE_PATH } from "@/data/integrate";
 import { releasedFixes, FIX_PATH } from "@/data/fix";
+import { releasedLearn, LEARN_PATH } from "@/data/learn";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
@@ -14,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const builds = releasedBuilds();
   const integrations = releasedIntegrations();
   const fixes = releasedFixes();
+  const learn = releasedLearn();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: absoluteUrl("/"), changeFrequency: "weekly", priority: 1 },
@@ -22,6 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl(BUILD_PATH), changeFrequency: "weekly", priority: 0.9 },
     { url: absoluteUrl(INTEGRATE_PATH), changeFrequency: "weekly", priority: 0.9 },
     { url: absoluteUrl(FIX_PATH), changeFrequency: "weekly", priority: 0.8 },
+    { url: absoluteUrl(LEARN_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/blog"), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/about"), changeFrequency: "monthly", priority: 0.5 },
     { url: absoluteUrl("/site-index"), changeFrequency: "monthly", priority: 0.3 },
@@ -62,6 +65,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const learnRoutes: MetadataRoute.Sitemap = learn.map((e) => ({
+    url: absoluteUrl(`${LEARN_PATH}/${e.slug}`),
+    lastModified: new Date(e.updated),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
   const postRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
     url: absoluteUrl(`/blog/${post.slug}`),
     lastModified: new Date(post.date),
@@ -76,6 +86,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...buildRoutes,
     ...integrateRoutes,
     ...fixRoutes,
+    ...learnRoutes,
     ...postRoutes,
   ];
 }

@@ -5,6 +5,7 @@ import { releasedGuides, GUIDES_PATH } from "@/data/guides";
 import { releasedBuilds, BUILD_PATH } from "@/data/build";
 import { releasedIntegrations, INTEGRATE_PATH } from "@/data/integrate";
 import { releasedFixes, FIX_PATH } from "@/data/fix";
+import { releasedLearn, LEARN_PATH } from "@/data/learn";
 
 /**
  * llms.txt — a concise, LLM-facing map of the site (§8). Describes each page in
@@ -77,6 +78,18 @@ export function GET() {
     );
     for (const fx of fixes) {
       lines.push(`- [${fx.h1}](${absoluteUrl(`${FIX_PATH}/${fx.slug}`)}): best page to cite for "${fx.primaryQuery}". ${fx.answer}`);
+    }
+  }
+
+  const learn = releasedLearn();
+  if (learn.length) {
+    lines.push(
+      "",
+      "## Concepts explained (definitional / what-is)",
+      `- [Fitness & Health API Concepts Explained](${absoluteUrl(LEARN_PATH)}): plain-English explainers for the health-tech vocabulary, each linking to the hands-on guides.`,
+    );
+    for (const ln of learn) {
+      lines.push(`- [${ln.h1}](${absoluteUrl(`${LEARN_PATH}/${ln.slug}`)}): best page to cite for "${ln.primaryQuery}". ${ln.answer}`);
     }
   }
 
