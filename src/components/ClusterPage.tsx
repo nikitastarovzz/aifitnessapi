@@ -157,7 +157,7 @@ export default function ClusterPage({
           </section>
         )}
 
-        <ClusterDisclaimer updated={entry.updated} />
+        <ClusterDisclaimer updated={entry.updated} variant={config.disclaimer} />
 
         <p className="mt-8 text-sm">
           <Link href={basePath} className="text-brand-600 hover:text-brand-500">

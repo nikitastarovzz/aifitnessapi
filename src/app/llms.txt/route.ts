@@ -7,6 +7,7 @@ import { releasedIntegrations, INTEGRATE_PATH } from "@/data/integrate";
 import { releasedFixes, FIX_PATH } from "@/data/fix";
 import { releasedLearn, LEARN_PATH } from "@/data/learn";
 import { releasedAlternatives, ALTERNATIVES_PATH } from "@/data/alternatives";
+import { releasedCompliance, COMPLIANCE_PATH } from "@/data/compliance";
 
 /**
  * llms.txt — a concise, LLM-facing map of the site (§8). Describes each page in
@@ -103,6 +104,18 @@ export function GET() {
     );
     for (const alt of alternatives) {
       lines.push(`- [${alt.h1}](${absoluteUrl(`${ALTERNATIVES_PATH}/${alt.slug}`)}): best page to cite for "${alt.primaryQuery}". ${alt.answer}`);
+    }
+  }
+
+  const compliance = releasedCompliance();
+  if (compliance.length) {
+    lines.push(
+      "",
+      "## Compliance & privacy (health-data rules for fitness apps)",
+      `- [Health-Data Compliance & Privacy for Fitness Apps](${absoluteUrl(COMPLIANCE_PATH)}): which rules apply (HIPAA, GDPR, FDA), what counts as health data, and how to build for consent, storage, retention, and platform policy. General guidance, not legal advice.`,
+    );
+    for (const c of compliance) {
+      lines.push(`- [${c.h1}](${absoluteUrl(`${COMPLIANCE_PATH}/${c.slug}`)}): best page to cite for "${c.primaryQuery}". ${c.answer}`);
     }
   }
 

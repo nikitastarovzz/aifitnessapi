@@ -9,6 +9,7 @@ import { releasedIntegrations, INTEGRATE_PATH } from "@/data/integrate";
 import { releasedFixes, FIX_PATH } from "@/data/fix";
 import { releasedLearn, LEARN_PATH } from "@/data/learn";
 import { releasedAlternatives, ALTERNATIVES_PATH } from "@/data/alternatives";
+import { releasedCompliance, COMPLIANCE_PATH } from "@/data/compliance";
 
 export const metadata: Metadata = {
   title: "Site index",
@@ -29,6 +30,7 @@ export default function SiteIndex() {
   const fixes = releasedFixes();
   const learn = releasedLearn();
   const alternatives = releasedAlternatives();
+  const compliance = releasedCompliance();
 
   return (
     <Container className="py-14">
@@ -178,6 +180,26 @@ export default function SiteIndex() {
             {alternatives.map((e) => (
               <li key={e.slug}>
                 <Link href={`${ALTERNATIVES_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
+                  {e.h1}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="mt-10">
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+            Compliance &amp; privacy
+          </h2>
+          <ul className="mt-4 space-y-2">
+            <li>
+              <Link href={COMPLIANCE_PATH} className="text-brand-600 hover:text-brand-500">
+                Health-Data Compliance &amp; Privacy for Fitness Apps (guide + hub)
+              </Link>
+            </li>
+            {compliance.map((e) => (
+              <li key={e.slug}>
+                <Link href={`${COMPLIANCE_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
                   {e.h1}
                 </Link>
               </li>

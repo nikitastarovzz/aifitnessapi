@@ -32,6 +32,12 @@ export type ClusterConfig = {
   basePath: string;
   /** Breadcrumb + "all X" label, e.g. "Fitness APIs" or "Guides". */
   hubLabel: string;
+  /**
+   * Which trust line to show. "comparison" (default) is the not-affiliated /
+   * verify-the-docs line; "legal" is the not-legal-advice line for the
+   * compliance cluster (YMYL).
+   */
+  disclaimer?: "comparison" | "legal";
 };
 
 /** Metadata clamps (§6). Break on the last space before the limit; add ellipsis. */

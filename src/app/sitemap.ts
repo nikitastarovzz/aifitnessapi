@@ -8,6 +8,7 @@ import { releasedIntegrations, INTEGRATE_PATH } from "@/data/integrate";
 import { releasedFixes, FIX_PATH } from "@/data/fix";
 import { releasedLearn, LEARN_PATH } from "@/data/learn";
 import { releasedAlternatives, ALTERNATIVES_PATH } from "@/data/alternatives";
+import { releasedCompliance, COMPLIANCE_PATH } from "@/data/compliance";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
@@ -18,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const fixes = releasedFixes();
   const learn = releasedLearn();
   const alternatives = releasedAlternatives();
+  const compliance = releasedCompliance();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: absoluteUrl("/"), changeFrequency: "weekly", priority: 1 },
@@ -28,6 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl(FIX_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl(LEARN_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl(ALTERNATIVES_PATH), changeFrequency: "weekly", priority: 0.8 },
+    { url: absoluteUrl(COMPLIANCE_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/blog"), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/about"), changeFrequency: "monthly", priority: 0.5 },
     { url: absoluteUrl("/site-index"), changeFrequency: "monthly", priority: 0.3 },
@@ -82,6 +85,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const complianceRoutes: MetadataRoute.Sitemap = compliance.map((e) => ({
+    url: absoluteUrl(`${COMPLIANCE_PATH}/${e.slug}`),
+    lastModified: new Date(e.updated),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
   const postRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
     url: absoluteUrl(`/blog/${post.slug}`),
     lastModified: new Date(post.date),
@@ -98,6 +108,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...fixRoutes,
     ...learnRoutes,
     ...alternativesRoutes,
+    ...complianceRoutes,
     ...postRoutes,
   ];
 }
