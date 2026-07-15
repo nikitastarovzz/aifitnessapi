@@ -11,9 +11,9 @@ import { getCompliance, releasedCompliance, COMPLIANCE_PATH } from "@/data/compl
 const UPDATED = "2026-07-14";
 
 export const metadata: Metadata = {
-  title: "Health-Data Compliance & Privacy for Fitness Apps",
+  title: { absolute: "Health-Data Compliance & Privacy for Fitness Apps" },
   description:
-    "Which rules apply to your fitness app — HIPAA, GDPR, FDA — what counts as health data, and how to build for consent, secure storage, retention, and app-store policy.",
+    "Which rules apply to your fitness app — HIPAA, GDPR, FDA — what counts as health data, and how to build for consent, storage, retention, and deletion.",
   alternates: { canonical: COMPLIANCE_PATH },
   openGraph: {
     type: "website",

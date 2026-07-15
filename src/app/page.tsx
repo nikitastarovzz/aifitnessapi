@@ -5,6 +5,19 @@ import Newsletter from "@/components/Newsletter";
 import { getAllPosts } from "@/lib/posts";
 import { site } from "@/lib/site";
 
+/** The eight content clusters, surfaced from the homepage so the highest-
+ *  authority page links directly to every pillar hub (discovery + link equity). */
+const CLUSTERS: { href: string; title: string; blurb: string }[] = [
+  { href: "/fitness-apis", title: "Fitness & workout APIs", blurb: "Compare and choose an API by the job — exercise content, wearables, aggregators, nutrition, or AI motion tracking." },
+  { href: "/guides", title: "Add AI workout tracking", blurb: "The capture → pose → interpret pipeline: camera pose, rep counting, form feedback, and per-platform wiring." },
+  { href: "/build", title: "Build a workout app", blurb: "End-to-end build playbooks by app type — home workout, coaching, strength, running, rehab, and more." },
+  { href: "/integrate", title: "Integration guides", blurb: "Register, OAuth, fetch, and webhooks — a hands-on guide per provider, from HealthKit to Terra." },
+  { href: "/fix", title: "Troubleshooting", blurb: "Symptom-to-fix for the common errors: 401s, rate limits, empty data, dead webhooks, and OAuth snags." },
+  { href: "/learn", title: "Concepts explained", blurb: "Plain-English explainers for the health-tech vocabulary — OAuth, aggregators, HRV, VO2 max, and more." },
+  { href: "/alternatives", title: "Alternatives", blurb: "Anchored on one product: why teams look to switch, and the realistic options — with links to the comparisons." },
+  { href: "/compliance", title: "Compliance & privacy", blurb: "Which rules apply — HIPAA, GDPR, FDA, app-store policy — and how to build for consent, storage, and deletion." },
+];
+
 export default function Home() {
   const posts = getAllPosts();
   const [featured, ...rest] = posts;
@@ -45,7 +58,31 @@ export default function Home() {
         </Container>
       </section>
 
+      {/* What we cover — links to all eight cluster hubs */}
       <Container className="py-16">
+        <div className="mb-6 flex items-baseline justify-between">
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+            What we cover
+          </h2>
+          <Link href="/site-index" className="text-sm font-medium text-brand-600 hover:text-brand-500">
+            Full site index →
+          </Link>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {CLUSTERS.map((c) => (
+            <Link
+              key={c.href}
+              href={c.href}
+              className="flex h-full flex-col rounded-2xl border border-[var(--border)] p-5 transition-colors hover:border-brand-400 hover:bg-[var(--surface)]"
+            >
+              <span className="font-semibold text-[var(--fg)]">{c.title}</span>
+              <span className="mt-2 text-sm text-[var(--muted)]">{c.blurb}</span>
+            </Link>
+          ))}
+        </div>
+      </Container>
+
+      <Container className="pb-16">
         {posts.length === 0 ? (
           <p className="text-center text-[var(--muted)]">
             No posts yet — check back soon.

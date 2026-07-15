@@ -30,7 +30,7 @@ export async function generateMetadata({
   const title = clampTitle(entry.metaTitle);
   const description = clampDescription(entry.metaDescription);
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: { canonical },
     openGraph: {

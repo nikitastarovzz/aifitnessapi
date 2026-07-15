@@ -13,7 +13,7 @@ const UPDATED = "2026-07-09";
 export const metadata: Metadata = {
   title: "How to Integrate a Fitness or Health API",
   description:
-    "Step-by-step integration guides for fitness and health APIs — OAuth setup, fetching data, and webhooks — for HealthKit, Fitbit, Strava, Garmin, Oura, Terra, and more.",
+    "Step-by-step integration guides for fitness and health APIs: OAuth, fetching data, and webhooks for HealthKit, Fitbit, Strava, Garmin, Oura, and Terra.",
   alternates: { canonical: INTEGRATE_PATH },
   openGraph: {
     type: "website",

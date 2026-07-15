@@ -13,7 +13,7 @@ const UPDATED = "2026-07-09";
 export const metadata: Metadata = {
   title: "Fitness & Health API Alternatives",
   description:
-    "Considering a switch? Alternatives to Fitbit, Google Fit, Garmin, Strava, Oura, WHOOP, HealthKit, Terra, Nutritionix, and ExerciseDB — why teams move and what to use.",
+    "Considering a switch? Alternatives to Fitbit, Google Fit, Garmin, Strava, Oura, WHOOP, HealthKit, Terra, Nutritionix, and ExerciseDB — and what to use.",
   alternates: { canonical: ALTERNATIVES_PATH },
   openGraph: {
     type: "website",

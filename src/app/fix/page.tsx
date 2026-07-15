@@ -13,7 +13,7 @@ const UPDATED = "2026-07-09";
 export const metadata: Metadata = {
   title: "Fitness & Health API Troubleshooting",
   description:
-    "Fixes for common fitness and health API errors — 401s, 429 rate limits, OAuth redirect mismatches, empty HealthKit/Health Connect data, webhooks not firing, and more.",
+    "Fixes for common fitness and health API errors: 401s, 429 rate limits, OAuth redirect mismatches, empty HealthKit/Health Connect data, and dead webhooks.",
   alternates: { canonical: FIX_PATH },
   openGraph: {
     type: "website",

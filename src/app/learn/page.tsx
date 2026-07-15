@@ -13,7 +13,7 @@ const UPDATED = "2026-07-09";
 export const metadata: Metadata = {
   title: "Fitness & Health API Concepts Explained",
   description:
-    "Plain-English explainers for fitness and health-tech builders: what a fitness API is, OAuth, webhooks, aggregators, pose estimation, HRV, VO2 max, sleep stages, and more.",
+    "Plain-English explainers for health-tech builders: fitness APIs, OAuth, webhooks, aggregators, pose estimation, HRV, VO2 max, and sleep stages.",
   alternates: { canonical: LEARN_PATH },
   openGraph: {
     type: "website",
