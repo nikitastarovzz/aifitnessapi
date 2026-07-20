@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     description:
       "Scope, features, APIs, MVP, and launch — plus a build guide for personal training, home workout, AI coaching, rehab, yoga, and more.",
     url: BUILD_PATH,
+    images: ["/opengraph-image"],
   },
 };
 

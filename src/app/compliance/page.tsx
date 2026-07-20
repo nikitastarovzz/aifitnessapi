@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     description:
       "A developer's map of health-data compliance: which regulations apply, what counts as health data, and how to build for consent, storage, retention, and platform policy.",
     url: COMPLIANCE_PATH,
+    images: ["/opengraph-image"],
   },
 };
 

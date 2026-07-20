@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     description:
       "The vocabulary of health-tech, explained for builders: APIs, OAuth, webhooks, aggregators, pose estimation, and the metrics inside your data.",
     url: LEARN_PATH,
+    images: ["/opengraph-image"],
   },
 };
 

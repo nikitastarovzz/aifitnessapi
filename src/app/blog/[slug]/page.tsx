@@ -26,7 +26,8 @@ export async function generateMetadata({
   if (!post) return {};
 
   const url = absoluteUrl(`/blog/${post.slug}`);
-  const ogImage = post.image ? absoluteUrl(post.image) : undefined;
+  // Fall back to the site-wide branded OG card when a post has no cover image.
+  const ogImage = post.image ? absoluteUrl(post.image) : absoluteUrl("/opengraph-image");
 
   return {
     title: post.title,

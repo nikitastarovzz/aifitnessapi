@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     description:
       "Symptom → cause → fix for the errors builders actually hit: auth failures, rate limits, empty platform-store data, webhook and sync problems.",
     url: FIX_PATH,
+    images: ["/opengraph-image"],
   },
 };
 

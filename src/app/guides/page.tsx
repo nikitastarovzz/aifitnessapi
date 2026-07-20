@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     description:
       "Camera-based rep counting and form feedback, from pose primitives to per-platform integration for iOS, Android, React Native, Flutter, and web.",
     url: GUIDES_PATH,
+    images: ["/opengraph-image"],
   },
 };
 

@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     description:
       "Per-provider integration guides: OAuth, data endpoints, and webhooks for HealthKit, Fitbit, Strava, Garmin, Oura, WHOOP, Terra, and more.",
     url: INTEGRATE_PATH,
+    images: ["/opengraph-image"],
   },
 };
 

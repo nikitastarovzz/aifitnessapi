@@ -34,11 +34,13 @@ export const metadata: Metadata = {
     description: site.description,
     url: site.url,
     locale: site.locale,
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: site.title }],
   },
   twitter: {
     card: "summary_large_image",
     title: site.title,
     description: site.description,
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,

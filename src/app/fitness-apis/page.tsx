@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     description:
       "Exercise data, wearables, aggregators, nutrition, and AI motion tracking — the fitness API landscape, mapped for builders.",
     url: PILLAR_PATH,
+    images: ["/opengraph-image"],
   },
 };
 

@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     description:
       "Why teams replace a given fitness/health API and the realistic alternatives — for wearables, platforms, aggregators, and content APIs.",
     url: ALTERNATIVES_PATH,
+    images: ["/opengraph-image"],
   },
 };
 
