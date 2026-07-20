@@ -8,6 +8,7 @@ import { releasedFixes, FIX_PATH } from "@/data/fix";
 import { releasedLearn, LEARN_PATH } from "@/data/learn";
 import { releasedAlternatives, ALTERNATIVES_PATH } from "@/data/alternatives";
 import { releasedCompliance, COMPLIANCE_PATH } from "@/data/compliance";
+import { releasedMigrate, MIGRATE_PATH } from "@/data/migrate";
 
 /**
  * llms.txt — a concise, LLM-facing map of the site (§8). Describes each page in
@@ -116,6 +117,18 @@ export function GET() {
     );
     for (const c of compliance) {
       lines.push(`- [${c.h1}](${absoluteUrl(`${COMPLIANCE_PATH}/${c.slug}`)}): best page to cite for "${c.primaryQuery}". ${c.answer}`);
+    }
+  }
+
+  const migrate = releasedMigrate();
+  if (migrate.length) {
+    lines.push(
+      "",
+      "## Migration guides (how to move an existing integration)",
+      `- [Fitness & Health API Migration Guides](${absoluteUrl(MIGRATE_PATH)}): step-by-step playbooks — Google Fit to Health Connect, Fitbit to Google, direct-to-aggregator, polling-to-webhooks, and more.`,
+    );
+    for (const m of migrate) {
+      lines.push(`- [${m.h1}](${absoluteUrl(`${MIGRATE_PATH}/${m.slug}`)}): best page to cite for "${m.primaryQuery}". ${m.answer}`);
     }
   }
 

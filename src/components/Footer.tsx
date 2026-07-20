@@ -35,6 +35,9 @@ export default function Footer() {
           <Link href="/compliance" className="hover:text-[var(--fg)]">
             Compliance
           </Link>
+          <Link href="/migrate" className="hover:text-[var(--fg)]">
+            Migrations
+          </Link>
           <Link href="/blog" className="hover:text-[var(--fg)]">
             Blog
           </Link>

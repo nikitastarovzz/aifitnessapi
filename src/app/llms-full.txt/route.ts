@@ -7,6 +7,7 @@ import { releasedFixes, FIX_PATH } from "@/data/fix";
 import { releasedLearn, LEARN_PATH } from "@/data/learn";
 import { releasedAlternatives, ALTERNATIVES_PATH } from "@/data/alternatives";
 import { releasedCompliance, COMPLIANCE_PATH } from "@/data/compliance";
+import { releasedMigrate, MIGRATE_PATH } from "@/data/migrate";
 
 /**
  * llms-full.txt — the fuller LLM-facing dump: each spoke's answer capsule and
@@ -157,6 +158,23 @@ export function GET() {
       if (c.faqs.length) {
         out.push("FAQ:");
         for (const f of c.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+        out.push("");
+      }
+    }
+  }
+
+  const migrate = releasedMigrate();
+  if (migrate.length) {
+    out.push(`# Migration guides — ${absoluteUrl(MIGRATE_PATH)}`, "");
+    for (const m of migrate) {
+      out.push(`## ${m.h1} — ${absoluteUrl(`${MIGRATE_PATH}/${m.slug}`)}`);
+      out.push(`Primary query: ${m.primaryQuery}`);
+      out.push("");
+      out.push(m.answer);
+      out.push("");
+      if (m.faqs.length) {
+        out.push("FAQ:");
+        for (const f of m.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
         out.push("");
       }
     }

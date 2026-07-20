@@ -16,6 +16,7 @@ const CLUSTERS: { href: string; title: string; blurb: string }[] = [
   { href: "/learn", title: "Concepts explained", blurb: "Plain-English explainers for the health-tech vocabulary — OAuth, aggregators, HRV, VO2 max, and more." },
   { href: "/alternatives", title: "Alternatives", blurb: "Anchored on one product: why teams look to switch, and the realistic options — with links to the comparisons." },
   { href: "/compliance", title: "Compliance & privacy", blurb: "Which rules apply — HIPAA, GDPR, FDA, app-store policy — and how to build for consent, storage, and deletion." },
+  { href: "/migrate", title: "Migration guides", blurb: "Step-by-step playbooks for moving an integration — Google Fit to Health Connect, direct-to-aggregator, and more." },
 ];
 
 export default function Home() {
@@ -68,7 +69,7 @@ export default function Home() {
             Full site index →
           </Link>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {CLUSTERS.map((c) => (
             <Link
               key={c.href}

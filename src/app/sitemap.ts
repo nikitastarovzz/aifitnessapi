@@ -9,6 +9,7 @@ import { releasedFixes, FIX_PATH } from "@/data/fix";
 import { releasedLearn, LEARN_PATH } from "@/data/learn";
 import { releasedAlternatives, ALTERNATIVES_PATH } from "@/data/alternatives";
 import { releasedCompliance, COMPLIANCE_PATH } from "@/data/compliance";
+import { releasedMigrate, MIGRATE_PATH } from "@/data/migrate";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
@@ -20,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const learn = releasedLearn();
   const alternatives = releasedAlternatives();
   const compliance = releasedCompliance();
+  const migrate = releasedMigrate();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: absoluteUrl("/"), changeFrequency: "weekly", priority: 1 },
@@ -31,6 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl(LEARN_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl(ALTERNATIVES_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl(COMPLIANCE_PATH), changeFrequency: "weekly", priority: 0.8 },
+    { url: absoluteUrl(MIGRATE_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/blog"), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/about"), changeFrequency: "monthly", priority: 0.5 },
     { url: absoluteUrl("/site-index"), changeFrequency: "monthly", priority: 0.3 },
@@ -92,6 +95,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const migrateRoutes: MetadataRoute.Sitemap = migrate.map((e) => ({
+    url: absoluteUrl(`${MIGRATE_PATH}/${e.slug}`),
+    lastModified: new Date(e.updated),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
   const postRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
     url: absoluteUrl(`/blog/${post.slug}`),
     lastModified: new Date(post.date),
@@ -109,6 +119,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...learnRoutes,
     ...alternativesRoutes,
     ...complianceRoutes,
+    ...migrateRoutes,
     ...postRoutes,
   ];
 }
