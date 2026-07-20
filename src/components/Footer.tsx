@@ -10,7 +10,7 @@ export default function Footer() {
         <p className="text-sm text-[var(--muted)]">
           © {year} {site.name}. All rights reserved.
         </p>
-        <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-[var(--muted)]">
+        <nav aria-label="Footer" className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-[var(--muted)]">
           <Link href="/fitness-apis" className="hover:text-[var(--fg)]">
             Fitness APIs
           </Link>

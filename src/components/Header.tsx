@@ -20,7 +20,7 @@ export default function Header() {
           <span className="text-[var(--fg)]">{site.name}</span>
         </Link>
 
-        <nav className="flex items-center gap-1 sm:gap-2">
+        <nav aria-label="Primary" className="flex items-center gap-1 sm:gap-2">
           {nav.map((item) => (
             <Link
               key={item.href}

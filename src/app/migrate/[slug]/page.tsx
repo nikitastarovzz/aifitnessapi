@@ -40,9 +40,8 @@ export async function generateMetadata({
       url: canonical,
       publishedTime: entry.updated,
       modifiedTime: entry.updated,
-      images: ["/opengraph-image"],
     },
-    twitter: { card: "summary_large_image", title, description, images: ["/opengraph-image"] },
+    twitter: { card: "summary_large_image", title, description },
   };
 }
 
