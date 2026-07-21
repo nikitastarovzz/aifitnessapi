@@ -4,8 +4,10 @@ import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterCta from "@/components/ClusterCta";
 import ClusterDisclaimer from "@/components/ClusterDisclaimer";
+import ClusterHero from "@/components/ClusterHero";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
+import { heroSeed } from "@/lib/cluster";
 import { getMigration, releasedMigrate, MIGRATE_PATH } from "@/data/migrate";
 
 const UPDATED = "2026-07-20";
@@ -113,6 +115,8 @@ export default function MigratePillar() {
 
       <div className="mx-auto max-w-2xl">
         <Breadcrumbs trail={[{ name: "Home", path: "/" }, { name: "Migrations", path: MIGRATE_PATH }]} />
+
+        <ClusterHero label="Migrations" seed={heroSeed(MIGRATE_PATH)} />
 
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
           Fitness &amp; Health API Migration Guides

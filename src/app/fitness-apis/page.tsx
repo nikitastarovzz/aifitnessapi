@@ -4,8 +4,10 @@ import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterCta from "@/components/ClusterCta";
 import ClusterDisclaimer from "@/components/ClusterDisclaimer";
+import ClusterHero from "@/components/ClusterHero";
 import { site, absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
+import { heroSeed } from "@/lib/cluster";
 import { getEntry, releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
 
 const UPDATED = "2026-07-08";
@@ -115,6 +117,8 @@ export default function FitnessApisPillar() {
 
       <div className="mx-auto max-w-2xl">
         <Breadcrumbs trail={[{ name: "Home", path: "/" }, { name: "Fitness APIs", path: PILLAR_PATH }]} />
+
+        <ClusterHero label="Fitness APIs" seed={heroSeed(PILLAR_PATH)} />
 
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
           Best Fitness &amp; Workout APIs for Builders (2026)

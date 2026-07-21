@@ -4,8 +4,10 @@ import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterCta from "@/components/ClusterCta";
 import ClusterDisclaimer from "@/components/ClusterDisclaimer";
+import ClusterHero from "@/components/ClusterHero";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
+import { heroSeed } from "@/lib/cluster";
 import { getLearn, releasedLearn, LEARN_PATH } from "@/data/learn";
 
 const UPDATED = "2026-07-09";
@@ -108,6 +110,8 @@ export default function LearnPillar() {
 
       <div className="mx-auto max-w-2xl">
         <Breadcrumbs trail={[{ name: "Home", path: "/" }, { name: "Concepts", path: LEARN_PATH }]} />
+
+        <ClusterHero label="Concepts" seed={heroSeed(LEARN_PATH)} />
 
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
           Fitness &amp; Health API Concepts, Explained

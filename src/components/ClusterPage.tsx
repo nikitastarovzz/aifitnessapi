@@ -3,10 +3,12 @@ import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterCta from "@/components/ClusterCta";
 import ClusterDisclaimer from "@/components/ClusterDisclaimer";
+import ClusterHero from "@/components/ClusterHero";
 import { Mdx } from "@/components/mdx";
 import { formatDate } from "@/lib/posts";
 import { site, absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
+import { heroSeed } from "@/lib/cluster";
 import type { ClusterEntry, ClusterConfig } from "@/lib/cluster";
 
 /**
@@ -99,6 +101,8 @@ export default function ClusterPage({
             { name: entry.h1, path: `${basePath}/${entry.slug}` },
           ]}
         />
+
+        <ClusterHero label={hubLabel} seed={heroSeed(basePath)} />
 
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)]">
           {entry.h1}

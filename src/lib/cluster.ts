@@ -40,6 +40,29 @@ export type ClusterConfig = {
   disclaimer?: "comparison" | "legal";
 };
 
+/** Per-cluster hero-art seed (varies the decorative motif so clusters look
+ *  distinct). One stable index per basePath. */
+export const CLUSTER_SEED: Record<string, number> = {
+  "/fitness-apis": 0,
+  "/guides": 1,
+  "/build": 2,
+  "/integrate": 3,
+  "/fix": 4,
+  "/learn": 5,
+  "/alternatives": 6,
+  "/compliance": 7,
+  "/migrate": 8,
+};
+export function heroSeed(basePath: string): number {
+  return CLUSTER_SEED[basePath] ?? 0;
+}
+/** Stable hero seed from an arbitrary string (e.g. a blog slug). */
+export function stringSeed(s: string): number {
+  let n = 0;
+  for (let i = 0; i < s.length; i++) n = (n + s.charCodeAt(i)) % 9;
+  return n;
+}
+
 /** Metadata clamps (§6). Break on the last space before the limit; add ellipsis. */
 export function clampTitle(s: string, max = 60): string {
   return clamp(s, max);

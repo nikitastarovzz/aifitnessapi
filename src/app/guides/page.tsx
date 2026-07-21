@@ -4,8 +4,10 @@ import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterCta from "@/components/ClusterCta";
 import ClusterDisclaimer from "@/components/ClusterDisclaimer";
+import ClusterHero from "@/components/ClusterHero";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
+import { heroSeed } from "@/lib/cluster";
 import { getGuide, releasedGuides, GUIDES_PATH } from "@/data/guides";
 
 const UPDATED = "2026-07-08";
@@ -114,6 +116,8 @@ export default function GuidesPillar() {
 
       <div className="mx-auto max-w-2xl">
         <Breadcrumbs trail={[{ name: "Home", path: "/" }, { name: "Guides", path: GUIDES_PATH }]} />
+
+        <ClusterHero label="Guides" seed={heroSeed(GUIDES_PATH)} />
 
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
           How to Add AI Workout Tracking to Your App

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Container from "@/components/Container";
+import ClusterHero from "@/components/ClusterHero";
 import { Mdx } from "@/components/mdx";
 import {
   getAllPosts,
@@ -9,6 +10,7 @@ import {
   formatDate,
 } from "@/lib/posts";
 import { site, absoluteUrl } from "@/lib/site";
+import { stringSeed } from "@/lib/cluster";
 
 type Params = { slug: string };
 
@@ -110,6 +112,17 @@ export default async function PostPage({
             ← Back to blog
           </Link>
         </nav>
+
+        {post.image ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={post.image}
+            alt=""
+            className="mb-8 aspect-[16/7] w-full rounded-2xl border border-[var(--border)] object-cover"
+          />
+        ) : (
+          <ClusterHero label={post.tags[0] ?? "Article"} seed={stringSeed(post.slug)} />
+        )}
 
         <header className="mb-10">
           <div className="mb-4 flex flex-wrap items-center gap-2 text-sm text-[var(--muted)]">

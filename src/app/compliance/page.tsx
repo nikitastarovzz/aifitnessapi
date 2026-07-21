@@ -4,8 +4,10 @@ import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterCta from "@/components/ClusterCta";
 import ClusterDisclaimer from "@/components/ClusterDisclaimer";
+import ClusterHero from "@/components/ClusterHero";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
+import { heroSeed } from "@/lib/cluster";
 import { getCompliance, releasedCompliance, COMPLIANCE_PATH } from "@/data/compliance";
 
 const UPDATED = "2026-07-14";
@@ -113,6 +115,8 @@ export default function CompliancePillar() {
 
       <div className="mx-auto max-w-2xl">
         <Breadcrumbs trail={[{ name: "Home", path: "/" }, { name: "Compliance", path: COMPLIANCE_PATH }]} />
+
+        <ClusterHero label="Compliance" seed={heroSeed(COMPLIANCE_PATH)} />
 
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
           Health-Data Compliance &amp; Privacy for Fitness Apps

@@ -4,8 +4,10 @@ import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterCta from "@/components/ClusterCta";
 import ClusterDisclaimer from "@/components/ClusterDisclaimer";
+import ClusterHero from "@/components/ClusterHero";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
+import { heroSeed } from "@/lib/cluster";
 import { getIntegration, releasedIntegrations, INTEGRATE_PATH } from "@/data/integrate";
 
 const UPDATED = "2026-07-09";
@@ -108,6 +110,8 @@ export default function IntegratePillar() {
 
       <div className="mx-auto max-w-2xl">
         <Breadcrumbs trail={[{ name: "Home", path: "/" }, { name: "Integration Guides", path: INTEGRATE_PATH }]} />
+
+        <ClusterHero label="Integration Guides" seed={heroSeed(INTEGRATE_PATH)} />
 
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
           How to Integrate a Fitness or Health API
