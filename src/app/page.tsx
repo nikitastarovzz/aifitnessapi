@@ -18,6 +18,7 @@ const CLUSTERS: { href: string; title: string; blurb: string }[] = [
   { href: "/compliance", title: "Compliance & privacy", blurb: "Which rules apply — HIPAA, GDPR, FDA, app-store policy — and how to build for consent, storage, and deletion." },
   { href: "/migrate", title: "Migration guides", blurb: "Step-by-step playbooks for moving an integration — Google Fit to Health Connect, direct-to-aggregator, and more." },
   { href: "/pricing", title: "Pricing", blurb: "What fitness and health APIs really cost — which are free to call, which charge, and what drives your bill." },
+  { href: "/compare", title: "Comparisons", blurb: "Head-to-heads through the developer lens — Oura vs WHOOP, Fitbit vs Apple Watch, Terra vs Rook, and more." },
 ];
 
 export default function Home() {

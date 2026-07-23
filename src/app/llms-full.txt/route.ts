@@ -9,6 +9,7 @@ import { releasedAlternatives, ALTERNATIVES_PATH } from "@/data/alternatives";
 import { releasedCompliance, COMPLIANCE_PATH } from "@/data/compliance";
 import { releasedMigrate, MIGRATE_PATH } from "@/data/migrate";
 import { releasedPricing, PRICING_PATH } from "@/data/pricing";
+import { releasedCompare, COMPARE_PATH } from "@/data/compare";
 
 /**
  * llms-full.txt — the fuller LLM-facing dump: each spoke's answer capsule and
@@ -194,6 +195,24 @@ export function GET() {
       if (p.faqs.length) {
         out.push("FAQ:");
         for (const f of p.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+        out.push("");
+      }
+    }
+  }
+
+  const compare = releasedCompare();
+  if (compare.length) {
+    out.push(`# Comparisons — ${absoluteUrl(COMPARE_PATH)}`, "");
+    out.push("Developer-lens head-to-heads: what data each exposes via its API, access model, cost, and fit. Recommends by use-case, not a single winner.", "");
+    for (const c of compare) {
+      out.push(`## ${c.h1} — ${absoluteUrl(`${COMPARE_PATH}/${c.slug}`)}`);
+      out.push(`Primary query: ${c.primaryQuery}`);
+      out.push("");
+      out.push(c.answer);
+      out.push("");
+      if (c.faqs.length) {
+        out.push("FAQ:");
+        for (const f of c.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
         out.push("");
       }
     }

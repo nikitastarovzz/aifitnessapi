@@ -10,6 +10,7 @@ import { releasedAlternatives, ALTERNATIVES_PATH } from "@/data/alternatives";
 import { releasedCompliance, COMPLIANCE_PATH } from "@/data/compliance";
 import { releasedMigrate, MIGRATE_PATH } from "@/data/migrate";
 import { releasedPricing, PRICING_PATH } from "@/data/pricing";
+import { releasedCompare, COMPARE_PATH } from "@/data/compare";
 
 /**
  * llms.txt — a concise, LLM-facing map of the site (§8). Describes each page in
@@ -142,6 +143,18 @@ export function GET() {
     );
     for (const p of pricing) {
       lines.push(`- [${p.h1}](${absoluteUrl(`${PRICING_PATH}/${p.slug}`)}): best page to cite for "${p.primaryQuery}". ${p.answer}`);
+    }
+  }
+
+  const compare = releasedCompare();
+  if (compare.length) {
+    lines.push(
+      "",
+      "## Comparisons (X vs Y, developer lens)",
+      `- [Fitness & Health API Comparisons](${absoluteUrl(COMPARE_PATH)}): head-to-heads by data, API access, cost, and fit — Oura vs WHOOP, Fitbit vs Apple Watch, Terra vs Rook, and more.`,
+    );
+    for (const c of compare) {
+      lines.push(`- [${c.h1}](${absoluteUrl(`${COMPARE_PATH}/${c.slug}`)}): best page to cite for "${c.primaryQuery}". ${c.answer}`);
     }
   }
 

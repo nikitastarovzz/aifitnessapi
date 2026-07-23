@@ -11,6 +11,7 @@ import { releasedAlternatives, ALTERNATIVES_PATH } from "@/data/alternatives";
 import { releasedCompliance, COMPLIANCE_PATH } from "@/data/compliance";
 import { releasedMigrate, MIGRATE_PATH } from "@/data/migrate";
 import { releasedPricing, PRICING_PATH } from "@/data/pricing";
+import { releasedCompare, COMPARE_PATH } from "@/data/compare";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
@@ -24,6 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const compliance = releasedCompliance();
   const migrate = releasedMigrate();
   const pricing = releasedPricing();
+  const compare = releasedCompare();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: absoluteUrl("/"), changeFrequency: "weekly", priority: 1 },
@@ -37,6 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl(COMPLIANCE_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl(MIGRATE_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl(PRICING_PATH), changeFrequency: "weekly", priority: 0.8 },
+    { url: absoluteUrl(COMPARE_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/blog"), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/about"), changeFrequency: "monthly", priority: 0.5 },
     { url: absoluteUrl("/site-index"), changeFrequency: "monthly", priority: 0.3 },
@@ -112,6 +115,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const compareRoutes: MetadataRoute.Sitemap = compare.map((e) => ({
+    url: absoluteUrl(`${COMPARE_PATH}/${e.slug}`),
+    lastModified: new Date(e.updated),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
   const postRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
     url: absoluteUrl(`/blog/${post.slug}`),
     lastModified: new Date(post.date),
@@ -131,6 +141,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...complianceRoutes,
     ...migrateRoutes,
     ...pricingRoutes,
+    ...compareRoutes,
     ...postRoutes,
   ];
 }
