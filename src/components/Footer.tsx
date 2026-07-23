@@ -38,6 +38,9 @@ export default function Footer() {
           <Link href="/migrate" className="hover:text-[var(--fg)]">
             Migrations
           </Link>
+          <Link href="/pricing" className="hover:text-[var(--fg)]">
+            Pricing
+          </Link>
           <Link href="/blog" className="hover:text-[var(--fg)]">
             Blog
           </Link>

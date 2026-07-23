@@ -8,6 +8,7 @@ import { releasedLearn, LEARN_PATH } from "@/data/learn";
 import { releasedAlternatives, ALTERNATIVES_PATH } from "@/data/alternatives";
 import { releasedCompliance, COMPLIANCE_PATH } from "@/data/compliance";
 import { releasedMigrate, MIGRATE_PATH } from "@/data/migrate";
+import { releasedPricing, PRICING_PATH } from "@/data/pricing";
 
 /**
  * llms-full.txt — the fuller LLM-facing dump: each spoke's answer capsule and
@@ -175,6 +176,24 @@ export function GET() {
       if (m.faqs.length) {
         out.push("FAQ:");
         for (const f of m.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+        out.push("");
+      }
+    }
+  }
+
+  const pricing = releasedPricing();
+  if (pricing.length) {
+    out.push(`# Pricing — ${absoluteUrl(PRICING_PATH)}`, "");
+    out.push("Most first-party wearable APIs are free to call; the real costs are aggregators, nutrition/exercise APIs, user device/membership, and infra. Pricing is volatile — verify current figures.", "");
+    for (const p of pricing) {
+      out.push(`## ${p.h1} — ${absoluteUrl(`${PRICING_PATH}/${p.slug}`)}`);
+      out.push(`Primary query: ${p.primaryQuery}`);
+      out.push("");
+      out.push(p.answer);
+      out.push("");
+      if (p.faqs.length) {
+        out.push("FAQ:");
+        for (const f of p.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
         out.push("");
       }
     }

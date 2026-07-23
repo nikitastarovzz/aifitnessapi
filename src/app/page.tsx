@@ -17,6 +17,7 @@ const CLUSTERS: { href: string; title: string; blurb: string }[] = [
   { href: "/alternatives", title: "Alternatives", blurb: "Anchored on one product: why teams look to switch, and the realistic options — with links to the comparisons." },
   { href: "/compliance", title: "Compliance & privacy", blurb: "Which rules apply — HIPAA, GDPR, FDA, app-store policy — and how to build for consent, storage, and deletion." },
   { href: "/migrate", title: "Migration guides", blurb: "Step-by-step playbooks for moving an integration — Google Fit to Health Connect, direct-to-aggregator, and more." },
+  { href: "/pricing", title: "Pricing", blurb: "What fitness and health APIs really cost — which are free to call, which charge, and what drives your bill." },
 ];
 
 export default function Home() {

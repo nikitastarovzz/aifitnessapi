@@ -11,6 +11,7 @@ import { releasedLearn, LEARN_PATH } from "@/data/learn";
 import { releasedAlternatives, ALTERNATIVES_PATH } from "@/data/alternatives";
 import { releasedCompliance, COMPLIANCE_PATH } from "@/data/compliance";
 import { releasedMigrate, MIGRATE_PATH } from "@/data/migrate";
+import { releasedPricing, PRICING_PATH } from "@/data/pricing";
 
 export const metadata: Metadata = {
   title: "Site index",
@@ -33,6 +34,7 @@ export default function SiteIndex() {
   const alternatives = releasedAlternatives();
   const compliance = releasedCompliance();
   const migrate = releasedMigrate();
+  const pricing = releasedPricing();
 
   return (
     <Container className="py-14">
@@ -222,6 +224,26 @@ export default function SiteIndex() {
             {migrate.map((e) => (
               <li key={e.slug}>
                 <Link href={`${MIGRATE_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
+                  {e.h1}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="mt-10">
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+            Pricing
+          </h2>
+          <ul className="mt-4 space-y-2">
+            <li>
+              <Link href={PRICING_PATH} className="text-brand-600 hover:text-brand-500">
+                Fitness &amp; Health API Pricing (guide + hub)
+              </Link>
+            </li>
+            {pricing.map((e) => (
+              <li key={e.slug}>
+                <Link href={`${PRICING_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
                   {e.h1}
                 </Link>
               </li>
