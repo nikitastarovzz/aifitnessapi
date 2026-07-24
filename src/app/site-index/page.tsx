@@ -13,6 +13,7 @@ import { releasedCompliance, COMPLIANCE_PATH } from "@/data/compliance";
 import { releasedMigrate, MIGRATE_PATH } from "@/data/migrate";
 import { releasedPricing, PRICING_PATH } from "@/data/pricing";
 import { releasedCompare, COMPARE_PATH } from "@/data/compare";
+import { releasedData, DATA_PATH } from "@/data/healthData";
 
 export const metadata: Metadata = {
   title: "Site index",
@@ -37,6 +38,7 @@ export default function SiteIndex() {
   const migrate = releasedMigrate();
   const pricing = releasedPricing();
   const compare = releasedCompare();
+  const healthData = releasedData();
 
   return (
     <Container className="py-14">
@@ -266,6 +268,26 @@ export default function SiteIndex() {
             {compare.map((e) => (
               <li key={e.slug}>
                 <Link href={`${COMPARE_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
+                  {e.h1}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="mt-10">
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+            Health data by metric
+          </h2>
+          <ul className="mt-4 space-y-2">
+            <li>
+              <Link href={DATA_PATH} className="text-brand-600 hover:text-brand-500">
+                Health Data by Metric (guide + hub)
+              </Link>
+            </li>
+            {healthData.map((e) => (
+              <li key={e.slug}>
+                <Link href={`${DATA_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
                   {e.h1}
                 </Link>
               </li>

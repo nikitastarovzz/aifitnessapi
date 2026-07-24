@@ -44,6 +44,9 @@ export default function Footer() {
           <Link href="/compare" className="hover:text-[var(--fg)]">
             Comparisons
           </Link>
+          <Link href="/data" className="hover:text-[var(--fg)]">
+            Health Data
+          </Link>
           <Link href="/blog" className="hover:text-[var(--fg)]">
             Blog
           </Link>

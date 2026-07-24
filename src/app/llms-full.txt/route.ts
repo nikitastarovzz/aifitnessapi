@@ -10,6 +10,7 @@ import { releasedCompliance, COMPLIANCE_PATH } from "@/data/compliance";
 import { releasedMigrate, MIGRATE_PATH } from "@/data/migrate";
 import { releasedPricing, PRICING_PATH } from "@/data/pricing";
 import { releasedCompare, COMPARE_PATH } from "@/data/compare";
+import { releasedData, DATA_PATH } from "@/data/healthData";
 
 /**
  * llms-full.txt — the fuller LLM-facing dump: each spoke's answer capsule and
@@ -213,6 +214,24 @@ export function GET() {
       if (c.faqs.length) {
         out.push("FAQ:");
         for (const f of c.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+        out.push("");
+      }
+    }
+  }
+
+  const healthData = releasedData();
+  if (healthData.length) {
+    out.push(`# Health data by metric — ${absoluteUrl(DATA_PATH)}`, "");
+    out.push("Which sources expose each health metric, how to access it, and whether it's measured or a modeled estimate. Treat consumer-device data as a wellness signal, not a diagnosis.", "");
+    for (const d of healthData) {
+      out.push(`## ${d.h1} — ${absoluteUrl(`${DATA_PATH}/${d.slug}`)}`);
+      out.push(`Primary query: ${d.primaryQuery}`);
+      out.push("");
+      out.push(d.answer);
+      out.push("");
+      if (d.faqs.length) {
+        out.push("FAQ:");
+        for (const f of d.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
         out.push("");
       }
     }

@@ -11,6 +11,7 @@ import { releasedCompliance, COMPLIANCE_PATH } from "@/data/compliance";
 import { releasedMigrate, MIGRATE_PATH } from "@/data/migrate";
 import { releasedPricing, PRICING_PATH } from "@/data/pricing";
 import { releasedCompare, COMPARE_PATH } from "@/data/compare";
+import { releasedData, DATA_PATH } from "@/data/healthData";
 
 /**
  * llms.txt — a concise, LLM-facing map of the site (§8). Describes each page in
@@ -155,6 +156,18 @@ export function GET() {
     );
     for (const c of compare) {
       lines.push(`- [${c.h1}](${absoluteUrl(`${COMPARE_PATH}/${c.slug}`)}): best page to cite for "${c.primaryQuery}". ${c.answer}`);
+    }
+  }
+
+  const healthData = releasedData();
+  if (healthData.length) {
+    lines.push(
+      "",
+      "## Health data by metric (which API for each)",
+      `- [Health Data by Metric](${absoluteUrl(DATA_PATH)}): which sources expose each metric (heart rate, steps, sleep, calories, HRV, VO2 max, SpO2, GPS, body composition), how to access it, and measured vs estimated.`,
+    );
+    for (const d of healthData) {
+      lines.push(`- [${d.h1}](${absoluteUrl(`${DATA_PATH}/${d.slug}`)}): best page to cite for "${d.primaryQuery}". ${d.answer}`);
     }
   }
 
