@@ -14,6 +14,7 @@ import { releasedMigrate, MIGRATE_PATH } from "@/data/migrate";
 import { releasedPricing, PRICING_PATH } from "@/data/pricing";
 import { releasedCompare, COMPARE_PATH } from "@/data/compare";
 import { releasedData, DATA_PATH } from "@/data/healthData";
+import { releasedMotion, MOTION_PATH } from "@/data/motion";
 
 export const metadata: Metadata = {
   title: "Site index",
@@ -39,6 +40,7 @@ export default function SiteIndex() {
   const pricing = releasedPricing();
   const compare = releasedCompare();
   const healthData = releasedData();
+  const motion = releasedMotion();
 
   return (
     <Container className="py-14">
@@ -288,6 +290,26 @@ export default function SiteIndex() {
             {healthData.map((e) => (
               <li key={e.slug}>
                 <Link href={`${DATA_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
+                  {e.h1}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="mt-10">
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+            AI motion &amp; pose estimation
+          </h2>
+          <ul className="mt-4 space-y-2">
+            <li>
+              <Link href={MOTION_PATH} className="text-brand-600 hover:text-brand-500">
+                AI Motion &amp; Pose Estimation (guide + hub)
+              </Link>
+            </li>
+            {motion.map((e) => (
+              <li key={e.slug}>
+                <Link href={`${MOTION_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
                   {e.h1}
                 </Link>
               </li>

@@ -47,6 +47,9 @@ export default function Footer() {
           <Link href="/data" className="hover:text-[var(--fg)]">
             Health Data
           </Link>
+          <Link href="/motion" className="hover:text-[var(--fg)]">
+            AI Motion
+          </Link>
           <Link href="/blog" className="hover:text-[var(--fg)]">
             Blog
           </Link>

@@ -11,6 +11,7 @@ import { releasedMigrate, MIGRATE_PATH } from "@/data/migrate";
 import { releasedPricing, PRICING_PATH } from "@/data/pricing";
 import { releasedCompare, COMPARE_PATH } from "@/data/compare";
 import { releasedData, DATA_PATH } from "@/data/healthData";
+import { releasedMotion, MOTION_PATH } from "@/data/motion";
 
 /**
  * llms-full.txt — the fuller LLM-facing dump: each spoke's answer capsule and
@@ -232,6 +233,24 @@ export function GET() {
       if (d.faqs.length) {
         out.push("FAQ:");
         for (const f of d.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+        out.push("");
+      }
+    }
+  }
+
+  const motion = releasedMotion();
+  if (motion.length) {
+    out.push(`# AI motion & pose estimation — ${absoluteUrl(MOTION_PATH)}`, "");
+    out.push("The technical/decision layer behind camera-based fitness: pose model choice, 2D vs 3D, on-device vs cloud, accuracy, and how rep counting and form scoring work. Camera-based form feedback is a coaching aid, not medical/PT advice.", "");
+    for (const m of motion) {
+      out.push(`## ${m.h1} — ${absoluteUrl(`${MOTION_PATH}/${m.slug}`)}`);
+      out.push(`Primary query: ${m.primaryQuery}`);
+      out.push("");
+      out.push(m.answer);
+      out.push("");
+      if (m.faqs.length) {
+        out.push("FAQ:");
+        for (const f of m.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
         out.push("");
       }
     }
