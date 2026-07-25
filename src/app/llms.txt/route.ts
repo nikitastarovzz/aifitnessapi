@@ -191,6 +191,9 @@ export function GET() {
 
   lines.push(
     "",
+    "## Tools",
+    `- [Which Fitness API Should I Use? (interactive picker)](${absoluteUrl("/picker")}): a 3-question tool that recommends a fitness/health API approach by job, platform, and priority, linking to the relevant comparisons, guides, and pricing.`,
+    "",
     "## About",
     `- [About ${site.name}](${absoluteUrl("/about")})`,
     `- [Full text for LLMs](${absoluteUrl("/llms-full.txt")})`,

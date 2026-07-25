@@ -46,6 +46,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl(COMPARE_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl(DATA_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl(MOTION_PATH), changeFrequency: "weekly", priority: 0.8 },
+    { url: absoluteUrl("/picker"), changeFrequency: "monthly", priority: 0.8 },
     { url: absoluteUrl("/blog"), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/about"), changeFrequency: "monthly", priority: 0.5 },
     { url: absoluteUrl("/site-index"), changeFrequency: "monthly", priority: 0.3 },

@@ -5,7 +5,7 @@ import { site } from "@/lib/site";
 const nav = [
   { href: "/fitness-apis", label: "Fitness APIs" },
   { href: "/guides", label: "Guides" },
-  { href: "/build", label: "Build" },
+  { href: "/picker", label: "API Picker" },
   { href: "/blog", label: "Blog" },
 ];
 

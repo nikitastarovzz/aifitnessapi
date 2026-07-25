@@ -62,7 +62,30 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* What we cover — links to all eight cluster hubs */}
+      {/* Interactive picker callout */}
+      <Container className="pt-16">
+        <Link
+          href="/picker"
+          className="group flex flex-col items-start gap-3 rounded-2xl border border-brand-400/40 bg-brand-500/5 p-6 transition-colors hover:bg-brand-500/10 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
+        >
+          <div>
+            <span className="inline-flex items-center rounded-full border border-brand-400/40 bg-brand-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-300">
+              Interactive
+            </span>
+            <h2 className="mt-3 text-xl font-bold tracking-tight text-[var(--fg)] sm:text-2xl">
+              Not sure which fitness API to use?
+            </h2>
+            <p className="mt-1 text-[var(--muted)]">
+              Answer three quick questions and get a tailored recommendation with next steps.
+            </p>
+          </div>
+          <span className="shrink-0 rounded-xl bg-brand-600 px-5 py-3 font-semibold text-white transition-colors group-hover:bg-brand-500">
+            Try the API picker →
+          </span>
+        </Link>
+      </Container>
+
+      {/* What we cover — links to all cluster hubs */}
       <Container className="py-16">
         <div className="mb-6 flex items-baseline justify-between">
           <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
