@@ -53,6 +53,7 @@ export default function SiteIndex() {
           <ul className="mt-4 space-y-2">
             <li><Link href="/" className="text-brand-600 hover:text-brand-500">Home</Link></li>
             <li><Link href="/picker" className="text-brand-600 hover:text-brand-500">Which fitness API should I use? (picker)</Link></li>
+            <li><Link href="/matrix" className="text-brand-600 hover:text-brand-500">HealthKit ↔ Health Connect type reference</Link></li>
             <li><Link href="/blog" className="text-brand-600 hover:text-brand-500">Blog</Link></li>
             <li><Link href="/about" className="text-brand-600 hover:text-brand-500">About</Link></li>
           </ul>

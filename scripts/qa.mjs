@@ -104,6 +104,24 @@ for (const [, routes] of descs) {
   if (routes.length > 1) problems.push(`DUP-DESC       ${routes.join(", ")}`);
 }
 
+// The type reference is only worth publishing if every row carries a real
+// identifier for both platforms. An empty cell is a guess waiting to happen.
+const matrixPath = "src/data/matrix.ts";
+if (fs.existsSync(matrixPath)) {
+  const src = fs.readFileSync(matrixPath, "utf8");
+  // Values may wrap onto the next line, and ids contain digits (vo2-max) —
+  // match tolerantly so the gate flags real gaps, not formatting.
+  const rows = (src.match(/\bid: "[a-z0-9-]+"/g) ?? []).length;
+  const apple = (src.match(/\bapple:\s+"[^"]+"/g) ?? []).length;
+  const android = (src.match(/\bandroid:\s+"[^"]+"/g) ?? []).length;
+  console.log(`Matrix: ${rows} rows, ${apple} Apple + ${android} Health Connect identifiers.`);
+  if (rows === 0 || apple !== rows || android !== rows) {
+    problems.push(
+      `MATRIX-INCOMPLETE ${rows} rows but ${apple} Apple / ${android} Android identifiers — every row needs both.`,
+    );
+  }
+}
+
 console.log(`QA: checked ${checked} content pages (${htmls.length} built HTML files).`);
 if (problems.length === 0) {
   console.log("✓ No issues found.");
