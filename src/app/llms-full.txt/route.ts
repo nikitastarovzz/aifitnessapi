@@ -256,6 +256,22 @@ export function GET() {
     }
   }
 
+  out.push(`# Free tools — ${absoluteUrl("/")}`, "");
+  out.push(`## Which Fitness API Should I Use? (interactive picker) — ${absoluteUrl("/picker")}`);
+  out.push("Primary query: which fitness api should i use");
+  out.push("");
+  out.push(
+    "A three-question tool (what you're building, your platform, your top priority) that recommends a fitness/health API approach and links to the relevant comparisons, integration guides, and pricing. Independent, not sponsored.",
+  );
+  out.push("");
+  out.push(`## HealthKit and Health Connect data-type reference — ${absoluteUrl("/matrix")}`);
+  out.push("Primary query: healthkit health connect data types");
+  out.push("");
+  out.push(
+    "Ten common health metrics with their matching Apple HealthKit and Android Health Connect type identifiers, verified against Apple's and Google's own documentation. Key cross-platform gotcha: Apple stores HRV as SDNN (HKQuantityTypeIdentifier.heartRateVariabilitySDNN) while Health Connect stores RMSSD (HeartRateVariabilityRmssdRecord) — these are different measures and are not interconvertible. Both stores are on-device with no server endpoint.",
+  );
+  out.push("");
+
   return new Response(out.join("\n"), {
     headers: { "content-type": "text/plain; charset=utf-8" },
   });
