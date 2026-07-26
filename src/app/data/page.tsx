@@ -15,7 +15,7 @@ const UPDATED = "2026-07-24";
 export const metadata: Metadata = {
   title: "Health Data by Metric: Which API for Each",
   description:
-    "Which API gives you each health metric — heart rate, steps, sleep, calories, HRV, VO2 max, SpO2, GPS, body composition — how to access it, and measured vs estimated.",
+    "Which API gives you each health metric — heart rate, steps, sleep, calories, HRV, VO2 max, SpO2, GPS — how to access it, and measured vs estimated.",
   alternates: { canonical: DATA_PATH },
   openGraph: {
     type: "website",

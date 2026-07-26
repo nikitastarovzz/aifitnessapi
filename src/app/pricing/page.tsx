@@ -15,7 +15,7 @@ const UPDATED = "2026-07-23";
 export const metadata: Metadata = {
   title: "Fitness & Health API Pricing",
   description:
-    "What fitness and health APIs actually cost: most first-party wearable APIs are free to call — the real costs are aggregators, nutrition/exercise APIs, and your own infra.",
+    "What fitness and health APIs actually cost: most first-party wearable APIs are free to call — the real costs are aggregators, content APIs, and infra.",
   alternates: { canonical: PRICING_PATH },
   openGraph: {
     type: "website",

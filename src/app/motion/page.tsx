@@ -15,7 +15,7 @@ const UPDATED = "2026-07-24";
 export const metadata: Metadata = {
   title: "AI Motion & Pose Estimation for Fitness Apps",
   description:
-    "The tech behind camera-based fitness: which pose model to pick, 2D vs 3D, on-device vs cloud, accuracy, and how rep counting and form feedback actually work.",
+    "The tech behind camera-based fitness: which pose model to pick, 2D vs 3D, on-device vs cloud, accuracy, and how rep counting and form feedback work.",
   alternates: { canonical: MOTION_PATH },
   openGraph: {
     type: "website",

@@ -15,7 +15,7 @@ const UPDATED = "2026-07-23";
 export const metadata: Metadata = {
   title: "Fitness & Health API Comparisons",
   description:
-    "Head-to-head comparisons for developers: Oura vs WHOOP, Fitbit vs Apple Watch, Terra vs Rook, and more — by data, API access, cost, and which fits your build.",
+    "Head-to-heads for developers: Oura vs WHOOP, Fitbit vs Apple Watch, Terra vs Rook, and more — by data, API access, cost, and which fits your build.",
   alternates: { canonical: COMPARE_PATH },
   openGraph: {
     type: "website",

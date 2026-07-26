@@ -14,7 +14,7 @@ const UPDATED = "2026-07-24";
 export const metadata: Metadata = {
   title: { absolute: "Which Fitness API Should I Use? Picker" },
   description:
-    "Answer three quick questions — what you're building, your platform, and what matters most — and get a tailored fitness/health API recommendation with next steps.",
+    "Answer three quick questions — what you're building, your platform, and your top priority — and get a tailored fitness API recommendation with next steps.",
   alternates: { canonical: PICKER_PATH },
   openGraph: {
     type: "website",

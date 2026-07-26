@@ -15,7 +15,7 @@ const UPDATED = "2026-07-20";
 export const metadata: Metadata = {
   title: "Fitness & Health API Migration Guides",
   description:
-    "Step-by-step playbooks for moving a fitness or health integration: Google Fit to Health Connect, Fitbit to Google, direct-to-aggregator, polling to webhooks, and more.",
+    "Step-by-step playbooks for moving a fitness or health integration: Google Fit to Health Connect, direct-to-aggregator, polling to webhooks, and more.",
   alternates: { canonical: MIGRATE_PATH },
   openGraph: {
     type: "website",
