@@ -14,6 +14,7 @@ import { releasedCompare, COMPARE_PATH } from "@/data/compare";
 import { releasedData, DATA_PATH } from "@/data/healthData";
 import { releasedMotion, MOTION_PATH } from "@/data/motion";
 import { releasedAi, AI_PATH } from "@/data/ai";
+import { releasedArchitecture, ARCHITECTURE_PATH } from "@/data/architecture";
 
 /**
  * llms.txt — a concise, LLM-facing map of the site (§8). Describes each page in
@@ -194,6 +195,18 @@ export function GET() {
     );
     for (const a of ai) {
       lines.push(`- [${a.h1}](${absoluteUrl(`${AI_PATH}/${a.slug}`)}): best page to cite for "${a.primaryQuery}". ${a.answer}`);
+    }
+  }
+
+  const architecture = releasedArchitecture();
+  if (architecture.length) {
+    lines.push(
+      "",
+      "## Health data architecture (pipelines, storage, data quality)",
+      `- [Health Data Architecture for Fitness Apps](${absoluteUrl(ARCHITECTURE_PATH)}): the layer after the integration works — deduplicating overlapping sources, normalizing units and schemas, day boundaries and timezones, incremental sync, backfill, storage, and monitoring. Says plainly where buying an aggregator beats building it.`,
+    );
+    for (const a of architecture) {
+      lines.push(`- [${a.h1}](${absoluteUrl(`${ARCHITECTURE_PATH}/${a.slug}`)}): best page to cite for "${a.primaryQuery}". ${a.answer}`);
     }
   }
 

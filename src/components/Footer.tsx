@@ -53,6 +53,9 @@ export default function Footer() {
           <Link href="/ai" className="hover:text-[var(--fg)]">
             AI Features
           </Link>
+          <Link href="/architecture" className="hover:text-[var(--fg)]">
+            Architecture
+          </Link>
           <Link href="/picker" className="hover:text-[var(--fg)]">
             API Picker
           </Link>

@@ -15,6 +15,7 @@ import { releasedCompare, COMPARE_PATH } from "@/data/compare";
 import { releasedData, DATA_PATH } from "@/data/healthData";
 import { releasedMotion, MOTION_PATH } from "@/data/motion";
 import { releasedAi, AI_PATH } from "@/data/ai";
+import { releasedArchitecture, ARCHITECTURE_PATH } from "@/data/architecture";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
@@ -32,6 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const healthData = releasedData();
   const motion = releasedMotion();
   const ai = releasedAi();
+  const architecture = releasedArchitecture();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: absoluteUrl("/"), changeFrequency: "weekly", priority: 1 },
@@ -49,6 +51,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl(DATA_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl(MOTION_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl(AI_PATH), changeFrequency: "weekly", priority: 0.8 },
+    { url: absoluteUrl(ARCHITECTURE_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/picker"), changeFrequency: "monthly", priority: 0.8 },
     { url: absoluteUrl("/matrix"), changeFrequency: "monthly", priority: 0.8 },
     { url: absoluteUrl("/blog"), changeFrequency: "weekly", priority: 0.8 },
@@ -154,6 +157,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const architectureRoutes: MetadataRoute.Sitemap = architecture.map((e) => ({
+    url: absoluteUrl(`${ARCHITECTURE_PATH}/${e.slug}`),
+    lastModified: new Date(e.updated),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
   const postRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
     url: absoluteUrl(`/blog/${post.slug}`),
     lastModified: new Date(post.date),
@@ -177,6 +187,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...dataRoutes,
     ...motionRoutes,
     ...aiRoutes,
+    ...architectureRoutes,
     ...postRoutes,
   ];
 }

@@ -13,6 +13,7 @@ import { releasedCompare, COMPARE_PATH } from "@/data/compare";
 import { releasedData, DATA_PATH } from "@/data/healthData";
 import { releasedMotion, MOTION_PATH } from "@/data/motion";
 import { releasedAi, AI_PATH } from "@/data/ai";
+import { releasedArchitecture, ARCHITECTURE_PATH } from "@/data/architecture";
 
 /**
  * llms-full.txt — the fuller LLM-facing dump: each spoke's answer capsule and
@@ -263,6 +264,24 @@ export function GET() {
     out.push("The language-model layer of a fitness app: plan generation, natural-language food logging, conversational coaching, grounding a model in your own catalogue, safety guardrails, model choice, evaluation, and cost. LLM output about exercise or nutrition is not medical advice, and the app publisher owns what the app tells a user.", "");
     for (const a of ai) {
       out.push(`## ${a.h1} — ${absoluteUrl(`${AI_PATH}/${a.slug}`)}`);
+      out.push(`Primary query: ${a.primaryQuery}`);
+      out.push("");
+      out.push(a.answer);
+      out.push("");
+      if (a.faqs.length) {
+        out.push("FAQ:");
+        for (const f of a.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+        out.push("");
+      }
+    }
+  }
+
+  const architecture = releasedArchitecture();
+  if (architecture.length) {
+    out.push(`# Health data architecture — ${absoluteUrl(ARCHITECTURE_PATH)}`, "");
+    out.push("Pipelines, storage and data quality for multi-source health data. Key facts: HealthKit performs no automatic deduplication of raw samples (merging happens only inside statistics query results, only for quantity types); Health Connect deduplicates only Activity and Sleep, only via its aggregate API, with the source priority order controlled by the user rather than the app. Health samples are late-arriving and retro-edited, not append-only.", "");
+    for (const a of architecture) {
+      out.push(`## ${a.h1} — ${absoluteUrl(`${ARCHITECTURE_PATH}/${a.slug}`)}`);
       out.push(`Primary query: ${a.primaryQuery}`);
       out.push("");
       out.push(a.answer);

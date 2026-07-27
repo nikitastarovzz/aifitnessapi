@@ -16,6 +16,7 @@ import { releasedCompare, COMPARE_PATH } from "@/data/compare";
 import { releasedData, DATA_PATH } from "@/data/healthData";
 import { releasedMotion, MOTION_PATH } from "@/data/motion";
 import { releasedAi, AI_PATH } from "@/data/ai";
+import { releasedArchitecture, ARCHITECTURE_PATH } from "@/data/architecture";
 
 export const metadata: Metadata = {
   title: "Site index",
@@ -43,6 +44,7 @@ export default function SiteIndex() {
   const healthData = releasedData();
   const motion = releasedMotion();
   const ai = releasedAi();
+  const architecture = releasedArchitecture();
 
   return (
     <Container className="py-14">
@@ -334,6 +336,26 @@ export default function SiteIndex() {
             {ai.map((e) => (
               <li key={e.slug}>
                 <Link href={`${AI_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
+                  {e.h1}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="mt-10">
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+            Health data architecture
+          </h2>
+          <ul className="mt-4 space-y-2">
+            <li>
+              <Link href={ARCHITECTURE_PATH} className="text-brand-600 hover:text-brand-500">
+                Health Data Architecture for Fitness Apps (guide + hub)
+              </Link>
+            </li>
+            {architecture.map((e) => (
+              <li key={e.slug}>
+                <Link href={`${ARCHITECTURE_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
                   {e.h1}
                 </Link>
               </li>
