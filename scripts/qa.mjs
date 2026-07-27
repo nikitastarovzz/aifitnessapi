@@ -7,6 +7,7 @@
  *  - missing canonical or og:image
  *  - invalid JSON-LD, or more than one BreadcrumbList on a page
  *  - duplicate titles/descriptions across pages
+ *  - the same FAQ question on two pages (they collide in FAQPage rich results)
  *
  * Exits non-zero with a report so a regression fails CI instead of shipping.
  */
@@ -49,9 +50,25 @@ const decode = (s) =>
     .replace(/&rsquo;/g, "’");
 
 const valid = new Set(htmls.map(routeOf));
+
+/** Normalize an FAQ question so near-duplicates collide: lowercase, drop
+ *  punctuation and the filler words that vary between otherwise identical
+ *  questions ("how do I stop the model inventing X" vs "how to stop the model
+ *  inventing X"). */
+const STOP = new Set(["a","an","the","i","my","you","your","do","does","did","is","are","can","should","to","for","of","in","on","it","that","just","actually","really","and","or","if"]);
+function faqKey(q) {
+  return q
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, " ")
+    .split(/\s+/)
+    .filter((w) => w && !STOP.has(w))
+    .sort()
+    .join(" ");
+}
 const problems = [];
 const titles = new Map();
 const descs = new Map();
+const faqs = new Map();
 let checked = 0;
 
 for (const h of htmls) {
@@ -89,6 +106,13 @@ for (const h of htmls) {
       const parsed = JSON.parse(decode(l[1]));
       for (const node of Array.isArray(parsed) ? parsed : [parsed]) {
         if (node["@type"] === "BreadcrumbList") breadcrumbs++;
+        if (node["@type"] === "FAQPage") {
+          for (const q of node.mainEntity ?? []) {
+            const k = faqKey(q.name ?? "");
+            if (!k) continue;
+            (faqs.get(k) ?? faqs.set(k, []).get(k)).push(route);
+          }
+        }
       }
     } catch (e) {
       problems.push(`BAD-JSON-LD    ${route}: ${e.message.slice(0, 60)}`);
@@ -102,6 +126,12 @@ for (const [t, routes] of titles) {
 }
 for (const [, routes] of descs) {
   if (routes.length > 1) problems.push(`DUP-DESC       ${routes.join(", ")}`);
+}
+// Two pages asking the same FAQ compete in the same FAQPage rich result, so
+// Google suppresses one and both lose. Parallel writers produce these silently.
+for (const [k, routes] of faqs) {
+  const uniq = [...new Set(routes)];
+  if (uniq.length > 1) problems.push(`DUP-FAQ        ${uniq.join(", ")} — "${k}"`);
 }
 
 // The type reference is only worth publishing if every row carries a real
