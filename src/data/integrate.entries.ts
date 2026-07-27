@@ -1,8 +1,8 @@
 import type { ClusterEntry } from "@/lib/cluster";
 
 /**
- * AUTO-ASSEMBLED per-provider integration guides (do not hand-edit; regenerate
- * via scratchpad/assemble4.mjs). Code uses only real, documented endpoints/APIs;
+ * AUTO-ASSEMBLED per-provider integration guides (originally auto-assembled;
+ * since hand-edited — edit here). Code uses only real, documented endpoints/APIs;
  * migration/access-approval status is flagged per provider.
  */
 export const integrateEntries: ClusterEntry[] =
@@ -101,8 +101,8 @@ export const integrateEntries: ClusterEntry[] =
         "a": "There is no OAuth partner-approval step to read data during development. However, to publish an app that uses Health Connect you must complete the Play Console health-data declaration listing every data type you read or write, and requesting types you cannot justify can cause review rejections. Treat that declaration as a required gate before release."
       },
       {
-        "q": "Why can I only read the last 30 days of data?",
-        "a": "By default an app can read data from up to 30 days before the first permission grant, and reinstalling the app resets that window. To read older history you must request the dedicated read-health-data-history permission. As of 2026 verify the exact constant name and its manifest string against the current docs, since these have changed."
+        "q": "Do I need a separate permission to read Health Connect data in the background?",
+        "a": "Yes. The per-record-type permissions you request cover foreground reads only; syncing while your app is backgrounded needs the dedicated background-read permission on top of them, and that is separate again from the historical-read permission. Declare it in the manifest and include it in your runtime request set like any other Health Connect permission, and expect to justify it in the Play Console health-data declaration, since background access draws more scrutiny than a foreground read. Verify the current constant and manifest string in the docs, as these names have shifted between releases."
       },
       {
         "q": "Which library and version should I use?",
@@ -184,8 +184,8 @@ export const integrateEntries: ClusterEntry[] =
         "a": "For a new integration in 2026, target the Google Health API with Google OAuth 2.0 directly, since the legacy Fitbit Web API is short-lived. Use the legacy flow only to maintain an existing integration through the transition. Verify the current GA date and timeline in the docs."
       },
       {
-        "q": "What is the Fitbit API rate limit?",
-        "a": "The documented limit is 150 API requests per hour per consented user, resetting around the top of each hour. Exceeding it returns HTTP 429 with a header indicating seconds until reset (commonly Retry-After — verify the exact header name in the docs)."
+        "q": "Which OAuth scopes do I need to request from Fitbit?",
+        "a": "Only the collections your features actually use. The documented scopes include activity, heartrate, sleep, and profile, with the full set also covering location, nutrition, oxygen_saturation, respiratory_rate, settings, social, temperature, and weight — verify the current list in the docs. Fitbit does not let you force a user to grant everything: consent is per data collection, so someone can approve activity and decline heart rate. Read the scope value returned with the token rather than assuming you got what you asked for, and degrade the UI when a collection is missing."
       },
       {
         "q": "Does Fitbit require approval for intraday data?",

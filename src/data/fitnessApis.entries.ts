@@ -1,8 +1,8 @@
 import type { ClusterEntry } from "./fitnessApis";
 
 /**
- * AUTO-ASSEMBLED from per-spoke research + writing (do not hand-edit; regenerate
- * from scratchpad/assemble.mjs). Body is MDX-safe GFM; plain-text fields are
+ * AUTO-ASSEMBLED from per-spoke research + writing (originally auto-assembled;
+ * since hand-edited — edit here). Body is MDX-safe GFM; plain-text fields are
  * entity-decoded. Every claim about a third-party product is hedged/attributed.
  */
 export const entries: ClusterEntry[] =
@@ -79,8 +79,8 @@ export const entries: ClusterEntry[] =
         "a": "Garmin is generally the richest for GPS, multisport and endurance metrics, with over 100 activity types plus session detail. Polar is a strong low-friction alternative and exports activities as TCX or GPX. Note Garmin requires partner approval and, as of 2026, new developer sign-ups are reportedly on hold (verify)."
       },
       {
-        "q": "Is the Fitbit Web API being shut down?",
-        "a": "The legacy Fitbit Web API is scheduled to be turned down around September 2026 and replaced by the Google Health API with Google OAuth 2.0. New builds should target the Google Health API, and legacy tokens do not transfer — users must re-consent. Verify the current timeline in the docs."
+        "q": "Do wearable APIs push data to me, or do I have to poll for it?",
+        "a": "It varies by provider, and it changes your architecture. Garmin delivers through registerable push and ping callback URLs, so you build an event consumer rather than a scheduler, and WHOOP documents webhook support. Fitbit is request-response REST that you poll on your own schedule, and Polar's Open AccessLink exposes only recent data, so you sync regularly or lose history. If you support several of these, expect to run both patterns side by side behind one normalization layer, with idempotency and ordering guards on the pushed events."
       },
       {
         "q": "Do wearable APIs let me pull data for all users at once?",
@@ -324,8 +324,8 @@ export const entries: ClusterEntry[] =
         "a": "Neither on its own. They cover different operating systems, so a cross-platform app implements both — HealthKit on Apple platforms and Health Connect on Android — or uses an aggregator API that wraps both behind one integration."
       },
       {
-        "q": "Do HealthKit and Health Connect use OAuth?",
-        "a": "No. Both use on-device, per-data-type OS permission prompts that the user grants or denies per data type, not an OAuth consent screen."
+        "q": "What review or declaration steps do HealthKit and Health Connect require before launch?",
+        "a": "Both gate your release on a declaration, not just on code. On Apple platforms you declare the health data your app touches with usage-description strings and request read/write authorization from a user-initiated context, and App Store review checks that the stated purpose matches what you do. On Android you declare Health Connect permissions in the manifest, and the Play Console enforces a separate health-data declaration and review before you can publish. Budget calendar time for both, request only the types you can justify, and confirm current review policy before you submit."
       },
       {
         "q": "Can a HealthKit app tell if the user denied read access?",
@@ -422,8 +422,8 @@ export const entries: ClusterEntry[] =
         "a": "There is no published per-call fee; Fitbit is documented as free to use with the standard developer registration and approval as of 2026. Registering a Personal app for your own data is self-serve, while accessing other users' high-resolution intraday data requires case-by-case approval. Verify current commercial terms under the Google Health API before building at scale."
       },
       {
-        "q": "Is the Fitbit Web API being shut down?",
-        "a": "The legacy Fitbit Web API is scheduled to be turned down around September 2026 and replaced by the Google Health API with Google OAuth 2.0. Legacy tokens do not carry over, so users must re-consent, and new builds should target the Google Health API. Verify the exact dates in the migration docs."
+        "q": "Can I get minute-level heart rate from both Fitbit and Garmin?",
+        "a": "Not on the same terms. Fitbit exposes heart-rate time series down to 1-second or 1-minute granularity, but other users' high-resolution intraday data is unlocked case-by-case rather than by default — self-serve covers your own account only. Garmin's Health API includes per-minute epochs as part of its standard partner data set, but that whole surface sits behind partner approval, which is reportedly on hold for new sign-ups as of 2026. On both sides the granularity you want is an approval question first and an API question second. Verify current terms with each provider."
       },
       {
         "q": "Can I still sign up for the Garmin Connect Developer Program?",
@@ -434,8 +434,8 @@ export const entries: ClusterEntry[] =
         "a": "Garmin is the richer option for GPS, multisport, and workout detail: its Activity API covers over 100 sport types with GPS, heart rate, and session detail, and its Health API adds metrics like Body Battery, VO2 max, pulse-ox, and HRV. Fitbit exposes GPS and exercise detail through activity logs but leans more toward broad consumer wellness and intraday time series."
       },
       {
-        "q": "What is the Fitbit API rate limit?",
-        "a": "Fitbit's rate limit is reported at around 150 API requests per hour per consented user, resetting roughly hourly, as of 2026. Treat it as sync-periodically-and-cache rather than query-live, and verify the current figure in the docs. Garmin's rate limits are governed per partner agreement rather than published."
+        "q": "Can one app support both Fitbit and Garmin users?",
+        "a": "Yes, and plenty do — but treat it as two integrations, not one. Both use OAuth 2.0 with per-user consent, so the connect flow rhymes, yet you register separately with each provider, clear each one's approval gate, and consume two different delivery models: pull-based REST on Fitbit, push callbacks on Garmin. Their data models differ too, so you need your own normalization layer before the rest of your app sees a workout. If you would rather build one integration than two, that is the case for a health-data aggregator."
       }
     ],
     "related": [

@@ -1,8 +1,8 @@
 import type { ClusterEntry } from "@/lib/cluster";
 
 /**
- * AUTO-ASSEMBLED how-to guides (do not hand-edit; regenerate via
- * scratchpad/assemble2.mjs). Body is MDX-safe GFM with fenced code; plain-text
+ * AUTO-ASSEMBLED how-to guides (originally auto-assembled; since
+ * hand-edited — edit here). Body is MDX-safe GFM with fenced code; plain-text
  * fields are entity-decoded. Code uses only real, documented APIs.
  */
 export const guideEntries: ClusterEntry[] =
@@ -30,8 +30,8 @@ export const guideEntries: ClusterEntry[] =
         "a": "Both MediaPipe Pose Landmarker and MoveNet run entirely on-device. Once the model files are loaded and cached, detection needs no network round-trip and no image data leaves the browser or phone, which matters for privacy and latency."
       },
       {
-        "q": "Are these pose models free to use commercially?",
-        "a": "Yes. Both MediaPipe (via the google-ai-edge project) and TensorFlow MoveNet are Apache-2.0 licensed, and the model weights are distributed by Google for use with the task. Confirm the exact license line for the specific model build you download against the current docs."
+        "q": "Why do the left and right landmarks look swapped on screen?",
+        "a": "They are not swapped. Both models label joints from the subject's anatomical perspective, not the viewer's, so when someone faces the camera their left shoulder appears on the right side of your screen — landmark 11 in MediaPipe, index 5 in MoveNet. Draw the skeleton once and you will see it immediately. This matters for asymmetric cues like straighten your left knee: resolve the side from the model's own naming rather than from screen position, and remember a front-facing camera preview is often mirrored again on top of that."
       },
       {
         "q": "Does pose estimation count reps and check form by itself?",
@@ -476,8 +476,8 @@ export const guideEntries: ClusterEntry[] =
         "a": "Compute one driving joint angle (elbow for a curl, knee for a squat), smooth it, and run a two-state machine with two thresholds. The angle must cross an enter threshold to reach the flexed extreme and then cross a separate exit threshold to return before you count one rep. Counting on a single threshold produces phantom reps because noise makes the signal chatter across the line."
       },
       {
-        "q": "Why use atan2 instead of acos for the joint angle?",
-        "a": "The atan2 of the absolute cross product and the dot product returns the interior angle from 0 to 180 degrees and stays valid at the extremes. A bare acos can lose precision and return NaN near 0 and 180 degrees because floating-point rounding pushes its argument just outside the valid range. If you do use the acos form, clamp its argument to the range minus one to one first."
+        "q": "Does this work in Expo Go, or do I need a development build?",
+        "a": "Expo Go alone will not work. Frame processors need native modules, and Expo Go ships a fixed set of native code you cannot add to, so VisionCamera plus a TFLite or ML Kit pose plugin has to be compiled in. Use a development build, or a bare React Native app. You still get Expo tooling and config plugins — you build your own client once and then iterate in JavaScript as normal. Settle this before you write the frame-processor worklet, because discovering it afterwards means rebuilding your whole dev loop."
       },
       {
         "q": "Can I skip building this and use a fitness SDK instead?",
@@ -622,8 +622,8 @@ export const guideEntries: ClusterEntry[] =
         "a": "No. MediaPipe Pose Landmarker and MoveNet both run inference locally in the browser using WASM, WebGL, or WebGPU. Once the model and WASM files are downloaded and cached, detection needs no network round-trip and no frames leave the device, which is good for privacy and latency."
       },
       {
-        "q": "How do I count a rep from pose keypoints?",
-        "a": "Rep counting is not machine learning in the common case; it is a threshold state machine over a scalar signal such as a joint angle. Use two thresholds, an enter and an exit, so the signal must fully travel to both extremes before you count once on the completed round trip. This hysteresis, plus a confidence gate and light smoothing on the angle, prevents phantom and double counts."
+        "q": "Why does the browser never show a camera permission prompt?",
+        "a": "Almost always because the page is not on a secure origin. Browsers block getUserMedia outside HTTPS or localhost, and the call rejects without ever prompting — so a demo that works on your laptop fails the moment you serve it from a plain-HTTP staging box or a bare IP address. Check the origin first, then check whether the user previously blocked camera access for that site in their browser settings. Handle the rejection path explicitly too: a promise that rejects with no visible prompt looks exactly like a hung app."
       },
       {
         "q": "Why is my joint angle jumpy or wrong?",

@@ -66,8 +66,8 @@ const FAQS = [
     a: "At minimum: a way to choose or follow a workout, a way to perform and track it, and a way to see progress. Beyond that, features depend on the app type — wearable sync, camera-based rep counting, nutrition logging, social or coaching layers — and most of these can be added through APIs rather than built from scratch.",
   },
   {
-    q: "Should you build a fitness app native or cross-platform?",
-    a: "Cross-platform (React Native or Flutter) is usually faster to ship and cheaper to maintain for standard apps. Native (Swift/Kotlin) is worth it when you lean heavily on the camera, sensors, or platform health stores. Our tech-stack guide walks the trade-off.",
+    q: "Why start with one app type instead of a general fitness app?",
+    a: "Because the core loops barely overlap. A personal training app is a two-sided trainer-and-client workflow, a running app lives on GPS and pace, and a home workout app is a content library wrapped in a follow-along player. A general fitness app has to be mediocre at all of them, and its first release teaches you nothing about which loop people actually come back for. Pick one type, design its single most important flow, and ship that. Breadth is cheap to add once the loop retains; a diffuse first version is expensive to unwind.",
   },
 ];
 

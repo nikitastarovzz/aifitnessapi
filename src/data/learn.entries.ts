@@ -1,8 +1,8 @@
 import type { ClusterEntry } from "@/lib/cluster";
 
 /**
- * AUTO-ASSEMBLED concept explainers (do not hand-edit; regenerate via
- * scratchpad/assemble6.mjs). Definitional Article + FAQPage pages (no HowTo).
+ * AUTO-ASSEMBLED concept explainers (originally auto-assembled; since
+ * hand-edited — edit here). Definitional Article + FAQPage pages (no HowTo).
  */
 export const learnEntries: ClusterEntry[] =
 [
@@ -294,8 +294,8 @@ export const learnEntries: ClusterEntry[] =
         "a": "It depends on the model. MediaPipe BlazePose tracks 33 keypoints (the 17 standard COCO body points plus extra face, hand, and foot landmarks, with 3D output), while TensorFlow MoveNet tracks 17 and is optimized for speed. More points is a trade-off, not automatically better. Verify keypoint counts against current model docs, since specs change across versions."
       },
       {
-        "q": "Does pose estimation run on-device or in the cloud?",
-        "a": "For fitness use it typically runs on-device and in real time as an embedded SDK or library, not a cloud endpoint. Running locally keeps camera frames on the phone (a privacy benefit) and keeps latency low enough for live corrective feedback."
+        "q": "Do I have to train my own pose model?",
+        "a": "No, and for a fitness app you almost certainly should not. Pose estimation ships as an embedded SDK or library you drop in — MediaPipe, TensorFlow's MoveNet, or a vendor SDK — already trained on large, varied datasets of people. Your work starts after the model returns keypoints: turning them into joint angles, rep cycles, and form checks is where the product actually lives. Training your own keypoint model means collecting and labelling body data at scale to beat a well-funded baseline, which is a research programme, not a feature. Treat the model as a component."
       },
       {
         "q": "What are the limits of pose estimation?",

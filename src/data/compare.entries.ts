@@ -1,8 +1,8 @@
 import type { ClusterEntry } from "@/lib/cluster";
 
 /**
- * AUTO-ASSEMBLED "X vs Y" developer comparison pages (do not hand-edit;
- * regenerate via scratchpad/assemble11.mjs). Article + FAQPage (no HowTo).
+ * AUTO-ASSEMBLED "X vs Y" developer comparison pages (originally auto-assembled;
+ * since hand-edited — edit here). Article + FAQPage (no HowTo).
  * Framed through the API/developer lens; recommends by use-case, not a single
  * winner; every volatile specific hedged "verify".
  */
@@ -512,8 +512,8 @@ export const compareEntries: ClusterEntry[] =
         "a": "ExerciseDB markets a much larger catalog - vendor claims cite '11,000+' exercises plus large GIF, video and image libraries - while third-party sources cite roughly 520 curated exercises for wger with lighter, community-contributed media. Treat all of these counts as vendor or third-party claims to re-verify against each project's primary source as of 2026."
       },
       {
-        "q": "How much does ExerciseDB cost?",
-        "a": "On the RapidAPI-hosted path it is a paid gateway: a limited free tier, then tiered plans metered by request volume. Exact caps and prices are set per-API on the live RapidAPI listing and change often, so verify there rather than trusting any figure quoted elsewhere. The self-hosted exercisedb.dev path has no license fee - you pay only your own infrastructure."
+        "q": "What does it actually take to run wger yourself?",
+        "a": "More than a first deploy, though that is the easy part - the documented path is Docker Compose, and there is a hosted demo instance at wger.de for evaluation rather than production. Running it yourself means you own the hosting bill, upgrades, backups, and uptime for a service your app now depends on, plus whatever auth and rate limiting you put in front of the REST API. That ongoing ops load is the real trade for no per-call fee and full ownership of the data."
       }
     ],
     "related": [

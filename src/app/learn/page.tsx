@@ -52,8 +52,8 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
 
 const FAQS = [
   {
-    q: "What is a fitness API in simple terms?",
-    a: "A fitness API is a service that lets your app use fitness or health data and features without building them yourself — for example an exercise library, a user's wearable metrics (steps, heart rate, sleep), nutrition data, or camera-based motion tracking. Your app calls the API over the internet (or, for on-device stores, through the operating system) and gets structured data back.",
+    q: "What order should I read these concepts in?",
+    a: "Start with what a fitness API is, so the categories — exercise content, wearable data, nutrition, on-device stores, AI motion — have names. Then read the two concepts that show up in almost every integration: OAuth for health data, and webhooks. After that, read on demand rather than front to back. The aggregator and on-device-vs-cloud explainers matter when you are choosing an architecture; the metric pages (HRV, VO2 max, sleep stages, calorie estimates) matter once that data is on screen and you need to know what it actually means.",
   },
   {
     q: "What do I need to understand before integrating a health API?",

@@ -1,8 +1,8 @@
 import type { ClusterEntry } from "@/lib/cluster";
 
 /**
- * AUTO-ASSEMBLED AI-motion / pose-estimation pages (do not hand-edit; regenerate
- * via scratchpad/assemble13.mjs). Article + FAQPage (no HowTo). The technical/
+ * AUTO-ASSEMBLED AI-motion / pose-estimation pages (originally auto-assembled;
+ * since hand-edited — edit here). Article + FAQPage (no HowTo). The technical/
  * decision layer; benchmarks attributed or hedged; monocular 3D framed as
  * estimated; form feedback framed as a coaching aid, not medical/PT advice.
  */
@@ -31,8 +31,8 @@ export const motionEntries: ClusterEntry[] =
         "a": "Not all of them. MediaPipe/BlazePose, MoveNet, and PoseNet are Apache-2.0, the most permissive here, though you should still verify terms for any bundled model assets. Ultralytics YOLO is AGPL-3.0, a strong copyleft license that can require you to release your own source unless you buy its Enterprise License. OpenPose is a non-commercial academic license and needs a separate agreement for commercial use. Confirm current terms and consult counsel before shipping."
       },
       {
-        "q": "Do I need a depth camera or LiDAR for 3D pose?",
-        "a": "No. A normal RGB phone camera is enough for both 2D and monocular 3D pose. BlazePose infers 3D world landmarks from a single camera, but that depth is estimated and hip-relative, not measured, and it is unreliable for occluded or extremity joints and out-of-plane movement. Treat the depth axis as lower-confidence than x and y, smooth it, and validate; reserve multi-camera rigs or depth sensors for higher-accuracy 3D."
+        "q": "Which of these models output 3D landmarks?",
+        "a": "Among the common on-device options, only MediaPipe/BlazePose: alongside its 2D image-coordinate landmarks it returns 3D world landmarks in meters, hip-relative and inferred from a single camera. MoveNet and PoseNet return 2D keypoints only, and YOLO-pose stores an extra visibility value per point rather than depth. OpenPose has configurable keypoint sets but is a heavy, GPU-oriented multi-person system rather than an on-device 3D source. Treat monocular depth as a lower-confidence axis than x and y — it is estimated, not measured — and validate it on real users before building a feature on it."
       },
       {
         "q": "Which models handle multiple people at once?",

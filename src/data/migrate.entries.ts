@@ -1,8 +1,8 @@
 import type { ClusterEntry } from "@/lib/cluster";
 
 /**
- * AUTO-ASSEMBLED migration playbooks (do not hand-edit; regenerate via
- * scratchpad/assemble9.mjs). Article + HowTo (procedural steps) + FAQPage.
+ * AUTO-ASSEMBLED migration playbooks (originally auto-assembled; since
+ * hand-edited — edit here). Article + HowTo (procedural steps) + FAQPage.
  * Each page links to the /alternatives decision, /fix deprecation, and
  * /integrate target guide rather than duplicating them.
  */
@@ -69,8 +69,8 @@ export const migrateEntries: ClusterEntry[] =
         "a": "Users must reconnect. There is no silent migration of Google Fit consent to Health Connect; Health Connect uses an OS-level permission model granted per data type, and access tokens and Fit scopes do not carry over. Design a clear in-app re-consent flow, run old and new in parallel, and migrate users in waves rather than forcing a disconnect."
       },
       {
-        "q": "Is the Google Health API the same as Health Connect?",
-        "a": "No, they are different products. Health Connect is the on-device Android store with no server endpoint. The Google Health API is a separate, newer cloud REST platform (the same one Fitbit is moving onto) for server-side use cases. Do not conflate them; choose based on whether each read needs to happen on-device or on your server."
+        "q": "What replaces Google Fit for my iOS users?",
+        "a": "Not Health Connect, which is Android-only. If your iOS app read a user's Google Fit data through the REST API, that path disappears with Fit and there is no on-device Google store on iPhone to inherit it. Your options are Apple HealthKit for on-device data, the separate cloud Google Health API if the read has to happen on your server, or an aggregator that runs an on-device SDK on both platforms and forwards normalized data to your backend. Plan the iOS half as its own migration — it does not reuse the Android work."
       }
     ],
     "related": [

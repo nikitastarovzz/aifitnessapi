@@ -57,12 +57,12 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
 
 const FAQS = [
   {
-    q: "Are fitness APIs free?",
-    a: "Many are. Most first-party wearable APIs — Fitbit, Garmin, Strava, Oura, WHOOP — don't charge a per-call fee to access the API itself; you register (often applying for approval) and call it for free. The costs that actually add up are health-data aggregators (usually priced per connected user or tier), some nutrition and exercise-content APIs (freemium or tiered), the user needing to own the device or a membership (Oura, WHOOP), and your own infrastructure. Verify current terms with each provider.",
+    q: "Which fitness APIs charge per user instead of per API call?",
+    a: "Health-data aggregators are the main ones — they typically bill per connected user or per monthly active user, so the bill tracks your user base rather than your traffic. Exercise and nutrition content APIs more often bill per request or by tiered quota, which tracks how chatty your app is. Most first-party wearable APIs publish no per-call fee at all. The distinction decides which lever cuts your cost: caching and batching help a per-request API and do nothing for a per-user one. Confirm each provider's current billing unit before you model anything.",
   },
   {
-    q: "What drives the cost of a fitness API integration?",
-    a: "Rarely the API access fee. The bigger drivers are the pricing model of any paid service you use (per-monthly-active-user or per-connection for aggregators, tiered quotas for content APIs), the engineering and infrastructure to store and process the data, ongoing maintenance as providers change, and the approval effort for gated programs. Build-vs-buy matters too: an aggregator trades a recurring fee for far less integration work.",
+    q: "Do my users have to pay for anything to connect their device?",
+    a: "Often yes, and it is the cost people forget because it never appears on your invoice. A first-party wearable API only returns data for a user who owns that device, so your addressable users are the ones who already bought the hardware. Some providers go further: WHOOP requires a paid membership, and Oura users need the ring (historically a membership for full metrics — verify current terms). Treat that as a conversion constraint as much as a cost, and check the device and membership requirements of every provider you plan to support.",
   },
   {
     q: "Do these prices change often?",
