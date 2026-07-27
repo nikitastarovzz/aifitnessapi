@@ -9,14 +9,31 @@ import { formatDate } from "@/lib/posts";
  *  - "legal": the not-legal-advice line for the compliance cluster (YMYL).
  *    Regulations vary by jurisdiction and change; this is general engineering
  *    guidance, not legal or regulatory advice.
+ *  - "health-ai": for the LLM cluster. Language models are confidently wrong in
+ *    ways that matter when the output is exercise or nutrition guidance, and the
+ *    app publisher — not the model vendor — owns what the app tells a user.
  */
 export default function ClusterDisclaimer({
   updated,
   variant = "comparison",
 }: {
   updated: string;
-  variant?: "comparison" | "legal";
+  variant?: "comparison" | "legal" | "health-ai";
 }) {
+  if (variant === "health-ai") {
+    return (
+      <p className="not-prose mt-12 border-t border-[var(--border)] pt-6 text-xs leading-relaxed text-[var(--muted)]">
+        Engineering guidance, last reviewed {formatDate(updated)}. This is not
+        medical, nutritional, or legal advice. Language models produce fluent,
+        confident output that can still be wrong — and when the output is exercise
+        or nutrition guidance, being wrong has consequences. Whatever your app
+        tells a user is your responsibility, not the model vendor&rsquo;s. Model
+        behaviour, pricing, and platform AI policies change often; verify against
+        current official documentation, and design for a qualified human in the
+        loop wherever the advice could cause harm.
+      </p>
+    );
+  }
   if (variant === "legal") {
     return (
       <p className="not-prose mt-12 border-t border-[var(--border)] pt-6 text-xs leading-relaxed text-[var(--muted)]">

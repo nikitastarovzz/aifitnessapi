@@ -5,7 +5,7 @@ import Newsletter from "@/components/Newsletter";
 import { getAllPosts } from "@/lib/posts";
 import { site } from "@/lib/site";
 
-/** The eight content clusters, surfaced from the homepage so the highest-
+/** Every content cluster, surfaced from the homepage so the highest-
  *  authority page links directly to every pillar hub (discovery + link equity). */
 const CLUSTERS: { href: string; title: string; blurb: string }[] = [
   { href: "/fitness-apis", title: "Fitness & workout APIs", blurb: "Compare and choose an API by the job — exercise content, wearables, aggregators, nutrition, or AI motion tracking." },
@@ -20,6 +20,8 @@ const CLUSTERS: { href: string; title: string; blurb: string }[] = [
   { href: "/pricing", title: "Pricing", blurb: "What fitness and health APIs really cost — which are free to call, which charge, and what drives your bill." },
   { href: "/compare", title: "Comparisons", blurb: "Head-to-heads through the developer lens — Oura vs WHOOP, Fitbit vs Apple Watch, Terra vs Rook, and more." },
   { href: "/data", title: "Health data by metric", blurb: "Which API gives you each metric — heart rate, steps, sleep, calories, HRV, VO2 max — and measured vs estimated." },
+  { href: "/motion", title: "AI motion & pose estimation", blurb: "The tech behind camera fitness — pose models, 2D vs 3D, on-device vs cloud, rep counting, and form scoring." },
+  { href: "/ai", title: "AI & LLM features", blurb: "Plan generation, natural-language food logging, coaching prompts — plus guardrails, model choice, and cost." },
 ];
 
 export default function Home() {

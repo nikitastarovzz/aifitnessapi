@@ -15,6 +15,7 @@ import { releasedPricing, PRICING_PATH } from "@/data/pricing";
 import { releasedCompare, COMPARE_PATH } from "@/data/compare";
 import { releasedData, DATA_PATH } from "@/data/healthData";
 import { releasedMotion, MOTION_PATH } from "@/data/motion";
+import { releasedAi, AI_PATH } from "@/data/ai";
 
 export const metadata: Metadata = {
   title: "Site index",
@@ -41,6 +42,7 @@ export default function SiteIndex() {
   const compare = releasedCompare();
   const healthData = releasedData();
   const motion = releasedMotion();
+  const ai = releasedAi();
 
   return (
     <Container className="py-14">
@@ -312,6 +314,26 @@ export default function SiteIndex() {
             {motion.map((e) => (
               <li key={e.slug}>
                 <Link href={`${MOTION_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
+                  {e.h1}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="mt-10">
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+            AI &amp; LLM features
+          </h2>
+          <ul className="mt-4 space-y-2">
+            <li>
+              <Link href={AI_PATH} className="text-brand-600 hover:text-brand-500">
+                AI &amp; LLM Features for Fitness Apps (guide + hub)
+              </Link>
+            </li>
+            {ai.map((e) => (
+              <li key={e.slug}>
+                <Link href={`${AI_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
                   {e.h1}
                 </Link>
               </li>

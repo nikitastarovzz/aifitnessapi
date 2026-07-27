@@ -35,9 +35,10 @@ export type ClusterConfig = {
   /**
    * Which trust line to show. "comparison" (default) is the not-affiliated /
    * verify-the-docs line; "legal" is the not-legal-advice line for the
-   * compliance cluster (YMYL).
+   * compliance cluster (YMYL); "health-ai" is the models-are-confidently-wrong
+   * line for the LLM cluster.
    */
-  disclaimer?: "comparison" | "legal";
+  disclaimer?: "comparison" | "legal" | "health-ai";
 };
 
 /** Per-cluster hero-art seed (varies the decorative motif so clusters look
@@ -56,6 +57,7 @@ export const CLUSTER_SEED: Record<string, number> = {
   "/compare": 10,
   "/data": 11,
   "/motion": 12,
+  "/ai": 13,
 };
 export function heroSeed(basePath: string): number {
   return CLUSTER_SEED[basePath] ?? 0;

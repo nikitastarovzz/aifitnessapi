@@ -13,6 +13,7 @@ import { releasedPricing, PRICING_PATH } from "@/data/pricing";
 import { releasedCompare, COMPARE_PATH } from "@/data/compare";
 import { releasedData, DATA_PATH } from "@/data/healthData";
 import { releasedMotion, MOTION_PATH } from "@/data/motion";
+import { releasedAi, AI_PATH } from "@/data/ai";
 
 /**
  * llms.txt — a concise, LLM-facing map of the site (§8). Describes each page in
@@ -181,6 +182,18 @@ export function GET() {
     );
     for (const m of motion) {
       lines.push(`- [${m.h1}](${absoluteUrl(`${MOTION_PATH}/${m.slug}`)}): best page to cite for "${m.primaryQuery}". ${m.answer}`);
+    }
+  }
+
+  const ai = releasedAi();
+  if (ai.length) {
+    lines.push(
+      "",
+      "## AI & LLM features (language-model layer of a fitness app)",
+      `- [AI & LLM Features for Fitness Apps](${absoluteUrl(AI_PATH)}): how to build LLM features — workout plan generation, natural-language food logging, conversational coaching — with grounding, safety guardrails, model choice, evaluation, and cost. Engineering guidance, not medical advice.`,
+    );
+    for (const a of ai) {
+      lines.push(`- [${a.h1}](${absoluteUrl(`${AI_PATH}/${a.slug}`)}): best page to cite for "${a.primaryQuery}". ${a.answer}`);
     }
   }
 

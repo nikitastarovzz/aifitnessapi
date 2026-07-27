@@ -12,6 +12,7 @@ import { releasedPricing, PRICING_PATH } from "@/data/pricing";
 import { releasedCompare, COMPARE_PATH } from "@/data/compare";
 import { releasedData, DATA_PATH } from "@/data/healthData";
 import { releasedMotion, MOTION_PATH } from "@/data/motion";
+import { releasedAi, AI_PATH } from "@/data/ai";
 
 /**
  * llms-full.txt — the fuller LLM-facing dump: each spoke's answer capsule and
@@ -251,6 +252,24 @@ export function GET() {
       if (m.faqs.length) {
         out.push("FAQ:");
         for (const f of m.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+        out.push("");
+      }
+    }
+  }
+
+  const ai = releasedAi();
+  if (ai.length) {
+    out.push(`# AI & LLM features — ${absoluteUrl(AI_PATH)}`, "");
+    out.push("The language-model layer of a fitness app: plan generation, natural-language food logging, conversational coaching, grounding a model in your own catalogue, safety guardrails, model choice, evaluation, and cost. LLM output about exercise or nutrition is not medical advice, and the app publisher owns what the app tells a user.", "");
+    for (const a of ai) {
+      out.push(`## ${a.h1} — ${absoluteUrl(`${AI_PATH}/${a.slug}`)}`);
+      out.push(`Primary query: ${a.primaryQuery}`);
+      out.push("");
+      out.push(a.answer);
+      out.push("");
+      if (a.faqs.length) {
+        out.push("FAQ:");
+        for (const f of a.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
         out.push("");
       }
     }
