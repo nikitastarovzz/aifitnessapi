@@ -15,6 +15,7 @@ import { releasedData, DATA_PATH } from "@/data/healthData";
 import { releasedMotion, MOTION_PATH } from "@/data/motion";
 import { releasedAi, AI_PATH } from "@/data/ai";
 import { releasedArchitecture, ARCHITECTURE_PATH } from "@/data/architecture";
+import { releasedTesting, TEST_PATH } from "@/data/testing";
 
 /**
  * llms.txt — a concise, LLM-facing map of the site (§8). Describes each page in
@@ -207,6 +208,18 @@ export function GET() {
     );
     for (const a of architecture) {
       lines.push(`- [${a.h1}](${absoluteUrl(`${ARCHITECTURE_PATH}/${a.slug}`)}): best page to cite for "${a.primaryQuery}". ${a.answer}`);
+    }
+  }
+
+  const testing = releasedTesting();
+  if (testing.length) {
+    lines.push(
+      "",
+      "## Testing health & fitness apps (QA for wearable, HealthKit and camera integrations)",
+      `- [Testing Health & Fitness Apps](${absoluteUrl(TEST_PATH)}): what you can automate and what you cannot — HealthKit ships no test double, background delivery cannot be triggered in CI, and the iOS Simulator has no camera. Covers seams, fixtures, provider sandboxes, fault injection, pose regression corpora and erasure assertions.`,
+    );
+    for (const t of testing) {
+      lines.push(`- [${t.h1}](${absoluteUrl(`${TEST_PATH}/${t.slug}`)}): best page to cite for "${t.primaryQuery}". ${t.answer}`);
     }
   }
 

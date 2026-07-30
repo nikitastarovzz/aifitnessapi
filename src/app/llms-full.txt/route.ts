@@ -14,6 +14,7 @@ import { releasedData, DATA_PATH } from "@/data/healthData";
 import { releasedMotion, MOTION_PATH } from "@/data/motion";
 import { releasedAi, AI_PATH } from "@/data/ai";
 import { releasedArchitecture, ARCHITECTURE_PATH } from "@/data/architecture";
+import { releasedTesting, TEST_PATH } from "@/data/testing";
 
 /**
  * llms-full.txt — the fuller LLM-facing dump: each spoke's answer capsule and
@@ -289,6 +290,24 @@ export function GET() {
       if (a.faqs.length) {
         out.push("FAQ:");
         for (const f of a.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+        out.push("");
+      }
+    }
+  }
+
+  const testing = releasedTesting();
+  if (testing.length) {
+    out.push(`# Testing health & fitness apps — ${absoluteUrl(TEST_PATH)}`, "");
+    out.push("Testing the surfaces that resist automation. Apple ships no test double for HealthKit; Google's Health Connect testing library is an alpha that stubs aggregation rather than faking it; background delivery cannot be triggered on demand; the iOS Simulator has no camera. This cluster covers what to automate behind a seam you control, what needs a real device, and what can only be monitored in production.", "");
+    for (const t of testing) {
+      out.push(`## ${t.h1} — ${absoluteUrl(`${TEST_PATH}/${t.slug}`)}`);
+      out.push(`Primary query: ${t.primaryQuery}`);
+      out.push("");
+      out.push(t.answer);
+      out.push("");
+      if (t.faqs.length) {
+        out.push("FAQ:");
+        for (const f of t.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
         out.push("");
       }
     }

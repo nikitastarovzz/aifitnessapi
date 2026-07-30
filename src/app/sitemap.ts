@@ -16,6 +16,7 @@ import { releasedData, DATA_PATH } from "@/data/healthData";
 import { releasedMotion, MOTION_PATH } from "@/data/motion";
 import { releasedAi, AI_PATH } from "@/data/ai";
 import { releasedArchitecture, ARCHITECTURE_PATH } from "@/data/architecture";
+import { releasedTesting, TEST_PATH } from "@/data/testing";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
@@ -34,6 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const motion = releasedMotion();
   const ai = releasedAi();
   const architecture = releasedArchitecture();
+  const testing = releasedTesting();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: absoluteUrl("/"), changeFrequency: "weekly", priority: 1 },
@@ -52,6 +54,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl(MOTION_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl(AI_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl(ARCHITECTURE_PATH), changeFrequency: "weekly", priority: 0.8 },
+    { url: absoluteUrl(TEST_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/picker"), changeFrequency: "monthly", priority: 0.8 },
     { url: absoluteUrl("/matrix"), changeFrequency: "monthly", priority: 0.8 },
     { url: absoluteUrl("/blog"), changeFrequency: "weekly", priority: 0.8 },
@@ -164,6 +167,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const testingRoutes: MetadataRoute.Sitemap = testing.map((e) => ({
+    url: absoluteUrl(`${TEST_PATH}/${e.slug}`),
+    lastModified: new Date(e.updated),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
   const postRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
     url: absoluteUrl(`/blog/${post.slug}`),
     lastModified: new Date(post.date),
@@ -188,6 +198,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...motionRoutes,
     ...aiRoutes,
     ...architectureRoutes,
+    ...testingRoutes,
     ...postRoutes,
   ];
 }

@@ -23,6 +23,7 @@ const CLUSTERS: { href: string; title: string; blurb: string }[] = [
   { href: "/motion", title: "AI motion & pose estimation", blurb: "The tech behind camera fitness — pose models, 2D vs 3D, on-device vs cloud, rep counting, and form scoring." },
   { href: "/ai", title: "AI & LLM features", blurb: "Plan generation, natural-language food logging, coaching prompts — plus guardrails, model choice, and cost." },
   { href: "/architecture", title: "Health data architecture", blurb: "The layer after the integration works — dedupe, normalization, timezones, sync, storage, and data quality." },
+  { href: "/test", title: "Testing health apps", blurb: "HealthKit has no test double, CI cannot fire background delivery, the simulator has no camera. What to do instead." },
 ];
 
 export default function Home() {
