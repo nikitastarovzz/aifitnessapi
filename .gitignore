@@ -30,3 +30,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# signup dev fallback + local secrets
+.dev-signups.jsonl
+.env*.local

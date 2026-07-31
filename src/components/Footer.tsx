@@ -71,6 +71,9 @@ export default function Footer() {
           <Link href="/about" className="hover:text-[var(--fg)]">
             About
           </Link>
+          <Link href="/privacy" className="hover:text-[var(--fg)]">
+            Privacy
+          </Link>
           <Link href="/site-index" className="hover:text-[var(--fg)]">
             Site index
           </Link>

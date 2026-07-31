@@ -2,14 +2,15 @@
   "name": "aifitnessapi",
   "version": "0.1.0",
   "private": true,
-  "description": "AIFitnessAPI — a blog and hub for builders in health, wellness & fitness tech.",
+  "description": "AIFitnessAPI \u2014 a blog and hub for builders in health, wellness & fitness tech.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "indexnow": "node scripts/indexnow.mjs",
-    "qa": "node scripts/qa.mjs"
+    "qa": "node scripts/qa.mjs",
+    "signups": "node scripts/export-signups.mjs"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
