@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Container from "./Container";
+import SiteSearch from "./SiteSearch";
 import { site } from "@/lib/site";
 
 const nav = [
@@ -30,6 +31,7 @@ export default function Header() {
               {item.label}
             </Link>
           ))}
+          <SiteSearch />
           <Link
             href="/#subscribe"
             className="ml-1 rounded-md bg-brand-600 px-3.5 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-500"
