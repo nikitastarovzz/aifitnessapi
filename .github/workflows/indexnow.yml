@@ -1,0 +1,21 @@
+# Pings IndexNow (Bing, Yandex, etc.) with every URL in the live sitemap so
+# new and updated pages get crawled fast. Google ignores IndexNow — that side
+# is covered by the sitemap submitted in Search Console.
+#
+# Runs weekly, and on demand from the Actions tab after a content push.
+# No secrets: the IndexNow key is public by design (it is served from
+# public/<key>.txt on the site itself).
+name: indexnow
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * 1" # Mondays 06:00 UTC
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/indexnow.mjs
