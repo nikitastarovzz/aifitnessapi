@@ -6,6 +6,7 @@ import {
   getSignup,
   putSignup,
 } from "@/lib/firestore";
+import { emailConfigured, sendEmail, welcomeEmail } from "@/lib/email";
 
 /**
  * Signup collection endpoint. One document per email (hash as doc ID), so a
@@ -140,6 +141,14 @@ export async function POST(req: Request) {
         }
       }
       await putSignup(id, record);
+      // Welcome email for first-time signups only — never on a resubmit, and
+      // never blocking the response. A failed email must not fail a signup.
+      if (!existing && emailConfigured()) {
+        const w = welcomeEmail(firstName, record.interests);
+        sendEmail({ to: email, subject: w.subject, text: w.text }).then((r) => {
+          if (!r.sent) console.error("welcome email not sent:", r.error);
+        });
+      }
       return NextResponse.json({ ok: true });
     }
 
