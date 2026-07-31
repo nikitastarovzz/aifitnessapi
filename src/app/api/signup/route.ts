@@ -127,6 +127,17 @@ export async function POST(req: Request) {
         }
         const prev = Array.isArray(existing.interests) ? existing.interests : [];
         record.interests = [...new Set([...prev, ...interests])];
+        // A resubmission that omits a field must not erase what the person
+        // told us before — empty incoming loses to non-empty existing.
+        for (const k of [
+          "lastName", "country", "city", "fieldOfWork", "position",
+          "interestNote",
+        ] as const) {
+          const prior = existing[k];
+          if (record[k] === "" && typeof prior === "string" && prior !== "") {
+            record[k] = prior;
+          }
+        }
       }
       await putSignup(id, record);
       return NextResponse.json({ ok: true });
