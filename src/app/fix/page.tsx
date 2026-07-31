@@ -13,9 +13,9 @@ import { getFix, releasedFixes, FIX_PATH } from "@/data/fix";
 const UPDATED = "2026-07-09";
 
 export const metadata: Metadata = {
-  title: "Fitness & Health API Troubleshooting",
+  title: "Fix Fitness API Errors: 401s, 429s, Webhooks",
   description:
-    "Fixes for common fitness and health API errors: 401s, 429 rate limits, OAuth redirect mismatches, empty HealthKit/Health Connect data, and dead webhooks.",
+    "Symptom-to-fix guides for fitness API errors: Fitbit 401 unauthorized, 429 rate limits, empty HealthKit reads, Strava webhooks gone silent, and more.",
   alternates: { canonical: FIX_PATH },
   openGraph: {
     type: "website",
