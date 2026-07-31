@@ -1,0 +1,54 @@
+# One-shot health check for the Resend email setup. Manual trigger only.
+# Reads the key exclusively from the RESEND_API_KEY repository secret —
+# this repo is public, so the key must never appear in code, inputs, or
+# logs (secrets are masked; we additionally print only statuses and DNS
+# records, which are public by nature once added).
+name: resend-check
+on:
+  workflow_dispatch:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify key and domain, send test email
+        env:
+          KEY: ${{ secrets.RESEND_API_KEY }}
+        run: |
+          set -euo pipefail
+          if [ -z "$KEY" ]; then
+            echo "::error::RESEND_API_KEY secret is not set on this repo"; exit 1
+          fi
+
+          echo "== 1. Key check (list domains)"
+          code=$(curl -s -o /tmp/domains.json -w '%{http_code}' \
+            -H "Authorization: Bearer $KEY" https://api.resend.com/domains)
+          echo "HTTP $code"
+          if [ "$code" != "200" ]; then echo "::error::key invalid or lacks permission"; cat /tmp/domains.json; exit 1; fi
+          echo "Domains on the account:"
+          jq -r '.data[] | "  \(.name)  status=\(.status)  region=\(.region)"' /tmp/domains.json || true
+
+          echo "== 2. aifitnessapi.com present?"
+          DOMAIN_ID=$(jq -r '.data[] | select(.name=="aifitnessapi.com") | .id' /tmp/domains.json)
+          if [ -z "$DOMAIN_ID" ]; then
+            echo "Not found - creating it now"
+            curl -s -H "Authorization: Bearer $KEY" -H "Content-Type: application/json" \
+              -d '{"name":"aifitnessapi.com"}' https://api.resend.com/domains > /tmp/create.json
+            DOMAIN_ID=$(jq -r '.id // empty' /tmp/create.json)
+            [ -z "$DOMAIN_ID" ] && { echo "::error::domain create failed"; cat /tmp/create.json; exit 1; }
+          fi
+          curl -s -H "Authorization: Bearer $KEY" "https://api.resend.com/domains/$DOMAIN_ID" > /tmp/domain.json
+          STATUS=$(jq -r '.status' /tmp/domain.json)
+          echo "aifitnessapi.com status: $STATUS"
+          echo "DNS records Resend requires (add any not yet present, then Verify in the Resend dashboard):"
+          jq -r '.records[] | "  \(.record)  \(.type)  name=\(.name)  value=\(.value)  status=\(.status // "n/a")"' /tmp/domain.json || true
+
+          echo "== 3. Test send to the owner"
+          if [ "$STATUS" = "verified" ]; then FROM="AIFitnessAPI <hello@aifitnessapi.com>"; else FROM="onboarding@resend.dev"; fi
+          echo "from: $FROM"
+          code=$(curl -s -o /tmp/send.json -w '%{http_code}' \
+            -H "Authorization: Bearer $KEY" -H "Content-Type: application/json" \
+            -d "{\"from\":\"$FROM\",\"to\":[\"nikita@kinestex.com\"],\"subject\":\"AIFitnessAPI email pipeline test\",\"text\":\"This is the Resend verification test from the resend-check GitHub Action. If you are reading this, the key works and sends deliver. Domain status at send time: $STATUS.\"}" \
+            https://api.resend.com/emails)
+          echo "HTTP $code"; jq -r 'if .id then "sent, id=\(.id)" else . end' /tmp/send.json || cat /tmp/send.json
+          [ "$code" = "200" ] || { echo "::error::test send failed"; exit 1; }
+          echo "== DONE. If status above is not verified, add the DNS records, click Verify at resend.com, re-run this workflow."
