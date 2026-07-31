@@ -731,6 +731,10 @@ export const fixEntries: ClusterEntry[] =
     ],
     "related": [
       {
+        "href": "/google-fit-shutdown",
+        "label": "Google Fit shutdown: timeline & paths"
+      },
+      {
         "href": "/fix/health-connect-no-data",
         "label": "Fix: Health Connect returns no data"
       },

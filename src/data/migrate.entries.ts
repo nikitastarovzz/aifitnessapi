@@ -75,6 +75,10 @@ export const migrateEntries: ClusterEntry[] =
     ],
     "related": [
       {
+        "href": "/google-fit-shutdown",
+        "label": "Google Fit shutdown: timeline & paths"
+      },
+      {
         "href": "/integrate/google-health-connect",
         "label": "Integrate Google Health Connect"
       },
