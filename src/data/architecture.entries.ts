@@ -413,6 +413,10 @@ export const architectureEntries: ClusterEntry[] =
     ],
     "related": [
       {
+        "href": "/day-boundaries",
+        "label": "Live day-boundary demo"
+      },
+      {
         "href": "/architecture/time-series-storage",
         "label": "Time-series storage for health data"
       },

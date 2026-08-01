@@ -58,6 +58,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl("/privacy"), changeFrequency: "yearly", priority: 0.2 },
     { url: absoluteUrl("/google-fit-shutdown"), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/methodology"), changeFrequency: "yearly", priority: 0.4 },
+    { url: absoluteUrl("/day-boundaries"), changeFrequency: "monthly", priority: 0.6 },
+    { url: absoluteUrl("/glossary"), changeFrequency: "monthly", priority: 0.5 },
     { url: absoluteUrl("/picker"), changeFrequency: "monthly", priority: 0.8 },
     { url: absoluteUrl("/matrix"), changeFrequency: "monthly", priority: 0.8 },
     { url: absoluteUrl("/blog"), changeFrequency: "weekly", priority: 0.8 },
