@@ -10,6 +10,22 @@ single confidently-wrong page costs more than a month of good ones.
 here is why" is an acceptable and sometimes correct outcome. Sixteen mediocre
 pieces is never the assignment.**
 
+## 0. Preflight — you may share this working tree with another session
+
+This routine fires into a shared environment; an interactive session (or a
+previous run) may have left the tree dirty. Before doing anything:
+
+1. `git fetch origin main` then `git status --porcelain`.
+2. If the tree is CLEAN: `git merge --ff-only origin/main` and proceed.
+3. If the tree is DIRTY: do NOT `git reset --hard` or `git clean` — that would
+   destroy another session's in-progress work. Instead move the stray files
+   aside without deleting them: `mkdir -p .parked && git stash push -u -m
+   "daily-routine parked $(cat /dev/urandom | head -c 4 | od -An -tx1 | tr -d ' ')"`
+   is acceptable ONLY if you first confirm nothing there is mid-edit by a live
+   session — when in doubt, push only a log entry noting "tree dirty, skipped"
+   and stop. A skipped day is free; clobbering a teammate's work is not.
+4. Never `git push --force`. Only ever fast-forward or add new commits.
+
 ## 1. Get the data
 
 In order of preference:
