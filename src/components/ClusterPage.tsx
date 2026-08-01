@@ -9,6 +9,7 @@ import { formatDate } from "@/lib/posts";
 import { site, absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
+import { clusterNeighbors } from "@/lib/clusterRegistry";
 import type { ClusterEntry, ClusterConfig } from "@/lib/cluster";
 
 /**
@@ -160,6 +161,35 @@ export default function ClusterPage({
             </ul>
           </section>
         )}
+
+        {(() => {
+          const { prev, next } = clusterNeighbors(basePath, entry.slug);
+          if (!prev && !next) return null;
+          return (
+            <nav aria-label="More in this section" className="mt-10 grid gap-3 sm:grid-cols-2">
+              {prev ? (
+                <Link
+                  href={`${basePath}/${prev.slug}`}
+                  className="group rounded-xl border border-[var(--border)] p-4 transition-colors hover:border-brand-400 hover:bg-[var(--surface)]"
+                >
+                  <span className="text-xs uppercase tracking-wider text-[var(--muted)]">← Previous in {hubLabel}</span>
+                  <span className="mt-1 block text-sm font-medium text-[var(--fg)] group-hover:text-brand-600">{prev.h1}</span>
+                </Link>
+              ) : (
+                <span aria-hidden className="hidden sm:block" />
+              )}
+              {next && (
+                <Link
+                  href={`${basePath}/${next.slug}`}
+                  className="group rounded-xl border border-[var(--border)] p-4 text-right transition-colors hover:border-brand-400 hover:bg-[var(--surface)]"
+                >
+                  <span className="text-xs uppercase tracking-wider text-[var(--muted)]">Next in {hubLabel} →</span>
+                  <span className="mt-1 block text-sm font-medium text-[var(--fg)] group-hover:text-brand-600">{next.h1}</span>
+                </Link>
+              )}
+            </nav>
+          );
+        })()}
 
         <ClusterDisclaimer updated={entry.updated} variant={config.disclaimer} />
 

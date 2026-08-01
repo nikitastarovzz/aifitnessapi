@@ -121,6 +121,33 @@ for (const h of htmls) {
   if (breadcrumbs > 1) problems.push(`MULTI-BREADCRUMB ${route} (${breadcrumbs})`);
 }
 
+// Inbound-link audit: a published page nothing links to is invisible to
+// crawlers and readers alike. Count internal content links (dedup by
+// source page), fail on true orphans, report thin pages informally.
+{
+  const inbound = new Map();
+  for (const h of htmls) {
+    const route = routeOf(h);
+    if (route.startsWith("/_")) continue;
+    const html = fs.readFileSync(h, "utf8");
+    const seen = new Set();
+    for (const m of html.matchAll(/href="(\/[a-z0-9/-]+)"/g)) {
+      const t = m[1];
+      if (t !== route && valid.has(t)) seen.add(t);
+    }
+    for (const t of seen) inbound.set(t, (inbound.get(t) ?? 0) + 1);
+  }
+  const thin = [];
+  for (const h of htmls) {
+    const route = routeOf(h);
+    if (route === "/" || route.startsWith("/_") || route.startsWith("/blog")) continue;
+    const n = inbound.get(route) ?? 0;
+    if (n === 0) problems.push(`ORPHAN         ${route} — no internal links point here`);
+    else if (n < 3) thin.push(`${route} (${n})`);
+  }
+  if (thin.length) console.log(`Thin inbound (<3, informational): ${thin.join(", ")}`);
+}
+
 for (const [t, routes] of titles) {
   if (routes.length > 1) problems.push(`DUP-TITLE      ${routes.join(", ")} — "${t}"`);
 }
