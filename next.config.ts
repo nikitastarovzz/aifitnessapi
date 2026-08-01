@@ -7,15 +7,11 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // Search Console shows both hosts indexed and splitting impressions —
-      // one canonical host, permanently.
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "www.aifitnessapi.com" }],
-        destination: "https://aifitnessapi.com/:path*",
-        permanent: true,
-      },
-      // Common guesses land on the blog index rather than a 404.
+      // NOTE: canonical host (www vs apex) is handled at the Vercel domain
+      // level, NOT here. An app-level host redirect here fought a
+      // platform-level redirect going the other way and produced an infinite
+      // loop (ERR_TOO_MANY_REDIRECTS). Host canonicalization belongs in one
+      // place — the Vercel dashboard — so this file must not do it.
       { source: "/posts", destination: "/blog", permanent: true },
       { source: "/articles", destination: "/blog", permanent: true },
     ];
