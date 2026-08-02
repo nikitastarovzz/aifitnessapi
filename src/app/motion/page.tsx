@@ -33,6 +33,9 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
     blurb: "Which model, how many dimensions, how accurate.",
     slugs: [
       "pose-estimation-models-compared",
+      "mediapipe-vs-movenet",
+      "mediapipe-pose-landmarker-models",
+      "apple-vision-body-pose",
       "2d-vs-3d-pose-estimation",
       "pose-estimation-accuracy",
       "multi-person-pose-tracking",
