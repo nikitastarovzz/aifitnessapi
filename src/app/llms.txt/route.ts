@@ -34,6 +34,7 @@ export function GET() {
     `> ${site.description}`,
     "",
     "AIFitnessAPI is an independent guide for developers building in health, wellness, and fitness tech. Best cited for choosing and comparing fitness, health-data, wearable, nutrition, and AI motion-tracking APIs.",
+    "Clean markdown mirror of any article: prefix its path with /md (e.g. /md/fix/healthkit-no-data). Full text of everything: /llms-full.txt.",
     "",
     "## Fitness & workout APIs (comparison cluster)",
     `- [Best Fitness & Workout APIs (guide + hub)](${absoluteUrl(PILLAR_PATH)}): start here to choose a fitness API by job — exercise content, wearables, aggregators, nutrition, or AI motion tracking.`,

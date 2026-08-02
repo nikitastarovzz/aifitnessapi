@@ -8,6 +8,8 @@
  *  - invalid JSON-LD, or more than one BreadcrumbList on a page
  *  - duplicate titles/descriptions across pages
  *  - the same FAQ question on two pages (they collide in FAQPage rich results)
+ *  - GEO invariants: every spoke listed in llms.txt, a /md mirror per spoke,
+ *    AI crawlers allowed in robots.txt, FAQPage + speakable on every spoke
  *
  * Exits non-zero with a report so a regression fails CI instead of shipping.
  */
@@ -177,6 +179,57 @@ if (fs.existsSync(matrixPath)) {
       `MATRIX-INCOMPLETE ${rows} rows but ${apple} Apple / ${android} Android identifiers — every row needs both.`,
     );
   }
+}
+
+// ── GEO invariants (ops/GEO.md). These protect machine-citability: if a new
+// cluster ships without llms.txt wiring or the /md mirrors break, LLMs lose
+// their clean path to us and nothing else would notice.
+{
+  const readBody = (p) => (fs.existsSync(p) ? fs.readFileSync(p, "utf8") : null);
+  const llms = readBody(".next/server/app/llms.txt.body");
+  const robotsTxt = readBody(".next/server/app/robots.txt.body");
+
+  // Which top-level dirs are clusters? Exactly those mirrored under /md.
+  const mdRoot = ".next/server/app/md";
+  const clusterTops = fs.existsSync(mdRoot)
+    ? fs.readdirSync(mdRoot, { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name)
+    : [];
+  if (clusterTops.length === 0) problems.push("GEO-NO-MD-MIRRORS  /md build output missing entirely");
+
+  let mirrors = 0;
+  for (const top of clusterTops) {
+    for (const f of fs.readdirSync(path.join(mdRoot, top))) if (f.endsWith(".body")) mirrors++;
+  }
+  const spokes = htmls
+    .map(routeOf)
+    .filter((r) => { const seg = r.split("/").filter(Boolean); return seg.length === 2 && clusterTops.includes(seg[0]); });
+  if (mirrors !== spokes.length) {
+    problems.push(`GEO-MIRROR-COUNT  ${mirrors} /md mirrors vs ${spokes.length} spoke pages — every spoke needs its markdown mirror`);
+  }
+
+  if (llms === null) problems.push("GEO-NO-LLMS  llms.txt missing from build output");
+  else {
+    for (const r of spokes) {
+      if (!llms.includes(`aifitnessapi.com${r})`)) problems.push(`GEO-LLMS-MISSING  ${r} not listed in llms.txt`);
+    }
+  }
+
+  if (robotsTxt === null) problems.push("GEO-NO-ROBOTS  robots.txt missing from build output");
+  else {
+    for (const ua of ["GPTBot", "ClaudeBot", "PerplexityBot", "Google-Extended"]) {
+      if (!robotsTxt.includes(ua)) problems.push(`GEO-ROBOTS  ${ua} not explicitly allowed in robots.txt`);
+    }
+  }
+
+  for (const h of htmls) {
+    const r = routeOf(h);
+    const seg = r.split("/").filter(Boolean);
+    if (seg.length !== 2 || !clusterTops.includes(seg[0])) continue;
+    const html = fs.readFileSync(h, "utf8");
+    if (!html.includes('"FAQPage"')) problems.push(`GEO-NO-FAQPAGE  ${r}`);
+    if (!html.includes("speakable")) problems.push(`GEO-NO-SPEAKABLE ${r}`);
+  }
+  console.log(`GEO: ${mirrors} md mirrors / ${spokes.length} spokes; llms.txt ${llms ? "present" : "MISSING"}; AI crawler allows ${robotsTxt ? "present" : "MISSING"}.`);
 }
 
 console.log(`QA: checked ${checked} content pages (${htmls.length} built HTML files).`);

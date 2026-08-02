@@ -40,6 +40,13 @@ const REGISTRY: Record<string, () => ClusterEntry[]> = {
   [TEST_PATH]: releasedTesting,
 };
 
+/** All clusters as basePath → released entries. */
+export function clusterMap(): Record<string, ClusterEntry[]> {
+  const out: Record<string, ClusterEntry[]> = {};
+  for (const [base, fn] of Object.entries(REGISTRY)) out[base] = fn();
+  return out;
+}
+
 /** Previous/next released sibling of a slug within its cluster, in the
  *  cluster's curated order. Ends of the list return null on that side. */
 export function clusterNeighbors(

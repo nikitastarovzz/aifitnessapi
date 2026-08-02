@@ -78,6 +78,14 @@ content depth, not metadata.
 Never choose: anything touching `/api/*`, `src/lib/firestore.ts`, the signup
 form, CI workflows, or dependencies. Content only.
 
+## 2b. GEO is binding
+
+Read `ops/GEO.md` once per run. Every page you add or edit must satisfy its
+rules — quotable capsule, unique FAQs, dated volatile claims, in-prose source
+attribution, and membership in a cluster data module so the machine surfaces
+(llms.txt, /md mirrors, search) wire automatically. The GEO-* gates in qa.mjs
+enforce the mechanical half; never weaken them.
+
 ## 3. Research before writing — non-negotiable
 
 - New factual claims need a reachable primary source, fetched THIS run.
