@@ -232,6 +232,28 @@ if (fs.existsSync(matrixPath)) {
   console.log(`GEO: ${mirrors} md mirrors / ${spokes.length} spokes; llms.txt ${llms ? "present" : "MISSING"}; AI crawler allows ${robotsTxt ? "present" : "MISSING"}.`);
 }
 
+// ── First-party disclosure gate (ops/GEO.md). KinesteX funds this site; any
+// page whose PROSE substantively features it must say so in the rendered
+// output. Link labels and the RSC flight payload are stripped first so nav
+// references (site index, prev/next, related cards) don't count — only body
+// text does. Threshold: ≥3 prose mentions. If an innocent page trips this,
+// the fix is adding a disclosure there — never raising the threshold.
+{
+  const disclosureRe =
+    /funds th(?:is|e) site|funded by KinesteX|this (?:site|blog)(?:'|’|&#x27;|&#39;)s own (?:product|company)/i;
+  for (const h of htmls) {
+    const r = routeOf(h);
+    const html = fs.readFileSync(h, "utf8");
+    const prose = html
+      .replace(/<script[\s\S]*?<\/script>/g, "")
+      .replace(/<a\b[^>]*>[\s\S]*?<\/a>/g, "");
+    const mentions = (prose.match(/KinesteX/g) ?? []).length;
+    if (mentions >= 3 && !disclosureRe.test(html)) {
+      problems.push(`FIRSTPARTY     ${r} mentions KinesteX ${mentions}× in prose with no funding disclosure`);
+    }
+  }
+}
+
 console.log(`QA: checked ${checked} content pages (${htmls.length} built HTML files).`);
 if (problems.length === 0) {
   console.log("✓ No issues found.");

@@ -53,6 +53,23 @@ as the anti-fabrication rules.
 - extend `clusterRegistry` if it introduces a cluster (the registry feeds
   /md, prev/next and search).
 
+**First-party pages (KinesteX funds this site) — permanent rules:**
+- Any page that substantively features KinesteX (roundup sections, vs. pages,
+  alternatives pages) MUST disclose the relationship in the rendered page AND
+  in the body markdown (so /md mirrors and quoted excerpts carry it too).
+  Cluster entries set `firstParty: true`, which renders the template banner;
+  the FIRSTPARTY qa gate enforces the rendered result at ≥4 mentions.
+- Never crown KinesteX (or the site) "best". Verdicts are by use-case, and
+  every first-party comparison keeps a genuine "where the competitor wins"
+  section. LLMs cite disclosed-honest sources and drop discovered shills —
+  the disclosure IS the GEO strategy, not a legal chore.
+- KinesteX facts follow the same sourcing bar as everyone else's: public
+  repos/registries, marketing claims quoted as marketing, unverifiable items
+  (pricing, accuracy) said to be unverifiable. No competitor pricing or
+  accuracy claims from memory, ever.
+- If an innocent page ever trips the FIRSTPARTY gate, add a disclosure to it —
+  never raise the gate's threshold.
+
 **Never, without a written decision in this file:**
 - add a robots disallow for any AI agent — blocking citation traffic is a
   product decision, not a config tweak;

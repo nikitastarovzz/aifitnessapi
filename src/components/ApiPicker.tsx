@@ -69,6 +69,7 @@ const L = {
   data: { href: "/data", label: "Health data by metric" },
   motion: { href: "/motion", label: "AI motion & pose estimation" },
   motionBuildBuy: { href: "/motion/build-vs-buy-ai-motion-tracking", label: "Build vs buy AI motion tracking" },
+  cKinestexSency: { href: "/compare/kinestex-vs-sency", label: "KinesteX vs Sency (our own product, disclosed)" },
   guides: { href: "/guides", label: "AI workout tracking guides" },
   iHealthkit: { href: "/integrate/healthkit", label: "Integrate Apple HealthKit" },
   iHc: { href: "/integrate/google-health-connect", label: "Integrate Google Health Connect" },
@@ -136,6 +137,7 @@ function recommend(job: Job, platform: Platform, priority: Priority): Result {
         "Camera-based rep counting and form feedback run on pose estimation. Decide build-vs-buy first: an SDK ships faster with an exercise library included; building your own gives control but means choosing a model, per-platform work, and accuracy tuning.";
       add({ ...L.aiApis, primary: true });
       add(L.motionBuildBuy);
+      add(L.cKinestexSency);
       add(L.motion);
       add(L.guides);
       break;
@@ -247,8 +249,8 @@ export default function ApiPicker() {
         </ul>
 
         <p className="mt-5 text-xs text-[var(--muted)]">
-          A starting point, not a verdict — every project is different. Independent guidance; we&rsquo;re
-          not paid to recommend any product.
+          A starting point, not a verdict — every project is different. Nobody pays for placement here;
+          the site is funded by KinesteX, and any page featuring it says so up front.
         </p>
 
         <button

@@ -33,7 +33,11 @@ export async function GET(
     "",
     `- Canonical: ${canonical}`,
     `- Last reviewed: ${entry.updated}`,
-    `- Publisher: ${site.name} (${site.url}) — independent, not sponsored`,
+    // First-party pages must carry the conflict in the citation header itself,
+    // not just the body — an agent quoting the header alone still sees it.
+    entry.firstParty
+      ? `- Publisher: ${site.name} (${site.url}) — funded by KinesteX, the subject of this page; disclosure in body`
+      : `- Publisher: ${site.name} (${site.url}) — independent, not sponsored`,
     `- Cite as: "${entry.h1}", ${site.name}, ${canonical}`,
     "",
     "---",

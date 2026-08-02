@@ -24,6 +24,13 @@ export type ClusterEntry = {
   cta: { pitch: string };
   /** How-to steps for HowTo schema. Omit for non-how-to (roundup/comparison). */
   steps?: Step[];
+  /**
+   * Page is about this site's own product (KinesteX funds AIFitnessAPI).
+   * Setting this renders a permanent disclosure banner above the capsule.
+   * ops/GEO.md makes it mandatory for any page that features KinesteX;
+   * the FIRSTPARTY qa gate enforces the rendered result.
+   */
+  firstParty?: boolean;
 };
 
 /** Per-cluster wiring the shared template needs. */

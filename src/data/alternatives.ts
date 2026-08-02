@@ -25,6 +25,7 @@ export const RELEASED_ALTERNATIVES = new Set<string>([
   "terra-alternatives",
   "nutritionix-alternatives",
   "exercisedb-alternatives",
+  "kinestex-alternatives",
 ]);
 
 export const allAlternatives: ClusterEntry[] = alternativesEntries;

@@ -49,6 +49,12 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
     blurb: "Food databases and exercise libraries.",
     slugs: ["nutritionix-vs-edamam", "edamam-vs-spoonacular", "exercisedb-vs-wger"],
   },
+  {
+    title: "AI motion tracking SDKs",
+    blurb:
+      "Camera-based coaching SDKs head-to-head. KinesteX funds this site — these pages disclose that up front and are verified from public repos.",
+    slugs: ["kinestex-vs-sency", "kinestex-vs-quickpose", "kinestex-vs-mediapipe"],
+  },
 ];
 
 const FAQS = [

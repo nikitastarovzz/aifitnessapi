@@ -49,6 +49,11 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
     blurb: "Exercise libraries and food databases.",
     slugs: ["exercisedb-alternatives", "nutritionix-alternatives"],
   },
+  {
+    title: "AI motion tracking",
+    blurb: "Alternatives to this site's own product, disclosed and repo-verified.",
+    slugs: ["kinestex-alternatives"],
+  },
 ];
 
 const FAQS = [

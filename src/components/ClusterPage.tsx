@@ -112,6 +112,22 @@ export default function ClusterPage({
           Updated {formatDate(entry.updated)}
         </p>
 
+        {entry.firstParty && (
+          <aside
+            role="note"
+            className="mt-6 rounded-xl border border-amber-400/40 bg-amber-500/10 px-4 py-3 text-sm text-[var(--fg)]"
+          >
+            <strong>Disclosure:</strong> this page covers KinesteX, the product
+            of the company that funds this site. Facts below come from public
+            repositories, competitor strengths are stated, and anything we
+            could not verify is labeled — see{" "}
+            <Link href="/methodology" className="text-brand-600 underline hover:text-brand-500">
+              how we verify
+            </Link>
+            .
+          </aside>
+        )}
+
         {/* Answer-first capsule — the block voice assistants read and LLMs quote. */}
         <div
           id={capsuleId}
