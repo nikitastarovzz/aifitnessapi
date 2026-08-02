@@ -66,6 +66,15 @@ d. **Backlog.** No qualifying data candidates → take the top unchecked item fr
    otherwise improve internal linking into the 5 pages with the most impressions
    (log which), or refresh `data/gsc/latest.json` alone.
 
+**Proven patterns (from live GSC, updated 2026-08-02) — when candidates tie,
+prefer these; the data says they work for us:** pricing-intent pages (the
+/pricing cluster earns clicks at the highest rate), aggregator comparisons
+(terra-vs-vital converts ~10% CTR), exact-error-string /fix pages (garmin
+approval, fitbit 401), and pose-model comparisons (/motion is rising, and it
+is the most strategically valuable cluster). Conversely, do not invest in
+queries below position ~30 expecting CTR fixes to help — position work is
+content depth, not metadata.
+
 Never choose: anything touching `/api/*`, `src/lib/firestore.ts`, the signup
 form, CI workflows, or dependencies. Content only.
 

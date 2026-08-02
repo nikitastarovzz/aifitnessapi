@@ -12,7 +12,7 @@ export const motionEntries: ClusterEntry[] =
     "slug": "pose-estimation-models-compared",
     "primaryQuery": "pose estimation models compared",
     "h1": "Pose Estimation Models Compared: MediaPipe, MoveNet, YOLO and More",
-    "metaTitle": "Pose Estimation Models Compared (MediaPipe, YOLO)",
+    "metaTitle": "MediaPipe vs MoveNet vs YOLO: Pose Models Compared",
     "metaDescription": "MediaPipe/BlazePose (33 kp), MoveNet, YOLO-pose and OpenPose compared: keypoints, on-device, multi-person, and the AGPL/non-commercial license traps.",
     "updated": "2026-07-24",
     "answer": "For a single-user on-device fitness app, MediaPipe/BlazePose (33 keypoints, with monocular 3D world landmarks) is the usual starting point. MoveNet (17 keypoints) gives a speed-vs-accuracy dial for lightweight 2D tracking (Lightning for speed, Thunder for accuracy), while YOLO-pose and OpenPose handle multi-person scenes. The decisive trade-off is single-person on-device (private, cheap, simpler) vs multi-person (heavier, with real licensing strings). Check the license first: OpenPose is non-commercial and Ultralytics YOLO is AGPL-3.0.",
@@ -37,6 +37,10 @@ export const motionEntries: ClusterEntry[] =
       {
         "q": "Which models handle multiple people at once?",
         "a": "YOLO-pose detects multiple people and their keypoints in one pass, and OpenPose is a bottom-up multi-person system. MediaPipe/BlazePose and MoveNet are single-person oriented (MoveNet has a multipose variant to verify in your pipeline). Multi-person also needs a separate cross-frame tracking layer to keep identities stable, and remember YOLO is AGPL-3.0 and OpenPose is non-commercial."
+      },
+      {
+        "q": "Should I pick MoveNet or MediaPipe for a fitness app?",
+        "a": "They sit at different points on the same trade-off. MediaPipe Pose (BlazePose) returns 33 keypoints including monocular 3D world landmarks, which helps for form feedback where joint angles in space matter. MoveNet returns the 17 COCO keypoints in 2D, with Lightning tuned for speed and Thunder for accuracy, and is a common choice when rep counting on modest hardware is the job. Both run on-device on a normal phone camera. Our recommendation: choose by what you compute downstream — 3D landmarks and more joints favor MediaPipe, minimal latency on old devices favors MoveNet Lightning — and verify current performance on your own target hardware rather than trusting anyone's benchmark."
       }
     ],
     "related": [
