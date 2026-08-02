@@ -776,5 +776,72 @@ export const fixEntries: ClusterEntry[] =
         "text": "The end-of-2026 sunset is firm and new projects cannot onboard to Fit at all, so schedule the cutover with margin. Run Fit and its successor in parallel during the transition and only remove Fit code once the replacement is verified in production."
       }
     ]
+  },
+  {
+    "slug": "oura-personal-access-token-deprecated",
+    "primaryQuery": "oura personal access tokens deprecated",
+    "h1": "Oura Personal Access Tokens Are Deprecated — Here's the Fix",
+    "metaTitle": "Oura Personal Access Tokens Deprecated: What to Do",
+    "metaDescription": "Oura deprecated Personal Access Tokens in December 2025 — new PATs can't be created. The fix is OAuth 2.0 Authorization Code. Step-by-step migration.",
+    "updated": "2026-08-02",
+    "answer": "Oura deprecated Personal Access Tokens around December 2025: new PATs can no longer be created, and new integrations must use OAuth 2.0 Authorization Code with scoped Bearer tokens. If a tutorial tells you to paste a personal token, it predates the change. The fix is to register an OAuth application, send users through Oura's consent screen, and exchange the code for tokens — your API calls to api.ouraring.com/v2/ stay the same, only the credential changes.",
+    "body": "You followed a tutorial, went looking for the Personal Access Token page in the Oura dashboard, and either could not find it or found you cannot create a new one. Nothing is broken on your side: **Oura deprecated Personal Access Tokens around December 2025**, and new integrations must use OAuth 2.0. Every tutorial that says \"paste your personal token\" predates the change.\n\n## What changed, and what did not\n\n- **Gone:** creating new PATs. The simple paste-a-token path for personal scripts and quick prototypes is closed to new users.\n- **Unchanged:** the API itself. The v2 REST base (`https://api.ouraring.com/v2/`), the `usercollection` endpoints, and the data — sleep, activity, readiness, heart rate, workouts, SpO2 — are the same. Only the credential in the `Authorization` header changes: a scoped OAuth Bearer token instead of a personal one.\n- **If you hold an old PAT:** deprecation announcements typically wind down existing tokens on their own schedule — treat any still-working PAT as living on borrowed time and migrate now rather than after it stops. Verify current status in Oura's developer documentation, since wind-down timelines are the kind of detail that changes.\n\n## The fix: move to OAuth 2.0 Authorization Code\n\nThe full wiring — redirect URI setup, the consent screen, code exchange, token refresh — is covered step by step in [the Oura API integration guide](/integrate/oura-api); the short version is below. If OAuth is new territory, [OAuth for health data](/learn/what-is-oauth-for-health-data) explains the moving parts in plain English first.\n\nFor a personal project, the OAuth dance feels like overkill for one user — you still register an app and authorize yourself through your own consent screen once, then store and refresh the tokens like any integration. Budget an hour, not a weekend.\n\n## While you're here\n\nTwo adjacent traps worth knowing about. Refresh tokens are where OAuth integrations actually die in production — [refresh token not working](/fix/refresh-token-not-working) covers the rotation gotchas before they cost you a user. And if your goal was several wearables rather than Oura specifically, [a health-data aggregator](/learn/what-is-a-health-data-aggregator) gives you Oura plus the rest behind one credential flow instead of one OAuth app per provider.",
+    "steps": [
+      {
+        "name": "Confirm you're hitting the deprecation",
+        "text": "If the Oura dashboard offers no way to create a new Personal Access Token, or a fresh PAT-based call fails while the API status page shows no incident, you are on the post-December-2025 path: OAuth is required for new integrations."
+      },
+      {
+        "name": "Register an OAuth application with Oura",
+        "text": "Create an application in Oura's developer portal to get a client ID and client secret, and register the redirect URI your app (or local script) will receive the authorization code on."
+      },
+      {
+        "name": "Send the user through the consent screen",
+        "text": "Redirect to Oura's authorization URL with your client ID, redirect URI, and the scopes you need. For a personal tool, that user is you — you authorize once against your own ring's data."
+      },
+      {
+        "name": "Exchange the code for tokens",
+        "text": "Your redirect URI receives a short-lived authorization code; exchange it server-side for an access token and refresh token. Send the access token as an Authorization: Bearer header on api.ouraring.com/v2/ calls."
+      },
+      {
+        "name": "Store and refresh like a real integration",
+        "text": "Persist both tokens and refresh before expiry. Treat the refresh flow as production code even in a hobby project — expired-and-unrefreshed tokens are the number one way migrated integrations quietly stop syncing."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Can I still create an Oura Personal Access Token?",
+        "a": "No — as of the December 2025 deprecation, new Personal Access Tokens can no longer be created, and new integrations must use OAuth 2.0 Authorization Code with scoped Bearer tokens. Existing tokens created before the change are a separate question: treat any that still work as temporary and migrate to OAuth now. Verify the current wind-down status in Oura's own developer documentation, as of 2026."
+      },
+      {
+        "q": "Do my Oura API endpoints change when I move from a PAT to OAuth?",
+        "a": "No. The v2 REST base at api.ouraring.com/v2/ and the usercollection endpoints are unchanged, and the responses are the same. What changes is the credential: instead of a personal token you send a scoped OAuth Bearer access token, which expires and is renewed via a refresh token. Migration is an auth change, not a rewrite."
+      },
+      {
+        "q": "Is there a simpler path than OAuth for a personal Oura project?",
+        "a": "Not from Oura directly anymore — OAuth is the supported route for new integrations, even single-user ones, so you register an app and authorize yourself once through your own consent screen. If the ceremony is a dealbreaker and you want several wearables anyway, a health-data aggregator gives you Oura and other providers behind one integration, at the cost of a third party in the loop."
+      }
+    ],
+    "related": [
+      {
+        "href": "/integrate/oura-api",
+        "label": "Integrate the Oura API (OAuth walkthrough)"
+      },
+      {
+        "href": "/fix/refresh-token-not-working",
+        "label": "Fix: refresh token not working"
+      },
+      {
+        "href": "/learn/what-is-oauth-for-health-data",
+        "label": "OAuth for health data, explained"
+      },
+      {
+        "href": "/fix",
+        "label": "All troubleshooting guides"
+      }
+    ],
+    "cta": {
+      "pitch": "Auth deprecations like this one land quietly and break tutorials overnight. We track fitness API changes that actually affect builders — get the heads-up before your integration is the one that stops."
+    }
   }
 ];

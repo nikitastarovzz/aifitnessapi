@@ -25,6 +25,7 @@ export const RELEASED_FIX = new Set<string>([
   "wearable-data-delayed",
   "garmin-api-approval",
   "refresh-token-not-working",
+  "oura-personal-access-token-deprecated",
 ]);
 
 export const allFixes: ClusterEntry[] = fixEntries;

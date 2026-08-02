@@ -31,7 +31,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Auth & tokens",
     blurb: "OAuth failures, unauthorized responses, refresh problems.",
-    slugs: ["fitness-api-401-unauthorized", "oauth-redirect-uri-mismatch", "refresh-token-not-working"],
+    slugs: ["fitness-api-401-unauthorized", "oauth-redirect-uri-mismatch", "refresh-token-not-working", "oura-personal-access-token-deprecated"],
   },
   {
     title: "Rate limits",
