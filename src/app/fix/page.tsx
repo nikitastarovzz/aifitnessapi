@@ -10,12 +10,14 @@ import { orgRef } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { getFix, releasedFixes, FIX_PATH } from "@/data/fix";
 
-const UPDATED = "2026-07-09";
+const UPDATED = "2026-08-03";
 
 export const metadata: Metadata = {
   title: "Fix Fitness API Errors: 401s, 429s, Webhooks",
+  // GSC 2026-08: "fitbit error code 401" = 330 imp at pos ~9 with 0 clicks
+  // landing on this pillar — the snippet must answer that exact query.
   description:
-    "Symptom-to-fix guides for fitness API errors: Fitbit 401 unauthorized, 429 rate limits, empty HealthKit reads, Strava webhooks gone silent, and more.",
+    "Fitbit error code 401 means an expired, malformed, or revoked token — refresh and retry. Symptom-to-fix guides for every fitness API error, ranked.",
   alternates: { canonical: FIX_PATH },
   openGraph: {
     type: "website",
@@ -56,6 +58,10 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
 ];
 
 const FAQS = [
+  {
+    q: "What does Fitbit error code 401 mean?",
+    a: "Fitbit returns 401 when the request's credential is rejected: the access token is expired, malformed, missing from the Authorization header, or revoked. Refresh the token with your refresh token and retry; if the refresh itself fails with invalid_grant, the user must re-authorize. Our 401 guide walks the causes in order of likelihood — and note a 403 is a different problem (valid token, missing scope or approval).",
+  },
   {
     q: "Why is my fitness API call returning no data?",
     a: "The three usual causes are permissions, scope, and timing. For OAuth APIs, confirm the access token has the right scope and hasn't expired. For on-device stores (HealthKit, Health Connect), confirm the user granted the specific data type — and remember HealthKit can't tell you a read was denied, so empty results can mean either no permission or no data. For webhook/aggregator data, the data may simply not have synced yet.",

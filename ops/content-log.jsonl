@@ -1,1 +1,5 @@
-
+{"date":"2026-08-01","action":"spoke","cluster":"interactive","slug":"glossary","signal":"backlog","notes":"Routine died mid-write; interactive session completed the 32-term glossary + DefinedTermSet"}
+{"date":"2026-08-02","action":"spoke","cluster":"/motion","slug":"mediapipe-vs-movenet","signal":"query 'movenet vs mediapipe' pos~7","notes":"Interactive: 3 pose-model pages (also mediapipe-pose-landmarker-models, apple-vision-body-pose)"}
+{"date":"2026-08-02","action":"spoke","cluster":"/fix","slug":"oura-personal-access-token-deprecated","signal":"verbatim PAT-deprecation query 9i pos8","notes":"Interactive: exact-error-string pattern"}
+{"date":"2026-08-02","action":"spoke","cluster":"/compare+/alternatives","slug":"kinestex-vs-sency,kinestex-vs-quickpose,kinestex-vs-mediapipe,kinestex-alternatives","signal":"funnel: picker had zero KinesteX routing","notes":"Interactive: first-party vs. cluster, disclosed + adversarially reviewed; firstParty plumbing + FIRSTPARTY qa gate"}
+{"date":"2026-08-03","action":"meta-fix","cluster":"/fix","slug":"(pillar)","signal":"'fitbit error code 401' 330i pos~9 CTR 0% on /fix","notes":"Pillar desc now answers the exact query; added unique pillar FAQ; GSC snapshot refreshed 2026-07-06..2026-08-02"}
