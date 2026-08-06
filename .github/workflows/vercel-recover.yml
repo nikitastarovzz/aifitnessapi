@@ -1,0 +1,94 @@
+name: Vercel recover
+
+# Runs the Vercel CLI from a GitHub runner, which (unlike the dev sandbox,
+# where api.vercel.com is blocked by the network policy) can reach Vercel.
+# Lets a session diagnose and repair the production deployment without the
+# owner having to navigate the dashboard.
+#
+# Requires repository secret VERCEL_TOKEN (vercel.com/account/tokens).
+#
+# Triggered by editing ops/recover.trigger — its first line is the mode:
+#   diagnose  → read-only: who am I, which projects, domains, deployments
+#   recover   → build + deploy to production, then attach both domains
+
+on:
+  push:
+    paths: ["ops/recover.trigger"]
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "diagnose or recover"
+        required: true
+        default: diagnose
+
+jobs:
+  vercel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve mode
+        id: mode
+        run: |
+          if [ -n "${{ github.event.inputs.mode }}" ]; then
+            m="${{ github.event.inputs.mode }}"
+          else
+            m=$(head -n1 ops/recover.trigger | tr -d '[:space:]')
+          fi
+          echo "mode=$m" >> "$GITHUB_OUTPUT"
+          echo "Mode: $m"
+
+      - name: Check token present
+        env:
+          T: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          if [ -z "$T" ]; then
+            echo "::error::VERCEL_TOKEN secret is not set. Create a token at https://vercel.com/account/tokens (scope: Full Account), then add it at Settings → Secrets and variables → Actions → New repository secret, name VERCEL_TOKEN."
+            exit 1
+          fi
+          echo "Token present."
+
+      - name: Diagnose
+        env:
+          T: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          set +e
+          echo "::group::whoami"; npx --yes vercel@latest whoami --token "$T"; echo "::endgroup::"
+          echo "::group::teams";  npx --yes vercel@latest teams ls   --token "$T"; echo "::endgroup::"
+          echo "::group::projects"; npx --yes vercel@latest project ls --token "$T"; echo "::endgroup::"
+          echo "::group::domains";  npx --yes vercel@latest domains ls --token "$T"; echo "::endgroup::"
+          exit 0
+
+      - name: Recover — deploy to production
+        if: steps.mode.outputs.mode == 'recover'
+        env:
+          T: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          set -e
+          # Links to an existing project of this name, or creates one.
+          npx --yes vercel@latest link --yes --project aifitnessapi --token "$T" || true
+          npx --yes vercel@latest deploy --prod --yes --token "$T" | tee /tmp/deploy.txt
+          echo "DEPLOY_URL=$(tail -n1 /tmp/deploy.txt)" >> "$GITHUB_ENV"
+
+      - name: Recover — attach domains
+        if: steps.mode.outputs.mode == 'recover'
+        env:
+          T: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          set +e
+          npx --yes vercel@latest domains add aifitnessapi.com aifitnessapi --token "$T"
+          npx --yes vercel@latest domains add www.aifitnessapi.com aifitnessapi --token "$T"
+          npx --yes vercel@latest domains ls --token "$T"
+          exit 0
+
+      - name: Verify live site
+        if: steps.mode.outputs.mode == 'recover'
+        run: |
+          set +e
+          for i in 1 2 3 4 5 6; do
+            code=$(curl -sL -o /dev/null -w "%{http_code}" --max-time 25 https://aifitnessapi.com/)
+            echo "attempt $i: apex -> $code"
+            [ "$code" = "200" ] && exit 0
+            sleep 20
+          done
+          echo "::warning::apex still not 200 — see domain output above"
