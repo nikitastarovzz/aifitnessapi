@@ -59,6 +59,31 @@ jobs:
           echo "::group::domains";  npx --yes vercel@latest domains ls --token "$T"; echo "::endgroup::"
           exit 0
 
+      # Compact, evidence-first probe: the x-vercel-error header names the
+      # real failure (DEPLOYMENT_NOT_FOUND vs DNS_HOSTNAME_NOT_FOUND vs …),
+      # which the build log never shows.
+      - name: Probe — headers, DNS, domain config, production deployments
+        if: steps.mode.outputs.mode == 'probe'
+        env:
+          T: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          set +e
+          for u in https://aifitnessapi.com/ https://www.aifitnessapi.com/ https://aifitnessapi.vercel.app/; do
+            echo "--- $u"
+            curl -sI --max-time 25 "$u" | grep -iE "^(HTTP/|location|x-vercel-error|x-vercel-id|server):"
+          done
+          echo "--- DNS"
+          getent hosts aifitnessapi.com www.aifitnessapi.com
+          echo "--- project domains"
+          curl -s -H "Authorization: Bearer $T" \
+            "https://api.vercel.com/v9/projects/aifitnessapi/domains" \
+            | jq -c '.domains[]? | {name,verified,redirect,gitBranch,apexName}'
+          echo "--- newest production deployments"
+          curl -s -H "Authorization: Bearer $T" \
+            "https://api.vercel.com/v6/deployments?app=aifitnessapi&target=production&limit=3" \
+            | jq -c '.deployments[]? | {url,state,readyState,created}'
+          exit 0
+
       - name: Recover — show full domain config (incl. gitBranch)
         if: steps.mode.outputs.mode == 'recover'
         env:
