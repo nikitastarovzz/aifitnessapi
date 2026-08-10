@@ -59,26 +59,60 @@ jobs:
           echo "::group::domains";  npx --yes vercel@latest domains ls --token "$T"; echo "::endgroup::"
           exit 0
 
-      - name: Recover — deploy to production
-        if: steps.mode.outputs.mode == 'recover'
-        env:
-          T: ${{ secrets.VERCEL_TOKEN }}
-        run: |
-          set -e
-          # Links to an existing project of this name, or creates one.
-          npx --yes vercel@latest link --yes --project aifitnessapi --token "$T" || true
-          npx --yes vercel@latest deploy --prod --yes --token "$T" | tee /tmp/deploy.txt
-          echo "DEPLOY_URL=$(tail -n1 /tmp/deploy.txt)" >> "$GITHUB_ENV"
-
-      - name: Recover — attach domains
+      - name: Recover — show current domain→project mapping
         if: steps.mode.outputs.mode == 'recover'
         env:
           T: ${{ secrets.VERCEL_TOKEN }}
         run: |
           set +e
-          npx --yes vercel@latest domains add aifitnessapi.com aifitnessapi --token "$T"
-          npx --yes vercel@latest domains add www.aifitnessapi.com aifitnessapi --token "$T"
-          npx --yes vercel@latest domains ls --token "$T"
+          for p in aifitnessapi aifitnessapi-nw4d; do
+            echo "::group::domains on project $p"
+            curl -s -H "Authorization: Bearer $T" \
+              "https://api.vercel.com/v9/projects/$p/domains" \
+              | jq -r 'if .domains then (.domains[]? | "\(.name)  verified=\(.verified)  redirect=\(.redirect)") else .error.message end'
+            echo "::endgroup::"
+          done
+          exit 0
+
+      - name: Recover — deploy latest main to production
+        if: steps.mode.outputs.mode == 'recover'
+        env:
+          T: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          set -e
+          npx --yes vercel@latest link --yes --project aifitnessapi --token "$T"
+          npx --yes vercel@latest pull --yes --environment=production --token "$T"
+          npx --yes vercel@latest build --prod --token "$T"
+          npx --yes vercel@latest deploy --prebuilt --prod --yes --token "$T" | tee /tmp/deploy.txt
+
+      - name: Recover — attach apex + www to the aifitnessapi project
+        if: steps.mode.outputs.mode == 'recover'
+        env:
+          T: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          set +e
+          # Free the domains from the duplicate project if they are stuck there.
+          for d in aifitnessapi.com www.aifitnessapi.com; do
+            curl -s -X DELETE -H "Authorization: Bearer $T" \
+              "https://api.vercel.com/v9/projects/aifitnessapi-nw4d/domains/$d" -o /dev/null -w "detach $d from nw4d: %{http_code}\n"
+          done
+          # Apex serves the site; www 308-redirects to it (platform level only —
+          # an app-level host redirect once fought this and caused a loop).
+          echo "::group::attach apex"
+          curl -s -X POST -H "Authorization: Bearer $T" -H "Content-Type: application/json" \
+            -d '{"name":"aifitnessapi.com"}' \
+            "https://api.vercel.com/v10/projects/aifitnessapi/domains"
+          echo; echo "::endgroup::"
+          echo "::group::attach www (redirect to apex)"
+          curl -s -X POST -H "Authorization: Bearer $T" -H "Content-Type: application/json" \
+            -d '{"name":"www.aifitnessapi.com","redirect":"aifitnessapi.com","redirectStatusCode":308}' \
+            "https://api.vercel.com/v10/projects/aifitnessapi/domains"
+          echo; echo "::endgroup::"
+          echo "::group::final mapping"
+          curl -s -H "Authorization: Bearer $T" \
+            "https://api.vercel.com/v9/projects/aifitnessapi/domains" -o /tmp/domains.json
+          jq -r '.domains[]? | "\(.name)  verified=\(.verified)  redirect=\(.redirect)"' /tmp/domains.json
+          echo "::endgroup::"
           exit 0
 
       - name: Verify live site

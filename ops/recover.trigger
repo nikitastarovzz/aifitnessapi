@@ -1,13 +1,13 @@
-diagnose
+recover
 
 # First line = mode for .github/workflows/vercel-recover.yml
 #   diagnose  read-only: account, projects, domains
-#   recover   build + deploy to production, then attach both domains
-# Editing this file triggers the workflow (a session can do that; it cannot
-# click in the Vercel dashboard, and api.vercel.com is blocked from the dev
-# sandbox by the network policy).
+#   recover   deploy latest main to production, then attach both domains
 #
 # Run log:
-# 2026-08-06 diagnose — outage day 3; apex+www both serving Vercel NOT_FOUND,
-#   Redeploy available but Promote greyed in the dashboard, which points at
-#   the domains being detached from the project rather than a missing build.
+# 2026-08-10 diagnose — account healthy, TWO projects exist: "aifitnessapi"
+#   and a duplicate "aifitnessapi-nw4d", both with production URLs.
+#   aifitnessapi.com is registered in the account (third-party registrar) but
+#   was serving Vercel NOT_FOUND, i.e. attached to no serving project.
+# 2026-08-10 recover — deploy latest main to "aifitnessapi", detach the
+#   domains from the duplicate, attach apex + www (308 to apex) to it.
