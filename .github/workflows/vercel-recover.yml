@@ -59,7 +59,7 @@ jobs:
           echo "::group::domains";  npx --yes vercel@latest domains ls --token "$T"; echo "::endgroup::"
           exit 0
 
-      - name: Recover — show current domain→project mapping
+      - name: Recover — show full domain config (incl. gitBranch)
         if: steps.mode.outputs.mode == 'recover'
         env:
           T: ${{ secrets.VERCEL_TOKEN }}
@@ -69,9 +69,43 @@ jobs:
             echo "::group::domains on project $p"
             curl -s -H "Authorization: Bearer $T" \
               "https://api.vercel.com/v9/projects/$p/domains" \
-              | jq -r 'if .domains then (.domains[]? | "\(.name)  verified=\(.verified)  redirect=\(.redirect)") else .error.message end'
+              | jq -r 'if .domains then (.domains[]? | "\(.name)  verified=\(.verified)  redirect=\(.redirect)  gitBranch=\(.gitBranch)") else .error.message end'
             echo "::endgroup::"
           done
+          exit 0
+
+      # A domain pinned to a git branch that no longer exists serves
+      # DEPLOYMENT_NOT_FOUND even though the project has healthy production
+      # builds. Clearing gitBranch points it back at production. Apex serves,
+      # www 308s to it (matching our canonicals; platform level only, because
+      # an app-level host redirect once fought this and caused a loop).
+      - name: Recover — repoint domains at production
+        if: steps.mode.outputs.mode == 'recover'
+        env:
+          T: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          set +e
+          echo "::group::apex → serve production"
+          curl -s -X PATCH -H "Authorization: Bearer $T" -H "Content-Type: application/json" \
+            -d '{"gitBranch":null,"redirect":null}' \
+            "https://api.vercel.com/v9/projects/aifitnessapi/domains/aifitnessapi.com" | jq -r '.name // .error.message'
+          echo "::endgroup::"
+          echo "::group::www → 308 to apex"
+          curl -s -X PATCH -H "Authorization: Bearer $T" -H "Content-Type: application/json" \
+            -d '{"gitBranch":null,"redirect":"aifitnessapi.com","redirectStatusCode":308}' \
+            "https://api.vercel.com/v9/projects/aifitnessapi/domains/www.aifitnessapi.com" | jq -r '.name // .error.message'
+          echo "::endgroup::"
+          echo "::group::mapping after repoint"
+          curl -s -H "Authorization: Bearer $T" \
+            "https://api.vercel.com/v9/projects/aifitnessapi/domains" \
+            | jq -r '.domains[]? | "\(.name)  verified=\(.verified)  redirect=\(.redirect)  gitBranch=\(.gitBranch)"'
+          echo "::endgroup::"
+          echo "::group::does apex serve now?"
+          for i in 1 2 3 4 5 6; do
+            code=$(curl -sL -o /dev/null -w "%{http_code}" --max-time 25 https://aifitnessapi.com/)
+            echo "attempt $i: $code"; [ "$code" = "200" ] && break; sleep 10
+          done
+          echo "::endgroup::"
           exit 0
 
       - name: Recover — deploy latest main to production
@@ -80,40 +114,13 @@ jobs:
           T: ${{ secrets.VERCEL_TOKEN }}
         run: |
           set -e
-          npx --yes vercel@latest link --yes --project aifitnessapi --token "$T"
-          npx --yes vercel@latest pull --yes --environment=production --token "$T"
+          # --scope is required: this account has more than one team, and the
+          # CLI refuses to auto-select one without a TTY.
+          S="--scope nikitastarovzz"
+          npx --yes vercel@latest link --yes --project aifitnessapi $S --token "$T"
+          npx --yes vercel@latest pull --yes --environment=production $S --token "$T"
           npx --yes vercel@latest build --prod --token "$T"
-          npx --yes vercel@latest deploy --prebuilt --prod --yes --token "$T" | tee /tmp/deploy.txt
-
-      - name: Recover — attach apex + www to the aifitnessapi project
-        if: steps.mode.outputs.mode == 'recover'
-        env:
-          T: ${{ secrets.VERCEL_TOKEN }}
-        run: |
-          set +e
-          # Free the domains from the duplicate project if they are stuck there.
-          for d in aifitnessapi.com www.aifitnessapi.com; do
-            curl -s -X DELETE -H "Authorization: Bearer $T" \
-              "https://api.vercel.com/v9/projects/aifitnessapi-nw4d/domains/$d" -o /dev/null -w "detach $d from nw4d: %{http_code}\n"
-          done
-          # Apex serves the site; www 308-redirects to it (platform level only —
-          # an app-level host redirect once fought this and caused a loop).
-          echo "::group::attach apex"
-          curl -s -X POST -H "Authorization: Bearer $T" -H "Content-Type: application/json" \
-            -d '{"name":"aifitnessapi.com"}' \
-            "https://api.vercel.com/v10/projects/aifitnessapi/domains"
-          echo; echo "::endgroup::"
-          echo "::group::attach www (redirect to apex)"
-          curl -s -X POST -H "Authorization: Bearer $T" -H "Content-Type: application/json" \
-            -d '{"name":"www.aifitnessapi.com","redirect":"aifitnessapi.com","redirectStatusCode":308}' \
-            "https://api.vercel.com/v10/projects/aifitnessapi/domains"
-          echo; echo "::endgroup::"
-          echo "::group::final mapping"
-          curl -s -H "Authorization: Bearer $T" \
-            "https://api.vercel.com/v9/projects/aifitnessapi/domains" -o /tmp/domains.json
-          jq -r '.domains[]? | "\(.name)  verified=\(.verified)  redirect=\(.redirect)"' /tmp/domains.json
-          echo "::endgroup::"
-          exit 0
+          npx --yes vercel@latest deploy --prebuilt --prod --yes $S --token "$T" | tee /tmp/deploy.txt
 
       - name: Verify live site
         if: steps.mode.outputs.mode == 'recover'
