@@ -166,6 +166,10 @@ export const migrateEntries: ClusterEntry[] =
     ],
     "related": [
       {
+        "href": "/fitbit-api-shutdown",
+        "label": "Fitbit API shutdown: deadlines and the path"
+      },
+      {
         "href": "/integrate/fitbit-api",
         "label": "Integrate the Fitbit API"
       },
@@ -176,10 +180,6 @@ export const migrateEntries: ClusterEntry[] =
       {
         "href": "/fitness-apis/fitbit-api-vs-garmin-api",
         "label": "Fitbit API vs Garmin API"
-      },
-      {
-        "href": "/migrate",
-        "label": "All migration guides"
       }
     ],
     "cta": {

@@ -902,6 +902,10 @@ export const fixEntries: ClusterEntry[] =
     ],
     "related": [
       {
+        "href": "/fitbit-api-shutdown",
+        "label": "Fitbit API shutdown: deadlines and the path"
+      },
+      {
         "href": "/fix/fitness-api-401-unauthorized",
         "label": "401 unauthorized — every fitness API"
       },
@@ -912,10 +916,6 @@ export const fixEntries: ClusterEntry[] =
       {
         "href": "/integrate/fitbit-api",
         "label": "Fitbit API integration guide"
-      },
-      {
-        "href": "/migrate/fitbit-web-api-to-google-health",
-        "label": "Migrate Fitbit Web API to Google Health"
       }
     ],
     "cta": {
