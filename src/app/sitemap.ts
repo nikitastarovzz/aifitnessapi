@@ -62,6 +62,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl("/glossary"), changeFrequency: "monthly", priority: 0.5 },
     { url: absoluteUrl("/picker"), changeFrequency: "monthly", priority: 0.8 },
     { url: absoluteUrl("/cost-planner"), changeFrequency: "monthly", priority: 0.8 },
+    { url: absoluteUrl("/ai-fitness-app"), changeFrequency: "weekly", priority: 0.9 },
     { url: absoluteUrl("/matrix"), changeFrequency: "monthly", priority: 0.8 },
     { url: absoluteUrl("/blog"), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/about"), changeFrequency: "monthly", priority: 0.5 },

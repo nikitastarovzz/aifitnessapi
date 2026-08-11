@@ -69,6 +69,7 @@ const L = {
   data: { href: "/data", label: "Health data by metric" },
   motion: { href: "/motion", label: "AI motion & pose estimation" },
   motionBuildBuy: { href: "/motion/build-vs-buy-ai-motion-tracking", label: "Build vs buy AI motion tracking" },
+  aiFlagship: { href: "/ai-fitness-app", label: "How to build an AI fitness app — the map" },
   cKinestexSency: { href: "/compare/kinestex-vs-sency", label: "KinesteX vs Sency (our own product, disclosed)" },
   guides: { href: "/guides", label: "AI workout tracking guides" },
   iHealthkit: { href: "/integrate/healthkit", label: "Integrate Apple HealthKit" },
@@ -136,10 +137,10 @@ function recommend(job: Job, platform: Platform, priority: Priority): Result {
       body =
         "Camera-based rep counting and form feedback run on pose estimation. Decide build-vs-buy first: an SDK ships faster with an exercise library included; building your own gives control but means choosing a model, per-platform work, and accuracy tuning.";
       add({ ...L.aiApis, primary: true });
+      add(L.aiFlagship);
       add(L.motionBuildBuy);
       add(L.cKinestexSency);
       add(L.motion);
-      add(L.guides);
       break;
     case "exercise-content":
       title = "Use an exercise / workout content API";

@@ -65,6 +65,9 @@ export default function Footer() {
           <Link href="/cost-planner" className="hover:text-[var(--fg)]">
             Cost Planner
           </Link>
+          <Link href="/ai-fitness-app" className="hover:text-[var(--fg)]">
+            Build an AI Fitness App
+          </Link>
           <Link href="/matrix" className="hover:text-[var(--fg)]">
             Type Reference
           </Link>
