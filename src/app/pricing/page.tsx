@@ -135,6 +135,8 @@ export default function PricingPillar() {
 
         <div className="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-a:text-brand-600 hover:prose-a:text-brand-500">
           <p>
+            For the ecosystem-wide picture, <Link href="/state-of-fitness-apis-2026">the State of Fitness APIs 2026 report</Link>{" "}
+            measures who is free, who is gated, and who is contact-sales — with an open dataset.{" "}
             Planning a whole stack? The <Link href="/cost-planner">interactive cost planner</Link>{" "}
             assembles these pages&rsquo; cost models into one structure — what&rsquo;s free, what meters,
             what needs a quote. Choosing by cost is only half the picture — pair these with the{" "}
