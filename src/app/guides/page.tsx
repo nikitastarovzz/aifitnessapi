@@ -54,6 +54,12 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
     blurb: "When the model works but the results don't.",
     slugs: ["improve-pose-detection-accuracy"],
   },
+  {
+    title: "Evaluating vendors",
+    blurb:
+      "The neutral bake-off protocol — disclosed first-party, scored the same for everyone including our own product.",
+    slugs: ["evaluate-motion-sdks"],
+  },
 ];
 
 const FAQS = [

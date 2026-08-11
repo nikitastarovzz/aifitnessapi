@@ -24,6 +24,7 @@ export const RELEASED_GUIDES = new Set<string>([
   "ai-workout-tracking-flutter",
   "ai-workout-tracking-web",
   "improve-pose-detection-accuracy",
+  "evaluate-motion-sdks",
 ]);
 
 export const allGuides: ClusterEntry[] = guideEntries;
