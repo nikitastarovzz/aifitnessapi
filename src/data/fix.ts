@@ -26,6 +26,8 @@ export const RELEASED_FIX = new Set<string>([
   "garmin-api-approval",
   "refresh-token-not-working",
   "oura-personal-access-token-deprecated",
+  "fitbit-error-code-401",
+  "healthkit-authorization-denied",
 ]);
 
 export const allFixes: ClusterEntry[] = fixEntries;

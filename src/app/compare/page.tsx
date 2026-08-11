@@ -34,6 +34,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
     slugs: [
       "oura-vs-whoop",
       "fitbit-vs-apple-watch",
+      "apple-watch-vs-whoop",
       "strava-vs-garmin-connect",
       "fitbit-vs-oura",
       "whoop-vs-garmin",

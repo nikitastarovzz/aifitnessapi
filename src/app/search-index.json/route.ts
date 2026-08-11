@@ -88,6 +88,7 @@ export function GET() {
   }
 
   add("/picker", "Which Fitness API Should I Use? (interactive)", "Three questions, a tailored recommendation.", "picker tool quiz choose");
+  add("/cost-planner", "Fitness API Cost Planner (interactive)", "The cost structure of your stack: billing models, user-side costs, approval gates, eng effort.", "cost calculator pricing budget planner tool");
   add("/matrix", "HealthKit ↔ Health Connect Type Reference", "Matching type identifiers for ten metrics, verified against Apple's and Google's docs.", "matrix types sdnn rmssd");
   add("/day-boundaries", "Why \u201cToday\u2019s Steps\u201d Is a Bug (live demo)", "Interactive: DST days aren't 24 hours, so a fixed UTC window drops or double-counts an hour.", "timezone dst day boundary demo interactive");
   add("/google-fit-shutdown", "Google Fit Is Shutting Down", "The verified timeline and the migration path for each kind of integration.", "google fit deprecated sunset end of 2026");

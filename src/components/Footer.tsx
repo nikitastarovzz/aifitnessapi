@@ -62,6 +62,9 @@ export default function Footer() {
           <Link href="/picker" className="hover:text-[var(--fg)]">
             API Picker
           </Link>
+          <Link href="/cost-planner" className="hover:text-[var(--fg)]">
+            Cost Planner
+          </Link>
           <Link href="/matrix" className="hover:text-[var(--fg)]">
             Type Reference
           </Link>

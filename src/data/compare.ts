@@ -29,6 +29,7 @@ export const RELEASED_COMPARE = new Set<string>([
   "kinestex-vs-sency",
   "kinestex-vs-quickpose",
   "kinestex-vs-mediapipe",
+  "apple-watch-vs-whoop",
 ]);
 
 export const allCompare: ClusterEntry[] = compareEntries;

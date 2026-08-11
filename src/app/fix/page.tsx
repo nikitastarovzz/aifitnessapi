@@ -33,7 +33,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Auth & tokens",
     blurb: "OAuth failures, unauthorized responses, refresh problems.",
-    slugs: ["fitness-api-401-unauthorized", "oauth-redirect-uri-mismatch", "refresh-token-not-working", "oura-personal-access-token-deprecated"],
+    slugs: ["fitbit-error-code-401", "fitness-api-401-unauthorized", "oauth-redirect-uri-mismatch", "refresh-token-not-working", "oura-personal-access-token-deprecated"],
   },
   {
     title: "Rate limits",
@@ -43,7 +43,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Empty platform-store data",
     blurb: "HealthKit and Health Connect returning nothing.",
-    slugs: ["healthkit-no-data", "health-connect-no-data"],
+    slugs: ["healthkit-authorization-denied", "healthkit-no-data", "health-connect-no-data"],
   },
   {
     title: "Webhooks & sync",

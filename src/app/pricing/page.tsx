@@ -135,7 +135,9 @@ export default function PricingPillar() {
 
         <div className="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-a:text-brand-600 hover:prose-a:text-brand-500">
           <p>
-            Choosing by cost is only half the picture — pair these with the{" "}
+            Planning a whole stack? The <Link href="/cost-planner">interactive cost planner</Link>{" "}
+            assembles these pages&rsquo; cost models into one structure — what&rsquo;s free, what meters,
+            what needs a quote. Choosing by cost is only half the picture — pair these with the{" "}
             <Link href="/fitness-apis">API comparisons</Link> to weigh coverage and fit, or the{" "}
             <Link href="/fitness-apis/free-fitness-apis">free &amp; open-source options</Link> if budget is
             the main constraint. Pricing changes often; always confirm against the provider&rsquo;s live
