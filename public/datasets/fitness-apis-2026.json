@@ -1,0 +1,272 @@
+{
+  "name": "State of Fitness APIs 2026",
+  "version": "2026.1",
+  "publisher": "AIFitnessAPI (aifitnessapi.com)",
+  "license": "CC BY 4.0",
+  "methodology": "Every field verified against vendor primary sources (developer docs, public repos, registries) by aifitnessapi.com during 2026 and published with per-item provenance on the linked pages. Fields that could not be verified are null — never guessed. No dollar figures by design: prices are volatile; structures are stable.",
+  "generatedFrom": "src/data/costModel.ts (per-item provenance in source comments)",
+  "fields": {
+    "devCost": "How the vendor bills developers: free | free-tier-then-paid | usage-based | contact-sales",
+    "userSideCost": "What each end user must own or pay for before data flows (null = none documented)",
+    "approvalGate": "Review/approval gating launch (null = none documented)",
+    "sourceHref": "aifitnessapi.com page carrying the verified claims"
+  },
+  "stats": {
+    "totalItems": 25,
+    "byDevCost": {
+      "free": 12,
+      "contact-sales": 4,
+      "free-tier-then-paid": 5,
+      "usage-based": 4
+    },
+    "byCategory": {
+      "wearable-direct": 6,
+      "platform-store": 2,
+      "aggregator": 4,
+      "nutrition": 4,
+      "exercise-content": 2,
+      "motion-sdk": 3,
+      "pose-model": 3,
+      "llm-features": 1
+    },
+    "withApprovalGate": 12,
+    "withUserSideCost": 5,
+    "contactSalesShare": 16,
+    "freeShare": 48,
+    "gatedShare": 48,
+    "refreshTokenRotators": [
+      "Strava",
+      "WHOOP",
+      "Oura",
+      "Garmin",
+      "Fitbit"
+    ]
+  },
+  "items": [
+    {
+      "id": "fitbit",
+      "label": "Fitbit Web API (Google)",
+      "category": "wearable-direct",
+      "devCost": "free",
+      "userSideCost": "Each user must own a Fitbit device and account.",
+      "approvalGate": "Developer app registration; access to other users' intraday data is case-by-case (verify).",
+      "source": "https://aifitnessapi.com/pricing/fitbit-api-pricing"
+    },
+    {
+      "id": "garmin",
+      "label": "Garmin Health / Activity API",
+      "category": "wearable-direct",
+      "devCost": "contact-sales",
+      "userSideCost": "Your users must own a Garmin device.",
+      "approvalGate": "Garmin Connect Developer Program partner approval; third parties report sign-ups paused at times (verify).",
+      "source": "https://aifitnessapi.com/pricing/garmin-api-pricing"
+    },
+    {
+      "id": "oura",
+      "label": "Oura Cloud API",
+      "category": "wearable-direct",
+      "devCost": "free",
+      "userSideCost": "User must own an Oura Ring; Gen3 users reportedly need an active Oura Membership (verify).",
+      "approvalGate": "A fresh app connects only a small number of users (reported around 10) until Oura's review — the 'Oura for Organizations' partner path.",
+      "source": "https://aifitnessapi.com/pricing/oura-api-pricing"
+    },
+    {
+      "id": "whoop",
+      "label": "WHOOP Developer Platform",
+      "category": "wearable-direct",
+      "devCost": "free",
+      "userSideCost": "Every end user needs an active WHOOP membership for their data to flow.",
+      "approvalGate": "Hard 10-member cap until production approval, and WHOOP requires developers to hold a membership.",
+      "source": "https://aifitnessapi.com/pricing/whoop-api-pricing"
+    },
+    {
+      "id": "strava",
+      "label": "Strava API",
+      "category": "wearable-direct",
+      "devCost": "free-tier-then-paid",
+      "userSideCost": "A free or paid Strava account — the user's data has to exist before it can flow.",
+      "approvalGate": "Developer Program display rules: 'Connect with Strava' branding and screenshots of every surface where Strava data appears.",
+      "source": "https://aifitnessapi.com/pricing/strava-api-pricing"
+    },
+    {
+      "id": "polar",
+      "label": "Polar Open AccessLink",
+      "category": "wearable-direct",
+      "devCost": "free",
+      "userSideCost": null,
+      "approvalGate": null,
+      "source": "https://aifitnessapi.com/fitness-apis/wearable-data-apis"
+    },
+    {
+      "id": "healthkit",
+      "label": "Apple HealthKit",
+      "category": "platform-store",
+      "devCost": "free",
+      "userSideCost": null,
+      "approvalGate": "App Store review checks that your health usage-description strings match what you actually do.",
+      "source": "https://aifitnessapi.com/fitness-apis/apple-healthkit-vs-google-health-connect"
+    },
+    {
+      "id": "health-connect",
+      "label": "Google Health Connect",
+      "category": "platform-store",
+      "devCost": "free",
+      "userSideCost": null,
+      "approvalGate": "Play Console health-data declaration and review before you can publish.",
+      "source": "https://aifitnessapi.com/fitness-apis/apple-healthkit-vs-google-health-connect"
+    },
+    {
+      "id": "terra",
+      "label": "Terra",
+      "category": "aggregator",
+      "devCost": "usage-based",
+      "userSideCost": null,
+      "approvalGate": null,
+      "source": "https://aifitnessapi.com/fitness-apis/terra-vs-vital"
+    },
+    {
+      "id": "junction",
+      "label": "Junction (formerly Vital)",
+      "category": "aggregator",
+      "devCost": "usage-based",
+      "userSideCost": null,
+      "approvalGate": null,
+      "source": "https://aifitnessapi.com/fitness-apis/terra-vs-vital"
+    },
+    {
+      "id": "rook",
+      "label": "Rook",
+      "category": "aggregator",
+      "devCost": "usage-based",
+      "userSideCost": null,
+      "approvalGate": "Several underlying providers still need your own developer credentials — confirm tier caps.",
+      "source": "https://aifitnessapi.com/pricing/health-data-aggregator-pricing"
+    },
+    {
+      "id": "spike",
+      "label": "Spike",
+      "category": "aggregator",
+      "devCost": "contact-sales",
+      "userSideCost": null,
+      "approvalGate": "Sales-assisted onboarding with a dedicated implementation engineer from sandbox.",
+      "source": "https://aifitnessapi.com/fitness-apis/health-data-aggregator-apis"
+    },
+    {
+      "id": "nutritionix",
+      "label": "Nutritionix",
+      "category": "nutrition",
+      "devCost": "free-tier-then-paid",
+      "userSideCost": null,
+      "approvalGate": "Higher tiers are gated through a Syndigo sales contact rather than a self-serve checkout.",
+      "source": "https://aifitnessapi.com/pricing/nutrition-api-pricing"
+    },
+    {
+      "id": "edamam",
+      "label": "Edamam",
+      "category": "nutrition",
+      "devCost": "free-tier-then-paid",
+      "userSideCost": null,
+      "approvalGate": null,
+      "source": "https://aifitnessapi.com/pricing/nutrition-api-pricing"
+    },
+    {
+      "id": "usda-fdc",
+      "label": "USDA FoodData Central",
+      "category": "nutrition",
+      "devCost": "free",
+      "userSideCost": null,
+      "approvalGate": null,
+      "source": "https://aifitnessapi.com/pricing/nutrition-api-pricing"
+    },
+    {
+      "id": "open-food-facts",
+      "label": "Open Food Facts",
+      "category": "nutrition",
+      "devCost": "free",
+      "userSideCost": null,
+      "approvalGate": null,
+      "source": "https://aifitnessapi.com/pricing/nutrition-api-pricing"
+    },
+    {
+      "id": "exercisedb",
+      "label": "ExerciseDB (via RapidAPI)",
+      "category": "exercise-content",
+      "devCost": "free-tier-then-paid",
+      "userSideCost": null,
+      "approvalGate": null,
+      "source": "https://aifitnessapi.com/pricing/exercise-database-api-pricing"
+    },
+    {
+      "id": "wger",
+      "label": "wger (self-hosted)",
+      "category": "exercise-content",
+      "devCost": "free",
+      "userSideCost": null,
+      "approvalGate": null,
+      "source": "https://aifitnessapi.com/compare/exercisedb-vs-wger"
+    },
+    {
+      "id": "kinestex",
+      "label": "KinesteX",
+      "category": "motion-sdk",
+      "devCost": "contact-sales",
+      "userSideCost": null,
+      "approvalGate": "Access runs through a contact form and an issued API key — no self-serve signup.",
+      "source": "https://aifitnessapi.com/compare/kinestex-vs-sency"
+    },
+    {
+      "id": "sency",
+      "label": "Sency (SMKit)",
+      "category": "motion-sdk",
+      "devCost": "contact-sales",
+      "userSideCost": null,
+      "approvalGate": "Free trial first (no credit card, per the vendor's site at our last check), then a sales conversation.",
+      "source": "https://aifitnessapi.com/fitness-apis/ai-workout-tracking-apis"
+    },
+    {
+      "id": "quickpose",
+      "label": "QuickPose",
+      "category": "motion-sdk",
+      "devCost": "free-tier-then-paid",
+      "userSideCost": null,
+      "approvalGate": null,
+      "source": "https://aifitnessapi.com/fitness-apis/ai-workout-tracking-apis"
+    },
+    {
+      "id": "mediapipe",
+      "label": "MediaPipe Pose Landmarker (BlazePose)",
+      "category": "pose-model",
+      "devCost": "free",
+      "userSideCost": null,
+      "approvalGate": null,
+      "source": "https://aifitnessapi.com/compare/kinestex-vs-mediapipe"
+    },
+    {
+      "id": "movenet",
+      "label": "TensorFlow MoveNet",
+      "category": "pose-model",
+      "devCost": "free",
+      "userSideCost": null,
+      "approvalGate": null,
+      "source": "https://aifitnessapi.com/motion/mediapipe-vs-movenet"
+    },
+    {
+      "id": "apple-vision",
+      "label": "Apple Vision body pose",
+      "category": "pose-model",
+      "devCost": "free",
+      "userSideCost": null,
+      "approvalGate": null,
+      "source": "https://aifitnessapi.com/fitness-apis/ai-workout-tracking-apis"
+    },
+    {
+      "id": "llm-apis",
+      "label": "LLM API (coaching, plan generation, food parsing)",
+      "category": "llm-features",
+      "devCost": "usage-based",
+      "userSideCost": null,
+      "approvalGate": null,
+      "source": "https://aifitnessapi.com/ai/ai-fitness-app-cost"
+    }
+  ]
+}
