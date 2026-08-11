@@ -86,6 +86,16 @@ attribution, and membership in a cluster data module so the machine surfaces
 (llms.txt, /md mirrors, search) wire automatically. The GEO-* gates in qa.mjs
 enforce the mechanical half; never weaken them.
 
+## 2c. The expansion map
+
+`ops/EXPANSION-MAP.md` is the vetted backlog of the doubling program. When
+rungs (a) and (b) have no qualifying data candidate, take the TOP UNCHECKED
+Tier-1 item from the map instead of free-form rung (c) work: its
+cannibalization check is already done and its verifiability tag tells you
+whether the sources are reachable. Mark it [x] with the date in the same
+commit. Tier-2 items need a fetched primary source or ≥20 impressions of
+query evidence before writing. The one-piece-per-day contract still holds.
+
 ## 3. Research before writing — non-negotiable
 
 - New factual claims need a reachable primary source, fetched THIS run.
