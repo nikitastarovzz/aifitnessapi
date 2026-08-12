@@ -52,7 +52,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Storing and serving",
     blurb: "Schema decisions that are expensive to reverse later.",
-    slugs: ["time-series-storage", "offline-first-conflict-resolution", "metric-versioning-and-recompute"],
+    slugs: ["time-series-storage", "caching-fitness-api-responses", "offline-first-conflict-resolution", "metric-versioning-and-recompute"],
   },
   {
     title: "Running it in production",

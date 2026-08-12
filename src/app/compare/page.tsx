@@ -35,6 +35,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
       "oura-vs-whoop",
       "fitbit-vs-apple-watch",
       "apple-watch-vs-whoop",
+      "apple-watch-vs-garmin",
       "strava-vs-garmin-connect",
       "fitbit-vs-oura",
       "whoop-vs-garmin",
@@ -43,12 +44,12 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Health-data aggregators",
     blurb: "One integration, many devices — which broker.",
-    slugs: ["terra-vs-rook", "terra-vs-spike"],
+    slugs: ["terra-vs-rook", "terra-vs-spike", "rook-vs-spike"],
   },
   {
     title: "Nutrition & exercise content",
     blurb: "Food databases and exercise libraries.",
-    slugs: ["nutritionix-vs-edamam", "edamam-vs-spoonacular", "exercisedb-vs-wger"],
+    slugs: ["nutritionix-vs-edamam", "edamam-vs-spoonacular", "exercisedb-vs-wger", "usda-fooddata-central-vs-open-food-facts"],
   },
   {
     title: "AI motion tracking SDKs",

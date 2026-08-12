@@ -31,6 +31,7 @@ export const RELEASED_AI = new Set<string>([
   "llm-safety-fitness-advice",
   "choosing-an-llm-for-fitness-apps",
   "ai-fitness-app-cost",
+  "structured-output-for-workout-plans",
 ]);
 
 export const allAi: ClusterEntry[] = aiEntries;

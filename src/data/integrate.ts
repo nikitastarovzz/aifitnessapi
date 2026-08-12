@@ -25,6 +25,7 @@ export const RELEASED_INTEGRATE = new Set<string>([
   "terra-api",
   "nutritionix-api",
   "exercisedb-api",
+  "polar-api",
 ]);
 
 export const allIntegrations: ClusterEntry[] = integrateEntries;

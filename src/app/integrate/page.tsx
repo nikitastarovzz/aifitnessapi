@@ -36,7 +36,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Wearables & activity",
     blurb: "OAuth 2.0, per-user consent, often partner approval.",
-    slugs: ["fitbit-api", "strava-api", "garmin-api", "oura-api", "whoop-api"],
+    slugs: ["fitbit-api", "strava-api", "garmin-api", "oura-api", "whoop-api", "polar-api"],
   },
   {
     title: "Aggregators",

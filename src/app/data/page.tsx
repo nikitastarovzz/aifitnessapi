@@ -43,6 +43,11 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
     blurb: "Overnight staging and body measurements.",
     slugs: ["sleep-tracking-api", "body-composition-api"],
   },
+  {
+    title: "Vitals & reproductive health",
+    blurb: "The sensitive end of the store — sourced, typed, and privacy-first.",
+    slugs: ["blood-pressure-api", "blood-glucose-api", "respiratory-rate-api", "menstrual-cycle-api"],
+  },
 ];
 
 const FAQS = [

@@ -49,15 +49,15 @@ availability from on-site pages only.
 - [ ] withings-api (A-check — confirm GitHub org carries API docs first)
 
 ### /compare (4) — all B, facts already on-site for both sides.
-- [ ] apple-watch-vs-garmin
+- [x] apple-watch-vs-garmin 2026-08-12
 - [ ] polar-vs-garmin
-- [ ] rook-vs-spike
-- [ ] usda-fooddata-central-vs-open-food-facts
+- [x] rook-vs-spike 2026-08-12
+- [x] usda-fooddata-central-vs-open-food-facts 2026-08-12
 
 ### /learn (5) — B; definitions + on-site synthesis, judgement labelled.
 - [x] what-is-rpe (B — long-standing backlog item) 2026-08-12
-- [ ] webhooks-vs-polling-for-fitness-data
-- [ ] what-are-oauth-scopes
+- [x] webhooks-vs-polling-for-fitness-data 2026-08-12
+- [x] what-are-oauth-scopes 2026-08-12
 - [ ] what-is-rate-limiting-in-fitness-apis
 - [ ] what-is-edge-processing
 
@@ -67,7 +67,7 @@ availability from on-site pages only.
 - [ ] sleep-coaching-app
 
 ### /ai (4) — B; the rules-engine-plus-language-layer doctrine extended.
-- [ ] structured-output-for-workout-plans
+- [x] structured-output-for-workout-plans 2026-08-12
 - [ ] rag-vs-fine-tuning-for-fitness
 - [ ] voice-ai-coaching
 - [ ] prompt-injection-in-fitness-apps
@@ -75,7 +75,7 @@ availability from on-site pages only.
 ### /architecture (4) — B.
 - [ ] api-versioning-for-health-data
 - [ ] multi-tenant-health-data
-- [ ] caching-fitness-api-responses
+- [x] caching-fitness-api-responses 2026-08-12
 - [ ] streaming-vs-batch-ingestion
 
 ### /test (3) — B.
@@ -85,7 +85,7 @@ availability from on-site pages only.
 
 ### /pricing (2)
 - [ ] polar-api-pricing (B — sourced absence + self-serve facts on-site)
-- [ ] fitness-api-free-tiers-compared (B — derived from the 2026 dataset)
+- [x] fitness-api-free-tiers-compared 2026-08-12 (B — derived from the 2026 dataset)
 
 ### /motion (2)
 - [ ] camera-ux-and-framing-for-pose (B)

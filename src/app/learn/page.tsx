@@ -36,7 +36,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Auth & data delivery",
     blurb: "How access and data actually move.",
-    slugs: ["what-is-oauth-for-health-data", "what-are-webhooks"],
+    slugs: ["what-is-oauth-for-health-data", "what-are-oauth-scopes", "what-are-webhooks", "webhooks-vs-polling-for-fitness-data"],
   },
   {
     title: "AI & motion",
@@ -46,7 +46,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "The metrics in your data",
     blurb: "What the numbers from wearables actually mean.",
-    slugs: ["what-is-hrv", "what-is-vo2-max", "what-are-sleep-stages", "how-fitness-apps-estimate-calories"],
+    slugs: ["what-is-hrv", "what-is-vo2-max", "what-are-sleep-stages", "what-is-rpe", "how-fitness-apps-estimate-calories"],
   },
 ];
 

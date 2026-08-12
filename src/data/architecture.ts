@@ -34,6 +34,7 @@ export const RELEASED_ARCHITECTURE = new Set<string>([
   "metric-versioning-and-recompute",
   "data-quality-monitoring",
   "data-deletion-and-export",
+  "caching-fitness-api-responses",
 ]);
 
 export const allArchitecture: ClusterEntry[] = architectureEntries;

@@ -51,7 +51,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Budgeting",
     blurb: "The honest overview and what drives cost.",
-    slugs: ["are-fitness-apis-free", "how-much-does-a-fitness-api-cost"],
+    slugs: ["are-fitness-apis-free", "fitness-api-free-tiers-compared", "how-much-does-a-fitness-api-cost"],
   },
 ];
 

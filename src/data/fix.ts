@@ -28,6 +28,8 @@ export const RELEASED_FIX = new Set<string>([
   "oura-personal-access-token-deprecated",
   "fitbit-error-code-401",
   "healthkit-authorization-denied",
+  "strava-api-401-unauthorized",
+  "healthkit-background-delivery-not-working",
 ]);
 
 export const allFixes: ClusterEntry[] = fixEntries;

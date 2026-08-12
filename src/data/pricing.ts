@@ -26,6 +26,7 @@ export const RELEASED_PRICING = new Set<string>([
   "exercise-database-api-pricing",
   "are-fitness-apis-free",
   "how-much-does-a-fitness-api-cost",
+  "fitness-api-free-tiers-compared",
 ]);
 
 export const allPricing: ClusterEntry[] = pricingEntries;

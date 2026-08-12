@@ -44,6 +44,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
     slugs: [
       "ai-fitness-coach-prompts",
       "ai-vs-rules-based-coaching",
+      "structured-output-for-workout-plans",
       "evaluating-ai-fitness-features",
     ],
   },

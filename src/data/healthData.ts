@@ -26,6 +26,10 @@ export const RELEASED_DATA = new Set<string>([
   "gps-activity-api",
   "calorie-tracking-api",
   "body-composition-api",
+  "menstrual-cycle-api",
+  "blood-glucose-api",
+  "blood-pressure-api",
+  "respiratory-rate-api",
 ]);
 
 export const allData: ClusterEntry[] = dataEntries;

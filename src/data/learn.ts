@@ -25,6 +25,9 @@ export const RELEASED_LEARN = new Set<string>([
   "what-is-vo2-max",
   "what-are-sleep-stages",
   "how-fitness-apps-estimate-calories",
+  "webhooks-vs-polling-for-fitness-data",
+  "what-are-oauth-scopes",
+  "what-is-rpe",
 ]);
 
 export const allLearn: ClusterEntry[] = learnEntries;
