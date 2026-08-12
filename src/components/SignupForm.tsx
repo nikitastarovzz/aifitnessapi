@@ -94,6 +94,26 @@ export default function SignupForm({ source = "signup-form" }: { source?: string
           Thanks — we&rsquo;ll send API breakdowns and playbooks that match what
           you told us you&rsquo;re building. No spam, unsubscribe any time.
         </p>
+        <div className="mt-6 rounded-xl border border-[var(--border)] bg-[var(--bg)] p-4 text-left">
+          <p className="text-sm font-semibold text-[var(--fg)]">
+            Your welcome bonus — the Fitness API Decision Kit:
+          </p>
+          <ul className="mt-2 space-y-1.5 text-sm">
+            <li>
+              <a href="/kit/fitness-api-decision-kit.zip" className="font-medium text-brand-600 underline underline-offset-2 hover:text-brand-500">
+                Download the full kit (.zip)
+              </a>{" "}
+              <span className="text-[var(--muted)]">— selection + launch checklists, SDK scorecard, the 2026 dataset</span>
+            </li>
+            <li>
+              <a href="/kit/api-selection-checklist.md" className="text-brand-600 hover:text-brand-500">API selection checklist</a>
+              {" · "}
+              <a href="/kit/launch-compliance-checklist.md" className="text-brand-600 hover:text-brand-500">launch checklist</a>
+              {" · "}
+              <a href="/kit/motion-sdk-scorecard.csv" className="text-brand-600 hover:text-brand-500">SDK scorecard</a>
+            </li>
+          </ul>
+        </div>
       </div>
     );
   }

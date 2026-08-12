@@ -71,6 +71,9 @@ export default function Footer() {
           <Link href="/state-of-fitness-apis-2026" className="hover:text-[var(--fg)]">
             State of Fitness APIs
           </Link>
+          <Link href="/changes" className="hover:text-[var(--fg)]">
+            Changes &amp; Deadlines
+          </Link>
           <Link href="/matrix" className="hover:text-[var(--fg)]">
             Type Reference
           </Link>

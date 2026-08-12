@@ -65,6 +65,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl("/ai-fitness-app"), changeFrequency: "weekly", priority: 0.9 },
     { url: absoluteUrl("/fitbit-api-shutdown"), changeFrequency: "weekly", priority: 0.9 },
     { url: absoluteUrl("/state-of-fitness-apis-2026"), changeFrequency: "monthly", priority: 0.9 },
+    { url: absoluteUrl("/changes"), changeFrequency: "daily", priority: 0.9 },
     { url: absoluteUrl("/matrix"), changeFrequency: "monthly", priority: 0.8 },
     { url: absoluteUrl("/blog"), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/about"), changeFrequency: "monthly", priority: 0.5 },

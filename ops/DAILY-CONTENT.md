@@ -96,6 +96,16 @@ whether the sources are reachable. Mark it [x] with the date in the same
 commit. Tier-2 items need a fetched primary source or ≥20 impressions of
 query evidence before writing. The one-piece-per-day contract still holds.
 
+## 2d. The changes tracker
+
+`src/data/changes.ts` is the public record behind the subscribe promise.
+Whenever a run verifies a DATED ecosystem change (a deprecation date, a
+terms change, a model release/freeze, a deadline firming up or moving),
+append a ChangeEvent in the same commit — status graded by the file's
+rules, never sharper than the source page. Updating an existing entry's
+status from reported to confirmed (with the new source) is a first-class
+piece for rung (a).
+
 ## 3. Research before writing — non-negotiable
 
 - New factual claims need a reachable primary source, fetched THIS run.

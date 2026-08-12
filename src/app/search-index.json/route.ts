@@ -89,6 +89,7 @@ export function GET() {
 
   add("/picker", "Which Fitness API Should I Use? (interactive)", "Three questions, a tailored recommendation.", "picker tool quiz choose");
   add("/cost-planner", "Fitness API Cost Planner (interactive)", "The cost structure of your stack: billing models, user-side costs, approval gates, eng effort.", "cost calculator pricing budget planner tool");
+  add("/changes", "Fitness API Changes & Deadlines Tracker", "The dated, graded record of ecosystem changes: deprecations, deadlines, term changes \u2014 confirmed vs reported.", "changes changelog deadlines deprecations tracker news updates");
   add("/state-of-fitness-apis-2026", "The State of Fitness APIs 2026", "Original research: 25 APIs surveyed on access structure \u2014 free vs gated vs contact-sales \u2014 with an open CC BY dataset.", "state of fitness apis report research dataset statistics survey 2026");
   add("/ai-fitness-app", "How to Build an AI Fitness App", "The six layers and the five decisions that pick your stack \u2014 the decision map into every cluster.", "build ai fitness app gym workout development guide map");
   add("/matrix", "HealthKit ↔ Health Connect Type Reference", "Matching type identifiers for ten metrics, verified against Apple's and Google's docs.", "matrix types sdnn rmssd");
