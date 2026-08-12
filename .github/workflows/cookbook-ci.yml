@@ -1,0 +1,24 @@
+name: cookbook-ci
+
+# The Cookbook's contract: every recipe on aifitnessapi.com/cookbook is a
+# byte-verbatim copy of a file in /cookbook that passes these tests. This
+# workflow is what makes the pages' "CI-tested" claim true — it must stay
+# green and must run on every change to the recipes.
+
+on:
+  push:
+    branches: [main]
+    paths: ["cookbook/**", ".github/workflows/cookbook-ci.yml"]
+  pull_request:
+    paths: ["cookbook/**"]
+  workflow_dispatch: {}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --test "cookbook/**/*.test.mjs"

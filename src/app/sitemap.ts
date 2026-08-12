@@ -17,6 +17,7 @@ import { releasedMotion, MOTION_PATH } from "@/data/motion";
 import { releasedAi, AI_PATH } from "@/data/ai";
 import { releasedArchitecture, ARCHITECTURE_PATH } from "@/data/architecture";
 import { releasedTesting, TEST_PATH } from "@/data/testing";
+import { releasedCookbook, COOKBOOK_PATH } from "@/data/cookbook";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
@@ -36,6 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const ai = releasedAi();
   const architecture = releasedArchitecture();
   const testing = releasedTesting();
+  const cookbook = releasedCookbook();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: absoluteUrl("/"), changeFrequency: "weekly", priority: 1 },
@@ -55,6 +57,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl(AI_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl(ARCHITECTURE_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl(TEST_PATH), changeFrequency: "weekly", priority: 0.8 },
+    { url: absoluteUrl(COOKBOOK_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/privacy"), changeFrequency: "yearly", priority: 0.2 },
     { url: absoluteUrl("/google-fit-shutdown"), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/methodology"), changeFrequency: "yearly", priority: 0.4 },
@@ -184,6 +187,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const cookbookRoutes: MetadataRoute.Sitemap = cookbook.map((e) => ({
+    url: absoluteUrl(`${COOKBOOK_PATH}/${e.slug}`),
+    lastModified: new Date(e.updated),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
   const postRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
     url: absoluteUrl(`/blog/${post.slug}`),
     lastModified: new Date(post.date),
@@ -209,6 +219,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...aiRoutes,
     ...architectureRoutes,
     ...testingRoutes,
+    ...cookbookRoutes,
     ...postRoutes,
   ];
 }

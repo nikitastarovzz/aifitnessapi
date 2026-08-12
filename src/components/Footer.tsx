@@ -59,6 +59,9 @@ export default function Footer() {
           <Link href="/test" className="hover:text-[var(--fg)]">
             Testing
           </Link>
+          <Link href="/cookbook" className="hover:text-[var(--fg)]">
+            Cookbook
+          </Link>
           <Link href="/picker" className="hover:text-[var(--fg)]">
             API Picker
           </Link>

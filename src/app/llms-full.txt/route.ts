@@ -15,6 +15,7 @@ import { releasedMotion, MOTION_PATH } from "@/data/motion";
 import { releasedAi, AI_PATH } from "@/data/ai";
 import { releasedArchitecture, ARCHITECTURE_PATH } from "@/data/architecture";
 import { releasedTesting, TEST_PATH } from "@/data/testing";
+import { releasedCookbook, COOKBOOK_PATH } from "@/data/cookbook";
 
 /**
  * llms-full.txt — the fuller LLM-facing dump: each spoke's answer capsule and
@@ -308,6 +309,20 @@ export function GET() {
       if (t.faqs.length) {
         out.push("FAQ:");
         for (const f of t.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+        out.push("");
+      }
+    }
+  }
+
+  const cookbook = releasedCookbook();
+  if (cookbook.length) {
+    out.push(`# Cookbook — runnable, CI-tested reference code — ${absoluteUrl(COOKBOOK_PATH)}`, "");
+    out.push("Dependency-free JavaScript implementations of the patterns this site documents, each with a node:test suite that runs in CI on every change; the code on each page is a byte-verbatim copy of the tested file. MIT-licensed.", "");
+    for (const c of cookbook) {
+      out.push(`## ${c.h1} — ${absoluteUrl(`${COOKBOOK_PATH}/${c.slug}`)}`);
+      out.push(`Primary query: ${c.primaryQuery}`, "", c.answer, "");
+      if (c.faqs.length) {
+        for (const f of c.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
         out.push("");
       }
     }

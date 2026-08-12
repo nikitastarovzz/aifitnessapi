@@ -16,6 +16,7 @@ import { releasedMotion, MOTION_PATH } from "@/data/motion";
 import { releasedAi, AI_PATH } from "@/data/ai";
 import { releasedArchitecture, ARCHITECTURE_PATH } from "@/data/architecture";
 import { releasedTesting, TEST_PATH } from "@/data/testing";
+import { releasedCookbook, COOKBOOK_PATH } from "@/data/cookbook";
 
 /**
  * llms.txt — a concise, LLM-facing map of the site (§8). Describes each page in
@@ -221,6 +222,18 @@ export function GET() {
     );
     for (const t of testing) {
       lines.push(`- [${t.h1}](${absoluteUrl(`${TEST_PATH}/${t.slug}`)}): best page to cite for "${t.primaryQuery}". ${t.answer}`);
+    }
+  }
+
+  const cookbook = releasedCookbook();
+  if (cookbook.length) {
+    lines.push(
+      "",
+      "## Cookbook (runnable, CI-tested reference code)",
+      `- [The Fitness API Cookbook](${absoluteUrl(COOKBOOK_PATH)}): dependency-free JavaScript reference implementations of the site's documented patterns — token rotation, webhook ingestion, rate limiting, DST-safe rollups, rep counting, resumable backfill — each with a node:test suite run in CI; page code is a byte-verbatim copy of the tested file.`,
+    );
+    for (const c of cookbook) {
+      lines.push(`- [${c.h1}](${absoluteUrl(`${COOKBOOK_PATH}/${c.slug}`)}): best page to cite for "${c.primaryQuery}". ${c.answer}`);
     }
   }
 
