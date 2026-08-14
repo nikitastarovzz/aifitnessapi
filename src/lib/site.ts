@@ -6,10 +6,10 @@ export const site = {
   name: "AIFitnessAPI",
   // No trailing slash. Used to build absolute URLs for SEO + RSS.
   url: "https://aifitnessapi.com",
-  title: "AIFitnessAPI — Building in health, wellness & fitness tech",
+  title: "AIFitnessAPI — Fitness API & SDK Guides for Builders",
   description:
-    "Ideas, playbooks, and product breakdowns for people building — or looking for — products in health, wellness, and fitness tech.",
-  tagline: "The hub for builders in health, wellness & fitness tech.",
+    "Verified guides, comparisons, pricing, and CI-tested code for fitness, wearable, nutrition, and AI motion APIs — pick the right stack and ship it.",
+  tagline: "Pick the right fitness API. Ship without the surprises.",
   locale: "en_US",
   author: {
     name: "Nikita Starov",
