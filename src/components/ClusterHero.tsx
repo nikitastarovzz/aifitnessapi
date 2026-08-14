@@ -75,9 +75,31 @@ export default function ClusterHero({
             <line key={i} x1={nodes[a].x} y1={nodes[a].y} x2={nodes[b].x} y2={nodes[b].y} />
           ))}
         </g>
+        {/* Animated overlay: request "packets" travelling the same wires.
+            Pure CSS (edge-flow keyframes); staggered so the flow feels organic. */}
+        <g className="hero-flow" stroke="currentColor" strokeOpacity="0.55" strokeWidth="1">
+          {edges.map(([a, b], i) => (
+            <line
+              key={i}
+              x1={nodes[a].x}
+              y1={nodes[a].y}
+              x2={nodes[b].x}
+              y2={nodes[b].y}
+              style={{ animationDelay: `${(i % 7) * -0.8}s` }}
+            />
+          ))}
+        </g>
         <g fill="currentColor">
           {nodes.map((n, i) => (
-            <circle key={i} cx={n.x} cy={n.y} r={n.r} fillOpacity={n.r > 3 ? 0.5 : 0.28} />
+            <circle
+              key={i}
+              cx={n.x}
+              cy={n.y}
+              r={n.r}
+              fillOpacity={n.r > 3 ? 0.5 : 0.28}
+              className={n.r > 3 ? "hero-hub" : undefined}
+              style={n.r > 3 ? { animationDelay: `${(i % 5) * -0.9}s` } : undefined}
+            />
           ))}
         </g>
       </svg>

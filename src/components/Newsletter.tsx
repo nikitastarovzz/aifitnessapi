@@ -11,7 +11,7 @@ export default function Newsletter() {
       id="subscribe"
       className="scroll-mt-24 overflow-hidden rounded-3xl border border-[var(--border)]"
     >
-      <div className="bg-gradient-to-br from-brand-600 to-brand-800 px-6 py-10 text-center sm:px-12">
+      <div className="gradient-pan bg-gradient-to-br from-brand-600 to-brand-800 px-6 py-10 text-center sm:px-12">
         <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
           Get the Fitness API Decision Kit — free
         </h2>

@@ -2,6 +2,9 @@ import Link from "next/link";
 import Container from "@/components/Container";
 import PostCard from "@/components/PostCard";
 import Newsletter from "@/components/Newsletter";
+import ApiTerminal from "@/components/ApiTerminal";
+import Reveal from "@/components/Reveal";
+import StatCounter from "@/components/StatCounter";
 import { getAllPosts } from "@/lib/posts";
 import { clusterMap } from "@/lib/clusterRegistry";
 import { changesSorted, type ChangeStatus } from "@/data/changes";
@@ -122,17 +125,24 @@ export default function Home() {
               Find your API in 60 seconds
             </Link>
           </div>
+          <ApiTerminal className="mx-auto mt-12 max-w-xl" />
           <dl className="mx-auto mt-12 grid max-w-3xl grid-cols-2 gap-6 text-center sm:grid-cols-4">
             <div>
-              <dt className="text-2xl font-bold text-[var(--fg)]">{guideCount}+</dt>
+              <dt className="text-2xl font-bold text-[var(--fg)]">
+                <StatCounter value={guideCount} suffix="+" />
+              </dt>
               <dd className="mt-1 text-xs text-[var(--muted)]">verified guides &amp; comparisons</dd>
             </div>
             <div>
-              <dt className="text-2xl font-bold text-[var(--fg)]">{clusterCount}</dt>
+              <dt className="text-2xl font-bold text-[var(--fg)]">
+                <StatCounter value={clusterCount} />
+              </dt>
               <dd className="mt-1 text-xs text-[var(--muted)]">topic hubs, hero to edge case</dd>
             </div>
             <div>
-              <dt className="text-2xl font-bold text-[var(--fg)]">{recipeCount}</dt>
+              <dt className="text-2xl font-bold text-[var(--fg)]">
+                <StatCounter value={recipeCount} />
+              </dt>
               <dd className="mt-1 text-xs text-[var(--muted)]">CI-tested code recipes</dd>
             </div>
             <div>
@@ -148,6 +158,7 @@ export default function Home() {
         <h2 className="mb-6 text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
           Start where you are
         </h2>
+        <Reveal>
         <div className="grid gap-4 lg:grid-cols-3">
           <div className="flex flex-col rounded-2xl border border-[var(--border)] p-6">
             <h3 className="text-xl font-bold tracking-tight text-[var(--fg)]">
@@ -192,6 +203,7 @@ export default function Home() {
             </div>
           </div>
         </div>
+        </Reveal>
       </Container>
 
       {/* ——— Popular APIs & SDKs ——— */}
@@ -204,12 +216,13 @@ export default function Home() {
             All integration guides →
           </Link>
         </div>
+        <Reveal>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {POPULAR.map((p) => (
             <Link
               key={p.href}
               href={p.href}
-              className="group flex h-full flex-col rounded-2xl border border-[var(--border)] p-5 transition-colors hover:border-brand-400 hover:bg-[var(--surface)]"
+              className="group flex h-full flex-col rounded-2xl border border-[var(--border)] p-5 transition hover:-translate-y-0.5 hover:border-brand-400 hover:bg-[var(--surface)]"
             >
               <div className="flex items-start justify-between gap-3">
                 <span className="font-semibold text-[var(--fg)]">{p.name}</span>
@@ -219,11 +232,12 @@ export default function Home() {
               </div>
               <span className="mt-2 flex-1 text-sm text-[var(--muted)]">{p.blurb}</span>
               <span className="mt-3 text-sm font-semibold text-brand-600 group-hover:text-brand-500 dark:text-brand-300">
-                Read the guide →
+                Read the guide <span aria-hidden className="inline-block transition-transform group-hover:translate-x-0.5">→</span>
               </span>
             </Link>
           ))}
         </div>
+        </Reveal>
       </Container>
 
       {/* ——— Free interactive tools ——— */}
@@ -231,48 +245,50 @@ export default function Home() {
         <h2 className="mb-6 text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
           Free tools — no signup needed
         </h2>
+        <Reveal>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Link
             href="/picker"
-            className="group flex flex-col rounded-2xl border border-brand-400/40 bg-brand-500/5 p-5 transition-colors hover:bg-brand-500/10"
+            className="group flex flex-col rounded-2xl border border-brand-400/40 bg-brand-500/5 p-5 transition hover:-translate-y-0.5 hover:bg-brand-500/10"
           >
             <h3 className="font-bold tracking-tight text-[var(--fg)]">API Picker</h3>
             <p className="mt-1 flex-1 text-sm text-[var(--muted)]">
               Three questions, a tailored recommendation with next steps — and the reasoning shown.
             </p>
-            <span className="mt-3 text-sm font-semibold text-brand-600 group-hover:text-brand-500 dark:text-brand-300">Try it →</span>
+            <span className="mt-3 text-sm font-semibold text-brand-600 group-hover:text-brand-500 dark:text-brand-300">Try it <span aria-hidden className="inline-block transition-transform group-hover:translate-x-0.5">→</span></span>
           </Link>
           <Link
             href="/cost-planner"
-            className="group flex flex-col rounded-2xl border border-[var(--border)] p-5 transition-colors hover:border-brand-400 hover:bg-[var(--surface)]"
+            className="group flex flex-col rounded-2xl border border-[var(--border)] p-5 transition hover:-translate-y-0.5 hover:border-brand-400 hover:bg-[var(--surface)]"
           >
             <h3 className="font-bold tracking-tight text-[var(--fg)]">Cost Planner</h3>
             <p className="mt-1 flex-1 text-sm text-[var(--muted)]">
               Model what your stack costs at your user count — every price traced to its source.
             </p>
-            <span className="mt-3 text-sm font-semibold text-brand-600 group-hover:text-brand-500 dark:text-brand-300">Plan costs →</span>
+            <span className="mt-3 text-sm font-semibold text-brand-600 group-hover:text-brand-500 dark:text-brand-300">Plan costs <span aria-hidden className="inline-block transition-transform group-hover:translate-x-0.5">→</span></span>
           </Link>
           <Link
             href="/matrix"
-            className="group flex flex-col rounded-2xl border border-[var(--border)] p-5 transition-colors hover:border-brand-400 hover:bg-[var(--surface)]"
+            className="group flex flex-col rounded-2xl border border-[var(--border)] p-5 transition hover:-translate-y-0.5 hover:border-brand-400 hover:bg-[var(--surface)]"
           >
             <h3 className="font-bold tracking-tight text-[var(--fg)]">Type Matrix</h3>
             <p className="mt-1 flex-1 text-sm text-[var(--muted)]">
               Every metric&rsquo;s HealthKit ↔ Health Connect type — and where they quietly disagree.
             </p>
-            <span className="mt-3 text-sm font-semibold text-brand-600 group-hover:text-brand-500 dark:text-brand-300">Open it →</span>
+            <span className="mt-3 text-sm font-semibold text-brand-600 group-hover:text-brand-500 dark:text-brand-300">Open it <span aria-hidden className="inline-block transition-transform group-hover:translate-x-0.5">→</span></span>
           </Link>
           <Link
             href="/day-boundaries"
-            className="group flex flex-col rounded-2xl border border-[var(--border)] p-5 transition-colors hover:border-brand-400 hover:bg-[var(--surface)]"
+            className="group flex flex-col rounded-2xl border border-[var(--border)] p-5 transition hover:-translate-y-0.5 hover:border-brand-400 hover:bg-[var(--surface)]"
           >
             <h3 className="font-bold tracking-tight text-[var(--fg)]">Day-Boundary Demo</h3>
             <p className="mt-1 flex-1 text-sm text-[var(--muted)]">
               Watch a naive daily rollup break on DST and timezones — interactively, then fix it.
             </p>
-            <span className="mt-3 text-sm font-semibold text-brand-600 group-hover:text-brand-500 dark:text-brand-300">See it break →</span>
+            <span className="mt-3 text-sm font-semibold text-brand-600 group-hover:text-brand-500 dark:text-brand-300">See it break <span aria-hidden className="inline-block transition-transform group-hover:translate-x-0.5">→</span></span>
           </Link>
         </div>
+        </Reveal>
       </Container>
 
       {/* ——— Everything we cover ——— */}
@@ -285,12 +301,13 @@ export default function Home() {
             Full site index →
           </Link>
         </div>
+        <Reveal>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {CLUSTERS.map((c) => (
             <Link
               key={c.href}
               href={c.href}
-              className="flex h-full flex-col rounded-2xl border border-[var(--border)] p-5 transition-colors hover:border-brand-400 hover:bg-[var(--surface)]"
+              className="flex h-full flex-col rounded-2xl border border-[var(--border)] p-5 transition hover:-translate-y-0.5 hover:border-brand-400 hover:bg-[var(--surface)]"
             >
               <div className="flex items-baseline justify-between gap-3">
                 <span className="font-semibold text-[var(--fg)]">{c.title}</span>
@@ -304,6 +321,7 @@ export default function Home() {
             </Link>
           ))}
         </div>
+        </Reveal>
       </Container>
 
       {/* ——— Why builders trust it ——— */}
@@ -311,6 +329,7 @@ export default function Home() {
         <h2 className="mb-6 text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
           Why builders trust this site
         </h2>
+        <Reveal>
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="rounded-2xl border border-[var(--border)] p-6">
             <h3 className="font-bold tracking-tight text-[var(--fg)]">Sourced, or it doesn&rsquo;t ship</h3>
@@ -357,13 +376,15 @@ export default function Home() {
             </p>
           </div>
         </div>
+        </Reveal>
       </Container>
 
       {/* ——— The 2026 report + open data ——— */}
       <Container className="pt-16">
+        <Reveal>
         <div className="overflow-hidden rounded-3xl border border-[var(--border)]">
           <div className="grid lg:grid-cols-2">
-            <div className="bg-gradient-to-br from-brand-600 to-brand-800 p-8 sm:p-10">
+            <div className="gradient-pan bg-gradient-to-br from-brand-600 to-brand-800 p-8 sm:p-10">
               <span className="inline-flex items-center rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
                 Annual report
               </span>
@@ -398,6 +419,7 @@ export default function Home() {
             </div>
           </div>
         </div>
+        </Reveal>
       </Container>
 
       {/* ——— What's changing right now ——— */}
@@ -410,12 +432,13 @@ export default function Home() {
             Full tracker →
           </Link>
         </div>
+        <Reveal>
         <div className="grid gap-4 lg:grid-cols-3">
           {deadlines.map((e) => (
             <Link
               key={`${e.sortDate}-${e.title}`}
               href={e.page.href}
-              className="group flex h-full flex-col rounded-2xl border border-[var(--border)] p-5 transition-colors hover:border-brand-400 hover:bg-[var(--surface)]"
+              className="group flex h-full flex-col rounded-2xl border border-[var(--border)] p-5 transition hover:-translate-y-0.5 hover:border-brand-400 hover:bg-[var(--surface)]"
             >
               <div className="flex flex-wrap items-center gap-2">
                 <span className="text-sm font-semibold text-[var(--fg)]">{fmtChangeDate(e.date)}</span>
@@ -426,11 +449,12 @@ export default function Home() {
               <span className="mt-2 font-semibold text-[var(--fg)]">{e.title}</span>
               <span className="mt-2 flex-1 text-sm text-[var(--muted)] line-clamp-3">{e.summary}</span>
               <span className="mt-3 text-sm font-semibold text-brand-600 group-hover:text-brand-500 dark:text-brand-300">
-                {e.page.label} →
+                {e.page.label} <span aria-hidden className="inline-block transition-transform group-hover:translate-x-0.5">→</span>
               </span>
             </Link>
           ))}
         </div>
+        </Reveal>
         <p className="mt-4 text-sm text-[var(--muted)]">
           When a reported date firms up or a term changes, subscribers hear first — with the
           source, not the panic.{" "}
@@ -465,7 +489,9 @@ export default function Home() {
           </div>
         )}
 
-        <Newsletter />
+        <Reveal>
+          <Newsletter />
+        </Reveal>
       </Container>
     </>
   );

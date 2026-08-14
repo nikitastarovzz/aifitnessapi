@@ -51,6 +51,7 @@ function fmtDate(d: string): string {
 export default function ChangesPage() {
   const url = absoluteUrl(PAGE_PATH);
   const events = changesSorted();
+  const today = new Date().toISOString().slice(0, 10);
 
   const itemListJsonLd = {
     "@context": "https://schema.org",
@@ -113,7 +114,12 @@ export default function ChangesPage() {
           <ol className="relative space-y-6 border-l border-[var(--border)] pl-6">
             {events.map((e) => (
               <li key={`${e.sortDate}-${e.title}`} className="relative">
-                <span aria-hidden className="absolute -left-[1.85rem] top-1.5 h-3 w-3 rounded-full border-2 border-brand-400 bg-[var(--bg)]" />
+                <span aria-hidden className="absolute -left-[1.85rem] top-1.5 h-3 w-3">
+                  {e.sortDate >= today && (
+                    <span className="ping-slow absolute inset-0 rounded-full bg-brand-400/70" />
+                  )}
+                  <span className="absolute inset-0 rounded-full border-2 border-brand-400 bg-[var(--bg)]" />
+                </span>
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="text-sm font-semibold text-[var(--fg)]">{fmtDate(e.date)}</span>
                   <span className={`rounded-full border px-2 py-0.5 text-xs font-semibold ${STATUS_STYLES[e.status]}`}>{e.status}</span>

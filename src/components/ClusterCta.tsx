@@ -23,9 +23,12 @@ export default function ClusterCta({
           href="/#subscribe"
           source={source}
           id={id}
-          className="rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-500"
+          className="group rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-500"
         >
-          Get the newsletter →
+          Get the newsletter{" "}
+          <span aria-hidden className="inline-block transition-transform group-hover:translate-x-0.5">
+            →
+          </span>
         </CtaLink>
         <span className="text-xs text-[var(--muted)]">
           New API breakdowns for builders. No spam, unsubscribe anytime.
