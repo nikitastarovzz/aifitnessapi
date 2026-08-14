@@ -34,6 +34,10 @@ const RELATED: { href: string; label: string }[] = [
   {
     "href": "/picker",
     "label": "Which fitness API should I use?"
+  },
+  {
+    "href": "/no-code-fitness-app",
+    "label": "The no-code version of this build"
   }
 ];
 

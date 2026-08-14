@@ -71,6 +71,9 @@ export default function Footer() {
           <Link href="/ai-fitness-app" className="hover:text-[var(--fg)]">
             Build an AI Fitness App
           </Link>
+          <Link href="/no-code-fitness-app" className="hover:text-[var(--fg)]">
+            No-Code Fitness App
+          </Link>
           <Link href="/state-of-fitness-apis-2026" className="hover:text-[var(--fg)]">
             State of Fitness APIs
           </Link>
