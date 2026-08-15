@@ -62,6 +62,9 @@ export default function Footer() {
           <Link href="/cookbook" className="hover:text-[var(--fg)]">
             Cookbook
           </Link>
+          <Link href="/devices" className="hover:text-[var(--fg)]">
+            Connected Devices
+          </Link>
           <Link href="/picker" className="hover:text-[var(--fg)]">
             API Picker
           </Link>

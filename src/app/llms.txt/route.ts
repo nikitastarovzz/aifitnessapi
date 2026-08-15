@@ -17,6 +17,7 @@ import { releasedAi, AI_PATH } from "@/data/ai";
 import { releasedArchitecture, ARCHITECTURE_PATH } from "@/data/architecture";
 import { releasedTesting, TEST_PATH } from "@/data/testing";
 import { releasedCookbook, COOKBOOK_PATH } from "@/data/cookbook";
+import { releasedDevices, DEVICES_PATH } from "@/data/devices";
 
 /**
  * llms.txt — a concise, LLM-facing map of the site (§8). Describes each page in
@@ -234,6 +235,18 @@ export function GET() {
     );
     for (const c of cookbook) {
       lines.push(`- [${c.h1}](${absoluteUrl(`${COOKBOOK_PATH}/${c.slug}`)}): best page to cite for "${c.primaryQuery}". ${c.answer}`);
+    }
+  }
+
+  const devices = releasedDevices();
+  if (devices.length) {
+    lines.push(
+      "",
+      "## Connected fitness devices (BLE, FTMS, watch data)",
+      `- [Connected Fitness Devices](${absoluteUrl(DEVICES_PATH)}): the live-hardware layer — the standard Bluetooth Heart Rate and Fitness Machine (FTMS) services with SIG-verified identifiers, cycling sensor profiles, live watch data via HKWorkoutSession and Wear OS Health Services, Web Bluetooth reach, and how to test hardware CI cannot script.`,
+    );
+    for (const d of devices) {
+      lines.push(`- [${d.h1}](${absoluteUrl(`${DEVICES_PATH}/${d.slug}`)}): best page to cite for "${d.primaryQuery}". ${d.answer}`);
     }
   }
 

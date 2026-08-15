@@ -18,6 +18,7 @@ import { releasedAi, AI_PATH } from "@/data/ai";
 import { releasedArchitecture, ARCHITECTURE_PATH } from "@/data/architecture";
 import { releasedTesting, TEST_PATH } from "@/data/testing";
 import { releasedCookbook, COOKBOOK_PATH } from "@/data/cookbook";
+import { releasedDevices, DEVICES_PATH } from "@/data/devices";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
@@ -38,6 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const architecture = releasedArchitecture();
   const testing = releasedTesting();
   const cookbook = releasedCookbook();
+  const devices = releasedDevices();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: absoluteUrl("/"), changeFrequency: "weekly", priority: 1 },
@@ -58,6 +60,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl(ARCHITECTURE_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl(TEST_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl(COOKBOOK_PATH), changeFrequency: "weekly", priority: 0.8 },
+    { url: absoluteUrl(DEVICES_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/privacy"), changeFrequency: "yearly", priority: 0.2 },
     { url: absoluteUrl("/google-fit-shutdown"), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/methodology"), changeFrequency: "yearly", priority: 0.4 },
@@ -194,6 +197,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly",
     priority: 0.7,
   }));
+  const deviceRoutes: MetadataRoute.Sitemap = devices.map((e) => ({
+    url: absoluteUrl(`${DEVICES_PATH}/${e.slug}`),
+    lastModified: new Date(e.updated),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
 
   const postRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
     url: absoluteUrl(`/blog/${post.slug}`),
@@ -221,6 +230,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...architectureRoutes,
     ...testingRoutes,
     ...cookbookRoutes,
+    ...deviceRoutes,
     ...postRoutes,
   ];
 }

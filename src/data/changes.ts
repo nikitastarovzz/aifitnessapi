@@ -112,6 +112,16 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
     verifiedOn: "2026-08-02",
   },
   {
+    date: "2025-06-30",
+    sortDate: "2025-06-30",
+    title: "ANT+ membership and certification programs discontinued (reported)",
+    summary:
+      "Per widely-quoted announcements from the ANT+ organization — the official page was unreachable in our research pass, so this stays reported — the ANT+ membership and certification programs were discontinued on June 30, 2025, with certification applications accepted only until March 31, 2025. Device profiles and documentation reportedly remain available and existing devices are unaffected; coverage cites the EU Radio Equipment Directive as a driver. For new fitness apps, BLE is the practical default radio.",
+    status: "reported",
+    page: { href: "/devices/ant-plus-vs-bluetooth", label: "ANT+ vs Bluetooth for fitness sensors" },
+    verifiedOn: "2026-08-14",
+  },
+  {
     date: "2024-05-01",
     sortDate: "2024-05-01",
     title: "Google Fit: new developer sign-ups closed",

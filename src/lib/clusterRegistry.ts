@@ -16,6 +16,7 @@ import { releasedAi, AI_PATH } from "@/data/ai";
 import { releasedArchitecture, ARCHITECTURE_PATH } from "@/data/architecture";
 import { releasedTesting, TEST_PATH } from "@/data/testing";
 import { releasedCookbook, COOKBOOK_PATH } from "@/data/cookbook";
+import { releasedDevices, DEVICES_PATH } from "@/data/devices";
 
 /**
  * basePath → released entries, for anything that needs to see a cluster's
@@ -40,6 +41,7 @@ const REGISTRY: Record<string, () => ClusterEntry[]> = {
   [ARCHITECTURE_PATH]: releasedArchitecture,
   [TEST_PATH]: releasedTesting,
   [COOKBOOK_PATH]: releasedCookbook,
+  [DEVICES_PATH]: releasedDevices,
 };
 
 /** All clusters as basePath → released entries. */

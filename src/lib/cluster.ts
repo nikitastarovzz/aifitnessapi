@@ -68,6 +68,7 @@ export const CLUSTER_SEED: Record<string, number> = {
   "/architecture": 14,
   "/test": 15,
   "/cookbook": 16,
+  "/devices": 17,
 };
 export function heroSeed(basePath: string): number {
   return CLUSTER_SEED[basePath] ?? 0;

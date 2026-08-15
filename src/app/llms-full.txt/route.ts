@@ -16,6 +16,7 @@ import { releasedAi, AI_PATH } from "@/data/ai";
 import { releasedArchitecture, ARCHITECTURE_PATH } from "@/data/architecture";
 import { releasedTesting, TEST_PATH } from "@/data/testing";
 import { releasedCookbook, COOKBOOK_PATH } from "@/data/cookbook";
+import { releasedDevices, DEVICES_PATH } from "@/data/devices";
 
 /**
  * llms-full.txt — the fuller LLM-facing dump: each spoke's answer capsule and
@@ -323,6 +324,20 @@ export function GET() {
       out.push(`Primary query: ${c.primaryQuery}`, "", c.answer, "");
       if (c.faqs.length) {
         for (const f of c.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+        out.push("");
+      }
+    }
+  }
+
+  const devices = releasedDevices();
+  if (devices.length) {
+    out.push(`# Connected fitness devices — BLE, FTMS, watch data — ${absoluteUrl(DEVICES_PATH)}`, "");
+    out.push("The live-hardware layer of a fitness app: standard Bluetooth GATT profiles (Heart Rate, Fitness Machine, cycling sensors) with identifiers verified against the Bluetooth SIG's published assigned numbers, live watch data on watchOS and Wear OS, Web Bluetooth reach, and the testing story for hardware CI cannot script.", "");
+    for (const d of devices) {
+      out.push(`## ${d.h1} — ${absoluteUrl(`${DEVICES_PATH}/${d.slug}`)}`);
+      out.push(`Primary query: ${d.primaryQuery}`, "", d.answer, "");
+      if (d.faqs.length) {
+        for (const f of d.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
         out.push("");
       }
     }
