@@ -2,7 +2,7 @@
   "name": "aifitnessapi",
   "version": "0.1.0",
   "private": true,
-  "description": "AIFitnessAPI \u2014 a blog and hub for builders in health, wellness & fitness tech.",
+  "description": "AIFitnessAPI — a blog and hub for builders in health, wellness & fitness tech.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -34,6 +34,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "^16.1.1",
+    "playwright": "^1.62.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
