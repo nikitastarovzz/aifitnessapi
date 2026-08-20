@@ -2,7 +2,7 @@
   "name": "aifitnessapi",
   "version": "0.1.0",
   "private": true,
-  "description": "AIFitnessAPI — a blog and hub for builders in health, wellness & fitness tech.",
+  "description": "AIFitnessAPI \u2014 a blog and hub for builders in health, wellness & fitness tech.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -11,7 +11,8 @@
     "indexnow": "node scripts/indexnow.mjs",
     "qa": "node scripts/qa.mjs",
     "signups": "node scripts/export-signups.mjs",
-    "test:cookbook": "node --test \"cookbook/**/*.test.mjs\""
+    "test:cookbook": "node --test \"cookbook/**/*.test.mjs\"",
+    "test:responsive": "node scripts/responsive-audit.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

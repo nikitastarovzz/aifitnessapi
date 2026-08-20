@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
 import { Analytics } from "@vercel/analytics/react";
@@ -6,6 +6,22 @@ import Footer from "@/components/Footer";
 import CtaTracker from "@/components/CtaTracker";
 import { site, absoluteUrl } from "@/lib/site";
 import { organizationNode, ORG_ID, WEBSITE_ID } from "@/lib/schema";
+
+/**
+ * Device chrome. `colorScheme` lets the browser theme native controls,
+ * scrollbars and form widgets to match the page instead of rendering a light
+ * scrollbar against a dark page; `themeColor` tints the mobile browser's
+ * address bar per scheme. Zoom is deliberately not restricted.
+ */
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  colorScheme: "light dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0b0d" },
+  ],
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),

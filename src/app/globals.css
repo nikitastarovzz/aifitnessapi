@@ -45,6 +45,11 @@ html {
 }
 
 body {
+  /* This site is full of long unbreakable tokens
+     (HKQuantityTypeIdentifierHeartRateVariabilitySDNN, UUIDs, endpoints). On a
+     phone one of those sets the min-content width of its box and pushes the
+     whole document sideways, so let them break. */
+  overflow-wrap: break-word;
   background: var(--bg);
   color: var(--fg);
   font-family: var(--font-sans);

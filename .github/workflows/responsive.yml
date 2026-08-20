@@ -1,0 +1,51 @@
+name: Responsive layout
+
+# Guards the thing a laptop never shows you: a page that scrolls sideways on a
+# phone. Renders every distinct template at thirteen viewports (320px through
+# 4K) in light and dark, and checks the phone navigation actually works.
+# Added 2026-08-20 after the header nav was found pushing every page 233px
+# wider than a phone viewport.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "next.config.ts"
+      - "scripts/responsive-audit.mjs"
+      - ".github/workflows/responsive.yml"
+  pull_request:
+    paths:
+      - "src/**"
+      - "next.config.ts"
+      - "scripts/responsive-audit.mjs"
+  workflow_dispatch: {}
+
+concurrency:
+  group: responsive-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build
+      - name: Start server
+        run: |
+          npm start -- -p 3000 &
+          for i in $(seq 1 30); do
+            if curl -sf -o /dev/null http://localhost:3000/; then echo "up"; exit 0; fi
+            sleep 2
+          done
+          echo "server did not start"; exit 1
+      - name: Audit layout at every viewport
+        env:
+          BASE_URL: http://localhost:3000
+        run: npm run test:responsive

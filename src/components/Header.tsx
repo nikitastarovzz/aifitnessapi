@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Container from "./Container";
 import SiteSearch from "./SiteSearch";
+import MobileNav from "./MobileNav";
 import { site } from "@/lib/site";
 
 const nav = [
@@ -18,10 +19,11 @@ export default function Header() {
           <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand-500 text-sm font-bold text-white">
             AF
           </span>
-          <span className="text-[var(--fg)]">{site.name}</span>
+          <span className="hidden text-[var(--fg)] min-[360px]:inline">{site.name}</span>
         </Link>
 
         <nav aria-label="Primary" className="flex items-center gap-1 sm:gap-2">
+          <span className="hidden md:contents">
           {nav.map((item) => (
             <Link
               key={item.href}
@@ -31,6 +33,7 @@ export default function Header() {
               {item.label}
             </Link>
           ))}
+          </span>
           <SiteSearch />
           <Link
             href="/#subscribe"
@@ -38,6 +41,7 @@ export default function Header() {
           >
             Subscribe
           </Link>
+          <MobileNav />
         </nav>
       </Container>
     </header>

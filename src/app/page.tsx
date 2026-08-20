@@ -170,9 +170,9 @@ export default function Home() {
               model, approval gates — before you write a line of integration code.
             </p>
             <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm">
-              <Link href="/picker" className="font-semibold text-brand-600 hover:text-brand-500">Run the picker →</Link>
-              <Link href="/fitness-apis" className="font-medium text-[var(--muted)] hover:text-[var(--fg)]">Browse the roundups</Link>
-              <Link href="/pricing" className="font-medium text-[var(--muted)] hover:text-[var(--fg)]">Check pricing</Link>
+              <Link href="/picker" className="inline-block py-1 font-semibold text-brand-600 hover:text-brand-500">Run the picker →</Link>
+              <Link href="/fitness-apis" className="inline-block py-1 font-medium text-[var(--muted)] hover:text-[var(--fg)]">Browse the roundups</Link>
+              <Link href="/pricing" className="inline-block py-1 font-medium text-[var(--muted)] hover:text-[var(--fg)]">Check pricing</Link>
             </div>
           </div>
           <div className="flex flex-col rounded-2xl border border-[var(--border)] p-6">
@@ -184,9 +184,9 @@ export default function Home() {
               pose model or SDK choice to guardrails, latency, and cost.
             </p>
             <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm">
-              <Link href="/ai-fitness-app" className="font-semibold text-brand-600 hover:text-brand-500">Build an AI fitness app →</Link>
-              <Link href="/motion" className="font-medium text-[var(--muted)] hover:text-[var(--fg)]">Motion &amp; pose tech</Link>
-              <Link href="/ai" className="font-medium text-[var(--muted)] hover:text-[var(--fg)]">LLM features</Link>
+              <Link href="/ai-fitness-app" className="inline-block py-1 font-semibold text-brand-600 hover:text-brand-500">Build an AI fitness app →</Link>
+              <Link href="/motion" className="inline-block py-1 font-medium text-[var(--muted)] hover:text-[var(--fg)]">Motion &amp; pose tech</Link>
+              <Link href="/ai" className="inline-block py-1 font-medium text-[var(--muted)] hover:text-[var(--fg)]">LLM features</Link>
             </div>
           </div>
           <div className="flex flex-col rounded-2xl border border-[var(--border)] p-6">
@@ -198,9 +198,9 @@ export default function Home() {
               is being retired, the dated migration playbook is already written.
             </p>
             <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm">
-              <Link href="/fix" className="font-semibold text-brand-600 hover:text-brand-500">Troubleshoot it →</Link>
-              <Link href="/changes" className="font-medium text-[var(--muted)] hover:text-[var(--fg)]">Deadline tracker</Link>
-              <Link href="/migrate" className="font-medium text-[var(--muted)] hover:text-[var(--fg)]">Migration playbooks</Link>
+              <Link href="/fix" className="inline-block py-1 font-semibold text-brand-600 hover:text-brand-500">Troubleshoot it →</Link>
+              <Link href="/changes" className="inline-block py-1 font-medium text-[var(--muted)] hover:text-[var(--fg)]">Deadline tracker</Link>
+              <Link href="/migrate" className="inline-block py-1 font-medium text-[var(--muted)] hover:text-[var(--fg)]">Migration playbooks</Link>
             </div>
           </div>
         </div>
@@ -213,7 +213,7 @@ export default function Home() {
           <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
             Popular APIs &amp; SDKs
           </h2>
-          <Link href="/integrate" className="text-sm font-medium text-brand-600 hover:text-brand-500">
+          <Link href="/integrate" className="inline-block py-1 text-sm font-medium text-brand-600 hover:text-brand-500">
             All integration guides →
           </Link>
         </div>
@@ -298,7 +298,7 @@ export default function Home() {
           <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
             Everything we cover
           </h2>
-          <Link href="/site-index" className="text-sm font-medium text-brand-600 hover:text-brand-500">
+          <Link href="/site-index" className="inline-block py-1 text-sm font-medium text-brand-600 hover:text-brand-500">
             Full site index →
           </Link>
         </div>
@@ -429,7 +429,7 @@ export default function Home() {
           <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
             On the clock — next deadlines
           </h2>
-          <Link href="/changes" className="text-sm font-medium text-brand-600 hover:text-brand-500">
+          <Link href="/changes" className="inline-block py-1 text-sm font-medium text-brand-600 hover:text-brand-500">
             Full tracker →
           </Link>
         </div>
@@ -473,7 +473,7 @@ export default function Home() {
               <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
                 Latest writing
               </h2>
-              <Link href="/blog" className="text-sm font-medium text-brand-600 hover:text-brand-500">
+              <Link href="/blog" className="inline-block py-1 text-sm font-medium text-brand-600 hover:text-brand-500">
                 View all →
               </Link>
             </div>

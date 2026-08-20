@@ -11,103 +11,103 @@ export default function Footer() {
           © {year} {site.name}. All rights reserved.
         </p>
         <nav aria-label="Footer" className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-[var(--muted)]">
-          <Link href="/fitness-apis" className="hover:text-[var(--fg)]">
+          <Link href="/fitness-apis" className="py-1 hover:text-[var(--fg)]">
             Fitness APIs
           </Link>
-          <Link href="/guides" className="hover:text-[var(--fg)]">
+          <Link href="/guides" className="py-1 hover:text-[var(--fg)]">
             Guides
           </Link>
-          <Link href="/build" className="hover:text-[var(--fg)]">
+          <Link href="/build" className="py-1 hover:text-[var(--fg)]">
             Build
           </Link>
-          <Link href="/integrate" className="hover:text-[var(--fg)]">
+          <Link href="/integrate" className="py-1 hover:text-[var(--fg)]">
             Integrate
           </Link>
-          <Link href="/fix" className="hover:text-[var(--fg)]">
+          <Link href="/fix" className="py-1 hover:text-[var(--fg)]">
             Troubleshooting
           </Link>
-          <Link href="/learn" className="hover:text-[var(--fg)]">
+          <Link href="/learn" className="py-1 hover:text-[var(--fg)]">
             Concepts
           </Link>
-          <Link href="/alternatives" className="hover:text-[var(--fg)]">
+          <Link href="/alternatives" className="py-1 hover:text-[var(--fg)]">
             Alternatives
           </Link>
-          <Link href="/compliance" className="hover:text-[var(--fg)]">
+          <Link href="/compliance" className="py-1 hover:text-[var(--fg)]">
             Compliance
           </Link>
-          <Link href="/migrate" className="hover:text-[var(--fg)]">
+          <Link href="/migrate" className="py-1 hover:text-[var(--fg)]">
             Migrations
           </Link>
-          <Link href="/pricing" className="hover:text-[var(--fg)]">
+          <Link href="/pricing" className="py-1 hover:text-[var(--fg)]">
             Pricing
           </Link>
-          <Link href="/compare" className="hover:text-[var(--fg)]">
+          <Link href="/compare" className="py-1 hover:text-[var(--fg)]">
             Comparisons
           </Link>
-          <Link href="/data" className="hover:text-[var(--fg)]">
+          <Link href="/data" className="py-1 hover:text-[var(--fg)]">
             Health Data
           </Link>
-          <Link href="/motion" className="hover:text-[var(--fg)]">
+          <Link href="/motion" className="py-1 hover:text-[var(--fg)]">
             AI Motion
           </Link>
-          <Link href="/ai" className="hover:text-[var(--fg)]">
+          <Link href="/ai" className="py-1 hover:text-[var(--fg)]">
             AI Features
           </Link>
-          <Link href="/architecture" className="hover:text-[var(--fg)]">
+          <Link href="/architecture" className="py-1 hover:text-[var(--fg)]">
             Architecture
           </Link>
-          <Link href="/test" className="hover:text-[var(--fg)]">
+          <Link href="/test" className="py-1 hover:text-[var(--fg)]">
             Testing
           </Link>
-          <Link href="/cookbook" className="hover:text-[var(--fg)]">
+          <Link href="/cookbook" className="py-1 hover:text-[var(--fg)]">
             Cookbook
           </Link>
-          <Link href="/devices" className="hover:text-[var(--fg)]">
+          <Link href="/devices" className="py-1 hover:text-[var(--fg)]">
             Connected Devices
           </Link>
-          <Link href="/picker" className="hover:text-[var(--fg)]">
+          <Link href="/picker" className="py-1 hover:text-[var(--fg)]">
             API Picker
           </Link>
-          <Link href="/cost-planner" className="hover:text-[var(--fg)]">
+          <Link href="/cost-planner" className="py-1 hover:text-[var(--fg)]">
             Cost Planner
           </Link>
-          <Link href="/ai-fitness-app" className="hover:text-[var(--fg)]">
+          <Link href="/ai-fitness-app" className="py-1 hover:text-[var(--fg)]">
             Build an AI Fitness App
           </Link>
-          <Link href="/no-code-fitness-app" className="hover:text-[var(--fg)]">
+          <Link href="/no-code-fitness-app" className="py-1 hover:text-[var(--fg)]">
             No-Code Fitness App
           </Link>
-          <Link href="/state-of-fitness-apis-2026" className="hover:text-[var(--fg)]">
+          <Link href="/state-of-fitness-apis-2026" className="py-1 hover:text-[var(--fg)]">
             State of Fitness APIs
           </Link>
-          <Link href="/changes" className="hover:text-[var(--fg)]">
+          <Link href="/changes" className="py-1 hover:text-[var(--fg)]">
             Changes &amp; Deadlines
           </Link>
-          <Link href="/matrix" className="hover:text-[var(--fg)]">
+          <Link href="/matrix" className="py-1 hover:text-[var(--fg)]">
             Type Reference
           </Link>
-          <Link href="/blog" className="hover:text-[var(--fg)]">
+          <Link href="/blog" className="py-1 hover:text-[var(--fg)]">
             Blog
           </Link>
-          <Link href="/about" className="hover:text-[var(--fg)]">
+          <Link href="/about" className="py-1 hover:text-[var(--fg)]">
             About
           </Link>
-          <Link href="/signup" className="hover:text-[var(--fg)]">
+          <Link href="/signup" className="py-1 hover:text-[var(--fg)]">
             Newsletter
           </Link>
-          <Link href="/methodology" className="hover:text-[var(--fg)]">
+          <Link href="/methodology" className="py-1 hover:text-[var(--fg)]">
             How We Verify
           </Link>
-          <Link href="/privacy" className="hover:text-[var(--fg)]">
+          <Link href="/privacy" className="py-1 hover:text-[var(--fg)]">
             Privacy
           </Link>
-          <Link href="/glossary" className="hover:text-[var(--fg)]">
+          <Link href="/glossary" className="py-1 hover:text-[var(--fg)]">
             Glossary
           </Link>
-          <Link href="/site-index" className="hover:text-[var(--fg)]">
+          <Link href="/site-index" className="py-1 hover:text-[var(--fg)]">
             Site index
           </Link>
-          <a href="/feed.xml" className="hover:text-[var(--fg)]">
+          <a href="/feed.xml" className="py-1 hover:text-[var(--fg)]">
             RSS
           </a>
           {site.social.github && (
@@ -115,7 +115,7 @@ export default function Footer() {
               href={site.social.github}
               target="_blank"
               rel="noreferrer"
-              className="hover:text-[var(--fg)]"
+              className="py-1 hover:text-[var(--fg)]"
             >
               GitHub
             </a>

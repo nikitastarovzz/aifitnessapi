@@ -48,13 +48,15 @@ export default function DataMatrix() {
 
       <div className="mt-8 grid gap-5 sm:grid-cols-2">
         {PLATFORM_NOTES.map((p) => (
-          <section key={p.platform} className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
+          <section key={p.platform} className="min-w-0 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
             <h3 className="font-semibold text-[var(--fg)]">{p.platform}</h3>
             <ul className="mt-3 space-y-2 text-sm text-[var(--muted)]">
               {p.points.map((pt) => (
                 <li key={pt} className="flex gap-2">
                   <span aria-hidden className="mt-2 h-1 w-1 shrink-0 rounded-full bg-brand-500" />
-                  <span>{pt}</span>
+                  {/* Flex children default to min-width:auto too, so the long
+                      type identifiers in these notes need an explicit floor. */}
+                  <span className="min-w-0">{pt}</span>
                 </li>
               ))}
             </ul>
