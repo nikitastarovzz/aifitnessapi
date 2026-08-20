@@ -25,23 +25,78 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Probe production
+        id: core
         run: |
           set -euo pipefail
           fail=0
-          check () { # url, expected substring of final 200 body ("" = skip body check)
-            local url="$1" needle="$2" code body
-            code=$(curl -sL -o /tmp/body -w "%{http_code}" --max-time 25 "$url" || echo "000")
-            echo "$url -> $code"
-            if [ "$code" != "200" ]; then fail=1; return; fi
-            if [ -n "$needle" ] && ! grep -q "$needle" /tmp/body; then
-              echo "  body check FAILED (missing: $needle)"; fail=1
-            fi
+          # Retry to absorb deploy propagation: this workflow also runs on
+          # push, so a probe can race Vercel finishing the build. A real
+          # outage still alerts, roughly a minute later.
+          check () { # url, expected substring ("" = status only)
+            local url="$1" needle="$2" code attempt
+            for attempt in 1 2 3 4; do
+              code=$(curl -sL -o /tmp/body -w "%{http_code}" --max-time 25 "$url" || echo "000")
+              if [ "$code" = "200" ]; then
+                if [ -z "$needle" ] || grep -q "$needle" /tmp/body; then
+                  echo "$url -> $code ok"; return
+                fi
+              fi
+              if [ "$attempt" -lt 4 ]; then sleep 20; fi
+            done
+            echo "$url -> $code FAILED (needle: ${needle:-none})"; fail=1
           }
           check "https://aifitnessapi.com/"            "AIFitnessAPI"
           check "https://www.aifitnessapi.com/"        "AIFitnessAPI"
           check "https://aifitnessapi.com/fix"         "fitness API"
           check "https://aifitnessapi.com/llms.txt"    "AIFitnessAPI"
           check "https://aifitnessapi.com/sitemap.xml" "aifitnessapi.com"
+          exit $fail
+
+      - name: Probe GEO surfaces
+        id: geo
+        if: always()
+        run: |
+          set -euo pipefail
+          fail=0
+          check () { # url, expected substring ("" = status only)
+            local url="$1" needle="$2" code attempt
+            for attempt in 1 2 3 4; do
+              code=$(curl -sL -o /tmp/body -w "%{http_code}" --max-time 25 "$url" || echo "000")
+              if [ "$code" = "200" ]; then
+                if [ -z "$needle" ] || grep -q "$needle" /tmp/body; then
+                  echo "$url -> $code ok"; return
+                fi
+              fi
+              if [ "$attempt" -lt 4 ]; then sleep 20; fi
+            done
+            echo "$url -> $code FAILED (needle: ${needle:-none})"; fail=1
+          }
+
+          # Machine-readable surfaces (ops/GEO.md). These are invisible to
+          # humans, so nothing but this job would notice them breaking.
+          check "https://aifitnessapi.com/answers.json" '"answers"'
+          check "https://aifitnessapi.com/changes.xml"  "<item>"
+          check "https://aifitnessapi.com/robots.txt"   "Claude-SearchBot"
+          check "https://aifitnessapi.com/llms-full.txt" "AIFitnessAPI"
+
+          # Markdown mirrors at the llms.txt-conventional addresses, which are
+          # served by rewrites — the part most likely to break silently.
+          check "https://aifitnessapi.com/index.md"     "AIFitnessAPI"
+          check "https://aifitnessapi.com/devices.md"   "Connected Devices"
+          check "https://aifitnessapi.com/devices/ftms-fitness-machine-service.md" 'canonical: "https://'
+
+          # answers.json must stay in step with the site, not drift to an
+          # empty or truncated index.
+          count=$(curl -sL --max-time 25 https://aifitnessapi.com/answers.json \
+            | python3 -c "import json,sys; print(len(json.load(sys.stdin)['answers']))" || echo 0)
+          echo "answers.json records: $count"
+          if [ "$count" -lt 200 ]; then echo "answers.json too small"; fail=1; fi
+
+          # Discovery relations must survive in the HTML and the headers.
+          hdrs=$(curl -sSL -D - -o /dev/null --max-time 25 \
+            https://aifitnessapi.com/devices/ftms-fitness-machine-service || true)
+          echo "$hdrs" | grep -qi 'rel="alternate"' || { echo "missing Link rel=alternate"; fail=1; }
+          echo "$hdrs" | grep -qi 'rel="describedby"' || { echo "missing Link rel=describedby"; fail=1; }
           exit $fail
 
       - name: Open or update site-down issue
@@ -54,12 +109,12 @@ jobs:
               state: "open", labels: "site-down",
             });
             const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
-            if (open.length === 0) {
-              await github.rest.issues.create({
-                owner: context.repo.owner, repo: context.repo.repo,
-                title: "🔴 aifitnessapi.com is DOWN — uptime check failed",
-                labels: ["site-down"],
-                body: [
+            const coreDown = "${{ steps.core.outcome }}" === "failure";
+            const title = coreDown
+              ? "🔴 aifitnessapi.com is DOWN — uptime check failed"
+              : "🟠 aifitnessapi.com is up, but GEO surfaces are broken";
+            const body = coreDown
+              ? [
                   "The scheduled uptime probe failed. Most likely causes, in order:",
                   "",
                   "1. **Vercel domain detached** — Vercel dashboard → the aifitnessapi project → Settings → Domains: `aifitnessapi.com` must be listed and assigned to Production (no custom branch); `www.aifitnessapi.com` should redirect to it.",
@@ -67,7 +122,26 @@ jobs:
                   "3. **Failed deploy of a new commit** — open the newest deployment's build logs.",
                   "",
                   `Failing run: ${runUrl}`,
-                ].join("\n"),
+                ].join("\n")
+              : [
+                  "Pages are serving, but one or more machine-readable surfaces failed (see the **Probe GEO surfaces** step for which).",
+                  "",
+                  "These are invisible to humans, so nothing else would catch it. Likely causes:",
+                  "",
+                  "1. **A `.md` address 404s** — the rewrites in `next.config.ts` map `/<cluster>/<slug>.md` onto the `/md/*` generator. A new cluster must be added to the `CLUSTERS` list there (`npm run qa` gates this locally).",
+                  "2. **A route stopped building** — `answers.json`, `changes.xml`, `llms.txt` or `robots.txt` missing from the deploy.",
+                  "3. **Link headers dropped** — the `headers()` block in `next.config.ts`.",
+                  "",
+                  "Rules and rationale: `ops/GEO.md`.",
+                  "",
+                  `Failing run: ${runUrl}`,
+                ].join("\n");
+            if (open.length === 0) {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title,
+                labels: ["site-down"],
+                body,
               });
             } else {
               await github.rest.issues.createComment({
