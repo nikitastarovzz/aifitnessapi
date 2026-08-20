@@ -188,23 +188,59 @@ if (fs.existsSync(matrixPath)) {
   const readBody = (p) => (fs.existsSync(p) ? fs.readFileSync(p, "utf8") : null);
   const llms = readBody(".next/server/app/llms.txt.body");
   const robotsTxt = readBody(".next/server/app/robots.txt.body");
+  const answersRaw = readBody(".next/server/app/answers.json.body");
+  const changesFeed = readBody(".next/server/app/changes.xml.body");
 
   // Which top-level dirs are clusters? Exactly those mirrored under /md.
   const mdRoot = ".next/server/app/md";
   const clusterTops = fs.existsSync(mdRoot)
-    ? fs.readdirSync(mdRoot, { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name)
+    ? fs
+        .readdirSync(mdRoot, { withFileTypes: true })
+        .filter((e) => e.isDirectory() && !e.name.startsWith("["))
+        .map((e) => e.name)
     : [];
   if (clusterTops.length === 0) problems.push("GEO-NO-MD-MIRRORS  /md build output missing entirely");
 
-  let mirrors = 0;
+  const mirrorFiles = [];
   for (const top of clusterTops) {
-    for (const f of fs.readdirSync(path.join(mdRoot, top))) if (f.endsWith(".body")) mirrors++;
+    for (const f of fs.readdirSync(path.join(mdRoot, top))) {
+      if (f.endsWith(".body")) mirrorFiles.push(path.join(mdRoot, top, f));
+    }
   }
+  const hubMirrors = fs.existsSync(mdRoot)
+    ? fs.readdirSync(mdRoot).filter((f) => f.endsWith(".body"))
+    : [];
   const spokes = htmls
     .map(routeOf)
     .filter((r) => { const seg = r.split("/").filter(Boolean); return seg.length === 2 && clusterTops.includes(seg[0]); });
-  if (mirrors !== spokes.length) {
-    problems.push(`GEO-MIRROR-COUNT  ${mirrors} /md mirrors vs ${spokes.length} spoke pages — every spoke needs its markdown mirror`);
+  if (mirrorFiles.length !== spokes.length) {
+    problems.push(`GEO-MIRROR-COUNT  ${mirrorFiles.length} /md spoke mirrors vs ${spokes.length} spoke pages — every spoke needs its markdown mirror`);
+  }
+  // One markdown index per cluster, plus the site index.
+  const expectedHubMirrors = clusterTops.length + 1;
+  if (hubMirrors.length !== expectedHubMirrors) {
+    problems.push(`GEO-HUB-MIRRORS  ${hubMirrors.length} cluster/index markdown mirrors, expected ${expectedHubMirrors} (one per cluster + /index.md)`);
+  }
+
+  // Every markdown mirror must open with YAML front matter carrying the
+  // canonical URL — that header is what a parser reads instead of prose.
+  for (const f of mirrorFiles) {
+    const body = fs.readFileSync(f, "utf8");
+    if (!body.startsWith("---\n")) {
+      problems.push(`GEO-MD-FRONTMATTER  ${f.replace(mdRoot + "/", "")} does not start with YAML front matter`);
+    } else if (!/^canonical: "https:\/\//m.test(body)) {
+      problems.push(`GEO-MD-CANONICAL  ${f.replace(mdRoot + "/", "")} front matter has no canonical URL`);
+    }
+  }
+
+  // next.config's rewrite list is a hand-maintained copy of the cluster set
+  // (it cannot import the TS data modules). Assert it matches reality, or the
+  // spec-conventional /<cluster>/<slug>.md addresses silently 404.
+  const nextConfig = fs.existsSync("next.config.ts") ? fs.readFileSync("next.config.ts", "utf8") : "";
+  for (const c of clusterTops) {
+    if (!new RegExp(`"${c}"`).test(nextConfig)) {
+      problems.push(`GEO-MD-REWRITE  cluster "${c}" missing from next.config CLUSTERS — /${c}/<slug>.md will 404`);
+    }
   }
 
   if (llms === null) problems.push("GEO-NO-LLMS  llms.txt missing from build output");
@@ -212,24 +248,78 @@ if (fs.existsSync(matrixPath)) {
     for (const r of spokes) {
       if (!llms.includes(`aifitnessapi.com${r})`)) problems.push(`GEO-LLMS-MISSING  ${r} not listed in llms.txt`);
     }
+    for (const surface of ["/answers.json", "/changes.xml", "/llms-full.txt"]) {
+      if (!llms.includes(surface)) problems.push(`GEO-LLMS-SURFACE  ${surface} not advertised in llms.txt`);
+    }
   }
 
   if (robotsTxt === null) problems.push("GEO-NO-ROBOTS  robots.txt missing from build output");
   else {
-    for (const ua of ["GPTBot", "ClaudeBot", "PerplexityBot", "Google-Extended"]) {
+    const required = [
+      "GPTBot", "OAI-SearchBot", "ChatGPT-User",
+      "ClaudeBot", "Claude-User", "Claude-SearchBot",
+      "PerplexityBot", "Google-Extended", "Applebot-Extended", "CCBot",
+    ];
+    for (const ua of required) {
       if (!robotsTxt.includes(ua)) problems.push(`GEO-ROBOTS  ${ua} not explicitly allowed in robots.txt`);
     }
+    for (const surface of ["/llms.txt", "/answers.json", "/changes.xml"]) {
+      if (!robotsTxt.includes(surface)) problems.push(`GEO-ROBOTS-SURFACE  ${surface} not advertised in robots.txt`);
+    }
   }
+
+  // The structured answer index: one record per spoke, each with the fields a
+  // citing agent needs.
+  if (answersRaw === null) problems.push("GEO-NO-ANSWERS  answers.json missing from build output");
+  else {
+    let parsed = null;
+    try { parsed = JSON.parse(answersRaw); } catch { problems.push("GEO-ANSWERS-INVALID  answers.json is not valid JSON"); }
+    if (parsed) {
+      if (!Array.isArray(parsed.answers) || parsed.answers.length !== spokes.length) {
+        problems.push(`GEO-ANSWERS-COUNT  answers.json has ${parsed.answers?.length ?? 0} records vs ${spokes.length} spokes`);
+      }
+      const bad = (parsed.answers ?? []).filter(
+        (a) => !a.question || !a.answer || !a.url || !a.markdown || !a.last_reviewed,
+      );
+      if (bad.length) problems.push(`GEO-ANSWERS-FIELDS  ${bad.length} answers.json records missing required fields`);
+    }
+  }
+
+  if (changesFeed === null) problems.push("GEO-NO-CHANGES-FEED  changes.xml missing from build output");
+  else if (!changesFeed.includes("<item>")) problems.push("GEO-CHANGES-FEED-EMPTY  changes.xml has no items");
 
   for (const h of htmls) {
     const r = routeOf(h);
     const seg = r.split("/").filter(Boolean);
-    if (seg.length !== 2 || !clusterTops.includes(seg[0])) continue;
+    const isSpoke = seg.length === 2 && clusterTops.includes(seg[0]);
+    const isHub = seg.length === 1 && clusterTops.includes(seg[0]);
+    if (!isSpoke && !isHub) continue;
     const html = fs.readFileSync(h, "utf8");
+
+    // Discovery: the markdown mirror and the llms.txt that documents it.
+    if (!/rel="alternate"[^>]*type="text\/markdown"|type="text\/markdown"[^>]*rel="alternate"/.test(html)) {
+      problems.push(`GEO-NO-MD-ALT  ${r} has no rel=alternate text/markdown link`);
+    }
+    if (!html.includes('rel="describedby"')) problems.push(`GEO-NO-DESCRIBEDBY  ${r}`);
+
+    if (isHub) {
+      if (!html.includes('"CollectionPage"')) problems.push(`GEO-NO-COLLECTIONPAGE  ${r} hub has no CollectionPage/ItemList`);
+      continue;
+    }
     if (!html.includes('"FAQPage"')) problems.push(`GEO-NO-FAQPAGE  ${r}`);
     if (!html.includes("speakable")) problems.push(`GEO-NO-SPEAKABLE ${r}`);
+    if (!html.includes('"TechArticle"')) problems.push(`GEO-NO-TECHARTICLE  ${r}`);
+    // Individually addressable answers — an assistant should be able to deep
+    // link the exact FAQ it quoted.
+    if (html.includes('"FAQPage"') && !html.includes('id="faq-1"')) {
+      problems.push(`GEO-NO-FAQ-ANCHOR  ${r} FAQ answers are not individually addressable`);
+    }
   }
-  console.log(`GEO: ${mirrors} md mirrors / ${spokes.length} spokes; llms.txt ${llms ? "present" : "MISSING"}; AI crawler allows ${robotsTxt ? "present" : "MISSING"}.`);
+  console.log(
+    `GEO: ${mirrorFiles.length} spoke + ${hubMirrors.length} index markdown mirrors; ` +
+      `llms.txt ${llms ? "ok" : "MISSING"}; answers.json ${answersRaw ? "ok" : "MISSING"}; ` +
+      `changes.xml ${changesFeed ? "ok" : "MISSING"}; crawler allows ${robotsTxt ? "ok" : "MISSING"}.`,
+  );
 }
 
 // ── First-party disclosure gate (ops/GEO.md). KinesteX funds this site; any

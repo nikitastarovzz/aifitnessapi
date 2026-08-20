@@ -5,6 +5,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterCta from "@/components/ClusterCta";
 import ClusterDisclaimer from "@/components/ClusterDisclaimer";
 import ClusterHero from "@/components/ClusterHero";
+import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
@@ -96,22 +97,12 @@ export default function DevicesPillar() {
       acceptedAnswer: { "@type": "Answer", text: f.a },
     })),
   };
-  const itemListJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    itemListElement: released.map((e, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      name: e.h1,
-      url: absoluteUrl(`${DEVICES_PATH}/${e.slug}`),
-    })),
-  };
 
   return (
     <Container className="py-14">
+      <HubJsonLd basePath="/devices" description={String(metadata.description)} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
 
       <div className="mx-auto max-w-2xl">
         <Breadcrumbs trail={[{ name: "Home", path: "/" }, { name: "Connected Devices", path: DEVICES_PATH }]} />

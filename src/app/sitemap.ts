@@ -19,6 +19,8 @@ import { releasedArchitecture, ARCHITECTURE_PATH } from "@/data/architecture";
 import { releasedTesting, TEST_PATH } from "@/data/testing";
 import { releasedCookbook, COOKBOOK_PATH } from "@/data/cookbook";
 import { releasedDevices, DEVICES_PATH } from "@/data/devices";
+import { clusterMap } from "@/lib/clusterRegistry";
+import { changesSorted } from "@/data/changes";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
@@ -211,8 +213,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  // Freshness for the non-spoke routes: a hub is as fresh as its newest
+  // page, and the home/index surfaces are as fresh as the newest page on the
+  // site. Without this, every hub reports no lastmod and looks static to
+  // anything that schedules recrawls by change rate.
+  const map = clusterMap();
+  const newestIn = (base: string) =>
+    map[base]?.map((e) => e.updated).sort().at(-1);
+  const newestAll = Object.values(map)
+    .flatMap((l) => l.map((e) => e.updated))
+    .sort()
+    .at(-1);
+  const newestChange = changesSorted()
+    .map((c) => c.verifiedOn)
+    .sort()
+    .at(-1);
+
+  const dated: MetadataRoute.Sitemap = staticRoutes.map((r) => {
+    const path = r.url.replace(absoluteUrl(""), "") || "/";
+    const stamp =
+      newestIn(path) ??
+      (path === "/changes" ? newestChange : undefined) ??
+      (["/", "/site-index", "/blog"].includes(path) ? newestAll : undefined);
+    return stamp ? { ...r, lastModified: new Date(stamp) } : r;
+  });
+
   return [
-    ...staticRoutes,
+    ...dated,
     ...spokeRoutes,
     ...guideRoutes,
     ...buildRoutes,

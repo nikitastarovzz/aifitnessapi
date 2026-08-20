@@ -26,7 +26,13 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "/",
-    types: { "application/rss+xml": absoluteUrl("/feed.xml") },
+    types: {
+      "application/rss+xml": [
+        { url: absoluteUrl("/feed.xml"), title: `${site.name} — blog` },
+        { url: absoluteUrl("/changes.xml"), title: `${site.name} — API changes & deadlines` },
+      ],
+      "text/markdown": absoluteUrl("/index.md"),
+    },
   },
   openGraph: {
     type: "website",
@@ -76,6 +82,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex min-h-screen flex-col">
+        {/* Machine-readable surfaces. `describedby` points at the llms.txt
+            that documents every convention this site follows; React hoists
+            these into <head>. */}
+        <link rel="describedby" type="text/plain" href={absoluteUrl("/llms.txt")} />
+        <link
+          rel="alternate"
+          type="application/json"
+          href={absoluteUrl("/answers.json")}
+          title="Structured answer index"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(graphJsonLd) }}

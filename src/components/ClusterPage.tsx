@@ -7,7 +7,7 @@ import ClusterHero from "@/components/ClusterHero";
 import { Mdx } from "@/components/mdx";
 import { formatDate } from "@/lib/posts";
 import { site, absoluteUrl } from "@/lib/site";
-import { orgRef } from "@/lib/schema";
+import { spokeGraph, markdownUrl } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { clusterNeighbors } from "@/lib/clusterRegistry";
 import type { ClusterEntry, ClusterConfig } from "@/lib/cluster";
@@ -30,22 +30,11 @@ export default function ClusterPage({
   const url = absoluteUrl(`${basePath}/${entry.slug}`);
   const capsuleId = "answer";
 
-  const articleJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: entry.h1,
-    description: entry.metaDescription,
-    datePublished: entry.updated,
-    dateModified: entry.updated,
-    author: orgRef(),
-    publisher: orgRef(),
-    mainEntityOfPage: { "@type": "WebPage", "@id": url },
-    url,
-    speakable: {
-      "@type": "SpeakableSpecification",
-      cssSelector: [`#${capsuleId}`],
-    },
-  };
+  const mdUrl = markdownUrl(`${basePath}/${entry.slug}`);
+
+  // TechArticle + WebPage graph (review metadata, glossary `about` links,
+  // citations, markdown encoding). Built centrally so every spoke agrees.
+  const graphJsonLd = spokeGraph({ entry, basePath, hubLabel, capsuleId });
 
   // Emit HowTo alongside Article for step-based how-to pages (§7).
   const howToJsonLd = entry.steps?.length
@@ -63,23 +52,32 @@ export default function ClusterPage({
       }
     : null;
 
+  // Each FAQ gets a stable anchor so an assistant can deep-link the exact
+  // answer it quoted, rather than the top of a long page.
+  const faqId = (i: number) => `faq-${i + 1}`;
   const faqJsonLd = entry.faqs.length
     ? {
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        mainEntity: entry.faqs.map((f) => ({
+        mainEntity: entry.faqs.map((f, i) => ({
           "@type": "Question",
+          "@id": `${url}#${faqId(i)}`,
+          url: `${url}#${faqId(i)}`,
           name: f.q,
-          acceptedAnswer: { "@type": "Answer", text: f.a },
+          acceptedAnswer: { "@type": "Answer", text: f.a, url: `${url}#${faqId(i)}` },
         })),
       }
     : null;
 
   return (
     <Container className="py-14">
+      {/* Markdown mirror of this page, discoverable per the llms.txt
+          convention. React hoists these into <head>. */}
+      <link rel="alternate" type="text/markdown" href={mdUrl} />
+      <link rel="describedby" type="text/plain" href={absoluteUrl("/llms.txt")} />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(graphJsonLd) }}
       />
       {howToJsonLd && (
         <script
@@ -146,8 +144,8 @@ export default function ClusterPage({
               Frequently asked questions
             </h2>
             <dl className="mt-6 divide-y divide-[var(--border)]">
-              {entry.faqs.map((f) => (
-                <div key={f.q} className="py-5">
+              {entry.faqs.map((f, i) => (
+                <div key={f.q} id={faqId(i)} className="scroll-mt-24 py-5">
                   <dt className="font-semibold text-[var(--fg)]">{f.q}</dt>
                   <dd className="mt-2 text-[var(--muted)]">{f.a}</dd>
                 </div>

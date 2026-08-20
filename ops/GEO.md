@@ -20,18 +20,45 @@ as the anti-fabrication rules.
 3. **One question, one page, sitewide.** The FAQ-uniqueness gate exists so we
    never compete with ourselves for an answer. The same discipline applies to
    pages: before adding one, confirm no existing page owns the question.
-4. **Machine-clean access.** Three surfaces, all generated from the same data
+4. **Machine-clean access.** Five surfaces, all generated from the same data
    modules as the HTML so they cannot drift:
-   - `/llms.txt` — the map: every page with its "best cited for" query.
+   - `/llms.txt` — the map: every page with its "best cited for" query, its
+     markdown mirror, and the site's conventions.
    - `/llms-full.txt` — capsules + FAQs inline, for direct answering.
-   - `/md/<cluster>/<slug>` — full-article markdown mirror with a citation
-     header (canonical URL, review date, cite-as line). HTML stays canonical.
-5. **Explicit crawler welcome.** `robots.ts` allows GPTBot, OAI-SearchBot,
-   ChatGPT-User, ClaudeBot, Claude-User, PerplexityBot, Google-Extended,
-   Applebot-Extended, CCBot and peers by name.
-6. **Entity coherence.** One Organization `@id` referenced from every page's
-   author/publisher; Article/FAQPage/HowTo/Dataset/DefinedTermSet JSON-LD by
-   page type; BreadcrumbList exactly once per page.
+   - **`<page-url>.md`** — the markdown mirror at the address the llms.txt
+     proposal specifies (append `.md`; `/index.md` and `/<cluster>.md` for
+     directory URLs). Served by the `/md/*` generator via rewrites, so there
+     is one generator and two addresses. Every mirror opens with YAML front
+     matter (canonical, primary_query, last_reviewed, publisher, cite_as).
+   - `/answers.json` — the structured index: every question the site owns with
+     its answer, canonical URL, markdown URL, review date, `first_party` flag,
+     and a deep link per FAQ answer. The surface for agents that want data
+     rather than prose.
+   - `/changes.xml` — RSS for the dated ecosystem record, graded confirmed vs
+     reported. The one thing here with a real reason to be polled.
+5. **Explicit crawler welcome.** `src/app/robots.txt/route.ts` allows ~58
+   agents by name — assistant fetchers, search indexers, retrieval providers
+   and the training crawlers behind them — drawn from the maintained
+   ai.robots.txt registry and filtered to those that plausibly produce a
+   citation. It is a hand-rendered route rather than a metadata object so it
+   can carry comments, and those comments advertise every machine surface
+   above: robots.txt is the first file a crawler fetches, so it is where the
+   conventions get documented.
+6. **Entity coherence.** One Organization `@id` (carrying `knowsAbout` and
+   `publishingPrinciples` → /methodology) referenced from every page's
+   author/publisher. Spokes emit a TechArticle + WebPage graph: review
+   metadata (`lastReviewed`, `reviewedBy`) sits on the WebPage because that is
+   the property's declared domain, and the glossary is a real graph — a page
+   that is the canonical explanation of a term emits `about` pointing at that
+   term's stable DefinedTerm `@id`. Hubs emit CollectionPage + ItemList so one
+   fetch reveals a whole cluster. BreadcrumbList exactly once per page.
+7. **Addressable answers.** Every FAQ answer has an `id="faq-N"` anchor, and
+   the FAQPage `Question`/`Answer` nodes carry that deep link — an assistant
+   can cite the exact answer it quoted rather than the top of a long page.
+8. **Honest structured data.** Vendor/standards docs an entry links become
+   `citation`; repositories and tools become `mentions`. We cannot tell
+   evidence from a tool recommendation by URL alone, and inflating `citation`
+   is the machine-readable version of padding a bibliography.
 
 ## Rules for future changes
 
@@ -51,7 +78,9 @@ as the anti-fabrication rules.
 - keep capsule-above-body rendering and the speakable selector;
 - emit the JSON-LD set appropriate to its type, BreadcrumbList once;
 - extend `clusterRegistry` if it introduces a cluster (the registry feeds
-  /md, prev/next and search).
+  /md, prev/next, search, answers.json and the hub CollectionPage);
+- add the cluster to the `CLUSTERS` list in `next.config.ts`, or its
+  `.md` addresses 404 — a GEO gate asserts the two stay in sync.
 
 **First-party pages (KinesteX funds this site) — permanent rules:**
 - Any page that substantively features KinesteX (roundup sections, vs. pages,
@@ -92,11 +121,22 @@ Direct LLM-citation telemetry barely exists. Proxies we use:
 - referrers from chat surfaces when Vercel Analytics is checked by hand.
 Do not invent citation metrics; report the proxies as proxies.
 
-## Current state (2026-08-02)
+## Current state (2026-08-14)
 
-Shipped: llms.txt + llms-full.txt + 169 /md mirrors + explicit crawler
-allows + capsules/FAQs/JSON-LD sitewide + 6 GEO gates in qa.mjs.
-Deliberately not done: per-page `<link rel="alternate" type="text/markdown">`
-tags (16 route files to touch for marginal gain — the consumers read
-llms.txt, which announces the mirror convention); IndexNow for LLM crawlers
-(no such mechanism exists — do not cargo-cult one).
+Shipped: llms.txt (spec-shaped) + llms-full.txt + answers.json + changes.xml
++ 214 spoke and 19 index markdown mirrors, addressable both at `/md/*` and at
+`<page-url>.md` + `rel="alternate"`/`rel="describedby"` in HTML and in HTTP
+`Link:` headers + ~58 named crawler allows + TechArticle/WebPage/CollectionPage/
+DefinedTerm graph + per-answer anchors + sitemap `lastmod` on hubs and indexes,
+all held by GEO gates in qa.mjs.
+
+Reversed earlier decision: `<link rel="alternate" type="text/markdown">` was
+previously skipped as "16 route files for marginal gain". The llms.txt
+proposal names that relation (plus `rel="describedby"`) as *the* discovery
+mechanism, and it turned out to be one edit in the shared template rather than
+16 — so it shipped. Recorded here because the old note said otherwise.
+
+Still deliberately not done: IndexNow for LLM crawlers (no such mechanism
+exists — do not cargo-cult one); per-page `citation` for prose-attributed
+facts (our house style attributes in prose, which is not machine-extractable
+without guessing, and guessing is worse than omitting).
