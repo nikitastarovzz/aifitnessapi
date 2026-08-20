@@ -14,6 +14,9 @@ import { markdownUrl } from "@/lib/schema";
  * to read prose.
  */
 export const dynamic = "force-static";
+// Unknown paths must 404 outright rather than invoking the handler and being
+// cached as a rendered body — /md is a mirror of what exists, not a catch-all.
+export const dynamicParams = false;
 
 export function generateStaticParams(): { path: string[] }[] {
   const map = clusterMap();
