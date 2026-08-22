@@ -22,6 +22,8 @@ const MAIN = [
   { href: "/matrix", label: "HealthKit ↔ Health Connect type reference" },
   { href: "/day-boundaries", label: "Why “today’s steps” is a bug (live demo)" },
   { href: "/changes", label: "Changes & deadlines tracker" },
+  { href: "/alerts", label: "API change alerts — watch what you depend on" },
+  { href: "/digest", label: "Monthly digest archive" },
   { href: "/state-of-fitness-apis-2026", label: "The State of Fitness APIs 2026" },
   { href: "/ai-fitness-app", label: "How to build an AI fitness app" },
   { href: "/no-code-fitness-app", label: "Build a fitness app with no code, just APIs" },

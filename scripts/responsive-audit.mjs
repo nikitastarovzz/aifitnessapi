@@ -27,7 +27,9 @@ const PAGES = ["/", "/devices", "/devices/ftms-fitness-machine-service", "/matri
   "/no-code-fitness-app", "/state-of-fitness-apis-2026", "/fitbit-api-shutdown",
   "/google-fit-shutdown", "/cookbook", "/cookbook/refresh-rotation",
   "/compare/oura-vs-whoop", "/integrate/healthkit", "/signup", "/glossary",
-  "/site-index", "/blog", "/about", "/methodology", "/privacy", "/not-a-real-page"];
+  "/site-index", "/blog", "/about", "/methodology", "/privacy",
+  "/apis", "/apis/fitbit", "/apis/mediapipe", "/alerts", "/digest", "/digest/2026-08",
+  "/search", "/not-a-real-page"];
 
 const exe = process.env.PLAYWRIGHT_CHROMIUM;
 const browser = await chromium.launch(exe ? { executablePath: exe } : {});

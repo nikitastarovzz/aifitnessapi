@@ -180,6 +180,22 @@ export default async function ApiPage({ params }: { params: Promise<Params> }) {
 
         <PageActions path={path} url={url} title={api.label} updated={UPDATED} markdown={false} />
 
+        <div className="mt-6 rounded-2xl border border-brand-400/30 bg-brand-500/5 p-5">
+          <p className="text-sm font-semibold text-[var(--fg)]">
+            Depending on {api.short}?
+          </p>
+          <p className="mt-1 text-sm text-[var(--muted)]">
+            Get an email when the changes tracker gains a dated entry naming it — a
+            deprecation, a deadline, a terms change. Nothing else.
+          </p>
+          <Link
+            href={`/alerts?watch=${api.id}`}
+            className="mt-3 inline-block rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-500"
+          >
+            Watch {api.short}
+          </Link>
+        </div>
+
         <section className="mt-10">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">
             What we have verified

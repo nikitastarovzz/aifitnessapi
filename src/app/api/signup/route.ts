@@ -7,6 +7,7 @@ import {
   putSignup,
 } from "@/lib/firestore";
 import { emailConfigured, sendEmail, welcomeEmail } from "@/lib/email";
+import { API_ENTRIES } from "@/data/apis";
 
 /**
  * Signup collection endpoint. One document per email (hash as doc ID), so a
@@ -47,6 +48,10 @@ const FIELDS_OF_WORK = new Set([
   "other",
 ]);
 
+/** Products someone can subscribe to change alerts for (/alerts). Validated
+ *  against the directory so a client cannot invent a watch target. */
+const WATCHABLE = new Set(API_ENTRIES.map((a) => a.id));
+
 const MAX = 200; // per-field length cap
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -59,6 +64,8 @@ type Body = {
   fieldOfWork?: string;
   position?: string;
   interests?: string[];
+  /** Product ids from the API directory, for change alerts. */
+  watching?: string[];
   interestNote?: string;
   source?: string;
   // spam guards
@@ -97,6 +104,9 @@ export async function POST(req: Request) {
   const interests = Array.isArray(body.interests)
     ? body.interests.filter((i) => INTERESTS.has(i)).slice(0, INTERESTS.size)
     : [];
+  const watching = Array.isArray(body.watching)
+    ? [...new Set(body.watching.filter((w) => WATCHABLE.has(w)))].slice(0, WATCHABLE.size)
+    : [];
   const fieldOfWork = FIELDS_OF_WORK.has(clean(body.fieldOfWork))
     ? clean(body.fieldOfWork)
     : "";
@@ -111,6 +121,7 @@ export async function POST(req: Request) {
     fieldOfWork,
     position: clean(body.position),
     interests,
+    watching,
     interestNote: clean(body.interestNote),
     source: clean(body.source) || "unknown",
     updatedAt: now,
@@ -128,6 +139,11 @@ export async function POST(req: Request) {
         }
         const prev = Array.isArray(existing.interests) ? existing.interests : [];
         record.interests = [...new Set([...prev, ...interests])];
+        // The watch list is the one field a person edits by resubmitting, so
+        // a non-empty submission replaces it outright — union would make
+        // "stop watching Fitbit" impossible. An empty one leaves it alone.
+        const prevWatch = Array.isArray(existing.watching) ? existing.watching : [];
+        record.watching = watching.length > 0 ? watching : prevWatch;
         // A resubmission that omits a field must not erase what the person
         // told us before — empty incoming loses to non-empty existing.
         for (const k of [

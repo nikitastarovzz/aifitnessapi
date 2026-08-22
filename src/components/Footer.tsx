@@ -98,6 +98,12 @@ export default function Footer() {
           <Link href="/changes" className="py-1 hover:text-[var(--fg)]">
             Changes &amp; Deadlines
           </Link>
+          <Link href="/alerts" className="py-1 hover:text-[var(--fg)]">
+            Change Alerts
+          </Link>
+          <Link href="/digest" className="py-1 hover:text-[var(--fg)]">
+            Monthly Digest
+          </Link>
           <Link href="/matrix" className="py-1 hover:text-[var(--fg)]">
             Type Reference
           </Link>

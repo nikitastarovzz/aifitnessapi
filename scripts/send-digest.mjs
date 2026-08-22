@@ -1,9 +1,18 @@
 /**
- * Newsletter digest sender.
+ * Newsletter digest and change-alert sender.
  *
  *   node scripts/send-digest.mjs drafts/digest.md --subject "What changed in fitness APIs"
+ *   node scripts/send-digest.mjs https://aifitnessapi.com/digest/2026-08/digest.md --subject "..."
  *   node scripts/send-digest.mjs drafts/motion.md --subject "..." --interest motion-tracking
+ *   node scripts/send-digest.mjs drafts/fitbit.md --subject "..." --watching fitbit
  *   ... --send                    # actually send; DRY RUN is the default
+ *
+ * `--interest` filters by a declared newsletter interest; `--watching`
+ * filters by a product on the reader's change-alert watch list (/alerts), so
+ * a Fitbit deprecation reaches the people who said they depend on Fitbit and
+ * nobody else. The published digest is fetchable by URL because the site
+ * serves each issue as plain text — sending the same document that is
+ * published beats maintaining a second copy of it.
  *
  * Reads recipients from Firestore (same FIREBASE_* env as the site, loaded
  * from .env.local), optionally filtered by declared interest, and sends the
@@ -31,13 +40,27 @@ const flag = (name) => {
 };
 const SUBJECT = flag("subject");
 const INTEREST = flag("interest");
+const WATCHING = flag("watching");
 const SEND = args.includes("--send");
 
 if (!file || !SUBJECT) {
-  console.error('Usage: node scripts/send-digest.mjs <file.md> --subject "..." [--interest <id>] [--send]');
+  console.error(
+    'Usage: node scripts/send-digest.mjs <file.md|url> --subject "..." [--interest <id>] [--watching <productId>] [--send]',
+  );
   process.exit(1);
 }
-const BODY = readFileSync(file, "utf8").trim() +
+const source = /^https?:\/\//.test(file)
+  ? await (async () => {
+      const r = await fetch(file);
+      if (!r.ok) {
+        console.error(`Could not fetch ${file}: ${r.status}`);
+        process.exit(1);
+      }
+      return r.text();
+    })()
+  : readFileSync(file, "utf8");
+
+const BODY = source.trim() +
   "\n\n—\nAIFitnessAPI · https://aifitnessapi.com\nUnsubscribe: reply \"unsubscribe\" and a human removes you.";
 
 const PID = process.env.FIREBASE_PROJECT_ID;
@@ -77,13 +100,19 @@ do {
     const first = f.firstName?.stringValue ?? "";
     const interests = (f.interests?.arrayValue?.values ?? []).map((v) => v.stringValue);
     if (!email) continue;
+    const watching = (f.watching?.arrayValue?.values ?? []).map((v) => v.stringValue);
     if (INTEREST && !interests.includes(INTEREST)) continue;
+    if (WATCHING && !watching.includes(WATCHING)) continue;
     recipients.push({ email, first });
   }
   pageToken = data.nextPageToken ?? "";
 } while (pageToken);
 
-console.log(`Recipients${INTEREST ? ` (interest: ${INTEREST})` : ""}: ${recipients.length}`);
+const filterNote = [
+  INTEREST ? `interest: ${INTEREST}` : "",
+  WATCHING ? `watching: ${WATCHING}` : "",
+].filter(Boolean).join(", ");
+console.log(`Recipients${filterNote ? ` (${filterNote})` : ""}: ${recipients.length}`);
 recipients.forEach((r) => console.log("  " + r.email));
 console.log(`\nSubject: ${SUBJECT}\n\n${BODY.slice(0, 600)}${BODY.length > 600 ? "\n…" : ""}\n`);
 

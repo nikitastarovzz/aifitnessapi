@@ -24,6 +24,7 @@ import { releasedWatchApps, WATCH_PATH } from "@/data/watchApps";
 import { clusterMap } from "@/lib/clusterRegistry";
 import { changesSorted } from "@/data/changes";
 import { API_ENTRIES, APIS_PATH } from "@/data/apis";
+import { digests, DIGEST_PATH } from "@/data/digest";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
@@ -87,6 +88,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl("/about"), changeFrequency: "monthly", priority: 0.5 },
     { url: absoluteUrl("/site-index"), changeFrequency: "monthly", priority: 0.3 },
     { url: absoluteUrl(APIS_PATH), changeFrequency: "weekly", priority: 0.9 },
+    { url: absoluteUrl("/alerts"), changeFrequency: "monthly", priority: 0.8 },
+    { url: absoluteUrl(DIGEST_PATH), changeFrequency: "monthly", priority: 0.7 },
   ];
 
   const spokeRoutes: MetadataRoute.Sitemap = spokes.map((e) => ({
@@ -272,6 +275,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const digestRoutes: MetadataRoute.Sitemap = digests().map((d) => ({
+    url: absoluteUrl(`${DIGEST_PATH}/${d.month}`),
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
   return [
     ...dated,
     ...spokeRoutes,
@@ -295,6 +304,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...engagementRoutes,
     ...watchRoutes,
     ...apiRoutes,
+    ...digestRoutes,
     ...postRoutes,
   ];
 }

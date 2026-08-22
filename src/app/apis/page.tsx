@@ -94,6 +94,10 @@ export default function ApiDirectory() {
 
         <div className="prose prose-neutral mt-8 max-w-none dark:prose-invert prose-a:text-brand-600 hover:prose-a:text-brand-500">
           <p>
+            Depending on one of these? <Link href="/alerts">Watch it for changes</Link> and
+            hear when a dated deprecation or terms change lands.
+          </p>
+          <p>
             Each entry is generated from the same provenance-tracked model behind the{" "}
             <Link href="/cost-planner">cost planner</Link> and the{" "}
             <Link href="/state-of-fitness-apis-2026">State of Fitness APIs 2026</Link> dataset,
