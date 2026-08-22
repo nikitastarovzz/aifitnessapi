@@ -25,6 +25,7 @@ import { clusterMap } from "@/lib/clusterRegistry";
 import { changesSorted } from "@/data/changes";
 import { API_ENTRIES, APIS_PATH } from "@/data/apis";
 import { digests, DIGEST_PATH } from "@/data/digest";
+import { releasedAccessibility, A11Y_PATH } from "@/data/accessibility";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
@@ -71,6 +72,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl(DEVICES_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl(ENGAGEMENT_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl(WATCH_PATH), changeFrequency: "weekly", priority: 0.8 },
+    { url: absoluteUrl(A11Y_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/privacy"), changeFrequency: "yearly", priority: 0.2 },
     { url: absoluteUrl("/google-fit-shutdown"), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/methodology"), changeFrequency: "yearly", priority: 0.4 },
@@ -225,6 +227,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly",
     priority: 0.7,
   }));
+  const a11yRoutes: MetadataRoute.Sitemap = releasedAccessibility().map((e) => ({
+    url: absoluteUrl(`${A11Y_PATH}/${e.slug}`),
+    lastModified: new Date(e.updated),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
   const watchRoutes: MetadataRoute.Sitemap = watchApps.map((e) => ({
     url: absoluteUrl(`${WATCH_PATH}/${e.slug}`),
     lastModified: new Date(e.updated),
@@ -306,6 +315,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...deviceRoutes,
     ...engagementRoutes,
     ...watchRoutes,
+    ...a11yRoutes,
     ...apiRoutes,
     ...digestRoutes,
     ...postRoutes,

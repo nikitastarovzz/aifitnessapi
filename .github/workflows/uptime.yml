@@ -85,6 +85,17 @@ jobs:
           check "https://aifitnessapi.com/devices.md"   "Connected Devices"
           check "https://aifitnessapi.com/devices/ftms-fitness-machine-service.md" 'canonical: "https://'
 
+          # Surfaces added 2026-08-22. Same reasoning: a feed, a dataset or the
+          # directory can 404 in production without a single human noticing.
+          check "https://aifitnessapi.com/apis"                    "API directory"
+          check "https://aifitnessapi.com/datasets"                "CC BY"
+          check "https://aifitnessapi.com/feeds/devices.xml"       "<item>"
+          check "https://aifitnessapi.com/feed.json"               "jsonfeed.org"
+          check "https://aifitnessapi.com/opensearch.xml"          "OpenSearchDescription"
+          check "https://aifitnessapi.com/manifest.webmanifest"    "start_url"
+          check "https://aifitnessapi.com/.well-known/security.txt" "Contact:"
+          check "https://aifitnessapi.com/datasets/fitness-api-changes-2026.json" '"items"'
+
           # answers.json must stay in step with the site, not drift to an
           # empty or truncated index.
           count=$(curl -sL --max-time 25 https://aifitnessapi.com/answers.json \

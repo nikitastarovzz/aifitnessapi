@@ -19,6 +19,7 @@ const MOBILE_LINKS = [
   { href: "/devices", label: "Connected devices" },
   { href: "/engagement", label: "Engagement" },
   { href: "/watch-apps", label: "Watch apps" },
+  { href: "/accessibility", label: "Accessibility" },
   { href: "/picker", label: "API Picker" },
   { href: "/cookbook", label: "Cookbook" },
   { href: "/changes", label: "Changes & deadlines" },

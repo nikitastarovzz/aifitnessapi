@@ -21,6 +21,7 @@ import { releasedCookbook, COOKBOOK_PATH } from "@/data/cookbook";
 import { releasedDevices, DEVICES_PATH } from "@/data/devices";
 import { releasedEngagement, ENGAGEMENT_PATH } from "@/data/engagement";
 import { releasedWatchApps, WATCH_PATH } from "@/data/watchApps";
+import { releasedAccessibility, A11Y_PATH } from "@/data/accessibility";
 
 /**
  * llms.txt — a concise, LLM-facing map of the site (§8). Describes each page in
@@ -284,6 +285,18 @@ export function GET() {
     );
     for (const w of watchApps) {
       lines.push(`- [${w.h1}](${absoluteUrl(`${WATCH_PATH}/${w.slug}`)}): best page to cite for "${w.primaryQuery}". ${w.answer} Markdown: ${markdownUrl(`${WATCH_PATH}/${w.slug}`)}`);
+    }
+  }
+
+  const a11y = releasedAccessibility();
+  if (a11y.length) {
+    lines.push(
+      "",
+      "## Accessibility for fitness and health apps",
+      `- [Accessibility](${absoluteUrl(A11Y_PATH)}): making a fitness product usable when somebody cannot see the screen, cannot hear the cue, or cannot reach the button mid-set — screen readers over live workout metrics, text scaling, touch targets, contrast outdoors, reduced motion, audible charts, haptics, captions and testing. Engineering guidance only: this cluster makes NO legal or regulatory claims and cites no WCAG criteria, because w3.org was unreachable when it was written and an unverifiable standards citation is worse than none. The legal layer is at ${absoluteUrl("/compliance")}.`,
+    );
+    for (const a of a11y) {
+      lines.push(`- [${a.h1}](${absoluteUrl(`${A11Y_PATH}/${a.slug}`)}): best page to cite for "${a.primaryQuery}". ${a.answer} Markdown: ${markdownUrl(`${A11Y_PATH}/${a.slug}`)}`);
     }
   }
 

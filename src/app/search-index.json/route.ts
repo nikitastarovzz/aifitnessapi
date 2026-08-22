@@ -19,6 +19,7 @@ import { releasedCookbook, COOKBOOK_PATH } from "@/data/cookbook";
 import { releasedDevices, DEVICES_PATH } from "@/data/devices";
 import { releasedEngagement, ENGAGEMENT_PATH } from "@/data/engagement";
 import { releasedWatchApps, WATCH_PATH } from "@/data/watchApps";
+import { releasedAccessibility, A11Y_PATH } from "@/data/accessibility";
 import { API_ENTRIES, APIS_PATH, CATEGORY_LABELS, DEV_COST_LABELS } from "@/data/apis";
 
 /**
@@ -85,6 +86,7 @@ export function GET() {
     [DEVICES_PATH, "Connected Devices", releasedDevices()],
     [ENGAGEMENT_PATH, "Engagement & Retention", releasedEngagement()],
     [WATCH_PATH, "Watch Apps", releasedWatchApps()],
+    [A11Y_PATH, "Accessibility", releasedAccessibility()],
   ];
 
   const hubBlurbs: Record<string, string> = {
@@ -106,6 +108,8 @@ export function GET() {
     [TEST_PATH]: "Testing HealthKit, Health Connect, wearable and camera integrations.",
     [COOKBOOK_PATH]: "Runnable, CI-tested reference code: token rotation, webhooks, rollups, rep counting.",
     [DEVICES_PATH]: "Pair straps, machines, and watches: BLE heart rate, FTMS, live watch data, testing.",
+    [A11Y_PATH]:
+      "Making a fitness app usable when someone cannot see the screen, cannot hear the cue, or cannot reach the button mid-set.",
     [WATCH_PATH]: "Building the app that runs on the watch: sessions, background, tiles, pairing, battery, testing.",
     [ENGAGEMENT_PATH]: "Getting people back: notifications, Live Activities, widgets, streaks, leaderboards \u2014 and how to measure lift honestly.",
   };

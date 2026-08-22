@@ -19,6 +19,7 @@ import { releasedCookbook, COOKBOOK_PATH } from "@/data/cookbook";
 import { releasedDevices, DEVICES_PATH } from "@/data/devices";
 import { releasedEngagement, ENGAGEMENT_PATH } from "@/data/engagement";
 import { releasedWatchApps, WATCH_PATH } from "@/data/watchApps";
+import { releasedAccessibility, A11Y_PATH } from "@/data/accessibility";
 import { FITNESS_APIS_CONFIG } from "@/data/fitnessApis";
 import { GUIDES_CONFIG } from "@/data/guides";
 import { BUILD_CONFIG } from "@/data/build";
@@ -39,6 +40,7 @@ import { COOKBOOK_CONFIG } from "@/data/cookbook";
 import { DEVICES_CONFIG } from "@/data/devices";
 import { ENGAGEMENT_CONFIG } from "@/data/engagement";
 import { WATCH_CONFIG } from "@/data/watchApps";
+import { A11Y_CONFIG } from "@/data/accessibility";
 
 /**
  * basePath → released entries, for anything that needs to see a cluster's
@@ -66,6 +68,7 @@ const REGISTRY: Record<string, () => ClusterEntry[]> = {
   [DEVICES_PATH]: releasedDevices,
   [ENGAGEMENT_PATH]: releasedEngagement,
   [WATCH_PATH]: releasedWatchApps,
+  [A11Y_PATH]: releasedAccessibility,
 };
 
 /** All clusters as basePath → released entries. */
@@ -114,6 +117,7 @@ export const CLUSTER_LABELS: Record<string, string> = Object.fromEntries(
     DEVICES_CONFIG,
     ENGAGEMENT_CONFIG,
     WATCH_CONFIG,
+    A11Y_CONFIG,
   ].map((c) => [c.basePath, c.hubLabel]),
 );
 

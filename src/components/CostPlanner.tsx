@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { track } from "@/lib/track";
 import {
@@ -95,6 +95,29 @@ function SourceLink({ item, event }: { item: CostItem; event: string }) {
 export default function CostPlanner() {
   const [picked, setPicked] = useState<string[]>([]);
   const [profile, setProfile] = useState<Profile>("solo");
+  const [copied, setCopied] = useState(false);
+
+  // A stack somebody has just modelled is a stack they want to send to whoever
+  // signs off on it, so the selection lives in the URL. Read from window
+  // rather than useSearchParams: this is a client-only concern and it keeps
+  // the page statically rendered.
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    const stack = (q.get("stack") ?? "").split(",").filter((id) => COST_ITEMS.some((i) => i.id === id));
+    if (stack.length) setPicked(stack);
+    const p = q.get("profile");
+    if (p === "solo" || p === "funded") setProfile(p);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const next = picked.length
+      ? `${window.location.pathname}?stack=${picked.join(",")}&profile=${profile}`
+      : window.location.pathname;
+    if (window.location.pathname + window.location.search !== next) {
+      window.history.replaceState(null, "", next);
+    }
+  }, [picked, profile]);
 
   const chosen = useMemo(
     () => COST_ITEMS.filter((i) => picked.includes(i.id)),
@@ -123,7 +146,19 @@ export default function CostPlanner() {
 
   function reset() {
     setPicked([]);
+    setCopied(false);
     track("cost-planner-reset", "cost-planner");
+  }
+
+  function copyLink() {
+    navigator.clipboard
+      .writeText(`${window.location.origin}/cost-planner?stack=${picked.join(",")}&profile=${profile}`)
+      .then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+        track("cost-planner-share", "cost-planner");
+      })
+      .catch(() => setCopied(false));
   }
 
   return (
@@ -411,13 +446,22 @@ export default function CostPlanner() {
               )}
             </section>
 
-            <button
-              type="button"
-              onClick={reset}
-              className="justify-self-start rounded-lg border border-[var(--border)] px-4 py-2 text-sm font-medium text-[var(--fg)] transition-colors hover:bg-[var(--bg)]"
-            >
-              ↺ Start over
-            </button>
+            <div className="flex flex-wrap gap-2">
+              <button
+                type="button"
+                onClick={reset}
+                className="rounded-lg border border-[var(--border)] px-4 py-2 text-sm font-medium text-[var(--fg)] transition-colors hover:bg-[var(--bg)]"
+              >
+                ↺ Start over
+              </button>
+              <button
+                type="button"
+                onClick={copyLink}
+                className="rounded-lg border border-[var(--border)] px-4 py-2 text-sm font-medium text-[var(--fg)] transition-colors hover:bg-[var(--bg)]"
+              >
+                {copied ? "Link copied" : "Copy link to this stack"}
+              </button>
+            </div>
           </div>
         )}
 

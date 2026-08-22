@@ -72,6 +72,11 @@ export default function Footer() {
           <Link href="/engagement" className="py-1 hover:text-[var(--fg)]">
             Engagement &amp; Retention
           </Link>
+          {has("/accessibility") && (
+            <Link href="/accessibility" className="py-1 hover:text-[var(--fg)]">
+              Accessibility
+            </Link>
+          )}
           {has("/watch-apps") && (
             <Link href="/watch-apps" className="py-1 hover:text-[var(--fg)]">
               Watch Apps

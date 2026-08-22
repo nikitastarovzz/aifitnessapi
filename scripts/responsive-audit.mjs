@@ -30,6 +30,7 @@ const PAGES = ["/", "/devices", "/devices/ftms-fitness-machine-service", "/matri
   "/site-index", "/blog", "/about", "/methodology", "/privacy",
   "/apis", "/apis/fitbit", "/apis/mediapipe", "/alerts", "/digest", "/digest/2026-08",
   "/search", "/compare-apis", "/datasets", "/badges", "/embed/matrix", "/embed/deadlines",
+  "/accessibility", "/accessibility/voiceover-live-workout-metrics",
   "/not-a-real-page"];
 
 const exe = process.env.PLAYWRIGHT_CHROMIUM;

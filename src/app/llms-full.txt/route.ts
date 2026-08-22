@@ -19,6 +19,7 @@ import { releasedCookbook, COOKBOOK_PATH } from "@/data/cookbook";
 import { releasedDevices, DEVICES_PATH } from "@/data/devices";
 import { releasedEngagement, ENGAGEMENT_PATH } from "@/data/engagement";
 import { releasedWatchApps, WATCH_PATH } from "@/data/watchApps";
+import { releasedAccessibility, A11Y_PATH } from "@/data/accessibility";
 
 /**
  * llms-full.txt — the fuller LLM-facing dump: each spoke's answer capsule and
@@ -368,6 +369,23 @@ export function GET() {
       out.push(`Primary query: ${w.primaryQuery}`, "", w.answer, "");
       if (w.faqs.length) {
         for (const f of w.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+        out.push("");
+      }
+    }
+  }
+
+  const a11y = releasedAccessibility();
+  if (a11y.length) {
+    out.push(`# Accessibility for fitness and health apps — ${absoluteUrl(A11Y_PATH)}`, "");
+    out.push(
+      "Making a fitness product usable when somebody cannot see the screen, cannot hear the cue, or cannot reach the button mid-set. Every platform claim is verified against Apple's or Google's own documentation. This cluster deliberately cites no WCAG criteria and makes no legal claims: w3.org was unreachable when it was written, and an unverifiable standards citation is worse than none.",
+      "",
+    );
+    for (const a of a11y) {
+      out.push(`## ${a.h1} — ${absoluteUrl(`${A11Y_PATH}/${a.slug}`)}`);
+      out.push(`Primary query: ${a.primaryQuery}`, "", a.answer, "");
+      if (a.faqs.length) {
+        for (const f of a.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
         out.push("");
       }
     }
