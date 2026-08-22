@@ -1,10 +1,15 @@
-name: Responsive layout
+name: Browser audits
 
-# Guards the thing a laptop never shows you: a page that scrolls sideways on a
-# phone. Renders every distinct template at thirteen viewports (320px through
-# 4K) in light and dark, and checks the phone navigation actually works.
-# Added 2026-08-20 after the header nav was found pushing every page 233px
-# wider than a phone viewport.
+# Guards the two things a laptop never shows you.
+#
+# Layout: a page that scrolls sideways on a phone. Renders every distinct
+# template at thirteen viewports (320px through 4K) in light and dark, and
+# checks the phone navigation actually works. Added 2026-08-20 after the
+# header nav was found pushing every page 233px wider than a phone viewport.
+#
+# Performance: a page that idles hot. Added 2026-08-22 after measurement
+# showed infinite decorative animation costing 6-9% of a CPU core on every
+# page, forever, which no page-load metric reports.
 
 on:
   push:
@@ -51,3 +56,9 @@ jobs:
         env:
           BASE_URL: http://localhost:3000
         run: npm run test:responsive
+
+      - name: Audit performance budget
+        if: always()
+        env:
+          BASE_URL: http://localhost:3000
+        run: npm run test:perf

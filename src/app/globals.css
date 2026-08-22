@@ -65,7 +65,17 @@ body {
 /* ——— Motion system ———————————————————————————————————————————————
    Rules: transform/opacity only (compositor-friendly), nothing hidden in
    server HTML (crawlers and no-JS users always get full content), and one
-   global reduced-motion kill switch at the bottom. */
+   global reduced-motion kill switch at the bottom.
+
+   AMBIENT ANIMATION IS FINITE. Measured after the first version shipped:
+   infinite decorative animation cost 5.7-9.5% of a CPU core on every page,
+   forever, including while scrolled far past the element and on battery.
+   The flowing-dash effect animates stroke-dashoffset, which repaints rather
+   than compositing, so it never idles. Decoration does not need to run
+   forever — it needs to be alive when someone arrives. Each ambient
+   animation now plays a few cycles and stops, which is visually identical
+   for the seconds anyone actually looks at a hero and costs nothing after.
+   `animation-fill-mode: forwards` holds the final frame so nothing jumps. */
 
 /* Scroll reveal: the Reveal component adds .reveal-pending only when JS is
    running AND the element is below the fold; .reveal-in transitions it in. */
@@ -86,6 +96,8 @@ body {
   0%, 55% { opacity: 1; }
   56%, 100% { opacity: 0; }
 }
+/* The caret belongs to the terminal, which pauses itself when hidden or
+   scrolled away; the animation is cheap (opacity on one small element). */
 .caret-blink {
   animation: caret-blink 1.1s steps(1) infinite;
 }
@@ -96,7 +108,7 @@ body {
 }
 .hero-flow line {
   stroke-dasharray: 2 10;
-  animation: edge-flow 5.5s linear infinite;
+  animation: edge-flow 5.5s linear 4 forwards;
 }
 /* …and hub nodes breathing. transform-box makes scale() per-circle. */
 @keyframes node-pulse {
@@ -104,7 +116,7 @@ body {
   50% { transform: scale(1.45); }
 }
 .hero-hub {
-  animation: node-pulse 3.6s ease-in-out infinite;
+  animation: node-pulse 3.6s ease-in-out 6 forwards;
   transform-box: fill-box;
   transform-origin: center;
 }
@@ -116,7 +128,7 @@ body {
 }
 .gradient-pan {
   background-size: 180% 180%;
-  animation: gradient-pan 16s ease-in-out infinite;
+  animation: gradient-pan 16s ease-in-out 2 forwards;
 }
 
 /* Upcoming-deadline ping on the /changes timeline. */
@@ -125,7 +137,7 @@ body {
   75%, 100% { transform: scale(2.4); opacity: 0; }
 }
 .ping-slow {
-  animation: ping-slow 2.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+  animation: ping-slow 2.6s cubic-bezier(0, 0, 0.2, 1) 6 forwards;
 }
 
 /* Header nav: underline slides in from the left. */

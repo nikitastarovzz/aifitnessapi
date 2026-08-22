@@ -44,7 +44,11 @@ const TONE_CLASS: Record<Line["tone"], string> = {
   response: "text-emerald-300",
 };
 
-const CHAR_MS = 16;
+// Two characters per tick at a slower interval: the same apparent typing
+// speed for half the React renders. Each render re-renders the scene list,
+// so the update count is the cost, not the interval.
+const CHARS_PER_TICK = 2;
+const CHAR_MS = 28;
 const LINE_PAUSE_MS = 140;
 const SCENE_PAUSE_MS = 2600;
 
@@ -55,9 +59,24 @@ export default function ApiTerminal({ className = "" }: { className?: string }) 
   const [chars, setChars] = useState(SCENES[0][SCENES[0].length - 1].text.length);
   const [animating, setAnimating] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const box = useRef<HTMLDivElement>(null);
+  // Typing into a background tab or a scrolled-past hero is pure battery
+  // burn, so the loop idles instead of running when nobody can see it.
+  const visible = useRef(true);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const onVis = () => { visible.current = !document.hidden; };
+    document.addEventListener("visibilitychange", onVis);
+    let io: IntersectionObserver | null = null;
+    if (box.current && typeof IntersectionObserver !== "undefined") {
+      io = new IntersectionObserver(
+        ([e]) => { visible.current = e.isIntersecting && !document.hidden; },
+        { threshold: 0 },
+      );
+      io.observe(box.current);
+    }
 
     let s = 0;
     let l = 0;
@@ -68,9 +87,14 @@ export default function ApiTerminal({ className = "" }: { className?: string }) 
     setChars(0);
 
     const tick = () => {
+      if (!visible.current) {
+        // Cheap heartbeat while off-screen; no state updates, no renders.
+        timer.current = setTimeout(tick, 500);
+        return;
+      }
       const lines = SCENES[s];
       if (c < lines[l].text.length) {
-        c += 1;
+        c = Math.min(c + CHARS_PER_TICK, lines[l].text.length);
         setChars(c);
         timer.current = setTimeout(tick, CHAR_MS);
       } else if (l < lines.length - 1) {
@@ -94,6 +118,8 @@ export default function ApiTerminal({ className = "" }: { className?: string }) 
     timer.current = setTimeout(tick, 500);
     return () => {
       if (timer.current) clearTimeout(timer.current);
+      document.removeEventListener("visibilitychange", onVis);
+      io?.disconnect();
     };
   }, []);
 
@@ -101,6 +127,7 @@ export default function ApiTerminal({ className = "" }: { className?: string }) 
 
   return (
     <div
+      ref={box}
       aria-hidden
       data-terminal
       className={`overflow-hidden rounded-2xl border border-white/10 bg-[#0d1117] text-left shadow-2xl shadow-emerald-500/10 ${className}`}
