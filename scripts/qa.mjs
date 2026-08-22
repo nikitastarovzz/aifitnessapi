@@ -181,6 +181,50 @@ if (fs.existsSync(matrixPath)) {
   }
 }
 
+// ── Published artifacts: open datasets and the downloadable kit. These are
+// files rather than pages, so nothing else notices when one goes missing or a
+// generator writes an empty array — and a dataset that 404s on a page that
+// cites it is worse than never publishing one.
+{
+  const DATASETS = [
+    "fitness-apis-2026",
+    "health-data-type-matrix-2026",
+    "fitness-api-changes-2026",
+    "fitness-api-glossary-2026",
+  ];
+  for (const d of DATASETS) {
+    const j = `public/datasets/${d}.json`;
+    const c = `public/datasets/${d}.csv`;
+    if (!fs.existsSync(j)) { problems.push(`DATASET-MISSING  ${j}`); continue; }
+    if (!fs.existsSync(c)) problems.push(`DATASET-MISSING  ${c}`);
+    try {
+      const parsed = JSON.parse(fs.readFileSync(j, "utf8"));
+      const rows = parsed.items?.length ?? 0;
+      if (rows === 0) problems.push(`DATASET-EMPTY  ${d} has no items`);
+      if (!parsed.license) problems.push(`DATASET-NO-LICENCE  ${d}`);
+      // The CSV must carry the same number of data rows as the JSON.
+      const lines = fs.readFileSync(c, "utf8").trim().split("\n").length - 1;
+      if (lines !== rows) problems.push(`DATASET-CSV-ROWS  ${d}: ${lines} CSV rows vs ${rows} JSON items`);
+    } catch {
+      problems.push(`DATASET-INVALID  ${d}.json is not valid JSON`);
+    }
+  }
+
+  const KIT = [
+    "api-selection-checklist.md",
+    "launch-compliance-checklist.md",
+    "ble-fitness-uuid-cheat-sheet.md",
+    "watch-app-preflight-checklist.md",
+    "motion-sdk-scorecard.csv",
+    "fitness-apis-2026.csv",
+    "fitness-api-decision-kit.zip",
+  ];
+  for (const f of KIT) {
+    if (!fs.existsSync(`public/kit/${f}`)) problems.push(`KIT-MISSING  public/kit/${f}`);
+  }
+  console.log(`Artifacts: ${DATASETS.length} datasets, ${KIT.length} kit files.`);
+}
+
 // ── API directory. Its whole value is that it is derived: one page per
 // product in the cost model, each listing the pages that actually cover it.
 // A directory entry with no coverage is a thin page pretending to be an

@@ -3,7 +3,7 @@ import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { absoluteUrl } from "@/lib/site";
-import { GROUPS, termId } from "@/data/glossary";
+import { GROUPS, termId, termSlug } from "@/data/glossary";
 import PageSummary from "@/components/PageSummary";
 
 const PATH = "/glossary";
@@ -70,7 +70,11 @@ export default function GlossaryPage() {
               <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">{g.title}</h2>
               <dl className="mt-5 divide-y divide-[var(--border)]">
                 {g.terms.map((t) => (
-                  <div key={t.term} className="grid gap-1 py-4 sm:grid-cols-[minmax(0,14rem)_1fr] sm:gap-6">
+                  <div
+                    key={t.term}
+                    id={`term-${termSlug(t.term)}`}
+                    className="grid scroll-mt-24 gap-1 py-4 sm:grid-cols-[minmax(0,14rem)_1fr] sm:gap-6"
+                  >
                     <dt className="font-semibold text-[var(--fg)]">
                       <Link href={t.href} className="hover:text-brand-600">{t.term}</Link>
                     </dt>

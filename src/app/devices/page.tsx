@@ -4,6 +4,7 @@ import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterCta from "@/components/ClusterCta";
 import ClusterDisclaimer from "@/components/ClusterDisclaimer";
+import ClusterDownload from "@/components/ClusterDownload";
 import ClusterHero from "@/components/ClusterHero";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
@@ -176,6 +177,13 @@ export default function DevicesPillar() {
             ))}
           </dl>
         </section>
+
+        <ClusterDownload
+          title="Bluetooth fitness UUID cheat sheet"
+          blurb="Every service and characteristic identifier used across these guides, with the pages that explain each one. Compiled from the pages themselves — the build refuses to run if a name and its identifier are not next to each other in the prose."
+          href="/kit/ble-fitness-uuid-cheat-sheet.md"
+          filename="the cheat sheet"
+        />
 
         <ClusterDisclaimer updated={UPDATED} />
 

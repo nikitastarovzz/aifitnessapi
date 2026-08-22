@@ -80,14 +80,19 @@ export const GROUPS: Group[] = [
   },
 ];
 
-/** Stable, human-stable fragment id for a term (used as its JSON-LD @id). */
-export function termId(term: string): string {
-  const slug = term
+/** The fragment part of a term's stable id — also the element id on the
+ *  glossary page, so the anchor an assistant cites actually scrolls somewhere. */
+export function termSlug(term: string): string {
+  return term
     .toLowerCase()
     .replace(/\(.*?\)/g, " ")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
-  return `${absoluteUrl(GLOSSARY_PATH)}#term-${slug}`;
+}
+
+/** Stable, human-stable fragment id for a term (used as its JSON-LD @id). */
+export function termId(term: string): string {
+  return `${absoluteUrl(GLOSSARY_PATH)}#term-${termSlug(term)}`;
 }
 
 export const ALL_TERMS: Term[] = GROUPS.flatMap((g) => g.terms);

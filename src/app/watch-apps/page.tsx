@@ -5,6 +5,7 @@ import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterCta from "@/components/ClusterCta";
 import ClusterDisclaimer from "@/components/ClusterDisclaimer";
+import ClusterDownload from "@/components/ClusterDownload";
 import ClusterHero from "@/components/ClusterHero";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
@@ -184,6 +185,13 @@ export default function WatchAppsPillar() {
             ))}
           </dl>
         </section>
+
+        <ClusterDownload
+          title="Watch app pre-flight checklist"
+          blurb="The twelve decisions this section covers, each with the question it answers and the page that treats it properly. No battery, performance or accuracy numbers — same rule as the pages."
+          href="/kit/watch-app-preflight-checklist.md"
+          filename="the checklist"
+        />
 
         <ClusterDisclaimer updated={UPDATED} />
 

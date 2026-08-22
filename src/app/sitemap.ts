@@ -89,6 +89,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl("/site-index"), changeFrequency: "monthly", priority: 0.3 },
     { url: absoluteUrl(APIS_PATH), changeFrequency: "weekly", priority: 0.9 },
     { url: absoluteUrl("/alerts"), changeFrequency: "monthly", priority: 0.8 },
+    { url: absoluteUrl("/compare-apis"), changeFrequency: "monthly", priority: 0.7 },
+    { url: absoluteUrl("/datasets"), changeFrequency: "monthly", priority: 0.8 },
+    { url: absoluteUrl("/badges"), changeFrequency: "yearly", priority: 0.4 },
     { url: absoluteUrl(DIGEST_PATH), changeFrequency: "monthly", priority: 0.7 },
   ];
 

@@ -1,11 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
-import { Analytics } from "@vercel/analytics/react";
 import Footer from "@/components/Footer";
-import CtaTracker from "@/components/CtaTracker";
 import { site, absoluteUrl } from "@/lib/site";
-import WebVitals from "@/components/WebVitals";
+import SiteInstrumentation from "@/components/SiteInstrumentation";
 import { organizationNode, searchActionNode, ORG_ID, WEBSITE_ID } from "@/lib/schema";
 
 /**
@@ -123,7 +121,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(graphJsonLd) }}
         />
-        <CtaTracker />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-brand-600 focus:px-4 focus:py-2 focus:text-white"
@@ -135,8 +132,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <Analytics />
-        <WebVitals />
+        <SiteInstrumentation />
       </body>
     </html>
   );

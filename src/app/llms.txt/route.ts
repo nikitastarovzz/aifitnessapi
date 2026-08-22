@@ -297,6 +297,8 @@ export function GET() {
     "## Tools",
     `- [Fitness & health API directory](${absoluteUrl("/apis")}): one page per product (Fitbit, Garmin, Oura, WHOOP, Strava, Polar, HealthKit, Health Connect, Terra, Junction, Rook, Spike, Nutritionix, Edamam, USDA FoodData Central, Open Food Facts, ExerciseDB, wger, KinesteX, Sency, QuickPose, MediaPipe, MoveNet, Apple Vision) stating how it bills developers, what each end user must own, what approval gates launch, and every page here that covers it. No prices, by design.`,
     `- [Monthly digest archive](${absoluteUrl("/digest")}): one issue per month, generated from the changes tracker and the pages' own review dates; each issue also served as plain text at /digest/<month>/digest.md.`,
+    `- [Open datasets](${absoluteUrl("/datasets")}): every dataset this site publishes, CC BY 4.0, JSON and CSV, versioned rather than overwritten.`,
+    `- [Compare two APIs side by side](${absoluteUrl("/compare-apis")}): the verified access fields for any two products, shareable as ?a=<id>&b=<id>. No score and no winner: the fields describe access, not quality.`,
     `- [API change alerts](${absoluteUrl("/alerts")}): subscribe to dated changes for specific products.`,
     `- [Search every page and answer](${absoluteUrl("/search")}): query the same index the site's own search uses; ${absoluteUrl("/search?q=<terms>")} is a working URL.`,
     `- [Which Fitness API Should I Use? (interactive picker)](${absoluteUrl("/picker")}): a 3-question tool that recommends a fitness/health API approach by job, platform, and priority, linking to the relevant comparisons, guides, and pricing.`,

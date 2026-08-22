@@ -110,7 +110,9 @@ export default function SignupForm({ source = "signup-form" }: { source?: string
               {" · "}
               <a href="/kit/launch-compliance-checklist.md" className="text-brand-600 hover:text-brand-500">launch checklist</a>
               {" · "}
-              <a href="/kit/motion-sdk-scorecard.csv" className="text-brand-600 hover:text-brand-500">SDK scorecard</a>
+              <a href="/kit/motion-sdk-scorecard.csv" className="text-brand-600 hover:text-brand-500">SDK scorecard</a>,{" "}
+              <a href="/kit/ble-fitness-uuid-cheat-sheet.md" className="text-brand-600 hover:text-brand-500">Bluetooth UUID cheat sheet</a>,{" "}
+              <a href="/kit/watch-app-preflight-checklist.md" className="text-brand-600 hover:text-brand-500">watch app pre-flight checklist</a>
             </li>
           </ul>
         </div>

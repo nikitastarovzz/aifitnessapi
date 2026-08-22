@@ -154,6 +154,9 @@ export function GET() {
   add("/day-boundaries", "Why \u201cToday\u2019s Steps\u201d Is a Bug (live demo)", "Interactive: DST days aren't 24 hours, so a fixed UTC window drops or double-counts an hour.", "timezone dst day boundary demo interactive");
   add("/google-fit-shutdown", "Google Fit Is Shutting Down", "The verified timeline and the migration path for each kind of integration.", "google fit deprecated sunset end of 2026");
   add("/fitbit-api-shutdown", "Fitbit Web API Retirement: Deadlines and Migration", "What is confirmed vs reported about the ~September 2026 turndown, and the migration path by integration shape.", "fitbit api shutdown deprecated retirement google health september 2026");
+  add("/datasets", "Open datasets (CC BY 4.0)", "Every dataset this site publishes: API access structures, the HealthKit/Health Connect type matrix, the changes log, the glossary.", "datasets open data csv json cc by download research");
+  add("/badges", "Embeds & badges", "Put the type reference or the deadlines tracker on your own page, or link back with a badge.", "embed iframe widget badge link back");
+  add("/compare-apis", "Compare two fitness APIs side by side", "Access structure, user-side cost and approval gates for any two products in the directory.", "compare versus vs side by side tool");
   add("/alerts", "API change alerts", "Watch the fitness APIs you depend on and get an email when a dated deprecation or terms change lands.", "alerts watch notify subscribe deprecation deadline");
   add("/digest", "Monthly digest archive", "What changed in the fitness and health API ecosystem each month, and which pages were verified.", "digest newsletter archive monthly issues");
   add("/search", "Search every page and answer", "Search the whole site, including the individual questions answered inside each page.", "search find query");

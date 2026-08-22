@@ -29,7 +29,8 @@ const PAGES = ["/", "/devices", "/devices/ftms-fitness-machine-service", "/matri
   "/compare/oura-vs-whoop", "/integrate/healthkit", "/signup", "/glossary",
   "/site-index", "/blog", "/about", "/methodology", "/privacy",
   "/apis", "/apis/fitbit", "/apis/mediapipe", "/alerts", "/digest", "/digest/2026-08",
-  "/search", "/not-a-real-page"];
+  "/search", "/compare-apis", "/datasets", "/badges", "/embed/matrix", "/embed/deadlines",
+  "/not-a-real-page"];
 
 const exe = process.env.PLAYWRIGHT_CHROMIUM;
 const browser = await chromium.launch(exe ? { executablePath: exe } : {});

@@ -94,6 +94,10 @@ export default function ApiDirectory() {
 
         <div className="prose prose-neutral mt-8 max-w-none dark:prose-invert prose-a:text-brand-600 hover:prose-a:text-brand-500">
           <p>
+            Two of them side by side, with the same fields:{" "}
+            <Link href="/compare-apis">compare any pair</Link>.
+          </p>
+          <p>
             Depending on one of these? <Link href="/alerts">Watch it for changes</Link> and
             hear when a dated deprecation or terms change lands.
           </p>

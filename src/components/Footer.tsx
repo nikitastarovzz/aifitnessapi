@@ -80,6 +80,9 @@ export default function Footer() {
           <Link href="/apis" className="py-1 hover:text-[var(--fg)]">
             API Directory
           </Link>
+          <Link href="/compare-apis" className="py-1 hover:text-[var(--fg)]">
+            Compare APIs
+          </Link>
           <Link href="/picker" className="py-1 hover:text-[var(--fg)]">
             API Picker
           </Link>
@@ -115,6 +118,12 @@ export default function Footer() {
           </Link>
           <Link href="/signup" className="py-1 hover:text-[var(--fg)]">
             Newsletter
+          </Link>
+          <Link href="/datasets" className="py-1 hover:text-[var(--fg)]">
+            Open Datasets
+          </Link>
+          <Link href="/badges" className="py-1 hover:text-[var(--fg)]">
+            Embeds &amp; Badges
           </Link>
           <Link href="/methodology" className="py-1 hover:text-[var(--fg)]">
             How We Verify

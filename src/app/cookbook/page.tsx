@@ -161,6 +161,40 @@ export default function CookbookPillar() {
           </dl>
         </section>
 
+        <aside className="not-prose mt-14 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+          <h2 className="text-xl font-bold tracking-tight text-[var(--fg)]">
+            Every recipe, in a public repository
+          </h2>
+          <p className="mt-2 text-sm text-[var(--muted)]">
+            The modules and their tests live in{" "}
+            <a
+              href="https://github.com/nikitastarovzz/aifitnessapi/tree/main/cookbook"
+              target="_blank"
+              rel="noreferrer"
+              className="text-brand-600 hover:text-brand-500"
+            >
+              the cookbook directory
+            </a>{" "}
+            of this site&rsquo;s repository, with a README that explains what each one
+            solves. Clone it and run{" "}
+            <code className="rounded bg-[var(--bg)] px-1.5 py-0.5 text-xs">
+              node --test &quot;cookbook/**/*.test.mjs&quot;
+            </code>{" "}
+            — no dependencies, no build step, no network. Every page here is a
+            byte-verbatim copy of the file beside it there, and{" "}
+            <a
+              href="https://github.com/nikitastarovzz/aifitnessapi/actions/workflows/cookbook-ci.yml"
+              target="_blank"
+              rel="noreferrer"
+              className="text-brand-600 hover:text-brand-500"
+            >
+              the CI run
+            </a>{" "}
+            is what makes the &ldquo;CI-tested&rdquo; claim on them true. A failing test
+            that demonstrates a bug is the fastest bug report you can send.
+          </p>
+        </aside>
+
         <ClusterCta
           pitch="New recipes land as the patterns pages grow. Subscribe and get the next one — with its test suite — before you need it in production."
           source="pillar-inline"
