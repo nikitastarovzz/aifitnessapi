@@ -19,6 +19,7 @@ import { releasedArchitecture, ARCHITECTURE_PATH } from "@/data/architecture";
 import { releasedTesting, TEST_PATH } from "@/data/testing";
 import { releasedCookbook, COOKBOOK_PATH } from "@/data/cookbook";
 import { releasedDevices, DEVICES_PATH } from "@/data/devices";
+import { releasedEngagement, ENGAGEMENT_PATH } from "@/data/engagement";
 import { clusterMap } from "@/lib/clusterRegistry";
 import { changesSorted } from "@/data/changes";
 
@@ -42,6 +43,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const testing = releasedTesting();
   const cookbook = releasedCookbook();
   const devices = releasedDevices();
+  const engagement = releasedEngagement();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: absoluteUrl("/"), changeFrequency: "weekly", priority: 1 },
@@ -63,6 +65,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl(TEST_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl(COOKBOOK_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl(DEVICES_PATH), changeFrequency: "weekly", priority: 0.8 },
+    { url: absoluteUrl(ENGAGEMENT_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/privacy"), changeFrequency: "yearly", priority: 0.2 },
     { url: absoluteUrl("/google-fit-shutdown"), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/methodology"), changeFrequency: "yearly", priority: 0.4 },
@@ -205,6 +208,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly",
     priority: 0.7,
   }));
+  const engagementRoutes: MetadataRoute.Sitemap = engagement.map((e) => ({
+    url: absoluteUrl(`${ENGAGEMENT_PATH}/${e.slug}`),
+    lastModified: new Date(e.updated),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
 
   const postRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
     url: absoluteUrl(`/blog/${post.slug}`),
@@ -258,6 +267,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...testingRoutes,
     ...cookbookRoutes,
     ...deviceRoutes,
+    ...engagementRoutes,
     ...postRoutes,
   ];
 }

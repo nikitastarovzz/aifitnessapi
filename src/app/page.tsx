@@ -37,6 +37,7 @@ const CLUSTERS: { href: string; title: string; blurb: string }[] = [
   { href: "/test", title: "Testing health apps", blurb: "HealthKit has no test double, CI cannot fire background delivery, the simulator has no camera. What to do instead." },
   { href: "/cookbook", title: "Cookbook: tested code", blurb: "Runnable, dependency-free reference implementations — token rotation, webhooks, DST-safe rollups — CI-tested." },
   { href: "/devices", title: "Connected devices", blurb: "Straps, treadmills, trainers, and the watch as a live sensor — BLE heart rate, FTMS, and the testing story." },
+  { href: "/engagement", title: "Engagement & retention", blurb: "Getting people back: notifications, Live Activities, widgets, streaks, leaderboards — and measuring lift honestly." },
 ];
 
 /** The providers and SDKs people actually arrive searching for. Every href is

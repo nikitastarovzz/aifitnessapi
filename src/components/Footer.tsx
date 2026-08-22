@@ -65,6 +65,9 @@ export default function Footer() {
           <Link href="/devices" className="py-1 hover:text-[var(--fg)]">
             Connected Devices
           </Link>
+          <Link href="/engagement" className="py-1 hover:text-[var(--fg)]">
+            Engagement &amp; Retention
+          </Link>
           <Link href="/picker" className="py-1 hover:text-[var(--fg)]">
             API Picker
           </Link>

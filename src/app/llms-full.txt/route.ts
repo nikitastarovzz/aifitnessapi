@@ -17,6 +17,7 @@ import { releasedArchitecture, ARCHITECTURE_PATH } from "@/data/architecture";
 import { releasedTesting, TEST_PATH } from "@/data/testing";
 import { releasedCookbook, COOKBOOK_PATH } from "@/data/cookbook";
 import { releasedDevices, DEVICES_PATH } from "@/data/devices";
+import { releasedEngagement, ENGAGEMENT_PATH } from "@/data/engagement";
 
 /**
  * llms-full.txt — the fuller LLM-facing dump: each spoke's answer capsule and
@@ -338,6 +339,20 @@ export function GET() {
       out.push(`Primary query: ${d.primaryQuery}`, "", d.answer, "");
       if (d.faqs.length) {
         for (const f of d.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+        out.push("");
+      }
+    }
+  }
+
+  const engagement = releasedEngagement();
+  if (engagement.length) {
+    out.push(`# Engagement & retention for fitness apps — ${absoluteUrl(ENGAGEMENT_PATH)}`, "");
+    out.push("Platform engagement surfaces verified against Apple's and Google's documentation, plus streaks, leaderboards and honest measurement. This cluster states no engagement or retention percentages: no public dataset ranks fitness SDKs by retention lift, and vendor case studies are marketing, so the pages teach measurement with a holdout instead.", "");
+    for (const g of engagement) {
+      out.push(`## ${g.h1} — ${absoluteUrl(`${ENGAGEMENT_PATH}/${g.slug}`)}`);
+      out.push(`Primary query: ${g.primaryQuery}`, "", g.answer, "");
+      if (g.faqs.length) {
+        for (const f of g.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
         out.push("");
       }
     }

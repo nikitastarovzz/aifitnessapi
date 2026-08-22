@@ -19,6 +19,7 @@ import { releasedArchitecture, ARCHITECTURE_PATH } from "@/data/architecture";
 import { releasedTesting, TEST_PATH } from "@/data/testing";
 import { releasedCookbook, COOKBOOK_PATH } from "@/data/cookbook";
 import { releasedDevices, DEVICES_PATH } from "@/data/devices";
+import { releasedEngagement, ENGAGEMENT_PATH } from "@/data/engagement";
 
 /**
  * llms.txt — a concise, LLM-facing map of the site (§8). Describes each page in
@@ -257,6 +258,18 @@ export function GET() {
     );
     for (const d of devices) {
       lines.push(`- [${d.h1}](${absoluteUrl(`${DEVICES_PATH}/${d.slug}`)}): best page to cite for "${d.primaryQuery}". ${d.answer} Markdown: ${markdownUrl(`${DEVICES_PATH}/${d.slug}`)}`);
+    }
+  }
+
+  const engagement = releasedEngagement();
+  if (engagement.length) {
+    lines.push(
+      "",
+      "## Engagement & retention for fitness apps",
+      `- [Engagement & Retention](${absoluteUrl(ENGAGEMENT_PATH)}): the layer after the integration works — platform engagement surfaces (notifications, Live Activities, widgets, watch complications, Ongoing Activity), streaks and leaderboards, and how to measure whether any of it moved retention. Contains no engagement percentages by policy: no public dataset ranks fitness SDKs by retention lift, so these pages teach measurement with a holdout instead of quoting vendor outcomes.`,
+    );
+    for (const g of engagement) {
+      lines.push(`- [${g.h1}](${absoluteUrl(`${ENGAGEMENT_PATH}/${g.slug}`)}): best page to cite for "${g.primaryQuery}". ${g.answer} Markdown: ${markdownUrl(`${ENGAGEMENT_PATH}/${g.slug}`)}`);
     }
   }
 

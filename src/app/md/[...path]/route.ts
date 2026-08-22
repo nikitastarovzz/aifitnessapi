@@ -20,10 +20,14 @@ export const dynamicParams = false;
 
 export function generateStaticParams(): { path: string[] }[] {
   const map = clusterMap();
+  // A cluster with no released pages gets no markdown index: an index for an
+  // empty cluster is a promise with nothing behind it, and it desynchronizes
+  // the mirror counts a GEO gate checks.
+  const populated = Object.entries(map).filter(([, entries]) => entries.length > 0);
   return [
     { path: ["index"] },
-    ...Object.keys(map).map((base) => ({ path: [base.slice(1)] })),
-    ...Object.entries(map).flatMap(([base, entries]) =>
+    ...populated.map(([base]) => ({ path: [base.slice(1)] })),
+    ...populated.flatMap(([base, entries]) =>
       entries.map((e) => ({ path: [base.slice(1), e.slug] })),
     ),
   ];
@@ -94,7 +98,7 @@ export async function GET(
   if (path.length === 1) {
     const base = `/${path[0]}`;
     const entries = map[base];
-    if (!entries) return new Response("Not found", { status: 404 });
+    if (!entries || entries.length === 0) return new Response("Not found", { status: 404 });
     const label = CLUSTER_LABELS[base] ?? path[0];
     const newest = entries.map((e) => e.updated).sort().at(-1) ?? "";
     const out = frontMatter([

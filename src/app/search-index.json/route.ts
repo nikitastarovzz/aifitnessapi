@@ -17,6 +17,7 @@ import { releasedArchitecture, ARCHITECTURE_PATH } from "@/data/architecture";
 import { releasedTesting, TEST_PATH } from "@/data/testing";
 import { releasedCookbook, COOKBOOK_PATH } from "@/data/cookbook";
 import { releasedDevices, DEVICES_PATH } from "@/data/devices";
+import { releasedEngagement, ENGAGEMENT_PATH } from "@/data/engagement";
 
 /**
  * Site search index — generated from the same data modules as the pages
@@ -54,6 +55,7 @@ export function GET() {
     [TEST_PATH, "Testing", releasedTesting()],
     [COOKBOOK_PATH, "Cookbook", releasedCookbook()],
     [DEVICES_PATH, "Connected Devices", releasedDevices()],
+    [ENGAGEMENT_PATH, "Engagement & Retention", releasedEngagement()],
   ];
 
   const hubBlurbs: Record<string, string> = {
@@ -75,6 +77,7 @@ export function GET() {
     [TEST_PATH]: "Testing HealthKit, Health Connect, wearable and camera integrations.",
     [COOKBOOK_PATH]: "Runnable, CI-tested reference code: token rotation, webhooks, rollups, rep counting.",
     [DEVICES_PATH]: "Pair straps, machines, and watches: BLE heart rate, FTMS, live watch data, testing.",
+    [ENGAGEMENT_PATH]: "Getting people back: notifications, Live Activities, widgets, streaks, leaderboards \u2014 and how to measure lift honestly.",
   };
 
   // Synonym boosts for tokens people type that page titles don't contain.
