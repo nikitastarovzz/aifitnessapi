@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/Container";
 import { site } from "@/lib/site";
+import PageSummary from "@/components/PageSummary";
 
 const UPDATED = "2026-07-31";
 
@@ -24,12 +25,12 @@ export default function MethodologyPage() {
         <h1>How we verify what we publish</h1>
         <p className="text-sm text-[var(--muted)]">Last updated {UPDATED}</p>
 
-        <p>
+        <PageSummary path="/methodology" name="How we verify what we publish" updated={UPDATED} className="">
           Most technical content about fitness APIs is written from memory and
           other people&rsquo;s blog posts. Ours is not, and this page explains
           the actual process — including what it catches and where its limits
           are.
-        </p>
+        </PageSummary>
 
         <h2>Primary sources, fetched at write time</h2>
         <p>

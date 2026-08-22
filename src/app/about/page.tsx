@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Container from "@/components/Container";
 import Newsletter from "@/components/Newsletter";
 import { site } from "@/lib/site";
+import PageSummary from "@/components/PageSummary";
 
 export const metadata: Metadata = {
   title: "About",
@@ -16,15 +17,14 @@ export default function AboutPage() {
         <h1 className="text-4xl font-bold tracking-tight text-[var(--fg)]">
           About {site.name}
         </h1>
+        <PageSummary path="/about" name={`About ${site.name}`} className="mt-6 text-lg text-[var(--muted)]">
+          {site.name} is a home for people building — or looking for — products
+          in health, wellness, and fitness technology. Founders, engineers,
+          designers, and operators all pass through the same hard problems: how
+          to model workouts, keep users engaged, ship AI-powered coaching, and
+          integrate the right APIs without reinventing the wheel.
+        </PageSummary>
         <div className="prose prose-neutral mt-8 max-w-none dark:prose-invert prose-a:text-brand-600">
-          <p>
-            {site.name} is a home for people building — or looking for —
-            products in health, wellness, and fitness technology. Founders,
-            engineers, designers, and operators all pass through the same hard
-            problems: how to model workouts, keep users engaged, ship
-            AI-powered coaching, and integrate the right APIs without
-            reinventing the wheel.
-          </p>
           <p>
             We publish product breakdowns, API deep-dives, and practical
             playbooks so you can spend less time on undifferentiated plumbing

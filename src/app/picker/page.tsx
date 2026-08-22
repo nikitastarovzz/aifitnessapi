@@ -7,6 +7,7 @@ import ApiPicker from "@/components/ApiPicker";
 import ClusterCta from "@/components/ClusterCta";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
+import PageSummary from "@/components/PageSummary";
 
 const PICKER_PATH = "/picker";
 const UPDATED = "2026-07-24";
@@ -67,11 +68,11 @@ export default function PickerPage() {
           Which Fitness API Should You Use?
         </h1>
 
-        <p className="mt-4 text-lg text-[var(--muted)]">
+        <PageSummary path="/picker" name="Which Fitness API Should You Use?" updated={UPDATED} className="mt-4 text-lg text-[var(--muted)]">
           Answer three quick questions — what you&rsquo;re building, your platform, and what matters most —
           and get a tailored recommendation with the exact comparisons, integration guides, and pricing to
           read next. Independent and free; we&rsquo;re not paid to recommend anything.
-        </p>
+        </PageSummary>
 
         <div className="mt-8">
           <ApiPicker />

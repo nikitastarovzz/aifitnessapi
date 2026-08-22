@@ -18,6 +18,7 @@ import { releasedMotion, MOTION_PATH } from "@/data/motion";
 import { releasedAi, AI_PATH } from "@/data/ai";
 import { releasedArchitecture, ARCHITECTURE_PATH } from "@/data/architecture";
 import { releasedTesting, TEST_PATH } from "@/data/testing";
+import PageSummary from "@/components/PageSummary";
 
 export const metadata: Metadata = {
   title: "Site index",
@@ -52,7 +53,7 @@ export default function SiteIndex() {
     <Container className="py-14">
       <div className="mx-auto max-w-2xl">
         <h1 className="text-3xl font-bold tracking-tight text-[var(--fg)]">Site index</h1>
-        <p className="mt-3 text-[var(--muted)]">Every page on {`AIFitnessAPI`}, in one place.</p>
+        <PageSummary path="/site-index" name="Site index" className="mt-3 text-[var(--muted)]">Every page on {`AIFitnessAPI`}, in one place.</PageSummary>
 
         <section className="mt-10">
           <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">Main</h2>

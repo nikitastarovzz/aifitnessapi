@@ -5,11 +5,20 @@ import ClusterCta from "@/components/ClusterCta";
 import ClusterDisclaimer from "@/components/ClusterDisclaimer";
 import ClusterHero from "@/components/ClusterHero";
 import { Mdx } from "@/components/mdx";
+import PageActions from "@/components/PageActions";
+import PageToc from "@/components/PageToc";
+import FaqJump from "@/components/FaqJump";
+import NextSteps from "@/components/NextSteps";
+import Feedback from "@/components/Feedback";
 import { formatDate } from "@/lib/posts";
 import { site, absoluteUrl } from "@/lib/site";
 import { spokeGraph, markdownUrl } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { clusterNeighbors } from "@/lib/clusterRegistry";
+import { relatedAcrossSite } from "@/lib/related";
+import { autolinkGlossary } from "@/lib/autolink";
+import { headings } from "@/lib/toc";
+import readingTime from "reading-time";
 import type { ClusterEntry, ClusterConfig } from "@/lib/cluster";
 
 /**
@@ -30,7 +39,15 @@ export default function ClusterPage({
   const url = absoluteUrl(`${basePath}/${entry.slug}`);
   const capsuleId = "answer";
 
-  const mdUrl = markdownUrl(`${basePath}/${entry.slug}`);
+  const path = `${basePath}/${entry.slug}`;
+  const mdUrl = markdownUrl(path);
+  // First mention of each glossary concept becomes a link (never inside code
+  // or an existing link — see lib/autolink), so the vocabulary is navigable
+  // without a writer remembering to wire it.
+  const body = autolinkGlossary(entry.body, path);
+  const toc = headings(entry.body);
+  const minutes = Math.max(1, Math.round(readingTime(entry.body).minutes));
+  const alsoRead = relatedAcrossSite(basePath, entry.slug);
 
   // TechArticle + WebPage graph (review metadata, glossary `about` links,
   // citations, markdown encoding). Built centrally so every spoke agrees.
@@ -92,6 +109,8 @@ export default function ClusterPage({
         />
       )}
 
+      <PageToc headings={toc} />
+
       <article className="mx-auto max-w-2xl">
         <Breadcrumbs
           trail={[
@@ -107,7 +126,7 @@ export default function ClusterPage({
           {entry.h1}
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">
-          Updated {formatDate(entry.updated)}
+          Last verified {formatDate(entry.updated)} · {minutes} min read
         </p>
 
         {entry.firstParty && (
@@ -134,8 +153,12 @@ export default function ClusterPage({
           {entry.answer}
         </div>
 
+        <PageActions path={path} url={url} title={entry.h1} updated={entry.updated} />
+
+        <FaqJump questions={entry.faqs.map((f) => f.q)} />
+
         <div className="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-headings:scroll-mt-24 prose-a:text-brand-600 hover:prose-a:text-brand-500 prose-th:text-left prose-pre:rounded-xl prose-pre:border prose-pre:border-[var(--border)]">
-          <Mdx source={entry.body} />
+          <Mdx source={body} />
         </div>
 
         {entry.faqs.length > 0 && (
@@ -204,6 +227,36 @@ export default function ClusterPage({
             </nav>
           );
         })()}
+
+        {alsoRead.length > 0 && (
+          <section className="mt-12">
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+              Elsewhere on the site
+            </h2>
+            <p className="mt-1 text-xs text-[var(--muted)]">
+              Pages that share this one&rsquo;s concepts and sources, from other sections.
+            </p>
+            <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+              {alsoRead.map((r) => (
+                <li key={r.href}>
+                  <Link
+                    href={r.href}
+                    className="flex h-full flex-col rounded-xl border border-[var(--border)] p-4 transition-colors hover:border-brand-400 hover:bg-[var(--surface)]"
+                  >
+                    <span className="text-[11px] uppercase tracking-wider text-[var(--muted)]">
+                      {r.clusterLabel}
+                    </span>
+                    <span className="mt-1 text-sm font-medium text-[var(--fg)]">{r.h1}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        <NextSteps />
+
+        <Feedback path={path} title={entry.h1} repo={site.social.github || undefined} />
 
         <ClusterDisclaimer updated={entry.updated} variant={config.disclaimer} />
 

@@ -133,3 +133,29 @@ export async function putSignup(
     throw new Error(`firestore write failed: ${res.status} ${await res.text()}`);
   }
 }
+
+/**
+ * Append a document to a collection with a server-generated ID. Used for
+ * append-only event streams (page feedback, search misses) where there is no
+ * natural key to make the write idempotent.
+ */
+export async function createDoc(
+  collection: string,
+  data: Record<string, string | string[] | Date>,
+): Promise<void> {
+  const fields: Record<string, FsValue> = {};
+  for (const [k, v] of Object.entries(data)) fields[k] = encode(v);
+  const pid = process.env.FIREBASE_PROJECT_ID;
+  const url = `https://firestore.googleapis.com/v1/projects/${pid}/databases/(default)/documents/${collection}`;
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      authorization: `Bearer ${await accessToken()}`,
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({ fields }),
+  });
+  if (!res.ok) {
+    throw new Error(`firestore create failed: ${res.status} ${await res.text()}`);
+  }
+}

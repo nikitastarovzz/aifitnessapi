@@ -162,6 +162,23 @@ body {
   transform: scaleX(1);
 }
 
+/* Heading anchors (rehype-autolink-headings, behavior: "append"). A visible
+   handle on hover/focus that a reader can copy; invisible otherwise so the
+   headings still read as headings. */
+.heading-anchor {
+  margin-left: 0.4em;
+  color: var(--muted);
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.heading-anchor:focus-visible,
+h2:hover > .heading-anchor,
+h3:hover > .heading-anchor,
+h4:hover > .heading-anchor {
+  opacity: 1;
+}
+
 /* Kill switch: users who ask for less motion get none (WCAG 2.3.3). */
 @media (prefers-reduced-motion: reduce) {
   *,

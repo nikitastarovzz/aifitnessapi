@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Container from "@/components/Container";
 import SignupForm from "@/components/SignupForm";
+import PageSummary from "@/components/PageSummary";
 
 export const metadata: Metadata = {
   title: "Sign Up",
@@ -17,12 +18,12 @@ export default function SignupPage() {
         <h1 className="text-3xl font-bold tracking-tight text-[var(--fg)] sm:text-4xl">
           Get the good stuff, matched to what you&rsquo;re building
         </h1>
-        <p className="mt-3 text-[var(--muted)]">
+        <PageSummary path="/signup" name="Sign up for the AIFitnessAPI newsletter" className="mt-3 text-[var(--muted)]">
           Tell us a little about yourself and what you&rsquo;re working on, and
           the breakdowns you get will actually be relevant — camera-based
           tracking if that&rsquo;s your thing, wearable data plumbing if
           that&rsquo;s yours.
-        </p>
+        </PageSummary>
         <div className="mt-8">
           <SignupForm source="signup-page" />
         </div>

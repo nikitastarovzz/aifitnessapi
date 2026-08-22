@@ -4,6 +4,7 @@ import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { absoluteUrl } from "@/lib/site";
 import { GROUPS, termId } from "@/data/glossary";
+import PageSummary from "@/components/PageSummary";
 
 const PATH = "/glossary";
 const UPDATED = "2026-07-31";
@@ -57,11 +58,11 @@ export default function GlossaryPage() {
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
           Fitness &amp; Health API Glossary
         </h1>
-        <p className="mt-4 max-w-2xl text-lg text-[var(--muted)]">
+        <PageSummary path="/glossary" name="Fitness & Health API Glossary" updated={UPDATED}>
           Every term you hit building a health or fitness product, in one or two honest sentences —
           each linked to the page that treats it properly. {alpha.length} terms and counting; nothing
           here is a claim we don&rsquo;t back on its own page.
-        </p>
+        </PageSummary>
 
         <div className="mt-12 space-y-12">
           {GROUPS.map((g) => (

@@ -7,6 +7,7 @@ import ClusterCta from "@/components/ClusterCta";
 import DayBoundaryDemo from "@/components/DayBoundaryDemo";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
+import PageSummary from "@/components/PageSummary";
 
 const PATH = "/day-boundaries";
 const UPDATED = "2026-07-31";
@@ -77,12 +78,12 @@ export default function DayBoundariesPage() {
           &ldquo;Today&rsquo;s steps&rdquo; is the most bug-prone number in a fitness app
         </h1>
 
-        <p className="mt-6 text-lg text-[var(--muted)]">
+        <PageSummary path="/day-boundaries" name="Why “today’s steps” is a bug" updated={UPDATED} className="mt-6 text-lg text-[var(--muted)]">
           It looks trivial and it is not. A civil day is only usually 24 hours long, so any daily
           total computed over a fixed UTC window is quietly wrong on the two days a year a timezone
           shifts. Pick a zone and a daylight-saving day below and watch it happen — every number
           computed live in your browser from its own timezone database.
-        </p>
+        </PageSummary>
       </div>
 
       <div className="mx-auto mt-8 max-w-2xl">

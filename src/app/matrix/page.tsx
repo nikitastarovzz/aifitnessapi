@@ -8,6 +8,7 @@ import DataMatrix from "@/components/DataMatrix";
 import { ROWS } from "@/data/matrix";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
+import PageSummary from "@/components/PageSummary";
 
 const MATRIX_PATH = "/matrix";
 const UPDATED = "2026-07-26";
@@ -79,11 +80,11 @@ export default function MatrixPage() {
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
           HealthKit &harr; Health Connect: The Data-Type Reference
         </h1>
-        <p className="mt-4 text-lg text-[var(--muted)]">
+        <PageSummary path="/matrix" name="HealthKit ↔ Health Connect type reference" updated={UPDATED} className="mt-4 text-lg text-[var(--muted)]">
           If you&rsquo;re building the same health feature on iOS and Android, you need the matching type
           on each platform — and to know where they quietly disagree. Here are {ROWS.length}{" "}
           common metrics side by side, checked against Apple&rsquo;s and Google&rsquo;s own docs.
-        </p>
+        </PageSummary>
       </div>
 
       <div className="mx-auto mt-10 max-w-5xl">
