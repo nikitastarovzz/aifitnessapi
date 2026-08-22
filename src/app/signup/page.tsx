@@ -6,7 +6,7 @@ import PageSummary from "@/components/PageSummary";
 export const metadata: Metadata = {
   title: "Sign Up",
   description:
-    "Get AIFitnessAPI breakdowns and playbooks matched to what you're building.",
+    "Get fitness and health API breakdowns matched to what you are building, plus the deprecations and deadlines that affect your integrations.",
   alternates: { canonical: "/signup" },
   robots: { index: false }, // a form page has nothing to rank for
 };

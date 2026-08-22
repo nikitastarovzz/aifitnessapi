@@ -26,7 +26,7 @@ const STEPS: { href: string; label: string; blurb: string }[] = [
 
 export default function NextSteps() {
   return (
-    <section aria-labelledby="next-steps" className="not-prose mt-14">
+    <section aria-labelledby="next-steps" className="defer-paint not-prose mt-14">
       <h2
         id="next-steps"
         className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]"

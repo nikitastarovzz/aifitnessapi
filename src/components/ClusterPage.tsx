@@ -229,7 +229,7 @@ export default function ClusterPage({
         })()}
 
         {alsoRead.length > 0 && (
-          <section className="mt-12">
+          <section className="defer-paint mt-12">
             <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
               Elsewhere on the site
             </h2>

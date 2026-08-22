@@ -83,6 +83,8 @@ export function GET(): Response {
     `#   Full text for LLMs ......... ${absoluteUrl("/llms-full.txt")}`,
     `#   Structured answer index .... ${absoluteUrl("/answers.json")}`,
     `#   Ecosystem changes feed ..... ${absoluteUrl("/changes.xml")}`,
+    `#   Blog feed (JSON Feed 1.1) .. ${absoluteUrl("/feed.json")}`,
+    `#   Per-section RSS ............ ${absoluteUrl("/feeds/<cluster>.xml")}`,
     `#   Open datasets (CC BY 4.0) .. ${absoluteUrl("/state-of-fitness-apis-2026")}`,
     "#",
     "# Every page is also served as markdown at its own URL with .md appended",

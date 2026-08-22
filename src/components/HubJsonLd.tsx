@@ -1,5 +1,6 @@
 import { clusterMap, CLUSTER_LABELS } from "@/lib/clusterRegistry";
 import { hubGraph, markdownUrl } from "@/lib/schema";
+import { absoluteUrl } from "@/lib/site";
 
 /**
  * The machine layer for a cluster hub: a CollectionPage whose ItemList
@@ -29,9 +30,10 @@ export default function HubJsonLd({
   if (entries.length === 0) return null;
 
   const newest = updated ?? entries.map((e) => e.updated).sort().at(-1) ?? "";
+  const label = name ?? CLUSTER_LABELS[basePath] ?? basePath;
   const graph = hubGraph({
     basePath,
-    name: name ?? CLUSTER_LABELS[basePath] ?? basePath,
+    name: label,
     description,
     updated: newest,
     entries,
@@ -41,6 +43,16 @@ export default function HubJsonLd({
   return (
     <>
       <link rel="alternate" type="text/markdown" href={markdownUrl(basePath)} />
+      {/* This cluster's own RSS feed. Somebody who cares about wearables does
+          not want the whole site in their reader, and a per-section feed is
+          the cheapest way to let them subscribe to exactly the part they
+          follow. */}
+      <link
+        rel="alternate"
+        type="application/rss+xml"
+        title={`${label} — new and updated pages`}
+        href={absoluteUrl(`/feeds${basePath}.xml`)}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(graph) }}

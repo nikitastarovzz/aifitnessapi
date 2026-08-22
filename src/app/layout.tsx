@@ -5,7 +5,8 @@ import { Analytics } from "@vercel/analytics/react";
 import Footer from "@/components/Footer";
 import CtaTracker from "@/components/CtaTracker";
 import { site, absoluteUrl } from "@/lib/site";
-import { organizationNode, ORG_ID, WEBSITE_ID } from "@/lib/schema";
+import WebVitals from "@/components/WebVitals";
+import { organizationNode, searchActionNode, ORG_ID, WEBSITE_ID } from "@/lib/schema";
 
 /**
  * Device chrome. `colorScheme` lets the browser theme native controls,
@@ -47,6 +48,7 @@ export const metadata: Metadata = {
         { url: absoluteUrl("/feed.xml"), title: `${site.name} — blog` },
         { url: absoluteUrl("/changes.xml"), title: `${site.name} — API changes & deadlines` },
       ],
+      "application/feed+json": absoluteUrl("/feed.json"),
       "text/markdown": absoluteUrl("/index.md"),
     },
   },
@@ -91,6 +93,7 @@ export default function RootLayout({
         description: site.description,
         inLanguage: "en",
         publisher: { "@id": ORG_ID },
+        potentialAction: searchActionNode(),
       },
     ],
   };
@@ -107,6 +110,14 @@ export default function RootLayout({
           type="application/json"
           href={absoluteUrl("/answers.json")}
           title="Structured answer index"
+        />
+        {/* Adding the site as a browser search engine. The descriptor points
+            at /search, which is a real page that works from its URL alone. */}
+        <link
+          rel="search"
+          type="application/opensearchdescription+xml"
+          href="/opensearch.xml"
+          title={site.name}
         />
         <script
           type="application/ld+json"
@@ -125,6 +136,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <Analytics />
+        <WebVitals />
       </body>
     </html>
   );

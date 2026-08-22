@@ -2,29 +2,20 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { scoreRec, reportMiss, type Rec } from "@/lib/searchScore";
 
 /**
- * Site-wide search. Dependency-free: fetches /search-index.json (~200
- * records) on first open and scores with simple token matching — at this
- * corpus size that beats shipping a search library. Cmd/Ctrl-K to open,
- * arrows + enter to navigate.
+ * Site-wide search. Dependency-free: fetches /search-index.json on first
+ * open and scores with simple token matching — at this corpus size that
+ * beats shipping a search library. Cmd/Ctrl-K or "/" to open, arrows + enter
+ * to navigate, enter on an empty selection to open the full results page.
+ *
+ * The index carries one record per page AND one per FAQ answer, so a typed
+ * question can match the answer itself rather than the title of the page
+ * that happens to contain it. Matched answers are shown inline — for a lot
+ * of queries the palette IS the answer, and making somebody load a page to
+ * read two sentences they already had is a worse product.
  */
-
-type Rec = [path: string, title: string, desc: string, extra: string];
-
-function score(rec: Rec, tokens: string[]): number {
-  const title = rec[1].toLowerCase();
-  const desc = rec[2].toLowerCase();
-  const extra = rec[3].toLowerCase();
-  let total = 0;
-  for (const t of tokens) {
-    if (title.includes(t)) total += title.startsWith(t) ? 5 : 3;
-    else if (extra.includes(t)) total += 2;
-    else if (desc.includes(t)) total += 1;
-    else return 0; // every token must match somewhere
-  }
-  return total;
-}
 
 export default function SiteSearch() {
   const router = useRouter();
@@ -49,6 +40,17 @@ export default function SiteSearch() {
         setOpen((o) => !o);
         load();
       }
+      // "/" is the convention on documentation sites — but only when the
+      // reader is not already typing into something.
+      const el = e.target as HTMLElement | null;
+      const typing =
+        el instanceof HTMLElement &&
+        (el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.isContentEditable);
+      if (e.key === "/" && !typing && !e.metaKey && !e.ctrlKey && !e.altKey) {
+        e.preventDefault();
+        setOpen(true);
+        load();
+      }
       if (e.key === "Escape") setOpen(false);
     };
     window.addEventListener("keydown", onKey);
@@ -67,12 +69,23 @@ export default function SiteSearch() {
   const results =
     index && tokens.length
       ? index
-          .map((r) => [score(r, tokens), r] as const)
+          .map((r) => [scoreRec(r, tokens), r] as const)
           .filter(([s]) => s > 0)
           .sort((a, b) => b[0] - a[0])
           .slice(0, 8)
           .map(([, r]) => r)
       : [];
+
+  // A query that matches nothing is a content request; log the words.
+  const missed = useRef<string>("");
+  useEffect(() => {
+    if (!index || tokens.length === 0 || results.length > 0 || missed.current === q) return;
+    const t = setTimeout(() => {
+      missed.current = q;
+      reportMiss(q);
+    }, 1400);
+    return () => clearTimeout(t);
+  }, [index, tokens.length, results.length, q]);
 
   function go(path: string) {
     setOpen(false);
@@ -95,7 +108,7 @@ export default function SiteSearch() {
           <path d="m20 20-3.5-3.5" />
         </svg>
         <span className="hidden md:inline">Search</span>
-        <kbd className="hidden rounded border border-[var(--border)] px-1 text-[10px] md:inline">⌘K</kbd>
+        <kbd className="hidden rounded border border-[var(--border)] px-1 text-[10px] md:inline">/</kbd>
       </button>
 
       {open && (
@@ -128,7 +141,7 @@ export default function SiteSearch() {
                   go(results[sel][0]);
                 }
               }}
-              placeholder="Search 195 pages — try “fitbit 401”, “dedupe”, “pose model”…"
+              placeholder="Search pages and answers — try “fitbit 401”, “dedupe”, “pose model”…"
               className="w-full border-b border-[var(--border)] bg-transparent px-5 py-4 text-base text-[var(--fg)] placeholder:text-[var(--muted)] focus:outline-none"
             />
             <ul className="max-h-[50vh] overflow-y-auto p-2">
@@ -148,14 +161,34 @@ export default function SiteSearch() {
                       i === sel ? "bg-brand-500/10" : ""
                     }`}
                   >
+                    {r[4] === "faq" && (
+                      <span className="mb-0.5 block text-[10px] font-semibold uppercase tracking-wider text-brand-600">
+                        Answer
+                      </span>
+                    )}
                     <span className="block text-sm font-semibold text-[var(--fg)]">{r[1]}</span>
-                    <span className="mt-0.5 block truncate text-xs text-[var(--muted)]">
+                    <span
+                      className={`mt-0.5 block text-xs text-[var(--muted)] ${
+                        r[4] === "faq" ? "" : "truncate"
+                      }`}
+                    >
                       {r[2] || r[0]}
                     </span>
                   </button>
                 </li>
               ))}
             </ul>
+            {q && (
+              <div className="border-t border-[var(--border)] px-4 py-2.5 text-xs text-[var(--muted)]">
+                <button
+                  type="button"
+                  className="text-brand-600 hover:text-brand-500"
+                  onClick={() => go(`/search?q=${encodeURIComponent(q)}`)}
+                >
+                  See all results for “{q}” →
+                </button>
+              </div>
+            )}
           </div>
         </div>
       )}

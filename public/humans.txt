@@ -1,0 +1,33 @@
+/* WHO WRITES THIS */
+
+	Nikita Starov — writing, research, and code.
+	Contact: nikita@kinestex.com
+	Site: https://aifitnessapi.com
+
+/* FUNDING */
+
+	AIFitnessAPI is funded by KinesteX, an AI motion SDK. Pages that
+	substantively cover KinesteX say so on the page itself and are flagged
+	first_party in /answers.json. KinesteX is never called the best option
+	here, and its claims are held to the same sourcing bar as everyone
+	else's.
+
+/* HOW CLAIMS ARE CHECKED */
+
+	Facts trace to a primary source checked on the page's review date.
+	Anything we could not confirm is labelled as unverified rather than
+	rounded up, and dated claims carry their date. The full method:
+	https://aifitnessapi.com/methodology
+
+/* STACK */
+
+	Next.js (App Router), React, TypeScript, Tailwind CSS, MDX for posts.
+	Content lives in typed data modules, so the HTML, the markdown mirrors,
+	the feeds and the sitemap are all generated from the same source.
+	Deployed on Vercel.
+
+/* MACHINE-READABLE */
+
+	/llms.txt, /llms-full.txt, /answers.json, /changes.xml, /feed.xml,
+	/feed.json, /feeds/<cluster>.xml, /sitemap.xml
+	Any page in markdown: append .md to its URL.

@@ -5,13 +5,33 @@ import type { ReactElement } from "react";
 export const OG_SIZE = { width: 1200, height: 630 };
 export const OG_CONTENT_TYPE = "image/png";
 
+/**
+ * Clamp the supporting line so it can never overflow the card. Satori has no
+ * `text-overflow`/`line-clamp`, so the truncation has to happen in JS. Mirrors
+ * `clamp()` in src/lib/cluster.ts: break on the last word boundary before the
+ * budget, then append an ellipsis. 90 chars ≈ 1.3 lines at 28px in a 1000px box.
+ */
+function clampLine(s: string, max = 90): string {
+  const t = s.trim();
+  if (t.length <= max) return t;
+  const cut = t.slice(0, max - 1);
+  const lastSpace = cut.lastIndexOf(" ");
+  return `${(lastSpace > max * 0.6 ? cut.slice(0, lastSpace) : cut).trimEnd()}…`;
+}
+
 export function ogCard({
   eyebrow,
   title,
+  line,
 }: {
   eyebrow: string;
   title: string;
+  /** One short supporting line under the title (the spoke's primaryQuery, or a
+   *  hub's page count). Omitted or blank renders nothing — older callers that
+   *  pass only eyebrow + title keep the two-line card they had. */
+  line?: string;
 }): ReactElement {
+  const support = line ? clampLine(line) : "";
   return (
     <div
       style={{
@@ -72,6 +92,19 @@ export function ogCard({
         >
           {title}
         </div>
+        {support ? (
+          <div
+            style={{
+              display: "flex",
+              color: "#a3a3a3",
+              fontSize: "28px",
+              lineHeight: 1.3,
+              maxWidth: "1000px",
+            }}
+          >
+            {support}
+          </div>
+        ) : null}
       </div>
 
       <div style={{ display: "flex", color: "#a3a3a3", fontSize: "26px" }}>

@@ -23,21 +23,47 @@ import { releasedWatchApps, WATCH_PATH } from "@/data/watchApps";
 /**
  * Site search index — generated from the same data modules as the pages
  * (identical pattern to llms.txt), so it can never drift from what's
- * actually published. ~200 records, a few dozen KB; the client fetches it
- * once on first search interaction.
+ * actually published. The client fetches it once on first search
+ * interaction.
  *
- * Record: [path, title, description, extra-match-text]
+ * Record: [path, title, description, extra-match-text, kind?]
+ *
+ * Every FAQ on every spoke is its own record, addressed at its `#faq-N`
+ * anchor. People search in questions — "why is my fitbit token 401" is a
+ * question we have answered on a page whose title says none of those words,
+ * and title-only matching could never find it. The answer text is truncated
+ * because this file is downloaded before anyone has typed anything.
  */
 export const dynamic = "force-static";
 
-type Rec = [string, string, string, string];
+type Rec = [string, string, string, string] | [string, string, string, string, string];
+
+/** FAQ answers are indexed as a preview, not in full — this file is a
+ *  download, and the page itself is one click away. */
+function preview(s: string, max = 180): string {
+  const t = s.trim();
+  if (t.length <= max) return t;
+  const cut = t.slice(0, max - 1);
+  const sp = cut.lastIndexOf(" ");
+  return `${(sp > max * 0.6 ? cut.slice(0, sp) : cut).trimEnd()}…`;
+}
 
 export function GET() {
   const recs: Rec[] = [];
   const add = (path: string, title: string, desc: string, extra = "") =>
     recs.push([path, title, desc, extra]);
 
-  const clusters: [string, string, { slug: string; h1: string; metaDescription: string; primaryQuery: string }[]][] = [
+  const clusters: [
+    string,
+    string,
+    {
+      slug: string;
+      h1: string;
+      metaDescription: string;
+      primaryQuery: string;
+      faqs: { q: string; a: string }[];
+    }[],
+  ][] = [
     [PILLAR_PATH, "Fitness APIs", releasedEntries()],
     [GUIDES_PATH, "Guides", releasedGuides()],
     [BUILD_PATH, "Build", releasedBuilds()],
@@ -96,6 +122,9 @@ export function GET() {
     for (const e of entries) {
       const path = `${base}/${e.slug}`;
       add(path, e.h1, e.metaDescription, [e.primaryQuery, EXTRA[path]].filter(Boolean).join(" "));
+      e.faqs.forEach((f, i) => {
+        recs.push([`${path}#faq-${i + 1}`, f.q, preview(f.a), e.h1, "faq"]);
+      });
     }
   }
 

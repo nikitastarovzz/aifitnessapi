@@ -162,6 +162,29 @@ body {
   transform: scaleX(1);
 }
 
+/* ——— Typography loading ————————————————————————————————————————————————
+   There are deliberately no web fonts on this site. The stack above is the
+   system UI font on every platform, so text paints in the first frame with
+   no FOIT, no FOUT, no preload hint to get wrong, and no font file on the
+   critical path. LCP here is a text element; the fastest font is the one
+   already installed. If a brand face is ever added, it must be preloaded and
+   given `font-display: swap`, and this comment must stop being true. */
+
+/* Below-the-fold sections skip layout and paint until they are near the
+   viewport. Long spoke pages have a FAQ list, three link grids and a
+   feedback block below the article that nobody has scrolled to yet; rendering
+   them on load is work spent on pixels no one is looking at.
+   `contain-intrinsic-size` supplies a placeholder height so the scrollbar
+   does not jump as they resolve. Anything that must be findable by in-page
+   search or reachable by an anchor stays out of this — `content-visibility:
+   auto` content is still found by the browser's find-in-page and by anchor
+   navigation in current engines, but it is applied only to sections whose
+   content is also linked from elsewhere on the page. */
+.defer-paint {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
 /* Heading anchors (rehype-autolink-headings, behavior: "append"). A visible
    handle on hover/focus that a reader can copy; invisible otherwise so the
    headings still read as headings. */

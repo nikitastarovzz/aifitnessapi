@@ -1,394 +1,112 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/Container";
-import { getAllPosts } from "@/lib/posts";
-import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
-import { releasedGuides, GUIDES_PATH } from "@/data/guides";
-import { releasedBuilds, BUILD_PATH } from "@/data/build";
-import { releasedIntegrations, INTEGRATE_PATH } from "@/data/integrate";
-import { releasedFixes, FIX_PATH } from "@/data/fix";
-import { releasedLearn, LEARN_PATH } from "@/data/learn";
-import { releasedAlternatives, ALTERNATIVES_PATH } from "@/data/alternatives";
-import { releasedCompliance, COMPLIANCE_PATH } from "@/data/compliance";
-import { releasedMigrate, MIGRATE_PATH } from "@/data/migrate";
-import { releasedPricing, PRICING_PATH } from "@/data/pricing";
-import { releasedCompare, COMPARE_PATH } from "@/data/compare";
-import { releasedData, DATA_PATH } from "@/data/healthData";
-import { releasedMotion, MOTION_PATH } from "@/data/motion";
-import { releasedAi, AI_PATH } from "@/data/ai";
-import { releasedArchitecture, ARCHITECTURE_PATH } from "@/data/architecture";
-import { releasedTesting, TEST_PATH } from "@/data/testing";
 import PageSummary from "@/components/PageSummary";
+import { getAllPosts } from "@/lib/posts";
+import { clusterMap, CLUSTER_LABELS } from "@/lib/clusterRegistry";
 
 export const metadata: Metadata = {
   title: "Site index",
-  description: "Every page on AIFitnessAPI — guides, comparisons, and posts.",
+  description:
+    "Every page on AIFitnessAPI in one crawlable list: 20 sections of guides, comparisons, integrations and troubleshooting, plus the tools and the blog.",
   alternates: { canonical: "/site-index" },
 };
 
+/** Standalone pages that are not part of any cluster. */
+const MAIN = [
+  { href: "/", label: "Home" },
+  { href: "/search", label: "Search every page and answer" },
+  { href: "/picker", label: "Which fitness API should I use? (picker)" },
+  { href: "/cost-planner", label: "Fitness API cost planner" },
+  { href: "/matrix", label: "HealthKit ↔ Health Connect type reference" },
+  { href: "/day-boundaries", label: "Why “today’s steps” is a bug (live demo)" },
+  { href: "/changes", label: "Changes & deadlines tracker" },
+  { href: "/state-of-fitness-apis-2026", label: "The State of Fitness APIs 2026" },
+  { href: "/ai-fitness-app", label: "How to build an AI fitness app" },
+  { href: "/no-code-fitness-app", label: "Build a fitness app with no code, just APIs" },
+  { href: "/google-fit-shutdown", label: "Google Fit shutdown centre" },
+  { href: "/fitbit-api-shutdown", label: "Fitbit Web API retirement centre" },
+  { href: "/glossary", label: "Glossary" },
+  { href: "/blog", label: "Blog" },
+  { href: "/methodology", label: "How we verify" },
+  { href: "/about", label: "About" },
+  { href: "/signup", label: "Newsletter" },
+  { href: "/privacy", label: "Privacy" },
+];
+
 /**
- * A crawlable HTML map linking every hub, spoke, and post (§4). Linked from the
- * footer so no page is more than ~2 clicks from anywhere.
+ * A crawlable HTML map linking every hub, spoke, and post (§4). Linked from
+ * the footer so no page is more than ~2 clicks from anywhere.
+ *
+ * Sections are derived from the cluster registry rather than listed by hand.
+ * The hand-written version silently fell four clusters behind — the pages
+ * existed, the index that promises "every page" did not know about them —
+ * and an index that can go stale is worse than no index, because nothing
+ * about it looks wrong.
  */
 export default function SiteIndex() {
   const posts = getAllPosts();
-  const spokes = releasedEntries();
-  const guides = releasedGuides();
-  const builds = releasedBuilds();
-  const integrations = releasedIntegrations();
-  const fixes = releasedFixes();
-  const learn = releasedLearn();
-  const alternatives = releasedAlternatives();
-  const compliance = releasedCompliance();
-  const migrate = releasedMigrate();
-  const pricing = releasedPricing();
-  const compare = releasedCompare();
-  const healthData = releasedData();
-  const motion = releasedMotion();
-  const ai = releasedAi();
-  const architecture = releasedArchitecture();
-  const testing = releasedTesting();
+  const clusters = Object.entries(clusterMap()).filter(([, entries]) => entries.length > 0);
+  const total = clusters.reduce((n, [, entries]) => n + entries.length, 0);
 
   return (
     <Container className="py-14">
       <div className="mx-auto max-w-2xl">
         <h1 className="text-3xl font-bold tracking-tight text-[var(--fg)]">Site index</h1>
-        <PageSummary path="/site-index" name="Site index" className="mt-3 text-[var(--muted)]">Every page on {`AIFitnessAPI`}, in one place.</PageSummary>
-
-        <section className="mt-10">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">Main</h2>
-          <ul className="mt-4 space-y-2">
-            <li><Link href="/" className="text-brand-600 hover:text-brand-500">Home</Link></li>
-            <li><Link href="/picker" className="text-brand-600 hover:text-brand-500">Which fitness API should I use? (picker)</Link></li>
-            <li><Link href="/matrix" className="text-brand-600 hover:text-brand-500">HealthKit ↔ Health Connect type reference</Link></li>
-            <li><Link href="/blog" className="text-brand-600 hover:text-brand-500">Blog</Link></li>
-            <li><Link href="/about" className="text-brand-600 hover:text-brand-500">About</Link></li>
-          </ul>
-        </section>
+        <PageSummary path="/site-index" name="Site index" className="mt-3 text-[var(--muted)]">
+          Every page on AIFitnessAPI in one place: {total} pages across {clusters.length}{" "}
+          sections, plus the tools and the blog. Generated from the same data the pages
+          are, so it cannot fall behind them.
+        </PageSummary>
 
         <section className="mt-10">
           <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
-            Fitness &amp; workout APIs
+            Main
           </h2>
           <ul className="mt-4 space-y-2">
-            <li>
-              <Link href={PILLAR_PATH} className="text-brand-600 hover:text-brand-500">
-                Best Fitness &amp; Workout APIs (guide + hub)
-              </Link>
-            </li>
-            {spokes.map((e) => (
-              <li key={e.slug}>
-                <Link href={`${PILLAR_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
-                  {e.h1}
+            {MAIN.map((m) => (
+              <li key={m.href}>
+                <Link href={m.href} className="text-brand-600 hover:text-brand-500">
+                  {m.label}
                 </Link>
               </li>
             ))}
           </ul>
         </section>
 
-        <section className="mt-10">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
-            Guides — adding AI workout tracking
-          </h2>
-          <ul className="mt-4 space-y-2">
-            <li>
-              <Link href={GUIDES_PATH} className="text-brand-600 hover:text-brand-500">
-                How to Add AI Workout Tracking to Your App (guide + hub)
-              </Link>
-            </li>
-            {guides.map((e) => (
-              <li key={e.slug}>
-                <Link href={`${GUIDES_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
-                  {e.h1}
+        {clusters.map(([basePath, entries]) => (
+          <section key={basePath} className="mt-10">
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+              {CLUSTER_LABELS[basePath] ?? basePath}{" "}
+              <span className="font-normal normal-case tracking-normal">
+                ({entries.length} pages)
+              </span>
+            </h2>
+            <ul className="mt-4 space-y-2">
+              <li>
+                <Link href={basePath} className="text-brand-600 hover:text-brand-500">
+                  {CLUSTER_LABELS[basePath] ?? basePath} — section index
                 </Link>
               </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="mt-10">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
-            Build guides — by app type
-          </h2>
-          <ul className="mt-4 space-y-2">
-            <li>
-              <Link href={BUILD_PATH} className="text-brand-600 hover:text-brand-500">
-                How to Build a Workout App (guide + hub)
-              </Link>
-            </li>
-            {builds.map((e) => (
-              <li key={e.slug}>
-                <Link href={`${BUILD_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
-                  {e.h1}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="mt-10">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
-            Integration guides — by provider
-          </h2>
-          <ul className="mt-4 space-y-2">
-            <li>
-              <Link href={INTEGRATE_PATH} className="text-brand-600 hover:text-brand-500">
-                How to Integrate a Fitness or Health API (guide + hub)
-              </Link>
-            </li>
-            {integrations.map((e) => (
-              <li key={e.slug}>
-                <Link href={`${INTEGRATE_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
-                  {e.h1}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="mt-10">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
-            Troubleshooting — common API errors
-          </h2>
-          <ul className="mt-4 space-y-2">
-            <li>
-              <Link href={FIX_PATH} className="text-brand-600 hover:text-brand-500">
-                Fitness &amp; Health API Troubleshooting (guide + hub)
-              </Link>
-            </li>
-            {fixes.map((e) => (
-              <li key={e.slug}>
-                <Link href={`${FIX_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
-                  {e.h1}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="mt-10">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
-            Concepts — explained
-          </h2>
-          <ul className="mt-4 space-y-2">
-            <li>
-              <Link href={LEARN_PATH} className="text-brand-600 hover:text-brand-500">
-                Fitness &amp; Health API Concepts (guide + hub)
-              </Link>
-            </li>
-            {learn.map((e) => (
-              <li key={e.slug}>
-                <Link href={`${LEARN_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
-                  {e.h1}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="mt-10">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
-            Alternatives — by product
-          </h2>
-          <ul className="mt-4 space-y-2">
-            <li>
-              <Link href={ALTERNATIVES_PATH} className="text-brand-600 hover:text-brand-500">
-                Fitness &amp; Health API Alternatives (guide + hub)
-              </Link>
-            </li>
-            {alternatives.map((e) => (
-              <li key={e.slug}>
-                <Link href={`${ALTERNATIVES_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
-                  {e.h1}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="mt-10">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
-            Compliance &amp; privacy
-          </h2>
-          <ul className="mt-4 space-y-2">
-            <li>
-              <Link href={COMPLIANCE_PATH} className="text-brand-600 hover:text-brand-500">
-                Health-Data Compliance &amp; Privacy for Fitness Apps (guide + hub)
-              </Link>
-            </li>
-            {compliance.map((e) => (
-              <li key={e.slug}>
-                <Link href={`${COMPLIANCE_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
-                  {e.h1}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="mt-10">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
-            Migrations
-          </h2>
-          <ul className="mt-4 space-y-2">
-            <li>
-              <Link href={MIGRATE_PATH} className="text-brand-600 hover:text-brand-500">
-                Fitness &amp; Health API Migration Guides (guide + hub)
-              </Link>
-            </li>
-            {migrate.map((e) => (
-              <li key={e.slug}>
-                <Link href={`${MIGRATE_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
-                  {e.h1}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="mt-10">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
-            Pricing
-          </h2>
-          <ul className="mt-4 space-y-2">
-            <li>
-              <Link href={PRICING_PATH} className="text-brand-600 hover:text-brand-500">
-                Fitness &amp; Health API Pricing (guide + hub)
-              </Link>
-            </li>
-            {pricing.map((e) => (
-              <li key={e.slug}>
-                <Link href={`${PRICING_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
-                  {e.h1}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="mt-10">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
-            Comparisons
-          </h2>
-          <ul className="mt-4 space-y-2">
-            <li>
-              <Link href={COMPARE_PATH} className="text-brand-600 hover:text-brand-500">
-                Fitness &amp; Health API Comparisons (guide + hub)
-              </Link>
-            </li>
-            {compare.map((e) => (
-              <li key={e.slug}>
-                <Link href={`${COMPARE_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
-                  {e.h1}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="mt-10">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
-            Health data by metric
-          </h2>
-          <ul className="mt-4 space-y-2">
-            <li>
-              <Link href={DATA_PATH} className="text-brand-600 hover:text-brand-500">
-                Health Data by Metric (guide + hub)
-              </Link>
-            </li>
-            {healthData.map((e) => (
-              <li key={e.slug}>
-                <Link href={`${DATA_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
-                  {e.h1}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="mt-10">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
-            AI motion &amp; pose estimation
-          </h2>
-          <ul className="mt-4 space-y-2">
-            <li>
-              <Link href={MOTION_PATH} className="text-brand-600 hover:text-brand-500">
-                AI Motion &amp; Pose Estimation (guide + hub)
-              </Link>
-            </li>
-            {motion.map((e) => (
-              <li key={e.slug}>
-                <Link href={`${MOTION_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
-                  {e.h1}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="mt-10">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
-            AI &amp; LLM features
-          </h2>
-          <ul className="mt-4 space-y-2">
-            <li>
-              <Link href={AI_PATH} className="text-brand-600 hover:text-brand-500">
-                AI &amp; LLM Features for Fitness Apps (guide + hub)
-              </Link>
-            </li>
-            {ai.map((e) => (
-              <li key={e.slug}>
-                <Link href={`${AI_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
-                  {e.h1}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="mt-10">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
-            Health data architecture
-          </h2>
-          <ul className="mt-4 space-y-2">
-            <li>
-              <Link href={ARCHITECTURE_PATH} className="text-brand-600 hover:text-brand-500">
-                Health Data Architecture for Fitness Apps (guide + hub)
-              </Link>
-            </li>
-            {architecture.map((e) => (
-              <li key={e.slug}>
-                <Link href={`${ARCHITECTURE_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
-                  {e.h1}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="mt-10">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
-            Testing health &amp; fitness apps
-          </h2>
-          <ul className="mt-4 space-y-2">
-            <li>
-              <Link href={TEST_PATH} className="text-brand-600 hover:text-brand-500">
-                Testing Health &amp; Fitness Apps (guide + hub)
-              </Link>
-            </li>
-            {testing.map((e) => (
-              <li key={e.slug}>
-                <Link href={`${TEST_PATH}/${e.slug}`} className="text-brand-600 hover:text-brand-500">
-                  {e.h1}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
+              {entries.map((e) => (
+                <li key={e.slug}>
+                  <Link
+                    href={`${basePath}/${e.slug}`}
+                    className="text-brand-600 hover:text-brand-500"
+                  >
+                    {e.h1}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
 
         {posts.length > 0 && (
           <section className="mt-10">
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">Posts</h2>
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+              Posts
+            </h2>
             <ul className="mt-4 space-y-2">
               {posts.map((p) => (
                 <li key={p.slug}>

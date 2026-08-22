@@ -47,7 +47,7 @@ export default function Feedback({
     "rounded-lg border border-[var(--border)] px-3 py-1.5 text-sm text-[var(--muted)] transition-colors hover:border-brand-400 hover:text-[var(--fg)]";
 
   return (
-    <section className="not-prose mt-12 rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4">
+    <section className="defer-paint not-prose mt-12 rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="text-sm text-[var(--fg)]">
           {vote === null ? "Was this page useful?" : "Thanks — noted."}

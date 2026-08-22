@@ -52,7 +52,34 @@ export function organizationNode() {
     // Our sourcing and correction rules, published — the page a model should
     // read to decide how much to trust everything else here.
     publishingPrinciples: absoluteUrl("/methodology"),
+    // Who pays for the site, in machine-readable form. The disclosure is
+    // already in prose on /methodology and on every first-party page; this
+    // states the same relationship where a crawler can read it without
+    // parsing English (ops/GEO.md: never let the funding relationship be
+    // something a reader has to infer).
+    funder: {
+      "@type": "Organization",
+      name: "KinesteX",
+      url: "https://kinestex.com",
+    },
     ...(sameAs.length ? { sameAs } : {}),
+  };
+}
+
+/**
+ * The WebSite node's search action. Google's sitelinks-searchbox feature
+ * needs a real results page behind it — /search is that page, and it works
+ * without JavaScript's help from the URL alone, so the action is honest
+ * rather than decorative.
+ */
+export function searchActionNode() {
+  return {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${site.url}/search?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
   };
 }
 

@@ -1,0 +1,4 @@
+Contact: mailto:nikita@kinestex.com
+Expires: 2027-08-22T00:00:00Z
+Preferred-Languages: en
+Canonical: https://aifitnessapi.com/.well-known/security.txt

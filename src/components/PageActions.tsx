@@ -16,6 +16,7 @@ export default function PageActions({
   url,
   title,
   updated,
+  markdown = true,
 }: {
   /** Site-relative path, e.g. "/watch-apps/wear-os-tiles". */
   path: string;
@@ -24,6 +25,10 @@ export default function PageActions({
   title: string;
   /** ISO review date, used in the citation. */
   updated: string;
+  /** Does this page have a markdown mirror? Directory and tool pages do not,
+   *  and offering a "Copy for AI" button that 404s is worse than not
+   *  offering one. */
+  markdown?: boolean;
 }) {
   const [state, setState] = useState<"idle" | "copying" | "copied" | "failed">("idle");
   const [showCite, setShowCite] = useState(false);
@@ -62,6 +67,8 @@ export default function PageActions({
 
   return (
     <div className="not-prose mt-6 flex flex-wrap items-center gap-2">
+      {markdown && (
+        <>
       <button type="button" onClick={copyMarkdown} className={btn}>
         {state === "copied"
           ? "Copied markdown"
@@ -74,6 +81,8 @@ export default function PageActions({
       <a href={mdPath} className={btn}>
         View as Markdown
       </a>
+        </>
+      )}
       <button
         type="button"
         onClick={() => setShowCite((s) => !s)}

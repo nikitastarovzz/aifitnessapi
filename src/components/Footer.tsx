@@ -119,6 +119,9 @@ export default function Footer() {
           <Link href="/site-index" className="py-1 hover:text-[var(--fg)]">
             Site index
           </Link>
+          <Link href="/search" className="py-1 hover:text-[var(--fg)]">
+            Search
+          </Link>
           <a href="/feed.xml" className="py-1 hover:text-[var(--fg)]">
             RSS
           </a>
@@ -126,7 +129,7 @@ export default function Footer() {
             <a
               href={site.social.github}
               target="_blank"
-              rel="noreferrer"
+              rel="me noreferrer"
               className="py-1 hover:text-[var(--fg)]"
             >
               GitHub

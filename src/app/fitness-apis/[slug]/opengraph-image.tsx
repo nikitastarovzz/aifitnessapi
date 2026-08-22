@@ -15,7 +15,11 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   const { slug } = await params;
   const entry = getEntry(slug);
   return new ImageResponse(
-    ogCard({ eyebrow: FITNESS_APIS_CONFIG.hubLabel, title: entry?.h1 ?? "AIFitnessAPI" }),
+    ogCard({
+      eyebrow: FITNESS_APIS_CONFIG.hubLabel,
+      title: entry?.h1 ?? "AIFitnessAPI",
+      line: entry?.primaryQuery,
+    }),
     { ...OG_SIZE },
   );
 }

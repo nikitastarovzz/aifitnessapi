@@ -46,6 +46,7 @@ export function GET() {
     `- Full text of every page in one file: ${absoluteUrl("/llms-full.txt")}`,
     `- Structured index of every question and answer, with deep links: ${absoluteUrl("/answers.json")}`,
     `- Dated ecosystem changes, graded confirmed vs reported: ${absoluteUrl("/changes.xml")}`,
+    `- Per-section RSS: ${absoluteUrl("/feeds/<cluster>.xml")} (e.g. ${absoluteUrl("/feeds/devices.xml")}); blog as JSON Feed: ${absoluteUrl("/feed.json")}`,
     "- Each page states the one question it owns; FAQ answers are individually addressable at `#faq-1`, `#faq-2`, …",
     "- Sourcing: claims trace to a primary source checked on the review date, and unverifiable claims are labelled as such rather than rounded up.",
     "- Funding: this site is funded by KinesteX, an AI motion SDK. Pages covering KinesteX carry a disclosure and are flagged `first_party` in answers.json.",
@@ -294,6 +295,7 @@ export function GET() {
   lines.push(
     "",
     "## Tools",
+    `- [Search every page and answer](${absoluteUrl("/search")}): query the same index the site's own search uses; ${absoluteUrl("/search?q=<terms>")} is a working URL.`,
     `- [Which Fitness API Should I Use? (interactive picker)](${absoluteUrl("/picker")}): a 3-question tool that recommends a fitness/health API approach by job, platform, and priority, linking to the relevant comparisons, guides, and pricing.`,
     `- [HealthKit ↔ Health Connect data-type reference](${absoluteUrl("/matrix")}): the matching Apple HealthKit and Android Health Connect type identifier for ten common metrics, plus cross-platform gotchas (notably Apple stores HRV as SDNN while Health Connect stores RMSSD — not interconvertible). Verified against Apple's and Google's own docs.`,
     "",

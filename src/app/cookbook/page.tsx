@@ -4,6 +4,7 @@ import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterCta from "@/components/ClusterCta";
 import ClusterHero from "@/components/ClusterHero";
+import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
@@ -23,7 +24,6 @@ export const metadata: Metadata = {
     description:
       "Copy-paste-runnable implementations of the patterns our pages document — zero dependencies, node:test suites, tested in CI on every change.",
     url: COOKBOOK_PATH,
-    images: ["/opengraph-image"],
   },
 };
 
@@ -138,6 +138,7 @@ export default function CookbookPillar() {
                     >
                       <span className="font-semibold text-[var(--fg)]">{e!.h1}</span>
                       <span className="mt-2 text-sm text-[var(--muted)]">{e!.metaDescription}</span>
+                      <EntryBadge updated={e!.updated} />
                     </Link>
                   </li>
                 ))}

@@ -6,7 +6,7 @@ import PageSummary from "@/components/PageSummary";
 
 export const metadata: Metadata = {
   title: "About",
-  description: `About ${site.name} — a hub for builders in health, wellness, and fitness tech.`,
+  description: `About ${site.name} — who writes these fitness, wearable and health API guides, how they are verified against primary sources, and who funds the site.`,
   alternates: { canonical: "/about" },
 };
 

@@ -5,6 +5,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterCta from "@/components/ClusterCta";
 import ClusterDisclaimer from "@/components/ClusterDisclaimer";
 import ClusterHero from "@/components/ClusterHero";
+import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
@@ -24,7 +25,6 @@ export const metadata: Metadata = {
     description:
       "The stage after the integration works — deduplicating overlapping sources, normalizing units and schemas, getting day boundaries right, and keeping a health data pipeline trustworthy at scale.",
     url: ARCHITECTURE_PATH,
-    images: ["/opengraph-image"],
   },
 };
 
@@ -171,6 +171,7 @@ export default function ArchitecturePillar() {
                     >
                       <span className="font-semibold text-[var(--fg)]">{e!.h1}</span>
                       <span className="mt-2 text-sm text-[var(--muted)]">{e!.metaDescription}</span>
+                      <EntryBadge updated={e!.updated} />
                     </Link>
                   </li>
                 ))}

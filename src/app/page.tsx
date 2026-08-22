@@ -82,6 +82,16 @@ export default function Home() {
   const guideCount = Object.values(clusters).reduce((n, list) => n + list.length, 0);
   const recipeCount = (clusters["/cookbook"] ?? []).length;
   const countByPath = (p: string) => clusters[p]?.length ?? 0;
+  const newestByPath = (p: string) =>
+    (clusters[p] ?? []).map((e) => e.updated).sort().at(-1) ?? "";
+
+  // Freshness, stated from data rather than claimed. "Recently" is measured
+  // against build time, which on a static site is deploy time, so the number
+  // cannot rot into a lie between deploys.
+  const THIRTY_DAYS_AGO = new Date(Date.now() - 30 * 86_400_000).toISOString().slice(0, 10);
+  const freshPages = Object.values(clusters)
+    .flat()
+    .filter((e) => e.updated >= THIRTY_DAYS_AGO).length;
 
   // Deadlines: the next dated events still ahead of the build date; if the
   // calendar ever runs dry, fall back to the most recent ones.
@@ -92,6 +102,11 @@ export default function Home() {
     .sort((a, b) => (a.sortDate < b.sortDate ? -1 : 1))
     .slice(0, 3);
   const deadlines = upcoming.length > 0 ? upcoming : events.slice(0, 3);
+  // Most recently re-checked tracker entries — freshness of the record itself,
+  // which is a different claim from the freshness of the deadlines above.
+  const recentlyVerified = [...events]
+    .sort((a, b) => (a.verifiedOn < b.verifiedOn ? 1 : -1))
+    .slice(0, 3);
 
   return (
     <>
@@ -294,6 +309,44 @@ export default function Home() {
         </Reveal>
       </Container>
 
+      {/* ——— Freshness: what moved recently ——— */}
+      <Container className="pt-16">
+        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+          <div className="flex flex-wrap items-baseline justify-between gap-3">
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+              Verified in the last 30 days
+            </h2>
+            <Link
+              href="/changes"
+              className="py-1 text-sm font-medium text-brand-600 hover:text-brand-500"
+            >
+              The full tracker →
+            </Link>
+          </div>
+          <p className="mt-2 text-sm text-[var(--muted)]">
+            {freshPages} of {guideCount} pages were re-checked against their sources in the
+            last 30 days, and these are the most recently verified entries in the changes
+            tracker. Both numbers are computed at build time from the pages themselves — if
+            we stop doing the work, this section says so.
+          </p>
+          <ul className="mt-4 grid gap-3 sm:grid-cols-3">
+            {recentlyVerified.map((e) => (
+              <li key={e.title}>
+                <Link
+                  href={e.page.href}
+                  className="flex h-full flex-col rounded-xl border border-[var(--border)] bg-[var(--bg)] p-4 transition-colors hover:border-brand-400"
+                >
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--muted)]">
+                    {e.status} · checked {e.verifiedOn}
+                  </span>
+                  <span className="mt-1 text-sm font-medium text-[var(--fg)]">{e.title}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Container>
+
       {/* ——— Everything we cover ——— */}
       <Container className="pt-16">
         <div className="mb-6 flex items-baseline justify-between">
@@ -321,6 +374,9 @@ export default function Home() {
                 )}
               </div>
               <span className="mt-2 text-sm text-[var(--muted)]">{c.blurb}</span>
+              <span className="mt-3 text-xs text-[var(--muted)]">
+                Newest verified {newestByPath(c.href)}
+              </span>
             </Link>
           ))}
         </div>

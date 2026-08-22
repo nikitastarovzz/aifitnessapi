@@ -5,7 +5,7 @@ import { getAllPosts } from "@/lib/posts";
 import PageSummary from "@/components/PageSummary";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Fitness & Health API Blog",
   description:
     "Product breakdowns, API deep-dives, and playbooks for builders in health, wellness, and fitness tech.",
   alternates: { canonical: "/blog" },

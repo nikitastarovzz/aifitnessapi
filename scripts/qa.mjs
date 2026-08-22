@@ -315,6 +315,68 @@ if (fs.existsSync(matrixPath)) {
       problems.push(`GEO-NO-FAQ-ANCHOR  ${r} FAQ answers are not individually addressable`);
     }
   }
+  // ── Discovery surfaces. Feeds, the search descriptor and the manifest are
+  // invisible when they break: nothing on the site links to a broken feed in a
+  // way a human would notice, and a reader whose reader stops updating just
+  // stops reading. Assert they exist and parse.
+  {
+    const feedsDir = ".next/server/app/feeds";
+    const feedFiles = fs.existsSync(feedsDir)
+      ? fs.readdirSync(feedsDir).filter((f) => f.endsWith(".body"))
+      : [];
+    const populated = clusterTops.length;
+    if (feedFiles.length !== populated) {
+      problems.push(
+        `FEED-COUNT  ${feedFiles.length} per-cluster RSS feeds vs ${populated} populated clusters`,
+      );
+    }
+    for (const f of feedFiles) {
+      const xml = fs.readFileSync(path.join(feedsDir, f), "utf8");
+      if (!xml.includes("<item>")) problems.push(`FEED-EMPTY  /feeds/${f.replace(".body", "")}`);
+      if (!xml.includes('rel="self"')) problems.push(`FEED-NO-SELF  /feeds/${f.replace(".body", "")}`);
+      // A raw & in an RSS body breaks strict readers. Entities and CDATA are fine.
+      const outsideCdata = xml.replace(/<!\[CDATA\[[\s\S]*?\]\]>/g, "");
+      if (/&(?!(amp|lt|gt|quot|apos|#\d+);)/.test(outsideCdata)) {
+        problems.push(`FEED-UNESCAPED-AMP  /feeds/${f.replace(".body", "")}`);
+      }
+    }
+
+    const jsonFeed = readBody(".next/server/app/feed.json.body");
+    if (jsonFeed === null) problems.push("FEED-NO-JSON  feed.json missing from build output");
+    else {
+      try {
+        const parsed = JSON.parse(jsonFeed);
+        if (!parsed.version?.includes("jsonfeed.org")) problems.push("FEED-JSON-VERSION  feed.json has no JSON Feed version");
+        if (!Array.isArray(parsed.items)) problems.push("FEED-JSON-ITEMS  feed.json has no items array");
+      } catch {
+        problems.push("FEED-JSON-INVALID  feed.json is not valid JSON");
+      }
+    }
+
+    const opensearch = readBody(".next/server/app/opensearch.xml.body");
+    if (opensearch === null) problems.push("NO-OPENSEARCH  opensearch.xml missing from build output");
+    else if (!opensearch.includes("/search?q={searchTerms}")) {
+      problems.push("OPENSEARCH-TARGET  descriptor does not point at the /search results page");
+    }
+
+    const manifest = readBody(".next/server/app/manifest.webmanifest.body");
+    if (manifest === null) problems.push("NO-MANIFEST  manifest.webmanifest missing from build output");
+    else {
+      try {
+        const parsed = JSON.parse(manifest);
+        if (!parsed.name || !parsed.start_url || !Array.isArray(parsed.icons) || parsed.icons.length === 0) {
+          problems.push("MANIFEST-FIELDS  manifest is missing name, start_url or icons");
+        }
+      } catch {
+        problems.push("MANIFEST-INVALID  manifest.webmanifest is not valid JSON");
+      }
+    }
+    console.log(
+      `Discovery: ${feedFiles.length} cluster feeds; feed.json ${jsonFeed ? "ok" : "MISSING"}; ` +
+        `opensearch ${opensearch ? "ok" : "MISSING"}; manifest ${manifest ? "ok" : "MISSING"}.`,
+    );
+  }
+
   console.log(
     `GEO: ${mirrorFiles.length} spoke + ${hubMirrors.length} index markdown mirrors; ` +
       `llms.txt ${llms ? "ok" : "MISSING"}; answers.json ${answersRaw ? "ok" : "MISSING"}; ` +
