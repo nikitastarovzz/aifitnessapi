@@ -38,6 +38,7 @@ const CLUSTERS: { href: string; title: string; blurb: string }[] = [
   { href: "/cookbook", title: "Cookbook: tested code", blurb: "Runnable, dependency-free reference implementations — token rotation, webhooks, DST-safe rollups — CI-tested." },
   { href: "/devices", title: "Connected devices", blurb: "Straps, treadmills, trainers, and the watch as a live sensor — BLE heart rate, FTMS, and the testing story." },
   { href: "/engagement", title: "Engagement & retention", blurb: "Getting people back: notifications, Live Activities, widgets, streaks, leaderboards — and measuring lift honestly." },
+  { href: "/watch-apps", title: "Watch apps", blurb: "Writing the app on the wrist: workout sessions, background execution, WorkoutKit, Wear OS tiles, battery, testing." },
 ];
 
 /** The providers and SDKs people actually arrive searching for. Every href is
@@ -305,7 +306,7 @@ export default function Home() {
         </div>
         <Reveal>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {CLUSTERS.map((c) => (
+          {CLUSTERS.filter((c) => countByPath(c.href) > 0).map((c) => (
             <Link
               key={c.href}
               href={c.href}

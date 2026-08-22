@@ -25,6 +25,7 @@ const CLUSTERS = [
   "cookbook",
   "devices",
   "engagement",
+  "watch-apps",
 ];
 
 const SITE = "https://aifitnessapi.com";

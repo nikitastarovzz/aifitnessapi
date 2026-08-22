@@ -19,13 +19,14 @@ const LINKS = [
   { href: "/devices", label: "Connected devices" },
   { href: "/picker", label: "API Picker" },
   { href: "/engagement", label: "Engagement" },
+  { href: "/watch-apps", label: "Watch apps" },
   { href: "/cookbook", label: "Cookbook" },
   { href: "/changes", label: "Changes & deadlines" },
   { href: "/blog", label: "Blog" },
   { href: "/site-index", label: "All topics" },
 ];
 
-export default function MobileNav() {
+export default function MobileNav({ links = LINKS }: { links?: { href: string; label: string }[] }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const wrap = useRef<HTMLDivElement>(null);
@@ -78,7 +79,7 @@ export default function MobileNav() {
         >
           <nav aria-label="Mobile" className="mx-auto max-w-6xl px-4 py-2 sm:px-6">
             <ul>
-              {LINKS.map((l) => (
+              {links.map((l) => (
                 <li key={l.href}>
                   <Link
                     href={l.href}

@@ -20,6 +20,7 @@ import { releasedTesting, TEST_PATH } from "@/data/testing";
 import { releasedCookbook, COOKBOOK_PATH } from "@/data/cookbook";
 import { releasedDevices, DEVICES_PATH } from "@/data/devices";
 import { releasedEngagement, ENGAGEMENT_PATH } from "@/data/engagement";
+import { releasedWatchApps, WATCH_PATH } from "@/data/watchApps";
 import { clusterMap } from "@/lib/clusterRegistry";
 import { changesSorted } from "@/data/changes";
 
@@ -44,6 +45,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const cookbook = releasedCookbook();
   const devices = releasedDevices();
   const engagement = releasedEngagement();
+  const watchApps = releasedWatchApps();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: absoluteUrl("/"), changeFrequency: "weekly", priority: 1 },
@@ -66,6 +68,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl(COOKBOOK_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl(DEVICES_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl(ENGAGEMENT_PATH), changeFrequency: "weekly", priority: 0.8 },
+    { url: absoluteUrl(WATCH_PATH), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/privacy"), changeFrequency: "yearly", priority: 0.2 },
     { url: absoluteUrl("/google-fit-shutdown"), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/methodology"), changeFrequency: "yearly", priority: 0.4 },
@@ -214,6 +217,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly",
     priority: 0.7,
   }));
+  const watchRoutes: MetadataRoute.Sitemap = watchApps.map((e) => ({
+    url: absoluteUrl(`${WATCH_PATH}/${e.slug}`),
+    lastModified: new Date(e.updated),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
 
   const postRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
     url: absoluteUrl(`/blog/${post.slug}`),
@@ -238,7 +247,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .sort()
     .at(-1);
 
-  const dated: MetadataRoute.Sitemap = staticRoutes.map((r) => {
+  // An empty cluster's hub 404s, so it must not appear in the sitemap.
+  const populatedHubs = new Set(
+    Object.entries(map).filter(([, e]) => e.length > 0).map(([b]) => absoluteUrl(b)),
+  );
+  const allHubs = new Set(Object.keys(map).map((b) => absoluteUrl(b)));
+  const listed = staticRoutes.filter((r) => !allHubs.has(r.url) || populatedHubs.has(r.url));
+
+  const dated: MetadataRoute.Sitemap = listed.map((r) => {
     const path = r.url.replace(absoluteUrl(""), "") || "/";
     const stamp =
       newestIn(path) ??
@@ -268,6 +284,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...cookbookRoutes,
     ...deviceRoutes,
     ...engagementRoutes,
+    ...watchRoutes,
     ...postRoutes,
   ];
 }

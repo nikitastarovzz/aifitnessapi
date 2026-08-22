@@ -3,6 +3,7 @@ import Container from "./Container";
 import SiteSearch from "./SiteSearch";
 import MobileNav from "./MobileNav";
 import { site } from "@/lib/site";
+import { clusterMap } from "@/lib/clusterRegistry";
 
 const nav = [
   { href: "/fitness-apis", label: "Fitness APIs" },
@@ -11,7 +12,25 @@ const nav = [
   { href: "/changes", label: "Changes" },
 ];
 
+const MOBILE_LINKS = [
+  { href: "/fitness-apis", label: "Fitness APIs" },
+  { href: "/integrate", label: "Integration guides" },
+  { href: "/devices", label: "Connected devices" },
+  { href: "/engagement", label: "Engagement" },
+  { href: "/watch-apps", label: "Watch apps" },
+  { href: "/picker", label: "API Picker" },
+  { href: "/cookbook", label: "Cookbook" },
+  { href: "/changes", label: "Changes & deadlines" },
+  { href: "/blog", label: "Blog" },
+  { href: "/site-index", label: "All topics" },
+];
+
 export default function Header() {
+  // Drop any cluster with no released pages: its hub 404s by design.
+  const map = clusterMap();
+  const mobileLinks = MOBILE_LINKS.filter(
+    (l) => !(l.href in map) || (map[l.href]?.length ?? 0) > 0,
+  );
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--bg)]/80 backdrop-blur">
       <Container className="flex h-16 items-center justify-between">
@@ -41,7 +60,7 @@ export default function Header() {
           >
             Subscribe
           </Link>
-          <MobileNav />
+          <MobileNav links={mobileLinks} />
         </nav>
       </Container>
     </header>

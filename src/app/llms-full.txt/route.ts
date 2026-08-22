@@ -18,6 +18,7 @@ import { releasedTesting, TEST_PATH } from "@/data/testing";
 import { releasedCookbook, COOKBOOK_PATH } from "@/data/cookbook";
 import { releasedDevices, DEVICES_PATH } from "@/data/devices";
 import { releasedEngagement, ENGAGEMENT_PATH } from "@/data/engagement";
+import { releasedWatchApps, WATCH_PATH } from "@/data/watchApps";
 
 /**
  * llms-full.txt — the fuller LLM-facing dump: each spoke's answer capsule and
@@ -353,6 +354,20 @@ export function GET() {
       out.push(`Primary query: ${g.primaryQuery}`, "", g.answer, "");
       if (g.faqs.length) {
         for (const f of g.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+        out.push("");
+      }
+    }
+  }
+
+  const watchApps = releasedWatchApps();
+  if (watchApps.length) {
+    out.push(`# Building watch apps — watchOS and Wear OS — ${absoluteUrl(WATCH_PATH)}`, "");
+    out.push("Writing the app that runs on the wrist: workout session lifecycle, background execution, WorkoutKit scheduling, Wear OS Health Services, tiles, phone pairing, battery and testing. Every platform claim verified against Apple's or Google's own documentation.", "");
+    for (const w of watchApps) {
+      out.push(`## ${w.h1} — ${absoluteUrl(`${WATCH_PATH}/${w.slug}`)}`);
+      out.push(`Primary query: ${w.primaryQuery}`, "", w.answer, "");
+      if (w.faqs.length) {
+        for (const f of w.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
         out.push("");
       }
     }

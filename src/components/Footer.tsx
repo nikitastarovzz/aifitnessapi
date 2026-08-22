@@ -1,9 +1,13 @@
 import Link from "next/link";
 import Container from "./Container";
 import { site } from "@/lib/site";
+import { clusterMap } from "@/lib/clusterRegistry";
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  // Never link a cluster that has no released pages — its hub 404s.
+  const populated = clusterMap();
+  const has = (p: string) => (populated[p]?.length ?? 0) > 0;
   return (
     <footer className="mt-24 border-t border-[var(--border)]">
       <Container className="flex flex-col items-center justify-between gap-4 py-10 sm:flex-row">
@@ -68,6 +72,11 @@ export default function Footer() {
           <Link href="/engagement" className="py-1 hover:text-[var(--fg)]">
             Engagement &amp; Retention
           </Link>
+          {has("/watch-apps") && (
+            <Link href="/watch-apps" className="py-1 hover:text-[var(--fg)]">
+              Watch Apps
+            </Link>
+          )}
           <Link href="/picker" className="py-1 hover:text-[var(--fg)]">
             API Picker
           </Link>

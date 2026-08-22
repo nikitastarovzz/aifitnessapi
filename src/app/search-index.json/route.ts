@@ -18,6 +18,7 @@ import { releasedTesting, TEST_PATH } from "@/data/testing";
 import { releasedCookbook, COOKBOOK_PATH } from "@/data/cookbook";
 import { releasedDevices, DEVICES_PATH } from "@/data/devices";
 import { releasedEngagement, ENGAGEMENT_PATH } from "@/data/engagement";
+import { releasedWatchApps, WATCH_PATH } from "@/data/watchApps";
 
 /**
  * Site search index — generated from the same data modules as the pages
@@ -56,6 +57,7 @@ export function GET() {
     [COOKBOOK_PATH, "Cookbook", releasedCookbook()],
     [DEVICES_PATH, "Connected Devices", releasedDevices()],
     [ENGAGEMENT_PATH, "Engagement & Retention", releasedEngagement()],
+    [WATCH_PATH, "Watch Apps", releasedWatchApps()],
   ];
 
   const hubBlurbs: Record<string, string> = {
@@ -77,6 +79,7 @@ export function GET() {
     [TEST_PATH]: "Testing HealthKit, Health Connect, wearable and camera integrations.",
     [COOKBOOK_PATH]: "Runnable, CI-tested reference code: token rotation, webhooks, rollups, rep counting.",
     [DEVICES_PATH]: "Pair straps, machines, and watches: BLE heart rate, FTMS, live watch data, testing.",
+    [WATCH_PATH]: "Building the app that runs on the watch: sessions, background, tiles, pairing, battery, testing.",
     [ENGAGEMENT_PATH]: "Getting people back: notifications, Live Activities, widgets, streaks, leaderboards \u2014 and how to measure lift honestly.",
   };
 
