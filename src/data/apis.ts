@@ -26,7 +26,8 @@ export const APIS_PATH = "/apis";
 
 export type ApiEntry = CostItem & {
   aliases: string[];
-  /** Short display name for titles, which have 60 characters to work with. */
+  /** How the product is named in running prose — the colloquial name people
+   *  actually type and say, not the full product string. */
   short: string;
 };
 
@@ -64,16 +65,33 @@ const ALIASES: Record<string, string[]> = {
   "apple-vision": ["Apple Vision", "VNDetectHumanBodyPose", "Vision framework"],
 };
 
-/** Titles get 60 characters. These trim the vendor's full product string
- *  without renaming the product. */
+/** The colloquial name, for sentences and for the title when the full
+ *  product string will not fit in 60 characters. */
 const SHORT: Record<string, string> = {
-  fitbit: "Fitbit Web API",
-  junction: "Junction (formerly Vital)",
+  fitbit: "Fitbit",
+  garmin: "Garmin",
+  oura: "Oura",
+  whoop: "WHOOP",
+  strava: "Strava",
+  polar: "Polar",
+  healthkit: "HealthKit",
+  "health-connect": "Health Connect",
+  terra: "Terra",
+  junction: "Junction",
+  rook: "Rook",
+  spike: "Spike",
+  nutritionix: "Nutritionix",
+  edamam: "Edamam",
+  "usda-fdc": "FoodData Central",
+  "open-food-facts": "Open Food Facts",
   exercisedb: "ExerciseDB",
   wger: "wger",
-  mediapipe: "MediaPipe Pose Landmarker",
-  movenet: "MoveNet",
+  kinestex: "KinesteX",
   sency: "Sency",
+  quickpose: "QuickPose",
+  mediapipe: "MediaPipe",
+  movenet: "MoveNet",
+  "apple-vision": "Apple Vision body pose",
 };
 
 export const API_ENTRIES: ApiEntry[] = COST_ITEMS.filter((i) => !EXCLUDED.has(i.id)).map((i) => ({

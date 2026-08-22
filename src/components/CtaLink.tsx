@@ -15,7 +15,8 @@ export type CtaSource =
   | "pillar-inline"
   | "hub-card"
   | "spoke-inline"
-  | "spoke-footer";
+  | "spoke-footer"
+  | "directory";
 
 type Props = {
   href: string;

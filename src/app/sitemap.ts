@@ -23,6 +23,7 @@ import { releasedEngagement, ENGAGEMENT_PATH } from "@/data/engagement";
 import { releasedWatchApps, WATCH_PATH } from "@/data/watchApps";
 import { clusterMap } from "@/lib/clusterRegistry";
 import { changesSorted } from "@/data/changes";
+import { API_ENTRIES, APIS_PATH } from "@/data/apis";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
@@ -85,6 +86,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl("/blog"), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/about"), changeFrequency: "monthly", priority: 0.5 },
     { url: absoluteUrl("/site-index"), changeFrequency: "monthly", priority: 0.3 },
+    { url: absoluteUrl(APIS_PATH), changeFrequency: "weekly", priority: 0.9 },
   ];
 
   const spokeRoutes: MetadataRoute.Sitemap = spokes.map((e) => ({
@@ -263,6 +265,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     return stamp ? { ...r, lastModified: new Date(stamp) } : r;
   });
 
+  // Directory entries: one per product, re-derived from the cost model.
+  const apiRoutes: MetadataRoute.Sitemap = API_ENTRIES.map((a) => ({
+    url: absoluteUrl(`${APIS_PATH}/${a.id}`),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
   return [
     ...dated,
     ...spokeRoutes,
@@ -285,6 +294,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...deviceRoutes,
     ...engagementRoutes,
     ...watchRoutes,
+    ...apiRoutes,
     ...postRoutes,
   ];
 }

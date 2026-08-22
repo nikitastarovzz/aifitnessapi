@@ -264,7 +264,17 @@ export default function Home() {
           Free tools — no signup needed
         </h2>
         <Reveal>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          <Link
+            href="/apis"
+            className="group flex flex-col rounded-2xl border border-[var(--border)] p-5 transition hover:-translate-y-0.5 hover:border-brand-400 hover:bg-[var(--surface)]"
+          >
+            <h3 className="font-bold tracking-tight text-[var(--fg)]">API Directory</h3>
+            <p className="mt-1 flex-1 text-sm text-[var(--muted)]">
+              One page per API: how it bills you, what your users must own, what gates launch.
+            </p>
+            <span className="mt-3 text-sm font-semibold text-brand-600 group-hover:text-brand-500 dark:text-brand-300">Browse it <span aria-hidden className="inline-block transition-transform group-hover:translate-x-0.5">→</span></span>
+          </Link>
           <Link
             href="/picker"
             className="group flex flex-col rounded-2xl border border-brand-400/40 bg-brand-500/5 p-5 transition hover:-translate-y-0.5 hover:bg-brand-500/10"

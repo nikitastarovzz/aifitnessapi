@@ -14,6 +14,7 @@ const nav = [
 
 const MOBILE_LINKS = [
   { href: "/fitness-apis", label: "Fitness APIs" },
+  { href: "/apis", label: "API directory" },
   { href: "/integrate", label: "Integration guides" },
   { href: "/devices", label: "Connected devices" },
   { href: "/engagement", label: "Engagement" },

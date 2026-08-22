@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 const MAIN = [
   { href: "/", label: "Home" },
   { href: "/search", label: "Search every page and answer" },
+  { href: "/apis", label: "Fitness & health API directory" },
   { href: "/picker", label: "Which fitness API should I use? (picker)" },
   { href: "/cost-planner", label: "Fitness API cost planner" },
   { href: "/matrix", label: "HealthKit ↔ Health Connect type reference" },

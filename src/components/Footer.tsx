@@ -77,6 +77,9 @@ export default function Footer() {
               Watch Apps
             </Link>
           )}
+          <Link href="/apis" className="py-1 hover:text-[var(--fg)]">
+            API Directory
+          </Link>
           <Link href="/picker" className="py-1 hover:text-[var(--fg)]">
             API Picker
           </Link>

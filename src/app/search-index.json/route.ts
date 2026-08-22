@@ -19,6 +19,7 @@ import { releasedCookbook, COOKBOOK_PATH } from "@/data/cookbook";
 import { releasedDevices, DEVICES_PATH } from "@/data/devices";
 import { releasedEngagement, ENGAGEMENT_PATH } from "@/data/engagement";
 import { releasedWatchApps, WATCH_PATH } from "@/data/watchApps";
+import { API_ENTRIES, APIS_PATH, CATEGORY_LABELS, DEV_COST_LABELS } from "@/data/apis";
 
 /**
  * Site search index — generated from the same data modules as the pages
@@ -128,6 +129,21 @@ export function GET() {
     }
   }
 
+  add(
+    APIS_PATH,
+    "Fitness & Health API Directory",
+    "Every API this site covers, with how it bills you, what your users must own, and what gates launch.",
+    "directory apis list vendors providers index",
+  );
+  for (const a of API_ENTRIES) {
+    add(
+      `${APIS_PATH}/${a.id}`,
+      a.label,
+      `${DEV_COST_LABELS[a.devCost]}${a.approvalGate ? " · approval gate" : ""}${a.userSideCost ? " · user-side cost" : ""}`,
+      [a.aliases.join(" "), CATEGORY_LABELS[a.category], "directory pricing access"].join(" "),
+    );
+  }
+
   add("/picker", "Which Fitness API Should I Use? (interactive)", "Three questions, a tailored recommendation.", "picker tool quiz choose");
   add("/cost-planner", "Fitness API Cost Planner (interactive)", "The cost structure of your stack: billing models, user-side costs, approval gates, eng effort.", "cost calculator pricing budget planner tool");
   add("/changes", "Fitness API Changes & Deadlines Tracker", "The dated, graded record of ecosystem changes: deprecations, deadlines, term changes \u2014 confirmed vs reported.", "changes changelog deadlines deprecations tracker news updates");
@@ -138,6 +154,7 @@ export function GET() {
   add("/day-boundaries", "Why \u201cToday\u2019s Steps\u201d Is a Bug (live demo)", "Interactive: DST days aren't 24 hours, so a fixed UTC window drops or double-counts an hour.", "timezone dst day boundary demo interactive");
   add("/google-fit-shutdown", "Google Fit Is Shutting Down", "The verified timeline and the migration path for each kind of integration.", "google fit deprecated sunset end of 2026");
   add("/fitbit-api-shutdown", "Fitbit Web API Retirement: Deadlines and Migration", "What is confirmed vs reported about the ~September 2026 turndown, and the migration path by integration shape.", "fitbit api shutdown deprecated retirement google health september 2026");
+  add("/search", "Search every page and answer", "Search the whole site, including the individual questions answered inside each page.", "search find query");
   add("/signup", "Sign up for the newsletter", "API breakdowns matched to what you're building.", "subscribe newsletter email");
   add("/about", "About AIFitnessAPI", "Who writes this site and why.", "about");
   add("/glossary", "Fitness & Health API Glossary", "Every term in one or two honest sentences, linked to the page that treats it properly.", "glossary terms definitions dictionary");

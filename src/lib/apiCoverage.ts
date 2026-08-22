@@ -79,6 +79,27 @@ export function pageCount(id: string): number {
   return coverageFor(id).reduce((n, c) => n + c.pages.length, 0);
 }
 
+/**
+ * The inverse view: which products a given page covers. Rendered on the page
+ * as links into the directory, so the entity layer is reachable from the
+ * prose that discusses it rather than only from its own index.
+ */
+export function apisOnPage(basePath: string, slug: string): { id: string; short: string }[] {
+  CACHE ??= build();
+  const href = `${basePath}/${slug}`;
+  const out: { id: string; short: string; score: number }[] = [];
+  for (const api of API_ENTRIES) {
+    for (const c of CACHE.get(api.id) ?? []) {
+      const hit = c.pages.find((p) => p.href === href);
+      if (hit) out.push({ id: api.id, short: api.short, score: hit.score });
+    }
+  }
+  return out
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 6)
+    .map(({ id, short }) => ({ id, short }));
+}
+
 /** Tracked ecosystem changes whose title or summary names this product. */
 export function changesFor(api: ApiEntry): ChangeEvent[] {
   return CHANGE_EVENTS.filter((e) =>

@@ -16,6 +16,8 @@ import { spokeGraph, markdownUrl } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { clusterNeighbors } from "@/lib/clusterRegistry";
 import { relatedAcrossSite } from "@/lib/related";
+import { apisOnPage } from "@/lib/apiCoverage";
+import { APIS_PATH } from "@/data/apis";
 import { autolinkGlossary } from "@/lib/autolink";
 import { headings } from "@/lib/toc";
 import readingTime from "reading-time";
@@ -48,6 +50,10 @@ export default function ClusterPage({
   const toc = headings(entry.body);
   const minutes = Math.max(1, Math.round(readingTime(entry.body).minutes));
   const alsoRead = relatedAcrossSite(basePath, entry.slug);
+  // The products this page actually discusses, linked to their directory
+  // entries — access terms, gates and everything else we have written about
+  // each one, without the reader having to search for the name.
+  const products = apisOnPage(basePath, entry.slug);
 
   // TechArticle + WebPage graph (review metadata, glossary `about` links,
   // citations, markdown encoding). Built centrally so every spoke agrees.
@@ -156,6 +162,21 @@ export default function ClusterPage({
         <PageActions path={path} url={url} title={entry.h1} updated={entry.updated} />
 
         <FaqJump questions={entry.faqs.map((f) => f.q)} />
+
+        {products.length > 0 && (
+          <p className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-[var(--muted)]">
+            <span>Covered here:</span>
+            {products.map((p) => (
+              <Link
+                key={p.id}
+                href={`${APIS_PATH}/${p.id}`}
+                className="rounded-full border border-[var(--border)] px-2.5 py-0.5 text-xs text-[var(--fg)] transition-colors hover:border-brand-400"
+              >
+                {p.short}
+              </Link>
+            ))}
+          </p>
+        )}
 
         <div className="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-headings:scroll-mt-24 prose-a:text-brand-600 hover:prose-a:text-brand-500 prose-th:text-left prose-pre:rounded-xl prose-pre:border prose-pre:border-[var(--border)]">
           <Mdx source={body} />

@@ -295,6 +295,7 @@ export function GET() {
   lines.push(
     "",
     "## Tools",
+    `- [Fitness & health API directory](${absoluteUrl("/apis")}): one page per product (Fitbit, Garmin, Oura, WHOOP, Strava, Polar, HealthKit, Health Connect, Terra, Junction, Rook, Spike, Nutritionix, Edamam, USDA FoodData Central, Open Food Facts, ExerciseDB, wger, KinesteX, Sency, QuickPose, MediaPipe, MoveNet, Apple Vision) stating how it bills developers, what each end user must own, what approval gates launch, and every page here that covers it. No prices, by design.`,
     `- [Search every page and answer](${absoluteUrl("/search")}): query the same index the site's own search uses; ${absoluteUrl("/search?q=<terms>")} is a working URL.`,
     `- [Which Fitness API Should I Use? (interactive picker)](${absoluteUrl("/picker")}): a 3-question tool that recommends a fitness/health API approach by job, platform, and priority, linking to the relevant comparisons, guides, and pricing.`,
     `- [HealthKit ↔ Health Connect data-type reference](${absoluteUrl("/matrix")}): the matching Apple HealthKit and Android Health Connect type identifier for ten common metrics, plus cross-platform gotchas (notably Apple stores HRV as SDNN while Health Connect stores RMSSD — not interconvertible). Verified against Apple's and Google's own docs.`,

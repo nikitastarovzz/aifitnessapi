@@ -181,6 +181,40 @@ if (fs.existsSync(matrixPath)) {
   }
 }
 
+// ── API directory. Its whole value is that it is derived: one page per
+// product in the cost model, each listing the pages that actually cover it.
+// A directory entry with no coverage is a thin page pretending to be an
+// entity, which is the failure mode this gate exists to catch.
+{
+  const dir = htmls.map(routeOf).filter((r) => r.startsWith("/apis/"));
+  const model = fs.existsSync("src/data/costModel.ts")
+    ? fs.readFileSync("src/data/costModel.ts", "utf8")
+    : "";
+  const ids = [...model.matchAll(/^\s{4}id: "([a-z0-9-]+)",$/gm)].map((m) => m[1]);
+  // llm-apis is a category, not a product, and is deliberately excluded.
+  const expected = ids.filter((i) => i !== "llm-apis");
+  if (expected.length && dir.length !== expected.length) {
+    problems.push(
+      `APIS-COUNT  ${dir.length} directory pages vs ${expected.length} products in the cost model`,
+    );
+  }
+  for (const id of expected) {
+    if (!dir.includes(`/apis/${id}`)) problems.push(`APIS-MISSING  /apis/${id} was not built`);
+  }
+  let thin = 0;
+  for (const h of htmls) {
+    const r = routeOf(h);
+    if (!r.startsWith("/apis/")) continue;
+    const html = fs.readFileSync(h, "utf8");
+    if (!html.includes("Everything on this site about")) {
+      thin++;
+      problems.push(`APIS-NO-COVERAGE  ${r} lists no pages covering it`);
+    }
+    if (!html.includes('"SoftwareApplication"')) problems.push(`APIS-NO-ENTITY  ${r}`);
+  }
+  console.log(`Directory: ${dir.length} product pages, ${thin} with no coverage.`);
+}
+
 // ── GEO invariants (ops/GEO.md). These protect machine-citability: if a new
 // cluster ships without llms.txt wiring or the /md mirrors break, LLMs lose
 // their clean path to us and nothing else would notice.
