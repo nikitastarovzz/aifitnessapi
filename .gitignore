@@ -34,3 +34,6 @@ next-env.d.ts
 # signup dev fallback + local secrets
 .dev-signups.jsonl
 .env*.local
+
+# Fetch cache for scripts/fetch-healthkit-identifiers.mjs
+.cache/

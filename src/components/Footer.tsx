@@ -115,6 +115,9 @@ export default function Footer() {
           <Link href="/matrix" className="py-1 hover:text-[var(--fg)]">
             Type Reference
           </Link>
+          <Link href="/healthkit-identifiers" className="py-1 hover:text-[var(--fg)]">
+            Every HealthKit identifier
+          </Link>
           <Link href="/blog" className="py-1 hover:text-[var(--fg)]">
             Blog
           </Link>

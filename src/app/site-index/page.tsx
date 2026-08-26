@@ -21,6 +21,7 @@ const MAIN = [
   { href: "/picker", label: "Which fitness API should I use? (picker)" },
   { href: "/cost-planner", label: "Fitness API cost planner" },
   { href: "/matrix", label: "HealthKit ↔ Health Connect type reference" },
+  { href: "/healthkit-identifiers", label: "Every HealthKit quantity type identifier" },
   { href: "/day-boundaries", label: "Why “today’s steps” is a bug (live demo)" },
   { href: "/changes", label: "Changes & deadlines tracker" },
   { href: "/alerts", label: "API change alerts — watch what you depend on" },
