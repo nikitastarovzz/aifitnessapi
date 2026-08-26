@@ -113,31 +113,66 @@ the query intent is unambiguous. **11, 12 and 13** are the ones that change
 the traffic ceiling rather than the traffic slope. **3 and 20** are the ones
 most likely to go wrong and should go last.
 
-## Build log — what survived contact with the data
+## Build log — the honest accounting of all twenty
 
-Updated as ideas ship. An idea that fails the gate is recorded here with the
-measurement, not quietly dropped.
+An idea that failed its own gate is recorded here with the measurement, not
+quietly dropped. An idea that could not be verified is recorded as blocked,
+not shipped on guesswork.
 
-| # | Status | Note |
+### Shipped
+
+| # | What landed |
+|---|---|
+| 5 | **Rescoped and shipped.** `/healthkit-identifiers` — all **240** identifiers across four families, plus `/healthkit-errors` (17 `HKError.Code` cases). Generated from Apple's own documentation JSON by `scripts/fetch-healthkit-identifiers.mjs`, which refuses to write if the payload shape drifts. Apple's median discussion is 23 words, so a page per identifier would have been 240 restated one-liners — the set gets the page instead |
+| 8 | `/changes/calendar.ics` + day counters. Fuzzy dates titled `[reported month]` and marked TENTATIVE so the calendar entry carries the grading |
+| 11 | **Partial.** `healthkit-type-identifiers-2026` joined the CC-BY set (5 datasets, 296 rows). The standalone GitHub repo is not done — see Needs you |
+| 12 | `@aifitnessapi/health-data` — typed library, 14 contract assertions. Built, not published |
+| 13 | `mcp/` — four tools, 21 assertions over real stdio MCP framing. Built, not published |
+| 15 | Live-value badges: `healthkit-types.svg`, `tracked-changes.svg`, `last-verified.svg`, generated from the same modules the pages render |
+| 18 | Per-fact citation ids in `/answers.json` — **283** of them, every one resolved against built HTML by a negative-tested qa gate |
+| 4 | **Partial.** The Apple-verifiable half shipped as `/healthkit-errors`. The vendor half (Fitbit/Strava/Oura error semantics) is blocked |
+| 9 | Machinery shipped: `scripts/fetch-sdk-releases.mjs` + a scheduled workflow + `/sdk-releases`, which 404s and stays unlinked until the first CI run populates it |
+
+### Rejected on measurement
+
+| # | Why |
+|---|---|
+| 19 | The picker's 144 combinations collapse to **83 distinct results across only 7 distinct titles**, median body **31 words**. 144 URLs sharing 7 titles would fail the DUP-TITLE gate and be thin by any standard. The picker routes to pages that already rank; turning it into URLs adds nothing a reader could not get in thirty seconds |
+| 3 | Same reasoning. `/compare-apis` already does this interactively, and the 259 unbuilt pairs would be table permutations of `costModel` fields, not differentiated prose. The tool was the right call and stays |
+| 20 | A social-proof counter with no traffic and no configured datastore renders zeros on every row. Shipping an empty credibility widget is worse than not shipping one. Blocked behind Firebase env vars *and* real traffic |
+
+### Blocked — and precisely on what
+
+Egress from the build container reaches only `developer.apple.com`,
+`github.com` (HTML via WebFetch only), `raw.githubusercontent.com` and web
+search. `api.github.com` and **every** cloud-vendor documentation domain
+return 403 at the proxy.
+
+| # | Blocked on | What would unblock it |
 |---|---|---|
-| 5 | **Shipped, rescoped** | Apple's median discussion for a quantity type is 23 words and only 15 of 120 exceed 100. A page per identifier would be 120 restated one-liners. Shipped as one flagship reference (`/healthkit-identifiers`) plus a CC-BY dataset instead |
-| 8 | **Shipped** | `/changes/calendar.ics` + countdowns on `/changes` |
-| 11 | **Shipped (partial)** | `healthkit-quantity-types-2026` joined the CC-BY dataset set; standalone repo still to do |
-| 13 | **Shipped** | `mcp/` — four tools, 17 assertions over real stdio framing |
-| 19 | **REJECTED** | Measured the picker's answer space: 144 combinations collapse to **83 distinct results but only 7 distinct titles**, median body **31 words**. 144 URLs sharing 7 titles would fail the DUP-TITLE gate and be thin by any standard. The picker routes to pages that already exist and already rank — turning it into URLs adds nothing a reader could not get in thirty seconds, which is the exact test this memo set. Not built |
+| 1 | Per-product × per-metric support facts for 24 vendors | Vendor doc access. `/apis/[id]` already serves much of this intent |
+| 2, 6 | Framework docs — React Native, Flutter, Expo, Capacitor all 403 | Doc access, or hand-verified snippets |
+| 7 | Vendor status-page URLs | **Do not guess these.** Confirmed URLs, then the CI pattern from #9 applies directly |
+| 10 | Vendor pricing pages — and `costModel.ts` forbids publishing amounts by design | Confirmed URLs; would track pricing *structure* changes, never figures |
+| 16 | Live vendor API credentials | Keys, plus a decision about publishing measured latency |
+| 17 | `api.github.com` for issue search | Runs in CI like #9; the harvest-and-cluster step still needs design |
 
-### Egress finding that reordered the plan
+### Needs you
 
-Only `developer.apple.com`, `github.com`, `raw.githubusercontent.com` and web
-search are reachable from the build container. `api.github.com` and every
-cloud-vendor doc domain — Fitbit, Strava, Oura, Terra, Google — return 403 at
-the proxy. Consequences:
+1. **npm credentials** — both packages are built and tested but unpublished.
+2. **A call on the standalone CC-BY repo (#11)** — creating a public repo under your account is outward-facing, so I have not done it unasked.
+3. **Firebase env vars** — still unset, so signups, feedback, search-misses and vitals all return `stored:false`, and #20 stays blocked.
+4. **Verified vendor status URLs** — the single highest-value unblock. It turns #7 and #10 from guesswork into the same CI pattern #9 already uses.
 
-- Ideas **1, 2, 3, 4, 6** need vendor facts that cannot be verified here. They
-  are buildable only for cells backed by prose already verified on the site.
-- Ideas **7, 9, 10, 16** must collect their data in CI, where egress differs.
-  The machinery can be built here; the data cannot be gathered here.
-- Idea **5** was fully verifiable, which is why it went first.
+### What the gates caught along the way
+
+Worth recording, because each was invisible until something checked it.
+
+- **Ten dead citation anchors, published.** `DataMatrix` never rendered row ids, so every `/matrix#...` id in `/answers.json` pointed at nothing from the moment it shipped.
+- **A wrong enum on a health page.** The first value-enum heuristic resolved 29 of 30 and was wrong: Apple's pages cross-link neighbouring types' enums, and `pregnancy` would have been published carrying `HKCategoryValueVaginalBleeding`.
+- **A hardcoded gate list.** `scripts/qa.mjs` enumerated datasets by hand, so the fifth would have shipped ungated.
+- **`.gitignore` anchored at the root**, which would have committed 3,500 dependency files from the nested package.
+- **qa could not tell an unbuilt page from a broken one.** A route calling `notFound()` still emits the root layout's title, so it collided with `/`. Fixed by keying off Next's own marker — and guarded by `LINK-TO-404`, so the exclusion cannot become a hiding place.
 
 ## Method and limits
 
