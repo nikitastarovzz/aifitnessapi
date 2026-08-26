@@ -22,7 +22,7 @@ const SRC = join(ROOT, "public", "datasets");
 const OUT = join(HERE, "data");
 
 const WANTED = [
-  "healthkit-quantity-types-2026",
+  "healthkit-type-identifiers-2026",
   "health-data-type-matrix-2026",
   "fitness-api-changes-2026",
   "fitness-api-glossary-2026",

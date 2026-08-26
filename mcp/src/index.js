@@ -24,7 +24,7 @@ const DATA = join(dirname(fileURLToPath(import.meta.url)), "..", "data");
 const SITE = "https://aifitnessapi.com";
 
 const load = (slug) => JSON.parse(readFileSync(join(DATA, `${slug}.json`), "utf8"));
-const hk = load("healthkit-quantity-types-2026");
+const hk = load("healthkit-type-identifiers-2026");
 const matrix = load("health-data-type-matrix-2026");
 const changes = load("fitness-api-changes-2026");
 const glossary = load("fitness-api-glossary-2026");
@@ -42,21 +42,35 @@ function withSource(body, { page, dataset, note }) {
 
 const text = (t) => ({ content: [{ type: "text", text: t }] });
 
+/** family key -> the Apple type name recorded in the dataset. */
+const FAMILY_TYPE = {
+  quantity: "HKQuantityTypeIdentifier",
+  category: "HKCategoryTypeIdentifier",
+  characteristic: "HKCharacteristicTypeIdentifier",
+  workoutActivity: "HKWorkoutActivityType",
+};
+
+
 // ---------------------------------------------------------------- tools ----
 
 const TOOLS = [
   {
-    name: "healthkit_quantity_type",
+    name: "healthkit_type",
     description:
-      "Look up an Apple HealthKit quantity type identifier. Returns the Swift case and Objective-C constant, what it measures, the unit family, the iOS/watchOS version it arrived in, and crucially whether it is CUMULATIVE (sum it with .cumulativeSum) or DISCRETE (average it with .discreteAverage). Use this before writing any HKStatisticsQuery — picking the wrong aggregation returns a plausible wrong number rather than an error. Accepts a case name like 'stepCount', an Objective-C constant, or a search term like 'energy'.",
+      "Look up any Apple HealthKit identifier across all four families: HKQuantityTypeIdentifier (numeric samples), HKCategoryTypeIdentifier (enum-valued samples such as sleep analysis), HKCharacteristicTypeIdentifier (read-only user facts) and HKWorkoutActivityType. Returns the Swift case and Objective-C constant, what it measures, the platform versions, and the family-specific detail that matters: for quantity types whether it is CUMULATIVE (sum with .cumulativeSum) or DISCRETE (average with .discreteAverage), and for category types the HKCategoryValue enum that decodes the sample. Use this before writing any HKStatisticsQuery — picking the wrong aggregation returns a plausible wrong number rather than an error. Accepts a case name like 'stepCount' or 'sleepAnalysis', an Objective-C constant, or a search term like 'energy'.",
     inputSchema: {
       type: "object",
       properties: {
-        query: { type: "string", description: "Identifier name or search term, e.g. 'heartRate', 'energy', 'sleep'." },
+        query: { type: "string", description: "Identifier name or search term, e.g. 'heartRate', 'sleepAnalysis', 'energy'." },
+        family: {
+          type: "string",
+          enum: ["quantity", "category", "characteristic", "workoutActivity", "any"],
+          description: "Optionally restrict to one identifier family.",
+        },
         aggregation: {
           type: "string",
           enum: ["cumulative", "discrete", "any"],
-          description: "Optionally restrict results to one aggregation style.",
+          description: "Optionally restrict to one aggregation style. Only quantity types have one.",
         },
       },
       required: ["query"],
@@ -100,21 +114,23 @@ const TOOLS = [
 
 // ------------------------------------------------------------- handlers ----
 
-function toolHealthKit({ query, aggregation = "any" }) {
+function toolHealthKit({ query, aggregation = "any", family = "any" }) {
   const n = norm(query);
   let rows = hk.items.filter(
     (r) =>
       norm(r.identifier).includes(n) ||
       norm(r.objcConstant).includes(n) ||
       norm(r.abstract).includes(n) ||
-      norm(r.unitFamily).includes(n),
+      norm(r.unitFamily).includes(n) ||
+      norm(r.valueEnum).includes(n),
   );
+  if (family !== "any") rows = rows.filter((r) => r.family === FAMILY_TYPE[family]);
   if (aggregation !== "any") rows = rows.filter((r) => r.aggregation === aggregation);
 
   if (rows.length === 0) {
     return text(
       withSource(
-        `No HealthKit quantity type matches "${query}"${aggregation !== "any" ? ` with aggregation "${aggregation}"` : ""}.\n\nApple names types by what they measure rather than by the product feature — try "energy" rather than "calories", or "distance" rather than "miles". This dataset covers HKQuantityTypeIdentifier only; category types (sleep analysis, mindful sessions) and workout types are a separate API surface and are not in it.`,
+        `No HealthKit identifier matches "${query}"${family !== "any" ? ` in the ${family} family` : ""}${aggregation !== "any" ? ` with aggregation "${aggregation}"` : ""}.\n\nApple names types by what they measure rather than by the product feature — try "energy" rather than "calories", or "distance" rather than "miles". Note that sleep and mindfulness are CATEGORY types, not quantity types, so they carry a value enum rather than a unit.`,
         { page: "/healthkit-identifiers", dataset: "healthkit-quantity-types-2026" },
       ),
     );
@@ -127,7 +143,13 @@ function toolHealthKit({ query, aggregation = "any" }) {
   const body = show
     .map((r) => {
       const advice =
-        r.aggregation === "cumulative"
+        r.family !== "HKQuantityTypeIdentifier"
+          ? r.family === "HKCategoryTypeIdentifier"
+            ? `CATEGORY type — the sample carries a value from ${r.valueEnum ?? "a fixed enum"}, not a number. Decode it with that enum; HKStatisticsQuery does not apply.`
+            : r.family === "HKCharacteristicTypeIdentifier"
+              ? "CHARACTERISTIC — a read-only fact about the user, not a sample series. Read it once from the health store; your app can never write it."
+              : "WORKOUT ACTIVITY TYPE — a label for what a workout was, not a data series."
+        : r.aggregation === "cumulative"
           ? "CUMULATIVE — accumulates over an interval. Sum it: HKStatisticsQuery with .cumulativeSum."
           : r.aggregation === "discrete"
             ? "DISCRETE — a point-in-time reading. Do not sum it: use .discreteAverage, .discreteMin or .discreteMax."
@@ -138,7 +160,9 @@ function toolHealthKit({ query, aggregation = "any" }) {
         r.abstract ? `\n${r.abstract}` : `\nApple ships this type with no abstract and no discussion — the identifier is real but undocumented.`,
         ``,
         advice,
-        `Unit family: ${r.unitFamily ?? "not stated by Apple"}`,
+        r.family === "HKQuantityTypeIdentifier"
+          ? `Unit family: ${r.unitFamily ?? "not stated by Apple"}`
+          : `Family: ${r.family}`,
         `Introduced: iOS ${r.iosIntroduced ?? "?"}${r.watchosIntroduced ? `, watchOS ${r.watchosIntroduced}` : ""}`,
         `Group: ${r.group}`,
         `Apple docs: ${r.appleDocs}`,
@@ -253,7 +277,7 @@ function toolGlossary({ term }) {
 }
 
 const HANDLERS = {
-  healthkit_quantity_type: toolHealthKit,
+  healthkit_type: toolHealthKit,
   health_data_cross_platform: toolCrossPlatform,
   fitness_api_changes: toolChanges,
   fitness_api_glossary: toolGlossary,

@@ -191,7 +191,7 @@ if (fs.existsSync(matrixPath)) {
     "health-data-type-matrix-2026",
     "fitness-api-changes-2026",
     "fitness-api-glossary-2026",
-    "healthkit-quantity-types-2026",
+    "healthkit-type-identifiers-2026",
   ];
   for (const d of DATASETS) {
     const j = `public/datasets/${d}.json`;

@@ -3,7 +3,7 @@ import { absoluteUrl, site } from "@/lib/site";
 import { markdownUrl } from "@/lib/schema";
 import { changesSorted, WATCH_ITEMS } from "@/data/changes";
 import { ROWS as MATRIX_ROWS } from "@/data/matrix";
-import { HK_IDENTIFIERS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
+import { HK_IDENTIFIERS, HK_FAMILIES, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { GROUPS as GLOSSARY_GROUPS, termSlug } from "@/data/glossary";
 
 /**
@@ -98,23 +98,26 @@ export function GET() {
     facts: {
       description:
         "Individually citable reference facts. Each `id` is a resolvable URL with a fragment addressing the exact row. Cite the id, not the page.",
-      healthkit_quantity_types: {
+      healthkit_type_identifiers: {
         count: HK_IDENTIFIERS.length,
+        families: HK_FAMILIES,
         source_read_on: HK_FETCHED_ON,
-        source: "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier",
+        source: "https://developer.apple.com/documentation/healthkit",
         derivation_note:
-          "aggregation and unit_family are derived from Apple's prose, which states them in sentences rather than as properties; null means Apple's wording does not state it. Everything else is copied from Apple's payload.",
+          "aggregation and unit_family are derived from Apple's prose, which states them in sentences rather than as properties. Both apply only to quantity types: elsewhere null means the concept does not apply, not that Apple was silent — read them together with `family`. Everything else is copied from Apple's payload.",
         items: HK_IDENTIFIERS.map((r) => ({
           id: `${absoluteUrl("/healthkit-identifiers")}#id-${r.case.toLowerCase()}`,
           identifier: r.case,
           objc_constant: r.objc,
+          family: r.familyType,
           abstract: r.abstract || null,
           aggregation: r.aggregation,
           aggregation_evidence: r.aggregationEvidence,
           unit_family: r.unitFamily,
+          value_enum: r.valueEnum,
           ios_introduced: r.platforms.find((p) => p.name === "iOS")?.introducedAt ?? null,
           apple_documents_it: !r.undocumented,
-          apple_docs: `https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/${r.case.toLowerCase()}`,
+          apple_docs: `https://developer.apple.com/documentation/healthkit/${r.familyType.toLowerCase()}/${r.case.toLowerCase()}`,
         })),
       },
       cross_platform_types: {

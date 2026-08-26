@@ -14,11 +14,14 @@ import { useMemo, useState } from "react";
 export type HkRow = {
   c: string;  // Swift case
   o: string;  // Objective-C constant
+  f: string;  // family key
+  ft: string; // family type name, e.g. HKQuantityTypeIdentifier
   g: string;  // group
   a: string;  // abstract
   agg: "cumulative" | "discrete" | null;
-  u: string | null;  // unit family
-  ios: string | null;  // iOS introducedAt
+  u: string | null;   // unit family (quantity types only)
+  ve: string | null;  // value enum (category types only)
+  ios: string | null; // iOS introducedAt
 };
 
 const AGG_STYLE: Record<string, string> = {
@@ -26,14 +29,24 @@ const AGG_STYLE: Record<string, string> = {
   discrete: "border-amber-400/50 bg-amber-500/10",
 };
 
-export default function HkIdentifierTable({ rows, groups }: { rows: HkRow[]; groups: string[] }) {
+export default function HkIdentifierTable({
+  rows,
+  groups,
+  families,
+}: {
+  rows: HkRow[];
+  groups: string[];
+  families: { key: string; label: string; count: number }[];
+}) {
   const [q, setQ] = useState("");
   const [group, setGroup] = useState<string>("all");
   const [agg, setAgg] = useState<string>("all");
+  const [family, setFamily] = useState<string>("all");
 
   const filtered = useMemo(() => {
     const needle = q.trim().toLowerCase();
     return rows.filter((r) => {
+      if (family !== "all" && r.f !== family) return false;
       if (group !== "all" && r.g !== group) return false;
       if (agg !== "all" && (r.agg ?? "unstated") !== agg) return false;
       if (!needle) return true;
@@ -41,10 +54,11 @@ export default function HkIdentifierTable({ rows, groups }: { rows: HkRow[]; gro
         r.c.toLowerCase().includes(needle) ||
         r.o.toLowerCase().includes(needle) ||
         r.a.toLowerCase().includes(needle) ||
-        (r.u ?? "").includes(needle)
+        (r.u ?? "").includes(needle) ||
+        (r.ve ?? "").toLowerCase().includes(needle)
       );
     });
-  }, [rows, q, group, agg]);
+  }, [rows, q, group, agg, family]);
 
   return (
     <div className="mt-8">
@@ -60,6 +74,19 @@ export default function HkIdentifierTable({ rows, groups }: { rows: HkRow[]; gro
           />
         </label>
         <label className="min-w-0">
+          <span className="sr-only">Filter by identifier family</span>
+          <select
+            value={family}
+            onChange={(e) => { setFamily(e.target.value); setGroup("all"); }}
+            className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm text-[var(--fg)]"
+          >
+            <option value="all">All families</option>
+            {families.map((f) => (
+              <option key={f.key} value={f.key}>{f.label} ({f.count})</option>
+            ))}
+          </select>
+        </label>
+        <label className="min-w-0">
           <span className="sr-only">Filter by group</span>
           <select
             value={group}
@@ -67,7 +94,7 @@ export default function HkIdentifierTable({ rows, groups }: { rows: HkRow[]; gro
             className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm text-[var(--fg)]"
           >
             <option value="all">All groups</option>
-            {groups.map((g) => (
+            {(family === "all" ? groups : [...new Set(rows.filter((r) => r.f === family).map((r) => r.g))]).map((g) => (
               <option key={g} value={g}>{g}</option>
             ))}
           </select>
@@ -97,8 +124,9 @@ export default function HkIdentifierTable({ rows, groups }: { rows: HkRow[]; gro
             <tr className="border-b border-[var(--border)] text-xs uppercase tracking-wide text-[var(--muted)]">
               <th scope="col" className="py-2 pr-4 font-semibold">Identifier</th>
               <th scope="col" className="py-2 pr-4 font-semibold">What it measures</th>
+              <th scope="col" className="py-2 pr-4 font-semibold">Family</th>
               <th scope="col" className="py-2 pr-4 font-semibold">Aggregation</th>
-              <th scope="col" className="py-2 pr-4 font-semibold">Units</th>
+              <th scope="col" className="py-2 pr-4 font-semibold">Units / values</th>
               <th scope="col" className="py-2 font-semibold">iOS</th>
             </tr>
           </thead>
@@ -113,15 +141,22 @@ export default function HkIdentifierTable({ rows, groups }: { rows: HkRow[]; gro
                   {r.a || <span className="italic">Apple documents this type with no description.</span>}
                 </td>
                 <td className="py-3 pr-4">
+                  <span className="font-mono text-[11px] text-[var(--muted)]">{r.ft}</span>
+                </td>
+                <td className="py-3 pr-4">
                   {r.agg ? (
                     <span className={`rounded-full border px-2 py-0.5 text-xs font-semibold ${AGG_STYLE[r.agg]}`}>
                       {r.agg}
                     </span>
-                  ) : (
+                  ) : r.f === "quantity" ? (
                     <span className="text-xs text-[var(--muted)]">not stated</span>
+                  ) : (
+                    <span className="text-xs text-[var(--muted)]">n/a</span>
                   )}
                 </td>
-                <td className="py-3 pr-4 text-[var(--muted)]">{r.u ?? "—"}</td>
+                <td className="py-3 pr-4 text-[var(--muted)]">
+                  {r.u ?? (r.ve ? <code className="font-mono text-[11px]">{r.ve}</code> : "—")}
+                </td>
                 <td className="py-3 tabular-nums text-[var(--muted)]">{r.ios ?? "—"}</td>
               </tr>
             ))}
@@ -133,6 +168,7 @@ export default function HkIdentifierTable({ rows, groups }: { rows: HkRow[]; gro
         <p className="mt-6 rounded-xl border border-[var(--border)] p-4 text-sm text-[var(--muted)]">
           No identifier matches that filter. Apple names types by what they measure, not by the
           product feature — try “energy” rather than “calories”, or “distance” rather than “miles”.
+          Sleep and mindfulness are category types, not quantity types, so they have no unit.
         </p>
       )}
     </div>

@@ -20,24 +20,41 @@ async function check(name, args, expectations) {
 }
 
 console.log("\n-- aggregation correctness (the whole point) --");
-await check("healthkit_quantity_type", { query: "stepCount" }, [
+await check("healthkit_type", { query: "stepCount" }, [
   ["cumulative", /CUMULATIVE/],
   ["says sum it", /\.cumulativeSum/],
   ["cites the site", /aifitnessapi\.com\/healthkit-identifiers/],
 ]);
-await check("healthkit_quantity_type", { query: "heartRate" }, [
+await check("healthkit_type", { query: "heartRate" }, [
   ["discrete", /DISCRETE/],
   ["warns not to sum", /Do not sum it/],
 ]);
-await check("healthkit_quantity_type", { query: "workoutEffortScore" }, [
+await check("healthkit_type", { query: "workoutEffortScore" }, [
   ["flags undocumented", /no abstract and no discussion/],
   ["refuses to guess", /NOT STATED/],
 ]);
 
 console.log("\n-- search + honest misses --");
-await check("healthkit_quantity_type", { query: "energy" }, [["finds matches", /activeEnergyBurned/]]);
-await check("healthkit_quantity_type", { query: "zzzznope" }, [
-  ["honest miss", /No HealthKit quantity type matches/],
+await check("healthkit_type", { query: "energy" }, [["finds matches", /activeEnergyBurned/]]);
+await check("healthkit_type", { query: "zzzznope" }, [
+  ["honest miss", /No HealthKit identifier matches/],
+]);
+
+console.log("\n-- other families --");
+await check("healthkit_type", { query: "sleepAnalysis" }, [
+  ["is a category type", /CATEGORY type/],
+  ["names the decoding enum", /HKCategoryValueSleepAnalysis/],
+  ["does not claim an aggregation", /^(?!.*(CUMULATIVE|DISCRETE —))/s],
+]);
+await check("healthkit_type", { query: "bloodType" }, [
+  ["is a characteristic", /CHARACTERISTIC/],
+  ["says read-only", /never write/],
+]);
+await check("healthkit_type", { query: "running", family: "workoutActivity" }, [
+  ["is a workout activity", /WORKOUT ACTIVITY TYPE/],
+]);
+await check("healthkit_type", { query: "sleep", family: "quantity" }, [
+  ["family filter excludes category sleep", /^(?!.*sleepAnalysis)/s],
 ]);
 
 console.log("\n-- cross-platform --");

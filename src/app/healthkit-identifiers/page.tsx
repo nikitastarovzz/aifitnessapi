@@ -7,7 +7,7 @@ import ClusterCta from "@/components/ClusterCta";
 import PageSummary from "@/components/PageSummary";
 import PageActions from "@/components/PageActions";
 import HkIdentifierTable, { type HkRow } from "@/components/HkIdentifierTable";
-import { HK_IDENTIFIERS, HK_GROUPS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
+import { HK_IDENTIFIERS, HK_GROUPS, HK_FAMILIES, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { ROWS as MATRIX_ROWS } from "@/data/matrix";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
@@ -25,9 +25,11 @@ import { orgRef } from "@/lib/schema";
 
 const PATH = "/healthkit-identifiers";
 
-const cumulative = HK_IDENTIFIERS.filter((r) => r.aggregation === "cumulative");
-const discrete = HK_IDENTIFIERS.filter((r) => r.aggregation === "discrete");
-const unstated = HK_IDENTIFIERS.filter((r) => !r.aggregation);
+const QUANTITY = HK_IDENTIFIERS.filter((r) => r.family === "quantity");
+const cumulative = QUANTITY.filter((r) => r.aggregation === "cumulative");
+const discrete = QUANTITY.filter((r) => r.aggregation === "discrete");
+const unstated = QUANTITY.filter((r) => !r.aggregation);
+const CATEGORY = HK_IDENTIFIERS.filter((r) => r.family === "category");
 const undocumented = HK_IDENTIFIERS.filter((r) => r.undocumented);
 
 /** Identifiers our HealthKit ↔ Health Connect matrix already maps to Android. */
@@ -38,15 +40,15 @@ const MAPPED = new Set(
 );
 
 export const metadata: Metadata = {
-  title: { absolute: "Every HealthKit Quantity Type Identifier" },
+  title: { absolute: "Every HealthKit Type Identifier" },
   description:
-    "All 120 HKQuantityTypeIdentifier values from Apple's own docs — filterable, with units, iOS availability, and whether each is cumulative or discrete.",
+    "All 240 HealthKit identifiers from Apple's own docs — quantity, category, characteristic and workout types, with units, availability and aggregation.",
   alternates: { canonical: PATH },
   openGraph: {
     type: "website",
-    title: "Every HealthKit Quantity Type Identifier",
+    title: "Every HealthKit Type Identifier",
     description:
-      "The full HKQuantityTypeIdentifier set as a set: units, iOS availability, and the cumulative-vs-discrete split that decides which query you need.",
+      "All four HealthKit identifier families in one filterable table: units, value enums, iOS availability, and the cumulative-vs-discrete split.",
     url: PATH,
     images: ["/opengraph-image"],
   },
@@ -55,7 +57,7 @@ export const metadata: Metadata = {
 const FAQS = [
   {
     q: "How do I know whether a HealthKit type is cumulative or discrete?",
-    a: `Apple states it in the type's discussion rather than exposing it as a property, which is why it is easy to miss. Of the ${HK_IDENTIFIERS.length} quantity types, ${cumulative.length} are described as measuring cumulative values and ${discrete.length} as discrete; Apple's wording does not state it for the remaining ${unstated.length}. The distinction decides which HKStatisticsQuery option is correct: cumulative types are summed with .cumulativeSum, discrete types are averaged or reduced with options such as .discreteAverage, .discreteMin and .discreteMax. Choosing the wrong one does not raise an error — it returns a plausible number that is wrong, which is the worst possible failure mode.`,
+    a: `Apple states it in the type's discussion rather than exposing it as a property, which is why it is easy to miss. Of the ${QUANTITY.length} quantity types, ${cumulative.length} are described as measuring cumulative values and ${discrete.length} as discrete; Apple's wording does not state it for the remaining ${unstated.length}. The distinction decides which HKStatisticsQuery option is correct: cumulative types are summed with .cumulativeSum, discrete types are averaged or reduced with options such as .discreteAverage, .discreteMin and .discreteMax. Choosing the wrong one does not raise an error — it returns a plausible number that is wrong, which is the worst possible failure mode.`,
   },
   {
     q: "Why does summing heart rate give a nonsense number?",
@@ -73,18 +75,21 @@ export default function HealthKitIdentifiersPage() {
   const rows: HkRow[] = HK_IDENTIFIERS.map((r) => ({
     c: r.case,
     o: r.objc,
+    f: r.family,
+    ft: r.familyType,
     g: r.group,
     a: r.abstract,
     agg: r.aggregation,
     u: r.unitFamily,
+    ve: r.valueEnum,
     ios: r.platforms.find((p) => p.name === "iOS")?.introducedAt ?? null,
   }));
 
   const datasetJsonLd = {
     "@context": "https://schema.org",
     "@type": "Dataset",
-    name: "HealthKit quantity type identifiers",
-    description: `All ${HK_IDENTIFIERS.length} HKQuantityTypeIdentifier values with unit family, aggregation style and iOS availability, read from Apple's documentation on ${HK_FETCHED_ON}.`,
+    name: "HealthKit type identifiers",
+    description: `All ${HK_IDENTIFIERS.length} HealthKit identifiers across ${HK_FAMILIES.length} families — quantity, category, characteristic and workout activity — with unit family, aggregation style, value enums and iOS availability, read from Apple's documentation on ${HK_FETCHED_ON}.`,
     url,
     creator: orgRef(),
     license: "https://creativecommons.org/licenses/by/4.0/",
@@ -103,7 +108,7 @@ export default function HealthKitIdentifiersPage() {
   };
 
   const topUnits = Object.entries(
-    HK_IDENTIFIERS.reduce<Record<string, number>>((acc, r) => {
+    QUANTITY.reduce<Record<string, number>>((acc, r) => {
       if (r.unitFamily) acc[r.unitFamily] = (acc[r.unitFamily] ?? 0) + 1;
       return acc;
     }, {}),
@@ -121,23 +126,26 @@ export default function HealthKitIdentifiersPage() {
         <ClusterHero label="Reference" seed={11} />
 
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
-          Every HealthKit quantity type identifier
+          Every HealthKit type identifier
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">
-          {HK_IDENTIFIERS.length} identifiers across {HK_GROUPS.length} of Apple&rsquo;s groups · read from
-          Apple&rsquo;s documentation on {HK_FETCHED_ON}
+          {HK_IDENTIFIERS.length} identifiers across {HK_FAMILIES.length} families · read from Apple&rsquo;s
+          documentation on {HK_FETCHED_ON}
         </p>
 
-        <PageSummary path={PATH} name="Every HealthKit quantity type identifier" updated={HK_FETCHED_ON}>
-          {cumulative.length} of the {HK_IDENTIFIERS.length} quantity types are cumulative and{" "}
+        <PageSummary path={PATH} name="Every HealthKit type identifier" updated={HK_FETCHED_ON}>
+          {cumulative.length} of the {QUANTITY.length} quantity types are cumulative and{" "}
           {discrete.length} are discrete — the split that decides which HKStatisticsQuery option
           returns a correct number. Apple states it in prose, not as a property, so it cannot be read
           off the type at compile time.
         </PageSummary>
 
         <div id="answer" className="speakable mt-6 rounded-2xl border border-brand-400/30 bg-brand-500/5 p-5 text-lg leading-relaxed text-[var(--fg)] sm:p-6">
-          <code className="font-mono text-base">HKQuantityTypeIdentifier</code> has{" "}
-          {HK_IDENTIFIERS.length} cases. Apple documents each one on its own page, but never as a set —
+          HealthKit names data with {HK_IDENTIFIERS.length} identifiers across four families —{" "}
+          {QUANTITY.length} quantity types, {CATEGORY.length} category types,{" "}
+          {HK_FAMILIES.find((f) => f.key === "characteristic")?.count} characteristics and{" "}
+          {HK_FAMILIES.find((f) => f.key === "workoutActivity")?.count} workout activities. Apple
+          documents each one on its own page, but never as a set —
           so the questions you actually hit when you build are the ones the reference cannot answer:
           which of these can I sum, what unit does this come back in, and does this exist on Android?
           This table answers all three at once. Every field is read from Apple&rsquo;s own
@@ -145,7 +153,28 @@ export default function HealthKitIdentifiersPage() {
           where Apple&rsquo;s wording does not state a value we leave it blank rather than guess.
         </div>
 
-        <PageActions path={PATH} url={url} title="Every HealthKit quantity type identifier" updated={HK_FETCHED_ON} markdown={false} />
+        <PageActions path={PATH} url={url} title="Every HealthKit type identifier" updated={HK_FETCHED_ON} markdown={false} />
+
+        <section className="mt-12">
+          <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Four families, four sets of rules</h2>
+          <p className="mt-3 leading-relaxed text-[var(--muted)]">
+            HealthKit does not have one identifier type, it has four, and they behave differently
+            enough that treating them alike is a common source of bugs. Only quantity types are
+            numeric samples you can aggregate. Category types carry a value drawn from a fixed enum,
+            and reading one without knowing which enum decodes it is meaningless — so that enum is a
+            column here. Characteristics are read-only facts about the user that your app can never
+            write. Workout activity types are labels for what a workout was, not data in their own
+            right.
+          </p>
+          <dl className="mt-6 grid gap-3 sm:grid-cols-2">
+            {HK_FAMILIES.map((f) => (
+              <div key={f.key} className="rounded-xl border border-[var(--border)] p-4">
+                <dt className="font-mono text-sm font-semibold text-[var(--fg)]">{f.label}</dt>
+                <dd className="mt-1 text-2xl font-bold tabular-nums text-[var(--fg)]">{f.count}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
 
         <section className="mt-12">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">
@@ -186,13 +215,13 @@ export default function HealthKitIdentifiersPage() {
           </dl>
         </section>
 
-        <HkIdentifierTable rows={rows} groups={HK_GROUPS} />
+        <HkIdentifierTable rows={rows} groups={HK_GROUPS} families={HK_FAMILIES} />
 
         <section className="mt-14">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">What the unit families tell you</h2>
           <p className="mt-3 leading-relaxed text-[var(--muted)]">
-            Apple names a unit family for {HK_IDENTIFIERS.filter((r) => r.unitFamily).length} of the{" "}
-            {HK_IDENTIFIERS.length} types. It matters because{" "}
+            Apple names a unit family for {QUANTITY.filter((r) => r.unitFamily).length} of the{" "}
+            {QUANTITY.length} quantity types — the only family that carries units at all. It matters because{" "}
             <code className="font-mono text-sm">HKQuantity</code> will happily convert between any two
             compatible units and throw only when they are incompatible — so a distance read in metres
             and rendered as miles is a silent bug, not a crash.
