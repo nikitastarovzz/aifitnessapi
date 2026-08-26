@@ -37,3 +37,6 @@ next-env.d.ts
 
 # Fetch cache for scripts/fetch-healthkit-identifiers.mjs
 .cache/
+
+# Nested package deps (mcp/)
+**/node_modules/

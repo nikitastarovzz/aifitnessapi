@@ -145,6 +145,22 @@ const ENTRIES: Entry[] = [
     caveat:
       "These are the site's own editorial definitions, written against the vendor documentation cited on the linked pages — not quotations from a standards body. The groups are our sections, not an industry taxonomy.",
   },
+  {
+    slug: "healthkit-quantity-types-2026",
+    unit: "quantity types",
+    blurb:
+      "Every HKQuantityTypeIdentifier read straight from the JSON Apple serves to developer.apple.com, with the unit family, the iOS and watchOS version each arrived in, and — the column Apple does not expose anywhere — whether the type is cumulative or discrete.",
+    keywords: [
+      "HealthKit",
+      "HKQuantityTypeIdentifier",
+      "cumulative vs discrete",
+      "HKStatisticsQuery",
+      "iOS health data",
+    ],
+    presentedBy: { href: "/healthkit-identifiers", label: "Every HealthKit quantity type identifier" },
+    caveat:
+      "Two columns are derived, not copied: aggregation and unit family. Apple states both in prose rather than as properties, so each was matched against Apple's own sentence and left null where Apple's wording does not say. Apple's abstracts are reproduced to identify the API surface; the classification is ours, and Apple's documentation remains the authority.",
+  },
 ];
 
 const LOADED = ENTRIES.map((e) => ({ entry: e, file: loadDataset(e.slug) }));
