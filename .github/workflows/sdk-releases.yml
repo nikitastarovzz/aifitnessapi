@@ -1,0 +1,51 @@
+name: SDK release tracker
+
+# Refreshes src/data/sdkReleases.ts from the GitHub Releases API.
+#
+# This lives in CI rather than in the build because api.github.com is not
+# reachable from the authoring environment, and because a tracker should
+# reflect today rather than whatever was true at the last deploy.
+on:
+  schedule:
+    # 06:20 UTC daily. Off the hour so it does not queue behind everything
+    # else that runs at :00.
+    - cron: "20 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sdk-releases
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Fetch releases
+        env:
+          # The default token is enough for public repo reads and lifts the
+          # unauthenticated rate limit from 60/hour to 5,000.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/fetch-sdk-releases.mjs
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- src/data/sdkReleases.ts; then
+            echo "No release changes."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/sdkReleases.ts
+          git commit -m "Refresh SDK release tracker"
+          # The branch may have moved while this ran; rebase rather than force.
+          git pull --rebase origin main
+          git push origin HEAD:main

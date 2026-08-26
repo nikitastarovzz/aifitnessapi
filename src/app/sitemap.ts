@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/posts";
 import { absoluteUrl } from "@/lib/site";
+import { SDK_REPOS } from "@/data/sdkReleases";
 import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
 import { releasedGuides, GUIDES_PATH } from "@/data/guides";
 import { releasedBuilds, BUILD_PATH } from "@/data/build";
@@ -88,6 +89,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl("/matrix"), changeFrequency: "monthly", priority: 0.8 },
     { url: absoluteUrl("/healthkit-identifiers"), changeFrequency: "monthly", priority: 0.8 },
     { url: absoluteUrl("/healthkit-errors"), changeFrequency: "monthly", priority: 0.7 },
+    // Only listed once CI has populated the tracker — the route 404s while
+    // it is empty, and a sitemap must never advertise a 404.
+    ...(SDK_REPOS.length > 0
+      ? [{ url: absoluteUrl("/sdk-releases"), changeFrequency: "daily" as const, priority: 0.6 }]
+      : []),
     { url: absoluteUrl("/blog"), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/about"), changeFrequency: "monthly", priority: 0.5 },
     { url: absoluteUrl("/site-index"), changeFrequency: "monthly", priority: 0.3 },

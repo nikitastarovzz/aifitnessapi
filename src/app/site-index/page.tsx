@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/Container";
 import PageSummary from "@/components/PageSummary";
+import { SDK_REPOS } from "@/data/sdkReleases";
 import { getAllPosts } from "@/lib/posts";
 import { clusterMap, CLUSTER_LABELS } from "@/lib/clusterRegistry";
 
@@ -23,6 +24,7 @@ const MAIN = [
   { href: "/matrix", label: "HealthKit ↔ Health Connect type reference" },
   { href: "/healthkit-identifiers", label: "Every HealthKit type identifier" },
   { href: "/healthkit-errors", label: "Every HealthKit error code" },
+  ...(SDK_REPOS.length > 0 ? [{ href: "/sdk-releases", label: "Health SDK release tracker" }] : []),
   { href: "/day-boundaries", label: "Why “today’s steps” is a bug (live demo)" },
   { href: "/changes", label: "Changes & deadlines tracker" },
   { href: "/alerts", label: "API change alerts — watch what you depend on" },

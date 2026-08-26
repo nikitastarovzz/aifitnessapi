@@ -73,11 +73,29 @@ const descs = new Map();
 const faqs = new Map();
 let checked = 0;
 
+const notFoundRoutes = [];
+const notFoundSet = new Set();
+
 for (const h of htmls) {
   const route = routeOf(h);
   if (route.startsWith("/_")) continue; // framework pages (404, error)
-  checked++;
   const html = fs.readFileSync(h, "utf8");
+
+  // A route that calls notFound() still emits a full HTML file carrying the
+  // ROOT layout's title and description — so without this it would collide
+  // with "/" on DUP-TITLE and DUP-DESC and read as an orphan, purely for not
+  // existing. Next stamps its own marker in the RSC payload; that is the
+  // authoritative signal, not a guess at the rendered copy.
+  //
+  // These are still counted and printed. A page that 404s by accident is a
+  // real bug, and it should be visible rather than quietly skipped.
+  if (html.includes("NEXT_HTTP_ERROR_FALLBACK;404")) {
+    notFoundRoutes.push(route);
+    notFoundSet.add(route);
+    continue;
+  }
+
+  checked++;
 
   for (const m of html.matchAll(/href="(\/[a-z0-9/-]+)"/g)) {
     const target = m[1];
@@ -143,6 +161,19 @@ for (const h of htmls) {
   for (const h of htmls) {
     const route = routeOf(h);
     if (route === "/" || route.startsWith("/_") || route.startsWith("/blog")) continue;
+    // A route that renders notFound() is not published, so nothing should be
+    // linking to it — being unlinked is the correct state, not an orphan.
+    if (notFoundSet.has(route)) {
+      // The exclusion above must not become a place for real pages to hide.
+      // PHANTOM-LINK cannot catch this: the file exists, it just renders a
+      // 404. So if anything on the site links to a route that 404s, that is
+      // a broken link we shipped — louder than an orphan, not quieter.
+      const n = inbound.get(route) ?? 0;
+      if (n > 0) {
+        problems.push(`LINK-TO-404    ${route} — ${n} internal link(s) point at a route that renders notFound()`);
+      }
+      continue;
+    }
     const n = inbound.get(route) ?? 0;
     if (n === 0) problems.push(`ORPHAN         ${route} — no internal links point here`);
     else if (n < 3) thin.push(`${route} (${n})`);
@@ -558,6 +589,11 @@ if (fs.existsSync(matrixPath)) {
   }
 }
 
+if (notFoundRoutes.length) {
+  console.log(
+    `Not published (route renders notFound, e.g. a tracker awaiting its first CI run): ${notFoundRoutes.join(", ")}`,
+  );
+}
 console.log(`QA: checked ${checked} content pages (${htmls.length} built HTML files).`);
 if (problems.length === 0) {
   console.log("✓ No issues found.");

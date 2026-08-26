@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Container from "./Container";
+import { SDK_REPOS } from "@/data/sdkReleases";
 import { site } from "@/lib/site";
 import { clusterMap } from "@/lib/clusterRegistry";
 
@@ -121,6 +122,11 @@ export default function Footer() {
           <Link href="/healthkit-errors" className="py-1 hover:text-[var(--fg)]">
             Every HealthKit error code
           </Link>
+          {SDK_REPOS.length > 0 && (
+            <Link href="/sdk-releases" className="py-1 hover:text-[var(--fg)]">
+              SDK release tracker
+            </Link>
+          )}
           <Link href="/blog" className="py-1 hover:text-[var(--fg)]">
             Blog
           </Link>
