@@ -6,6 +6,7 @@ import ClusterHero from "@/components/ClusterHero";
 import ClusterCta from "@/components/ClusterCta";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
+import Countdown from "@/components/Countdown";
 import { changesSorted, WATCH_ITEMS, type ChangeStatus } from "@/data/changes";
 
 /**
@@ -110,6 +111,27 @@ export default function ChangesPage() {
           <span className={`rounded-full border px-2.5 py-0.5 font-semibold ${STATUS_STYLES.reported}`}>reported — consistent notices, no official page verified</span>
         </div>
 
+        <div className="mt-6 rounded-xl border border-[var(--border)] bg-[var(--bg)] p-4">
+          <h2 className="text-sm font-bold tracking-tight text-[var(--fg)]">Get the deadlines in your calendar</h2>
+          <p className="mt-1 text-sm text-[var(--muted)]">
+            Subscribe once and every deadline we verify afterwards shows up where you already look.
+            Events with no confirmed day are titled <span className="font-medium text-[var(--fg)]">[reported month]</span>{" "}
+            and placed on a nominal date for planning only — the calendar carries the same grading this page does.
+          </p>
+          <p className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-sm">
+            <a
+              href="/changes/calendar.ics"
+              className="font-medium text-brand-600 hover:text-brand-500"
+              data-track="calendar-subscribe"
+            >
+              Subscribe (.ics) →
+            </a>
+            <a href="/changes.xml" className="font-medium text-brand-600 hover:text-brand-500">
+              RSS feed →
+            </a>
+          </p>
+        </div>
+
         <section className="mt-10">
           <ol className="relative space-y-6 border-l border-[var(--border)] pl-6">
             {events.map((e) => (
@@ -123,6 +145,9 @@ export default function ChangesPage() {
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="text-sm font-semibold text-[var(--fg)]">{fmtDate(e.date)}</span>
                   <span className={`rounded-full border px-2 py-0.5 text-xs font-semibold ${STATUS_STYLES[e.status]}`}>{e.status}</span>
+                  {e.sortDate >= today && (
+                    <Countdown date={e.sortDate} fuzzy={!/^\d{4}-\d{2}-\d{2}$/.test(e.date)} />
+                  )}
                 </div>
                 <h2 className="mt-1 text-lg font-bold tracking-tight text-[var(--fg)]">{e.title}</h2>
                 <p className="mt-1.5 text-sm text-[var(--muted)]">{e.summary}</p>

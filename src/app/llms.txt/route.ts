@@ -47,6 +47,7 @@ export function GET() {
     `- Full text of every page in one file: ${absoluteUrl("/llms-full.txt")}`,
     `- Structured index of every question and answer, with deep links: ${absoluteUrl("/answers.json")}`,
     `- Dated ecosystem changes, graded confirmed vs reported: ${absoluteUrl("/changes.xml")}`,
+    `- The same deadlines as a subscribable calendar: ${absoluteUrl("/changes/calendar.ics")}`,
     `- Per-section RSS: ${absoluteUrl("/feeds/<cluster>.xml")} (e.g. ${absoluteUrl("/feeds/devices.xml")}); blog as JSON Feed: ${absoluteUrl("/feed.json")}`,
     "- Each page states the one question it owns; FAQ answers are individually addressable at `#faq-1`, `#faq-2`, …",
     "- Sourcing: claims trace to a primary source checked on the review date, and unverifiable claims are labelled as such rather than rounded up.",

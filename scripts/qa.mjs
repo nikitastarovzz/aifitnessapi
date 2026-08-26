@@ -268,6 +268,7 @@ if (fs.existsSync(matrixPath)) {
   const robotsTxt = readBody(".next/server/app/robots.txt.body");
   const answersRaw = readBody(".next/server/app/answers.json.body");
   const changesFeed = readBody(".next/server/app/changes.xml.body");
+  const icsFeed = readBody(".next/server/app/changes/calendar.ics.body");
 
   // Which top-level dirs are clusters? Exactly those mirrored under /md.
   const mdRoot = ".next/server/app/md";
@@ -366,6 +367,26 @@ if (fs.existsSync(matrixPath)) {
   if (changesFeed === null) problems.push("GEO-NO-CHANGES-FEED  changes.xml missing from build output");
   else if (!changesFeed.includes("<item>")) problems.push("GEO-CHANGES-FEED-EMPTY  changes.xml has no items");
 
+  // The calendar is a second consumer of the same dated dataset, so it can
+  // silently lose events the RSS feed keeps. Gate on parity, not existence:
+  // one VEVENT per change entry, and the honesty prefix preserved for every
+  // event whose date is a reported month rather than a confirmed day.
+  if (icsFeed === null) {
+    problems.push("ICS-MISSING  changes/calendar.ics missing from build output");
+  } else {
+    const vevents = (icsFeed.match(/BEGIN:VEVENT/g) || []).length;
+    const items = (changesFeed?.match(/<item>/g) || []).length;
+    if (vevents === 0) problems.push("ICS-EMPTY  changes/calendar.ics has no VEVENTs");
+    else if (items && vevents !== items) {
+      problems.push(`ICS-PARITY  calendar.ics has ${vevents} VEVENTs but changes.xml has ${items} items`);
+    }
+    if (!icsFeed.includes("END:VCALENDAR")) problems.push("ICS-UNTERMINATED  changes/calendar.ics has no END:VCALENDAR");
+    // Every line must be CRLF-terminated and within the 75-octet fold limit.
+    const overlong = icsFeed.split("\r\n").filter((l) => Buffer.byteLength(l, "utf8") > 75);
+    if (overlong.length) problems.push(`ICS-FOLD  ${overlong.length} line(s) exceed the 75-octet limit`);
+    if (!icsFeed.includes("\r\n")) problems.push("ICS-LINE-ENDINGS  changes/calendar.ics is not CRLF-terminated");
+  }
+
   for (const h of htmls) {
     const r = routeOf(h);
     const seg = r.split("/").filter(Boolean);
@@ -458,7 +479,9 @@ if (fs.existsSync(matrixPath)) {
   console.log(
     `GEO: ${mirrorFiles.length} spoke + ${hubMirrors.length} index markdown mirrors; ` +
       `llms.txt ${llms ? "ok" : "MISSING"}; answers.json ${answersRaw ? "ok" : "MISSING"}; ` +
-      `changes.xml ${changesFeed ? "ok" : "MISSING"}; crawler allows ${robotsTxt ? "ok" : "MISSING"}.`,
+      `changes.xml ${changesFeed ? "ok" : "MISSING"}; ` +
+      `calendar.ics ${icsFeed ? `${(icsFeed.match(/BEGIN:VEVENT/g) || []).length} events` : "MISSING"}; ` +
+      `crawler allows ${robotsTxt ? "ok" : "MISSING"}.`,
   );
 }
 
