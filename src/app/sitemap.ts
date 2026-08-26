@@ -87,6 +87,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl("/changes"), changeFrequency: "daily", priority: 0.9 },
     { url: absoluteUrl("/matrix"), changeFrequency: "monthly", priority: 0.8 },
     { url: absoluteUrl("/healthkit-identifiers"), changeFrequency: "monthly", priority: 0.8 },
+    { url: absoluteUrl("/healthkit-errors"), changeFrequency: "monthly", priority: 0.7 },
     { url: absoluteUrl("/blog"), changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/about"), changeFrequency: "monthly", priority: 0.5 },
     { url: absoluteUrl("/site-index"), changeFrequency: "monthly", priority: 0.3 },

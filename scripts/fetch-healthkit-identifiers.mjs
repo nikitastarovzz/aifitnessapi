@@ -188,6 +188,47 @@ for (const family of FAMILIES) {
   console.log(`  ${family.label}: ${rows.filter((r) => r.family === family.key).length} cases`);
 }
 
+// --- HKError.Code -----------------------------------------------------------
+// The error names a HealthKit call can fail with. Apple documents the names,
+// the abstracts and the discussions, but NOT the numeric raw values — and the
+// numbers are what a developer actually sees in "Error Domain=com.apple.
+// healthkit Code=5". We publish the set and state that Apple does not publish
+// the mapping, rather than inferring numbers from declaration order, which is
+// not the order the documentation lists them in.
+const errorIndex = await getJson(`${DOC}/hkerror.json`, "_index-errors.json");
+const errorCases = [];
+for (const sec of errorIndex.topicSections || []) {
+  for (const id of sec.identifiers || []) {
+    if (!id.includes("/HKError/")) continue;
+    const name = id.split("/").pop();
+    // "Code" is the enum itself and errorDomain is the domain string, not a
+    // failure mode. Neither is an error a call can return.
+    if (name === "Code" || name === "errorDomain") continue;
+    errorCases.push([name, sec.title]);
+  }
+}
+
+const errors = [];
+for (const [name, group] of errorCases) {
+  const doc = await getJson(`${DOC}/hkerror/${name.toLowerCase()}.json`, `error-${name}.json`);
+  const paras = discussionParagraphs(doc);
+  errors.push({
+    case: name,
+    group,
+    abstract: inlineText(doc.abstract).trim(),
+    discussion: paras.join(" ") || null,
+    undocumented: !inlineText(doc.abstract).trim() && paras.length === 0,
+    platforms: (doc.metadata?.platforms || []).map((pl) => ({
+      name: pl.name,
+      introducedAt: pl.introducedAt ?? null,
+      deprecated: Boolean(pl.deprecated),
+      beta: Boolean(pl.beta),
+    })),
+    docUrl: `https://developer.apple.com/documentation/healthkit/hkerror/${name.toLowerCase()}`,
+  });
+}
+console.log(`  HKError.Code: ${errors.length} cases`);
+
 // --- integrity gates: fail loudly rather than publish a degraded dataset ---
 const problems = [];
 if (rows.length < 240) problems.push(`only ${rows.length} identifiers parsed across ${FAMILIES.length} families`);
@@ -213,6 +254,15 @@ if (unclassified.length > 10) problems.push(`${unclassified.length} quantity typ
 for (const f of FAMILIES) {
   if (!rows.some((r) => r.family === f.key)) problems.push(`no rows parsed for ${f.label}`);
 }
+if (errors.length < 12) problems.push(`only ${errors.length} HKError cases parsed`);
+// Same allowance as the identifiers: Apple ships some error cases with a
+// declaration and nothing else. Allowed, but only when BOTH fields are empty
+// — an abstract-less case that still has a discussion means we broke the
+// parser, not that Apple was silent.
+const errNoAbstract = errors.filter((e) => !e.abstract);
+const errSuspicious = errNoAbstract.filter((e) => e.discussion);
+if (errSuspicious.length) problems.push(`HKError cases with discussion but no abstract (parser broken): ${errSuspicious.map((e) => e.case)}`);
+if (errNoAbstract.length > 8) problems.push(`${errNoAbstract.length} HKError cases with no abstract — more than expected`);
 if (problems.length) {
   console.error("REFUSING TO WRITE — Apple's payload shape may have changed:");
   for (const p of problems) console.error("  - " + p);
@@ -297,6 +347,31 @@ export const HK_IDENTIFIERS: HkIdentifier[] = ${JSON.stringify(rows, null, 2)};
 /** Apple's grouping, in Apple's order, with our merges applied downstream. */
 export const HK_GROUPS: string[] = ${JSON.stringify([...new Set(rows.map((r) => r.group))], null, 2)};
 
+export type HkError = {
+  /** Swift case on HKError.Code, e.g. "errorAuthorizationDenied". */
+  case: string;
+  group: string;
+  /** Apple's one-line abstract, verbatim. */
+  abstract: string;
+  /** Apple's discussion, where it offers one. */
+  discussion: string | null;
+  /** True when Apple ships the case with a declaration and nothing else. */
+  undocumented: boolean;
+  platforms: HkPlatform[];
+  docUrl: string;
+};
+
+/**
+ * Every HKError.Code case Apple documents.
+ *
+ * Apple does NOT publish the numeric raw values in its documentation, and the
+ * order cases are listed in is not declaration order — so this deliberately
+ * carries no numbers. A developer holding "Code=5" cannot be matched to a
+ * name from anything Apple states publicly, and guessing would be worse than
+ * saying so.
+ */
+export const HK_ERRORS: HkError[] = ${JSON.stringify(errors, null, 2)};
+
 /** Family key → the Apple type name, in the order the generator crawls them. */
 export const HK_FAMILIES: { key: HkFamily; label: string; count: number }[] = ${JSON.stringify(
   FAMILIES.map((f) => ({ key: f.key, label: f.label, count: rows.filter((r) => r.family === f.key).length })),
@@ -310,3 +385,4 @@ console.log(`wrote ${OUT}: ${rows.length} identifiers across ${FAMILIES.length} 
 for (const f of FAMILIES) console.log(`  ${f.label}: ${rows.filter((r) => r.family === f.key).length}`);
 console.log(`  quantity aggregation — cumulative ${quantity.filter((r) => r.aggregation === "cumulative").length}, discrete ${quantity.filter((r) => r.aggregation === "discrete").length}, unstated ${unclassified.length}`);
 console.log(`  category value enums resolved: ${rows.filter((r) => r.valueEnum).length}`);
+console.log(`  HKError.Code cases: ${errors.length}`);

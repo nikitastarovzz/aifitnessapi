@@ -118,6 +118,9 @@ export default function Footer() {
           <Link href="/healthkit-identifiers" className="py-1 hover:text-[var(--fg)]">
             Every HealthKit identifier
           </Link>
+          <Link href="/healthkit-errors" className="py-1 hover:text-[var(--fg)]">
+            Every HealthKit error code
+          </Link>
           <Link href="/blog" className="py-1 hover:text-[var(--fg)]">
             Blog
           </Link>

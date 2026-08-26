@@ -12822,6 +12822,814 @@ export const HK_GROUPS: string[] = [
   "Multisport activities"
 ];
 
+export type HkError = {
+  /** Swift case on HKError.Code, e.g. "errorAuthorizationDenied". */
+  case: string;
+  group: string;
+  /** Apple's one-line abstract, verbatim. */
+  abstract: string;
+  /** Apple's discussion, where it offers one. */
+  discussion: string | null;
+  /** True when Apple ships the case with a declaration and nothing else. */
+  undocumented: boolean;
+  platforms: HkPlatform[];
+  docUrl: string;
+};
+
+/**
+ * Every HKError.Code case Apple documents.
+ *
+ * Apple does NOT publish the numeric raw values in its documentation, and the
+ * order cases are listed in is not declaration order — so this deliberately
+ * carries no numbers. A developer holding "Code=5" cannot be matched to a
+ * name from anything Apple states publicly, and guessing would be worse than
+ * saying so.
+ */
+export const HK_ERRORS: HkError[] = [
+  {
+    "case": "noError",
+    "group": "Accessing errors",
+    "abstract": "No error occurred.",
+    "discussion": null,
+    "undocumented": false,
+    "platforms": [
+      {
+        "name": "iOS",
+        "introducedAt": "8.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "iPadOS",
+        "introducedAt": "8.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "Mac Catalyst",
+        "introducedAt": "13.1",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "macOS",
+        "introducedAt": "13.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "visionOS",
+        "introducedAt": "1.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "watchOS",
+        "introducedAt": "2.0",
+        "deprecated": false,
+        "beta": false
+      }
+    ],
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/noerror"
+  },
+  {
+    "case": "errorHealthDataUnavailable",
+    "group": "Accessing errors",
+    "abstract": "The user accessed HealthKit on an unsupported device.",
+    "discussion": "Because iOS apps can run on devices that don’t support HealthKit (for example, on an iPad), always verify that the current device supports HealthKit by calling  before calling any other HealthKit methods. If HealthKit isn’t available on the device, other HealthKit methods fail with an  error.",
+    "undocumented": false,
+    "platforms": [
+      {
+        "name": "iOS",
+        "introducedAt": "8.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "iPadOS",
+        "introducedAt": "8.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "Mac Catalyst",
+        "introducedAt": "13.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "macOS",
+        "introducedAt": "13.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "visionOS",
+        "introducedAt": "1.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "watchOS",
+        "introducedAt": "2.0",
+        "deprecated": false,
+        "beta": false
+      }
+    ],
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/errorhealthdataunavailable"
+  },
+  {
+    "case": "errorHealthDataRestricted",
+    "group": "Accessing errors",
+    "abstract": "A Mobile Device Management (MDM) profile restricts the use of HealthKit on this device.",
+    "discussion": "Because an MDM profile can disable HealthKit on a managed device, always verify that the current device supports HealthKit by calling  before calling any other HealthKit methods. If HealthKit is restricted (for example, in an enterprise environment), the methods fail with an  error.",
+    "undocumented": false,
+    "platforms": [
+      {
+        "name": "iOS",
+        "introducedAt": "8.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "iPadOS",
+        "introducedAt": "8.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "Mac Catalyst",
+        "introducedAt": "13.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "macOS",
+        "introducedAt": "13.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "visionOS",
+        "introducedAt": "1.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "watchOS",
+        "introducedAt": "2.0",
+        "deprecated": false,
+        "beta": false
+      }
+    ],
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/errorhealthdatarestricted"
+  },
+  {
+    "case": "errorInvalidArgument",
+    "group": "Accessing errors",
+    "abstract": "The app passed an invalid argument to the HealthKit API.",
+    "discussion": null,
+    "undocumented": false,
+    "platforms": [
+      {
+        "name": "iOS",
+        "introducedAt": "8.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "iPadOS",
+        "introducedAt": "8.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "Mac Catalyst",
+        "introducedAt": "13.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "macOS",
+        "introducedAt": "13.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "visionOS",
+        "introducedAt": "1.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "watchOS",
+        "introducedAt": "2.0",
+        "deprecated": false,
+        "beta": false
+      }
+    ],
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/errorinvalidargument"
+  },
+  {
+    "case": "errorAuthorizationDenied",
+    "group": "Accessing errors",
+    "abstract": "The user hasn’t given the app permission to save data.",
+    "discussion": "This error occurs only when your app attempts to save data. If your app isn’t authorized to query data, it receives only the data that the app has saved into HealthKit. For more information, see .",
+    "undocumented": false,
+    "platforms": [
+      {
+        "name": "iOS",
+        "introducedAt": "8.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "iPadOS",
+        "introducedAt": "8.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "Mac Catalyst",
+        "introducedAt": "13.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "macOS",
+        "introducedAt": "13.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "visionOS",
+        "introducedAt": "1.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "watchOS",
+        "introducedAt": "2.0",
+        "deprecated": false,
+        "beta": false
+      }
+    ],
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/errorauthorizationdenied"
+  },
+  {
+    "case": "errorAuthorizationNotDetermined",
+    "group": "Accessing errors",
+    "abstract": "The app hasn’t yet asked the user for the authorization required to complete the task.",
+    "discussion": "This error occurs when your app doesn’t request proper authorization before calling any other HealthKit methods. For more information on setting up HealthKit, see `HealthKit`.",
+    "undocumented": false,
+    "platforms": [
+      {
+        "name": "iOS",
+        "introducedAt": "8.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "iPadOS",
+        "introducedAt": "8.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "Mac Catalyst",
+        "introducedAt": "13.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "macOS",
+        "introducedAt": "13.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "visionOS",
+        "introducedAt": "1.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "watchOS",
+        "introducedAt": "2.0",
+        "deprecated": false,
+        "beta": false
+      }
+    ],
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/errorauthorizationnotdetermined"
+  },
+  {
+    "case": "errorRequiredAuthorizationDenied",
+    "group": "Accessing errors",
+    "abstract": "The user hasn’t granted the application authorization to access all the required clinical record types.",
+    "discussion": "You can specify required clinical record types using the  `Info.plist` key.",
+    "undocumented": false,
+    "platforms": [
+      {
+        "name": "iOS",
+        "introducedAt": "12.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "iPadOS",
+        "introducedAt": "12.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "Mac Catalyst",
+        "introducedAt": "13.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "macOS",
+        "introducedAt": "13.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "visionOS",
+        "introducedAt": "1.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "watchOS",
+        "introducedAt": "5.0",
+        "deprecated": false,
+        "beta": false
+      }
+    ],
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/errorrequiredauthorizationdenied"
+  },
+  {
+    "case": "errorDatabaseInaccessible",
+    "group": "Accessing errors",
+    "abstract": "The HealthKit data is unavailable because it’s protected and the device is locked.",
+    "discussion": "This error occurs when your app queries for HealthKit data while the device is locked. You can, however, still save data. This data is saved into a temporary file, which is merged with HealthKit’s data when the user unlocks their device.",
+    "undocumented": false,
+    "platforms": [
+      {
+        "name": "iOS",
+        "introducedAt": "8.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "iPadOS",
+        "introducedAt": "8.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "Mac Catalyst",
+        "introducedAt": "13.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "macOS",
+        "introducedAt": "13.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "visionOS",
+        "introducedAt": "1.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "watchOS",
+        "introducedAt": "2.0",
+        "deprecated": false,
+        "beta": false
+      }
+    ],
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/errordatabaseinaccessible"
+  },
+  {
+    "case": "errorUserCanceled",
+    "group": "Accessing errors",
+    "abstract": "The user canceled the operation.",
+    "discussion": null,
+    "undocumented": false,
+    "platforms": [
+      {
+        "name": "iOS",
+        "introducedAt": "8.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "iPadOS",
+        "introducedAt": "8.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "Mac Catalyst",
+        "introducedAt": "13.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "macOS",
+        "introducedAt": "13.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "visionOS",
+        "introducedAt": "1.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "watchOS",
+        "introducedAt": "2.0",
+        "deprecated": false,
+        "beta": false
+      }
+    ],
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/errorusercanceled"
+  },
+  {
+    "case": "errorAnotherWorkoutSessionStarted",
+    "group": "Accessing errors",
+    "abstract": "Another app started a workout session.",
+    "discussion": "This error occurs whenever a second workout session is started. Apple Watch only runs one workout session at a time. If the user begins a second workout session in a different app, the original session receives this error message and then ends. The second session then starts.",
+    "undocumented": false,
+    "platforms": [
+      {
+        "name": "iOS",
+        "introducedAt": "9.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "iPadOS",
+        "introducedAt": "9.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "Mac Catalyst",
+        "introducedAt": "13.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "macOS",
+        "introducedAt": "13.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "visionOS",
+        "introducedAt": "1.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "watchOS",
+        "introducedAt": "2.0",
+        "deprecated": false,
+        "beta": false
+      }
+    ],
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/erroranotherworkoutsessionstarted"
+  },
+  {
+    "case": "errorUserExitedWorkoutSession",
+    "group": "Accessing errors",
+    "abstract": "The user exited your application while a workout session was running.",
+    "discussion": "Workout sessions end when the app goes into the background.",
+    "undocumented": false,
+    "platforms": [
+      {
+        "name": "iOS",
+        "introducedAt": "9.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "iPadOS",
+        "introducedAt": "9.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "Mac Catalyst",
+        "introducedAt": "13.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "macOS",
+        "introducedAt": "13.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "visionOS",
+        "introducedAt": "1.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "watchOS",
+        "introducedAt": "2.0",
+        "deprecated": false,
+        "beta": false
+      }
+    ],
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/erroruserexitedworkoutsession"
+  },
+  {
+    "case": "errorNoData",
+    "group": "Accessing errors",
+    "abstract": "Data is unavailable for the requested query and predicate.",
+    "discussion": "This error indicates that no data exists that corresponds to a particular query, so the system can’t calculate the query’s result.  queries return this error when HealthKit can’t return the data needed to calculate the statistics.",
+    "undocumented": false,
+    "platforms": [
+      {
+        "name": "iOS",
+        "introducedAt": "14.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "iPadOS",
+        "introducedAt": "14.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "Mac Catalyst",
+        "introducedAt": "14.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "macOS",
+        "introducedAt": "13.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "visionOS",
+        "introducedAt": "1.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "watchOS",
+        "introducedAt": "7.0",
+        "deprecated": false,
+        "beta": false
+      }
+    ],
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/errornodata"
+  },
+  {
+    "case": "errorBackgroundWorkoutSessionNotAllowed",
+    "group": "Type Properties",
+    "abstract": "",
+    "discussion": null,
+    "undocumented": true,
+    "platforms": [
+      {
+        "name": "iOS",
+        "introducedAt": "17.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "iPadOS",
+        "introducedAt": "17.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "Mac Catalyst",
+        "introducedAt": "17.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "macOS",
+        "introducedAt": "14.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "visionOS",
+        "introducedAt": "1.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "watchOS",
+        "introducedAt": "10.0",
+        "deprecated": false,
+        "beta": false
+      }
+    ],
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/errorbackgroundworkoutsessionnotallowed"
+  },
+  {
+    "case": "errorDataSizeExceeded",
+    "group": "Type Properties",
+    "abstract": "",
+    "discussion": null,
+    "undocumented": true,
+    "platforms": [
+      {
+        "name": "iOS",
+        "introducedAt": "17.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "iPadOS",
+        "introducedAt": "17.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "Mac Catalyst",
+        "introducedAt": "17.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "macOS",
+        "introducedAt": "14.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "visionOS",
+        "introducedAt": "1.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "watchOS",
+        "introducedAt": "10.0",
+        "deprecated": false,
+        "beta": false
+      }
+    ],
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/errordatasizeexceeded"
+  },
+  {
+    "case": "errorNotPermissibleForGuestUserMode",
+    "group": "Type Properties",
+    "abstract": "The app attempted to write HealthKit data while in a Guest User session in visionOS.",
+    "discussion": null,
+    "undocumented": false,
+    "platforms": [
+      {
+        "name": "iOS",
+        "introducedAt": "18.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "iPadOS",
+        "introducedAt": "18.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "Mac Catalyst",
+        "introducedAt": "18.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "macOS",
+        "introducedAt": "13.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "visionOS",
+        "introducedAt": "2.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "watchOS",
+        "introducedAt": "11.0",
+        "deprecated": false,
+        "beta": false
+      }
+    ],
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/errornotpermissibleforguestusermode"
+  },
+  {
+    "case": "errorWorkoutActivityNotAllowed",
+    "group": "Type Properties",
+    "abstract": "",
+    "discussion": null,
+    "undocumented": true,
+    "platforms": [
+      {
+        "name": "iOS",
+        "introducedAt": "17.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "iPadOS",
+        "introducedAt": "17.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "Mac Catalyst",
+        "introducedAt": "17.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "macOS",
+        "introducedAt": "14.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "visionOS",
+        "introducedAt": "1.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "watchOS",
+        "introducedAt": "10.0",
+        "deprecated": false,
+        "beta": false
+      }
+    ],
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/errorworkoutactivitynotallowed"
+  },
+  {
+    "case": "unknownError",
+    "group": "Type Properties",
+    "abstract": "",
+    "discussion": null,
+    "undocumented": true,
+    "platforms": [
+      {
+        "name": "iOS",
+        "introducedAt": "8.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "iPadOS",
+        "introducedAt": "8.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "Mac Catalyst",
+        "introducedAt": "13.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "macOS",
+        "introducedAt": "13.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "visionOS",
+        "introducedAt": "1.0",
+        "deprecated": false,
+        "beta": false
+      },
+      {
+        "name": "watchOS",
+        "introducedAt": "2.0",
+        "deprecated": false,
+        "beta": false
+      }
+    ],
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/unknownerror"
+  }
+];
+
 /** Family key → the Apple type name, in the order the generator crawls them. */
 export const HK_FAMILIES: { key: HkFamily; label: string; count: number }[] = [
   {
