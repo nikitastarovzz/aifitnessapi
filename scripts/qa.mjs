@@ -372,6 +372,56 @@ if (fs.existsSync(matrixPath)) {
   // silently lose events the RSS feed keeps. Gate on parity, not existence:
   // one VEVENT per change entry, and the honesty prefix preserved for every
   // event whose date is a reported month rather than a confirmed day.
+  // ── Citation anchors ──────────────────────────────────────────────────
+  // /answers.json publishes each reference fact at a fragment URL and tells
+  // machine readers to cite THAT rather than the page. A fragment that stops
+  // resolving turns every citation already made into a broken one, and
+  // nothing else in the build would notice — the JSON stays valid and the
+  // page still renders. So every published id is resolved against the actual
+  // built HTML of the page it points into.
+  {
+    const answersBody = readBody(".next/server/app/answers.json.body");
+    if (answersBody === null) {
+      problems.push("FACTS-NO-ANSWERS  answers.json missing from build output");
+    } else {
+      let parsedAnswers = null;
+      try {
+        parsedAnswers = JSON.parse(answersBody);
+      } catch {
+        problems.push("FACTS-ANSWERS-INVALID  answers.json is not valid JSON");
+      }
+      const groups = parsedAnswers?.facts;
+      if (parsedAnswers && !groups) {
+        problems.push("FACTS-MISSING  answers.json has no `facts` section");
+      } else if (groups) {
+        let checked = 0;
+        for (const [name, group] of Object.entries(groups)) {
+          if (!group || !Array.isArray(group.items)) continue;
+          for (const item of group.items) {
+            const [pageUrl, fragment] = String(item.id ?? "").split("#");
+            if (!fragment) {
+              problems.push(`FACTS-NO-FRAGMENT  ${name}: "${item.id}" has no fragment`);
+              continue;
+            }
+            const rel = pageUrl.replace(/^https?:\/\/[^/]+/, "") || "/";
+            const file = htmls.find((h) => routeOf(h) === rel);
+            if (!file) {
+              problems.push(`FACTS-NO-PAGE  ${name}: ${rel} is not in the build output`);
+              continue;
+            }
+            const html = fs.readFileSync(file, "utf8");
+            if (!html.includes(`id="${fragment}"`)) {
+              problems.push(`FACTS-DEAD-ANCHOR  ${name}: ${rel}#${fragment} does not resolve`);
+              continue;
+            }
+            checked++;
+          }
+        }
+        console.log(`Citation anchors: ${checked} published fact ids resolve.`);
+      }
+    }
+  }
+
   if (icsFeed === null) {
     problems.push("ICS-MISSING  changes/calendar.ics missing from build output");
   } else {

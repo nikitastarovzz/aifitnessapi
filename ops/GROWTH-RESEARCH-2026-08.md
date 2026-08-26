@@ -113,6 +113,32 @@ the query intent is unambiguous. **11, 12 and 13** are the ones that change
 the traffic ceiling rather than the traffic slope. **3 and 20** are the ones
 most likely to go wrong and should go last.
 
+## Build log — what survived contact with the data
+
+Updated as ideas ship. An idea that fails the gate is recorded here with the
+measurement, not quietly dropped.
+
+| # | Status | Note |
+|---|---|---|
+| 5 | **Shipped, rescoped** | Apple's median discussion for a quantity type is 23 words and only 15 of 120 exceed 100. A page per identifier would be 120 restated one-liners. Shipped as one flagship reference (`/healthkit-identifiers`) plus a CC-BY dataset instead |
+| 8 | **Shipped** | `/changes/calendar.ics` + countdowns on `/changes` |
+| 11 | **Shipped (partial)** | `healthkit-quantity-types-2026` joined the CC-BY dataset set; standalone repo still to do |
+| 13 | **Shipped** | `mcp/` — four tools, 17 assertions over real stdio framing |
+| 19 | **REJECTED** | Measured the picker's answer space: 144 combinations collapse to **83 distinct results but only 7 distinct titles**, median body **31 words**. 144 URLs sharing 7 titles would fail the DUP-TITLE gate and be thin by any standard. The picker routes to pages that already exist and already rank — turning it into URLs adds nothing a reader could not get in thirty seconds, which is the exact test this memo set. Not built |
+
+### Egress finding that reordered the plan
+
+Only `developer.apple.com`, `github.com`, `raw.githubusercontent.com` and web
+search are reachable from the build container. `api.github.com` and every
+cloud-vendor doc domain — Fitbit, Strava, Oura, Terra, Google — return 403 at
+the proxy. Consequences:
+
+- Ideas **1, 2, 3, 4, 6** need vendor facts that cannot be verified here. They
+  are buildable only for cells backed by prose already verified on the site.
+- Ideas **7, 9, 10, 16** must collect their data in CI, where egress differs.
+  The machinery can be built here; the data cannot be gathered here.
+- Idea **5** was fully verifiable, which is why it went first.
+
 ## Method and limits
 
 - Network egress this session allowed only `github.com` /

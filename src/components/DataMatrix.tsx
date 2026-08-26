@@ -23,7 +23,10 @@ export default function DataMatrix() {
           </thead>
           <tbody>
             {ROWS.map((r) => (
-              <tr key={r.id} className="border-t border-[var(--border)] align-top">
+              // The row id is a published citation target: /answers.json
+              // addresses each fact as /matrix#<id>, and the qa gate fails if
+              // one of those fragments stops resolving.
+              <tr key={r.id} id={r.id} className="border-t border-[var(--border)] align-top scroll-mt-24">
                 <th scope="row" className="p-3 font-medium text-[var(--fg)]">
                   <Link href={r.href} className="text-brand-600 hover:text-brand-500">
                     {r.label}
