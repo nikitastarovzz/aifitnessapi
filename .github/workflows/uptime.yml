@@ -77,6 +77,8 @@ jobs:
           check "https://aifitnessapi.com/answers.json" '"answers"'
           check "https://aifitnessapi.com/changes.xml"  "<item>"
           check "https://aifitnessapi.com/changes/calendar.ics"  "BEGIN:VCALENDAR"
+          check "https://aifitnessapi.com/badges/healthkit-types.svg"  "HealthKit types"
+          check "https://aifitnessapi.com/badges/last-verified.svg"    "last verified"
           check "https://aifitnessapi.com/robots.txt"   "Claude-SearchBot"
           check "https://aifitnessapi.com/llms-full.txt" "AIFitnessAPI"
 

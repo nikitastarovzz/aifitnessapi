@@ -51,7 +51,7 @@ Apple's wording does not state it. Apple's documentation remains the authority.
 ## Data
 
 Bundled from the site's CC BY 4.0 datasets, regenerated with
-`node mcp/build-data.mjs` after `node scripts/build-datasets.mjs`. Bundling
+`node scripts/bundle-package-data.mjs` after `node scripts/build-datasets.mjs`. Bundling
 rather than fetching means the server works offline and a pinned version keeps
 answering what that version said.
 

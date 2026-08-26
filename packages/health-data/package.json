@@ -1,0 +1,16 @@
+{
+  "name": "@aifitnessapi/health-data",
+  "version": "0.1.0",
+  "description": "Typed reference data for health and fitness APIs: every HealthKit identifier, the HealthKit/Health Connect mapping, dated ecosystem changes, and a domain glossary.",
+  "license": "CC-BY-4.0",
+  "type": "module",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "exports": { ".": { "types": "./src/index.d.ts", "default": "./src/index.js" } },
+  "files": ["src", "data", "README.md"],
+  "sideEffects": false,
+  "engines": { "node": ">=18" },
+  "keywords": ["healthkit", "health-connect", "hkquantitytypeidentifier", "fitness-api", "wearables", "health-data"],
+  "homepage": "https://aifitnessapi.com/healthkit-identifiers",
+  "repository": { "type": "git", "url": "https://github.com/nikitastarovzz/aifitnessapi", "directory": "packages/health-data" }
+}

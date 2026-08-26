@@ -42,6 +42,35 @@ const DEADLINES_SNIPPET = `<iframe src="https://aifitnessapi.com/embed/deadlines
         title="Fitness API changes and deadlines"
         width="100%" height="460" loading="lazy" style="border:0"></iframe>`;
 
+/**
+ * The live-value badges. `width` is only the intrinsic size hint for layout —
+ * the SVG sizes itself from its own text, so a stale number here shifts
+ * nothing but the pre-load reservation.
+ */
+const LIVE_BADGES = [
+  {
+    file: "healthkit-types.svg",
+    alt: "HealthKit types tracked",
+    width: 210,
+    href: "/healthkit-identifiers",
+    note: "Every HKQuantityType, category, characteristic and workout activity we track.",
+  },
+  {
+    file: "tracked-changes.svg",
+    alt: "API changes tracked",
+    width: 210,
+    href: "/changes",
+    note: "Dated deprecations and deadlines in the tracker.",
+  },
+  {
+    file: "last-verified.svg",
+    alt: "Last verified",
+    width: 190,
+    href: "/methodology",
+    note: "The newest verification date across the datasets — not today's date.",
+  },
+];
+
 const BADGE_SNIPPET = `<a href="https://aifitnessapi.com/apis" target="_blank" rel="noreferrer">
   <img src="https://aifitnessapi.com/badges/badge.svg"
        alt="Listed on AIFitnessAPI" width="200" height="40" loading="lazy">
@@ -185,6 +214,35 @@ export default function BadgesPage() {
             />
           </p>
           <Snippet code={BADGE_SNIPPET} label="HTML for the link badge" />
+        </section>
+
+        <section className="mt-14">
+          <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Live count badges</h2>
+          <p className="mt-3 leading-relaxed text-[var(--muted)]">
+            These read from the same data the pages render, so the number in your README is the
+            number on the site. They change when the data changes — nothing to update by hand, and
+            nothing that can quietly go stale while still looking current.
+          </p>
+          <p className="mt-3 text-sm text-[var(--muted)]">
+            The <span className="font-medium text-[var(--fg)]">last verified</span> badge shows the
+            most recent date something here was actually checked against a source, not today&rsquo;s
+            date. A freshness badge that always reads &ldquo;today&rdquo; is decoration.
+          </p>
+          <div className="mt-6 space-y-6">
+            {LIVE_BADGES.map((b) => (
+              <div key={b.file}>
+                <p className="flex flex-wrap items-center gap-3">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={`/badges/${b.file}`} alt={b.alt} width={b.width} height={20} />
+                  <span className="text-sm text-[var(--muted)]">{b.note}</span>
+                </p>
+                <Snippet
+                  code={`[![${b.alt}](https://aifitnessapi.com/badges/${b.file})](${`https://aifitnessapi.com${b.href}`})`}
+                  label={`Markdown for the ${b.alt} badge`}
+                />
+              </div>
+            ))}
+          </div>
         </section>
 
         <section className="mt-14">
