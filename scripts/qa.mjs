@@ -265,6 +265,7 @@ if (fs.existsSync(matrixPath)) {
     "watch-app-preflight-checklist.md",
     "motion-sdk-scorecard.csv",
     "fitness-apis-2026.csv",
+    "healthkit-type-identifiers-2026.csv",
     "fitness-api-decision-kit.zip",
   ];
   for (const f of KIT) {

@@ -11,7 +11,7 @@
  *
  *   node scripts/build-kit.mjs
  */
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync, copyFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 
 const SITE = "https://aifitnessapi.com";
@@ -176,7 +176,26 @@ const KIT_FILES = [
   "watch-app-preflight-checklist.md",
   "motion-sdk-scorecard.csv",
   "fitness-apis-2026.csv",
+  "healthkit-type-identifiers-2026.csv",
 ];
+
+/**
+ * Datasets the kit re-publishes as downloads.
+ *
+ * These were previously copied by hand into public/kit and then never touched
+ * again, which made them a silent drift risk: public/datasets is regenerated
+ * on every content change and the kit copy was not. They are now overwritten
+ * from the canonical file on every kit build, so the download and the dataset
+ * cannot disagree.
+ */
+const MIRRORED_DATASETS = ["fitness-apis-2026.csv", "healthkit-type-identifiers-2026.csv"];
+
+function mirrorDatasets() {
+  for (const f of MIRRORED_DATASETS) {
+    copyFileSync(`public/datasets/${f}`, `public/kit/${f}`);
+  }
+  return MIRRORED_DATASETS.length;
+}
 
 function rebuildZip() {
   execFileSync("zip", ["-q", "-j", "-FS", "fitness-api-decision-kit.zip", ...KIT_FILES], {
@@ -187,9 +206,10 @@ function rebuildZip() {
 
 const ble = bleCheatSheet();
 const watch = watchPreflight();
+const mirrored = mirrorDatasets();
 const zipped = rebuildZip();
 console.log(
   `kit: ble-fitness-uuid-cheat-sheet.md (${ble} rows), ` +
     `watch-app-preflight-checklist.md (${watch} items), ` +
-    `fitness-api-decision-kit.zip (${zipped} files)`,
+    `${mirrored} datasets mirrored, fitness-api-decision-kit.zip (${zipped} files)`,
 );

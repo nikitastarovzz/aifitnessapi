@@ -20,6 +20,40 @@ The owner wants planning and implementation on different model tiers:
 `npx tsc --noEmit` → `npm run build` → `npm run qa` must all be green before
 any commit. Never weaken `scripts/qa.mjs` to make a build pass.
 
+## Generated data — never hand-edit
+
+These files are output. Editing them by hand works until the next regeneration
+silently reverts it.
+
+| File | Regenerate with |
+|---|---|
+| `src/data/healthkitIdentifiers.ts` | `node scripts/fetch-healthkit-identifiers.mjs` (reads Apple's docs JSON) |
+| `src/data/sdkReleases.ts` | CI only — `.github/workflows/sdk-releases.yml` |
+| `public/datasets/*.{json,csv}` | `node scripts/build-datasets.mjs` |
+| `public/kit/*` | `node scripts/build-kit.mjs` |
+| `mcp/data/`, `packages/health-data/data/` | `node scripts/bundle-package-data.mjs` |
+
+Two rules the generators enforce and a change must not weaken:
+
+- **A short parse fails the build.** Every generator declares how many rows it
+  expects and exits non-zero rather than publishing a truncated dataset.
+- **Derived fields keep their evidence.** Where a value is inferred from prose
+  rather than copied from a field — HealthKit's aggregation style and unit
+  family — the sentence it came from is stored beside it, and the value is
+  null where the source does not state it. Never guess one.
+
+## Freshness
+
+The site's claim is that it tracks a moving ecosystem, so the age of a
+verification stamp is a quality signal, not metadata.
+
+- `npm run stale` ranks every entry by the age of its `updated` stamp. Use it
+  to pick what to re-verify; do not pick by what comes to mind.
+- `npm run qa` prints the median and oldest age every run.
+- Pages render the elapsed time, and flag anything past 90 days.
+- Bumping an `updated` stamp without actually re-checking the sources is
+  falsifying the one number the reader is trusting. Re-verify or leave it.
+
 ## Binding documents
 
 - `ops/GEO.md` — citation/GEO rules; binds every content change. First-party

@@ -79,6 +79,9 @@ jobs:
           check "https://aifitnessapi.com/changes/calendar.ics"  "BEGIN:VCALENDAR"
           check "https://aifitnessapi.com/badges/healthkit-types.svg"  "HealthKit types"
           check "https://aifitnessapi.com/badges/last-verified.svg"    "last verified"
+          check "https://aifitnessapi.com/healthkit-identifiers"  "HKQuantityTypeIdentifier"
+          check "https://aifitnessapi.com/healthkit-errors"       "errorAuthorizationDenied"
+          check "https://aifitnessapi.com/kit/healthkit-type-identifiers-2026.csv" "identifier"
           check "https://aifitnessapi.com/robots.txt"   "Claude-SearchBot"
           check "https://aifitnessapi.com/llms-full.txt" "AIFitnessAPI"
 
