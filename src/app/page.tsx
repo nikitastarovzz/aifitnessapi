@@ -7,6 +7,7 @@ import Reveal from "@/components/Reveal";
 import StatCounter from "@/components/StatCounter";
 import { getAllPosts } from "@/lib/posts";
 import { clusterMap } from "@/lib/clusterRegistry";
+import { HK_IDENTIFIERS, HK_ERRORS } from "@/data/healthkitIdentifiers";
 import { changesSorted, type ChangeStatus } from "@/data/changes";
 
 /**
@@ -318,6 +319,53 @@ export default function Home() {
         </div>
         </Reveal>
       </Container>
+
+      {/* ——— Reference: the facts, not the guides ——— */}
+      <Container className="pt-16">
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+          Reference — read from the platforms&rsquo; own documentation
+        </h2>
+        <p className="mb-6 max-w-2xl text-sm text-[var(--muted)]">
+          Generated, not written. Every value below is read from Apple&rsquo;s documentation JSON or
+          verified against both platforms&rsquo; docs, and regenerating the dataset updates every page
+          that cites it.
+        </p>
+        <Reveal>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {[
+              {
+                href: "/healthkit-identifiers",
+                title: `All ${HK_IDENTIFIERS.length} HealthKit types`,
+                body: "Quantity, category, characteristic and workout identifiers — with units, availability, and whether you sum or average each one.",
+              },
+              {
+                href: "/healthkit-errors",
+                title: `All ${HK_ERRORS.length} HealthKit errors`,
+                body: "What each failure means — including why a denied read raises no error at all, and returns an empty result instead.",
+              },
+              {
+                href: "/matrix",
+                title: "HealthKit ↔ Health Connect",
+                body: "The cross-platform mapping for the metrics we verified on both, and the pairs that look equivalent but are not.",
+              },
+            ].map((c) => (
+              <Link
+                key={c.href}
+                href={c.href}
+                className="group flex flex-col rounded-2xl border border-[var(--border)] p-5 transition hover:-translate-y-0.5 hover:border-brand-400 hover:bg-[var(--surface)]"
+              >
+                <h3 className="font-bold tracking-tight text-[var(--fg)]">{c.title}</h3>
+                <p className="mt-1 flex-1 text-sm text-[var(--muted)]">{c.body}</p>
+                <span className="mt-3 text-sm font-semibold text-brand-600 group-hover:text-brand-500 dark:text-brand-300">
+                  Open the reference{" "}
+                  <span aria-hidden className="inline-block transition-transform group-hover:translate-x-0.5">→</span>
+                </span>
+              </Link>
+            ))}
+          </div>
+        </Reveal>
+      </Container>
+
 
       {/* ——— Freshness: what moved recently ——— */}
       <Container className="pt-16">

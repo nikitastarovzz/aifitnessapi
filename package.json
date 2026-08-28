@@ -15,7 +15,8 @@
     "signups": "node scripts/export-signups.mjs",
     "test:cookbook": "node --test \"cookbook/**/*.test.mjs\"",
     "test:responsive": "node scripts/responsive-audit.mjs",
-    "test:perf": "node scripts/perf-audit.mjs"
+    "test:perf": "node scripts/perf-audit.mjs",
+    "stale": "node scripts/stale-report.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

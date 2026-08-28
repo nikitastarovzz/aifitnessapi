@@ -9,6 +9,9 @@ import PageActions from "@/components/PageActions";
 import PageToc from "@/components/PageToc";
 import FaqJump from "@/components/FaqJump";
 import NextSteps from "@/components/NextSteps";
+import MetricFacts from "@/components/MetricFacts";
+import ContentAge from "@/components/ContentAge";
+import ReferenceCallout from "@/components/ReferenceCallout";
 import Feedback from "@/components/Feedback";
 import { formatDate } from "@/lib/posts";
 import { site, absoluteUrl } from "@/lib/site";
@@ -132,7 +135,8 @@ export default function ClusterPage({
           {entry.h1}
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">
-          Last verified {formatDate(entry.updated)} · {minutes} min read
+          Last verified {formatDate(entry.updated)}
+          <ContentAge date={entry.updated} /> · {minutes} min read
         </p>
 
         {entry.firstParty && (
@@ -248,6 +252,11 @@ export default function ClusterPage({
             </nav>
           );
         })()}
+
+        {/* Verified platform facts, on the guides that have a matrix row.
+            Renders nothing everywhere else. */}
+        <MetricFacts path={path} />
+        <ReferenceCallout path={path} />
 
         {alsoRead.length > 0 && (
           <section className="defer-paint mt-12">

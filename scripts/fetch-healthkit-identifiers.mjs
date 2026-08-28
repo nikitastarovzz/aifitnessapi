@@ -136,8 +136,14 @@ for (const family of FAMILIES) {
     const isQuantity = family.key === "quantity";
     const cumulative = isQuantity ? evidence(/cumulative value/i) : null;
     const discrete = isQuantity ? evidence(/discrete value/i) : null;
-    const unitEvidence = isQuantity ? evidence(/\buses?\s+[a-z\- ]+?\s+units\b/i) : null;
-    const unitMatch = unitEvidence?.match(/\buses?\s+([a-z\- ]+?)\s+units\b/i);
+    // Compound units are common and use a slash — "count/time units",
+    // "volume/mass/time units" — so the class must allow it. Apple also
+    // sometimes describes a unit in prose rather than naming a family
+    // ("power in Metabolic Equivalent of Task (METs) units"); that
+    // deliberately does not match, and the field stays null rather than
+    // capturing a fragment of a sentence.
+    const unitEvidence = isQuantity ? evidence(/\buses?\s+[a-z\-/ ]+?\s+units\b/i) : null;
+    const unitMatch = unitEvidence?.match(/\buses?\s+([a-z\-/ ]+?)\s+units\b/i);
 
     // Category types draw from a value enum; naming it is the single most
     // useful thing about them, because reading the sample is meaningless

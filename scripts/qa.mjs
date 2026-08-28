@@ -224,6 +224,22 @@ if (fs.existsSync(matrixPath)) {
     "fitness-api-glossary-2026",
     "healthkit-type-identifiers-2026",
   ];
+  // Both directions. Listing files catches a DELETION (a dataset a page
+  // still cites); scanning the directory catches an ADDITION that was never
+  // added to this list — which is exactly how healthkit-type-identifiers-2026
+  // shipped ungated. A list checked in only one direction is half a gate.
+  {
+    const onDisk = fs
+      .readdirSync("public/datasets")
+      .filter((f) => f.endsWith(".json"))
+      .map((f) => f.replace(/\.json$/, ""));
+    for (const d of onDisk) {
+      if (!DATASETS.includes(d)) {
+        problems.push(`DATASET-UNGATED  public/datasets/${d}.json is published but not in qa's DATASETS list`);
+      }
+    }
+  }
+
   for (const d of DATASETS) {
     const j = `public/datasets/${d}.json`;
     const c = `public/datasets/${d}.csv`;
@@ -253,6 +269,10 @@ if (fs.existsSync(matrixPath)) {
   ];
   for (const f of KIT) {
     if (!fs.existsSync(`public/kit/${f}`)) problems.push(`KIT-MISSING  public/kit/${f}`);
+    else if (fs.statSync(`public/kit/${f}`).size === 0) problems.push(`KIT-EMPTY  public/kit/${f} is zero bytes`);
+  }
+  for (const f of fs.readdirSync("public/kit")) {
+    if (!KIT.includes(f)) problems.push(`KIT-UNGATED  public/kit/${f} is published but not in qa's KIT list`);
   }
   console.log(`Artifacts: ${DATASETS.length} datasets, ${KIT.length} kit files.`);
 }
@@ -403,6 +423,72 @@ if (fs.existsSync(matrixPath)) {
   // silently lose events the RSS feed keeps. Gate on parity, not existence:
   // one VEVENT per change entry, and the honesty prefix preserved for every
   // event whose date is a reported month rather than a confirmed day.
+  // ── Reference callouts ────────────────────────────────────────────────
+  // ReferenceCallout maps specific guide paths to the generated references.
+  // A slug rename would leave the map pointing at nothing and the callout
+  // would silently stop rendering, so the count is asserted.
+  {
+    const rendered = htmls.filter((h) => fs.readFileSync(h, "utf8").includes("data-reference-callout")).length;
+    const EXPECTED = 4;
+    if (rendered !== EXPECTED) {
+      problems.push(
+        `REFERENCE-CALLOUT  ${rendered} pages render the reference callout, expected ${EXPECTED} — a mapped path was probably renamed`,
+      );
+    }
+  }
+
+  // ── Content freshness ─────────────────────────────────────────────────
+  // Informational, deliberately. This site's claim is that it tracks a moving
+  // ecosystem, so the age of its verification stamps is a first-class quality
+  // signal — but re-verifying needs vendor documentation the build
+  // environment cannot reach, so a hard failure here would be unsatisfiable,
+  // and an unsatisfiable gate is one people learn to bypass. It prints, and
+  // `npm run stale` ranks the queue.
+  {
+    const now = Date.now();
+    const ages = [];
+    for (const f of fs.readdirSync("src/data").filter((n) => n.endsWith(".entries.ts"))) {
+      const src = fs.readFileSync(`src/data/${f}`, "utf8");
+      for (const m of src.matchAll(/"updated":\s*"(\d{4}-\d{2}-\d{2})"/g)) {
+        ages.push(Math.round((now - Date.parse(`${m[1]}T00:00:00Z`)) / 86400000));
+      }
+    }
+    if (ages.length) {
+      ages.sort((a, b) => a - b);
+      const over90 = ages.filter((d) => d > 90).length;
+      const median = ages[Math.floor(ages.length / 2)];
+      console.log(
+        `Freshness: ${ages.length} entries, median ${median}d since verification, oldest ${ages.at(-1)}d` +
+          (over90 ? `, ${over90} over 90d (run \`npm run stale\`)` : ""),
+      );
+    }
+  }
+
+  // ── Derived metric facts ──────────────────────────────────────────────
+  // The /data guides render their HealthKit facts from a join between
+  // matrix.ts and the generated identifier dataset. If a matrix cell is
+  // edited to a name the dataset does not contain, the join yields nothing
+  // and the block silently disappears — the page still builds, still reads
+  // fine, and quietly loses the facts it was enriched with. Count them.
+  {
+    const EXPECTED_METRIC_FACTS = 12;
+    const withFacts = htmls
+      .map((h) => [routeOf(h), fs.readFileSync(h, "utf8")])
+      .filter(([r, html]) => r.startsWith("/data/") && html.includes("data-metric-facts"));
+    if (withFacts.length < EXPECTED_METRIC_FACTS) {
+      const have = new Set(withFacts.map(([r]) => r));
+      const missing = htmls
+        .map(routeOf)
+        .filter((r) => r.startsWith("/data/") && r !== "/data" && !have.has(r));
+      problems.push(
+        `METRIC-FACTS   only ${withFacts.length} /data guides render the derived facts block ` +
+          `(expected ${EXPECTED_METRIC_FACTS}) — missing: ${missing.join(", ")}`,
+      );
+    } else {
+      console.log(`Metric facts: ${withFacts.length} /data guides carry the derived HealthKit block.`);
+    }
+  }
+
   // ── Citation anchors ──────────────────────────────────────────────────
   // /answers.json publishes each reference fact at a fragment URL and tells
   // machine readers to cite THAT rather than the page. A fragment that stops

@@ -5,7 +5,7 @@
  *   node scripts/fetch-healthkit-identifiers.mjs
  *
  * Source: https://developer.apple.com/documentation/healthkit (HKQuantityTypeIdentifier, HKCategoryTypeIdentifier, HKCharacteristicTypeIdentifier, HKWorkoutActivityType)
- * Fetched: 2026-08-26
+ * Fetched: 2026-08-28
  *
  * `aggregation` and `unitFamily` are the only derived fields. Apple states
  * both in prose rather than as machine-readable properties, and the sentence
@@ -64,7 +64,7 @@ export type HkIdentifier = {
 };
 
 /** The date the generator last read Apple's documentation. */
-export const HK_FETCHED_ON = "2026-08-26";
+export const HK_FETCHED_ON = "2026-08-28";
 
 export const HK_IDENTIFIERS: HkIdentifier[] = [
   {
@@ -659,7 +659,7 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
     "abstract": "A quantity sample type that measures the user’s blood glucose level.",
     "aggregation": "discrete",
     "aggregationEvidence": "These samples use mass/volume units (described in ) and measure discrete values (described in ).",
-    "unitFamily": null,
+    "unitFamily": "mass/volume",
     "valueEnum": null,
     "platforms": [
       {
@@ -4263,7 +4263,7 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
     "abstract": "A quantity sample type that measures the user’s heart rate.",
     "aggregation": "discrete",
     "aggregationEvidence": "These samples use count/time units (described in ) and measure discrete values (described in ).",
-    "unitFamily": null,
+    "unitFamily": "count/time",
     "valueEnum": null,
     "platforms": [
       {
@@ -4899,7 +4899,7 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
     "abstract": "A quantity sample type that measures the user’s maximum flow rate generated during a forceful exhalation.",
     "aggregation": "discrete",
     "aggregationEvidence": "These samples use volume/time units (described in ) and measure discrete values (described in ).",
-    "unitFamily": null,
+    "unitFamily": "volume/time",
     "valueEnum": null,
     "platforms": [
       {
@@ -5111,7 +5111,7 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
     "abstract": "A quantity sample type that measures the user’s respiratory rate.",
     "aggregation": "discrete",
     "aggregationEvidence": "These samples use count/time units (described in ) and measure discrete values (described in ).",
-    "unitFamily": null,
+    "unitFamily": "count/time",
     "valueEnum": null,
     "platforms": [
       {
@@ -5164,7 +5164,7 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
     "abstract": "A quantity sample type that measures the user’s resting heart rate.",
     "aggregation": "discrete",
     "aggregationEvidence": "These samples use count/time units (described in ) and measure discrete values (described in ).",
-    "unitFamily": null,
+    "unitFamily": "count/time",
     "valueEnum": null,
     "platforms": [
       {
@@ -5588,7 +5588,7 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
     "abstract": "A quantity sample type measuring the user’s speed while climbing a flight of stairs.",
     "aggregation": "discrete",
     "aggregationEvidence": "These samples use distance/time units (described in ) and measure discrete values (described in ).",
-    "unitFamily": null,
+    "unitFamily": "distance/time",
     "valueEnum": null,
     "platforms": [
       {
@@ -5641,7 +5641,7 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
     "abstract": "A quantity sample type measuring the user’s speed while descending a flight of stairs.",
     "aggregation": "discrete",
     "aggregationEvidence": "These samples use distance/time units (described in ) and measure discrete values (described in ).",
-    "unitFamily": null,
+    "unitFamily": "distance/time",
     "valueEnum": null,
     "platforms": [
       {
@@ -5959,7 +5959,7 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
     "abstract": "A quantity sample that measures the maximal oxygen consumption during exercise.",
     "aggregation": "discrete",
     "aggregationEvidence": "They measure discrete values (described in ).",
-    "unitFamily": null,
+    "unitFamily": "volume/mass/time",
     "valueEnum": null,
     "platforms": [
       {
@@ -6171,7 +6171,7 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
     "abstract": "A quantity sample type that measures the user’s heart rate while walking.",
     "aggregation": "discrete",
     "aggregationEvidence": "These samples use count/time units (described in ) and measure discrete values (described in ).",
-    "unitFamily": null,
+    "unitFamily": "count/time",
     "valueEnum": null,
     "platforms": [
       {
