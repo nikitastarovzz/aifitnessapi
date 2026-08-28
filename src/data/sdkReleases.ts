@@ -35,7 +35,7 @@ export type SdkRepo = {
 };
 
 /** The date CI last reached the GitHub API. */
-export const SDK_CHECKED_ON = "2026-08-27";
+export const SDK_CHECKED_ON = "2026-08-28";
 
 export const SDK_REPOS: SdkRepo[] = [
   {
@@ -44,7 +44,7 @@ export const SDK_REPOS: SdkRepo[] = [
     "why": "The most-used bridge from React Native to Apple HealthKit. Its releases are where HealthKit type support arrives for RN apps.",
     "covers": "Apple HealthKit",
     "url": "https://github.com/agencyenterprise/react-native-health",
-    "stars": 1159,
+    "stars": 1160,
     "archived": false,
     "pushedAt": "2026-04-27",
     "releases": [
