@@ -1,0 +1,143 @@
+---
+title: "The Health App That Never Touches HealthKit"
+description: "Most health apps read data before they do anything. A whole category skips it — no OAuth, no entitlement, no PHI. Here's when that's the right call."
+date: 2026-08-31
+author: "Nikita Starov"
+tags: ["architecture", "compliance", "consumer health", "product"]
+draft: false
+---
+
+Almost everything on this site assumes a particular shape of app: the user
+wears something, the device writes to a platform store or a vendor cloud, you
+read it, and your product does something with the numbers. That assumption
+drives the whole stack — OAuth per vendor, a HealthKit entitlement, background
+delivery, token rotation, an empty-state that means two different things, and
+a compliance posture that starts the moment you hold someone's resting heart
+rate.
+
+It is worth saying out loud that a large and profitable category of health app
+skips all of it.
+
+Not by cutting corners. By not needing the data in the first place.
+
+## The test: does the reading change what your app does?
+
+Here is the question that decides your architecture, and it is worth answering
+honestly before you write an integration.
+
+**If you read the user's health data, does your product behave differently?**
+
+Not "would it be nice to show a chart". Differently. Does the intervention
+change, does the content change, does the timing change?
+
+If the answer is no — if what you deliver is the same thing regardless of what
+the sensor says — then sensing is decoration, and you are about to take on the
+hardest parts of health engineering in exchange for a graph.
+
+That sounds obvious written down. It is not obvious at 11pm when a stakeholder
+asks whether the app can "integrate with Apple Health", and nobody in the room
+wants to be the person who says no.
+
+## A worked example
+
+[Dizzout](https://dizzout.com) is a useful thing to look at here, because it is
+a shipped consumer health app in a category people reflexively associate with
+sensors — motion sickness — and it reads no health data at all.
+
+The product is an audio intervention. The company describes it as a calibrated
+sound pattern you listen to through ordinary headphones when you start feeling
+sick in a car, on a boat, or in VR. The claims about how it works and how
+quickly are the vendor's own, and this site has not tested them; what is
+interesting from an engineering standpoint is the shape, not the efficacy.
+
+Look at what that shape does not require:
+
+- No HealthKit or Health Connect read permission, so no entitlement, no App
+  Review justification, and none of the [permission-denial ambiguity](/fix/healthkit-no-data)
+  where an empty result and a refused read are indistinguishable.
+- No wearable OAuth, so no per-vendor developer program, no partner approval
+  queue, no [refresh-token rotation](/fix/refresh-token-not-working) to get
+  wrong.
+- No health data at rest, which changes the [compliance question](/compliance)
+  from "how do we store this safely" to "we do not have any".
+- No sync, no backfill, no day-boundary arithmetic, no reconciling one device's
+  midnight against another's.
+
+The whole apparatus this site documents is, for that product, correctly absent.
+A team of two can ship it. That is not a limitation of the product; it is the
+product being honest about what it needs.
+
+## What you give up
+
+This is not a free trade, and the pitch for it usually skips the second half.
+
+**You lose the data retention loop.** Apps that hold a user's history get a
+compounding reason to be reopened — the streak, the trend, the year in review.
+An intervention app is used when the problem occurs and ignored otherwise. Your
+retention model is memory of the app existing, not accumulated value inside it.
+
+**You lose personalisation.** Without a baseline you cannot adapt, and adaptive
+products generally beat fixed ones over a long enough horizon.
+
+**You lose the efficacy story.** If you never measure, you cannot show your
+intervention worked. For a consumer app that may be fine. For anything reaching
+toward clinical positioning it is a ceiling, and it is one you hit late.
+
+**You lose a discovery surface.** Appearing inside Apple Health or Health
+Connect as a data source is real distribution, and you have opted out of it.
+
+## When you actually do need the data
+
+Read health data when at least one of these is true, and be suspicious when
+none of them is:
+
+1. **The intervention adapts to it.** Progressive overload, recovery-gated
+   training, adaptive sleep coaching — the number changes the plan.
+2. **The user's goal is the number.** Weight, VO2 max, resting heart rate. Here
+   the data is not input, it is the product.
+3. **Adherence needs to be observed rather than self-reported.** Anything
+   involving a clinician, an employer, or an insurer.
+4. **The value is longitudinal.** Trends over months that a person cannot hold
+   in their head.
+
+Notice that "our competitors integrate with Apple Health" is not on that list.
+
+## The accessibility angle, which is not a footnote
+
+There is a second reason this category matters to people building fitness
+products, and it is easy to miss.
+
+Camera-based coaching and VR fitness both provoke vestibular symptoms in a
+meaningful slice of users — the same family of problem a motion-sickness app
+addresses. If you are building [camera coaching](/motion) or anything
+headset-based, motion sensitivity is not somebody else's product category. It
+is your churn.
+
+Our [accessibility cluster](/accessibility) covers the platform-level side of
+this: what Apple and Google actually give you for reduced motion, and what they
+do not. The consumer tools in this space, [Dizzout](https://dizzout.com) among
+them, are worth being aware of for the same reason you should know what a
+screen reader does to your workout screen — because the user who cannot
+tolerate your interface does not file a bug, they leave.
+
+## The honest summary
+
+Most of this site exists to help you integrate health data well, because most
+teams that need it do it badly. But the best engineering decision available to
+some products is not to integrate at all — and that decision is much easier to
+make at the start than to unwind in month six, after the entitlement is
+approved and the tokens are rotating and somebody has to explain to legal what
+happens to a year of heart-rate data if the company is acquired.
+
+Answer the test question first. If reading the data does not change what your
+app does, the integration is a cost with a chart attached.
+
+---
+
+**A note on the example.** Dizzout is used above to illustrate an architecture,
+not as a recommendation. This site has not independently tested it, and the
+descriptions of how the product works are the company's own statements rather
+than claims we have verified — the same standard we apply to any vendor we have
+not been able to check against a primary source. Nothing here should be read as
+health advice; motion sickness with no obvious cause is worth raising with a
+doctor rather than an app.
