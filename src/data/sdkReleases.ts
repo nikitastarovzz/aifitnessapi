@@ -35,7 +35,7 @@ export type SdkRepo = {
 };
 
 /** The date CI last reached the GitHub API. */
-export const SDK_CHECKED_ON = "2026-08-30";
+export const SDK_CHECKED_ON = "2026-08-31";
 
 export const SDK_REPOS: SdkRepo[] = [
   {
