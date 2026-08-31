@@ -438,6 +438,21 @@ if (fs.existsSync(matrixPath)) {
     }
   }
 
+  // ── Build-guide stacks ────────────────────────────────────────────────
+  // AppStack joins an authored category→types map against the generated
+  // identifier dataset and the API directory. A renamed identifier or a
+  // retired product id makes the join drop rows silently, and the page still
+  // renders — just with less in it than it claims. Count the blocks.
+  {
+    const rendered = htmls.filter((h) => fs.readFileSync(h, "utf8").includes("data-app-stack")).length;
+    const EXPECTED = 9;
+    if (rendered !== EXPECTED) {
+      problems.push(`APP-STACK      ${rendered} /build guides render the stack block, expected ${EXPECTED}`);
+    } else {
+      console.log(`Build stacks: ${rendered} /build guides carry the derived type + API stack.`);
+    }
+  }
+
   // ── Disclosed first-party links ───────────────────────────────────────
   // KinestexNote maps specific paths to a disclosed link to the site's
   // funder. Two things are asserted, and the second matters more than the

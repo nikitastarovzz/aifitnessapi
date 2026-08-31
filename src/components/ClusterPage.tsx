@@ -13,6 +13,7 @@ import MetricFacts from "@/components/MetricFacts";
 import ContentAge from "@/components/ContentAge";
 import ReferenceCallout from "@/components/ReferenceCallout";
 import KinestexNote from "@/components/KinestexNote";
+import AppStack from "@/components/AppStack";
 import Feedback from "@/components/Feedback";
 import { formatDate } from "@/lib/posts";
 import { site, absoluteUrl } from "@/lib/site";
@@ -257,6 +258,7 @@ export default function ClusterPage({
         {/* Verified platform facts, on the guides that have a matrix row.
             Renders nothing everywhere else. */}
         <MetricFacts path={path} />
+        <AppStack path={path} />
         <ReferenceCallout path={path} />
         <KinestexNote path={path} />
 
