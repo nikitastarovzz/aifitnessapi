@@ -12,6 +12,7 @@ import NextSteps from "@/components/NextSteps";
 import MetricFacts from "@/components/MetricFacts";
 import ContentAge from "@/components/ContentAge";
 import ReferenceCallout from "@/components/ReferenceCallout";
+import KinestexNote from "@/components/KinestexNote";
 import Feedback from "@/components/Feedback";
 import { formatDate } from "@/lib/posts";
 import { site, absoluteUrl } from "@/lib/site";
@@ -257,6 +258,7 @@ export default function ClusterPage({
             Renders nothing everywhere else. */}
         <MetricFacts path={path} />
         <ReferenceCallout path={path} />
+        <KinestexNote path={path} />
 
         {alsoRead.length > 0 && (
           <section className="defer-paint mt-12">

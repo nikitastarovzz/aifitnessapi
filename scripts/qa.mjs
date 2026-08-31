@@ -438,6 +438,30 @@ if (fs.existsSync(matrixPath)) {
     }
   }
 
+  // ── Disclosed first-party links ───────────────────────────────────────
+  // KinestexNote maps specific paths to a disclosed link to the site's
+  // funder. Two things are asserted, and the second matters more than the
+  // first: the count (a renamed slug would silently drop the link), and that
+  // EVERY instance carries the disclosure. An undisclosed link to the funder
+  // on a site that presents itself as neutral is the one failure that would
+  // discredit everything else here, so it fails the build rather than
+  // relying on the component being written correctly.
+  {
+    const withNote = htmls.filter((h) => fs.readFileSync(h, "utf8").includes("data-kinestex-note"));
+    const EXPECTED = 13;
+    if (withNote.length !== EXPECTED) {
+      problems.push(
+        `KINESTEX-NOTE  ${withNote.length} pages render the first-party link, expected ${EXPECTED} — a mapped path was probably renamed`,
+      );
+    }
+    for (const h of withNote) {
+      const html = fs.readFileSync(h, "utf8");
+      if (!/Disclosure:/.test(html)) {
+        problems.push(`KINESTEX-UNDISCLOSED  ${routeOf(h)} links to the funder without the disclosure`);
+      }
+    }
+  }
+
   // ── Content freshness ─────────────────────────────────────────────────
   // Informational, deliberately. This site's claim is that it tracks a moving
   // ecosystem, so the age of its verification stamps is a first-class quality
