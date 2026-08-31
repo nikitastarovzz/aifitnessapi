@@ -119,7 +119,48 @@ if (existsSync(OUT)) {
   }
 }
 
+// ── Write only when it means something ────────────────────────────────────
+//
+// SDK_CHECKED_ON is stamped with today's date, so a naive write makes the
+// file differ on every single run and CI commits — and redeploys the whole
+// site — daily for a one-character change. Three of the first four runs did
+// exactly that.
+//
+// So the payload is compared with the check date excluded. If the releases,
+// star counts and archive flags are all unchanged, the only reason left to
+// write is to keep "checked on" from going misleadingly stale, and a week is
+// close enough for a page that says which day we last looked.
+const STALE_AFTER_DAYS = 7;
 const checkedOn = new Date().toISOString().slice(0, 10);
+
+const payload = JSON.stringify(entries);
+let previousPayload = null;
+let previousCheckedOn = null;
+if (existsSync(OUT)) {
+  const prev = readFileSync(OUT, "utf8");
+  const arr = /export const SDK_REPOS: SdkRepo\[\] = ([\s\S]*?);\n$/.exec(prev);
+  if (arr) {
+    try {
+      previousPayload = JSON.stringify(JSON.parse(arr[1]));
+    } catch {
+      // Unparseable previous file: fall through and rewrite it.
+    }
+  }
+  previousCheckedOn = /export const SDK_CHECKED_ON(?::[^=]*)? = "(\d{4}-\d{2}-\d{2})"/.exec(prev)?.[1] ?? null;
+}
+
+const dataUnchanged = previousPayload !== null && previousPayload === payload;
+const dateAgeDays = previousCheckedOn
+  ? Math.round((Date.parse(checkedOn) - Date.parse(previousCheckedOn)) / 86400000)
+  : Infinity;
+
+if (dataUnchanged && dateAgeDays < STALE_AFTER_DAYS) {
+  console.log(
+    `No release changes and the check date is ${dateAgeDays}d old (< ${STALE_AFTER_DAYS}d) — leaving ${OUT} untouched.`,
+  );
+  process.exit(0);
+}
+
 writeFileSync(
   OUT,
   `/**
@@ -165,4 +206,7 @@ export const SDK_REPOS: SdkRepo[] = ${JSON.stringify(entries, null, 2)};
 `,
 );
 
-console.log(`wrote ${OUT}: ${entries.length} repos, ${entries.reduce((n, e) => n + e.releases.length, 0)} releases`);
+console.log(
+  `wrote ${OUT}: ${entries.length} repos, ${entries.reduce((n, e) => n + e.releases.length, 0)} releases` +
+    (dataUnchanged ? ` (data unchanged; refreshed the check date, ${dateAgeDays}d old)` : " (data changed)"),
+);
