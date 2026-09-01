@@ -79,6 +79,46 @@ const STACKS: Record<string, Stack> = {
     apis: ["kinestex", "sency", "mediapipe", "healthkit", "health-connect"],
     note: "Recovery signals are what make coaching adaptive rather than a fixed plan with a chat interface — and HRV is the trap, because Apple stores SDNN and Health Connect stores RMSSD.",
   },
+  "weight-loss-app": {
+    healthkit: ["bodyMass", "bodyFatPercentage", "leanBodyMass", "waistCircumference", "dietaryEnergyConsumed", "activeEnergyBurned", "basalEnergyBurned"],
+    apis: ["nutritionix", "edamam", "usda-fdc", "open-food-facts", "fitbit", "healthkit", "health-connect"],
+    note: "Both sides of the ledger are estimates, and they aggregate differently: the energy types sum over a day, body mass is a discrete sample you have to smooth before you show it.",
+  },
+  "meal-planning-app": {
+    healthkit: ["dietaryEnergyConsumed", "dietaryProtein", "dietaryCarbohydrates", "dietaryFatTotal", "dietaryFiber", "dietarySodium", "dietarySugar"],
+    apis: ["edamam", "usda-fdc", "open-food-facts", "nutritionix", "healthkit"],
+    note: "A planner writes these rather than reading them, and it computes every one of them from ingredients — so the accuracy of the whole block is the accuracy of your ingredient resolution.",
+  },
+  "sleep-tracking-app": {
+    healthkit: ["sleepAnalysis", "restingHeartRate", "heartRateVariabilitySDNN", "respiratoryRate", "oxygenSaturation", "appleSleepingWristTemperature", "appleSleepingBreathingDisturbances"],
+    apis: ["oura", "whoop", "fitbit", "garmin", "terra", "healthkit", "health-connect"],
+    note: "Sleep is the odd one out: it is a category type carrying an enum per segment, not a number, so one night arrives as many records that you have to stitch into a session yourself.",
+  },
+  "recovery-app": {
+    healthkit: ["heartRateVariabilitySDNN", "restingHeartRate", "respiratoryRate", "oxygenSaturation", "appleSleepingWristTemperature", "heartRateRecoveryOneMinute", "vo2Max"],
+    apis: ["whoop", "oura", "garmin", "polar", "terra", "healthkit", "health-connect"],
+    note: "Every input here is a discrete sample averaged against a personal baseline, which is why a recovery score has nothing to say until it has watched a user for a while.",
+  },
+  "meditation-app": {
+    healthkit: ["mindfulSession", "heartRate", "heartRateVariabilitySDNN", "restingHeartRate", "respiratoryRate"],
+    apis: ["healthkit", "health-connect", "oura", "whoop"],
+    note: "The mindful session is the only thing you write, and it is a duration rather than a measurement; the rest of this list you read, to show what a session looked like from the outside.",
+  },
+  "cycle-tracking-app": {
+    healthkit: ["menstrualFlow", "ovulationTestResult", "cervicalMucusQuality", "basalBodyTemperature", "sexualActivity", "pregnancyTestResult", "progesteroneTestResult", "intermenstrualBleeding"],
+    apis: ["healthkit", "health-connect", "oura", "fitbit"],
+    note: "Almost everything in this category is an enum with a date, not a time series — which makes the schema unlike every other app here, and makes each record far more identifying.",
+  },
+  "step-challenge-app": {
+    healthkit: ["stepCount", "distanceWalkingRunning", "flightsClimbed", "appleExerciseTime", "activeEnergyBurned", "appleStandHour", "pushCount"],
+    apis: ["fitbit", "garmin", "strava", "terra", "rook", "spike", "healthkit", "health-connect"],
+    note: "Read the aggregation column: these are cumulative sums, so a phone and a watch reporting the same walk will add up rather than agree. Pick one source per participant per day.",
+  },
+  "senior-fitness-app": {
+    healthkit: ["appleWalkingSteadiness", "appleWalkingSteadinessEvent", "walkingSpeed", "walkingStepLength", "walkingAsymmetryPercentage", "walkingDoubleSupportPercentage", "stairAscentSpeed", "stairDescentSpeed", "sixMinuteWalkTestDistance", "numberOfTimesFallen"],
+    apis: ["exercisedb", "mediapipe", "healthkit", "health-connect"],
+    note: "The mobility family is the most under-used data on this site: ten types the phone already computes from ordinary walking, which almost no consumer app reads.",
+  },
 };
 
 const byCase = new Map(HK_IDENTIFIERS.map((r) => [r.case, r]));

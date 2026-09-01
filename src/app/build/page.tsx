@@ -41,14 +41,24 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
     ],
   },
   {
-    title: "Pro, clinical & B2B",
-    blurb: "Apps built for trainers, clinics, and employers.",
-    slugs: [
-      "personal-training-app",
-      "rehab-physical-therapy-app",
-      "corporate-wellness-app",
-      "nutrition-tracking-app",
-    ],
+    title: "Food, weight and nutrition",
+    blurb: "Apps built on what people eat and what the scale says.",
+    slugs: ["nutrition-tracking-app", "weight-loss-app", "meal-planning-app"],
+  },
+  {
+    title: "Rest, recovery and health tracking",
+    blurb: "Apps built on what the body does when nobody is exercising.",
+    slugs: ["sleep-tracking-app", "recovery-app", "meditation-app", "cycle-tracking-app"],
+  },
+  {
+    title: "Coached and clinical",
+    blurb: "Apps with a second person in them — a trainer, a clinician, a family member.",
+    slugs: ["personal-training-app", "rehab-physical-therapy-app", "senior-fitness-app"],
+  },
+  {
+    title: "Programmes and populations",
+    blurb: "Apps someone else buys on behalf of a group.",
+    slugs: ["corporate-wellness-app", "step-challenge-app"],
   },
   {
     title: "Decisions",
