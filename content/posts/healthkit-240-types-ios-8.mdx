@@ -1,0 +1,180 @@
+---
+title: "HealthKit: 127 of 240 Types Are iOS 8.0"
+description: "HealthKit has 240 type identifiers and 127 of them shipped in iOS 8.0. None is marked deprecated. The full version histogram, and what it costs you."
+date: 2026-09-01
+updated: 2026-09-01
+author: "AIFitnessAPI"
+tags: ["healthkit", "ios", "deprecation", "ecosystem"]
+draft: false
+faqs:
+  - q: "How many HealthKit type identifiers are there?"
+    a: "There are 240 type identifiers in the dataset we parsed from Apple's developer documentation. They break down into 120 quantity types, 84 workout activity types, 30 category types and 6 characteristic types. That total moves upward with each iOS release, so treat any figure you see quoted as a reading taken on a particular date rather than a constant."
+  - q: "Has Apple ever deprecated a HealthKit type identifier?"
+    a: "None of the 240 identifiers carries a deprecation marker in the documentation we read. Apple's own grouping does contain a bucket labelled Deprecated activity types holding 3 workout activity types, so the concept exists in the docs. A single snapshot cannot prove nothing was ever withdrawn, but the list we can see is entirely additions."
+  - q: "Are some HealthKit types available only on Apple Watch?"
+    a: "No. Every identifier in the dataset is listed as available on all six platforms Apple names, which are iOS, iPadOS, Mac Catalyst, macOS, visionOS and watchOS. Nothing is watchOS-only or iOS-only. The branch your code needs is an OS version check, not a platform check, because availability varies by release rather than by device."
+---
+
+HealthKit exposes 240 type identifiers. 127 of them shipped in iOS 8.0, and
+every release since has added a handful on top.
+
+That means the shape of the API was decided in one go, at the beginning, and
+almost everything after is a long tail. If you are planning an integration
+around "what Apple adds next", you are planning around the small end of the
+distribution.
+
+The counts here come from this site's own [HealthKit identifier
+dataset](/healthkit-identifiers), parsed from Apple's developer documentation
+on 2026-08-28 and republished as an open dataset on [/datasets](/datasets).
+
+## The full version histogram
+
+| iOS version | Identifiers introduced |
+|---|---|
+| 8.0 | 127 |
+| 9.0 | 10 |
+| 9.3 | 1 |
+| 10.0 | 20 |
+| 11.0 | 9 |
+| 11.2 | 1 |
+| 12.2 | 3 |
+| 13.0 | 7 |
+| 14.0 | 14 |
+| 14.2 | 1 |
+| 14.3 | 4 |
+| 14.5 | 1 |
+| 15.0 | 5 |
+| 16.0 | 17 |
+| 17.0 | 7 |
+| 18.0 | 10 |
+| 26.2 | 1 |
+| 27.0 | 2 |
+
+The version strings are Apple's, including the jump from 18.0 to 26.2. We
+record what the documentation says rather than normalising it.
+
+Read down that column and the pattern is obvious. After the opening 127, the
+biggest single release is 20 identifiers in iOS 10.0. Then 17 in iOS 16.0, 14
+in iOS 14.0, 10 each in iOS 9.0 and iOS 18.0. Everything else is single digits,
+and six releases contributed one or two identifiers apiece.
+
+## The bursts have themes
+
+For iOS 16.0 and later the dataset records which identifiers arrived in which
+release, and the clusters are legible.
+
+iOS 16.0 brought the running-form set (runningGroundContactTime, runningPower,
+runningSpeed, runningStrideLength, runningVerticalOscillation), underwaterDepth
+and waterTemperature, appleSleepingWristTemperature, atrialFibrillationBurden,
+heartRateRecoveryOneMinute, environmentalSoundReduction, a block of menstrual
+cycle deviation flags (infrequentMenstrualCycles, irregularMenstrualCycles,
+persistentIntermenstrualBleeding, prolongedMenstrualPeriods), plus swimBikeRun
+and transition.
+
+iOS 17.0 is almost entirely cycling: cyclingCadence,
+cyclingFunctionalThresholdPower, cyclingPower and cyclingSpeed, alongside
+physicalEffort, timeInDaylight and underwaterDiving.
+
+iOS 18.0 is rowing, paddling, skating and cross-country skiing
+(crossCountrySkiingSpeed, distanceCrossCountrySkiing, distancePaddleSports,
+distanceRowing, distanceSkatingSports, paddleSportsSpeed, rowingSpeed) plus
+appleSleepingBreathingDisturbances, estimatedWorkoutEffortScore and
+workoutEffortScore.
+
+The newest entries are thin. iOS 26.2 added hypertensionEvent. iOS 27.0 added
+bleedingAfterMenopause and menopausalState, and those two are the only
+identifiers in the dataset flagged as in beta on some platform.
+
+Reading intent into that clustering is inference, not something Apple states.
+But a release that adds four cycling power and speed metrics at once is not
+responding to a documentation request. If you want to guess where the sensor
+work is going, the histogram is a better signal than the keynote.
+
+## Nothing is marked deprecated
+
+Zero of the 240 identifiers carry a deprecation marker.
+
+That is unusual for an API surviving this many releases, and it has a direct
+consequence for your code. Apple's grouping does include a bucket called
+"Deprecated activity types" containing 3 workout activity types, so the concept
+is not foreign to the docs. No individual identifier is flagged.
+
+A snapshot taken on one date cannot prove Apple has never withdrawn anything.
+What it does show is that the list you have to handle only grows. Any switch
+statement, database column mapping or analytics dimension you build over these
+identifiers is a structure that gets longer every year and never gets shorter.
+
+Design for that. A `default` case that silently drops an unrecognised
+identifier will start dropping real user data the first autumn after you ship,
+and nobody will report it because the app will not crash. Store the raw
+identifier string alongside whatever you map it to, so that a type you did not
+know about on release day is still recoverable later.
+
+## The platform axis does not vary
+
+Every one of the 240 identifiers is listed as available on all six platforms
+Apple names: iOS, iPadOS, Mac Catalyst, macOS, visionOS and watchOS. None is
+watchOS-only. None is iOS-only.
+
+This surprises people who assume the Watch has a private set of types. It does
+not. What varies is the OS version, which is why the histogram above is the
+table that matters and a platform matrix would be a single filled-in block.
+
+Availability of a type is a separate question from whether any data exists
+behind it. Our [cross-platform matrix](/matrix) makes the same point about
+blood oxygen: the type being present says nothing about whether a device on the
+user's wrist is writing to it. If you are shipping a watch target, the
+[HealthKit on Apple Watch](/watch-apps/healthkit-on-apple-watch) notes cover
+where the read actually happens.
+
+## Compare that with everything else you integrate
+
+Zero deprecations is worth saying out loud because almost nothing else in this
+space behaves that way. Our [dated changes list](/changes) tracks 13 ecosystem
+events, 6 of them confirmed and 7 only reported, and most of them are
+subtractions rather than additions.
+
+Google's own documentation states that the Fit APIs will be supported until the
+end of 2026, and that one is confirmed. The Fitbit Web API turndown is
+reported, not confirmed: third-party guides name a specific day, we could not
+verify one on a first-party page, and tokens are reported not to transfer, so
+every user re-consents. Oura deprecated personal access tokens in December
+2025, which is confirmed. Strava tightened its developer program in 2024, also
+confirmed.
+
+Set that against a platform API whose identifier list only ever gets longer.
+HealthKit is a low-maintenance dependency in the one dimension that usually
+hurts, which is the dimension where somebody else decides your deadline. A new
+identifier in iOS 27.0 is never a breaking change for you. It is an option you
+can exercise whenever you get to it.
+
+That changes where the engineering budget should go. With a vendor API, a
+meaningful share of the work is migration insurance: watching announcements,
+keeping a dual-read path, planning re-consent. With HealthKit the same hours
+are better spent on what the individual types actually mean, because that is
+where the real ambiguity sits and no deadline will force you to deal with it.
+
+## What to do with this
+
+Generate your identifier mapping instead of typing it. A hand-maintained enum
+of 240 cases is a file nobody re-reads, and the additions arrive on Apple's
+schedule rather than yours. We regenerate ours from Apple's documentation JSON
+and fail the build when the parse comes up short, which is described on
+[/methodology](/methodology).
+
+Guard the newest types behind availability checks and write the fallback path
+first. hypertensionEvent and the two iOS 27.0 identifiers will read as absent
+on most installed devices for a long time, and "absent" is the case your UI has
+to be honest about rather than the exception.
+
+Do not assume an old identifier is well specified just because it is old. The
+127 that shipped in iOS 8.0 include some of the thinnest documentation in the
+whole set, which is the subject of a
+[separate count](/blog/healthkit-58-silent-types).
+
+And when you are scoping an integration, start from the group you actually
+need rather than the total. The [integration guide](/integrate/healthkit)
+walks the permission model, and if you are also targeting Android, the
+[HealthKit versus Health Connect
+comparison](/fitness-apis/apple-healthkit-vs-google-health-connect) is where
+the type counts stop matching up.

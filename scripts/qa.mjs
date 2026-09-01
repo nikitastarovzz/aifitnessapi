@@ -325,16 +325,22 @@ if (fs.existsSync(matrixPath)) {
 
   // Which top-level dirs are clusters? Exactly those mirrored under /md.
   const mdRoot = ".next/server/app/md";
-  const clusterTops = fs.existsSync(mdRoot)
+  const mdTops = fs.existsSync(mdRoot)
     ? fs
         .readdirSync(mdRoot, { withFileTypes: true })
         .filter((e) => e.isDirectory() && !e.name.startsWith("["))
         .map((e) => e.name)
     : [];
+  // The blog has markdown mirrors but is NOT a cluster: it has no ClusterEntry
+  // data, no per-cluster RSS feed, and no answers.json spoke records. It must
+  // still meet the same GEO bar as a spoke, so the two sets are separated
+  // rather than the blog being waved through.
+  const clusterTops = mdTops.filter((n) => n !== "blog");
+  const geoTops = mdTops;
   if (clusterTops.length === 0) problems.push("GEO-NO-MD-MIRRORS  /md build output missing entirely");
 
   const mirrorFiles = [];
-  for (const top of clusterTops) {
+  for (const top of geoTops) {
     for (const f of fs.readdirSync(path.join(mdRoot, top))) {
       if (f.endsWith(".body")) mirrorFiles.push(path.join(mdRoot, top, f));
     }
@@ -344,12 +350,15 @@ if (fs.existsSync(matrixPath)) {
     : [];
   const spokes = htmls
     .map(routeOf)
-    .filter((r) => { const seg = r.split("/").filter(Boolean); return seg.length === 2 && clusterTops.includes(seg[0]); });
+    .filter((r) => { const seg = r.split("/").filter(Boolean); return seg.length === 2 && geoTops.includes(seg[0]); });
+  // answers.json carries one record per cluster spoke; blog posts are a
+  // separate collection in that document and must not be counted here.
+  const clusterSpokes = spokes.filter((r) => clusterTops.includes(r.split("/").filter(Boolean)[0]));
   if (mirrorFiles.length !== spokes.length) {
     problems.push(`GEO-MIRROR-COUNT  ${mirrorFiles.length} /md spoke mirrors vs ${spokes.length} spoke pages — every spoke needs its markdown mirror`);
   }
   // One markdown index per cluster, plus the site index.
-  const expectedHubMirrors = clusterTops.length + 1;
+  const expectedHubMirrors = geoTops.length + 1;
   if (hubMirrors.length !== expectedHubMirrors) {
     problems.push(`GEO-HUB-MIRRORS  ${hubMirrors.length} cluster/index markdown mirrors, expected ${expectedHubMirrors} (one per cluster + /index.md)`);
   }
@@ -407,8 +416,8 @@ if (fs.existsSync(matrixPath)) {
     let parsed = null;
     try { parsed = JSON.parse(answersRaw); } catch { problems.push("GEO-ANSWERS-INVALID  answers.json is not valid JSON"); }
     if (parsed) {
-      if (!Array.isArray(parsed.answers) || parsed.answers.length !== spokes.length) {
-        problems.push(`GEO-ANSWERS-COUNT  answers.json has ${parsed.answers?.length ?? 0} records vs ${spokes.length} spokes`);
+      if (!Array.isArray(parsed.answers) || parsed.answers.length !== clusterSpokes.length) {
+        problems.push(`GEO-ANSWERS-COUNT  answers.json has ${parsed.answers?.length ?? 0} records vs ${clusterSpokes.length} spokes`);
       }
       const bad = (parsed.answers ?? []).filter(
         (a) => !a.question || !a.answer || !a.url || !a.markdown || !a.last_reviewed,
@@ -450,6 +459,97 @@ if (fs.existsSync(matrixPath)) {
       problems.push(`APP-STACK      ${rendered} /build guides render the stack block, expected ${EXPECTED}`);
     } else {
       console.log(`Build stacks: ${rendered} /build guides carry the derived type + API stack.`);
+    }
+  }
+
+  // ── Blog: frontmatter, placements, mirrors ────────────────────────────
+  // The blog is the one content surface not generated from a data module, so
+  // nothing else stops a post shipping with a title that overflows the tab, a
+  // missing FAQ block, or a placement pointing at a slug that was renamed.
+  {
+    const POSTS_DIR = path.join(process.cwd(), "content", "posts");
+    const files = fs.existsSync(POSTS_DIR)
+      ? fs.readdirSync(POSTS_DIR).filter((f) => /\.mdx?$/.test(f))
+      : [];
+    const posts = [];
+    for (const f of files) {
+      const raw = fs.readFileSync(path.join(POSTS_DIR, f), "utf8");
+      const m = /^---\r?\n([\s\S]*?)\r?\n---/.exec(raw);
+      if (!m) {
+        problems.push(`POST-FRONTMATTER  ${f} has no YAML front matter`);
+        continue;
+      }
+      const fm = m[1];
+      const scalar = (k) => {
+        const r = new RegExp(`^${k}:\\s*(.*)$`, "m").exec(fm);
+        if (!r) return null;
+        return r[1].trim().replace(/^["']|["']$/g, "");
+      };
+      const slug = f.replace(/\.mdx?$/, "");
+      const title = scalar("title");
+      const desc = scalar("description");
+      const draft = scalar("draft") === "true";
+      // Front-matter caps are tighter than the rendered ones on purpose: the
+      // layout appends " · AIFitnessAPI", so a 45-char title is the largest
+      // that still fits the 60-char <title> budget. Catching it here names the
+      // file; catching it in the rendered HTML only names the route.
+      if (!title) problems.push(`POST-NO-TITLE     ${f}`);
+      else if (title.length > 45)
+        problems.push(`POST-TITLE-${title.length}    ${f}: "${title}" (max 45; the layout appends " · ${"AIFitnessAPI"}")`);
+      if (!desc) problems.push(`POST-NO-DESC      ${f}`);
+      else if (desc.length > 155) problems.push(`POST-DESC-${desc.length}     ${f}`);
+      if (!/^date:/m.test(fm)) problems.push(`POST-NO-DATE      ${f}`);
+      if (!/^updated:/m.test(fm)) problems.push(`POST-NO-UPDATED   ${f}`);
+      const faqCount = (fm.match(/^\s+- q:/gm) ?? []).length;
+      posts.push({ slug, draft, faqCount, title });
+    }
+    const live = posts.filter((p) => !p.draft);
+
+    // Every live post must render, carry its FAQ block, and have a markdown
+    // mirror. A post that silently stops building is invisible, not broken.
+    for (const p of live) {
+      if (!valid.has(`/blog/${p.slug}`)) problems.push(`POST-NOT-BUILT    /blog/${p.slug}`);
+    }
+    const withFaq = htmls.filter((h) => fs.readFileSync(h, "utf8").includes("data-post-faq")).length;
+    const expectFaq = live.filter((p) => p.faqCount > 0).length;
+    if (withFaq !== expectFaq)
+      problems.push(`POST-FAQ-RENDER   ${withFaq} posts render the FAQ block, expected ${expectFaq}`);
+
+    // Placements: both halves, because either rots silently.
+    // Read the placement map straight out of the component source. Parsing
+    // the authored map rather than counting rendered blocks is what makes a
+    // renamed slug an error instead of a silently missing section.
+    const placements = [];
+    {
+      const src = fs.readFileSync(path.join(process.cwd(), "src/components/PostLinks.tsx"), "utf8");
+      const body = /const PLACEMENTS: Record<string, string\[\]> = \{([\s\S]*?)\n\};/.exec(src);
+      if (!body) problems.push("POST-PLACE-PARSE  could not read PLACEMENTS from PostLinks.tsx");
+      else {
+        for (const m of body[1].matchAll(/"([a-z0-9-]+)":\s*\[([\s\S]*?)\]/g)) {
+          const paths = [...m[2].matchAll(/"(\/[^"]+)"/g)].map((x) => x[1]);
+          placements.push({ slug: m[1], paths });
+        }
+      }
+    }
+    const liveSlugs = new Set(live.map((p) => p.slug));
+    let placedPaths = 0;
+    for (const { slug, paths } of placements) {
+      if (!liveSlugs.has(slug)) problems.push(`POST-PLACE-SLUG   PostLinks references /blog/${slug}, which is not a live post`);
+      for (const pth of paths) {
+        placedPaths++;
+        if (!valid.has(pth) || notFoundSet.has(pth))
+          problems.push(`POST-PLACE-PATH   PostLinks places a post on ${pth}, which does not exist`);
+      }
+    }
+    const rendered = htmls.filter((h) => fs.readFileSync(h, "utf8").includes("data-post-links")).length;
+    const expectPaths = new Set(placements.flatMap((x) => x.paths)).size;
+    if (placements.length && rendered !== expectPaths)
+      problems.push(`POST-LINKS        ${rendered} pages render the blog block, expected ${expectPaths}`);
+
+    if (live.length) {
+      console.log(
+        `Blog: ${live.length} posts, ${live.filter((p) => p.faqCount > 0).length} with FAQ blocks, surfaced on ${expectPaths} reference pages.`,
+      );
     }
   }
 
@@ -595,11 +695,33 @@ if (fs.existsSync(matrixPath)) {
     if (!icsFeed.includes("\r\n")) problems.push("ICS-LINE-ENDINGS  changes/calendar.ics is not CRLF-terminated");
   }
 
+  // Posts that opt out of the FAQ requirement. Named in the run output so the
+  // exemption is visible every build rather than discovered later.
+  const nonReferencePosts = [];
+  {
+    const dir = path.join(process.cwd(), "content", "posts");
+    if (fs.existsSync(dir)) {
+      for (const f of fs.readdirSync(dir).filter((f) => /\.mdx?$/.test(f))) {
+        const raw = fs.readFileSync(path.join(dir, f), "utf8");
+        const fm = /^---\r?\n([\s\S]*?)\r?\n---/.exec(raw);
+        if (fm && /^reference:\s*false\s*$/m.test(fm[1])) {
+          nonReferencePosts.push(`/blog/${f.replace(/\.mdx?$/, "")}`);
+        }
+      }
+    }
+    if (nonReferencePosts.length > 2) {
+      problems.push(`POST-EXEMPT-CREEP  ${nonReferencePosts.length} posts set reference:false — the FAQ exemption is meant for announcements, not a default`);
+    }
+    if (nonReferencePosts.length) {
+      console.log(`Blog exemptions: ${nonReferencePosts.join(", ")} carry reference:false (no FAQ required).`);
+    }
+  }
+
   for (const h of htmls) {
     const r = routeOf(h);
     const seg = r.split("/").filter(Boolean);
-    const isSpoke = seg.length === 2 && clusterTops.includes(seg[0]);
-    const isHub = seg.length === 1 && clusterTops.includes(seg[0]);
+    const isSpoke = seg.length === 2 && geoTops.includes(seg[0]);
+    const isHub = seg.length === 1 && geoTops.includes(seg[0]);
     if (!isSpoke && !isHub) continue;
     const html = fs.readFileSync(h, "utf8");
 
@@ -613,7 +735,9 @@ if (fs.existsSync(matrixPath)) {
       if (!html.includes('"CollectionPage"')) problems.push(`GEO-NO-COLLECTIONPAGE  ${r} hub has no CollectionPage/ItemList`);
       continue;
     }
-    if (!html.includes('"FAQPage"')) problems.push(`GEO-NO-FAQPAGE  ${r}`);
+    if (!html.includes('"FAQPage"') && !nonReferencePosts.includes(r)) {
+      problems.push(`GEO-NO-FAQPAGE  ${r}`);
+    }
     if (!html.includes("speakable")) problems.push(`GEO-NO-SPEAKABLE ${r}`);
     if (!html.includes('"TechArticle"')) problems.push(`GEO-NO-TECHARTICLE  ${r}`);
     // Individually addressable answers — an assistant should be able to deep

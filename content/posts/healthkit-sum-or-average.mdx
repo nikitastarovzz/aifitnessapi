@@ -1,0 +1,161 @@
+---
+title: "64 Cumulative, 53 Discrete: Sum or Average"
+description: "64 HealthKit quantity types state cumulative aggregation, 53 state discrete. Choose wrong and nothing errors, no test fails, and the chart still renders."
+date: 2026-09-01
+updated: 2026-09-01
+author: "AIFitnessAPI"
+tags: ["healthkit", "data", "architecture", "api"]
+draft: false
+faqs:
+  - q: "Should I sum or average HealthKit samples?"
+    a: "It depends on the type's aggregation style. In the documentation we parsed, 64 quantity types state cumulative aggregation and 53 state discrete. Cumulative values add up over a window, so summing is correct and averaging is meaningless. Discrete values are readings at a point in time, so averaging or taking a minimum and maximum is correct and summing is nonsense."
+  - q: "Which HealthKit types are cumulative?"
+    a: "Only quantity types carry an aggregation style at all, and 64 of them state cumulative. The test that works without looking anything up is whether doubling the time window should roughly double the number. Distance and energy behave that way. A heart rate or a body weight does not, because those are readings rather than totals."
+  - q: "Why are my HealthKit step totals higher than the Health app shows?"
+    a: "Usually because you summed duplicates. A phone and a watch can both write steps for the same walk, and Apple's Health app resolves that overlap before it displays a total. If you export samples into your own database and add them up, nothing performs that resolution for you, so you get the same steps counted more than once."
+---
+
+64 HealthKit quantity types state cumulative aggregation. 53 state discrete.
+Choose the wrong one and nothing goes wrong in any way you can see: no
+exception, no failed test, no empty chart. Just a number that is confidently
+incorrect.
+
+This is the most expensive small mistake in a HealthKit integration, and it
+costs nothing to avoid if you know the split exists.
+
+The counts come from this site's [HealthKit identifier
+dataset](/healthkit-identifiers), parsed from Apple's developer documentation
+on 2026-08-28.
+
+## The split
+
+| Aggregation style stated in Apple's docs | Quantity types |
+|---|---|
+| Cumulative | 64 |
+| Discrete | 53 |
+| None stated | 3 |
+
+Those add up to the whole quantity family, which is 120 identifiers of the 240
+in the set.
+
+One clarification, because it is easy to get wrong when you look at the totals.
+Only quantity types have an aggregation style. Category types, characteristic
+types and workout activity types do not carry the concept at all, so the
+difference between 240 and 120 is not a population of types with "no
+aggregation". It is a population where the question does not apply.
+
+## Why the wrong choice is silent
+
+HealthKit will protect you if you ask it. Run a statistics query with a
+cumulative-sum option against a discrete type and the framework rejects the
+request. `errorInvalidArgument` is one of the [17 HKError
+cases](/healthkit-errors) and it exists partly for this.
+
+The protection ends the moment the samples leave the store.
+
+Most real products do not aggregate inside HealthKit. They read raw samples,
+write them into their own database, and roll them up later in SQL or in a
+worker. At that point the samples are just rows with a value and a time range,
+and nothing in that table remembers which kind of quantity it holds. Your
+`SUM()` runs happily over heart rates.
+
+The two failure modes look different and both survive review.
+
+Averaging a cumulative type gives you the mean of whatever chunks the device
+chose to write. That is not a property of the user. It is a property of the
+write cadence, and it changes between a phone and a watch, between an idle day
+and an active one, and between OS releases. Two users with identical days can
+get different averages because one of them owns different hardware.
+
+Summing a discrete type gives you a number proportional to how many samples
+exist. The user who wore the watch all day gets a bigger "heart rate" than the
+user who wore it for an hour. The chart trends up over the week. Somebody calls
+that engagement.
+
+Neither of these throws. Neither fails a unit test written against a fixture
+you built with the same wrong assumption.
+
+## How to tell which one you are holding
+
+The reliable test needs no lookup. Ask whether doubling the time window should
+roughly double the number.
+
+A distance over two hours should be about twice the distance over one hour.
+Energy burned behaves the same way. These accumulate, and adding two adjacent
+samples produces something that means what you would expect.
+
+A body weight over two hours is not twice the body weight over one hour. A
+heart rate is not either. These are readings taken at a moment, and the
+operations that make sense are average, minimum, maximum, latest, and the
+spread between them.
+
+Two cases that trip people up. A rate that looks like it accumulates, such as a
+speed, is still a reading, because time is already in the denominator. And a
+count that looks like a reading, such as a number of events in a period, is
+usually a total.
+
+The two metrics most products start with sit on opposite sides of this line,
+which is a useful thing to hold in your head. Our reference pages on [step
+counting](/data/step-counting-api) and [heart rate](/data/heart-rate-api) cover
+what each one is actually made of on both platforms, including the resting
+value that Apple and Health Connect both hand you separately so that you do not
+try to derive it.
+
+When the answer is not obvious, look the identifier up rather than guessing.
+The dataset carries the stated aggregation style per identifier, and for the
+identifiers where Apple wrote nothing at all, [that silence is its own
+problem](/blog/healthkit-58-silent-types).
+
+## The three that state nothing
+
+appleSleepingBreathingDisturbances, estimatedWorkoutEffortScore and
+workoutEffortScore are the quantity types with no aggregation style stated.
+
+All three are also missing a unit family, and all three are among the
+identifiers listed with no abstract at all. So there is no documented answer to
+the sum-or-average question for them, which means you should not be building a
+weekly rollup of any of them on the strength of an assumption. Show the samples
+you have, or probe the behaviour yourself and write down what you found.
+
+## The other way to get a wrong total
+
+Even with the right operation, a cumulative sum can be wrong for a second
+reason, and the two failures compound.
+
+A phone and a watch can both write steps for the same walk. Our
+[cross-platform matrix](/matrix) flags this on the steps row, and it applies to
+anything the user carries two devices for. Apple's own Health app resolves the
+overlap before displaying a total. Your database does not, unless you make it.
+
+So a correct sum over incorrect rows still produces an inflated number, and it
+inflates most for your most engaged users, which is exactly the cohort whose
+data you will be looking at when you decide whether the feature works.
+[Deduplicating health data](/architecture/deduplicate-health-data) is the
+companion problem, and neither is optional.
+
+Then there is the window itself. Summing "today" requires a decision about
+whose midnight, in which timezone, for a user who flew somewhere. We wrote up
+[day boundaries](/day-boundaries) separately because the arithmetic is worse
+than it looks.
+
+## What to do
+
+Store the aggregation style next to the value. When you write a sample row into
+your own schema, carry the identifier and its stated style with it, so the
+rollup code can refuse to sum something it should not. A check constraint or an
+assertion in the aggregation layer costs one afternoon and removes the entire
+class of bug.
+
+Never let a generic rollup function loose over mixed types. The convenience of
+one `aggregate(metric, window)` helper is exactly how a heart rate ends up
+summed.
+
+Write one fixture per style and assert both directions: a cumulative type over
+a doubled window should double, a discrete type over a doubled window should
+not move much. Those two tests catch the mistake at the point where it is free
+to fix.
+
+And if you are normalising Apple and Android data into one schema, settle the
+style question before the merge rather than after. Our notes on [normalising
+wearable data](/architecture/normalize-wearable-data) cover where the two
+platforms disagree about what a metric even is.

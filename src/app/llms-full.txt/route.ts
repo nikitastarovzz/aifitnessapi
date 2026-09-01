@@ -1,4 +1,5 @@
 import { site, absoluteUrl } from "@/lib/site";
+import { getAllPosts } from "@/lib/posts";
 import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
 import { releasedGuides, GUIDES_PATH } from "@/data/guides";
 import { releasedBuilds, BUILD_PATH } from "@/data/build";
@@ -406,6 +407,27 @@ export function GET() {
     "Ten common health metrics with their matching Apple HealthKit and Android Health Connect type identifiers, verified against Apple's and Google's own documentation. Key cross-platform gotcha: Apple stores HRV as SDNN (HKQuantityTypeIdentifier.heartRateVariabilitySDNN) while Health Connect stores RMSSD (HeartRateVariabilityRmssdRecord) — these are different measures and are not interconvertible. Both stores are on-device with no server endpoint.",
   );
   out.push("");
+
+  const posts = getAllPosts();
+  if (posts.length) {
+    out.push(`# Blog — ${absoluteUrl("/blog")}`, "");
+    out.push(
+      "Findings derived from this site's own published datasets. Each post states when the underlying source was read.",
+      "",
+    );
+    for (const p of posts) {
+      out.push(`## ${p.title} — ${absoluteUrl(`/blog/${p.slug}`)}`);
+      out.push(`Published: ${p.date}; last reviewed: ${p.updated}`);
+      out.push("");
+      out.push(p.description);
+      out.push("");
+      if (p.faqs.length) {
+        out.push("FAQ:");
+        for (const f of p.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+        out.push("");
+      }
+    }
+  }
 
   return new Response(out.join("\n"), {
     headers: { "content-type": "text/plain; charset=utf-8" },

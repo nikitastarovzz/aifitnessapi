@@ -1,0 +1,149 @@
+---
+title: "The HealthKit Error That Never Fires"
+description: "HealthKit defines 17 error cases. The authorization-denied one is documented for saving, not reading — which is why an empty read is so hard to debug."
+date: 2026-09-01
+updated: 2026-09-01
+author: "AIFitnessAPI"
+tags: ["healthkit", "ios", "api"]
+draft: false
+faqs:
+  - q: "Does HealthKit return an error when the user denies read access?"
+    a: "No. Apple documents the authorization-denied error as the case where the user has not given the app permission to save data. A read the user refused completes normally and hands you an empty result, with no error to inspect. Your query code cannot distinguish a refusal from a store that genuinely holds nothing for that type."
+  - q: "How many error cases does HKError define?"
+    a: "Apple's documentation, read for this site's dataset on 2026-08-28, lists 17 cases. They cover device and environment problems, programming mistakes, authorization state, workout session lifecycle, user cancellation, and an unknown catch-all. Several carry no description text in Apple's own documentation, so their meaning has to be established by testing rather than by reading."
+  - q: "How do I tell whether a HealthKit read was denied or the data is simply missing?"
+    a: "From the query alone, you cannot. Establish everything you can rule out first: confirm the store is available on the device, confirm you actually requested authorization, then widen the time range and check the day boundary you are using. Whatever remains after that is a refusal or genuine absence, and you must design a single empty state that is true for both."
+---
+
+Apple's `HKError` type defines 17 cases. The one every iOS developer expects to
+handle — the user said no to my read — is not among them in the form they
+assume.
+
+Here is Apple's own wording for the case that looks like it:
+
+> **errorAuthorizationDenied** — The user hasn't given the app permission to
+> save data.
+
+Save. Not read. A read the user refused does not produce that error, or any
+other. The query completes, the completion handler fires with a nil error, and
+the sample array is empty. Identical, byte for byte, to a query against a type
+the user has cheerfully authorised and never generated a single sample for.
+
+That is not a bug and it is not an oversight. It is the single design decision
+that makes health engineering harder than the rest of your app, and it is worth
+understanding before you write another empty state.
+
+## All 17 cases, as Apple documents them
+
+Read for this site's dataset on 2026-08-28. The full reference lives at
+[/healthkit-errors](/healthkit-errors); blank cells are blank in Apple's
+documentation.
+
+| Case | Apple's description |
+|---|---|
+| `noError` | No error occurred. |
+| `errorHealthDataUnavailable` | The user accessed HealthKit on an unsupported device. |
+| `errorHealthDataRestricted` | A Mobile Device Management (MDM) profile restricts the use of HealthKit on this device. |
+| `errorInvalidArgument` | The app passed an invalid argument to the HealthKit API. |
+| `errorAuthorizationDenied` | The user hasn't given the app permission to save data. |
+| `errorAuthorizationNotDetermined` | The app hasn't yet asked the user for the authorization required to complete the task. |
+| `errorRequiredAuthorizationDenied` | The user hasn't granted the application authorization to access all the required clinical record types. |
+| `errorDatabaseInaccessible` | The HealthKit data is unavailable because it's protected and the device is locked. |
+| `errorUserCanceled` | The user canceled the operation. |
+| `errorAnotherWorkoutSessionStarted` | Another app started a workout session. |
+| `errorUserExitedWorkoutSession` | The user exited your application while a workout session was running. |
+| `errorNoData` | Data is unavailable for the requested query and predicate. |
+| `errorBackgroundWorkoutSessionNotAllowed` | |
+| `errorDataSizeExceeded` | |
+| `errorNotPermissibleForGuestUserMode` | The app attempted to write HealthKit data while in a Guest User session in visionOS. |
+| `errorWorkoutActivityNotAllowed` | |
+| `unknownError` | |
+
+Scan the descriptions for the word *read*. It is not there. Every
+authorization-shaped case in the list is about writing, about clinical records,
+or about not having asked yet.
+
+## The three cases people confuse with a denied read
+
+**`errorAuthorizationDenied`** is a write error. If you attempt to save a sample
+for a type the user refused to share with you, this is what you get. It says
+nothing about your read permissions, and treating it as a general permission
+signal is the most common way teams convince themselves they have solved
+[authorization](/fix/healthkit-authorization-denied) when they have not.
+
+**`errorAuthorizationNotDetermined`** means you never asked. If you see this in
+production you have a bug in your request flow, not a user who declined. It is
+the one authorization error that is unambiguously yours to fix.
+
+**`errorNoData`** — "Data is unavailable for the requested query and predicate"
+— is the closest thing to a read signal in the list, and it does not separate
+the cases either. A predicate matching nothing produces it whether the reason is
+an empty store, a badly chosen window, or a permission you never got.
+
+## Why the design is right, even though it hurts
+
+Consider the alternative. If a denied read returned a distinct error, then any
+app could learn which health types a user is unwilling to share. Refusing to
+share a pregnancy-related type, a mental health type, or a blood glucose type
+would itself be a disclosure. The user would have no way to decline quietly.
+
+An empty result for a refused read means the only thing your app can observe is
+absence, and absence is what the store looks like for the majority of types and
+users anyway. The refusal hides in the noise. That is the point.
+
+The practical consequence is that your permission model and your data model
+collapse into one state. You do not get to ask "am I allowed?" and then "is
+there anything?" — you get one query and one answer that covers both.
+
+## What actually fires, grouped by what you should do about it
+
+Handling 17 cases individually is busywork. Handle them in these groups.
+
+| Group | Cases | Your response |
+|---|---|---|
+| Store unavailable | `errorHealthDataUnavailable`, `errorHealthDataRestricted` | Hide the feature. Do not retry, do not prompt. |
+| Temporarily inaccessible | `errorDatabaseInaccessible` | Retry after unlock. Never surface as a failure. |
+| Your bug | `errorInvalidArgument`, `errorAuthorizationNotDetermined`, `errorDataSizeExceeded` | Alert your team, not the user. |
+| Write refused | `errorAuthorizationDenied`, `errorNotPermissibleForGuestUserMode` | Stop writing; keep reading. |
+| Clinical records | `errorRequiredAuthorizationDenied` | Separate consent flow entirely. |
+| Workout session | `errorAnotherWorkoutSessionStarted`, `errorUserExitedWorkoutSession`, `errorBackgroundWorkoutSessionNotAllowed`, `errorWorkoutActivityNotAllowed` | Session lifecycle, not data access. |
+| User action | `errorUserCanceled` | Not an error. Do not log it as one. |
+| Empty or unknown | `errorNoData`, `unknownError` | Diagnose; never render as "connect your device". |
+
+Notice that no group is called "read denied", because there is no case for it.
+
+## The probe that does not work
+
+The obvious trick, once you know `errorAuthorizationDenied` fires on save, is to
+write a throwaway sample and see whether it errors. Teams do this. It tells you
+about your *write* authorization for that type, and nothing whatsoever about
+your read authorization, because HealthKit tracks the two separately. You will
+have written junk into a user's health record in exchange for an answer to a
+question you did not ask.
+
+Do not do it. There is no probe. Design for the ambiguity instead.
+
+## What to do instead
+
+1. **Log the raw `HKError` code on every failure**, not a stringified message.
+   The cases Apple ships with no description at all are exactly the ones you
+   will need the numeric code to identify later. Feed them into your
+   [data-quality monitoring](/architecture/data-quality-monitoring) rather than
+   a crash reporter.
+2. **Never write copy that assumes empty means denied.** The empty state has
+   more than one cause and only one of them is fixable by the user. The
+   diagnostic order is its own post:
+   [what an empty health read actually means](/blog/no-data-means-four-things).
+3. **Ask for the smallest useful set of read types.** Since you cannot detect
+   refusal, every extra type on the request screen is a chance for a user to
+   deny something you will then silently never receive. Match the set to what
+   your [consent copy](/compliance/health-data-user-consent) actually promises.
+4. **Test the denial path deliberately.** Denying in the Health app and running
+   your read is the only way to see what your UI does in the state you cannot
+   detect at runtime. Our [HealthKit test guide](/test/healthkit-integration)
+   covers building that fixture, and the
+   [integration guide](/integrate/healthkit) covers where the request belongs in
+   your launch sequence.
+
+The error you were looking for does not exist. Build for the one that does:
+silence.

@@ -1,0 +1,145 @@
+---
+title: "Integrate Fitness APIs in Risk Order"
+description: "Three directory columns decide your build order: approval gate, engineering effort, user-side cost. Start the clocks you cannot compress on day one."
+date: 2026-09-01
+updated: 2026-09-01
+author: "AIFitnessAPI"
+tags: ["architecture", "api", "cost"]
+draft: false
+faqs:
+  - q: "What order should you integrate fitness APIs in?"
+    a: "File every approval application first, because that wait is wall-clock time you cannot shorten by working harder. Build the platform health stores next, since they carry no user-side cost and cover the metrics most products need. Add an aggregator when breadth matters more than depth. Leave the direct wearable integrations until you know how many of your users own the hardware."
+  - q: "Should you integrate HealthKit or a wearable API first?"
+    a: "The platform store first, in almost every case. HealthKit and Health Connect state no user-side cost, so every user with a supported phone is reachable, and our cross-platform matrix documents 10 metrics verified on both platforms. A direct wearable integration reaches only the people who own that brand, which is a smaller and less predictable group."
+  - q: "Is an aggregator faster than direct wearable integrations?"
+    a: "Usually, in engineering time. All four aggregators in our directory are rated low engineering effort, against medium or high for the direct wearable products. What an aggregator does not remove is the hardware requirement on your users, and one of them notes that some underlying providers still need your own developer credentials."
+---
+
+Three columns in this site's API directory decide the order you should build
+in: whether a product has an approval gate, how much engineering it takes, and
+whether it costs your end user anything. The engineering effort split across
+the 24 products is 9 low, 10 medium and 5 high. Counted on 2026-09-01.
+
+Effort is the column teams sort by, and it is the wrong one. The longest part
+of a health integration is not writing it. It is waiting for someone else,
+either a reviewer or a user who has to go buy a device.
+
+So sequence to retire risk, not to retire tickets.
+
+## The order
+
+| Phase | What you start | Why it goes here |
+|---|---|---|
+| Day one | Every approval application and vendor conversation you will eventually need | The clock runs whether or not you have written a line of code |
+| Next | HealthKit and Health Connect | No user-side cost, medium effort, and they cover most metrics |
+| Then | An aggregator, if breadth beats depth | All four are low engineering effort |
+| Later | Direct wearable integrations with a hardware requirement | You need a measured connectable share first |
+| Whenever the feature needs it | Nutrition, exercise content, pose models | Independent of the wearable track entirely |
+
+## Day one is for the clocks
+
+Twelve of the 24 products state an approval gate, and the gates differ enough
+that the word "approval" is close to useless as a planning unit. Some cap your
+user count until review. One is a partner program that third parties report has
+been paused at times. Two are store reviews of what you declared you would do.
+The taxonomy is in
+[12 of 24 fitness APIs have an approval gate](/blog/fitness-api-approval-gates),
+and the point for sequencing is narrower: none of that time is compressible,
+and all of it can run in parallel with everything else.
+
+So file on day one, before the architecture is settled, before you know if you
+will use half of them. An application you withdraw costs nothing. An
+application you file in month three costs month four.
+
+The same applies to the four products whose developer cost is contact-sales.
+Booking a call is not a commitment, and the varieties of sales gate carry
+different lead times, worked through in
+[four ways an API says contact sales](/blog/fitness-api-talk-to-sales).
+
+## Then the platform stores, because they cost your users nothing
+
+HealthKit and Health Connect are the two platform-store products in the
+directory. Both are free to the developer, both are rated medium engineering
+effort, and neither states a user-side cost. Both gate on a store review of
+your declared purpose, which is why the applications above include your usage
+descriptions and your Play Console health-data declaration.
+
+They are first for reach. Our [cross-platform matrix](/matrix) documents 10
+metrics verified on both platforms: heart rate, HRV, VO2 max, blood oxygen,
+sleep, steps, workouts, GPS route, calories and body composition. If your
+feature needs one of those, the store route reaches every user on a supported
+phone rather than every user who bought a particular brand.
+
+There is a real caveat. The store holding a type is not the same as data
+existing in it, and an empty read has several possible causes. But an empty
+read from a store you already integrated is a product problem you can work on.
+An empty read from a wearable your users do not own is a purchasing decision
+you cannot influence.
+
+Start with [HealthKit](/integrate/healthkit) and
+[Health Connect](/integrate/google-health-connect), and treat the pair as one
+piece of work rather than two, because the mapping differences between them
+are most of the difficulty.
+
+## Aggregators when breadth beats depth
+
+The directory has four aggregators, and all four are rated low engineering
+effort. Three are usage-based and one is contact-sales. That combination makes
+them the cheapest way to widen provider coverage in engineering terms, which is
+the whole argument for them: one integration, many providers, covered in
+[the aggregator guide](/fitness-apis/health-data-aggregator-apis).
+
+Two cautions, both from the directory rather than from opinion. One aggregator
+notes that several underlying providers still need your own developer
+credentials, so breadth can quietly inherit somebody else's partner program.
+And an aggregator removes your integration work, not your users' hardware
+requirement. The person still has to own the device.
+
+If depth on one vendor turns out to matter more later, moving from an
+aggregator to a direct integration is a known exercise rather than a rewrite,
+and our migration cluster covers the steps.
+
+## Direct wearables last, and only the ones you measured
+
+Five of the 24 products put a cost on your end user, and all five are direct
+wearable integrations. Two of them require an active membership on top of the
+hardware. The reach arithmetic is in
+[the fitness API cost your users pay](/blog/wearable-api-user-side-cost).
+
+For sequencing, that finding produces one rule. Do not build a direct wearable
+integration until you have measured how many of your users can actually connect
+one. The measurement takes a few weeks of onboarding questions and connect-flow
+telemetry, and it runs perfectly well during the phases above. By the time the
+store work is done, you have real numbers, and the list of wearables worth
+building usually gets shorter.
+
+Polar is the exception worth noting: it is a direct wearable integration that
+states no user-side cost and is rated low engineering effort, which puts it in
+a different position from the other five.
+
+## The high-effort five are their own decision
+
+Five products are rated high engineering effort. Four of them cost the
+developer nothing, and that pairing is the subject of
+[four fitness APIs are free and expensive](/blog/free-fitness-apis-are-expensive).
+The fifth is Garmin, which is also contact-sales.
+
+None of them belong in an early phase unless they are the product. A pose model
+is a camera feature with an accuracy programme attached, not an integration you
+slot in beside a step count. Sequence it as its own workstream with its own
+milestones, and do not let it share a release with the wearable track.
+
+## What to do on Monday
+
+Open [the directory](/apis) and mark every product on your roadmap with its
+three attributes. Send the applications for anything gated, that day. Book the
+sales calls in the same pass. Then build the two platform stores while the
+clocks run, and put the device question into onboarding so the wearable
+decision has data behind it by the time you reach it.
+
+One more habit worth keeping: write the date next to every gate and vendor
+answer you record. Terms in this ecosystem move, and a note from four months
+ago that nobody stamped is indistinguishable from a note from last week.
+
+The order is not clever. It just refuses to spend engineering time on the
+things that were never the bottleneck.

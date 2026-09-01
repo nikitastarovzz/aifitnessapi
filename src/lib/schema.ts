@@ -260,6 +260,85 @@ export function spokeGraph({
 }
 
 /**
+ * The JSON-LD graph for a blog post.
+ *
+ * A post is a TechArticle in the same sense a spoke is — it is technical
+ * reference writing, not a diary — so it carries the same furniture: the
+ * speakable capsule, the review date, and a pointer to its markdown mirror.
+ * BlogPosting stays on the page alongside this for the article-specific
+ * properties (publish date, tags, author), because the two say different
+ * things and dropping either loses information.
+ */
+export function postGraph({
+  slug,
+  title,
+  description,
+  published,
+  updated,
+  author,
+  tags,
+  words,
+  capsuleId = "answer",
+}: {
+  slug: string;
+  title: string;
+  description: string;
+  published: string;
+  updated: string;
+  author: string;
+  tags: string[];
+  words: number;
+  capsuleId?: string;
+}) {
+  const path = `/blog/${slug}`;
+  const url = absoluteUrl(path);
+  const pageId = `${url}#webpage`;
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "@id": `${url}#article`,
+        headline: title,
+        description,
+        datePublished: published,
+        dateModified: updated,
+        author:
+          author === "AIFitnessAPI"
+            ? orgRef()
+            : { "@type": "Person", name: author },
+        publisher: orgRef(),
+        inLanguage: "en",
+        articleSection: "Blog",
+        wordCount: words,
+        keywords: tags.join(", "),
+        isPartOf: { "@id": WEBSITE_ID },
+        mainEntityOfPage: { "@id": pageId },
+        url,
+        speakable: {
+          "@type": "SpeakableSpecification",
+          cssSelector: [`#${capsuleId}`],
+        },
+      },
+      {
+        "@type": "WebPage",
+        "@id": pageId,
+        url,
+        name: title,
+        isPartOf: { "@id": WEBSITE_ID },
+        lastReviewed: updated,
+        reviewedBy: orgRef(),
+        encoding: {
+          "@type": "MediaObject",
+          encodingFormat: "text/markdown",
+          contentUrl: markdownUrl(path),
+        },
+      },
+    ],
+  };
+}
+
+/**
  * CollectionPage + ItemList for a cluster hub: states that this URL is a
  * curated collection and enumerates its members in order, so a model reading
  * one hub learns the whole cluster without crawling it.

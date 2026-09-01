@@ -2,9 +2,17 @@
 title: "The Health App That Never Touches HealthKit"
 description: "Most health apps read data before they do anything. A whole category skips it — no OAuth, no entitlement, no PHI. Here's when that's the right call."
 date: 2026-08-31
+updated: 2026-08-31
 author: "Nikita Starov"
 tags: ["architecture", "compliance", "consumer health", "product"]
 draft: false
+faqs:
+  - q: "Does a health app have to read health data?"
+    a: "No. A large category of consumer health product delivers its intervention without reading anything from a sensor. The test is whether reading the data changes what your app does: if the content, the timing and the intervention are identical either way, sensing is decoration and you are taking on the hardest parts of health engineering in exchange for a chart."
+  - q: "What do you avoid by not reading health data?"
+    a: "The whole permissions and integration stack. No HealthKit or Health Connect read permission, so no entitlement and no App Review justification for it. No per-vendor wearable OAuth, developer program or refresh-token rotation. And no ambiguity between an empty result and a refused read, which is one of the harder states to diagnose in health engineering."
+  - q: "What do you give up by not reading health data?"
+    a: "Real things, and you should count them. No personalization from the user's own history, no retention loop built on their trend, no efficacy story grounded in measured change, and no presence in the platform health app where people go looking. Skipping the data is a legitimate architecture, not a free one."
 ---
 
 Almost everything on this site assumes a particular shape of app: the user

@@ -10,11 +10,21 @@ export type PostMeta = {
   title: string;
   description: string;
   date: string; // ISO date (YYYY-MM-DD)
+  /** Last re-verification. Falls back to `date`. Renders as dateModified. */
+  updated: string;
   author: string;
   tags: string[];
   image?: string;
   draft: boolean;
   readingTime: string;
+  /** Optional Q&A block. Presence switches on FAQPage JSON-LD. */
+  faqs: { q: string; a: string }[];
+  /**
+   * False for posts that are not reference content (a launch announcement has
+   * no questions to answer). Exempts the post from the FAQ requirement only;
+   * qa names every post that sets it.
+   */
+  reference: boolean;
 };
 
 export type Post = PostMeta & {
@@ -34,11 +44,24 @@ function readPostFile(fileName: string): Post {
     date: data.date
       ? new Date(data.date).toISOString().slice(0, 10)
       : "1970-01-01",
+    updated: data.updated
+      ? new Date(data.updated).toISOString().slice(0, 10)
+      : data.date
+        ? new Date(data.date).toISOString().slice(0, 10)
+        : "1970-01-01",
     author: data.author ?? "AIFitnessAPI",
     tags: Array.isArray(data.tags) ? data.tags : [],
     image: data.image ?? undefined,
     draft: data.draft === true,
     readingTime: readingTime(content).text,
+    reference: data.reference !== false,
+    faqs: Array.isArray(data.faqs)
+      ? data.faqs
+          .filter((f: unknown): f is { q: string; a: string } =>
+            Boolean(f && typeof f === "object" && "q" in f && "a" in f),
+          )
+          .map((f) => ({ q: String(f.q), a: String(f.a) }))
+      : [],
     content,
   };
 }

@@ -1,0 +1,147 @@
+---
+title: "HealthKit's 9 Mobility Types, Barely Used"
+description: "HealthKit's Mobility group is 9 identifiers the system derives from ordinary walking. No workout to start, no extra hardware, and almost nobody reads them."
+date: 2026-09-01
+updated: 2026-09-01
+author: "AIFitnessAPI"
+tags: ["healthkit", "mobility", "ios", "data"]
+draft: false
+faqs:
+  - q: "What is in HealthKit's Mobility group?"
+    a: "Apple's Mobility group holds 9 identifiers. They cover walking speed, step length, double support percentage, walking asymmetry percentage, stair ascent and descent speed, walking steadiness and a matching steadiness event, plus the six-minute walk test distance. All of them describe how someone walks rather than how far or how often."
+  - q: "Do HealthKit mobility metrics require an Apple Watch?"
+    a: "Not at the API level. Every identifier in the dataset is listed as available on all six platforms Apple names, so nothing in this group is watch-only. Whether values actually exist for a given user is a separate question that depends on their device and settings, and your code has to treat an empty read as a normal outcome."
+  - q: "Can a fitness app tell a user their fall risk from HealthKit data?"
+    a: "Showing a measurement and issuing an assessment are different things, and the second one changes what your product is. Presenting gait values as a clinical judgement moves you toward regulated territory. Read our page on fitness app regulation and take your own legal advice before you ship anything phrased as a risk or a diagnosis."
+---
+
+HealthKit's Mobility group has 9 type identifiers. They describe how a person
+walks, the system derives them from ordinary walking rather than from a workout
+somebody starts, and almost nothing in the App Store reads them.
+
+That combination is rare. Most interesting health data requires the user to buy
+hardware, wear it, remember to wear it, and consent to a vendor OAuth flow.
+This group requires a permission prompt.
+
+The identifiers and their descriptions below come from this site's [HealthKit
+identifier dataset](/healthkit-identifiers), parsed from Apple's developer
+documentation on 2026-08-28 and published on [/datasets](/datasets).
+
+## The nine
+
+| Identifier | What Apple says it records |
+|---|---|
+| walkingSpeed | Average speed when walking steadily over flat ground |
+| walkingStepLength | Average step length when walking steadily over flat ground |
+| walkingAsymmetryPercentage | Percentage of steps where one foot moves at a different speed from the other |
+| walkingDoubleSupportPercentage | Percentage of walking time with both feet on the ground |
+| stairAscentSpeed | Speed while climbing a flight of stairs |
+| stairDescentSpeed | Speed while descending a flight of stairs |
+| appleWalkingSteadiness | Steadiness of the user's gait, as a percentage |
+| appleWalkingSteadinessEvent | A category sample recording a drop in that steadiness score |
+| sixMinuteWalkTestDistance | Distance covered during a six-minute walk test |
+
+Two of those are among the most heavily documented identifiers in the entire
+set. sixMinuteWalkTestDistance carries 278 words of discussion and
+appleWalkingSteadiness carries 178, against a median of 15 words across all
+240. When Apple writes that far past the median about a measurement, it is
+because the measurement needs explaining, and both of these are derived values
+rather than raw sensor readings.
+
+The units are worth a second look too. Several of these are percentages and
+several are speeds, and the dataset records both as discrete: readings taken
+over a stretch of walking rather than totals that accumulate. A percentage
+plotted on the same axis as a distance is the sort of chart that ships because
+nobody asked what the y-axis meant.
+
+That is the opposite of the [58 identifiers with no discussion prose at
+all](/blog/healthkit-58-silent-types). Here you have documentation. What you do
+not have is competition.
+
+## The fall count is filed somewhere else
+
+There is a tenth thing worth knowing about, and the reason nobody finds it is
+that Apple did not put it in this group.
+
+numberOfTimesFallen is a cumulative quantity type counting how many times the
+user fell. Its group in Apple's own taxonomy is "Lab and test results", not
+Mobility. It shipped in iOS 8.0, which puts it among the original 127
+identifiers, and it has been sitting there ever since.
+
+So if you build a mobility feature by opening the Mobility group and reading
+down the list, you will miss it. Group membership is Apple's editorial
+decision, not a semantic guarantee, and this is the clearest example of the two
+diverging.
+
+Note also that the fall count is cumulative while the gait metrics are readings
+at a point in time. Mixing them in one rollup is the [sum-or-average
+mistake](/blog/healthkit-sum-or-average) in its most tempting form, because
+they will all sit in the same table in your database.
+
+## Why this is the least crowded data in HealthKit
+
+Compare the acquisition cost of these nine against anything else on this site.
+
+Heart rate variability needs a wrist device the user already owns. Sleep
+staging needs the user to wear that device overnight. Anything from a
+third-party wearable cloud needs a developer program, an OAuth flow, token
+rotation, and often a paid membership on the user's side.
+
+The gait metrics need the user to walk around with a phone. There is no
+session to start, no strap to remember, no vendor relationship, and the values
+accumulate whether or not anyone is thinking about your app. For a population
+that will not wear a chest strap and will not open a workout screen, this is
+the only continuously collected data you are likely to get.
+
+That is why it matters for products aimed at older adults, and for anything in
+[rehab and physical therapy](/build/rehab-physical-therapy-app), where the
+person you are building for is frequently not a person who wants a training
+app. The data arrives from ordinary life.
+
+None of this makes it free. You still need read authorization, the values may
+not exist for a given user, and an empty result is indistinguishable from a
+refusal unless you handle both. That ambiguity is the same one we cover under
+[HealthKit returns no data](/fix/healthkit-no-data), and it is worse here
+because absence is common rather than exceptional. Write the empty state first
+and make it honest, and keep null separate from zero in your own schema, for
+the reasons in [missing data and gaps](/architecture/missing-data-and-gaps).
+
+## What these numbers are not
+
+This is the part to get right before you design a screen.
+
+These identifiers record measurements of how someone walked. They are not an
+assessment of that person, and nothing in the data says what a value means for
+an individual. A walking speed is a walking speed.
+
+So describe, do not judge. "Your average walking speed this week" is a
+statement about data you read. Anything that converts those values into a
+score, a risk level, a status, or a warning is your product making a claim, and
+that claim is yours to defend rather than Apple's.
+
+Where the line sits between a wellness feature and a regulated one is a
+question with real consequences, and it is not one this page can answer for
+your product. Our page on [fitness app
+regulation](/compliance/fda-fitness-app-regulation) covers the shape of the
+question. Take actual legal advice on your specific wording, especially if you
+intend to put a gait metric in front of a clinician or an older user's family.
+
+## What to do
+
+Read the whole set, including numberOfTimesFallen, rather than the group.
+Filter by what you need semantically, not by Apple's grouping, because the
+grouping was written for documentation navigation and not for you.
+
+Show trends over weeks, not values per day. These are derived measurements of
+everyday behaviour, and a single day's number carries whatever noise that day
+contained. A user's own trajectory is the comparison that means something, and
+it is also the framing least likely to be read as a verdict.
+
+Design the empty state as the default. Assume the user has no data, then treat
+the presence of history as an upgrade. Building it the other way round produces
+an app that looks broken to most of the people who install it.
+
+And request only the mobility types your feature uses. Authorization in
+HealthKit is per type, so a shorter list is a shorter consent sheet and a
+higher chance the user says yes. The [integration
+guide](/integrate/healthkit) covers how that request behaves in practice.

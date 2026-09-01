@@ -1,0 +1,155 @@
+---
+title: "Ten Health Metrics, Two Platforms"
+description: "We checked 10 metrics against Apple's and Google's own docs. Every one exists on both. The shapes don't match, and that is the part that costs you."
+date: 2026-09-01
+updated: 2026-09-01
+author: "AIFitnessAPI"
+tags: ["healthkit", "health-connect", "data", "api"]
+draft: false
+faqs:
+  - q: "Does Health Connect have an equivalent for every HealthKit metric?"
+    a: "For the metrics this site has verified, yes. All 10 in our cross-platform matrix exist on both platforms, checked against Apple's and Google's own documentation. What differs is shape: how many records a concept is split across, whether it is stored as a sample or a session, and which permission gates it. Existence is not equivalence."
+  - q: "How do Apple and Android differ on calories burned?"
+    a: "Apple splits the day into active energy burned and basal energy burned. Health Connect offers an active calories record and a total calories record. Those are different partitions of the same day, so a single field named calories burned in your schema means different things depending on which platform wrote it. Never add an active figure to a total figure."
+  - q: "What is the hardest metric to normalise across HealthKit and Health Connect?"
+    a: "Heart rate variability. Apple stores it as SDNN and Health Connect stores it as RMSSD, which are different computations and are not interconvertible. Every other metric in the matrix can be reconciled with mapping, de-duplication or an explicit definition. That one cannot, so it needs separate storage and separate baselines per platform."
+---
+
+This site's [cross-platform matrix](/matrix) verifies 10 health metrics against
+both Apple's HealthKit documentation and Google's Health Connect documentation.
+Every one of the 10 exists on both platforms. That is the boring result.
+
+The useful result is that several of them are not the same shape on both, and
+the mismatches are structural rather than cosmetic. One Apple type meets several
+Android records. A sample on one platform is a session on the other. A field
+that is part of the workout on one platform is a separately permissioned object
+on the other. None of that is fixed by a rename.
+
+| Metric | Apple | Health Connect |
+|---|---|---|
+| Heart rate | `heartRate`, `restingHeartRate` | `HeartRateRecord`, `RestingHeartRateRecord` |
+| HRV | `heartRateVariabilitySDNN` | `HeartRateVariabilityRmssdRecord` |
+| VO2 max | `vo2Max` | `Vo2MaxRecord` |
+| Blood oxygen | `oxygenSaturation` | `OxygenSaturationRecord` |
+| Sleep | `HKCategoryTypeIdentifier.sleepAnalysis` | `SleepSessionRecord` |
+| Steps | `stepCount` (CMPedometer for live counts) | `StepsRecord`, `StepsCadenceRecord` |
+| Workouts | `HKWorkout` (`HKWorkoutBuilder`) | `ExerciseSessionRecord`, `PlannedExerciseSessionRecord` |
+| GPS route | `HKWorkoutRoute` (array of `CLLocation`), `HKWorkoutRouteQuery` | `ExerciseRoute` with `ExerciseRoute.Location` |
+| Calories | `activeEnergyBurned`, `basalEnergyBurned` | `ActiveCaloriesBurnedRecord`, `TotalCaloriesBurnedRecord` |
+| Body composition | `bodyMass`, `bodyFatPercentage`, `leanBodyMass`, `bodyMassIndex` | `WeightRecord`, `BodyFatRecord`, `LeanBodyMassRecord`, `BoneMassRecord`, `BodyWaterMassRecord`, `BasalMetabolicRateRecord` |
+
+Apple identifiers above are `HKQuantityTypeIdentifier` values unless stated
+otherwise. Read the rows where the two columns have different arity, because
+those are the rows where you have a decision to make.
+
+## When one column is longer than the other
+
+Body composition is the clearest case. Apple's side of that row is a short list
+of quantity identifiers; Health Connect's is a longer list of records, and several of them have no counterpart
+in Apple's list here, including bone mass and body water mass. Something also
+has to write any of it: the store holds body composition, but a smart scale or a
+manual entry has to put it there, and body fat is a bioimpedance estimate
+wherever it comes from.
+
+Then look at the other direction. Apple stores `bodyMassIndex` as a first-class
+type. Health Connect's set has no BMI record. So the same product, on two
+platforms, either reads BMI or computes it — and the two will not agree, because
+one of them was computed at write time by some other app from some other weight.
+
+That is the decision normalisation actually asks you to make: is BMI stored or
+derived in *your* canonical model? Pick one, apply it on both platforms, and
+discard the platform's answer where it conflicts with yours. If you skip the
+question, you ship two subtly different BMIs and find out from a support ticket.
+More on the metric itself at
+[body composition](/data/body-composition-api).
+
+The same arity problem appears in calories, with a sharper edge. Apple splits
+the day into `activeEnergyBurned` and `basalEnergyBurned`. Health Connect
+offers `ActiveCaloriesBurnedRecord` and `TotalCaloriesBurnedRecord`.
+
+These are different partitions of the same day, and the matrix's warning is
+blunt: do not add active to total. A field called `caloriesBurned` in your
+schema is undefined until you say which partition it holds. Both platforms are
+also serving you modelled estimates rather than measurements, which matters when
+someone asks why your number disagrees with a treadmill — see
+[how fitness apps estimate calories](/learn/how-fitness-apps-estimate-calories).
+
+Write the definition down in the schema, not in a comment. `activeKcal` is a
+name that cannot be misread. `calories` is a name that will be.
+
+## Sleep: a category sample versus a session
+
+Apple stores sleep as `HKCategoryTypeIdentifier.sleepAnalysis`, with the values
+`inBed`, `awake`, `asleepCore`, `asleepDeep`, `asleepREM` and
+`asleepUnspecified`. The older `.asleep` value is deprecated in favour of the
+specific stages. Health Connect stores a `SleepSessionRecord` that carries its
+stages.
+
+The unit of storage differs. On Apple, the row is an interval tagged with one
+value, and "last night" is something you assemble from many of them. On Android,
+the row is the night, and the stages live inside it. Your canonical model has to
+be one or the other, and the choice determines everything downstream: how you
+handle a nap, how you handle a night that crosses a timezone change, how you
+answer "how much deep sleep last week" without double counting.
+
+Stage vocabularies also differ between the platforms, and stages are estimated
+rather than measured on both. Do not present a stage breakdown with more
+confidence than the source has.
+
+## Routes: an array of locations versus a permissioned object
+
+Apple's route is `HKWorkoutRoute`, effectively an array of `CLLocation`, read
+back through `HKWorkoutRouteQuery`. Health Connect's is an `ExerciseRoute`
+composed of `ExerciseRoute.Location`.
+
+The shape difference is mild. The access difference is not: Health Connect gates
+routes behind their own permission, `READ_EXERCISE_ROUTES`, and restricts
+background reads of other apps' routes. So on Android a user can grant you their
+workouts and still withhold the map, and your workout detail screen needs a
+first-class state for "session yes, route no". On iOS that state does not arise
+the same way, which is exactly why teams that build iOS first forget to design
+it. Details at [GPS activity](/data/gps-activity-api).
+
+## Steps and workouts: the same shape, different content
+
+Steps look symmetric — `stepCount` against `StepsRecord` — and the trap is
+elsewhere. Both platforms happily hold steps written by a phone and by a watch
+for the same minute, so summing without
+[de-duplication](/architecture/deduplicate-health-data) inflates every total you
+show. On Android there is a further wrinkle: from the June 2026 update,
+on-device steps are attributed to a per-device Synthetic Package Name, which you
+must read via `getCurrentDeviceDataSource()` rather than hardcode.
+
+Workouts are the same story at a higher level. `HKWorkout` and
+`ExerciseSessionRecord` are structurally comparable, but the activity-type
+taxonomies are not, and mapping them by name will silently drop or mislabel
+sessions. Map them explicitly, in a table you own, and log the misses.
+
+## HRV, which is a different kind of problem
+
+Apple stores `heartRateVariabilitySDNN`. Health Connect stores
+`HeartRateVariabilityRmssdRecord`. Everything else on this page can be
+reconciled by choosing a canonical shape. This one cannot, because the two
+platforms are storing different statistics rather than the same statistic
+differently packaged. It has its own post:
+[HRV is SDNN on iOS and RMSSD on Android](/blog/hrv-sdnn-vs-rmssd).
+
+## Normalisation is a decision, not a rename
+
+For each metric you support, write down the following and keep it in the
+repository next to the mapping code:
+
+1. **The canonical row.** Sample or session. Which platform's shape you adopted,
+   and what you do with the other one.
+2. **What is stored versus derived.** BMI is the easy example; active-versus-
+   total calories is the one that bites.
+3. **What provenance you keep.** Which platform, which source device, which
+   statistic. You cannot reconstruct it later and you will need it.
+4. **What state exists when the data is partly available.** Workout without
+   route, session without stages, granted permission with an empty result.
+
+That document is the actual deliverable of a cross-platform health integration.
+The mapping code is downstream of it. The practical mechanics live in
+[normalize wearable data](/architecture/normalize-wearable-data), and the
+platform-level comparison in
+[HealthKit vs Health Connect](/fitness-apis/apple-healthkit-vs-google-health-connect).

@@ -1,4 +1,5 @@
 import { clusterMap, CLUSTER_LABELS } from "@/lib/clusterRegistry";
+import { getAllPosts } from "@/lib/posts";
 import { absoluteUrl, site } from "@/lib/site";
 import { markdownUrl } from "@/lib/schema";
 
@@ -26,10 +27,12 @@ export function generateStaticParams(): { path: string[] }[] {
   const populated = Object.entries(map).filter(([, entries]) => entries.length > 0);
   return [
     { path: ["index"] },
+    { path: ["blog"] },
     ...populated.map(([base]) => ({ path: [base.slice(1)] })),
     ...populated.flatMap(([base, entries]) =>
       entries.map((e) => ({ path: [base.slice(1), e.slug] })),
     ),
+    ...getAllPosts().map((p) => ({ path: ["blog", p.slug] })),
   ];
 }
 
@@ -90,6 +93,68 @@ export async function GET(
         out.push(`- [${e.h1}](${markdownUrl(`${base}/${e.slug}`)}): ${e.primaryQuery}`);
       }
       out.push("");
+    }
+    return md(out.join("\n"));
+  }
+
+  // ——— /blog.md and /blog/<slug>.md ———
+  // The blog is not a cluster (posts are MDX files, not data entries), so it
+  // needs its own branch. Without it the site's writing was the one thing an
+  // agent could not ingest without a DOM.
+  if (path[0] === "blog") {
+    const posts = getAllPosts();
+    if (path.length === 1) {
+      const out = frontMatter([
+        ["title", `${site.name} — blog`],
+        ["canonical", absoluteUrl("/blog")],
+        ["type", "blog-index"],
+        ["pages", String(posts.length)],
+        ["last_reviewed", posts.map((p) => p.updated).sort().at(-1) ?? ""],
+        ["publisher", site.name],
+      ]);
+      out.push(`# ${site.name} — blog`, "");
+      out.push(`> ${posts.length} posts. Findings are derived from this site's own published datasets.`, "");
+      for (const p of posts) {
+        out.push(`## ${p.title}`, "");
+        out.push(`- HTML: ${absoluteUrl(`/blog/${p.slug}`)}`);
+        out.push(`- Markdown: ${markdownUrl(`/blog/${p.slug}`)}`);
+        out.push(`- Published: ${p.date}`);
+        out.push(`- Last reviewed: ${p.updated}`, "");
+        out.push(p.description, "");
+      }
+      return md(out.join("\n"));
+    }
+    if (path.length !== 2) return new Response("Not found", { status: 404 });
+    const post = posts.find((p) => p.slug === path[1]);
+    if (!post) return new Response("Not found", { status: 404 });
+    const canonical = absoluteUrl(`/blog/${post.slug}`);
+    const out = frontMatter([
+      ["title", post.title],
+      ["canonical", canonical],
+      ["type", "blog-post"],
+      ["published", post.date],
+      ["last_reviewed", post.updated],
+      ["description", post.description],
+      ["tags", post.tags],
+      ["publisher", `${site.name} — independent, not sponsored`],
+      ["cite_as", `"${post.title}", ${site.name}, ${canonical}`],
+    ]);
+    out.push(`# ${post.title}`, "", `> ${post.description}`, "");
+    out.push(
+      `- Canonical: ${canonical}`,
+      `- Published: ${post.date}`,
+      `- Last reviewed: ${post.updated}`,
+      `- Publisher: ${site.name} (${site.url}) — independent, not sponsored`,
+      `- Cite as: "${post.title}", ${site.name}, ${canonical}`,
+      "",
+      "---",
+      "",
+      post.content.trim(),
+      "",
+    );
+    if (post.faqs.length) {
+      out.push("## FAQ", "");
+      for (const f of post.faqs) out.push(`### ${f.q}`, "", f.a, "");
     }
     return md(out.join("\n"));
   }

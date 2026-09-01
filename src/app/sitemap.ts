@@ -251,7 +251,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const postRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
     url: absoluteUrl(`/blog/${post.slug}`),
-    lastModified: new Date(post.date),
+    // lastmod is the re-verification date, not first publication — the whole
+    // point of the `updated` stamp is that a recrawl scheduler should see it.
+    lastModified: new Date(post.updated),
     changeFrequency: "monthly",
     priority: 0.7,
   }));

@@ -5,6 +5,7 @@ import { changesSorted, WATCH_ITEMS } from "@/data/changes";
 import { ROWS as MATRIX_ROWS } from "@/data/matrix";
 import { HK_IDENTIFIERS, HK_FAMILIES, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { GROUPS as GLOSSARY_GROUPS, termSlug } from "@/data/glossary";
+import { getAllPosts } from "@/lib/posts";
 
 /**
  * The answer index: every question this site owns, with the answer, in one
@@ -69,6 +70,20 @@ export function GET() {
     generated: answers.length,
     clusters: Object.keys(map).length,
     answers,
+    // The blog carries findings derived from the datasets below rather than
+    // reference answers, so it is a separate collection: an agent looking for
+    // "what does this site assert about X" should not have to parse prose,
+    // and the posts' own FAQ blocks are the quotable part.
+    posts: getAllPosts().map((p) => ({
+      title: p.title,
+      description: p.description,
+      url: absoluteUrl(`/blog/${p.slug}`),
+      markdown: markdownUrl(`/blog/${p.slug}`),
+      published: p.date,
+      last_reviewed: p.updated,
+      tags: p.tags,
+      faqs: p.faqs.map((f) => ({ question: f.q, answer: f.a })),
+    })),
     // The dated ecosystem record, graded — the highest-value thing here to
     // cite, and the part that goes stale fastest if an agent caches it.
     changes: changesSorted().map((c) => ({

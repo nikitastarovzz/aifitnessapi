@@ -1,0 +1,164 @@
+---
+title: "6 Confirmed, 7 Reported: Grade Your Dates"
+description: "We track 13 dated ecosystem changes. Only 6 come from a primary source. A confirmed date is a plan; a reported one is a rumour with a number on it."
+date: 2026-09-01
+updated: 2026-09-01
+author: "AIFitnessAPI"
+tags: ["ecosystem", "deprecation", "methodology", "api"]
+draft: false
+faqs:
+  - q: "What is the difference between a confirmed and a reported API deadline?"
+    a: "Confirmed means the vendor's own documentation or announcement states it and we read that page. Reported means credible third parties say it and the vendor has not published anything we could verify. A confirmed date can carry a migration plan. A reported one should carry a plan plus a contingency for the date being wrong."
+  - q: "Should I ignore reported deadlines until they are confirmed?"
+    a: "No. Reported items are usually right about direction and unreliable about timing, and waiting for confirmation means starting the work with the least time left. Act on the direction, verify the date yourself before anything depends on it, and never let a reported date be the only thing standing between you and a broken integration."
+  - q: "Why is a precise reported date weaker evidence than a vague one?"
+    a: "Precision reads as authority. A guide naming a specific day looks better sourced than a vendor's vague month, but the guide's certainty comes from its own editorial choice, not from new information. When you cannot trace a specific date back to the vendor, the specificity is presentation rather than evidence."
+---
+
+This site tracks 13 dated ecosystem changes across health and fitness APIs. 6
+are marked confirmed. 7 are marked reported. That split is the most useful
+thing on [the changes page](/changes), and it is the field most readers skip.
+
+The reason to care is operational. A confirmed date is something you can put on
+a roadmap and defend in a planning meeting. A reported date is a rumour with a
+number attached, and the number is the part that fools people.
+
+## The standard we apply
+
+**Confirmed** means the vendor's own documentation, changelog or announcement
+states it, and someone here opened that page and read it. The entry records
+when. Google's Fit documentation stating the APIs will be supported until the
+end of 2026 is confirmed, verified against developer.android.com on 2026-07-31.
+
+**Reported** means credible third parties say it and the vendor has not
+published anything we could verify. Not "we could not be bothered" — we looked,
+and either the official page does not exist, does not say it, or was
+unreachable when we checked. The ANT+ item is a clean example: the discontinuing
+of the membership and certification programs is widely quoted, but the official
+page was unreachable in our research pass, so it stays reported and says so.
+
+The label is about provenance, not plausibility. A reported item can be
+extremely likely to be true and still be reported. We do not promote an entry
+because it feels right, and we do not demote one because we dislike the
+vendor's behaviour.
+
+## What each label looks like in practice
+
+| Date | Event | Status |
+|---|---|---|
+| 2026-12 | Google Fit APIs: end of documented support | confirmed |
+| 2025-12 | Oura personal access tokens deprecated | confirmed |
+| 2024-05-01 | Google Fit: new developer sign-ups closed | confirmed |
+| 2024 | Strava tightened its developer program | confirmed |
+| 2026-09 | Fitbit Web API turndown window | reported |
+| 2026-05 | Fitbit accounts: Google Account consolidation gate | reported |
+| 2026 | Strava Standard-tier subscription requirement | reported |
+| 2025-06-30 | ANT+ membership and certification discontinued | reported |
+
+Notice what the confirmed rows have in common. They are mostly *past* or
+*documented*: something the vendor already did, or something it committed to in
+writing. Notice what the reported rows have in common. They are mostly *future*
+and *commercial*: turndowns, pricing changes, membership requirements. Vendors
+document what they have done far more reliably than what they are about to do
+to your costs.
+
+## Why a precise reported date is worse than a vague one
+
+The Fitbit Web API turndown is the sharpest illustration of the failure mode.
+
+Its retirement in favour of the cloud Google Health API is reported to land
+around September 2026. No official day is confirmed on a page we could verify.
+Some third-party guides name September 30.
+
+That specific day feels like better information. It is not. Nobody found a new
+source; a guide made an editorial decision to be concrete, and concreteness
+reads as authority. A team that writes "September 30" in a migration plan has
+imported a stranger's confidence and will now build a cutover schedule against
+it. If the real date is earlier, the plan fails in the one direction that
+matters.
+
+Our rule: a precise date you cannot trace back to the vendor is weaker evidence
+than an imprecise one you can, because the precision is presentation rather
+than sourcing. The [Fitbit shutdown page](/fitbit-api-shutdown) states the
+window and says plainly that no official day is confirmed.
+
+## The reported items that gate your work
+
+Reported does not mean ignorable, and treating it that way is the other failure
+mode. Three of the reported items in our set would change a plan today.
+
+**The Fitbit account consolidation gate.** Users on legacy Fitbit-only logins
+are reported to need consolidation into a Google Account, and reportedly cannot
+use the successor API until they do. That is a gate on your migration rather
+than a detail inside it, because it depends on user action and no engineering
+on your side resolves it. If it is true, your migration timeline is bounded by
+how fast your users respond to email — a thing you should be measuring
+regardless.
+
+**The WHOOP membership restructuring.** WHOOP requires a developer membership
+and an active end-user membership for data to flow, so a restructuring moves
+two columns of the cost model at once. Reported means verify current terms
+before budgeting rather than assume last year's numbers hold. The detail is on
+[WHOOP API pricing](/pricing/whoop-api-pricing).
+
+**The Nutritionix free tier.** Reports conflict on whether the open free tier
+still exists, and higher tiers route through a sales contact. If the free tier
+is gone, the product moves category — from freemium to sales-gated — and that
+changes which API you would pick, not just what you would pay. See
+[nutrition API pricing](/pricing/nutrition-api-pricing).
+
+In all three cases the correct response is identical: act on the direction,
+verify the specific number yourself before anything depends on it, and write
+down which of your assumptions is unsourced.
+
+## Running this on your own dependency list
+
+You can apply the same grading to your stack in an afternoon, and it is more
+useful than any vendor newsletter.
+
+**One row per dependency.** Vendor, what you depend on, the date or terms you
+are assuming, where you got it, and when you last looked. The last two columns
+are the whole exercise. Most teams discover that half their assumptions have no
+recorded source at all, which is a third grade below reported.
+
+**Grade the source, not the claim.** Vendor documentation, vendor changelog, or
+a vendor email addressed to you is confirmed. A community thread, an aggregator
+blog, a conference talk, or something a colleague remembers is reported. An
+assistant's summary that does not cite a page you can open is not evidence of
+anything.
+
+**Record the date you checked, not just the fact.** A verification without a
+timestamp cannot be aged, and a fact you cannot age is one you will keep
+trusting long after it stopped being true. Every entry in our dataset carries
+the date it was read, which is why the ANT+ item can honestly say the official
+page was unreachable on a specific day rather than implying it never existed.
+
+**Re-check by age, not by memory.** Pick the oldest rows, not the ones that
+come to mind. The ones that come to mind are the ones you already think about,
+which means they are the ones least likely to have gone stale unnoticed. Our
+own version of this discipline, and its limits, is in
+[how we verify](/blog/how-we-verify).
+
+**Escalate on change of label, not just change of date.** An item moving from
+reported to confirmed is the event that should trigger re-planning. It usually
+means the vendor finally published, and the published date is frequently not
+the reported one.
+
+## What to do with this
+
+Open your dependency list and put a status column on it. Anything you are
+planning against that grades as reported needs either a primary source you have
+read or an explicit contingency written next to it. Anything with no source at
+all needs one before your next planning cycle.
+
+Then pick the item with the nearest date and read
+[migrating off a deprecated fitness API](/migrate/migrate-off-a-deprecated-fitness-api),
+which is the sequencing playbook, and
+[the Google Fit timeline](/blog/google-fit-timeline), which is what a multi-year
+wind-down looks like when you watch the confirmed dates rather than the noise.
+
+One more from that timeline, since it is the cheapest check available: the Oura
+personal access token deprecation is confirmed and already past. If you have
+internal scripts on tokens rather than OAuth, that is not a future risk. See
+[the Oura PAT fix](/fix/oura-personal-access-token-deprecated) and, for the
+radio-layer equivalent, [ANT+ versus Bluetooth](/devices/ant-plus-vs-bluetooth).

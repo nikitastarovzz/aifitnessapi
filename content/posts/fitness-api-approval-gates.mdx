@@ -1,0 +1,137 @@
+---
+title: "12 of 24 Fitness APIs Have an Approval Gate"
+description: "Half the directory makes you get approved before production, and the gates are six different obstacles. Which ones start clocks you cannot compress."
+date: 2026-09-01
+updated: 2026-09-01
+author: "AIFitnessAPI"
+tags: ["api", "ecosystem", "compliance"]
+draft: false
+faqs:
+  - q: "Which fitness APIs require approval before you can go live?"
+    a: "In this site's API directory, 12 of the 24 products state an approval gate and 12 state none. The gated ones include two wearable platforms that cap your user count until review, a vendor whose partner program you apply to, a platform with display and branding rules, both mobile app stores, an aggregator needing your own credentials, and four products reached through sales."
+  - q: "How long does Garmin API approval take?"
+    a: "We have no verified timeline, and neither does anyone quoting one at you. What our directory records is the gate itself: partner approval through the Garmin Connect Developer Program, with third parties reporting that sign-ups have been paused at times. That report is unconfirmed. Treat the wait as unbounded, apply on day one, and design a first release that ships without it."
+  - q: "Does the WHOOP API limit how many users you can connect?"
+    a: "Yes. Our directory records a hard ten-member cap until your app receives production approval, and WHOOP also requires the developer to hold a membership. That cap covers everyone, so your engineers, your internal testers, and your pilot customer all draw from the same seats. Plan who gets a seat before you start, because the number does not stretch during review."
+---
+
+Twelve of the 24 products in this site's API directory state an approval gate.
+The other twelve state none. That split was counted from the directory on
+2026-09-01, and the gate text behind every row is published with it on
+[the directory hub](/apis).
+
+The count is the boring half. The useful half is that those twelve gates are
+not the same obstacle. One of them caps how many humans can use your feature.
+One of them is a queue you may not be able to join. Two of them are rules about
+your user interface that you have to satisfy before anyone looks at your
+request. Lumping them together as "needs approval" is how a launch date slips
+by a quarter.
+
+## The gates, sorted by what they block
+
+| Kind of gate | Products | What it actually costs you |
+|---|---|---|
+| Hard user cap until production review | WHOOP, Oura | Seats, during the exact phase when you need testers |
+| Partner program you apply to | Garmin | Wall-clock time you do not control |
+| Display and branding rules | Strava | UI work, discovered late if you read the terms late |
+| Platform store review of your stated purpose | HealthKit, Health Connect | A rewrite if your declared purpose and your code disagree |
+| Registration, then case-by-case data access | Fitbit | A second approval for the data you probably wanted |
+| A sales conversation instead of a signup form | Spike, Sency, Nutritionix at higher tiers, and one more | Calendar time, plus a person to run the conversation |
+
+The last row has four products in it. One is a motion SDK we leave unnamed
+here, because the vendor that funds this site appears in the directory and we
+do not use it as an example. The varieties of sales gate get their own post:
+[what "contact sales" costs you](/blog/fitness-api-talk-to-sales).
+
+## Caps are the gate that surprises people
+
+WHOOP states a hard ten-member cap until production approval, and requires the
+developer to hold a membership. Oura's is softer in wording and similar in
+effect: a fresh app connects only a small number of users, reported at around
+ten, until Oura reviews it through the Oura for Organizations partner path.
+The Oura number is reported rather than confirmed, so treat it as a planning
+assumption you verify, not a spec.
+
+A cap in the single digits is not a rate limit. It is a product constraint on
+your beta. Every engineer who links their own account, every internal tester,
+every account you burn debugging a token refresh, and every user at the design
+partner who agreed to try it all come out of the same allowance. Teams
+discover this in the week they were going to open the beta.
+
+Two things follow. Decide who gets a seat before you write the integration,
+and keep a way to recycle one. And file for production review as early as the
+vendor will accept it, because the review is the only thing that lifts the cap
+and nothing you build makes it go faster.
+
+## The application that might not be open
+
+Garmin's gate is partner approval through the Garmin Connect Developer
+Program. Third parties report that sign-ups have been paused at times. We have
+not confirmed that, and it is worth repeating that a report is not a fact, but
+it is the kind of report that should change your plan rather than your opinion.
+A gate that occasionally closes cannot sit on your critical path.
+
+Garmin is also the only row in the directory that is both contact-sales and
+high engineering effort, which means the wait and the work stack rather than
+overlap. Our pages on [the Garmin integration](/integrate/garmin-api) and
+[what to do while approval is pending](/fix/garmin-api-approval) go into the
+mechanics.
+
+## Rules you satisfy, not queues you wait in
+
+Strava's gate is its Developer Program display rules: "Connect with Strava"
+branding, and screenshots of every surface where Strava data appears. That is
+a design requirement, not a form. If you find it after the UI is built, you
+rebuild screens. Strava's developer terms are also reported to have changed
+during 2026, with Standard-tier developers said to need a paid subscription.
+Reported, not confirmed. The architectural constraints in those terms matter
+more than any fee: athlete data may generally only be shown back to that
+athlete, and using it to train AI or ML models is prohibited. We track the
+detail on [adapting to the Strava changes](/migrate/adapt-to-strava-api-changes).
+
+Both platform stores gate on the same idea, which is whether your declared
+purpose matches your behaviour. Apple's review checks that your health
+usage-description strings describe what you actually do. Google requires a
+health-data declaration in Play Console, reviewed before you can publish.
+Neither is hard to pass. Both are easy to fail on wording written in a hurry
+the night before submission, which is why the store rules for
+[Apple](/compliance/app-store-health-data-rules) and
+[Google](/compliance/google-play-health-data-policy) are worth reading while
+the feature is still a sketch.
+
+Fitbit's gate is quieter and catches people the same way. Registering a
+developer app is self-serve. Access to other users' intraday data is
+case-by-case, per the directory entry, and that is usually the data the
+feature needed. Verify what you are actually granted before you promise it.
+
+Rook is the one gate that hides more gates. Several of the providers
+underneath it still need your own developer credentials, so a single
+aggregator integration can inherit somebody else's partner program. Confirm
+tier caps and which providers pass through before you assume breadth is bought.
+
+## Gates are schedule risk, so schedule them
+
+Put the gate inventory in the plan before the integration design, not after.
+Concretely, in the first week:
+
+1. List every product the roadmap touches and pull its gate text. Applications
+   for anything with a partner program go out that week, before the design is
+   settled, because the clock runs independently of your code.
+2. Write your store declaration strings early and treat them as a contract.
+   The code has to match the sentence, and it is cheaper to write the sentence
+   first.
+3. Count the cap seats and name their owners. Ten is a roster, not a limit you
+   tune.
+4. Read the display terms of anything with branding rules before the screens
+   exist.
+5. Mark every reported item as unverified in your own notes. Our directory
+   flags them; your plan should too.
+
+Then sequence the work so the long clocks start first and the gated products
+are not blocking anything shippable. That ordering is its own subject, and it
+is worked through in
+[the order to integrate in](/blog/fitness-api-integration-order).
+
+The underlying data, including the per-product gate text, is published as an
+open dataset on [our datasets page](/datasets). If your experience of a gate
+differs from what we recorded, the fix is a verification pass, not a rumour.

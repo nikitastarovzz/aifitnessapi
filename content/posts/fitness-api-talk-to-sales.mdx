@@ -1,0 +1,141 @@
+---
+title: "Four Ways an API Says Contact Sales"
+description: "4 of 24 products list contact-sales, and their gate text describes four different waits. What to ask for, and what to have ready before the call."
+date: 2026-09-01
+updated: 2026-09-01
+author: "AIFitnessAPI"
+tags: ["cost", "api", "ecosystem"]
+draft: false
+faqs:
+  - q: "What does contact sales mean for a fitness API?"
+    a: "It means the vendor sets terms per customer, and it tells you a lead time rather than a figure. In our API directory four of the 24 products list contact-sales as the developer cost, and the gate text differs for each. One requires partner approval first, one offers a trial before the conversation, one runs onboarding through sales with an implementation engineer attached."
+  - q: "Can you evaluate a motion SDK before talking to sales?"
+    a: "Sometimes. Sency's gate records a free trial first, with no credit card according to the vendor's site at our last check, and the sales conversation after it. Spike starts you in a sandbox with a dedicated implementation engineer. Verify both directly, because trial terms change more often than documentation does, and a stale trial page is not a commitment."
+  - q: "What should you ask a health data API vendor before signing?"
+    a: "Ask what the unit of metering is, what remains gated after signature, which underlying providers still need your own credentials, whether sandbox access comes before the contract, how implementation support is bounded, and what happens to your users' connections if you leave. Get the answers in writing. Anything a salesperson will not write down is not a term."
+---
+
+Four of the 24 products in this site's API directory list a developer cost of
+contact-sales. Read the gate text next to each one and they turn out to mean
+four different things, with four different waits attached. Counted from the
+directory on 2026-09-01.
+
+"Contact sales" is not a price. It is a lead-time signal, and it is the only
+signal on the row. Treating all four the same is how a procurement conversation
+you could have started in week one lands on your critical path in week nine.
+
+## The shapes of a sales gate
+
+| Shape | Product | What the directory records | What it costs your schedule |
+|---|---|---|---|
+| Approval first, terms after | Garmin | Partner approval through the Garmin Connect Developer Program; third parties report sign-ups paused at times | The longest and least predictable wait in the group |
+| Trial first, sales after | Sency | A free trial, with no credit card per the vendor's site at our last check, then a sales conversation | Little, if you run the trial while the conversation runs |
+| Sales is the onboarding | Spike | Sales-assisted onboarding with a dedicated implementation engineer, starting from a sandbox | A calendar dependency, offset by engineering help |
+| Sales at the tier boundary | Nutritionix | Higher tiers gated through a Syndigo sales contact rather than self-serve checkout | Nothing now, everything at the moment you scale |
+
+Nutritionix is worth including even though its listed developer cost is
+free-tier-then-paid rather than contact-sales. The sales conversation is still
+there; it just arrives later, at the tier you reach when the feature works. Our
+change log also records a report that the open free tier has been curtailed,
+which is unconfirmed and would move that row toward sales-gated if it holds.
+The nutrition side of this is on
+[nutrition API pricing](/pricing/nutrition-api-pricing).
+
+The fourth contact-sales row in the directory is a motion SDK. We leave it
+unnamed and out of the examples here, because the vendor funding this site
+appears in the directory and using it as an illustration would not be a fair
+comparison.
+
+## The wait is the variable, not the price
+
+Garmin is the outlier and the one to start earliest. It is the only row in the
+directory that is both contact-sales and high engineering effort, so the
+commercial wait and the build effort stack rather than overlap. The reported
+pauses on sign-ups matter more than the sales cycle: a queue you cannot join
+is not a queue. Plan a first release that ships without it, and read
+[the Garmin integration page](/integrate/garmin-api) and
+[what to do while approval is pending](/fix/garmin-api-approval) before you
+promise a date.
+
+Sency's shape is the friendliest to an engineering plan. A trial that precedes
+the conversation means your spike and the vendor's process run in parallel, and
+you arrive at the call with measurements instead of questions. That is a
+materially different negotiation, because you already know whether the thing
+works on your footage.
+
+Spike attaches a dedicated implementation engineer from the sandbox onward.
+That is real value and a real dependency. You get someone who knows the
+platform, and you cannot begin without a scheduled human. If your team works
+in short cycles, book the kickoff before the sprint that needs it, not during.
+[Terra versus Spike](/compare/terra-vs-spike) covers where that model fits
+against a self-serve aggregator.
+
+## How to run the conversation
+
+Vendors run this process hundreds of times a year and you run it twice. Even
+that out by arriving with a list.
+
+Ask what the unit of metering is. Per connected user, per call, per provider,
+per active device: the shape of the meter decides whether your bill tracks your
+revenue or your churn. You want the shape before you want the number.
+
+Ask what is still gated after signature. A commercial agreement and a partner
+approval are different objects, and for the wearable vendors the second one is
+the schedule risk. Get both timelines named.
+
+Ask which underlying providers need your own credentials. For any aggregator,
+that answer determines whether one integration really covers the breadth on the
+marketing page. Rook's own directory entry says some providers still need your
+credentials, and that pattern is not unique to Rook.
+
+Ask when you get sandbox access. Before contract is the right answer. If it is
+after, your evaluation happens under a signature, which is the wrong order.
+
+Ask how implementation support is bounded. Hours, weeks, or a named person for
+a named phase. "Dedicated" is a word, not a scope.
+
+Ask what happens on the way out. Whether user connections survive a migration,
+whether you can export what you accumulated, and what notice each side owes.
+Nobody enjoys that question during a first call, and every team that skipped it
+regrets it during a migration.
+
+Ask for it in writing. A term that only exists in a call recording is not a
+term.
+
+Put an engineer on the call. Not instead of whoever owns the budget, alongside
+them. The questions above have technical answers, and a salesperson will happily
+agree to something their platform does not do, not out of malice but because
+nobody in the room knew to push back. The half hour of an engineer's time is
+the cheapest insurance in the whole procurement.
+
+## What to have ready before you dial
+
+Bring a one-page data flow. Which metrics you need, from which providers, in
+which direction, and where the data lands. Vendors scope faster from a diagram
+than from a conversation, and the exercise usually shortens your own list.
+
+Bring your metric list mapped to features, so the discussion is about coverage
+rather than capability. If three of your five metrics come from the platform
+store anyway, you are buying less than you thought.
+
+Bring your compliance posture. What you store, where, for how long, and who
+can read it. Our [compliance cluster](/compliance) covers the questions that
+come up, and having answers ready keeps the security review from adding weeks
+at the end.
+
+Bring your own volume expectations, and be honest about them. Inflated numbers
+buy you a worse fit and a bigger commitment.
+
+Bring an alternative you would actually pick. That is the only leverage a small
+team has, and [the directory](/apis) exists partly so you can name one without
+bluffing.
+
+## Start these in week one
+
+Sales conversations are wall-clock time, same as approval queues, and they are
+just as compressible, which is to say not at all. File the applications and
+open the vendor conversations in the same week, while the design is still
+moving. Both varieties of waiting are counted in
+[12 of 24 fitness APIs have an approval gate](/blog/fitness-api-approval-gates),
+and where they belong in the build order is worked out in
+[the order to integrate in](/blog/fitness-api-integration-order).

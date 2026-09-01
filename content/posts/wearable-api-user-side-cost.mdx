@@ -1,0 +1,148 @@
+---
+title: "The Fitness API Cost Your Users Pay"
+description: "5 of 24 products bill your end user, not you. All five are direct wearable integrations, and the hardware requirement, not your budget, sets your reach."
+date: 2026-09-01
+updated: 2026-09-01
+author: "AIFitnessAPI"
+tags: ["wearables", "cost", "api"]
+draft: false
+faqs:
+  - q: "Do users need to own a device to connect a wearable API?"
+    a: "For the direct wearable integrations in our API directory, yes. Five products state a user-side cost, and each one requires the person to own that brand of hardware or hold an account with it. Two go further and require an active paid membership for data to flow. Every other product in the directory states no user-side cost at all."
+  - q: "Does the WHOOP API require the end user to have a membership?"
+    a: "Yes. Our directory records that every end user needs an active WHOOP membership for their data to flow, and that the developer must hold a membership too. WHOOP has restructured its membership recently, which is reported rather than confirmed by us, so verify the current terms directly with the vendor before you build a feature that depends on them."
+  - q: "How do I estimate how many users can connect a wearable?"
+    a: "Measure it rather than guessing. Ask during onboarding which devices people own, log every connect attempt by provider including the ones that fail, and check how many accounts already have data in the platform health store. Run that for a few weeks before you commit engineering time. The answer is usually smaller than the product plan assumed."
+---
+
+Five of the 24 products in this site's API directory state a cost that falls on
+your end user rather than on you. All five are direct wearable integrations,
+and the pattern is the same in each: the person has to own the hardware, and in
+two cases hold an active membership as well. Counted from the directory on
+2026-09-01.
+
+That is the cost line nobody puts in the model. Teams price the API, price the
+engineering, and then ship a feature that a fraction of their users are
+physically able to turn on.
+
+## The five, and what they ask of the user
+
+| Product | The user must have | Membership condition | Evidence |
+|---|---|---|---|
+| Fitbit | A Fitbit device and account | None stated | Confirmed in directory |
+| Garmin | A Garmin device | None stated | Confirmed in directory |
+| Oura | An Oura Ring | Gen3 users reportedly need an active Oura Membership | Membership condition reported, verify |
+| WHOOP | A WHOOP band, with an active membership | Every end user needs one for data to flow | Confirmed in directory |
+| Strava | A free or paid Strava account, with data already in it | Account required, free tier exists | Confirmed in directory |
+
+Strava is the mildest of the five and still belongs on the list. An account is
+cheap, but the data has to exist before it can flow, and a user who installed
+Strava once and never recorded an activity connects successfully and returns
+nothing. That failure looks identical to a bug in your code.
+
+Polar is the sixth direct wearable integration in the directory and states no
+user-side cost. Both platform stores state none either, and so does every
+aggregator, nutrition source, exercise-content API and pose model on the list.
+The user-side cost is a property of buying data from a hardware company, not a
+property of health data.
+
+## Your addressable audience is an intersection
+
+Write the sentence out and the problem is obvious. The audience for a WHOOP
+recovery feature is not your user base. It is the users who own a WHOOP band,
+who currently hold an active membership, who find the connect button, and who
+finish the OAuth flow. Each of those is a multiplication, and you control only
+the last two.
+
+For a consumer fitness app, the hardware term alone usually does more damage
+than anything else in the funnel. For a corporate wellness deployment it can be
+worse, because the population is whoever the employer signed up rather than
+people who chose a device.
+
+None of that argues against direct wearable integrations. It argues against
+building one on the assumption that the API's reach is your reach.
+
+## Membership narrows it a second time
+
+Two of the five put a recurring subscription between the user and their own
+data. WHOOP requires an active membership for every end user, plus a
+membership for you as the developer. Oura's Gen3 membership requirement is
+reported rather than confirmed by us, which is exactly the sort of thing to
+check with the vendor rather than a blog.
+
+Both are moving. Our change log records a reported WHOOP membership
+restructuring during 2026, and because WHOOP charges both the developer and
+the end user, a restructuring moves two columns of your model at once. That is
+tracked with the rest of the dated ecosystem changes on
+[the changes page](/changes), and the pricing mechanics live on
+[the WHOOP pricing page](/pricing/whoop-api-pricing) and
+[the WHOOP integration page](/integrate/whoop-api).
+
+The practical consequence is that a membership requirement makes your feature's
+reach depend on someone else's pricing decisions. Design the empty state
+accordingly. "Connect your WHOOP" is the wrong prompt for a user whose
+membership lapsed last month, and they are not going to explain that to you.
+
+## Measure the connectable share before you build
+
+You can find out how many of your users can actually connect, and it costs less
+than the integration does.
+
+Ask in onboarding. One question about which devices someone wears, answered by
+a real user, beats a market estimate.
+
+Log the attempts. Instrument every tap on a connect button by provider,
+including the flows that fail, and separate "did not start" from "started and
+abandoned" from "connected and returned nothing". The last bucket is the one
+that tells you the account exists but the data does not.
+
+Read the store first. If your users are already on iOS or Android, the platform
+health store tells you who has data of the type you need without asking anyone
+to buy anything.
+
+There is no universal threshold that makes an integration worth building, and
+anyone who quotes you one is guessing. What you are looking for is whether the
+measured share justifies the engineering plus the approval wait for that
+specific vendor, and whether the users who can connect are the ones you most
+need to keep. A small share concentrated in your paying accounts is a better
+reason to build than a larger share spread across people who churn early.
+Run the measurement long enough to tell those two situations apart.
+
+## Prefer the store when it covers the metric
+
+Both platform stores state no user-side cost, and our
+[cross-platform matrix](/matrix) documents 10 metrics that are verified on both
+HealthKit and Health Connect. Heart rate, HRV, VO2 max, blood oxygen, sleep,
+steps, workouts, GPS route, calories and body composition all have a mapping on
+each platform. If your feature needs one of those, the store route reaches
+every user with a phone rather than every user with one brand of hardware.
+
+The honest caveat is that the store holding a type does not mean data exists in
+it. Body composition needs a scale or a manual entry. Blood oxygen is
+device-gated. A store read can come back empty for reasons that have nothing to
+do with your permissions, which is a separate trap worth understanding before
+you ship the empty state.
+
+Direct integrations still earn their place when you need something the store
+does not carry, when you want vendor-computed metrics rather than raw samples,
+or when a specific brand is the point of the product. That is a real reason,
+and it survives the intersection maths. "We should support WHOOP" usually does
+not.
+
+## What to do this week
+
+Add the device question to onboarding and start collecting answers now, because
+the sample takes weeks and the decision does not.
+
+Rank the direct integrations by the connectable share you measure, not by which
+vendor your loudest users mention.
+
+For anything you keep on the list, read the approval gate before the roadmap
+hardens. Gates and user-side costs are separate obstacles that happen to land
+on the same five products, and the gate side is counted in
+[12 of 24 fitness APIs have an approval gate](/blog/fitness-api-approval-gates).
+
+If breadth is what you are after rather than one brand, an aggregator changes
+the shape of the problem without changing the hardware requirement, which is
+covered across [the wearable data API guide](/fitness-apis/wearable-data-apis)
+and the rest of [the directory](/apis).

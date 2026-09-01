@@ -1,0 +1,166 @@
+---
+title: "How We Verify, and What a Stamp Can't Say"
+description: "341 pages, 1188 FAQ entries, 283 resolving citations, median stamp age 36 days. What those numbers prove, and the larger thing they do not."
+date: 2026-09-01
+updated: 2026-09-01
+author: "AIFitnessAPI"
+tags: ["methodology", "data", "ecosystem"]
+draft: false
+faqs:
+  - q: "What does a verification date on a reference page actually mean?"
+    a: "It means a person opened the primary source on that date and confirmed the page still matched it. It does not mean the fact is true today. Between the stamp and your reading, a vendor can change anything without telling anyone. Read the stamp as the age of the last check, not as a guarantee of current accuracy."
+  - q: "How often should technical reference content be re-verified?"
+    a: "Frequently enough that the oldest entry is younger than the rate at which your subject changes. We rank entries by stamp age and re-check the oldest first, and pages flag themselves once a stamp passes ninety days. Picking what to re-check by memory instead of by age reliably leaves the quietest and stalest entries untouched."
+  - q: "Why does a broken build matter for content accuracy?"
+    a: "Because it removes the option to publish something wrong quietly. Our build asserts that every published citation anchor resolves and that generated datasets parsed the number of rows they expected. A truncated dataset or a dead citation fails the build rather than shipping. Automation cannot check whether a fact is true, but it can refuse to ship an obviously broken one."
+---
+
+This site publishes 341 content pages. 260 of them are cluster spokes across 21
+clusters, carrying 1188 FAQ entries between them. Every entry carries a
+verification stamp, and right now the median stamp is 36 days old and the
+oldest is 55 days old.
+
+Those numbers are the honest description of a maintenance process, not a trust
+badge. This post is about what the process catches, and — the part that
+actually matters — what it structurally cannot.
+
+## What we count
+
+| Measure | Value |
+|---|---|
+| Content pages published | 341 |
+| Cluster spokes, across 21 clusters | 260 |
+| FAQ entries across spokes | 1188 |
+| Median spoke length | 1185 words |
+| Median age of a verification stamp | 36 days |
+| Oldest verification stamp | 55 days |
+| Published citation anchors asserted to resolve | 283 |
+| Open CC BY datasets published | 5 |
+
+Four mechanisms sit behind that table.
+
+**Stamps are re-earned, not refreshed.** This is the rule that matters most, so
+it gets stated bluntly: bumping a verification stamp without re-reading the
+source is falsifying the one number a reader is trusting. There is no
+maintenance script that touches dates. A stamp moves when a person opens the
+primary source again and confirms the page still matches it — and if they
+cannot confirm it, the claim is cut or hedged rather than the date being left
+alone and hoped over.
+
+**Re-checking is scheduled by age, not by attention.** Entries are ranked by
+stamp age and the oldest go first. Picking what to re-verify by what comes to
+mind sounds diligent and is the worst possible ordering, because the pages that
+come to mind are the ones you already think about. The quiet ones rot.
+
+**The age is rendered, not hidden.** Pages show how long ago they were checked
+and flag anything past 90 days. A reader who thinks 36 days is too stale for
+their purposes can act on that. Hiding the number would make the site look more
+authoritative and be worth less.
+
+**The build refuses to publish broken things.** 283 published citation anchors
+are asserted to resolve on every build. Generated datasets declare how many
+rows they expect and exit non-zero rather than publishing a truncated file — a
+short parse fails the build. That last rule has caught real bugs; one of them
+is the subject of [building the HealthKit dataset](/blog/building-the-healthkit-dataset).
+
+## What a stamp does not tell you
+
+Here is the limit, and it is not a small one.
+
+A verification stamp says a human read a source on a date. It does not say the
+fact is still true. Apple can change a documentation page the day after we read
+it. A vendor can quietly alter a rate limit with no changelog entry. Between
+our check and your reading, anything can have happened, and nothing in our
+process would know.
+
+So the correct reading of "verified 36 days ago" is not "this is true". It is
+"this was true 36 days ago, and nobody has looked since". For a stable API
+surface that is nearly as good. For a vendor's commercial terms it is much
+weaker, which is why the entries most likely to have drifted are exactly the
+ones about pricing and access — the ones vendors change without announcing.
+
+Three more limits worth naming.
+
+**The median hides the tail.** A median stamp age of 36 days says nothing about
+the specific page you are reading. That is why the age is rendered per page:
+the distribution is our problem, the individual number is yours. Check the one
+in front of you.
+
+**A resolving citation is not a supporting citation.** The build asserts that
+283 anchors resolve — that the link is not dead. It cannot assert that the page
+behind the link still says what we said it said. A vendor can rewrite a doc at
+a stable URL and our check will pass happily. Only re-reading catches that,
+which is why the stamp is human work and the anchor check is not a substitute
+for it.
+
+**Ninety days is a judgement, not a finding.** The flag threshold is a choice
+about how much staleness is tolerable, and nothing in the data derives it. It
+is set where it is because it is short enough to be uncomfortable. Treat it as
+our opinion.
+
+## Where automation genuinely helps
+
+The parts of this that are machine-checkable are the parts where a machine is
+strictly better than a person, and it is worth being precise about which those
+are.
+
+Counting is one. The [HealthKit identifier dataset](/healthkit-identifiers) is
+generated by reading Apple's own documentation JSON rather than transcribed by
+hand, so the family sizes and version histories are whatever Apple published
+rather than whatever we noticed. Regenerating it is how the numbers change.
+
+Refusing to ship is the other. A generator that produces fewer rows than it
+expects has almost certainly hit a parse failure, a changed schema, or a
+truncated response — and every one of those produces a plausible-looking file
+that is quietly missing data. Failing the build turns a silent content
+regression into a red pipeline. That is the entire value of the assertion.
+
+What automation cannot do is decide whether a claim is true. It cannot tell you
+that a vendor's page describes an old tier, or that a community consensus is
+wrong, or that two sources contradict each other and one of them is the
+vendor's. That is judgement, it is slow, and it is the reason the stamp is
+attached to a person's reading rather than a cron job.
+
+## Grading other people's claims
+
+The same discipline applied outward becomes the confirmed-versus-reported
+split on [the changes page](/changes): 6 of our 13 dated ecosystem changes are
+confirmed against a primary source, and 7 are reported by credible third
+parties that the vendor has not corroborated.
+
+Keeping those separate is uncomfortable, because a reported item with a
+specific date reads better than a confirmed one with a vague month, and
+flattening the distinction would make the page look more useful. It would also
+make it wrong in the direction that costs someone a migration.
+[Confirmed versus reported](/blog/confirmed-vs-reported) is the long version,
+including how to run the same grading over your own dependencies.
+
+## The uncomfortable admission
+
+The strongest thing we can say about accuracy is procedural: there is no path
+by which a number reaches a page here without someone having read a primary
+source, and no path by which a date moves without someone having read it again.
+
+That is a claim about process, and process claims are the weakest kind of
+guarantee — they are exactly what you fall back on when you cannot guarantee
+the outcome. We cannot guarantee the outcome. Some fact on this site is wrong
+right now, most likely a commercial term at a vendor that changed something
+without a changelog, and the process described above will find it on its
+schedule rather than yours.
+
+Publishing the stamp age is how you get to check our work instead of trusting
+it. That is the trade on offer, and it is the only honest one available.
+
+## What to do with this
+
+Look at the verification date on any page here before you rely on it, and treat
+an older stamp on a commercial claim with more suspicion than an older stamp on
+an API surface. If a number matters to your architecture, open the primary
+source yourself — we link it.
+
+If you would rather work from the raw data, the [open datasets](/datasets) are
+CC BY and include the HealthKit identifier set and the
+[cross-platform metric matrix](/matrix). And if you are building the same kind
+of discipline into your own documentation, the two mechanisms worth copying
+first are ranking re-checks by age and making a short parse fail the build. Our
+full standard is on [the methodology page](/methodology).

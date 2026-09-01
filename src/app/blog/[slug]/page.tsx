@@ -10,6 +10,7 @@ import {
   formatDate,
 } from "@/lib/posts";
 import { site, absoluteUrl } from "@/lib/site";
+import { postGraph, markdownUrl } from "@/lib/schema";
 import { stringSeed } from "@/lib/cluster";
 
 type Params = { slug: string };
@@ -71,8 +72,11 @@ export default async function PostPage({
     headline: post.title,
     description: post.description,
     datePublished: post.date,
-    dateModified: post.date,
-    author: { "@type": "Person", name: post.author },
+    dateModified: post.updated,
+    author:
+      post.author === site.name
+        ? { "@type": "Organization", name: site.name, url: site.url }
+        : { "@type": "Person", name: post.author },
     publisher: { "@type": "Organization", name: site.name, url: site.url },
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     url,
@@ -95,6 +99,40 @@ export default async function PostPage({
     ],
   };
 
+  // FAQPage markup only when the post actually declares Q&A. An empty FAQPage
+  // is a structured-data error, not a neutral omission.
+  const faqJsonLd = post.faqs.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: post.faqs.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      }
+    : null;
+
+  const graph = postGraph({
+    slug: post.slug,
+    title: post.title,
+    description: post.description,
+    published: post.date,
+    updated: post.updated,
+    author: post.author,
+    tags: post.tags,
+    words: post.content.split(/\s+/).filter(Boolean).length,
+  });
+
+  // Read next: posts sharing the most tags, newest first as the tiebreak.
+  const readNext = getAllPosts()
+    .filter((p) => p.slug !== post.slug)
+    .map((p) => ({ post: p, shared: p.tags.filter((t) => post.tags.includes(t)).length }))
+    .sort((a, b) => b.shared - a.shared || (a.post.date < b.post.date ? 1 : -1))
+    .slice(0, 3)
+    .map((x) => x.post);
+
+
   return (
     <Container className="py-14">
       <script
@@ -105,6 +143,17 @@ export default async function PostPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(graph) }}
+      />
+      <link rel="alternate" type="text/markdown" href={markdownUrl(`/blog/${post.slug}`)} />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
 
       <article className="mx-auto max-w-2xl">
         <nav className="mb-6 text-sm text-[var(--muted)]">
@@ -136,7 +185,7 @@ export default async function PostPage({
             {post.title}
           </h1>
           {post.description && (
-            <p className="mt-4 text-lg text-[var(--muted)]">
+            <p id="answer" className="speakable mt-4 text-lg text-[var(--muted)]">
               {post.description}
             </p>
           )}
@@ -157,6 +206,55 @@ export default async function PostPage({
         <div className="prose prose-neutral max-w-none dark:prose-invert prose-headings:scroll-mt-24 prose-a:text-brand-600 hover:prose-a:text-brand-500 prose-pre:rounded-xl prose-pre:border prose-pre:border-[var(--border)]">
           <Mdx source={post.content} />
         </div>
+
+        {post.faqs.length > 0 && (
+          <section data-post-faq className="mt-14 border-t border-[var(--border)] pt-10">
+            <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">
+              Frequently asked questions
+            </h2>
+            <dl className="mt-6 divide-y divide-[var(--border)]">
+              {post.faqs.map((f, i) => (
+                <div key={f.q} id={`faq-${i + 1}`} className="scroll-mt-24 py-5">
+                  <dt className="font-semibold text-[var(--fg)]">{f.q}</dt>
+                  <dd className="mt-2 text-[var(--muted)]">{f.a}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        )}
+
+        {readNext.length > 0 && (
+          <section data-post-readnext className="mt-14 border-t border-[var(--border)] pt-10">
+            <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Read next</h2>
+            <ul className="mt-5 grid gap-4">
+              {readNext.map((p) => (
+                <li key={p.slug}>
+                  <Link
+                    href={`/blog/${p.slug}`}
+                    className="flex flex-col rounded-2xl border border-[var(--border)] p-5 transition-colors hover:border-brand-400 hover:bg-[var(--surface)]"
+                  >
+                    <span className="font-semibold text-[var(--fg)]">{p.title}</span>
+                    <span className="mt-2 text-sm text-[var(--muted)]">{p.description}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        <p className="mt-12 text-sm text-[var(--muted)]">
+          Last verified{" "}
+          <time dateTime={post.updated}>{formatDate(post.updated)}</time>. Figures come
+          from this site&rsquo;s own{" "}
+          <Link href="/datasets" className="font-medium text-brand-600 hover:text-brand-500">
+            published datasets
+          </Link>
+          ; see{" "}
+          <Link href="/methodology" className="font-medium text-brand-600 hover:text-brand-500">
+            how we verify
+          </Link>
+          .
+        </p>
       </article>
     </Container>
   );

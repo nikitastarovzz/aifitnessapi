@@ -38,6 +38,7 @@ export function GET(): Response {
         // letting a parser guess a local zone, and write the offset explicitly
         // because RFC 3339 requires one.
         date_published: `${post.date}T00:00:00Z`,
+        date_modified: `${post.updated}T00:00:00Z`,
         ...(post.tags.length ? { tags: post.tags } : {}),
       };
     }),

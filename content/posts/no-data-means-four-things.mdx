@@ -1,0 +1,148 @@
+---
+title: "'No Data' Means Four Different Things"
+description: "An empty health read has several causes and only one is 'connect your device'. Here is the order to rule them out before you write that empty state."
+date: 2026-09-01
+updated: 2026-09-01
+author: "AIFitnessAPI"
+tags: ["healthkit", "health-connect", "architecture", "data"]
+draft: false
+faqs:
+  - q: "Why is HealthKit returning no data even though the user granted permission?"
+    a: "The most common causes are a query window that does not overlap the samples, a day boundary computed in the wrong timezone, or a store that genuinely holds nothing because no device has written that type. Rule those out in order before concluding anything about permissions, because permission problems and genuine absence look identical from inside a query."
+  - q: "How can I detect that a user denied HealthKit read access?"
+    a: "You cannot detect it from the read itself. Apple documents the authorization-denied error for saving data, so a refused read returns no error and an empty result, indistinguishable from a store with nothing in it. Build one empty state that is honest under both readings rather than guessing which one applies."
+  - q: "What should my empty state say when a health query returns nothing?"
+    a: "Say what you looked for and over what period, then offer both branches without asserting either: a way to widen the range, and a way to check sharing settings. Do not tell the user to connect a device you have no evidence is disconnected. Every unnecessary instruction sends someone to fix something that is not broken."
+---
+
+When a health query comes back empty, your app has learned almost nothing. Four
+different situations produce the identical result, and the empty state most apps
+ship addresses exactly one of them.
+
+| Cause | What your code observes | Can you detect it? | Who can fix it |
+|---|---|---|---|
+| The user denied the read | No error, empty result | No | The user, in the Health app |
+| Permission granted, nothing recorded | No error, empty result | No | Nobody. There is no data yet |
+| Data exists, outside your window | No error, empty result | Yes, by widening the query | You |
+| Store unavailable or restricted | An error you can inspect | Yes | Depends on the case |
+
+Only the last row announces itself. The other three are the same silence, and
+telling them apart is the whole job.
+
+## Why the first two are indistinguishable
+
+Apple documents the authorization-denied error as the case where the user has
+not given the app permission to *save* data. There is no read-denied case in the
+17 errors HealthKit defines. A refused read completes normally and hands you an
+empty array — identical to a query against a type the user authorised and simply
+has no samples for. That design decision, and the full error list, are covered
+in [the HealthKit error that never fires](/blog/healthkit-error-that-never-fires).
+
+Accept it as a permanent constraint rather than a debugging challenge. There is
+no probe, no side channel, no status API that separates them. Every hour spent
+trying to distinguish denial from absence is an hour not spent making your UI
+correct under both.
+
+## The diagnostic order
+
+Work down this list. Each step is cheaper and more conclusive than the one
+below it, and stopping early is how teams end up blaming permissions for a
+timezone bug.
+
+**1. Is the store even available?** These are the errors that fire, and each
+means something different:
+
+- `errorHealthDataUnavailable` — unsupported device. Hide the feature entirely.
+  Do not retry, do not prompt, do not show an onboarding card.
+- `errorHealthDataRestricted` — a Mobile Device Management profile restricts
+  HealthKit on this device. The user cannot fix this and neither can you. Say so
+  plainly; a corporate device is a real and permanent state.
+- `errorDatabaseInaccessible` — the data is protected and the device is locked.
+  This is transient. Retry after unlock. Rendering it as an error is a bug, and
+  it is the classic failure mode of a background refresh that runs before first
+  unlock.
+
+The full list is at [/healthkit-errors](/healthkit-errors). On the Android side
+the error surface is different in shape but the reasoning is the same; start
+from [health-connect-no-data](/fix/health-connect-no-data).
+
+**2. Did you actually ask?** `errorAuthorizationNotDetermined` means the
+authorization request never ran for that type. This is not a user problem, it is
+a launch-sequence bug: a type added to your read set months after the request
+code was written, a request that ran before the store was ready, or a type
+requested on one code path and read on another. Check it before you check
+anything else about the user.
+
+**3. Widen the window, deliberately absurdly.** Before drawing any conclusion,
+re-run the same query with no meaningful date bound. If the all-time query
+returns samples and yours does not, your problem is the window, and no amount of
+permission debugging will help. This single check resolves more "no data"
+reports than everything else on this list.
+
+**4. Check the day boundary and the timezone.** A query for "today" is a query
+for an interval, and which interval depends on whose midnight you used. Samples
+written while a user was travelling land on a different local day than the one
+they expect. A rollup computed in UTC against a user in a distant offset drops
+or duplicates the edges. This has its own failure taxonomy in
+[timezones and day boundaries](/architecture/timezones-and-day-boundaries), and
+the arithmetic is worked through at [/day-boundaries](/day-boundaries).
+
+**5. Now, and only now, accept the ambiguity.** What is left is a denied read or
+a genuinely empty store, and you cannot tell which. Design for the union.
+
+## The empty state that lies
+
+Here is the copy nearly every health app ships:
+
+> Connect your Apple Watch to see your data.
+
+Consider who sees it. The user who owns a watch, granted every permission, and
+did not wear it yesterday — now told to connect a device that is connected. The
+user who deliberately denied step sharing — now told there is a hardware
+problem, when the real state is a choice they made and can revisit. The user
+whose data is fine but whose timezone broke your rollup — sent to a settings
+screen that will not help. In none of those cases is the instruction true, and
+in two of them it actively misdirects.
+
+An empty state built on an assumption you cannot verify is a guess rendered as a
+fact. Write copy that is true under all remaining causes:
+
+> We didn't find any step data for the last week. If you've turned off sharing
+> for steps, you can change that in the Health app. You can also try a longer
+> date range.
+
+It states the observation, offers both branches, and asserts neither. It is less
+confident and more useful. Product-side guidance for the platform-specific
+version of this screen is in
+[healthkit-no-data](/fix/healthkit-no-data).
+
+## Instrument the ambiguity instead of guessing at it
+
+You cannot resolve the last two cases for an individual user, but you can
+measure them in aggregate, and the aggregate is actionable. Log which branch
+every empty read took:
+
+| Bucket | What it means | What to do when it grows |
+|---|---|---|
+| Never asked | Request-flow bug | Fix immediately; this is entirely yours |
+| Store unavailable or restricted | Device or MDM | Segment these users out of your funnel |
+| Empty in window, non-empty all-time | Window or day-boundary bug | Fix the query, not the copy |
+| Empty all-time | Denial or genuine absence | Watch the trend against your consent screen |
+
+That last bucket is the one you cannot decompose, and it is also the one worth
+watching over time. If it grows after you change your permission prompt, you
+learned something about your prompt. If it grows after you add a read type,
+you learned something about that type. Wire it into your
+[missing data and gaps](/architecture/missing-data-and-gaps) handling rather
+than into a crash reporter, because none of this is a crash.
+
+## Do this
+
+1. Add the four buckets above to your telemetry before you touch any copy.
+2. Put the deliberately-wide diagnostic query behind a debug flag so support can
+   run it on a real account instead of guessing.
+3. Rewrite every empty state that names a device or a cable. Replace it with the
+   observation plus both branches.
+4. Handle `errorDatabaseInaccessible` as a retry, never as a failure.
+5. Treat the residual ambiguity as permanent, and stop paying engineers to
+   attack it.

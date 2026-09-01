@@ -1,0 +1,155 @@
+---
+title: "58 HealthKit Types Apple Never Explains"
+description: "58 of HealthKit's 240 identifiers carry zero words of discussion prose, and the median across all 240 is 15 words. What to do when the docs say nothing."
+date: 2026-09-01
+updated: 2026-09-01
+author: "AIFitnessAPI"
+tags: ["healthkit", "data", "methodology", "ios"]
+draft: false
+faqs:
+  - q: "Does Apple document every HealthKit type identifier?"
+    a: "Not in any useful sense. Of the 240 identifiers we parsed from Apple's developer documentation, 58 have no discussion prose at all, and the median discussion across the whole set is 15 words. A handful get real treatment, with vo2Max at 323 words. For most identifiers the name and a one-line abstract are all you get."
+  - q: "How do I find out what unit a HealthKit type expects?"
+    a: "For most quantity types the documentation resolves a unit family, though for four of them it does not. When it does not, the reliable method is a probe: write a sample with an explicit unit, read it back, and see which unit round-trips without an argument error. Then check what the Health app displays for the same sample."
+  - q: "What does it mean when a HealthKit identifier has no abstract?"
+    a: "It means Apple listed the symbol without a summary line. Four identifiers in the set are in that state. You get a name and nothing else, so the value's meaning, its sign convention and how often the system writes it are all unknown until you record a sample yourself and inspect what the store actually holds."
+---
+
+58 of HealthKit's 240 type identifiers carry zero words of discussion prose in
+Apple's documentation. The median discussion across all 240 is 15 words.
+
+So the usual mental model, where you look up a type and read about it, is wrong
+for most of the surface. You look up a type and read its name back to yourself.
+
+These counts come from this site's [HealthKit identifier
+dataset](/healthkit-identifiers), parsed from Apple's developer documentation
+on 2026-08-28 and published under CC BY on [/datasets](/datasets).
+
+## What the coverage actually looks like
+
+| Measure | Value |
+|---|---|
+| Identifiers with zero words of discussion prose | 58 |
+| Median discussion length across all identifiers | 15 words |
+| Identifiers listed with no abstract at all | 4 |
+| Quantity types with a unit family resolved | 116 of 120 |
+| Category types with a value enum resolved | 28 of 30 |
+| Longest discussion, vo2Max | 323 words |
+
+A median of 15 words is roughly one sentence. Not one paragraph, not one
+worked example. One sentence, and for 58 identifiers not even that.
+
+The distribution is lopsided at the other end too. vo2Max gets 323 words.
+sixMinuteWalkTestDistance gets 278. Those are the types where Apple decided the
+reader needed the measurement explained, and the length is a signal: when Apple
+writes at length, it is usually because the value is derived, estimated, or
+easy to misread. Our note on [what VO2 max
+is](/learn/what-is-vo2-max) covers why that one earned the space.
+
+## Four identifiers have no abstract at all
+
+appleSleepingBreathingDisturbances, estimatedWorkoutEffortScore,
+workoutEffortScore and hypertensionEvent are listed with no summary line.
+
+Three of those four are also the quantity types with no aggregation style
+stated, and appleSleepingBreathingDisturbances, estimatedWorkoutEffortScore and
+workoutEffortScore are among the quantity types where no unit family resolves
+either. So for those the documentation gives you a symbol and stops. Not a
+unit, not an aggregation style, not a sentence.
+
+That is not an oversight you can wait out. Two of them shipped in iOS 18.0 and
+hypertensionEvent in iOS 26.2, and the abstract has not appeared since.
+
+The category side has the same gap in a smaller way. 28 of 30 category types
+resolve a value enum. The two that do not are bleedingAfterMenopause and
+hypertensionEvent, and a category type without its value enum is unusable: the
+whole point of a category sample is that the integer maps to a named state.
+
+## A name is not a specification
+
+Here is what you are actually guessing at when the prose is missing.
+
+The unit. A quantity type has a canonical unit and the store rejects samples
+built with an incompatible one. Guessing wrong gives you an argument error if
+you are lucky and a value off by a conversion factor if you are not.
+
+The sign convention. Some measures can be negative and some cannot, and which
+is which is not deducible from a name.
+
+The sample frequency. Whether the system writes one value per day, one per
+workout, or a stream of samples changes your entire storage plan. Read
+[time-series storage](/architecture/time-series-storage) before you decide
+based on a guess.
+
+Whether it is a measurement or a model output. Several HealthKit values are
+estimates computed on device rather than sensor readings, and the documentation
+is where that gets disclosed. When there is no documentation, it does not get
+disclosed.
+
+Whether anything writes to it. A type existing in the store is not a promise
+that data appears in it. Our [cross-platform matrix](/matrix) makes the point
+about body composition: the store holds weight, body fat and lean mass, but a
+smart scale or a manual entry has to put them there. For a documented type you
+can usually infer the writer. For a silent one you cannot, and an empty read
+will look identical to a permission problem.
+
+And the aggregation style, which is its own trap. Summing something that should
+be averaged produces a number with no error attached, and that is covered
+separately in [sum or average](/blog/healthkit-sum-or-average).
+
+## Write a probe app before you write the feature
+
+The answer to a silent type is not to read harder. It is to record a known
+value and look at what comes back. Half a day of this replaces a week of
+guessing, and the output is a fixture you keep.
+
+Make an empty app with the health entitlement and request read and write
+authorization for the single type you care about. Nothing else in it.
+
+Write one sample with an explicit unit at a timestamp you control, then read it
+back with a sample query and print the raw quantity in every candidate unit.
+The unit that round-trips unchanged is the canonical one. The others will
+either convert or fail.
+
+Watch which failure you get. `errorInvalidArgument` is one of the [17 HKError
+cases](/healthkit-errors) and it is the store telling you your assumption about
+the type is wrong, which is more information than the docs gave you.
+
+Probe the aggregation the same way. Write two samples inside one window, then
+run a statistics query asking for a cumulative sum, then again asking for a
+discrete average. One of those requests is wrong for the type and the store
+will say so.
+
+Then open the Health app and look at the sample you just wrote. What Apple's
+own UI displays for your value tells you the unit and the rounding it expects,
+which is the closest thing to a specification you are going to get.
+
+Finally, write the answers down as test fixtures and assert them in CI, so the
+next OS release tells you if anything moved. Our notes on [testing a HealthKit
+integration](/test/healthkit-integration) cover the harness side of that.
+
+## What to do
+
+Treat documentation length as a risk score. If an identifier has no discussion
+prose, assume you do not know its unit, its sign or its cadence, and budget the
+probe before you commit to a feature that depends on it.
+
+Do not ship a chart of a type you have not round-tripped. A silent type will
+render something plausible whatever you do to it, and plausible is the failure
+mode you cannot see in review.
+
+Ask what the silence is evidence of. An identifier with no prose is often one
+Apple added for its own first-party feature, where the semantics live in the
+Health app rather than in a document written for third parties. That is a
+reasonable thing for Apple to do and a bad thing for you to build a product
+promise on top of, because nothing was published that you can hold anyone to.
+
+Prefer the types Apple wrote about when you have a choice. If two identifiers
+would answer your product question and one of them has real prose behind it,
+the documented one will cost you less over two years.
+
+And when you do work out what a silent type means, record how you found out.
+That is the standard we hold our own dataset to, described on
+[/methodology](/methodology): a derived value keeps the evidence it came from,
+and where the source says nothing, the field stays null rather than getting a
+confident guess.

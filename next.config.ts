@@ -55,6 +55,10 @@ const nextConfig: NextConfig = {
     // generator. /md/* stays working for anything already pointing at it.
     return [
       { source: "/index.md", destination: "/md/index" },
+      // The blog is not in CLUSTERS (that list is asserted against the cluster
+      // registry), so its mirrors are wired explicitly.
+      { source: "/blog.md", destination: "/md/blog" },
+      { source: "/blog/:slug.md", destination: "/md/blog/:slug" },
       ...CLUSTERS.map((c) => ({ source: `/${c}.md`, destination: `/md/${c}` })),
       ...CLUSTERS.map((c) => ({
         source: `/${c}/:slug.md`,
@@ -71,6 +75,17 @@ const nextConfig: NextConfig = {
     };
     return [
       { source: "/:path*", headers: [describedBy] },
+      {
+        source: "/blog/:slug",
+        headers: [
+          {
+            key: "Link",
+            value:
+              `<${SITE}/blog/:slug.md>; rel="alternate"; type="text/markdown", ` +
+              `<${SITE}/llms.txt>; rel="describedby"; type="text/plain"`,
+          },
+        ],
+      },
       // Both relations in one value: a second header entry with the same key
       // replaces the first rather than adding to it, so the spoke rule has to
       // restate describedby or cluster pages would lose it.

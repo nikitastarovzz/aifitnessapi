@@ -1,0 +1,153 @@
+---
+title: "Apple's Newest HealthKit Types Are a Roadmap"
+description: "Apple ships the data type years before most apps ship the feature. The additions since iOS 16 are a public preview of what the platform expects to matter."
+date: 2026-09-01
+updated: 2026-09-01
+author: "AIFitnessAPI"
+tags: ["healthkit", "ios", "ecosystem", "data"]
+draft: false
+faqs:
+  - q: "Which HealthKit data types did iOS 18 add?"
+    a: "Ten identifiers arrived in iOS 18.0: sleeping breathing disturbances, cross-country skiing speed and distance, paddle sports distance and speed, rowing distance and speed, skating sports distance, workout effort score, and estimated workout effort score. Apple's documentation, read for this site's dataset on 2026-08-28, records the introducing version for every identifier, which is how that grouping was counted."
+  - q: "Are any HealthKit identifiers still in beta?"
+    a: "Two are: bleedingAfterMenopause and menopausalState, both introduced in iOS 27.0. They are the only identifiers in the whole set marked as beta on any platform. At the same time none of the 240 identifiers is marked deprecated, so Apple's type catalogue only grows. Do not ship production features against the beta pair."
+  - q: "Why do the newest HealthKit types have so little documentation?"
+    a: "Apple lists four identifiers with no abstract at all, and every one of them arrived in iOS 18.0 or later. Three quantity types state no aggregation style, and they are the same recent additions. Median discussion length across the catalogue is fifteen words, so thin prose is normal, but the newest types are the thinnest. Test on device."
+---
+
+Apple's documentation, read for this site's HealthKit dataset on 2026-08-28,
+lists 240 type identifiers. 127 of them shipped with iOS 8.0. The rest arrived
+in batches, and the batches since iOS 16 read less like a changelog than a
+statement of what Apple expects health apps to be measuring.
+
+Here is the count per release.
+
+| Release | New identifiers | What arrived |
+|---|---|---|
+| iOS 16.0 | 17 | Running dynamics, wrist temperature during sleep, AFib burden, heart rate recovery, underwater depth, several menstrual-cycle types |
+| iOS 17.0 | 7 | The cycling power family, physical effort, time in daylight, underwater diving |
+| iOS 18.0 | 10 | Rowing, paddle sports, cross-country skiing, skating, two workout effort scores, sleeping breathing disturbances |
+| iOS 26.2 | 1 | hypertensionEvent |
+| iOS 27.0 | 2 | bleedingAfterMenopause, menopausalState — both still in beta |
+
+None of the 240 identifiers is marked deprecated, and every one is available on
+all six platforms Apple lists: iOS, iPadOS, Mac Catalyst, macOS, visionOS and
+watchOS. Apple adds and does not prune. Each new identifier is a permanent
+commitment to a storage shape, which is exactly why the additions are worth
+reading as a roadmap. The full catalogue with introducing versions is on
+[/healthkit-identifiers](/healthkit-identifiers), and the underlying data is
+published at [/datasets](/datasets).
+
+## iOS 16: running stopped being a distance
+
+Seventeen identifiers arrived in iOS 16.0, and one group in it describes how
+you run rather than how far:
+
+- `runningGroundContactTime`
+- `runningStrideLength`
+- `runningVerticalOscillation`
+- `runningPower`
+- `runningSpeed`
+
+Before that release a run in HealthKit was a workout with a distance, a
+duration and a heart-rate series. Afterwards the store could hold biomechanics.
+That is a different product surface: pace tells a runner what happened, ground
+contact time and vertical oscillation tell them why.
+
+The same release brought `appleSleepingWristTemperature`,
+`atrialFibrillationBurden`, `environmentalSoundReduction`,
+`heartRateRecoveryOneMinute`, `underwaterDepth` and `waterTemperature`, along
+with `infrequentMenstrualCycles`, `irregularMenstrualCycles`,
+`persistentIntermenstrualBleeding` and `prolongedMenstrualPeriods`, plus the
+`swimBikeRun` and `transition` workout activity types.
+
+Look at that list as a set of bets: gait quality, overnight physiology,
+triathlon, and cycle irregularity as a signal rather than a log. Most
+[running apps](/build/running-app) still show pace and heart rate. The
+identifiers for the richer version have been sitting in the store for several
+releases, unread.
+
+## iOS 17: the same treatment for cycling
+
+Seven identifiers in iOS 17.0. The cycling family in it does for the bike what
+iOS 16 did for the run: `cyclingCadence`, `cyclingSpeed`, `cyclingPower` and
+`cyclingFunctionalThresholdPower`.
+
+FTP is the interesting one. It is not a raw sensor reading, it is a training
+construct — the number a cyclist organises a whole training plan around. Apple
+adding a first-class type for it means the platform is willing to hold derived
+training state, not just samples. If you are reading power from a
+[crank or trainer over BLE](/devices/cycling-sensors-power-cadence), there is
+now a canonical place to put it and a canonical place to find someone else's.
+
+The release also added `physicalEffort`, `timeInDaylight` and
+`underwaterDiving`. `physicalEffort` is one of the four quantity types for which
+Apple's documentation states no unit family, which is a reasonable early warning
+that the semantics were not fully settled when it shipped.
+
+## iOS 18: sports Apple had not been measuring, and a score for effort
+
+Ten identifiers. Most of them extend distance and speed to sports the store had
+not been measuring: `distanceRowing` and `rowingSpeed`, `distancePaddleSports`
+and `paddleSportsSpeed`, `distanceCrossCountrySkiing` and
+`crossCountrySkiingSpeed`, and `distanceSkatingSports`.
+
+The rest are the ones to pay attention to: `workoutEffortScore`,
+`estimatedWorkoutEffortScore` and `appleSleepingBreathingDisturbances`.
+
+Those are the 3 quantity types in the entire catalogue for which Apple states no
+aggregation style — is a workout effort score something you sum over a week or
+something you average? The documentation does not say. Apple resolves a unit
+family for 116 of 120 quantity types, and the exceptions are `physicalEffort`
+plus these three. And all four identifiers Apple lists with no abstract at all
+arrived in iOS 18.0 or later: these three, and the iOS 26.2 addition below.
+
+The newest, most product-shaped types are the worst documented ones in the set.
+That is the cost of reading the roadmap early, and it is a cost you pay in test
+devices rather than in reading time.
+
+An effort score, and separately an *estimated* effort score the system produces
+on your behalf, is a platform-level answer to the question every training app
+solves privately: how hard was that. If you have built your own
+[RPE](/learn/what-is-rpe) capture, you now have a system-provided neighbour
+to reconcile against, and no prose from Apple telling you how it behaves. You
+will be reading the enum and [testing on device](/test/healthkit-integration).
+
+## iOS 26.2 and iOS 27: hypertension, and the only two beta types
+
+iOS 26.2 added exactly one identifier: `hypertensionEvent`. It is a category
+type, and it is one of only two category types in the catalogue with no value
+enum resolved in Apple's documentation. It also has no abstract. A single event
+type, shipped alone, with the semantics left to the reader — that is what an
+early platform bet looks like before the feature it supports is announced. If
+you handle [blood pressure](/data/blood-pressure-api), that identifier is the
+one to watch.
+
+iOS 27.0 added `bleedingAfterMenopause` and `menopausalState`. These two are
+the only identifiers in the whole set of 240 marked as beta on any platform.
+`bleedingAfterMenopause` is the other category type with no value enum resolved.
+Apple is extending [cycle tracking](/data/menstrual-cycle-api) past the
+reproductive years, and it is doing so in the open, in beta, before any app has
+to ship anything.
+
+## What to do with the lead time
+
+The pattern across all five releases is the same: the type lands, then the
+documentation fills in, then apps use it. That gap is the opportunity.
+
+1. **Treat a new identifier as advance notice, not a feature request.** Between
+   the identifier appearing and users expecting the feature there is real
+   runway. Spend it on the data model rather than the UI.
+2. **Make adding an identifier a configuration change.** If supporting
+   `rowingSpeed` requires a schema migration, you will not do it, and you will
+   keep not doing it for years. Read types from a list, store them uniformly,
+   and let a new one be a row.
+3. **Do not wait for Apple's prose.** For the effort scores and the hypertension
+   event there is nothing to wait for. Read the enum, write samples on a device,
+   read them back, and write down what you observed.
+4. **Guard the beta pair.** `bleedingAfterMenopause` and `menopausalState` will
+   change. Feature-flag anything that touches them and check availability at
+   runtime rather than at compile time.
+5. **Audit what you already ignore.** Running dynamics have been available since
+   iOS 16.0 and the cycling family since iOS 17.0. Before chasing iOS 27, check
+   how many identifiers your app could already be reading and is not.

@@ -1,0 +1,158 @@
+---
+title: "Google Fit: The Signal Came in 2024"
+description: "Google closed Fit API sign-ups on 2024-05-01 and documented support ends in 2026-12. Both confirmed. The first date was the one that mattered."
+date: 2026-09-01
+updated: 2026-09-01
+author: "AIFitnessAPI"
+tags: ["deprecation", "ecosystem", "android", "api"]
+draft: false
+faqs:
+  - q: "When do the Google Fit APIs stop working?"
+    a: "Google's own documentation states the Fit APIs will be supported until the end of 2026, which we verified against developer.android.com on July 31, 2026. That is an end of documented support, not a published shutdown hour. Treat it as the outer bound of your migration window rather than a date on which everything is guaranteed to still work."
+  - q: "Why did Google close Google Fit sign-ups before shutting the API down?"
+    a: "Closing new developer registration stops the installed base from growing while existing integrations keep running. It is the cheapest possible first step in a wind-down and it costs the vendor nothing in support obligations. That is exactly why it is the most reliable early signal that a platform is being retired."
+  - q: "What should a Google Fit integration migrate to?"
+    a: "It depends on the shape of the integration, not on preference. On-device Android reads move to Health Connect, Wear OS workout sessions move to Health Services, and server-side reads move to the Google Health API. Those are three different pieces of work, so audit which of them your app actually does before you scope anything."
+---
+
+Google closed Google Fit API sign-ups for new developers on 2024-05-01. Its
+documentation states the Fit APIs will be supported until the end of 2026. Both
+of those are marked confirmed in [our changes dataset](/changes), verified
+against Google's own pages on 2026-07-31.
+
+The interesting thing about that pair is the distance between them. The
+shutdown notice arrived years after the decision was legible, and every team
+that started a Google Fit integration in the intervening period had a fact
+available to them that said not to.
+
+## The dated record
+
+Here is what we hold on the wind-down and on the Fitbit migration that runs
+alongside it. The status column is load-bearing.
+
+| Date | Event | Status | Verified |
+|---|---|---|---|
+| 2024-05-01 | Google Fit: new developer sign-ups closed | confirmed | 2026-07-31 |
+| 2026-05 | Fitbit accounts: Google Account consolidation gate | reported | 2026-08-11 |
+| 2026-09 | Fitbit Web API turndown window | reported | 2026-08-11 |
+| 2026-09 | Fitbit to Google Health side-by-side window closes | reported | 2026-08-11 |
+| 2026-12 | Google Fit APIs: end of documented support | confirmed | 2026-07-31 |
+
+Two of those five are confirmed, meaning the vendor's own documentation states
+them and we read it. Three are reported, meaning credible third parties say so
+and the vendor has not published a date we could verify. We do not flatten that
+distinction, and neither should your migration plan — the reasoning is in
+[confirmed versus reported](/blog/confirmed-vs-reported).
+
+## Read the sign-up closure as the announcement
+
+A vendor retiring a platform has a sequencing problem. Announcing a shutdown
+date immediately creates support load, press, and a scramble from partners with
+contracts. Closing registration to new developers creates none of that. Nobody
+files a bug because they could not sign up for something they had not heard of.
+
+So the sign-up closure is the cheapest first move available, and it is close to
+unambiguous. There is no benign reason to stop accepting new developers on a
+platform you intend to keep. Rate limits, review queues, partner tiers — those
+are throttles. A closed door is a decision about the platform's future, made
+and acted on.
+
+What followed here fits that reading exactly. Existing integrations continued to
+work after 2024-05-01. Nothing broke. A team already on Google Fit had no
+incident to respond to, no error rate to explain, and therefore no forcing
+function — which is precisely why so many of them are scoping the migration now
+instead of in 2024.
+
+The general rule is worth stealing: for every third-party dependency you hold,
+the question "can a new developer still sign up for this today?" is a cheap
+health check that almost nobody runs. It costs one browser tab per vendor per
+quarter.
+
+## What "end of documented support" is not
+
+Google's language is that the Fit APIs will be supported until the end of 2026.
+Our dataset records that as 2026-12, confirmed, and phrases it as end of
+documented support rather than shutdown, because that is what the source says.
+
+That distinction cuts both ways, and both cuts matter.
+
+It does not promise a clean switch-off at a known hour. There is no published
+timestamp at which requests start failing. If your rollback plan assumes Fit
+keeps answering until some specific moment, that plan rests on a date nobody
+wrote down.
+
+It also does not promise the API stays healthy right up to the boundary.
+Support ending is the outer bound of the window, not a service level inside it.
+Degradation, quiet endpoint removals and a thinning support queue all live
+comfortably before a documented end date.
+
+Plan against the confirmed date as a ceiling and treat everything under it as
+uncertain. That is the same posture our
+[Google Fit shutdown page](/google-fit-shutdown) takes, and the practical
+symptoms — the errors you actually see when a deprecated API starts to wobble —
+are collected in
+[Google Fit API deprecated](/fix/google-fit-api-deprecated).
+
+## Three migrations wearing one name
+
+"Migrate off Google Fit" is not one task, and teams that scope it as one task
+underestimate it. The migration target differs by integration shape:
+
+- **On-device Android reads** move to Health Connect. This is the one most
+  people mean, and it is a real port: different permission model, different
+  record types, different aggregation story. Start with
+  [Google Fit to Health Connect](/migrate/google-fit-to-health-connect) and the
+  [Health Connect integration reference](/integrate/google-health-connect).
+- **Wear OS workout sessions** move to Health Services. Different API, different
+  lifecycle, and it is the piece most likely to be owned by a different person
+  on your team than the phone integration.
+- **Server-side reads** move to the Google Health API. If your backend was
+  pulling Fit data without a device in the loop, you are changing where the data
+  comes from, not just which SDK calls it.
+
+An app can need all three. Audit which of them you actually do before you
+estimate, because the three have almost nothing in common except the thing they
+are leaving.
+
+## The Fitbit half, and why its status label differs
+
+Running alongside this is the Fitbit Web API's replacement by the cloud Google
+Health API. Every dated item we hold on that is marked reported, not confirmed,
+and the difference is not pedantry.
+
+The turndown is reported to land around September 2026. No official day is
+confirmed on a page we could verify. Some third-party guides name September 30
+— which is weaker evidence than an unspecified month, not stronger, because a
+precise number sourced from a guide reads authoritative while carrying no more
+weight than the guide's own reporting.
+
+Two more reported items shape the work. Tokens are reported not to transfer,
+meaning every user re-consents through Google OAuth rather than being migrated
+behind the scenes. And users on legacy Fitbit-only logins are reported to need
+consolidation into a Google Account by roughly mid-May 2026, and reportedly
+cannot use the successor API until they do. That second one is a gate on your
+migration rather than a detail inside it: a user who has not consolidated is a
+user you cannot move, and no amount of engineering on your side fixes it.
+
+There is also a reported side-by-side window in which the legacy Fitbit Web API
+and the Google Health API both run, extending into late September 2026. That is
+your dual-read period if it holds. Build for it, but do not stake the rollout on
+it — reported means you plan for it and verify before you depend on it. The
+detail lives on [the Fitbit shutdown page](/fitbit-api-shutdown) and
+[Fitbit Web API to Google Health](/migrate/fitbit-web-api-to-google-health).
+
+## What to do now
+
+If you still read Google Fit, the confirmed end of documented support is
+2026-12 and that is your ceiling. Split the work by integration shape today —
+on-device, Wear OS, server-side — because you cannot estimate the whole thing
+as one item and a wrong estimate here is the expensive kind.
+
+If you are running the Fitbit migration in parallel, sequence the account
+consolidation gate first, since it depends on user action rather than your
+deploy schedule, and assume every user re-consents.
+
+And then generalise the lesson. Go through your dependency list and check which
+vendors have quietly closed the front door. That check would have flagged this
+one more than two years before the deadline, and the playbook for acting on it
+is [migrating off a deprecated fitness API](/migrate/migrate-off-a-deprecated-fitness-api).

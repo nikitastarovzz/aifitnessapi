@@ -1,0 +1,163 @@
+---
+title: "Nutrition: HealthKit's Biggest Group at 39"
+description: "Nutrition is HealthKit's largest group with 39 identifiers, ahead of Activity at 37. It is also the group almost nobody fills. Your food database is why."
+date: 2026-09-01
+updated: 2026-09-01
+author: "AIFitnessAPI"
+tags: ["healthkit", "nutrition", "data", "api"]
+draft: false
+faqs:
+  - q: "How many nutrition types does HealthKit have?"
+    a: "Nutrition is the largest group in Apple's own grouping of the identifiers, with 39 of them. Activity is next with 37, then Exercise and fitness with 21. That makes nutrition the single biggest area of the API by count, which surprises people who assume HealthKit is mostly about movement and heart rate."
+  - q: "Do I have to write every HealthKit nutrition field?"
+    a: "No, and most apps write only a few. The cost of writing a subset is that a blank field is indistinguishable from a real zero for anything reading your samples later, including Apple's own Health app and any other app the user has connected. Decide which fields you can source reliably, then write those consistently."
+  - q: "Which food database should I use for a HealthKit nutrition app?"
+    a: "Pick the one whose per-item coverage matches the fields you intend to write, not the one with the largest item count. Our directory lists nutrition sources with their developer cost and engineering effort. Test coverage yourself on a sample of real foods your users eat, because headline item counts say nothing about how many nutrient fields each item carries."
+---
+
+Nutrition is the largest group in HealthKit, with 39 type identifiers. Activity
+is second with 37. The biggest single area of Apple's health API is food, not
+movement.
+
+It is also the emptiest. Almost nobody fills those 39 fields, and the reason
+has nothing to do with HealthKit. It is that resolving a plate of food into 39
+nutrient values requires a food database that carries 39 nutrient values, and
+most do not.
+
+Group sizes below come from this site's [HealthKit identifier
+dataset](/healthkit-identifiers), parsed from Apple's developer documentation
+on 2026-08-28.
+
+## The groups, by size
+
+| Group (Apple's own naming) | Identifiers |
+|---|---|
+| Nutrition | 39 |
+| Activity | 37 |
+| Exercise and fitness | 21 |
+| Reproductive Health | 16 |
+| Team sports | 13 |
+| Vital signs | 11 |
+| Mobility | 9 |
+| Lab and test results | 9 |
+| Water activities | 9 |
+| Body measurements | 7 |
+| Outdoor activities | 7 |
+
+The casing in that first column is Apple's, not ours. The documentation ships
+both "Vital signs" and "Vital Signs" as separate groups, and both
+"Reproductive health" and "Reproductive Health". We record what is published
+rather than tidying it, because a normalisation you cannot see is a fact you
+cannot check.
+
+## The biggest group is the one nobody fills
+
+Every other group in that table is populated by a sensor. Something on the
+user's wrist or in their pocket measures a value and writes it, and your app's
+job is to read it.
+
+Nutrition inverts that. Nothing measures food. A human tells your app what they
+ate, and your app has to turn "a chicken burrito" into numbers before HealthKit
+can hold anything at all. You are the writer, not the reader, and the quality
+of what lands in the store is entirely a property of the database you resolved
+against.
+
+That is the whole problem in one sentence. The 39 fields are not hard to write.
+They are hard to know.
+
+Apple's side of it is arguably done. A group of 39 identifiers is a store built
+so that a serious nutrition app can record whatever it knows, down to
+individual vitamins and minerals, without asking anyone's permission to extend
+a schema. The API is not the constraint on nutritional depth in your product.
+Nobody has ever shipped a thinner food log because HealthKit lacked a field.
+
+And the failure is quiet in the same way the aggregation mistake is quiet. A
+field you could not resolve gets written as nothing, and nothing renders
+identically to zero in most interfaces. A user reading their own Health app
+cannot tell "this app did not know" from "this food contains none". Neither can
+the next app that reads your samples. Our note on [missing data and
+gaps](/architecture/missing-data-and-gaps) is about exactly this distinction,
+and nutrition is where it bites hardest because the blanks outnumber the
+values.
+
+## Macros are a different product from micronutrients
+
+There is a real fork here, and teams tend to walk into it rather than choose
+it.
+
+Writing energy, protein, carbohydrate and fat is a tractable engineering
+problem. Almost any food source will give you those for almost any item,
+users can sanity-check them, and a wrong value is visible to the person who
+ate the meal.
+
+Writing the full nutrient set is a different job. You need a source that
+carries vitamins and minerals per item rather than per reference food, you need
+a policy for items where those fields are absent, and you need to decide
+whether a partially resolved food gets written at all. None of that is
+difficult code. All of it is product decisions nobody makes until the data
+looks wrong.
+
+The honest question to ask early is which of those two products you are
+building, because it determines your food data source, and swapping the food
+data source later means re-resolving every meal your users have already logged.
+
+## Choosing the source
+
+Our [API directory](/fitness-apis/nutrition-apis) covers the nutrition sources
+we track, with the developer cost and engineering effort we recorded for each.
+Two things about that data are worth saying plainly.
+
+First, cost structures here are moving. Reports conflict on whether one
+provider's open free tier still exists, and higher tiers on that provider route
+through a sales contact rather than self-serve checkout. That is reported
+rather than confirmed, and we label it that way on [/changes](/changes) because
+the difference matters when you are budgeting. The
+[nutrition API pricing](/pricing/nutrition-api-pricing) page carries the
+current reading.
+
+Second, and more important: we track cost, gating and effort. We do not publish
+per-field nutrient coverage for each source, because that is the kind of claim
+that goes stale between a vendor's marketing page and their actual response
+payload. You have to test it, and the test is cheap.
+
+Take a list of the foods your actual users would log, including the awkward
+ones. Restaurant items. Store-brand packaged goods. Home-cooked things
+with no barcode. Query each source for all of them and count, per nutrient
+field, how many items came back with a value. That table is your answer, and it
+will look nothing like the headline item count in the vendor's pitch.
+
+One more thing worth saying now that photo and text logging are everywhere. A
+model that looks at a plate and returns a nutrient breakdown is producing an
+estimate, and an estimate of a micronutrient is an estimate stacked on a guess
+about portion size stacked on a guess about the recipe. That may be perfectly
+fine for a calorie target. It is not fine to write into a shared health store
+where another app, or a dietitian, will read it as a measurement. If you write
+model output, keep it in your own database, or write it with something that
+marks it as estimated, and be able to explain the difference to a user who
+asks.
+
+If you are weighing specific options, [Nutritionix versus
+Edamam](/compare/nutritionix-vs-edamam) and [USDA FoodData Central versus Open
+Food Facts](/compare/usda-fooddata-central-vs-open-food-facts) are where we
+lay out the trade-offs we could verify.
+
+## What to do
+
+Decide your field list before you pick a database, then reject any source that
+cannot fill it for your users' real foods. Doing it the other way round means
+your product's nutritional depth was chosen by whoever wrote the API you
+integrated first.
+
+Write nulls, not zeros, and make your own schema distinguish them. Then the
+question "did we know this" is answerable a year from now.
+
+Ask for the write permissions you will actually use. HealthKit authorization is
+granted per type, so requesting the full nutrition set produces a long consent
+sheet, and a user who declines part of it leaves you writing partial records
+anyway. The [HealthKit integration guide](/integrate/healthkit) covers how that
+sheet behaves.
+
+And if you are scoping a nutrition product from scratch, start at
+[building a nutrition tracking app](/build/nutrition-tracking-app), where the
+food resolution problem is the first section rather than a detail discovered in
+month three.

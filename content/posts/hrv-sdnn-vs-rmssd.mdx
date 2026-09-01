@@ -1,0 +1,148 @@
+---
+title: "HRV Is SDNN on iOS and RMSSD on Android"
+description: "Apple stores heart rate variability as SDNN. Health Connect stores RMSSD. Different statistics, no conversion factor, and one chart that quietly misleads."
+date: 2026-09-01
+updated: 2026-09-01
+author: "AIFitnessAPI"
+tags: ["healthkit", "health-connect", "data", "architecture"]
+draft: false
+faqs:
+  - q: "Can you convert SDNN to RMSSD?"
+    a: "Not for the purposes of a product. Apple exposes heart rate variability as SDNN and Health Connect exposes it as RMSSD, and this site's cross-platform matrix records them as different measures that are not interconvertible. Treat them as two separate fields with two separate baselines rather than looking for a factor to multiply by."
+  - q: "What does Health Connect store for heart rate variability?"
+    a: "Health Connect exposes HeartRateVariabilityRmssdRecord. Apple's equivalent is the quantity type identifier heartRateVariabilitySDNN. Both are summary statistics derived from the intervals between heartbeats, but they are different summaries, so a field called simply hrv in your schema means something different depending on which platform the sample came from."
+  - q: "Why did a user's HRV change when they switched from iPhone to Android?"
+    a: "Most likely because the stored statistic changed, not because anything about the user did. Your app started reading a different computation under the same field name. If your product shows a baseline, a trend line, or a recovery score built on heart rate variability, a platform switch will move it for reasons that have nothing to do with the person."
+---
+
+This site's [cross-platform matrix](/matrix) verifies 10 health metrics against
+both Apple's and Google's own documentation. Most of the disagreements between
+the two platforms are about packaging: how many records a concept is split
+across, what the enum values are called, which permission gates it. Heart rate
+variability is the one where the platforms disagree about what the number *is*.
+
+Apple stores SDNN. Health Connect stores RMSSD. They are different computations
+over the same underlying beat-to-beat intervals, and the matrix records them as
+not interconvertible.
+
+| | Apple | Health Connect |
+|---|---|---|
+| Type | `HKQuantityTypeIdentifier.heartRateVariabilitySDNN` | `HeartRateVariabilityRmssdRecord` |
+| Statistic named in the type | SDNN | RMSSD |
+| Derived from | Intervals between heartbeats | Intervals between heartbeats |
+| Convertible to the other | No | No |
+
+Both platforms even put the statistic in the type name, which is the strongest
+hint either vendor gives you that the choice is not incidental. Apple did not
+name it `heartRateVariability`. Google did not name it
+`HeartRateVariabilityRecord`.
+
+Of the 10 metrics in the matrix, this is the only one where the disagreement
+survives every layer of engineering you can throw at it. You can map two
+activity-type taxonomies onto each other. You can de-duplicate a phone and a
+watch that both wrote steps. You can decide whether calories mean active or
+total and enforce it. You cannot make an SDNN sample into an RMSSD sample, so
+this is the one row of the matrix where a naming decision in your schema is
+permanent.
+
+## This is not a units problem
+
+Unit conversion works when two systems measure the same quantity on different
+scales. Metres and feet. Kilojoules and kilocalories. You multiply, and nothing
+is lost.
+
+SDNN and RMSSD are not two scales for one quantity. They are two different
+summaries computed from the same raw material. Multiplying one by a constant
+does not produce the other, and there is no constant to look for. Whatever
+relationship exists between them in a given population is a statistical
+observation about that population, not a transformation you can apply to one
+person's Tuesday.
+
+So the mistake is not choosing the wrong factor. The mistake is believing a
+factor is the kind of thing that would fix this.
+
+## What actually breaks
+
+**The single chart.** A user on iPhone for a year, then on Android, gets one
+continuous line built from two different statistics. The step at the switchover
+is an artifact of your schema, and it will look to them like a physiological
+event.
+
+**The baseline.** Recovery scores, readiness scores and "your HRV is below
+normal" notifications all work by comparing today against a personal baseline.
+If the baseline was accumulated under one statistic and today's sample is the
+other, the comparison is meaningless and the notification is worse than nothing.
+Anything that tells a user something changed about their body when the only
+thing that changed was their phone is a trust problem, not a rendering bug.
+
+**Cohort analytics.** A mean HRV across a mixed-platform user base is an average
+of two different measurements. It will move whenever your platform mix moves,
+which is to say whenever marketing does anything. Any longitudinal claim you
+make about your user base — that HRV improved after a programme, that a cohort
+recovered faster — inherits that instability, and you will not notice, because
+the number looks like a number.
+
+**Your aggregator, possibly.** If you read health data through an
+[aggregator](/fitness-apis/health-data-aggregator-apis), the vendor has already
+made this decision for you and may not have surfaced it. Ask them directly: what
+does your `hrv` field contain for an Apple user, what does it contain for an
+Android user, and does the payload tell me which? If the answer is one field
+with no discriminator, the problem has not gone away — it has been hidden behind
+a normalised-looking schema.
+
+## The honest options
+
+| Option | What you store | What the user sees | When it fits |
+|---|---|---|---|
+| Label the source | Sample plus the statistic and the platform it came from | Two series, visibly distinct | Almost always; this is the floor |
+| Separate baselines | Everything, partitioned by statistic | One number at a time, reset on platform change | Products with a readiness or recovery score |
+| Derive your own | Beat-to-beat intervals you ingest yourself, plus one statistic you compute | One continuous series | Only if you already have interval-level data |
+
+**Label the source.** Add a column recording which statistic each row holds and
+which platform wrote it. This is not a nice-to-have, it is the minimum condition
+for ever fixing the problem later, and backfilling it is cheap now and expensive
+after a year of rows. If you do nothing else from this post, do this.
+
+**Keep baselines per platform.** A baseline is only valid inside one statistic.
+When a user's platform changes, start a new baseline and say so in the UI rather
+than pretending continuity. Treat it the same way you would treat any
+[recomputation of a derived metric](/architecture/metric-versioning-and-recompute):
+versioned, dated, and visible.
+
+**Derive one definition yourself,** but only where you actually hold the input.
+That means your app is already ingesting interval-level data from a chest strap
+or a device SDK rather than reading a platform's pre-computed summary. Check
+what your hardware actually exposes before planning around this — see
+[Bluetooth heart rate monitors](/devices/bluetooth-heart-rate-monitor). If you
+are reading only from HealthKit and
+[Health Connect](/integrate/google-health-connect), this option is not available
+to you, because both platforms hand you the summary and keep the intervals.
+
+## What not to do
+
+- Do not apply a conversion factor. There isn't one.
+- Do not average SDNN and RMSSD samples into one figure, per user or per cohort.
+- Do not name the field `hrv` with no qualifier. The name is the bug: it is what
+  lets a well-meaning engineer two years from now write a query that mixes them.
+- Do not build a cross-platform leaderboard or social comparison on HRV.
+- Do not describe either number to a user as their heart rate variability
+  without saying which measure it is. What HRV represents, and what it does not,
+  is covered in [what is HRV](/learn/what-is-hrv).
+
+## Do this week
+
+1. Grep your schema for `hrv`. If the column has no companion column naming the
+   statistic, that is your first migration.
+2. Backfill the statistic from the source type. You can infer it from which
+   platform the sample came from, and that inference is only safe to make while
+   you still have the provenance.
+3. Break the chart series wherever the statistic changes, and label both.
+4. Find every threshold, alert and score that reads the field and confirm what
+   it does the day a user switches phones.
+5. Read the rest of the platform differences in
+   [ten metrics, two platforms](/blog/ten-metrics-two-platforms), and the
+   implementation detail for this metric on
+   [the HRV API page](/data/hrv-api).
+
+Normalisation across platforms is usually a mapping exercise. This one is not,
+and the cost of treating it as one is a number your users believe.

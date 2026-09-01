@@ -1,0 +1,154 @@
+---
+title: "Four Fitness APIs Are Free and Expensive"
+description: "12 of 24 products cost the developer nothing, and four of those are rated high engineering effort. The API price is the smallest term in the integration."
+date: 2026-09-01
+updated: 2026-09-01
+author: "AIFitnessAPI"
+tags: ["cost", "api", "ecosystem"]
+draft: false
+faqs:
+  - q: "Why is a free fitness API still expensive to ship?"
+    a: "Because the licence is the smallest term in the total. Twelve of the 24 products in our API directory carry a developer cost of free, but that label covers two different things. Some are hosted services or platform SDKs you simply call. Others are open models or self-hosted projects where the running, tuning and maintenance are yours, and that is where budgets go wrong."
+  - q: "Which free fitness APIs take the most engineering work?"
+    a: "Four products in our directory are both free to the developer and rated high engineering effort: the wger exercise project, MediaPipe, MoveNet, and Apple Vision body pose. Three of those four are pose models, which is the pattern. Nothing about them is expensive to license, and all of them make you own the accuracy, the device testing and the runtime."
+  - q: "Is a free pose estimation model cheaper than a paid motion SDK?"
+    a: "Only if you count licence cost alone. A free model shifts the work to you: camera pipeline, accuracy evaluation on real devices, thermal and battery behaviour, and version pinning when the weights stop being updated. A paid SDK moves some of that to a vendor. Which is cheaper depends on how much of that work your team was going to do anyway."
+---
+
+Twelve of the 24 products in this site's API directory carry a developer cost
+of free. Four of them are rated high engineering effort at the same time:
+wger, MediaPipe, MoveNet and Apple Vision body pose. Counted from the directory
+on 2026-09-01.
+
+That overlap is the whole story of pricing a health integration. The number on
+the pricing page is the smallest term in the total, and for the four products
+above it is zero while the work is the largest in the directory.
+
+## What the directory says you pay
+
+| Developer cost | Products | What you are actually buying |
+|---|---|---|
+| free | 12 | Access. Nothing about operation, support or accuracy |
+| free-tier-then-paid | 5 | A trial that ends at a volume you will hit if the feature works |
+| contact-sales | 4 | A conversation, and a lead time attached to it |
+| usage-based | 3 | A bill that scales with the thing you want to grow |
+
+Free is the largest group in the directory by a clear margin. It is also the
+least informative label on any row, because it covers two arrangements that
+have almost nothing in common.
+
+## Two kinds of free
+
+The first kind is a hosted service or a platform capability you call. USDA
+FoodData Central and Open Food Facts serve you data over the network. HealthKit
+and Health Connect are platform SDKs already on the device. Polar, Fitbit,
+Oura and WHOOP give you developer access without charging you for it. Someone
+else runs the servers, ships the fixes and owns the uptime. Free here means
+what you would expect it to mean.
+
+The second kind is an open model or a project you host. The licence is free.
+The operation is a line item on your engineering budget forever. That is where
+the four free and high-effort products sit.
+
+| Product | Category | What free actually leaves you holding |
+|---|---|---|
+| wger | Exercise content | Hosting, data curation, upgrades |
+| MediaPipe | Pose model | Camera pipeline, accuracy work, per-device behaviour |
+| MoveNet | Pose model | The same, plus choosing and pinning a model variant |
+| Apple Vision body pose | Pose model | Platform-specific work with no Android counterpart |
+
+Three of the four are pose models, which is not a coincidence. Vision work
+moves the cost from the invoice to the device: frame handling, thermal limits,
+battery, and an accuracy question that only real users on real hardware can
+answer. Our
+[build versus buy for motion tracking](/motion/build-vs-buy-ai-motion-tracking)
+page walks that trade in detail, and
+[MediaPipe versus MoveNet](/motion/mediapipe-vs-movenet) compares the two
+models directly.
+
+## The effort column is the price
+
+The directory rates engineering effort as low for 9 products, medium for 10 and
+high for 5. Four of the five high-effort products are free. The fifth is
+Garmin, which is contact-sales.
+
+Read that again, because it inverts the usual assumption. In this directory,
+high effort correlates with paying nothing, not with paying a lot. Money buys
+you someone else's engineering time. When you decline to spend it, you spend
+your own.
+
+That is often the right call. A team that already runs a computer vision
+pipeline should absolutely use a free model rather than license a motion SDK.
+A team that has never shipped a camera feature and estimates the work at two
+sprints because the model is free is making the classic error, and the schedule
+finds out before the budget does.
+
+## Nutrition shows the same pattern in miniature
+
+The two free nutrition sources in the directory, USDA FoodData Central and Open
+Food Facts, are both rated medium engineering effort. Nutritionix, which is
+free-tier-then-paid, is rated low. Edamam, also free-tier-then-paid, is medium.
+
+The effort you avoid by paying is search and matching. A free database gives
+you records. Turning "two eggs and a slice of toast" into records is a problem
+you now own, along with the missing fields, the duplicate entries and the
+branded items nobody has photographed yet. Teams that pick the free source and
+then rebuild a matching layer usually spend more than the paid tier would have
+cost, and they find out six weeks in.
+
+## Free models stop moving, and that is your problem now
+
+The served MediaPipe Pose Landmarker model files were last modified in April
+2023. No updates to the MoveNet pose models have been observed since 2024, and
+the single-person models remain Apache-2.0. Both of those are confirmed in our
+change log rather than reported.
+
+A stable model is good news for reproducibility. It is bad news if you were
+quietly hoping accuracy would improve on its own. It will not. Whatever
+accuracy you measure at launch is roughly what you keep until you do the work
+yourself, and nobody is going to send you a release note.
+
+So pin the version, keep the file you tested with, and treat a model update as
+an event with a test plan rather than a dependency bump. The specifics of the
+served files are on
+[the MediaPipe Pose Landmarker models page](/motion/mediapipe-pose-landmarker-models).
+
+## Free does not mean ungated either
+
+Several of the twelve free products still make you get approved. Fitbit, Oura,
+WHOOP, HealthKit and Health Connect are all free to the developer and all state
+an approval gate. Paying nothing has no effect on how long you wait, which is
+counted in
+[12 of 24 fitness APIs have an approval gate](/blog/fitness-api-approval-gates).
+
+The reverse also happens. wger, MediaPipe, MoveNet and Apple Vision state no
+gate at all, so the four hardest integrations in the free group are the ones
+you can start this afternoon. Nothing stops you. That is exactly why teams
+underestimate them.
+
+## How to budget one of these
+
+Price the integration, not the API. Three questions get you most of the way.
+
+Who operates it after launch? If the answer is you, add a permanent share of an
+engineer to the estimate, not a one-time build cost.
+
+What happens when the data or the model is wrong? A hosted vendor has a support
+channel. An open project has an issue tracker and your own weekend. For
+exercise content, [ExerciseDB versus wger](/compare/exercisedb-vs-wger) is the
+version of that question people ask most.
+
+What does free stop covering? For anything with a free tier rather than a free
+product, find the boundary before you build, because you cross it precisely
+when the feature succeeds.
+
+Then run a spike before committing. One metric, one real device, one week. The
+gap between the demo and the measurement is the actual price of the free API,
+and it is knowable in advance.
+
+Our costing pages go deeper on both sides of this:
+[are fitness APIs free](/pricing/are-fitness-apis-free) for the honest version
+of the label, [free fitness APIs](/fitness-apis/free-fitness-apis) for what is
+in the group, and
+[how much a fitness API costs](/pricing/how-much-does-a-fitness-api-cost) for
+the paid comparison.

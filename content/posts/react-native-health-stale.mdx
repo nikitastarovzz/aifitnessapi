@@ -1,0 +1,159 @@
+---
+title: "Your HealthKit Bridge Last Shipped in 2024"
+description: "The main React Native HealthKit bridge last released in October 2024. Its Android counterpart cut five versions in one week this August."
+date: 2026-09-01
+updated: 2026-09-01
+author: "AIFitnessAPI"
+tags: ["healthkit", "health-connect", "ecosystem", "architecture"]
+draft: false
+faqs:
+  - q: "Is react-native-health abandoned?"
+    a: "Nothing in the release data says abandoned. Our tracker shows no published release since October 2024, but the default branch was pushed in April 2026 and the repository is not archived. Those are different signals. Treat a long release gap as a prompt to test the bridge against your own toolchain, not as proof that the project is dead."
+  - q: "Why does the Android Health Connect bridge release so much more often?"
+    a: "Health Connect is a younger and faster-moving store than HealthKit, and its wrapper has to track both React Native architectures. A bridge over a slower-changing API can legitimately go quiet. Release frequency measures how much the underlying platform is churning at least as much as it measures maintainer effort."
+  - q: "How do I check whether a health bridge still supports the types I need?"
+    a: "List the identifiers your product actually reads, then grep the bridge for each one rather than trusting the README. Apple has added identifiers since the bridge's last release, including hypertensionEvent at iOS 26.2 and two more at iOS 27.0. If a type you need is missing, you are writing native code regardless."
+---
+
+This site's SDK release tracker checked three repositories on 2026-08-31.
+`agencyenterprise/react-native-health`, the common React Native bridge to
+Apple HealthKit, last published a release — v1.19.0 — on 2024-10-15.
+`matinzd/react-native-health-connect`, the wrapper for Android Health Connect,
+published v4.1.3 on 2026-08-06, one of five versions it cut in the first week
+of that month.
+
+That gap is not a scandal, and this post is not going to call anything
+abandoned. It is a decision about your iOS data layer that you are making
+whether or not you notice, and the asymmetry between the two sides is the
+interesting part.
+
+## What the tracker holds
+
+| Repository | Bridges to | Last published release | Published | Last push to default branch |
+|---|---|---|---|---|
+| `agencyenterprise/react-native-health` | Apple HealthKit | v1.19.0 | 2024-10-15 | 2026-04-27 |
+| `matinzd/react-native-health-connect` | Android Health Connect | v4.1.3 | 2026-08-06 | 2026-08-26 |
+| `android/health-samples` | Health Connect, Health Services | no releases published | — | 2026-04-20 |
+
+Three readings of that table are wrong before you start.
+
+The first is that no release means no maintenance. The HealthKit bridge's
+default branch was pushed in April 2026 and the repository is not archived.
+Commits are landing; they are not being tagged. Plenty of projects stop cutting
+releases long before they stop being worked on, and consumers installing from a
+git ref rather than a registry tag never notice.
+
+The second is that `android/health-samples` is dead because it publishes
+nothing. It is Google's sample repository. Sample repositories are not
+versioned artifacts — you read them, you do not depend on them. Its value is
+that changes there tend to land before the guidance changes, which makes its
+push date meaningful and its release count meaningless. Our tracker records
+"no releases published" rather than inferring anything from it.
+
+The third is that a fast release cadence is a quality signal. Five releases in
+a week is what a young API's wrapper looks like when the API underneath is
+still moving. Health Connect has been changing quickly; HealthKit's shape has
+not. A stable bridge over a stable interface can legitimately go quiet for two
+years and still be the correct dependency.
+
+## Why the asymmetry is structural, not accidental
+
+The two bridges sit over stores with very different rates of change, and it
+shows up in your codebase as an ongoing tax on one side and a one-time cost on
+the other.
+
+Apple's identifier surface is large and mostly old. Of the 240 HealthKit type
+identifiers in [our dataset](/healthkit-identifiers), read from Apple's own
+documentation JSON on 2026-08-28, 127 were introduced at iOS 8.0. That is the
+bulk of the API arriving at once and then sitting still. A bridge that mapped
+those correctly in 2024 still maps them correctly today.
+
+The additions since are small and specific: 1 identifier at iOS 26.2
+(`hypertensionEvent`) and 2 at iOS 27.0 (`bleedingAfterMenopause`,
+`menopausalState`). Whether that matters to you depends entirely on whether you
+are building in reproductive health. For most teams, nothing they read has
+changed. For a cycle-tracking product, three new types is the whole roadmap.
+
+The Android side has the opposite shape. Health Connect is the migration target
+for a platform that is actively winding down — Google Fit's new developer
+sign-ups closed on 2024-05-01 and its documented support ends in 2026-12, both
+confirmed against Google's own pages. A store absorbing an entire ecosystem's
+traffic is a store that changes, and its wrapper releases accordingly.
+
+So the honest framing is not "the iOS bridge is neglected". It is: your Android
+integration has an upgrade treadmill and your iOS integration has a cliff. The
+treadmill is annoying and visible. The cliff is quiet until you hit it.
+
+## How to actually evaluate a quiet dependency
+
+Release age is a prompt, not a verdict. Three checks turn it into a decision,
+and all three are things you can do in an afternoon.
+
+**Does it compile against your current toolchain?** Not "did it compile when we
+added it". Build a clean checkout against the React Native version, Xcode
+version and iOS deployment target you are shipping on this quarter, not the
+ones you were on when you adopted it. A bridge that has not released in two
+years has not been forced to react to two years of toolchain churn, and the
+first person to find out will be whoever runs your next upgrade.
+
+**Does it expose the identifiers you need?** This is the check teams skip,
+because the README lists types and the README looks complete. Write down the
+identifiers your product actually reads and writes, then search the bridge's
+source for each string. Missing types are not a theoretical risk: our dataset
+shows that Apple ships identifiers with wildly uneven documentation — 58 of the
+240 carry zero words of discussion prose — and a bridge author who could not
+work out what a type meant may simply have left it out.
+
+Pay particular attention to the category types. 28 of the 30 category
+identifiers have a value enum resolved in our dataset; a category sample is
+just an integer until you know which enum decodes it, and a bridge that hands
+you the raw number without the mapping has moved the problem, not solved it.
+[How HealthKit types divide into families](/blog/healthkit-240-types-ios-8) is
+the wider version of that argument.
+
+**What does your exit look like?** Write it down before you need it, in three
+lines: which native APIs you would call, roughly how much of your data layer
+touches the bridge, and who on the team has written Swift. The answer for most
+React Native health apps is that the bridge is a thin call-and-serialize layer
+over a handful of `HKSampleQuery` calls, and replacing it is a week of work
+that nobody has scoped. That is a fine answer. An unscoped week is a much
+better position than an unbounded one.
+
+If your exit is genuinely cheap, a stale dependency is a non-event and you can
+stop worrying about the release date. If your exit is expensive, the release
+date was never the problem — the coupling was.
+
+## The failure mode this actually produces
+
+The way a stale bridge hurts you is rarely a broken build. It is an empty read.
+
+A type the bridge does not expose, an authorization request that silently never
+included the identifier you thought it did, or a permission the user granted to
+something you never asked for — all of these surface identically as no data
+coming back. Our [HealthKit no-data guide](/fix/healthkit-no-data) walks the
+four distinct causes that look the same from JavaScript, and a bridge in the
+middle adds a fifth layer to check.
+
+That is the concrete argument for keeping the exit written down. When the bug
+report says "no steps on iOS for some users", you want to be able to test
+against the native API directly to find out whether the bridge is lying to you.
+
+## What to do this week
+
+Run the three checks above against your own dependency list, not just this one.
+Clean build on your current toolchain, identifier-by-identifier grep, and a
+written exit. If you are starting a React Native health integration now, read
+[the React Native workout tracking guide](/guides/ai-workout-tracking-react-native)
+alongside [the HealthKit integration reference](/integrate/healthkit) and keep
+your bridge-facing code in one module rather than scattered through screens.
+
+If you are adding Android to an existing iOS app, the release cadence above
+should shape your expectations:
+[adding Android to a HealthKit app](/migrate/add-android-to-healthkit-app) and
+[the Health Connect integration page](/integrate/google-health-connect) are the
+two to read, and plan for wrapper upgrades as routine work rather than
+incidents.
+
+The release data behind this post is published as one of our open
+[CC BY datasets](/datasets) and re-checked on a schedule, so you can look at the
+current state rather than trusting a date in a blog post.
