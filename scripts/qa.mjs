@@ -445,7 +445,7 @@ if (fs.existsSync(matrixPath)) {
   // renders — just with less in it than it claims. Count the blocks.
   {
     const rendered = htmls.filter((h) => fs.readFileSync(h, "utf8").includes("data-app-stack")).length;
-    const EXPECTED = 9;
+    const EXPECTED = 17;
     if (rendered !== EXPECTED) {
       problems.push(`APP-STACK      ${rendered} /build guides render the stack block, expected ${EXPECTED}`);
     } else {
