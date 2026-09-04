@@ -30,7 +30,13 @@ export async function generateMetadata({
 
   const url = absoluteUrl(`/blog/${post.slug}`);
   // Fall back to the site-wide branded OG card when a post has no cover image.
-  const ogImage = post.image ? absoluteUrl(post.image) : absoluteUrl("/opengraph-image");
+  // A post with its own cover keeps it; otherwise point explicitly at the
+  // co-located opengraph-image route (the finding-carrying card). Relying on
+  // Next to inject the file-convention image under an explicit openGraph
+  // object proved flaky in this build — explicit wins.
+  const ogImage = post.image
+    ? absoluteUrl(post.image)
+    : absoluteUrl(`/blog/${post.slug}/opengraph-image`);
 
   return {
     title: post.title,

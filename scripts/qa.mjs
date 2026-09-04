@@ -232,6 +232,10 @@ if (fs.existsSync(matrixPath)) {
     const onDisk = fs
       .readdirSync("public/datasets")
       .filter((f) => f.endsWith(".json"))
+      // The manifests are infrastructure ABOUT the datasets (hashes, row
+      // counts, rotation for /datasets/diff.json), not datasets themselves;
+      // they get their own assertion below instead of a row in DATASETS.
+      .filter((f) => !f.startsWith("manifest"))
       .map((f) => f.replace(/\.json$/, ""));
     for (const d of onDisk) {
       if (!DATASETS.includes(d)) {
@@ -274,6 +278,26 @@ if (fs.existsSync(matrixPath)) {
   }
   for (const f of fs.readdirSync("public/kit")) {
     if (!KIT.includes(f)) problems.push(`KIT-UNGATED  public/kit/${f} is published but not in qa's KIT list`);
+  }
+  {
+    const mPath = "public/datasets/manifest.json";
+    if (!fs.existsSync(mPath)) {
+      problems.push("DATASET-NO-MANIFEST  public/datasets/manifest.json missing — run `npm run datasets`");
+    } else {
+      const manifest = JSON.parse(fs.readFileSync(mPath, "utf8"));
+      const inManifest = new Set(manifest.files.map((f) => f.file.replace(/\.(json|csv)$/, "")));
+      for (const d of DATASETS) {
+        if (!inManifest.has(d)) problems.push(`DATASET-UNMANIFESTED  ${d} not covered by manifest.json`);
+      }
+      // And the manifest must match the bytes actually on disk — a stale
+      // manifest makes /datasets/diff.json lie about freshness.
+      for (const f of manifest.files) {
+        const full = `public/datasets/${f.file}`;
+        if (!fs.existsSync(full) || fs.statSync(full).size !== f.bytes) {
+          problems.push(`DATASET-MANIFEST-STALE  ${f.file} differs from manifest.json — rerun \`npm run datasets\``);
+        }
+      }
+    }
   }
   console.log(`Artifacts: ${DATASETS.length} datasets, ${KIT.length} kit files.`);
 }

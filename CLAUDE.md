@@ -30,7 +30,7 @@ silently reverts it.
 | `src/data/healthkitIdentifiers.ts` | `node scripts/fetch-healthkit-identifiers.mjs` (reads Apple's docs JSON) |
 | `src/data/healthkitWritability.ts` | `node scripts/extract-healthkit-writability.mjs` (reads the same cached corpus) |
 | `src/data/sdkReleases.ts` | CI only — `.github/workflows/sdk-releases.yml` |
-| `public/datasets/*.{json,csv}` | `node scripts/build-datasets.mjs` |
+| `public/datasets/*.{json,csv}` + `manifest*.json` | `npm run datasets` (build + manifest) |
 | `public/kit/*` | `node scripts/build-kit.mjs` |
 | `mcp/data/`, `packages/health-data/data/` | `node scripts/bundle-package-data.mjs` |
 

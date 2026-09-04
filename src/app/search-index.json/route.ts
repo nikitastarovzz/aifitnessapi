@@ -235,6 +235,7 @@ export function GET() {
   add("/about", "About AIFitnessAPI", "Who writes this site and why.", "about");
   add("/glossary", "Fitness & Health API Glossary", "Every term in one or two honest sentences, linked to the page that treats it properly.", "glossary terms definitions dictionary");
   add("/methodology", "How We Verify", "Primary sources, adversarial review, and who funds the site.", "methodology how we verify sources");
+  add("/newsletter", "The AIFitnessAPI newsletter", "What changed in fitness and health APIs, verified before it is sent. The archive is the sample.", "newsletter subscribe email digest updates");
   add("/changelog", "Site changelog", "Every content change, rendered from the operational log it is generated from.", "changelog history what changed updates");
   add("/corrections", "Corrections log", "Published corrections, and the errors the build gates caught before publish.", "corrections errata errors fixed accuracy");
 

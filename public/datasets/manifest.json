@@ -1,0 +1,71 @@
+{
+  "generated": "2026-09-04",
+  "files": [
+    {
+      "file": "fitness-api-changes-2026.csv",
+      "bytes": 5731,
+      "rows": 13,
+      "sha256": "371960c5b8ea4ad766ebc996f7d6b2941a18ef0e0eb7512bbf46d660bcacf797"
+    },
+    {
+      "file": "fitness-api-changes-2026.json",
+      "bytes": 9502,
+      "rows": 13,
+      "sha256": "136e41073559e39bfa8eb609db226e040942197627fed998696ad69f9757d5f6"
+    },
+    {
+      "file": "fitness-api-glossary-2026.csv",
+      "bytes": 11206,
+      "rows": 33,
+      "sha256": "74ef9845e0bb8284aa96c9e2437e0289434bb2ae5c5f939e70c8b19f1814444f"
+    },
+    {
+      "file": "fitness-api-glossary-2026.json",
+      "bytes": 16246,
+      "rows": 33,
+      "sha256": "b5767fd26ff7722a7e72c9b90a6d8c20ef216a7a83ae40e4e2959900264f19b8"
+    },
+    {
+      "file": "fitness-apis-2026.csv",
+      "bytes": 4594,
+      "rows": 25,
+      "sha256": "8328fbe0470369881946adebeb2e23440631fe7946d93689eac6560ae8f4a8ef"
+    },
+    {
+      "file": "fitness-apis-2026.json",
+      "bytes": 9790,
+      "rows": 25,
+      "sha256": "6fe2459d88ee25e6d21e1ae22af5af34a30d818399094e856bdbb64ca007e27a"
+    },
+    {
+      "file": "health-data-type-matrix-2026.csv",
+      "bytes": 3226,
+      "rows": 10,
+      "sha256": "2fc10d6d906888532178dfa8a8283bd2a17ce82142c99b09cc1899c4365318b1"
+    },
+    {
+      "file": "health-data-type-matrix-2026.json",
+      "bytes": 6139,
+      "rows": 10,
+      "sha256": "30732731026b5665e9106e5f020addf8f8a30539472d2f63d9196a0bdf1b70a4"
+    },
+    {
+      "file": "healthkit-type-identifiers-2026.csv",
+      "bytes": 73961,
+      "rows": 240,
+      "sha256": "b31afdb0df424abd08e430bf5b2ba5f7c634bcfc7f0c76efa755a798afd40430"
+    },
+    {
+      "file": "healthkit-type-identifiers-2026.json",
+      "bytes": 148074,
+      "rows": 240,
+      "sha256": "57151df0a042118620b90a32202532aaacb75f3a18f7c46473ff709dcd4a8304"
+    },
+    {
+      "file": "motion-sdk-scorecard.csv",
+      "bytes": 5080,
+      "rows": 32,
+      "sha256": "32a07594a0e6d8835f91c74088b5029b33b226c568e2589bb95d8bbf32efe357"
+    }
+  ]
+}

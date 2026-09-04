@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "datasets": "node scripts/build-datasets.mjs",
+    "datasets": "node scripts/build-datasets.mjs && node scripts/build-dataset-manifest.mjs",
     "indexnow": "node scripts/indexnow.mjs",
     "kit": "node scripts/build-kit.mjs",
     "qa": "node scripts/qa.mjs",

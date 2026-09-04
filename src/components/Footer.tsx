@@ -142,6 +142,9 @@ export default function Footer() {
           <Link href="/badges" className="py-1 hover:text-[var(--fg)]">
             Embeds &amp; Badges
           </Link>
+          <Link href="/newsletter" className="py-1 hover:text-[var(--fg)]">
+            Newsletter
+          </Link>
           <Link href="/healthkit" className="py-1 hover:text-[var(--fg)]">
             HealthKit reference
           </Link>

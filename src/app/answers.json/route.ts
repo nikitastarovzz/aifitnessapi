@@ -66,6 +66,7 @@ export function GET() {
       llms_txt: absoluteUrl("/llms.txt"),
       llms_full_txt: absoluteUrl("/llms-full.txt"),
       changes_feed: absoluteUrl("/changes.xml"),
+      claims_index: absoluteUrl("/claims.json"),
     },
     generated: answers.length,
     clusters: Object.keys(map).length,
