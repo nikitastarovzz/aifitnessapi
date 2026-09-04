@@ -681,6 +681,21 @@ if (fs.existsSync(matrixPath)) {
     }
   }
 
+  // ── Architecture diagrams ─────────────────────────────────────────────
+  // Every /architecture spoke renders its hand-drawn mechanism figure, and
+  // nothing outside the cluster does. A renamed slug drops its diagram
+  // silently otherwise — the page still builds, just poorer.
+  {
+    const archPages = htmls.filter((h) => /^\/architecture\/[^/]+$/.test(routeOf(h)) && !notFoundSet.has(routeOf(h)));
+    const withFig = archPages.filter((h) => fs.readFileSync(h, "utf8").includes("data-arch-diagram")).length;
+    if (withFig !== archPages.length) {
+      problems.push(`ARCH-DIAGRAM   ${withFig} of ${archPages.length} /architecture pages render their diagram`);
+    }
+    const outside = htmls.filter((h) => !routeOf(h).startsWith("/architecture") && fs.readFileSync(h, "utf8").includes("data-arch-diagram")).length;
+    if (outside > 0) problems.push(`ARCH-DIAGRAM-LEAK  ${outside} page(s) outside /architecture carry the diagram marker`);
+    if (withFig === archPages.length && archPages.length > 0) console.log(`Diagrams: all ${withFig} /architecture pages carry their mechanism figure.`);
+  }
+
   // ── Disclosed first-party links ───────────────────────────────────────
   // KinestexNote maps specific paths to a disclosed link to the site's
   // funder. Two things are asserted, and the second matters more than the

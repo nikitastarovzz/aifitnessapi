@@ -4,6 +4,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterCta from "@/components/ClusterCta";
 import ClusterDisclaimer from "@/components/ClusterDisclaimer";
 import ClusterHero from "@/components/ClusterHero";
+import ArchDiagram from "@/components/ArchDiagram";
 import { Mdx } from "@/components/mdx";
 import PageActions from "@/components/PageActions";
 import BookmarkButton from "@/components/BookmarkButton";
@@ -170,6 +171,10 @@ export default function ClusterPage({
         >
           {entry.answer}
         </div>
+
+        {/* Mechanism diagram, on architecture spokes only. Renders nothing for
+            a slug with no hand-authored drawing. */}
+        {basePath === "/architecture" && <ArchDiagram slug={entry.slug} />}
 
         <PageActions path={path} url={url} title={entry.h1} updated={entry.updated} />
 

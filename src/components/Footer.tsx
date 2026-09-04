@@ -142,6 +142,9 @@ export default function Footer() {
           <Link href="/badges" className="py-1 hover:text-[var(--fg)]">
             Embeds &amp; Badges
           </Link>
+          <Link href="/paths" className="py-1 hover:text-[var(--fg)]">
+            Reading paths
+          </Link>
           <Link href="/saved" className="py-1 hover:text-[var(--fg)]">
             Saved pages
           </Link>

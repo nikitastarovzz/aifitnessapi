@@ -594,6 +594,16 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     area: "Content integrity",
     refuses: "A rendered gates table holding a different number of rows than there are described gates.",
   },
+  {
+    code: "ARCH-DIAGRAM",
+    area: "Derived blocks",
+    refuses: "An /architecture page publishing without its hand-drawn mechanism figure.",
+  },
+  {
+    code: "ARCH-DIAGRAM-LEAK",
+    area: "Derived blocks",
+    refuses: "The architecture diagram marker appearing on any page outside the /architecture cluster.",
+  },
 ];
 
 /** Group order on /gates. Every area used above must appear here. */
