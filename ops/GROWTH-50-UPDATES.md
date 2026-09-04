@@ -147,3 +147,54 @@ tactic that needs a number we cannot source.
 (title width) → 29/30 (publish the two packages). That order front-loads the
 biggest impression surface, makes everything after it measurable, and ships
 the two assets that are already built and waiting on credentials.
+
+---
+
+## Build log — 2026-09-04, the honest accounting of all fifty
+
+Site went 404 → 430 content pages across the day (this section written after
+commits 35bc67c, efe492c, d1a4a51, c9619c3).
+
+**Shipped this session (34):**
+1 group pages (12 + hub, 240/240 gate-asserted) · 2 merged into 1's
+workout-activities page · 3 question hubs (21, 1,188 links gate-resolved) ·
+4 category-value reference · 5 unit reference (HKUnit quotes fetched and
+cited) · 6 rescoped to ONE timeline page + anchors (18 per-version pages
+would have been thin; the site's own 500-word rule) · 7 status page ·
+8 partial as designed (10 verified records; full version stays [egress]) ·
+9 partial as designed (/fix 15→25, Apple-side only; vendor errors stay
+[egress]) · 10 six guides · 11-16 six tools (17 folded into 14's honesty
+rules; the payloads it asked for would have been invented shapes) ·
+19 upgraded (state already existed; router/popstate/copy-link added) ·
+20 writability dataset from the same cached corpus, 14 read-only types with
+evidence · 21 fifty-eight titles, five hand-spot-checked · 23 SoftwareSourceCode ·
+25 finding-carrying OG cards · 27 recency titles (Fitbit one kept honest:
+"What's Confirmed") · 28 TOCs on group pages · 32 claims.json (297 claims) ·
+33 stat cards with copy-citation · 34 Question/acceptedAnswer nodes ·
+35 manifest + /datasets/diff.json · 36 command-K palette with identifier
+matching · 37 copy-as-markdown · 38 four reading paths · 39 hub freshness ·
+41 bookmarks + /saved · 42 fifteen mechanism diagrams, figures transcribed
+from the pages' own worked examples · 43 /newsletter · 44 /gates (110
+refusals, two-way parity) · 45 /changelog · 47 /corrections · 48 GSC CSV
+pipeline (`npm run gsc`) · 49 cohort mode in the same script.
+
+**Verified as already existing, not rebuilt (5):**
+18 /day-boundaries · 22 HowTo on steps-carrying pages · 24 Dataset schema
+(5 nodes, DataCatalog, CC BY URLs — audited valid) · 40 feedback widget
+(mounted on every spoke) · 50 vitals collector (mounted site-wide; reading
+the data happens in the Firebase console).
+
+**Prepared, blocked on the owner (4):**
+29/30 both packages re-verified passing today; publish is one command once
+npm credentials exist · 31 dataset repo decision · 46 partially shipped
+(GitHub sameAs live; npm URLs follow 29/30).
+
+**Deferred with a stated reason (1):**
+26 capsule-as-snippet on the "top 50 entry pages" — the top-50 selection
+does not exist without a Search Console export; editing 50 guessed pages
+would be motion, not progress. Unblocks the day a CSV lands in ops/gsc/.
+
+**Partial by policy, not neglect (within 8, 9, 21):**
+vendor-side error pages, full Health Connect parity, and the ~25 non-spoke
+short titles (programmatic /apis titles, tool pages already at their
+45-char pre-suffix cap).
