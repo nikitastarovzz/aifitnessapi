@@ -10,9 +10,13 @@ import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
-import { getIntegration, releasedIntegrations, INTEGRATE_PATH } from "@/data/integrate";
+import { getIntegration, releasedIntegrations, INTEGRATE_PATH, INTEGRATE_CONFIG } from "@/data/integrate";
 
 const UPDATED = "2026-07-09";
+
+/** Every FAQ answer in this cluster, counted from the same data the
+ *  /questions index is built from so the two can never disagree. */
+const QUESTION_COUNT = releasedIntegrations().reduce((n, e) => n + e.faqs.length, 0);
 
 export const metadata: Metadata = {
   title: "How to Integrate a Fitness or Health API",
@@ -203,6 +207,11 @@ export default function IntegratePillar() {
               </div>
             ))}
           </dl>
+          <p className="mt-6 text-sm text-[var(--muted)]">
+            <Link href="/questions/integrate" className="text-brand-600 hover:text-brand-500">
+              All {QUESTION_COUNT} questions in {INTEGRATE_CONFIG.hubLabel}, answered
+            </Link>
+          </p>
         </section>
 
         <ClusterCta

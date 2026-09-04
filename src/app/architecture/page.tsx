@@ -10,9 +10,13 @@ import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
-import { getArchitecture, releasedArchitecture, ARCHITECTURE_PATH } from "@/data/architecture";
+import { getArchitecture, releasedArchitecture, ARCHITECTURE_PATH, ARCHITECTURE_CONFIG } from "@/data/architecture";
 
 const UPDATED = "2026-07-27";
+
+/** Every FAQ answer in this cluster, counted from the same data the
+ *  /questions index is built from so the two can never disagree. */
+const QUESTION_COUNT = releasedArchitecture().reduce((n, e) => n + e.faqs.length, 0);
 
 export const metadata: Metadata = {
   title: "Health Data Architecture for Fitness Apps",
@@ -190,6 +194,11 @@ export default function ArchitecturePillar() {
               </div>
             ))}
           </dl>
+          <p className="mt-6 text-sm text-[var(--muted)]">
+            <Link href="/questions/architecture" className="text-brand-600 hover:text-brand-500">
+              All {QUESTION_COUNT} questions in {ARCHITECTURE_CONFIG.hubLabel}, answered
+            </Link>
+          </p>
         </section>
 
         <ClusterCta

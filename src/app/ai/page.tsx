@@ -10,9 +10,13 @@ import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
-import { getAi, releasedAi, AI_PATH } from "@/data/ai";
+import { getAi, releasedAi, AI_PATH, AI_CONFIG } from "@/data/ai";
 
 const UPDATED = "2026-07-27";
+
+/** Every FAQ answer in this cluster, counted from the same data the
+ *  /questions index is built from so the two can never disagree. */
+const QUESTION_COUNT = releasedAi().reduce((n, e) => n + e.faqs.length, 0);
 
 export const metadata: Metadata = {
   title: "AI & LLM Features for Fitness Apps",
@@ -185,6 +189,11 @@ export default function AiPillar() {
               </div>
             ))}
           </dl>
+          <p className="mt-6 text-sm text-[var(--muted)]">
+            <Link href="/questions/ai" className="text-brand-600 hover:text-brand-500">
+              All {QUESTION_COUNT} questions in {AI_CONFIG.hubLabel}, answered
+            </Link>
+          </p>
         </section>
 
         <ClusterCta

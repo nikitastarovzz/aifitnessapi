@@ -10,9 +10,13 @@ import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
-import { getMotion, releasedMotion, MOTION_PATH } from "@/data/motion";
+import { getMotion, releasedMotion, MOTION_PATH, MOTION_CONFIG } from "@/data/motion";
 
 const UPDATED = "2026-07-24";
+
+/** Every FAQ answer in this cluster, counted from the same data the
+ *  /questions index is built from so the two can never disagree. */
+const QUESTION_COUNT = releasedMotion().reduce((n, e) => n + e.faqs.length, 0);
 
 export const metadata: Metadata = {
   title: "AI Motion & Pose Estimation for Fitness Apps",
@@ -182,6 +186,11 @@ export default function MotionPillar() {
               </div>
             ))}
           </dl>
+          <p className="mt-6 text-sm text-[var(--muted)]">
+            <Link href="/questions/motion" className="text-brand-600 hover:text-brand-500">
+              All {QUESTION_COUNT} questions in {MOTION_CONFIG.hubLabel}, answered
+            </Link>
+          </p>
         </section>
 
         <ClusterCta

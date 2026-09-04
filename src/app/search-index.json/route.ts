@@ -21,6 +21,7 @@ import { releasedEngagement, ENGAGEMENT_PATH } from "@/data/engagement";
 import { releasedWatchApps, WATCH_PATH } from "@/data/watchApps";
 import { releasedAccessibility, A11Y_PATH } from "@/data/accessibility";
 import { API_ENTRIES, APIS_PATH, CATEGORY_LABELS, DEV_COST_LABELS } from "@/data/apis";
+import { releasedHkGroups, HK_BASE } from "@/data/hkGroupPages";
 
 /**
  * Site search index — generated from the same data modules as the pages
@@ -133,6 +134,70 @@ export function GET() {
     }
   }
 
+  // The question indexes. Every individual question is already a record
+  // above, addressed at its own anchor; these are the pages that list them,
+  // for the reader who wants to browse a topic rather than search a phrase.
+  const questionsIn = (entries: { faqs: unknown[] }[]) =>
+    entries.reduce((n, e) => n + e.faqs.length, 0);
+  const questionTotal = clusters.reduce((n, [, , entries]) => n + questionsIn(entries), 0);
+  add(
+    "/questions",
+    "Every question this site answers",
+    `${questionTotal} named questions grouped by topic, each one a link straight to the paragraph that answers it.`,
+    "questions index faq answers list all every question",
+  );
+  for (const [base, label, entries] of clusters) {
+    if (entries.length === 0) continue;
+    add(
+      `/questions${base}`,
+      `${label}: every question answered`,
+      `All ${questionsIn(entries)} questions the ${label.toLowerCase()} pages answer, each linking straight to its answer.`,
+      `questions faq index answers ${label.toLowerCase()}`,
+    );
+  }
+
+  // The HealthKit reference set. The group pages are derived, so the index
+  // gains them the day they ship and lists none while the set is empty.
+  add(
+    HK_BASE,
+    "HealthKit data types by group",
+    "Apple's HealthKit identifiers organised the way Apple groups them: activity, nutrition, vital signs, body measurements, lab results and the rest.",
+    "healthkit groups data types activity nutrition vital signs reference",
+  );
+  for (const g of releasedHkGroups()) {
+    add(`${HK_BASE}/${g.slug}`, g.title, g.metaDescription, `healthkit identifiers group ${g.primaryQuery}`);
+  }
+  add(
+    "/healthkit-versions",
+    "HealthKit Types by iOS Version",
+    "Which HealthKit identifiers arrived in which iOS release, so a deployment target tells you what you can read.",
+    "healthkit ios versions timeline availability deployment target ios 18 ios 17",
+  );
+  add(
+    "/healthkit-status",
+    "Deprecated and Beta HealthKit Types",
+    "The HealthKit identifiers Apple marks deprecated, beta or undocumented, and what each status means for shipping code.",
+    "healthkit deprecated beta undocumented status unavailable renamed",
+  );
+  add(
+    "/healthkit-category-values",
+    "Every HKCategoryValue Enum",
+    "The value enums that decode a HealthKit category sample, per identifier — a category sample is meaningless without the right one.",
+    "hkcategoryvalue enum sleep analysis category sample values decode",
+  );
+  add(
+    "/healthkit-units",
+    "Every HKUnit HealthKit Uses",
+    "The units and unit families HealthKit quantity samples are expressed in, and which identifiers use each.",
+    "hkunit units count kcal meters bpm unit family quantity",
+  );
+  add(
+    "/health-connect-records",
+    "Every Health Connect Record Type",
+    "Android Health Connect's record types, the Android counterpart to the HealthKit identifier reference.",
+    "health connect records android record types jetpack androidx health",
+  );
+
   add(
     APIS_PATH,
     "Fitness & Health API Directory",
@@ -170,6 +235,8 @@ export function GET() {
   add("/about", "About AIFitnessAPI", "Who writes this site and why.", "about");
   add("/glossary", "Fitness & Health API Glossary", "Every term in one or two honest sentences, linked to the page that treats it properly.", "glossary terms definitions dictionary");
   add("/methodology", "How We Verify", "Primary sources, adversarial review, and who funds the site.", "methodology how we verify sources");
+  add("/changelog", "Site changelog", "Every content change, rendered from the operational log it is generated from.", "changelog history what changed updates");
+  add("/corrections", "Corrections log", "Published corrections, and the errors the build gates caught before publish.", "corrections errata errors fixed accuracy");
 
   for (const p of getAllPosts()) add(`/blog/${p.slug}`, p.title, p.description, "blog post");
 

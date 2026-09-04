@@ -209,6 +209,40 @@ export function spokeGraph({
   const citation = citationsFromBody(entry.body);
   const mentions = mentionsFromBody(entry.body);
 
+  // Cookbook pages are runnable recipes: mark the code as SoftwareSourceCode
+  // so the SERP entry can widen and agents can tell "article with code" from
+  // "article about code". Language read from the fences actually present.
+  const fenceLangs = [...new Set([...entry.body.matchAll(/```([a-z]+)/g)].map((m) => m[1]))]
+    .filter((l) => l !== "text" && l !== "bash");
+  const sourceCode =
+    basePath === "/cookbook" && fenceLangs.length
+      ? {
+          "@type": "SoftwareSourceCode",
+          name: `${entry.h1} — reference implementation`,
+          description: entry.metaDescription,
+          programmingLanguage: fenceLangs,
+          url: `${url}#code`,
+          isPartOf: { "@id": articleId },
+        }
+      : null;
+
+  // When the page's primary query is literally a question, expose it as a
+  // schema.org Question with the answer capsule as acceptedAnswer. This is
+  // deliberately NOT QAPage (that type is for forum-style pages and would be
+  // an invalid rich-result claim); a Question node on the WebPage is valid
+  // vocabulary and gives answer engines the pairing explicitly.
+  const isQuestion = /^(what|how|why|which|when|where|can|do|does|is|are|should)\b/i.test(
+    entry.primaryQuery,
+  );
+  const questionEntity = isQuestion
+    ? {
+        "@type": "Question",
+        name: entry.primaryQuery.endsWith("?") ? entry.primaryQuery : `${entry.primaryQuery}?`,
+        answerCount: 1,
+        acceptedAnswer: { "@type": "Answer", text: entry.answer, url: `${url}#answer` },
+      }
+    : null;
+
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -254,7 +288,9 @@ export function spokeGraph({
           encodingFormat: "text/markdown",
           contentUrl: markdownUrl(path),
         },
+        ...(questionEntity ? { mainEntity: questionEntity } : {}),
       },
+      ...(sourceCode ? [sourceCode] : []),
     ],
   };
 }

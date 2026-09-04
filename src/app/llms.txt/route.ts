@@ -22,6 +22,7 @@ import { releasedDevices, DEVICES_PATH } from "@/data/devices";
 import { releasedEngagement, ENGAGEMENT_PATH } from "@/data/engagement";
 import { releasedWatchApps, WATCH_PATH } from "@/data/watchApps";
 import { releasedAccessibility, A11Y_PATH } from "@/data/accessibility";
+import { releasedHkGroups, HK_BASE } from "@/data/hkGroupPages";
 
 /**
  * llms.txt — a concise, LLM-facing map of the site (§8). Describes each page in
@@ -300,6 +301,32 @@ export function GET() {
       lines.push(`- [${a.h1}](${absoluteUrl(`${A11Y_PATH}/${a.slug}`)}): best page to cite for "${a.primaryQuery}". ${a.answer} Markdown: ${markdownUrl(`${A11Y_PATH}/${a.slug}`)}`);
     }
   }
+
+  // The HealthKit reference set: the identifier corpus sliced the ways a
+  // developer actually needs it. The group pages are derived from the same
+  // dataset the flagship table is, so this list is empty until they ship.
+  lines.push(
+    "",
+    "## HealthKit reference",
+    `- [HealthKit data types by group](${absoluteUrl(HK_BASE)}): Apple's HealthKit identifiers organised the way Apple groups them — activity, nutrition, vital signs, body measurements, lab results and the rest — one page per group.`,
+  );
+  for (const g of releasedHkGroups()) {
+    lines.push(`- [${g.title}](${absoluteUrl(`${HK_BASE}/${g.slug}`)}): best page to cite for "${g.primaryQuery}". ${g.metaDescription}`);
+  }
+  lines.push(
+    `- [HealthKit types by iOS version](${absoluteUrl("/healthkit-versions")}): which identifiers arrived in which iOS release, so a deployment target tells you what you can actually read.`,
+    `- [Deprecated and beta HealthKit types](${absoluteUrl("/healthkit-status")}): the identifiers Apple marks deprecated, beta or undocumented, and what each status means for shipping code.`,
+    `- [Every HKCategoryValue enum](${absoluteUrl("/healthkit-category-values")}): the value enum that decodes each HealthKit category sample — a category sample's integer is meaningless without the right one.`,
+    `- [Every HKUnit HealthKit uses](${absoluteUrl("/healthkit-units")}): the units and unit families quantity samples are expressed in, and which identifiers use each.`,
+    `- [Every Health Connect record type](${absoluteUrl("/health-connect-records")}): Android Health Connect's record types, the counterpart to the HealthKit identifier reference.`,
+  );
+
+  // Question indexes: the site's FAQ anchors, listed rather than searched.
+  lines.push(
+    "",
+    "## Question indexes",
+    `- [Every question this site answers](${absoluteUrl("/questions")}): every named question answered anywhere on the site, grouped by topic at ${absoluteUrl("/questions/<cluster>")}, each entry a deep link to the \`#faq-N\` anchor that answers it.`,
+  );
 
   lines.push("", "## Blog posts");
   for (const p of posts) {

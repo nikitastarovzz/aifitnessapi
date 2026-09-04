@@ -11,9 +11,14 @@ import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
-import { getAccessibility, releasedAccessibility, A11Y_PATH } from "@/data/accessibility";
+import { getAccessibility, releasedAccessibility, A11Y_PATH, A11Y_CONFIG } from "@/data/accessibility";
 
 const UPDATED = "2026-08-22";
+
+/** Every FAQ answer in this cluster, counted from the same data the
+ *  /questions index is built from so the two can never disagree. */
+const QUESTION_COUNT = releasedAccessibility().reduce((n, e) => n + e.faqs.length, 0);
+
 const TITLE = "Accessible Fitness & Health Apps";
 
 export const metadata: Metadata = {
@@ -195,6 +200,11 @@ export default function AccessibilityPillar() {
               </div>
             ))}
           </dl>
+          <p className="mt-6 text-sm text-[var(--muted)]">
+            <Link href="/questions/accessibility" className="text-brand-600 hover:text-brand-500">
+              All {QUESTION_COUNT} questions in {A11Y_CONFIG.hubLabel}, answered
+            </Link>
+          </p>
         </section>
 
         <ClusterDisclaimer updated={UPDATED} />

@@ -23,6 +23,7 @@ import { releasedDevices, DEVICES_PATH } from "@/data/devices";
 import { releasedEngagement, ENGAGEMENT_PATH } from "@/data/engagement";
 import { releasedWatchApps, WATCH_PATH } from "@/data/watchApps";
 import { clusterMap } from "@/lib/clusterRegistry";
+import { releasedHkGroups, HK_BASE } from "@/data/hkGroupPages";
 import { changesSorted } from "@/data/changes";
 import { API_ENTRIES, APIS_PATH } from "@/data/apis";
 import { digests, DIGEST_PATH } from "@/data/digest";
@@ -89,12 +90,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl("/matrix"), changeFrequency: "monthly", priority: 0.8 },
     { url: absoluteUrl("/healthkit-identifiers"), changeFrequency: "monthly", priority: 0.8 },
     { url: absoluteUrl("/healthkit-errors"), changeFrequency: "monthly", priority: 0.7 },
+    { url: absoluteUrl("/healthkit-versions"), changeFrequency: "monthly", priority: 0.7 },
+    { url: absoluteUrl("/healthkit-status"), changeFrequency: "monthly", priority: 0.7 },
+    { url: absoluteUrl("/healthkit-category-values"), changeFrequency: "monthly", priority: 0.7 },
+    { url: absoluteUrl("/healthkit-units"), changeFrequency: "monthly", priority: 0.7 },
+    { url: absoluteUrl("/health-connect-records"), changeFrequency: "monthly", priority: 0.7 },
+    { url: absoluteUrl(HK_BASE), changeFrequency: "weekly", priority: 0.8 },
+    { url: absoluteUrl("/questions"), changeFrequency: "weekly", priority: 0.6 },
     // Only listed once CI has populated the tracker — the route 404s while
     // it is empty, and a sitemap must never advertise a 404.
     ...(SDK_REPOS.length > 0
       ? [{ url: absoluteUrl("/sdk-releases"), changeFrequency: "daily" as const, priority: 0.6 }]
       : []),
     { url: absoluteUrl("/blog"), changeFrequency: "weekly", priority: 0.8 },
+    { url: absoluteUrl("/changelog"), changeFrequency: "weekly", priority: 0.4 },
+    { url: absoluteUrl("/corrections"), changeFrequency: "monthly", priority: 0.5 },
     { url: absoluteUrl("/about"), changeFrequency: "monthly", priority: 0.5 },
     { url: absoluteUrl("/site-index"), changeFrequency: "monthly", priority: 0.3 },
     { url: absoluteUrl(APIS_PATH), changeFrequency: "weekly", priority: 0.9 },
@@ -303,6 +313,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
+  // One question index per populated cluster. Derived from the same map the
+  // pages are generated from, so a new cluster is listed the day it ships and
+  // an empty one is never advertised.
+  const questionRoutes: MetadataRoute.Sitemap = Object.entries(map)
+    .filter(([, entries]) => entries.length > 0)
+    .map(([base]) => ({
+      url: absoluteUrl(`/questions${base}`),
+      changeFrequency: "weekly" as const,
+      priority: 0.5,
+    }));
+
+  // The HealthKit group reference pages, derived the same way: the list is
+  // empty until the authored entries land, and an empty list emits no rows.
+  const hkGroupRoutes: MetadataRoute.Sitemap = releasedHkGroups().map((g) => ({
+    url: absoluteUrl(`${HK_BASE}/${g.slug}`),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
   return [
     ...dated,
     ...spokeRoutes,
@@ -326,6 +355,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...engagementRoutes,
     ...watchRoutes,
     ...a11yRoutes,
+    ...questionRoutes,
+    ...hkGroupRoutes,
     ...apiRoutes,
     ...digestRoutes,
     ...postRoutes,

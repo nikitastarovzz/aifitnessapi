@@ -10,9 +10,13 @@ import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
-import { getComparison, releasedCompare, COMPARE_PATH } from "@/data/compare";
+import { getComparison, releasedCompare, COMPARE_PATH, COMPARE_CONFIG } from "@/data/compare";
 
 const UPDATED = "2026-07-23";
+
+/** Every FAQ answer in this cluster, counted from the same data the
+ *  /questions index is built from so the two can never disagree. */
+const QUESTION_COUNT = releasedCompare().reduce((n, e) => n + e.faqs.length, 0);
 
 export const metadata: Metadata = {
   title: "Fitness & Health API Comparisons",
@@ -182,6 +186,11 @@ export default function ComparePillar() {
               </div>
             ))}
           </dl>
+          <p className="mt-6 text-sm text-[var(--muted)]">
+            <Link href="/questions/compare" className="text-brand-600 hover:text-brand-500">
+              All {QUESTION_COUNT} questions in {COMPARE_CONFIG.hubLabel}, answered
+            </Link>
+          </p>
         </section>
 
         <ClusterCta

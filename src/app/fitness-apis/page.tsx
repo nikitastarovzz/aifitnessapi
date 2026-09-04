@@ -10,9 +10,13 @@ import HubJsonLd from "@/components/HubJsonLd";
 import { site, absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
-import { getEntry, releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
+import { getEntry, releasedEntries, PILLAR_PATH, FITNESS_APIS_CONFIG } from "@/data/fitnessApis";
 
 const UPDATED = "2026-07-08";
+
+/** Every FAQ answer in this cluster, counted from the same data the
+ *  /questions index is built from so the two can never disagree. */
+const QUESTION_COUNT = releasedEntries().reduce((n, e) => n + e.faqs.length, 0);
 
 export const metadata: Metadata = {
   title: "Best Fitness & Workout APIs (2026)",
@@ -232,6 +236,11 @@ export default function FitnessApisPillar() {
               </div>
             ))}
           </dl>
+          <p className="mt-6 text-sm text-[var(--muted)]">
+            <Link href="/questions/fitness-apis" className="text-brand-600 hover:text-brand-500">
+              All {QUESTION_COUNT} questions in {FITNESS_APIS_CONFIG.hubLabel}, answered
+            </Link>
+          </p>
         </section>
 
         <ClusterCta

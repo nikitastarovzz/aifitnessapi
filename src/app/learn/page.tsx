@@ -10,9 +10,13 @@ import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
-import { getLearn, releasedLearn, LEARN_PATH } from "@/data/learn";
+import { getLearn, releasedLearn, LEARN_PATH, LEARN_CONFIG } from "@/data/learn";
 
 const UPDATED = "2026-07-09";
+
+/** Every FAQ answer in this cluster, counted from the same data the
+ *  /questions index is built from so the two can never disagree. */
+const QUESTION_COUNT = releasedLearn().reduce((n, e) => n + e.faqs.length, 0);
 
 export const metadata: Metadata = {
   title: "Fitness & Health API Concepts Explained",
@@ -176,6 +180,11 @@ export default function LearnPillar() {
               </div>
             ))}
           </dl>
+          <p className="mt-6 text-sm text-[var(--muted)]">
+            <Link href="/questions/learn" className="text-brand-600 hover:text-brand-500">
+              All {QUESTION_COUNT} questions in {LEARN_CONFIG.hubLabel}, answered
+            </Link>
+          </p>
         </section>
 
         <ClusterCta

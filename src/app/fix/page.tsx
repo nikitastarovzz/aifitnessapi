@@ -10,9 +10,13 @@ import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
-import { getFix, releasedFixes, FIX_PATH } from "@/data/fix";
+import { getFix, releasedFixes, FIX_PATH, FIX_CONFIG } from "@/data/fix";
 
 const UPDATED = "2026-08-03";
+
+/** Every FAQ answer in this cluster, counted from the same data the
+ *  /questions index is built from so the two can never disagree. */
+const QUESTION_COUNT = releasedFixes().reduce((n, e) => n + e.faqs.length, 0);
 
 export const metadata: Metadata = {
   title: "Fix Fitness API Errors: 401s, 429s, Webhooks",
@@ -203,6 +207,11 @@ export default function FixPillar() {
               </div>
             ))}
           </dl>
+          <p className="mt-6 text-sm text-[var(--muted)]">
+            <Link href="/questions/fix" className="text-brand-600 hover:text-brand-500">
+              All {QUESTION_COUNT} questions in {FIX_CONFIG.hubLabel}, answered
+            </Link>
+          </p>
         </section>
 
         <ClusterCta

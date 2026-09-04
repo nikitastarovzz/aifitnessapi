@@ -553,6 +553,93 @@ if (fs.existsSync(matrixPath)) {
     }
   }
 
+  // ── Question indexes ──────────────────────────────────────────────────
+  // /questions/<cluster> is the only surface that lists the site's FAQ
+  // anchors, and it is built entirely out of deep links. Two ways it rots
+  // silently: a cluster stops generating its index (a whole topic quietly
+  // disappears from the list), and a page renumbers or drops an FAQ (the
+  // link still renders and still resolves — it just lands at the top of the
+  // page instead of on the answer, which no crawl or link check would flag).
+  {
+    const questionPages = htmls
+      .map((h) => [routeOf(h), h])
+      .filter(([r]) => /^\/questions\/[^/]+$/.test(r));
+    if (questionPages.length !== clusterTops.length) {
+      problems.push(
+        `QUESTIONS-HUBS  ${questionPages.length} /questions/<cluster> pages built, expected ${clusterTops.length} (one per populated cluster)`,
+      );
+    }
+
+    // Collect the deep links first, deduped, then resolve each target page
+    // once — the same spoke is linked once per FAQ it answers, and re-reading
+    // its HTML for every one of them would read the whole site many times.
+    const links = new Map();
+    for (const [route, file] of questionPages) {
+      const html = fs.readFileSync(file, "utf8");
+      for (const m of html.matchAll(/href="(\/[a-z0-9/-]+)#(faq-\d+)"/g)) {
+        const key = `${m[1]}#${m[2]}`;
+        if (!links.has(key)) links.set(key, { target: m[1], anchor: m[2], from: route });
+      }
+    }
+    const anchorsOf = new Map();
+    for (const { target, anchor, from } of links.values()) {
+      if (!anchorsOf.has(target)) {
+        const file = htmls.find((h) => routeOf(h) === target);
+        const set = new Set();
+        if (file) {
+          for (const m of fs.readFileSync(file, "utf8").matchAll(/id="(faq-\d+)"/g)) set.add(m[1]);
+        }
+        anchorsOf.set(target, set);
+      }
+      if (!anchorsOf.get(target).has(anchor)) {
+        problems.push(`QUESTIONS-DEAD-ANCHOR ${from} -> ${target}#${anchor}`);
+      }
+    }
+    if (questionPages.length) {
+      console.log(
+        `Question indexes: ${questionPages.length} cluster pages, ${links.size} deep links resolved against ${anchorsOf.size} pages.`,
+      );
+    }
+  }
+
+  // ── HealthKit group pages ─────────────────────────────────────────────
+  // The twelve /healthkit/<group> pages partition the 240-identifier
+  // dataset — every identifier on exactly one page. A mapping bug drops
+  // identifiers from every page at once and nothing else notices: each page
+  // still builds, still reads fine, just with fewer rows than it claims. So
+  // count the id markers in the derived tables and assert the partition is
+  // whole. While the set is still being written the count would fail for the
+  // wrong reason, so an incomplete set reports as incomplete instead.
+  {
+    const EXPECTED_GROUPS = 12;
+    const EXPECTED_IDS = 240;
+    const groupPages = htmls.filter((h) => /^\/healthkit\/[^/]+$/.test(routeOf(h)));
+    if (groupPages.length > 0) {
+      const ids = new Set();
+      for (const h of groupPages) {
+        const html = fs.readFileSync(h, "utf8");
+        // Row ids on these pages exist only in the derived tables (TOC and
+        // section anchors use #overview-style names), so a whole-file scan is
+        // exact. Region-slicing to the first </table> undercounted pages whose
+        // section holds one table per Apple subgroup.
+        for (const m of html.matchAll(/id="(id-[A-Za-z0-9._-]+)"/g)) ids.add(m[1].toLowerCase());
+      }
+      if (groupPages.length === EXPECTED_GROUPS) {
+        if (ids.size !== EXPECTED_IDS) {
+          problems.push(
+            `HK-GROUP-COVERAGE  ${ids.size} identifiers across group pages, expected ${EXPECTED_IDS}`,
+          );
+        } else {
+          console.log(`HealthKit groups: ${EXPECTED_GROUPS} pages carrying all ${ids.size} identifiers.`);
+        }
+      } else {
+        problems.push(
+          `HK-GROUP-PARTIAL  only ${groupPages.length} of ${EXPECTED_GROUPS} group pages built`,
+        );
+      }
+    }
+  }
+
   // ── Disclosed first-party links ───────────────────────────────────────
   // KinestexNote maps specific paths to a disclosed link to the site's
   // funder. Two things are asserted, and the second matters more than the

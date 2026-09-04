@@ -11,9 +11,13 @@ import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
-import { getDevice, releasedDevices, DEVICES_PATH } from "@/data/devices";
+import { getDevice, releasedDevices, DEVICES_PATH, DEVICES_CONFIG } from "@/data/devices";
 
 const UPDATED = "2026-08-14";
+
+/** Every FAQ answer in this cluster, counted from the same data the
+ *  /questions index is built from so the two can never disagree. */
+const QUESTION_COUNT = releasedDevices().reduce((n, e) => n + e.faqs.length, 0);
 
 export const metadata: Metadata = {
   title: "Connected Fitness Devices: BLE & FTMS",
@@ -176,6 +180,11 @@ export default function DevicesPillar() {
               </div>
             ))}
           </dl>
+          <p className="mt-6 text-sm text-[var(--muted)]">
+            <Link href="/questions/devices" className="text-brand-600 hover:text-brand-500">
+              All {QUESTION_COUNT} questions in {DEVICES_CONFIG.hubLabel}, answered
+            </Link>
+          </p>
         </section>
 
         <ClusterDownload

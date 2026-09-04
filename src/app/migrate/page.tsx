@@ -10,9 +10,13 @@ import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
-import { getMigration, releasedMigrate, MIGRATE_PATH } from "@/data/migrate";
+import { getMigration, releasedMigrate, MIGRATE_PATH, MIGRATE_CONFIG } from "@/data/migrate";
 
 const UPDATED = "2026-07-20";
+
+/** Every FAQ answer in this cluster, counted from the same data the
+ *  /questions index is built from so the two can never disagree. */
+const QUESTION_COUNT = releasedMigrate().reduce((n, e) => n + e.faqs.length, 0);
 
 export const metadata: Metadata = {
   title: "Fitness & Health API Migration Guides",
@@ -178,6 +182,11 @@ export default function MigratePillar() {
               </div>
             ))}
           </dl>
+          <p className="mt-6 text-sm text-[var(--muted)]">
+            <Link href="/questions/migrate" className="text-brand-600 hover:text-brand-500">
+              All {QUESTION_COUNT} questions in {MIGRATE_CONFIG.hubLabel}, answered
+            </Link>
+          </p>
         </section>
 
         <ClusterCta

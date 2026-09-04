@@ -38,7 +38,7 @@ const RELATED: { href: string; label: string }[] = [
 ];
 
 export const metadata: Metadata = {
-  title: { absolute: "Fitbit API Shutdown: Dates and Migration Path" },
+  title: { absolute: "Fitbit API Shutdown: What's Confirmed for 2026" },
   description: "The legacy Fitbit Web API is reported to shut down around September 2026; no official day is confirmed. What is verified, what is not, where you migrate.",
   alternates: { canonical: PAGE_PATH },
   openGraph: {

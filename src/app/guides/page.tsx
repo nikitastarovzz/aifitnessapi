@@ -10,9 +10,13 @@ import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
-import { getGuide, releasedGuides, GUIDES_PATH } from "@/data/guides";
+import { getGuide, releasedGuides, GUIDES_PATH, GUIDES_CONFIG } from "@/data/guides";
 
 const UPDATED = "2026-07-08";
+
+/** Every FAQ answer in this cluster, counted from the same data the
+ *  /questions index is built from so the two can never disagree. */
+const QUESTION_COUNT = releasedGuides().reduce((n, e) => n + e.faqs.length, 0);
 
 export const metadata: Metadata = {
   title: "How to Add AI Workout Tracking to Your App",
@@ -222,6 +226,11 @@ export default function GuidesPillar() {
               </div>
             ))}
           </dl>
+          <p className="mt-6 text-sm text-[var(--muted)]">
+            <Link href="/questions/guides" className="text-brand-600 hover:text-brand-500">
+              All {QUESTION_COUNT} questions in {GUIDES_CONFIG.hubLabel}, answered
+            </Link>
+          </p>
         </section>
 
         <ClusterCta

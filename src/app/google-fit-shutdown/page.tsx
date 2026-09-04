@@ -11,7 +11,7 @@ const PATH = "/google-fit-shutdown";
 const UPDATED = "2026-07-31";
 
 export const metadata: Metadata = {
-  title: { absolute: "Google Fit Shutdown: Timeline and Migration Paths" },
+  title: { absolute: "Google Fit Shutdown: the 2026 Timeline, Verified" },
   description:
     "Google Fit APIs are supported only until the end of 2026. What is shutting down, who is affected, and where each kind of integration migrates.",
   alternates: { canonical: PATH },

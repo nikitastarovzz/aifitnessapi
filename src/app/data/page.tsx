@@ -10,9 +10,13 @@ import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
-import { getDataPage, releasedData, DATA_PATH } from "@/data/healthData";
+import { getDataPage, releasedData, DATA_PATH, DATA_CONFIG } from "@/data/healthData";
 
 const UPDATED = "2026-07-24";
+
+/** Every FAQ answer in this cluster, counted from the same data the
+ *  /questions index is built from so the two can never disagree. */
+const QUESTION_COUNT = releasedData().reduce((n, e) => n + e.faqs.length, 0);
 
 export const metadata: Metadata = {
   title: "Health Data by Metric: Which API for Each",
@@ -173,6 +177,11 @@ export default function DataPillar() {
               </div>
             ))}
           </dl>
+          <p className="mt-6 text-sm text-[var(--muted)]">
+            <Link href="/questions/data" className="text-brand-600 hover:text-brand-500">
+              All {QUESTION_COUNT} questions in {DATA_CONFIG.hubLabel}, answered
+            </Link>
+          </p>
         </section>
 
         <ClusterCta

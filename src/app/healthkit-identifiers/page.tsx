@@ -215,7 +215,16 @@ export default function HealthKitIdentifiersPage() {
           </dl>
         </section>
 
-        <HkIdentifierTable rows={rows} groups={HK_GROUPS} families={HK_FAMILIES} />
+        <p className="mb-6 text-sm text-[var(--muted)]">
+        Prefer the set in slices? The{" "}
+        <Link href="/healthkit" className="font-medium text-brand-600 hover:text-brand-500">
+          HealthKit reference hub
+        </Link>{" "}
+        breaks these {HK_IDENTIFIERS.length} identifiers into twelve group pages with the synthesis
+        each group deserves, plus the version timeline, unit families, category value enums and
+        error codes.
+      </p>
+      <HkIdentifierTable rows={rows} groups={HK_GROUPS} families={HK_FAMILIES} />
 
         <section className="mt-14">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">What the unit families tell you</h2>
