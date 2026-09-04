@@ -5,6 +5,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterCta from "@/components/ClusterCta";
 import ClusterDisclaimer from "@/components/ClusterDisclaimer";
 import ClusterHero from "@/components/ClusterHero";
+import HubFreshness from "@/components/HubFreshness";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
@@ -38,6 +39,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
     blurb: "Direct-to-user apps people work out with.",
     slugs: [
       "home-workout-app",
+      "hiit-app",
       "ai-fitness-coaching-app",
       "strength-training-app",
       "running-app",
@@ -57,7 +59,12 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Coached and clinical",
     blurb: "Apps with a second person in them — a trainer, a clinician, a family member.",
-    slugs: ["personal-training-app", "rehab-physical-therapy-app", "senior-fitness-app"],
+    slugs: ["personal-training-app", "rehab-physical-therapy-app", "senior-fitness-app", "kids-fitness-app"],
+  },
+  {
+    title: "Endurance and outdoor sport",
+    blurb: "Apps where the workout happens far from a wall socket.",
+    slugs: ["cycling-app", "swimming-app", "hiking-app", "triathlon-app"],
   },
   {
     title: "Programmes and populations",
@@ -138,6 +145,8 @@ export default function BuildPillar() {
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
           How to Build a Workout App
         </h1>
+
+        <HubFreshness entries={released} basePath={BUILD_PATH} />
 
         <div
           id="answer"

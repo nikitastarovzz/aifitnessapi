@@ -119,6 +119,36 @@ const STACKS: Record<string, Stack> = {
     apis: ["exercisedb", "mediapipe", "healthkit", "health-connect"],
     note: "The mobility family is the most under-used data on this site: ten types the phone already computes from ordinary walking, which almost no consumer app reads.",
   },
+  "cycling-app": {
+    healthkit: ["distanceCycling", "cyclingPower", "cyclingSpeed", "cyclingCadence", "cyclingFunctionalThresholdPower", "heartRate", "activeEnergyBurned"],
+    apis: ["strava", "garmin", "polar", "terra", "healthkit", "health-connect"],
+    note: "The whole power family arrived in one iOS release — but serious riders' numbers come off BLE sensors and head units, so the store is where rides land, not where they start.",
+  },
+  "swimming-app": {
+    healthkit: ["distanceSwimming", "swimmingStrokeCount", "heartRate", "activeEnergyBurned"],
+    apis: ["garmin", "fitbit", "terra", "healthkit", "health-connect"],
+    note: "Water makes the watch the primary device and the phone a viewer; stroke count is the type competitors forget exists.",
+  },
+  "hiking-app": {
+    healthkit: ["distanceWalkingRunning", "flightsClimbed", "stepCount", "heartRate", "activeEnergyBurned"],
+    apis: ["strava", "garmin", "healthkit", "health-connect"],
+    note: "No dedicated hiking quantity types exist — a hike is the walking distance types plus climbed flights, recorded under the hiking workout constant.",
+  },
+  "hiit-app": {
+    healthkit: ["heartRate", "activeEnergyBurned", "appleExerciseTime", "heartRateRecoveryOneMinute"],
+    apis: ["polar", "terra", "healthkit", "health-connect"],
+    note: "The interval engine is yours; what the store contributes is heart rate for zones and the one-minute recovery type that makes interval quality measurable.",
+  },
+  "triathlon-app": {
+    healthkit: ["distanceSwimming", "distanceCycling", "distanceWalkingRunning", "heartRate", "vo2Max", "activeEnergyBurned"],
+    apis: ["garmin", "strava", "polar", "terra", "healthkit", "health-connect"],
+    note: "The multisport session types (swimBikeRun, transition) are workout constants rather than quantity types — the quantities here are the three distances a race decomposes into.",
+  },
+  "kids-fitness-app": {
+    healthkit: ["stepCount", "appleExerciseTime", "activeEnergyBurned"],
+    apis: ["exercisedb", "healthkit", "health-connect"],
+    note: "The shortest list on this page on purpose: for this audience, every type you do not read is a consent conversation you do not have to have.",
+  },
 };
 
 const byCase = new Map(HK_IDENTIFIERS.map((r) => [r.case, r]));

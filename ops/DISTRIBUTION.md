@@ -112,3 +112,13 @@ freshness badge that always reads "today" is decoration.
    genuinely qualify.
 4. Badges and the data library are worth having; neither moves the number on
    its own.
+
+
+## Status check 2026-09-04
+
+Both packages re-verified today: `cd mcp && node test.mjs` and
+`cd packages/health-data && node test.mjs` both pass all assertions after
+`node scripts/bundle-package-data.mjs` (296 rows across 4 datasets). They
+remain publish-ready; the only missing input is npm credentials (owner).
+The CC-BY dataset repo decision also still sits with the owner. Items 29-31
+of ops/GROWTH-50-UPDATES.md track this.

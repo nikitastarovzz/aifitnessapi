@@ -64,7 +64,7 @@ export const cookbookEntries: ClusterEntry[] = [
     "slug": "webhook-receiver",
     "primaryQuery": "idempotent webhook receiver code example",
     "h1": "Recipe: A Replay-Safe Health Webhook Receiver",
-    "metaTitle": "Recipe: A Replay-Safe Webhook Receiver",
+    "metaTitle": "Recipe: A Replay-Safe Health Webhook Receiver",
     "metaDescription": "A tested, dependency-free ingest function: signature over raw bytes, delivery dedupe, thin pointer jobs, versioned replace, and a DLQ that still acks.",
     "updated": "2026-08-12",
     "answer": "A duplicated health webhook does not throw — it lands in an aggregate and quietly doubles somebody's day. This recipe is one ingest function that makes that impossible by construction: it verifies the HMAC over the raw request bytes before anything parses them, dedupes the delivery on its id, enqueues a thin pointer instead of trusting payload values, gates every effect on a monotonic version so an out-of-order delivery is a no-op, and routes a poisoned delivery to a dead-letter queue while still acknowledging. Every collaborator is injected, so the whole replay suite runs with no network and no tunnel. The behaviour is argued in full on the webhook ingestion page; this is the code.",

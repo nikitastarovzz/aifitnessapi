@@ -5,6 +5,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterCta from "@/components/ClusterCta";
 import ClusterDisclaimer from "@/components/ClusterDisclaimer";
 import ClusterHero from "@/components/ClusterHero";
+import HubFreshness from "@/components/HubFreshness";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
 import { site, absoluteUrl } from "@/lib/site";
@@ -129,6 +130,8 @@ export default function FitnessApisPillar() {
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
           Best Fitness &amp; Workout APIs for Builders (2026)
         </h1>
+
+        <HubFreshness entries={released} basePath={PILLAR_PATH} />
 
         <div
           id="answer"

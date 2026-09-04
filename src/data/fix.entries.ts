@@ -240,7 +240,7 @@ export const fixEntries: ClusterEntry[] =
     "slug": "fitbit-api-429-rate-limit",
     "primaryQuery": "fitbit api 429 rate limit",
     "h1": "How to Fix Fitbit API 429 (Rate Limit) Errors",
-    "metaTitle": "Fix Fitbit API 429 Rate Limit Errors",
+    "metaTitle": "Fix Fitbit API 429 Rate Limit Errors: The Per-User Quota",
     "metaDescription": "Fitbit API returning 429 Too Many Requests? Read the per-user hourly limit, the reset headers, and how to fix it with backoff, caching, and webhooks.",
     "updated": "2026-07-09",
     "answer": "A Fitbit API 429 means you exceeded Fitbit's per-user hourly quota, roughly 150 requests per hour per consented user (as of 2026, verify), and every call past that is rejected until the window resets. The limit is counted per consented user, so one runaway loop on a single user trips it. To fix it, read the Fitbit-Rate-Limit-Reset or Retry-After header, wait that long, then retry with exponential backoff plus jitter. Longer term, cache responses, reduce and stagger calls, and replace polling with Fitbit subscriptions.",
@@ -473,7 +473,7 @@ export const fixEntries: ClusterEntry[] =
     "slug": "strava-webhook-not-firing",
     "primaryQuery": "strava webhook not firing",
     "h1": "Why Is My Strava Webhook Not Firing?",
-    "metaTitle": "Fix: Strava Webhook Not Firing",
+    "metaTitle": "Fix: Strava Webhook Not Firing (5 Ranked Causes)",
     "metaDescription": "Strava webhook not firing? Usually the subscription was never created because the validation handshake failed. How to verify it exists and fix it.",
     "updated": "2026-07-09",
     "answer": "The most common reason a Strava webhook never fires is that the subscription was never created: creating one is a two-step handshake, and if your callback fails to echo the hub.challenge as JSON with HTTP 200 within about two seconds, Strava silently abandons it. First confirm a subscription actually exists by calling GET push_subscriptions with your client_id and client_secret; an empty array means nothing will ever fire. Then make sure your callback is a public HTTPS URL that answers the validation GET correctly, and remember only one subscription is allowed per application.",
@@ -1167,5 +1167,715 @@ export const fixEntries: ClusterEntry[] =
       "pitch": "Half of what developers repeat about HealthKit background delivery is folklore and the other half is one sentence buried in a reference page. We read the primary sources and publish the difference — subscribe for the next teardown."
     },
     "body": "The code looks right. There is an `HKObserverQuery`, there is a call to `enableBackgroundDelivery`, the app reads steps perfectly when it is open, and the update handler has never once run while the phone was in a pocket. Almost every instance of this is one of a small set of documented gates, and four of them are stated in a single paragraph of Apple's reference page that most people skim past on the way to the code sample.\n\nWork them in order. Each one is cheap to check and each one, on its own, is sufficient to produce total silence.\n\n## Gate 1: the entitlement you probably do not have\n\nApple's requirement is unambiguous. For iOS 15 and watchOS 8 and later, you must enable HealthKit Background Delivery by adding the `com.apple.developer.healthkit.background-delivery` entitlement to your app, and if your app does not have it, `enableBackgroundDelivery(for:frequency:withCompletion:)` fails with an `HKError.Code.errorAuthorizationDenied` error.\n\nTwo things make this the number-one cause. First, the entitlement is documented as a Boolean whose default value is false — it is available from iOS 15, iPadOS 15, watchOS 8 and visionOS 1, but you get nothing unless you add the key deliberately. Second, the error is easy to miss, because Apple hands it to you through a completion block whose arguments almost everybody throws away:\n\n```swift\nhealthStore.enableBackgroundDelivery(for: stepType, frequency: .hourly) { success, error in\n    // Both of these are load-bearing. Log them.\n    if let error {\n        // errorAuthorizationDenied here means the ENTITLEMENT is missing,\n        // not that the user denied anything.\n        log.error(\"background delivery not enabled: \\(error)\")\n        return\n    }\n    log.info(\"background delivery enabled: \\(success)\")\n}\n```\n\nNote the wording trap in the error name. `errorAuthorizationDenied` reads like a permission refusal, and permission refusal in HealthKit is a topic with its own long list of surprises — covered in [HealthKit authorization denied](/fix/healthkit-authorization-denied). Here it means nothing of the kind. The user is not involved.\n\n## Gate 2: the Simulator will never do this\n\nApple prints the same sentence twice, once on the `enableBackgroundDelivery` reference and again on the `HKObserverQuery` reference: background server queries are not supported on the Simulator, and you should be sure to test your background queries on a device.\n\nThere is no flag and no partial credit. If your only evidence that background delivery does not work is a Simulator session, you have no evidence at all. This also means a Simulator-based CI pipeline covers none of this path, which is the honest boundary drawn in [testing a HealthKit integration](/test/healthkit-integration). Move to real hardware before you change a line.\n\n## Gate 3: the query does not exist when the wake arrives\n\nThis one produces the most confusing symptom, because everything looks correct in the foreground.\n\nApple documents the launch sequence directly: as soon as your app launches, HealthKit calls the update handler for any observer queries that match the newly saved data, and if you plan on supporting background delivery, you should set up all your observer queries in your app delegate's `application(_:didFinishLaunchingWithOptions:)` method. Apple's own explanation for why is the part to internalise — registering there ensures the queries are instantiated and ready to use before HealthKit delivers the updates.\n\nA background wake launches your process. If your observer is created inside a view controller's setup, or behind a feature flag that resolves after a network call, or on first navigation to a screen, then at the moment HealthKit tries to deliver there is no matching query in the process and the delivery goes nowhere. In the foreground you always happen to have visited that screen, so it always works.\n\n## Gate 4: three missed acknowledgements and you are switched off\n\nApple's completion-handler documentation contains the single most consequential sentence in this whole area. You must call the block as soon as you are done processing the incoming data; if you do not, HealthKit continues to attempt to launch your app using a backoff algorithm, and if your app fails to respond three times, HealthKit assumes your app cannot receive data and stops sending you background updates.\n\nRead that as a strike count, not as a retry policy. The handler is the heartbeat that keeps the channel alive, and the place people forget it is the error path — a thrown error, an early return on a nil unwrap, an upload that times out before the line is reached. Three of those and the install is done receiving background deliveries, which is exactly the \"it worked last week\" report you will get from QA.\n\n```swift\nlet observer = HKObserverQuery(sampleType: stepType, predicate: nil) { _, completionHandler, error in\n    // Acknowledge on EVERY path, including the failure branch.\n    defer { completionHandler() }\n\n    if error != nil { return }\n    // Persist locally first, then acknowledge, then upload asynchronously.\n    ingestFromPersistedAnchor()\n}\nhealthStore.execute(observer)\n```\n\n## Symptom to cause\n\n| Symptom | What it means | What to do |\n| --- | --- | --- |\n| `enableBackgroundDelivery` reports an error you never logged | Missing entitlement, surfacing as `errorAuthorizationDenied` | Add the entitlement, set it true, re-sign |\n| Nothing fires, ever, on a Simulator | Unsupported by design | Test on a device |\n| Works in the foreground, silent in the background | Observer registered too late in the launch path | Register in the app delegate's launch method |\n| Fired a few times, then stopped permanently | Three unacknowledged deliveries | Call the completion handler in a `defer` |\n| Fires, but you see no new samples | The observer carries no payload | Run an anchored object query from inside the handler |\n| Fires far less often than requested | `frequency` is a documented ceiling | Design for eventual delivery, not a cadence |\n| Requested `.immediate` for steps on iOS, still hourly | Hourly maximum, enforced transparently | Expect hourly at best for that type |\n| Wake happens but the read fails or is empty | Store encrypted while the device is locked | Retry after unlock; still acknowledge |\n| A correlation type is silently never delivered | `HKCorrelationType` is unsupported here | Register the underlying quantity types |\n\n## The four things that look like failures and are not\n\n**The observer is a doorbell, not a parcel.** Apple is explicit that the update handler does not receive any information about the change, just that a change occurred, and that you must execute another query — an `HKSampleQuery` or an `HKAnchoredObjectQuery` — to access the changes. An anchored object query is usually the right second query, because Apple describes it as combining a snapshot of what is currently stored with a long-running query that responds to updates, returning an anchor corresponding to the last sample or deleted object it saw so subsequent runs return only newer objects.\n\n**`frequency` is a maximum, not a schedule.** Apple defines it as the maximum frequency of the updates, waking your app from the background at most once per time period specified. `HKUpdateFrequency` offers `immediate`, `hourly`, `daily` and `weekly`, described respectively as launching your app every time a change is detected, at most once an hour, at most once a day, and at most once per week. Nothing in that documentation promises a minimum rate.\n\n**Some types are capped no matter what you ask for.** Apple states that some sample types have a maximum frequency of hourly and that the system enforces this frequency transparently, giving step count on iOS as the example. In watchOS most data types are hourly-capped too, with a named exception list that can reach `immediate` — high heart rate, low heart rate and irregular heart rhythm events, environmental and headphone audio exposure events, low cardio fitness events, number of times fallen, VO2 max, handwashing and toothbrushing events. On watchOS there is also a budget: background updates share an allowance with `WKApplicationRefreshBackgroundTask`, four an hour, conditioned on the app having a complication on the active watch face.\n\n**A locked phone can turn a successful wake into an empty read.** Apple documents that the device encrypts the HealthKit store when the user locks it, so your app may not be able to read data from the store when it runs in the background. Writes still work and are cached until unlock. So a wake that produces nothing is not proof the user did nothing — and if your query comes back empty in the foreground too, that is a different investigation entirely, laid out in [HealthKit returning no data](/fix/healthkit-no-data).\n\n## After the gates\n\nOnce delivery is genuinely working, the remaining problem is that no amount of correct code makes a wake happen. Apple publishes a ceiling and a shutdown rule; it publishes no minimum rate, no latency figure and no delivery guarantee. That means a pipeline whose correctness depends on being woken is a pipeline that will eventually be wrong. Pair every wake with a foreground reconciliation and a server-side staleness check, so a missed delivery costs latency rather than a wrong number — the design is worked through in [background sync that does not depend on the phone waking up](/architecture/background-sync)."
+  },
+  {
+    "slug": "healthkit-database-inaccessible",
+    "primaryQuery": "healthkit errordatabaseinaccessible",
+    "h1": "HealthKit errorDatabaseInaccessible: Reads Fail While the Device Is Locked",
+    "metaTitle": "HealthKit errorDatabaseInaccessible: The Fix",
+    "metaDescription": "Apple states reads fail while the device is locked but saves still work. Why this is a background-only failure, and how to retry it without losing data.",
+    "updated": "2026-09-04",
+    "answer": "HealthKit returns errorDatabaseInaccessible when your app queries the store while the device is locked. Apple's documentation states that reads fail in this state but saves still work: the data goes into a temporary file that is merged when the user unlocks the device. That makes this a background problem, because a foregrounded app is running on an unlocked device. Treat it as transient rather than terminal, resume the read after the device is unlocked, and never record the failed read as a gap in the user's history.",
+    "body": "Your app wakes in the background, runs a HealthKit query, and the completion handler hands back `errorDatabaseInaccessible`. The same query works every single time you test it with the phone unlocked in your hand. Your predicate is fine, your authorization is fine, your entitlements are fine. The store was protected at the moment you asked, and that is the entire bug.\n\n## What Apple documents\n\nApple's documentation states the abstract for this case as: \"The HealthKit data is unavailable because it's protected and the device is locked.\" The discussion is unusually specific for a case in this enum, and it is worth reading whole:\n\n> This error occurs when your app queries for HealthKit data while the device is locked. You can, however, still save data. This data is saved into a temporary file, which is merged with HealthKit's data when the user unlocks their device.\n\nTwo facts fall out of that paragraph, and every design decision below rests on them. Queries fail while the device is locked. Saves do not — Apple states the data goes into a temporary file and is merged once the user unlocks. Everything else on this page is engineering practice, and is labelled as such rather than dressed up as documented behaviour. The case is listed on every platform in Apple's [HKError reference](/healthkit-errors), including watchOS.\n\n## The asymmetry is the whole design constraint\n\n| While the device is locked | What Apple's discussion states |\n| --- | --- |\n| Query for existing samples | Fails — this is the error you are holding |\n| Save new samples | Still permitted |\n| Where a save goes | Into a temporary file |\n| When it reaches HealthKit | When the user unlocks the device |\n\nMost sync code is written as read-then-reconcile-then-write, and that shape breaks in exactly one place under lock: the read. If your background job pulls the last day of samples, diffs them, and writes a derived summary back, the pull fails and the whole job aborts — even though the write half would have gone through. A job that can emit its writes independently of its reads keeps working on a locked phone. A job that cannot, stalls until the user picks up the device.\n\n## Why this only ever shows up in the background\n\nIn the foreground the error is nearly unreachable: if your UI is on screen, the device is unlocked. The paths that run with the screen off are the ones that meet a protected store — background delivery wake-ups, background refresh work, and anything you deliberately schedule overnight. Teams often move heavy syncing to quiet hours to spare the battery and the network, which is precisely when the phone is locked for the longest stretch. That is an optimisation straight into the failure mode.\n\nSo treat this error as a property of *when* your code runs, not of what it asks for. The surrounding mechanics — registering for wake-ups, finishing the work before the system suspends you — are covered in [background sync](/architecture/background-sync); if your wake path never fires at all, that is a different fault, and it starts at [HealthKit background delivery not working](/fix/healthkit-background-delivery-not-working).\n\n## Diagnosis order\n\n1. **Read the actual code, not the symptom.** Log the error domain and code and confirm you have `errorDatabaseInaccessible` rather than an empty result. An empty result is not an error and means something else entirely — see [HealthKit errorNoData](/fix/healthkit-error-no-data).\n2. **Reproduce on purpose.** Lock the device, trigger the wake path, and watch the failure appear. If you cannot reproduce it that way, the lock state is probably not your cause.\n3. **Check whether your saves fail too.** Per Apple's discussion, saving should still work while locked. If writes are failing as well, stop chasing lock state and start with the authorization state machine: [errorAuthorizationNotDetermined](/fix/healthkit-authorization-not-determined) covers the never-asked case.\n4. **Check what your job did with the failure.** Many teams discover the error was being caught, counted as \"zero new samples\", and written into a summary table as a gap. That is a data-quality bug wearing an error's clothes.\n\n## Retry design, as practice\n\nNone of the following is Apple's documented behaviour; it is how we would build around what Apple documents.\n\n- **Classify it as transient, in its own bucket.** Terminal conditions such as an unsupported device or an [MDM restriction](/fix/healthkit-data-restricted-mdm) will never succeed on retry. This one will succeed the moment the user unlocks. Same failure shape, opposite handling.\n- **Do not spin.** A tight retry loop inside a background wake-up burns your execution window against a device that may stay locked for hours, and buys nothing.\n- **Resume on unlock, not on a timer.** The condition you are waiting for is a user action. Re-run the work when the app next becomes active, or on the next wake-up after the device has been unlocked, rather than scheduling blind retries through the night.\n- **Keep a durable cursor.** If the read never happened, the cursor must not move. Checkpointing so an interrupted run resumes cleanly is the pattern in [incremental sync](/architecture/incremental-sync).\n- **Never record it as absence.** A locked store means \"we could not look\", which is not the same as \"there was nothing there\". Anything that feeds charts, streaks, or coaching logic should carry that distinction — [missing data and gaps](/architecture/missing-data-and-gaps) is the wider version of this argument.\n- **Say nothing to the user.** There is no in-app remedy to offer, and no dialog that helps. Fail quietly, retry later, and let the next successful sync fill in.\n\n## On the watch\n\nApple lists this case for watchOS along with the other platforms, so a workout or complication refresh that reads history can hit it too. Wrist-off and locked states on a watch are ordinary, not exceptional, so the same rule applies: buffer, resume, and never treat the failure as a gap. The execution model that decides when your watch code runs at all is set out in [Apple Watch background execution](/watch-apps/apple-watch-background-execution).\n\n## Symptom to action\n\n| What you observe | What it means | What to do |\n| --- | --- | --- |\n| Background read fails, foreground read works | The store was protected while locked | Retry after unlock; keep the cursor |\n| Reads and writes both fail | Not a lock problem | Check authorization and setup |\n| Query returns empty with no error | Not this error at all | Read [errorNoData](/fix/healthkit-error-no-data) |\n| Failure repeats forever on the same device | Terminal, not transient | Check unavailable or restricted cases |\n\n## Where to go next\n\nIf you are still deciding which HealthKit failures deserve a retry policy at all, the full enum with Apple's own wording is at [the HKError reference](/healthkit-errors), and the honest limits of that reference — cases Apple ships with no description whatsoever — are covered in [undocumented HealthKit errors](/fix/healthkit-undocumented-errors). For the end-to-end setup this error assumes you already have, see the [HealthKit integration guide](/integrate/healthkit).",
+    "faqs": [
+      {
+        "q": "Why does my background HealthKit read fail when the same query works in the app?",
+        "a": "Because the device was locked when the background job ran. Apple's documentation states this error occurs when your app queries HealthKit data while the device is locked. In the foreground the device is unlocked by definition, so the identical query succeeds. The difference is timing and lock state, not your predicate, entitlements, or authorization setup."
+      },
+      {
+        "q": "Can my app still save HealthKit data while the device is locked?",
+        "a": "Apple's discussion states that you can still save data while the device is locked. It says the data is written into a temporary file, which is merged with HealthKit's data when the user unlocks their device. So a job that only reads will fail, while a job that only writes keeps working, which is a useful thing to design around."
+      },
+      {
+        "q": "Should I retry immediately after errorDatabaseInaccessible?",
+        "a": "As a practice, no. A tight retry loop burns your background execution window against a device that may stay locked for hours. Classify the failure as transient, leave your sync cursor where it was, and re-run the work when the app next becomes active or on a wake-up after the device has been unlocked."
+      }
+    ],
+    "related": [
+      {
+        "href": "/fix/healthkit-background-delivery-not-working",
+        "label": "HealthKit background delivery not working"
+      },
+      {
+        "href": "/architecture/background-sync",
+        "label": "Background sync architecture"
+      },
+      {
+        "href": "/healthkit-errors",
+        "label": "Every HKError case, in Apple's words"
+      },
+      {
+        "href": "/fix",
+        "label": "Fitness & health API troubleshooting"
+      }
+    ],
+    "cta": {
+      "pitch": "We read Apple's HealthKit documentation line by line so your background sync does not learn these rules from a production incident. Subscribe for the next breakdown."
+    },
+    "steps": [
+      {
+        "name": "Log the raw error code",
+        "text": "Record the error domain and code rather than a generic message, and confirm you are holding errorDatabaseInaccessible rather than an empty result or a different failure. The two need opposite handling."
+      },
+      {
+        "name": "Reproduce with the device locked",
+        "text": "Lock the device, trigger the background path, and watch the failure appear. If it will not reproduce that way, lock state is probably not your cause."
+      },
+      {
+        "name": "Confirm your saves still succeed",
+        "text": "Apple's discussion states saving still works while locked. If your writes are failing too, stop chasing lock state and check the authorization and setup path instead."
+      },
+      {
+        "name": "Classify it as transient, not terminal",
+        "text": "Put it in a separate bucket from unsupported-device and restricted errors, which will never succeed on retry. This one succeeds as soon as the user unlocks."
+      },
+      {
+        "name": "Resume on unlock rather than on a timer",
+        "text": "Re-run the work when the app becomes active or on the next wake-up after an unlock, instead of scheduling blind retries through the night."
+      },
+      {
+        "name": "Keep the cursor and never write a gap",
+        "text": "If the read never happened, the sync cursor must not advance and nothing should be recorded as zero or missing. A locked store means you could not look, not that there was nothing there."
+      }
+    ]
+  },
+  {
+    "slug": "healthkit-health-data-unavailable",
+    "primaryQuery": "healthkit errorhealthdataunavailable",
+    "h1": "HealthKit errorHealthDataUnavailable: The Device Does Not Support HealthKit",
+    "metaTitle": "HealthKit errorHealthDataUnavailable: What to Do",
+    "metaDescription": "Apple says to verify HealthKit support before calling any other method. Why the check belongs at every entry point, and how to degrade instead of erroring.",
+    "updated": "2026-09-04",
+    "answer": "Apple's documentation states that errorHealthDataUnavailable means the user accessed HealthKit on an unsupported device. Apple's discussion tells you to verify that the current device supports HealthKit before calling any other HealthKit method, because iOS apps can run on devices that do not support it. There is nothing to retry and nothing the user can change, so the only useful response is to detect the condition and hide the feature rather than showing an error. In practice the bug is usually coverage: the availability check exists in your launch path but not in the widget, extension, or background wake-up that actually made the call.",
+    "body": "Every HealthKit call in your app is failing on one tester's device with `errorHealthDataUnavailable`, and working perfectly on yours. This is not a permissions problem, a signing problem, or a race. Apple's abstract for the case is a single sentence: \"The user accessed HealthKit on an unsupported device.\" The device cannot do HealthKit at all, and no amount of retrying, re-requesting, or reinstalling will change that.\n\n## What Apple documents\n\nApple's documentation states the abstract above, and the discussion tells you both the cause and the required defence:\n\n> Because iOS apps can run on devices that don't support HealthKit (for example, on an iPad), always verify that the current device supports HealthKit by calling [the availability check] before calling any other HealthKit methods. If HealthKit isn't available on the device, other HealthKit methods fail with an [errorHealthDataUnavailable] error.\n\nThe bracketed names are ours: Apple's page links two symbols inline, and those link labels do not survive extraction into plain text. The availability check Apple means is the store's `HKHealthStore.isHealthDataAvailable()`, which is the same guard used in our [HealthKit no data](/fix/healthkit-no-data) walkthrough.\n\nNote precisely what Apple's instruction says, because it is stronger than most teams implement: verify **before calling any other HealthKit methods**. Not before your first query. Not once at launch. Before any of them.\n\nOn the iPad point, keep to what the text supports. Apple's example is that iOS apps can run on devices that don't support HealthKit, and iPad is the example given. That is a statement about your app running somewhere HealthKit isn't, not a rule about any particular iPad model or release. Apple's platform list for the error case itself includes iPadOS — but that describes where the symbol exists, not where HealthKit works. Check availability at runtime and you never have to reason about which hardware is on the other end.\n\n## Why the check belongs at every entry point\n\nA modern app is not one process with one launch path. HealthKit code gets reached from places that never run your launch-time warm-up:\n\n| Entry point | Runs your launch-time check? |\n| --- | --- |\n| Cold app launch into your main UI | Yes |\n| Widget or complication timeline reload | No |\n| Background delivery wake-up | Not necessarily |\n| A watch app launched on its own | No |\n| A deep link straight into a detail screen | Sometimes |\n| A share or intent extension | No |\n\nAny of those can be the first HealthKit call in the process. If the guard lives only in your launch sequence, the guard is not protecting the calls that matter. Practice: put the check behind one accessor that every HealthKit path goes through, and make the unavailable result a first-class value your feature code has to handle — not an optional early return someone can forget.\n\n## Diagnosis order\n\n1. **Confirm the code.** Log domain and code. `errorHealthDataUnavailable` is device capability. If you are actually seeing a restriction imposed by a management profile, that is a different case with different messaging — see [HealthKit restricted by an MDM profile](/fix/healthkit-data-restricted-mdm).\n2. **Check where the failing call came from.** If your app works but your widget or watch extension fails, you have a coverage problem, not a device problem.\n3. **Check the target.** A Mac or a simulator target you did not intend to support will produce this class of failure long before a user ever does. Testing strategy for exactly this is in [testing a HealthKit integration](/test/healthkit-integration).\n4. **Only then, believe the device.** Once the guard is genuinely universal and still reports unavailable, the answer is that this device does not do HealthKit, and your job shifts from fixing to degrading.\n\n## Degrade, do not error\n\nThere is nothing for the user to fix here, so an error dialog is a dead end. What works, as practice:\n\n- **Hide, don't disable.** A greyed-out Health toggle invites a support ticket. On an unsupported device, the Health integration is not a feature that is off; it is a feature that does not exist.\n- **Keep the rest of the app whole.** Anything that does not depend on the store — logging a session by hand, browsing plans, camera-based tracking — should still work. An app that refuses to launch because HealthKit is missing is a self-inflicted outage.\n- **Have an alternative input path.** If your product's core loop needs body or activity data, manual entry or a connected device is the fallback. Cross-platform teams usually solve this at the source layer instead, which is the shape argued in [Apple HealthKit vs Google Health Connect](/fitness-apis/apple-healthkit-vs-google-health-connect).\n- **Log it once, quietly.** It is useful telemetry — how many of your installs cannot use the feature at all — and useless as an alert.\n\n## Do not confuse it with the other silent failures\n\n| What you see | Case | Fixable in code? |\n| --- | --- | --- |\n| Every HealthKit call fails on one device | `errorHealthDataUnavailable` | No — degrade the feature |\n| Every call fails on a managed corporate device | `errorHealthDataRestricted` | No — explain the policy |\n| Calls work, queries return empty | Not an error at all | Sometimes — check the query |\n| Save fails after the user was asked | `errorAuthorizationDenied` | No — route to system settings |\n| Query fails before you ever asked | `errorAuthorizationNotDetermined` | Yes — [request first](/fix/healthkit-authorization-not-determined) |\n\nThe first two of those are the pair Apple's own discussions treat as a set: both tell you to run the same availability check before calling anything else. Everything below the line is a state machine problem inside a device that supports HealthKit perfectly well.\n\n## The watch case\n\nApple lists the case for watchOS too. A watch app is its own process with its own launch, so it needs its own guard rather than inheriting a conclusion the phone reached. The division of labour between the two is set out in [HealthKit on Apple Watch](/watch-apps/healthkit-on-apple-watch).\n\n## Where to go next\n\nThe complete enum, with Apple's wording for each case and an honest marker on the cases Apple never described, is the [HealthKit error reference](/healthkit-errors). For the types you can request once you know the device supports them, use the [HealthKit identifier reference](/healthkit-identifiers). And for the setup this error assumes — capability, usage descriptions, request flow — see the [HealthKit integration guide](/integrate/healthkit).",
+    "faqs": [
+      {
+        "q": "What does errorHealthDataUnavailable actually mean?",
+        "a": "Apple's abstract states that the user accessed HealthKit on an unsupported device. It is a capability fact about the hardware or platform, not a permission decision by the person using it. No retry, reinstall, or new authorization request will change the answer, so your app should treat the Health integration as absent rather than broken on that device."
+      },
+      {
+        "q": "Where should the HealthKit availability check go?",
+        "a": "Apple's discussion says to verify support before calling any other HealthKit method. In practice that means every entry point, not just app launch: widgets, complications, extensions, background wake-ups, deep links, and a watch app all start HealthKit work without running your onboarding. Put the check behind a single accessor that every HealthKit path has to pass through."
+      },
+      {
+        "q": "Does this error mean HealthKit never works on iPad?",
+        "a": "Apple's discussion gives iPad as an example of a device an iOS app can run on that does not support HealthKit. That is an example, not a rule about any particular model or release, so do not hard-code assumptions about hardware. Check availability at runtime and the question never has to be answered in your code."
+      }
+    ],
+    "related": [
+      {
+        "href": "/fix/healthkit-data-restricted-mdm",
+        "label": "HealthKit restricted by an MDM profile"
+      },
+      {
+        "href": "/test/healthkit-integration",
+        "label": "Testing a HealthKit integration"
+      },
+      {
+        "href": "/healthkit-errors",
+        "label": "Every HKError case, in Apple's words"
+      },
+      {
+        "href": "/fix",
+        "label": "Fitness & health API troubleshooting"
+      }
+    ],
+    "cta": {
+      "pitch": "Capability checks, silent failures, and the parts of HealthKit Apple documents in one sentence — we take them apart as we verify them. Subscribe for the next one."
+    },
+    "steps": [
+      {
+        "name": "Confirm which case you have",
+        "text": "Log the error domain and code. An unsupported device and a management-profile restriction arrive in the same catch block and need completely different messages."
+      },
+      {
+        "name": "Find the calling process",
+        "text": "Note whether the failure came from the main app, a widget, an extension, a background wake-up, or the watch app. A failure only outside the main app means missing coverage, not an unsupported device."
+      },
+      {
+        "name": "Route every path through one availability gate",
+        "text": "Put the check behind a single accessor that all HealthKit work goes through, and make the unavailable result a value feature code must handle rather than an early return someone can forget."
+      },
+      {
+        "name": "Hide the feature instead of disabling it",
+        "text": "On an unsupported device the Health integration does not exist. A greyed-out toggle produces support tickets; an absent section does not."
+      },
+      {
+        "name": "Keep the rest of the app working",
+        "text": "Manual logging, plan browsing, and camera-based tracking do not need the store. An app that refuses to function without HealthKit turns a device limitation into an outage."
+      },
+      {
+        "name": "Log it once as telemetry",
+        "text": "Count how many installs cannot use the feature at all, separately from restricted devices and denied permissions. It is useful product data and a useless alert."
+      }
+    ]
+  },
+  {
+    "slug": "healthkit-data-restricted-mdm",
+    "primaryQuery": "healthkit errorhealthdatarestricted mdm",
+    "h1": "HealthKit errorHealthDataRestricted: An MDM Profile Turned HealthKit Off",
+    "metaTitle": "HealthKit Restricted by MDM: Detect and Explain",
+    "metaDescription": "Apple states an MDM profile can disable HealthKit on a managed device. You cannot fix that in code — here is how to detect it and what to tell the user.",
+    "updated": "2026-09-04",
+    "answer": "Apple's documentation states that errorHealthDataRestricted means a Mobile Device Management profile restricts the use of HealthKit on this device. Apple's discussion adds that you should verify the device supports HealthKit before calling any other HealthKit method, because a managed profile can disable it entirely. No code change, permission request, or retry will lift the restriction: only whoever administers the device can. The engineering work is therefore detection and honest messaging — model it as a distinct state, point the user at their administrator rather than at Settings, and keep a manual path so the rest of the app still works.",
+    "body": "Your app works on every device in the office and fails on every device at the customer. The calls come back with `errorHealthDataRestricted`, the user swears they granted permission, and the Health app looks normal to them. Nothing in your code caused this and nothing in your code will undo it: an administrator turned HealthKit off on that device.\n\n## What Apple documents\n\nApple's documentation states the abstract as: \"A Mobile Device Management (MDM) profile restricts the use of HealthKit on this device.\" The discussion adds the mechanism and the defence:\n\n> Because an MDM profile can disable HealthKit on a managed device, always verify that the current device supports HealthKit by calling [the availability check] before calling any other HealthKit methods. If HealthKit is restricted (for example, in an enterprise environment), the methods fail with an [errorHealthDataRestricted] error.\n\nThe bracketed labels are ours — Apple links those symbols inline and the link text does not survive as plain text. The important word in the quote is *methods*, plural: the restriction is not scoped to one type or one operation, it is the framework being switched off underneath you.\n\nNote also that Apple gives this case the same instruction it gives [errorHealthDataUnavailable](/fix/healthkit-health-data-unavailable): check before calling anything else. Two different causes, one guard. That is convenient for your code and misleading for your copy, because the two conditions call for completely different things to say to the person holding the device.\n\n## You detect it; you do not fix it\n\n| Question | Answer |\n| --- | --- |\n| Can the user fix it in Settings? | No |\n| Can the user fix it in the Health app? | No |\n| Can your app request an exception? | No |\n| Who can change it? | Whoever manages the device |\n| Is it worth retrying? | No — it is terminal until policy changes |\n\nThis is the honest frame for the whole page. Everything you can do lives in two places: detect the condition before you build UI on top of it, and tell the truth about it afterwards.\n\n## Where it actually bites\n\nCorporate wellness is the obvious case, and the one where it is most expensive to discover late. You ship a step-challenge or benefits-linked app, the employer distributes it through their management system to managed handsets, and the same profile that pushed your app has HealthKit disabled. Every automatic data path in your product is dead on arrival for that population, while working flawlessly in your own testing. If that is your market, read this alongside [building a corporate wellness app](/build/corporate-wellness-app) before you design the onboarding.\n\nTwo adjacent situations to keep separate in your head:\n\n- **Managed devices in healthcare, education, and finance.** Restriction may be a blanket policy rather than a decision about your app specifically.\n- **Shared or borrowed devices.** A device someone else administers is not a device your user controls, whatever the login says.\n\nAnd one genuinely different failure that produces the same case name: on Apple Vision Pro, our [HealthKit authorization denied](/fix/healthkit-authorization-denied) guide records Apple's statement that a write attempted during a Guest User session fails with `errorNotPermissibleForGuestUserMode`, or with `errorHealthDataRestricted` on apps running in iOS 17. So a restricted error on that platform may be a guest session rather than a management profile — the details are in [Guest User mode](/fix/healthkit-guest-user-mode).\n\n## Diagnosis order\n\n1. **Log the exact code.** `errorHealthDataRestricted` and `errorHealthDataUnavailable` arrive at the same catch block and mean different things. If you collapse them into one \"HealthKit unavailable\" branch, your support team can never tell a corporate policy from an unsupported device.\n2. **Ask one question in your support flow.** \"Is this device managed by your employer or school?\" resolves most of these tickets in a single reply, and no log line does it faster.\n3. **Check the population, not the device.** If failures cluster by employer, domain, or enrolment cohort, you are looking at policy. If they are scattered across consumer installs, look at capability and setup instead.\n4. **Stop retrying.** A restriction does not lift because you asked again in an hour. Retry logic here just consumes background execution time you could spend on the users who can actually sync — see [background sync](/architecture/background-sync) for where that budget goes.\n\n## What to build instead, as practice\n\n- **A distinct state, not an error toast.** Model \"HealthKit restricted on this device\" as a real state in your app alongside \"not connected\" and \"connected\", and render it as an explanation rather than a failure.\n- **Copy that points at the right person.** Something like: this device's management profile has Health access turned off, so automatic tracking is unavailable; your IT administrator controls this setting. Do not send the user to Settings for a switch that is not there, and do not imply they did something wrong.\n- **A manual path that keeps the product usable.** Manual logging, a connected sensor, or camera-based tracking keeps the core loop alive without the store. Losing automation should not mean losing the app.\n- **Admin-facing documentation.** If you sell to employers, the buyer is the person who can change the policy. A short page telling their administrator which capability your app needs is worth more than any in-app message.\n- **Honest analytics.** Count restricted devices separately from unavailable ones and from denied permissions. Three causes, three numbers; blending them hides a fixable commercial problem inside an unfixable technical one.\n\n## Symptom to action\n\n| What you observe | Likely case | Who can change it |\n| --- | --- | --- |\n| All HealthKit calls fail on managed devices only | `errorHealthDataRestricted` | The device administrator |\n| All calls fail on one personal device | `errorHealthDataUnavailable` | Nobody — unsupported device |\n| Writes fail on Vision Pro, status says authorized | Guest session | The device owner |\n| Save fails after the permission sheet | `errorAuthorizationDenied` | The user, in system settings |\n| Query fails and you never requested | `errorAuthorizationNotDetermined` | You — [ask first](/fix/healthkit-authorization-not-determined) |\n\n## Where to go next\n\nApple's full wording for every case in the enum is collected in the [HealthKit error reference](/healthkit-errors), and the cases Apple ships with no description at all are handled in [undocumented HealthKit errors](/fix/healthkit-undocumented-errors). If you are still wiring the happy path, the [HealthKit integration guide](/integrate/healthkit) covers the setup this error interrupts.",
+    "faqs": [
+      {
+        "q": "Can my app do anything about a HealthKit MDM restriction?",
+        "a": "No. Apple's abstract describes it as a Mobile Device Management profile restricting the use of HealthKit on the device. There is no API to request an exception, no toggle in Settings or the Health app for the user, and nothing that changes on retry. Only the administrator who manages the device can change the policy."
+      },
+      {
+        "q": "How do I tell a restricted device from an unsupported one?",
+        "a": "By the error case, which is why they need separate log lines. Apple describes errorHealthDataRestricted as a management-profile restriction and errorHealthDataUnavailable as an unsupported device. Both fail every call and both tell you to run the same availability check first, but only one of them has a human on the other end who can change the answer."
+      },
+      {
+        "q": "What should I show a user on a managed device?",
+        "a": "As a practice, an explanation rather than an error. Say that this device's management profile has Health access turned off, that automatic tracking is unavailable, and that their IT administrator controls the setting. Do not send them to Settings for a switch that is not there, and offer a manual path so the app stays usable."
+      }
+    ],
+    "related": [
+      {
+        "href": "/fix/healthkit-health-data-unavailable",
+        "label": "HealthKit unavailable on this device"
+      },
+      {
+        "href": "/build/corporate-wellness-app",
+        "label": "Building a corporate wellness app"
+      },
+      {
+        "href": "/healthkit-errors",
+        "label": "Every HKError case, in Apple's words"
+      },
+      {
+        "href": "/fix",
+        "label": "Fitness & health API troubleshooting"
+      }
+    ],
+    "cta": {
+      "pitch": "Managed devices, guest sessions, and the other environments where your integration is switched off before it starts — we document them as we verify them. Subscribe for the next breakdown."
+    },
+    "steps": [
+      {
+        "name": "Log the exact error case",
+        "text": "Keep errorHealthDataRestricted and errorHealthDataUnavailable in separate branches and separate counters. Collapsing them hides a commercial problem inside a technical one."
+      },
+      {
+        "name": "Ask one question in support",
+        "text": "Adding is this device managed by your employer or school to your support flow resolves most of these tickets faster than any log line."
+      },
+      {
+        "name": "Look at the population, not the device",
+        "text": "If failures cluster by employer, domain, or enrolment cohort, it is policy. If they are scattered across consumer installs, look at device capability and app setup instead."
+      },
+      {
+        "name": "Stop retrying",
+        "text": "A restriction does not lift because you asked again later. Retry logic here spends background execution budget that users who can sync would otherwise get."
+      },
+      {
+        "name": "Model restricted as a real app state",
+        "text": "Render it alongside not connected and connected, with copy that points at the administrator rather than blaming the user or their settings."
+      },
+      {
+        "name": "Keep a manual path and brief the buyer",
+        "text": "Manual logging or a connected sensor keeps the core loop alive, and a short admin-facing note tells the person who can actually change the policy what your app needs."
+      }
+    ]
+  },
+  {
+    "slug": "healthkit-error-no-data",
+    "primaryQuery": "healthkit errornodata",
+    "h1": "HealthKit errorNoData: The Query Ran and Found Nothing",
+    "metaTitle": "HealthKit errorNoData: Empty Is Not Broken",
+    "metaDescription": "Apple returns errorNoData when a query has nothing to compute over. How it differs from a silent empty read, and why it usually is not a bug at all.",
+    "updated": "2026-09-04",
+    "answer": "Apple's documentation states that errorNoData means data is unavailable for the requested query and predicate, and that the system therefore cannot calculate the query's result. It is an explicit answer, not a silent one: HealthKit is telling you the window you asked about had nothing to compute from. That makes it different from an empty sample query, which returns no error and cannot distinguish a denied read from a type nobody has ever written to. In most cases the right handling is an empty state rather than an error, with no retry and no permission prompt.",
+    "body": "Your statistics query does not come back empty. It comes back with an error — `errorNoData` — and the instinct is to treat that as a failure, log it loudly, and show the user something apologetic. Usually it is none of those things. In most cases it is HealthKit telling you, correctly, that there is nothing in the window you asked about.\n\n## What Apple documents\n\nApple's documentation states the abstract as: \"Data is unavailable for the requested query and predicate.\" The discussion is where the useful precision lives:\n\n> This error indicates that no data exists that corresponds to a particular query, so the system can't calculate the query's result. [Statistics] queries return this error when HealthKit can't return the data needed to calculate the statistics.\n\nThe bracket is ours: Apple links a query class inline there and the link label is lost in plain-text extraction, but the sentence's own words tell you the shape — this is the error you get when a query has to *compute* something and has nothing to compute from. A sum of zero samples is not zero; it is undefined, and Apple returns an error instead of inventing a number.\n\nTwo more facts worth keeping straight. Apple's abstract names the *query and predicate* together, so the error is scoped to what you asked for, not to the type in general. And this case is newer than most of the enum: Apple's platform list introduces it at iOS 14.0 and watchOS 7.0, which is why older codebases handle every query failure as one undifferentiated blob.\n\n## The distinction that matters: an error is not silence\n\nThis page owns one half of a pair, so let us be exact about the split.\n\n| What you get back | What it tells you |\n| --- | --- |\n| `errorNoData` from a statistics-style query | The query had nothing to compute over |\n| An empty array, no error, from a sample query | Nothing at all — see below |\n| A partial series with a recent start date | Possibly a limited-history grant |\n| A genuine failure code | A capability, lock, or authorization problem |\n\nThe second row is the trap. A sample query that returns empty is genuinely ambiguous — a denied read looks identical to a type nobody has ever written to. Our [HealthKit returning no data](/fix/healthkit-no-data) guide is the isolation procedure for that silence, and [what \"no data\" actually means](/blog/no-data-means-four-things) separates the distinct conditions that all render as nothing on screen. Neither of those is this page. Here, HealthKit told you something.\n\nThe other side of the pair is the state machine: if you never requested authorization at all, you get a different case entirely, covered in [errorAuthorizationNotDetermined](/fix/healthkit-authorization-not-determined).\n\n## Diagnosis order\n\n1. **Confirm the code is really `errorNoData`.** A single `catch` that logs \"query failed\" makes every case on this page indistinguishable. Log the raw domain and code before anything else; the argument for that discipline generalises in [undocumented HealthKit errors](/fix/healthkit-undocumented-errors).\n2. **Widen the predicate.** Re-run the same query over a much larger window. If results appear, the error was accurate and your window was empty — that is a UI question, not a bug. If it still errors with everything open, keep going.\n3. **Check the type, not the query.** Many identifiers are simply never populated on most devices: nothing writes them unless a specific sensor or app is present. Check the type against the [HealthKit identifier reference](/healthkit-identifiers) and ask whether any source on that device would plausibly produce it.\n4. **Check your day boundaries.** A window computed in UTC against samples recorded in local time can land squarely between the data. This is the most common self-inflicted version of \"no data\", and the failure mode is laid out in [timezones and day boundaries](/architecture/timezones-and-day-boundaries).\n5. **Check whether the store was even readable.** If the device was locked when the background job ran, you would see `errorDatabaseInaccessible` instead — a different failure with a retry policy attached, covered in [HealthKit database inaccessible](/fix/healthkit-database-inaccessible).\n6. **Consider that the read may be granted and the history short.** A grant limited to recent history returns a real result set that simply starts later than you expected; that behaviour and the one authorization state you can positively identify are documented in [HealthKit authorization denied](/fix/healthkit-authorization-denied).\n\n## Handling it, as practice\n\n- **Emptiness is a state, not an exception.** Render \"no data for this period\" as an ordinary result of the screen. An error dialog for a day the user did not wear their watch is a bug in your product, not in theirs.\n- **Do not coerce it to zero.** Writing a zero into your own store because a statistics query had nothing to average is how a rest day becomes a data point. That distinction has to survive all the way into your storage layer — the argument is in [missing data and gaps](/architecture/missing-data-and-gaps).\n- **Do not retry.** Nothing about the store changes between one attempt and the next. A retry loop against an empty window is pure battery cost.\n- **Do not treat it as a permissions signal.** It is tempting to show a \"grant access\" prompt when a query errors, and it is wrong: this error can arrive with perfect permissions, and re-prompting after a decision does nothing anyway.\n- **Separate it in telemetry.** Count `errorNoData` apart from real faults. If it is the top \"error\" in your dashboard, your dashboard is measuring user behaviour rather than reliability. Related reading: [the HealthKit error that never fires](/blog/healthkit-error-that-never-fires).\n\n## Symptom to action\n\n| What you observe | What it means | What to do |\n| --- | --- | --- |\n| Error on a narrow window, results on a wide one | Genuinely empty period | Render an empty state |\n| Error on every window for one type | Nothing writes that type on that device | Check the identifier and sources |\n| Error only in a background run | Possibly a locked store | Check for the database-inaccessible case |\n| Empty array with no error | Ambiguous by design | Run the write-then-read isolation |\n| Results start unexpectedly recently | Possibly a limited-history grant | Use the authorized start date |\n\n## Where to go next\n\nThe complete enum with Apple's own wording sits in the [HealthKit error reference](/healthkit-errors). If your problem is the ambiguous, silent version rather than this explicit one, start from [HealthKit returning no data](/fix/healthkit-no-data). And if you are building the pipeline that has to survive both across thousands of users, the [HealthKit integration guide](/integrate/healthkit) covers the plumbing underneath.",
+    "faqs": [
+      {
+        "q": "Is errorNoData a bug in my query?",
+        "a": "Usually not. Apple's abstract states that data is unavailable for the requested query and predicate, and the discussion says no data exists that corresponds to the query, so the system cannot calculate a result. Widen the window and re-run: if results appear, the original window was genuinely empty and your app should render an empty state."
+      },
+      {
+        "q": "How is this different from a HealthKit query that returns an empty array?",
+        "a": "An empty array carries no error and no information: a denied read looks exactly like a type with no samples, because Apple hides read authorization by design. errorNoData is an explicit statement that a computation had nothing to work from. One is ambiguous silence you have to isolate; the other is an answer you can act on directly."
+      },
+      {
+        "q": "Should I ask the user for permission when I get errorNoData?",
+        "a": "No. The error can arrive with permissions in perfect order, and re-requesting authorization after the user has already decided does not present the sheet again anyway. Treat it as a data question instead: check the window, the day boundaries, and whether anything on that device ever writes the type you asked for."
+      }
+    ],
+    "related": [
+      {
+        "href": "/fix/healthkit-no-data",
+        "label": "HealthKit returning no data"
+      },
+      {
+        "href": "/blog/no-data-means-four-things",
+        "label": "What no data actually means"
+      },
+      {
+        "href": "/architecture/missing-data-and-gaps",
+        "label": "Handling missing data and gaps"
+      },
+      {
+        "href": "/fix",
+        "label": "Fitness & health API troubleshooting"
+      }
+    ],
+    "cta": {
+      "pitch": "Empty, denied, unasked, and unavailable all look the same on screen and mean different things. We separate them as we verify them — subscribe for the next breakdown."
+    },
+    "steps": [
+      {
+        "name": "Confirm the code is really errorNoData",
+        "text": "Log the raw domain and code. A single catch block that reports query failed makes an empty period indistinguishable from a locked store or a rejected argument."
+      },
+      {
+        "name": "Widen the predicate",
+        "text": "Re-run the same query over a much larger window. Results appearing means the error was accurate and your window was empty, which is a UI question rather than a bug."
+      },
+      {
+        "name": "Check whether anything writes that type",
+        "text": "Many identifiers are never populated unless a specific sensor or source app is present. Check the type in the identifier reference before assuming the query is at fault."
+      },
+      {
+        "name": "Check your day boundaries",
+        "text": "A window computed in one time zone against samples recorded in another can land between the data. This is the most common self-inflicted version of no data."
+      },
+      {
+        "name": "Rule out a locked store",
+        "text": "If the failure only happens in background runs, look for the database-inaccessible case instead, which is transient and deserves a retry after unlock."
+      },
+      {
+        "name": "Render emptiness, do not coerce it",
+        "text": "Show no data for this period as an ordinary result, and never write a zero into your own store because a statistic had nothing to average. A rest day is not a data point."
+      }
+    ]
+  },
+  {
+    "slug": "healthkit-invalid-argument",
+    "primaryQuery": "healthkit errorinvalidargument",
+    "h1": "HealthKit errorInvalidArgument: Finding the Argument HealthKit Rejected",
+    "metaTitle": "HealthKit errorInvalidArgument: What to Check",
+    "metaDescription": "Apple documents one sentence and no discussion here. What that sentence supports, plus the argument surfaces worth checking, kept clearly apart.",
+    "updated": "2026-09-04",
+    "answer": "Apple's documentation states one sentence for errorInvalidArgument — the app passed an invalid argument to the HealthKit API — and publishes no discussion paragraph. So Apple tells you an argument was rejected, and nothing about which one or why. In practice the constraint usually lives in the type rather than the call: an aggregation the type does not support, a unit from the wrong family, a predicate filtering on something the type does not have, or a reversed date range. Treat it as a programming error rather than an environmental one, log the arguments you passed, and reduce the call until the failure disappears.",
+    "body": "`errorInvalidArgument` is the bluntest case in the enum. Apple's documentation states one sentence — \"The app passed an invalid argument to the HealthKit API.\" — and stops. There is no discussion paragraph, no list of offending arguments, and no hint about which of the several things you handed the framework it disliked. So this page does two separate jobs: it says exactly what Apple documents, and then, clearly separated from that, it walks the argument surfaces worth checking in practice.\n\n## What Apple documents\n\nThe abstract quoted above is the entire published description of the case. Apple's platform list carries it back to the earliest HealthKit releases — iOS 8.0 and watchOS 2.0 — which fits a general-purpose validation failure rather than a feature-specific one. It is grouped with the other accessing errors in the [HKError reference](/healthkit-errors).\n\nWhat Apple does *not* say is which argument, why, or whether the same call would succeed with different inputs. Any page that tells you \"this error means your unit was wrong\" is filling that gap with inference. The rest of this one is inference too, and labelled as such — a checklist of what to inspect, not a claim about what the framework decided.\n\n## Read the error like a compiler diagnostic you cannot see\n\nThe mental model that works: something you passed did not satisfy a constraint that lives in the *type*, not in the call. HealthKit types carry their own rules about how they may be aggregated, what units they accept, and what may be attached to them, and a call that violates one of those rules is invalid regardless of how well-formed your code looks.\n\nThat reframes debugging. Instead of re-reading the call site, go and read the definition of the type you passed to it. The full set, with each identifier's own characteristics, is in the [HealthKit identifier reference](/healthkit-identifiers).\n\n## The argument surfaces worth checking, in order\n\n| Surface | What to verify |\n| --- | --- |\n| Type and aggregation option | The option you asked for is one the type supports |\n| Unit | The unit belongs to the type's unit family |\n| Predicate | It filters on something the type actually has |\n| Date range | Start precedes end, and both are real dates |\n| Statistics options | Compatible with each other, not just with the type |\n| Sample construction | Value, unit, and interval agree with the type's shape |\n\n### 1. Cumulative versus discrete\n\nThis is the classic, and it is worth understanding rather than memorising. Some quantity types accumulate across an interval, so the sensible aggregation is a sum. Others are point measurements sampled repeatedly, so the sensible aggregation is an average, a minimum, or a maximum. Ask a running total from a type that is a series of independent readings, or an average from a counter, and you are asking for something the type has no definition for.\n\nThe split runs through the whole identifier catalogue, and getting it wrong is the single most common source of both invalid arguments and quietly nonsensical numbers. [Sum or average](/blog/healthkit-sum-or-average) works through which types fall on which side and why it matters for the figure you put on screen.\n\n### 2. Units from the wrong family\n\nEach quantity type belongs to a unit family — a length, a mass, an energy, a count, a duration. Converting within the family is fine; presenting a value in a unit from another family is not a conversion at all. Check the unit family the identifier declares before you construct a quantity or format a result, especially in code paths that build units from user preferences or from a string.\n\n### 3. Predicates that do not apply\n\nA predicate filtering on a property the type does not carry is an invalid argument even though it compiles. This bites most often in generic query layers where one builder serves every type: the code path that adds a workout-specific filter runs against a quantity type, and the framework rejects it.\n\n### 4. Dates and intervals\n\nVerify start precedes end, that neither is a placeholder left over from an initialiser, and that an interval you supply for a bucketed query is positive. Day-boundary code that produces reversed or zero-width windows around daylight-saving changes is a real source of this — [timezones and day boundaries](/architecture/timezones-and-day-boundaries) covers why those calculations go wrong.\n\n### 5. Anything constructed from configuration\n\nTypes, units, and options assembled from a server response, a feature flag, or a saved preference are the arguments least likely to have been exercised by your tests. If the failure only happens for some users, look here first.\n\n## A diagnosis procedure\n\n1. **Log the full error, including the domain and code.** Then log the arguments you passed — type identifier, unit, options, predicate description, and window — as a single structured line. Most invalid-argument bugs are solved by reading that line, not by stepping through the code.\n2. **Reduce to the smallest call that still fails.** Strip the predicate, then the options, then narrow to one type. The argument you remove that makes the error disappear is your answer.\n3. **Rebuild from a known-good call.** Take a query you know works for a type of the same shape and swap one thing at a time.\n4. **Check the type's own documentation last.** By this point you know which argument is implicated, so you are looking up one fact rather than reading everything.\n5. **Add a test at the boundary.** Every generic query builder should have coverage for each family of type it can be handed; [testing a HealthKit integration](/test/healthkit-integration) is where that harness belongs.\n\n## Do not paper over it\n\n`errorInvalidArgument` is a programming error, not an environmental one, and it deserves the opposite handling from the runtime cases elsewhere in this cluster. A locked store is worth retrying and an unsupported device is worth degrading around, but a rejected argument will be rejected identically forever. Catching it and returning an empty result is how a permanent bug turns into a mysterious data gap that nobody can reproduce — and how it ends up misdiagnosed later as [no data](/fix/healthkit-error-no-data). Fail loudly in development, report it in production, and never silence it.\n\nBecause Apple publishes so little here, be careful about what you write in your own logs as well. \"Invalid argument — probably the unit\" is a guess that the next engineer will read as a finding. Record the arguments and let them draw the conclusion; the case for keeping raw codes and inferences apart is made in [undocumented HealthKit errors](/fix/healthkit-undocumented-errors).\n\n## Where to go next\n\nApple's wording for every case sits in the [HealthKit error reference](/healthkit-errors), the type catalogue is at [HealthKit identifiers](/healthkit-identifiers), and the surrounding setup is in the [HealthKit integration guide](/integrate/healthkit).",
+    "faqs": [
+      {
+        "q": "What does Apple say causes errorInvalidArgument?",
+        "a": "Only that the app passed an invalid argument to the HealthKit API. That abstract is the entire published description; there is no discussion paragraph naming which arguments qualify. Any source that tells you the case specifically means a unit problem or an options problem is inferring. Useful inference, but it should be labelled as inference rather than documentation."
+      },
+      {
+        "q": "Why do cumulative and discrete types cause invalid arguments?",
+        "a": "Because the aggregation you ask for has to be one the type can define. A type that accumulates over an interval supports a running total; a type that is a series of independent readings supports averages, minimums, and maximums. Asking a counter for an average, or a set of point readings for a sum, is asking for something undefined."
+      },
+      {
+        "q": "Should I catch errorInvalidArgument and return an empty result?",
+        "a": "No. Unlike a locked store or an unsupported device, a rejected argument will be rejected the same way forever, so catching it silently converts a permanent bug into a mysterious data gap nobody can reproduce. Fail loudly in development, report it in production, and log the arguments you passed alongside the code."
+      }
+    ],
+    "related": [
+      {
+        "href": "/healthkit-identifiers",
+        "label": "Every HealthKit type identifier"
+      },
+      {
+        "href": "/blog/healthkit-sum-or-average",
+        "label": "Sum or average: cumulative vs discrete"
+      },
+      {
+        "href": "/healthkit-errors",
+        "label": "Every HKError case, in Apple's words"
+      },
+      {
+        "href": "/fix",
+        "label": "Fitness & health API troubleshooting"
+      }
+    ],
+    "cta": {
+      "pitch": "We keep a verified map of every HealthKit type, its aggregation style, and its unit family, and we show the sentence each value came from. Subscribe as we extend it."
+    },
+    "steps": [
+      {
+        "name": "Log the arguments, not just the error",
+        "text": "Record the type identifier, unit, options, predicate description, and window as one structured line beside the raw error code. Most of these bugs are solved by reading that line."
+      },
+      {
+        "name": "Check the aggregation against the type",
+        "text": "Confirm the option you asked for is one the type can define. Cumulative and discrete types support different aggregations, and mixing them up is the classic cause."
+      },
+      {
+        "name": "Check the unit family",
+        "text": "Each quantity type belongs to a unit family. Converting inside the family is fine; presenting a value in a unit from another family is not a conversion at all."
+      },
+      {
+        "name": "Check the predicate and the dates",
+        "text": "Verify the predicate filters on something the type actually has, that start precedes end, and that no placeholder date survived from an initialiser."
+      },
+      {
+        "name": "Reduce to the smallest failing call",
+        "text": "Strip the predicate, then the options, then narrow to one type. The argument whose removal makes the error disappear is your answer."
+      },
+      {
+        "name": "Add a test at the boundary",
+        "text": "Any generic query builder should be covered for each family of type it can be handed, especially where types or units are assembled from configuration rather than written in code."
+      }
+    ]
+  },
+  {
+    "slug": "healthkit-authorization-not-determined",
+    "primaryQuery": "healthkit errorauthorizationnotdetermined",
+    "h1": "HealthKit errorAuthorizationNotDetermined: You Called Before You Asked",
+    "metaTitle": "Fix HealthKit errorAuthorizationNotDetermined",
+    "metaDescription": "Not determined means nobody has been asked yet, not that the user said no. The ordering rule Apple documents, and the entry points that keep breaking it.",
+    "updated": "2026-09-04",
+    "answer": "Apple's documentation states that errorAuthorizationNotDetermined means the app has not yet asked the user for the authorization required to complete the task, and that it occurs when your app does not request proper authorization before calling any other HealthKit method. It is not a refusal: nobody has been asked. That distinguishes it from a denied write, which Apple describes as the user not having given the app permission to save data. The fix is ordering, and the usual cause is coverage — a widget, extension, background wake-up, watch app, or newly added type that reaches the store without passing through the request you wrote for your onboarding flow.",
+    "body": "`errorAuthorizationNotDetermined` is the one HealthKit error that is unambiguously your fault, and that is good news: it is also the one you can fix outright. It does not mean the user said no. It means nobody has been asked yet, and your code went ahead anyway.\n\n## What Apple documents\n\nApple's documentation states the abstract as: \"The app hasn't yet asked the user for the authorization required to complete the task.\" The discussion names the cause directly:\n\n> This error occurs when your app doesn't request proper authorization before calling any other HealthKit methods. For more information on setting up HealthKit, see HealthKit.\n\nNote the phrasing \"before calling any other HealthKit methods\" — the same ordering instruction Apple attaches to the device-capability cases. HealthKit's setup contract is sequential, and this error is what the framework returns when you break the sequence.\n\nCompare the abstract with the neighbouring case. Apple describes `errorAuthorizationDenied` as \"the user hasn't given the app permission to save data\", and its discussion states that the error \"occurs only when your app attempts to save data\". The two cases sit at different points of the same state machine, and conflating them produces the two worst UX outcomes in this whole area: nagging someone who already decided, and silently giving up on someone who was never asked.\n\n## The state machine, stated plainly\n\n| State | How you got here | The right move |\n| --- | --- | --- |\n| Never asked | Your code called before requesting | Request authorization |\n| Asked, user allowed the write | The sheet was shown and accepted | Proceed |\n| Asked, user refused the write | The sheet was shown and refused | Stop saving; route to system settings |\n| Asked, read outcome unknown | Always, for reads | Query and handle whatever comes back |\n\nThe last row is the asymmetry that makes HealthKit unlike every OAuth-shaped permission model your team has built before: the read side never reports its outcome. That is deliberate, and the reasoning plus the one exception are set out in [HealthKit authorization denied](/fix/healthkit-authorization-denied). The consequence for this page is narrow but important — \"not determined\" is a statement about *your request*, not about the user's answer.\n\n## Why perfectly correct code still hits it\n\nNobody writes a query before a request on purpose. It happens because a modern app has several front doors, and only one of them runs your onboarding.\n\n- **A widget or complication reload** wakes an extension that never saw your first-run flow.\n- **A background delivery wake-up** runs your sync path in a process that started from nothing; if the wake-up path calls the store before the request, this is the error you get. The wiring is covered in [HealthKit background delivery not working](/fix/healthkit-background-delivery-not-working).\n- **A watch app launched from the wrist** is its own process with its own lifecycle, described in [HealthKit on Apple Watch](/watch-apps/healthkit-on-apple-watch).\n- **A deep link into a detail screen** skips the onboarding stack the user would otherwise have walked through.\n- **A newly added type.** This is the subtle one: authorization is per type, so shipping a feature that reads a type you never included in the original request puts that type — and only that type — back in the never-asked state for every existing install.\n- **A race at launch.** A request in flight while a query fires from a different task is, from HealthKit's point of view, a query before a request.\n\n## Diagnosis order\n\n1. **Log which type failed.** If a subset of types fails and the rest work, you are almost certainly in the newly-added-type case, and the fix is to include it in your request set rather than to touch anything else.\n2. **Log which process failed.** Main app, extension, watch app, background wake-up. If it is never the main app, your request lives in the wrong place.\n3. **Check the ordering, not the outcome.** The question is whether a request completed before the call, not whether it was granted. A request that was fired but not awaited has not completed.\n4. **Do not re-prompt as a workaround.** Our [authorization denied](/fix/healthkit-authorization-denied) guide records Apple's documented behaviour that if the user has already decided every requested type, the request returns without prompting. A \"grant access\" button that re-requests will do nothing visible and leave the user stuck.\n5. **Separate this from empty results.** If your query *runs* and returns nothing, you are not in this case at all; that is the ambiguity handled in [HealthKit returning no data](/fix/healthkit-no-data), and the distinct conditions that all look like nothing are enumerated in [what \"no data\" actually means](/blog/no-data-means-four-things). The explicit, computed version of emptiness has its own case in [errorNoData](/fix/healthkit-error-no-data).\n\n## Fixing it, as practice\n\n- **Put the request behind one gate.** Every path that touches the store — app, widget, watch, background task — goes through a single accessor that guarantees a completed request first. Repeating the request logic per entry point guarantees one gets forgotten.\n- **Request the full set once, not type by type.** Declaring everything the feature needs up front avoids a second sheet later and keeps the never-asked state from reappearing per feature.\n- **Treat a type addition as a migration.** When you add a type in a release, existing users need a fresh request for it. Plan the moment you will ask, rather than discovering it in crash-free-but-empty telemetry.\n- **Await the request before the first call.** In background paths especially, make the ordering structural rather than incidental.\n- **Never assume the request means yes.** A completed request moves you out of not-determined; it says nothing about what the user chose on the read side.\n- **Never gate reads on an authorization check.** Run the query, render what comes back, and accept empty as a legitimate answer.\n\n## Symptom to action\n\n| What you observe | Case | Fix |\n| --- | --- | --- |\n| Save fails, you never requested | `errorAuthorizationNotDetermined` | Request first, then save |\n| Save fails after the sheet | `errorAuthorizationDenied` | Route the user to system settings |\n| One new type fails, others work | Not requested for that type | Add it to the request set |\n| Only the extension fails | Request missing on that path | Gate every entry point |\n| Query returns empty, no error | Not this case | Isolate with a write-then-read test |\n\n## Where to go next\n\nApple's wording for every case in the enum is collected in the [HealthKit error reference](/healthkit-errors); the types you can put in a request set are listed in the [HealthKit identifier reference](/healthkit-identifiers); and if the types you need are clinical records, the request is a different class of authorization with an all-or-nothing failure, covered in [required authorization denied](/fix/healthkit-required-authorization-denied). The setup around all of it is in the [HealthKit integration guide](/integrate/healthkit).",
+    "faqs": [
+      {
+        "q": "Does not determined mean the user denied my app?",
+        "a": "No. Apple's abstract states the app has not yet asked the user for the authorization required to complete the task. Nobody has made a decision. A refused write is a different case, which Apple describes as the user not having given permission to save data, and its discussion notes it occurs only when your app attempts to save."
+      },
+      {
+        "q": "Why does this happen when my onboarding already requests authorization?",
+        "a": "Because your onboarding is not the only way into HealthKit code. Widgets, extensions, background delivery wake-ups, a watch app launched from the wrist, and deep links can all make the first call in a process. Authorization is also per type, so a feature that reads a type missing from your original request set is back in the never-asked state."
+      },
+      {
+        "q": "Can I just request authorization again to clear it?",
+        "a": "Requesting is exactly right when the state really is not determined. It is the wrong reflex once decisions have been made: Apple documents that if the user has already chosen for all the specified types, HealthKit returns the request without prompting. A grant access button that re-requests then does nothing visible and leaves the user stuck."
+      }
+    ],
+    "related": [
+      {
+        "href": "/fix/healthkit-authorization-denied",
+        "label": "HealthKit authorization denied"
+      },
+      {
+        "href": "/blog/no-data-means-four-things",
+        "label": "What no data actually means"
+      },
+      {
+        "href": "/integrate/healthkit",
+        "label": "Integrate Apple HealthKit"
+      },
+      {
+        "href": "/fix",
+        "label": "Fitness & health API troubleshooting"
+      }
+    ],
+    "cta": {
+      "pitch": "HealthKit's permission model punishes ordering mistakes quietly, in the paths you test least. We take the documentation apart as we verify it — subscribe for the next breakdown."
+    },
+    "steps": [
+      {
+        "name": "Log which type failed",
+        "text": "If a subset of types fails while the rest work, you are in the newly-added-type case and the fix is to include it in your request set, not to change anything else."
+      },
+      {
+        "name": "Log which process failed",
+        "text": "Main app, extension, widget, watch app, or background wake-up. If the main app never fails, your request lives in the wrong place."
+      },
+      {
+        "name": "Check ordering, not outcome",
+        "text": "The question is whether a request completed before the call, not whether it was granted. A request that was fired but never awaited has not completed."
+      },
+      {
+        "name": "Put the request behind one gate",
+        "text": "Route every path that touches the store through a single accessor that guarantees a completed request first, instead of repeating the logic per entry point."
+      },
+      {
+        "name": "Treat adding a type as a migration",
+        "text": "Existing installs need a fresh request when you add a type in a release. Plan when you will ask rather than discovering it in empty-but-crash-free telemetry."
+      },
+      {
+        "name": "Never gate reads on an authorization check",
+        "text": "A completed request tells you nothing about the read side. Run the query, render what comes back, and accept an empty result as a legitimate answer."
+      }
+    ]
+  },
+  {
+    "slug": "healthkit-required-authorization-denied",
+    "primaryQuery": "healthkit errorrequiredauthorizationdenied",
+    "h1": "HealthKit errorRequiredAuthorizationDenied: Clinical Records Are a Separate Class",
+    "metaTitle": "HealthKit Required Authorization Denied: Fix",
+    "metaDescription": "Required clinical record types fail as a block, and Apple does not say which one was refused. How to scope the requirement and degrade around a refusal.",
+    "updated": "2026-09-04",
+    "answer": "Apple's documentation states that errorRequiredAuthorizationDenied means the user has not granted the application authorization to access all the required clinical record types. The load-bearing word is all: this is not one refused permission but an incomplete set. Apple's discussion adds that you specify those required clinical record types with an Info.plist key, so the requirement lives in your app's configuration rather than in the request itself. Because Apple states the system does not tell your app which record types were denied, the only real lever you have is declaring fewer required types and designing a path that still works without them.",
+    "body": "Authorization succeeded in testing and fails for real users with `errorRequiredAuthorizationDenied`, and nothing you change in your request set seems to help. This case does not behave like the rest of HealthKit's permission model: it belongs to clinical record types, it is declared in your app's configuration rather than in the request itself, and it fails as a block rather than per type.\n\n## What Apple documents\n\nApple's documentation states the abstract as: \"The user hasn't granted the application authorization to access all the required clinical record types.\" The discussion is a single sentence:\n\n> You can specify required clinical record types using the [required-read-authorization] Info.plist key.\n\nThe bracket is ours — Apple links the key by name and that label does not survive extraction to plain text. Apple's platform list introduces the case at iOS 12.0 and watchOS 5.0, later than the original accessing errors, which matches its scope: it exists for the clinical-records feature specifically.\n\nRead the abstract closely, because the load-bearing word is **all**. This is not a report that a permission was refused. It is a report that the set you declared as required was not granted in full.\n\nTwo further points are documented by Apple and quoted in our [HealthKit authorization denied](/fix/healthkit-authorization-denied) guide: Apple says to specify three or more types under that key, and that when authorization fails this way, \"the system doesn't tell your app which record types the person denied access to\". So you learn that the requirement was not met, and nothing about which part of it failed.\n\n## Why this is a separate authorization class\n\nOrdinary HealthKit permissions are granular and independent. Each type has its own read and share decision, a refusal on one has no effect on another, and — as covered in the authorization guide — refusals on the read side are invisible by design. Required clinical types invert several of those properties at once.\n\n| Property | Ordinary types | Required clinical types |\n| --- | --- | --- |\n| Where declared | In the authorization request | In the app's Info.plist |\n| Granularity of failure | Per type | The whole declared set |\n| What you learn on refusal | Nothing, on the read side | That the set was incomplete |\n| Which type was refused | Not applicable | Apple states the system does not tell you |\n| Recovery inside your app | None | None |\n\nThe practical consequence: this key is a hard product requirement expressed in configuration. Whatever you list there, you are declaring that your app cannot function without all of it, and the system enforces that literally.\n\n## Diagnosis order\n\n1. **Confirm the case.** `errorRequiredAuthorizationDenied` is not `errorAuthorizationDenied` and not `errorAuthorizationNotDetermined`. The first means a required set was incomplete; the second is a refused write; the third means you never asked, and is covered in [errorAuthorizationNotDetermined](/fix/healthkit-authorization-not-determined). If your logging collapses them, split it before anything else.\n2. **Read your own declaration.** Open the built app's property list and read the required-types entry as shipped, not as you remember writing it. A list assembled during the build, or inherited from a template, is the usual surprise.\n3. **Ask whether every entry is genuinely required.** This is the real question. Each type you list is another chance for a single refusal to fail the entire authorization for that user.\n4. **Check Apple's minimum for the key.** Per the guidance quoted above, Apple says to specify three or more types.\n5. **Segment your failures.** If the error is concentrated among users of one health system or record source, you are looking at record availability rather than at a code defect.\n\n## Scope the requirement, then degrade around it\n\nThe only real lever you have is what you declare. As practice:\n\n- **Declare the minimum that makes the app impossible without.** If a feature is enhanced by clinical records but not defined by them, those types do not belong in the required set. Requesting them normally means a refusal costs you one feature instead of the whole session.\n- **Design a non-clinical path.** Activity, workout, and body-measurement data flow through the ordinary model, so an app whose core loop rests on those keeps working when the clinical request fails. The types available to you are catalogued in the [HealthKit identifier reference](/healthkit-identifiers).\n- **Explain, then stop.** There is no API to change a permission on someone's behalf, and Apple states you are not told which type was refused, so your message can only be general: the app needs access to all of the requested health records, and that choice is made in the system permission flow. Do not name a specific record type you cannot know was the problem.\n- **Do not re-prompt in a loop.** Once decisions have been made, re-requesting does not re-present the sheet — the documented behaviour is quoted in the [authorization denied](/fix/healthkit-authorization-denied) guide. A button that appears to do nothing is worse than a sentence of explanation.\n- **Do not infer content from the failure.** The error tells you a permission set was incomplete. It tells you nothing about what any record contains, and nothing about the person. Treat the outcome as an access-control fact, full stop.\n\n## Handling the data you do get\n\nClinical records raise handling questions that ordinary step counts do not. Before you ship, be clear on whether your handling of this data falls under health-privacy rules in your jurisdiction and what your obligations are — the starting points are [is fitness data PHI?](/compliance/is-fitness-data-phi) and [HIPAA compliance for a fitness app](/compliance/hipaa-compliance-fitness-app), and the store-review dimension is in [App Store health data rules](/compliance/app-store-health-data-rules). Those are engineering and policy questions, not clinical ones; nothing on this page is medical or legal advice.\n\n## Symptom to action\n\n| What you observe | Case | What to do |\n| --- | --- | --- |\n| Authorization fails for the whole clinical set | `errorRequiredAuthorizationDenied` | Narrow the required list; degrade |\n| A save is refused | `errorAuthorizationDenied` | Stop saving that type |\n| A call fails and you never requested | `errorAuthorizationNotDetermined` | Request first |\n| Reads return only your own writes | Denied read, invisible by design | See the authorization guide |\n| Every call fails on a managed device | `errorHealthDataRestricted` | See [MDM restriction](/fix/healthkit-data-restricted-mdm) |\n\n## Where to go next\n\nThe full enum with Apple's own wording is in the [HealthKit error reference](/healthkit-errors), the permission model this case departs from is in [HealthKit authorization denied](/fix/healthkit-authorization-denied), and the surrounding setup is in the [HealthKit integration guide](/integrate/healthkit).",
+    "faqs": [
+      {
+        "q": "Why does authorization fail even though the user allowed most types?",
+        "a": "Because the required set is all or nothing. Apple's abstract states the user has not granted authorization to access all the required clinical record types, so a single refusal inside the declared set fails the whole authorization. Anything you list under that key is a hard requirement, and the system enforces it exactly as written."
+      },
+      {
+        "q": "Can I find out which clinical record type the user refused?",
+        "a": "No. Apple states that the system does not tell your app which record types the person denied access to, which is quoted in our HealthKit authorization denied guide. That constrains your messaging: you can say the app needs access to all of the requested records, but you cannot name a specific one without guessing on the user's behalf."
+      },
+      {
+        "q": "How is this different from ordinary HealthKit authorization?",
+        "a": "Ordinary types are declared in the request, decided independently, and refusals on the read side are invisible by design. Required clinical types are declared in the app's property list, fail as a set, and produce this error case when the set is incomplete. Same framework, a different authorization class with different failure behaviour."
+      }
+    ],
+    "related": [
+      {
+        "href": "/fix/healthkit-authorization-denied",
+        "label": "HealthKit authorization denied"
+      },
+      {
+        "href": "/fix/healthkit-authorization-not-determined",
+        "label": "HealthKit authorization not determined"
+      },
+      {
+        "href": "/compliance/is-fitness-data-phi",
+        "label": "Is fitness data PHI?"
+      },
+      {
+        "href": "/fix",
+        "label": "Fitness & health API troubleshooting"
+      }
+    ],
+    "cta": {
+      "pitch": "Clinical records, limited history grants, and the other corners of HealthKit authorization behave nothing like the rest of it. We document them as we verify them — subscribe for the next breakdown."
+    },
+    "steps": [
+      {
+        "name": "Confirm which case you have",
+        "text": "Separate errorRequiredAuthorizationDenied from a refused write and from the never-asked case. They describe different points in the permission model and need different handling."
+      },
+      {
+        "name": "Read the shipped declaration",
+        "text": "Open the built app's property list and read the required-types entry as shipped, not as you remember writing it. Lists assembled at build time or inherited from a template are the usual surprise."
+      },
+      {
+        "name": "Cut the list to what is genuinely required",
+        "text": "Every entry is another chance for one refusal to fail authorization for that user. Types that enhance a feature rather than define it should be requested normally instead."
+      },
+      {
+        "name": "Check Apple's minimum for the key",
+        "text": "Apple's guidance, quoted in our authorization guide, is to specify three or more types under the required-read-authorization key."
+      },
+      {
+        "name": "Build a path that works without records",
+        "text": "Activity, workout, and body-measurement data flow through the ordinary model, so a core loop resting on those survives a refusal of the clinical set."
+      },
+      {
+        "name": "Explain generally, then stop",
+        "text": "Say the app needs access to all of the requested health records and that the choice is made in the system flow. Do not name a type you cannot know was refused, and do not re-prompt in a loop."
+      }
+    ]
+  },
+  {
+    "slug": "healthkit-workout-session-errors",
+    "primaryQuery": "healthkit workout session errors",
+    "h1": "HealthKit Workout Session Errors: Four Cases, Two of Them Undocumented",
+    "metaTitle": "HealthKit Workout Session Errors: All Four",
+    "metaDescription": "Another app took the session, the app left the foreground, or an undocumented case fired. What Apple documents for each, plus one recovery path.",
+    "updated": "2026-09-04",
+    "answer": "Four HKError cases end a workout session, and Apple describes only two of them. Apple's documentation states that errorAnotherWorkoutSessionStarted means another app started a session, and that Apple Watch runs one workout session at a time, so your session receives the error and then ends while the second one starts. Apple states that errorUserExitedWorkoutSession means the user exited your application while a session was running, and that workout sessions end when the app goes into the background. The remaining two, errorBackgroundWorkoutSessionNotAllowed and errorWorkoutActivityNotAllowed, are published with no abstract at all, so treat them as unknown codes rather than inferring behaviour. In every case the session is already gone, which makes continuous persistence the only real defence.",
+    "body": "A workout session ending on its own is the most disruptive failure a fitness app can ship, because the user is mid-effort and the data is mid-flight. Four HKError cases cover the ways a session can be taken away from you. Two of them Apple describes; two of them Apple names and nothing more. Knowing which is which is the difference between handling a documented lifecycle and guessing.\n\n## The four cases, and what Apple says about each\n\n| Case | Apple's abstract | Documented? |\n| --- | --- | --- |\n| `errorAnotherWorkoutSessionStarted` | \"Another app started a workout session.\" | Yes, with discussion |\n| `errorUserExitedWorkoutSession` | \"The user exited your application while a workout session was running.\" | Yes, with discussion |\n| `errorBackgroundWorkoutSessionNotAllowed` | None published | No |\n| `errorWorkoutActivityNotAllowed` | None published | No |\n\nThe split is visible in Apple's own structure. The first two sit in the accessing-errors group with abstracts and discussion paragraphs. The other two appear as type properties carrying no abstract at all — the name is the entire published content. Apple's platform list introduces that pair at iOS 17.0 and watchOS 10.0, which is the only other fact available about them. Everything on this page about those two is inference, and marked as such.\n\n## errorAnotherWorkoutSessionStarted: you were displaced\n\nApple's discussion is precise about the mechanism and the ordering:\n\n> This error occurs whenever a second workout session is started. Apple Watch only runs one workout session at a time. If the user begins a second workout session in a different app, the original session receives this error message and then ends. The second session then starts.\n\nThree consequences follow from Apple's own sentences. One session at a time is a platform rule, not a race you can win. Your session receives the error *and then ends* — the error is a notification of a decision, not a request you can refuse. And the other app's session starts regardless, so the user has made a choice, even if they made it by accident.\n\nThe design conclusion, as practice: never restart automatically. Grabbing the session back would take it from whichever app the user just chose, and if that app is written the same way you get two apps fighting over the wrist. Save what you have, tell the user their session ended because another app started one, and let them decide.\n\n## errorUserExitedWorkoutSession: the app left the foreground\n\nApple's abstract states the trigger — \"the user exited your application while a workout session was running\" — and the discussion is one sentence: \"Workout sessions end when the app goes into the background.\"\n\nThat is all Apple publishes here, and it is worth resisting the urge to elaborate. The behaviour of background execution on the watch changes across releases and configurations, and the honest position is that this error is what you receive when the session ends this way. What the sentence tells you to design for is clear enough: session state must be durable before you need it, because the moment you find out is the moment it is over.\n\n## The two undocumented cases\n\n`errorBackgroundWorkoutSessionNotAllowed` and `errorWorkoutActivityNotAllowed` are published with no abstract and no discussion. Apple documents nothing about when either is returned, and this page will not pretend otherwise.\n\nWhat you may legitimately take from a name is a hint about where to look, never a claim about behaviour:\n\n| Case | What the name suggests you inspect | What Apple confirms |\n| --- | --- | --- |\n| `errorBackgroundWorkoutSessionNotAllowed` | Something about starting or running a session from the background | Nothing |\n| `errorWorkoutActivityNotAllowed` | Something about a workout activity being rejected | Nothing |\n\nHandle both the way you would handle any unnamed failure: log the raw domain and code, keep the session data you already have, surface a neutral message, and do not encode a guess into your control flow. The general procedure is on [undocumented HealthKit errors](/fix/healthkit-undocumented-errors).\n\n## A lifecycle that survives all four\n\nNone of the following is Apple's documented behaviour; it is how to build so that any of these four cases costs the user as little as possible.\n\n- **Persist continuously, not at the end.** If your workout is only written when the user taps stop, every case on this page loses the session. Checkpoint the accumulating data as you go so an involuntary end becomes a shortened workout rather than a deleted one.\n- **Treat every ending as terminal.** All four cases end with you not owning a session. Collapse them into one recovery path, and vary only the message.\n- **Never auto-restart.** For the displaced case Apple's discussion makes the reason explicit; for the others, restarting a session the system just refused is a loop.\n- **Tell the truth in the message.** \"Another app started a workout\" is checkable by the user and does not blame them. A generic \"something went wrong\" invites the support ticket.\n- **Offer to save, always.** Give the user an explicit way to keep the partial session. Deciding whether a partial workout is worth keeping is their call.\n- **Log the case name, not a category.** Four codes into one \"workout error\" counter and you can never tell a displaced session from an undocumented refusal in the field.\n\n## Symptom to action\n\n| What you observe | Case | Recovery |\n| --- | --- | --- |\n| Session ends when the user starts another app's workout | `errorAnotherWorkoutSessionStarted` | Save, explain, do not restart |\n| Session ends as the app leaves the foreground | `errorUserExitedWorkoutSession` | Save, explain, offer to resume manually |\n| A start or activity is refused with an undocumented case | The two unnamed cases | Log raw, fail soft, keep the data |\n| Reads fail but the session is fine | Not a session error | Check the lock and authorization cases |\n\n## Where to go next\n\nThe structural side of this — how a watch workout app is put together, and what runs when — is in [the anatomy of a watchOS workout app](/watch-apps/watchos-workout-app-anatomy) and [Apple Watch background execution](/watch-apps/apple-watch-background-execution). If your session data has to reach the phone, see [mirroring workouts to iPhone](/watch-apps/mirroring-workouts-to-iphone). The complete enum with Apple's wording and honest gaps is the [HealthKit error reference](/healthkit-errors), and if a read is failing rather than a session, start with [HealthKit database inaccessible](/fix/healthkit-database-inaccessible).",
+    "faqs": [
+      {
+        "q": "Can two apps run a workout session at the same time?",
+        "a": "Apple's discussion states that Apple Watch only runs one workout session at a time. If the user begins a second session in a different app, Apple says the original session receives errorAnotherWorkoutSessionStarted and then ends, and the second session then starts. Your session is not being asked to yield; it is being told that it already has."
+      },
+      {
+        "q": "Should my app restart the session automatically after this error?",
+        "a": "As a practice, no. Restarting takes the session back from whichever app the user just chose, and if that app is written the same way the two will fight over the wrist. Save what you have, say plainly that another app started a workout, and let the person decide what happens next."
+      },
+      {
+        "q": "What do the two undocumented workout errors mean?",
+        "a": "Apple publishes no abstract and no discussion for errorBackgroundWorkoutSessionNotAllowed or errorWorkoutActivityNotAllowed, so the honest answer is that Apple documents nothing. Their names suggest where to look in your own app, which is a hypothesis to test, not a fact about the framework. Log the raw code, keep the session data, and avoid encoding a guess."
+      }
+    ],
+    "related": [
+      {
+        "href": "/watch-apps/watchos-workout-app-anatomy",
+        "label": "Anatomy of a watchOS workout app"
+      },
+      {
+        "href": "/watch-apps/apple-watch-background-execution",
+        "label": "Apple Watch background execution"
+      },
+      {
+        "href": "/fix/healthkit-undocumented-errors",
+        "label": "Undocumented HealthKit errors"
+      },
+      {
+        "href": "/fix",
+        "label": "Fitness & health API troubleshooting"
+      }
+    ],
+    "cta": {
+      "pitch": "Workout sessions fail in ways Apple half-documents, and the half that is missing is the half that ends a user's run. Subscribe as we verify and publish the rest."
+    },
+    "steps": [
+      {
+        "name": "Log the case name, not a category",
+        "text": "Four codes folded into one workout error counter means you can never tell a displaced session from an undocumented refusal in the field."
+      },
+      {
+        "name": "Persist continuously, not at the end",
+        "text": "If the workout is only written when the user taps stop, every one of these cases loses it. Checkpoint as you go so an involuntary end becomes a shortened workout."
+      },
+      {
+        "name": "Treat every ending as terminal",
+        "text": "All four leave you without a session. Collapse them into one recovery path and vary only the message you show."
+      },
+      {
+        "name": "Never auto-restart",
+        "text": "For the displaced case Apple's discussion makes the reason explicit, and for the undocumented pair, restarting something the system just refused is a loop."
+      },
+      {
+        "name": "Say what happened, in checkable words",
+        "text": "Another app started a workout is verifiable by the user and blames nobody. Something went wrong produces a support ticket instead."
+      },
+      {
+        "name": "Always offer to save the partial session",
+        "text": "Give an explicit way to keep what was recorded. Whether a shortened workout is worth keeping is the user's decision, not your error handler's."
+      }
+    ]
+  },
+  {
+    "slug": "healthkit-guest-user-mode",
+    "primaryQuery": "healthkit errornotpermissibleforguestusermode",
+    "h1": "HealthKit errorNotPermissibleForGuestUserMode: Writes Blocked in a Guest Session",
+    "metaTitle": "HealthKit Guest User Mode Error on visionOS",
+    "metaDescription": "Your status check says authorized and the save still fails: that status belongs to the owner, not the guest. How to detect it and degrade quietly.",
+    "updated": "2026-09-04",
+    "answer": "Apple's documentation states that errorNotPermissibleForGuestUserMode means the app attempted to write HealthKit data while in a Guest User session in visionOS, and publishes no discussion beyond that abstract. Apple's guest-session guidance, quoted in our authorization guide, adds that permissions do not change during a guest session, so your status check still reports the owner's grant while the save fails. Apple also states the authorization sheet is not displayed, so requests during a guest session fail silently, and suggests silently ignoring the write error for passive or periodic saves. The practical handling is to buffer the data, stay quiet unless the guest explicitly asked to save, and never treat the failure as a denial.",
+    "body": "Your Vision Pro app checks its authorization status, gets a positive answer, saves a sample, and the save fails with `errorNotPermissibleForGuestUserMode`. Nothing is inconsistent about that: the status you read belongs to the device's owner, and the person wearing the headset right now is a guest. This is the newest platform-specific failure in the HealthKit error set, and it is one your status checks are structurally unable to predict.\n\n## What Apple documents\n\nApple's documentation states the abstract as: \"The app attempted to write HealthKit data while in a Guest User session in visionOS.\" There is no discussion paragraph — the abstract is the whole published description of the case. Apple's platform list introduces it at visionOS 2.0 and iOS 18.0.\n\nAdditional documented behaviour for guest sessions is quoted in our [HealthKit authorization denied](/fix/healthkit-authorization-denied) guide. Apple states that in a Guest User session an app's permissions do not change, that the guest can read data the owner already authorized but cannot authorize additional types, and that the authorization sheet is not displayed, so any attempt to request authorization for HealthKit data types during a guest session fails silently. Apple also notes that writes fail with this case, or with `errorHealthDataRestricted` on apps running in iOS 17. And Apple's own suggestion for handling it is to silently ignore the error for passive or periodic saves, and alert only when the guest took an action that obviously implies saving.\n\nThat last sentence is unusual and worth taking seriously: Apple is telling you the correct handling is often to do nothing.\n\n## What changes in a guest session\n\n| Behaviour | In a guest session |\n| --- | --- |\n| Reported authorization status | Still the owner's, per Apple |\n| Reads of already-authorized types | Permitted, per Apple |\n| Authorizing additional types | Not possible |\n| The authorization sheet | Not displayed; requests fail silently |\n| Writes | Fail with `errorNotPermissibleForGuestUserMode` |\n\nThe row that breaks most code is the first. Every guard your app has that reads a status and concludes \"we may save\" is now wrong, and it is wrong in a way no amount of checking can repair, because the status is not lying — it is answering a question about a different person.\n\n## Why your existing error handling gets this wrong\n\nMost apps sort HealthKit failures into two buckets: things the user can fix in settings, and things that are broken. This case is neither. There is no setting for the guest to change, nothing is broken, and the condition disappears by itself when the session ends. Handling it as a permission problem produces an alert telling the guest to visit permissions they cannot reach; handling it as a crash-worthy failure turns a normal state into an incident.\n\nIt is also easy to misfile. On the same platform, `errorHealthDataRestricted` may be a management profile rather than a guest session — the distinction and the corporate-device version are on [HealthKit restricted by an MDM profile](/fix/healthkit-data-restricted-mdm).\n\n## Diagnosis order\n\n1. **Log the exact case.** `errorNotPermissibleForGuestUserMode` is self-identifying and needs its own branch. If it lands in a generic write-failure handler, you cannot distinguish it from a genuine denial.\n2. **Check the platform.** Apple's abstract scopes the case to a Guest User session in visionOS.\n3. **Check what the failing operation was.** Apple's abstract says this is about writing. A read that fails is a different problem — start with [errorNoData](/fix/healthkit-error-no-data) if the query ran, or the lock case in [HealthKit database inaccessible](/fix/healthkit-database-inaccessible) if it did not.\n4. **Check whether you were requesting authorization.** Per the documented behaviour above, a request during a guest session fails silently rather than erroring, so a request that appears to have done nothing is consistent with a guest session.\n5. **Do not conclude a denial.** Nothing in this case tells you what the owner granted or refused.\n\n## Detect and degrade, as practice\n\n- **Follow Apple's own advice first.** For background, periodic, or passive saves, swallowing the error is the recommended handling. The guest did not ask you to save anything.\n- **Speak only when the guest asked for it.** If someone taps \"save this workout\" and the save cannot happen, say so plainly: this device is in a guest session, so health data cannot be saved right now.\n- **Buffer rather than discard.** Keep the data in your own storage so nothing is lost when the session ends and a normal one resumes. This is ordinary offline-first work — the general pattern is [offline-first conflict resolution](/architecture/offline-first-conflict-resolution).\n- **Do not queue writes to fire later blindly.** A queue that replays into the store when the owner returns is attributing a guest's activity to the owner. That is a data-quality and consent question before it is an engineering one; think about it under [health data user consent](/compliance/health-data-user-consent).\n- **Never disable reads.** The documented behaviour is that reads of already-authorized types continue, so a guest can still see content that depends on them.\n- **Add it to your test matrix.** A guest session is reproducible and cheap to test; a bug that only appears when someone else borrows the headset is expensive to hear about from a review.\n\n## Symptom to action\n\n| What you observe | Case | What to do |\n| --- | --- | --- |\n| Save fails, status reports authorized, on visionOS | `errorNotPermissibleForGuestUserMode` | Buffer, stay quiet unless asked |\n| Save fails on an app running in iOS 17 during a guest session | `errorHealthDataRestricted` | Same handling; different code |\n| Authorization request shows no sheet and returns nothing | Guest session, per Apple | Do not retry the request |\n| Save refused after the user saw the sheet | `errorAuthorizationDenied` | Stop saving that type |\n| Everything fails on a managed device | `errorHealthDataRestricted` | See the MDM page |\n\n## Where to go next\n\nThe permission model this case sidesteps — what the status call really reports, and why read denial is invisible — is in [HealthKit authorization denied](/fix/healthkit-authorization-denied). The full enum with Apple's own wording, including the cases with no description at all, is the [HealthKit error reference](/healthkit-errors) and its companion [undocumented HealthKit errors](/fix/healthkit-undocumented-errors). For the setup underneath, see the [HealthKit integration guide](/integrate/healthkit).",
+    "faqs": [
+      {
+        "q": "Why does my authorization status say authorized when the save fails?",
+        "a": "Because the status belongs to the device owner. Apple states that in a Guest User session an app's permissions do not change, so the value you read is a true answer about the owner and an irrelevant one about the guest wearing the headset. No status check can predict this failure, which is why the error itself has to be handled."
+      },
+      {
+        "q": "Should I show the guest an error when a HealthKit write fails?",
+        "a": "Usually not. Apple suggests silently ignoring the error for passive or periodic saves, and alerting only when the guest took an action that obviously implies saving. A background sync failing is not worth a dialog; a tap on save this workout is, and it should say the device is in a guest session rather than blaming permissions."
+      },
+      {
+        "q": "Can a guest still read HealthKit data?",
+        "a": "Apple states that a guest can read data the owner already authorized, but cannot authorize additional types, and that the authorization sheet is not displayed so requests fail silently. So keep read-driven content working during a guest session, and expect writes to fail with this case, or with errorHealthDataRestricted on apps running in iOS 17."
+      }
+    ],
+    "related": [
+      {
+        "href": "/fix/healthkit-authorization-denied",
+        "label": "HealthKit authorization denied"
+      },
+      {
+        "href": "/fix/healthkit-data-restricted-mdm",
+        "label": "HealthKit restricted by an MDM profile"
+      },
+      {
+        "href": "/healthkit-errors",
+        "label": "Every HKError case, in Apple's words"
+      },
+      {
+        "href": "/fix",
+        "label": "Fitness & health API troubleshooting"
+      }
+    ],
+    "cta": {
+      "pitch": "New platforms bring new ways for a write to fail, and they arrive faster than the guides do. We track HealthKit's error set as Apple changes it — subscribe for the next update."
+    },
+    "steps": [
+      {
+        "name": "Give the case its own branch",
+        "text": "errorNotPermissibleForGuestUserMode is self-identifying. In a generic write-failure handler it becomes indistinguishable from a genuine denial and gets the wrong message."
+      },
+      {
+        "name": "Check what the failing operation was",
+        "text": "Apple's abstract scopes this to writing. A read that fails is a different problem and belongs with the empty-result or locked-store cases."
+      },
+      {
+        "name": "Follow Apple's advice for passive saves",
+        "text": "For background, periodic, or automatic writes, swallowing the error is the recommended handling. The guest never asked your app to save anything."
+      },
+      {
+        "name": "Speak only when the guest asked",
+        "text": "If someone taps save, say plainly that the device is in a guest session so health data cannot be saved right now. Otherwise say nothing."
+      },
+      {
+        "name": "Buffer instead of discarding",
+        "text": "Keep the data in your own storage so nothing is lost when the guest session ends, but do not blindly replay it into the store later under the owner's identity."
+      },
+      {
+        "name": "Add a guest session to your test matrix",
+        "text": "It is reproducible and cheap to test. A bug that only appears when someone borrows the headset is expensive to hear about from a review."
+      }
+    ]
+  },
+  {
+    "slug": "healthkit-undocumented-errors",
+    "primaryQuery": "undocumented healthkit error codes",
+    "h1": "Undocumented HealthKit Errors: Handling a Case Apple Never Described",
+    "metaTitle": "Undocumented HealthKit Errors: How to Handle",
+    "metaDescription": "Some HKError cases ship with no abstract at all. Which ones, what a name honestly lets you infer, and a handling strategy that does not invent behaviour.",
+    "updated": "2026-09-04",
+    "answer": "Several HKError cases are published with no description whatsoever: unknownError, errorDataSizeExceeded, errorBackgroundWorkoutSessionNotAllowed, and errorWorkoutActivityNotAllowed all appear as type properties with no abstract and no discussion. Apple documents nothing about when any of them is returned, and the oldest of them has been present since the earliest HealthKit releases without ever acquiring one. A name can legitimately point you at where to look in your own app; it cannot tell you what the framework decided. The workable strategy is to log the raw domain and code, fail soft without discarding the user's data, bound your retries, and keep your inferences labelled as inferences.",
+    "body": "Some HealthKit errors have no documentation. Not thin documentation, not documentation in a different place — no published description at all. Apple lists the case, the platforms it exists on, and nothing else. If you have landed here holding a code you cannot look up, the goal of this page is to get you to a safe handling strategy without either of you inventing behaviour that Apple never described.\n\n## Which cases have no description\n\n| Case | Where Apple lists it | Published abstract | First listed on |\n| --- | --- | --- | --- |\n| `unknownError` | Type properties | None | iOS 8.0, watchOS 2.0 |\n| `errorDataSizeExceeded` | Type properties | None | iOS 17.0, watchOS 10.0 |\n| `errorBackgroundWorkoutSessionNotAllowed` | Type properties | None | iOS 17.0, watchOS 10.0 |\n| `errorWorkoutActivityNotAllowed` | Type properties | None | iOS 17.0, watchOS 10.0 |\n\nTwo things stand out. One of the oldest cases in the enum is an undescribed one — `unknownError` goes back to the earliest listed releases and has still never acquired an abstract. And the grouping matters: most of the described cases sit in Apple's accessing-errors listing with abstracts and, often, discussion paragraphs, while these four appear as type properties with the name as the entire published content. Our [HealthKit error reference](/healthkit-errors) marks this distinction on every case rather than hiding it behind plausible-sounding prose.\n\n## What a name lets you infer, and what it does not\n\nIt is reasonable to let a name direct your investigation. It is not reasonable to let it write your error messages, your retry policy, or your documentation. The honest form of the inference looks like this:\n\n| Case | A name-led place to look | What Apple confirms |\n| --- | --- | --- |\n| `errorDataSizeExceeded` | Whatever your app just tried to write, and how large it was | Nothing |\n| `errorBackgroundWorkoutSessionNotAllowed` | Session starts happening off the foreground | Nothing |\n| `errorWorkoutActivityNotAllowed` | A workout activity being refused | Nothing |\n| `unknownError` | Anything; it is the catch-all by name | Nothing |\n\nEvery cell in the middle column is a hypothesis for you to test in your own app, on your own data, on a device you control. None of them is a fact about the framework. The two workout cases are handled alongside their documented siblings in [workout session errors](/fix/healthkit-workout-session-errors), where the contrast between a case with a discussion paragraph and a case with nothing at all is easiest to see.\n\n## The handling strategy: log raw, fail soft\n\n- **Log the domain and the numeric code, always.** Not a mapped label, not a friendly string — the raw values, alongside the operation, the type identifier, and the size or shape of whatever you passed. When Apple documents the case later, or when the pattern becomes obvious across your install base, those logs are the only thing that will let you go back and interpret past failures.\n- **Never map an unknown code to a confident message.** \"Your workout was too large to save\" is a claim about the framework you cannot support. \"This didn't save — we've logged the details\" costs you nothing and is true.\n- **Fail soft and keep the payload.** Whatever you were trying to write still exists in your app. Hold it, mark it unsynced, and let a later attempt or a support export recover it. Discarding user data on the strength of an undocumented code is the one genuinely unrecoverable mistake available here.\n- **Bound your retries.** Allow a small, bounded number of attempts in case the cause was transient, then stop and record the outcome. Cases that are structural rather than environmental will fail identically forever — the transient/terminal split is worked through in [HealthKit database inaccessible](/fix/healthkit-database-inaccessible).\n- **Reduce the payload as an experiment, not a fix.** If you suspect size, try a smaller write and see. Write down what you observed and label it as your observation.\n- **Alert on the shape, not the instance.** One unknown code is noise. A sudden cluster on one OS version, one device family, or one code path is a signal worth a person's attention, and it is why the raw code matters more than the friendly message.\n\n## Do not confuse \"undocumented\" with \"unclassified\"\n\nThere is a second, larger category worth separating: cases Apple *does* document, which teams treat as mysterious because their logging collapsed everything into one branch. `errorInvalidArgument` has a one-line abstract and no discussion, but that one line tells you it is a programming error rather than an environmental one, and the diagnosis has a real procedure — see [invalid argument](/fix/healthkit-invalid-argument). Before concluding that Apple documented nothing, check whether you simply never read the abstract.\n\n| Situation | What it is | First move |\n| --- | --- | --- |\n| Code has no abstract anywhere | Genuinely undocumented | Log raw, fail soft |\n| Code has an abstract but no discussion | Thinly documented | Read the abstract; it constrains a lot |\n| Your logs say \"HealthKit error\" | An observability problem | Log domain and code |\n| Behaviour differs by OS version | Possibly version-specific | Segment your telemetry by version |\n\n## Writing about it honestly\n\nIf your team keeps an internal runbook, hold it to the same rule this site uses: state what the vendor documents, attribute it, and mark your own inferences as inferences. A runbook that says \"`errorDataSizeExceeded` occurs when a sample exceeds the limit\" invents both a mechanism and a limit; a runbook that says \"no published description; observed in our app when writing large batches, unconfirmed\" stays useful and stays true. How we apply that standard across the site is set out in [our methodology](/methodology), and the field-level version of the same argument is in [the HealthKit error that never fires](/blog/healthkit-error-that-never-fires).\n\n## Where to go next\n\nEvery case in the enum, with Apple's own wording where it exists and an explicit gap where it does not, is in the [HealthKit error reference](/healthkit-errors). If your undocumented code arrived from a workout session, go to [workout session errors](/fix/healthkit-workout-session-errors); if it arrived from a query that returned nothing, [errorNoData](/fix/healthkit-error-no-data) covers the documented version of emptiness. And for the setup underneath all of them, see the [HealthKit integration guide](/integrate/healthkit).",
+    "faqs": [
+      {
+        "q": "Which HealthKit error cases has Apple not documented?",
+        "a": "unknownError, errorDataSizeExceeded, errorBackgroundWorkoutSessionNotAllowed, and errorWorkoutActivityNotAllowed are published as type properties with no abstract and no discussion. Apple lists their names and the platforms they exist on, and nothing more. Most of the described cases, by contrast, appear in Apple's accessing-errors listing with an abstract and often a discussion paragraph."
+      },
+      {
+        "q": "Can I infer what errorDataSizeExceeded means from its name?",
+        "a": "You can use the name to decide where to look, and no further. A sensible investigation is to examine what your app just tried to write and how large it was. Turning that into a user-facing message about a size limit invents both a mechanism and a threshold that Apple has never published."
+      },
+      {
+        "q": "How should my app handle an unknown HealthKit error code?",
+        "a": "Log the raw domain and numeric code together with the operation and type identifier, keep the data you were trying to write and mark it unsynced, allow a small bounded number of retries, then stop. Alert on clusters rather than single occurrences, and never map an undocumented code to a confident explanation in your UI."
+      }
+    ],
+    "related": [
+      {
+        "href": "/healthkit-errors",
+        "label": "Every HKError case, in Apple's words"
+      },
+      {
+        "href": "/fix/healthkit-workout-session-errors",
+        "label": "HealthKit workout session errors"
+      },
+      {
+        "href": "/methodology",
+        "label": "How this site verifies"
+      },
+      {
+        "href": "/fix",
+        "label": "Fitness & health API troubleshooting"
+      }
+    ],
+    "cta": {
+      "pitch": "When Apple documents nothing, the honest move is to say so and show your evidence. That is how we build every reference here — subscribe as we extend them."
+    },
+    "steps": [
+      {
+        "name": "Log the raw domain and code",
+        "text": "Not a mapped label or a friendly string. Record the numeric code alongside the operation, the type identifier, and the shape of whatever you passed."
+      },
+      {
+        "name": "Check whether it is genuinely undocumented",
+        "text": "Some cases have a one-line abstract and no discussion, which is thin rather than absent. A one-line abstract still constrains the diagnosis considerably."
+      },
+      {
+        "name": "Fail soft and keep the payload",
+        "text": "Hold the data in your own storage and mark it unsynced. Discarding user data because of a code nobody can look up is the one unrecoverable mistake here."
+      },
+      {
+        "name": "Bound the retries",
+        "text": "Allow a small number of attempts in case the cause was transient, then stop and record. Structural failures will fail identically forever."
+      },
+      {
+        "name": "Alert on clusters, not instances",
+        "text": "One unknown code is noise. A sudden concentration on one OS version, device family, or code path is worth a person's attention."
+      },
+      {
+        "name": "Label inferences as inferences",
+        "text": "In runbooks and log messages, keep what the vendor documents separate from what you observed. Observed while writing large batches, unconfirmed is useful; a stated mechanism you cannot cite is not."
+      }
+    ]
   }
 ];

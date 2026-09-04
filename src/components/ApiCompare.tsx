@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 /**
  * Side-by-side of two directory entries, from verified fields only.
@@ -15,6 +16,24 @@ import Link from "next/link";
  * There is no verdict here and there will not be one: these fields describe
  * how you get access, not which product is better, and a scoring rule over
  * "has an approval gate" would be a judgement dressed as arithmetic.
+ *
+ * The comparison lives in the query string (?a=fitbit&b=oura) so a link
+ * restores exactly what the sender was looking at. Two deliberate choices in
+ * how that is wired:
+ *
+ *  - The state is read from `window.location` here rather than threaded down
+ *    from the server page's `searchParams`. Reading searchParams on the
+ *    server would make /compare-apis a dynamically rendered route, which
+ *    costs the prerendered HTML the whole site's QA, canonical and inbound-
+ *    link auditing depends on. The parameters change nothing the server
+ *    renders, so they belong on the client.
+ *  - Writes go through `router.replace(..., { scroll: false })` rather than
+ *    history.replaceState: the address bar and the router's own idea of the
+ *    URL stay in step, and picking a product does not throw the reader back
+ *    to the top of the page or add a history entry per click.
+ *
+ * The canonical stays the bare /compare-apis in every parameter state. 276
+ * pairs must not become 276 addresses claiming to be pages.
  */
 export type CompareItem = {
   id: string;
@@ -35,8 +54,12 @@ export default function ApiCompare({ items }: { items: CompareItem[] }) {
   const [a, setA] = useState<string>(items[0]?.id ?? "");
   const [b, setB] = useState<string>(items[1]?.id ?? "");
   const [copied, setCopied] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
 
-  useEffect(() => {
+  // Restore the pair from the URL — on arrival, and again on back/forward,
+  // so the history entries a reader creates by sharing links still work.
+  const readUrl = useCallback(() => {
     const q = new URLSearchParams(window.location.search);
     const qa = q.get("a");
     const qb = q.get("b");
@@ -45,12 +68,20 @@ export default function ApiCompare({ items }: { items: CompareItem[] }) {
   }, [items]);
 
   useEffect(() => {
+    readUrl();
+    window.addEventListener("popstate", readUrl);
+    return () => window.removeEventListener("popstate", readUrl);
+  }, [readUrl]);
+
+  useEffect(() => {
     if (typeof window === "undefined" || !a || !b) return;
-    const next = `${window.location.pathname}?a=${a}&b=${b}`;
+    const next = `${pathname}?a=${a}&b=${b}`;
     if (window.location.pathname + window.location.search !== next) {
-      window.history.replaceState(null, "", next);
+      // scroll:false — the selects sit above the table, and jumping to the
+      // top of the document on every change would hide the answer.
+      router.replace(next, { scroll: false });
     }
-  }, [a, b]);
+  }, [a, b, pathname, router]);
 
   const left = items.find((i) => i.id === a);
   const right = items.find((i) => i.id === b);
@@ -153,7 +184,7 @@ export default function ApiCompare({ items }: { items: CompareItem[] }) {
               type="button"
               onClick={() => {
                 navigator.clipboard
-                  .writeText(`${window.location.origin}/compare-apis?a=${a}&b=${b}`)
+                  .writeText(`${window.location.origin}${pathname}?a=${a}&b=${b}`)
                   .then(() => {
                     setCopied(true);
                     setTimeout(() => setCopied(false), 2000);

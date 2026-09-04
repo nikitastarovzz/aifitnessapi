@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "gsc": "node scripts/gsc-report.mjs",
     "datasets": "node scripts/build-datasets.mjs && node scripts/build-dataset-manifest.mjs",
     "indexnow": "node scripts/indexnow.mjs",
     "kit": "node scripts/build-kit.mjs",

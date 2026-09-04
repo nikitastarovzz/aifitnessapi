@@ -489,7 +489,7 @@ export const compareEntries: ClusterEntry[] =
     "slug": "exercisedb-vs-wger",
     "primaryQuery": "exercisedb vs wger",
     "h1": "ExerciseDB vs wger: Which Exercise API for Your App?",
-    "metaTitle": "ExerciseDB vs wger: Which Exercise API?",
+    "metaTitle": "ExerciseDB vs wger: Which Exercise API? 6 Dimensions",
     "metaDescription": "ExerciseDB is a paid RapidAPI gateway with GIF media; wger is free, self-hosted and AGPL. Compare data, hosting, licensing and cost by use-case.",
     "updated": "2026-07-23",
     "answer": "Pick ExerciseDB when you want a media-rich, ready-to-call hosted API with GIF and video and you will pay a per-request gateway; pick wger when you want full data ownership, no per-call fees, and are comfortable self-hosting and complying with its licenses. The biggest developer difference is the delivery model: ExerciseDB is most commonly a paid, RapidAPI-hosted gateway billed per request, while wger is open-source software you run yourself. Note the name ambiguity - 'ExerciseDB' is both the RapidAPI product and the separate AGPL-3.0 exercisedb.dev project - and treat every count and price as 'as of 2026, verify.'",

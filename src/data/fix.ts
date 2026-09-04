@@ -30,6 +30,16 @@ export const RELEASED_FIX = new Set<string>([
   "healthkit-authorization-denied",
   "strava-api-401-unauthorized",
   "healthkit-background-delivery-not-working",
+  "healthkit-database-inaccessible",
+  "healthkit-health-data-unavailable",
+  "healthkit-data-restricted-mdm",
+  "healthkit-error-no-data",
+  "healthkit-invalid-argument",
+  "healthkit-authorization-not-determined",
+  "healthkit-required-authorization-denied",
+  "healthkit-workout-session-errors",
+  "healthkit-guest-user-mode",
+  "healthkit-undocumented-errors",
 ]);
 
 export const allFixes: ClusterEntry[] = fixEntries;

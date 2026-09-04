@@ -1,4 +1,5 @@
 import Link from "next/link";
+import CopyTableMarkdown from "@/components/CopyTableMarkdown";
 import { ROWS, PLATFORM_NOTES, SOURCES } from "@/data/matrix";
 
 /**
@@ -9,6 +10,7 @@ import { ROWS, PLATFORM_NOTES, SOURCES } from "@/data/matrix";
 export default function DataMatrix() {
   return (
     <div>
+      <div className="mb-2 flex justify-end"><CopyTableMarkdown /></div>
       <div className="overflow-x-auto rounded-2xl border border-[var(--border)]">
         <table className="w-full border-collapse text-left text-sm">
           <caption className="sr-only">

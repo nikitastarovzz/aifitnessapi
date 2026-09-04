@@ -6,6 +6,7 @@ import ClusterDisclaimer from "@/components/ClusterDisclaimer";
 import ClusterHero from "@/components/ClusterHero";
 import { Mdx } from "@/components/mdx";
 import PageActions from "@/components/PageActions";
+import BookmarkButton from "@/components/BookmarkButton";
 import PageToc from "@/components/PageToc";
 import FaqJump from "@/components/FaqJump";
 import NextSteps from "@/components/NextSteps";
@@ -137,10 +138,14 @@ export default function ClusterPage({
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)]">
           {entry.h1}
         </h1>
-        <p className="mt-3 text-sm text-[var(--muted)]">
-          Last verified {formatDate(entry.updated)}
-          <ContentAge date={entry.updated} /> · {minutes} min read
-        </p>
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+          <p className="text-sm text-[var(--muted)]">
+            Last verified {formatDate(entry.updated)}
+            <ContentAge date={entry.updated} /> · {minutes} min read
+          </p>
+          {/* Save-for-later. Browser-local, no account — see BookmarkButton. */}
+          <BookmarkButton path={path} title={entry.h1} />
+        </div>
 
         {entry.firstParty && (
           <aside

@@ -235,9 +235,18 @@ export function GET() {
   add("/about", "About AIFitnessAPI", "Who writes this site and why.", "about");
   add("/glossary", "Fitness & Health API Glossary", "Every term in one or two honest sentences, linked to the page that treats it properly.", "glossary terms definitions dictionary");
   add("/methodology", "How We Verify", "Primary sources, adversarial review, and who funds the site.", "methodology how we verify sources");
+  add("/paths", "Reading paths", "Curated page sequences for a goal: ship HealthKit in a week, escape Google Fit, wearables without tears.", "reading path learning sequence curriculum guide");
+  add("/tools", "Free tools for health-app builders", "Ten tools that answer from the site's published datasets: diagnose an error, check an aggregation, build a permission set, generate a stack.", "tools free interactive utilities");
+  add("/tools/error-diagnoser", "Diagnose a HealthKit or OAuth error", "Paste an error, get the matching diagnosis from the error dataset and the fix guides.", "error diagnoser paste debug hkerror oauth 401 429 tool");
+  add("/tools/aggregation-checker", "Sum or average? Check any HealthKit type", "Type an identifier, get the cumulative-vs-discrete verdict with Apple's own sentence as evidence.", "aggregation cumulative discrete sum average statistics tool");
+  add("/tools/identifier-translator", "HealthKit to Health Connect translator", "Two-way lookup over the verified cross-platform matrix, honest about everything it has not verified.", "translate healthkit health connect identifier record mapping tool");
+  add("/tools/permission-builder", "HealthKit permission set builder", "Pick your types, get the Info.plist keys and authorization code, with read-only types flagged from Apple's own wording.", "permissions info.plist authorization nshealthshareusagedescription tool");
+  add("/tools/query-generator", "HealthKit statistics query generator", "Pick a type and a window, get the correct HKStatisticsQuery with the right options, or an honest refusal.", "hkstatisticsquery swift code generator cumulativesum discreteaverage tool");
+  add("/tools/stack-generator", "Fitness app stack generator", "Four questions in, a concrete recommended stack out, composed from the directory and type data with reasons stated.", "stack generator wizard recommend apis tool");
   add("/newsletter", "The AIFitnessAPI newsletter", "What changed in fitness and health APIs, verified before it is sent. The archive is the sample.", "newsletter subscribe email digest updates");
   add("/changelog", "Site changelog", "Every content change, rendered from the operational log it is generated from.", "changelog history what changed updates");
   add("/corrections", "Corrections log", "Published corrections, and the errors the build gates caught before publish.", "corrections errata errors fixed accuracy");
+  add("/gates", "What This Site Refuses to Ship", "Every automated refusal the build runs before a change can deploy, and what each one refuses to publish.", "gates qa checks build refusals quality automated verification");
 
   for (const p of getAllPosts()) add(`/blog/${p.slug}`, p.title, p.description, "blog post");
 

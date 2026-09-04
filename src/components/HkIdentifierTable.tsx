@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import CopyTableMarkdown from "@/components/CopyTableMarkdown";
 
 /**
  * The filterable table behind /healthkit-identifiers.
@@ -118,6 +119,7 @@ export default function HkIdentifierTable({
         Showing {filtered.length} of {rows.length} identifiers.
       </p>
 
+      <div className="mb-2 flex justify-end"><CopyTableMarkdown /></div>
       <div className="mt-4 overflow-x-auto">
         <table className="w-full min-w-[46rem] border-collapse text-left text-sm">
           <thead>

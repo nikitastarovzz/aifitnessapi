@@ -478,7 +478,7 @@ if (fs.existsSync(matrixPath)) {
   // renders — just with less in it than it claims. Count the blocks.
   {
     const rendered = htmls.filter((h) => fs.readFileSync(h, "utf8").includes("data-app-stack")).length;
-    const EXPECTED = 17;
+    const EXPECTED = 23;
     if (rendered !== EXPECTED) {
       problems.push(`APP-STACK      ${rendered} /build guides render the stack block, expected ${EXPECTED}`);
     } else {
@@ -661,6 +661,23 @@ if (fs.existsSync(matrixPath)) {
           `HK-GROUP-PARTIAL  only ${groupPages.length} of ${EXPECTED_GROUPS} group pages built`,
         );
       }
+    }
+  }
+
+  // ── Tools ─────────────────────────────────────────────────────────────
+  // Every tool page carries data-tool. The count is asserted both ways: a
+  // tool silently dropping out of the build matters exactly because tools
+  // have no data file whose absence would fail anything else.
+  {
+    const rendered = htmls.filter((h) => {
+      const r = routeOf(h);
+      return (r === "/tools" || r.startsWith("/tools/")) && fs.readFileSync(h, "utf8").includes("data-tool");
+    }).length;
+    const EXPECTED_TOOLS = 7; // hub + 6 tools
+    if (rendered !== EXPECTED_TOOLS) {
+      problems.push(`TOOLS          ${rendered} /tools pages carry data-tool, expected ${EXPECTED_TOOLS}`);
+    } else {
+      console.log(`Tools: ${EXPECTED_TOOLS - 1} interactive tools + hub render.`);
     }
   }
 
@@ -948,6 +965,74 @@ if (fs.existsSync(matrixPath)) {
       problems.push(`FIRSTPARTY     ${r} mentions KinesteX ${mentions}× in prose with no funding disclosure`);
     }
   }
+}
+
+// ── The published gate list ─────────────────────────────────────────────
+// /gates publishes this suite as prose: one row per failure code, saying in
+// a sentence what the build refuses to ship when that code fires. A written
+// description of a program rots the moment the program changes, so parity is
+// asserted in both directions rather than trusted. An added gate nobody
+// described makes the published list an understatement; a described gate
+// that no longer exists is a claim about a check that is not running. Both
+// are the page lying about the build, which is worse than not having it.
+{
+  const self = fs.readFileSync("scripts/qa.mjs", "utf8");
+  // Every failure in this file is a problems.push whose message opens with an
+  // uppercase code. Parameterised codes carry the offending length inside the
+  // code itself (`TITLE-${t.length}`), so they collapse to one `TITLE-*` row:
+  // the page describes the check, not one instance of it.
+  const live = new Set();
+  for (const m of self.matchAll(/problems\.push\(\s*[`"']([A-Z][A-Z0-9-]*(?:\$\{[^}]*\})?)/g)) {
+    live.add(m[1].replace(/\$\{[^}]*\}/, "*"));
+  }
+
+  const gatesSrc = fs.existsSync("src/data/gates.ts")
+    ? fs.readFileSync("src/data/gates.ts", "utf8")
+    : "";
+  const described = [...gatesSrc.matchAll(/^\s*code: "([^"]+)",$/gm)].map((m) => m[1]);
+  const describedSet = new Set(described);
+
+  for (const code of [...live].sort()) {
+    if (!describedSet.has(code)) {
+      problems.push(`GATE-UNDESCRIBED  ${code} fires in qa.mjs but has no row in src/data/gates.ts`);
+    }
+  }
+  for (const code of described) {
+    // The GATE-* codes are this block's own output, and they are extracted
+    // from the source above like any other, so they would pass on their own.
+    // Skipping them here keeps the stale side from ever being the thing that
+    // reports a rename of them — the undescribed side says it more usefully,
+    // and the gate does not end up chasing its own tail.
+    if (code.startsWith("GATE-")) continue;
+    if (!live.has(code)) {
+      problems.push(`GATE-STALE  src/data/gates.ts describes ${code}, which no longer fires in qa.mjs`);
+    }
+  }
+
+  // And the page has to render them. Compare the codes in the built table
+  // against the data module rather than counting rows: a grouping bug that
+  // drops a whole area then names the exact codes that went missing.
+  const gatesPage = htmls.find((h) => routeOf(h) === "/gates");
+  if (!gatesPage) {
+    problems.push("GATE-PAGE-MISSING  /gates was not built");
+  } else {
+    const html = fs.readFileSync(gatesPage, "utf8");
+    if (!html.includes("data-gates-table")) {
+      problems.push("GATE-PAGE-MISSING  /gates renders no data-gates-table");
+    } else {
+      const shown = new Set(
+        [...html.matchAll(/<code[^>]*>([A-Z][A-Z0-9*-]+)<\/code>/g)].map((m) => m[1]),
+      );
+      const missing = described.filter((c) => !shown.has(c));
+      if (missing.length || shown.size !== describedSet.size) {
+        problems.push(
+          `GATE-PAGE-ROWS  /gates renders ${shown.size} gate rows for ${describedSet.size} described gates` +
+            (missing.length ? ` — missing: ${missing.join(", ")}` : ""),
+        );
+      }
+    }
+  }
+  console.log(`Gates: ${live.size} refusals in qa.mjs, ${described.length} described on /gates.`);
 }
 
 if (notFoundRoutes.length) {

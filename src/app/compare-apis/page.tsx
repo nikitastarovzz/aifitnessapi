@@ -12,6 +12,17 @@ import { pageCount } from "@/lib/apiCoverage";
 const PATH = "/compare-apis";
 const UPDATED = "2026-08-22";
 
+/**
+ * Static metadata on purpose. The tool carries its selection in the query
+ * string (?a=…&b=…) so a comparison can be linked, and every one of those
+ * states is the SAME page: one canonical, /compare-apis, with no parameters.
+ *
+ * Do not turn this into a generateMetadata over searchParams. Per-pair titles
+ * would mint 276 self-canonicalising addresses out of four fields each, which
+ * is the thin-content page set this tool exists to avoid — and reading
+ * searchParams here would also drop the route's prerendered HTML, which the
+ * QA gate audits for canonical, phantom links and inbound links.
+ */
 export const metadata: Metadata = {
   title: { absolute: "Compare two fitness APIs side by side" },
   description:

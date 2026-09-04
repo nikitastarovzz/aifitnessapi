@@ -33,6 +33,12 @@ export const RELEASED_BUILD = new Set<string>([
   "cycle-tracking-app",
   "step-challenge-app",
   "senior-fitness-app",
+  "cycling-app",
+  "swimming-app",
+  "hiking-app",
+  "hiit-app",
+  "triathlon-app",
+  "kids-fitness-app",
   "fitness-app-tech-stack",
 ]);
 

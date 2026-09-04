@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import StatCard from "@/components/StatCard";
+import { HK_READONLY } from "@/data/healthkitWritability";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -147,8 +149,35 @@ export default function HealthKitHub() {
           every field joined from Apple&rsquo;s own documentation rather than restated from memory.
         </PageSummary>
 
+      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <StatCard
+          value={String(HK_IDENTIFIERS.length)}
+          label="type identifiers, read from Apple's documentation"
+          claim={`Apple's HealthKit documentation defines ${HK_IDENTIFIERS.length} type identifiers across four families, as read on ${HK_FETCHED_ON}.`}
+          anchor={absoluteUrl("/healthkit-identifiers")}
+        />
+        <StatCard
+          value={String(HK_IDENTIFIERS.filter((r) => (r.platforms as { name: string; introducedAt: string }[]).find((p) => p.name === "iOS")?.introducedAt === "8.0").length)}
+          label="of them shipped in iOS 8.0"
+          claim={`${HK_IDENTIFIERS.filter((r) => (r.platforms as { name: string; introducedAt: string }[]).find((p) => p.name === "iOS")?.introducedAt === "8.0").length} of HealthKit's ${HK_IDENTIFIERS.length} type identifiers shipped in iOS 8.0, per Apple's documentation read ${HK_FETCHED_ON}.`}
+          anchor={absoluteUrl("/healthkit-versions")}
+        />
+        <StatCard
+          value={String(HK_IDENTIFIERS.filter((r) => (r.discussionWords ?? 0) === 0).length)}
+          label="carry zero words of discussion prose"
+          claim={`${HK_IDENTIFIERS.filter((r) => (r.discussionWords ?? 0) === 0).length} of ${HK_IDENTIFIERS.length} HealthKit identifiers have no discussion prose in Apple's documentation, as read ${HK_FETCHED_ON}.`}
+          anchor={absoluteUrl("/healthkit-status")}
+        />
+        <StatCard
+          value={String(HK_READONLY.length)}
+          label="are explicitly read-only in Apple's wording"
+          claim={`Apple's documentation explicitly marks ${HK_READONLY.length} HealthKit types as read-only, per the corpus read ${HK_FETCHED_ON}.`}
+          anchor={absoluteUrl("/healthkit-identifiers")}
+        />
+      </div>
+
         {released.length > 0 ? (
-          <section className="mt-12">
+      <section className="mt-12">
             <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">
               The {released.length === 1 ? "group" : `${released.length} groups`}
             </h2>

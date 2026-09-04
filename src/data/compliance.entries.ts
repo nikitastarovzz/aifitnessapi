@@ -167,7 +167,7 @@ export const complianceEntries: ClusterEntry[] =
     "slug": "fda-fitness-app-regulation",
     "primaryQuery": "does the fda regulate fitness apps",
     "h1": "Does the FDA Regulate Fitness Apps?",
-    "metaTitle": "Does the FDA Regulate Fitness Apps?",
+    "metaTitle": "Does the FDA Regulate Fitness Apps? The 2-Prong Test",
     "metaDescription": "Most fitness and wellness apps fall under the FDA's general wellness policy, not device rules — unless you claim to diagnose or treat a disease.",
     "updated": "2026-07-14",
     "answer": "For most fitness and wellness apps the answer is no: step, calorie, sleep, and general-fitness features typically fall under the FDA's general wellness policy, where the agency applies enforcement discretion rather than regulating them as medical devices. What crosses the line is a claim — marketing that your app diagnoses, treats, or cures a disease (for example, detects AFib or diagnoses sleep apnea) can make it Software as a Medical Device and pull it into FDA oversight. General wellness is a policy and guidance posture, not a blanket statutory exemption, and the guidance was refreshed in early 2026, so verify the current text. This is general engineering guidance, not legal advice — confirm your product's pathway with a qualified professional.",

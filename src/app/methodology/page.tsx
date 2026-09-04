@@ -78,7 +78,9 @@ export default function MethodologyPage() {
           broken internal links, metadata problems, duplicate questions
           answered in two places, and malformed structured data. The gate has
           rejected our own work repeatedly. It is not allowed to be weakened
-          to make a change pass.
+          to make a change pass. Every one of those refusals is published, with
+          what it refuses to ship, at{" "}
+          <Link href="/gates">the gates</Link>.
         </p>
 
         <h2>Judgement is labelled as judgement</h2>

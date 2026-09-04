@@ -5,6 +5,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterCta from "@/components/ClusterCta";
 import ClusterDisclaimer from "@/components/ClusterDisclaimer";
 import ClusterHero from "@/components/ClusterHero";
+import HubFreshness from "@/components/HubFreshness";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
 import { absoluteUrl } from "@/lib/site";
@@ -48,7 +49,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Empty platform-store data",
     blurb: "HealthKit and Health Connect returning nothing.",
-    slugs: ["healthkit-authorization-denied", "healthkit-no-data", "healthkit-background-delivery-not-working", "health-connect-no-data"],
+    slugs: ["healthkit-authorization-denied", "healthkit-no-data", "healthkit-background-delivery-not-working", "health-connect-no-data", "healthkit-error-no-data", "healthkit-authorization-not-determined", "healthkit-required-authorization-denied", "healthkit-database-inaccessible", "healthkit-health-data-unavailable", "healthkit-data-restricted-mdm", "healthkit-workout-session-errors", "healthkit-guest-user-mode", "healthkit-undocumented-errors"],
   },
   {
     title: "Webhooks & sync",
@@ -133,6 +134,8 @@ export default function FixPillar() {
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
           Fitness &amp; Health API Troubleshooting
         </h1>
+
+        <HubFreshness entries={released} basePath={FIX_PATH} />
 
         <div
           id="answer"
