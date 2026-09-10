@@ -35,7 +35,7 @@ export type SdkRepo = {
 };
 
 /** The date CI last reached the GitHub API. */
-export const SDK_CHECKED_ON = "2026-09-07";
+export const SDK_CHECKED_ON = "2026-09-10";
 
 export const SDK_REPOS: SdkRepo[] = [
   {
@@ -91,7 +91,7 @@ export const SDK_REPOS: SdkRepo[] = [
     "why": "The React Native wrapper for Android Health Connect, supporting both the old and new RN architectures.",
     "covers": "Android Health Connect",
     "url": "https://github.com/matinzd/react-native-health-connect",
-    "stars": 414,
+    "stars": 411,
     "archived": false,
     "pushedAt": "2026-08-26",
     "releases": [
