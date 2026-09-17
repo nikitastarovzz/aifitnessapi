@@ -35,7 +35,7 @@ export type SdkRepo = {
 };
 
 /** The date CI last reached the GitHub API. */
-export const SDK_CHECKED_ON = "2026-09-16";
+export const SDK_CHECKED_ON = "2026-09-17";
 
 export const SDK_REPOS: SdkRepo[] = [
   {
@@ -140,7 +140,7 @@ export const SDK_REPOS: SdkRepo[] = [
     "url": "https://github.com/android/health-samples",
     "stars": 346,
     "archived": false,
-    "pushedAt": "2026-04-20",
+    "pushedAt": "2026-09-16",
     "releases": []
   }
 ];
