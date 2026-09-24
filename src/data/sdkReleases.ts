@@ -35,7 +35,7 @@ export type SdkRepo = {
 };
 
 /** The date CI last reached the GitHub API. */
-export const SDK_CHECKED_ON = "2026-09-19";
+export const SDK_CHECKED_ON = "2026-09-24";
 
 export const SDK_REPOS: SdkRepo[] = [
   {
@@ -138,7 +138,7 @@ export const SDK_REPOS: SdkRepo[] = [
     "why": "Google's own sample projects for Health Connect, Health Services and Wear OS. Changes here usually precede changes in the guidance.",
     "covers": "Android Health Connect, Health Services",
     "url": "https://github.com/android/health-samples",
-    "stars": 346,
+    "stars": 347,
     "archived": false,
     "pushedAt": "2026-09-16",
     "releases": []
