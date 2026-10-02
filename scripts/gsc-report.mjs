@@ -255,6 +255,24 @@ for (const [name, engine] of Object.entries(engines)) {
     );
   }
 
+  // Underperformance, named. Distinct from a regression: this compares a
+  // page against what its CURRENT position should pay, which needs no
+  // history and is available on the first export. A true regression — this
+  // page got worse than it was — needs two points in time and lives under
+  // --compare. Blurring the two would let "we never earned these clicks"
+  // read as "we lost them".
+  const under = rows.filter((r) => r.impressions >= 20 && r.ctr < r.expected / 2);
+  if (under.length) {
+    console.log(`\n  Earning under half what their position should pay (${under.length} pages, ≥20 impressions):`);
+    for (const r of under.slice(0, 15)) {
+      console.log(
+        `  ${r.path.padEnd(50).slice(0, 50)} ${String(r.impressions).padStart(6)} imp  ` +
+          `ctr ${(r.ctr * 100).toFixed(1).padStart(5)}% vs ${(r.expected * 100).toFixed(1)}% at pos ${r.position.toFixed(1)}`,
+      );
+    }
+    if (under.length > 15) console.log(`  …and ${under.length - 15} more`);
+  }
+
   if (engine.queries.size) {
     const qrows = [...engine.queries.entries()]
       .map(([q, v]) => {
@@ -541,6 +559,23 @@ if (cmpIdx >= 0) {
     const tot = moves.reduce((a, m) => ({ imp: a.imp + m.dImp, clk: a.clk + m.dClk }), { imp: 0, clk: 0 });
     console.log(`\n  ${name}: impressions ${tot.imp >= 0 ? "+" : ""}${tot.imp}, clicks ${tot.clk >= 0 ? "+" : ""}${tot.clk}`);
     console.log(`  ${"page".padEnd(50)} ${"Δimp".padStart(7)} ${"Δclk".padStart(5)} ${"Δpos".padStart(7)}`);
+    // True regressions: CTR fell against its own past, not against a curve.
+    const regressed = moves.filter((m) => {
+      const p = prev.get(m.path);
+      if (!p || p.impressions < 20 || m.impressions < 20) return false;
+      const was = p.clicks / p.impressions;
+      return was > 0 && m.ctr < was * 0.5;
+    });
+    if (regressed.length) {
+      console.log(`\n  CTR REGRESSIONS — more than halved against ${which} (≥20 impressions both windows):`);
+      for (const m of regressed.slice(0, 12)) {
+        const p = prev.get(m.path);
+        console.log(
+          `  ${m.path.padEnd(50).slice(0, 50)} ${((p.clicks / p.impressions) * 100).toFixed(1)}% → ${(m.ctr * 100).toFixed(1)}%  (pos ${p.position.toFixed(1)} → ${m.position.toFixed(1)})`,
+        );
+      }
+    }
+
     for (const m of moves.slice(0, 20)) {
       const tag = m.isNew ? " (new)" : "";
       console.log(

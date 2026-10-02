@@ -85,6 +85,8 @@ const notFoundRoutes = [];
 const notFoundSet = new Set();
 /** route → the newest JSON-LD dateModified (YYYY-MM-DD) the page declares. */
 const dateModifiedOf = new Map();
+/** Routes whose rendered HTML asks robots not to index them. */
+const noindexSet = new Set();
 
 for (const h of htmls) {
   const route = routeOf(h);
@@ -141,6 +143,7 @@ for (const h of htmls) {
     const canonical = canonicalOf(html);
     const ogUrl = /\bcontent="([^"]*)"/.exec(/<meta\b[^>]*\bproperty="og:url"[^>]*>/.exec(html)?.[0] ?? "")?.[1];
     const noindex = robotsOf(html).some((c) => /noindex/i.test(c));
+    if (noindex) noindexSet.add(route);
     if (canonical && ogUrl && decode(ogUrl) !== decode(canonical)) {
       problems.push(`OG-URL-MISMATCH ${route}: og:url ${decode(ogUrl)} vs canonical ${decode(canonical)}`);
     }
@@ -1410,6 +1413,11 @@ if (fs.existsSync(matrixPath)) {
       if (route === null || !valid.has(route) || notFoundSet.has(route)) {
         problems.push(`SITEMAP-NO-PAGE  ${loc} is listed but no built page answers it`);
         continue;
+      }
+      if (noindexSet.has(route)) {
+        problems.push(
+          `SITEMAP-NOINDEX  ${route} is listed in sitemap.xml but its own HTML says noindex`,
+        );
       }
       const declared = dateModifiedOf.get(route);
       if (declared && lastmod?.slice(0, 10) !== declared) {

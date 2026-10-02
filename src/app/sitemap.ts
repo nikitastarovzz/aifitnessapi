@@ -140,7 +140,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // page states its own dateModified.
   const derived: Record<string, string | undefined> = {
     "/": newestAll,
-    "/site-index": newestAll,
     "/changes": pageStamp("/changes") ?? newestChange,
     "/blog": newestPost,
     "/questions": newestAll,
@@ -182,7 +181,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/corrections",
     "/gates",
     "/about",
-    "/site-index",
+    // /site-index is deliberately absent: it is noindex,follow (see
+    // src/app/site-index/page.tsx), and a sitemap entry is a request to
+    // index. It stays linked from the header, so it keeps its crawl-aid job
+    // without asking for the indexing we just removed. SITEMAP-NOINDEX in
+    // qa.mjs stops it, or anything else noindexed, coming back.
     APIS_PATH,
     "/alerts",
     "/compare-apis",

@@ -17,6 +17,12 @@
 export const GATES: { code: string; refuses: string; area: string }[] = [
   // ── Per-page crawl: links, metadata, structured data ──────────────────
   {
+    code: "SITEMAP-NOINDEX",
+    area: "Hosting and crawl",
+    refuses:
+      "A route listed in sitemap.xml whose own HTML says noindex. The two are contradictory instructions — the sitemap asks a crawler to index what the page tells it to skip — and the contradiction is easy to create, because noindexing a page and de-listing it are edits in different files.",
+  },
+  {
     code: "CANNIBAL-QUERY",
     area: "Search",
     refuses:
