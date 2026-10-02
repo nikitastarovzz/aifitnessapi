@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Container from "@/components/Container";
 import Newsletter from "@/components/Newsletter";
 import { site } from "@/lib/site";
+import { GATES } from "@/data/gates";
 import PageSummary from "@/components/PageSummary";
 
 const TITLE = "About";
@@ -40,6 +42,23 @@ export default function AboutPage() {
             playbooks so you can spend less time on undifferentiated plumbing
             and more time on the experience that makes your product worth using.
           </p>
+          {/* The description promises "how they are verified" and "who funds the
+              site"; both are restated from /methodology and /gates, not new claims. */}
+          <h2>How the pages are checked</h2>
+          <p>
+            Factual claims come from vendor documentation fetched while researching that page, and
+            a claim we could not verify is labelled as such rather than filled in. Before anything
+            deploys, the build runs {GATES.length} automated refusals over the rendered site —
+            broken anchors, truncated titles, undisclosed first-party links, and more — and every
+            one is listed, with what it refuses to ship, at{" "}
+            <Link href="/gates">the gates</Link>. The rest of the process is in{" "}
+            <Link href="/methodology">how we verify</Link>, and what got through anyway is in{" "}
+            <Link href="/corrections">corrections</Link>.
+          </p>
+          <p>
+            KinesteX, an AI motion-tracking SDK, funds this site. It does not buy conclusions: pages
+            that feature it carry a disclosure, and comparisons say where its competitors win.
+          </p>
           <p>
             Have something to share, or want to be featured? Reach out at{" "}
             <a href={`mailto:${site.author.email}`}>{site.author.email}</a>.
@@ -47,7 +66,7 @@ export default function AboutPage() {
         </div>
 
         <div className="mt-14">
-          <Newsletter />
+          <Newsletter source="about-subscribe" />
         </div>
       </div>
     </Container>

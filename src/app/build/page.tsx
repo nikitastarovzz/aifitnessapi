@@ -193,6 +193,22 @@ export default function BuildPillar() {
           </p>
         </div>
 
+        <div className="mt-8 rounded-2xl border border-brand-400/30 bg-brand-500/5 p-5">
+          <p className="text-sm font-semibold text-[var(--fg)]">Know your app type already?</p>
+          <p className="mt-1 text-sm text-[var(--muted)]">
+            Answer four questions — what you are building, which platforms ship, how much wearable
+            data you need, and whether the team is optimising for speed or control — and get the
+            HealthKit types that category touches and the APIs that survive those answers, each
+            with the reason it survived.
+          </p>
+          <Link
+            href="/tools/stack-generator"
+            className="mt-3 inline-block rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-500"
+          >
+            Generate your stack
+          </Link>
+        </div>
+
         {GROUPS.map((group) => {
           const items = group.slugs.map((s) => getBuild(s)).filter((e) => e !== undefined);
           if (items.length === 0) return null;

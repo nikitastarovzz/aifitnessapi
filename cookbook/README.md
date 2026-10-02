@@ -1,6 +1,6 @@
 # AIFitnessAPI Cookbook
 
-Six dependency-free Node modules for the parts of a fitness or health-data
+Eight dependency-free Node modules for the parts of a fitness or health-data
 integration that are easy to get subtly wrong, each with a test suite that runs
 in CI on every change.
 
@@ -17,6 +17,8 @@ workflow is what makes the "CI-tested" claim on those pages true.
 | `day-boundary-rollup.mjs` | Daily totals that survive daylight saving, where a civil day is not always 24 hours | [day-boundary-rollup](https://aifitnessapi.com/cookbook/day-boundary-rollup) |
 | `backfill-checkpointer.mjs` | Resumable historical backfill that does not restart from zero after a failure | [backfill-checkpointer](https://aifitnessapi.com/cookbook/backfill-checkpointer) |
 | `rep-counter.mjs` | Turning a keypoint stream into a rep count, tested as the classification problem it is | [rep-counter](https://aifitnessapi.com/cookbook/rep-counter) |
+| `dedupe-health-samples.mjs` | Merging overlapping samples from several sources without double counting, by source priority | [dedupe-health-samples](https://aifitnessapi.com/cookbook/dedupe-health-samples) |
+| `incremental-sync-anchor.mjs` | Anchor and changes-token bookkeeping: save the cursor only after a batch lands, resync on expiry | [incremental-sync-anchor](https://aifitnessapi.com/cookbook/incremental-sync-anchor) |
 
 ## Running the tests
 

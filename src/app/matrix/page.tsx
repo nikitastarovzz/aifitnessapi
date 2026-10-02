@@ -6,12 +6,35 @@ import ClusterHero from "@/components/ClusterHero";
 import ClusterCta from "@/components/ClusterCta";
 import DataMatrix from "@/components/DataMatrix";
 import { ROWS } from "@/data/matrix";
+import { HK_IDENTIFIERS } from "@/data/healthkitIdentifiers";
+import { HK_BASE, GROUP_TO_SLUG, releasedHkGroups } from "@/data/hkGroupPages";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import PageSummary from "@/components/PageSummary";
 
 const MATRIX_PATH = "/matrix";
 const UPDATED = "2026-07-26";
+
+/**
+ * Each HealthKit identifier the table names, linked to its row on its group
+ * page (/healthkit/<group>#id-<case>). Parsed with the same regex AppStack and
+ * the group pages use, then kept only if the name is a real identifier in the
+ * generated dataset with a released group page — so a dotted name that is not
+ * an identifier never becomes a link, and a link can only point at a row that
+ * renders. Rows with no identifier (workouts, GPS route) are left out.
+ */
+const HK_BY_CASE = new Map(HK_IDENTIFIERS.map((r) => [r.case, r]));
+const RELEASED_GROUPS = new Set(releasedHkGroups().map((e) => e.slug));
+const GROUP_LINKS = ROWS.map((row) => {
+  const ids: { name: string; href: string }[] = [];
+  for (const m of row.apple.matchAll(/(?:HK\w*TypeIdentifier)?\.([A-Za-z][A-Za-z0-9]*)/g)) {
+    const record = HK_BY_CASE.get(m[1]);
+    const slug = record ? GROUP_TO_SLUG[record.group] : undefined;
+    if (!record || !slug || !RELEASED_GROUPS.has(slug) || ids.some((i) => i.name === m[1])) continue;
+    ids.push({ name: m[1], href: `${HK_BASE}/${slug}#id-${m[1].toLowerCase()}` });
+  }
+  return { id: row.id, label: row.label, ids };
+}).filter((r) => r.ids.length > 0);
 
 export const metadata: Metadata = {
   title: { absolute: "HealthKit ↔ Health Connect Type Reference" },
@@ -89,6 +112,45 @@ export default function MatrixPage() {
 
       <div className="mx-auto mt-10 max-w-5xl">
         <DataMatrix />
+      </div>
+
+      <div className="mx-auto mt-10 max-w-2xl">
+        <section aria-labelledby="hk-group-rows" className="rounded-2xl border border-[var(--border)] p-5">
+          <h2
+            id="hk-group-rows"
+            className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]"
+          >
+            The HealthKit types above, in the full reference
+          </h2>
+          <p className="mt-2 text-sm text-[var(--muted)]">
+            Each links to its row on its HealthKit group page, where the aggregation, unit and iOS
+            columns are read from Apple&rsquo;s documentation.
+          </p>
+          <ul className="mt-3 space-y-1.5 text-sm">
+            {GROUP_LINKS.map((r) => (
+              <li key={r.id}>
+                <span className="text-[var(--fg)]">{r.label}:</span>{" "}
+                {r.ids.map((i, n) => (
+                  <span key={i.name}>
+                    <Link href={i.href} className="font-mono text-[13px] text-brand-600 hover:text-brand-500">
+                      {i.name}
+                    </Link>
+                    {n < r.ids.length - 1 ? ", " : ""}
+                  </span>
+                ))}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <p className="mt-6 text-sm text-[var(--muted)]">
+          Looking up one type rather than reading the table?{" "}
+          <Link href="/tools/identifier-translator" className="font-medium text-brand-600 hover:text-brand-500">
+            The identifier translator
+          </Link>{" "}
+          finds the Health Connect record for a HealthKit identifier, or the reverse — verified pairs
+          only, and where nothing was checked it says so.
+        </p>
       </div>
 
       <div className="mx-auto mt-14 max-w-2xl">

@@ -14,9 +14,14 @@
  * Jobs:
  *   1. Opportunity ranking by modelled clicks left on the table.
  *   2. --cohorts   title-length buckets against the built HTML.
- *   3. --compare   two snapshots, page by page: what moved since when.
+ *   3. --compare   two snapshots, page by page: what moved since when. When
+ *      ops/gsc/retitled.txt exists, the movement is also split into retitled
+ *      pages vs untouched pages (the control), so a title wave's effect can be
+ *      told apart from a recovery that lifts every page at once.
  *   4. --snapshot  archive today's read into data/gsc/snapshots/ so there is
  *      a time series instead of a single file that each export overwrites.
+ *   5. GEO citation proxy: queries that quote the site's own sentences
+ *      (ops/GEO.md → Measurement). Always runs when the API snapshot exists.
  *
  * Methodology note, and the reason this file was rewritten:
  *
@@ -38,6 +43,9 @@ import path from "node:path";
 const CSV_DIR = "ops/gsc";
 const JSON_SNAPSHOT = "data/gsc/latest.json";
 const SNAP_DIR = "data/gsc/snapshots";
+const RETITLED_FILE = "ops/gsc/retitled.txt";
+const ENTRIES_DIR = "src/data";
+const POSTS_DIR = "content/posts";
 
 /**
  * Position → expected CTR. A public composite of several published
@@ -119,8 +127,11 @@ function addQuery(engine, q, { clicks, impressions, position }) {
 const engines = { google: emptyEngine(), bing: emptyEngine() };
 
 // ---- source 1: the API snapshot -------------------------------------------
+// Kept at module scope for the GEO section, which needs byQueryPage.
+let apiSnap = null;
 if (fs.existsSync(JSON_SNAPSHOT)) {
   const snap = JSON.parse(fs.readFileSync(JSON_SNAPSHOT, "utf8"));
+  apiSnap = snap;
   const g = engines.google;
   for (const r of snap.byPage ?? []) {
     addPage(g, r.keys[0], { clicks: r.clicks, impressions: r.impressions, position: r.position });
@@ -272,6 +283,216 @@ if (!report.bing) {
   );
 }
 
+// ---- GEO citation proxy: queries that quote our own sentences ---------------
+//
+// ops/GEO.md (Measurement) counts a query that reproduces one of the site's
+// own sentences as the best available sign that someone pasted our text —
+// usually out of an AI answer — into Google. The first confirmed case,
+//   "personal access tokens were deprecated in december 2025" oura
+// is a sentence from src/data/integrate.entries.ts and fitnessApis.entries.ts,
+// and earlier planning misread it as a vendor developer string. This makes
+// the check mechanical instead of a judgement call.
+//
+// Candidates: queries (byQuery ∪ byQueryPage) with ≥5 words or a quoted
+// segment. The phrase tested is each quoted segment, or the whole query when
+// it has no usable quote. Both sides are normalised the same way — lowercase,
+// every run of non-letter/digit characters collapsed to one space, markdown
+// link targets dropped — and the phrase must sit on word boundaries inside a
+// single string of the site's text, so it cannot straddle two fields.
+//
+// Corpus, built once: the string values of src/data/*.entries.ts (the arrays
+// are JSON literals, so they are parsed rather than scraped) and the bodies of
+// content/posts/*.mdx plus their front-matter description and FAQ answers.
+// Title-ish fields (slug, primaryQuery, h1, metaTitle, FAQ questions, post
+// titles) are left out: they are written in searcher phrasing on purpose, so
+// a query matching one is SEO working, not somebody quoting a sentence.
+//
+// Two filters, both there because the unfiltered run produced false positives:
+//   - a phrase needs ≥4 words. A short quoted fragment ("x-app-id", a product
+//     name) matches half the site and quotes nobody's sentence.
+//   - a query containing a code-ish token — a domain, a path, a dotted or
+//     snake_case identifier — is a vendor string (an endpoint, a model file, a
+//     constant). Our guides quote those in code samples, so they match, but
+//     nobody is pasting our prose. They are listed separately, not dropped
+//     silently, so the reader can overrule the filter.
+const GEO_MIN_PHRASE_WORDS = 4;
+const GEO_TITLE_KEYS = new Set(["slug", "primaryQuery", "h1", "metaTitle", "q"]);
+const GEO_CODEISH = /\p{L}\.\p{L}|[\p{L}\p{N}]_[\p{L}\p{N}]|\p{L}\/|\/\p{L}/u;
+
+function normText(s) {
+  return String(s)
+    .toLowerCase()
+    .replace(/\]\([^)\s]*\)/g, "]") // [text](/url) → [text]
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .trim();
+}
+
+/** Every searchable unit of site text: one per cluster entry, one per post. */
+function buildSiteCorpus() {
+  const units = [];
+  const counts = { files: 0, entries: 0, posts: 0 };
+  const unit = (file, label, parts) => units.push({ file, label, text: ` ${parts.join(" \u0001 ")} ` });
+
+  const entryFiles = fs.existsSync(ENTRIES_DIR)
+    ? fs.readdirSync(ENTRIES_DIR).filter((n) => n.endsWith(".entries.ts")).sort()
+    : [];
+  for (const f of entryFiles) {
+    const file = path.join(ENTRIES_DIR, f);
+    const src = fs.readFileSync(file, "utf8");
+    counts.files++;
+    let entries = null;
+    const eq = src.search(/=\s*\[/);
+    if (eq >= 0) {
+      try {
+        entries = JSON.parse(src.slice(src.indexOf("[", eq)).replace(/;\s*$/, ""));
+      } catch {
+        entries = null;
+      }
+    }
+    if (!Array.isArray(entries)) {
+      // The file stopped being a plain JSON array. Scan its string literals so
+      // matches are not lost, and say so — title fields are included this way.
+      console.error(`gsc-report: ${file} is not a JSON array literal — scanned its string literals instead.`);
+      const parts = [];
+      for (const m of src.matchAll(/"((?:[^"\\\n]|\\.)*)"/g)) {
+        let v;
+        try { v = JSON.parse(`"${m[1]}"`); } catch { v = m[1]; }
+        parts.push(normText(v));
+      }
+      unit(file, null, parts);
+      continue;
+    }
+    for (const e of entries) {
+      const parts = [];
+      (function walk(v, key) {
+        if (typeof v === "string") {
+          if (!GEO_TITLE_KEYS.has(key)) parts.push(normText(v));
+        } else if (Array.isArray(v)) v.forEach((x) => walk(x, key));
+        else if (v && typeof v === "object") for (const [k, x] of Object.entries(v)) walk(x, k);
+      })(e, "");
+      unit(file, e?.slug ?? null, parts);
+      counts.entries++;
+    }
+  }
+
+  const postFiles = fs.existsSync(POSTS_DIR)
+    ? fs.readdirSync(POSTS_DIR).filter((n) => n.endsWith(".mdx")).sort()
+    : [];
+  for (const f of postFiles) {
+    const file = path.join(POSTS_DIR, f);
+    const src = fs.readFileSync(file, "utf8");
+    const fm = src.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/);
+    const parts = [normText(fm ? src.slice(fm[0].length) : src)];
+    if (fm) {
+      for (const m of fm[1].matchAll(/^\s*(?:-\s*)?(?:description|a):\s*(.+)$/gm)) parts.push(normText(m[1]));
+    }
+    unit(file, null, parts);
+    counts.posts++;
+  }
+  return { units, counts };
+}
+
+function geoCitationSection(snap) {
+  const byQuery = snap.byQuery ?? [];
+  const byQP = snap.byQueryPage ?? [];
+  const isCandidate = (q) => q.includes('"') || q.trim().split(/\s+/).length >= 5;
+  const candidates = [...new Set([...byQuery, ...byQP].map((r) => r.keys[0]).filter(isCandidate))];
+
+  console.log(`\n${"=".repeat(68)}\nQueries quoting our own sentences (GEO citation proxy)\n${"=".repeat(68)}`);
+  if (!candidates.length) {
+    console.log("  no query with ≥5 words or quotes in this export.");
+    return;
+  }
+
+  const { units, counts } = buildSiteCorpus();
+  const cache = new Map();
+  const unitsContaining = (n) => {
+    if (!cache.has(n)) cache.set(n, units.filter((u) => u.text.includes(` ${n} `)));
+    return cache.get(n);
+  };
+
+  const hits = [];
+  const skipped = [];
+  for (const q of candidates) {
+    const quoted = [...q.matchAll(/"([^"]+)"/g)].map((m) => normText(m[1]));
+    let phrases = quoted.filter((n) => n.split(" ").length >= GEO_MIN_PHRASE_WORDS);
+    const fromQuotes = phrases.length > 0;
+    if (!fromQuotes) {
+      const whole = normText(q);
+      phrases = whole.split(" ").length >= 5 ? [whole] : [];
+    }
+    const matched = new Set();
+    for (const n of phrases) for (const u of unitsContaining(n)) matched.add(u);
+    if (!matched.size) continue;
+    (GEO_CODEISH.test(q) ? skipped : hits).push({ q, quoted: fromQuotes, units: [...matched] });
+  }
+
+  const queryStats = new Map(byQuery.map((r) => [r.keys[0], r]));
+  // Landing pages per query, merged by path (www and apex rows are one page).
+  const landings = (q) => {
+    const byPath = new Map();
+    for (const r of byQP) {
+      if (r.keys[0] !== q) continue;
+      const p = pathOf(r.keys[1]);
+      const cur = byPath.get(p) ?? { path: p, impressions: 0, posWeighted: 0 };
+      cur.impressions += r.impressions;
+      cur.posWeighted += (r.position || 0) * r.impressions;
+      byPath.set(p, cur);
+    }
+    return [...byPath.values()]
+      .map((v) => ({ ...v, position: v.impressions ? v.posWeighted / v.impressions : 0 }))
+      .sort((a, b) => b.impressions - a.impressions);
+  };
+  const impOf = (h) => queryStats.get(h.q)?.impressions ?? landings(h.q).reduce((n, r) => n + r.impressions, 0);
+  const whereText = (list) => {
+    const byFile = new Map();
+    for (const u of list) {
+      const s = byFile.get(u.file) ?? new Set();
+      if (u.label) s.add(u.label);
+      byFile.set(u.file, s);
+    }
+    const out = [...byFile].map(([f, s]) => (s.size ? `${f} (${[...s].join(", ")})` : f));
+    return out.length > 4 ? `${out.slice(0, 4).join(", ")} +${out.length - 4} more` : out.join(", ");
+  };
+
+  console.log(
+    `  ${candidates.length} candidate queries (≥5 words or quoted) checked against ` +
+      `${counts.entries} entries in ${counts.files} files + ${counts.posts} posts (prose fields only)`,
+  );
+
+  if (!hits.length) {
+    console.log("  none this window.");
+  } else {
+    hits.sort((a, b) => impOf(b) - impOf(a));
+    for (const h of hits) {
+      const qs = queryStats.get(h.q);
+      const total = qs ? ` · ${qs.impressions} imp · pos ${qs.position.toFixed(1)} overall` : "";
+      console.log(`\n  ${h.q}\n      ${h.quoted ? "matched on the quoted phrase" : "matched on the whole query"}${total}`);
+      const lp = landings(h.q);
+      if (!lp.length) console.log("      landing: (not in byQueryPage — Google withheld the page row)");
+      for (const r of lp) {
+        console.log(
+          `      landing: ${r.path.padEnd(44)} ${String(r.impressions).padStart(5)} imp  pos ${r.position.toFixed(1)}`,
+        );
+      }
+      console.log(`      matched: ${whereText(h.units)}`);
+    }
+  }
+
+  if (skipped.length) {
+    console.log("\n  Skipped as vendor strings (domain/path/identifier tokens; they match our code samples, not our prose):");
+    for (const h of skipped.sort((a, b) => impOf(b) - impOf(a))) {
+      console.log(`    ${h.q.padEnd(60).slice(0, 60)} ${String(impOf(h)).padStart(4)} imp  → ${whereText(h.units)}`);
+    }
+  }
+  console.log(
+    "\n  A proxy, not telemetry: a match says someone searched a sentence this site published,\n" +
+      "  not where they copied it from. Report it as a proxy (ops/GEO.md → Measurement).",
+  );
+}
+
+if (apiSnap) geoCitationSection(apiSnap);
+
 // ---- --snapshot: build the time series ------------------------------------
 if (process.argv.includes("--snapshot")) {
   fs.mkdirSync(SNAP_DIR, { recursive: true });
@@ -328,6 +549,122 @@ if (cmpIdx >= 0) {
           `${(m.dPos >= 0 ? "+" : "") + m.dPos.toFixed(1)}`.padStart(8) + tag,
       );
     }
+  }
+
+  const cohort = loadRetitled();
+  if (cohort) printCohortSplit(before, which, cohort);
+}
+
+// ---- --compare, continued: retitled pages against an untouched control -----
+//
+// A recovery (the post-outage climb, a core update) lifts every page at once,
+// so "the retitled pages gained impressions" proves nothing on its own. The
+// pages nobody touched are the control: whatever they did is the tide, and
+// only the retitled group's movement *beyond* it is attributable to the
+// titles. ops/gsc/retitled.txt lists the treated paths, one per line; a line
+// ending in `*` is a prefix (`/apis/*` = every page under /apis/, not the /apis
+// hub itself); `#` starts a comment.
+function normPath(p) {
+  return p.length > 1 ? p.replace(/\/+$/, "") : p;
+}
+
+function loadRetitled() {
+  if (!fs.existsSync(RETITLED_FILE)) return null;
+  const exact = new Set();
+  const prefixes = [];
+  for (const raw of fs.readFileSync(RETITLED_FILE, "utf8").split(/\r?\n/)) {
+    const line = raw.replace(/#.*/, "").trim();
+    if (!line) continue;
+    if (line.endsWith("*")) prefixes.push(line.slice(0, -1));
+    else exact.add(normPath(line));
+  }
+  const has = (p) => {
+    const n = normPath(p);
+    return exact.has(n) || prefixes.some((pre) => n.startsWith(pre) && n.length > pre.length);
+  };
+  return { exact, prefixes, has };
+}
+
+function printCohortSplit(before, which, cohort) {
+  const signed = (n, d = 0, unit = "") => {
+    const s = n.toFixed(d);
+    return `${s.startsWith("-") && Number(s) !== 0 ? s : `+${s.replace(/^-/, "")}`}${unit}`;
+  };
+  const pct = (a, b) => (a ? signed(((b - a) / a) * 100, 1, "%") : b ? "new" : "—");
+  const days = (r) => (r?.start && r?.end ? Math.round((Date.parse(r.end) - Date.parse(r.start)) / 86400000) + 1 : null);
+
+  console.log(
+    `\n  Retitled vs untouched (control) — ${RETITLED_FILE}: ${cohort.exact.size} paths + ${cohort.prefixes.length} pattern(s)`,
+  );
+  const rb = before.range, rn = engines.google.range;
+  if (rb?.start && rn?.start && rb.start === rn.start && rb.end === rn.end) {
+    console.log(`  NOTE: ${which} and latest.json cover the same window (${rn.start} → ${rn.end}); nothing below measures change until a fresh export lands.`);
+  } else if (days(rb) && days(rn) && days(rb) !== days(rn)) {
+    console.log(
+      `  WARNING: windows differ (${days(rb)} days in ${which} vs ${days(rn)} now) — raw impression and click changes are not like for like; read CTR and position.`,
+    );
+  }
+
+  const seen = new Set();
+  for (const [name, rows] of Object.entries(report)) {
+    const prevRows = before.engines?.[name] ?? [];
+    if (!prevRows.length) continue;
+    const now = new Map(rows.map((r) => [r.path, r]));
+    const prev = new Map(prevRows.map((r) => [r.path, r]));
+    const blank = () => ({ pages: 0, impA: 0, clkA: 0, posA: 0, impB: 0, clkB: 0, posB: 0 });
+    const groups = { retitled: blank(), "untouched (control)": blank() };
+    // Union of both snapshots: a page missing on one side counts as 0 there,
+    // so a page that vanished still drags its group down.
+    for (const p of new Set([...now.keys(), ...prev.keys()])) {
+      const treated = cohort.has(p);
+      if (treated) seen.add(normPath(p));
+      const g = groups[treated ? "retitled" : "untouched (control)"];
+      const a = prev.get(p), b = now.get(p);
+      g.pages++;
+      if (a) { g.impA += a.impressions; g.clkA += a.clicks; g.posA += (a.position || 0) * a.impressions; }
+      if (b) { g.impB += b.impressions; g.clkB += b.clicks; g.posB += (b.position || 0) * b.impressions; }
+    }
+
+    console.log(
+      `\n  ${name.padEnd(20)} ${"pages".padStart(5)} ${"imp before→now".padStart(16)} ${"Δimp".padStart(8)} ` +
+        `${"clk before→now".padStart(15)} ${"CTR before→now".padStart(16)} ${"ΔCTR".padStart(9)} ${"pos before→now".padStart(15)}`,
+    );
+    const stat = {};
+    for (const [label, g] of Object.entries(groups)) {
+      const ctrA = g.impA ? (g.clkA / g.impA) * 100 : 0;
+      const ctrB = g.impB ? (g.clkB / g.impB) * 100 : 0;
+      const posA = g.impA ? g.posA / g.impA : 0;
+      const posB = g.impB ? g.posB / g.impB : 0;
+      stat[label] = { g, ctrA, ctrB, posA, posB };
+      console.log(
+        `  ${label.padEnd(20)} ${String(g.pages).padStart(5)} ${`${g.impA} → ${g.impB}`.padStart(16)} ${pct(g.impA, g.impB).padStart(8)} ` +
+          `${`${g.clkA} → ${g.clkB}`.padStart(15)} ${`${ctrA.toFixed(2)}% → ${ctrB.toFixed(2)}%`.padStart(16)} ` +
+          `${signed(ctrB - ctrA, 2, "pp").padStart(9)} ${`${posA.toFixed(1)} → ${posB.toFixed(1)}`.padStart(15)}`,
+      );
+    }
+    const t = stat.retitled, c = stat["untouched (control)"];
+    if (t.g.impA && c.g.impA) {
+      const growth = (s) => ((s.g.impB - s.g.impA) / s.g.impA) * 100;
+      console.log(
+        `  retitled minus control: impressions ${signed(growth(t) - growth(c), 1, " pts")}, ` +
+          `CTR ${signed(t.ctrB - t.ctrA - (c.ctrB - c.ctrA), 2, "pp")}, ` +
+          `position ${signed(t.posB - t.posA - (c.posB - c.posA), 1)} (negative = moved up)`,
+      );
+      console.log(
+        `  Crude difference-in-differences: no significance test, and ${t.g.pages} treated pages is a small sample.`,
+      );
+    } else {
+      console.log("  (one group had no impressions in the earlier snapshot — no difference computed)");
+    }
+  }
+
+  const missing = [...cohort.exact].filter((p) => !seen.has(p));
+  const emptyPatterns = cohort.prefixes.filter((pre) => ![...seen].some((p) => p.startsWith(pre)));
+  if (missing.length || emptyPatterns.length) {
+    console.log(
+      `  retitled.txt lines with no page in either snapshot (typo, or no impressions): ` +
+        [...missing, ...emptyPatterns.map((p) => `${p}*`)].join(", "),
+    );
   }
 }
 

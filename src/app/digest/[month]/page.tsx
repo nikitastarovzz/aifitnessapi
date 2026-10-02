@@ -6,6 +6,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import AnswerCapsule from "@/components/AnswerCapsule";
 import PageActions from "@/components/PageActions";
 import Newsletter from "@/components/Newsletter";
+import CtaLink from "@/components/CtaLink";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 import { clampDescription } from "@/lib/cluster";
@@ -93,6 +94,18 @@ export default async function DigestIssue({ params }: { params: Promise<Params> 
 
         <PageActions path={`${path}/digest`} url={url} title={`Fitness API digest — ${d.label}`} updated={`${d.month}-01`} />
 
+        <p className="mt-6 text-sm text-[var(--muted)]">
+          Want the next issue in your inbox?{" "}
+          <CtaLink
+            href="/newsletter"
+            source="pillar-inline"
+            id="cta-digest-issue-newsletter"
+            className="font-medium text-brand-600 hover:text-brand-500"
+          >
+            Get the newsletter →
+          </CtaLink>
+        </p>
+
         {d.changes.length > 0 && (
           <section className="mt-12">
             <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">
@@ -170,7 +183,7 @@ export default async function DigestIssue({ params }: { params: Promise<Params> 
         </nav>
 
         <div className="mt-14">
-          <Newsletter />
+          <Newsletter source="digest-issue-subscribe" />
         </div>
       </article>
     </Container>

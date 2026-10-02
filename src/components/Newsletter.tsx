@@ -3,9 +3,11 @@ import SignupForm from "./SignupForm";
 /**
  * The signup block (anchor target for every "Get the newsletter" CTA across
  * the site — keep id="subscribe"). Replaced the old mailto placeholder with
- * the real form posting to /api/signup.
+ * the real form posting to /api/signup. `source` names the page it sits on,
+ * so a signup is credited to where it happened (the default keeps the
+ * homepage's existing label, which past analytics already use).
  */
-export default function Newsletter() {
+export default function Newsletter({ source = "homepage-subscribe" }: { source?: string }) {
   return (
     <section
       id="subscribe"
@@ -30,7 +32,7 @@ export default function Newsletter() {
         </ul>
       </div>
       <div className="bg-[var(--bg)] px-6 py-8 sm:px-12">
-        <SignupForm source="homepage-subscribe" />
+        <SignupForm source={source} />
       </div>
     </section>
   );

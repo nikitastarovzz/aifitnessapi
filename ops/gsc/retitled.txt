@@ -1,0 +1,19 @@
+# Retitled pages — the treated cohort for `npm run gsc -- --compare <date>`.
+# 2026-10-02: these pages were retitled in the October wave (ops/GROWTH-OCT-2026.md).
+# Every page not listed here is the untouched control group, so the retitles
+# can be separated from the post-outage recovery that lifts every page at once.
+# One path per line. A line ending in * is a prefix (/apis/* = every page under
+# /apis/, not the /apis hub).
+/integrate/nutritionix-api
+/pricing/strava-api-pricing
+/pricing/garmin-api-pricing
+/guides/ai-workout-tracking-web
+/alternatives/terra-alternatives
+/integrate/terra-api
+/migrate/adapt-to-strava-api-changes
+/apis/*
+/blog/fitness-api-approval-gates
+/blog/fitness-api-integration-order
+/blog/fitness-api-talk-to-sales
+/blog/health-app-without-health-data
+/blog/wearable-api-user-side-cost

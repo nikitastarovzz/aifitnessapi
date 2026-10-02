@@ -219,6 +219,69 @@ for (const h of htmls) {
   if (thin.length) console.log(`Thin inbound (<3, informational): ${thin.join(", ")}`);
 }
 
+// ── Fragment links. PHANTOM-LINK and the inbound count above match only a
+// bare href="/path", so a link carrying #fragment was never checked at all:
+// not that its page exists, and not that the fragment lands anywhere. A dead
+// fragment still resolves — it just drops the reader at the top of the page
+// instead of on the row or answer the link promised, which no crawl reports.
+// Every built HTML file is scanned (the 404 shell is served to readers too),
+// and every internal fragment is resolved against the ids of the target
+// page's built HTML: "/x#y" against /x, a same-page "#y" against the page it
+// sits on. Resolution follows the HTML spec's fragment rules, nothing looser:
+// an element whose id (or an <a>'s legacy name) equals the fragment, tried
+// as written and then percent-decoded; an empty fragment and "top" mean the
+// top of the document. A protocol-relative "//host" href is external.
+{
+  const fileByRoute = new Map(htmls.map((h) => [routeOf(h), h]));
+  const idCache = new Map();
+  const idsOf = (route) => {
+    if (!idCache.has(route)) {
+      const html = fs.readFileSync(fileByRoute.get(route), "utf8");
+      const ids = new Set();
+      for (const m of html.matchAll(/\sid="([^"]*)"/g)) ids.add(decode(m[1]));
+      for (const m of html.matchAll(/<a\b[^>]*\sname="([^"]*)"/g)) ids.add(decode(m[1]));
+      idCache.set(route, ids);
+    }
+    return idCache.get(route);
+  };
+  const seen = new Set();
+  let resolved = 0;
+  let samePage = 0;
+  for (const h of htmls) {
+    const from = routeOf(h);
+    const html = fs.readFileSync(h, "utf8");
+    for (const m of html.matchAll(/href="(\/[^"#]*)?#([^"]*)"/g)) {
+      const [, rawPath, rawFrag] = m;
+      if (rawPath?.startsWith("//")) continue;
+      const key = `${from} ${rawPath ?? ""}#${rawFrag}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      let target = from;
+      if (rawPath !== undefined) {
+        target = decode(rawPath).split("?")[0];
+        if (target.length > 1 && target.endsWith("/")) target = target.slice(0, -1);
+      } else samePage++;
+      const shown = `${rawPath ?? ""}#${decode(rawFrag)}`;
+      if (!fileByRoute.has(target) || notFoundSet.has(target)) {
+        problems.push(
+          `FRAGMENT-NO-PAGE ${from} -> ${shown} — ${fileByRoute.has(target) ? "the target renders notFound()" : "no built page answers the path"}`,
+        );
+        continue;
+      }
+      const frag = decode(rawFrag);
+      let pct = frag;
+      try { pct = decodeURIComponent(frag); } catch { /* not percent-encoded */ }
+      const ids = idsOf(target);
+      if (frag === "" || ids.has(frag) || ids.has(pct) || frag.toLowerCase() === "top") {
+        resolved++;
+        continue;
+      }
+      problems.push(`FRAGMENT-DEAD  ${from} -> ${shown} — no element with that id on ${target}`);
+    }
+  }
+  console.log(`Fragments: ${resolved} of ${seen.size} internal fragment links resolve (${samePage} same-page).`);
+}
+
 for (const [t, routes] of titles) {
   if (routes.length > 1) problems.push(`DUP-TITLE      ${routes.join(", ")} — "${t}"`);
 }
@@ -1091,6 +1154,36 @@ if (fs.existsSync(matrixPath)) {
       problems.push(`GEO-NO-FAQ-ANCHOR  ${r} FAQ answers are not individually addressable`);
     }
   }
+
+  // ── Hub coverage. A hub is hand-assembled in places (the /fix hub files
+  // its released slugs into named groups), so a released spoke can build,
+  // sit in llms.txt and the sitemap, and still be missing from the one page
+  // that is meant to list everything in its section. That shipped: /fix
+  // omitted healthkit-invalid-argument until a reader-facing audit noticed.
+  // Every released spoke (built, not notFound) of every mirrored section —
+  // the clusters and the blog, the same set the GEO checks above walk — must
+  // be linked from its hub's built HTML. A link that carries a #fragment to
+  // the spoke still counts; a hub that was not built at all fails too.
+  {
+    let linked = 0;
+    for (const top of geoTops) {
+      const hubFile = htmls.find((h) => routeOf(h) === `/${top}`);
+      const released = spokes.filter((r) => r.split("/")[1] === top && !notFoundSet.has(r));
+      if (!hubFile || notFoundSet.has(`/${top}`)) {
+        problems.push(`HUB-LINK       /${top} hub was not built, so none of its ${released.length} released page(s) are listed`);
+        continue;
+      }
+      const hrefs = new Set(
+        [...fs.readFileSync(hubFile, "utf8").matchAll(/href="(\/[^"#?]*)/g)].map((m) => m[1]),
+      );
+      for (const r of released) {
+        if (hrefs.has(r)) linked++;
+        else problems.push(`HUB-LINK       /${top} hub does not link its released page ${r}`);
+      }
+    }
+    console.log(`Hub coverage: ${linked} released pages linked from their ${geoTops.length} section hubs.`);
+  }
+
   // ── Discovery surfaces. Feeds, the search descriptor and the manifest are
   // invisible when they break: nothing on the site links to a broken feed in a
   // way a human would notice, and a reader whose reader stops updating just

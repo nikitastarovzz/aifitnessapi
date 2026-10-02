@@ -67,6 +67,47 @@ function anchorSlug(s: string): string {
     .replace(/^-+|-+$/g, "");
 }
 
+/**
+ * The tools that answer this page's questions one identifier at a time.
+ * Blurbs follow each tool's own description. The aggregation checker covers
+ * quantity and category types and the query generator quantity types only, so
+ * a page made of characteristics or workout activity constants gets the
+ * permission builder instead — the one tool that handles those families —
+ * rather than a link to a lookup that would come back empty.
+ */
+type ToolLink = { href: string; name: string; blurb: string };
+
+function toolsFor(members: HkIdentifier[]): ToolLink[] {
+  const hasQuantity = members.some((m) => m.family === "quantity");
+  const hasCategory = members.some((m) => m.family === "category");
+  const tools: ToolLink[] = [];
+  if (hasQuantity || hasCategory) {
+    tools.push({
+      href: "/tools/aggregation-checker",
+      name: "Sum it or average it?",
+      blurb:
+        "Type one identifier and see whether Apple describes it as cumulative or discrete, with the sentence that says so — or where Apple is silent.",
+    });
+  }
+  if (hasQuantity) {
+    tools.push({
+      href: "/tools/query-generator",
+      name: "HealthKit query generator",
+      blurb:
+        "Pick a quantity type and a window; get the HKStatisticsQuery with the aggregation option Apple's own prose states — or a refusal where it states none.",
+    });
+  }
+  if (tools.length === 0) {
+    tools.push({
+      href: "/tools/permission-builder",
+      name: "HealthKit permission builder",
+      blurb:
+        "Pick the types your app touches and get the Info.plist keys and the toShare/toRead Swift — and why a characteristic is read-only and a workout activity constant is never requested at all.",
+    });
+  }
+  return tools;
+}
+
 function sortMembers(members: HkIdentifier[]): HkIdentifier[] {
   return [...members].sort(
     (a, b) => FAMILY_ORDER[a.family] - FAMILY_ORDER[b.family] || a.case.localeCompare(b.case),
@@ -224,6 +265,14 @@ export default async function HkGroupPage({ params }: { params: Promise<Params> 
   const grouped = subgroups.length > 1;
 
   const faqId = (i: number) => `faq-${i + 1}`;
+
+  // Siblings in the hub's own order, so "next" here is the next card there.
+  // No wrap-around — the same rule as the cluster pages' prev/next.
+  const siblings = releasedHkGroups();
+  const at = siblings.findIndex((e) => e.slug === entry.slug);
+  const prev = at > 0 ? siblings[at - 1] : null;
+  const next = at >= 0 ? (siblings[at + 1] ?? null) : null;
+  const tools = toolsFor(members);
 
   // Two kinds of date, kept apart on purpose. datePublished/dateModified are
   // the page's own (35bc67c, 2026-09-04); `entry.updated` is the date of the
@@ -396,6 +445,27 @@ export default async function HkGroupPage({ params }: { params: Promise<Params> 
           )}
         </section>
 
+        <section className="mt-10">
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+            One identifier at a time
+          </h2>
+          <ul className="mt-3 grid gap-3 sm:grid-cols-2">
+            {tools.map((t) => (
+              <li key={t.href}>
+                <Link
+                  href={t.href}
+                  className="group block h-full rounded-xl border border-[var(--border)] p-4 transition-colors hover:border-brand-400 hover:bg-[var(--surface)]"
+                >
+                  <span className="block text-sm font-semibold text-[var(--fg)] group-hover:text-brand-600">
+                    {t.name} →
+                  </span>
+                  <span className="mt-1 block text-sm text-[var(--muted)]">{t.blurb}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
         <section id="traps" className="mt-14 scroll-mt-24">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">What will bite you</h2>
           <div className="prose prose-neutral mt-4 max-w-none dark:prose-invert prose-headings:scroll-mt-24 prose-a:text-brand-600 hover:prose-a:text-brand-500 prose-th:text-left prose-pre:rounded-xl prose-pre:border prose-pre:border-[var(--border)]">
@@ -436,6 +506,31 @@ export default async function HkGroupPage({ params }: { params: Promise<Params> 
           for the same data as JSON and CSV. Apple&rsquo;s abstracts are quoted for identification; the
           grouping, the aggregation split and the cross-platform mapping are {site.name}&rsquo;s.
         </p>
+
+        {(prev || next) && (
+          <nav aria-label="More HealthKit groups" className="mt-10 grid gap-3 sm:grid-cols-2">
+            {prev ? (
+              <Link
+                href={`${HK_BASE}/${prev.slug}`}
+                className="group rounded-xl border border-[var(--border)] p-4 transition-colors hover:border-brand-400 hover:bg-[var(--surface)]"
+              >
+                <span className="text-xs uppercase tracking-wider text-[var(--muted)]">← Previous group</span>
+                <span className="mt-1 block text-sm font-medium text-[var(--fg)] group-hover:text-brand-600">{prev.title}</span>
+              </Link>
+            ) : (
+              <span aria-hidden className="hidden sm:block" />
+            )}
+            {next && (
+              <Link
+                href={`${HK_BASE}/${next.slug}`}
+                className="group rounded-xl border border-[var(--border)] p-4 text-right transition-colors hover:border-brand-400 hover:bg-[var(--surface)]"
+              >
+                <span className="text-xs uppercase tracking-wider text-[var(--muted)]">Next group →</span>
+                <span className="mt-1 block text-sm font-medium text-[var(--fg)] group-hover:text-brand-600">{next.title}</span>
+              </Link>
+            )}
+          </nav>
+        )}
 
         <p className="mt-8 text-sm">
           <Link href={HK_BASE} className="text-brand-600 hover:text-brand-500">

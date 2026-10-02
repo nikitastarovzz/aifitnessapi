@@ -9,6 +9,8 @@ import StatCounter from "@/components/StatCounter";
 import { getAllPosts } from "@/lib/posts";
 import { clusterMap } from "@/lib/clusterRegistry";
 import { HK_IDENTIFIERS, HK_ERRORS } from "@/data/healthkitIdentifiers";
+import { releasedHkGroups } from "@/data/hkGroupPages";
+import { READING_PATHS } from "@/data/readingPaths";
 import { changesSorted, type ChangeStatus } from "@/data/changes";
 import UpcomingDeadlines, { DeadlinesLabel, type DatedNode } from "@/components/UpcomingDeadlines";
 import { site, absoluteUrl } from "@/lib/site";
@@ -76,6 +78,7 @@ const CLUSTERS: { href: string; title: string; blurb: string }[] = [
   { href: "/devices", title: "Connected devices", blurb: "Straps, treadmills, trainers, and the watch as a live sensor — BLE heart rate, FTMS, and the testing story." },
   { href: "/engagement", title: "Engagement & retention", blurb: "Getting people back: notifications, Live Activities, widgets, streaks, leaderboards — and measuring lift honestly." },
   { href: "/watch-apps", title: "Watch apps", blurb: "Writing the app on the wrist: workout sessions, background execution, WorkoutKit, Wear OS tiles, battery, testing." },
+  { href: "/accessibility", title: "Accessibility", blurb: "Screen readers over live workout metrics, text scaling, touch targets, contrast outdoors, reduced motion, haptics, captions." },
 ];
 
 /** The providers and SDKs people actually arrive searching for. Every href is
@@ -83,7 +86,7 @@ const CLUSTERS: { href: string; title: string; blurb: string }[] = [
 const POPULAR: { href: string; name: string; tag: string; blurb: string }[] = [
   { href: "/integrate/healthkit", name: "Apple HealthKit", tag: "On-device · iOS", blurb: "No OAuth, no servers — and read-denial is invisible by design. The full Swift integration guide." },
   { href: "/integrate/google-health-connect", name: "Google Health Connect", tag: "On-device · Android", blurb: "The successor to Google Fit on Android: permissions, the 30-day read window, and the quirks." },
-  { href: "/integrate/fitbit-api", name: "Fitbit Web API", tag: "Turndown reported 2026", blurb: "Still widely integrated, now on the clock. The guide, plus the migration path to Google's cloud API." },
+  { href: "/integrate/fitbit-api", name: "Fitbit Web API", tag: "Turndown reported 2026", blurb: "Widely integrated, with a turndown reported for around September 2026. The guide, plus the migration path to Google's cloud API." },
   { href: "/integrate/strava-api", name: "Strava API", tag: "Cloud · OAuth", blurb: "Activities, segments, and webhooks — under developer terms that have tightened. What's still allowed." },
   { href: "/integrate/garmin-api", name: "Garmin Health API", tag: "Cloud · approval-gated", blurb: "Deep wearable data behind a developer-program approval. How to apply, integrate, and pass review." },
   { href: "/integrate/oura-api", name: "Oura API", tag: "Cloud · OAuth", blurb: "Sleep, readiness, and HRV from the ring — including the personal-access-token deprecation." },
@@ -121,6 +124,11 @@ export default function Home() {
   const countByPath = (p: string) => clusters[p]?.length ?? 0;
   const newestByPath = (p: string) =>
     (clusters[p] ?? []).map((e) => e.updated).sort().at(-1) ?? "";
+  // Counted the way /questions counts them, so the two never disagree.
+  const questionCount = Object.values(clusters)
+    .flat()
+    .reduce((n, e) => n + e.faqs.length, 0);
+  const hkGroupCount = releasedHkGroups().length;
 
   // Freshness, stated from data rather than claimed. "Recently" is measured
   // against build time, which on a static site is deploy time, so the number
@@ -283,6 +291,14 @@ export default function Home() {
           </div>
         </div>
         </Reveal>
+        <p className="mt-4 text-sm text-[var(--muted)]">
+          Handed a whole job rather than one question?{" "}
+          <Link href="/paths" className="font-medium text-brand-600 hover:text-brand-500">
+            {READING_PATHS.length} reading paths
+          </Link>{" "}
+          put the pages for one task in working order, with a sentence per step on why it comes
+          there.
+        </p>
       </Container>
 
       {/* ——— Popular APIs & SDKs ——— */}
@@ -325,7 +341,7 @@ export default function Home() {
           Free tools — no signup needed
         </h2>
         <Reveal>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Link
             href="/apis"
             className="group flex flex-col rounded-2xl border border-[var(--border)] p-5 transition hover:-translate-y-0.5 hover:border-brand-400 hover:bg-[var(--surface)]"
@@ -376,6 +392,38 @@ export default function Home() {
             </p>
             <span className="mt-3 text-sm font-semibold text-brand-600 group-hover:text-brand-500 dark:text-brand-300">See it break <span aria-hidden className="inline-block transition-transform group-hover:translate-x-0.5">→</span></span>
           </Link>
+          {/* Blurbs below restate the /tools hub's own, so a tool is described
+              the same way wherever it is mentioned. */}
+          <Link
+            href="/tools/error-diagnoser"
+            className="group flex flex-col rounded-2xl border border-[var(--border)] p-5 transition hover:-translate-y-0.5 hover:border-brand-400 hover:bg-[var(--surface)]"
+          >
+            <h3 className="font-bold tracking-tight text-[var(--fg)]">Error Diagnoser</h3>
+            <p className="mt-1 flex-1 text-sm text-[var(--muted)]">
+              Paste an error string; get the matching HKError.Code case in Apple&rsquo;s wording, plus the guide that covers it.
+            </p>
+            <span className="mt-3 text-sm font-semibold text-brand-600 group-hover:text-brand-500 dark:text-brand-300">Diagnose it <span aria-hidden className="inline-block transition-transform group-hover:translate-x-0.5">→</span></span>
+          </Link>
+          <Link
+            href="/tools/stack-generator"
+            className="group flex flex-col rounded-2xl border border-[var(--border)] p-5 transition hover:-translate-y-0.5 hover:border-brand-400 hover:bg-[var(--surface)]"
+          >
+            <h3 className="font-bold tracking-tight text-[var(--fg)]">Stack Generator</h3>
+            <p className="mt-1 flex-1 text-sm text-[var(--muted)]">
+              Answer four questions; get the HealthKit types and APIs that survive them, with the exclusions shown.
+            </p>
+            <span className="mt-3 text-sm font-semibold text-brand-600 group-hover:text-brand-500 dark:text-brand-300">Generate it <span aria-hidden className="inline-block transition-transform group-hover:translate-x-0.5">→</span></span>
+          </Link>
+          <Link
+            href="/tools"
+            className="group flex flex-col rounded-2xl border border-[var(--border)] p-5 transition hover:-translate-y-0.5 hover:border-brand-400 hover:bg-[var(--surface)]"
+          >
+            <h3 className="font-bold tracking-tight text-[var(--fg)]">All Free Tools</h3>
+            <p className="mt-1 flex-1 text-sm text-[var(--muted)]">
+              Plus the aggregation checker, identifier translator, permission builder and query generator — all on one page, all running in your browser.
+            </p>
+            <span className="mt-3 text-sm font-semibold text-brand-600 group-hover:text-brand-500 dark:text-brand-300">See every tool <span aria-hidden className="inline-block transition-transform group-hover:translate-x-0.5">→</span></span>
+          </Link>
         </div>
         </Reveal>
       </Container>
@@ -391,8 +439,16 @@ export default function Home() {
           that cites it.
         </p>
         <Reveal>
-          <div className="grid gap-4 sm:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
+              // The lead: the map of the group pages, each one an anchor for the
+              // exact identifier strings developers paste into a search box.
+              {
+                href: "/healthkit",
+                title: "HealthKit, mapped",
+                body: `All ${HK_IDENTIFIERS.length} identifiers across ${hkGroupCount} group pages — the unit each comes back in, whether you sum or average it, iOS availability, and the Health Connect record where one is verified.`,
+                lead: true,
+              },
               {
                 href: "/healthkit-identifiers",
                 title: `All ${HK_IDENTIFIERS.length} HealthKit types`,
@@ -408,11 +464,15 @@ export default function Home() {
                 title: "HealthKit ↔ Health Connect",
                 body: "The cross-platform mapping for the metrics we verified on both, and the pairs that look equivalent but are not.",
               },
-            ].map((c) => (
+            ].map((c: { href: string; title: string; body: string; lead?: boolean }) => (
               <Link
                 key={c.href}
                 href={c.href}
-                className="group flex flex-col rounded-2xl border border-[var(--border)] p-5 transition hover:-translate-y-0.5 hover:border-brand-400 hover:bg-[var(--surface)]"
+                className={
+                  c.lead
+                    ? "group flex flex-col rounded-2xl border border-brand-400/40 bg-brand-500/5 p-5 transition hover:-translate-y-0.5 hover:bg-brand-500/10"
+                    : "group flex flex-col rounded-2xl border border-[var(--border)] p-5 transition hover:-translate-y-0.5 hover:border-brand-400 hover:bg-[var(--surface)]"
+                }
               >
                 <h3 className="font-bold tracking-tight text-[var(--fg)]">{c.title}</h3>
                 <p className="mt-1 flex-1 text-sm text-[var(--muted)]">{c.body}</p>
@@ -424,6 +484,16 @@ export default function Home() {
             ))}
           </div>
         </Reveal>
+        <p className="mt-4 text-sm text-[var(--muted)]">
+          Also in the reference:{" "}
+          <Link href="/healthkit-versions" className="font-medium text-brand-600 hover:text-brand-500">
+            HealthKit by iOS version
+          </Link>{" "}
+          ·{" "}
+          <Link href="/health-connect-records" className="font-medium text-brand-600 hover:text-brand-500">
+            Health Connect records, verified
+          </Link>
+        </p>
       </Container>
 
 
@@ -467,13 +537,18 @@ export default function Home() {
 
       {/* ——— Everything we cover ——— */}
       <Container className="pt-16">
-        <div className="mb-6 flex items-baseline justify-between">
+        <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-4">
           <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
             Everything we cover
           </h2>
-          <Link href="/site-index" className="inline-block py-1 text-sm font-medium text-brand-600 hover:text-brand-500">
-            Full site index →
-          </Link>
+          <div className="flex flex-wrap justify-end gap-x-4">
+            <Link href="/questions" className="inline-block py-1 text-sm font-medium text-brand-600 hover:text-brand-500">
+              All {questionCount.toLocaleString("en-US")} questions, answered →
+            </Link>
+            <Link href="/site-index" className="inline-block py-1 text-sm font-medium text-brand-600 hover:text-brand-500">
+              Full site index →
+            </Link>
+          </div>
         </div>
         <Reveal>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

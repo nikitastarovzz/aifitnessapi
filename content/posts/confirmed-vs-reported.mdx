@@ -28,7 +28,8 @@ number attached, and the number is the part that fools people.
 **Confirmed** means the vendor's own documentation, changelog or announcement
 states it, and someone here opened that page and read it. The entry records
 when. Google's Fit documentation stating the APIs will be supported until the
-end of 2026 is confirmed, verified against developer.android.com on 2026-07-31.
+end of 2026 is confirmed, verified against developer.android.com on 2026-07-31
+and re-checked on 2026-10-02.
 
 **Reported** means credible third parties say it and the vendor has not
 published anything we could verify. Not "we could not be bothered" — we looked,
@@ -57,30 +58,31 @@ vendor's behaviour.
 
 Notice what the confirmed rows have in common. They are mostly *past* or
 *documented*: something the vendor already did, or something it committed to in
-writing. Notice what the reported rows have in common. They are mostly *future*
-and *commercial*: turndowns, pricing changes, membership requirements. Vendors
-document what they have done far more reliably than what they are about to do
-to your costs.
+writing. Notice what the reported rows have in common. When we graded them they
+were mostly *still ahead* and *commercial*: turndowns, pricing changes,
+membership requirements. Vendors document what they have done far more reliably
+than what they are about to do to your costs.
 
 ## Why a precise reported date is worse than a vague one
 
 The Fitbit Web API turndown is the sharpest illustration of the failure mode.
 
-Its retirement in favour of the cloud Google Health API is reported to land
-around September 2026. No official day is confirmed on a page we could verify.
-Some third-party guides name September 30.
+Google announced the legacy API's retirement in favour of the cloud Google
+Health API, and a turndown was reported for around September 2026. No official
+page we could verify confirmed a day, and as of 2026-10-02 we could not confirm
+on an official page whether the turndown has happened. Some third-party guides
+named September 30.
 
-That specific day feels like better information. It is not. Nobody found a new
-source; a guide made an editorial decision to be concrete, and concreteness
-reads as authority. A team that writes "September 30" in a migration plan has
-imported a stranger's confidence and will now build a cutover schedule against
-it. If the real date is earlier, the plan fails in the one direction that
-matters.
+That specific day felt like better information. It was not. Nobody had found a
+new source; a guide made an editorial decision to be concrete, and concreteness
+reads as authority. A team that wrote "September 30" into a migration plan
+imported a stranger's confidence and built a cutover schedule against it. If
+the real date was earlier, the plan failed in the one direction that matters.
 
 Our rule: a precise date you cannot trace back to the vendor is weaker evidence
 than an imprecise one you can, because the precision is presentation rather
 than sourcing. The [Fitbit shutdown page](/fitbit-api-shutdown) states the
-window and says plainly that no official day is confirmed.
+reported window and says plainly that no official day is confirmed.
 
 ## The reported items that gate your work
 

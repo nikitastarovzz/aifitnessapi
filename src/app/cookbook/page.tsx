@@ -40,8 +40,8 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   },
   {
     title: "Data ingestion",
-    blurb: "Webhooks and backfills that survive duplicates, reordering, and outages.",
-    slugs: ["webhook-receiver", "backfill-checkpointer"],
+    blurb: "Webhooks, backfills and incremental syncs that survive duplicates, reordering, and outages.",
+    slugs: ["webhook-receiver", "backfill-checkpointer", "incremental-sync-anchor", "dedupe-health-samples"],
   },
   {
     title: "Correctness & motion",

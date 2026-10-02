@@ -22,7 +22,7 @@ import { formatDate } from "@/lib/posts";
 import { site, absoluteUrl } from "@/lib/site";
 import { spokeGraph, markdownUrl } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
-import { clusterNeighbors } from "@/lib/clusterRegistry";
+import { clusterMap, clusterNeighbors } from "@/lib/clusterRegistry";
 import { relatedAcrossSite } from "@/lib/related";
 import { apisOnPage } from "@/lib/apiCoverage";
 import { APIS_PATH } from "@/data/apis";
@@ -30,6 +30,84 @@ import { autolinkGlossary } from "@/lib/autolink";
 import { headings } from "@/lib/toc";
 import readingTime from "reading-time";
 import type { ClusterEntry, ClusterConfig } from "@/lib/cluster";
+
+/**
+ * Tool CTAs. The "does" line restates the /tools hub's own blurb (or the
+ * tool's own capsule), so a tool is described the same way wherever it is
+ * mentioned and never promises more than the tool page does.
+ */
+const TOOLS = {
+  diagnoser: {
+    href: "/tools/error-diagnoser",
+    name: "Error diagnoser",
+    does: "paste an error string or status line to match it against the HKError.Code cases Apple documents and the troubleshooting guides on this site.",
+  },
+  permissions: {
+    href: "/tools/permission-builder",
+    name: "HealthKit permission builder",
+    does: "pick the types your app touches and get the Info.plist keys, the toShare/toRead Swift, and the Health Connect record names.",
+  },
+  stack: {
+    href: "/tools/stack-generator",
+    name: "Fitness app stack generator",
+    does: "answer four questions and get the HealthKit types and APIs that survive them, with the exclusions shown.",
+  },
+} as const;
+
+/**
+ * Keyed by spoke PATH, not by cluster: a tool earns a line on a page only
+ * where it answers the question that page is about. A renamed or unreleased
+ * spoke simply never matches, and every tool is a static route, so nothing
+ * here can link a 404. At most one tool per page.
+ */
+const TOOL_FOR_PATH: Record<string, keyof typeof TOOLS> = {
+  // Every HealthKit troubleshooting spoke. Each is about an HKError.Code case
+  // (or about the absence of one), and the diagnoser indexes every case.
+  "/fix/healthkit-no-data": "diagnoser",
+  "/fix/healthkit-authorization-denied": "diagnoser",
+  "/fix/healthkit-background-delivery-not-working": "diagnoser",
+  "/fix/healthkit-database-inaccessible": "diagnoser",
+  "/fix/healthkit-health-data-unavailable": "diagnoser",
+  "/fix/healthkit-data-restricted-mdm": "diagnoser",
+  "/fix/healthkit-error-no-data": "diagnoser",
+  "/fix/healthkit-invalid-argument": "diagnoser",
+  "/fix/healthkit-authorization-not-determined": "diagnoser",
+  "/fix/healthkit-required-authorization-denied": "diagnoser",
+  "/fix/healthkit-workout-session-errors": "diagnoser",
+  "/fix/healthkit-guest-user-mode": "diagnoser",
+  "/fix/healthkit-undocumented-errors": "diagnoser",
+  // Non-HealthKit errors only where the diagnoser's authored keyword map
+  // (FIX_KEYWORDS in app/tools/error-diagnoser/page.tsx) routes to the page.
+  "/fix/fitbit-error-code-401": "diagnoser",
+  "/fix/fitbit-api-429-rate-limit": "diagnoser",
+  "/fix/garmin-api-approval": "diagnoser",
+  "/integrate/healthkit": "permissions",
+  // Every build guide: the generator is these guides' stacks, narrowed.
+  "/build/personal-training-app": "stack",
+  "/build/home-workout-app": "stack",
+  "/build/ai-fitness-coaching-app": "stack",
+  "/build/rehab-physical-therapy-app": "stack",
+  "/build/yoga-app": "stack",
+  "/build/corporate-wellness-app": "stack",
+  "/build/strength-training-app": "stack",
+  "/build/running-app": "stack",
+  "/build/nutrition-tracking-app": "stack",
+  "/build/weight-loss-app": "stack",
+  "/build/meal-planning-app": "stack",
+  "/build/sleep-tracking-app": "stack",
+  "/build/recovery-app": "stack",
+  "/build/meditation-app": "stack",
+  "/build/cycle-tracking-app": "stack",
+  "/build/step-challenge-app": "stack",
+  "/build/senior-fitness-app": "stack",
+  "/build/cycling-app": "stack",
+  "/build/swimming-app": "stack",
+  "/build/hiking-app": "stack",
+  "/build/hiit-app": "stack",
+  "/build/triathlon-app": "stack",
+  "/build/kids-fitness-app": "stack",
+  "/build/fitness-app-tech-stack": "stack",
+};
 
 /**
  * The fixed spoke anatomy (§3), top to bottom:
@@ -62,6 +140,13 @@ export default function ClusterPage({
   // entries — access terms, gates and everything else we have written about
   // each one, without the reader having to search for the name.
   const products = apisOnPage(basePath, entry.slug);
+  const toolKey = TOOL_FOR_PATH[path];
+  const tool = toolKey ? TOOLS[toolKey] : undefined;
+  // /questions/<cluster> is generated for every populated cluster, and a spoke
+  // rendering here means its cluster is populated. Counted exactly as that
+  // page counts, so the number in the link is the number on the page.
+  const clusterEntries = clusterMap()[basePath] ?? [];
+  const clusterQuestions = clusterEntries.reduce((n, e) => n + e.faqs.length, 0);
 
   // TechArticle + WebPage graph (review metadata, glossary `about` links,
   // citations, markdown encoding). Built centrally so every spoke agrees.
@@ -195,6 +280,25 @@ export default function ClusterPage({
           </p>
         )}
 
+        {tool && (
+          <aside
+            data-try-tool
+            aria-label="Related tool"
+            className="mt-6 rounded-xl border border-[var(--border)] px-4 py-3 text-sm text-[var(--muted)]"
+          >
+            <span className="font-semibold text-[var(--fg)]">Try it:</span>{" "}
+            <Link
+              href={tool.href}
+              data-cta={`try-tool-${entry.slug}`}
+              data-cta-source="spoke-inline"
+              className="font-medium text-brand-600 hover:text-brand-500"
+            >
+              {tool.name}
+            </Link>{" "}
+            — {tool.does}
+          </aside>
+        )}
+
         <div className="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-headings:scroll-mt-24 prose-a:text-brand-600 hover:prose-a:text-brand-500 prose-th:text-left prose-pre:rounded-xl prose-pre:border prose-pre:border-[var(--border)]">
           <Mdx source={body} />
         </div>
@@ -212,6 +316,16 @@ export default function ClusterPage({
                 </div>
               ))}
             </dl>
+            {clusterEntries.length > 0 && (
+              <p className="mt-2 text-sm">
+                <Link
+                  href={`/questions/${basePath.replace(/^\//, "")}`}
+                  className="font-medium text-brand-600 hover:text-brand-500"
+                >
+                  All {clusterQuestions} questions in {hubLabel} →
+                </Link>
+              </p>
+            )}
           </section>
         )}
 

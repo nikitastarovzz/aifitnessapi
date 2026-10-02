@@ -50,15 +50,17 @@ export const PRIORITY_OPTIONS: { value: Priority; label: string; hint: string }[
 
 /**
  * A shared answer, resolved from the three raw query values a share link
- * carries. Both the share page (/s) and its social card (/api/og) derive their
- * text from this one function, so the card can never describe a different
- * answer than the page it previews. Null unless every value is one of the
- * options above — callers decide what an invalid link gets (a "nothing to
- * show" page, a 400), but nothing free-text ever reaches a title or a card.
+ * carries. Both the share page (/s) and its social card (/og/picker/…) derive
+ * their text from this one function, so the card can never describe a
+ * different answer than the page it previews. Null unless every value is one
+ * of the options above — callers decide what an invalid link gets (a "nothing
+ * to show" page, no card), but nothing free-text ever reaches a title or a
+ * card.
  *
- * `query` is the canonical form, keys in a fixed order: /s builds the card URL
- * from it, and /api/og refuses any request whose query string is not exactly
- * this, which caps the card's cache at one entry per answer.
+ * `query` is the canonical form, keys in a fixed order, for links back into
+ * the picker. `card` is the answer's prerendered social card: the build writes
+ * one file per combination of the options above, so every non-null answer has
+ * one and no other path exists.
  */
 export function shareAnswer(j: string | null, p: string | null, pr: string | null) {
   const okJ = JOB_OPTIONS.find((o) => o.value === j);
@@ -69,6 +71,7 @@ export function shareAnswer(j: string | null, p: string | null, pr: string | nul
     result: recommend(okJ.value, okP.value, okPr.value),
     question: `${okJ.label} · ${okP.label} · ${okPr.label}`,
     query: `j=${okJ.value}&p=${okP.value}&pr=${okPr.value}`,
+    card: `/og/picker/${okJ.value}/${okP.value}/${okPr.value}`,
   };
 }
 

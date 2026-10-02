@@ -210,6 +210,12 @@ export default function StackGeneratorPage() {
             of them with the platform each was introduced on.
           </p>
         </div>
+
+        <p className="mt-8 text-sm">
+          <Link href="/tools" className="text-brand-600 hover:text-brand-500">
+            ← All tools
+          </Link>
+        </p>
       </div>
     </Container>
   );

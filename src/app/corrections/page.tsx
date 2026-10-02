@@ -71,8 +71,11 @@ export default function CorrectionsPage() {
         </h2>
         <p className="mt-1 max-w-2xl text-sm text-[var(--muted)]">
           These never reached a reader. They are listed because a corrections page that only shows
-          the misses that got through overstates how clean the process is — the gates exist because
-          drafts are wrong all the time.
+          the misses that got through overstates how clean the process is —{" "}
+          <Link href="/gates" className="font-medium text-brand-600 hover:text-brand-500">
+            the gates
+          </Link>{" "}
+          exist because drafts are wrong all the time.
         </p>
         <ul className="mt-4 space-y-3">
           {NEAR_MISSES.map((n) => (
@@ -88,10 +91,14 @@ export default function CorrectionsPage() {
       </section>
 
       <p className="mt-10 text-sm text-[var(--muted)]">
-        How verification works — the stamps, the gates, and what they refuse to ship — is documented
+        How verification works — primary sources, review stamps, adversarial review — is documented
         in{" "}
         <Link href="/methodology" className="font-medium text-brand-600 hover:text-brand-500">
           methodology
+        </Link>
+        . Every automated refusal the build enforces is listed, with what it refuses to ship, at{" "}
+        <Link href="/gates" className="font-medium text-brand-600 hover:text-brand-500">
+          the gates
         </Link>
         .
       </p>

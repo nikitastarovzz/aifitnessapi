@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     type: "website",
     title: TITLE,
     description:
-      "Match an error string against every HKError.Code case Apple documents and every troubleshooting guide here — client-side, from the published dataset.",
+      "Match an error string against every HKError.Code case Apple documents and the troubleshooting guides it indexes — client-side, from the published dataset.",
     url: PATH,
     images: ["/opengraph-image"],
   },

@@ -82,6 +82,21 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "A published page that no other page on the site links to.",
   },
   {
+    code: "FRAGMENT-NO-PAGE",
+    area: "Links and anchors",
+    refuses: "An internal link carrying a #fragment whose page is not built or renders notFound(), which the plain broken-link check never sees.",
+  },
+  {
+    code: "FRAGMENT-DEAD",
+    area: "Links and anchors",
+    refuses: "An internal link whose #fragment matches no element id on the built page it points into, so the reader lands at the top instead of on the row or answer promised.",
+  },
+  {
+    code: "HUB-LINK",
+    area: "Links and anchors",
+    refuses: "A section hub that does not link every released page in its section, or a section whose hub was not built.",
+  },
+  {
     code: "DUP-TITLE",
     area: "Metadata",
     refuses: "Two pages shipping the identical title tag, so neither can be told apart in a result list.",

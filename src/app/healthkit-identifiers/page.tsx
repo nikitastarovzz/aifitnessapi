@@ -10,6 +10,13 @@ import ContentAge from "@/components/ContentAge";
 import HkIdentifierTable, { type HkRow } from "@/components/HkIdentifierTable";
 import { HK_IDENTIFIERS, HK_GROUPS, HK_FAMILIES, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { ROWS as MATRIX_ROWS } from "@/data/matrix";
+import {
+  HK_BASE,
+  GROUP_TO_SLUG,
+  buildHkGroups,
+  hkGroupLabel,
+  releasedHkGroups,
+} from "@/data/hkGroupPages";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 
@@ -32,6 +39,24 @@ const discrete = QUANTITY.filter((r) => r.aggregation === "discrete");
 const unstated = QUANTITY.filter((r) => !r.aggregation);
 const CATEGORY = HK_IDENTIFIERS.filter((r) => r.family === "category");
 const undocumented = HK_IDENTIFIERS.filter((r) => r.undocumented);
+
+/** The group pages, in the hub's order, with how many of these identifiers
+ *  each one carries. Only released pages — buildHkGroups() already throws on
+ *  an identifier whose Apple group has no page, so nothing here is skipped. */
+const GROUP_PAGES = releasedHkGroups().map((e) => ({
+  slug: e.slug,
+  count: buildHkGroups().get(e.slug)?.length ?? 0,
+}));
+
+/** Apple group → group page, for the per-row link in the table. Released
+ *  pages only, so every link the table renders lands on a row that exists
+ *  (group pages give each row id="id-<case lowercased>"). */
+const RELEASED_SLUGS = new Set(GROUP_PAGES.map((g) => g.slug));
+const GROUP_PAGE_FOR = Object.fromEntries(
+  Object.entries(GROUP_TO_SLUG)
+    .filter(([, slug]) => RELEASED_SLUGS.has(slug))
+    .map(([group, slug]) => [group, { slug, label: hkGroupLabel(slug) }]),
+);
 
 /** Identifiers our HealthKit ↔ Health Connect matrix already maps to Android. */
 const MAPPED = new Set(
@@ -220,16 +245,36 @@ export default function HealthKitIdentifiersPage() {
           </dl>
         </section>
 
-        <p className="mb-6 text-sm text-[var(--muted)]">
-        Prefer the set in slices? The{" "}
-        <Link href="/healthkit" className="font-medium text-brand-600 hover:text-brand-500">
-          HealthKit reference hub
-        </Link>{" "}
-        breaks these {HK_IDENTIFIERS.length} identifiers into twelve group pages with the synthesis
-        each group deserves, plus the version timeline, unit families, category value enums and
-        error codes.
-      </p>
-      <HkIdentifierTable rows={rows} groups={HK_GROUPS} families={HK_FAMILIES} />
+        <nav aria-label="HealthKit group pages" className="mt-10">
+          <p className="text-sm text-[var(--muted)]">
+            Prefer the set in slices? The{" "}
+            <Link href={HK_BASE} className="font-medium text-brand-600 hover:text-brand-500">
+              HealthKit reference hub
+            </Link>{" "}
+            breaks these {HK_IDENTIFIERS.length} identifiers into {GROUP_PAGES.length} group pages
+            with the synthesis each group deserves, plus the version timeline, unit families,
+            category value enums and error codes. Straight to a group:
+          </p>
+          <ul className="mt-3 flex flex-wrap gap-2 text-sm">
+            {GROUP_PAGES.map((g) => (
+              <li key={g.slug}>
+                <Link
+                  href={`${HK_BASE}/${g.slug}`}
+                  className="inline-block rounded-full border border-[var(--border)] px-3 py-1 text-[var(--muted)] transition-colors hover:border-brand-400 hover:text-[var(--fg)]"
+                >
+                  {hkGroupLabel(g.slug)}{" "}
+                  <span className="font-semibold tabular-nums text-[var(--fg)]">{g.count}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <HkIdentifierTable
+          rows={rows}
+          groups={HK_GROUPS}
+          families={HK_FAMILIES}
+          groupPages={GROUP_PAGE_FOR}
+        />
 
         <section className="mt-14">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">What the unit families tell you</h2>

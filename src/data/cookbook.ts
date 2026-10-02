@@ -19,6 +19,8 @@ export const RELEASED_COOKBOOK = new Set<string>([
   "day-boundary-rollup",
   "rep-counter",
   "backfill-checkpointer",
+  "dedupe-health-samples",
+  "incremental-sync-anchor",
 ]);
 
 export const allCookbook: ClusterEntry[] = cookbookEntries;

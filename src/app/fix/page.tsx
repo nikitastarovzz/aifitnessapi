@@ -49,7 +49,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Empty platform-store data",
     blurb: "HealthKit and Health Connect returning nothing.",
-    slugs: ["healthkit-authorization-denied", "healthkit-no-data", "healthkit-background-delivery-not-working", "health-connect-no-data", "healthkit-error-no-data", "healthkit-authorization-not-determined", "healthkit-required-authorization-denied", "healthkit-database-inaccessible", "healthkit-health-data-unavailable", "healthkit-data-restricted-mdm", "healthkit-workout-session-errors", "healthkit-guest-user-mode", "healthkit-undocumented-errors"],
+    slugs: ["healthkit-authorization-denied", "healthkit-no-data", "healthkit-background-delivery-not-working", "health-connect-no-data", "healthkit-error-no-data", "healthkit-authorization-not-determined", "healthkit-required-authorization-denied", "healthkit-database-inaccessible", "healthkit-health-data-unavailable", "healthkit-data-restricted-mdm", "healthkit-workout-session-errors", "healthkit-guest-user-mode", "healthkit-invalid-argument", "healthkit-undocumented-errors"],
   },
   {
     title: "Webhooks & sync",
@@ -61,6 +61,26 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
     blurb: "Can't get approved, or the API is going away.",
     slugs: ["garmin-api-approval", "google-fit-api-deprecated"],
   },
+];
+
+/** Any released fix that no group above lists. Rendered as a trailing
+ *  "Other" group so a new slug added to RELEASED_FIX always reaches the hub,
+ *  even before someone files it into a group. */
+function groupsWithUngrouped(released: { slug: string }[]): typeof GROUPS {
+  const grouped = new Set(GROUPS.flatMap((g) => g.slugs));
+  const ungrouped = released.map((e) => e.slug).filter((s) => !grouped.has(s));
+  if (ungrouped.length === 0) return GROUPS;
+  return [...GROUPS, { title: "Other", blurb: "Fixes not yet filed under a group above.", slugs: ungrouped }];
+}
+
+/** Literal-query shortcuts shown above the fold. Anchor text is the phrase
+ *  people search; the label stays neutral ("Common fixes") because Search
+ *  Console supports a volume claim for Fitbit 401 only. */
+const COMMON_FIXES: { label: string; slug: string }[] = [
+  { label: "Fitbit error code 401", slug: "fitbit-error-code-401" },
+  { label: "Garmin API access approval", slug: "garmin-api-approval" },
+  { label: "Health Connect returns no data", slug: "health-connect-no-data" },
+  { label: "Refresh token invalid_grant", slug: "refresh-token-not-working" },
 ];
 
 const FAQS = [
@@ -85,6 +105,9 @@ const FAQS = [
 export default function FixPillar() {
   const url = absoluteUrl(FIX_PATH);
   const released = releasedFixes();
+  const groups = groupsWithUngrouped(released);
+  // Guarded so an unreleased slug can never become a link to a 404.
+  const commonFixes = COMMON_FIXES.filter((f) => getFix(f.slug) !== undefined);
 
   const articleJsonLd = {
     "@context": "https://schema.org",
@@ -137,6 +160,23 @@ export default function FixPillar() {
 
         <HubFreshness entries={released} basePath={FIX_PATH} />
 
+        {commonFixes.length > 0 && (
+          <nav aria-labelledby="common-fixes" className="mt-6 rounded-2xl border border-[var(--border)] p-5">
+            <h2 id="common-fixes" className="text-sm font-semibold text-[var(--fg)]">
+              Common fixes
+            </h2>
+            <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+              {commonFixes.map((f) => (
+                <li key={f.slug}>
+                  <Link href={`${FIX_PATH}/${f.slug}`} className="font-medium text-brand-600 hover:text-brand-500">
+                    {f.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
+
         <div
           id="answer"
           className="speakable mt-6 rounded-2xl border border-brand-400/30 bg-brand-500/5 p-5 text-lg leading-relaxed text-[var(--fg)] sm:p-6"
@@ -175,7 +215,7 @@ export default function FixPillar() {
           </p>
         </div>
 
-        {GROUPS.map((group) => {
+        {groups.map((group) => {
           const items = group.slugs.map((s) => getFix(s)).filter((e) => e !== undefined);
           if (items.length === 0) return null;
           return (

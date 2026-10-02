@@ -123,6 +123,16 @@ export default function HealthKitErrorsPage() {
 
         <PageActions path={PATH} url={url} title="Every HealthKit error code" updated={HK_FETCHED_ON} markdown={false} />
 
+        <p className="mt-6 rounded-xl border border-[var(--border)] p-4 text-sm leading-relaxed text-[var(--muted)]">
+          Holding the error text rather than a case name?{" "}
+          <Link href="/tools/error-diagnoser" className="font-medium text-brand-600 hover:text-brand-500">
+            The error diagnoser
+          </Link>{" "}
+          matches a pasted string against every case below and against the troubleshooting guides
+          on this site, in your browser. It matches words, not numbers — a bare{" "}
+          <code className="font-mono text-xs">Code=5</code> has no published name to match.
+        </p>
+
         <section className="mt-12">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">The silent failure</h2>
           <p className="mt-3 leading-relaxed text-[var(--muted)]">

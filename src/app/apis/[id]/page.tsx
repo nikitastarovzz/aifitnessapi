@@ -10,7 +10,16 @@ import Feedback from "@/components/Feedback";
 import { site, absoluteUrl } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 import { clampTitle, clampDescription } from "@/lib/cluster";
-import { API_ENTRIES, APIS_PATH, getApi, CATEGORY_LABELS, DEV_COST_LABELS } from "@/data/apis";
+import {
+  API_ENTRIES,
+  APIS_PATH,
+  getApi,
+  CATEGORY_LABELS,
+  DEV_COST_LABELS,
+  type ApiEntry,
+} from "@/data/apis";
+import { HK_IDENTIFIERS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
+import { HK_BASE, buildHkGroups } from "@/data/hkGroupPages";
 import { coverageFor, changesFor, pageCount } from "@/lib/apiCoverage";
 
 export const dynamicParams = false;
@@ -23,6 +32,46 @@ export function generateStaticParams(): Params[] {
   return API_ENTRIES.map((a) => ({ id: a.id }));
 }
 
+/**
+ * What the title calls the product: the name people type into a search box,
+ * then the kind of thing it is. "WHOOP API", not "WHOOP Developer Platform" —
+ * the full product string is the H1 and leads the description. An SDK is
+ * called an SDK, and a pose model is neither, so it keeps its own label.
+ * Names are in order of preference; the title takes the first that fits.
+ */
+function titleNames(api: ApiEntry): string[] {
+  // Two products are searched by a name the colloquial one drops: Junction
+  // by its former name, FoodData Central by its agency. Both names are in the
+  // cost model's own label.
+  if (api.id === "junction") return ["Junction API (ex-Vital)", "Junction API"];
+  if (api.id === "usda-fdc") return ["USDA FoodData Central API", "FoodData Central API"];
+  if (api.category === "motion-sdk") return [`${api.short} SDK`];
+  if (api.category === "pose-model") return [api.label, api.short];
+  return [`${api.short} API`];
+}
+
+/**
+ * Brand-navigational: "<name>: <what this page shows>". It names only what
+ * the page renders — the access fields, the tracked changes when there are
+ * any, and the coverage list (which qa requires on every directory page). It
+ * deliberately avoids cost, pricing and approval: /pricing and the approval
+ * fix pages own those questions, and a title here would compete with them.
+ */
+function apiTitle(api: ApiEntry, hasChanges: boolean): string {
+  const tails = [
+    ...(hasChanges ? ["Access Requirements, Changes & Guides"] : []),
+    "Access Requirements & Guides",
+    "Access & Guides",
+  ];
+  for (const name of titleNames(api)) {
+    for (const tail of tails) {
+      const t = `${name}: ${tail}`;
+      if (t.length <= 60) return t;
+    }
+  }
+  return clampTitle(`${api.short}: Access & Guides`);
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -31,12 +80,13 @@ export async function generateMetadata({
   const { id } = await params;
   const api = getApi(id);
   if (!api) return {};
-  // Prefer the full product string; fall back to the colloquial name when it
-  // will not fit, rather than shipping a title with an ellipsis in it.
-  const full = `${api.label} — access, gates and coverage`;
-  const title = clampTitle(full.length <= 60 ? full : `${api.short} — access, gates and coverage`);
+  const title = apiTitle(api, changesFor(api).length > 0);
+  // The full product string leads the description, the colloquial name only
+  // when the full one would push it past the limit.
+  const describe = (name: string) =>
+    `${name}: how it bills developers, what each user must own before data flows, what approval gates launch, and every page we have on it.`;
   const description = clampDescription(
-    `How ${api.short} bills developers, what each user must own before data flows, what approval gates launch, and every page on AIFitnessAPI that covers it.`,
+    describe(api.label).length <= 155 ? describe(api.label) : describe(api.short),
   );
   const canonical = `${APIS_PATH}/${api.id}`;
   return {
@@ -224,6 +274,22 @@ export default async function ApiPage({ params }: { params: Promise<Params> }) {
             and most serious tiers are quoted privately.
           </p>
         </section>
+
+        {/* The type-level reference exists only for HealthKit, and it is not a
+            cluster, so the coverage list below never picks it up. Counts and
+            date come from the generated dataset, as on the hub itself. */}
+        {api.id === "healthkit" && (
+          <section className="mt-10 rounded-2xl border border-[var(--border)] p-5">
+            <Link href={HK_BASE} className="font-semibold text-brand-600 hover:text-brand-500">
+              HealthKit data types by group →
+            </Link>
+            <p className="mt-1 text-sm text-[var(--muted)]">
+              All {HK_IDENTIFIERS.length} HealthKit type identifiers in {buildHkGroups().size} group
+              pages — units, aggregation style and iOS availability, read from Apple&rsquo;s
+              documentation on {HK_FETCHED_ON}.
+            </p>
+          </section>
+        )}
 
         {changes.length > 0 && (
           <section className="mt-12">

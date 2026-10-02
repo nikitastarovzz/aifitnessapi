@@ -141,7 +141,7 @@ export default function Footer() {
             About
           </FooterLink>
           <FooterLink href="/signup" className="py-1 hover:text-[var(--fg)]">
-            Newsletter
+            Free decision kit
           </FooterLink>
           <FooterLink href="/datasets" className="py-1 hover:text-[var(--fg)]">
             Open Datasets
@@ -178,6 +178,9 @@ export default function Footer() {
           </FooterLink>
           <FooterLink href="/glossary" className="py-1 hover:text-[var(--fg)]">
             Glossary
+          </FooterLink>
+          <FooterLink href="/questions" className="py-1 hover:text-[var(--fg)]">
+            All questions
           </FooterLink>
           <FooterLink href="/site-index" className="py-1 hover:text-[var(--fg)]">
             Site index

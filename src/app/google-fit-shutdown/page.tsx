@@ -9,7 +9,9 @@ import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 
 const PATH = "/google-fit-shutdown";
-const UPDATED = "2026-07-31";
+const UPDATED = "2026-10-02";
+/** Google's Fit migration guide — the primary source for this page's timeline and paths. */
+const GUIDE_URL = "https://developer.android.com/health-and-fitness/health-connect/migration/fit";
 
 export const metadata: Metadata = {
   title: { absolute: "Google Fit Shutdown: the 2026 Timeline, Verified" },
@@ -32,51 +34,61 @@ export const metadata: Metadata = {
  * playbook; this page owns the EVENT — timeline, blast radius, and which
  * path applies to which team — and hands down to both.
  *
- * Every date here is verified against developer.android.com (2026-07-31):
- * "Google Fit APIs will be supported until the end of 2026." Google has not
- * published a more specific date; we do not invent one.
+ * Re-checked 2026-10-02 against Google's Fit migration guide (GUIDE_URL,
+ * "Last updated 2026-09-10 UTC"): "The Google Fit APIs will be supported
+ * until the end of 2026", the caution recommending the Google Health API for
+ * cloud-based integrations and Health Connect for step tracking and
+ * mobile-first apps, and the per-API successor tables. That is END OF
+ * SUPPORT — Google publishes no switch-off date and we do not invent one.
+ * The May 1, 2024 sign-up closure is no longer on the guide, so it is stated
+ * as of the 2026-07-31 check that read it, never as a current documented fact.
  */
 
 const FAQS = [
   {
     q: "When exactly does Google Fit stop working?",
-    a: "Google's documentation says Fit APIs 'will be supported until the end of 2026' — that is the most specific commitment published, verified against developer.android.com as of July 2026. There is no announced day or month. Treat the end of support as the point after which breakage goes unfixed rather than a guaranteed switch-off date, and plan to be off Fit well before December 2026, because a migration under deadline pressure is where data gets lost.",
+    a: "Google's Fit migration guide says the Fit APIs 'will be supported until the end of 2026' — that is the most specific commitment published, re-checked on developer.android.com on October 2, 2026 (the guide was last updated September 10, 2026). There is no announced day or month, and no switch-off date. Treat it as end of support: the point after which Google has committed to nothing, rather than a date on which requests are guaranteed to fail. Plan to be off Fit well before December 2026, because a migration under deadline pressure is where data gets lost.",
   },
   {
     q: "Does the Google Fit app on my phone stop too?",
-    a: "This page is about the developer APIs — the Android SDK and the REST API that apps integrate. Google has communicated app-side changes separately, and the app is outside our scope as a developer site. What is documented for developers is that all Fit API surfaces, including the REST API, are supported only until the end of 2026, and that new developer signups already closed on May 1, 2024.",
+    a: "This page is about the developer APIs that apps integrate, and the consumer app is outside our scope as a developer site. Google's Fit migration guide gives no date for the app. It says apps that let users connect to the Google Fit app can keep maintaining that integration for current users, and that Google will update that section with information on when to deprecate it. What it documents for developers is that the Google Fit API, including the REST API, will only be supported until the end of 2026.",
   },
   {
     q: "Which Google Fit successor applies to which integration?",
-    a: "Match the successor to where your integration runs, not to feature lists. An Android app reading on the device moves to Health Connect. A backend calling the Fit REST API has no URL-swap option, because Health Connect has no server endpoint — it moves to Google's newer cloud surface, to an aggregator in front of the devices, or to an app-reads-locally-and-syncs design. Wear OS capture moves to Health Services. Multi-vendor products should consider consolidating behind one aggregator instead of migrating Fit in isolation.",
+    a: "Match the successor to how your integration uses Fit, not to feature lists. Google's Fit migration guide recommends the Google Health API for cloud-based integrations, and lists it for the Fit History and Session APIs. Reading mobile steps through the Recording API moves to Health Connect, which the guide describes as on-device storage with no OAuth. Fit on Wear OS moves to Health Services. The Goals API has no replacement API. Multi-vendor products should also consider consolidating behind one aggregator instead of migrating Fit in isolation.",
   },
   {
     q: "We built on Fit years ago and it still works. Can we wait?",
-    a: "You can, but the economics get worse every month. The platform is frozen — no new signups since May 2024 means no new provider features, and after support ends, anything that breaks stays broken. Teams that migrate early do it calmly with both systems running in parallel; teams that migrate in November 2026 do it under pressure with users watching. Our migration guide covers running the old and new paths side by side so nothing is lost.",
+    a: "You can until the end of 2026, but the economics get worse every month. Google's guide recommends migrating and states support only until the end of 2026; after that, assume anything that breaks stays broken, because Google has not said otherwise. Teams that migrate early do it calmly with both systems running in parallel; teams that migrate in November 2026 do it under pressure with users watching. Our migration guide covers running the old and new paths side by side so nothing is lost.",
   },
 ];
 
 const PATHS: { who: string; go: string; how: React.ReactNode }[] = [
   {
-    who: "Android app reading fitness data on the device",
+    who: "Step tracking or a mobile-first Android app",
     go: "Google Health Connect",
     how: (
       <>
-        The documented successor for on-device reads. Follow{" "}
+        Google&rsquo;s recommended path for step tracking and mobile-first apps, and the listed
+        successor for reading mobile steps through the Fit Recording API. Follow{" "}
         <Link href="/migrate/google-fit-to-health-connect">the migration playbook</Link> and{" "}
         <Link href="/integrate/google-health-connect">the Health Connect integration guide</Link>.
-        Budget for the semantic differences — permissions, the limited read-history window, and
-        changed data types; <Link href="/matrix">the type reference</Link> maps them.
+        Budget for the semantic differences — manifest permissions instead of OAuth scopes, a default
+        read window that Google&rsquo;s Health Connect docs put at 30 days before permission was first
+        granted unless you request the history permission, and changed data types;{" "}
+        <Link href="/matrix">the type reference</Link> maps them.
       </>
     ),
   },
   {
-    who: "Backend calling the Fit REST API",
-    go: "Google's newer Health API surface, or an aggregator",
+    who: "Cloud or backend integration (Fit History, Session or REST API)",
+    go: "The Google Health API, or an aggregator",
     how: (
       <>
-        The hard case: Health Connect has no server endpoint, so there is no URL swap. Either move
-        to Google&rsquo;s cloud-side successor for account-level data, or put{" "}
+        Google&rsquo;s recommended path for cloud-based integrations, and the listed successor for the
+        Fit History and Session APIs: a cloud API on a Google Cloud project with web-application OAuth.
+        Health Connect is not the server-side answer, because Google describes its storage as
+        on-device. If you would rather not rebuild against the Google Health API, put{" "}
         <Link href="/fitness-apis/health-data-aggregator-apis">a health-data aggregator</Link> in
         front of the devices you care about, or have your app read Health Connect locally and sync
         to your backend — <Link href="/architecture/incremental-sync">the sync architecture
@@ -89,9 +101,22 @@ const PATHS: { who: string; go: string; how: React.ReactNode }[] = [
     go: "Health Services",
     how: (
       <>
-        Google&rsquo;s documented path for watch-side capture. Then decide separately how watch data
+        Google&rsquo;s listed path for the Fit API on Wear OS. Then decide separately how watch data
         reaches your backend — that is the same on-device-store problem as above, not a Fit-specific
         one.
+      </>
+    ),
+  },
+  {
+    who: "App using the Goals, Sensor or BLE APIs",
+    go: "No direct replacement",
+    how: (
+      <>
+        Google lists these as features without a direct API replacement. For the Goals API its words
+        are &ldquo;No replacement API available&rdquo;, on phone and Wear: manage goal tracking and
+        daily targets in your own app logic. For the Sensor API it points to the Android Sensors
+        framework or the Fused Location Provider API, and for the BLE API to the Android Bluetooth
+        APIs directly.
       </>
     ),
   },
@@ -104,8 +129,10 @@ const PATHS: { who: string; go: string; how: React.ReactNode }[] = [
         natural moment to <Link href="/migrate/consolidate-wearables-with-aggregator">consolidate
         behind one aggregator</Link> instead of migrating one integration and keeping four. And if
         one of those sources is the legacy Fitbit Web API, note that it has its own, separate
-        retirement on a reported ~September 2026 timeline — <Link href="/fitbit-api-shutdown">the
-        Fitbit API shutdown page</Link> keeps the two events apart.
+        retirement: a turndown was reported for around September 2026, and as of October 2, 2026 we
+        could not confirm on an official page whether it has happened. Google&rsquo;s Fit guide lists
+        the Google Health API as its path too — <Link href="/fitbit-api-shutdown">the Fitbit API
+        shutdown page</Link> keeps the two events apart.
       </>
     ),
   },
@@ -153,20 +180,24 @@ export default function GoogleFitShutdownPage() {
           id="answer"
           className="speakable mt-6 rounded-2xl border border-brand-400/30 bg-brand-500/5 p-5 text-lg leading-relaxed text-[var(--fg)] sm:p-6"
         >
-          Google documents that all Google Fit APIs — including the REST API — are supported only{" "}
-          <strong>until the end of 2026</strong>, and new developer signups closed on May 1, 2024.
-          There is no drop-in replacement: where you migrate depends on how you used Fit. On-device
-          reads go to Health Connect, server-side REST usage needs Google&rsquo;s newer cloud surface
-          or an aggregator, and Wear OS capture goes to Health Services.
+          Google documents that the Google Fit APIs — including the REST API — will be supported
+          only <strong>until the end of 2026</strong>. That is end of support: Google publishes no
+          switch-off date. There is no drop-in replacement: Google&rsquo;s Fit migration guide
+          recommends the Google Health API for cloud-based integrations, Health Connect for step
+          tracking and mobile-first apps, and Health Services for Wear OS, and lists no replacement
+          for the Goals API. When we checked on July 31, 2026, Google&rsquo;s documentation stated
+          that new developer sign-ups closed on May 1, 2024; the current guide no longer repeats it.
         </div>
 
         <section className="mt-12">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">The verified timeline</h2>
           <ol className="mt-6 space-y-4 border-l-2 border-brand-400/40 pl-6">
             <li>
-              <p className="font-semibold text-[var(--fg)]">May 1, 2024 — signups closed</p>
+              <p className="font-semibold text-[var(--fg)]">May 1, 2024 — sign-ups closed</p>
               <p className="text-sm text-[var(--muted)]">
-                No new developer projects can onboard to Fit. Existing projects keep working.
+                As Google&rsquo;s documentation stated it when we checked on July 31, 2026: no new
+                developer projects could onboard to Fit, and existing projects kept working. The
+                migration guide as updated on September 10, 2026 no longer mentions the date.
               </p>
             </li>
             <li>
@@ -179,9 +210,16 @@ export default function GoogleFitShutdownPage() {
             <li>
               <p className="font-semibold text-[var(--fg)]">End of 2026 — support ends</p>
               <p className="text-sm text-[var(--muted)]">
-                Google&rsquo;s exact words: Fit APIs &ldquo;will be supported until the end of
-                2026.&rdquo; No day or month is published — and a plan that depends on the exact
-                date has already failed. (Verified against developer.android.com, July 2026.)
+                Google&rsquo;s caution in its{" "}
+                <a href={GUIDE_URL} className="underline hover:text-[var(--fg)]" rel="nofollow">
+                  Fit migration guide
+                </a>{" "}
+                (updated September 10, 2026): &ldquo;The Google Fit API (including the REST API) will
+                only be supported until the end of 2026. We recommend migrating to the Google Health
+                API for cloud-based integrations or Health Connect for step tracking and mobile-first
+                apps.&rdquo; No day or month is published, and no switch-off date — and a plan that
+                depends on an exact date has already failed. (Re-checked on developer.android.com,
+                October 2, 2026.)
               </p>
             </li>
           </ol>
@@ -236,10 +274,13 @@ export default function GoogleFitShutdownPage() {
         <p className="mt-10 text-xs leading-relaxed text-[var(--muted)]">
           {/* The page's only date line. A shutdown timeline expires on a
               calendar, so it flags at 30 days, as /changes does. */}
-          Timeline facts verified against Google&rsquo;s developer documentation on July 31, 2026
-          <ContentAge date={UPDATED} staleAfterDays={30} />.
-          Deprecation communications change — check{" "}
-          <a href="https://developer.android.com/health-and-fitness/guides/health-connect/migrate/comparison-guide" className="underline hover:text-[var(--fg)]" rel="nofollow">
+          The end-of-2026 support line and the successor paths were re-checked against Google&rsquo;s
+          Fit migration guide (last updated September 10, 2026) on October 2, 2026
+          <ContentAge date={UPDATED} staleAfterDays={30} />, and the 30-day Health Connect read
+          window against Google&rsquo;s Health Connect read-data guide the same day. The May 1, 2024 sign-up
+          date is as Google&rsquo;s documentation stated it on July 31, 2026. Deprecation
+          communications change — check{" "}
+          <a href={GUIDE_URL} className="underline hover:text-[var(--fg)]" rel="nofollow">
             Google&rsquo;s current guidance
           </a>{" "}
           before committing a migration plan.

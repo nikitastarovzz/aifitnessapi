@@ -49,3 +49,49 @@ npm run gsc -- --cohorts         # title-length buckets (needs npm run build)
 `latest.json` cannot answer "did the work help", which is why the 34 changes
 shipped on 2026-09-04 have never been measured: the only export predates them.
 Take a snapshot before a content wave and compare after it.
+
+## Retitled vs control (`--compare`)
+
+A recovery lifts every page at once, so "the retitled pages gained" proves
+nothing alone. `retitled.txt` in this directory lists the pages a title wave
+touched — one path per line, `#` comments, a trailing `*` for a prefix
+(`/apis/*` = every page under `/apis/`, not the hub). When it exists,
+`--compare` prints, after the page table, impressions / clicks / CTR /
+position before → now for the **retitled** group and for every other page as
+the **untouched (control)** group, then the retitled-minus-control
+difference. Only movement beyond the control is attributable to the titles.
+It is a crude difference-in-differences with no significance test, and it
+warns when the two windows differ in length or are the same export. Lines that
+match no page in either snapshot are listed, which catches typos.
+
+Current cohort: the October 2026 wave (`ops/GROWTH-OCT-2026.md`). A later wave
+needs its own snapshot and its own list. Mixing two waves in one file makes the
+treated group mean nothing.
+
+## GEO citation proxy (always on)
+
+`ops/GEO.md` counts a query that reproduces one of our own sentences as the
+best available sign that someone pasted our text, usually out of an AI answer,
+into Google. The first confirmed case, `"personal access tokens were
+deprecated in december 2025" oura`, was once misread as a vendor developer
+string. The report now checks this every run:
+
+- **Candidates:** queries (by query and by query+page) with ≥5 words or a
+  quoted segment. The phrase tested is each quoted segment of ≥4 words, or
+  the whole query when there is none.
+- **Match:** lowercase, punctuation and whitespace collapsed, whole words,
+  inside a single string of the site's prose. That means the string values of
+  `src/data/*.entries.ts` (parsed as JSON) and `content/posts/*.mdx` bodies
+  with their front-matter description and FAQ answers.
+- **Left out of the corpus:** slug, primaryQuery, h1, metaTitle, and FAQ
+  questions. They are written in searcher phrasing on purpose: `is the strava
+  api free` matches two FAQ questions, and that is SEO working, not a
+  citation.
+- **Skipped, but still listed:** queries containing a domain, path, or
+  dotted/snake_case identifier (the Nutritionix endpoint, a MediaPipe model
+  path). Our code samples quote these, so they match, but they are vendor
+  strings and nobody is pasting our prose.
+
+Each hit prints the query, its landing pages with impressions and position,
+and the file and entry slug it matched. It is a proxy, not citation telemetry.
+Report it that way.

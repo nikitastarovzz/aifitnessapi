@@ -4,6 +4,7 @@ import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import AnswerCapsule from "@/components/AnswerCapsule";
 import Newsletter from "@/components/Newsletter";
+import CtaLink from "@/components/CtaLink";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 import { digests, digestSummary, DIGEST_PATH } from "@/data/digest";
@@ -64,6 +65,18 @@ export default function DigestIndex() {
           get the same document by email.
         </AnswerCapsule>
 
+        <p className="mt-6 text-sm text-[var(--muted)]">
+          Want the next issue in your inbox?{" "}
+          <CtaLink
+            href="/newsletter"
+            source="pillar-inline"
+            id="cta-digest-newsletter"
+            className="font-medium text-brand-600 hover:text-brand-500"
+          >
+            Get the newsletter →
+          </CtaLink>
+        </p>
+
         <ul className="mt-10 space-y-4">
           {all.map((d) => (
             <li key={d.month}>
@@ -79,7 +92,7 @@ export default function DigestIndex() {
         </ul>
 
         <div className="mt-14">
-          <Newsletter />
+          <Newsletter source="digest-subscribe" />
         </div>
       </div>
     </Container>

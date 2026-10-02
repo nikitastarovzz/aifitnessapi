@@ -40,12 +40,12 @@ export async function generateMetadata({
   const description = answer
     ? `${answer.question} — a recommendation from the AIFitnessAPI picker, with the comparisons and integration guides to read next.`
     : "A shared result from an AIFitnessAPI tool.";
-  // The card endpoint takes the three choices and nothing else, and draws its
-  // text from them itself — it no longer accepts a title to print. A link
-  // that resolves to no answer gets the site's default card instead: /api/og
-  // would answer it with a 400, and a share preview with a broken image is
-  // worse than a generic one.
-  const image = answer ? `/api/og?${answer.query}` : "/opengraph-image";
+  // The card is a file the build wrote for this answer (src/app/og/picker),
+  // drawn from the same shareAnswer() call as this title — it takes no text
+  // from the URL. A link that resolves to no answer gets the site's default
+  // card instead: there is no file for it, the card path 404s, and a share
+  // preview with a broken image is worse than a generic one.
+  const image = answer ? answer.card : "/opengraph-image";
   return {
     title: { absolute: `${title} · ${site.name}` },
     description,

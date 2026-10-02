@@ -34,10 +34,15 @@ export default function HkIdentifierTable({
   rows,
   groups,
   families,
+  groupPages,
 }: {
   rows: HkRow[];
   groups: string[];
   families: { key: string; label: string; count: number }[];
+  /** Apple group → its /healthkit/<slug> page. A map of ~29 entries rather
+   *  than a field on every row, so the 240-row payload does not grow; only
+   *  released pages are in it, so a missing key renders no link. */
+  groupPages: Record<string, { slug: string; label: string }>;
 }) {
   const [q, setQ] = useState("");
   const [group, setGroup] = useState<string>("all");
@@ -138,6 +143,14 @@ export default function HkIdentifierTable({
                 <td className="py-3 pr-4">
                   <code className="font-mono text-[13px] font-semibold text-[var(--fg)]">{r.c}</code>
                   <span className="mt-0.5 block font-mono text-[11px] text-[var(--muted)]">{r.o}</span>
+                  {groupPages[r.g] && (
+                    <a
+                      href={`/healthkit/${groupPages[r.g].slug}#id-${r.c.toLowerCase()}`}
+                      className="mt-1 inline-block text-[11px] text-brand-600 hover:text-brand-500"
+                    >
+                      {groupPages[r.g].label} →
+                    </a>
+                  )}
                 </td>
                 <td className="py-3 pr-4 text-[var(--muted)]">
                   {r.a || <span className="italic">Apple documents this type with no description.</span>}

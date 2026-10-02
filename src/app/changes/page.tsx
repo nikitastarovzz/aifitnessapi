@@ -4,6 +4,7 @@ import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterHero from "@/components/ClusterHero";
 import ClusterCta from "@/components/ClusterCta";
+import CtaLink from "@/components/CtaLink";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import Countdown from "@/components/Countdown";
@@ -138,6 +139,14 @@ export default function ChangesPage() {
             <a href="/changes.xml" className="font-medium text-brand-600 hover:text-brand-500">
               RSS feed →
             </a>
+            <CtaLink
+              href="/newsletter"
+              source="pillar-inline"
+              id="cta-changes-newsletter"
+              className="font-medium text-brand-600 hover:text-brand-500"
+            >
+              By email →
+            </CtaLink>
           </p>
         </div>
 

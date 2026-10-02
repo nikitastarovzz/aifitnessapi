@@ -62,11 +62,39 @@ The headline is not in the data: since 2026-09-27 the site has returned
 8. **[owner] Planned downtime serves 503 + Retry-After, never 4xx**; decide on
    a standby static host on a separate account.
 
+### Recovery runbook (owner, in order)
+
+1. **Vercel → Usage**: note the metric that went over and the date it spiked;
+   write both in ops/README.md. Resolve it (paid plan, or wait for the reset).
+2. **Fresh deploy**: Vercel → Deployments → redeploy the latest `main`
+   commit as Production (not "promote" an old deployment). Confirm the
+   deployment's commit SHA equals `git rev-parse origin/main`.
+3. **Smoke test** (each should be 200): `/`, `/sitemap.xml`, `/robots.txt`,
+   `/llms.txt`, `/fix`, `/integrate/nutritionix-api`, `/healthkit`, `/tools`,
+   and the IndexNow key file `/7ab02ba01079101c36facfcb28908c50.txt`.
+   `curl -sI https://www.aifitnessapi.com/fix/fitbit-error-code-401` should be
+   308 → the apex path (#4); the uptime workflow now checks this.
+4. **Secrets**: new `VERCEL_TOKEN` (account that owns the project); repo
+   variable `ALERT_EMAIL` + secret `RESEND_API_KEY`; dispatch `uptime.yml` once.
+5. **IndexNow, once**: Actions → indexnow → Run workflow → mode **all**. Check
+   the log for HTTP 200/202. Every later run is a diff (fired by each
+   Production deploy, plus a Monday catch-up) — do not use "all" again.
+6. **Search Console + Bing**: resubmit the sitemap; request indexing for the
+   list in #5; watch the 4xx count in Pages daily for 14 days.
+7. **Data**: export GSC (queries, pages, query×page, 3 months) to
+   `data/gsc/latest.json` on recovery day and at day 28; run
+   `npm run gsc -- --snapshot` after each, then
+   `npm run gsc -- --compare 2026-10-02` at day 28 (it splits retitled pages
+   from the untouched control group — `ops/gsc/retitled.txt`).
+
 ## B. Hosting hardening — code
 
 9. Close the open image proxy (`images.unoptimized`; next/image is unused) + qa gate.
 10. `dynamicParams = false` on /blog/[slug] + qa gate: every dynamic route has `fallback: false`.
 11. /api/og accepts only validated picker enums; 400 otherwise (no free text).
+    Superseded: escaped query spellings still rendered, so /api/og is gone and
+    the card is prerendered at `/og/picker/<j>/<p>/<pr>` (144 files, one per
+    combination; anything else 404s).
 12. SDK tracker skips star/pushedAt-only commits (stars at most weekly).
 13. Uptime probe: `--compressed`, answers.json fetched once, www→apex 308 check.
 14. Health endpoint caches a 200 at the edge for 5 minutes.
