@@ -5,6 +5,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterHero from "@/components/ClusterHero";
 import ClusterCta from "@/components/ClusterCta";
 import { HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
+import { ALL_TOOLS, TOOL_LOOKUPS, TOOL_PLANNERS, type Tool } from "@/lib/toolRegistry";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 
@@ -44,78 +45,6 @@ export const metadata: Metadata = {
   },
 };
 
-type Tool = { path: string; name: string; blurb: string };
-
-/** The lookups and generators built on the identifier and matrix datasets. */
-const LOOKUPS: Tool[] = [
-  {
-    path: "/tools/error-diagnoser",
-    name: "Which error is this?",
-    blurb:
-      "Paste an error string and get the matching HKError.Code case in Apple's wording, plus the guide that covers it.",
-  },
-  {
-    path: "/tools/aggregation-checker",
-    name: "Sum it or average it?",
-    blurb:
-      "Whether Apple describes a quantity type as cumulative or discrete, with the sentence that says so.",
-  },
-  {
-    path: "/tools/identifier-translator",
-    name: "Apple type, Android record",
-    blurb:
-      "Two-way lookup between HealthKit identifiers and Health Connect records — verified pairs only.",
-  },
-  {
-    path: "/tools/permission-builder",
-    name: "HealthKit permission builder",
-    blurb:
-      "Pick the types your app touches: the Info.plist keys, the toShare/toRead Swift, and the Health Connect record names.",
-  },
-  {
-    path: "/tools/query-generator",
-    name: "HealthKit query generator",
-    blurb:
-      "Pick a quantity type and a window; get the HKStatisticsQuery with the aggregation option Apple's own prose states.",
-  },
-  {
-    path: "/tools/stack-generator",
-    name: "Fitness app stack generator",
-    blurb:
-      "Answer four questions and get the HealthKit types and APIs that survive them, with the exclusions shown.",
-  },
-];
-
-/** The planners and demos already published on the site. Blurbs match the
- *  descriptions used in the site search index. */
-const PLANNERS: Tool[] = [
-  {
-    path: "/picker",
-    name: "Which fitness API should I use?",
-    blurb: "Three questions, a tailored recommendation.",
-  },
-  {
-    path: "/cost-planner",
-    name: "Fitness API cost planner",
-    blurb:
-      "The cost structure of your stack: billing models, user-side costs, approval gates, eng effort.",
-  },
-  {
-    path: "/compare-apis",
-    name: "Compare two fitness APIs side by side",
-    blurb:
-      "Access structure, user-side cost and approval gates for any two products in the directory.",
-  },
-  {
-    path: "/day-boundaries",
-    name: "Why “today’s steps” is a bug",
-    blurb:
-      "Interactive: DST days aren't 24 hours, so a fixed UTC window drops or double-counts an hour.",
-  },
-];
-
-const ALL = [...LOOKUPS, ...PLANNERS];
-
 function ToolCard({ tool }: { tool: Tool }) {
   return (
     <li className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 transition-colors hover:border-brand-400">
@@ -150,9 +79,9 @@ export default function ToolsHubPage() {
     speakable: { "@type": "SpeakableSpecification", cssSelector: ["#answer"] },
     mainEntity: {
       "@type": "ItemList",
-      numberOfItems: ALL.length,
+      numberOfItems: ALL_TOOLS.length,
       itemListOrder: "https://schema.org/ItemListOrderAscending",
-      itemListElement: ALL.map((t, i) => ({
+      itemListElement: ALL_TOOLS.map((t, i) => ({
         "@type": "ListItem",
         position: i + 1,
         name: t.name,
@@ -175,11 +104,11 @@ export default function ToolsHubPage() {
         </h1>
 
         <p id="answer" className="speakable mt-4 text-lg leading-relaxed text-[var(--muted)]">
-          {ALL.length} tools that answer a question with a lookup instead of an essay. Every one runs
-          in your browser off this site&rsquo;s published datasets — the HealthKit identifier set read
-          from Apple&rsquo;s documentation on {HK_FETCHED_ON}, the HealthKit ↔ Health Connect matrix
-          verified against both vendors, and the API directory. No account, no upload, no server
-          round trip, and nothing invented where the source is silent.
+          {ALL_TOOLS.length} tools that answer a question with a lookup instead of an essay. Every
+          one runs in your browser off this site&rsquo;s published datasets — the HealthKit
+          identifier set read from Apple&rsquo;s documentation on {HK_FETCHED_ON}, the HealthKit ↔
+          Health Connect matrix verified against both vendors, and the API directory. No account, no
+          upload, no server round trip, and nothing invented where the source is silent.
         </p>
 
         <section data-tool="hub" aria-label="Free developer tools">
@@ -190,7 +119,7 @@ export default function ToolsHubPage() {
             Built on the HealthKit identifier dataset and the verified cross-platform matrix.
           </p>
           <ul className="mt-5 grid gap-4 sm:grid-cols-2">
-            {LOOKUPS.map((t) => (
+            {TOOL_LOOKUPS.map((t) => (
               <ToolCard key={t.path} tool={t} />
             ))}
           </ul>
@@ -203,7 +132,7 @@ export default function ToolsHubPage() {
             debugging time.
           </p>
           <ul className="mt-5 grid gap-4 sm:grid-cols-2">
-            {PLANNERS.map((t) => (
+            {TOOL_PLANNERS.map((t) => (
               <ToolCard key={t.path} tool={t} />
             ))}
           </ul>

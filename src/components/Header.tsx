@@ -5,6 +5,10 @@ import MobileNav from "./MobileNav";
 import { site } from "@/lib/site";
 import { clusterMap } from "@/lib/clusterRegistry";
 
+// Four items, and a fifth does not fit: adding "Tools" here pushes the
+// document 20px wider than a 768px iPad in portrait, which is the exact
+// regression scripts/responsive-audit.mjs exists to catch. /tools is reached
+// from the phone menu and the footer instead.
 const nav = [
   { href: "/fitness-apis", label: "Fitness APIs" },
   { href: "/picker", label: "API Picker" },
@@ -21,6 +25,7 @@ const MOBILE_LINKS = [
   { href: "/watch-apps", label: "Watch apps" },
   { href: "/accessibility", label: "Accessibility" },
   { href: "/picker", label: "API Picker" },
+  { href: "/tools", label: "Free tools" },
   { href: "/cookbook", label: "Cookbook" },
   { href: "/changes", label: "Changes & deadlines" },
   { href: "/blog", label: "Blog" },

@@ -22,6 +22,25 @@ export const viewport: Viewport = {
   ],
 };
 
+/**
+ * Bing Webmaster Tools site verification, by meta tag, from the environment.
+ *
+ * BWT accepts three proofs: an XML file at the site root, a DNS record, or
+ * this `<meta name="msvalidate.01">`. The meta tag is read from
+ * `BING_SITE_VERIFICATION` rather than hard-coded, and the tag is simply
+ * absent while the variable is unset, so no placeholder code ever ships and
+ * nothing in this public repo has to be invented or edited to claim the
+ * property. The code is public by design (it is served in the HTML of every
+ * page), so it is a plain Vercel environment variable, not a secret.
+ *
+ * `metadata` is evaluated during the build, so this is baked into the static
+ * HTML — setting the variable in Vercel requires a redeploy before BWT can
+ * see it. ops/BING.md is the owner's step-by-step; the one value nothing here
+ * can supply is the code itself, which BWT shows only to whoever is signed in
+ * to the property.
+ */
+const bingVerification = process.env.BING_SITE_VERIFICATION?.trim();
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
@@ -76,6 +95,13 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
+  // A spread rather than `other: { "msvalidate.01": process.env.… }`: Next's
+  // Verification type does not admit undefined for an `other` value, so the
+  // key is either present with a real code or not present at all — which is
+  // also what we want in the HTML.
+  ...(bingVerification
+    ? { verification: { other: { "msvalidate.01": bingVerification } } }
+    : {}),
 };
 
 export default function RootLayout({

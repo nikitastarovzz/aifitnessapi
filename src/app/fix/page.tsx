@@ -21,10 +21,20 @@ const QUESTION_COUNT = releasedFixes().reduce((n, e) => n + e.faqs.length, 0);
 
 export const metadata: Metadata = {
   title: "Fix Fitness API Errors: 401s, 429s, Webhooks",
-  // GSC 2026-08: "fitbit error code 401" = 330 imp at pos ~9 with 0 clicks
-  // landing on this pillar — the snippet must answer that exact query.
+  // This description used to open with the Fitbit 401 answer, written in
+  // August when "fitbit error code 401" was landing here (282 imp, position
+  // 9.6, zero clicks) and no dedicated page existed. One was shipped later
+  // that month — /fix/fitbit-error-code-401 — and the two have been competing
+  // ever since, with the hub winning on authority and converting nothing,
+  // because a searcher who typed one error code does not want an index of
+  // twenty-five of them.
+  //
+  // So the hub stops bidding. It describes what a hub is for; the spoke keeps
+  // the exact-match answer and the Fitbit entry leads the Auth group below.
+  // If the position drops rather than transferring, the 2026-10-02 snapshot
+  // will show it: npm run gsc -- --compare 2026-10-02
   description:
-    "Fitbit error code 401 means an expired, malformed, or revoked token — refresh and retry. Symptom-to-fix guides for every fitness API error, ranked.",
+    "Symptom to cause to fix for 25 fitness and health API errors: 401s and token refresh, 429 rate limits, empty HealthKit reads, webhooks that never fire.",
   alternates: { canonical: FIX_PATH },
   openGraph: {
     type: "website",

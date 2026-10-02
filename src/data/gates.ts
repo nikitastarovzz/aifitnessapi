@@ -17,6 +17,12 @@
 export const GATES: { code: string; refuses: string; area: string }[] = [
   // ── Per-page crawl: links, metadata, structured data ──────────────────
   {
+    code: "CANNIBAL-QUERY",
+    area: "Search",
+    refuses:
+      "Two released entries claiming the same primaryQuery. Pages that bid against each other split their own impressions — a query spread over thirteen of our URLs left every one of them stuck between position 40 and 90 — and the clash is invisible from inside either entry file.",
+  },
+  {
     code: "PHANTOM-LINK",
     area: "Links and anchors",
     refuses: "A page carrying an internal link to a URL that no built page answers.",
@@ -713,6 +719,9 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
 /** Group order on /gates. Every area used above must appear here. */
 export const GATE_AREAS = [
   "Content integrity",
+  // Cross-page search behaviour, as opposed to one page's own metadata: the
+  // failures here are only visible when entries are compared with each other.
+  "Search",
   "Links and anchors",
   "Metadata",
   "Structured data / GEO",

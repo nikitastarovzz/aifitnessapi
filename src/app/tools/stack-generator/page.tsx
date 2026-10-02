@@ -9,6 +9,7 @@ import StackGenerator, {
   type HkRow,
 } from "@/components/tools/StackGenerator";
 import { allStackRefs } from "@/components/AppStack";
+import MoreTools from "@/components/tools/MoreTools";
 import { HK_IDENTIFIERS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { ROWS as MATRIX_ROWS } from "@/data/matrix";
 import { API_ENTRIES, CATEGORY_LABELS, DEV_COST_LABELS } from "@/data/apis";
@@ -216,6 +217,8 @@ export default function StackGeneratorPage() {
             ← All tools
           </Link>
         </p>
+
+        <MoreTools path={PATH} />
       </div>
     </Container>
   );

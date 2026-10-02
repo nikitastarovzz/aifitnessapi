@@ -3,6 +3,7 @@ import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Container from "@/components/Container";
 import QueryGenerator, { type QueryOption } from "@/components/tools/QueryGenerator";
+import MoreTools from "@/components/tools/MoreTools";
 import { HK_IDENTIFIERS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
@@ -236,6 +237,8 @@ export default function QueryGeneratorPage() {
           </Link>
           .
         </p>
+
+        <MoreTools path={PATH} />
       </div>
     </Container>
   );

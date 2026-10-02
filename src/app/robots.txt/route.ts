@@ -66,6 +66,21 @@ const AI_CRAWLERS: [string, string[]][] = [
   ["Apple", ["Applebot", "Applebot-Extended"]],
   ["Perplexity", ["PerplexityBot", "Perplexity-User"]],
   ["Meta", ["meta-externalagent", "meta-externalfetcher", "meta-webindexer", "FacebookBot"]],
+  // `bingbot` is Bing's web-crawler token, and Bing's index is what its
+  // assistant answers from — so this is a search allow and an AI allow in
+  // one group. It was already allowed, via `User-agent: *`, which has only
+  // ever carried `Allow: /`; naming it changes no rule (the group gets the
+  // same shared RULES, and qa's GEO-ROBOTS-UNIFORM holds every group to the
+  // `*` list). What it changes is legibility in the file Bing fetches first,
+  // and it puts Bing inside the "a Disallow here reaches every named agent"
+  // rule above instead of outside it.
+  //
+  // Deliberately no Crawl-delay. Bing honours it, and this site has no Bing
+  // presence to protect — slowing the one engine we are trying to be crawled
+  // by is the opposite of the goal. If Bing ever does need throttling, that
+  // belongs in Bing Webmaster Tools' own crawl settings, where it can be
+  // changed without a deploy (ops/BING.md).
+  ["Microsoft Bing", ["bingbot"]],
   ["Microsoft / Amazon", ["AzureAI-SearchBot", "Amazonbot", "Amzn-SearchBot", "bedrockbot"]],
   [
     "Other assistants",

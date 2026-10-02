@@ -18,6 +18,7 @@ const LINKS = [
   { href: "/integrate", label: "Integration guides" },
   { href: "/devices", label: "Connected devices" },
   { href: "/picker", label: "API Picker" },
+  { href: "/tools", label: "Free tools" },
   { href: "/engagement", label: "Engagement" },
   { href: "/watch-apps", label: "Watch apps" },
   { href: "/cookbook", label: "Cookbook" },

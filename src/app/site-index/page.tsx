@@ -14,6 +14,18 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: "/site-index" },
+  // noindex, follow. This page is a crawl aid, not a search destination, and
+  // as an indexable page it was doing active harm: 102 impressions, zero
+  // clicks, average position 156, while competing against /fitness-apis on
+  // four head terms at once ("fitness api", "fitness apis", "workout api",
+  // and a long-tail tutorial query it has no business ranking for). Thirteen
+  // of our own URLs were splitting "fitness api" between them; this is one of
+  // the diluters and the least defensible of them.
+  //
+  // `follow` is the important half: every link on this page keeps passing
+  // equity, so it goes on doing the one job it is good at — making 430 pages
+  // reachable in one hop — without bidding against the pages that should win.
+  robots: { index: false, follow: true },
   openGraph: {
     type: "website",
     title: TITLE,

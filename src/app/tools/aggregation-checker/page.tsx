@@ -4,6 +4,7 @@ import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterHero from "@/components/ClusterHero";
 import AggregationChecker, { type AggRow } from "@/components/tools/AggregationChecker";
+import MoreTools from "@/components/tools/MoreTools";
 import { HK_IDENTIFIERS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { HK_READONLY } from "@/data/healthkitWritability";
 import { hkGroupSlugOf, hkGroupLabel } from "@/data/hkGroupPages";
@@ -167,6 +168,8 @@ export default function AggregationCheckerPage() {
           </Link>
           .
         </p>
+
+        <MoreTools path={PATH} />
       </div>
     </Container>
   );

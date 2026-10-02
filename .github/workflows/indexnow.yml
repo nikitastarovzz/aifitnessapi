@@ -5,9 +5,19 @@
 # When it runs:
 #   - after every successful Production deploy (Vercel reports a GitHub
 #     deployment status) — diff mode, the normal path;
+#   - on every push to the default branch, after waiting for that commit's
+#     deploy — diff mode, and the path that does not depend on the
+#     Vercel↔GitHub integration still reporting deployment statuses;
 #   - Mondays, as a diff catch-up for anything a deploy-time run missed;
 #   - on demand from the Actions tab: mode "diff", or "all" to resubmit every
 #     sitemap URL — for one-offs such as the resubmission after an outage.
+#   - automatically in "all" mode once, when uptime.yml sees the site recover
+#     from an outage: every URL was served an error, so every URL needs
+#     re-announcing, not just the ones whose lastmod moved.
+#
+# Nothing here is a manual step. `npm run indexnow` still exists for a local
+# dry run (`-- --dry-run`), but no announcement depends on someone remembering
+# to run it.
 #
 # Diff mode compares the sitemap with the snapshot the last accepted run left;
 # scripts/indexnow.mjs says exactly what it submits. The snapshot lives in the
@@ -22,6 +32,8 @@
 name: indexnow
 on:
   deployment_status:
+  push:
+    branches: [main]
   workflow_dispatch:
     inputs:
       mode:
@@ -69,6 +81,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      deployments: read # the push path waits for this commit's deploy
     # One submitter at a time, so each run diffs against the snapshot the one
     # before it saved. Job-level rather than workflow-level on purpose: a
     # workflow-level group would also hold the skipped Preview-deploy runs,
@@ -94,6 +107,54 @@ jobs:
           path: .indexnow/snapshot.json
           key: indexnow-snapshot-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: indexnow-snapshot-
+
+      # A push-triggered run starts the moment the commit lands, which is
+      # before Vercel has finished building it. Diff mode reads the LIVE
+      # sitemap, so without this wait the run would diff the previous deploy
+      # and announce nothing.
+      #
+      # Belt and braces with the relay job above, on purpose. The relay is the
+      # fast path and fires the instant the deploy is reported ready. This
+      # path needs nothing from the Vercel↔GitHub integration except time, so
+      # a push is still announced if deployment statuses stop arriving — the
+      # state that would otherwise leave new URLs unannounced until Monday.
+      # Whichever run gets there first does the work; the other finds nothing
+      # changed and exits without touching the snapshot.
+      #
+      # Timing out is not a failure. Vercel deploys a push whether or not it
+      # reports the status here, so after the grace period the live sitemap is
+      # in all likelihood already the new one; and if it is not, the run
+      # diffs the old one, submits nothing and leaves the snapshot in place,
+      # so the change is still picked up by the next run.
+      - name: Wait for this commit's Production deploy
+        if: github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SHA: ${{ github.sha }}
+        run: |
+          set -uo pipefail
+          # No pipe into grep anywhere here: jq answers true/false, because a
+          # `gh api … | grep -q` pipeline exits non-zero under pipefail when
+          # grep closes the pipe early, and would read as "not deployed".
+          ready () {
+            local id
+            for id in $(gh api "repos/$GITHUB_REPOSITORY/deployments?sha=$SHA&per_page=100" \
+                          --jq '.[] | select((.environment // "") | ascii_downcase | startswith("production")) | .id'); do
+              if [ "$(gh api "repos/$GITHUB_REPOSITORY/deployments/$id/statuses?per_page=100" \
+                        --jq 'any(.[]; .state == "success")')" = "true" ]; then
+                return 0
+              fi
+            done
+            return 1
+          }
+          for attempt in $(seq 1 30); do
+            if ready; then
+              echo "Production deployment of $SHA reported ready after ~$(( (attempt - 1) * 30 ))s."
+              exit 0
+            fi
+            sleep 30
+          done
+          echo "::notice::No successful Production deployment reported for $SHA after 15 minutes. Diffing the live sitemap as it stands."
 
       # Explicit paths go through an env var, never interpolated into the
       # script: a dispatch input is free text. Only path-shaped words are

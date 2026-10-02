@@ -1017,6 +1017,48 @@ if (fs.existsSync(matrixPath)) {
     }
   }
 
+  // ── Query ownership: one query, one page ──────────────────────────────
+  //
+  // Added 2026-10-03 after the query→page join showed 44 of 234 queries split
+  // across several of our own URLs — 450 of 1,220 query-page impressions.
+  // "fitness api" was spread over thirteen of our pages, every one of them
+  // stranded between position 40 and 90. Nothing ranks when it is bidding
+  // against itself, and the split is invisible from inside a single entry
+  // file: each page looks fine on its own.
+  //
+  // So `primaryQuery` is now an exclusive claim. Two entries wanting the same
+  // string is a content decision — merge them, or narrow one — not something
+  // to discover in Search Console a quarter later.
+  {
+    const owners = new Map(); // normalised query -> ["cluster/slug", ...]
+    for (const f of fs.readdirSync("src/data").filter((n) => n.endsWith(".entries.ts"))) {
+      const cluster = f.replace(".entries.ts", "");
+      const src = fs.readFileSync(`src/data/${f}`, "utf8");
+      // Entries are JSON-shaped objects; slug precedes primaryQuery within one.
+      for (const m of src.matchAll(
+        /"slug":\s*"([^"]+)"[\s\S]{0,800}?"primaryQuery":\s*"((?:[^"\\]|\\.)*)"/g,
+      )) {
+        const key = m[2].trim().toLowerCase().replace(/\s+/g, " ");
+        if (!key) continue;
+        const list = owners.get(key) ?? [];
+        list.push(`${cluster}/${m[1]}`);
+        owners.set(key, list);
+      }
+    }
+    let clashes = 0;
+    for (const [query, pages] of owners) {
+      if (pages.length > 1) {
+        clashes++;
+        problems.push(
+          `CANNIBAL-QUERY  "${query}" is the primaryQuery of ${pages.length} entries: ${pages.join(", ")}`,
+        );
+      }
+    }
+    console.log(
+      `Query ownership: ${owners.size} distinct primary queries across the clusters, ${clashes} contested.`,
+    );
+  }
+
   // ── Derived metric facts ──────────────────────────────────────────────
   // The /data guides render their HealthKit facts from a join between
   // matrix.ts and the generated identifier dataset. If a matrix cell is

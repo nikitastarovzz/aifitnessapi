@@ -252,6 +252,18 @@ export default function HealthConnectRecordsPage() {
         </section>
 
         <p className="mt-12 text-sm text-[var(--muted)]">
+          Porting one record rather than reading the whole list?{" "}
+          <Link
+            href="/tools/identifier-translator"
+            className="font-medium text-brand-600 hover:text-brand-500"
+          >
+            Translate a Health Connect record to its Apple type
+          </Link>{" "}
+          — the lookup runs both directions and returns the gap, not a guess, where no pair has been
+          verified against both vendors.
+        </p>
+
+        <p className="mt-6 text-sm text-[var(--muted)]">
           Compiled by {site.name}; the HealthKit side was read from Apple&rsquo;s published
           documentation on {HK_FETCHED_ON}. Every HealthKit identifier with units, aggregation and
           value enums is at{" "}

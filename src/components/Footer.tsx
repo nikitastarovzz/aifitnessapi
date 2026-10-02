@@ -129,6 +129,12 @@ export default function Footer() {
           <FooterLink href="/healthkit-errors" className="py-1 hover:text-[var(--fg)]">
             Every HealthKit error code
           </FooterLink>
+          <FooterLink href="/healthkit-units" className="py-1 hover:text-[var(--fg)]">
+            HKUnit families by type
+          </FooterLink>
+          <FooterLink href="/healthkit-versions" className="py-1 hover:text-[var(--fg)]">
+            HealthKit types by iOS version
+          </FooterLink>
           {SDK_REPOS.length > 0 && (
             <FooterLink href="/sdk-releases" className="py-1 hover:text-[var(--fg)]">
               SDK release tracker
@@ -172,6 +178,9 @@ export default function Footer() {
           </FooterLink>
           <FooterLink href="/methodology" className="py-1 hover:text-[var(--fg)]">
             How We Verify
+          </FooterLink>
+          <FooterLink href="/gates" className="py-1 hover:text-[var(--fg)]">
+            What We Refuse To Ship
           </FooterLink>
           <FooterLink href="/privacy" className="py-1 hover:text-[var(--fg)]">
             Privacy

@@ -33,6 +33,19 @@ import { digests, DIGEST_PATH, type Digest } from "@/data/digest";
  * "monthly" whether or not anything had changed, with priorities that were
  * one person's ranking typed once — neither was a fact we could keep true,
  * and lastmod is the one field here a dated record can back.
+ *
+ * Re-audited 2026-10-03, after the five-day 402 outage, because lastmod is
+ * what prioritises a re-crawl and a wrong one would have been worse than
+ * none: a sitemap that stamped the deploy date on all ~430 rows would have
+ * told Google and Bing that every page changed while the site was dark. It
+ * does not — no row carried the build date, and the dated rows spread across
+ * the real re-verification dates they come from. The rows that carry no
+ * lastmod are exactly the pages that declare no dateModified of their own:
+ * the /apis directory and its product pages (apis.ts records no verification
+ * date), and the utility pages (/privacy, /methodology, /glossary, /gates,
+ * /about, /badges and the rest). Undated is the honest answer for those;
+ * giving them a date would mean inventing one. Every content spoke and hub is
+ * dated, which is the half that re-crawl priority turns on.
  */
 
 const ISO_DAY = /^\d{4}-\d{2}-\d{2}$/;

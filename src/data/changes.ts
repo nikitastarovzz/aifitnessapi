@@ -12,6 +12,16 @@
  *   date beyond what the source page states.
  * - The daily routine appends here when it verifies a dated change
  *   (ops/DAILY-CONTENT §6) — newest first within each year.
+ *
+ * One entry is about this site and not about a vendor API: the five days in
+ * 2026 when every URL here answered HTTP 402. It is deliberate and it is not
+ * a precedent for site news in general — the test it passes is the same one
+ * every other entry passes, a dated event with the vendor's own words
+ * (Vercel's `x-vercel-error`) quoted on the page it links. The site's claim
+ * is that it tracks a moving ecosystem; the days it was unreachable are part
+ * of that record, not an exception to it. Note that every entry here also
+ * becomes an item in /changes.xml and a VEVENT in the deadlines calendar, so
+ * an entry that is not a deadline shows up in both.
  */
 
 export type ChangeStatus = "confirmed" | "reported" | "watch";
@@ -50,6 +60,16 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
     status: "reported",
     page: { href: "/migrate/fitbit-web-api-to-google-health", label: "Fitbit → Google Health migration playbook" },
     verifiedOn: "2026-08-11",
+  },
+  {
+    date: "2026-09-27",
+    sortDate: "2026-09-27",
+    title: "This site served HTTP 402 for five days",
+    summary:
+      "From 2026-09-27 (21:38 UTC, the first probe that saw it) until recovery on 2026-10-02, every request to aifitnessapi.com answered HTTP 402 with x-vercel-error: DEPLOYMENT_DISABLED — Vercel had disabled the project's deployments, which is an account and billing state, not a code, build or DNS fault. Googlebot and bingbot got that status on every URL for five days, and a sustained 4xx reads as removal rather than retry. The site serves 200 again on the apex and on www. This entry is about this site rather than a vendor API, and it is here because a tracker that goes dark for five days and does not say so is not a record.",
+    status: "confirmed",
+    page: { href: "/changelog", label: "Site changelog" },
+    verifiedOn: "2026-10-03",
   },
   {
     date: "2026-12",

@@ -27,6 +27,8 @@ concurrency:
 
 permissions:
   issues: write
+  # Recovery dispatches the full IndexNow resubmission (see the last step).
+  actions: write
 
 jobs:
   probe:
@@ -372,6 +374,7 @@ jobs:
             else core.notice(`Outage email sent to ${to}.`);
 
       - name: Auto-close site-down issue on recovery
+        id: recovery
         if: success()
         uses: actions/github-script@v7
         with:
@@ -384,6 +387,13 @@ jobs:
             // that skipped them has no evidence a GEO-only issue is fixed;
             // closing it here would close and reopen it every 6 hours.
             const geoSkipped = "${{ steps.geo.outcome }}" === "skipped";
+            // Did this run close a real outage — the site itself serving
+            // errors — rather than a GEO-, signup- or redirect-only issue?
+            // "is DOWN" is the core-down title above and no other. Only that
+            // transition earns the full IndexNow resubmission in the next
+            // step: a broken feed or a lost signup did not cost every URL on
+            // the site its status code.
+            let outageClosed = false;
             for (const issue of open) {
               if (geoSkipped && issue.title.includes("GEO surfaces")) continue;
               await github.rest.issues.createComment({
@@ -395,4 +405,31 @@ jobs:
                 owner: context.repo.owner, repo: context.repo.repo,
                 issue_number: issue.number, state: "closed",
               });
+              if (issue.title.includes("is DOWN")) outageClosed = true;
             }
+            core.setOutput("resubmit", outageClosed ? "true" : "false");
+
+      # The failing→passing transition, and the only moment a full IndexNow
+      # resubmission is the right call. From 2026-09-27 21:38 UTC to 10-02
+      # every URL answered 402, so every URL needs re-announcing — diff mode
+      # would only re-announce the handful whose lastmod had moved in the
+      # meantime, and leave the other ~400 to be re-found by crawl schedulers
+      # that had just been told the whole site was gone.
+      #
+      # Dispatched rather than run here: indexnow.yml owns the snapshot cache
+      # and the one-at-a-time concurrency group, and duplicating the submit
+      # step would mean two places to keep correct. `--all` writes the
+      # snapshot on success, so the diff runs after it carry on from the
+      # resubmitted state.
+      - name: Resubmit every URL to IndexNow after a recovery
+        if: success() && steps.recovery.outputs.resubmit == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          # This workflow runs on schedule too, where github.event carries no
+          # repository object, so the branch is looked up rather than read off
+          # the event.
+          branch=$(gh api "repos/$GITHUB_REPOSITORY" --jq .default_branch)
+          gh workflow run indexnow.yml --repo "$GITHUB_REPOSITORY" --ref "$branch" -f mode=all
+          echo "::notice::Site recovered — dispatched a full IndexNow resubmission (mode=all) on $branch."

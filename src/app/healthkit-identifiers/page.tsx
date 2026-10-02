@@ -403,6 +403,24 @@ export default function HealthKitIdentifiersPage() {
         />
 
         <p className="mt-8 text-sm text-[var(--muted)]">
+          Checking one type instead of scanning {HK_IDENTIFIERS.length} rows?{" "}
+          <Link
+            href="/tools/aggregation-checker"
+            className="font-medium text-brand-600 hover:text-brand-500"
+          >
+            Check whether Apple sums or averages it
+          </Link>{" "}
+          returns the sentence the answer came from, and{" "}
+          <Link
+            href="/tools/identifier-translator"
+            className="font-medium text-brand-600 hover:text-brand-500"
+          >
+            the Apple-to-Android lookup
+          </Link>{" "}
+          finds the Health Connect record for a given identifier.
+        </p>
+
+        <p className="mt-6 text-sm text-[var(--muted)]">
           Compiled by {site.name} from Apple&rsquo;s published documentation, read {HK_FETCHED_ON}.
           Apple&rsquo;s abstracts are quoted for identification; the analysis, the aggregation split
           and the cross-platform mapping are ours. Regenerate with{" "}

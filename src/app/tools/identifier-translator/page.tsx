@@ -7,6 +7,7 @@ import IdentifierTranslator, {
   type AppleName,
   type TRow,
 } from "@/components/tools/IdentifierTranslator";
+import MoreTools from "@/components/tools/MoreTools";
 import { HK_IDENTIFIERS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { ROWS as MATRIX_ROWS } from "@/data/matrix";
 import { site } from "@/lib/site";
@@ -149,6 +150,8 @@ export default function IdentifierTranslatorPage() {
           </Link>
           .
         </p>
+
+        <MoreTools path={PATH} />
       </div>
     </Container>
   );

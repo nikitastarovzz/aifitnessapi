@@ -1,0 +1,89 @@
+name: Weekly search snapshot
+
+# Builds the time series that makes "did the work help?" answerable.
+#
+# The site has had exactly one Search Console export, covering 2026-07-06 to
+# 08-02. Thirty-four changes shipped on 09-04 and none of them has ever been
+# measured, because the only baseline predates them all and each new export
+# overwrites data/gsc/latest.json rather than accumulating.
+#
+# This commits a dated snapshot every Monday, so `npm run gsc -- --compare
+# <date>` has something to compare against. It deliberately does NOT fetch
+# from the Search Console API: that needs OAuth credentials this public repo
+# should not hold. It snapshots whatever the repo currently knows — the API
+# pull the owner drops into data/gsc/latest.json, plus any CSVs in ops/gsc/.
+#
+# So the loop is: owner refreshes latest.json (or drops a CSV) → this pins a
+# dated copy → the comparison is possible from then on. Without the refresh
+# it re-pins the same numbers, which is harmless and shows up as a zero diff.
+
+on:
+  schedule:
+    - cron: "41 6 * * 1" # Mondays, after the weekend's crawling settles
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: search-snapshot
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Take the snapshot
+        id: snap
+        run: |
+          set -euo pipefail
+          if [ ! -f data/gsc/latest.json ] && [ -z "$(ls -A ops/gsc/*.csv 2>/dev/null || true)" ]; then
+            echo "No search data in the repo yet — nothing to snapshot."
+            echo "skip=1" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          node scripts/gsc-report.mjs --snapshot | tail -40
+          echo "skip=0" >> "$GITHUB_OUTPUT"
+
+      - name: Commit if the series moved
+        if: steps.snap.outputs.skip == '0'
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/gsc/snapshots/
+          if git diff --cached --quiet; then
+            echo "Snapshot identical to the last one — nothing to commit."
+            exit 0
+          fi
+          stamp=$(date -u +%Y-%m-%d)
+          git commit -m "Pin the search snapshot for ${stamp}
+
+Weekly dated copy of whatever search data the repo holds, so
+\`npm run gsc -- --compare <date>\` has a baseline. Automated by
+.github/workflows/search-snapshot.yml."
+          git pull --rebase --autostash
+          git push
+
+      - name: Remind if the data has gone stale
+        if: steps.snap.outputs.skip == '0'
+        run: |
+          set -uo pipefail
+          # A snapshot of month-old numbers is a snapshot of nothing. Say so
+          # rather than letting the series quietly fill with duplicates.
+          exported=$(node -e "
+            const fs=require('fs');
+            try { console.log(JSON.parse(fs.readFileSync('data/gsc/latest.json','utf8')).range?.end ?? ''); }
+            catch { console.log(''); }
+          ")
+          [ -z "$exported" ] && exit 0
+          age=$(( ( $(date -u +%s) - $(date -u -d "$exported" +%s) ) / 86400 ))
+          echo "Search data covers up to ${exported} (${age} days ago)."
+          if [ "$age" -gt 45 ]; then
+            echo "::warning::The search data is ${age} days old. Every snapshot since the last refresh is a copy of the same numbers. Refresh data/gsc/latest.json, or export a CSV into ops/gsc/, for the comparison to mean anything."
+          fi

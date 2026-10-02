@@ -4,6 +4,7 @@ import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterHero from "@/components/ClusterHero";
 import ErrorDiagnoser, { type ErrorHint, type FixHint } from "@/components/tools/ErrorDiagnoser";
+import MoreTools from "@/components/tools/MoreTools";
 import { HK_ERRORS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { fixEntries } from "@/data/fix.entries";
 import { RELEASED_FIX } from "@/data/fix";
@@ -279,6 +280,8 @@ export default function ErrorDiagnoserPage() {
           </Link>
           .
         </p>
+
+        <MoreTools path={PATH} />
       </div>
     </Container>
   );

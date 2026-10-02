@@ -3,6 +3,7 @@ import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Container from "@/components/Container";
 import PermissionBuilder, { type PermOption } from "@/components/tools/PermissionBuilder";
+import MoreTools from "@/components/tools/MoreTools";
 import { HK_IDENTIFIERS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { HK_READONLY } from "@/data/healthkitWritability";
 import { ROWS as MATRIX_ROWS } from "@/data/matrix";
@@ -224,6 +225,8 @@ export default function PermissionBuilderPage() {
           </Link>
           .
         </p>
+
+        <MoreTools path={PATH} />
       </div>
     </Container>
   );
