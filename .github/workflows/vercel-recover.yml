@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "diagnose or recover"
+        description: "diagnose, probe, billing (read-only) or recover"
         required: true
         default: diagnose
 
@@ -82,6 +82,41 @@ jobs:
           curl -s -H "Authorization: Bearer $T" \
             "https://api.vercel.com/v6/deployments?app=aifitnessapi&target=production&limit=3" \
             | jq -c '.deployments[]? | {url,state,readyState,created}'
+          exit 0
+
+      # Read-only. Names WHY Vercel is serving 402 DEPLOYMENT_DISABLED: the
+      # account/team objects carry a softBlock {reason, blockedAt} when a
+      # Hobby limit (e.g. Active CPU, fair use) or billing state pauses them.
+      # Prints only plan/block fields — Actions logs on a public repo are
+      # public, so no email, name or token ever reaches the log.
+      - name: Billing — block reason, plan, project + deployment state
+        if: steps.mode.outputs.mode == 'billing'
+        env:
+          T: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          set +e
+          echo "::group::account (softBlock + plan only)"
+          curl -s -H "Authorization: Bearer $T" https://api.vercel.com/v2/user \
+            | jq -c '{softBlock: .user.softBlock, plan: .user.billing.plan, billingStatus: .user.billing.status, keys: (.user | keys)}'
+          echo "::endgroup::"
+          echo "::group::teams (slug, softBlock, plan only)"
+          curl -s -H "Authorization: Bearer $T" "https://api.vercel.com/v2/teams?limit=20" \
+            | jq -c '.teams[]? | {slug, softBlock, plan: .billing.plan, billingStatus: .billing.status}'
+          echo "::endgroup::"
+          echo "::group::project aifitnessapi (state fields only)"
+          curl -s -H "Authorization: Bearer $T" "https://api.vercel.com/v9/projects/aifitnessapi" \
+            | jq -c '{name, framework, live, paused: (.paused // null), keys: keys}'
+          echo "::endgroup::"
+          echo "::group::newest production deployments"
+          curl -s -H "Authorization: Bearer $T" \
+            "https://api.vercel.com/v6/deployments?app=aifitnessapi&target=production&limit=5" \
+            | jq -c '.deployments[]? | {state, readyState, created, errorCode: (.errorCode // null)}'
+          echo "::endgroup::"
+          echo "::group::live response headers"
+          for u in https://aifitnessapi.com/ https://aifitnessapi.vercel.app/; do
+            echo "--- $u"; curl -sI --max-time 25 "$u" | grep -iE "^(HTTP/|x-vercel-error|x-vercel-id):"
+          done
+          echo "::endgroup::"
           exit 0
 
       - name: Recover — show full domain config (incl. gitBranch)
