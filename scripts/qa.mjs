@@ -646,6 +646,14 @@ if (fs.existsSync(matrixPath)) {
       "GPTBot", "OAI-SearchBot", "ChatGPT-User",
       "ClaudeBot", "Claude-User", "Claude-SearchBot",
       "PerplexityBot", "Google-Extended", "Applebot-Extended", "CCBot",
+      // bingbot earns its place on this list twice over: Bing is a search
+      // engine we have never had a single impression from, and its index is
+      // what its assistant answers from. Naming it in robots.txt changes no
+      // rule — every group shares the same `Allow: /` — but an unnamed agent
+      // sits outside the file's "a Disallow here reaches every named agent"
+      // invariant, and nothing stopped a future edit from quietly dropping
+      // the line. Now something does.
+      "bingbot",
     ];
     for (const ua of required) {
       if (!robotsTxt.includes(ua)) problems.push(`GEO-ROBOTS  ${ua} not explicitly allowed in robots.txt`);

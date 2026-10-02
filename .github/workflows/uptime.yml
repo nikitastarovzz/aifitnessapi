@@ -117,6 +117,10 @@ jobs:
           check "https://aifitnessapi.com/healthkit-errors"       "errorAuthorizationDenied"
           check "https://aifitnessapi.com/kit/healthkit-type-identifiers-2026.csv" "identifier"
           check "https://aifitnessapi.com/robots.txt"   "Claude-SearchBot"
+          # bingbot too: Bing is the one engine with no feedback loop here (no
+          # claimed property, no data), so a silently-dropped allow would go
+          # unnoticed for exactly as long as the 402 did.
+          check "https://aifitnessapi.com/robots.txt"   "bingbot"
           check "https://aifitnessapi.com/llms-full.txt" "AIFitnessAPI"
 
           # Markdown mirrors at the llms.txt-conventional addresses, which are
