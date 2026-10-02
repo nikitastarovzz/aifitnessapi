@@ -6,15 +6,20 @@ import Container from "@/components/Container";
 import ContentAge from "@/components/ContentAge";
 import { Mdx } from "@/components/mdx";
 import { HK_IDENTIFIERS, HK_FETCHED_ON, type HkIdentifier } from "@/data/healthkitIdentifiers";
-import { getStandalone, HK_STANDALONE_PUBLISHED, HK_STANDALONE_MODIFIED } from "@/data/hkStandalone";
+import { getStandalone, HK_STANDALONE_PUBLISHED, hkStandaloneModified } from "@/data/hkStandalone";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 
 /**
  * The lifecycle edges of the HealthKit catalogue: what is still beta, what
- * Apple ships with no prose at all, and what is deprecated — with the
- * distinction between Apple's deprecated *group* and the per-platform
- * deprecated *flag* kept visible, because they do not agree.
+ * Apple ships with no prose at all, and what is deprecated.
+ *
+ * Deprecation comes from Apple's availability data: a platform entry with a
+ * `deprecatedAt` version (Apple leaves the `deprecated` boolean false even
+ * then — reading only the boolean is how this page once said nothing was
+ * deprecated). Apple's "Deprecated activity types" topic group is shown
+ * beside it because the two do not cover the same set: the group holds three
+ * workout constants, and audioExposureEvent is deprecated outside it.
  */
 
 const SLUG = "healthkit-status";
@@ -24,8 +29,22 @@ const PROSE =
 
 const BETA = HK_IDENTIFIERS.filter((r) => r.platforms.some((p) => p.beta));
 const UNDOCUMENTED = HK_IDENTIFIERS.filter((r) => r.undocumented);
-const DEPRECATED_GROUP = HK_IDENTIFIERS.filter((r) => r.group === "Deprecated activity types");
-const FLAG_DEPRECATED = HK_IDENTIFIERS.filter((r) => r.platforms.some((p) => p.deprecated));
+const DEPRECATED_GROUP_NAME = "Deprecated activity types";
+const DEPRECATED = HK_IDENTIFIERS.filter((r) => r.deprecated);
+const DEPRECATED_GROUP = HK_IDENTIFIERS.filter((r) => r.group === DEPRECATED_GROUP_NAME);
+/** Deprecated in the availability data but filed elsewhere — a group-name check misses these. */
+const DEPRECATED_OUTSIDE_GROUP = DEPRECATED.filter((r) => r.group !== DEPRECATED_GROUP_NAME);
+/** In the deprecated group with no deprecation in the availability data. */
+const GROUP_NOT_DEPRECATED = DEPRECATED_GROUP.filter((r) => !r.deprecated);
+/** Platforms on which NONE of the deprecated identifiers carries a deprecation. */
+const PLATFORMS_NEVER_DEPRECATING = [...new Set(HK_IDENTIFIERS.flatMap((r) => r.platforms.map((p) => p.name)))].filter(
+  (name) => DEPRECATED.length > 0 && DEPRECATED.every((r) => !r.platforms.find((p) => p.name === name)?.deprecated),
+);
+
+function listOf(names: string[]): string {
+  if (names.length <= 1) return names.join("");
+  return `${names.slice(0, -1).join(", ")} and ${names.at(-1)}`;
+}
 
 function iosVersion(r: HkIdentifier): string | null {
   return r.platforms.find((p) => p.name === "iOS")?.introducedAt ?? null;
@@ -33,6 +52,60 @@ function iosVersion(r: HkIdentifier): string | null {
 
 function anchorFor(id: HkIdentifier): string {
   return `/healthkit-identifiers#id-${id.case.toLowerCase()}`;
+}
+
+/** "iOS 14.0 · watchOS 7.0 · …" — every platform entry Apple gives a deprecation. */
+function deprecatedOn(r: HkIdentifier): string {
+  return r.platforms
+    .filter((p) => p.deprecated)
+    .map((p) => (p.deprecatedAt ? `${p.name} ${p.deprecatedAt}` : `${p.name} (flag only)`))
+    .join(" · ");
+}
+
+function DeprecationTable({ rows }: { rows: HkIdentifier[] }) {
+  return (
+    <div className="mt-4 overflow-x-auto">
+      <table className="w-full border-collapse text-sm">
+        <thead>
+          <tr className="border-b border-[var(--border)] text-left">
+            <th className="py-2 pr-4 font-semibold text-[var(--fg)]">Identifier</th>
+            <th className="py-2 pr-4 font-semibold text-[var(--fg)]">Introduced</th>
+            <th className="py-2 pr-4 font-semibold text-[var(--fg)]">Deprecated in</th>
+            <th className="py-2 font-semibold text-[var(--fg)]">Apple&rsquo;s note</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr key={r.case} className="border-b border-[var(--border)] align-top">
+              <td className="py-2 pr-4">
+                <Link
+                  href={anchorFor(r)}
+                  className="font-mono text-xs text-brand-600 hover:text-brand-500"
+                >
+                  {r.case}
+                </Link>
+                <span className="mt-0.5 block text-[11px] text-[var(--muted)]">
+                  {r.family} · {r.group}
+                </span>
+              </td>
+              <td className="py-2 pr-4 tabular-nums text-[var(--muted)]">
+                {iosVersion(r) ? `iOS ${iosVersion(r)}` : "—"}
+              </td>
+              <td className="py-2 pr-4 text-xs tabular-nums text-[var(--muted)]">{deprecatedOn(r)}</td>
+              <td className="py-2 text-[var(--muted)]">
+                {r.deprecation?.message ?? <em>Apple gives no deprecation note.</em>}
+                {r.deprecation?.renamedTo && (
+                  <span className="mt-0.5 block text-xs">
+                    Renamed to <code className="font-mono">{r.deprecation.renamedTo}</code>
+                  </span>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
 function StatusTable({ rows }: { rows: HkIdentifier[] }) {
@@ -118,7 +191,7 @@ export default function HealthKitStatusPage() {
         alternativeHeadline: entry.primaryQuery,
         description: entry.metaDescription,
         datePublished: HK_STANDALONE_PUBLISHED,
-        dateModified: HK_STANDALONE_MODIFIED,
+        dateModified: hkStandaloneModified(SLUG),
         author: orgRef(),
         publisher: orgRef(),
         inLanguage: "en",
@@ -184,8 +257,8 @@ export default function HealthKitStatusPage() {
             dataset refresh nobody re-checked the synthesis against moves the
             tables but not `updated`; the line then names both reads. */}
         <p className="mt-3 text-sm text-[var(--muted)]">
-          {BETA.length} beta · {UNDOCUMENTED.length} undocumented · {DEPRECATED_GROUP.length}{" "}
-          deprecated activity types · read from Apple&rsquo;s documentation on {entry.updated}
+          {BETA.length} beta · {UNDOCUMENTED.length} undocumented · {DEPRECATED.length} deprecated ·
+          read from Apple&rsquo;s documentation on {entry.updated}
           <ContentAge date={entry.updated} />
           {entry.updated !== HK_FETCHED_ON && <> · tables re-read {HK_FETCHED_ON}</>}
         </p>
@@ -233,8 +306,10 @@ export default function HealthKitStatusPage() {
           <p className="mt-3 leading-relaxed text-[var(--muted)]">
             Every count below is read from Apple&rsquo;s documentation for the{" "}
             {HK_IDENTIFIERS.length} identifiers on {HK_FETCHED_ON}. Beta and deprecation are
-            per-platform facts in Apple&rsquo;s availability data; &ldquo;undocumented&rdquo; means
-            Apple ships the declaration with neither an abstract nor a discussion.
+            per-platform facts in Apple&rsquo;s availability data — a deprecation is a{" "}
+            <code className="font-mono text-sm">deprecatedAt</code> version on a platform entry;
+            &ldquo;undocumented&rdquo; means Apple ships the declaration with neither an abstract nor
+            a discussion.
           </p>
 
           <section id="status-beta" className="mt-10">
@@ -279,6 +354,40 @@ export default function HealthKitStatusPage() {
             )}
           </section>
 
+          <section id="status-flag-deprecated" className="mt-10">
+            <h3 className="text-xl font-bold tracking-tight text-[var(--fg)]">
+              Deprecated — {DEPRECATED.length} {DEPRECATED.length === 1 ? "identifier" : "identifiers"}
+            </h3>
+            {DEPRECATED.length === 0 ? (
+              <p className="mt-3 leading-relaxed text-[var(--muted)]">
+                No platform entry of any identifier carries a{" "}
+                <code className="font-mono text-sm">deprecatedAt</code> version or a deprecated flag
+                in this read.
+              </p>
+            ) : (
+              <>
+                <p className="mt-3 leading-relaxed text-[var(--muted)]">
+                  Apple gives each of these a <code className="font-mono text-sm">deprecatedAt</code>{" "}
+                  version on at least one platform entry. In Apple&rsquo;s 2026-10-02 JSON the separate{" "}
+                  <code className="font-mono text-sm">deprecated</code> flag was false on every
+                  platform entry, these included, so a tool that reads only the flag reports none.
+                  {PLATFORMS_NEVER_DEPRECATING.length > 0 && (
+                    <>
+                      {" "}
+                      {DEPRECATED.length === 1 ? "Its" : "Their"} {listOf(PLATFORMS_NEVER_DEPRECATING)}{" "}
+                      {DEPRECATED.length === 1 && PLATFORMS_NEVER_DEPRECATING.length === 1
+                        ? "entry carries"
+                        : "entries carry"}{" "}
+                      no deprecation at all.
+                    </>
+                  )}{" "}
+                  The note is Apple&rsquo;s, verbatim.
+                </p>
+                <DeprecationTable rows={DEPRECATED} />
+              </>
+            )}
+          </section>
+
           <section id="status-deprecated-group" className="mt-10">
             <h3 className="text-xl font-bold tracking-tight text-[var(--fg)]">
               Apple&rsquo;s deprecated group — {DEPRECATED_GROUP.length}{" "}
@@ -291,41 +400,16 @@ export default function HealthKitStatusPage() {
             ) : (
               <>
                 <p className="mt-3 leading-relaxed text-[var(--muted)]">
-                  Apple files these under a topic group literally named &ldquo;Deprecated activity
-                  types&rdquo;. That grouping is the only deprecation signal they carry — see the
-                  next section.
+                  Apple files these under a topic group named &ldquo;{DEPRECATED_GROUP_NAME}&rdquo;.
+                  {GROUP_NOT_DEPRECATED.length === 0
+                    ? ` All ${DEPRECATED_GROUP.length} are also deprecated in the availability data above, so for these the group and the data agree.`
+                    : ` ${listOf(GROUP_NOT_DEPRECATED.map((r) => r.case))} ${GROUP_NOT_DEPRECATED.length === 1 ? "carries" : "carry"} no deprecation in the availability data — the group name is the only signal.`}
+                  {DEPRECATED_OUTSIDE_GROUP.length > 0 &&
+                    ` The group is not the whole list: ${listOf(DEPRECATED_OUTSIDE_GROUP.map((r) => `${r.case} (${r.group})`))} ${DEPRECATED_OUTSIDE_GROUP.length === 1 ? "is" : "are"} deprecated outside it, so checking group names misses ${DEPRECATED_OUTSIDE_GROUP.length === 1 ? "it" : "them"}.`}
                 </p>
                 <StatusTable rows={DEPRECATED_GROUP} />
               </>
             )}
-          </section>
-
-          <section id="status-flag-deprecated" className="mt-10">
-            <h3 className="text-xl font-bold tracking-tight text-[var(--fg)]">
-              Platform-flag deprecated — {FLAG_DEPRECATED.length}
-            </h3>
-            <p className="mt-3 leading-relaxed text-[var(--muted)]">
-              {FLAG_DEPRECATED.length === 0 ? (
-                <>
-                  Zero identifiers carry a deprecation flag on any platform. Not &ldquo;none we
-                  listed&rdquo; — none at all: across all {HK_IDENTIFIERS.length} identifiers and
-                  every platform Apple publishes availability for, the deprecated flag is false
-                  everywhere as of {HK_FETCHED_ON}. So the{" "}
-                  {DEPRECATED_GROUP.length > 0
-                    ? `${DEPRECATED_GROUP.length} types in Apple's deprecated group are deprecated by editorial grouping only`
-                    : "deprecated grouping above is editorial only"}
-                  ; nothing in the machine-readable availability data marks them, and neither the
-                  compiler nor a deprecation warning will tell you.
-                </>
-              ) : (
-                <>
-                  {FLAG_DEPRECATED.length} identifiers carry a deprecation flag on at least one
-                  platform in Apple&rsquo;s availability data — a machine-readable signal the
-                  compiler can act on, unlike the editorial grouping above.
-                </>
-              )}
-            </p>
-            {FLAG_DEPRECATED.length > 0 && <StatusTable rows={FLAG_DEPRECATED} />}
           </section>
         </section>
 

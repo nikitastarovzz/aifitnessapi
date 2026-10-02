@@ -884,8 +884,8 @@ if (fs.existsSync(matrixPath)) {
   }
 
   // ── HealthKit group pages ─────────────────────────────────────────────
-  // The twelve /healthkit/<group> pages partition the 240-identifier
-  // dataset — every identifier on exactly one page. A mapping bug drops
+  // The twelve /healthkit/<group> pages partition the identifier dataset —
+  // every identifier on exactly one page. A mapping bug drops
   // identifiers from every page at once and nothing else notices: each page
   // still builds, still reads fine, just with fewer rows than it claims. So
   // count the id markers in the derived tables and assert the partition is
@@ -893,7 +893,12 @@ if (fs.existsSync(matrixPath)) {
   // wrong reason, so an incomplete set reports as incomplete instead.
   {
     const EXPECTED_GROUPS = 12;
-    const EXPECTED_IDS = 240;
+    // Apple's HealthKit docs JSON (https://developer.apple.com/documentation/healthkit,
+    // the four identifier families) listed 241 identifiers when read on
+    // 2026-10-02: the 240 of the 2026-08-28 read plus
+    // HKQuantityTypeIdentifier.heartRateVariabilityRMSSD (iOS 27.0). Move this
+    // only with a regeneration of src/data/healthkitIdentifiers.ts.
+    const EXPECTED_IDS = 241;
     const groupPages = htmls.filter((h) => /^\/healthkit\/[^/]+$/.test(routeOf(h)));
     if (groupPages.length > 0) {
       const ids = new Set();
@@ -1363,6 +1368,65 @@ if (fs.existsSync(matrixPath)) {
     }
     console.log(`Sitemap: ${rows} rows, ${dated} with lastmod; every row whose page declares dateModified checked against it.`);
   }
+}
+
+// ── Year markers. A year in parentheses in a page's <title> or <h1> —
+// "(2026)", "(2026 Guide)", "(2026 Update)" — is a freshness claim: it tells
+// a searcher the page is current as of that year. The only honest backing
+// for it is the page's own verification stamp, so every parenthesised year
+// must equal the year of the newest dateModified the page's JSON-LD declares
+// (the same per-route date SITEMAP-LASTMOD holds the sitemap to). The years
+// stay literal on purpose: on January 1 nothing here fails, and a page nobody
+// re-verified keeps saying the year it was verified in, which is true. A
+// rewrite of the years, or a token filled from the build date, would move
+// the claim without anyone re-checking a source (CLAUDE.md, Freshness). When
+// a re-verification moves a stamp into a new year, this forces the marker to
+// move with it. A page with a marker and no dateModified fails too: nothing
+// backs its year. A year outside parentheses is the page's subject ("Strava's
+// API Changes Since 2024", "State of Fitness APIs 2026") and is not judged.
+{
+  let marked = 0;
+  for (const h of htmls) {
+    const route = routeOf(h);
+    if (route.startsWith("/_") || notFoundSet.has(route)) continue;
+    const html = fs.readFileSync(h, "utf8");
+    const heads = [];
+    const tm = html.match(/<title>([^<]*)<\/title>/);
+    if (tm) heads.push(["<title>", decode(tm[1])]);
+    for (const m of html.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/g)) {
+      heads.push(["<h1>", decode(m[1].replace(/<[^>]*>/g, "")).replace(/\s+/g, " ").trim()]);
+    }
+    const declared = dateModifiedOf.get(route);
+    const stampYear = declared?.slice(0, 4);
+    let hasMarker = false;
+    for (const [tag, text] of heads) {
+      const years = [];
+      for (const [, inner] of text.matchAll(/\(([^()]*)\)/g)) {
+        for (const [y] of inner.matchAll(/\b(?:19|20)\d{2}\b/g)) years.push(y);
+      }
+      if (!years.length) continue;
+      hasMarker = true;
+      if (!declared) {
+        problems.push(
+          `YEAR-MARKER    ${route}: ${tag} "${text}" says ${years.join(", ")} but the page declares no JSON-LD dateModified, so no stamp backs the year — drop the year marker, or emit the page's real verification stamp as dateModified; never change the year alone`,
+        );
+        continue;
+      }
+      const wrong = [...new Set(years.filter((y) => y !== stampYear))];
+      if (!wrong.length) continue;
+      if (wrong.every((y) => y < stampYear)) {
+        problems.push(
+          `YEAR-MARKER    ${route}: ${tag} "${text}" says ${wrong.join(", ")} but the page's newest dateModified is ${declared} — the stamp says the page was verified in ${stampYear}, so move the year marker to ${stampYear} with it, or drop the year marker (a subject year belongs outside the parentheses)`,
+        );
+      } else {
+        problems.push(
+          `YEAR-MARKER    ${route}: ${tag} "${text}" says ${wrong.join(", ")} but the page's newest dateModified is ${declared} — re-verify the page and move its stamp, or drop the year marker; never change the year alone`,
+        );
+      }
+    }
+    if (hasMarker) marked++;
+  }
+  console.log(`Year markers: ${marked} pages carry a parenthesised year in their title or h1, each held to the year of its newest dateModified.`);
 }
 
 // ── The 404. Next injects its own robots noindex on every not-found render;

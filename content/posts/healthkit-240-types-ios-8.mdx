@@ -1,6 +1,6 @@
 ---
 title: "HealthKit: 127 of 240 Types Are iOS 8.0"
-description: "HealthKit has 240 type identifiers and 127 of them shipped in iOS 8.0. None is marked deprecated. The full version histogram, and what it costs you."
+description: "HealthKit has 240 type identifiers and 127 shipped in iOS 8.0. Four are deprecated, none removed. The full version histogram, and what it costs you."
 date: 2026-09-01
 updated: 2026-09-01
 author: "AIFitnessAPI"
@@ -8,15 +8,23 @@ tags: ["healthkit", "ios", "deprecation", "ecosystem"]
 draft: false
 faqs:
   - q: "How many HealthKit type identifiers are there?"
-    a: "There are 240 type identifiers in the dataset we parsed from Apple's developer documentation. They break down into 120 quantity types, 84 workout activity types, 30 category types and 6 characteristic types. That total moves upward with each iOS release, so treat any figure you see quoted as a reading taken on a particular date rather than a constant."
+    a: "There were 240 type identifiers in the dataset we parsed from Apple's developer documentation on August 28, 2026: 120 quantity types, 84 workout activity types, 30 category types and 6 characteristic types. A re-read on October 2, 2026 found 241, the addition being the iOS 27.0 quantity type heartRateVariabilityRMSSD. That total moves upward with each iOS release, so treat any figure you see quoted as a reading taken on a particular date rather than a constant."
   - q: "Has Apple ever deprecated a HealthKit type identifier?"
-    a: "None of the 240 identifiers carries a deprecation marker in the documentation we read. Apple's own grouping does contain a bucket labelled Deprecated activity types holding 3 workout activity types, so the concept exists in the docs. A single snapshot cannot prove nothing was ever withdrawn, but the list we can see is entirely additions."
+    a: "Yes. Four of the 240 identifiers read on August 28, 2026 are deprecated: the workout activity types dance (deprecated in iOS 14.0), danceInspiredTraining (iOS 10.0) and mixedMetabolicCardioTraining (iOS 11.0), and the category type audioExposureEvent (iOS 14.0). Apple records a deprecation as a deprecatedAt version on each platform entry and leaves a separate deprecated flag false, which is why this answer originally said none. None of the four has been removed, and across this site's reads the list has only grown."
   - q: "Are some HealthKit types available only on Apple Watch?"
     a: "No. Every identifier in the dataset is listed as available on all six platforms Apple names, which are iOS, iPadOS, Mac Catalyst, macOS, visionOS and watchOS. Nothing is watchOS-only or iOS-only. The branch your code needs is an OS version check, not a platform check, because availability varies by release rather than by device."
 ---
 
 HealthKit exposes 240 type identifiers. 127 of them shipped in iOS 8.0, and
 every release since has added a handful on top.
+
+> **Update, October 2, 2026.** When this site re-read Apple's documentation on
+> October 2, 2026, the list had grown to 241: iOS 27.0 added
+> `heartRateVariabilityRMSSD`, which Apple documents with a declaration and
+> nothing else, and `bleedingAfterMenopause` and `menopausalState` are no
+> longer marked beta. 127 still date from iOS 8.0. The figures in this post are
+> the 240 identifiers read on August 28, 2026; [every HealthKit type
+> identifier](/healthkit-identifiers) carries the current read.
 
 That means the shape of the API was decided in one go, at the beginning, and
 almost everything after is a long tail. If you are planning an integration
@@ -90,17 +98,31 @@ But a release that adds four cycling power and speed metrics at once is not
 responding to a documentation request. If you want to guess where the sensor
 work is going, the histogram is a better signal than the keynote.
 
-## Nothing is marked deprecated
+## Four are deprecated, none removed
 
-Zero of the 240 identifiers carry a deprecation marker.
+> **Correction, October 2, 2026.** This section was headed "Nothing is marked
+> deprecated" and said that none of the 240 identifiers carried a deprecation
+> marker. Four did. Apple records a deprecation as a `deprecatedAt` version on
+> each platform entry and leaves a separate `deprecated` flag false, and the
+> generator behind this post read only the flag. All four were deprecated in
+> iOS 10.0 to 14.0, releases older than the newest ones this post covers, so
+> the claim was wrong when it was published. The section, the description and
+> the FAQ now say so, and the [corrections log](/corrections) records the
+> change.
 
-That is unusual for an API surviving this many releases, and it has a direct
-consequence for your code. Apple's grouping does include a bucket called
-"Deprecated activity types" containing 3 workout activity types, so the concept
-is not foreign to the docs. No individual identifier is flagged.
+Four of the 240 identifiers are deprecated in Apple's availability data: the
+workout activity types `dance` (deprecated in iOS 14.0),
+`danceInspiredTraining` (iOS 10.0) and `mixedMetabolicCardioTraining`
+(iOS 11.0), and the category type `audioExposureEvent` (iOS 14.0). Apple files
+the first three under a group called "Deprecated activity types".
+`audioExposureEvent` sits in its Hearing group, and Apple names
+`environmentalAudioExposureEvent` as its new name. Each comes with a note on
+Apple's page saying what to use instead.
 
-A snapshot taken on one date cannot prove Apple has never withdrawn anything.
-What it does show is that the list you have to handle only grows. Any switch
+None of the four has been removed. A snapshot taken on one date cannot prove
+Apple has never withdrawn anything, but what this one shows is that a
+deprecated identifier stays in the catalogue beside its replacement, and the
+list you have to handle only grows. Any switch
 statement, database column mapping or analytics dimension you build over these
 identifiers is a structure that gets longer every year and never gets shorter.
 
@@ -129,8 +151,8 @@ where the read actually happens.
 
 ## Compare that with everything else you integrate
 
-Zero deprecations is worth saying out loud because almost nothing else in this
-space behaves that way. Our [dated changes list](/changes) tracks 13 ecosystem
+Four deprecations and no removals is worth saying out loud because almost
+nothing else in this space behaves that way. Our [dated changes list](/changes) tracks 13 ecosystem
 events, 6 of them confirmed and 7 only reported, and most of them are
 subtractions rather than additions.
 

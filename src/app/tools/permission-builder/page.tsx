@@ -13,7 +13,7 @@ import { toolGraph } from "@/lib/schema";
  * HealthKit permission builder.
  *
  * The page is a thin server shell: it joins three verified datasets into the
- * option list the client tool needs, so the 240-identifier corpus never ships
+ * option list the client tool needs, so the full identifier corpus never ships
  * to the browser and the tool cannot state anything the reference pages do
  * not.
  *

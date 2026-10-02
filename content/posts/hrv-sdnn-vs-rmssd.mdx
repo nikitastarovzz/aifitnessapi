@@ -1,6 +1,6 @@
 ---
-title: "HRV Is SDNN on iOS and RMSSD on Android"
-description: "Apple stores heart rate variability as SDNN. Health Connect stores RMSSD. Different statistics, no conversion factor, and one chart that quietly misleads."
+title: "HRV: Apple Watch SDNN vs Health Connect RMSSD"
+description: "Apple Watch records HRV into HealthKit as SDNN; Health Connect stores RMSSD. Different statistics, no conversion factor, one chart that quietly misleads."
 date: 2026-09-01
 updated: 2026-09-01
 author: "AIFitnessAPI"
@@ -8,11 +8,13 @@ tags: ["healthkit", "health-connect", "data", "architecture"]
 draft: false
 faqs:
   - q: "Can you convert SDNN to RMSSD?"
-    a: "Not for the purposes of a product. Apple exposes heart rate variability as SDNN and Health Connect exposes it as RMSSD, and this site's cross-platform matrix records them as different measures that are not interconvertible. Treat them as two separate fields with two separate baselines rather than looking for a factor to multiply by."
+    a: "Not for the purposes of a product. The heart rate variability Apple Watch records into HealthKit is SDNN and Health Connect exposes RMSSD, and this site's cross-platform matrix records them as different measures that are not interconvertible. Treat them as two separate fields with two separate baselines rather than looking for a factor to multiply by."
   - q: "What does Health Connect store for heart rate variability?"
-    a: "Health Connect exposes HeartRateVariabilityRmssdRecord. Apple's equivalent is the quantity type identifier heartRateVariabilitySDNN. Both are summary statistics derived from the intervals between heartbeats, but they are different summaries, so a field called simply hrv in your schema means something different depending on which platform the sample came from."
+    a: "Health Connect exposes HeartRateVariabilityRmssdRecord, which Google documents as heart rate variability measured by the root mean square of successive differences between normal heartbeats, in milliseconds. Its counterpart in this site's matrix is Apple's heartRateVariabilitySDNN, the type Apple Watch records into. Both are summary statistics derived from the intervals between heartbeats, but they are different summaries, so a field called simply hrv in your schema means something different depending on which platform the sample came from."
   - q: "Why did a user's HRV change when they switched from iPhone to Android?"
     a: "Most likely because the stored statistic changed, not because anything about the user did. Your app started reading a different computation under the same field name. If your product shows a baseline, a trend line, or a recovery score built on heart rate variability, a platform switch will move it for reasons that have nothing to do with the person."
+  - q: "Does HealthKit have an RMSSD type?"
+    a: "Since iOS 27 it has an identifier for one, HKQuantityTypeIdentifier.heartRateVariabilityRMSSD. As of October 2, 2026, Apple's documentation lists it with a declaration only, no abstract and no discussion, so what it measures, how it is computed and whether Apple Watch writes it are not stated. Apple's page for heartRateVariabilitySDNN still says HealthKit uses SDNN and that the system records those samples on Apple Watch."
 ---
 
 This site's [cross-platform matrix](/matrix) verifies 10 health metrics against
@@ -21,9 +23,20 @@ the two platforms are about packaging: how many records a concept is split
 across, what the enum values are called, which permission gates it. Heart rate
 variability is the one where the platforms disagree about what the number *is*.
 
-Apple stores SDNN. Health Connect stores RMSSD. They are different computations
-over the same underlying beat-to-beat intervals, and the matrix records them as
-not interconvertible.
+Apple Watch records SDNN into HealthKit. Health Connect stores RMSSD. They are
+different computations over the same underlying beat-to-beat intervals, and the
+matrix records them as not interconvertible.
+
+> **Update, October 2, 2026.** iOS 27 added a second HealthKit HRV identifier,
+> `HKQuantityTypeIdentifier.heartRateVariabilityRMSSD`. Apple's documentation
+> lists it with a declaration and nothing else: no abstract, no discussion. It
+> does not say what the type measures, how it is computed, or whether Apple
+> Watch writes it, while Apple's page for `heartRateVariabilitySDNN` still says
+> HealthKit uses SDNN and that the system records those samples on Apple Watch.
+> Until Apple documents the new type, the rest of this post describes the HRV
+> data iPhone users actually have. The post was first published as "HRV Is SDNN
+> on iOS and RMSSD on Android" and was retitled because iOS now has an RMSSD
+> identifier.
 
 | | Apple | Health Connect |
 |---|---|---|
@@ -114,9 +127,13 @@ That means your app is already ingesting interval-level data from a chest strap
 or a device SDK rather than reading a platform's pre-computed summary. Check
 what your hardware actually exposes before planning around this — see
 [Bluetooth heart rate monitors](/devices/bluetooth-heart-rate-monitor). If you
-are reading only from HealthKit and
-[Health Connect](/integrate/google-health-connect), this option is not available
-to you, because both platforms hand you the summary and keep the intervals.
+are reading only the platforms' HRV types — `heartRateVariabilitySDNN` and
+[Health Connect](/integrate/google-health-connect)'s
+`HeartRateVariabilityRmssdRecord` — this option is not available to you,
+because each holds a pre-computed summary. HealthKit does document a separate
+beat-level type, `HKHeartbeatSeriesSample` ("a sample that represents a series
+of heartbeats", read with `HKHeartbeatSeriesQuery`), so on iOS check whether
+your users actually have such samples before ruling this out.
 
 ## What not to do
 
@@ -133,9 +150,11 @@ to you, because both platforms hand you the summary and keep the intervals.
 
 1. Grep your schema for `hrv`. If the column has no companion column naming the
    statistic, that is your first migration.
-2. Backfill the statistic from the source type. You can infer it from which
-   platform the sample came from, and that inference is only safe to make while
-   you still have the provenance.
+2. Backfill the statistic from the source type — `heartRateVariabilitySDNN`,
+   `HeartRateVariabilityRmssdRecord`, or on iOS 27 `heartRateVariabilityRMSSD` —
+   rather than from the platform alone, since iOS now has an identifier for
+   each statistic. That inference is only safe to make while you still have the
+   provenance.
 3. Break the chart series wherever the statistic changes, and label both.
 4. Find every threshold, alert and score that reads the field and confirm what
    it does the day a user switches phones.

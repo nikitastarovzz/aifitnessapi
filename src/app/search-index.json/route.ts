@@ -22,6 +22,7 @@ import { releasedWatchApps, WATCH_PATH } from "@/data/watchApps";
 import { releasedAccessibility, A11Y_PATH } from "@/data/accessibility";
 import { API_ENTRIES, APIS_PATH, CATEGORY_LABELS, DEV_COST_LABELS } from "@/data/apis";
 import { releasedHkGroups, HK_BASE } from "@/data/hkGroupPages";
+import { HK_IDENTIFIERS } from "@/data/healthkitIdentifiers";
 
 /**
  * Site search index — generated from the same data modules as the pages
@@ -220,7 +221,7 @@ export function GET() {
   add("/ai-fitness-app", "How to Build an AI Fitness App", "The six layers and the five decisions that pick your stack \u2014 the decision map into every cluster.", "build ai fitness app gym workout development guide map");
   add("/no-code-fitness-app", "Build a Fitness App With No Code, Just APIs", "A worked example assembled from APIs: embedded AI coaching, hosted wearable auth, one-sentence food logging \u2014 and where no-code honestly bends.", "no code nocode fitness app apis without coding builder visual flutterflow bubble worked example");
   add("/matrix", "HealthKit ↔ Health Connect Type Reference", "Matching type identifiers for ten metrics, verified against Apple's and Google's docs.", "matrix types sdnn rmssd");
-  add("/healthkit-identifiers", "Every HealthKit Type Identifier", "All 240 HealthKit identifiers across four families with units, value enums, availability, and the cumulative-vs-discrete split.", "healthkit hkquantitytypeidentifier hkcategorytypeidentifier hkworkoutactivitytype cumulative discrete hkstatisticsquery sleepanalysis units identifiers");
+  add("/healthkit-identifiers", "Every HealthKit Type Identifier", `All ${HK_IDENTIFIERS.length} HealthKit identifiers across four families with units, value enums, availability, and the cumulative-vs-discrete split.`, "healthkit hkquantitytypeidentifier hkcategorytypeidentifier hkworkoutactivitytype cumulative discrete hkstatisticsquery sleepanalysis units identifiers");
   add("/healthkit-errors", "Every HealthKit Error Code", "All 17 HKError.Code cases, what each means, and why a denied HealthKit read raises no error at all.", "healthkit error hkerror errorauthorizationdenied code 5 no data permission denied");
   add("/day-boundaries", "Why \u201cToday\u2019s Steps\u201d Is a Bug (live demo)", "Interactive: DST days aren't 24 hours, so a fixed UTC window drops or double-counts an hour.", "timezone dst day boundary demo interactive");
   add("/google-fit-shutdown", "Google Fit Is Shutting Down", "The verified timeline and the migration path for each kind of integration.", "google fit deprecated sunset end of 2026");

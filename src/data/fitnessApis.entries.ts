@@ -315,29 +315,29 @@ export const entries: ClusterEntry[] =
     "h1": "Apple HealthKit vs Google Health Connect (2026)",
     "metaTitle": "HealthKit vs Health Connect: Which to Build (2026)",
     "metaDescription": "Google's version of HealthKit is called Health Connect. How the two on-device stores compare, and why a cross-platform app needs both.",
-    "updated": "2026-07-08",
-    "answer": "HealthKit and Health Connect are not an either/or choice — they are the on-device health stores for two different operating systems, so a cross-platform app implements both. Use Apple HealthKit for iOS, iPadOS, watchOS and visionOS, and Google Health Connect for Android 14 and up; both are free and both use per-data-type OS permission prompts rather than OAuth. If you would rather not build and maintain two native integrations, an aggregator API wraps both behind one integration.",
-    "body": "## How these two compare\n\nThese are platform SDKs, not cross-platform APIs, so the criteria are different from picking a wearable or aggregator service. Four things decide how each one behaves in your app:\n\n- **Platform lock.** HealthKit runs only on Apple operating systems; Health Connect runs only on Android. There is no server-to-server or cross-user access from either — the data lives on one device, for one user, inside one OS. This is why they are complementary, not competing.\n- **Permission model.** Both use on-device, per-data-type user permission, declared up front and granted (or denied) per type. Neither uses an OAuth consent screen. That changes your onboarding UX: the user is toggling individual data types, not approving a single scope.\n- **History and approval friction.** Health Connect reads only about 30 days of history by default unless you request the historical-read permission, and the Play Store enforces a health-data declaration review before you ship. HealthKit has its own App Store review expectations for health data usage strings.\n- **The \"denied reads as empty\" gotcha.** A HealthKit app cannot tell whether the user denied read permission for a type — denied data simply appears empty, indistinguishable from \"no data recorded.\" That directly complicates data-completeness logic.\n\n## HealthKit vs Health Connect at a glance\n\n| | Apple HealthKit | Google Health Connect |\n|---|---|---|\n| Platform | iOS, iPadOS, watchOS, visionOS | Android (built into Android 14+; app on earlier versions) |\n| Where data lives | On-device, single user | On-device, single user |\n| Access model | Per-data-type OS permission (not OAuth) | Per-data-type OS permission (not OAuth) |\n| Pricing | Free (dev program membership to ship — verify) | Free (part of the Android platform) |\n| History default | Full on-device store, subject to grants | About 30 days unless history permission requested |\n| Approval step | App Store review, health usage strings | Play Store health-data declaration review |\n| Best for | Rich Apple Watch / iPhone health data on iOS | Unified on-device store on Android |\n| Watch out | Cannot detect denied read permission | Historical reads capped by default; review gate |\n\n## Apple HealthKit\n\nHealthKit is best for iOS-native apps that need rich, high-frequency Apple Watch and iPhone health data with the tightest OS-level privacy integration. It is a central, user-controlled store your app reads from and writes to across iOS, iPadOS, watchOS, and visionOS, covering a broad set of types — steps, distance, active and basal energy, heart rate, HRV, respiratory rate, `SpO2`, VO2max, sleep stages, workouts, body measurements, and characteristic data — plus clinical records via a separate FHIR path. Access is on-device and per-data-type: your app declares usage-description strings and requests read/write authorization from a user-initiated context. The trade-off to know is a deliberate privacy design decision: an app cannot tell whether read permission was denied, because denied data reads as empty rather than raising an error. Plan your data-completeness and empty-state handling around that, and remember HealthKit is Apple-only with no server-side or cross-platform access. Verify current developer program terms in the docs.\n\n## Google Health Connect\n\nHealth Connect is best for Android-native apps that want a unified, privacy-forward on-device store aggregating data from other Android health apps — Samsung Health, Fitbit, and others — without building a per-provider integration for each. It is built into Android 14 and up (and available as an installable app on earlier versions) and exposes over 50 data types across activity, sleep with stages, vitals like heart rate and HRV, body measurements, nutrition, and cycle tracking, through a Jetpack SDK (confirm current SDK status as of 2026). Permissions are declared in the manifest and granted by the user per type, with a dedicated background-reads permission available — again, no OAuth consent screen. Two constraints shape your build: by default an app can read only about 30 days of history prior to first grant unless it requests the historical-read permission, and the Play Console enforces a health-data declaration and review before launch. Do not start new work on Google Fit. Google's [Fit migration guide](https://developer.android.com/health-and-fitness/health-connect/migration/fit), updated September 10, 2026, cautions that \"The Google Fit API (including the REST API) will only be supported until the end of 2026.\" Google recommends Health Connect for step tracking and mobile-first apps and the Google Health API for cloud-based integrations, and the guide maps Fit History and Session API integrations to the Google Health API, not to Health Connect.\n\n## Which should you pick?\n\nFrame this by platform, not by picking a winner — for most builders the honest answer is \"both\":\n\n- **If your app is iOS-only** → implement HealthKit, and design your empty-state and data-completeness logic around the fact that you cannot detect a denied read.\n- **If your app is Android-only** → implement Health Connect, request the historical-read permission if you need more than about 30 days of history, and budget time for the Play Store health-data review.\n- **If your app is cross-platform** → you implement both, one per OS. There is no single SDK that covers iPhone and Android; HealthKit and Health Connect are the native surfaces for each.\n- **If you don't want to build and maintain two native integrations** → use a health-data [aggregator API](/fitness-apis/health-data-aggregator-apis) that wraps both behind one API. Aggregators typically sit on top of HealthKit and Health Connect (plus cloud provider APIs), so you get one integration instead of two — at the cost of a recurring bill.\n\nThe key takeaway: HealthKit vs Health Connect is not a competition you have to resolve. They cover different operating systems, so a real cross-platform product uses each on its own OS, or offloads both to an aggregator. See our [wearable data APIs](/fitness-apis/wearable-data-apis) guide if your real need is pulling from specific devices rather than the OS store.\n\n## Watch the fine print\n\nPlatform details in this category move — SDK status, permission names, history defaults, review policies, and developer program fees all change. Everything volatile above is flagged \"as of 2026 — verify,\" and you should confirm current behavior in Apple's HealthKit documentation and Android's Health Connect documentation before you build, especially the permission and review requirements that gate your launch.",
+    "updated": "2026-10-02",
+    "answer": "HealthKit and Health Connect are not an either/or choice — they are the on-device health stores for two different operating systems, so a cross-platform app implements both. Use Apple HealthKit on iPhone, Apple Watch, Vision Pro and iPads running iPadOS 17 or later, and Google Health Connect on Android 9 and up, where it is built into Android 14 and later and a Google Play app before that. Neither uses OAuth: the user grants access per data type in an OS permission prompt, and your app reads the data on the device rather than from a server.",
+    "body": "## How these two compare\n\nThese are platform SDKs, not cross-platform APIs, so the criteria are different from picking a wearable or aggregator service. Four things decide how each one behaves in your app:\n\n- **Platform lock.** HealthKit data exists only on Apple devices, and Google describes Health Connect as \"exclusive to Android and Google Play.\" Both are read on the device: Apple gives iPhone, Apple Watch, Vision Pro and iPadOS 17+ iPads their own HealthKit store and syncs between them, while Google's Fit migration guide calls Health Connect's storage device-centric and points server-to-server integrations at the separate Google Health API. This is why they are complementary, not competing.\n- **Permission model.** Both use on-device, per-data-type user permission, granted (or denied) per type and per direction — read and write are separate. Health Connect needs every permission declared in the manifest before you request it; HealthKit lets you ask for a type when you first need it rather than all at once. Neither uses an OAuth consent screen. That changes your onboarding UX: the user is toggling individual data types, not approving a single scope.\n- **History and approval friction.** Health Connect returns data from up to 30 days before the first permission grant unless you hold the history permission, and the Play Console requires a Health apps declaration before you publish. HealthKit now lets a person grant only a recent window of history instead of everything — Apple's authorization flow asks on a second screen — and Apple calls the HealthKit purpose strings \"an App Store requirement for any app that integrates with HealthKit.\"\n- **The \"denied reads as empty\" gotcha.** A HealthKit app cannot tell whether the user denied read permission for a type — Apple says it \"simply appears as if there is no data of the requested type in the HealthKit store,\" apart from samples your own app saved. Full access and denied access also look identical; only a limited history window is detectable, through `earliestAuthorizedSampleDate(for:)` on iOS 27 and later. That directly complicates data-completeness logic.\n\n## HealthKit vs Health Connect at a glance\n\n| | Apple HealthKit | Google Health Connect |\n|---|---|---|\n| Platform | iPhone, Apple Watch, Vision Pro, iPad on iPadOS 17+ (the framework compiles for macOS and older iPadOS, but those have no store) | Android 9+ with Google Play services: built into Android 14+, a Google Play app on Android 13 and lower |\n| Where data lives | A store on each of the user's Apple devices, synced between them | On-device (\"device-centric\" in Google's words) |\n| Access model | Per-data-type OS permission (not OAuth) | Per-data-type OS permission (not OAuth) |\n| Developer setup | HealthKit capability in Xcode, available to free Apple Developer accounts; App Store distribution needs the paid Apple Developer Program | A Play Store project plus the Health apps declaration — no Google Cloud project, unlike Fit |\n| History default | Full history, unless the person grants only a recent window | 30 days before the first grant, unless the history permission is granted |\n| Approval step | App Review; purpose strings are an App Store requirement | Play Console Health apps declaration, filed again when your data types change |\n| Best for | Apple Watch and iPhone health data on Apple platforms | One on-device store fed by other Android apps |\n| Watch out | Cannot detect a denied read | Older reads capped by default; declaration gate |\n\n## Apple HealthKit\n\nHealthKit is best for iOS-native apps that want the health data iPhone and Apple Watch already collect, with the tightest OS-level privacy integration. Apple describes it as \"a central repository for health and fitness data on iPhone and Apple Watch\" that your app reads from and writes to with the user's permission. Its type catalogue covers steps, distance, active and basal energy, heart rate, HRV (SDNN, plus RMSSD from iOS 27), respiratory rate, blood oxygen, VO2 max, sleep stages (core, deep and REM), workouts, body measurements and characteristics such as date of birth — plus clinical records in FHIR format behind a separate Clinical Health Records capability. Access is on-device and per-data-type: you add the HealthKit capability, set the `NSHealthShareUsageDescription` and `NSHealthUpdateUsageDescription` purpose strings, and call `requestAuthorization(toShare:read:)` — Apple notes it can make more sense to wait until you need a type before asking for it. The trade-off to know is a deliberate privacy design decision: an app cannot tell whether read permission was denied, because denied data reads as empty rather than raising an error, and a person can also limit you to a recent window of their history. Plan your data-completeness and empty-state handling around both. The HealthKit capability itself is available even to free Apple Developer accounts, per Apple's capability table; shipping on the App Store needs the paid Apple Developer Program.\n\n## Google Health Connect\n\nHealth Connect is best for Android-native apps that want one on-device store fed by the other health apps on the phone, rather than a per-provider integration for each — Google pitches it as access to \"a growing ecosystem of apps with just one connection.\" It needs Android 9 or later with Google Play services; it is part of the Android framework from Android 14 and a Google Play app on Android 13 and lower. Google's data-types table lists 42 record types (as of its September 23, 2026 revision) across activity, body measurement, cycle tracking, nutrition, sleep with stages, vitals such as heart rate and HRV (stored as RMSSD) and wellness, plus a separate medical-records feature in FHIR format, all through the `androidx.health.connect:connect-client` Jetpack library, whose 1.1.0 release Google announces as stable. Permissions are declared in the manifest and granted by the user per type, with dedicated background-read and history-read permissions — again, no OAuth consent screen. Two constraints shape your build: by default an app sees data from up to 30 days before its first permission grant unless it holds `PERMISSION_READ_HEALTH_DATA_HISTORY`, and the Play Console requires a Health apps declaration listing every data type you use before you publish. Do not start new work on Google Fit. Google's [Fit migration guide](https://developer.android.com/health-and-fitness/health-connect/migration/fit), updated September 10, 2026, cautions that \"The Google Fit API (including the REST API) will only be supported until the end of 2026.\" Google recommends Health Connect for step tracking and mobile-first apps and the Google Health API for cloud-based integrations, and the guide maps Fit History and Session API integrations to the Google Health API, not to Health Connect.\n\n## Which should you pick?\n\nFrame this by platform, not by picking a winner — for most builders the honest answer is \"both\":\n\n- **If your app is iOS-only** → implement HealthKit, and design your empty-state and data-completeness logic around the fact that you cannot detect a denied read.\n- **If your app is Android-only** → implement Health Connect, request the history permission if you need data from more than 30 days before the first grant, and budget time for the Play Console Health apps declaration.\n- **If your app is cross-platform** → you implement both, one per OS. Apple's HealthKit runs only on Apple platforms and Google calls Health Connect exclusive to Android, so each is the native surface for its own OS.\n- **If you don't want to build and maintain two native integrations** → compare the third-party [aggregator APIs](/fitness-apis/health-data-aggregator-apis) instead. What each one covers and costs is a vendor claim, sourced and dated on that page; this page checks only Apple's and Google's documentation.\n\nThe key takeaway: HealthKit vs Health Connect is not a competition you have to resolve. They cover different operating systems, so a real cross-platform product uses each on its own OS, or offloads both to an aggregator. See our [wearable data APIs](/fitness-apis/wearable-data-apis) guide if your real need is pulling from specific devices rather than the OS store.\n\n## Watch the fine print\n\nPlatform details in this category move — SDK versions, permission names, history defaults and review policies all change; HealthKit's limited-history authorization is a recent example. Every fact above was checked on October 2, 2026 against the Apple and Google pages listed in this page's sources. Confirm current behavior in Apple's HealthKit documentation and Android's Health Connect documentation before you build, especially the permission and review requirements that gate your launch.",
     "faqs": [
       {
         "q": "Is HealthKit or Health Connect better for a cross-platform app?",
-        "a": "Neither on its own. They cover different operating systems, so a cross-platform app implements both — HealthKit on Apple platforms and Health Connect on Android — or uses an aggregator API that wraps both behind one integration."
+        "a": "Neither on its own. They cover different operating systems, so a cross-platform app implements both — HealthKit on Apple platforms and Health Connect on Android — or hands the work to a third-party aggregator, whose coverage you should check against that vendor's own documentation."
       },
       {
         "q": "What review or declaration steps do HealthKit and Health Connect require before launch?",
-        "a": "Both gate your release on a declaration, not just on code. On Apple platforms you declare the health data your app touches with usage-description strings and request read/write authorization from a user-initiated context, and App Store review checks that the stated purpose matches what you do. On Android you declare Health Connect permissions in the manifest, and the Play Console enforces a separate health-data declaration and review before you can publish. Budget calendar time for both, request only the types you can justify, and confirm current review policy before you submit."
+        "a": "Both gate your release on a declaration, not just on code. On Apple platforms you add the HealthKit capability and the purpose strings that explain why you read and write health data — Apple calls them an App Store requirement for any HealthKit app — and App Review Guideline 5.1.1 asks that purpose strings clearly and completely describe your use of the data and that you request only data relevant to your core functionality. On Android you declare Health Connect permissions in the manifest, and the Play Console requires a Health apps declaration that justifies each data type before you can publish; you file it again whenever your data types change. Budget calendar time for both, request only the types you can justify, and confirm current review policy before you submit."
       },
       {
         "q": "Can a HealthKit app tell if the user denied read access?",
-        "a": "No. By design, denied read permission in HealthKit returns empty data rather than an error, so the app cannot distinguish a denial from a user who simply has no recorded data — which complicates data-completeness logic."
+        "a": "No. By design, denied read permission in HealthKit returns empty data rather than an error, so the app cannot distinguish a denial from a user who simply has no recorded data — which complicates data-completeness logic. The one exception is data your own app saved, which stays readable either way."
       },
       {
         "q": "How much history can Health Connect read by default?",
-        "a": "About 30 days prior to the first grant, unless the app requests the historical read-health-data-history permission. The Play Store also enforces a health-data declaration review before launch."
+        "a": "Data from up to 30 days before the app's first permission grant, unless it holds PERMISSION_READ_HEALTH_DATA_HISTORY. Without it, Google's Jetpack reference says reading a single older record by ID errors, while other reads simply leave the older data points out. On Android 14 and later an app can always read the data it wrote itself, whatever its age."
       },
       {
         "q": "Are HealthKit and Health Connect free?",
-        "a": "Yes. Both are free with no per-call fee. HealthKit is included with the Apple Developer Program (a paid membership is needed to ship apps — verify current pricing), and Health Connect is part of the Android platform. The real cost is platform lock: HealthKit is Apple-only and Health Connect is Android-only."
+        "a": "Neither setup involves an API key or a billing account. HealthKit is a capability you switch on in Xcode, and Apple's capability table lists it for free Apple Developer accounts as well as paid ones — although distributing on the App Store requires the paid Apple Developer Program. Health Connect's registration is a Play Store project plus the Health apps declaration, which Google contrasts with the Google Cloud project Fit required. The real cost is platform lock: HealthKit is Apple-only and Health Connect is Android-only."
       }
     ],
     "related": [
@@ -356,7 +356,104 @@ export const entries: ClusterEntry[] =
     ],
     "cta": {
       "pitch": "We take apart a fitness or health API every week — the permission-model quirks and cross-platform gotchas included."
-    }
+    },
+    "sources": [
+      {
+        "url": "https://developer.apple.com/documentation/healthkit",
+        "checked": "2026-10-02",
+        "note": "HealthKit as the central repository on iPhone and Apple Watch; framework platforms"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/about-the-healthkit-framework",
+        "checked": "2026-10-02",
+        "note": "a store per device (iPadOS 17+), sync between devices, no store on macOS or older iPadOS, characteristic data"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/authorizing-access-to-health-data",
+        "checked": "2026-10-02",
+        "note": "per-type read and share permission, asking when needed, denied reads, the limited-history screen"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/hkhealthstore/authorizationstatus(for:)",
+        "checked": "2026-10-02",
+        "note": "\"simply appears as if there is no data\" quote; own data stays visible"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/hkhealthstore/earliestauthorizedsampledate(for:)",
+        "checked": "2026-10-02",
+        "note": "limited history window detectable from iOS 27; full and denied access look the same"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/xcode/configuring-healthkit-access",
+        "checked": "2026-10-02",
+        "note": "purpose strings as an App Store requirement; Clinical Health Records capability and FHIR"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier",
+        "checked": "2026-10-02",
+        "note": "quantity types named in the HealthKit section; heartRateVariabilityRMSSD is iOS 27+"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/hkcategoryvaluesleepanalysis",
+        "checked": "2026-10-02",
+        "note": "core, deep and REM sleep stages"
+      },
+      {
+        "url": "https://developer.apple.com/help/account/reference/supported-capabilities-ios",
+        "checked": "2026-10-02",
+        "note": "HealthKit capability available to free and paid developer accounts; App Store distribution is paid-program only"
+      },
+      {
+        "url": "https://developer.apple.com/app-store/review/guidelines/",
+        "checked": "2026-10-02",
+        "note": "guideline 5.1.1 purpose strings and data minimization (last updated June 8, 2026)"
+      },
+      {
+        "url": "https://developer.android.com/health-and-fitness/health-connect/availability",
+        "checked": "2026-10-02",
+        "note": "exclusive to Android and Google Play; Android 9+ with Play services; framework module on Android 14"
+      },
+      {
+        "url": "https://developer.android.com/health-and-fitness/health-connect/get-started",
+        "checked": "2026-10-02",
+        "note": "declare permissions in the manifest before requesting; app vs framework by Android version"
+      },
+      {
+        "url": "https://developer.android.com/health-and-fitness/health-connect/data-types",
+        "checked": "2026-10-02",
+        "note": "42 record types and their categories; history and background-read permissions"
+      },
+      {
+        "url": "https://developer.android.com/health-and-fitness/health-connect/read-data",
+        "checked": "2026-10-02",
+        "note": "30-day default window; no limit on an app's own data on Android 14+"
+      },
+      {
+        "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/permission/HealthPermission",
+        "checked": "2026-10-02",
+        "note": "what reads do without PERMISSION_READ_HEALTH_DATA_HISTORY"
+      },
+      {
+        "url": "https://developer.android.com/health-and-fitness/health-connect/publish",
+        "checked": "2026-10-02",
+        "note": "Health apps declaration, refiled when data types change"
+      },
+      {
+        "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit",
+        "checked": "2026-10-02",
+        "note": "Fit end-of-support quote (revision of September 10, 2026); device-centric storage; registration; server-to-server path"
+      },
+      {
+        "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit/faq",
+        "checked": "2026-10-02",
+        "note": "\"a growing ecosystem of apps with just one connection\""
+      },
+      {
+        "url": "https://developer.android.com/health-and-fitness/guides/health-connect",
+        "checked": "2026-10-02",
+        "note": "Jetpack library 1.1.0 stable; medical records in FHIR"
+      }
+    ]
   },
   {
     "slug": "terra-vs-vital",

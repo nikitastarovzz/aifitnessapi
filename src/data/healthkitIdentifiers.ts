@@ -5,13 +5,18 @@
  *   node scripts/fetch-healthkit-identifiers.mjs
  *
  * Source: https://developer.apple.com/documentation/healthkit (HKQuantityTypeIdentifier, HKCategoryTypeIdentifier, HKCharacteristicTypeIdentifier, HKWorkoutActivityType)
- * Fetched: 2026-08-28
+ * Fetched: 2026-10-02
  *
  * `aggregation` and `unitFamily` are the only derived fields. Apple states
  * both in prose rather than as machine-readable properties, and the sentence
  * each was derived from is kept in `aggregationEvidence` so the claim stays
  * auditable. Where Apple's wording does not state it, the value is null — it
  * is never guessed.
+ *
+ * `deprecated` is read from Apple's machine fields: a platform entry with a
+ * `deprecatedAt` version counts, because Apple leaves the `deprecated`
+ * boolean false even on deprecated symbols. The versions stay on each
+ * platform entry and Apple's own note is in `deprecation`.
  *
  * Why aggregation matters enough to derive: it decides whether a developer
  * sums a type with .cumulativeSum or averages it with .discreteAverage. Pick
@@ -22,8 +27,25 @@
 export type HkPlatform = {
   name: string;
   introducedAt: string | null;
+  /** True when Apple gives this platform a deprecatedAt version (or sets
+   *  its deprecated boolean, which in practice it leaves false). */
   deprecated: boolean;
+  /** The evidence for `deprecated`: the version Apple says the symbol was
+   *  deprecated in on this platform. Null where Apple gives none. */
+  deprecatedAt: string | null;
   beta: boolean;
+};
+
+/** What Apple says about a deprecated symbol. Present only when deprecated. */
+export type HkDeprecation = {
+  /** Apple's deprecation note, verbatim, with symbol links resolved to their
+   *  names, e.g. "Use HKWorkoutActivityType.cardioDance … instead." Null
+   *  when Apple marks the symbol deprecated without a note. */
+  message: string | null;
+  /** The symbols Apple's note links to, in Apple's order. Empty when none. */
+  replacements: string[];
+  /** The platform entries' `renamed` target, when Apple records one. */
+  renamedTo: string | null;
 };
 
 /** The identifier families this dataset covers. */
@@ -56,15 +78,21 @@ export type HkIdentifier = {
    *  Reading a category sample without it is meaningless. Null elsewhere. */
   valueEnum: string | null;
   platforms: HkPlatform[];
+  /** True when any platform entry is deprecated — see HkPlatform. */
   deprecated: boolean;
+  /** Apple's own words on the deprecation; null when not deprecated. */
+  deprecation: HkDeprecation | null;
   /** Word count of Apple's discussion — how much depth the source offers. */
   discussionWords: number;
   /** True when Apple documents the type with no abstract and no discussion. */
   undocumented: boolean;
+  /** Apple's reference page for the type — the page this row was read from.
+   *  The path segment is per family (hkcategorytypeidentifier/, …). */
+  docUrl: string;
 };
 
 /** The date the generator last read Apple's documentation. */
-export const HK_FETCHED_ON = "2026-08-28";
+export const HK_FETCHED_ON = "2026-10-02";
 
 export const HK_IDENTIFIERS: HkIdentifier[] = [
   {
@@ -83,42 +111,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 96,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/activeenergyburned"
   },
   {
     "case": "appleExerciseTime",
@@ -136,42 +172,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "9.3",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "9.3",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.2",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 86,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/appleexercisetime"
   },
   {
     "case": "appleMoveTime",
@@ -189,42 +233,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "14.5",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "14.5",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "14.5",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "7.4",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 64,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/applemovetime"
   },
   {
     "case": "appleSleepingBreathingDisturbances",
@@ -242,42 +294,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "15.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": true
+    "undocumented": true,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/applesleepingbreathingdisturbances"
   },
   {
     "case": "appleSleepingWristTemperature",
@@ -295,42 +355,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 238,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/applesleepingwristtemperature"
   },
   {
     "case": "appleStandTime",
@@ -348,42 +416,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "6.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/applestandtime"
   },
   {
     "case": "appleWalkingSteadiness",
@@ -401,42 +477,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "15.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "15.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "15.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 178,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/applewalkingsteadiness"
   },
   {
     "case": "atrialFibrillationBurden",
@@ -454,42 +538,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 118,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/atrialfibrillationburden"
   },
   {
     "case": "basalBodyTemperature",
@@ -507,42 +599,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 33,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/basalbodytemperature"
   },
   {
     "case": "basalEnergyBurned",
@@ -560,42 +660,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 66,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/basalenergyburned"
   },
   {
     "case": "bloodAlcoholContent",
@@ -613,42 +721,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/bloodalcoholcontent"
   },
   {
     "case": "bloodGlucose",
@@ -666,42 +782,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 27,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/bloodglucose"
   },
   {
     "case": "bloodPressureDiastolic",
@@ -719,42 +843,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 32,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/bloodpressurediastolic"
   },
   {
     "case": "bloodPressureSystolic",
@@ -772,42 +904,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 44,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/bloodpressuresystolic"
   },
   {
     "case": "bodyFatPercentage",
@@ -825,42 +965,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/bodyfatpercentage"
   },
   {
     "case": "bodyMass",
@@ -878,42 +1026,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/bodymass"
   },
   {
     "case": "bodyMassIndex",
@@ -931,42 +1087,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/bodymassindex"
   },
   {
     "case": "bodyTemperature",
@@ -984,42 +1148,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/bodytemperature"
   },
   {
     "case": "crossCountrySkiingSpeed",
@@ -1037,42 +1209,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "15.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 32,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/crosscountryskiingspeed"
   },
   {
     "case": "cyclingCadence",
@@ -1090,42 +1270,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 71,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/cyclingcadence"
   },
   {
     "case": "cyclingFunctionalThresholdPower",
@@ -1143,42 +1331,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 51,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/cyclingfunctionalthresholdpower"
   },
   {
     "case": "cyclingPower",
@@ -1196,42 +1392,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 45,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/cyclingpower"
   },
   {
     "case": "cyclingSpeed",
@@ -1249,42 +1453,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 47,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/cyclingspeed"
   },
   {
     "case": "dietaryBiotin",
@@ -1302,42 +1514,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarybiotin"
   },
   {
     "case": "dietaryCaffeine",
@@ -1355,42 +1575,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarycaffeine"
   },
   {
     "case": "dietaryCalcium",
@@ -1408,42 +1636,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarycalcium"
   },
   {
     "case": "dietaryCarbohydrates",
@@ -1461,42 +1697,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarycarbohydrates"
   },
   {
     "case": "dietaryChloride",
@@ -1514,42 +1758,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarychloride"
   },
   {
     "case": "dietaryCholesterol",
@@ -1567,42 +1819,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarycholesterol"
   },
   {
     "case": "dietaryChromium",
@@ -1620,42 +1880,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarychromium"
   },
   {
     "case": "dietaryCopper",
@@ -1673,42 +1941,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarycopper"
   },
   {
     "case": "dietaryEnergyConsumed",
@@ -1726,42 +2002,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryenergyconsumed"
   },
   {
     "case": "dietaryFatMonounsaturated",
@@ -1779,42 +2063,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryfatmonounsaturated"
   },
   {
     "case": "dietaryFatPolyunsaturated",
@@ -1832,42 +2124,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryfatpolyunsaturated"
   },
   {
     "case": "dietaryFatSaturated",
@@ -1885,42 +2185,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryfatsaturated"
   },
   {
     "case": "dietaryFatTotal",
@@ -1938,42 +2246,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 23,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryfattotal"
   },
   {
     "case": "dietaryFiber",
@@ -1991,42 +2307,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryfiber"
   },
   {
     "case": "dietaryFolate",
@@ -2044,42 +2368,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryfolate"
   },
   {
     "case": "dietaryIodine",
@@ -2097,42 +2429,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryiodine"
   },
   {
     "case": "dietaryIron",
@@ -2150,42 +2490,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryiron"
   },
   {
     "case": "dietaryMagnesium",
@@ -2203,42 +2551,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarymagnesium"
   },
   {
     "case": "dietaryManganese",
@@ -2256,42 +2612,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarymanganese"
   },
   {
     "case": "dietaryMolybdenum",
@@ -2309,42 +2673,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarymolybdenum"
   },
   {
     "case": "dietaryNiacin",
@@ -2362,42 +2734,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryniacin"
   },
   {
     "case": "dietaryPantothenicAcid",
@@ -2415,42 +2795,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarypantothenicacid"
   },
   {
     "case": "dietaryPhosphorus",
@@ -2468,42 +2856,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryphosphorus"
   },
   {
     "case": "dietaryPotassium",
@@ -2521,42 +2917,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarypotassium"
   },
   {
     "case": "dietaryProtein",
@@ -2574,42 +2978,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryprotein"
   },
   {
     "case": "dietaryRiboflavin",
@@ -2627,42 +3039,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryriboflavin"
   },
   {
     "case": "dietarySelenium",
@@ -2680,42 +3100,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryselenium"
   },
   {
     "case": "dietarySodium",
@@ -2733,42 +3161,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarysodium"
   },
   {
     "case": "dietarySugar",
@@ -2786,42 +3222,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarysugar"
   },
   {
     "case": "dietaryThiamin",
@@ -2839,42 +3283,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarythiamin"
   },
   {
     "case": "dietaryVitaminA",
@@ -2892,42 +3344,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryvitamina"
   },
   {
     "case": "dietaryVitaminB12",
@@ -2945,42 +3405,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryvitaminb12"
   },
   {
     "case": "dietaryVitaminB6",
@@ -2998,42 +3466,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryvitaminb6"
   },
   {
     "case": "dietaryVitaminC",
@@ -3051,42 +3527,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryvitaminc"
   },
   {
     "case": "dietaryVitaminD",
@@ -3104,42 +3588,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryvitamind"
   },
   {
     "case": "dietaryVitaminE",
@@ -3157,42 +3649,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryvitamine"
   },
   {
     "case": "dietaryVitaminK",
@@ -3210,42 +3710,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryvitamink"
   },
   {
     "case": "dietaryWater",
@@ -3263,42 +3771,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarywater"
   },
   {
     "case": "dietaryZinc",
@@ -3316,42 +3832,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryzinc"
   },
   {
     "case": "distanceCrossCountrySkiing",
@@ -3369,42 +3893,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "15.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 30,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/distancecrosscountryskiing"
   },
   {
     "case": "distanceCycling",
@@ -3422,42 +3954,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 64,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/distancecycling"
   },
   {
     "case": "distanceDownhillSnowSports",
@@ -3475,42 +4015,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "11.2",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "11.2",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "4.2",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 28,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/distancedownhillsnowsports"
   },
   {
     "case": "distancePaddleSports",
@@ -3528,42 +4076,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "15.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 29,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/distancepaddlesports"
   },
   {
     "case": "distanceRowing",
@@ -3581,42 +4137,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "15.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 28,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/distancerowing"
   },
   {
     "case": "distanceSkatingSports",
@@ -3634,42 +4198,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "15.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 28,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/distanceskatingsports"
   },
   {
     "case": "distanceSwimming",
@@ -3687,42 +4259,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "3.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/distanceswimming"
   },
   {
     "case": "distanceWalkingRunning",
@@ -3740,42 +4320,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 40,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/distancewalkingrunning"
   },
   {
     "case": "distanceWheelchair",
@@ -3793,42 +4381,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "3.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 41,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/distancewheelchair"
   },
   {
     "case": "electrodermalActivity",
@@ -3846,42 +4442,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 35,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/electrodermalactivity"
   },
   {
     "case": "environmentalAudioExposure",
@@ -3899,42 +4503,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "6.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 39,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/environmentalaudioexposure"
   },
   {
     "case": "environmentalSoundReduction",
@@ -3952,42 +4564,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 34,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/environmentalsoundreduction"
   },
   {
     "case": "estimatedWorkoutEffortScore",
@@ -4005,42 +4625,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "15.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": true
+    "undocumented": true,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/estimatedworkouteffortscore"
   },
   {
     "case": "flightsClimbed",
@@ -4058,42 +4686,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 34,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/flightsclimbed"
   },
   {
     "case": "forcedExpiratoryVolume1",
@@ -4111,42 +4747,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/forcedexpiratoryvolume1"
   },
   {
     "case": "forcedVitalCapacity",
@@ -4164,42 +4808,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/forcedvitalcapacity"
   },
   {
     "case": "headphoneAudioExposure",
@@ -4217,42 +4869,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "6.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 41,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/headphoneaudioexposure"
   },
   {
     "case": "heartRate",
@@ -4270,42 +4930,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 185,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/heartrate"
   },
   {
     "case": "heartRateRecoveryOneMinute",
@@ -4323,42 +4991,111 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 24,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/heartraterecoveryoneminute"
+  },
+  {
+    "case": "heartRateVariabilityRMSSD",
+    "objc": "HKQuantityTypeIdentifierHeartRateVariabilityRMSSD",
+    "family": "quantity",
+    "familyType": "HKQuantityTypeIdentifier",
+    "group": "Type Properties",
+    "abstract": "",
+    "aggregation": null,
+    "aggregationEvidence": null,
+    "unitFamily": null,
+    "valueEnum": null,
+    "platforms": [
+      {
+        "name": "iOS",
+        "introducedAt": "27.0",
+        "deprecated": false,
+        "deprecatedAt": null,
+        "beta": false
+      },
+      {
+        "name": "iPadOS",
+        "introducedAt": "27.0",
+        "deprecated": false,
+        "deprecatedAt": null,
+        "beta": false
+      },
+      {
+        "name": "Mac Catalyst",
+        "introducedAt": "27.0",
+        "deprecated": false,
+        "deprecatedAt": null,
+        "beta": false
+      },
+      {
+        "name": "macOS",
+        "introducedAt": "27.0",
+        "deprecated": false,
+        "deprecatedAt": null,
+        "beta": false
+      },
+      {
+        "name": "visionOS",
+        "introducedAt": "27.0",
+        "deprecated": false,
+        "deprecatedAt": null,
+        "beta": false
+      },
+      {
+        "name": "watchOS",
+        "introducedAt": "27.0",
+        "deprecated": false,
+        "deprecatedAt": null,
+        "beta": false
+      }
+    ],
+    "deprecated": false,
+    "deprecation": null,
+    "discussionWords": 0,
+    "undocumented": true,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/heartratevariabilityrmssd"
   },
   {
     "case": "heartRateVariabilitySDNN",
@@ -4376,42 +5113,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "4.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 68,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/heartratevariabilitysdnn"
   },
   {
     "case": "height",
@@ -4429,42 +5174,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/height"
   },
   {
     "case": "inhalerUsage",
@@ -4482,42 +5235,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/inhalerusage"
   },
   {
     "case": "insulinDelivery",
@@ -4535,42 +5296,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "4.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 16,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/insulindelivery"
   },
   {
     "case": "leanBodyMass",
@@ -4588,42 +5357,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/leanbodymass"
   },
   {
     "case": "nikeFuel",
@@ -4641,42 +5418,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/nikefuel"
   },
   {
     "case": "numberOfAlcoholicBeverages",
@@ -4694,42 +5479,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "15.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "15.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "15.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 58,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/numberofalcoholicbeverages"
   },
   {
     "case": "numberOfTimesFallen",
@@ -4747,42 +5540,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 142,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/numberoftimesfallen"
   },
   {
     "case": "oxygenSaturation",
@@ -4800,42 +5601,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 26,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/oxygensaturation"
   },
   {
     "case": "paddleSportsSpeed",
@@ -4853,42 +5662,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "15.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 31,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/paddlesportsspeed"
   },
   {
     "case": "peakExpiratoryFlowRate",
@@ -4906,42 +5723,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/peakexpiratoryflowrate"
   },
   {
     "case": "peripheralPerfusionIndex",
@@ -4959,42 +5784,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 27,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/peripheralperfusionindex"
   },
   {
     "case": "physicalEffort",
@@ -5012,42 +5845,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 31,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/physicaleffort"
   },
   {
     "case": "pushCount",
@@ -5065,42 +5906,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "3.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 27,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/pushcount"
   },
   {
     "case": "respiratoryRate",
@@ -5118,42 +5967,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 23,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/respiratoryrate"
   },
   {
     "case": "restingHeartRate",
@@ -5171,42 +6028,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "4.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 176,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/restingheartrate"
   },
   {
     "case": "rowingSpeed",
@@ -5224,42 +6089,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "15.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 31,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/rowingspeed"
   },
   {
     "case": "runningGroundContactTime",
@@ -5277,42 +6150,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 49,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/runninggroundcontacttime"
   },
   {
     "case": "runningPower",
@@ -5330,42 +6211,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 49,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/runningpower"
   },
   {
     "case": "runningSpeed",
@@ -5383,42 +6272,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 45,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/runningspeed"
   },
   {
     "case": "runningStrideLength",
@@ -5436,42 +6333,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 49,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/runningstridelength"
   },
   {
     "case": "runningVerticalOscillation",
@@ -5489,42 +6394,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 48,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/runningverticaloscillation"
   },
   {
     "case": "sixMinuteWalkTestDistance",
@@ -5542,42 +6455,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "7.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 278,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/sixminutewalktestdistance"
   },
   {
     "case": "stairAscentSpeed",
@@ -5595,42 +6516,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "7.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 137,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/stairascentspeed"
   },
   {
     "case": "stairDescentSpeed",
@@ -5648,42 +6577,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "7.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 138,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/stairdescentspeed"
   },
   {
     "case": "stepCount",
@@ -5701,42 +6638,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 39,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/stepcount"
   },
   {
     "case": "swimmingStrokeCount",
@@ -5754,42 +6699,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "3.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/swimmingstrokecount"
   },
   {
     "case": "timeInDaylight",
@@ -5807,42 +6760,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/timeindaylight"
   },
   {
     "case": "underwaterDepth",
@@ -5860,42 +6821,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 40,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/underwaterdepth"
   },
   {
     "case": "uvExposure",
@@ -5913,42 +6882,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 32,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/uvexposure"
   },
   {
     "case": "vo2Max",
@@ -5966,42 +6943,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "4.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 323,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/vo2max"
   },
   {
     "case": "waistCircumference",
@@ -6019,42 +7004,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "4.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 15,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/waistcircumference"
   },
   {
     "case": "walkingAsymmetryPercentage",
@@ -6072,42 +7065,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "7.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 126,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/walkingasymmetrypercentage"
   },
   {
     "case": "walkingDoubleSupportPercentage",
@@ -6125,42 +7126,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "7.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 166,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/walkingdoublesupportpercentage"
   },
   {
     "case": "walkingHeartRateAverage",
@@ -6178,42 +7187,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "4.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 107,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/walkingheartrateaverage"
   },
   {
     "case": "walkingSpeed",
@@ -6231,42 +7248,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "7.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 137,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/walkingspeed"
   },
   {
     "case": "walkingStepLength",
@@ -6284,42 +7309,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "7.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 123,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/walkingsteplength"
   },
   {
     "case": "waterTemperature",
@@ -6337,42 +7370,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 41,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/watertemperature"
   },
   {
     "case": "workoutEffortScore",
@@ -6390,42 +7431,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "15.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": true
+    "undocumented": true,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/workouteffortscore"
   },
   {
     "case": "appleStandHour",
@@ -6443,42 +7492,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 73,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/applestandhour"
   },
   {
     "case": "appleWalkingSteadinessEvent",
@@ -6496,42 +7553,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "15.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "15.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "15.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 69,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/applewalkingsteadinessevent"
   },
   {
     "case": "audioExposureEvent",
@@ -6548,43 +7613,57 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
       {
         "name": "iOS",
         "introducedAt": "13.0",
-        "deprecated": false,
+        "deprecated": true,
+        "deprecatedAt": "14.0",
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "13.0",
-        "deprecated": false,
+        "deprecated": true,
+        "deprecatedAt": "14.0",
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.1",
-        "deprecated": false,
+        "deprecated": true,
+        "deprecatedAt": "14.0",
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": null,
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
-        "deprecated": false,
+        "deprecated": true,
+        "deprecatedAt": "1.0",
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "6.0",
-        "deprecated": false,
+        "deprecated": true,
+        "deprecatedAt": "7.0",
         "beta": false
       }
     ],
-    "deprecated": false,
+    "deprecated": true,
+    "deprecation": {
+      "message": "Use environmentalAudioExposureEvent instead.",
+      "replacements": [
+        "environmentalAudioExposureEvent"
+      ],
+      "renamedTo": "HKCategoryTypeIdentifier.environmentalAudioExposureEvent"
+    },
     "discussionWords": 6,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/audioexposureevent"
   },
   {
     "case": "bleedingAfterMenopause",
@@ -6602,42 +7681,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "27.0",
         "deprecated": false,
-        "beta": true
+        "deprecatedAt": null,
+        "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "27.0",
         "deprecated": false,
-        "beta": true
+        "deprecatedAt": null,
+        "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "27.0",
         "deprecated": false,
-        "beta": true
+        "deprecatedAt": null,
+        "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "27.0",
         "deprecated": false,
-        "beta": true
+        "deprecatedAt": null,
+        "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "27.0",
         "deprecated": false,
-        "beta": true
+        "deprecatedAt": null,
+        "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "27.0",
         "deprecated": false,
-        "beta": true
+        "deprecatedAt": null,
+        "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 50,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/bleedingaftermenopause"
   },
   {
     "case": "cervicalMucusQuality",
@@ -6655,42 +7742,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 7,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/cervicalmucusquality"
   },
   {
     "case": "contraceptive",
@@ -6708,42 +7803,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "14.3",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "14.3",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "14.3",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "7.2",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 9,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/contraceptive"
   },
   {
     "case": "environmentalAudioExposureEvent",
@@ -6761,42 +7864,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "7.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 120,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/environmentalaudioexposureevent"
   },
   {
     "case": "handwashingEvent",
@@ -6814,42 +7925,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "7.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 60,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/handwashingevent"
   },
   {
     "case": "headphoneAudioExposureEvent",
@@ -6867,42 +7986,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "14.2",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "14.2",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "14.2",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "7.1",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 68,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/headphoneaudioexposureevent"
   },
   {
     "case": "highHeartRateEvent",
@@ -6920,42 +8047,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "12.2",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "12.2",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "5.2",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 91,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/highheartrateevent"
   },
   {
     "case": "hypertensionEvent",
@@ -6973,42 +8108,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "26.2",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "26.2",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "26.2",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "26.2",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "26.2",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "26.2",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": true
+    "undocumented": true,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/hypertensionevent"
   },
   {
     "case": "infrequentMenstrualCycles",
@@ -7026,42 +8169,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 73,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/infrequentmenstrualcycles"
   },
   {
     "case": "intermenstrualBleeding",
@@ -7079,42 +8230,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 6,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/intermenstrualbleeding"
   },
   {
     "case": "irregularHeartRhythmEvent",
@@ -7132,42 +8291,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "12.2",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "12.2",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "5.2",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 85,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/irregularheartrhythmevent"
   },
   {
     "case": "irregularMenstrualCycles",
@@ -7185,42 +8352,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 73,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/irregularmenstrualcycles"
   },
   {
     "case": "lactation",
@@ -7238,42 +8413,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "14.3",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "14.3",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "14.3",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "7.2",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 8,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/lactation"
   },
   {
     "case": "lowCardioFitnessEvent",
@@ -7291,42 +8474,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "14.3",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "14.3",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "14.3",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "7.2",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 159,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/lowcardiofitnessevent"
   },
   {
     "case": "lowHeartRateEvent",
@@ -7344,42 +8535,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "12.2",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "12.2",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "5.2",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 91,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/lowheartrateevent"
   },
   {
     "case": "menopausalState",
@@ -7397,42 +8596,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "27.0",
         "deprecated": false,
-        "beta": true
+        "deprecatedAt": null,
+        "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "27.0",
         "deprecated": false,
-        "beta": true
+        "deprecatedAt": null,
+        "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "27.0",
         "deprecated": false,
-        "beta": true
+        "deprecatedAt": null,
+        "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "27.0",
         "deprecated": false,
-        "beta": true
+        "deprecatedAt": null,
+        "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "27.0",
         "deprecated": false,
-        "beta": true
+        "deprecatedAt": null,
+        "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "27.0",
         "deprecated": false,
-        "beta": true
+        "deprecatedAt": null,
+        "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 93,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/menopausalstate"
   },
   {
     "case": "menstrualFlow",
@@ -7450,42 +8657,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 128,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/menstrualflow"
   },
   {
     "case": "mindfulSession",
@@ -7503,42 +8718,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "3.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 6,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/mindfulsession"
   },
   {
     "case": "ovulationTestResult",
@@ -7556,42 +8779,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 7,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/ovulationtestresult"
   },
   {
     "case": "persistentIntermenstrualBleeding",
@@ -7609,42 +8840,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 73,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/persistentintermenstrualbleeding"
   },
   {
     "case": "pregnancy",
@@ -7662,42 +8901,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "14.3",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "14.3",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "14.3",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "7.2",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 8,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/pregnancy"
   },
   {
     "case": "pregnancyTestResult",
@@ -7715,42 +8962,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "15.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "15.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "15.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 34,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/pregnancytestresult"
   },
   {
     "case": "progesteroneTestResult",
@@ -7768,42 +9023,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "15.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "15.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "15.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 35,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/progesteronetestresult"
   },
   {
     "case": "prolongedMenstrualPeriods",
@@ -7821,42 +9084,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 73,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/prolongedmenstrualperiods"
   },
   {
     "case": "sexualActivity",
@@ -7874,42 +9145,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 11,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/sexualactivity"
   },
   {
     "case": "sleepAnalysis",
@@ -7927,42 +9206,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 29,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/sleepanalysis"
   },
   {
     "case": "toothbrushingEvent",
@@ -7980,42 +9267,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "6.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 7,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/toothbrushingevent"
   },
   {
     "case": "activityMoveMode",
@@ -8033,42 +9328,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "7.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcharacteristictypeidentifier/activitymovemode"
   },
   {
     "case": "biologicalSex",
@@ -8086,42 +9389,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 7,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcharacteristictypeidentifier/biologicalsex"
   },
   {
     "case": "bloodType",
@@ -8139,42 +9450,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 7,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcharacteristictypeidentifier/bloodtype"
   },
   {
     "case": "dateOfBirth",
@@ -8192,42 +9511,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcharacteristictypeidentifier/dateofbirth"
   },
   {
     "case": "fitzpatrickSkinType",
@@ -8245,42 +9572,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 7,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcharacteristictypeidentifier/fitzpatrickskintype"
   },
   {
     "case": "wheelchairUse",
@@ -8298,42 +9633,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "3.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkcharacteristictypeidentifier/wheelchairuse"
   },
   {
     "case": "americanFootball",
@@ -8351,42 +9694,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 27,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/americanfootball"
   },
   {
     "case": "archery",
@@ -8404,42 +9755,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/archery"
   },
   {
     "case": "australianFootball",
@@ -8457,42 +9816,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/australianfootball"
   },
   {
     "case": "badminton",
@@ -8510,42 +9877,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/badminton"
   },
   {
     "case": "barre",
@@ -8563,42 +9938,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "3.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/barre"
   },
   {
     "case": "baseball",
@@ -8616,42 +9999,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/baseball"
   },
   {
     "case": "basketball",
@@ -8669,42 +10060,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/basketball"
   },
   {
     "case": "bowling",
@@ -8722,42 +10121,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/bowling"
   },
   {
     "case": "boxing",
@@ -8775,42 +10182,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/boxing"
   },
   {
     "case": "cardioDance",
@@ -8828,42 +10243,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "7.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 16,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/cardiodance"
   },
   {
     "case": "climbing",
@@ -8881,42 +10304,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/climbing"
   },
   {
     "case": "cooldown",
@@ -8934,42 +10365,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "7.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 16,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/cooldown"
   },
   {
     "case": "coreTraining",
@@ -8987,42 +10426,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "3.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 16,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/coretraining"
   },
   {
     "case": "cricket",
@@ -9040,42 +10487,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/cricket"
   },
   {
     "case": "crossCountrySkiing",
@@ -9093,42 +10548,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "3.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 16,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/crosscountryskiing"
   },
   {
     "case": "crossTraining",
@@ -9146,42 +10609,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/crosstraining"
   },
   {
     "case": "curling",
@@ -9199,42 +10670,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/curling"
   },
   {
     "case": "cycling",
@@ -9252,42 +10731,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 16,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/cycling"
   },
   {
     "case": "dance",
@@ -9304,43 +10791,58 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
       {
         "name": "iOS",
         "introducedAt": "8.0",
-        "deprecated": false,
+        "deprecated": true,
+        "deprecatedAt": "14.0",
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
-        "deprecated": false,
+        "deprecated": true,
+        "deprecatedAt": "14.0",
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.1",
-        "deprecated": false,
+        "deprecated": true,
+        "deprecatedAt": "14.0",
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
-        "deprecated": false,
+        "deprecated": true,
+        "deprecatedAt": "1.0",
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
-        "deprecated": false,
+        "deprecated": true,
+        "deprecatedAt": "7.0",
         "beta": false
       }
     ],
-    "deprecated": false,
+    "deprecated": true,
+    "deprecation": {
+      "message": "Use HKWorkoutActivityType.cardioDance or HKWorkoutActivityType.socialDance instead.",
+      "replacements": [
+        "HKWorkoutActivityType.cardioDance",
+        "HKWorkoutActivityType.socialDance"
+      ],
+      "renamedTo": null
+    },
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/dance"
   },
   {
     "case": "danceInspiredTraining",
@@ -9357,43 +10859,59 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
       {
         "name": "iOS",
         "introducedAt": "8.0",
-        "deprecated": false,
+        "deprecated": true,
+        "deprecatedAt": "10.0",
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
-        "deprecated": false,
+        "deprecated": true,
+        "deprecatedAt": "10.0",
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.1",
-        "deprecated": false,
+        "deprecated": true,
+        "deprecatedAt": "13.1",
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
-        "deprecated": false,
+        "deprecated": true,
+        "deprecatedAt": "1.0",
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
-        "deprecated": false,
+        "deprecated": true,
+        "deprecatedAt": "3.0",
         "beta": false
       }
     ],
-    "deprecated": false,
+    "deprecated": true,
+    "deprecation": {
+      "message": "Use HKWorkoutActivityType.dance, HKWorkoutActivityType.barre, or HKWorkoutActivityType.pilates instead.",
+      "replacements": [
+        "HKWorkoutActivityType.dance",
+        "HKWorkoutActivityType.barre",
+        "HKWorkoutActivityType.pilates"
+      ],
+      "renamedTo": null
+    },
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/danceinspiredtraining"
   },
   {
     "case": "discSports",
@@ -9411,42 +10929,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "6.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 27,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/discsports"
   },
   {
     "case": "downhillSkiing",
@@ -9464,42 +10990,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "3.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 27,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/downhillskiing"
   },
   {
     "case": "elliptical",
@@ -9517,42 +11051,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 16,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/elliptical"
   },
   {
     "case": "equestrianSports",
@@ -9570,42 +11112,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/equestriansports"
   },
   {
     "case": "fencing",
@@ -9623,42 +11173,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/fencing"
   },
   {
     "case": "fishing",
@@ -9676,42 +11234,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/fishing"
   },
   {
     "case": "fitnessGaming",
@@ -9729,42 +11295,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "6.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/fitnessgaming"
   },
   {
     "case": "flexibility",
@@ -9782,42 +11356,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "3.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/flexibility"
   },
   {
     "case": "functionalStrengthTraining",
@@ -9835,42 +11417,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 16,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/functionalstrengthtraining"
   },
   {
     "case": "golf",
@@ -9888,42 +11478,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/golf"
   },
   {
     "case": "gymnastics",
@@ -9941,42 +11539,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/gymnastics"
   },
   {
     "case": "handball",
@@ -9994,42 +11600,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/handball"
   },
   {
     "case": "handCycling",
@@ -10047,42 +11661,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "4.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/handcycling"
   },
   {
     "case": "highIntensityIntervalTraining",
@@ -10100,42 +11722,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "3.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 16,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/highintensityintervaltraining"
   },
   {
     "case": "hiking",
@@ -10153,42 +11783,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 16,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/hiking"
   },
   {
     "case": "hockey",
@@ -10206,42 +11844,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 38,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/hockey"
   },
   {
     "case": "hunting",
@@ -10259,42 +11905,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/hunting"
   },
   {
     "case": "jumpRope",
@@ -10312,42 +11966,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "3.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/jumprope"
   },
   {
     "case": "kickboxing",
@@ -10365,42 +12027,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "3.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 16,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/kickboxing"
   },
   {
     "case": "lacrosse",
@@ -10418,42 +12088,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 27,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/lacrosse"
   },
   {
     "case": "martialArts",
@@ -10471,42 +12149,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/martialarts"
   },
   {
     "case": "mindAndBody",
@@ -10524,42 +12210,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/mindandbody"
   },
   {
     "case": "mixedCardio",
@@ -10577,42 +12271,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "4.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/mixedcardio"
   },
   {
     "case": "mixedMetabolicCardioTraining",
@@ -10629,43 +12331,58 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
       {
         "name": "iOS",
         "introducedAt": "8.0",
-        "deprecated": false,
+        "deprecated": true,
+        "deprecatedAt": "11.0",
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
-        "deprecated": false,
+        "deprecated": true,
+        "deprecatedAt": "11.0",
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.1",
-        "deprecated": false,
+        "deprecated": true,
+        "deprecatedAt": "13.1",
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
-        "deprecated": false,
+        "deprecated": true,
+        "deprecatedAt": "1.0",
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
-        "deprecated": false,
+        "deprecated": true,
+        "deprecatedAt": "4.0",
         "beta": false
       }
     ],
-    "deprecated": false,
+    "deprecated": true,
+    "deprecation": {
+      "message": "Use HKWorkoutActivityType.mixedCardio or HKWorkoutActivityType.highIntensityIntervalTraining instead.",
+      "replacements": [
+        "HKWorkoutActivityType.mixedCardio",
+        "HKWorkoutActivityType.highIntensityIntervalTraining"
+      ],
+      "renamedTo": null
+    },
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/mixedmetaboliccardiotraining"
   },
   {
     "case": "other",
@@ -10683,42 +12400,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 29,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/other"
   },
   {
     "case": "paddleSports",
@@ -10736,42 +12461,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 27,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/paddlesports"
   },
   {
     "case": "pickleball",
@@ -10789,42 +12522,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "7.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/pickleball"
   },
   {
     "case": "pilates",
@@ -10842,42 +12583,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "3.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 16,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/pilates"
   },
   {
     "case": "play",
@@ -10895,42 +12644,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/play"
   },
   {
     "case": "preparationAndRecovery",
@@ -10948,42 +12705,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/preparationandrecovery"
   },
   {
     "case": "racquetball",
@@ -11001,42 +12766,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/racquetball"
   },
   {
     "case": "rowing",
@@ -11054,42 +12827,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 27,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/rowing"
   },
   {
     "case": "rugby",
@@ -11107,42 +12888,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 27,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/rugby"
   },
   {
     "case": "running",
@@ -11160,42 +12949,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 16,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/running"
   },
   {
     "case": "sailing",
@@ -11213,42 +13010,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/sailing"
   },
   {
     "case": "skatingSports",
@@ -11266,42 +13071,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 38,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/skatingsports"
   },
   {
     "case": "snowboarding",
@@ -11319,42 +13132,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "3.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 27,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/snowboarding"
   },
   {
     "case": "snowSports",
@@ -11372,42 +13193,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/snowsports"
   },
   {
     "case": "soccer",
@@ -11425,42 +13254,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 38,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/soccer"
   },
   {
     "case": "socialDance",
@@ -11478,42 +13315,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "7.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/socialdance"
   },
   {
     "case": "softball",
@@ -11531,42 +13376,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/softball"
   },
   {
     "case": "squash",
@@ -11584,42 +13437,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/squash"
   },
   {
     "case": "stairClimbing",
@@ -11637,42 +13498,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 16,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/stairclimbing"
   },
   {
     "case": "stairs",
@@ -11690,42 +13559,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "3.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/stairs"
   },
   {
     "case": "stepTraining",
@@ -11743,42 +13620,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "3.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/steptraining"
   },
   {
     "case": "surfingSports",
@@ -11796,42 +13681,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/surfingsports"
   },
   {
     "case": "swimBikeRun",
@@ -11849,42 +13742,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 41,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/swimbikerun"
   },
   {
     "case": "swimming",
@@ -11902,42 +13803,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 45,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/swimming"
   },
   {
     "case": "tableTennis",
@@ -11955,42 +13864,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/tabletennis"
   },
   {
     "case": "taiChi",
@@ -12008,42 +13925,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "4.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 16,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/taichi"
   },
   {
     "case": "tennis",
@@ -12061,42 +13986,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/tennis"
   },
   {
     "case": "trackAndField",
@@ -12114,42 +14047,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/trackandfield"
   },
   {
     "case": "traditionalStrengthTraining",
@@ -12167,42 +14108,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/traditionalstrengthtraining"
   },
   {
     "case": "transition",
@@ -12220,42 +14169,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "16.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 16,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/transition"
   },
   {
     "case": "underwaterDiving",
@@ -12273,42 +14230,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/underwaterdiving"
   },
   {
     "case": "volleyball",
@@ -12326,42 +14291,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/volleyball"
   },
   {
     "case": "walking",
@@ -12379,42 +14352,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 16,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/walking"
   },
   {
     "case": "waterFitness",
@@ -12432,42 +14413,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/waterfitness"
   },
   {
     "case": "waterPolo",
@@ -12485,42 +14474,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/waterpolo"
   },
   {
     "case": "waterSports",
@@ -12538,42 +14535,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/watersports"
   },
   {
     "case": "wheelchairRunPace",
@@ -12591,42 +14596,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "3.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 16,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/wheelchairrunpace"
   },
   {
     "case": "wheelchairWalkPace",
@@ -12644,42 +14657,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "3.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 16,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/wheelchairwalkpace"
   },
   {
     "case": "wrestling",
@@ -12697,42 +14718,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 0,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/wrestling"
   },
   {
     "case": "yoga",
@@ -12750,42 +14779,50 @@ export const HK_IDENTIFIERS: HkIdentifier[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
     "deprecated": false,
+    "deprecation": null,
     "discussionWords": 16,
-    "undocumented": false
+    "undocumented": false,
+    "docUrl": "https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/yoga"
   }
 ];
 
@@ -12801,6 +14838,7 @@ export const HK_GROUPS: string[] = [
   "Lab and test results",
   "Nutrition",
   "Hearing",
+  "Type Properties",
   "UV exposure",
   "Diving",
   "Reproductive Health",
@@ -12833,6 +14871,10 @@ export type HkError = {
   /** True when Apple ships the case with a declaration and nothing else. */
   undocumented: boolean;
   platforms: HkPlatform[];
+  /** True when any platform entry is deprecated — see HkPlatform. */
+  deprecated: boolean;
+  /** Apple's own words on the deprecation; null when not deprecated. */
+  deprecation: HkDeprecation | null;
   docUrl: string;
 };
 
@@ -12856,40 +14898,52 @@ export const HK_ERRORS: HkError[] = [
       {
         "name": "iOS",
         "introducedAt": "8.0",
-        "deprecated": false,
+        "deprecated": true,
+        "deprecatedAt": "27.2",
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
-        "deprecated": false,
+        "deprecated": true,
+        "deprecatedAt": "27.2",
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.1",
-        "deprecated": false,
+        "deprecated": true,
+        "deprecatedAt": "27.2",
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
-        "deprecated": false,
+        "deprecated": true,
+        "deprecatedAt": "27.2",
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
-        "deprecated": false,
+        "deprecated": true,
+        "deprecatedAt": "27.2",
         "beta": false
       }
     ],
+    "deprecated": true,
+    "deprecation": {
+      "message": null,
+      "replacements": [],
+      "renamedTo": "HKError.unknownError"
+    },
     "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/noerror"
   },
   {
@@ -12903,39 +14957,47 @@ export const HK_ERRORS: HkError[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
+    "deprecated": false,
+    "deprecation": null,
     "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/errorhealthdataunavailable"
   },
   {
@@ -12949,39 +15011,47 @@ export const HK_ERRORS: HkError[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
+    "deprecated": false,
+    "deprecation": null,
     "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/errorhealthdatarestricted"
   },
   {
@@ -12995,39 +15065,47 @@ export const HK_ERRORS: HkError[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
+    "deprecated": false,
+    "deprecation": null,
     "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/errorinvalidargument"
   },
   {
@@ -13041,39 +15119,47 @@ export const HK_ERRORS: HkError[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
+    "deprecated": false,
+    "deprecation": null,
     "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/errorauthorizationdenied"
   },
   {
@@ -13087,39 +15173,47 @@ export const HK_ERRORS: HkError[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
+    "deprecated": false,
+    "deprecation": null,
     "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/errorauthorizationnotdetermined"
   },
   {
@@ -13133,39 +15227,47 @@ export const HK_ERRORS: HkError[] = [
         "name": "iOS",
         "introducedAt": "12.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "12.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "5.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
+    "deprecated": false,
+    "deprecation": null,
     "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/errorrequiredauthorizationdenied"
   },
   {
@@ -13179,39 +15281,47 @@ export const HK_ERRORS: HkError[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
+    "deprecated": false,
+    "deprecation": null,
     "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/errordatabaseinaccessible"
   },
   {
@@ -13225,39 +15335,47 @@ export const HK_ERRORS: HkError[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
+    "deprecated": false,
+    "deprecation": null,
     "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/errorusercanceled"
   },
   {
@@ -13271,39 +15389,47 @@ export const HK_ERRORS: HkError[] = [
         "name": "iOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
+    "deprecated": false,
+    "deprecation": null,
     "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/erroranotherworkoutsessionstarted"
   },
   {
@@ -13317,39 +15443,47 @@ export const HK_ERRORS: HkError[] = [
         "name": "iOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "9.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
+    "deprecated": false,
+    "deprecation": null,
     "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/erroruserexitedworkoutsession"
   },
   {
@@ -13363,39 +15497,47 @@ export const HK_ERRORS: HkError[] = [
         "name": "iOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "7.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
+    "deprecated": false,
+    "deprecation": null,
     "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/errornodata"
   },
   {
@@ -13409,39 +15551,47 @@ export const HK_ERRORS: HkError[] = [
         "name": "iOS",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
+    "deprecated": false,
+    "deprecation": null,
     "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/errorbackgroundworkoutsessionnotallowed"
   },
   {
@@ -13455,39 +15605,47 @@ export const HK_ERRORS: HkError[] = [
         "name": "iOS",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
+    "deprecated": false,
+    "deprecation": null,
     "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/errordatasizeexceeded"
   },
   {
@@ -13501,39 +15659,47 @@ export const HK_ERRORS: HkError[] = [
         "name": "iOS",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "18.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "11.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
+    "deprecated": false,
+    "deprecation": null,
     "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/errornotpermissibleforguestusermode"
   },
   {
@@ -13547,39 +15713,47 @@ export const HK_ERRORS: HkError[] = [
         "name": "iOS",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "17.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "14.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "10.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
+    "deprecated": false,
+    "deprecation": null,
     "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/errorworkoutactivitynotallowed"
   },
   {
@@ -13593,39 +15767,47 @@ export const HK_ERRORS: HkError[] = [
         "name": "iOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "iPadOS",
         "introducedAt": "8.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "Mac Catalyst",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "macOS",
         "introducedAt": "13.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "visionOS",
         "introducedAt": "1.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       },
       {
         "name": "watchOS",
         "introducedAt": "2.0",
         "deprecated": false,
+        "deprecatedAt": null,
         "beta": false
       }
     ],
+    "deprecated": false,
+    "deprecation": null,
     "docUrl": "https://developer.apple.com/documentation/healthkit/hkerror/unknownerror"
   }
 ];
@@ -13635,7 +15817,7 @@ export const HK_FAMILIES: { key: HkFamily; label: string; count: number }[] = [
   {
     "key": "quantity",
     "label": "HKQuantityTypeIdentifier",
-    "count": 120
+    "count": 121
   },
   {
     "key": "category",

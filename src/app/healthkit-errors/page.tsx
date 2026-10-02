@@ -7,7 +7,7 @@ import ClusterCta from "@/components/ClusterCta";
 import PageSummary from "@/components/PageSummary";
 import PageActions from "@/components/PageActions";
 import ContentAge from "@/components/ContentAge";
-import { HK_ERRORS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
+import { HK_ERRORS, HK_FETCHED_ON, type HkError } from "@/data/healthkitIdentifiers";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 
@@ -28,6 +28,20 @@ import { orgRef } from "@/lib/schema";
 const PATH = "/healthkit-errors";
 const documented = HK_ERRORS.filter((e) => !e.undocumented);
 const undocumented = HK_ERRORS.filter((e) => e.undocumented);
+
+/**
+ * "Deprecated in iOS 27.2 · renamed to HKError.unknownError" — read from the
+ * per-platform deprecatedAt versions and the renamed target in Apple's JSON.
+ * Null when no platform marks the case deprecated.
+ */
+function deprecationNote(e: HkError): string | null {
+  if (!e.deprecated) return null;
+  const ios = e.platforms.find((p) => p.name === "iOS")?.deprecatedAt;
+  const parts = [ios ? `Deprecated in iOS ${ios}` : "Deprecated"];
+  if (e.deprecation?.renamedTo) parts.push(`renamed to ${e.deprecation.renamedTo}`);
+  if (e.deprecation?.message) parts.push(e.deprecation.message);
+  return parts.join(" · ");
+}
 
 export const metadata: Metadata = {
   title: { absolute: "Every HealthKit Error Code" },
@@ -173,6 +187,7 @@ export default function HealthKitErrorsPage() {
                   {e.platforms.find((p) => p.name === "iOS")?.introducedAt
                     ? `iOS ${e.platforms.find((p) => p.name === "iOS")?.introducedAt}+ · `
                     : ""}
+                  {deprecationNote(e) && <>{deprecationNote(e)} · </>}
                   <a href={e.docUrl} className="hover:text-[var(--fg)]" rel="nofollow">
                     Apple docs
                   </a>
@@ -195,6 +210,9 @@ export default function HealthKitErrorsPage() {
               {undocumented.map((e) => (
                 <li key={e.case} id={`err-${e.case.toLowerCase()}`} className="scroll-mt-24 rounded-lg border border-[var(--border)] px-4 py-2">
                   <code className="font-mono text-sm text-[var(--fg)]">{e.case}</code>
+                  {deprecationNote(e) && (
+                    <span className="ml-2 text-xs text-[var(--muted)]">{deprecationNote(e)}</span>
+                  )}
                   <a href={e.docUrl} className="ml-2 text-xs text-[var(--muted)] hover:text-[var(--fg)]" rel="nofollow">
                     Apple docs
                   </a>

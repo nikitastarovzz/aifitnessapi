@@ -701,6 +701,13 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     area: "Hosting and crawl",
     refuses: "A sitemap carrying changefreq or priority values, fields that were never facts anyone kept true.",
   },
+
+  // ── Freshness markers ─────────────────────────────────────────────────
+  {
+    code: "YEAR-MARKER",
+    area: "Metadata",
+    refuses: "A page whose title or h1 puts a year in parentheses, such as (2026), when that year differs from the year of the newest dateModified in the page's structured data, or when the page declares no dateModified to back it.",
+  },
 ];
 
 /** Group order on /gates. Every area used above must appear here. */

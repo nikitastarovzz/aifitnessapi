@@ -50,7 +50,7 @@ export const ROWS: Row[] = [
     apple: "HKQuantityTypeIdentifier.heartRateVariabilitySDNN",
     android: "HeartRateVariabilityRmssdRecord",
     watchOut:
-      "The big one: Apple stores SDNN, Health Connect stores RMSSD. They are different measures and are not interconvertible — do not normalize one into the other.",
+      "The big one: the HRV Apple Watch records into HealthKit is SDNN, while Health Connect's record is RMSSD. They are different measures and are not interconvertible — do not normalize one into the other. iOS 27 added HKQuantityTypeIdentifier.heartRateVariabilityRMSSD, but as of October 2, 2026 Apple's documentation gives it no description, so it is not paired with Health Connect's record here: what it holds, how it is computed and whether Apple Watch writes it are not stated.",
   },
   {
     id: "vo2-max",
@@ -77,7 +77,7 @@ export const ROWS: Row[] = [
       "HKCategoryTypeIdentifier.sleepAnalysis (values: inBed, awake, asleepCore, asleepDeep, asleepREM, asleepUnspecified)",
     android: "SleepSessionRecord (carries stages)",
     watchOut:
-      "Stage vocabularies differ and stages are estimated, not measured. Apple's .asleep is deprecated in favour of the specific stages.",
+      "Stage vocabularies differ and stages are estimated, not measured. Apple deprecated .asleep in iOS 16.0 and points to .asleepCore, .asleepDeep, .asleepREM or .asleepUnspecified instead (.asleepUnspecified is the rename).",
   },
   {
     id: "steps",

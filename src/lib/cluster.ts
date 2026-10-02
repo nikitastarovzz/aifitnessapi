@@ -7,6 +7,12 @@ export type RelatedLink = { href: string; label: string };
 export type Faq = { q: string; a: string };
 /** A HowTo step (optional; presence switches on HowTo JSON-LD for how-to pages). */
 export type Step = { name: string; text: string };
+/**
+ * One primary source a re-verification actually used. `url` is the
+ * human-readable page (never the JSON API behind it), `checked` the ISO date
+ * it was fetched and compared against the page, `note` which claims it backs.
+ */
+export type SourceCheck = { url: string; checked: string; note?: string };
 
 export type ClusterEntry = {
   slug: string;
@@ -24,6 +30,16 @@ export type ClusterEntry = {
   cta: { pitch: string };
   /** How-to steps for HowTo schema. Omit for non-how-to (roundup/comparison). */
   steps?: Step[];
+  /**
+   * The primary sources the last full re-verification checked every claim
+   * against. Set it only together with an `updated` stamp that re-verification
+   * earned: a list here says "these pages were read on `checked` and the page
+   * agrees with them", so a source that was merely linked, or a re-check that
+   * covered only some claims, does not belong in it. Rendered as "Sources
+   * checked" under the verification line, listed in the markdown mirror, and
+   * emitted as TechArticle `citation` (merged with doc links in the body).
+   */
+  sources?: SourceCheck[];
   /**
    * Page is about this site's own product (KinesteX funds AIFitnessAPI).
    * Setting this renders a permanent disclosure banner above the capsule.

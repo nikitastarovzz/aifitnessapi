@@ -252,6 +252,18 @@ export async function GET(
     entry.body,
     "",
   );
+  // The pages the "Last reviewed" date was checked against, so an agent
+  // quoting this mirror can cite the primary source rather than us.
+  // Parentheses are escaped: Apple's symbol URLs contain them, and a literal
+  // ")" would end the markdown link early.
+  if (entry.sources?.length) {
+    out.push("## Sources", "");
+    for (const s of entry.sources) {
+      const href = s.url.replace(/\(/g, "%28").replace(/\)/g, "%29");
+      out.push(`- [${s.url.replace(/^https?:\/\//, "")}](${href})${s.note ? ` — ${s.note}` : ""} (checked ${s.checked})`);
+    }
+    out.push("");
+  }
   if (entry.faqs.length) {
     out.push("## FAQ", "");
     entry.faqs.forEach((f, i) => {

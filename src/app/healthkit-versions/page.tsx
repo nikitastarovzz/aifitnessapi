@@ -6,7 +6,7 @@ import Container from "@/components/Container";
 import ContentAge from "@/components/ContentAge";
 import { Mdx } from "@/components/mdx";
 import { HK_IDENTIFIERS, HK_FETCHED_ON, type HkIdentifier } from "@/data/healthkitIdentifiers";
-import { getStandalone, HK_STANDALONE_PUBLISHED, HK_STANDALONE_MODIFIED } from "@/data/hkStandalone";
+import { getStandalone, HK_STANDALONE_PUBLISHED, hkStandaloneModified } from "@/data/hkStandalone";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 
@@ -109,7 +109,7 @@ export default function HealthKitVersionsPage() {
         alternativeHeadline: entry.primaryQuery,
         description: entry.metaDescription,
         datePublished: HK_STANDALONE_PUBLISHED,
-        dateModified: HK_STANDALONE_MODIFIED,
+        dateModified: hkStandaloneModified(SLUG),
         author: orgRef(),
         publisher: orgRef(),
         inLanguage: "en",

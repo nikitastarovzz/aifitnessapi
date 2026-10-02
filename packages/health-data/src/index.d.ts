@@ -18,7 +18,15 @@ export interface HealthKitIdentifier {
   valueEnum: string | null;
   iosIntroduced: string | null;
   watchosIntroduced: string | null;
+  /** "yes" when any platform entry in Apple's availability data carries a
+   *  deprecatedAt version (Apple's own `deprecated` flag is not used). */
   deprecated: "yes" | "no";
+  /** The iOS deprecatedAt version; null when iOS carries none. */
+  iosDeprecated: string | null;
+  /** Apple's deprecation note, verbatim; null where Apple says nothing. */
+  deprecationNote: string | null;
+  /** The rename target Apple's availability data names; null where none. */
+  renamedTo: string | null;
   /** "no" when Apple ships the type with no abstract and no discussion. */
   appleDocumented: "yes" | "no";
   appleDocs: string;

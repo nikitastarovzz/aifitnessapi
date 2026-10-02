@@ -186,6 +186,42 @@ export function citationsFromBody(body: string): { "@type": string; url: string 
     .map((url) => ({ "@type": "WebPage", url }));
 }
 
+/**
+ * Identity key for a URL when deduplicating: the same page can be written
+ * with escaped or literal parentheses (Apple's symbol URLs) and with or
+ * without a trailing slash or fragment.
+ */
+function urlKey(url: string): string {
+  try {
+    const u = new URL(url);
+    u.hash = "";
+    return decodeURI(u.href).replace(/\/$/, "");
+  } catch {
+    return url;
+  }
+}
+
+/**
+ * Everything an entry cites: vendor/standards docs linked in the body, plus
+ * every page in `entry.sources`. A recorded source is evidence by
+ * construction — it is the page a re-verification checked the claims against
+ * — so it is cited whatever its domain, which the body heuristic cannot do.
+ * One node per page, body links first, in first-seen order.
+ */
+export function entryCitations(entry: Pick<ClusterEntry, "body" | "sources">) {
+  const seen = new Set<string>();
+  const out: { "@type": string; url: string }[] = [];
+  const add = (url: string) => {
+    const key = urlKey(url);
+    if (seen.has(key)) return;
+    seen.add(key);
+    out.push({ "@type": "WebPage", url });
+  };
+  for (const c of citationsFromBody(entry.body)) add(c.url);
+  for (const s of entry.sources ?? []) add(s.url);
+  return out;
+}
+
 /** Projects, repositories and tools an entry links — mentioned, not cited. */
 export function mentionsFromBody(body: string): { "@type": string; url: string }[] {
   return externalLinks(body)
@@ -231,8 +267,10 @@ export function spokeGraph({
     description: t.def,
     inDefinedTermSet: absoluteUrl("/glossary"),
   }));
-  const citation = citationsFromBody(entry.body);
-  const mentions = mentionsFromBody(entry.body);
+  const citation = entryCitations(entry);
+  // A page cited as evidence is not also merely "mentioned".
+  const cited = new Set(citation.map((c) => urlKey(c.url)));
+  const mentions = mentionsFromBody(entry.body).filter((m) => !cited.has(urlKey(m.url)));
 
   // Cookbook pages are runnable recipes: mark the code as SoftwareSourceCode
   // so the SERP entry can widen and agents can tell "article with code" from

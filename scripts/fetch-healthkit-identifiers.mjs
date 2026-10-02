@@ -21,6 +21,20 @@
  *
  * Both are null when Apple's wording does not state them. We do not guess.
  *
+ * Deprecation is read from machine fields, but not the obvious one. Apple's
+ * JSON marks a deprecated symbol by giving its platform entries a
+ * `deprecatedAt` version and leaves the `deprecated` boolean beside it false
+ * (in the 2026-10-02 read the boolean was false on every platform entry of
+ * every page, including the ones carrying deprecatedAt). An earlier version
+ * of this script read only the boolean and so published "nothing in HealthKit
+ * is deprecated", which was false. A symbol now counts as deprecated when any
+ * platform entry carries `deprecatedAt` or the boolean, and the evidence
+ * travels with it: the per-platform `deprecatedAt` versions, Apple's own
+ * deprecation note (`deprecationSummary`, verbatim, symbol links resolved to
+ * their names), the symbols that note points to, and the `renamed` target
+ * when the platform entries name one. Each is null (or empty) where Apple
+ * says nothing.
+ *
  * Usage: node scripts/fetch-healthkit-identifiers.mjs [--offline]
  *   --offline reparses the cache in .cache/healthkit without refetching.
  */
@@ -82,6 +96,81 @@ function inlineText(nodes) {
   return out;
 }
 
+/**
+ * Like inlineText, but resolves `reference` nodes to the symbol they link to,
+ * using the page's own references table. Deprecation notes are mostly links
+ * ("Use <cardioDance> or <socialDance> instead."), so dropping references —
+ * which inlineText does — would leave "Use  or  instead." Kept separate so
+ * the abstracts and discussions published before this existed do not change
+ * underneath their readers.
+ */
+function linkedText(nodes, refs) {
+  let out = "";
+  for (const n of nodes || []) {
+    if (!n || typeof n !== "object") continue;
+    if (n.type === "text") out += n.text ?? "";
+    else if (n.type === "codeVoice") out += n.code ?? "";
+    else if (n.type === "reference") out += refs?.[n.identifier]?.title ?? String(n.identifier).split("/").pop();
+    else if (n.inlineContent) out += linkedText(n.inlineContent, refs);
+  }
+  return out;
+}
+
+/** The symbol names a run of inline content links to, in order, de-duplicated. */
+function linkedSymbols(nodes, refs, acc = []) {
+  for (const n of nodes || []) {
+    if (!n || typeof n !== "object") continue;
+    if (n.type === "reference") {
+      const t = refs?.[n.identifier]?.title ?? String(n.identifier).split("/").pop();
+      if (!acc.includes(t)) acc.push(t);
+    } else if (n.inlineContent) linkedSymbols(n.inlineContent, refs, acc);
+  }
+  return acc;
+}
+
+/** One platform entry: copied from Apple, with deprecation read from BOTH signals. */
+function platformOf(p) {
+  return {
+    name: p.name,
+    introducedAt: p.introducedAt ?? null,
+    // True when Apple sets the boolean OR gives a deprecatedAt version — see
+    // the header for why the boolean alone is not enough.
+    deprecated: Boolean(p.deprecated) || p.deprecatedAt != null,
+    // The evidence for `deprecated`: the version Apple says the symbol was
+    // deprecated in on this platform. Null where Apple gives none.
+    deprecatedAt: p.deprecatedAt ?? null,
+    beta: Boolean(p.beta),
+  };
+}
+
+/**
+ * Row-level deprecation evidence, or null when no platform marks the symbol
+ * deprecated. `problems` collects payload shapes we refuse to paper over.
+ */
+function deprecationOf(doc, label, problems) {
+  const platforms = doc.metadata?.platforms || [];
+  if (!platforms.some((p) => p.deprecated || p.deprecatedAt != null)) {
+    if (doc.deprecationSummary) problems.push(`${label} has a deprecation note but no platform marks it deprecated`);
+    return null;
+  }
+  const refs = doc.references || {};
+  const summary = (doc.deprecationSummary || [])
+    .map((node) => linkedText(node.inlineContent ?? [node], refs).trim())
+    .filter(Boolean)
+    .join(" ");
+  const replacements = [];
+  for (const node of doc.deprecationSummary || []) linkedSymbols(node.inlineContent ?? [node], refs, replacements);
+  const renamed = [...new Set(platforms.map((p) => p.renamed).filter(Boolean))];
+  // One symbol renamed to different targets on different platforms is not a
+  // shape we have seen; publishing one of them would be a guess.
+  if (renamed.length > 1) problems.push(`${label} is renamed to different symbols per platform: ${renamed.join(", ")}`);
+  return {
+    message: summary || null,
+    replacements,
+    renamedTo: renamed.length === 1 ? renamed[0] : null,
+  };
+}
+
 function discussionParagraphs(doc) {
   const paras = [];
   for (const sec of doc.primaryContentSections || []) {
@@ -97,6 +186,9 @@ function discussionParagraphs(doc) {
 }
 
 const rows = [];
+// Integrity problems, collected while parsing and checked before anything is
+// written — see the gates below.
+const problems = [];
 
 for (const family of FAMILIES) {
   const index = await getJson(`${DOC}/${family.slug}.json`, `_index-${family.key}.json`);
@@ -180,15 +272,16 @@ for (const family of FAMILIES) {
       aggregationEvidence: cumulative || discrete,
       unitFamily: unitMatch ? unitMatch[1].trim().toLowerCase() : null,
       valueEnum,
-      platforms: (md.platforms || []).map((p) => ({
-        name: p.name,
-        introducedAt: p.introducedAt ?? null,
-        deprecated: Boolean(p.deprecated),
-        beta: Boolean(p.beta),
-      })),
-      deprecated: (md.platforms || []).some((p) => p.deprecated),
+      platforms: (md.platforms || []).map(platformOf),
+      deprecated: (md.platforms || []).some((p) => p.deprecated || p.deprecatedAt != null),
+      deprecation: deprecationOf(doc, `${family.label}.${caseName}`, problems),
       discussionWords: disc.split(/\s+/).filter(Boolean).length,
       undocumented: !inlineText(doc.abstract).trim() && paras.length === 0,
+      // The page this row was read from, minus the /tutorials/data JSON
+      // prefix. Each family has its own path segment — a category type's
+      // page under hkquantitytypeidentifier/ is a 404 — so the URL is built
+      // from the family the row was crawled under, never from a constant.
+      docUrl: `https://developer.apple.com/documentation/healthkit/${family.slug}/${caseName.toLowerCase()}`,
     });
   }
   console.log(`  ${family.label}: ${rows.filter((r) => r.family === family.key).length} cases`);
@@ -224,20 +317,35 @@ for (const [name, group] of errorCases) {
     abstract: inlineText(doc.abstract).trim(),
     discussion: paras.join(" ") || null,
     undocumented: !inlineText(doc.abstract).trim() && paras.length === 0,
-    platforms: (doc.metadata?.platforms || []).map((pl) => ({
-      name: pl.name,
-      introducedAt: pl.introducedAt ?? null,
-      deprecated: Boolean(pl.deprecated),
-      beta: Boolean(pl.beta),
-    })),
+    platforms: (doc.metadata?.platforms || []).map(platformOf),
+    deprecated: (doc.metadata?.platforms || []).some((p) => p.deprecated || p.deprecatedAt != null),
+    deprecation: deprecationOf(doc, `HKError.${name}`, problems),
     docUrl: `https://developer.apple.com/documentation/healthkit/hkerror/${name.toLowerCase()}`,
   });
 }
 console.log(`  HKError.Code: ${errors.length} cases`);
 
 // --- integrity gates: fail loudly rather than publish a degraded dataset ---
-const problems = [];
-if (rows.length < 240) problems.push(`only ${rows.length} identifiers parsed across ${FAMILIES.length} families`);
+// The floor is the count of the last verified read: 241 identifiers across
+// the four families in Apple's docs JSON on 2026-10-02
+// (https://developer.apple.com/documentation/healthkit — 240 on 2026-08-28,
+// plus HKQuantityTypeIdentifier.heartRateVariabilityRMSSD). Every read so far
+// has only added identifiers, so fewer almost certainly means the parse
+// dropped rows. Raise it after a verified read; lower it only after checking
+// on Apple's site that an identifier really was removed — never to get a
+// write through.
+const EXPECTED_MIN_IDENTIFIERS = 241;
+if (rows.length < EXPECTED_MIN_IDENTIFIERS) problems.push(`only ${rows.length} identifiers parsed across ${FAMILIES.length} families (expected >= ${EXPECTED_MIN_IDENTIFIERS})`);
+// Same rule for deprecation. The 2026-10-02 read found four identifiers whose
+// platform entries carry deprecatedAt: HKWorkoutActivityType dance,
+// danceInspiredTraining and mixedMetabolicCardioTraining, and
+// HKCategoryTypeIdentifier audioExposureEvent. Fewer means either Apple
+// removed one (which the identifier floor above would also catch) or the
+// deprecation read broke — the failure that once published "nothing is
+// deprecated" for a year of reads.
+const EXPECTED_MIN_DEPRECATED = 4;
+const deprecatedRows = rows.filter((r) => r.deprecated);
+if (deprecatedRows.length < EXPECTED_MIN_DEPRECATED) problems.push(`only ${deprecatedRows.length} deprecated identifiers parsed (expected >= ${EXPECTED_MIN_DEPRECATED}) — is Apple still writing deprecatedAt on platform entries?`);
 // Apple genuinely ships a handful of newer types with no abstract AND no
 // discussion — as of the last fetch, three iOS 18 effort/breathing types.
 // That is a fact about Apple's docs, not a parse failure, so it is allowed
@@ -295,6 +403,11 @@ const body = `/**
  * auditable. Where Apple's wording does not state it, the value is null — it
  * is never guessed.
  *
+ * \`deprecated\` is read from Apple's machine fields: a platform entry with a
+ * \`deprecatedAt\` version counts, because Apple leaves the \`deprecated\`
+ * boolean false even on deprecated symbols. The versions stay on each
+ * platform entry and Apple's own note is in \`deprecation\`.
+ *
  * Why aggregation matters enough to derive: it decides whether a developer
  * sums a type with .cumulativeSum or averages it with .discreteAverage. Pick
  * wrong and HKStatisticsQuery returns a plausible, wrong number rather than
@@ -304,8 +417,25 @@ const body = `/**
 export type HkPlatform = {
   name: string;
   introducedAt: string | null;
+  /** True when Apple gives this platform a deprecatedAt version (or sets
+   *  its deprecated boolean, which in practice it leaves false). */
   deprecated: boolean;
+  /** The evidence for \`deprecated\`: the version Apple says the symbol was
+   *  deprecated in on this platform. Null where Apple gives none. */
+  deprecatedAt: string | null;
   beta: boolean;
+};
+
+/** What Apple says about a deprecated symbol. Present only when deprecated. */
+export type HkDeprecation = {
+  /** Apple's deprecation note, verbatim, with symbol links resolved to their
+   *  names, e.g. "Use HKWorkoutActivityType.cardioDance … instead." Null
+   *  when Apple marks the symbol deprecated without a note. */
+  message: string | null;
+  /** The symbols Apple's note links to, in Apple's order. Empty when none. */
+  replacements: string[];
+  /** The platform entries' \`renamed\` target, when Apple records one. */
+  renamedTo: string | null;
 };
 
 /** The identifier families this dataset covers. */
@@ -338,11 +468,17 @@ export type HkIdentifier = {
    *  Reading a category sample without it is meaningless. Null elsewhere. */
   valueEnum: string | null;
   platforms: HkPlatform[];
+  /** True when any platform entry is deprecated — see HkPlatform. */
   deprecated: boolean;
+  /** Apple's own words on the deprecation; null when not deprecated. */
+  deprecation: HkDeprecation | null;
   /** Word count of Apple's discussion — how much depth the source offers. */
   discussionWords: number;
   /** True when Apple documents the type with no abstract and no discussion. */
   undocumented: boolean;
+  /** Apple's reference page for the type — the page this row was read from.
+   *  The path segment is per family (hkcategorytypeidentifier/, …). */
+  docUrl: string;
 };
 
 /** The date the generator last read Apple's documentation. */
@@ -364,6 +500,10 @@ export type HkError = {
   /** True when Apple ships the case with a declaration and nothing else. */
   undocumented: boolean;
   platforms: HkPlatform[];
+  /** True when any platform entry is deprecated — see HkPlatform. */
+  deprecated: boolean;
+  /** Apple's own words on the deprecation; null when not deprecated. */
+  deprecation: HkDeprecation | null;
   docUrl: string;
 };
 
@@ -392,3 +532,7 @@ for (const f of FAMILIES) console.log(`  ${f.label}: ${rows.filter((r) => r.fami
 console.log(`  quantity aggregation — cumulative ${quantity.filter((r) => r.aggregation === "cumulative").length}, discrete ${quantity.filter((r) => r.aggregation === "discrete").length}, unstated ${unclassified.length}`);
 console.log(`  category value enums resolved: ${rows.filter((r) => r.valueEnum).length}`);
 console.log(`  HKError.Code cases: ${errors.length}`);
+for (const r of [...rows, ...errors].filter((x) => x.deprecated)) {
+  const ios = r.platforms.find((p) => p.name === "iOS")?.deprecatedAt;
+  console.log(`  deprecated: ${r.familyType ?? "HKError"}.${r.case}${ios ? ` (iOS ${ios})` : ""}${r.deprecation?.renamedTo ? ` → ${r.deprecation.renamedTo}` : ""}`);
+}

@@ -141,6 +141,16 @@ piece for rung (a).
   generated from the release set automatically. 3–5 body links from existing
   pages only (verify each path exists in `src/data/` or `src/app/`), with
   descriptive anchor text, never a bare URL path.
+- Year markers follow the stamp. A year in parentheses in a metaTitle, title
+  or h1 ("(2026)", "(2026 Guide)") claims the page is current as of that
+  year, so qa's YEAR-MARKER gate holds it to the year of the page's newest
+  dateModified (for a spoke, its `updated` stamp). When a re-verification
+  moves a stamp into a new year, move the marker to that year in the same
+  commit, or drop the marker. Never change the year alone, and never move a
+  stamp to satisfy the gate without re-checking every claim on the page: an
+  un-re-verified page keeps the year it was verified in. A year outside
+  parentheses ("Since 2024", "State of Fitness APIs 2026") is the subject and
+  is not judged.
 
 ## 5. Verify — the gate is the approval
 

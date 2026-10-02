@@ -28,7 +28,7 @@
   "items": [
     {
       "term": "HRV (heart rate variability)",
-      "definition": "Beat-to-beat variation in heart rhythm, used as a recovery signal — but not one number: Apple stores SDNN while Health Connect stores RMSSD, and the two are not interconvertible.",
+      "definition": "Beat-to-beat variation in heart rhythm, used as a recovery signal — but not one number: the HRV Apple Watch records into HealthKit is SDNN while Health Connect stores RMSSD, and the two are not interconvertible.",
       "group": "Health data & metrics",
       "href": "https://aifitnessapi.com/learn/what-is-hrv",
       "anchor": "#term-hrv",
@@ -36,7 +36,7 @@
     },
     {
       "term": "SDNN",
-      "definition": "The HRV statistic Apple HealthKit stores — the standard deviation of intervals between normal heartbeats. Do not mix it with RMSSD in one column.",
+      "definition": "The HRV statistic Apple Watch records into HealthKit — the standard deviation of intervals between normal heartbeats. Do not mix it with RMSSD in one column.",
       "group": "Health data & metrics",
       "href": "https://aifitnessapi.com/matrix",
       "anchor": "#term-sdnn",
@@ -44,7 +44,7 @@
     },
     {
       "term": "RMSSD",
-      "definition": "The HRV statistic Health Connect stores — the root mean square of successive interval differences. A different measure from SDNN, not a unit conversion away.",
+      "definition": "The HRV statistic Health Connect stores — the root mean square of successive interval differences. A different measure from SDNN, not a unit conversion away. HealthKit added an RMSSD identifier in iOS 27, which Apple had not described as of October 2, 2026.",
       "group": "Health data & metrics",
       "href": "https://aifitnessapi.com/data/hrv-api",
       "anchor": "#term-rmssd",

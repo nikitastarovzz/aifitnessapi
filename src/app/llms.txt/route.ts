@@ -23,6 +23,7 @@ import { releasedEngagement, ENGAGEMENT_PATH } from "@/data/engagement";
 import { releasedWatchApps, WATCH_PATH } from "@/data/watchApps";
 import { releasedAccessibility, A11Y_PATH } from "@/data/accessibility";
 import { releasedHkGroups, HK_BASE } from "@/data/hkGroupPages";
+import { HK_IDENTIFIERS } from "@/data/healthkitIdentifiers";
 
 /**
  * llms.txt — a concise, LLM-facing map of the site (§8). Describes each page in
@@ -345,7 +346,7 @@ export function GET() {
     `- [Search every page and answer](${absoluteUrl("/search")}): query the same index the site's own search uses; ${absoluteUrl("/search?q=<terms>")} is a working URL.`,
     `- [Which Fitness API Should I Use? (interactive picker)](${absoluteUrl("/picker")}): a 3-question tool that recommends a fitness/health API approach by job, platform, and priority, linking to the relevant comparisons, guides, and pricing.`,
     `- [HealthKit ↔ Health Connect data-type reference](${absoluteUrl("/matrix")}): the matching Apple HealthKit and Android Health Connect type identifier for ten common metrics, plus cross-platform gotchas (notably Apple stores HRV as SDNN while Health Connect stores RMSSD — not interconvertible). Verified against Apple's and Google's own docs.`,
-    `- [Every HealthKit type identifier](${absoluteUrl("/healthkit-identifiers")}): all 240 HealthKit identifiers across four families — HKQuantityTypeIdentifier, HKCategoryTypeIdentifier, HKCharacteristicTypeIdentifier and HKWorkoutActivityType — read from Apple's own documentation JSON, with unit family, the HKCategoryValue enum that decodes each category sample, iOS availability, and the cumulative-vs-discrete split that decides whether HKStatisticsQuery should sum or average. Apple states aggregation style only in prose, so it is derived and the sentence it came from is kept.`,
+    `- [Every HealthKit type identifier](${absoluteUrl("/healthkit-identifiers")}): all ${HK_IDENTIFIERS.length} HealthKit identifiers across four families — HKQuantityTypeIdentifier, HKCategoryTypeIdentifier, HKCharacteristicTypeIdentifier and HKWorkoutActivityType — read from Apple's own documentation JSON, with unit family, the HKCategoryValue enum that decodes each category sample, iOS availability, and the cumulative-vs-discrete split that decides whether HKStatisticsQuery should sum or average. Apple states aggregation style only in prose, so it is derived and the sentence it came from is kept.`,
     `- [Every HealthKit error code](${absoluteUrl("/healthkit-errors")}): all 17 HKError.Code cases with Apple's own description of each. Two findings stated rather than smoothed over: a denied HealthKit READ raises no error at all (Apple reports refusal only on saves, so an empty result is deliberately ambiguous between no-data and no-permission), and Apple does not publish the numeric raw values, so a code in a crash log cannot be mapped to a name from the documentation.`,
     "",
     "## About",

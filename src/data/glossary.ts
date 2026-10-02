@@ -18,9 +18,9 @@ export const GROUPS: Group[] = [
   {
     title: "Health data & metrics",
     terms: [
-      { term: "HRV (heart rate variability)", def: "Beat-to-beat variation in heart rhythm, used as a recovery signal — but not one number: Apple stores SDNN while Health Connect stores RMSSD, and the two are not interconvertible.", href: "/learn/what-is-hrv" },
-      { term: "SDNN", def: "The HRV statistic Apple HealthKit stores — the standard deviation of intervals between normal heartbeats. Do not mix it with RMSSD in one column.", href: "/matrix" },
-      { term: "RMSSD", def: "The HRV statistic Health Connect stores — the root mean square of successive interval differences. A different measure from SDNN, not a unit conversion away.", href: "/data/hrv-api" },
+      { term: "HRV (heart rate variability)", def: "Beat-to-beat variation in heart rhythm, used as a recovery signal — but not one number: the HRV Apple Watch records into HealthKit is SDNN while Health Connect stores RMSSD, and the two are not interconvertible.", href: "/learn/what-is-hrv" },
+      { term: "SDNN", def: "The HRV statistic Apple Watch records into HealthKit — the standard deviation of intervals between normal heartbeats. Do not mix it with RMSSD in one column.", href: "/matrix" },
+      { term: "RMSSD", def: "The HRV statistic Health Connect stores — the root mean square of successive interval differences. A different measure from SDNN, not a unit conversion away. HealthKit added an RMSSD identifier in iOS 27, which Apple had not described as of October 2, 2026.", href: "/data/hrv-api" },
       { term: "VO2 max", def: "An estimate of aerobic capacity. On consumer devices it is modeled from heart rate and pace, not measured — treat it as a trend, not a lab value.", href: "/learn/what-is-vo2-max" },
       { term: "SpO2 (blood oxygen)", def: "Peripheral oxygen saturation from an optical sensor. A data type existing does not mean data will be there — it needs a device that measures it.", href: "/data/blood-oxygen-api" },
       { term: "Sleep stages", def: "Light, deep, REM and awake segments a device infers from movement and heart rate. Definitions and boundaries differ by vendor, so they do not compare one-to-one.", href: "/learn/what-are-sleep-stages" },

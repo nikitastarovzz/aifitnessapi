@@ -54,7 +54,7 @@ export const metadata: Metadata = {
 const FAQS = [
   {
     q: "Can I map HealthKit HRV to Health Connect HRV?",
-    a: "Not directly. Apple stores heart-rate variability as SDNN (HKQuantityTypeIdentifier.heartRateVariabilitySDNN) while Health Connect stores RMSSD (HeartRateVariabilityRmssdRecord). SDNN and RMSSD are different calculations over the interval series and are not interconvertible, so treating them as one normalized 'HRV' field will produce values that aren't comparable between your iOS and Android users. Store the platform and the measure alongside the number.",
+    a: "Not directly. The heart-rate variability Apple Watch records into HealthKit is SDNN (HKQuantityTypeIdentifier.heartRateVariabilitySDNN), while Health Connect stores RMSSD (HeartRateVariabilityRmssdRecord). SDNN and RMSSD are different calculations over the interval series and are not interconvertible, so treating them as one normalized 'HRV' field will produce values that aren't comparable between your iOS and Android users. iOS 27 added HKQuantityTypeIdentifier.heartRateVariabilityRMSSD, but as of October 2, 2026 Apple's documentation does not describe it, so it is not a verified counterpart to Health Connect's record. Store the platform and the measure alongside the number.",
   },
   {
     q: "Can I read HealthKit or Health Connect from my server?",
@@ -157,11 +157,13 @@ export default function MatrixPage() {
         <section className="prose prose-neutral max-w-none dark:prose-invert prose-a:text-brand-600 hover:prose-a:text-brand-500">
           <h2>The three things that actually bite</h2>
           <p>
-            <strong>HRV is not one metric.</strong> Apple gives you SDNN, Health Connect gives you RMSSD.
-            They&rsquo;re computed differently and don&rsquo;t convert, so a single normalized
-            &ldquo;hrv&rdquo; column in your database will silently mix two incompatible measures. Keep the
-            platform and measure with the value — the <Link href="/data/hrv-api">HRV guide</Link> goes
-            deeper.
+            <strong>HRV is not one metric.</strong> Apple Watch records SDNN into HealthKit; Health
+            Connect gives you RMSSD. They&rsquo;re computed differently and don&rsquo;t convert, so a
+            single normalized &ldquo;hrv&rdquo; column in your database will silently mix two
+            incompatible measures. iOS 27 adds a HealthKit RMSSD identifier, but as of October 2, 2026
+            Apple&rsquo;s documentation does not say what it holds, so nothing yet says it closes the
+            gap. Keep the platform and measure with the value — the{" "}
+            <Link href="/data/hrv-api">HRV guide</Link> goes deeper.
           </p>
           <p>
             <strong>Neither store has a server API.</strong> Both are{" "}

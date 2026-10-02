@@ -12,7 +12,7 @@ faqs:
   - q: "How do Apple and Android differ on calories burned?"
     a: "Apple splits the day into active energy burned and basal energy burned. Health Connect offers an active calories record and a total calories record. Those are different partitions of the same day, so a single field named calories burned in your schema means different things depending on which platform wrote it. Never add an active figure to a total figure."
   - q: "What is the hardest metric to normalise across HealthKit and Health Connect?"
-    a: "Heart rate variability. Apple stores it as SDNN and Health Connect stores it as RMSSD, which are different computations and are not interconvertible. Every other metric in the matrix can be reconciled with mapping, de-duplication or an explicit definition. That one cannot, so it needs separate storage and separate baselines per platform."
+    a: "Heart rate variability. Apple Watch records it into HealthKit as SDNN and Health Connect stores it as RMSSD, which are different computations and are not interconvertible. Every other metric in the matrix can be reconciled with mapping, de-duplication or an explicit definition. That one cannot, so it needs separate storage and separate baselines per platform."
 ---
 
 This site's [cross-platform matrix](/matrix) verifies 10 health metrics against
@@ -81,8 +81,9 @@ name that cannot be misread. `calories` is a name that will be.
 
 Apple stores sleep as `HKCategoryTypeIdentifier.sleepAnalysis`, with the values
 `inBed`, `awake`, `asleepCore`, `asleepDeep`, `asleepREM` and
-`asleepUnspecified`. The older `.asleep` value is deprecated in favour of the
-specific stages. Health Connect stores a `SleepSessionRecord` that carries its
+`asleepUnspecified`. The older `.asleep` value was deprecated in iOS 16.0;
+Apple's note points to `.asleepCore`, `.asleepDeep`, `.asleepREM` or
+`.asleepUnspecified` instead, and names `.asleepUnspecified` as the rename. Health Connect stores a `SleepSessionRecord` that carries its
 stages.
 
 The unit of storage differs. On Apple, the row is an interval tagged with one
@@ -128,11 +129,13 @@ sessions. Map them explicitly, in a table you own, and log the misses.
 ## HRV, which is a different kind of problem
 
 Apple stores `heartRateVariabilitySDNN`. Health Connect stores
-`HeartRateVariabilityRmssdRecord`. Everything else on this page can be
+`HeartRateVariabilityRmssdRecord`. (iOS 27 added a
+`heartRateVariabilityRMSSD` identifier, which Apple's documentation did not
+describe as of October 2, 2026.) Everything else on this page can be
 reconciled by choosing a canonical shape. This one cannot, because the two
 platforms are storing different statistics rather than the same statistic
 differently packaged. It has its own post:
-[HRV is SDNN on iOS and RMSSD on Android](/blog/hrv-sdnn-vs-rmssd).
+[HRV: Apple Watch SDNN vs Health Connect RMSSD](/blog/hrv-sdnn-vs-rmssd).
 
 ## Normalisation is a decision, not a rename
 

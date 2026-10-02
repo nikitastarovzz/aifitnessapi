@@ -5,8 +5,8 @@ import { getAllPosts } from "@/lib/posts";
 import { absoluteUrl } from "@/lib/site";
 import { SDK_REPOS, SDK_CHECKED_ON } from "@/data/sdkReleases";
 import { clusterMap } from "@/lib/clusterRegistry";
-import { releasedHkGroups, HK_BASE, HK_GROUP_MODIFIED } from "@/data/hkGroupPages";
-import { HK_STANDALONE_MODIFIED } from "@/data/hkStandalone";
+import { releasedHkGroups, HK_BASE, hkGroupModified } from "@/data/hkGroupPages";
+import { hkStandaloneModified } from "@/data/hkStandalone";
 import { HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { changesSorted } from "@/data/changes";
 import { API_ENTRIES, APIS_PATH } from "@/data/apis";
@@ -95,20 +95,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const newestPost = newest(posts.map((p) => p.updated));
 
   // HealthKit reference pages: each row carries its page's JSON-LD
-  // dateModified — the page's own last change (35bc67c), not the older data
-  // date it shows readers. See HK_GROUP_MODIFIED for why those differ.
+  // dateModified — the page's own last change, not the data date it shows
+  // readers. See HK_GROUP_MODIFIED / hkGroupModified for why those differ.
   const hkPages: [string, string | undefined][] = [
     ["/healthkit-identifiers", HK_FETCHED_ON],
     ["/healthkit-errors", HK_FETCHED_ON],
-    ["/healthkit-versions", HK_STANDALONE_MODIFIED],
-    ["/healthkit-status", HK_STANDALONE_MODIFIED],
-    ["/healthkit-category-values", HK_STANDALONE_MODIFIED],
-    ["/healthkit-units", HK_STANDALONE_MODIFIED],
-    ["/health-connect-records", HK_STANDALONE_MODIFIED],
+    ["/healthkit-versions", hkStandaloneModified("healthkit-versions")],
+    ["/healthkit-status", hkStandaloneModified("healthkit-status")],
+    ["/healthkit-category-values", hkStandaloneModified("healthkit-category-values")],
+    ["/healthkit-units", hkStandaloneModified("healthkit-units")],
+    ["/health-connect-records", hkStandaloneModified("health-connect-records")],
   ];
   // The list is empty until the authored entries land, and an empty list
   // emits no rows.
-  const hkGroups = releasedHkGroups().map((g) => row(`${HK_BASE}/${g.slug}`, HK_GROUP_MODIFIED));
+  const hkGroupDates = releasedHkGroups().map((g) => [g.slug, hkGroupModified(g.slug)] as const);
+  const hkGroups = hkGroupDates.map(([slug, d]) => row(`${HK_BASE}/${slug}`, d));
 
   // Tools: the three built on the HealthKit corpus declare HK_FETCHED_ON as
   // dateModified; the other three carry a page-local UPDATED.
@@ -130,7 +131,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/changes": pageStamp("/changes") ?? newestChange,
     "/blog": newestPost,
     "/questions": newestAll,
-    [HK_BASE]: newest([HK_GROUP_MODIFIED, ...hkPages.map(([, d]) => d)]),
+    [HK_BASE]: newest([...hkGroupDates.map(([, d]) => d), ...hkPages.map(([, d]) => d)]),
     "/tools": newest(tools.map(([, d]) => d)),
     [DIGEST_PATH]: newest(issues.map(digestDate)),
     "/sdk-releases": SDK_CHECKED_ON ?? undefined,

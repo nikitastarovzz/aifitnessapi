@@ -6,7 +6,7 @@ import ClusterHero from "@/components/ClusterHero";
 import AggregationChecker, { type AggRow } from "@/components/tools/AggregationChecker";
 import { HK_IDENTIFIERS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { HK_READONLY } from "@/data/healthkitWritability";
-import { GROUP_TO_SLUG, hkGroupLabel } from "@/data/hkGroupPages";
+import { hkGroupSlugOf, hkGroupLabel } from "@/data/hkGroupPages";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
 
@@ -16,7 +16,7 @@ import { toolGraph } from "@/lib/schema";
  * This is the highest-consequence question in the identifier dataset and the
  * one Apple answers only in prose: choose wrong and HKStatisticsQuery returns
  * a plausible, wrong number rather than an error. The reference page answers
- * it for all 240 at once; this answers it for the one you are about to query,
+ * it for every identifier at once; this answers it for the one you are about to query,
  * with Apple's own sentence as the evidence.
  *
  * Rows are trimmed here rather than in the client component so the 332 KB
@@ -24,7 +24,11 @@ import { toolGraph } from "@/lib/schema";
  */
 
 const PATH = "/tools/aggregation-checker";
-const TITLE = "Sum or Average? Check 120 HealthKit Types";
+// The count is the dataset's, not a literal, so a refresh that adds a type
+// cannot leave the title behind (it read "120" until a 2026-10-02 refresh
+// added heartRateVariabilityRMSSD). Stays within 45 characters.
+const QUANTITY_COUNT = HK_IDENTIFIERS.filter((r) => r.family === "quantity").length;
+const TITLE = `Sum or Average? Check ${QUANTITY_COUNT} HealthKit Types`;
 const DESCRIPTION =
   "Type a HealthKit identifier and see whether Apple describes it as cumulative or discrete, with the sentence that says so — and where Apple is silent.";
 
@@ -49,7 +53,7 @@ const READONLY_EVIDENCE = new Map(HK_READONLY.map((r) => [r.case, r.evidence]));
 const ROWS: AggRow[] = HK_IDENTIFIERS.filter(
   (r) => r.family === "quantity" || r.family === "category",
 ).map((r) => {
-  const gs = GROUP_TO_SLUG[r.group] ?? "";
+  const gs = hkGroupSlugOf(r) ?? "";
   return {
     c: r.case,
     o: r.objc,

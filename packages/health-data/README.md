@@ -23,7 +23,7 @@ crossPlatform("hrv").watchOut;   // the SDNN-vs-RMSSD warning
 
 | Export | Rows | What |
 |---|---|---|
-| `healthkitIdentifiers` | 240 | Every HealthKit identifier across all four families, read from Apple's documentation JSON |
+| `healthkitIdentifiers` | 241 | Every HealthKit identifier across all four families, read from Apple's documentation JSON |
 | `crossPlatformTypes` | 10 | Verified HealthKit ↔ Health Connect metric mappings, with the traps |
 | `apiChanges` | 13 | Dated ecosystem changes, each graded `confirmed` or `reported` |
 | `glossary` | 33 | Domain terms |
@@ -47,6 +47,21 @@ discrete" from "nobody knows", so the package never collapses the two.
 Two fields are derived rather than copied, because Apple states them in prose
 rather than as machine-readable properties: `aggregation` and `unitFamily`.
 Both apply only to quantity types. Apple's documentation remains the authority.
+
+Deprecation is read from Apple's availability data, not from its `deprecated`
+flag, which Apple leaves false even on deprecated symbols. `deprecated` is
+`"yes"` when any platform entry carries a `deprecatedAt` version,
+`iosDeprecated` is the iOS one, and `deprecationNote` and `renamedTo` are
+Apple's own words, null where Apple says nothing:
+
+```js
+healthkitIdentifier("dance").iosDeprecated;   // "14.0"
+healthkitIdentifier("dance").deprecationNote; // "Use HKWorkoutActivityType.cardioDance or HKWorkoutActivityType.socialDance instead."
+healthkitIdentifier("audioExposureEvent").renamedTo; // "HKCategoryTypeIdentifier.environmentalAudioExposureEvent"
+```
+
+`appleDocs` links each identifier to the page it was read from, under its own
+family's path on developer.apple.com.
 
 ## Licence
 

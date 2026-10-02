@@ -30,7 +30,7 @@ documentation and says where the answer came from.
 
 | Tool | Answers |
 |---|---|
-| `healthkit_quantity_type` | Any of the 120 `HKQuantityTypeIdentifier` cases: unit family, iOS/watchOS availability, and whether it is **cumulative** (`.cumulativeSum`) or **discrete** (`.discreteAverage`) |
+| `healthkit_quantity_type` | Any of the 121 `HKQuantityTypeIdentifier` cases: unit family, iOS/watchOS availability, and whether it is **cumulative** (`.cumulativeSum`) or **discrete** (`.discreteAverage`) |
 | `health_data_cross_platform` | The HealthKit ↔ Health Connect mapping for a metric, plus the trap where one exists — Apple stores HRV as SDNN, Health Connect as RMSSD, and they are not interconvertible |
 | `fitness_api_changes` | Dated deprecations and turndowns, each graded `confirmed` or `reported` |
 | `fitness_api_glossary` | Domain terms — SDNN, RMSSD, aggregator, on-device store |

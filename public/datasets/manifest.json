@@ -15,15 +15,15 @@
     },
     {
       "file": "fitness-api-glossary-2026.csv",
-      "bytes": 11206,
+      "bytes": 11351,
       "rows": 33,
-      "sha256": "74ef9845e0bb8284aa96c9e2437e0289434bb2ae5c5f939e70c8b19f1814444f"
+      "sha256": "d9c9d962beb49bc846272cb8f7202ff681e3c38756a39e848abb335287d5101a"
     },
     {
       "file": "fitness-api-glossary-2026.json",
-      "bytes": 16246,
+      "bytes": 16391,
       "rows": 33,
-      "sha256": "b5767fd26ff7722a7e72c9b90a6d8c20ef216a7a83ae40e4e2959900264f19b8"
+      "sha256": "5f0f45ddd8b788d61841bc3f7be917db5e8b5f1ac719aedfb3c5146d48e2bedd"
     },
     {
       "file": "fitness-apis-2026.csv",
@@ -39,27 +39,27 @@
     },
     {
       "file": "health-data-type-matrix-2026.csv",
-      "bytes": 3226,
+      "bytes": 3547,
       "rows": 10,
-      "sha256": "2fc10d6d906888532178dfa8a8283bd2a17ce82142c99b09cc1899c4365318b1"
+      "sha256": "b767e583a87e5e49f48a6c07337f9928c24f2dc65a7ada49d6f69156cb1d2a5b"
     },
     {
       "file": "health-data-type-matrix-2026.json",
-      "bytes": 6139,
+      "bytes": 6460,
       "rows": 10,
-      "sha256": "30732731026b5665e9106e5f020addf8f8a30539472d2f63d9196a0bdf1b70a4"
+      "sha256": "bc804b5955e9348e3ffe0a981271111c3461cfd37cca5447c4861a84a09606b8"
     },
     {
       "file": "healthkit-type-identifiers-2026.csv",
-      "bytes": 73961,
-      "rows": 240,
-      "sha256": "b31afdb0df424abd08e430bf5b2ba5f7c634bcfc7f0c76efa755a798afd40430"
+      "bytes": 75191,
+      "rows": 241,
+      "sha256": "494b5d02c53ae638acda8d24f45da37c7e541e4ab0c185cf0bd6b5f240be0a5f"
     },
     {
       "file": "healthkit-type-identifiers-2026.json",
-      "bytes": 148074,
-      "rows": 240,
-      "sha256": "57151df0a042118620b90a32202532aaacb75f3a18f7c46473ff709dcd4a8304"
+      "bytes": 170155,
+      "rows": 241,
+      "sha256": "40c6c13406c2363069fa367854f1810ac5e4aa82219a8419f2399cfa9e73c9d8"
     },
     {
       "file": "motion-sdk-scorecard.csv",

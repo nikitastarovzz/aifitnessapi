@@ -14,9 +14,9 @@ import {
   getHkGroup,
   HK_FETCHED_ON,
   HK_GROUP_PUBLISHED,
-  HK_GROUP_MODIFIED,
+  hkGroupModified,
 } from "@/data/hkGroupPages";
-import type { HkFamily, HkIdentifier } from "@/data/healthkitIdentifiers";
+import { HK_IDENTIFIERS, type HkFamily, type HkIdentifier } from "@/data/healthkitIdentifiers";
 import { ROWS as MATRIX_ROWS } from "@/data/matrix";
 import { HK_READONLY_SET } from "@/data/healthkitWritability";
 import { absoluteUrl, site } from "@/lib/site";
@@ -212,15 +212,27 @@ function IdentifierTable({ members }: { members: HkIdentifier[] }) {
                   <AggregateCell m={m} />
                 </td>
                 <td className="py-2 pr-4 text-[var(--muted)]">
-                  <span className="text-xs">{m.unitFamily ?? "—"}</span>
+                  {/* Null on a quantity type means Apple's prose does not
+                      state a unit; on the other families no unit applies. */}
+                  <span className="text-xs">
+                    {m.unitFamily ?? (m.family === "quantity" ? "not stated" : "—")}
+                  </span>
                 </td>
                 <td className="py-2 pr-4 text-[var(--muted)]">
                   <span className="text-xs">
                     {ios?.introducedAt ?? "—"}
                     {beta ? " (beta)" : ""}
                   </span>
-                  {m.group === "Deprecated activity types" && (
-                    <span className="mt-0.5 block text-[11px] text-[var(--muted)]">deprecated group</span>
+                  {/* From Apple's availability data (a deprecatedAt version on a
+                      platform entry), not the group name — audioExposureEvent is
+                      deprecated outside Apple's "Deprecated activity types" group. */}
+                  {m.deprecated && (
+                    <span
+                      className="mt-0.5 block text-[11px] text-[var(--muted)]"
+                      title={m.deprecation?.message ?? undefined}
+                    >
+                      {ios?.deprecatedAt ? `deprecated in ${ios.deprecatedAt}` : "deprecated"}
+                    </span>
                   )}
                 </td>
                 <td className="py-2 text-[var(--muted)]">
@@ -275,11 +287,12 @@ export default async function HkGroupPage({ params }: { params: Promise<Params> 
   const tools = toolsFor(members);
 
   // Two kinds of date, kept apart on purpose. datePublished/dateModified are
-  // the page's own (35bc67c, 2026-09-04); `entry.updated` is the date of the
-  // data it renders (the 2026-08-28 corpus read), which is older than the
-  // page itself — so it cannot be dateModified without claiming the page
-  // changed before it existed. It goes in lastReviewed, which is what that
-  // property means, and on the visible date line with its age.
+  // the page's own (first published 35bc67c, 2026-09-04; modified per page,
+  // see hkGroupModified); `entry.updated` is the date of the corpus read its
+  // prose was checked against, which can be older than the page itself — so
+  // it cannot be dateModified without claiming the page changed before it
+  // existed. It goes in lastReviewed, which is what that property means, and
+  // on the visible date line with its age.
   const graphJsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -290,7 +303,7 @@ export default async function HkGroupPage({ params }: { params: Promise<Params> 
         alternativeHeadline: entry.primaryQuery,
         description: entry.metaDescription,
         datePublished: HK_GROUP_PUBLISHED,
-        dateModified: HK_GROUP_MODIFIED,
+        dateModified: hkGroupModified(entry.slug),
         author: orgRef(),
         publisher: orgRef(),
         inLanguage: "en",
@@ -497,7 +510,7 @@ export default async function HkGroupPage({ params }: { params: Promise<Params> 
           All {members.length} identifiers above were read from Apple&rsquo;s documentation on{" "}
           {HK_FETCHED_ON}. See{" "}
           <Link href="/healthkit-identifiers" className="font-medium text-brand-600 hover:text-brand-500">
-            the full 240-identifier table
+            the full {HK_IDENTIFIERS.length}-identifier table
           </Link>{" "}
           for every group at once, or{" "}
           <Link href="/datasets" className="font-medium text-brand-600 hover:text-brand-500">

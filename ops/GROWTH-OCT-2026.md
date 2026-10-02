@@ -11,6 +11,42 @@ owner has · **[egress]** limited by this sandbox's network policy (only
 developer.apple.com and developer.android.com were reachable on 2026-10-02) ·
 status is filled in as items land.
 
+## Status (2026-10-02, end of day)
+
+**Shipped — all 42 code items**, in three commits on `main`, each through
+`tsc → build → qa` (qa gates went 110 → 130):
+
+- `5bccea9` wave A — items 9-22, 44-46, 49 (hosting, crawl metadata,
+  sitemap, robots, IndexNow diff mode, freshness infrastructure, structured
+  data).
+- `e5cd0b5` wave C1 — items 23-38, 40-42, 50 (internal links, retitles with
+  a control cohort, Fitbit/Google Fit copy, cookbook recipes, reference
+  tables, static share cards).
+- wave C2 (the commit after `e5cd0b5`) — items 39, 43, 47, 48 (title-year
+  gate; HealthKit dataset re-read to 241 identifiers and its deprecation and
+  Apple-link bugs fixed; 7 entries re-verified end to end with a `sources`
+  list; corrections logged).
+
+Partial, by design: #47 re-verified 7 entries fully — every other old entry
+depends on a host this sandbox cannot reach (vendor docs, ai.google.dev,
+developers.google.com); they stay stamped as they are until #7 opens those
+hosts. #38 shipped metaTitle support and 5 post titles, only where no
+cluster page owns the query.
+
+**Owner items:** #1 done (site back before 15:30 UTC); #5's IndexNow half
+done (full resubmission run); #22's baseline snapshot re-taken. Open:
+
+- **Signups are failing (new, urgent).** Every deploy since recovery answers
+  `/api/signup/health` with 503: "FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL
+  and FIREBASE_PRIVATE_KEY are not all set". The re-enabled pre-outage
+  deployment had them; the new ones do not. Vercel → project → Settings →
+  Environment Variables (Production): re-add all three, then redeploy. The
+  uptime workflow fails on exactly this until it is fixed.
+- #2 `VERCEL_TOKEN`, `ALERT_EMAIL`, `RESEND_API_KEY`; #3 spend notifications
+  and POST-only rate limits; #4 GSC Domain property; #5 sitemap resubmit and
+  URL inspection in Search Console and Bing; #6 exports at day 0 and day 28;
+  #7 host allowlist; #8 planned-downtime 503 policy.
+
 ## What the data says worked (July GSC, verified)
 
 - **Vendor-named commercial-investigation pages took 26 of 32 clicks.**
@@ -79,6 +115,10 @@ The headline is not in the data: since 2026-09-27 the site has returned
 5. **IndexNow, once**: Actions → indexnow → Run workflow → mode **all**. Check
    the log for HTTP 200/202. Every later run is a diff (fired by each
    Production deploy, plus a Monday catch-up) — do not use "all" again.
+   Diff mode only sees new URLs and changed `lastmod`; for pages retitled or
+   edited without a stamp move, dispatch with the **paths** input instead
+   (space-separated, e.g. `/fix /pricing/strava-api-pricing`).
+   *Done by the owner on 2026-10-02 after recovery (425 URLs).*
 6. **Search Console + Bing**: resubmit the sitemap; request indexing for the
    list in #5; watch the 4xx count in Pages daily for 14 days.
 7. **Data**: export GSC (queries, pages, query×page, 3 months) to
@@ -138,7 +178,7 @@ The headline is not in the data: since 2026-09-27 the site has returned
 36. Web guide only: lead with MediaPipe Pose Landmarker.
 37. Terra-led titles get a health-API qualifier.
 38. Blog posts can carry a query-shaped meta title; used only where no cluster page owns the query.
-39. Title years: a freshness-marker year must equal the year of `updated`; qa gate.
+39. Title years — gate, not token: literal years must equal the stamp year (qa `YEAR-MARKER`: a parenthesised year in a title or h1 vs the page's newest dateModified).
 40. Attribution: retitles logged before/after in content-log; a control cohort
     left untouched; gsc-report flags queries that quote the site's own sentences.
 

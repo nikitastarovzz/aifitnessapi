@@ -5,7 +5,7 @@
  * First-published date of every cluster spoke and blog post, read from git
  * history: the first commit that both contained the entry and listed it in
  * its cluster's release gate (blog posts: the commit that added the file).
- * Keyed by URL path without the leading slash. 316 rows.
+ * Keyed by URL path without the leading slash. 318 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -137,6 +137,8 @@ export const PUBLISHED: Record<string, string> = {
   "compliance/store-health-data-securely": "2026-07-14",
   "cookbook/backfill-checkpointer": "2026-08-12",
   "cookbook/day-boundary-rollup": "2026-08-12",
+  "cookbook/dedupe-health-samples": "2026-10-02",
+  "cookbook/incremental-sync-anchor": "2026-10-02",
   "cookbook/rate-limit-fetcher": "2026-08-12",
   "cookbook/refresh-rotation": "2026-08-12",
   "cookbook/rep-counter": "2026-08-12",

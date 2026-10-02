@@ -29,6 +29,11 @@ on:
         type: choice
         options: [diff, all]
         default: diff
+      paths:
+        description: "Optional: space-separated paths to submit instead (e.g. /fix /pricing/strava-api-pricing). For pages whose title or copy changed without a new lastmod, which diff mode cannot see. Leaves the snapshot alone."
+        type: string
+        required: false
+        default: ""
   schedule:
     - cron: "0 6 * * 1" # Mondays 06:00 UTC — diff catch-up
 
@@ -90,10 +95,27 @@ jobs:
           key: indexnow-snapshot-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: indexnow-snapshot-
 
+      # Explicit paths go through an env var, never interpolated into the
+      # script: a dispatch input is free text. Only path-shaped words are
+      # passed on; anything else fails the step instead of being run.
       - name: Submit to IndexNow
         env:
           INDEXNOW_SNAPSHOT: .indexnow/snapshot.json
-        run: node scripts/indexnow.mjs ${{ inputs.mode == 'all' && '--all' || '' }}
+          MODE: ${{ inputs.mode }}
+          PATHS: ${{ inputs.paths }}
+        run: |
+          set -euo pipefail
+          if [ -n "${PATHS:-}" ]; then
+            read -r -a list <<< "$PATHS"
+            for p in "${list[@]}"; do
+              [[ "$p" =~ ^/[a-z0-9/._-]*$ ]] || { echo "Not a site path: $p"; exit 1; }
+            done
+            node scripts/indexnow.mjs "${list[@]}"
+          elif [ "${MODE:-diff}" = "all" ]; then
+            node scripts/indexnow.mjs --all
+          else
+            node scripts/indexnow.mjs
+          fi
 
       # Only reached when the script succeeded, i.e. IndexNow accepted the
       # batch or there was nothing to send. Re-saving an unchanged snapshot is

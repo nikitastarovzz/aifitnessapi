@@ -576,6 +576,30 @@ function buildHealthKitDataset() {
     fail(`HealthKit parse yielded ${rows.length} rows but ${rel} declares ${declared}`);
   }
 
+  // Apple's reference page is per family — hkcategorytypeidentifier/,
+  // hkworkoutactivitytype/, … — and a category type's page under
+  // hkquantitytypeidentifier/ is a 404. This file once built every URL with
+  // the quantity path, so the generator now records the page each row was
+  // read from, and the dataset refuses to publish a row without one or with
+  // one that does not sit under the row's own family.
+  for (const r of rows) {
+    if (typeof r.docUrl !== "string" || !r.docUrl.startsWith("https://developer.apple.com/documentation/healthkit/")) {
+      fail(`HealthKit row ${r.case} has no docUrl — regenerate ${rel} with scripts/fetch-healthkit-identifiers.mjs`);
+    }
+    if (!r.docUrl.includes(`/${r.familyType.toLowerCase()}/`)) {
+      fail(`HealthKit row ${r.case} (${r.familyType}) has a docUrl outside its family: ${r.docUrl}`);
+    }
+    // Deprecation must arrive with its evidence: a deprecated row with no
+    // platform carrying deprecatedAt (or Apple's flag) means the generator's
+    // shape changed under us.
+    if (r.deprecated && !r.platforms.some((p) => p.deprecatedAt || p.deprecated)) {
+      fail(`HealthKit row ${r.case} is deprecated with no platform evidence`);
+    }
+    if (r.deprecated !== Boolean(r.deprecation)) {
+      fail(`HealthKit row ${r.case}: deprecated=${r.deprecated} but deprecation is ${JSON.stringify(r.deprecation)}`);
+    }
+  }
+
   const items = rows.map((r) => ({
     identifier: r.case,
     objcConstant: r.objc,
@@ -588,8 +612,11 @@ function buildHealthKitDataset() {
     iosIntroduced: r.platforms.find((p) => p.name === "iOS")?.introducedAt ?? null,
     watchosIntroduced: r.platforms.find((p) => p.name === "watchOS")?.introducedAt ?? null,
     deprecated: r.deprecated ? "yes" : "no",
+    iosDeprecated: r.platforms.find((p) => p.name === "iOS")?.deprecatedAt ?? null,
+    deprecationNote: r.deprecation?.message ?? null,
+    renamedTo: r.deprecation?.renamedTo ?? null,
     appleDocumented: r.undocumented ? "no" : "yes",
-    appleDocs: `https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/${r.case.toLowerCase()}`,
+    appleDocs: r.docUrl,
   }));
 
   return {
@@ -597,7 +624,8 @@ function buildHealthKitDataset() {
     declared,
     columns: [
       "identifier", "objcConstant", "family", "group", "abstract", "aggregation", "unitFamily",
-      "valueEnum", "iosIntroduced", "watchosIntroduced", "deprecated", "appleDocumented", "appleDocs",
+      "valueEnum", "iosIntroduced", "watchosIntroduced", "deprecated", "iosDeprecated", "deprecationNote",
+      "renamedTo", "appleDocumented", "appleDocs",
     ],
     doc: {
       name: "HealthKit Type Identifiers 2026",
@@ -605,7 +633,7 @@ function buildHealthKitDataset() {
       publisher: PUBLISHER,
       license: LICENSE,
       methodology:
-        `Every identifier in HealthKit's four naming families — HKQuantityTypeIdentifier, HKCategoryTypeIdentifier, HKCharacteristicTypeIdentifier and HKWorkoutActivityType — read on ${fetchedOn} from the JSON Apple serves to render developer.apple.com. The identifier, Objective-C constant, group, abstract and platform versions are copied from Apple's payload unchanged. Two columns are DERIVED because Apple states them only in prose and not as machine-readable properties: aggregation (cumulative vs discrete) and unitFamily. Both are matched literally against Apple's own sentences — "measure cumulative values", "use energy units" — and are null where Apple's wording does not state them, never guessed. Both apply ONLY to quantity types: for the other three families they are null because the concept does not exist, not because Apple declined to state it — read them together with the family column. Aggregation is included because it determines whether HKStatisticsQuery should use .cumulativeSum or a discrete option, and choosing wrong returns a plausible wrong number rather than an error. valueEnum names the HKCategoryValue enum that decodes a category sample, which is null for every other family. Apple's abstracts are reproduced for identification of the API surface; the analysis and the aggregation classification are this site's.`,
+        `Every identifier in HealthKit's four naming families — HKQuantityTypeIdentifier, HKCategoryTypeIdentifier, HKCharacteristicTypeIdentifier and HKWorkoutActivityType — read on ${fetchedOn} from the JSON Apple serves to render developer.apple.com. The identifier, Objective-C constant, group, abstract and platform versions are copied from Apple's payload unchanged. Two columns are DERIVED because Apple states them only in prose and not as machine-readable properties: aggregation (cumulative vs discrete) and unitFamily. Both are matched literally against Apple's own sentences — "measure cumulative values", "use energy units" — and are null where Apple's wording does not state them, never guessed. Both apply ONLY to quantity types: for the other three families they are null because the concept does not exist, not because Apple declined to state it — read them together with the family column. Aggregation is included because it determines whether HKStatisticsQuery should use .cumulativeSum or a discrete option, and choosing wrong returns a plausible wrong number rather than an error. valueEnum names the HKCategoryValue enum that decodes a category sample, which is null for every other family. Deprecation is read from Apple's availability data: a type counts as deprecated when any platform entry carries a deprecatedAt version, because Apple leaves its separate deprecated flag false even on deprecated symbols, and the iOS version, Apple's own deprecation note and any renamed-to target are published beside it. Apple's abstracts are reproduced for identification of the API surface; the analysis and the aggregation classification are this site's.`,
       generatedFrom: `${rel} (generated by scripts/fetch-healthkit-identifiers.mjs, then by scripts/build-datasets.mjs)`,
   isBasedOn: "https://developer.apple.com/documentation/healthkit",
       sourceReadOn: fetchedOn,
@@ -620,9 +648,12 @@ function buildHealthKitDataset() {
         valueEnum: "Category types only: the HKCategoryValue enum that decodes the sample",
         iosIntroduced: "iOS version the type was introduced in",
         watchosIntroduced: "watchOS version the type was introduced in",
-        deprecated: "Whether Apple marks the type deprecated on any platform",
+        deprecated: "yes when any platform entry in Apple's availability data carries a deprecatedAt version (or Apple's deprecated flag, which Apple leaves false even on deprecated symbols)",
+        iosDeprecated: "iOS version Apple says the type was deprecated in; null when not deprecated on iOS",
+        deprecationNote: "Apple's deprecation note, verbatim, with symbol links resolved to their names; null where Apple gives none",
+        renamedTo: "The symbol Apple's availability data says the type was renamed to; null where Apple names none",
         appleDocumented: "no when Apple ships the type with neither abstract nor discussion",
-        appleDocs: "Apple's reference page for the type",
+        appleDocs: "Apple's reference page for the type — the page the row was read from, under the type's own family path",
       },
       items,
     },

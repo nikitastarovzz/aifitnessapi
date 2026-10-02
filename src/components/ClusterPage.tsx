@@ -233,6 +233,39 @@ export default function ClusterPage({
           <BookmarkButton path={path} title={entry.h1} />
         </div>
 
+        {/* What the "Last verified" date above was checked against. Collapsed
+            so it stays one line until a reader asks; renders nothing for an
+            entry whose re-verification predates the field. */}
+        {entry.sources && entry.sources.length > 0 && (() => {
+          const sources = entry.sources;
+          // One date in the summary when every source was checked the same
+          // day (the usual case: one re-verification pass); per-item otherwise.
+          const sameDay = sources.every((s) => s.checked === sources[0].checked);
+          return (
+            <details className="mt-2 text-sm text-[var(--muted)]">
+              <summary className="cursor-pointer select-none hover:text-[var(--fg)]">
+                Sources checked ({sources.length})
+                {sameDay && <> · {formatDate(sources[0].checked)}</>}
+              </summary>
+              <ul className="mt-2 space-y-1.5 border-l border-[var(--border)] pl-4">
+                {sources.map((s) => (
+                  <li key={s.url}>
+                    <a
+                      href={s.url}
+                      rel="nofollow"
+                      className="break-words text-[var(--fg)] underline decoration-[var(--border)] underline-offset-2 hover:text-brand-600"
+                    >
+                      {s.url.replace(/^https?:\/\//, "")}
+                    </a>
+                    {s.note && <span> — {s.note}</span>}
+                    {!sameDay && <span className="text-xs"> · checked {formatDate(s.checked)}</span>}
+                  </li>
+                ))}
+              </ul>
+            </details>
+          );
+        })()}
+
         {entry.firstParty && (
           <aside
             role="note"

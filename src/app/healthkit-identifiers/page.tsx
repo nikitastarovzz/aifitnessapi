@@ -39,6 +39,53 @@ const discrete = QUANTITY.filter((r) => r.aggregation === "discrete");
 const unstated = QUANTITY.filter((r) => !r.aggregation);
 const CATEGORY = HK_IDENTIFIERS.filter((r) => r.family === "category");
 const undocumented = HK_IDENTIFIERS.filter((r) => r.undocumented);
+/** iOS 27's RMSSD type, while Apple ships it undescribed — the cross-platform
+ *  note below has to mention it, and stops doing so once Apple documents it
+ *  (at which point the note needs re-reading against what Apple says). */
+const RMSSD_UNDESCRIBED = HK_IDENTIFIERS.find(
+  (r) => r.case === "heartRateVariabilityRMSSD" && r.undocumented,
+);
+
+/** "a", "a and b", "a, b and c". */
+const listJoin = (xs: string[]) =>
+  xs.length <= 1 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`;
+/** Numeric compare for dotted versions ("9.3" < "14.0" < "27.0"). */
+const cmpVersion = (a: string, b: string) => {
+  const [x, y] = [a.split(".").map(Number), b.split(".").map(Number)];
+  for (let i = 0; i < Math.max(x.length, y.length); i++) {
+    const d = (x[i] ?? 0) - (y[i] ?? 0);
+    if (d) return d;
+  }
+  return 0;
+};
+/**
+ * The undocumented set described from the data, not from memory. The prose
+ * once said "N quantity types … All three were introduced in iOS 18" — wrong
+ * from the day the category family (and hypertensionEvent, iOS 26.2) joined
+ * the dataset, and wronger after iOS 27.0 added heartRateVariabilityRMSSD.
+ * Family and version are now computed, so a refresh cannot leave them behind.
+ */
+const UNDOC_FAMILIES = listJoin(
+  HK_FAMILIES.map((f) => {
+    const n = undocumented.filter((r) => r.family === f.key).length;
+    const noun = f.key === "workoutActivity" ? "workout activity type" : `${f.key} type`;
+    return n ? `${n} ${noun}${n === 1 ? "" : "s"}` : "";
+  }).filter(Boolean),
+);
+const UNDOC_VERSIONS = (() => {
+  const m = new Map<string, string[]>();
+  for (const r of undocumented) {
+    const v = r.platforms.find((p) => p.name === "iOS")?.introducedAt ?? "an unstated version";
+    m.set(v, [...(m.get(v) ?? []), r.case]);
+  }
+  return [...m.entries()].sort(([a], [b]) => cmpVersion(a, b));
+})();
+/** "a, b and c (iOS 18.0), d (iOS 26.2) and e (iOS 27.0)" */
+const UNDOC_BY_VERSION = listJoin(UNDOC_VERSIONS.map(([v, cases]) => `${listJoin(cases)} (iOS ${v})`));
+/** "iOS 18.0 (3), iOS 26.2 and iOS 27.0" */
+const UNDOC_RELEASES = listJoin(
+  UNDOC_VERSIONS.map(([v, cases]) => `iOS ${v}${cases.length > 1 ? ` (${cases.length})` : ""}`),
+);
 
 /** The group pages, in the hub's order, with how many of these identifiers
  *  each one carries. Only released pages — buildHkGroups() already throws on
@@ -68,7 +115,7 @@ const MAPPED = new Set(
 export const metadata: Metadata = {
   title: { absolute: "Every HealthKit Type Identifier" },
   description:
-    "All 240 HealthKit identifiers from Apple's own docs — quantity, category, characteristic and workout types, with units, availability and aggregation.",
+    `All ${HK_IDENTIFIERS.length} HealthKit identifiers from Apple's own docs — quantity, category, characteristic and workout types, with units, availability and aggregation.`,
   alternates: { canonical: PATH },
   openGraph: {
     type: "website",
@@ -91,7 +138,7 @@ const FAQS = [
   },
   {
     q: "Are there HealthKit types Apple ships without any documentation?",
-    a: `Yes. As of our ${HK_FETCHED_ON} read of Apple's documentation, ${undocumented.length} quantity types carry neither an abstract nor a discussion: ${undocumented.map((r) => r.case).join(", ")}. All three were introduced in iOS 18. The identifiers are real and usable, but Apple's own reference says nothing about what they contain or how they are calculated, so treat any behaviour you observe as unverified until Apple documents it.`,
+    a: `Yes. As of our ${HK_FETCHED_ON} read of Apple's documentation, ${undocumented.length} identifiers — ${UNDOC_FAMILIES} — carry neither an abstract nor a discussion: ${UNDOC_BY_VERSION}. The identifiers are real and usable, but Apple's own reference says nothing about what they contain or how they are calculated, so treat any behaviour you observe as unverified until Apple documents it.`,
   },
 ];
 
@@ -308,7 +355,7 @@ export default function HealthKitIdentifiersPage() {
                   {i < undocumented.length - 1 ? ", " : ""}
                 </span>
               ))}
-              . All were introduced in iOS 18. The identifiers compile and the types exist; what they
+              . They arrived in {UNDOC_RELEASES}. The identifiers compile and the types exist; what they
               contain and how Apple derives them is simply not stated. Treat anything you infer from
               observed values as unverified.
             </p>
@@ -325,6 +372,15 @@ export default function HealthKitIdentifiersPage() {
             maps the metrics we could verify on both platforms, including the ones that look
             equivalent and are not — Apple stores HRV as SDNN while Health Connect stores RMSSD, and
             those are different calculations that must not be normalised into one field.
+            {RMSSD_UNDESCRIBED && (
+              <>
+                {" "}
+                The <code className="font-mono text-sm">heartRateVariabilityRMSSD</code> row above,
+                new in iOS {RMSSD_UNDESCRIBED.platforms.find((p) => p.name === "iOS")?.introducedAt},
+                does not change that yet: as of {HK_FETCHED_ON} Apple&rsquo;s documentation does not
+                say what it measures, how it is computed or whether Apple Watch writes it.
+              </>
+            )}
           </p>
         </section>
 

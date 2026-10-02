@@ -167,3 +167,10 @@ Still deliberately not done: IndexNow for LLM crawlers (no such mechanism
 exists — do not cargo-cult one); per-page `citation` for prose-attributed
 facts (our house style attributes in prose, which is not machine-extractable
 without guessing, and guessing is worse than omitting).
+
+Changed 2026-10-02: an entry may now carry an explicit `sources` list — the
+URLs a re-verification actually fetched, each with its check date — and only
+those (plus documentation links already in the body) become its JSON-LD
+`citation`, its "Sources checked" list and its mirror's `## Sources`. Nothing
+is inferred from prose; an entry without a recorded re-verification has no
+`sources`, and the field may only be set alongside the stamp that check earned.

@@ -10,15 +10,25 @@ faqs:
   - q: "Which HealthKit data types did iOS 18 add?"
     a: "Ten identifiers arrived in iOS 18.0: sleeping breathing disturbances, cross-country skiing speed and distance, paddle sports distance and speed, rowing distance and speed, skating sports distance, workout effort score, and estimated workout effort score. Apple's documentation, read for this site's dataset on 2026-08-28, records the introducing version for every identifier, which is how that grouping was counted."
   - q: "Are any HealthKit identifiers still in beta?"
-    a: "Two are: bleedingAfterMenopause and menopausalState, both introduced in iOS 27.0. They are the only identifiers in the whole set marked as beta on any platform. At the same time none of the 240 identifiers is marked deprecated, so Apple's type catalogue only grows. Do not ship production features against the beta pair."
+    a: "Not as of October 2, 2026, when this site last read Apple's documentation. On August 28, 2026 two were: bleedingAfterMenopause and menopausalState, both introduced in iOS 27.0 and then the only identifiers in the set marked beta on any platform. Neither is marked beta now. Check the flag on Apple's page at the moment you build rather than trusting a cached status."
   - q: "Why do the newest HealthKit types have so little documentation?"
-    a: "Apple lists four identifiers with no abstract at all, and every one of them arrived in iOS 18.0 or later. Three quantity types state no aggregation style, and they are the same recent additions. Median discussion length across the catalogue is fifteen words, so thin prose is normal, but the newest types are the thinnest. Test on device."
+    a: "As of October 2, 2026, Apple lists five identifiers with no abstract at all, and every one of them arrived in iOS 18.0 or later, the newest being iOS 27.0's heartRateVariabilityRMSSD. Four quantity types state no aggregation style, and they are the same recent additions. Median discussion length across the catalogue is fifteen words, so thin prose is normal, but the newest types are the thinnest. Test on device."
 ---
 
 Apple's documentation, read for this site's HealthKit dataset on 2026-08-28,
 lists 240 type identifiers. 127 of them shipped with iOS 8.0. The rest arrived
 in batches, and the batches since iOS 16 read less like a changelog than a
 statement of what Apple expects health apps to be measuring.
+
+> **Update, October 2, 2026.** Re-read on October 2, 2026, Apple's documentation
+> lists 241 identifiers. iOS 27.0 now carries three: `bleedingAfterMenopause`,
+> `menopausalState`, and `heartRateVariabilityRMSSD`, a second heart rate
+> variability identifier beside the SDNN type Apple Watch records into. Apple
+> lists the RMSSD type with a declaration only — no abstract, no discussion, no
+> aggregation style, no unit family — so it joins the thinly documented newest
+> types described below, and nothing Apple has published says what it measures
+> or what writes it. None of the iOS 27.0 types is marked beta any longer. The
+> table and analysis below are the August 28, 2026 read.
 
 Here is the count per release.
 
@@ -30,11 +40,20 @@ Here is the count per release.
 | iOS 26.2 | 1 | hypertensionEvent |
 | iOS 27.0 | 2 | bleedingAfterMenopause, menopausalState — both still in beta |
 
-None of the 240 identifiers is marked deprecated, and every one is available on
-all six platforms Apple lists: iOS, iPadOS, Mac Catalyst, macOS, visionOS and
-watchOS. Apple adds and does not prune. Each new identifier is a permanent
-commitment to a storage shape, which is exactly why the additions are worth
-reading as a roadmap. The full catalogue with introducing versions is on
+Four of the 240 identifiers are deprecated in Apple's availability data:
+`dance`, `danceInspiredTraining`, `mixedMetabolicCardioTraining` and
+`audioExposureEvent`, each deprecated in iOS 14.0 or earlier. None has been
+removed, and every one is available on all six platforms Apple lists: iOS,
+iPadOS, Mac Catalyst, macOS, visionOS and watchOS. Apple adds and does not
+prune; a deprecated identifier stays in the catalogue beside its replacement.
+Each new identifier is a permanent commitment to a storage shape, which is
+exactly why the additions are worth reading as a roadmap.
+
+> **Correction, October 2, 2026.** This paragraph originally said none of the
+> 240 identifiers was marked deprecated. Four were. Apple records a
+> deprecation as a `deprecatedAt` version on each platform entry and leaves a
+> separate `deprecated` flag false, and the generator behind this post read
+> only the flag. The [corrections log](/corrections) records the change. The full catalogue with introducing versions is on
 [/healthkit-identifiers](/healthkit-identifiers), and the underlying data is
 published at [/datasets](/datasets).
 

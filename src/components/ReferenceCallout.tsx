@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { HK_IDENTIFIERS } from "@/data/healthkitIdentifiers";
 
 /**
  * A pointer from a guide to the generated reference that backs it.
@@ -38,7 +39,7 @@ const MAP: Record<string, { href: string; label: string; why: string }[]> = {
     {
       href: "/healthkit-identifiers",
       label: "Every HealthKit type identifier",
-      why: "All 240 identifiers with units, availability, and whether each is summed or averaged.",
+      why: `All ${HK_IDENTIFIERS.length} identifiers with units, availability, and whether each is summed or averaged.`,
     },
     {
       href: "/healthkit-errors",

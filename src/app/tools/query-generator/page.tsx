@@ -41,8 +41,10 @@ export const metadata: Metadata = {
 const QUANTITY = HK_IDENTIFIERS.filter((r) => r.family === "quantity");
 const UNSTATED = QUANTITY.filter((r) => r.aggregation === null);
 
+// The unstated count comes from the dataset: a literal "three" went stale when
+// iOS 27.0 added heartRateVariabilityRMSSD (read 2026-10-02) with no stated style.
 const ANSWER =
-  "Pick one HealthKit quantity type and a time window and this returns the HKStatisticsQuery for it, with the aggregation option taken from what Apple's own documentation says about that type: .cumulativeSum where Apple describes the values as cumulative, .discreteAverage where it describes them as discrete. For the three quantity types Apple never states it for, the tool refuses to generate anything, because the wrong option does not throw — it returns a plausible, wrong number. Category types get a refusal too: a category sample carries an enum case, not a value to aggregate.";
+  `Pick one HealthKit quantity type and a time window and this returns the HKStatisticsQuery for it, with the aggregation option taken from what Apple's own documentation says about that type: .cumulativeSum where Apple describes the values as cumulative, .discreteAverage where it describes them as discrete. For the ${UNSTATED.length} quantity types Apple never states it for, the tool refuses to generate anything, because the wrong option does not throw — it returns a plausible, wrong number. Category types get a refusal too: a category sample carries an enum case, not a value to aggregate.`;
 
 const OPTIONS: QueryOption[] = HK_IDENTIFIERS.filter(
   (r) => r.family === "quantity" || r.family === "category",

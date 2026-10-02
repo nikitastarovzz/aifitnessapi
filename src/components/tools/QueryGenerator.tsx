@@ -12,7 +12,7 @@ import Link from "next/link";
  * rather than from a guess.
  *
  * The refusal is the point. Apple states aggregation style in a type's
- * discussion, not as a property, and for three quantity types it does not
+ * discussion, not as a property, and for a few quantity types it does not
  * state it at all. Emitting `.cumulativeSum` for one of those would produce a
  * plausible, wrong number — the worst failure mode there is, because nothing
  * throws. So the generator declines and says why. Category types get the same

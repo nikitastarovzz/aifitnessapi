@@ -8,11 +8,11 @@ tags: ["healthkit", "data", "methodology", "ios"]
 draft: false
 faqs:
   - q: "Does Apple document every HealthKit type identifier?"
-    a: "Not in any useful sense. Of the 240 identifiers we parsed from Apple's developer documentation, 58 have no discussion prose at all, and the median discussion across the whole set is 15 words. A handful get real treatment, with vo2Max at 323 words. For most identifiers the name and a one-line abstract are all you get."
+    a: "Not in any useful sense. Of the 240 identifiers we parsed from Apple's developer documentation on August 28, 2026, 58 had no discussion prose at all (59 of 241 when we re-read it on October 2, 2026), and the median discussion across the whole set is 15 words. A handful get real treatment, with vo2Max at 323 words. For most identifiers the name and a one-line abstract are all you get."
   - q: "How do I find out what unit a HealthKit type expects?"
-    a: "For most quantity types the documentation resolves a unit family, though for four of them it does not. When it does not, the reliable method is a probe: write a sample with an explicit unit, read it back, and see which unit round-trips without an argument error. Then check what the Health app displays for the same sample."
+    a: "For most quantity types the documentation resolves a unit family, though for five of them it does not (as of October 2, 2026). When it does not, the reliable method is a probe: write a sample with an explicit unit, read it back, and see which unit round-trips without an argument error. Then check what the Health app displays for the same sample."
   - q: "What does it mean when a HealthKit identifier has no abstract?"
-    a: "It means Apple listed the symbol without a summary line. Four identifiers in the set are in that state. You get a name and nothing else, so the value's meaning, its sign convention and how often the system writes it are all unknown until you record a sample yourself and inspect what the store actually holds."
+    a: "It means Apple listed the symbol without a summary line. Five identifiers in the set were in that state as of October 2, 2026. You get a name and nothing else, so the value's meaning, its sign convention and how often the system writes it are all unknown until you record a sample yourself and inspect what the store actually holds."
 ---
 
 58 of HealthKit's 240 type identifiers carry zero words of discussion prose in
@@ -24,6 +24,13 @@ for most of the surface. You look up a type and read its name back to yourself.
 These counts come from this site's [HealthKit identifier
 dataset](/healthkit-identifiers), parsed from Apple's developer documentation
 on 2026-08-28 and published under CC BY on [/datasets](/datasets).
+
+> **Update, October 2, 2026.** A re-read of Apple's documentation on October 2,
+> 2026 found 241 identifiers, and the silent count is now 59: iOS 27.0 added
+> `heartRateVariabilityRMSSD` with a declaration and nothing else. That also
+> makes five identifiers with no abstract and five quantity types with no unit
+> family (116 of 121). The median is still 15 words. The table and analysis
+> below are the August 28 read.
 
 ## What the coverage actually looks like
 

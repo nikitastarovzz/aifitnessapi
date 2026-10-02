@@ -23,7 +23,7 @@ import { stringSeed } from "@/lib/cluster";
 /**
  * The hub for the HealthKit group pages.
  *
- * /healthkit-identifiers stays the flagship — all 240 identifiers on one URL,
+ * /healthkit-identifiers stays the flagship — every identifier on one URL,
  * ranking for the set. This hub is the map of the middle layer: one page per
  * group, each an anchor surface for the exact identifier strings developers
  * paste into a search box.
@@ -34,6 +34,34 @@ import { stringSeed } from "@/lib/cluster";
 
 const GROUPS = buildHkGroups();
 const GROUP_COUNT = GROUPS.size;
+
+/** iOS version a row was introduced in, or null. */
+const iosOf = (r: (typeof HK_IDENTIFIERS)[number]) =>
+  r.platforms.find((p) => p.name === "iOS")?.introducedAt ?? null;
+/** Numeric compare for dotted versions ("9.3" < "14.0" < "27.0"). */
+const cmpVersion = (a: string, b: string) => {
+  const [x, y] = [a.split(".").map(Number), b.split(".").map(Number)];
+  for (let i = 0; i < Math.max(x.length, y.length); i++) {
+    const d = (x[i] ?? 0) - (y[i] ?? 0);
+    if (d) return d;
+  }
+  return 0;
+};
+
+// The blurbs below state counts, so they are computed from the dataset rather
+// than written down: a literal "the iOS 27 beta pair" or "the four Apple leaves
+// unstated" went false the day a refresh added a type or Apple dropped a beta
+// flag (2026-10-02).
+const IOS8_COUNT = HK_IDENTIFIERS.filter((r) => iosOf(r) === "8.0").length;
+const NEWEST_IOS = HK_IDENTIFIERS.map(iosOf)
+  .filter((v): v is string => Boolean(v))
+  .sort(cmpVersion)
+  .at(-1);
+const NEWEST_COUNT = HK_IDENTIFIERS.filter((r) => iosOf(r) === NEWEST_IOS).length;
+const DEPRECATED_COUNT = HK_IDENTIFIERS.filter((r) => r.deprecated).length;
+const CATEGORY_ROWS = HK_IDENTIFIERS.filter((r) => r.family === "category");
+const CATEGORY_RESOLVED = CATEGORY_ROWS.filter((r) => r.valueEnum).length;
+const UNIT_UNSTATED = HK_IDENTIFIERS.filter((r) => r.family === "quantity" && !r.unitFamily).length;
 
 const DESCRIPTION = `All ${HK_IDENTIFIERS.length} HealthKit identifiers, grouped into ${GROUP_COUNT} pages — units, aggregation style and iOS availability, read from Apple's docs on ${HK_FETCHED_ON}.`;
 
@@ -67,22 +95,22 @@ const REFERENCE_PAGES: { href: string; label: string; blurb: string }[] = [
   {
     href: "/healthkit-versions",
     label: "HealthKit by iOS version",
-    blurb: "Which identifiers each iOS release introduced, from the 127 that shipped in iOS 8.0 to the iOS 27 beta pair.",
+    blurb: `Which identifiers each iOS release introduced, from the ${IOS8_COUNT} that shipped in iOS 8.0 to the ${NEWEST_COUNT} that arrived in iOS ${NEWEST_IOS}.`,
   },
   {
     href: "/healthkit-status",
     label: "Deprecated, beta and undocumented",
-    blurb: "What is actually deprecated (nothing, at the platform level), what is in beta, and what ships with no documentation.",
+    blurb: `What is actually deprecated (${DEPRECATED_COUNT === 0 ? "nothing" : `${DEPRECATED_COUNT} identifiers`}, by the deprecatedAt versions in Apple's availability data), whether anything is in beta, and what ships with no documentation.`,
   },
   {
     href: "/healthkit-category-values",
     label: "Category value enums",
-    blurb: "The enum that decodes each of the 30 category types — 28 resolved, 2 honest nulls.",
+    blurb: `The enum that decodes each of the ${CATEGORY_ROWS.length} category types — ${CATEGORY_RESOLVED} resolved, ${CATEGORY_ROWS.length - CATEGORY_RESOLVED} honest nulls.`,
   },
   {
     href: "/healthkit-units",
     label: "Unit families",
-    blurb: "Every quantity type by unit family, and the four Apple leaves unstated.",
+    blurb: `Every quantity type by unit family, and the ${UNIT_UNSTATED} Apple leaves unstated.`,
   },
   {
     href: "/health-connect-records",
