@@ -39,8 +39,16 @@ export const metadata: Metadata = {
     "AI fitness",
     "health and wellness startups",
   ],
+  // Nothing below may name one page. Every route inherits this object, so a
+  // canonical, og:url or og:/twitter: title set here lands on any route that
+  // forgets its own: canonical "/" asks Google to fold that page into the
+  // homepage, and og:url makes its share card resolve to the homepage. Only
+  // what is true of every page lives here — feeds, site name, locale, default
+  // card image. Pages state their own canonical and og:url; the routes that
+  // state none (/s, which is noindex, and the 404) emit no canonical at all.
+  // Where a page omits og:/twitter: title or description, Next fills them
+  // from that page's own <title> and description.
   alternates: {
-    canonical: "/",
     types: {
       "application/rss+xml": [
         { url: absoluteUrl("/feed.xml"), title: `${site.name} — blog` },
@@ -50,19 +58,17 @@ export const metadata: Metadata = {
       "text/markdown": absoluteUrl("/index.md"),
     },
   },
+  // A page that sets its own `openGraph` replaces this whole object — Next
+  // does not merge it key by key — so such a page must restate `type` and
+  // `images` or it loses og:image.
   openGraph: {
     type: "website",
     siteName: site.name,
-    title: site.title,
-    description: site.description,
-    url: site.url,
     locale: site.locale,
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: site.title }],
   },
   twitter: {
     card: "summary_large_image",
-    title: site.title,
-    description: site.description,
     images: ["/opengraph-image"],
   },
   robots: {

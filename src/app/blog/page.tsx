@@ -5,11 +5,21 @@ import { getAllPosts } from "@/lib/posts";
 import { hubGraph, markdownUrl } from "@/lib/schema";
 import PageSummary from "@/components/PageSummary";
 
+const TITLE = "Fitness & Health API Blog";
+const DESCRIPTION =
+  "Product breakdowns, API deep-dives, and playbooks for builders in health, wellness, and fitness tech.";
+
 export const metadata: Metadata = {
-  title: "Fitness & Health API Blog",
-  description:
-    "Product breakdowns, API deep-dives, and playbooks for builders in health, wellness, and fitness tech.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/blog" },
+  openGraph: {
+    type: "website",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "/blog",
+    images: ["/opengraph-image"],
+  },
 };
 
 /**

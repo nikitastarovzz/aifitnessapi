@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/Container";
 import PostCard from "@/components/PostCard";
@@ -9,6 +10,8 @@ import { getAllPosts } from "@/lib/posts";
 import { clusterMap } from "@/lib/clusterRegistry";
 import { HK_IDENTIFIERS, HK_ERRORS } from "@/data/healthkitIdentifiers";
 import { changesSorted, type ChangeStatus } from "@/data/changes";
+import UpcomingDeadlines, { DeadlinesLabel, type DatedNode } from "@/components/UpcomingDeadlines";
+import { site, absoluteUrl } from "@/lib/site";
 
 /**
  * The landing page is the pitch: who this site is for, what they get, and one
@@ -16,6 +19,39 @@ import { changesSorted, type ChangeStatus } from "@/data/changes";
  * from the cluster registry so they never go stale; deadlines come from the
  * changes tracker so urgency is real, not manufactured.
  */
+
+/**
+ * The root layout names no page, so the homepage states its own canonical and
+ * og:url like every other route. Both objects replace the layout's rather than
+ * merging into it, which is why the rest is restated here:
+ * - `alternates.types` mirrors the feed and markdown links in layout.tsx —
+ *   without it the homepage, where feed readers look first, would lose its
+ *   autodiscovery links. Keep the two lists in step.
+ * - `openGraph` restates type, site name, locale and the card image, or the
+ *   homepage's share card would drop them.
+ */
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+    types: {
+      "application/rss+xml": [
+        { url: absoluteUrl("/feed.xml"), title: `${site.name} — blog` },
+        { url: absoluteUrl("/changes.xml"), title: `${site.name} — API changes & deadlines` },
+      ],
+      "application/feed+json": absoluteUrl("/feed.json"),
+      "text/markdown": absoluteUrl("/index.md"),
+    },
+  },
+  openGraph: {
+    type: "website",
+    siteName: site.name,
+    locale: site.locale,
+    title: site.title,
+    description: site.description,
+    url: "/",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: site.title }],
+  },
+};
 
 /** Every content cluster, surfaced from the homepage so the highest-
  *  authority page links directly to every pillar hub (discovery + link equity). */
@@ -94,15 +130,39 @@ export default function Home() {
     .flat()
     .filter((e) => e.updated >= THIRTY_DAYS_AGO).length;
 
-  // Deadlines: the next dated events still ahead of the build date; if the
-  // calendar ever runs dry, fall back to the most recent ones.
-  const today = new Date().toISOString().slice(0, 10);
+  // Deadlines: which dated events are still ahead is decided in the browser
+  // (UpcomingDeadlines). Decided here, "today" would freeze at deploy and keep
+  // presenting passed dates as next until the following build. The server
+  // HTML lists the tracker latest date first and says which build it is from.
   const events = changesSorted();
-  const upcoming = events
-    .filter((e) => e.sortDate >= today)
-    .sort((a, b) => (a.sortDate < b.sortDate ? -1 : 1))
-    .slice(0, 3);
-  const deadlines = upcoming.length > 0 ? upcoming : events.slice(0, 3);
+  const buildDate = new Date().toISOString().slice(0, 10);
+  // Only ship the cards the browser could pick. An entry already past at
+  // build time can never come back into the future, so the candidates are the
+  // entries still ahead at build plus the three latest of the rest (shown if
+  // everything has passed). `events` is latest first, so that is a prefix.
+  const aheadAtBuild = events.filter((e) => e.sortDate >= buildDate).length;
+  const deadlineItems: DatedNode[] = events.slice(0, aheadAtBuild + 3).map((e) => ({
+    key: `${e.sortDate}-${e.title}`,
+    sortDate: e.sortDate,
+    node: (
+      <Link
+        href={e.page.href}
+        className="group flex h-full flex-col rounded-2xl border border-[var(--border)] p-5 transition hover:-translate-y-0.5 hover:border-brand-400 hover:bg-[var(--surface)]"
+      >
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-sm font-semibold text-[var(--fg)]">{fmtChangeDate(e.date)}</span>
+          <span className={`rounded-full border px-2 py-0.5 text-xs font-semibold text-[var(--fg)] ${STATUS_STYLES[e.status]}`}>
+            {e.status}
+          </span>
+        </div>
+        <span className="mt-2 font-semibold text-[var(--fg)]">{e.title}</span>
+        <span className="mt-2 flex-1 text-sm text-[var(--muted)] line-clamp-3">{e.summary}</span>
+        <span className="mt-3 text-sm font-semibold text-brand-600 group-hover:text-brand-500 dark:text-brand-300">
+          {e.page.label} <span aria-hidden className="inline-block transition-transform group-hover:translate-x-0.5">→</span>
+        </span>
+      </Link>
+    ),
+  }));
   // Most recently re-checked tracker entries — freshness of the record itself,
   // which is a different claim from the freshness of the deadlines above.
   const recentlyVerified = [...events]
@@ -543,7 +603,12 @@ export default function Home() {
       <Container className="pt-16">
         <div className="mb-6 flex items-baseline justify-between">
           <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
-            On the clock — next deadlines
+            <DeadlinesLabel
+              dates={deadlineItems.map((d) => d.sortDate)}
+              asOf={`Dated changes, latest first — as of ${fmtChangeDate(buildDate)}`}
+              ahead="On the clock — next deadlines"
+              recent="Most recent dated changes"
+            />
           </h2>
           <Link href="/changes" className="inline-block py-1 text-sm font-medium text-brand-600 hover:text-brand-500">
             Full tracker →
@@ -551,25 +616,7 @@ export default function Home() {
         </div>
         <Reveal>
         <div className="grid gap-4 lg:grid-cols-3">
-          {deadlines.map((e) => (
-            <Link
-              key={`${e.sortDate}-${e.title}`}
-              href={e.page.href}
-              className="group flex h-full flex-col rounded-2xl border border-[var(--border)] p-5 transition hover:-translate-y-0.5 hover:border-brand-400 hover:bg-[var(--surface)]"
-            >
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="text-sm font-semibold text-[var(--fg)]">{fmtChangeDate(e.date)}</span>
-                <span className={`rounded-full border px-2 py-0.5 text-xs font-semibold text-[var(--fg)] ${STATUS_STYLES[e.status]}`}>
-                  {e.status}
-                </span>
-              </div>
-              <span className="mt-2 font-semibold text-[var(--fg)]">{e.title}</span>
-              <span className="mt-2 flex-1 text-sm text-[var(--muted)] line-clamp-3">{e.summary}</span>
-              <span className="mt-3 text-sm font-semibold text-brand-600 group-hover:text-brand-500 dark:text-brand-300">
-                {e.page.label} <span aria-hidden className="inline-block transition-transform group-hover:translate-x-0.5">→</span>
-              </span>
-            </Link>
-          ))}
+          <UpcomingDeadlines items={deadlineItems} limit={3} />
         </div>
         </Reveal>
         <p className="mt-4 text-sm text-[var(--muted)]">

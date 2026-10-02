@@ -7,8 +7,8 @@ import ErrorDiagnoser, { type ErrorHint, type FixHint } from "@/components/tools
 import { HK_ERRORS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { fixEntries } from "@/data/fix.entries";
 import { RELEASED_FIX } from "@/data/fix";
-import { absoluteUrl, site } from "@/lib/site";
-import { orgRef, WEBSITE_ID } from "@/lib/schema";
+import { site } from "@/lib/site";
+import { toolGraph } from "@/lib/schema";
 
 /**
  * "What is this error?" — the question a developer asks at the moment
@@ -192,25 +192,15 @@ const FIX_HINTS: FixHint[] = fixEntries
   }));
 
 export default function ErrorDiagnoserPage() {
-  const url = absoluteUrl(PATH);
-
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "TechArticle",
-    "@id": `${url}#article`,
-    headline: TITLE,
+  // A tool, so a WebApplication (see toolGraph). Dated by the Apple corpus
+  // read it answers from, as before; no publish date was ever declared here.
+  const jsonLd = toolGraph({
+    path: PATH,
+    name: TITLE,
     description: DESCRIPTION,
-    url,
-    inLanguage: "en",
-    isPartOf: { "@id": WEBSITE_ID },
-    author: orgRef(),
-    publisher: orgRef(),
     dateModified: HK_FETCHED_ON,
-    lastReviewed: HK_FETCHED_ON,
-    reviewedBy: orgRef(),
-    mainEntityOfPage: { "@type": "WebPage", "@id": url },
-    speakable: { "@type": "SpeakableSpecification", cssSelector: ["#answer"] },
-  };
+    webPage: { lastReviewed: HK_FETCHED_ON },
+  });
 
   return (
     <Container className="py-14">

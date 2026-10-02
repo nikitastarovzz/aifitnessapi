@@ -6,6 +6,7 @@ import ClusterHero from "@/components/ClusterHero";
 import ClusterCta from "@/components/ClusterCta";
 import PageSummary from "@/components/PageSummary";
 import PageActions from "@/components/PageActions";
+import ContentAge from "@/components/ContentAge";
 import { HK_ERRORS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
@@ -75,6 +76,9 @@ export default function HealthKitErrorsPage() {
     "@type": "Article",
     headline: "Every HealthKit error code",
     description: metadata.description,
+    // First published in e18a23c; modified whenever the corpus is re-read,
+    // since every case on the page is that read.
+    datePublished: "2026-08-26",
     dateModified: HK_FETCHED_ON,
     author: orgRef(),
     publisher: orgRef(),
@@ -97,6 +101,7 @@ export default function HealthKitErrorsPage() {
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">
           {HK_ERRORS.length} HKError.Code cases · read from Apple&rsquo;s documentation on {HK_FETCHED_ON}
+          <ContentAge date={HK_FETCHED_ON} />
         </p>
 
         <PageSummary path={PATH} name="Every HealthKit error code" updated={HK_FETCHED_ON}>

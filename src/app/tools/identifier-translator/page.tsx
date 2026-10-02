@@ -9,8 +9,8 @@ import IdentifierTranslator, {
 } from "@/components/tools/IdentifierTranslator";
 import { HK_IDENTIFIERS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { ROWS as MATRIX_ROWS } from "@/data/matrix";
-import { absoluteUrl, site } from "@/lib/site";
-import { orgRef, WEBSITE_ID } from "@/lib/schema";
+import { site } from "@/lib/site";
+import { toolGraph } from "@/lib/schema";
 
 /**
  * HealthKit identifier ↔ Health Connect record, both directions.
@@ -65,25 +65,15 @@ for (const row of MATRIX_ROWS) {
 const COVERED = APPLE_NAMES.filter((n) => MAPPED.has(n.c.toLowerCase())).length;
 
 export default function IdentifierTranslatorPage() {
-  const url = absoluteUrl(PATH);
-
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "TechArticle",
-    "@id": `${url}#article`,
-    headline: TITLE,
+  // A tool, so a WebApplication (see toolGraph). Dated by the Apple corpus
+  // read it answers from, as before; no publish date was ever declared here.
+  const jsonLd = toolGraph({
+    path: PATH,
+    name: TITLE,
     description: DESCRIPTION,
-    url,
-    inLanguage: "en",
-    isPartOf: { "@id": WEBSITE_ID },
-    author: orgRef(),
-    publisher: orgRef(),
     dateModified: HK_FETCHED_ON,
-    lastReviewed: HK_FETCHED_ON,
-    reviewedBy: orgRef(),
-    mainEntityOfPage: { "@type": "WebPage", "@id": url },
-    speakable: { "@type": "SpeakableSpecification", cssSelector: ["#answer"] },
-  };
+    webPage: { lastReviewed: HK_FETCHED_ON },
+  });
 
   return (
     <Container className="py-14">

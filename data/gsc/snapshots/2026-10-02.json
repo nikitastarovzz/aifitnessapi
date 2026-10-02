@@ -1,0 +1,857 @@
+{
+  "takenAt": "2026-10-02T16:44:16.758Z",
+  "range": {
+    "start": "2026-07-06",
+    "end": "2026-08-02"
+  },
+  "engines": {
+    "google": [
+      {
+        "path": "/integrate/nutritionix-api",
+        "clicks": 0,
+        "impressions": 172,
+        "position": 7.05
+      },
+      {
+        "path": "/fix",
+        "clicks": 0,
+        "impressions": 454,
+        "position": 10.2
+      },
+      {
+        "path": "/pricing/strava-api-pricing",
+        "clicks": 1,
+        "impressions": 161,
+        "position": 8.53
+      },
+      {
+        "path": "/alternatives/garmin-api-alternatives",
+        "clicks": 0,
+        "impressions": 16,
+        "position": 3.69
+      },
+      {
+        "path": "/guides/ai-workout-tracking-web",
+        "clicks": 0,
+        "impressions": 50,
+        "position": 9.8
+      },
+      {
+        "path": "/pricing/whoop-api-pricing",
+        "clicks": 0,
+        "impressions": 90,
+        "position": 16.16
+      },
+      {
+        "path": "/integrate/exercisedb-api",
+        "clicks": 0,
+        "impressions": 29,
+        "position": 7.93
+      },
+      {
+        "path": "/guides/ai-workout-tracking-android-kotlin",
+        "clicks": 0,
+        "impressions": 23,
+        "position": 6.78
+      },
+      {
+        "path": "/guides/ai-workout-tracking-flutter",
+        "clicks": 0,
+        "impressions": 30,
+        "position": 8.97
+      },
+      {
+        "path": "/integrate/oura-api",
+        "clicks": 0,
+        "impressions": 73,
+        "position": 18.26
+      },
+      {
+        "path": "/fitness-apis/wearable-data-apis",
+        "clicks": 0,
+        "impressions": 100,
+        "position": 24.61
+      },
+      {
+        "path": "/fitness-apis/free-fitness-apis",
+        "clicks": 0,
+        "impressions": 50,
+        "position": 12.54
+      },
+      {
+        "path": "/fix/health-connect-no-data",
+        "clicks": 0,
+        "impressions": 96,
+        "position": 25.8
+      },
+      {
+        "path": "/learn/what-are-webhooks",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 1
+      },
+      {
+        "path": "/fitness-apis/exercise-database-apis",
+        "clicks": 0,
+        "impressions": 79,
+        "position": 21.49
+      },
+      {
+        "path": "/fitness-apis/apple-healthkit-vs-google-health-connect",
+        "clicks": 0,
+        "impressions": 125,
+        "position": 46.34
+      },
+      {
+        "path": "/guides",
+        "clicks": 0,
+        "impressions": 119,
+        "position": 57.22
+      },
+      {
+        "path": "/compliance/app-store-health-data-rules",
+        "clicks": 0,
+        "impressions": 29,
+        "position": 19.76
+      },
+      {
+        "path": "/architecture/deduplicate-health-data",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 4
+      },
+      {
+        "path": "/site-index",
+        "clicks": 0,
+        "impressions": 102,
+        "position": 156.36
+      },
+      {
+        "path": "/fitness-apis/ai-workout-tracking-apis",
+        "clicks": 0,
+        "impressions": 49,
+        "position": 20.27
+      },
+      {
+        "path": "/integrate/whoop-api",
+        "clicks": 0,
+        "impressions": 48,
+        "position": 25.85
+      },
+      {
+        "path": "/integrate/google-health-connect",
+        "clicks": 0,
+        "impressions": 47,
+        "position": 29.36
+      },
+      {
+        "path": "/architecture/missing-data-and-gaps",
+        "clicks": 0,
+        "impressions": 8,
+        "position": 8.25
+      },
+      {
+        "path": "/learn/how-fitness-apps-estimate-calories",
+        "clicks": 0,
+        "impressions": 22,
+        "position": 16.09
+      },
+      {
+        "path": "/fitness-apis/fitbit-api-vs-garmin-api",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 6.67
+      },
+      {
+        "path": "/guides/track-workouts-without-wearables",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 4.75
+      },
+      {
+        "path": "/motion/on-device-vs-cloud-pose-estimation",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 4.5
+      },
+      {
+        "path": "/integrate/garmin-api",
+        "clicks": 0,
+        "impressions": 39,
+        "position": 22.13
+      },
+      {
+        "path": "/pricing/health-data-aggregator-pricing",
+        "clicks": 0,
+        "impressions": 39,
+        "position": 25.97
+      },
+      {
+        "path": "/integrate/healthkit",
+        "clicks": 0,
+        "impressions": 38,
+        "position": 25.42
+      },
+      {
+        "path": "/pricing",
+        "clicks": 0,
+        "impressions": 37,
+        "position": 21.68
+      },
+      {
+        "path": "/fix/refresh-token-not-working",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 8
+      },
+      {
+        "path": "/fix/fitness-api-401-unauthorized",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 9.29
+      },
+      {
+        "path": "/motion/pose-estimation-accuracy",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 8.71
+      },
+      {
+        "path": "/guides/ai-workout-tracking-react-native",
+        "clicks": 0,
+        "impressions": 17,
+        "position": 13.47
+      },
+      {
+        "path": "/fitness-apis/nutrition-apis",
+        "clicks": 0,
+        "impressions": 65,
+        "position": 33.95
+      },
+      {
+        "path": "/architecture/background-sync",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 9.17
+      },
+      {
+        "path": "/architecture/data-deletion-and-export",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 5.33
+      },
+      {
+        "path": "/architecture/incremental-sync",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 5.33
+      },
+      {
+        "path": "/migrate/fitbit-web-api-to-google-health",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 8.4
+      },
+      {
+        "path": "/integrate",
+        "clicks": 0,
+        "impressions": 57,
+        "position": 54.49
+      },
+      {
+        "path": "/alternatives/fitbit-api-alternatives",
+        "clicks": 0,
+        "impressions": 14,
+        "position": 12.36
+      },
+      {
+        "path": "/build",
+        "clicks": 0,
+        "impressions": 55,
+        "position": 82.42
+      },
+      {
+        "path": "/about",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 4
+      },
+      {
+        "path": "/data/gps-activity-api",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 4
+      },
+      {
+        "path": "/fix/fitbit-api-429-rate-limit",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 3.5
+      },
+      {
+        "path": "/alternatives/strava-api-alternatives",
+        "clicks": 0,
+        "impressions": 13,
+        "position": 13.69
+      },
+      {
+        "path": "/integrate/fitbit-api",
+        "clicks": 0,
+        "impressions": 13,
+        "position": 18.31
+      },
+      {
+        "path": "/motion/pose-estimation-models-compared",
+        "clicks": 1,
+        "impressions": 96,
+        "position": 19.5
+      },
+      {
+        "path": "/compare/exercisedb-vs-wger",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 6.33
+      },
+      {
+        "path": "/integrate/strava-api",
+        "clicks": 0,
+        "impressions": 25,
+        "position": 25.96
+      },
+      {
+        "path": "/blog/how-to-choose-a-fitness-api",
+        "clicks": 0,
+        "impressions": 45,
+        "position": 108.49
+      },
+      {
+        "path": "/alternatives",
+        "clicks": 0,
+        "impressions": 43,
+        "position": 31.23
+      },
+      {
+        "path": "/compare/fitbit-vs-oura",
+        "clicks": 0,
+        "impressions": 10,
+        "position": 12
+      },
+      {
+        "path": "/compare/whoop-vs-garmin",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 5
+      },
+      {
+        "path": "/pricing/nutrition-api-pricing",
+        "clicks": 0,
+        "impressions": 37,
+        "position": 33.08
+      },
+      {
+        "path": "/compliance/google-play-health-data-policy",
+        "clicks": 0,
+        "impressions": 18,
+        "position": 23.06
+      },
+      {
+        "path": "/fitness-apis/fitness-api-vs-build-your-own",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 5.5
+      },
+      {
+        "path": "/fix/oauth-redirect-uri-mismatch",
+        "clicks": 0,
+        "impressions": 33,
+        "position": 35.82
+      },
+      {
+        "path": "/blog",
+        "clicks": 0,
+        "impressions": 32,
+        "position": 145.44
+      },
+      {
+        "path": "/integrate/terra-api",
+        "clicks": 0,
+        "impressions": 16,
+        "position": 20.63
+      },
+      {
+        "path": "/pricing/how-much-does-a-fitness-api-cost",
+        "clicks": 0,
+        "impressions": 8,
+        "position": 16.63
+      },
+      {
+        "path": "/data/heart-rate-api",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 9.33
+      },
+      {
+        "path": "/alternatives/google-fit-api-alternatives",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 16.71
+      },
+      {
+        "path": "/fix/google-fit-api-deprecated",
+        "clicks": 0,
+        "impressions": 14,
+        "position": 22.36
+      },
+      {
+        "path": "/data/vo2-max-api",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 4
+      },
+      {
+        "path": "/guides/add-form-feedback",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 4
+      },
+      {
+        "path": "/migrate",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 6.5
+      },
+      {
+        "path": "/migrate/migrate-off-a-deprecated-fitness-api",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 4
+      },
+      {
+        "path": "/guides/ai-workout-tracking-ios-swift",
+        "clicks": 0,
+        "impressions": 24,
+        "position": 31
+      },
+      {
+        "path": "/ai/ai-fitness-coach-prompts",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 8
+      },
+      {
+        "path": "/guides/improve-pose-detection-accuracy",
+        "clicks": 0,
+        "impressions": 11,
+        "position": 24.45
+      },
+      {
+        "path": "/ai/choosing-an-llm-for-fitness-apps",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 17.6
+      },
+      {
+        "path": "/alternatives/nutritionix-alternatives",
+        "clicks": 0,
+        "impressions": 10,
+        "position": 27.7
+      },
+      {
+        "path": "/alternatives/whoop-api-alternatives",
+        "clicks": 0,
+        "impressions": 10,
+        "position": 24.6
+      },
+      {
+        "path": "/compare/nutritionix-vs-edamam",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 8.5
+      },
+      {
+        "path": "/compliance/is-fitness-data-phi",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 5
+      },
+      {
+        "path": "/learn",
+        "clicks": 0,
+        "impressions": 20,
+        "position": 105.5
+      },
+      {
+        "path": "/learn/what-is-a-fitness-api",
+        "clicks": 0,
+        "impressions": 19,
+        "position": 41.21
+      },
+      {
+        "path": "/data/step-counting-api",
+        "clicks": 0,
+        "impressions": 18,
+        "position": 30.39
+      },
+      {
+        "path": "/compliance/gdpr-fitness-app",
+        "clicks": 0,
+        "impressions": 14,
+        "position": 51.43
+      },
+      {
+        "path": "/migrate/google-fit-to-health-connect",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 25.43
+      },
+      {
+        "path": "/motion/real-time-pose-estimation",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 7
+      },
+      {
+        "path": "/alternatives/oura-api-alternatives",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 23.67
+      },
+      {
+        "path": "/build/nutrition-tracking-app",
+        "clicks": 0,
+        "impressions": 12,
+        "position": 88.75
+      },
+      {
+        "path": "/compare/fitbit-vs-apple-watch",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 11.67
+      },
+      {
+        "path": "/compare/oura-vs-whoop",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 10.33
+      },
+      {
+        "path": "/data/workout-detection-api",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 25
+      },
+      {
+        "path": "/guides/add-rep-counting",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 26
+      },
+      {
+        "path": "/migrate/adapt-to-strava-api-changes",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 17.67
+      },
+      {
+        "path": "/compliance",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 8
+      },
+      {
+        "path": "/ai/ai-nutrition-logging",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 28.4
+      },
+      {
+        "path": "/ai/evaluating-ai-fitness-features",
+        "clicks": 0,
+        "impressions": 10,
+        "position": 53.7
+      },
+      {
+        "path": "/build/ai-fitness-coaching-app",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 9
+      },
+      {
+        "path": "/learn/on-device-vs-cloud-health-data",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 9
+      },
+      {
+        "path": "/learn/what-is-a-health-data-aggregator",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 25.8
+      },
+      {
+        "path": "/motion/multi-person-pose-tracking",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 22.8
+      },
+      {
+        "path": "/picker",
+        "clicks": 0,
+        "impressions": 9,
+        "position": 61.78
+      },
+      {
+        "path": "/data/hrv-api",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 10
+      },
+      {
+        "path": "/compliance/hipaa-compliance-fitness-app",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 14.5
+      },
+      {
+        "path": "/data",
+        "clicks": 0,
+        "impressions": 8,
+        "position": 49.75
+      },
+      {
+        "path": "/fix/healthkit-no-data",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 10.5
+      },
+      {
+        "path": "/learn/what-are-sleep-stages",
+        "clicks": 0,
+        "impressions": 8,
+        "position": 85.63
+      },
+      {
+        "path": "/learn/what-is-pose-estimation",
+        "clicks": 0,
+        "impressions": 8,
+        "position": 56.5
+      },
+      {
+        "path": "/matrix",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 26.25
+      },
+      {
+        "path": "/learn/what-is-hrv",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 85.43
+      },
+      {
+        "path": "/learn/what-is-oauth-for-health-data",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 188.57
+      },
+      {
+        "path": "/compare",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 58.17
+      },
+      {
+        "path": "/motion/2d-vs-3d-pose-estimation",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 30.5
+      },
+      {
+        "path": "/ai",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 37
+      },
+      {
+        "path": "/blog/welcome-to-aifitnessapi",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 191.6
+      },
+      {
+        "path": "/learn/what-is-vo2-max",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 80
+      },
+      {
+        "path": "/alternatives/healthkit-alternatives",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 11
+      },
+      {
+        "path": "/data/blood-oxygen-api",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 16
+      },
+      {
+        "path": "/build/corporate-wellness-app",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 38.67
+      },
+      {
+        "path": "/data/sleep-tracking-api",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 32
+      },
+      {
+        "path": "/ai/personalize-with-wearable-data",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 29
+      },
+      {
+        "path": "/build/personal-training-app",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 53
+      },
+      {
+        "path": "/build/rehab-physical-therapy-app",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 54.5
+      },
+      {
+        "path": "/compliance/health-app-privacy-policy",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 62.5
+      },
+      {
+        "path": "/migrate/keep-users-connected-during-migration",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 71.5
+      },
+      {
+        "path": "/ai/ai-vs-rules-based-coaching",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 86
+      },
+      {
+        "path": "/build/home-workout-app",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 47
+      },
+      {
+        "path": "/compliance/health-data-retention-deletion",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 37
+      },
+      {
+        "path": "/motion/how-rep-counting-works",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 72
+      },
+      {
+        "path": "/motion/pose-estimation-hardware-requirements",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 46
+      },
+      {
+        "path": "/alternatives/exercisedb-alternatives",
+        "clicks": 1,
+        "impressions": 69,
+        "position": 18.33
+      },
+      {
+        "path": "/fitness-apis",
+        "clicks": 1,
+        "impressions": 249,
+        "position": 43.01
+      },
+      {
+        "path": "/pricing/oura-api-pricing",
+        "clicks": 1,
+        "impressions": 50,
+        "position": 11.48
+      },
+      {
+        "path": "/",
+        "clicks": 1,
+        "impressions": 136,
+        "position": 70.01
+      },
+      {
+        "path": "/pricing/garmin-api-pricing",
+        "clicks": 1,
+        "impressions": 19,
+        "position": 12.32
+      },
+      {
+        "path": "/fitness-apis/health-data-aggregator-apis",
+        "clicks": 1,
+        "impressions": 18,
+        "position": 19.17
+      },
+      {
+        "path": "/compare/terra-vs-spike",
+        "clicks": 1,
+        "impressions": 12,
+        "position": 18
+      },
+      {
+        "path": "/motion",
+        "clicks": 1,
+        "impressions": 30,
+        "position": 46.6
+      },
+      {
+        "path": "/data/calorie-tracking-api",
+        "clicks": 1,
+        "impressions": 22,
+        "position": 34.32
+      },
+      {
+        "path": "/pricing/exercise-database-api-pricing",
+        "clicks": 3,
+        "impressions": 87,
+        "position": 17.21
+      },
+      {
+        "path": "/pricing/fitbit-api-pricing",
+        "clicks": 3,
+        "impressions": 82,
+        "position": 12.88
+      },
+      {
+        "path": "/alternatives/terra-alternatives",
+        "clicks": 3,
+        "impressions": 45,
+        "position": 14.09
+      },
+      {
+        "path": "/fix/garmin-api-approval",
+        "clicks": 6,
+        "impressions": 182,
+        "position": 12.85
+      },
+      {
+        "path": "/fitness-apis/terra-vs-vital",
+        "clicks": 6,
+        "impressions": 53,
+        "position": 10.98
+      }
+    ]
+  }
+}

@@ -1,21 +1,107 @@
-# Pings IndexNow (Bing, Yandex, etc.) with every URL in the live sitemap so
-# new and updated pages get crawled fast. Google ignores IndexNow — that side
-# is covered by the sitemap submitted in Search Console.
+# Pings IndexNow (Bing, Yandex, etc.) with the URLs that changed in the live
+# sitemap, so new and updated pages get crawled fast. Google ignores IndexNow —
+# that side is covered by the sitemap submitted in Search Console.
 #
-# Runs weekly, and on demand from the Actions tab after a content push.
+# When it runs:
+#   - after every successful Production deploy (Vercel reports a GitHub
+#     deployment status) — diff mode, the normal path;
+#   - Mondays, as a diff catch-up for anything a deploy-time run missed;
+#   - on demand from the Actions tab: mode "diff", or "all" to resubmit every
+#     sitemap URL — for one-offs such as the resubmission after an outage.
+#
+# Diff mode compares the sitemap with the snapshot the last accepted run left;
+# scripts/indexnow.mjs says exactly what it submits. The snapshot lives in the
+# Actions cache, not the repo: committing it would trigger a deploy, which
+# would trigger this workflow.
+#
+# A sitemap that does not return 200 fails the job. That is deliberate — it is
+# the alert that the deploy this run was reacting to is not actually serving.
+#
 # No secrets: the IndexNow key is public by design (it is served from
 # public/<key>.txt on the site itself).
 name: indexnow
 on:
+  deployment_status:
   workflow_dispatch:
+    inputs:
+      mode:
+        description: "diff = only what changed since the last accepted run; all = every sitemap URL"
+        type: choice
+        options: [diff, all]
+        default: diff
   schedule:
-    - cron: "0 6 * * 1" # Mondays 06:00 UTC
+    - cron: "0 6 * * 1" # Mondays 06:00 UTC — diff catch-up
+
 jobs:
-  submit:
+  # Vercel's deployment events carry the commit SHA as their ref, so a run they
+  # start has an empty GITHUB_REF, and actions/cache skips both restore and
+  # save without a branch ref. That would make every deploy-time run a first
+  # run. So a successful Production deploy only dispatches this workflow on the
+  # default branch, where the cache works; workflow_dispatch is one of the
+  # events GITHUB_TOKEN is allowed to trigger.
+  #
+  # Vercel also reports Preview deploys and pending states; those runs show as
+  # skipped. The environment test is a prefix match (case-insensitive, like
+  # every string comparison in Actions expressions) so a project-suffixed
+  # environment name would still count as Production.
+  relay:
+    if: >-
+      github.event_name == 'deployment_status' &&
+      github.event.deployment_status.state == 'success' &&
+      startsWith(github.event.deployment.environment, 'production')
     runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - name: Dispatch a diff run on the default branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: gh workflow run indexnow.yml --repo "$GITHUB_REPOSITORY" --ref "$DEFAULT_BRANCH" -f mode=diff
+
+  submit:
+    if: github.event_name != 'deployment_status'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    # One submitter at a time, so each run diffs against the snapshot the one
+    # before it saved. Job-level rather than workflow-level on purpose: a
+    # workflow-level group would also hold the skipped Preview-deploy runs,
+    # and a newer pending run in a group replaces an older pending one — a
+    # preview could knock a real submission out of the queue. Here a newer
+    # submit replacing an older pending one loses nothing, since the diff is
+    # cumulative.
+    concurrency:
+      group: indexnow
+      cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: node scripts/indexnow.mjs
+
+      # Each save gets a unique key (cache entries are immutable); restore
+      # takes the newest entry by prefix. A miss — first run, or the entry was
+      # evicted — falls back to the script's 7-day window, not to nothing.
+      - name: Restore the last snapshot
+        uses: actions/cache/restore@v4
+        with:
+          path: .indexnow/snapshot.json
+          key: indexnow-snapshot-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: indexnow-snapshot-
+
+      - name: Submit to IndexNow
+        env:
+          INDEXNOW_SNAPSHOT: .indexnow/snapshot.json
+        run: node scripts/indexnow.mjs ${{ inputs.mode == 'all' && '--all' || '' }}
+
+      # Only reached when the script succeeded, i.e. IndexNow accepted the
+      # batch or there was nothing to send. Re-saving an unchanged snapshot is
+      # intended: it keeps the entry recently used, so it is not evicted
+      # between weekly runs.
+      - name: Save the snapshot
+        if: hashFiles('.indexnow/snapshot.json') != ''
+        uses: actions/cache/save@v4
+        with:
+          path: .indexnow/snapshot.json
+          key: indexnow-snapshot-${{ github.run_id }}-${{ github.run_attempt }}

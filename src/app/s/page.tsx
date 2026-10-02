@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/Container";
 import { absoluteUrl, site } from "@/lib/site";
-import { recommend, JOB_OPTIONS, PLATFORM_OPTIONS, PRIORITY_OPTIONS } from "@/lib/picker";
-import type { Job, Platform, Priority } from "@/lib/picker";
+import { shareAnswer } from "@/lib/picker";
 
 /**
  * The share target for a tool result.
@@ -27,20 +26,8 @@ type SP = Promise<Record<string, string | string[] | undefined>>;
 const one = (v: string | string[] | undefined): string =>
   Array.isArray(v) ? (v[0] ?? "") : (v ?? "");
 
-function pickerAnswer(sp: Record<string, string | string[] | undefined>) {
-  const j = one(sp.j);
-  const p = one(sp.p);
-  const pr = one(sp.pr);
-  const okJ = JOB_OPTIONS.find((o) => o.value === j);
-  const okP = PLATFORM_OPTIONS.find((o) => o.value === p);
-  const okPr = PRIORITY_OPTIONS.find((o) => o.value === pr);
-  if (!okJ || !okP || !okPr) return null;
-  return {
-    result: recommend(j as Job, p as Platform, pr as Priority),
-    question: `${okJ.label} · ${okP.label} · ${okPr.label}`,
-    query: `j=${j}&p=${p}&pr=${pr}`,
-  };
-}
+const pickerAnswer = (sp: Record<string, string | string[] | undefined>) =>
+  shareAnswer(one(sp.j), one(sp.p), one(sp.pr));
 
 export async function generateMetadata({
   searchParams,
@@ -53,26 +40,34 @@ export async function generateMetadata({
   const description = answer
     ? `${answer.question} — a recommendation from the AIFitnessAPI picker, with the comparisons and integration guides to read next.`
     : "A shared result from an AIFitnessAPI tool.";
-  const og = new URLSearchParams({
-    eyebrow: "API picker",
-    title,
-    ...(answer ? { line: answer.question } : {}),
-  });
+  // The card endpoint takes the three choices and nothing else, and draws its
+  // text from them itself — it no longer accepts a title to print. A link
+  // that resolves to no answer gets the site's default card instead: /api/og
+  // would answer it with a 400, and a share preview with a broken image is
+  // worse than a generic one.
+  const image = answer ? `/api/og?${answer.query}` : "/opengraph-image";
   return {
     title: { absolute: `${title} · ${site.name}` },
     description,
     robots: { index: false, follow: true },
+    // Stated outright rather than left to inheritance. A canonical on a
+    // noindex page that names another URL (the homepage, if the layout ever
+    // regains one) tells Google two different things; this page has no
+    // canonical of its own, so it emits none. Replacing `alternates` also
+    // drops the layout's feed links here, which a noindex share target does
+    // not need.
+    alternates: { canonical: null },
     openGraph: {
       type: "article",
       title,
       description,
-      images: [{ url: `/api/og?${og.toString()}`, width: 1200, height: 630 }],
+      images: [{ url: image, width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [`/api/og?${og.toString()}`],
+      images: [image],
     },
   };
 }

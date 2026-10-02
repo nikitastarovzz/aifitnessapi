@@ -4,10 +4,20 @@ import Newsletter from "@/components/Newsletter";
 import { site } from "@/lib/site";
 import PageSummary from "@/components/PageSummary";
 
+const TITLE = "About";
+const DESCRIPTION = `About ${site.name} — who writes these fitness, wearable and health API guides, how they are verified against primary sources, and who funds the site.`;
+
 export const metadata: Metadata = {
-  title: "About",
-  description: `About ${site.name} — who writes these fitness, wearable and health API guides, how they are verified against primary sources, and who funds the site.`,
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/about" },
+  openGraph: {
+    type: "website",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "/about",
+    images: ["/opengraph-image"],
+  },
 };
 
 export default function AboutPage() {

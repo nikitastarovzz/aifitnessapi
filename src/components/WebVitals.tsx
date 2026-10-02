@@ -14,11 +14,14 @@ import { useEffect } from "react";
  * weight. Everything is sent once, at the end of the visit, via sendBeacon —
  * no polling, no timers, nothing running while the page sits idle.
  *
- * Sampled at 10%: enough to see a regression, few enough writes to stay free.
- * Nothing identifying is sent — path, three numbers, and a coarse
- * connection type.
+ * Sampled at 2%. Each sample is a beacon to /api/vitals, and each beacon is a
+ * function invocation billed against the hosting plan — at 10% that was one
+ * invocation for every ten visits, on a plan that has been paused. 2% is
+ * still enough to see a regression on the pages that get traffic; it just
+ * takes longer to accumulate on the long tail. Nothing identifying is sent —
+ * path, three numbers, and a coarse connection type.
  */
-const SAMPLE = 0.1;
+const SAMPLE = 0.02;
 
 type NetworkInformation = { effectiveType?: string };
 

@@ -5,11 +5,21 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import SearchResults from "@/components/SearchResults";
 import PageSummary from "@/components/PageSummary";
 
+const TITLE = "Search";
+const DESCRIPTION =
+  "Search every page on AIFitnessAPI — guides, comparisons, integration walkthroughs, and the individual answers inside them.";
+
 export const metadata: Metadata = {
-  title: "Search",
-  description:
-    "Search every page on AIFitnessAPI — guides, comparisons, integration walkthroughs, and the individual answers inside them.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/search" },
+  openGraph: {
+    type: "website",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "/search",
+    images: ["/opengraph-image"],
+  },
   // A results page is generated from a query, not authored. Indexing it would
   // put thousands of near-identical URLs in front of a crawler; the pages it
   // points at are the content. It stays followable so the links still count.

@@ -8,7 +8,15 @@ name: Uptime check
 
 on:
   schedule:
-    - cron: "17,47 * * * *" # every 30 min, off the top-of-hour rush
+    # Every 30 min, off the top-of-hour rush. Written as three entries that
+    # together fire at exactly the :17/:47 times one "17,47 * * * *" did, so
+    # a run can tell from github.event.schedule which slot it is. The
+    # "17 */6" slot is the one that also probes the GEO surfaces (see that
+    # step) — the clock at run time can't be trusted for this, because
+    # scheduled runs start late by a varying amount.
+    - cron: "47 * * * *"
+    - cron: "17 1-5,7-11,13-17,19-23 * * *"
+    - cron: "17 */6 * * *"
   workflow_dispatch: {}
   push:
     branches: [main] # also probe right after every deploy-triggering push
@@ -47,10 +55,12 @@ jobs:
           # Retry to absorb deploy propagation: this workflow also runs on
           # push, so a probe can race Vercel finishing the build. A real
           # outage still alerts, roughly a minute later.
+          # --compressed: this runs 48 times a day, and an uncompressed HTML
+          # page is several times the bytes for the same answer.
           check () { # url, expected substring ("" = status only)
             local url="$1" needle="$2" code attempt
             for attempt in 1 2 3 4; do
-              code=$(curl -sL -o /tmp/body -w "%{http_code}" --max-time 25 "$url" || echo "000")
+              code=$(curl -sL --compressed -o /tmp/body -w "%{http_code}" --max-time 25 "$url" || echo "000")
               if [ "$code" = "200" ]; then
                 if [ -z "$needle" ] || grep -q "$needle" /tmp/body; then
                   echo "$url -> $code ok"; return
@@ -67,18 +77,23 @@ jobs:
           check "https://aifitnessapi.com/sitemap.xml" "aifitnessapi.com"
           exit $fail
 
+      # Every 6 hours on the schedule (the "17 */6" slot above), and on every
+      # push and manual run. These ~25 fetches were most of this workflow's
+      # bandwidth, and a feed or mirror breaking is not a 30-minute emergency
+      # the way the site going down is. A deploy that breaks one is still
+      # caught straight away by the push-triggered run.
       - name: Probe GEO surfaces
         id: geo
-        if: always()
+        if: always() && (github.event_name != 'schedule' || github.event.schedule == '17 */6 * * *')
         run: |
           set -euo pipefail
           fail=0
-          check () { # url, expected substring ("" = status only)
-            local url="$1" needle="$2" code attempt
+          check () { # url, expected substring ("" = status only), [file to keep the body in]
+            local url="$1" needle="$2" out="${3:-/tmp/body}" code attempt
             for attempt in 1 2 3 4; do
-              code=$(curl -sL -o /tmp/body -w "%{http_code}" --max-time 25 "$url" || echo "000")
+              code=$(curl -sL --compressed -o "$out" -w "%{http_code}" --max-time 25 "$url" || echo "000")
               if [ "$code" = "200" ]; then
-                if [ -z "$needle" ] || grep -q "$needle" /tmp/body; then
+                if [ -z "$needle" ] || grep -q "$needle" "$out"; then
                   echo "$url -> $code ok"; return
                 fi
               fi
@@ -89,7 +104,9 @@ jobs:
 
           # Machine-readable surfaces (ops/GEO.md). These are invisible to
           # humans, so nothing but this job would notice them breaking.
-          check "https://aifitnessapi.com/answers.json" '"answers"'
+          # answers.json is kept in its own file: the record count below
+          # reads the same download instead of fetching it a second time.
+          check "https://aifitnessapi.com/answers.json" '"answers"' /tmp/answers.json
           check "https://aifitnessapi.com/changes.xml"  "<item>"
           check "https://aifitnessapi.com/changes/calendar.ics"  "BEGIN:VCALENDAR"
           check "https://aifitnessapi.com/badges/healthkit-types.svg"  "HealthKit types"
@@ -119,13 +136,15 @@ jobs:
 
           # answers.json must stay in step with the site, not drift to an
           # empty or truncated index.
-          count=$(curl -sL --max-time 25 https://aifitnessapi.com/answers.json \
-            | python3 -c "import json,sys; print(len(json.load(sys.stdin)['answers']))" || echo 0)
+          # Reads the copy check() saved above; if that fetch failed, the file
+          # is missing or not JSON, the count is 0 and this fails too.
+          count=$(python3 -c "import json,sys; print(len(json.load(sys.stdin)['answers']))" \
+            < /tmp/answers.json || echo 0)
           echo "answers.json records: $count"
           if [ "$count" -lt 200 ]; then echo "answers.json too small"; fail=1; fi
 
           # Discovery relations must survive in the HTML and the headers.
-          hdrs=$(curl -sSL -D - -o /dev/null --max-time 25 \
+          hdrs=$(curl -sSL --compressed -D - -o /dev/null --max-time 25 \
             https://aifitnessapi.com/devices/ftms-fitness-machine-service || true)
           echo "$hdrs" | grep -qi 'rel="alternate"' || { echo "missing Link rel=alternate"; fail=1; }
           echo "$hdrs" | grep -qi 'rel="describedby"' || { echo "missing Link rel=describedby"; fail=1; }
@@ -138,15 +157,43 @@ jobs:
           set -euo pipefail
           # The only part of this site that can fail invisibly: the form still
           # renders and "succeeds" client-side while the API drops the lead.
-          body=$(curl -sL --max-time 25 https://aifitnessapi.com/api/signup/health || echo '{}')
-          code=$(curl -sL -o /dev/null -w "%{http_code}" --max-time 25 \
-            https://aifitnessapi.com/api/signup/health || echo 000)
+          # One request for both the status and the body.
+          code=$(curl -sL --compressed -o /tmp/signup-health.json -w "%{http_code}" --max-time 25 \
+            https://aifitnessapi.com/api/signup/health || true)
+          code=${code:-000}
+          body=$(cat /tmp/signup-health.json 2>/dev/null || echo '{}')
           echo "health endpoint -> $code"
           echo "$body"
           if [ "$code" != "200" ]; then
             echo "SIGNUP STORAGE IS NOT WORKING — submissions are not being stored."
             exit 1
           fi
+
+      # One host: www must answer 308 (or 301) to the same path on the apex.
+      # Every other probe follows redirects, so they all keep passing if this
+      # flips — www serving its own copy, or bouncing deep links to the apex
+      # homepage — while search engines see two sites or lose the page.
+      # HEAD with no -L: the redirect is what is under test, not where it
+      # lands.
+      - name: Probe www→apex redirect
+        id: redirect
+        if: always()
+        run: |
+          set -uo pipefail
+          src="https://www.aifitnessapi.com/fix/fitbit-error-code-401"
+          want="https://aifitnessapi.com/fix/fitbit-error-code-401"
+          for attempt in 1 2 3; do
+            hdrs=$(curl -sI --max-time 25 "$src" | tr -d '\r' || true)
+            code=$(printf '%s\n' "$hdrs" | awk 'NR==1{print $2}')
+            loc=$(printf '%s\n' "$hdrs" | awk -F': ' 'tolower($1)=="location"{print $2}')
+            if { [ "$code" = "308" ] || [ "$code" = "301" ]; } && [ "$loc" = "$want" ]; then
+              echo "$src -> $code $loc ok"; exit 0
+            fi
+            if [ "$attempt" -lt 3 ]; then sleep 20; fi
+          done
+          echo "$src -> HTTP ${code:-000}, Location: ${loc:-none}"
+          echo "WWW→APEX REDIRECT BROKEN — expected 308 or 301 to $want"
+          exit 1
 
       - name: Open or update site-down issue
         if: failure()
@@ -181,11 +228,29 @@ jobs:
             const coreDown = "${{ steps.core.outcome }}" === "failure";
             const geoDown = "${{ steps.geo.outcome }}" === "failure";
             const signupDown = "${{ steps.signup.outcome }}" === "failure";
-            const title = coreDown
+            // The redirect probe is its own kind of failure. It only names
+            // the issue when nothing above failed, so every existing
+            // classification reads exactly as it did before it was added.
+            const redirectDown = "${{ steps.redirect.outcome }}" === "failure";
+            const redirectOnly = redirectDown && !coreDown && !geoDown && !signupDown;
+            const title = redirectOnly
+              ? "🟠 aifitnessapi.com is up, but the www→apex redirect is broken"
+              : coreDown
               ? `🔴 aifitnessapi.com is DOWN — HTTP ${status}${vercelError && vercelError !== "none" ? ` ${vercelError}` : ""}`
               : geoDown
                 ? "🟠 aifitnessapi.com is up, but GEO surfaces are broken"
                 : "🟡 Signups are not being stored";
+            const redirectBody = [
+              "`https://www.aifitnessapi.com/fix/fitbit-error-code-401` no longer answers **308 (or 301) with `Location: https://aifitnessapi.com/fix/fitbit-error-code-401`** — see the **Probe www→apex redirect** step for what it returned instead. The site itself is up.",
+              "",
+              "Every other probe follows redirects, so only this one notices. With it broken, search engines can see two copies of every page, or deep links on www land on the apex homepage.",
+              "",
+              "Vercel dashboard → the aifitnessapi project → Settings → Domains: `aifitnessapi.com` is the production domain, and `www.aifitnessapi.com` should be set to redirect to it with a permanent (308) redirect.",
+              "",
+              "Fix it there, not with a host redirect in `next.config.ts` — the note in its `redirects()` records the redirect loop that approach caused.",
+              "",
+              `Failing run: ${runUrl}`,
+            ].join("\n");
             const signupBody = [
               "`/api/signup/health` did not return 200, which means a person who fills in the form gets a 503 and the lead is lost. The site itself is fine.",
               "",
@@ -196,7 +261,9 @@ jobs:
               "",
               `Failing run: ${runUrl}`,
             ].join("\n");
-            const body = signupDown && !coreDown && !geoDown
+            const body = redirectOnly
+              ? redirectBody
+              : signupDown && !coreDown && !geoDown
               ? signupBody
               : coreDown
               ? [
@@ -228,12 +295,18 @@ jobs:
                   "",
                   `Failing run: ${runUrl}`,
                 ].join("\n");
+            // When the redirect broke alongside something bigger, the bigger
+            // thing names the issue; this line keeps the redirect from being
+            // forgotten once that is fixed.
+            const issueBody = redirectDown && !redirectOnly
+              ? `${body}\n\nAlso failing: the www→apex redirect — see the **Probe www→apex redirect** step.`
+              : body;
             let issue = open[0];
             let hoursDown = 0;
             if (!issue) {
               const created = await github.rest.issues.create({
                 owner: context.repo.owner, repo: context.repo.repo,
-                title, labels: ["site-down"], body,
+                title, labels: ["site-down"], body: issueBody,
               });
               issue = created.data;
             } else {
@@ -307,7 +380,12 @@ jobs:
               owner: context.repo.owner, repo: context.repo.repo,
               state: "open", labels: "site-down",
             });
+            // GEO surfaces are probed every 6 hours, not every run. A run
+            // that skipped them has no evidence a GEO-only issue is fixed;
+            // closing it here would close and reopen it every 6 hours.
+            const geoSkipped = "${{ steps.geo.outcome }}" === "skipped";
             for (const issue of open) {
+              if (geoSkipped && issue.title.includes("GEO surfaces")) continue;
               await github.rest.issues.createComment({
                 owner: context.repo.owner, repo: context.repo.repo,
                 issue_number: issue.number,

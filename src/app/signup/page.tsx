@@ -3,11 +3,21 @@ import Container from "@/components/Container";
 import SignupForm from "@/components/SignupForm";
 import PageSummary from "@/components/PageSummary";
 
+const TITLE = "Sign Up";
+const DESCRIPTION =
+  "Get fitness and health API breakdowns matched to what you are building, plus the deprecations and deadlines that affect your integrations.";
+
 export const metadata: Metadata = {
-  title: "Sign Up",
-  description:
-    "Get fitness and health API breakdowns matched to what you are building, plus the deprecations and deadlines that affect your integrations.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/signup" },
+  openGraph: {
+    type: "website",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "/signup",
+    images: ["/opengraph-image"],
+  },
   robots: { index: false }, // a form page has nothing to rank for
 };
 

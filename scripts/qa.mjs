@@ -53,6 +53,14 @@ const decode = (s) =>
 
 const valid = new Set(htmls.map(routeOf));
 
+/** The content of every <meta name="robots"> on a page, whatever the attribute order. */
+const robotsOf = (html) =>
+  [...html.matchAll(/<meta\b[^>]*\bname="robots"[^>]*>/g)].map((m) => /\bcontent="([^"]*)"/.exec(m[0])?.[1] ?? "");
+
+/** The href of a page's <link rel="canonical">, whatever its attribute order. */
+const canonicalOf = (html) =>
+  /\bhref="([^"]*)"/.exec(/<link\b[^>]*\brel="canonical"[^>]*>/.exec(html)?.[0] ?? "")?.[1];
+
 /** Normalize an FAQ question so near-duplicates collide: lowercase, drop
  *  punctuation and the filler words that vary between otherwise identical
  *  questions ("how do I stop the model inventing X" vs "how to stop the model
@@ -75,6 +83,8 @@ let checked = 0;
 
 const notFoundRoutes = [];
 const notFoundSet = new Set();
+/** route → the newest JSON-LD dateModified (YYYY-MM-DD) the page declares. */
+const dateModifiedOf = new Map();
 
 for (const h of htmls) {
   const route = routeOf(h);
@@ -120,10 +130,38 @@ for (const h of htmls) {
   if (!/rel="canonical"/.test(html)) problems.push(`NO-CANONICAL   ${route}`);
   if (!/property="og:image"/.test(html)) problems.push(`NO-OG-IMAGE    ${route}`);
 
+  // A shared link is attributed to og:url, a search result to the canonical.
+  // When the two disagree the same page is counted as two URLs. The case this
+  // was written for shipped: the root layout's og:url named the homepage, and
+  // every page that set no openGraph of its own inherited it, so a share of
+  // that page was credited to "/". A noindex page may omit og:url (it is not
+  // meant to be found); an indexable one that names a canonical must name it
+  // again as og:url.
+  {
+    const canonical = canonicalOf(html);
+    const ogUrl = /\bcontent="([^"]*)"/.exec(/<meta\b[^>]*\bproperty="og:url"[^>]*>/.exec(html)?.[0] ?? "")?.[1];
+    const noindex = robotsOf(html).some((c) => /noindex/i.test(c));
+    if (canonical && ogUrl && decode(ogUrl) !== decode(canonical)) {
+      problems.push(`OG-URL-MISMATCH ${route}: og:url ${decode(ogUrl)} vs canonical ${decode(canonical)}`);
+    }
+    if (canonical && !ogUrl && !noindex) problems.push(`NO-OG-URL      ${route} is indexable and has a canonical but no og:url`);
+  }
+
   let breadcrumbs = 0;
   for (const l of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
     try {
       const parsed = JSON.parse(decode(l[1]));
+      // Every dateModified the page declares, at any depth (an @graph child,
+      // a nested WebPage) — the sitemap gate below holds lastmod to it.
+      (function collectDates(n) {
+        if (Array.isArray(n)) return n.forEach(collectDates);
+        if (!n || typeof n !== "object") return;
+        if (typeof n.dateModified === "string" && /^\d{4}-\d{2}-\d{2}/.test(n.dateModified)) {
+          const d = n.dateModified.slice(0, 10);
+          if (!(dateModifiedOf.get(route) >= d)) dateModifiedOf.set(route, d);
+        }
+        for (const v of Object.values(n)) if (v && typeof v === "object") collectDates(v);
+      })(parsed);
       for (const node of Array.isArray(parsed) ? parsed : [parsed]) {
         if (node["@type"] === "BreadcrumbList") breadcrumbs++;
         if (node["@type"] === "FAQPage") {
@@ -408,6 +446,127 @@ if (fs.existsSync(matrixPath)) {
     }
   }
 
+  // ── Link headers: the HTTP twin of the <link> tags. Header rules in
+  // next.config match the path AS REQUESTED, before the rewrite to /md/*, so
+  // a loose `/fix/:slug` also matched `/fix/x.md` and every markdown mirror
+  // advertised `/fix/x.md.md` — a 404 — as its own alternate. The rules are
+  // read from the built routes-manifest (what the server actually runs) and
+  // replayed the way the server applies them: every matching rule in order,
+  // a later value for the same key replacing an earlier one, `:param`
+  // substituted from the match.
+  {
+    const SITE = "https://aifitnessapi.com";
+    let rm = null;
+    try {
+      rm = JSON.parse(fs.readFileSync(".next/routes-manifest.json", "utf8"));
+    } catch {
+      problems.push("GEO-ALT-HEADER  .next/routes-manifest.json missing or unreadable — header rules cannot be checked");
+    }
+    if (rm) {
+      const flags = rm.caseSensitive ? "" : "i";
+      const rules = (rm.headers ?? []).map((h) => ({
+        re: new RegExp(h.regex, flags),
+        params: [...h.source.matchAll(/:([A-Za-z_]\w*)/g)].map((m) => m[1]),
+        link: (h.headers ?? []).filter((x) => x.key.toLowerCase() === "link").map((x) => x.value),
+      }));
+      /** Every rule that sets Link on `p`, with its value as the server sends it. */
+      const linkRulesFor = (p) => {
+        const out = [];
+        for (const r of rules) {
+          const m = r.re.exec(p);
+          if (!m || r.link.length === 0) continue;
+          for (let v of r.link) {
+            r.params.forEach((name, i) => {
+              v = v.replace(new RegExp(`:${name}\\b`, "g"), m[i + 1] ?? "");
+            });
+            out.push(v);
+          }
+        }
+        return out;
+      };
+
+      // Every address a markdown mirror answers at: the conventional .md URL
+      // and the /md/* path it rewrites to. The mirror route sends its own Link
+      // (canonical + describedby); a config rule that matches here either
+      // advertises a .md.md alternate or, because config headers are set
+      // first, silently replaces the mirror's canonical.
+      const mdAddresses = ["/index.md", "/md", "/md/index"];
+      for (const top of geoTops) mdAddresses.push(`/${top}.md`, `/md/${top}`);
+      for (const r of spokes) mdAddresses.push(`${r}.md`, `/md${r}`);
+      for (const p of mdAddresses) {
+        for (const v of linkRulesFor(p)) {
+          if (/rel="alternate"/.test(v)) {
+            problems.push(`GEO-MD-ALT-LOOP  a next.config Link rule matches ${p} and advertises ${(/<([^>]*)>;\s*rel="alternate"/.exec(v) ?? [])[1]} as its alternate`);
+          } else {
+            problems.push(`GEO-MD-LINK-SHADOWED  a next.config Link rule matches ${p}, replacing the mirror's own canonical Link header`);
+          }
+        }
+      }
+
+      // And the HTML side still has what the rules exist for: each spoke's
+      // header names its own single-.md mirror plus llms.txt, and a hub or
+      // the homepage at least names llms.txt. A slug with a character the
+      // rule's class refuses would otherwise lose its alternate silently.
+      const effective = (p) => linkRulesFor(p).at(-1) ?? "";
+      for (const r of spokes) {
+        const v = effective(r);
+        if (!v.includes(`<${SITE}${r}.md>; rel="alternate"`) || !v.includes('rel="describedby"')) {
+          problems.push(`GEO-ALT-HEADER  ${r} response Link header lacks <${r}.md> rel=alternate or describedby: "${v}"`);
+        }
+      }
+      for (const r of ["/", ...geoTops.map((t) => `/${t}`)]) {
+        if (!effective(r).includes('rel="describedby"')) {
+          problems.push(`GEO-ALT-HEADER  ${r} response carries no describedby Link header`);
+        }
+      }
+    }
+
+    // The mirror's own header: one Link, canonical first, naming the same URL
+    // as its front matter and as the HTML page's <link rel=canonical>. URLs
+    // are compared after URL normalisation, so the bare origin and the origin
+    // with "/" are one value (Next renders the homepage canonical without the
+    // slash; the header carries it with one).
+    const norm = (u) => {
+      try { return new URL(u).href; } catch { return u; }
+    };
+    const metaFiles = [path.join(mdRoot, "index.meta")];
+    for (const top of geoTops) {
+      metaFiles.push(path.join(mdRoot, `${top}.meta`));
+      for (const f of fs.readdirSync(path.join(mdRoot, top))) {
+        if (f.endsWith(".meta")) metaFiles.push(path.join(mdRoot, top, f));
+      }
+    }
+    const linkRe = new RegExp(
+      `^<(${SITE.replace(/[.]/g, "\\.")}[^>]*)>; rel="canonical", <${SITE.replace(/[.]/g, "\\.")}/llms\\.txt>; rel="describedby"; type="text/plain"$`,
+    );
+    for (const mf of metaFiles) {
+      const rel = mf.slice(mdRoot.length + 1).replace(/\.meta$/, "");
+      let link;
+      try {
+        link = JSON.parse(fs.readFileSync(mf, "utf8")).headers?.link;
+      } catch {
+        problems.push(`GEO-MD-LINK-CANONICAL  /md/${rel} has no readable .meta`);
+        continue;
+      }
+      const m = typeof link === "string" ? linkRe.exec(link) : null;
+      if (!m) {
+        problems.push(`GEO-MD-LINK-CANONICAL  /md/${rel} Link header is not canonical + describedby: ${JSON.stringify(link)}`);
+        continue;
+      }
+      const body = readBody(mf.replace(/\.meta$/, ".body")) ?? "";
+      const fm = /^canonical: "([^"]+)"/m.exec(body)?.[1];
+      if (!fm || norm(fm) !== norm(m[1])) {
+        problems.push(`GEO-MD-LINK-CANONICAL  /md/${rel} header canonical ${m[1]} differs from its front matter ${fm}`);
+      }
+      const page = rel === "index" ? "/" : `/${rel}`;
+      const pageFile = htmls.find((h) => routeOf(h) === page);
+      const htmlCanon = pageFile ? canonicalOf(fs.readFileSync(pageFile, "utf8")) : null;
+      if (!htmlCanon || norm(decode(htmlCanon)) !== norm(m[1])) {
+        problems.push(`GEO-MD-LINK-CANONICAL  /md/${rel} header canonical ${m[1]} differs from ${page}'s rel=canonical ${htmlCanon}`);
+      }
+    }
+  }
+
   if (llms === null) problems.push("GEO-NO-LLMS  llms.txt missing from build output");
   else {
     for (const r of spokes) {
@@ -430,6 +589,41 @@ if (fs.existsSync(matrixPath)) {
     }
     for (const surface of ["/llms.txt", "/answers.json", "/changes.xml"]) {
       if (!robotsTxt.includes(surface)) problems.push(`GEO-ROBOTS-SURFACE  ${surface} not advertised in robots.txt`);
+    }
+    // The canonical host is set in one place, the hosting provider's domain
+    // settings (see the redirects note in next.config.ts). A Host: line here
+    // is a second, unchecked statement of it.
+    if (/^Host:/im.test(robotsTxt)) problems.push("GEO-ROBOTS-HOST  robots.txt carries a Host: line");
+    // A crawler obeys only the group that names it, so a rule added to the
+    // `*` group alone never reaches the AI crawlers named above (and the
+    // reverse). Every group must carry the identical rule list. A group is a
+    // run of User-agent lines followed by its Allow/Disallow lines.
+    {
+      const groups = [];
+      let cur = null;
+      for (const raw of robotsTxt.split(/\r?\n/)) {
+        const line = raw.replace(/#.*/, "").trim();
+        if (!line) continue;
+        const [, field, value] = /^([A-Za-z-]+):\s*(.*)$/.exec(line) ?? [];
+        if (!field) continue;
+        const f = field.toLowerCase();
+        if (f === "user-agent") {
+          if (!cur || cur.rules.length) groups.push((cur = { agents: [], rules: [] }));
+          cur.agents.push(value);
+        } else if ((f === "allow" || f === "disallow") && cur) {
+          cur.rules.push(`${f}: ${value}`);
+        }
+      }
+      const star = groups.find((g) => g.agents.includes("*"));
+      if (!star) problems.push("GEO-ROBOTS-UNIFORM  robots.txt has no User-agent: * group");
+      else {
+        const want = star.rules.join("\n");
+        for (const g of groups) {
+          if (g.rules.join("\n") !== want) {
+            problems.push(`GEO-ROBOTS-UNIFORM  group "${g.agents[0]}" carries different rules from the * group`);
+          }
+        }
+      }
     }
   }
 
@@ -727,22 +921,30 @@ if (fs.existsSync(matrixPath)) {
   // environment cannot reach, so a hard failure here would be unsatisfiable,
   // and an unsatisfiable gate is one people learn to bypass. It prints, and
   // `npm run stale` ranks the queue.
+  //
+  // Ages are whole days between UTC midnights, and "due" means 90 days or
+  // older — the same arithmetic as <ContentAge> (which flags a page at
+  // day 90) and `npm run stale`. Measured from the current instant with `> 90`
+  // this line could count a page as fine on the day the page itself started
+  // telling readers it was due a re-check.
   {
-    const now = Date.now();
+    const STALE_AFTER_DAYS = 90;
+    const now = new Date();
+    const todayUtc = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
     const ages = [];
     for (const f of fs.readdirSync("src/data").filter((n) => n.endsWith(".entries.ts"))) {
       const src = fs.readFileSync(`src/data/${f}`, "utf8");
       for (const m of src.matchAll(/"updated":\s*"(\d{4}-\d{2}-\d{2})"/g)) {
-        ages.push(Math.round((now - Date.parse(`${m[1]}T00:00:00Z`)) / 86400000));
+        ages.push(Math.round((todayUtc - Date.parse(`${m[1]}T00:00:00Z`)) / 86400000));
       }
     }
     if (ages.length) {
       ages.sort((a, b) => a - b);
-      const over90 = ages.filter((d) => d > 90).length;
+      const due = ages.filter((d) => d >= STALE_AFTER_DAYS).length;
       const median = ages[Math.floor(ages.length / 2)];
       console.log(
         `Freshness: ${ages.length} entries, median ${median}d since verification, oldest ${ages.at(-1)}d` +
-          (over90 ? `, ${over90} over 90d (run \`npm run stale\`)` : ""),
+          (due ? `, ${due} at ${STALE_AFTER_DAYS}d or older (run \`npm run stale\`)` : ""),
       );
     }
   }
@@ -978,6 +1180,114 @@ if (fs.existsSync(matrixPath)) {
     const mentions = (prose.match(/KinesteX/g) ?? []).length;
     if (mentions >= 3 && !disclosureRe.test(html)) {
       problems.push(`FIRSTPARTY     ${r} mentions KinesteX ${mentions}× in prose with no funding disclosure`);
+    }
+  }
+}
+
+// ── Hosting surface. Two ways a static site ends up doing unbounded work on
+// demand, read from the manifests the server runs rather than from config
+// source, so a default flipping in a Next upgrade is caught too.
+{
+  const readJson = (p) => {
+    try { return JSON.parse(fs.readFileSync(p, "utf8")); } catch { return null; }
+  };
+
+  // The image optimizer fetches, resizes and caches whatever URL it is
+  // handed from any host its patterns allow, on our compute. Nothing here
+  // uses next/image, so the endpoint must be off or allow no remote host.
+  const im = readJson(".next/images-manifest.json");
+  if (!im?.images) {
+    problems.push("IMAGE-PROXY-OPEN  .next/images-manifest.json missing or unreadable — cannot show /_next/image is closed");
+  } else if (im.images.unoptimized !== true) {
+    const hosts = [
+      ...(im.images.remotePatterns ?? []).map((p) => `${p.protocol ?? "*"}://${p.hostname}`),
+      ...(im.images.domains ?? []),
+    ];
+    if (hosts.length) {
+      problems.push(`IMAGE-PROXY-OPEN  /_next/image will fetch remote images from ${hosts.join(", ")}`);
+    }
+  }
+
+  // Every dynamic route renders exactly the params it prerendered. With
+  // fallback anything but false, an unknown slug is rendered on request —
+  // and, under ISR, written to the cache — so any crawler or typo can mint
+  // pages. A dynamic route missing from the prerender manifest altogether is
+  // rendered on every request, which is the same hole from the other side.
+  const pm = readJson(".next/prerender-manifest.json");
+  const rmDyn = readJson(".next/routes-manifest.json")?.dynamicRoutes ?? [];
+  if (!pm?.dynamicRoutes) {
+    problems.push("DYNAMIC-FALLBACK  .next/prerender-manifest.json missing or has no dynamicRoutes");
+  } else {
+    for (const [r, v] of Object.entries(pm.dynamicRoutes)) {
+      if (v.fallback !== false) {
+        problems.push(`DYNAMIC-FALLBACK  ${r} has fallback ${JSON.stringify(v.fallback)} — unknown params render on demand (set dynamicParams = false)`);
+      }
+    }
+    for (const { page } of rmDyn) {
+      if (!(page in pm.dynamicRoutes)) {
+        problems.push(`DYNAMIC-FALLBACK  ${page} is a dynamic route with no prerendered params — it renders on every request`);
+      }
+    }
+  }
+  console.log(
+    `Hosting: image optimizer ${im?.images?.unoptimized === true ? "off" : "on"}; ` +
+      `${Object.keys(pm?.dynamicRoutes ?? {}).length} dynamic routes, all checked for fallback:false.`,
+  );
+}
+
+// ── Sitemap. lastmod is the one sitemap field a crawler still reads, and it
+// is only worth reading if it agrees with the page: a row is held to the
+// newest dateModified the page's own JSON-LD declares. A row with no such
+// date on its page is not judged (an undated row is honest; a guessed one is
+// not). Every row must resolve to a page that builds and does not 404.
+{
+  const SITE = "https://aifitnessapi.com";
+  const sm = fs.existsSync(`${ROOT}/sitemap.xml.body`) ? fs.readFileSync(`${ROOT}/sitemap.xml.body`, "utf8") : null;
+  if (sm === null) problems.push("SITEMAP-MISSING  sitemap.xml missing from build output");
+  else {
+    // changefreq and priority were dropped deliberately: neither was a fact
+    // anyone kept true, and a field that is always "weekly" teaches a
+    // crawler to ignore the file.
+    if (/<changefreq>|<priority>/.test(sm)) {
+      problems.push("SITEMAP-CHANGEFREQ  sitemap.xml carries <changefreq> or <priority>");
+    }
+    let rows = 0;
+    let dated = 0;
+    for (const [, u] of sm.matchAll(/<url>([\s\S]*?)<\/url>/g)) {
+      rows++;
+      const loc = /<loc>([^<]*)<\/loc>/.exec(u)?.[1] ?? "";
+      const lastmod = /<lastmod>([^<]*)<\/lastmod>/.exec(u)?.[1];
+      if (lastmod) dated++;
+      const route = loc === SITE ? "/" : loc.startsWith(`${SITE}/`) ? loc.slice(SITE.length) : null;
+      if (route === null || !valid.has(route) || notFoundSet.has(route)) {
+        problems.push(`SITEMAP-NO-PAGE  ${loc} is listed but no built page answers it`);
+        continue;
+      }
+      const declared = dateModifiedOf.get(route);
+      if (declared && lastmod?.slice(0, 10) !== declared) {
+        problems.push(`SITEMAP-LASTMOD  ${route}: lastmod ${lastmod ?? "(none)"} but the page declares dateModified ${declared}`);
+      }
+    }
+    console.log(`Sitemap: ${rows} rows, ${dated} with lastmod; every row whose page declares dateModified checked against it.`);
+  }
+}
+
+// ── The 404. Next injects its own robots noindex on every not-found render;
+// a second robots meta from metadata makes two directives a crawler has to
+// reconcile, and the root layout's `index, follow` was exactly that. A 404
+// has no URL of its own, so it must not name a canonical or og:url either —
+// the failure that shipped was the homepage's canonical on every unknown URL.
+{
+  const nf = `${ROOT}/_not-found.html`;
+  if (!fs.existsSync(nf)) problems.push("NOTFOUND-ROBOTS  .next/server/app/_not-found.html was not built");
+  else {
+    const html = fs.readFileSync(nf, "utf8");
+    const robots = robotsOf(html);
+    if (robots.length !== 1 || !/noindex/i.test(robots[0])) {
+      problems.push(`NOTFOUND-ROBOTS  the 404 page carries ${robots.length} robots meta(s) [${robots.join(" | ")}], expected exactly one with noindex`);
+    }
+    if (/rel="canonical"/.test(html) || /property="og:url"/.test(html)) {
+      problems.push("NOTFOUND-CANONICAL  the 404 page names a canonical or og:url");
     }
   }
 }

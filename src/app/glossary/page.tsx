@@ -9,11 +9,21 @@ import PageSummary from "@/components/PageSummary";
 const PATH = "/glossary";
 const UPDATED = "2026-07-31";
 
+const TITLE = "Fitness & Health API Glossary";
+const DESCRIPTION =
+  "Every term you hit building a fitness app, defined in one or two honest sentences and linked to the page that treats it properly.";
+
 export const metadata: Metadata = {
-  title: "Fitness & Health API Glossary",
-  description:
-    "Every term you hit building a fitness app, defined in one or two honest sentences and linked to the page that treats it properly.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: PATH },
+  openGraph: {
+    type: "website",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: PATH,
+    images: ["/opengraph-image"],
+  },
 };
 
 /**

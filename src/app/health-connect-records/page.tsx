@@ -3,10 +3,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Container from "@/components/Container";
+import ContentAge from "@/components/ContentAge";
 import { Mdx } from "@/components/mdx";
 import { HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { ROWS } from "@/data/matrix";
-import { getStandalone } from "@/data/hkStandalone";
+import { getStandalone, HK_STANDALONE_PUBLISHED, HK_STANDALONE_MODIFIED } from "@/data/hkStandalone";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 
@@ -58,6 +59,11 @@ export default function HealthConnectRecordsPage() {
   const pageId = `${url}#webpage`;
   const faqId = (i: number) => `faq-${i + 1}`;
 
+  // The page's own dates (35bc67c, 2026-09-04) in datePublished and
+  // dateModified. The data date, `entry.updated`, is when the matrix rows this
+  // page renders were verified against both platforms' documentation
+  // (2026-07-26) — older than the page, so it goes in lastReviewed and on the
+  // visible date line, never in dateModified. See HK_STANDALONE_MODIFIED.
   const graphJsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -67,8 +73,8 @@ export default function HealthConnectRecordsPage() {
         headline: entry.title,
         alternativeHeadline: entry.primaryQuery,
         description: entry.metaDescription,
-        datePublished: HK_FETCHED_ON,
-        dateModified: HK_FETCHED_ON,
+        datePublished: HK_STANDALONE_PUBLISHED,
+        dateModified: HK_STANDALONE_MODIFIED,
         author: orgRef(),
         publisher: orgRef(),
         inLanguage: "en",
@@ -84,7 +90,7 @@ export default function HealthConnectRecordsPage() {
         url,
         name: entry.title,
         isPartOf: { "@id": WEBSITE_ID },
-        lastReviewed: HK_FETCHED_ON,
+        lastReviewed: entry.updated,
         reviewedBy: orgRef(),
         primaryImageOfPage: { "@type": "ImageObject", url: `${site.url}/opengraph-image` },
       },
@@ -130,8 +136,12 @@ export default function HealthConnectRecordsPage() {
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
           {entry.title}
         </h1>
+        {/* The age is the matrix verification date — the rows below, and the
+            oldest data on the page — not the later HealthKit corpus read,
+            which keeps its own mention at the end of this line. */}
         <p className="mt-3 text-sm text-[var(--muted)]">
-          {ROWS.length} metrics verified on both platforms · {WITH_WARNING.length} carry a
+          {ROWS.length} metrics verified on both platforms on {entry.updated}
+          <ContentAge date={entry.updated} /> · {WITH_WARNING.length} carry a
           cross-platform caveat · HealthKit side read {HK_FETCHED_ON}
         </p>
 

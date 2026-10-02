@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Container from "@/components/Container";
 import ClusterHero from "@/components/ClusterHero";
+import ContentAge from "@/components/ContentAge";
 import { Mdx } from "@/components/mdx";
 import {
   getAllPosts,
@@ -11,9 +12,27 @@ import {
 } from "@/lib/posts";
 import { site, absoluteUrl } from "@/lib/site";
 import { postGraph, markdownUrl } from "@/lib/schema";
-import { stringSeed } from "@/lib/cluster";
+import { stringSeed, clampTitle } from "@/lib/cluster";
+import { OG_SIZE } from "@/lib/og-card";
+
+// Every post is known at build time, so an unknown slug is a 404 — not an
+// on-demand render. Without this, GET /blog/<anything> rendered at request
+// time and left a stray .next/server/app/blog/<anything>.html carrying the
+// homepage title; every other dynamic route already declares it.
+export const dynamicParams = false;
 
 type Params = { slug: string };
+
+/**
+ * The post's share image: its own cover when it declares one, otherwise the
+ * co-located opengraph-image route (the finding-carrying card). One function
+ * so og:image and the JSON-LD `image` cannot name different pictures.
+ */
+function postImage(post: { slug: string; image?: string }) {
+  return post.image
+    ? { url: absoluteUrl(post.image) }
+    : { url: absoluteUrl(`/blog/${post.slug}/opengraph-image`), ...OG_SIZE };
+}
 
 export function generateStaticParams(): Params[] {
   return getAllPosts().map((post) => ({ slug: post.slug }));
@@ -29,34 +48,39 @@ export async function generateMetadata({
   if (!post) return {};
 
   const url = absoluteUrl(`/blog/${post.slug}`);
-  // Fall back to the site-wide branded OG card when a post has no cover image.
   // A post with its own cover keeps it; otherwise point explicitly at the
   // co-located opengraph-image route (the finding-carrying card). Relying on
   // Next to inject the file-convention image under an explicit openGraph
   // object proved flaky in this build — explicit wins.
-  const ogImage = post.image
-    ? absoluteUrl(post.image)
-    : absoluteUrl(`/blog/${post.slug}/opengraph-image`);
+  const ogImage = postImage(post).url;
+
+  // A frontmatter metaTitle is the whole SERP title, so it is rendered
+  // absolute (no layout suffix) and clamped, the way cluster spokes treat
+  // theirs. Without one, the post title takes the layout suffix as before.
+  // The H1 is always the post title either way.
+  const metaTitle = post.metaTitle ? clampTitle(post.metaTitle) : undefined;
+  const shareTitle = metaTitle ?? post.title;
 
   return {
-    title: post.title,
+    title: metaTitle ? { absolute: metaTitle } : post.title,
     description: post.description,
     alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
       type: "article",
-      title: post.title,
+      title: shareTitle,
       description: post.description,
       url,
       publishedTime: post.date,
+      modifiedTime: post.updated,
       authors: [post.author],
       tags: post.tags,
-      images: ogImage ? [{ url: ogImage }] : undefined,
+      images: [{ url: ogImage }],
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
+      title: shareTitle,
       description: post.description,
-      images: ogImage ? [ogImage] : undefined,
+      images: [ogImage],
     },
   };
 }
@@ -71,24 +95,6 @@ export default async function PostPage({
   if (!post) notFound();
 
   const url = absoluteUrl(`/blog/${post.slug}`);
-
-  const articleJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
-    description: post.description,
-    datePublished: post.date,
-    dateModified: post.updated,
-    author:
-      post.author === site.name
-        ? { "@type": "Organization", name: site.name, url: site.url }
-        : { "@type": "Person", name: post.author },
-    publisher: { "@type": "Organization", name: site.name, url: site.url },
-    mainEntityOfPage: { "@type": "WebPage", "@id": url },
-    url,
-    keywords: post.tags.join(", "),
-    ...(post.image ? { image: absoluteUrl(post.image) } : {}),
-  };
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -119,6 +125,8 @@ export default async function PostPage({
       }
     : null;
 
+  // The one Article node for this URL (BlogPosting + TechArticle) and its
+  // WebPage — see postGraph for why there is no separate BlogPosting script.
   const graph = postGraph({
     slug: post.slug,
     title: post.title,
@@ -128,6 +136,7 @@ export default async function PostPage({
     author: post.author,
     tags: post.tags,
     words: post.content.split(/\s+/).filter(Boolean).length,
+    image: postImage(post),
   });
 
   // Read next: posts sharing the most tags, newest first as the tiebreak.
@@ -141,10 +150,6 @@ export default async function PostPage({
 
   return (
     <Container className="py-14">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
-      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
@@ -181,7 +186,24 @@ export default async function PostPage({
 
         <header className="mb-10">
           <div className="mb-4 flex flex-wrap items-center gap-2 text-sm text-[var(--muted)]">
-            <time dateTime={post.date}>{formatDate(post.date)}</time>
+            {/* The age of the last verification, next to the dates. When a
+                post was never re-checked its verification date IS its publish
+                date, so the age attaches there instead of repeating the date. */}
+            {post.updated !== post.date ? (
+              <>
+                <time dateTime={post.date}>{formatDate(post.date)}</time>
+                <span aria-hidden>·</span>
+                <span>
+                  Verified <time dateTime={post.updated}>{formatDate(post.updated)}</time>
+                  <ContentAge date={post.updated} />
+                </span>
+              </>
+            ) : (
+              <span>
+                <time dateTime={post.date}>{formatDate(post.date)}</time>
+                <ContentAge date={post.updated} />
+              </span>
+            )}
             <span aria-hidden>·</span>
             <span>{post.readingTime}</span>
             <span aria-hidden>·</span>

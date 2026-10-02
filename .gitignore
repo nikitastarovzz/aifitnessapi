@@ -40,3 +40,6 @@ next-env.d.ts
 
 # Nested package deps (mcp/)
 **/node_modules/
+
+# IndexNow diff snapshot (restored/saved by the Actions cache, never committed)
+.indexnow/

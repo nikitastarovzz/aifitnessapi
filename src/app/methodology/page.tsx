@@ -6,11 +6,21 @@ import PageSummary from "@/components/PageSummary";
 
 const UPDATED = "2026-07-31";
 
+const TITLE = "How We Verify";
+const DESCRIPTION =
+  "How AIFitnessAPI is researched: primary sources fetched at write time, unverifiable claims marked instead of guessed, adversarial review before publishing.";
+
 export const metadata: Metadata = {
-  title: "How We Verify",
-  description:
-    "How AIFitnessAPI is researched: primary sources fetched at write time, unverifiable claims marked instead of guessed, adversarial review before publishing.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/methodology" },
+  openGraph: {
+    type: "website",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "/methodology",
+    images: ["/opengraph-image"],
+  },
 };
 
 /**

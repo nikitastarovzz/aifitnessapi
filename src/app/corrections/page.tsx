@@ -11,11 +11,21 @@ import { CORRECTIONS, NEAR_MISSES } from "@/data/corrections";
  * misstates the record.
  */
 
+const TITLE = "Corrections";
+const DESCRIPTION =
+  "Every published correction on this site, plus the errors the build gates caught before publish. Both lists are real and kept current.";
+
 export const metadata: Metadata = {
-  title: "Corrections",
-  description:
-    "Every published correction on this site, plus the errors the build gates caught before publish. Both lists are real and kept current.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/corrections" },
+  openGraph: {
+    type: "website",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "/corrections",
+    images: ["/opengraph-image"],
+  },
 };
 
 export default function CorrectionsPage() {

@@ -36,11 +36,30 @@ export function generateStaticParams(): { path: string[] }[] {
   ];
 }
 
-function md(body: string) {
+/**
+ * Every mirror is a second (third, counting /md/*) address for the words on
+ * an HTML page, so it names that page as canonical in the HTTP Link header —
+ * the only canonical channel a non-HTML document has. That consolidates
+ * ranking signals on the HTML page while the mirror stays crawlable: ops/GEO.md
+ * forbids noindexing or removing mirrors, so canonical is the whole remedy.
+ *
+ * `canonical` is required, not defaulted, so a new branch cannot ship a mirror
+ * without one; callers pass the same value they write into front matter. It
+ * goes through URL serialization, which leaves page paths untouched and gives
+ * the bare origin its root slash (https://aifitnessapi.com/ for /index.md).
+ *
+ * ONE Link header carrying both relations. A route handler cannot add to a
+ * Link that next.config's header rules already set: those land on the response
+ * first and Next copies only handler headers that are not present yet, so a
+ * config rule matching a markdown address silently replaces this whole value.
+ */
+function md(body: string, canonical: string) {
   return new Response(body, {
     headers: {
       "content-type": "text/markdown; charset=utf-8",
-      link: `<${absoluteUrl("/llms.txt")}>; rel="describedby"; type="text/plain"`,
+      link:
+        `<${new URL(canonical).href}>; rel="canonical", ` +
+        `<${absoluteUrl("/llms.txt")}>; rel="describedby"; type="text/plain"`,
     },
   });
 }
@@ -74,9 +93,10 @@ export async function GET(
   // ——— /index.md — the whole site as one map ———
   if (path.length === 1 && path[0] === "index") {
     const total = Object.values(map).reduce((n, l) => n + l.length, 0);
+    const canonical = site.url;
     const out = frontMatter([
       ["title", site.name],
-      ["canonical", site.url],
+      ["canonical", canonical],
       ["description", site.description],
       ["publisher", `${site.name} — funded by KinesteX; first-party pages disclose it`],
       ["license", "Content readable and quotable with attribution"],
@@ -94,7 +114,7 @@ export async function GET(
       }
       out.push("");
     }
-    return md(out.join("\n"));
+    return md(out.join("\n"), canonical);
   }
 
   // ——— /blog.md and /blog/<slug>.md ———
@@ -104,9 +124,10 @@ export async function GET(
   if (path[0] === "blog") {
     const posts = getAllPosts();
     if (path.length === 1) {
+      const canonical = absoluteUrl("/blog");
       const out = frontMatter([
         ["title", `${site.name} — blog`],
-        ["canonical", absoluteUrl("/blog")],
+        ["canonical", canonical],
         ["type", "blog-index"],
         ["pages", String(posts.length)],
         ["last_reviewed", posts.map((p) => p.updated).sort().at(-1) ?? ""],
@@ -122,7 +143,7 @@ export async function GET(
         out.push(`- Last reviewed: ${p.updated}`, "");
         out.push(p.description, "");
       }
-      return md(out.join("\n"));
+      return md(out.join("\n"), canonical);
     }
     if (path.length !== 2) return new Response("Not found", { status: 404 });
     const post = posts.find((p) => p.slug === path[1]);
@@ -156,7 +177,7 @@ export async function GET(
       out.push("## FAQ", "");
       for (const f of post.faqs) out.push(`### ${f.q}`, "", f.a, "");
     }
-    return md(out.join("\n"));
+    return md(out.join("\n"), canonical);
   }
 
   // ——— /<cluster>.md — the cluster map, with every answer capsule ———
@@ -166,9 +187,10 @@ export async function GET(
     if (!entries || entries.length === 0) return new Response("Not found", { status: 404 });
     const label = CLUSTER_LABELS[base] ?? path[0];
     const newest = entries.map((e) => e.updated).sort().at(-1) ?? "";
+    const canonical = absoluteUrl(base);
     const out = frontMatter([
       ["title", label],
-      ["canonical", absoluteUrl(base)],
+      ["canonical", canonical],
       ["type", "cluster-index"],
       ["pages", String(entries.length)],
       ["last_reviewed", newest],
@@ -187,7 +209,7 @@ export async function GET(
       out.push(`- Last reviewed: ${e.updated}`, "");
       out.push(e.answer, "");
     }
-    return md(out.join("\n"));
+    return md(out.join("\n"), canonical);
   }
 
   // ——— /<cluster>/<slug>.md — the full article ———
@@ -236,5 +258,5 @@ export async function GET(
       out.push(`### ${f.q}`, "", f.a, "", `[Permalink](${canonical}#faq-${i + 1})`, "");
     });
   }
-  return md(out.join("\n"));
+  return md(out.join("\n"), canonical);
 }

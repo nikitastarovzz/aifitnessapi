@@ -19,7 +19,30 @@ import { absoluteUrl } from "@/lib/site";
  */
 export const dynamic = "force-static";
 
-/** Grouped for legibility; every group is allowed identically. */
+/**
+ * The one rule list every group gets, the wildcard included.
+ *
+ * A crawler follows the one group that names it, not that group plus the
+ * `User-agent: *` rules, so a named group is a full override of the wildcard.
+ * When each group carried its own literal "Allow: /", a Disallow added under
+ * `*` would have silently skipped every named agent in AI_CRAWLERS. Emitting
+ * every group from this array means a rule added here reaches all of them.
+ *
+ * Before adding anything:
+ * - A Disallow here applies to every AI agent above, which ops/GEO.md ("Never,
+ *   without a written decision in this file") forbids until the owner's
+ *   decision is recorded there. A rule meant only for non-AI crawlers is the
+ *   same decision, because this list is deliberately shared.
+ * - Never disallow /s or /search. Both are kept out of the index by a noindex
+ *   meta tag, and a crawler that is disallowed never fetches the page, so it
+ *   never sees the noindex — the URL can then be indexed from links alone.
+ *
+ * The type keeps entries to path rules; non-path lines (Sitemap) are emitted
+ * once, outside the groups.
+ */
+const RULES: readonly `${"Allow" | "Disallow"}: /${string}`[] = ["Allow: /"];
+
+/** Grouped for legibility; every group gets the same RULES. */
 const AI_CRAWLERS: [string, string[]][] = [
   [
     "OpenAI",
@@ -87,9 +110,12 @@ export function GET(): Response {
     `#   Per-section RSS ............ ${absoluteUrl("/feeds/<cluster>.xml")}`,
     `#   Open datasets (CC BY 4.0) .. ${absoluteUrl("/state-of-fitness-apis-2026")}`,
     "#",
-    "# Every page is also served as markdown at its own URL with .md appended",
-    "# (e.g. /devices/ftms-fitness-machine-service.md), per the llms.txt",
-    "# convention. Directory URLs use /index.md and /<cluster>.md.",
+    "# Markdown mirrors live at the page's own URL with .md appended, per the",
+    "# llms.txt convention: every cluster page",
+    "# (e.g. /devices/ftms-fitness-machine-service.md), every cluster hub",
+    "# (/<cluster>.md), the blog and its posts (/blog.md, /blog/<slug>.md),",
+    "# and a whole-site index at /index.md. Other pages (tools, datasets,",
+    "# glossary, /apis product pages) have no markdown mirror.",
     "#",
     "# Attribution: quote freely, cite the canonical URL. This site is funded",
     "# by KinesteX; pages covering KinesteX are flagged first_party in",
@@ -97,23 +123,22 @@ export function GET(): Response {
     "",
   ];
 
-  for (const [group, agents] of AI_CRAWLERS) {
+  // The wildcard is just the last group, built the same way, so it cannot
+  // drift from the named ones.
+  const groups: [string, string[]][] = [...AI_CRAWLERS, ["Everyone else", ["*"]]];
+  for (const [group, agents] of groups) {
     lines.push(`# ${group}`);
     for (const ua of agents) {
       lines.push(`User-agent: ${ua}`);
     }
-    lines.push("Allow: /", "");
+    lines.push(...RULES, "");
   }
 
-  lines.push(
-    "# Everyone else",
-    "User-agent: *",
-    "Allow: /",
-    "",
-    `Sitemap: ${absoluteUrl("/sitemap.xml")}`,
-    `Host: ${absoluteUrl("/")}`,
-    "",
-  );
+  // No `Host:` line. It is not a standard robots.txt directive, and it was a
+  // second place stating the canonical host: that has exactly one home, the
+  // Vercel domain settings (see the redirects note in next.config.ts — two
+  // places disagreeing about the host is how the redirect loop happened).
+  lines.push(`Sitemap: ${absoluteUrl("/sitemap.xml")}`, "");
 
   return new Response(lines.join("\n"), {
     headers: { "content-type": "text/plain; charset=utf-8" },

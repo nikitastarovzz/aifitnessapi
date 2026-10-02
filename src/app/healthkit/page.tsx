@@ -7,6 +7,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterHero from "@/components/ClusterHero";
 import ClusterCta from "@/components/ClusterCta";
 import PageSummary from "@/components/PageSummary";
+import ContentAge from "@/components/ContentAge";
 import {
   HK_BASE,
   hkGroupLabel,
@@ -139,6 +140,7 @@ export default function HealthKitHub() {
         <p className="mt-3 text-sm text-[var(--muted)]">
           {HK_IDENTIFIERS.length} identifiers in {GROUP_COUNT} groups · read from Apple&rsquo;s
           documentation on {HK_FETCHED_ON}
+          <ContentAge date={HK_FETCHED_ON} />
         </p>
 
         <PageSummary path={HK_BASE} name="HealthKit, mapped" updated={HK_FETCHED_ON}>

@@ -48,6 +48,30 @@ export const PRIORITY_OPTIONS: { value: Priority; label: string; hint: string }[
   { value: "compliance", label: "Compliance", hint: "HIPAA, GDPR, health-data rules" },
 ];
 
+/**
+ * A shared answer, resolved from the three raw query values a share link
+ * carries. Both the share page (/s) and its social card (/api/og) derive their
+ * text from this one function, so the card can never describe a different
+ * answer than the page it previews. Null unless every value is one of the
+ * options above — callers decide what an invalid link gets (a "nothing to
+ * show" page, a 400), but nothing free-text ever reaches a title or a card.
+ *
+ * `query` is the canonical form, keys in a fixed order: /s builds the card URL
+ * from it, and /api/og refuses any request whose query string is not exactly
+ * this, which caps the card's cache at one entry per answer.
+ */
+export function shareAnswer(j: string | null, p: string | null, pr: string | null) {
+  const okJ = JOB_OPTIONS.find((o) => o.value === j);
+  const okP = PLATFORM_OPTIONS.find((o) => o.value === p);
+  const okPr = PRIORITY_OPTIONS.find((o) => o.value === pr);
+  if (!okJ || !okP || !okPr) return null;
+  return {
+    result: recommend(okJ.value, okP.value, okPr.value),
+    question: `${okJ.label} · ${okP.label} · ${okPr.label}`,
+    query: `j=${okJ.value}&p=${okP.value}&pr=${okPr.value}`,
+  };
+}
+
 const L = {
   wearables: { href: "/fitness-apis/wearable-data-apis", label: "Best wearable data APIs" },
   aggregators: { href: "/fitness-apis/health-data-aggregator-apis", label: "Best health-data aggregator APIs" },

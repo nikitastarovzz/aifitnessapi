@@ -14,8 +14,8 @@ import { ROWS as MATRIX_ROWS } from "@/data/matrix";
 import { API_ENTRIES, CATEGORY_LABELS, DEV_COST_LABELS } from "@/data/apis";
 import { allBuilds, RELEASED_BUILD, BUILD_PATH } from "@/data/build";
 import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
-import { absoluteUrl, site } from "@/lib/site";
-import { orgRef } from "@/lib/schema";
+import { site } from "@/lib/site";
+import { toolGraph } from "@/lib/schema";
 
 /**
  * The stack generator — the /build guides' concrete stack, narrowed by four
@@ -76,8 +76,6 @@ function labelForSlug(slug: string): string {
 }
 
 export default function StackGeneratorPage() {
-  const url = absoluteUrl(PATH);
-
   const byCase = new Map(HK_IDENTIFIERS.map((r) => [r.case, r]));
 
   // Health Connect names come only from the verified matrix, derived exactly
@@ -140,20 +138,16 @@ export default function StackGeneratorPage() {
     })
     .sort((a, b) => a.label.localeCompare(b.label));
 
-  const appJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
+  // Same builder as the other five tools. No WebPage node from it: the
+  // <PageSummary> below already emits #webpage (with the review date and the
+  // speakable capsule), and the app points at that one.
+  const appJsonLd = toolGraph({
+    path: PATH,
     name: "Fitness app stack generator",
-    applicationCategory: "DeveloperApplication",
-    operatingSystem: "Web",
     description: String(metadata.description),
-    url,
-    isAccessibleForFree: true,
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    publisher: orgRef(),
     datePublished: UPDATED,
     dateModified: UPDATED,
-  };
+  });
 
   return (
     <Container className="py-14">

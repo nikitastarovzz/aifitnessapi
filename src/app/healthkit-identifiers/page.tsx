@@ -6,6 +6,7 @@ import ClusterHero from "@/components/ClusterHero";
 import ClusterCta from "@/components/ClusterCta";
 import PageSummary from "@/components/PageSummary";
 import PageActions from "@/components/PageActions";
+import ContentAge from "@/components/ContentAge";
 import HkIdentifierTable, { type HkRow } from "@/components/HkIdentifierTable";
 import { HK_IDENTIFIERS, HK_GROUPS, HK_FAMILIES, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { ROWS as MATRIX_ROWS } from "@/data/matrix";
@@ -94,6 +95,9 @@ export default function HealthKitIdentifiersPage() {
     creator: orgRef(),
     license: "https://creativecommons.org/licenses/by/4.0/",
     isBasedOn: "https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier",
+    // First published in 063f994; modified whenever the corpus is re-read,
+    // since every row on the page is that read.
+    datePublished: "2026-08-26",
     dateModified: HK_FETCHED_ON,
     variableMeasured: ["identifier", "unit family", "aggregation style", "iOS availability"],
   };
@@ -131,6 +135,7 @@ export default function HealthKitIdentifiersPage() {
         <p className="mt-3 text-sm text-[var(--muted)]">
           {HK_IDENTIFIERS.length} identifiers across {HK_FAMILIES.length} families · read from Apple&rsquo;s
           documentation on {HK_FETCHED_ON}
+          <ContentAge date={HK_FETCHED_ON} />
         </p>
 
         <PageSummary path={PATH} name="Every HealthKit type identifier" updated={HK_FETCHED_ON}>

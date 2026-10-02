@@ -1,374 +1,199 @@
+import fs from "node:fs";
+import path from "node:path";
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/posts";
 import { absoluteUrl } from "@/lib/site";
-import { SDK_REPOS } from "@/data/sdkReleases";
-import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
-import { releasedGuides, GUIDES_PATH } from "@/data/guides";
-import { releasedBuilds, BUILD_PATH } from "@/data/build";
-import { releasedIntegrations, INTEGRATE_PATH } from "@/data/integrate";
-import { releasedFixes, FIX_PATH } from "@/data/fix";
-import { releasedLearn, LEARN_PATH } from "@/data/learn";
-import { releasedAlternatives, ALTERNATIVES_PATH } from "@/data/alternatives";
-import { releasedCompliance, COMPLIANCE_PATH } from "@/data/compliance";
-import { releasedMigrate, MIGRATE_PATH } from "@/data/migrate";
-import { releasedPricing, PRICING_PATH } from "@/data/pricing";
-import { releasedCompare, COMPARE_PATH } from "@/data/compare";
-import { releasedData, DATA_PATH } from "@/data/healthData";
-import { releasedMotion, MOTION_PATH } from "@/data/motion";
-import { releasedAi, AI_PATH } from "@/data/ai";
-import { releasedArchitecture, ARCHITECTURE_PATH } from "@/data/architecture";
-import { releasedTesting, TEST_PATH } from "@/data/testing";
-import { releasedCookbook, COOKBOOK_PATH } from "@/data/cookbook";
-import { releasedDevices, DEVICES_PATH } from "@/data/devices";
-import { releasedEngagement, ENGAGEMENT_PATH } from "@/data/engagement";
-import { releasedWatchApps, WATCH_PATH } from "@/data/watchApps";
+import { SDK_REPOS, SDK_CHECKED_ON } from "@/data/sdkReleases";
 import { clusterMap } from "@/lib/clusterRegistry";
-import { releasedHkGroups, HK_BASE } from "@/data/hkGroupPages";
+import { releasedHkGroups, HK_BASE, HK_GROUP_MODIFIED } from "@/data/hkGroupPages";
+import { HK_STANDALONE_MODIFIED } from "@/data/hkStandalone";
+import { HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { changesSorted } from "@/data/changes";
 import { API_ENTRIES, APIS_PATH } from "@/data/apis";
-import { digests, DIGEST_PATH } from "@/data/digest";
-import { releasedAccessibility, A11Y_PATH } from "@/data/accessibility";
+import { digests, DIGEST_PATH, type Digest } from "@/data/digest";
+
+/**
+ * Every row carries a `lastmod` that some dated record on the site backs, or
+ * no `lastmod` at all. Never build time: a sitemap that reports every URL as
+ * changed on every deploy teaches a crawler to ignore the field, and this
+ * site's whole claim is that its dates mean something. Where nothing dated
+ * stands behind a page, the row goes out undated rather than guessed.
+ *
+ * The rule for a page is the date its own structured data declares as
+ * dateModified, so the sitemap and the page can never disagree (qa's
+ * SITEMAP-LASTMOD holds every row to it). A hub or index that declares no
+ * dateModified of its own takes the date of its newest member instead. One
+ * that does declare one — every cluster hub's Article node carries the
+ * hub's own UPDATED (the "last reviewed" line most hubs print), and /changes
+ * carries its "Updated" date — is dated by that declaration, even where a
+ * member is newer: the page says when it was last changed, and the sitemap
+ * must not say otherwise.
+ *
+ * changefreq and priority are gone. Every row used to claim "weekly" or
+ * "monthly" whether or not anything had changed, with priorities that were
+ * one person's ranking typed once — neither was a fact we could keep true,
+ * and lastmod is the one field here a dated record can back.
+ */
+
+const ISO_DAY = /^\d{4}-\d{2}-\d{2}$/;
+
+/** The newest of a set of YYYY-MM-DD dates, ignoring anything that is not
+ *  one. Lexical order is date order for this format. */
+function newest(dates: (string | null | undefined)[]): string | undefined {
+  return dates.filter((d): d is string => typeof d === "string" && ISO_DAY.test(d)).sort().at(-1);
+}
+
+/** A row, dated only when the date is a real calendar day. A malformed stamp
+ *  drops the lastmod instead of throwing at `toISOString()` or guessing. */
+function row(p: string, date?: string | null): MetadataRoute.Sitemap[number] {
+  return date && ISO_DAY.test(date)
+    ? { url: absoluteUrl(p), lastModified: new Date(`${date}T00:00:00Z`) }
+    : { url: absoluteUrl(p) };
+}
+
+const APP_DIR = path.join(process.cwd(), "src", "app");
+
+/**
+ * A standalone page's own date, read from its source: the page-local
+ * `const UPDATED = "YYYY-MM-DD"`, and only when the same file also declares
+ * `dateModified: UPDATED` — so the result is, by construction, the date the
+ * page's structured data already states. Next refuses extra named exports
+ * from a page module, so the constant cannot be imported; reading it is how
+ * the two stay one value instead of two copies that drift. The sitemap is
+ * generated at build, where the source is present. A missing file, constant
+ * or dateModified yields no lastmod — never a substitute.
+ */
+function pageStamp(route: string): string | undefined {
+  let src: string;
+  try {
+    src = fs.readFileSync(path.join(APP_DIR, route, "page.tsx"), "utf8");
+  } catch {
+    return undefined;
+  }
+  if (!/dateModified:\s*UPDATED\b/.test(src)) return undefined;
+  return /const UPDATED\s*=\s*"(\d{4}-\d{2}-\d{2})"/.exec(src)?.[1];
+}
+
+/** A digest has no authored date of its own; it is the dated records of one
+ *  month, so it is as fresh as the newest record it still holds. A page
+ *  re-verified in a later month leaves the issue without adding a date, so
+ *  this can understate a change — never overstate one. */
+function digestDate(d: Digest): string | undefined {
+  return newest([...d.changes.map((c) => c.verifiedOn), ...d.pages.map((p) => p.updated)]);
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const map = clusterMap();
   const posts = getAllPosts();
-  const spokes = releasedEntries();
-  const guides = releasedGuides();
-  const builds = releasedBuilds();
-  const integrations = releasedIntegrations();
-  const fixes = releasedFixes();
-  const learn = releasedLearn();
-  const alternatives = releasedAlternatives();
-  const compliance = releasedCompliance();
-  const migrate = releasedMigrate();
-  const pricing = releasedPricing();
-  const compare = releasedCompare();
-  const healthData = releasedData();
-  const motion = releasedMotion();
-  const ai = releasedAi();
-  const architecture = releasedArchitecture();
-  const testing = releasedTesting();
-  const cookbook = releasedCookbook();
-  const devices = releasedDevices();
-  const engagement = releasedEngagement();
-  const watchApps = releasedWatchApps();
+  const issues = digests();
 
-  const staticRoutes: MetadataRoute.Sitemap = [
-    { url: absoluteUrl("/"), changeFrequency: "weekly", priority: 1 },
-    { url: absoluteUrl(PILLAR_PATH), changeFrequency: "weekly", priority: 0.9 },
-    { url: absoluteUrl(GUIDES_PATH), changeFrequency: "weekly", priority: 0.9 },
-    { url: absoluteUrl(BUILD_PATH), changeFrequency: "weekly", priority: 0.9 },
-    { url: absoluteUrl(INTEGRATE_PATH), changeFrequency: "weekly", priority: 0.9 },
-    { url: absoluteUrl(FIX_PATH), changeFrequency: "weekly", priority: 0.8 },
-    { url: absoluteUrl(LEARN_PATH), changeFrequency: "weekly", priority: 0.8 },
-    { url: absoluteUrl(ALTERNATIVES_PATH), changeFrequency: "weekly", priority: 0.8 },
-    { url: absoluteUrl(COMPLIANCE_PATH), changeFrequency: "weekly", priority: 0.8 },
-    { url: absoluteUrl(MIGRATE_PATH), changeFrequency: "weekly", priority: 0.8 },
-    { url: absoluteUrl(PRICING_PATH), changeFrequency: "weekly", priority: 0.8 },
-    { url: absoluteUrl(COMPARE_PATH), changeFrequency: "weekly", priority: 0.8 },
-    { url: absoluteUrl(DATA_PATH), changeFrequency: "weekly", priority: 0.8 },
-    { url: absoluteUrl(MOTION_PATH), changeFrequency: "weekly", priority: 0.8 },
-    { url: absoluteUrl(AI_PATH), changeFrequency: "weekly", priority: 0.8 },
-    { url: absoluteUrl(ARCHITECTURE_PATH), changeFrequency: "weekly", priority: 0.8 },
-    { url: absoluteUrl(TEST_PATH), changeFrequency: "weekly", priority: 0.8 },
-    { url: absoluteUrl(COOKBOOK_PATH), changeFrequency: "weekly", priority: 0.8 },
-    { url: absoluteUrl(DEVICES_PATH), changeFrequency: "weekly", priority: 0.8 },
-    { url: absoluteUrl(ENGAGEMENT_PATH), changeFrequency: "weekly", priority: 0.8 },
-    { url: absoluteUrl(WATCH_PATH), changeFrequency: "weekly", priority: 0.8 },
-    { url: absoluteUrl(A11Y_PATH), changeFrequency: "weekly", priority: 0.8 },
-    { url: absoluteUrl("/privacy"), changeFrequency: "yearly", priority: 0.2 },
-    { url: absoluteUrl("/google-fit-shutdown"), changeFrequency: "weekly", priority: 0.8 },
-    { url: absoluteUrl("/methodology"), changeFrequency: "yearly", priority: 0.4 },
-    { url: absoluteUrl("/day-boundaries"), changeFrequency: "monthly", priority: 0.6 },
-    { url: absoluteUrl("/glossary"), changeFrequency: "monthly", priority: 0.5 },
-    { url: absoluteUrl("/picker"), changeFrequency: "monthly", priority: 0.8 },
-    { url: absoluteUrl("/cost-planner"), changeFrequency: "monthly", priority: 0.8 },
-    { url: absoluteUrl("/ai-fitness-app"), changeFrequency: "weekly", priority: 0.9 },
-    { url: absoluteUrl("/no-code-fitness-app"), changeFrequency: "weekly", priority: 0.9 },
-    { url: absoluteUrl("/fitbit-api-shutdown"), changeFrequency: "weekly", priority: 0.9 },
-    { url: absoluteUrl("/state-of-fitness-apis-2026"), changeFrequency: "monthly", priority: 0.9 },
-    { url: absoluteUrl("/changes"), changeFrequency: "daily", priority: 0.9 },
-    { url: absoluteUrl("/matrix"), changeFrequency: "monthly", priority: 0.8 },
-    { url: absoluteUrl("/healthkit-identifiers"), changeFrequency: "monthly", priority: 0.8 },
-    { url: absoluteUrl("/healthkit-errors"), changeFrequency: "monthly", priority: 0.7 },
-    { url: absoluteUrl("/healthkit-versions"), changeFrequency: "monthly", priority: 0.7 },
-    { url: absoluteUrl("/healthkit-status"), changeFrequency: "monthly", priority: 0.7 },
-    { url: absoluteUrl("/healthkit-category-values"), changeFrequency: "monthly", priority: 0.7 },
-    { url: absoluteUrl("/healthkit-units"), changeFrequency: "monthly", priority: 0.7 },
-    { url: absoluteUrl("/health-connect-records"), changeFrequency: "monthly", priority: 0.7 },
-    { url: absoluteUrl(HK_BASE), changeFrequency: "weekly", priority: 0.8 },
-    { url: absoluteUrl("/questions"), changeFrequency: "weekly", priority: 0.6 },
-    // Only listed once CI has populated the tracker — the route 404s while
-    // it is empty, and a sitemap must never advertise a 404.
-    ...(SDK_REPOS.length > 0
-      ? [{ url: absoluteUrl("/sdk-releases"), changeFrequency: "daily" as const, priority: 0.6 }]
-      : []),
-    { url: absoluteUrl("/blog"), changeFrequency: "weekly", priority: 0.8 },
-    { url: absoluteUrl("/changelog"), changeFrequency: "weekly", priority: 0.4 },
-    { url: absoluteUrl("/newsletter"), changeFrequency: "monthly", priority: 0.6 },
-    { url: absoluteUrl("/tools"), changeFrequency: "monthly", priority: 0.8 },
-    { url: absoluteUrl("/paths"), changeFrequency: "monthly", priority: 0.6 },
-    { url: absoluteUrl("/tools/error-diagnoser"), changeFrequency: "monthly", priority: 0.7 },
-    { url: absoluteUrl("/tools/aggregation-checker"), changeFrequency: "monthly", priority: 0.7 },
-    { url: absoluteUrl("/tools/identifier-translator"), changeFrequency: "monthly", priority: 0.7 },
-    { url: absoluteUrl("/tools/permission-builder"), changeFrequency: "monthly", priority: 0.7 },
-    { url: absoluteUrl("/tools/query-generator"), changeFrequency: "monthly", priority: 0.7 },
-    { url: absoluteUrl("/tools/stack-generator"), changeFrequency: "monthly", priority: 0.7 },
-    { url: absoluteUrl("/corrections"), changeFrequency: "monthly", priority: 0.5 },
-    { url: absoluteUrl("/gates"), changeFrequency: "monthly", priority: 0.5 },
-    { url: absoluteUrl("/about"), changeFrequency: "monthly", priority: 0.5 },
-    { url: absoluteUrl("/site-index"), changeFrequency: "monthly", priority: 0.3 },
-    { url: absoluteUrl(APIS_PATH), changeFrequency: "weekly", priority: 0.9 },
-    { url: absoluteUrl("/alerts"), changeFrequency: "monthly", priority: 0.8 },
-    { url: absoluteUrl("/compare-apis"), changeFrequency: "monthly", priority: 0.7 },
-    { url: absoluteUrl("/datasets"), changeFrequency: "monthly", priority: 0.8 },
-    { url: absoluteUrl("/badges"), changeFrequency: "yearly", priority: 0.4 },
-    { url: absoluteUrl(DIGEST_PATH), changeFrequency: "monthly", priority: 0.7 },
+  // An empty cluster's hub and question index 404, so neither is listed.
+  const populated = Object.entries(map).filter(([, entries]) => entries.length > 0);
+  const newestIn = (base: string) => newest((map[base] ?? []).map((e) => e.updated));
+  const newestAll = newest(Object.values(map).flatMap((l) => l.map((e) => e.updated)));
+  const newestChange = newest(changesSorted().map((c) => c.verifiedOn));
+  const newestPost = newest(posts.map((p) => p.updated));
+
+  // HealthKit reference pages: each row carries its page's JSON-LD
+  // dateModified — the page's own last change (35bc67c), not the older data
+  // date it shows readers. See HK_GROUP_MODIFIED for why those differ.
+  const hkPages: [string, string | undefined][] = [
+    ["/healthkit-identifiers", HK_FETCHED_ON],
+    ["/healthkit-errors", HK_FETCHED_ON],
+    ["/healthkit-versions", HK_STANDALONE_MODIFIED],
+    ["/healthkit-status", HK_STANDALONE_MODIFIED],
+    ["/healthkit-category-values", HK_STANDALONE_MODIFIED],
+    ["/healthkit-units", HK_STANDALONE_MODIFIED],
+    ["/health-connect-records", HK_STANDALONE_MODIFIED],
+  ];
+  // The list is empty until the authored entries land, and an empty list
+  // emits no rows.
+  const hkGroups = releasedHkGroups().map((g) => row(`${HK_BASE}/${g.slug}`, HK_GROUP_MODIFIED));
+
+  // Tools: the three built on the HealthKit corpus declare HK_FETCHED_ON as
+  // dateModified; the other three carry a page-local UPDATED.
+  const tools: [string, string | undefined][] = [
+    ["/tools/error-diagnoser", HK_FETCHED_ON],
+    ["/tools/aggregation-checker", HK_FETCHED_ON],
+    ["/tools/identifier-translator", HK_FETCHED_ON],
+    ["/tools/permission-builder", pageStamp("/tools/permission-builder")],
+    ["/tools/query-generator", pageStamp("/tools/query-generator")],
+    ["/tools/stack-generator", pageStamp("/tools/stack-generator")],
   ];
 
-  const spokeRoutes: MetadataRoute.Sitemap = spokes.map((e) => ({
-    url: absoluteUrl(`${PILLAR_PATH}/${e.slug}`),
-    lastModified: new Date(e.updated),
-    changeFrequency: "monthly",
-    priority: 0.8,
-  }));
+  // Routes whose date comes from data, or from the members they index.
+  // Anything not named here falls to pageStamp(), which dates it only if the
+  // page states its own dateModified.
+  const derived: Record<string, string | undefined> = {
+    "/": newestAll,
+    "/site-index": newestAll,
+    "/changes": pageStamp("/changes") ?? newestChange,
+    "/blog": newestPost,
+    "/questions": newestAll,
+    [HK_BASE]: newest([HK_GROUP_MODIFIED, ...hkPages.map(([, d]) => d)]),
+    "/tools": newest(tools.map(([, d]) => d)),
+    [DIGEST_PATH]: newest(issues.map(digestDate)),
+    "/sdk-releases": SDK_CHECKED_ON ?? undefined,
+    // The directory pages carry a page-local "last reviewed", not a
+    // dateModified, and apis.ts records no verification date — so the hub
+    // and its entries stay undated rather than borrow one.
+    [APIS_PATH]: undefined,
+  };
 
-  const guideRoutes: MetadataRoute.Sitemap = guides.map((e) => ({
-    url: absoluteUrl(`${GUIDES_PATH}/${e.slug}`),
-    lastModified: new Date(e.updated),
-    changeFrequency: "monthly",
-    priority: 0.8,
-  }));
-
-  const buildRoutes: MetadataRoute.Sitemap = builds.map((e) => ({
-    url: absoluteUrl(`${BUILD_PATH}/${e.slug}`),
-    lastModified: new Date(e.updated),
-    changeFrequency: "monthly",
-    priority: 0.8,
-  }));
-
-  const integrateRoutes: MetadataRoute.Sitemap = integrations.map((e) => ({
-    url: absoluteUrl(`${INTEGRATE_PATH}/${e.slug}`),
-    lastModified: new Date(e.updated),
-    changeFrequency: "monthly",
-    priority: 0.8,
-  }));
-
-  const fixRoutes: MetadataRoute.Sitemap = fixes.map((e) => ({
-    url: absoluteUrl(`${FIX_PATH}/${e.slug}`),
-    lastModified: new Date(e.updated),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
-
-  const learnRoutes: MetadataRoute.Sitemap = learn.map((e) => ({
-    url: absoluteUrl(`${LEARN_PATH}/${e.slug}`),
-    lastModified: new Date(e.updated),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
-
-  const alternativesRoutes: MetadataRoute.Sitemap = alternatives.map((e) => ({
-    url: absoluteUrl(`${ALTERNATIVES_PATH}/${e.slug}`),
-    lastModified: new Date(e.updated),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
-
-  const complianceRoutes: MetadataRoute.Sitemap = compliance.map((e) => ({
-    url: absoluteUrl(`${COMPLIANCE_PATH}/${e.slug}`),
-    lastModified: new Date(e.updated),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
-
-  const migrateRoutes: MetadataRoute.Sitemap = migrate.map((e) => ({
-    url: absoluteUrl(`${MIGRATE_PATH}/${e.slug}`),
-    lastModified: new Date(e.updated),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
-
-  const pricingRoutes: MetadataRoute.Sitemap = pricing.map((e) => ({
-    url: absoluteUrl(`${PRICING_PATH}/${e.slug}`),
-    lastModified: new Date(e.updated),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
-
-  const compareRoutes: MetadataRoute.Sitemap = compare.map((e) => ({
-    url: absoluteUrl(`${COMPARE_PATH}/${e.slug}`),
-    lastModified: new Date(e.updated),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
-
-  const dataRoutes: MetadataRoute.Sitemap = healthData.map((e) => ({
-    url: absoluteUrl(`${DATA_PATH}/${e.slug}`),
-    lastModified: new Date(e.updated),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
-
-  const motionRoutes: MetadataRoute.Sitemap = motion.map((e) => ({
-    url: absoluteUrl(`${MOTION_PATH}/${e.slug}`),
-    lastModified: new Date(e.updated),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
-
-  const aiRoutes: MetadataRoute.Sitemap = ai.map((e) => ({
-    url: absoluteUrl(`${AI_PATH}/${e.slug}`),
-    lastModified: new Date(e.updated),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
-
-  const architectureRoutes: MetadataRoute.Sitemap = architecture.map((e) => ({
-    url: absoluteUrl(`${ARCHITECTURE_PATH}/${e.slug}`),
-    lastModified: new Date(e.updated),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
-
-  const testingRoutes: MetadataRoute.Sitemap = testing.map((e) => ({
-    url: absoluteUrl(`${TEST_PATH}/${e.slug}`),
-    lastModified: new Date(e.updated),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
-
-  const cookbookRoutes: MetadataRoute.Sitemap = cookbook.map((e) => ({
-    url: absoluteUrl(`${COOKBOOK_PATH}/${e.slug}`),
-    lastModified: new Date(e.updated),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
-  const deviceRoutes: MetadataRoute.Sitemap = devices.map((e) => ({
-    url: absoluteUrl(`${DEVICES_PATH}/${e.slug}`),
-    lastModified: new Date(e.updated),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
-  const engagementRoutes: MetadataRoute.Sitemap = engagement.map((e) => ({
-    url: absoluteUrl(`${ENGAGEMENT_PATH}/${e.slug}`),
-    lastModified: new Date(e.updated),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
-  const a11yRoutes: MetadataRoute.Sitemap = releasedAccessibility().map((e) => ({
-    url: absoluteUrl(`${A11Y_PATH}/${e.slug}`),
-    lastModified: new Date(e.updated),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
-
-  const watchRoutes: MetadataRoute.Sitemap = watchApps.map((e) => ({
-    url: absoluteUrl(`${WATCH_PATH}/${e.slug}`),
-    lastModified: new Date(e.updated),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
-
-  const postRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: absoluteUrl(`/blog/${post.slug}`),
-    // lastmod is the re-verification date, not first publication — the whole
-    // point of the `updated` stamp is that a recrawl scheduler should see it.
-    lastModified: new Date(post.updated),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
-
-  // Freshness for the non-spoke routes: a hub is as fresh as its newest
-  // page, and the home/index surfaces are as fresh as the newest page on the
-  // site. Without this, every hub reports no lastmod and looks static to
-  // anything that schedules recrawls by change rate.
-  const map = clusterMap();
-  const newestIn = (base: string) =>
-    map[base]?.map((e) => e.updated).sort().at(-1);
-  const newestAll = Object.values(map)
-    .flatMap((l) => l.map((e) => e.updated))
-    .sort()
-    .at(-1);
-  const newestChange = changesSorted()
-    .map((c) => c.verifiedOn)
-    .sort()
-    .at(-1);
-
-  // An empty cluster's hub 404s, so it must not appear in the sitemap.
-  const populatedHubs = new Set(
-    Object.entries(map).filter(([, e]) => e.length > 0).map(([b]) => absoluteUrl(b)),
-  );
-  const allHubs = new Set(Object.keys(map).map((b) => absoluteUrl(b)));
-  const listed = staticRoutes.filter((r) => !allHubs.has(r.url) || populatedHubs.has(r.url));
-
-  const dated: MetadataRoute.Sitemap = listed.map((r) => {
-    const path = r.url.replace(absoluteUrl(""), "") || "/";
-    const stamp =
-      newestIn(path) ??
-      (path === "/changes" ? newestChange : undefined) ??
-      (["/", "/site-index", "/blog"].includes(path) ? newestAll : undefined);
-    return stamp ? { ...r, lastModified: new Date(stamp) } : r;
-  });
-
-  // Directory entries: one per product, re-derived from the cost model.
-  const apiRoutes: MetadataRoute.Sitemap = API_ENTRIES.map((a) => ({
-    url: absoluteUrl(`${APIS_PATH}/${a.id}`),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
-
-  const digestRoutes: MetadataRoute.Sitemap = digests().map((d) => ({
-    url: absoluteUrl(`${DIGEST_PATH}/${d.month}`),
-    changeFrequency: "monthly",
-    priority: 0.6,
-  }));
-
-  // One question index per populated cluster. Derived from the same map the
-  // pages are generated from, so a new cluster is listed the day it ships and
-  // an empty one is never advertised.
-  const questionRoutes: MetadataRoute.Sitemap = Object.entries(map)
-    .filter(([, entries]) => entries.length > 0)
-    .map(([base]) => ({
-      url: absoluteUrl(`/questions${base}`),
-      changeFrequency: "weekly" as const,
-      priority: 0.5,
-    }));
-
-  // The HealthKit group reference pages, derived the same way: the list is
-  // empty until the authored entries land, and an empty list emits no rows.
-  const hkGroupRoutes: MetadataRoute.Sitemap = releasedHkGroups().map((g) => ({
-    url: absoluteUrl(`${HK_BASE}/${g.slug}`),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
+  const standalone = [
+    "/",
+    "/privacy",
+    "/google-fit-shutdown",
+    "/methodology",
+    "/day-boundaries",
+    "/glossary",
+    "/picker",
+    "/cost-planner",
+    "/ai-fitness-app",
+    "/no-code-fitness-app",
+    "/fitbit-api-shutdown",
+    "/state-of-fitness-apis-2026",
+    "/changes",
+    "/matrix",
+    HK_BASE,
+    "/questions",
+    // Only listed once CI has populated the tracker — the route 404s while
+    // it is empty, and a sitemap must never advertise a 404.
+    ...(SDK_REPOS.length > 0 ? ["/sdk-releases"] : []),
+    "/blog",
+    "/changelog",
+    "/newsletter",
+    "/tools",
+    "/paths",
+    "/corrections",
+    "/gates",
+    "/about",
+    "/site-index",
+    APIS_PATH,
+    "/alerts",
+    "/compare-apis",
+    "/datasets",
+    "/badges",
+    DIGEST_PATH,
+  ];
 
   return [
-    ...dated,
-    ...spokeRoutes,
-    ...guideRoutes,
-    ...buildRoutes,
-    ...integrateRoutes,
-    ...fixRoutes,
-    ...learnRoutes,
-    ...alternativesRoutes,
-    ...complianceRoutes,
-    ...migrateRoutes,
-    ...pricingRoutes,
-    ...compareRoutes,
-    ...dataRoutes,
-    ...motionRoutes,
-    ...aiRoutes,
-    ...architectureRoutes,
-    ...testingRoutes,
-    ...cookbookRoutes,
-    ...deviceRoutes,
-    ...engagementRoutes,
-    ...watchRoutes,
-    ...a11yRoutes,
-    ...questionRoutes,
-    ...hkGroupRoutes,
-    ...apiRoutes,
-    ...digestRoutes,
-    ...postRoutes,
+    ...standalone.map((p) => row(p, p in derived ? derived[p] : pageStamp(p))),
+    ...hkPages.map(([p, d]) => row(p, d)),
+    ...tools.map(([p, d]) => row(p, d)),
+    // Hubs carry the dateModified they declare (see the header comment),
+    // else their newest page; spokes carry their own re-verification date —
+    // the point of the `updated` stamp is that a recrawl scheduler should
+    // see it.
+    ...populated.map(([base]) => row(base, pageStamp(base) ?? newestIn(base))),
+    ...populated.flatMap(([base, entries]) => entries.map((e) => row(`${base}/${e.slug}`, e.updated))),
+    // One question index per populated cluster, as fresh as the newest
+    // entry whose questions it lists.
+    ...populated.map(([base]) => row(`/questions${base}`, newestIn(base))),
+    ...hkGroups,
+    ...API_ENTRIES.map((a) => row(`${APIS_PATH}/${a.id}`)),
+    ...issues.map((d) => row(`${DIGEST_PATH}/${d.month}`, digestDate(d))),
+    // lastmod is the re-verification date, not first publication.
+    ...posts.map((post) => row(`/blog/${post.slug}`, post.updated)),
   ];
 }

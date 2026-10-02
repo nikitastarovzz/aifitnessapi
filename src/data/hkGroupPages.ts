@@ -24,6 +24,16 @@ export type HkGroupEntry = {
   title: string;
   metaDescription: string;
   primaryQuery: string;
+  /**
+   * The date of the data this page renders: the HK_FETCHED_ON of the corpus
+   * read its authored numbers were checked against. Never later than
+   * HK_FETCHED_ON, and never the writing date — the synthesis was written on
+   * 2026-09-04, but what it describes is the 2026-08-28 read. A dataset
+   * refresh nobody re-checked the prose against leaves this behind, which is
+   * the truth about the prose. Kept as a literal "YYYY-MM-DD" in the entries
+   * file because stale-report parses it with a regex, not an import.
+   */
+  updated: string;
   /** Markdown. The synthesis above the derived table. */
   intro: string;
   /** Markdown. Rendered under "What will bite you". */
@@ -32,6 +42,23 @@ export type HkGroupEntry = {
 };
 
 export const HK_BASE = "/healthkit";
+
+/**
+ * The page's own dates, as distinct from the data date in `updated`.
+ *
+ * All twelve group pages were first published in 35bc67c on 2026-09-04, a
+ * week after the 2026-08-28 corpus read their tables come from, and their
+ * content has not changed since (later edits added the age display and these
+ * stamps, not claims). Putting the data date in dateModified would therefore
+ * say the page changed before it existed, and lifting it to the publish date
+ * with a max() would be a rule for manufacturing freshness, not recording it. So
+ * structured data and the sitemap carry these two dates, and the reader sees
+ * the data date with its age beside it. Move HK_GROUP_MODIFIED when a page's
+ * content changes; a re-verification that changes nothing is an `updated`
+ * matter only.
+ */
+export const HK_GROUP_PUBLISHED = "2026-09-04";
+export const HK_GROUP_MODIFIED = "2026-09-04";
 
 /**
  * Apple group → page slug. Editorial in exactly one place: hypertensionEvent

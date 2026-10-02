@@ -4,6 +4,7 @@ import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterHero from "@/components/ClusterHero";
 import ClusterCta from "@/components/ClusterCta";
+import ContentAge from "@/components/ContentAge";
 import { Mdx } from "@/components/mdx";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
@@ -190,7 +191,9 @@ export default function FitbitApiShutdownPage() {
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
           Fitbit Web API Retirement: Deadlines and the Migration Path
         </h1>
-        <p className="mt-3 text-sm text-[var(--muted)]">Updated 11 August 2026 — dates re-checked against our sourced pages; verify current vendor notices before scheduling.</p>
+        {/* A deadline page's claims expire on a calendar, not on a 90-day
+            review cycle, so it flags at 30 days, as /changes does. */}
+        <p className="mt-3 text-sm text-[var(--muted)]">Updated 11 August 2026<ContentAge date={UPDATED} staleAfterDays={30} /> — dates re-checked against our sourced pages; verify current vendor notices before scheduling.</p>
 
         {/* Answer-first capsule — quotable, speakable, correctly hedged. */}
         <div

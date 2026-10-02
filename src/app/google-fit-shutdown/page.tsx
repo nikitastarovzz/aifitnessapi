@@ -4,6 +4,7 @@ import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterCta from "@/components/ClusterCta";
 import ClusterHero from "@/components/ClusterHero";
+import ContentAge from "@/components/ContentAge";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 
@@ -233,7 +234,10 @@ export default function GoogleFitShutdownPage() {
         />
 
         <p className="mt-10 text-xs leading-relaxed text-[var(--muted)]">
-          Timeline facts verified against Google&rsquo;s developer documentation on July 31, 2026.
+          {/* The page's only date line. A shutdown timeline expires on a
+              calendar, so it flags at 30 days, as /changes does. */}
+          Timeline facts verified against Google&rsquo;s developer documentation on July 31, 2026
+          <ContentAge date={UPDATED} staleAfterDays={30} />.
           Deprecation communications change — check{" "}
           <a href="https://developer.android.com/health-and-fitness/guides/health-connect/migrate/comparison-guide" className="underline hover:text-[var(--fg)]" rel="nofollow">
             Google&rsquo;s current guidance

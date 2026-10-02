@@ -12,11 +12,21 @@ import { SavedList } from "@/components/BookmarkButton";
  * client-only.
  */
 
+const TITLE = "Saved pages";
+const DESCRIPTION =
+  "The pages you saved on this site, kept in your own browser — no account, nothing sent anywhere, and nothing that follows you to another device.";
+
 export const metadata: Metadata = {
-  title: "Saved pages",
-  description:
-    "The pages you saved on this site, kept in your own browser — no account, nothing sent anywhere, and nothing that follows you to another device.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/saved" },
+  openGraph: {
+    type: "website",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "/saved",
+    images: ["/opengraph-image"],
+  },
   robots: { index: false }, // a per-visitor list has nothing to rank for
 };
 

@@ -18,7 +18,9 @@ export const metadata: Metadata = {
   description:
     "What changed in fitness and health APIs, verified before it is sent: deprecations with dates, new platform data types, and what got re-checked.",
   alternates: { canonical: "/newsletter" },
-  openGraph: { images: ["/opengraph-image"] },
+  // og:url restates the canonical (qa NO-OG-URL): the root layout no longer
+  // names a URL, so a page that sets none shares without one.
+  openGraph: { type: "website", url: "/newsletter", images: ["/opengraph-image"] },
 };
 
 export default function NewsletterPage() {

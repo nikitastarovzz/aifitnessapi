@@ -20,6 +20,12 @@ import { emailConfigured } from "@/lib/email";
  * Discloses no secrets and no data: booleans and a status string only, never
  * a lead count, an email, or any part of a credential.
  */
+// Rendered per request, never at build time — a prerendered answer would
+// report the build machine's credentials, not production's. Caching is the
+// CDN's job, driven by the Cache-Control on the response: Next passes a route
+// handler's own header through untouched when the route is not ISR, so no
+// `revalidate` here (that would make it ISR and cache a 503 as readily as a
+// 200).
 export const dynamic = "force-dynamic";
 
 type Health = {
@@ -35,10 +41,29 @@ type Health = {
 let cache: { at: number; body: Health } | null = null;
 const TTL_MS = 60_000;
 
+// A healthy answer is shared at the edge for five minutes: a cold instance
+// signs an RS256 JWT, exchanges it with Google OAuth and reads Firestore, and
+// the uptime workflow calls this on every run. Failure is never cached
+// outside this instance — the next request after a fix must see the fix, and
+// a 503 must reach the probe on the run that hits it, not five minutes later.
+const HEALTHY_CACHE = "public, s-maxage=300, stale-while-revalidate=60";
+
+// 503 when submissions would not be stored, so a probe can just read the
+// status code. Derived from the body on every path, including the in-memory
+// cache: the cached path used to answer without a status, so for a minute
+// after a failed check every caller on that instance got the failure body
+// with a 200 — exactly what a probe that reads the status on a second call
+// would wave through.
+function respond(body: Health) {
+  const healthy = body.storage === "firestore" && body.storageReachable;
+  return NextResponse.json(body, {
+    status: healthy ? 200 : 503,
+    headers: { "cache-control": healthy ? HEALTHY_CACHE : "no-store" },
+  });
+}
+
 export async function GET() {
-  if (cache && Date.now() - cache.at < TTL_MS) {
-    return NextResponse.json(cache.body, { headers: { "cache-control": "no-store" } });
-  }
+  if (cache && Date.now() - cache.at < TTL_MS) return respond(cache.body);
 
   const configured = firestoreConfigured();
   let reachable = false;
@@ -69,11 +94,5 @@ export async function GET() {
     checkedAt: new Date().toISOString(),
   };
   cache = { at: Date.now(), body };
-
-  // 503 when submissions would not be stored, so a probe can just read the
-  // status code.
-  return NextResponse.json(body, {
-    status: configured && reachable ? 200 : 503,
-    headers: { "cache-control": "no-store" },
-  });
+  return respond(body);
 }

@@ -8,6 +8,14 @@ const POSTS_DIR = path.join(process.cwd(), "content", "posts");
 export type PostMeta = {
   slug: string;
   title: string;
+  /**
+   * Optional SERP title, used for <title> and og:title in place of `title`;
+   * the H1 stays `title`. Same contract as ClusterEntry.metaTitle: the whole
+   * title as it should appear in results, rendered without the site suffix
+   * and clamped to 60 characters. Absent → `title` with the layout suffix,
+   * exactly as before the field existed.
+   */
+  metaTitle?: string;
   description: string;
   date: string; // ISO date (YYYY-MM-DD)
   /** Last re-verification. Falls back to `date`. Renders as dateModified. */
@@ -40,6 +48,12 @@ function readPostFile(fileName: string): Post {
   return {
     slug,
     title: data.title ?? slug,
+    // Blank or non-string frontmatter is treated as absent, so a stray
+    // `metaTitle:` line cannot render an empty <title>.
+    metaTitle:
+      typeof data.metaTitle === "string" && data.metaTitle.trim()
+        ? data.metaTitle.trim()
+        : undefined,
     description: data.description ?? "",
     date: data.date
       ? new Date(data.date).toISOString().slice(0, 10)

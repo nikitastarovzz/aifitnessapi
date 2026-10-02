@@ -33,9 +33,15 @@ const SITE = "https://aifitnessapi.com";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  images: {
-    remotePatterns: [{ protocol: "https", hostname: "**" }],
-  },
+  // No page imports next/image (every image is a plain <img>, a route-served
+  // SVG or a next/og ImageResponse), so the optimizer had nothing of ours to
+  // serve. What it did do: the old `remotePatterns: [{ hostname: "**" }]` let
+  // /_next/image?url=<any https URL> fetch, resize and cache images from any
+  // host on the internet, billed to us — unbounded compute anyone could drive,
+  // on a plan that was paused while this was live. `unoptimized` turns the
+  // endpoint off (next start answers it with a 404). If next/image is ever
+  // adopted, list the exact hosts it needs instead of a wildcard.
+  images: { unoptimized: true },
   async redirects() {
     return [
       // NOTE: canonical host (www vs apex) is handled at the Vercel domain
@@ -73,10 +79,26 @@ const nextConfig: NextConfig = {
       key: "Link",
       value: `<${SITE}/llms.txt>; rel="describedby"; type="text/plain"`,
     };
+    // Header rules match the path as requested, before any rewrite, and an
+    // unconstrained `:slug` is "anything but a slash" — so `/fix/x.md`
+    // matched `/fix/:slug` with slug "x.md", and every markdown mirror
+    // advertised `/fix/x.md.md` as its alternate, a URL that 404s. Real slugs
+    // are lowercase words joined by hyphens (every registry slug and post
+    // filename was checked against this class), so the param refuses the dot.
+    // `opengraph-image` is excluded for the same reason: it is each hub's OG
+    // image route, matched by the same rule, and has no markdown twin.
+    const SLUG = "(?!opengraph-image$)[a-z0-9-]+";
     return [
-      { source: "/:path*", headers: [describedBy] },
+      // The markdown mirrors send their own single Link header (canonical +
+      // describedby) from src/app/md/[...path]/route.ts. If this catch-all
+      // also matched them, the response would carry a second, different Link
+      // value. So it skips anything under /md/, and any path ending in `.md`
+      // (/index.md, /blog.md, /fix.md, /fix/<slug>.md), which is how those
+      // requests look when header rules see them. `.*` with an empty match
+      // keeps `/` itself covered, as `/:path*` did.
+      { source: "/:path((?!md(?:/|$))(?!.*\\.md$).*)", headers: [describedBy] },
       {
-        source: "/blog/:slug",
+        source: `/blog/:slug(${SLUG})`,
         headers: [
           {
             key: "Link",
@@ -90,7 +112,7 @@ const nextConfig: NextConfig = {
       // replaces the first rather than adding to it, so the spoke rule has to
       // restate describedby or cluster pages would lose it.
       ...CLUSTERS.map((c) => ({
-        source: `/${c}/:slug`,
+        source: `/${c}/:slug(${SLUG})`,
         headers: [
           {
             key: "Link",

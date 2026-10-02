@@ -3,9 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Container from "@/components/Container";
+import ContentAge from "@/components/ContentAge";
 import { Mdx } from "@/components/mdx";
 import { HK_IDENTIFIERS, HK_FETCHED_ON, type HkIdentifier } from "@/data/healthkitIdentifiers";
-import { getStandalone } from "@/data/hkStandalone";
+import { getStandalone, HK_STANDALONE_PUBLISHED, HK_STANDALONE_MODIFIED } from "@/data/hkStandalone";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 
@@ -102,6 +103,11 @@ export default function HealthKitStatusPage() {
   const pageId = `${url}#webpage`;
   const faqId = (i: number) => `faq-${i + 1}`;
 
+  // The page's own dates (35bc67c, 2026-09-04) in datePublished and
+  // dateModified; the data date, `entry.updated`, in lastReviewed and on the
+  // visible date line. The data is older than the page, so it cannot be
+  // dateModified without claiming the page changed before it existed — see
+  // HK_STANDALONE_MODIFIED.
   const graphJsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -111,8 +117,8 @@ export default function HealthKitStatusPage() {
         headline: entry.title,
         alternativeHeadline: entry.primaryQuery,
         description: entry.metaDescription,
-        datePublished: HK_FETCHED_ON,
-        dateModified: HK_FETCHED_ON,
+        datePublished: HK_STANDALONE_PUBLISHED,
+        dateModified: HK_STANDALONE_MODIFIED,
         author: orgRef(),
         publisher: orgRef(),
         inLanguage: "en",
@@ -128,7 +134,7 @@ export default function HealthKitStatusPage() {
         url,
         name: entry.title,
         isPartOf: { "@id": WEBSITE_ID },
-        lastReviewed: HK_FETCHED_ON,
+        lastReviewed: entry.updated,
         reviewedBy: orgRef(),
         primaryImageOfPage: { "@type": "ImageObject", url: `${site.url}/opengraph-image` },
       },
@@ -174,9 +180,14 @@ export default function HealthKitStatusPage() {
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
           {entry.title}
         </h1>
+        {/* Date and age are both the data date, so they cannot disagree. A
+            dataset refresh nobody re-checked the synthesis against moves the
+            tables but not `updated`; the line then names both reads. */}
         <p className="mt-3 text-sm text-[var(--muted)]">
           {BETA.length} beta · {UNDOCUMENTED.length} undocumented · {DEPRECATED_GROUP.length}{" "}
-          deprecated activity types · read from Apple&rsquo;s documentation on {HK_FETCHED_ON}
+          deprecated activity types · read from Apple&rsquo;s documentation on {entry.updated}
+          <ContentAge date={entry.updated} />
+          {entry.updated !== HK_FETCHED_ON && <> · tables re-read {HK_FETCHED_ON}</>}
         </p>
 
         <p

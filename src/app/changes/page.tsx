@@ -7,6 +7,8 @@ import ClusterCta from "@/components/ClusterCta";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import Countdown from "@/components/Countdown";
+import ContentAge from "@/components/ContentAge";
+import { WhenUpcoming } from "@/components/UpcomingDeadlines";
 import { changesSorted, WATCH_ITEMS, type ChangeStatus } from "@/data/changes";
 
 /**
@@ -51,8 +53,10 @@ function fmtDate(d: string): string {
 
 export default function ChangesPage() {
   const url = absoluteUrl(PAGE_PATH);
+  // No build-time "today" on this page: whether an entry is still ahead is
+  // decided in the browser (WhenUpcoming, Countdown). A static build would
+  // freeze the comparison at deploy and keep pulsing dates that have passed.
   const events = changesSorted();
-  const today = new Date().toISOString().slice(0, 10);
 
   const itemListJsonLd = {
     "@context": "https://schema.org",
@@ -92,7 +96,12 @@ export default function ChangesPage() {
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
           Fitness API Changes &amp; Deadlines
         </h1>
-        <p className="mt-3 text-sm text-[var(--muted)]">Updated {fmtDate(UPDATED)} — new entries added as we verify them.</p>
+        {/* Stale after 30 days, not the site-wide 90: this page's claims are
+            dates, and they expire on the calendar whether or not we look. */}
+        <p className="mt-3 text-sm text-[var(--muted)]">
+          Updated {fmtDate(UPDATED)}
+          <ContentAge date={UPDATED} staleAfterDays={30} /> — new entries added as we verify them.
+        </p>
 
         <div
           id="answer"
@@ -137,17 +146,16 @@ export default function ChangesPage() {
             {events.map((e) => (
               <li key={`${e.sortDate}-${e.title}`} className="relative">
                 <span aria-hidden className="absolute -left-[1.85rem] top-1.5 h-3 w-3">
-                  {e.sortDate >= today && (
+                  <WhenUpcoming date={e.sortDate}>
                     <span className="ping-slow absolute inset-0 rounded-full bg-brand-400/70" />
-                  )}
+                  </WhenUpcoming>
                   <span className="absolute inset-0 rounded-full border-2 border-brand-400 bg-[var(--bg)]" />
                 </span>
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="text-sm font-semibold text-[var(--fg)]">{fmtDate(e.date)}</span>
                   <span className={`rounded-full border px-2 py-0.5 text-xs font-semibold ${STATUS_STYLES[e.status]}`}>{e.status}</span>
-                  {e.sortDate >= today && (
-                    <Countdown date={e.sortDate} fuzzy={!/^\d{4}-\d{2}-\d{2}$/.test(e.date)} />
-                  )}
+                  {/* Countdown hides itself once the date has passed. */}
+                  <Countdown date={e.sortDate} fuzzy={!/^\d{4}-\d{2}-\d{2}$/.test(e.date)} />
                 </div>
                 <h2 className="mt-1 text-lg font-bold tracking-tight text-[var(--fg)]">{e.title}</h2>
                 <p className="mt-1.5 text-sm text-[var(--muted)]">{e.summary}</p>

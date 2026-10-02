@@ -4,8 +4,8 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import Container from "@/components/Container";
 import QueryGenerator, { type QueryOption } from "@/components/tools/QueryGenerator";
 import { HK_IDENTIFIERS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
-import { absoluteUrl, site } from "@/lib/site";
-import { orgRef, WEBSITE_ID } from "@/lib/schema";
+import { site } from "@/lib/site";
+import { toolGraph } from "@/lib/schema";
 
 /**
  * HKStatisticsQuery generator.
@@ -58,41 +58,17 @@ const OPTIONS: QueryOption[] = HK_IDENTIFIERS.filter(
 }));
 
 export default function QueryGeneratorPage() {
-  const url = absoluteUrl(PATH);
-  const pageId = `${url}#webpage`;
-
-  const graphJsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "TechArticle",
-        "@id": `${url}#article`,
-        headline: TITLE,
-        alternativeHeadline: "hkstatisticsquery example generator",
-        description: DESCRIPTION,
-        datePublished: UPDATED,
-        dateModified: UPDATED,
-        author: orgRef(),
-        publisher: orgRef(),
-        inLanguage: "en",
-        articleSection: "HealthKit",
-        isPartOf: { "@id": WEBSITE_ID },
-        mainEntityOfPage: { "@id": pageId },
-        url,
-        speakable: { "@type": "SpeakableSpecification", cssSelector: ["#answer"] },
-      },
-      {
-        "@type": "WebPage",
-        "@id": pageId,
-        url,
-        name: TITLE,
-        isPartOf: { "@id": WEBSITE_ID },
-        lastReviewed: UPDATED,
-        reviewedBy: orgRef(),
-        primaryImageOfPage: { "@type": "ImageObject", url: `${site.url}/opengraph-image` },
-      },
-    ],
-  };
+  // A tool, so a WebApplication (see toolGraph); dates as this page already
+  // declared them.
+  const graphJsonLd = toolGraph({
+    path: PATH,
+    name: TITLE,
+    alternativeHeadline: "hkstatisticsquery example generator",
+    description: DESCRIPTION,
+    datePublished: UPDATED,
+    dateModified: UPDATED,
+    webPage: { lastReviewed: UPDATED },
+  });
 
   return (
     <Container className="py-14">

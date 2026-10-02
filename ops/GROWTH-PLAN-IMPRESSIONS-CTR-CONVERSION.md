@@ -68,14 +68,41 @@ convert to trust instantly because the reader arrived mid-failure. `/fix` has
 documentation this environment cannot reach — see the egress note in
 `ops/GROWTH-RESEARCH-2026-08.md`.
 
-### D. Bing is already mechanically handled
+### D. Bing: IndexNow on every production deploy
 
-`scripts/indexnow.mjs` runs from `.github/workflows/indexnow.yml`, so Bing and
-Yandex get pinged on change. Bing's index is smaller and its ranking leans
-harder on exact-match titles and clean structure than Google's — which means
-lever A helps Bing disproportionately, because identifier strings are exact
-matches. Google ignores IndexNow; for Google the sitemap plus internal links
-plus the group pages are the path.
+*Corrected 2026-10-02. This section used to say Bing and Yandex "get pinged
+on change". They did not: the workflow ran once a week and resubmitted every
+sitemap URL whether it had changed or not. What replaced it:*
+
+`scripts/indexnow.mjs` runs from `.github/workflows/indexnow.yml` in three
+ways:
+
+- **On deploy, diff.** Each successful Production deploy dispatches a run that
+  compares the live sitemap's `<loc>`/`<lastmod>` pairs with the snapshot the
+  last accepted run left (kept in the Actions cache). It submits only URLs
+  that are new, whose `lastmod` changed, or that left the sitemap — plus the
+  nearest hub of each (`/fix` for `/fix/x`) and the homepage. With no
+  snapshot (first run, or the cache entry expired) it submits the URLs whose
+  `lastmod` is within 7 days plus their hubs, and logs that it did.
+- **Weekly catch-up, diff.** Mondays 06:00 UTC, the same diff. The snapshot
+  only advances when IndexNow accepts a batch, so a failed deploy-time
+  submission is retried here rather than lost.
+- **`--all` for one-offs.** `mode: all` from the Actions tab (or
+  `node scripts/indexnow.mjs --all`) resubmits every sitemap URL. It is for
+  events like the post-outage resubmission, not a routine.
+
+A sitemap that does not return 200 fails the job — that is the alert.
+
+The limit of the diff is the sitemap itself: a page that changes without its
+`lastmod` moving is not resubmitted, and a URL with no `lastmod` is only
+submitted when it first appears, when it leaves, or as the hub of a page
+that changed. That makes E below a Bing issue as well as a hygiene one.
+
+Bing's index is smaller and its ranking leans harder on exact-match titles
+and clean structure than Google's — which means lever A helps Bing
+disproportionately, because identifier strings are exact matches. Google
+ignores IndexNow; for Google the sitemap plus internal links plus the group
+pages are the path.
 
 ### E. Sitemap hygiene
 

@@ -6,11 +6,21 @@ import { SDK_REPOS } from "@/data/sdkReleases";
 import { getAllPosts } from "@/lib/posts";
 import { clusterMap, CLUSTER_LABELS } from "@/lib/clusterRegistry";
 
+const TITLE = "Site index";
+const DESCRIPTION =
+  "Every page on AIFitnessAPI in one crawlable list: 20 sections of guides, comparisons, integrations and troubleshooting, plus the tools and the blog.";
+
 export const metadata: Metadata = {
-  title: "Site index",
-  description:
-    "Every page on AIFitnessAPI in one crawlable list: 20 sections of guides, comparisons, integrations and troubleshooting, plus the tools and the blog.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/site-index" },
+  openGraph: {
+    type: "website",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "/site-index",
+    images: ["/opengraph-image"],
+  },
 };
 
 /** Standalone pages that are not part of any cluster. */

@@ -44,11 +44,21 @@ function readLog(): LogLine[] {
     .reverse();
 }
 
+const TITLE = "Site Changelog";
+const DESCRIPTION =
+  "Every content change on this site, straight from the operational log it is generated from: what shipped, when, and what prompted it.";
+
 export const metadata: Metadata = {
-  title: "Site Changelog",
-  description:
-    "Every content change on this site, straight from the operational log it is generated from: what shipped, when, and what prompted it.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/changelog" },
+  openGraph: {
+    type: "website",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "/changelog",
+    images: ["/opengraph-image"],
+  },
 };
 
 export default function ChangelogPage() {

@@ -17,6 +17,16 @@ export const metadata: Metadata = {
     "Embeddable widget: Apple HealthKit and Android Health Connect type identifiers side by side, with the cross-platform gotchas. Canonical page: /matrix.",
   robots: { index: false },
   alternates: { canonical: "/matrix" },
+  // og:url follows the canonical: a share of the iframe URL should resolve to
+  // the page that ranks, not to a chromeless widget.
+  openGraph: {
+    type: "website",
+    title: "HealthKit ↔ Health Connect Table (embed)",
+    description:
+      "Embeddable widget: Apple HealthKit and Android Health Connect type identifiers side by side, with the cross-platform gotchas. Canonical page: /matrix.",
+    url: "/matrix",
+    images: ["/opengraph-image"],
+  },
 };
 
 export default function EmbedMatrix() {

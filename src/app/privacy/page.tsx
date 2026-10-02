@@ -4,11 +4,21 @@ import { site } from "@/lib/site";
 
 const UPDATED = "2026-07-31";
 
+const TITLE = "Privacy";
+const DESCRIPTION =
+  "What AIFitnessAPI collects when you sign up, where it is stored, and how to update or delete it.";
+
 export const metadata: Metadata = {
-  title: "Privacy",
-  description:
-    "What AIFitnessAPI collects when you sign up, where it is stored, and how to update or delete it.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/privacy" },
+  openGraph: {
+    type: "website",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "/privacy",
+    images: ["/opengraph-image"],
+  },
 };
 
 /**

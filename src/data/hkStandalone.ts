@@ -27,12 +27,40 @@ export type HkStandaloneEntry = {
   title: string;
   metaDescription: string;
   primaryQuery: string;
+  /**
+   * The date of the data this page renders — never the writing date, never
+   * later than its source. For the four pages sliced from Apple's corpus
+   * that is the HK_FETCHED_ON their numbers were checked against. For
+   * health-connect-records it is the date the matrix rows were verified
+   * against both platforms' documentation (2026-07-26, matrix.ts's only
+   * commit, which is also the /matrix page's stamp), because those rows are
+   * what the page renders. A literal "YYYY-MM-DD" in the entries file:
+   * stale-report parses it with a regex, not an import.
+   */
+  updated: string;
   /** Markdown. The synthesis above the derived table. */
   intro: string;
   /** Markdown. Rendered under "What will bite you". */
   traps: string;
   faqs: { q: string; a: string }[];
 };
+
+/**
+ * The pages' own dates, as distinct from the data date in `updated`.
+ *
+ * All five were first published in 35bc67c on 2026-09-04, after the data
+ * each renders was read, and their content has not changed since (later
+ * edits added the age display and these stamps, not claims). Putting
+ * `updated` in dateModified would say a page changed before it existed, and
+ * lifting it to the publish date with a max() would be a rule for
+ * manufacturing freshness.
+ * So structured data and the sitemap carry these, and the reader sees the
+ * data date with its age beside it. Move HK_STANDALONE_MODIFIED when a page's
+ * content changes; a re-verification that changes nothing moves `updated`
+ * only.
+ */
+export const HK_STANDALONE_PUBLISHED = "2026-09-04";
+export const HK_STANDALONE_MODIFIED = "2026-09-04";
 
 /** The authored entry for a standalone page, or undefined when unwritten. */
 export function getStandalone(slug: string): HkStandaloneEntry | undefined {

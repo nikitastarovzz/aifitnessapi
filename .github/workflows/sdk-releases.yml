@@ -37,11 +37,52 @@ jobs:
         run: node scripts/fetch-sdk-releases.mjs
 
       - name: Commit if changed
+        env:
+          EVENT_NAME: ${{ github.event_name }}
         run: |
+          set -euo pipefail
           if git diff --quiet -- src/data/sdkReleases.ts; then
             echo "No release changes."
             exit 0
           fi
+
+          # Every commit here is a full production build. The fetch script
+          # already skips runs where nothing moved, but star counts drift by
+          # one or two most days: 14 of the first 16 tracker commits changed
+          # only "stars" lines and one only "pushedAt" — a redeploy each for
+          # numbers no reader is waiting on.
+          #
+          # So when the diff is nothing but those counters (plus the
+          # SDK_CHECKED_ON stamp, which the script rewrites on every write),
+          # hold it back and let Mondays carry the accumulated drift. Anything
+          # else — a release, a tag, a version, the archived flag, a repo
+          # added — still commits the day it appears. A manual run commits
+          # whatever it finds: someone asked for it.
+          #
+          # The script's own weekly check-date refresh is a stamp-only diff,
+          # so it waits for Monday too. Worst case the page's "checked on"
+          # date is under two weeks old; restoring the file loses nothing,
+          # because the next run fetches and diffs again from scratch.
+          #
+          # The counters are generated, never hand-edited, so the matcher can
+          # be exact to the generator's JSON.stringify(entries, null, 2)
+          # output. Only lines inside hunks are judged, so the ---/+++ file
+          # headers can never be mistaken for content.
+          changed=$(git diff -U0 -- src/data/sdkReleases.ts \
+            | awk '/^diff --git /{h=0} /^@@ /{h=1; next} h && /^[-+]/')
+          noise='^[-+]([[:space:]]*"stars": (null|[0-9]+),?|[[:space:]]*"pushedAt": (null|"[0-9]{4}-[0-9]{2}-[0-9]{2}"),?|export const SDK_CHECKED_ON = "[0-9]{4}-[0-9]{2}-[0-9]{2}";)$'
+          meaningful=$(printf '%s\n' "$changed" | grep -Ev "$noise" | grep -v '^$' || true)
+          if [ -z "$meaningful" ] && [ "$EVENT_NAME" != "workflow_dispatch" ] && [ "$(date -u +%u)" != "1" ]; then
+            echo "Only star counts / pushedAt / the check date moved:"
+            printf '%s\n' "$changed"
+            echo "Holding this back until Monday's run so it does not redeploy the site."
+            git checkout -- src/data/sdkReleases.ts
+            exit 0
+          fi
+          if [ -z "$meaningful" ]; then
+            echo "Counter-only change; committing (Monday or manual run)."
+          fi
+
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add src/data/sdkReleases.ts

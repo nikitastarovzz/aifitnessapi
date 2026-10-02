@@ -1,6 +1,30 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/Container";
 import { clusterMap, CLUSTER_LABELS } from "@/lib/clusterRegistry";
+
+/**
+ * Without this the 404 inherits the root layout's homepage title and
+ * description and its `index, follow` — next to the `noindex` Next injects on
+ * every 404 — so an unknown URL served two contradictory robots metas under
+ * the homepage's name. Next resolves a `metadata` export from not-found.tsx
+ * as the last metadata item, after the layouts, for both an unmatched URL and
+ * a route that calls notFound().
+ *
+ * `robots: null` clears the layout's robots rather than restating one: Next
+ * already writes `<meta name="robots" content="noindex">` into every 404
+ * render, so any value here would be a second robots meta beside it (qa's
+ * NOTFOUND-ROBOTS holds the page to exactly one). That injected tag says
+ * only noindex — nothing on the page says nofollow about the links below.
+ * No canonical, deliberately — a 404 has no URL of its own to name, and the
+ * root layout no longer supplies one.
+ */
+export const metadata: Metadata = {
+  title: "Page not found",
+  description:
+    "This URL has no page. Search the site, or start from the most-used tools and the full list of sections.",
+  robots: null,
+};
 
 /**
  * A 404 that tries to finish the job. Most 404s here are a mistyped or moved

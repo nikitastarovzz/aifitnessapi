@@ -5,8 +5,17 @@ import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterHero from "@/components/ClusterHero";
 import ClusterCta from "@/components/ClusterCta";
+import ContentAge from "@/components/ContentAge";
 import { Mdx } from "@/components/mdx";
-import { HK_BASE, hkGroupLabel, releasedHkGroups, getHkGroup, HK_FETCHED_ON } from "@/data/hkGroupPages";
+import {
+  HK_BASE,
+  hkGroupLabel,
+  releasedHkGroups,
+  getHkGroup,
+  HK_FETCHED_ON,
+  HK_GROUP_PUBLISHED,
+  HK_GROUP_MODIFIED,
+} from "@/data/hkGroupPages";
 import type { HkFamily, HkIdentifier } from "@/data/healthkitIdentifiers";
 import { ROWS as MATRIX_ROWS } from "@/data/matrix";
 import { HK_READONLY_SET } from "@/data/healthkitWritability";
@@ -216,6 +225,12 @@ export default async function HkGroupPage({ params }: { params: Promise<Params> 
 
   const faqId = (i: number) => `faq-${i + 1}`;
 
+  // Two kinds of date, kept apart on purpose. datePublished/dateModified are
+  // the page's own (35bc67c, 2026-09-04); `entry.updated` is the date of the
+  // data it renders (the 2026-08-28 corpus read), which is older than the
+  // page itself — so it cannot be dateModified without claiming the page
+  // changed before it existed. It goes in lastReviewed, which is what that
+  // property means, and on the visible date line with its age.
   const graphJsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -225,8 +240,8 @@ export default async function HkGroupPage({ params }: { params: Promise<Params> 
         headline: entry.title,
         alternativeHeadline: entry.primaryQuery,
         description: entry.metaDescription,
-        datePublished: HK_FETCHED_ON,
-        dateModified: HK_FETCHED_ON,
+        datePublished: HK_GROUP_PUBLISHED,
+        dateModified: HK_GROUP_MODIFIED,
         author: orgRef(),
         publisher: orgRef(),
         inLanguage: "en",
@@ -247,7 +262,7 @@ export default async function HkGroupPage({ params }: { params: Promise<Params> 
         url,
         name: entry.title,
         isPartOf: { "@id": WEBSITE_ID },
-        lastReviewed: HK_FETCHED_ON,
+        lastReviewed: entry.updated,
         reviewedBy: orgRef(),
       },
     ],
@@ -294,8 +309,15 @@ export default async function HkGroupPage({ params }: { params: Promise<Params> 
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
           {entry.title}
         </h1>
+        {/* The date and its age are the data date, so the two can never
+            disagree. If the dataset is refreshed and nobody re-checks the
+            synthesis against it, the tables move to the new read while
+            `updated` stays put — the line then names both rather than
+            presenting the prose as being as fresh as the table. */}
         <p className="mt-3 text-sm text-[var(--muted)]">
-          {members.length} identifiers · read from Apple&rsquo;s documentation on {HK_FETCHED_ON}
+          {members.length} identifiers · read from Apple&rsquo;s documentation on {entry.updated}
+          <ContentAge date={entry.updated} />
+          {entry.updated !== HK_FETCHED_ON && <> · tables re-read {HK_FETCHED_ON}</>}
         </p>
 
         <div

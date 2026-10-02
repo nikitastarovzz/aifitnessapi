@@ -42,6 +42,26 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "A page with no og:image, which would share as a blank card everywhere it is linked.",
   },
   {
+    code: "OG-URL-MISMATCH",
+    area: "Metadata",
+    refuses: "A page whose og:url names a different address from its rel=canonical, so a share and a search result credit two different URLs.",
+  },
+  {
+    code: "NO-OG-URL",
+    area: "Metadata",
+    refuses: "An indexable page that names a canonical but no og:url, so a share of it carries no address of its own.",
+  },
+  {
+    code: "NOTFOUND-ROBOTS",
+    area: "Metadata",
+    refuses: "A 404 page carrying anything other than exactly one robots meta tag, and that one saying noindex.",
+  },
+  {
+    code: "NOTFOUND-CANONICAL",
+    area: "Metadata",
+    refuses: "A 404 page that names a canonical or og:url, which would point every unknown address at a real page.",
+  },
+  {
     code: "BAD-JSON-LD",
     area: "Structured data / GEO",
     refuses: "A page carrying a JSON-LD block that does not parse as JSON.",
@@ -200,6 +220,26 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "A cluster missing from the rewrite list, which would make its conventional /cluster/slug.md addresses 404.",
   },
   {
+    code: "GEO-MD-ALT-LOOP",
+    area: "Feeds and mirrors",
+    refuses: "A response-header rule that matches a markdown mirror's own address and advertises a .md.md alternate for it, a URL that does not exist.",
+  },
+  {
+    code: "GEO-MD-LINK-SHADOWED",
+    area: "Feeds and mirrors",
+    refuses: "A response-header rule that sets a Link header on a markdown mirror's address, replacing the canonical the mirror sends for itself.",
+  },
+  {
+    code: "GEO-MD-LINK-CANONICAL",
+    area: "Feeds and mirrors",
+    refuses: "A markdown mirror whose Link header is not one canonical-plus-llms.txt value naming the same URL as its front matter and its HTML page.",
+  },
+  {
+    code: "GEO-ALT-HEADER",
+    area: "Feeds and mirrors",
+    refuses: "A spoke or blog post whose HTTP Link header does not name its own markdown mirror and llms.txt, or a hub or the homepage whose header does not name llms.txt.",
+  },
+  {
     code: "GEO-NO-LLMS",
     area: "Feeds and mirrors",
     refuses: "A build with no llms.txt in its output.",
@@ -230,6 +270,16 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     code: "GEO-ROBOTS-SURFACE",
     area: "Structured data / GEO",
     refuses: "A robots.txt that does not point crawlers at llms.txt, answers.json and the changes feed.",
+  },
+  {
+    code: "GEO-ROBOTS-HOST",
+    area: "Structured data / GEO",
+    refuses: "A robots.txt carrying a Host: line, a second statement of the canonical host outside the one place it is set.",
+  },
+  {
+    code: "GEO-ROBOTS-UNIFORM",
+    area: "Structured data / GEO",
+    refuses: "A robots.txt with no catch-all group, or with any crawler group whose Allow and Disallow rules differ from the catch-all's.",
   },
 
   // ── Structured answer index ───────────────────────────────────────────
@@ -604,6 +654,38 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     area: "Derived blocks",
     refuses: "The architecture diagram marker appearing on any page outside the /architecture cluster.",
   },
+
+  // ── Hosting and crawl surface ─────────────────────────────────────────
+  {
+    code: "IMAGE-PROXY-OPEN",
+    area: "Hosting and crawl",
+    refuses: "A build whose image optimizer is on and allowed to fetch remote images, which lets anyone run resize jobs from any host on the site's compute.",
+  },
+  {
+    code: "DYNAMIC-FALLBACK",
+    area: "Hosting and crawl",
+    refuses: "A dynamic route that renders parameters it did not prerender, so an unknown address under it is rendered on request instead of answering 404.",
+  },
+  {
+    code: "SITEMAP-MISSING",
+    area: "Hosting and crawl",
+    refuses: "A build with no sitemap.xml in its output.",
+  },
+  {
+    code: "SITEMAP-NO-PAGE",
+    area: "Hosting and crawl",
+    refuses: "A sitemap row for an address that no built page answers, or that answers with a 404.",
+  },
+  {
+    code: "SITEMAP-LASTMOD",
+    area: "Hosting and crawl",
+    refuses: "A sitemap row whose lastmod is missing or differs from the dateModified its page declares in its structured data.",
+  },
+  {
+    code: "SITEMAP-CHANGEFREQ",
+    area: "Hosting and crawl",
+    refuses: "A sitemap carrying changefreq or priority values, fields that were never facts anyone kept true.",
+  },
 ];
 
 /** Group order on /gates. Every area used above must appear here. */
@@ -617,4 +699,5 @@ export const GATE_AREAS = [
   "Disclosure",
   "Blog",
   "Derived blocks",
+  "Hosting and crawl",
 ] as const;
