@@ -31,6 +31,13 @@ const PAGES = ["/", "/devices", "/devices/ftms-fitness-machine-service", "/matri
   "/apis", "/apis/fitbit", "/apis/mediapipe", "/alerts", "/digest", "/digest/2026-08",
   "/search", "/compare-apis", "/datasets", "/badges", "/embed/matrix", "/embed/deadlines",
   "/accessibility", "/accessibility/voiceover-live-workout-metrics",
+  "/audio-coaching", "/audio-coaching/android-audio-focus-may-duck",
+  "/audio-coaching/audiofocus-request-failed-android-15",
+  "/healthkit-queries", "/healthkit-queries/hkstatisticscollectionquery",
+  "/phone-sensors", "/phone-sensors/cmpedometer",
+  "/health-connect", "/health-connect/steps-record", "/health-connect/permissions",
+  "/libraries", "/libraries/react-native-health", "/libraries/compare/garminconnect-vs-garth",
+  "/healthkit-versions/ios-8", "/health-connect-releases",
   "/not-a-real-page"];
 
 const exe = process.env.PLAYWRIGHT_CHROMIUM;

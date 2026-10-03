@@ -382,6 +382,10 @@ export const cookbookEntries: ClusterEntry[] = [
     ],
     "related": [
       {
+        "href": "/healthkit-queries/hkanchoredobjectquery",
+        "label": "HKAnchoredObjectQuery and the HKQueryAnchor"
+      },
+      {
         "href": "/architecture/incremental-sync",
         "label": "Incremental sync: anchors and change tokens"
       },

@@ -140,6 +140,26 @@ jobs:
           check "https://aifitnessapi.com/.well-known/security.txt" "Contact:"
           check "https://aifitnessapi.com/datasets/fitness-api-changes-2026.json" '"items"'
 
+          # Surfaces added 2026-10-03 (GROWTH-OCT-2026-B waves B and C): the
+          # generated Health Connect, library, error-code and release
+          # references, the computed iOS-version pages, and three clusters
+          # with markdown mirrors.
+          check "https://aifitnessapi.com/health-connect"              "StepsRecord"
+          check "https://aifitnessapi.com/health-connect/steps-record" "READ_STEPS"
+          check "https://aifitnessapi.com/health-connect/permissions"  "android.permission.health.READ_STEPS"
+          check "https://aifitnessapi.com/libraries"                   "react-native-health"
+          check "https://aifitnessapi.com/libraries/react-native-health" "react-native-health"
+          check "https://aifitnessapi.com/libraries/compare/garminconnect-vs-garth" "garth"
+          check "https://aifitnessapi.com/audio-coaching"              "duckOthers"
+          check "https://aifitnessapi.com/audio-coaching.md"           "Audio"
+          check "https://aifitnessapi.com/healthkit-queries"           "HKStatisticsCollectionQuery"
+          check "https://aifitnessapi.com/healthkit-queries/hkstatisticscollectionquery.md" 'canonical: "https://'
+          check "https://aifitnessapi.com/phone-sensors"               "CMPedometer"
+          check "https://aifitnessapi.com/healthkit-versions/ios-18"   "workoutEffortScore"
+          check "https://aifitnessapi.com/error-codes"                 "HKError"
+          check "https://aifitnessapi.com/error-codes/health-connect"  "ERROR_RATE_LIMIT_EXCEEDED"
+          check "https://aifitnessapi.com/health-connect-releases"     "connect-client"
+
           # answers.json must stay in step with the site, not drift to an
           # empty or truncated index.
           # Reads the copy check() saved above; if that fetch failed, the file

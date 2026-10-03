@@ -20,6 +20,9 @@ import { releasedDevices, DEVICES_PATH } from "@/data/devices";
 import { releasedEngagement, ENGAGEMENT_PATH } from "@/data/engagement";
 import { releasedWatchApps, WATCH_PATH } from "@/data/watchApps";
 import { releasedAccessibility, A11Y_PATH } from "@/data/accessibility";
+import { releasedAudioCoaching, AUDIO_PATH } from "@/data/audioCoaching";
+import { releasedHealthkitQueries, HKQ_PATH } from "@/data/healthkitQueries";
+import { releasedPhoneSensors, SENSORS_PATH } from "@/data/phoneSensors";
 import { FITNESS_APIS_CONFIG } from "@/data/fitnessApis";
 import { GUIDES_CONFIG } from "@/data/guides";
 import { BUILD_CONFIG } from "@/data/build";
@@ -41,6 +44,9 @@ import { DEVICES_CONFIG } from "@/data/devices";
 import { ENGAGEMENT_CONFIG } from "@/data/engagement";
 import { WATCH_CONFIG } from "@/data/watchApps";
 import { A11Y_CONFIG } from "@/data/accessibility";
+import { AUDIO_CONFIG } from "@/data/audioCoaching";
+import { HKQ_CONFIG } from "@/data/healthkitQueries";
+import { SENSORS_CONFIG } from "@/data/phoneSensors";
 
 /**
  * basePath → released entries, for anything that needs to see a cluster's
@@ -69,6 +75,9 @@ const REGISTRY: Record<string, () => ClusterEntry[]> = {
   [ENGAGEMENT_PATH]: releasedEngagement,
   [WATCH_PATH]: releasedWatchApps,
   [A11Y_PATH]: releasedAccessibility,
+  [AUDIO_PATH]: releasedAudioCoaching,
+  [HKQ_PATH]: releasedHealthkitQueries,
+  [SENSORS_PATH]: releasedPhoneSensors,
 };
 
 /** All clusters as basePath → released entries. */
@@ -118,6 +127,9 @@ export const CLUSTER_LABELS: Record<string, string> = Object.fromEntries(
     ENGAGEMENT_CONFIG,
     WATCH_CONFIG,
     A11Y_CONFIG,
+    AUDIO_CONFIG,
+    HKQ_CONFIG,
+    SENSORS_CONFIG,
   ].map((c) => [c.basePath, c.hubLabel]),
 );
 

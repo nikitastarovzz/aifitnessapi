@@ -451,6 +451,48 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "A build where only some of the HealthKit group pages were generated.",
   },
 
+  // ── Generated references (GROWTH-OCT-2026-B) ──────────────────────────
+  {
+    code: "HC-RECORD-COVERAGE",
+    area: "Derived blocks",
+    refuses: "A Health Connect record reference with fewer than the 42 record classes the generator guarantees, a generated record without its own page, a record page missing its record marker, or a hub that does not link every record page.",
+  },
+  {
+    code: "HC-PERM-ON-PAGE",
+    area: "Derived blocks",
+    refuses: "A Health Connect record page that does not show every read and write permission string the generated data gives that record.",
+  },
+  {
+    code: "HC-PERMISSION-ROWS",
+    area: "Derived blocks",
+    refuses: "A Health Connect permissions page that renders a different set of android.permission.health rows than the generated framework permission list, or a list shorter than the 219 strings the generator guarantees.",
+  },
+  {
+    code: "LIBS-ROWS",
+    area: "Derived blocks",
+    refuses: "An open-source library dataset whose row count differs from the count its generator declares, a package or comparison without a built page, or a /libraries hub that does not link all of them.",
+  },
+  {
+    code: "LIBS-FRESH",
+    area: "Derived blocks",
+    refuses: "Library pages whose registry facts were read more than 45 days ago, which means the weekly refresh has stopped running.",
+  },
+  {
+    code: "AUDIO-EVIDENCE",
+    area: "Content integrity",
+    refuses: "An audio-coaching page that names a cross-platform framework whose documentation could not be verified, links outside Apple's and Google's developer documentation, or carries a source not checked on the date the page was last updated.",
+  },
+  {
+    code: "ERROR-CODES-ROWS",
+    area: "Derived blocks",
+    refuses: "A Health Connect error-code page missing a row for any generated HealthConnectException constant, a generated list shorter than nine constants, or an error-code hub that was not built.",
+  },
+  {
+    code: "HC-RELEASES-ROWS",
+    area: "Derived blocks",
+    refuses: "A Health Connect SDK release page missing any generated connect-client release, or a generated release list shorter than 32 entries.",
+  },
+
   // ── Tools ─────────────────────────────────────────────────────────────
   {
     code: "TOOLS",

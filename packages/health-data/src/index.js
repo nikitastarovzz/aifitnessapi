@@ -18,6 +18,8 @@ const hkDoc = load("healthkit-type-identifiers-2026");
 const matrixDoc = load("health-data-type-matrix-2026");
 const changesDoc = load("fitness-api-changes-2026");
 const glossaryDoc = load("fitness-api-glossary-2026");
+const hcRecordsDoc = load("health-connect-records-2026");
+const hcPermissionsDoc = load("health-connect-permissions-2026");
 
 /** Every HealthKit identifier across all four families. */
 export const healthkitIdentifiers = hkDoc.items;
@@ -27,6 +29,10 @@ export const crossPlatformTypes = matrixDoc.items;
 export const apiChanges = changesDoc.items;
 /** Domain glossary. */
 export const glossary = glossaryDoc.items;
+/** Every Health Connect record class in Google's data-types table. */
+export const healthConnectRecords = hcRecordsDoc.items;
+/** Every android.permission.health string on Google's HealthPermissions reference. */
+export const healthConnectPermissions = hcPermissionsDoc.items;
 
 /** Provenance for every dataset, including the date each source was read. */
 export const meta = {
@@ -34,6 +40,8 @@ export const meta = {
   crossPlatformTypes: { ...matrixDoc, items: undefined },
   apiChanges: { ...changesDoc, items: undefined },
   glossary: { ...glossaryDoc, items: undefined },
+  healthConnectRecords: { ...hcRecordsDoc, items: undefined },
+  healthConnectPermissions: { ...hcPermissionsDoc, items: undefined },
 };
 
 const byIdentifier = new Map(healthkitIdentifiers.map((r) => [r.identifier.toLowerCase(), r]));
@@ -68,4 +76,31 @@ export function aggregationFor(name) {
 export function crossPlatform(metricId) {
   const k = String(metricId ?? "").toLowerCase();
   return crossPlatformTypes.find((r) => r.id.toLowerCase() === k || r.label.toLowerCase() === k);
+}
+
+const byHcClass = new Map(healthConnectRecords.map((r) => [r.className.toLowerCase(), r]));
+const byHcQualified = new Map(healthConnectRecords.map((r) => [r.qualifiedName.toLowerCase(), r]));
+
+/**
+ * Look up one Health Connect record class by its simple or fully qualified
+ * name. Returns undefined for an unknown name — never a nearest match.
+ */
+export function healthConnectRecord(name) {
+  const k = String(name ?? "").toLowerCase();
+  return byHcClass.get(k) ?? byHcQualified.get(k);
+}
+
+const byHcPermission = new Map(
+  healthConnectPermissions.flatMap((p) => [
+    [p.permission.toLowerCase(), p],
+    [p.constant.toLowerCase(), p],
+  ]),
+);
+
+/**
+ * Look up one permission by manifest string ("android.permission.health.READ_STEPS")
+ * or constant ("READ_STEPS"). Returns undefined for an unknown name.
+ */
+export function healthConnectPermission(name) {
+  return byHcPermission.get(String(name ?? "").toLowerCase());
 }

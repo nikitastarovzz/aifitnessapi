@@ -29,7 +29,11 @@ silently reverts it.
 |---|---|
 | `src/data/healthkitIdentifiers.ts` | `node scripts/fetch-healthkit-identifiers.mjs` (reads Apple's docs JSON) |
 | `src/data/healthkitWritability.ts` | `node scripts/extract-healthkit-writability.mjs` (reads the same cached corpus) |
+| `src/data/healthConnectRecords.ts` | `NODE_USE_ENV_PROXY=1 node scripts/fetch-health-connect-records.mjs` (Google's data-types page + Jetpack record and permission references; `--offline` reparses `.cache/health-connect`) |
 | `src/data/sdkReleases.ts` | CI only — `.github/workflows/sdk-releases.yml` |
+| `src/data/libraries.ts` | `node scripts/fetch-libraries.mjs` (npm, pub.dev, PyPI, GitHub; weekly in `.github/workflows/libraries.yml`) |
+| `src/data/errorCodes.ts` | `node scripts/fetch-error-codes.mjs` (Apple's HKError.Code docs JSON + Android's HealthConnectException and Jetpack HealthConnectClient references) |
+| `src/data/hcReleases.ts` | `node scripts/fetch-hc-releases.mjs` (Google's androidx Health Connect release notes) |
 | `src/data/published.ts` | `node scripts/backfill-published.mjs` |
 | `public/datasets/*.{json,csv}` + `manifest*.json` | `npm run datasets` (build + manifest) |
 | `public/kit/*` | `node scripts/build-kit.mjs` |

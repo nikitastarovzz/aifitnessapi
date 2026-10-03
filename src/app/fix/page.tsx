@@ -59,7 +59,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Empty platform-store data",
     blurb: "HealthKit and Health Connect returning nothing.",
-    slugs: ["healthkit-authorization-denied", "healthkit-no-data", "healthkit-background-delivery-not-working", "health-connect-no-data", "healthkit-error-no-data", "healthkit-authorization-not-determined", "healthkit-required-authorization-denied", "healthkit-database-inaccessible", "healthkit-health-data-unavailable", "healthkit-data-restricted-mdm", "healthkit-workout-session-errors", "healthkit-guest-user-mode", "healthkit-invalid-argument", "healthkit-undocumented-errors"],
+    slugs: ["healthkit-authorization-denied", "healthkit-no-data", "healthkit-background-delivery-not-working", "health-connect-no-data", "health-connect-securityexception", "health-connect-not-available", "health-connect-changes-token-expired", "health-connect-rate-limit", "healthkit-error-no-data", "healthkit-authorization-not-determined", "healthkit-required-authorization-denied", "healthkit-database-inaccessible", "healthkit-health-data-unavailable", "healthkit-data-restricted-mdm", "healthkit-workout-session-errors", "healthkit-guest-user-mode", "healthkit-invalid-argument", "healthkit-undocumented-errors"],
   },
   {
     title: "Webhooks & sync",

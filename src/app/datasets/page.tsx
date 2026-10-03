@@ -24,13 +24,13 @@ const LICENSE_URL = "https://creativecommons.org/licenses/by/4.0/";
 export const metadata: Metadata = {
   title: { absolute: "Open Datasets: Fitness & Health API Data (CC BY 4.0)" },
   description:
-    "Four open CC BY 4.0 datasets on fitness and health APIs: HealthKit ↔ Health Connect identifiers, dated ecosystem changes, glossary, access structure.",
+    "Seven open CC BY 4.0 datasets on fitness and health APIs: HealthKit and Health Connect identifiers, dated ecosystem changes, glossary, access structure.",
   alternates: { canonical: PAGE_PATH },
   openGraph: {
     type: "website",
     title: "Open Datasets — Fitness & Health API Data",
     description:
-      "Four CC BY 4.0 datasets in JSON and CSV: cross-platform health identifiers, the dated changes record, the glossary, and the access-structure survey.",
+      "Seven CC BY 4.0 datasets in JSON and CSV: HealthKit and Health Connect identifiers, the dated changes record, the glossary, and the access-structure survey.",
     url: PAGE_PATH,
     images: ["/opengraph-image"],
   },
@@ -160,6 +160,38 @@ const ENTRIES: Entry[] = [
     presentedBy: { href: "/healthkit-identifiers", label: "Every HealthKit type identifier" },
     caveat:
       "Two columns are derived, not copied: aggregation and unit family. Apple states both in prose rather than as properties, so each was matched against Apple's own sentence and left null where Apple's wording does not say. Both apply only to quantity types — elsewhere null means the concept does not apply, not that Apple was silent. Apple's abstracts are reproduced to identify the API surface; the classification is ours, and Apple's documentation remains the authority.",
+  },
+  {
+    slug: "health-connect-records-2026",
+    unit: "record classes",
+    blurb:
+      "Every record class in Google's Health Connect data-types table, joined to its Jetpack reference page: category, record shape, unit class, mandatory fields, the exact read and write permission strings, and the aggregate metrics each class exposes.",
+    keywords: [
+      "Health Connect",
+      "Health Connect records",
+      "android.permission.health",
+      "AggregateMetric",
+      "Android health data",
+    ],
+    presentedBy: { href: "/health-connect", label: "Health Connect record types" },
+    caveat:
+      "Generated from Google's pages, so it says what they say: a field Google does not state is null. Where Google's own pages disagree on a permission string, this file carries the data-types table's spelling and the record page shows both.",
+  },
+  {
+    slug: "health-connect-permissions-2026",
+    unit: "permission strings",
+    blurb:
+      "Every constant on Android's framework HealthPermissions reference: the android.permission.health manifest string, Google's description, protection level, the API level it arrived in, and the record classes that use it.",
+    keywords: [
+      "Health Connect permissions",
+      "android.permission.health",
+      "HealthPermissions",
+      "Android manifest",
+      "READ_HEALTH_DATA_IN_BACKGROUND",
+    ],
+    presentedBy: { href: "/health-connect/permissions", label: "Every Health Connect permission string" },
+    caveat:
+      "The records column is a join to Google's data-types table, not a statement from the HealthPermissions page; background, history, medical and symptom permissions name no record class and are null there.",
   },
 ];
 
@@ -343,8 +375,8 @@ export default function DatasetsPage() {
             <Link href="/methodology">our methodology</Link>.
           </p>
           <p>
-            <strong>Generated, not typed.</strong> Three of the four files are built from the same data
-            modules that render the pages, so a dataset cannot drift from the page it came from. The
+            <strong>Generated, not typed.</strong> Every file is built by{" "}
+            <code>scripts/build-datasets.mjs</code> from the same data modules that render the pages, so a dataset cannot drift from the page it came from. The
             counts, field lists and versions shown above are read out of the published JSON when this
             page is built, which is why they cannot disagree with the downloads.
           </p>

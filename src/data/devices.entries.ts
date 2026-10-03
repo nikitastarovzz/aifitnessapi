@@ -348,6 +348,14 @@ export const devicesEntries: ClusterEntry[] =
     ],
     "related": [
       {
+        "href": "/watch-apps/wear-os-exerciseclient-kotlin",
+        "label": "ExerciseClient in Kotlin"
+      },
+      {
+        "href": "/watch-apps/wear-os-passive-monitoring-measureclient",
+        "label": "PassiveMonitoringClient and MeasureClient"
+      },
+      {
         "href": "/devices/bluetooth-heart-rate-monitor",
         "label": "Bluetooth heart rate monitors"
       },

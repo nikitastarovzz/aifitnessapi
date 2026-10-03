@@ -9,6 +9,7 @@ import { HK_IDENTIFIERS, HK_FETCHED_ON, type HkIdentifier } from "@/data/healthk
 import { getStandalone, HK_STANDALONE_PUBLISHED, hkStandaloneModified } from "@/data/hkStandalone";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
+import { hkVersionPages, HK_VERSION_MIN_MEMBERS } from "@/lib/hkVersions";
 
 /**
  * HealthKit identifiers by the iOS version that introduced them.
@@ -242,6 +243,33 @@ export default function HealthKitVersionsPage() {
               </li>
             ))}
           </ul>
+
+          {/* One page per iOS major release, computed from the same dataset.
+              Only majors with at least HK_VERSION_MIN_MEMBERS identifiers get
+              a page; the rest stay in the sections below. */}
+          <nav aria-label="One page per iOS release" className="mt-6">
+            <h3 className="text-sm font-semibold text-[var(--fg)]">One page per iOS release</h3>
+            <p className="mt-1 text-sm text-[var(--muted)]">
+              Every release with {HK_VERSION_MIN_MEMBERS} or more new identifiers, point releases
+              folded into their major, with counts by family and group and what is deprecated or
+              undocumented.
+            </p>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {hkVersionPages().map((p) => (
+                <li key={p.slug}>
+                  <Link
+                    href={p.path}
+                    className="rounded-full border border-[var(--border)] px-3 py-1 text-sm text-brand-600 hover:text-brand-500"
+                  >
+                    iOS {p.major}{" "}
+                    <span className="font-semibold tabular-nums text-[var(--fg)]">
+                      {p.members.length}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
           {BY_VERSION.map((g) => (
             <section key={g.version} id={`ios-${g.version.replace(".", "-")}`} className="mt-10">

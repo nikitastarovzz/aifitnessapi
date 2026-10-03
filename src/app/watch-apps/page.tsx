@@ -45,6 +45,9 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
       "apple-watch-background-execution",
       "workoutkit-scheduled-workouts",
       "mirroring-workouts-to-iphone",
+      "hkworkoutsession-lifecycle-swift",
+      "hkworkoutsession-mirroring-api",
+      "workoutkit-customworkout-swift",
     ],
   },
   {
@@ -55,6 +58,8 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
       "wear-os-exercise-tracking",
       "wear-os-tiles",
       "wear-os-phone-sync",
+      "wear-os-exerciseclient-kotlin",
+      "wear-os-passive-monitoring-measureclient",
     ],
   },
   {

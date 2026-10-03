@@ -85,6 +85,21 @@ export default function Footer() {
               Accessibility
             </FooterLink>
           )}
+          {has("/audio-coaching") && (
+            <FooterLink href="/audio-coaching" className="py-1 hover:text-[var(--fg)]">
+              Audio Coaching
+            </FooterLink>
+          )}
+          {has("/healthkit-queries") && (
+            <FooterLink href="/healthkit-queries" className="py-1 hover:text-[var(--fg)]">
+              HealthKit Queries
+            </FooterLink>
+          )}
+          {has("/phone-sensors") && (
+            <FooterLink href="/phone-sensors" className="py-1 hover:text-[var(--fg)]">
+              Phone Sensors
+            </FooterLink>
+          )}
           {has("/watch-apps") && (
             <FooterLink href="/watch-apps" className="py-1 hover:text-[var(--fg)]">
               Watch Apps
@@ -135,11 +150,23 @@ export default function Footer() {
           <FooterLink href="/healthkit-versions" className="py-1 hover:text-[var(--fg)]">
             HealthKit types by iOS version
           </FooterLink>
+          <FooterLink href="/health-connect" className="py-1 hover:text-[var(--fg)]">
+            Health Connect record types
+          </FooterLink>
+          <FooterLink href="/error-codes" className="py-1 hover:text-[var(--fg)]">
+            Error code reference
+          </FooterLink>
+          <FooterLink href="/health-connect-releases" className="py-1 hover:text-[var(--fg)]">
+            Health Connect SDK releases
+          </FooterLink>
           {SDK_REPOS.length > 0 && (
             <FooterLink href="/sdk-releases" className="py-1 hover:text-[var(--fg)]">
               SDK release tracker
             </FooterLink>
           )}
+          <FooterLink href="/libraries" className="py-1 hover:text-[var(--fg)]">
+            Open-source libraries
+          </FooterLink>
           <FooterLink href="/blog" className="py-1 hover:text-[var(--fg)]">
             Blog
           </FooterLink>

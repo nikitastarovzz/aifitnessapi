@@ -251,6 +251,11 @@ export default function GoogleFitShutdownPage() {
             <Link href="/migrate/keep-users-connected-during-migration">keeping users connected
             while you move</Link>.
           </p>
+          <p>
+            Reaching Google Fit through a React Native bridge? The{" "}
+            <Link href="/libraries/react-native-google-fit">react-native-google-fit package page</Link>{" "}
+            quotes what its README says about the shutdown.
+          </p>
         </div>
 
         <section className="mt-12">

@@ -79,6 +79,9 @@ const CLUSTERS: { href: string; title: string; blurb: string }[] = [
   { href: "/engagement", title: "Engagement & retention", blurb: "Getting people back: notifications, Live Activities, widgets, streaks, leaderboards — and measuring lift honestly." },
   { href: "/watch-apps", title: "Watch apps", blurb: "Writing the app on the wrist: workout sessions, background execution, WorkoutKit, Wear OS tiles, battery, testing." },
   { href: "/accessibility", title: "Accessibility", blurb: "Screen readers over live workout metrics, text scaling, touch targets, contrast outdoors, reduced motion, haptics, captions." },
+  { href: "/audio-coaching", title: "Audio coaching", blurb: "Workout cues over the user's music: ducking, interruptions, background audio, Android audio focus, TextToSpeech, watch speakers." },
+  { href: "/healthkit-queries", title: "HealthKit query classes", blurb: "HKSampleQuery, statistics, anchored and observer queries, async descriptors, routes and rings: how each works and where it bites." },
+  { href: "/phone-sensors", title: "Phone sensors", blurb: "Steps, activity, altitude and AirPods head motion from the phone itself: CMPedometer, Android step sensors, activity transitions, health permissions." },
 ];
 
 /** The providers and SDKs people actually arrive searching for. Every href is
@@ -490,8 +493,17 @@ export default function Home() {
             HealthKit by iOS version
           </Link>{" "}
           ·{" "}
-          <Link href="/health-connect-records" className="font-medium text-brand-600 hover:text-brand-500">
-            Health Connect records, verified
+          <Link href="/health-connect" className="font-medium text-brand-600 hover:text-brand-500">
+            Health Connect record reference
+          </Link>
+          {" "}
+          ·{" "}
+          <Link href="/health-connect/permissions" className="font-medium text-brand-600 hover:text-brand-500">
+            Every Health Connect permission
+          </Link>{" "}
+          ·{" "}
+          <Link href="/libraries" className="font-medium text-brand-600 hover:text-brand-500">
+            Open-source health libraries
           </Link>
         </p>
       </Container>

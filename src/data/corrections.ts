@@ -15,6 +15,13 @@ export type Correction = {
 
 export const CORRECTIONS: Correction[] = [
   {
+    date: "2026-10-03",
+    page: { href: "/learn/what-is-rpe", label: "What Is RPE (Rating of Perceived Exertion)?" },
+    was: "The page said no wearable or health-data API exposes perceived effort, in its answer capsule and in a section headed \"Nothing in a wearable API gives you this\".",
+    now: "HealthKit has had workoutEffortScore and estimatedWorkoutEffortScore quantity types since iOS 18.0, with HKHealthStore methods to relate an effort sample to a workout. Apple documents no description, scale or unit for either type, so the page now says a storage field exists and that what it holds is undocumented. No sensor measures RPE, which the page still says.",
+    how: "Found on 2026-10-03 while planning links from the page to the HealthKit reference, then checked against Apple's documentation for both types, HKWorkoutEffortRelationshipQuery and HKHealthStore.",
+  },
+  {
     date: "2026-10-02",
     page: { href: "/integrate/healthkit", label: "How to Integrate Apple HealthKit" },
     was: "The guide labelled HKQuantityType(.stepCount) — the type-safe initializer used in its code — as iOS 16 and later, in four places.",

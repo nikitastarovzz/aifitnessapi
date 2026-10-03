@@ -224,7 +224,7 @@ export const complianceEntries: ClusterEntry[] =
     "metaDescription": "What Apple requires to ship a health app or use HealthKit: privacy policy, no ad use or third-party disclosure, in-app account deletion, and more.",
     "updated": "2026-10-02",
     "answer": "To ship an iOS health app or use HealthKit, Apple's App Review Guidelines require a privacy policy linked in the app and in App Store Connect, forbid using HealthKit and other health data for advertising, marketing or use-based data mining or disclosing it to third parties for those purposes, and require in-app account deletion if you offer account creation. These are contractual App Store rules, not law, and don't replace GDPR or state-law obligations. This is general guidance, not legal advice; the section numbers here match the guidelines as last updated June 8, 2026, and Apple revises them, so verify the current text.",
-    "body": "## Does this apply to you?\n\nIf your iOS app touches health or fitness data, yes. The rules bite hardest on apps that use these Apple frameworks:\n\n- **HealthKit** (steps, heart rate, workouts, sleep, and everything else in the Health app)\n- **Clinical Health Records API**\n- **Motion & Fitness** and the **MovementDisorder APIs**\n\nData from these sources gets the strictest treatment. But even a fitness app that never touches HealthKit — say, one that only stores workouts you type in — still needs a privacy policy and still faces the general privacy rules in Section 5.1 of the guidelines. There is essentially no version of \"health app\" that escapes these requirements.\n\nOne more scoping point: guideline 5.1.1(ix) lists healthcare among the \"highly regulated fields\" whose apps \"should be submitted by a legal entity that provides the services, and not by an individual developer.\"\n\n## What Apple's rules actually require\n\nThe subsection numbers below match the App Review Guidelines as last updated June 8, 2026, checked on October 2, 2026. Apple revises the guidelines, so confirm the live subsection before you cite a number; the rules matter more than the numbering.\n\n| Requirement | What it means for your app |\n| --- | --- |\n| **Privacy policy is mandatory** (guideline 5.1.1(i)) | Link a privacy policy both in App Store Connect metadata and inside the app. It must say what data you collect, how, and every use; confirm any third parties give equal protection; and explain retention, deletion, and how users revoke consent. |\n| **Consent for collection** (5.1.1(ii)) | Get user consent even for data considered anonymous, offer an easily accessible way to withdraw it, write purpose strings that clearly and completely describe your use of the data, and don't make paid functionality depend on granting access. |\n| **Data minimization** (5.1.1(iii)) | Request only the data relevant to your app's core functionality. |\n| **No advertising or data mining** (5.1.2(vi) and 5.1.3(i)) | Data from HealthKit, Clinical Health Records, Motion and Fitness, and the MovementDisorder APIs may NOT be used for marketing, advertising, or use-based data mining — including by third parties you pass it to. |\n| **No disclosure to third parties for those purposes** (5.1.3(i)) | You may not use or disclose health, fitness, or medical research data to third parties for advertising, marketing, or other use-based data mining. The only permitted purposes are improving health management or health research, and then only with permission. You must also disclose the specific health data you collect from the device. |\n| **Sharing with third-party AI** (5.1.2(i)) | Clearly disclose where personal data will be shared with third parties, \"including with third-party AI,\" and get explicit permission before doing so. |\n| **Data accuracy + no iCloud** (5.1.3(ii)) | Don't write false or inaccurate data into HealthKit, and don't store personal health information in iCloud. The iCloud rule is easy to miss when you design sync. |\n| **Account deletion in-app** (5.1.1(v)) | If your app supports account creation, it must offer account deletion within the app. Apple's account-deletion guidance says to offer deletion of the entire account record along with associated personal data; offering only to deactivate the account is insufficient. Apps that connect to a social network must also include a way to revoke those credentials and disable data access between the app and the network from within the app, and may not store the network's credentials or tokens off the device. |\n\n### The narrow \"direct benefit\" carve-out\n\nThere is one limited exception to the no-sharing rule: an app may share health data for a direct user benefit — the classic example is a reduced insurance premium — but only if the app is submitted by the benefit provider itself AND the data is not shared with any other third party. Do not read this as a general \"you can share health data if the user gets something.\" It is deliberately narrow and conditional.\n\n### If you run research\n\nHuman-subject research raises the bar. Under guidelines 5.1.3(iii) and (iv), you need:\n\n- **Informed consent** covering the nature, purpose, and duration of the study; procedures, risks, and benefits; confidentiality and any third-party sharing; a contact; and how to withdraw. Minors need parent or guardian consent.\n- **Approval from an independent ethics review board**, which Apple can ask you to prove on request.\n\n## App Privacy labels and privacy manifests\n\nTwo more Apple requirements live outside the review guidelines proper:\n\n- **App Privacy \"nutrition labels.\"** Apple requires you to describe your app's privacy practices in App Store Connect to submit new apps and updates — including the practices of third-party partners whose code you integrate — and to identify all the data you or those partners collect, unless it meets Apple's criteria for optional disclosure. Health and Fitness are their own data types, and Apple's definitions name HealthKit, Clinical Health Records, Movement Disorder and Motion and Fitness data. You are responsible for keeping the answers accurate and up to date.\n- **Privacy manifests and required-reason APIs.** Apple's documentation says that starting May 1, 2024, App Store Connect stopped accepting apps that use a \"required reason\" API without describing why in their privacy manifest (`PrivacyInfo.xcprivacy`). Separately, when a new app — or an update that adds it — includes one of the commonly used SDKs on Apple's list, that SDK must carry its own privacy manifest, plus a signature when it is a binary dependency. Confirm the current list before you submit.\n\n## What this means for a fitness app\n\n- **Ship a privacy policy first.** Guideline 5.1.1(i) makes it mandatory for every app, HealthKit or not, and it is cheap to get right. Cover collection, use, sharing, retention, and deletion. See the [health app privacy policy guide](/compliance/health-app-privacy-policy) for what to include.\n- **Wall off health data from your ad stack.** Don't pipe HealthKit data into advertising, marketing or data-mining tools — that is a hard prohibition, not a preference — and we would treat values derived from it the same way.\n- **Build in-app account deletion before launch.** Retrofitting it later is painful. Apple's guidance says deletion should reach the associated personal data too, not just the login row.\n- **Don't lean on iCloud for health data.** Keep personal health information out of iCloud storage; verify the current guideline wording as you architect sync.\n- **Remember Apple's rules are not the whole picture.** An App Store approval does not make you GDPR- or state-law-compliant. A HealthKit permission prompt is an OS access control, not a legal consent. See [health data user consent](/compliance/health-data-user-consent) for the distinction.\n\nFor the implementation details of requesting HealthKit permissions and handling the authorization sheet, see the [HealthKit integration guide](/integrate/healthkit). Building for Android too? The equivalent rules live on the [Google Play health data policy](/compliance/google-play-health-data-policy) page — they overlap heavily but differ in the specifics.\n\n## A note on limits\n\nApple's guidelines are contractual App Store rules, enforced through app review — they are not a substitute for HIPAA, GDPR, or state consumer-health laws, and passing review does not mean you've met those legal obligations. Apple also revises the guidelines — this page matches the June 8, 2026 revision — so the exact subsection numbers may shift; always read the live guideline text at the time you submit. For anything with legal consequences, confirm your obligations with a qualified professional.",
+    "body": "## Does this apply to you?\n\nIf your iOS app touches health or fitness data, yes. The rules bite hardest on apps that use these Apple frameworks:\n\n- **HealthKit** (steps, heart rate, workouts, sleep, and everything else in the Health app)\n- **Clinical Health Records API**\n- **Motion & Fitness** and the **MovementDisorder APIs**\n\nData from these sources gets the strictest treatment. But even a fitness app that never touches HealthKit — say, one that only stores workouts you type in — still needs a privacy policy and still faces the general privacy rules in Section 5.1 of the guidelines. There is essentially no version of \"health app\" that escapes these requirements.\n\nOne more scoping point: guideline 5.1.1(ix) lists healthcare among the \"highly regulated fields\" whose apps \"should be submitted by a legal entity that provides the services, and not by an individual developer.\"\n\n## What Apple's rules actually require\n\nThe subsection numbers below match the App Review Guidelines as last updated June 8, 2026, checked on October 2, 2026. Apple revises the guidelines, so confirm the live subsection before you cite a number; the rules matter more than the numbering.\n\n| Requirement | What it means for your app |\n| --- | --- |\n| **Privacy policy is mandatory** (guideline 5.1.1(i)) | Link a privacy policy both in App Store Connect metadata and inside the app. It must say what data you collect, how, and every use; confirm any third parties give equal protection; and explain retention, deletion, and how users revoke consent. |\n| **Consent for collection** (5.1.1(ii)) | Get user consent even for data considered anonymous, offer an easily accessible way to withdraw it, write purpose strings that clearly and completely describe your use of the data, and don't make paid functionality depend on granting access. |\n| **Data minimization** (5.1.1(iii)) | Request only the data relevant to your app's core functionality. |\n| **No advertising or data mining** (5.1.2(vi) and 5.1.3(i)) | Data from HealthKit, Clinical Health Records, Motion and Fitness, and the MovementDisorder APIs may NOT be used for marketing, advertising, or use-based data mining — including by third parties you pass it to. |\n| **No disclosure to third parties for those purposes** (5.1.3(i)) | You may not use or disclose health, fitness, or medical research data to third parties for advertising, marketing, or other use-based data mining. The only permitted purposes are improving health management or health research, and then only with permission. You must also disclose the specific health data you collect from the device. |\n| **Sharing with third-party AI** (5.1.2(i)) | Clearly disclose where personal data will be shared with third parties, \"including with third-party AI,\" and get explicit permission before doing so. |\n| **Data accuracy + no iCloud** (5.1.3(ii)) | Don't write false or inaccurate data into HealthKit, and don't store personal health information in iCloud. The iCloud rule is easy to miss when you design sync. |\n| **Account deletion in-app** (5.1.1(v)) | If your app supports account creation, it must offer account deletion within the app. Apple's account-deletion guidance says to offer deletion of the entire account record along with associated personal data; offering only to deactivate the account is insufficient. Apps that connect to a social network must also include a way to revoke those credentials and disable data access between the app and the network from within the app, and may not store the network's credentials or tokens off the device. |\n\n### The narrow \"direct benefit\" carve-out\n\nThere is one limited exception to the no-sharing rule: an app may share health data for a direct user benefit — the classic example is a reduced insurance premium — but only if the app is submitted by the benefit provider itself AND the data is not shared with any other third party. Do not read this as a general \"you can share health data if the user gets something.\" It is deliberately narrow and conditional.\n\n### If you run research\n\nHuman-subject research raises the bar. Under guidelines 5.1.3(iii) and (iv), you need:\n\n- **Informed consent** covering the nature, purpose, and duration of the study; procedures, risks, and benefits; confidentiality and any third-party sharing; a contact; and how to withdraw. Minors need parent or guardian consent.\n- **Approval from an independent ethics review board**, which Apple can ask you to prove on request.\n\n## App Privacy labels and privacy manifests\n\nTwo more Apple requirements live outside the review guidelines proper:\n\n- **App Privacy \"nutrition labels.\"** Apple requires you to describe your app's privacy practices in App Store Connect to submit new apps and updates — including the practices of third-party partners whose code you integrate — and to identify all the data you or those partners collect, unless it meets Apple's criteria for optional disclosure. Health and Fitness are their own data types, and Apple's definitions name HealthKit, Clinical Health Records, Movement Disorder and Motion and Fitness data. You are responsible for keeping the answers accurate and up to date.\n- **Privacy manifests and required-reason APIs.** Apple's documentation says that starting May 1, 2024, App Store Connect stopped accepting apps that use a \"required reason\" API without describing why in their privacy manifest (`PrivacyInfo.xcprivacy`). Separately, when a new app — or an update that adds it — includes one of the commonly used SDKs on Apple's list, that SDK must carry its own privacy manifest, plus a signature when it is a binary dependency. Confirm the current list before you submit.\n\n## What this means for a fitness app\n\n- **Ship a privacy policy first.** Guideline 5.1.1(i) makes it mandatory for every app, HealthKit or not, and it is cheap to get right. Cover collection, use, sharing, retention, and deletion. See the [health app privacy policy guide](/compliance/health-app-privacy-policy) for what to include.\n- **Wall off health data from your ad stack.** Don't pipe HealthKit data into advertising, marketing or data-mining tools — that is a hard prohibition, not a preference — and we would treat values derived from it the same way.\n- **Build in-app account deletion before launch.** Retrofitting it later is painful. Apple's guidance says deletion should reach the associated personal data too, not just the login row.\n- **Don't lean on iCloud for health data.** Keep personal health information out of iCloud storage; verify the current guideline wording as you architect sync.\n- **Remember Apple's rules are not the whole picture.** An App Store approval does not make you GDPR- or state-law-compliant. A HealthKit permission prompt is an OS access control, not a legal consent. See [health data user consent](/compliance/health-data-user-consent) for the distinction.\n\nFor the implementation details of requesting HealthKit permissions and handling the authorization sheet, see the [HealthKit integration guide](/integrate/healthkit). Building for Android too? The equivalent rules live on the [Google Play health data policy](/compliance/google-play-health-data-policy) page — they overlap heavily but differ in the specifics.\n\n## Guideline-by-guideline pages\n\nIf App Review cited a specific guideline, these pages quote it in full with a checklist:\n\n- [App Store guideline 5.1.1: Data Collection and Storage](/compliance/app-store-guideline-5-1-1-data-collection-storage)\n- [App Store guideline 5.1.2: Data Use and Sharing](/compliance/app-store-guideline-5-1-2-data-use-sharing)\n- [App Store guideline 5.1.3: Health and Health Research](/compliance/app-store-guideline-5-1-3-health-research)\n- [App Store guideline 1.4.1: Physical Harm and medical apps](/compliance/app-store-guideline-1-4-1-physical-harm)\n- [App Store guideline 2.5.1: Software Requirements and HealthKit](/compliance/app-store-guideline-2-5-1-healthkit-software-requirements)\n- Shipping on Android too: [Health Connect publishing requirements on Google Play](/compliance/google-play-health-connect-publishing-requirements)\n\n## A note on limits\n\nApple's guidelines are contractual App Store rules, enforced through app review — they are not a substitute for HIPAA, GDPR, or state consumer-health laws, and passing review does not mean you've met those legal obligations. Apple also revises the guidelines — this page matches the June 8, 2026 revision — so the exact subsection numbers may shift; always read the live guideline text at the time you submit. For anything with legal consequences, confirm your obligations with a qualified professional.",
     "faqs": [
       {
         "q": "Do I need a privacy policy to use HealthKit?",
@@ -565,5 +565,840 @@ export const complianceEntries: ClusterEntry[] =
     "cta": {
       "pitch": "Retention and deletion rules keep shifting across GDPR and the app stores; subscribe for plain-English updates on what changes for fitness app builders."
     }
+  },
+  {
+    "slug": "app-store-guideline-5-1-3-health-research",
+    "primaryQuery": "app store guideline 5.1.3",
+    "h1": "App Store Guideline 5.1.3: Health and Health Research",
+    "metaTitle": "App Store Guideline 5.1.3: Health and Health Research",
+    "metaDescription": "Apple's guideline 5.1.3 quoted in full: what it means for HealthKit and fitness apps, what triggers it, and a checklist to clear before resubmitting.",
+    "updated": "2026-10-03",
+    "answer": "App Store Review Guideline 5.1.3, Health and Health Research, bars apps from using or disclosing health, fitness and medical data for advertising, marketing or use-based data mining, from writing false or inaccurate data into HealthKit, and from storing personal health information in iCloud. Apps must also disclose the specific health data they collect from the device. Apps that run health-related human-subject research additionally need informed consent and approval from an independent ethics review board. Quoted from the guidelines as last updated June 8, 2026, checked October 3, 2026; this is general guidance, not legal advice.",
+    "body": "## The guideline text\n\nQuoted verbatim from Apple's [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/#5.1.3), which the page states were last updated June 8, 2026. We checked the text on October 3, 2026. Apple revises the guidelines and sometimes renumbers sub-items, so compare this against the live page before you cite it in a reply to App Review.\n\n> **5.1.3 Health and Health Research**\n>\n> Health, fitness, and medical data are especially sensitive and apps in this space have some additional rules to make sure customer privacy is protected:\n>\n> (i) Apps may not use or disclose to third parties data gathered in the health, fitness, and medical research context—including from the Clinical Health Records API, HealthKit API, Motion and Fitness, MovementDisorder APIs, or health-related human subject research—for advertising, marketing, or other use-based data mining purposes other than improving health management, or for the purpose of health research, and then only with permission. Apps may, however, use a user’s health or fitness data to provide a benefit directly to that user (such as a reduced insurance premium), provided that the app is submitted by the entity providing the benefit, and the data is not shared with a third party. You must disclose the specific health data that you are collecting from the device.\n>\n> (ii) Apps must not write false or inaccurate data into HealthKit or any other medical research or health management apps, and may not store personal health information in iCloud.\n>\n> (iii) Apps conducting health-related human subject research must obtain consent from participants or, in the case of minors, their parent or guardian. Such consent must include the (a) nature, purpose, and duration of the research; (b) procedures, risks, and benefits to the participant; (c) information about confidentiality and handling of data (including any sharing with third parties); (d) a point of contact for participant questions; and (e) the withdrawal process.\n>\n> (iv) Apps conducting health-related human subject research must secure approval from an independent ethics review board. Proof of such approval must be provided upon request.\n\n## What it means for a fitness or health app\n\nGuideline 5.1.3 sits inside section 5.1, Privacy, and adds rules on top of the general data rules in [guideline 5.1.1](/compliance/app-store-guideline-5-1-1-data-collection-storage) and [guideline 5.1.2](/compliance/app-store-guideline-5-1-2-data-use-sharing). Read item by item:\n\n- **5.1.3(i) restricts what you do with the data.** It covers data gathered in \"the health, fitness, and medical research context\" and names the Clinical Health Records API, the HealthKit API, Motion and Fitness, the MovementDisorder APIs and health-related human subject research. You may not use that data, or disclose it to third parties, for advertising, marketing or \"other use-based data mining purposes\". The exceptions are improving health management and health research, \"and then only with permission\".\n- **The benefit carve-out is narrow.** You can use a user's health or fitness data to give that same user a benefit, and Apple's example is a reduced insurance premium. Two conditions apply: the app must be submitted by the entity providing the benefit, and the data must not be shared with a third party.\n- **5.1.3(i) also requires disclosure.** \"You must disclose the specific health data that you are collecting from the device.\" In our reading, a generic line such as \"we collect health data\" falls short of \"specific\". Name the types.\n- **5.1.3(ii) contains two separate rules.** Don't write false or inaccurate data into HealthKit or into other health apps, and don't store personal health information in iCloud.\n- **5.1.3(iii) and (iv) apply only to research.** If your app runs health-related human subject research, you need informed consent with the five listed elements and approval from an independent ethics review board. A typical workout tracker doesn't run research and isn't affected.\n\n## What typically triggers it in a HealthKit app\n\nThe patterns below come from the guideline text and from Apple's HealthKit documentation, not from a database of rejections. Apple doesn't publish one. In Apple's [\"Protecting user privacy\"](https://developer.apple.com/documentation/healthkit/protecting-user-privacy) article, the rules for all HealthKit apps include:\n\n- \"Your app may not use information gained through the use of the HealthKit framework for advertising or similar services. Note that you may still serve advertising in an app that uses the HealthKit framework, but you can’t use data from the HealthKit store to serve ads.\"\n- \"You must not disclose any information gained through HealthKit to a third party without express permission from the user. Even with permission, you can only share information to a third party if they also provide a health or fitness service to the user.\"\n- \"You can’t sell information gained through HealthKit to advertising platforms, data brokers, or information resellers.\"\n- \"You must clearly disclose to the user how you and your app will use their HealthKit data.\"\n\nIn practice, these designs run into those rules:\n\n- **Health values in analytics or attribution events.** A workout's heart rate or step total attached as an event property and sent to a marketing or ad SDK is a use the guideline names.\n- **A partner integration without a health or fitness purpose.** Under Apple's HealthKit documentation, sending HealthKit data to a third party needs express permission, and the third party must provide a health or fitness service to the user.\n- **No specific disclosure.** The privacy policy or the in-app explanation doesn't say which health data types you collect.\n- **Sync built on iCloud.** Personal health information stored in any iCloud-backed storage your sync relies on is covered by 5.1.3(ii) as written.\n- **Writing samples you can't vouch for.** Examples include demo or seed data left in a release build, or duplicates written on every launch. Our reading is that these fall under \"false or inaccurate data\".\n\n## Checklist before you resubmit\n\n1. **Trace every path HealthKit data takes.** List each place a HealthKit, Motion and Fitness or other health value goes after your app reads it: your backend, analytics, crash reporting, attribution and ad SDKs, and any partner API. Guideline 5.1.3(i) is about use and disclosure, so the audit has to cover destinations, not just the read call.\n2. **Cut health data out of advertising, marketing and data-mining tools.** Remove health values from ad, attribution, marketing and data-mining pipelines, including event properties and user attributes that carry them. Apple's HealthKit documentation says you may still serve ads in a HealthKit app but cannot use data from the HealthKit store to serve them.\n3. **Check every third party that receives health data.** For each recipient, confirm the user gave express permission and that the recipient provides a health or fitness service to the user, which is the condition Apple's HealthKit documentation sets. Remove any sale or transfer to advertising platforms, data brokers or information resellers.\n4. **Disclose the specific health data you collect.** Name the health data types you collect from the device, in your privacy policy and in the app, and say how you use them. Guideline 5.1.3(i) requires disclosing the specific health data, and Apple's HealthKit documentation requires clearly disclosing how you use it.\n5. **Stop writing anything you cannot stand behind into HealthKit.** Remove demo, test, placeholder and duplicate samples from production write paths, and check that units and timestamps are correct. Guideline 5.1.3(ii) bars writing false or inaccurate data into HealthKit.\n6. **Move personal health information out of iCloud.** If your sync or backup stores personal health information in iCloud, redesign it before resubmitting. Guideline 5.1.3(ii) says apps may not store personal health information in iCloud.\n7. **If you run research, have the consent form and ethics approval ready.** For health-related human subject research, make sure the in-app consent covers all five elements listed in 5.1.3(iii), with parent or guardian consent for minors, and keep the independent ethics review board approval on hand, because 5.1.3(iv) says Apple can ask for proof.\n\nWhen you reply to App Review, a short list of what you changed is easier to check than a general statement that you comply.\n\n## Related guidelines\n\n- **5.1.2(vi)** separately says data from HealthKit, the Clinical Health Records API and the MovementDisorder APIs \"may not be used for marketing, advertising or use-based data mining, including by third parties\". See [guideline 5.1.2](/compliance/app-store-guideline-5-1-2-data-use-sharing).\n- **2.5.18** says ads \"may not engage in targeted or behavioral advertising based on sensitive user data such as health/medical data (e.g. from the HealthKit APIs)\".\n- For an overview of all of Apple's health-data rules, see [Apple App Store health data rules](/compliance/app-store-health-data-rules). For the permission flow itself, see the [HealthKit integration guide](/integrate/healthkit).\n\n## A note on limits\n\nApp Store guidelines are contractual rules enforced through App Review. They aren't law, and passing review doesn't make an app compliant with GDPR, HIPAA or state consumer-health laws. Apple doesn't define \"use-based data mining\" in the guideline, so where your design depends on how that phrase is read, ask App Review or a qualified professional. This page is general guidance, not legal advice.\n",
+    "steps": [
+      {
+        "name": "Trace every path HealthKit data takes",
+        "text": "List each place a HealthKit, Motion and Fitness or other health value goes after your app reads it: your backend, analytics, crash reporting, attribution and ad SDKs, and any partner API. Guideline 5.1.3(i) is about use and disclosure, so the audit has to cover destinations, not just the read call."
+      },
+      {
+        "name": "Cut health data out of advertising, marketing and data-mining tools",
+        "text": "Remove health values from ad, attribution, marketing and data-mining pipelines, including event properties and user attributes that carry them. Apple's HealthKit documentation says you may still serve ads in a HealthKit app but cannot use data from the HealthKit store to serve them."
+      },
+      {
+        "name": "Check every third party that receives health data",
+        "text": "For each recipient, confirm the user gave express permission and that the recipient provides a health or fitness service to the user, which is the condition Apple's HealthKit documentation sets. Remove any sale or transfer to advertising platforms, data brokers or information resellers."
+      },
+      {
+        "name": "Disclose the specific health data you collect",
+        "text": "Name the health data types you collect from the device, in your privacy policy and in the app, and say how you use them. Guideline 5.1.3(i) requires disclosing the specific health data, and Apple's HealthKit documentation requires clearly disclosing how you use it."
+      },
+      {
+        "name": "Stop writing anything you cannot stand behind into HealthKit",
+        "text": "Remove demo, test, placeholder and duplicate samples from production write paths, and check that units and timestamps are correct. Guideline 5.1.3(ii) bars writing false or inaccurate data into HealthKit."
+      },
+      {
+        "name": "Move personal health information out of iCloud",
+        "text": "If your sync or backup stores personal health information in iCloud, redesign it before resubmitting. Guideline 5.1.3(ii) says apps may not store personal health information in iCloud."
+      },
+      {
+        "name": "If you run research, have the consent form and ethics approval ready",
+        "text": "For health-related human subject research, make sure the in-app consent covers all five elements listed in 5.1.3(iii), with parent or guardian consent for minors, and keep the independent ethics review board approval on hand, because 5.1.3(iv) says Apple can ask for proof."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Does guideline 5.1.3 stop me from showing ads in a HealthKit app?",
+        "a": "Not by itself. Apple's HealthKit documentation says you may still serve advertising in an app that uses HealthKit, but you cannot use data from the HealthKit store to serve ads. Guideline 2.5.18 also bars targeted or behavioral advertising based on health or medical data, so keep health values out of ad targeting entirely."
+      },
+      {
+        "q": "What is the insurance-premium exception in guideline 5.1.3(i)?",
+        "a": "Guideline 5.1.3(i) lets an app use a user's health or fitness data to provide a benefit directly to that user, with a reduced insurance premium as Apple's example. It applies only if the app is submitted by the entity providing the benefit and the data is not shared with a third party. It is not a general permission to share health data."
+      },
+      {
+        "q": "Does guideline 5.1.3 apply if my app only reads step count from HealthKit?",
+        "a": "Yes. The guideline covers data gathered in the health, fitness and medical research context and names the HealthKit API, so step count read through HealthKit is covered. You still have to disclose the specific health data you collect and keep it out of advertising, marketing and use-based data mining."
+      },
+      {
+        "q": "Does a fitness app need ethics board approval under guideline 5.1.3?",
+        "a": "Only if it conducts health-related human subject research. Guidelines 5.1.3(iii) and (iv) require participant consent covering five listed elements and approval from an independent ethics review board, with proof provided on request. An ordinary workout or step tracker that runs no research is not affected by those two items."
+      }
+    ],
+    "related": [
+      {
+        "href": "/compliance/app-store-health-data-rules",
+        "label": "Apple App Store health data rules (overview)"
+      },
+      {
+        "href": "/compliance/app-store-guideline-5-1-2-data-use-sharing",
+        "label": "App Store guideline 5.1.2: Data Use and Sharing"
+      },
+      {
+        "href": "/integrate/healthkit",
+        "label": "How to integrate Apple HealthKit"
+      },
+      {
+        "href": "/compliance/health-app-privacy-policy",
+        "label": "Health app privacy policy"
+      },
+      {
+        "href": "/compliance",
+        "label": "Health-data compliance & privacy"
+      }
+    ],
+    "cta": {
+      "pitch": "Apple revises its App Review Guidelines without much notice. Subscribe and we'll flag changes to the health-data sections when they happen."
+    },
+    "sources": [
+      {
+        "url": "https://developer.apple.com/app-store/review/guidelines/",
+        "checked": "2026-10-03",
+        "note": "guideline 5.1.3(i)–(iv), 5.1.2(vi) and 2.5.18; last updated June 8, 2026"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/protecting-user-privacy",
+        "checked": "2026-10-03",
+        "note": "HealthKit rules on advertising, third-party disclosure, sale and disclosure to users"
+      }
+    ]
+  },
+  {
+    "slug": "app-store-guideline-5-1-1-data-collection-storage",
+    "primaryQuery": "app store guideline 5.1.1",
+    "h1": "App Store Guideline 5.1.1: Data Collection and Storage",
+    "metaTitle": "App Store Guideline 5.1.1: Data Collection and Storage",
+    "metaDescription": "Guideline 5.1.1 for health apps: privacy policy links, consent, purpose strings, data minimization and in-app account deletion, quoted with a checklist.",
+    "updated": "2026-10-03",
+    "answer": "App Store Review Guideline 5.1.1, Data Collection and Storage, requires every app to link a privacy policy in App Store Connect and in the app, get consent before collecting data, write purpose strings that fully describe the use, and request only the data its core features need. Paid features can't depend on granting data access. Apps that let users create an account must also offer account deletion inside the app. Quoted from the guidelines as last updated June 8, 2026, checked October 3, 2026; this is general guidance, not legal advice.",
+    "body": "## The guideline text\n\nQuoted verbatim from Apple's [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/#5.1.1), which the page states were last updated June 8, 2026. We checked the text on October 3, 2026. Apple revises the guidelines and sometimes renumbers sub-items, so compare this against the live page before you cite it in a reply to App Review.\n\nGuideline 5.1.1 has ten sub-items. The ones a health or fitness app most often runs into are quoted below. The others cover password discovery, SafariViewController, compiling personal information from other sources and optional contact information.\n\n> **5.1.1 Data Collection and Storage**\n>\n> (i) Privacy Policies: All apps must include a link to their privacy policy in the App Store Connect metadata field and within the app in an easily accessible manner. The privacy policy must clearly and explicitly:\n>\n> - Identify what data, if any, the app/service collects, how it collects that data, and all uses of that data.\n>\n> - Confirm that any third party with whom an app shares user data (in compliance with these Guidelines)—such as analytics tools, advertising networks and third-party SDKs, as well as any parent, subsidiary or other related entities that will have access to user data—will provide the same or equal protection of user data as stated in the app’s privacy policy and required by these Guidelines.\n>\n> - Explain its data retention/deletion policies and describe how a user can revoke consent and/or request deletion of the user’s data.\n>\n> (ii) Permission: Apps that collect user or usage data must secure user consent for the collection, even if such data is considered to be anonymous at the time of or immediately following collection. Paid functionality must not be dependent on or require a user to grant access to this data. Apps must also provide the customer with an easily accessible and understandable way to withdraw consent. Ensure your purpose strings clearly and completely describe your use of the data. Apps that collect data for a legitimate interest without consent by relying on the terms of the European Union’s General Data Protection Regulation (“GDPR”) or similar statute must comply with all terms of that law. Learn more about Requesting Permission.\n>\n> (iii) Data Minimization: Apps should only request access to data relevant to the core functionality of the app and should only collect and use data that is required to accomplish the relevant task. Where possible, use the out-of-process picker or a share sheet rather than requesting full access to protected resources like Photos or Contacts.\n>\n> (iv) Access: Apps must respect the user’s permission settings and not attempt to manipulate, trick, or force people to consent to unnecessary data access. For example, apps that include the ability to post photos to a social network must not also require microphone access before allowing the user to upload photos. Where possible, provide alternative solutions for users who don’t grant consent. For example, if a user declines to share Location, offer the ability to manually enter an address.\n>\n> (v) Account Sign-In: If your app doesn’t include significant account-based features, let people use it without a login. If your app supports account creation, you must also offer account deletion within the app. Apps may not require users to enter personal information to function, except when directly relevant to the core functionality of the app or required by law. If your core app functionality is not related to a specific social network (e.g. Facebook, WeChat, Weibo, X, etc.), you must provide access without a login or via another mechanism. Pulling basic profile information, sharing to the social network, or inviting friends to use the app are not considered core app functionality. The app must also include a mechanism to revoke social network credentials and disable data access between the app and social network from within the app. An app may not store credentials or tokens to social networks off of the device and may only use such credentials or tokens to directly connect to the social network from the app itself while the app is in use.\n>\n> (ix) Apps that provide services in highly regulated fields (such as banking and financial services, healthcare, gambling, legal cannabis use, air travel and crypto exchanges) or that require sensitive user information should be submitted by a legal entity that provides the services, and not by an individual developer. Apps that facilitate the legal sale of cannabis must be geo-restricted to the corresponding legal jurisdiction.\n\n## What it means for a fitness or health app\n\n- **5.1.1(i): every app needs a privacy policy linked in two places,** in App Store Connect and inside the app. The policy has to cover three points: what you collect, how and for which uses; equal protection from any third party you share with, which Apple says includes analytics tools, ad networks and third-party SDKs; and retention, deletion and how users revoke consent. Our [health app privacy policy](/compliance/health-app-privacy-policy) page covers the content in more detail.\n- **5.1.1(ii): consent and purpose strings.** Collecting user or usage data needs consent, even when you consider the data anonymous. Users need an easy way to withdraw consent. Paid features can't depend on granting data access. Purpose strings must \"clearly and completely describe your use of the data\".\n- **5.1.1(iii) and (iv): ask for less, and don't push.** Request only data relevant to the app's core function. Respect the user's permission settings and don't \"manipulate, trick, or force\" consent. Where possible, offer an alternative for users who decline.\n- **5.1.1(v): logins and account deletion.** Let people use the app without a login unless it has significant account-based features. If users can create an account, they must also be able to delete it from inside the app.\n- **5.1.1(ix): healthcare is a \"highly regulated field\".** Apps providing services in healthcare should be submitted by the legal entity that provides the services. The guideline doesn't say where a fitness app ends and a healthcare service begins, so if your app is close to that line, decide which side it is on before you submit.\n\n## What typically triggers it in a HealthKit app\n\nThese come from the guideline text and Apple's own developer documentation, not from a log of rejections.\n\n- **Missing or vague purpose strings.** Apple's HealthKit documentation is blunt about the first failure: \"Apps must include usage descriptions, or it will crash when you request authorization to access HealthKit data.\" It names the keys too: \"Include the NSHealthShareUsageDescription key to read, and NSHealthUpdateUsageDescription key to write data to Healthkit.\" A string that is present but generic (\"This app uses Health data\") has a harder time meeting the \"clearly and completely\" bar in 5.1.1(ii). If authorization fails or reads come back empty, see [HealthKit authorization denied](/fix/healthkit-authorization-denied).\n- **Asking for every type at first launch.** Apple's HealthKit documentation says: \"you don’t need to request permission for all data types at once. Instead, it might make more sense to wait until you need to access the data before asking for permission.\" Requesting types no feature uses conflicts with 5.1.1(iii).\n- **A paywall that needs Health access.** A subscription feature that won't run until the user grants HealthKit access conflicts with 5.1.1(ii).\n- **Deactivation instead of deletion.** Apple's [account-deletion guidance](https://developer.apple.com/support/offering-account-deletion-in-your-app/) says: \"Offer to delete the entire account record, along with associated personal data. You may include additional options, but only offering to temporarily deactivate or disable an account is insufficient.\" It also says apps outside highly regulated industries \"should not require people to make a phone call, send an email, or go through other support flows\". Apple adds that apps using Sign in with Apple \"should use the Sign in with Apple REST API to revoke user tokens\".\n- **Guest accounts with no delete option.** The same guidance says users should be able to delete automatically created \"guest\" accounts and their data.\n\n## Checklist before you resubmit\n\n1. **Link the privacy policy in both places.** Add the privacy policy URL to the App Store Connect metadata field and put an easily found link inside the app, for example in settings. Guideline 5.1.1(i) requires both.\n2. **Make the policy cover the three required points.** Check that the policy states what data you collect, how and for what uses; that third parties you share with give the same or equal protection; and what your retention and deletion policy is, including how a user revokes consent or requests deletion.\n3. **Rewrite the HealthKit purpose strings.** Make the read and write usage descriptions (NSHealthShareUsageDescription and NSHealthUpdateUsageDescription) say plainly what you read or write and why. Guideline 5.1.1(ii) asks that purpose strings clearly and completely describe your use of the data.\n4. **Request only the types a feature uses, when it needs them.** Remove HealthKit types no shipped feature reads or writes, and consider asking at the moment a feature needs the data. Apple's HealthKit documentation says you don't need to request all types at once.\n5. **Unlock paid features without requiring data access.** Make sure no purchased or subscribed feature refuses to work until the user grants Health or other data access. Guideline 5.1.1(ii) says paid functionality must not depend on it. Where you can, offer a fallback such as manual entry, as 5.1.1(iv) suggests.\n6. **Ship in-app account deletion if users can create accounts.** Put deletion where users can find it, usually in account settings. It should delete the account record along with the associated personal data, not just deactivate it. If a website finishes the process, link straight to that page. If deletion takes time, say how long and confirm when it is done.\n7. **Check whether your app needs a login at all.** If the app has no significant account-based features, let people use it without signing in, as 5.1.1(v) requires.\n8. **Submit as the legal entity if you provide healthcare services.** If your app provides services in healthcare, guideline 5.1.1(ix) says it should be submitted by the legal entity providing them, not by an individual developer account.\n\n## Related\n\n- For what Apple says you may do with the data after collecting it, see [guideline 5.1.2: Data Use and Sharing](/compliance/app-store-guideline-5-1-2-data-use-sharing). For the extra health-specific rules, see [guideline 5.1.3: Health and Health Research](/compliance/app-store-guideline-5-1-3-health-research).\n- For deletion on the data side, see [health data retention and deletion](/compliance/health-data-retention-deletion). For all of Apple's health-data rules in one place, see the [App Store health data rules overview](/compliance/app-store-health-data-rules).\n\n## A note on limits\n\nApple's account-deletion guidance describes deletion as removing the account \"along with any data associated with the account that the developer isn’t legally required to maintain\", and tells you to follow applicable legal requirements for retention. Data you are legally required to keep is not part of what Apple asks you to delete. App Store rules are contractual, not law, and meeting them doesn't settle your obligations under GDPR or state consumer-health laws. This page is general guidance, not legal advice.\n",
+    "steps": [
+      {
+        "name": "Link the privacy policy in both places",
+        "text": "Add the privacy policy URL to the App Store Connect metadata field and put an easily found link inside the app, for example in settings. Guideline 5.1.1(i) requires both."
+      },
+      {
+        "name": "Make the policy cover the three required points",
+        "text": "Check that the policy states what data you collect, how and for what uses; that third parties you share with give the same or equal protection; and what your retention and deletion policy is, including how a user revokes consent or requests deletion."
+      },
+      {
+        "name": "Rewrite the HealthKit purpose strings",
+        "text": "Make the read and write usage descriptions (NSHealthShareUsageDescription and NSHealthUpdateUsageDescription) say plainly what you read or write and why. Guideline 5.1.1(ii) asks that purpose strings clearly and completely describe your use of the data."
+      },
+      {
+        "name": "Request only the types a feature uses, when it needs them",
+        "text": "Remove HealthKit types no shipped feature reads or writes, and consider asking at the moment a feature needs the data. Apple's HealthKit documentation says you don't need to request all types at once."
+      },
+      {
+        "name": "Unlock paid features without requiring data access",
+        "text": "Make sure no purchased or subscribed feature refuses to work until the user grants Health or other data access. Guideline 5.1.1(ii) says paid functionality must not depend on it. Where you can, offer a fallback such as manual entry, as 5.1.1(iv) suggests."
+      },
+      {
+        "name": "Ship in-app account deletion if users can create accounts",
+        "text": "Put deletion where users can find it, usually in account settings. It should delete the account record along with the associated personal data, not just deactivate it. If a website finishes the process, link straight to that page. If deletion takes time, say how long and confirm when it is done."
+      },
+      {
+        "name": "Check whether your app needs a login at all",
+        "text": "If the app has no significant account-based features, let people use it without signing in, as 5.1.1(v) requires."
+      },
+      {
+        "name": "Submit as the legal entity if you provide healthcare services",
+        "text": "If your app provides services in healthcare, guideline 5.1.1(ix) says it should be submitted by the legal entity providing them, not by an individual developer account."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Does guideline 5.1.1(v) let me send users to a website to delete their account?",
+        "a": "Users must be able to start deletion inside the app. Apple's account-deletion guidance says that if people need to visit a website to finish, you should link directly to the page where they complete it. Apps outside highly regulated industries should not make people phone, email or go through other support flows."
+      },
+      {
+        "q": "Can a fitness app require a login under guideline 5.1.1?",
+        "a": "Only if it has significant account-based features. Guideline 5.1.1(v) says that if your app does not include significant account-based features, you should let people use it without a login, and that apps may not require personal information to function unless it is directly relevant to the core functionality or required by law."
+      },
+      {
+        "q": "Can I lock premium features until the user grants HealthKit access?",
+        "a": "Guideline 5.1.1(ii) says paid functionality must not depend on or require a user to grant access to the data the app collects. A subscription feature that refuses to work until Health access is granted conflicts with that sentence. Where possible, offer an alternative such as manual entry, as 5.1.1(iv) suggests."
+      },
+      {
+        "q": "Does guideline 5.1.1(ix) stop individual developers from publishing health apps?",
+        "a": "It says apps that provide services in highly regulated fields, with healthcare named among them, should be submitted by a legal entity that provides the services rather than by an individual developer. The guideline does not define where a fitness app becomes a healthcare service, so decide which side your app is on before you submit."
+      }
+    ],
+    "related": [
+      {
+        "href": "/compliance/app-store-health-data-rules",
+        "label": "Apple App Store health data rules (overview)"
+      },
+      {
+        "href": "/compliance/health-app-privacy-policy",
+        "label": "Health app privacy policy"
+      },
+      {
+        "href": "/fix/healthkit-authorization-denied",
+        "label": "HealthKit authorization denied"
+      },
+      {
+        "href": "/compliance/health-data-retention-deletion",
+        "label": "Health data retention & deletion"
+      },
+      {
+        "href": "/compliance",
+        "label": "Health-data compliance & privacy"
+      }
+    ],
+    "cta": {
+      "pitch": "Apple's privacy rules and account-deletion guidance change between guideline revisions. Subscribe and we'll tell you when the parts that affect health apps move."
+    },
+    "sources": [
+      {
+        "url": "https://developer.apple.com/app-store/review/guidelines/",
+        "checked": "2026-10-03",
+        "note": "guideline 5.1.1(i)–(v) and (ix); last updated June 8, 2026"
+      },
+      {
+        "url": "https://developer.apple.com/support/offering-account-deletion-in-your-app/",
+        "checked": "2026-10-03",
+        "note": "account record plus associated data, website links, support flows, Sign in with Apple, guest accounts"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/protecting-user-privacy",
+        "checked": "2026-10-03",
+        "note": "usage-description keys and the crash without them"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/authorizing-access-to-health-data",
+        "checked": "2026-10-03",
+        "note": "requesting types when needed rather than all at once"
+      }
+    ]
+  },
+  {
+    "slug": "app-store-guideline-5-1-2-data-use-sharing",
+    "primaryQuery": "app store guideline 5.1.2",
+    "h1": "App Store Guideline 5.1.2: Data Use and Sharing",
+    "metaTitle": "App Store Guideline 5.1.2: Data Use and Sharing",
+    "metaDescription": "Guideline 5.1.2 for health apps: permission before sharing, the third-party AI clause, no repurposing, and the HealthKit ad ban, quoted with a checklist.",
+    "updated": "2026-10-03",
+    "answer": "App Store Review Guideline 5.1.2, Data Use and Sharing, requires permission before you use or share personal data, plus clear disclosure and explicit permission before sharing with any third party, explicitly including third-party AI. Data collected for one purpose can't be repurposed without new consent. Data from HealthKit, the Clinical Health Records API and the MovementDisorder APIs can't be used for marketing, advertising or use-based data mining. Quoted from the guidelines as last updated June 8, 2026, checked October 3, 2026; this is general guidance, not legal advice.",
+    "body": "## The guideline text\n\nQuoted verbatim from Apple's [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/#5.1.2), which the page states were last updated June 8, 2026. We checked the text on October 3, 2026. Apple revises the guidelines and sometimes renumbers sub-items, so compare this against the live page before you cite it in a reply to App Review.\n\nGuideline 5.1.2 has seven sub-items. The four most relevant to a health or fitness app are quoted below. The others cover contact databases, messaging contacts and Apple Pay data.\n\n> **5.1.2 Data Use and Sharing**\n>\n> (i) Unless otherwise permitted by law, you may not use, transmit, or share someone’s personal data without first obtaining their permission. You must provide access to information about how and where the data will be used. You must clearly disclose where personal data will be shared with third parties, including with third-party AI, and obtain explicit permission before doing so. Data collected from apps may only be shared with third parties to improve the app or serve advertising (in compliance with the Apple Developer Program License Agreement). You must receive explicit permission from users via the App Tracking Transparency APIs to track their activity. Learn more about tracking. Your app may not require users to enable system functionalities (e.g. push notifications, location services, tracking) in order to access functionality, content, use the app, or receive monetary or other compensation, including but not limited to gift cards and codes. Apps that share user data without user consent or otherwise complying with data privacy laws may be removed from sale and may result in your removal from the Apple Developer Program.\n>\n> (ii) Data collected for one purpose may not be repurposed without further consent unless otherwise explicitly permitted by law.\n>\n> (iii) Apps should not attempt to surreptitiously build a user profile based on collected data and may not attempt, facilitate, or encourage others to identify anonymous users or reconstruct user profiles based on data collected from Apple-provided APIs or any data that you say has been collected in an “anonymized,” “aggregated,” or otherwise non-identifiable way.\n>\n> (vi) Data gathered from the HomeKit API, HealthKit, Clinical Health Records API, MovementDisorder APIs, ClassKit or from depth and/or facial mapping tools (e.g. ARKit, Camera APIs, or Photo APIs) may not be used for marketing, advertising or use-based data mining, including by third parties. Learn more about best practices for implementing CallKit, HealthKit, ClassKit, and ARKit.\n\n## What it means for a fitness or health app\n\n- **5.1.2(i): permission before use, and disclosure before sharing.** You need permission before you \"use, transmit, or share\" personal data. Users need access to information about how and where it will be used. Sharing with third parties needs clear disclosure and explicit permission first. The guideline names \"third-party AI\" alongside other third parties.\n- **5.1.2(i) also limits sharing and requirements.** Apple allows sharing with third parties only \"to improve the app or serve advertising (in compliance with the Apple Developer Program License Agreement)\". Tracking needs App Tracking Transparency. You can't require users to enable push notifications, location services or tracking to use the app.\n- **5.1.2(ii): no repurposing without new consent,** unless the law explicitly permits it.\n- **5.1.2(iii): no profile building or re-identification** from data you collected, including data you describe as anonymized or aggregated.\n- **5.1.2(vi): HealthKit data is off-limits for marketing, advertising and use-based data mining,** and so are the Clinical Health Records API and the MovementDisorder APIs. The ban includes third parties. [Guideline 5.1.3](/compliance/app-store-guideline-5-1-3-health-research) repeats and extends it for health, fitness and medical research data.\n\n## The third-party AI clause and AI coaching features\n\nIf your app sends a user's workouts, heart rate or sleep to an external model API to generate coaching, the text of 5.1.2(i) applies directly. Disclose that personal data goes to a third-party AI and get explicit permission before the first request.\n\nFor HealthKit-derived data, Apple's [\"Protecting user privacy\"](https://developer.apple.com/documentation/healthkit/protecting-user-privacy) article adds a condition: \"Even with permission, you can only share information to a third party if they also provide a health or fitness service to the user.\" Apple doesn't say whether a general-purpose model provider called by your coaching feature meets that condition, and we couldn't verify an official reading. Until Apple clarifies, treat it as an open question to raise with App Review. Don't assume the answer. For the engineering side of sending wearable data to a model, see [personalizing an app with wearable data](/ai/personalize-with-wearable-data).\n\n## What typically triggers it in a health app\n\nThese come from the guideline text and Apple's HealthKit documentation, not from a log of rejections.\n\n- **An AI or analytics vendor nobody disclosed.** Personal data goes to a third party, AI or not, with no in-app disclosure and no explicit permission beforehand.\n- **Health values in ad or marketing tooling.** HealthKit-derived values reach an ad, attribution or marketing SDK. Apple's HealthKit documentation adds that \"you can’t use data from the HealthKit store to serve ads\".\n- **Features gated on system permissions.** For example, workout history that unlocks only after the user enables notifications, or a reward that requires allowing tracking.\n- **Quiet repurposing.** Data collected for one feature is reused for another purpose, such as model training or a partner program, without new consent.\n\n## Checklist before you resubmit\n\n1. **List every third party that receives personal data.** Include analytics, crash reporting, ad and attribution SDKs, your own vendors, and any AI or LLM API that receives user data in a prompt or as context. Guideline 5.1.2(i) names third-party AI explicitly.\n2. **Disclose each recipient and get explicit permission before sharing.** Before the first transfer, tell users in the app where their personal data will go and ask for explicit permission. Guideline 5.1.2(i) requires both the disclosure and the permission before sharing.\n3. **Remove HealthKit data from marketing, advertising and data mining.** Guideline 5.1.2(vi) bars using data from HealthKit, the Clinical Health Records API and the MovementDisorder APIs for marketing, advertising or use-based data mining, including by third parties. Check SDK event payloads as well as your own code.\n4. **Use App Tracking Transparency for any tracking.** If the app tracks users as Apple defines tracking, ask through the App Tracking Transparency APIs, and don't make features or rewards depend on the user allowing it.\n5. **Get new consent before using data for a new purpose.** If you now want to use data for something the user didn't agree to, such as a new feature or model training, ask again unless the law explicitly permits the new use. Guideline 5.1.2(ii) requires it.\n6. **Don't make features depend on push, location or tracking.** Users must be able to use the app's functionality without enabling system features such as push notifications, location services or tracking. Guideline 5.1.2(i) bars requiring them.\n\n## Related\n\n- Guideline 2.5.18 also bars ads that \"engage in targeted or behavioral advertising based on sensitive user data such as health/medical data (e.g. from the HealthKit APIs)\".\n- For collection-side rules (privacy policy, consent, deletion), see [guideline 5.1.1](/compliance/app-store-guideline-5-1-1-data-collection-storage). For consent from a legal rather than App Store angle, see [user consent for health data](/compliance/health-data-user-consent). For all of Apple's rules in one place, see the [App Store health data rules overview](/compliance/app-store-health-data-rules).\n\n## A note on limits\n\nApple doesn't define \"use-based data mining\" in the guidelines, and the guideline text doesn't address whether training a model counts. Where your design depends on those readings, ask App Review or a qualified professional. App Store rules are contractual, not law. This page is general guidance, not legal advice.\n",
+    "steps": [
+      {
+        "name": "List every third party that receives personal data",
+        "text": "Include analytics, crash reporting, ad and attribution SDKs, your own vendors, and any AI or LLM API that receives user data in a prompt or as context. Guideline 5.1.2(i) names third-party AI explicitly."
+      },
+      {
+        "name": "Disclose each recipient and get explicit permission before sharing",
+        "text": "Before the first transfer, tell users in the app where their personal data will go and ask for explicit permission. Guideline 5.1.2(i) requires both the disclosure and the permission before sharing."
+      },
+      {
+        "name": "Remove HealthKit data from marketing, advertising and data mining",
+        "text": "Guideline 5.1.2(vi) bars using data from HealthKit, the Clinical Health Records API and the MovementDisorder APIs for marketing, advertising or use-based data mining, including by third parties. Check SDK event payloads as well as your own code."
+      },
+      {
+        "name": "Use App Tracking Transparency for any tracking",
+        "text": "If the app tracks users as Apple defines tracking, ask through the App Tracking Transparency APIs, and don't make features or rewards depend on the user allowing it."
+      },
+      {
+        "name": "Get new consent before using data for a new purpose",
+        "text": "If you now want to use data for something the user didn't agree to, such as a new feature or model training, ask again unless the law explicitly permits the new use. Guideline 5.1.2(ii) requires it."
+      },
+      {
+        "name": "Don't make features depend on push, location or tracking",
+        "text": "Users must be able to use the app's functionality without enabling system features such as push notifications, location services or tracking. Guideline 5.1.2(i) bars requiring them."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Does guideline 5.1.2(i) cover sending health data to an LLM API?",
+        "a": "Yes. Guideline 5.1.2(i) says you must clearly disclose where personal data will be shared with third parties, including with third-party AI, and obtain explicit permission before doing so. For HealthKit data, Apple's HealthKit documentation adds that a third party must also provide a health or fitness service to the user, and Apple does not say how that applies to model providers."
+      },
+      {
+        "q": "Is the App Tracking Transparency prompt enough to satisfy guideline 5.1.2?",
+        "a": "Not on its own. The guideline lists App Tracking Transparency as the way to get permission to track users' activity, and separately requires permission before using or sharing personal data and explicit permission before sharing with third parties. Treat ATT as one requirement among several."
+      },
+      {
+        "q": "Can I reuse workout data collected for one feature to train a model?",
+        "a": "Guideline 5.1.2(ii) says data collected for one purpose may not be repurposed without further consent unless the law explicitly permits it. Apple does not define use-based data mining, and the text does not address model training. Ask for consent for the new use, and keep HealthKit data out of any use the guideline names."
+      },
+      {
+        "q": "Can my app require push notifications or location to unlock features?",
+        "a": "No. Guideline 5.1.2(i) says your app may not require users to enable system functionalities such as push notifications, location services or tracking in order to access functionality or content, use the app, or receive monetary or other compensation."
+      }
+    ],
+    "related": [
+      {
+        "href": "/compliance/app-store-health-data-rules",
+        "label": "Apple App Store health data rules (overview)"
+      },
+      {
+        "href": "/compliance/app-store-guideline-5-1-3-health-research",
+        "label": "App Store guideline 5.1.3: Health and Health Research"
+      },
+      {
+        "href": "/ai/personalize-with-wearable-data",
+        "label": "Personalize an app with wearable data"
+      },
+      {
+        "href": "/compliance/health-data-user-consent",
+        "label": "User consent for health data"
+      },
+      {
+        "href": "/compliance",
+        "label": "Health-data compliance & privacy"
+      }
+    ],
+    "cta": {
+      "pitch": "Apple added third-party AI to its sharing rules and will keep revising them. Subscribe for plain-English notes when the health-data guidelines change."
+    },
+    "sources": [
+      {
+        "url": "https://developer.apple.com/app-store/review/guidelines/",
+        "checked": "2026-10-03",
+        "note": "guideline 5.1.2(i)–(iii) and (vi), 2.5.18; last updated June 8, 2026"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/protecting-user-privacy",
+        "checked": "2026-10-03",
+        "note": "third-party sharing condition and the ad-serving rule for HealthKit data"
+      }
+    ]
+  },
+  {
+    "slug": "app-store-guideline-1-4-1-physical-harm",
+    "primaryQuery": "app store guideline 1.4.1",
+    "h1": "App Store Guideline 1.4.1: Physical Harm and Medical Apps",
+    "metaTitle": "App Store Guideline 1.4.1: Physical Harm (Medical Apps)",
+    "metaDescription": "Guideline 1.4.1 for health apps: closer review for medical apps, accuracy claims needing methodology, banned sensor-only vitals, and a checklist.",
+    "updated": "2026-10-03",
+    "answer": "App Store Review Guideline 1.4.1, under Physical Harm, gives closer review to medical apps that could provide inaccurate information or be used to diagnose or treat patients. Apps must disclose the data and methodology behind health-measurement accuracy claims, and Apple rejects apps whose accuracy can't be validated, including any that claim to measure blood pressure, body temperature, blood glucose or blood oxygen with only the device's sensors. Apps should also remind users to check with a doctor. Quoted from the guidelines as last updated June 8, 2026, checked October 3, 2026; this is general guidance, not legal advice.",
+    "body": "## The guideline text\n\nQuoted verbatim from Apple's [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/#1.4.1), which the page states were last updated June 8, 2026. We checked the text on October 3, 2026. Apple revises the guidelines and sometimes renumbers sub-items, so compare this against the live page before you cite it in a reply to App Review.\n\n> **1.4 Physical Harm**\n>\n> If your app behaves in a way that risks physical harm, we may reject it. For example:\n>\n> **1.4.1 Medical apps that could provide inaccurate data or information, or that could be used for diagnosing or treating patients may be reviewed with greater scrutiny.**\n>\n> - Apps must clearly disclose data and methodology to support accuracy claims relating to health measurements, and if the level of accuracy or methodology cannot be validated, we will reject your app. For example, apps that claim to take x-rays, measure blood pressure, body temperature, blood glucose levels, or blood oxygen levels using only the sensors on the device are not permitted.\n>\n> - Apps should remind users to check with a doctor in addition to using the app and before making medical decisions.\n>\n> If your medical app has received regulatory clearance, please submit a link to that documentation with your app.\n\n## What it means for a fitness or health app\n\n- **Apple reviews medical apps more closely.** This covers apps that \"could provide inaccurate data or information\" or \"could be used for diagnosing or treating patients\". The guideline doesn't define \"medical app\". Our reading is that a fitness app showing health measurements, such as heart rate, recovery scores or readiness scores, should expect the accuracy sentence to be applied to it.\n- **Accuracy claims need disclosed data and methodology.** \"Apps must clearly disclose data and methodology to support accuracy claims relating to health measurements\". If Apple can't validate the accuracy or the method, the guideline says the app will be rejected.\n- **Named examples are banned outright.** Apps that claim to take x-rays, or to measure blood pressure, body temperature, blood glucose or blood oxygen, \"using only the sensors on the device\" are not permitted. The list is introduced with \"for example\", so it isn't complete.\n- **Remind users to check with a doctor,** both alongside using the app and before making medical decisions.\n- **If you have regulatory clearance, link it** in your submission. Whether your app needs clearance at all is a separate question. See [does the FDA regulate fitness apps](/compliance/fda-fitness-app-regulation).\n\n## What typically triggers it in a fitness app\n\nThese come from the guideline text, not from a log of rejections.\n\n- **A camera or sensor-only vital sign.** A feature that reads one of the named vitals from the phone's own sensors is the case the guideline describes. For vitals the guideline doesn't name, the general rule still applies: disclose the data and methodology, or expect rejection if Apple can't validate them.\n- **Marketing that promises more than the method supports.** For example, \"clinically accurate\" or \"medical-grade\" in the description, with no methodology in the app.\n- **Health scores with no stated basis.** A readiness or stress number that appears without saying what data and method produce it, when the app presents it as a health measurement.\n- **No doctor reminder** where health results are shown.\n\nTwo nearby guidelines matter for fitness apps. Guideline 1.1.6 lists \"False information and features, including inaccurate device data\" as objectionable content and says calling a feature \"for entertainment purposes\" won't overcome it. Guideline 1.4.5 says: \"Apps should not urge customers to participate in activities (like bets, challenges, etc.) or use their devices in a way that risks physical harm to themselves or others.\"\n\n## Checklist before you resubmit\n\n1. **List every health measurement the app claims.** Go through the app, the description, screenshots and previews, and note every reading the app says it produces or estimates, and how it produces it.\n2. **Remove sensor-only claims Apple names as not permitted.** Guideline 1.4.1 says apps claiming to take x-rays or to measure blood pressure, body temperature, blood glucose or blood oxygen using only the device's sensors are not permitted. Remove those claims or the feature.\n3. **Disclose data and methodology for any accuracy claim.** For each remaining measurement, say in the app and in your review notes where the value comes from (a paired device, HealthKit, or your own algorithm) and how accurate it is. If you can't validate the accuracy, remove the accuracy claim.\n4. **Add a check-with-a-doctor reminder.** Show a visible reminder, at the point where results appear, to check with a doctor in addition to using the app and before making medical decisions. 1.4.1 asks for it.\n5. **Attach regulatory clearance if you have it.** If the app has received regulatory clearance, include a link to the documentation with your submission.\n6. **Check challenges and goals for physical-harm risk.** If the app runs challenges, streaks or bets, make sure none urges people to do something that risks physical harm. Guideline 1.4.5 bars that.\n\n## Related\n\n- Where the data comes from matters for accuracy. Values read from HealthKit come from whatever source wrote them. See the [HealthKit integration guide](/integrate/healthkit) for how reads work.\n- Writing an estimate back into HealthKit raises a separate rule: [guideline 5.1.3(ii)](/compliance/app-store-guideline-5-1-3-health-research) bars false or inaccurate data in HealthKit. For all of Apple's health-data rules, see the [App Store health data rules overview](/compliance/app-store-health-data-rules).\n\n## A note on limits\n\nApple doesn't publish the accuracy threshold or validation method App Review uses. \"Validated\" is Apple's judgement, case by case. Whether a medical-device regulator also has a say in your app is a separate legal question. This page is general guidance, not legal or regulatory advice.\n",
+    "steps": [
+      {
+        "name": "List every health measurement the app claims",
+        "text": "Go through the app, the description, screenshots and previews, and note every reading the app says it produces or estimates, and how it produces it."
+      },
+      {
+        "name": "Remove sensor-only claims Apple names as not permitted",
+        "text": "Guideline 1.4.1 says apps claiming to take x-rays or to measure blood pressure, body temperature, blood glucose or blood oxygen using only the device's sensors are not permitted. Remove those claims or the feature."
+      },
+      {
+        "name": "Disclose data and methodology for any accuracy claim",
+        "text": "For each remaining measurement, say in the app and in your review notes where the value comes from (a paired device, HealthKit, or your own algorithm) and how accurate it is. If you can't validate the accuracy, remove the accuracy claim."
+      },
+      {
+        "name": "Add a check-with-a-doctor reminder",
+        "text": "Show a visible reminder, at the point where results appear, to check with a doctor in addition to using the app and before making medical decisions. 1.4.1 asks for it."
+      },
+      {
+        "name": "Attach regulatory clearance if you have it",
+        "text": "If the app has received regulatory clearance, include a link to the documentation with your submission."
+      },
+      {
+        "name": "Check challenges and goals for physical-harm risk",
+        "text": "If the app runs challenges, streaks or bets, make sure none urges people to do something that risks physical harm. Guideline 1.4.5 bars that."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Can my app measure heart rate with the iPhone camera under guideline 1.4.1?",
+        "a": "Guideline 1.4.1 does not name heart rate. Its named examples of sensor-only claims that are not permitted are x-rays, blood pressure, body temperature, blood glucose and blood oxygen. Any accuracy claim about a health measurement still needs disclosed data and methodology, and Apple says it will reject the app if the accuracy or method cannot be validated."
+      },
+      {
+        "q": "Does a fitness app need a check-with-your-doctor reminder?",
+        "a": "Guideline 1.4.1 says apps should remind users to check with a doctor in addition to using the app and before making medical decisions. The sentence sits under medical apps, and Apple does not define where a fitness app becomes one. If your app shows health measurements, adding the reminder costs little."
+      },
+      {
+        "q": "What should I submit if my health app has regulatory clearance?",
+        "a": "Guideline 1.4.1 says that if your medical app has received regulatory clearance, you should submit a link to that documentation with your app. Whether your app needs clearance in the first place is a separate legal question that the guideline does not answer."
+      },
+      {
+        "q": "Do Apple's physical-harm rules cover fitness challenges?",
+        "a": "Guideline 1.4.5 says apps should not urge customers to take part in activities, including bets and challenges, or use their devices in a way that risks physical harm to themselves or others. A challenge or streak mechanic that pushes users past safe limits falls under that sentence."
+      }
+    ],
+    "related": [
+      {
+        "href": "/compliance/app-store-health-data-rules",
+        "label": "Apple App Store health data rules (overview)"
+      },
+      {
+        "href": "/compliance/fda-fitness-app-regulation",
+        "label": "Does the FDA regulate fitness apps?"
+      },
+      {
+        "href": "/compliance/app-store-guideline-5-1-3-health-research",
+        "label": "App Store guideline 5.1.3: Health and Health Research"
+      },
+      {
+        "href": "/integrate/healthkit",
+        "label": "How to integrate Apple HealthKit"
+      },
+      {
+        "href": "/compliance",
+        "label": "Health-data compliance & privacy"
+      }
+    ],
+    "cta": {
+      "pitch": "Apple tightens its health-accuracy rules from time to time. Subscribe and we'll flag changes to the medical-app guidelines when they ship."
+    },
+    "sources": [
+      {
+        "url": "https://developer.apple.com/app-store/review/guidelines/",
+        "checked": "2026-10-03",
+        "note": "guidelines 1.4 and 1.4.1, plus 1.1.6 and 1.4.5; last updated June 8, 2026"
+      }
+    ]
+  },
+  {
+    "slug": "app-store-guideline-2-5-1-healthkit-software-requirements",
+    "primaryQuery": "app store guideline 2.5.1 healthkit",
+    "h1": "App Store Guideline 2.5.1: Software Requirements and HealthKit",
+    "metaTitle": "App Store Guideline 2.5.1: Software Requirements",
+    "metaDescription": "Guideline 2.5.1 for HealthKit apps: use HealthKit for health and fitness, show it in the app and listing, drop unused capabilities. With a checklist.",
+    "updated": "2026-10-03",
+    "answer": "App Store Review Guideline 2.5.1, under Software Requirements, says apps may use only public APIs, must run on the currently shipping OS, and should use frameworks for their intended purposes and mention the integration in the app description. It names HealthKit directly: HealthKit should be used for health and fitness purposes and integrate with the Health app, and Apple's HealthKit documentation adds that the use must be clear in both marketing text and the user interface. Quoted from the guidelines as last updated June 8, 2026, checked October 3, 2026; this is general guidance, not legal advice.",
+    "body": "## The guideline text\n\nQuoted verbatim from Apple's [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/#2.5.1), which the page states were last updated June 8, 2026. We checked the text on October 3, 2026. Apple revises the guidelines and sometimes renumbers sub-items, so compare this against the live page before you cite it in a reply to App Review.\n\n> **2.5 Software Requirements**\n>\n> **2.5.1** Apps may only use public APIs and must run on the currently shipping OS. Learn more about public APIs. Keep your apps up-to-date and make sure you phase out any deprecated features, frameworks or technologies that will no longer be supported in future versions of an OS. Apps should use APIs and frameworks for their intended purposes and indicate that integration in their app description. For example, the HomeKit framework should provide home automation services; and HealthKit should be used for health and fitness purposes and integrate with the Health app.\n\n## What it means for a HealthKit app\n\nMost of guideline 2.5.1 is about any app: use only public APIs, run on the currently shipping OS, and phase out deprecated technology. HealthKit is named in two sentences:\n\n- \"Apps should use APIs and frameworks for their intended purposes and indicate that integration in their app description.\"\n- \"HealthKit should be used for health and fitness purposes and integrate with the Health app.\"\n\nApple's HealthKit documentation says the same thing more strongly. In [\"Protecting user privacy\"](https://developer.apple.com/documentation/healthkit/protecting-user-privacy): \"your app must not access the HealthKit APIs unless the use is for health or fitness purposes and this usage is clear in both your marketing text and your user interface.\"\n\nSo there are three things to check:\n\n1. **Purpose.** The HealthKit use serves health or fitness.\n2. **Visible in the product.** A reviewer can see the integration in the UI.\n3. **Stated in the listing.** The App Store description mentions it.\n\n## What typically triggers it in a HealthKit app\n\nThese come from the guideline text and Apple's HealthKit documentation, not from a log of rejections.\n\n- **The HealthKit entitlement is on but the feature isn't visible.** The capability is enabled, for example for a planned feature, but nothing a reviewer can reach uses Health data.\n- **The description doesn't mention Health.** The app integrates with the Health app but the App Store description never says so.\n- **Unused Clinical Health Records.** Apple's [Setting up HealthKit](https://developer.apple.com/documentation/healthkit/setting-up-healthkit) article: \"Only select the Clinical Health Records checkbox if your app needs to access the user’s clinical records. App Review may reject apps that enable the Clinical Health Records capability if the app doesn’t actually use the health record data.\"\n- **HealthKit used for something other than health or fitness,** for example reading Health data only to fill a profile that serves no health feature. That conflicts with the \"intended purposes\" sentence.\n\nThere's also a related setup detail that isn't a 2.5.1 rule. Apple documents that \"When you enable the HealthKit capabilities on an iOS app, Xcode adds HealthKit to the list of required device capabilities, which prevents users from purchasing or installing the app on devices that don’t support HealthKit.\" If HealthKit is optional for your app, Apple says to delete that entry.\n\n## Checklist before you resubmit\n\n1. **Say in the App Store description that the app works with Apple Health.** Add a plain sentence on what the app reads from or writes to the Health app and why. Guideline 2.5.1 asks apps to indicate the integration in their app description, and Apple's HealthKit documentation asks for it in marketing text and in the UI.\n2. **Make the Health integration visible in the app.** Make sure a reviewer can reach a feature that uses HealthKit data, and explain in the review notes where to find it if it's behind onboarding or a login.\n3. **Remove capabilities you don't use.** If the app doesn't actually use clinical health records, untick the Clinical Health Records checkbox. Apple's setup documentation warns App Review may reject apps that enable it without using the data.\n4. **Confirm the use is for health or fitness.** Check that every HealthKit read and write supports a health or fitness feature. Guideline 2.5.1 says HealthKit should be used for health and fitness purposes and integrate with the Health app.\n5. **Remove deprecated and private APIs.** Guideline 2.5.1 allows only public APIs and asks you to phase out deprecated frameworks and features, so clear the deprecation warnings in your HealthKit code.\n6. **Decide whether HealthKit is a required device capability.** If the app works without HealthKit, remove the healthkit entry from Required device capabilities so devices without HealthKit aren't blocked from installing it.\n\n## Related\n\n- For the permission sheet, usage descriptions and the read and write flow, see the [HealthKit integration guide](/integrate/healthkit).\n- What you may do with HealthKit data once you have it is covered by [guideline 5.1.3](/compliance/app-store-guideline-5-1-3-health-research) and [guideline 5.1.2](/compliance/app-store-guideline-5-1-2-data-use-sharing). All of Apple's health-data rules are summarized in the [App Store health data rules overview](/compliance/app-store-health-data-rules).\n\n## A note on limits\n\nApple doesn't publish required wording for the App Store description, and we couldn't verify any. The guideline asks you to \"indicate that integration\", nothing more specific. This page is general guidance, not legal advice.\n",
+    "steps": [
+      {
+        "name": "Say in the App Store description that the app works with Apple Health",
+        "text": "Add a plain sentence on what the app reads from or writes to the Health app and why. Guideline 2.5.1 asks apps to indicate the integration in their app description, and Apple's HealthKit documentation asks for it in marketing text and in the UI."
+      },
+      {
+        "name": "Make the Health integration visible in the app",
+        "text": "Make sure a reviewer can reach a feature that uses HealthKit data, and explain in the review notes where to find it if it's behind onboarding or a login."
+      },
+      {
+        "name": "Remove capabilities you don't use",
+        "text": "If the app doesn't actually use clinical health records, untick the Clinical Health Records checkbox. Apple's setup documentation warns App Review may reject apps that enable it without using the data."
+      },
+      {
+        "name": "Confirm the use is for health or fitness",
+        "text": "Check that every HealthKit read and write supports a health or fitness feature. Guideline 2.5.1 says HealthKit should be used for health and fitness purposes and integrate with the Health app."
+      },
+      {
+        "name": "Remove deprecated and private APIs",
+        "text": "Guideline 2.5.1 allows only public APIs and asks you to phase out deprecated frameworks and features, so clear the deprecation warnings in your HealthKit code."
+      },
+      {
+        "name": "Decide whether HealthKit is a required device capability",
+        "text": "If the app works without HealthKit, remove the healthkit entry from Required device capabilities so devices without HealthKit aren't blocked from installing it."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Do I have to mention Apple Health in my App Store description?",
+        "a": "Guideline 2.5.1 says apps should indicate their use of frameworks such as HealthKit in the app description, and Apple's HealthKit documentation says the health or fitness use must be clear in both marketing text and the user interface. Apple does not prescribe exact wording; a plain sentence on what you read or write and why is enough to state it."
+      },
+      {
+        "q": "Can I enable the HealthKit capability now for a feature I will ship later?",
+        "a": "Guideline 2.5.1 asks that frameworks be used for their intended purposes and that the integration be visible, so a HealthKit entitlement with no reachable feature invites questions. Apple's setup documentation warns specifically that apps enabling Clinical Health Records without using that data may be rejected. Enable capabilities in the release that uses them."
+      },
+      {
+        "q": "Does enabling HealthKit limit which devices can install my app?",
+        "a": "It can. Apple documents that enabling the HealthKit capability on an iOS app adds HealthKit to the required device capabilities, which prevents installation on devices that do not support HealthKit. If your app works without HealthKit, Apple says to delete the healthkit entry from Required device capabilities."
+      }
+    ],
+    "related": [
+      {
+        "href": "/compliance/app-store-health-data-rules",
+        "label": "Apple App Store health data rules (overview)"
+      },
+      {
+        "href": "/integrate/healthkit",
+        "label": "How to integrate Apple HealthKit"
+      },
+      {
+        "href": "/fix/healthkit-health-data-unavailable",
+        "label": "HealthKit health data unavailable"
+      },
+      {
+        "href": "/compliance/app-store-guideline-5-1-3-health-research",
+        "label": "App Store guideline 5.1.3: Health and Health Research"
+      },
+      {
+        "href": "/compliance",
+        "label": "Health-data compliance & privacy"
+      }
+    ],
+    "cta": {
+      "pitch": "Apple changes HealthKit setup requirements between OS releases. Subscribe and we'll flag the changes that affect App Review."
+    },
+    "sources": [
+      {
+        "url": "https://developer.apple.com/app-store/review/guidelines/",
+        "checked": "2026-10-03",
+        "note": "guideline 2.5.1; last updated June 8, 2026"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/protecting-user-privacy",
+        "checked": "2026-10-03",
+        "note": "health or fitness purpose, clear in marketing text and UI"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/setting-up-healthkit",
+        "checked": "2026-10-03",
+        "note": "Clinical Health Records capability warning; required device capabilities"
+      }
+    ]
+  },
+  {
+    "slug": "google-play-health-connect-publishing-requirements",
+    "primaryQuery": "health connect google play publishing requirements",
+    "h1": "Publishing a Health Connect App on Google Play: What's Required",
+    "metaTitle": "Health Connect App Publishing Requirements on Google Play",
+    "metaDescription": "What Google requires before a Health Connect app ships: Data safety, the Health apps declaration with per-type justifications, and one privacy policy.",
+    "updated": "2026-10-03",
+    "answer": "Google's Health Connect publishing guide lists three required Play Console steps: review the Google Play policies, fill out the Data safety section, and complete the Health apps declaration. The declaration asks which health features your app supports and needs a clear justification for every Health Connect data type you request, and your Play listing must carry the same privacy policy Health Connect shows users. This reflects Google's developer.android.com guides as read October 3, 2026; the linked Play policy pages themselves could not be verified. This is general guidance, not legal advice.",
+    "body": "## What Google requires before a Health Connect app ships\n\nGoogle's [\"Publish your health app on Google Play\"](https://developer.android.com/health-and-fitness/health-connect/publish) guide (page last updated March 10, 2026, read October 3, 2026) states the requirement directly: \"To get your health app published on Google Play, you must complete a few required steps in the Play Console.\" It lists three:\n\n1. Review the Google Play policies (User Data, and Permissions and APIs that access sensitive information, \"including additional requirements for Health Connect\").\n2. Fill out the Data safety section in the Play Console.\n3. Fill out the Health apps declaration form in the Play Console.\n\n**About the policy pages.** The guide links the actual policy text on support.google.com, which we can't reach from our verification environment. **We couldn't verify the policy pages themselves.** Everything below comes from the developer.android.com guides. For Google Play's data-use rules (no ads, no sale and so on), see our separate [Google Play health data policy](/compliance/google-play-health-data-policy) page, and check its claims against the live policy in the Play Console.\n\n## The Health apps declaration\n\nGoogle says the declaration \"must be completed for all publishing requests, both for a new app that has not been published yet, or when updating an existing, already published app that now uses a different set of data types.\"\n\n**Step one: pick your health features.** On the Play Console's App content page, the Health apps form asks which health features your app supports. Google lists them, including Activity and fitness, Nutrition and weight management, Sleep management, Medical device apps and Human subjects research. If the app touches no health data, Google says to select \"My app does not have any health features\".\n\n**Step two: justify each data type.** The data types are grouped into Activity and fitness, Body composition, Energy, Nutrition, Reproductive and sexual health, Respiratory system and Sleep management. Google's guidance for the justifications:\n\n> For each permission requested, provide a clear and detailed justification explaining how your app uses the data to benefit the user.\n>\n> If your app does not require access to specific data types, you must not request access to them.\n>\n> Request the minimum data types needed and provide a valid use case for each request.\n\n**Privacy policy.** Post your privacy policy on the Play store page. Google says \"This must be the same privacy policy that is displayed to users when they click the privacy policy link in Health Connect\".\n\n## What the app itself must contain\n\nGoogle's [Health Connect get-started guide](https://developer.android.com/health-and-fitness/health-connect/get-started) (last updated September 8, 2026) sets two build-time requirements that tie into the declaration:\n\n- **Manifest permissions.** Declare read and write permissions as `uses-permission` entries in AndroidManifest.xml, \"which should match the ones you declared access to in the Play Console\".\n- **A privacy-policy rationale screen.** \"Your Android manifest needs to have an Activity that displays your app's privacy policy, which is your app's rationale of the requested permissions, describing how the user's data is used and handled.\" It handles the `ACTION_SHOW_PERMISSIONS_RATIONALE` intent. Google's sample adds an activity alias for `VIEW_PERMISSION_USAGE` with the `HEALTH_PERMISSIONS` category for Android 14 and later. Google adds: \"The activity must display the same privacy policy you provide for your app in the Google Play Console\".\n\n## Updates, re-review and what happens if you skip it\n\n- **Changing data types means refiling.** Google says to include existing and new health features, exclude ones you no longer need, and \"Make sure you justify every requested access.\"\n- **A new version alone doesn't need a new request.** \"The data type accesses are allow-listed for a package name regardless of app version.\" Google also notes: \"When you submit a new app version, your app's declaration may be reviewed again.\"\n- **Skipping the declaration.** If a published app never requested data type access, Google says end users get a dialog when they try to link with Health Connect, under the heading \"Unable to access Health Connect\".\n- **Old request form.** Developers who used the earlier Google Health Connect API Request form had to declare those data types in the Play Console by January 22, 2025, according to the guide.\n\n## Checklist before you submit\n\n1. **Cut the requested data types to what shipped features use.** Compare your Health Connect permission list against user-facing features. Google's publishing guide says to request only permissions that support the specific health features you offer, and not to request data types you don't need.\n2. **Make the manifest match the declaration.** Declare Health Connect read and write permissions in AndroidManifest.xml for exactly the data types you will declare in the Play Console. Google's get-started guide says they should match.\n3. **Add the permissions-rationale activity.** Add an activity that shows your privacy policy for the ACTION_SHOW_PERMISSIONS_RATIONALE intent, and an activity alias for VIEW_PERMISSION_USAGE with the HEALTH_PERMISSIONS category on Android 14 and later, as Google's get-started guide shows.\n4. **Use one privacy policy everywhere.** The policy on your Play listing must be the same one Health Connect shows when users tap your privacy-policy link, and the one the rationale activity displays.\n5. **Complete the Data safety section.** Fill in Play's Data safety section for the health data you collect and share. Google's guide makes it one of the three required publishing steps.\n6. **File the Health apps declaration with a justification per data type.** On the App content page, choose the health features your app supports, then explain how the app uses each Health Connect data type to benefit the user. Be as detailed as you can, and request the minimum.\n7. **Refile when your data types change.** If you add or drop a data type, submit the declaration again. Include every health feature you still use and the new ones, leave out the ones you've dropped, and justify each access.\n\n## Related\n\n- For the code side (permissions, client setup, reads and writes), see the [Health Connect integration guide](/integrate/google-health-connect). If reads come back empty after approval, see [Health Connect returns no data](/fix/health-connect-no-data).\n- Shipping on iOS too? Apple's equivalent rules are covered in the [App Store health data rules overview](/compliance/app-store-health-data-rules) and in guideline pages such as [5.1.3: Health and Health Research](/compliance/app-store-guideline-5-1-3-health-research).\n\n## A note on limits\n\nThis page reflects Google's developer.android.com guides as read on October 3, 2026. The Play policies they link (User Data, Permissions, Data safety, the Health apps declaration help page) are on support.google.com, and we couldn't verify them. Google also says \"Further questions\" go to Health Connect Developer Support on its issue tracker. This page is general guidance, not legal advice.\n",
+    "steps": [
+      {
+        "name": "Cut the requested data types to what shipped features use",
+        "text": "Compare your Health Connect permission list against user-facing features. Google's publishing guide says to request only permissions that support the specific health features you offer, and not to request data types you don't need."
+      },
+      {
+        "name": "Make the manifest match the declaration",
+        "text": "Declare Health Connect read and write permissions in AndroidManifest.xml for exactly the data types you will declare in the Play Console. Google's get-started guide says they should match."
+      },
+      {
+        "name": "Add the permissions-rationale activity",
+        "text": "Add an activity that shows your privacy policy for the ACTION_SHOW_PERMISSIONS_RATIONALE intent, and an activity alias for VIEW_PERMISSION_USAGE with the HEALTH_PERMISSIONS category on Android 14 and later, as Google's get-started guide shows."
+      },
+      {
+        "name": "Use one privacy policy everywhere",
+        "text": "The policy on your Play listing must be the same one Health Connect shows when users tap your privacy-policy link, and the one the rationale activity displays."
+      },
+      {
+        "name": "Complete the Data safety section",
+        "text": "Fill in Play's Data safety section for the health data you collect and share. Google's guide makes it one of the three required publishing steps."
+      },
+      {
+        "name": "File the Health apps declaration with a justification per data type",
+        "text": "On the App content page, choose the health features your app supports, then explain how the app uses each Health Connect data type to benefit the user. Be as detailed as you can, and request the minimum."
+      },
+      {
+        "name": "Refile when your data types change",
+        "text": "If you add or drop a data type, submit the declaration again. Include every health feature you still use and the new ones, leave out the ones you've dropped, and justify each access."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Do I need to refile the Health apps declaration for every app update?",
+        "a": "No, not for a version change alone. Google's publishing guide says Health Connect data type access is allow-listed per package name regardless of app version, though a new version's declaration may be reviewed again. You do refile when your app adds or stops using a data type, listing every feature you still use and justifying each access."
+      },
+      {
+        "q": "What happens if I publish a Health Connect app without declaring data types?",
+        "a": "Google's publishing guide says that if your app is published and released to the public but you did not request data type access, end users receive a dialog when they try to link your app with Health Connect, under the heading Unable to access Health Connect. Complete the Health apps declaration before release."
+      },
+      {
+        "q": "Does the privacy policy in Health Connect have to match my Play listing?",
+        "a": "Yes. Google's publishing guide says the privacy policy on your Play store page must be the same one shown when users click the privacy policy link in Health Connect, and the get-started guide says your permissions-rationale activity must display the same policy you provide in the Play Console."
+      },
+      {
+        "q": "What do I select if my app has no health features?",
+        "a": "Google's publishing guide says that if your app does not access any health or fitness information, you select the checkbox labelled My app does not have any health features on the Health apps form in the Play Console."
+      }
+    ],
+    "related": [
+      {
+        "href": "/compliance/google-play-health-data-policy",
+        "label": "Google Play health-data policy"
+      },
+      {
+        "href": "/integrate/google-health-connect",
+        "label": "How to integrate Google Health Connect"
+      },
+      {
+        "href": "/fix/health-connect-no-data",
+        "label": "Health Connect returns no data"
+      },
+      {
+        "href": "/compliance/app-store-health-data-rules",
+        "label": "Apple App Store health data rules"
+      },
+      {
+        "href": "/compliance",
+        "label": "Health-data compliance & privacy"
+      }
+    ],
+    "cta": {
+      "pitch": "Google changes Health Connect's publishing steps and deadlines often. Subscribe and we'll flag changes to the declaration process before they hold up a release."
+    },
+    "sources": [
+      {
+        "url": "https://developer.android.com/health-and-fitness/health-connect/publish",
+        "checked": "2026-10-03",
+        "note": "required Play Console steps, Health apps declaration, justification rules, reapplying, allow-listing per package"
+      },
+      {
+        "url": "https://developer.android.com/health-and-fitness/health-connect/get-started",
+        "checked": "2026-10-03",
+        "note": "manifest permissions matching the Play Console declaration; permissions-rationale activity and privacy policy"
+      }
+    ]
+  },
+  {
+    "slug": "app-store-guideline-3-1-3-d-person-to-person-fitness",
+    "primaryQuery": "app store guideline 3.1.3(d) fitness training",
+    "h1": "App Store Guideline 3.1.3(d): Person-to-Person Fitness Training",
+    "metaTitle": "App Store Guideline 3.1.3(d): Live Fitness Training",
+    "metaDescription": "Guideline 3.1.3(d) lets live one-to-one fitness training skip in-app purchase; one-to-few and one-to-many live sessions must use it. With a checklist.",
+    "updated": "2026-10-03",
+    "answer": "App Store Review Guideline 3.1.3(d) lets an app that sells real-time person-to-person services between two individuals, with fitness training as one of Apple's examples, collect those payments with purchase methods other than in-app purchase. The same guideline says one-to-few and one-to-many real-time services must use in-app purchase, so live group sessions don't qualify, and recorded content falls under 3.1.1's in-app purchase rule. Quoted from the guidelines as last updated June 8, 2026, checked October 3, 2026; this is general guidance, not legal advice.",
+    "body": "## The guideline text\n\nQuoted verbatim from Apple's [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/#3.1.3d), which the page states were last updated June 8, 2026. We checked the text on October 3, 2026. Apple revises the guidelines and sometimes renumbers sub-items, so compare this against the live page before you cite it in a reply to App Review.\n\n> **3.1.3(d) Person-to-Person Services:** If your app enables the purchase of real-time person-to-person services between two individuals (for example tutoring students, medical consultations, real estate tours, or fitness training), you may use purchase methods other than in-app purchase to collect those payments. One-to-few and one-to-many real-time services must use in-app purchase.\n\nGuideline 3.1.3(d) sits under 3.1.3, whose opening paragraph applies to every app in the section:\n\n> **3.1.3 Other Purchase Methods:** The following apps may use purchase methods other than in-app purchase. Apps in this section cannot, within the app, encourage users to use a purchasing method other than in-app purchase, except for apps on the United States storefront and as set forth in 3.1.1(a) and 3.1.3(a). Developers can send communications outside of the app to their user base about purchasing methods other than in-app purchase.\n\n## The rules next to it\n\n3.1.3(d) is an exception to the default in 3.1.1:\n\n> **3.1.1 In-App Purchase:**\n>\n> If you want to unlock features or functionality within your app, (by way of example: subscriptions, in-game currencies, game levels, access to premium content, or unlocking a full version), you must use in-app purchase. Apps may not use their own mechanisms to unlock content or functionality, such as license keys, augmented reality markers, QR codes, cryptocurrencies and cryptocurrency wallets, etc.\n\nThe next item, 3.1.3(e), covers things used away from the app:\n\n> **3.1.3(e) Goods and Services Outside of the App:** If your app enables people to purchase physical goods or services that will be consumed outside of the app, you must use purchase methods other than in-app purchase to collect those payments, such as Apple Pay or traditional credit card entry.\n\nThe two are worded differently. 3.1.3(d) says you *may* use other purchase methods for a live one-to-one service. 3.1.3(e) says you *must* use purchase methods other than in-app purchase.\n\n## What it means for a fitness app\n\nApple's four examples in 3.1.3(d) include \"fitness training\". The wording sets three conditions:\n\n1. **Real-time.** The service happens live. Recorded workouts aren't a real-time service.\n2. **Between two individuals.** One trainer and one client. The guideline's last sentence sends one-to-few and one-to-many real-time services back to in-app purchase.\n3. **A purchase of the service.** The exception covers collecting \"those payments\", meaning the payments for the person-to-person service, not everything else the app sells.\n\nHere is how common fitness products line up against the text:\n\n| What the app sells | What the guideline text says |\n| --- | --- |\n| A live one-to-one video session with a trainer | 3.1.3(d): you may use purchase methods other than in-app purchase |\n| A live session with one trainer and a small group | 3.1.3(d): one-to-few real-time services must use in-app purchase |\n| A live-streamed class for many participants | 3.1.3(d): one-to-many real-time services must use in-app purchase |\n| A recorded workout library, premium plans, a subscription to app features | 3.1.1: unlocking features or premium content must use in-app purchase |\n| An in-person session at a gym or outdoors, booked in the app | 3.1.3(e), read literally: services consumed outside the app must use purchase methods other than in-app purchase |\n\nApple's text gives no fitness example for 3.1.3(e). The in-person row is our reading of \"services that will be consumed outside of the app\", not an example Apple gives.\n\n## What typically triggers it in a fitness coaching app\n\nThese come from the guideline text, not from a log of rejections.\n\n- **Small-group sessions billed as person-to-person.** A live session with a trainer and three clients is one-to-few, and 3.1.3(d) says those must use in-app purchase.\n- **Live classes for an audience.** A streamed class is one-to-many, which 3.1.3(d) also sends to in-app purchase.\n- **One charge that also unlocks in-app content.** A payment collected outside in-app purchase for a live session that also unlocks recorded workouts or premium features. 3.1.3(d) covers payments for the real-time service; 3.1.1 says unlocking features or premium content uses in-app purchase.\n- **In-app prompts to pay elsewhere.** Outside the United States storefront, the 3.1.3 opening paragraph says apps in this section can't encourage users within the app to use another purchasing method, except as 3.1.1(a) and 3.1.3(a) set out.\n\n**Coaching that isn't live.** Plan reviews, chat check-ins and form videos a coach watches later aren't real-time, so 3.1.3(d)'s wording doesn't cover them. The guidelines don't say which rule does, and we couldn't find Apple text on it.\n\n## Checklist before you resubmit\n\n1. **List each thing you sell and mark whether it happens live.** Go through every paid item and note whether it is a real-time service. Guideline 3.1.3(d) covers only real-time person-to-person services, so anything recorded or self-serve falls outside it.\n2. **Count the people in each live session.** A session between one trainer and one client is the two-individual case 3.1.3(d) describes. If a live session has a small group or a large audience, 3.1.3(d) says one-to-few and one-to-many real-time services must use in-app purchase.\n3. **Keep recorded content and app features on in-app purchase.** Guideline 3.1.1 says unlocking features or functionality, including subscriptions and access to premium content, must use in-app purchase. A recorded workout library or a premium plan is not a real-time service.\n4. **Check in-person sessions against 3.1.3(e).** If the app sells sessions that take place away from the app, 3.1.3(e) says services consumed outside the app must use purchase methods other than in-app purchase, such as Apple Pay or traditional credit card entry.\n5. **Review in-app wording about other payment methods.** The opening paragraph of 3.1.3 says apps in this section cannot, within the app, encourage users to use a purchasing method other than in-app purchase, except on the United States storefront and as 3.1.1(a) and 3.1.3(a) set out. You can still contact your users outside the app.\n6. **Explain the payment model in your App Review notes.** Say which items are live one-to-one sessions and how each is paid for. Apple's introduction to the Business section asks you to explain a business model that isn't obvious in the metadata and App Review notes.\n\n## Related\n\n- All of Apple's health-data rules are summarized in the [App Store health data rules overview](/compliance/app-store-health-data-rules).\n- For the product side of a coaching app, see [how to build an AI fitness coaching app](/build/ai-fitness-coaching-app).\n- Other App Review guidelines that workout apps run into: [2.5.4 background services](/compliance/app-store-guideline-2-5-4-background-services) and [2.5.11 SiriKit and Shortcuts](/compliance/app-store-guideline-2-5-11-sirikit-shortcuts).\n\n## A note on limits\n\nEverything on this page comes from the guideline text. The guidelines don't define one-to-few, and we couldn't find Apple text on where a session stops being between two individuals. Storefront rules and entitlements also differ by region. This page is general guidance, not legal advice.\n",
+    "steps": [
+      {
+        "name": "List each thing you sell and mark whether it happens live",
+        "text": "Go through every paid item and note whether it is a real-time service. Guideline 3.1.3(d) covers only real-time person-to-person services, so anything recorded or self-serve falls outside it."
+      },
+      {
+        "name": "Count the people in each live session",
+        "text": "A session between one trainer and one client is the two-individual case 3.1.3(d) describes. If a live session has a small group or a large audience, 3.1.3(d) says one-to-few and one-to-many real-time services must use in-app purchase."
+      },
+      {
+        "name": "Keep recorded content and app features on in-app purchase",
+        "text": "Guideline 3.1.1 says unlocking features or functionality, including subscriptions and access to premium content, must use in-app purchase. A recorded workout library or a premium plan is not a real-time service."
+      },
+      {
+        "name": "Check in-person sessions against 3.1.3(e)",
+        "text": "If the app sells sessions that take place away from the app, 3.1.3(e) says services consumed outside the app must use purchase methods other than in-app purchase, such as Apple Pay or traditional credit card entry."
+      },
+      {
+        "name": "Review in-app wording about other payment methods",
+        "text": "The opening paragraph of 3.1.3 says apps in this section cannot, within the app, encourage users to use a purchasing method other than in-app purchase, except on the United States storefront and as 3.1.1(a) and 3.1.3(a) set out. You can still contact your users outside the app."
+      },
+      {
+        "name": "Explain the payment model in your App Review notes",
+        "text": "Say which items are live one-to-one sessions and how each is paid for. Apple's introduction to the Business section asks you to explain a business model that isn't obvious in the metadata and App Review notes."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Can a personal training app take payments outside Apple's in-app purchase?",
+        "a": "For live one-to-one sessions, guideline 3.1.3(d) says yes. It covers real-time person-to-person services between two individuals, names fitness training as an example, and says you may use purchase methods other than in-app purchase to collect those payments. The exception covers the payments for those sessions, not the rest of what the app sells."
+      },
+      {
+        "q": "Do live group workout classes qualify for the 3.1.3(d) exception?",
+        "a": "No. The last sentence of guideline 3.1.3(d) says one-to-few and one-to-many real-time services must use in-app purchase. A live session with a trainer and a small group, or a streamed class, is one of those."
+      },
+      {
+        "q": "Does guideline 3.1.3(d) cover recorded workouts or training plans?",
+        "a": "No. 3.1.3(d) is limited to real-time services. Guideline 3.1.1 says that unlocking features or functionality in the app, including subscriptions and access to premium content, must use in-app purchase."
+      },
+      {
+        "q": "What about in-person training sessions booked through the app?",
+        "a": "Guideline 3.1.3(e) says that if your app lets people buy physical goods or services that will be consumed outside of the app, you must use purchase methods other than in-app purchase, such as Apple Pay or traditional credit card entry. Apple gives no fitness example there; applying it to in-person sessions is a literal reading of the text."
+      }
+    ],
+    "related": [
+      {
+        "href": "/compliance/app-store-health-data-rules",
+        "label": "Apple App Store health data rules (overview)"
+      },
+      {
+        "href": "/build/ai-fitness-coaching-app",
+        "label": "How to build an AI fitness coaching app"
+      },
+      {
+        "href": "/compliance/app-store-guideline-2-5-4-background-services",
+        "label": "App Store guideline 2.5.4: background services"
+      },
+      {
+        "href": "/compliance",
+        "label": "Health-data compliance & privacy"
+      }
+    ],
+    "cta": {
+      "pitch": "Apple's payment rules change by storefront and revision. Subscribe and we'll flag the changes that affect how a fitness app can charge."
+    },
+    "sources": [
+      {
+        "url": "https://developer.apple.com/app-store/review/guidelines/",
+        "checked": "2026-10-03",
+        "note": "guidelines 3.1.1, 3.1.3 (opening paragraph), 3.1.3(d), 3.1.3(e) and the Business section introduction; last updated June 8, 2026"
+      }
+    ]
+  },
+  {
+    "slug": "app-store-guideline-2-5-4-background-services",
+    "primaryQuery": "app store guideline 2.5.4 background modes workout app",
+    "h1": "App Store Guideline 2.5.4: Background Modes for Workout Apps",
+    "metaTitle": "App Store Guideline 2.5.4: Background Workout Modes",
+    "metaDescription": "Guideline 2.5.4 limits background services to their intended purposes. What Apple's docs say about workout, audio and location modes. With a checklist.",
+    "updated": "2026-10-03",
+    "answer": "App Store Review Guideline 2.5.4 says multitasking apps may only use background services for their intended purposes, and lists VoIP, audio playback, location, task completion and local notifications. For workout apps, Apple's HealthKit documentation says Apple Watch workout sessions require the Workout processing background mode, plus the Audio mode if the app plays audio or haptic feedback during the session. Quoted from the guidelines as last updated June 8, 2026 and from Apple's documentation, checked October 3, 2026; this is general guidance, not legal advice.",
+    "body": "## The guideline text\n\nQuoted verbatim from Apple's [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/#2.5.4), which the page states were last updated June 8, 2026. We checked the text on October 3, 2026. Apple revises the guidelines and sometimes renumbers sub-items, so compare this against the live page before you cite it in a reply to App Review.\n\n> **2.5.4** Multitasking apps may only use background services for their intended purposes: VoIP, audio playback, location, task completion, local notifications, etc.\n\nThat is the whole guideline. It doesn't mention workouts; its list ends with \"etc.\" and doesn't name a workout mode. What a workout app's background modes are for is set out in Apple's developer documentation, quoted below.\n\n## What Apple's documentation says about workout apps\n\n### Apple Watch workout sessions\n\nApple's [Running workout sessions](https://developer.apple.com/documentation/healthkit/running-workout-sessions) article (\"Track a workout on Apple Watch\") says:\n\n> Apps with an active workout session can run in the background, so you need to add the background modes capability to your WatchKit App Extension.\n>\n> Workout sessions require the Workout processing background mode. If your app plays audio or provides haptic feedback during the workout session, you must also add the Audio background mode.\n\nOn audio, the same article adds a note (Apple's grammar, quoted as written):\n\n> Workout apps can use the AVFoundation framework to play short audio clips in the background, such as coaching or notifications. In order to play an audio clip, an active workout session must be running; any attempt to play background audio outside a workout session are invalid.\n\nIt also limits how much the app may do while in the background:\n\n> To maintain high performance on Apple Watch, you must limit the amount of work your app performs in the background. If your app uses an excessive amount of CPU while in the background, watchOS may suspend it.\n\n### Background location for route tracking\n\nApple's [Handling location updates in the background](https://developer.apple.com/documentation/corelocation/handling-location-updates-in-the-background) article opens with a caution:\n\n> Consider carefully whether your app really needs background location updates. Most apps need location data only while someone actively uses the app. Consider background updates only when your app needs to receive those updates in real time, perhaps to:\n\nThe first item on Apple's list is \"Track the precise path taken during a hike or fitness workout.\" The article says to enable the Location updates option on the Signing & Capabilities tab, to receive updates through a `CLBackgroundActivitySession`, and: \"For Always authorization, inform the user that location updates arrive in the background.\"\n\n### Where the modes are declared\n\nThe modes live in the `UIBackgroundModes` Info.plist key, which Apple's [reference](https://developer.apple.com/documentation/bundleresources/information-property-list/uibackgroundmodes) describes as \"Services provided by an app that require it to run in the background.\" Apple says: \"To add this key to your Information Property List, enable the Background Modes capability in Xcode.\"\n\n## What it means for a workout app\n\nEvery background mode the app declares should match something a reviewer can see running in the background:\n\n| Mode | The use Apple's text supports |\n| --- | --- |\n| Workout processing (Apple Watch) | An active workout session; Apple says workout sessions require it |\n| Audio | Audio or haptic feedback during the workout session; \"audio playback\" is on 2.5.4's list |\n| Location updates | Real-time location, such as the path of a workout; \"location\" is on 2.5.4's list |\n\nOn Apple Watch, background audio depends on the workout session. Apple says a clip can play only while an active workout session is running.\n\n## What typically triggers it in a workout app\n\nThese come from the guideline text and Apple's documentation, not from a log of rejections.\n\n- **The Audio mode with nothing to play.** Declaring the Audio background mode to keep the app alive when it doesn't play audio. 2.5.4 limits background services to their intended purposes, and the one it lists for audio is playback.\n- **Background location with no live use.** The Location updates mode is on, but the app only uses location while it's open, for example to set a home city. Apple's Core Location documentation says most apps need location only while someone actively uses the app.\n- **Background audio outside a workout session on Apple Watch.** Apple calls any attempt to play background audio outside a workout session invalid.\n- **Modes left over from a removed feature.** A mode no feature uses has no intended purpose to point to.\n\n## Checklist before you resubmit\n\n1. **List every background mode the app declares.** Open UIBackgroundModes in Info.plist, which Xcode writes when you enable the Background Modes capability, and match each mode to a feature a reviewer can see. Remove any mode no feature uses: guideline 2.5.4 allows background services only for their intended purposes.\n2. **Declare Workout processing for Apple Watch workout sessions.** Apple's HealthKit documentation says workout sessions require the Workout processing background mode, added through the background modes capability on the WatchKit App Extension.\n3. **Add Audio only if the workout plays audio or haptics.** Apple says to add the Audio background mode if the app plays audio or provides haptic feedback during the workout session, and that playing a background audio clip requires an active workout session.\n4. **Tie background location to a live feature.** Keep the Location updates mode only if the app needs updates in real time, such as recording a route. Apple's Core Location documentation names tracking the precise path of a hike or fitness workout, and says most apps need location only while someone actively uses the app.\n5. **Tell users when location arrives in the background.** For Always authorization, Apple's Core Location documentation says to inform the user that location updates arrive in the background.\n6. **Keep background work light on Apple Watch.** Apple warns that watchOS may suspend an app that uses an excessive amount of CPU in the background. Test with Xcode's CPU report or the time profiler in Instruments, as Apple suggests.\n\n## Related\n\n- How watchOS keeps a workout app running is covered in [background execution on Apple Watch](/watch-apps/apple-watch-background-execution) and [the anatomy of a watchOS workout app](/watch-apps/watchos-workout-app-anatomy).\n- What App Review expects of HealthKit data itself is in the [App Store health data rules overview](/compliance/app-store-health-data-rules).\n- If your app's workouts can be started by voice, see [guideline 2.5.11: SiriKit and Shortcuts](/compliance/app-store-guideline-2-5-11-sirikit-shortcuts).\n\n## A note on limits\n\nThe workout-session article quoted here is about Apple Watch, and we haven't verified the equivalent iPhone guidance for this page. Guideline 2.5.4 itself doesn't name a platform. This page is general guidance, not legal advice.\n",
+    "steps": [
+      {
+        "name": "List every background mode the app declares",
+        "text": "Open UIBackgroundModes in Info.plist, which Xcode writes when you enable the Background Modes capability, and match each mode to a feature a reviewer can see. Remove any mode no feature uses: guideline 2.5.4 allows background services only for their intended purposes."
+      },
+      {
+        "name": "Declare Workout processing for Apple Watch workout sessions",
+        "text": "Apple's HealthKit documentation says workout sessions require the Workout processing background mode, added through the background modes capability on the WatchKit App Extension."
+      },
+      {
+        "name": "Add Audio only if the workout plays audio or haptics",
+        "text": "Apple says to add the Audio background mode if the app plays audio or provides haptic feedback during the workout session, and that playing a background audio clip requires an active workout session."
+      },
+      {
+        "name": "Tie background location to a live feature",
+        "text": "Keep the Location updates mode only if the app needs updates in real time, such as recording a route. Apple's Core Location documentation names tracking the precise path of a hike or fitness workout, and says most apps need location only while someone actively uses the app."
+      },
+      {
+        "name": "Tell users when location arrives in the background",
+        "text": "For Always authorization, Apple's Core Location documentation says to inform the user that location updates arrive in the background."
+      },
+      {
+        "name": "Keep background work light on Apple Watch",
+        "text": "Apple warns that watchOS may suspend an app that uses an excessive amount of CPU in the background. Test with Xcode's CPU report or the time profiler in Instruments, as Apple suggests."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Does guideline 2.5.4 allow the workout processing background mode?",
+        "a": "Guideline 2.5.4 doesn't name it: its list of intended purposes is VoIP, audio playback, location, task completion and local notifications, ending in \"etc.\". Apple's HealthKit documentation says Apple Watch workout sessions require the Workout processing background mode, so an active workout session is the purpose Apple documents for it."
+      },
+      {
+        "q": "Can an Apple Watch workout app play coaching audio in the background?",
+        "a": "Apple's HealthKit documentation says workout apps can use AVFoundation to play short audio clips in the background, such as coaching or notifications, but only while an active workout session is running. If the app plays audio or haptic feedback during the session, Apple says to add the Audio background mode as well."
+      },
+      {
+        "q": "When does a running or cycling app need background location?",
+        "a": "When it needs location updates in real time while in the background. Apple's Core Location documentation names tracking the precise path taken during a hike or fitness workout as an example, and says most apps need location only while someone actively uses the app. For Always authorization, Apple says to tell users that updates arrive in the background."
+      }
+    ],
+    "related": [
+      {
+        "href": "/watch-apps/apple-watch-background-execution",
+        "label": "Background execution on Apple Watch"
+      },
+      {
+        "href": "/watch-apps/watchos-workout-app-anatomy",
+        "label": "Anatomy of a watchOS workout app"
+      },
+      {
+        "href": "/compliance/app-store-guideline-2-5-11-sirikit-shortcuts",
+        "label": "App Store guideline 2.5.11: SiriKit and Shortcuts"
+      },
+      {
+        "href": "/compliance",
+        "label": "Health-data compliance & privacy"
+      }
+    ],
+    "cta": {
+      "pitch": "Apple changes background execution rules between OS releases. Subscribe and we'll flag the changes that affect workout apps in App Review."
+    },
+    "sources": [
+      {
+        "url": "https://developer.apple.com/app-store/review/guidelines/",
+        "checked": "2026-10-03",
+        "note": "guideline 2.5.4; last updated June 8, 2026"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/running-workout-sessions",
+        "checked": "2026-10-03",
+        "note": "Workout processing and Audio background modes; background audio needs an active session; background CPU limits"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/corelocation/handling-location-updates-in-the-background",
+        "checked": "2026-10-03",
+        "note": "when background location is warranted; Location updates capability; telling users under Always authorization"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/bundleresources/information-property-list/uibackgroundmodes",
+        "checked": "2026-10-03",
+        "note": "UIBackgroundModes key and the Background Modes capability"
+      }
+    ]
+  },
+  {
+    "slug": "app-store-guideline-2-5-11-sirikit-shortcuts",
+    "primaryQuery": "app store guideline 2.5.11 sirikit shortcuts",
+    "h1": "App Store Guideline 2.5.11: SiriKit and Shortcuts in Fitness Apps",
+    "metaTitle": "App Store Guideline 2.5.11: SiriKit and Shortcuts",
+    "metaDescription": "Guideline 2.5.11 uses starting a workout as its example: register only intents you can handle, keep Siri aliases relevant, and fulfil requests directly.",
+    "updated": "2026-10-03",
+    "answer": "App Store Review Guideline 2.5.11 covers SiriKit and Shortcuts in three parts: sign up only for intents your app can handle without another app and that users would expect, keep plist vocabulary and aliases tied to your app, and resolve requests directly without ads or marketing in between. Its own example is a meal planning app that should not incorporate an intent to start a workout. Quoted from the guidelines as last updated June 8, 2026, checked October 3, 2026; this is general guidance, not legal advice.",
+    "body": "## The guideline text\n\nQuoted verbatim from Apple's [App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/#2.5.11), which the page states were last updated June 8, 2026. We checked the text on October 3, 2026. Apple revises the guidelines and sometimes renumbers sub-items, so compare this against the live page before you cite it in a reply to App Review.\n\n> **2.5.11 SiriKit and Shortcuts**\n>\n> (i) Apps integrating SiriKit and Shortcuts should only sign up for intents they can handle without the support of an additional app and that users would expect from the stated functionality. For example, if your app is a meal planning app, you should not incorporate an intent to start a workout, even if the app shares integration with a fitness app.\n>\n> (ii) Ensure that the vocabulary and phrases in your plist pertains to your app and the Siri functionality of the intents the app has registered for. Aliases must relate directly to your app or company name and should not be generic terms or include third-party app names or services.\n>\n> (iii) Resolve the Siri request or Shortcut in the most direct way possible and do not insert ads or other marketing between the request and its fulfillment. Only request a disambiguation when required to complete the task (e.g. asking the user to specify a particular type of workout).\n\n## What it means for a fitness app\n\nApple uses workouts as the example twice in this guideline: once for an intent an app shouldn't register, and once for a follow-up question that's acceptable.\n\n- **(i) Which intents to register.** A workout app that starts and tracks workouts itself can register a start-workout intent. A meal planning or nutrition app shouldn't, according to the guideline's own example, \"even if the app shares integration with a fitness app\". The test is whether your app can complete the intent without another app, and whether users would expect it from what the app says it does.\n- **(ii) Vocabulary and aliases.** Phrases in your plist should be about your app and the intents it registers. An alias has to relate directly to your app or company name. A bare generic word, or another company's app name, doesn't qualify.\n- **(iii) Fulfilment.** When someone asks Siri or runs a shortcut to start a workout, the workout should start with nothing promotional in between. Asking which type of workout is the one disambiguation the guideline names as acceptable, and only when it's needed.\n\n### The workout intents Apple documents\n\nTwo Apple APIs carry a start-workout request:\n\n- **SiriKit's [INStartWorkoutIntent](https://developer.apple.com/documentation/intents/instartworkoutintent).** Apple: \"SiriKit creates an INStartWorkoutIntent object when the user asks to start a workout using your app. A start workout intent identifies the user-selected workout type and goals.\" It also says that \"SiriKit launches your app and passes it an NSUserActivity object your app must then use to start the workout.\"\n- **App Intents' [StartWorkoutIntent](https://developer.apple.com/documentation/appintents/startworkoutintent),** \"An App Intent for starting a workout\", which Apple lists as available from iOS 16.0 and watchOS 9.0. Apple: \"On Apple Watch Ultra, this intent registers a start workout action for the Action button.\"\n\nGuideline 2.5.11 covers both, since it names SiriKit and Shortcuts.\n\n## What typically triggers it in a fitness app\n\nThese come from the guideline text, not from a log of rejections.\n\n- **A start-workout intent the app can't fulfil by itself.** For example, a nutrition app that registers one and hands the workout to a partner app. The guideline's example rules this out.\n- **Generic or third-party aliases.** An alias that is a generic term, or that includes another app's or service's name.\n- **Marketing before the workout starts.** An ad or promotion between the Siri request and the workout, which 2.5.11(iii) says not to insert.\n- **Follow-up questions the request didn't need.** Asking for details when the request was already complete. The guideline says to request a disambiguation only when required.\n\n## Checklist before you resubmit\n\n1. **Register only intents the app fulfils by itself.** Go through each SiriKit intent and shortcut the app signs up for, and drop any that needs another app to complete. Guideline 2.5.11(i) says apps should only sign up for intents they can handle without the support of an additional app.\n2. **Match intents to what the app says it does.** A start-workout intent belongs in an app users would expect to start workouts. The guideline's own example is a meal planning app that should not incorporate an intent to start a workout, even if it shares integration with a fitness app.\n3. **Audit plist vocabulary and aliases.** Keep the vocabulary and phrases in your plist about your app and the intents it registers. Under 2.5.11(ii), aliases must relate directly to your app or company name, not generic terms or third-party app names or services.\n4. **Start the workout directly.** Remove ads, promotions or other marketing between the Siri request or shortcut and the workout starting. Guideline 2.5.11(iii) asks you to resolve the request in the most direct way possible.\n5. **Ask follow-up questions only when you need the answer.** Request a disambiguation, such as which type of workout, only when the request can't be completed without it. That is the example 2.5.11(iii) itself uses.\n\n## Related\n\n- If a voice-started workout keeps running with the screen off, background modes come under [guideline 2.5.4](/compliance/app-store-guideline-2-5-4-background-services).\n- For how a watchOS workout app is put together, see [the anatomy of a watchOS workout app](/watch-apps/watchos-workout-app-anatomy).\n- Apple's health-data rules are summarized in the [App Store health data rules overview](/compliance/app-store-health-data-rules).\n\n## A note on limits\n\nThe guideline doesn't say how App Review treats a start-workout intent behind a subscription, and we couldn't find Apple text on it. 2.5.11(iii) covers ads and marketing between a request and its fulfilment, nothing more specific. This page is general guidance, not legal advice.\n",
+    "steps": [
+      {
+        "name": "Register only intents the app fulfils by itself",
+        "text": "Go through each SiriKit intent and shortcut the app signs up for, and drop any that needs another app to complete. Guideline 2.5.11(i) says apps should only sign up for intents they can handle without the support of an additional app."
+      },
+      {
+        "name": "Match intents to what the app says it does",
+        "text": "A start-workout intent belongs in an app users would expect to start workouts. The guideline's own example is a meal planning app that should not incorporate an intent to start a workout, even if it shares integration with a fitness app."
+      },
+      {
+        "name": "Audit plist vocabulary and aliases",
+        "text": "Keep the vocabulary and phrases in your plist about your app and the intents it registers. Under 2.5.11(ii), aliases must relate directly to your app or company name, not generic terms or third-party app names or services."
+      },
+      {
+        "name": "Start the workout directly",
+        "text": "Remove ads, promotions or other marketing between the Siri request or shortcut and the workout starting. Guideline 2.5.11(iii) asks you to resolve the request in the most direct way possible."
+      },
+      {
+        "name": "Ask follow-up questions only when you need the answer",
+        "text": "Request a disambiguation, such as which type of workout, only when the request can't be completed without it. That is the example 2.5.11(iii) itself uses."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Can a nutrition app offer a Siri intent to start a workout?",
+        "a": "Guideline 2.5.11(i) uses almost exactly this case as its example: a meal planning app should not incorporate an intent to start a workout, even if the app shares integration with a fitness app. Apps should sign up only for intents they can handle without an additional app and that users would expect from the app's stated functionality."
+      },
+      {
+        "q": "Can I show a promotion before a Siri-started workout begins?",
+        "a": "Guideline 2.5.11(iii) says to resolve the Siri request or shortcut in the most direct way possible and not to insert ads or other marketing between the request and its fulfillment. The guideline says nothing more specific than that, and we couldn't find Apple text on subscription-gated intents."
+      },
+      {
+        "q": "When may a workout intent ask the user a follow-up question?",
+        "a": "Only when the answer is needed to complete the task. Guideline 2.5.11(iii) gives asking the user to specify a particular type of workout as its example of an acceptable disambiguation."
+      },
+      {
+        "q": "Which Apple APIs receive a request to start a workout?",
+        "a": "Apple documents SiriKit's INStartWorkoutIntent, which SiriKit creates when the user asks to start a workout using your app, and the App Intents StartWorkoutIntent, which Apple lists from iOS 16.0 and watchOS 9.0 and which registers the Action button's start workout action on Apple Watch Ultra."
+      }
+    ],
+    "related": [
+      {
+        "href": "/engagement/app-intents-start-workout",
+        "label": "App Intents: start a workout from Siri and Shortcuts"
+      },
+      {
+        "href": "/compliance/app-store-guideline-2-5-4-background-services",
+        "label": "App Store guideline 2.5.4: background services"
+      },
+      {
+        "href": "/watch-apps/watchos-workout-app-anatomy",
+        "label": "Anatomy of a watchOS workout app"
+      },
+      {
+        "href": "/compliance/app-store-health-data-rules",
+        "label": "Apple App Store health data rules (overview)"
+      },
+      {
+        "href": "/compliance",
+        "label": "Health-data compliance & privacy"
+      }
+    ],
+    "cta": {
+      "pitch": "Apple keeps reshaping Siri, Shortcuts and App Intents. Subscribe and we'll flag the changes that affect workout apps in App Review."
+    },
+    "sources": [
+      {
+        "url": "https://developer.apple.com/app-store/review/guidelines/",
+        "checked": "2026-10-03",
+        "note": "guideline 2.5.11(i)–(iii); last updated June 8, 2026"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/intents/instartworkoutintent",
+        "checked": "2026-10-03",
+        "note": "what SiriKit creates for a start-workout request and how the app receives it"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/appintents/startworkoutintent",
+        "checked": "2026-10-03",
+        "note": "StartWorkoutIntent abstract, availability and the Apple Watch Ultra Action button"
+      }
+    ]
   }
 ];

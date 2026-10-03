@@ -21,8 +21,9 @@ import type { HkStandaloneEntry } from "./hkStandalone";
  * claim on it was re-checked against the re-fetched 2026-10-02 corpus (the
  * `.asleep` value and HKError.noError against their own Apple pages, fetched
  * the same day), so it too carries 2026-10-02.
- * health-connect-records renders the matrix, not this
- * corpus, and keeps the matrix date.
+ * health-connect-records (which rendered the matrix, not this corpus) was
+ * retired 2026-10-03: the URL 308s to the generated /health-connect record
+ * reference, and its unique FAQ and traps moved to /matrix.
  */
 export const hkStandaloneEntries: HkStandaloneEntry[] =
 [
@@ -115,29 +116,6 @@ export const hkStandaloneEntries: HkStandaloneEntry[] =
       {
         "q": "Is a unit family the same as the unit I read a sample in?",
         "a": "No. The family tells you the dimension the type measures; the unit is what you ask the quantity for when you pull the value out, and any compatible unit will answer. Two apps reading the same body mass sample can legitimately get different numbers, so record the unit alongside every value you store."
-      }
-    ]
-  },
-  {
-    "slug": "health-connect-records",
-    "title": "Health Connect Records We Verified",
-    "metaDescription": "10 metrics verified on both Health Connect and HealthKit, with record names and the structural mismatches. A verified subset, not Google's full catalog.",
-    "primaryQuery": "health connect record types",
-    "updated": "2026-07-26",
-    "intro": "Start with what this page is not. It is not a catalogue of Health Connect.\nGoogle documents the full set of record types, and that set is larger than\nwhat appears here. This page lists the 10 metrics this site has verified on\nboth platforms — checked against Apple's documentation and Google's, and\nlisted only once both sides were read. Everything else is absent because it\nhas not been checked yet, not because it does not exist.\n\nWith that said, the 10 are the ones a fitness app reaches for first, and the\ninteresting part is not that both platforms have them. It is the shape of the\nmismatch when you try to write one schema over both.\n\n**Heart rate** is `HeartRateRecord` and `RestingHeartRateRecord` against\nApple's `heartRate` and `restingHeartRate`. Both platforms give you samples\nplus a separate resting value, which is a favour — do not derive resting\nyourself.\n\n**HRV** is the one that looks aligned and is not.\n`HeartRateVariabilityRmssdRecord` against `heartRateVariabilitySDNN`. Apple\nstores SDNN, Health Connect stores RMSSD, and they are different measures\nthat are not interconvertible. [SDNN vs RMSSD](/blog/hrv-sdnn-vs-rmssd) is the\nlong version.\n\n**VO2 max** is `Vo2MaxRecord` against `vo2Max` — an estimate on both\nplatforms rather than a lab measurement, with Health Connect additionally\ntagging a measurement method.\n\n**Blood oxygen** is `OxygenSaturationRecord` against `oxygenSaturation`. The\ntype existing does not mean data exists: SpO2 is device-gated, and Apple Watch\navailability in the US has been subject to litigation, so verify current\nstatus rather than assuming.\n\n**Sleep** is the structural mismatch. Apple gives you\n`HKCategoryTypeIdentifier.sleepAnalysis`, a category type whose values are\ninBed, awake, asleepCore, asleepDeep, asleepREM and asleepUnspecified. Health\nConnect gives you `SleepSessionRecord`, a session that carries stages. Stage\nvocabularies differ between them and stages are estimated rather than\nmeasured, so a shared \"sleep quality\" score computed across both platforms is\ncomparing two different estimators.\n\n**Steps** is `StepsRecord` and `StepsCadenceRecord` against `stepCount`, with\nCMPedometer for live counts on iOS. Both sides need de-duplication, since a\nphone and a watch can write the same walk. On Android there is one extra rule:\nfrom the June 2026 update on-device steps are attributed to a per-device\nSynthetic Package Name, which you read via `getCurrentDeviceDataSource()` and\nnever hardcode.\n\n**Workouts** is `ExerciseSessionRecord` and `PlannedExerciseSessionRecord`\nagainst `HKWorkout` and `HKWorkoutBuilder`. The activity-type taxonomies\ndiffer, so map them explicitly rather than by matching names.\n\n**GPS routes** is `ExerciseRoute` with `ExerciseRoute.Location` against\n`HKWorkoutRoute` and `HKWorkoutRouteQuery`. Health Connect gates routes behind\nits own permission, READ_EXERCISE_ROUTES, and restricts background reads of\nother apps' routes.\n\n**Calories** is the asymmetry to watch: `ActiveCaloriesBurnedRecord` and\n`TotalCaloriesBurnedRecord` against `activeEnergyBurned` and\n`basalEnergyBurned`. Apple splits active and basal; Android offers active and\ntotal. Both are modelled estimates.\n\n**Body composition** is one Apple concept against a shelf of records:\n`WeightRecord`, `BodyFatRecord`, `LeanBodyMassRecord`, `BoneMassRecord`,\n`BodyWaterMassRecord` and `BasalMetabolicRateRecord` against `bodyMass`,\n`bodyFatPercentage`, `leanBodyMass` and `bodyMassIndex`. The store holds it,\nbut something has to write it — usually a smart scale or a manual entry.\n\nThe full side-by-side with the watch-outs is the [cross-platform\nmatrix](/matrix). For the platform-level comparison see [HealthKit vs Health\nConnect](/fitness-apis/apple-healthkit-vs-google-health-connect), for setup\n[integrate Health Connect](/integrate/google-health-connect), and for the\nApple side [the HealthKit identifier\ndataset](/healthkit-identifiers).",
-    "traps": "**Do not read this list as coverage.** These are the 10 metrics verified\nagainst both vendors' documentation, not the boundary of what Health Connect\nsupports. If a record type you need is missing here, the answer is that we\nhave not checked it, and Google's own documentation is where to look.\n\n**Do not normalize SDNN into RMSSD.** Apple stores heart rate variability as\nSDNN and Health Connect stores it as RMSSD. They are different measures and\nare not interconvertible, so a single \"HRV\" column populated from both\nplatforms holds two incompatible quantities that will trend against each other\nfor reasons that have nothing to do with the user.\n\n**Do not add active calories to total calories.** Apple splits active and\nbasal; Health Connect offers active and total. Those are not the same\nsplit, and the rule for the Android pair is simply that you must not add\nactive to total — the result is a plausible number that nothing will flag.\nBoth figures are modelled estimates on both platforms, not measurements.\n\n**Do not hardcode the steps data source on Android.** From the June 2026\nupdate, on-device steps are attributed to a per-device Synthetic Package Name.\nRead it with `getCurrentDeviceDataSource()`. A literal package name in your\nde-duplication logic will work on the device you tested on and quietly stop\nfiltering on everyone else's — and de-duplication matters here, because a\nphone and a watch both write steps for the same walk.",
-    "faqs": [
-      {
-        "q": "Does this page list every Health Connect record type?",
-        "a": "No. It lists the 10 metrics this site has verified against both Apple's and Google's documentation. Google documents the full catalog, which is larger. A record type missing from this page means we have not checked it against both vendors yet, not that Health Connect lacks it."
-      },
-      {
-        "q": "Can I map Apple HRV onto Health Connect HRV?",
-        "a": "Not by conversion. Apple's heartRateVariabilitySDNN stores SDNN and Health Connect's HeartRateVariabilityRmssdRecord stores RMSSD. These are different measures of the same underlying signal and are not interconvertible, so keep them in separate fields and label which one any chart is showing."
-      },
-      {
-        "q": "Which Health Connect records match Apple's calorie types?",
-        "a": "ActiveCaloriesBurnedRecord and TotalCaloriesBurnedRecord sit opposite Apple's activeEnergyBurned and basalEnergyBurned. The split is not the same on both sides, so map them explicitly and never add the active figure to the total figure. Both platforms are giving you modelled estimates rather than measurements."
       }
     ]
   }

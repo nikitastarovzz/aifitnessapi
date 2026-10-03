@@ -14,14 +14,16 @@
     "id": "Absolute, citable URL of the term entry (the JSON-LD DefinedTerm @id)"
   },
   "stats": {
-    "totalItems": 33,
-    "totalGroups": 6,
+    "totalItems": 45,
+    "totalGroups": 8,
     "byGroup": {
       "Health data & metrics": 8,
       "Platforms & providers": 5,
       "Integration & auth": 5,
       "AI motion & camera": 5,
       "Architecture & data quality": 6,
+      "Health Connect API": 5,
+      "Audio coaching & workout sessions": 7,
       "Compliance & AI": 4
     }
   },
@@ -257,6 +259,102 @@
       "href": "https://aifitnessapi.com/architecture/metric-versioning-and-recompute",
       "anchor": "#term-metric-versioning",
       "id": "https://aifitnessapi.com/glossary#term-metric-versioning"
+    },
+    {
+      "term": "Health Connect record (Record)",
+      "definition": "The unit of data in Health Connect's Jetpack client. Every data type is a class implementing the Record interface, such as StepsRecord or WeightRecord, which Google's reference calls the \"common interface shared by readable or writable records\". Each one carries a metadata object.",
+      "group": "Health Connect API",
+      "href": "https://aifitnessapi.com/health-connect",
+      "anchor": "#term-health-connect-record",
+      "id": "https://aifitnessapi.com/glossary#term-health-connect-record"
+    },
+    {
+      "term": "Aggregate metric (AggregateMetric)",
+      "definition": "A total Health Connect computes for you, such as StepsRecord.COUNT_TOTAL. Google's reference calls AggregateMetric an \"identifier to supported metrics for aggregation\": you pass a set of them to aggregate() and read each value from the AggregationResult it returns.",
+      "group": "Health Connect API",
+      "href": "https://aifitnessapi.com/health-connect/aggregate-metrics",
+      "anchor": "#term-aggregate-metric",
+      "id": "https://aifitnessapi.com/glossary#term-aggregate-metric"
+    },
+    {
+      "term": "Changes token",
+      "definition": "Health Connect's sync cursor. getChangesToken() returns a string \"representing a point in time\" for the record types you name, and getChanges() returns the upserts and deletions since then plus the next token. Google documents that changes tokens are only valid for 30 days; an expired one sets changesTokenExpired and you re-sync.",
+      "group": "Health Connect API",
+      "href": "https://aifitnessapi.com/architecture/incremental-sync",
+      "anchor": "#term-changes-token",
+      "id": "https://aifitnessapi.com/glossary#term-changes-token"
+    },
+    {
+      "term": "Health Connect permission (HealthPermission)",
+      "definition": "A per-record-type grant such as android.permission.health.READ_STEPS or WRITE_STEPS, declared in the manifest and requested at runtime. Google defines HealthPermission as \"a permission either to read or write data associated with a Record type\". Reading in the background and reading the entire history are separate permissions.",
+      "group": "Health Connect API",
+      "href": "https://aifitnessapi.com/health-connect/permissions",
+      "anchor": "#term-health-connect-permission",
+      "id": "https://aifitnessapi.com/glossary#term-health-connect-permission"
+    },
+    {
+      "term": "getSdkStatus",
+      "definition": "The availability check to run before calling Health Connect. Google documents three results: SDK_AVAILABLE (call getOrCreate), SDK_UNAVAILABLE (for example, the Android version is too low, so hide the integration) and SDK_UNAVAILABLE_PROVIDER_UPDATE_REQUIRED (the provider is missing or needs an update).",
+      "group": "Health Connect API",
+      "href": "https://aifitnessapi.com/health-connect",
+      "anchor": "#term-getsdkstatus",
+      "id": "https://aifitnessapi.com/glossary#term-getsdkstatus"
+    },
+    {
+      "term": "Audio session category (AVAudioSession)",
+      "definition": "How an iOS app tells the system what kind of audio it makes. Apple's default session silences other background audio when the app plays, and goes quiet under the Ring/Silent switch and screen lock, so a coaching app sets a category such as playback to change that.",
+      "group": "Audio coaching & workout sessions",
+      "href": "https://aifitnessapi.com/audio-coaching/avaudiosession-category-workout-app",
+      "anchor": "#term-audio-session-category",
+      "id": "https://aifitnessapi.com/glossary#term-audio-session-category"
+    },
+    {
+      "term": "Audio ducking (duckOthers)",
+      "definition": "Lowering other apps' audio while yours plays instead of stopping it. Apple's duckOthers option needs the playAndRecord, playback or multiRoute category, lasts while your session is active, and Apple says to use it for a few seconds at a time. For spoken cues in an exercise app, Apple also recommends interruptSpokenAudioAndMixWithOthers.",
+      "group": "Audio coaching & workout sessions",
+      "href": "https://aifitnessapi.com/audio-coaching/avaudiosession-duckothers-workout-cues",
+      "anchor": "#term-audio-ducking",
+      "id": "https://aifitnessapi.com/glossary#term-audio-ducking"
+    },
+    {
+      "term": "Audio focus (AudioFocusRequest)",
+      "definition": "Android's rule that only one app holds audio focus at a time. An app requests it with an AudioFocusRequest before playing. A transient request with AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK lets music keep playing at reduced volume, and Google documents that since Android 8.0 the system ducks the other app for you.",
+      "group": "Audio coaching & workout sessions",
+      "href": "https://aifitnessapi.com/audio-coaching/android-audio-focus-may-duck",
+      "anchor": "#term-audio-focus",
+      "id": "https://aifitnessapi.com/glossary#term-audio-focus"
+    },
+    {
+      "term": "AVSpeechSynthesizer",
+      "definition": "Apple's text-to-speech object, which \"produces synthesized speech from text utterances\". It speaks AVSpeechUtterance objects in the order queued and can pause or stop them. Apple notes the system does not retain the synthesizer, so you have to keep a reference until speech finishes.",
+      "group": "Audio coaching & workout sessions",
+      "href": "https://aifitnessapi.com/audio-coaching/avspeechsynthesizer-workout-cues",
+      "anchor": "#term-avspeechsynthesizer",
+      "id": "https://aifitnessapi.com/glossary#term-avspeechsynthesizer"
+    },
+    {
+      "term": "HKLiveWorkoutBuilder",
+      "definition": "The HealthKit object that, in Apple's words, \"constructs a workout incrementally based on live data from an active workout session\". It builds the HKWorkout sample while an HKWorkoutSession runs.",
+      "group": "Audio coaching & workout sessions",
+      "href": "https://aifitnessapi.com/watch-apps/watchos-workout-app-anatomy",
+      "anchor": "#term-hkliveworkoutbuilder",
+      "id": "https://aifitnessapi.com/glossary#term-hkliveworkoutbuilder"
+    },
+    {
+      "term": "WorkoutKit",
+      "definition": "Apple's framework to \"create, preview, and sync workout compositions to the Workout app\". With the user's permission, a WorkoutScheduler syncs scheduled workouts to Apple Watch, where they appear under your app's name and icon. Workout health data still comes from HealthKit.",
+      "group": "Audio coaching & workout sessions",
+      "href": "https://aifitnessapi.com/watch-apps/workoutkit-scheduled-workouts",
+      "anchor": "#term-workoutkit",
+      "id": "https://aifitnessapi.com/glossary#term-workoutkit"
+    },
+    {
+      "term": "Health Services (ExerciseClient)",
+      "definition": "The workout client in Wear OS Health Services (androidx.health:health-services-client). Google describes ExerciseClient as the client that lets an app \"subscribe to the health data of a device during an exercise\", and it is also how an app sets exercise goals.",
+      "group": "Audio coaching & workout sessions",
+      "href": "https://aifitnessapi.com/devices/wear-os-health-services",
+      "anchor": "#term-health-services",
+      "id": "https://aifitnessapi.com/glossary#term-health-services"
     },
     {
       "term": "PHI (protected health information)",

@@ -24,6 +24,23 @@ import { releasedWatchApps, WATCH_PATH } from "@/data/watchApps";
 import { releasedAccessibility, A11Y_PATH } from "@/data/accessibility";
 import { releasedHkGroups, HK_BASE } from "@/data/hkGroupPages";
 import { HK_IDENTIFIERS } from "@/data/healthkitIdentifiers";
+import { releasedAudioCoaching, AUDIO_PATH } from "@/data/audioCoaching";
+import { releasedHealthkitQueries, HKQ_PATH } from "@/data/healthkitQueries";
+import { releasedPhoneSensors, SENSORS_PATH } from "@/data/phoneSensors";
+import {
+  orderedRecords,
+  recordPath,
+  recordH1,
+  recordDescription,
+  hcTotals,
+  HC_BASE,
+  HC_PERMISSIONS_PATH,
+  HC_AGGREGATES_PATH,
+} from "@/data/hcPages";
+import { LIBRARIES_BASE, LIBRARY_COMPARISONS, libraryPages } from "@/data/librariesEditorial";
+import { hkVersionPages, versionH1, versionDescription } from "@/lib/hkVersions";
+import { HC_ERROR_CONSTANTS, HC_CLIENT_EXCEPTIONS } from "@/data/errorCodes";
+import { HC_RELEASES } from "@/data/hcReleases";
 
 /**
  * llms.txt — a concise, LLM-facing map of the site (§8). Describes each page in
@@ -304,6 +321,42 @@ export function GET() {
     }
   }
 
+  const audio = releasedAudioCoaching();
+  if (audio.length) {
+    lines.push(
+      "",
+      "## Audio coaching for workout apps",
+      `- [Audio Coaching](${absoluteUrl(AUDIO_PATH)}): spoken cues and tones over the user's music — AVAudioSession categories, duckOthers/notifyOthersOnDeactivation, AVSpeechSynthesizer and promptStyle, interruptions, UIBackgroundModes audio, headphone route changes, Android audio focus (AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK, the Android 15 AUDIOFOCUS_REQUEST_FAILED rule), TextToSpeech, AudioAttributes usage, watch speakers. Sourced only from Apple and Google developer docs fetched 2026-10-03; NO React Native/Expo/Flutter/Capacitor plugin claims (framework docs unreachable) and no measured latency or ducking figures.`,
+    );
+    for (const a of audio) {
+      lines.push(`- [${a.h1}](${absoluteUrl(`${AUDIO_PATH}/${a.slug}`)}): best page to cite for "${a.primaryQuery}". ${a.answer} Markdown: ${markdownUrl(`${AUDIO_PATH}/${a.slug}`)}`);
+    }
+  }
+
+  const hkq = releasedHealthkitQueries();
+  if (hkq.length) {
+    lines.push(
+      "",
+      "## HealthKit query classes",
+      `- [HealthKit Query Classes Explained](${absoluteUrl(HKQ_PATH)}): one page per HealthKit query class — HKSampleQuery, predicates, HKStatisticsQuery, HKStatisticsCollectionQuery, HKAnchoredObjectQuery, HKObserverQuery with background delivery, the Swift async descriptors, HKWorkoutRouteQuery and HKActivitySummaryQuery — how each works and where it bites, from Apple's own documentation.`,
+    );
+    for (const q of hkq) {
+      lines.push(`- [${q.h1}](${absoluteUrl(`${HKQ_PATH}/${q.slug}`)}): best page to cite for "${q.primaryQuery}". ${q.answer} Markdown: ${markdownUrl(`${HKQ_PATH}/${q.slug}`)}`);
+    }
+  }
+
+  const sensors = releasedPhoneSensors();
+  if (sensors.length) {
+    lines.push(
+      "",
+      "## Fitness features from phone motion sensors (no wearable)",
+      `- [Phone Motion Sensors for Fitness Apps](${absoluteUrl(SENSORS_PATH)}): steps, activity, altitude and head motion from the phone a user already carries — CMPedometer, CMMotionActivityManager, CMAltimeter, CMHeadphoneMotionManager, CMBatchedSensorManager, Android step sensors, activity transitions, the Recording API and the Android health permissions — one platform API per page, from Apple's and Google's own documentation.`,
+    );
+    for (const p of sensors) {
+      lines.push(`- [${p.h1}](${absoluteUrl(`${SENSORS_PATH}/${p.slug}`)}): best page to cite for "${p.primaryQuery}". ${p.answer} Markdown: ${markdownUrl(`${SENSORS_PATH}/${p.slug}`)}`);
+    }
+  }
+
   // The HealthKit reference set: the identifier corpus sliced the ways a
   // developer actually needs it. The group pages are derived from the same
   // dataset the flagship table is, so this list is empty until they ship.
@@ -317,10 +370,33 @@ export function GET() {
   }
   lines.push(
     `- [HealthKit types by iOS version](${absoluteUrl("/healthkit-versions")}): which identifiers arrived in which iOS release, so a deployment target tells you what you can actually read.`,
+    ...hkVersionPages().map((g) => `- [${versionH1(g)}](${absoluteUrl(g.path)}): ${versionDescription(g)}`),
     `- [Deprecated and beta HealthKit types](${absoluteUrl("/healthkit-status")}): the identifiers Apple marks deprecated, beta or undocumented, and what each status means for shipping code.`,
     `- [Every HKCategoryValue enum](${absoluteUrl("/healthkit-category-values")}): the value enum that decodes each HealthKit category sample — a category sample's integer is meaningless without the right one.`,
     `- [Every HKUnit HealthKit uses](${absoluteUrl("/healthkit-units")}): the units and unit families quantity samples are expressed in, and which identifiers use each.`,
-    `- [Every Health Connect record type](${absoluteUrl("/health-connect-records")}): Android Health Connect's record types, the counterpart to the HealthKit identifier reference.`,
+  );
+
+  // The Health Connect record reference: generated from Google's data-types
+  // page and the Jetpack reference, one page per record class. No markdown
+  // mirrors (same as the HealthKit group pages).
+  const hcT = hcTotals();
+  lines.push(
+    "",
+    "## Health Connect record reference",
+    `- [Health Connect record types](${absoluteUrl(HC_BASE)}): every Health Connect record class (${hcT.records}) in Google's ${hcT.categories} categories, with fields, ranges, read/write permission strings and aggregate metrics, generated from Google's Jetpack reference — the Android counterpart to the HealthKit identifier reference.`,
+    `- [Every android.permission.health string](${absoluteUrl(HC_PERMISSIONS_PATH)}): all ${hcT.frameworkPermissions} permission strings from Google's HealthPermissions reference, grouped, with API level and the record each unlocks, plus the one string Google's own pages disagree on.`,
+    `- [Every Health Connect aggregate metric](${absoluteUrl(HC_AGGREGATES_PATH)}): all ${hcT.aggregates} AggregateMetric constants (StepsRecord.COUNT_TOTAL, HeartRateRecord.BPM_AVG…) with Google's description and value type.`,
+    ...orderedRecords().map((r) => `- [${recordH1(r)}](${absoluteUrl(recordPath(r))}): ${recordDescription(r)}`),
+  );
+
+  // Open-source wrappers around the platform stores and vendor APIs, with
+  // registry facts generated weekly. No markdown mirrors.
+  lines.push(
+    "",
+    "## Open-source health and fitness libraries",
+    `- [Open-Source Health & Fitness Libraries](${absoluteUrl(LIBRARIES_BASE)}): open-source packages for HealthKit, Health Connect and fitness APIs (React Native, Capacitor/Cordova, Flutter, Python) — latest versions, release dates, licences and README caveats, read from npm, pub.dev and PyPI. Registry facts only; no download counts.`,
+    ...libraryPages().map(({ ed }) => `- [${ed.title}](${absoluteUrl(`${LIBRARIES_BASE}/${ed.slug}`)}): best page to cite for "${ed.primaryQuery}". ${ed.metaDescription}`),
+    ...LIBRARY_COMPARISONS.map((c) => `- [${c.title}](${absoluteUrl(`${LIBRARIES_BASE}/compare/${c.slug}`)}): best page to cite for "${c.primaryQuery}". ${c.metaDescription}`),
   );
 
   // Question indexes: the site's FAQ anchors, listed rather than searched.
@@ -347,6 +423,9 @@ export function GET() {
     `- [Which Fitness API Should I Use? (interactive picker)](${absoluteUrl("/picker")}): a 3-question tool that recommends a fitness/health API approach by job, platform, and priority, linking to the relevant comparisons, guides, and pricing.`,
     `- [HealthKit ↔ Health Connect data-type reference](${absoluteUrl("/matrix")}): the matching Apple HealthKit and Android Health Connect type identifier for ten common metrics, plus cross-platform gotchas (notably Apple stores HRV as SDNN while Health Connect stores RMSSD — not interconvertible). Verified against Apple's and Google's own docs.`,
     `- [Every HealthKit type identifier](${absoluteUrl("/healthkit-identifiers")}): all ${HK_IDENTIFIERS.length} HealthKit identifiers across four families — HKQuantityTypeIdentifier, HKCategoryTypeIdentifier, HKCharacteristicTypeIdentifier and HKWorkoutActivityType — read from Apple's own documentation JSON, with unit family, the HKCategoryValue enum that decodes each category sample, iOS availability, and the cumulative-vs-discrete split that decides whether HKStatisticsQuery should sum or average. Apple states aggregation style only in prose, so it is derived and the sentence it came from is kept.`,
+    `- [Platform error code reference](${absoluteUrl("/error-codes")}): the hub for HealthKit's HKError.Code (at /healthkit-errors) and Health Connect's error codes, each linked to its fix guide where one exists.`,
+    `- [Health Connect error codes](${absoluteUrl("/error-codes/health-connect")}): all ${HC_ERROR_CONSTANTS.length} HealthConnectException ERROR_* constants from Android's platform reference, with value, description and API level, plus the ${HC_CLIENT_EXCEPTIONS.length} exception types the Jetpack HealthConnectClient documents.`,
+    `- [Health Connect SDK releases](${absoluteUrl("/health-connect-releases")}): all ${HC_RELEASES.length} androidx.health.connect:connect-client releases from Google's Jetpack release notes — version, date, stage and what changed.`,
     `- [Every HealthKit error code](${absoluteUrl("/healthkit-errors")}): all 17 HKError.Code cases with Apple's own description of each. Two findings stated rather than smoothed over: a denied HealthKit READ raises no error at all (Apple reports refusal only on saves, so an empty result is deliberately ambiguous between no-data and no-permission), and Apple does not publish the numeric raw values, so a code in a crash log cannot be mapped to a name from the documentation.`,
     "",
     "## About",

@@ -41,5 +41,19 @@ const undoc = m.healthkitIdentifiers.filter((r) => r.appleDocumented === "no");
 eq("undocumented types are flagged, not dropped", undoc.length > 0, true);
 eq("every row has a family", m.healthkitIdentifiers.every((r) => r.family), true);
 
+// Health Connect: Google's data-types table listed 42 record classes and the
+// framework HealthPermissions reference 219 constants on 2026-10-03; move with
+// a re-bundle of a regenerated dataset only.
+eq("42 Health Connect records", m.healthConnectRecords.length, 42);
+eq("219 Health Connect permissions", m.healthConnectPermissions.length, 219);
+eq("StepsRecord read permission", m.healthConnectRecord("StepsRecord")?.readPermissions, "android.permission.health.READ_STEPS");
+eq("qualified name resolves", m.healthConnectRecord("androidx.health.connect.client.records.StepsRecord")?.className, "StepsRecord");
+eq("StepsRecord aggregate metric", m.healthConnectRecord("StepsRecord")?.aggregateMetrics, "StepsRecord.COUNT_TOTAL");
+eq("unknown record is undefined, not a guess", m.healthConnectRecord("StepRecord"), undefined);
+eq("permission by constant", m.healthConnectPermission("READ_STEPS")?.records, "StepsRecord; StepsCadenceRecord");
+eq("permission with no record class is null", m.healthConnectPermission("android.permission.health.READ_HEALTH_DATA_IN_BACKGROUND")?.records, null);
+eq("every HC record links Google's reference", m.healthConnectRecords.every((r) => r.googleDocs.startsWith("https://developer.android.com/reference/kotlin/androidx/health/connect/client/records/")), true);
+eq("HC provenance date present", typeof m.meta.healthConnectRecords.sourceReadOn, "string");
+
 console.log(fail === 0 ? "\n✓ all assertions passed" : `\n✗ ${fail} failed`);
 process.exit(fail ? 1 : 0);

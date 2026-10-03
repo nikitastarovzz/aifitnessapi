@@ -503,12 +503,32 @@ export const fixEntries: ClusterEntry[] =
     ],
     "related": [
       {
+        "href": "/error-codes/health-connect",
+        "label": "Health Connect error codes"
+      },
+      {
         "href": "/fix/healthkit-no-data",
         "label": "Fix: HealthKit returns no data"
       },
       {
         "href": "/integrate/google-health-connect",
         "label": "Integrate Google Health Connect"
+      },
+      {
+        "href": "/fix/health-connect-securityexception",
+        "label": "Fix: Health Connect SecurityException"
+      },
+      {
+        "href": "/fix/health-connect-not-available",
+        "label": "Fix: SDK_UNAVAILABLE_PROVIDER_UPDATE_REQUIRED"
+      },
+      {
+        "href": "/fix/health-connect-changes-token-expired",
+        "label": "Fix: Health Connect changesTokenExpired"
+      },
+      {
+        "href": "/fix/health-connect-rate-limit",
+        "label": "Fix: Health Connect ERROR_RATE_LIMIT_EXCEEDED"
       },
       {
         "href": "/fix",
@@ -948,6 +968,10 @@ export const fixEntries: ClusterEntry[] =
     ],
     "related": [
       {
+        "href": "/libraries/oura-ring",
+        "label": "oura-ring Python library"
+      },
+      {
         "href": "/integrate/oura-api",
         "label": "Integrate the Oura API (OAuth walkthrough)"
       },
@@ -1270,6 +1294,10 @@ export const fixEntries: ClusterEntry[] =
       }
     ],
     "related": [
+      {
+        "href": "/healthkit-queries/hkobserverquery-background-delivery",
+        "label": "HKObserverQuery and enableBackgroundDelivery"
+      },
       {
         "href": "/fix/healthkit-no-data",
         "label": "HealthKit returning no data"
@@ -1999,6 +2027,460 @@ export const fixEntries: ClusterEntry[] =
       {
         "name": "Label inferences as inferences",
         "text": "In runbooks and log messages, keep what the vendor documents separate from what you observed. Observed while writing large batches, unconfirmed is useful; a stated mechanism you cannot cite is not."
+      }
+    ]
+  },
+  {
+    "slug": "health-connect-securityexception",
+    "primaryQuery": "health connect securityexception",
+    "h1": "Health Connect SecurityException: The Permission Was Not Granted",
+    "metaTitle": "Health Connect SecurityException: Permission Not Granted",
+    "metaDescription": "Google says Health Connect throws SecurityException when a request needs a permission that isn't granted. The causes, ranked, and the documented fix.",
+    "updated": "2026-10-03",
+    "answer": "Health Connect throws SecurityException when a call needs a permission your app does not currently hold. Google's exception table describes it as issues \"when the requests require permissions that aren't granted\". The usual causes are a permission that was declared but never granted, one the user has since revoked, or one missing from the manifest. The fix is to call getGrantedPermissions before every read or write, request anything missing with PermissionController.createRequestPermissionResultContract, and treat the exception as \"not allowed to look\", never as \"no data\".",
+    "body": "Your Android app calls `readRecords`, `insertRecords`, `aggregate` or `getChanges`, and instead of data you get `java.lang.SecurityException`. Health Connect is not telling you the data is missing. It is telling you the call needed a permission your app does not hold at that moment. Google documents exactly one meaning for it, and almost every fix comes down to checking the granted set before you call.\n\n## What Google documents\n\nGoogle's read-data and write-data guides carry the same exception table. The `SecurityException` row reads, verbatim:\n\n> There are issues encountered when the requests require permissions that aren't granted.\n\nThe recommended best practice in the same row: \"make sure that you've declared use of Health Connect data types for your published app. Also, you must declare Health Connect permissions in the manifest file and in your activity.\" (Both guides fetched October 3, 2026: [read data](https://developer.android.com/health-and-fitness/health-connect/read-data), [write data](https://developer.android.com/health-and-fitness/health-connect/write-data).)\n\nAndroid's Jetpack [`HealthConnectClient` reference](https://developer.android.com/reference/kotlin/androidx/health/connect/client/HealthConnectClient) lists `SecurityException` under Throws for `readRecords`, `readRecord`, `insertRecords`, `aggregate`, `deleteRecords`, `getChanges` and `getChangesToken`, each time with the same gloss: \"For requests with unpermitted access.\" The one place it names a specific permission is the medical-records API: \"Caller must hold PERMISSION_WRITE_MEDICAL_DATA in order to call this API, otherwise a SecurityException will be thrown.\"\n\n## Where the HealthConnectException in your stack trace comes from\n\nOn Android 14 and later Health Connect is part of the system, and the platform API reports failures as `android.health.connect.HealthConnectException` with an error code. Android's [platform reference](https://developer.android.com/reference/android/health/connect/HealthConnectException) describes `ERROR_SECURITY` as \"The caller doesn't have the correct permissions for this call. This error may be considered similar to SecurityException.\" The Jetpack library's own source ([`ExceptionConverter.kt`](https://github.com/androidx/androidx/blob/androidx-main/health/connect/connect-client/src/main/java/androidx/health/connect/client/impl/platform/ExceptionConverter.kt), read October 3, 2026) converts that code into `SecurityException(this)` in its platform code path, which requires API 34. So on those devices the `SecurityException` you catch carries the platform exception as its cause. That is internal library code, not a documented contract, so read the cause for logging and never branch on its message text.\n\n## Most likely causes (ranked)\n\nThe ranking is our judgement. Each cause is tied to what Google documents.\n\n1. **Declared, never granted, or since revoked.** The manifest entry makes a permission requestable. It does not grant it. Google's get-started guide says \"users can grant or revoke permissions at any time\", so a read that worked yesterday can throw today. Google's read guide adds that if a user deletes your app, \"all permissions, including the history permission, are revoked\", so a reinstall starts from zero.\n2. **Not declared in the manifest.** Google's get-started guide says the permissions in your request set must be \"declared in your Android manifest first\". Health Connect uses standard `uses-permission` tags, one per type and direction. A typo or a missing write entry fails here.\n3. **A changes token that spans a revoked type.** Google's sync guide recommends \"getting separate tokens per data type instead of getting them in bulk to avoid having an Exception in case one of the permissions is revoked.\" One token over five types fails as a whole when the user revokes any one of them.\n4. **A background read without the background permission.** Android's [`HealthPermission` reference](https://developer.android.com/reference/kotlin/androidx/health/connect/client/permission/HealthPermission) says \"An attempt to read data in background without this permission may result in an error\" for `PERMISSION_READ_HEALTH_DATA_IN_BACKGROUND`. It does not name the exception type, so confirm with your own logs whether this is what you are seeing.\n5. **A published app without its Play Console declaration.** Google's table row tells you to declare your Health Connect data types for your published app. If a type works in a local build and fails only for Play users, see the production section of [Health Connect returns no data](/fix/health-connect-no-data).\n\n## The fix: check the granted set, then call\n\nGoogle's get-started guide is explicit that \"your app needs to check for permissions every time before using them and handle scenarios where permission is lost.\" Ask `permissionController.getGrantedPermissions()` first, and keep a `catch` for the gap between your check and the call.\n\n```kotlin\nval stepsRead = HealthPermission.getReadPermission(StepsRecord::class)\n\nsuspend fun readStepsOrNull(\n    client: HealthConnectClient,\n    start: Instant,\n    end: Instant\n): List<StepsRecord>? {\n    val granted = client.permissionController.getGrantedPermissions()\n    if (stepsRead !in granted) return null // not granted: ask, don't call\n    return try {\n        client.readRecords(\n            ReadRecordsRequest(\n                StepsRecord::class,\n                timeRangeFilter = TimeRangeFilter.between(start, end)\n            )\n        ).records\n    } catch (e: SecurityException) {\n        null // revoked between the check and the call\n    }\n}\n```\n\nA `null` here means \"we may not look\", which is different from an empty list. Keep the two apart in anything that draws charts or streaks.\n\nWhen the permission is missing, request it with the Health Connect contract, which Google's get-started guide says displays the Health Connect permissions screen. Android's [`PermissionController` reference](https://developer.android.com/reference/kotlin/androidx/health/connect/client/PermissionController) documents `createRequestPermissionResultContract()`, and the callback returns the set the user actually granted:\n\n```kotlin\nval requestPermissions = registerForActivityResult(\n    PermissionController.createRequestPermissionResultContract()\n) { granted ->\n    if (stepsRead in granted) {\n        // safe to read\n    } else {\n        // denied: degrade, don't re-prompt in a loop\n    }\n}\n\nrequestPermissions.launch(setOf(stepsRead))\n```\n\nAnd the manifest side, in the format Google's get-started guide shows:\n\n```xml\n<uses-permission android:name=\"android.permission.health.READ_STEPS\"/>\n<uses-permission android:name=\"android.permission.health.WRITE_STEPS\"/>\n```\n\n## Symptom to cause\n\n| What you observe | Likely cause | What to do |\n| --- | --- | --- |\n| Throws on first use after install | Never granted | Check, then request through the contract |\n| Worked, now throws on every call | User revoked it | Re-check every session; offer reconnect |\n| `getChanges` throws after a settings change | One token covers a revoked type | One changes token per record type |\n| Throws only in a background worker | Background permission missing | Request `PERMISSION_READ_HEALTH_DATA_IN_BACKGROUND` |\n| No exception, just an empty list | Not this error | Read [Health Connect returns no data](/fix/health-connect-no-data) |\n\n## Where to go next\n\nThe full setup, including the manifest and permission flow this page assumes, is in the [Google Health Connect integration guide](/integrate/google-health-connect). Every `android.permission.health.*` string by record type is in the [Health Connect records reference](/health-connect/permissions). For an availability failure rather than a permission one, see [SDK_UNAVAILABLE_PROVIDER_UPDATE_REQUIRED](/fix/health-connect-not-available).",
+    "faqs": [
+      {
+        "q": "Is a Health Connect SecurityException the same as an empty result?",
+        "a": "No. An empty list means the call was allowed and found nothing. A SecurityException means the call was not allowed at all. Google's exception table ties it to requests that need permissions that aren't granted. Keep the two apart in your code: an empty list can be shown as zero, but a SecurityException should lead to a permission check and a reconnect prompt, never a zero."
+      },
+      {
+        "q": "Why does getChanges throw SecurityException after the user changes permissions?",
+        "a": "Most likely because one changes token covers several record types and the user revoked one of them. Google's sync guide recommends getting separate tokens per data type instead of getting them in bulk, to avoid an Exception if one of the permissions is revoked. With one token per type, losing one permission stops only that type's sync."
+      },
+      {
+        "q": "Is declaring a Health Connect permission in the manifest enough?",
+        "a": "No. The manifest entry is what makes a permission requestable, and Google's get-started guide says every permission in your request set must be declared there first. Granting happens at runtime through the Health Connect permissions screen, which you open with PermissionController.createRequestPermissionResultContract. The user can also revoke a grant at any time, so check getGrantedPermissions before each use."
+      },
+      {
+        "q": "What is the HealthConnectException in my SecurityException stack trace?",
+        "a": "On Android 14 and later the platform reports the failure as android.health.connect.HealthConnectException with the code ERROR_SECURITY, which Android describes as the caller lacking the correct permissions. The Jetpack library's source wraps that in a SecurityException, so the platform exception shows up as the cause. That wrapping is internal library code, so log the cause but do not branch on its message."
+      }
+    ],
+    "related": [
+      {
+        "href": "/fix/health-connect-no-data",
+        "label": "Fix: Health Connect returns no data"
+      },
+      {
+        "href": "/integrate/google-health-connect",
+        "label": "Integrate Google Health Connect"
+      },
+      {
+        "href": "/health-connect/permissions",
+        "label": "Health Connect records and permissions"
+      },
+      {
+        "href": "/fix/health-connect-not-available",
+        "label": "Fix: SDK_UNAVAILABLE_PROVIDER_UPDATE_REQUIRED"
+      },
+      {
+        "href": "/fix",
+        "label": "Fitness & health API troubleshooting"
+      }
+    ],
+    "cta": {
+      "pitch": "We read Google's Health Connect reference line by line so your Android sync code does not learn these rules from a production incident. Subscribe for the next breakdown."
+    },
+    "steps": [
+      {
+        "name": "Confirm it is a SecurityException, not an empty list",
+        "text": "Log the exception class and its cause. An empty result means the call was allowed and found nothing; a SecurityException means the call needed a permission your app does not hold."
+      },
+      {
+        "name": "Check the manifest declaration",
+        "text": "Every permission you request must first be declared with a uses-permission tag, one per record type and direction. A missing write entry or a typo fails here."
+      },
+      {
+        "name": "Call getGrantedPermissions before every use",
+        "text": "Users can revoke permissions at any time, and uninstalling revokes all of them. Ask the permission controller for the granted set before each read or write instead of trusting an earlier grant."
+      },
+      {
+        "name": "Request what is missing through the Health Connect contract",
+        "text": "Launch PermissionController.createRequestPermissionResultContract with the missing permissions and branch on the set the callback returns. If the user denies, degrade the feature instead of re-prompting in a loop."
+      },
+      {
+        "name": "Split changes tokens per record type",
+        "text": "If getChanges is the call that throws, give each record type its own changes token, as Google's sync guide recommends, so one revoked permission does not stop every type's sync."
+      },
+      {
+        "name": "Check background and Play Console paths",
+        "text": "If it fails only in a background worker, check PERMISSION_READ_HEALTH_DATA_IN_BACKGROUND. If it fails only for users of the Play release, check that the release declares its Health Connect data types."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://developer.android.com/health-and-fitness/health-connect/read-data",
+        "checked": "2026-10-03",
+        "note": "exception table: SecurityException description and best practice; permissions revoked on app deletion"
+      },
+      {
+        "url": "https://developer.android.com/health-and-fitness/health-connect/write-data",
+        "checked": "2026-10-03",
+        "note": "same exception table on the write side"
+      },
+      {
+        "url": "https://developer.android.com/health-and-fitness/health-connect/get-started",
+        "checked": "2026-10-03",
+        "note": "manifest declaration, getGrantedPermissions, createRequestPermissionResultContract, check permissions every time"
+      },
+      {
+        "url": "https://developer.android.com/health-and-fitness/health-connect/sync-data",
+        "checked": "2026-10-03",
+        "note": "separate changes tokens per data type to avoid an Exception when one permission is revoked"
+      },
+      {
+        "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/HealthConnectClient",
+        "checked": "2026-10-03",
+        "note": "SecurityException under Throws for reads, writes, aggregate, getChanges; PERMISSION_WRITE_MEDICAL_DATA note"
+      },
+      {
+        "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/PermissionController",
+        "checked": "2026-10-03",
+        "note": "getGrantedPermissions and createRequestPermissionResultContract"
+      },
+      {
+        "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/permission/HealthPermission",
+        "checked": "2026-10-03",
+        "note": "PERMISSION_READ_HEALTH_DATA_IN_BACKGROUND: reading in background without it may result in an error"
+      },
+      {
+        "url": "https://developer.android.com/reference/android/health/connect/HealthConnectException",
+        "checked": "2026-10-03",
+        "note": "ERROR_SECURITY description"
+      },
+      {
+        "url": "https://github.com/androidx/androidx/blob/androidx-main/health/connect/connect-client/src/main/java/androidx/health/connect/client/impl/platform/ExceptionConverter.kt",
+        "checked": "2026-10-03",
+        "note": "Jetpack converts ERROR_SECURITY to SecurityException(this)"
+      }
+    ]
+  },
+  {
+    "slug": "health-connect-not-available",
+    "primaryQuery": "health connect sdk_unavailable_provider_update_required",
+    "h1": "Health Connect SDK_UNAVAILABLE and SDK_UNAVAILABLE_PROVIDER_UPDATE_REQUIRED: What Each Status Means",
+    "metaTitle": "Health Connect SDK_UNAVAILABLE_PROVIDER_UPDATE_REQUIRED",
+    "metaDescription": "getSdkStatus returned SDK_UNAVAILABLE or SDK_UNAVAILABLE_PROVIDER_UPDATE_REQUIRED? What Google says each status means, and the fix for each.",
+    "updated": "2026-10-03",
+    "answer": "HealthConnectClient.getSdkStatus returns one of three constants. Google documents SDK_UNAVAILABLE_PROVIDER_UPDATE_REQUIRED (value 2) as \"the provider is either not installed or needs to be updated\", so send the user to the Health Connect listing on the Play Store. SDK_UNAVAILABLE (value 1) means the SDK is unavailable on the device, for example because the Android version is too low, and Google says to hide every Health Connect entry point. Only SDK_AVAILABLE (value 3) means you can call getOrCreate.",
+    "body": "`HealthConnectClient.getSdkStatus(context)` came back with something other than `SDK_AVAILABLE`, or your log shows a bare `1` or `2` where you expected a client. Those numbers are the status constants. Android's Jetpack [`HealthConnectClient` reference](https://developer.android.com/reference/kotlin/androidx/health/connect/client/HealthConnectClient) (fetched October 3, 2026) defines exactly three, and each one asks for a different response.\n\n## The three statuses, in Google's words\n\n| Constant | Value | Google's description | What Google says to do |\n| --- | --- | --- | --- |\n| `SDK_UNAVAILABLE` | 1 | \"The Health Connect SDK is unavailable on this device at the time. This can be due to the device running a lower than required Android Version.\" | \"Apps should hide any integration points to Health Connect in this case.\" |\n| `SDK_UNAVAILABLE_PROVIDER_UPDATE_REQUIRED` | 2 | \"The Health Connect SDK APIs are currently unavailable, the provider is either not installed or needs to be updated.\" | \"Apps may choose to redirect to package installers to find a suitable APK.\" |\n| `SDK_AVAILABLE` | 3 | \"The Health Connect SDK APIs are available.\" | \"Apps can subsequently call getOrCreate to get an instance of HealthConnectClient.\" |\n\nAll three are marked \"Added in 1.1.0\" in the reference. If you log the raw integer, `2` means \"install or update Health Connect\", not \"unsupported\".\n\n## Why the device is unavailable\n\nGoogle's [availability page](https://developer.android.com/health-and-fitness/health-connect/availability) sets the floor: \"Health Connect requires a mobile device running Android 9 (API 28) or higher with Google Play services installed.\" On Android 14 and higher, Health Connect is part of the system and is accessible in Settings. On Android 13 and lower, it is a publicly available app on the Google Play Store, and that is where \"not installed or needs to be updated\" comes from.\n\nTwo further rules from Google that produce an unavailable device:\n\n- **Android 8.** Google's get-started guide notes that \"the Health Connect SDK supports Android 8 (API level 26) or higher, while the Health Connect app is only compatible with Android 9 (API level 28) or higher.\" Your app can install on Android 8. Health Connect cannot run there.\n- **Work profiles.** Google says \"Health Connect is not supported on devices with work profiles. While users might be able to grant permissions in the work profile, the Health Connect APIs won't be usable, and no data will be written.\"\n\n## Why getOrCreate crashes when you skip the check\n\nThe reference lists what `getOrCreate` throws if you call it on a device that is not ready: `UnsupportedOperationException` \"if service not available due to SDK version too low or running in a profile\", and `IllegalStateException` \"if the SDK is not available\". Calling `getSdkStatus` first turns a crash into a branch.\n\n## The fix, per status\n\nGoogle's get-started guide also asks you to declare the Health Connect package in your manifest before you get a client, so check this first:\n\n```xml\n<queries>\n    <package android:name=\"com.google.android.apps.healthdata\" />\n</queries>\n```\n\nThen branch on the status. The update-required branch below follows the sample in Google's reference, which sends the user to the Play Store's Health Connect listing with an onboarding hand-off:\n\n```kotlin\nval providerPackageName = \"com.google.android.apps.healthdata\"\n\nwhen (HealthConnectClient.getSdkStatus(context, providerPackageName)) {\n    HealthConnectClient.SDK_AVAILABLE -> {\n        val client = HealthConnectClient.getOrCreate(context)\n        // proceed: check permissions, then read\n    }\n    HealthConnectClient.SDK_UNAVAILABLE_PROVIDER_UPDATE_REQUIRED -> {\n        val uriString =\n            \"market://details?id=$providerPackageName&url=healthconnect%3A%2F%2Fonboarding\"\n        context.startActivity(\n            Intent(Intent.ACTION_VIEW).apply {\n                setPackage(\"com.android.vending\")\n                data = Uri.parse(uriString)\n                putExtra(\"overlay\", true)\n                putExtra(\"callerId\", context.packageName)\n            }\n        )\n    }\n    else -> {\n        // SDK_UNAVAILABLE: hide every Health Connect entry point\n    }\n}\n```\n\nOne inconsistency to know about: the user-facing text in Google's get-started sample for `SDK_UNAVAILABLE` asks the user to \"ensure it is installed and updated\", while the reference says to hide integration points for that status. We follow the reference. An install prompt belongs to the update-required status, and on an unavailable device it only sends the user looking for an app their phone cannot run.\n\n## SDK_AVAILABLE is not the same as every feature available\n\nA device can report `SDK_AVAILABLE` and still lack newer capabilities. Google's [feature availability guide](https://developer.android.com/health-and-fitness/health-connect/features/availability) says \"When new features are added to Health Connect, users may not always update their version of Health Connect,\" and gives `getFeatureStatus` on `healthConnectClient.features`, which returns `FEATURE_STATUS_AVAILABLE` or `FEATURE_STATUS_UNAVAILABLE`. Check it for features such as `FEATURE_READ_HEALTH_DATA_IN_BACKGROUND` and `FEATURE_READ_HEALTH_DATA_HISTORY` before requesting their permissions.\n\n## Treat status as something that changes\n\nOur recommendation: call `getSdkStatus` each time the user reaches a Health Connect feature, not once at install. On Android 13 and lower, Health Connect is a separate Play Store app, so its state can change after your app checked it. On Android 14 Google says it is part of the system and cannot be uninstalled. A user who updates Health Connect from the Play Store should find your feature working the next time they open it, without reinstalling your app.\n\n## Where to go next\n\nOnce the status is `SDK_AVAILABLE` and reads are still empty, work through [Health Connect returns no data](/fix/health-connect-no-data). If calls throw after the client exists, see [Health Connect SecurityException](/fix/health-connect-securityexception). The end-to-end setup is in the [Google Health Connect integration guide](/integrate/google-health-connect).",
+    "faqs": [
+      {
+        "q": "What do the numbers 1, 2 and 3 from getSdkStatus mean?",
+        "a": "They are the three status constants in Android's Jetpack HealthConnectClient reference. 1 is SDK_UNAVAILABLE, meaning Health Connect is unavailable on the device. 2 is SDK_UNAVAILABLE_PROVIDER_UPDATE_REQUIRED, meaning the provider is not installed or needs an update. 3 is SDK_AVAILABLE, meaning you can call getOrCreate. Compare against the named constants rather than the integers."
+      },
+      {
+        "q": "Why does HealthConnectClient.getOrCreate crash instead of returning a client?",
+        "a": "Because the device is not ready and nothing checked first. Android's reference says getOrCreate throws UnsupportedOperationException if the service is not available due to an SDK version that is too low or running in a profile, and IllegalStateException if the SDK is not available. Call getSdkStatus first and only call getOrCreate on SDK_AVAILABLE."
+      },
+      {
+        "q": "Can Health Connect work inside an Android work profile?",
+        "a": "No. Google's availability page says Health Connect is not supported on devices with work profiles. Users may be able to grant permissions in the work profile, but the APIs won't be usable and no data will be written, because the work profile is never considered to be in the foreground. Plan for this if your users are on managed Google Workspace devices."
+      },
+      {
+        "q": "Does SDK_AVAILABLE mean every Health Connect feature works?",
+        "a": "No. SDK_AVAILABLE means the core APIs are usable. Google's feature availability guide notes that users may not always update Health Connect, so newer capabilities such as background reads or reading history need their own getFeatureStatus check, which returns FEATURE_STATUS_AVAILABLE or FEATURE_STATUS_UNAVAILABLE, before you request their permissions."
+      }
+    ],
+    "related": [
+      {
+        "href": "/fix/health-connect-no-data",
+        "label": "Fix: Health Connect returns no data"
+      },
+      {
+        "href": "/integrate/google-health-connect",
+        "label": "Integrate Google Health Connect"
+      },
+      {
+        "href": "/fix/health-connect-securityexception",
+        "label": "Fix: Health Connect SecurityException"
+      },
+      {
+        "href": "/apis/health-connect",
+        "label": "Health Connect API overview"
+      },
+      {
+        "href": "/fix",
+        "label": "Fitness & health API troubleshooting"
+      }
+    ],
+    "cta": {
+      "pitch": "Availability checks, install prompts and the statuses Google documents in one line each: we verify them against the reference so you do not ship a crash. Subscribe for the next one."
+    },
+    "steps": [
+      {
+        "name": "Log the status by name",
+        "text": "Map the integer from getSdkStatus to its constant: 1 is SDK_UNAVAILABLE, 2 is SDK_UNAVAILABLE_PROVIDER_UPDATE_REQUIRED, 3 is SDK_AVAILABLE. The fix depends on which one you have."
+      },
+      {
+        "name": "Declare the Health Connect package in the manifest",
+        "text": "Google's get-started guide asks you to declare com.google.android.apps.healthdata in a queries element before getting a client. Add it if it is missing."
+      },
+      {
+        "name": "Route update-required users to the Play Store",
+        "text": "For SDK_UNAVAILABLE_PROVIDER_UPDATE_REQUIRED, open the Health Connect listing on the Play Store, as the sample in Google's reference does, so the user can install or update it."
+      },
+      {
+        "name": "Hide the feature when the SDK is unavailable",
+        "text": "For SDK_UNAVAILABLE, Google says to hide every Health Connect integration point. Common causes are Android 8, which Health Connect does not run on, and work profiles, where Health Connect is not supported."
+      },
+      {
+        "name": "Only call getOrCreate on SDK_AVAILABLE",
+        "text": "getOrCreate throws UnsupportedOperationException or IllegalStateException on a device that is not ready. Gate it behind the status check."
+      },
+      {
+        "name": "Check feature status for newer capabilities",
+        "text": "Even on SDK_AVAILABLE, call getFeatureStatus before requesting background-read or history permissions, because the installed Health Connect version may not support them."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/HealthConnectClient",
+        "checked": "2026-10-03",
+        "note": "SDK_UNAVAILABLE, SDK_UNAVAILABLE_PROVIDER_UPDATE_REQUIRED, SDK_AVAILABLE values and descriptions; getOrCreate throws; Play Store redirect sample"
+      },
+      {
+        "url": "https://developer.android.com/health-and-fitness/health-connect/get-started",
+        "checked": "2026-10-03",
+        "note": "queries package declaration, getSdkStatus sample and its SDK_UNAVAILABLE text, Android 8 SDK vs Android 9 app"
+      },
+      {
+        "url": "https://developer.android.com/health-and-fitness/health-connect/availability",
+        "checked": "2026-10-03",
+        "note": "Android 9 with Google Play services; system on 14+, Play app on 13 and lower; work profiles; cannot uninstall on 14"
+      },
+      {
+        "url": "https://developer.android.com/health-and-fitness/health-connect/features/availability",
+        "checked": "2026-10-03",
+        "note": "getFeatureStatus, FEATURE_STATUS_AVAILABLE/UNAVAILABLE, feature flags"
+      }
+    ]
+  },
+  {
+    "slug": "health-connect-changes-token-expired",
+    "primaryQuery": "health connect changestokenexpired",
+    "h1": "Health Connect changesTokenExpired: How to Resync Without Losing Data",
+    "metaTitle": "Health Connect changesTokenExpired: Resync Without Loss",
+    "metaDescription": "Google says Health Connect changes tokens are only valid for 30 days. What changesTokenExpired means, and Google's ranked recovery strategies.",
+    "updated": "2026-10-03",
+    "answer": "changesTokenExpired is a Boolean on ChangesResponse, not an exception. It is true when the token you passed to getChanges has expired, and Google documents that changes tokens \"are only valid for 30 days after they're generated\". When you see it, request a new token with getChangesToken, then re-read records from your last read timestamp or the last 30 days and dedupe them against what you already hold by record id. Google ranks that strategy as the most ideal.",
+    "body": "Your incremental sync calls `getChanges(token)` and the response has `changesTokenExpired` set to true. Nothing threw. There are no changes in the list, and the token you stored can no longer tell you what happened since it was issued. Google documents this case and a recovery for it. The one serious mistake is treating the flag as \"nothing changed\".\n\n## What Google documents\n\nAndroid's Jetpack [`ChangesResponse` reference](https://developer.android.com/reference/kotlin/androidx/health/connect/client/response/ChangesResponse) defines the field as \"Whether requested Changes-Token has expired.\" and says at class level: \"If changesTokenExpired is true, clients need to generate a new one. This typically happens when clients have not synced changelog for extended period of time.\"\n\nThe [`HealthConnectClient` reference](https://developer.android.com/reference/kotlin/androidx/health/connect/client/HealthConnectClient) says the same thing from both ends:\n\n- On `getChanges`: \"Provided changesToken may have expired if clients have not synced for extended period of time (such as a month). In this case ChangesResponse.changesTokenExpired will be set, and clients should generate a new changes-token via getChangesToken.\"\n- On `getChangesToken`: \"Changes-tokens are only valid for 30 days after they're generated. Calls to getChanges with an expired changes-token will lead to ChangesResponse.changesTokenExpired\"\n\nGoogle's [sync guide](https://developer.android.com/health-and-fitness/health-connect/sync-data) puts it as \"an unused Changes token expires within 30 days\". The two wordings differ, \"unused\" against \"after they're generated\", but they lead to the same design. Every `getChanges` call hands you a `nextChangesToken`, so an app that syncs regularly always holds a recent one. An expired token means a user went about a month without a successful sync. (All fetched October 3, 2026.)\n\n## Why this is a data-loss bug if you ignore it\n\n`changesTokenExpired` is a Boolean on a normal response. If your loop only processes `response.changes` and saves `nextChangesToken`, an expired token looks exactly like a quiet month. Upserts and deletions from that window never reach your datastore. Deletions are the worst case: a record the user removed in Health Connect stays in your app indefinitely. Google's `DeletionChange` reference says only the `Metadata.id` of a deleted record is returned, \"For privacy\", so you cannot recover deletions by reading records again. A record that no longer exists simply does not come back.\n\n## Google's recovery ladder\n\nThe sync guide's token-expiration advice is to \"use a sync strategy that avoids losing information in such a case\", and it lists three building blocks: search your datastore for the most recently consumed record that has a Health Connect id, request records from Health Connect starting at a specific timestamp and upsert them, and request a new Changes token to reserve for next time.\n\nIt then ranks four strategies, from most to least ideal:\n\n1. **Read and dedupe all data**, \"the most ideal strategy\". Store the timestamp of your last read. \"On token expiry, re-read all data from the most recent timestamp or for the last 30 days. Then, dedupe it against the previously read data using identifiers.\"\n2. **Read only since the last read timestamp.** Google warns this \"results in some data discrepancies around the time of Changes token expiry\".\n3. **Delete, then read the last 30 days**, which Google says \"aligns more closely with what happens on the first integration\".\n4. **Read the last 30 days without deduping**, \"the least ideal strategy\", which \"results in having duplicate data displayed to users\".\n\n## A resync that follows rung one\n\nThe sketch below uses only documented APIs: `getChanges`, `changesTokenExpired`, `nextChangesToken`, `hasMore`, `UpsertionChange.record`, `DeletionChange.recordId`, `getChangesToken` with `ChangesTokenRequest`, and a paged `readRecords`. `SyncStore` stands for your own persistence.\n\n```kotlin\nsuspend fun syncWeight(client: HealthConnectClient, store: SyncStore, ownPackage: String) {\n    val stored = store.changesToken(\"weight\") ?: return resyncWeight(client, store)\n    var next = stored\n    do {\n        val response = client.getChanges(next)\n        if (response.changesTokenExpired) return resyncWeight(client, store)\n        response.changes.forEach { change ->\n            when (change) {\n                is UpsertionChange ->\n                    if (change.record.metadata.dataOrigin.packageName != ownPackage) {\n                        store.upsert(change.record) // keyed on metadata.id\n                    }\n                is DeletionChange -> store.delete(change.recordId)\n            }\n        }\n        next = response.nextChangesToken\n    } while (response.hasMore)\n    store.saveChangesToken(\"weight\", next) // only after the batch is applied\n}\n\nsuspend fun resyncWeight(client: HealthConnectClient, store: SyncStore) {\n    // Take the new token BEFORE re-reading, so writes made during the\n    // re-read show up in the next getChanges instead of falling in a gap.\n    val fresh = client.getChangesToken(ChangesTokenRequest(recordTypes = setOf(WeightRecord::class)))\n    val thirtyDaysAgo = Instant.now().minus(Duration.ofDays(30))\n    val since = minOf(store.lastReadTime(\"weight\") ?: thirtyDaysAgo, thirtyDaysAgo)\n    var pageToken: String? = null\n    do {\n        val page = client.readRecords(\n            ReadRecordsRequest(\n                recordType = WeightRecord::class,\n                timeRangeFilter = TimeRangeFilter.between(since, Instant.now()),\n                pageToken = pageToken\n            )\n        )\n        page.records.forEach { store.upsert(it) } // dedupe on metadata.id\n        pageToken = page.pageToken\n    } while (!pageToken.isNullOrEmpty())\n    store.saveChangesToken(\"weight\", fresh)\n}\n```\n\nThree choices in there are ours, not Google's. We read from whichever is further back, the last read or 30 days ago, so a user whose last read was yesterday still gets a full 30-day re-read. We take the fresh token before the re-read: Google lists getting a new token as part of the strategy but does not fix the order, and taking it first trades a possible gap for an overlap that the dedupe absorbs. And we test `pageToken.isNullOrEmpty()`, because Google's read guide warns that `pageToken` \"can return an empty string \\\"\\\" instead of null when pagination is complete\" on some versions. The same bookkeeping, written for any cursor-based source, is the [incremental sync anchor recipe](/cookbook/incremental-sync-anchor).\n\nThe re-read cannot recover deletions, as noted above. For records the user deleted during the expired window, rung three (delete what you imported for the last 30 days, then read again) is the only one of Google's strategies that converges. Whether that cost is worth paying depends on whether a stale record that was deleted upstream is harmful in your product.\n\n## Keep it from happening\n\n- **One token per type.** The sync guide: \"If your app consumes more than one data type independently, use separate Changes Tokens for each data type.\"\n- **Sync on foreground.** Google's sync guide says that because your app \"can't get notified of new data\", it should check for new data each time it becomes active in the foreground. A user who opens your app at least once a month keeps a live token.\n- **Background reads need permission.** Google's sync guide says apps can only read while in the foreground unless the user grants the Background Read permission. Without it, a user who never opens your app will outlive the token.\n- **Mind the history permission.** Android's `HealthPermission` reference lists `getChanges` among the calls that `PERMISSION_READ_HEALTH_DATA_HISTORY` applies to. The default read window is covered in [Health Connect returns no data](/fix/health-connect-no-data).\n\n## Where to go next\n\nThe design reasoning behind cursor-based sync on both platforms, including how this compares with HealthKit's anchors, is in [incremental sync](/architecture/incremental-sync). The setup this page assumes is in the [Google Health Connect integration guide](/integrate/google-health-connect).",
+    "faqs": [
+      {
+        "q": "Does getChanges throw an exception when the changes token has expired?",
+        "a": "No. Android's reference says that in this case ChangesResponse.changesTokenExpired will be set, and clients should generate a new changes-token via getChangesToken. The call returns normally, so a loop that only reads the changes list and saves the next token will treat an expired token as a quiet period and silently skip everything that happened."
+      },
+      {
+        "q": "How long is a Health Connect changes token valid?",
+        "a": "Android's getChangesToken reference says changes tokens are only valid for 30 days after they're generated, and Google's sync guide says an unused Changes token expires within 30 days. Each getChanges call returns a nextChangesToken, so an app that syncs at least every few weeks always holds a recent token."
+      },
+      {
+        "q": "How do I avoid duplicates when resyncing after token expiry?",
+        "a": "Dedupe on identifiers. Google's most ideal strategy is to re-read from your last read timestamp or the last 30 days and dedupe against previously read data using identifiers. Key your datastore on each record's metadata id, so re-reading the same record updates it instead of inserting a second copy. Google also recommends setting a client record id on records your app writes."
+      },
+      {
+        "q": "Can a resync after changesTokenExpired recover deleted records?",
+        "a": "Not by reading. Health Connect reports deletions only as a DeletionChange carrying the deleted record's id, and a deleted record does not come back from a fresh read. If deletions in the expired window matter for your product, use Google's delete-then-read strategy: remove what you imported for the last 30 days and read it again."
+      }
+    ],
+    "related": [
+      {
+        "href": "/cookbook/incremental-sync-anchor",
+        "label": "Recipe: incremental sync with a stored cursor"
+      },
+      {
+        "href": "/architecture/incremental-sync",
+        "label": "Incremental sync architecture"
+      },
+      {
+        "href": "/fix/health-connect-no-data",
+        "label": "Fix: Health Connect returns no data"
+      },
+      {
+        "href": "/integrate/google-health-connect",
+        "label": "Integrate Google Health Connect"
+      },
+      {
+        "href": "/fix",
+        "label": "Fitness & health API troubleshooting"
+      }
+    ],
+    "cta": {
+      "pitch": "Sync cursors, expiry and deletions are where health data quietly goes wrong. We take Google's sync rules apart as we verify them; subscribe for the next breakdown."
+    },
+    "steps": [
+      {
+        "name": "Check changesTokenExpired on every getChanges response",
+        "text": "It is a Boolean on a normal response, not an exception. Test it before processing changes, and never save the next token from a response where it is true."
+      },
+      {
+        "name": "Request a fresh token first",
+        "text": "Call getChangesToken with a ChangesTokenRequest for the same record type before re-reading, so writes made during the re-read appear in the next getChanges instead of falling in a gap."
+      },
+      {
+        "name": "Re-read from the last read or 30 days back",
+        "text": "Read records with a paged readRecords from whichever is further back, your stored last-read timestamp or 30 days ago. Loop until the page token is null or empty."
+      },
+      {
+        "name": "Dedupe on record ids",
+        "text": "Upsert each record keyed on its metadata id so the overlap updates rows rather than duplicating them. Google ranks read-and-dedupe as the most ideal recovery strategy."
+      },
+      {
+        "name": "Decide how to handle deletions",
+        "text": "A re-read cannot surface records deleted during the expired window. If stale deleted data is harmful, use Google's delete-then-read strategy for the last 30 days."
+      },
+      {
+        "name": "Keep tokens per type and sync on foreground",
+        "text": "Use one changes token per record type and run a sync each time the app becomes active, so a user who opens the app monthly never lets a token expire."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/response/ChangesResponse",
+        "checked": "2026-10-03",
+        "note": "changesTokenExpired: Whether requested Changes-Token has expired; class-level note"
+      },
+      {
+        "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/HealthConnectClient",
+        "checked": "2026-10-03",
+        "note": "getChanges expiry note (such as a month); getChangesToken: only valid for 30 days after they're generated"
+      },
+      {
+        "url": "https://developer.android.com/health-and-fitness/health-connect/sync-data",
+        "checked": "2026-10-03",
+        "note": "unused token expires within 30 days; token-expiration approaches; ranked recovery strategies; per-type tokens; import timings"
+      },
+      {
+        "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/changes/DeletionChange",
+        "checked": "2026-10-03",
+        "note": "DeletionChange returns only Metadata.id, for privacy; recordId"
+      },
+      {
+        "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/response/ReadRecordsResponse",
+        "checked": "2026-10-03",
+        "note": "pageToken null when no more pages"
+      },
+      {
+        "url": "https://developer.android.com/health-and-fitness/health-connect/read-data",
+        "checked": "2026-10-03",
+        "note": "pageToken may be an empty string when pagination completes; background read permission"
+      },
+      {
+        "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/permission/HealthPermission",
+        "checked": "2026-10-03",
+        "note": "PERMISSION_READ_HEALTH_DATA_HISTORY applies to getChanges"
+      }
+    ]
+  },
+  {
+    "slug": "health-connect-rate-limit",
+    "primaryQuery": "health connect rate limit exceeded",
+    "h1": "Health Connect ERROR_RATE_LIMIT_EXCEEDED: Quota Errors and How to Back Off",
+    "metaTitle": "Health Connect ERROR_RATE_LIMIT_EXCEEDED: Quota Errors",
+    "metaDescription": "Android defines ERROR_RATE_LIMIT_EXCEEDED as the caller exhausting its rate limit. How it reaches Jetpack code, what Google documents, how to back off.",
+    "updated": "2026-10-03",
+    "answer": "ERROR_RATE_LIMIT_EXCEEDED is a Health Connect platform error code (value 7), which Android describes as \"The caller exhausted the allotted rate limit.\" Through the Jetpack library on Android 14 and later it reaches your code as an IllegalStateException with the platform HealthConnectException as its cause, and Google's own read sample catches IllegalStateException as a quota error and backs off. Google documents periodic and daily limits on reads and writes, with stricter limits in the background, but publishes no numbers. Retry the failed page or batch after a delay rather than restarting, and use aggregation and the changelog to make fewer calls.",
+    "body": "A large Health Connect read or a bulk insert starts failing partway through with `java.lang.IllegalStateException`, and when you dig into the cause you find `android.health.connect.HealthConnectException` with error code 7. That code is `ERROR_RATE_LIMIT_EXCEEDED`. Google documents that the limits exist and how to stay under them. It does not publish the numbers.\n\n## What Google documents\n\nAndroid's [platform `HealthConnectException` reference](https://developer.android.com/reference/android/health/connect/HealthConnectException) (fetched October 3, 2026) defines `ERROR_RATE_LIMIT_EXCEEDED`, constant value 7, added in API level 34, as \"The caller exhausted the allotted rate limit.\"\n\nGoogle's [rate-limiting guide](https://developer.android.com/health-and-fitness/health-connect/rate-limiting) describes how the limits are structured:\n\n- **Reads and changelog:** \"A periodic limit on the number of API calls your app can make to the API\" and \"A daily limit on the number of API calls your app can make.\"\n- **Insert, update and delete:** a periodic limit, a daily limit, \"A memory limit for bulk insertions\" and \"A memory limit for single record insertions.\"\n- **Background:** \"background rate limiting is stricter than foreground rate limiting.\"\n\nThe guide says limits \"are variable based on the type of operation your app is performing, and whether that operation occurs in the foreground or background.\" It gives no figures. If a blog post quotes a number of calls per minute, that number does not come from this guide.\n\n## What your code actually catches\n\nThrough the Jetpack library you will not see `HealthConnectException` as the thrown type. The library's source ([`ExceptionConverter.kt`](https://github.com/androidx/androidx/blob/androidx-main/health/connect/connect-client/src/main/java/androidx/health/connect/client/impl/platform/ExceptionConverter.kt), read October 3, 2026) maps four platform codes to standard exceptions: I/O to `IOException`, remote to `RemoteException`, security to `SecurityException`, invalid argument to `IllegalArgumentException`. Every other code, rate limiting included, becomes `IllegalStateException(this)` with the platform exception as its cause. That file only covers the platform path, which needs API 34 or higher. We did not verify how the Android 13 and lower app path reports a rate limit, and the mapping is internal code that can change.\n\nGoogle's own read sample agrees on the type. Its paging example in the [read-data guide](https://developer.android.com/health-and-fitness/health-connect/read-data) ends in `catch (quotaError: IllegalStateException)` with the comment `// Backoff`.\n\n`IllegalStateException` is not only a quota signal. Google's exception table lists two other meanings: \"The Health Connect service isn't available\" and \"The request isn't a valid construction.\" A request that is badly built fails the same way on every retry, so check the cause before you back off:\n\n```kotlin\n@RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)\nfun platformErrorCode(e: IllegalStateException): Int? =\n    (e.cause as? HealthConnectException)?.errorCode\n\nfun isWorthRetrying(e: IllegalStateException): Boolean {\n    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.UPSIDE_DOWN_CAKE) return true // cause not inspectable here\n    return when (platformErrorCode(e)) {\n        HealthConnectException.ERROR_RATE_LIMIT_EXCEEDED,\n        HealthConnectException.ERROR_DATA_SYNC_IN_PROGRESS -> true\n        else -> false\n    }\n}\n```\n\n`ERROR_DATA_SYNC_IN_PROGRESS` (code 8) also belongs in the retry bucket. Android describes it as \"Data sync is in progress. Data read and writes are blocked. Caller should try this api call again later.\"\n\n## Back off and resume from the same page\n\nGoogle's read guide notes that `ReadRecordsRequest` has \"a default pageSize value of 1000\" and warns, when paging, to \"be careful to avoid rate-limiting concerns.\" When a page fails, retry that page with the same `pageToken`. Do not start the whole read again.\n\n```kotlin\nsuspend fun readAllHeartRate(\n    client: HealthConnectClient,\n    start: Instant,\n    end: Instant,\n    sink: suspend (List<HeartRateRecord>) -> Unit\n) {\n    var pageToken: String? = null\n    var waitMs = 1_000L // illustrative, not a Google figure\n    do {\n        try {\n            val page = client.readRecords(\n                ReadRecordsRequest(\n                    recordType = HeartRateRecord::class,\n                    timeRangeFilter = TimeRangeFilter.between(start, end),\n                    pageToken = pageToken\n                )\n            )\n            sink(page.records)\n            pageToken = page.pageToken\n            waitMs = 1_000L\n        } catch (e: IllegalStateException) {\n            if (!isWorthRetrying(e) || waitMs > 64_000L) throw e\n            delay(waitMs) // same pageToken: resume, don't restart\n            waitMs *= 2\n        }\n    } while (!pageToken.isNullOrEmpty())\n}\n```\n\nThe delays are ours. Google publishes no retry interval, so treat them as a starting point to tune against your own logs. For a sync job that must give up and continue later, persist `pageToken` along with the records you have stored, and pick up from it next run. That pattern is covered in [historical backfill](/architecture/historical-backfill).\n\n## Writes: retry from the failure, not from zero\n\nGoogle's rate-limiting guide is direct about write failures: \"we recommend retrying from where the exception occurred. Don't delete all the data in question and retry the entire write request. This approach eats into your insert quota, reduces performance, and has a negative impact on battery life.\"\n\nBatch size sets how much you redo. Android's reference says `insertRecords` runs \"in a transaction - if one fails, none is inserted\", so a failed batch is all-or-nothing and the retry unit is the batch. Our recommendation is to write in moderate batches and record which batches have committed, so a retry resends one batch instead of the whole export. The memory limits on bulk and single insertions are a further reason to avoid one huge `insertRecords` call.\n\n## Spend fewer calls in the first place\n\nGoogle names three habits that lower the risk:\n\n1. **Aggregate instead of summing raw reads.** The read guide says the aggregation API \"lessens the chances of rate limiting\" and handles duplicate records.\n2. **Use the changelog for sync.** The rate-limiting guide: \"you should utilize changelog handling to synchronize your database with data from Health Connect, rather than over-relying on raw read requests.\" Changes tokens expire, which is covered in [changesTokenExpired](/fix/health-connect-changes-token-expired).\n3. **Do less in the background.** Background limits are stricter, so leave heavy backfills for foreground sessions where you can. The scheduling trade-offs are in [background sync](/architecture/background-sync).\n\n## Where to go next\n\nIf the failing call threw `SecurityException` rather than `IllegalStateException`, see [Health Connect SecurityException](/fix/health-connect-securityexception). For a cloud API's HTTP 429 rather than an on-device quota, the [Fitbit 429 guide](/fix/fitbit-api-429-rate-limit) covers the server-side version of this problem.",
+    "faqs": [
+      {
+        "q": "What are Health Connect's actual rate limit numbers?",
+        "a": "Google does not publish them. Its rate-limiting guide, checked October 3, 2026, describes periodic and daily limits on reads and changelog calls, periodic, daily and memory limits on inserts, updates and deletes, and stricter limits in the background, but gives no figures. Build a loop that backs off when it is limited instead of tuning to a number found elsewhere."
+      },
+      {
+        "q": "Which exception does the Jetpack client throw when Health Connect rate-limits my app?",
+        "a": "IllegalStateException. On Android 14 and later the Jetpack library's source converts every platform error code it does not map to IOException, RemoteException, SecurityException or IllegalArgumentException into IllegalStateException, with the platform HealthConnectException as the cause. Google's read sample catches IllegalStateException as a quota error. Check the cause's error code before retrying, because an invalid request throws the same type."
+      },
+      {
+        "q": "Why does my Health Connect background sync get rate-limited before foreground reads do?",
+        "a": "Google's rate-limiting guide says background rate limiting is stricter than foreground rate limiting, because background work costs battery and raises privacy questions. Move heavy backfills to foreground sessions where you can, keep background jobs small, and use changes tokens instead of repeated raw reads."
+      },
+      {
+        "q": "Should I retry a failed Health Connect batch insert from the beginning?",
+        "a": "No. Google's guide recommends retrying from where the exception occurred, and warns that deleting the data and retrying the entire write eats into your insert quota. Since insertRecords is a transaction where one failure means nothing in that call is inserted, record which batches committed and resend only the failed one."
+      }
+    ],
+    "related": [
+      {
+        "href": "/architecture/historical-backfill",
+        "label": "Backfilling years of data without hitting limits"
+      },
+      {
+        "href": "/architecture/background-sync",
+        "label": "Background sync architecture"
+      },
+      {
+        "href": "/fix/health-connect-changes-token-expired",
+        "label": "Fix: Health Connect changesTokenExpired"
+      },
+      {
+        "href": "/fix/health-connect-no-data",
+        "label": "Fix: Health Connect returns no data"
+      },
+      {
+        "href": "/fix",
+        "label": "Fitness & health API troubleshooting"
+      }
+    ],
+    "cta": {
+      "pitch": "Quotas Google describes but never numbers deserve code that backs off instead of guessing. We cover the on-device and cloud versions of this problem; subscribe for the next one."
+    },
+    "steps": [
+      {
+        "name": "Read the cause of the IllegalStateException",
+        "text": "On Android 14 and later, check whether the cause is a HealthConnectException with error code ERROR_RATE_LIMIT_EXCEEDED. The same exception type also means an unavailable service or an invalid request, which a retry will not fix."
+      },
+      {
+        "name": "Back off and retry the same page",
+        "text": "Wait, then retry with the same pageToken so the read resumes where it stopped. Double the wait on each failure and give up after a bound you choose; Google publishes no interval."
+      },
+      {
+        "name": "Retry writes from the failed batch",
+        "text": "insertRecords is a transaction, so a failed call inserted nothing. Resend only that batch, never the whole export, which Google warns eats into your insert quota."
+      },
+      {
+        "name": "Aggregate instead of reading raw records",
+        "text": "For totals and averages, use aggregate. Google says it lessens the chances of rate limiting and handles duplicate records."
+      },
+      {
+        "name": "Sync through the changelog",
+        "text": "Use changes tokens to pick up new and deleted data instead of re-reading time ranges. Google's rate-limiting guide recommends changelog handling over raw reads."
+      },
+      {
+        "name": "Move heavy work to the foreground",
+        "text": "Background limits are stricter than foreground ones. Keep background jobs small and resumable, and run large backfills while the app is open."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://developer.android.com/reference/android/health/connect/HealthConnectException",
+        "checked": "2026-10-03",
+        "note": "ERROR_RATE_LIMIT_EXCEEDED (7), ERROR_DATA_SYNC_IN_PROGRESS (8), ERROR_SECURITY and related codes"
+      },
+      {
+        "url": "https://developer.android.com/health-and-fitness/health-connect/rate-limiting",
+        "checked": "2026-10-03",
+        "note": "periodic, daily and memory limits; background stricter; retry from where the exception occurred; changelog over raw reads; no figures published"
+      },
+      {
+        "url": "https://developer.android.com/health-and-fitness/health-connect/read-data",
+        "checked": "2026-10-03",
+        "note": "quotaError: IllegalStateException sample; default pageSize 1000; aggregation lessens rate limiting; IllegalStateException table row"
+      },
+      {
+        "url": "https://developer.android.com/health-and-fitness/health-connect/write-data",
+        "checked": "2026-10-03",
+        "note": "same exception table on the write side"
+      },
+      {
+        "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/HealthConnectClient",
+        "checked": "2026-10-03",
+        "note": "insertRecords runs in a transaction: if one fails, none is inserted"
+      },
+      {
+        "url": "https://github.com/androidx/androidx/blob/androidx-main/health/connect/connect-client/src/main/java/androidx/health/connect/client/impl/platform/ExceptionConverter.kt",
+        "checked": "2026-10-03",
+        "note": "Jetpack maps unmapped platform codes, including rate limiting, to IllegalStateException(this)"
       }
     ]
   }

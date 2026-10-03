@@ -265,6 +265,10 @@ export const guideEntries: ClusterEntry[] =
     ],
     "related": [
       {
+        "href": "/phone-sensors",
+        "label": "Phone motion sensors for fitness apps"
+      },
+      {
         "href": "/guides/camera-pose-tracking",
         "label": "Camera pose tracking, explained"
       },

@@ -662,6 +662,176 @@ function buildHealthKitDataset() {
 
 
 /**
+ * Health Connect record types and permission strings.
+ *
+ * Like the HealthKit dataset, src/data/healthConnectRecords.ts is itself
+ * generated (by scripts/fetch-health-connect-records.mjs) and holds plain JSON
+ * array literals, so this reads them with JSON.parse. Two guards, both hard:
+ * the parsed row count must equal the count of row markers in the module's own
+ * slice, and must not fall below the floor the generator itself enforces
+ * (42 record classes and 219 framework permissions on Google's pages read
+ * 2026-10-03). Move the floors only with a regeneration that changes them.
+ */
+const HC_MIN_RECORDS = 42;
+const HC_MIN_PERMISSIONS = 219;
+
+function hcJsonArray(src, rel, name) {
+  const re = new RegExp(`export const ${name}: [^=]+= `);
+  const m = re.exec(src);
+  if (!m) fail(`could not find ${name} in ${rel}`);
+  const open = m.index + m[0].length;
+  const end = src.indexOf("\n];", open);
+  if (end === -1) fail(`could not find the end of ${name} in ${rel}`);
+  let rows;
+  try {
+    rows = JSON.parse(src.slice(open, end + 3).trim().replace(/;$/, ""));
+  } catch (e) {
+    fail(`${name} in ${rel} is not parseable JSON: ${e.message}`);
+  }
+  if (!Array.isArray(rows) || rows.length === 0) fail(`${name} parsed to no rows`);
+  return { rows, slice: src.slice(open, end) };
+}
+
+function hcConst(src, rel, name) {
+  const m = new RegExp(`export const ${name}\\s*=\\s*("(?:[^"\\\\]|\\\\.)*")`).exec(src);
+  if (!m) fail(`could not read ${name} from ${rel}`);
+  return JSON.parse(m[1]);
+}
+
+const HC_REL = "src/data/healthConnectRecords.ts";
+
+function buildHealthConnectRecordsDataset() {
+  const src = read(HC_REL);
+  const { rows, slice } = hcJsonArray(src, HC_REL, "HC_RECORDS");
+  const declared = countOf(slice, /^\s{4}"className":\s*"/gm);
+  if (rows.length !== declared) fail(`Health Connect parse yielded ${rows.length} records but ${HC_REL} declares ${declared}`);
+  if (rows.length < HC_MIN_RECORDS) fail(`Health Connect records: ${rows.length}, expected at least ${HC_MIN_RECORDS}`);
+  const fetchedOn = hcConst(src, HC_REL, "HC_FETCHED_ON");
+  const dataTypesUrl = hcConst(src, HC_REL, "HC_DATA_TYPES_URL");
+
+  for (const r of rows) {
+    if (!r.className || !r.slug) fail(`Health Connect row without className/slug in ${HC_REL}`);
+    if (typeof r.sourceUrl !== "string" || !r.sourceUrl.startsWith("https://developer.android.com/reference/kotlin/androidx/health/connect/client/records/")) {
+      fail(`Health Connect row ${r.className} has no Jetpack reference sourceUrl — regenerate ${HC_REL}`);
+    }
+    if (!r.permissionEvidence) fail(`Health Connect row ${r.className} has permissions without evidence`);
+  }
+
+  const join = (a) => (Array.isArray(a) && a.length ? a.join("; ") : null);
+  const items = rows.map((r) => ({
+    className: r.className,
+    qualifiedName: r.qualifiedName,
+    dataType: r.dataTypeLabel,
+    category: r.category,
+    recordShape: r.recordShape,
+    unitClass: r.unitClass,
+    mandatoryFields: join(r.mandatoryFields),
+    readPermissions: join(r.readPermissions),
+    writePermissions: join(r.writePermissions),
+    permissionEvidence: r.permissionEvidence,
+    aggregateMetrics: join(r.aggregateMetrics.map((m) => `${r.className}.${m.name}`)),
+    addedIn: r.addedIn,
+    featureFlag: r.featureFlag,
+    deprecated: r.deprecated ? "yes" : "no",
+    description: Array.isArray(r.description) && r.description.length ? r.description[0] : null,
+    googleDocs: r.sourceUrl,
+    sourceUpdated: r.sourceUpdated,
+    page: abs(`/health-connect/${r.slug}`),
+  }));
+
+  return {
+    slug: "health-connect-records-2026",
+    declared,
+    columns: [
+      "className", "qualifiedName", "dataType", "category", "recordShape", "unitClass", "mandatoryFields",
+      "readPermissions", "writePermissions", "permissionEvidence", "aggregateMetrics", "addedIn", "featureFlag",
+      "deprecated", "description", "googleDocs", "sourceUpdated", "page",
+    ],
+    doc: {
+      name: "Health Connect Record Types 2026",
+      version: VERSION,
+      publisher: PUBLISHER,
+      license: LICENSE,
+      methodology:
+        `Every record class in Google's Health Connect data-types table (${dataTypesUrl}), read on ${fetchedOn}, joined to each class's Jetpack reference page. Class name, category, record shape, unit class, mandatory fields and the read/write permission strings are copied from Google's data-types table; the permission evidence column keeps the table text the strings were read from. Aggregate metrics, availability, feature flags and the description are copied from the Jetpack reference. Nothing is inferred: a field Google's pages do not state is null. Where Google's own pages disagree (the data-types table and the HealthPermissions reference spell one exercise-route permission differently), the record page shows both readings; this dataset carries the data-types table's string.`,
+      generatedFrom: `${HC_REL} (generated by scripts/fetch-health-connect-records.mjs, then by scripts/build-datasets.mjs)`,
+      isBasedOn: dataTypesUrl,
+      sourceReadOn: fetchedOn,
+      fields: {
+        className: "Jetpack record class name",
+        category: "Google's category for the data type, as printed on the data-types page",
+        recordShape: "Interval, Instantaneous or Series, per Google's table",
+        unitClass: "Unit class Google's table names; null where none",
+        mandatoryFields: "Fields Google's table lists as mandatory, semicolon-separated",
+        readPermissions: "android.permission.health read strings for the class, semicolon-separated",
+        writePermissions: "android.permission.health write strings for the class, semicolon-separated",
+        permissionEvidence: "The table text the permission strings were read from",
+        aggregateMetrics: "AggregateMetric constants on the class, semicolon-separated; null where none",
+        addedIn: "Availability as the Jetpack reference prints it",
+        description: "The first paragraph of Google's class description, verbatim",
+        googleDocs: "Google's Jetpack reference page the row was read from",
+        sourceUpdated: "That page's \"Last updated\" date",
+        page: "This site's page for the record",
+      },
+      items,
+    },
+  };
+}
+
+function buildHealthConnectPermissionsDataset() {
+  const src = read(HC_REL);
+  const { rows, slice } = hcJsonArray(src, HC_REL, "HC_FRAMEWORK_PERMISSIONS");
+  const declared = countOf(slice, /^\s{4}"constant":\s*"/gm);
+  if (rows.length !== declared) fail(`Health Connect permission parse yielded ${rows.length} rows but ${HC_REL} declares ${declared}`);
+  if (rows.length < HC_MIN_PERMISSIONS) fail(`Health Connect permissions: ${rows.length}, expected at least ${HC_MIN_PERMISSIONS}`);
+  const fetchedOn = hcConst(src, HC_REL, "HC_FETCHED_ON");
+  const url = hcConst(src, HC_REL, "HC_FW_PERMISSIONS_URL");
+
+  const { rows: records } = hcJsonArray(src, HC_REL, "HC_RECORDS");
+  const recordsFor = (value) =>
+    records.filter((r) => r.readPermissions.includes(value) || r.writePermissions.includes(value)).map((r) => r.className);
+
+  const items = rows.map((p) => {
+    if (!p.value || !p.value.startsWith("android.permission.health.")) fail(`permission row ${p.constant} has no android.permission.health value`);
+    const recs = recordsFor(p.value);
+    return {
+      constant: p.constant,
+      permission: p.value,
+      description: p.description,
+      protectionLevel: p.protectionLevel,
+      added: p.added,
+      records: recs.length ? recs.join("; ") : null,
+    };
+  });
+
+  return {
+    slug: "health-connect-permissions-2026",
+    declared,
+    columns: ["constant", "permission", "description", "protectionLevel", "added", "records"],
+    doc: {
+      name: "Health Connect Permission Strings 2026",
+      version: VERSION,
+      publisher: PUBLISHER,
+      license: LICENSE,
+      methodology:
+        `Every constant on Android's framework HealthPermissions reference (${url}), read on ${fetchedOn}. Constant, manifest string, description, protection level and the availability line are copied from Google's page. The records column joins each string to the Health Connect record classes whose data-types-table row names it, and is null where no record class does (background, history, medical and symptom permissions).`,
+      generatedFrom: `${HC_REL} (generated by scripts/fetch-health-connect-records.mjs, then by scripts/build-datasets.mjs)`,
+      isBasedOn: url,
+      sourceReadOn: fetchedOn,
+      fields: {
+        constant: "Constant on android.health.connect.HealthPermissions",
+        permission: "The manifest string",
+        description: "Google's description, verbatim",
+        protectionLevel: "Protection level as Google prints it",
+        added: "Availability line as Google prints it",
+        records: "Record classes whose data-types row names this string, semicolon-separated; null where none",
+      },
+      items,
+    },
+  };
+}
+
+/**
  * The API access-structure dataset.
  *
  * This one was hand-published before the generator existed, which made it the
@@ -760,7 +930,15 @@ function buildApisDataset() {
   };
 }
 
-const built = [buildApisDataset(), buildMatrixDataset(), buildChangesDataset(), buildGlossaryDataset(), buildHealthKitDataset()].map(writeDataset);
+const built = [
+  buildApisDataset(),
+  buildMatrixDataset(),
+  buildChangesDataset(),
+  buildGlossaryDataset(),
+  buildHealthKitDataset(),
+  buildHealthConnectRecordsDataset(),
+  buildHealthConnectPermissionsDataset(),
+].map(writeDataset);
 
 console.log(
   `\n✓ ${built.length} datasets written to public/datasets/ ` +

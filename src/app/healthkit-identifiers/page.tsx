@@ -217,7 +217,7 @@ export default function HealthKitIdentifiersPage() {
           off the type at compile time.
         </PageSummary>
 
-        <div id="answer" className="speakable mt-6 rounded-2xl border border-brand-400/30 bg-brand-500/5 p-5 text-lg leading-relaxed text-[var(--fg)] sm:p-6">
+        <div className="mt-6 rounded-2xl border border-brand-400/30 bg-brand-500/5 p-5 text-lg leading-relaxed text-[var(--fg)] sm:p-6">
           HealthKit names data with {HK_IDENTIFIERS.length} identifiers across four families —{" "}
           {QUANTITY.length} quantity types, {CATEGORY.length} category types,{" "}
           {HK_FAMILIES.find((f) => f.key === "characteristic")?.count} characteristics and{" "}

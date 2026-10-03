@@ -40,6 +40,10 @@ export const RELEASED_FIX = new Set<string>([
   "healthkit-workout-session-errors",
   "healthkit-guest-user-mode",
   "healthkit-undocumented-errors",
+  "health-connect-securityexception",
+  "health-connect-not-available",
+  "health-connect-changes-token-expired",
+  "health-connect-rate-limit",
 ]);
 
 export const allFixes: ClusterEntry[] = fixEntries;

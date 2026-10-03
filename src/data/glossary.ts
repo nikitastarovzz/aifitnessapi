@@ -70,6 +70,28 @@ export const GROUPS: Group[] = [
     ],
   },
   {
+    title: "Health Connect API",
+    terms: [
+      { term: "Health Connect record (Record)", def: "The unit of data in Health Connect's Jetpack client. Every data type is a class implementing the Record interface, such as StepsRecord or WeightRecord, which Google's reference calls the \"common interface shared by readable or writable records\". Each one carries a metadata object.", href: "/health-connect" },
+      { term: "Aggregate metric (AggregateMetric)", def: "A total Health Connect computes for you, such as StepsRecord.COUNT_TOTAL. Google's reference calls AggregateMetric an \"identifier to supported metrics for aggregation\": you pass a set of them to aggregate() and read each value from the AggregationResult it returns.", href: "/health-connect/aggregate-metrics" },
+      { term: "Changes token", def: "Health Connect's sync cursor. getChangesToken() returns a string \"representing a point in time\" for the record types you name, and getChanges() returns the upserts and deletions since then plus the next token. Google documents that changes tokens are only valid for 30 days; an expired one sets changesTokenExpired and you re-sync.", href: "/architecture/incremental-sync" },
+      { term: "Health Connect permission (HealthPermission)", def: "A per-record-type grant such as android.permission.health.READ_STEPS or WRITE_STEPS, declared in the manifest and requested at runtime. Google defines HealthPermission as \"a permission either to read or write data associated with a Record type\". Reading in the background and reading the entire history are separate permissions.", href: "/health-connect/permissions" },
+      { term: "getSdkStatus", def: "The availability check to run before calling Health Connect. Google documents three results: SDK_AVAILABLE (call getOrCreate), SDK_UNAVAILABLE (for example, the Android version is too low, so hide the integration) and SDK_UNAVAILABLE_PROVIDER_UPDATE_REQUIRED (the provider is missing or needs an update).", href: "/health-connect" },
+    ],
+  },
+  {
+    title: "Audio coaching & workout sessions",
+    terms: [
+      { term: "Audio session category (AVAudioSession)", def: "How an iOS app tells the system what kind of audio it makes. Apple's default session silences other background audio when the app plays, and goes quiet under the Ring/Silent switch and screen lock, so a coaching app sets a category such as playback to change that.", href: "/audio-coaching/avaudiosession-category-workout-app" },
+      { term: "Audio ducking (duckOthers)", def: "Lowering other apps' audio while yours plays instead of stopping it. Apple's duckOthers option needs the playAndRecord, playback or multiRoute category, lasts while your session is active, and Apple says to use it for a few seconds at a time. For spoken cues in an exercise app, Apple also recommends interruptSpokenAudioAndMixWithOthers.", href: "/audio-coaching/avaudiosession-duckothers-workout-cues" },
+      { term: "Audio focus (AudioFocusRequest)", def: "Android's rule that only one app holds audio focus at a time. An app requests it with an AudioFocusRequest before playing. A transient request with AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK lets music keep playing at reduced volume, and Google documents that since Android 8.0 the system ducks the other app for you.", href: "/audio-coaching/android-audio-focus-may-duck" },
+      { term: "AVSpeechSynthesizer", def: "Apple's text-to-speech object, which \"produces synthesized speech from text utterances\". It speaks AVSpeechUtterance objects in the order queued and can pause or stop them. Apple notes the system does not retain the synthesizer, so you have to keep a reference until speech finishes.", href: "/audio-coaching/avspeechsynthesizer-workout-cues" },
+      { term: "HKLiveWorkoutBuilder", def: "The HealthKit object that, in Apple's words, \"constructs a workout incrementally based on live data from an active workout session\". It builds the HKWorkout sample while an HKWorkoutSession runs.", href: "/watch-apps/watchos-workout-app-anatomy" },
+      { term: "WorkoutKit", def: "Apple's framework to \"create, preview, and sync workout compositions to the Workout app\". With the user's permission, a WorkoutScheduler syncs scheduled workouts to Apple Watch, where they appear under your app's name and icon. Workout health data still comes from HealthKit.", href: "/watch-apps/workoutkit-scheduled-workouts" },
+      { term: "Health Services (ExerciseClient)", def: "The workout client in Wear OS Health Services (androidx.health:health-services-client). Google describes ExerciseClient as the client that lets an app \"subscribe to the health data of a device during an exercise\", and it is also how an app sets exercise goals.", href: "/devices/wear-os-health-services" },
+    ],
+  },
+  {
     title: "Compliance & AI",
     terms: [
       { term: "PHI (protected health information)", def: "The HIPAA category. Whether your fitness data is PHI depends on who you are and who you share it with — a consumer app is often outside HIPAA entirely, but not always.", href: "/compliance/is-fitness-data-phi" },

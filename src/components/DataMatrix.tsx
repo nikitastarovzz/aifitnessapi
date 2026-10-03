@@ -1,6 +1,7 @@
 import Link from "next/link";
 import CopyTableMarkdown from "@/components/CopyTableMarkdown";
 import { ROWS, PLATFORM_NOTES, SOURCES } from "@/data/matrix";
+import HcRecordNames from "@/components/hc/HcRecordNames";
 
 /**
  * HealthKit ↔ Health Connect data-type reference table. Deliberately a server
@@ -38,7 +39,7 @@ export default function DataMatrix() {
                   <code className="break-words text-xs text-[var(--fg)]">{r.apple}</code>
                 </td>
                 <td className="p-3">
-                  <code className="break-words text-xs text-[var(--fg)]">{r.android}</code>
+                  <code className="break-words text-xs text-[var(--fg)]"><HcRecordNames text={r.android} /></code>
                   {r.watchOut && (
                     <span className="mt-2 block text-xs leading-relaxed text-[var(--muted)]">
                       <strong className="font-semibold text-[var(--fg)]">Watch out:</strong> {r.watchOut}

@@ -18,6 +18,7 @@ import {
 } from "@/data/hkGroupPages";
 import { HK_IDENTIFIERS, type HkFamily, type HkIdentifier } from "@/data/healthkitIdentifiers";
 import { ROWS as MATRIX_ROWS } from "@/data/matrix";
+import HcRecordNames from "@/components/hc/HcRecordNames";
 import { HK_READONLY_SET } from "@/data/healthkitWritability";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
@@ -237,7 +238,7 @@ function IdentifierTable({ members }: { members: HkIdentifier[] }) {
                 </td>
                 <td className="py-2 text-[var(--muted)]">
                   {android ? (
-                    <span className="font-mono text-[12px]">{android}</span>
+                    <span className="font-mono text-[12px]"><HcRecordNames text={android} /></span>
                   ) : (
                     <span className="text-xs">not verified</span>
                   )}

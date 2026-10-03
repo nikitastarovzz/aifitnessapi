@@ -64,6 +64,10 @@ const FAQS = [
     q: "Does a type existing mean the data will be there?",
     a: "No, and this trips up a lot of integrations. These types are containers — something still has to write to them. Blood oxygen needs a device that measures SpO2, body composition usually needs a smart scale or manual entry, and on iOS a denied read permission is indistinguishable from an empty result, because HealthKit deliberately doesn't tell your app that read access was refused. Always design for the empty case.",
   },
+  {
+    q: "Which Health Connect records match Apple's calorie types?",
+    a: "ActiveCaloriesBurnedRecord and TotalCaloriesBurnedRecord sit opposite Apple's activeEnergyBurned and basalEnergyBurned. The split is not the same on both sides, so map them explicitly and never add the active figure to the total figure. Both platforms are giving you modelled estimates rather than measurements.",
+  },
 ];
 
 export default function MatrixPage() {
@@ -151,6 +155,13 @@ export default function MatrixPage() {
           finds the Health Connect record for a HealthKit identifier, or the reverse — verified pairs
           only, and where nothing was checked it says so.
         </p>
+        <p className="mt-3 text-sm text-[var(--muted)]">
+          Every record class in the Android column links to its page in the{" "}
+          <Link href="/health-connect" className="font-medium text-brand-600 hover:text-brand-500">
+            Health Connect record reference
+          </Link>
+          , with Google&rsquo;s fields, permission strings and aggregate metrics for each.
+        </p>
       </div>
 
       <div className="mx-auto mt-14 max-w-2xl">
@@ -176,6 +187,22 @@ export default function MatrixPage() {
             whether a read was denied or simply had no data. On Android, read windows are capped, routes
             need their own permission, and from the June 2026 update on-device steps carry a per-device
             synthetic package name you must resolve at runtime rather than hardcode.
+          </p>
+          <h2>Two more traps in the pairs</h2>
+          <p>
+            <strong>Do not add active calories to total calories.</strong> Apple splits active and
+            basal; Health Connect offers active and total. Those are not the same split, and the rule
+            for the Android pair is simply that you must not add active to total &mdash; the result is a
+            plausible number that nothing will flag. Both figures are modelled estimates on both
+            platforms, not measurements.
+          </p>
+          <p>
+            <strong>Do not hardcode the steps data source on Android.</strong> From the June 2026
+            update, on-device steps are attributed to a per-device Synthetic Package Name. Read it with{" "}
+            <code>getCurrentDeviceDataSource()</code>. A literal package name in your de-duplication
+            logic will work on the device you tested on and quietly stop filtering on everyone
+            else&rsquo;s &mdash; and de-duplication matters here, because a phone and a watch both write
+            steps for the same walk.
           </p>
           <h2>Where to go next</h2>
           <p>

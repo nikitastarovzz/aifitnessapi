@@ -27,6 +27,9 @@ const CLUSTERS = [
   "engagement",
   "watch-apps",
   "accessibility",
+  "audio-coaching",
+  "healthkit-queries",
+  "phone-sensors",
 ];
 
 const SITE = "https://aifitnessapi.com";
@@ -51,6 +54,10 @@ const nextConfig: NextConfig = {
       // place — the Vercel dashboard — so this file must not do it.
       { source: "/posts", destination: "/blog", permanent: true },
       { source: "/articles", destination: "/blog", permanent: true },
+      // The ten-row matrix page was superseded by the generated record
+      // reference (one page per Health Connect record class); its unique
+      // FAQs and traps moved to /matrix.
+      { source: "/health-connect-records", destination: "/health-connect", permanent: true },
     ];
   },
   async rewrites() {

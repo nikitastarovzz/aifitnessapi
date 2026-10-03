@@ -42,6 +42,9 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
       "live-activities-workout-tracking",
       "widgets-and-complications",
       "wear-os-ongoing-activity",
+      "activitykit-live-activity-workout",
+      "app-intents-start-workout",
+      "android-live-updates-workout",
     ],
   },
   {

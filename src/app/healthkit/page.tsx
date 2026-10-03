@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { HC_RECORDS } from "@/data/healthConnectRecords";
 import StatCard from "@/components/StatCard";
 import { HK_READONLY } from "@/data/healthkitWritability";
 import Link from "next/link";
@@ -113,9 +114,14 @@ const REFERENCE_PAGES: { href: string; label: string; blurb: string }[] = [
     blurb: `Every quantity type by unit family, and the ${UNIT_UNSTATED} Apple leaves unstated.`,
   },
   {
-    href: "/health-connect-records",
-    label: "Health Connect records, verified",
-    blurb: "The 10 metrics checked against both platforms' documentation — and only those.",
+    href: "/healthkit-queries",
+    label: "Query classes",
+    blurb: "How each HealthKit query class reads these types — sample, statistics, anchored, observer, descriptors — and where each bites.",
+  },
+  {
+    href: "/health-connect",
+    label: "Health Connect record reference",
+    blurb: `The Android side: all ${HC_RECORDS.length} Health Connect record classes, with Google's fields, permission strings and aggregate metrics.`,
   },
 ];
 

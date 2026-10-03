@@ -23,6 +23,24 @@ import { releasedAccessibility, A11Y_PATH } from "@/data/accessibility";
 import { API_ENTRIES, APIS_PATH, CATEGORY_LABELS, DEV_COST_LABELS } from "@/data/apis";
 import { releasedHkGroups, HK_BASE } from "@/data/hkGroupPages";
 import { HK_IDENTIFIERS } from "@/data/healthkitIdentifiers";
+import { releasedAudioCoaching, AUDIO_PATH } from "@/data/audioCoaching";
+import { releasedHealthkitQueries, HKQ_PATH } from "@/data/healthkitQueries";
+import { releasedPhoneSensors, SENSORS_PATH } from "@/data/phoneSensors";
+import {
+  orderedRecords,
+  recordPath,
+  recordTitle,
+  recordDescription,
+  shortPermission,
+  hcTotals,
+  HC_BASE,
+  HC_PERMISSIONS_PATH,
+  HC_AGGREGATES_PATH,
+} from "@/data/hcPages";
+import { LIBRARIES_BASE, LIBRARY_COMPARISONS, libraryPages } from "@/data/librariesEditorial";
+import { hkVersionPages, versionTitle, versionDescription, versionPrimaryQuery } from "@/lib/hkVersions";
+import { HC_ERROR_CONSTANTS } from "@/data/errorCodes";
+import { HC_RELEASES } from "@/data/hcReleases";
 
 /**
  * Site search index — generated from the same data modules as the pages
@@ -89,6 +107,9 @@ export function GET() {
     [ENGAGEMENT_PATH, "Engagement & Retention", releasedEngagement()],
     [WATCH_PATH, "Watch Apps", releasedWatchApps()],
     [A11Y_PATH, "Accessibility", releasedAccessibility()],
+    [AUDIO_PATH, "Audio Coaching", releasedAudioCoaching()],
+    [HKQ_PATH, "HealthKit Queries", releasedHealthkitQueries()],
+    [SENSORS_PATH, "Phone Sensors", releasedPhoneSensors()],
   ];
 
   const hubBlurbs: Record<string, string> = {
@@ -113,6 +134,9 @@ export function GET() {
     [A11Y_PATH]:
       "Making a fitness app usable when someone cannot see the screen, cannot hear the cue, or cannot reach the button mid-set.",
     [WATCH_PATH]: "Building the app that runs on the watch: sessions, background, tiles, pairing, battery, testing.",
+    [AUDIO_PATH]: "Workout cues over the user's music: ducking, interruptions, background audio, Android audio focus, TextToSpeech, watch speakers.",
+    [HKQ_PATH]: "How each HealthKit query class works and where it bites: sample, statistics, anchored, observer, descriptors, routes, rings.",
+    [SENSORS_PATH]: "Fitness features from the phone's own motion sensors: steps, activity, altitude, head motion, and the Android permission rules around them.",
     [ENGAGEMENT_PATH]: "Getting people back: notifications, Live Activities, widgets, streaks, leaderboards \u2014 and how to measure lift honestly.",
   };
 
@@ -192,11 +216,68 @@ export function GET() {
     "The units and unit families HealthKit quantity samples are expressed in, and which identifiers use each.",
     "hkunit units count kcal meters bpm unit family quantity",
   );
+  for (const g of hkVersionPages()) {
+    add(g.path, versionTitle(g), versionDescription(g), `${versionPrimaryQuery(g)} healthkit identifiers ios ${g.major}`);
+  }
+
+  // The Health Connect record reference (generated from Google's pages).
+  const hcT = hcTotals();
   add(
-    "/health-connect-records",
-    "Every Health Connect Record Type",
-    "Android Health Connect's record types, the Android counterpart to the HealthKit identifier reference.",
-    "health connect records android record types jetpack androidx health",
+    HC_BASE,
+    "Health Connect record types",
+    `Every Health Connect record class (${hcT.records}) with fields, permission strings and aggregate metrics, from Google's Jetpack reference.`,
+    "health connect records android record types jetpack androidx health reference",
+  );
+  add(
+    HC_PERMISSIONS_PATH,
+    "Health Connect permissions: every android.permission.health string",
+    `All ${hcT.frameworkPermissions} android.permission.health strings, grouped, with API level and the record each unlocks.`,
+    "health connect permissions android.permission.health read write manifest healthpermissions",
+  );
+  add(
+    HC_AGGREGATES_PATH,
+    "Health Connect aggregate metrics",
+    `All ${hcT.aggregates} AggregateMetric constants with Google's description and value type.`,
+    "health connect aggregate metrics aggregatemetric count_total bpm_avg aggregate request",
+  );
+  for (const r of orderedRecords()) {
+    const perms = [...new Set([...r.readPermissions, ...r.writePermissions].map(shortPermission))];
+    const metrics = r.aggregateMetrics.map((m) => m.name);
+    add(recordPath(r), recordTitle(r), recordDescription(r), [r.className, ...perms, ...metrics, "health connect record"].join(" "));
+  }
+
+  // Open-source libraries (registry facts generated weekly).
+  add(
+    LIBRARIES_BASE,
+    "Open-source health & fitness libraries",
+    "Open-source packages for HealthKit, Health Connect and fitness APIs: latest versions, release dates, licences and README caveats.",
+    "libraries packages sdk open source npm pub.dev pypi react native flutter capacitor python wrapper",
+  );
+  for (const { lib, ed } of libraryPages()) {
+    add(`${LIBRARIES_BASE}/${ed.slug}`, ed.title, ed.metaDescription, [lib.name, ed.primaryQuery, lib.wraps?.join(" ") ?? ""].filter(Boolean).join(" "));
+  }
+  for (const c of LIBRARY_COMPARISONS) {
+    add(`${LIBRARIES_BASE}/compare/${c.slug}`, c.title, c.metaDescription, `${c.primaryQuery} vs compare`);
+  }
+
+  // Generated platform references.
+  add(
+    "/error-codes",
+    "HealthKit & Health Connect error codes",
+    "The platform error-code reference: HKError.Code and Health Connect's error codes, each linked to its fix guide where one exists.",
+    "error codes hkerror healthconnectexception reference",
+  );
+  add(
+    "/error-codes/health-connect",
+    "Health Connect error codes",
+    `All ${HC_ERROR_CONSTANTS.length} HealthConnectException ERROR_* constants with value, description and API level, plus the Jetpack client's exception types.`,
+    ["healthconnectexception error code", ...HC_ERROR_CONSTANTS.map((c) => c.name)].join(" "),
+  );
+  add(
+    "/health-connect-releases",
+    "Health Connect SDK releases",
+    `All ${HC_RELEASES.length} androidx.health.connect:connect-client releases: version, date, stage and what changed.`,
+    "health connect sdk releases connect-client androidx version changelog alpha beta stable",
   );
 
   add(

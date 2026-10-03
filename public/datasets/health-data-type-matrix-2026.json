@@ -62,7 +62,7 @@
       "label": "Sleep",
       "appleHealthKit": "HKCategoryTypeIdentifier.sleepAnalysis (values: inBed, awake, asleepCore, asleepDeep, asleepREM, asleepUnspecified)",
       "androidHealthConnect": "SleepSessionRecord (carries stages)",
-      "watchOut": "Stage vocabularies differ and stages are estimated, not measured. Apple's .asleep is deprecated in favour of the specific stages.",
+      "watchOut": "Stage vocabularies differ and stages are estimated, not measured. Apple deprecated .asleep in iOS 16.0 and points to .asleepCore, .asleepDeep, .asleepREM or .asleepUnspecified instead (.asleepUnspecified is the rename).",
       "source": "https://aifitnessapi.com/data/sleep-tracking-api"
     },
     {

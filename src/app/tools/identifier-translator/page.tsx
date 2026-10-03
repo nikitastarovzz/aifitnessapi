@@ -139,7 +139,7 @@ export default function IdentifierTranslatorPage() {
           </Link>
           ; the Android side is at{" "}
           <Link
-            href="/health-connect-records"
+            href="/health-connect"
             className="font-medium text-brand-600 hover:text-brand-500"
           >
             every Health Connect record type

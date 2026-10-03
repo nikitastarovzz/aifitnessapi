@@ -8,7 +8,7 @@ npm i @aifitnessapi/health-data
 ```
 
 ```js
-import { aggregationFor, healthkitIdentifier, crossPlatform } from "@aifitnessapi/health-data";
+import { aggregationFor, healthkitIdentifier, crossPlatform, healthConnectRecord, healthConnectPermission } from "@aifitnessapi/health-data";
 
 aggregationFor("stepCount");     // "cumulativeSum"
 aggregationFor("heartRate");     // "discrete"
@@ -17,6 +17,9 @@ aggregationFor("nope");          // null
 
 healthkitIdentifier("HKQuantityTypeIdentifierStepCount").unitFamily;  // "count"
 crossPlatform("hrv").watchOut;   // the SDNN-vs-RMSSD warning
+
+healthConnectRecord("StepsRecord").readPermissions;  // "android.permission.health.READ_STEPS"
+healthConnectPermission("READ_STEPS").records;       // "StepsRecord; StepsCadenceRecord"
 ```
 
 ## What's in it
@@ -27,6 +30,8 @@ crossPlatform("hrv").watchOut;   // the SDNN-vs-RMSSD warning
 | `crossPlatformTypes` | 10 | Verified HealthKit ↔ Health Connect metric mappings, with the traps |
 | `apiChanges` | 13 | Dated ecosystem changes, each graded `confirmed` or `reported` |
 | `glossary` | 33 | Domain terms |
+| `healthConnectRecords` | 42 | Every Health Connect record class in Google's data-types table, with permission strings and aggregate metrics |
+| `healthConnectPermissions` | 219 | Every `android.permission.health` string on Google's HealthPermissions reference |
 
 `meta` carries the provenance for each set, including the date its source was
 last read.

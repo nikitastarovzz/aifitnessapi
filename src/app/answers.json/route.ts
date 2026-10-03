@@ -6,6 +6,8 @@ import { ROWS as MATRIX_ROWS } from "@/data/matrix";
 import { HK_IDENTIFIERS, HK_FAMILIES, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { GROUPS as GLOSSARY_GROUPS, termSlug } from "@/data/glossary";
 import { getAllPosts } from "@/lib/posts";
+import { orderedRecords, recordPath, recordH1, recordCapsule, recordFaqs, hcModified } from "@/data/hcPages";
+import { LIBRARIES_BASE, LIBRARY_COMPARISONS, libraryPages, librariesModified } from "@/data/librariesEditorial";
 
 /**
  * The answer index: every question this site owns, with the answer, in one
@@ -85,6 +87,51 @@ export function GET() {
       tags: p.tags,
       faqs: p.faqs.map((f) => ({ question: f.q, answer: f.a })),
     })),
+    // Generated reference pages outside the cluster registry (no markdown
+    // mirror, so no `markdown` field): the Health Connect record pages and
+    // the open-source library pages. Same answer/FAQ shape as `answers`,
+    // kept separate because they are not cluster spokes.
+    reference_pages: [
+      ...orderedRecords().map((r) => {
+        const url = absoluteUrl(recordPath(r));
+        return {
+          question: r.className,
+          answer: recordCapsule(r),
+          title: recordH1(r),
+          url,
+          section: "Health Connect record reference",
+          last_reviewed: hcModified(),
+          first_party: false,
+          faqs: recordFaqs(r).map((f, i) => ({ question: f.q, answer: f.a, url: `${url}#faq-${i + 1}` })),
+        };
+      }),
+      ...libraryPages().map(({ ed }) => {
+        const url = absoluteUrl(`${LIBRARIES_BASE}/${ed.slug}`);
+        return {
+          question: ed.primaryQuery,
+          answer: ed.answer,
+          title: ed.h1,
+          url,
+          section: "Open-source libraries",
+          last_reviewed: librariesModified(),
+          first_party: false,
+          faqs: ed.faqs.map((f, i) => ({ question: f.q, answer: f.a, url: `${url}#faq-${i + 1}` })),
+        };
+      }),
+      ...LIBRARY_COMPARISONS.map((c) => {
+        const url = absoluteUrl(`${LIBRARIES_BASE}/compare/${c.slug}`);
+        return {
+          question: c.primaryQuery,
+          answer: c.answer,
+          title: c.h1,
+          url,
+          section: "Open-source libraries",
+          last_reviewed: librariesModified(),
+          first_party: false,
+          faqs: c.faqs.map((f, i) => ({ question: f.q, answer: f.a, url: `${url}#faq-${i + 1}` })),
+        };
+      }),
+    ],
     // The dated ecosystem record, graded — the highest-value thing here to
     // cite, and the part that goes stale fastest if an agent caches it.
     changes: changesSorted().map((c) => ({

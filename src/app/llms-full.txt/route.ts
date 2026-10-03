@@ -21,6 +21,12 @@ import { releasedDevices, DEVICES_PATH } from "@/data/devices";
 import { releasedEngagement, ENGAGEMENT_PATH } from "@/data/engagement";
 import { releasedWatchApps, WATCH_PATH } from "@/data/watchApps";
 import { releasedAccessibility, A11Y_PATH } from "@/data/accessibility";
+import { releasedAudioCoaching, AUDIO_PATH } from "@/data/audioCoaching";
+import { releasedHealthkitQueries, HKQ_PATH } from "@/data/healthkitQueries";
+import { releasedPhoneSensors, SENSORS_PATH } from "@/data/phoneSensors";
+import { orderedRecords, recordPath, recordH1, recordCapsule, recordFaqs, HC_BASE } from "@/data/hcPages";
+import { LIBRARIES_BASE, LIBRARY_COMPARISONS, LIBRARIES_HUB_FAQS, libraryPages } from "@/data/librariesEditorial";
+import { hkVersionPages, versionH1, versionPrimaryQuery, versionCapsule, versionFaqs } from "@/lib/hkVersions";
 
 /**
  * llms-full.txt — the fuller LLM-facing dump: each spoke's answer capsule and
@@ -390,6 +396,86 @@ export function GET() {
         out.push("");
       }
     }
+  }
+
+  // Three hand-written clusters with the same block shape as accessibility.
+  const moreClusters: { title: string; base: string; intro: string; entries: ReturnType<typeof releasedAudioCoaching> }[] = [
+    {
+      title: "Audio coaching for workout apps",
+      base: AUDIO_PATH,
+      intro:
+        "Spoken cues and tones that play over the user's music without stopping it, survive the lock screen and calls, and stay quiet when they should. Sourced only from Apple and Google developer documentation fetched 2026-10-03; no React Native, Expo, Flutter or Capacitor plugin claims, and no measured latency or ducking figures.",
+      entries: releasedAudioCoaching(),
+    },
+    {
+      title: "HealthKit query classes",
+      base: HKQ_PATH,
+      intro:
+        "How each HealthKit query class works and where it bites, one class per page, from Apple's own documentation: predicates, statistics, anchors, observers, async descriptors, routes and rings.",
+      entries: releasedHealthkitQueries(),
+    },
+    {
+      title: "Fitness features from phone motion sensors",
+      base: SENSORS_PATH,
+      intro:
+        "Steps, activity, altitude and head motion from the phone a user already carries, one platform API per page, from Apple's and Google's own documentation.",
+      entries: releasedPhoneSensors(),
+    },
+  ];
+  for (const c of moreClusters) {
+    if (!c.entries.length) continue;
+    out.push(`# ${c.title} — ${absoluteUrl(c.base)}`, "", c.intro, "");
+    for (const e of c.entries) {
+      out.push(`## ${e.h1} — ${absoluteUrl(`${c.base}/${e.slug}`)}`);
+      out.push(`Primary query: ${e.primaryQuery}`, "", e.answer, "");
+      if (e.faqs.length) {
+        for (const f of e.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+        out.push("");
+      }
+    }
+  }
+
+  // Health Connect record reference — capsules and FAQs are generated from
+  // the record data, exactly as the pages render them.
+  out.push(`# Health Connect record reference — ${absoluteUrl(HC_BASE)}`, "");
+  out.push(
+    "One page per Health Connect record class, generated from Google's data-types page and the Jetpack reference: fields, permission strings and aggregate metrics, with the HealthKit counterpart only where the verified matrix pairs them.",
+    "",
+  );
+  for (const r of orderedRecords()) {
+    out.push(`## ${recordH1(r)} — ${absoluteUrl(recordPath(r))}`, "", recordCapsule(r), "");
+    for (const f of recordFaqs(r)) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+    out.push("");
+  }
+
+  // Open-source libraries.
+  out.push(`# Open-source health and fitness libraries — ${absoluteUrl(LIBRARIES_BASE)}`, "");
+  out.push(
+    "Open-source packages for HealthKit, Health Connect and fitness APIs, with registry facts (version, release date, licence) read from npm, pub.dev and PyPI and refreshed weekly, plus caveats quoted from each README.",
+    "",
+  );
+  for (const f of LIBRARIES_HUB_FAQS) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+  out.push("");
+  for (const { ed } of libraryPages()) {
+    out.push(`## ${ed.h1} — ${absoluteUrl(`${LIBRARIES_BASE}/${ed.slug}`)}`);
+    out.push(`Primary query: ${ed.primaryQuery}`, "", ed.answer, "");
+    for (const f of ed.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+    out.push("");
+  }
+  for (const c of LIBRARY_COMPARISONS) {
+    out.push(`## ${c.h1} — ${absoluteUrl(`${LIBRARIES_BASE}/compare/${c.slug}`)}`);
+    out.push(`Primary query: ${c.primaryQuery}`, "", c.answer, "");
+    for (const f of c.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+    out.push("");
+  }
+
+  // HealthKit types by iOS major version — computed from the identifier dataset.
+  out.push(`# HealthKit types by iOS version — ${absoluteUrl("/healthkit-versions")}`, "");
+  for (const g of hkVersionPages()) {
+    out.push(`## ${versionH1(g)} — ${absoluteUrl(g.path)}`);
+    out.push(`Primary query: ${versionPrimaryQuery(g)}`, "", versionCapsule(g), "");
+    for (const f of versionFaqs(g)) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+    out.push("");
   }
 
   out.push(`# Free tools — ${absoluteUrl("/")}`, "");

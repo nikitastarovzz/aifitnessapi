@@ -30,6 +30,15 @@ export const RELEASED_COMPLIANCE = new Set<string>([
   "health-data-user-consent",
   "health-app-privacy-policy",
   "health-data-retention-deletion",
+  "app-store-guideline-5-1-3-health-research",
+  "app-store-guideline-5-1-1-data-collection-storage",
+  "app-store-guideline-5-1-2-data-use-sharing",
+  "app-store-guideline-1-4-1-physical-harm",
+  "app-store-guideline-2-5-1-healthkit-software-requirements",
+  "google-play-health-connect-publishing-requirements",
+  "app-store-guideline-3-1-3-d-person-to-person-fitness",
+  "app-store-guideline-2-5-4-background-services",
+  "app-store-guideline-2-5-11-sirikit-shortcuts",
 ]);
 
 export const allCompliance: ClusterEntry[] = complianceEntries;

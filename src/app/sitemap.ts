@@ -11,6 +11,12 @@ import { HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { changesSorted } from "@/data/changes";
 import { API_ENTRIES, APIS_PATH } from "@/data/apis";
 import { digests, DIGEST_PATH, type Digest } from "@/data/digest";
+import { HC_FETCHED_ON } from "@/data/healthConnectRecords";
+import { orderedRecords, recordPath, HC_BASE, HC_PERMISSIONS_PATH, HC_AGGREGATES_PATH, hcModified } from "@/data/hcPages";
+import { LIBRARIES_BASE, LIBRARY_COMPARISONS, libraryPages, librariesModified } from "@/data/librariesEditorial";
+import { hkVersionPages, HK_VERSION_PAGES_PUBLISHED } from "@/lib/hkVersions";
+import { ERROR_CODES_FETCHED_ON } from "@/data/errorCodes";
+import { HC_RELEASES_FETCHED_ON } from "@/data/hcReleases";
 
 /**
  * Every row carries a `lastmod` that some dated record on the site backs, or
@@ -117,8 +123,37 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/healthkit-status", hkStandaloneModified("healthkit-status")],
     ["/healthkit-category-values", hkStandaloneModified("healthkit-category-values")],
     ["/healthkit-units", hkStandaloneModified("healthkit-units")],
-    ["/health-connect-records", hkStandaloneModified("health-connect-records")],
   ];
+  // One row per computed /healthkit-versions/<ios-N> page; each declares
+  // HK_VERSION_PAGES_PUBLISHED as its dateModified.
+  const hkVersionRows = hkVersionPages().map((g) => row(g.path, HK_VERSION_PAGES_PUBLISHED));
+
+  // Health Connect record reference (generated): every page but the hub
+  // declares hcModified() — the fetch date — as dateModified; the hub
+  // declares none, so it takes its newest member, which is the same date.
+  const hcRows = [
+    row(HC_BASE, HC_FETCHED_ON),
+    row(HC_PERMISSIONS_PATH, hcModified()),
+    row(HC_AGGREGATES_PATH, hcModified()),
+    ...orderedRecords().map((r) => row(recordPath(r), hcModified())),
+  ];
+
+  // Open-source library pages: hub, package pages and comparisons all
+  // declare librariesModified() as dateModified.
+  const libRows = [
+    row(LIBRARIES_BASE, librariesModified()),
+    ...libraryPages().map(({ ed }) => row(`${LIBRARIES_BASE}/${ed.slug}`, librariesModified())),
+    ...LIBRARY_COMPARISONS.map((c) => row(`${LIBRARIES_BASE}/compare/${c.slug}`, librariesModified())),
+  ];
+
+  // Generated error-code and release references: each page's dateModified is
+  // its generator's fetch date.
+  const generatedRefs: [string, string][] = [
+    ["/error-codes", ERROR_CODES_FETCHED_ON],
+    ["/error-codes/health-connect", ERROR_CODES_FETCHED_ON],
+    ["/health-connect-releases", HC_RELEASES_FETCHED_ON],
+  ];
+
   // The list is empty until the authored entries land, and an empty list
   // emits no rows.
   const hkGroupDates = releasedHkGroups().map((g) => [g.slug, hkGroupModified(g.slug)] as const);
@@ -208,6 +243,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // entry whose questions it lists.
     ...populated.map(([base]) => row(`/questions${base}`, newestIn(base))),
     ...hkGroups,
+    ...hkVersionRows,
+    ...hcRows,
+    ...libRows,
+    ...generatedRefs.map(([p, d]) => row(p, d)),
     ...API_ENTRIES.map((a) => row(`${APIS_PATH}/${a.id}`)),
     ...issues.map((d) => row(`${DIGEST_PATH}/${d.month}`, digestDate(d))),
     // lastmod is the re-verification date, not first publication.

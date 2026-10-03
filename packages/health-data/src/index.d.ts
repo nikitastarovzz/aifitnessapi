@@ -61,12 +61,51 @@ export interface GlossaryTerm {
   id: string;
 }
 
+export interface HealthConnectRecord {
+  className: string;
+  qualifiedName: string;
+  dataType: string;
+  category: string | null;
+  recordShape: string | null;
+  unitClass: string | null;
+  /** Semicolon-separated, as in the CSV. */
+  mandatoryFields: string | null;
+  /** Semicolon-separated android.permission.health strings. */
+  readPermissions: string | null;
+  writePermissions: string | null;
+  /** The data-types table text the permission strings were read from. */
+  permissionEvidence: string;
+  /** Semicolon-separated AggregateMetric constants; null where none. */
+  aggregateMetrics: string | null;
+  addedIn: string | null;
+  featureFlag: string | null;
+  deprecated: "yes" | "no";
+  description: string | null;
+  googleDocs: string;
+  sourceUpdated: string | null;
+  page: string;
+}
+
+export interface HealthConnectPermission {
+  constant: string;
+  permission: string;
+  description: string | null;
+  protectionLevel: string | null;
+  added: string | null;
+  /** Semicolon-separated record classes; null where no record class names it. */
+  records: string | null;
+}
+
 export declare const healthkitIdentifiers: HealthKitIdentifier[];
 export declare const crossPlatformTypes: CrossPlatformType[];
 export declare const apiChanges: ApiChange[];
 export declare const glossary: GlossaryTerm[];
+export declare const healthConnectRecords: HealthConnectRecord[];
+export declare const healthConnectPermissions: HealthConnectPermission[];
 export declare const meta: Record<string, Record<string, unknown>>;
 
 export declare function healthkitIdentifier(name: string): HealthKitIdentifier | undefined;
 export declare function aggregationFor(name: string): "cumulativeSum" | "discrete" | null;
 export declare function crossPlatform(metricId: string): CrossPlatformType | undefined;
+export declare function healthConnectRecord(name: string): HealthConnectRecord | undefined;
+export declare function healthConnectPermission(name: string): HealthConnectPermission | undefined;

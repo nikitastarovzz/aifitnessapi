@@ -16,12 +16,12 @@
     "verifiedOn": "Date this entry was last checked against its source page"
   },
   "stats": {
-    "totalItems": 13,
+    "totalItems": 14,
     "byStatus": {
-      "confirmed": 6,
+      "confirmed": 7,
       "reported": 7
     },
-    "confirmed": 6,
+    "confirmed": 7,
     "reported": 7,
     "watch": 0,
     "earliestSortDate": "2023-04-15",
@@ -37,6 +37,16 @@
       "source": "https://aifitnessapi.com/google-fit-shutdown",
       "sourceLabel": "Google Fit shutdown hub",
       "verifiedOn": "2026-10-02"
+    },
+    {
+      "date": "2026-09-27",
+      "sortDate": "2026-09-27",
+      "title": "This site served HTTP 402 for five days",
+      "summary": "From 2026-09-27 (21:38 UTC, the first probe that saw it) until recovery on 2026-10-02, every request to aifitnessapi.com answered HTTP 402 with x-vercel-error: DEPLOYMENT_DISABLED — Vercel had disabled the project's deployments, which is an account and billing state, not a code, build or DNS fault. Googlebot and bingbot got that status on every URL for five days, and a sustained 4xx reads as removal rather than retry. The site serves 200 again on the apex and on www. This entry is about this site rather than a vendor API, and it is here because a tracker that goes dark for five days and does not say so is not a record.",
+      "status": "confirmed",
+      "source": "https://aifitnessapi.com/changelog",
+      "sourceLabel": "Site changelog",
+      "verifiedOn": "2026-10-03"
     },
     {
       "date": "2026-09",

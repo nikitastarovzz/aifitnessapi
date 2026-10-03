@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { LIBRARIES } from "@/data/libraries";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterHero from "@/components/ClusterHero";
@@ -19,6 +20,26 @@ import { orgRef } from "@/lib/schema";
  */
 
 const PATH = "/sdk-releases";
+
+
+/**
+ * Tracked repository → its /libraries package page. Matched on the repo the
+ * registry names or GitHub reports; react-native-health's npm metadata still
+ * names its pre-rename repository (agencyenterprise/react-native-healthkit),
+ * so that one pairing is stated explicitly — both addresses resolve to the
+ * same repository.
+ */
+const LIBRARY_BY_REPO: Record<string, string> = {
+  "agencyenterprise/react-native-health": "react-native-health",
+};
+function libraryFor(repo: string): string | null {
+  const key = repo.toLowerCase();
+  const hit = LIBRARIES.find(
+    (l) => l.repo?.toLowerCase() === key || l.repoFullName?.toLowerCase() === key,
+  );
+  const slug = hit?.slug ?? LIBRARY_BY_REPO[key] ?? null;
+  return slug && LIBRARIES.some((l) => l.slug === slug) ? slug : null;
+}
 
 export const metadata: Metadata = {
   title: { absolute: "Health SDK Release Tracker" },
@@ -94,6 +115,19 @@ export default function SdkReleasesPage() {
           carries the vendor-side events, each graded and sourced by hand.
         </div>
 
+        <p className="mt-6 text-sm text-[var(--muted)]">
+          Choosing a bridge rather than watching one? The{" "}
+          <Link href="/libraries" className="font-medium text-brand-600 hover:text-brand-500">
+            open-source library pages
+          </Link>{" "}
+          carry each package&rsquo;s registry facts and README caveats. Google&rsquo;s own Jetpack
+          library has its release history on{" "}
+          <Link href="/health-connect-releases" className="font-medium text-brand-600 hover:text-brand-500">
+            Health Connect SDK releases
+          </Link>
+          .
+        </p>
+
         <section className="mt-12 space-y-8">
           {SDK_REPOS.map((r) => (
             <div key={r.repo} id={r.repo.replace(/[^a-z0-9]+/gi, "-").toLowerCase()} className="scroll-mt-24 rounded-2xl border border-[var(--border)] p-5 sm:p-6">
@@ -110,6 +144,13 @@ export default function SdkReleasesPage() {
               </div>
               <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">{r.why}</p>
               <p className="mt-1 text-xs text-[var(--muted)]">Bridges to: {r.covers}</p>
+              {libraryFor(r.repo) && (
+                <p className="mt-1 text-xs">
+                  <Link href={`/libraries/${libraryFor(r.repo)}`} className="font-medium text-brand-600 hover:text-brand-500">
+                    Registry facts and README caveats for this package
+                  </Link>
+                </p>
+              )}
 
               {r.releases.length > 0 ? (
                 <ul className="mt-4 space-y-2">

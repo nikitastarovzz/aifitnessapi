@@ -327,6 +327,8 @@ if (fs.existsSync(matrixPath)) {
     "fitness-api-changes-2026",
     "fitness-api-glossary-2026",
     "healthkit-type-identifiers-2026",
+    "health-connect-records-2026",
+    "health-connect-permissions-2026",
   ];
   // Both directions. Listing files catches a DELETION (a dataset a page
   // still cites); scanning the directory catches an ADDITION that was never
@@ -1503,6 +1505,185 @@ if (fs.existsSync(matrixPath)) {
     }
     if (/rel="canonical"/.test(html) || /property="og:url"/.test(html)) {
       problems.push("NOTFOUND-CANONICAL  the 404 page names a canonical or og:url");
+    }
+  }
+}
+
+// ── Generated references (GROWTH-OCT-2026-B, added 2026-10-03). Each of these
+// surfaces renders rows out of a generated module, so the failure that matters
+// is the quiet one: a page that builds and reads fine with fewer rows than the
+// data holds. Counts come from the generated modules themselves (read as text,
+// like everything else here), never from a number typed into this file, and
+// each module's own floor is asserted so a short regeneration fails too.
+{
+  const htmlOf = (route) => {
+    const h = htmls.find((f) => routeOf(f) === route);
+    return h && !notFoundSet.has(route) ? fs.readFileSync(h, "utf8") : null;
+  };
+  /** The JSON array literal assigned to `export const <name>` in a generated module. */
+  const jsonArray = (src, name) => {
+    const m = new RegExp(`export const ${name}: [^=]+= `).exec(src);
+    if (!m) return null;
+    const open = m.index + m[0].length;
+    const end = src.indexOf("\n];", open);
+    if (end === -1) return null;
+    try { return JSON.parse(src.slice(open, end + 3).trim().replace(/;$/, "")); } catch { return null; }
+  };
+  const strConst = (src, name) => new RegExp(`export const ${name}\\s*=\\s*"([^"]*)"`).exec(src)?.[1] ?? null;
+  const numConst = (src, name) => {
+    const v = new RegExp(`export const ${name}\\s*=\\s*(\\d+)`).exec(src)?.[1];
+    return v ? Number(v) : null;
+  };
+  const hrefsIn = (html) => new Set([...html.matchAll(/href="(\/[^"#?]*)/g)].map((m) => m[1]));
+
+  // Health Connect record reference. Google's data-types table listed 42
+  // record classes and the framework HealthPermissions reference 219
+  // constants on 2026-10-03 (the generator's own floors).
+  {
+    const src = fs.readFileSync("src/data/healthConnectRecords.ts", "utf8");
+    const records = jsonArray(src, "HC_RECORDS");
+    const perms = jsonArray(src, "HC_FRAMEWORK_PERMISSIONS");
+    if (!records || records.length < 42) {
+      problems.push(`HC-RECORD-COVERAGE  src/data/healthConnectRecords.ts yields ${records?.length ?? 0} records, expected at least 42`);
+    } else {
+      const built = htmls
+        .map(routeOf)
+        .filter((r) => /^\/health-connect\/[a-z0-9-]+-record$/.test(r) && !notFoundSet.has(r));
+      if (built.length !== records.length) {
+        problems.push(`HC-RECORD-COVERAGE  ${built.length} record pages built for ${records.length} generated records`);
+      }
+      const hub = htmlOf("/health-connect");
+      const hubLinks = hub ? hrefsIn(hub) : new Set();
+      if (!hub) problems.push("HC-RECORD-COVERAGE  /health-connect was not built");
+      let permsChecked = 0;
+      for (const r of records) {
+        const route = `/health-connect/${r.slug}`;
+        const html = htmlOf(route);
+        if (!html) {
+          problems.push(`HC-RECORD-COVERAGE  ${route} (${r.className}) has no built page`);
+          continue;
+        }
+        if (!html.includes(`data-hc-record="${r.className}"`)) {
+          problems.push(`HC-RECORD-COVERAGE  ${route} does not carry data-hc-record="${r.className}"`);
+        }
+        if (hub && !hubLinks.has(route)) problems.push(`HC-RECORD-COVERAGE  /health-connect does not link ${route}`);
+        for (const p of [...r.readPermissions, ...r.writePermissions]) {
+          if (!html.includes(p)) problems.push(`HC-PERM-ON-PAGE  ${route} does not show its permission ${p}`);
+          else permsChecked++;
+        }
+      }
+      if (!perms || perms.length < 219) {
+        problems.push(`HC-PERMISSION-ROWS  src/data/healthConnectRecords.ts yields ${perms?.length ?? 0} framework permissions, expected at least 219`);
+      } else {
+        const page = htmlOf("/health-connect/permissions");
+        const rendered = new Set(
+          page ? [...page.matchAll(/data-hc-permission="(android\.permission\.health\.[A-Z0-9_]+)"/g)].map((m) => m[1]) : [],
+        );
+        const missing = perms.filter((p) => !rendered.has(p.value)).map((p) => p.constant);
+        if (rendered.size !== perms.length || missing.length) {
+          problems.push(
+            `HC-PERMISSION-ROWS  /health-connect/permissions renders ${rendered.size} permission rows for ${perms.length} generated` +
+              (missing.length ? ` — missing: ${missing.slice(0, 5).join(", ")}${missing.length > 5 ? "…" : ""}` : ""),
+          );
+        }
+      }
+      console.log(
+        `Health Connect: ${built.length} record pages for ${records.length} records, ${permsChecked} permission strings on their pages, ${perms?.length ?? 0} framework permissions.`,
+      );
+    }
+  }
+
+  // Open-source libraries: the generator's declared row count, a page per
+  // package, the hub linking every package and comparison, and freshness —
+  // the weekly CI refresh holds some changes back to the first run of the
+  // month, so up to ~5 weeks is normal and 45 days means CI has stopped.
+  {
+    const src = fs.readFileSync("src/data/libraries.ts", "utf8");
+    const rows = jsonArray(src, "LIBRARIES");
+    const expected = numConst(src, "LIBRARIES_EXPECTED_ROWS");
+    const fetchedOn = strConst(src, "LIBRARIES_FETCHED_ON");
+    const editorial = fs.readFileSync("src/data/librariesEditorial.ts", "utf8");
+    const comparisons = [...editorial.matchAll(/^\s{4}slug: "([a-z0-9-]+-vs-[a-z0-9-]+)",$/gm)].map((m) => m[1]);
+    if (!rows || !expected || rows.length !== expected) {
+      problems.push(`LIBS-ROWS  src/data/libraries.ts yields ${rows?.length ?? 0} rows, LIBRARIES_EXPECTED_ROWS is ${expected}`);
+    } else {
+      const hub = htmlOf("/libraries");
+      const hubLinks = hub ? hrefsIn(hub) : new Set();
+      if (!hub) problems.push("LIBS-ROWS  /libraries was not built");
+      const routes = [
+        ...rows.map((l) => `/libraries/${l.slug}`),
+        ...comparisons.map((c) => `/libraries/compare/${c}`),
+      ];
+      for (const route of routes) {
+        if (!htmlOf(route)) problems.push(`LIBS-ROWS  ${route} has no built page`);
+        else if (hub && !hubLinks.has(route)) problems.push(`LIBS-ROWS  /libraries does not link ${route}`);
+      }
+      console.log(`Libraries: ${rows.length} packages + ${comparisons.length} comparisons built and linked from /libraries.`);
+    }
+    if (!fetchedOn) {
+      problems.push("LIBS-FRESH  src/data/libraries.ts has no LIBRARIES_FETCHED_ON");
+    } else {
+      const age = Math.floor((Date.parse(new Date().toISOString().slice(0, 10)) - Date.parse(fetchedOn)) / 86_400_000);
+      if (!(age <= 45)) problems.push(`LIBS-FRESH  libraries data read ${fetchedOn} (${age} days ago) — the weekly CI refresh has stopped`);
+      else console.log(`Libraries freshness: registries read ${fetchedOn} (${age}d ago, limit 45).`);
+    }
+  }
+
+  // Audio coaching: written while the cross-platform framework docs were
+  // unreachable, so it carries no framework claim at all; every outside link
+  // goes to Apple's or Google's developer docs; and every entry's sources were
+  // checked on the day it was last updated.
+  {
+    const src = fs.readFileSync("src/data/audioCoaching.entries.ts", "utf8");
+    const framework = src.match(/\b(react native|flutter|expo|capacitor)\b/i);
+    if (framework) problems.push(`AUDIO-EVIDENCE  audioCoaching.entries.ts mentions "${framework[0]}" — no framework docs were verifiable for this cluster`);
+    for (const m of src.matchAll(/\]\((https?:\/\/[^)\s]+)\)/g)) {
+      if (!/^https:\/\/developer\.(apple|android)\.com\//.test(m[1])) {
+        problems.push(`AUDIO-EVIDENCE  audioCoaching.entries.ts links ${m[1]}, outside Apple's and Google's developer docs`);
+      }
+    }
+    const entries = src.split(/\n {4}"slug": "/).slice(1);
+    for (const e of entries) {
+      const slug = e.slice(0, e.indexOf('"'));
+      const updated = /"updated": "(\d{4}-\d{2}-\d{2})"/.exec(e)?.[1];
+      const sourcesAt = e.indexOf('"sources": [');
+      const checked = sourcesAt === -1 ? [] : [...e.slice(sourcesAt).matchAll(/"checked": "(\d{4}-\d{2}-\d{2})"/g)].map((m) => m[1]);
+      if (!checked.length) problems.push(`AUDIO-EVIDENCE  /audio-coaching/${slug} has no sources`);
+      else if (checked.some((c) => c !== updated)) {
+        problems.push(`AUDIO-EVIDENCE  /audio-coaching/${slug} has a source checked on a date other than its updated stamp (${updated})`);
+      }
+    }
+    console.log(`Audio coaching: ${entries.length} entries, Apple/Google-only links, sources checked on each updated date.`);
+  }
+
+  // Health Connect error codes and SDK releases.
+  {
+    const src = fs.readFileSync("src/data/errorCodes.ts", "utf8");
+    const constants = jsonArray(src, "HC_ERROR_CONSTANTS");
+    const page = htmlOf("/error-codes/health-connect");
+    if (!constants || constants.length < 9) {
+      problems.push(`ERROR-CODES-ROWS  src/data/errorCodes.ts yields ${constants?.length ?? 0} HealthConnectException constants, expected at least 9`);
+    } else if (!page) {
+      problems.push("ERROR-CODES-ROWS  /error-codes/health-connect was not built");
+    } else {
+      const missing = constants.filter((c) => !page.includes(`id="code-${c.name.toLowerCase()}"`)).map((c) => c.name);
+      if (missing.length) problems.push(`ERROR-CODES-ROWS  /error-codes/health-connect is missing rows for ${missing.join(", ")}`);
+      else console.log(`Error codes: ${constants.length} HealthConnectException constants rendered.`);
+    }
+    if (!htmlOf("/error-codes")) problems.push("ERROR-CODES-ROWS  /error-codes was not built");
+  }
+  {
+    const src = fs.readFileSync("src/data/hcReleases.ts", "utf8");
+    const releases = jsonArray(src, "HC_RELEASES");
+    const page = htmlOf("/health-connect-releases");
+    if (!releases || releases.length < 32) {
+      problems.push(`HC-RELEASES-ROWS  src/data/hcReleases.ts yields ${releases?.length ?? 0} releases, expected at least 32`);
+    } else if (!page) {
+      problems.push("HC-RELEASES-ROWS  /health-connect-releases was not built");
+    } else {
+      const missing = releases.filter((r) => !page.includes(`id="release-${r.version}"`)).map((r) => r.version);
+      if (missing.length) problems.push(`HC-RELEASES-ROWS  /health-connect-releases is missing ${missing.join(", ")}`);
+      else console.log(`Health Connect releases: ${releases.length} connect-client releases rendered.`);
     }
   }
 }

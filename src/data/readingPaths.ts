@@ -184,7 +184,7 @@ export const READING_PATHS: ReadingPath[] = [
         why: "The Android counterpart to HealthKit's empty read, and the first thing you will hit on a real device after the integration compiles.",
       },
       {
-        href: "/health-connect-records",
+        href: "/health-connect",
         label: "Every Health Connect record type",
         why: "The reference to keep open while you rewrite the read layer — the full record set, so you can check a type exists before you plan around it.",
       },

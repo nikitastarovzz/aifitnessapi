@@ -47,6 +47,10 @@ export const watchAppsEntries: ClusterEntry[] =
       {
         "href": "/devices/apple-watch-live-heart-rate",
         "label": "Apple Watch live heart rate"
+      },
+      {
+        "href": "/watch-apps/hkworkoutsession-lifecycle-swift",
+        "label": "HKWorkoutSession lifecycle in Swift"
       }
     ],
     "cta": {
@@ -92,6 +96,10 @@ export const watchAppsEntries: ClusterEntry[] =
       {
         "href": "/architecture/deduplicate-health-data",
         "label": "Deduplicating health data"
+      },
+      {
+        "href": "/watch-apps/hkworkoutsession-lifecycle-swift",
+        "label": "HKWorkoutSession lifecycle in Swift"
       }
     ],
     "cta": {
@@ -182,6 +190,10 @@ export const watchAppsEntries: ClusterEntry[] =
       {
         "href": "/engagement/push-notifications-fitness-app",
         "label": "Push notifications for fitness apps"
+      },
+      {
+        "href": "/watch-apps/workoutkit-customworkout-swift",
+        "label": "CustomWorkout and IntervalBlock in Swift"
       }
     ],
     "cta": {
@@ -227,6 +239,10 @@ export const watchAppsEntries: ClusterEntry[] =
       {
         "href": "/devices/apple-watch-live-heart-rate",
         "label": "Apple Watch live heart rate"
+      },
+      {
+        "href": "/watch-apps/hkworkoutsession-mirroring-api",
+        "label": "HKWorkoutSession mirroring API"
       }
     ],
     "cta": {
@@ -317,6 +333,14 @@ export const watchAppsEntries: ClusterEntry[] =
       {
         "href": "/watch-apps/wear-os-app-anatomy",
         "label": "Wear OS app anatomy"
+      },
+      {
+        "href": "/watch-apps/wear-os-exerciseclient-kotlin",
+        "label": "ExerciseClient in Kotlin"
+      },
+      {
+        "href": "/watch-apps/wear-os-passive-monitoring-measureclient",
+        "label": "PassiveMonitoringClient and MeasureClient"
       }
     ],
     "cta": {
@@ -546,6 +570,355 @@ export const watchAppsEntries: ClusterEntry[] =
     ],
     "cta": {
       "pitch": "We publish what we could verify about test tooling and what we could not, dated, so your watch test plan rests on documented behavior rather than a forum post about a simulator two versions ago."
+    }
+  },
+  {
+    "slug": "workoutkit-customworkout-swift",
+    "primaryQuery": "workoutkit customworkout intervalblock swift",
+    "h1": "CustomWorkout, IntervalBlock and WorkoutScheduler in Swift",
+    "metaTitle": "CustomWorkout and IntervalBlock: WorkoutKit Swift Code",
+    "metaDescription": "Build a WorkoutKit CustomWorkout from WorkoutStep, IntervalStep and IntervalBlock, wrap it in a WorkoutPlan, then schedule, list and remove it.",
+    "updated": "2026-10-03",
+    "answer": "A WorkoutKit interval session is built bottom-up: WorkoutStep and IntervalStep each carry a WorkoutGoal and an optional WorkoutAlert, IntervalBlock repeats an array of interval steps a given number of iterations, and CustomWorkout(activity:location:displayName:warmup:blocks:cooldown:) assembles warmup, blocks and cooldown. You wrap the result in WorkoutPlan(.custom(workout)) and either hand it to the Workout app or pass it to WorkoutScheduler.shared, whose schedule(_:at:) takes DateComponents. Apple's metadata lists these types from iOS 17.0 and watchOS 10.0, with macOS 15.0 and Mac Catalyst 18.0 on the individual symbols, and lists openInWorkoutApp() for watchOS only. Check CustomWorkout.supportsGoal and supportsAlert before you build a plan, and read WorkoutScheduler.maxAllowedScheduledWorkoutCount at runtime rather than hard-coding a limit.",
+    "body": "This page is the code. The product question (whether a coaching program belongs in Apple's Workout app at all, and how to sequence preview, scheduling and your own watch app) is answered in [WorkoutKit scheduled workouts](/watch-apps/workoutkit-scheduled-workouts). Everything below is the WorkoutKit API surface as Apple's reference documents it, read on 2026-10-03.\n\n## The type tree, from the leaves up\n\nApple's reference describes each piece in one line, and together they read like a grammar for an interval session:\n\n| Type | Apple's description | How you create it |\n|---|---|---|\n| `WorkoutGoal` | \"A value that specifies the goal for a workout\" | Cases including `.open`, `.distance(_:_:)`, `.energy(_:_:)`, `.time(_:_:)` |\n| `WorkoutAlert` | \"An alert that notifies the user of significant events during a workout\" | Concrete types such as `HeartRateZoneAlert(zone:)` |\n| `WorkoutStep` | \"A step in a workout\" | `init(goal:alert:)`, both parameters defaulted |\n| `IntervalStep` | \"An interval that represents a work or recovery step in a workout\" | `init(_:goal:alert:)` or `init(_:step:)` with `.work` or `.recovery` |\n| `IntervalBlock` | \"Blocks of work and recovery steps that repeat in a custom workout\" | `init(steps:iterations:)` |\n| `CustomWorkout` | \"A workout that includes a repeating series of work and recovery steps\" | `init(activity:location:displayName:warmup:blocks:cooldown:)` |\n\nThe goal is what ends a step. Apple's parameter note on `WorkoutStep` says so directly: the goal is \"A goal that determines when the step ends.\" A step with `.open` has no end condition of its own. The goal cases carry Foundation units: `.distance` takes a `UnitLength`, `.time` takes a `UnitDuration`.\n\n`IntervalStep.Purpose` has two cases, `.work` and `.recovery`. Apple documents no third value, so a coaching model that distinguishes \"easy\", \"steady\" and \"rest\" has to map onto those two plus the goal and alert you attach.\n\n## A minimal interval workout\n\nThis uses only initializers and cases from Apple's reference. Six repeats of 400 metres with a heart-rate zone alert, 90 seconds of recovery, a timed warmup and cooldown:\n\n```swift\nimport WorkoutKit\nimport HealthKit\n\nlet work = IntervalStep(.work,\n                        goal: .distance(400, .meters),\n                        alert: HeartRateZoneAlert(zone: 4))\nlet recovery = IntervalStep(.recovery, goal: .time(90, .seconds))\n\nlet repeats = IntervalBlock(steps: [work, recovery], iterations: 6)\n\nlet workout = CustomWorkout(activity: .running,\n                            location: .outdoor,\n                            displayName: \"6 x 400 m\",\n                            warmup: WorkoutStep(goal: .time(10, .minutes)),\n                            blocks: [repeats],\n                            cooldown: WorkoutStep(goal: .time(5, .minutes)))\n\nlet plan = WorkoutPlan(.custom(workout))\n```\n\n`activity` is an `HKWorkoutActivityType` and `location` an `HKWorkoutSessionLocationType`, the same HealthKit enums a workout session uses; the full activity list is on [HealthKit workout activity types](/healthkit/workout-activities). `WorkoutPlan(_:id:)` defaults `id` to a fresh `UUID()`. Pass your own when the plan has an identity in your backend, so you can find it again among scheduled workouts.\n\n## Check support before you build\n\n`CustomWorkout` exposes three static checks: `supportsActivity(_:)`, `supportsGoal(_:activity:location:)` and `supportsAlert(_:activity:location:)`. Apple describes `supportsGoal` as returning \"a Boolean value that indicates whether the system supports the specified goal for the given activity type and location\". Run them when you translate your own program format into WorkoutKit types, not after a user taps schedule:\n\n```swift\nlet ok = CustomWorkout.supportsGoal(.distance(400, .meters),\n                                    activity: .running,\n                                    location: .outdoor)\n    && CustomWorkout.supportsAlert(HeartRateZoneAlert(zone: 4),\n                                   activity: .running,\n                                   location: .outdoor)\n```\n\nOur judgement: treat a false here as \"this session cannot be represented faithfully\" and keep it in your own app, rather than silently dropping the alert and scheduling something the coach did not write.\n\n## Previewing and opening\n\nThere are two documented ways to show a plan before the user runs it. On iPhone, SwiftUI's `workoutPreview(_:isPresented:)` modifier \"Presents a preview of the workout contents as a modal sheet\"; Apple lists it from iOS 17.0 and watchOS 11.0. On the watch, `WorkoutPlan.openInWorkoutApp()` \"Opens the workout in Workout on Apple Watch\". It is declared `async throws`, and its availability metadata names watchOS 10.0 and no iOS version, so do not plan an iPhone button around it.\n\n## Scheduling and managing the schedule\n\n`WorkoutScheduler` is a final class with a `shared` instance. Everything that touches the schedule is `async`:\n\n```swift\nlet scheduler = WorkoutScheduler.shared\n\nguard WorkoutScheduler.isSupported else { return }\n\nif await scheduler.authorizationState != .authorized {\n    let state = await scheduler.requestAuthorization()\n    guard state == .authorized else { return }\n}\n\nvar when = DateComponents()\nwhen.year = 2026; when.month = 10; when.day = 6\nwhen.hour = 7; when.minute = 0\n\nawait scheduler.schedule(plan, at: when)\n\nlet upcoming = await scheduler.scheduledWorkouts   // [ScheduledWorkoutPlan]\n```\n\nDetails from the reference that shape real code:\n\n- `requestAuthorization()` returns a `WorkoutScheduler.AuthorizationState`: `.authorized`, `.denied`, `.notDetermined` or `.restricted`. Unlike HealthKit read access, this state is reported, so you can show an honest \"scheduling is off\" screen.\n- `schedule(_:at:)` takes `DateComponents`, not a `Date`, and is `async` without `throws`.\n- `scheduledWorkouts` is \"An array of all the workouts scheduled by your app\", each a `ScheduledWorkoutPlan` carrying `plan`, `date` and `complete`.\n- `maxAllowedScheduledWorkoutCount` is a static `Int` described as \"The maximum number of workouts your app can schedule.\" Apple does not print the number on the page, so read it at runtime and schedule a rolling window, not a whole season.\n- `markComplete(_:at:)`, `remove(_:at:)` and `removeAllWorkouts()` maintain the schedule. `remove` takes the plan and the same `DateComponents`, which is a reason to persist exactly what you scheduled.\n\nApple's WorkoutKit sample describes the round trip: a planned workout \"appears at the top of the Workout list on the watch\", and after it is run and the sample's list is refreshed, \"A green checkmark appears next to the completed workout.\" How the completion is surfaced to your code beyond the `complete` property is not spelled out on the reference pages we read, so verify against the sample before you build on it.\n\n## Availability, symbol by symbol\n\nThe framework root lists iOS, iPadOS and Mac Catalyst 17.0 with watchOS 10.0. The individual types used above (`CustomWorkout`, `WorkoutPlan`, `WorkoutScheduler`, `IntervalBlock` and the rest) also list macOS 15.0, and their Mac Catalyst line reads 18.0 rather than 17.0. If you ship a Catalyst build, take the higher number from the symbol pages, not the framework page.\n\n## Where the live session lives\n\nA scheduled composition runs in Apple's Workout app, not in yours. If you need your own in-session screens, the live side is [the HKWorkoutSession lifecycle](/watch-apps/hkworkoutsession-lifecycle-swift), and the architecture around it is [the anatomy of a watchOS workout app](/watch-apps/watchos-workout-app-anatomy).",
+    "steps": [
+      {
+        "name": "Build the steps",
+        "text": "Create WorkoutStep values for warmup and cooldown with init(goal:alert:), and IntervalStep values with init(_:goal:alert:) using the .work or .recovery purpose. Goals use WorkoutGoal cases such as .time(_:_:) with a UnitDuration or .distance(_:_:) with a UnitLength."
+      },
+      {
+        "name": "Repeat them in an IntervalBlock",
+        "text": "Wrap the work and recovery steps in IntervalBlock(steps:iterations:), which Apple describes as repeating the provided steps the specified number of times."
+      },
+      {
+        "name": "Assemble and validate the CustomWorkout",
+        "text": "Call CustomWorkout(activity:location:displayName:warmup:blocks:cooldown:) with an HKWorkoutActivityType and location, and confirm each goal and alert with CustomWorkout.supportsGoal(_:activity:location:) and supportsAlert(_:activity:location:)."
+      },
+      {
+        "name": "Wrap it in a WorkoutPlan",
+        "text": "Create WorkoutPlan(.custom(workout), id:) and pass your own UUID if the plan has an identity in your backend. Preview it on iPhone with the workoutPreview(_:isPresented:) modifier, or open it on the watch with openInWorkoutApp()."
+      },
+      {
+        "name": "Authorize and schedule",
+        "text": "Check WorkoutScheduler.isSupported, read authorizationState, call requestAuthorization() if needed, then await WorkoutScheduler.shared.schedule(plan, at:) with DateComponents. Manage the schedule with scheduledWorkouts, remove(_:at:) and removeAllWorkouts()."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Does WorkoutScheduler.schedule take a Date or DateComponents?",
+        "a": "DateComponents. Apple declares it as schedule(_ workout: WorkoutPlan, at: DateComponents) async, and describes the parameter as date components that represent the workout's starting time. The same type appears in ScheduledWorkoutPlan.date and in remove(_:at:) and markComplete(_:at:), which both take the plan plus the DateComponents it was scheduled at. Persist exactly what you scheduled so you can remove or complete it later without reconstructing the components from a Date and getting a time zone or field mismatch."
+      },
+      {
+        "q": "How many workouts can one app schedule with WorkoutKit?",
+        "a": "Apple exposes the limit as WorkoutScheduler.maxAllowedScheduledWorkoutCount, a static Int described as the maximum number of workouts your app can schedule, but the reference page does not state the number. Read it at runtime instead of hard-coding one. Our recommendation is to schedule a rolling window of upcoming sessions from your backend's plan and top it up, rather than trying to push an entire training block, so a plan change touches only a few scheduled entries."
+      },
+      {
+        "q": "Can an iPhone app call openInWorkoutApp on a WorkoutPlan?",
+        "a": "Apple's availability metadata for WorkoutPlan.openInWorkoutApp() lists watchOS 10.0 and no iOS version, and describes it as opening the workout in Workout on Apple Watch. On iPhone the documented preview path is SwiftUI's workoutPreview(_:isPresented:) modifier, listed from iOS 17.0, which presents the workout contents as a modal sheet, and the documented delivery path is WorkoutScheduler. Design the iPhone flow around preview and scheduling, and keep the open-now action in your watch app."
+      },
+      {
+        "q": "What are the two purposes an IntervalStep can have?",
+        "a": "Apple's IntervalStep.Purpose enum has two cases: work, described as a work step, and recovery, described as a recovery step. Each IntervalStep pairs one purpose with a WorkoutStep, either through init(_:step:) or the convenience init(_:goal:alert:). If your coaching model has more step kinds than that, express the difference through the goal and alert you attach, and check each with CustomWorkout.supportsGoal and supportsAlert before scheduling."
+      }
+    ],
+    "related": [
+      {
+        "href": "/watch-apps/workoutkit-scheduled-workouts",
+        "label": "WorkoutKit scheduled workouts"
+      },
+      {
+        "href": "/watch-apps/hkworkoutsession-lifecycle-swift",
+        "label": "HKWorkoutSession lifecycle in Swift"
+      },
+      {
+        "href": "/healthkit/workout-activities",
+        "label": "HealthKit workout activity types"
+      },
+      {
+        "href": "/watch-apps/watchos-workout-app-anatomy",
+        "label": "Anatomy of a watchOS workout app"
+      }
+    ],
+    "cta": {
+      "pitch": "WorkoutKit gains goal and alert types between OS releases, and our newsletter flags the additions and availability changes that let a composition you could not express last year schedule cleanly now."
+    }
+  },
+  {
+    "slug": "hkworkoutsession-lifecycle-swift",
+    "primaryQuery": "hkworkoutsession startactivity endcollection finishworkout",
+    "h1": "HKWorkoutSession Lifecycle in Swift: Start, Stop, Save",
+    "metaTitle": "HKWorkoutSession Lifecycle: Start, Stop and Save in Swift",
+    "metaDescription": "The call order Apple documents: startActivity and beginCollection, stopActivity, endCollection, finishWorkout, end, plus crash recovery.",
+    "updated": "2026-10-03",
+    "answer": "Apple documents a fixed call order for an HKWorkoutSession. Create the session with HKWorkoutSession(healthStore:configuration:), take its builder from associatedWorkoutBuilder(), assign an HKLiveWorkoutDataSource built from the same HKWorkoutConfiguration, then call startActivity(with:) and beginCollection(withStart:completion:). To finish, call stopActivity(with:), wait for the delegate to report the .stopped state, then call endCollection(withEnd:completion:) and finishWorkout(completion:), and only then end(). If the app crashes mid-workout, Apple says the system calls handleActiveWorkoutRecovery() on relaunch, where you call recoverActiveWorkoutSession(completion:) and reattach the data source and delegates. Apple lists the builder initializer from watchOS 5.0 and, on iPhone and iPad, from iOS and iPadOS 26.0.",
+    "body": "The architecture of a watchOS workout app (what the session owns, what the builder owns, why session state should drive your UI) is covered in [the anatomy of a watchOS workout app](/watch-apps/watchos-workout-app-anatomy). This page is the call sequence, method by method, as Apple's HealthKit reference and its \"Running workout sessions\" article document it on 2026-10-03.\n\n## Before the first call: authorization and capabilities\n\nApple's article is specific. \"For workout sessions, you must request permission to share workout types\", so `HKQuantityType.workoutType()` goes in the share set, with heart rate, active energy and distance in the read set as your app needs them. Two capabilities follow: \"Workout sessions require the Workout processing background mode. If your app plays audio or provides haptic feedback during the workout session, you must also add the Audio background mode.\"\n\nAudio has a second rule worth knowing if you build spoken coaching: Apple notes that workout apps can play short clips in the background, but \"an active workout session must be running; any attempt to play background audio outside a workout session are invalid.\" Cues belong inside the session's lifetime; the watch speaker and Bluetooth routing are covered in [audio cues on the wrist](/audio-coaching/wear-os-watchos-workout-audio).\n\n## The state machine Apple gives you\n\n`HKWorkoutSessionState` has six cases: `.notStarted`, `.prepared` (\"The session is ready but not yet running\"), `.running`, `.paused`, `.stopped` and `.ended`. Your `HKWorkoutSessionDelegate` hears every transition through `workoutSession(_:didChangeTo:from:date:)`, and Apple says all the delegate's methods are required and are called \"on an anonymous serial background queue\", so hop to the main actor before touching UI.\n\nOne sentence in that delegate method's discussion changes how you write it: \"If your application is suspended, the delegate receives this call after the application resumes. This means you may receive the notification long after the state changed.\" Use the `date` parameter, not `Date()`, when you record when a pause or stop happened.\n\n## Starting\n\n```swift\nlet configuration = HKWorkoutConfiguration()\nconfiguration.activityType = .running\nconfiguration.locationType = .outdoor\n\nlet session = try HKWorkoutSession(healthStore: healthStore,\n                                   configuration: configuration)\nlet builder = session.associatedWorkoutBuilder()\nbuilder.dataSource = HKLiveWorkoutDataSource(healthStore: healthStore,\n                                             workoutConfiguration: configuration)\nsession.delegate = self\nbuilder.delegate = self\n\nlet start = Date()\nsession.startActivity(with: start)\ntry await builder.beginCollection(at: start)\n```\n\nThe initializer `throws`, and Apple says why: it \"can throw an exception if the configuration is invalid.\" Apple also says to \"Use the same configuration object for the workout session and the live data source.\" The completion-handler form `beginCollection(withStart:completion:)` and the `async` form `beginCollection(at:)` are the same method.\n\n`prepare()` is documented simply as \"Prepares the workout session\", and the matching state is `.prepared`, \"ready but not yet running.\" Our suggestion is to call it when a countdown screen appears, so the session already exists when the user's start tap arrives.\n\n## While it runs\n\nThe data source does the collecting. Apple's article gives the example that \"an outdoor running session collects and saves `activeEnergyBurned`, `basalEnergyBurned`, `heartRate`, and `distanceWalkingRunning` samples.\" You read them through the builder delegate:\n\n```swift\nfunc workoutBuilder(_ workoutBuilder: HKLiveWorkoutBuilder,\n                    didCollectDataOf collectedTypes: Set<HKSampleType>) {\n    for case let type as HKQuantityType in collectedTypes {\n        let stats = workoutBuilder.statistics(for: type)\n        // publish stats to the UI on the main actor\n    }\n}\n```\n\n`workoutBuilderDidCollectEvent(_:)` fires for events; read `workoutEvents.last`. You can add your own samples with `add(_:completion:)` and events with `addWorkoutEvents(_:completion:)`. To add a quantity type to what the data source gathers, Apple's mirroring example calls `enableCollection(for:predicate:)` on the `HKLiveWorkoutDataSource`, which Apple says \"Begins automatically calculating statistics for samples that match the quantity type and predicate.\"\n\n`pause()` and `resume()` are requests. The state change arrives through the delegate, and that is when the UI should change.\n\n## Stopping and saving, in Apple's order\n\nApple's sequence is stop, wait, end collection, finish, end:\n\n```swift\nsession.stopActivity(with: Date())\n\n// HKWorkoutSessionDelegate\nfunc workoutSession(_ workoutSession: HKWorkoutSession,\n                    didChangeTo toState: HKWorkoutSessionState,\n                    from fromState: HKWorkoutSessionState,\n                    date: Date) {\n    guard toState == .stopped else { return }\n    Task {\n        try await builder.endCollection(at: date)\n        let workout = try await builder.finishWorkout()\n        workoutSession.end()\n    }\n}\n```\n\nWhat each call does, in Apple's words: `endCollection(withEnd:completion:)` \"sets the workout's end date and deactivates the builder\"; `finishWorkout(completion:)` \"saves the workout and its associated data to the HealthKit store\". Apple adds that you must call `endCollection` before `finishWorkout`, and that `finishWorkout` \"returns `nil` if finishing the workout succeeded but the workout sample is not available because the device is locked.\" A nil result is not a failure. Do not show an error for it.\n\n`discardWorkout()` \"Stops the collection of data and discards the current results without saving the workout.\" Apple's Human Interface Guidelines give a concrete use: \"If a session ends a few seconds after it starts, either discard the data automatically or ask people if they want to record the data as a workout.\"\n\n## When the session ends without you\n\nApple states that \"Apple Watch runs one workout session at a time. If a second workout starts while your workout is running, your `HKWorkoutSessionDelegate` object receives an `HKError.Code.errorAnotherWorkoutSessionStarted` error, and your session ends.\" That case and the other session-ending errors are covered in [HealthKit workout session errors](/fix/healthkit-workout-session-errors).\n\n## Recovering after a crash\n\nApple documents a recovery path: \"If your app crashes during a workout session, the system calls your extension delegate's `handleActiveWorkoutRecovery()` method when the app relaunches.\" There you call `recoverActiveWorkoutSession(completion:)` on the health store (an `async throws` form returns `HKWorkoutSession?`). Then comes the step people miss: \"As soon as you receive the session object, you must access its builder and set up your data source and delegates again.\" Factor the setup above into one function that both a fresh start and a recovery call.\n\n## Background behavior\n\nWith an active session, Apple says the app \"continues to run throughout the entire workout session, even when the user lowers their wrist or interacts with a different app,\" keeps receiving sensor data, and can alert with audio or haptics. The limit is CPU: \"If your app uses an excessive amount of CPU while in the background, watchOS may suspend it.\" The wider runtime picture is in [Apple Watch background execution](/watch-apps/apple-watch-background-execution).\n\n## On iPhone and iPad: versions to check\n\nThe `HKWorkoutSession` class page lists iOS 17.0, but the members that make a session collect data list later versions. `init(healthStore:configuration:)`, `associatedWorkoutBuilder()`, `HKLiveWorkoutBuilder`, `HKLiveWorkoutDataSource` and `recoverActiveWorkoutSession(completion:)` all list iOS and iPadOS 26.0, with watchOS 5.0. Apple's sample \"Building a workout app for iPhone and iPad\" (associated with WWDC25 session 322) targets iOS 26. Below iOS 26 the iPhone side of a watch workout is the mirrored session, covered in [the HKWorkoutSession mirroring API](/watch-apps/hkworkoutsession-mirroring-api).\n\nThe newest addition at the time of writing is zone tracking: `workoutBuilder(_:didUpdateWorkoutZone:)` and `HKLiveWorkoutZoneUpdate` list iOS and watchOS 27.0.",
+    "steps": [
+      {
+        "name": "Request authorization and add capabilities",
+        "text": "Request share permission for HKQuantityType.workoutType() and read permission for the types you display, add NSHealthShareUsageDescription and NSHealthUpdateUsageDescription, and enable the Workout processing background mode, plus Audio if you play sounds or haptics during the session."
+      },
+      {
+        "name": "Create the session, builder and data source",
+        "text": "Build one HKWorkoutConfiguration, pass it to try HKWorkoutSession(healthStore:configuration:), take the builder from associatedWorkoutBuilder(), and assign HKLiveWorkoutDataSource(healthStore:workoutConfiguration:) built from the same configuration. Set both delegates."
+      },
+      {
+        "name": "Start the activity and the collection",
+        "text": "Call session.startActivity(with:) and builder.beginCollection(withStart:completion:) with the same start date. Optionally call prepare() first so sensors warm up before the user taps start."
+      },
+      {
+        "name": "Update the UI from the builder delegate",
+        "text": "In workoutBuilder(_:didCollectDataOf:) read workoutBuilder.statistics(for:) for each quantity type, and in workoutBuilderDidCollectEvent(_:) read workoutEvents. Drive pause and resume UI from workoutSession(_:didChangeTo:from:date:), not from button taps."
+      },
+      {
+        "name": "Stop, end collection, finish, end",
+        "text": "Call stopActivity(with:), wait for the delegate to report .stopped, then call endCollection(withEnd:completion:), then finishWorkout(completion:), then end(). Treat a nil workout from finishWorkout as a successful save on a locked device."
+      },
+      {
+        "name": "Handle crash recovery",
+        "text": "Implement handleActiveWorkoutRecovery() and call recoverActiveWorkoutSession(completion:) on the health store, then reattach the builder's data source and both delegates exactly as on a fresh start."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Why should I wait for the stopped state before calling endCollection on the workout builder?",
+        "a": "Because that is the order Apple documents. Its Running workout sessions article says to call stopActivity(with:) and, after the session has transitioned to the stopped state, call the builder's endCollection(withEnd:completion:) and finishWorkout(completion:), and finally end() on the session. Its sample does this inside workoutSession(_:didChangeTo:from:date:) and passes the delegate's date as the end date. Calling endCollection from the button handler instead races the session's own transition, and the end date you record is when your code ran rather than when the session stopped."
+      },
+      {
+        "q": "finishWorkout returned nil without an error. Did the workout save?",
+        "a": "Apple says yes. The finishWorkout(completion:) discussion states that the function returns nil if finishing the workout succeeded but the workout sample is not available because the device is locked. Treat nil with no error as a completed save, and show your summary from the statistics you already collected during the session. Our advice is not to prompt the user to retry, which invites them to record the same workout twice."
+      },
+      {
+        "q": "How does a watchOS app get its workout back after crashing mid-session?",
+        "a": "Apple documents that if the app crashes during a workout session, the system calls the extension delegate's handleActiveWorkoutRecovery() method when the app relaunches. In it, call recoverActiveWorkoutSession(completion:) on your HKHealthStore; HealthKit attempts to restore the previous session and returns a new session object or an error. Apple then says you must access the recovered session's builder and set up your data source and delegates again, so keep that setup in one function shared by the fresh-start and recovery paths."
+      },
+      {
+        "q": "Can an iPhone app run its own HKWorkoutSession with a live workout builder?",
+        "a": "From iOS 26, according to Apple's availability metadata. The HKWorkoutSession class lists iOS 17.0, but init(healthStore:configuration:), associatedWorkoutBuilder(), HKLiveWorkoutBuilder and HKLiveWorkoutDataSource all list iOS and iPadOS 26.0, and Apple's Building a workout app for iPhone and iPad sample targets iOS 26. Apple's session overview also notes that iPhone and iPad have no heart rate sensor, so collecting heart rate there requires pairing an external sensor. Below iOS 26 the iPhone joins a watch workout as a mirrored session."
+      }
+    ],
+    "related": [
+      {
+        "href": "/watch-apps/watchos-workout-app-anatomy",
+        "label": "Anatomy of a watchOS workout app"
+      },
+      {
+        "href": "/watch-apps/hkworkoutsession-mirroring-api",
+        "label": "HKWorkoutSession mirroring API"
+      },
+      {
+        "href": "/fix/healthkit-workout-session-errors",
+        "label": "HealthKit workout session errors"
+      },
+      {
+        "href": "/healthkit/workout-activities",
+        "label": "HealthKit workout activity types"
+      },
+      {
+        "href": "/audio-coaching",
+        "label": "Audio coaching"
+      }
+    ],
+    "cta": {
+      "pitch": "HealthKit's workout APIs gained iPhone support in iOS 26 and zone updates in iOS 27, and our newsletter tracks the availability changes that move what your session code can assume."
+    }
+  },
+  {
+    "slug": "hkworkoutsession-mirroring-api",
+    "primaryQuery": "startmirroringtocompaniondevice",
+    "h1": "startMirroringToCompanionDevice: The Mirrored Workout API",
+    "metaTitle": "startMirroringToCompanionDevice: Mirrored HKWorkoutSession",
+    "metaDescription": "The calls behind a mirrored Apple Watch workout: startMirroringToCompanionDevice, workoutSessionMirroringStartHandler, sendToRemoteWorkoutSession.",
+    "updated": "2026-10-03",
+    "answer": "Mirroring is four HealthKit members. On the watch, startMirroringToCompanionDevice(completion:) starts a mirrored copy of a running HKWorkoutSession on the companion iPhone; Apple lists it for watchOS 10.0 only and says it fails on a session that has ended. On the iPhone, HKHealthStore's workoutSessionMirroringStartHandler receives that copy, and Apple says the system launches the iOS app in the background if needed, may call the handler more than once after a reconnection, and hands over a new HKWorkoutSession each time. Either side sends Data with sendToRemoteWorkoutSession(data:completion:) and receives it in workoutSession(_:didReceiveDataFromRemoteWorkoutSession:) as an array, batched while the receiving app is suspended. The iOS-side members list iOS 17.0.",
+    "body": "Why you would mirror, and how to keep one source of truth between two screens, is covered in [mirroring an Apple Watch workout to iPhone](/watch-apps/mirroring-workouts-to-iphone). This page is the API those decisions run on, as Apple documents it on 2026-10-03.\n\n## The members, and where each runs\n\n| Member | Runs on | Apple lists |\n|---|---|---|\n| `HKWorkoutSession.startMirroringToCompanionDevice(completion:)` | Watch | watchOS 10.0 |\n| `HKWorkoutSession.stopMirroringToCompanionDevice(completion:)` | Watch | watchOS 10.0 |\n| `HKHealthStore.workoutSessionMirroringStartHandler` | iPhone | iOS 17.0, watchOS 10.0 |\n| `HKWorkoutSession.sendToRemoteWorkoutSession(data:completion:)` | Both | iOS 17.0, watchOS 10.0 |\n| `workoutSession(_:didReceiveDataFromRemoteWorkoutSession:)` | Both | iOS 17.0, watchOS 10.0 |\n| `workoutSession(_:didDisconnectFromRemoteDeviceWithError:)` | Both | iOS 17.0, watchOS 10.0 |\n| `HKWorkoutSession.type` | Both | iOS 17.0, watchOS 10.0 |\n\n`type` returns an `HKWorkoutSessionType`: `.primary`, \"A primary session running on watchOS\", or `.mirrored`, \"A mirrored session, running on the companion iOS device.\" Branch on it in shared code instead of guessing which device you are on.\n\n## Watch side: start mirroring, then start the workout\n\nApple's own example creates the session and builder, starts mirroring, and only then starts the activity:\n\n```swift\nlet session = try HKWorkoutSession(healthStore: store, configuration: configuration)\nlet builder = session.associatedWorkoutBuilder()\nbuilder.dataSource = HKLiveWorkoutDataSource(healthStore: store,\n                                             workoutConfiguration: configuration)\nsession.delegate = self\nbuilder.delegate = self\n\ntry await session.startMirroringToCompanionDevice()\n\nlet start = Date()\nsession.startActivity(with: start)\ntry await builder.beginCollection(at: start)\n```\n\nApple's discussion states what happens on the other side: \"If your iOS app isn't running, the system launches it in the background. The iOS companion app must assign a completion handler to its HealthKit Store's `workoutSessionMirroringStartHandler` property to process the incoming session.\" It also warns: \"This method fails if you call it on a workout session that ended.\"\n\nStopping is the reverse. Apple's example ends the session, calls `endCollection(at:)` and `finishWorkout()` on the builder, then `stopMirroringToCompanionDevice()`, after which \"the system calls the `workoutSession(_:didDisconnectFromRemoteDeviceWithError:)` method on the iOS companion's session delegate.\" The general start-stop-save order is on [the HKWorkoutSession lifecycle page](/watch-apps/hkworkoutsession-lifecycle-swift).\n\n## iPhone side: assign the handler at launch\n\n```swift\n// In app launch, before anything else touches the store\nstore.workoutSessionMirroringStartHandler = { mirroredSession in\n    // Called on an arbitrary background queue\n    Task { @MainActor in\n        self.session = mirroredSession\n        mirroredSession.delegate = self\n    }\n}\n```\n\nThree details from Apple's discussion decide how robust this is:\n\n- **Timing.** \"To ensure that your app can always catch incoming mirrored workout sessions, assign this property as soon as your app launches.\" A handler set from a view that may not be on screen when the system launches you in the background will miss the session.\n- **More than one call.** \"Your app may receive multiple calls to `workoutSessionMirroringStartHandler`. If iPhone and Apple Watch lose their connection in the middle of a workout session, Apple Watch automatically tries to reconnect. Each call has its own `HKWorkoutSession` instance.\" Replace your stored session each time; do not assume the first one is the only one.\n- **Queue.** \"The system calls this block from an arbitrary background queue.\"\n\n## Disconnects invalidate the session object\n\nWhen the link drops, the mirrored side's delegate gets `workoutSession(_:didDisconnectFromRemoteDeviceWithError:)`. Apple says: \"After the system calls this method, the provided workout session is no longer valid, and you can no longer use it.\" The error is nil when no error caused the disconnect. Then: \"If the primary workout session is still running, it automatically tries to reconnect. If successful, the companion iOS device calls the `workoutSessionMirroringStartHandler` block again, passing in a new, valid `HKWorkoutSession` instance.\" In practice, clear your reference on disconnect, show the phone as disconnected rather than ended, and let the handler repopulate it.\n\n## Sending data both ways\n\n`sendToRemoteWorkoutSession(data:completion:)` (and its `async throws` form) takes a single `Data`. Apple notes \"You can send data from either the `HKWorkoutSessionType.mirrored` or `HKWorkoutSessionType.primary` session,\" so the same call carries live metrics from watch to phone and commands such as \"next interval\" from phone to watch. The encoding is yours; Apple's sample archives an object with `NSKeyedArchiver`. Our recommendation is a small versioned `Codable` message type, so a phone build and a watch build from different releases can still talk.\n\nThe receiving method gets `[Data]`, not one value, and Apple explains why: \"In iOS, your app can go into the background and become suspended. When suspended, HealthKit gathers the data coming from the remote session. When the app resumes, HealthKit sends an array containing all the data objects it has accumulated.\" It adds that \"there might be several minutes between delegate calls.\" On the watch, the session keeps the app running, but \"the system can temporarily suspend the app — for example, if the app uses an excessive amount of CPU in the background,\" with the same caching on resume. Two design consequences:\n\n- Process the whole array in order. The last element is the newest state; earlier ones are history you may still need (a lap marker, a pause).\n- Never treat a message as \"now\". Put a timestamp in every message, because delivery can lag by minutes.\n\n## What the API does not decide for you\n\nApple's \"Running workout sessions\" article gives a companion rule that predates mirroring but still applies: if the user starts on the watch and tries to end in the iOS app, \"the iOS app should instruct the user to end the workout in your watchOS app. Otherwise, Apple Watch workout continues to run, which can lead to accidentally saving invalid data.\" A command sent with `sendToRemoteWorkoutSession` that the watch acts on is one way to do that. The API itself does not define a remote \"end\" command, so the protocol, acknowledgement and timeout are yours to design.\n\nApple's sample \"Building a multidevice workout app\" (iOS 17.0, watchOS 10.0, WWDC23 session 10023) also notes it must run on physical devices and that the watch target's `WKCompanionAppBundleIdentifier` must match the iOS app's bundle ID. In our experience that key is the first thing to check when the start handler never fires. The rest of a two-device test plan is in [testing watch apps](/watch-apps/testing-watch-apps).\n\n## When the iPhone runs its own session\n\nFrom iOS 26, Apple lists `HKWorkoutSession(healthStore:configuration:)` and `HKLiveWorkoutBuilder` on iPhone too, so a phone can run a primary session of its own without a watch. That is a different product from mirroring. If you support both, branch on `session.type` and keep exactly one primary session per workout.",
+    "faqs": [
+      {
+        "q": "Why does workoutSessionMirroringStartHandler fire more than once during one workout?",
+        "a": "Because Apple Watch reconnects after a dropped link. Apple's discussion of the handler says your app may receive multiple calls, that if iPhone and Apple Watch lose their connection mid-session the watch automatically tries to reconnect, and that each call has its own HKWorkoutSession instance. The disconnect delegate method also says the old session object is no longer valid after it fires. So each handler call should replace your stored session and reattach its delegate, and your UI should treat a disconnect as a gap, not as the end of the workout."
+      },
+      {
+        "q": "Can the iPhone send commands to the watch over a mirrored workout session?",
+        "a": "Yes, as data. Apple documents sendToRemoteWorkoutSession(data:completion:) on iOS 17.0 and watchOS 10.0 and states you can send from either the mirrored or the primary session, and the other side receives it in workoutSession(_:didReceiveDataFromRemoteWorkoutSession:). HealthKit does not define what the bytes mean, so pause, next interval or end requests are a message format you design. Include a timestamp and an identifier in each message, because Apple says delivery to a suspended app is batched and can be several minutes apart."
+      },
+      {
+        "q": "Which OS versions does Apple list for startMirroringToCompanionDevice?",
+        "a": "watchOS 10.0, and only watchOS: mirroring is started from the watch. The receiving side, HKHealthStore's workoutSessionMirroringStartHandler, along with sendToRemoteWorkoutSession(data:completion:) and the mirrored-session delegate methods, lists iOS 17.0 and watchOS 10.0. If your watch app supports watchOS versions below 10, the mirroring path needs an availability check and a fallback that does not depend on it."
+      }
+    ],
+    "related": [
+      {
+        "href": "/watch-apps/mirroring-workouts-to-iphone",
+        "label": "Mirroring a workout to iPhone"
+      },
+      {
+        "href": "/watch-apps/hkworkoutsession-lifecycle-swift",
+        "label": "HKWorkoutSession lifecycle in Swift"
+      },
+      {
+        "href": "/engagement/live-activities-workout-tracking",
+        "label": "Live Activities for workouts"
+      },
+      {
+        "href": "/watch-apps/testing-watch-apps",
+        "label": "Testing watch apps"
+      }
+    ],
+    "cta": {
+      "pitch": "Mirroring rules shift when Apple adds a platform to HealthKit's session APIs, and our newsletter flags the availability changes that alter which device can own a workout."
+    }
+  },
+  {
+    "slug": "wear-os-exerciseclient-kotlin",
+    "primaryQuery": "exerciseclient startexerciseasync exerciseconfig",
+    "h1": "ExerciseClient in Kotlin: Capabilities to endExerciseAsync",
+    "metaTitle": "ExerciseClient in Kotlin: ExerciseConfig to endExercise",
+    "metaDescription": "Wear OS ExerciseClient step by step: capabilities, setUpdateCallback, prepareExerciseAsync, ExerciseConfig, goals, pause and the end reasons.",
+    "updated": "2026-10-03",
+    "answer": "On Wear OS you get ExerciseClient from HealthServices.getClient(context).exerciseClient, check getCapabilitiesAsync() for the exercise type, register one ExerciseUpdateCallback with setUpdateCallback, optionally warm GPS and heart rate with prepareExerciseAsync(WarmUpConfig), then start with startExerciseAsync(ExerciseConfig). Google's reference says Health Services allows a single active exercise across all apps, so starting one ends any other with ExerciseEndReason.AUTO_END_SUPERSEDED, and an exercise can be ended automatically with AUTO_END_MISSING_LISTENER if no callback is registered for five minutes. Google's guide tells you to run the workout from a foreground service with foregroundServiceType health and location, and to treat ExerciseUpdate's exerciseStateInfo.state as the source of truth rather than the return of pauseExerciseAsync().",
+    "body": "What Health Services is and when to choose it over a direct Bluetooth sensor is on [Wear OS Health Services](/devices/wear-os-health-services); how the exercise shapes a watch app's architecture is on [Wear OS exercise tracking](/watch-apps/wear-os-exercise-tracking). This page is the code path through `androidx.health.services.client.ExerciseClient`, from Google's guide \"Record an exercise with ExerciseClient\" and the Jetpack reference, both read on 2026-10-03.\n\n## Dependency and app structure\n\nGoogle's Gradle snippet, as of this reading, is `implementation(\"androidx.health:health-services-client:1.1.0\")`; check the Jetpack release page for the current version before you pin it. The API is asynchronous and built on `ListenableFuture`, and the reference also lists `suspend` extensions such as `getCapabilities()`, `prepareExercise()`, `pauseExercise()` and `endExercise()` for coroutines.\n\nGoogle's recommended structure is specific: screens in one activity, and \"Manage the workout state, sensor data, ongoing activity, and data with a foreground service.\" The manifest declares the service with `android:foregroundServiceType=\"health|location\"`, and the guide notes that an app designed only for Wear OS 4 or lower uses `location` alone. The foreground service is also what lets you show [an Ongoing Activity](/engagement/wear-os-ongoing-activity) while the workout runs.\n\n## Permissions, by API level\n\nGoogle's permissions page lists `READ_HEART_RATE` for heart rate, `ACTIVITY_RECOGNITION` for step-derived types such as `STEPS`, `DISTANCE` and `CALORIES_TOTAL`, and `ACCESS_FINE_LOCATION` for `LOCATION` and `ABSOLUTE_ELEVATION`. `BODY_SENSORS` applies \"on Wear OS 5.1 (API level 35) and lower\"; for apps targeting API level 36 the guide's migration adds `android.permission.health.READ_HEART_RATE` and caps the legacy permission with `android:maxSdkVersion=\"35\"`. Health Services rejects `prepareExercise` and `startExercise` if the needed permissions are not already granted.\n\n## Check capabilities first\n\n```kotlin\nval exerciseClient = HealthServices.getClient(context).exerciseClient\n\nval capabilities = exerciseClient.getCapabilitiesAsync().await()\nif (ExerciseType.RUNNING in capabilities.supportedExerciseTypes) {\n    val running = capabilities.getExerciseTypeCapabilities(ExerciseType.RUNNING)\n    val hasHeartRate = DataType.HEART_RATE_BPM in running.supportedDataTypes\n    val canAutoPause = running.supportsAutoPauseAndResume\n}\n```\n\nGoogle says to query this \"at startup, because they can vary depending on the device\" and \"might change over time, such as after a software update\", and that \"`ExerciseClient` rejects requests that are not supported on the device.\" Use `supportedGoals` and `supportedMilestones` before you build a goal.\n\n## One callback, owned by your app\n\n```kotlin\nval callback = object : ExerciseUpdateCallback {\n    override fun onExerciseUpdateReceived(update: ExerciseUpdate) {\n        val state = update.exerciseStateInfo.state\n        val metrics = update.latestMetrics\n        val checkpoint = update.activeDurationCheckpoint\n        if (state.isEnded) { /* save partial workout, read endReason */ }\n    }\n    override fun onLapSummaryReceived(lapSummary: ExerciseLapSummary) {}\n    override fun onAvailabilityChanged(dataType: DataType<*, *>, availability: Availability) {}\n    override fun onRegistered() {}\n    override fun onRegistrationFailed(throwable: Throwable) {}\n}\nexerciseClient.setUpdateCallback(callback)\n```\n\nThe guide's rules: \"Your app can only register a single listener at a time,\" set it \"before starting the workout,\" and it \"only receives updates about exercises your app owns.\" The reference adds two facts that matter after a process death. Health Services caches updates generated while no callback is active \"and deliver[s] them as soon as the callback is registered again.\" And if there is \"ever a five minute period where no `ExerciseUpdateCallback` is registered,\" the exercise is terminated with `ExerciseEndReason.AUTO_END_MISSING_LISTENER`. Re-register from your foreground service on restart, not from an activity that may never come back.\n\n## Check for an exercise that is already running\n\n```kotlin\nval info = exerciseClient.getCurrentExerciseInfoAsync().await()\nwhen (info.exerciseTrackedStatus) {\n    OTHER_APP_IN_PROGRESS -> { /* confirm before replacing it */ }\n    OWNED_EXERCISE_IN_PROGRESS -> { /* re-attach to your own workout */ }\n    NO_EXERCISE_IN_PROGRESS -> { /* start fresh */ }\n}\n```\n\nGoogle's reference states the single-exercise rule: starting an exercise \"will terminate any active exercise currently in progress,\" and the app that loses it receives `ExerciseState.ENDED` with `ExerciseEndReason.AUTO_END_SUPERSEDED`. Ask before you replace somebody else's run.\n\n## Warm up without starting the clock\n\n```kotlin\nval warmUp = WarmUpConfig(ExerciseType.RUNNING,\n                          setOf(DataType.HEART_RATE_BPM, DataType.LOCATION))\nexerciseClient.prepareExerciseAsync(warmUp).await()\n```\n\nThe reference narrows what preparing does: \"Sensors available for warmup are GPS `DataType.LOCATION` and HeartRate `DataType.HEART_RATE_BPM`.\" Other types are a no-op at this stage. The exercise is in `ExerciseState.PREPARING`, availability arrives through `onAvailabilityChanged`, and Google notes `activeDuration` is not affected. If the user leaves the pre-workout screen, the guide says to call `endExercise()` to turn the sensors off. Skip the prepare call entirely if neither heart rate nor location permission was granted, since warming those two is its only job.\n\n## Start with an ExerciseConfig\n\n```kotlin\nval calorieGoal = ExerciseGoal.createOneTimeGoal(\n    DataTypeCondition(\n        dataType = DataType.CALORIES_TOTAL,\n        threshold = 250.0,\n        comparisonType = ComparisonType.GREATER_THAN_OR_EQUAL\n    )\n)\nval everyKm = ExerciseGoal.createMilestone(\n    condition = DataTypeCondition(\n        dataType = DataType.DISTANCE_TOTAL,\n        threshold = 1_000.0,\n        comparisonType = ComparisonType.GREATER_THAN_OR_EQUAL\n    ),\n    period = 1_000.0\n)\n\nval config = ExerciseConfig.builder(ExerciseType.RUNNING)\n    .setDataTypes(setOf(DataType.HEART_RATE_BPM, DataType.CALORIES_TOTAL,\n                        DataType.DISTANCE, DataType.DISTANCE_TOTAL))\n    .setIsGpsEnabled(true)\n    .setIsAutoPauseAndResumeEnabled(false)\n    .setExerciseGoals(listOf(calorieGoal, everyKm))\n    .build()\n\nexerciseClient.startExerciseAsync(config).await()\n```\n\nGoogle distinguishes the two goal kinds: a one-time goal is \"triggered when a condition is met,\" while a milestone \"can be triggered multiple times.\" `isGpsEnabled` \"must be true when requesting location data\", and when distance is requested without GPS it \"defaults to using steps to estimate distance.\"\n\nThe `DataType` names come in pairs. Per the reference, `DISTANCE` is \"A distance delta between each reading,\" while `DISTANCE_TOTAL` is \"Total distance since the start of the active exercise\". `HEART_RATE_BPM` is the current reading and `HEART_RATE_BPM_STATS` the statistics since the exercise began. Other pairs follow the same pattern: `CALORIES` and `CALORIES_TOTAL`, `STEPS` and `STEPS_TOTAL`, `SPEED` and `SPEED_STATS`, `PACE` and `PACE_STATS`. Request the one your screen shows. A total rebuilt by summing deltas yourself is a second source of truth.\n\n## Pause, resume, end: the update decides\n\n```kotlin\nexerciseClient.pauseExerciseAsync().await()   // the button stays disabled...\n// ...until exerciseStateInfo.state == ExerciseState.USER_PAUSED arrives\n```\n\nGoogle is explicit: \"The workout is not considered paused when the call to `pauseExerciseAsync()` returns, but instead when that state is reflected in the `ExerciseUpdate` message.\" The reference adds that while paused, \"active time and cumulative metrics such as distance will not accumulate,\" while instantaneous values like heart rate keep updating. The state set is larger than start and stop: `PREPARING`, `USER_STARTING`, `ACTIVE`, `USER_PAUSING`, `USER_PAUSED`, `USER_RESUMING`, `AUTO_PAUSING`, `AUTO_PAUSED`, `AUTO_RESUMING`, `ENDING` and `ENDED`.\n\n`endExerciseAsync()` ends with `ExerciseEndReason.USER_END`. The reference warns that \"any on device persisted data about the exercise will be deleted after the summary has been sent back,\" so write the final update to Room before you let go of it. Google's guide lists the other endings to handle the same way (save the partial workout, remove the Ongoing Activity, tell the user): another app taking over, and permission loss mid-workout with an end reason of `AUTO_END_PERMISSION_LOST`.\n\n## The clock: use the checkpoint, not the update rate\n\nGoogle says `ExerciseUpdate` delivery slows when the screen is off: messages arrive \"only when awake or when a maximum reporting period is reached, such as every 150 seconds.\" So do not advance a timer per update. Seed it from `ActiveDurationCheckpoint`, using the guide's formula: `(now() - checkpoint.time) + checkpoint.activeDuration`.\n\nData point times are \"the duration since the device booted.\" Convert with the boot instant, `Instant.ofEpochMilli(System.currentTimeMillis() - SystemClock.elapsedRealtime())`, then `getStartInstant()` or `getEndInstant()`. If you need faster screen-off delivery, for example streaming heart rate to a phone, check `supportedBatchingModeOverrides` for `BatchingMode.HEART_RATE_5_SECONDS`. Google cautions to use it \"only in scenarios where it is absolutely necessary.\"\n\n## Ambient mode and upload\n\nGoogle says Health Services \"batches workout data when the device screen is in ambient mode,\" so the guide advises not updating the display during the workout in ambient mode, and showing \"either up-to-date information or a blank screen.\" For storage, the guide says to persist with Room and upload \"at the end of the exercise using a mechanism like Work Manager.\" Getting the finished workout off the watch is covered in [Wear OS phone sync](/watch-apps/wear-os-phone-sync); writing it to the phone-side record is [the Health Connect integration](/integrate/google-health-connect).",
+    "steps": [
+      {
+        "name": "Add the dependency and a foreground service",
+        "text": "Add androidx.health:health-services-client, declare a foreground service with foregroundServiceType health and location, and run the exercise from that service rather than from an activity."
+      },
+      {
+        "name": "Request permissions for the data types",
+        "text": "Request READ_HEART_RATE (BODY_SENSORS on API level 35 and lower), ACTIVITY_RECOGNITION and ACCESS_FINE_LOCATION as your data types require, before calling prepareExerciseAsync or startExerciseAsync."
+      },
+      {
+        "name": "Check capabilities and current exercise",
+        "text": "Call getCapabilitiesAsync() and getExerciseTypeCapabilities(type) to confirm supportedDataTypes, supportedGoals and supportsAutoPauseAndResume, then call getCurrentExerciseInfoAsync() and handle OTHER_APP_IN_PROGRESS and OWNED_EXERCISE_IN_PROGRESS."
+      },
+      {
+        "name": "Register the update callback",
+        "text": "Call setUpdateCallback with one ExerciseUpdateCallback before starting, and re-register it whenever your service restarts, since an exercise with no callback for five minutes ends with AUTO_END_MISSING_LISTENER."
+      },
+      {
+        "name": "Prepare, then start",
+        "text": "Optionally call prepareExerciseAsync(WarmUpConfig) to warm GPS and heart rate, then build an ExerciseConfig with ExerciseConfig.builder, data types, GPS flag and goals, and call startExerciseAsync(config)."
+      },
+      {
+        "name": "Drive the UI from ExerciseUpdate and save on every ending",
+        "text": "Change pause and resume controls only when exerciseStateInfo.state reports the new state, seed timers from ActiveDurationCheckpoint, and persist data to Room whenever state.isEnded, whatever the end reason."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "What does ExerciseEndReason AUTO_END_MISSING_LISTENER mean on Wear OS?",
+        "a": "Health Services ended your exercise because no ExerciseUpdateCallback was registered for five minutes. Google's ExerciseClient reference states that the exercise will be terminated with that reason if there is ever a five minute period where no callback is registered, giving the example of a process that dies and does not re-register within five minutes. Updates generated while no callback is active are cached and delivered when one is registered again, so the fix is to re-register from your foreground service as soon as it restarts."
+      },
+      {
+        "q": "Which sensors does prepareExerciseAsync actually warm up?",
+        "a": "Two. Google's reference for prepareExerciseAsync(WarmUpConfig) says the sensors available for warmup are GPS, as DataType.LOCATION, and heart rate, as DataType.HEART_RATE_BPM, and that other requested data types are a no-op for the prepare stage. The exercise sits in ExerciseState.PREPARING, availability changes arrive through onAvailabilityChanged, and Google's guide notes active duration is not affected. If the user has granted neither the heart rate nor the location permission, the guide says not to call prepare at all."
+      },
+      {
+        "q": "Should a Wear OS workout request DISTANCE or DISTANCE_TOTAL?",
+        "a": "Whichever your screen shows, and usually DISTANCE_TOTAL for a running total. Google's DataType reference describes DISTANCE as a distance delta between each reading in meters and DISTANCE_TOTAL as total distance since the start of the active exercise. The same delta-and-aggregate pattern applies to CALORIES and CALORIES_TOTAL, STEPS and STEPS_TOTAL, and HEART_RATE_BPM and HEART_RATE_BPM_STATS. Summing deltas yourself gives you a second number that can drift from the one Health Services reports to every other app."
+      },
+      {
+        "q": "Why does my Wear OS workout timer jump when the screen turns back on?",
+        "a": "Because updates are batched while the screen is off. Google's guide says the processor delivers ExerciseUpdate messages only when awake or when a maximum reporting period is reached, such as every 150 seconds, and that batched data is delivered immediately when the user looks at the screen. Do not tick a timer per update. Seed it from ActiveDurationCheckpoint with Google's formula, current time minus checkpoint.time plus checkpoint.activeDuration, and let the UI chronometer run on its own between updates."
+      }
+    ],
+    "related": [
+      {
+        "href": "/watch-apps/wear-os-exercise-tracking",
+        "label": "Wear OS exercise tracking"
+      },
+      {
+        "href": "/devices/wear-os-health-services",
+        "label": "Wear OS Health Services"
+      },
+      {
+        "href": "/watch-apps/wear-os-passive-monitoring-measureclient",
+        "label": "PassiveMonitoringClient and MeasureClient"
+      },
+      {
+        "href": "/engagement/wear-os-ongoing-activity",
+        "label": "Wear OS Ongoing Activity"
+      },
+      {
+        "href": "/health-connect",
+        "label": "Health Connect"
+      }
+    ],
+    "cta": {
+      "pitch": "Health Services permissions changed at API level 36 and keep moving with Wear OS releases, and our newsletter flags the changes that end a shipped workout with a permission error."
+    }
+  },
+  {
+    "slug": "wear-os-passive-monitoring-measureclient",
+    "primaryQuery": "passivemonitoringclient measureclient wear os",
+    "h1": "PassiveMonitoringClient and MeasureClient on Wear OS",
+    "metaTitle": "PassiveMonitoringClient and MeasureClient on Wear OS",
+    "metaDescription": "Wear OS background and spot data: PassiveListenerConfig, PassiveListenerService, passive goals, reboot re-registration, and MeasureClient callbacks.",
+    "updated": "2026-10-03",
+    "answer": "Health Services gives Wear OS apps two clients besides ExerciseClient. PassiveMonitoringClient is for data over hours or days: you build a PassiveListenerConfig, then register a PassiveListenerService that Health Services binds to with batched data, a PassiveListenerCallback that gets unbatched data only while your app is alive, or both. Google states that passive registrations do not persist across reboots, so you re-create them from an ACTION_BOOT_COMPLETED receiver that hands off to WorkManager. MeasureClient is for a short spot reading while your UI is on screen: registerMeasureCallback takes a single DeltaDataType such as HEART_RATE_BPM, raises the sensor sampling rate until you call unregisterMeasureCallbackAsync, and Google says it is not for background capture or workout tracking.",
+    "body": "Which Health Services client fits which product is introduced on [Wear OS Health Services](/devices/wear-os-health-services). This page is the code for the two non-exercise clients, from Google's guides \"Passive data updates\" and \"Take spot health measurements with MeasureClient\" and the Jetpack reference, read on 2026-10-03. The workout path is [ExerciseClient in Kotlin](/watch-apps/wear-os-exerciseclient-kotlin).\n\n## Choosing between the three clients\n\nGoogle's own descriptions draw the lines:\n\n| Client | Google's description | Use it for |\n|---|---|---|\n| `PassiveMonitoringClient` | \"suited for long-lived experiences where data updates are relatively infrequent\" | All-day steps, daily goals, background heart rate trends, sleep state |\n| `MeasureClient` | \"suited for short-lived experiences, such as while the user looks at your app UI\" | A heart rate readout on one screen |\n| `ExerciseClient` | manage a workout, set goals, rapid updates \"as long as the exercise belongs to your app\" | A workout the user started |\n\nGoogle's MeasureClient guide is blunt about the boundary: \"`MeasureClient` is not suitable for workout tracking.\" The reference says the same about background use.\n\n## PassiveMonitoringClient: configure once, choose a channel\n\n```kotlin\nval passiveClient = HealthServices.getClient(context).passiveMonitoringClient\n\nval capabilities = passiveClient.getCapabilitiesAsync().await()\nval canHeartRate = DataType.HEART_RATE_BPM in capabilities.supportedDataTypesPassiveMonitoring\nval canStepGoal = DataType.STEPS_DAILY in capabilities.supportedDataTypesPassiveGoals\n\nval config = PassiveListenerConfig.builder()\n    .setDataTypes(setOf(DataType.HEART_RATE_BPM, DataType.STEPS_DAILY))\n    .build()\n```\n\nThe reference says Health Services \"will typically reject requests made for `DataType`s which are not supported,\" so the capability check is not optional.\n\nThere are two delivery channels, and the reference says they operate independently, with \"each channel\" receiving \"its own stream of data.\"\n\n**A service, for when your app is not running.**\n\n```kotlin\nclass PassiveDataService : PassiveListenerService() {\n    override fun onNewDataPointsReceived(dataPoints: DataPointContainer) {\n        // write to Room; do not do network work here\n    }\n}\n\npassiveClient.setPassiveListenerServiceAsync(PassiveDataService::class.java, config).await()\n```\n\nDeclare it in the manifest with `android:permission=\"com.google.android.wearable.healthservices.permission.PASSIVE_DATA_BINDING\"` and `android:exported=\"true\"`. The reference explains the permission: it is there \"in order to ensure that Health Services is the source of the binding.\" Service data \"will be batched\", though \"Any requested goal, user activity, or health event updates will not be batched.\"\n\n**A callback, for while your app is alive.**\n\n```kotlin\npassiveClient.setPassiveListenerCallback(config, object : PassiveListenerCallback {\n    override fun onNewDataPointsReceived(dataPoints: DataPointContainer) { }\n    override fun onRegistrationFailed(throwable: Throwable) { }\n})\n```\n\nCallback updates \"are sent on generation (they will not be batched)\", but if the callback cannot be notified, \"the request will automatically be unregistered.\"\n\nBoth registrations are \"unique per subscribing app. Subsequent registrations will replace the previous registration.\" That one line causes real bugs: if a tile registers heart rate and a settings screen later registers only steps, heart rate silently stops. Build one config from the union of what every feature needs, in one place.\n\nTo stop, call `clearPassiveListenerServiceAsync()` or `clearPassiveListenerCallbackAsync()`. The reference warns that \"Data will not be delivered after this call,\" so call `flushAsync()` first if you need pending batches. Flushes are \"subject to throttling by Health Services.\"\n\n## Order by timestamp, not by arrival\n\nBecause passive data is batched, Google says you may receive several types, or several points of one type, in one batch, and should \"Use the timestamps included within these objects rather than the time they were received by your app.\" Point times are relative to boot. Convert with `Instant.ofEpochMilli(System.currentTimeMillis() - SystemClock.elapsedRealtime())` and pass the result to `getStartInstant()` or `getEndInstant()`. Day boundaries then become your problem; see [time zones and day boundaries](/architecture/timezones-and-day-boundaries).\n\n## Registrations do not survive a reboot\n\nGoogle states it directly: \"Passive data registrations don't persist across reboots.\" The documented fix is a `BroadcastReceiver` for `ACTION_BOOT_COMPLETED` that does not register directly but enqueues a `WorkManager` job, because \"Health Services might take 10 seconds or more to acknowledge a passive data registration request, and this might exceed the allowable execution time of a `BroadcastReceiver`.\" The manifest needs `android.permission.RECEIVE_BOOT_COMPLETED` and the receiver's intent filter. Check permissions inside the worker before re-registering; a user may have revoked them while the watch was off.\n\n## Daily types, passive goals and activity state\n\nThe `_DAILY` data types are the passive client's natural unit. Google's reference defines each with the same boundary: for example `STEPS_DAILY` is \"The total step count over a day, where the previous day ends and a new day begins at 12:00 AM local time.\" The same midnight-local-time boundary appears in the definitions of `CALORIES_DAILY`, `DISTANCE_DAILY`, `FLOORS_DAILY` and `ELEVATION_GAIN_DAILY`.\n\nA passive goal wraps a `DataTypeCondition`:\n\n```kotlin\nval dailySteps = PassiveGoal(\n    DataTypeCondition(\n        dataType = DataType.STEPS_DAILY,\n        threshold = 10_000,\n        comparisonType = ComparisonType.GREATER_THAN_OR_EQUAL\n    )\n)\nval goalConfig = PassiveListenerConfig.builder()\n    .setDailyGoals(setOf(dailySteps))\n    .build()\n// override onGoalCompleted(goal: PassiveGoal) in the service or callback\n```\n\nFor high-level user state, request `ACTIVITY_RECOGNITION`, call `setShouldUserActivityInfoBeRequested(true)` on the builder, and override `onUserActivityInfoReceived`. Google's sample reads `UserActivityState.USER_ACTIVITY_ASLEEP` and comments that `stateChangeTime` \"may be in the past!\"\n\n## Background heart rate needs a background permission\n\nGoogle's permissions page sets the rule by target API level. If your app targets API level 36 or higher and \"uses `PassiveMonitoringClient` to access body sensor information in the background, request the `READ_HEALTH_DATA_IN_BACKGROUND` permission.\" For targets between 33 and 35 inclusive, \"request both the `BODY_SENSORS` and `BODY_SENSORS_BACKGROUND` permissions instead.\" Steps, calories and distance types sit under `ACTIVITY_RECOGNITION`.\n\n## MeasureClient: register, read, unregister\n\n```kotlin\nval measureClient = HealthServices.getClient(context).measureClient\n\nval supported = DataType.HEART_RATE_BPM in\n    measureClient.getCapabilitiesAsync().await().supportedDataTypesMeasure\n\nval callback = object : MeasureCallback {\n    override fun onAvailabilityChanged(dataType: DeltaDataType<*, *>, availability: Availability) {\n        // e.g. not on the wrist\n    }\n    override fun onDataReceived(data: DataPointContainer) {\n        // render the latest HEART_RATE_BPM point\n    }\n}\n\n// when the screen appears\nmeasureClient.registerMeasureCallback(DataType.HEART_RATE_BPM, callback)\n// when it disappears\nmeasureClient.unregisterMeasureCallbackAsync(DataType.HEART_RATE_BPM, callback)\n```\n\nFacts from the reference that shape this code:\n\n- It takes a `DeltaDataType`, one per callback, so aggregate types like `HEART_RATE_BPM_STATS` are not what it is for.\n- Registering \"is expected to increase the sample rate on the associated sensor(s),\" and the callback runs \"until the app is killed or `unregisterMeasureCallbackAsync` is called.\" Tie registration to the screen's lifecycle. Google's guide says it is \"important to minimize the amount of time that your callback is registered.\"\n- The callback runs on the main thread unless you pass an `Executor`.\n- Even live capture \"can still be sent out in batches depending on the application processor state.\"\n- \"Existing subscriptions made with the `PassiveMonitoringClient` are also expected to get the data generated by this client.\" A spot reading also lands in your own passive stream, which matters if you count readings.\n\n## Where the data goes next\n\nPassive data is the natural feed for a tile; [Wear OS tiles](/watch-apps/wear-os-tiles) covers rendering from a local cache. Battery trade-offs between the three clients are on [watch app battery](/watch-apps/watch-app-battery). If you also write the readings to the phone-side store, the record types are in [Health Connect records](/health-connect).",
+    "steps": [
+      {
+        "name": "Check passive capabilities",
+        "text": "Call passiveMonitoringClient.getCapabilitiesAsync() and confirm each data type is in supportedDataTypesPassiveMonitoring, and each goal type in supportedDataTypesPassiveGoals, before building a config."
+      },
+      {
+        "name": "Build one PassiveListenerConfig",
+        "text": "Use PassiveListenerConfig.builder() with setDataTypes, setDailyGoals and setShouldUserActivityInfoBeRequested as needed. Build it from the union of every feature's needs, because a new registration replaces the previous one."
+      },
+      {
+        "name": "Register a service, a callback, or both",
+        "text": "Subclass PassiveListenerService and register it with setPassiveListenerServiceAsync, declaring it with the PASSIVE_DATA_BINDING permission, and optionally register a PassiveListenerCallback with setPassiveListenerCallback for unbatched data while the app runs."
+      },
+      {
+        "name": "Re-register after reboot through WorkManager",
+        "text": "Add a BroadcastReceiver for ACTION_BOOT_COMPLETED with the RECEIVE_BOOT_COMPLETED permission, and have it enqueue a WorkManager worker that checks permissions and re-creates the passive registration."
+      },
+      {
+        "name": "Use MeasureClient only while a screen is visible",
+        "text": "Check supportedDataTypesMeasure, call registerMeasureCallback with a DeltaDataType such as HEART_RATE_BPM when the screen appears, and unregisterMeasureCallbackAsync when it disappears."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Do Health Services passive data registrations survive a watch reboot?",
+        "a": "No. Google's Passive data updates guide states that passive data registrations do not persist across reboots. Its documented fix is a BroadcastReceiver for ACTION_BOOT_COMPLETED that enqueues a WorkManager worker to re-register, rather than registering inside the receiver, because Health Services might take 10 seconds or more to acknowledge a registration at startup, which can exceed a BroadcastReceiver's allowed execution time. Declare RECEIVE_BOOT_COMPLETED in the manifest, and check permissions inside the worker before registering again."
+      },
+      {
+        "q": "Why did my PassiveMonitoringClient stop delivering heart rate after I registered for steps?",
+        "a": "Because a new registration replaces the old one. Google's reference for setPassiveListenerServiceAsync and setPassiveListenerCallback says each registration is unique per subscribing app and that subsequent registrations replace the previous one, and that data stops for a type when you register again without it. If two features register separately, the last one wins. Build a single PassiveListenerConfig from the union of all the data types and goals your app needs, and register it from one place."
+      },
+      {
+        "q": "Does a MeasureClient heart rate reading also reach my passive listener?",
+        "a": "Google's MeasureClient reference says existing subscriptions made with PassiveMonitoringClient are also expected to get the data generated by this client. So a spot reading taken on screen can appear again in your PassiveListenerService or callback. If you count readings or store both streams, deduplicate by data point timestamp, which Google says you should use for ordering anyway, rather than assuming the two channels never overlap."
+      },
+      {
+        "q": "What permission does background heart rate need on Wear OS 6?",
+        "a": "Google's Health Services permissions page says that if your app targets API level 36 or higher and uses PassiveMonitoringClient to access body sensor information in the background, it should request READ_HEALTH_DATA_IN_BACKGROUND, alongside READ_HEART_RATE for heart rate itself. Apps targeting API levels 33 through 35 inclusive request BODY_SENSORS and BODY_SENSORS_BACKGROUND instead. The migration steps cap the legacy permissions with android:maxSdkVersion set to 35, so one manifest can serve both ranges."
+      }
+    ],
+    "related": [
+      {
+        "href": "/devices/wear-os-health-services",
+        "label": "Wear OS Health Services"
+      },
+      {
+        "href": "/watch-apps/wear-os-exerciseclient-kotlin",
+        "label": "ExerciseClient in Kotlin"
+      },
+      {
+        "href": "/watch-apps/wear-os-tiles",
+        "label": "Wear OS tiles"
+      },
+      {
+        "href": "/watch-apps/watch-app-battery",
+        "label": "Watch app battery"
+      },
+      {
+        "href": "/health-connect",
+        "label": "Health Connect"
+      }
+    ],
+    "cta": {
+      "pitch": "Background sensor permissions on Wear OS changed with API level 36, and our newsletter tracks the Health Services changes that quietly stop a passive feed on users' watches."
     }
   }
 ];

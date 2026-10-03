@@ -1,0 +1,87 @@
+name: Open-source library tracker
+
+# Refreshes src/data/libraries.ts from the npm registry, pub.dev, PyPI and
+# the GitHub REST API (scripts/fetch-libraries.mjs). The /libraries pages
+# render that file, so a release, a deprecation or an archived repository
+# reaches the site within a week of the registry saying so.
+on:
+  schedule:
+    # 04:37 UTC every Tuesday. Off the hour and away from the daily SDK
+    # tracker (06:20) so the two never race for main.
+    - cron: "37 4 * * 2"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: libraries
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Fetch registry and repository data
+        env:
+          # The default token is enough for public repo reads and lifts the
+          # unauthenticated rate limit. The script never prints it.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # Exits non-zero (and writes nothing) if any registry lookup fails —
+        # a partial set is never published.
+        run: node scripts/fetch-libraries.mjs
+
+      - name: Commit if something meaningful changed
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- src/data/libraries.ts; then
+            echo "No changes."
+            exit 0
+          fi
+
+          # Same rule as the SDK tracker (.github/workflows/sdk-releases.yml):
+          # every commit here is a full production build, and star counts,
+          # issue counts and activity dates drift on almost every run. Those
+          # are held back so they ship once a month, on the first scheduled
+          # run of the month (day 1-7, since this runs weekly). Anything
+          # else — a version, a publish date, a licence, a deprecation
+          # message, the archived flag, a package added — commits the week
+          # it appears. A manual run commits whatever it finds.
+          #
+          # The matcher is exact to the generator's JSON.stringify(…, null, 2)
+          # output, one scalar per line. Only lines inside hunks are judged,
+          # so the ---/+++ headers are never mistaken for content.
+          changed=$(git diff -U0 -- src/data/libraries.ts \
+            | awk '/^diff --git /{h=0} /^@@ /{h=1; next} h && /^[-+]/')
+          noise='^[-+]([[:space:]]*"(stars|openIssues)": (null|[0-9]+),?|[[:space:]]*"(pushedAt|checkedOn|date)": (null|"[0-9]{4}-[0-9]{2}-[0-9]{2}"),?|[[:space:]]*"sha": "[0-9a-f]+",?|export const LIBRARIES_FETCHED_ON = "[0-9]{4}-[0-9]{2}-[0-9]{2}";)$'
+          meaningful=$(printf '%s\n' "$changed" | grep -Ev "$noise" | grep -v '^$' || true)
+          dom=$(date -u +%d)
+          if [ -z "$meaningful" ] && [ "$EVENT_NAME" != "workflow_dispatch" ] && [ "$((10#$dom))" -gt 7 ]; then
+            echo "Only counters / activity dates / check stamps moved:"
+            printf '%s\n' "$changed"
+            echo "Holding this back until the month's first run so it does not redeploy the site."
+            git checkout -- src/data/libraries.ts
+            exit 0
+          fi
+          if [ -z "$meaningful" ]; then
+            echo "Counter-only change; committing (first run of the month, or manual run)."
+          else
+            echo "Meaningful change:"
+            printf '%s\n' "$meaningful"
+          fi
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/libraries.ts
+          git commit -m "Refresh open-source library tracker"
+          # The branch may have moved while this ran; rebase rather than force.
+          git pull --rebase origin main
+          git push origin HEAD:main

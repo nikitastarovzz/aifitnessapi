@@ -47,7 +47,19 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Platform requirements",
     blurb: "What Apple and Google require to ship a health app.",
-    slugs: ["app-store-health-data-rules", "google-play-health-data-policy"],
+    slugs: [
+      "app-store-health-data-rules",
+      "app-store-guideline-5-1-1-data-collection-storage",
+      "app-store-guideline-5-1-2-data-use-sharing",
+      "app-store-guideline-5-1-3-health-research",
+      "app-store-guideline-1-4-1-physical-harm",
+      "app-store-guideline-2-5-1-healthkit-software-requirements",
+      "app-store-guideline-2-5-4-background-services",
+      "app-store-guideline-2-5-11-sirikit-shortcuts",
+      "app-store-guideline-3-1-3-d-person-to-person-fitness",
+      "google-play-health-data-policy",
+      "google-play-health-connect-publishing-requirements",
+    ],
   },
   {
     title: "Building it right",

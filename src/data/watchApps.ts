@@ -36,6 +36,11 @@ export const RELEASED_WATCH = new Set<string>([
   "watch-platform-differences",
   "watch-app-battery",
   "testing-watch-apps",
+  "workoutkit-customworkout-swift",
+  "hkworkoutsession-lifecycle-swift",
+  "hkworkoutsession-mirroring-api",
+  "wear-os-exerciseclient-kotlin",
+  "wear-os-passive-monitoring-measureclient",
 ]);
 
 export const allWatchApps: ClusterEntry[] = watchAppsEntries;

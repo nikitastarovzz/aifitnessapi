@@ -5,6 +5,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterHero from "@/components/ClusterHero";
 import ClusterCta from "@/components/ClusterCta";
 import PageSummary from "@/components/PageSummary";
+import { HK_ERROR_FIX_SLUGS, fixHref } from "@/data/errorCodesEditorial";
 import PageActions from "@/components/PageActions";
 import ContentAge from "@/components/ContentAge";
 import { HK_ERRORS, HK_FETCHED_ON, type HkError } from "@/data/healthkitIdentifiers";
@@ -124,7 +125,7 @@ export default function HealthKitErrorsPage() {
           result is deliberately ambiguous between “no data” and “no permission”.
         </PageSummary>
 
-        <div id="answer" className="speakable mt-6 rounded-2xl border border-brand-400/30 bg-brand-500/5 p-5 text-lg leading-relaxed text-[var(--fg)] sm:p-6">
+        <div className="mt-6 rounded-2xl border border-brand-400/30 bg-brand-500/5 p-5 text-lg leading-relaxed text-[var(--fg)] sm:p-6">
           HealthKit reports failures through <code className="font-mono text-base">HKError.Code</code>,
           which has {HK_ERRORS.length} cases. Two things about that set surprise people. The first is
           that read denial is not one of them — Apple raises{" "}
@@ -188,6 +189,14 @@ export default function HealthKitErrorsPage() {
                     ? `iOS ${e.platforms.find((p) => p.name === "iOS")?.introducedAt}+ · `
                     : ""}
                   {deprecationNote(e) && <>{deprecationNote(e)} · </>}
+                  {fixHref(HK_ERROR_FIX_SLUGS, e.case) && (
+                    <>
+                      <Link href={fixHref(HK_ERROR_FIX_SLUGS, e.case)!} className="font-medium text-brand-600 hover:text-brand-500">
+                        Fix guide
+                      </Link>{" "}
+                      ·{" "}
+                    </>
+                  )}
                   <a href={e.docUrl} className="hover:text-[var(--fg)]" rel="nofollow">
                     Apple docs
                   </a>
@@ -212,6 +221,11 @@ export default function HealthKitErrorsPage() {
                   <code className="font-mono text-sm text-[var(--fg)]">{e.case}</code>
                   {deprecationNote(e) && (
                     <span className="ml-2 text-xs text-[var(--muted)]">{deprecationNote(e)}</span>
+                  )}
+                  {fixHref(HK_ERROR_FIX_SLUGS, e.case) && (
+                    <Link href={fixHref(HK_ERROR_FIX_SLUGS, e.case)!} className="ml-2 text-xs font-medium text-brand-600 hover:text-brand-500">
+                      Fix guide
+                    </Link>
                   )}
                   <a href={e.docUrl} className="ml-2 text-xs text-[var(--muted)] hover:text-[var(--fg)]" rel="nofollow">
                     Apple docs
