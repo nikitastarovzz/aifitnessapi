@@ -101,8 +101,14 @@ export const LIBRARIES: Library[] = [
     ],
     "wrapsEvidence": "registry description: \"A React Native package to interact with Apple HealthKit\"",
     "repo": "agencyenterprise/react-native-healthkit",
-    "repoFullName": null,
-    "repoStats": null,
+    "repoFullName": "agencyenterprise/react-native-health",
+    "repoStats": {
+      "stars": 1163,
+      "openIssues": 157,
+      "pushedAt": "2026-04-27",
+      "archived": false,
+      "checkedOn": "2026-10-03"
+    },
     "lastCommitOnDefaultBranch": {
       "date": "2024-10-15",
       "sha": "84d946aad6f2",
@@ -143,8 +149,14 @@ export const LIBRARIES: Library[] = [
     ],
     "wrapsEvidence": "registry description: \"React Native bindings for HealthKit\"",
     "repo": "kingstinct/react-native-healthkit",
-    "repoFullName": null,
-    "repoStats": null,
+    "repoFullName": "kingstinct/react-native-healthkit",
+    "repoStats": {
+      "stars": 715,
+      "openIssues": 23,
+      "pushedAt": "2026-10-02",
+      "archived": false,
+      "checkedOn": "2026-10-03"
+    },
     "lastCommitOnDefaultBranch": {
       "date": "2026-10-02",
       "sha": "0a72f7c5159c",
@@ -189,8 +201,14 @@ export const LIBRARIES: Library[] = [
     ],
     "wrapsEvidence": "registry description: \"React native library for health connect (Android only)\"",
     "repo": "matinzd/react-native-health-connect",
-    "repoFullName": null,
-    "repoStats": null,
+    "repoFullName": "matinzd/react-native-health-connect",
+    "repoStats": {
+      "stars": 416,
+      "openIssues": 58,
+      "pushedAt": "2026-08-26",
+      "archived": false,
+      "checkedOn": "2026-10-03"
+    },
     "lastCommitOnDefaultBranch": {
       "date": "2026-08-26",
       "sha": "8d72b6a07743",
@@ -232,8 +250,14 @@ export const LIBRARIES: Library[] = [
     "wraps": null,
     "wrapsEvidence": null,
     "repo": "matinzd/expo-health-connect",
-    "repoFullName": null,
-    "repoStats": null,
+    "repoFullName": "matinzd/expo-health-connect",
+    "repoStats": {
+      "stars": 15,
+      "openIssues": 1,
+      "pushedAt": "2026-08-01",
+      "archived": true,
+      "checkedOn": "2026-10-03"
+    },
     "lastCommitOnDefaultBranch": {
       "date": "2026-08-01",
       "sha": "36856dff8cfc",
@@ -273,8 +297,14 @@ export const LIBRARIES: Library[] = [
     ],
     "wrapsEvidence": "registry description: \"A React Native bridge module for interacting with Google Fit\"",
     "repo": "StasDoskalenko/react-native-google-fit",
-    "repoFullName": null,
-    "repoStats": null,
+    "repoFullName": "StasDoskalenko/react-native-google-fit",
+    "repoStats": {
+      "stars": 372,
+      "openIssues": 9,
+      "pushedAt": "2026-10-02",
+      "archived": false,
+      "checkedOn": "2026-10-03"
+    },
     "lastCommitOnDefaultBranch": {
       "date": "2026-10-02",
       "sha": "bf3dcb0e7635",
@@ -317,8 +347,14 @@ export const LIBRARIES: Library[] = [
     ],
     "wrapsEvidence": "registry description: \"Capacitor plugin for Apple Health and Google Health Connect\"",
     "repo": "mley/capacitor-health",
-    "repoFullName": null,
-    "repoStats": null,
+    "repoFullName": "mley/capacitor-health",
+    "repoStats": {
+      "stars": 20,
+      "openIssues": 6,
+      "pushedAt": "2026-09-23",
+      "archived": false,
+      "checkedOn": "2026-10-03"
+    },
     "lastCommitOnDefaultBranch": {
       "date": "2026-09-23",
       "sha": "7666a54bf3a2",
@@ -361,8 +397,14 @@ export const LIBRARIES: Library[] = [
     ],
     "wrapsEvidence": "registry description: \"Capacitor plugin to interact with data from Apple HealthKit and Health Connect\"",
     "repo": "Cap-go/capacitor-health",
-    "repoFullName": null,
-    "repoStats": null,
+    "repoFullName": "Cap-go/capacitor-health",
+    "repoStats": {
+      "stars": 31,
+      "openIssues": 2,
+      "pushedAt": "2026-09-25",
+      "archived": false,
+      "checkedOn": "2026-10-03"
+    },
     "lastCommitOnDefaultBranch": {
       "date": "2026-09-22",
       "sha": "d4b4dbb7f237",
@@ -405,8 +447,14 @@ export const LIBRARIES: Library[] = [
     ],
     "wrapsEvidence": "registry description: \"Capacitor plugin to read data from and write data to Apple Health\"",
     "repo": "perfood/capacitor-healthkit",
-    "repoFullName": null,
-    "repoStats": null,
+    "repoFullName": "perfood/capacitor-healthkit",
+    "repoStats": {
+      "stars": 89,
+      "openIssues": 13,
+      "pushedAt": "2025-02-13",
+      "archived": false,
+      "checkedOn": "2026-10-03"
+    },
     "lastCommitOnDefaultBranch": {
       "date": "2025-02-13",
       "sha": "59a6dedd4158",
@@ -451,8 +499,14 @@ export const LIBRARIES: Library[] = [
     ],
     "wrapsEvidence": "registry description: \"A plugin that abstracts fitness and health repositories like Apple HealthKit or Google Health Connect\"",
     "repo": "dariosalvi78/cordova-plugin-health",
-    "repoFullName": null,
-    "repoStats": null,
+    "repoFullName": "dariosalvi78/cordova-plugin-health",
+    "repoStats": {
+      "stars": 192,
+      "openIssues": 28,
+      "pushedAt": "2026-10-03",
+      "archived": false,
+      "checkedOn": "2026-10-03"
+    },
     "lastCommitOnDefaultBranch": {
       "date": "2026-10-03",
       "sha": "ed339de45bee",
@@ -494,8 +548,14 @@ export const LIBRARIES: Library[] = [
     ],
     "wrapsEvidence": "registry description: \"Wrapper for Apple's HealthKit on iOS and Google's Health Connect on Android.\"",
     "repo": "carp-dk/carp-health-flutter",
-    "repoFullName": null,
-    "repoStats": null,
+    "repoFullName": "carp-dk/carp-health-flutter",
+    "repoStats": {
+      "stars": 41,
+      "openIssues": 235,
+      "pushedAt": "2026-08-14",
+      "archived": false,
+      "checkedOn": "2026-10-03"
+    },
     "lastCommitOnDefaultBranch": {
       "date": "2026-08-14",
       "sha": "d90dbb717f04",
@@ -537,8 +597,14 @@ export const LIBRARIES: Library[] = [
     ],
     "wrapsEvidence": "registry description: \"The most comprehensive Flutter health SDK for seamless iOS HealthKit and Android Health Connect integration.\"",
     "repo": "fam-tung-lam/health_connector",
-    "repoFullName": null,
-    "repoStats": null,
+    "repoFullName": "fam-tung-lam/health_connector",
+    "repoStats": {
+      "stars": 13,
+      "openIssues": 10,
+      "pushedAt": "2026-09-22",
+      "archived": false,
+      "checkedOn": "2026-10-03"
+    },
     "lastCommitOnDefaultBranch": {
       "date": "2026-09-16",
       "sha": "1c26b1a922a3",
@@ -578,8 +644,14 @@ export const LIBRARIES: Library[] = [
     ],
     "wrapsEvidence": "registry description: \"Helps to write or read data from Apple Health via HealthKit framework.\"",
     "repo": "VictorKachalov/health_kit_reporter",
-    "repoFullName": null,
-    "repoStats": null,
+    "repoFullName": "kvs-coder/health_kit_reporter",
+    "repoStats": {
+      "stars": 37,
+      "openIssues": 33,
+      "pushedAt": "2024-12-12",
+      "archived": false,
+      "checkedOn": "2026-10-03"
+    },
     "lastCommitOnDefaultBranch": {
       "date": "2024-12-12",
       "sha": "af945db4a10a",
@@ -620,8 +692,14 @@ export const LIBRARIES: Library[] = [
     ],
     "wrapsEvidence": "registry description: \"Flutter plugin for Google Health Connect integration. Health Connect gives you a simple way to store and connect the data between your health and fitness apps.\"",
     "repo": "duynguyen242/flutter_health_connect",
-    "repoFullName": null,
-    "repoStats": null,
+    "repoFullName": "imdzx/flutter_health_connect",
+    "repoStats": {
+      "stars": 4,
+      "openIssues": 18,
+      "pushedAt": "2024-07-29",
+      "archived": false,
+      "checkedOn": "2026-10-03"
+    },
     "lastCommitOnDefaultBranch": {
       "date": "2023-07-04",
       "sha": "d35ff4c4b0d6",
@@ -658,8 +736,14 @@ export const LIBRARIES: Library[] = [
     ],
     "wrapsEvidence": "registry description: \"Python 3 API wrapper for Garmin Connect\"",
     "repo": "cyberjunky/python-garminconnect",
-    "repoFullName": null,
-    "repoStats": null,
+    "repoFullName": "cyberjunky/python-garminconnect",
+    "repoStats": {
+      "stars": 3083,
+      "openIssues": 2,
+      "pushedAt": "2026-09-29",
+      "archived": false,
+      "checkedOn": "2026-10-03"
+    },
     "lastCommitOnDefaultBranch": {
       "date": "2026-09-29",
       "sha": "218e72ca5459",
@@ -696,8 +780,14 @@ export const LIBRARIES: Library[] = [
     ],
     "wrapsEvidence": "registry description: \"Garmin SSO auth + Connect client\"",
     "repo": "matin/garth",
-    "repoFullName": null,
-    "repoStats": null,
+    "repoFullName": "matin/garth",
+    "repoStats": {
+      "stars": 818,
+      "openIssues": 13,
+      "pushedAt": "2026-06-09",
+      "archived": false,
+      "checkedOn": "2026-10-03"
+    },
     "lastCommitOnDefaultBranch": {
       "date": "2026-03-28",
       "sha": "f99159a15c4c",
@@ -734,8 +824,14 @@ export const LIBRARIES: Library[] = [
     ],
     "wrapsEvidence": "registry description: \"A Python package that makes it easy to access and download data from the Strava V3 REST API.\"",
     "repo": "stravalib/stravalib",
-    "repoFullName": null,
-    "repoStats": null,
+    "repoFullName": "stravalib/stravalib",
+    "repoStats": {
+      "stars": 1000,
+      "openIssues": 19,
+      "pushedAt": "2026-10-01",
+      "archived": false,
+      "checkedOn": "2026-10-03"
+    },
     "lastCommitOnDefaultBranch": {
       "date": "2026-09-22",
       "sha": "1951f26e01b9",
@@ -772,8 +868,14 @@ export const LIBRARIES: Library[] = [
     ],
     "wrapsEvidence": "registry description: \"Python client for the Oura API v2 with OAuth2 support.\"",
     "repo": "hedgertronic/oura-ring",
-    "repoFullName": null,
-    "repoStats": null,
+    "repoFullName": "hedgertronic/oura-ring",
+    "repoStats": {
+      "stars": 92,
+      "openIssues": 2,
+      "pushedAt": "2026-07-07",
+      "archived": false,
+      "checkedOn": "2026-10-03"
+    },
     "lastCommitOnDefaultBranch": {
       "date": "2026-07-07",
       "sha": "691dc2e75e97",
@@ -810,8 +912,14 @@ export const LIBRARIES: Library[] = [
     ],
     "wrapsEvidence": "registry description: \"Oura API client\"",
     "repo": "turing-complet/python-ouraring",
-    "repoFullName": null,
-    "repoStats": null,
+    "repoFullName": "turing-complet/python-ouraring",
+    "repoStats": {
+      "stars": 144,
+      "openIssues": 7,
+      "pushedAt": "2024-04-23",
+      "archived": false,
+      "checkedOn": "2026-10-03"
+    },
     "lastCommitOnDefaultBranch": {
       "date": "2024-04-23",
       "sha": "35fd39c1b1ad",
@@ -846,8 +954,14 @@ export const LIBRARIES: Library[] = [
     ],
     "wrapsEvidence": "registry description: \"Fitbit API Wrapper.\"",
     "repo": "orcasgit/python-fitbit",
-    "repoFullName": null,
-    "repoStats": null,
+    "repoFullName": "orcasgit/python-fitbit",
+    "repoStats": {
+      "stars": 633,
+      "openIssues": 61,
+      "pushedAt": "2024-07-23",
+      "archived": false,
+      "checkedOn": "2026-10-03"
+    },
     "lastCommitOnDefaultBranch": {
       "date": "2019-08-12",
       "sha": "6a0a7cba26c2",
@@ -884,8 +998,14 @@ export const LIBRARIES: Library[] = [
     ],
     "wrapsEvidence": "registry description: \"Library for the Withings API\"",
     "repo": "vangorra/python_withings_api",
-    "repoFullName": null,
-    "repoStats": null,
+    "repoFullName": "vangorra/python_withings_api",
+    "repoStats": {
+      "stars": 111,
+      "openIssues": 10,
+      "pushedAt": "2022-04-22",
+      "archived": false,
+      "checkedOn": "2026-10-03"
+    },
     "lastCommitOnDefaultBranch": {
       "date": "2022-03-05",
       "sha": "69c21c32449b",
