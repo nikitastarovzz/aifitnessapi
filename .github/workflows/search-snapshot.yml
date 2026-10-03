@@ -62,11 +62,8 @@ jobs:
             exit 0
           fi
           stamp=$(date -u +%Y-%m-%d)
-          git commit -m "Pin the search snapshot for ${stamp}
-
-Weekly dated copy of whatever search data the repo holds, so
-\`npm run gsc -- --compare <date>\` has a baseline. Automated by
-.github/workflows/search-snapshot.yml."
+          git commit -m "Pin the search snapshot for ${stamp}" \
+            -m "Weekly dated copy of whatever search data the repo holds, so \`npm run gsc -- --compare <date>\` has a baseline. Automated by .github/workflows/search-snapshot.yml."
           git pull --rebase --autostash
           git push
 
