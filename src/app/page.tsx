@@ -82,6 +82,7 @@ const CLUSTERS: { href: string; title: string; blurb: string }[] = [
   { href: "/audio-coaching", title: "Audio coaching", blurb: "Workout cues over the user's music: ducking, interruptions, background audio, Android audio focus, TextToSpeech, watch speakers." },
   { href: "/healthkit-queries", title: "HealthKit query classes", blurb: "HKSampleQuery, statistics, anchored and observer queries, async descriptors, routes and rings: how each works and where it bites." },
   { href: "/phone-sensors", title: "Phone sensors", blurb: "Steps, activity, altitude and AirPods head motion from the phone itself: CMPedometer, Android step sensors, activity transitions, health permissions." },
+  { href: "/health-connect-api", title: "Health Connect API", blurb: "The Jetpack API method by method: readRecords paging, aggregates, getChanges, clientRecordId upserts, permissions, background and history reads." },
 ];
 
 /** The providers and SDKs people actually arrive searching for. Every href is

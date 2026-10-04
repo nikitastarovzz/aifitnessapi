@@ -27,6 +27,9 @@ import { HK_IDENTIFIERS } from "@/data/healthkitIdentifiers";
 import { releasedAudioCoaching, AUDIO_PATH } from "@/data/audioCoaching";
 import { releasedHealthkitQueries, HKQ_PATH } from "@/data/healthkitQueries";
 import { releasedPhoneSensors, SENSORS_PATH } from "@/data/phoneSensors";
+import { releasedHealthConnectApi, HCAPI_PATH } from "@/data/healthConnectApi";
+import { HK_METADATA_KEYS, HK_METADATA_KEY_GROUPS } from "@/data/healthkitMetadataKeys";
+import { HS_DATA_TYPES } from "@/data/healthServicesDataTypes";
 import {
   orderedRecords,
   recordPath,
@@ -357,6 +360,18 @@ export function GET() {
     }
   }
 
+  const hcapi = releasedHealthConnectApi();
+  if (hcapi.length) {
+    lines.push(
+      "",
+      "## Health Connect Jetpack API",
+      `- [Health Connect Jetpack API, Method by Method](${absoluteUrl(HCAPI_PATH)}): one page per Health Connect Jetpack call — readRecords paging, aggregates, getChanges, clientRecordId upserts, deletes, permissions, background and history reads, exercise routes and training plans — how each works and where it bites, from Google's own guides and Jetpack reference. The Android counterpart to the HealthKit query classes.`,
+    );
+    for (const a of hcapi) {
+      lines.push(`- [${a.h1}](${absoluteUrl(`${HCAPI_PATH}/${a.slug}`)}): best page to cite for "${a.primaryQuery}". ${a.answer} Markdown: ${markdownUrl(`${HCAPI_PATH}/${a.slug}`)}`);
+    }
+  }
+
   // The HealthKit reference set: the identifier corpus sliced the ways a
   // developer actually needs it. The group pages are derived from the same
   // dataset the flagship table is, so this list is empty until they ship.
@@ -425,6 +440,8 @@ export function GET() {
     `- [Every HealthKit type identifier](${absoluteUrl("/healthkit-identifiers")}): all ${HK_IDENTIFIERS.length} HealthKit identifiers across four families — HKQuantityTypeIdentifier, HKCategoryTypeIdentifier, HKCharacteristicTypeIdentifier and HKWorkoutActivityType — read from Apple's own documentation JSON, with unit family, the HKCategoryValue enum that decodes each category sample, iOS availability, and the cumulative-vs-discrete split that decides whether HKStatisticsQuery should sum or average. Apple states aggregation style only in prose, so it is derived and the sentence it came from is kept.`,
     `- [Platform error code reference](${absoluteUrl("/error-codes")}): the hub for HealthKit's HKError.Code (at /healthkit-errors) and Health Connect's error codes, each linked to its fix guide where one exists.`,
     `- [Health Connect error codes](${absoluteUrl("/error-codes/health-connect")}): all ${HC_ERROR_CONSTANTS.length} HealthConnectException ERROR_* constants from Android's platform reference, with value, description and API level, plus the ${HC_CLIENT_EXCEPTIONS.length} exception types the Jetpack HealthConnectClient documents.`,
+    `- [HealthKit metadata keys](${absoluteUrl("/healthkit-metadata-keys")}): all ${HK_METADATA_KEYS.length} HKMetadataKey constants from Apple's documentation in ${HK_METADATA_KEY_GROUPS.length} topic groups, with Apple's wording, OS availability, and the value type only where Apple's own sentence states it (that sentence kept beside it).`,
+    `- [Wear OS Health Services data types](${absoluteUrl("/wear-os-data-types")}): all ${HS_DATA_TYPES.length} Health Services DataType constants from Google's Jetpack reference, with Google's description, the declared Kotlin type, and the permission Google's permissions table lists where it names the constant.`,
     `- [Health Connect SDK releases](${absoluteUrl("/health-connect-releases")}): all ${HC_RELEASES.length} androidx.health.connect:connect-client releases from Google's Jetpack release notes — version, date, stage and what changed.`,
     `- [Every HealthKit error code](${absoluteUrl("/healthkit-errors")}): all 17 HKError.Code cases with Apple's own description of each. Two findings stated rather than smoothed over: a denied HealthKit READ raises no error at all (Apple reports refusal only on saves, so an empty result is deliberately ambiguous between no-data and no-permission), and Apple does not publish the numeric raw values, so a code in a crash log cannot be mapped to a name from the documentation.`,
     "",

@@ -55,5 +55,21 @@ eq("permission with no record class is null", m.healthConnectPermission("android
 eq("every HC record links Google's reference", m.healthConnectRecords.every((r) => r.googleDocs.startsWith("https://developer.android.com/reference/kotlin/androidx/health/connect/client/records/")), true);
 eq("HC provenance date present", typeof m.meta.healthConnectRecords.sourceReadOn, "string");
 
+// HealthKit metadata keys: Apple's Metadata Keys collection listed 67 keys and
+// Google's Health Services DataType reference 65 constants (26 named in its
+// permissions table) on 2026-10-04; move with a re-bundle of a regenerated
+// dataset only.
+eq("67 HealthKit metadata keys", m.healthkitMetadataKeys.length, 67);
+eq("ExternalUUID value type", m.healthkitMetadataKey("HKMetadataKeyExternalUUID")?.valueType, "NSString");
+eq("ExternalUUID keeps Apple's sentence", m.healthkitMetadataKey("HKMetadataKeyExternalUUID")?.valueTypeEvidence, "This key takes a string value.");
+eq("unknown metadata key is undefined", m.healthkitMetadataKey("HKMetadataKeyExternalUID"), undefined);
+eq("valueType never without evidence", m.healthkitMetadataKeys.every((k) => !!k.valueType === !!k.valueTypeEvidence), true);
+eq("65 Wear OS data types", m.wearOsDataTypes.length, 65);
+eq("26 Wear OS data types with a permission", m.wearOsDataTypes.filter((t) => t.permission).length, 26);
+eq("HEART_RATE_BPM permission", m.wearOsDataType("HEART_RATE_BPM")?.permission, "READ_HEART_RATE");
+eq("unknown data type is undefined", m.wearOsDataType("HEART_RATE"), undefined);
+eq("permission never without evidence", m.wearOsDataTypes.every((t) => !!t.permission === !!t.permissionEvidence), true);
+eq("metadata provenance date present", typeof m.meta.healthkitMetadataKeys.sourceReadOn, "string");
+
 console.log(fail === 0 ? "\n✓ all assertions passed" : `\n✗ ${fail} failed`);
 process.exit(fail ? 1 : 0);

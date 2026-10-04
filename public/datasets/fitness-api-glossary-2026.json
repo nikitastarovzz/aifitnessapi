@@ -280,7 +280,7 @@
       "term": "Changes token",
       "definition": "Health Connect's sync cursor. getChangesToken() returns a string \"representing a point in time\" for the record types you name, and getChanges() returns the upserts and deletions since then plus the next token. Google documents that changes tokens are only valid for 30 days; an expired one sets changesTokenExpired and you re-sync.",
       "group": "Health Connect API",
-      "href": "https://aifitnessapi.com/architecture/incremental-sync",
+      "href": "https://aifitnessapi.com/health-connect-api/getchanges-incremental-sync",
       "anchor": "#term-changes-token",
       "id": "https://aifitnessapi.com/glossary#term-changes-token"
     },

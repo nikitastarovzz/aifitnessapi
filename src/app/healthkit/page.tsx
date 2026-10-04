@@ -17,6 +17,7 @@ import {
   HK_FETCHED_ON,
 } from "@/data/hkGroupPages";
 import { HK_IDENTIFIERS } from "@/data/healthkitIdentifiers";
+import { HK_METADATA_KEYS } from "@/data/healthkitMetadataKeys";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 import { stringSeed } from "@/lib/cluster";
@@ -112,6 +113,11 @@ const REFERENCE_PAGES: { href: string; label: string; blurb: string }[] = [
     href: "/healthkit-units",
     label: "Unit families",
     blurb: `Every quantity type by unit family, and the ${UNIT_UNSTATED} Apple leaves unstated.`,
+  },
+  {
+    href: "/healthkit-metadata-keys",
+    label: "Metadata keys",
+    blurb: `All ${HK_METADATA_KEYS.length} HKMetadataKey constants in Apple's topic groups, with the value type only where Apple's own sentence states it.`,
   },
   {
     href: "/healthkit-queries",

@@ -24,6 +24,7 @@ import { releasedAccessibility, A11Y_PATH } from "@/data/accessibility";
 import { releasedAudioCoaching, AUDIO_PATH } from "@/data/audioCoaching";
 import { releasedHealthkitQueries, HKQ_PATH } from "@/data/healthkitQueries";
 import { releasedPhoneSensors, SENSORS_PATH } from "@/data/phoneSensors";
+import { releasedHealthConnectApi, HCAPI_PATH } from "@/data/healthConnectApi";
 import { orderedRecords, recordPath, recordH1, recordCapsule, recordFaqs, HC_BASE } from "@/data/hcPages";
 import { LIBRARIES_BASE, LIBRARY_COMPARISONS, LIBRARIES_HUB_FAQS, libraryPages } from "@/data/librariesEditorial";
 import { hkVersionPages, versionH1, versionPrimaryQuery, versionCapsule, versionFaqs } from "@/lib/hkVersions";
@@ -398,7 +399,7 @@ export function GET() {
     }
   }
 
-  // Three hand-written clusters with the same block shape as accessibility.
+  // Four hand-written clusters with the same block shape as accessibility.
   const moreClusters: { title: string; base: string; intro: string; entries: ReturnType<typeof releasedAudioCoaching> }[] = [
     {
       title: "Audio coaching for workout apps",
@@ -420,6 +421,13 @@ export function GET() {
       intro:
         "Steps, activity, altitude and head motion from the phone a user already carries, one platform API per page, from Apple's and Google's own documentation.",
       entries: releasedPhoneSensors(),
+    },
+    {
+      title: "Health Connect Jetpack API",
+      base: HCAPI_PATH,
+      intro:
+        "How each Health Connect Jetpack call works and where it bites, one method or class per page, from Google's own guides and the androidx.health.connect.client reference: readRecords paging, aggregates, getChanges, upserts, deletes, permissions, background and history reads, routes and training plans.",
+      entries: releasedHealthConnectApi(),
     },
   ];
   for (const c of moreClusters) {

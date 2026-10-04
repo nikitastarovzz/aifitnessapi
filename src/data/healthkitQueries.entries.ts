@@ -62,6 +62,10 @@ export const healthkitQueriesEntries: ClusterEntry[] =
       {
         "href": "/fix/healthkit-no-data",
         "label": "HealthKit returns no data"
+      },
+      {
+        "href": "/health-connect-api/healthkit-vs-health-connect-api-equivalents",
+        "label": "HealthKit to Health Connect API equivalents"
       }
     ],
     "cta": {
@@ -119,6 +123,10 @@ export const healthkitQueriesEntries: ClusterEntry[] =
       {
         "href": "/architecture/deduplicate-health-data",
         "label": "Deduplicate health data"
+      },
+      {
+        "href": "/health-connect-api/healthkit-vs-health-connect-api-equivalents",
+        "label": "HealthKit to Health Connect API equivalents"
       }
     ],
     "cta": {
@@ -172,6 +180,10 @@ export const healthkitQueriesEntries: ClusterEntry[] =
       {
         "href": "/integrate/healthkit",
         "label": "HealthKit integration guide"
+      },
+      {
+        "href": "/health-connect-api/healthkit-vs-health-connect-api-equivalents",
+        "label": "HealthKit to Health Connect API equivalents"
       }
     ],
     "cta": {
@@ -225,6 +237,10 @@ export const healthkitQueriesEntries: ClusterEntry[] =
       {
         "href": "/fix/healthkit-database-inaccessible",
         "label": "HealthKit database inaccessible"
+      },
+      {
+        "href": "/health-connect-api/healthkit-vs-health-connect-api-equivalents",
+        "label": "HealthKit to Health Connect API equivalents"
       }
     ],
     "cta": {
@@ -282,6 +298,10 @@ export const healthkitQueriesEntries: ClusterEntry[] =
       {
         "href": "/healthkit-queries/hksamplequery",
         "label": "HKSampleQuery"
+      },
+      {
+        "href": "/health-connect-api/healthkit-vs-health-connect-api-equivalents",
+        "label": "HealthKit to Health Connect API equivalents"
       }
     ],
     "cta": {
@@ -339,6 +359,10 @@ export const healthkitQueriesEntries: ClusterEntry[] =
       {
         "href": "/integrate/healthkit",
         "label": "HealthKit integration guide"
+      },
+      {
+        "href": "/health-connect-api/healthkit-vs-health-connect-api-equivalents",
+        "label": "HealthKit to Health Connect API equivalents"
       }
     ],
     "cta": {
@@ -392,6 +416,10 @@ export const healthkitQueriesEntries: ClusterEntry[] =
       {
         "href": "/cookbook/incremental-sync-anchor",
         "label": "Incremental sync anchor recipe"
+      },
+      {
+        "href": "/health-connect-api/healthkit-vs-health-connect-api-equivalents",
+        "label": "HealthKit to Health Connect API equivalents"
       }
     ],
     "cta": {
@@ -449,6 +477,10 @@ export const healthkitQueriesEntries: ClusterEntry[] =
       {
         "href": "/integrate/healthkit",
         "label": "HealthKit integration guide"
+      },
+      {
+        "href": "/health-connect-api/healthkit-vs-health-connect-api-equivalents",
+        "label": "HealthKit to Health Connect API equivalents"
       }
     ],
     "cta": {

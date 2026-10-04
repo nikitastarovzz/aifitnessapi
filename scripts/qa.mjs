@@ -329,6 +329,8 @@ if (fs.existsSync(matrixPath)) {
     "healthkit-type-identifiers-2026",
     "health-connect-records-2026",
     "health-connect-permissions-2026",
+    "healthkit-metadata-keys-2026",
+    "wear-os-health-services-data-types-2026",
   ];
   // Both directions. Listing files catches a DELETION (a dataset a page
   // still cites); scanning the directory catches an ADDITION that was never
@@ -1684,6 +1686,112 @@ if (fs.existsSync(matrixPath)) {
       const missing = releases.filter((r) => !page.includes(`id="release-${r.version}"`)).map((r) => r.version);
       if (missing.length) problems.push(`HC-RELEASES-ROWS  /health-connect-releases is missing ${missing.join(", ")}`);
       else console.log(`Health Connect releases: ${releases.length} connect-client releases rendered.`);
+    }
+  }
+
+  /** The HTML of one table row, from its id to its closing tag, decoded. */
+  const rowOf = (html, id) => {
+    const at = html.indexOf(`id="${id}"`);
+    if (at === -1) return null;
+    const end = html.indexOf("</tr>", at);
+    return decode(html.slice(at, end === -1 ? undefined : end));
+  };
+
+  // HealthKit metadata keys. Apple's Metadata Keys collection listed 67 keys
+  // on 2026-10-04 (the generator's own floor). valueType is the one derived
+  // field: it must never appear without the sentence it was read from, that
+  // sentence must be Apple's own text, and the page must show both together.
+  {
+    const src = fs.readFileSync("src/data/healthkitMetadataKeys.ts", "utf8");
+    const keys = jsonArray(src, "HK_METADATA_KEYS");
+    const page = htmlOf("/healthkit-metadata-keys");
+    if (!keys || keys.length < 67) {
+      problems.push(`HK-METADATA-ROWS  src/data/healthkitMetadataKeys.ts yields ${keys?.length ?? 0} metadata keys, expected at least 67`);
+    } else if (!page) {
+      problems.push("HK-METADATA-ROWS  /healthkit-metadata-keys was not built");
+    } else {
+      const missing = keys.filter((k) => !page.includes(`id="key-${k.swiftName.toLowerCase()}"`)).map((k) => k.swiftName);
+      if (missing.length) {
+        problems.push(`HK-METADATA-ROWS  /healthkit-metadata-keys is missing rows for ${missing.slice(0, 5).join(", ")}${missing.length > 5 ? "…" : ""}`);
+      }
+      let typed = 0;
+      for (const k of keys) {
+        if (!!k.valueType !== !!k.valueTypeEvidence) {
+          problems.push(`HK-METADATA-EVIDENCE  ${k.swiftName} has ${k.valueType ? "a valueType without its evidence sentence" : "an evidence sentence without a valueType"}`);
+          continue;
+        }
+        if (!k.valueType) continue;
+        typed++;
+        if (!`${k.abstract ?? ""} ${k.discussion ?? ""}`.includes(k.valueTypeEvidence)) {
+          problems.push(`HK-METADATA-EVIDENCE  ${k.swiftName}'s valueTypeEvidence is not a sentence from Apple's abstract or discussion`);
+        }
+        const row = rowOf(page, `key-${k.swiftName.toLowerCase()}`);
+        if (row && !(row.includes(k.valueType) && row.includes(k.valueTypeEvidence))) {
+          problems.push(`HK-METADATA-EVIDENCE  /healthkit-metadata-keys row for ${k.swiftName} does not show its value type together with Apple's sentence`);
+        }
+      }
+      if (!missing.length) console.log(`HealthKit metadata keys: ${keys.length} keys rendered, ${typed} with a value type and its evidence sentence.`);
+    }
+  }
+
+  // Wear OS Health Services data types. Google's DataType reference listed 65
+  // constants on 2026-10-04, 26 of them named in the permissions guide's table
+  // (the generator's own floors). A permission is shown only where that table
+  // names the constant, and the table row it came from travels with it.
+  {
+    const src = fs.readFileSync("src/data/healthServicesDataTypes.ts", "utf8");
+    const types = jsonArray(src, "HS_DATA_TYPES");
+    const tableRows = jsonArray(src, "HS_PERMISSION_ROWS") ?? [];
+    const page = htmlOf("/wear-os-data-types");
+    if (!types || types.length < 65) {
+      problems.push(`WEAR-DATATYPE-ROWS  src/data/healthServicesDataTypes.ts yields ${types?.length ?? 0} DataType constants, expected at least 65`);
+    } else if (!page) {
+      problems.push("WEAR-DATATYPE-ROWS  /wear-os-data-types was not built");
+    } else {
+      const missing = types.filter((t) => !page.includes(`id="type-${t.name.toLowerCase()}"`)).map((t) => t.name);
+      if (missing.length) {
+        problems.push(`WEAR-DATATYPE-ROWS  /wear-os-data-types is missing rows for ${missing.slice(0, 5).join(", ")}${missing.length > 5 ? "…" : ""}`);
+      }
+      const withPermission = types.filter((t) => t.permission);
+      if (withPermission.length < 26) {
+        problems.push(`WEAR-DATATYPE-PERMS  only ${withPermission.length} DataType constants carry a permission from Google's table, expected at least 26`);
+      }
+      for (const t of types) {
+        if (!!t.permission !== !!t.permissionEvidence) {
+          problems.push(`WEAR-DATATYPE-EVIDENCE  ${t.name} has ${t.permission ? "a permission without its table row" : "a table row without a permission"}`);
+          continue;
+        }
+        if (t.permission) {
+          const source = tableRows.find((r) => r.text === t.permissionEvidence);
+          if (!source || source.permission !== t.permission || !source.dataTypes.includes(t.name)) {
+            problems.push(`WEAR-DATATYPE-EVIDENCE  ${t.name}'s permissionEvidence is not a row of Google's permissions table naming it under ${t.permission}`);
+          }
+        }
+        const row = rowOf(page, `type-${t.name.toLowerCase()}`);
+        if (row && (t.permission ? !row.includes(t.permission) : !row.includes("Not in table"))) {
+          problems.push(`WEAR-DATATYPE-PERMS  /wear-os-data-types row for ${t.name} does not show ${t.permission ?? "that Google's table does not name it"}`);
+        }
+      }
+      if (!missing.length) console.log(`Wear OS data types: ${types.length} constants rendered, ${withPermission.length} with a permission from Google's table.`);
+    }
+  }
+
+  // The HealthKit ↔ Health Connect equivalents page links both query
+  // clusters, so the link has to run both ways: every /healthkit-queries page
+  // it maps, and the /healthkit-queries hub, must link back to it. Otherwise
+  // a reader on the iOS side never finds the translation table.
+  {
+    const EQUIV = "/health-connect-api/healthkit-vs-health-connect-api-equivalents";
+    const page = htmlOf(EQUIV);
+    if (!page) {
+      problems.push(`HCAPI-EQUIV-BACKLINK  ${EQUIV} was not built`);
+    } else {
+      const mapped = [...hrefsIn(page)].filter((h) => /^\/healthkit-queries\/[a-z0-9-]+$/.test(h));
+      for (const route of ["/healthkit-queries", ...mapped]) {
+        const html = htmlOf(route);
+        if (html && !hrefsIn(html).has(EQUIV)) problems.push(`HCAPI-EQUIV-BACKLINK  ${route} is mapped on ${EQUIV} but does not link back to it`);
+      }
+      console.log(`Equivalents page: ${mapped.length} /healthkit-queries pages mapped, each checked for a link back.`);
     }
   }
 }

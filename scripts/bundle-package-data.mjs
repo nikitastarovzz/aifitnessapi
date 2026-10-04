@@ -34,6 +34,8 @@ const WANTED = [
   "fitness-api-glossary-2026",
   "health-connect-records-2026",
   "health-connect-permissions-2026",
+  "healthkit-metadata-keys-2026",
+  "wear-os-health-services-data-types-2026",
 ];
 
 for (const out of OUTS) mkdirSync(out, { recursive: true });

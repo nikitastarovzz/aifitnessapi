@@ -23,6 +23,7 @@ import { releasedAccessibility, A11Y_PATH } from "@/data/accessibility";
 import { releasedAudioCoaching, AUDIO_PATH } from "@/data/audioCoaching";
 import { releasedHealthkitQueries, HKQ_PATH } from "@/data/healthkitQueries";
 import { releasedPhoneSensors, SENSORS_PATH } from "@/data/phoneSensors";
+import { releasedHealthConnectApi, HCAPI_PATH } from "@/data/healthConnectApi";
 import { FITNESS_APIS_CONFIG } from "@/data/fitnessApis";
 import { GUIDES_CONFIG } from "@/data/guides";
 import { BUILD_CONFIG } from "@/data/build";
@@ -47,6 +48,7 @@ import { A11Y_CONFIG } from "@/data/accessibility";
 import { AUDIO_CONFIG } from "@/data/audioCoaching";
 import { HKQ_CONFIG } from "@/data/healthkitQueries";
 import { SENSORS_CONFIG } from "@/data/phoneSensors";
+import { HCAPI_CONFIG } from "@/data/healthConnectApi";
 
 /**
  * basePath → released entries, for anything that needs to see a cluster's
@@ -78,6 +80,7 @@ const REGISTRY: Record<string, () => ClusterEntry[]> = {
   [AUDIO_PATH]: releasedAudioCoaching,
   [HKQ_PATH]: releasedHealthkitQueries,
   [SENSORS_PATH]: releasedPhoneSensors,
+  [HCAPI_PATH]: releasedHealthConnectApi,
 };
 
 /** All clusters as basePath → released entries. */
@@ -130,6 +133,7 @@ export const CLUSTER_LABELS: Record<string, string> = Object.fromEntries(
     AUDIO_CONFIG,
     HKQ_CONFIG,
     SENSORS_CONFIG,
+    HCAPI_CONFIG,
   ].map((c) => [c.basePath, c.hubLabel]),
 );
 

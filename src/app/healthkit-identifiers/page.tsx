@@ -315,6 +315,13 @@ export default function HealthKitIdentifiersPage() {
               </li>
             ))}
           </ul>
+          <p className="mt-3 text-sm text-[var(--muted)]">
+            The keys you attach to a sample&apos;s metadata dictionary are a separate set, listed in{" "}
+            <Link href="/healthkit-metadata-keys" className="font-medium text-brand-600 hover:text-brand-500">
+              HealthKit metadata keys
+            </Link>
+            .
+          </p>
         </nav>
         <HkIdentifierTable
           rows={rows}

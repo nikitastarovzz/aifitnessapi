@@ -160,6 +160,12 @@ jobs:
           check "https://aifitnessapi.com/error-codes/health-connect"  "ERROR_RATE_LIMIT_EXCEEDED"
           check "https://aifitnessapi.com/health-connect-releases"     "connect-client"
 
+          # Surfaces added 2026-10-04 (GROWTH-OCT-2026-B wave D): the Health
+          # Connect Jetpack API cluster and the two generated references.
+          check "https://aifitnessapi.com/health-connect-api/readrecords-pagination" "ReadRecordsRequest"
+          check "https://aifitnessapi.com/healthkit-metadata-keys"     "HKMetadataKeyExternalUUID"
+          check "https://aifitnessapi.com/wear-os-data-types"          "HEART_RATE_BPM"
+
           # answers.json must stay in step with the site, not drift to an
           # empty or truncated index.
           # Reads the copy check() saved above; if that fetch failed, the file

@@ -2304,6 +2304,10 @@ export const fixEntries: ClusterEntry[] =
       {
         "href": "/fix",
         "label": "Fitness & health API troubleshooting"
+      },
+      {
+        "href": "/health-connect-api/getchanges-incremental-sync",
+        "label": "getChanges incremental sync"
       }
     ],
     "cta": {

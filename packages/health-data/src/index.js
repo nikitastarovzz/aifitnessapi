@@ -20,6 +20,8 @@ const changesDoc = load("fitness-api-changes-2026");
 const glossaryDoc = load("fitness-api-glossary-2026");
 const hcRecordsDoc = load("health-connect-records-2026");
 const hcPermissionsDoc = load("health-connect-permissions-2026");
+const hkMetadataDoc = load("healthkit-metadata-keys-2026");
+const wearOsDoc = load("wear-os-health-services-data-types-2026");
 
 /** Every HealthKit identifier across all four families. */
 export const healthkitIdentifiers = hkDoc.items;
@@ -33,6 +35,10 @@ export const glossary = glossaryDoc.items;
 export const healthConnectRecords = hcRecordsDoc.items;
 /** Every android.permission.health string on Google's HealthPermissions reference. */
 export const healthConnectPermissions = hcPermissionsDoc.items;
+/** Every HKMetadataKey constant on Apple's Metadata Keys collection. */
+export const healthkitMetadataKeys = hkMetadataDoc.items;
+/** Every Wear OS Health Services DataType constant on Google's Jetpack reference. */
+export const wearOsDataTypes = wearOsDoc.items;
 
 /** Provenance for every dataset, including the date each source was read. */
 export const meta = {
@@ -42,6 +48,8 @@ export const meta = {
   glossary: { ...glossaryDoc, items: undefined },
   healthConnectRecords: { ...hcRecordsDoc, items: undefined },
   healthConnectPermissions: { ...hcPermissionsDoc, items: undefined },
+  healthkitMetadataKeys: { ...hkMetadataDoc, items: undefined },
+  wearOsDataTypes: { ...wearOsDoc, items: undefined },
 };
 
 const byIdentifier = new Map(healthkitIdentifiers.map((r) => [r.identifier.toLowerCase(), r]));
@@ -103,4 +111,31 @@ const byHcPermission = new Map(
  */
 export function healthConnectPermission(name) {
   return byHcPermission.get(String(name ?? "").toLowerCase());
+}
+
+const byMetadataKey = new Map(
+  healthkitMetadataKeys.flatMap((k) => [
+    [k.swiftName.toLowerCase(), k],
+    ...(k.objcName ? [[k.objcName.toLowerCase(), k]] : []),
+  ]),
+);
+
+/**
+ * Look up one HealthKit metadata key by its Swift or Objective-C name
+ * ("HKMetadataKeyExternalUUID"). valueType is null where Apple does not state
+ * it. Returns undefined for an unknown name.
+ */
+export function healthkitMetadataKey(name) {
+  return byMetadataKey.get(String(name ?? "").toLowerCase());
+}
+
+const byWearOsType = new Map(wearOsDataTypes.map((t) => [t.name.toLowerCase(), t]));
+
+/**
+ * Look up one Wear OS Health Services data type by its DataType constant
+ * ("HEART_RATE_BPM"). permission is null where Google's permissions table does
+ * not name the constant. Returns undefined for an unknown name.
+ */
+export function wearOsDataType(name) {
+  return byWearOsType.get(String(name ?? "").toLowerCase());
 }

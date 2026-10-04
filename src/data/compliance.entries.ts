@@ -263,6 +263,10 @@ export const complianceEntries: ClusterEntry[] =
       {
         "href": "/compliance",
         "label": "Health-data compliance & privacy"
+      },
+      {
+        "href": "/data/clinical-records-api",
+        "label": "HealthKit clinical records API"
       }
     ],
     "cta": {

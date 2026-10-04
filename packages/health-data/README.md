@@ -32,6 +32,8 @@ healthConnectPermission("READ_STEPS").records;       // "StepsRecord; StepsCaden
 | `glossary` | 33 | Domain terms |
 | `healthConnectRecords` | 42 | Every Health Connect record class in Google's data-types table, with permission strings and aggregate metrics |
 | `healthConnectPermissions` | 219 | Every `android.permission.health` string on Google's HealthPermissions reference |
+| `healthkitMetadataKeys` | 67 | Every `HKMetadataKey` constant, with the value type only where Apple's sentence states it (that sentence included) |
+| `wearOsDataTypes` | 65 | Every Wear OS Health Services `DataType` constant, with the permission Google's table lists (and the row it came from) |
 
 `meta` carries the provenance for each set, including the date its source was
 last read.

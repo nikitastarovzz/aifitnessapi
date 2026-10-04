@@ -270,6 +270,10 @@ export const integrateEntries: ClusterEntry[] =
       {
         "href": "/integrate",
         "label": "How to integrate a fitness or health API"
+      },
+      {
+        "href": "/health-connect-api",
+        "label": "Health Connect Jetpack API, method by method"
       }
     ],
     "cta": {

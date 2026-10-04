@@ -101,7 +101,5 @@ jobs:
           git push origin "$branch"
           gh pr create --base main --head "$branch" \
             --title "Refresh SDK release tracker" \
-            --body "Automated daily refresh of \`src/data/sdkReleases.ts\`. Merges itself once CI is green.
-
-Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+            --body "Automated daily refresh of \`src/data/sdkReleases.ts\`. Merges itself once CI is green. Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
           gh pr merge --auto --squash --delete-branch "$branch"

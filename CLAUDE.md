@@ -54,6 +54,8 @@ silently reverts it.
 | `src/data/libraries.ts` | `node scripts/fetch-libraries.mjs` (npm, pub.dev, PyPI, GitHub; weekly in `.github/workflows/libraries.yml`) |
 | `src/data/errorCodes.ts` | `node scripts/fetch-error-codes.mjs` (Apple's HKError.Code docs JSON + Android's HealthConnectException and Jetpack HealthConnectClient references) |
 | `src/data/hcReleases.ts` | `node scripts/fetch-hc-releases.mjs` (Google's androidx Health Connect release notes) |
+| `src/data/healthkitMetadataKeys.ts` | `node scripts/fetch-healthkit-metadata-keys.mjs` (Apple's metadata-keys docs JSON + Workout Metadata Keys sub-collection + one JSON per key; `--offline` reparses `.cache/healthkit-metadata-keys`) |
+| `src/data/healthServicesDataTypes.ts` | `NODE_USE_ENV_PROXY=1 node scripts/fetch-health-services-data-types.mjs` (Jetpack DataType Kotlin reference + Health Services permissions guide, `?hl=en`; `--offline` reparses `.cache/health-services`) |
 | `src/data/published.ts` | `node scripts/backfill-published.mjs` |
 | `public/datasets/*.{json,csv}` + `manifest*.json` | `npm run datasets` (build + manifest) |
 | `public/kit/*` | `node scripts/build-kit.mjs` |

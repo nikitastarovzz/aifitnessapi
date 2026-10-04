@@ -192,12 +192,12 @@ export default function PhoneSensorsPillar() {
               <p className="mt-1 text-sm text-[var(--muted)]">{group.blurb}</p>
               <ul className="mt-5 grid gap-4 sm:grid-cols-2">
                 {items.map((e) => (
-                  <li key={e!.slug}>
+                  <li key={e!.slug} className="min-w-0">
                     <Link
                       href={`${SENSORS_PATH}/${e!.slug}`}
                       className="flex h-full min-w-0 flex-col rounded-2xl border border-[var(--border)] p-5 transition hover:-translate-y-0.5 hover:border-brand-400 hover:bg-[var(--surface)]"
                     >
-                      <span className="break-words font-semibold text-[var(--fg)]">{e!.h1}</span>
+                      <span className="font-semibold text-[var(--fg)] [overflow-wrap:anywhere]">{e!.h1}</span>
                       <span className="mt-2 text-sm text-[var(--muted)]">{e!.metaDescription}</span>
                       <EntryBadge updated={e!.updated} />
                     </Link>

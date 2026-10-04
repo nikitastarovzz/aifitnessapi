@@ -54,6 +54,17 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
     blurb: "The sensitive end of the store — sourced, typed, and privacy-first.",
     slugs: ["blood-pressure-api", "blood-glucose-api", "respiratory-rate-api", "menstrual-cycle-api"],
   },
+  {
+    title: "Mental health, medications & medical records",
+    blurb: "Self-reported moods, screening answers, medication logs and FHIR records, with what each platform documents.",
+    slugs: [
+      "state-of-mind-api",
+      "mental-health-assessments-api",
+      "medications-api",
+      "clinical-records-api",
+      "health-connect-medical-records-api",
+    ],
+  },
 ];
 
 const FAQS = [
