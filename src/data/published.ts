@@ -5,7 +5,7 @@
  * First-published date of every cluster spoke and blog post, read from git
  * history: the first commit that both contained the entry and listed it in
  * its cluster's release gate (blog posts: the commit that added the file).
- * Keyed by URL path without the leading slash. 392 rows.
+ * Keyed by URL path without the leading slash. 393 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -181,6 +181,7 @@ export const PUBLISHED: Record<string, string> = {
   "data/menstrual-cycle-api": "2026-08-12",
   "data/mental-health-assessments-api": "2026-10-04",
   "data/respiratory-rate-api": "2026-08-12",
+  "data/resting-heart-rate-api": "2026-10-04",
   "data/sleep-tracking-api": "2026-07-24",
   "data/state-of-mind-api": "2026-10-04",
   "data/step-counting-api": "2026-07-24",
