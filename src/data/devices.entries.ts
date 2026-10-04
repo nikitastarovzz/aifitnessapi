@@ -370,6 +370,10 @@ export const devicesEntries: ClusterEntry[] =
       {
         "href": "/fitness-apis/wearable-data-apis",
         "label": "Wearable data APIs"
+      },
+      {
+        "href": "/wear-os-data-types",
+        "label": "Wear OS Health Services data types"
       }
     ],
     "cta": {

@@ -13,6 +13,9 @@ name: Vercel recover
 
 on:
   push:
+    # main only: a branch push whose diff happens to include this file (a
+    # branch moved from old history) must not trigger a production deploy.
+    branches: [main]
     paths: ["ops/recover.trigger"]
   workflow_dispatch:
     inputs:

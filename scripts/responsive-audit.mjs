@@ -38,6 +38,8 @@ const PAGES = ["/", "/devices", "/devices/ftms-fitness-machine-service", "/matri
   "/health-connect", "/health-connect/steps-record", "/health-connect/permissions",
   "/libraries", "/libraries/react-native-health", "/libraries/compare/garminconnect-vs-garth",
   "/healthkit-versions/ios-8", "/health-connect-releases",
+  "/health-connect-api", "/health-connect-api/healthkit-vs-health-connect-api-equivalents",
+  "/healthkit-metadata-keys", "/wear-os-data-types",
   "/not-a-real-page"];
 
 const exe = process.env.PLAYWRIGHT_CHROMIUM;

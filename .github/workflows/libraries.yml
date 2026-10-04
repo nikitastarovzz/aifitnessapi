@@ -13,6 +13,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
   group: libraries
@@ -40,6 +41,9 @@ jobs:
       - name: Commit if something meaningful changed
         env:
           EVENT_NAME: ${{ github.event_name }}
+          # gh needs a token; the default one can open and auto-merge a PR
+          # given the pull-requests: write permission above.
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
           if git diff --quiet -- src/data/libraries.ts; then
@@ -82,6 +86,14 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add src/data/libraries.ts
           git commit -m "Refresh open-source library tracker"
-          # The branch may have moved while this ran; rebase rather than force.
-          git pull --rebase origin main
-          git push origin HEAD:main
+
+          # Via a PR with auto-merge, not a direct push: main requires a pull
+          # request and green CI. Green merges itself and deploys as before;
+          # red parks as an open PR instead of deploying a broken tracker.
+          branch="bot/libraries-${GITHUB_RUN_ID}"
+          git checkout -b "$branch"
+          git push origin "$branch"
+          gh pr create --base main --head "$branch" \
+            --title "Refresh open-source library tracker" \
+            --body "Automated weekly refresh of \`src/data/libraries.ts\`. Merges itself once CI is green. Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          gh pr merge --auto --squash --delete-branch "$branch"

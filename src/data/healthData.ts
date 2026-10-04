@@ -30,6 +30,11 @@ export const RELEASED_DATA = new Set<string>([
   "blood-glucose-api",
   "blood-pressure-api",
   "respiratory-rate-api",
+  "state-of-mind-api",
+  "medications-api",
+  "mental-health-assessments-api",
+  "clinical-records-api",
+  "health-connect-medical-records-api",
 ]);
 
 export const allData: ClusterEntry[] = dataEntries;

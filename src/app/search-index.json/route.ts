@@ -26,6 +26,9 @@ import { HK_IDENTIFIERS } from "@/data/healthkitIdentifiers";
 import { releasedAudioCoaching, AUDIO_PATH } from "@/data/audioCoaching";
 import { releasedHealthkitQueries, HKQ_PATH } from "@/data/healthkitQueries";
 import { releasedPhoneSensors, SENSORS_PATH } from "@/data/phoneSensors";
+import { releasedHealthConnectApi, HCAPI_PATH } from "@/data/healthConnectApi";
+import { HK_METADATA_KEYS } from "@/data/healthkitMetadataKeys";
+import { HS_DATA_TYPES } from "@/data/healthServicesDataTypes";
 import {
   orderedRecords,
   recordPath,
@@ -110,6 +113,7 @@ export function GET() {
     [AUDIO_PATH, "Audio Coaching", releasedAudioCoaching()],
     [HKQ_PATH, "HealthKit Queries", releasedHealthkitQueries()],
     [SENSORS_PATH, "Phone Sensors", releasedPhoneSensors()],
+    [HCAPI_PATH, "Health Connect API", releasedHealthConnectApi()],
   ];
 
   const hubBlurbs: Record<string, string> = {
@@ -137,6 +141,7 @@ export function GET() {
     [AUDIO_PATH]: "Workout cues over the user's music: ducking, interruptions, background audio, Android audio focus, TextToSpeech, watch speakers.",
     [HKQ_PATH]: "How each HealthKit query class works and where it bites: sample, statistics, anchored, observer, descriptors, routes, rings.",
     [SENSORS_PATH]: "Fitness features from the phone's own motion sensors: steps, activity, altitude, head motion, and the Android permission rules around them.",
+    [HCAPI_PATH]: "How each Health Connect Jetpack call works and where it bites: readRecords paging, aggregates, getChanges, upserts, deletes, permissions, background and history reads, routes, training plans.",
     [ENGAGEMENT_PATH]: "Getting people back: notifications, Live Activities, widgets, streaks, leaderboards \u2014 and how to measure lift honestly.",
   };
 
@@ -278,6 +283,18 @@ export function GET() {
     "Health Connect SDK releases",
     `All ${HC_RELEASES.length} androidx.health.connect:connect-client releases: version, date, stage and what changed.`,
     "health connect sdk releases connect-client androidx version changelog alpha beta stable",
+  );
+  add(
+    "/healthkit-metadata-keys",
+    "HealthKit metadata keys",
+    `All ${HK_METADATA_KEYS.length} HKMetadataKey constants in Apple's topic groups, with Apple's wording, OS versions and the value type where Apple states it.`,
+    ["healthkit metadata keys hkmetadatakey metadata dictionary", ...HK_METADATA_KEYS.map((k) => k.swiftName)].join(" "),
+  );
+  add(
+    "/wear-os-data-types",
+    "Wear OS Health Services data types",
+    `All ${HS_DATA_TYPES.length} Health Services DataType constants with Google's description, declared Kotlin type and the permission Google's table lists.`,
+    ["wear os health services datatype data types exerciseclient passivemonitoringclient", ...HS_DATA_TYPES.map((t) => t.name)].join(" "),
   );
 
   add(

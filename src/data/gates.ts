@@ -492,6 +492,36 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     area: "Derived blocks",
     refuses: "A Health Connect SDK release page missing any generated connect-client release, or a generated release list shorter than 32 entries.",
   },
+  {
+    code: "HK-METADATA-ROWS",
+    area: "Derived blocks",
+    refuses: "A HealthKit metadata-key page missing a row for any generated HKMetadataKey constant, a generated list shorter than the 67 keys Apple's collection held, or a page that was not built.",
+  },
+  {
+    code: "HK-METADATA-EVIDENCE",
+    area: "Derived blocks",
+    refuses: "A metadata key whose derived value type is published without the sentence it was read from, whose sentence is not Apple's own abstract or discussion text, or whose row does not show the type and the sentence together.",
+  },
+  {
+    code: "WEAR-DATATYPE-ROWS",
+    area: "Derived blocks",
+    refuses: "A Wear OS data-type page missing a row for any generated Health Services DataType constant, a generated list shorter than the 65 constants Google's reference held, or a page that was not built.",
+  },
+  {
+    code: "WEAR-DATATYPE-PERMS",
+    area: "Derived blocks",
+    refuses: "Fewer than 26 Wear OS data types carrying the permission Google's permissions table lists, or a row that does not show its permission (or say the table does not name it).",
+  },
+  {
+    code: "WEAR-DATATYPE-EVIDENCE",
+    area: "Derived blocks",
+    refuses: "A Wear OS data type whose permission is published without the permissions-table row it was read from, or whose row is not one of Google's table rows naming that constant under that permission.",
+  },
+  {
+    code: "HCAPI-EQUIV-BACKLINK",
+    area: "Links and anchors",
+    refuses: "A HealthKit query page that the HealthKit-to-Health Connect equivalents page maps, or the /healthkit-queries hub, without a link back to that equivalents page, or an equivalents page that was not built.",
+  },
 
   // ── Tools ─────────────────────────────────────────────────────────────
   {

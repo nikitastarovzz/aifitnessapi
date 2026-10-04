@@ -229,6 +229,11 @@ export default function HealthConnectHub() {
                 blurb: "Every androidx.health.connect:connect-client release from Google's Jetpack release notes: version, date, stage and what changed.",
               },
               {
+                href: "/health-connect-api",
+                label: "The Jetpack API, method by method",
+                blurb: "How each HealthConnectClient call works and where it bites: readRecords paging, aggregates, getChanges, upserts, deletes and permissions.",
+              },
+              {
                 href: "/integrate/google-health-connect",
                 label: "Integrate Health Connect",
                 blurb: "The how-to: client setup, the permission flow and what Google requires before you publish.",

@@ -17,6 +17,8 @@ import { LIBRARIES_BASE, LIBRARY_COMPARISONS, libraryPages, librariesModified } 
 import { hkVersionPages, HK_VERSION_PAGES_PUBLISHED } from "@/lib/hkVersions";
 import { ERROR_CODES_FETCHED_ON } from "@/data/errorCodes";
 import { HC_RELEASES_FETCHED_ON } from "@/data/hcReleases";
+import { HK_METADATA_KEYS_FETCHED_ON } from "@/data/healthkitMetadataKeys";
+import { HS_DATA_TYPES_FETCHED_ON } from "@/data/healthServicesDataTypes";
 
 /**
  * Every row carries a `lastmod` that some dated record on the site backs, or
@@ -152,6 +154,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/error-codes", ERROR_CODES_FETCHED_ON],
     ["/error-codes/health-connect", ERROR_CODES_FETCHED_ON],
     ["/health-connect-releases", HC_RELEASES_FETCHED_ON],
+    ["/healthkit-metadata-keys", HK_METADATA_KEYS_FETCHED_ON],
+    ["/wear-os-data-types", HS_DATA_TYPES_FETCHED_ON],
   ];
 
   // The list is empty until the authored entries land, and an empty list

@@ -48,8 +48,11 @@ body {
   /* This site is full of long unbreakable tokens
      (HKQuantityTypeIdentifierHeartRateVariabilitySDNN, UUIDs, endpoints). On a
      phone one of those sets the min-content width of its box and pushes the
-     whole document sideways, so let them break. */
-  overflow-wrap: break-word;
+     whole document sideways, so let them break. `anywhere` rather than
+     `break-word`: only `anywhere` lowers the min-content width, which is what
+     sizes grid and flex items (hub cards with a class name as their title
+     overflowed at 320-414px with `break-word`). */
+  overflow-wrap: anywhere;
   background: var(--bg);
   color: var(--fg);
   font-family: var(--font-sans);
@@ -60,6 +63,12 @@ body {
 /* Anchor offset so heading links aren't hidden under the sticky header. */
 :target {
   scroll-margin-top: 6rem;
+}
+
+/* Tables scroll horizontally inside their own wrapper; keep identifiers in a
+   cell whole rather than letting `anywhere` shrink the column. */
+table {
+  overflow-wrap: break-word;
 }
 
 /* ——— Motion system ———————————————————————————————————————————————

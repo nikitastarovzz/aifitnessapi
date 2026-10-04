@@ -100,6 +100,11 @@ export default function Footer() {
               Phone Sensors
             </FooterLink>
           )}
+          {has("/health-connect-api") && (
+            <FooterLink href="/health-connect-api" className="py-1 hover:text-[var(--fg)]">
+              Health Connect API
+            </FooterLink>
+          )}
           {has("/watch-apps") && (
             <FooterLink href="/watch-apps" className="py-1 hover:text-[var(--fg)]">
               Watch Apps
@@ -147,6 +152,9 @@ export default function Footer() {
           <FooterLink href="/healthkit-units" className="py-1 hover:text-[var(--fg)]">
             HKUnit families by type
           </FooterLink>
+          <FooterLink href="/healthkit-metadata-keys" className="py-1 hover:text-[var(--fg)]">
+            HealthKit metadata keys
+          </FooterLink>
           <FooterLink href="/healthkit-versions" className="py-1 hover:text-[var(--fg)]">
             HealthKit types by iOS version
           </FooterLink>
@@ -158,6 +166,9 @@ export default function Footer() {
           </FooterLink>
           <FooterLink href="/health-connect-releases" className="py-1 hover:text-[var(--fg)]">
             Health Connect SDK releases
+          </FooterLink>
+          <FooterLink href="/wear-os-data-types" className="py-1 hover:text-[var(--fg)]">
+            Wear OS Health Services data types
           </FooterLink>
           {SDK_REPOS.length > 0 && (
             <FooterLink href="/sdk-releases" className="py-1 hover:text-[var(--fg)]">

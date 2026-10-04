@@ -30,6 +30,7 @@ const CLUSTERS = [
   "audio-coaching",
   "healthkit-queries",
   "phone-sensors",
+  "health-connect-api",
 ];
 
 const SITE = "https://aifitnessapi.com";

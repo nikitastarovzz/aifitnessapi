@@ -21,21 +21,6 @@ const PAGE_PATH = "/datasets";
 const UPDATED = "2026-08-22";
 const LICENSE_URL = "https://creativecommons.org/licenses/by/4.0/";
 
-export const metadata: Metadata = {
-  title: { absolute: "Open Datasets: Fitness & Health API Data (CC BY 4.0)" },
-  description:
-    "Seven open CC BY 4.0 datasets on fitness and health APIs: HealthKit and Health Connect identifiers, dated ecosystem changes, glossary, access structure.",
-  alternates: { canonical: PAGE_PATH },
-  openGraph: {
-    type: "website",
-    title: "Open Datasets — Fitness & Health API Data",
-    description:
-      "Seven CC BY 4.0 datasets in JSON and CSV: HealthKit and Health Connect identifiers, the dated changes record, the glossary, and the access-structure survey.",
-    url: PAGE_PATH,
-    images: ["/opengraph-image"],
-  },
-};
-
 /** The generated envelope every dataset in public/datasets shares. */
 type DatasetFile = {
   name: string;
@@ -193,9 +178,60 @@ const ENTRIES: Entry[] = [
     caveat:
       "The records column is a join to Google's data-types table, not a statement from the HealthPermissions page; background, history, medical and symptom permissions name no record class and are null there.",
   },
+  {
+    slug: "healthkit-metadata-keys-2026",
+    unit: "metadata keys",
+    blurb:
+      "Every HKMetadataKey constant on Apple's Metadata Keys collection and its workout sub-collection, read from the JSON Apple serves to developer.apple.com: Swift and Objective-C names, Apple's topic group, abstract, platform versions, and the value type where Apple's own sentence states it.",
+    keywords: [
+      "HealthKit metadata keys",
+      "HKMetadataKey",
+      "HKMetadataKeyExternalUUID",
+      "HealthKit metadata",
+      "iOS health data",
+    ],
+    presentedBy: { href: "/healthkit-metadata-keys", label: "HealthKit metadata keys" },
+    caveat:
+      "valueType is derived, not copied: it is read from the sentence in Apple's text that names the value, and that sentence ships beside it in valueTypeEvidence. Where Apple's text does not say, both are null rather than guessed.",
+  },
+  {
+    slug: "wear-os-health-services-data-types-2026",
+    unit: "data types",
+    blurb:
+      "Every DataType companion constant on Google's Jetpack reference for Wear OS Health Services: the declared Kotlin type, delta or aggregate class, value and data-point class, Google's description, and the permission Google's permissions table lists it under.",
+    keywords: [
+      "Wear OS Health Services",
+      "DataType",
+      "HEART_RATE_BPM",
+      "health-services-client",
+      "Wear OS permissions",
+    ],
+    presentedBy: { href: "/wear-os-data-types", label: "Wear OS Health Services data types" },
+    caveat:
+      "The permission column is set only where Google's permissions table names the constant, and the table row ships beside it in permissionEvidence; a constant the table does not name has a null permission, not an inferred one.",
+  },
 ];
 
 const LOADED = ENTRIES.map((e) => ({ entry: e, file: loadDataset(e.slug) }));
+
+/** The dataset count in words for the meta description, read off ENTRIES so
+ *  the number can never fall behind the list. */
+const COUNT_WORD = (["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve"][ENTRIES.length] ?? String(ENTRIES.length));
+
+export const metadata: Metadata = {
+  title: { absolute: "Open Datasets: Fitness & Health API Data (CC BY 4.0)" },
+  description:
+    `${COUNT_WORD} open CC BY 4.0 datasets on fitness and health APIs: HealthKit, Health Connect and Wear OS identifiers, ecosystem changes, glossary, access structure.`,
+  alternates: { canonical: PAGE_PATH },
+  openGraph: {
+    type: "website",
+    title: "Open Datasets — Fitness & Health API Data",
+    description:
+      `${COUNT_WORD} CC BY 4.0 datasets in JSON and CSV: HealthKit, Health Connect and Wear OS identifiers, the dated changes record, the glossary, and the access-structure survey.`,
+    url: PAGE_PATH,
+    images: ["/opengraph-image"],
+  },
+};
 
 const citeAs = (d: Loaded, slug: string) =>
   `AIFitnessAPI, "${d.name}," version ${d.version}, aifitnessapi.com, ${absoluteUrl(`/datasets/${slug}.json`)}`;

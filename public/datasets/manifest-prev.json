@@ -1,29 +1,29 @@
 {
-  "generated": "2026-10-02",
+  "generated": "2026-10-03",
   "files": [
     {
       "file": "fitness-api-changes-2026.csv",
-      "bytes": 6334,
-      "rows": 13,
-      "sha256": "8719d43bba8ca5fde485b7841437bb4a8e19891ff6cadd05f4c1e4d4eec0cb4f"
+      "bytes": 7112,
+      "rows": 14,
+      "sha256": "880c783f93d03043bde10c58910be0e2874626b9be93206809bd33b3a36bfff0"
     },
     {
       "file": "fitness-api-changes-2026.json",
-      "bytes": 10105,
-      "rows": 13,
-      "sha256": "48db2d020ce356488076e38805b7cf8fb34a07faf1358f027c3ce4970d8c1250"
+      "bytes": 11040,
+      "rows": 14,
+      "sha256": "b3b54af8fb7e0322ec8b7ed417e23290b450f4d0fd19c533915c77b7d8d934e1"
     },
     {
       "file": "fitness-api-glossary-2026.csv",
-      "bytes": 11351,
-      "rows": 33,
-      "sha256": "d9c9d962beb49bc846272cb8f7202ff681e3c38756a39e848abb335287d5101a"
+      "bytes": 17298,
+      "rows": 45,
+      "sha256": "5242844e6919cb3253ec9db5a043cb28db5a42252d6a590431b7fad70887d88a"
     },
     {
       "file": "fitness-api-glossary-2026.json",
-      "bytes": 16391,
-      "rows": 33,
-      "sha256": "5f0f45ddd8b788d61841bc3f7be917db5e8b5f1ac719aedfb3c5146d48e2bedd"
+      "bytes": 23723,
+      "rows": 45,
+      "sha256": "5cbad613909b808de875125cc5989473d438c1e35d7a07a3c91950c2cab76c39"
     },
     {
       "file": "fitness-apis-2026.csv",
@@ -38,16 +38,40 @@
       "sha256": "6fe2459d88ee25e6d21e1ae22af5af34a30d818399094e856bdbb64ca007e27a"
     },
     {
+      "file": "health-connect-permissions-2026.csv",
+      "bytes": 47778,
+      "rows": 219,
+      "sha256": "dff364752c4f40e5a7c794865292b8a40781b60f9a0f468307937576d3ad9936"
+    },
+    {
+      "file": "health-connect-permissions-2026.json",
+      "bytes": 78992,
+      "rows": 219,
+      "sha256": "9314a030a0215a4b8eb61a25e9e3574d9a3429c6f57aa1c90cf135ffe4483ef6"
+    },
+    {
+      "file": "health-connect-records-2026.csv",
+      "bytes": 35395,
+      "rows": 42,
+      "sha256": "51faf6690cadb016f234931dfcb30844cb757f919bff85bb2a437fa9173e8ccc"
+    },
+    {
+      "file": "health-connect-records-2026.json",
+      "bytes": 55290,
+      "rows": 42,
+      "sha256": "f2399fad9b106eff60375019a03f0fffd2ee19fcc295af25ed5091923fb6fb62"
+    },
+    {
       "file": "health-data-type-matrix-2026.csv",
-      "bytes": 3547,
+      "bytes": 3637,
       "rows": 10,
-      "sha256": "b767e583a87e5e49f48a6c07337f9928c24f2dc65a7ada49d6f69156cb1d2a5b"
+      "sha256": "5611f1d02ec29bb5bf2bbde2e4f631a6222c41b8ca7b1422f54272a28682d4b0"
     },
     {
       "file": "health-data-type-matrix-2026.json",
-      "bytes": 6460,
+      "bytes": 6550,
       "rows": 10,
-      "sha256": "bc804b5955e9348e3ffe0a981271111c3461cfd37cca5447c4861a84a09606b8"
+      "sha256": "9be00b02108f40024d5ef34685fdf919323f9ab3e2da608d6a798d4bc8f4636a"
     },
     {
       "file": "healthkit-type-identifiers-2026.csv",

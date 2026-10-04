@@ -27,6 +27,7 @@ const MOBILE_LINKS = [
   { href: "/audio-coaching", label: "Audio coaching" },
   { href: "/healthkit-queries", label: "HealthKit queries" },
   { href: "/phone-sensors", label: "Phone sensors" },
+  { href: "/health-connect-api", label: "Health Connect API" },
   { href: "/health-connect", label: "Health Connect records" },
   { href: "/libraries", label: "Open-source libraries" },
   { href: "/picker", label: "API Picker" },
