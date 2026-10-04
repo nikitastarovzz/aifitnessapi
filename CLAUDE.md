@@ -20,6 +20,26 @@ The owner wants planning and implementation on different model tiers:
 `npx tsc --noEmit` → `npm run build` → `npm run qa` must all be green before
 any commit. Never weaken `scripts/qa.mjs` to make a build pass.
 
+Since 2026-10-04 a machine enforces this instead of memory.
+`.github/workflows/ci.yml` runs the same three commands on every pull request
+and every push to `main`, and **`main` is protected**: direct pushes are
+rejected and the `gates` check must pass before a merge. So the flow is
+
+```
+git switch -c <branch> && git push -u origin HEAD
+gh pr create --fill && gh pr merge --auto --squash --delete-branch
+```
+
+Auto-merge means green merges itself within a minute and deploys as before;
+red parks as an open PR. The bots do the same — `sdk-releases.yml` and
+`search-snapshot.yml` open PRs rather than pushing.
+
+This exists because the gates were advisory. There is no `prebuild` script, so
+Vercel runs a plain `next build`, and three things in early October would have
+shipped on that basis: a 170-character description against a 155 cap, a route
+silently swallowed by the June redirect list in `next.config.ts`, and a newly
+added gate that did not render on `/gates`.
+
 ## Generated data — never hand-edit
 
 These files are output. Editing them by hand works until the next regeneration
@@ -74,6 +94,6 @@ verification stamp is a quality signal, not metadata.
 - Facts need a primary source fetched this session; unverifiable → omit or
   say "could not verify". No prices, limits, versions, or benchmarks from
   memory.
-- Develop and push on `main` only; never force-push; no PRs unless asked.
+- Every change goes through a pull request into `main`; never force-push. The branch ruleset rejects direct pushes and requires the `gates` check, so this is enforced, not advisory. Use auto-merge (`gh pr merge --auto --squash --delete-branch`) to keep unattended runs autonomous.
 - Secrets live only in `.env.local` (gitignored), GitHub Secrets, or Vercel
   env — the repo is public.
