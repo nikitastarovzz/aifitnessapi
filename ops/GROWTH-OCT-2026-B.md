@@ -159,3 +159,56 @@ workout as its example).
 ### Surfacing and records
 29. Glossary terms; links in from existing pages (data/step-counting-api, integrate/healthkit, fix, guides/track-workouts-without-wearables, testing); homepage/header/footer, llms, search index, OG, /questions, sitemap; qa gates for the generators and cluster parity; uptime and responsive probes.
 30. Records (BACKLOG, content-log, status here) and an IndexNow paths run for every new URL after deploy.
+
+## Wave D — 30 more additions (planned 2026-10-04)
+
+Same rule: exact developer strings, sources fetched in-session. Probed on
+2026-10-04: every Health Connect guide page under
+developer.android.com/health-and-fitness/health-connect/ (read, aggregate,
+sync, write, delete, metadata, features/*, medical-records/*, ui/*), the
+Health Services `DataType` reference, Apple docs JSON for HKStateOfMind,
+HKMedicationDoseEvent, HKUserAnnotatedMedication, HKGAD7Assessment,
+HKPHQ9Assessment, HKClinicalRecord, HKVerifiableClinicalRecord, the
+metadata-keys index, and the HIG HealthKit page (Apple Health icon rules).
+Existing pages mention clientRecordId, READ_HEALTH_DATA_HISTORY and
+HKMetadataKeyWasUserEntered in passing; none owns them.
+
+### New cluster: /health-connect-api — the Jetpack API, method by method (the Android twin of /healthkit-queries)
+1. Hub + wiring.
+2. readRecords and ReadRecordsRequest pagination (pageToken, pageSize).
+3. aggregate, AggregateRequest and dataOriginFilter.
+4. aggregateGroupByDuration vs aggregateGroupByPeriod.
+5. getChangesToken and getChanges (incremental sync).
+6. insertRecords, updateRecords, clientRecordId and clientRecordVersion upserts.
+7. deleteRecords (by id, by client id, by time range).
+8. PermissionController and createRequestPermissionResultContract.
+9. Background reads: READ_HEALTH_DATA_IN_BACKGROUND and its feature check.
+10. History reads: READ_HEALTH_DATA_HISTORY and the default window.
+11. Metadata: recordingMethod, Device, DataOrigin.
+12. getFeatureStatus and feature availability.
+13. Exercise routes: ExerciseRoute and route consent.
+14. Training plans: PlannedExerciseSessionRecord.
+15. Health Connect permission and onboarding UI guidelines.
+16. HealthKit ↔ Health Connect API equivalents (links both query clusters).
+
+### /data spokes for the newest HealthKit and Health Connect data
+17. HealthKit State of Mind (HKStateOfMind).
+18. HealthKit Medications (HKUserAnnotatedMedication, HKMedicationDoseEvent).
+19. GAD-7 and PHQ-9 assessments (HKGAD7Assessment, HKPHQ9Assessment).
+20. HealthKit clinical records (HKClinicalRecord, FHIR, verifiable records).
+21. Health Connect medical records (MedicalResource, FHIR, the medical permissions).
+
+### Generated references
+22. HealthKit metadata keys (every HKMetadataKey constant, generator with row guard).
+23. Wear OS Health Services DataType reference (generator with row guard).
+24. Datasets for both, bundled into the MCP server and the data package.
+
+### Store policy and blog
+25. Apple Health icon and "Works with Apple Health" rules (HIG), in /compliance.
+26. Blog: what Health Connect's SDK release history shows (computed from the generated tracker).
+27. Blog: what Health Connect's permission strings show (computed from the generated data).
+
+### Surfacing and records
+28. Glossary terms; links in (integrate/google-health-connect, /health-connect record pages → the matching API pages, /healthkit-queries ↔ equivalents page, /data hub).
+29. Wiring (registry, llms, search, sitemap, header/footer/homepage, OG), qa gates for the generators, uptime/responsive probes.
+30. Records (content-log, status here) and IndexNow after deploy.
