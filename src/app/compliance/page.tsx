@@ -57,6 +57,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
       "app-store-guideline-2-5-4-background-services",
       "app-store-guideline-2-5-11-sirikit-shortcuts",
       "app-store-guideline-3-1-3-d-person-to-person-fitness",
+      "apple-health-icon-works-with-apple-health",
       "google-play-health-data-policy",
       "google-play-health-connect-publishing-requirements",
     ],

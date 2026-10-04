@@ -4,7 +4,7 @@
  * GENERATED — do not hand-edit; regenerate with node scripts/fetch-hc-releases.mjs
  *
  * Source: https://developer.android.com/jetpack/androidx/releases/health-connect
- * Fetched: 2026-10-03
+ * Fetched: 2026-10-04
  *
  * Copied from the page: version, date, Google's release sentence, the bold
  * section labels and the first bullet. Derived: `stage`, from the version
@@ -14,7 +14,7 @@
  */
 
 /** The date the generator last read the release notes. */
-export const HC_RELEASES_FETCHED_ON = "2026-10-03";
+export const HC_RELEASES_FETCHED_ON = "2026-10-04";
 
 export const HC_RELEASES_SOURCE = "https://developer.android.com/jetpack/androidx/releases/health-connect";
 
@@ -550,7 +550,7 @@ export const HC_RELEASES: HcRelease[] = [
       "Bug Fixes"
     ],
     "firstNote": "Included optional debug logs builtin for API calls (link)",
-    "noteCount": 76,
+    "noteCount": 8,
     "url": "https://developer.android.com/jetpack/androidx/releases/health-connect#1.0.0-alpha04"
   }
 ];

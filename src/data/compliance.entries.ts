@@ -1400,5 +1400,101 @@ export const complianceEntries: ClusterEntry[] =
         "note": "StartWorkoutIntent abstract, availability and the Apple Watch Ultra Action button"
       }
     ]
+  },
+  {
+    "slug": "apple-health-icon-works-with-apple-health",
+    "primaryQuery": "apple health icon guidelines",
+    "h1": "Apple Health Icon, Badge and Naming Rules for HealthKit Apps",
+    "metaTitle": "Apple Health Icon and Works with Apple Health Badge Rules",
+    "metaDescription": "Apple's rules for the Apple Health icon, the Works with Apple Health badge and naming HealthKit in UI and marketing copy. Quoted, with a checklist.",
+    "updated": "2026-10-04",
+    "answer": "Apple's Human Interface Guidelines say to use only the Apple-provided Apple Health icon, show the name Apple Health next to it, never use it as a button or inside text, never alter it, and keep clear space of 1/10 of its height around it. In app and marketing text, call it Apple Health or the Apple Health app and don't use the term HealthKit, which Apple calls a developer-facing term. Marketing falls under Apple's separate Works with Apple Health badge rules: at least 10 mm high in print or 30 pixels onscreen, clear space of one-quarter its height, and no badge in social media promotions. Quoted from Apple's pages as read on October 4, 2026; this is general guidance, not legal advice.",
+    "body": "## What Apple's HIG says about the Apple Health icon\n\nQuoted verbatim from the [HealthKit page of Apple's Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/healthkit), which we read on October 4, 2026. Apple revises the HIG, so compare this against the live page before you cite it to a reviewer or a designer.\n\n> The Apple Health icon shows that an app works with HealthKit and the Health app.\n\nThe rules that follow it on the same page:\n\n> **Use only the Apple-provided icon.** Don’t create your own Apple Health icon design or attempt to mimic any Apple-provided designs. Download the Apple Health app icon from Apple Design Resources.\n>\n> **Display the name Apple Health close to the Apple Health icon.** Displaying both elements near each other reminds people that the icon represents the Health app.\n>\n> **Display the Apple Health icon consistently with other health-related app icons.** In a view that contains other app icons, make the Apple Health icon no smaller than other icons.\n>\n> **Don’t use the Apple Health icon as a button.** Use the icon only to indicate compatibility with the Health app.\n>\n> **Don’t alter the appearance of the Apple Health icon.** Don’t mask the icon to change its corner radius or present it in a circular shape. Don’t add embellishments like borders, color overlays, gradients, shadows, or other visual effects.\n>\n> **Maintain a minimum clear space around the Apple Health icon of 1/10 of its height.** Don’t composite the icon onto another graphic element.\n>\n> **Don’t use the Apple Health icon within text or as a replacement for the terms Health, Apple Health, or HealthKit.**\n>\n> **Don’t display Health app images or screenshots.** Like all Apple images, these designs are copyrighted and can’t appear in your app or marketing materials.\n\n[Apple Design Resources](https://developer.apple.com/design/resources/) lists the Apple Health Icon under Technologies as a PNG download (checked October 4, 2026).\n\n## What the icon rules mean in your app\n\nThe icon is a compatibility marker. It tells people your app works with the Health app, and Apple's rules all follow from that:\n\n- **It isn't a control.** If your app has a control that starts the Health connection, make it an ordinary button with a text label. The icon itself shouldn't be the thing people tap.\n- **It always travels with its name.** Wherever the icon appears, put the words Apple Health beside it.\n- **It's never smaller than its neighbours.** On a screen that lists several connected apps, the Apple Health icon gets at least the same size as the others.\n- **It's used as supplied.** No circular crop to match your avatar style, no tint to match your theme, no drop shadow. Leave clear space of 1/10 of its height around it.\n- **Screens of the Health app stay out.** That covers onboarding illustrations and App Store screenshots that show the Health app's own UI.\n\nThe same page also restricts Activity rings in branding: \"Never use Activity rings in your app’s icon or marketing materials.\"\n\n## How to refer to HealthKit and the Health app in copy\n\nFrom the \"Editorial guidelines\" section of the same HIG page, verbatim:\n\n> **Refer to the Health app as Apple Health or the Apple Health app.** In your app and marketing text, using Apple Health adds clarity.\n>\n> **Don’t use the term HealthKit.** HealthKit is a developer-facing term that names the framework your app uses to access health data. If you need to explain to people how your app works with their data, use the term the Apple Health app. For example, you might say that your app “works with the Apple Health app” or “uses data from the Apple Health app.”\n>\n> **Use correct capitalization when using the term Apple Health.** Apple Health is two words, with an uppercase A and uppercase H, followed by lowercase letters. You can display Apple Health entirely in uppercase only when you need to conform to an established typographic interface style, such as in an app that capitalizes all text.\n>\n> **Use the system-provided translation of Health to avoid confusing people.** It’s best to refer to the Apple Health app using the translation that people view on their device.\n\nIn practice that means a settings row is labelled Apple Health rather than HealthKit, and a permission explainer can use Apple's own example phrasing, that the app \"uses data from the Apple Health app\". HealthKit belongs in your code and your engineering docs, not in what users read.\n\n## The Works with Apple Health badge (marketing)\n\nFor marketing, the HIG points to a separate Apple page. The link it gives, developer.apple.com/health-fitness/works-with-apple-health/, redirected to [Works with Apple Health](https://developer.apple.com/licensing-trademarks/works-with-apple-health/) under Apple's licensing and trademarks section when we fetched it on October 4, 2026. Quoted verbatim:\n\n> The Works with Apple Health badge should be used when communicating your HealthKit-enabled app’s compatibility with the Apple Health app. It can be used on websites, emails, guides, and other promotions and communications related to the app.\n\n> The minimum height for a Works with Apple Health badge is 10 mm on printed communications and 30 pixels for onscreen use. The minimum clear space around the badge is equal to one-quarter the height of the badge. Do not place graphics, type, photographs, or illustrations inside the clear space area.\n\n> Do not use the Works with Apple Health badge or Apple product images in social media promotions, including social media pages, tweets, or sites. Instead, describe your product benefits and Apple Health features in text.\n\nOn App Store previews, the page says: \"Refer to Apple Health app compatibility in text or use the Works with Apple Health badge.\" Among its dos: \"Use only one Works with Apple Health badge on each promotion, such as advertising, web pages, and email promotions.\"\n\nThe page also has naming rules for marketing copy:\n\n> You can refer to the Apple Health app or the Health app from Apple. After first mention, Health app can be used.\n\n> Do not refer to Apple Health data. Health data belongs to the user, not Apple.\n\nAnd it limits what the badge may claim: \"Use of the Works with Apple Health badge is only permitted in connection with the availability and access of health data through the Apple Health app.\"\n\n## Icon or badge: which one, where\n\n| | Apple Health icon | Works with Apple Health badge |\n| --- | --- | --- |\n| Where Apple places it | Your app's interface. Apple's badge page: \"You can use the Apple Health app icon in your app user interface for HealthKit-enabled apps.\" | Marketing: websites, emails, guides and other promotions for the app |\n| Rules live on | The HIG HealthKit page | Apple's Works with Apple Health page |\n| Minimum size | No smaller than other app icons in the same view | 10 mm in print, 30 pixels onscreen |\n| Clear space | 1/10 of the icon's height | One-quarter of the badge's height |\n| Changes allowed | None: no masking, borders, overlays, gradients, shadows or effects | None except resizing to fit your layout |\n\n## Checklist before you ship\n\n1. **Use Apple's icon file, unmodified.** Download the Apple Health icon from Apple Design Resources and use it as supplied. Don't redraw it, mask it to a circle or a different corner radius, or add borders, overlays, gradients, shadows or other effects.\n2. **Put the words Apple Health next to the icon.** Apple's guidelines ask you to display the name Apple Health close to the icon, so every place the icon appears should also carry the name.\n3. **Keep the icon out of buttons and sentences.** Don't make the icon tappable and don't use it inline in text or in place of the words Health, Apple Health or HealthKit. Use it only to indicate compatibility with the Health app.\n4. **Check size and clear space.** In a view with other app icons, make the Apple Health icon no smaller than the others. Leave clear space of at least 1/10 of its height and don't composite it onto another graphic.\n5. **Remove HealthKit from user-facing copy.** Replace HealthKit in UI text, onboarding and marketing with the Apple Health app, write Apple Health as two capitalized words, and use the system-provided translation of Health in localized builds.\n6. **Remove Health app screenshots.** Apple's guidelines say Health app images and screenshots can't appear in your app or marketing materials. Show your own screens instead.\n7. **Use the badge, not the icon, for marketing.** In marketing, follow Apple's Works with Apple Health page: one badge per promotion, at least 10 mm high in print or 30 pixels onscreen, clear space of one-quarter its height, and no badge in social media promotions.\n\n## Related\n\n- What App Review checks about HealthKit itself, including mentioning the integration in your App Store description, is on [guideline 2.5.1](/compliance/app-store-guideline-2-5-1-healthkit-software-requirements).\n- All of Apple's health-data rules are summarized in the [App Store health data rules overview](/compliance/app-store-health-data-rules), and the permission flow is in the [HealthKit integration guide](/integrate/healthkit).\n\n## A note on limits\n\nThis page covers the icon, the badge and naming. Apple's Works with Apple Health page also sets out trademark credit lines, trademark symbols for US communications and media guidance, which we haven't summarized here; read that page in full before a launch campaign. The HIG gives no pixel minimum for the icon, only the rule that it be no smaller than other icons in the same view, and we couldn't find one elsewhere on the pages we read. This is general guidance, not legal advice.\n",
+    "steps": [
+      {
+        "name": "Use Apple's icon file, unmodified",
+        "text": "Download the Apple Health icon from Apple Design Resources and use it as supplied. Don't redraw it, mask it to a circle or a different corner radius, or add borders, overlays, gradients, shadows or other effects."
+      },
+      {
+        "name": "Put the words Apple Health next to the icon",
+        "text": "Apple's guidelines ask you to display the name Apple Health close to the icon, so every place the icon appears should also carry the name."
+      },
+      {
+        "name": "Keep the icon out of buttons and sentences",
+        "text": "Don't make the icon tappable and don't use it inline in text or in place of the words Health, Apple Health or HealthKit. Use it only to indicate compatibility with the Health app."
+      },
+      {
+        "name": "Check size and clear space",
+        "text": "In a view with other app icons, make the Apple Health icon no smaller than the others. Leave clear space of at least 1/10 of its height and don't composite it onto another graphic."
+      },
+      {
+        "name": "Remove HealthKit from user-facing copy",
+        "text": "Replace HealthKit in UI text, onboarding and marketing with the Apple Health app, write Apple Health as two capitalized words, and use the system-provided translation of Health in localized builds."
+      },
+      {
+        "name": "Remove Health app screenshots",
+        "text": "Apple's guidelines say Health app images and screenshots can't appear in your app or marketing materials. Show your own screens instead."
+      },
+      {
+        "name": "Use the badge, not the icon, for marketing",
+        "text": "In marketing, follow Apple's Works with Apple Health page: one badge per promotion, at least 10 mm high in print or 30 pixels onscreen, clear space of one-quarter its height, and no badge in social media promotions."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Can I use the Apple Health icon as a Connect button?",
+        "a": "No. Apple's Human Interface Guidelines say not to use the Apple Health icon as a button and to use it only to indicate compatibility with the Health app. Make the connect control an ordinary button with a text label, and if you show the icon, show it as a marker with the name Apple Health beside it."
+      },
+      {
+        "q": "Should my app's interface say HealthKit or Apple Health?",
+        "a": "Apple Health. The HIG's editorial guidelines say not to use the term HealthKit, which Apple describes as a developer-facing term naming the framework. Apple suggests phrasing such as \"works with the Apple Health app\" or \"uses data from the Apple Health app\", and asks you to write Apple Health as two words with uppercase A and H."
+      },
+      {
+        "q": "Can I post the Works with Apple Health badge on social media?",
+        "a": "Not according to Apple's Works with Apple Health page, which says not to use the badge or Apple product images in social media promotions and to describe your product benefits and Apple Health features in text instead. The badge is meant for websites, emails, guides and other promotions related to the app."
+      },
+      {
+        "q": "Is the Apple Health icon the same thing as the Works with Apple Health badge?",
+        "a": "No. The icon goes in your app's interface and its rules are in the HIG, including clear space of 1/10 of its height. The badge is for marketing and its rules are on Apple's Works with Apple Health page: at least 10 mm in print or 30 pixels onscreen, with clear space of one-quarter of its height."
+      }
+    ],
+    "related": [
+      {
+        "href": "/compliance/app-store-guideline-2-5-1-healthkit-software-requirements",
+        "label": "App Store guideline 2.5.1: Software Requirements and HealthKit"
+      },
+      {
+        "href": "/compliance/app-store-health-data-rules",
+        "label": "Apple App Store health data rules (overview)"
+      },
+      {
+        "href": "/integrate/healthkit",
+        "label": "How to integrate Apple HealthKit"
+      },
+      {
+        "href": "/compliance",
+        "label": "Health-data compliance & privacy"
+      }
+    ],
+    "cta": {
+      "pitch": "Apple revises its HealthKit design and marketing guidelines. Subscribe and we'll flag the changes that affect your app."
+    },
+    "sources": [
+      {
+        "url": "https://developer.apple.com/design/human-interface-guidelines/healthkit",
+        "checked": "2026-10-04",
+        "note": "Apple Health icon and Editorial guidelines sections; read from the page's documentation JSON"
+      },
+      {
+        "url": "https://developer.apple.com/licensing-trademarks/works-with-apple-health/",
+        "checked": "2026-10-04",
+        "note": "Works with Apple Health badge size, clear space, social media and naming rules; the HIG's /health-fitness/works-with-apple-health/ link redirects here"
+      },
+      {
+        "url": "https://developer.apple.com/design/resources/",
+        "checked": "2026-10-04",
+        "note": "Apple Health Icon listed under Technologies as a PNG download"
+      }
+    ]
   }
 ];

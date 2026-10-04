@@ -1,0 +1,164 @@
+---
+title: "Health Connect Has 219 Permissions"
+description: "118 of Health Connect's 219 framework permissions are symptom strings added at API level 37. Read vs write, medical, background and history, counted."
+date: 2026-10-04
+updated: 2026-10-04
+author: "AIFitnessAPI"
+tags: ["health-connect", "android", "data", "api"]
+draft: false
+faqs:
+  - q: "Why are most Health Connect permissions about symptoms?"
+    a: "Because Google added 118 symptom strings at once. Of the 219 constants on Google's framework HealthPermissions reference, read on October 3, 2026, 118 are READ_SYMPTOM_ and WRITE_SYMPTOM_ pairs covering 59 symptoms, from abdominal pain to wheezing, and every one is marked Added in API level 37, Also in U Extensions 21. None of them appears in Google's Health Connect data-types table."
+  - q: "How far back can a Health Connect app read data without the history permission?"
+    a: "30 days before it was first granted a Health Connect permission. Google's Jetpack reference says that without PERMISSION_READ_HEALTH_DATA_HISTORY, reads do not return data points older than 30 days from before the first Health Connect permission was granted to the calling app, and reading a single older record results in an error. The permission depends on the installed Health Connect version, so check its feature status first."
+  - q: "Does Health Connect use one permission to write all medical records?"
+    a: "Yes. The framework reference defines a single WRITE_MEDICAL_DATA constant against 12 per-type medical read constants, from allergies and intolerances to vital signs. Google's Jetpack description of the write permission says it allows for the write of medical data of any type, and notes that read permissions are specified per-type. All 13 are marked Added in API level 36."
+  - q: "Why does Health Connect have more read permissions than write permissions?"
+    a: "The framework reference has 115 READ_ constants and 103 WRITE_ constants. Fifteen reads have no matching write: the 12 per-type medical reads, the background and history permissions, and READ_EXERCISE_ROUTES. Three writes have no matching read: WRITE_MEDICAL_DATA, WRITE_EXERCISE_ROUTE and WRITE_DEVICE_UDI. That accounts for the difference of 12. The remaining constant, START_ONBOARDING, is neither."
+---
+
+Google's framework reference for `android.health.connect.HealthPermissions`
+defines 219 permission constants. More than half of them, 118, are symptom
+strings that all arrived at API level 37. Only 79 of the 219 appear in the
+permission column of Google's own Health Connect data-types table.
+
+The counts here come from this site's [Health Connect
+dataset](/health-connect/permissions), which our generator read on October 3,
+2026 from Google's [HealthPermissions
+reference](https://developer.android.com/reference/android/health/connect/HealthPermissions)
+(footer: last updated August 3, 2026), the Jetpack `HealthPermission` reference,
+and the [data-types
+page](https://developer.android.com/health-and-fitness/health-connect/data-types)
+(last updated September 23, 2026). Every number below was computed from that
+data, not counted by hand.
+
+## Where the 219 come from
+
+| Group | Constants | Read | Write | Added at |
+|---|---|---|---|---|
+| Symptoms | 118 | 59 | 59 | API level 37 |
+| Per-data-type pairs (steps, heart rate, sleep and so on) | 82 | 41 | 41 | 70 at API 34; 4 each at 35, 36 and 37 |
+| Medical records (PHR) | 13 | 12 | 1 | API level 36 |
+| Background and history reads | 2 | 2 | 0 | API level 35 |
+| Exercise routes | 2 | 1 | 1 | Read at API 35, write at API 34 |
+| Device UDI write | 1 | 0 | 1 | "Added in version 37.1" |
+| Onboarding | 1 | 0 | 0 | "Added in version 36.1" |
+| **Total** | **219** | **115** | **103** | |
+
+By API level the framework reference lists 71 constants at API 34, 7 at 35, 17
+at 36 and 122 at 37. The remaining two, `START_ONBOARDING` and
+`WRITE_DEVICE_UDI`, carry a dotted version line instead of an API level.
+
+All 71 API-34 constants appear in the data-types table. Of the rest, 138 appear
+nowhere on that page: not in the table and not in its separate list of extra
+read permissions. That's the 118 symptom strings, the 13 medical strings,
+alcohol consumption, menstrual cycle phase, `READ_EXERCISE_ROUTES`,
+`START_ONBOARDING` and `WRITE_DEVICE_UDI`. The data-types page notes that its
+table "is for the Health Connect SDK version 1.0.0-alpha10 and higher". The
+table and the framework reference are out of step by 138 strings.
+
+## More than half are symptoms
+
+118 constants, 53.9% of the total, are `READ_SYMPTOM_*` and `WRITE_SYMPTOM_*`
+pairs for 59 symptoms, from `ABDOMINAL_PAIN` and `ACNE` to `VOMITING`,
+`WATER_RETENTION` and `WHEEZING`. Every one carries the same availability line:
+"Added in API level 37 Also in U Extensions 21".
+
+Take them out and the platform has 101 permissions: 56 read, 44 write and
+`START_ONBOARDING`. So the headline number mostly reflects one batch. None of
+the symptom strings appears in the data-types table, which means that page
+lists no record class for them.
+
+## Medical records: 12 ways to read, one way to write
+
+13 constants, 5.9% of the total, cover personal health records. Twelve are
+per-type reads: allergies and intolerances, conditions, laboratory results,
+medications, personal details, practitioner details, pregnancy, procedures,
+social history, vaccines, visits and vital signs. The thirteenth is a single
+`WRITE_MEDICAL_DATA`. All 13 say "Added in API level 36 Also in U Extensions 16".
+
+Google's Jetpack description of the write constant makes the asymmetry explicit:
+"This permission allows for the write of medical data of any type. Note that
+read permissions are specified per-type." All 13 Jetpack medical constants carry
+the `ExperimentalPersonalHealthRecordApi` annotation, which fits the release
+history: the PHR APIs entered the Jetpack library as experimental in
+1.1.0-beta02. The [Health Connect SDK release
+history](/blog/health-connect-sdk-release-history) covers that release.
+
+## Background and history are reads of everything
+
+Two permissions aren't tied to a data type at all. The framework reference
+describes `READ_HEALTH_DATA_IN_BACKGROUND` as "Allows an application to read
+health data (of any type) in background." and `READ_HEALTH_DATA_HISTORY` as
+"Allows an application to read the entire history of health data (of any
+type)." Both are marked "Added in API level 35 Also in U Extensions 13", and the
+data-types page lists them separately, as "Read data in background" and "Read
+historical data".
+
+The Jetpack reference explains what happens without the history permission:
+
+> Without this permission: Any attempt to read a single data point, via HealthConnectClient.readRecord, older than 30 days from before the first HealthConnect permission was granted to the calling app, will result in an error. Any other read attempts will not return data points older than 30 days from before the first HealthConnect permission was granted to the calling app.
+
+and without the background one: "An attempt to read data in background without
+this permission may result in an error." Both Jetpack descriptions say the
+feature "is dependent on the version of HealthConnect installed on the device"
+and point to `HealthConnectFeatures.getFeatureStatus`. Check the feature first,
+then request the permission. If an import returns nothing older than about a
+month before the user first connected your app, check the history permission
+first.
+
+## READ_EXERCISE_ROUTE or READ_EXERCISE_ROUTES
+
+This is the one string Google's pages disagree on. In the data-types table, the
+`ExerciseSessionRecord` row prints four permissions, including
+`android.permission.health.READ_EXERCISE_ROUTE`, singular. Neither reference
+defines that string. The framework reference defines `READ_EXERCISE_ROUTES`,
+plural, "Added in API level 35 Also in U Extensions 12", and the Jetpack
+constant `PERMISSION_READ_EXERCISE_ROUTES` states its value as
+`android.permission.health.READ_EXERCISE_ROUTES`. Our generator flags the
+singular string as unresolved and publishes it as found rather than correcting
+it.
+
+The write side is singular everywhere: `WRITE_EXERCISE_ROUTE`, "Added in API
+level 34 Also in U Extensions 7". So the write string is a level older than the
+read string it pairs with, and the two don't share a suffix.
+
+Requesting the read permission doesn't work the usual way either. The framework
+reference says it "can only be granted manually by a user in Health Connect
+settings or in the route request activity", and that "Attempts to request the
+permission by applications will be ignored."
+
+## Smaller oddities in Google's reference
+
+- **Protection levels.** 217 of the 219 constants are `dangerous`.
+  `START_ONBOARDING` is `signature`, and the reference says it "can only be
+  held by the system". `WRITE_DEVICE_UDI` is `normal`.
+- **A copy error.** The framework description of `READ_ALCOHOL_CONSUMPTION`
+  reads "Allows an application to write user's alcohol consumption data." The
+  constant is a read permission; the description says write.
+- **Shared strings.** Three permission pairs each cover two record classes in
+  the data-types table: `READ_STEPS` and `WRITE_STEPS` (steps and steps
+  cadence), `READ_EXERCISE` and `WRITE_EXERCISE` (exercise sessions and cycling
+  pedaling cadence), and `READ_MENSTRUATION` and `WRITE_MENSTRUATION`
+  (menstruation flow and menstruation period).
+
+## What to do with this
+
+1. **Declare from the framework reference.** For exercise routes that means
+   `READ_EXERCISE_ROUTES` with an S, whatever the data-types table prints.
+2. **Request background and history reads deliberately.** They apply to every
+   data type you can read, so check feature availability before asking.
+3. **Treat the symptom and medical strings as new surface.** They are API level
+   37 and 36 additions with no row in the data-types table, and the medical
+   ones are experimental in Jetpack. Gate them by API level and feature status.
+4. **Count your own permissions.** Most apps need a handful of the 41 per-type
+   pairs. The [permissions reference](/health-connect/permissions) lists all
+   219 with the records each unlocks, and every record type is on
+   [/health-connect](/health-connect).
+
+Which library version exposes what is on
+[/health-connect-releases](/health-connect-releases). For the iOS side of the
+same question, [ten metrics on two platforms](/blog/ten-metrics-two-platforms)
+compares how HealthKit and Health Connect model the common types, and [no data
+means four things](/blog/no-data-means-four-things) covers why a read can come
+back empty when a permission is missing.
