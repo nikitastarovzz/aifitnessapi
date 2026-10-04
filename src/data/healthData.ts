@@ -30,6 +30,7 @@ export const RELEASED_DATA = new Set<string>([
   "blood-glucose-api",
   "blood-pressure-api",
   "respiratory-rate-api",
+  "resting-heart-rate-api",
   "state-of-mind-api",
   "medications-api",
   "mental-health-assessments-api",

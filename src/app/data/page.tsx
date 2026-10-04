@@ -37,7 +37,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Cardio & recovery",
     blurb: "The signals from the heart — measured and estimated.",
-    slugs: ["heart-rate-api", "hrv-api", "vo2-max-api", "blood-oxygen-api"],
+    slugs: ["heart-rate-api", "resting-heart-rate-api", "hrv-api", "vo2-max-api", "blood-oxygen-api"],
   },
   {
     title: "Activity & movement",
