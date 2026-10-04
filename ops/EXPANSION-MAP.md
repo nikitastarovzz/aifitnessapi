@@ -32,7 +32,7 @@ availability from on-site pages only.
 - [x] blood-glucose-api (A) 2026-08-12
 - [x] blood-pressure-api (A) 2026-08-12
 - [x] respiratory-rate-api (A) 2026-08-12
-- [ ] resting-heart-rate-api (A)
+- [x] resting-heart-rate-api (A) 2026-10-04
 - [ ] skin-temperature-api (A)
 - [ ] hydration-api (A)
 - [ ] mindfulness-sessions-api (A)
