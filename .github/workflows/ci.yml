@@ -1,0 +1,64 @@
+name: CI
+
+# The gates, run by a machine instead of by memory.
+#
+# CLAUDE.md requires `npx tsc --noEmit` → `npm run build` → `npm run qa` green
+# before any commit, and until now nothing enforced it. There is no `prebuild`
+# script, so Vercel runs a plain `next build`; responsive.yml runs build plus
+# the responsive and perf audits but neither the typecheck nor qa. So the 132
+# refusals in scripts/qa.mjs only ever fired when a person or an agent
+# remembered to type the command.
+#
+# Three things in the first days of October would have reached production on
+# that basis: a 170-character meta description against a 155 cap, a new route
+# silently swallowed by the June redirect list, and a newly added gate that
+# did not render on /gates. Each was caught by a manual run that nobody was
+# obliged to make.
+#
+# Runs on pull_request (so the branch ruleset has something to require) and on
+# push to main (so a direct push, e.g. from a bypass actor, is still verified
+# even though it is no longer reviewed).
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+concurrency:
+  # Supersede an in-flight run for the same ref; the last commit is the one
+  # that matters. Never cancel on main — those runs are the record that a
+  # merged commit was green.
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  gates:
+    name: gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Typecheck
+        run: npx tsc --noEmit
+
+      - name: Build
+        run: npm run build
+
+      # qa reads the built output in .next, so it has to follow the build.
+      # This is the 132-gate check: banned claims, citation anchors, metadata
+      # lengths, sitemap/noindex contradictions, GEO surfaces, query ownership.
+      - name: QA gates
+        run: npm run qa

@@ -24,6 +24,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
   group: search-snapshot
@@ -62,10 +63,24 @@ jobs:
             exit 0
           fi
           stamp=$(date -u +%Y-%m-%d)
+          # Two -m arguments, not a multi-line string: a continuation line at
+          # column 0 ends the `run: |` block scalar and the whole workflow
+          # stops parsing. That shipped once and every run failed with no jobs.
           git commit -m "Pin the search snapshot for ${stamp}" \
             -m "Weekly dated copy of whatever search data the repo holds, so \`npm run gsc -- --compare <date>\` has a baseline. Automated by .github/workflows/search-snapshot.yml."
-          git pull --rebase --autostash
-          git push
+
+          # PR + auto-merge rather than a direct push: main requires a pull
+          # request and green CI. A snapshot is data-only and will always be
+          # green, so in practice this merges itself within the minute.
+          branch="bot/search-snapshot-${stamp}-${GITHUB_RUN_ID}"
+          git checkout -b "$branch"
+          git push origin "$branch"
+          gh pr create --base main --head "$branch" \
+            --title "Pin the search snapshot for ${stamp}" \
+            --body "Weekly dated search snapshot so \`npm run gsc -- --compare\` has a baseline. Merges itself once CI is green."
+          gh pr merge --auto --squash --delete-branch "$branch"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Remind if the data has gone stale
         if: steps.snap.outputs.skip == '0'
