@@ -5,7 +5,7 @@
  * First-published date of every cluster spoke and blog post, read from git
  * history: the first commit that both contained the entry and listed it in
  * its cluster's release gate (blog posts: the commit that added the file).
- * Keyed by URL path without the leading slash. 369 rows.
+ * Keyed by URL path without the leading slash. 392 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -81,6 +81,8 @@ export const PUBLISHED: Record<string, string> = {
   "blog/free-fitness-apis-are-expensive": "2026-09-01",
   "blog/google-fit-timeline": "2026-09-01",
   "blog/health-app-without-health-data": "2026-08-31",
+  "blog/health-connect-219-permissions": "2026-10-04",
+  "blog/health-connect-sdk-release-history": "2026-10-04",
   "blog/healthkit-240-types-ios-8": "2026-09-01",
   "blog/healthkit-58-silent-types": "2026-09-01",
   "blog/healthkit-error-that-never-fires": "2026-09-01",
@@ -146,6 +148,7 @@ export const PUBLISHED: Record<string, string> = {
   "compliance/app-store-guideline-5-1-2-data-use-sharing": "2026-10-03",
   "compliance/app-store-guideline-5-1-3-health-research": "2026-10-03",
   "compliance/app-store-health-data-rules": "2026-07-14",
+  "compliance/apple-health-icon-works-with-apple-health": "2026-10-04",
   "compliance/fda-fitness-app-regulation": "2026-07-14",
   "compliance/gdpr-fitness-app": "2026-07-14",
   "compliance/google-play-health-connect-publishing-requirements": "2026-10-03",
@@ -169,12 +172,17 @@ export const PUBLISHED: Record<string, string> = {
   "data/blood-pressure-api": "2026-08-12",
   "data/body-composition-api": "2026-07-24",
   "data/calorie-tracking-api": "2026-07-24",
+  "data/clinical-records-api": "2026-10-04",
   "data/gps-activity-api": "2026-07-24",
+  "data/health-connect-medical-records-api": "2026-10-04",
   "data/heart-rate-api": "2026-07-24",
   "data/hrv-api": "2026-07-24",
+  "data/medications-api": "2026-10-04",
   "data/menstrual-cycle-api": "2026-08-12",
+  "data/mental-health-assessments-api": "2026-10-04",
   "data/respiratory-rate-api": "2026-08-12",
   "data/sleep-tracking-api": "2026-07-24",
+  "data/state-of-mind-api": "2026-10-04",
   "data/step-counting-api": "2026-07-24",
   "data/vo2-max-api": "2026-07-24",
   "data/workout-detection-api": "2026-07-24",
@@ -257,6 +265,21 @@ export const PUBLISHED: Record<string, string> = {
   "guides/evaluate-motion-sdks": "2026-08-11",
   "guides/improve-pose-detection-accuracy": "2026-07-08",
   "guides/track-workouts-without-wearables": "2026-07-08",
+  "health-connect-api/aggregate-request": "2026-10-04",
+  "health-connect-api/aggregategroupbyduration-vs-period": "2026-10-04",
+  "health-connect-api/deleterecords": "2026-10-04",
+  "health-connect-api/exercise-route-consent": "2026-10-04",
+  "health-connect-api/getchanges-incremental-sync": "2026-10-04",
+  "health-connect-api/getfeaturestatus-feature-availability": "2026-10-04",
+  "health-connect-api/healthkit-vs-health-connect-api-equivalents": "2026-10-04",
+  "health-connect-api/insertrecords-clientrecordid-upsert": "2026-10-04",
+  "health-connect-api/metadata-recording-method": "2026-10-04",
+  "health-connect-api/permission-ui-guidelines": "2026-10-04",
+  "health-connect-api/permissioncontroller-request-permissions": "2026-10-04",
+  "health-connect-api/planned-exercise-session-training-plans": "2026-10-04",
+  "health-connect-api/read-health-data-history": "2026-10-04",
+  "health-connect-api/read-health-data-in-background": "2026-10-04",
+  "health-connect-api/readrecords-pagination": "2026-10-04",
   "healthkit-category-values": "2026-09-04",
   "healthkit-queries/healthkit-async-query-descriptors": "2026-10-03",
   "healthkit-queries/healthkit-query-predicates": "2026-10-03",
