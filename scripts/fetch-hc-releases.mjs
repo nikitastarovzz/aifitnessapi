@@ -40,9 +40,15 @@ async function getText(url, cacheFile) {
   const path = join(CACHE, cacheFile);
   if (existsSync(path)) return readFileSync(path, "utf8");
   if (OFFLINE) throw new Error(`offline and ${path} is not cached`);
-  const res = await fetch(url);
+  // Without an explicit language devsite may serve a machine-translated page,
+  // whose dates this parser cannot read. Ask for English and refuse anything
+  // else before it reaches the cache.
+  const res = await fetch(`${url}${url.includes("?") ? "&" : "?"}hl=en`);
   if (!res.ok) throw new Error(`${res.status} for ${url}`);
   const text = await res.text();
+  if (/devsite-banner-translated/.test(text) || !/<html[^>]*\blang="en/.test(text)) {
+    throw new Error(`non-English page served for ${url}`);
+  }
   writeFileSync(path, text);
   return text;
 }
@@ -99,7 +105,11 @@ for (let i = 0; i < heads.length; i++) {
   const vm = /^Version (\d+\.\d+\.\d+(?:-[a-z]+\d+)?)$/.exec(h.text);
   if (!vm) continue;
   const version = vm[1];
-  const block = html.slice(h.end, heads[i + 1]?.start ?? html.length);
+  // The last release on the page has no following heading; end its block at
+  // the article's close rather than running into the footer and nav.
+  const articleEnd = html.indexOf("</article>", h.end);
+  if (articleEnd < 0) problems.push(`${version}: no </article> after its heading`);
+  const block = html.slice(h.end, Math.min(heads[i + 1]?.start ?? Infinity, articleEnd < 0 ? html.length : articleEnd));
   const paras = [...block.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/g)].map((m) => m[1]);
   const blockText = textOf(block);
 

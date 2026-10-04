@@ -39,6 +39,7 @@ export const RELEASED_COMPLIANCE = new Set<string>([
   "app-store-guideline-3-1-3-d-person-to-person-fitness",
   "app-store-guideline-2-5-4-background-services",
   "app-store-guideline-2-5-11-sirikit-shortcuts",
+  "apple-health-icon-works-with-apple-health",
 ]);
 
 export const allCompliance: ClusterEntry[] = complianceEntries;

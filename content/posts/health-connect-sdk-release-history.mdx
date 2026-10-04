@@ -1,0 +1,171 @@
+---
+title: "Health Connect SDK: 32 Releases, One Stable"
+description: "Google has shipped 32 connect-client releases since August 2022 and one stable build, 1.1.0. The alpha runs, gaps and cadence, counted from the notes."
+date: 2026-10-04
+updated: 2026-10-04
+author: "AIFitnessAPI"
+tags: ["health-connect", "android", "ecosystem", "data"]
+draft: false
+faqs:
+  - q: "How often does Google ship a new connect-client version?"
+    a: "Roughly monthly, with long silences. Across the 32 releases in Google's Jetpack release notes, read on October 3, 2026, there are 31 distinct release dates. The median gap between them is 28 days and nine gaps are exactly 14 days, but five gaps run past 90 days, the longest being 238 days between 1.1.0-alpha07 in January 2024 and 1.1.0-alpha08 in September 2024."
+  - q: "Why did connect-client 1.2.0-alpha01 come out before 1.1.0?"
+    a: "Because Google opened the 1.2 series while 1.1 was still a release candidate. 1.2.0-alpha01 is dated July 30, 2025, which is 70 days before 1.1.0 was promoted to stable on October 8, 2025, and 1.2.0-alpha02 shipped on that same October day. Google's page files releases by series, so sort by date if you want the true order."
+  - q: "Did connect-client add new APIs after it left alpha?"
+    a: "Yes. 1.1.0-beta02, dated April 9, 2025, carries a New Features section that opens with experimental Personal Health Record APIs for reading and writing medical data. 1.1.0-rc01 carries an API Changes section adding a mindfulness feature availability flag. Beta and release candidate did not mean frozen for this library."
+  - q: "Is connect-client 1.2 stable yet?"
+    a: "No, as of Google's release notes read on October 3, 2026. The 1.2 series has six releases, 1.2.0-alpha01 through 1.2.0-alpha06, all alpha, spanning 392 days from July 30, 2025 to August 26, 2026. No 1.2 beta or release candidate had been published, and 1.1.0 remained the only stable connect-client release."
+---
+
+Google's Health Connect Jetpack library, `androidx.health.connect:connect-client`,
+has 32 releases on Google's [Jetpack release notes
+page](https://developer.android.com/jetpack/androidx/releases/health-connect).
+31 of them are pre-releases. The one stable build, 1.1.0, arrived on October 8,
+2025, more than three years after the first release under that coordinate.
+
+Every number in this post is computed from this site's [connect-client release
+dataset](/health-connect-releases), which our generator read from Google's page
+on October 3, 2026. Google's footer on the page said it was last updated on
+August 26, 2026. Where this post quotes a release, it quotes Google's notes as
+the dataset stores them.
+
+## The whole history in one table
+
+| Series | Alpha | Beta | RC | Stable | First release | Last release |
+|---|---|---|---|---|---|---|
+| 1.0 | 8 | 0 | 0 | 0 | 1.0.0-alpha04, Aug 24, 2022 | 1.0.0-alpha11, Feb 22, 2023 |
+| 1.1 | 12 | 2 | 3 | 1 | 1.1.0-alpha01, Jun 7, 2023 | 1.1.0, Oct 8, 2025 |
+| 1.2 | 6 | 0 | 0 | 0 | 1.2.0-alpha01, Jul 30, 2025 | 1.2.0-alpha06, Aug 26, 2026 |
+| **Total** | **26** | **2** | **3** | **1** | | |
+
+By calendar year, the releases fall 5 in 2022, 9 in 2023, 4 in 2024, 10 in 2025
+and 4 so far in 2026.
+
+## It starts at alpha04 because the artifact was renamed
+
+The history begins at 1.0.0-alpha04, not alpha01. Google's notes for that
+release, dated August 24, 2022, open with a section label that reads, exactly
+as Google prints it, stray backtick included: "Migration to
+\`androidx.health.connect". Re-read on October 4, 2026, the paragraph under it
+says: "As of 1.0.0-alpha04, androidx.health:health-connect-client was migrated
+to androidx.health.connect:connect-client."
+
+The next paragraph tells you to change the dependency from
+`androidx.health:health-connect-client:1.0.0-alpha03` to
+`androidx.health.connect:connect-client:1.0.0-alpha04`. Older versions are on
+the old coordinate's release page. The dataset counts only releases whose own
+release paragraph names `androidx.health.connect:connect-client`.
+
+## 1.0 never shipped a stable build
+
+The 1.0 series ran eight alphas in 182 days, from 1.0.0-alpha04 to 1.0.0-alpha11
+on February 22, 2023. Then nothing for 105 days, and the next release was
+1.1.0-alpha01 on June 7, 2023. There is no 1.0.0 in Google's notes.
+
+1.1.0-alpha01's first note explains the jump: "Support for the Android 14
+framework version of Health Connect. This SDK is a prerequisite for Android 14.
+Apps will not be able to integrate with Health Connect on Android 14 without
+it." Its release paragraph adds: "This version is developed in an internal
+branch."
+
+## 1.1 spent 630 days in alpha
+
+1.1 went through twelve alphas, from 1.1.0-alpha01 on June 7, 2023 to
+1.1.0-alpha12 on February 26, 2025: 630 days. The series also contains the
+longest silence in the dataset, 238 days between 1.1.0-alpha07 (January 10,
+2024) and 1.1.0-alpha08 (September 4, 2024). 2024 had only four releases, all
+1.1 alphas.
+
+Some of what shipped in that run is still central to how apps read data. The
+notes for 1.1.0-alpha09, dated September 18, 2024, open with: "Add background
+reads permission, guarded by feature availability." 1.1.0-alpha11 (January 15,
+2025) opens with: "Updated background and history read permissions to support
+Android 13 and below." Those two permissions, and the rest of the platform's
+strings, are covered in [Health Connect has 219
+permissions](/blog/health-connect-219-permissions).
+
+## Then stabilisation, which still added features
+
+After alpha12 the pace changed. 1.1.0-beta01 followed 14 days later, on March
+12, 2025. Then:
+
+- **1.1.0-beta02** (April 9, 2025) has a New Features section. Its first note:
+  "Added experimental Personal Health Record (PHR) APIs for reading and writing
+  medical data, based on the Fast Healthcare Interoperability Resources (FHIR®)
+  format."
+- **1.1.0-rc01** (April 23, 2025) has an API Changes section: "Added mindfulness
+  feature availability flag for developers."
+- **1.1.0-rc02** (June 4, 2025) and **1.1.0-rc03** (July 16, 2025) are bug-fix
+  releases. rc03's note: "Fixed IllegalArgumentException for aggregations over
+  a DST boundary."
+- **1.1.0** (October 8, 2025), 84 days after rc03. Google's paragraph says the
+  artifacts "have been promoted to its first stable release with no changes
+  since its previous RC release."
+
+That is 17 pre-releases and 854 days from 1.1.0-alpha01 to 1.1.0, or 1,141 days
+from 1.0.0-alpha04. As of the October 3, 2026 read, 1.1.0 is still the only
+stable release, 360 days after it shipped.
+
+## 1.2 overlapped 1.1, and is still alpha
+
+Google opened 1.2 before closing 1.1. 1.2.0-alpha01 is dated July 30, 2025, 70
+days before 1.1.0 went stable, and 1.2.0-alpha02 came out on October 8, 2025,
+the same day as 1.1.0. Google's page lists releases under their series heading,
+so reading it top to bottom does not give you the date order.
+
+Since then 1.2 has had four more alphas, with gaps of 168 days (to 1.2.0-alpha03,
+March 25, 2026) and 112 days (to 1.2.0-alpha05, August 12, 2026). Some first
+notes from the series:
+
+- 1.2.0-alpha03: "Introduce new fields to ExerciseSessionRecord and
+  ExerciseSegment to support richer exercise tracking"
+- 1.2.0-alpha04: "Matchmaking APIs: Introduced new methods to help users
+  discover and connect compatible data sources that can provide the health data
+  your app needs."
+- 1.2.0-alpha05: "The minimum SDK requirement for this library is now API 24
+  (minSdk 24)."
+- 1.2.0-alpha06: "Updated Health Connect release and dev signing certificates."
+
+Six alphas over 392 days, no beta yet.
+
+## Cadence: monthly on average, with long gaps
+
+With releases sorted by date there are 31 distinct release dates (1.1.0 and
+1.2.0-alpha02 share one). Across the 30 gaps between them:
+
+- the median gap is 28 days;
+- 9 gaps are exactly 14 days, and 16 of the 30 are 31 days or less;
+- 5 gaps are longer than 90 days: 238, 168, 112, 105 and 91 days.
+
+The release notes don't explain any of the long gaps.
+
+## What the headings say about upgrading
+
+Google labels each release's notes with section headings. "API Changes" appears
+in 21 of the 32 releases. 20 of those are alphas; the other is 1.1.0-rc01.
+"Bug Fixes" appears in 22 and "New Features" in 11, one of which is
+1.1.0-beta02. "Security Fixes" appears once, in 1.1.0-alpha10.
+
+So most of this library's history is alpha builds that change the API. In
+practice:
+
+1. **Pin an exact version.** 20 of the 26 alphas carry API changes, so a
+   dynamic version range will move under you.
+2. **Default to the stable line.** 1.1.0 is the only stable build. Move to a
+   1.2 alpha when you need something only 1.2 has, and read every alpha's API
+   Changes section when you bump.
+3. **Check feature availability at runtime.** The background-read permission
+   arrived "guarded by feature availability", and PHR shipped as experimental
+   APIs. A library version that compiles is not the same as a device that
+   supports the feature.
+4. **Expect quiet periods.** Four gaps in this history run past 100 days, and
+   each one ended with another release. Read a long silence as a prompt to
+   check, not as abandonment. The same goes for the [React Native
+   bridges](/blog/react-native-health-stale) built on top of the platform.
+
+The full release list, with every release's first note and a link to Google's
+entry, is on [/health-connect-releases](/health-connect-releases). The record
+types and permission strings are on [/health-connect](/health-connect) and
+[/health-connect/permissions](/health-connect/permissions). If you are moving off
+Google Fit, [the Google Fit timeline](/blog/google-fit-timeline) has the shutdown
+dates.
