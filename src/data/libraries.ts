@@ -63,7 +63,7 @@ export type Library = {
 };
 
 /** The date this file was last written from a successful run. */
-export const LIBRARIES_FETCHED_ON = "2026-10-03";
+export const LIBRARIES_FETCHED_ON = "2026-10-06";
 
 /** Rows the generator expects; it refuses to write fewer. */
 export const LIBRARIES_EXPECTED_ROWS = 20;
@@ -103,16 +103,16 @@ export const LIBRARIES: Library[] = [
     "repo": "agencyenterprise/react-native-healthkit",
     "repoFullName": "agencyenterprise/react-native-health",
     "repoStats": {
-      "stars": 1163,
+      "stars": 1164,
       "openIssues": 157,
       "pushedAt": "2026-04-27",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2024-10-15",
       "sha": "84d946aad6f2",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     }
   },
   {
@@ -151,16 +151,16 @@ export const LIBRARIES: Library[] = [
     "repo": "kingstinct/react-native-healthkit",
     "repoFullName": "kingstinct/react-native-healthkit",
     "repoStats": {
-      "stars": 715,
+      "stars": 714,
       "openIssues": 23,
       "pushedAt": "2026-10-02",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2026-10-02",
       "sha": "0a72f7c5159c",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     }
   },
   {
@@ -203,16 +203,16 @@ export const LIBRARIES: Library[] = [
     "repo": "matinzd/react-native-health-connect",
     "repoFullName": "matinzd/react-native-health-connect",
     "repoStats": {
-      "stars": 416,
+      "stars": 417,
       "openIssues": 58,
       "pushedAt": "2026-08-26",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2026-08-26",
       "sha": "8d72b6a07743",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     }
   },
   {
@@ -256,12 +256,12 @@ export const LIBRARIES: Library[] = [
       "openIssues": 1,
       "pushedAt": "2026-08-01",
       "archived": true,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2026-08-01",
       "sha": "36856dff8cfc",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     }
   },
   {
@@ -303,12 +303,12 @@ export const LIBRARIES: Library[] = [
       "openIssues": 9,
       "pushedAt": "2026-10-02",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2026-10-02",
       "sha": "bf3dcb0e7635",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     }
   },
   {
@@ -353,12 +353,12 @@ export const LIBRARIES: Library[] = [
       "openIssues": 6,
       "pushedAt": "2026-09-23",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2026-09-23",
       "sha": "7666a54bf3a2",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     }
   },
   {
@@ -401,14 +401,14 @@ export const LIBRARIES: Library[] = [
     "repoStats": {
       "stars": 31,
       "openIssues": 2,
-      "pushedAt": "2026-09-25",
+      "pushedAt": "2026-10-05",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     },
     "lastCommitOnDefaultBranch": {
-      "date": "2026-09-22",
-      "sha": "d4b4dbb7f237",
-      "checkedOn": "2026-10-03"
+      "date": "2026-10-05",
+      "sha": "900a0738f2cf",
+      "checkedOn": "2026-10-06"
     }
   },
   {
@@ -453,12 +453,12 @@ export const LIBRARIES: Library[] = [
       "openIssues": 13,
       "pushedAt": "2025-02-13",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2025-02-13",
       "sha": "59a6dedd4158",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     }
   },
   {
@@ -505,12 +505,12 @@ export const LIBRARIES: Library[] = [
       "openIssues": 28,
       "pushedAt": "2026-10-03",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2026-10-03",
       "sha": "ed339de45bee",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     }
   },
   {
@@ -551,15 +551,15 @@ export const LIBRARIES: Library[] = [
     "repoFullName": "carp-dk/carp-health-flutter",
     "repoStats": {
       "stars": 41,
-      "openIssues": 235,
+      "openIssues": 236,
       "pushedAt": "2026-08-14",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2026-08-14",
       "sha": "d90dbb717f04",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     }
   },
   {
@@ -600,15 +600,15 @@ export const LIBRARIES: Library[] = [
     "repoFullName": "fam-tung-lam/health_connector",
     "repoStats": {
       "stars": 13,
-      "openIssues": 10,
-      "pushedAt": "2026-09-22",
+      "openIssues": 13,
+      "pushedAt": "2026-10-06",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     },
     "lastCommitOnDefaultBranch": {
-      "date": "2026-09-16",
-      "sha": "1c26b1a922a3",
-      "checkedOn": "2026-10-03"
+      "date": "2026-10-06",
+      "sha": "56c3f313f76d",
+      "checkedOn": "2026-10-06"
     }
   },
   {
@@ -650,12 +650,12 @@ export const LIBRARIES: Library[] = [
       "openIssues": 33,
       "pushedAt": "2024-12-12",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2024-12-12",
       "sha": "af945db4a10a",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     }
   },
   {
@@ -698,12 +698,12 @@ export const LIBRARIES: Library[] = [
       "openIssues": 18,
       "pushedAt": "2024-07-29",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2023-07-04",
       "sha": "d35ff4c4b0d6",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     }
   },
   {
@@ -738,16 +738,16 @@ export const LIBRARIES: Library[] = [
     "repo": "cyberjunky/python-garminconnect",
     "repoFullName": "cyberjunky/python-garminconnect",
     "repoStats": {
-      "stars": 3083,
-      "openIssues": 2,
+      "stars": 3099,
+      "openIssues": 3,
       "pushedAt": "2026-09-29",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2026-09-29",
       "sha": "218e72ca5459",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     }
   },
   {
@@ -786,12 +786,12 @@ export const LIBRARIES: Library[] = [
       "openIssues": 13,
       "pushedAt": "2026-06-09",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2026-03-28",
       "sha": "f99159a15c4c",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     }
   },
   {
@@ -827,15 +827,15 @@ export const LIBRARIES: Library[] = [
     "repoFullName": "stravalib/stravalib",
     "repoStats": {
       "stars": 1000,
-      "openIssues": 19,
-      "pushedAt": "2026-10-01",
+      "openIssues": 20,
+      "pushedAt": "2026-10-05",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2026-09-22",
       "sha": "1951f26e01b9",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     }
   },
   {
@@ -874,12 +874,12 @@ export const LIBRARIES: Library[] = [
       "openIssues": 2,
       "pushedAt": "2026-07-07",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2026-07-07",
       "sha": "691dc2e75e97",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     }
   },
   {
@@ -918,12 +918,12 @@ export const LIBRARIES: Library[] = [
       "openIssues": 7,
       "pushedAt": "2024-04-23",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2024-04-23",
       "sha": "35fd39c1b1ad",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     }
   },
   {
@@ -960,12 +960,12 @@ export const LIBRARIES: Library[] = [
       "openIssues": 61,
       "pushedAt": "2024-07-23",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2019-08-12",
       "sha": "6a0a7cba26c2",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     }
   },
   {
@@ -1004,12 +1004,12 @@ export const LIBRARIES: Library[] = [
       "openIssues": 10,
       "pushedAt": "2022-04-22",
       "archived": false,
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     },
     "lastCommitOnDefaultBranch": {
       "date": "2022-03-05",
       "sha": "69c21c32449b",
-      "checkedOn": "2026-10-03"
+      "checkedOn": "2026-10-06"
     }
   }
 ];
