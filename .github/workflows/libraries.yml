@@ -5,10 +5,13 @@ name: Open-source library tracker
 # render that file, so a release, a deprecation or an archived repository
 # reaches the site within a week of the registry saying so.
 on:
-  schedule:
-    # 04:37 UTC every Tuesday. Off the hour and away from the daily SDK
-    # tracker (06:20) so the two never race for main.
-    - cron: "37 4 * * 2"
+  # PAUSED 2026-10-06 at the owner's request: the automatic triggers below
+  # emailed a failure on every run. Uncomment them to turn this back on.
+  # Manual runs still work (Actions tab, Run workflow).
+  # schedule:
+  #   # 04:37 UTC every Tuesday. Off the hour and away from the daily SDK
+  #   # tracker (06:20) so the two never race for main.
+  #   - cron: "37 4 * * 2"
   workflow_dispatch:
 
 permissions:

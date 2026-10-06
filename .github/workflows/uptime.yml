@@ -7,19 +7,22 @@ name: Uptime check
 # 404 on the apex host with nothing watching.
 
 on:
-  schedule:
-    # Every 30 min, off the top-of-hour rush. Written as three entries that
-    # together fire at exactly the :17/:47 times one "17,47 * * * *" did, so
-    # a run can tell from github.event.schedule which slot it is. The
-    # "17 */6" slot is the one that also probes the GEO surfaces (see that
-    # step) — the clock at run time can't be trusted for this, because
-    # scheduled runs start late by a varying amount.
-    - cron: "47 * * * *"
-    - cron: "17 1-5,7-11,13-17,19-23 * * *"
-    - cron: "17 */6 * * *"
+  # PAUSED 2026-10-06 at the owner's request: the automatic triggers below
+  # emailed a failure on every run. Uncomment them to turn this back on.
+  # Manual runs still work (Actions tab, Run workflow).
+  # schedule:
+  #   # Every 30 min, off the top-of-hour rush. Written as three entries that
+  #   # together fire at exactly the :17/:47 times one "17,47 * * * *" did, so
+  #   # a run can tell from github.event.schedule which slot it is. The
+  #   # "17 */6" slot is the one that also probes the GEO surfaces (see that
+  #   # step) — the clock at run time can't be trusted for this, because
+  #   # scheduled runs start late by a varying amount.
+  #   - cron: "47 * * * *"
+  #   - cron: "17 1-5,7-11,13-17,19-23 * * *"
+  #   - cron: "17 */6 * * *"
   workflow_dispatch: {}
-  push:
-    branches: [main] # also probe right after every deploy-triggering push
+  # push:
+  #   branches: [main] # also probe right after every deploy-triggering push
 
 concurrency:
   group: uptime
