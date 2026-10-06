@@ -6,10 +6,13 @@ name: SDK release tracker
 # reachable from the authoring environment, and because a tracker should
 # reflect today rather than whatever was true at the last deploy.
 on:
-  schedule:
-    # 06:20 UTC daily. Off the hour so it does not queue behind everything
-    # else that runs at :00.
-    - cron: "20 6 * * *"
+  # PAUSED 2026-10-06 at the owner's request: the automatic triggers below
+  # emailed a failure on every run. Uncomment them to turn this back on.
+  # Manual runs still work (Actions tab, Run workflow).
+  # schedule:
+  #   # 06:20 UTC daily. Off the hour so it does not queue behind everything
+  #   # else that runs at :00.
+  #   - cron: "20 6 * * *"
   workflow_dispatch:
 
 permissions:

@@ -18,8 +18,11 @@ name: Weekly search snapshot
 # it re-pins the same numbers, which is harmless and shows up as a zero diff.
 
 on:
-  schedule:
-    - cron: "41 6 * * 1" # Mondays, after the weekend's crawling settles
+  # PAUSED 2026-10-06 at the owner's request: the automatic triggers below
+  # emailed a failure on every run. Uncomment them to turn this back on.
+  # Manual runs still work (Actions tab, Run workflow).
+  # schedule:
+  #   - cron: "41 6 * * 1" # Mondays, after the weekend's crawling settles
   workflow_dispatch: {}
 
 permissions:
