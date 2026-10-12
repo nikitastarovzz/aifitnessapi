@@ -104,7 +104,7 @@ Pose estimation locates body keypoints in a camera frame and outputs their coord
 The build-versus-buy reality here is lopsided: **there is no meaningful "build" option and no reason to want one.** The mainstream models are free and permissively licensed. MediaPipe/BlazePose returns 33 landmarks including monocular 3D world landmarks, MoveNet returns the 17 COCO keypoints with a Lightning-versus-Thunder speed dial, and both are Apache-2.0; Apple's Vision framework ships two body-pose requests with no model file to bundle at all. The models that carry real strings are the multi-person ones: Ultralytics YOLO is AGPL-3.0 and OpenPose is non-commercial, so check the license before the benchmark.
 
 - [Pose estimation models compared](/motion/pose-estimation-models-compared) — keypoint counts, licenses, licensing traps.
-- [MediaPipe vs MoveNet](/motion/mediapipe-vs-movenet) and [Apple Vision body pose](/motion/apple-vision-body-pose) — the two forks most single-user apps actually face.
+- [MediaPipe vs MoveNet](/motion/pose-estimation-models-compared#mediapipe-vs-movenet-head-to-head) and [Apple Vision body pose](/motion/apple-vision-body-pose) — the two forks most single-user apps actually face.
 - [On-device vs cloud pose estimation](/motion/on-device-vs-cloud-pose-estimation) — why on-device is the consumer default, and the narrow cases where it is not.
 - [2D vs 3D pose estimation](/motion/2d-vs-3d-pose-estimation) — an RGB camera gives you both, but monocular depth is estimated rather than measured.
 - [Camera pose tracking](/guides/camera-pose-tracking) — the load-a-model, pull-frames, read-landmarks pipeline, and [the whole motion cluster](/motion) behind it.

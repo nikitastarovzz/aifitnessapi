@@ -27,20 +27,6 @@ const PLACEMENTS: Record<string, string[]> = {
     "/integrate/healthkit",
     "/test/healthkit-integration",
   ],
-  "healthkit-sum-or-average": [
-    "/data/step-counting-api",
-    "/data/calorie-tracking-api",
-    "/architecture/timezones-and-day-boundaries",
-  ],
-  "healthkit-nutrition-is-biggest": [
-    "/fitness-apis/nutrition-apis",
-    "/build/nutrition-tracking-app",
-    "/build/meal-planning-app",
-  ],
-  "healthkit-mobility-types-unused": [
-    "/build/senior-fitness-app",
-    "/build/rehab-physical-therapy-app",
-  ],
   "healthkit-newest-types-roadmap": [
     "/integrate/healthkit",
     "/build/running-app",
@@ -51,10 +37,6 @@ const PLACEMENTS: Record<string, string[]> = {
     "/fix/healthkit-no-data",
   ],
   "hrv-sdnn-vs-rmssd": ["/learn/what-is-hrv", "/data/hrv-api", "/build/recovery-app"],
-  "ten-metrics-two-platforms": [
-    "/fitness-apis/apple-healthkit-vs-google-health-connect",
-    "/architecture/normalize-wearable-data",
-  ],
   "no-data-means-four-things": [
     "/fix/health-connect-no-data",
     "/architecture/missing-data-and-gaps",
@@ -67,34 +49,9 @@ const PLACEMENTS: Record<string, string[]> = {
     "/fitness-apis/wearable-data-apis",
     "/build/step-challenge-app",
   ],
-  "free-fitness-apis-are-expensive": [
-    "/pricing/are-fitness-apis-free",
-    "/fitness-apis/free-fitness-apis",
-  ],
   "fitness-api-talk-to-sales": [
     "/pricing/how-much-does-a-fitness-api-cost",
     "/fitness-apis/health-data-aggregator-apis",
-  ],
-  "fitness-api-integration-order": [
-    "/fitness-apis/fitness-api-vs-build-your-own",
-    "/build/fitness-app-tech-stack",
-  ],
-  "react-native-health-stale": [
-    "/guides/ai-workout-tracking-react-native",
-    "/integrate/healthkit",
-  ],
-  "google-fit-timeline": [
-    "/fix/google-fit-api-deprecated",
-    "/migrate/google-fit-to-health-connect",
-  ],
-  "confirmed-vs-reported": [
-    "/migrate/migrate-off-a-deprecated-fitness-api",
-    "/fix/oura-personal-access-token-deprecated",
-  ],
-  "how-we-verify": ["/learn/what-is-a-fitness-api"],
-  "building-the-healthkit-dataset": [
-    "/test/healthkit-integration",
-    "/architecture/data-quality-monitoring",
   ],
 };
 

@@ -29,35 +29,49 @@ previous run) may have left the tree dirty. Before doing anything:
 ## 1. Get the data
 
 In order of preference:
-1. **Live GSC** — if `FIREBASE_PROJECT_ID`, `FIREBASE_CLIENT_EMAIL` and
-   `FIREBASE_PRIVATE_KEY` exist in the environment, query the Search Console API
-   directly (service account JWT → `webmasters` scope; see
-   `scripts/export-signups.mjs` for the token pattern; property is
-   `sc-domain:aifitnessapi.com`). Pull 28 days: by query, by page, by
-   query+page. Then REFRESH `data/gsc/latest.json` with what you pulled and
-   include it in your commit.
-2. **Committed snapshot** — otherwise use `data/gsc/latest.json` and note its
+1. **Live pull (since 2026-10-12)** — in the aifitnessapi cloud environment, run
+   `NODE_USE_ENV_PROXY=1 node scripts/search-pull.mjs`. It reads Search Console
+   through the environment proxy's read-only credential (send no Authorization
+   header; never request Firebase keys for this) and Bing through
+   `BING_WEBMASTER_API_KEY`, for the last 28 days of final data, and writes
+   `data/gsc/latest.json` (with a country × device breakdown),
+   `data/gsc/snapshots/<date>.json`, `data/gsc/bing-latest.json` and
+   `ops/gsc/bing-<date>.csv`. Include those files in your commit.
+2. **Committed snapshot** — if the pull fails (outside that environment the
+   Search Console call answers 401/403), use `data/gsc/latest.json` and note its
    `exportedAt` age in your log entry. If it is older than 21 days, prefer
    backlog work (§3c) over data work, because you would be optimizing against
    stale signals.
-3. **Bing** — only if a `BING_WEBMASTER_API_KEY` env var exists. Do not block on
-   its absence.
-Vercel Analytics has no API; it is not part of this loop.
+Then run `npm run gsc`. It reports Google and Bing separately; never average
+them. Vercel Analytics has no API; it is not part of this loop.
 
 ## 2. Decide the ONE piece — priority order
 
 Log candidates before choosing. Work down this list; take the first rung with a
 qualifying candidate:
 
-a. **Fix a leak.** A page with ≥30 impressions and CTR under 1% over 28 days →
-   rewrite its metaTitle/metaDescription to match the queries it actually
-   surfaces for (check `byQueryPage` pairs). Cheapest, highest-certainty win.
-b. **Answer a near-miss query.** A query with ≥10 impressions where the ranking
-   page does not directly answer it → add ONE FAQ (or a short section) to that
-   page answering it in the page's voice. Check the FAQ against the site-wide
-   uniqueness gate FIRST (the qa script's normalizer).
-c. **Fill a proven gap.** A query theme with ≥20 combined impressions and no
-   matching page → add ONE new spoke to the owning cluster. This is the most
+a. **Fix a leak.** A page in `npm run gsc`'s "earning under half what their
+   position should pay" list (≥20 impressions, CTR below half the CTR its
+   position pays) → rewrite its metaTitle/metaDescription to match the queries it
+   actually surfaces for (check `byQueryPage` pairs). Cheapest, highest-certainty
+   win. Judge it against clicks lost for its position, never against raw CTR:
+   US desktop was 42% of Google impressions at 0.26% CTR in the 28 days to
+   2026-10-09, so raw page CTR mostly measures how much US desktop a page gets.
+   Before acting, read the report's property CTR line with and without US
+   desktop; page-level rows cannot be split by country without losing the
+   withheld queries, so that property line is the honest check.
+b. **Answer a near-miss query.** A query with ≥10 Google impressions, or ≥5 Bing
+   impressions, where the ranking page does not directly answer it → add ONE FAQ
+   (or a short section) to that page answering it in the page's voice. Bing
+   names the query behind nearly every click while Google withholds most, so
+   read `data/gsc/bing-latest.json` (`byQuery`) as first-class evidence, kept
+   separate from Google's numbers — never add the two engines' counts together.
+   Check the FAQ against the site-wide uniqueness gate FIRST (the qa script's
+   normalizer).
+c. **Fill a proven gap.** A query theme with ≥20 Google impressions, or ≥10 Bing
+   impressions, and no matching page → add ONE new spoke to the owning cluster.
+   Bing's long, six-word-plus queries often state the developer's task exactly;
+   use them to shape the page. This is the most
    expensive option; only take it when (a) and (b) have no candidates, and never
    add a second spoke to the same cluster within 7 days (check
    `ops/content-log.jsonl`).
@@ -179,9 +193,11 @@ piece for rung (a).
 
 ## 6. Ship and log
 
-- ONE commit, pushed to `main` with `git push -u origin main` (retry up to 4
-  times with 2s/4s/8s/16s backoff on network failure). Never force-push, never
-  touch other branches, never open a PR.
+- ONE commit on a new branch, pushed with `git push -u origin HEAD` (retry up
+  to 4 times with 2s/4s/8s/16s backoff on network failure), then a pull
+  request into `main` with auto-merge (squash), as CLAUDE.md sets out: `main`
+  is protected, rejects direct pushes and merges only when the `gates` check
+  passes. Never force-push, never touch other branches.
 - Commit message: what changed and WHICH DATA SIGNAL motivated it (query,
   impressions, CTR). Follow the environment's commit-trailer instructions.
 - Append one line to `ops/content-log.jsonl` in the same commit:

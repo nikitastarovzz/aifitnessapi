@@ -27,7 +27,6 @@ export const RELEASED_MOTION = new Set<string>([
   "how-rep-counting-works",
   "how-form-feedback-works",
   "build-vs-buy-ai-motion-tracking",
-  "mediapipe-vs-movenet",
   "mediapipe-pose-landmarker-models",
   "apple-vision-body-pose",
   "pose-estimation-model-licenses",

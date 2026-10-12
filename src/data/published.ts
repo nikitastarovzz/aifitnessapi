@@ -5,7 +5,7 @@
  * First-published date of every cluster spoke and blog post, read from git
  * history: the first commit that both contained the entry and listed it in
  * its cluster's release gate (blog posts: the commit that added the file).
- * Keyed by URL path without the leading slash. 397 rows.
+ * Keyed by URL path without the leading slash. 384 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -73,29 +73,17 @@ export const PUBLISHED: Record<string, string> = {
   "audio-coaching/testing-workout-audio-cues": "2026-10-03",
   "audio-coaching/texttospeech-workout-cues-android": "2026-10-03",
   "audio-coaching/wear-os-watchos-workout-audio": "2026-10-03",
-  "blog/building-the-healthkit-dataset": "2026-09-01",
-  "blog/confirmed-vs-reported": "2026-09-01",
   "blog/fitness-api-approval-gates": "2026-09-01",
-  "blog/fitness-api-integration-order": "2026-09-01",
   "blog/fitness-api-talk-to-sales": "2026-09-01",
-  "blog/free-fitness-apis-are-expensive": "2026-09-01",
-  "blog/google-fit-timeline": "2026-09-01",
-  "blog/health-app-without-health-data": "2026-08-31",
   "blog/health-connect-219-permissions": "2026-10-04",
   "blog/health-connect-sdk-release-history": "2026-10-04",
   "blog/healthkit-240-types-ios-8": "2026-09-01",
   "blog/healthkit-58-silent-types": "2026-09-01",
   "blog/healthkit-error-that-never-fires": "2026-09-01",
-  "blog/healthkit-mobility-types-unused": "2026-09-01",
   "blog/healthkit-newest-types-roadmap": "2026-09-01",
-  "blog/healthkit-nutrition-is-biggest": "2026-09-01",
-  "blog/healthkit-sum-or-average": "2026-09-01",
   "blog/how-to-choose-a-fitness-api": "2026-07-08",
-  "blog/how-we-verify": "2026-09-01",
   "blog/hrv-sdnn-vs-rmssd": "2026-09-01",
   "blog/no-data-means-four-things": "2026-09-01",
-  "blog/react-native-health-stale": "2026-09-01",
-  "blog/ten-metrics-two-platforms": "2026-09-01",
   "blog/wearable-api-user-side-cost": "2026-09-01",
   "blog/welcome-to-aifitnessapi": "2026-07-08",
   "build/ai-fitness-coaching-app": "2026-07-09",
@@ -349,7 +337,6 @@ export const PUBLISHED: Record<string, string> = {
   "motion/how-form-feedback-works": "2026-07-25",
   "motion/how-rep-counting-works": "2026-07-25",
   "motion/mediapipe-pose-landmarker-models": "2026-08-02",
-  "motion/mediapipe-vs-movenet": "2026-08-02",
   "motion/multi-person-pose-tracking": "2026-07-25",
   "motion/on-device-vs-cloud-pose-estimation": "2026-07-25",
   "motion/pose-estimation-accuracy": "2026-07-25",

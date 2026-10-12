@@ -114,7 +114,7 @@ export const CORRECTIONS: Correction[] = [
   },
   {
     date: "2026-09-01",
-    page: { href: "/blog/react-native-health-stale", label: "Your HealthKit Bridge Last Shipped in 2024" },
+    page: { href: "/libraries/react-native-health", label: "Your HealthKit Bridge Last Shipped in 2024 (retired post; see the react-native-health page)" },
     was: "The post stated the SDK release tracker's read date as 2026-08-31.",
     now: "The tracker re-ran on a schedule between writing and publish, moving its read date to 2026-09-01; the post now matches. No release fact changed.",
     how: "Caught while reconciling a push conflict against the CI commit that refreshed the tracker.",

@@ -72,7 +72,10 @@ export const HK_GROUP_MODIFIED = "2026-09-04";
 const HK_GROUP_MODIFIED_BY_SLUG: Record<string, string> = {
   "vital-signs": "2026-10-02",
   "reproductive-health": "2026-10-02",
-  nutrition: "2026-10-02",
+  // 2026-10-12: two folded blog posts' findings moved into nutrition and
+  // mobility (ops/GROWTH-30-2026-10-12.md #20); mobility also gained a FAQ.
+  nutrition: "2026-10-12",
+  mobility: "2026-10-12",
   // Same day, once the generator read Apple's deprecatedAt: the deprecation
   // versions and Apple's replacement notes were added to both pages' prose.
   "environment-and-hearing": "2026-10-02",

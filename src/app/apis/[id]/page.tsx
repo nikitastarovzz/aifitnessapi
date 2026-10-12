@@ -13,11 +13,15 @@ import { clampTitle, clampDescription } from "@/lib/cluster";
 import {
   API_ENTRIES,
   APIS_PATH,
+  NOINDEX_APIS,
   getApi,
   CATEGORY_LABELS,
   DEV_COST_LABELS,
   type ApiEntry,
 } from "@/data/apis";
+import { API_DEMAND, API_DEMAND_RANGE } from "@/data/apiDemand";
+import { formatDate } from "@/lib/posts";
+import { routeLabel } from "@/lib/routeLabel";
 import { HK_IDENTIFIERS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { HK_BASE, buildHkGroups } from "@/data/hkGroupPages";
 import { coverageFor, changesFor, pageCount } from "@/lib/apiCoverage";
@@ -93,6 +97,9 @@ export async function generateMetadata({
     title: { absolute: title },
     description,
     alternates: { canonical },
+    // Products without search demand of their own stay out of the index
+    // (NOINDEX_APIS in data/apis.ts says why and how that was decided).
+    ...(NOINDEX_APIS.has(api.id) ? { robots: { index: false, follow: true } } : {}),
     openGraph: { type: "article", title, description, url: canonical },
     twitter: { card: "summary_large_image", title, description },
   };
@@ -122,6 +129,19 @@ export default async function ApiPage({ params }: { params: Promise<Params> }) {
   const total = pageCount(api.id);
   const changes = changesFor(api);
   const isFirstParty = api.id === "kinestex";
+
+  // What people actually search for about this product, from the weekly live
+  // pull (data/apiDemand.ts). Only pages with a known name are listed: a bare
+  // path is no use as a link.
+  const demand = API_DEMAND[api.id];
+  const demandPages = (demand?.pages ?? []).flatMap((p) => {
+    const label = routeLabel(p.href);
+    return label ? [{ ...p, label }] : [];
+  });
+  const demandCounts = [
+    ...(demand?.google ? [`${demand.google.toLocaleString("en-US")} times on Google`] : []),
+    ...(demand?.bing ? [`${demand.bing.toLocaleString("en-US")} times on Bing`] : []),
+  ];
 
   const facts: { label: string; value: string; note?: string }[] = [
     { label: "Category", value: CATEGORY_LABELS[api.category] },
@@ -229,6 +249,42 @@ export default async function ApiPage({ params }: { params: Promise<Params> }) {
         </AnswerCapsule>
 
         <PageActions path={path} url={url} title={api.label} updated={UPDATED} markdown={false} />
+
+        {demandPages.length > 0 && (
+          <section className="mt-10">
+            <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">
+              What developers search for about {api.short}
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
+              In the 28 days to {formatDate(API_DEMAND_RANGE.end)}, searches naming {api.short}{" "}
+              showed pages from this site at least {demandCounts.join(" and ")}. These are the
+              pages they surfaced, each with some of the searches that reached it.
+            </p>
+            <ul className="mt-5 space-y-4">
+              {demandPages.map((p) => (
+                <li key={p.href}>
+                  <Link href={p.href} className="font-medium text-brand-600 hover:text-brand-500">
+                    {p.label}
+                  </Link>
+                  <span className="mt-1 block text-sm text-[var(--muted)]">
+                    {p.queries.map((q, i) => (
+                      <span key={q.q}>
+                        {i > 0 && ", "}
+                        &ldquo;{q.q}&rdquo; <span className="text-xs">({q.engine})</span>
+                      </span>
+                    ))}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 text-xs leading-relaxed text-[var(--muted)]">
+              From Google Search Console and Bing Webmaster Tools for that window. Both engines
+              report only the searches they disclose, so the counts are floors, and the two are
+              never added together. Searches containing a URL, an identifier or a code fragment
+              are left out.
+            </p>
+          </section>
+        )}
 
         <div className="mt-6 rounded-2xl border border-brand-400/30 bg-brand-500/5 p-5">
           <p className="text-sm font-semibold text-[var(--fg)]">

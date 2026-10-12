@@ -9,7 +9,7 @@ import { releasedHkGroups, HK_BASE, hkGroupModified } from "@/data/hkGroupPages"
 import { hkStandaloneModified } from "@/data/hkStandalone";
 import { HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { changesSorted } from "@/data/changes";
-import { API_ENTRIES, APIS_PATH } from "@/data/apis";
+import { API_ENTRIES, APIS_PATH, NOINDEX_APIS } from "@/data/apis";
 import { digests, DIGEST_PATH, type Digest } from "@/data/digest";
 import { HC_FETCHED_ON } from "@/data/healthConnectRecords";
 import { orderedRecords, recordPath, HC_BASE, HC_PERMISSIONS_PATH, HC_AGGREGATES_PATH, hcModified } from "@/data/hcPages";
@@ -181,7 +181,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/": newestAll,
     "/changes": pageStamp("/changes") ?? newestChange,
     "/blog": newestPost,
-    "/questions": newestAll,
     [HK_BASE]: newest([...hkGroupDates.map(([, d]) => d), ...hkPages.map(([, d]) => d)]),
     "/tools": newest(tools.map(([, d]) => d)),
     [DIGEST_PATH]: newest(issues.map(digestDate)),
@@ -208,7 +207,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/changes",
     "/matrix",
     HK_BASE,
-    "/questions",
+    // "/questions" and /questions/<cluster> are noindex,follow since
+    // 2026-10-12 (GROWTH-30 #16), so they are not listed here.
     // Only listed once CI has populated the tracker — the route 404s while
     // it is empty, and a sitemap must never advertise a 404.
     ...(SDK_REPOS.length > 0 ? ["/sdk-releases"] : []),
@@ -243,15 +243,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // see it.
     ...populated.map(([base]) => row(base, pageStamp(base) ?? newestIn(base))),
     ...populated.flatMap(([base, entries]) => entries.map((e) => row(`${base}/${e.slug}`, e.updated))),
-    // One question index per populated cluster, as fresh as the newest
-    // entry whose questions it lists.
-    ...populated.map(([base]) => row(`/questions${base}`, newestIn(base))),
     ...hkGroups,
     ...hkVersionRows,
     ...hcRows,
     ...libRows,
     ...generatedRefs.map(([p, d]) => row(p, d)),
-    ...API_ENTRIES.map((a) => row(`${APIS_PATH}/${a.id}`)),
+    // Products without search demand of their own are noindex (NOINDEX_APIS).
+    ...API_ENTRIES.filter((a) => !NOINDEX_APIS.has(a.id)).map((a) => row(`${APIS_PATH}/${a.id}`)),
     ...issues.map((d) => row(`${DIGEST_PATH}/${d.month}`, digestDate(d))),
     // lastmod is the re-verification date, not first publication.
     ...posts.map((post) => row(`/blog/${post.slug}`, post.updated)),

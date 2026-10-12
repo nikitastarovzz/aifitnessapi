@@ -74,7 +74,9 @@ export const HK_STANDALONE_MODIFIED = "2026-09-04";
 const HK_STANDALONE_MODIFIED_BY_SLUG: Record<string, string> = {
   "healthkit-versions": "2026-10-02",
   "healthkit-status": "2026-10-02",
-  "healthkit-category-values": "2026-10-02",
+  // 2026-10-12: the folded dataset post's reason for leaving two enums null
+  // replaced the link to it (ops/GROWTH-30-2026-10-12.md #20).
+  "healthkit-category-values": "2026-10-12",
   "healthkit-units": "2026-10-02",
 };
 

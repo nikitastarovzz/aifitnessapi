@@ -59,6 +59,39 @@ const nextConfig: NextConfig = {
       // reference (one page per Health Connect record class); its unique
       // FAQs and traps moved to /matrix.
       { source: "/health-connect-records", destination: "/health-connect", permanent: true },
+      // MediaPipe vs MoveNet was folded into the pose roundup's head-to-head
+      // section (ops/GROWTH-30-2026-10-12.md #18): 1 click on 229 impressions
+      // while the roundup took the same queries. The markdown mirror follows.
+      { source: "/motion/mediapipe-vs-movenet", destination: "/motion/pose-estimation-models-compared", permanent: true },
+      { source: "/motion/mediapipe-vs-movenet.md", destination: "/motion/pose-estimation-models-compared.md", permanent: true },
+      // Twelve blog posts Google never showed were folded into the pages that
+      // own their topics (ops/GROWTH-30-2026-10-12.md #20). Each .md address
+      // follows to the destination's markdown mirror where one exists, and to
+      // the page itself where none does.
+      { source: "/blog/ten-metrics-two-platforms", destination: "/matrix", permanent: true },
+      { source: "/blog/ten-metrics-two-platforms.md", destination: "/matrix", permanent: true },
+      { source: "/blog/react-native-health-stale", destination: "/libraries/react-native-health", permanent: true },
+      { source: "/blog/react-native-health-stale.md", destination: "/libraries/react-native-health", permanent: true },
+      { source: "/blog/how-we-verify", destination: "/methodology", permanent: true },
+      { source: "/blog/how-we-verify.md", destination: "/methodology", permanent: true },
+      { source: "/blog/healthkit-sum-or-average", destination: "/tools/aggregation-checker", permanent: true },
+      { source: "/blog/healthkit-sum-or-average.md", destination: "/tools/aggregation-checker", permanent: true },
+      { source: "/blog/healthkit-nutrition-is-biggest", destination: "/healthkit/nutrition", permanent: true },
+      { source: "/blog/healthkit-nutrition-is-biggest.md", destination: "/healthkit/nutrition", permanent: true },
+      { source: "/blog/healthkit-mobility-types-unused", destination: "/healthkit/mobility", permanent: true },
+      { source: "/blog/healthkit-mobility-types-unused.md", destination: "/healthkit/mobility", permanent: true },
+      { source: "/blog/google-fit-timeline", destination: "/google-fit-shutdown", permanent: true },
+      { source: "/blog/google-fit-timeline.md", destination: "/google-fit-shutdown", permanent: true },
+      { source: "/blog/free-fitness-apis-are-expensive", destination: "/pricing/are-fitness-apis-free", permanent: true },
+      { source: "/blog/free-fitness-apis-are-expensive.md", destination: "/pricing/are-fitness-apis-free.md", permanent: true },
+      { source: "/blog/fitness-api-integration-order", destination: "/build/fitness-app-tech-stack", permanent: true },
+      { source: "/blog/fitness-api-integration-order.md", destination: "/build/fitness-app-tech-stack.md", permanent: true },
+      { source: "/blog/confirmed-vs-reported", destination: "/changes", permanent: true },
+      { source: "/blog/confirmed-vs-reported.md", destination: "/changes", permanent: true },
+      { source: "/blog/building-the-healthkit-dataset", destination: "/healthkit-category-values", permanent: true },
+      { source: "/blog/building-the-healthkit-dataset.md", destination: "/healthkit-category-values", permanent: true },
+      { source: "/blog/health-app-without-health-data", destination: "/build/fitness-app-tech-stack", permanent: true },
+      { source: "/blog/health-app-without-health-data.md", destination: "/build/fitness-app-tech-stack.md", permanent: true },
     ];
   },
   async rewrites() {

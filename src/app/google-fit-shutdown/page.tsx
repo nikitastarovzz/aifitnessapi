@@ -225,6 +225,28 @@ export default function GoogleFitShutdownPage() {
           </ol>
         </section>
 
+        <div className="prose prose-neutral mt-12 max-w-none dark:prose-invert prose-a:text-brand-600 hover:prose-a:text-brand-500">
+          <h2>The sign-up closure was the signal</h2>
+          <p>
+            Closing registration to new developers is the cheapest first move a vendor retiring a
+            platform has. It creates no support load, no press and no scramble from partners with
+            contracts, and nobody files a bug about something they could not sign up for. There is
+            no benign reason to stop accepting new developers on a platform you intend to keep. And
+            existing integrations kept working after the May 1, 2024 closure above, so a team
+            already on Fit had no incident to respond to and no forcing function. When we laid the
+            dates out on September 1, 2026, that closure had been the clearest signal, more than two
+            years ahead of the end of documented support.
+          </p>
+          <p>
+            The check generalises. For every third-party dependency you hold, ask whether a new
+            developer can still sign up for it today; it costs one browser tab per vendor per
+            quarter.{" "}
+            <Link href="/migrate/migrate-off-a-deprecated-fitness-api">Migrating off a deprecated
+            fitness API</Link>{" "}
+            is the playbook for acting on what it finds.
+          </p>
+        </div>
+
         <section className="mt-12">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">
             Where you migrate depends on how you used Fit

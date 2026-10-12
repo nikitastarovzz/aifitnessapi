@@ -70,9 +70,12 @@ availability from on-site pages only.
 - [ ] what-is-edge-processing
 
 ### /build (3) — B; the app-type playbook pattern.
-- [ ] cycling-app
-- [ ] hiit-interval-training-app
-- [ ] sleep-coaching-app
+Closed 2026-10-12: /build stops expanding (ops/GROWTH-30-2026-10-12.md #19;
+0 clicks across 24 guides, 15 never shown). The existing guides were
+retitled around the technical problem each one solves instead.
+- [x] cycling-app (live as /build/cycling-app since 2026-09-04)
+- [x] hiit-interval-training-app (covered by /build/hiit-app, live since 2026-09-04)
+- [~] sleep-coaching-app (dropped 2026-10-12, #19; /build/sleep-tracking-app covers the build)
 
 ### /ai (4) — B; the rules-engine-plus-language-layer doctrine extended.
 - [x] structured-output-for-workout-plans 2026-08-12

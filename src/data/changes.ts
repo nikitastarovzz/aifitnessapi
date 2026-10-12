@@ -168,7 +168,7 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
     summary:
       "No updates to the MoveNet pose models have been observed since 2024. The single-person models remain Apache-2.0; treat the weights as stable rather than evolving.",
     status: "confirmed",
-    page: { href: "/motion/mediapipe-vs-movenet", label: "MediaPipe vs MoveNet" },
+    page: { href: "/motion/pose-estimation-models-compared", label: "Pose estimation models compared" },
     verifiedOn: "2026-08-02",
   },
   {

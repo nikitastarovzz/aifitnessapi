@@ -180,6 +180,32 @@ export default function ChangesPage() {
         </section>
 
         <section className="mt-14">
+          <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">How to read the grades</h2>
+          <p className="mt-4 leading-relaxed text-[var(--muted)]">
+            The label records provenance, not plausibility: a reported item can be very likely true
+            and still be reported. When we graded the entries on September 1, 2026, the confirmed ones
+            were mostly past or documented, something a vendor had already done or committed to in
+            writing, while the reported ones were mostly still ahead and commercial: turndowns, pricing
+            changes, membership requirements. Vendors document what they have done far more reliably
+            than what they are about to do to your costs.
+          </p>
+          <p className="mt-4 leading-relaxed text-[var(--muted)]">
+            Reported does not mean ignorable. Act on the direction, verify the specific date or number
+            yourself before anything depends on it, and write down which of your assumptions is
+            unsourced. A precise date you cannot trace back to the vendor is weaker evidence than an
+            imprecise one you can, because the precision is presentation rather than sourcing.
+          </p>
+          <p className="mt-4 leading-relaxed text-[var(--muted)]">
+            The same grading works on your own dependency list. Give each dependency a row with the
+            date or term you are assuming, where it came from and when you last checked it. Vendor
+            documentation, a vendor changelog or a vendor email addressed to you counts as confirmed; a
+            community thread, an aggregator blog, a conference talk or a colleague&rsquo;s memory counts
+            as reported. Re-check the oldest rows first, and re-plan when an item moves from reported to
+            confirmed, which usually means the vendor finally published.
+          </p>
+        </section>
+
+        <section className="mt-14">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">On watch — undated, not predictions</h2>
           <ul className="mt-5 grid gap-3">
             {WATCH_ITEMS.map((w) => (

@@ -59,6 +59,11 @@ export function GET(): Response {
   return new Response(xml, {
     headers: {
       "content-type": "application/opensearchdescription+xml; charset=utf-8",
+      // A browser reads this file; a search engine has no reason to list it.
+      // Google showed /opensearch.xml in its results as if it were a page
+      // (GROWTH-30 #29), so the response itself asks not to be indexed.
+      // MACHINE-FILE-INDEXABLE in qa.mjs holds this header in place.
+      "X-Robots-Tag": "noindex",
     },
   });
 }

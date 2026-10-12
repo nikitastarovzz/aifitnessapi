@@ -299,6 +299,11 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "A robots.txt that does not point crawlers at llms.txt, answers.json and the changes feed.",
   },
   {
+    code: "MACHINE-FILE-INDEXABLE",
+    area: "Structured data / GEO",
+    refuses: "An /opensearch.xml served without an X-Robots-Tag: noindex header. Google once listed the browser search descriptor in its results as if it were a page.",
+  },
+  {
     code: "GEO-ROBOTS-HOST",
     area: "Structured data / GEO",
     refuses: "A robots.txt carrying a Host: line, a second statement of the canonical host outside the one place it is set.",
