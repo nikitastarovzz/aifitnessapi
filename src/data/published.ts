@@ -5,7 +5,7 @@
  * First-published date of every cluster spoke and blog post, read from git
  * history: the first commit that both contained the entry and listed it in
  * its cluster's release gate (blog posts: the commit that added the file).
- * Keyed by URL path without the leading slash. 393 rows.
+ * Keyed by URL path without the leading slash. 397 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -218,10 +218,12 @@ export const PUBLISHED: Record<string, string> = {
   "engagement/widgets-and-complications": "2026-08-22",
   "fitness-apis/ai-workout-tracking-apis": "2026-07-08",
   "fitness-apis/apple-healthkit-vs-google-health-connect": "2026-07-08",
+  "fitness-apis/corporate-wellness-wearable-apis": "2026-10-12",
   "fitness-apis/exercise-database-apis": "2026-07-08",
   "fitness-apis/fitbit-api-vs-garmin-api": "2026-07-08",
   "fitness-apis/fitness-api-vs-build-your-own": "2026-07-08",
   "fitness-apis/free-fitness-apis": "2026-07-08",
+  "fitness-apis/garmin-connect-iq-vs-health-api": "2026-10-12",
   "fitness-apis/health-data-aggregator-apis": "2026-07-08",
   "fitness-apis/nutrition-apis": "2026-07-08",
   "fitness-apis/terra-vs-vital": "2026-07-08",
@@ -335,6 +337,7 @@ export const PUBLISHED: Record<string, string> = {
   "migrate/aggregator-to-direct-integration": "2026-07-20",
   "migrate/between-health-data-aggregators": "2026-07-20",
   "migrate/consolidate-wearables-with-aggregator": "2026-07-20",
+  "migrate/fitbit-research-studies-after-turndown": "2026-10-12",
   "migrate/fitbit-web-api-to-google-health": "2026-07-20",
   "migrate/google-fit-to-health-connect": "2026-07-20",
   "migrate/keep-users-connected-during-migration": "2026-07-20",
@@ -351,6 +354,7 @@ export const PUBLISHED: Record<string, string> = {
   "motion/on-device-vs-cloud-pose-estimation": "2026-07-25",
   "motion/pose-estimation-accuracy": "2026-07-25",
   "motion/pose-estimation-hardware-requirements": "2026-07-25",
+  "motion/pose-estimation-model-licenses": "2026-10-12",
   "motion/pose-estimation-models-compared": "2026-07-25",
   "motion/real-time-pose-estimation": "2026-07-25",
   "phone-sensors/android-16-body-sensors-health-permissions": "2026-10-03",
