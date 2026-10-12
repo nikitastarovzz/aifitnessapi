@@ -126,7 +126,7 @@ Commercial coaching SDKs sell this layer and nothing below it — our roundup co
 
 The library of exercises: names, target muscles, equipment, difficulty, media, substitution rules. Every app type involving a workout needs it, and it is the layer most consistently underestimated because it looks like a spreadsheet.
 
-Build-versus-buy here splits on license and hosting rather than on price. Genuinely free options exist — free-exercise-db is public domain, while wger and exercisedb.dev are open source under AGPL-3.0, a strong copyleft license with a network-use trigger that matters for a closed-source product. Hosted gateways such as the RapidAPI ExerciseDB listing bill per request and hand you ready-made media. Advertised library counts are volatile and version-specific, so verify any headline number against the actual repo or listing.
+Build-versus-buy here splits on license and hosting rather than on price. Genuinely free options exist — free-exercise-db is public domain, while wger is open source under AGPL-3.0, a strong copyleft license with a network-use trigger that matters for a closed-source product. The similarly named exercisedb.dev is a hosted API on its own paid plans; as of October 12, 2026 its repository holds only a README and a license file. Hosted gateways such as the RapidAPI ExerciseDB listing bill per request and hand you ready-made media. Advertised library counts are volatile and version-specific, so verify any headline number against the actual repo or listing.
 
 - [Exercise database APIs](/fitness-apis/exercise-database-apis) — the landscape, sorted by license and media depth.
 - [Exercise database API pricing](/pricing/exercise-database-api-pricing) — the AGPL and per-request-overage traps.

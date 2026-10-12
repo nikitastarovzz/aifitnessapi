@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-03",
+  "generated": "2026-10-04",
   "files": [
     {
       "file": "fitness-api-changes-2026.csv",
@@ -15,15 +15,15 @@
     },
     {
       "file": "fitness-api-glossary-2026.csv",
-      "bytes": 17298,
+      "bytes": 17315,
       "rows": 45,
-      "sha256": "5242844e6919cb3253ec9db5a043cb28db5a42252d6a590431b7fad70887d88a"
+      "sha256": "5b8712bcd85c2c6f7a909fb97e7d63b7874cc37d469c23e8a6ca68ebb40c7003"
     },
     {
       "file": "fitness-api-glossary-2026.json",
-      "bytes": 23723,
+      "bytes": 23740,
       "rows": 45,
-      "sha256": "5cbad613909b808de875125cc5989473d438c1e35d7a07a3c91950c2cab76c39"
+      "sha256": "7606c068f0c0972a4f02e70d5d67624e902d841771bbe950c7d4afa026207234"
     },
     {
       "file": "fitness-apis-2026.csv",
@@ -74,6 +74,18 @@
       "sha256": "9be00b02108f40024d5ef34685fdf919323f9ab3e2da608d6a798d4bc8f4636a"
     },
     {
+      "file": "healthkit-metadata-keys-2026.csv",
+      "bytes": 27686,
+      "rows": 67,
+      "sha256": "e58b65bc06d2d54db6597de50344a245bc590c4662aea333cbfaebc3cd89506a"
+    },
+    {
+      "file": "healthkit-metadata-keys-2026.json",
+      "bytes": 47469,
+      "rows": 67,
+      "sha256": "5388037aacb8272317cfd042217160cf0f93ee62d998031fd3a5d680483b7548"
+    },
+    {
       "file": "healthkit-type-identifiers-2026.csv",
       "bytes": 75191,
       "rows": 241,
@@ -90,6 +102,18 @@
       "bytes": 5080,
       "rows": 32,
       "sha256": "32a07594a0e6d8835f91c74088b5029b33b226c568e2589bb95d8bbf32efe357"
+    },
+    {
+      "file": "wear-os-health-services-data-types-2026.csv",
+      "bytes": 36760,
+      "rows": 65,
+      "sha256": "c8b9f6dbf09113749b4885c3760c586cc534b10598a6857a2a53d96dbe579fe9"
+    },
+    {
+      "file": "wear-os-health-services-data-types-2026.json",
+      "bytes": 56538,
+      "rows": 65,
+      "sha256": "9adf2f39b06bff7364a906b0b4df7b8e22ea392f65b9ca471d4af4d8925e651c"
     }
   ]
 }
