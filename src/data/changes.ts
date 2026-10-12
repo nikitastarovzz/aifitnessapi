@@ -42,24 +42,24 @@ export type ChangeEvent = {
 
 export const CHANGE_EVENTS: ChangeEvent[] = [
   {
-    date: "2026-09",
-    sortDate: "2026-09-15",
-    title: "Fitbit Web API turndown (reported window)",
+    date: "2026-10-30",
+    sortDate: "2026-10-30",
+    title: "Fitbit Web API turn-off",
     summary:
-      "Google announced the legacy Fitbit Web API's retirement in favour of the cloud Google Health API, and a turndown was reported for around September 2026. No official page we could verify confirmed a day or whether the turndown happened; some third-party guides named September 30, which is weaker evidence, not stronger. Google's Fit migration guide (updated September 10, 2026) lists the Google Health API as the path for Fitbit Web API integrations and gives no date. Tokens are reported not to transfer — every user re-consents via Google OAuth.",
-    status: "reported",
+      "Google's Google Health API page states that on October 30, 2026 \"the Fitbit Web API will be turned off and will no longer function or sync data to or from Fitbit users\", and that all current integrations \"must migrate their applications and users to the Google Health API and Google OAuth 2.0 as soon as possible\". Until then the legacy API keeps operating without support, and Google's migration guide has apps support both login methods while it does. Existing tokens cannot be transferred, so every user re-consents through Google OAuth.",
+    status: "confirmed",
     page: { href: "/fitbit-api-shutdown", label: "Fitbit API shutdown center" },
-    verifiedOn: "2026-08-11",
+    verifiedOn: "2026-10-12",
   },
   {
-    date: "2026-09",
-    sortDate: "2026-09-20",
-    title: "Fitbit → Google Health side-by-side window reported to close",
+    date: "2026-09-30",
+    sortDate: "2026-09-30",
+    title: "Fitbit Web API end of support",
     summary:
-      "A window in which the legacy Fitbit Web API and the Google Health API ran side by side was reported to extend into late September 2026 — the practical dual-read period for migrating integrations. Whether and when it closed was not confirmed on an official page we could verify.",
-    status: "reported",
-    page: { href: "/migrate/fitbit-web-api-to-google-health", label: "Fitbit → Google Health migration playbook" },
-    verifiedOn: "2026-08-11",
+      "Google's Google Health API page states that on September 30, 2026 \"support for the Fitbit Web API ends. The API will continue to operate, but Google will no longer fix bugs or provide API support.\" The turn-off follows on October 30, 2026. Third-party guides had named September 30 before Google published the timeline; it is the end-of-support date, not the switch-off.",
+    status: "confirmed",
+    page: { href: "/fitbit-api-shutdown", label: "Fitbit API shutdown center" },
+    verifiedOn: "2026-10-12",
   },
   {
     date: "2026-09-27",
@@ -86,10 +86,10 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
     sortDate: "2026-05-15",
     title: "Fitbit accounts: Google Account consolidation gate (reported)",
     summary:
-      "Users on legacy Fitbit-only logins are reported to need consolidation into a Google Account by roughly mid-May 2026, and reportedly cannot use the successor API until they do — a gate on your migration, not a detail inside it.",
+      "Users on legacy Fitbit-only logins are reported to need consolidation into a Google Account by roughly mid-May 2026. Google's migration guide confirms the gate itself but gives no date: a user must sign in to the Google Health mobile app to link Google Health to their Google Account before an app can sync their data, and calls made before that fail with ACCOUNT_NOT_LINKED. A gate on your migration, not a detail inside it.",
     status: "reported",
     page: { href: "/fitbit-api-shutdown", label: "Fitbit API shutdown center" },
-    verifiedOn: "2026-08-11",
+    verifiedOn: "2026-10-12",
   },
   {
     date: "2026",

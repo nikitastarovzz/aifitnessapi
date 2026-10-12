@@ -30,6 +30,7 @@ export const RELEASED_MOTION = new Set<string>([
   "mediapipe-vs-movenet",
   "mediapipe-pose-landmarker-models",
   "apple-vision-body-pose",
+  "pose-estimation-model-licenses",
 ]);
 
 export const allMotion: ClusterEntry[] = motionEntries;

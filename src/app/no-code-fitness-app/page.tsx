@@ -28,15 +28,15 @@ const RELATED: { href: string; label: string }[] = [
 ];
 
 export const metadata: Metadata = {
-  title: { absolute: "How to Build a Fitness App With No Code, Just APIs" },
+  title: { absolute: "AI Fitness App Builder Guide: No Code, Just APIs" },
   description:
-    "A worked example: a fitness app assembled from APIs — embedded AI coaching, wearables via a hosted widget, natural-language food logging — almost no code.",
+    "Using a fitness app builder? A worked example of an AI fitness app assembled from APIs: embedded camera coaching, wearables, food logging, almost no code.",
   alternates: { canonical: PAGE_PATH },
   openGraph: {
     type: "article",
-    title: "How to Build a Fitness App With No Code, Just APIs",
+    title: "AI Fitness App Builder Guide: No Code, Just APIs",
     description:
-      "A worked example: a fitness app assembled from APIs — embedded AI coaching, wearables via a hosted widget, natural-language food logging — almost no code.",
+      "Using a fitness app builder? A worked example of an AI fitness app assembled from APIs: embedded camera coaching, wearables, food logging, almost no code.",
     url: PAGE_PATH,
     images: ["/opengraph-image"],
   },
@@ -72,6 +72,15 @@ const BODY = `
 Every guide on this site so far assumes you write code. This one assumes you refuse to — and treats that refusal as a useful constraint, because an app assembled purely from APIs is the clearest possible demonstration of how this ecosystem's pieces actually fit together. If you can wire it with menus and field-mappers, the architecture must be honest: every seam is a real API boundary, and nothing is hidden inside glue code.
 
 One framing note before the assembly starts. "No code" here means you do not write application code. You will still do real work — configuring endpoints, pasting headers, mapping JSON fields to screen elements — and this page flags the two seams where a genuine low-code escape hatch is needed. A guide that promised literally zero code would be selling you something. This one is selling you a map.
+
+## Looking for an AI fitness app builder?
+
+People searching for an "AI fitness app builder" usually mean one of two things, and the honest answer differs:
+
+- **A builder that uses AI to generate the app for you.** We have not evaluated those tools, so we do not rank them. Whatever generates the screens, the fitness-specific parts still come from outside the builder: camera coaching, wearable data, nutrition resolution and the language model all arrive as APIs, and the seams this page lists (secrets, webhooks, embed events, store policy) apply to a generated app exactly as they do to a hand-assembled one.
+- **A builder for an app whose features are AI.** That is what this page builds. The AI is not in the builder; it is in the services you wire into it: an embedded camera-coaching experience for form feedback (our example is KinesteX, which funds this site; Moment 1 names the cases where a competitor is the better fit) and a language-model API for the weekly recap.
+
+Either way, the choice that decides the product is which APIs you compose, not which builder draws the buttons. Any builder that can make an HTTP request with headers, place an embed or WebView element, and run a server-side workflow can host the stack below, so check those three capabilities in whichever one you are considering.
 
 ## The idea: HomeForm, a worked example
 
@@ -170,7 +179,7 @@ export default function NoCodeFitnessAppPage() {
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "How to Build a Fitness App With No Code, Just APIs",
+    headline: "AI Fitness App Builder Guide: Build a Fitness App With No Code, Just APIs",
     description: metadata.description,
     datePublished: UPDATED,
     dateModified: UPDATED,
@@ -206,7 +215,7 @@ export default function NoCodeFitnessAppPage() {
         <ClusterHero label="Worked Example" seed={2} />
 
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
-          How to Build a Fitness App With No Code, Just APIs
+          AI Fitness App Builder Guide: Build a Fitness App With No Code, Just APIs
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">Updated 14 August 2026</p>
 

@@ -943,9 +943,9 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
   },
   {
     slug: "garminconnect",
-    title: "garminconnect: Python Client for Garmin Connect Data",
+    title: "garminconnect: Unofficial Garmin Connect API for Python",
     metaDescription:
-      "garminconnect is an unofficial Python client for Garmin Connect. Install, how its login and token storage work, the garth migration, release dates.",
+      "garminconnect (repo python-garminconnect) is an unofficial Python client for Garmin Connect: install, login and token storage, garth migration, releases.",
     h1: "garminconnect (Python)",
     primaryQuery: "garminconnect python",
     answer:

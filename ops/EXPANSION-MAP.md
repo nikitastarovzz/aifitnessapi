@@ -23,6 +23,14 @@ One tranche per session-wave; one item per daily-routine run (see
 DAILY-CONTENT §2c). Mark items done with the date; the content log is the
 ledger of record.
 
+**Format priority (2026-10-12, ops/GROWTH-30-2026-10-12.md #1).** Live data
+says commercial formats earn the clicks: /alternatives 2.50 clicks per page
+over 28 days, /pricing 2.08, while /build and the other reference formats
+earned 0 to 0.04. When picking an unchecked item, take /alternatives,
+/pricing, /compare and vendor-named /fitness-apis items first; reference
+items (/learn, /build, /architecture, /test, /ai, /guides) wait. No new
+reference cluster starts before the day-28 review on 2026-10-31.
+
 ## Tier 1 — write next (54 items)
 
 ### /data — metric pages (8) — the platform-store pattern: HK + HC type

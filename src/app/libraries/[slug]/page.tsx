@@ -156,7 +156,8 @@ export default async function LibraryPage({ params }: { params: Promise<Params> 
           {ed.h1}
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">
-          {ECOSYSTEM_LABEL[l.ecosystem]} · latest {l.latestVersion} ({l.latestPublished}) · registry read{" "}
+          {LANGUAGE[l.ecosystem]} · {ECOSYSTEM_LABEL[l.ecosystem]}: <span className="font-mono">{l.name}</span> · latest{" "}
+          {l.latestVersion} ({l.latestPublished}) · registry read{" "}
           {LIBRARIES_FETCHED_ON}
           <ContentAge date={LIBRARIES_FETCHED_ON} />
           {LIBRARIES_VERIFIED_ON !== LIBRARIES_FETCHED_ON && <> · README notes checked {LIBRARIES_VERIFIED_ON}</>}

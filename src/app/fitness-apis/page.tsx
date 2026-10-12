@@ -42,6 +42,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
     slugs: [
       "exercise-database-apis",
       "wearable-data-apis",
+      "corporate-wellness-wearable-apis",
       "health-data-aggregator-apis",
       "ai-workout-tracking-apis",
       "nutrition-apis",
@@ -54,6 +55,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
       "apple-healthkit-vs-google-health-connect",
       "terra-vs-vital",
       "fitbit-api-vs-garmin-api",
+      "garmin-connect-iq-vs-health-api",
     ],
   },
   {

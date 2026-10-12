@@ -40,6 +40,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
     slugs: [
       "google-fit-to-health-connect",
       "fitbit-web-api-to-google-health",
+      "fitbit-research-studies-after-turndown",
       "add-android-to-healthkit-app",
       "migrate-off-a-deprecated-fitness-api",
     ],

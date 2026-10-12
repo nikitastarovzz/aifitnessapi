@@ -15,4 +15,6 @@ export const RELEASED_FITNESS_APIS = new Set<string>([
   "terra-vs-vital",
   "fitbit-api-vs-garmin-api",
   "fitness-api-vs-build-your-own",
+  "garmin-connect-iq-vs-health-api",
+  "corporate-wellness-wearable-apis",
 ]);

@@ -66,6 +66,17 @@ d. **Backlog.** No qualifying data candidates → take the top unchecked item fr
    otherwise improve internal linking into the 5 pages with the most impressions
    (log which), or refresh `data/gsc/latest.json` alone.
 
+**Format default (decided 2026-10-12, ops/GROWTH-30-2026-10-12.md #1):** new
+pages are commercial-investigation formats for vendors with query demand —
+/alternatives, /pricing, and head-to-head comparisons (/compare, vendor-named
+/fitness-apis pages). Clicks per page over the 28 days to 2026-10-10:
+/alternatives 2.50, /pricing 2.08, /motion 1.29, /fitness-apis 1.27,
+/integrate 1.00; /build, /blog, /apis, /tools, /questions,
+/health-connect-api, /healthkit-queries and /phone-sensors 0 to 0.04 across
+146 pages. **No new reference cluster starts before the October clusters'
+day-28 review on 2026-10-31** (GROWTH-30 #30); until then rung (c) adds
+spokes to existing clusters only, commercial formats first.
+
 **Proven patterns (from live GSC, updated 2026-08-02) — when candidates tie,
 prefer these; the data says they work for us:** pricing-intent pages (the
 /pricing cluster earns clicks at the highest rate), aggregator comparisons

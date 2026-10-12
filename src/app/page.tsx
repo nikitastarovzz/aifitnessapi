@@ -90,7 +90,7 @@ const CLUSTERS: { href: string; title: string; blurb: string }[] = [
 const POPULAR: { href: string; name: string; tag: string; blurb: string }[] = [
   { href: "/integrate/healthkit", name: "Apple HealthKit", tag: "On-device · iOS", blurb: "No OAuth, no servers — and read-denial is invisible by design. The full Swift integration guide." },
   { href: "/integrate/google-health-connect", name: "Google Health Connect", tag: "On-device · Android", blurb: "The successor to Google Fit on Android: permissions, the 30-day read window, and the quirks." },
-  { href: "/integrate/fitbit-api", name: "Fitbit Web API", tag: "Turndown reported 2026", blurb: "Widely integrated, with a turndown reported for around September 2026. The guide, plus the migration path to Google's cloud API." },
+  { href: "/integrate/fitbit-api", name: "Fitbit Web API", tag: "Turns off Oct 30, 2026", blurb: "Widely integrated; Google turns the legacy API off on October 30, 2026. The guide, plus the migration path to Google's cloud API." },
   { href: "/integrate/strava-api", name: "Strava API", tag: "Cloud · OAuth", blurb: "Activities, segments, and webhooks — under developer terms that have tightened. What's still allowed." },
   { href: "/integrate/garmin-api", name: "Garmin Health API", tag: "Cloud · approval-gated", blurb: "Deep wearable data behind a developer-program approval. How to apply, integrate, and pass review." },
   { href: "/integrate/oura-api", name: "Oura API", tag: "Cloud · OAuth", blurb: "Sleep, readiness, and HRV from the ring — including the personal-access-token deprecation." },
