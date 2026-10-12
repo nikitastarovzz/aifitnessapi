@@ -7,6 +7,7 @@ import AnswerCapsule from "@/components/AnswerCapsule";
 import PageActions from "@/components/PageActions";
 import NextSteps from "@/components/NextSteps";
 import Feedback from "@/components/Feedback";
+import ContentAge from "@/components/ContentAge";
 import { site, absoluteUrl } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 import { clampTitle, clampDescription } from "@/lib/cluster";
@@ -234,9 +235,13 @@ export default async function ApiPage({ params }: { params: Promise<Params> }) {
                 {source.entry.h1}
               </Link>
               , last verified {formatDate(source.entry.updated)}
+              <ContentAge date={source.entry.updated} />
             </>
           ) : (
-            <>Directory entry · last reviewed {UPDATED}</>
+            <>
+              Directory entry · last reviewed {UPDATED}
+              <ContentAge date={UPDATED} />
+            </>
           )}
         </p>
 
