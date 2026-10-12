@@ -144,8 +144,8 @@
       "title": "MoveNet: no model updates observed since 2024",
       "summary": "No updates to the MoveNet pose models have been observed since 2024. The single-person models remain Apache-2.0; treat the weights as stable rather than evolving.",
       "status": "confirmed",
-      "source": "https://aifitnessapi.com/motion/mediapipe-vs-movenet",
-      "sourceLabel": "MediaPipe vs MoveNet",
+      "source": "https://aifitnessapi.com/motion/pose-estimation-models-compared",
+      "sourceLabel": "Pose estimation models compared",
       "verifiedOn": "2026-08-02"
     },
     {

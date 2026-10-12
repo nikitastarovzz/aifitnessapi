@@ -21,6 +21,6 @@ id,label,category,devCost,userSideCost,approvalGate,source
 "sency","Sency (SMKit)","motion-sdk","contact-sales",,"Free trial first (no credit card, per the vendor's site at our last check), then a sales conversation.","https://aifitnessapi.com/fitness-apis/ai-workout-tracking-apis"
 "quickpose","QuickPose","motion-sdk","free-tier-then-paid",,,"https://aifitnessapi.com/fitness-apis/ai-workout-tracking-apis"
 "mediapipe","MediaPipe Pose Landmarker (BlazePose)","pose-model","free",,,"https://aifitnessapi.com/compare/kinestex-vs-mediapipe"
-"movenet","TensorFlow MoveNet","pose-model","free",,,"https://aifitnessapi.com/motion/mediapipe-vs-movenet"
+"movenet","TensorFlow MoveNet","pose-model","free",,,"https://aifitnessapi.com/motion/pose-estimation-model-licenses"
 "apple-vision","Apple Vision body pose","pose-model","free",,,"https://aifitnessapi.com/fitness-apis/ai-workout-tracking-apis"
 "llm-apis","LLM API (coaching, plan generation, food parsing)","llm-features","usage-based",,,"https://aifitnessapi.com/ai/ai-fitness-app-cost"
