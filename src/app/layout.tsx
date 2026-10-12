@@ -119,6 +119,10 @@ export default function RootLayout({
         "@type": "WebSite",
         "@id": WEBSITE_ID,
         name: site.name,
+        // The name spelled out. "AIFitnessAPI" reads as one token, so it never
+        // matched a search for "ai fitness api"; Google takes a site's
+        // alternate names from here (ops/SERP-30-2026-10-12.md #6).
+        alternateName: site.alternateName,
         url: site.url,
         description: site.description,
         inLanguage: "en",

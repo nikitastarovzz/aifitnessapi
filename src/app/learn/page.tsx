@@ -20,13 +20,16 @@ const UPDATED = "2026-07-09";
 const QUESTION_COUNT = releasedLearn().reduce((n, e) => n + e.faqs.length, 0);
 
 export const metadata: Metadata = {
-  title: "Fitness & Health API Concepts Explained",
+  // Intent first rather than another "Fitness & Health API …" title: Google
+  // tested every hub for "fitness api" and ranked none of them
+  // (ops/SERP-30-2026-10-12.md #3). The H1 keeps the section's name.
+  title: { absolute: "Health Data Concepts for Developers: OAuth, Webhooks, HRV" },
   description:
     "Plain-English explainers for health-tech builders: fitness APIs, OAuth, webhooks, aggregators, pose estimation, HRV, VO2 max, and sleep stages.",
   alternates: { canonical: LEARN_PATH },
   openGraph: {
     type: "website",
-    title: "Fitness & Health API Concepts Explained (2026)",
+    title: "Health Data Concepts for Developers: OAuth, Webhooks, HRV",
     description:
       "The vocabulary of health-tech, explained for builders: APIs, OAuth, webhooks, aggregators, pose estimation, and the metrics inside your data.",
     url: LEARN_PATH,

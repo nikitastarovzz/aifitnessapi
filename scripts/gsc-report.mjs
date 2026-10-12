@@ -260,6 +260,25 @@ for (const [name, engine] of Object.entries(engines)) {
     );
   }
 
+  // `www.` URLs still in Google's data. www 308s to the apex and every
+  // canonical names the apex, so this should shrink pull over pull; a rise
+  // means the redirect or a canonical broke (ops/SERP-30-2026-10-12.md #9).
+  if (name === "google" && apiSnap?.byPage?.length) {
+    const www = apiSnap.byPage.filter((r) => {
+      try {
+        return new URL(r.keys[0]).hostname.startsWith("www.");
+      } catch {
+        return false;
+      }
+    });
+    const wImp = www.reduce((n, r) => n + r.impressions, 0);
+    const aImp = apiSnap.byPage.reduce((n, r) => n + r.impressions, 0);
+    console.log(
+      `  www. URLs still in Google: ${www.length} pages, ${wImp} impressions (${aImp ? ((wImp / aImp) * 100).toFixed(0) : 0}% of all), ` +
+        `${www.reduce((n, r) => n + r.clicks, 0)} clicks`,
+    );
+  }
+
   // Page-one pages earning nothing: the clearest statement of a CTR problem,
   // and invisible under the old site-average benchmark.
   const pageOne = rows.filter((r) => r.position > 0 && r.position <= 10);
@@ -549,6 +568,30 @@ function geoCitationSection(snap) {
 }
 
 if (apiSnap) geoCitationSection(apiSnap);
+
+// ---- Tracked queries --------------------------------------------------------
+// The brand and the 30 "fitness api" queries from the search-results study
+// (ops/SERP-30-2026-10-12.md #10), read from each engine's own query report.
+// Google withholds rare queries, so a dash there means "not disclosed", not
+// "not shown"; the two engines are printed side by side and never combined.
+const TRACKED_FILE = "ops/gsc/tracked-queries.txt";
+if (fs.existsSync(TRACKED_FILE)) {
+  const tracked = fs
+    .readFileSync(TRACKED_FILE, "utf8")
+    .split("\n")
+    .map((l) => l.trim().toLowerCase())
+    .filter((l) => l && !l.startsWith("#"));
+  const cell = (engine, q) => {
+    const r = engine.queries.get(q);
+    if (!r || !r.impressions) return "—".padStart(14);
+    return `${String(r.impressions).padStart(4)}i ${String(r.clicks).padStart(2)}c @${(r.posWeighted / r.impressions).toFixed(1).padStart(5)}`;
+  };
+  console.log(`\n${"=".repeat(68)}\nTracked queries (${TRACKED_FILE})\n${"=".repeat(68)}`);
+  console.log(`  ${"query".padEnd(48)} ${"Google".padStart(14)} ${"Bing".padStart(14)}`);
+  for (const q of tracked) {
+    console.log(`  ${q.padEnd(48).slice(0, 48)} ${cell(engines.google, q)} ${cell(engines.bing, q)}`);
+  }
+}
 
 // ---- --snapshot: build the time series ------------------------------------
 if (process.argv.includes("--snapshot")) {

@@ -107,7 +107,7 @@ export default function ErrorCodesHub() {
         <p id="answer" className={CAPSULE}>
           HealthKit reports failures as one of {HK.length} <code className="font-mono text-base">HKError.Code</code>{" "}
           cases; Health Connect&rsquo;s platform API uses {HC.length}{" "}
-          <code className="font-mono text-base">HealthConnectException</code> constants. Both references below are
+          <code className="font-mono text-base">HealthConnectException</code>{" "}constants. Both references below are
           generated from the vendors&rsquo; own documentation, carry the vendor&rsquo;s wording verbatim, and link to a
           fix guide where this site has one — {HK_WITH_FIX + HC_WITH_FIX} codes so far.
         </p>

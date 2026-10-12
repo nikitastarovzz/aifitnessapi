@@ -20,13 +20,16 @@ const UPDATED = "2026-07-09";
 const QUESTION_COUNT = releasedAlternatives().reduce((n, e) => n + e.faqs.length, 0);
 
 export const metadata: Metadata = {
-  title: "Fitness & Health API Alternatives",
+  // Intent first rather than another "Fitness & Health API …" title: Google
+  // tested every hub for "fitness api" and ranked none of them
+  // (ops/SERP-30-2026-10-12.md #3). The H1 keeps the section's name.
+  title: { absolute: "Alternatives to Fitbit, Garmin, Strava & Other Fitness APIs" },
   description:
     "Considering a switch? Alternatives to Fitbit, Google Fit, Garmin, Strava, Oura, WHOOP, HealthKit, Terra, Nutritionix, and ExerciseDB — and what to use.",
   alternates: { canonical: ALTERNATIVES_PATH },
   openGraph: {
     type: "website",
-    title: "Fitness & Health API Alternatives (2026)",
+    title: "Alternatives to Fitbit, Garmin, Strava & Other Fitness APIs",
     description:
       "Why teams replace a given fitness/health API and the realistic alternatives — for wearables, platforms, aggregators, and content APIs.",
     url: ALTERNATIVES_PATH,

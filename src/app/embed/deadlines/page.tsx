@@ -90,7 +90,7 @@ export default function EmbedDeadlines() {
             rel="noreferrer"
             className="font-medium text-brand-600 hover:text-brand-500"
           >
-            {e.page.label} &rarr;
+            {e.page.label}{" "}&rarr;
           </a>{" "}
           <span className="text-[var(--muted)]">&middot; checked {fmtDate(e.verifiedOn)}</span>
         </p>
@@ -111,7 +111,7 @@ export default function EmbedDeadlines() {
           ahead="Dated changes still ahead of today."
           recent="No dated change is still ahead — showing the most recent entries."
         />{" "}
-        <strong className="font-semibold text-[var(--fg)]">confirmed</strong> = the vendor&rsquo;s own
+        <strong className="font-semibold text-[var(--fg)]">confirmed</strong>{" "}= the vendor&rsquo;s own
         words, quoted on the linked page. <strong className="font-semibold text-[var(--fg)]">reported</strong>{" "}
         = consistent notices with no official page we could verify.
       </p>

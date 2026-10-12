@@ -257,7 +257,7 @@ export default function HealthKitStatusPage() {
             dataset refresh nobody re-checked the synthesis against moves the
             tables but not `updated`; the line then names both reads. */}
         <p className="mt-3 text-sm text-[var(--muted)]">
-          {BETA.length} beta · {UNDOCUMENTED.length} undocumented · {DEPRECATED.length} deprecated ·
+          {BETA.length} beta · {UNDOCUMENTED.length} undocumented · {DEPRECATED.length}{" "}deprecated ·
           read from Apple&rsquo;s documentation on {entry.updated}
           <ContentAge date={entry.updated} />
           {entry.updated !== HK_FETCHED_ON && <> · tables re-read {HK_FETCHED_ON}</>}
@@ -307,7 +307,7 @@ export default function HealthKitStatusPage() {
             Every count below is read from Apple&rsquo;s documentation for the{" "}
             {HK_IDENTIFIERS.length} identifiers on {HK_FETCHED_ON}. Beta and deprecation are
             per-platform facts in Apple&rsquo;s availability data — a deprecation is a{" "}
-            <code className="font-mono text-sm">deprecatedAt</code> version on a platform entry;
+            <code className="font-mono text-sm">deprecatedAt</code>{" "}version on a platform entry;
             &ldquo;undocumented&rdquo; means Apple ships the declaration with neither an abstract nor
             a discussion.
           </p>

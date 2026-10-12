@@ -213,7 +213,7 @@ export default async function ApiPage({ params }: { params: Promise<Params> }) {
         <Breadcrumbs
           trail={[
             { name: "Home", path: "/" },
-            { name: "API directory", path: APIS_PATH },
+            { name: "Fitness API list", path: APIS_PATH },
             { name: api.label, path },
           ]}
         />
@@ -230,7 +230,7 @@ export default async function ApiPage({ params }: { params: Promise<Params> }) {
             role="note"
             className="mt-6 rounded-xl border border-amber-400/40 bg-amber-500/10 px-4 py-3 text-sm text-[var(--fg)]"
           >
-            <strong>Disclosure:</strong> KinesteX is the product of the company that funds this
+            <strong>Disclosure:</strong>{" "}KinesteX is the product of the company that funds this
             site. It is classified here by exactly the same rule as every other entry, with no
             ranking and no exemption from the &ldquo;could not verify&rdquo; treatment applied
             to its competitors — see{" "}
@@ -340,7 +340,7 @@ export default async function ApiPage({ params }: { params: Promise<Params> }) {
               HealthKit data types by group →
             </Link>
             <p className="mt-1 text-sm text-[var(--muted)]">
-              All {HK_IDENTIFIERS.length} HealthKit type identifiers in {buildHkGroups().size} group
+              All {HK_IDENTIFIERS.length} HealthKit type identifiers in {buildHkGroups().size}{" "}group
               pages — units, aggregation style and iOS availability, read from Apple&rsquo;s
               documentation on {HK_FETCHED_ON}.
             </p>

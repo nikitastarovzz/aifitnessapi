@@ -99,7 +99,7 @@ export default function IdentifierTranslatorPage() {
           name and get the Apple side. The Apple identifiers come from the{" "}
           {APPLE_NAMES.length}-type dataset read from Apple&rsquo;s documentation on {HK_FETCHED_ON};
           the pairings come only from this site&rsquo;s verified matrix, which covers {COVERED} of
-          those {APPLE_NAMES.length} identifiers across {ROWS.length} metrics. For anything outside
+          those {APPLE_NAMES.length} identifiers across {ROWS.length}{" "}metrics. For anything outside
           that set the tool reports no verified counterpart rather than inventing a record name —
           the mistake that turns Apple&rsquo;s SDNN into Android&rsquo;s RMSSD.
         </p>
@@ -115,7 +115,7 @@ export default function IdentifierTranslatorPage() {
               Everything runs client-side from this site&rsquo;s published dataset — no lookup
               service, no network call. Two sources feed it. The Apple identifier list is generated
               from Apple&rsquo;s own documentation, last read {HK_FETCHED_ON}. The cross-platform
-              pairs are the {ROWS.length} rows of the HealthKit ↔ Health Connect matrix, each one
+              pairs are the {ROWS.length}{" "}rows of the HealthKit ↔ Health Connect matrix, each one
               confirmed against both Apple&rsquo;s and Google&rsquo;s developer documentation, with
               the per-row source recorded in the dataset.
             </p>

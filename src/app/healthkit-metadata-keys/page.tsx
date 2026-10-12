@@ -151,7 +151,7 @@ export default function HealthKitMetadataKeysPage() {
           Every HealthKit metadata key
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">
-          {count(KEYS.length, "key")} · {count(GROUPS.length, "topic group")} · last fetched from Apple&rsquo;s
+          {count(KEYS.length, "key")} · {count(GROUPS.length, "topic group")}{" "}· last fetched from Apple&rsquo;s
           documentation on {FETCHED}
           <ContentAge date={FETCHED} />
         </p>
@@ -271,7 +271,7 @@ export default function HealthKitMetadataKeysPage() {
             The key itself is always a string constant. What you store under it is stated only in Apple&rsquo;s prose,
             so the Value column is filled only where a sentence on the key&rsquo;s page names it — {TYPED.length} of{" "}
             {KEYS.length} keys. A key whose page tells you to set the value to <code className="font-mono text-sm">true</code>{" "}
-            or <code className="font-mono text-sm">false</code> is shown as Boolean. The sentence each type comes from is
+            or <code className="font-mono text-sm">false</code>{" "}is shown as Boolean. The sentence each type comes from is
             in that row&rsquo;s description, and the generated data file stores it beside the type.
           </p>
         </section>

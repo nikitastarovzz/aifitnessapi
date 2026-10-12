@@ -9,17 +9,20 @@ import PageSummary from "@/components/PageSummary";
 const PATH = "/glossary";
 const UPDATED = "2026-07-31";
 
+// The <title> leads with what this page is for (ops/SERP-30-2026-10-12.md #3);
+// TITLE stays the section name for the H1 and the structured data.
+const META_TITLE = "Health & Fitness Data Glossary for Developers";
 const TITLE = "Fitness & Health API Glossary";
 const DESCRIPTION =
   "Every term you hit building a fitness app, defined in one or two honest sentences and linked to the page that treats it properly.";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: META_TITLE },
   description: DESCRIPTION,
   alternates: { canonical: PATH },
   openGraph: {
     type: "website",
-    title: TITLE,
+    title: META_TITLE,
     description: DESCRIPTION,
     url: PATH,
     images: ["/opengraph-image"],
@@ -70,7 +73,7 @@ export default function GlossaryPage() {
         </h1>
         <PageSummary path="/glossary" name="Fitness & Health API Glossary" updated={UPDATED}>
           Every term you hit building a health or fitness product, in one or two honest sentences —
-          each linked to the page that treats it properly. {alpha.length} terms and counting; nothing
+          each linked to the page that treats it properly. {alpha.length}{" "}terms and counting; nothing
           here is a claim we don&rsquo;t back on its own page.
         </PageSummary>
 

@@ -71,7 +71,16 @@ export function organizationNode() {
     "@type": "Organization",
     "@id": ORG_ID,
     name: site.name,
+    alternateName: site.alternateName,
     url: site.url,
+    // A crawlable raster logo of at least 112 px, as Google asks for; drawn
+    // from src/app/icon.svg by scripts/build-icons.mjs.
+    logo: {
+      "@type": "ImageObject",
+      url: absoluteUrl("/logo.png"),
+      width: 512,
+      height: 512,
+    },
     description: site.description,
     knowsAbout: KNOWS_ABOUT,
     // Our sourcing and correction rules, published — the page a model should

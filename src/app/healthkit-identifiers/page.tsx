@@ -205,7 +205,7 @@ export default function HealthKitIdentifiersPage() {
           Every HealthKit type identifier
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">
-          {HK_IDENTIFIERS.length} identifiers across {HK_FAMILIES.length} families · read from Apple&rsquo;s
+          {HK_IDENTIFIERS.length} identifiers across {HK_FAMILIES.length}{" "}families · read from Apple&rsquo;s
           documentation on {HK_FETCHED_ON}
           <ContentAge date={HK_FETCHED_ON} />
         </p>
@@ -221,7 +221,7 @@ export default function HealthKitIdentifiersPage() {
           HealthKit names data with {HK_IDENTIFIERS.length} identifiers across four families —{" "}
           {QUANTITY.length} quantity types, {CATEGORY.length} category types,{" "}
           {HK_FAMILIES.find((f) => f.key === "characteristic")?.count} characteristics and{" "}
-          {HK_FAMILIES.find((f) => f.key === "workoutActivity")?.count} workout activities. Apple
+          {HK_FAMILIES.find((f) => f.key === "workoutActivity")?.count}{" "}workout activities. Apple
           documents each one on its own page, but never as a set —
           so the questions you actually hit when you build are the ones the reference cannot answer:
           which of these can I sum, what unit does this come back in, and does this exist on Android?
@@ -354,7 +354,7 @@ export default function HealthKitIdentifiersPage() {
               The types Apple ships undocumented
             </h2>
             <p className="mt-3 leading-relaxed text-[var(--muted)]">
-              {undocumented.length} of these identifiers carry neither an abstract nor a discussion in
+              {undocumented.length}{" "}of these identifiers carry neither an abstract nor a discussion in
               Apple&rsquo;s reference as of {HK_FETCHED_ON}:{" "}
               {undocumented.map((r, i) => (
                 <span key={r.case}>
@@ -384,7 +384,7 @@ export default function HealthKitIdentifiersPage() {
                 {" "}
                 The <code className="font-mono text-sm">heartRateVariabilityRMSSD</code> row above,
                 new in iOS {RMSSD_UNDESCRIBED.platforms.find((p) => p.name === "iOS")?.introducedAt},
-                does not change that yet: as of {HK_FETCHED_ON} Apple&rsquo;s documentation does not
+                does not change that yet: as of {HK_FETCHED_ON}{" "}Apple&rsquo;s documentation does not
                 say what it measures, how it is computed or whether Apple Watch writes it.
               </>
             )}

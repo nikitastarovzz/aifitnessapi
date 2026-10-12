@@ -185,7 +185,7 @@ export default function DayBoundaryDemo() {
           <>
             This civil day is <strong>{result.hours} hours long</strong>, not 24. If your daily total
             queries a fixed <code>[midnight, midnight+24h)</code> UTC range, you just{" "}
-            {result.dstShift > 0 ? "dropped" : "double-counted"} an hour of this user&rsquo;s data —
+            {result.dstShift > 0 ? "dropped" : "double-counted"}{" "}an hour of this user&rsquo;s data —
             the classic bug that makes step counts and streaks wrong twice a year. Store the local
             civil date, not just the instant.
           </>

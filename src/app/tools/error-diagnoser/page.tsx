@@ -224,7 +224,7 @@ export default function ErrorDiagnoserPage() {
         <p id="answer" className="speakable mt-4 leading-relaxed text-[var(--muted)]">
           Paste an error string — an <code className="font-mono text-sm">NSError</code> description,
           an HTTP status line, a chunk of log — and this matches it against the{" "}
-          {HK_ERRORS.length} <code className="font-mono text-sm">HKError.Code</code> cases read from
+          {HK_ERRORS.length} <code className="font-mono text-sm">HKError.Code</code>{" "}cases read from
           Apple&rsquo;s documentation on {HK_FETCHED_ON}, and against the {FIX_HINTS.length}{" "}
           troubleshooting guides published on this site. It shows Apple&rsquo;s own wording for a
           matched case and each guide&rsquo;s own summary — it does not write a diagnosis, and when
@@ -246,7 +246,7 @@ export default function ErrorDiagnoserPage() {
             <p>
               The first index is every <code className="font-mono text-xs">HKError.Code</code> case
               Apple documents, with the abstract and discussion quoted verbatim — the generator{" "}
-              <code className="font-mono text-xs">scripts/fetch-healthkit-identifiers.mjs</code> read
+              <code className="font-mono text-xs">scripts/fetch-healthkit-identifiers.mjs</code>{" "}read
               them from Apple&rsquo;s documentation on {HK_FETCHED_ON}. The second is an authored map
               of error strings to the troubleshooting guides on this site; the sentence shown for
               each guide is that guide&rsquo;s own summary, not a re-description of your problem.

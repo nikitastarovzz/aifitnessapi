@@ -14,6 +14,9 @@ import { READING_PATHS } from "@/data/readingPaths";
 import { changesSorted, type ChangeStatus } from "@/data/changes";
 import UpcomingDeadlines, { DeadlinesLabel, type DatedNode } from "@/components/UpcomingDeadlines";
 import { site, absoluteUrl } from "@/lib/site";
+import { API_ENTRIES, APIS_PATH, CATEGORY_LABELS, DEV_COST_LABELS } from "@/data/apis";
+import { CATEGORY_ORDER } from "@/data/costModel";
+import { getLearn } from "@/data/learn";
 
 /**
  * The landing page is the pitch: who this site is for, what they get, and one
@@ -32,7 +35,22 @@ import { site, absoluteUrl } from "@/lib/site";
  * - `openGraph` restates type, site name, locale and the card image, or the
  *   homepage's share card would drop them.
  */
+/**
+ * The homepage is the page Google ranks best for "fitness api" (18.5 over the
+ * 28 days to 2026-10-09, against 15 other pages it tried), so its title leads
+ * with the term instead of the brand; Google takes the site name from the
+ * WebSite markup. The count comes from the directory, and the shorter form
+ * takes over if a larger count would push the title past 60 characters
+ * (ops/SERP-30-2026-10-12.md #1).
+ */
+const HOME_TITLE_FULL = `Fitness API Guide: Compare ${API_ENTRIES.length} Wearable, Health & Motion APIs`;
+const HOME_TITLE =
+  HOME_TITLE_FULL.length <= 60 ? HOME_TITLE_FULL : "Fitness API Guide: Compare Wearable, Health & Motion APIs";
+const HOME_DESCRIPTION = `AI Fitness API compares ${API_ENTRIES.length} fitness, wearable, nutrition and AI motion APIs: how each bills you, what users must own, what gates launch.`;
+
 export const metadata: Metadata = {
+  title: { absolute: HOME_TITLE },
+  description: HOME_DESCRIPTION,
   alternates: {
     canonical: "/",
     types: {
@@ -48,8 +66,8 @@ export const metadata: Metadata = {
     type: "website",
     siteName: site.name,
     locale: site.locale,
-    title: site.title,
-    description: site.description,
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
     url: "/",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: site.title }],
   },
@@ -177,6 +195,9 @@ export default function Home() {
   }));
   // Most recently re-checked tracker entries — freshness of the record itself,
   // which is a different claim from the freshness of the deadlines above.
+  // Directory order: category, as the cost planner and /apis group them.
+  const glanceRows = CATEGORY_ORDER.flatMap((c) => API_ENTRIES.filter((a) => a.category === c));
+  const fitnessApiDefinition = getLearn("what-is-a-fitness-api")?.answer;
   const recentlyVerified = [...events]
     .sort((a, b) => (a.verifiedOn < b.verifiedOn ? 1 : -1))
     .slice(0, 3);
@@ -191,7 +212,7 @@ export default function Home() {
         />
         <Container className="py-20 text-center sm:py-24">
           <span className="inline-flex items-center rounded-full border border-brand-400/40 bg-brand-500/10 px-3 py-1 text-xs font-medium text-brand-600 dark:text-brand-300">
-            For builders in health, wellness &amp; fitness
+            AI Fitness API · for builders in health, wellness &amp; fitness
           </span>
           <h1 className="mx-auto mt-6 max-w-3xl text-4xl font-bold tracking-tight text-[var(--fg)] sm:text-6xl">
             Pick the right fitness API.
@@ -243,6 +264,77 @@ export default function Home() {
           </dl>
         </Container>
       </section>
+
+      {/* ——— What a fitness API is, and every one we cover ———
+          The list intent behind "fitness api": the pages that outrank us lead
+          with a definition and a list. The definition is the capsule already
+          published on /learn/what-is-a-fitness-api; the rows are the cost
+          model's fields, so this section adds no claim of its own
+          (ops/SERP-30-2026-10-12.md #2). */}
+      <Container className="pt-16">
+        <section aria-labelledby="fitness-apis-at-a-glance">
+          <h2
+            id="fitness-apis-at-a-glance"
+            className="text-2xl font-bold tracking-tight text-[var(--fg)] sm:text-3xl"
+          >
+            Fitness APIs at a glance
+          </h2>
+          {fitnessApiDefinition && (
+            <p className="mt-3 max-w-3xl leading-relaxed text-[var(--muted)]">
+              {fitnessApiDefinition}{" "}
+              <Link href="/learn/what-is-a-fitness-api" className="font-medium text-brand-600 hover:text-brand-500">
+                What a fitness API is
+              </Link>{" "}
+              goes further.
+            </p>
+          )}
+          <div className="mt-6 overflow-x-auto rounded-2xl border border-[var(--border)]">
+            <table className="w-full min-w-[640px] text-left text-sm">
+              <caption className="sr-only">
+                The {API_ENTRIES.length}{" "}fitness APIs this site covers: category, how each bills
+                developers, and whether an approval gate or a cost on the user&rsquo;s side is
+                documented.
+              </caption>
+              <thead className="bg-[var(--surface)] text-xs uppercase tracking-wider text-[var(--muted)]">
+                <tr>
+                  <th scope="col" className="px-4 py-3 font-semibold">API</th>
+                  <th scope="col" className="px-4 py-3 font-semibold">Category</th>
+                  <th scope="col" className="px-4 py-3 font-semibold">How it bills you</th>
+                  <th scope="col" className="px-4 py-3 font-semibold">Approval gate</th>
+                  <th scope="col" className="px-4 py-3 font-semibold">Cost on the user&rsquo;s side</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[var(--border)]">
+                {glanceRows.map((a) => (
+                  <tr key={a.id}>
+                    <th scope="row" className="px-4 py-2.5 font-medium">
+                      <Link href={`${APIS_PATH}/${a.id}`} className="text-brand-600 hover:text-brand-500">
+                        {a.label}
+                      </Link>
+                    </th>
+                    <td className="px-4 py-2.5 text-[var(--muted)]">{CATEGORY_LABELS[a.category]}</td>
+                    <td className="px-4 py-2.5 text-[var(--fg)]">{DEV_COST_LABELS[a.devCost]}</td>
+                    <td className="px-4 py-2.5 text-[var(--fg)]">{a.approvalGate ? "Yes" : "None documented"}</td>
+                    <td className="px-4 py-2.5 text-[var(--fg)]">{a.userSideCost ? "Yes" : "None documented"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
+            Each row opens the product&rsquo;s entry in{" "}
+            <Link href={APIS_PATH} className="font-medium text-brand-600 hover:text-brand-500">
+              the fitness API list
+            </Link>
+            , with what each gate and cost is and every page here that covers it, or{" "}
+            <Link href="/compare-apis" className="font-medium text-brand-600 hover:text-brand-500">
+              compare any two side by side
+            </Link>
+            . &ldquo;None documented&rdquo; means none in the sources we checked, not that none
+            exists. KinesteX funds this site and is listed by the same rule as every other product.
+          </p>
+        </section>
+      </Container>
 
       {/* ——— Start where you are ——— */}
       <Container className="pt-16">
@@ -610,7 +702,7 @@ export default function Home() {
           <div className="rounded-2xl border border-[var(--border)] p-6">
             <h3 className="font-bold tracking-tight text-[var(--fg)]">Dates graded, not sharpened</h3>
             <p className="mt-2 text-sm text-[var(--muted)]">
-              The changes tracker labels every deadline <em>confirmed</em> — vendor&rsquo;s own
+              The changes tracker labels every deadline <em>confirmed</em>{" "}— vendor&rsquo;s own
               words, quoted — or <em>reported</em>, and keeps each date at the precision its
               evidence supports.{" "}
               <Link href="/changes" className="font-medium text-brand-600 hover:text-brand-500">

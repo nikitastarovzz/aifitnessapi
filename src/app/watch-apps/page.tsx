@@ -151,7 +151,7 @@ export default function WatchAppsPillar() {
           <p>
             Three clusters touch the wrist and they do not overlap:{" "}
             <Link href="/devices">Connected Devices</Link> treats the watch as a data source for a
-            phone app, <Link href="/engagement">Engagement</Link> covers the surfaces that bring
+            phone app, <Link href="/engagement">Engagement</Link>{" "}covers the surfaces that bring
             somebody back, and this one is about building and shipping the watch app itself. Every
             platform claim below is verified against Apple&rsquo;s or Google&rsquo;s own
             documentation, and there are no battery figures anywhere: battery is the defining

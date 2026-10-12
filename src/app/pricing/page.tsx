@@ -20,13 +20,16 @@ const UPDATED = "2026-07-23";
 const QUESTION_COUNT = releasedPricing().reduce((n, e) => n + e.faqs.length, 0);
 
 export const metadata: Metadata = {
-  title: "Fitness & Health API Pricing",
+  // Intent first rather than another "Fitness & Health API …" title: Google
+  // tested every hub for "fitness api" and ranked none of them
+  // (ops/SERP-30-2026-10-12.md #3). The H1 keeps the section's name.
+  title: { absolute: "Fitness API Pricing: What Is Free and What You Pay For" },
   description:
     "What fitness and health APIs actually cost: most first-party wearable APIs are free to call — the real costs are aggregators, content APIs, and infra.",
   alternates: { canonical: PRICING_PATH },
   openGraph: {
     type: "website",
-    title: "Fitness & Health API Pricing",
+    title: "Fitness API Pricing: What Is Free and What You Pay For",
     description:
       "A clear-eyed look at fitness/health API costs — which APIs are free to call, which are paid, and what actually drives your bill.",
     url: PRICING_PATH,
@@ -150,7 +153,7 @@ export default function PricingPillar() {
             assembles these pages&rsquo; cost models into one structure — what&rsquo;s free, what meters,
             what needs a quote. Choosing by cost is only half the picture — pair these with the{" "}
             <Link href="/fitness-apis">API comparisons</Link> to weigh coverage and fit, or the{" "}
-            <Link href="/fitness-apis/free-fitness-apis">free &amp; open-source options</Link> if budget is
+            <Link href="/fitness-apis/free-fitness-apis">free &amp; open-source options</Link>{" "}if budget is
             the main constraint. Pricing changes often; always confirm against the provider&rsquo;s live
             documentation.
           </p>

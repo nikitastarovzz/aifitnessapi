@@ -20,13 +20,16 @@ const UPDATED = "2026-07-20";
 const QUESTION_COUNT = releasedMigrate().reduce((n, e) => n + e.faqs.length, 0);
 
 export const metadata: Metadata = {
-  title: "Fitness & Health API Migration Guides",
+  // Intent first rather than another "Fitness & Health API …" title: Google
+  // tested every hub for "fitness api" and ranked none of them
+  // (ops/SERP-30-2026-10-12.md #3). The H1 keeps the section's name.
+  title: { absolute: "API Migration Guides: Google Fit, Fitbit Web API & More" },
   description:
     "Step-by-step playbooks for moving a fitness or health integration: Google Fit to Health Connect, direct-to-aggregator, polling to webhooks, and more.",
   alternates: { canonical: MIGRATE_PATH },
   openGraph: {
     type: "website",
-    title: "Fitness & Health API Migration Guides",
+    title: "API Migration Guides: Google Fit, Fitbit Web API & More",
     description:
       "How to migrate an existing fitness/health integration without breaking users: field mapping, historical data, re-consent, and cut-over — one playbook per move.",
     url: MIGRATE_PATH,

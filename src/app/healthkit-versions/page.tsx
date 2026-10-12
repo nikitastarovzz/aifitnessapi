@@ -176,7 +176,7 @@ export default function HealthKitVersionsPage() {
             dataset refresh nobody re-checked the synthesis against moves the
             tables but not `updated`; the line then names both reads. */}
         <p className="mt-3 text-sm text-[var(--muted)]">
-          {HK_IDENTIFIERS.length} identifiers across {BY_VERSION.length} iOS releases · read from
+          {HK_IDENTIFIERS.length} identifiers across {BY_VERSION.length}{" "}iOS releases · read from
           Apple&rsquo;s documentation on {entry.updated}
           <ContentAge date={entry.updated} />
           {entry.updated !== HK_FETCHED_ON && <> · tables re-read {HK_FETCHED_ON}</>}
@@ -345,7 +345,7 @@ export default function HealthKitVersionsPage() {
 
           {UNSTATED.length > 0 && (
             <p className="mt-8 text-sm text-[var(--muted)]">
-              {UNSTATED.length} identifiers carry no iOS availability in Apple&rsquo;s
+              {UNSTATED.length}{" "}identifiers carry no iOS availability in Apple&rsquo;s
               documentation and are not grouped above.
             </p>
           )}

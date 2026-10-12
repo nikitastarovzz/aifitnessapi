@@ -121,7 +121,7 @@ export default function HealthConnectErrorCodesPage() {
           Health Connect error codes and exceptions
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">
-          {count(CONSTANTS.length, "error code")} · {count(CLIENT.length, "Jetpack exception type")} · last fetched from
+          {count(CONSTANTS.length, "error code")} · {count(CLIENT.length, "Jetpack exception type")}{" "}· last fetched from
           Google&rsquo;s reference on {FETCHED}
           <ContentAge date={FETCHED} />
         </p>

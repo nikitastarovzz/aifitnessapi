@@ -14,8 +14,9 @@ import { site } from "@/lib/site";
  * manifest has no media-query form, so it takes the light scheme and the
  * `themeColor` pair keeps handling the dark one.
  *
- * Icons are the two that exist: the static SVG favicon and the generated
- * 180×180 apple-touch PNG. No sizes are claimed that no file can serve.
+ * Icons are the ones that exist: the static SVG favicon, the generated
+ * 180×180 apple-touch PNG, and the 192 and 512 px PNGs in public/. No sizes
+ * are claimed that no file can serve.
  */
 export default function manifest(): MetadataRoute.Manifest {
   return {
@@ -43,6 +44,10 @@ export default function manifest(): MetadataRoute.Manifest {
         sizes: "180x180",
         purpose: "any",
       },
+      // The two raster sizes install prompts look for, drawn from the same
+      // SVG by scripts/build-icons.mjs.
+      { src: "/icon-192.png", type: "image/png", sizes: "192x192", purpose: "any" },
+      { src: "/icon-512.png", type: "image/png", sizes: "512x512", purpose: "any" },
     ],
   };
 }
