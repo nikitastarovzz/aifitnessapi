@@ -41,7 +41,6 @@ export const metadata: Metadata = {
     description:
       "Lookups, builders and planners for health-app developers — each one running client-side off this site's verified HealthKit and Health Connect datasets.",
     url: PATH,
-    images: ["/opengraph-image"],
   },
 };
 

@@ -25,6 +25,7 @@ import { routeLabel } from "@/lib/routeLabel";
 import { HK_IDENTIFIERS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { HK_BASE, buildHkGroups } from "@/data/hkGroupPages";
 import { coverageFor, changesFor, pageCount } from "@/lib/apiCoverage";
+import { allSpokes } from "@/lib/clusterRegistry";
 
 export const dynamicParams = false;
 
@@ -129,6 +130,10 @@ export default async function ApiPage({ params }: { params: Promise<Params> }) {
   const total = pageCount(api.id);
   const changes = changesFor(api);
   const isFirstParty = api.id === "kinestex";
+  // The page the facts were taken from, with its own verification date: a
+  // fresher and truer signal than the directory's review date alone
+  // (ops/SERP-30-2026-10-12.md #26). Pages outside the clusters fall back.
+  const source = allSpokes().find(({ basePath, entry }) => `${basePath}/${entry.slug}` === api.sourceHref);
 
   // What people actually search for about this product, from the weekly live
   // pull (data/apiDemand.ts). Only pages with a known name are listed: a bare
@@ -222,7 +227,17 @@ export default async function ApiPage({ params }: { params: Promise<Params> }) {
           {api.label}
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">
-          Directory entry · last reviewed {UPDATED}
+          {source ? (
+            <>
+              Directory entry · facts from{" "}
+              <Link href={api.sourceHref} className="text-brand-600 hover:text-brand-500">
+                {source.entry.h1}
+              </Link>
+              , last verified {formatDate(source.entry.updated)}
+            </>
+          ) : (
+            <>Directory entry · last reviewed {UPDATED}</>
+          )}
         </p>
 
         {isFirstParty && (

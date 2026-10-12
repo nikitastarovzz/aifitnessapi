@@ -21,7 +21,6 @@ export const metadata: Metadata = {
     title: META_TITLE,
     description: DESCRIPTION,
     url: "/blog",
-    images: ["/opengraph-image"],
   },
 };
 

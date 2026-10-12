@@ -140,7 +140,6 @@ export default function Home() {
   const recent = rest.slice(0, 2);
 
   const clusters = clusterMap();
-  const clusterCount = Object.keys(clusters).length;
   const guideCount = Object.values(clusters).reduce((n, list) => n + list.length, 0);
   const recipeCount = (clusters["/cookbook"] ?? []).length;
   const countByPath = (p: string) => clusters[p]?.length ?? 0;
@@ -246,10 +245,12 @@ export default function Home() {
               <dd className="mt-1 text-xs text-[var(--muted)]">verified guides &amp; comparisons</dd>
             </div>
             <div>
+              {/* The products, not the sections: the number a "fitness api"
+                  searcher is checking us against (ops/SERP-30-2026-10-12.md #23). */}
               <dt className="text-2xl font-bold text-[var(--fg)]">
-                <StatCounter value={clusterCount} />
+                <StatCounter value={API_ENTRIES.length} />
               </dt>
-              <dd className="mt-1 text-xs text-[var(--muted)]">topic hubs, hero to edge case</dd>
+              <dd className="mt-1 text-xs text-[var(--muted)]">fitness APIs in the directory</dd>
             </div>
             <div>
               <dt className="text-2xl font-bold text-[var(--fg)]">
@@ -314,8 +315,8 @@ export default function Home() {
                     </th>
                     <td className="px-4 py-2.5 text-[var(--muted)]">{CATEGORY_LABELS[a.category]}</td>
                     <td className="px-4 py-2.5 text-[var(--fg)]">{DEV_COST_LABELS[a.devCost]}</td>
-                    <td className="px-4 py-2.5 text-[var(--fg)]">{a.approvalGate ? "Yes" : "None documented"}</td>
-                    <td className="px-4 py-2.5 text-[var(--fg)]">{a.userSideCost ? "Yes" : "None documented"}</td>
+                    <td className="whitespace-nowrap px-4 py-2.5 text-[var(--fg)]">{a.approvalGate ? "Yes" : "None documented"}</td>
+                    <td className="whitespace-nowrap px-4 py-2.5 text-[var(--fg)]">{a.userSideCost ? "Yes" : "None documented"}</td>
                   </tr>
                 ))}
               </tbody>

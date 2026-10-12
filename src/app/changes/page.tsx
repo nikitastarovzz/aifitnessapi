@@ -34,7 +34,6 @@ export const metadata: Metadata = {
     description:
       "Deprecations, deadlines, and term changes across the fitness-API ecosystem, graded confirmed vs reported and kept current.",
     url: PAGE_PATH,
-    images: ["/opengraph-image"],
   },
 };
 

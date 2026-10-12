@@ -24,8 +24,8 @@ export const metadata: Metadata = {
   // tested every hub for "fitness api" and ranked none of them
   // (ops/SERP-30-2026-10-12.md #3). The H1 keeps the section's name.
   title: { absolute: "Fitness API Pricing: What Is Free and What You Pay For" },
-  description:
-    "What fitness and health APIs actually cost: most first-party wearable APIs are free to call — the real costs are aggregators, content APIs, and infra.",
+  // The count is the release set's (ops/SERP-30-2026-10-12.md #11).
+  description: `What fitness APIs cost, in ${releasedPricing().length} breakdowns: most first-party wearable APIs are free to call; the real costs are aggregators, content APIs and infra.`,
   alternates: { canonical: PRICING_PATH },
   openGraph: {
     type: "website",
