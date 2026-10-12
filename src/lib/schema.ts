@@ -122,6 +122,17 @@ export function orgRef() {
   return { "@id": ORG_ID };
 }
 
+/**
+ * The same reference with its type and name inline, for consumers that do
+ * not resolve an @id across script blocks. Google's Dataset documentation
+ * asks for creator as a Person or Organization with a name, and the
+ * Organization node lives in the layout's separate JSON-LD block
+ * (ops/SERP-30-2026-10-12.md #12).
+ */
+export function orgNamed() {
+  return { "@type": "Organization", "@id": ORG_ID, name: site.name, url: site.url };
+}
+
 /** BreadcrumbList from an ordered list of {name, path}. path "" = home. */
 export function breadcrumbNode(trail: { name: string; path: string }[]) {
   return {

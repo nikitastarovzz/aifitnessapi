@@ -12,6 +12,30 @@ import { site, absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { getEntry, releasedEntries, PILLAR_PATH, FITNESS_APIS_CONFIG } from "@/data/fitnessApis";
+import { API_ENTRIES, APIS_PATH } from "@/data/apis";
+import type { CostCategory } from "@/data/costModel";
+
+/**
+ * The products the directory files under each job, named under the job they
+ * do: the shortlist a "best fitness API" reader came for, computed from the
+ * cost model's categories so it adds no claim (ops/SERP-30-2026-10-12.md #15).
+ */
+function InDirectory({ categories }: { categories: CostCategory[] }) {
+  const items = API_ENTRIES.filter((a) => categories.includes(a.category));
+  if (!items.length) return null;
+  return (
+    <span className="mt-1 block text-sm text-[var(--muted)]">
+      In the directory:{" "}
+      {items.map((a, i) => (
+        <span key={a.id}>
+          {i > 0 && ", "}
+          <Link href={`${APIS_PATH}/${a.id}`}>{a.short}</Link>
+        </span>
+      ))}
+      .
+    </span>
+  );
+}
 
 const UPDATED = "2026-07-08";
 
@@ -158,29 +182,39 @@ export default function FitnessApisPillar() {
               <strong>Exercise &amp; workout content</strong> — you need a library of movements with
               metadata (muscles, equipment, difficulty) and media. See{" "}
               <Link href={`${PILLAR_PATH}/exercise-database-apis`}>exercise database APIs</Link>.
+              <InDirectory categories={["exercise-content"]} />
             </li>
             <li>
               <strong>Wearable &amp; device data</strong>{" "}— you need a user&rsquo;s steps, heart rate,
               sleep, or workouts from their watch or ring. See{" "}
               <Link href={`${PILLAR_PATH}/wearable-data-apis`}>wearable data APIs</Link>, or compare{" "}
               <Link href={`${PILLAR_PATH}/fitbit-api-vs-garmin-api`}>Fitbit vs Garmin</Link>.
+              <InDirectory categories={["wearable-direct"]} />
             </li>
             <li>
               <strong>Health-data aggregators</strong> — you want one integration that covers many
               wearables at once. See{" "}
               <Link href={`${PILLAR_PATH}/health-data-aggregator-apis`}>health-data aggregators</Link>,
               or <Link href={`${PILLAR_PATH}/terra-vs-vital`}>Terra vs Vital</Link>.
+              <InDirectory categories={["aggregator"]} />
             </li>
             <li>
               <strong>Nutrition &amp; food data</strong> — you need food lookup, macros, or barcodes.
               See <Link href={`${PILLAR_PATH}/nutrition-apis`}>nutrition APIs</Link>.
+              <InDirectory categories={["nutrition"]} />
             </li>
             <li>
               <strong>AI motion tracking</strong> — you want real-time rep counting or form feedback
               from the camera. See{" "}
               <Link href={`${PILLAR_PATH}/ai-workout-tracking-apis`}>AI workout tracking APIs</Link>.
+              <InDirectory categories={["motion-sdk", "pose-model"]} />
             </li>
           </ul>
+          <p className="text-sm">
+            Each name opens its entry in <Link href={APIS_PATH}>the fitness API list</Link>: how it
+            bills developers, what each user must own, and what approval gates launch. KinesteX
+            funds this site and is listed by the same rule as every other product.
+          </p>
           <p>
             Cross-platform mobile apps also have to reason about the OS health stores —{" "}
             <Link href={`${PILLAR_PATH}/apple-healthkit-vs-google-health-connect`}>

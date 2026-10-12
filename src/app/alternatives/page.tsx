@@ -24,8 +24,8 @@ export const metadata: Metadata = {
   // tested every hub for "fitness api" and ranked none of them
   // (ops/SERP-30-2026-10-12.md #3). The H1 keeps the section's name.
   title: { absolute: "Alternatives to Fitbit, Garmin, Strava & Other Fitness APIs" },
-  description:
-    "Considering a switch? Alternatives to Fitbit, Google Fit, Garmin, Strava, Oura, WHOOP, HealthKit, Terra, Nutritionix, and ExerciseDB — and what to use.",
+  // The count is the release set's (ops/SERP-30-2026-10-12.md #11).
+  description: `${releasedAlternatives().length} switching guides, including alternatives to Fitbit, Google Fit, Garmin, Strava, Oura, WHOOP, HealthKit, Terra and ExerciseDB.`,
   alternates: { canonical: ALTERNATIVES_PATH },
   openGraph: {
     type: "website",

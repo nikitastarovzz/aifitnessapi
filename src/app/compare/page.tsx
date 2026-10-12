@@ -24,8 +24,9 @@ export const metadata: Metadata = {
   // tested every hub for "fitness api" and ranked none of them
   // (ops/SERP-30-2026-10-12.md #3). The H1 keeps the section's name.
   title: { absolute: "Health API Head-to-Heads: Oura vs WHOOP, Terra vs Rook" },
-  description:
-    "Head-to-heads for developers: Oura vs WHOOP, Fitbit vs Apple Watch, Terra vs Rook, and more — by data, API access, cost, and which fits your build.",
+  // The count is the release set's, so the description cannot drift from the
+  // hub it describes (ops/SERP-30-2026-10-12.md #11).
+  description: `${releasedCompare().length} developer head-to-heads, Oura vs WHOOP, Fitbit vs Apple Watch, Terra vs Rook and more, compared on data, API access, cost and fit.`,
   alternates: { canonical: COMPARE_PATH },
   openGraph: {
     type: "website",
