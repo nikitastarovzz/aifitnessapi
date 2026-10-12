@@ -107,11 +107,11 @@ export default function AggregationCheckerPage() {
         <p id="answer" className="speakable mt-4 leading-relaxed text-[var(--muted)]">
           Apple states whether a quantity type accumulates or is measured point-in-time in the
           type&rsquo;s prose, not as a property you can read — so the wrong{" "}
-          <code className="font-mono text-sm">HKStatisticsQuery</code> option returns a plausible,
+          <code className="font-mono text-sm">HKStatisticsQuery</code>{" "}option returns a plausible,
           wrong number instead of an error. Type an identifier below and this returns the answer for
-          it, with Apple&rsquo;s own sentence as the evidence. Of the {QUANTITY.length} quantity
+          it, with Apple&rsquo;s own sentence as the evidence. Of the {QUANTITY.length}{" "}quantity
           types read from Apple&rsquo;s documentation on {HK_FETCHED_ON}, {CUMULATIVE} are described
-          as cumulative and {DISCRETE} as discrete; for {UNSTATED} Apple&rsquo;s wording does not say
+          as cumulative and {DISCRETE} as discrete; for {UNSTATED}{" "}Apple&rsquo;s wording does not say
           and neither does this tool.
         </p>
 
@@ -151,7 +151,7 @@ export default function AggregationCheckerPage() {
           <div className="mt-3 space-y-3 text-sm leading-relaxed text-[var(--muted)]">
             <p>
               Everything runs client-side from this site&rsquo;s published dataset — no API call and
-              no lookup service. The {ROWS.length} rows behind the type-ahead were read from
+              no lookup service. The {ROWS.length}{" "}rows behind the type-ahead were read from
               Apple&rsquo;s documentation on {HK_FETCHED_ON} by{" "}
               <code className="font-mono text-xs">scripts/fetch-healthkit-identifiers.mjs</code>.
             </p>

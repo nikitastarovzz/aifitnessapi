@@ -385,7 +385,7 @@ export default function QueryGenerator({ options }: { options: QueryOption[] }) 
 
               {selected.aggregationEvidence && (
                 <blockquote className="mt-5 border-l-2 border-brand-400 pl-4 text-xs leading-relaxed text-[var(--muted)]">
-                  <strong className="text-[var(--fg)]">Why that option:</strong> Apple&rsquo;s
+                  <strong className="text-[var(--fg)]">Why that option:</strong>{" "}Apple&rsquo;s
                   sentence, verbatim — <q className="italic">{selected.aggregationEvidence}</q>
                 </blockquote>
               )}
@@ -395,7 +395,7 @@ export default function QueryGenerator({ options }: { options: QueryOption[] }) 
                   Discrete types are reduced, not summed.{" "}
                   <code className="font-mono">.discreteAverage</code> is emitted here;{" "}
                   <code className="font-mono">.discreteMin</code> and{" "}
-                  <code className="font-mono">.discreteMax</code> are the other two options, and the
+                  <code className="font-mono">.discreteMax</code>{" "}are the other two options, and the
                   accessor has to match the option you chose — Apple&rsquo;s rule is that a query
                   created with <code className="font-mono">discreteAverage</code> must be read with{" "}
                   <code className="font-mono">averageQuantity()</code>.

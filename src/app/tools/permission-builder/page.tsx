@@ -103,7 +103,7 @@ export default function PermissionBuilderPage() {
           {TITLE}
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">
-          {OPTIONS.length} identifiers and {HK_READONLY.length} documented read-only types · read
+          {OPTIONS.length} identifiers and {HK_READONLY.length}{" "}documented read-only types · read
           from Apple&rsquo;s documentation on {HK_FETCHED_ON}
         </p>
 
@@ -208,7 +208,7 @@ export default function PermissionBuilderPage() {
               >
                 integration guide
               </Link>{" "}
-              establishes them. <code className="font-mono">HKQuantityType(.case)</code> is the iOS
+              establishes them. <code className="font-mono">HKQuantityType(.case)</code>{" "}is the iOS
               16+ initializer; the category and characteristic initializers are not established
               here, so the generator names those picks in a comment instead of inventing a
               constructor. Verify every signature against Apple&rsquo;s current documentation

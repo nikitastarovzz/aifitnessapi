@@ -93,7 +93,7 @@ export default function QueryGeneratorPage() {
           {TITLE}
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">
-          {QUANTITY.length} quantity types, {UNSTATED.length} of them with no aggregation style
+          {QUANTITY.length} quantity types, {UNSTATED.length}{" "}of them with no aggregation style
           stated · read from Apple&rsquo;s documentation on {HK_FETCHED_ON}
         </p>
 
@@ -126,7 +126,7 @@ export default function QueryGeneratorPage() {
             Pick the wrong one and nothing throws. You get a number, it renders in your UI, and it
             is wrong — a summed week of heart rate reads in the tens of thousands and looks like a
             bug in someone else&rsquo;s code. That is why, for the{" "}
-            {UNSTATED.length} quantity types Apple&rsquo;s wording does not cover
+            {UNSTATED.length}{" "}quantity types Apple&rsquo;s wording does not cover
             {UNSTATED.length > 0 ? ` — ${UNSTATED.map((r) => r.case).join(", ")} — ` : " "}
             this tool emits nothing at all. A generator that guesses is worse than no generator.
           </p>

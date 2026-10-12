@@ -138,7 +138,7 @@ export default function WearOsDataTypesPage() {
           Wear OS Health Services data types
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">
-          {count(TYPES.length, "data type")} · {count(WITH_PERMISSION.length, "with a listed permission")} · last fetched
+          {count(TYPES.length, "data type")} · {count(WITH_PERMISSION.length, "with a listed permission")}{" "}· last fetched
           from Google&rsquo;s reference on {FETCHED}
           <ContentAge date={FETCHED} />
         </p>

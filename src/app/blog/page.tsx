@@ -5,17 +5,20 @@ import { getAllPosts } from "@/lib/posts";
 import { hubGraph, markdownUrl } from "@/lib/schema";
 import PageSummary from "@/components/PageSummary";
 
+// The <title> leads with what this page is for (ops/SERP-30-2026-10-12.md #3);
+// TITLE stays the section name for the H1 and the structured data.
+const META_TITLE = "Research Notes on Fitness & Health APIs";
 const TITLE = "Fitness & Health API Blog";
 const DESCRIPTION =
   "Product breakdowns, API deep-dives, and playbooks for builders in health, wellness, and fitness tech.";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: META_TITLE },
   description: DESCRIPTION,
   alternates: { canonical: "/blog" },
   openGraph: {
     type: "website",
-    title: TITLE,
+    title: META_TITLE,
     description: DESCRIPTION,
     url: "/blog",
     images: ["/opengraph-image"],

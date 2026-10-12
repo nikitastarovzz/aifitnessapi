@@ -60,6 +60,7 @@ silently reverts it.
 | `src/data/apiDemand.ts` | `node scripts/build-api-demand.mjs` (reads the live pull: `NODE_USE_ENV_PROXY=1 node scripts/search-pull.mjs` in the aifitnessapi environment) |
 | `public/datasets/*.{json,csv}` + `manifest*.json` | `npm run datasets` (build + manifest) |
 | `public/kit/*` | `node scripts/build-kit.mjs` |
+| `public/favicon.ico`, `public/icon-192.png`, `public/icon-512.png`, `public/logo.png` | `node scripts/build-icons.mjs` (rasterizes `src/app/icon.svg` with Playwright's Chromium) |
 | `mcp/data/`, `packages/health-data/data/` | `node scripts/bundle-package-data.mjs` |
 
 Two rules the generators enforce and a change must not weaken:

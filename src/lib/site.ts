@@ -4,6 +4,8 @@
  */
 export const site = {
   name: "AIFitnessAPI",
+  // The same name as words, for search engines and readers who type it so.
+  alternateName: "AI Fitness API",
   // No trailing slash. Used to build absolute URLs for SEO + RSS.
   url: "https://aifitnessapi.com",
   title: "AIFitnessAPI — Fitness API & SDK Guides for Builders",

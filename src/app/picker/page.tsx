@@ -114,7 +114,7 @@ export default function PickerPage() {
             <Link href="/fitness-apis/wearable-data-apis">direct wearable APIs</Link> or the on-device
             stores; for camera-based coaching, to{" "}
             <Link href="/motion">AI motion &amp; pose estimation</Link>; and it factors in cost, privacy,
-            and <Link href="/compliance">compliance</Link> from your priority. It&rsquo;s a starting point,
+            and <Link href="/compliance">compliance</Link>{" "}from your priority. It&rsquo;s a starting point,
             not a verdict.
           </p>
         </section>

@@ -647,6 +647,44 @@ if (fs.existsSync(matrixPath)) {
     }
   }
 
+  // A word glued to the expression or element before it ("5carry",
+  // "Disclosure:KinesteX"). The compiler Next ships drops the leading space of
+  // a JSX text run when that run both contains an HTML entity (&rsquo;,
+  // &amp;, …) and spans more than one line; the same run on one line, or with
+  // a literal ’, keeps it. 69 runs had lost their space when this was found
+  // (2026-10-12). Checked in the source, where the condition is exact; the fix
+  // is an explicit {" "} before the run, never a reflowed paragraph that
+  // happens to dodge the rule.
+  {
+    const { default: ts } = await import("typescript");
+    const tsx = [];
+    (function walk(d) {
+      for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+        const p = path.join(d, e.name);
+        if (e.isDirectory()) walk(p);
+        else if (p.endsWith(".tsx")) tsx.push(p);
+      }
+    })("src");
+    const INLINE = new Set([ts.SyntaxKind.JsxExpression, ts.SyntaxKind.JsxElement, ts.SyntaxKind.JsxSelfClosingElement]);
+    for (const f of tsx) {
+      const src = fs.readFileSync(f, "utf8");
+      if (!/&(#\d+|#x[0-9a-f]+|[a-z]+);/i.test(src)) continue;
+      const sf = ts.createSourceFile(f, src, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+      (function visit(n) {
+        if (n.kind === ts.SyntaxKind.JsxText) {
+          const raw = src.slice(n.pos, n.end);
+          const kids = n.parent.children ? Array.from(n.parent.children) : [];
+          const prev = kids[kids.indexOf(n) - 1];
+          if (prev && INLINE.has(prev.kind) && /^[ \t]+\S/.test(raw) && raw.includes("\n") && /&(#\d+|#x[0-9a-f]+|[a-z]+);/i.test(raw)) {
+            const line = sf.getLineAndCharacterOfPosition(n.pos).line + 1;
+            problems.push(`JSX-ENTITY-SPACE  ${f}:${line} the space after the preceding expression or tag will not render`);
+          }
+        }
+        ts.forEachChild(n, visit);
+      })(sf);
+    }
+  }
+
   // /opensearch.xml surfaced in Google results as if it were a page
   // (GROWTH-30 #29). It is a machine file for browsers, so its response must
   // carry X-Robots-Tag: noindex. The static route's headers land in the

@@ -20,13 +20,16 @@ const UPDATED = "2026-07-23";
 const QUESTION_COUNT = releasedCompare().reduce((n, e) => n + e.faqs.length, 0);
 
 export const metadata: Metadata = {
-  title: "Fitness & Health API Comparisons",
+  // Intent first rather than another "Fitness & Health API …" title: Google
+  // tested every hub for "fitness api" and ranked none of them
+  // (ops/SERP-30-2026-10-12.md #3). The H1 keeps the section's name.
+  title: { absolute: "Health API Head-to-Heads: Oura vs WHOOP, Terra vs Rook" },
   description:
     "Head-to-heads for developers: Oura vs WHOOP, Fitbit vs Apple Watch, Terra vs Rook, and more — by data, API access, cost, and which fits your build.",
   alternates: { canonical: COMPARE_PATH },
   openGraph: {
     type: "website",
-    title: "Fitness & Health API Comparisons",
+    title: "Health API Head-to-Heads: Oura vs WHOOP, Terra vs Rook",
     description:
       "Two products, head to head, through the developer lens — what data each exposes via its API, the access model, cost, and which one fits your app.",
     url: COMPARE_PATH,
@@ -149,7 +152,7 @@ export default function ComparePillar() {
           <p>
             Not weighing two specific products? Browse the{" "}
             <Link href="/fitness-apis">full API landscape</Link> to choose by category, or the{" "}
-            <Link href="/alternatives">alternatives</Link> pages if you&rsquo;re replacing one provider.
+            <Link href="/alternatives">alternatives</Link>{" "}pages if you&rsquo;re replacing one provider.
             Costs come up throughout — the <Link href="/pricing">pricing</Link> pages go deeper.
           </p>
         </div>

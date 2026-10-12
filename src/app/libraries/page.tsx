@@ -123,7 +123,7 @@ export default function LibrariesHub() {
           than native code, and the wrapper decides which data types, frameworks and OS versions you get.
           This page tracks {pages.length} packages — wrappers for React Native, Capacitor, Cordova and
           Flutter, plus Python clients for vendor APIs — with every version, date and licence read from
-          npm, pub.dev and PyPI by a script. {deprecatedCount} of them are marked deprecated or inactive in their own registry
+          npm, pub.dev and PyPI by a script. {deprecatedCount}{" "}of them are marked deprecated or inactive in their own registry
           entry, and several more carry a status note in their README — each page quotes it in the
           project&rsquo;s words.
         </AnswerCapsule>
@@ -280,7 +280,7 @@ export default function LibrariesHub() {
         />
 
         <p className="mt-8 text-sm text-[var(--muted)]">
-          Read by <code className="font-mono text-xs">scripts/fetch-libraries.mjs</code> from the npm registry,
+          Read by <code className="font-mono text-xs">scripts/fetch-libraries.mjs</code>{" "}from the npm registry,
           pub.dev, PyPI and the packages&rsquo; repositories, and refreshed weekly. The list is curated, not
           exhaustive: packages that were placeholders, empty, or had no repository were left out. README notes on
           each page were checked on {LIBRARIES_VERIFIED_ON}. Compiled by {site.name}, which publishes none of these

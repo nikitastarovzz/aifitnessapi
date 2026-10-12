@@ -160,7 +160,7 @@ export default function FitnessApisPillar() {
               <Link href={`${PILLAR_PATH}/exercise-database-apis`}>exercise database APIs</Link>.
             </li>
             <li>
-              <strong>Wearable &amp; device data</strong> — you need a user&rsquo;s steps, heart rate,
+              <strong>Wearable &amp; device data</strong>{" "}— you need a user&rsquo;s steps, heart rate,
               sleep, or workouts from their watch or ring. See{" "}
               <Link href={`${PILLAR_PATH}/wearable-data-apis`}>wearable data APIs</Link>, or compare{" "}
               <Link href={`${PILLAR_PATH}/fitbit-api-vs-garmin-api`}>Fitbit vs Garmin</Link>.

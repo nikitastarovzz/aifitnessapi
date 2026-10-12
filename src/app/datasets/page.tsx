@@ -303,7 +303,7 @@ export default function DatasetsPage() {
           Open Datasets
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">
-          {LOADED.length} datasets &middot; {totalRows} rows &middot; {versionLabel} &middot; CC BY 4.0 &middot;
+          {LOADED.length} datasets &middot; {totalRows} rows &middot; {versionLabel}{" "}&middot; CC BY 4.0 &middot;
           updated {fmtUpdated(UPDATED)}
         </p>
 
@@ -311,7 +311,7 @@ export default function DatasetsPage() {
           AIFitnessAPI publishes {LOADED.length} open datasets about fitness and health APIs, each in
           both JSON and CSV, each versioned 2026.1 and licensed CC BY 4.0 with attribution as the only
           condition: the access-structure survey of{" "}
-          {bySlug["fitness-apis-2026"]} APIs, SDKs and models; the HealthKit &harr; Health Connect
+          {bySlug["fitness-apis-2026"]}{" "}APIs, SDKs and models; the HealthKit &harr; Health Connect
           identifier matrix covering {bySlug["health-data-type-matrix-2026"]} health metrics; the dated
           record of {bySlug["fitness-api-changes-2026"]} ecosystem changes, each graded for evidence
           strength; and the glossary of {bySlug["fitness-api-glossary-2026"]} defined terms. Three rules
@@ -350,7 +350,7 @@ export default function DatasetsPage() {
                   {entry.slug}.csv
                 </a>
                 <Link href={entry.presentedBy.href} className="text-brand-600 hover:text-brand-500">
-                  Read it as a page: {entry.presentedBy.label} &rarr;
+                  Read it as a page: {entry.presentedBy.label}{" "}&rarr;
                 </Link>
               </div>
 

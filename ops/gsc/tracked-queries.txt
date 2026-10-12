@@ -1,0 +1,36 @@
+# Queries tracked week over week by `npm run gsc`: the brand and 30 queries
+# built on "fitness api", from the search-results study in
+# ops/SERP-30-2026-10-12.md. One query per line, lowercase, matched exactly
+# against Search Console's and Bing's query reports. Change the list only
+# with a note in that file, or the trend loses its baseline.
+aifitnessapi
+fitness api
+fitness apis
+free fitness api
+best fitness api for developers
+fitness tracker api
+health and fitness api
+ai fitness api
+fitness app api
+fitness data api wearables
+fitness api pricing
+fitness api comparison
+fitness api list
+open source fitness api github
+fitness api integration guide
+workout exercise fitness api
+api fitness
+google fitness api 2026
+apple fitness api
+garmin fitness api
+fitbit fitness api
+nutrition and fitness api
+ai fitness coach api rep counting
+fitness api python
+exercise database api
+health data aggregator api comparison
+fitness api react native healthkit health connect
+fitness api rapidapi
+fitness api for gym app
+fitness api key free no signup
+pose estimation fitness api

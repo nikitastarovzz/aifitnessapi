@@ -171,7 +171,7 @@ export default function HealthKitUnitsPage() {
             dataset refresh nobody re-checked the synthesis against moves the
             tables but not `updated`; the line then names both reads. */}
         <p className="mt-3 text-sm text-[var(--muted)]">
-          {QUANTITY.length} quantity types across {NAMED_FAMILIES} unit families · read from
+          {QUANTITY.length} quantity types across {NAMED_FAMILIES}{" "}unit families · read from
           Apple&rsquo;s documentation on {entry.updated}
           <ContentAge date={entry.updated} />
           {entry.updated !== HK_FETCHED_ON && <> · tables re-read {HK_FETCHED_ON}</>}
@@ -218,7 +218,7 @@ export default function HealthKitUnitsPage() {
             Quantity types by unit family
           </h2>
           <p className="mt-3 leading-relaxed text-[var(--muted)]">
-            Apple states a unit family in prose for {STATED} of the {QUANTITY.length} quantity
+            Apple states a unit family in prose for {STATED} of the {QUANTITY.length}{" "}quantity
             types. The family is derived from that sentence, never guessed — where the wording does
             not state one the type is listed under &ldquo;no unit family stated&rdquo; rather than
             assigned a plausible family. The family names are Apple&rsquo;s own words, which is why

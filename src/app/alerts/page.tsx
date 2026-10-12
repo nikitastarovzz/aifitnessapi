@@ -76,7 +76,7 @@ export default function AlertsPage() {
           turndown on a developer blog you do not read, and you find out from a support
           ticket. Pick the products your app depends on and we will email you when the{" "}
           changes tracker gains a dated entry naming one of them — {tracked} entries so far,{" "}
-          {confirmed} of them confirmed in a vendor&rsquo;s own words and the rest labelled
+          {confirmed}{" "}of them confirmed in a vendor&rsquo;s own words and the rest labelled
           reported. Nothing else: no sequence, no digest you did not ask for, no sharing your
           address.
         </AnswerCapsule>

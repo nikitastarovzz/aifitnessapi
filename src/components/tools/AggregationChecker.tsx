@@ -158,7 +158,7 @@ export default function AggregationChecker({
         )}
       </div>
       <p className="mt-2 text-xs text-[var(--muted)]">
-        {quantityCount} quantity types and {categoryCount} category types, read from Apple&rsquo;s
+        {quantityCount} quantity types and {categoryCount}{" "}category types, read from Apple&rsquo;s
         documentation on {fetchedOn}. Arrow keys to move, Enter to pick, Escape to close.
       </p>
 

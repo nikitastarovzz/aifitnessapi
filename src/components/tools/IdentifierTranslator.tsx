@@ -210,7 +210,7 @@ export default function IdentifierTranslator({
         )}
       </div>
       <p className="mt-2 text-xs text-[var(--muted)]">
-        {index.covered} of {index.total} Apple identifiers have a counterpart verified against both
+        {index.covered} of {index.total}{" "}Apple identifiers have a counterpart verified against both
         vendors&rsquo; documentation, across {rows.length} metrics.
       </p>
 
@@ -296,7 +296,7 @@ export default function IdentifierTranslator({
         ) : (
           <article className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
             <p className="text-sm leading-relaxed text-[var(--fg)]">
-              <code className="font-mono">{result.term}</code> is not an Apple identifier in this
+              <code className="font-mono">{result.term}</code>{" "}is not an Apple identifier in this
               site&rsquo;s dataset, and not a Health Connect record name in the verified matrix.
               Nothing is guessed from a near-miss spelling.
             </p>

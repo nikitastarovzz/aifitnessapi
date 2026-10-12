@@ -42,7 +42,7 @@ export default function EmbedFrame({
           rel="noreferrer"
           className="font-semibold text-brand-600 hover:text-brand-500"
         >
-          {ctaLabel} &#8599;
+          {ctaLabel}{" "}&#8599;
         </a>{" "}
         &mdash; a free reference from {site.name}. This widget shows whatever the source page says
         today, so it changes when we update it.

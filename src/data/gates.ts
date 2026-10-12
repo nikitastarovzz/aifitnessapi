@@ -299,6 +299,11 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "A robots.txt that does not point crawlers at llms.txt, answers.json and the changes feed.",
   },
   {
+    code: "JSX-ENTITY-SPACE",
+    area: "Content integrity",
+    refuses: "A JSX text run that follows an expression or a tag, starts with a space, contains an HTML entity and spans lines. Next's compiler drops that space, so the page shows the words glued together; 69 such runs were found on 2026-10-12.",
+  },
+  {
     code: "MACHINE-FILE-INDEXABLE",
     area: "Structured data / GEO",
     refuses: "An /opensearch.xml served without an X-Robots-Tag: noindex header. Google once listed the browser search descriptor in its results as if it were a page.",

@@ -104,7 +104,7 @@ export default function ToolsHubPage() {
         </h1>
 
         <p id="answer" className="speakable mt-4 text-lg leading-relaxed text-[var(--muted)]">
-          {ALL_TOOLS.length} tools that answer a question with a lookup instead of an essay. Every
+          {ALL_TOOLS.length}{" "}tools that answer a question with a lookup instead of an essay. Every
           one runs in your browser off this site&rsquo;s published datasets — the HealthKit
           identifier set read from Apple&rsquo;s documentation on {HK_FETCHED_ON}, the HealthKit ↔
           Health Connect matrix verified against both vendors, and the API directory. No account, no

@@ -168,7 +168,7 @@ export default function MatrixPage() {
         <section className="prose prose-neutral max-w-none dark:prose-invert prose-a:text-brand-600 hover:prose-a:text-brand-500">
           <h2>The three things that actually bite</h2>
           <p>
-            <strong>HRV is not one metric.</strong> Apple Watch records SDNN into HealthKit; Health
+            <strong>HRV is not one metric.</strong>{" "}Apple Watch records SDNN into HealthKit; Health
             Connect gives you RMSSD. They&rsquo;re computed differently and don&rsquo;t convert, so a
             single normalized &ldquo;hrv&rdquo; column in your database will silently mix two
             incompatible measures. iOS 27 adds a HealthKit RMSSD identifier, but as of October 2, 2026
@@ -190,7 +190,7 @@ export default function MatrixPage() {
           </p>
           <h2>Two more traps in the pairs</h2>
           <p>
-            <strong>Do not add active calories to total calories.</strong> Apple splits active and
+            <strong>Do not add active calories to total calories.</strong>{" "}Apple splits active and
             basal; Health Connect offers active and total. Those are not the same split, and the rule
             for the Android pair is simply that you must not add active to total &mdash; the result is a
             plausible number that nothing will flag. Both figures are modelled estimates on both
@@ -210,13 +210,13 @@ export default function MatrixPage() {
             2026, several did not have the same shape. Body composition is a short list of Apple
             quantity identifiers against a longer set of Health Connect records, and bone mass and
             body water mass have no counterpart in the Apple column. In the other direction, Apple
-            stores <code>bodyMassIndex</code> as a first-class type while Health Connect&rsquo;s records
+            stores <code>bodyMassIndex</code>{" "}as a first-class type while Health Connect&rsquo;s records
             include no BMI, so the same product either reads BMI or computes it, and the two will not
             agree. Decide whether BMI is stored or derived in your own model, apply that on both
             platforms, and discard the platform&rsquo;s answer where it conflicts with yours.
           </p>
           <p>
-            Sleep differs in what a row is. Apple stores <code>sleepAnalysis</code> category samples,
+            Sleep differs in what a row is. Apple stores <code>sleepAnalysis</code>{" "}category samples,
             each an interval tagged with one value, and &ldquo;last night&rdquo; is something you
             assemble from many of them; Health Connect stores a <code>SleepSessionRecord</code> that is
             the night, with its stages inside. Pick one as your canonical row before you decide how a

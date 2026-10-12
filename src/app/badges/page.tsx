@@ -224,7 +224,7 @@ export default function BadgesPage() {
             nothing that can quietly go stale while still looking current.
           </p>
           <p className="mt-3 text-sm text-[var(--muted)]">
-            The <span className="font-medium text-[var(--fg)]">last verified</span> badge shows the
+            The <span className="font-medium text-[var(--fg)]">last verified</span>{" "}badge shows the
             most recent date something here was actually checked against a source, not today&rsquo;s
             date. A freshness badge that always reads &ldquo;today&rdquo; is decoration.
           </p>

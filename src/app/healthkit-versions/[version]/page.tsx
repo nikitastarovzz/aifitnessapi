@@ -269,7 +269,7 @@ export default async function HkVersionPage({ params }: { params: Promise<Params
           {h1}
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">
-          {g.members.length} of {HK_IDENTIFIERS.length} identifiers · read from Apple&rsquo;s
+          {g.members.length} of {HK_IDENTIFIERS.length}{" "}identifiers · read from Apple&rsquo;s
           documentation on {HK_FETCHED_ON}
           <ContentAge date={HK_FETCHED_ON} />
         </p>
@@ -388,7 +388,7 @@ export default async function HkVersionPage({ params }: { params: Promise<Params
                       </span>
                     );
                   })}
-                  . Read from the <code>deprecatedAt</code> version on Apple&rsquo;s platform entries.
+                  . Read from the <code>deprecatedAt</code>{" "}version on Apple&rsquo;s platform entries.
                 </>
               )}
             </li>

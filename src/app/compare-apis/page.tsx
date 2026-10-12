@@ -88,7 +88,7 @@ export default function CompareApisPage() {
         </h1>
 
         <AnswerCapsule>
-          Pick any two of the {items.length} products in the directory and see the four things
+          Pick any two of the {items.length}{" "}products in the directory and see the four things
           that decide a schedule: how each bills developers, what every end user has to own or
           pay for, what approval stands between you and launch, and roughly how much
           integration work it is. There is no score and no winner — these fields describe how

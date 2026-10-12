@@ -74,7 +74,7 @@ export default function ChangelogPage() {
       <Breadcrumbs trail={[{ name: "Home", path: "/" }, { name: "Changelog", path: "/changelog" }]} />
       <h1 className="mt-6 text-4xl font-bold tracking-tight text-[var(--fg)]">Site changelog</h1>
       <p id="answer" className="mt-4 max-w-2xl text-lg text-[var(--muted)]">
-        {lines.length} logged changes, rendered from the append-only operational log this
+        {lines.length}{" "}logged changes, rendered from the append-only operational log this
         site&rsquo;s daily routine writes to. Not curated for appearance — this is the record.
       </p>
       <p className="mt-2 text-sm text-[var(--muted)]">

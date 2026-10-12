@@ -145,7 +145,7 @@ export default function HealthKitCategoryValuesPage() {
             dataset refresh nobody re-checked the synthesis against moves the
             tables but not `updated`; the line then names both reads. */}
         <p className="mt-3 text-sm text-[var(--muted)]">
-          {CATEGORY.length} category types · {WITH_ENUM.length} with a named value enum · read from
+          {CATEGORY.length} category types · {WITH_ENUM.length}{" "}with a named value enum · read from
           Apple&rsquo;s documentation on {entry.updated}
           <ContentAge date={entry.updated} />
           {entry.updated !== HK_FETCHED_ON && <> · tables re-read {HK_FETCHED_ON}</>}

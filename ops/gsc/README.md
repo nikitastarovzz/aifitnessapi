@@ -49,6 +49,15 @@ including — Position. Headers match case-insensitively. Position is optional
 but without it every page is scored as if it ranked first, which makes the
 opportunity ranking meaningless.
 
+## Tracked queries
+
+`ops/gsc/tracked-queries.txt` holds the brand and the 30 "fitness api" queries
+from the search-results study (ops/SERP-30-2026-10-12.md). Every `npm run gsc`
+prints them with Google's and Bing's numbers side by side; a dash on Google
+means the query was not disclosed, not that we were not shown. The Google
+section also prints how many `www.` URLs Google still reports, which should
+fall as the apex redirect consolidates.
+
 ## How a page gets ranked
 
 Opportunity is `impressions × (expected CTR for its position − actual CTR)`:

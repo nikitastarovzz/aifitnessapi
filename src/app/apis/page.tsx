@@ -11,16 +11,19 @@ import { CATEGORY_ORDER } from "@/data/costModel";
 import { pageCount } from "@/lib/apiCoverage";
 
 const UPDATED = "2026-08-22";
-const TITLE = "Fitness & Health API Directory";
+const TITLE = "The fitness API list";
+// "fitness api list" and "best fitness api" are list queries, and the pages
+// that rank for them are lists; the count comes from the data, so it cannot
+// drift (ops/SERP-30-2026-10-12.md #4).
+const META_TITLE = `Fitness API List: ${API_ENTRIES.length} Wearable, Health & AI Motion APIs`;
 
 export const metadata: Metadata = {
-  title: { absolute: `${TITLE} · AIFitnessAPI` },
-  description:
-    "Every fitness, wearable, nutrition and AI motion API we cover, on one page: how each bills you, what your users must own, and what gates launch.",
+  title: { absolute: META_TITLE },
+  description: `${API_ENTRIES.length} fitness, wearable, nutrition and AI motion APIs on one page: how each bills you, what your users must own, and what approval gates launch.`,
   alternates: { canonical: APIS_PATH },
   openGraph: {
     type: "website",
-    title: TITLE,
+    title: META_TITLE,
     description:
       "How each fitness and health API bills you, what your users must own, and what approval gates launch — with every page we have written about it.",
     url: APIS_PATH,
@@ -43,6 +46,10 @@ export default function ApiDirectory() {
   const total = API_ENTRIES.length;
   const withGate = API_ENTRIES.filter((a) => a.approvalGate).length;
   const withUserCost = API_ENTRIES.filter((a) => a.userSideCost).length;
+  // The two questions a list reader asks first, answered from the same fields
+  // the cards below show (ops/SERP-30-2026-10-12.md #4).
+  const freeToStart = API_ENTRIES.filter((a) => a.devCost === "free" || a.devCost === "free-tier-then-paid");
+  const noGate = API_ENTRIES.filter((a) => !a.approvalGate);
 
   const graph = {
     "@context": "https://schema.org",
@@ -76,21 +83,62 @@ export default function ApiDirectory() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(graph) }}
       />
       <div className="mx-auto max-w-3xl">
-        <Breadcrumbs trail={[{ name: "Home", path: "/" }, { name: "API directory", path: APIS_PATH }]} />
+        <Breadcrumbs trail={[{ name: "Home", path: "/" }, { name: "Fitness API list", path: APIS_PATH }]} />
 
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
-          Fitness &amp; health API directory
+          The fitness API list
         </h1>
 
         <AnswerCapsule>
           {total} products, each with one page stating how it bills developers, what every end
           user has to own or pay for before data flows, and what approval stands between you
-          and launch. {withGate} of the {total} carry an approval gate and {withUserCost} carry
+          and launch. {withGate} of the {total} carry an approval gate and {withUserCost}{" "}carry
           a cost on the user&rsquo;s side — the two things that sink a schedule and are
           hardest to find in vendor documentation. There are no prices anywhere here by
           design: structures are stable, numbers are not, and a stale figure damages a
           citable source more than a missing one.
         </AnswerCapsule>
+
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          <div className="rounded-2xl border border-[var(--border)] p-5">
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+              Free to start ({freeToStart.length})
+            </h2>
+            <p className="mt-2 text-sm leading-relaxed text-[var(--fg)]">
+              {freeToStart.map((a, i) => (
+                <span key={a.id}>
+                  {i > 0 && ", "}
+                  <Link href={`${APIS_PATH}/${a.id}`} className="text-brand-600 hover:text-brand-500">
+                    {a.short}
+                  </Link>
+                </span>
+              ))}
+            </p>
+            <p className="mt-2 text-xs text-[var(--muted)]">
+              Free to call or with a free tier, per each entry. Free to start is not free to
+              run: some carry approval gates or costs on the user&rsquo;s side.
+            </p>
+          </div>
+          <div className="rounded-2xl border border-[var(--border)] p-5">
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+              No approval documented ({noGate.length})
+            </h2>
+            <p className="mt-2 text-sm leading-relaxed text-[var(--fg)]">
+              {noGate.map((a, i) => (
+                <span key={a.id}>
+                  {i > 0 && ", "}
+                  <Link href={`${APIS_PATH}/${a.id}`} className="text-brand-600 hover:text-brand-500">
+                    {a.short}
+                  </Link>
+                </span>
+              ))}
+            </p>
+            <p className="mt-2 text-xs text-[var(--muted)]">
+              No approval gate in the sources we checked, which is not the same as there being
+              none.
+            </p>
+          </div>
+        </div>
 
         <div className="prose prose-neutral mt-8 max-w-none dark:prose-invert prose-a:text-brand-600 hover:prose-a:text-brand-500">
           <p>

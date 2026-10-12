@@ -178,7 +178,7 @@ export default function HealthKitHub() {
           HealthKit, mapped
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">
-          {HK_IDENTIFIERS.length} identifiers in {GROUP_COUNT} groups · read from Apple&rsquo;s
+          {HK_IDENTIFIERS.length} identifiers in {GROUP_COUNT}{" "}groups · read from Apple&rsquo;s
           documentation on {HK_FETCHED_ON}
           <ContentAge date={HK_FETCHED_ON} />
         </p>
@@ -187,7 +187,7 @@ export default function HealthKitHub() {
           Apple documents each HealthKit identifier on its own page and never as a set, so the
           questions you hit while building — can I sum this one, what unit does it come back in, does
           it exist on Android — are the ones the reference cannot answer. These {GROUP_COUNT} pages
-          take the {HK_IDENTIFIERS.length} identifiers a group at a time and answer all three, with
+          take the {HK_IDENTIFIERS.length}{" "}identifiers a group at a time and answer all three, with
           every field joined from Apple&rsquo;s own documentation rather than restated from memory.
         </PageSummary>
 

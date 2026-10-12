@@ -152,7 +152,7 @@ export default function ErrorDiagnoser({
       <div aria-live="polite" className="mt-6">
         {matches === null ? (
           <p className="text-sm text-[var(--muted)]">
-            Nothing to match yet. The matcher runs over {errors.length} HKError.Code cases read from
+            Nothing to match yet. The matcher runs over {errors.length}{" "}HKError.Code cases read from
             Apple&rsquo;s documentation on {fetchedOn} and {fixes.length} troubleshooting guides on
             this site.
           </p>
@@ -169,7 +169,7 @@ export default function ErrorDiagnoser({
                   Every HealthKit error code
                 </Link>{" "}
                 <span className="text-[var(--muted)]">
-                  — all {errors.length} HKError.Code cases with Apple&rsquo;s own description.
+                  — all {errors.length}{" "}HKError.Code cases with Apple&rsquo;s own description.
                 </span>
               </li>
               <li>
