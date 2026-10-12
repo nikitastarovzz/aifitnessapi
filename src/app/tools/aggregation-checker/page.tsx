@@ -119,6 +119,33 @@ export default function AggregationCheckerPage() {
           <AggregationChecker rows={ROWS} fetchedOn={HK_FETCHED_ON} />
         </section>
 
+        <section className="mt-14">
+          <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">
+            Why the wrong choice stays silent
+          </h2>
+          <p className="mt-4 leading-relaxed text-[var(--muted)]">
+            Most products do not aggregate inside HealthKit. They read raw samples, write them into
+            their own database and roll them up later in SQL or a worker, and from then on nothing in
+            the table remembers which kind of quantity a row holds, so a{" "}
+            <code className="font-mono text-sm">SUM()</code> runs happily over heart rates. Averaging a
+            cumulative type gives the mean of whatever chunks the device chose to write, which changes
+            between a phone and a watch. Summing a discrete type gives a number that grows with how
+            many samples exist. Neither throws, and neither fails a test written against a fixture
+            built on the same wrong assumption.
+          </p>
+          <p className="mt-4 leading-relaxed text-[var(--muted)]">
+            The test that needs no lookup: should doubling the time window roughly double the number?
+            Distance and energy do; a heart rate or a body weight does not. When the answer is not
+            obvious, look the type up above, then store its aggregation style next to every value you
+            write into your own schema, so the rollup code can refuse to sum something it should not.
+            Where Apple states no style, do not build a rollup on an assumption. As of September 1,
+            2026 that meant three quantity types, appleSleepingBreathingDisturbances,
+            estimatedWorkoutEffortScore and workoutEffortScore, and the October 2, 2026 read added
+            heartRateVariabilityRMSSD. Show the samples you have, or probe the behaviour yourself and
+            write down what you found.
+          </p>
+        </section>
+
         <details className="mt-14 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
           <summary className="cursor-pointer font-semibold text-[var(--fg)]">How this works</summary>
           <div className="mt-3 space-y-3 text-sm leading-relaxed text-[var(--muted)]">

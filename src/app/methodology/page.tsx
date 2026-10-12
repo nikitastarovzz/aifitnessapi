@@ -111,6 +111,26 @@ export default function MethodologyPage() {
           by the time you read a page, the vendor may have moved.
         </p>
 
+        <h2>What a verification stamp does not tell you</h2>
+        <p>
+          As of September 1, 2026, a stamp moves only when someone reopens the primary source and
+          confirms the page still matches it; no maintenance script touches dates, and a claim
+          that cannot be reconfirmed is cut or hedged rather than left under an old date.
+          Re-checks are scheduled by stamp age, oldest first, because choosing by what comes to
+          mind leaves the quiet pages to rot. Pages show how long ago they were checked and flag
+          anything past 90 days, a threshold that is our judgement about tolerable staleness, not
+          a finding.
+        </p>
+        <p>
+          A stamp says a person read a source on a date. It does not say the fact is still true:
+          a vendor can change a page the day after we read it, and nothing in this process would
+          know until the next check. The build asserts that published citation anchors resolve,
+          which proves a link is not dead, not that the page behind it still says what we said it
+          said, and a generated dataset that parses fewer rows than it declares fails the build.
+          Treat an old stamp on a commercial term with more suspicion than an old stamp on an API
+          surface, because pricing and access are what vendors change without announcing.
+        </p>
+
         <h2>Who pays for this, and independence</h2>
         <p>
           {site.name} is run by the team behind{" "}

@@ -204,6 +204,28 @@ export default function MatrixPage() {
             else&rsquo;s &mdash; and de-duplication matters here, because a phone and a watch both write
             steps for the same walk.
           </p>
+          <h2>Same metric, different shape</h2>
+          <p>
+            All ten metrics exist on both platforms, but when we compared the rows on September 1,
+            2026, several did not have the same shape. Body composition is a short list of Apple
+            quantity identifiers against a longer set of Health Connect records, and bone mass and
+            body water mass have no counterpart in the Apple column. In the other direction, Apple
+            stores <code>bodyMassIndex</code> as a first-class type while Health Connect&rsquo;s records
+            include no BMI, so the same product either reads BMI or computes it, and the two will not
+            agree. Decide whether BMI is stored or derived in your own model, apply that on both
+            platforms, and discard the platform&rsquo;s answer where it conflicts with yours.
+          </p>
+          <p>
+            Sleep differs in what a row is. Apple stores <code>sleepAnalysis</code> category samples,
+            each an interval tagged with one value, and &ldquo;last night&rdquo; is something you
+            assemble from many of them; Health Connect stores a <code>SleepSessionRecord</code> that is
+            the night, with its stages inside. Pick one as your canonical row before you decide how a
+            nap, or a night that crosses a timezone change, is handled. Routes differ in access rather
+            than shape: Health Connect gates them behind their own permission, so a user can grant you
+            workouts and still withhold the map, and your workout screen needs a state for a session
+            with no route. Workout activity types do not map by name either; keep the mapping in a
+            table you own and log the misses.
+          </p>
           <h2>Where to go next</h2>
           <p>
             Setting one up? The <Link href="/integrate/healthkit">HealthKit</Link> and{" "}

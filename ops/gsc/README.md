@@ -1,12 +1,38 @@
 # Search Console exports land here
 
-`npm run gsc` reports on two sources:
+`npm run gsc` reports on these sources:
 
 1. **`data/gsc/latest.json`** — the Search Console API snapshot, read
    automatically. This is where the site's real data has been living. Until
    2026-10-02 the report never looked at it, so `npm run gsc` printed "no
    data" with 116 KB of it sitting in the repo.
-2. **CSVs in this directory** — manual exports, merged on top.
+2. **`data/gsc/bing-latest.json`** — Bing's query report for the same window
+   (`byQuery`), read as Bing's own query list.
+3. **CSVs in this directory** — exports, merged on top. Only the newest CSV
+   per engine is read: each file is a full 28-day report, so reading a week's
+   file and the next one together would count the overlap twice.
+
+## The live pull (since 2026-10-12)
+
+Inside the aifitnessapi cloud environment:
+
+```
+NODE_USE_ENV_PROXY=1 node scripts/search-pull.mjs   # Google + Bing, last 28 days of final data
+node scripts/build-api-demand.mjs                   # regenerates src/data/apiDemand.ts
+npm run gsc
+```
+
+`scripts/search-pull.mjs` reads Search Console through the environment
+proxy's read-only credential (send no Authorization header; never request
+Firebase keys for it) and Bing through `BING_WEBMASTER_API_KEY`, which it never
+prints. It writes `data/gsc/latest.json` (with a country × device breakdown,
+which the report uses for the CTR line without US desktop), a dated snapshot
+in `data/gsc/snapshots/` that `--compare` reads, `data/gsc/bing-latest.json`
+and `bing-YYYY-MM-DD.csv` here. Bing's query → page pairs come from one call
+per query and are partial (Bing names a page for few queries); absent pairs
+mean Bing did not say. A short or failed read writes nothing. Outside that
+environment Search Console answers 401/403 and the committed files are the
+fallback. A weekly routine runs it and opens a pull request.
 
 ## What to export
 
@@ -16,8 +42,7 @@ Google Search Console → Performance → Pages tab → Export → CSV, named
 Bing Webmaster Tools → Search Performance → Pages export → `bing-YYYY-MM-DD.csv`.
 
 Bing is reported **separately**, not averaged in. Its click curve is not
-Google's, and a blended CTR describes neither engine. There is currently no
-Bing data of any kind for this site.
+Google's, and a blended CTR describes neither engine.
 
 Expected columns: a page/URL column plus Clicks, Impressions, and — worth
 including — Position. Headers match case-insensitively. Position is optional

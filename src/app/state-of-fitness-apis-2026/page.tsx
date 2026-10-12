@@ -155,7 +155,7 @@ Directly above them, the **3 AI motion SDKs** are all commercial: KinesteX and S
 
 That gap is the finding. BlazePose returns 33 landmarks per frame; MoveNet returns 17 keypoints. Both stop there. Rep counting, per-exercise form rules, calibration, exercise content and cross-device tuning are not in the box, and they are not a one-time build — they recur as maintenance every time a new phone or a new exercise arrives.
 
-**What it means:** the build-versus-buy question in AI fitness is not "can I get keypoints for free" (yes, trivially) but "who maintains everything between keypoints and a workout." Compare [MediaPipe and MoveNet](/motion/mediapipe-vs-movenet) at the model layer, [KinesteX vs MediaPipe](/compare/kinestex-vs-mediapipe) across the gap, and [fitness API vs build your own](/fitness-apis/fitness-api-vs-build-your-own) for scope.
+**What it means:** the build-versus-buy question in AI fitness is not "can I get keypoints for free" (yes, trivially) but "who maintains everything between keypoints and a workout." Compare [MediaPipe and MoveNet](/motion/pose-estimation-models-compared#mediapipe-vs-movenet-head-to-head) at the model layer, [KinesteX vs MediaPipe](/compare/kinestex-vs-mediapipe) across the gap, and [fitness API vs build your own](/fitness-apis/fitness-api-vs-build-your-own) for scope.
 
 ### 7. Usage-based billing is rare, and it is mostly a way to buy back time
 

@@ -647,6 +647,24 @@ if (fs.existsSync(matrixPath)) {
     }
   }
 
+  // /opensearch.xml surfaced in Google results as if it were a page
+  // (GROWTH-30 #29). It is a machine file for browsers, so its response must
+  // carry X-Robots-Tag: noindex. The static route's headers land in the
+  // build's .meta file, which is what a deploy serves.
+  {
+    const metaPath = ".next/server/app/opensearch.xml.meta";
+    let noindexHeader = false;
+    if (fs.existsSync(metaPath)) {
+      try {
+        const h = JSON.parse(fs.readFileSync(metaPath, "utf8")).headers ?? {};
+        noindexHeader = /noindex/i.test(h["x-robots-tag"] ?? h["X-Robots-Tag"] ?? "");
+      } catch {
+        noindexHeader = false;
+      }
+    }
+    if (!noindexHeader) problems.push("MACHINE-FILE-INDEXABLE  /opensearch.xml is served without X-Robots-Tag: noindex");
+  }
+
   if (robotsTxt === null) problems.push("GEO-NO-ROBOTS  robots.txt missing from build output");
   else {
     const required = [

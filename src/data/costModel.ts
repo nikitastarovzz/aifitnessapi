@@ -430,7 +430,7 @@ export const COST_ITEMS: CostItem[] = [
   },
 
   // provenance: "MediaPipe/BlazePose, MoveNet, and PoseNet are Apache-2.0" — /motion/pose-estimation-models-compared
-  // provenance: "the MoveNet MultiPose card contained no license line, so confirm MultiPose licensing" — /motion/mediapipe-vs-movenet
+  // provenance: "the text we extracted from it has no license line" (MoveNet MultiPose card) — /motion/pose-estimation-model-licenses
   {
     id: "movenet",
     label: "TensorFlow MoveNet",
@@ -441,7 +441,7 @@ export const COST_ITEMS: CostItem[] = [
     engEffort: "high",
     notes:
       "Free and Apache-2.0 for the single-person models, 17 2D keypoints, Lightning tuned for latency. One licensing gap to close yourself: the MultiPose model card we read carried no license line, so confirm it independently before shipping commercially.",
-    sourceHref: "/motion/mediapipe-vs-movenet",
+    sourceHref: "/motion/pose-estimation-model-licenses",
   },
 
   // provenance: "free within the Apple toolchain but iOS and macOS only" — /fitness-apis/ai-workout-tracking-apis

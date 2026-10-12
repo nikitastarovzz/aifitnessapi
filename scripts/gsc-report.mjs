@@ -143,10 +143,30 @@ if (fs.existsSync(JSON_SNAPSHOT)) {
   g.sources.push(`${JSON_SNAPSHOT} (${snap.range?.start ?? "?"} → ${snap.range?.end ?? "?"})`);
 }
 
+// ---- source 1b: Bing queries from the live pull ---------------------------
+// scripts/search-pull.mjs writes Bing's query rows beside the page CSV. Bing
+// names the query behind almost every click, where Google withholds most, so
+// its queries are read as their own evidence (ops/DAILY-CONTENT.md §2).
+const BING_JSON = "data/gsc/bing-latest.json";
+if (fs.existsSync(BING_JSON)) {
+  const b = JSON.parse(fs.readFileSync(BING_JSON, "utf8"));
+  for (const r of b.byQuery ?? []) {
+    addQuery(engines.bing, r.keys[0], { clicks: r.clicks, impressions: r.impressions, position: r.position });
+  }
+  engines.bing.range = b.range ?? null;
+  engines.bing.sources.push(`${BING_JSON} queries (${b.range?.start ?? "?"} → ${b.range?.end ?? "?"})`);
+}
+
 // ---- source 2: manual CSV exports ------------------------------------------
-const csvFiles = fs.existsSync(CSV_DIR)
-  ? fs.readdirSync(CSV_DIR).filter((f) => f.endsWith(".csv")).sort()
-  : [];
+// Newest file per engine only. scripts/search-pull.mjs writes a dated
+// bing-YYYY-MM-DD.csv every week; summing them would count each page once per
+// pull. Filenames sort by date, so the last one per engine is the newest.
+const csvFiles = (() => {
+  const all = fs.existsSync(CSV_DIR) ? fs.readdirSync(CSV_DIR).filter((f) => f.endsWith(".csv")).sort() : [];
+  const newest = new Map();
+  for (const f of all) newest.set(/^bing/i.test(f) ? "bing" : "google", f);
+  return [...newest.values()];
+})();
 
 for (const f of csvFiles) {
   const engineKey = /^bing/i.test(f) ? "bing" : "google";
@@ -220,6 +240,25 @@ for (const [name, engine] of Object.entries(engines)) {
   console.log(
     `\n  ${rows.length} pages · ${totImp} impressions · ${totClicks} clicks · CTR ${(totImp ? (totClicks / totImp) * 100 : 0).toFixed(2)}%`,
   );
+
+  // US desktop distorts every click-through number on this site: in the
+  // 28 days to 2026-10-10 it was 39% of impressions at 0.26% CTR
+  // (GROWTH-30 #24). Property-level rows can be split by country and device
+  // without losing the withheld queries; page-level rows cannot, so this line
+  // is the honest check before reading any page's CTR as a leak.
+  if (name === "google" && apiSnap?.byCountryDevice?.length) {
+    const cd = apiSnap.byCountryDevice;
+    const isUsDesktop = (r) => r.keys[0] === "usa" && r.keys[1] === "DESKTOP";
+    const tot = (rs) => rs.reduce((a, r) => [a[0] + r.clicks, a[1] + r.impressions], [0, 0]);
+    const pct = ([c, i]) => (i ? ((c / i) * 100).toFixed(2) : "0.00");
+    const all = tot(cd);
+    const us = tot(cd.filter(isUsDesktop));
+    const rest = tot(cd.filter((r) => !isUsDesktop(r)));
+    console.log(
+      `  property CTR ${pct(all)}% · excluding US desktop ${pct(rest)}% · US desktop alone ${pct(us)}% ` +
+        `(${us[1]} impressions, ${all[1] ? ((us[1] / all[1]) * 100).toFixed(0) : 0}% of all)`,
+    );
+  }
 
   // Page-one pages earning nothing: the clearest statement of a CTR problem,
   // and invisible under the old site-average benchmark.

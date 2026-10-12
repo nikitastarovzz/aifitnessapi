@@ -222,7 +222,6 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
     ],
     nativeLinks: [
       ...HK_LINKS,
-      { href: "/blog/react-native-health-stale", label: "Your HealthKit bridge last shipped in 2024", why: "What a long release gap does and does not tell you about this package." },
       { href: "/sdk-releases", label: "Health SDK release tracker", why: "This package's GitHub releases, refreshed daily." },
     ],
     faqs: [

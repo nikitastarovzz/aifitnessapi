@@ -248,7 +248,7 @@
       "devCost": "free",
       "userSideCost": null,
       "approvalGate": null,
-      "source": "https://aifitnessapi.com/motion/mediapipe-vs-movenet"
+      "source": "https://aifitnessapi.com/motion/pose-estimation-model-licenses"
     },
     {
       "id": "apple-vision",

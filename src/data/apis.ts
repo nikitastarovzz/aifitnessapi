@@ -100,6 +100,40 @@ export const API_ENTRIES: ApiEntry[] = COST_ITEMS.filter((i) => !EXCLUDED.has(i.
   short: SHORT[i.id] ?? i.label,
 }));
 
+/**
+ * Directory pages kept out of search indexes (noindex, follow) and out of the
+ * sitemap. ops/GROWTH-30-2026-10-12.md #17, decided 2026-10-12 from the live
+ * pull for 2026-09-12 to 2026-10-09 (src/data/apiDemand.ts).
+ *
+ * A product keeps an indexable page when searches naming it reached this site
+ * at least 20 times on Google or 10 on Bing in those 28 days (the bar the
+ * daily playbook sets for a proven gap; the two engines are never added), and
+ * those searches surfaced at least one other page here, so its page opens
+ * with what developers search for about it and where each search is answered.
+ * Below that, a product page is a directory row competing with the pages that
+ * already answer its searches. These pages stay for readers, site search and
+ * the machine surfaces.
+ *
+ * The rule binds first-party KinesteX like everyone else: no product-named
+ * search for it was disclosed in the window. Junction cleared the Bing bar on
+ * searches that mostly say "vital", but none of them mapped to a page here.
+ * Re-judged at the 2026-10-31 review; scripts/build-api-demand.mjs prints
+ * where each pull disagrees with this list.
+ */
+export const NOINDEX_APIS = new Set([
+  "junction",
+  "rook",
+  "nutritionix",
+  "edamam",
+  "usda-fdc",
+  "open-food-facts",
+  "wger",
+  "kinestex",
+  "sency",
+  "quickpose",
+  "apple-vision",
+]);
+
 export function getApi(id: string): ApiEntry | undefined {
   return API_ENTRIES.find((a) => a.id === id);
 }

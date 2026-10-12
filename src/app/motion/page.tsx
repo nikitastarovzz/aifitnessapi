@@ -40,7 +40,6 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
     slugs: [
       "pose-estimation-models-compared",
       "pose-estimation-model-licenses",
-      "mediapipe-vs-movenet",
       "mediapipe-pose-landmarker-models",
       "apple-vision-body-pose",
       "2d-vs-3d-pose-estimation",

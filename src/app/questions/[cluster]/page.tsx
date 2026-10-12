@@ -104,6 +104,12 @@ export async function generateMetadata({
   return {
     title,
     description,
+    // noindex, follow since 2026-10-12 (ops/GROWTH-30-2026-10-12.md #16, which
+    // reverses GROWTH-50-2026-10 item 43): about 75% of a question index's text
+    // repeats its spokes' FAQs, and 16 of the 26 had never been shown in Google.
+    // The pages stay for readers, site search and the machine surfaces; the
+    // sitemap no longer lists them (SITEMAP-NOINDEX in qa.mjs holds that).
+    robots: { index: false, follow: true },
     alternates: { canonical },
     openGraph: {
       images: ["/opengraph-image"], type: "website", title, description, url: canonical },
