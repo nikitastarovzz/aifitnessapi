@@ -26,6 +26,7 @@ export const RELEASED_MIGRATE = new Set<string>([
   "adapt-to-strava-api-changes",
   "keep-users-connected-during-migration",
   "migrate-off-a-deprecated-fitness-api",
+  "fitbit-research-studies-after-turndown",
 ]);
 
 export const allMigrate: ClusterEntry[] = migrateEntries;

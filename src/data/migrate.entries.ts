@@ -869,5 +869,123 @@ export const migrateEntries: ClusterEntry[] =
     "cta": {
       "pitch": "Get a heads-up on fitness and health API deprecations before the turndown date catches your integration off guard."
     }
+  },
+  {
+    "slug": "fitbit-research-studies-after-turndown",
+    "primaryQuery": "fitbit data for research studies after the web api turndown",
+    "h1": "Fitbit Data for Research Studies After the Web API Turndown",
+    "metaTitle": "Fitbit Research Studies After the Web API Turndown",
+    "metaDescription": "Moving an enrolled Fitbit study to the Google Health API before the October 30, 2026 turn-off: re-consent, the research attestation, gaps and backfill.",
+    "updated": "2026-10-12",
+    "answer": "Google ended support for the Fitbit Web API on September 30, 2026 and turns it off on October 30, 2026, which is 18 days away as of October 12, 2026. Fitbit Web API tokens cannot be transferred to its successor, the Google Health API, so every participant whose data you still need has to re-consent with a Google Account. Google's research policy also requires approval or a waiver from an independent review board, such as an IRB or ethics committee. Missing the cutoff does not have to cost you a participant's data, because Google says it stays available while they keep syncing to the Google Health app and can be backfilled once they re-authenticate, though your dataset may have a gap until then.",
+    "body": "## Where things stand, as of October 12, 2026\n\nGoogle's [developer documentation](https://developers.google.com/health/about) says the Fitbit Web API \"is now called the Google Health API\". End of support came on September 30, 2026. The old API keeps operating, but Google no longer fixes bugs or provides API support. On October 30, 2026, Google turns it off, and it \"will no longer function or sync data to or from Fitbit users\". As of October 12, 2026, that is 18 days away.\n\nGoogle says current integrations \"must migrate their applications and users to the Google Health API and Google OAuth 2.0 as soon as possible\". The [general Fitbit Web API to Google Health API migration guide](/migrate/fitbit-web-api-to-google-health) covers the engineering: Google OAuth, endpoint mapping, and running both paths side by side. This page covers what a study adds on top of that.\n\nThis page is not legal or IRB advice; confirm what your study needs with your IRB or ethics committee and with counsel.\n\n## What Google's research rules add\n\nGoogle publishes a [Google Health API User Data and Health Research Policy](https://developers.google.com/health/policies/health-api-user-data-and-research-policy) and a [Google Health API Research Pledge](https://developers.google.com/health/policies/health-api-research-pledge), both marked \"Effective as of March 24, 2026\". The policy says the API may be used for human subjects research only if the research is submitted for review, reviewed or approved by an independent board, such as an IRB under 45 C.F.R. §§ 46.101-115 or an Ethics Committee under Directive 2001/20/EC or 2005/28/EC. Google may \"deny or revoke your authorization for health research\". What lands on a study team:\n\n- **Health Research Attestation.** A completed intake form, the IRB/EC approval or waiver letter, the IRB/EC accreditation, and the exact data requested with the rationale for its use.\n- **Restricted scopes.** Google's overview says every Google Health API scope is Restricted and needs a privacy and security review for access.\n- **Disclosure.** A dialogue box, or a series of them, covering nature, purpose and duration; risks and benefits; privacy, security and data handling; a point of contact; retention periods; how to withdraw; how to delete one's data through the study lifecycle; and anything else the board requires. Participants must be able to save, store or email it, and each must sign before participating. Google says to follow the FDA's \"Use of Electronic Informed Consent Questions and Answers\" or substantially similar standards.\n- **Limited Use.** Use data only for its intended purpose, \"Immediately de-identify participant data to the greatest extent possible\", get separate informed consent for any new study unless the board explicitly waives it, and keep access need-to-know. Disclose a Limited Use statement in the app or on a website. Google's example reads: \"The use of information received from Google Health API will adhere to the Google Health API User Data and Health Research Policy, including the Limited Use requirements.\"\n\n## Devices and variables to check against your protocol\n\n- **Devices.** Google says all Fitbit devices and Google Pixel watches, current and previous, collect data returned through the Google Health API, and the types available depend on what each device supports. The data-types page notes an exception: \"Fitbit Ace devices are not supported by the Health API.\" A study with children enrolled on Ace devices needs a plan now.\n- **Variables.** Google's [data-types table](https://developers.google.com/health/data-types) lists 44 data types, such as `steps`, `heart-rate` and `sleep`, each with its scope, webhook support, storage resolution and compatible devices. Storage resolution is the minimum interval at which data points are stored, for example 1 minute for steps. Google warns that the API \"is actively evolving\", so check every variable in your analysis plan against the table.\n- **Missingness.** The \"True zeros support\" column marks types that can record an explicit zero, so an active zero, such as zero active minutes, is distinguishable from missing or unrecorded data. Code the two differently; see [storing a missing day versus a zero day](/architecture/missing-data-and-gaps).\n- **Streams.** Google offers a Reconciled Stream that reconciles overlapping data from multiple sources, and a first-party stream of Fitbit and Pixel devices plus manual entries. Our recommendation: name yours in the data-management plan.\n\n## Build your own integration or use a research platform\n\nOur recommendation turns on four factors.\n\n| Factor | Points toward building | Points toward a platform |\n| --- | --- | --- |\n| Engineering capacity | Engineers who can run Google OAuth, webhooks and the Restricted-scope review | Nobody on the team who can |\n| Time | The work fits in the 18 days left as of October 12, 2026 | It does not fit |\n| Participants | Few enough to walk through re-authorization one at a time | Too many to handle by hand |\n| Platform status | Your platform has not finished its own move to the Google Health API | It confirms in writing that it has |\n\nAsk any platform, in writing, whether it has completed its own move to the Google Health API and how it handles participant re-consent. The policy binds \"Health Research Applications and Web Services\", so a platform does not remove the study's own IRB and consent duties. We could not verify any research platform's features or migration status, so this page names none.\n\n## The move, step by step\n\n1. **Triage the roster.** For each participant still collecting data, record device model, legacy Fitbit user ID, collection end date, and whether they have signed in to the Google Health mobile app. Flag Ace devices. Google wants every user migrated as soon as possible, but in our reading a participant finishing before October 30 can be completed on the legacy API, which keeps operating, unsupported, until then. Pull and check their data before it stops.\n2. **File the attestation and scope request.** Assemble the four attestation items and request only the scopes the protocol needs, in line with the Pledge's data minimization. File now, not after the engineering is done.\n3. **Take the change to your board.** In our reading, a re-authorization campaign is new participant contact. Ask your IRB or ethics committee whether it needs an amendment and what participants must be told.\n4. **Update consent and disclosure.** The policy requires confirming a participant's eligibility before obtaining informed consent and requesting access to their data, so screen first. Then check your consent documents against Google's disclosure list and add the Limited Use statement. If the study sets up participants' Google accounts, the Pledge says not to use their real name or email address and to default to the most privacy-protective settings.\n5. **Map participant IDs before the first new sync.** `users.getIdentity` returns both `legacyUserId` and `healthUserId`. A legacy ID is a 6-character alphanumeric string and a `healthUserId` is \"a string of up to 63 digits & characters\", so check column widths. Our recommendation: keep the pair in the study's coded linkage table, away from the analysis dataset. [Mapping users to wearable accounts](/architecture/identity-and-account-linking) covers the account model.\n6. **Run the re-authorization campaign.** Every participant must re-consent with a Google Account and sign in to the Google Health mobile app before you can sync their data. Until they sign in, calls return HTTP 400 with reason `ACCOUNT_NOT_LINKED`; Google says not to mark them connected and to keep their legacy connection and tokens. Completing Google Health authorization must automatically disable legacy syncing and revoke legacy tokens, so never dual-link anyone. [Keeping users connected during a migration](/migrate/keep-users-connected-during-migration) covers re-consent and migrating in waves.\n7. **Plan for participants who miss October 30.** Google says their data stays available \"as long as they continue syncing their device to the Google Health app\" and can be backfilled once they re-authenticate, though you may have a gap. Ask them to keep syncing, log each gap window, and run [a resumable backfill job](/architecture/historical-backfill).\n8. **Update the data-management and publication plans.** Record each participant's switch date and the stream you read, then apply the rules below.\n\nGoogle's [migration guide](https://developers.google.com/health/migration) advises making re-consent mandatory only \"after several weeks of warnings\", never prompting mid-workout, and keeping a graceful recovery path after the cutoff. With 18 days left as of October 12, 2026, we would warn now and lean on that recovery path.\n\n## Publication and prohibited uses\n\nGoogle's policy says you \"may not suggest that Fitbit approves of the study design, scientific validity of the research, or otherwise endorses the study findings unless provided in writing by Fitbit\". It asks you to notify Fitbit for the Fitbit Publication Library, disclose the data source and prefer summary-level aggregate data. Publishing individual-level de-identified data calls for an accepted technique \"like differential privacy\" or an expert determination that re-identification risk is very small. The Pledge warns that some Fitbit information, like daily step counts, \"may be publicly visible on Fitbit in accordance with users' privacy settings, or on social media\". Google also recommends an NIH Certificate of Confidentiality.\n\nThe policy's examples of prohibited uses include ads, selling to data brokers or resellers, credit-worthiness or lending, and PHI uses without a valid HIPAA Authorization reviewed by an IRB or EC.",
+    "steps": [
+      {
+        "name": "Triage the participant roster",
+        "text": "For each participant still collecting data, record the device model, the legacy Fitbit user ID, the collection end date, and whether they have signed in to the Google Health mobile app. Flag Fitbit Ace devices, which Google says the Health API does not support. For anyone whose collection ends before October 30, 2026, pull and check their data on the legacy API now."
+      },
+      {
+        "name": "File the attestation and scope request",
+        "text": "Submit Google's Health Research Attestation: the intake form, the IRB or ethics committee approval or waiver letter, the board's accreditation, and the exact data requested with its rationale. Every Google Health API scope is Restricted and needs a privacy and security review, so request only what the protocol needs and file now."
+      },
+      {
+        "name": "Take the change to your board",
+        "text": "Ask your IRB or ethics committee whether the re-authorization campaign and the move to the Google Health API need an amendment, and what participants must be told."
+      },
+      {
+        "name": "Update consent and disclosure",
+        "text": "Confirm eligibility before consent, check your disclosure against the items Google's research policy lists, and make sure participants can save, store or email it and sign before they continue. Add the Limited Use statement, and if the study sets up Google accounts for participants, do not use their real names or email addresses and default their settings to the most privacy-protective option."
+      },
+      {
+        "name": "Map participant IDs",
+        "text": "Call users.getIdentity, which returns both the legacy user ID and the Google Health user ID, and store the pair in the study's coded linkage table. Size the column for a Google Health user ID of up to 63 digits and characters."
+      },
+      {
+        "name": "Run the re-authorization campaign",
+        "text": "Each participant must re-consent with a Google Account and sign in to the Google Health mobile app; until they do, keep their legacy connection active and do not mark them connected. Completing Google Health authorization must disable legacy syncing and revoke legacy tokens, so never dual-link anyone, and start the warnings now."
+      },
+      {
+        "name": "Plan for participants who miss October 30",
+        "text": "Google says their data stays available as long as they keep syncing their device to the Google Health app, and can be backfilled through the Google Health API once they re-authenticate. Ask them to keep syncing, log each participant's gap window, and schedule the backfill."
+      },
+      {
+        "name": "Update the data-management and publication plans",
+        "text": "Record each participant's switch date and which data stream you read. Before publishing, do not suggest Fitbit endorses the study unless Fitbit says so in writing, disclose the data source, and prefer summary-level aggregate data."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "What happens to a study participant's Fitbit data if they have not re-authorized by October 30, 2026?",
+        "a": "Google says the data stays available as long as the participant keeps syncing their device to the Google Health app, but your dataset may have a gap for that person. Once they re-authenticate through the Google Health API, Google says you can backfill their historical data. Log each participant's gap window so you can check the backfilled records against it."
+      },
+      {
+        "q": "What goes into Google's Health Research Attestation for a Fitbit study?",
+        "a": "Google's research policy lists four items: a completed intake form, the IRB or ethics committee approval or waiver letter, the board's accreditation, and the exact data requested with the rationale for its use. Google also classifies every Google Health API scope as Restricted, which requires a privacy and security review. We have no verified processing time for either, so file early."
+      },
+      {
+        "q": "Should a study team build its own Google Health API integration or use a research data platform?",
+        "a": "Our recommendation is to build only if you already have engineers who can run Google OAuth, webhooks and the Restricted-scope review within the 18 days left as of October 12, 2026, and few enough participants to re-authorize one at a time. Otherwise use a platform, but only one that confirms in writing that it has completed its own move to the Google Health API and explains how it handles re-consent. Either way, a platform does not remove the study's own IRB and consent duties under Google's policy."
+      },
+      {
+        "q": "Can a pediatric study keep collecting from Fitbit Ace devices through the Google Health API?",
+        "a": "No. Google's data-types page notes that Fitbit Ace devices are not supported by the Health API, and Google says the Fitbit Web API stops functioning on October 30, 2026. We could not verify any other documented route for Ace data, so raise it with your IRB or ethics committee and your sponsor now."
+      },
+      {
+        "q": "Do participants who already signed our consent form have to consent again for the Google Health API?",
+        "a": "They at least have to re-authorize, because Google says existing Fitbit access and refresh tokens cannot be transferred, which requires users to re-consent. Whether your signed informed-consent document also needs revising is for your IRB or ethics committee to decide. Google's research policy lists what the participant disclosure must cover, so compare your current document against that list before you ask."
+      }
+    ],
+    "related": [
+      {
+        "href": "/migrate/fitbit-web-api-to-google-health",
+        "label": "Migrate the Fitbit Web API to the Google Health API"
+      },
+      {
+        "href": "/fitbit-api-shutdown",
+        "label": "Fitbit API shutdown status"
+      },
+      {
+        "href": "/compliance/health-data-user-consent",
+        "label": "Valid user consent for health data"
+      },
+      {
+        "href": "/alternatives/fitbit-api-alternatives",
+        "label": "Fitbit API alternatives"
+      },
+      {
+        "href": "/migrate",
+        "label": "All migration playbooks"
+      }
+    ],
+    "cta": {
+      "pitch": "Google says the Health API is actively evolving. Subscribe and we'll flag changes to the turn-off, the research policy and the data-type list as Google publishes them."
+    },
+    "sources": [
+      {
+        "url": "https://developers.google.com/health/about",
+        "checked": "2026-10-12",
+        "note": "Rename to the Google Health API; September 30, 2026 end of support and October 30, 2026 turn-off; migrate as soon as possible; all scopes Restricted with a privacy and security review; device coverage; Reconciled Stream and first-party stream; API actively evolving."
+      },
+      {
+        "url": "https://developers.google.com/health/migration",
+        "checked": "2026-10-12",
+        "note": "Tokens cannot be transferred and users must re-consent; Google Health app sign-in and ACCOUNT_NOT_LINKED handling; no dual-linking; users.getIdentity with legacyUserId and healthUserId formats; data availability, gaps and backfill after re-authentication; re-consent timing, no mid-workout prompts, recovery path."
+      },
+      {
+        "url": "https://developers.google.com/health/data-types",
+        "checked": "2026-10-12",
+        "note": "44 data types with scope, webhook support, storage resolution and compatible devices; true zeros support; storage resolution example of 1 minute for steps; Fitbit Ace devices not supported."
+      },
+      {
+        "url": "https://developers.google.com/health/policies/health-api-user-data-and-research-policy",
+        "checked": "2026-10-12",
+        "note": "Effective date; independent board review with the IRB and Ethics Committee citations; approval or waiver required; Health Research Applications and Web Services; deny or revoke; Health Research Attestation items; eligibility before consent; disclosure contents; FDA e-consent guidance; Limited Use and example statement; prohibited uses; NIH Certificate of Confidentiality; publication rules."
+      },
+      {
+        "url": "https://developers.google.com/health/policies/health-api-research-pledge",
+        "checked": "2026-10-12",
+        "note": "Effective date; data minimization; privacy-protective Google accounts for research subjects; public step-count re-identification warning."
+      }
+    ]
   }
 ];
