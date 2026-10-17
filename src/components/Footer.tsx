@@ -179,6 +179,9 @@ export default function Footer() {
           <FooterLink href="/health-mcp-servers" className="py-1 hover:text-[var(--fg)]">
             Health MCP servers
           </FooterLink>
+          <FooterLink href="/bluetooth-fitness" className="py-1 hover:text-[var(--fg)]">
+            Bluetooth GATT byte layouts
+          </FooterLink>
           {SDK_REPOS.length > 0 && (
             <FooterLink href="/sdk-releases" className="py-1 hover:text-[var(--fg)]">
               SDK release tracker

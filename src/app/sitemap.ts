@@ -24,6 +24,7 @@ import { hkPageIdentifiers, hkIdentifierPath, hkPageModified } from "@/data/hkId
 import { hsPageTypes, hsDataTypePath, hsPageModified } from "@/data/hsDataTypePages";
 import { GHAPI_PATHS, allTypes as ghapiTypes, typePath as ghapiTypePath, ghapiModified } from "@/data/ghapiPages";
 import { MCP_SERVERS_FETCHED_ON } from "@/data/mcpHealthServers";
+import { BT_BASE, BT_FETCHED, BT_PAGES, btPath } from "@/data/btPages";
 
 /**
  * Every row carries a `lastmod` that some dated record on the site backs, or
@@ -183,6 +184,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/health-mcp-servers", MCP_SERVERS_FETCHED_ON],
   ];
 
+  // Bluetooth GATT reference (generated from the Bluetooth SIG's repository):
+  // the hub and every characteristic page declare the fetch date as
+  // dateModified.
+  const btRows = [row(BT_BASE, BT_FETCHED), ...BT_PAGES.map((c) => row(btPath(c), BT_FETCHED))];
+
   // The list is empty until the authored entries land, and an empty list
   // emits no rows.
   const hkGroupDates = releasedHkGroups().map((g) => [g.slug, hkGroupModified(g.slug)] as const);
@@ -276,6 +282,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...ghapiRows,
     ...libRows,
     ...generatedRefs.map(([p, d]) => row(p, d)),
+    ...btRows,
     // Products without search demand of their own are noindex (NOINDEX_APIS).
     ...API_ENTRIES.filter((a) => !NOINDEX_APIS.has(a.id)).map((a) => row(`${APIS_PATH}/${a.id}`)),
     ...issues.map((d) => row(`${DIGEST_PATH}/${d.month}`, digestDate(d))),

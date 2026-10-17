@@ -32,6 +32,7 @@ import { HS_DATA_TYPES } from "@/data/healthServicesDataTypes";
 import { POSE_SCHEMES } from "@/data/poseKeypoints";
 import { POSE_BASE, schemeDescription, schemeTitle, schemePath } from "@/data/poseKeypointPages";
 import { MCP_HEALTH_SERVERS } from "@/data/mcpHealthServers";
+import { BT_ALL, BT_BASE, BT_PAGES, BT_HUB_TITLE, btDescription, btHubDescription, btPath, btTitle } from "@/data/btPages";
 import {
   orderedRecords,
   recordPath,
@@ -377,6 +378,17 @@ export function GET() {
       ...new Set(MCP_HEALTH_SERVERS.map((s) => s.name.split("/")[1] ?? s.name)),
     ].join(" "),
   );
+
+  // Bluetooth GATT reference (generated from the Bluetooth SIG's YAML).
+  add(
+    BT_BASE,
+    BT_HUB_TITLE,
+    btHubDescription(),
+    ["bluetooth ble gatt characteristic uuid service byte layout flags ftms heart rate cycling power", ...BT_ALL.flatMap((c) => [c.name, c.uuid])].join(" "),
+  );
+  for (const c of BT_PAGES) {
+    add(btPath(c), btTitle(c), btDescription(c), [c.name, c.uuid, c.id, "bluetooth gatt characteristic byte layout", ...(c.gss?.structure.map((f) => f.name) ?? [])].join(" "));
+  }
 
   add(
     APIS_PATH,

@@ -74,6 +74,7 @@ const MAIN = [
   { href: "/google-health-api/webhooks", label: "Google Health API webhooks" },
   { href: "/google-health-api/errors", label: "Google Health API error codes" },
   { href: "/health-mcp-servers", label: "MCP servers for health and fitness data" },
+  { href: "/bluetooth-fitness", label: "Bluetooth GATT characteristics for fitness devices, byte by byte" },
   { href: "/libraries", label: "Open-source health & fitness libraries" },
   ...(SDK_REPOS.length > 0 ? [{ href: "/sdk-releases", label: "Health SDK release tracker" }] : []),
   { href: "/day-boundaries", label: "Why “today’s steps” is a bug (live demo)" },

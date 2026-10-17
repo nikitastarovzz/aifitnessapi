@@ -33,6 +33,7 @@ import { HS_DATA_TYPES } from "@/data/healthServicesDataTypes";
 import { POSE_CROSSWALK, POSE_SCHEMES } from "@/data/poseKeypoints";
 import { POSE_BASE, schemeDescription, schemeH1, schemePath } from "@/data/poseKeypointPages";
 import { MCP_HEALTH_SERVERS, MCP_SERVERS_FETCHED_ON } from "@/data/mcpHealthServers";
+import { BT_BASE, BT_PAGES, btDescription, btH1, btHubDescription, btPath, btTotals } from "@/data/btPages";
 import {
   orderedRecords,
   recordPath,
@@ -448,6 +449,18 @@ export function GET() {
     ...GHAPI_TOPICS.map((p) => `- [Google Health API ${p.label.toLowerCase()}](${absoluteUrl(p.path)}): ${p.blurb}`),
     ...ghapiTypes().map((t) => `- [${ghapiTypeH1(t)}](${absoluteUrl(ghapiTypePath(t))}): ${ghapiTypeDescription(t)}`),
   );
+
+  // Bluetooth GATT reference, generated from the Bluetooth SIG's own YAML
+  // (assigned numbers + GATT Specification Supplement). No markdown mirrors.
+  {
+    const bt = btTotals();
+    lines.push(
+      "",
+      "## Bluetooth GATT reference for fitness devices",
+      `- [Bluetooth GATT characteristics for fitness and health devices](${absoluteUrl(BT_BASE)}): ${btHubDescription()} ${bt.characteristics} characteristics in UUID order, ${bt.services} services with their UUIDs, and how a Flags field makes fields optional, told from the SIG's own lines. A characteristic is tied to a service only where the SIG's permitted-characteristics lists say so.`,
+      ...BT_PAGES.map((c) => `- [${btH1(c)}](${absoluteUrl(btPath(c))}): ${btDescription(c)}`),
+    );
+  }
 
   // Open-source wrappers around the platform stores and vendor APIs, with
   // registry facts generated weekly. No markdown mirrors.
