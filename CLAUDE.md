@@ -56,6 +56,7 @@ silently reverts it.
 | `src/data/hcReleases.ts` | `node scripts/fetch-hc-releases.mjs` (Google's androidx Health Connect release notes) |
 | `src/data/healthkitMetadataKeys.ts` | `node scripts/fetch-healthkit-metadata-keys.mjs` (Apple's metadata-keys docs JSON + Workout Metadata Keys sub-collection + one JSON per key; `--offline` reparses `.cache/healthkit-metadata-keys`) |
 | `src/data/healthServicesDataTypes.ts` | `NODE_USE_ENV_PROXY=1 node scripts/fetch-health-services-data-types.mjs` (Jetpack DataType Kotlin reference + Health Services permissions guide, `?hl=en`; `--offline` reparses `.cache/health-services`) |
+| `src/data/poseKeypoints.ts` | `NODE_USE_ENV_PROXY=1 node scripts/fetch-pose-keypoints.mjs` (MediaPipe, TF.js, MMPose, Ultralytics and OpenPose source files on raw.githubusercontent.com, ML Kit's PoseLandmark reference, Apple's Vision docs JSON; `--offline` reparses `.cache/pose-keypoints`) |
 | `src/data/published.ts` | `node scripts/backfill-published.mjs` |
 | `src/data/apiDemand.ts` | `node scripts/build-api-demand.mjs` (reads the live pull: `NODE_USE_ENV_PROXY=1 node scripts/search-pull.mjs` in the aifitnessapi environment) |
 | `public/datasets/*.{json,csv}` + `manifest*.json` | `npm run datasets` (build + manifest) |

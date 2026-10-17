@@ -3,6 +3,8 @@ import { LIBRARIES_BASE, LIBRARY_COMPARISONS, libraryPages } from "@/data/librar
 import { hkStandaloneEntries } from "@/data/hkStandalone.entries";
 import { PAGE_H1 } from "@/data/pageTitles";
 import { API_ENTRIES, APIS_PATH } from "@/data/apis";
+import { POSE_SCHEMES } from "@/data/poseKeypoints";
+import { schemeH1, schemePath } from "@/data/poseKeypointPages";
 
 /**
  * A page's name, for links built from data rather than written by hand (the
@@ -21,6 +23,7 @@ const STANDALONE: Record<string, string> = {
   "/compare": "Fitness & Health API Comparisons",
   "/healthkit-queries": "HealthKit Queries",
   "/health-connect-api": "Health Connect API",
+  "/pose-keypoints": "Pose Estimation Keypoint Maps",
 };
 
 let INDEX: Map<string, string> | null = null;
@@ -35,6 +38,7 @@ function build(): Map<string, string> {
   // The directory page's H1 is the product's full label (app/apis/[id]).
   for (const a of API_ENTRIES) m.set(`${APIS_PATH}/${a.id}`, a.label);
   for (const [path, label] of Object.entries(PAGE_H1)) m.set(path, label);
+  for (const s of POSE_SCHEMES) m.set(schemePath(s), schemeH1(s));
   for (const [path, label] of Object.entries(STANDALONE)) m.set(path, label);
   return m;
 }

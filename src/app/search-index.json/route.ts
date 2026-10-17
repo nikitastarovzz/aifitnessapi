@@ -29,6 +29,8 @@ import { releasedPhoneSensors, SENSORS_PATH } from "@/data/phoneSensors";
 import { releasedHealthConnectApi, HCAPI_PATH } from "@/data/healthConnectApi";
 import { HK_METADATA_KEYS } from "@/data/healthkitMetadataKeys";
 import { HS_DATA_TYPES } from "@/data/healthServicesDataTypes";
+import { POSE_SCHEMES } from "@/data/poseKeypoints";
+import { POSE_BASE, schemeDescription, schemeTitle, schemePath } from "@/data/poseKeypointPages";
 import {
   orderedRecords,
   recordPath,
@@ -296,6 +298,20 @@ export function GET() {
     `All ${HS_DATA_TYPES.length} Health Services DataType constants with Google's description, declared Kotlin type and the permission Google's table lists.`,
     ["wear os health services datatype data types exerciseclient passivemonitoringclient", ...HS_DATA_TYPES.map((t) => t.name)].join(" "),
   );
+  add(
+    POSE_BASE,
+    "Pose estimation keypoint maps",
+    `Every index of ${POSE_SCHEMES.length} pose keypoint schemes read from the models' own sources, with the models that use each and a name-only crosswalk.`,
+    ["pose keypoints landmarks index order crosswalk mapping", ...POSE_SCHEMES.map((s) => s.shortName)].join(" "),
+  );
+  for (const s of POSE_SCHEMES) {
+    add(
+      schemePath(s),
+      schemeTitle(s),
+      schemeDescription(s),
+      [s.shortName, "keypoints landmarks index", ...s.usedBy.map((u) => u.model), ...s.points.map((p) => p.name)].join(" "),
+    );
+  }
 
   add(
     APIS_PATH,

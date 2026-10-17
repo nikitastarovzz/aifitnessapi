@@ -210,6 +210,22 @@ const ENTRIES: Entry[] = [
     caveat:
       "The permission column is set only where Google's permissions table names the constant, and the table row ships beside it in permissionEvidence; a constant the table does not name has a null permission, not an inferred one.",
   },
+  {
+    slug: "pose-keypoint-maps-2026",
+    unit: "keypoints",
+    blurb:
+      "Every point of the pose-estimation keypoint schemes this site covers — COCO 17, MediaPipe BlazePose 33, ML Kit, Halpe26, COCO-WholeBody, OpenPose BODY_25 and COCO 18, and Apple Vision 2D and 3D — with its index and name exactly as the model's own source spells them, the models a source ties to each scheme, and the source file's branch and hash.",
+    keywords: [
+      "pose estimation keypoints",
+      "COCO keypoints",
+      "MediaPipe pose landmarks",
+      "OpenPose BODY_25",
+      "keypoint mapping",
+    ],
+    presentedBy: { href: "/pose-keypoints", label: "Pose estimation keypoint maps" },
+    caveat:
+      "crosswalkKey is derived, not copied: the name lowercased with separators removed. Points are joined on that key alone, so a shared row means the names match, not that two models place the point in the same spot, and names that differ stay unmapped rather than guessed.",
+  },
 ];
 
 const LOADED = ENTRIES.map((e) => ({ entry: e, file: loadDataset(e.slug) }));
