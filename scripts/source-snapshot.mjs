@@ -148,6 +148,10 @@ for (const url of urls) {
       console.log(`\n===== SNAPSHOT ${url} | status ${res.status} | fetched ${entry.fetchedAt} | final ${res.url}`);
       console.log(text.slice(0, PRINT_CHARS));
       if (text.length > PRINT_CHARS) console.log(`[... ${text.length - PRINT_CHARS} more characters in the artifact]`);
+      if (isHtml) {
+        const links = sameHostLinks(raw, res.url || url).slice(0, 120);
+        if (links.length) console.log(`LINKS (${links.length}):\n${links.join("\n")}`);
+      }
       console.log(`===== END ${url}\n`);
     }
     entry.file = file;
