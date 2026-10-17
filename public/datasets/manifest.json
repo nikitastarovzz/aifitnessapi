@@ -1,6 +1,18 @@
 {
-  "generated": "2026-10-12",
+  "generated": "2026-10-17",
   "files": [
+    {
+      "file": "bluetooth-fitness-gatt-2026.csv",
+      "bytes": 203249,
+      "rows": 378,
+      "sha256": "1ba7221e63d7a46fab84c2f8c5ff67ef36200810072895f08450f3df7e627362"
+    },
+    {
+      "file": "bluetooth-fitness-gatt-2026.json",
+      "bytes": 384778,
+      "rows": 378,
+      "sha256": "d0e0d5a6d6394b61b98d561d6324c318d3276727f91d12321796e67383adc345"
+    },
     {
       "file": "fitness-api-changes-2026.csv",
       "bytes": 7339,

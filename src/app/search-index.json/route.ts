@@ -29,6 +29,7 @@ import { releasedPhoneSensors, SENSORS_PATH } from "@/data/phoneSensors";
 import { releasedHealthConnectApi, HCAPI_PATH } from "@/data/healthConnectApi";
 import { HK_METADATA_KEYS } from "@/data/healthkitMetadataKeys";
 import { HS_DATA_TYPES } from "@/data/healthServicesDataTypes";
+import { BT_ALL, BT_BASE, BT_PAGES, BT_HUB_TITLE, btDescription, btHubDescription, btPath, btTitle } from "@/data/btPages";
 import {
   orderedRecords,
   recordPath,
@@ -296,6 +297,17 @@ export function GET() {
     `All ${HS_DATA_TYPES.length} Health Services DataType constants with Google's description, declared Kotlin type and the permission Google's table lists.`,
     ["wear os health services datatype data types exerciseclient passivemonitoringclient", ...HS_DATA_TYPES.map((t) => t.name)].join(" "),
   );
+
+  // Bluetooth GATT reference (generated from the Bluetooth SIG's YAML).
+  add(
+    BT_BASE,
+    BT_HUB_TITLE,
+    btHubDescription(),
+    ["bluetooth ble gatt characteristic uuid service byte layout flags ftms heart rate cycling power", ...BT_ALL.flatMap((c) => [c.name, c.uuid])].join(" "),
+  );
+  for (const c of BT_PAGES) {
+    add(btPath(c), btTitle(c), btDescription(c), [c.name, c.uuid, c.id, "bluetooth gatt characteristic byte layout", ...(c.gss?.structure.map((f) => f.name) ?? [])].join(" "));
+  }
 
   add(
     APIS_PATH,

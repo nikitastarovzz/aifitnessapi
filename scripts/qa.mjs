@@ -331,6 +331,7 @@ if (fs.existsSync(matrixPath)) {
     "health-connect-permissions-2026",
     "healthkit-metadata-keys-2026",
     "wear-os-health-services-data-types-2026",
+    "bluetooth-fitness-gatt-2026",
   ];
   // Both directions. Listing files catches a DELETION (a dataset a page
   // still cites); scanning the directory catches an ADDITION that was never
@@ -1829,6 +1830,100 @@ if (fs.existsSync(matrixPath)) {
         }
       }
       if (!missing.length) console.log(`Wear OS data types: ${types.length} constants rendered, ${withPermission.length} with a permission from Google's table.`);
+    }
+  }
+
+  // Bluetooth GATT reference (ops/EXPANSION-3-2026-10-17.md item 4.3, added
+  // 2026-10-17). The Bluetooth SIG's repository read that day gave 97 in-scope
+  // characteristics, 90 with a gss structure and 44 passing the thin-page rule
+  // (the generator's own floors). The failure that matters is the quiet one:
+  // a page that builds and reads fine with a field missing from its layout,
+  // or a hub that drops a characteristic. So the hub must carry a row for
+  // every in-scope characteristic and link every page; every page must show
+  // every structure field (name, type and size as published) and render every
+  // definition and struct row the SIG's file gives; the thin-page rule must
+  // hold both ways; and a derived value must travel with its line.
+  {
+    const src = fs.readFileSync("src/data/bluetoothGatt.ts", "utf8");
+    const chars = jsonArray(src, "BT_CHARACTERISTICS");
+    const hub = htmlOf("/bluetooth-fitness");
+    if (!chars || chars.length < 97) {
+      problems.push(`BT-GATT-ROWS  src/data/bluetoothGatt.ts yields ${chars?.length ?? 0} characteristics, expected at least 97`);
+    } else if (!hub) {
+      problems.push("BT-GATT-ROWS  /bluetooth-fitness was not built");
+    } else {
+      const withStructure = chars.filter((c) => c.gss);
+      const eligible = chars.filter((c) => c.hasPage);
+      if (withStructure.length < 90) problems.push(`BT-GATT-ROWS  only ${withStructure.length} characteristics carry a gss structure, expected at least 90`);
+      if (eligible.length < 44) problems.push(`BT-GATT-ROWS  only ${eligible.length} characteristics pass the thin-page rule, expected at least 44`);
+      const hubLinks = hrefsIn(hub);
+      for (const c of chars) {
+        if (!hub.includes(`id="char-${c.slug}"`)) {
+          problems.push(`BT-GATT-HUB  /bluetooth-fitness has no row for ${c.name} (${c.uuid})`);
+        } else if (c.gss && !c.hasPage) {
+          // A structure the thin-page rule keeps on the hub is shown there, in its row.
+          const row = rowOf(hub, `char-${c.slug}`) ?? "";
+          for (const f of c.gss.structure) {
+            if (!row.includes(f.name) || !row.includes(f.type) || !row.includes(f.size)) {
+              problems.push(`BT-GATT-HUB  /bluetooth-fitness row for ${c.name} does not show its field ${f.name} (${f.type}, ${f.size})`);
+            }
+          }
+        }
+        const passes = !!c.gss && (c.gss.structure.length >= 2 || c.gss.flagsFields.length > 0);
+        if (passes !== c.hasPage) problems.push(`BT-GATT-THIN  ${c.name} is marked hasPage=${c.hasPage} but the rule (two fields or a flags field) says ${passes}`);
+      }
+      const want = new Set(eligible.map((c) => `/bluetooth-fitness/${c.slug}`));
+      for (const r of htmls.map(routeOf).filter((r) => /^\/bluetooth-fitness\/[a-z0-9-]+$/.test(r) && !notFoundSet.has(r))) {
+        if (!want.has(r)) problems.push(`BT-GATT-THIN  ${r} is built, but its characteristic does not pass the thin-page rule`);
+      }
+      const norm = (s) => String(s).replace(/\s+/g, " ").trim();
+      let fieldsShown = 0;
+      for (const c of eligible) {
+        const route = `/bluetooth-fitness/${c.slug}`;
+        const html = htmlOf(route);
+        if (!html) {
+          problems.push(`BT-GATT-ROWS  ${route} (${c.name}) has no built page`);
+          continue;
+        }
+        if (!html.includes(`data-bt-characteristic="${c.id}"`)) problems.push(`BT-GATT-ROWS  ${route} does not carry data-bt-characteristic="${c.id}"`);
+        if (!hubLinks.has(route)) problems.push(`BT-GATT-HUB  /bluetooth-fitness does not link ${route}`);
+        for (const f of c.gss.structure) {
+          const row = rowOf(html, f.anchor);
+          if (!row) {
+            problems.push(`BT-GATT-FIELDS  ${route} has no layout row for ${f.name}`);
+            continue;
+          }
+          if (!row.includes(f.name) || !row.includes(f.type) || !row.includes(f.size)) {
+            problems.push(`BT-GATT-FIELDS  ${route} row for ${f.name} does not show its name, type "${f.type}" and size "${f.size}"`);
+            continue;
+          }
+          fieldsShown++;
+          for (const u of f.units) {
+            if (!u.evidence.includes(u.id) || !norm(f.description).includes(norm(u.evidence))) {
+              problems.push(`BT-GATT-EVIDENCE  ${c.name} ${f.name}: unit ${u.id} is not on a line of the field's own text`);
+            }
+          }
+          if (f.presence) {
+            if (!f.description.split("\n").map((l) => l.trim()).includes(f.presence.evidence)) {
+              problems.push(`BT-GATT-EVIDENCE  ${c.name} ${f.name}: its flag condition is not a "Present if" line of the field's own text`);
+            } else if (!row.includes(`Bit ${f.presence.bit} of ${f.presence.field} is ${f.presence.value}`)) {
+              problems.push(`BT-GATT-EVIDENCE  ${route} row for ${f.name} does not show the condition its "Present if" line states`);
+            }
+          }
+        }
+        const defs = [];
+        const walk = (ds) => ds.forEach((d) => (defs.push(d), walk(d.subfields)));
+        walk(c.gss.definitions);
+        for (const d of defs) {
+          if (!html.includes(`id="${d.anchor}"`)) problems.push(`BT-GATT-FIELDS  ${route} does not render the SIG's "${d.name}" definition`);
+          for (const s of d.layout ?? []) {
+            if (!html.includes(`id="${s.anchor}"`)) problems.push(`BT-GATT-FIELDS  ${route} does not render ${d.name} › ${s.name}`);
+          }
+        }
+      }
+      console.log(
+        `Bluetooth GATT: ${chars.length} characteristics with a hub row, ${eligible.length} pages, ${fieldsShown} structure fields shown with name, type and size.`,
+      );
     }
   }
 

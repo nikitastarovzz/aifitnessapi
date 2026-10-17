@@ -210,6 +210,22 @@ const ENTRIES: Entry[] = [
     caveat:
       "The permission column is set only where Google's permissions table names the constant, and the table row ships beside it in permissionEvidence; a constant the table does not name has a null permission, not an inferred one.",
   },
+  {
+    slug: "bluetooth-fitness-gatt-2026",
+    unit: "characteristic fields",
+    blurb:
+      "The byte layout of the Bluetooth GATT characteristics fitness and health devices use, read from the Bluetooth SIG's own YAML: one row per field with its type, size, offset where it is fixed, the Flags bit that makes it present, and its unit, plus a row for each in-scope characteristic the SIG publishes no structure for.",
+    keywords: [
+      "Bluetooth GATT",
+      "BLE characteristic format",
+      "Heart Rate Measurement 0x2A37",
+      "FTMS Indoor Bike Data",
+      "GATT Specification Supplement",
+    ],
+    presentedBy: { href: "/bluetooth-fitness", label: "Bluetooth GATT characteristics for fitness devices" },
+    caveat:
+      "The licence covers this compilation and its derived columns. The UUIDs, names, types and sizes are the Bluetooth SIG's, restated as facts, and its files say they are proprietary to Bluetooth SIG and grant no licence, so the SIG's descriptions are left out (the pages quote them with attribution) and the file carries the SIG's notice in sourceTerms. Offsets, flag bits and units are derived, each beside the line it was read from.",
+  },
 ];
 
 const LOADED = ENTRIES.map((e) => ({ entry: e, file: loadDataset(e.slug) }));

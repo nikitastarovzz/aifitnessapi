@@ -40,6 +40,7 @@ const PAGES = ["/", "/devices", "/devices/ftms-fitness-machine-service", "/matri
   "/healthkit-versions/ios-8", "/health-connect-releases",
   "/health-connect-api", "/health-connect-api/healthkit-vs-health-connect-api-equivalents",
   "/healthkit-metadata-keys", "/wear-os-data-types",
+  "/bluetooth-fitness", "/bluetooth-fitness/heart-rate-measurement", "/bluetooth-fitness/cross-trainer-data",
   "/not-a-real-page"];
 
 const exe = process.env.PLAYWRIGHT_CHROMIUM;
