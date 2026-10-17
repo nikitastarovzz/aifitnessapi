@@ -7,6 +7,7 @@ import ClusterHero from "@/components/ClusterHero";
 import ClusterCta from "@/components/ClusterCta";
 import ContentAge from "@/components/ContentAge";
 import AnswerCapsule from "@/components/AnswerCapsule";
+import VendorHubMenu from "@/components/VendorHubMenu";
 import { LIBRARIES_FETCHED_ON } from "@/data/libraries";
 import {
   LIBRARIES_BASE,
@@ -307,6 +308,8 @@ export default async function LibraryPage({ params }: { params: Promise<Params> 
             ))}
           </dl>
         </section>
+
+        <VendorHubMenu path={path} placement="end" />
 
         <ClusterCta
           pitch="Bridge releases are where support for a new data type actually lands. Subscribe and we'll tell you when one of these packages ships, deprecates or changes what it wraps."

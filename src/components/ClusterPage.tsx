@@ -18,6 +18,7 @@ import KinestexNote from "@/components/KinestexNote";
 import AppStack from "@/components/AppStack";
 import PostLinks from "@/components/PostLinks";
 import Feedback from "@/components/Feedback";
+import VendorHubMenu from "@/components/VendorHubMenu";
 import { formatDate } from "@/lib/posts";
 import { site, absoluteUrl } from "@/lib/site";
 import { spokeGraph, markdownUrl } from "@/lib/schema";
@@ -298,6 +299,10 @@ export default function ClusterPage({
 
         <FaqJump questions={entry.faqs.map((f) => f.q)} />
 
+        {/* On a vendor's hub (data/vendorHubs.ts), every page about the vendor,
+            up front. Renders nothing on any other page. */}
+        <VendorHubMenu path={path} placement="top" />
+
         {products.length > 0 && (
           <p className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-[var(--muted)]">
             <span>Covered here:</span>
@@ -361,6 +366,10 @@ export default function ClusterPage({
             )}
           </section>
         )}
+
+        {/* Every page about the vendor(s) this page belongs to, with the hub
+            marked. Renders nothing on a page that is no vendor's. */}
+        <VendorHubMenu path={path} placement="end" />
 
         <ClusterCta pitch={entry.cta.pitch} source="spoke-inline" id={`cta-${entry.slug}`} />
 

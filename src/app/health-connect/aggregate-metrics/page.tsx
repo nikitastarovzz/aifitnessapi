@@ -21,6 +21,8 @@ import {
   GUIDE_QUOTES,
   READ_DATA_GUIDE,
 } from "@/data/hcPages";
+import { PAGE_H1 } from "@/data/pageTitles";
+import VendorHubMenu from "@/components/VendorHubMenu";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 import { stringSeed } from "@/lib/cluster";
@@ -178,7 +180,7 @@ export default function HcAggregatesPage() {
         <ClusterHero label="Health Connect reference" seed={stringSeed("health-connect-aggregates")} />
 
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
-          Every Health Connect aggregate metric
+          {PAGE_H1["/health-connect/aggregate-metrics"]}
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">
           {T.aggregates} metrics on {T.recordsWithAggregates} records · read from Google&rsquo;s Jetpack reference on{" "}
@@ -285,6 +287,8 @@ export default function HcAggregatesPage() {
             ))}
           </dl>
         </section>
+
+        <VendorHubMenu path={PATH} placement="end" />
 
         <ClusterCta
           pitch="Subscribe and we'll tell you when Google adds a Health Connect aggregate metric, with its value type."

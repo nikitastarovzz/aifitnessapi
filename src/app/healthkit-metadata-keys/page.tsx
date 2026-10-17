@@ -12,6 +12,8 @@ import {
   HK_METADATA_OTHER_SYMBOLS,
   type HkMetadataKey,
 } from "@/data/healthkitMetadataKeys";
+import { PAGE_H1 } from "@/data/pageTitles";
+import VendorHubMenu from "@/components/VendorHubMenu";
 import { absoluteUrl } from "@/lib/site";
 import { CAPSULE, FaqSection, JsonLd, LINK, TH, articleGraph, count, faqGraph, listOf, site, type Faq } from "../error-codes/_shared";
 
@@ -148,7 +150,7 @@ export default function HealthKitMetadataKeysPage() {
         />
 
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
-          Every HealthKit metadata key
+          {PAGE_H1[PATH]}
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">
           {count(KEYS.length, "key")} · {count(GROUPS.length, "topic group")}{" "}· last fetched from Apple&rsquo;s
@@ -301,6 +303,8 @@ export default function HealthKitMetadataKeysPage() {
         )}
 
         <FaqSection faqs={FAQS} />
+
+        <VendorHubMenu path={PATH} placement="end" />
 
         <p className="mt-12 text-sm text-[var(--muted)]">
           Read on {FETCHED} from Apple&rsquo;s{" "}

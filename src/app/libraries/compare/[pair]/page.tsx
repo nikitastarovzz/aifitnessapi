@@ -6,6 +6,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterHero from "@/components/ClusterHero";
 import ContentAge from "@/components/ContentAge";
 import AnswerCapsule from "@/components/AnswerCapsule";
+import VendorHubMenu from "@/components/VendorHubMenu";
 import { LIBRARIES_FETCHED_ON, type Library } from "@/data/libraries";
 import {
   LIBRARIES_BASE,
@@ -268,6 +269,8 @@ export default async function LibraryComparisonPage({ params }: { params: Promis
             </Link>
           ))}
         </nav>
+
+        <VendorHubMenu path={path} placement="end" />
 
         <p className="mt-8 text-sm">
           <Link href={LIBRARIES_BASE} className="text-brand-600 hover:text-brand-500">

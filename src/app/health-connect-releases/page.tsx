@@ -12,6 +12,8 @@ import {
   type HcRelease,
   type HcReleaseStage,
 } from "@/data/hcReleases";
+import { PAGE_H1 } from "@/data/pageTitles";
+import VendorHubMenu from "@/components/VendorHubMenu";
 import { absoluteUrl } from "@/lib/site";
 import { CAPSULE, FaqSection, JsonLd, LINK, TH, articleGraph, count, faqGraph, listOf, site, type Faq } from "../error-codes/_shared";
 
@@ -134,7 +136,7 @@ export default function HealthConnectReleasesPage() {
         <Breadcrumbs trail={[{ name: "Home", path: "/" }, { name: "Health Connect SDK releases", path: PATH }]} />
 
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
-          Health Connect SDK releases
+          {PAGE_H1[PATH]}
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">
           {count(ALL.length, "release")} · newest {NEWEST.version} ({NEWEST.date}) · last fetched from Google&rsquo;s
@@ -234,6 +236,8 @@ export default function HealthConnectReleasesPage() {
         })}
 
         <FaqSection faqs={FAQS} />
+
+        <VendorHubMenu path={PATH} placement="end" />
 
         <p className="mt-12 text-sm text-[var(--muted)]">
           Read from Google&rsquo;s{" "}

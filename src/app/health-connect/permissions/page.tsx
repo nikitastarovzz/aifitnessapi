@@ -33,6 +33,8 @@ import {
   hcTotals,
   GUIDE_QUOTES,
 } from "@/data/hcPages";
+import { PAGE_H1 } from "@/data/pageTitles";
+import VendorHubMenu from "@/components/VendorHubMenu";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 import { stringSeed } from "@/lib/cluster";
@@ -204,7 +206,7 @@ export default function HcPermissionsPage() {
         <ClusterHero label="Health Connect reference" seed={stringSeed("health-connect-permissions")} />
 
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
-          Every Health Connect permission string
+          {PAGE_H1["/health-connect/permissions"]}
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">
           {T.frameworkPermissions} strings · read from Google&rsquo;s HealthPermissions reference on {HC_FETCHED_ON}
@@ -338,6 +340,8 @@ export default function HcPermissionsPage() {
             ))}
           </dl>
         </section>
+
+        <VendorHubMenu path={PATH} placement="end" />
 
         <ClusterCta
           pitch="Subscribe and we'll tell you when Google adds a Health Connect permission string, with the record it unlocks."

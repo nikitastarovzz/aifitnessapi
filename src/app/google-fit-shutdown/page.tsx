@@ -5,6 +5,8 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterCta from "@/components/ClusterCta";
 import ClusterHero from "@/components/ClusterHero";
 import ContentAge from "@/components/ContentAge";
+import VendorHubMenu from "@/components/VendorHubMenu";
+import { PAGE_H1 } from "@/data/pageTitles";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 
@@ -173,7 +175,7 @@ export default function GoogleFitShutdownPage() {
         <ClusterHero label="Migration Event" seed={4} />
 
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
-          Google Fit Is Shutting Down
+          {PAGE_H1[PATH]}
         </h1>
 
         <div
@@ -291,6 +293,8 @@ export default function GoogleFitShutdownPage() {
             ))}
           </dl>
         </section>
+
+        <VendorHubMenu path={PATH} placement="end" />
 
         <ClusterCta
           pitch="Platform turndowns rarely announce their exact final day — they just stop answering. We track the Fit timeline and every other fitness API deprecation as they move. Get the heads-up before your integration becomes the news."
