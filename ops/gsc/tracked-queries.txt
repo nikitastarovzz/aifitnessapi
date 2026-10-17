@@ -34,3 +34,16 @@ fitness api rapidapi
 fitness api for gym app
 fitness api key free no signup
 pose estimation fitness api
+# Added 2026-10-17 for ops/EXPANSION-3-2026-10-17.md (noted in
+# ops/SERP-30-2026-10-12.md). The 31 above keep their baseline.
+google health api
+fitbit web api migration
+garmin api
+strava api
+whoop api
+oura api
+mediapipe pose landmarker
+pose estimation models
+mcp server health data
+wearable data aggregator api
+mindbody api
