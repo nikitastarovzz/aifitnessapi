@@ -2,10 +2,12 @@
  * GENERATED — do not hand-edit. Rebuild with:
  *   node scripts/backfill-published.mjs
  *
- * First-published date of every cluster spoke and blog post, read from git
- * history: the first commit that both contained the entry and listed it in
- * its cluster's release gate (blog posts: the commit that added the file).
- * Keyed by URL path without the leading slash. 384 rows.
+ * First-published date of every cluster spoke, blog post and generated
+ * reference page, read from git history: the first commit that both
+ * contained the entry and listed it in its cluster's release gate (blog
+ * posts: the commit that added the file; generated sections: the commit that
+ * added the route, or the item to the data file if that came later).
+ * Keyed by URL path without the leading slash. 434 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -245,6 +247,56 @@ export const PUBLISHED: Record<string, string> = {
   "fix/strava-api-401-unauthorized": "2026-08-12",
   "fix/strava-webhook-not-firing": "2026-07-10",
   "fix/wearable-data-delayed": "2026-07-10",
+  "google-health-api": "2026-10-17",
+  "google-health-api/access-and-limits": "2026-10-17",
+  "google-health-api/active-energy-burned": "2026-10-17",
+  "google-health-api/active-minutes": "2026-10-17",
+  "google-health-api/active-zone-minutes": "2026-10-17",
+  "google-health-api/activity-level": "2026-10-17",
+  "google-health-api/altitude": "2026-10-17",
+  "google-health-api/blood-glucose": "2026-10-17",
+  "google-health-api/body-fat": "2026-10-17",
+  "google-health-api/calories-in-heart-rate-zone": "2026-10-17",
+  "google-health-api/core-body-temperature": "2026-10-17",
+  "google-health-api/daily-heart-rate-variability": "2026-10-17",
+  "google-health-api/daily-heart-rate-zones": "2026-10-17",
+  "google-health-api/daily-oxygen-saturation": "2026-10-17",
+  "google-health-api/daily-respiratory-rate": "2026-10-17",
+  "google-health-api/daily-resting-heart-rate": "2026-10-17",
+  "google-health-api/daily-sleep-temperature-derivations": "2026-10-17",
+  "google-health-api/daily-vo2-max": "2026-10-17",
+  "google-health-api/distance": "2026-10-17",
+  "google-health-api/electrocardiogram": "2026-10-17",
+  "google-health-api/errors": "2026-10-17",
+  "google-health-api/exercise": "2026-10-17",
+  "google-health-api/fitbit-web-api-mapping": "2026-10-17",
+  "google-health-api/floors": "2026-10-17",
+  "google-health-api/food": "2026-10-17",
+  "google-health-api/food-measurement-unit": "2026-10-17",
+  "google-health-api/heart-rate": "2026-10-17",
+  "google-health-api/heart-rate-variability": "2026-10-17",
+  "google-health-api/height": "2026-10-17",
+  "google-health-api/hydration-log": "2026-10-17",
+  "google-health-api/irregular-rhythm-notification": "2026-10-17",
+  "google-health-api/menstrual-period": "2026-10-17",
+  "google-health-api/moods": "2026-10-17",
+  "google-health-api/nutrition-log": "2026-10-17",
+  "google-health-api/ovulation-test": "2026-10-17",
+  "google-health-api/oxygen-saturation": "2026-10-17",
+  "google-health-api/respiratory-rate-sleep-summary": "2026-10-17",
+  "google-health-api/run-vo2-max": "2026-10-17",
+  "google-health-api/scopes": "2026-10-17",
+  "google-health-api/sedentary-period": "2026-10-17",
+  "google-health-api/skin-temperature-sensors": "2026-10-17",
+  "google-health-api/sleep": "2026-10-17",
+  "google-health-api/steps": "2026-10-17",
+  "google-health-api/swim-lengths-data": "2026-10-17",
+  "google-health-api/symptoms": "2026-10-17",
+  "google-health-api/time-in-heart-rate-zone": "2026-10-17",
+  "google-health-api/total-calories": "2026-10-17",
+  "google-health-api/vo2-max": "2026-10-17",
+  "google-health-api/webhooks": "2026-10-17",
+  "google-health-api/weight": "2026-10-17",
   "guides/add-form-feedback": "2026-07-08",
   "guides/add-rep-counting": "2026-07-08",
   "guides/ai-workout-tracking-android-kotlin": "2026-07-08",
