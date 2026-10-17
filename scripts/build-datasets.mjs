@@ -1101,6 +1101,140 @@ function buildPoseKeypointsDataset() {
 }
 
 /**
+ * Google Health API data types.
+ *
+ * src/data/googleHealthApi.ts is generated (scripts/fetch-google-health-api.mjs)
+ * and holds plain JSON literals, so it is read with JSON.parse like the other
+ * generated modules. The floor is the generator's own (44 data types in
+ * Google's data-types table read 2026-10-17); move it only with a
+ * regeneration that changes it. The derived columns keep their evidence: a
+ * DataPoint field without the description it was matched by, or a scope that
+ * is not the documented prefix plus Google's printed suffix, fails the build.
+ */
+const GHAPI_REL = "src/data/googleHealthApi.ts";
+const GHAPI_MIN_TYPES = 44;
+
+function ghapiJsonObject(src, rel, name) {
+  const m = new RegExp(`export const ${name}: [^=]+= `).exec(src);
+  if (!m) fail(`could not find ${name} in ${rel}`);
+  const open = m.index + m[0].length;
+  const end = src.indexOf("\n};", open);
+  if (end === -1) fail(`could not find the end of ${name} in ${rel}`);
+  try {
+    return JSON.parse(src.slice(open, end + 2));
+  } catch (e) {
+    fail(`${name} in ${rel} is not parseable JSON: ${e.message}`);
+  }
+  return null;
+}
+
+function buildGoogleHealthApiDataset() {
+  const src = read(GHAPI_REL);
+  const { rows, slice } = hcJsonArray(src, GHAPI_REL, "GHAPI_DATA_TYPES");
+  const declared = countOf(slice, /^\s{4}"dataType":\s*"/gm);
+  if (rows.length !== declared) fail(`Google Health API parse yielded ${rows.length} data types but ${GHAPI_REL} declares ${declared}`);
+  if (rows.length < GHAPI_MIN_TYPES) fail(`Google Health API data types: ${rows.length}, expected at least ${GHAPI_MIN_TYPES}`);
+  const fetchedOn = hcConst(src, GHAPI_REL, "GHAPI_FETCHED_ON");
+  const prefix = hcConst(src, GHAPI_REL, "GHAPI_SCOPE_PREFIX");
+  const { rows: sources } = hcJsonArray(src, GHAPI_REL, "GHAPI_SOURCES");
+  const dataTypesUrl = sources.find((s) => s.key === "dataTypes")?.url;
+  const discovery = sources.find((s) => s.key === "discoveryV4");
+  if (!dataTypesUrl || !discovery) fail(`could not read the data-types and discovery sources from ${GHAPI_REL}`);
+  const schemas = ghapiJsonObject(src, GHAPI_REL, "GHAPI_SCHEMAS");
+
+  for (const t of rows) {
+    if (!t.dataType || !t.name || !t.recordType) fail(`Google Health API row without dataType/name/recordType in ${GHAPI_REL}`);
+    if (!!t.dataPointProperty !== !!t.dataPointMatch) fail(`${t.dataType}: dataPointProperty and dataPointMatch must be both set or both null`);
+    if (t.dataPointMatch === "description" && !(t.dataPointEvidence ?? "").includes(`\`${t.dataType}\``)) {
+      fail(`${t.dataType}: dataPointEvidence does not name the type it was matched by`);
+    }
+    for (const s of t.scopes) {
+      if (s.url !== `${prefix}${s.shorthand}`) fail(`${t.dataType}: scope ${s.url} is not the documented prefix plus ${s.shorthand}`);
+    }
+    if (t.schema && !schemas[t.schema.id]) fail(`${t.dataType}: schema ${t.schema.id} is missing from GHAPI_SCHEMAS`);
+    for (const o of t.operations) if (o.method && !o.path) fail(`${t.dataType}: operation ${o.op} has a method but no path`);
+  }
+
+  const join = (a) => (Array.isArray(a) && a.length ? a.join("; ") : null);
+  const fieldsOf = (id) => (id && schemas[id] ? schemas[id].fields : []);
+  const items = rows.map((t) => {
+    const roll = t.rollup ?? t.dailyRollup;
+    return {
+      dataType: t.dataType,
+      name: t.name,
+      filterParam: t.filterParam,
+      recordType: t.recordType,
+      storageResolution: t.storageResolution,
+      channel: t.channel,
+      webhookSupport: t.webhookSupport ? "yes" : "no",
+      trueZerosSupport: t.trueZerosSupport ? "yes" : "no",
+      operations: join(t.operations.map((o) => o.op)),
+      methods: join(t.operations.map((o) => o.method).filter(Boolean)),
+      scopes: join(t.scopes.map((s) => s.url)),
+      dataPointProperty: t.dataPointProperty,
+      dataPointMatch: t.dataPointMatch,
+      dataPointEvidence: t.dataPointEvidence,
+      schema: t.schema?.id ?? null,
+      requiredFields: join(fieldsOf(t.schema?.id).filter((f) => f.required).map((f) => f.name)),
+      fields: join(fieldsOf(t.schema?.id).map((f) => f.name)),
+      rollupSchema: roll?.schema?.id ?? null,
+      rollupFields: join(fieldsOf(roll?.schema?.id).map((f) => f.name)),
+      fitbitPredecessor: t.fitbit?.fitbitDataType ?? null,
+      fitbitDescription: t.fitbit?.description ?? null,
+      compatibleDevices: join(t.compatibleDevices.map((d) => d.name)),
+      flags: join([...new Set(t.flags.map((f) => f.kind))]),
+      googleDocs: t.referenceUrl,
+      page: abs(`/google-health-api/${t.dataType}`),
+    };
+  });
+
+  return {
+    slug: "google-health-api-data-types-2026",
+    declared,
+    columns: [
+      "dataType", "name", "filterParam", "recordType", "storageResolution", "channel", "webhookSupport",
+      "trueZerosSupport", "operations", "methods", "scopes", "dataPointProperty", "dataPointMatch",
+      "dataPointEvidence", "schema", "requiredFields", "fields", "rollupSchema", "rollupFields",
+      "fitbitPredecessor", "fitbitDescription", "compatibleDevices", "flags", "googleDocs", "page",
+    ],
+    doc: {
+      name: "Google Health API Data Types 2026",
+      version: VERSION,
+      publisher: PUBLISHER,
+      license: LICENSE,
+      methodology:
+        `Every data type in Google's Google Health API data-types table (${dataTypesUrl}), read on ${fetchedOn}, joined to the v4 discovery document (${discovery.url}, revision ${discovery.revision}). Name, dataType id, filter parameter, record type, storage resolution, the webhook and true-zeros badges, the v4beta tag, operations, scopes and compatible devices are copied from Google's table; field names and rollup fields from the discovery document's schemas; the Fitbit Web API predecessor from Google's migration mapping table. Three columns are DERIVED and keep their evidence: scopes are the prefix Google's Scopes page states plus the suffix the table prints; methods pair each table operation with the discovery document's method (case-insensitively, and "update" with patch only because Google's endpoint-mapping table maps updates to patch); dataPointProperty is the DataPoint field whose description names the type (dataPointEvidence, verbatim) or, where that description names none, the field DataPoint.name's kebab-case rule picks (dataPointMatch says which). flags lists the kinds of disagreement found between Google's own pages for the type; the pages show each one with the texts that disagree.`,
+      generatedFrom: `${GHAPI_REL} (generated by scripts/fetch-google-health-api.mjs, then by scripts/build-datasets.mjs)`,
+      isBasedOn: dataTypesUrl,
+      sourceReadOn: fetchedOn,
+      fields: {
+        dataType: "The hyphenated id Google uses in endpoint URLs",
+        filterParam: "The underscored id Google uses as the dataType filter value",
+        recordType: "Interval, Sample, Daily, Session or Food, as Google's table prints it",
+        storageResolution: "Google's storage resolution; null where the table states none",
+        channel: "v4, or v4beta where Google's table tags the row",
+        webhookSupport: "yes where Google's table shows the Webhook support badge",
+        trueZerosSupport: "yes where Google's table shows the True zeros support badge",
+        operations: "The operations Google's table lists, semicolon-separated",
+        methods: "DERIVED: the users.dataTypes.dataPoints methods those operations map to",
+        scopes: "DERIVED: full scope URLs (Google's documented prefix + the printed suffix)",
+        dataPointProperty: "DERIVED: the DataPoint field for the type; null where neither discovery document has one",
+        dataPointMatch: "How dataPointProperty was matched: description or kebab-case rule",
+        dataPointEvidence: "That field's description in the discovery document, verbatim",
+        schema: "The discovery document schema the DataPoint field refers to",
+        requiredFields: "Fields whose description opens \"Required.\"",
+        rollupSchema: "The *RollupValue schema a rollup of the type returns, where the table lists rollup or dailyRollup",
+        fitbitPredecessor: "The Fitbit Web API data type Google's mapping table maps to this type; null where it has no row",
+        flags: "Kinds of disagreement between Google's own pages for this type",
+        googleDocs: "Google's REST reference anchor for the type",
+        page: "This site's page for the data type",
+      },
+      items,
+    },
+  };
+}
+
+/**
  * The API access-structure dataset.
  *
  * This one was hand-published before the generator existed, which made it the
@@ -1210,6 +1344,7 @@ const built = [
   buildHealthKitMetadataKeysDataset(),
   buildWearOsDataTypesDataset(),
   buildPoseKeypointsDataset(),
+  buildGoogleHealthApiDataset(),
 ].map(writeDataset);
 
 console.log(

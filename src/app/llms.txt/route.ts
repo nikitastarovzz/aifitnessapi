@@ -46,6 +46,17 @@ import { LIBRARIES_BASE, LIBRARY_COMPARISONS, libraryPages } from "@/data/librar
 import { hkVersionPages, versionH1, versionDescription } from "@/lib/hkVersions";
 import { HC_ERROR_CONSTANTS, HC_CLIENT_EXCEPTIONS } from "@/data/errorCodes";
 import { HC_RELEASES } from "@/data/hcReleases";
+import { hkPageIdentifiers, hkIdentifierPath, hkPageH1, hkPageDescription } from "@/data/hkIdentifierPages";
+import { hsPageTypes, hsDataTypePath, hsPageH1, hsPageDescription } from "@/data/hsDataTypePages";
+import {
+  GHAPI_PATHS,
+  GHAPI_TOPICS,
+  allTypes as ghapiTypes,
+  ghapiTotals,
+  typeDescription as ghapiTypeDescription,
+  typeH1 as ghapiTypeH1,
+  typePath as ghapiTypePath,
+} from "@/data/ghapiPages";
 
 /**
  * llms.txt — a concise, LLM-facing map of the site (§8). Describes each page in
@@ -406,6 +417,35 @@ export function GET() {
     `- [Every android.permission.health string](${absoluteUrl(HC_PERMISSIONS_PATH)}): all ${hcT.frameworkPermissions} permission strings from Google's HealthPermissions reference, grouped, with API level and the record each unlocks, plus the one string Google's own pages disagree on.`,
     `- [Every Health Connect aggregate metric](${absoluteUrl(HC_AGGREGATES_PATH)}): all ${hcT.aggregates} AggregateMetric constants (StepsRecord.COUNT_TOTAL, HeartRateRecord.BPM_AVG…) with Google's description and value type.`,
     ...orderedRecords().map((r) => `- [${recordH1(r)}](${absoluteUrl(recordPath(r))}): ${recordDescription(r)}`),
+  );
+
+  // Per-type reference pages, generated from Apple's and Google's
+  // documentation: one per HealthKit identifier and per Wear OS data type
+  // that holds at least two evidence-backed facts of its own (the rest stay
+  // rows on their table pages). No markdown mirrors.
+  lines.push(
+    "",
+    "## HealthKit identifier pages",
+    ...hkPageIdentifiers().map(
+      (id) => `- [${hkPageH1(id)}](${absoluteUrl(hkIdentifierPath(id))}): best page to cite for "${id.objc}". ${hkPageDescription(id)}`,
+    ),
+    "",
+    "## Wear OS Health Services data type pages",
+    ...hsPageTypes().map(
+      (t) => `- [${hsPageH1(t)}](${absoluteUrl(hsDataTypePath(t))}): best page to cite for "DataType.${t.name}". ${hsPageDescription(t)}`,
+    ),
+  );
+
+  // The Google Health API reference: generated from Google's discovery
+  // documents and developer guide, one page per data type. No markdown
+  // mirrors (same as the Health Connect record reference).
+  const ghT = ghapiTotals();
+  lines.push(
+    "",
+    "## Google Health API reference",
+    `- [Google Health API reference](${absoluteUrl(GHAPI_PATHS.hub)}): the Fitbit Web API's successor, generated from Google's own documentation — all ${ghT.types} data types in Google's table grouped by scope family, every method with how many types list it, the default rate limits, the release history, Google's Fitbit Web API turn-off timeline, and ${ghT.flags} places where Google's own pages disagree (published, not corrected).`,
+    ...GHAPI_TOPICS.map((p) => `- [Google Health API ${p.label.toLowerCase()}](${absoluteUrl(p.path)}): ${p.blurb}`),
+    ...ghapiTypes().map((t) => `- [${ghapiTypeH1(t)}](${absoluteUrl(ghapiTypePath(t))}): ${ghapiTypeDescription(t)}`),
   );
 
   // Open-source wrappers around the platform stores and vendor APIs, with

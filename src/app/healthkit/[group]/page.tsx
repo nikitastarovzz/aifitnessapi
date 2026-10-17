@@ -20,6 +20,7 @@ import { HK_IDENTIFIERS, type HkFamily, type HkIdentifier } from "@/data/healthk
 import { ROWS as MATRIX_ROWS } from "@/data/matrix";
 import HcRecordNames from "@/components/hc/HcRecordNames";
 import { HK_READONLY_SET } from "@/data/healthkitWritability";
+import { hkIdentifierPagePath } from "@/data/hkIdentifierPages";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 import { stringSeed } from "@/lib/cluster";
@@ -186,8 +187,10 @@ function IdentifierTable({ members }: { members: HkIdentifier[] }) {
                 className="scroll-mt-24 border-b border-[var(--border)] align-top"
               >
                 <td className="py-2 pr-4">
+                  {/* The identifier's own page where the thin-page rule gives
+                      it one, else its row in the full table. */}
                   <Link
-                    href={`/healthkit-identifiers#id-${m.case.toLowerCase()}`}
+                    href={hkIdentifierPagePath(m.case) ?? `/healthkit-identifiers#id-${m.case.toLowerCase()}`}
                     className="font-mono text-[13px] font-semibold text-brand-600 hover:text-brand-500"
                   >
                     {m.case}

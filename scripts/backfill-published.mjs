@@ -16,6 +16,12 @@
  *     sitting unreleased was not published, so the gate date wins when it is
  *     later. Clusters without a gate (the HealthKit reference pages) use (a).
  *   - Blog post: the commit that first added content/posts/<slug>.mdx.
+ *   - Generated reference section (GENERATED_SECTIONS below): a static
+ *     route is dated by the commit that first added its page.tsx; a per-item
+ *     route by the later of the commit that added the dynamic route and the
+ *     first commit whose copy of the section's data file contains the item,
+ *     because an item that arrived in a later regeneration was published
+ *     then, not when the route was.
  *
  * Keys are the page's URL path without the leading slash ("fix/<slug>",
  * "healthkit/<group>", "blog/<slug>"), so a lookup needs nothing but the
@@ -51,6 +57,23 @@ const BASE_OVERRIDES = {
   "hkStandalone.entries.ts": "", // each slug is a root-level page
 };
 
+/**
+ * Sections built from a generator's data file rather than an entries file.
+ * `dir` is the route directory, `dynamic` its one per-item segment, and
+ * `array`/`idKey` name the exported JSON array in `data` and the field that
+ * is the item's URL segment.
+ */
+const GENERATED_SECTIONS = [
+  {
+    base: "google-health-api",
+    dir: "src/app/google-health-api",
+    dynamic: "[dataType]",
+    data: "src/data/googleHealthApi.ts",
+    array: "GHAPI_DATA_TYPES",
+    idKey: "dataType",
+  },
+];
+
 function git(args) {
   return execFileSync("git", args, {
     encoding: "utf8",
@@ -66,6 +89,13 @@ const DATE_FMT = "--date=format-local:%Y-%m-%d";
 function firstPickaxe(needle, paths) {
   const out = git(["log", `-S${needle}`, "--reverse", "--format=%ad", DATE_FMT, "--", ...paths]);
   return out ? out.split("\n")[0] : null;
+}
+
+/** Date of the commit that first added `file` (its earliest add, if re-added). */
+function firstAdded(file) {
+  // :(literal) so a dynamic segment like [dataType] is not read as a glob.
+  const out = git(["log", "--diff-filter=A", "--format=%ad", DATE_FMT, "--", `:(literal)${file}`]);
+  return out ? out.split("\n").at(-1) : null; // log is newest-first
 }
 
 if (git(["rev-parse", "--is-shallow-repository"]) === "true") {
@@ -152,6 +182,48 @@ for (const file of postFiles) {
   rows.set(key, date);
 }
 
+for (const s of GENERATED_SECTIONS) {
+  // Static routes: every page.tsx under the section outside a dynamic
+  // segment or a private (_) folder.
+  (function walk(dir, segs) {
+    if (fs.existsSync(path.join(dir, "page.tsx"))) {
+      expected++;
+      const key = [s.base, ...segs].join("/");
+      const date = firstAdded(path.join(dir, "page.tsx"));
+      if (date) rows.set(key, date);
+      else missing.push(key);
+    }
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (e.isDirectory() && !/^[[_(]/.test(e.name)) walk(path.join(dir, e.name), [...segs, e.name]);
+    }
+  })(s.dir, []);
+
+  // Per-item routes, one per row of the data file's array. The row count is
+  // checked against a second, independent count of the same rows.
+  const src = fs.readFileSync(s.data, "utf8");
+  const head = new RegExp(`export const ${s.array}: [^=]+= `).exec(src);
+  if (!head) throw new Error(`${s.data}: no ${s.array} export`);
+  const start = head.index + head[0].length;
+  const slice = src.slice(start, src.indexOf("\n];", start) + 2);
+  const ids = JSON.parse(slice).map((r) => r[s.idKey]);
+  const declared = (slice.match(new RegExp(`^\\s{4}"${s.idKey}":\\s*"`, "gm")) ?? []).length;
+  if (!ids.length || ids.length !== declared || ids.some((id) => typeof id !== "string" || !id)) {
+    console.error(`backfill-published: ${s.data} ${s.array} parsed ${ids.length} rows but declares ${declared} — refusing to write.`);
+    process.exit(1);
+  }
+  const route = firstAdded(path.join(s.dir, s.dynamic, "page.tsx"));
+  for (const id of ids) {
+    expected++;
+    const key = `${s.base}/${id}`;
+    const arrived = firstPickaxe(`"${s.idKey}": "${id}"`, [s.data]);
+    if (!route || !arrived) {
+      missing.push(key);
+      continue;
+    }
+    rows.set(key, arrived > route ? arrived : route);
+  }
+}
+
 if (missing.length || rows.size !== expected) {
   console.error(
     `backfill-published: dated ${rows.size} of ${expected} pages — refusing to write.` +
@@ -166,9 +238,11 @@ const body = `/**
  * GENERATED — do not hand-edit. Rebuild with:
  *   node scripts/backfill-published.mjs
  *
- * First-published date of every cluster spoke and blog post, read from git
- * history: the first commit that both contained the entry and listed it in
- * its cluster's release gate (blog posts: the commit that added the file).
+ * First-published date of every cluster spoke, blog post and generated
+ * reference page, read from git history: the first commit that both
+ * contained the entry and listed it in its cluster's release gate (blog
+ * posts: the commit that added the file; generated sections: the commit that
+ * added the route, or the item to the data file if that came later).
  * Keyed by URL path without the leading slash. ${sorted.length} rows.
  *
  * This is datePublished; an entry's \`updated\` stamp is dateModified. A key
