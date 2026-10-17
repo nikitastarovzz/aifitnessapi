@@ -45,6 +45,8 @@ const PAGES = ["/", "/devices", "/devices/ftms-fitness-machine-service", "/matri
   "/google-health-api", "/google-health-api/sleep", "/google-health-api/scopes",
   "/google-health-api/fitbit-web-api-mapping", "/google-health-api/access-and-limits",
   "/google-health-api/webhooks", "/google-health-api/errors",
+  "/health-mcp-servers", "/ai/connect-wearable-data-to-ai-assistants",
+  "/bluetooth-fitness", "/bluetooth-fitness/heart-rate-measurement", "/bluetooth-fitness/cross-trainer-data",
   "/not-a-real-page"];
 
 const exe = process.env.PLAYWRIGHT_CHROMIUM;

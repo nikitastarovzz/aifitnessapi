@@ -333,6 +333,8 @@ if (fs.existsSync(matrixPath)) {
     "wear-os-health-services-data-types-2026",
     "pose-keypoint-maps-2026",
     "google-health-api-data-types-2026",
+    "health-mcp-servers-2026",
+    "bluetooth-fitness-gatt-2026",
   ];
   // Both directions. Listing files catches a DELETION (a dataset a page
   // still cites); scanning the directory catches an ADDITION that was never
@@ -2361,6 +2363,178 @@ if (fs.existsSync(matrixPath)) {
       if (!htmlOf(`${BASE}/access-and-limits`)?.includes("data-ghapi-rate-limits")) problems.push(`GHAPI-TOPIC-ROWS  ${BASE}/access-and-limits does not render the rate-limits table`);
       console.log(
         `Google Health API: ${built.length} data-type pages for ${types.length} types, ${facts} operations and scopes shown, ${flagsShown} cross-check flags shown, ${TOPICS.length} topic pages checked.`,
+      );
+    }
+  }
+
+  // MCP servers for health and fitness data (EXPANSION-3 2.5), generated from
+  // the official MCP Registry. Three things are held: every generated server
+  // has its row on /health-mcp-servers and the generator's own floor is met;
+  // no row says "official" unless the generator set publisherIsVendor, and a
+  // server it did set it for really sits under the reverse-DNS form of a
+  // domain the generator lists for a source the server names; and every term
+  // a server was kept for is in the field the match names — the evidence the
+  // listing rests on.
+  {
+    const src = fs.readFileSync("src/data/mcpHealthServers.ts", "utf8");
+    const servers = jsonArray(src, "MCP_HEALTH_SERVERS");
+    const terms = jsonArray(src, "MCP_SERVER_TERMS") ?? [];
+    const floor = numConst(src, "MCP_SERVERS_EXPECTED_MIN");
+    const page = htmlOf("/health-mcp-servers");
+    if (!servers || !floor || servers.length < floor) {
+      problems.push(`MCP-SERVER-ROWS  src/data/mcpHealthServers.ts yields ${servers?.length ?? 0} servers, below its floor MCP_SERVERS_EXPECTED_MIN (${floor})`);
+    } else if (!page) {
+      problems.push("MCP-SERVER-ROWS  /health-mcp-servers was not built");
+    } else {
+      /** The <tr …>…</tr> carrying an id, decoded. */
+      const trOf = (id) => {
+        const at = page.indexOf(`id="${id}"`);
+        if (at === -1) return null;
+        const start = page.lastIndexOf("<tr", at);
+        const end = page.indexOf("</tr>", at);
+        return decode(page.slice(start, end === -1 ? undefined : end));
+      };
+      const rendered = new Set([...page.matchAll(/data-mcp-server="([^"]+)"/g)].map((m) => decode(m[1])));
+      const missing = servers.filter((s) => !rendered.has(s.name) || !page.includes(`id="server-${s.slug}"`)).map((s) => s.name);
+      if (missing.length) {
+        problems.push(`MCP-SERVER-ROWS  /health-mcp-servers is missing rows for ${missing.slice(0, 5).join(", ")}${missing.length > 5 ? "…" : ""}`);
+      }
+      if (rendered.size !== servers.length) {
+        problems.push(`MCP-SERVER-ROWS  /health-mcp-servers renders ${rendered.size} server rows for ${servers.length} generated servers`);
+      }
+      const domainsOf = new Map(terms.map((t) => [t.source, t.domains ?? []]));
+      const reverseDns = (d) => d.split(".").reverse().join(".");
+      let official = 0;
+      for (const s of servers) {
+        const row = trOf(`server-${s.slug}`);
+        if (!row) continue;
+        const saysOfficial = /data-publisher="official"/.test(row) || />Official</.test(row);
+        if (saysOfficial && !s.publisherIsVendor) {
+          problems.push(`MCP-SERVER-OFFICIAL  /health-mcp-servers labels ${s.name} official, but the generator did not set publisherIsVendor`);
+        }
+        if (s.publisherIsVendor) {
+          official++;
+          if (!saysOfficial) problems.push(`MCP-SERVER-OFFICIAL  ${s.name} has publisherIsVendor but its row does not say official`);
+          const ns = String(s.namespace).toLowerCase();
+          const vendorDomain = s.sources
+            .flatMap((k) => domainsOf.get(k) ?? [])
+            .find((d) => ns === reverseDns(d) || ns.startsWith(`${reverseDns(d)}.`));
+          if (!vendorDomain || !s.publisherEvidence) {
+            problems.push(`MCP-SERVER-OFFICIAL  ${s.name} has publisherIsVendor, but its namespace is not the reverse-DNS form of a domain listed for a source it names`);
+          }
+        }
+      }
+      const fieldsOf = (s) => ({ name: s.name.replace(/[/._-]+/g, " "), title: s.title ?? "", description: s.description ?? "" });
+      for (const s of servers) {
+        if (!s.matches?.length) {
+          problems.push(`MCP-SERVER-EVIDENCE  ${s.name} is listed without a matched term`);
+          continue;
+        }
+        const f = fieldsOf(s);
+        for (const m of s.matches) {
+          if (!f[m.field]?.includes(m.text) || (m.context && !f[m.context.field]?.includes(m.context.text))) {
+            problems.push(`MCP-SERVER-EVIDENCE  ${s.name}: the match for "${m.term}" is not in its ${m.field}`);
+          }
+        }
+        const row = trOf(`server-${s.slug}`);
+        if (row && !row.includes(s.description)) {
+          problems.push(`MCP-SERVER-EVIDENCE  /health-mcp-servers row for ${s.name} does not quote its registry description`);
+        }
+      }
+      if (!missing.length) console.log(`MCP servers: ${servers.length} rendered on /health-mcp-servers (floor ${floor}), ${official} under a vendor's own namespace.`);
+    }
+  }
+
+  // Bluetooth GATT reference (ops/EXPANSION-3-2026-10-17.md item 4.3, added
+  // 2026-10-17). The Bluetooth SIG's repository read that day gave 97 in-scope
+  // characteristics, 90 with a gss structure and 44 passing the thin-page rule
+  // (the generator's own floors). The failure that matters is the quiet one:
+  // a page that builds and reads fine with a field missing from its layout,
+  // or a hub that drops a characteristic. So the hub must carry a row for
+  // every in-scope characteristic and link every page; every page must show
+  // every structure field (name, type and size as published) and render every
+  // definition and struct row the SIG's file gives; the thin-page rule must
+  // hold both ways; and a derived value must travel with its line.
+  {
+    const src = fs.readFileSync("src/data/bluetoothGatt.ts", "utf8");
+    const chars = jsonArray(src, "BT_CHARACTERISTICS");
+    const hub = htmlOf("/bluetooth-fitness");
+    if (!chars || chars.length < 97) {
+      problems.push(`BT-GATT-ROWS  src/data/bluetoothGatt.ts yields ${chars?.length ?? 0} characteristics, expected at least 97`);
+    } else if (!hub) {
+      problems.push("BT-GATT-ROWS  /bluetooth-fitness was not built");
+    } else {
+      const withStructure = chars.filter((c) => c.gss);
+      const eligible = chars.filter((c) => c.hasPage);
+      if (withStructure.length < 90) problems.push(`BT-GATT-ROWS  only ${withStructure.length} characteristics carry a gss structure, expected at least 90`);
+      if (eligible.length < 44) problems.push(`BT-GATT-ROWS  only ${eligible.length} characteristics pass the thin-page rule, expected at least 44`);
+      const hubLinks = hrefsIn(hub);
+      for (const c of chars) {
+        if (!hub.includes(`id="char-${c.slug}"`)) {
+          problems.push(`BT-GATT-HUB  /bluetooth-fitness has no row for ${c.name} (${c.uuid})`);
+        } else if (c.gss && !c.hasPage) {
+          // A structure the thin-page rule keeps on the hub is shown there, in its row.
+          const row = rowOf(hub, `char-${c.slug}`) ?? "";
+          for (const f of c.gss.structure) {
+            if (!row.includes(f.name) || !row.includes(f.type) || !row.includes(f.size)) {
+              problems.push(`BT-GATT-HUB  /bluetooth-fitness row for ${c.name} does not show its field ${f.name} (${f.type}, ${f.size})`);
+            }
+          }
+        }
+        const passes = !!c.gss && (c.gss.structure.length >= 2 || c.gss.flagsFields.length > 0);
+        if (passes !== c.hasPage) problems.push(`BT-GATT-THIN  ${c.name} is marked hasPage=${c.hasPage} but the rule (two fields or a flags field) says ${passes}`);
+      }
+      const want = new Set(eligible.map((c) => `/bluetooth-fitness/${c.slug}`));
+      for (const r of htmls.map(routeOf).filter((r) => /^\/bluetooth-fitness\/[a-z0-9-]+$/.test(r) && !notFoundSet.has(r))) {
+        if (!want.has(r)) problems.push(`BT-GATT-THIN  ${r} is built, but its characteristic does not pass the thin-page rule`);
+      }
+      const norm = (s) => String(s).replace(/\s+/g, " ").trim();
+      let fieldsShown = 0;
+      for (const c of eligible) {
+        const route = `/bluetooth-fitness/${c.slug}`;
+        const html = htmlOf(route);
+        if (!html) {
+          problems.push(`BT-GATT-ROWS  ${route} (${c.name}) has no built page`);
+          continue;
+        }
+        if (!html.includes(`data-bt-characteristic="${c.id}"`)) problems.push(`BT-GATT-ROWS  ${route} does not carry data-bt-characteristic="${c.id}"`);
+        if (!hubLinks.has(route)) problems.push(`BT-GATT-HUB  /bluetooth-fitness does not link ${route}`);
+        for (const f of c.gss.structure) {
+          const row = rowOf(html, f.anchor);
+          if (!row) {
+            problems.push(`BT-GATT-FIELDS  ${route} has no layout row for ${f.name}`);
+            continue;
+          }
+          if (!row.includes(f.name) || !row.includes(f.type) || !row.includes(f.size)) {
+            problems.push(`BT-GATT-FIELDS  ${route} row for ${f.name} does not show its name, type "${f.type}" and size "${f.size}"`);
+            continue;
+          }
+          fieldsShown++;
+          for (const u of f.units) {
+            if (!u.evidence.includes(u.id) || !norm(f.description).includes(norm(u.evidence))) {
+              problems.push(`BT-GATT-EVIDENCE  ${c.name} ${f.name}: unit ${u.id} is not on a line of the field's own text`);
+            }
+          }
+          if (f.presence) {
+            if (!f.description.split("\n").map((l) => l.trim()).includes(f.presence.evidence)) {
+              problems.push(`BT-GATT-EVIDENCE  ${c.name} ${f.name}: its flag condition is not a "Present if" line of the field's own text`);
+            } else if (!row.includes(`Bit ${f.presence.bit} of ${f.presence.field} is ${f.presence.value}`)) {
+              problems.push(`BT-GATT-EVIDENCE  ${route} row for ${f.name} does not show the condition its "Present if" line states`);
+            }
+          }
+        }
+        const defs = [];
+        const walk = (ds) => ds.forEach((d) => (defs.push(d), walk(d.subfields)));
+        walk(c.gss.definitions);
+        for (const d of defs) {
+          if (!html.includes(`id="${d.anchor}"`)) problems.push(`BT-GATT-FIELDS  ${route} does not render the SIG's "${d.name}" definition`);
+          for (const s of d.layout ?? []) {
+            if (!html.includes(`id="${s.anchor}"`)) problems.push(`BT-GATT-FIELDS  ${route} does not render ${d.name} › ${s.name}`);
+          }
+        }
+      }
+      console.log(
+        `Bluetooth GATT: ${chars.length} characteristics with a hub row, ${eligible.length} pages, ${fieldsShown} structure fields shown with name, type and size.`,
       );
     }
   }

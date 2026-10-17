@@ -662,6 +662,46 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "A Google Health API topic page that was not built or leaves out a row of the generated list it presents: a documented scope, an error reason, a webhook data type, a Fitbit mapping row, or the rate-limits table.",
   },
   {
+    code: "MCP-SERVER-ROWS",
+    area: "Derived blocks",
+    refuses: "A health MCP server directory missing a row for any server the registry generator kept, a generated list below the generator's own floor, or a directory page that was not built.",
+  },
+  {
+    code: "MCP-SERVER-OFFICIAL",
+    area: "Derived blocks",
+    refuses: "An MCP server labelled official when the generator did not find it under the vendor's own domain namespace, or one marked as the vendor's whose namespace is not the reverse-DNS form of a domain listed for a source it names.",
+  },
+  {
+    code: "MCP-SERVER-EVIDENCE",
+    area: "Derived blocks",
+    refuses: "An MCP server listed without a matched term, with a match whose text is not in the field it names, or with a row that does not quote the registry description it was kept for.",
+  },
+  {
+    code: "BT-GATT-ROWS",
+    area: "Derived blocks",
+    refuses: "A Bluetooth GATT reference shorter than the 97 in-scope characteristics, 90 structures and 44 pages the Bluetooth SIG's repository gave on 2026-10-17, a hub or characteristic page that was not built, or a page that does not carry its characteristic's marker.",
+  },
+  {
+    code: "BT-GATT-HUB",
+    area: "Derived blocks",
+    refuses: "A Bluetooth GATT hub that lacks a row for any in-scope characteristic, does not link every characteristic page, or leaves out the field of a structure it keeps as a row instead of a page.",
+  },
+  {
+    code: "BT-GATT-THIN",
+    area: "Derived blocks",
+    refuses: "A Bluetooth characteristic page built for a structure with fewer than two fields and no flags field, or a characteristic whose page flag disagrees with that rule.",
+  },
+  {
+    code: "BT-GATT-FIELDS",
+    area: "Derived blocks",
+    refuses: "A Bluetooth characteristic page missing a layout row for any field of the SIG's structure, a row that does not show the field's name, type and size as published, or a page that leaves out any definition or struct row the SIG's file gives.",
+  },
+  {
+    code: "BT-GATT-EVIDENCE",
+    area: "Derived blocks",
+    refuses: "A Bluetooth field whose unit or flag condition is published without the line of the SIG's text it was read from, or whose layout row does not show the condition that line states.",
+  },
+  {
     code: "HCAPI-EQUIV-BACKLINK",
     area: "Links and anchors",
     refuses: "A HealthKit query page that the HealthKit-to-Health Connect equivalents page maps, or the /healthkit-queries hub, without a link back to that equivalents page, or an equivalents page that was not built.",

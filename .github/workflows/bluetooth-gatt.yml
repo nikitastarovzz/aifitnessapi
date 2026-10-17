@@ -1,0 +1,103 @@
+name: Bluetooth GATT reference
+
+# Refreshes src/data/bluetoothGatt.ts from the Bluetooth SIG's public
+# repository (scripts/fetch-bluetooth-gatt.mjs), then the dataset built from it
+# (npm run datasets). The /bluetooth-fitness pages render that file, so a new
+# commit to the SIG's repository reaches the site within a week of landing.
+# Same mechanics as .github/workflows/libraries.yml.
+on:
+  # OFF, as libraries.yml is (paused 2026-10-06 at the owner's request: the
+  # automatic triggers emailed a failure on every run). Uncomment to turn the
+  # weekly run on. Manual runs still work (Actions tab, Run workflow).
+  # schedule:
+  #   # 05:13 UTC every Wednesday. Off the hour, and away from the library
+  #   # tracker (Tuesday 04:37) and the daily SDK tracker (06:20).
+  #   - cron: "13 5 * * 3"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: bluetooth-gatt
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # The generator parses the SIG's YAML with the js-yaml gray-matter ships,
+      # so it needs the locked dependencies.
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Read the SIG's repository
+        id: read
+        # The generator exits non-zero (and writes nothing) if the repository's
+        # shape changed or a count fell below its floor — a partial set is
+        # never published.
+        run: |
+          set -euo pipefail
+          commit_of() { grep -oE '"commit": "[0-9a-f]{40}"' src/data/bluetoothGatt.ts | head -1 | grep -oE '[0-9a-f]{40}'; }
+          echo "before=$(commit_of)" >> "$GITHUB_OUTPUT"
+          node scripts/fetch-bluetooth-gatt.mjs
+          npm run datasets
+          echo "after=$(commit_of)" >> "$GITHUB_OUTPUT"
+
+      - name: Commit if something meaningful changed
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BEFORE: ${{ steps.read.outputs.before }}
+          AFTER: ${{ steps.read.outputs.after }}
+          # gh needs a token; the default one can open and auto-merge a PR
+          # given the pull-requests: write permission above.
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          paths="src/data/bluetoothGatt.ts public/datasets"
+          if git diff --quiet -- $paths; then
+            echo "No changes."
+            exit 0
+          fi
+
+          # Same rule as the library tracker: every commit here is a full
+          # production build. When the SIG's main is still at the commit the
+          # file was read from, only the read date has moved; that is held back
+          # to the first scheduled run of the month (day 1-7, since this runs
+          # weekly). A new SIG commit ships the week it appears. A manual run
+          # commits whatever it finds.
+          dom=$(date -u +%d)
+          if [ "$BEFORE" = "$AFTER" ] && [ "$EVENT_NAME" != "workflow_dispatch" ] && [ "$((10#$dom))" -gt 7 ]; then
+            echo "The SIG's main is still at $AFTER; only the read date moved."
+            echo "Holding this back until the month's first run so it does not redeploy the site."
+            git checkout -- $paths
+            exit 0
+          fi
+          if [ "$BEFORE" = "$AFTER" ]; then
+            echo "Read-date-only change; committing (first run of the month, or manual run)."
+          else
+            echo "The SIG's main moved: $BEFORE -> $AFTER"
+          fi
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add $paths
+          git commit -m "Refresh Bluetooth GATT reference"
+
+          # Via a PR with auto-merge, not a direct push: main requires a pull
+          # request and green CI. Green merges itself and deploys as before;
+          # red parks as an open PR instead of deploying a broken reference.
+          branch="bot/bluetooth-gatt-${GITHUB_RUN_ID}"
+          git checkout -b "$branch"
+          git push origin "$branch"
+          gh pr create --base main --head "$branch" \
+            --title "Refresh Bluetooth GATT reference" \
+            --body "Automated refresh of \`src/data/bluetoothGatt.ts\` and its dataset from the Bluetooth SIG's public repository (${BEFORE} -> ${AFTER}). Merges itself once CI is green. Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          gh pr merge --auto --squash --delete-branch "$branch"

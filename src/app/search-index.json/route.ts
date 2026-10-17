@@ -31,6 +31,8 @@ import { HK_METADATA_KEYS } from "@/data/healthkitMetadataKeys";
 import { HS_DATA_TYPES } from "@/data/healthServicesDataTypes";
 import { POSE_SCHEMES } from "@/data/poseKeypoints";
 import { POSE_BASE, schemeDescription, schemeTitle, schemePath } from "@/data/poseKeypointPages";
+import { MCP_HEALTH_SERVERS } from "@/data/mcpHealthServers";
+import { BT_ALL, BT_BASE, BT_PAGES, BT_HUB_TITLE, btDescription, btHubDescription, btPath, btTitle } from "@/data/btPages";
 import {
   orderedRecords,
   recordPath,
@@ -366,6 +368,26 @@ export function GET() {
       schemeDescription(s),
       [s.shortName, "keypoints landmarks index", ...s.usedBy.map((u) => u.model), ...s.points.map((p) => p.name)].join(" "),
     );
+  }
+  add(
+    "/health-mcp-servers",
+    "MCP servers for health and fitness data",
+    `The ${MCP_HEALTH_SERVERS.length} servers in the official MCP Registry that name a health or fitness data source, grouped by source, with package facts and publisher.`,
+    [
+      "mcp model context protocol server registry health data wearable garmin oura whoop strava apple health ai assistant",
+      ...new Set(MCP_HEALTH_SERVERS.map((s) => s.name.split("/")[1] ?? s.name)),
+    ].join(" "),
+  );
+
+  // Bluetooth GATT reference (generated from the Bluetooth SIG's YAML).
+  add(
+    BT_BASE,
+    BT_HUB_TITLE,
+    btHubDescription(),
+    ["bluetooth ble gatt characteristic uuid service byte layout flags ftms heart rate cycling power", ...BT_ALL.flatMap((c) => [c.name, c.uuid])].join(" "),
+  );
+  for (const c of BT_PAGES) {
+    add(btPath(c), btTitle(c), btDescription(c), [c.name, c.uuid, c.id, "bluetooth gatt characteristic byte layout", ...(c.gss?.structure.map((f) => f.name) ?? [])].join(" "));
   }
 
   add(

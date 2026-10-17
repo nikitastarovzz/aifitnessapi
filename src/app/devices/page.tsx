@@ -13,8 +13,13 @@ import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { getDevice, releasedDevices, DEVICES_PATH, DEVICES_CONFIG } from "@/data/devices";
+import { BT_BASE, BT_PAGES, btPath, btTotals, relatedGuides } from "@/data/btPages";
 
 const UPDATED = "2026-08-14";
+
+/** The generated reference's pages for characteristics these guides print by UUID (computed, not a hand list). */
+const BT_TOTALS = btTotals();
+const BT_LINKED = BT_PAGES.filter((c) => relatedGuides(c).length > 0);
 
 /** Every FAQ answer in this cluster, counted from the same data the
  *  /questions index is built from so the two can never disagree. */
@@ -170,6 +175,34 @@ export default function DevicesPillar() {
             </section>
           );
         })}
+
+        <section className="mt-14" data-bt-reference-link>
+          <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Byte layouts, from the SIG’s own files</h2>
+          <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
+            The{" "}
+            <Link href={BT_BASE} className="font-medium text-brand-600 hover:text-brand-500">
+              Bluetooth GATT reference
+            </Link>{" "}
+            lays out {BT_TOTALS.pages} characteristics field by field — type, size, offset, unit and the Flags bit that
+            makes each field present — as the Bluetooth SIG’s GATT Specification Supplement files publish them, and lists{" "}
+            {BT_TOTALS.characteristics} in all. The characteristics these guides name by UUID:
+          </p>
+          <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+            {BT_LINKED.map((c) => (
+              <li key={c.id}>
+                <Link
+                  href={btPath(c)}
+                  className="flex h-full flex-col rounded-2xl border border-[var(--border)] p-4 transition hover:border-brand-400 hover:bg-[var(--surface)]"
+                >
+                  <span className="font-semibold text-[var(--fg)]">{c.name}</span>
+                  <span className="mt-1 font-mono text-xs text-[var(--muted)]">
+                    {c.uuid} · {c.gss?.structure.length ?? 0} fields
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
 
         <section className="mt-14">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">

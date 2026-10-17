@@ -8,6 +8,7 @@ import { schemeH1, schemePath } from "@/data/poseKeypointPages";
 import { hkPageIdentifiers, hkIdentifierPath, hkPageH1 } from "@/data/hkIdentifierPages";
 import { hsPageTypes, hsDataTypePath, hsPageH1 } from "@/data/hsDataTypePages";
 import { GHAPI_PATHS, GHAPI_TOPICS, allTypes as ghapiTypes, typeH1 as ghapiTypeH1, typePath as ghapiTypePath } from "@/data/ghapiPages";
+import { BT_BASE, BT_HUB_H1, BT_PAGES, btH1, btPath } from "@/data/btPages";
 
 /**
  * A page's name, for links built from data rather than written by hand (the
@@ -27,6 +28,8 @@ const STANDALONE: Record<string, string> = {
   "/healthkit-queries": "HealthKit Queries",
   "/health-connect-api": "Health Connect API",
   "/pose-keypoints": "Pose Estimation Keypoint Maps",
+  "/health-mcp-servers": "MCP servers for health and fitness data",
+  [BT_BASE]: BT_HUB_H1,
 };
 
 let INDEX: Map<string, string> | null = null;
@@ -49,6 +52,7 @@ function build(): Map<string, string> {
   m.set(GHAPI_PATHS.hub, "Google Health API reference: every data type, scope and method");
   for (const p of GHAPI_TOPICS) m.set(p.path, `Google Health API ${p.label.toLowerCase()}`);
   for (const t of ghapiTypes()) m.set(ghapiTypePath(t), ghapiTypeH1(t));
+  for (const c of BT_PAGES) m.set(btPath(c), btH1(c));
   for (const [path, label] of Object.entries(STANDALONE)) m.set(path, label);
   return m;
 }

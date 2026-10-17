@@ -242,6 +242,38 @@ const ENTRIES: Entry[] = [
     caveat:
       "Three columns are derived and ship with their evidence: scope URLs (Google's documented prefix plus the printed suffix), methods (\"update\" is paired with patch only through Google's endpoint-mapping table) and the DataPoint field (matched by its own description, or by the kebab-case rule DataPoint.name states). Where Google's pages disagree, the flags column names the kind and the data-type page shows the texts.",
   },
+  {
+    slug: "health-mcp-servers-2026",
+    unit: "MCP servers",
+    blurb:
+      "Every server in the official MCP Registry whose name, title or description names a health or fitness data source, read page by page from the registry's listing: the registry's description verbatim, version, status and dates, packages and remote URLs, the term each was kept for, and npm or PyPI facts for its packages.",
+    keywords: [
+      "MCP server",
+      "Model Context Protocol",
+      "health data MCP",
+      "wearable data AI assistant",
+      "MCP Registry",
+    ],
+    presentedBy: { href: "/health-mcp-servers", label: "MCP servers for health and fitness data" },
+    caveat:
+      "Descriptions are the publishers' own words and no server was run or audited. publisherIsVendor is yes only when the registry namespace is the vendor's own domain in reverse-DNS form; repositories were not read, so repositoryUrl is only what the entry lists.",
+  },
+  {
+    slug: "bluetooth-fitness-gatt-2026",
+    unit: "characteristic fields",
+    blurb:
+      "The byte layout of the Bluetooth GATT characteristics fitness and health devices use, read from the Bluetooth SIG's own YAML: one row per field with its type, size, offset where it is fixed, the Flags bit that makes it present, and its unit, plus a row for each in-scope characteristic the SIG publishes no structure for.",
+    keywords: [
+      "Bluetooth GATT",
+      "BLE characteristic format",
+      "Heart Rate Measurement 0x2A37",
+      "FTMS Indoor Bike Data",
+      "GATT Specification Supplement",
+    ],
+    presentedBy: { href: "/bluetooth-fitness", label: "Bluetooth GATT characteristics for fitness devices" },
+    caveat:
+      "The licence covers this compilation and its derived columns. The UUIDs, names, types and sizes are the Bluetooth SIG's, restated as facts, and its files say they are proprietary to Bluetooth SIG and grant no licence, so the SIG's descriptions are left out (the pages quote them with attribution) and the file carries the SIG's notice in sourceTerms. Offsets, flag bits and units are derived, each beside the line it was read from.",
+  },
 ];
 
 const LOADED = ENTRIES.map((e) => ({ entry: e, file: loadDataset(e.slug) }));
@@ -344,7 +376,8 @@ export default function DatasetsPage() {
         <AnswerCapsule>
           AIFitnessAPI publishes {LOADED.length} open datasets about fitness and health APIs, each in
           both JSON and CSV, each versioned 2026.1 and licensed CC BY 4.0 with attribution as the only
-          condition: the access-structure survey of{" "}
+          condition (where a dataset restates another publisher’s facts, its note says what the licence
+          covers): the access-structure survey of{" "}
           {bySlug["fitness-apis-2026"]}{" "}APIs, SDKs and models; the HealthKit &harr; Health Connect
           identifier matrix covering {bySlug["health-data-type-matrix-2026"]} health metrics; the dated
           record of {bySlug["fitness-api-changes-2026"]} ecosystem changes, each graded for evidence
