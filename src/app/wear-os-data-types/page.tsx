@@ -21,6 +21,7 @@ import {
 } from "@/data/healthServicesDataTypes";
 import { absoluteUrl } from "@/lib/site";
 import { CAPSULE, FaqSection, JsonLd, LINK, TH, articleGraph, count, faqGraph, listOf, site, type Faq } from "../error-codes/_shared";
+import { hsDataTypePagePath, hsPageTypes, hsHeldBack } from "@/data/hsDataTypePages";
 
 /**
  * Every Wear OS Health Services DataType companion constant, with the
@@ -60,6 +61,10 @@ const AGG_SIBLING = (t: HsDataType) =>
 const DELTA_WITH_SIBLING = DELTA.filter((t) => AGG_SIBLING(t));
 const DELTA_WITHOUT_SIBLING = DELTA.filter((t) => !AGG_SIBLING(t));
 const subclassText = (name: string) => HS_DATA_TYPE_SUBCLASSES.find((s) => s.name === name)?.description ?? null;
+/** The constants with a page of their own (src/data/hsDataTypePages.ts holds
+ *  the rule); every row with one links it. */
+const TYPE_PAGES = hsPageTypes();
+const HELD_BACK = hsHeldBack();
 
 const typeId = (t: HsDataType) => `type-${t.name.toLowerCase()}`;
 /** "Delta · sample" — the two classes the declaration names, shortened for the table. */
@@ -183,6 +188,13 @@ export default function WearOsDataTypesPage() {
             {WITH_ADDED_IN.length === 0 &&
               ` The reference prints “Added in ${HS_DATA_TYPE_CLASS_ADDED_IN ?? "?"}” for the class and no version for any individual constant, so there is no per-row version column.`}
           </p>
+          <p id="type-pages" className="mt-3 scroll-mt-24 leading-relaxed text-[var(--muted)]">
+            {TYPE_PAGES.length} of the {TYPES.length}{" "}constants also have a page of their own — the linked names in
+            the table. A constant gets one only when the generated data holds at least two facts specific to it: the
+            permission Google&rsquo;s table lists it under, a further paragraph of Google&rsquo;s description, a quirk
+            recorded in that table, or its delta or aggregate counterpart on the same reference. The other{" "}
+            {HELD_BACK.length}{" "}stay rows here, without a page of their own.
+          </p>
           <div className="mt-5 overflow-x-auto">
             <table className="w-full border-collapse text-sm">
               <thead>
@@ -198,9 +210,23 @@ export default function WearOsDataTypesPage() {
                 {TYPES.map((t) => (
                   <tr key={t.name} id={typeId(t)} className="scroll-mt-24 border-b border-[var(--border)] align-top">
                     <td className="py-3 pr-4">
-                      <a href={t.docUrl} rel="nofollow" className="break-all font-mono text-xs font-semibold text-[var(--fg)] hover:text-brand-600">
-                        {t.name}
-                      </a>
+                      {hsDataTypePagePath(t.name) ? (
+                        <>
+                          <Link
+                            href={hsDataTypePagePath(t.name)!}
+                            className="break-all font-mono text-xs font-semibold text-brand-600 hover:text-brand-500"
+                          >
+                            {t.name}
+                          </Link>
+                          <a href={t.docUrl} rel="nofollow" className="mt-0.5 block text-[11px] text-[var(--muted)] hover:text-brand-600">
+                            Google&rsquo;s entry
+                          </a>
+                        </>
+                      ) : (
+                        <a href={t.docUrl} rel="nofollow" className="break-all font-mono text-xs font-semibold text-[var(--fg)] hover:text-brand-600">
+                          {t.name}
+                        </a>
+                      )}
                     </td>
                     <td className="py-3 pr-4 text-xs text-[var(--muted)]">
                       <span className="whitespace-nowrap text-[var(--fg)]">{typeLabel(t)}</span>

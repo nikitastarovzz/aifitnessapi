@@ -1,6 +1,8 @@
 import { allSpokes, CLUSTER_LABELS } from "@/lib/clusterRegistry";
 import { LIBRARIES_BASE, LIBRARY_COMPARISONS, libraryPages } from "@/data/librariesEditorial";
 import { hkStandaloneEntries } from "@/data/hkStandalone.entries";
+import { hkPageIdentifiers, hkIdentifierPath, hkPageH1 } from "@/data/hkIdentifierPages";
+import { hsPageTypes, hsDataTypePath, hsPageH1 } from "@/data/hsDataTypePages";
 
 /**
  * A page's name, for links built from data rather than written by hand (the
@@ -31,6 +33,9 @@ function build(): Map<string, string> {
   for (const { lib, ed } of libraryPages()) m.set(`${LIBRARIES_BASE}/${lib.slug}`, ed.h1);
   for (const c of LIBRARY_COMPARISONS) m.set(`${LIBRARIES_BASE}/compare/${c.slug}`, c.h1);
   for (const e of hkStandaloneEntries) m.set(`/${e.slug}`, e.title);
+  // Generated per-type reference pages: the H1 each renders.
+  for (const id of hkPageIdentifiers()) m.set(hkIdentifierPath(id), hkPageH1(id));
+  for (const t of hsPageTypes()) m.set(hsDataTypePath(t), hsPageH1(t));
   for (const [path, label] of Object.entries(STANDALONE)) m.set(path, label);
   return m;
 }

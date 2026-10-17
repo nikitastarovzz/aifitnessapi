@@ -19,16 +19,29 @@ import {
 } from "@/data/hkGroupPages";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
+import {
+  HK_PAGE_FAMILIES,
+  hkPageIdentifiers,
+  hkHeldBack,
+  hkIdentifierPagePath,
+  hkIdentifierPath,
+} from "@/data/hkIdentifierPages";
 
 /**
  * The complete HKQuantityTypeIdentifier reference.
  *
- * Deliberately ONE page, not 120. Apple's median discussion for a quantity
- * type is 23 words — a page per identifier would be 120 pages of restated
- * one-liners, which is the thin-content trap that gets whole page sets
- * demoted. What Apple does not offer anywhere is the set viewed as a set:
- * which types are cumulative and which are discrete, what the unit families
- * are, and which ones have an Android counterpart. That is what this adds.
+ * This page is the set viewed as a set: which types are cumulative and which
+ * are discrete, what the unit families are, and which ones have an Android
+ * counterpart — what Apple does not offer anywhere.
+ *
+ * Until 2026-10-17 it was deliberately the only page: Apple's median
+ * discussion for a quantity type is 23 words, and a page for every
+ * identifier would have been pages of restated one-liners. Since then an
+ * identifier also gets its own page at
+ * /healthkit-identifiers/<slug>, but only when the generated data holds at
+ * least two evidence-backed facts specific to it (the rule and its reasons
+ * are in src/data/hkIdentifierPages.ts). Every row with a page links it; the
+ * rest stay rows here, and qa's TYPE-PAGE-RULE keeps the two in step.
  */
 
 const PATH = "/healthkit-identifiers";
@@ -105,6 +118,31 @@ const GROUP_PAGE_FOR = Object.fromEntries(
     .map(([group, slug]) => [group, { slug, label: hkGroupLabel(slug) }]),
 );
 
+/** The per-type pages, counted by family for the section that explains them.
+ *  Computed from the same rule that decides which pages are built. */
+const TYPE_PAGES = hkPageIdentifiers();
+const HELD_BACK = hkHeldBack();
+const COVERED = HK_IDENTIFIERS.filter((r) => HK_PAGE_FAMILIES.includes(r.family));
+const FAMILY_WORD: Record<string, [string, string]> = {
+  quantity: ["quantity type", "quantity types"],
+  category: ["category type", "category types"],
+  characteristic: ["characteristic type", "characteristic types"],
+};
+/** "113 of 121 quantity types, 14 of 30 category types and 0 of 6 characteristic types" */
+const PAGES_BY_FAMILY = listJoin(
+  HK_PAGE_FAMILIES.map((f) => {
+    const total = COVERED.filter((r) => r.family === f).length;
+    const built = TYPE_PAGES.filter((r) => r.family === f).length;
+    return `${built} of ${total} ${FAMILY_WORD[f]?.[total === 1 ? 0 : 1] ?? f}`;
+  }),
+);
+/** The non-quantity types with a page, listed under the explanation (quantity
+ *  types are many and are linked from their table rows). */
+const NON_QUANTITY_PAGES = TYPE_PAGES.filter((r) => r.family !== "quantity");
+const NON_QUANTITY_LABEL = listJoin(
+  [...new Set(NON_QUANTITY_PAGES.map((r) => r.family))].map((f) => FAMILY_WORD[f]?.[1] ?? f),
+);
+
 /** Identifiers our HealthKit ↔ Health Connect matrix already maps to Android. */
 const MAPPED = new Set(
   MATRIX_ROWS.flatMap((r) =>
@@ -156,6 +194,7 @@ export default function HealthKitIdentifiersPage() {
     u: r.unitFamily,
     ve: r.valueEnum,
     ios: r.platforms.find((p) => p.name === "iOS")?.introducedAt ?? null,
+    ...(hkIdentifierPagePath(r.case) ? { p: hkIdentifierPagePath(r.case)! } : {}),
   }));
 
   const datasetJsonLd = {
@@ -322,6 +361,14 @@ export default function HealthKitIdentifiersPage() {
             </Link>
             .
           </p>
+          <p className="mt-3 text-sm text-[var(--muted)]">
+            {TYPE_PAGES.length}{" "}identifiers also have a page of their own — the linked names in the table — with
+            Apple&rsquo;s abstract, availability on every platform and the sentence behind each fact.{" "}
+            <a href="#type-pages" className="font-medium text-brand-600 hover:text-brand-500">
+              Which types get one
+            </a>
+            .
+          </p>
         </nav>
         <HkIdentifierTable
           rows={rows}
@@ -346,6 +393,38 @@ export default function HealthKitIdentifiersPage() {
               </li>
             ))}
           </ul>
+        </section>
+
+        <section id="type-pages" className="mt-14 scroll-mt-24">
+          <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Which types have a page of their own</h2>
+          <p className="mt-3 leading-relaxed text-[var(--muted)]">
+            {TYPE_PAGES.length} of the {COVERED.length} quantity, category and characteristic identifiers have one:{" "}
+            {PAGES_BY_FAMILY}. A type gets a page only when Apple documents it and gives its availability, and the
+            generated data holds at least two facts specific to it, each with its evidence, from this list: its
+            aggregation style with Apple&rsquo;s sentence; its unit family with a sentence that names it; a value enum;
+            Apple&rsquo;s statement that the samples are read-only; a row of the verified Health Connect matrix; a
+            deprecation note; a metadata key whose Apple text names it. The other {HELD_BACK.length}{" "}stay rows in
+            this table and on their group pages, without a page of their own.
+          </p>
+          {NON_QUANTITY_PAGES.length > 0 && (
+            <>
+              <p className="mt-4 text-sm text-[var(--muted)]">
+                The {NON_QUANTITY_LABEL} with a page (the quantity types with one are linked from their rows above):
+              </p>
+              <ul className="mt-3 flex flex-wrap gap-2 text-sm">
+                {NON_QUANTITY_PAGES.map((r) => (
+                  <li key={r.case}>
+                    <a
+                      href={hkIdentifierPath(r)}
+                      className="inline-block rounded-full border border-[var(--border)] px-3 py-1 font-mono text-[13px] text-[var(--muted)] transition-colors hover:border-brand-400 hover:text-[var(--fg)]"
+                    >
+                      {r.case}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </section>
 
         {undocumented.length > 0 && (

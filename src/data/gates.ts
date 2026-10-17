@@ -533,6 +533,23 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "A HealthKit query page that the HealthKit-to-Health Connect equivalents page maps, or the /healthkit-queries hub, without a link back to that equivalents page, or an equivalents page that was not built.",
   },
 
+  // ── Per-type reference pages (EXPANSION-3, 2026-10-17) ────────────────
+  {
+    code: "TYPE-PAGE-RULE",
+    area: "Derived blocks",
+    refuses: "A page for a HealthKit identifier or a Wear OS data type that fails its thin-page rule — fewer than two evidence-backed facts specific to the type, recomputed by the gate from the generated files rather than trusted from the page code — a type that passes the rule left without a page, or a page whose declared facts differ from the recomputed ones.",
+  },
+  {
+    code: "TYPE-PAGE-EVIDENCE",
+    area: "Derived blocks",
+    refuses: "A per-type page that counts a fact without rendering the evidence for it in the page text: Apple's abstract or Google's description, the aggregation or unit sentence, the value enum, the read-only sentence, the matrix row and its caveat, the deprecation note, the metadata key, the permissions-table row, the table quirk, or the counterpart and its own description.",
+  },
+  {
+    code: "TYPE-PAGE-UNLINKED",
+    area: "Links and anchors",
+    refuses: "A HealthKit identifier or Wear OS data-type page that its table page, /healthkit-identifiers or /wear-os-data-types, does not link, or a table page that was not built.",
+  },
+
   // ── Tools ─────────────────────────────────────────────────────────────
   {
     code: "TOOLS",
