@@ -8,6 +8,8 @@ import { GROUPS as GLOSSARY_GROUPS, termSlug } from "@/data/glossary";
 import { getAllPosts } from "@/lib/posts";
 import { orderedRecords, recordPath, recordH1, recordCapsule, recordFaqs, hcModified } from "@/data/hcPages";
 import { LIBRARIES_BASE, LIBRARY_COMPARISONS, libraryPages, librariesModified } from "@/data/librariesEditorial";
+import { hkPageIdentifiers, hkIdentifierPath, hkPageH1, hkPageCapsule, hkPageFaqs, hkPageModified } from "@/data/hkIdentifierPages";
+import { hsPageTypes, hsDataTypePath, hsPageH1, hsPageCapsule, hsPageFaqs, hsPageModified } from "@/data/hsDataTypePages";
 
 /**
  * The answer index: every question this site owns, with the answer, in one
@@ -88,8 +90,9 @@ export function GET() {
       faqs: p.faqs.map((f) => ({ question: f.q, answer: f.a })),
     })),
     // Generated reference pages outside the cluster registry (no markdown
-    // mirror, so no `markdown` field): the Health Connect record pages and
-    // the open-source library pages. Same answer/FAQ shape as `answers`,
+    // mirror, so no `markdown` field): the Health Connect record pages, the
+    // HealthKit identifier and Wear OS data type pages, and the open-source
+    // library pages. Same answer/FAQ shape as `answers`,
     // kept separate because they are not cluster spokes.
     reference_pages: [
       ...orderedRecords().map((r) => {
@@ -103,6 +106,34 @@ export function GET() {
           last_reviewed: hcModified(),
           first_party: false,
           faqs: recordFaqs(r).map((f, i) => ({ question: f.q, answer: f.a, url: `${url}#faq-${i + 1}` })),
+        };
+      }),
+      // One page per HealthKit identifier and Wear OS data type that clears
+      // its thin-page rule (hkIdentifierPages.ts, hsDataTypePages.ts).
+      ...hkPageIdentifiers().map((id) => {
+        const url = absoluteUrl(hkIdentifierPath(id));
+        return {
+          question: id.objc,
+          answer: hkPageCapsule(id),
+          title: hkPageH1(id),
+          url,
+          section: "HealthKit identifier reference",
+          last_reviewed: hkPageModified(id),
+          first_party: false,
+          faqs: hkPageFaqs(id).map((f, i) => ({ question: f.q, answer: f.a, url: `${url}#faq-${i + 1}` })),
+        };
+      }),
+      ...hsPageTypes().map((t) => {
+        const url = absoluteUrl(hsDataTypePath(t));
+        return {
+          question: `DataType.${t.name}`,
+          answer: hsPageCapsule(t),
+          title: hsPageH1(t),
+          url,
+          section: "Wear OS Health Services data types",
+          last_reviewed: hsPageModified(),
+          first_party: false,
+          faqs: hsPageFaqs(t).map((f, i) => ({ question: f.q, answer: f.a, url: `${url}#faq-${i + 1}` })),
         };
       }),
       ...libraryPages().map(({ ed }) => {

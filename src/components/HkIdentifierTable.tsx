@@ -23,6 +23,9 @@ export type HkRow = {
   u: string | null;   // unit family (quantity types only)
   ve: string | null;  // value enum (category types only)
   ios: string | null; // iOS introducedAt
+  /** The identifier's own page, when the thin-page rule in
+   *  src/data/hkIdentifierPages.ts gives it one; absent otherwise. */
+  p?: string;
 };
 
 const AGG_STYLE: Record<string, string> = {
@@ -141,7 +144,16 @@ export default function HkIdentifierTable({
             {filtered.map((r) => (
               <tr key={r.c} id={`id-${r.c.toLowerCase()}`} className="border-b border-[var(--border)] align-top">
                 <td className="py-3 pr-4">
-                  <code className="font-mono text-[13px] font-semibold text-[var(--fg)]">{r.c}</code>
+                  {r.p ? (
+                    <a
+                      href={r.p}
+                      className="font-mono text-[13px] font-semibold text-brand-600 hover:text-brand-500"
+                    >
+                      {r.c}
+                    </a>
+                  ) : (
+                    <code className="font-mono text-[13px] font-semibold text-[var(--fg)]">{r.c}</code>
+                  )}
                   <span className="mt-0.5 block font-mono text-[11px] text-[var(--muted)]">{r.o}</span>
                   {groupPages[r.g] && (
                     <a

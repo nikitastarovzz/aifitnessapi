@@ -5,6 +5,8 @@ import { PAGE_H1 } from "@/data/pageTitles";
 import { API_ENTRIES, APIS_PATH } from "@/data/apis";
 import { POSE_SCHEMES } from "@/data/poseKeypoints";
 import { schemeH1, schemePath } from "@/data/poseKeypointPages";
+import { hkPageIdentifiers, hkIdentifierPath, hkPageH1 } from "@/data/hkIdentifierPages";
+import { hsPageTypes, hsDataTypePath, hsPageH1 } from "@/data/hsDataTypePages";
 
 /**
  * A page's name, for links built from data rather than written by hand (the
@@ -39,6 +41,9 @@ function build(): Map<string, string> {
   for (const a of API_ENTRIES) m.set(`${APIS_PATH}/${a.id}`, a.label);
   for (const [path, label] of Object.entries(PAGE_H1)) m.set(path, label);
   for (const s of POSE_SCHEMES) m.set(schemePath(s), schemeH1(s));
+  // Generated per-type reference pages: the H1 each renders.
+  for (const id of hkPageIdentifiers()) m.set(hkIdentifierPath(id), hkPageH1(id));
+  for (const t of hsPageTypes()) m.set(hsDataTypePath(t), hsPageH1(t));
   for (const [path, label] of Object.entries(STANDALONE)) m.set(path, label);
   return m;
 }

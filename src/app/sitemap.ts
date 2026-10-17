@@ -20,6 +20,8 @@ import { HC_RELEASES_FETCHED_ON } from "@/data/hcReleases";
 import { HK_METADATA_KEYS_FETCHED_ON } from "@/data/healthkitMetadataKeys";
 import { HS_DATA_TYPES_FETCHED_ON } from "@/data/healthServicesDataTypes";
 import { POSE_KEYPOINTS_FETCHED_ON, POSE_SCHEMES } from "@/data/poseKeypoints";
+import { hkPageIdentifiers, hkIdentifierPath, hkPageModified } from "@/data/hkIdentifierPages";
+import { hsPageTypes, hsDataTypePath, hsPageModified } from "@/data/hsDataTypePages";
 
 /**
  * Every row carries a `lastmod` that some dated record on the site backs, or
@@ -141,6 +143,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...orderedRecords().map((r) => row(recordPath(r), hcModified())),
   ];
 
+  // Per-type reference pages (generated): one per HealthKit identifier and
+  // per Wear OS data type that clears its thin-page rule. Each declares
+  // hkPageModified(id) / hsPageModified() as dateModified; the types the rule
+  // holds back have no page and so no row.
+  const typePageRows = [
+    ...hkPageIdentifiers().map((id) => row(hkIdentifierPath(id), hkPageModified(id))),
+    ...hsPageTypes().map((t) => row(hsDataTypePath(t), hsPageModified())),
+  ];
+
   // Open-source library pages: hub, package pages and comparisons all
   // declare librariesModified() as dateModified.
   const libRows = [
@@ -250,6 +261,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...hkGroups,
     ...hkVersionRows,
     ...hcRows,
+    ...typePageRows,
     ...libRows,
     ...generatedRefs.map(([p, d]) => row(p, d)),
     // Products without search demand of their own are noindex (NOINDEX_APIS).
