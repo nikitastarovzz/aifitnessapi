@@ -1,5 +1,9 @@
 # Expansion map — the doubling program (started 2026-08-12)
 
+> **Next program (2026-10-17):** ops/EXPANSION-3-2026-10-17.md — vendor developer
+> hubs, AI motion and computer vision, and B2B health-data buyer's guides, plus the
+> rest of that list. Its items take precedence when the daily routine picks work.
+
 Goal: double the site's content at the standing quality bar. Two tracks:
 ~100 new pages that each own an unclaimed question, plus depth upgrades to
 the ~30 highest-potential existing pages. Executed in waves (interactive
