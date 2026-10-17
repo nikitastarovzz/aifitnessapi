@@ -5,7 +5,9 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterHero from "@/components/ClusterHero";
 import ClusterCta from "@/components/ClusterCta";
 import ContentAge from "@/components/ContentAge";
+import VendorHubMenu from "@/components/VendorHubMenu";
 import { Mdx } from "@/components/mdx";
+import { PAGE_H1 } from "@/data/pageTitles";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 
@@ -200,7 +202,7 @@ export default function FitbitApiShutdownPage() {
         <ClusterHero label="Deadline Watch" seed={8} />
 
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
-          Fitbit Web API Retirement: Deadlines and the Migration Path
+          {PAGE_H1[PAGE_PATH]}
         </h1>
         {/* A deadline page's claims expire on a calendar, not on a 90-day
             review cycle, so it flags at 30 days, as /changes does. */}
@@ -233,6 +235,8 @@ export default function FitbitApiShutdownPage() {
             ))}
           </dl>
         </section>
+
+        <VendorHubMenu path={PAGE_PATH} placement="end" />
 
         <ClusterCta pitch="Google has published the Fitbit Web API dates: support ended September 30, 2026 and the API turns off October 30, 2026. We track the Fitbit and Google Fit timelines as the notices change — subscribe and we'll flag any change to the dates or the re-consent requirements." source="pillar-inline" id="cta-fitbit-api-shutdown" />
 

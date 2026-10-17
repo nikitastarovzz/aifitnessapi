@@ -8,6 +8,7 @@ import PageActions from "@/components/PageActions";
 import NextSteps from "@/components/NextSteps";
 import Feedback from "@/components/Feedback";
 import ContentAge from "@/components/ContentAge";
+import VendorHubMenu from "@/components/VendorHubMenu";
 import { site, absoluteUrl } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 import { clampTitle, clampDescription } from "@/lib/cluster";
@@ -270,6 +271,10 @@ export default async function ApiPage({ params }: { params: Promise<Params> }) {
 
         <PageActions path={path} url={url} title={api.label} updated={UPDATED} markdown={false} />
 
+        {/* Where this entry is its vendor's hub (no integration guide exists),
+            the vendor's pages lead the page. Renders nothing otherwise. */}
+        <VendorHubMenu path={path} placement="top" />
+
         {demandPages.length > 0 && (
           <section className="mt-10">
             <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">
@@ -392,6 +397,10 @@ export default async function ApiPage({ params }: { params: Promise<Params> }) {
             </ul>
           </section>
         )}
+
+        {/* The vendor's own pages by task, hub marked, ahead of the wider
+            list below of every page that covers the product. */}
+        <VendorHubMenu path={path} placement="end" />
 
         {coverage.length > 0 && (
           <section className="mt-12">

@@ -14,6 +14,8 @@ import {
   HC_EXCEPTION_API_LEVEL,
 } from "@/data/errorCodes";
 import { HC_CLIENT_FIX_SLUGS, HC_ERROR_FIX_SLUGS, fixHref } from "@/data/errorCodesEditorial";
+import { PAGE_H1 } from "@/data/pageTitles";
+import VendorHubMenu from "@/components/VendorHubMenu";
 import { absoluteUrl } from "@/lib/site";
 import { CAPSULE, FaqSection, JsonLd, LINK, TH, articleGraph, count, faqGraph, listOf, site, type Faq } from "../_shared";
 
@@ -118,7 +120,7 @@ export default function HealthConnectErrorCodesPage() {
         />
 
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
-          Health Connect error codes and exceptions
+          {PAGE_H1[PATH]}
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">
           {count(CONSTANTS.length, "error code")} · {count(CLIENT.length, "Jetpack exception type")}{" "}· last fetched from
@@ -281,6 +283,8 @@ export default function HealthConnectErrorCodesPage() {
         </section>
 
         <FaqSection faqs={FAQS} />
+
+        <VendorHubMenu path={PATH} placement="end" />
 
         <p className="mt-12 text-sm text-[var(--muted)]">
           Read on {FETCHED} from Google&rsquo;s{" "}

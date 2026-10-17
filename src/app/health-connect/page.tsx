@@ -27,6 +27,8 @@ import {
   hcTotals,
   hkCounterpart,
 } from "@/data/hcPages";
+import { PAGE_H1 } from "@/data/pageTitles";
+import VendorHubMenu from "@/components/VendorHubMenu";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 import { stringSeed } from "@/lib/cluster";
@@ -109,7 +111,7 @@ export default function HealthConnectHub() {
         <ClusterHero label="Health Connect reference" seed={stringSeed("health-connect")} />
 
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
-          Health Connect record types, every one
+          {PAGE_H1[HC_BASE]}
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">
           {T.records} records in Google&rsquo;s {T.categories} categories · read from Google&rsquo;s documentation on{" "}
@@ -261,6 +263,8 @@ export default function HealthConnectHub() {
             ))}
           </ul>
         </section>
+
+        <VendorHubMenu path={HC_BASE} placement="end" />
 
         <ClusterCta
           pitch="These pages are generated from Google's own reference pages. Subscribe and you'll hear when a record type, permission or metric is added."

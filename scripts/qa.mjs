@@ -444,6 +444,137 @@ if (fs.existsSync(matrixPath)) {
   console.log(`Directory: ${dir.length} product pages, ${thin} with no coverage.`);
 }
 
+// ── Vendor menus (ops/EXPANSION-3-2026-10-17.md, item 1.2). src/data/vendorHubs.ts
+// lists every page about each vendor; each of them renders the same menu
+// (components/VendorHubMenu), and the vendor's hub links them all, so a search
+// for "<vendor> api" gathers on one page instead of splitting across three.
+// What rots without failing anything else: a listed page that stops building
+// or renders notFound (the menu's own build-time check only knows titles), a
+// page that drops its menu, a hub that stops linking a page, an entry whose
+// text drifts from the H1 it lands on, and the one the menus exist to stop: a
+// new page about a vendor that never joins its list. The lists are read from
+// the source, everything else from the build. Membership is held to the rules
+// declared beside each list: a whole hyphen-separated word of an address in
+// the sections the menus cover, and for a library its generated `wraps`.
+{
+  const VH_SRC = "src/data/vendorHubs.ts";
+  // Full-line comments may name paths in prose; they are not entries.
+  const code = fs.existsSync(VH_SRC) ? fs.readFileSync(VH_SRC, "utf8").replace(/^\s*\/\/.*$/gm, "") : "";
+  const strs = (s) => [...s.matchAll(/"([^"]*)"/g)].map((m) => m[1]);
+  const vendors = [
+    ...code.matchAll(
+      /\bid: "([a-z0-9-]+)",\s*hub: "([^"]+)",\s*tokens: \[([^\]]*)\],\s*wraps: \[([^\]]*)\],\s*pages: \[([^\]]*)\]/g,
+    ),
+  ].map((m) => ({ id: m[1], hub: m[2], tokens: strs(m[3]), wraps: strs(m[4]), pages: strs(m[5]) }));
+  if (vendors.length === 0) problems.push(`VENDOR-HUB-PAGE  could not read VENDOR_HUBS from ${VH_SRC}`);
+
+  const fileOf = new Map(htmls.map((h) => [routeOf(h), h]));
+  const cache = new Map();
+  const htmlAt = (r) => {
+    if (!cache.has(r)) {
+      cache.set(r, fileOf.has(r) && !notFoundSet.has(r) ? fs.readFileSync(fileOf.get(r), "utf8") : null);
+    }
+    return cache.get(r);
+  };
+  const textOf = (s) => decode(s.replace(/<[^>]*>/g, "")).replace(/\s+/g, " ").trim();
+  // A menu names a page by its H1 without the trailing "(2026)".
+  const h1Of = (html) =>
+    textOf(/<h1\b[^>]*>([\s\S]*?)<\/h1>/.exec(html)?.[1] ?? "").replace(/\s*\((?:19|20)\d{2}\)$/, "");
+  const menusOn = (html) =>
+    [...html.matchAll(/<nav\b[^>]*\bdata-vendor-menu="([^"]*)"[^>]*>/g)].map((m) => ({
+      ids: m[1].split(/\s+/),
+      placement: /\bdata-vendor-placement="([^"]*)"/.exec(m[0])?.[1],
+    }));
+
+  let carrying = 0;
+  let labelled = 0;
+  for (const v of vendors) {
+    if (v.pages.length < 3) {
+      problems.push(`VENDOR-HUB-PAGE  ${v.id} lists ${v.pages.length} page(s); a vendor gets a menu at three or more`);
+    }
+    const guide = v.pages.find((p) => p.startsWith("/integrate/"));
+    const rule = guide ?? `/apis/${v.id}`;
+    if (v.hub !== rule) {
+      problems.push(`VENDOR-HUB-PAGE  ${v.id}: hub is ${v.hub}, but its ${guide ? "integration guide" : "directory entry"} ${rule} is the hub by rule`);
+    }
+    if (!v.pages.includes(v.hub)) problems.push(`VENDOR-HUB-PAGE  ${v.id}: hub ${v.hub} is not in its own pages list`);
+    for (const p of v.pages) {
+      const html = htmlAt(p);
+      if (html === null) {
+        problems.push(`VENDOR-HUB-PAGE  ${v.id}: ${p} is listed in ${VH_SRC} but ${fileOf.has(p) ? "renders notFound()" : "no built page answers it"}`);
+        continue;
+      }
+      const want = p === v.hub ? "top" : "end";
+      if (menusOn(html).some((m) => m.placement === want && m.ids.includes(v.id))) carrying++;
+      else problems.push(`VENDOR-HUB-MENU  ${p} does not render the ${v.id} menu${want === "top" ? " at the top of the hub" : ""}`);
+    }
+    const hub = htmlAt(v.hub);
+    if (!hub) continue;
+    const hrefs = new Set([...hub.matchAll(/href="(\/[^"#?]*)/g)].map((m) => m[1]));
+    for (const p of v.pages) {
+      // An unbuilt page is already a VENDOR-HUB-PAGE failure above.
+      if (p !== v.hub && htmlAt(p) !== null && !hrefs.has(p)) {
+        problems.push(`VENDOR-HUB-LINK  ${v.hub}, the ${v.id} hub, does not link ${p}`);
+      }
+    }
+    // The hub's menu lists every page, so its entries are the whole label set.
+    for (const m of hub.matchAll(/<(a|span)\b[^>]*\bdata-vendor-page="([^"]*)"[^>]*>([\s\S]*?)<\/\1>/g)) {
+      const target = htmlAt(m[2]);
+      if (!target) continue;
+      labelled++;
+      const shown = textOf(m[3]);
+      const h1 = h1Of(target);
+      if (shown !== h1) problems.push(`VENDOR-HUB-LABEL  ${v.hub} names ${m[2]} "${shown}", but that page's H1 reads "${h1}"`);
+    }
+  }
+
+  // Membership. In the sections the menus cover, and among the single-segment
+  // reference pages, an address with one of a vendor's words is the vendor's
+  // page; so is a library whose generated `wraps` names it, and a library
+  // comparison where either package's does.
+  const SECTIONS = new Set(["integrate", "pricing", "alternatives", "compare", "fix", "libraries", "migrate", "fitness-apis", "data", "apis"]);
+  let wrapsOf = new Map();
+  try {
+    const libSrc = fs.readFileSync("src/data/libraries.ts", "utf8");
+    const at = /export const LIBRARIES: [^=]+= /.exec(libSrc);
+    const open = at.index + at[0].length;
+    const rows = JSON.parse(libSrc.slice(open, libSrc.indexOf("\n];", open) + 3).trim().replace(/;$/, ""));
+    wrapsOf = new Map(rows.map((l) => [l.slug, l.wraps ?? []]));
+  } catch {
+    problems.push("VENDOR-HUB-UNLISTED  could not read LIBRARIES from src/data/libraries.ts to check which vendors each library wraps");
+  }
+  const hasWord = (seg, word) =>
+    seg === word || seg.startsWith(`${word}-`) || seg.endsWith(`-${word}`) || seg.includes(`-${word}-`);
+  let scanned = 0;
+  for (const r of [...valid].sort()) {
+    if (notFoundSet.has(r)) continue;
+    const seg = r.split("/").filter(Boolean);
+    if (seg.length === 0 || seg[0].startsWith("_")) continue;
+    if (!(seg.length === 1 || SECTIONS.has(seg[0]))) continue;
+    scanned++;
+    const words = seg.length === 1 ? seg : seg.slice(1);
+    let libWraps = [];
+    if (seg[0] === "libraries" && seg.length === 2) libWraps = wrapsOf.get(seg[1]) ?? [];
+    if (seg[0] === "libraries" && seg[1] === "compare" && seg.length === 3) {
+      libWraps = seg[2].split("-vs-").flatMap((s) => wrapsOf.get(s) ?? []);
+    }
+    for (const v of vendors) {
+      if (v.pages.includes(r)) continue;
+      const word = v.tokens.find((t) => words.some((w) => hasWord(w, t)));
+      const wrap = v.wraps.find((w) => libWraps.includes(w));
+      if (word || wrap) {
+        problems.push(
+          `VENDOR-HUB-UNLISTED  ${r} ${word ? `has "${word}" as a word of its address` : `wraps ${wrap}`} but is not in the ${v.id} pages of ${VH_SRC}`,
+        );
+      }
+    }
+  }
+  console.log(
+    `Vendor menus: ${vendors.length} vendors, ${carrying} vendor pages carrying their menu, ` +
+      `${labelled} hub entries reading their page's H1; ${scanned} addresses checked for unlisted vendor pages.`,
+  );
+}
+
 // ── GEO invariants (ops/GEO.md). These protect machine-citability: if a new
 // cluster ships without llms.txt wiring or the /md mirrors break, LLMs lose
 // their clean path to us and nothing else would notice.
