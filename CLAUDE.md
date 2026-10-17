@@ -102,6 +102,9 @@ verification stamp is a quality signal, not metadata.
   `.github/workflows/source-snapshot.yml` with a list in `ops/sources/` and
   write from its artifact, citing the original URL and the snapshot's fetch
   date. Snapshots are research copies and are never committed.
+- A page written from a snapshot ships with `ops/sources/evidence/<cluster>-<slug>.json`
+  (claim, url, verbatim quote per fact); `.github/workflows/source-quotes.yml`
+  must be green on the PR before it merges.
 - Every change goes through a pull request into `main`; never force-push. The branch ruleset rejects direct pushes and requires the `gates` check, so this is enforced, not advisory. Use auto-merge (`gh pr merge --auto --squash --delete-branch`) to keep unattended runs autonomous.
 - Secrets live only in `.env.local` (gitignored), GitHub Secrets, or Vercel
   env — the repo is public.

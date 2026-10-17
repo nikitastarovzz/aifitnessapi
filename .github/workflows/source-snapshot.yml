@@ -24,8 +24,13 @@ on:
   workflow_dispatch:
     inputs:
       list:
-        description: "URL list in ops/sources/ (file name without .txt)"
+        description: "URL list in ops/sources/ (file name without .txt), or a label for urls below"
         required: true
+        type: string
+      urls:
+        description: "Optional: https URLs separated by spaces or newlines, fetched instead of the list file"
+        required: false
+        default: ""
         type: string
       print_chars:
         description: "Also print up to this many characters of each page to the job log (0 = off). Delete the run's logs once read."
@@ -51,6 +56,7 @@ jobs:
         env:
           LIST: ${{ inputs.list }}
           PRINT_CHARS: ${{ inputs.print_chars }}
+          URLS: ${{ inputs.urls }}
         run: |
           if ! [[ "$LIST" =~ ^[a-z0-9-]+$ ]]; then
             echo "list must be a file name in ops/sources/ (lowercase letters, digits, hyphens)" >&2
@@ -59,6 +65,16 @@ jobs:
           if ! [[ "$PRINT_CHARS" =~ ^[0-9]{1,6}$ ]]; then
             echo "print_chars must be a number" >&2
             exit 2
+          fi
+          if [ -n "$URLS" ]; then
+            # An ad-hoc list for a follow-up pass, so a writer can name exact
+            # pages without a pull request per list. Only https URLs pass.
+            set -f  # split on whitespace, never glob
+            printf '%s\n' $URLS | grep -E '^https://[^[:space:]]+$' > "ops/sources/$LIST.txt" || true
+            if [ ! -s "ops/sources/$LIST.txt" ]; then
+              echo "urls held no https URL" >&2
+              exit 2
+            fi
           fi
           node scripts/source-snapshot.mjs --list "ops/sources/$LIST.txt" --out snapshot --print-chars "$PRINT_CHARS"
 

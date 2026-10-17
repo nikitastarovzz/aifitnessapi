@@ -1,0 +1,39 @@
+name: Source quotes
+
+# Every page written from a host the dev environment cannot reach keeps an
+# evidence file in ops/sources/evidence/ ({ claim, url, quote } rows). This job
+# fetches each source from a GitHub runner and fails when a quote is not
+# found, so a claim cannot ship on a passage its source does not contain
+# (ops/EXPANSION-3-2026-10-17.md item 4.8, scripts/check-source-quotes.mjs).
+#
+# It runs on pull requests that touch evidence, weekly (sources change after
+# publication: a failing weekly run is the signal to re-verify that page), and
+# on demand. Read-only, no secrets.
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "ops/sources/evidence/**"
+      - "scripts/check-source-quotes.mjs"
+  schedule:
+    - cron: "17 6 * * 3"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  source-quotes:
+    name: source-quotes
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Check every quoted passage against its source
+        run: node scripts/check-source-quotes.mjs
