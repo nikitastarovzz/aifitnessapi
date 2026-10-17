@@ -19,6 +19,7 @@ import { ERROR_CODES_FETCHED_ON } from "@/data/errorCodes";
 import { HC_RELEASES_FETCHED_ON } from "@/data/hcReleases";
 import { HK_METADATA_KEYS_FETCHED_ON } from "@/data/healthkitMetadataKeys";
 import { HS_DATA_TYPES_FETCHED_ON } from "@/data/healthServicesDataTypes";
+import { POSE_KEYPOINTS_FETCHED_ON, POSE_SCHEMES } from "@/data/poseKeypoints";
 
 /**
  * Every row carries a `lastmod` that some dated record on the site backs, or
@@ -156,6 +157,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/health-connect-releases", HC_RELEASES_FETCHED_ON],
     ["/healthkit-metadata-keys", HK_METADATA_KEYS_FETCHED_ON],
     ["/wear-os-data-types", HS_DATA_TYPES_FETCHED_ON],
+    ["/pose-keypoints", POSE_KEYPOINTS_FETCHED_ON],
+    ...POSE_SCHEMES.map((s): [string, string] => [`/pose-keypoints/${s.slug}`, POSE_KEYPOINTS_FETCHED_ON]),
   ];
 
   // The list is empty until the authored entries land, and an empty list

@@ -57,6 +57,10 @@ export const motionEntries: ClusterEntry[] =
         "label": "Best AI workout tracking APIs"
       },
       {
+        "href": "/pose-keypoints",
+        "label": "Every keypoint index, scheme by scheme"
+      },
+      {
         "href": "/motion",
         "label": "All AI motion topics"
       }
@@ -583,6 +587,10 @@ export const motionEntries: ClusterEntry[] =
         "label": "AI workout tracking on the web"
       },
       {
+        "href": "/pose-keypoints/blazepose-33",
+        "label": "All 33 Pose Landmarker indices"
+      },
+      {
         "href": "/motion",
         "label": "All AI motion topics"
       }
@@ -634,6 +642,14 @@ export const motionEntries: ClusterEntry[] =
       {
         "href": "/test/camera-features-without-a-device",
         "label": "Test camera features without a device"
+      },
+      {
+        "href": "/pose-keypoints/apple-vision-2d",
+        "label": "All 19 Vision 2D joint names"
+      },
+      {
+        "href": "/pose-keypoints/apple-vision-3d",
+        "label": "All 17 Vision 3D joint names"
       },
       {
         "href": "/motion",
@@ -780,6 +796,424 @@ export const motionEntries: ClusterEntry[] =
         "url": "https://developer.apple.com/documentation/vision/vndetecthumanbodypose3drequest",
         "checked": "2026-10-12",
         "note": "VNDetectHumanBodyPose3DRequest availability from iOS 17.0 and macOS 14.0."
+      }
+    ]
+  },
+  {
+    "slug": "movenet-models",
+    "primaryQuery": "movenet model",
+    "h1": "MoveNet Lightning, Thunder and MultiPose: Inputs, Outputs and Licence",
+    "metaTitle": "MoveNet Lightning vs Thunder vs MultiPose: Model Guide",
+    "metaDescription": "MoveNet's three models side by side: input sizes, the 17-keypoint output tensor, TF.js and TF Lite runtimes, published speeds and what each card licenses.",
+    "updated": "2026-10-17",
+    "answer": "MoveNet comes as three models that all output the 17 COCO keypoints: SinglePose Lightning (192x192 input, the TF.js default and the fastest), SinglePose Thunder (256x256, more accurate but slower) and MultiPose Lightning (up to 6 people, input sized at run time). Google's model cards target the browser through TensorFlow.js and on-device use through TensorFlow Lite, and the SinglePose card describes one person 3 to 6 feet from a webcam. The tensorflow/tfjs-models code and the SinglePose card are Apache-2.0, while the text of the MultiPose card carries no license line, so confirm its terms before shipping it.",
+    "body": "This page is about MoveNet alone. The choice between it and MediaPipe is made in [MediaPipe vs MoveNet, head to head](/motion/pose-estimation-models-compared#mediapipe-vs-movenet-head-to-head), and the licence layers are read in full in [pose estimation model licenses](/motion/pose-estimation-model-licenses). Everything below was read from Google's two MoveNet model cards and the tensorflow/tfjs-models repository on October 17, 2026.\n\n## The three models\n\n| Model | `modelType` in TF.js | Input | People | How the source describes it |\n| --- | --- | --- | --- | --- |\n| SinglePose Lightning | `SINGLEPOSE_LIGHTNING` (the default) | 192x192x3, int32, RGB 0 to 255 | 1 | \"intended for latency-critical applications\" |\n| SinglePose Thunder | `SINGLEPOSE_THUNDER` | 256x256x3, int32, RGB 0 to 255 | 1 | \"intended for applications that require high accuracy\" |\n| MultiPose Lightning | `MULTIPOSE_LIGHTNING` | 1xHxWx3, H and W multiples of 32 set at run time | Up to 6 | \"detects up to 6 poses\" |\n\nThe SinglePose card describes both single-person models as a MobileNetV2 feature extractor with a Feature Pyramid Network decoder and CenterNet prediction heads, Lightning at depth multiplier 1.0 and Thunder at 1.75. The MultiPose card gives the same architecture at depth multiplier 1.5 and recommends resizing the image so its larger side is 256 pixels, keeping the aspect ratio. In the TF.js package that size is `multiPoseMaxDimension`: a multiple of 32, 256 by default, with 128 to 512 recommended.\n\n## What comes out\n\nRead the coordinate order before writing any code. Per the SinglePose card, the raw model returns a float32 tensor of shape `[1, 1, 17, 3]`: for each keypoint, y and x normalized to the image frame (0.0 to 1.0), then a confidence score. The MultiPose card's output is `[1, 6, 56]`: six instance slots, each holding 17 groups of y, x and score, then a bounding box (ymin, xmin, ymax, xmax) in normalized coordinates and an instance score.\n\nThe TF.js `pose-detection` package converts this for you. Its README says each keypoint \"contains x, y, score and name\", that x and y \"represent the actual keypoint position in the image\", and that `poseDetection.calculators.keypointsToNormalizedKeypoints` converts them to the 0 to 1 range. With MultiPose, each returned pose also carries a `box`, and an `id` when tracking is on.\n\nThe 17 keypoints follow the COCO order, from 0 nose to 16 right_ankle. The full table, and the other models that share it, are in [the COCO 17 keypoint map](/pose-keypoints/coco-17).\n\n## Confidence thresholds\n\nThe SinglePose card says the model \"predicts 17 human keypoints of the full body even when they are occluded\", gives keypoints outside the frame low confidence scores, and recommends a default threshold of 0.3 to filter them. The TF.js package has a separate, pose-level threshold: `minPoseScore`, which falls back to `DEFAULT_MIN_POSE_SCORE`, 0.25 in the MoveNet constants file, when you do not set it.\n\n## Runtimes and where the weights come from\n\nIn the browser, the MoveNet README pairs the package with a TF.js backend: WebGL, or WebAssembly, which it calls \"the typical backend for devices with lower-end or no GPUs\". By default the package loads weights from tfhub.dev, and the constants file names the three model URLs:\n\n```text\nhttps://tfhub.dev/google/tfjs-model/movenet/singlepose/lightning/4\nhttps://tfhub.dev/google/tfjs-model/movenet/singlepose/thunder/4\nhttps://tfhub.dev/google/tfjs-model/movenet/multipose/lightning/1\n```\n\nThe `modelUrl` option points the package at your own copy instead; the README calls it useful \"for area/countries that don't have access to the model hosted on tf.hub\", and it also accepts an `io.IOHandler` such as tfjs-react-native's `bundleResourceIO` to load from an app bundle. Outside the browser, both cards name TensorFlow Lite for on-device use, and the MultiPose card gives its input as int32 for TF.js and uint8 for TF Lite.\n\n## The published speed numbers\n\nThe MoveNet README publishes frames per second for its three models, in the order SinglePose Lightning, SinglePose Thunder, MultiPose Lightning:\n\n| Backend | MacBook Pro 15-inch 2019 | iPhone 12 | Pixel 5 | Desktop, i9-10900K with GTX 1070 |\n| --- | --- | --- | --- | --- |\n| WebGL | 104, 77, 54 | 51, 43, 24 | 34, 12, 8 | 87, 82, 62 |\n| WASM with SIMD and multithreading | 42, 21, N/A | N/A | N/A | 71, 30, N/A |\n\nThese are the TF.js team's figures on its own hardware. The README adds that for MultiPose \"the number of detected persons does not impact inference speed and the accuracy of detections is similar to that of SinglePose Lightning\". The cards' millisecond benchmarks are set against MediaPipe's on [the comparison page](/motion/pose-estimation-models-compared#mediapipe-vs-movenet-head-to-head); measure on your own target devices before you choose.\n\n## Licence\n\nThe tensorflow/tfjs-models LICENSE is the Apache License, Version 2.0, and the SinglePose card says \"Licensed Under Apache License, Version 2.0\". The text of the MultiPose card has no license line. That gap, and what Apache-2.0 asks of you when you ship, are covered in [pose estimation model licenses](/motion/pose-estimation-model-licenses).\n\n## Two statements that disagree\n\nThe pose-detection package README still says \"Currently, only PoseNet supports multi-pose estimation.\" The MoveNet README in the same repository documents `MULTIPOSE_LIGHTNING`, and the MoveNet constants file lists it among the valid models. We go by the MoveNet README and the code.\n\n## Which one to load\n\nOur reading of Google's own descriptions: SinglePose Lightning for live rep counting where latency matters most, Thunder when you can spend more compute for a cleaner pose, and MultiPose Lightning only when more than one person must be tracked. The SinglePose card is explicit that it focuses \"on detecting the pose of the person who is closest to the image center\" and ignores the rest. What you then compute from the keypoints is covered in [how rep counting works](/motion/how-rep-counting-works).",
+    "faqs": [
+      {
+        "q": "What input size do MoveNet Lightning and Thunder expect?",
+        "a": "Google's MoveNet.SinglePose card gives an int32 tensor of 192x192x3 for Lightning and 256x256x3 for Thunder, RGB with values from 0 to 255, and the TF.js MoveNet constants file uses the same 192 and 256 resolutions. MultiPose Lightning differs: its input is 1xHxWx3 with H and W multiples of 32 chosen at run time, and its card recommends resizing so the larger side is 256 pixels."
+      },
+      {
+        "q": "In what order does MoveNet's output tensor store coordinates?",
+        "a": "y first, then x, then the score. The SinglePose card describes a 1x1x17x3 float32 tensor whose last dimension holds the yx coordinates normalized to the image frame followed by the confidence, and the MultiPose card lays out each person as y, x and score for all 17 keypoints followed by a bounding box and an instance score. The TF.js pose-detection package converts this into keypoints with x, y, score and name, with x and y in image pixels."
+      },
+      {
+        "q": "How many people can MoveNet MultiPose track?",
+        "a": "Up to 6. The MoveNet README describes MULTIPOSE_LIGHTNING as a multi-pose detector that detects up to 6 poses, the MultiPose card says the same, and each returned pose carries a bounding box. Setting enableTracking gives each pose an id that identifies the person across frames. The README also says the number of detected people does not change inference speed and that accuracy is similar to SinglePose Lightning's."
+      },
+      {
+        "q": "Where does the TF.js pose-detection package load MoveNet weights from?",
+        "a": "From tfhub.dev by default: the MoveNet constants file points at movenet/singlepose/lightning/4, movenet/singlepose/thunder/4 and movenet/multipose/lightning/1 under tfhub.dev/google/tfjs-model. The modelUrl option loads your own copy instead and also accepts an io.IOHandler, which the README pairs with tfjs-react-native's bundleResourceIO to load a model from the app bundle."
+      },
+      {
+        "q": "What confidence threshold does Google suggest for MoveNet keypoints?",
+        "a": "0.3. The MoveNet.SinglePose card says the model predicts all 17 keypoints even when they are occluded, gives keypoints outside the frame low confidence scores, and recommends a default threshold of 0.3 to filter out unconfident predictions. That is per keypoint; the TF.js package's minPoseScore is a separate threshold on the whole pose, which defaults to 0.25."
+      }
+    ],
+    "related": [
+      {
+        "href": "/pose-keypoints/coco-17",
+        "label": "The COCO 17 keypoint order"
+      },
+      {
+        "href": "/motion/pose-estimation-models-compared",
+        "label": "MediaPipe vs MoveNet, head to head"
+      },
+      {
+        "href": "/motion/pose-estimation-model-licenses",
+        "label": "Pose model licences"
+      },
+      {
+        "href": "/motion/how-rep-counting-works",
+        "label": "How rep counting works"
+      },
+      {
+        "href": "/motion",
+        "label": "All AI motion topics"
+      }
+    ],
+    "cta": {
+      "pitch": "Get our developer notes on pose models, including when Google changes MoveNet's weights, cards or TF.js package."
+    },
+    "sources": [
+      {
+        "url": "https://github.com/tensorflow/tfjs-models/blob/master/pose-detection/src/movenet/README.md",
+        "checked": "2026-10-17",
+        "note": "The three model types and their descriptions, detector options, the WebGL and WASM backends, the FPS table and the MultiPose speed and accuracy note."
+      },
+      {
+        "url": "https://github.com/tensorflow/tfjs-models/blob/master/pose-detection/src/movenet/constants.ts",
+        "checked": "2026-10-17",
+        "note": "192 and 256 input resolutions, the MultiPose default maximum dimension of 256, the tfhub.dev URLs, the valid models and DEFAULT_MIN_POSE_SCORE 0.25."
+      },
+      {
+        "url": "https://github.com/tensorflow/tfjs-models/blob/master/pose-detection/src/movenet/detector.ts",
+        "checked": "2026-10-17",
+        "note": "minPoseScore falls back to DEFAULT_MIN_POSE_SCORE when it is not set."
+      },
+      {
+        "url": "https://github.com/tensorflow/tfjs-models/blob/master/pose-detection/README.md",
+        "checked": "2026-10-17",
+        "note": "Keypoint fields x, y, score and name in image coordinates, keypointsToNormalizedKeypoints, and the sentence that only PoseNet supports multi-pose estimation."
+      },
+      {
+        "url": "https://storage.googleapis.com/movenet/MoveNet.SinglePose%20Model%20Card.pdf",
+        "checked": "2026-10-17",
+        "note": "Architecture and depth multipliers, 192x192 and 256x256 int32 inputs, the 1x1x17x3 yx output, TF.js and TF Lite, 3 to 6 feet, the person closest to the image center, the 0.3 threshold and the Apache-2.0 license line."
+      },
+      {
+        "url": "https://storage.googleapis.com/movenet/MoveNet.MultiPose%20Model%20Card.pdf",
+        "checked": "2026-10-17",
+        "note": "Up to 6 people, depth multiplier 1.5, dynamic input in multiples of 32 with 256 recommended, int32 for TF.js and uint8 for TF Lite, the 1x6x56 output; no license line in the extracted text."
+      },
+      {
+        "url": "https://github.com/tensorflow/tfjs-models/blob/master/LICENSE",
+        "checked": "2026-10-17",
+        "note": "Apache License, Version 2.0."
+      }
+    ]
+  },
+  {
+    "slug": "ml-kit-pose-detection",
+    "primaryQuery": "ml kit pose detection",
+    "h1": "ML Kit Pose Detection: Base vs Accurate SDK, Landmarks and Limits",
+    "metaTitle": "ML Kit Pose Detection: Base vs Accurate SDK and Limits",
+    "metaDescription": "Google's ML Kit pose API on Android and iOS: base vs accurate SDK sizes and speeds, the 33 landmarks, the experimental Z value and the one-person limit.",
+    "updated": "2026-10-17",
+    "answer": "ML Kit Pose Detection is Google's on-device pose API for Android and iOS: it returns 33 landmarks for one person, each with an in-frame likelihood and an experimental Z value measured from the hips. It ships as a base SDK, which Google describes as real time on phones like the Pixel 4 and iPhone X, and an accurate SDK that is slower but returns more accurate coordinates; Google's guides put the added app size between about 10 MB and 33 MB depending on SDK and platform. Google states the API is in beta with no SLA or deprecation policy, detects only one person, and needs the user's face in view.",
+    "body": "Choosing between ML Kit, MediaPipe and the rest happens in [pose estimation models compared](/motion/pose-estimation-models-compared). ML Kit is governed by service terms rather than an open-source licence, read in [pose estimation model licenses](/motion/pose-estimation-model-licenses). This page covers what Google's ML Kit guides and API reference say about the pose API, as read on October 17, 2026.\n\n## Base vs accurate SDK\n\n| Platform | SDK | App size, per Google | Speed, per Google |\n| --- | --- | --- | --- |\n| Android | `pose-detection` | About 10.1 MB | Pixel 3XL: about 30 FPS |\n| Android | `pose-detection-accurate` | About 13.3 MB | Pixel 3XL: about 23 FPS on CPU, about 30 FPS on GPU |\n| iOS | `PoseDetection` | Up to 29.6 MB | iPhone X: about 45 FPS |\n| iOS | `PoseDetectionAccurate` | Up to 33.2 MB | iPhone X: about 29 FPS |\n\nGoogle's overview says the base SDK \"runs in real time on modern phones like the Pixel 4 and iPhone X\" while \"the precision of the landmark coordinates may vary\", and that the accurate SDK \"returns results at a slower framerate, but produces more accurate coordinate values\". On Android the code and assets are statically linked into the app at build time, and the guide requires API level 23 or above; on iOS the detector's assets are statically linked. The guides printed these dependency versions on the day we read them:\n\n```text\ncom.google.mlkit:pose-detection:18.0.0-beta5\ncom.google.mlkit:pose-detection-accurate:18.0.0-beta5\npod 'GoogleMLKit/PoseDetection', '8.0.0'\npod 'GoogleMLKit/PoseDetectionAccurate', '8.0.0'\n```\n\nThe iOS guide asks for Xcode 13.2.1 or higher.\n\n## What it returns\n\nWhen a person is detected, the Android guide says the API returns a `Pose` with 33 `PoseLandmark` objects, and an empty list when nobody is. Each landmark has a type, a 2D position, a 3D position and an in-frame likelihood from 0.0 to 1.0. When part of the body is outside the image, Google says the missing landmarks get coordinates outside the frame and low in-frame values.\n\nThe 33 types are listed with their integer values in [the ML Kit landmark map](/pose-keypoints/ml-kit). They use the same 33 values as MediaPipe's `PoseLandmark` enum, and every name matches except the mouth corners: ML Kit's `LEFT_MOUTH` and `RIGHT_MOUTH` against MediaPipe's `MOUTH_LEFT` and `MOUTH_RIGHT`. One quirk of Google's Android reference: it describes `RIGHT_EYE`, `RIGHT_EYE_INNER` and `RIGHT_EYE_OUTER` with the word \"left\".\n\nGoogle's overview adds that \"Pose Detection does not attach any meaning to the landmarks in a pose or the pose itself\". Classifying a pose or counting a rep is your code's job, which [how rep counting works](/motion/how-rep-counting-works) covers.\n\n## The Z value\n\nGoogle calls Z \"an experimental value\". The overview says it is measured in image pixels like X and Y but \"is not a true 3D value\", that its origin is approximately the center point between the hips, that negative values are toward the camera, and that it has no upper or lower bound. The Android reference adds that Z is less accurate than X and Y.\n\nTwo of Google's pages differ on one point. The overview says the Z coordinate \"is calculated for every landmark\"; the iOS Swift reference says \"z-values for facial landmarks are not calculated, so please disregard them\". Treat facial Z as unusable either way. For depth you can lean on, see [2D vs 3D pose estimation](/motion/2d-vs-3d-pose-estimation).\n\n## Detection modes and inputs\n\n`STREAM_MODE`, the default, detects the most prominent person, then tracks them and re-runs person detection only when they are obscured or lost; Google recommends it for video. `SINGLE_IMAGE_MODE` runs person detection on every image, with higher latency and no tracking, for static images. On Android, `setPreferredHardwareConfigs` chooses between `CPU` and `CPU_GPU`, and ML Kit falls back to CPU when no preferred configuration works.\n\nGoogle asks for input images of at least 480x360 pixels and says the person should be represented by at least 256x256 pixels for best performance. For real-time use it recommends the base SDK with `STREAM_MODE`.\n\n## The limits Google states\n\n- **One person.** \"Pose detection can only detect one person in an image.\" With two people, the landmarks go to the person detected with the highest confidence.\n- **The face must be visible.** \"The user's face must be present in order to detect a pose.\"\n- **Beta.** The API \"is offered in beta, and is not subject to any SLA or deprecation policy\", and Google warns that changes may break backward compatibility.\n\nThe ML Kit Terms of Service, last modified May 14, 2025, say processing of the input data \"fully happens on-device\", and that the APIs \"send metrics about the performance and utilization of the APIs in your app to Google\". For more than one person in frame, start from [multi-person pose tracking](/motion/multi-person-pose-tracking).\n\n## When it fits\n\nOur reading: ML Kit suits an Android and iOS app that wants one person's skeleton without shipping and versioning a model file, and that can accept beta terms. If you need the model file itself or an open-source licence, MediaPipe Pose Landmarker outputs 33 landmarks at the same indices; its variants are compared in [MediaPipe Pose Landmarker models](/motion/mediapipe-pose-landmarker-models).",
+    "faqs": [
+      {
+        "q": "What is the difference between ML Kit's base and accurate pose detection SDKs?",
+        "a": "Speed against coordinate accuracy, and size. Google's Android guide lists pose-detection at about 10.1 MB and about 30 FPS on a Pixel 3XL, and pose-detection-accurate at about 13.3 MB and about 23 FPS on CPU or 30 FPS on GPU. On iOS, PoseDetection is up to 29.6 MB at about 45 FPS on an iPhone X and PoseDetectionAccurate up to 33.2 MB at about 29 FPS. Google says the accurate SDK produces more accurate coordinate values at a slower frame rate."
+      },
+      {
+        "q": "Can ML Kit pose detection track more than one person?",
+        "a": "No. Google's overview says pose detection can only detect one person in an image, and that with two people in frame the model assigns landmarks to the person detected with the highest confidence. In STREAM_MODE it tracks the most prominent person across frames. For group scenes you need a multi-person model instead."
+      },
+      {
+        "q": "Is the Z coordinate from ML Kit pose detection real depth?",
+        "a": "No. Google calls it an experimental value measured in image pixels like X and Y that is not a true 3D value, with its origin approximately at the center between the hips, negative toward the camera and no fixed bound. The Android reference says it is less accurate than X and Y, and the iOS Swift reference says Z values for facial landmarks are not calculated and should be disregarded."
+      },
+      {
+        "q": "What image resolution does ML Kit pose detection need?",
+        "a": "Google's Android guide asks for images of at least 480x360 pixels and says the person should be represented by at least 256x256 pixels for best performance. For real-time use it suggests capturing at a lower resolution to cut latency while keeping to those minimums, and using the base SDK with STREAM_MODE."
+      },
+      {
+        "q": "Why does ML Kit return pose landmarks outside the image?",
+        "a": "Because it always returns all 33. When the person is not completely inside the image, Google's Android guide says the model assigns the missing landmarks coordinates outside the frame and gives them low in-frame likelihood values. Check getInFrameLikelihood, which runs from 0.0 to 1.0, before using a landmark."
+      }
+    ],
+    "related": [
+      {
+        "href": "/pose-keypoints/ml-kit",
+        "label": "ML Kit's 33 landmark constants"
+      },
+      {
+        "href": "/motion/mediapipe-pose-landmarker-models",
+        "label": "MediaPipe Pose Landmarker: Lite vs Full vs Heavy"
+      },
+      {
+        "href": "/motion/pose-estimation-model-licenses",
+        "label": "Pose model licences and ML Kit's terms"
+      },
+      {
+        "href": "/motion/pose-estimation-models-compared",
+        "label": "Pose estimation models compared"
+      },
+      {
+        "href": "/motion",
+        "label": "All AI motion topics"
+      }
+    ],
+    "cta": {
+      "pitch": "ML Kit's pose API is beta and can change without a deprecation policy. Subscribe and we will flag it when Google's guides or SDK versions move."
+    },
+    "sources": [
+      {
+        "url": "https://developers.google.com/ml-kit/vision/pose-detection",
+        "checked": "2026-10-17",
+        "note": "Beta status, 33 landmarks, face required, one person, in-frame likelihood, base vs accurate SDK, the Z coordinate, and no meaning attached to landmarks."
+      },
+      {
+        "url": "https://developers.google.com/ml-kit/vision/pose-detection/android",
+        "checked": "2026-10-17",
+        "note": "SDK names, sizes and Pixel 3XL speeds, API level 23, the 18.0.0-beta5 dependencies, detection modes, hardware configs, 480x360 and 256x256 guidance, and out-of-frame landmarks."
+      },
+      {
+        "url": "https://developers.google.com/ml-kit/vision/pose-detection/ios",
+        "checked": "2026-10-17",
+        "note": "PoseDetection and PoseDetectionAccurate sizes and iPhone X speeds, pods at 8.0.0, Xcode 13.2.1, stream and singleImage modes."
+      },
+      {
+        "url": "https://developers.google.com/android/reference/com/google/mlkit/vision/pose/PoseLandmark",
+        "checked": "2026-10-17",
+        "note": "The 33 constants and their values, the in-frame likelihood range, the getPosition3D Z notes, and the RIGHT_EYE descriptions that say left."
+      },
+      {
+        "url": "https://developers.google.com/ml-kit/reference/swift/mlkitposedetectioncommon/api/reference/Classes/PoseLandmark",
+        "checked": "2026-10-17",
+        "note": "Z values are less accurate than x and y, and facial landmark z-values are not calculated."
+      },
+      {
+        "url": "https://developers.google.com/ml-kit/terms",
+        "checked": "2026-10-17",
+        "note": "Last modified May 14, 2025: input processing fully on-device, and the performance and utilization metrics the APIs send to Google."
+      }
+    ]
+  },
+  {
+    "slug": "yolo-pose-models",
+    "primaryQuery": "yolo pose models",
+    "h1": "Ultralytics YOLO Pose Models: Sizes, Keypoint Output and Licence",
+    "metaTitle": "Ultralytics YOLO Pose Models: Sizes, Output, AGPL",
+    "metaDescription": "Ultralytics YOLO26 pose models n to x as Ultralytics publishes them: COCO keypoint mAP, speed and size, the keypoint tensor, export formats and AGPL-3.0.",
+    "updated": "2026-10-17",
+    "answer": "Ultralytics' pose task docs, read on October 17, 2026, present YOLO26 pose models in five sizes, n, s, m, l and x, pretrained on COCO keypoints at 640 pixels and predicting the 17 COCO keypoints for each person they detect. Ultralytics' own table runs from YOLO26n-pose at 57.2 mAP pose 50-95 with 2.9 M parameters to YOLO26x-pose at 71.6 with 57.6 M parameters. The code is AGPL-3.0, and Ultralytics sells an Enterprise License for products that cannot meet AGPL-3.0's open-source requirements.",
+    "body": "Read [pose estimation model licenses](/motion/pose-estimation-model-licenses) alongside this page: in our reading, the AGPL-3.0 question settles more YOLO pose decisions than accuracy does; the multi-person engineering is in [multi-person pose tracking](/motion/multi-person-pose-tracking). What follows is what Ultralytics' repository says about its pose models, read on October 17, 2026. Every figure is Ultralytics' own.\n\n## The five sizes\n\n| Model | Input | mAP pose 50-95 (e2e) | mAP pose 50 (e2e) | CPU ONNX, ms | T4 TensorRT10, ms | Params, M | FLOPs, B |\n| --- | --- | --- | --- | --- | --- | --- | --- |\n| YOLO26n-pose | 640 | 57.2 | 83.3 | 40.3 ± 0.5 | 1.8 ± 0.0 | 2.9 | 7.6 |\n| YOLO26s-pose | 640 | 63.0 | 86.6 | 85.3 ± 0.9 | 2.7 ± 0.0 | 10.4 | 24.1 |\n| YOLO26m-pose | 640 | 68.8 | 89.6 | 218.0 ± 1.5 | 5.0 ± 0.1 | 21.5 | 73.3 |\n| YOLO26l-pose | 640 | 70.4 | 90.5 | 275.4 ± 2.4 | 6.5 ± 0.1 | 25.9 | 91.7 |\n| YOLO26x-pose | 640 | 71.6 | 91.6 | 565.4 ± 3.0 | 12.2 ± 0.2 | 57.6 | 202.3 |\n\nUltralytics says the mAP values are single-model, single-scale on COCO Keypoints val2017; that speed is averaged over COCO val images with ONNX on CPU and TensorRT10 on an NVIDIA T4 GPU; and that parameter and FLOP counts are for fused models with the unused detection branch removed, so pretrained checkpoints may show higher counts. None of these is a phone measurement. The pose models carry a `-pose` suffix, as in `yolo26n-pose.pt`, and the weights download automatically from Ultralytics' latest release on first use.\n\n## What a prediction returns\n\nEach image gives one `Results` object. Ultralytics' results table lists `result.keypoints.xy` as pixel keypoints and `result.keypoints.xyn` as normalized keypoints, both shaped (N, K, 2), and `result.keypoints.data` as \"x,y plus optional visibility/confidence\", shaped (N, K, 2 or 3). `result.boxes` holds the instance boxes those keypoints belong to. The training config `coco-pose.yaml` declares `kpt_shape: [17, 3]`, which its comment explains as the number of keypoints and the number of dimensions, \"2 for x,y or 3 for x,y,visible\".\n\nThe default models predict the 17 COCO keypoints, so index k is the COCO point at k, from 0 nose to 16 right_ankle. Ultralytics' docs list the order in title case (\"Left Eye\") and `coco-pose.yaml` in snake case (`left_eye`). The full table, and the other models that share it, are in [the COCO 17 keypoint map](/pose-keypoints/coco-17).\n\n## Export targets\n\nUltralytics' export table lists 23 formats, PyTorch included. For mobile and edge apps the relevant ones include ONNX, Core ML (`.mlpackage`), LiteRT (`.tflite`), NCNN, ExecuTorch, OpenVINO and TensorRT. The table notes that IMX500 export \"is currently only supported for YOLOv8n, YOLO11n models\".\n\n## Training on your own keypoints\n\nThe docs train YOLO26n-pose on the small COCO8-pose dataset as their example, convert existing COCO keypoint JSON with the `convert_coco` function and `use_keypoints=True`, and point to other keypoint datasets such as Tiger-Pose, Hand Keypoints and Dog-Pose. `coco-pose.yaml` shows what a dataset file declares: `kpt_shape`, a `flip_idx` list and `kpt_names`.\n\n## Licence\n\nThe ultralytics/ultralytics LICENSE is the GNU Affero General Public License, version 3. The README describes the Ultralytics Enterprise License as \"for development and production use\", covering \"business products and services, including internal tools, automated workflows, and production deployments, bypassing the open-source requirements of AGPL-3.0\". Section 13 of the AGPL and what it means for server-side inference are read in [pose estimation model licenses](/motion/pose-estimation-model-licenses).\n\n## When it fits\n\nOur reading: YOLO pose returns keypoints for every person it detects, in five sizes that trade speed for accuracy, which suits gym floors and group classes. Settle the AGPL-3.0 question before writing code, not after.",
+    "faqs": [
+      {
+        "q": "What do the n, s, m, l and x YOLO pose model sizes trade off?",
+        "a": "Accuracy against speed and size, on Ultralytics' own benchmark. Its table runs from YOLO26n-pose at 57.2 mAP pose 50-95, 40.3 ms on CPU with ONNX and 2.9 M parameters, to YOLO26x-pose at 71.6 mAP, 565.4 ms and 57.6 M parameters, all at 640 pixels on COCO Keypoints val2017. On an NVIDIA T4 with TensorRT10 the range is 1.8 to 12.2 ms. None of these figures was measured on a phone."
+      },
+      {
+        "q": "Does Ultralytics YOLO pose return keypoints for every person in the image?",
+        "a": "Yes, one set per detected instance. Ultralytics documents result.keypoints with the shape (N, K, 2 or 3), N instances of K keypoints, alongside result.boxes, the instance boxes those keypoints belong to. The training config's only class is person, so each instance is a person with 17 COCO keypoints in the default models."
+      },
+      {
+        "q": "What is the third value in a YOLO pose keypoint?",
+        "a": "Visibility or confidence, where the model provides it. coco-pose.yaml declares kpt_shape as 17 keypoints by 3 dimensions and explains the second number as 2 for x,y or 3 for x,y,visible, and Ultralytics' results table describes keypoints.data as x,y plus optional visibility/confidence. keypoints.xy and keypoints.xyn carry only the two coordinates, in pixels and normalized."
+      },
+      {
+        "q": "Can a YOLO pose model be exported to Core ML or TensorFlow Lite?",
+        "a": "Yes, according to Ultralytics' export table: format coreml writes a .mlpackage and format litert writes a .tflite file, alongside ONNX, NCNN, ExecuTorch, OpenVINO, TensorRT and others, 23 formats counting PyTorch itself. Exporting does not change the licence; AGPL-3.0 or an Enterprise License still applies to what you ship."
+      }
+    ],
+    "related": [
+      {
+        "href": "/pose-keypoints/coco-17",
+        "label": "The COCO 17 keypoint order"
+      },
+      {
+        "href": "/motion/pose-estimation-model-licenses",
+        "label": "Pose model licences, AGPL included"
+      },
+      {
+        "href": "/motion/multi-person-pose-tracking",
+        "label": "Multi-person pose tracking"
+      },
+      {
+        "href": "/motion/pose-estimation-models-compared",
+        "label": "Pose estimation models compared"
+      },
+      {
+        "href": "/motion",
+        "label": "All AI motion topics"
+      }
+    ],
+    "cta": {
+      "pitch": "Ultralytics renames and re-benchmarks its pose models often. Subscribe and we will flag it when the published table or licence terms change."
+    },
+    "sources": [
+      {
+        "url": "https://github.com/ultralytics/ultralytics/blob/main/docs/en/tasks/pose.md",
+        "checked": "2026-10-17",
+        "note": "YOLO26 pose models, the -pose suffix, COCO keypoints pretraining, benchmark conditions, automatic download, Results fields, the keypoint index map, training and COCO conversion."
+      },
+      {
+        "url": "https://github.com/ultralytics/ultralytics/blob/main/docs/macros/yolo-pose-perf.md",
+        "checked": "2026-10-17",
+        "note": "The five-model table: input size, mAP, CPU ONNX and T4 TensorRT10 speed, parameters and FLOPs."
+      },
+      {
+        "url": "https://github.com/ultralytics/ultralytics/blob/main/docs/macros/export-table.md",
+        "checked": "2026-10-17",
+        "note": "The 23 export formats and the IMX500 note."
+      },
+      {
+        "url": "https://github.com/ultralytics/ultralytics/blob/main/ultralytics/cfg/datasets/coco-pose.yaml",
+        "checked": "2026-10-17",
+        "note": "kpt_shape [17, 3] and its comment, flip_idx, the person class and kpt_names."
+      },
+      {
+        "url": "https://github.com/ultralytics/ultralytics/blob/main/LICENSE",
+        "checked": "2026-10-17",
+        "note": "GNU Affero General Public License, version 3."
+      },
+      {
+        "url": "https://github.com/ultralytics/ultralytics/blob/main/README.md",
+        "checked": "2026-10-17",
+        "note": "The AGPL-3.0 route and the Ultralytics Enterprise License."
+      }
+    ]
+  },
+  {
+    "slug": "rtmpose-models",
+    "primaryQuery": "rtmpose",
+    "h1": "RTMPose (MMPose): Model Sizes, Keypoint Sets and Deployment",
+    "metaTitle": "RTMPose Models: Sizes, Keypoint Sets and Deployment",
+    "metaDescription": "RTMPose from OpenMMLab's MMPose: t to x sizes and speeds as its README reports them, the 17, 26 and 133-keypoint sets, ONNX, TensorRT and ncnn, Apache-2.0.",
+    "updated": "2026-10-17",
+    "answer": "RTMPose is the real-time pose estimation project in OpenMMLab's MMPose repository, released in March 2023, with body models in sizes from t to x. Its README reports RTMPose-m at 75.8% AP on COCO with 90+ FPS on an Intel i7-11700 CPU and 430+ FPS on a GTX 1660 Ti, and RTMPose-s at 72.2% AP with 70+ FPS on a Snapdragon 865, all its own measurements. Models come in 17-keypoint COCO, 26-keypoint Halpe26 and 133-keypoint COCO-WholeBody sets and deploy through ONNX, TensorRT, ncnn and OpenVINO; the MMPose code is Apache-2.0, and the files we read state no separate terms for the pretrained weights.",
+    "body": "RTMPose ships one model family in several keypoint sets, with its own deployment toolchain. Model choice in general is in [pose estimation models compared](/motion/pose-estimation-models-compared) and licences in [pose estimation model licenses](/motion/pose-estimation-model-licenses). Everything below is from the RTMPose README and MMPose's dataset files, read on October 17, 2026; the speed and accuracy figures are the README's own.\n\n## Sizes and the README's figures\n\n| Model | AP on COCO | CPU FPS | GPU FPS |\n| --- | --- | --- | --- |\n| RTMPose-t | 68.5 | 300+ | 940+ |\n| RTMPose-s | 72.2 | 200+ | 710+ |\n| RTMPose-m | 75.8 | 90+ | 430+ |\n| RTMPose-l | 76.5 | 50+ | 280+ |\n| RTMPose-l at 384 | 78.3 | Not given | 160+ |\n\nThe README's abstract names the hardware behind the RTMPose-m figures, an Intel i7-11700 CPU and an NVIDIA GTX 1660 Ti GPU, and reports RTMPose-s at 72.2% AP with 70+ FPS \"on a Snapdragon 865 chip\" after deploying to a mobile device. Its model zoo notes add a caution worth repeating: because the models are trained on multi-domain combined datasets, \"results are not suitable for academic comparison\". A larger RTMPose-x appears in the model zoo tables too.\n\n## Keypoint sets\n\n- **17 keypoints**, which the README says \"are defined as COCO\": the same order MoveNet and YOLO pose use. See [the COCO 17 keypoint map](/pose-keypoints/coco-17).\n- **26 keypoints**, defined as Halpe26: COCO's 17 names plus head, neck, hip and six foot points. See [the Halpe26 keypoint map](/pose-keypoints/halpe-26).\n- **133 keypoints**, defined as COCO-WholeBody: body, feet, 68 face points and both hands, the set behind the README's RTMPose, RTMW and DWPose-distilled wholebody models. See [the COCO-WholeBody keypoint map](/pose-keypoints/coco-wholebody-133).\n\nThe README also lists face (106 keypoints, LaPa), hand (21 keypoints) and animal (17 keypoints, AP-10K) models, outside this site's scope.\n\n## How it runs\n\nThe README pairs each pose model with a person detector, RTMDet, in its pipeline table, and its PyTorch demo script is `topdown_demo_with_mmdet.py`, so a full pipeline is a detector plus a pose model. It lists several ways to run it:\n\n- **rtmlib**, which supports OpenCV, ONNX Runtime and OpenVINO inference, \"does not require Pytorch or MMCV\", runs on CPU or GPU, downloads ONNX models from the OpenMMLab model zoo, and supports RTMPose, DWPose, RTMO and RTMW.\n- **ONNX Runtime examples** in Python, without MMCV.\n- **The pre-compiled MMDeploy SDK**, which the README recommends as \"6-10 times faster\", with exported ONNX, TensorRT and ncnn models, a pipeline API for Python, C++, C# and Java, and Android examples on the ncnn backend.\n\nThe README notes that PyTorch inference \"can not reach the maximum speed of RTMPose, just for verification\". Its abstract lists the platforms MMDeploy covers as CPU, GPU, NVIDIA Jetson and mobile devices.\n\n## Licence\n\nThe open-mmlab/mmpose LICENSE opens \"Copyright 2018-2020 Open-MMLab. All rights reserved.\" and continues with the Apache License, Version 2.0. The README links checkpoints on download.openmmlab.com, and we found no separate terms for those weights in the files we read, so check before shipping a checkpoint. What Apache-2.0 asks of you is in [pose estimation model licenses](/motion/pose-estimation-model-licenses).\n\n## When it fits\n\nOur reading: RTMPose suits a team that wants an Apache-2.0 codebase, needs foot or hand points beyond COCO's 17, or deploys to its own server or edge hardware through ONNX, TensorRT or ncnn, and is willing to run a person detector alongside the pose model.",
+    "faqs": [
+      {
+        "q": "Which keypoint sets do RTMPose models come in?",
+        "a": "Three body sets, per the RTMPose README: 17 keypoints defined as COCO, 26 keypoints defined as Halpe26, and 133 keypoints defined as COCO-WholeBody, which covers the RTMPose, RTMW and DWPose-distilled wholebody models. Each section points to its MMPose meta info file: coco.py, halpe26.py and coco_wholebody.py. The README also lists face, hand and animal models with their own keypoint sets."
+      },
+      {
+        "q": "Does RTMPose need a separate person detector?",
+        "a": "In the pipelines its README documents, yes. The pipeline performance table pairs each RTMPose model with an RTMDet person detector, and the PyTorch demo is topdown_demo_with_mmdet.py, which takes a detector config and a pose config. The README's notes say pipeline latency was tested with person detection run every 5 frames by default."
+      },
+      {
+        "q": "Can RTMPose run without PyTorch?",
+        "a": "Yes. The RTMPose README lists rtmlib, which runs RTMPose, DWPose, RTMO and RTMW models with OpenCV, ONNX Runtime or OpenVINO and does not require PyTorch or MMCV, plus Python ONNX Runtime examples without MMCV and the pre-compiled MMDeploy SDK with exported ONNX, TensorRT and ncnn models. The README says PyTorch inference is for verification and cannot reach RTMPose's maximum speed."
+      },
+      {
+        "q": "How fast is RTMPose on a mobile chip?",
+        "a": "The RTMPose README reports RTMPose-s at 72.2% AP on COCO with 70+ FPS on a Snapdragon 865 chip, measured by the project itself after deploying to a mobile device, and its body model tables list ncnn FP16 latency on the same chip. Treat these as the authors' figures and measure on your own target phones."
+      }
+    ],
+    "related": [
+      {
+        "href": "/pose-keypoints/halpe-26",
+        "label": "The Halpe26 keypoint order"
+      },
+      {
+        "href": "/pose-keypoints/coco-wholebody-133",
+        "label": "All 133 COCO-WholeBody keypoints"
+      },
+      {
+        "href": "/motion/pose-estimation-model-licenses",
+        "label": "Pose model licences"
+      },
+      {
+        "href": "/motion/on-device-vs-cloud-pose-estimation",
+        "label": "On-device vs cloud pose estimation"
+      },
+      {
+        "href": "/motion",
+        "label": "All AI motion topics"
+      }
+    ],
+    "cta": {
+      "pitch": "Get our developer notes on open pose models, including new RTMPose releases and changes to OpenMMLab's checkpoints."
+    },
+    "sources": [
+      {
+        "url": "https://github.com/open-mmlab/mmpose/blob/main/projects/rtmpose/README.md",
+        "checked": "2026-10-17",
+        "note": "Release date, the abstract's speed and accuracy figures, model sizes, keypoint sets, the model zoo caveat, the RTMDet pipeline, rtmlib, the MMDeploy SDK, backends, platforms and SDK languages."
+      },
+      {
+        "url": "https://github.com/open-mmlab/mmpose/blob/main/configs/_base_/datasets/halpe26.py",
+        "checked": "2026-10-17",
+        "note": "Halpe26's 26 keypoint names in order."
+      },
+      {
+        "url": "https://github.com/open-mmlab/mmpose/blob/main/configs/_base_/datasets/coco_wholebody.py",
+        "checked": "2026-10-17",
+        "note": "COCO-WholeBody's 133 keypoint names in order."
+      },
+      {
+        "url": "https://github.com/open-mmlab/mmpose/blob/main/LICENSE",
+        "checked": "2026-10-17",
+        "note": "The Open-MMLab copyright line and the Apache License, Version 2.0."
+      }
+    ]
+  },
+  {
+    "slug": "openpose-models",
+    "primaryQuery": "openpose model",
+    "h1": "OpenPose Models: BODY_25 vs COCO, Output Format and Licence",
+    "metaTitle": "OpenPose Models: BODY_25 vs COCO, Output and Licence",
+    "metaDescription": "CMU's OpenPose: the BODY_25 and COCO body models, hand and face keypoints, the JSON output layout, CPU and GPU builds, and its noncommercial licence.",
+    "updated": "2026-10-17",
+    "answer": "OpenPose is Carnegie Mellon University's real-time multi-person keypoint detector; its README describes body and foot estimation with 15, 18 or 25 keypoints, 2x21 hand keypoints and 70 face keypoints. Its output document describes two body formats, BODY_25 and COCO, and the source lists their 25 and 18 body parts, BODY_25 adding a mid-hip and six foot points to COCO's names. It runs as CUDA, OpenCL or CPU-only builds on Ubuntu, Windows and macOS, and its licence allows noncommercial research use only.",
+    "body": "This page covers what CMU's OpenPose repository says about its models and output, read on October 17, 2026. The licence is read in full in [pose estimation model licenses](/motion/pose-estimation-model-licenses), and the multi-person alternatives are in [multi-person pose tracking](/motion/multi-person-pose-tracking).\n\n## Body models\n\nOpenPose's output document shows how to read the body-part order of any model from its C++ API, naming `BODY_25`, `COCO_18`, `MPI_15`, `BODY_25B` and `BODY_135`. Two have output-format diagrams in that document, and their orders, read from `poseParameters.cpp`, are:\n\n- **BODY_25**: 25 body parts, from 0 Nose to 24 RHeel. See [the BODY_25 keypoint map](/pose-keypoints/openpose-body-25).\n- **COCO** (`PoseModel::COCO_18`): 18 body parts, from 0 Nose to 17 LEar. See [the OpenPose COCO 18 keypoint map](/pose-keypoints/openpose-coco-18).\n\nBODY_25 contains every COCO 18 name plus MidHip and six foot points (LBigToe, LSmallToe, LHeel, RBigToe, RSmallToe, RHeel), and the shared names sit at different indices after index 7: RHip is 9 in BODY_25 and 8 in COCO 18. Each map ends with a Background entry, which the source excludes from the part count. OpenPose's COCO 18 is not the 17-keypoint COCO order MoveNet and YOLO pose use: it adds Neck at index 1 and spells sides as R and L, so [the crosswalk](/pose-keypoints#crosswalk) does not join its points to COCO 17's.\n\nThe README's headline figure is 135 keypoints in total for body, hand, face and foot together, and the C++ API names a BODY_135 model.\n\n## Output format\n\nWith `--write_json`, OpenPose writes one JSON file per frame with a `people` array. Each person's `pose_keypoints_2d` holds body part locations and detection confidence \"formatted as x0,y0,c0,x1,y1,c1,...\", in the model's body-part order. The `--keypoint_scale` flag sets the coordinate range, for example 0 to 1, -1 to 1, or source or output pixels, and the confidence runs from 0 to 1. Face and hand keypoints come in matching `face_keypoints_2d`, `hand_left_keypoints_2d` and `hand_right_keypoints_2d` arrays, and the 3D fields stay empty unless `--3d` is enabled.\n\n## Platforms\n\nThe README lists Ubuntu 20, 18, 16 and 14, Windows 10 and 8, Mac OSX and the Nvidia TX2, with CUDA (Nvidia GPU), OpenCL (AMD GPU) and CPU-only builds, a command-line demo, C++ and Python APIs, and a portable Windows demo. It documents single-person 3D keypoint detection by triangulation from multiple views with Flir cameras, and says body runtime is invariant to the number of people detected while hand and face runtime depends on it.\n\n## Licence\n\nThe LICENSE is headed \"ACADEMIC OR NON-PROFIT ORGANIZATION NONCOMMERCIAL RESEARCH USE ONLY\" and grants a license \"to use the Software for noncommercial research purposes\". The README says OpenPose \"is freely available for free non-commercial use\" and points commercial users to a FlintBox link. In our reading, a commercial fitness app needs that separate licence; the details are in [pose estimation model licenses](/motion/pose-estimation-model-licenses).\n\n## When it fits\n\nOur reading: OpenPose fits research and prototypes that want body, hands and face from one system, or that must emit BODY_25 for tools that expect it. For a commercial product the licence usually decides against it before the engineering does; [multi-person pose tracking](/motion/multi-person-pose-tracking) covers the alternatives.",
+    "faqs": [
+      {
+        "q": "What is the difference between OpenPose's BODY_25 and COCO body models?",
+        "a": "Seven points and the numbering. OpenPose's poseParameters.cpp lists 25 body parts for BODY_25 and 18 for COCO; BODY_25 has every COCO name plus MidHip at index 8 and six foot points at 19 to 24. Indices 0 to 7 match, from Nose to LWrist, but the rest shift: RHip is 9 in BODY_25 and 8 in COCO. Both maps end with a Background entry that is not counted as a body part."
+      },
+      {
+        "q": "How is OpenPose's JSON keypoint output laid out?",
+        "a": "One file per frame with a people array, per OpenPose's output document. Each person's pose_keypoints_2d is a flat list of x, y and confidence for every body part in the model's order, so body part i starts at position 3i. The --keypoint_scale flag chooses the coordinate range, the confidence runs from 0 to 1, and face and hands have their own arrays."
+      },
+      {
+        "q": "Does OpenPose need an NVIDIA GPU?",
+        "a": "No. The OpenPose README lists CUDA builds for Nvidia GPUs, OpenCL builds for AMD GPUs and non-GPU, CPU-only builds, on Ubuntu, Windows, Mac OSX and the Nvidia TX2. The README does not give speed figures for each build in the files we read, so measure the one you plan to ship on."
+      },
+      {
+        "q": "Can OpenPose estimate 3D poses?",
+        "a": "Only in a multi-camera setup. The OpenPose README documents 3D real-time single-person keypoint detection by triangulation from multiple single views, with synchronization of Flir cameras handled; its 3D JSON fields stay empty unless the --3d flag is enabled. From one ordinary camera it outputs 2D keypoints."
+      }
+    ],
+    "related": [
+      {
+        "href": "/pose-keypoints/openpose-body-25",
+        "label": "OpenPose BODY_25 keypoint order"
+      },
+      {
+        "href": "/pose-keypoints/openpose-coco-18",
+        "label": "OpenPose COCO 18 keypoint order"
+      },
+      {
+        "href": "/motion/pose-estimation-model-licenses",
+        "label": "Pose model licences, OpenPose included"
+      },
+      {
+        "href": "/motion/multi-person-pose-tracking",
+        "label": "Multi-person pose tracking"
+      },
+      {
+        "href": "/motion",
+        "label": "All AI motion topics"
+      }
+    ],
+    "cta": {
+      "pitch": "Get our developer notes on pose models and their licences, including any change to OpenPose's terms or repository."
+    },
+    "sources": [
+      {
+        "url": "https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/README.md",
+        "checked": "2026-10-17",
+        "note": "Body/foot, hand and face keypoint counts, the 135-keypoint headline, 3D triangulation, OS and hardware support, APIs, and the non-commercial and FlintBox licensing text."
+      },
+      {
+        "url": "https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/doc/02_output.md",
+        "checked": "2026-10-17",
+        "note": "BODY_25 and COCO output formats, the JSON layout and --keypoint_scale, the 3D fields, and the PoseModel names."
+      },
+      {
+        "url": "https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/src/openpose/pose/poseParameters.cpp",
+        "checked": "2026-10-17",
+        "note": "POSE_BODY_25_BODY_PARTS and POSE_COCO_BODY_PARTS, the Background entries and POSE_NUMBER_BODY_PARTS."
+      },
+      {
+        "url": "https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/LICENSE",
+        "checked": "2026-10-17",
+        "note": "The noncommercial research heading and grant."
       }
     ]
   }

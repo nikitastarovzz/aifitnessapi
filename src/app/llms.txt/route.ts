@@ -30,6 +30,8 @@ import { releasedPhoneSensors, SENSORS_PATH } from "@/data/phoneSensors";
 import { releasedHealthConnectApi, HCAPI_PATH } from "@/data/healthConnectApi";
 import { HK_METADATA_KEYS, HK_METADATA_KEY_GROUPS } from "@/data/healthkitMetadataKeys";
 import { HS_DATA_TYPES } from "@/data/healthServicesDataTypes";
+import { POSE_CROSSWALK, POSE_SCHEMES } from "@/data/poseKeypoints";
+import { POSE_BASE, schemeDescription, schemeH1, schemePath } from "@/data/poseKeypointPages";
 import {
   orderedRecords,
   recordPath,
@@ -414,6 +416,15 @@ export function GET() {
     `- [Open-Source Health & Fitness Libraries](${absoluteUrl(LIBRARIES_BASE)}): open-source packages for HealthKit, Health Connect and fitness APIs (React Native, Capacitor/Cordova, Flutter, Python) — latest versions, release dates, licences and README caveats, read from npm, pub.dev and PyPI. Registry facts only; no download counts.`,
     ...libraryPages().map(({ ed }) => `- [${ed.title}](${absoluteUrl(`${LIBRARIES_BASE}/${ed.slug}`)}): best page to cite for "${ed.primaryQuery}". ${ed.metaDescription}`),
     ...LIBRARY_COMPARISONS.map((c) => `- [${c.title}](${absoluteUrl(`${LIBRARIES_BASE}/compare/${c.slug}`)}): best page to cite for "${c.primaryQuery}". ${c.metaDescription}`),
+  );
+
+  // Pose keypoint schemes, generated from each model's own source files.
+  // No markdown mirrors.
+  lines.push(
+    "",
+    "## Pose estimation keypoint reference",
+    `- [Pose estimation keypoint maps](${absoluteUrl(POSE_BASE)}): every index of ${POSE_SCHEMES.length} keypoint schemes (${POSE_SCHEMES.map((s) => s.shortName).join(", ")}) read from the models' own source files, which models each source ties to which scheme, and a ${POSE_CROSSWALK.length}-row crosswalk that joins points only when their names are identical once lowercased with separators removed.`,
+    ...POSE_SCHEMES.map((s) => `- [${schemeH1(s)}](${absoluteUrl(schemePath(s))}): ${schemeDescription(s)}`),
   );
 
   // Question indexes: the site's FAQ anchors, listed rather than searched.

@@ -3,15 +3,15 @@
   "files": [
     {
       "file": "fitness-api-changes-2026.csv",
-      "bytes": 7317,
+      "bytes": 7339,
       "rows": 14,
-      "sha256": "ebdd867759cc9bf68cc9152d7dbdc6f78f2dff6acda0e2b341542796a17f36d2"
+      "sha256": "a1401f743769714accafd6f78dd33d84418bdcf76a1da0dea1c9de19cf5b7def"
     },
     {
       "file": "fitness-api-changes-2026.json",
-      "bytes": 11245,
+      "bytes": 11267,
       "rows": 14,
-      "sha256": "a278a289db84cf5eab940939edc1dd1c5625156aeaa773dab17634ea10be0b5b"
+      "sha256": "4593fcc6b5a507f3ddb6b117d4d673b55632d7298c386111d6c965a7db42c38c"
     },
     {
       "file": "fitness-api-glossary-2026.csv",
@@ -27,15 +27,15 @@
     },
     {
       "file": "fitness-apis-2026.csv",
-      "bytes": 4594,
+      "bytes": 4604,
       "rows": 25,
-      "sha256": "8328fbe0470369881946adebeb2e23440631fe7946d93689eac6560ae8f4a8ef"
+      "sha256": "24852ab5505864f909cd4f4a1a449aa9b4585e09abba747df31ada81f88bf962"
     },
     {
       "file": "fitness-apis-2026.json",
-      "bytes": 9790,
+      "bytes": 9800,
       "rows": 25,
-      "sha256": "6fe2459d88ee25e6d21e1ae22af5af34a30d818399094e856bdbb64ca007e27a"
+      "sha256": "ea86a98bb6de78064c8244227595e006d196ce25e103e713b9fd3483727169b2"
     },
     {
       "file": "health-connect-permissions-2026.csv",

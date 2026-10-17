@@ -12,6 +12,7 @@ import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { getMotion, releasedMotion, MOTION_PATH, MOTION_CONFIG } from "@/data/motion";
+import { POSE_SCHEMES } from "@/data/poseKeypoints";
 
 const UPDATED = "2026-07-24";
 
@@ -46,6 +47,11 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
       "pose-estimation-accuracy",
       "multi-person-pose-tracking",
     ],
+  },
+  {
+    title: "Model by model",
+    blurb: "What each model outputs, runs on and is licensed under, from its own source.",
+    slugs: ["movenet-models", "ml-kit-pose-detection", "yolo-pose-models", "rtmpose-models", "openpose-models"],
   },
   {
     title: "Performance & deployment",
@@ -151,6 +157,10 @@ export default function MotionPillar() {
             implement? The <Link href="/guides">AI workout tracking guides</Link> walk the per-platform
             wiring, and <Link href="/fitness-apis/ai-workout-tracking-apis">the AI tracking APIs</Link>{" "}
             cover the buy option. This cluster is the decisions in between.
+          </p>
+          <p>
+            Writing code against a model’s output? The <Link href="/pose-keypoints">pose keypoint maps</Link> list
+            every index of {POSE_SCHEMES.length} keypoint schemes, read from each model’s own source.
           </p>
         </div>
 
