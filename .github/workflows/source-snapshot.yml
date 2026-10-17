@@ -1,0 +1,53 @@
+name: Source snapshot
+
+# Fetches a list of public source pages and uploads their text as a
+# short-lived artifact (ops/EXPANSION-3-2026-10-17.md item 4.8).
+#
+# Why it exists: CLAUDE.md requires every fact on the site to come from a
+# primary source fetched in the session that writes it, and the environment
+# where pages are written cannot reach most vendor and regulator hosts. A
+# GitHub-hosted runner can. A writer dispatches this workflow with one of the
+# lists in ops/sources/, downloads the artifact, and cites the original URL
+# with the fetch date the snapshot records.
+#
+# The snapshots are never committed: the pages belong to their publishers, so
+# they stay a retained-for-14-days research copy, not repository content. The
+# job has read-only permissions, uses no secrets and pushes nothing.
+
+on:
+  workflow_dispatch:
+    inputs:
+      list:
+        description: "URL list in ops/sources/ (file name without .txt)"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fetch the listed pages
+        env:
+          LIST: ${{ inputs.list }}
+        run: |
+          if ! [[ "$LIST" =~ ^[a-z0-9-]+$ ]]; then
+            echo "list must be a file name in ops/sources/ (lowercase letters, digits, hyphens)" >&2
+            exit 2
+          fi
+          node scripts/source-snapshot.mjs --list "ops/sources/$LIST.txt" --out snapshot
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: source-snapshot-${{ inputs.list }}-${{ github.run_id }}
+          path: snapshot
+          retention-days: 14

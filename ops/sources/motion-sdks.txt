@@ -1,0 +1,7 @@
+# Motion-tracking SDKs (2.4). KinesteX is first-party: same sourcing bar.
+https://www.kinestex.com/
+https://quickpose.ai/
+https://quickpose.ai/pricing/
+https://www.sency.ai/
+https://kemtai.com/
+https://www.exer.ai/
