@@ -11,6 +11,8 @@ import { HK_BASE, GROUP_TO_SLUG, releasedHkGroups } from "@/data/hkGroupPages";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import PageSummary from "@/components/PageSummary";
+import VendorHubMenu from "@/components/VendorHubMenu";
+import { PAGE_H1 } from "@/data/pageTitles";
 
 const MATRIX_PATH = "/matrix";
 const UPDATED = "2026-07-26";
@@ -105,7 +107,7 @@ export default function MatrixPage() {
         <Breadcrumbs trail={[{ name: "Home", path: "/" }, { name: "Type Reference", path: MATRIX_PATH }]} />
         <ClusterHero label="Reference" seed={7} />
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
-          HealthKit &harr; Health Connect: The Data-Type Reference
+          {PAGE_H1[MATRIX_PATH]}
         </h1>
         <PageSummary path="/matrix" name="HealthKit ↔ Health Connect type reference" updated={UPDATED} className="mt-4 text-lg text-[var(--muted)]">
           If you&rsquo;re building the same health feature on iOS and Android, you need the matching type
@@ -259,6 +261,8 @@ export default function MatrixPage() {
             ))}
           </dl>
         </section>
+
+        <VendorHubMenu path={MATRIX_PATH} placement="end" />
 
         <ClusterCta
           pitch="Platform data types shift with every OS release — new records, deprecated values, changed permissions. We track the ones that break integrations. Get the heads-up."

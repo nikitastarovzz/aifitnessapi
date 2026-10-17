@@ -9,6 +9,7 @@ import ClusterHero from "@/components/ClusterHero";
 import HubFreshness from "@/components/HubFreshness";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
+import VendorHubMenu from "@/components/VendorHubMenu";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
@@ -213,6 +214,8 @@ export default function HealthkitQueriesPillar() {
             </Link>
           </p>
         </section>
+
+        <VendorHubMenu path={HKQ_PATH} placement="end" />
 
         <ClusterDisclaimer updated={UPDATED} />
 

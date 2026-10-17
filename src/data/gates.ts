@@ -109,6 +109,33 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "A section hub that does not link every released page in its section, or a section whose hub was not built.",
   },
   {
+    code: "VENDOR-HUB-PAGE",
+    area: "Links and anchors",
+    refuses:
+      "A vendor menu whose list names a page that does not build or renders a 404, a hub other than the vendor's integration guide (or, where it has none, its directory entry), or fewer than three pages.",
+  },
+  {
+    code: "VENDOR-HUB-MENU",
+    area: "Links and anchors",
+    refuses: "A page listed as being about a vendor that does not render the vendor's menu, or a vendor's hub that does not carry it at the top.",
+  },
+  {
+    code: "VENDOR-HUB-LINK",
+    area: "Links and anchors",
+    refuses: "A vendor's hub that does not link every page listed as being about that vendor.",
+  },
+  {
+    code: "VENDOR-HUB-LABEL",
+    area: "Links and anchors",
+    refuses: "A vendor menu entry whose text differs from the H1 of the page it links to.",
+  },
+  {
+    code: "VENDOR-HUB-UNLISTED",
+    area: "Links and anchors",
+    refuses:
+      "A page whose address names a vendor that has a menu, or a library whose registry description names one, left off that vendor's list. Such a page would compete with the vendor's hub for its searches instead of linking to it.",
+  },
+  {
     code: "DUP-TITLE",
     area: "Metadata",
     refuses: "Two pages shipping the identical title tag, so neither can be told apart in a result list.",

@@ -9,6 +9,8 @@ import { HK_ERROR_FIX_SLUGS, fixHref } from "@/data/errorCodesEditorial";
 import PageActions from "@/components/PageActions";
 import ContentAge from "@/components/ContentAge";
 import { HK_ERRORS, HK_FETCHED_ON, type HkError } from "@/data/healthkitIdentifiers";
+import { PAGE_H1 } from "@/data/pageTitles";
+import VendorHubMenu from "@/components/VendorHubMenu";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 
@@ -112,7 +114,7 @@ export default function HealthKitErrorsPage() {
         <ClusterHero label="Reference" seed={5} />
 
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
-          Every HealthKit error code
+          {PAGE_H1[PATH]}
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">
           {HK_ERRORS.length} HKError.Code cases · read from Apple&rsquo;s documentation on {HK_FETCHED_ON}
@@ -258,6 +260,8 @@ export default function HealthKitErrorsPage() {
           </Link>
           . Compiled by {site.name}; Apple&rsquo;s documentation remains the authority.
         </p>
+
+        <VendorHubMenu path={PATH} placement="end" />
 
         <ClusterCta
           pitch="We re-read Apple's documentation and re-publish when it changes — including when one of those undocumented error cases finally gets a description."

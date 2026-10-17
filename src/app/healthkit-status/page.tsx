@@ -9,6 +9,7 @@ import { HK_IDENTIFIERS, HK_FETCHED_ON, type HkIdentifier } from "@/data/healthk
 import { getStandalone, HK_STANDALONE_PUBLISHED, hkStandaloneModified } from "@/data/hkStandalone";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
+import VendorHubMenu from "@/components/VendorHubMenu";
 
 /**
  * The lifecycle edges of the HealthKit catalogue: what is still beta, what
@@ -431,6 +432,8 @@ export default function HealthKitStatusPage() {
             ))}
           </div>
         </section>
+
+        <VendorHubMenu path={PATH} placement="end" />
 
         <p className="mt-12 text-sm text-[var(--muted)]">
           Derived by {site.name} from Apple&rsquo;s published documentation, read {HK_FETCHED_ON}.

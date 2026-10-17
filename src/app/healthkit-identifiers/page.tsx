@@ -17,6 +17,8 @@ import {
   hkGroupLabel,
   releasedHkGroups,
 } from "@/data/hkGroupPages";
+import { PAGE_H1 } from "@/data/pageTitles";
+import VendorHubMenu from "@/components/VendorHubMenu";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 
@@ -202,7 +204,7 @@ export default function HealthKitIdentifiersPage() {
         <ClusterHero label="Reference" seed={11} />
 
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
-          Every HealthKit type identifier
+          {PAGE_H1[PATH]}
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">
           {HK_IDENTIFIERS.length} identifiers across {HK_FAMILIES.length}{" "}families · read from Apple&rsquo;s
@@ -402,6 +404,8 @@ export default function HealthKitIdentifiersPage() {
             ))}
           </div>
         </section>
+
+        <VendorHubMenu path={PATH} placement="end" />
 
         <ClusterCta
           pitch="We re-read Apple's documentation and re-publish this table when it changes. Subscribe and you'll hear when a type is added, deprecated, or finally documented."

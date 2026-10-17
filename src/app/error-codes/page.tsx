@@ -11,6 +11,8 @@ import {
 } from "@/data/errorCodes";
 import { HC_ERROR_FIX_SLUGS, HK_ERROR_FIX_SLUGS, fixHref } from "@/data/errorCodesEditorial";
 import { HC_RELEASES, HC_RELEASES_FETCHED_ON } from "@/data/hcReleases";
+import { PAGE_H1 } from "@/data/pageTitles";
+import VendorHubMenu from "@/components/VendorHubMenu";
 import { CAPSULE, FaqSection, JsonLd, LINK, articleGraph, count, faqGraph, type Faq } from "./_shared";
 
 /**
@@ -97,7 +99,7 @@ export default function ErrorCodesHub() {
         <Breadcrumbs trail={[{ name: "Home", path: "/" }, { name: "Error codes", path: PATH }]} />
 
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
-          HealthKit and Health Connect error codes
+          {PAGE_H1[PATH]}
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">
           {HK.length + HC.length} platform error codes · last fetched {FETCHED}
@@ -149,6 +151,8 @@ export default function ErrorCodesHub() {
         </section>
 
         <FaqSection faqs={FAQS} />
+
+        <VendorHubMenu path={PATH} placement="end" />
       </div>
     </Container>
   );
