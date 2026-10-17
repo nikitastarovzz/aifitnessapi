@@ -528,6 +528,21 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "A Wear OS data type whose permission is published without the permissions-table row it was read from, or whose row is not one of Google's table rows naming that constant under that permission.",
   },
   {
+    code: "MCP-SERVER-ROWS",
+    area: "Derived blocks",
+    refuses: "A health MCP server directory missing a row for any server the registry generator kept, a generated list below the generator's own floor, or a directory page that was not built.",
+  },
+  {
+    code: "MCP-SERVER-OFFICIAL",
+    area: "Derived blocks",
+    refuses: "An MCP server labelled official when the generator did not find it under the vendor's own domain namespace, or one marked as the vendor's whose namespace is not the reverse-DNS form of a domain listed for a source it names.",
+  },
+  {
+    code: "MCP-SERVER-EVIDENCE",
+    area: "Derived blocks",
+    refuses: "An MCP server listed without a matched term, with a match whose text is not in the field it names, or with a row that does not quote the registry description it was kept for.",
+  },
+  {
     code: "HCAPI-EQUIV-BACKLINK",
     area: "Links and anchors",
     refuses: "A HealthKit query page that the HealthKit-to-Health Connect equivalents page maps, or the /healthkit-queries hub, without a link back to that equivalents page, or an equivalents page that was not built.",

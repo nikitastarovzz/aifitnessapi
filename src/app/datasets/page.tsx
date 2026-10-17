@@ -210,6 +210,22 @@ const ENTRIES: Entry[] = [
     caveat:
       "The permission column is set only where Google's permissions table names the constant, and the table row ships beside it in permissionEvidence; a constant the table does not name has a null permission, not an inferred one.",
   },
+  {
+    slug: "health-mcp-servers-2026",
+    unit: "MCP servers",
+    blurb:
+      "Every server in the official MCP Registry whose name, title or description names a health or fitness data source, read page by page from the registry's listing: the registry's description verbatim, version, status and dates, packages and remote URLs, the term each was kept for, and npm or PyPI facts for its packages.",
+    keywords: [
+      "MCP server",
+      "Model Context Protocol",
+      "health data MCP",
+      "wearable data AI assistant",
+      "MCP Registry",
+    ],
+    presentedBy: { href: "/health-mcp-servers", label: "MCP servers for health and fitness data" },
+    caveat:
+      "Descriptions are the publishers' own words and no server was run or audited. publisherIsVendor is yes only when the registry namespace is the vendor's own domain in reverse-DNS form; repositories were not read, so repositoryUrl is only what the entry lists.",
+  },
 ];
 
 const LOADED = ENTRIES.map((e) => ({ entry: e, file: loadDataset(e.slug) }));

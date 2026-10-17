@@ -56,6 +56,7 @@ const MAIN = [
   { href: "/error-codes/health-connect", label: "Health Connect error codes" },
   { href: "/health-connect-releases", label: "Health Connect SDK releases" },
   { href: "/wear-os-data-types", label: "Every Wear OS Health Services data type" },
+  { href: "/health-mcp-servers", label: "MCP servers for health and fitness data" },
   { href: "/libraries", label: "Open-source health & fitness libraries" },
   ...(SDK_REPOS.length > 0 ? [{ href: "/sdk-releases", label: "Health SDK release tracker" }] : []),
   { href: "/day-boundaries", label: "Why “today’s steps” is a bug (live demo)" },

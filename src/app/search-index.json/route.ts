@@ -29,6 +29,7 @@ import { releasedPhoneSensors, SENSORS_PATH } from "@/data/phoneSensors";
 import { releasedHealthConnectApi, HCAPI_PATH } from "@/data/healthConnectApi";
 import { HK_METADATA_KEYS } from "@/data/healthkitMetadataKeys";
 import { HS_DATA_TYPES } from "@/data/healthServicesDataTypes";
+import { MCP_HEALTH_SERVERS } from "@/data/mcpHealthServers";
 import {
   orderedRecords,
   recordPath,
@@ -295,6 +296,15 @@ export function GET() {
     "Wear OS Health Services data types",
     `All ${HS_DATA_TYPES.length} Health Services DataType constants with Google's description, declared Kotlin type and the permission Google's table lists.`,
     ["wear os health services datatype data types exerciseclient passivemonitoringclient", ...HS_DATA_TYPES.map((t) => t.name)].join(" "),
+  );
+  add(
+    "/health-mcp-servers",
+    "MCP servers for health and fitness data",
+    `The ${MCP_HEALTH_SERVERS.length} servers in the official MCP Registry that name a health or fitness data source, grouped by source, with package facts and publisher.`,
+    [
+      "mcp model context protocol server registry health data wearable garmin oura whoop strava apple health ai assistant",
+      ...new Set(MCP_HEALTH_SERVERS.map((s) => s.name.split("/")[1] ?? s.name)),
+    ].join(" "),
   );
 
   add(
