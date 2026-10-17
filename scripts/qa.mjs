@@ -331,6 +331,7 @@ if (fs.existsSync(matrixPath)) {
     "health-connect-permissions-2026",
     "healthkit-metadata-keys-2026",
     "wear-os-health-services-data-types-2026",
+    "pose-keypoint-maps-2026",
   ];
   // Both directions. Listing files catches a DELETION (a dataset a page
   // still cites); scanning the directory catches an ADDITION that was never
@@ -1829,6 +1830,77 @@ if (fs.existsSync(matrixPath)) {
         }
       }
       if (!missing.length) console.log(`Wear OS data types: ${types.length} constants rendered, ${withPermission.length} with a permission from Google's table.`);
+    }
+  }
+
+  // Pose keypoint schemes (EXPANSION-3 2.1 and 2.2, added 2026-10-17). Nine
+  // schemes read from each model's own source on 2026-10-17 (the generator's
+  // exact counts). Every point must render on its scheme page with the name
+  // the source spells, every scheme must have a column in the hub's
+  // crosswalk, and the crosswalk may join only names that are identical once
+  // lowercased with every character outside a-z0-9 removed — the rule the
+  // pages state. A join that rule does not produce is a guess, and a key the
+  // rule does produce but the crosswalk leaves out is a dropped mapping.
+  {
+    const src = fs.readFileSync("src/data/poseKeypoints.ts", "utf8");
+    const schemes = jsonArray(src, "POSE_SCHEMES");
+    const crosswalk = jsonArray(src, "POSE_CROSSWALK") ?? [];
+    const POSE_MIN_SCHEMES = 9;
+    const keyOf = (n) => n.toLowerCase().replace(/[^a-z0-9]/g, "");
+    const kpId = (p) => (p.index !== null ? `kp-${p.index}` : `kp-${p.key}`);
+    if (!schemes || schemes.length < POSE_MIN_SCHEMES) {
+      problems.push(`POSE-KEYPOINT-ROWS  src/data/poseKeypoints.ts yields ${schemes?.length ?? 0} schemes, expected at least ${POSE_MIN_SCHEMES}`);
+    } else {
+      let rendered = 0;
+      for (const s of schemes) {
+        const page = htmlOf(`/pose-keypoints/${s.slug}`);
+        if (!page) {
+          problems.push(`POSE-KEYPOINT-ROWS  /pose-keypoints/${s.slug} was not built`);
+          continue;
+        }
+        const missing = [];
+        for (const p of s.points) {
+          const row = rowOf(page, kpId(p));
+          if (!row || !row.includes(`>${p.name}<`)) missing.push(p.index ?? p.name);
+          else rendered++;
+        }
+        if (missing.length) {
+          problems.push(`POSE-KEYPOINT-ROWS  /pose-keypoints/${s.slug} does not show the row and source name for ${missing.slice(0, 5).join(", ")}${missing.length > 5 ? "…" : ""}`);
+        }
+        for (const p of s.points) {
+          if (p.key !== keyOf(p.name)) problems.push(`POSE-KEYPOINT-MAPPING  ${s.slug} ${p.name} carries the key ${p.key}, not ${keyOf(p.name)}`);
+        }
+      }
+      const owners = new Map();
+      for (const s of schemes) for (const p of s.points) (owners.get(p.key) ?? owners.set(p.key, []).get(p.key)).push(s.slug);
+      for (const r of crosswalk) {
+        if (r.cells.length < 2) problems.push(`POSE-KEYPOINT-MAPPING  crosswalk row ${r.key} joins ${r.cells.length} point`);
+        for (const c of r.cells) {
+          const point = schemes.find((x) => x.slug === c.scheme)?.points.find((x) => x.name === c.name && x.index === c.index);
+          if (!point) problems.push(`POSE-KEYPOINT-MAPPING  crosswalk row ${r.key} names ${c.scheme} ${c.name}, which is not a point of that scheme`);
+          else if (keyOf(c.name) !== r.key) problems.push(`POSE-KEYPOINT-MAPPING  crosswalk row ${r.key} joins ${c.scheme} ${c.name}, whose name does not normalise to ${r.key}`);
+        }
+      }
+      for (const [k, slugs] of owners) {
+        if (slugs.length > 1 && !crosswalk.some((r) => r.key === k)) problems.push(`POSE-KEYPOINT-MAPPING  ${slugs.join(" and ")} share the key ${k} but the crosswalk has no row for it`);
+      }
+      const hub = htmlOf("/pose-keypoints");
+      if (!hub) problems.push("POSE-KEYPOINT-CROSSWALK  /pose-keypoints was not built");
+      else {
+        const noColumn = schemes.filter((s) => !hub.includes(`data-scheme="${s.slug}"`)).map((s) => s.slug);
+        if (noColumn.length) problems.push(`POSE-KEYPOINT-CROSSWALK  the /pose-keypoints crosswalk has no column for ${noColumn.join(", ")}`);
+        for (const r of crosswalk) {
+          const row = rowOf(hub, `xw-${r.key}`);
+          if (!row) problems.push(`POSE-KEYPOINT-CROSSWALK  /pose-keypoints has no crosswalk row for ${r.key}`);
+          else {
+            const absent = r.cells.filter(
+              (c) => !row.includes(`href="/pose-keypoints/${c.scheme}#${c.index !== null ? `kp-${c.index}` : `kp-${keyOf(c.name)}`}"`) || !row.includes(`>${c.name}<`),
+            );
+            if (absent.length) problems.push(`POSE-KEYPOINT-CROSSWALK  /pose-keypoints row ${r.key} does not show ${absent.map((c) => `${c.scheme} ${c.index ?? c.name}`).join(", ")}`);
+          }
+        }
+      }
+      console.log(`Pose keypoints: ${schemes.length} schemes, ${rendered} points rendered with their source names, ${crosswalk.length} crosswalk rows, every join name-identical.`);
     }
   }
 

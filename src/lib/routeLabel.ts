@@ -1,6 +1,8 @@
 import { allSpokes, CLUSTER_LABELS } from "@/lib/clusterRegistry";
 import { LIBRARIES_BASE, LIBRARY_COMPARISONS, libraryPages } from "@/data/librariesEditorial";
 import { hkStandaloneEntries } from "@/data/hkStandalone.entries";
+import { POSE_SCHEMES } from "@/data/poseKeypoints";
+import { schemeH1, schemePath } from "@/data/poseKeypointPages";
 
 /**
  * A page's name, for links built from data rather than written by hand (the
@@ -20,6 +22,7 @@ const STANDALONE: Record<string, string> = {
   "/compare": "Fitness & Health API Comparisons",
   "/healthkit-queries": "HealthKit Queries",
   "/health-connect-api": "Health Connect API",
+  "/pose-keypoints": "Pose Estimation Keypoint Maps",
 };
 
 let INDEX: Map<string, string> | null = null;
@@ -31,6 +34,7 @@ function build(): Map<string, string> {
   for (const { lib, ed } of libraryPages()) m.set(`${LIBRARIES_BASE}/${lib.slug}`, ed.h1);
   for (const c of LIBRARY_COMPARISONS) m.set(`${LIBRARIES_BASE}/compare/${c.slug}`, c.h1);
   for (const e of hkStandaloneEntries) m.set(`/${e.slug}`, e.title);
+  for (const s of POSE_SCHEMES) m.set(schemePath(s), schemeH1(s));
   for (const [path, label] of Object.entries(STANDALONE)) m.set(path, label);
   return m;
 }

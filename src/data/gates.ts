@@ -528,6 +528,21 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "A Wear OS data type whose permission is published without the permissions-table row it was read from, or whose row is not one of Google's table rows naming that constant under that permission.",
   },
   {
+    code: "POSE-KEYPOINT-ROWS",
+    area: "Derived blocks",
+    refuses: "A pose keypoint scheme page that was not built, or that is missing the row for any point of the generated scheme or shows a name other than the one its source spells; or a generated module with fewer than the nine schemes read on 2026-10-17.",
+  },
+  {
+    code: "POSE-KEYPOINT-CROSSWALK",
+    area: "Derived blocks",
+    refuses: "A /pose-keypoints hub that was not built, whose crosswalk has no column for one of the schemes, or that is missing a crosswalk row or a cell's link and source spelling.",
+  },
+  {
+    code: "POSE-KEYPOINT-MAPPING",
+    area: "Derived blocks",
+    refuses: "A crosswalk that joins two points whose names are not identical once lowercased with separators removed, names a point its scheme does not have, holds a single point, or leaves out a name two schemes share — the one rule that lets the pages map keypoints without guessing.",
+  },
+  {
     code: "HCAPI-EQUIV-BACKLINK",
     area: "Links and anchors",
     refuses: "A HealthKit query page that the HealthKit-to-Health Connect equivalents page maps, or the /healthkit-queries hub, without a link back to that equivalents page, or an equivalents page that was not built.",

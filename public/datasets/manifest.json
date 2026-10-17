@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-12",
+  "generated": "2026-10-17",
   "files": [
     {
       "file": "fitness-api-changes-2026.csv",
@@ -102,6 +102,18 @@
       "bytes": 5080,
       "rows": 32,
       "sha256": "32a07594a0e6d8835f91c74088b5029b33b226c568e2589bb95d8bbf32efe357"
+    },
+    {
+      "file": "pose-keypoint-maps-2026.csv",
+      "bytes": 138592,
+      "rows": 321,
+      "sha256": "0ed667aeae75090af66fcb87e5068c689b2d71dd1ea904e8856de17fef791cc5"
+    },
+    {
+      "file": "pose-keypoint-maps-2026.json",
+      "bytes": 235064,
+      "rows": 321,
+      "sha256": "61ab7223e9749b5aeac64a0fafe0cefb61fa5d0f358d640e9413d4bcd649fe00"
     },
     {
       "file": "wear-os-health-services-data-types-2026.csv",
