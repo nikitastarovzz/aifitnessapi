@@ -246,20 +246,22 @@ const ENTRIES: Entry[] = [
 
 const LOADED = ENTRIES.map((e) => ({ entry: e, file: loadDataset(e.slug) }));
 
-/** The dataset count in words for the meta description, read off ENTRIES so
- *  the number can never fall behind the list. */
-const COUNT_WORD = (["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve"][ENTRIES.length] ?? String(ENTRIES.length));
+/** The dataset count for the meta description, read off ENTRIES so the
+ *  number can never fall behind the list. Digits, not a word: "Eleven" pushed
+ *  the description past the 155-character cap when the eleventh dataset
+ *  landed, and digits stay two characters wide up to 99. */
+const COUNT = String(ENTRIES.length);
 
 export const metadata: Metadata = {
   title: { absolute: "Open Datasets: Fitness & Health API Data (CC BY 4.0)" },
   description:
-    `${COUNT_WORD} open CC BY 4.0 datasets on fitness and health APIs: HealthKit, Health Connect and Wear OS identifiers, ecosystem changes, glossary, access structure.`,
+    `${COUNT} open CC BY 4.0 datasets: HealthKit, Health Connect, Wear OS and Google Health API types, pose keypoints, the API directory, changes, glossary.`,
   alternates: { canonical: PAGE_PATH },
   openGraph: {
     type: "website",
     title: "Open Datasets — Fitness & Health API Data",
     description:
-      `${COUNT_WORD} CC BY 4.0 datasets in JSON and CSV: HealthKit, Health Connect and Wear OS identifiers, the dated changes record, the glossary, and the access-structure survey.`,
+      `${COUNT} CC BY 4.0 datasets in JSON and CSV: HealthKit, Health Connect, Wear OS and Google Health API types, pose keypoint maps, the dated changes record, the glossary and the API directory.`,
     url: PAGE_PATH,
     images: ["/opengraph-image"],
   },
