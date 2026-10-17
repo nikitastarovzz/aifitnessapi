@@ -1,0 +1,322 @@
+[
+  {
+    "claim": "humanapi.co redirects to a LexisNexis product page.",
+    "url": "https://www.humanapi.co/",
+    "quote": "Health Intelligence, formerly Human API Health Intelligence"
+  },
+  {
+    "claim": "LexisNexis Human API: \"Contact Us For More Information\".",
+    "url": "https://risk.lexisnexis.com/products/humanapi",
+    "quote": "Contact Us For More Information"
+  },
+  {
+    "claim": "\"Fast-track underwriting decisions with the EHR for life insurance platform built for adoption at scale\".",
+    "url": "https://www.humanapi.co/",
+    "quote": "Fast-track underwriting decisions with the EHR for life insurance platform built for adoption at scale"
+  },
+  {
+    "claim": "\"Health Intelligence, formerly Human API Health Intelligence\".",
+    "url": "https://www.humanapi.co/",
+    "quote": "Health Intelligence, formerly Human API Health Intelligence"
+  },
+  {
+    "claim": "\"Our solution automatically fulfills the request for an APS through our affiliate, Human API, Inc.\"",
+    "url": "https://www.humanapi.co/",
+    "quote": "Our solution automatically fulfills the request for an APS through our affiliate, Human API, Inc."
+  },
+  {
+    "claim": "Pitched to healthcare and life science organizations.",
+    "url": "https://risk.lexisnexis.com/products/humanapi",
+    "quote": "Healthcare and life science organizations need secure, user-friendly methods for patients to share their data"
+  },
+  {
+    "claim": "\"LexisNexis® Human API™ combines a vast consumer-permission health data network\".",
+    "url": "https://risk.lexisnexis.com/products/humanapi",
+    "quote": "LexisNexis® Human API™ combines a vast consumer-permission health data network"
+  },
+  {
+    "claim": "\"a vast data network of over 30,000 data connections including medical records, labs, fitness wearables and apps\".",
+    "url": "https://risk.lexisnexis.com/products/humanapi",
+    "quote": "a vast data network of over 30,000 data connections including medical records, labs, fitness wearables and apps"
+  },
+  {
+    "claim": "Clinical research use.",
+    "url": "https://risk.lexisnexis.com/products/humanapi",
+    "quote": "Connecting Health Data to Advance Clinical Research and Healthcare"
+  },
+  {
+    "claim": "\"Clinical trial sites can conduct more efficient patient screening to improve site confidence in referrals\".",
+    "url": "https://risk.lexisnexis.com/products/humanapi",
+    "quote": "Clinical trial sites can conduct more efficient patient screening to improve site confidence in referrals"
+  },
+  {
+    "claim": "Developer reference: \"Health Intelligence Platform\" that \"converts data into actionable intelligence to accelerate underwriting and create better customer and distribution experiences.\"",
+    "url": "https://reference.humanapi.co/docs/overview",
+    "quote": "Health Intelligence Platform converts data into actionable intelligence to accelerate underwriting and create better customer and distribution experiences."
+  },
+  {
+    "claim": "Developer reference: platform for enterprise businesses.",
+    "url": "https://reference.humanapi.co/docs/overview",
+    "quote": "Our platform is built to radically accelerate the pace of innovation by connecting and converting health data into actionable insights for enterprise businesses."
+  },
+  {
+    "claim": "Terra: \"One API call returns standardised data from 500+ providers\".",
+    "url": "https://tryterra.co/",
+    "quote": "One API call returns standardised data from 500+ providers, including Garmin, Fitbit, Apple Health, Oura, WHOOP and Strava, without writing separate authentication flows or data parsers."
+  },
+  {
+    "claim": "Terra starts at $399 a month billed annually.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly. That includes 100,000 credits each month for the Unified API, and you only pay extra if your usage goes beyond them."
+  },
+  {
+    "claim": "Terra: credits per connected data source.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Two things consume credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
+  },
+  {
+    "claim": "Junction Launch: \"a flat $300 a month\".",
+    "url": "https://www.junction.com/pricing",
+    "quote": "it covers the Link widget, 300+ device integrations, and usage analytics for a flat $300 a month."
+  },
+  {
+    "claim": "Junction Launch: up to 500 connected users.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Launch covers 1-500 connected users."
+  },
+  {
+    "claim": "Junction formerly Vital.",
+    "url": "https://www.junction.com/post/series-a",
+    "quote": "Alongside this milestone, we're unveiling our new brand: Junction"
+  },
+  {
+    "claim": "Rook Core at $399 a month for up to 750 active users.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For getting started with ROOK. $399 USD per month Up to 750 active users"
+  },
+  {
+    "claim": "Rook prices by active users.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "ROOK pricing is based on the plan and the number of active users, with usage-based billing and the flexibility to activate only the products and add-ons needed."
+  },
+  {
+    "claim": "Spike connects \"500+ wearables & IoT sensors\".",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Connect to 500+ wearables & IoT sensors, extract nutrition insights from food photos, and add lab report data via single API."
+  },
+  {
+    "claim": "Spike Sandbox \"Starts from $450 /month\".",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Purpose-built for fast innovation, Sandbox gives your team everything needed to build, test, and launch into production. Starts from $450 /month"
+  },
+  {
+    "claim": "Thryve Start Up from 499 euros a month.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Start Up Starts at 499 € / Per Month"
+  },
+  {
+    "claim": "Thryve: 500 users.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Get started with 500 users, one app connection, and access to real-time data."
+  },
+  {
+    "claim": "\"All data processed and stored by Thryve is hosted in Germany\".",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "All data processed and stored by Thryve is hosted in Germany."
+  },
+  {
+    "claim": "Sahha \"turns the smartphone itself into a passive sensor for sleep, activity, and behavior\".",
+    "url": "https://sahha.ai/",
+    "quote": "No. Sahha turns the smartphone itself into a passive sensor for sleep, activity, and behavior."
+  },
+  {
+    "claim": "Sahha from $299 a month billed annually.",
+    "url": "https://sahha.ai/",
+    "quote": "Start free with 25 development users and every product unlocked in sandbox. Production plans start at $299 a month billed annually, with 1,000 users included and per-user pricing as you grow."
+  },
+  {
+    "claim": "Validic now owned by ChartSpan.",
+    "url": "https://validic.com/news/chartspan/",
+    "quote": "today announced the completed acquisition of Validic, the leading personal health data platform."
+  },
+  {
+    "claim": "Validic \"normalizes 700+ devices into a single standard\".",
+    "url": "https://validic.com/",
+    "quote": "One platform normalizes 700+ devices into a single standard"
+  },
+  {
+    "claim": "Validic free Inform Developer plan for 5 users.",
+    "url": "https://validic.com/inform-signup/",
+    "quote": "5 users Streaming API (SSE) + REST API preview 5 cloud integrations to start building immediately 90-day data retention"
+  },
+  {
+    "claim": "Validic Inform is free.",
+    "url": "https://validic.com/blog/Validic-Inform-Is-Now-Free/",
+    "quote": "Starting today, people can sign up for Inform at no cost. No contract. No credit card. No sales call."
+  },
+  {
+    "claim": "Open Wearables: MIT-licensed, \"Free forever\".",
+    "url": "https://openwearables.io/pricing",
+    "quote": "Open Source Free forever Self-hosted wearable data infrastructure under MIT license."
+  },
+  {
+    "claim": "Open Wearables: software you host yourself.",
+    "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
+    "quote": "The platform is designed for self-hosting, meaning each deployment serves a single organization."
+  },
+  {
+    "claim": "Metriport: \"Healthcare data infrastructure for next generation care delivery\".",
+    "url": "https://www.metriport.com/",
+    "quote": "Healthcare data infrastructure for next generation care delivery."
+  },
+  {
+    "claim": "\"750K+ providers across every network that matters — one integration, not dozens\".",
+    "url": "https://www.metriport.com/",
+    "quote": "750K+ providers across every network that matters — one integration, not dozens."
+  },
+  {
+    "claim": "\"Extracted, normalized, deduplicated, and enriched into consistent FHIR\".",
+    "url": "https://www.metriport.com/",
+    "quote": "Extracted, normalized, deduplicated, and enriched into consistent FHIR."
+  },
+  {
+    "claim": "\"Distributed under the AGPLv3 License\".",
+    "url": "https://raw.githubusercontent.com/metriport/metriport/develop/README.md",
+    "quote": "Distributed under the AGPLv3 License."
+  },
+  {
+    "claim": "Metriport \"is HITRUST r2 certified, SOC 2 Type 2 certified, and HIPAA compliant.\"",
+    "url": "https://raw.githubusercontent.com/metriport/metriport/develop/README.md",
+    "quote": "Metriport is HITRUST r2 certified, SOC 2 Type 2 certified, and HIPAA compliant."
+  },
+  {
+    "claim": "\"Access to our Medical API will require you to make requests on behalf of a covered entity with an NPI number for a valid Treatment purpose of use.\"",
+    "url": "https://docs.metriport.com/medical-api/getting-started/quickstart",
+    "quote": "Access to our Medical API will require you to make requests on behalf of a covered entity with an NPI number for a valid Treatment purpose of use."
+  },
+  {
+    "claim": "Human API's network is described as consumer-permission.",
+    "url": "https://risk.lexisnexis.com/products/humanapi",
+    "quote": "combines a vast consumer-permission health data network with next-generation digital capabilities to address the core challenges of data access."
+  },
+  {
+    "claim": "Spike: \"normalized, ingestion-ready data from wearables, EMRs, lab tests, IoT devices, and more\".",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Implement normalized, ingestion-ready data from wearables, EMRs, lab tests, IoT devices, and more without complex data processing."
+  },
+  {
+    "claim": "Spike: \"Connect to top providers and access clinical data\".",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Connect to top providers and access clinical data"
+  },
+  {
+    "claim": "Rook EHR/EMR API \"delivers each user's health data as FHIR R4, with LOINC codes and UCUM units, ready to integrate into clinical systems\".",
+    "url": "https://tryrook.io/rookconnect/ehr-emr-api/",
+    "quote": "ROOK's EHR/EMR API delivers each user's health data as FHIR R4, with LOINC codes and UCUM units, ready to integrate into clinical systems."
+  },
+  {
+    "claim": "\"Bringing data from EHRs, EMRs, patient portals, and health networks into ROOK is coming soon.\"",
+    "url": "https://tryrook.io/rookconnect/ehr-emr-api/",
+    "quote": "Bringing data from EHRs, EMRs, patient portals, and health networks into ROOK is coming soon."
+  },
+  {
+    "claim": "Validic: \"Managed remote care programs that write directly to Epic, Cerner, and other EHRs.\"",
+    "url": "https://validic.com/",
+    "quote": "Managed remote care programs that write directly to Epic, Cerner, and other EHRs."
+  },
+  {
+    "claim": "Junction can \"build your own lab testing experience spanning all 50 states\".",
+    "url": "https://www.junction.com/",
+    "quote": "Integrate 300+ wearables, streamline lab operations, and build your own lab testing experience spanning all 50 states"
+  },
+  {
+    "claim": "\"Lab testing is part of Enterprise\".",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Lab testing is part of Enterprise."
+  },
+  {
+    "claim": "Terra can \"Order blood and DNA tests for your users through Terra API\".",
+    "url": "https://tryterra.co/",
+    "quote": "Order blood and DNA tests for your users through Terra API. Blood through home kits, mobile phlebotomy, or lab walk-ins, and DNA from a single at-home saliva swab, with results delivered straight to your app."
+  },
+  {
+    "claim": "Terra labs: the US and the UK.",
+    "url": "https://tryterra.co/products/lab-testing",
+    "quote": "Nationwide US, plus the UK"
+  },
+  {
+    "claim": "Rook's Lab Data API \"turns PDF and image lab reports into structured biomarkers with LOINC codes and FHIR R4 output\".",
+    "url": "https://tryrook.io/rookconnect/lab-data-api/",
+    "quote": "The ROOK Connect Lab Data API turns PDF and image lab reports into structured biomarkers with LOINC codes and FHIR R4 output, linked to each user's wearable data."
+  },
+  {
+    "claim": "Spike's Lab Reports API \"processes lab reports from PDFs, JPEGs, or PNG files up to 10MB\".",
+    "url": "https://www.spikeapi.com/lab-reports",
+    "quote": "Spike Lab Reports API processes lab reports from PDFs, JPEGs, or PNG files up to 10MB using OCR technology that converts document images into analyzable text."
+  },
+  {
+    "claim": "Spike: LOINC codes.",
+    "url": "https://www.spikeapi.com/lab-reports",
+    "quote": "After OCR converts documents to text, our infrastructure assigns LOINC codes for each test, recognized worldwide, making lab test data from any language standardized."
+  },
+  {
+    "claim": "Junction: labs and BAA on Enterprise.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "The signed Business Associate Agreement, our SOC 2 Type 2 and ISO 27001 reports, and customer-managed encryption keys are part of Enterprise."
+  },
+  {
+    "claim": "Rook: 12-month standard contract.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "ROOK's standard contract term is 12 months, with the flexibility to cancel with 30 days' prior notice."
+  },
+  {
+    "claim": "Spike: announced acquisition by Raintree Systems.",
+    "url": "https://www.spikeapi.com/integrations",
+    "quote": "Raintree Systems Acquires Spike Technologies"
+  },
+  {
+    "claim": "Thryve: 2 weeks of storage on Start Up.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Data storage options 1 Day 2 Weeks 1 Month Flexible"
+  },
+  {
+    "claim": "Sahha: cloud integrations in beta.",
+    "url": "https://docs.sahha.ai/docs/connect/integrations",
+    "quote": "Integrations are in public beta and are Sandbox only"
+  },
+  {
+    "claim": "Validic: negotiated Enterprise for production.",
+    "url": "https://validic.com/inform-signup/",
+    "quote": "Negotiated pricing. Production-ready from day one."
+  },
+  {
+    "claim": "Open Wearables: you register with every provider.",
+    "url": "https://openwearables.io/docs/providers/supported",
+    "quote": "Register as a developer with the provider Create an OAuth application to obtain client credentials"
+  },
+  {
+    "claim": "Metriport: book an intro call.",
+    "url": "https://docs.metriport.com/medical-api/getting-started/quickstart",
+    "quote": "Press Book an Intro Call and select a time and a date to talk to us."
+  },
+  {
+    "claim": "FAQ: production access starts with an intro call.",
+    "url": "https://docs.metriport.com/medical-api/getting-started/quickstart",
+    "quote": "To start using the Medical API for production workloads, with real patient data, you can take the following steps to request production API access"
+  },
+  {
+    "claim": "Its page lists \"fitness wearables and apps\" in its network.",
+    "url": "https://risk.lexisnexis.com/products/humanapi",
+    "quote": "a vast data network of over 30,000 data connections including medical records, labs, fitness wearables and apps"
+  },
+  {
+    "claim": "FAQ: Validic free developer plan.",
+    "url": "https://validic.com/inform-signup/",
+    "quote": "5 users Streaming API (SSE) + REST API preview 5 cloud integrations to start building immediately 90-day data retention"
+  },
+  {
+    "claim": "FAQ: Junction orders lab tests on its Enterprise plan.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Lab testing is part of Enterprise."
+  }
+]

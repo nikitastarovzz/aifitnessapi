@@ -1,0 +1,447 @@
+[
+  {
+    "claim": "Terra coverage claim: \"500+ providers\".",
+    "url": "https://tryterra.co/",
+    "quote": "One API call returns standardised data from 500+ providers, including Garmin, Fitbit, Apple Health, Oura, WHOOP and Strava, without writing separate authentication flows or data parsers."
+  },
+  {
+    "claim": "Terra docs: the Unified API \"supports over 150+ Data Sources\".",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+    "quote": "The Unified API supports over 150+ Data Sources"
+  },
+  {
+    "claim": "Thryve: \"500+ Wearables & Health Data Sources\".",
+    "url": "https://www.thryve.health/",
+    "quote": "Connect and analyze data from 500+ Wearables & Health Data Sources with One API"
+  },
+  {
+    "claim": "Thryve's docs table of data sources (we counted 24 rows).",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Data Source Type Retrieval Method Historic data Shared oAuth-client"
+  },
+  {
+    "claim": "Thryve's docs acknowledge the 500+ claim.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "You can find our claims of providing you access to more than 500+ wearables and health apps all over our website and texts."
+  },
+  {
+    "claim": "Two sources marked EOL: GoogleFitREST.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "GoogleFitREST (EOL) Web Bulk yes no"
+  },
+  {
+    "claim": "Terra: a mobile SDK for Apple Health, Samsung Health and Health Connect.",
+    "url": "https://docs.tryterra.co/unified-api/getting-started",
+    "quote": "These have no cloud API for third parties, so your mobile app reads them with the Terra SDK and sends the data to Terra."
+  },
+  {
+    "claim": "Thryve: Apple Health native SDK.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Apple Health Native SDK"
+  },
+  {
+    "claim": "Thryve: Samsung Health native SDK.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Samsung Health Native SDK yes n.a."
+  },
+  {
+    "claim": "Thryve: Health Connect native SDK.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Health Connect Native SDK yes n.a."
+  },
+  {
+    "claim": "Terra entry: $399 a month billed annually, or $499 monthly, with 100,000 credits.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly. That includes 100,000 credits each month for the Unified API, and you only pay extra if your usage goes beyond them."
+  },
+  {
+    "claim": "Thryve Start Up from 499 euros a month.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Start Up Starts at 499 € / Per Month"
+  },
+  {
+    "claim": "Thryve Start Up: 500 users.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Get started with 500 users, one app connection, and access to real-time data."
+  },
+  {
+    "claim": "Terra: 200 credits a month per connected data source.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Two things consume credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
+  },
+  {
+    "claim": "Terra: events past a free allowance.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "The Unified API includes 400 events per active authentication free each month, and events beyond that cost 0.5 credits each. Terra's pricing docs note that 95% of customers are never charged for events."
+  },
+  {
+    "claim": "Thryve: 0.50 euros per additional user.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Additional users billed at €0.50 each."
+  },
+  {
+    "claim": "Terra: 30-day money-back guarantee.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "30-day money-back guarantee"
+  },
+  {
+    "claim": "Thryve: 14-day free trial.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Start 14-day free trial now"
+  },
+  {
+    "claim": "Thryve trial: 25 end users.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "End users included 25 500 5000 Flexible"
+  },
+  {
+    "claim": "Terra: BAA listed on Enterprise.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Signed BAA (data protection agreement)"
+  },
+  {
+    "claim": "Thryve: BAA included on all plans.",
+    "url": "https://www.thryve.health/certifications-compliance",
+    "quote": "BAA agreements included on all plans — no enterprise upgrade required."
+  },
+  {
+    "claim": "Terra Enterprise: \"Dedicated instance to localised area\".",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Dedicated instance to localised area"
+  },
+  {
+    "claim": "\"All data processed and stored by Thryve is hosted in Germany\".",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "All data processed and stored by Thryve is hosted in Germany."
+  },
+  {
+    "claim": "Terra: hosted widget session from your backend.",
+    "url": "https://docs.tryterra.co/unified-api/user-authentication/implementation-terra-widget",
+    "quote": "call POST https://access.tryterra.co/api/widget/session with your dev-id and x-api-key headers."
+  },
+  {
+    "claim": "Terra: do not call the widget API from your frontend.",
+    "url": "https://docs.tryterra.co/unified-api/user-authentication/implementation-terra-widget",
+    "quote": "Do not call the API from your frontend , as this will lead to a CORS error ."
+  },
+  {
+    "claim": "Terra: send the user to the returned widget URL.",
+    "url": "https://docs.tryterra.co/unified-api/user-authentication/implementation-terra-widget",
+    "quote": "A successful call returns 201 with the widget URL in the"
+  },
+  {
+    "claim": "Terra: no WebView or iframe.",
+    "url": "https://docs.tryterra.co/unified-api/user-authentication/implementation-terra-widget",
+    "quote": "Do not use WebView or iFrame for the authentication flow."
+  },
+  {
+    "claim": "Thryve: Connection Widget embedded in an iframe.",
+    "url": "https://docs.thryve.health/connect-data-sources",
+    "quote": "The Connection Widget must be embedded in your app using an iframe component."
+  },
+  {
+    "claim": "Terra webhooks signed with HMAC.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "Every webhook sent by Terra includes an HMAC-based signature header"
+  },
+  {
+    "claim": "Terra: up to 10 retries.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "Terra retries the delivery up to 10 times with exponential backoff"
+  },
+  {
+    "claim": "Terra: about 8 hours across retries.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "The cumulative window across all retries is ~8 hours"
+  },
+  {
+    "claim": "Terra: 8-second timeout.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "Terra waits 8 seconds for your server to respond before considering the request timed out."
+  },
+  {
+    "claim": "Thryve: zstd-compressed webhooks.",
+    "url": "https://docs.thryve.health/receive-updates-via-webhooks/data-push",
+    "quote": "The webhook content is compressed using zstd to reduce payload sizes and improve network time."
+  },
+  {
+    "claim": "Thryve: optional HMAC secret.",
+    "url": "https://docs.thryve.health/receive-updates-via-webhooks/data-push",
+    "quote": "Data integrity and authenticity can be ensured by configuring an HMAC secret."
+  },
+  {
+    "claim": "Thryve: up to 3 retries; respond within 2 seconds.",
+    "url": "https://docs.thryve.health/receive-updates-via-webhooks/data-push",
+    "quote": "Respond to the request with a 200 or 204 within 2 seconds. Failed deliveries will be retried up to 3 times."
+  },
+  {
+    "claim": "Terra destinations: SQL databases, Supabase, cloud storage, SQS and Kafka, MongoDB and Firestore.",
+    "url": "https://tryterra.co/",
+    "quote": "Terra delivers to webhooks, SQL databases (Postgres and MySQL), Supabase, cloud storage (S3, GCS and Azure Blob), queueing services (SQS and Kafka), MongoDB and Firestore."
+  },
+  {
+    "claim": "Thryve: webhooks so you need no API calls for the newest data.",
+    "url": "https://docs.thryve.health/receive-updates-via-webhooks/data-push",
+    "quote": "Thryve can directly send new and updated end user data to your system through webhooks so that you don't have to do any API calls to receive the newest data."
+  },
+  {
+    "claim": "Terra: blood and DNA test ordering.",
+    "url": "https://tryterra.co/",
+    "quote": "Order blood and DNA tests for your users through Terra API. Blood through home kits, mobile phlebotomy, or lab walk-ins, and DNA from a single at-home saliva swab, with results delivered straight to your app."
+  },
+  {
+    "claim": "Terra: US and UK.",
+    "url": "https://tryterra.co/products/lab-testing",
+    "quote": "Nationwide US, plus the UK"
+  },
+  {
+    "claim": "Terra: a lab-report API.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Standardize and orchestrate blood reports from all types of providers."
+  },
+  {
+    "claim": "Thryve: analytics and algorithms as value-added services.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "We do offer value-added services such as analytics and algorithms."
+  },
+  {
+    "claim": "Thryve: pre-built algorithms or custom models.",
+    "url": "https://www.thryve.health/",
+    "quote": "Use our pre-built algorithms or collaborate with us to design models tailored to your organization’s specific needs."
+  },
+  {
+    "claim": "Terra delivers \"to webhooks, SQL databases (Postgres and MySQL), Supabase, cloud storage (S3, GCS and Azure Blob), queueing services (SQS and Kafka), MongoDB and Firestore\".",
+    "url": "https://tryterra.co/",
+    "quote": "Terra delivers to webhooks, SQL databases (Postgres and MySQL), Supabase, cloud storage (S3, GCS and Azure Blob), queueing services (SQS and Kafka), MongoDB and Firestore."
+  },
+  {
+    "claim": "\"Every webhook sent by Terra includes an HMAC-based signature header\".",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "Every webhook sent by Terra includes an HMAC-based signature header"
+  },
+  {
+    "claim": "It \"retries the delivery up to 10 times with exponential backoff\".",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "Terra retries the delivery up to 10 times with exponential backoff"
+  },
+  {
+    "claim": "\"The cumulative window across all retries is ~8 hours\".",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "The cumulative window across all retries is ~8 hours"
+  },
+  {
+    "claim": "Thryve retries \"up to 3 times\".",
+    "url": "https://docs.thryve.health/receive-updates-via-webhooks/data-push",
+    "quote": "Respond to the request with a 200 or 204 within 2 seconds. Failed deliveries will be retried up to 3 times."
+  },
+  {
+    "claim": "\"Recurring failed deliveries within a certain timeframe will lead to the automatic disabling of webhooks.\"",
+    "url": "https://docs.thryve.health/receive-updates-via-webhooks/data-push",
+    "quote": "Recurring failed deliveries within a certain timeframe will lead to the automatic disabling of webhooks."
+  },
+  {
+    "claim": "Terra can \"Order blood and DNA tests for your users through Terra API\".",
+    "url": "https://tryterra.co/",
+    "quote": "Order blood and DNA tests for your users through Terra API. Blood through home kits, mobile phlebotomy, or lab walk-ins, and DNA from a single at-home saliva swab, with results delivered straight to your app."
+  },
+  {
+    "claim": "Arithmetic input: 100,000 included credits.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly. That includes 100,000 credits each month for the Unified API, and you only pay extra if your usage goes beyond them."
+  },
+  {
+    "claim": "Arithmetic input: 200 credits per connected source.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Two things consume credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
+  },
+  {
+    "claim": "\"An active authentication is one connected data source for one end user, and costs 200 credits per month\".",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Two things consume credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
+  },
+  {
+    "claim": "Its BAA sits on Enterprise.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Signed BAA (data protection agreement)"
+  },
+  {
+    "claim": "\"BAA agreements included on all plans — no enterprise upgrade required.\"",
+    "url": "https://www.thryve.health/certifications-compliance",
+    "quote": "BAA agreements included on all plans — no enterprise upgrade required."
+  },
+  {
+    "claim": "Homepage: \"GDPR, HIPAA, ISO 9001, 27001 and other international regulations\".",
+    "url": "https://www.thryve.health/",
+    "quote": "Developed and hosted entirely in Europe, Thryve ensures full compliance with the strictest data protection standards, including GDPR, HIPAA, ISO 9001, 27001 and other international regulations."
+  },
+  {
+    "claim": "Terra: \"HIPAA compliant, GDPR compliant, and SOC 2 Type II certified\".",
+    "url": "https://tryterra.co/",
+    "quote": "Yes. Terra is HIPAA compliant, GDPR compliant, and SOC 2 Type II certified."
+  },
+  {
+    "claim": "Scale Up: \"Special plan for startups with growth-stage needs (less than 10 years of founding)\".",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Special plan for startups with growth-stage needs (less than 10 years of founding)."
+  },
+  {
+    "claim": "Scale Up starts at 1,000 euros a month.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Scale Up Starts at 1.000 € / Per Month"
+  },
+  {
+    "claim": "Scale Up: up to 5,000 users.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Up to 5000 users 1 app connected Own data source tenant / Custom Auth credentials Up to 14 days of Fetching historical data Up to 1 month of data storage"
+  },
+  {
+    "claim": "Arithmetic input: Terra extra credits at $0.005.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Only pay more when you go beyond 100,000 credits. Starting at $0.005 / credit."
+  },
+  {
+    "claim": "Arithmetic input: Terra $0.005 per credit from 100,001 to 1,000,000.",
+    "url": "https://docs.tryterra.co/unified-api/pricing",
+    "quote": "100,001 - 1,000,000 $0.005 1,000,001+ $0.003"
+  },
+  {
+    "claim": "Storage: 2 weeks on Start Up, 1 month on Scale Up.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Data storage options 1 Day 2 Weeks 1 Month Flexible"
+  },
+  {
+    "claim": "Custom auth credentials listed on Scale Up.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Up to 5000 users 1 app connected Own data source tenant / Custom Auth credentials Up to 14 days of Fetching historical data Up to 1 month of data storage"
+  },
+  {
+    "claim": "Custom auth credentials listed on Enterprise.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Multiple apps connected Own data source tenant / Custom Auth credentials Flexible fetching historical data Flexible data storage Multiple dashboard accounts"
+  },
+  {
+    "claim": "\"When no shared oAuth-client is available, you must bring your own oAuth-client\".",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "When no shared oAuth-client is available, you must bring your own oAuth-client"
+  },
+  {
+    "claim": "WHOOP: no shared OAuth client.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Whoop Web Ping yes no"
+  },
+  {
+    "claim": "Dexcom: no shared OAuth client.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Dexcom Web Bulk yes no"
+  },
+  {
+    "claim": "Google Health: no shared OAuth client.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "49 Google Health Web Bulk yes no"
+  },
+  {
+    "claim": "Terra: \"call POST https://access.tryterra.co/api/widget/session with your dev-id and x-api-key headers\".",
+    "url": "https://docs.tryterra.co/unified-api/user-authentication/implementation-terra-widget",
+    "quote": "call POST https://access.tryterra.co/api/widget/session with your dev-id and x-api-key headers."
+  },
+  {
+    "claim": "\"Do not use WebView or iFrame for the authentication flow.\"",
+    "url": "https://docs.tryterra.co/unified-api/user-authentication/implementation-terra-widget",
+    "quote": "Do not use WebView or iFrame for the authentication flow."
+  },
+  {
+    "claim": "\"The Connection Widget must be embedded in your app using an iframe component\".",
+    "url": "https://docs.thryve.health/connect-data-sources",
+    "quote": "The Connection Widget must be embedded in your app using an iframe component."
+  },
+  {
+    "claim": "\"Opening the URL in a new tab or window will prevent the widget from properly redirecting users back to your web app.\"",
+    "url": "https://docs.thryve.health/connect-data-sources",
+    "quote": "Opening the URL in a new tab or window will prevent the widget from properly redirecting users back to your web app."
+  },
+  {
+    "claim": "You first \"create a Thryve user\".",
+    "url": "https://docs.thryve.health/connect-data-sources",
+    "quote": "Before requesting the Connection Widget, ensure you create a Thryve user"
+  },
+  {
+    "claim": "Two Basic Auth headers: Authorization.",
+    "url": "https://docs.thryve.health/connect-data-sources",
+    "quote": "Basic Auth for your username:password. Required for all endpoints"
+  },
+  {
+    "claim": "Two Basic Auth headers: AppAuthorization.",
+    "url": "https://docs.thryve.health/connect-data-sources",
+    "quote": "Basic Auth for your authID:authSecret."
+  },
+  {
+    "claim": "Terra names \"WHOOP Dexcom Huawei Strava Virtuagym\".",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+    "quote": "Some providers require special processes before being able to start using them: WHOOP Dexcom Huawei Strava Virtuagym"
+  },
+  {
+    "claim": "Terra table: Garmin Required.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "Garmin GARMIN Event-Driven Required"
+  },
+  {
+    "claim": "Terra table: Samsung Required.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "Samsung SAMSUNG Event-Driven Required"
+  },
+  {
+    "claim": "Garmin data \"flows through Terra today\".",
+    "url": "https://tryterra.co/",
+    "quote": "Terra has maintained a Garmin integration for years as an established partner, so Garmin data flows through Terra today."
+  },
+  {
+    "claim": "Thryve: FreeStyle Libre (LibreView) without a shared OAuth client.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "FreeStyleLibre (LibreView) Web Bulk yes no"
+  },
+  {
+    "claim": "Thryve: Garmin shared.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Garmin Web Ping yes yes"
+  },
+  {
+    "claim": "Thryve: Oura shared.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Oura Web Ping yes yes"
+  },
+  {
+    "claim": "Thryve: Fitbit \"Deprecating on Oct 29 2026\".",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Deprecating on Oct 29 2026"
+  },
+  {
+    "claim": "\"Additional users billed at €0.50 each\".",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Additional users billed at €0.50 each."
+  },
+  {
+    "claim": "\"0,50ct per additional user\".",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Up to 500 users 0,50ct per additional user 1 app connected"
+  },
+  {
+    "claim": "An HMAC secret can be configured.",
+    "url": "https://docs.thryve.health/receive-updates-via-webhooks/data-push",
+    "quote": "Data integrity and authenticity can be ensured by configuring an HMAC secret."
+  },
+  {
+    "claim": "Thryve's plans count end users.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "End users included 25 500 5000 Flexible"
+  },
+  {
+    "claim": "FAQ: Thryve's Scale Up is startup-only.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Special plan for startups with growth-stage needs (less than 10 years of founding)."
+  },
+  {
+    "claim": "FAQ: Terra's integrations table marks Garmin and Samsung as Required.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "Garmin GARMIN Event-Driven Required"
+  }
+]

@@ -1,0 +1,342 @@
+[
+  {
+    "claim": "ROOK now sells medical-device products.",
+    "url": "https://tryrook.io/rookconnect/medical-device-api/",
+    "quote": "The ROOK Connect Medical Device API delivers glucose, blood pressure, oxygen saturation, temperature and ECG readings in one format, with the device that recorded each one."
+  },
+  {
+    "claim": "ROOK now sells lab-report products.",
+    "url": "https://tryrook.io/rookconnect/lab-data-api/",
+    "quote": "The ROOK Connect Lab Data API turns PDF and image lab reports into structured biomarkers with LOINC codes and FHIR R4 output, linked to each user's wearable data."
+  },
+  {
+    "claim": "ROOK now sells EHR/EMR products.",
+    "url": "https://tryrook.io/rookconnect/ehr-emr-api/",
+    "quote": "ROOK's EHR/EMR API delivers each user's health data as FHIR R4, with LOINC codes and UCUM units, ready to integrate into clinical systems."
+  },
+  {
+    "claim": "Both publish prices: ROOK.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For getting started with ROOK. $399 USD per month Up to 750 active users"
+  },
+  {
+    "claim": "Both publish prices: Spike.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Purpose-built for fast innovation, Sandbox gives your team everything needed to build, test, and launch into production. Starts from $450 /month"
+  },
+  {
+    "claim": "Spike's current pages agree on 500+ devices.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Access 40+ providers and 500+ devices via single SDK"
+  },
+  {
+    "claim": "ROOK describes itself as \"the health data aggregation and intelligence platform for digital health, wellness and insurance products\".",
+    "url": "https://tryrook.io/about-us/",
+    "quote": "is the health data aggregation and intelligence platform for digital health, wellness and insurance products."
+  },
+  {
+    "claim": "Its homepage pitch is \"Wearables, medical devices, EHR/EMR and labs\".",
+    "url": "https://tryrook.io/",
+    "quote": "Wearables, medical devices, EHR/EMR and labs. One API integration, consistent records, scores and signals."
+  },
+  {
+    "claim": "Priced by plan and active users.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "ROOK pricing is based on the plan and the number of active users, with usage-based billing and the flexibility to activate only the products and add-ons needed."
+  },
+  {
+    "claim": "Spike pitches \"360° Health Data for AI\".",
+    "url": "https://www.spikeapi.com/",
+    "quote": "360° Health Data for AI"
+  },
+  {
+    "claim": "Wearables and IoT sensors, lab report data, food-photo nutrition.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Connect to 500+ wearables & IoT sensors, extract nutrition insights from food photos, and add lab report data via single API."
+  },
+  {
+    "claim": "EMR access.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Connect to top providers and access clinical data"
+  },
+  {
+    "claim": "A dedicated implementation engineer from its entry plan.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Every organization gets a dedicated implementation engineer from the sandbox level to help with setup and optimization."
+  },
+  {
+    "claim": "Rook docs: \"400+ wearables and health data sources\".",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "ROOK is a single integration for 400+ wearables and health data sources that supports all major wearable providers"
+  },
+  {
+    "claim": "72 data sources and 500+ devices on its integrations page.",
+    "url": "https://tryrook.io/wearable-api-sdk/integrations/",
+    "quote": "ROOK connects 72 data sources and more than 500 devices through a single integration."
+  },
+  {
+    "claim": "Spike: \"Access 40+ providers and 500+ devices via single SDK\".",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Access 40+ providers and 500+ devices via single SDK"
+  },
+  {
+    "claim": "Rook Medical Device API: glucose, blood pressure, SpO2, temperature and ECG, tagged with the recording device.",
+    "url": "https://tryrook.io/rookconnect/medical-device-api/",
+    "quote": "The ROOK Connect Medical Device API delivers glucose, blood pressure, oxygen saturation, temperature and ECG readings in one format, with the device that recorded each one."
+  },
+  {
+    "claim": "Spike: medical IoT devices such as glucose monitors, ECGs and blood pressure cuffs.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Integrate data from a wide range of medical IoT devices — like glucose monitors, ECGs, blood pressure cuffs, and more."
+  },
+  {
+    "claim": "Rook Lab Data API parses PDF and image reports into biomarkers with LOINC codes and FHIR R4.",
+    "url": "https://tryrook.io/rookconnect/lab-data-api/",
+    "quote": "The ROOK Connect Lab Data API turns PDF and image lab reports into structured biomarkers with LOINC codes and FHIR R4 output, linked to each user's wearable data."
+  },
+  {
+    "claim": "Spike Lab Reports API parses PDF, JPEG or PNG reports with OCR.",
+    "url": "https://www.spikeapi.com/lab-reports",
+    "quote": "Spike Lab Reports API processes lab reports from PDFs, JPEGs, or PNG files up to 10MB using OCR technology that converts document images into analyzable text."
+  },
+  {
+    "claim": "Spike assigns LOINC codes.",
+    "url": "https://www.spikeapi.com/lab-reports",
+    "quote": "After OCR converts documents to text, our infrastructure assigns LOINC codes for each test, recognized worldwide, making lab test data from any language standardized."
+  },
+  {
+    "claim": "Rook EHR/EMR API (waitlist).",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "EHR/EMR API Waitlist for EHR/EMR API"
+  },
+  {
+    "claim": "Sends wearable data to clinical systems as FHIR R4.",
+    "url": "https://tryrook.io/rookconnect/ehr-emr-api/",
+    "quote": "ROOK's EHR/EMR API delivers each user's health data as FHIR R4, with LOINC codes and UCUM units, ready to integrate into clinical systems."
+  },
+  {
+    "claim": "EHR data into ROOK is coming soon.",
+    "url": "https://tryrook.io/rookconnect/ehr-emr-api/",
+    "quote": "Bringing data from EHRs, EMRs, patient portals, and health networks into ROOK is coming soon."
+  },
+  {
+    "claim": "Spike: \"Connect to top providers and access clinical data\".",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Connect to top providers and access clinical data"
+  },
+  {
+    "claim": "Rook: 0 to 100 health score.",
+    "url": "https://docs.tryrook.io/",
+    "quote": "It provides a simple score, ranging from 0 to 100, that reflects their current health status."
+  },
+  {
+    "claim": "Rook: health monitoring alerts.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "ROOK Signals Health Monitoring"
+  },
+  {
+    "claim": "Rook: ROOK App.",
+    "url": "https://tryrook.io/rookconnect/wearable-api/",
+    "quote": "ROOK App lets end users connect supported sources without embedding the SDKs."
+  },
+  {
+    "claim": "Spike: food-photo nutrition.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Convert any food image into complete nutritional data."
+  },
+  {
+    "claim": "Spike MCP.",
+    "url": "https://www.spikeapi.com/mcp-health-ai-integration",
+    "quote": "Spike MCP connects wearables data, medical IoT devices, lab reports, and nutrition logs to your LLM of choice."
+  },
+  {
+    "claim": "Spike: voice agents for clinics.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Spike Voice AI Agents perform insurance eligibility checks, coordinate care, schedule patients, and maximize revenue recovery."
+  },
+  {
+    "claim": "Rook Core $399 a month for up to 750 active users.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For getting started with ROOK. $399 USD per month Up to 750 active users"
+  },
+  {
+    "claim": "Spike Sandbox from $450 a month.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Purpose-built for fast innovation, Sandbox gives your team everything needed to build, test, and launch into production. Starts from $450 /month"
+  },
+  {
+    "claim": "Rook Core+ $999 (5,000).",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For teams growing past their first user base. $999 USD per month Up to 5,000 active users"
+  },
+  {
+    "claim": "Rook Business $1,999 (15,000).",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For companies that need to scale. $1,999 USD per month Up to 15,000 active users"
+  },
+  {
+    "claim": "Rook Enterprise custom.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For organizations with custom security or integration requirements. Custom Custom pricing Unlimited users"
+  },
+  {
+    "claim": "Spike Enterprise custom.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Designed for enterprise scale"
+  },
+  {
+    "claim": "Rook: 12-month standard term, cancel with 30 days' notice.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "ROOK's standard contract term is 12 months, with the flexibility to cancel with 30 days' prior notice."
+  },
+  {
+    "claim": "Rook: Dexcom, Samsung Health, Strava and WHOOP.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "clients are required to create their own developer accounts with these providers."
+  },
+  {
+    "claim": "Rook: Dexcom and Whoop need own developer accounts.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "To enable data extraction from specific platforms with strict regulations, such as Dexcom and Whoop, the client organization must provision and manage its own developer accounts."
+  },
+  {
+    "claim": "Rook: Samsung Health requires developer account.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "Samsung Health Requires developer account"
+  },
+  {
+    "claim": "Rook: Strava requires developer account.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "Strava Requires developer account"
+  },
+  {
+    "claim": "Spike: HMAC-SHA256 in X-Body-Signature.",
+    "url": "https://docs.spikeapi.com/api-docs/webhooks",
+    "quote": "Each webhook event is signed using an HMAC-SHA256 signature for verification. The signature is included in the X-Body-Signature header."
+  },
+  {
+    "claim": "Spike banner: \"Raintree Systems Acquires Spike Technologies\".",
+    "url": "https://www.spikeapi.com/integrations",
+    "quote": "Raintree Systems Acquires Spike Technologies"
+  },
+  {
+    "claim": "Core \"$399 USD per month\" for up to 750 active users.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For getting started with ROOK. $399 USD per month Up to 750 active users"
+  },
+  {
+    "claim": "Core+ $999 for up to 5,000.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For teams growing past their first user base. $999 USD per month Up to 5,000 active users"
+  },
+  {
+    "claim": "Business $1,999 for up to 15,000.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For companies that need to scale. $1,999 USD per month Up to 15,000 active users"
+  },
+  {
+    "claim": "Add-ons with listed prices.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Business and Enterprise include every product and add-on, Core+ includes three of choice, and Core adds them at the listed price."
+  },
+  {
+    "claim": "Past a ROOK plan's limit, \"billing adjusts based on usage\".",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Each plan includes an active user limit. Beyond that limit, billing adjusts based on usage."
+  },
+  {
+    "claim": "ROOK's Medical Device API delivers readings \"with the device that recorded each one\".",
+    "url": "https://tryrook.io/rookconnect/medical-device-api/",
+    "quote": "The ROOK Connect Medical Device API delivers glucose, blood pressure, oxygen saturation, temperature and ECG readings in one format, with the device that recorded each one."
+  },
+  {
+    "claim": "Spike integrates medical IoT too.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Integrate data from a wide range of medical IoT devices"
+  },
+  {
+    "claim": "The ROOK App \"lets end users connect supported sources without embedding the SDKs\".",
+    "url": "https://tryrook.io/rookconnect/wearable-api/",
+    "quote": "ROOK App lets end users connect supported sources without embedding the SDKs."
+  },
+  {
+    "claim": "The standard contract is 12 months.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "ROOK's standard contract term is 12 months, with the flexibility to cancel with 30 days' prior notice."
+  },
+  {
+    "claim": "Several products are add-ons on Core.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Business and Enterprise include every product and add-on, Core+ includes three of choice, and Core adds them at the listed price."
+  },
+  {
+    "claim": "ROOK says own developer accounts \"can take several weeks\".",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "This process can take several weeks and partly depends on the timelines of the respective data sources."
+  },
+  {
+    "claim": "\"Every organization gets a dedicated implementation engineer from the sandbox level to help with setup and optimization.\"",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Every organization gets a dedicated implementation engineer from the sandbox level to help with setup and optimization."
+  },
+  {
+    "claim": "Spike's Nutrition AI converts \"any food image into complete nutritional data\".",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Convert any food image into complete nutritional data."
+  },
+  {
+    "claim": "Spike MCP \"connects wearables data, medical IoT devices, lab reports, and nutrition logs to your LLM of choice\".",
+    "url": "https://www.spikeapi.com/mcp-health-ai-integration",
+    "quote": "Spike MCP connects wearables data, medical IoT devices, lab reports, and nutrition logs to your LLM of choice."
+  },
+  {
+    "claim": "Spike's homepage offers EMR and EHR connections now.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Connect to top providers and access clinical data"
+  },
+  {
+    "claim": "ROOK's page says bringing EHR and EMR data into ROOK is coming soon.",
+    "url": "https://tryrook.io/rookconnect/ehr-emr-api/",
+    "quote": "Bringing data from EHRs, EMRs, patient portals, and health networks into ROOK is coming soon."
+  },
+  {
+    "claim": "Spike's blog page carries the acquisition banner.",
+    "url": "https://www.spikeapi.com/blog",
+    "quote": "Raintree Systems Acquires Spike Technologies"
+  },
+  {
+    "claim": "FAQ: ROOK's SDKs integrate with Apple Health and Health Connect.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "ROOK SDKs integrate directly with Health Connect (Android) and Apple Health (iOS) to collect data on activity, sleep, heart rate, and more"
+  },
+  {
+    "claim": "FAQ: ROOK adds Samsung Health.",
+    "url": "https://tryrook.io/rookconnect/wearable-api/",
+    "quote": "Built for mobile apps. Connects Apple Health, Health Connect and Samsung Health."
+  },
+  {
+    "claim": "FAQ: 59 of the 72 sources arrive indirectly.",
+    "url": "https://tryrook.io/wearable-api-sdk/integrations/",
+    "quote": "All 72 API 9 SDK 4 Indirect 59"
+  },
+  {
+    "claim": "FAQ: Spike's docs point to its SDK for Apple Health, Health Connect and Samsung Health.",
+    "url": "https://docs.spikeapi.com/api-docs/provider_integration",
+    "quote": "Refer to SDK Documentation for Apple Health, Health Connect & Samsung Health Data integrations."
+  },
+  {
+    "claim": "FAQ: Spike's provider docs describe a consent redirect for providers such as Garmin and Fitbit.",
+    "url": "https://docs.spikeapi.com/api-docs/provider_integration",
+    "quote": "Most providers (e.g., Garmin, Fitbit) require the user to grant consent before Spike API can access their data."
+  },
+  {
+    "claim": "FAQ: clients must create their own developer accounts with those providers.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "clients are required to create their own developer accounts with these providers."
+  },
+  {
+    "claim": "FAQ: Spike calls its pricing usage-driven.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Usage-driven, transparent, and flexible"
+  }
+]

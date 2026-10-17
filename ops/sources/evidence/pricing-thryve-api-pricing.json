@@ -1,0 +1,257 @@
+[
+  {
+    "claim": "Free trial: 14 days.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Start 14-day free trial now"
+  },
+  {
+    "claim": "The plan table's columns: Free Trial, Start Up, Scale Up, Enterprise.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Features Free Trial Start Up Scale Up Enterprise"
+  },
+  {
+    "claim": "End users included: 25, 500, 5,000, flexible.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "End users included 25 500 5000 Flexible"
+  },
+  {
+    "claim": "Start Up: starts at 499 euros a month.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Start Up Starts at 499 € / Per Month"
+  },
+  {
+    "claim": "Start Up: 500 users, one app connection.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Get started with 500 users, one app connection, and access to real-time data."
+  },
+  {
+    "claim": "Start Up: additional users 0.50 euros each.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Additional users billed at €0.50 each."
+  },
+  {
+    "claim": "Scale Up: starts at 1,000 euros a month.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Scale Up Starts at 1.000 € / Per Month"
+  },
+  {
+    "claim": "Scale Up: for startups under ten years old.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Special plan for startups with growth-stage needs (less than 10 years of founding)."
+  },
+  {
+    "claim": "Scale Up: up to 5,000 users, 1 app, custom auth credentials, 14 days of historical fetching, 1 month of storage.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Up to 5000 users 1 app connected Own data source tenant / Custom Auth credentials Up to 14 days of Fetching historical data Up to 1 month of data storage"
+  },
+  {
+    "claim": "Scale Up: 999 euros per 10,000 users.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Scale your user base with additional €999 per 10,000 users."
+  },
+  {
+    "claim": "Enterprise: bespoke.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Enterprise Price Bespoke"
+  },
+  {
+    "claim": "Enterprise: tailored on request.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Tailored plans available upon request."
+  },
+  {
+    "claim": "Enterprise: multiple apps, flexible history and storage, multiple dashboard accounts.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Multiple apps connected Own data source tenant / Custom Auth credentials Flexible fetching historical data Flexible data storage Multiple dashboard accounts"
+  },
+  {
+    "claim": "Apps: 1, 1, 1, multiple.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Apps 1 1 1 Multiple"
+  },
+  {
+    "claim": "Data storage: 1 day, 2 weeks, 1 month, flexible.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Data storage options 1 Day 2 Weeks 1 Month Flexible"
+  },
+  {
+    "claim": "Historical fetch: up to 14 days on Scale Up, flexible on Enterprise.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Fetching historical data Up to 14 Days Flexible"
+  },
+  {
+    "claim": "Dashboard accounts: 1, 1, 2, multiple.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Thryve dashboard accounts 1 1 2 Multiple"
+  },
+  {
+    "claim": "Scale Up \"Includes custom authentication, extended data storage, concierge support, and more.\"",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Includes custom authentication, extended data storage, concierge support, and more."
+  },
+  {
+    "claim": "Enterprise is \"For organizations needing high-volume access, multiple app connections, advanced analytics, and dedicated support.\"",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "For organizations needing high-volume access, multiple app connections, advanced analytics, and dedicated support."
+  },
+  {
+    "claim": "The description says \"Additional users billed at €0.50 each\".",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Additional users billed at €0.50 each."
+  },
+  {
+    "claim": "The feature list reads \"0,50ct per additional user\".",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Up to 500 users 0,50ct per additional user 1 app connected"
+  },
+  {
+    "claim": "\"Visit Thryve Health Pricing to choose a suitable plan. You'll be directed to Stripe checkout for payment.\"",
+    "url": "https://docs.thryve.health/getting-started/get-your-api-keys",
+    "quote": "Visit Thryve Health Pricing to choose a suitable plan. You'll be directed to Stripe checkout for payment."
+  },
+  {
+    "claim": "Scale Up and Enterprise go through a \"Contact Us\" button.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Scale your user base with additional €999 per 10,000 users. Contact Us"
+  },
+  {
+    "claim": "\"To change your plan at any time, please contact our sales team\".",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "To change your plan at any time, please contact our sales team"
+  },
+  {
+    "claim": "Thryve automatically creates two app environments.",
+    "url": "https://docs.thryve.health/getting-started/get-your-api-keys",
+    "quote": "Thryve automatically creates two app environments"
+  },
+  {
+    "claim": "\"All credentials are displayed only once and expire 24 hours after email delivery.\"",
+    "url": "https://docs.thryve.health/getting-started/get-your-api-keys",
+    "quote": "All credentials are displayed only once and expire 24 hours after email delivery."
+  },
+  {
+    "claim": "Arithmetic input: Start Up 499 euros with 500 users.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Get started with 500 users, one app connection, and access to real-time data."
+  },
+  {
+    "claim": "Arithmetic input: 0.50 euros per additional user.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Additional users billed at €0.50 each."
+  },
+  {
+    "claim": "Arithmetic input: Scale Up 1,000 euros, up to 5,000 users.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Up to 5000 users 1 app connected Own data source tenant / Custom Auth credentials Up to 14 days of Fetching historical data Up to 1 month of data storage"
+  },
+  {
+    "claim": "\"Scale your user base with additional €999 per 10,000 users\".",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Scale your user base with additional €999 per 10,000 users."
+  },
+  {
+    "claim": "Thryve's data-sources table has a \"Shared oAuth-client\" column.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Data Source Type Retrieval Method Historic data Shared oAuth-client"
+  },
+  {
+    "claim": "\"When no shared oAuth-client is available, you must bring your own oAuth-client\".",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "When no shared oAuth-client is available, you must bring your own oAuth-client"
+  },
+  {
+    "claim": "WHOOP: no shared OAuth client.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Whoop Web Ping yes no"
+  },
+  {
+    "claim": "Dexcom: no shared OAuth client.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Dexcom Web Bulk yes no"
+  },
+  {
+    "claim": "Google Health: no shared OAuth client.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "49 Google Health Web Bulk yes no"
+  },
+  {
+    "claim": "FreeStyle Libre (LibreView): no shared OAuth client.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "FreeStyleLibre (LibreView) Web Bulk yes no"
+  },
+  {
+    "claim": "Garmin: shared OAuth client.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Garmin Web Ping yes yes"
+  },
+  {
+    "claim": "Oura: shared OAuth client.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Oura Web Ping yes yes"
+  },
+  {
+    "claim": "The table marks Fitbit \"Deprecating on Oct 29 2026\".",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Deprecating on Oct 29 2026"
+  },
+  {
+    "claim": "Polar: no historic data.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Polar Web Ping no yes"
+  },
+  {
+    "claim": "Apple Health is a Native SDK source.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Apple Health Native SDK"
+  },
+  {
+    "claim": "Samsung Health is a Native SDK source.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Samsung Health Native SDK yes n.a."
+  },
+  {
+    "claim": "Health Connect is a Native SDK source.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Health Connect Native SDK yes n.a."
+  },
+  {
+    "claim": "\"BAA agreements included on all plans — no enterprise upgrade required\".",
+    "url": "https://www.thryve.health/certifications-compliance",
+    "quote": "BAA agreements included on all plans — no enterprise upgrade required."
+  },
+  {
+    "claim": "\"Business Associate Agreements and Data Processing Agreements are standard on every plan\".",
+    "url": "https://www.thryve.health/certifications-compliance",
+    "quote": "Business Associate Agreements and Data Processing Agreements are standard on every plan"
+  },
+  {
+    "claim": "\"All data processed and stored by Thryve is hosted in Germany\".",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "All data processed and stored by Thryve is hosted in Germany."
+  },
+  {
+    "claim": "Homepage: \"GDPR, HIPAA, ISO 9001, 27001 and other international regulations\".",
+    "url": "https://www.thryve.health/",
+    "quote": "Developed and hosted entirely in Europe, Thryve ensures full compliance with the strictest data protection standards, including GDPR, HIPAA, ISO 9001, 27001 and other international regulations."
+  },
+  {
+    "claim": "Sahha's BAA starts at Pro.",
+    "url": "https://sahha.ai/",
+    "quote": "The DPA is included on every plan. A BAA is included from Pro."
+  },
+  {
+    "claim": "Terra's BAA sits in Enterprise.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Signed BAA (data protection agreement)"
+  },
+  {
+    "claim": "Junction's BAA sits in Enterprise.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "The signed Business Associate Agreement, our SOC 2 Type 2 and ISO 27001 reports, and customer-managed encryption keys are part of Enterprise."
+  },
+  {
+    "claim": "Terra bills credits per connected data source.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Two things consume credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
+  }
+]
