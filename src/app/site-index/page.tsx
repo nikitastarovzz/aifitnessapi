@@ -68,6 +68,7 @@ const MAIN = [
   { href: "/google-fit-shutdown", label: "Google Fit shutdown centre" },
   { href: "/fitbit-api-shutdown", label: "Fitbit Web API retirement centre" },
   { href: "/datasets", label: "Open datasets (CC BY 4.0)" },
+  { href: "/developers", label: "Developer API & MCP server" },
   { href: "/badges", label: "Embeds & badges for your site" },
   { href: "/glossary", label: "Glossary" },
   { href: "/blog", label: "Blog" },

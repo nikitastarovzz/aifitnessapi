@@ -431,6 +431,11 @@ export default function DatasetsPage() {
             satisfies it. If you find an error in a row, the page it links is the place it will be
             corrected first.
           </p>
+          <p>
+            The same rows are also served one at a time, as a read-only JSON API with an OpenAPI 3.1
+            document and as tools on a hosted MCP server for AI assistants. No key is needed for either;
+            see <Link href="/developers">the developer API and MCP server</Link>.
+          </p>
         </section>
 
         <p className="mt-10 text-sm text-[var(--muted)]">

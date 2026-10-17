@@ -1,11 +1,12 @@
 {
   "name": "@aifitnessapi/mcp",
   "version": "0.1.0",
-  "description": "MCP server exposing the AIFitnessAPI reference data: HealthKit types, the HealthKit/Health Connect matrix, the API directory, dated ecosystem changes, and the glossary.",
+  "mcpName": "com.aifitnessapi/mcp",
+  "description": "MCP server exposing the AIFitnessAPI reference data: HealthKit types, the HealthKit/Health Connect matrix, dated ecosystem changes, and the glossary.",
   "license": "CC-BY-4.0",
   "type": "module",
   "bin": { "aifitnessapi-mcp": "./src/index.js" },
-  "files": ["src", "README.md"],
+  "files": ["src", "data", "README.md"],
   "engines": { "node": ">=20" },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0"

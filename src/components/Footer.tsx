@@ -190,6 +190,9 @@ export default function Footer() {
           <FooterLink href="/datasets" className="py-1 hover:text-[var(--fg)]">
             Open Datasets
           </FooterLink>
+          <FooterLink href="/developers" className="py-1 hover:text-[var(--fg)]">
+            Developer API &amp; MCP
+          </FooterLink>
           <FooterLink href="/badges" className="py-1 hover:text-[var(--fg)]">
             Embeds &amp; Badges
           </FooterLink>

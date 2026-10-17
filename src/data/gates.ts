@@ -220,6 +220,68 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "A manifest whose recorded byte sizes disagree with the dataset files actually on disk.",
   },
 
+  // ── The public API and the MCP endpoint ───────────────────────────────
+  {
+    code: "API-OPENAPI",
+    area: "Datasets and artifacts",
+    refuses:
+      "A build whose /api/v1/openapi.json is missing, is not OpenAPI 3.1, documents a path outside /api/v1, or describes an item path without listing the ids it serves, which would leave its promised URLs uncheckable.",
+  },
+  {
+    code: "API-NOT-BUILT",
+    area: "Datasets and artifacts",
+    refuses: "An API path the OpenAPI document promises that the build did not write, or wrote as anything other than a 200 JSON response.",
+  },
+  {
+    code: "API-UNDOCUMENTED",
+    area: "Datasets and artifacts",
+    refuses: "An /api/v1 response the OpenAPI document does not describe, which no client reading the document would ever find.",
+  },
+  {
+    code: "API-HEADERS",
+    area: "Datasets and artifacts",
+    refuses: "An API response served without Access-Control-Allow-Origin: *, a Cache-Control max-age, or the noindex that keeps machine files out of search results.",
+  },
+  {
+    code: "API-ENVELOPE",
+    area: "Datasets and artifacts",
+    refuses: "An API response without its CC BY 4.0 licence, its attribution, its source page, or a verified date that says what it means.",
+  },
+  {
+    code: "API-SOURCE-DEAD",
+    area: "Datasets and artifacts",
+    refuses: "An API response whose source link points at a page the build did not produce, or at an anchor that page does not have.",
+  },
+  {
+    code: "API-ROWS",
+    area: "Datasets and artifacts",
+    refuses:
+      "An API collection that serves a different number of rows than its dataset holds, beyond the ones it lists as excluded with a reason, or a row without its own item URL.",
+  },
+  {
+    code: "API-UNADVERTISED",
+    area: "Datasets and artifacts",
+    refuses:
+      "An API or MCP endpoint that llms.txt, robots.txt or the /developers page fails to name, so an agent or a developer could not discover it.",
+  },
+  {
+    code: "MCP-ROUTE",
+    area: "Datasets and artifacts",
+    refuses: "A hosted MCP endpoint that is missing, prerendered instead of answered per request, or allowed to run longer than ten seconds.",
+  },
+  {
+    code: "MCP-TOOLS",
+    area: "Datasets and artifacts",
+    refuses:
+      "An MCP tool not annotated read-only, or one whose answer over the published datasets drops the source line or cites a dataset that is not published.",
+  },
+  {
+    code: "MCP-SERVER-JSON",
+    area: "Datasets and artifacts",
+    refuses:
+      "An MCP Registry entry that disagrees with the package it describes: another name, version or URL, a description over the registry's 100 characters, or a package that would ship without its data.",
+  },
+
   // ── API directory ─────────────────────────────────────────────────────
   {
     code: "APIS-COUNT",
