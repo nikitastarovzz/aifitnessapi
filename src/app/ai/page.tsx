@@ -42,6 +42,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
       "ai-nutrition-logging",
       "personalize-with-wearable-data",
       "ground-llm-in-exercise-database",
+      "connect-wearable-data-to-ai-assistants",
     ],
   },
   {

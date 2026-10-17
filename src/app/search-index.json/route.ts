@@ -31,6 +31,7 @@ import { HK_METADATA_KEYS } from "@/data/healthkitMetadataKeys";
 import { HS_DATA_TYPES } from "@/data/healthServicesDataTypes";
 import { POSE_SCHEMES } from "@/data/poseKeypoints";
 import { POSE_BASE, schemeDescription, schemeTitle, schemePath } from "@/data/poseKeypointPages";
+import { MCP_HEALTH_SERVERS } from "@/data/mcpHealthServers";
 import {
   orderedRecords,
   recordPath,
@@ -367,6 +368,15 @@ export function GET() {
       [s.shortName, "keypoints landmarks index", ...s.usedBy.map((u) => u.model), ...s.points.map((p) => p.name)].join(" "),
     );
   }
+  add(
+    "/health-mcp-servers",
+    "MCP servers for health and fitness data",
+    `The ${MCP_HEALTH_SERVERS.length} servers in the official MCP Registry that name a health or fitness data source, grouped by source, with package facts and publisher.`,
+    [
+      "mcp model context protocol server registry health data wearable garmin oura whoop strava apple health ai assistant",
+      ...new Set(MCP_HEALTH_SERVERS.map((s) => s.name.split("/")[1] ?? s.name)),
+    ].join(" "),
+  );
 
   add(
     APIS_PATH,

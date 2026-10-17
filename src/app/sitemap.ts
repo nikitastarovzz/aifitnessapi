@@ -23,6 +23,7 @@ import { POSE_KEYPOINTS_FETCHED_ON, POSE_SCHEMES } from "@/data/poseKeypoints";
 import { hkPageIdentifiers, hkIdentifierPath, hkPageModified } from "@/data/hkIdentifierPages";
 import { hsPageTypes, hsDataTypePath, hsPageModified } from "@/data/hsDataTypePages";
 import { GHAPI_PATHS, allTypes as ghapiTypes, typePath as ghapiTypePath, ghapiModified } from "@/data/ghapiPages";
+import { MCP_SERVERS_FETCHED_ON } from "@/data/mcpHealthServers";
 
 /**
  * Every row carries a `lastmod` that some dated record on the site backs, or
@@ -179,6 +180,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/wear-os-data-types", HS_DATA_TYPES_FETCHED_ON],
     ["/pose-keypoints", POSE_KEYPOINTS_FETCHED_ON],
     ...POSE_SCHEMES.map((s): [string, string] => [`/pose-keypoints/${s.slug}`, POSE_KEYPOINTS_FETCHED_ON]),
+    ["/health-mcp-servers", MCP_SERVERS_FETCHED_ON],
   ];
 
   // The list is empty until the authored entries land, and an empty list

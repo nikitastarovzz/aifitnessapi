@@ -333,6 +333,7 @@ if (fs.existsSync(matrixPath)) {
     "wear-os-health-services-data-types-2026",
     "pose-keypoint-maps-2026",
     "google-health-api-data-types-2026",
+    "health-mcp-servers-2026",
   ];
   // Both directions. Listing files catches a DELETION (a dataset a page
   // still cites); scanning the directory catches an ADDITION that was never
@@ -2362,6 +2363,84 @@ if (fs.existsSync(matrixPath)) {
       console.log(
         `Google Health API: ${built.length} data-type pages for ${types.length} types, ${facts} operations and scopes shown, ${flagsShown} cross-check flags shown, ${TOPICS.length} topic pages checked.`,
       );
+    }
+  }
+
+  // MCP servers for health and fitness data (EXPANSION-3 2.5), generated from
+  // the official MCP Registry. Three things are held: every generated server
+  // has its row on /health-mcp-servers and the generator's own floor is met;
+  // no row says "official" unless the generator set publisherIsVendor, and a
+  // server it did set it for really sits under the reverse-DNS form of a
+  // domain the generator lists for a source the server names; and every term
+  // a server was kept for is in the field the match names — the evidence the
+  // listing rests on.
+  {
+    const src = fs.readFileSync("src/data/mcpHealthServers.ts", "utf8");
+    const servers = jsonArray(src, "MCP_HEALTH_SERVERS");
+    const terms = jsonArray(src, "MCP_SERVER_TERMS") ?? [];
+    const floor = numConst(src, "MCP_SERVERS_EXPECTED_MIN");
+    const page = htmlOf("/health-mcp-servers");
+    if (!servers || !floor || servers.length < floor) {
+      problems.push(`MCP-SERVER-ROWS  src/data/mcpHealthServers.ts yields ${servers?.length ?? 0} servers, below its floor MCP_SERVERS_EXPECTED_MIN (${floor})`);
+    } else if (!page) {
+      problems.push("MCP-SERVER-ROWS  /health-mcp-servers was not built");
+    } else {
+      /** The <tr …>…</tr> carrying an id, decoded. */
+      const trOf = (id) => {
+        const at = page.indexOf(`id="${id}"`);
+        if (at === -1) return null;
+        const start = page.lastIndexOf("<tr", at);
+        const end = page.indexOf("</tr>", at);
+        return decode(page.slice(start, end === -1 ? undefined : end));
+      };
+      const rendered = new Set([...page.matchAll(/data-mcp-server="([^"]+)"/g)].map((m) => decode(m[1])));
+      const missing = servers.filter((s) => !rendered.has(s.name) || !page.includes(`id="server-${s.slug}"`)).map((s) => s.name);
+      if (missing.length) {
+        problems.push(`MCP-SERVER-ROWS  /health-mcp-servers is missing rows for ${missing.slice(0, 5).join(", ")}${missing.length > 5 ? "…" : ""}`);
+      }
+      if (rendered.size !== servers.length) {
+        problems.push(`MCP-SERVER-ROWS  /health-mcp-servers renders ${rendered.size} server rows for ${servers.length} generated servers`);
+      }
+      const domainsOf = new Map(terms.map((t) => [t.source, t.domains ?? []]));
+      const reverseDns = (d) => d.split(".").reverse().join(".");
+      let official = 0;
+      for (const s of servers) {
+        const row = trOf(`server-${s.slug}`);
+        if (!row) continue;
+        const saysOfficial = /data-publisher="official"/.test(row) || />Official</.test(row);
+        if (saysOfficial && !s.publisherIsVendor) {
+          problems.push(`MCP-SERVER-OFFICIAL  /health-mcp-servers labels ${s.name} official, but the generator did not set publisherIsVendor`);
+        }
+        if (s.publisherIsVendor) {
+          official++;
+          if (!saysOfficial) problems.push(`MCP-SERVER-OFFICIAL  ${s.name} has publisherIsVendor but its row does not say official`);
+          const ns = String(s.namespace).toLowerCase();
+          const vendorDomain = s.sources
+            .flatMap((k) => domainsOf.get(k) ?? [])
+            .find((d) => ns === reverseDns(d) || ns.startsWith(`${reverseDns(d)}.`));
+          if (!vendorDomain || !s.publisherEvidence) {
+            problems.push(`MCP-SERVER-OFFICIAL  ${s.name} has publisherIsVendor, but its namespace is not the reverse-DNS form of a domain listed for a source it names`);
+          }
+        }
+      }
+      const fieldsOf = (s) => ({ name: s.name.replace(/[/._-]+/g, " "), title: s.title ?? "", description: s.description ?? "" });
+      for (const s of servers) {
+        if (!s.matches?.length) {
+          problems.push(`MCP-SERVER-EVIDENCE  ${s.name} is listed without a matched term`);
+          continue;
+        }
+        const f = fieldsOf(s);
+        for (const m of s.matches) {
+          if (!f[m.field]?.includes(m.text) || (m.context && !f[m.context.field]?.includes(m.context.text))) {
+            problems.push(`MCP-SERVER-EVIDENCE  ${s.name}: the match for "${m.term}" is not in its ${m.field}`);
+          }
+        }
+        const row = trOf(`server-${s.slug}`);
+        if (row && !row.includes(s.description)) {
+          problems.push(`MCP-SERVER-EVIDENCE  /health-mcp-servers row for ${s.name} does not quote its registry description`);
+        }
+      }
+      if (!missing.length) console.log(`MCP servers: ${servers.length} rendered on /health-mcp-servers (floor ${floor}), ${official} under a vendor's own namespace.`);
     }
   }
 

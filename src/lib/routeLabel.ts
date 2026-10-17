@@ -27,6 +27,7 @@ const STANDALONE: Record<string, string> = {
   "/healthkit-queries": "HealthKit Queries",
   "/health-connect-api": "Health Connect API",
   "/pose-keypoints": "Pose Estimation Keypoint Maps",
+  "/health-mcp-servers": "MCP servers for health and fitness data",
 };
 
 let INDEX: Map<string, string> | null = null;

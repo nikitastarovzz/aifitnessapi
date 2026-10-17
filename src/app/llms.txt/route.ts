@@ -32,6 +32,7 @@ import { HK_METADATA_KEYS, HK_METADATA_KEY_GROUPS } from "@/data/healthkitMetada
 import { HS_DATA_TYPES } from "@/data/healthServicesDataTypes";
 import { POSE_CROSSWALK, POSE_SCHEMES } from "@/data/poseKeypoints";
 import { POSE_BASE, schemeDescription, schemeH1, schemePath } from "@/data/poseKeypointPages";
+import { MCP_HEALTH_SERVERS, MCP_SERVERS_FETCHED_ON } from "@/data/mcpHealthServers";
 import {
   orderedRecords,
   recordPath,
@@ -497,6 +498,7 @@ export function GET() {
     `- [HealthKit metadata keys](${absoluteUrl("/healthkit-metadata-keys")}): all ${HK_METADATA_KEYS.length} HKMetadataKey constants from Apple's documentation in ${HK_METADATA_KEY_GROUPS.length} topic groups, with Apple's wording, OS availability, and the value type only where Apple's own sentence states it (that sentence kept beside it).`,
     `- [Wear OS Health Services data types](${absoluteUrl("/wear-os-data-types")}): all ${HS_DATA_TYPES.length} Health Services DataType constants from Google's Jetpack reference, with Google's description, the declared Kotlin type, and the permission Google's permissions table lists where it names the constant.`,
     `- [Health Connect SDK releases](${absoluteUrl("/health-connect-releases")}): all ${HC_RELEASES.length} androidx.health.connect:connect-client releases from Google's Jetpack release notes — version, date, stage and what changed.`,
+    `- [MCP servers for health and fitness data](${absoluteUrl("/health-mcp-servers")}): the ${MCP_HEALTH_SERVERS.length} servers in the official MCP Registry (read ${MCP_SERVERS_FETCHED_ON}) whose name, title or description names a health or fitness data source, grouped by source, with the registry's description verbatim, how each runs, npm/PyPI package facts, and whether the registry namespace is the vendor's own domain. This site's own MCP server is described separately on that page, with a disclosure.`,
     `- [Every HealthKit error code](${absoluteUrl("/healthkit-errors")}): all 17 HKError.Code cases with Apple's own description of each. Two findings stated rather than smoothed over: a denied HealthKit READ raises no error at all (Apple reports refusal only on saves, so an empty result is deliberately ambiguous between no-data and no-permission), and Apple does not publish the numeric raw values, so a code in a crash log cannot be mapped to a name from the documentation.`,
     "",
     "## About",
