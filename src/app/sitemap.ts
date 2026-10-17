@@ -229,6 +229,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/alerts",
     "/compare-apis",
     "/datasets",
+    "/developers",
     "/badges",
     DIGEST_PATH,
   ];

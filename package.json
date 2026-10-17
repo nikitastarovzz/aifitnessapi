@@ -20,6 +20,7 @@
     "stale": "node scripts/stale-report.mjs"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "~1.32.0",
     "@vercel/analytics": "^2.0.1",
     "gray-matter": "^4.0.3",
     "next": "^16.1.1",

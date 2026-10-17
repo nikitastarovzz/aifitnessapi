@@ -163,6 +163,19 @@ const nextConfig: NextConfig = {
           },
         ],
       })),
+      // The read-only JSON API (src/app/api/v1). Its GET responses carry their
+      // own CORS and cache headers; this rule is for preflights, which Next
+      // answers itself, because a route file that exported OPTIONS would stop
+      // being static. A plain GET from a browser never needs one.
+      {
+        source: "/api/v1/:path*",
+        headers: [
+          { key: "Access-Control-Allow-Origin", value: "*" },
+          { key: "Access-Control-Allow-Methods", value: "GET, HEAD, OPTIONS" },
+          { key: "Access-Control-Allow-Headers", value: "*" },
+          { key: "Access-Control-Max-Age", value: "86400" },
+        ],
+      },
     ];
   },
 };

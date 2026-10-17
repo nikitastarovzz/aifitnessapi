@@ -410,6 +410,233 @@ if (fs.existsSync(matrixPath)) {
   console.log(`Artifacts: ${DATASETS.length} datasets, ${KIT.length} kit files.`);
 }
 
+// ── The public API and the hosted MCP endpoint (ops/EXPANSION-3-2026-10-17.md
+// 4.2, added 2026-10-17). /api/v1 serves the datasets as static JSON described
+// by /api/v1/openapi.json; /mcp runs the stdio package's tools over Streamable
+// HTTP. Both are read by machines that nobody watches, so every failure here
+// is a silent one: a documented path that 404s, a served path no client can
+// discover, a response without its licence, a source link that lands nowhere,
+// a registry entry that names a version nobody shipped. The checks read the
+// build output, the way a client meets it, and the OpenAPI document is held to
+// the build in both directions — the same rule as DATASET-UNGATED.
+{
+  const SITE = "https://aifitnessapi.com";
+  const readJson = (p) => {
+    try { return JSON.parse(fs.readFileSync(p, "utf8")); } catch { return null; }
+  };
+  const bodyOf = (route) => readJson(`${ROOT}${route}.body`);
+  const metaOf = (route) => readJson(`${ROOT}${route}.meta`);
+
+  // Every response the build wrote below /api/v1, by route.
+  const built = new Set();
+  if (fs.existsSync(`${ROOT}/api/v1.body`)) built.add("/api/v1");
+  if (fs.existsSync(`${ROOT}/api/v1`)) {
+    (function walk(dir) {
+      for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+        const p = path.join(dir, e.name);
+        if (e.isDirectory()) walk(p);
+        else if (e.name.endsWith(".body")) built.add(p.slice(ROOT.length).replace(/\.body$/, ""));
+      }
+    })(`${ROOT}/api/v1`);
+  }
+
+  const openapi = bodyOf("/api/v1/openapi.json");
+  let collections = 0;
+  let items = 0;
+  const servedDatasets = new Set();
+  if (!openapi || typeof openapi.openapi !== "string" || !openapi.openapi.startsWith("3.1.") || typeof openapi.paths !== "object") {
+    problems.push("API-OPENAPI  /api/v1/openapi.json is missing from the build output or is not an OpenAPI 3.1 document");
+  } else {
+    // Expand each documented path into the concrete URLs it promises. An item
+    // path must enumerate its ids, or there is no way to hold it to the build.
+    const documented = new Set();
+    for (const [p, ops] of Object.entries(openapi.paths)) {
+      const params = [...p.matchAll(/\{([^}]+)\}/g)].map((m) => m[1]);
+      if (!p.startsWith("/api/v1") || params.length > 1) {
+        problems.push(`API-OPENAPI  ${p} is documented outside /api/v1 or with more than one path parameter`);
+        continue;
+      }
+      if (params.length === 0) {
+        documented.add(p);
+        continue;
+      }
+      const values = (ops?.get?.parameters ?? []).find((x) => x.in === "path" && x.name === params[0])?.schema?.enum;
+      if (!Array.isArray(values) || values.length === 0) {
+        problems.push(`API-OPENAPI  ${p} does not enumerate its {${params[0]}} values, so the URLs it promises cannot be checked`);
+        continue;
+      }
+      for (const v of values) documented.add(p.replace(`{${params[0]}}`, v));
+    }
+
+    for (const route of documented) {
+      if (!built.has(route)) problems.push(`API-NOT-BUILT  ${route} is in the OpenAPI document but the build wrote no response for it`);
+    }
+    for (const route of built) {
+      if (!documented.has(route)) problems.push(`API-UNDOCUMENTED  ${route} is served but the OpenAPI document does not describe it`);
+    }
+
+    // The pages a response's `source` points at, resolved like FRAGMENT-DEAD:
+    // the path must be a built page that does not 404, and a fragment must be
+    // an id on it. A citation an API hands out has to land.
+    const fileOf = new Map(htmls.map((h) => [routeOf(h), h]));
+    const idCache = new Map();
+    const resolves = (url) => {
+      if (typeof url !== "string" || !url.startsWith(`${SITE}/`)) return false;
+      const [rawPath, frag] = url.slice(SITE.length).split("#");
+      const route = rawPath.length > 1 && rawPath.endsWith("/") ? rawPath.slice(0, -1) : rawPath;
+      if (!fileOf.has(route) || notFoundSet.has(route)) return false;
+      if (!frag) return true;
+      if (!idCache.has(route)) {
+        idCache.set(route, new Set([...fs.readFileSync(fileOf.get(route), "utf8").matchAll(/\sid="([^"]*)"/g)].map((m) => decode(m[1]))));
+      }
+      return idCache.get(route).has(frag);
+    };
+
+    for (const route of [...built].filter((r) => documented.has(r)).sort()) {
+      const meta = metaOf(route);
+      const h = meta?.headers ?? {};
+      const body = bodyOf(route);
+      if (!meta || (meta.status ?? 200) !== 200 || body === null || !/^application\/json\b/.test(h["content-type"] ?? "")) {
+        problems.push(`API-NOT-BUILT  ${route} is not served as a 200 JSON response`);
+        continue;
+      }
+      const missing = [];
+      if (h["access-control-allow-origin"] !== "*") missing.push("Access-Control-Allow-Origin: *");
+      if (!/max-age=\d+/.test(h["cache-control"] ?? "")) missing.push("a Cache-Control max-age");
+      if (!/noindex/i.test(h["x-robots-tag"] ?? "")) missing.push("X-Robots-Tag: noindex");
+      if (missing.length) problems.push(`API-HEADERS  ${route} is served without ${missing.join(", ")}`);
+      if (route === "/api/v1/openapi.json") continue;
+
+      const env = [];
+      if (body.license !== "CC-BY-4.0") env.push("license CC-BY-4.0");
+      if (typeof body.attribution !== "string" || !body.attribution.includes("aifitnessapi.com")) env.push("attribution");
+      if (typeof body.source !== "string") env.push("source");
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(body.verified?.date ?? "") || !body.verified?.meaning) env.push("a verified date and what it means");
+      if (env.length) problems.push(`API-ENVELOPE  ${route} lacks ${env.join(", ")}`);
+      else if (!resolves(body.source)) problems.push(`API-SOURCE-DEAD  ${route} cites ${body.source}, which is not a built page or not an id on it`);
+
+      // A collection serves every row of its dataset, save the ones it names
+      // as excluded and why, and every row it serves has its own URL.
+      if (Array.isArray(body.items)) {
+        collections++;
+        const slug = body.dataset?.slug;
+        servedDatasets.add(slug);
+        const dataset = readJson(`public/datasets/${slug}.json`);
+        const excluded = Array.isArray(body.excluded) ? body.excluded.length : 0;
+        if (!dataset || !Array.isArray(dataset.items)) {
+          problems.push(`API-ROWS  ${route} names dataset "${slug}", which is not in public/datasets`);
+        } else if (body.count !== body.items.length || body.items.length + excluded !== dataset.items.length) {
+          problems.push(
+            `API-ROWS  ${route} serves ${body.items.length} rows (count ${body.count}, ${excluded} excluded) of ${dataset.items.length} in ${slug}.json`,
+          );
+        }
+        const ids = body.items.map((it) => it?.[body.key]);
+        const children = [...built].filter((r) => r.startsWith(`${route}/`) && !r.slice(route.length + 1).includes("/"));
+        if (new Set(ids).size !== ids.length || children.length !== ids.length || ids.some((id) => !built.has(`${route}/${id}`))) {
+          problems.push(`API-ROWS  ${route} has ${ids.length} rows keyed by "${body.key}" but ${children.length} item responses, or ids that repeat or have no response`);
+        }
+        items += children.length;
+      }
+    }
+    if (!built.has("/api/v1")) problems.push("API-NOT-BUILT  /api/v1 (the index) was not built");
+  }
+
+  // Discoverable: llms.txt and robots.txt name the API and the MCP endpoint,
+  // and /developers lists every collection and every tool.
+  {
+    const llmsBody = fs.existsSync(`${ROOT}/llms.txt.body`) ? fs.readFileSync(`${ROOT}/llms.txt.body`, "utf8") : "";
+    const robotsBody = fs.existsSync(`${ROOT}/robots.txt.body`) ? fs.readFileSync(`${ROOT}/robots.txt.body`, "utf8") : "";
+    for (const surface of [`${SITE}/api/v1/openapi.json`, `${SITE}/mcp`, `${SITE}/developers`]) {
+      if (!llmsBody.includes(surface)) problems.push(`API-UNADVERTISED  llms.txt does not name ${surface}`);
+      if (!robotsBody.includes(surface)) problems.push(`API-UNADVERTISED  robots.txt does not name ${surface}`);
+    }
+    const devFile = htmls.find((h) => routeOf(h) === "/developers");
+    const dev = devFile && !notFoundSet.has("/developers") ? fs.readFileSync(devFile, "utf8") : null;
+    if (!dev || !dev.includes("data-api-collections")) {
+      problems.push("API-UNADVERTISED  /developers was not built or renders no collection table");
+    } else {
+      for (const route of [...built].filter((r) => Array.isArray(bodyOf(r)?.items))) {
+        if (!dev.includes(`href="${SITE}${route}"`)) problems.push(`API-UNADVERTISED  /developers does not link the collection ${route}`);
+      }
+    }
+    const datasetsFile = htmls.find((h) => routeOf(h) === "/datasets");
+    if (datasetsFile && !fs.readFileSync(datasetsFile, "utf8").includes('href="/developers"')) {
+      problems.push("API-UNADVERTISED  /datasets does not link /developers");
+    }
+
+    // The hosted MCP endpoint: built as an on-demand route, never prerendered,
+    // and capped. The tool list is the shared module's, so /developers must
+    // name each tool it serves.
+    const appPaths = readJson(".next/server/app-paths-manifest.json") ?? {};
+    const fnConfig = readJson(".next/server/functions-config-manifest.json")?.functions ?? {};
+    const maxDuration = fnConfig["/mcp"]?.maxDuration;
+    if (!("/mcp/route" in appPaths) || fs.existsSync(`${ROOT}/mcp.body`)) {
+      problems.push("MCP-ROUTE  /mcp is missing from the build or was prerendered instead of served on demand");
+    } else if (typeof maxDuration !== "number" || maxDuration > 10) {
+      problems.push(`MCP-ROUTE  /mcp declares maxDuration ${JSON.stringify(maxDuration)}; it must be set, and at most 10 seconds`);
+    }
+
+    const { createToolkit, TOOLS, REQUIRED_DATASETS, SERVER_INFO } = await import(new URL("../mcp/src/tools.js", import.meta.url));
+    try {
+      const toolkit = createToolkit(Object.fromEntries(REQUIRED_DATASETS.map((s) => [s, readJson(`public/datasets/${s}.json`)])));
+      for (const tool of TOOLS) {
+        if (dev && !dev.includes(tool.name)) problems.push(`API-UNADVERTISED  /developers does not name the MCP tool ${tool.name}`);
+        if (tool.annotations?.readOnlyHint !== true || tool.annotations?.destructiveHint !== false) {
+          problems.push(`MCP-TOOLS  ${tool.name} is not annotated read-only and non-destructive`);
+        }
+        // A probe call with every required argument filled: the answer must
+        // carry the site's provenance, and any dataset it names must exist.
+        const args = Object.fromEntries((tool.inputSchema.required ?? []).map((k) => [k, "heart"]));
+        const out = toolkit.call(tool.name, args);
+        const text = (out?.content ?? []).map((c) => c.text).join("\n");
+        if (out?.isError || !text.includes(`Source: ${SITE}/`)) {
+          problems.push(`MCP-TOOLS  ${tool.name} answered a probe call without the Source line every answer ends with`);
+        }
+        for (const [, slug] of text.matchAll(/Dataset: https:\/\/aifitnessapi\.com\/datasets\/([a-z0-9-]+)\.json/g)) {
+          if (!fs.existsSync(`public/datasets/${slug}.json`)) {
+            problems.push(`MCP-TOOLS  ${tool.name} cites /datasets/${slug}.json, which is not published`);
+          }
+        }
+      }
+    } catch (err) {
+      problems.push(`MCP-TOOLS  the shared tool module could not be loaded over public/datasets: ${err.message}`);
+    }
+
+    // The MCP Registry entry must describe what is actually shipped: the npm
+    // package's name, mcpName and version, the hosted URL, and the schema's
+    // 100-character description cap. A mismatch is rejected by the registry
+    // at publish time, or worse, accepted and wrong.
+    const serverJson = readJson("mcp/server.json");
+    const pkg = readJson("mcp/package.json");
+    if (!serverJson || !pkg) {
+      problems.push("MCP-SERVER-JSON  mcp/server.json or mcp/package.json is missing or not valid JSON");
+    } else {
+      const npmPkg = (serverJson.packages ?? []).find((p) => p.registryType === "npm");
+      const issues = [];
+      if (!/^https:\/\/static\.modelcontextprotocol\.io\/schemas\/\d{4}-\d{2}-\d{2}\/server\.schema\.json$/.test(serverJson.$schema ?? "")) issues.push("$schema is not a registry server schema URL");
+      if (!/^[a-zA-Z0-9.-]+\/[a-zA-Z0-9._-]+$/.test(serverJson.name ?? "") || serverJson.name !== pkg.mcpName) issues.push(`name ${serverJson.name} is not the package's mcpName ${pkg.mcpName}`);
+      if (typeof serverJson.description !== "string" || serverJson.description.length === 0 || serverJson.description.length > 100) issues.push(`description is ${serverJson.description?.length ?? 0} characters (1–100)`);
+      if (serverJson.version !== pkg.version || SERVER_INFO.version !== pkg.version) issues.push(`versions differ: server.json ${serverJson.version}, package.json ${pkg.version}, SERVER_INFO ${SERVER_INFO.version}`);
+      if (!npmPkg || npmPkg.identifier !== pkg.name || npmPkg.version !== pkg.version) issues.push(`the npm package entry does not name ${pkg.name}@${pkg.version}`);
+      if (!(serverJson.remotes ?? []).some((r) => r.type === "streamable-http" && r.url === `${SITE}/mcp`)) issues.push(`no streamable-http remote at ${SITE}/mcp`);
+      if (!(pkg.files ?? []).includes("data")) issues.push("package.json files does not ship data/, which the stdio server reads at start-up");
+      for (const i of issues) problems.push(`MCP-SERVER-JSON  ${i}`);
+    }
+  }
+
+  // Informational: a dataset on disk that no collection serves is a candidate
+  // for one entry in src/lib/publicApi.ts, not an error.
+  const unserved = fs
+    .readdirSync("public/datasets")
+    .filter((f) => f.endsWith(".json") && !f.startsWith("manifest"))
+    .map((f) => f.replace(/\.json$/, ""))
+    .filter((s) => !servedDatasets.has(s));
+  console.log(
+    `API: ${built.size} responses under /api/v1 (${collections} collections, ${items} items), each held to the OpenAPI document both ways; ` +
+      `MCP endpoint built on demand.${unserved.length ? ` Datasets not served by /api/v1: ${unserved.join(", ")}.` : ""}`,
+  );
+}
+
 // ── API directory. Its whole value is that it is derived: one page per
 // product in the cost model, each listing the pages that actually cover it.
 // A directory entry with no coverage is a thin page pretending to be an

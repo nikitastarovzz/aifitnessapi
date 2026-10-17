@@ -25,4 +25,5 @@ export const PAGE_H1 = {
   "/health-connect-releases": "Health Connect SDK releases",
   "/error-codes": "HealthKit and Health Connect error codes",
   "/error-codes/health-connect": "Health Connect error codes and exceptions",
+  "/developers": "The AIFitnessAPI Data API and MCP Server",
 } as const;
