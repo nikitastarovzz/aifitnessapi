@@ -7,6 +7,14 @@ import { HK_IDENTIFIERS, HK_FAMILIES, HK_FETCHED_ON } from "@/data/healthkitIden
 import { GROUPS as GLOSSARY_GROUPS, termSlug } from "@/data/glossary";
 import { getAllPosts } from "@/lib/posts";
 import { orderedRecords, recordPath, recordH1, recordCapsule, recordFaqs, hcModified } from "@/data/hcPages";
+import {
+  allTypes as ghapiTypes,
+  ghapiModified,
+  typeCapsule as ghapiTypeCapsule,
+  typeFaqs as ghapiTypeFaqs,
+  typeH1 as ghapiTypeH1,
+  typePath as ghapiTypePath,
+} from "@/data/ghapiPages";
 import { LIBRARIES_BASE, LIBRARY_COMPARISONS, libraryPages, librariesModified } from "@/data/librariesEditorial";
 import { hkPageIdentifiers, hkIdentifierPath, hkPageH1, hkPageCapsule, hkPageFaqs, hkPageModified } from "@/data/hkIdentifierPages";
 import { hsPageTypes, hsDataTypePath, hsPageH1, hsPageCapsule, hsPageFaqs, hsPageModified } from "@/data/hsDataTypePages";
@@ -134,6 +142,19 @@ export function GET() {
           last_reviewed: hsPageModified(),
           first_party: false,
           faqs: hsPageFaqs(t).map((f, i) => ({ question: f.q, answer: f.a, url: `${url}#faq-${i + 1}` })),
+        };
+      }),
+      ...ghapiTypes().map((t) => {
+        const url = absoluteUrl(ghapiTypePath(t));
+        return {
+          question: `Google Health API ${t.name} (${t.dataType})`,
+          answer: ghapiTypeCapsule(t),
+          title: ghapiTypeH1(t),
+          url,
+          section: "Google Health API reference",
+          last_reviewed: ghapiModified(),
+          first_party: false,
+          faqs: ghapiTypeFaqs(t).map((f, i) => ({ question: f.q, answer: f.a, url: `${url}#faq-${i + 1}` })),
         };
       }),
       ...libraryPages().map(({ ed }) => {

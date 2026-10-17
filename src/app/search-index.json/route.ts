@@ -48,6 +48,16 @@ import { HC_ERROR_CONSTANTS } from "@/data/errorCodes";
 import { HC_RELEASES } from "@/data/hcReleases";
 import { hkPageIdentifiers, hkIdentifierPath, hkPageTitle, hkPageDescription } from "@/data/hkIdentifierPages";
 import { hsPageTypes, hsDataTypePath, hsPageTitle, hsPageDescription } from "@/data/hsDataTypePages";
+import {
+  GHAPI_PATHS,
+  GHAPI_TOPICS,
+  allTypes as ghapiTypes,
+  ghapiTotals,
+  opNames as ghapiOpNames,
+  typeDescription as ghapiTypeDescription,
+  typePath as ghapiTypePath,
+  typeTitle as ghapiTypeTitle,
+} from "@/data/ghapiPages";
 
 /**
  * Site search index — generated from the same data modules as the pages
@@ -275,6 +285,26 @@ export function GET() {
       [t.name, `DataType.${t.name}`, t.dataTypeClass, t.valueType, t.dataPointClass, t.permission, "wear os health services datatype"]
         .filter(Boolean)
         .join(" "),
+    );
+  }
+
+  // The Google Health API reference (generated from Google's pages).
+  const ghT = ghapiTotals();
+  add(
+    GHAPI_PATHS.hub,
+    "Google Health API reference",
+    `All ${ghT.types} Google Health API data types with operations, scopes, fields and rollups, the methods, rate limits and release history, from Google's docs.`,
+    "google health api fitbit web api successor data types reference discovery document googlehealth",
+  );
+  for (const p of GHAPI_TOPICS) {
+    add(p.path, `Google Health API ${p.label.toLowerCase()}`, p.blurb, `google health api ${p.label.toLowerCase()} fitbit`);
+  }
+  for (const t of ghapiTypes()) {
+    add(
+      ghapiTypePath(t),
+      ghapiTypeTitle(t),
+      ghapiTypeDescription(t),
+      [t.dataType, t.filterParam, t.name, ...ghapiOpNames(t), ...t.scopes.map((s) => s.shorthand), "google health api data type"].join(" "),
     );
   }
 

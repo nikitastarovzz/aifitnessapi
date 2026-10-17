@@ -1,0 +1,116 @@
+name: Google Health API reference
+
+# Refreshes src/data/googleHealthApi.ts from Google's own documentation of the
+# Google Health API (scripts/fetch-google-health-api.mjs): the v4 and v4beta
+# discovery documents at health.googleapis.com and twelve pages under
+# developers.google.com/health. The /google-health-api pages render that
+# file, so a new revision, data type, scope, method, error reason or release
+# note reaches the site within a week of Google publishing it. The open
+# dataset built from it (public/datasets/google-health-api-data-types-2026.*)
+# is rebuilt in the same commit.
+on:
+  # Ships PAUSED, like libraries.yml and sdk-releases.yml: since main became
+  # protected, their PR step fails with "GitHub Actions is not permitted to
+  # create or approve pull requests" (#15), and on 2026-10-06 the owner asked
+  # for workflows that email a failure on every run to stay off. Allow
+  # Actions to create pull requests in the repository settings, then
+  # uncomment the schedule below to turn this on.
+  # Manual runs still work (Actions tab, Run workflow).
+  # schedule:
+  #   # 05:52 UTC every Wednesday. Off the hour and away from the other
+  #   # trackers (Monday, Tuesday, daily 06:20) so they never race for main.
+  #   - cron: "52 5 * * 3"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: google-health-api
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Fetch Google's discovery documents and guide pages
+        # No token needed: every source is public. .cache/ is gitignored, so
+        # a fresh checkout fetches every source. Exits non-zero (and writes
+        # nothing) on a failed fetch, a missing section or a short parse — a
+        # partial reference is never published.
+        run: node scripts/fetch-google-health-api.mjs
+
+      - name: Commit if something meaningful changed
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          # gh needs a token; the default one can open and auto-merge a PR
+          # given the pull-requests: write permission above.
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- src/data/googleHealthApi.ts; then
+            echo "No changes."
+            exit 0
+          fi
+
+          # Same rule as the library tracker (.github/workflows/libraries.yml):
+          # every commit here is a full production build, and the fetch date
+          # moves on every run. A diff that is nothing but fetch dates is held
+          # back so it ships once a month, on the first scheduled run of the
+          # month (day 1-7, since this runs weekly). Anything else — a
+          # revision, a "Last updated" date, a data type, scope, field,
+          # method, error, release note or flag — commits the week it
+          # appears. A manual run commits whatever it finds.
+          #
+          # The matcher is exact to the generator's output: the "fetchedOn"
+          # scalars (one per line), the GHAPI_FETCHED_ON constant, and the
+          # header comment's source list. A header line also prints the
+          # revision or "Last updated" date, which is noise there only: both
+          # have their own scalars in GHAPI_SOURCES, which still count. Only
+          # lines inside hunks are judged, so the ---/+++ headers are never
+          # mistaken for content.
+          changed=$(git diff -U0 -- src/data/googleHealthApi.ts \
+            | awk '/^diff --git /{h=0} /^@@ /{h=1; next} h && /^[-+]/')
+          noise='^[-+]([[:space:]]*"fetchedOn": "[0-9]{4}-[0-9]{2}-[0-9]{2}",?|export const GHAPI_FETCHED_ON = "[0-9]{4}-[0-9]{2}-[0-9]{2}";| \*   https://[^ ]+ \((revision [0-9]+|Last updated [0-9]{4}-[0-9]{2}-[0-9]{2})\) — fetched [0-9]{4}-[0-9]{2}-[0-9]{2}| \* Fetched: [0-9]{4}-[0-9]{2}-[0-9]{2})$'
+          meaningful=$(printf '%s\n' "$changed" | grep -Ev "$noise" | grep -v '^$' || true)
+          dom=$(date -u +%d)
+          if [ -z "$meaningful" ] && [ "$EVENT_NAME" != "workflow_dispatch" ] && [ "$((10#$dom))" -gt 7 ]; then
+            echo "Only fetch dates moved:"
+            printf '%s\n' "$changed"
+            echo "Holding this back until the month's first run so it does not redeploy the site."
+            git checkout -- src/data/googleHealthApi.ts
+            exit 0
+          fi
+          if [ -z "$meaningful" ]; then
+            echo "Fetch-date-only change; committing (first run of the month, or manual run)."
+          else
+            echo "Meaningful change:"
+            printf '%s\n' "$meaningful"
+          fi
+
+          # The dataset and its manifest are generated from the file above;
+          # committing one without the other would publish two versions.
+          npm run datasets
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/googleHealthApi.ts public/datasets
+          git commit -m "Refresh Google Health API reference"
+
+          # Via a PR with auto-merge, not a direct push: main requires a pull
+          # request and green CI. Green merges itself and deploys as before;
+          # red parks as an open PR instead of deploying a broken reference.
+          branch="bot/google-health-api-${GITHUB_RUN_ID}"
+          git checkout -b "$branch"
+          git push origin "$branch"
+          gh pr create --base main --head "$branch" \
+            --title "Refresh Google Health API reference" \
+            --body "Automated weekly refresh of \`src/data/googleHealthApi.ts\` and the dataset built from it. Merges itself once CI is green. Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          gh pr merge --auto --squash --delete-branch "$branch"

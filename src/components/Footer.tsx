@@ -173,6 +173,9 @@ export default function Footer() {
           <FooterLink href="/pose-keypoints" className="py-1 hover:text-[var(--fg)]">
             Pose keypoint maps
           </FooterLink>
+          <FooterLink href="/google-health-api" className="py-1 hover:text-[var(--fg)]">
+            Google Health API reference
+          </FooterLink>
           {SDK_REPOS.length > 0 && (
             <FooterLink href="/sdk-releases" className="py-1 hover:text-[var(--fg)]">
               SDK release tracker

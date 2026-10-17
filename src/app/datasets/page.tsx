@@ -226,6 +226,22 @@ const ENTRIES: Entry[] = [
     caveat:
       "crosswalkKey is derived, not copied: the name lowercased with separators removed. Points are joined on that key alone, so a shared row means the names match, not that two models place the point in the same spot, and names that differ stay unmapped rather than guessed.",
   },
+  {
+    slug: "google-health-api-data-types-2026",
+    unit: "data types",
+    blurb:
+      "Every data type in Google's Google Health API data-types table, joined to the v4 discovery document: record type, storage resolution, webhook and true-zeros support, operations and the methods they map to, full scope URLs, the DataPoint field and its schema's fields, rollup fields, the Fitbit Web API predecessor and the disagreements between Google's own pages.",
+    keywords: [
+      "Google Health API",
+      "Fitbit Web API migration",
+      "googlehealth scopes",
+      "discovery document",
+      "Fitbit data types",
+    ],
+    presentedBy: { href: "/google-health-api", label: "Google Health API reference" },
+    caveat:
+      "Three columns are derived and ship with their evidence: scope URLs (Google's documented prefix plus the printed suffix), methods (\"update\" is paired with patch only through Google's endpoint-mapping table) and the DataPoint field (matched by its own description, or by the kebab-case rule DataPoint.name states). Where Google's pages disagree, the flags column names the kind and the data-type page shows the texts.",
+  },
 ];
 
 const LOADED = ENTRIES.map((e) => ({ entry: e, file: loadDataset(e.slug) }));

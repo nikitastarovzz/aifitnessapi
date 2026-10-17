@@ -7,6 +7,7 @@ import { POSE_SCHEMES } from "@/data/poseKeypoints";
 import { schemeH1, schemePath } from "@/data/poseKeypointPages";
 import { hkPageIdentifiers, hkIdentifierPath, hkPageH1 } from "@/data/hkIdentifierPages";
 import { hsPageTypes, hsDataTypePath, hsPageH1 } from "@/data/hsDataTypePages";
+import { GHAPI_PATHS, GHAPI_TOPICS, allTypes as ghapiTypes, typeH1 as ghapiTypeH1, typePath as ghapiTypePath } from "@/data/ghapiPages";
 
 /**
  * A page's name, for links built from data rather than written by hand (the
@@ -44,6 +45,10 @@ function build(): Map<string, string> {
   // Generated per-type reference pages: the H1 each renders.
   for (const id of hkPageIdentifiers()) m.set(hkIdentifierPath(id), hkPageH1(id));
   for (const t of hsPageTypes()) m.set(hsDataTypePath(t), hsPageH1(t));
+  // The Google Health API reference: its hub, topic pages and type pages.
+  m.set(GHAPI_PATHS.hub, "Google Health API reference: every data type, scope and method");
+  for (const p of GHAPI_TOPICS) m.set(p.path, `Google Health API ${p.label.toLowerCase()}`);
+  for (const t of ghapiTypes()) m.set(ghapiTypePath(t), ghapiTypeH1(t));
   for (const [path, label] of Object.entries(STANDALONE)) m.set(path, label);
   return m;
 }

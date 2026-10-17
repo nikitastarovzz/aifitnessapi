@@ -332,6 +332,7 @@ if (fs.existsSync(matrixPath)) {
     "healthkit-metadata-keys-2026",
     "wear-os-health-services-data-types-2026",
     "pose-keypoint-maps-2026",
+    "google-health-api-data-types-2026",
   ];
   // Both directions. Listing files catches a DELETION (a dataset a page
   // still cites); scanning the directory catches an ADDITION that was never
@@ -2259,6 +2260,108 @@ if (fs.existsSync(matrixPath)) {
         }
       }
       console.log(`Pose keypoints: ${schemes.length} schemes, ${rendered} points rendered with their source names, ${crosswalk.length} crosswalk rows, every join name-identical.`);
+    }
+  }
+
+  // Google Health API reference (EXPANSION-3 1.1, added 2026-10-17). Google's
+  // data-types table listed 44 data types on 2026-10-17 (the generator's own
+  // floor). Every generated type must have a built page carrying its marker
+  // and showing every operation (with its documented path) and every scope
+  // URL the data gives it, a row in the hub's table, and every cross-check
+  // flag raised for it (the hub lists the flags no type owns); the derived
+  // fields must arrive with their evidence;
+  // and each topic page must render every row of the generated list it
+  // presents. Counts come from the generated module, never from this file.
+  {
+    const src = fs.readFileSync("src/data/googleHealthApi.ts", "utf8");
+    const types = jsonArray(src, "GHAPI_DATA_TYPES");
+    const prefix = strConst(src, "GHAPI_SCOPE_PREFIX");
+    const BASE = "/google-health-api";
+    const TOPICS = ["scopes", "fitbit-web-api-mapping", "access-and-limits", "webhooks", "errors"].map((s) => `${BASE}/${s}`);
+    if (!types || types.length < 44) {
+      problems.push(`GHAPI-TYPE-COVERAGE  src/data/googleHealthApi.ts yields ${types?.length ?? 0} data types, expected at least 44`);
+    } else {
+      const built = htmls
+        .map(routeOf)
+        .filter((r) => r.startsWith(`${BASE}/`) && r.split("/").length === 3 && !TOPICS.includes(r) && !notFoundSet.has(r));
+      if (built.length !== types.length) problems.push(`GHAPI-TYPE-COVERAGE  ${built.length} data-type pages built for ${types.length} generated data types`);
+      const hub = htmlOf(BASE);
+      if (!hub) problems.push(`GHAPI-TYPE-COVERAGE  ${BASE} was not built`);
+      const hubLinks = hub ? hrefsIn(hub) : new Set();
+      let facts = 0;
+      let flagsShown = 0;
+      for (const t of types) {
+        const route = `${BASE}/${t.dataType}`;
+        const html = htmlOf(route);
+        if (hub && (!hubLinks.has(route) || !hub.includes(`id="type-${t.dataType}"`))) {
+          problems.push(`GHAPI-HUB-TABLE  ${BASE} has no table row linking ${route}`);
+        }
+        if (!html) {
+          problems.push(`GHAPI-TYPE-COVERAGE  ${route} (${t.name}) has no built page`);
+          continue;
+        }
+        if (!html.includes(`data-ghapi-type="${t.dataType}"`)) problems.push(`GHAPI-TYPE-COVERAGE  ${route} does not carry data-ghapi-type="${t.dataType}"`);
+        const text = decode(html);
+        for (const o of t.operations) {
+          if (!html.includes(`data-ghapi-op="${o.op}"`)) problems.push(`GHAPI-TYPE-FACTS  ${route} does not show the operation ${o.op}`);
+          else if (o.path && !text.includes(`${o.httpMethod} ${o.path}`)) problems.push(`GHAPI-TYPE-FACTS  ${route} does not show ${o.httpMethod} ${o.path}`);
+          else facts++;
+        }
+        for (const s of t.scopes) {
+          if (!text.includes(s.url)) problems.push(`GHAPI-TYPE-FACTS  ${route} does not show its scope ${s.url}`);
+          else facts++;
+        }
+        const shown = (html.match(/data-ghapi-flag="/g) ?? []).length;
+        if (shown < t.flags.length) problems.push(`GHAPI-FLAG-SHOWN  ${route} shows ${shown} of the ${t.flags.length} cross-check flags raised for it`);
+        flagsShown += Math.min(shown, t.flags.length);
+        // Derived fields and their evidence.
+        if (!!t.dataPointProperty !== !!t.dataPointMatch) problems.push(`GHAPI-EVIDENCE  ${t.dataType} has a DataPoint field without the way it was matched`);
+        if (t.dataPointMatch === "description" && !(t.dataPointEvidence ?? "").includes(`\`${t.dataType}\``)) {
+          problems.push(`GHAPI-EVIDENCE  ${t.dataType}: the DataPoint description it was matched by does not name it`);
+        }
+        for (const s of t.scopes) {
+          if (!prefix || s.url !== `${prefix}${s.shorthand}`) problems.push(`GHAPI-EVIDENCE  ${t.dataType}: scope ${s.url} is not the documented prefix plus ${s.shorthand}`);
+        }
+        for (const r of [t.rollup, t.dailyRollup]) {
+          if (r && !(r.evidence ?? "").includes(`\`${t.dataType}\``)) problems.push(`GHAPI-EVIDENCE  ${t.dataType}: a rollup was matched by a description that does not name it`);
+        }
+        for (const o of t.operations) {
+          if (o.match && o.match !== "exact" && !o.evidence) problems.push(`GHAPI-EVIDENCE  ${t.dataType}: operation ${o.op} was paired with ${o.method} without its evidence`);
+        }
+        for (const f of t.flags) if (!f.evidence?.length) problems.push(`GHAPI-EVIDENCE  ${t.dataType}: a ${f.kind} flag carries no evidence`);
+      }
+      // A flag that belongs to no data-type page (a scope one source omits, a
+      // wording disagreement between two guides) is listed on the hub instead.
+      {
+        const typeIds = new Set(types.map((t) => t.dataType));
+        const pageless = (jsonArray(src, "GHAPI_FLAGS") ?? []).filter((f) => !f.dataType || !typeIds.has(f.dataType)).length;
+        const onHub = hub ? (hub.match(/data-ghapi-flag="/g) ?? []).length : 0;
+        if (onHub < pageless) problems.push(`GHAPI-FLAG-SHOWN  ${BASE} shows ${onHub} of the ${pageless} cross-check flags that belong to no data-type page`);
+        flagsShown += Math.min(onHub, pageless);
+      }
+      // The topic pages: each renders every row of the list it presents.
+      const rowsOn = (route, re) => {
+        const html = htmlOf(route);
+        if (!html) {
+          problems.push(`GHAPI-TOPIC-ROWS  ${route} was not built`);
+          return null;
+        }
+        return new Set([...html.matchAll(re)].map((m) => m[1]));
+      };
+      const checkRows = (route, re, expected, what) => {
+        const got = rowsOn(route, re);
+        if (!got) return;
+        const missing = expected.filter((x) => !got.has(x));
+        if (missing.length) problems.push(`GHAPI-TOPIC-ROWS  ${route} is missing ${what}: ${missing.slice(0, 5).join(", ")}${missing.length > 5 ? "…" : ""}`);
+      };
+      checkRows(`${BASE}/scopes`, /data-ghapi-scope="([^"]+)"/g, (jsonArray(src, "GHAPI_DOCUMENTED_SCOPES") ?? []).map((s) => s.url), "documented scopes");
+      checkRows(`${BASE}/errors`, /id="error-([a-z0-9_]+)"/g, (jsonArray(src, "GHAPI_ERRORS") ?? []).map((e) => e.reason.toLowerCase()), "error reasons");
+      checkRows(`${BASE}/webhooks`, /id="webhook-([a-z0-9-]+)"/g, jsonArray(src, "GHAPI_WEBHOOK_TYPES") ?? [], "webhook data types");
+      checkRows(`${BASE}/fitbit-web-api-mapping`, /id="map-(\d+)"/g, (jsonArray(src, "GHAPI_DATA_TYPE_MAPPING") ?? []).map((_, i) => String(i + 1)), "data-type mapping rows");
+      if (!htmlOf(`${BASE}/access-and-limits`)?.includes("data-ghapi-rate-limits")) problems.push(`GHAPI-TOPIC-ROWS  ${BASE}/access-and-limits does not render the rate-limits table`);
+      console.log(
+        `Google Health API: ${built.length} data-type pages for ${types.length} types, ${facts} operations and scopes shown, ${flagsShown} cross-check flags shown, ${TOPICS.length} topic pages checked.`,
+      );
     }
   }
 
