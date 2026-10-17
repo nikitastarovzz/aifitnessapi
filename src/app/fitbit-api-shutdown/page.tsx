@@ -22,6 +22,11 @@ import { orgRef } from "@/lib/schema";
  * notices stays "reported". UPDATED stays at the last full review, because
  * the rest of the page (the Fit side, the aggregator list, the checklists)
  * was not re-checked that day; the header line names the partial re-check.
+ *
+ * On 2026-10-17 Google's Quotas and Rate Limits page
+ * (developers.google.com/health/rate-limits, last updated 2026-05-18) was read
+ * for the default quotas, so the old "pricing and quota model" row is split:
+ * quotas confirmed, pricing still could-not-verify. UPDATED still stays put.
  */
 
 const PAGE_PATH = "/fitbit-api-shutdown";
@@ -31,6 +36,10 @@ const RELATED: { href: string; label: string }[] = [
   {
     "href": "/migrate/fitbit-web-api-to-google-health",
     "label": "Migrate the Fitbit Web API to Google Health"
+  },
+  {
+    "href": "/google-health-api",
+    "label": "Google Health API reference"
   },
   {
     "href": "/google-fit-shutdown",
@@ -118,7 +127,8 @@ This is the section to read twice. For months the dates circulated with more con
 | Fitbit logins to consolidate to a Google Account by roughly mid-May 2026 | Reported. Google's migration guide confirms the account-linking gate but gives no date | Community and vendor notices |
 | New integrations to target the Google Health API by around end of May 2026 | Reported | Third-party transition guides |
 | Legacy and successor APIs running side by side | **Confirmed, ending later than reported.** The legacy API keeps operating without support until the October 30 turn-off, and the migration guide has apps support both login methods while it is active | Google's Health API pages |
-| Google Health API pricing and quota model | Could not verify — not clearly public as of this review | — |
+| Google Health API pricing | Could not verify — none of the twelve Google Health API documentation pages we read on October 17, 2026 states a price | — |
+| Google Health API default quotas | **Confirmed.** 86.4M requests a day and 120,000 a minute per project, 300 a minute per user, and unverified apps capped at 100 users; read October 17, 2026, and tabled on [our Google Health API access and limits page](/google-health-api/access-and-limits) | Google's Quotas and Rate Limits page |
 
 Two hygiene notes. First, the dates are now published and close: if a user has not re-consented by the October 30, 2026 turn-off, Google's migration guide says their data stays available as long as they keep syncing their device to the Google Health app, and you can backfill it once they re-authenticate, so plan for a gap you can fill rather than a seamless cutover. Second, do not import figures from the enterprise Google Cloud Healthcare API, which publishes per-request pricing, as if they described the consumer Google Health API — [our Fitbit pricing page](/pricing/fitbit-api-pricing) explains why those are different products.
 
@@ -132,7 +142,7 @@ The work is not the same for everyone. Find your shape first; the destination fo
 
 Your backend holds refresh tokens, mints eight-hour access tokens (the commonly documented \`expires_in\` value is 28800 seconds), and polls api.fitbit.com on a schedule. This is the shape with the most exposure, because every piece of it changes: new developer console, Google OAuth 2.0 instead of Fitbit's authorization server, and roughly 100-plus individual endpoints collapsing into bundled data types with a new response format.
 
-Treat it as a re-integration, not a version bump. [The Fitbit Web API to Google Health playbook](/migrate/fitbit-web-api-to-google-health) is the step-by-step: audit your endpoint and scope usage, register on the new console, build an old-endpoint to new-data-type mapping table, put an abstraction layer over your health-data service so both paths can run at once, then move users in cohorts. If the OAuth provider swap is the unfamiliar part, [what OAuth means for health data](/learn/what-is-oauth-for-health-data) covers the grant model you are replacing. And while you are still on the legacy path, [Fitbit error code 401](/fix/fitbit-error-code-401) and [the Fitbit 429 rate limit page](/fix/fitbit-api-429-rate-limit) cover the two failures you will keep seeing for as long as the legacy path answers.
+Treat it as a re-integration, not a version bump. [The Fitbit Web API to Google Health playbook](/migrate/fitbit-web-api-to-google-health) is the step-by-step: audit your endpoint and scope usage, register on the new console, build an old-endpoint to new-data-type mapping table, put an abstraction layer over your health-data service so both paths can run at once, then move users in cohorts. For the mapping table, [the Google Health API reference](/google-health-api) lists every data type on Google's data-types page with its operations and scopes, and [its Fitbit Web API mapping](/google-health-api/fitbit-web-api-mapping) carries Google's own tables from Fitbit data types, scopes and endpoints to their replacements. If the OAuth provider swap is the unfamiliar part, [what OAuth means for health data](/learn/what-is-oauth-for-health-data) covers the grant model you are replacing. And while you are still on the legacy path, [Fitbit error code 401](/fix/fitbit-error-code-401) and [the Fitbit 429 rate limit page](/fix/fitbit-api-429-rate-limit) cover the two failures you will keep seeing for as long as the legacy path answers.
 
 ### Shape 2: a mobile app reading Fitbit through an aggregator or a platform store
 
@@ -160,7 +170,7 @@ Per Google's Health API page, support ended on September 30, 2026 and the turn-o
 
 ## How this page was sourced
 
-Most facts above are drawn from our own reviewed pages on the Fitbit and Google Fit transitions, each of which carries its own verification date. Vendor statements checked directly: on October 2, 2026, Google's statement on developer.android.com that the Fit APIs "will be supported until the end of 2026", and the table in Google's Fit migration guide (updated September 10, 2026) that lists the Google Health API as the recommended path for Fitbit Web API integrations; on October 12, 2026, [Google's Google Health API page](https://developers.google.com/health/about) for the end-of-support and turn-off dates and the Restricted-scope review, and [Google's Health API migration guide](https://developers.google.com/health/migration) for token transfer, re-consent, account linking and backfill. We could not reach Fitbit's own developer documentation. Check the current notices before you commit a schedule.
+Most facts above are drawn from our own reviewed pages on the Fitbit and Google Fit transitions, each of which carries its own verification date. Vendor statements checked directly: on October 2, 2026, Google's statement on developer.android.com that the Fit APIs "will be supported until the end of 2026", and the table in Google's Fit migration guide (updated September 10, 2026) that lists the Google Health API as the recommended path for Fitbit Web API integrations; on October 12, 2026, [Google's Google Health API page](https://developers.google.com/health/about) for the end-of-support and turn-off dates and the Restricted-scope review, and [Google's Health API migration guide](https://developers.google.com/health/migration) for token transfer, re-consent, account linking and backfill; on October 17, 2026, [Google's Quotas and Rate Limits page](https://developers.google.com/health/rate-limits) (last updated May 18, 2026) for the default quotas. We could not reach Fitbit's own developer documentation. Check the current notices before you commit a schedule.
 `;
 
 export default function FitbitApiShutdownPage() {
@@ -205,8 +215,8 @@ export default function FitbitApiShutdownPage() {
         {/* A deadline page's claims expire on a calendar, not on a 90-day
             review cycle, so it flags at 30 days, as /changes does. */}
         {/* UPDATED stays at the last full review; the October line names the
-            one partial re-check, so the age badge keeps telling the truth. */}
-        <p className="mt-3 text-sm text-[var(--muted)]">Updated 11 August 2026<ContentAge date={UPDATED} staleAfterDays={30} /> — dates re-checked against our sourced pages. On 12 October 2026 we read Google&rsquo;s Health API pages, which publish the timeline: end of support 30 September 2026, turn-off 30 October 2026. Verify current vendor notices before scheduling.</p>
+            partial re-checks, so the age badge keeps telling the truth. */}
+        <p className="mt-3 text-sm text-[var(--muted)]">Updated 11 August 2026<ContentAge date={UPDATED} staleAfterDays={30} /> — dates re-checked against our sourced pages. On 12 October 2026 we read Google&rsquo;s Health API pages, which publish the timeline: end of support 30 September 2026, turn-off 30 October 2026. On 17 October 2026 we read Google&rsquo;s rate-limits page for the default quotas. Verify current vendor notices before scheduling.</p>
 
         {/* Answer-first capsule — quotable, speakable, correctly hedged. */}
         <div
@@ -255,7 +265,7 @@ export default function FitbitApiShutdownPage() {
         </section>
 
         <p className="mt-10 text-sm text-[var(--muted)]">
-          By {site.name}. Sourcing: our reviewed Fitbit and Google Fit pages, each with its own verification date, Google&rsquo;s Fit migration guide (re-checked 2 October 2026), and Google&rsquo;s Health API pages (read 12 October 2026), which publish the Fitbit dates.
+          By {site.name}. Sourcing: our reviewed Fitbit and Google Fit pages, each with its own verification date, Google&rsquo;s Fit migration guide (re-checked 2 October 2026), Google&rsquo;s Health API pages (read 12 October 2026), which publish the Fitbit dates, and Google&rsquo;s rate-limits page (read 17 October 2026) for the default quotas.
         </p>
       </article>
     </Container>

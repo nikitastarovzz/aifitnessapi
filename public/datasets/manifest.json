@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-12",
+  "generated": "2026-10-17",
   "files": [
     {
       "file": "fitness-api-changes-2026.csv",
@@ -36,6 +36,18 @@
       "bytes": 9800,
       "rows": 25,
       "sha256": "ea86a98bb6de78064c8244227595e006d196ce25e103e713b9fd3483727169b2"
+    },
+    {
+      "file": "google-health-api-data-types-2026.csv",
+      "bytes": 41299,
+      "rows": 44,
+      "sha256": "b2d65a74df079e523c59fe87a2b6fc696923eee178097eb3d9815679be6a645b"
+    },
+    {
+      "file": "google-health-api-data-types-2026.json",
+      "bytes": 70003,
+      "rows": 44,
+      "sha256": "0b1faed6f09933ceece4531a5cec4384b8ca70db1c4c79e9cc43252ea3f84f91"
     },
     {
       "file": "health-connect-permissions-2026.csv",

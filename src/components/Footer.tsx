@@ -170,6 +170,9 @@ export default function Footer() {
           <FooterLink href="/wear-os-data-types" className="py-1 hover:text-[var(--fg)]">
             Wear OS Health Services data types
           </FooterLink>
+          <FooterLink href="/google-health-api" className="py-1 hover:text-[var(--fg)]">
+            Google Health API reference
+          </FooterLink>
           {SDK_REPOS.length > 0 && (
             <FooterLink href="/sdk-releases" className="py-1 hover:text-[var(--fg)]">
               SDK release tracker

@@ -26,6 +26,14 @@ import { releasedHealthkitQueries, HKQ_PATH } from "@/data/healthkitQueries";
 import { releasedPhoneSensors, SENSORS_PATH } from "@/data/phoneSensors";
 import { releasedHealthConnectApi, HCAPI_PATH } from "@/data/healthConnectApi";
 import { orderedRecords, recordPath, recordH1, recordCapsule, recordFaqs, HC_BASE } from "@/data/hcPages";
+import {
+  GHAPI_BASE,
+  allTypes as ghapiTypes,
+  typeCapsule as ghapiTypeCapsule,
+  typeFaqs as ghapiTypeFaqs,
+  typeH1 as ghapiTypeH1,
+  typePath as ghapiTypePath,
+} from "@/data/ghapiPages";
 import { LIBRARIES_BASE, LIBRARY_COMPARISONS, LIBRARIES_HUB_FAQS, libraryPages } from "@/data/librariesEditorial";
 import { hkVersionPages, versionH1, versionPrimaryQuery, versionCapsule, versionFaqs } from "@/lib/hkVersions";
 
@@ -453,6 +461,19 @@ export function GET() {
   for (const r of orderedRecords()) {
     out.push(`## ${recordH1(r)} — ${absoluteUrl(recordPath(r))}`, "", recordCapsule(r), "");
     for (const f of recordFaqs(r)) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+    out.push("");
+  }
+
+  // Google Health API reference — capsules and FAQs are generated from the
+  // data-type data, exactly as the pages render them.
+  out.push(`# Google Health API reference — ${absoluteUrl(GHAPI_BASE)}`, "");
+  out.push(
+    "One page per data type in Google's Google Health API data-types table, joined to the v4 discovery document: operations with their documented path templates, scopes, fields, rollup fields and the Fitbit Web API predecessor, with a flag wherever Google's own pages disagree.",
+    "",
+  );
+  for (const t of ghapiTypes()) {
+    out.push(`## ${ghapiTypeH1(t)} — ${absoluteUrl(ghapiTypePath(t))}`, "", ghapiTypeCapsule(t), "");
+    for (const f of ghapiTypeFaqs(t)) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
     out.push("");
   }
 

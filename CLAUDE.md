@@ -56,6 +56,7 @@ silently reverts it.
 | `src/data/hcReleases.ts` | `node scripts/fetch-hc-releases.mjs` (Google's androidx Health Connect release notes) |
 | `src/data/healthkitMetadataKeys.ts` | `node scripts/fetch-healthkit-metadata-keys.mjs` (Apple's metadata-keys docs JSON + Workout Metadata Keys sub-collection + one JSON per key; `--offline` reparses `.cache/healthkit-metadata-keys`) |
 | `src/data/healthServicesDataTypes.ts` | `NODE_USE_ENV_PROXY=1 node scripts/fetch-health-services-data-types.mjs` (Jetpack DataType Kotlin reference + Health Services permissions guide, `?hl=en`; `--offline` reparses `.cache/health-services`) |
+| `src/data/googleHealthApi.ts` | `NODE_USE_ENV_PROXY=1 node scripts/fetch-google-health-api.mjs` (Google Health API discovery documents v4 + v4beta and 12 developers.google.com/health pages, `?hl=en`; `--offline` reparses `.cache/google-health-api`; a cached file is reused, so delete the cache to re-read; `.github/workflows/google-health-api.yml`, weekly once its schedule is uncommented) |
 | `src/data/published.ts` | `node scripts/backfill-published.mjs` |
 | `src/data/apiDemand.ts` | `node scripts/build-api-demand.mjs` (reads the live pull: `NODE_USE_ENV_PROXY=1 node scripts/search-pull.mjs` in the aifitnessapi environment) |
 | `public/datasets/*.{json,csv}` + `manifest*.json` | `npm run datasets` (build + manifest) |

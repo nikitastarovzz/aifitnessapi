@@ -528,6 +528,36 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "A Wear OS data type whose permission is published without the permissions-table row it was read from, or whose row is not one of Google's table rows naming that constant under that permission.",
   },
   {
+    code: "GHAPI-TYPE-COVERAGE",
+    area: "Derived blocks",
+    refuses: "A Google Health API reference with fewer than the 44 data types the generator guarantees, a generated data type without its own page, a page missing its data-type marker, or a hub that was not built.",
+  },
+  {
+    code: "GHAPI-HUB-TABLE",
+    area: "Derived blocks",
+    refuses: "A Google Health API hub whose data-type table has no row linking one of the generated data types.",
+  },
+  {
+    code: "GHAPI-TYPE-FACTS",
+    area: "Derived blocks",
+    refuses: "A Google Health API data-type page that does not show every operation Google's table lists for the type, with its documented request path, and every scope URL the generated data gives it.",
+  },
+  {
+    code: "GHAPI-FLAG-SHOWN",
+    area: "Derived blocks",
+    refuses: "A Google Health API data-type page that shows fewer of the disagreements found between Google's own pages than the generator raised for that type, or a hub that leaves out one that belongs to no data-type page.",
+  },
+  {
+    code: "GHAPI-EVIDENCE",
+    area: "Derived blocks",
+    refuses: "A Google Health API data type whose derived fields arrive without their evidence: a DataPoint field or rollup matched by a description that does not name the type, a scope URL that is not Google's documented prefix plus the printed suffix, an operation paired with a differently named method without the text that pairs them, or a flag with no quoted source.",
+  },
+  {
+    code: "GHAPI-TOPIC-ROWS",
+    area: "Derived blocks",
+    refuses: "A Google Health API topic page that was not built or leaves out a row of the generated list it presents: a documented scope, an error reason, a webhook data type, a Fitbit mapping row, or the rate-limits table.",
+  },
+  {
     code: "HCAPI-EQUIV-BACKLINK",
     area: "Links and anchors",
     refuses: "A HealthKit query page that the HealthKit-to-Health Connect equivalents page maps, or the /healthkit-queries hub, without a link back to that equivalents page, or an equivalents page that was not built.",

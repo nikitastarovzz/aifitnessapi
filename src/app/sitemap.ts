@@ -19,6 +19,7 @@ import { ERROR_CODES_FETCHED_ON } from "@/data/errorCodes";
 import { HC_RELEASES_FETCHED_ON } from "@/data/hcReleases";
 import { HK_METADATA_KEYS_FETCHED_ON } from "@/data/healthkitMetadataKeys";
 import { HS_DATA_TYPES_FETCHED_ON } from "@/data/healthServicesDataTypes";
+import { GHAPI_PATHS, allTypes as ghapiTypes, typePath as ghapiTypePath, ghapiModified } from "@/data/ghapiPages";
 
 /**
  * Every row carries a `lastmod` that some dated record on the site backs, or
@@ -140,6 +141,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...orderedRecords().map((r) => row(recordPath(r), hcModified())),
   ];
 
+  // Google Health API reference (generated): the hub, the five topic pages
+  // and every data-type page declare ghapiModified() — the date Google's
+  // pages were read — as dateModified.
+  const ghapiRows = [
+    ...Object.values(GHAPI_PATHS).map((p) => row(p, ghapiModified())),
+    ...ghapiTypes().map((t) => row(ghapiTypePath(t), ghapiModified())),
+  ];
+
   // Open-source library pages: hub, package pages and comparisons all
   // declare librariesModified() as dateModified.
   const libRows = [
@@ -246,6 +255,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...hkGroups,
     ...hkVersionRows,
     ...hcRows,
+    ...ghapiRows,
     ...libRows,
     ...generatedRefs.map(([p, d]) => row(p, d)),
     // Products without search demand of their own are noindex (NOINDEX_APIS).
