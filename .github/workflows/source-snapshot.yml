@@ -13,6 +13,12 @@ name: Source snapshot
 # The snapshots are never committed: the pages belong to their publishers, so
 # they stay a retained-for-14-days research copy, not repository content. The
 # job has read-only permissions, uses no secrets and pushes nothing.
+#
+# print_chars > 0 also writes each page's text to the job log, for a reader
+# whose environment can read job logs through the GitHub API but cannot reach
+# the artifact store. The repository is public, so whoever dispatches with it
+# deletes the run's logs once read (the delete-logs API), keeping the copy as
+# short-lived as the artifact's.
 
 on:
   workflow_dispatch:
@@ -20,6 +26,11 @@ on:
       list:
         description: "URL list in ops/sources/ (file name without .txt)"
         required: true
+        type: string
+      print_chars:
+        description: "Also print up to this many characters of each page to the job log (0 = off). Delete the run's logs once read."
+        required: false
+        default: "0"
         type: string
 
 permissions:
@@ -39,12 +50,17 @@ jobs:
       - name: Fetch the listed pages
         env:
           LIST: ${{ inputs.list }}
+          PRINT_CHARS: ${{ inputs.print_chars }}
         run: |
           if ! [[ "$LIST" =~ ^[a-z0-9-]+$ ]]; then
             echo "list must be a file name in ops/sources/ (lowercase letters, digits, hyphens)" >&2
             exit 2
           fi
-          node scripts/source-snapshot.mjs --list "ops/sources/$LIST.txt" --out snapshot
+          if ! [[ "$PRINT_CHARS" =~ ^[0-9]{1,6}$ ]]; then
+            echo "print_chars must be a number" >&2
+            exit 2
+          fi
+          node scripts/source-snapshot.mjs --list "ops/sources/$LIST.txt" --out snapshot --print-chars "$PRINT_CHARS"
 
       - uses: actions/upload-artifact@v4
         with:

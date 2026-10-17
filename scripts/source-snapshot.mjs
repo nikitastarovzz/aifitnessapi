@@ -32,6 +32,9 @@ const arg = (name) => {
 };
 const LIST = arg("--list");
 const OUT = arg("--out") ?? "snapshot";
+// With --print-chars N each page's text (first N characters) is also written to
+// stdout, for readers who can reach the job log but not the artifact store.
+const PRINT_CHARS = Math.max(0, Number(arg("--print-chars") ?? 0) || 0);
 if (!LIST || !/^ops\/sources\/[a-z0-9-]+\.txt$/.test(LIST)) {
   console.error("source-snapshot: --list must be ops/sources/<name>.txt (lowercase, digits, hyphens)");
   process.exit(2);
@@ -141,6 +144,16 @@ for (const url of urls) {
       "",
     ].join("\n");
     writeFileSync(join(OUT, file), `${header}\n${text}\n`);
+    if (PRINT_CHARS > 0) {
+      console.log(`\n===== SNAPSHOT ${url} | status ${res.status} | fetched ${entry.fetchedAt} | final ${res.url}`);
+      console.log(text.slice(0, PRINT_CHARS));
+      if (text.length > PRINT_CHARS) console.log(`[... ${text.length - PRINT_CHARS} more characters in the artifact]`);
+      if (isHtml) {
+        const links = sameHostLinks(raw, res.url || url).slice(0, 120);
+        if (links.length) console.log(`LINKS (${links.length}):\n${links.join("\n")}`);
+      }
+      console.log(`===== END ${url}\n`);
+    }
     entry.file = file;
     if (isHtml) entry.links = sameHostLinks(raw, res.url || url);
     if (res.ok) ok++;
