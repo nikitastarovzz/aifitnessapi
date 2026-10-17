@@ -471,8 +471,22 @@ export default function HealthMcpServersPage() {
                 open datasets
               </Link>
               . Its README says there is no model and no network call in the server.
-              {!SITE.declaresAnnotations &&
-                " Its tools declare no annotations, so a client reads the specification’s default for readOnlyHint, which is false, even though every tool only reads the bundled data."}
+              {SITE.hostedUrl && (
+                <>
+                  {" "}
+                  The same tools also run at <code className="font-mono text-sm">{SITE.hostedUrl}</code>, a hosted read-only
+                  endpoint over Streamable HTTP that reads the same datasets from this site (
+                  <Link href="/developers" className={LINK}>
+                    developer docs
+                  </Link>
+                  ).
+                </>
+              )}
+              {SITE.allReadOnly
+                ? " Every tool declares readOnlyHint: true, which, like any server’s annotations, is its publisher’s claim."
+                : !SITE.declaresAnnotations
+                  ? " Its tools declare no annotations, so a client reads the specification’s default for readOnlyHint, which is false, even though every tool only reads the bundled data."
+                  : ""}
             </p>
             <p>
               As read on {FETCHED},{" "}
@@ -482,7 +496,7 @@ export default function HealthMcpServersPage() {
               and{" "}
               {SITE_CHECK.onNpm
                 ? `npm has ${SITE_CHECK.package} ${SITE_CHECK.npmVersion}`
-                : `npm answered 404 for ${SITE_CHECK.package}, so the npx configuration its README shows does not work yet`}
+                : `npm answered 404 for ${SITE_CHECK.package}, so it cannot be installed with npx until it is published`}
               .
               {SITE.repositoryUrl &&
                 ` Its source is the ${SITE.repositoryDirectory ?? ""}${SITE.repositoryDirectory ? " directory of the " : ""}repository its package.json names, ${SITE.repositoryUrl.replace(/\.git$/, "")}.`}
@@ -511,8 +525,8 @@ export default function HealthMcpServersPage() {
               Package facts come from npm and PyPI for the npm and PyPI packages an entry names ({SCAN.npmLookups} npm and{" "}
               {SCAN.pypiLookups} PyPI lookups{MISSING_PACKAGES.length > 0 ? `; ${MISSING_PACKAGES.length} of the names had no package there` : ""}).
               Other package types are shown as listed. Repositories were not read, so a repository link is exactly what the
-              entry lists. The generator is rerun by a GitHub Actions workflow that opens a pull request when the data
-              changes; the date at the top of this page is the last run.
+              entry lists. A GitHub Actions workflow reruns the generator on demand and opens a pull request when the
+              data changes; the date at the top of this page is the last run.
             </p>
           </div>
           {MCP_SERVERS_EXCLUDED.length > 0 && (

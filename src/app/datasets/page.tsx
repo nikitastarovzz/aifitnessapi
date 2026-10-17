@@ -376,7 +376,8 @@ export default function DatasetsPage() {
         <AnswerCapsule>
           AIFitnessAPI publishes {LOADED.length} open datasets about fitness and health APIs, each in
           both JSON and CSV, each versioned 2026.1 and licensed CC BY 4.0 with attribution as the only
-          condition: the access-structure survey of{" "}
+          condition (where a dataset restates another publisher’s facts, its note says what the licence
+          covers): the access-structure survey of{" "}
           {bySlug["fitness-apis-2026"]}{" "}APIs, SDKs and models; the HealthKit &harr; Health Connect
           identifier matrix covering {bySlug["health-data-type-matrix-2026"]} health metrics; the dated
           record of {bySlug["fitness-api-changes-2026"]} ecosystem changes, each graded for evidence
