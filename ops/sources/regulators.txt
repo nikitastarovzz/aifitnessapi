@@ -1,0 +1,10 @@
+# Compliance by use case (3.4) and B2B use-case guides (3.1)
+https://www.hhs.gov/hipaa/for-professionals/covered-entities/index.html
+https://www.hhs.gov/hipaa/for-professionals/special-topics/health-apps/index.html
+https://www.ftc.gov/business-guidance/resources/complying-ftcs-health-breach-notification-rule-0
+https://www.ecfr.gov/current/title-16/chapter-I/subchapter-C/part-318
+https://www.fda.gov/regulatory-information/search-fda-guidance-documents/general-wellness-policy-low-risk-devices
+https://www.cms.gov/medicare/payment/fee-schedules/physician
+https://hl7.org/fhir/R4/observation.html
+https://hl7.org/fhir/R4/observation-vitalsigns.html
+https://app.leg.wa.gov/RCW/default.aspx?cite=19.373

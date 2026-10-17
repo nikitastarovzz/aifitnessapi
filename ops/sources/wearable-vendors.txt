@@ -1,0 +1,24 @@
+# Wearable and device vendor developer programs (1.3, 1.4, 1.7)
+https://developer.garmin.com/gc-developer-program/
+https://developer.garmin.com/gc-developer-program/health-api/
+https://developer.garmin.com/gc-developer-program/activity-api/
+https://developers.strava.com/
+https://developers.strava.com/docs/
+https://developers.strava.com/docs/rate-limits/
+https://developer.whoop.com/
+https://developer.whoop.com/docs/introduction
+https://cloud.ouraring.com/v2/docs
+https://www.polar.com/accesslink-api/
+https://developer.withings.com/
+https://developer.withings.com/api-reference/
+https://developer.samsung.com/health
+https://developer.samsung.com/health/data/overview.html
+https://developer.huawei.com/consumer/en/hms/huaweihealth/
+https://apizone.suunto.com/
+https://support.coros.com/hc/en-us
+https://developers.wahooligan.com/cloud
+https://developer.dexcom.com/
+https://developer.dexcom.com/docs
+https://log.concept2.com/developers/documentation/
+https://ultrahuman.com/
+https://www.ringconn.com/

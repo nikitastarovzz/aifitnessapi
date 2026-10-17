@@ -1,0 +1,27 @@
+# Health-data aggregators (ops/EXPANSION-3-2026-10-17.md 3.2, 3.3)
+https://sahha.ai/
+https://sahha.ai/pricing
+https://docs.sahha.ai/
+https://www.thryve.health/
+https://www.thryve.health/pricing
+https://docs.thryve.health/
+https://www.humanapi.co/
+https://reference.humanapi.co/
+https://www.validic.com/
+https://www.metriport.com/
+https://www.metriport.com/pricing
+https://docs.metriport.com/
+https://openwearables.io/
+https://openwearables.io/docs
+https://tryterra.co/
+https://tryterra.co/pricing
+https://docs.tryterra.co/
+https://www.junction.com/
+https://www.junction.com/pricing
+https://docs.junction.com/
+https://www.tryrook.io/
+https://www.tryrook.io/pricing
+https://docs.tryrook.io/
+https://www.spikeapi.com/
+https://www.spikeapi.com/pricing
+https://docs.spikeapi.com/
