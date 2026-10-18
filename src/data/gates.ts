@@ -577,6 +577,12 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "Library pages whose registry facts were read more than 45 days ago, which means the weekly refresh has stopped running.",
   },
   {
+    code: "LIBS-LANDING-ROWS",
+    area: "Derived blocks",
+    refuses:
+      "A language landing under /libraries (Python, React Native, Flutter, Capacitor and Cordova) that is missing a table row, or a link to the package page, for any package of its group, or lists a package from another group; a landing that is not built or not linked from the /libraries hub; a package page that does not link back to its landing; or a group of three or more packages with no landing at all.",
+  },
+  {
     code: "AUDIO-EVIDENCE",
     area: "Content integrity",
     refuses: "An audio-coaching page that names a cross-platform framework whose documentation could not be verified, links outside Apple's and Google's developer documentation, or carries a source not checked on the date the page was last updated.",

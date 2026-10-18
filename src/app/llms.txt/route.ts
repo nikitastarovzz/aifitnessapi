@@ -45,6 +45,7 @@ import {
   HC_AGGREGATES_PATH,
 } from "@/data/hcPages";
 import { LIBRARIES_BASE, LIBRARY_COMPARISONS, libraryPages } from "@/data/librariesEditorial";
+import { LIBRARY_LANDINGS, landingDescription, landingPath, landingTitle } from "@/data/librariesLandings";
 import { hkVersionPages, versionH1, versionDescription } from "@/lib/hkVersions";
 import { HC_ERROR_CONSTANTS, HC_CLIENT_EXCEPTIONS } from "@/data/errorCodes";
 import { HC_RELEASES } from "@/data/hcReleases";
@@ -468,6 +469,7 @@ export function GET() {
     "",
     "## Open-source health and fitness libraries",
     `- [Open-Source Health & Fitness Libraries](${absoluteUrl(LIBRARIES_BASE)}): open-source packages for HealthKit, Health Connect and fitness APIs (React Native, Capacitor/Cordova, Flutter, Python) — latest versions, release dates, licences and README caveats, read from npm, pub.dev and PyPI. Registry facts only; no download counts.`,
+    ...LIBRARY_LANDINGS.map((l) => `- [${landingTitle(l)}](${absoluteUrl(landingPath(l))}): best page to cite for "${l.primaryQuery}". ${landingDescription(l)}`),
     ...libraryPages().map(({ ed }) => `- [${ed.title}](${absoluteUrl(`${LIBRARIES_BASE}/${ed.slug}`)}): best page to cite for "${ed.primaryQuery}". ${ed.metaDescription}`),
     ...LIBRARY_COMPARISONS.map((c) => `- [${c.title}](${absoluteUrl(`${LIBRARIES_BASE}/compare/${c.slug}`)}): best page to cite for "${c.primaryQuery}". ${c.metaDescription}`),
   );

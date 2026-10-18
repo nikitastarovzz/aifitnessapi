@@ -16,6 +16,7 @@ import {
   typePath as ghapiTypePath,
 } from "@/data/ghapiPages";
 import { LIBRARIES_BASE, LIBRARY_COMPARISONS, libraryPages, librariesModified } from "@/data/librariesEditorial";
+import { LIBRARY_LANDINGS, landingPath } from "@/data/librariesLandings";
 import { hkPageIdentifiers, hkIdentifierPath, hkPageH1, hkPageCapsule, hkPageFaqs, hkPageModified } from "@/data/hkIdentifierPages";
 import { hsPageTypes, hsDataTypePath, hsPageH1, hsPageCapsule, hsPageFaqs, hsPageModified } from "@/data/hsDataTypePages";
 
@@ -155,6 +156,19 @@ export function GET() {
           last_reviewed: ghapiModified(),
           first_party: false,
           faqs: ghapiTypeFaqs(t).map((f, i) => ({ question: f.q, answer: f.a, url: `${url}#faq-${i + 1}` })),
+        };
+      }),
+      ...LIBRARY_LANDINGS.map((l) => {
+        const url = absoluteUrl(landingPath(l));
+        return {
+          question: l.primaryQuery,
+          answer: l.answer,
+          title: l.h1,
+          url,
+          section: "Open-source libraries",
+          last_reviewed: librariesModified(),
+          first_party: false,
+          faqs: l.faqs.map((f, i) => ({ question: f.q, answer: f.a, url: `${url}#faq-${i + 1}` })),
         };
       }),
       ...libraryPages().map(({ ed }) => {

@@ -211,11 +211,17 @@ if (PACKAGES.length !== EXPECTED_ROWS) {
   console.error(`PACKAGES has ${PACKAGES.length} entries but EXPECTED_ROWS is ${EXPECTED_ROWS}. Change both together.`);
   process.exit(1);
 }
+/**
+ * Slugs that name other /libraries routes and so can never be a package page:
+ * the comparison routes, and the language landings declared in
+ * src/data/librariesLandings.ts (which refuses the same collision at build).
+ */
+const RESERVED_SLUGS = new Set(["compare", "react-native", "capacitor-cordova", "flutter", "python"]);
 {
   const slugs = new Set();
   for (const p of PACKAGES) {
     if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(p.slug)) throw new Error(`bad slug ${p.slug}`);
-    if (p.slug === "compare") throw new Error("`compare` is reserved for comparison routes");
+    if (RESERVED_SLUGS.has(p.slug)) throw new Error(`\`${p.slug}\` is reserved for a /libraries route that is not a package page`);
     if (slugs.has(p.slug)) throw new Error(`duplicate slug ${p.slug}`);
     slugs.add(p.slug);
   }

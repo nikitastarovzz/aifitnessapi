@@ -7,6 +7,7 @@ import { getAllPosts } from "@/lib/posts";
 import { clusterMap, CLUSTER_LABELS } from "@/lib/clusterRegistry";
 import { hkPageIdentifiers } from "@/data/hkIdentifierPages";
 import { hsPageTypes } from "@/data/hsDataTypePages";
+import { LIBRARY_LANDINGS, landingPath } from "@/data/librariesLandings";
 
 const TITLE = "Site index";
 const DESCRIPTION =
@@ -76,6 +77,7 @@ const MAIN = [
   { href: "/health-mcp-servers", label: "MCP servers for health and fitness data" },
   { href: "/bluetooth-fitness", label: "Bluetooth GATT characteristics for fitness devices, byte by byte" },
   { href: "/libraries", label: "Open-source health & fitness libraries" },
+  ...LIBRARY_LANDINGS.map((l) => ({ href: landingPath(l), label: l.h1 })),
   ...(SDK_REPOS.length > 0 ? [{ href: "/sdk-releases", label: "Health SDK release tracker" }] : []),
   { href: "/day-boundaries", label: "Why “today’s steps” is a bug (live demo)" },
   { href: "/changes", label: "Changes & deadlines tracker" },

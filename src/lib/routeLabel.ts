@@ -1,5 +1,6 @@
 import { allSpokes, CLUSTER_LABELS } from "@/lib/clusterRegistry";
 import { LIBRARIES_BASE, LIBRARY_COMPARISONS, libraryPages } from "@/data/librariesEditorial";
+import { LIBRARY_LANDINGS, landingPath } from "@/data/librariesLandings";
 import { hkStandaloneEntries } from "@/data/hkStandalone.entries";
 import { PAGE_H1 } from "@/data/pageTitles";
 import { API_ENTRIES, APIS_PATH } from "@/data/apis";
@@ -40,6 +41,7 @@ function build(): Map<string, string> {
   for (const { basePath, entry } of allSpokes()) m.set(`${basePath}/${entry.slug}`, entry.h1);
   for (const { lib, ed } of libraryPages()) m.set(`${LIBRARIES_BASE}/${lib.slug}`, ed.h1);
   for (const c of LIBRARY_COMPARISONS) m.set(`${LIBRARIES_BASE}/compare/${c.slug}`, c.h1);
+  for (const l of LIBRARY_LANDINGS) m.set(landingPath(l), l.h1);
   for (const e of hkStandaloneEntries) m.set(`/${e.slug}`, e.title);
   // The directory page's H1 is the product's full label (app/apis/[id]).
   for (const a of API_ENTRIES) m.set(`${APIS_PATH}/${a.id}`, a.label);

@@ -18,6 +18,7 @@ import {
   lib,
   librariesModified,
 } from "@/data/librariesEditorial";
+import { landingForGroup, landingPath } from "@/data/librariesLandings";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 import { stringSeed } from "@/lib/cluster";
@@ -105,6 +106,8 @@ export default async function LibraryComparisonPage({ params }: { params: Promis
   const published = LIBRARIES_PUBLISHED > modified ? modified : LIBRARIES_PUBLISHED;
   const faqId = (i: number) => `faq-${i + 1}`;
   const side = (s: "a" | "b") => (s === "a" ? A : B);
+  // Only real choices get a comparison, so both packages share a group.
+  const landing = A.group === B.group ? landingForGroup(A.group) : undefined;
 
   const graphJsonLd = {
     "@context": "https://schema.org",
@@ -165,6 +168,7 @@ export default async function LibraryComparisonPage({ params }: { params: Promis
           trail={[
             { name: "Home", path: "/" },
             { name: "Libraries", path: LIBRARIES_BASE },
+            ...(landing ? [{ name: landing.label, path: landingPath(landing) }] : []),
             { name: c.h1, path },
           ]}
         />

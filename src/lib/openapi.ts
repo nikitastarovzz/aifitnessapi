@@ -77,6 +77,14 @@ const PROVENANCE: Record<string, Schema> = {
   dataset: ref("DatasetRef"),
 };
 
+/** Provenance fields only some datasets carry, so never required. */
+const OPTIONAL_PROVENANCE: Record<string, Schema> = {
+  licenseNote: {
+    type: "string",
+    description: "What the licence covers, where the dataset limits it (for example, facts restated from a source that is not relicensed); present only on such datasets",
+  },
+};
+
 export function openApiDocument(tools: { name: string; description: string }[]): Record<string, unknown> {
   const all = collections();
   const schemas: Record<string, Schema> = {
@@ -99,7 +107,10 @@ export function openApiDocument(tools: { name: string; description: string }[]):
         version: { type: "string" },
         json: uri,
         csv: uri,
-        isBasedOn: { ...uri, description: "The vendor documentation a generated dataset is read from" },
+        isBasedOn: {
+          oneOf: [uri, { type: "array", items: uri }],
+          description: "The vendor documentation a generated dataset is read from: one URL, or the list of them where it was read from several",
+        },
       },
     },
     Excluded: {
@@ -197,6 +208,11 @@ export function openApiDocument(tools: { name: string; description: string }[]):
       required: [...Object.keys(PROVENANCE), "description", "methodology", "key", "itemUrl", "count", "excluded", "fields", "items"],
       properties: {
         ...PROVENANCE,
+        ...OPTIONAL_PROVENANCE,
+        sourceTerms: {
+          type: "string",
+          description: "The source's own notice, verbatim, where the dataset carries one; present only on such datasets",
+        },
         description: { type: "string" },
         methodology: { type: "string", description: "How the dataset was built, from the dataset itself" },
         key: { type: "string", const: c.param, description: "The item field whose value is the id in itemUrl" },
@@ -216,6 +232,7 @@ export function openApiDocument(tools: { name: string; description: string }[]):
       required: [...Object.keys(PROVENANCE), "collection", "key", "id", "item"],
       properties: {
         ...PROVENANCE,
+        ...OPTIONAL_PROVENANCE,
         collection: { ...uri, description: "The collection this item belongs to" },
         key: { type: "string", const: c.param },
         id: { type: "string" },
@@ -267,7 +284,7 @@ export function openApiDocument(tools: { name: string; description: string }[]):
       version: API_VERSION,
       summary: "Verified fitness and health API reference data as read-only JSON.",
       description: [
-        `Read-only JSON over the datasets ${site.name} publishes at ${absoluteUrl("/datasets")}: HealthKit type identifiers and metadata keys, Health Connect record types and permission strings, Wear OS Health Services data types, the HealthKit to Health Connect matrix, dated ecosystem changes, the glossary, and the API directory.`,
+        `Read-only JSON over the datasets ${site.name} publishes at ${absoluteUrl("/datasets")}: HealthKit type identifiers and metadata keys, Health Connect record types and permission strings, Wear OS Health Services data types, Google Health API data types, the HealthKit to Health Connect matrix, Bluetooth fitness GATT characteristic fields, pose-estimation keypoint maps, health and fitness MCP servers, dated ecosystem changes, the glossary, and the API directory.`,
         "",
         "- No key and no sign-up. GET only; nothing is written and no user data is involved.",
         "- Every response is a static file built from the CC BY 4.0 downloads and regenerated on each deploy. Collections are served whole, with no pagination.",
