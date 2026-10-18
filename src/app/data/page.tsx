@@ -37,12 +37,28 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Cardio & recovery",
     blurb: "The signals from the heart — measured and estimated.",
-    slugs: ["heart-rate-api", "resting-heart-rate-api", "hrv-api", "vo2-max-api", "blood-oxygen-api"],
+    slugs: [
+      "heart-rate-api",
+      "resting-heart-rate-api",
+      "hrv-api",
+      "vo2-max-api",
+      "blood-oxygen-api",
+      "heart-rate-zones-api",
+      "ecg-api",
+    ],
   },
   {
     title: "Activity & movement",
     blurb: "What the body does — steps, workouts, routes, energy.",
-    slugs: ["step-counting-api", "workout-detection-api", "gps-activity-api", "calorie-tracking-api"],
+    slugs: [
+      "step-counting-api",
+      "workout-detection-api",
+      "gps-activity-api",
+      "calorie-tracking-api",
+      "distance-tracking-api",
+      "floors-elevation-api",
+      "active-minutes-api",
+    ],
   },
   {
     title: "Sleep & body",
@@ -52,7 +68,18 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Vitals & reproductive health",
     blurb: "The sensitive end of the store — sourced, typed, and privacy-first.",
-    slugs: ["blood-pressure-api", "blood-glucose-api", "respiratory-rate-api", "menstrual-cycle-api"],
+    slugs: [
+      "blood-pressure-api",
+      "blood-glucose-api",
+      "respiratory-rate-api",
+      "body-temperature-api",
+      "menstrual-cycle-api",
+    ],
+  },
+  {
+    title: "Running, cycling & swimming",
+    blurb: "Sport-specific types — power, cadence, running form and swim strokes — compared platform by platform.",
+    slugs: ["running-metrics-api", "cycling-power-api", "swimming-data-api"],
   },
   {
     title: "Mental health, medications & medical records",

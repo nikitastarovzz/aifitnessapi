@@ -1,6 +1,12 @@
 import Link from "next/link";
 import { ROWS, type Row } from "@/data/matrix";
 import { HK_IDENTIFIERS, HK_FETCHED_ON, type HkIdentifier } from "@/data/healthkitIdentifiers";
+import { HC_FETCHED_ON } from "@/data/healthConnectRecords";
+import { metricMapForGuide } from "@/data/metricTypeMap";
+import { resolveMetricType } from "@/data/metricTypePages";
+import { appleCases } from "@/lib/appleCases";
+
+export { appleCases };
 
 /**
  * The verified platform facts for one metric, rendered on its /data guide.
@@ -24,40 +30,26 @@ export function metricForPath(path: string): Row | undefined {
   return ROWS.find((r) => r.href === path);
 }
 
-/**
- * Pull the HKQuantityTypeIdentifier / HKCategoryTypeIdentifier case names out
- * of a matrix `apple` cell.
- *
- * The cells are written for humans and use a shorthand the parser has to
- * honour: "HKQuantityTypeIdentifier.heartRate, .restingHeartRate" means two
- * identifiers, the second continuing the first's type. A trailing
- * parenthetical ("(values: inBed, awake…)") is prose about the enum and must
- * not be read as more cases.
- */
-export function appleCases(apple: string): string[] {
-  const withoutParens = apple.replace(/\([^)]*\)/g, " ");
-  const out: string[] = [];
-  for (const m of withoutParens.matchAll(/(?:HK\w*TypeIdentifier)?\.([A-Za-z][A-Za-z0-9]*)/g)) {
-    if (!out.includes(m[1])) out.push(m[1]);
-  }
-  return out;
-}
-
 const byCase = new Map(HK_IDENTIFIERS.map((r) => [r.case, r]));
 
 /**
- * Apple-only guides: /data pages whose HealthKit identifiers we can verify but
- * whose Health Connect counterpart we have NOT.
+ * Guides with no matrix row: /data pages whose HealthKit identifiers this
+ * block renders and whose Health Connect side comes from the metric map.
  *
  * src/data/matrix.ts is deliberately restricted to metrics confirmed against
- * both Apple's and Google's documentation, and Google's docs are not reachable
- * from the build environment. Rather than leave these four guides with no
- * platform facts at all, they get the Apple half — which is verified — and the
- * block says plainly that the Android side is unconfirmed. Adding a guessed
- * Health Connect record type here would be the exact failure matrix.ts exists
- * to prevent, so these stay half-filled until Google's side can be checked.
+ * both Apple's and Google's documentation, and when this block was written
+ * Google's docs were not reachable from the build environment, so these four
+ * guides got the Apple half and a note that the Android side was unconfirmed.
+ * developer.android.com is reachable now, and src/data/healthConnectRecords.ts
+ * is generated from it. The Android records shown for these guides are the
+ * Health Connect rows of src/data/metricTypeMap.ts, each listed there with
+ * Google's own description of the record naming the metric, which qa.mjs
+ * re-checks against the generated file (METRIC-MAP-EVIDENCE). They are not
+ * added to matrix.ts: a matrix row is a hand-verified pairing that also feeds
+ * the HealthKit identifier pages' thin-page rule and the type-matrix dataset,
+ * and a record that describes the same metric is not by that fact a pairing.
  */
-const APPLE_ONLY: Record<string, { label: string; cases: string[] }> = {
+const NO_MATRIX_ROW: Record<string, { label: string; cases: string[] }> = {
   "/data/blood-glucose-api": { label: "Blood glucose", cases: ["bloodGlucose"] },
   "/data/blood-pressure-api": { label: "Blood pressure", cases: ["bloodPressureSystolic", "bloodPressureDiastolic"] },
   "/data/respiratory-rate-api": { label: "Respiratory rate", cases: ["respiratoryRate"] },
@@ -68,8 +60,14 @@ const APPLE_ONLY: Record<string, { label: string; cases: string[] }> = {
 export function allReferencedCases(): { source: string; cases: string[] }[] {
   return [
     ...ROWS.map((r) => ({ source: r.href, cases: appleCases(r.apple) })),
-    ...Object.entries(APPLE_ONLY).map(([href, v]) => ({ source: href, cases: v.cases })),
+    ...Object.entries(NO_MATRIX_ROW).map(([href, v]) => ({ source: href, cases: v.cases })),
   ];
+}
+
+/** The Health Connect records the metric map lists for a guide, resolved to their pages. */
+function mappedHealthConnect(path: string) {
+  const slug = path.replace(/^\/data\//, "");
+  return (metricMapForGuide(slug)?.types ?? []).filter((t) => t.family === "health-connect").map(resolveMetricType);
 }
 
 /** Resolved identifier records for a matrix row — the join this page renders. */
@@ -79,11 +77,12 @@ export function resolvedIdentifiers(row: Row): { name: string; record: HkIdentif
 
 export default function MetricFacts({ path }: { path: string }) {
   const row = metricForPath(path);
-  const appleOnly = row ? undefined : APPLE_ONLY[path];
-  if (!row && !appleOnly) return null;
+  const unmatrixed = row ? undefined : NO_MATRIX_ROW[path];
+  if (!row && !unmatrixed) return null;
 
-  const label = row?.label ?? appleOnly!.label;
-  const cases = row ? appleCases(row.apple) : appleOnly!.cases;
+  const label = row?.label ?? unmatrixed!.label;
+  const cases = row ? appleCases(row.apple) : unmatrixed!.cases;
+  const android = row ? [] : mappedHealthConnect(path);
   const known = cases.map((name) => ({ name, record: byCase.get(name) })).filter((r) => r.record);
   if (known.length === 0) return null;
 
@@ -91,9 +90,12 @@ export default function MetricFacts({ path }: { path: string }) {
   const discrete = known.filter((r) => r.record!.aggregation === "discrete");
 
   return (
-    <section data-metric-facts={row ? "full" : "apple-only"} className="mt-12 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+    <section
+      data-metric-facts={row ? "full" : android.length ? "described" : "apple-only"}
+      className="mt-12 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6"
+    >
       <h2 className="text-lg font-bold tracking-tight text-[var(--fg)]">
-        {label} {row ? "on the platform stores" : "in Apple HealthKit"}
+        {label} {row || android.length ? "on the platform stores" : "in Apple HealthKit"}
       </h2>
       <p className="mt-1 text-xs text-[var(--muted)]">
         Read from Apple&rsquo;s documentation on {HK_FETCHED_ON}
@@ -105,6 +107,8 @@ export default function MetricFacts({ path }: { path: string }) {
               cross-platform reference
             </Link>
           </>
+        ) : android.length ? (
+          <>{` and from Google's Health Connect reference on ${HC_FETCHED_ON}`}</>
         ) : null}
         . Not hand-written — regenerated with the dataset.
       </p>
@@ -159,11 +163,23 @@ export default function MetricFacts({ path }: { path: string }) {
           <dd className="mt-1 text-[13px] text-[var(--fg)]">
             {row ? (
               <span className="font-mono">{row.android}</span>
+            ) : android.length ? (
+              <>
+                {android.map((r, i) => (
+                  <span key={r.id}>
+                    {i > 0 ? ", " : ""}
+                    <Link href={r.href} className="font-mono text-brand-600 hover:text-brand-500">
+                      {r.label}
+                    </Link>
+                  </span>
+                ))}
+                <span className="mt-1 block text-xs text-[var(--muted)]">
+                  {"Listed because Google's own description of each record names this metric, quoted under By platform " +
+                    "above. Not a row of the verified matrix, which pairs types one to one."}
+                </span>
+              </>
             ) : (
-              <span className="text-[var(--muted)]">
-                Not verified. Health Connect very likely names an equivalent record type, but we
-                could not confirm it against Google&rsquo;s documentation, so we do not print one.
-              </span>
+              <span className="text-[var(--muted)]">No Health Connect record is listed for this metric.</span>
             )}
           </dd>
         </div>

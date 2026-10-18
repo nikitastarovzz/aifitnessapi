@@ -25,6 +25,7 @@ import {
   sigCommitUrl,
   sigFileUrl,
 } from "@/data/btPages";
+import { metricGuidesForType } from "@/data/metricTypeMap";
 import { site } from "@/lib/site";
 import { Code, Definition, FieldNotes, GssText, LINK, LayoutTable } from "../_render";
 
@@ -80,6 +81,7 @@ export default async function BtCharacteristicPage({ params }: { params: Promise
   const description = btDescription(c);
   const faqs = btFaqs(c);
   const guides = relatedGuides(c);
+  const metricGuides = metricGuidesForType("bluetooth", c.id);
   const at = BT_PAGES.findIndex((x) => x.id === c.id);
   const prev = at > 0 ? BT_PAGES[at - 1] : null;
   const next = BT_PAGES[at + 1] ?? null;
@@ -248,6 +250,26 @@ export default async function BtCharacteristicPage({ params }: { params: Promise
 
         <section id="guides" className="mt-14 scroll-mt-24">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Guides on this site</h2>
+          {metricGuides.length > 0 && (
+            <div className="mt-2">
+              <p className="text-sm text-[var(--muted)]">
+                {`The metric ${c.name} carries, on every platform this site covers — each type quoted in its platform's own words:`}
+              </p>
+              <ul className="mt-3 grid gap-3 sm:grid-cols-2">
+                {metricGuides.map((g) => (
+                  <li key={g.href}>
+                    <Link
+                      href={g.href}
+                      data-metric-guide={g.slug}
+                      className="block h-full rounded-xl border border-[var(--border)] p-4 text-sm font-medium text-[var(--fg)] transition-colors hover:border-brand-400 hover:bg-[var(--surface)]"
+                    >
+                      {g.h1} →
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           {guides.length > 0 ? (
             <>
               <p className="mt-2 text-sm text-[var(--muted)]">The connected-device guides that name {c.uuid}:</p>

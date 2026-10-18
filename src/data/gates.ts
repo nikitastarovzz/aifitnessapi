@@ -724,6 +724,23 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "A HealthKit identifier or Wear OS data-type page that its table page, /healthkit-identifiers or /wear-os-data-types, does not link, or a table page that was not built.",
   },
 
+  // ── One metric across platforms (EXPANSION-3 1.8, 2026-10-18) ─────────
+  {
+    code: "METRIC-MAP-EVIDENCE",
+    area: "Derived blocks",
+    refuses: "A pairing in the metric map — a /data guide and the Google Health API, HealthKit, Health Connect, Wear OS or Bluetooth type that carries its metric — with no quoted evidence, with a quote that is no longer in that type's own generated text after a regeneration, or citing a matrix row that does not name the type for that guide.",
+  },
+  {
+    code: "METRIC-MAP-NO-PAGE",
+    area: "Links and anchors",
+    refuses: "A metric-map pairing whose type is missing from the generated data or has no built reference page, or whose guide is not a built /data page.",
+  },
+  {
+    code: "METRIC-MAP-LINK",
+    area: "Links and anchors",
+    refuses: "A /data guide whose By platform block does not link every type page the metric map pairs with it, or links one it does not, and a type page that does not link back to its guide or claims a guide that does not list it.",
+  },
+
   // ── Tools ─────────────────────────────────────────────────────────────
   {
     code: "TOOLS",

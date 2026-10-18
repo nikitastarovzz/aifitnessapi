@@ -35,6 +35,7 @@ import {
 } from "@/data/hkIdentifierPages";
 import type { HkIdentifier } from "@/data/healthkitIdentifiers";
 import { pagesLinkingHkIdentifier } from "@/data/typePagesRelated";
+import { metricGuidesForType } from "@/data/metricTypeMap";
 import { hkVersionPages, hubAnchor, versionH1 } from "@/lib/hkVersions";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, publishedDate, WEBSITE_ID } from "@/lib/schema";
@@ -178,7 +179,8 @@ export default async function HkIdentifierPage({ params }: { params: Promise<Par
   const major = ios?.introducedAt ? Number(ios.introducedAt.split(".")[0]) : null;
   const versionPage = hkVersionPages().find((g) => g.major === major) ?? null;
   const versionHref = versionPage ? versionPage.path : ios?.introducedAt ? hubAnchor(ios.introducedAt) : null;
-  const related = pagesLinkingHkIdentifier(id.case, path);
+  const guides = metricGuidesForType("healthkit", id.case);
+  const related = pagesLinkingHkIdentifier(id.case, path).filter((r) => !guides.some((g) => g.href === r.path));
   const groupHref = hkGroupRowHref(id);
   const group = hkGroupName(id);
   const all = hkPageIdentifiers();
@@ -630,6 +632,16 @@ export default async function HkIdentifierPage({ params }: { params: Promise<Par
               </Link>{" "}
               <span className="text-[var(--muted)]">— its row in the full table</span>
             </li>
+            {guides.map((g) => (
+              <li key={g.href}>
+                <Link href={g.href} className={LINK} data-metric-guide={g.slug}>
+                  {g.h1}
+                </Link>{" "}
+                <span className="text-[var(--muted)]">
+                  {`— ${g.metric} on every platform this site covers, ${id.case} among them`}
+                </span>
+              </li>
+            ))}
             {related.map((r) => (
               <li key={r.path}>
                 <Link href={r.path} className={LINK}>
