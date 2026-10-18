@@ -708,6 +708,31 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "A Bluetooth field whose unit or flag condition is published without the line of the SIG's text it was read from, or whose layout row does not show the condition that line states.",
   },
   {
+    code: "WORKOUT-TYPE-ROWS",
+    area: "Derived blocks",
+    refuses: "A workout-type reference with fewer than the 84 HealthKit, 61 Health Connect, 85 Wear OS and 182 Google Health API constants read on 2026-10-18, a platform list page that was not built, or one missing the row for any constant or showing a name other than its source's spelling.",
+  },
+  {
+    code: "WORKOUT-TYPE-MAPPING",
+    area: "Derived blocks",
+    refuses: "A workout-type crosswalk that joins two constants whose names are not identical after removing EXERCISE_TYPE_, case and separators, names a constant a platform does not have, joins one platform to itself, leaves out a name two platforms share, or carries a stated mapping without its source and the source's row.",
+  },
+  {
+    code: "WORKOUT-TYPE-CROSSWALK",
+    area: "Derived blocks",
+    refuses: "A /workout-types hub that was not built, whose crosswalk has no column for one of the four platforms, or that is missing a row or a cell's link and source spelling.",
+  },
+  {
+    code: "WORKOUT-TYPE-FLAG-SHOWN",
+    area: "Derived blocks",
+    refuses: "A workout-type hub or platform page that shows fewer of the disagreements between Google's and Apple's pages than the generator published for it.",
+  },
+  {
+    code: "WORKOUT-TYPE-PAGE-RULE",
+    area: "Derived blocks",
+    refuses: "An activity page built for a crosswalk row that fails the page rule (three platforms and two facts from the sources beyond names), a passing row without its page, a page whose declared facts differ from the data, a counted fact whose text is not quoted on the page, or an activity page the hub does not link.",
+  },
+  {
     code: "HCAPI-EQUIV-BACKLINK",
     area: "Links and anchors",
     refuses: "A HealthKit query page that the HealthKit-to-Health Connect equivalents page maps, or the /healthkit-queries hub, without a link back to that equivalents page, or an equivalents page that was not built.",
@@ -728,6 +753,23 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     code: "TYPE-PAGE-UNLINKED",
     area: "Links and anchors",
     refuses: "A HealthKit identifier or Wear OS data-type page that its table page, /healthkit-identifiers or /wear-os-data-types, does not link, or a table page that was not built.",
+  },
+
+  // ── One metric across platforms (EXPANSION-3 1.8, 2026-10-18) ─────────
+  {
+    code: "METRIC-MAP-EVIDENCE",
+    area: "Derived blocks",
+    refuses: "A pairing in the metric map — a /data guide and the Google Health API, HealthKit, Health Connect, Wear OS or Bluetooth type that carries its metric — with no quoted evidence, with a quote that is no longer in that type's own generated text after a regeneration, or citing a matrix row that does not name the type for that guide.",
+  },
+  {
+    code: "METRIC-MAP-NO-PAGE",
+    area: "Links and anchors",
+    refuses: "A metric-map pairing whose type is missing from the generated data or has no built reference page, or whose guide is not a built /data page.",
+  },
+  {
+    code: "METRIC-MAP-LINK",
+    area: "Links and anchors",
+    refuses: "A /data guide whose By platform block does not link every type page the metric map pairs with it, or links one it does not, and a type page that does not link back to its guide or claims a guide that does not list it.",
   },
 
   // ── Tools ─────────────────────────────────────────────────────────────

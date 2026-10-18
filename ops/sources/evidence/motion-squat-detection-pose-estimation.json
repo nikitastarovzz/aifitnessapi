@@ -1,0 +1,307 @@
+[
+  {
+    "claim": "Placement matters as much as the model: in a 2026 study that filmed 22 adults from 12 phone positions, one phone pipeline counted 95.5% of squat repetitions correctly from a diagonal view at 200 cm and none from the side at 90 cm.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "Squats performed best from a diagonal view at 200 cm (95.5%; MAE=0.05) and worst from the side at 90 cm (0%; MAE=5)."
+  },
+  {
+    "claim": "Placement matters as much as the model: in a 2026 study that filmed 22 adults from 12 phone positions, one phone pipeline counted 95.5% of squat repetitions correctly from a diagonal view at 200 cm and none from the side at 90 cm.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "Each participant completed their assigned exercise across 12 predefined smartphone camera configurations, yielding approximately 264 squat trials (n=22)"
+  },
+  {
+    "claim": "Placement matters as much as the model: in a 2026 study that filmed 22 adults from 12 phone positions, one phone pipeline counted 95.5% of squat repetitions correctly from a diagonal view at 200 cm and none from the side at 90 cm.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "we also calculated a detection rate for each video, defined as (prediction or ground truth) x100, representing the percentage of repetitions counted correctly"
+  },
+  {
+    "claim": "Oliosi and colleagues (JMIR mHealth and uHealth, 2026) filmed 22 healthy university students doing squats from 12 phone positions and scored the repetition counts of a pipeline built for the Dotmoovs mobile platform against two raters.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "Of the 44 participants, 22 (16 male participants and 6 female participants) completed the squat protocol"
+  },
+  {
+    "claim": "Oliosi and colleagues (JMIR mHealth and uHealth, 2026) filmed 22 healthy university students doing squats from 12 phone positions and scored the repetition counts of a pipeline built for the Dotmoovs mobile platform against two raters.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "Video data were processed using a multistage PE and repetition detection pipeline designed for real-world deployment on the Dotmoovs mobile platform"
+  },
+  {
+    "claim": "Oliosi and colleagues (JMIR mHealth and uHealth, 2026) filmed 22 healthy university students doing squats from 12 phone positions and scored the repetition counts of a pipeline built for the Dotmoovs mobile platform against two raters.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "All video samples were independently annotated by 2 trained raters (an exercise physiologist and a physical therapist)"
+  },
+  {
+    "claim": "Sousa and colleagues (Journal of Functional Morphology and Kinesiology, 2026) counted repetitions of 12 exercises, squats among them, with angle-threshold state machines on MediaPipe's 33 landmarks.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Experimental validation was conducted on a dataset of 1513 videos of 12 functional exercises (squats, deadlifts, lunges, shoulder presses, planks, push-ups, pull-ups, bent-over rows, box jumps, thrusters, overhead squats, and burpees)"
+  },
+  {
+    "claim": "Sousa and colleagues (Journal of Functional Morphology and Kinesiology, 2026) counted repetitions of 12 exercises, squats among them, with angle-threshold state machines on MediaPipe's 33 landmarks.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "For each frame, MediaPipe first estimates 33 body landmarks, which are used to compute pose-derived angle proxies (knee, hip, elbow, shoulder, and torso) used by the MDL definitions. The finite state machine then evaluates these angles against the exercise-specific conditions frame by frame, triggering state transitions and increasing the repetition counter upon completion of a cycle."
+  },
+  {
+    "claim": "Iizuka and colleagues (Frontiers in Sports and Active Living, 2026) compared hip and knee angles from MoveNet Lightning, running in a web browser, against a six-camera marker system in 30 healthy adult males.",
+    "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2026.1831625/full",
+    "quote": "Thirty healthy male adults participated in this study"
+  },
+  {
+    "claim": "Iizuka and colleagues (Frontiers in Sports and Active Living, 2026) compared hip and knee angles from MoveNet Lightning, running in a web browser, against a six-camera marker system in 30 healthy adult males.",
+    "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2026.1831625/full",
+    "quote": "For pose estimation, the MoveNet Lightning model implemented with TensorFlow.js was used"
+  },
+  {
+    "claim": "Iizuka and colleagues (Frontiers in Sports and Active Living, 2026) compared hip and knee angles from MoveNet Lightning, running in a web browser, against a six-camera marker system in 30 healthy adult males.",
+    "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2026.1831625/full",
+    "quote": "A 3D OMC system (OptiTrack Flex 3, Acuity Inc.) with six infrared cameras served as the ground truth for kinematic validation."
+  },
+  {
+    "claim": "Gu and colleagues (Sensors, 2026) recorded 10 participants doing push-ups, sit-ups and squats from the side, the front and behind, and report how often their camera branch recognised each exercise from each view.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "The primary evaluation used IMV-Exercise, which contains 10 participants, 900 repetition-level samples, three exercise categories (push-ups, sit-ups, and squats), and side-, front-, and posterior-view recordings."
+  },
+  {
+    "claim": "Sousa and colleagues compute each angle from three MediaPipe landmarks, and they describe the results as approximate kinematic indicators rather than precise biomechanical measurements.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "represents an angle computed from 3 key points"
+  },
+  {
+    "claim": "Sousa and colleagues compute each angle from three MediaPipe landmarks, and they describe the results as approximate kinematic indicators rather than precise biomechanical measurements.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Consequently, the pose-derived angle proxies derived from these landmarks should be interpreted as approximate kinematic indicators rather than precise biomechanical measurements."
+  },
+  {
+    "claim": "Iizuka and colleagues express depth as flexion: their on-screen target was 120° of hip and knee flexion.",
+    "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2026.1831625/full",
+    "quote": "During squat execution, the interface overlays the estimated pose and dynamically adjusts the color of the reference lines to encourage compliance with the target depth, specifically defined as 120° of hip and knee flexion."
+  },
+  {
+    "claim": "Sousa and colleagues' example squat starts with the knee angle above 160, which in our reading only works if a straight leg reads near 180.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "knee_angle &gt; 160 # default, adjustable"
+  },
+  {
+    "claim": "Iizuka and colleagues also computed angles with the four-quadrant arctangent (atan2) instead of an inverse cosine, to keep the angle continuous near full extension.",
+    "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2026.1831625/full",
+    "quote": "To provide continuous and smooth joint angle calculations, especially during full extension (near 180°), we implemented calculation logic using the four-quadrant inverse tangent function (atan2) based on the extracted keypoint coordinates, thereby eliminating the computational discontinuities associated with conventional inverse cosine functions."
+  },
+  {
+    "claim": "Oliosi and colleagues recorded 1080p video at 30 frames per second with the phone on the floor at 0° (front), 45° (diagonal) or 90° (side) to the participant, and 90, 180, 200 or 360 cm away.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "each capturing video at 1080 p resolution and 30 frames per second. Smartphones were positioned horizontally on the floor at 3 fixed angles relative to the participant’s body: frontal (0°), diagonal (45°), and lateral (90°)."
+  },
+  {
+    "claim": "Oliosi and colleagues recorded 1080p video at 30 frames per second with the phone on the floor at 0° (front), 45° (diagonal) or 90° (side) to the participant, and 90, 180, 200 or 360 cm away.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "and distance (90 cm, 180 cm, 200 cm, and 360 cm)"
+  },
+  {
+    "claim": "For squats, diagonal and front views beat side views at every distance.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "whereas for squats, diagonal and front views significantly outperformed side views across all distances"
+  },
+  {
+    "claim": "The best squat setup was diagonal at 200 cm, with 95.5% of repetitions counted correctly and a mean absolute error of 0.05 repetitions; the worst was side-on at 90 cm, with 0% and an error of 5 repetitions.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "Squats performed best from a diagonal view at 200 cm (95.5%; MAE=0.05) and worst from the side at 90 cm (0%; MAE=5)."
+  },
+  {
+    "claim": "Their summary is that diagonal and frontal views at mid-range distances of 180 to 200 cm gave the highest detection accuracy and counting precision.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "Diagonal and frontal views at mid-range distances (180‐200 cm) provided the highest detection accuracy and counting precision."
+  },
+  {
+    "claim": "Iizuka and colleagues, who measured angles rather than counts, did the opposite: a laptop webcam 2.00 m to the participant's right for a sagittal view, at about 0.975 m, the average height of the greater trochanter, to limit perspective distortion at the hip and knee.",
+    "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2026.1831625/full",
+    "quote": "was positioned 2.00 m to the right of the participant to capture the sagittal view."
+  },
+  {
+    "claim": "Iizuka and colleagues, who measured angles rather than counts, did the opposite: a laptop webcam 2.00 m to the participant's right for a sagittal view, at about 0.975 m, the average height of the greater trochanter, to limit perspective distortion at the hip and knee.",
+    "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2026.1831625/full",
+    "quote": "The camera height was set at approximately 0.975 m, approximating the average height of participant's greater trochanter to minimize perspective distortion of the hip and knee joints during the squatting motion."
+  },
+  {
+    "claim": "Participants kept their arms crossed over the chest so the arms would not hide keypoints.",
+    "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2026.1831625/full",
+    "quote": "To minimize keypoint and marker occlusion by the upper extremities, participants were instructed to keep their arms crossed over their chest throughout the trials."
+  },
+  {
+    "claim": "Oliosi and colleagues' pipeline labels every frame with a movement state such as squat-down, squat-up or other, and a Markov-chain step counts a repetition when it sees a set sequence such as up, down, up.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "A lightweight neural network classifies each frame into discrete movement states (eg, squat-down, squat-up, or other)."
+  },
+  {
+    "claim": "Oliosi and colleagues' pipeline labels every frame with a movement state such as squat-down, squat-up or other, and a Markov-chain step counts a repetition when it sees a set sequence such as up, down, up.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "A Markov-chain-based algorithm tracks temporal transitions between states, triggering a repetition event when a predefined sequence (eg, up-down-up) is detected."
+  },
+  {
+    "claim": "Sousa and colleagues model the squat as standing, descending and ascending phases.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "The squat is considered a sequence of three states: the starting position (standing upright)"
+  },
+  {
+    "claim": "Their example definition, with every value marked as an adjustable default, starts at knee_angle > 160 and hip_angle > 160 and enters the descent at knee_angle < 100 and hip_angle < 150.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "The angle values shown in the listing represent default thresholds and are user-adjustable"
+  },
+  {
+    "claim": "Their example definition, with every value marked as an adjustable default, starts at knee_angle > 160 and hip_angle > 160 and enters the descent at knee_angle < 100 and hip_angle < 150.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "knee_angle &gt; 160 # default, adjustable"
+  },
+  {
+    "claim": "Their example definition, with every value marked as an adjustable default, starts at knee_angle > 160 and hip_angle > 160 and enters the descent at knee_angle < 100 and hip_angle < 150.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "hip_angle &gt; 160 # default, adjustable"
+  },
+  {
+    "claim": "Their example definition, with every value marked as an adjustable default, starts at knee_angle > 160 and hip_angle > 160 and enters the descent at knee_angle < 100 and hip_angle < 150.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "knee_angle &lt; 100 # default, adjustable"
+  },
+  {
+    "claim": "Their example definition, with every value marked as an adjustable default, starts at knee_angle > 160 and hip_angle > 160 and enters the descent at knee_angle < 100 and hip_angle < 150.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "hip_angle &lt; 150 # default, adjustable"
+  },
+  {
+    "claim": "Sousa and colleagues also hold the last valid phase for a few frames, typically 3 to 5, when no phase matches, so a dropped or noisy frame does not reset the cycle; they report that this removed nearly all spurious resets.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "the system temporarily retains the last valid phase for a short duration of N frames (typically N = 3–5)"
+  },
+  {
+    "claim": "Sousa and colleagues also hold the last valid phase for a few frames, typically 3 to 5, when no phase matches, so a dropped or noisy frame does not reset the cycle; they report that this removed nearly all spurious resets.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Empirical tests showed that adaptive phase persistence eliminated nearly all spurious"
+  },
+  {
+    "claim": "Gu and colleagues cut the camera's vote when mean keypoint confidence fell below 0.45, and call that a fixed engineering setting rather than an optimised value.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "The confidence gate was designed to reduce the visual contribution when mean keypoint confidence falls below 0.45."
+  },
+  {
+    "claim": "Gu and colleagues cut the camera's vote when mean keypoint confidence fell below 0.45, and call that a fixed engineering setting rather than an optimised value.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "so 0.45 is treated only as the fixed engineering setting used by this prototype, not as an optimized or generally applicable value."
+  },
+  {
+    "claim": "Sousa and colleagues saw key body parts occluded particularly in squats and deadlifts, more so at greater distances.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "The occlusion of key body parts was noticed particularly during exercises that involve bending movements such as squats and deadlifts. These occlusions were more pronounced at greater distances"
+  },
+  {
+    "claim": "Their squat error table lists one cause, missed bottom positions, 26 times, against 572 annotated squat repetitions.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Bottom position miss (26)"
+  },
+  {
+    "claim": "Their squat error table lists one cause, missed bottom positions, 26 times, against 572 annotated squat repetitions.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Despite the numerical imbalance between exercise types (e.g., 572 squats versus 12 bent-over rows)"
+  },
+  {
+    "claim": "In the same study, dark clothing against a similar background caused joint misalignment and pose errors.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "joint misalignment and errors in pose estimation were observed when participants wore dark clothing that blended with the background"
+  },
+  {
+    "claim": "Iizuka and colleagues measured a systematic underestimate from the side-view webcam, −11.2° at the hip and −10.6° at the knee against the marker system, and explain it with the pinhole camera model: a thigh rotating out of the image plane is foreshortened, so the knee angle is underestimated more as the squat gets deeper.",
+    "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2026.1831625/full",
+    "quote": "Raw joint angles obtained from the MMC system revealed significant systematic underestimation (hip: −11.2°, knee: −10.6°), consistent with perspective-induced projection effects predicted by the pinhole camera model"
+  },
+  {
+    "claim": "Iizuka and colleagues measured a systematic underestimate from the side-view webcam, −11.2° at the hip and −10.6° at the knee against the marker system, and explain it with the pinhole camera model: a thigh rotating out of the image plane is foreshortened, so the knee angle is underestimated more as the squat gets deeper.",
+    "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2026.1831625/full",
+    "quote": "three-dimensional limb segments that rotate out of the image plane undergo perspective-induced foreshortening when projected onto a two-dimensional sensor."
+  },
+  {
+    "claim": "Iizuka and colleagues measured a systematic underestimate from the side-view webcam, −11.2° at the hip and −10.6° at the knee against the marker system, and explain it with the pinhole camera model: a thigh rotating out of the image plane is foreshortened, so the knee angle is underestimated more as the squat gets deeper.",
+    "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2026.1831625/full",
+    "quote": "causing systematic underestimation of the knee flexion angle as the squat depth increases."
+  },
+  {
+    "claim": "Gu and colleagues' camera branch recognised squat frames 99.2% of the time from the side, 86.6% from the front and 66.2% from behind.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "Under the side view, the frame-level accuracies for push-ups, sit-ups, and squats were 100.0%, 95.0%, and 99.2%, respectively. Under the front view, the corresponding accuracies were 93.2%, 88.5%, and 86.6%. Under the posterior view, the accuracies were 0.0%, 25.7%, and 66.2%, respectively."
+  },
+  {
+    "claim": "From behind, most failures were frames the pipeline rejected rather than frames given the wrong exercise.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "The error pattern was dominated by rejection rather than assignment to another exercise class."
+  },
+  {
+    "claim": "Across all 12 setups, Oliosi and colleagues' squat counts reached a mean detection rate of 61.5% with a mean absolute error of 1.11 repetitions.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "Overall, the mean detection rate was 61.5% (SD 48.7%), with an average MAE of 1.11 (SD 1.82) repetitions."
+  },
+  {
+    "claim": "The reference was two trained raters, an exercise physiologist and a physical therapist; the participants were healthy university students in a laboratory with standardised lighting, and the authors caution that the findings may not generalise to other pose models, populations or unstructured settings.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "All video samples were independently annotated by 2 trained raters (an exercise physiologist and a physical therapist)"
+  },
+  {
+    "claim": "The reference was two trained raters, an exercise physiologist and a physical therapist; the participants were healthy university students in a laboratory with standardised lighting, and the authors caution that the findings may not generalise to other pose models, populations or unstructured settings.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "Environmental conditions, including lighting and temperature, were standardized across trials."
+  },
+  {
+    "claim": "The reference was two trained raters, an exercise physiologist and a physical therapist; the participants were healthy university students in a laboratory with standardised lighting, and the authors caution that the findings may not generalise to other pose models, populations or unstructured settings.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "Nevertheless, findings may not generalize to other PE architectures, populations, or unstructured environments."
+  },
+  {
+    "claim": "Sousa and colleagues report 95% accuracy for squats (95% confidence interval 92.7 to 97.4%), comparing automated counts with manually annotated repetitions from their own recordings, public pose datasets and competition footage.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Slightly lower squat/deadlift performance (95%) resulted from pose estimation noise affecting pose-derived angle proxy calculations."
+  },
+  {
+    "claim": "Sousa and colleagues report 95% accuracy for squats (95% confidence interval 92.7 to 97.4%), comparing automated counts with manually annotated repetitions from their own recordings, public pose datasets and competition footage.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "than those of high-volume exercises (squats [92.7–97.4%])"
+  },
+  {
+    "claim": "Sousa and colleagues report 95% accuracy for squats (95% confidence interval 92.7 to 97.4%), comparing automated counts with manually annotated repetitions from their own recordings, public pose datasets and competition footage.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Automated repetition counts were compared against manually annotated ground truth"
+  },
+  {
+    "claim": "Sousa and colleagues report 95% accuracy for squats (95% confidence interval 92.7 to 97.4%), comparing automated counts with manually annotated repetitions from their own recordings, public pose datasets and competition footage.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "obtained from public pose datasets, competition footage, and recordings of 9 participants in real-world environments."
+  },
+  {
+    "claim": "Iizuka and colleagues' linear correction, validated leave-one-subject-out, cut root mean square error from 11.6° to 4.0° at the hip and from 10.9° to 3.9° at the knee, and the authors tie that result to a standardised camera distance and orientation.",
+    "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2026.1831625/full",
+    "quote": "substantially reduced root mean square error (hip: from 11.6° ± 4.2° to 4.0° ± 2.3°; knee: from 10.9° ± 3.3° to 3.9° ± 1.5°)"
+  },
+  {
+    "claim": "Iizuka and colleagues' linear correction, validated leave-one-subject-out, cut root mean square error from 11.6° to 4.0° at the hip and from 10.9° to 3.9° at the knee, and the authors tie that result to a standardised camera distance and orientation.",
+    "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2026.1831625/full",
+    "quote": "a geometry-constrained linear correction model was developed and validated using leave-one-subject-out cross-validation."
+  },
+  {
+    "claim": "Iizuka and colleagues' linear correction, validated leave-one-subject-out, cut root mean square error from 11.6° to 4.0° at the hip and from 10.9° to 3.9° at the knee, and the authors tie that result to a standardised camera distance and orientation.",
+    "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2026.1831625/full",
+    "quote": "These findings demonstrate that systematic errors in monocular pose estimation can be substantially mitigated when the acquisition distance and orientation are standardized."
+  },
+  {
+    "claim": "In Oliosi and colleagues' 2026 study, diagonal (45°) and front views beat side views at every distance, and the best squat result came from a diagonal view at 200 cm.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "whereas for squats, diagonal and front views significantly outperformed side views across all distances"
+  },
+  {
+    "claim": "Side-on at 90 cm, the pipeline counted no repetitions correctly.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "Squats performed best from a diagonal view at 200 cm (95.5%; MAE=0.05) and worst from the side at 90 cm (0%; MAE=5)."
+  },
+  {
+    "claim": "Sousa and colleagues' example squat enters the descent below a knee angle of 100 and a hip angle of 150, after a standing phase above 160, and marks each value as an adjustable default.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "knee_angle &lt; 100 # default, adjustable"
+  },
+  {
+    "claim": "One phone pipeline averaged a 61.5% detection rate across 12 phone positions and reached 95.5% from its best one; a MediaPipe state-machine counter scored 95% against manually annotated squats.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "Overall, the mean detection rate was 61.5% (SD 48.7%), with an average MAE of 1.11 (SD 1.82) repetitions."
+  }
+]

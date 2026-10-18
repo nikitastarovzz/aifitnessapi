@@ -18,7 +18,7 @@ import {
   getType,
   ghapiModified,
   ghapiPublished,
-  metricPage,
+  metricPages,
   schema,
   source,
   typeCapsule,
@@ -198,7 +198,7 @@ export default async function GhapiTypePage({ params }: { params: Promise<Params
   const description = typeDescription(t);
   const capsule = typeCapsule(t);
   const faqs = typeFaqs(t);
-  const metric = metricPage(t);
+  const metrics = metricPages(t);
   const mentions = GHAPI_MENTIONS[t.dataType] ?? [];
   const family = familyOf(t);
   const siblings = (typesByFamily().find((g) => g.family === family)?.types ?? []).filter((o) => o.dataType !== t.dataType);
@@ -527,14 +527,18 @@ export default async function GhapiTypePage({ params }: { params: Promise<Params
         <section className="mt-12">
           <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">Related on this site</h2>
           <ul className="mt-3 space-y-1 text-sm">
-            {metric && (
-              <li>
-                <Link href={metric.href} className={LINK}>
-                  {metric.label}
+            {metrics.map((m) => (
+              <li key={m.href}>
+                <Link href={m.href} className={LINK} data-metric-guide={m.mapped ? m.slug : undefined}>
+                  {m.label}
                 </Link>{" "}
-                <span className="text-[var(--muted)]">— the metric across platforms and vendors</span>
+                <span className="text-[var(--muted)]">
+                  {m.mapped
+                    ? "— the metric on every platform this site covers, each type quoted in its platform's own words"
+                    : "— the metric across platforms and vendors"}
+                </span>
               </li>
-            )}
+            ))}
             {t.webhookSupport && (
               <li>
                 <Link href={GHAPI_PATHS.webhooks} className={LINK}>

@@ -34,6 +34,21 @@ import { POSE_BASE, schemeDescription, schemeTitle, schemePath } from "@/data/po
 import { MCP_HEALTH_SERVERS } from "@/data/mcpHealthServers";
 import { BT_ALL, BT_BASE, BT_PAGES, BT_HUB_TITLE, btDescription, btHubDescription, btPath, btTitle } from "@/data/btPages";
 import {
+  HUB_TITLE as WT_HUB_TITLE,
+  PLATFORM_ORDER as WT_PLATFORM_ORDER,
+  WT_BASE,
+  activityDescription as wtActivityDescription,
+  activityPath as wtActivityPath,
+  activityRows as wtActivityRows,
+  activityTitle as wtActivityTitle,
+  constantsOf as wtConstantsOf,
+  hubDescription as wtHubDescription,
+  platform as wtPlatform,
+  platformDescription as wtPlatformDescription,
+  platformPath as wtPlatformPath,
+  platformTitle as wtPlatformTitle,
+} from "@/data/workoutTypePages";
+import {
   orderedRecords,
   recordPath,
   recordTitle,
@@ -397,6 +412,27 @@ export function GET() {
   );
   for (const c of BT_PAGES) {
     add(btPath(c), btTitle(c), btDescription(c), [c.name, c.uuid, c.id, "bluetooth gatt characteristic byte layout", ...(c.gss?.structure.map((f) => f.name) ?? [])].join(" "));
+  }
+
+  // Workout-type reference (generated): the hub, the four platform lists and
+  // the activity pages. A list page's match text carries every constant, so a
+  // search for EXERCISE_TYPE_ROWING or swimBikeRun lands on its list.
+  add(
+    WT_BASE,
+    WT_HUB_TITLE,
+    wtHubDescription(),
+    "workout types exercise types activity types mapping crosswalk healthkit health connect wear os google health api hkworkoutactivitytype exercisesessionrecord exercisetype",
+  );
+  for (const p of WT_PLATFORM_ORDER) {
+    add(
+      wtPlatformPath(p),
+      wtPlatformTitle(p),
+      wtPlatformDescription(p),
+      [wtPlatform(p).enumeration, wtPlatform(p).name, "workout exercise types", ...wtConstantsOf(p).map((c) => c.name)].join(" "),
+    );
+  }
+  for (const r of wtActivityRows()) {
+    add(wtActivityPath(r), wtActivityTitle(r), wtActivityDescription(r), ["workout type", r.label, ...r.cells.map((c) => c.name)].join(" "));
   }
 
   add(

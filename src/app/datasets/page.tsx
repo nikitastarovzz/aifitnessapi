@@ -274,6 +274,22 @@ const ENTRIES: Entry[] = [
     caveat:
       "The licence covers this compilation and its derived columns. The UUIDs, names, types and sizes are the Bluetooth SIG's, restated as facts, and its files say they are proprietary to Bluetooth SIG and grant no licence, so the SIG's descriptions are left out (the pages quote them with attribution) and the file carries the SIG's notice in sourceTerms. Offsets, flag bits and units are derived, each beside the line it was read from.",
   },
+  {
+    slug: "workout-types-crosswalk-2026",
+    unit: "workout type constants",
+    blurb:
+      "Every workout or exercise type constant on HealthKit (HKWorkoutActivityType), Health Connect (ExerciseSessionRecord.EXERCISE_TYPE_*), Wear OS Health Services (ExerciseType) and the Google Health API (exerciseType), with the number each platform prints, the source's own wording, Health Connect's platform-API value and allowed segment types, and the constants of the same name on the other three.",
+    keywords: [
+      "HKWorkoutActivityType",
+      "Health Connect exercise types",
+      "Wear OS ExerciseType",
+      "Google Health API exerciseType",
+      "workout type mapping",
+    ],
+    presentedBy: { href: "/workout-types", label: "Workout types across four platforms" },
+    caveat:
+      "crosswalkKey is derived: the name with a leading EXERCISE_TYPE_ removed, lowercased, separators dropped. Constants are joined on that key alone, so a shared key means the names match, not that the platforms define the activity alike, and no Apple or Google page read for it maps one list onto another. Wear OS ids come from the androidx source the reference links, because the reference prints none.",
+  },
 ];
 
 const LOADED = ENTRIES.map((e) => ({ entry: e, file: loadDataset(e.slug) }));

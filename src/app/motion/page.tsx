@@ -12,6 +12,7 @@ import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
 import { getMotion, releasedMotion, MOTION_PATH, MOTION_CONFIG } from "@/data/motion";
+import type { ClusterEntry } from "@/data/motion";
 import { POSE_SCHEMES } from "@/data/poseKeypoints";
 
 const UPDATED = "2026-07-24";
@@ -33,6 +34,22 @@ export const metadata: Metadata = {
     url: MOTION_PATH,
   },
 };
+
+/** One page per exercise (ops/EXPANSION-3-2026-10-17.md item 2.3). The set
+ *  gets its own hub section and its own ItemList, so it reads as one list to
+ *  machines as well as to people. */
+const EXERCISE_SLUGS = [
+  "squat-detection-pose-estimation",
+  "push-up-counter-computer-vision",
+  "lunge-detection-pose-estimation",
+  "plank-detection-pose-estimation",
+  "deadlift-pose-estimation",
+  "bicep-curl-counter-pose-estimation",
+  "jumping-jack-counter-pose-estimation",
+  "sit-up-counter-pose-estimation",
+  "pull-up-counter-computer-vision",
+  "overhead-press-pose-estimation",
+];
 
 const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
@@ -66,6 +83,11 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
     title: "Interpreting motion",
     blurb: "Turning keypoints into reps, form, and a decision.",
     slugs: ["how-rep-counting-works", "how-form-feedback-works", "build-vs-buy-ai-motion-tracking"],
+  },
+  {
+    title: "Exercise by exercise",
+    blurb: "Landmarks, camera placement, rep logic and measured accuracy for one exercise at a time, from published studies.",
+    slugs: EXERCISE_SLUGS,
   },
 ];
 
@@ -121,12 +143,29 @@ export default function MotionPillar() {
     })),
   };
 
+  const exerciseItems = EXERCISE_SLUGS.map((s) => getMotion(s)).filter((e): e is ClusterEntry => e !== undefined);
+  const exerciseListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Exercise by exercise: tracking each exercise with a camera",
+    numberOfItems: exerciseItems.length,
+    itemListElement: exerciseItems.map((e, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: e.h1,
+      url: absoluteUrl(`${MOTION_PATH}/${e.slug}`),
+    })),
+  };
+
   return (
     <Container className="py-14">
       <HubJsonLd basePath="/motion" description={String(metadata.description)} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
+      {exerciseItems.length > 0 && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(exerciseListJsonLd) }} />
+      )}
 
       <div className="mx-auto max-w-2xl">
         <Breadcrumbs trail={[{ name: "Home", path: "/" }, { name: "AI Motion", path: MOTION_PATH }]} />

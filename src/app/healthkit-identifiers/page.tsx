@@ -364,6 +364,13 @@ export default function HealthKitIdentifiersPage() {
             .
           </p>
           <p className="mt-3 text-sm text-[var(--muted)]">
+            The {HK_FAMILIES.find((f) => f.key === "workoutActivity")?.count}{" "}workout activity types are set beside the Health Connect, Wear OS and Google Health API constants with the same name in{" "}
+            <Link href="/workout-types/healthkit" className="font-medium text-brand-600 hover:text-brand-500">
+              the workout type crosswalk
+            </Link>
+            .
+          </p>
+          <p className="mt-3 text-sm text-[var(--muted)]">
             {TYPE_PAGES.length}{" "}identifiers also have a page of their own — the linked names in the table — with
             Apple&rsquo;s abstract, availability on every platform and the sentence behind each fact.{" "}
             <a href="#type-pages" className="font-medium text-brand-600 hover:text-brand-500">

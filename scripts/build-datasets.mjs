@@ -1632,6 +1632,127 @@ function buildApisDataset() {
   };
 }
 
+/**
+ * Workout types across four platforms — src/data/workoutTypes.ts (generated
+ * by scripts/fetch-workout-types.mjs from Apple's HealthKit docs JSON, Google's
+ * Health Connect, Wear OS and Google Health API references, and the androidx
+ * source those references link). One row per constant per platform. The
+ * counts are the generator's own exact expectations (read 2026-10-18); a row
+ * whose crosswalk key is not its name normalised by the stated rule, or whose
+ * sameNameOn disagrees with the other platforms' keys, fails the build — the
+ * crosswalk is name identity and nothing else.
+ */
+const WT_REL = "src/data/workoutTypes.ts";
+const WT_EXPECTED = { healthkit: 84, "health-connect": 61, "wear-os": 85, "google-health-api": 182 };
+
+function buildWorkoutTypesDataset() {
+  const src = read(WT_REL);
+  const fetchedOn = hcConst(src, WT_REL, "WT_FETCHED_ON");
+  const normalisation = hcConst(src, WT_REL, "WT_NORMALISATION");
+  const { rows: platforms } = hcJsonArray(src, WT_REL, "WT_PLATFORMS");
+  const { rows: sources } = hcJsonArray(src, WT_REL, "WT_SOURCES");
+  const lists = {
+    healthkit: hcJsonArray(src, WT_REL, "WT_HEALTHKIT").rows,
+    "health-connect": hcJsonArray(src, WT_REL, "WT_HEALTH_CONNECT").rows,
+    "wear-os": hcJsonArray(src, WT_REL, "WT_WEAR_OS").rows,
+    "google-health-api": hcJsonArray(src, WT_REL, "WT_GOOGLE_HEALTH_API").rows,
+  };
+  const nameOf = { healthkit: (r) => r.case, "health-connect": (r) => r.name, "wear-os": (r) => r.name, "google-health-api": (r) => r.value };
+  const keyOf = (n) => n.replace(/^EXERCISE_TYPE_/, "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  for (const [p, n] of Object.entries(WT_EXPECTED)) {
+    if (lists[p].length !== n) fail(`workout types: ${p} has ${lists[p].length} constants in ${WT_REL}, expected ${n}`);
+  }
+  const owners = new Map();
+  for (const [p, rows] of Object.entries(lists)) for (const r of rows) (owners.get(r.key) ?? owners.set(r.key, []).get(r.key)).push(`${p}:${nameOf[p](r)}`);
+  const page = (p, name) => abs(`/workout-types/${p}#t-${name.toLowerCase()}`);
+  const items = [];
+  for (const [p, rows] of Object.entries(lists)) {
+    const plat = platforms.find((x) => x.slug === p);
+    if (!plat) fail(`workout types: no platform ${p} in WT_PLATFORMS`);
+    for (const r of rows) {
+      const name = nameOf[p](r);
+      if (r.key !== keyOf(name)) fail(`workout types: ${p} ${name} carries the key ${r.key}, not ${keyOf(name)}`);
+      const expected = owners.get(r.key).filter((x) => !x.startsWith(`${p}:`)).sort().join("; ");
+      const got = r.counterparts.map((c) => `${c.platform}:${c.name}`).sort().join("; ");
+      if (expected !== got) fail(`workout types: ${p} ${name} lists counterparts [${got}] but the keys give [${expected}]`);
+      const hc = p === "health-connect" ? r : null;
+      items.push({
+        platform: p,
+        enumeration: plat.enumeration,
+        constant: name,
+        qualified: r.qualified ?? name,
+        value: p === "health-connect" ? r.value : p === "wear-os" ? r.id : null,
+        description: p === "healthkit" ? r.abstract : r.description,
+        discussion: p === "healthkit" && r.discussion.length ? r.discussion.join(" ") : null,
+        group: p === "healthkit" ? r.group : null,
+        iosIntroduced: p === "healthkit" ? (r.platforms.find((x) => x.name === "iOS")?.introducedAt ?? null) : null,
+        deprecated: r.deprecated === undefined ? null : r.deprecated ? "yes" : "no",
+        platformApiConstant: hc?.platform?.name ?? null,
+        platformApiValue: hc?.platform?.value ?? null,
+        platformApiLevel: hc?.platform?.apiLevel ?? null,
+        platformApiDeprecatedIn: hc?.platform?.deprecatedIn ?? null,
+        segmentRule: hc ? hc.segments.rule : null,
+        segments: hc && hc.segments.segments.length ? hc.segments.segments.join("; ") : null,
+        crosswalkKey: r.key,
+        sameNameOn: got || null,
+        source: r.docUrl ?? (p === "google-health-api" ? sources.find((x) => x.id === "ghapiModule")?.url ?? null : null),
+        page: page(p, name),
+      });
+    }
+  }
+  const declared = Object.values(WT_EXPECTED).reduce((a, b) => a + b, 0);
+  if (items.length !== declared) fail(`workout types parse yielded ${items.length} rows, expected ${declared}`);
+
+  return {
+    slug: "workout-types-crosswalk-2026",
+    declared,
+    columns: [
+      "platform", "enumeration", "constant", "qualified", "value", "description", "discussion", "group", "iosIntroduced", "deprecated",
+      "platformApiConstant", "platformApiValue", "platformApiLevel", "platformApiDeprecatedIn", "segmentRule", "segments",
+      "crosswalkKey", "sameNameOn", "source", "page",
+    ],
+    doc: {
+      name: "Workout Types Crosswalk 2026 (HealthKit, Health Connect, Wear OS, Google Health API)",
+      version: VERSION,
+      publisher: PUBLISHER,
+      license: LICENSE,
+      methodology: `Every workout or exercise type constant on four platforms, read up to ${fetchedOn}: Apple's HKWorkoutActivityType cases (names, abstracts, groups and availability from Apple's documentation JSON, discussions from each case's own page), Health Connect's ExerciseSessionRecord.EXERCISE_TYPE_* constants (values from Google's Jetpack reference; the platform API's ExerciseSessionType constant, value and API level each converts to, from IntDefMappings.kt in the androidx source and Google's platform reference; the segment types each accepts, from the table behind ExerciseSegment.isSegmentTypeCompatibleWithSessionType in ExerciseSegment.kt), Wear OS Health Services' ExerciseType constants (names and descriptions from Google's reference, ids from the androidx ExerciseType.kt it links) and the Google Health API's exerciseType enum (the v4 discovery document). Names, values and descriptions are copied exactly. HealthKit values are null because Apple prints none; Google Health API values are null because the enum value is the string itself. One column is DERIVED: crosswalkKey. ${normalisation} sameNameOn lists the constants of the other platforms with the same key. No Apple or Google page read for this dataset maps one list onto another, so nothing is joined by meaning.`,
+      generatedFrom: `${WT_REL} (generated by scripts/fetch-workout-types.mjs, then by scripts/build-datasets.mjs)`,
+      isBasedOn: sources.filter((x) => x.role !== "search").map((x) => x.page),
+      sourceReadOn: fetchedOn,
+      fields: {
+        platform: "healthkit, health-connect, wear-os or google-health-api",
+        enumeration: "The platform's enumeration",
+        constant: "The constant exactly as the source spells it",
+        qualified: "How code writes it",
+        value: "Health Connect: the Jetpack value. Wear OS: the id ExerciseType.kt passes. Null for HealthKit (Apple prints none) and the Google Health API (string enum)",
+        description: "HealthKit: Apple's abstract. Others: the source's description; null where it gives none",
+        discussion: "HealthKit: Apple's discussion paragraphs, verbatim; null where Apple gives none",
+        group: "HealthKit: Apple's topic group",
+        iosIntroduced: "HealthKit: the iOS version Apple lists",
+        deprecated: "yes when the source marks the constant deprecated; null where the source has no such field",
+        platformApiConstant: "Health Connect: the platform ExerciseSessionType constant the Jetpack library converts to",
+        platformApiValue: "Health Connect: that constant's value on the platform reference",
+        platformApiLevel: "Health Connect: the API level the platform reference gives it",
+        platformApiDeprecatedIn: "Health Connect: the API level the platform reference deprecates it in",
+        segmentRule: "Health Connect: any, listed or universal-only (see the hub's segment section)",
+        segments: "Health Connect: the segment types the library's table names for the session type, beyond the universal ones",
+        crosswalkKey: "DERIVED: the name with a leading EXERCISE_TYPE_ removed, lowercased, characters outside a-z0-9 removed",
+        sameNameOn: "Constants of other platforms with the same crosswalkKey; null when none",
+        source: "The source page the constant was read from",
+        page: "This site's row for the constant",
+      },
+      stats: {
+        totalItems: items.length,
+        byPlatform: Object.fromEntries(Object.entries(lists).map(([p, rows]) => [p, rows.length])),
+        withCounterpart: items.filter((i) => i.sameNameOn).length,
+        withoutCounterpart: items.filter((i) => !i.sameNameOn).length,
+      },
+      items,
+    },
+  };
+}
+
 const built = [
   buildApisDataset(),
   buildMatrixDataset(),
@@ -1646,6 +1767,7 @@ const built = [
   buildGoogleHealthApiDataset(),
   buildMcpHealthServersDataset(),
   buildBluetoothGattDataset(),
+  buildWorkoutTypesDataset(),
 ].map(writeDataset);
 
 console.log(

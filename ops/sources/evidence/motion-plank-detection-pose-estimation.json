@@ -1,0 +1,207 @@
+[
+  {
+    "claim": "A camera plank tracker is a timer, not a counter: in a 2026 school study, holding a proper plank posture started the timer, and an incorrect posture stopped it and triggered feedback.",
+    "url": "https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1786427/full",
+    "quote": "Furthermore, the program was adapted to accommodate exercise types that are evaluated based on duration rather than repetitions."
+  },
+  {
+    "claim": "A camera plank tracker is a timer, not a counter: in a 2026 school study, holding a proper plank posture started the timer, and an incorrect posture stopped it and triggered feedback.",
+    "url": "https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1786427/full",
+    "quote": "(a) Maintaining a proper plank posture starts the timer (b) incorrect posture stops the timer and triggers feedback (“Keep your back straight"
+  },
+  {
+    "claim": "A 2026 rule-based study modelled the plank as one holding state with torso angle thresholds and a check that the body stays extended in a horizontal alignment, and it detected every plank in a test class of nine.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "For the plank, which represents isometric exercise modeling, the primary state is a holding position (maintaining body alignment), with specific torso angle thresholds defining proper form maintenance. In addition, the system verifies that the body remains extended in a horizontal alignment throughout the movement to ensure proper plank posture"
+  },
+  {
+    "claim": "A 2026 rule-based study modelled the plank as one holding state with torso angle thresholds and a check that the body stays extended in a horizontal alignment, and it detected every plank in a test class of nine.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Minority classes (bent-over rows n = 12, planks n = 9, and box jumps n = 14) show wider CIs than high-volume exercises (squats and deadlifts), indicating preliminary rule validation rather than definitive generalization."
+  },
+  {
+    "claim": "A 2026 rule-based study modelled the plank as one holding state with torso angle thresholds and a check that the body stays extended in a horizontal alignment, and it detected every plank in a test class of nine.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "While several low-sample exercises achieved 100% accuracy, their Clopper–Pearson 95% CIs remained wider (planks [69.2–100%]"
+  },
+  {
+    "claim": "Sousa and colleagues (Journal of Functional Morphology and Kinesiology, 2026) counted 12 exercises, planks among them, with angle-threshold state machines on MediaPipe landmarks, and tested them on videos from public pose datasets, competition footage and their own recordings.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Experimental validation was conducted on a dataset of 1513 videos of 12 functional exercises (squats, deadlifts, lunges, shoulder presses, planks, push-ups, pull-ups, bent-over rows, box jumps, thrusters, overhead squats, and burpees) obtained from public pose datasets, competition footage, and recordings of 9 participants in real-world environments."
+  },
+  {
+    "claim": "Sousa and colleagues (Journal of Functional Morphology and Kinesiology, 2026) counted 12 exercises, planks among them, with angle-threshold state machines on MediaPipe landmarks, and tested them on videos from public pose datasets, competition footage and their own recordings.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "The proposed MDL models each exercise as a finite-state machine defined by pose-derived angle proxy transitions, allowing movements to be described in a modular and reusable way. Demonstrated with MediaPipe landmark extraction from monocular video, while the MDL remains compatible with any pose estimation algorithm, the framework focuses on exercise phase detection and repetition counting."
+  },
+  {
+    "claim": "Kim and colleagues (Frontiers in Public Health, 2026) built a browser-based MediaPipe Pose program with five PE teachers and five 9th-grade students over about three months at one public middle school, and report how its plank rule changed in classroom use.",
+    "url": "https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1786427/full",
+    "quote": "MediaPipe provides the capability to track 33 body pose landmarks in real time within a web browser without the need for separate server configuration"
+  },
+  {
+    "claim": "Kim and colleagues (Frontiers in Public Health, 2026) built a browser-based MediaPipe Pose program with five PE teachers and five 9th-grade students over about three months at one public middle school, and report how its plank rule changed in classroom use.",
+    "url": "https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1786427/full",
+    "quote": "The teacher participants consisted of five physical education teachers at the participating school (average teaching experience: 8 years, range: 5–15 years)."
+  },
+  {
+    "claim": "Kim and colleagues (Frontiers in Public Health, 2026) built a browser-based MediaPipe Pose program with five PE teachers and five 9th-grade students over about three months at one public middle school, and report how its plank rule changed in classroom use.",
+    "url": "https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1786427/full",
+    "quote": "The student participants were five 9th-grade students (three boys and two girls) drawn from the teachers"
+  },
+  {
+    "claim": "Kim and colleagues (Frontiers in Public Health, 2026) built a browser-based MediaPipe Pose program with five PE teachers and five 9th-grade students over about three months at one public middle school, and report how its plank rule changed in classroom use.",
+    "url": "https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1786427/full",
+    "quote": "The study was conducted over approximately three months (August–October 2025) at a public middle school in Ulsan, South Korea."
+  },
+  {
+    "claim": "Kim and colleagues (Frontiers in Public Health, 2026) built a browser-based MediaPipe Pose program with five PE teachers and five 9th-grade students over about three months at one public middle school, and report how its plank rule changed in classroom use.",
+    "url": "https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1786427/full",
+    "quote": "and a plank rule was redesigned from a simple “hold” condition to a time-based tracking rule with continuous alignment checks."
+  },
+  {
+    "claim": "It is a qualitative case study, and the authors did not formally benchmark pose-estimation accuracy.",
+    "url": "https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1786427/full",
+    "quote": "This study was conducted as a qualitative case study with a small number of participants to enable in-depth exploration."
+  },
+  {
+    "claim": "It is a qualitative case study, and the authors did not formally benchmark pose-estimation accuracy.",
+    "url": "https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1786427/full",
+    "quote": "While this study did not conduct formal benchmarking of pose-estimation accuracy using precision, recall, or related metrics"
+  },
+  {
+    "claim": "Sousa and colleagues model the plank as isometric exercise: a single holding state defined by torso angle thresholds, with an extra check that the body stays extended in a horizontal alignment throughout.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "For the plank, which represents isometric exercise modeling, the primary state is a holding position (maintaining body alignment), with specific torso angle thresholds defining proper form maintenance. In addition, the system verifies that the body remains extended in a horizontal alignment throughout the movement to ensure proper plank posture"
+  },
+  {
+    "claim": "Kim and colleagues' rules connect subsets of MediaPipe's 33 landmarks to conditions such as joint-angle ranges, alignment of body segments and temporal thresholds.",
+    "url": "https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1786427/full",
+    "quote": "Movement recognition and feedback were structured as editable rules that connected subsets of the 33 pose landmarks to biomechanically meaningful conditions (e.g., joint-angle ranges, alignment of body segments, temporal thresholds)."
+  },
+  {
+    "claim": "Sousa and colleagues note that their pose model's performance can degrade when the subject is partially occluded or when camera angles deviate from frontal or lateral views.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "MediaPipe’s performance can degrade when the subject is partially occluded or moves too quickly or when camera angles deviate from frontal or lateral views."
+  },
+  {
+    "claim": "Kim and colleagues note that webcam-based 2D recognition can produce errors depending on camera angle, lighting conditions and body occlusion.",
+    "url": "https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1786427/full",
+    "quote": "From a technical perspective, webcam-based two-dimensional motion recognition can produce errors depending on camera angle, lighting conditions, and body occlusion, and is unlikely to match the precision of three-dimensional motion capture systems"
+  },
+  {
+    "claim": "Kim and colleagues' teachers noted that activities such as planks emphasise sustained posture rather than repeated movements, and the team redesigned the plank rule from a simple hold condition into time-based tracking with continuous alignment checks.",
+    "url": "https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1786427/full",
+    "quote": "Teachers noted that many fitness activities in school physical education, such as plank exercises, emphasize sustained posture rather than repeated movements. To reflect this pedagogical characteristic, a time-based tracking function was introduced for isometric exercises."
+  },
+  {
+    "claim": "Kim and colleagues' teachers noted that activities such as planks emphasise sustained posture rather than repeated movements, and the team redesigned the plank rule from a simple hold condition into time-based tracking with continuous alignment checks.",
+    "url": "https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1786427/full",
+    "quote": "and a plank rule was redesigned from a simple “hold” condition to a time-based tracking rule with continuous alignment checks."
+  },
+  {
+    "claim": "Maintaining a proper plank posture starts the timer, and an incorrect posture stops it and triggers feedback such as \"Keep your back straight\".",
+    "url": "https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1786427/full",
+    "quote": "(a) Maintaining a proper plank posture starts the timer (b) incorrect posture stops the timer and triggers feedback (“Keep your back straight"
+  },
+  {
+    "claim": "Recognition that begins as soon as the program opens can misfire while learners are adjusting devices or moving into position, so their program shows guidance for a ready posture with recognition disabled, displays a progress indicator while the learner holds it, and starts tracking only once the posture is recognised with sufficient stability.",
+    "url": "https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1786427/full",
+    "quote": "In conventional motion recognition systems, recognition often begins immediately upon program activation, which can lead to misrecognition when learners are adjusting devices or moving into position. To address this issue, the program was designed to activate full-scale motion recognition only after detecting a learner's ready posture."
+  },
+  {
+    "claim": "Recognition that begins as soon as the program opens can misfire while learners are adjusting devices or moving into position, so their program shows guidance for a ready posture with recognition disabled, displays a progress indicator while the learner holds it, and starts tracking only once the posture is recognised with sufficient stability.",
+    "url": "https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1786427/full",
+    "quote": "(a) The system provides visual guidance for the ready posture while motion recognition is disabled. (b) Once the learner maintains the correct ready posture, the system begins recognizing it and displays a progress indicator until the posture is stabilized. (c) When the ready posture has been recognized with sufficient stability, the system confirms completion and activates real-time motion tracking for the exercise."
+  },
+  {
+    "claim": "Sousa and colleagues use a related rule for dropped frames, keeping the last valid phase for typically 3 to 5 frames when no phase matches.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Instead of immediately accepting a “None” value when a phase cannot be matched, the system temporarily retains the last valid phase for a short duration of N frames (typically N = 3–5)."
+  },
+  {
+    "claim": "Kim and colleagues constrained their editable parameters to ranges derived from the pose-estimation model and the teachers' domain expertise.",
+    "url": "https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1786427/full",
+    "quote": "To avoid compromising the technical validity of the feedback, the editable parameters were constrained to biomechanically meaningful ranges derived from the pose-estimation model and the teachers' domain expertise."
+  },
+  {
+    "claim": "Kim and colleagues saw misrecognition when recognition began while learners were adjusting devices or moving into position, which their ready-posture gate addresses.",
+    "url": "https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1786427/full",
+    "quote": "In conventional motion recognition systems, recognition often begins immediately upon program activation, which can lead to misrecognition when learners are adjusting devices or moving into position. To address this issue, the program was designed to activate full-scale motion recognition only after detecting a learner's ready posture."
+  },
+  {
+    "claim": "Sousa and colleagues list these as conditions in which their pose model's performance can degrade, leading to incorrect or delayed state transitions.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "MediaPipe’s performance can degrade when the subject is partially occluded or moves too quickly or when camera angles deviate from frontal or lateral views. In such cases, small landmark inaccuracies propagate into pose-derived angle proxy miscalculations, leading to incorrect or delayed state transitions."
+  },
+  {
+    "claim": "Kim and colleagues name these as sources of error for webcam-based 2D recognition, which they consider unlikely to match the precision of 3D motion capture.",
+    "url": "https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1786427/full",
+    "quote": "From a technical perspective, webcam-based two-dimensional motion recognition can produce errors depending on camera angle, lighting conditions, and body occlusion, and is unlikely to match the precision of three-dimensional motion capture systems"
+  },
+  {
+    "claim": "Sousa and colleagues report 100% for planks, a minority class of n = 9 in their data, with a 95% confidence interval of 69.2 to 100%, and they describe results for such small classes as preliminary rule validation rather than definitive generalization.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Minority classes (bent-over rows n = 12, planks n = 9, and box jumps n = 14) show wider CIs than high-volume exercises (squats and deadlifts), indicating preliminary rule validation rather than definitive generalization."
+  },
+  {
+    "claim": "Sousa and colleagues report 100% for planks, a minority class of n = 9 in their data, with a 95% confidence interval of 69.2 to 100%, and they describe results for such small classes as preliminary rule validation rather than definitive generalization.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "While several low-sample exercises achieved 100% accuracy, their Clopper–Pearson 95% CIs remained wider (planks [69.2–100%] and bent-over rows [78.2–100%]) than those of high-volume exercises (squats [92.7–97.4%])."
+  },
+  {
+    "claim": "Their plank videos were 2 they recorded and 7 from public pose datasets.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Recorded Videos (R): 240 videos of squats, 160 videos of deadlifts, 160 videos of shoulder presses, 2 videos of bent-over rows, 4 videos of box jumps, 6 videos of burpees, 3 videos of lunges, 5 videos of push-ups, 4 videos of pull-ups, and 2 videos of plank, thrusters and overhead squats."
+  },
+  {
+    "claim": "Their plank videos were 2 they recorded and 7 from public pose datasets.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Public Pose Datasets (P): 47 videos of deadlifts, 7 videos of planks"
+  },
+  {
+    "claim": "Kim and colleagues did not benchmark accuracy with precision, recall or related metrics, and did not retrain or benchmark the MediaPipe Pose model against ground-truth datasets.",
+    "url": "https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1786427/full",
+    "quote": "While this study did not conduct formal benchmarking of pose-estimation accuracy using precision, recall, or related metrics"
+  },
+  {
+    "claim": "Kim and colleagues did not benchmark accuracy with precision, recall or related metrics, and did not retrain or benchmark the MediaPipe Pose model against ground-truth datasets.",
+    "url": "https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1786427/full",
+    "quote": "As this study focused on educational implementation rather than algorithm development, the underlying MediaPipe Pose model was not retrained or benchmarked against controlled ground-truth datasets."
+  },
+  {
+    "claim": "In Kim and colleagues' 2026 school study, a proper plank posture started a timer and an incorrect posture stopped it and triggered feedback, with alignment checked continuously, and tracking began only after a stable ready posture.",
+    "url": "https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1786427/full",
+    "quote": "(a) Maintaining a proper plank posture starts the timer (b) incorrect posture stops the timer and triggers feedback (“Keep your back straight"
+  },
+  {
+    "claim": "In Kim and colleagues' 2026 school study, a proper plank posture started a timer and an incorrect posture stopped it and triggered feedback, with alignment checked continuously, and tracking began only after a stable ready posture.",
+    "url": "https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1786427/full",
+    "quote": "and a plank rule was redesigned from a simple “hold” condition to a time-based tracking rule with continuous alignment checks."
+  },
+  {
+    "claim": "In Kim and colleagues' 2026 school study, a proper plank posture started a timer and an incorrect posture stopped it and triggered feedback, with alignment checked continuously, and tracking began only after a stable ready posture.",
+    "url": "https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1786427/full",
+    "quote": "(a) The system provides visual guidance for the ready posture while motion recognition is disabled. (b) Once the learner maintains the correct ready posture, the system begins recognizing it and displays a progress indicator until the posture is stabilized. (c) When the ready posture has been recognized with sufficient stability, the system confirms completion and activates real-time motion tracking for the exercise."
+  },
+  {
+    "claim": "Sousa and colleagues model the plank as one holding state with torso angle thresholds and a horizontal-alignment check.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "For the plank, which represents isometric exercise modeling, the primary state is a holding position (maintaining body alignment), with specific torso angle thresholds defining proper form maintenance. In addition, the system verifies that the body remains extended in a horizontal alignment throughout the movement to ensure proper plank posture"
+  },
+  {
+    "claim": "Sousa and colleagues report 100% for a class of nine planks, with a 95% confidence interval of 69.2 to 100%, and treat it as preliminary rule validation.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Minority classes (bent-over rows n = 12, planks n = 9, and box jumps n = 14) show wider CIs than high-volume exercises (squats and deadlifts), indicating preliminary rule validation rather than definitive generalization."
+  },
+  {
+    "claim": "Sousa and colleagues report 100% for a class of nine planks, with a 95% confidence interval of 69.2 to 100%, and treat it as preliminary rule validation.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "While several low-sample exercises achieved 100% accuracy, their Clopper–Pearson 95% CIs remained wider (planks [69.2–100%]"
+  },
+  {
+    "claim": "Kim and colleagues did not benchmark accuracy.",
+    "url": "https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1786427/full",
+    "quote": "While this study did not conduct formal benchmarking of pose-estimation accuracy using precision, recall, or related metrics"
+  }
+]

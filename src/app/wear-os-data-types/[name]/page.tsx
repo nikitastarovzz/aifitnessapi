@@ -36,6 +36,7 @@ import {
   hsPageModified,
 } from "@/data/hsDataTypePages";
 import { pagesUsingHsDataType } from "@/data/typePagesRelated";
+import { metricGuidesForType } from "@/data/metricTypeMap";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, publishedDate, WEBSITE_ID } from "@/lib/schema";
 import { stringSeed } from "@/lib/cluster";
@@ -129,7 +130,8 @@ export default async function HsDataTypePage({ params }: { params: Promise<Param
   const classText = hsClassDescription(t);
   const mismatches = hsTableMismatches(t);
   const row = hsPermissionRow(t);
-  const related = pagesUsingHsDataType(t.name, path);
+  const guides = metricGuidesForType("wear-os", t.name);
+  const related = pagesUsingHsDataType(t.name, path).filter((r) => !guides.some((g) => g.href === r.path));
   const all = hsPageTypes();
   const at = all.findIndex((x) => x.name === t.name);
   const prev = at > 0 ? all[at - 1] : null;
@@ -377,22 +379,42 @@ export default async function HsDataTypePage({ params }: { params: Promise<Param
 
         <section id="cross-platform" className="mt-14 scroll-mt-24">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Health Connect and HealthKit</h2>
-          <p className="mt-2 text-[var(--muted)]">
-            No verified mapping. This site&rsquo;s{" "}
-            <Link href="/matrix" className={LINK}>
-              cross-platform matrix
-            </Link>{" "}
-            pairs HealthKit types with Health Connect records only, and no data here maps a Health Services constant to
-            either, so this page names no counterpart rather than matching by name. The record types themselves are in{" "}
-            <Link href="/health-connect" className={LINK}>
-              the Health Connect record reference
-            </Link>{" "}
-            and{" "}
-            <Link href="/healthkit-identifiers" className={LINK}>
-              the HealthKit identifier reference
-            </Link>
-            .
-          </p>
+          {guides.length > 0 ? (
+            <p className="mt-2 text-[var(--muted)]">
+              No one-to-one pairing. This site&rsquo;s{" "}
+              <Link href="/matrix" className={LINK}>
+                cross-platform matrix
+              </Link>{" "}
+              pairs HealthKit types with Health Connect records only, so this page names no counterpart. What it does have
+              is a metric guide:{" "}
+              {guides.map((g, i) => (
+                <span key={g.href}>
+                  {i > 0 ? " and " : ""}
+                  <Link href={g.href} className={LINK}>
+                    {g.h1}
+                  </Link>
+                </span>
+              ))}{" "}
+              {`${guides.length > 1 ? "list" : "lists"} DataType.${t.name} beside the types on the other platforms this site covers whose own descriptions name the same metric, each quoted, so you can see where they differ rather than assume they match.`}
+            </p>
+          ) : (
+            <p className="mt-2 text-[var(--muted)]">
+              No verified mapping. This site&rsquo;s{" "}
+              <Link href="/matrix" className={LINK}>
+                cross-platform matrix
+              </Link>{" "}
+              pairs HealthKit types with Health Connect records only, and no data here maps a Health Services constant to
+              either, so this page names no counterpart rather than matching by name. The record types themselves are in{" "}
+              <Link href="/health-connect" className={LINK}>
+                the Health Connect record reference
+              </Link>{" "}
+              and{" "}
+              <Link href="/healthkit-identifiers" className={LINK}>
+                the HealthKit identifier reference
+              </Link>
+              .
+            </p>
+          )}
         </section>
 
         <section id="related" className="mt-14 scroll-mt-24">
@@ -404,6 +426,14 @@ export default async function HsDataTypePage({ params }: { params: Promise<Param
               </Link>{" "}
               <span className="text-[var(--muted)]">— its row in the full table</span>
             </li>
+            {guides.map((g) => (
+              <li key={g.href}>
+                <Link href={g.href} className={LINK} data-metric-guide={g.slug}>
+                  {g.h1}
+                </Link>{" "}
+                <span className="text-[var(--muted)]">{`— ${g.metric} on every platform this site covers`}</span>
+              </li>
+            ))}
             {related.map((r) => (
               <li key={r.path}>
                 <Link href={r.path} className={LINK}>

@@ -1,0 +1,417 @@
+[
+  {
+    "claim": "A camera deadlift counter can run on a torso angle and the elbows: in one 2026 study's state machine, the start has the torso leaning forward below one threshold with the elbows straight, and the lift registers when the torso extends above a higher threshold with the elbows still straight.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "The deadlift is divided into two states: state 1, the starting position, where the torso leans forward (with a torso angle below"
+  },
+  {
+    "claim": "A camera deadlift counter can run on a torso angle and the elbows: in one 2026 study's state machine, the start has the torso leaning forward below one threshold with the elbows straight, and the lift registers when the torso extends above a higher threshold with the elbows still straight.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "with straight elbows (above"
+  },
+  {
+    "claim": "A camera deadlift counter can run on a torso angle and the elbows: in one 2026 study's state machine, the start has the torso leaning forward below one threshold with the elbows straight, and the lift registers when the torso extends above a higher threshold with the elbows still straight.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "and state 2, lifting, which is triggered when the torso is extended above"
+  },
+  {
+    "claim": "A camera deadlift counter can run on a torso angle and the elbows: in one 2026 study's state machine, the start has the torso leaning forward below one threshold with the elbows straight, and the lift registers when the torso extends above a higher threshold with the elbows still straight.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "and the elbows remain straight (above"
+  },
+  {
+    "claim": "Common skeletons have a single point at each hip and none on the spine, and a 2026 deadlift study states that 2D keypoints cannot directly recover spinal curvature or the 3D bar path.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10951609&retmode=xml",
+    "quote": "shows formulations with a single key-point at each hip joint"
+  },
+  {
+    "claim": "Common skeletons have a single point at each hip and none on the spine, and a 2026 deadlift study states that 2D keypoints cannot directly recover spinal curvature or the 3D bar path.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "This representation captures projected 2D kinematic cues only; therefore, it cannot directly recover true depth-sensitive biomechanical quantities such as 3D bar path or spinal curvature."
+  },
+  {
+    "claim": "Reported accuracy depends on the task and the people: 95% of deadlift repetitions counted in one study, and 89.5% good-or-bad form classification in another, which fell to about 50 to 74% when a lifter was held out of training.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Slightly lower squat/deadlift performance (95%) resulted from pose estimation noise affecting pose-derived angle proxy calculations."
+  },
+  {
+    "claim": "Reported accuracy depends on the task and the people: 95% of deadlift repetitions counted in one study, and 89.5% good-or-bad form classification in another, which fell to about 50 to 74% when a lifter was held out of training.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "achieved 89.5% accuracy with high precision and recall"
+  },
+  {
+    "claim": "Reported accuracy depends on the task and the people: 95% of deadlift repetitions counted in one study, and 89.5% good-or-bad form classification in another, which fell to about 50 to 74% when a lifter was held out of training.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "In this stricter setting, each participant is held out entirely during testing. Held-out-subject accuracy ranged from about 50 to 74%, which is lower than the subject-dependent held-out video results. This indicates that the original video-level evaluation should be interpreted as subject-dependent performance rather than full cross-person generalization."
+  },
+  {
+    "claim": "Sousa and colleagues (Journal of Functional Morphology and Kinesiology, 2026) counted deadlifts among 12 exercises with angle-threshold state machines on MediaPipe landmarks.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Experimental validation was conducted on a dataset of 1513 videos of 12 functional exercises (squats, deadlifts, lunges, shoulder presses, planks, push-ups, pull-ups, bent-over rows, box jumps, thrusters, overhead squats, and burpees)"
+  },
+  {
+    "claim": "Sousa and colleagues (Journal of Functional Morphology and Kinesiology, 2026) counted deadlifts among 12 exercises with angle-threshold state machines on MediaPipe landmarks.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "The proposed MDL models each exercise as a finite-state machine defined by pose-derived angle proxy transitions, allowing movements to be described in a modular and reusable way. Demonstrated with MediaPipe landmark extraction from monocular video, while the MDL remains compatible with any pose estimation algorithm, the framework focuses on exercise phase detection and repetition counting."
+  },
+  {
+    "claim": "Their test set held 231 deadlift videos: 160 they recorded, 47 from public pose datasets and 24 from competition and online footage.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Recorded Videos (R): 240 videos of squats, 160 videos of deadlifts"
+  },
+  {
+    "claim": "Their test set held 231 deadlift videos: 160 they recorded, 47 from public pose datasets and 24 from competition and online footage.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Public Pose Datasets (P): 47 videos of deadlifts"
+  },
+  {
+    "claim": "Their test set held 231 deadlift videos: 160 they recorded, 47 from public pose datasets and 24 from competition and online footage.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Competition and YouTube Videos (C): 24 videos of deadlifts"
+  },
+  {
+    "claim": "Mercadal-Baudart and colleagues (Heliyon, 2024) recorded four female and four male athletes doing squats, deadlifts and jumps in a marker-based motion-capture lab, with phones placed around them, plus four male athletes in a second collection.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10951609&retmode=xml",
+    "quote": "Four female and four male athletes (aged 20–30, from a variety of sporting backgrounds) were recruited via Trinity College Dublin and Leinster Rugby."
+  },
+  {
+    "claim": "Mercadal-Baudart and colleagues (Heliyon, 2024) recorded four female and four male athletes doing squats, deadlifts and jumps in a marker-based motion-capture lab, with phones placed around them, plus four male athletes in a second collection.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10951609&retmode=xml",
+    "quote": "The exercises included three different depth squats (x3 shallow, x3 normal, x3 deep), five deadlifts and five counter movement jumps (CMJ)"
+  },
+  {
+    "claim": "Mercadal-Baudart and colleagues (Heliyon, 2024) recorded four female and four male athletes doing squats, deadlifts and jumps in a marker-based motion-capture lab, with phones placed around them, plus four male athletes in a second collection.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10951609&retmode=xml",
+    "quote": "A second data collection involving four male athletes used a VICON system with six cameras."
+  },
+  {
+    "claim": "Mercadal-Baudart and colleagues (Heliyon, 2024) recorded four female and four male athletes doing squats, deadlifts and jumps in a marker-based motion-capture lab, with phones placed around them, plus four male athletes in a second collection.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10951609&retmode=xml",
+    "quote": "For validation, the exercises performed during the VICON experiments were recorded with multiple mobile device cameras placed around the athlete in a radius of approximately 3 m, both on the floor and on tripods at approximately 1.5 m height"
+  },
+  {
+    "claim": "They trained a monocular 3D model to turn 17 detected 2D keypoints into a 33-point skeleton that includes the spine and pelvis.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10951609&retmode=xml",
+    "quote": "the 3D model was trained to directly lift seventeen 2D key-points to the thirty-three 3D key-points"
+  },
+  {
+    "claim": "They trained a monocular 3D model to turn 17 detected 2D keypoints into a 33-point skeleton that includes the spine and pelvis.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10951609&retmode=xml",
+    "quote": "in addition to the main key-points common to many HPE models (ankles, knees, hips, shoulders, elbows, wrists, head), the toes and pelvis (left and right PSIS and Iliac crest) and the spine (spinous processes of the vertebral bodies L2, T10, T4 and C7) and the sternum and clavicle are included"
+  },
+  {
+    "claim": "Shoaib and colleagues (Scientific Reports, 2026) classified deadlift form as good or bad from 377 single-repetition clips of three male lifters aged 19 to 25, filmed with two smartphones from five angles, using YOLOv11-Pose keypoints and graph neural networks.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "In this study a custom dataset of 377 video clips was created under expert supervision specifically for deadlift form assessment addressing the lack of annotated data for strength training exercises. Each clip captures a single deadlift repetition performed by one of three male participants (aged 19–25) with intermediate training experience. Participants performed deadlifts with a wide range of weights from an empty PVC pipe to loaded barbells up to 200 kg allowing the dataset to cover varied effort levels. The video recordings were taken using two smartphones from five different angles covering both frontal and diagonal views of the movements."
+  },
+  {
+    "claim": "Shoaib and colleagues (Scientific Reports, 2026) classified deadlift form as good or bad from 377 single-repetition clips of three male lifters aged 19 to 25, filmed with two smartphones from five angles, using YOLOv11-Pose keypoints and graph neural networks.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "For each frame, the model detects the primary subject and extracts 17 anatomical keypoints corresponding to the Common Objects in Context (COCO) standard"
+  },
+  {
+    "claim": "Shoaib and colleagues (Scientific Reports, 2026) classified deadlift form as good or bad from 377 single-repetition clips of three male lifters aged 19 to 25, filmed with two smartphones from five angles, using YOLOv11-Pose keypoints and graph neural networks.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "Six graph-based models were developed to classify deadlift form from pose data."
+  },
+  {
+    "claim": "A certified trainer labelled each clip.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "Form quality labels for the internal dataset were assigned by a single certified trainer"
+  },
+  {
+    "claim": "Sousa and colleagues' deadlift runs on two signals: a torso angle, leaning forward at the start and extended in the lift, and the elbow angle, which must stay straight in both states.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "The deadlift is divided into two states: state 1, the starting position, where the torso leans forward (with a torso angle below"
+  },
+  {
+    "claim": "Sousa and colleagues' deadlift runs on two signals: a torso angle, leaning forward at the start and extended in the lift, and the elbow angle, which must stay straight in both states.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "with straight elbows (above"
+  },
+  {
+    "claim": "Sousa and colleagues' deadlift runs on two signals: a torso angle, leaning forward at the start and extended in the lift, and the elbow angle, which must stay straight in both states.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "and state 2, lifting, which is triggered when the torso is extended above"
+  },
+  {
+    "claim": "Sousa and colleagues' deadlift runs on two signals: a torso angle, leaning forward at the start and extended in the lift, and the elbow angle, which must stay straight in both states.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "and the elbows remain straight (above"
+  },
+  {
+    "claim": "Their pipeline computes knee, hip, elbow, shoulder and torso angles from MediaPipe's 33 landmarks.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "For each frame, MediaPipe first estimates 33 body landmarks, which are used to compute pose-derived angle proxies (knee, hip, elbow, shoulder, and torso) used by the MDL definitions."
+  },
+  {
+    "claim": "Mercadal-Baudart and colleagues point out that common skeletons such as OpenPose's have a single keypoint at each hip, which is insufficient for clinically meaningful hip joint angles because those depend on the orientation of the pelvis and femur, and that simplified torsos are inadequate for pelvic angle and flexion at different levels of the spine.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10951609&retmode=xml",
+    "quote": "However, a review of monocular 2D and 3D HPE pose key-points (e.g. Openpose"
+  },
+  {
+    "claim": "Mercadal-Baudart and colleagues point out that common skeletons such as OpenPose's have a single keypoint at each hip, which is insufficient for clinically meaningful hip joint angles because those depend on the orientation of the pelvis and femur, and that simplified torsos are inadequate for pelvic angle and flexion at different levels of the spine.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10951609&retmode=xml",
+    "quote": "shows formulations with a single key-point at each hip joint"
+  },
+  {
+    "claim": "Mercadal-Baudart and colleagues point out that common skeletons such as OpenPose's have a single keypoint at each hip, which is insufficient for clinically meaningful hip joint angles because those depend on the orientation of the pelvis and femur, and that simplified torsos are inadequate for pelvic angle and flexion at different levels of the spine.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10951609&retmode=xml",
+    "quote": "These reduced landmark models are therefore insufficient for use in the calculation of clinically meaningful hip joint angles, which are determined by relative orientation of the pelvis and femur. Similarly, existing 3D HPE skeletons typically assume a highly simplified torso. This simplification is often suitable for gaming and animation, but is inadequate for evaluating pelvic angle and spinal organisation (e.g. anterior pelvic tilt and flexion at different levels of the spine)."
+  },
+  {
+    "claim": "Their skeleton adds the toes, pelvis points (left and right PSIS and iliac crest), four spinal points (L2, T10, T4 and C7), the sternum and the clavicle.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10951609&retmode=xml",
+    "quote": "in addition to the main key-points common to many HPE models (ankles, knees, hips, shoulders, elbows, wrists, head), the toes and pelvis (left and right PSIS and Iliac crest) and the spine (spinous processes of the vertebral bodies L2, T10, T4 and C7) and the sternum and clavicle are included"
+  },
+  {
+    "claim": "They define hip flexion as the angle between the lower spine (L2 to hip) and the thigh, with knee and hip flexion set to 0° in quiet standing.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10951609&retmode=xml",
+    "quote": "this is the angle between the thigh segment (defined by the knee and hip markers) and the pelvis segment (defined here by the L2 lumbar vertebra and hip markers). The hip flexion angle in quiet standing is defined as 0°."
+  },
+  {
+    "claim": "They define hip flexion as the angle between the lower spine (L2 to hip) and the thigh, with knee and hip flexion set to 0° in quiet standing.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10951609&retmode=xml",
+    "quote": "this is the angle between the shin segment (defined by the ankle and knee markers) and the thigh segment (defined by the knee and hip markers). The knee flexion angle in quiet standing is defined as 0°."
+  },
+  {
+    "claim": "Shoaib and colleagues used the 17 keypoints of the COCO standard and state that projected 2D keypoints cannot directly recover depth-sensitive quantities such as the 3D bar path or spinal curvature.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "For each frame, the model detects the primary subject and extracts 17 anatomical keypoints corresponding to the Common Objects in Context (COCO) standard"
+  },
+  {
+    "claim": "Shoaib and colleagues used the 17 keypoints of the COCO standard and state that projected 2D keypoints cannot directly recover depth-sensitive quantities such as the 3D bar path or spinal curvature.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "This representation captures projected 2D kinematic cues only; therefore, it cannot directly recover true depth-sensitive biomechanical quantities such as 3D bar path or spinal curvature."
+  },
+  {
+    "claim": "Mercadal-Baudart and colleagues recorded with phones placed around the athlete at a radius of about 3 m, both on the floor and on tripods at about 1.5 m height, to simulate where physiotherapists and coaches would record.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10951609&retmode=xml",
+    "quote": "For validation, the exercises performed during the VICON experiments were recorded with multiple mobile device cameras placed around the athlete in a radius of approximately 3 m, both on the floor and on tripods at approximately 1.5 m height"
+  },
+  {
+    "claim": "Mercadal-Baudart and colleagues recorded with phones placed around the athlete at a radius of about 3 m, both on the floor and on tripods at about 1.5 m height, to simulate where physiotherapists and coaches would record.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10951609&retmode=xml",
+    "quote": "These positions simulate the likely actual positions of handheld cameras used to record exercise movements by physiotherapists and coaches in future."
+  },
+  {
+    "claim": "Their model was trained with virtual cameras that projected the motion-capture data into 2D from a range of possible camera positions, and they call for real-world testing of lighting, clothing and camera positioning.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10951609&retmode=xml",
+    "quote": "This was done using “virtual cameras” to project the known coordinates of the seventeen 3D key-points obtained from the ground truth data into 2D image coordinates for training purposes to represent a range of possible camera positions."
+  },
+  {
+    "claim": "Their model was trained with virtual cameras that projected the motion-capture data into 2D from a range of possible camera positions, and they call for real-world testing of lighting, clothing and camera positioning.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10951609&retmode=xml",
+    "quote": "However, further testing of this approach in a real-world setting is needed to test the effects of lighting level, clothing and camera positioning on joint angle predictions."
+  },
+  {
+    "claim": "Shoaib and colleagues filmed one sagittal or side view and four frontal or diagonal views, four indoors and one outdoors, to add viewpoint, lighting and background variability rather than to prescribe a set-up.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "The internal recordings were captured with two consumer smartphones (an iPhone 13 and a Samsung Galaxy S9+) across five viewpoints, including one sagittal/side view and four frontal or diagonal views. Four views were recorded indoors and one outdoors to introduce lighting and background variability. The five-view setup was used to introduce viewpoint, lighting, and background variability rather than to prescribe a multi-camera deployment protocol."
+  },
+  {
+    "claim": "They did not standardise camera height or lifter-to-camera distance, which they list as a limitation.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "The specific device assigned to each view and the exact camera height and lifter-to-camera distance were not metrically standardized during collection, which is acknowledged as a limitation."
+  },
+  {
+    "claim": "Sousa and colleagues noticed occlusion of key body parts particularly in bending exercises such as squats and deadlifts, more pronounced at greater distances.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "The occlusion of key body parts was noticed particularly during exercises that involve bending movements such as squats and deadlifts. These occlusions were more pronounced at greater distances"
+  },
+  {
+    "claim": "Sousa and colleagues divide the deadlift into two states: a starting position with the torso leaning forward below one threshold and the elbows straight, and a lifting state triggered when the torso extends above a higher threshold with the elbows still straight.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "The deadlift is divided into two states: state 1, the starting position, where the torso leans forward (with a torso angle below"
+  },
+  {
+    "claim": "Sousa and colleagues divide the deadlift into two states: a starting position with the torso leaning forward below one threshold and the elbows straight, and a lifting state triggered when the torso extends above a higher threshold with the elbows still straight.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "with straight elbows (above"
+  },
+  {
+    "claim": "Sousa and colleagues divide the deadlift into two states: a starting position with the torso leaning forward below one threshold and the elbows straight, and a lifting state triggered when the torso extends above a higher threshold with the elbows still straight.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "and state 2, lifting, which is triggered when the torso is extended above"
+  },
+  {
+    "claim": "Sousa and colleagues divide the deadlift into two states: a starting position with the torso leaning forward below one threshold and the elbows straight, and a lifting state triggered when the torso extends above a higher threshold with the elbows still straight.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "and the elbows remain straight (above"
+  },
+  {
+    "claim": "Their counter increases on completion of a cycle.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "The finite state machine then evaluates these angles against the exercise-specific conditions frame by frame, triggering state transitions and increasing the repetition counter upon completion of a cycle."
+  },
+  {
+    "claim": "Shoaib and colleagues describe the deadlift as predictable phases, setup, eccentric lowering, concentric pull and lockout, with the setup and lockout relatively static and the concentric pull carrying the dynamic moments.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "deadlifts follow predictable phases—setup, eccentric lowering, concentric pull, and lockout—each with varying informational density. The setup and lockout phases are relatively static, while the concentric pull contains the dynamic, form"
+  },
+  {
+    "claim": "Their trainer marked six checkpoints by bar position: bar on the ground, below the knees, at knee level, above the knees, mid-femur and final standing.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "is manually curated by a certified IFPA trainer who selects six frames per video based on key biomechanical checkpoints corresponding to the bar’s position: (1) bar on ground, (2) initial pull below knees, (3) bar at knee level, (4) bar above knees, (5) mid-femur position, and (6) final standing position."
+  },
+  {
+    "claim": "For dropped frames, Sousa and colleagues keep the last valid phase for typically 3 to 5 frames.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Instead of immediately accepting a “None” value when a phase cannot be matched, the system temporarily retains the last valid phase for a short duration of N frames (typically N = 3–5)."
+  },
+  {
+    "claim": "Mercadal-Baudart and colleagues chose their 3D model partly because its temporal components help smooth jittery movement between frames.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10951609&retmode=xml",
+    "quote": "The Strided Transformer model was chosen as it is freely available and because of its temporal components which help to smooth any jittery movement between frames."
+  },
+  {
+    "claim": "Sousa and colleagues' deadlift errors were seven angle-threshold failures and twelve missed bottom positions.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Angle threshold (7), bottom position miss (12)"
+  },
+  {
+    "claim": "Errors mostly meant missed repetitions rather than false positives, particularly in squat and deadlift videos recorded in uncontrolled environments.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "In most cases, errors resulted in missed repetitions rather than false positives, indicating that the system remains conservative under uncertainty. This was particularly visible in squat and deadlift movements recorded in uncontrolled environments."
+  },
+  {
+    "claim": "Key body parts were occluded in bending exercises, more so at greater distances.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "The occlusion of key body parts was noticed particularly during exercises that involve bending movements such as squats and deadlifts. These occlusions were more pronounced at greater distances"
+  },
+  {
+    "claim": "Spinal curvature and the 3D bar path are not recoverable from projected 2D keypoints, and a single hip point cannot give pelvis orientation.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "This representation captures projected 2D kinematic cues only; therefore, it cannot directly recover true depth-sensitive biomechanical quantities such as 3D bar path or spinal curvature."
+  },
+  {
+    "claim": "Spinal curvature and the 3D bar path are not recoverable from projected 2D keypoints, and a single hip point cannot give pelvis orientation.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10951609&retmode=xml",
+    "quote": "The use of a single key-point for the hips means that orientation of the pelvis cannot be found from these skeleton models, and this in turn limits computation of the actual hip joint angles, and the curvature in the lower spine, amongst other quantities."
+  },
+  {
+    "claim": "Shoaib and colleagues list sensitivity to pose-estimation noise and viewpoint or occlusion effects, and with their frame selection, four of their six models lost accuracy significantly on an expanded test set that added 54 repetitions from 16 outside lifters.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "Limitations include sensitivity to pose-estimation noise and viewpoint/occlusion effects"
+  },
+  {
+    "claim": "Shoaib and colleagues list sensitivity to pose-estimation noise and viewpoint or occlusion effects, and with their frame selection, four of their six models lost accuracy significantly on an expanded test set that added 54 repetitions from 16 outside lifters.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "Under SMS, four models exhibited statistically significant degradation"
+  },
+  {
+    "claim": "Shoaib and colleagues list sensitivity to pose-estimation noise and viewpoint or occlusion effects, and with their frame selection, four of their six models lost accuracy significantly on an expanded test set that added 54 repetitions from 16 outside lifters.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "From these sources, 54 deadlift repetitions were selected under diverse viewpoints, lighting, and background conditions, drawn from 16 lifters (14 male and 2 female) with varied morphology. These external clips were reviewed using a three-annotator consensus protocol, including the original internal IFPA trainer, and retained only when consensus good-form labeling was achieved. The external samples were not used for training; instead, they were merged with the held-out internal test split to form an expanded evaluation set (N=130) used only for robustness analysis under increased real-world variability."
+  },
+  {
+    "claim": "Sousa and colleagues counted deadlifts with 95% accuracy, slightly below most exercises, which they attribute to pose estimation noise affecting the angle calculations.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Slightly lower squat/deadlift performance (95%) resulted from pose estimation noise affecting pose-derived angle proxy calculations."
+  },
+  {
+    "claim": "Mercadal-Baudart and colleagues' root mean square angle errors were within 10° for all exercises for shin angle, knee varus/valgus and flexion, hip flexion and pelvic tilt, trunk angle, spinal flexion and rib flare, with larger errors, still within 15°, for shoulder flexion and ASIS asymmetry in some exercises.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10951609&retmode=xml",
+    "quote": "were within 10° for all exercises for the following metrics: shin angle, knee varus/valgus and left/right flexion, hip flexion and pelvic tilt, trunk angle, spinal flexion lower/upper/mid and rib flare. Larger errors (though still all within 15°) were observed for shoulder flexion and ASIS asymmetry in some exercises, notably front squats and drop-jumps"
+  },
+  {
+    "claim": "They attribute the high accuracy to training on ground truth that contained these same exercises, and found that prediction accuracy reduces quickly for movements the model was not validated on.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10951609&retmode=xml",
+    "quote": "is a result of model training with ground truth data containing these same exercises and generalization needs to be considered in future."
+  },
+  {
+    "claim": "They attribute the high accuracy to training on ground truth that contained these same exercises, and found that prediction accuracy reduces quickly for movements the model was not validated on.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10951609&retmode=xml",
+    "quote": "Provisional findings show that generalization of model predictions to other exercises such as single deadlifts and golfing movements may be achieved given suitable training data, but otherwise prediction accuracy reduces quickly for non-validated movements."
+  },
+  {
+    "claim": "Shoaib and colleagues' proposed model reached 89.5% accuracy on held-out videos of their three lifters.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "achieved 89.5% accuracy with high precision and recall"
+  },
+  {
+    "claim": "Shoaib and colleagues' proposed model reached 89.5% accuracy on held-out videos of their three lifters.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "The dataset is partitioned into 301 training videos (80%) and 76 held-out test videos (20%)."
+  },
+  {
+    "claim": "With a lifter held out entirely, accuracy ranged from about 50 to 74%, so the authors read their main result as subject-dependent rather than full cross-person generalization.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "In this stricter setting, each participant is held out entirely during testing. Held-out-subject accuracy ranged from about 50 to 74%, which is lower than the subject-dependent held-out video results. This indicates that the original video-level evaluation should be interpreted as subject-dependent performance rather than full cross-person generalization."
+  },
+  {
+    "claim": "The full pipeline took about 0.8 s per repetition on a desktop GPU, not a phone.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "The full pipeline ran in approximately 0.8 s per repetition."
+  },
+  {
+    "claim": "The full pipeline took about 0.8 s per repetition on a desktop GPU, not a phone.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "The latency results were measured on a desktop GPU rather than on a mobile or edge device; therefore, smartphone or embedded deployment feasibility remains future work."
+  },
+  {
+    "claim": "Shoaib and colleagues describe their system as 2D projection-based form screening rather than 3D biomechanical measurement.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "Because the system relies on monocular 2D pose, it should be interpreted as 2D projection-based form screening rather than direct 3D biomechanical measurement."
+  },
+  {
+    "claim": "Shoaib and colleagues state that projected 2D keypoints cannot recover depth-sensitive quantities such as spinal curvature or the 3D bar path, and common skeletons have no spine points.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "This representation captures projected 2D kinematic cues only; therefore, it cannot directly recover true depth-sensitive biomechanical quantities such as 3D bar path or spinal curvature."
+  },
+  {
+    "claim": "Mercadal-Baudart and colleagues added spinal and pelvic points to a 3D model trained on their own motion-capture data to estimate spinal flexion.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10951609&retmode=xml",
+    "quote": "in addition to the main key-points common to many HPE models (ankles, knees, hips, shoulders, elbows, wrists, head), the toes and pelvis (left and right PSIS and Iliac crest) and the spine (spinous processes of the vertebral bodies L2, T10, T4 and C7) and the sternum and clavicle are included"
+  },
+  {
+    "claim": "Mercadal-Baudart and colleagues added spinal and pelvic points to a 3D model trained on their own motion-capture data to estimate spinal flexion.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10951609&retmode=xml",
+    "quote": "The training dataset consisted only of the ground truth data collected using the motion capture system described above, since open-source datasets have insufficient detail."
+  },
+  {
+    "claim": "Mercadal-Baudart and colleagues added spinal and pelvic points to a 3D model trained on their own motion-capture data to estimate spinal flexion.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10951609&retmode=xml",
+    "quote": "were within 10° for all exercises for the following metrics: shin angle, knee varus/valgus and left/right flexion, hip flexion and pelvic tilt, trunk angle, spinal flexion lower/upper/mid and rib flare."
+  },
+  {
+    "claim": "Sousa and colleagues' state machine uses a torso angle, forward-leaning at the start and extended in the lift, with a check that the elbows stay straight in both states.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "The deadlift is divided into two states: state 1, the starting position, where the torso leans forward (with a torso angle below"
+  },
+  {
+    "claim": "Sousa and colleagues' state machine uses a torso angle, forward-leaning at the start and extended in the lift, with a check that the elbows stay straight in both states.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "and the elbows remain straight (above"
+  },
+  {
+    "claim": "Shoaib and colleagues describe the setup and lockout as relatively static and the pull as the dynamic phase, which in our reading makes the lockout a natural point to count.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "The setup and lockout phases are relatively static, while the concentric pull contains the dynamic, form"
+  },
+  {
+    "claim": "Mercadal-Baudart and colleagues placed phones about 3 m from the athlete, on the floor and at about 1.5 m height, and Shoaib and colleagues filmed from one side view and four frontal or diagonal views without standardising height or distance.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10951609&retmode=xml",
+    "quote": "For validation, the exercises performed during the VICON experiments were recorded with multiple mobile device cameras placed around the athlete in a radius of approximately 3 m, both on the floor and on tripods at approximately 1.5 m height"
+  },
+  {
+    "claim": "Mercadal-Baudart and colleagues placed phones about 3 m from the athlete, on the floor and at about 1.5 m height, and Shoaib and colleagues filmed from one side view and four frontal or diagonal views without standardising height or distance.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "The internal recordings were captured with two consumer smartphones (an iPhone 13 and a Samsung Galaxy S9+) across five viewpoints, including one sagittal/side view and four frontal or diagonal views. Four views were recorded indoors and one outdoors to introduce lighting and background variability. The five-view setup was used to introduce viewpoint, lighting, and background variability rather than to prescribe a multi-camera deployment protocol. The specific device assigned to each view and the exact camera height and lifter-to-camera distance were not metrically standardized during collection, which is acknowledged as a limitation."
+  },
+  {
+    "claim": "Sousa and colleagues counted deadlifts with 95% accuracy.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Slightly lower squat/deadlift performance (95%) resulted from pose estimation noise affecting pose-derived angle proxy calculations."
+  },
+  {
+    "claim": "Shoaib and colleagues' form classifier reached 89.5% on new videos of its three training lifters but about 50 to 74% on a lifter held out of training.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "achieved 89.5% accuracy with high precision and recall"
+  },
+  {
+    "claim": "Shoaib and colleagues' form classifier reached 89.5% on new videos of its three training lifters but about 50 to 74% on a lifter held out of training.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13569836/fullTextXML",
+    "quote": "In this stricter setting, each participant is held out entirely during testing. Held-out-subject accuracy ranged from about 50 to 74%, which is lower than the subject-dependent held-out video results. This indicates that the original video-level evaluation should be interpreted as subject-dependent performance rather than full cross-person generalization."
+  }
+]

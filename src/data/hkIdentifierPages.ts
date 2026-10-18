@@ -36,7 +36,7 @@ import { HK_READONLY } from "./healthkitWritability";
 import { HK_METADATA_KEYS, HK_METADATA_KEYS_FETCHED_ON, type HkMetadataKey } from "./healthkitMetadataKeys";
 import { ROWS as MATRIX_ROWS, type Row as MatrixRow } from "./matrix";
 import { hkGroupSlugOf, hkGroupLabel } from "./hkGroupPages";
-import { appleCases } from "@/components/MetricFacts";
+import { appleCases } from "@/lib/appleCases";
 import { clampDescription, clampTitle } from "@/lib/cluster";
 
 export const HK_ID_BASE = "/healthkit-identifiers";
