@@ -1,0 +1,362 @@
+[
+  {
+    "claim": "A camera lunge counter follows both knee angles, front and rear, from the hip, knee and ankle landmarks.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "The lunge has three phases: phase 1, the starting position, where the individual is stood upright, with front and rear knee angles above"
+  },
+  {
+    "claim": "A camera lunge counter follows both knee angles, front and rear, from the hip, knee and ankle landmarks.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "The angle between the keypoints RHip, RKnee and RAnkle."
+  },
+  {
+    "claim": "In one study's design, a repetition starts upright with both knee angles above a threshold, both drop below a second threshold as the person steps into the lunge, and the cycle closes when they extend again.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "The lunge has three phases: phase 1, the starting position, where the individual is stood upright, with front and rear knee angles above"
+  },
+  {
+    "claim": "In one study's design, a repetition starts upright with both knee angles above a threshold, both drop below a second threshold as the person steps into the lunge, and the cycle closes when they extend again.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "phase 2, stepping, where the individual enters the lunge as both knee angles decrease to below"
+  },
+  {
+    "claim": "In one study's design, a repetition starts upright with both knee angles above a threshold, both drop below a second threshold as the person steps into the lunge, and the cycle closes when they extend again.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "and phase 3, returning, which is the recovery phase as the knee angles are extended again above"
+  },
+  {
+    "claim": "The camera view moves the numbers a lot: in a 2025 study that filmed lunges from four cameras 45 degrees apart, OpenPose's knee-angle error against marker-based capture ranged from 15.50 to 29.44 degrees RMSE by view, and one participant's knee angle at the same instant read anywhere from 51.5 to 99.3 degrees depending on the camera.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "4 RGB cameras (iPad Pro 11″, 2021 Model; Apple Inc., Cupertino, CA, USA) were positioned at 45° intervals around the measurement space."
+  },
+  {
+    "claim": "The camera view moves the numbers a lot: in a 2025 study that filmed lunges from four cameras 45 degrees apart, OpenPose's knee-angle error against marker-based capture ranged from 15.50 to 29.44 degrees RMSE by view, and one participant's knee angle at the same instant read anywhere from 51.5 to 99.3 degrees depending on the camera.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "The RMSE for the knee ranges from 15.50° to 29.44°, and for the hip joint, it is from 15.20° to 25.25°."
+  },
+  {
+    "claim": "The camera view moves the numbers a lot: in a 2025 study that filmed lunges from four cameras 45 degrees apart, OpenPose's knee-angle error against marker-based capture ranged from 15.50 to 29.44 degrees RMSE by view, and one participant's knee angle at the same instant read anywhere from 51.5 to 99.3 degrees depending on the camera.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "Root mean square error (RMSE [°]) and bias [°] for each joint angle, comparing each camera viewing angle against the gold standard."
+  },
+  {
+    "claim": "The camera view moves the numbers a lot: in a 2025 study that filmed lunges from four cameras 45 degrees apart, OpenPose's knee-angle error against marker-based capture ranged from 15.50 to 29.44 degrees RMSE by view, and one participant's knee angle at the same instant read anywhere from 51.5 to 99.3 degrees depending on the camera.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "we can see one subject during the turning point of the lunge, which also represents the peak knee angle. What is apparent from looking at it is the big difference in the knee joint angle."
+  },
+  {
+    "claim": "The camera view moves the numbers a lot: in a 2025 study that filmed lunges from four cameras 45 degrees apart, OpenPose's knee-angle error against marker-based capture ranged from 15.50 to 29.44 degrees RMSE by view, and one participant's knee angle at the same instant read anywhere from 51.5 to 99.3 degrees depending on the camera.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "Front Left: 51.5°."
+  },
+  {
+    "claim": "The camera view moves the numbers a lot: in a 2025 study that filmed lunges from four cameras 45 degrees apart, OpenPose's knee-angle error against marker-based capture ranged from 15.50 to 29.44 degrees RMSE by view, and one participant's knee angle at the same instant read anywhere from 51.5 to 99.3 degrees depending on the camera.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "Back Left: 99.3°."
+  },
+  {
+    "claim": "Baldinger and colleagues (Sensors, 2025) had 20 healthy adults perform six front lunges each while four iPads, placed at 45° intervals around them, filmed them and a laboratory with 12 Vicon cameras measured them.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "In total, 20 healthy participants (8 females and 12 males; age: 25.1 ± 5.0 years; height: 1.75 ± 0.09 m; weight: 70.9 ± 12.2 kg; and BMI: 23.11 ± 2.52) volunteered to take part in this study."
+  },
+  {
+    "claim": "Baldinger and colleagues (Sensors, 2025) had 20 healthy adults perform six front lunges each while four iPads, placed at 45° intervals around them, filmed them and a laboratory with 12 Vicon cameras measured them.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "During the experiment, each participant was instructed to perform 6 repetitions of front lunges."
+  },
+  {
+    "claim": "Baldinger and colleagues (Sensors, 2025) had 20 healthy adults perform six front lunges each while four iPads, placed at 45° intervals around them, filmed them and a laboratory with 12 Vicon cameras measured them.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "4 RGB cameras (iPad Pro 11″, 2021 Model; Apple Inc., Cupertino, CA, USA) were positioned at 45° intervals around the measurement space."
+  },
+  {
+    "claim": "Baldinger and colleagues (Sensors, 2025) had 20 healthy adults perform six front lunges each while four iPads, placed at 45° intervals around them, filmed them and a laboratory with 12 Vicon cameras measured them.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "This study was performed in a laboratory equipped with 12 Vicon cameras (Vicon Motion Systems Ltd., Oxford, UK) for the optical marker-based MoCap."
+  },
+  {
+    "claim": "Data from 16 participants were analysed, comparing knee, hip, elbow and shoulder angles from OpenPose's 25-keypoint model with the marker-based angles.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "Data of four of the participants had to be excluded since a portion of the data was missing for technical reasons, with those reasons being marker visibility in three cases and no recording of the iPads in one case."
+  },
+  {
+    "claim": "Data from 16 participants were analysed, comparing knee, hip, elbow and shoulder angles from OpenPose's 25-keypoint model with the marker-based angles.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "The results reported the 16 resulting datasets."
+  },
+  {
+    "claim": "Data from 16 participants were analysed, comparing knee, hip, elbow and shoulder angles from OpenPose's 25-keypoint model with the marker-based angles.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "RGB video data were processed using OpenPose using the 25 keypoint model."
+  },
+  {
+    "claim": "Data from 16 participants were analysed, comparing knee, hip, elbow and shoulder angles from OpenPose's 25-keypoint model with the marker-based angles.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "Kinematic data were compared against a gold-standard marker-based motion capture system to quantify the effect of the camera viewing angle on the validity of joint angle estimation of the knee, hip, elbow and shoulder joints."
+  },
+  {
+    "claim": "Sousa and colleagues (Journal of Functional Morphology and Kinesiology, 2026) counted lunges among 12 exercises with angle-threshold state machines on MediaPipe landmarks.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Experimental validation was conducted on a dataset of 1513 videos of 12 functional exercises (squats, deadlifts, lunges, shoulder presses, planks, push-ups, pull-ups, bent-over rows, box jumps, thrusters, overhead squats, and burpees)"
+  },
+  {
+    "claim": "Sousa and colleagues (Journal of Functional Morphology and Kinesiology, 2026) counted lunges among 12 exercises with angle-threshold state machines on MediaPipe landmarks.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "The proposed MDL models each exercise as a finite-state machine defined by pose-derived angle proxy transitions, allowing movements to be described in a modular and reusable way. Demonstrated with MediaPipe landmark extraction from monocular video, while the MDL remains compatible with any pose estimation algorithm, the framework focuses on exercise phase detection and repetition counting."
+  },
+  {
+    "claim": "Sousa and colleagues' lunge module reads the front and the rear knee angle together.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "The lunge has three phases: phase 1, the starting position, where the individual is stood upright, with front and rear knee angles above"
+  },
+  {
+    "claim": "Sousa and colleagues' lunge module reads the front and the rear knee angle together.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "phase 2, stepping, where the individual enters the lunge as both knee angles decrease to below"
+  },
+  {
+    "claim": "Baldinger and colleagues computed the knee angle from OpenPose's RHip, RKnee and RAnkle keypoints, and the hip angle between the line from RHip to RKnee and the line from MHip to Neck.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "The angle between the keypoints RHip, RKnee and RAnkle."
+  },
+  {
+    "claim": "Baldinger and colleagues computed the knee angle from OpenPose's RHip, RKnee and RAnkle keypoints, and the hip angle between the line from RHip to RKnee and the line from MHip to Neck.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "The angle between the straight line from RHip to RKnee and the straight line from MHip to Neck."
+  },
+  {
+    "claim": "Baldinger and colleagues put their cameras between the frontal and sagittal views on purpose, to represent people training at home or in rehabilitation who may have only one smartphone camera.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "Those camera angles were chosen for two reasons: (1) to examine the angles that fall between frontal and sagittal perspectives, and (2) to represent and investigate the impact in real-world scenarios where individuals in home or rehabilitation training may only have one (smartphone) camera available."
+  },
+  {
+    "claim": "Agreement (ICC) for the knee angle was excellent from all but the front-left camera, which reached only good agreement, and the authors' overall reading is that back-viewing cameras performed best and gave the lowest percentage deviations.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "The absolute agreement in terms of ICC(2,1) is excellent for the knee joint for all but the front left camera, which achieves good agreement."
+  },
+  {
+    "claim": "Agreement (ICC) for the knee angle was excellent from all but the front-left camera, which reached only good agreement, and the authors' overall reading is that back-viewing cameras performed best and gave the lowest percentage deviations.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "In general, back-viewing cameras performed best and resulted in the lowest percental deviations."
+  },
+  {
+    "claim": "Where a sagittal or frontal view will not capture the full range of motion, they suggest a back-viewing camera rather than a front-viewing one, and they conclude that each movement needs a detailed examination before anyone recommends a camera angle for it.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "In instances where sagittal or frontal camera angles are anticipated to fall short in capturing the complete range of motion of the body segments under investigation, we suggest the use of back-viewing camera angles rather than front-viewing camera angles."
+  },
+  {
+    "claim": "Where a sagittal or frontal view will not capture the full range of motion, they suggest a back-viewing camera rather than a front-viewing one, and they conclude that each movement needs a detailed examination before anyone recommends a camera angle for it.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "The findings of this study underscore the importance of conducting a detailed examination of individual movements before proposing specific camera angles for users in diverse settings."
+  },
+  {
+    "claim": "For one participant at the same instant, the turning point of the lunge, the knee angle read 56.9° from the front right, 51.5° from the front left, 99.3° from the back left and 68.2° from the back right.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "we can see one subject during the turning point of the lunge, which also represents the peak knee angle. What is apparent from looking at it is the big difference in the knee joint angle."
+  },
+  {
+    "claim": "For one participant at the same instant, the turning point of the lunge, the knee angle read 56.9° from the front right, 51.5° from the front left, 99.3° from the back left and 68.2° from the back right.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "Graphical comparison of knee angles measured across all camera views simultaneously during the turning point of the lunge, which also represents the peak knee angle."
+  },
+  {
+    "claim": "For one participant at the same instant, the turning point of the lunge, the knee angle read 56.9° from the front right, 51.5° from the front left, 99.3° from the back left and 68.2° from the back right.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "Front Right: 56.9°."
+  },
+  {
+    "claim": "For one participant at the same instant, the turning point of the lunge, the knee angle read 56.9° from the front right, 51.5° from the front left, 99.3° from the back left and 68.2° from the back right.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "Front Left: 51.5°."
+  },
+  {
+    "claim": "For one participant at the same instant, the turning point of the lunge, the knee angle read 56.9° from the front right, 51.5° from the front left, 99.3° from the back left and 68.2° from the back right.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "Back Left: 99.3°."
+  },
+  {
+    "claim": "For one participant at the same instant, the turning point of the lunge, the knee angle read 56.9° from the front right, 51.5° from the front left, 99.3° from the back left and 68.2° from the back right.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "Back Right: 68.2°."
+  },
+  {
+    "claim": "The authors found no keypoint estimation errors behind this, only the perspective of 2D joint angles.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "Deeper investigation of the OpenPose video data reveals no estimation errors but rather the issue of perspective when calculating 2D joint angles"
+  },
+  {
+    "claim": "They also note that occlusions of the lower body are rare in perfect sagittal or frontal views, and that the front-left camera had the worst view of the right leg.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "it becomes apparent that the front left camera had the worst view of the right leg—so it is not really surprising that this view performed worst. Occlusions can occur in any of the perspectives; however, they appear rather seldom in the lower body in the perfect sagittal or frontal perspectives, which indicates those to be superior when investigating lower body joints."
+  },
+  {
+    "claim": "Sousa and colleagues, counting rather than measuring, note that their pose model's performance can degrade when camera angles deviate from frontal or lateral views.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "MediaPipe’s performance can degrade when the subject is partially occluded or moves too quickly or when camera angles deviate from frontal or lateral views."
+  },
+  {
+    "claim": "Sousa and colleagues' lunge has three phases: standing upright with the front and rear knee angles above one threshold, stepping into the lunge as both knee angles drop below a second, and returning as they extend again.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "The lunge has three phases: phase 1, the starting position, where the individual is stood upright, with front and rear knee angles above"
+  },
+  {
+    "claim": "Sousa and colleagues' lunge has three phases: standing upright with the front and rear knee angles above one threshold, stepping into the lunge as both knee angles drop below a second, and returning as they extend again.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "phase 2, stepping, where the individual enters the lunge as both knee angles decrease to below"
+  },
+  {
+    "claim": "Sousa and colleagues' lunge has three phases: standing upright with the front and rear knee angles above one threshold, stepping into the lunge as both knee angles drop below a second, and returning as they extend again.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "and phase 3, returning, which is the recovery phase as the knee angles are extended again above"
+  },
+  {
+    "claim": "Baldinger and colleagues' protocol alternates legs: the front leg pushes back to the start, then the exercise resumes with the contralateral movement.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "In the ascending phase, the front leg pushes back to the starting position. The exercise then resumes with the contralateral movement."
+  },
+  {
+    "claim": "They smoothed their joint angles with a Savitzky–Golay filter, third order with a window length of 15, chosen because it removes keypoint noise while preserving the peaks and valleys of the signal; their video ran at a mean of 43 fps.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "Joint angle data from OpenPose were subsequently filtered using the Savitzky–Golay filter (third order with a window length of 15). This filter method was chosen to smooth the noisy components of the data, originating from the keypoint detected, which is a pixel value derived before calculating the joint angle, yet still preserving the peaks and valleys of the original data."
+  },
+  {
+    "claim": "They smoothed their joint angles with a Savitzky–Golay filter, third order with a window length of 15, chosen because it removes keypoint noise while preserving the peaks and valleys of the signal; their video ran at a mean of 43 fps.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "Video data were recorded at a resolution of 1194 × 834 pixels with a mean sampling frequency of 43 fps, which was subject to a slight variance (±2.6 fps) across all recorded videos."
+  },
+  {
+    "claim": "They also propose biomechanical constraints, restricting joint angles to anatomical limits and penalising unrealistic angles or large jumps between consecutive frames.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "We propose incorporating biomechanical constraints, such as restricting joint angles to anatomical limits. Furthermore, algorithms could improve joint angle estimation by applying penalties for unrealistic angles or significant deviations in joint angles between consecutive frames."
+  },
+  {
+    "claim": "When no phase matches, Sousa and colleagues keep the last valid phase for a short window, typically 3 to 5 frames, instead of immediately falling back to no phase.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Instead of immediately accepting a “None” value when a phase cannot be matched, the system temporarily retains the last valid phase for a short duration of N frames (typically N = 3–5)."
+  },
+  {
+    "claim": "Baldinger and colleagues' largest deviations came at the peaks of the movement, when the joints are at their full range of motion, which is exactly where a bottom threshold sits.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "the highest deviations occur during the peaks of the movement when the joints are in the full range of motion."
+  },
+  {
+    "claim": "The front-left view gave the weakest agreement, and the shoulder angle agreed only poorly to moderately with the marker-based system from almost every view.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "When comparing the individual camera views, it becomes evident that the front left viewing point only has moderate to good agreement (ICC = 0.72–0.86), while all others show mostly good to excellent agreement for all joint angles except the shoulder joint, which has poor to moderate agreement for all camera views. This is a first indication that the front left view is not ideal for this type of movement."
+  },
+  {
+    "claim": "The front-left view gave the weakest agreement, and the shoulder angle agreed only poorly to moderately with the marker-based system from almost every view.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "In the results, the shoulder flexion/extension angle derived from OpenPose shows only poor to moderate agreement with the marker-based MoCap system for almost all views."
+  },
+  {
+    "claim": "Sousa and colleagues note that small landmark errors there lead to incorrect or delayed state transitions.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "MediaPipe’s performance can degrade when the subject is partially occluded or moves too quickly or when camera angles deviate from frontal or lateral views. In such cases, small landmark inaccuracies propagate into pose-derived angle proxy miscalculations, leading to incorrect or delayed state transitions."
+  },
+  {
+    "claim": "Baldinger and colleagues' OpenPose knee-angle RMSE ranged from 15.50° to 29.44° by camera view and the hip angle from 15.20° to 25.25°, while knee-angle agreement (ICC) stayed good to excellent, at 0.86 to 0.96.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "The RMSE for the knee ranges from 15.50° to 29.44°, and for the hip joint, it is from 15.20° to 25.25°."
+  },
+  {
+    "claim": "Baldinger and colleagues' OpenPose knee-angle RMSE ranged from 15.50° to 29.44° by camera view and the hip angle from 15.20° to 25.25°, while knee-angle agreement (ICC) stayed good to excellent, at 0.86 to 0.96.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "Root mean square error (RMSE [°]) and bias [°] for each joint angle, comparing each camera viewing angle against the gold standard."
+  },
+  {
+    "claim": "Baldinger and colleagues' OpenPose knee-angle RMSE ranged from 15.50° to 29.44° by camera view and the hip angle from 15.20° to 25.25°, while knee-angle agreement (ICC) stayed good to excellent, at 0.86 to 0.96.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "Those findings are partly in line with our finding, where the ICC of the knee joint was reported as good to excellent (ICC = 0.86–0.96)"
+  },
+  {
+    "claim": "The authors read high correlation as similar waveforms and trends, so in our reading the shape of the knee-angle curve survives a change of view better than its absolute values do.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "Intraclass correlations are an indication of how strongly two measurements resemble each other. High correlations mean the joint angle curves show similar waveforms and trends, which is essential in the validity analysis."
+  },
+  {
+    "claim": "Across all joints and views, the average deviation from the marker-based angles ranged from 15.2° to 36.48°.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "Over all joint angles and camera views, the average deviation between the OpenPose joint angles and the marker-based joint angles ranges from 15.2° to 36.48°."
+  },
+  {
+    "claim": "They recorded in a laboratory with constant artificial light and the blinds closed, at 1194 × 834 pixels, with participants in close-fitting clothes.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "Lighting conditions were kept constant for all participants by closing the window blinds and using the same artificial light for all experiments."
+  },
+  {
+    "claim": "They recorded in a laboratory with constant artificial light and the blinds closed, at 1194 × 834 pixels, with participants in close-fitting clothes.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "Video data were recorded at a resolution of 1194 × 834 pixels with a mean sampling frequency of 43 fps, which was subject to a slight variance (±2.6 fps) across all recorded videos."
+  },
+  {
+    "claim": "They recorded in a laboratory with constant artificial light and the blinds closed, at 1194 × 834 pixels, with participants in close-fitting clothes.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "Participants were instructed to wear close-fitting outfits for the experiment."
+  },
+  {
+    "claim": "Sousa and colleagues' counter detected every lunge repetition in their test set, which held 21 lunge videos: 3 they recorded and 18 from competition and online footage.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Accuracy was consistently high across exercise categories, with lunges, pull-ups, and thrusters achieving perfect detection (100%)."
+  },
+  {
+    "claim": "Sousa and colleagues' counter detected every lunge repetition in their test set, which held 21 lunge videos: 3 they recorded and 18 from competition and online footage.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Recorded Videos (R): 240 videos of squats, 160 videos of deadlifts, 160 videos of shoulder presses, 2 videos of bent-over rows, 4 videos of box jumps, 6 videos of burpees, 3 videos of lunges"
+  },
+  {
+    "claim": "Sousa and colleagues' counter detected every lunge repetition in their test set, which held 21 lunge videos: 3 they recorded and 18 from competition and online footage.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Competition and YouTube Videos (C): 24 videos of deadlifts, 49 videos of shoulder presses, 171 videos of squats, 18 videos of lunges"
+  },
+  {
+    "claim": "Sousa and colleagues' counter detected every lunge repetition in their test set, which held 21 lunge videos: 3 they recorded and 18 from competition and online footage.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "R: recorded at MAREBox facility; P: public pose datasets; C: competition and online videos."
+  },
+  {
+    "claim": "In Baldinger and colleagues' 2025 study with four cameras between the frontal and sagittal views, back-viewing cameras performed best and the front-left view was weakest, and the authors advise examining each movement before recommending a camera angle.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "In general, back-viewing cameras performed best and resulted in the lowest percental deviations. (4) Conclusions: The findings of this study underscore the importance of conducting a detailed examination of individual movements before proposing specific camera angles for users in diverse settings."
+  },
+  {
+    "claim": "In Baldinger and colleagues' 2025 study with four cameras between the frontal and sagittal views, back-viewing cameras performed best and the front-left view was weakest, and the authors advise examining each movement before recommending a camera angle.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "When comparing the different camera viewing angles, it becomes evident that the front left camera shows the highest mean percental deviation of 27%, whereas all other perspectives show similar results of 17–18%."
+  },
+  {
+    "claim": "Sousa and colleagues note that their pose model can degrade when the camera deviates from frontal or lateral views, so test the placement you plan to ship.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "MediaPipe’s performance can degrade when the subject is partially occluded or moves too quickly or when camera angles deviate from frontal or lateral views."
+  },
+  {
+    "claim": "Sousa and colleagues' lunge module requires both the front and rear knee angles to drop below a threshold to enter the lunge and to extend above one again on the return, which in our reading keeps a single bent knee from completing a cycle.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "phase 2, stepping, where the individual enters the lunge as both knee angles decrease to below"
+  },
+  {
+    "claim": "Sousa and colleagues' lunge module requires both the front and rear knee angles to drop below a threshold to enter the lunge and to extend above one again on the return, which in our reading keeps a single bent knee from completing a cycle.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "and phase 3, returning, which is the recovery phase as the knee angles are extended again above"
+  },
+  {
+    "claim": "Your counter also has to decide whether one rep is one leg or a left-right pair, because a protocol like Baldinger and colleagues' alternates legs.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "In the ascending phase, the front leg pushes back to the starting position. The exercise then resumes with the contralateral movement."
+  },
+  {
+    "claim": "Baldinger and colleagues measured OpenPose knee-angle RMSE of 15.50 to 29.44 degrees against marker-based capture depending on the camera, with the largest deviations at the bottom of the lunge.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "The RMSE for the knee ranges from 15.50° to 29.44°, and for the hip joint, it is from 15.20° to 25.25°."
+  },
+  {
+    "claim": "Baldinger and colleagues measured OpenPose knee-angle RMSE of 15.50 to 29.44 degrees against marker-based capture depending on the camera, with the largest deviations at the bottom of the lunge.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "the highest deviations occur during the peaks of the movement when the joints are in the full range of motion."
+  },
+  {
+    "claim": "Baldinger and colleagues measured OpenPose knee-angle RMSE of 15.50 to 29.44 degrees against marker-based capture depending on the camera, with the largest deviations at the bottom of the lunge.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "we extracted joint angles at the peak knee flexion for each repetition of lunges, which represents the turning point of the movement and full range of motion for all four joint angles of interest."
+  }
+]

@@ -1,0 +1,307 @@
+[
+  {
+    "claim": "Camera angle matters: in a 2026 study that filmed 22 adults from 12 phone positions, one phone pipeline counted up to 85.7% of push-ups correctly from a diagonal view at 90 to 180 cm and 20% from the front at 360 cm.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "Push-ups were most accurately detected from diagonal views at 90 to 180 cm (up to 85.7% detection; MAE=0.28) and least accurately from the front at 360 cm (20%; MAE=2.70)."
+  },
+  {
+    "claim": "Camera angle matters: in a 2026 study that filmed 22 adults from 12 phone positions, one phone pipeline counted up to 85.7% of push-ups correctly from a diagonal view at 90 to 180 cm and 20% from the front at 360 cm.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "and 22 (19 male participants and 3 female participants) completed the push-up protocol"
+  },
+  {
+    "claim": "Camera angle matters: in a 2026 study that filmed 22 adults from 12 phone positions, one phone pipeline counted up to 85.7% of push-ups correctly from a diagonal view at 90 to 180 cm and 20% from the front at 360 cm.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "we also calculated a detection rate for each video, defined as (prediction or ground truth) x100, representing the percentage of repetitions counted correctly"
+  },
+  {
+    "claim": "Thresholds from studies, such as a 140-degree elbow angle for the top position, are starting points to calibrate for your camera, model and users.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "The red line represents the elbow angle threshold which is set as 140 degrees. This empirically chosen value aims to prevent excessive bending of the elbow during the upward phase. This threshold can be adjusted at different actual conditions."
+  },
+  {
+    "claim": "Oliosi and colleagues (JMIR mHealth and uHealth, 2026) filmed 22 healthy university students doing push-ups from 12 phone positions and scored a commercial phone pipeline's counts against two raters.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "Each participant completed their assigned exercise across 12 predefined smartphone camera configurations, yielding approximately 264 squat trials (n=22) and 264 push-up trials (n=22)."
+  },
+  {
+    "claim": "Oliosi and colleagues (JMIR mHealth and uHealth, 2026) filmed 22 healthy university students doing push-ups from 12 phone positions and scored a commercial phone pipeline's counts against two raters.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "Video data were processed using a multistage PE and repetition detection pipeline designed for real-world deployment on the Dotmoovs mobile platform"
+  },
+  {
+    "claim": "Oliosi and colleagues (JMIR mHealth and uHealth, 2026) filmed 22 healthy university students doing push-ups from 12 phone positions and scored a commercial phone pipeline's counts against two raters.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "All video samples were independently annotated by 2 trained raters (an exercise physiologist and a physical therapist)"
+  },
+  {
+    "claim": "Men did push-ups in a standard plank position and women could use a knee-supported variation.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "Male participants performed push-ups in a standard plank position, while female participants were allowed a modified knee-supported variation."
+  },
+  {
+    "claim": "Lei and colleagues (Sensors, 2025) built a fixed-camera assessment system on MediaPipe's BlazePose landmarks with state machines for pull-ups, push-ups and sit-ups, and tested its counts against human assessors.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "Posture reconstruction employs BlazePose model to generate anatomical landmarks"
+  },
+  {
+    "claim": "Lei and colleagues (Sensors, 2025) built a fixed-camera assessment system on MediaPipe's BlazePose landmarks with state machines for pull-ups, push-ups and sit-ups, and tested its counts against human assessors.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "In the aforementioned pull-up, push-up, and sit-up experiments, we conducted tests with individual subjects. In fact, our system is designed under the specification that one camera is dedicated to capturing one person to ensure accurate posture recognition."
+  },
+  {
+    "claim": "Lei and colleagues (Sensors, 2025) built a fixed-camera assessment system on MediaPipe's BlazePose landmarks with state machines for pull-ups, push-ups and sit-ups, and tested its counts against human assessors.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "was meticulously recorded as ground truth by experienced human assessors"
+  },
+  {
+    "claim": "Sousa and colleagues (Journal of Functional Morphology and Kinesiology, 2026) counted push-ups among 12 exercises with angle-threshold state machines on MediaPipe landmarks.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Experimental validation was conducted on a dataset of 1513 videos of 12 functional exercises (squats, deadlifts, lunges, shoulder presses, planks, push-ups, pull-ups, bent-over rows, box jumps, thrusters, overhead squats, and burpees)"
+  },
+  {
+    "claim": "Gu and colleagues (Sensors, 2026) recorded push-ups, sit-ups and squats from the side, the front and behind, and report how often their camera branch recognised each exercise from each view.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "The primary evaluation used IMV-Exercise, which contains 10 participants, 900 repetition-level samples, three exercise categories (push-ups, sit-ups, and squats), and side-, front-, and posterior-view recordings."
+  },
+  {
+    "claim": "Lei and colleagues define three angles: the elbow angle from shoulder, elbow and hand; a hip angle from foot, hip and shoulder, to keep the body straight; and a torso angle from shoulder, foot and hand, for how low the body is.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "Angle of shoulder → elbow → hand joints."
+  },
+  {
+    "claim": "Lei and colleagues define three angles: the elbow angle from shoulder, elbow and hand; a hip angle from foot, hip and shoulder, to keep the body straight; and a torso angle from shoulder, foot and hand, for how low the body is.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "Angle of foot → hip → shoulder joints."
+  },
+  {
+    "claim": "Lei and colleagues define three angles: the elbow angle from shoulder, elbow and hand; a hip angle from foot, hip and shoulder, to keep the body straight; and a torso angle from shoulder, foot and hand, for how low the body is.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "Angle of shoulder → foot → hand joints (2D XOY coordinate system)."
+  },
+  {
+    "claim": "Lei and colleagues define three angles: the elbow angle from shoulder, elbow and hand; a hip angle from foot, hip and shoulder, to keep the body straight; and a torso angle from shoulder, foot and hand, for how low the body is.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "The red line indicates the threshold which is set at 140 degrees. The purpose of this threshold is to ensure that the tester maintains a straight body."
+  },
+  {
+    "claim": "They add one height test: entering the bottom position requires the mouth to drop below the minimum shoulder height seen during the set.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "A necessary condition for entering the low support state during push-ups is that the mouth height must be lower than the minimum shoulder height."
+  },
+  {
+    "claim": "Sousa and colleagues likewise verify that the body remains extended in a horizontal alignment throughout the movement.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "the system verifies that the body remains extended in a horizontal alignment throughout the movement to ensure proper plank posture"
+  },
+  {
+    "claim": "In Oliosi and colleagues' study the best push-up views were diagonal at 90 to 180 cm, with up to 85.7% of repetitions counted correctly and a mean absolute error of 0.28, and the worst was frontal at 360 cm, at 20% and 2.70.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "Push-ups were most accurately detected from diagonal views at 90 to 180 cm (up to 85.7% detection; MAE=0.28) and least accurately from the front at 360 cm (20%; MAE=2.70)."
+  },
+  {
+    "claim": "Their conclusion for push-ups is that diagonal views are preferred, and they put the difference from squats down to posture, horizontal for push-ups and upright for squats.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "For push-ups, diagonal views are preferred, while for squats, both diagonal and frontal views perform well."
+  },
+  {
+    "claim": "Their conclusion for push-ups is that diagonal views are preferred, and they put the difference from squats down to posture, horizontal for push-ups and upright for squats.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "likely due to differences in exercise posture (horizontal for push-ups vs upright for squats)."
+  },
+  {
+    "claim": "They chose push-ups partly for their typical self-occlusion, the torso hiding the limbs.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "These exercises were selected due to their complex multijoint biomechanics and typical self-occlusions (eg, torso obscuring limbs in push-ups)."
+  },
+  {
+    "claim": "Gu and colleagues' camera branch recognised push-up frames 100.0% of the time from the side and 93.2% from the front, but from behind it rejected all 1000 push-up frames, which the authors attribute to keypoints occluded by the trunk or the ground.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "Under the side view, the frame-level accuracies for push-ups, sit-ups, and squats were 100.0%, 95.0%, and 99.2%, respectively. Under the front view, the corresponding accuracies were 93.2%, 88.5%, and 86.6%. Under the posterior view, the accuracies were 0.0%, 25.7%, and 66.2%, respectively."
+  },
+  {
+    "claim": "Gu and colleagues' camera branch recognised push-up frames 100.0% of the time from the side and 93.2% from the front, but from behind it rejected all 1000 push-up frames, which the authors attribute to keypoints occluded by the trunk or the ground.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "with all 1000 posterior push-up frames rejected"
+  },
+  {
+    "claim": "Gu and colleagues' camera branch recognised push-up frames 100.0% of the time from the side and 93.2% from the front, but from behind it rejected all 1000 push-up frames, which the authors attribute to keypoints occluded by the trunk or the ground.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "the visual modality exhibits a pronounced performance decline under posterior-view conditions, particularly for push-ups and sit-ups, where core keypoints are frequently occluded by the trunk or the ground."
+  },
+  {
+    "claim": "Lei and colleagues dedicate one camera to each person and recommend one camera per person when several people are tested at once.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "our system is designed under the specification that one camera is dedicated to capturing one person to ensure accurate posture recognition. When there are multiple people for testing simultaneously, we recommend configuring multiple cameras (one camera per person) to avoid interference between individuals."
+  },
+  {
+    "claim": "Lei and colleagues' push-up machine has a high support state, a low support state, transition states between them and a misaligned state.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "The posture of the human body in a misaligned position during push ups."
+  },
+  {
+    "claim": "Lei and colleagues' push-up machine has a high support state, a low support state, transition states between them and a misaligned state.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "During push ups, the body supports a high position."
+  },
+  {
+    "claim": "Lei and colleagues' push-up machine has a high support state, a low support state, transition states between them and a misaligned state.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "The body supports a low position during push ups."
+  },
+  {
+    "claim": "A repetition counts only when the machine passes from the low position through the transition to the high position, and any non-compliant posture sends it to the misaligned state.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "When the blue line of the state machine experiences a transition from State4 to State3 to State1, it signifies that the tester has successfully completed a standard push-up movement. During the movement, any non-compliant action will trigger State5."
+  },
+  {
+    "claim": "Their thresholds, each described as an empirical or adjustable setting, were an elbow angle of 140 degrees for the high position, a maximum torso-to-ground angle of 15 degrees in the low position, and a waist angle of 140 degrees to keep the body straight.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "The red line represents the elbow angle threshold which is set as 140 degrees. This empirically chosen value aims to prevent excessive bending of the elbow during the upward phase. This threshold can be adjusted at different actual conditions."
+  },
+  {
+    "claim": "Their thresholds, each described as an empirical or adjustable setting, were an elbow angle of 140 degrees for the high position, a maximum torso-to-ground angle of 15 degrees in the low position, and a waist angle of 140 degrees to keep the body straight.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "The blue line illustrates the variation of the angle between torso and ground, while the red line indicates a threshold of 15 degrees."
+  },
+  {
+    "claim": "Their thresholds, each described as an empirical or adjustable setting, were an elbow angle of 140 degrees for the high position, a maximum torso-to-ground angle of 15 degrees in the low position, and a waist angle of 140 degrees to keep the body straight.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "Max torso-ground angle allowed in push-up’s low-position state."
+  },
+  {
+    "claim": "Their thresholds, each described as an empirical or adjustable setting, were an elbow angle of 140 degrees for the high position, a maximum torso-to-ground angle of 15 degrees in the low position, and a waist angle of 140 degrees to keep the body straight.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "The red line indicates the threshold which is set at 140 degrees. The purpose of this threshold is to ensure that the tester maintains a straight body."
+  },
+  {
+    "claim": "Sousa and colleagues' push-up has three phases: a plank start with the elbows extended, lowering as the elbows bend past a threshold, and pushing as they re-extend.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "The push-up is a three-phase cycle: phase 1, the starting position, where the body is in a plank position, and the elbow angle is above"
+  },
+  {
+    "claim": "Sousa and colleagues' push-up has three phases: a plank start with the elbows extended, lowering as the elbows bend past a threshold, and pushing as they re-extend.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "phase 2, lowering, which is triggered when the elbows are bent to below"
+  },
+  {
+    "claim": "Sudden jumps, which they call flying points, are corrected when a keypoint moves more than 1/30 of the frame width or height between frames, and coordinates are then smoothed over a 10-frame window.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "To optimize the “flying points” and coordinate jitter errors in human keypoints detection, we employ a frame-based inter-frame joint correction and smoothing algorithm. This algorithm effectively enhances the keypoints detection results by implementing inter-frame position correction and sliding window smoothing."
+  },
+  {
+    "claim": "Sudden jumps, which they call flying points, are corrected when a keypoint moves more than 1/30 of the frame width or height between frames, and coordinates are then smoothed over a 10-frame window.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "are set to 1/30th of the frame width and height, respectively. This determination is based on experimental test results. The size of the sliding window for the smoothing process is set to 10 frames."
+  },
+  {
+    "claim": "Both values were chosen from their own tests, so treat them as a starting point.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "This determination is based on experimental test results."
+  },
+  {
+    "claim": "Sousa and colleagues hold the last valid phase for typically 3 to 5 frames when no phase matches, which in our view is also a cheap minimum-duration rule.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "the system temporarily retains the last valid phase for a short duration of N frames (typically N = 3–5)"
+  },
+  {
+    "claim": "Oliosi and colleagues note that floor-based exercises such as push-ups stayed challenging even after training on several public datasets.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "Despite these datasets, complex movements, particularly floor-based exercises (eg, push-ups), remained challenging for accurate PE."
+  },
+  {
+    "claim": "In a 2026 benchmark of 19 monocular 3D reconstruction methods on three test subjects, Fieraru and Goedemé found the hardest exercises were dynamic, ground-level and inverted poses with heavy self-occlusion, with mean errors of 118 to 155 mm against about 67 mm for upright exercises such as standing dumbbell curls.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13413046/fullTextXML",
+    "quote": "The hardest are dynamic, ground-level, and inverted poses with heavy self-occlusion"
+  },
+  {
+    "claim": "In a 2026 benchmark of 19 monocular 3D reconstruction methods on three test subjects, Fieraru and Goedemé found the hardest exercises were dynamic, ground-level and inverted poses with heavy self-occlusion, with mean errors of 118 to 155 mm against about 67 mm for upright exercises such as standing dumbbell curls.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13413046/fullTextXML",
+    "quote": "(118–155 mm). The easiest are upright, low-articulation exercises such as standing dumbbell curls and most other warm-up routines (∼67 mm)."
+  },
+  {
+    "claim": "In a 2026 benchmark of 19 monocular 3D reconstruction methods on three test subjects, Fieraru and Goedemé found the hardest exercises were dynamic, ground-level and inverted poses with heavy self-occlusion, with mean errors of 118 to 155 mm against about 67 mm for upright exercises such as standing dumbbell curls.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13413046/fullTextXML",
+    "quote": "mean error over all 19 benchmarked methods and the 3 test subjects"
+  },
+  {
+    "claim": "Sousa and colleagues' push-up errors were three chest-proximity failures and one arm occlusion.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Chest proximity failure (3), arm occlusion (1)"
+  },
+  {
+    "claim": "Lei and colleagues saw keypoints jump when occlusion occurred or lighting was poor, which is what their correction step targets.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "When occlusions occur or lighting conditions are poor, the posture processing module may inaccurately detect key points, leading to the phenomenon of “flying points”."
+  },
+  {
+    "claim": "Gu and colleagues' posterior view rejected every push-up frame.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "with all 1000 posterior push-up frames rejected"
+  },
+  {
+    "claim": "Lei and colleagues say their calibration-free 2D design is potentially vulnerable to large changes in viewing perspective or camera position.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "Specifically, our calibration-free design, while enhancing deployment flexibility"
+  },
+  {
+    "claim": "Lei and colleagues say their calibration-free 2D design is potentially vulnerable to large changes in viewing perspective or camera position.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "potentially vulnerable to significant alterations in viewing perspective or large-scale camera displacements."
+  },
+  {
+    "claim": "Across all 12 setups, Oliosi and colleagues' push-up counts reached a mean detection rate of 61.1% with a mean absolute error of 1.08 repetitions, against two raters, with healthy university students in a laboratory with standardised lighting.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "The mean detection rate was 61.1% (SD 48.8%) for push-ups and 61.5% (SD 48.7%) for squats, with MAEs of 1.08 (SD 1.78) and 1.11 (SD 1.82) repetitions, respectively."
+  },
+  {
+    "claim": "Across all 12 setups, Oliosi and colleagues' push-up counts reached a mean detection rate of 61.1% with a mean absolute error of 1.08 repetitions, against two raters, with healthy university students in a laboratory with standardised lighting.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "Environmental conditions, including lighting and temperature, were standardized across trials."
+  },
+  {
+    "claim": "Lei and colleagues report 97.4% accuracy for push-ups, defined as correctly recognised repetitions over the actual repetitions recorded by human assessors, from five test groups who performed freely to their maximum.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "achieving 96.6% accuracy for pull-ups and 97.4% for push-ups"
+  },
+  {
+    "claim": "Lei and colleagues report 97.4% accuracy for push-ups, defined as correctly recognised repetitions over the actual repetitions recorded by human assessors, from five test groups who performed freely to their maximum.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "the accuracy represents the ratio of correctly recognized repetitions to the total actual repetitions"
+  },
+  {
+    "claim": "Lei and colleagues report 97.4% accuracy for push-ups, defined as correctly recognised repetitions over the actual repetitions recorded by human assessors, from five test groups who performed freely to their maximum.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "collecting real motion data from 5 test groups"
+  },
+  {
+    "claim": "Lei and colleagues report 97.4% accuracy for push-ups, defined as correctly recognised repetitions over the actual repetitions recorded by human assessors, from five test groups who performed freely to their maximum.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "our methodological choice to allow subjects to perform exercises ’freely’ to their maximum capacity"
+  },
+  {
+    "claim": "Sousa and colleagues' per-exercise counting accuracies ranged from 95 to 100% across their 12 exercises.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "with a mean per-exercise accuracy of 98.8% (range 95–100%)."
+  },
+  {
+    "claim": "In Oliosi and colleagues' 2026 study, diagonal views at 90 to 180 cm counted push-ups best and a frontal view at 360 cm worst, and the authors conclude that diagonal views are preferred for push-ups.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
+    "quote": "For push-ups, diagonal views are preferred"
+  },
+  {
+    "claim": "Gu and colleagues found a camera behind the person failed completely, because the trunk and floor hide the keypoints.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "the visual modality exhibits a pronounced performance decline under posterior-view conditions, particularly for push-ups and sit-ups, where core keypoints are frequently occluded by the trunk or the ground."
+  },
+  {
+    "claim": "Lei and colleagues used 140 degrees as an empirical, adjustable elbow-angle threshold for the high position, with a maximum torso-to-ground angle of 15 degrees for the low position and a 140-degree waist angle to keep the body straight.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "The red line represents the elbow angle threshold which is set as 140 degrees. This empirically chosen value aims to prevent excessive bending of the elbow during the upward phase. This threshold can be adjusted at different actual conditions."
+  },
+  {
+    "claim": "One phone pipeline averaged a 61.1% detection rate across 12 phone positions and reached up to 85.7% from its best diagonal views, while a fixed-camera state-machine system reported 97.4% against human assessors.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "achieving 96.6% accuracy for pull-ups and 97.4% for push-ups"
+  }
+]

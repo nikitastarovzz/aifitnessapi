@@ -1,0 +1,247 @@
+[
+  {
+    "claim": "A camera overhead press counter can follow the elbow and shoulder angles: one 2026 study starts the press with the weights at shoulder level and both angles below one threshold, registers the press when they extend above a higher one, and checks that the hands and elbows rise above the head.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "The shoulder press is broken down into three distinct states: the starting position (with the weights at shoulder level), where the elbow and shoulder angles are generally below"
+  },
+  {
+    "claim": "A camera overhead press counter can follow the elbow and shoulder angles: one 2026 study starts the press with the weights at shoulder level and both angles below one threshold, registers the press when they extend above a higher one, and checks that the hands and elbows rise above the head.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "the pressing phase (extending the arms upward and lifting the weights overhead), where the elbow and shoulder angles are extended above"
+  },
+  {
+    "claim": "A camera overhead press counter can follow the elbow and shoulder angles: one 2026 study starts the press with the weights at shoulder level and both angles below one threshold, registers the press when they extend above a higher one, and checks that the hands and elbows rise above the head.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "During the pressing phase, the system also verifies that the hands and elbows rise above the head, based on the relative position of key points, ensuring correct overhead extension"
+  },
+  {
+    "claim": "A 2023 study instead counted seated shoulder presses from the periodicity of the hand's height, and counted them accurately, with small average errors.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "To count repetitions of exercises, we proposed an algorithm based on the position data of the hand for five types of exercise. The counting algorithm analyzes the periodicity of the hand position for each exercise to count the repetition. Considering the characteristics of exercise, four types of exercise except chest press estimate the repetition based on the y-coordinate of the left hand, and chest press estimates the repetition of an exercise based on the x-coordinate of the left hand."
+  },
+  {
+    "claim": "A 2023 study instead counted seated shoulder presses from the periodicity of the hand's height, and counted them accurately, with small average errors.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "All five exercises (Ex1–Ex5) were performed using dumbbells and bands in a sitting position."
+  },
+  {
+    "claim": "A 2023 study instead counted seated shoulder presses from the periodicity of the hand's height, and counted them accurately, with small average errors.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "Clearly, the accuracy depends on the type of exercise. The “Chest Press”, “Shoulder Press”, and “Seated Row” categories were accurately counted with small values of the average absolute errors, whereas “Biceps curl” and “Overhead Triceps Extension” were counted with larger errors."
+  },
+  {
+    "claim": "Sousa and colleagues (Journal of Functional Morphology and Kinesiology, 2026) counted shoulder presses among 12 exercises with angle-threshold state machines on MediaPipe landmarks.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Experimental validation was conducted on a dataset of 1513 videos of 12 functional exercises (squats, deadlifts, lunges, shoulder presses, planks, push-ups, pull-ups, bent-over rows, box jumps, thrusters, overhead squats, and burpees)"
+  },
+  {
+    "claim": "Sousa and colleagues (Journal of Functional Morphology and Kinesiology, 2026) counted shoulder presses among 12 exercises with angle-threshold state machines on MediaPipe landmarks.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "The proposed MDL models each exercise as a finite-state machine defined by pose-derived angle proxy transitions, allowing movements to be described in a modular and reusable way. Demonstrated with MediaPipe landmark extraction from monocular video, while the MDL remains compatible with any pose estimation algorithm, the framework focuses on exercise phase detection and repetition counting."
+  },
+  {
+    "claim": "Their test set held 254 shoulder press videos: 160 they recorded, 45 from public pose datasets and 49 from competition and online footage.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Recorded Videos (R): 240 videos of squats, 160 videos of deadlifts, 160 videos of shoulder presses"
+  },
+  {
+    "claim": "Their test set held 254 shoulder press videos: 160 they recorded, 45 from public pose datasets and 49 from competition and online footage.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Public Pose Datasets (P): 47 videos of deadlifts, 7 videos of planks, 26 videos of pull-ups, 106 videos of push-ups, 45 videos of shoulder presses"
+  },
+  {
+    "claim": "Their test set held 254 shoulder press videos: 160 they recorded, 45 from public pose datasets and 49 from competition and online footage.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Competition and YouTube Videos (C): 24 videos of deadlifts, 49 videos of shoulder presses"
+  },
+  {
+    "claim": "Hwang and colleagues (Sensors, 2023) had 30 healthy adults with less than three months of exercise experience do five seated upper-body exercises, shoulder presses among them, with dumbbells and resistance bands, and counted repetitions from OpenPose BODY_25 keypoints.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "Thirty healthy participants participated in this study. Thirteen men and seventeen women aged between nineteen and twenty-nine were randomly recruited through public advertisements. The inclusion criterion was to have less than three months of exercise experience."
+  },
+  {
+    "claim": "Hwang and colleagues (Sensors, 2023) had 30 healthy adults with less than three months of exercise experience do five seated upper-body exercises, shoulder presses among them, with dumbbells and resistance bands, and counted repetitions from OpenPose BODY_25 keypoints.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "Each subject performed a variety of upper-extremity muscular exercises: chest presses (Ex1), shoulder presses (Ex2), seated rows (Ex3), biceps curls (Ex4), and overhead triceps extensions (Ex5) targeting the chest, shoulder, back, biceps, and triceps, respectively."
+  },
+  {
+    "claim": "Hwang and colleagues (Sensors, 2023) had 30 healthy adults with less than three months of exercise experience do five seated upper-body exercises, shoulder presses among them, with dumbbells and resistance bands, and counted repetitions from OpenPose BODY_25 keypoints.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "All five exercises (Ex1–Ex5) were performed using dumbbells and bands in a sitting position."
+  },
+  {
+    "claim": "Hwang and colleagues (Sensors, 2023) had 30 healthy adults with less than three months of exercise experience do five seated upper-body exercises, shoulder presses among them, with dumbbells and resistance bands, and counted repetitions from OpenPose BODY_25 keypoints.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "In this research, the Body_25 model was used because the Body_25 model presents more joint position data."
+  },
+  {
+    "claim": "Sousa and colleagues define the shoulder press with the elbow and shoulder angles: a starting position with the weights at shoulder level and both angles generally below a threshold, a pressing phase in which the arms extend upward and both angles rise above a higher threshold, and a lowering phase in which the angles return below.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "The shoulder press is broken down into three distinct states: the starting position (with the weights at shoulder level), where the elbow and shoulder angles are generally below"
+  },
+  {
+    "claim": "Sousa and colleagues define the shoulder press with the elbow and shoulder angles: a starting position with the weights at shoulder level and both angles generally below a threshold, a pressing phase in which the arms extend upward and both angles rise above a higher threshold, and a lowering phase in which the angles return below.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "the pressing phase (extending the arms upward and lifting the weights overhead), where the elbow and shoulder angles are extended above"
+  },
+  {
+    "claim": "Sousa and colleagues define the shoulder press with the elbow and shoulder angles: a starting position with the weights at shoulder level and both angles generally below a threshold, a pressing phase in which the arms extend upward and both angles rise above a higher threshold, and a lowering phase in which the angles return below.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "and the lowering phase (returning the weights to shoulder level), where the angles return below"
+  },
+  {
+    "claim": "During the pressing phase their system also checks, from the relative position of keypoints, that the hands and elbows rise above the head.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "During the pressing phase, the system also verifies that the hands and elbows rise above the head, based on the relative position of key points, ensuring correct overhead extension"
+  },
+  {
+    "claim": "Hwang and colleagues count from the vertical position of the left hand instead, after dividing coordinates by torso length to remove the effect of camera distance and body size.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "To count repetitions of exercises, we proposed an algorithm based on the position data of the hand for five types of exercise. The counting algorithm analyzes the periodicity of the hand position for each exercise to count the repetition. Considering the characteristics of exercise, four types of exercise except chest press estimate the repetition based on the y-coordinate of the left hand, and chest press estimates the repetition of an exercise based on the x-coordinate of the left hand."
+  },
+  {
+    "claim": "Hwang and colleagues count from the vertical position of the left hand instead, after dividing coordinates by torso length to remove the effect of camera distance and body size.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "To unify the distance and physical conditions between the camera and the user, scale normalization is conducted."
+  },
+  {
+    "claim": "Hwang and colleagues count from the vertical position of the left hand instead, after dividing coordinates by torso length to remove the effect of camera distance and body size.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "Then, we divide the relative coordinates by the length of the torso and multiply by 100 to unify the scale."
+  },
+  {
+    "claim": "In our reading, the shoulder angle is the weaker of the two signals: in a lunge study we read, OpenPose's shoulder flexion angle agreed only poorly to moderately with marker-based capture from almost every camera view, so give a shoulder-angle threshold more margin than an elbow one.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML",
+    "quote": "In the results, the shoulder flexion/extension angle derived from OpenPose shows only poor to moderate agreement with the marker-based MoCap system for almost all views."
+  },
+  {
+    "claim": "Hwang and colleagues placed their camera 1.5 m in front of the seated participant at a height of 1.2 m.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "The camera was located 1.5 m in front of the experimenter at a height of 1.2 m to capture the subjects during the exercises."
+  },
+  {
+    "claim": "Sousa and colleagues did not fix one position: part of their test set came from home environments, commercial gyms and competition venues with different lighting, backgrounds and camera angles, and they note that their pose model's performance can degrade when camera angles deviate from frontal or lateral views.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "The dataset includes some of the exercises defined in the MDL framework: squats, deadlifts, shoulder presses, planks, push-ups, and pull-ups. The dataset contains recordings from various settings, including home environments, commercial gyms, and competition venues, testing the system’s robustness to different lighting conditions, backgrounds, and camera angles."
+  },
+  {
+    "claim": "Sousa and colleagues did not fix one position: part of their test set came from home environments, commercial gyms and competition venues with different lighting, backgrounds and camera angles, and they note that their pose model's performance can degrade when camera angles deviate from frontal or lateral views.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "MediaPipe’s performance can degrade when the subject is partially occluded or moves too quickly or when camera angles deviate from frontal or lateral views."
+  },
+  {
+    "claim": "Their phase persistence keeps the last valid phase for typically 3 to 5 frames when no phase matches.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Instead of immediately accepting a “None” value when a phase cannot be matched, the system temporarily retains the last valid phase for a short duration of N frames (typically N = 3–5)."
+  },
+  {
+    "claim": "The same module composes into other exercises: a thruster is a squat module followed by a shoulder press module, and an overhead squat combines a squat with the shoulder press's second phase, the arms extended.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "For instance, a thruster can be created by sequencing a squat module immediately followed by a shoulder press module"
+  },
+  {
+    "claim": "The same module composes into other exercises: a thruster is a squat module followed by a shoulder press module, and an overhead squat combines a squat with the shoulder press's second phase, the arms extended.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "shows the repetition counting of an overhead squat, corresponding to a squat with the arms extended (shoulder press phase 2)."
+  },
+  {
+    "claim": "Hwang and colleagues count the zero-crossings of the hand-height signal after a 15-sample moving median filter, which they use to cope with occlusions shorter than about 0.25 s, and after removing the signal's average.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "The number of repetitions was then estimated based on zero-crossing."
+  },
+  {
+    "claim": "Hwang and colleagues count the zero-crossings of the hand-height signal after a 15-sample moving median filter, which they use to cope with occlusions shorter than about 0.25 s, and after removing the signal's average.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "To minimize the effect of occlusion, we filtered the joint position estimation data through a 15-window-sized moving median filter (MMF). When using the MMF, we included one datum and its peripheral values, sorted the values in order, and took the intermediate value to cope with occlusions occurring within a short time (≤0.25 s)."
+  },
+  {
+    "claim": "Hwang and colleagues count the zero-crossings of the hand-height signal after a 15-sample moving median filter, which they use to cope with occlusions shorter than about 0.25 s, and after removing the signal's average.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "and the DC offset is removed by subtracting the average value of the input data."
+  },
+  {
+    "claim": "In a related overhead movement, the overhead triceps extension, Hwang and colleagues found the hand usually behind the head, causing an obstruction their median filter could not fully resolve, and counting accuracy was low.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "In addition, when capturing the movements of overhead triceps extensions, the camera’s hand was usually located at the back of the head, causing severe obstruction that could not be fully resolved with the median filter. Therefore, the accuracy of these measurements was low."
+  },
+  {
+    "claim": "Their periodicity-based count tended to be overestimated in sets with few repetitions, where the timing of each repetition varied, and the method is vulnerable to non-repeating, nonlinear movements with heavy weights.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "However, in datasets with a small number of exercises, the number of repetitions varied, and flexion did not always occur at the same time in each repetition. In such cases, the number of exercises was not properly identified and tended to be overestimated."
+  },
+  {
+    "claim": "Their periodicity-based count tended to be overestimated in sets with few repetitions, where the timing of each repetition varied, and the method is vulnerable to non-repeating, nonlinear movements with heavy weights.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "This algorithm rapidly generates high-frequency noise during hand occlusion and is vulnerable to non-repeating and nonlinear movements during exercises with heavy weights."
+  },
+  {
+    "claim": "Sousa and colleagues attribute their errors mainly to temporary occlusions, rapid transitions and suboptimal camera viewpoints, which mostly produced missed repetitions rather than false positives.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Errors were primarily associated with temporary occlusions, rapid transitions, and suboptimal camera viewpoints. These factors led to incorrect or delayed state transitions due to inaccurate pose-derived angle proxies. In most cases, errors resulted in missed repetitions rather than false positives, indicating that the system remains conservative under uncertainty."
+  },
+  {
+    "claim": "Hwang and colleagues counted shoulder presses, chest presses and seated rows accurately, with small average absolute errors, while biceps curls and overhead triceps extensions had larger errors; across the five exercises, the mean absolute counting error ranged from 0.88 to 3.21 repetitions.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "Clearly, the accuracy depends on the type of exercise. The “Chest Press”, “Shoulder Press”, and “Seated Row” categories were accurately counted with small values of the average absolute errors, whereas “Biceps curl” and “Overhead Triceps Extension” were counted with larger errors."
+  },
+  {
+    "claim": "Hwang and colleagues counted shoulder presses, chest presses and seated rows accurately, with small average absolute errors, while biceps curls and overhead triceps extensions had larger errors; across the five exercises, the mean absolute counting error ranged from 0.88 to 3.21 repetitions.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "The mean absolute error of the repetition counting algorithm ranges from 0.88 (seated row) to 3.21 (overhead triceps extension)."
+  },
+  {
+    "claim": "Sousa and colleagues' per-exercise counting accuracies ranged from 95 to 100% across their 12 exercises, and thrusters, a squat followed by a shoulder press, reached perfect detection (100%).",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "with a mean per-exercise accuracy of 98.8% (range 95–100%)."
+  },
+  {
+    "claim": "Sousa and colleagues' per-exercise counting accuracies ranged from 95 to 100% across their 12 exercises, and thrusters, a squat followed by a shoulder press, reached perfect detection (100%).",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Accuracy was consistently high across exercise categories, with lunges, pull-ups, and thrusters achieving perfect detection (100%)."
+  },
+  {
+    "claim": "Sousa and colleagues' per-exercise counting accuracies ranged from 95 to 100% across their 12 exercises, and thrusters, a squat followed by a shoulder press, reached perfect detection (100%).",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "which is a a squat followed by a shoulder press"
+  },
+  {
+    "claim": "Sousa and colleagues used the elbow and shoulder angles: below a threshold with the weights at shoulder level, above a higher threshold at the top, plus a check that the hands and elbows rise above the head.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "The shoulder press is broken down into three distinct states: the starting position (with the weights at shoulder level), where the elbow and shoulder angles are generally below"
+  },
+  {
+    "claim": "Sousa and colleagues used the elbow and shoulder angles: below a threshold with the weights at shoulder level, above a higher threshold at the top, plus a check that the hands and elbows rise above the head.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "During the pressing phase, the system also verifies that the hands and elbows rise above the head, based on the relative position of key points, ensuring correct overhead extension"
+  },
+  {
+    "claim": "Hwang and colleagues skipped angles and counted from the periodicity of the hand's height.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "To count repetitions of exercises, we proposed an algorithm based on the position data of the hand for five types of exercise. The counting algorithm analyzes the periodicity of the hand position for each exercise to count the repetition. Considering the characteristics of exercise, four types of exercise except chest press estimate the repetition based on the y-coordinate of the left hand, and chest press estimates the repetition of an exercise based on the x-coordinate of the left hand."
+  },
+  {
+    "claim": "Hwang and colleagues filmed seated presses from 1.5 m in front at a height of 1.2 m, and Sousa and colleagues worked with videos from mixed settings, noting that their pose model can degrade when the camera is off the frontal or lateral axis.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "The camera was located 1.5 m in front of the experimenter at a height of 1.2 m to capture the subjects during the exercises."
+  },
+  {
+    "claim": "Hwang and colleagues filmed seated presses from 1.5 m in front at a height of 1.2 m, and Sousa and colleagues worked with videos from mixed settings, noting that their pose model can degrade when the camera is off the frontal or lateral axis.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "The dataset contains recordings from various settings, including home environments, commercial gyms, and competition venues, testing the system’s robustness to different lighting conditions, backgrounds, and camera angles."
+  },
+  {
+    "claim": "Hwang and colleagues filmed seated presses from 1.5 m in front at a height of 1.2 m, and Sousa and colleagues worked with videos from mixed settings, noting that their pose model can degrade when the camera is off the frontal or lateral axis.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "MediaPipe’s performance can degrade when the subject is partially occluded or moves too quickly or when camera angles deviate from frontal or lateral views."
+  },
+  {
+    "claim": "Hwang and colleagues counted seated shoulder presses accurately, with small average absolute errors, and Sousa and colleagues counted thrusters, a squat plus a shoulder press, with perfect detection in their test set.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "Clearly, the accuracy depends on the type of exercise. The “Chest Press”, “Shoulder Press”, and “Seated Row” categories were accurately counted with small values of the average absolute errors, whereas “Biceps curl” and “Overhead Triceps Extension” were counted with larger errors."
+  },
+  {
+    "claim": "Hwang and colleagues counted seated shoulder presses accurately, with small average absolute errors, and Sousa and colleagues counted thrusters, a squat plus a shoulder press, with perfect detection in their test set.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Accuracy was consistently high across exercise categories, with lunges, pull-ups, and thrusters achieving perfect detection (100%)."
+  }
+]
