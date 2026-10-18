@@ -67,6 +67,8 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
       "exercise-database-apis",
       "wearable-data-apis",
       "corporate-wellness-wearable-apis",
+      "wearable-research-data-platforms",
+      "wearable-data-to-ehr-fhir",
       "health-data-aggregator-apis",
       "ai-workout-tracking-apis",
       "nutrition-apis",

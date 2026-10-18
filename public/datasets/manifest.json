@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-17",
+  "generated": "2026-10-18",
   "files": [
     {
       "file": "bluetooth-fitness-gatt-2026.csv",
@@ -15,15 +15,15 @@
     },
     {
       "file": "fitness-api-changes-2026.csv",
-      "bytes": 7339,
-      "rows": 14,
-      "sha256": "a1401f743769714accafd6f78dd33d84418bdcf76a1da0dea1c9de19cf5b7def"
+      "bytes": 8087,
+      "rows": 15,
+      "sha256": "00c2f9f1d03b012f4b2049e5ca5b472a97e05e38cb254b5ac952da3e8b1e73fe"
     },
     {
       "file": "fitness-api-changes-2026.json",
-      "bytes": 11267,
-      "rows": 14,
-      "sha256": "4593fcc6b5a507f3ddb6b117d4d673b55632d7298c386111d6c965a7db42c38c"
+      "bytes": 12174,
+      "rows": 15,
+      "sha256": "b0b88c438d7f4ed653764157f7f5198375adc54f22b8825c0b489aa3bf2e02fe"
     },
     {
       "file": "fitness-api-glossary-2026.csv",

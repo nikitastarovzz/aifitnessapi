@@ -1,0 +1,132 @@
+[
+  {
+    "claim": "HIPAA's definitions, at 45 CFR 160.103, make a covered entity one of three things: \"(1) A health plan. (2) A health care clearinghouse. (3) A health care provider who transmits any health information in electronic form in connection with a transaction covered by this subchapter.\"",
+    "url": "https://www.ecfr.gov/api/renderer/v1/content/enhanced/current/title-45?part=160&section=160.103",
+    "quote": "Covered entity means: ( 1 ) A health plan. ( 2 ) A health care clearinghouse. ( 3 ) A health care provider who transmits any health information in electronic form in connection with a transaction covered by this subchapter."
+  },
+  {
+    "claim": "Those transactions are financial and administrative, such as health care claims, eligibility for and enrollment in a health plan, premium payments, and referral certification and authorization.",
+    "url": "https://www.ecfr.gov/api/renderer/v1/content/enhanced/current/title-45?part=160&section=160.103",
+    "quote": "Transaction means the transmission of information between two parties to carry out financial or administrative activities related to health care."
+  },
+  {
+    "claim": "...health care claims...",
+    "url": "https://www.ecfr.gov/api/renderer/v1/content/enhanced/current/title-45?part=160&section=160.103",
+    "quote": "Health care claims or equivalent encounter information."
+  },
+  {
+    "claim": "...eligibility for and enrollment in a health plan...",
+    "url": "https://www.ecfr.gov/api/renderer/v1/content/enhanced/current/title-45?part=160&section=160.103",
+    "quote": "Enrollment and disenrollment in a health plan."
+  },
+  {
+    "claim": "...eligibility for a health plan...",
+    "url": "https://www.ecfr.gov/api/renderer/v1/content/enhanced/current/title-45?part=160&section=160.103",
+    "quote": "Eligibility for a health plan."
+  },
+  {
+    "claim": "...premium payments...",
+    "url": "https://www.ecfr.gov/api/renderer/v1/content/enhanced/current/title-45?part=160&section=160.103",
+    "quote": "Health plan premium payments."
+  },
+  {
+    "claim": "...and referral certification and authorization.",
+    "url": "https://www.ecfr.gov/api/renderer/v1/content/enhanced/current/title-45?part=160&section=160.103",
+    "quote": "Referral certification and authorization."
+  },
+  {
+    "claim": "CMS is part of HHS.",
+    "url": "https://www.ecfr.gov/api/renderer/v1/content/enhanced/current/title-45?part=160&section=160.103",
+    "quote": "CMS stands for Centers for Medicare & Medicaid Services within the Department of Health and Human Services."
+  },
+  {
+    "claim": "CMS sums up the provider test in one line: \"Providers who submit HIPAA transactions, like claims, electronically are covered.\"",
+    "url": "https://www.cms.gov/priorities/key-initiatives/burden-reduction/administrative-simplification/hipaa/covered-entities",
+    "quote": "Providers who submit HIPAA transactions , like claims, electronically are covered."
+  },
+  {
+    "claim": "Its list of health plans includes employer-sponsored health plans.",
+    "url": "https://www.cms.gov/priorities/key-initiatives/burden-reduction/administrative-simplification/hipaa/covered-entities",
+    "quote": "Employer-sponsored health plans"
+  },
+  {
+    "claim": "Section 160.103 makes a business associate a person who, on behalf of a covered entity, \"creates, receives, maintains, or transmits protected health information\" for a regulated function.",
+    "url": "https://www.ecfr.gov/api/renderer/v1/content/enhanced/current/title-45?part=160&section=160.103",
+    "quote": "On behalf of such covered entity or of an organized health care arrangement (as defined in this section) in which the covered entity participates, but other than in the capacity of a member of the workforce of such covered entity or arrangement, creates, receives, maintains, or transmits protected health information for a function or activity regulated by this subchapter"
+  },
+  {
+    "claim": "...and names \"A person that offers a personal health record to one or more individuals on behalf of a covered entity\"...",
+    "url": "https://www.ecfr.gov/api/renderer/v1/content/enhanced/current/title-45?part=160&section=160.103",
+    "quote": "A person that offers a personal health record to one or more individuals on behalf of a covered entity."
+  },
+  {
+    "claim": "...and subcontractors of business associates.",
+    "url": "https://www.ecfr.gov/api/renderer/v1/content/enhanced/current/title-45?part=160&section=160.103",
+    "quote": "A subcontractor that creates, receives, maintains, or transmits protected health information on behalf of the business associate."
+  },
+  {
+    "claim": "A health plan, per the FTC's tool, likely is a covered entity.",
+    "url": "https://www.ftc.gov/business-guidance/resources/mobile-health-apps-interactive-tool",
+    "quote": "3a. Are you a health plan? Yes HIPAA: As HHS guidance about entities covered by HIPAA explains, you likely are a HIPAA covered entity subject to the HIPAA Rules."
+  },
+  {
+    "claim": "A health care provider such as a doctor, dentist, psychologist, hospital, health care clinic or pharmacy likely is a covered entity.",
+    "url": "https://www.ftc.gov/business-guidance/resources/mobile-health-apps-interactive-tool",
+    "quote": "3b. Are you a health care provider, such as a doctor, dentist, psychologist, hospital, health care clinic, or pharmacy?"
+  },
+  {
+    "claim": "...you likely are a covered entity.",
+    "url": "https://www.ftc.gov/business-guidance/resources/mobile-health-apps-interactive-tool",
+    "quote": "As HHS guidance about entities covered by HIPAA explains, you likely are a covered entity subject to the HIPAA Rules ."
+  },
+  {
+    "claim": "Consumers need a prescription to access your app: you may be a covered health care provider.",
+    "url": "https://www.ftc.gov/business-guidance/resources/mobile-health-apps-interactive-tool",
+    "quote": "5. Do consumers need a prescription to access your app? Yes HIPAA: You may be a HIPAA covered health care provider and therefore subject to the HIPAA Rules ."
+  },
+  {
+    "claim": "You develop, offer or operate the app on behalf of a covered entity, such as a hospital, doctor's office, health insurer or a health plan's wellness program, or you are a subcontractor to one...",
+    "url": "https://www.ftc.gov/business-guidance/resources/mobile-health-apps-interactive-tool",
+    "quote": "Are you developing, offering, or operating an app on behalf of a HIPAA covered entity (such as a hospital, doctor’s office, health insurer, or health plan’s wellness program)? Or are you acting as a subcontractor to another entity providing services to a covered entity?"
+  },
+  {
+    "claim": "...you likely are a business associate.",
+    "url": "https://www.ftc.gov/business-guidance/resources/mobile-health-apps-interactive-tool",
+    "quote": "You likely are a HIPAA business associate , and therefore subject to the HIPAA Security Rule and specific provisions of the HIPAA Privacy and Breach Notification Rules"
+  },
+  {
+    "claim": "None of these: you likely are not covered by HIPAA, though other laws, like the FTC Act, may apply.",
+    "url": "https://www.ftc.gov/business-guidance/resources/mobile-health-apps-interactive-tool",
+    "quote": "You likely are not covered by HIPAA. (Other laws, like the FTC Act, may also apply, but we’ll get to that.)"
+  },
+  {
+    "claim": "The same tool says the HIPAA Rules \"likely wouldn't apply to consumer health information maintained in an app that isn't offered by a HIPAA covered entity or its business associate, even if the health information originated from a covered entity or business associate.\"",
+    "url": "https://www.ftc.gov/business-guidance/resources/mobile-health-apps-interactive-tool",
+    "quote": "the HIPAA Rules likely wouldn’t apply to consumer health information maintained in an app that isn’t offered by a HIPAA covered entity or its business associate, even if the health information originated from a covered entity or business associate."
+  },
+  {
+    "claim": "HHS's Office for Civil Rights publishes its own health-app scenarios, which the FTC's tool points to.",
+    "url": "https://www.ftc.gov/business-guidance/resources/mobile-health-apps-interactive-tool",
+    "quote": "For additional guidance on whether HIPAA applies to your mobile app, visit OCR’s Resources for Mobile Health Apps Developers , which includes hypothetical health app use scenarios and links to frequently asked questions (FAQs)."
+  },
+  {
+    "claim": "The rule's text says a breach of security includes an unauthorized acquisition \"that occurs as a result of a data breach or an unauthorized disclosure\".",
+    "url": "https://www.ecfr.gov/api/renderer/v1/content/enhanced/current/title-16?part=318",
+    "quote": "A breach of security includes an unauthorized acquisition of unsecured PHR identifiable health information in a personal health record that occurs as a result of a data breach or an unauthorized disclosure."
+  },
+  {
+    "claim": "The FTC's own example is sharing users' health information with an ad network without consent.",
+    "url": "https://www.ftc.gov/business-guidance/resources/complying-ftcs-health-breach-notification-rule-0",
+    "quote": "suppose you share your users’ medical information along with their mobile identifiers with an ad network for the purpose of targeted marketing without first getting the person’s consent."
+  },
+  {
+    "claim": "The FTC's guidance tells companies not to make false or misleading claims that they are \"HIPAA Compliant,\" \"HIPAA Secure,\" \"HIPAA Certified\" or the like.",
+    "url": "https://www.ftc.gov/business-guidance/resources/collecting-using-or-sharing-consumer-health-information-look-hipaa-ftc-act-health-breach",
+    "quote": "don’t make false or misleading claims that you are “HIPAA Compliant,” “HIPAA Secure,” “HIPAA Certified” or the like."
+  },
+  {
+    "claim": "FAQ: covered entities are health plans, health care clearinghouses and health care providers that transmit health information electronically in standard transactions such as claims.",
+    "url": "https://www.ftc.gov/business-guidance/resources/collecting-using-or-sharing-consumer-health-information-look-hipaa-ftc-act-health-breach",
+    "quote": "The HIPAA Rules apply to you if you are a HIPAA covered entity – a health plan, a health care provider that conducts standard health care transactions electronically, or a health care clearinghouse."
+  }
+]

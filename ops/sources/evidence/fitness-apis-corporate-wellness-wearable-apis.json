@@ -1,0 +1,32 @@
+[
+  {
+    "claim": "The FTC's Mobile Health Apps Interactive Tool asks whether you are \"developing, offering, or operating an app on behalf of a HIPAA covered entity (such as a hospital, doctor's office, health insurer, or health plan's wellness program)\"...",
+    "url": "https://www.ftc.gov/business-guidance/resources/mobile-health-apps-interactive-tool",
+    "quote": "Are you developing, offering, or operating an app on behalf of a HIPAA covered entity (such as a hospital, doctor’s office, health insurer, or health plan’s wellness program)?"
+  },
+  {
+    "claim": "...and says that if so, you likely are a HIPAA business associate.",
+    "url": "https://www.ftc.gov/business-guidance/resources/mobile-health-apps-interactive-tool",
+    "quote": "You likely are a HIPAA business associate , and therefore subject to the HIPAA Security Rule and specific provisions of the HIPAA Privacy and Breach Notification Rules"
+  },
+  {
+    "claim": "Outside HIPAA, the FTC's Health Breach Notification Rule can apply.",
+    "url": "https://www.ftc.gov/business-guidance/resources/mobile-health-apps-interactive-tool",
+    "quote": "The FTC’s Health Breach Notification Rule applies to most health apps that aren’t covered by HIPAA"
+  },
+  {
+    "claim": "The FTC's guidance says a fitness app that can sync with wearable fitness trackers is likely a vendor of personal health records...",
+    "url": "https://www.ftc.gov/business-guidance/resources/complying-ftcs-health-breach-notification-rule-0",
+    "quote": "The app, which consumers can download from the app store, can sync with wearable fitness trackers. Some of our users use this syncing feature, but others don’t."
+  },
+  {
+    "claim": "...is likely a vendor of personal health records...",
+    "url": "https://www.ftc.gov/business-guidance/resources/complying-ftcs-health-breach-notification-rule-0",
+    "quote": "You are likely a vendor of personal health records."
+  },
+  {
+    "claim": "...even if some users never connect a tracker.",
+    "url": "https://www.ftc.gov/business-guidance/resources/complying-ftcs-health-breach-notification-rule-0",
+    "quote": "even if some consumers choose to not connect the fitness tracker."
+  }
+]

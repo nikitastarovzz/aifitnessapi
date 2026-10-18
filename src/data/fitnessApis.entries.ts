@@ -675,7 +675,7 @@ export const entries: ClusterEntry[] =
     "metaDescription": "Which wearable data APIs an employer wellness program should connect: aggregator, vendor APIs or HealthKit, and the Garmin, Fitbit and MDM access gates.",
     "updated": "2026-10-12",
     "answer": "The devices employees already wear decide which wearable data API an employer wellness program should connect. Our recommendation is one health-data aggregator such as Terra, Vital/Junction, Rook or Spike for a mixed workforce, the vendor's own API for a program built around one issued device, and Apple HealthKit plus Google Health Connect for phone-only step challenges. Check the gates first: Garmin's Connect Developer Program is partner-approval-only, an MDM profile can disable HealthKit on company-managed iPhones, and as of October 12, 2026, Google says the Fitbit Web API turns off on October 30, 2026, with every user re-consenting. Whatever you connect, per-person data must stay out of anything the employer sees.",
-    "body": "An employer wellness program does not choose its devices. Employees bring whatever they already wear, the employer may manage some of their phones, and the employer must never see any one person's health data. In our reading, those three constraints decide the data source. This page covers that decision only; challenges, rewards, the HR dashboard and the legal tracks are in our [guide to building a corporate wellness app](/build/corporate-wellness-app).\n\n## Start from the device mix\n\nOur build guide lists what employees show up with: Fitbits, Garmins, Apple Watches, Ouras, WHOOPs, Samsung devices and phone step counters, each with its own API, auth and data model. Unless the program issues the device, you inherit the whole list.\n\nOur recommendation: before writing integration code, ask the pilot employer which devices employees wear and whether company phones are enrolled in device management. The first answer picks your route. The second can rule one out.\n\n## Three routes to the data\n\n| Route | What you connect | What it reaches | Catch for an employer program |\n|---|---|---|---|\n| Phone health stores | Apple HealthKit, Google Health Connect | Data already on that phone, one OS each, behind per-data-type permission prompts rather than OAuth | Nothing server-side or cross-user on its own, and MDM can switch HealthKit off |\n| Direct vendor APIs | Fitbit through the Google Health API, Garmin, Oura, WHOOP, Polar | One vendor's cloud account per integration, per employee who grants OAuth 2.0 consent | One integration and one access step per vendor |\n| Aggregator | Terra, Vital/Junction, Rook, Spike | Many wearables and cloud accounts behind one API and one OAuth-style flow | Some providers still need your own developer or partner credentials, commonly including Garmin, WHOOP and Samsung Health |\n\nThe routes stack. Our [health-data aggregator comparison](/fitness-apis/health-data-aggregator-apis) notes that aggregators typically sit on top of the other two, with mobile SDKs that pull from HealthKit and Health Connect and servers that pull from vendor cloud APIs. Our [wearable data API comparison](/fitness-apis/wearable-data-apis) found that each vendor API returns data only for individual users who authorize your app, and none is a bulk or population feed. Enrollment is an authorization flow every employee completes, not a workforce-wide switch.\n\n## Access gates to clear before a pilot\n\n| Source | Gate | What it means for a program |\n|---|---|---|\n| Fitbit, through the Google Health API | Every scope is Restricted, so access needs a privacy and security review | The Fitbit Web API turns off on October 30, 2026, and every participant must re-consent |\n| Garmin | Partner approval for the Connect Developer Program | New sign-ups reportedly on hold in 2026, with no published reopening date |\n| Oura | Self-serve OAuth app, capped at 10 users until Oura approves it | Past 10 Oura wearers, a pilot needs approval first |\n| WHOOP | Self-serve app, capped at 10 members until WHOOP approves it | Past 10 WHOOP members, a pilot needs approval first |\n| Polar | Self-serve client registration | Only recent data is exposed, so sync on a schedule or lose history |\n| HealthKit on company iPhones | The device's MDM profile | The employer's administrator decides, not your code |\n\nThe Fitbit row is from Google's pages as of October 12, 2026. The Garmin, Oura, WHOOP and Polar rows are from our July 2026 checks; confirm them in current vendor docs.\n\n### Fitbit: the Web API turns off on October 30, 2026\n\nAs of October 12, 2026, Google's [Google Health API overview](https://developers.google.com/health/about) lists September 30, 2026 as the end of support, after which the Fitbit Web API keeps operating but Google no longer fixes bugs or provides API support. On October 30, 2026 the Fitbit Web API \"will be turned off and will no longer function or sync data to or from Fitbit users.\" Its successor is the Google Health API.\n\nGoogle's [migration guide](https://developers.google.com/health/migration) says existing tokens cannot be transferred, requiring users to re-consent. So every Fitbit participant authorizes your app again, and in our reading anyone who does not stops counting toward challenges. Google also categorizes all Google Health API scopes as Restricted, which means a privacy and security review before access.\n\nOur recommendation: if your program still reads the Fitbit Web API, migrate and plan the re-consent campaign now, and keep challenge scoring windows on the old integration clear of October 30. If an aggregator supplies your Fitbit data, ask how its connection moves and whether participants must reconnect; we have not verified any aggregator's answer. Our [Fitbit Web API to Google Health API migration guide](/migrate/fitbit-web-api-to-google-health) covers the mechanics.\n\n### Garmin: approval first, sign-ups reportedly paused\n\nGarmin must approve a partnership before you receive any API credentials. At our July 2026 check, community and issue-tracker reports described new sign-ups as on hold with no published reopening date, while existing approved partners were said to keep working. Verify the status on developer.garmin.com before you promise Garmin support to an employer.\n\nAn aggregator may not remove this gate. One that holds its own Garmin partnership can resell access, but our aggregator comparison lists Garmin among the providers where you commonly must bring your own developer or partner credentials. Ask each shortlisted aggregator which applies before counting Garmin wearers as covered.\n\n### Company iPhones: MDM can switch HealthKit off\n\nApple's documentation for `errorHealthDataRestricted` says \"A Mobile Device Management (MDM) profile restricts the use of HealthKit on this device,\" and notes that such a profile can disable HealthKit on a managed device. Nothing in your app lifts the restriction. Only whoever administers the device can.\n\nIn the wellness case, the employer pushes your app to managed phones, the same profile may have HealthKit disabled, and every HealthKit-based data path is dead for that group while it works in your testing. In our reading that includes an aggregator's mobile SDK, which pulls from the same store, while a server-side connection to a wearable vendor's cloud account does not touch HealthKit. We have not verified whether Android device management affects Health Connect the same way, so test managed Android phones too.\n\nOur recommendation: ask the employer whether HealthKit is allowed on its managed devices, give its administrator a short note on what your app needs, test on one of their phones before launch, and keep manual logging as the fallback. [HealthKit restricted by MDM](/fix/healthkit-data-restricted-mdm) covers detection and user messaging.\n\n## Employer visibility is a routing rule\n\nOur build guide treats aggregate-only, de-identified reporting to the employer as an architecture requirement, with small groups suppressed and no drill-down that exposes one person. The legal tracks behind it are in [the corporate wellness build guide](/build/corporate-wellness-app). This is general information, not legal advice. Confirm your program's obligations with counsel.\n\nIn our reading, that sets two routing rules. Per-person samples from any route land in a participant-scoped store that no employer-facing screen, export or report can query. Aggregation runs in your own layer, after small-group suppression, and only participation, engagement and category-level results cross to the employer. No route does this for you, because what the employer may see is a policy decision specific to your program.\n\n## HR systems are a separate integration\n\nRosters and eligibility come in from the employer's HR side, and single sign-on from its identity provider. Wearable data comes in from each employee, on that employee's own consent. Aggregate engagement goes back out, plus incentive payouts if the program pays them. We have not evaluated HRIS or benefits-platform integrations and make no claims about them.\n\nOur recommendation is to keep the two inbound pipes apart in your schema. The roster says who may join, the wearable connection says what a participant did, and on the employer side the two meet only as an aggregate.\n\n## Our recommendation by situation\n\n- **Mixed devices across the workforce → one aggregator.** Shortlist from Terra, Vital/Junction, Rook and Spike. For each provider your employees use, check whether the aggregator needs your own credentials, and ask how it handles the Fitbit turn-off. Advertised device counts are marketing figures, so test coverage against the employer's actual device list, and compare cost models on our [aggregator pricing page](/pricing/health-data-aggregator-pricing).\n- **One issued device → that vendor's API.** Confirm access first against the gate table above, Garmin approval and the Google Health API review especially.\n- **Phone-only step challenge → HealthKit plus Health Connect.** First find out whether company phones are managed and whether HealthKit is allowed on them. Where it is not, those employees need manual logging or a wearable connected through its vendor's cloud.",
+    "body": "An employer wellness program does not choose its devices. Employees bring whatever they already wear, the employer may manage some of their phones, and the employer must never see any one person's health data. In our reading, those three constraints decide the data source. This page covers that decision only; challenges, rewards, the HR dashboard and the legal tracks are in our [guide to building a corporate wellness app](/build/corporate-wellness-app).\n\n## Start from the device mix\n\nOur build guide lists what employees show up with: Fitbits, Garmins, Apple Watches, Ouras, WHOOPs, Samsung devices and phone step counters, each with its own API, auth and data model. Unless the program issues the device, you inherit the whole list.\n\nOur recommendation: before writing integration code, ask the pilot employer which devices employees wear and whether company phones are enrolled in device management. The first answer picks your route. The second can rule one out.\n\n## Three routes to the data\n\n| Route | What you connect | What it reaches | Catch for an employer program |\n|---|---|---|---|\n| Phone health stores | Apple HealthKit, Google Health Connect | Data already on that phone, one OS each, behind per-data-type permission prompts rather than OAuth | Nothing server-side or cross-user on its own, and MDM can switch HealthKit off |\n| Direct vendor APIs | Fitbit through the Google Health API, Garmin, Oura, WHOOP, Polar | One vendor's cloud account per integration, per employee who grants OAuth 2.0 consent | One integration and one access step per vendor |\n| Aggregator | Terra, Vital/Junction, Rook, Spike | Many wearables and cloud accounts behind one API and one OAuth-style flow | Some providers still need your own developer or partner credentials, commonly including Garmin, WHOOP and Samsung Health |\n\nThe routes stack. Our [health-data aggregator comparison](/fitness-apis/health-data-aggregator-apis) notes that aggregators typically sit on top of the other two, with mobile SDKs that pull from HealthKit and Health Connect and servers that pull from vendor cloud APIs. Our [wearable data API comparison](/fitness-apis/wearable-data-apis) found that each vendor API returns data only for individual users who authorize your app, and none is a bulk or population feed. Enrollment is an authorization flow every employee completes, not a workforce-wide switch.\n\n## Access gates to clear before a pilot\n\n| Source | Gate | What it means for a program |\n|---|---|---|\n| Fitbit, through the Google Health API | Every scope is Restricted, so access needs a privacy and security review | The Fitbit Web API turns off on October 30, 2026, and every participant must re-consent |\n| Garmin | Partner approval for the Connect Developer Program | New sign-ups reportedly on hold in 2026, with no published reopening date |\n| Oura | Self-serve OAuth app, capped at 10 users until Oura approves it | Past 10 Oura wearers, a pilot needs approval first |\n| WHOOP | Self-serve app, capped at 10 members until WHOOP approves it | Past 10 WHOOP members, a pilot needs approval first |\n| Polar | Self-serve client registration | Only recent data is exposed, so sync on a schedule or lose history |\n| HealthKit on company iPhones | The device's MDM profile | The employer's administrator decides, not your code |\n\nThe Fitbit row is from Google's pages as of October 12, 2026. The Garmin, Oura, WHOOP and Polar rows are from our July 2026 checks; confirm them in current vendor docs.\n\n### Fitbit: the Web API turns off on October 30, 2026\n\nAs of October 12, 2026, Google's [Google Health API overview](https://developers.google.com/health/about) lists September 30, 2026 as the end of support, after which the Fitbit Web API keeps operating but Google no longer fixes bugs or provides API support. On October 30, 2026 the Fitbit Web API \"will be turned off and will no longer function or sync data to or from Fitbit users.\" Its successor is the Google Health API.\n\nGoogle's [migration guide](https://developers.google.com/health/migration) says existing tokens cannot be transferred, requiring users to re-consent. So every Fitbit participant authorizes your app again, and in our reading anyone who does not stops counting toward challenges. Google also categorizes all Google Health API scopes as Restricted, which means a privacy and security review before access.\n\nOur recommendation: if your program still reads the Fitbit Web API, migrate and plan the re-consent campaign now, and keep challenge scoring windows on the old integration clear of October 30. If an aggregator supplies your Fitbit data, ask how its connection moves and whether participants must reconnect; we have not verified any aggregator's answer. Our [Fitbit Web API to Google Health API migration guide](/migrate/fitbit-web-api-to-google-health) covers the mechanics.\n\n### Garmin: approval first, sign-ups reportedly paused\n\nGarmin must approve a partnership before you receive any API credentials. At our July 2026 check, community and issue-tracker reports described new sign-ups as on hold with no published reopening date, while existing approved partners were said to keep working. Verify the status on developer.garmin.com before you promise Garmin support to an employer.\n\nAn aggregator may not remove this gate. One that holds its own Garmin partnership can resell access, but our aggregator comparison lists Garmin among the providers where you commonly must bring your own developer or partner credentials. Ask each shortlisted aggregator which applies before counting Garmin wearers as covered.\n\n### Company iPhones: MDM can switch HealthKit off\n\nApple's documentation for `errorHealthDataRestricted` says \"A Mobile Device Management (MDM) profile restricts the use of HealthKit on this device,\" and notes that such a profile can disable HealthKit on a managed device. Nothing in your app lifts the restriction. Only whoever administers the device can.\n\nIn the wellness case, the employer pushes your app to managed phones, the same profile may have HealthKit disabled, and every HealthKit-based data path is dead for that group while it works in your testing. In our reading that includes an aggregator's mobile SDK, which pulls from the same store, while a server-side connection to a wearable vendor's cloud account does not touch HealthKit. We have not verified whether Android device management affects Health Connect the same way, so test managed Android phones too.\n\nOur recommendation: ask the employer whether HealthKit is allowed on its managed devices, give its administrator a short note on what your app needs, test on one of their phones before launch, and keep manual logging as the fallback. [HealthKit restricted by MDM](/fix/healthkit-data-restricted-mdm) covers detection and user messaging.\n\n## Employer visibility is a routing rule\n\nOur build guide treats aggregate-only, de-identified reporting to the employer as an architecture requirement, with small groups suppressed and no drill-down that exposes one person. The legal tracks behind it are in [the corporate wellness build guide](/build/corporate-wellness-app). This is general information, not legal advice. Confirm your program's obligations with counsel.\n\nIn our reading, that sets two routing rules. Per-person samples from any route land in a participant-scoped store that no employer-facing screen, export or report can query. Aggregation runs in your own layer, after small-group suppression, and only participation, engagement and category-level results cross to the employer. No route does this for you, because what the employer may see is a policy decision specific to your program.\n\n## Which privacy rules can reach a wellness vendor\n\nThe FTC's [Mobile Health Apps Interactive Tool](https://www.ftc.gov/business-guidance/resources/mobile-health-apps-interactive-tool) asks whether you are \"developing, offering, or operating an app on behalf of a HIPAA covered entity (such as a hospital, doctor's office, health insurer, or health plan's wellness program)\", and says that if so, you likely are a HIPAA business associate. Outside HIPAA, the FTC's Health Breach Notification Rule can apply: the FTC's guidance says a fitness app that can sync with wearable fitness trackers is likely a vendor of personal health records, even if some users never connect a tracker. Our pages on [HIPAA for fitness apps](/compliance/hipaa-compliance-fitness-app), [the FTC breach rule](/compliance/ftc-health-breach-notification-rule) and [Washington's My Health My Data Act](/compliance/washington-my-health-my-data-act) cover each test. This is general information, not legal advice.\n\n## HR systems are a separate integration\n\nRosters and eligibility come in from the employer's HR side, and single sign-on from its identity provider. Wearable data comes in from each employee, on that employee's own consent. Aggregate engagement goes back out, plus incentive payouts if the program pays them. We have not evaluated HRIS or benefits-platform integrations and make no claims about them.\n\nOur recommendation is to keep the two inbound pipes apart in your schema. The roster says who may join, the wearable connection says what a participant did, and on the employer side the two meet only as an aggregate.\n\n## Our recommendation by situation\n\n- **Mixed devices across the workforce → one aggregator.** Shortlist from Terra, Vital/Junction, Rook and Spike. For each provider your employees use, check whether the aggregator needs your own credentials, and ask how it handles the Fitbit turn-off. Advertised device counts are marketing figures, so test coverage against the employer's actual device list, and compare cost models on our [aggregator pricing page](/pricing/health-data-aggregator-pricing).\n- **One issued device → that vendor's API.** Confirm access first against the gate table above, Garmin approval and the Google Health API review especially.\n- **Phone-only step challenge → HealthKit plus Health Connect.** First find out whether company phones are managed and whether HealthKit is allowed on them. Where it is not, those employees need manual logging or a wearable connected through its vendor's cloud.",
     "faqs": [
       {
         "q": "Which wearable access gates should I check before a wellness pilot?",
@@ -719,5 +719,268 @@ export const entries: ClusterEntry[] =
     "cta": {
       "pitch": "We track the access gates that decide what a wellness program can connect, including Garmin's partner approval and the Fitbit Web API turn-off. Subscribe to hear when one of them changes."
     }
+  },
+  {
+    "slug": "wearable-research-data-platforms",
+    "primaryQuery": "wearable data platform for research studies",
+    "h1": "Wearable Data Platforms for Research Studies: Fitabase, Labfront, Empatica and Ametris",
+    "metaTitle": "Wearable Data Platforms for Research Studies Compared",
+    "metaDescription": "Fitabase, Labfront, Empatica and Ametris (ActiGraph) compared for research studies: supported devices, data resolution, export formats, APIs and hosting.",
+    "updated": "2026-10-17",
+    "answer": "Fitabase, Labfront, Empatica and Ametris (formerly ActiGraph) are four wearable research platforms, and the device a protocol needs decides between them. Fitabase collects from participants' Fitbit and Garmin devices and exports CSV at daily, hourly and minute level, Labfront collects from select Garmin, Movesense and Dexcom devices with configurable sampling rates, and Empatica and Ametris supply their own FDA-cleared wearables and cloud platforms. Fitabase documents its move to the Google Health API, with participants reauthorizing before the Fitbit Web API turns off on October 30, 2026. Everything here is from each company's own pages as of October 17, 2026.",
+    "body": "A research platform sits between participants' wearables and your analysis: it handles device authorization, syncing, adherence monitoring and export, so the study team does not build and run its own integration. The four platforms below split first on one question: will the study use consumer devices participants own or are given, or a research-grade device the platform supplies? Everything here is what each company's own pages said on October 17, 2026. We have not used these platforms, plans and prices change, and nothing here is an endorsement. If you are weighing building your own Fitbit integration instead, start with [our guide to Fitbit research studies after the Web API turndown](/migrate/fitbit-research-studies-after-turndown).\n\n## The four at a glance\n\n| Platform | Devices it documents | Data access | Worth knowing |\n| --- | --- | --- | --- |\n| Fitabase | Fitbit and Garmin wearables and internet-connected scales, except Fitbit Ace and Garmin Jr models | CSV exports at daily, hourly and minute level, per participant or in batch; a Fitabase API sold as an add-on | Moving its Fitbit collection to the Google Health API; custom pricing |\n| Labfront | Select Garmin, Movesense and Dexcom devices | CSV export; developer access to raw data in beta | Configurable sampling rates; a free Tester plan for up to 5 participants; US-hosted |\n| Empatica | Its own EmbracePlus and EmbraceMini | Download from the Care Lab Portal; a Cloud API for sponsors and CROs that delivers Avro and CSV files | FDA-cleared devices; no SDK for academic research |\n| Ametris, formerly ActiGraph | Its own ActiGraph LEAP, CentrePoint Insight Watch and wGT3X-BT | CentrePoint cloud platform with an API to third-party systems | Built around clinical trials; priced per order |\n\n## Fitabase\n\nFitabase describes itself as \"a comprehensive data management platform designed to support innovative research projects using wearable and internet-connected devices.\" Its FAQ says it supports \"the entire ecosystem of wearable activity tracking devices and internet-connected scales from Fitbit and Garmin (except Fitbit Ace models and Garmin Jr models which do not sync data to their respective servers)\", and that it uses \"Garmin and Fitbit Partner APIs\". Studies can use study-controlled or participant-owned devices.\n\n- **Data.** Fitbit physical activity covers steps, activity intensity, energy expenditure and METs; Garmin covers steps, activity intensity, energy expenditure and stress. Heart rate comes at \"the highest resolution data available\" plus daily resting heart rate, sleep includes stages on some devices, and weight comes from supported scales. Fitabase's knowledge base lists Google Health heart rate as \"variable sampling with readings every 3-15 seconds\" and sleep stages at 30 seconds.\n- **Export.** \"Download CSV files for daily, hourly and minute-level data\", per participant or as custom batch exports. The Fitabase API covers batch export, daily activity, connected device profiles and sync times, and Fitabase says the API and automated batch exports \"are currently offered as separate add ons\". Its pricing page also lists an Aggregate Data API that \"Enables large-volume programmatic data exports in JSON or CSV formats\".\n- **Participants.** Fitabase says it has been used to collect de-identified data in studies of children and adolescents, and that \"Garmin's privacy policy requires that users be at least 16 years old, or with consent from guardians.\"\n- **Pricing.** \"Fitabase will work with you to craft an exact pricing plan.\"\n\n### Fitabase and the Fitbit Web API turn-off\n\nFitabase's knowledge base has a migration section, last updated October 14, 2026. It says participants who are still collecting data \"will need to grant Fitabase permission again so their data keeps syncing\" after the Fitbit Web API shuts off on October 30, 2026:\n\n- Reauthorization opened in the Fitabase platform on October 15, 2026, and participants can also reconnect from the Partner apps screen in the Google Health app. They only need to do it once, in either place, and Fitabase says there is no way to reauthorize programmatically.\n- Participants whose data collection ends before the cutoff do not need to reauthorize. The reconnect option stays in the Google Health app through November 30, 2026, and Fitabase says it backfills a late participant's gap as long as their device kept syncing to the Google Health app.\n- Exports gain UTC time, time zone and source columns, and \"We aren't renaming or removing existing columns.\" Fitabase says the Fitabase API is not changing.\n- Exports move \"one dataset at a time\", with a per-export availability table; classic sleep is rolled into the main sleep export, and writing step goals to participants' apps \"isn't available in the Google Health API yet.\"\n\n## Labfront\n\nLabfront's home page says it can \"Capture raw wearable and EMA data for research\", and its devices FAQ says \"Labfront is currently compatible with select Garmin, Movesense and Dexcom devices\". All Garmin devices work through Garmin Connect, but high-resolution data needs one of the select compatible devices.\n\n- **Data.** Beat-to-beat interval from Garmin wearables at each heartbeat; ECG waveform at 125Hz to 500Hz and 9-axis motion at 12.5Hz to 208Hz from Movesense; continuous glucose from Dexcom at 5-minute resolution; and actigraphy, respiration, oxygen saturation, stress, steps and daily summaries from Garmin.\n- **Export.** \"Download your data in a CSV format that is easily importable into your favorite analysis tools, like MATLAB.\" Developer access to raw data for building dashboards and applications is in beta.\n- **Hosting and retention.** \"We currently only support U.S. data centers and the data is stored in Virginia, America.\" Research data is typically kept \"for 3 years after study completion\", and Labfront will delete all data if the researcher asks.\n- **Pricing.** Plans are published and billed annually in advance. The free Tester plan collects from up to 5 participants, with downloads limited to a 30-day window, and hardware is not included in any plan.\n\n## Empatica\n\nEmpatica's platform runs on its own wearables, which send data over Bluetooth to a phone app and from there to the Empatica Cloud. EmbracePlus has 510(k) clearance from the FDA and is marked under the EU MDR as a class IIa medical device, with optical PPG, electrodermal activity, accelerometer, gyroscope and skin temperature sensors; EmbraceMini has 510(k) clearance \"for sleep, circadian rhythm, and physical activity monitoring.\"\n\n- **Data.** Empatica's research page offers \"comprehensive raw data, EDA, vital signs, activity and more, in one wearable solution\", plus digital biomarkers.\n- **Export.** For academic studies, \"All collected data can be securely and directly downloaded from the Care Lab Portal\", data is not viewable in real time, and \"We do not provide an SDK for academic research purposes.\" For sponsors and CROs, the Cloud API works with \"two formats of files, Avro and CSV\", and \"Data will be available in S3.\"\n- **Pricing.** Bundles pair one device with three or five years of cloud data access and portal access, and Empatica offers a 25% academic discount.\n\n## Ametris, formerly ActiGraph\n\nActiGraph's site, theactigraph.com, now redirects to Ametris, which says it was \"Founded in 2004\" as \"Ametris (formerly ActiGraph)\" and joined Signant Health in 2026.\n\n- **Devices.** The ActiGraph LEAP, which Ametris says \"is US FDA 510(k) cleared for the measurement of activity, sleep, and mobility\", with its additional vital signs \"for investigational use only\"; the CentrePoint Insight Watch; and the wGT3X-BT.\n- **Data.** CentrePoint \"generates future-proof raw sensor data that can be reprocessed indefinitely as new methods emerge.\"\n- **Export.** \"Data outcomes can be integrated directly to a third party system with the CentrePoint API.\"\n- **Pricing.** \"Pricing is calculated for each unique order.\"\n\n## How to choose (our recommendation)\n\n- **Participants wear their own Fitbit or Garmin.** Fitabase is the one of the four that documents both. While it moves Fitbit exports to the Google Health API, check its dataset availability table against every variable in your analysis plan.\n- **Garmin plus research sensors such as ECG, IMU or continuous glucose.** Labfront covers Garmin, Movesense and Dexcom with configurable sampling rates.\n- **An FDA-cleared device for a regulated trial.** Empatica and Ametris supply their own cleared devices and platforms built around clinical research, with APIs aimed at sponsors and research organizations.\n- **Ask every platform, in writing,** where data is hosted, how long it is kept, how deletion works and what IRB documentation it provides. Of the pages we read, only Labfront's state a hosting location and a retention period.\n\nThe platform does not carry your study's obligations for you. Google's research policy binds Fitbit data through the Google Health API, as our [Fitbit research migration guide](/migrate/fitbit-research-studies-after-turndown) covers, and Washington's [My Health My Data Act](/compliance/washington-my-health-my-data-act) leaves out research that an institutional review board approves, monitors and governs.",
+    "faqs": [
+      {
+        "q": "Which research platforms will still collect Fitbit data after the Fitbit Web API turns off?",
+        "a": "Of the four platforms compared here, Fitabase is the one that documents Fitbit collection. Its knowledge base says it is moving to the Google Health API and that participants still collecting data must reauthorize once, either in the Google Health app or through a Fitabase link. Labfront lists Garmin, Movesense and Dexcom devices, and Empatica and Ametris use their own wearables. We have not checked other platforms."
+      },
+      {
+        "q": "Can study participants use their own Garmin or Fitbit with a research platform?",
+        "a": "Fitabase says studies can connect study-controlled or participant-owned Fitbit and Garmin devices, except Fitbit Ace and Garmin Jr models. Labfront says all Garmin devices, including older models, work through Garmin Connect on its platform, but high-resolution data needs one of its select compatible devices. Empatica and Ametris supply their own hardware."
+      },
+      {
+        "q": "Which wearable research platforms give raw sensor data?",
+        "a": "Labfront lists beat-to-beat intervals from Garmin, ECG waveform and 9-axis motion from Movesense, and Dexcom glucose. Empatica offers raw data from its EmbracePlus and EmbraceMini, and Ametris says CentrePoint keeps raw sensor data that can be reprocessed as methods change. Fitabase offers the highest resolution its Fitbit and Garmin partner APIs provide, such as heart rate every 3 to 15 seconds."
+      },
+      {
+        "q": "Do wearable research platforms offer an API for automated exports?",
+        "a": "All four mention one. Fitabase sells its API and automated batch exports as add-ons, plus an Aggregate Data API for JSON or CSV exports; Labfront's developer access to raw data is in beta; Empatica's Cloud API serves sponsors and clinical research organizations with Avro and CSV files, while academic users download from its portal and get no SDK; and Ametris says its CentrePoint API integrates data outcomes with third-party systems."
+      },
+      {
+        "q": "Where does a research platform store participant data, and for how long?",
+        "a": "Of the pages we read, only Labfront states it: U.S. data centers in Virginia, research data typically kept for 3 years after study completion, and deletion of all data on the researcher's request. Fitabase, Empatica and Ametris did not state a hosting location or retention period on the pages we read, so ask each in writing before an IRB submission."
+      }
+    ],
+    "related": [
+      {
+        "href": "/migrate/fitbit-research-studies-after-turndown",
+        "label": "Fitbit research studies after the Web API turndown"
+      },
+      {
+        "href": "/fitness-apis/wearable-data-apis",
+        "label": "Best wearable fitness APIs"
+      },
+      {
+        "href": "/fitness-apis/health-data-aggregator-apis",
+        "label": "Health-data aggregator APIs"
+      },
+      {
+        "href": "/compliance/washington-my-health-my-data-act",
+        "label": "Washington's My Health My Data Act for apps"
+      },
+      {
+        "href": "/fitness-apis",
+        "label": "All fitness and wearable APIs"
+      }
+    ],
+    "cta": {
+      "pitch": "Research platforms are mid-migration to the Google Health API and their device lists change. Subscribe and we'll flag changes that affect a running study."
+    },
+    "sources": [
+      {
+        "url": "https://www.fitabase.com/",
+        "checked": "2026-10-17",
+        "note": "Fitbit and Garmin support, study-controlled or participant-owned devices, CSV exports at daily, hourly and minute level."
+      },
+      {
+        "url": "https://fitabase.com/resources/faq/",
+        "checked": "2026-10-17",
+        "note": "Supported devices and exceptions, partner APIs, data types, children and Garmin's age policy."
+      },
+      {
+        "url": "https://www.fitabase.com/how-it-works/pricing/",
+        "checked": "2026-10-17",
+        "note": "Custom pricing and the Aggregate Data API."
+      },
+      {
+        "url": "https://www.fitabase.com/resources/knowledge-base/learn-about-fitbit-data/data-resolutions/",
+        "checked": "2026-10-17",
+        "note": "Heart rate and sleep-stage resolution."
+      },
+      {
+        "url": "https://www.fitabase.com/resources/knowledge-base/fitabase-api/what-is-the-fitabase-api/",
+        "checked": "2026-10-17",
+        "note": "API and batch exports sold as add-ons."
+      },
+      {
+        "url": "https://www.fitabase.com/resources/knowledge-base/fitabase-api/available-core-apis/",
+        "checked": "2026-10-17",
+        "note": "Batch Export, Daily Activity, Profiles and Sync endpoints."
+      },
+      {
+        "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/migration-overview/",
+        "checked": "2026-10-17",
+        "note": "Reauthorization required to keep syncing; last updated October 14, 2026."
+      },
+      {
+        "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/who-needs-to-reauthorize/",
+        "checked": "2026-10-17",
+        "note": "Finished participants do not need to reauthorize."
+      },
+      {
+        "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/key-dates/",
+        "checked": "2026-10-17",
+        "note": "October 15, October 30 and November 30, 2026 dates."
+      },
+      {
+        "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/export-changes/",
+        "checked": "2026-10-17",
+        "note": "New UTC, time zone and source columns; API unchanged."
+      },
+      {
+        "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/migration-faq/",
+        "checked": "2026-10-17",
+        "note": "Reauthorize once in either place, no programmatic route, backfill, classic sleep, step goals."
+      },
+      {
+        "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/dataset-availability/",
+        "checked": "2026-10-17",
+        "note": "Exports move one dataset at a time."
+      },
+      {
+        "url": "https://www.labfront.com/",
+        "checked": "2026-10-17",
+        "note": "Raw wearable and EMA data for research."
+      },
+      {
+        "url": "https://www.labfront.com/compatible-devices",
+        "checked": "2026-10-17",
+        "note": "Select Garmin, Movesense and Dexcom devices; Garmin Connect compatibility; hardware not included."
+      },
+      {
+        "url": "https://www.labfront.com/collect/physiological-data",
+        "checked": "2026-10-17",
+        "note": "Data types and sampling rates; CSV export."
+      },
+      {
+        "url": "https://www.labfront.com/research/data-storage",
+        "checked": "2026-10-17",
+        "note": "U.S. hosting in Virginia, retention and deletion."
+      },
+      {
+        "url": "https://www.labfront.com/research/data-management",
+        "checked": "2026-10-17",
+        "note": "Developer access in beta."
+      },
+      {
+        "url": "https://www.labfront.com/pricing",
+        "checked": "2026-10-17",
+        "note": "Annual billing and the Tester plan."
+      },
+      {
+        "url": "https://www.empatica.com/platform/research-studies",
+        "checked": "2026-10-17",
+        "note": "Devices, clearances, data flow, data download, no SDK, bundles and academic discount."
+      },
+      {
+        "url": "https://www.empatica.com/cloud-api",
+        "checked": "2026-10-17",
+        "note": "Cloud API for sponsors and CROs, Avro and CSV files in S3."
+      },
+      {
+        "url": "https://theactigraph.com/",
+        "checked": "2026-10-17",
+        "note": "Redirects to ametris.com."
+      },
+      {
+        "url": "https://ametris.com/about-us",
+        "checked": "2026-10-17",
+        "note": "Formerly ActiGraph, founded 2004, joined Signant Health in 2026."
+      },
+      {
+        "url": "https://ametris.com/centrepoint",
+        "checked": "2026-10-17",
+        "note": "Raw sensor data, CentrePoint API, compatible devices."
+      },
+      {
+        "url": "https://ametris.com/wearable-devices",
+        "checked": "2026-10-17",
+        "note": "Device list and per-order pricing."
+      },
+      {
+        "url": "https://ametris.com/actigraph-leap",
+        "checked": "2026-10-17",
+        "note": "LEAP 510(k) clearance scope."
+      }
+    ]
+  },
+  {
+    "slug": "wearable-data-to-ehr-fhir",
+    "primaryQuery": "send wearable data to an ehr with fhir observation",
+    "h1": "Getting Wearable Data into Health Records with FHIR Observation",
+    "metaTitle": "Wearable Data to EHRs: FHIR Observation and Vital Signs",
+    "metaDescription": "What FHIR R4 requires for wearable readings in a health record: Observation's required elements and the Vital Signs profile's LOINC codes and UCUM units.",
+    "updated": "2026-10-17",
+    "answer": "In FHIR R4 a wearable reading goes into an Observation resource, which must carry a status and a code, and HL7's specification says implementations that record vital signs as structured data SHALL conform to the FHIR Vital Signs profile. That profile requires a status, a 'vital-signs' category, a LOINC code for what was measured, a patient, a time, and a numeric value with a UCUM unit, or a reason when there is no value. Heart rate, for example, is LOINC 8867-4 in /min, and blood pressure is one panel observation, LOINC 85354-9, with systolic and diastolic components. HL7's R4 pages note that FHIR 5.0.0 supersedes R4, so confirm the version and profiles the receiving system expects.",
+    "body": "If a provider or health system wants wearable readings in its record and accepts FHIR, each reading becomes an Observation resource. This page covers what the FHIR R4 specification itself requires of that resource and of its Vital Signs profile, read from HL7's [Observation](https://hl7.org/fhir/R4/observation.html) and [Vital Signs profile](https://hl7.org/fhir/R4/observation-vitalsigns.html) pages on October 17, 2026. R4 is version 4.0.1, a \"Mixed Normative and STU\" release, and HL7's R4 pages say \"The current version which supercedes this version is 5.0.0\", so ask the receiving system which version and which profiles it accepts.\n\n## Why Observation\n\nHL7 defines Observation as \"Measurements and simple assertions made about a patient, device or other subject.\" Its listed uses include \"Vital signs such as body weight, blood pressure, and temperature\" and \"Device measurements such as EKG data or Pulse Oximetry data\". The Vital Signs profile names the wearable case directly: a single vocabulary is needed \"Particularly with the use of wearables by patients where they want to/need to share information from those devices.\"\n\nIn R4 the Observation resource is \"Normative (from v4.0.0)\", while the Vital Signs profile page gives its standards status as Informative.\n\n## What every Observation must carry\n\nHL7 notes that \"At its simplest, a resource instance can consist of only a code and a value, and status flag.\" In R4's element table, status and code are the two mandatory elements:\n\n| Element | Cardinality | What it holds |\n| --- | --- | --- |\n| status | 1..1 | registered, preliminary, final, amended and further codes, from a required code list |\n| code | 1..1 | What was measured; LOINC is the example binding |\n| subject | 0..1 | A Patient, Group, Device or Location |\n| effective[x] | 0..1 | The clinically relevant time or period, as a dateTime, Period, Timing or instant |\n| issued | 0..1 | When this version was made available |\n| value[x] | 0..1 | The result, as a Quantity, CodeableConcept, string, boolean, integer, Range, Ratio, SampledData, time, dateTime or Period |\n| dataAbsentReason | 0..1 | Why the result is missing |\n| device | 0..1 | The measuring Device or DeviceMetric |\n| component | 0..* | Results read together, such as systolic and diastolic pressure |\n| derivedFrom and hasMember | 0..* | The observations a value was made from, or the members a panel groups |\n\nTwo rules apply to every Observation. Rule obs-6 says \"dataAbsentReason SHALL only be present if Observation.value[x] is not present\", and rule obs-7 says that if Observation.code matches a component's code, the value for that code \"SHALL NOT be present\".\n\nFor timing, effectiveDateTime or effectivePeriod \"is the time that the observation is most relevant as an observation of the subject\", which for a person is \"the physiologically relevant time of the observation\"; for an observation obtained directly from the subject, such as blood pressure, it is the start and end of the observation process. In our reading, that is when the watch or cuff measured, not when your server received the reading; issued is the element for when a version was made available.\n\n## The Vital Signs profile\n\nThe Observation page says that if implementations use the resource to express the profile's concepts as structured data, \"they SHALL conform to the following profiles\", naming Vital signs. The profile page puts it this way: \"When a FHIR implementation supports any of the vital signs listed below, the implementation SHALL conform to this profile for the vital sign observation.\" Each vital-signs Observation must have:\n\n- a status;\n- a category code of 'vital-signs';\n- a LOINC code for what is measured, which the profile calls the \"magic value\";\n- a patient;\n- a time indicating when the measurement was taken;\n- a numeric result value with a standard UCUM unit or, when there is no numeric result, a reason.\n\nThe profile's minimum set of codes and units:\n\n| Vital sign | LOINC code | UCUM unit |\n| --- | --- | --- |\n| Vital signs panel | 85353-1 | none; member observations linked with hasMember |\n| Respiratory rate | 9279-1 | /min |\n| Heart rate | 8867-4 | /min |\n| Oxygen saturation | 2708-6 | % |\n| Body temperature | 8310-5 | Cel or [degF] |\n| Body height | 8302-2 | cm or [in_i] |\n| Head circumference | 9843-4 | cm or [in_i] |\n| Body weight | 29463-7 | g, kg or [lb_av] |\n| Body mass index | 39156-5 | kg/m2 |\n| Blood pressure panel | 85354-9 | none; systolic and diastolic go in components |\n| Systolic blood pressure | 8480-6 | mm[Hg] |\n| Diastolic blood pressure | 8462-4 | mm[Hg] |\n\nFor blood pressure, \"you must have both a systolic and a diastolic component, though one or both may have dataAbsentReason instead of a value.\" The bindings are extensible: if you also record a more specific code, \"implementers must support both the values (LOINC) listed below and the translated code\". The table is a floor, and the profile says \"The table above is the minimum set, additional vital signs are allowed.\"\n\n## How a server is searched\n\nThe profile's quick start lists searches servers must support: a patient's vital signs by category, by category and date, and by one or more of the LOINC codes, for example `GET [base]/Observation?patient=[id]&category=vital-signs`. Blood pressure has a trap: the code parameter \"searches only Observation.code\", so searching for the systolic or diastolic component code \"will not return the resource\", and the profile points to the combo-code search parameter to search both. The profile also has the server ensure \"that every API request includes a valid Authorization token\" and reject unauthorized requests \"by returning an HTTP 401 Unauthorized response code\".\n\n## Mapping a wearable reading (our worked example)\n\n| From the wearable | Into the Observation | Spec basis |\n| --- | --- | --- |\n| The metric type, such as heart rate | code with LOINC 8867-4 | Vital Signs code table |\n| The number and its unit | valueQuantity with the UCUM unit /min | Vital Signs mandatory elements |\n| When the device measured | effectiveDateTime, or effectivePeriod for an interval | Observation timing note |\n| When your system made it available | issued | Observation element table |\n| The user | subject, a Patient | Vital Signs mandatory elements |\n| The watch or sensor | device, a Device or DeviceMetric | Observation element table |\n| A missed reading | dataAbsentReason, with no value | Rule obs-6 and the profile's reason rule |\n| A waveform, such as ECG samples | valueSampledData | Observation value types |\n| A metric computed from other readings | derivedFrom, pointing at the source observations | Observation grouping notes |\n\nA heart-rate reading's code and value, in the shape HL7's own examples use for LOINC codes and UCUM quantities:\n\n```json\n\"code\": {\n  \"coding\": [{ \"system\": \"http://loinc.org\", \"code\": \"8867-4\" }]\n},\n\"valueQuantity\": {\n  \"value\": 72,\n  \"unit\": \"/min\",\n  \"system\": \"http://unitsofmeasure.org\",\n  \"code\": \"/min\"\n}\n```\n\nThe full resource also needs its status, the vital-signs category, the patient and the time.\n\nMetrics outside the vital-signs table, such as step counts, are still Observations, but R4 binds Observation.code to LOINC only as an example, so the receiving system's own profile decides which code it expects. HL7's grouping notes add that \"Profiling will normally be necessary for implementation.\" HL7 also publishes a Personal Health Device FHIR implementation guide, version 2.0.0 (STU 2), based on R4; we have not reviewed its contents.\n\n## Before you build (our recommendation)\n\n- **Ask for the contract.** Find out which FHIR version the receiving system accepts and which Observation profiles it enforces; the base resource and the Vital Signs profile are the floor, not the whole agreement.\n- **Keep independent readings separate.** HL7 says a body mass index Observation \"should not contain components for height and weight because they are clinically relevant observations on their own\", and asks for separate Observations linked with derivedFrom instead.\n- **Keep your raw data apart from the FHIR projection,** so a profile change means re-mapping rather than re-collecting; see [normalizing wearable data across providers](/architecture/normalize-wearable-data).\n- **Expect HIPAA when you send data for a provider.** The FTC's health-app tool says a developer operating an app on behalf of a HIPAA covered entity likely is a business associate; see [does my fitness app need HIPAA](/compliance/hipaa-compliance-fitness-app). For the opposite direction, reading clinical records on the phone, see [HealthKit clinical records](/data/clinical-records-api) and [Health Connect medical records](/data/health-connect-medical-records-api).",
+    "faqs": [
+      {
+        "q": "Which FHIR resource carries readings from a wearable?",
+        "a": "Observation. HL7 defines it as measurements and simple assertions made about a patient, device or other subject, lists device measurements such as EKG and pulse oximetry data among its uses, and its Vital Signs profile names patients sharing data from wearables as a reason a common vocabulary is needed. In R4, status and code are the only mandatory elements."
+      },
+      {
+        "q": "What LOINC code and unit does FHIR use for heart rate?",
+        "a": "The R4 Vital Signs profile uses LOINC 8867-4 with the UCUM unit /min. The profile adds that 8887-2, heart rate device type, may be included as an additional observation. The Observation also needs a status, the vital-signs category, the patient and the time the measurement was taken."
+      },
+      {
+        "q": "How does FHIR represent a home blood pressure reading?",
+        "a": "As one blood pressure panel Observation, LOINC 85354-9, with no top-level value and systolic (8480-6) and diastolic (8462-4) components in mm[Hg]. The profile requires both components, though either may carry a dataAbsentReason instead of a value. A search by the component codes alone will not return it; the profile points to the combo-code parameter."
+      },
+      {
+        "q": "How should a missing wearable reading be sent in FHIR?",
+        "a": "Leave the value out and fill dataAbsentReason. Rule obs-6 says dataAbsentReason SHALL only be present when Observation.value[x] is not present, and the Vital Signs profile says that if there is no numeric result you have to supply a reason. When the reading failed with an error, HL7's Observation notes say to use dataAbsentReason with the value error or NaN."
+      },
+      {
+        "q": "Should a wearable integration send FHIR R4 or R5?",
+        "a": "Whichever the receiving system accepts. HL7's R4 pages say the current version, 5.0.0, supersedes R4, while R4 stays at its permanent address. The Observation resource and the Vital Signs profile described here are R4's, so confirm the version and any further profiles with the system you send to before you build."
+      }
+    ],
+    "related": [
+      {
+        "href": "/compliance/remote-patient-monitoring-device-requirements",
+        "label": "Remote patient monitoring device requirements"
+      },
+      {
+        "href": "/data/clinical-records-api",
+        "label": "HealthKit clinical records (FHIR)"
+      },
+      {
+        "href": "/data/health-connect-medical-records-api",
+        "label": "Health Connect medical records (FHIR)"
+      },
+      {
+        "href": "/architecture/normalize-wearable-data",
+        "label": "Normalizing wearable data across providers"
+      },
+      {
+        "href": "/fitness-apis",
+        "label": "All fitness and wearable APIs"
+      }
+    ],
+    "cta": {
+      "pitch": "FHIR versions and the profiles health systems enforce keep moving. Subscribe and we'll flag changes that affect how wearable data reaches a health record."
+    },
+    "sources": [
+      {
+        "url": "https://hl7.org/fhir/R4/observation.html",
+        "checked": "2026-10-17",
+        "note": "R4 version and status, scope and uses, element table, rules obs-6 and obs-7, timing, value types, grouping, LOINC and UCUM examples."
+      },
+      {
+        "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+        "checked": "2026-10-17",
+        "note": "The wearables rationale, conformance statement, mandatory elements, code and unit table, blood pressure rule, search requirements, Informative status."
+      },
+      {
+        "url": "https://hl7.org/fhir/uv/phd/",
+        "checked": "2026-10-17",
+        "note": "Personal Health Device FHIR IG version 2.0.0 (STU 2) on R4."
+      },
+      {
+        "url": "https://www.ftc.gov/business-guidance/resources/mobile-health-apps-interactive-tool",
+        "checked": "2026-10-17",
+        "note": "Developer acting on behalf of a covered entity likely a business associate."
+      }
+    ]
   }
 ];

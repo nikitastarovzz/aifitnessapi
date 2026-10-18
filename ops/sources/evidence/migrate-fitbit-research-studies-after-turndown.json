@@ -1,0 +1,27 @@
+[
+  {
+    "claim": "Fitabase documents its plan for its move to the Google Health API.",
+    "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/migration-overview/",
+    "quote": "Google is retiring the Fitbit Web API on October 30, 2026, and requiring every third-party app, Fitabase included, to move to the new Google Health API."
+  },
+  {
+    "claim": "Fitabase documents Fitbit and Garmin support.",
+    "url": "https://www.fitabase.com/",
+    "quote": "Fitabase supports innovative data collection using Fitbit and Garmin wearables, powering the next generation of health research."
+  },
+  {
+    "claim": "Labfront documents its compatible devices.",
+    "url": "https://www.labfront.com/compatible-devices",
+    "quote": "Labfront is currently compatible with select Garmin, Movesense and Dexcom devices"
+  },
+  {
+    "claim": "Empatica documents its research platform.",
+    "url": "https://www.empatica.com/platform/research-studies",
+    "quote": "Empatica Health Monitoring Platform for Academic Research"
+  },
+  {
+    "claim": "Ametris (formerly ActiGraph) documents its platform.",
+    "url": "https://ametris.com/about-us",
+    "quote": "Founded in 2004, Ametris (formerly ActiGraph)"
+  }
+]
