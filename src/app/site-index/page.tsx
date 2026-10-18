@@ -5,6 +5,8 @@ import PageSummary from "@/components/PageSummary";
 import { SDK_REPOS } from "@/data/sdkReleases";
 import { getAllPosts } from "@/lib/posts";
 import { clusterMap, CLUSTER_LABELS } from "@/lib/clusterRegistry";
+import { hkPageIdentifiers } from "@/data/hkIdentifierPages";
+import { hsPageTypes } from "@/data/hsDataTypePages";
 
 const TITLE = "Site index";
 const DESCRIPTION =
@@ -45,6 +47,10 @@ const MAIN = [
   { href: "/cost-planner", label: "Fitness API cost planner" },
   { href: "/matrix", label: "HealthKit ↔ Health Connect type reference" },
   { href: "/healthkit-identifiers", label: "Every HealthKit type identifier" },
+  {
+    href: "/healthkit-identifiers#type-pages",
+    label: `HealthKit identifier pages — ${hkPageIdentifiers().length} types with a page of their own`,
+  },
   { href: "/healthkit-errors", label: "Every HealthKit error code" },
   { href: "/healthkit", label: "HealthKit data types by group" },
   { href: "/healthkit-versions", label: "HealthKit types by iOS version" },
@@ -56,6 +62,19 @@ const MAIN = [
   { href: "/error-codes/health-connect", label: "Health Connect error codes" },
   { href: "/health-connect-releases", label: "Health Connect SDK releases" },
   { href: "/wear-os-data-types", label: "Every Wear OS Health Services data type" },
+  { href: "/pose-keypoints", label: "Every pose-estimation keypoint index, by scheme" },
+  {
+    href: "/wear-os-data-types#type-pages",
+    label: `Wear OS data type pages — ${hsPageTypes().length} constants with a page of their own`,
+  },
+  { href: "/google-health-api", label: "Google Health API reference: every data type" },
+  { href: "/google-health-api/scopes", label: "Every Google Health API scope" },
+  { href: "/google-health-api/fitbit-web-api-mapping", label: "Fitbit Web API to Google Health API mapping" },
+  { href: "/google-health-api/access-and-limits", label: "Google Health API verification and rate limits" },
+  { href: "/google-health-api/webhooks", label: "Google Health API webhooks" },
+  { href: "/google-health-api/errors", label: "Google Health API error codes" },
+  { href: "/health-mcp-servers", label: "MCP servers for health and fitness data" },
+  { href: "/bluetooth-fitness", label: "Bluetooth GATT characteristics for fitness devices, byte by byte" },
   { href: "/libraries", label: "Open-source health & fitness libraries" },
   ...(SDK_REPOS.length > 0 ? [{ href: "/sdk-releases", label: "Health SDK release tracker" }] : []),
   { href: "/day-boundaries", label: "Why “today’s steps” is a bug (live demo)" },

@@ -29,6 +29,10 @@ import { releasedPhoneSensors, SENSORS_PATH } from "@/data/phoneSensors";
 import { releasedHealthConnectApi, HCAPI_PATH } from "@/data/healthConnectApi";
 import { HK_METADATA_KEYS } from "@/data/healthkitMetadataKeys";
 import { HS_DATA_TYPES } from "@/data/healthServicesDataTypes";
+import { POSE_SCHEMES } from "@/data/poseKeypoints";
+import { POSE_BASE, schemeDescription, schemeTitle, schemePath } from "@/data/poseKeypointPages";
+import { MCP_HEALTH_SERVERS } from "@/data/mcpHealthServers";
+import { BT_ALL, BT_BASE, BT_PAGES, BT_HUB_TITLE, btDescription, btHubDescription, btPath, btTitle } from "@/data/btPages";
 import {
   orderedRecords,
   recordPath,
@@ -44,6 +48,18 @@ import { LIBRARIES_BASE, LIBRARY_COMPARISONS, libraryPages } from "@/data/librar
 import { hkVersionPages, versionTitle, versionDescription, versionPrimaryQuery } from "@/lib/hkVersions";
 import { HC_ERROR_CONSTANTS } from "@/data/errorCodes";
 import { HC_RELEASES } from "@/data/hcReleases";
+import { hkPageIdentifiers, hkIdentifierPath, hkPageTitle, hkPageDescription } from "@/data/hkIdentifierPages";
+import { hsPageTypes, hsDataTypePath, hsPageTitle, hsPageDescription } from "@/data/hsDataTypePages";
+import {
+  GHAPI_PATHS,
+  GHAPI_TOPICS,
+  allTypes as ghapiTypes,
+  ghapiTotals,
+  opNames as ghapiOpNames,
+  typeDescription as ghapiTypeDescription,
+  typePath as ghapiTypePath,
+  typeTitle as ghapiTypeTitle,
+} from "@/data/ghapiPages";
 
 /**
  * Site search index — generated from the same data modules as the pages
@@ -251,6 +267,49 @@ export function GET() {
     add(recordPath(r), recordTitle(r), recordDescription(r), [r.className, ...perms, ...metrics, "health connect record"].join(" "));
   }
 
+  // Per-type reference pages (generated): one per HealthKit identifier and
+  // per Wear OS data type that clears its thin-page rule.
+  for (const id of hkPageIdentifiers()) {
+    add(
+      hkIdentifierPath(id),
+      hkPageTitle(id),
+      hkPageDescription(id),
+      [id.case, id.objc, id.familyType, id.group, id.aggregation, id.unitFamily, id.valueEnum, "healthkit identifier"]
+        .filter(Boolean)
+        .join(" "),
+    );
+  }
+  for (const t of hsPageTypes()) {
+    add(
+      hsDataTypePath(t),
+      hsPageTitle(t),
+      hsPageDescription(t),
+      [t.name, `DataType.${t.name}`, t.dataTypeClass, t.valueType, t.dataPointClass, t.permission, "wear os health services datatype"]
+        .filter(Boolean)
+        .join(" "),
+    );
+  }
+
+  // The Google Health API reference (generated from Google's pages).
+  const ghT = ghapiTotals();
+  add(
+    GHAPI_PATHS.hub,
+    "Google Health API reference",
+    `All ${ghT.types} Google Health API data types with operations, scopes, fields and rollups, the methods, rate limits and release history, from Google's docs.`,
+    "google health api fitbit web api successor data types reference discovery document googlehealth",
+  );
+  for (const p of GHAPI_TOPICS) {
+    add(p.path, `Google Health API ${p.label.toLowerCase()}`, p.blurb, `google health api ${p.label.toLowerCase()} fitbit`);
+  }
+  for (const t of ghapiTypes()) {
+    add(
+      ghapiTypePath(t),
+      ghapiTypeTitle(t),
+      ghapiTypeDescription(t),
+      [t.dataType, t.filterParam, t.name, ...ghapiOpNames(t), ...t.scopes.map((s) => s.shorthand), "google health api data type"].join(" "),
+    );
+  }
+
   // Open-source libraries (registry facts generated weekly).
   add(
     LIBRARIES_BASE,
@@ -296,6 +355,40 @@ export function GET() {
     `All ${HS_DATA_TYPES.length} Health Services DataType constants with Google's description, declared Kotlin type and the permission Google's table lists.`,
     ["wear os health services datatype data types exerciseclient passivemonitoringclient", ...HS_DATA_TYPES.map((t) => t.name)].join(" "),
   );
+  add(
+    POSE_BASE,
+    "Pose estimation keypoint maps",
+    `Every index of ${POSE_SCHEMES.length} pose keypoint schemes read from the models' own sources, with the models that use each and a name-only crosswalk.`,
+    ["pose keypoints landmarks index order crosswalk mapping", ...POSE_SCHEMES.map((s) => s.shortName)].join(" "),
+  );
+  for (const s of POSE_SCHEMES) {
+    add(
+      schemePath(s),
+      schemeTitle(s),
+      schemeDescription(s),
+      [s.shortName, "keypoints landmarks index", ...s.usedBy.map((u) => u.model), ...s.points.map((p) => p.name)].join(" "),
+    );
+  }
+  add(
+    "/health-mcp-servers",
+    "MCP servers for health and fitness data",
+    `The ${MCP_HEALTH_SERVERS.length} servers in the official MCP Registry that name a health or fitness data source, grouped by source, with package facts and publisher.`,
+    [
+      "mcp model context protocol server registry health data wearable garmin oura whoop strava apple health ai assistant",
+      ...new Set(MCP_HEALTH_SERVERS.map((s) => s.name.split("/")[1] ?? s.name)),
+    ].join(" "),
+  );
+
+  // Bluetooth GATT reference (generated from the Bluetooth SIG's YAML).
+  add(
+    BT_BASE,
+    BT_HUB_TITLE,
+    btHubDescription(),
+    ["bluetooth ble gatt characteristic uuid service byte layout flags ftms heart rate cycling power", ...BT_ALL.flatMap((c) => [c.name, c.uuid])].join(" "),
+  );
+  for (const c of BT_PAGES) {
+    add(btPath(c), btTitle(c), btDescription(c), [c.name, c.uuid, c.id, "bluetooth gatt characteristic byte layout", ...(c.gss?.structure.map((f) => f.name) ?? [])].join(" "));
+  }
 
   add(
     APIS_PATH,

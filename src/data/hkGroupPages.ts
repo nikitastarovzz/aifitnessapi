@@ -6,8 +6,11 @@
  * These twelve pages are the middle layer: one per group, each substantial
  * enough to stand alone (7–84 identifiers with real synthesis), each an
  * anchor surface for the exact identifier strings developers paste into a
- * search box. A page per identifier stays rejected — Apple's median
- * discussion is 23 words and per-identifier pages would be thin.
+ * search box. A page for every identifier stays rejected — Apple's median
+ * discussion is 23 words and most per-identifier pages would be thin — but
+ * since 2026-10-17 an identifier whose generated data holds at least two
+ * evidence-backed facts of its own gets a page at /healthkit-identifiers/<slug>
+ * (the rule is in hkIdentifierPages.ts), and its row here links to it.
  *
  * The derived half (tables) comes from the generated dataset at render time
  * so it cannot drift; the authored half (intro, traps, FAQs) lives in

@@ -26,8 +26,18 @@ import { releasedHealthkitQueries, HKQ_PATH } from "@/data/healthkitQueries";
 import { releasedPhoneSensors, SENSORS_PATH } from "@/data/phoneSensors";
 import { releasedHealthConnectApi, HCAPI_PATH } from "@/data/healthConnectApi";
 import { orderedRecords, recordPath, recordH1, recordCapsule, recordFaqs, HC_BASE } from "@/data/hcPages";
+import {
+  GHAPI_BASE,
+  allTypes as ghapiTypes,
+  typeCapsule as ghapiTypeCapsule,
+  typeFaqs as ghapiTypeFaqs,
+  typeH1 as ghapiTypeH1,
+  typePath as ghapiTypePath,
+} from "@/data/ghapiPages";
 import { LIBRARIES_BASE, LIBRARY_COMPARISONS, LIBRARIES_HUB_FAQS, libraryPages } from "@/data/librariesEditorial";
 import { hkVersionPages, versionH1, versionPrimaryQuery, versionCapsule, versionFaqs } from "@/lib/hkVersions";
+import { HK_ID_BASE, hkPageIdentifiers, hkIdentifierPath, hkPageH1, hkPageCapsule, hkPageFaqs } from "@/data/hkIdentifierPages";
+import { HS_BASE, hsPageTypes, hsDataTypePath, hsPageH1, hsPageCapsule, hsPageFaqs } from "@/data/hsDataTypePages";
 
 /**
  * llms-full.txt — the fuller LLM-facing dump: each spoke's answer capsule and
@@ -453,6 +463,42 @@ export function GET() {
   for (const r of orderedRecords()) {
     out.push(`## ${recordH1(r)} — ${absoluteUrl(recordPath(r))}`, "", recordCapsule(r), "");
     for (const f of recordFaqs(r)) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+    out.push("");
+  }
+
+  // Per-type HealthKit identifier and Wear OS data type pages — capsules and
+  // FAQs generated from the same data the pages render.
+  out.push(`# HealthKit identifier pages — ${absoluteUrl(HK_ID_BASE)}`, "");
+  out.push(
+    "One page per HealthKit quantity, category or characteristic identifier whose generated data holds at least two facts of its own — aggregation style and unit family with Apple's sentence, value enum, Apple's read-only statement, a verified Health Connect pairing, a deprecation note or a metadata key — read from Apple's documentation.",
+    "",
+  );
+  for (const id of hkPageIdentifiers()) {
+    out.push(`## ${hkPageH1(id)} — ${absoluteUrl(hkIdentifierPath(id))}`, `Primary query: ${id.objc}`, "", hkPageCapsule(id), "");
+    for (const f of hkPageFaqs(id)) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+    out.push("");
+  }
+  out.push(`# Wear OS Health Services data type pages — ${absoluteUrl(HS_BASE)}`, "");
+  out.push(
+    "One page per Health Services DataType constant whose generated data holds at least two facts of its own — the permission Google's table lists with its row, a further paragraph of Google's description, a recorded table quirk, or its delta or aggregate counterpart — read from Google's reference.",
+    "",
+  );
+  for (const t of hsPageTypes()) {
+    out.push(`## ${hsPageH1(t)} — ${absoluteUrl(hsDataTypePath(t))}`, `Primary query: DataType.${t.name}`, "", hsPageCapsule(t), "");
+    for (const f of hsPageFaqs(t)) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+    out.push("");
+  }
+
+  // Google Health API reference — capsules and FAQs are generated from the
+  // data-type data, exactly as the pages render them.
+  out.push(`# Google Health API reference — ${absoluteUrl(GHAPI_BASE)}`, "");
+  out.push(
+    "One page per data type in Google's Google Health API data-types table, joined to the v4 discovery document: operations with their documented path templates, scopes, fields, rollup fields and the Fitbit Web API predecessor, with a flag wherever Google's own pages disagree.",
+    "",
+  );
+  for (const t of ghapiTypes()) {
+    out.push(`## ${ghapiTypeH1(t)} — ${absoluteUrl(ghapiTypePath(t))}`, "", ghapiTypeCapsule(t), "");
+    for (const f of ghapiTypeFaqs(t)) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
     out.push("");
   }
 

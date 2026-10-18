@@ -40,6 +40,13 @@ const PAGES = ["/", "/devices", "/devices/ftms-fitness-machine-service", "/matri
   "/healthkit-versions/ios-8", "/health-connect-releases",
   "/health-connect-api", "/health-connect-api/healthkit-vs-health-connect-api-equivalents",
   "/healthkit-metadata-keys", "/wear-os-data-types",
+  "/pose-keypoints", "/pose-keypoints/coco-wholebody-133", "/pose-keypoints/apple-vision-3d",
+  "/healthkit-identifiers/heart-rate-variability-sdnn", "/wear-os-data-types/heart-rate-bpm",
+  "/google-health-api", "/google-health-api/sleep", "/google-health-api/scopes",
+  "/google-health-api/fitbit-web-api-mapping", "/google-health-api/access-and-limits",
+  "/google-health-api/webhooks", "/google-health-api/errors",
+  "/health-mcp-servers", "/ai/connect-wearable-data-to-ai-assistants",
+  "/bluetooth-fitness", "/bluetooth-fitness/heart-rate-measurement", "/bluetooth-fitness/cross-trainer-data",
   "/not-a-real-page"];
 
 const exe = process.env.PLAYWRIGHT_CHROMIUM;

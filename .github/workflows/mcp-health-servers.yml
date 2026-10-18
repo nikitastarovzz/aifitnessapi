@@ -1,0 +1,120 @@
+name: Health MCP server directory
+
+# Refreshes src/data/mcpHealthServers.ts from the official MCP Registry, npm
+# and PyPI (scripts/fetch-mcp-health-servers.mjs), then rebuilds the
+# health-mcp-servers-2026 dataset from it. /health-mcp-servers renders that
+# file, so a server published, deprecated or deleted in the registry reaches
+# the site within a week of the registry saying so.
+on:
+  # PAUSED from the start, like the library tracker, the SDK release tracker
+  # and the search snapshot: those were paused 2026-10-06 at the owner's
+  # request because they failed at "GitHub Actions is not permitted to create
+  # or approve pull requests" once main became protected, emailing a failure
+  # on every run. This workflow opens its pull request the same way, so it
+  # would fail the same way until that repository setting allows it.
+  # Uncomment the schedule to turn it on. Manual runs still work (Actions
+  # tab, Run workflow).
+  # schedule:
+  #   # 05:13 UTC every Wednesday. Off the hour, and a day after the library
+  #   # tracker (Tuesday 04:37), so the two never race for main.
+  #   - cron: "13 5 * * 3"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: mcp-health-servers
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    # The generator reads every page of the registry's listing (452 pages on
+    # 2026-10-17), and the registry answers some pages slowly; this bounds a
+    # stuck run well below the platform's six-hour default.
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Read the MCP Registry, npm and PyPI
+        # Exits non-zero (and writes nothing) on a short read of the registry,
+        # on fewer in-scope servers than its floor, or on any package lookup
+        # that fails for a reason other than a 404 — a partial set is never
+        # published. No token: every source is a public, unauthenticated API.
+        run: node scripts/fetch-mcp-health-servers.mjs
+
+      - name: Rebuild the dataset from the refreshed module
+        # Plain Node, no dependencies: both scripts read the data modules as
+        # text. Keeps public/datasets/health-mcp-servers-2026.* and the
+        # manifest in step with the module in the same pull request.
+        run: |
+          node scripts/build-datasets.mjs
+          node scripts/build-dataset-manifest.mjs
+
+      - name: Commit if something meaningful changed
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          # gh needs a token; the default one can open and auto-merge a PR
+          # given the pull-requests: write permission above.
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- src/data/mcpHealthServers.ts; then
+            echo "No changes."
+            git checkout -- public/datasets
+            exit 0
+          fi
+
+          # Same rule as the library tracker (.github/workflows/libraries.yml):
+          # every commit here is a full production build. The registry grows
+          # every week, so the size of the listing and the read date move on
+          # almost every run without anything on the page changing; those are
+          # held back so they ship once a month, on the first scheduled run of
+          # the month (day 1-7, since this runs weekly). Anything else — a
+          # server added or removed, a version, a status, a description, a
+          # package fact, the publisher flag — commits the week it appears. A
+          # manual run commits whatever it finds.
+          #
+          # The matcher is exact to the generator's JSON.stringify(…, null, 2)
+          # output, one scalar per line. Only lines inside hunks are judged,
+          # so the ---/+++ headers are never mistaken for content.
+          changed=$(git diff -U0 -- src/data/mcpHealthServers.ts \
+            | awk '/^diff --git /{h=0} /^@@ /{h=1; next} h && /^[-+]/')
+          noise='^[-+]([[:space:]]*"(pages|entries|uniqueNames)": [0-9]+,?|export const MCP_SERVERS_FETCHED_ON = "[0-9]{4}-[0-9]{2}-[0-9]{2}";)$'
+          meaningful=$(printf '%s\n' "$changed" | grep -Ev "$noise" | grep -v '^$' || true)
+          dom=$(date -u +%d)
+          if [ -z "$meaningful" ] && [ "$EVENT_NAME" != "workflow_dispatch" ] && [ "$((10#$dom))" -gt 7 ]; then
+            echo "Only the listing size / the read date moved:"
+            printf '%s\n' "$changed"
+            echo "Holding this back until the month's first run so it does not redeploy the site."
+            git checkout -- src/data/mcpHealthServers.ts public/datasets
+            exit 0
+          fi
+          if [ -z "$meaningful" ]; then
+            echo "Stamp-only change; committing (first run of the month, or manual run)."
+          else
+            echo "Meaningful change:"
+            printf '%s\n' "$meaningful"
+          fi
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/mcpHealthServers.ts public/datasets
+          git commit -m "Refresh health MCP server directory"
+
+          # Via a PR with auto-merge, not a direct push: main requires a pull
+          # request and green CI. Green merges itself and deploys as before;
+          # red parks as an open PR instead of deploying a broken directory.
+          branch="bot/mcp-health-servers-${GITHUB_RUN_ID}"
+          git checkout -b "$branch"
+          git push origin "$branch"
+          gh pr create --base main --head "$branch" \
+            --title "Refresh health MCP server directory" \
+            --body "Automated refresh of \`src/data/mcpHealthServers.ts\` and the health-mcp-servers-2026 dataset from the official MCP Registry, npm and PyPI. Merges itself once CI is green. Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          gh pr merge --auto --squash --delete-branch "$branch"

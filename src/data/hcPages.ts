@@ -28,6 +28,7 @@ import {
 import { ROWS as MATRIX_ROWS, type Row as MatrixRow } from "./matrix";
 import { HK_IDENTIFIERS } from "./healthkitIdentifiers";
 import { hkGroupSlugOf, releasedHkGroups, HK_BASE } from "./hkGroupPages";
+import { hkIdentifierPagePath } from "./hkIdentifierPages";
 
 export const HC_BASE = "/health-connect";
 export const HC_PERMISSIONS_PATH = `${HC_BASE}/permissions`;
@@ -306,7 +307,8 @@ export type HkCounterpart = {
    *  only case where the row reads as a pairing of this record. A row with
    *  several Android records groups types; it does not pair them one-to-one. */
   oneToOne: boolean;
-  /** Apple identifiers named in the row that have a HealthKit group page. */
+  /** Apple identifiers named in the row that have a HealthKit group page,
+   *  each linked to its own page where it has one, else its group-page row. */
   identifiers: { case: string; href: string }[];
 };
 
@@ -323,7 +325,12 @@ export function hkCounterpart(r: HcRecord): HkCounterpart | null {
     const slug = hkGroupSlugOf(id);
     if (!slug || !RELEASED_HK.has(slug)) continue;
     if (identifiers.some((x) => x.case === id.case)) continue;
-    identifiers.push({ case: id.case, href: `${HK_BASE}/${slug}#id-${id.case.toLowerCase()}` });
+    // The identifier's own page where the thin-page rule gives it one
+    // (hkIdentifierPages.ts), else its row on its group page.
+    identifiers.push({
+      case: id.case,
+      href: hkIdentifierPagePath(id.case) ?? `${HK_BASE}/${slug}#id-${id.case.toLowerCase()}`,
+    });
   }
   const androidTypes = row.android.split(",").map((x) => x.trim()).filter(Boolean);
   return { row, oneToOne: androidTypes.length === 1, identifiers };

@@ -30,6 +30,10 @@ import { releasedPhoneSensors, SENSORS_PATH } from "@/data/phoneSensors";
 import { releasedHealthConnectApi, HCAPI_PATH } from "@/data/healthConnectApi";
 import { HK_METADATA_KEYS, HK_METADATA_KEY_GROUPS } from "@/data/healthkitMetadataKeys";
 import { HS_DATA_TYPES } from "@/data/healthServicesDataTypes";
+import { POSE_CROSSWALK, POSE_SCHEMES } from "@/data/poseKeypoints";
+import { POSE_BASE, schemeDescription, schemeH1, schemePath } from "@/data/poseKeypointPages";
+import { MCP_HEALTH_SERVERS, MCP_SERVERS_FETCHED_ON } from "@/data/mcpHealthServers";
+import { BT_BASE, BT_PAGES, btDescription, btH1, btHubDescription, btPath, btTotals } from "@/data/btPages";
 import {
   orderedRecords,
   recordPath,
@@ -44,6 +48,17 @@ import { LIBRARIES_BASE, LIBRARY_COMPARISONS, libraryPages } from "@/data/librar
 import { hkVersionPages, versionH1, versionDescription } from "@/lib/hkVersions";
 import { HC_ERROR_CONSTANTS, HC_CLIENT_EXCEPTIONS } from "@/data/errorCodes";
 import { HC_RELEASES } from "@/data/hcReleases";
+import { hkPageIdentifiers, hkIdentifierPath, hkPageH1, hkPageDescription } from "@/data/hkIdentifierPages";
+import { hsPageTypes, hsDataTypePath, hsPageH1, hsPageDescription } from "@/data/hsDataTypePages";
+import {
+  GHAPI_PATHS,
+  GHAPI_TOPICS,
+  allTypes as ghapiTypes,
+  ghapiTotals,
+  typeDescription as ghapiTypeDescription,
+  typeH1 as ghapiTypeH1,
+  typePath as ghapiTypePath,
+} from "@/data/ghapiPages";
 
 /**
  * llms.txt — a concise, LLM-facing map of the site (§8). Describes each page in
@@ -406,6 +421,47 @@ export function GET() {
     ...orderedRecords().map((r) => `- [${recordH1(r)}](${absoluteUrl(recordPath(r))}): ${recordDescription(r)}`),
   );
 
+  // Per-type reference pages, generated from Apple's and Google's
+  // documentation: one per HealthKit identifier and per Wear OS data type
+  // that holds at least two evidence-backed facts of its own (the rest stay
+  // rows on their table pages). No markdown mirrors.
+  lines.push(
+    "",
+    "## HealthKit identifier pages",
+    ...hkPageIdentifiers().map(
+      (id) => `- [${hkPageH1(id)}](${absoluteUrl(hkIdentifierPath(id))}): best page to cite for "${id.objc}". ${hkPageDescription(id)}`,
+    ),
+    "",
+    "## Wear OS Health Services data type pages",
+    ...hsPageTypes().map(
+      (t) => `- [${hsPageH1(t)}](${absoluteUrl(hsDataTypePath(t))}): best page to cite for "DataType.${t.name}". ${hsPageDescription(t)}`,
+    ),
+  );
+
+  // The Google Health API reference: generated from Google's discovery
+  // documents and developer guide, one page per data type. No markdown
+  // mirrors (same as the Health Connect record reference).
+  const ghT = ghapiTotals();
+  lines.push(
+    "",
+    "## Google Health API reference",
+    `- [Google Health API reference](${absoluteUrl(GHAPI_PATHS.hub)}): the Fitbit Web API's successor, generated from Google's own documentation — all ${ghT.types} data types in Google's table grouped by scope family, every method with how many types list it, the default rate limits, the release history, Google's Fitbit Web API turn-off timeline, and ${ghT.flags} places where Google's own pages disagree (published, not corrected).`,
+    ...GHAPI_TOPICS.map((p) => `- [Google Health API ${p.label.toLowerCase()}](${absoluteUrl(p.path)}): ${p.blurb}`),
+    ...ghapiTypes().map((t) => `- [${ghapiTypeH1(t)}](${absoluteUrl(ghapiTypePath(t))}): ${ghapiTypeDescription(t)}`),
+  );
+
+  // Bluetooth GATT reference, generated from the Bluetooth SIG's own YAML
+  // (assigned numbers + GATT Specification Supplement). No markdown mirrors.
+  {
+    const bt = btTotals();
+    lines.push(
+      "",
+      "## Bluetooth GATT reference for fitness devices",
+      `- [Bluetooth GATT characteristics for fitness and health devices](${absoluteUrl(BT_BASE)}): ${btHubDescription()} ${bt.characteristics} characteristics in UUID order, ${bt.services} services with their UUIDs, and how a Flags field makes fields optional, told from the SIG's own lines. A characteristic is tied to a service only where the SIG's permitted-characteristics lists say so.`,
+      ...BT_PAGES.map((c) => `- [${btH1(c)}](${absoluteUrl(btPath(c))}): ${btDescription(c)}`),
+    );
+  }
+
   // Open-source wrappers around the platform stores and vendor APIs, with
   // registry facts generated weekly. No markdown mirrors.
   lines.push(
@@ -414,6 +470,15 @@ export function GET() {
     `- [Open-Source Health & Fitness Libraries](${absoluteUrl(LIBRARIES_BASE)}): open-source packages for HealthKit, Health Connect and fitness APIs (React Native, Capacitor/Cordova, Flutter, Python) — latest versions, release dates, licences and README caveats, read from npm, pub.dev and PyPI. Registry facts only; no download counts.`,
     ...libraryPages().map(({ ed }) => `- [${ed.title}](${absoluteUrl(`${LIBRARIES_BASE}/${ed.slug}`)}): best page to cite for "${ed.primaryQuery}". ${ed.metaDescription}`),
     ...LIBRARY_COMPARISONS.map((c) => `- [${c.title}](${absoluteUrl(`${LIBRARIES_BASE}/compare/${c.slug}`)}): best page to cite for "${c.primaryQuery}". ${c.metaDescription}`),
+  );
+
+  // Pose keypoint schemes, generated from each model's own source files.
+  // No markdown mirrors.
+  lines.push(
+    "",
+    "## Pose estimation keypoint reference",
+    `- [Pose estimation keypoint maps](${absoluteUrl(POSE_BASE)}): every index of ${POSE_SCHEMES.length} keypoint schemes (${POSE_SCHEMES.map((s) => s.shortName).join(", ")}) read from the models' own source files, which models each source ties to which scheme, and a ${POSE_CROSSWALK.length}-row crosswalk that joins points only when their names are identical once lowercased with separators removed.`,
+    ...POSE_SCHEMES.map((s) => `- [${schemeH1(s)}](${absoluteUrl(schemePath(s))}): ${schemeDescription(s)}`),
   );
 
   // Question indexes: the site's FAQ anchors, listed rather than searched.
@@ -446,6 +511,7 @@ export function GET() {
     `- [HealthKit metadata keys](${absoluteUrl("/healthkit-metadata-keys")}): all ${HK_METADATA_KEYS.length} HKMetadataKey constants from Apple's documentation in ${HK_METADATA_KEY_GROUPS.length} topic groups, with Apple's wording, OS availability, and the value type only where Apple's own sentence states it (that sentence kept beside it).`,
     `- [Wear OS Health Services data types](${absoluteUrl("/wear-os-data-types")}): all ${HS_DATA_TYPES.length} Health Services DataType constants from Google's Jetpack reference, with Google's description, the declared Kotlin type, and the permission Google's permissions table lists where it names the constant.`,
     `- [Health Connect SDK releases](${absoluteUrl("/health-connect-releases")}): all ${HC_RELEASES.length} androidx.health.connect:connect-client releases from Google's Jetpack release notes — version, date, stage and what changed.`,
+    `- [MCP servers for health and fitness data](${absoluteUrl("/health-mcp-servers")}): the ${MCP_HEALTH_SERVERS.length} servers in the official MCP Registry (read ${MCP_SERVERS_FETCHED_ON}) whose name, title or description names a health or fitness data source, grouped by source, with the registry's description verbatim, how each runs, npm/PyPI package facts, and whether the registry namespace is the vendor's own domain. This site's own MCP server is described separately on that page, with a disclosure.`,
     `- [Every HealthKit error code](${absoluteUrl("/healthkit-errors")}): all 17 HKError.Code cases with Apple's own description of each. Two findings stated rather than smoothed over: a denied HealthKit READ raises no error at all (Apple reports refusal only on saves, so an empty result is deliberately ambiguous between no-data and no-permission), and Apple does not publish the numeric raw values, so a code in a crash log cannot be mapped to a name from the documentation.`,
     "",
     "## About",

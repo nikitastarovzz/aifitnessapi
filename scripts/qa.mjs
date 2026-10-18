@@ -331,6 +331,10 @@ if (fs.existsSync(matrixPath)) {
     "health-connect-permissions-2026",
     "healthkit-metadata-keys-2026",
     "wear-os-health-services-data-types-2026",
+    "pose-keypoint-maps-2026",
+    "google-health-api-data-types-2026",
+    "health-mcp-servers-2026",
+    "bluetooth-fitness-gatt-2026",
   ];
   // Both directions. Listing files catches a DELETION (a dataset a page
   // still cites); scanning the directory catches an ADDITION that was never
@@ -2190,6 +2194,351 @@ if (fs.existsSync(matrixPath)) {
     }
   }
 
+  // Pose keypoint schemes (EXPANSION-3 2.1 and 2.2, added 2026-10-17). Nine
+  // schemes read from each model's own source on 2026-10-17 (the generator's
+  // exact counts). Every point must render on its scheme page with the name
+  // the source spells, every scheme must have a column in the hub's
+  // crosswalk, and the crosswalk may join only names that are identical once
+  // lowercased with every character outside a-z0-9 removed — the rule the
+  // pages state. A join that rule does not produce is a guess, and a key the
+  // rule does produce but the crosswalk leaves out is a dropped mapping.
+  {
+    const src = fs.readFileSync("src/data/poseKeypoints.ts", "utf8");
+    const schemes = jsonArray(src, "POSE_SCHEMES");
+    const crosswalk = jsonArray(src, "POSE_CROSSWALK") ?? [];
+    const POSE_MIN_SCHEMES = 9;
+    const keyOf = (n) => n.toLowerCase().replace(/[^a-z0-9]/g, "");
+    const kpId = (p) => (p.index !== null ? `kp-${p.index}` : `kp-${p.key}`);
+    if (!schemes || schemes.length < POSE_MIN_SCHEMES) {
+      problems.push(`POSE-KEYPOINT-ROWS  src/data/poseKeypoints.ts yields ${schemes?.length ?? 0} schemes, expected at least ${POSE_MIN_SCHEMES}`);
+    } else {
+      let rendered = 0;
+      for (const s of schemes) {
+        const page = htmlOf(`/pose-keypoints/${s.slug}`);
+        if (!page) {
+          problems.push(`POSE-KEYPOINT-ROWS  /pose-keypoints/${s.slug} was not built`);
+          continue;
+        }
+        const missing = [];
+        for (const p of s.points) {
+          const row = rowOf(page, kpId(p));
+          if (!row || !row.includes(`>${p.name}<`)) missing.push(p.index ?? p.name);
+          else rendered++;
+        }
+        if (missing.length) {
+          problems.push(`POSE-KEYPOINT-ROWS  /pose-keypoints/${s.slug} does not show the row and source name for ${missing.slice(0, 5).join(", ")}${missing.length > 5 ? "…" : ""}`);
+        }
+        for (const p of s.points) {
+          if (p.key !== keyOf(p.name)) problems.push(`POSE-KEYPOINT-MAPPING  ${s.slug} ${p.name} carries the key ${p.key}, not ${keyOf(p.name)}`);
+        }
+      }
+      const owners = new Map();
+      for (const s of schemes) for (const p of s.points) (owners.get(p.key) ?? owners.set(p.key, []).get(p.key)).push(s.slug);
+      for (const r of crosswalk) {
+        if (r.cells.length < 2) problems.push(`POSE-KEYPOINT-MAPPING  crosswalk row ${r.key} joins ${r.cells.length} point`);
+        for (const c of r.cells) {
+          const point = schemes.find((x) => x.slug === c.scheme)?.points.find((x) => x.name === c.name && x.index === c.index);
+          if (!point) problems.push(`POSE-KEYPOINT-MAPPING  crosswalk row ${r.key} names ${c.scheme} ${c.name}, which is not a point of that scheme`);
+          else if (keyOf(c.name) !== r.key) problems.push(`POSE-KEYPOINT-MAPPING  crosswalk row ${r.key} joins ${c.scheme} ${c.name}, whose name does not normalise to ${r.key}`);
+        }
+      }
+      for (const [k, slugs] of owners) {
+        if (slugs.length > 1 && !crosswalk.some((r) => r.key === k)) problems.push(`POSE-KEYPOINT-MAPPING  ${slugs.join(" and ")} share the key ${k} but the crosswalk has no row for it`);
+      }
+      const hub = htmlOf("/pose-keypoints");
+      if (!hub) problems.push("POSE-KEYPOINT-CROSSWALK  /pose-keypoints was not built");
+      else {
+        const noColumn = schemes.filter((s) => !hub.includes(`data-scheme="${s.slug}"`)).map((s) => s.slug);
+        if (noColumn.length) problems.push(`POSE-KEYPOINT-CROSSWALK  the /pose-keypoints crosswalk has no column for ${noColumn.join(", ")}`);
+        for (const r of crosswalk) {
+          const row = rowOf(hub, `xw-${r.key}`);
+          if (!row) problems.push(`POSE-KEYPOINT-CROSSWALK  /pose-keypoints has no crosswalk row for ${r.key}`);
+          else {
+            const absent = r.cells.filter(
+              (c) => !row.includes(`href="/pose-keypoints/${c.scheme}#${c.index !== null ? `kp-${c.index}` : `kp-${keyOf(c.name)}`}"`) || !row.includes(`>${c.name}<`),
+            );
+            if (absent.length) problems.push(`POSE-KEYPOINT-CROSSWALK  /pose-keypoints row ${r.key} does not show ${absent.map((c) => `${c.scheme} ${c.index ?? c.name}`).join(", ")}`);
+          }
+        }
+      }
+      console.log(`Pose keypoints: ${schemes.length} schemes, ${rendered} points rendered with their source names, ${crosswalk.length} crosswalk rows, every join name-identical.`);
+    }
+  }
+
+  // Google Health API reference (EXPANSION-3 1.1, added 2026-10-17). Google's
+  // data-types table listed 44 data types on 2026-10-17 (the generator's own
+  // floor). Every generated type must have a built page carrying its marker
+  // and showing every operation (with its documented path) and every scope
+  // URL the data gives it, a row in the hub's table, and every cross-check
+  // flag raised for it (the hub lists the flags no type owns); the derived
+  // fields must arrive with their evidence;
+  // and each topic page must render every row of the generated list it
+  // presents. Counts come from the generated module, never from this file.
+  {
+    const src = fs.readFileSync("src/data/googleHealthApi.ts", "utf8");
+    const types = jsonArray(src, "GHAPI_DATA_TYPES");
+    const prefix = strConst(src, "GHAPI_SCOPE_PREFIX");
+    const BASE = "/google-health-api";
+    const TOPICS = ["scopes", "fitbit-web-api-mapping", "access-and-limits", "webhooks", "errors"].map((s) => `${BASE}/${s}`);
+    if (!types || types.length < 44) {
+      problems.push(`GHAPI-TYPE-COVERAGE  src/data/googleHealthApi.ts yields ${types?.length ?? 0} data types, expected at least 44`);
+    } else {
+      const built = htmls
+        .map(routeOf)
+        .filter((r) => r.startsWith(`${BASE}/`) && r.split("/").length === 3 && !TOPICS.includes(r) && !notFoundSet.has(r));
+      if (built.length !== types.length) problems.push(`GHAPI-TYPE-COVERAGE  ${built.length} data-type pages built for ${types.length} generated data types`);
+      const hub = htmlOf(BASE);
+      if (!hub) problems.push(`GHAPI-TYPE-COVERAGE  ${BASE} was not built`);
+      const hubLinks = hub ? hrefsIn(hub) : new Set();
+      let facts = 0;
+      let flagsShown = 0;
+      for (const t of types) {
+        const route = `${BASE}/${t.dataType}`;
+        const html = htmlOf(route);
+        if (hub && (!hubLinks.has(route) || !hub.includes(`id="type-${t.dataType}"`))) {
+          problems.push(`GHAPI-HUB-TABLE  ${BASE} has no table row linking ${route}`);
+        }
+        if (!html) {
+          problems.push(`GHAPI-TYPE-COVERAGE  ${route} (${t.name}) has no built page`);
+          continue;
+        }
+        if (!html.includes(`data-ghapi-type="${t.dataType}"`)) problems.push(`GHAPI-TYPE-COVERAGE  ${route} does not carry data-ghapi-type="${t.dataType}"`);
+        const text = decode(html);
+        for (const o of t.operations) {
+          if (!html.includes(`data-ghapi-op="${o.op}"`)) problems.push(`GHAPI-TYPE-FACTS  ${route} does not show the operation ${o.op}`);
+          else if (o.path && !text.includes(`${o.httpMethod} ${o.path}`)) problems.push(`GHAPI-TYPE-FACTS  ${route} does not show ${o.httpMethod} ${o.path}`);
+          else facts++;
+        }
+        for (const s of t.scopes) {
+          if (!text.includes(s.url)) problems.push(`GHAPI-TYPE-FACTS  ${route} does not show its scope ${s.url}`);
+          else facts++;
+        }
+        const shown = (html.match(/data-ghapi-flag="/g) ?? []).length;
+        if (shown < t.flags.length) problems.push(`GHAPI-FLAG-SHOWN  ${route} shows ${shown} of the ${t.flags.length} cross-check flags raised for it`);
+        flagsShown += Math.min(shown, t.flags.length);
+        // Derived fields and their evidence.
+        if (!!t.dataPointProperty !== !!t.dataPointMatch) problems.push(`GHAPI-EVIDENCE  ${t.dataType} has a DataPoint field without the way it was matched`);
+        if (t.dataPointMatch === "description" && !(t.dataPointEvidence ?? "").includes(`\`${t.dataType}\``)) {
+          problems.push(`GHAPI-EVIDENCE  ${t.dataType}: the DataPoint description it was matched by does not name it`);
+        }
+        for (const s of t.scopes) {
+          if (!prefix || s.url !== `${prefix}${s.shorthand}`) problems.push(`GHAPI-EVIDENCE  ${t.dataType}: scope ${s.url} is not the documented prefix plus ${s.shorthand}`);
+        }
+        for (const r of [t.rollup, t.dailyRollup]) {
+          if (r && !(r.evidence ?? "").includes(`\`${t.dataType}\``)) problems.push(`GHAPI-EVIDENCE  ${t.dataType}: a rollup was matched by a description that does not name it`);
+        }
+        for (const o of t.operations) {
+          if (o.match && o.match !== "exact" && !o.evidence) problems.push(`GHAPI-EVIDENCE  ${t.dataType}: operation ${o.op} was paired with ${o.method} without its evidence`);
+        }
+        for (const f of t.flags) if (!f.evidence?.length) problems.push(`GHAPI-EVIDENCE  ${t.dataType}: a ${f.kind} flag carries no evidence`);
+      }
+      // A flag that belongs to no data-type page (a scope one source omits, a
+      // wording disagreement between two guides) is listed on the hub instead.
+      {
+        const typeIds = new Set(types.map((t) => t.dataType));
+        const pageless = (jsonArray(src, "GHAPI_FLAGS") ?? []).filter((f) => !f.dataType || !typeIds.has(f.dataType)).length;
+        const onHub = hub ? (hub.match(/data-ghapi-flag="/g) ?? []).length : 0;
+        if (onHub < pageless) problems.push(`GHAPI-FLAG-SHOWN  ${BASE} shows ${onHub} of the ${pageless} cross-check flags that belong to no data-type page`);
+        flagsShown += Math.min(onHub, pageless);
+      }
+      // The topic pages: each renders every row of the list it presents.
+      const rowsOn = (route, re) => {
+        const html = htmlOf(route);
+        if (!html) {
+          problems.push(`GHAPI-TOPIC-ROWS  ${route} was not built`);
+          return null;
+        }
+        return new Set([...html.matchAll(re)].map((m) => m[1]));
+      };
+      const checkRows = (route, re, expected, what) => {
+        const got = rowsOn(route, re);
+        if (!got) return;
+        const missing = expected.filter((x) => !got.has(x));
+        if (missing.length) problems.push(`GHAPI-TOPIC-ROWS  ${route} is missing ${what}: ${missing.slice(0, 5).join(", ")}${missing.length > 5 ? "…" : ""}`);
+      };
+      checkRows(`${BASE}/scopes`, /data-ghapi-scope="([^"]+)"/g, (jsonArray(src, "GHAPI_DOCUMENTED_SCOPES") ?? []).map((s) => s.url), "documented scopes");
+      checkRows(`${BASE}/errors`, /id="error-([a-z0-9_]+)"/g, (jsonArray(src, "GHAPI_ERRORS") ?? []).map((e) => e.reason.toLowerCase()), "error reasons");
+      checkRows(`${BASE}/webhooks`, /id="webhook-([a-z0-9-]+)"/g, jsonArray(src, "GHAPI_WEBHOOK_TYPES") ?? [], "webhook data types");
+      checkRows(`${BASE}/fitbit-web-api-mapping`, /id="map-(\d+)"/g, (jsonArray(src, "GHAPI_DATA_TYPE_MAPPING") ?? []).map((_, i) => String(i + 1)), "data-type mapping rows");
+      if (!htmlOf(`${BASE}/access-and-limits`)?.includes("data-ghapi-rate-limits")) problems.push(`GHAPI-TOPIC-ROWS  ${BASE}/access-and-limits does not render the rate-limits table`);
+      console.log(
+        `Google Health API: ${built.length} data-type pages for ${types.length} types, ${facts} operations and scopes shown, ${flagsShown} cross-check flags shown, ${TOPICS.length} topic pages checked.`,
+      );
+    }
+  }
+
+  // MCP servers for health and fitness data (EXPANSION-3 2.5), generated from
+  // the official MCP Registry. Three things are held: every generated server
+  // has its row on /health-mcp-servers and the generator's own floor is met;
+  // no row says "official" unless the generator set publisherIsVendor, and a
+  // server it did set it for really sits under the reverse-DNS form of a
+  // domain the generator lists for a source the server names; and every term
+  // a server was kept for is in the field the match names — the evidence the
+  // listing rests on.
+  {
+    const src = fs.readFileSync("src/data/mcpHealthServers.ts", "utf8");
+    const servers = jsonArray(src, "MCP_HEALTH_SERVERS");
+    const terms = jsonArray(src, "MCP_SERVER_TERMS") ?? [];
+    const floor = numConst(src, "MCP_SERVERS_EXPECTED_MIN");
+    const page = htmlOf("/health-mcp-servers");
+    if (!servers || !floor || servers.length < floor) {
+      problems.push(`MCP-SERVER-ROWS  src/data/mcpHealthServers.ts yields ${servers?.length ?? 0} servers, below its floor MCP_SERVERS_EXPECTED_MIN (${floor})`);
+    } else if (!page) {
+      problems.push("MCP-SERVER-ROWS  /health-mcp-servers was not built");
+    } else {
+      /** The <tr …>…</tr> carrying an id, decoded. */
+      const trOf = (id) => {
+        const at = page.indexOf(`id="${id}"`);
+        if (at === -1) return null;
+        const start = page.lastIndexOf("<tr", at);
+        const end = page.indexOf("</tr>", at);
+        return decode(page.slice(start, end === -1 ? undefined : end));
+      };
+      const rendered = new Set([...page.matchAll(/data-mcp-server="([^"]+)"/g)].map((m) => decode(m[1])));
+      const missing = servers.filter((s) => !rendered.has(s.name) || !page.includes(`id="server-${s.slug}"`)).map((s) => s.name);
+      if (missing.length) {
+        problems.push(`MCP-SERVER-ROWS  /health-mcp-servers is missing rows for ${missing.slice(0, 5).join(", ")}${missing.length > 5 ? "…" : ""}`);
+      }
+      if (rendered.size !== servers.length) {
+        problems.push(`MCP-SERVER-ROWS  /health-mcp-servers renders ${rendered.size} server rows for ${servers.length} generated servers`);
+      }
+      const domainsOf = new Map(terms.map((t) => [t.source, t.domains ?? []]));
+      const reverseDns = (d) => d.split(".").reverse().join(".");
+      let official = 0;
+      for (const s of servers) {
+        const row = trOf(`server-${s.slug}`);
+        if (!row) continue;
+        const saysOfficial = /data-publisher="official"/.test(row) || />Official</.test(row);
+        if (saysOfficial && !s.publisherIsVendor) {
+          problems.push(`MCP-SERVER-OFFICIAL  /health-mcp-servers labels ${s.name} official, but the generator did not set publisherIsVendor`);
+        }
+        if (s.publisherIsVendor) {
+          official++;
+          if (!saysOfficial) problems.push(`MCP-SERVER-OFFICIAL  ${s.name} has publisherIsVendor but its row does not say official`);
+          const ns = String(s.namespace).toLowerCase();
+          const vendorDomain = s.sources
+            .flatMap((k) => domainsOf.get(k) ?? [])
+            .find((d) => ns === reverseDns(d) || ns.startsWith(`${reverseDns(d)}.`));
+          if (!vendorDomain || !s.publisherEvidence) {
+            problems.push(`MCP-SERVER-OFFICIAL  ${s.name} has publisherIsVendor, but its namespace is not the reverse-DNS form of a domain listed for a source it names`);
+          }
+        }
+      }
+      const fieldsOf = (s) => ({ name: s.name.replace(/[/._-]+/g, " "), title: s.title ?? "", description: s.description ?? "" });
+      for (const s of servers) {
+        if (!s.matches?.length) {
+          problems.push(`MCP-SERVER-EVIDENCE  ${s.name} is listed without a matched term`);
+          continue;
+        }
+        const f = fieldsOf(s);
+        for (const m of s.matches) {
+          if (!f[m.field]?.includes(m.text) || (m.context && !f[m.context.field]?.includes(m.context.text))) {
+            problems.push(`MCP-SERVER-EVIDENCE  ${s.name}: the match for "${m.term}" is not in its ${m.field}`);
+          }
+        }
+        const row = trOf(`server-${s.slug}`);
+        if (row && !row.includes(s.description)) {
+          problems.push(`MCP-SERVER-EVIDENCE  /health-mcp-servers row for ${s.name} does not quote its registry description`);
+        }
+      }
+      if (!missing.length) console.log(`MCP servers: ${servers.length} rendered on /health-mcp-servers (floor ${floor}), ${official} under a vendor's own namespace.`);
+    }
+  }
+
+  // Bluetooth GATT reference (ops/EXPANSION-3-2026-10-17.md item 4.3, added
+  // 2026-10-17). The Bluetooth SIG's repository read that day gave 97 in-scope
+  // characteristics, 90 with a gss structure and 44 passing the thin-page rule
+  // (the generator's own floors). The failure that matters is the quiet one:
+  // a page that builds and reads fine with a field missing from its layout,
+  // or a hub that drops a characteristic. So the hub must carry a row for
+  // every in-scope characteristic and link every page; every page must show
+  // every structure field (name, type and size as published) and render every
+  // definition and struct row the SIG's file gives; the thin-page rule must
+  // hold both ways; and a derived value must travel with its line.
+  {
+    const src = fs.readFileSync("src/data/bluetoothGatt.ts", "utf8");
+    const chars = jsonArray(src, "BT_CHARACTERISTICS");
+    const hub = htmlOf("/bluetooth-fitness");
+    if (!chars || chars.length < 97) {
+      problems.push(`BT-GATT-ROWS  src/data/bluetoothGatt.ts yields ${chars?.length ?? 0} characteristics, expected at least 97`);
+    } else if (!hub) {
+      problems.push("BT-GATT-ROWS  /bluetooth-fitness was not built");
+    } else {
+      const withStructure = chars.filter((c) => c.gss);
+      const eligible = chars.filter((c) => c.hasPage);
+      if (withStructure.length < 90) problems.push(`BT-GATT-ROWS  only ${withStructure.length} characteristics carry a gss structure, expected at least 90`);
+      if (eligible.length < 44) problems.push(`BT-GATT-ROWS  only ${eligible.length} characteristics pass the thin-page rule, expected at least 44`);
+      const hubLinks = hrefsIn(hub);
+      for (const c of chars) {
+        if (!hub.includes(`id="char-${c.slug}"`)) {
+          problems.push(`BT-GATT-HUB  /bluetooth-fitness has no row for ${c.name} (${c.uuid})`);
+        } else if (c.gss && !c.hasPage) {
+          // A structure the thin-page rule keeps on the hub is shown there, in its row.
+          const row = rowOf(hub, `char-${c.slug}`) ?? "";
+          for (const f of c.gss.structure) {
+            if (!row.includes(f.name) || !row.includes(f.type) || !row.includes(f.size)) {
+              problems.push(`BT-GATT-HUB  /bluetooth-fitness row for ${c.name} does not show its field ${f.name} (${f.type}, ${f.size})`);
+            }
+          }
+        }
+        const passes = !!c.gss && (c.gss.structure.length >= 2 || c.gss.flagsFields.length > 0);
+        if (passes !== c.hasPage) problems.push(`BT-GATT-THIN  ${c.name} is marked hasPage=${c.hasPage} but the rule (two fields or a flags field) says ${passes}`);
+      }
+      const want = new Set(eligible.map((c) => `/bluetooth-fitness/${c.slug}`));
+      for (const r of htmls.map(routeOf).filter((r) => /^\/bluetooth-fitness\/[a-z0-9-]+$/.test(r) && !notFoundSet.has(r))) {
+        if (!want.has(r)) problems.push(`BT-GATT-THIN  ${r} is built, but its characteristic does not pass the thin-page rule`);
+      }
+      const norm = (s) => String(s).replace(/\s+/g, " ").trim();
+      let fieldsShown = 0;
+      for (const c of eligible) {
+        const route = `/bluetooth-fitness/${c.slug}`;
+        const html = htmlOf(route);
+        if (!html) {
+          problems.push(`BT-GATT-ROWS  ${route} (${c.name}) has no built page`);
+          continue;
+        }
+        if (!html.includes(`data-bt-characteristic="${c.id}"`)) problems.push(`BT-GATT-ROWS  ${route} does not carry data-bt-characteristic="${c.id}"`);
+        if (!hubLinks.has(route)) problems.push(`BT-GATT-HUB  /bluetooth-fitness does not link ${route}`);
+        for (const f of c.gss.structure) {
+          const row = rowOf(html, f.anchor);
+          if (!row) {
+            problems.push(`BT-GATT-FIELDS  ${route} has no layout row for ${f.name}`);
+            continue;
+          }
+          if (!row.includes(f.name) || !row.includes(f.type) || !row.includes(f.size)) {
+            problems.push(`BT-GATT-FIELDS  ${route} row for ${f.name} does not show its name, type "${f.type}" and size "${f.size}"`);
+            continue;
+          }
+          fieldsShown++;
+          for (const u of f.units) {
+            if (!u.evidence.includes(u.id) || !norm(f.description).includes(norm(u.evidence))) {
+              problems.push(`BT-GATT-EVIDENCE  ${c.name} ${f.name}: unit ${u.id} is not on a line of the field's own text`);
+            }
+          }
+          if (f.presence) {
+            if (!f.description.split("\n").map((l) => l.trim()).includes(f.presence.evidence)) {
+              problems.push(`BT-GATT-EVIDENCE  ${c.name} ${f.name}: its flag condition is not a "Present if" line of the field's own text`);
+            } else if (!row.includes(`Bit ${f.presence.bit} of ${f.presence.field} is ${f.presence.value}`)) {
+              problems.push(`BT-GATT-EVIDENCE  ${route} row for ${f.name} does not show the condition its "Present if" line states`);
+            }
+          }
+        }
+        const defs = [];
+        const walk = (ds) => ds.forEach((d) => (defs.push(d), walk(d.subfields)));
+        walk(c.gss.definitions);
+        for (const d of defs) {
+          if (!html.includes(`id="${d.anchor}"`)) problems.push(`BT-GATT-FIELDS  ${route} does not render the SIG's "${d.name}" definition`);
+          for (const s of d.layout ?? []) {
+            if (!html.includes(`id="${s.anchor}"`)) problems.push(`BT-GATT-FIELDS  ${route} does not render ${d.name} › ${s.name}`);
+          }
+        }
+      }
+      console.log(
+        `Bluetooth GATT: ${chars.length} characteristics with a hub row, ${eligible.length} pages, ${fieldsShown} structure fields shown with name, type and size.`,
+      );
+    }
+  }
+
   // The HealthKit ↔ Health Connect equivalents page links both query
   // clusters, so the link has to run both ways: every /healthkit-queries page
   // it maps, and the /healthkit-queries hub, must link back to it. Otherwise
@@ -2207,6 +2556,284 @@ if (fs.existsSync(matrixPath)) {
       }
       console.log(`Equivalents page: ${mapped.length} /healthkit-queries pages mapped, each checked for a link back.`);
     }
+  }
+
+  // ── Per-type reference pages (ops/EXPANSION-3-2026-10-17.md, added
+  // 2026-10-17). One page per HealthKit identifier (quantity, category and
+  // characteristic types) and per Wear OS Health Services DataType constant —
+  // but only where the generated data holds at least two evidence-backed facts
+  // specific to the type, so that no page restates a one-line abstract. The
+  // rules live in src/data/hkIdentifierPages.ts and src/data/hsDataTypePages.ts;
+  // they are recomputed HERE, independently, from the generated files, and the
+  // build fails when the pages built differ from them in either direction (a
+  // thin page shipped, a qualifying type left without one), when a page counts
+  // a fact whose evidence it does not render, or when its table page does not
+  // link it. Evidence is checked in the rendered text with scripts stripped, so
+  // the JSON-LD and the RSC payload cannot stand in for a missing block.
+  {
+    const MIN_FACTS = 2;
+    const norm = (s) => String(s ?? "").replace(/\s+/g, " ").trim();
+    const textOf = (html) =>
+      norm(decode(html.replace(/<script[\s\S]*?<\/script>/g, " ").replace(/<!-- -->/g, "").replace(/<[^>]+>/g, "")));
+    /** The text of every element the page marks data-evidence="<key>" — the
+     *  quoted blocks themselves, so an FAQ answer or the capsule that repeats
+     *  a sentence cannot stand in for the block that should show it. */
+    const evidenceIn = (html, keys) => {
+      const out = [];
+      for (const key of keys) {
+        const re = new RegExp(`<(\\w+)\\b[^>]*\\bdata-evidence="${key}"[^>]*>([\\s\\S]*?)</\\1>`, "g");
+        for (const m of html.matchAll(re)) out.push(textOf(m[2]));
+      }
+      return out;
+    };
+    /** [what, value, evidence keys]: the value must sit in a block marked
+     *  with one of the keys, or — with no keys — anywhere in the page text. */
+    const missing = (html, need) => {
+      const text = textOf(html);
+      return need
+        .filter(([, value, keys]) => {
+          const v = norm(value);
+          return keys?.length ? !evidenceIn(html, keys).some((t) => t.includes(v)) : !text.includes(v);
+        })
+        .map(([what]) => what);
+    };
+    const attrOf = (html, name) => {
+      const v = new RegExp(`\\b${name}="([^"]*)"`).exec(html)?.[1];
+      return v === undefined ? null : decode(v);
+    };
+    const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const sameSet = (a, b) => a.length === b.length && a.every((x) => b.includes(x));
+    /** The JS string literal after `key:` inside one object block of matrix.ts. */
+    const literal = (block, key) => {
+      const m = new RegExp(`\\b${key}:\\s+"((?:[^"\\\\]|\\\\.)*)"`).exec(block);
+      if (!m) return null;
+      try { return JSON.parse(`"${m[1]}"`); } catch { return m[1]; }
+    };
+    const builtUnder = (prefix) =>
+      htmls.map(routeOf).filter((r) => r.startsWith(`${prefix}/`) && r.split("/").length === 3 && !notFoundSet.has(r));
+
+    // HealthKit identifiers.
+    let hkBuilt = 0;
+    let hkHeld = 0;
+    let hkLinked = 0;
+    {
+      const FAMILIES = ["quantity", "category", "characteristic"];
+      const ids = jsonArray(fs.readFileSync("src/data/healthkitIdentifiers.ts", "utf8"), "HK_IDENTIFIERS") ?? [];
+      const readOnly = new Map(
+        (jsonArray(fs.readFileSync("src/data/healthkitWritability.ts", "utf8"), "HK_READONLY") ?? []).map((r) => [r.case, r.evidence]),
+      );
+      const keys = jsonArray(fs.readFileSync("src/data/healthkitMetadataKeys.ts", "utf8"), "HK_METADATA_KEYS") ?? [];
+      const matrixSrc = fs.readFileSync("src/data/matrix.ts", "utf8");
+      const rows = [...matrixSrc.matchAll(/\{\s*id: "([a-z0-9-]+)",([\s\S]*?)\n {2}\},?/g)].map((m) => ({
+        id: m[1],
+        label: literal(m[2], "label"),
+        apple: literal(m[2], "apple") ?? "",
+        android: literal(m[2], "android") ?? "",
+        watchOut: literal(m[2], "watchOut"),
+      }));
+      // Same parse as MetricFacts.appleCases: drop parentheticals, then read
+      // ".case" with or without its HK…TypeIdentifier prefix.
+      const appleCases = (apple) =>
+        [...apple.replace(/\([^)]*\)/g, " ").matchAll(/(?:HK\w*TypeIdentifier)?\.([A-Za-z][A-Za-z0-9]*)/g)].map((m) => m[1]);
+      const slug = (c) => c.replace(/([a-z0-9])([A-Z])/g, "$1-$2").replace(/([A-Z])([A-Z][a-z])/g, "$1-$2").toLowerCase();
+      const unitEvidence = (i) =>
+        i.unitFamily && i.aggregationEvidence && new RegExp(`\\buses?\\s+${esc(i.unitFamily)}\\s+units\\b`, "i").test(i.aggregationEvidence)
+          ? i.aggregationEvidence
+          : null;
+      const tiesOf = (i) => {
+        const re = new RegExp(`\\b(?:${i.case}|${i.objc})\\b`);
+        return keys.filter((k) => re.test([k.abstract, k.discussion].filter(Boolean).join(" ")));
+      };
+      const rowOfCase = (i) => rows.find((r) => appleCases(r.apple).includes(i.case)) ?? null;
+      const factsOf = (i) => {
+        const f = [];
+        if (i.family === "quantity" && i.aggregation && i.aggregationEvidence) f.push("aggregation");
+        if (i.family === "quantity" && unitEvidence(i)) f.push("unit-family");
+        if (i.family === "category" && i.valueEnum) f.push("value-enum");
+        if (readOnly.has(i.case)) f.push("read-only");
+        if (rowOfCase(i)) f.push("cross-platform");
+        if (i.deprecated && i.deprecation?.message) f.push("deprecation");
+        if (tiesOf(i).length) f.push("metadata-key");
+        return f;
+      };
+      const qualifies = (i) =>
+        FAMILIES.includes(i.family) &&
+        i.abstract.trim().length > 0 &&
+        i.platforms.some((p) => p.introducedAt) &&
+        factsOf(i).length >= MIN_FACTS;
+
+      if (ids.length < 241 || rows.length < 10) {
+        problems.push(`TYPE-PAGE-RULE  read ${ids.length} HealthKit identifiers and ${rows.length} matrix rows — the rule cannot be recomputed`);
+      }
+      const table = htmlOf("/healthkit-identifiers");
+      if (!table) problems.push("TYPE-PAGE-UNLINKED  /healthkit-identifiers was not built, so no identifier page is linked from it");
+      const tableLinks = table ? hrefsIn(table) : new Set();
+      const byCase = new Map(ids.map((i) => [i.case, i]));
+
+      for (const i of ids.filter((x) => FAMILIES.includes(x.family))) {
+        const route = `/healthkit-identifiers/${slug(i.case)}`;
+        const html = htmlOf(route);
+        const facts = factsOf(i);
+        if (!qualifies(i)) {
+          hkHeld++;
+          if (html && html.includes(`data-hk-identifier="${i.case}"`)) {
+            problems.push(`TYPE-PAGE-RULE  ${route} is built, but ${i.case} fails the thin-page rule (facts: ${facts.join(", ") || "none"})`);
+          }
+          continue;
+        }
+        if (!html) {
+          problems.push(`TYPE-PAGE-RULE  ${i.case} qualifies (${facts.join(", ")}) but ${route} was not built`);
+          continue;
+        }
+        hkBuilt++;
+        if (attrOf(html, "data-hk-identifier") !== i.case) {
+          problems.push(`TYPE-PAGE-RULE  ${route} does not carry data-hk-identifier="${i.case}"`);
+          continue;
+        }
+        const declared = (attrOf(html, "data-type-facts") ?? "").split(" ").filter(Boolean);
+        if (declared.length < MIN_FACTS || !sameSet(declared, facts)) {
+          problems.push(`TYPE-PAGE-RULE  ${route} declares facts [${declared.join(", ")}], the generated data gives [${facts.join(", ")}]`);
+        }
+        if (table) {
+          if (tableLinks.has(route)) hkLinked++;
+          else problems.push(`TYPE-PAGE-UNLINKED  /healthkit-identifiers does not link ${route}`);
+        }
+        const need = [["abstract", i.abstract, ["abstract"]]];
+        if (facts.includes("aggregation")) need.push(["aggregation sentence", i.aggregationEvidence, ["aggregation"]]);
+        if (facts.includes("unit-family")) {
+          // One stored sentence states both, so it may be quoted once, under
+          // the aggregation style.
+          need.push(["unit family", i.unitFamily], ["unit sentence", unitEvidence(i), ["unit-family", "aggregation"]]);
+        }
+        if (facts.includes("value-enum")) need.push(["value enum", i.valueEnum, ["value-enum"]]);
+        if (facts.includes("read-only")) need.push(["read-only sentence", readOnly.get(i.case), ["read-only"]]);
+        if (facts.includes("cross-platform")) {
+          const r = rowOfCase(i);
+          need.push(["matrix row", r.android]);
+          if (r.watchOut) need.push(["matrix caveat", r.watchOut, ["cross-platform"]]);
+        }
+        if (facts.includes("deprecation")) need.push(["deprecation note", i.deprecation.message, ["deprecation"]]);
+        if (facts.includes("metadata-key")) {
+          for (const k of tiesOf(i)) {
+            const re = new RegExp(`\\b(?:${i.case}|${i.objc})\\b`);
+            const sentence = [k.abstract, k.discussion].filter(Boolean).join(" ").split(/(?<=[.!?])\s+/).find((s) => re.test(s));
+            need.push([`metadata key ${k.swiftName}`, k.swiftName], [`${k.swiftName} sentence`, sentence, ["metadata-key"]]);
+          }
+        }
+        for (const what of missing(html, need)) {
+          problems.push(`TYPE-PAGE-EVIDENCE  ${route} counts its ${what} but does not render it`);
+        }
+      }
+      // A page under the prefix that names an identifier of these families
+      // must be that identifier's own address (a page set for another family,
+      // such as workout activity types, is not this rule's to judge).
+      for (const route of builtUnder("/healthkit-identifiers")) {
+        const c = attrOf(htmlOf(route) ?? "", "data-hk-identifier");
+        const i = c ? byCase.get(c) : null;
+        if (!c || (i && !FAMILIES.includes(i.family))) continue;
+        if (!i) problems.push(`TYPE-PAGE-RULE  ${route} names ${c}, which is not in the generated identifier data`);
+        else if (route !== `/healthkit-identifiers/${slug(c)}`) problems.push(`TYPE-PAGE-RULE  ${route} names ${c}, whose page is /healthkit-identifiers/${slug(c)}`);
+      }
+    }
+
+    // Wear OS Health Services data types.
+    let hsBuilt = 0;
+    let hsHeld = 0;
+    let hsLinked = 0;
+    {
+      const src = fs.readFileSync("src/data/healthServicesDataTypes.ts", "utf8");
+      const types = jsonArray(src, "HS_DATA_TYPES") ?? [];
+      const tableRows = jsonArray(src, "HS_PERMISSION_ROWS") ?? [];
+      let mismatches = [];
+      try {
+        mismatches = JSON.parse(/export const HS_PERMISSION_TABLE_LINK_MISMATCHES[^=]*=\s*(\[.*\]);/.exec(src)?.[1] ?? "[]");
+      } catch {
+        problems.push("TYPE-PAGE-RULE  HS_PERMISSION_TABLE_LINK_MISMATCHES in src/data/healthServicesDataTypes.ts is unreadable");
+      }
+      const slug = (n) => n.toLowerCase().replace(/_/g, "-");
+      const byName = new Map(types.map((t) => [t.name, t]));
+      const counterpart = (t) =>
+        t.dataTypeClass === "DeltaDataType"
+          ? types.find((a) => a.dataTypeClass === "AggregateDataType" && (a.name === `${t.name}_TOTAL` || a.name === `${t.name}_STATS`)) ?? null
+          : t.dataTypeClass === "AggregateDataType"
+            ? types.find((d) => d.dataTypeClass === "DeltaDataType" && (t.name === `${d.name}_TOTAL` || t.name === `${d.name}_STATS`)) ?? null
+            : null;
+      const permissionRow = (t) =>
+        t.permission && t.permissionEvidence
+          ? tableRows.find((r) => r.text === t.permissionEvidence && r.permission === t.permission) ?? null
+          : null;
+      const factsOf = (t) => {
+        const f = [];
+        if (permissionRow(t)) f.push("permission");
+        if (t.detail) f.push("detail");
+        if (mismatches.some((m) => m.shown === t.name)) f.push("table-mismatch");
+        if (counterpart(t)) f.push("counterpart");
+        return f;
+      };
+      const qualifies = (t) => Boolean(t.description?.trim()) && Boolean(t.kotlinType) && factsOf(t).length >= MIN_FACTS;
+
+      if (types.length < 65) problems.push(`TYPE-PAGE-RULE  read ${types.length} Health Services DataType constants — the rule cannot be recomputed`);
+      const table = htmlOf("/wear-os-data-types");
+      if (!table) problems.push("TYPE-PAGE-UNLINKED  /wear-os-data-types was not built, so no data-type page is linked from it");
+      const tableLinks = table ? hrefsIn(table) : new Set();
+
+      for (const t of types) {
+        const route = `/wear-os-data-types/${slug(t.name)}`;
+        const html = htmlOf(route);
+        const facts = factsOf(t);
+        if (!qualifies(t)) {
+          hsHeld++;
+          if (html && html.includes(`data-wear-datatype="${t.name}"`)) {
+            problems.push(`TYPE-PAGE-RULE  ${route} is built, but ${t.name} fails the thin-page rule (facts: ${facts.join(", ") || "none"})`);
+          }
+          continue;
+        }
+        if (!html) {
+          problems.push(`TYPE-PAGE-RULE  ${t.name} qualifies (${facts.join(", ")}) but ${route} was not built`);
+          continue;
+        }
+        hsBuilt++;
+        if (attrOf(html, "data-wear-datatype") !== t.name) {
+          problems.push(`TYPE-PAGE-RULE  ${route} does not carry data-wear-datatype="${t.name}"`);
+          continue;
+        }
+        const declared = (attrOf(html, "data-type-facts") ?? "").split(" ").filter(Boolean);
+        if (declared.length < MIN_FACTS || !sameSet(declared, facts)) {
+          problems.push(`TYPE-PAGE-RULE  ${route} declares facts [${declared.join(", ")}], the generated data gives [${facts.join(", ")}]`);
+        }
+        if (table) {
+          if (tableLinks.has(route)) hsLinked++;
+          else problems.push(`TYPE-PAGE-UNLINKED  /wear-os-data-types does not link ${route}`);
+        }
+        const need = [["description", t.description, ["description"]]];
+        if (facts.includes("permission")) {
+          need.push(["permission", t.permission], ["permissions-table row", t.permissionEvidence, ["permission"]]);
+        }
+        if (facts.includes("detail")) need.push(["further paragraph", t.detail, ["detail"]]);
+        if (facts.includes("table-mismatch")) {
+          for (const m of mismatches.filter((x) => x.shown === t.name)) {
+            need.push(["table quirk", `the link on ${m.shown} points to #${m.linksTo}`, ["table-mismatch"]]);
+          }
+        }
+        if (facts.includes("counterpart")) {
+          const c = counterpart(t);
+          need.push(["counterpart", c.name], ["counterpart's description", c.description, ["counterpart"]]);
+        }
+        for (const what of missing(html, need)) {
+          problems.push(`TYPE-PAGE-EVIDENCE  ${route} counts its ${what} but does not render it`);
+        }
+      }
+      for (const route of builtUnder("/wear-os-data-types")) {
+        const n = attrOf(htmlOf(route) ?? "", "data-wear-datatype");
+        if (!n) continue;
+        if (!byName.has(n)) problems.push(`TYPE-PAGE-RULE  ${route} names ${n}, which is not in the generated DataType data`);
+        else if (route !== `/wear-os-data-types/${slug(n)}`) problems.push(`TYPE-PAGE-RULE  ${route} names ${n}, whose page is /wear-os-data-types/${slug(n)}`);
+      }
+    }
+    console.log(
+      `Type pages: ${hkBuilt} HealthKit identifier pages (${hkHeld} held back by the thin-page rule), ` +
+        `${hsBuilt} Wear OS data-type pages (${hsHeld} held back); ${hkLinked + hsLinked} linked from their table pages.`,
+    );
   }
 }
 

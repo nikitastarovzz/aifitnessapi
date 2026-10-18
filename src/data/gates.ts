@@ -617,9 +617,111 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "A Wear OS data type whose permission is published without the permissions-table row it was read from, or whose row is not one of Google's table rows naming that constant under that permission.",
   },
   {
+    code: "POSE-KEYPOINT-ROWS",
+    area: "Derived blocks",
+    refuses: "A pose keypoint scheme page that was not built, or that is missing the row for any point of the generated scheme or shows a name other than the one its source spells; or a generated module with fewer than the nine schemes read on 2026-10-17.",
+  },
+  {
+    code: "POSE-KEYPOINT-CROSSWALK",
+    area: "Derived blocks",
+    refuses: "A /pose-keypoints hub that was not built, whose crosswalk has no column for one of the schemes, or that is missing a crosswalk row or a cell's link and source spelling.",
+  },
+  {
+    code: "POSE-KEYPOINT-MAPPING",
+    area: "Derived blocks",
+    refuses: "A crosswalk that joins two points whose names are not identical once lowercased with separators removed, names a point its scheme does not have, holds a single point, or leaves out a name two schemes share — the one rule that lets the pages map keypoints without guessing.",
+  },
+  {
+    code: "GHAPI-TYPE-COVERAGE",
+    area: "Derived blocks",
+    refuses: "A Google Health API reference with fewer than the 44 data types the generator guarantees, a generated data type without its own page, a page missing its data-type marker, or a hub that was not built.",
+  },
+  {
+    code: "GHAPI-HUB-TABLE",
+    area: "Derived blocks",
+    refuses: "A Google Health API hub whose data-type table has no row linking one of the generated data types.",
+  },
+  {
+    code: "GHAPI-TYPE-FACTS",
+    area: "Derived blocks",
+    refuses: "A Google Health API data-type page that does not show every operation Google's table lists for the type, with its documented request path, and every scope URL the generated data gives it.",
+  },
+  {
+    code: "GHAPI-FLAG-SHOWN",
+    area: "Derived blocks",
+    refuses: "A Google Health API data-type page that shows fewer of the disagreements found between Google's own pages than the generator raised for that type, or a hub that leaves out one that belongs to no data-type page.",
+  },
+  {
+    code: "GHAPI-EVIDENCE",
+    area: "Derived blocks",
+    refuses: "A Google Health API data type whose derived fields arrive without their evidence: a DataPoint field or rollup matched by a description that does not name the type, a scope URL that is not Google's documented prefix plus the printed suffix, an operation paired with a differently named method without the text that pairs them, or a flag with no quoted source.",
+  },
+  {
+    code: "GHAPI-TOPIC-ROWS",
+    area: "Derived blocks",
+    refuses: "A Google Health API topic page that was not built or leaves out a row of the generated list it presents: a documented scope, an error reason, a webhook data type, a Fitbit mapping row, or the rate-limits table.",
+  },
+  {
+    code: "MCP-SERVER-ROWS",
+    area: "Derived blocks",
+    refuses: "A health MCP server directory missing a row for any server the registry generator kept, a generated list below the generator's own floor, or a directory page that was not built.",
+  },
+  {
+    code: "MCP-SERVER-OFFICIAL",
+    area: "Derived blocks",
+    refuses: "An MCP server labelled official when the generator did not find it under the vendor's own domain namespace, or one marked as the vendor's whose namespace is not the reverse-DNS form of a domain listed for a source it names.",
+  },
+  {
+    code: "MCP-SERVER-EVIDENCE",
+    area: "Derived blocks",
+    refuses: "An MCP server listed without a matched term, with a match whose text is not in the field it names, or with a row that does not quote the registry description it was kept for.",
+  },
+  {
+    code: "BT-GATT-ROWS",
+    area: "Derived blocks",
+    refuses: "A Bluetooth GATT reference shorter than the 97 in-scope characteristics, 90 structures and 44 pages the Bluetooth SIG's repository gave on 2026-10-17, a hub or characteristic page that was not built, or a page that does not carry its characteristic's marker.",
+  },
+  {
+    code: "BT-GATT-HUB",
+    area: "Derived blocks",
+    refuses: "A Bluetooth GATT hub that lacks a row for any in-scope characteristic, does not link every characteristic page, or leaves out the field of a structure it keeps as a row instead of a page.",
+  },
+  {
+    code: "BT-GATT-THIN",
+    area: "Derived blocks",
+    refuses: "A Bluetooth characteristic page built for a structure with fewer than two fields and no flags field, or a characteristic whose page flag disagrees with that rule.",
+  },
+  {
+    code: "BT-GATT-FIELDS",
+    area: "Derived blocks",
+    refuses: "A Bluetooth characteristic page missing a layout row for any field of the SIG's structure, a row that does not show the field's name, type and size as published, or a page that leaves out any definition or struct row the SIG's file gives.",
+  },
+  {
+    code: "BT-GATT-EVIDENCE",
+    area: "Derived blocks",
+    refuses: "A Bluetooth field whose unit or flag condition is published without the line of the SIG's text it was read from, or whose layout row does not show the condition that line states.",
+  },
+  {
     code: "HCAPI-EQUIV-BACKLINK",
     area: "Links and anchors",
     refuses: "A HealthKit query page that the HealthKit-to-Health Connect equivalents page maps, or the /healthkit-queries hub, without a link back to that equivalents page, or an equivalents page that was not built.",
+  },
+
+  // ── Per-type reference pages (EXPANSION-3, 2026-10-17) ────────────────
+  {
+    code: "TYPE-PAGE-RULE",
+    area: "Derived blocks",
+    refuses: "A page for a HealthKit identifier or a Wear OS data type that fails its thin-page rule — fewer than two evidence-backed facts specific to the type, recomputed by the gate from the generated files rather than trusted from the page code — a type that passes the rule left without a page, or a page whose declared facts differ from the recomputed ones.",
+  },
+  {
+    code: "TYPE-PAGE-EVIDENCE",
+    area: "Derived blocks",
+    refuses: "A per-type page that counts a fact without rendering the evidence for it in the page text: Apple's abstract or Google's description, the aggregation or unit sentence, the value enum, the read-only sentence, the matrix row and its caveat, the deprecation note, the metadata key, the permissions-table row, the table quirk, or the counterpart and its own description.",
+  },
+  {
+    code: "TYPE-PAGE-UNLINKED",
+    area: "Links and anchors",
+    refuses: "A HealthKit identifier or Wear OS data-type page that its table page, /healthkit-identifiers or /wear-os-data-types, does not link, or a table page that was not built.",
   },
 
   // ── Tools ─────────────────────────────────────────────────────────────

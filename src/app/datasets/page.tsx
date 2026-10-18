@@ -210,24 +210,90 @@ const ENTRIES: Entry[] = [
     caveat:
       "The permission column is set only where Google's permissions table names the constant, and the table row ships beside it in permissionEvidence; a constant the table does not name has a null permission, not an inferred one.",
   },
+  {
+    slug: "pose-keypoint-maps-2026",
+    unit: "keypoints",
+    blurb:
+      "Every point of the pose-estimation keypoint schemes this site covers — COCO 17, MediaPipe BlazePose 33, ML Kit, Halpe26, COCO-WholeBody, OpenPose BODY_25 and COCO 18, and Apple Vision 2D and 3D — with its index and name exactly as the model's own source spells them, the models a source ties to each scheme, and the source file's branch and hash.",
+    keywords: [
+      "pose estimation keypoints",
+      "COCO keypoints",
+      "MediaPipe pose landmarks",
+      "OpenPose BODY_25",
+      "keypoint mapping",
+    ],
+    presentedBy: { href: "/pose-keypoints", label: "Pose estimation keypoint maps" },
+    caveat:
+      "crosswalkKey is derived, not copied: the name lowercased with separators removed. Points are joined on that key alone, so a shared row means the names match, not that two models place the point in the same spot, and names that differ stay unmapped rather than guessed.",
+  },
+  {
+    slug: "google-health-api-data-types-2026",
+    unit: "data types",
+    blurb:
+      "Every data type in Google's Google Health API data-types table, joined to the v4 discovery document: record type, storage resolution, webhook and true-zeros support, operations and the methods they map to, full scope URLs, the DataPoint field and its schema's fields, rollup fields, the Fitbit Web API predecessor and the disagreements between Google's own pages.",
+    keywords: [
+      "Google Health API",
+      "Fitbit Web API migration",
+      "googlehealth scopes",
+      "discovery document",
+      "Fitbit data types",
+    ],
+    presentedBy: { href: "/google-health-api", label: "Google Health API reference" },
+    caveat:
+      "Three columns are derived and ship with their evidence: scope URLs (Google's documented prefix plus the printed suffix), methods (\"update\" is paired with patch only through Google's endpoint-mapping table) and the DataPoint field (matched by its own description, or by the kebab-case rule DataPoint.name states). Where Google's pages disagree, the flags column names the kind and the data-type page shows the texts.",
+  },
+  {
+    slug: "health-mcp-servers-2026",
+    unit: "MCP servers",
+    blurb:
+      "Every server in the official MCP Registry whose name, title or description names a health or fitness data source, read page by page from the registry's listing: the registry's description verbatim, version, status and dates, packages and remote URLs, the term each was kept for, and npm or PyPI facts for its packages.",
+    keywords: [
+      "MCP server",
+      "Model Context Protocol",
+      "health data MCP",
+      "wearable data AI assistant",
+      "MCP Registry",
+    ],
+    presentedBy: { href: "/health-mcp-servers", label: "MCP servers for health and fitness data" },
+    caveat:
+      "Descriptions are the publishers' own words and no server was run or audited. publisherIsVendor is yes only when the registry namespace is the vendor's own domain in reverse-DNS form; repositories were not read, so repositoryUrl is only what the entry lists.",
+  },
+  {
+    slug: "bluetooth-fitness-gatt-2026",
+    unit: "characteristic fields",
+    blurb:
+      "The byte layout of the Bluetooth GATT characteristics fitness and health devices use, read from the Bluetooth SIG's own YAML: one row per field with its type, size, offset where it is fixed, the Flags bit that makes it present, and its unit, plus a row for each in-scope characteristic the SIG publishes no structure for.",
+    keywords: [
+      "Bluetooth GATT",
+      "BLE characteristic format",
+      "Heart Rate Measurement 0x2A37",
+      "FTMS Indoor Bike Data",
+      "GATT Specification Supplement",
+    ],
+    presentedBy: { href: "/bluetooth-fitness", label: "Bluetooth GATT characteristics for fitness devices" },
+    caveat:
+      "The licence covers this compilation and its derived columns. The UUIDs, names, types and sizes are the Bluetooth SIG's, restated as facts, and its files say they are proprietary to Bluetooth SIG and grant no licence, so the SIG's descriptions are left out (the pages quote them with attribution) and the file carries the SIG's notice in sourceTerms. Offsets, flag bits and units are derived, each beside the line it was read from.",
+  },
 ];
 
 const LOADED = ENTRIES.map((e) => ({ entry: e, file: loadDataset(e.slug) }));
 
-/** The dataset count in words for the meta description, read off ENTRIES so
- *  the number can never fall behind the list. */
-const COUNT_WORD = (["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve"][ENTRIES.length] ?? String(ENTRIES.length));
+/** The dataset count for the meta description, read off ENTRIES so the
+ *  number can never fall behind the list. Digits, not a word: "Eleven" pushed
+ *  the description past the 155-character cap when the eleventh dataset
+ *  landed, and digits stay two characters wide up to 99. */
+const COUNT = String(ENTRIES.length);
 
 export const metadata: Metadata = {
   title: { absolute: "Open Datasets: Fitness & Health API Data (CC BY 4.0)" },
   description:
-    `${COUNT_WORD} open CC BY 4.0 datasets on fitness and health APIs: HealthKit, Health Connect and Wear OS identifiers, ecosystem changes, glossary, access structure.`,
+    `${COUNT} open CC BY 4.0 datasets: HealthKit, Health Connect, Wear OS and Google Health API types, pose keypoints, the API directory, changes, glossary.`,
   alternates: { canonical: PAGE_PATH },
   openGraph: {
     type: "website",
     title: "Open Datasets — Fitness & Health API Data",
     description:
-      `${COUNT_WORD} CC BY 4.0 datasets in JSON and CSV: HealthKit, Health Connect and Wear OS identifiers, the dated changes record, the glossary, and the access-structure survey.`,
+      `${COUNT} CC BY 4.0 datasets in JSON and CSV: HealthKit, Health Connect, Wear OS and Google Health API types, pose keypoint maps, the dated changes record, the glossary and the API directory.`,
     url: PAGE_PATH,
     images: ["/opengraph-image"],
   },
@@ -310,7 +376,8 @@ export default function DatasetsPage() {
         <AnswerCapsule>
           AIFitnessAPI publishes {LOADED.length} open datasets about fitness and health APIs, each in
           both JSON and CSV, each versioned 2026.1 and licensed CC BY 4.0 with attribution as the only
-          condition: the access-structure survey of{" "}
+          condition (where a dataset restates another publisher’s facts, its note says what the licence
+          covers): the access-structure survey of{" "}
           {bySlug["fitness-apis-2026"]}{" "}APIs, SDKs and models; the HealthKit &harr; Health Connect
           identifier matrix covering {bySlug["health-data-type-matrix-2026"]} health metrics; the dated
           record of {bySlug["fitness-api-changes-2026"]} ecosystem changes, each graded for evidence

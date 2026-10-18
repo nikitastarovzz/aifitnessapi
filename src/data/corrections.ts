@@ -15,6 +15,20 @@ export type Correction = {
 
 export const CORRECTIONS: Correction[] = [
   {
+    date: "2026-10-17",
+    page: { href: "/pricing/fitbit-api-pricing", label: "Fitbit API Pricing: What Does It Actually Cost?" },
+    was: "The page said the consumer Google Health API's pricing and quota model was not clearly public, in its cost breakdown and in its FAQ on the migration.",
+    now: "Google's Quotas and Rate Limits page publishes the default quotas: 86.4M requests a day and 120,000 a minute per project, and 300 a minute per user, with unverified apps capped at 100 users. The page now gives them and links the source. None of the Google Health API documentation pages we read states a price, so pricing stays could-not-verify.",
+    how: "Found on 2026-10-17 while building the Google Health API reference from Google's documentation. The rate-limits page is marked last updated 2026-05-18, before the claim was published on 2026-07-23.",
+  },
+  {
+    date: "2026-10-17",
+    page: { href: "/fitbit-api-shutdown", label: "Fitbit Web API Retirement: Deadlines and the Migration Path" },
+    was: "The confirmed-versus-reported table listed the Google Health API's pricing and quota model as could not verify, not clearly public.",
+    now: "The row is split in two: the default quotas are confirmed from Google's Quotas and Rate Limits page, and pricing is still could not verify.",
+    how: "Same finding as the Fitbit pricing page, on 2026-10-17. The row was published on 2026-08-11, after the rate-limits page's marked last update of 2026-05-18.",
+  },
+  {
     date: "2026-10-03",
     page: { href: "/learn/what-is-rpe", label: "What Is RPE (Rating of Perceived Exertion)?" },
     was: "The page said no wearable or health-data API exposes perceived effort, in its answer capsule and in a section headed \"Nothing in a wearable API gives you this\".",
