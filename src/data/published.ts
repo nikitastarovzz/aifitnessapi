@@ -7,7 +7,7 @@
  * contained the entry and listed it in its cluster's release gate (blog
  * posts: the commit that added the file; generated sections: the commit that
  * added the route, or the item to the data file if that came later).
- * Keyed by URL path without the leading slash. 440 rows.
+ * Keyed by URL path without the leading slash. 449 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -158,24 +158,33 @@ export const PUBLISHED: Record<string, string> = {
   "cookbook/refresh-rotation": "2026-08-12",
   "cookbook/rep-counter": "2026-08-12",
   "cookbook/webhook-receiver": "2026-08-12",
+  "data/active-minutes-api": "2026-10-18",
   "data/blood-glucose-api": "2026-08-12",
   "data/blood-oxygen-api": "2026-07-24",
   "data/blood-pressure-api": "2026-08-12",
   "data/body-composition-api": "2026-07-24",
+  "data/body-temperature-api": "2026-10-18",
   "data/calorie-tracking-api": "2026-07-24",
   "data/clinical-records-api": "2026-10-04",
+  "data/cycling-power-api": "2026-10-18",
+  "data/distance-tracking-api": "2026-10-18",
+  "data/ecg-api": "2026-10-18",
+  "data/floors-elevation-api": "2026-10-18",
   "data/gps-activity-api": "2026-07-24",
   "data/health-connect-medical-records-api": "2026-10-04",
   "data/heart-rate-api": "2026-07-24",
+  "data/heart-rate-zones-api": "2026-10-18",
   "data/hrv-api": "2026-07-24",
   "data/medications-api": "2026-10-04",
   "data/menstrual-cycle-api": "2026-08-12",
   "data/mental-health-assessments-api": "2026-10-04",
   "data/respiratory-rate-api": "2026-08-12",
   "data/resting-heart-rate-api": "2026-10-04",
+  "data/running-metrics-api": "2026-10-18",
   "data/sleep-tracking-api": "2026-07-24",
   "data/state-of-mind-api": "2026-10-04",
   "data/step-counting-api": "2026-07-24",
+  "data/swimming-data-api": "2026-10-18",
   "data/vo2-max-api": "2026-07-24",
   "data/workout-detection-api": "2026-07-24",
   "devices/ant-plus-vs-bluetooth": "2026-08-15",
