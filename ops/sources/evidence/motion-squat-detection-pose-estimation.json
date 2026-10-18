@@ -15,17 +15,17 @@
     "quote": "we also calculated a detection rate for each video, defined as (prediction or ground truth) x100, representing the percentage of repetitions counted correctly"
   },
   {
-    "claim": "Oliosi and colleagues (JMIR mHealth and uHealth, 2026) filmed 22 healthy university students doing squats from 12 phone positions and scored a commercial phone pipeline's repetition counts against two raters.",
+    "claim": "Oliosi and colleagues (JMIR mHealth and uHealth, 2026) filmed 22 healthy university students doing squats from 12 phone positions and scored the repetition counts of a pipeline built for the Dotmoovs mobile platform against two raters.",
     "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
     "quote": "Of the 44 participants, 22 (16 male participants and 6 female participants) completed the squat protocol"
   },
   {
-    "claim": "Oliosi and colleagues (JMIR mHealth and uHealth, 2026) filmed 22 healthy university students doing squats from 12 phone positions and scored a commercial phone pipeline's repetition counts against two raters.",
+    "claim": "Oliosi and colleagues (JMIR mHealth and uHealth, 2026) filmed 22 healthy university students doing squats from 12 phone positions and scored the repetition counts of a pipeline built for the Dotmoovs mobile platform against two raters.",
     "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
     "quote": "Video data were processed using a multistage PE and repetition detection pipeline designed for real-world deployment on the Dotmoovs mobile platform"
   },
   {
-    "claim": "Oliosi and colleagues (JMIR mHealth and uHealth, 2026) filmed 22 healthy university students doing squats from 12 phone positions and scored a commercial phone pipeline's repetition counts against two raters.",
+    "claim": "Oliosi and colleagues (JMIR mHealth and uHealth, 2026) filmed 22 healthy university students doing squats from 12 phone positions and scored the repetition counts of a pipeline built for the Dotmoovs mobile platform against two raters.",
     "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
     "quote": "All video samples were independently annotated by 2 trained raters (an exercise physiologist and a physical therapist)"
   },

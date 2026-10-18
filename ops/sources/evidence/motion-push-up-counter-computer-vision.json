@@ -20,17 +20,17 @@
     "quote": "The red line represents the elbow angle threshold which is set as 140 degrees. This empirically chosen value aims to prevent excessive bending of the elbow during the upward phase. This threshold can be adjusted at different actual conditions."
   },
   {
-    "claim": "Oliosi and colleagues (JMIR mHealth and uHealth, 2026) filmed 22 healthy university students doing push-ups from 12 phone positions and scored a commercial phone pipeline's counts against two raters.",
+    "claim": "Oliosi and colleagues (JMIR mHealth and uHealth, 2026) filmed 22 healthy university students doing push-ups from 12 phone positions and scored the counts of a pipeline built for the Dotmoovs mobile platform against two raters.",
     "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
     "quote": "Each participant completed their assigned exercise across 12 predefined smartphone camera configurations, yielding approximately 264 squat trials (n=22) and 264 push-up trials (n=22)."
   },
   {
-    "claim": "Oliosi and colleagues (JMIR mHealth and uHealth, 2026) filmed 22 healthy university students doing push-ups from 12 phone positions and scored a commercial phone pipeline's counts against two raters.",
+    "claim": "Oliosi and colleagues (JMIR mHealth and uHealth, 2026) filmed 22 healthy university students doing push-ups from 12 phone positions and scored the counts of a pipeline built for the Dotmoovs mobile platform against two raters.",
     "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
     "quote": "Video data were processed using a multistage PE and repetition detection pipeline designed for real-world deployment on the Dotmoovs mobile platform"
   },
   {
-    "claim": "Oliosi and colleagues (JMIR mHealth and uHealth, 2026) filmed 22 healthy university students doing push-ups from 12 phone positions and scored a commercial phone pipeline's counts against two raters.",
+    "claim": "Oliosi and colleagues (JMIR mHealth and uHealth, 2026) filmed 22 healthy university students doing push-ups from 12 phone positions and scored the counts of a pipeline built for the Dotmoovs mobile platform against two raters.",
     "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML",
     "quote": "All video samples were independently annotated by 2 trained raters (an exercise physiologist and a physical therapist)"
   },
