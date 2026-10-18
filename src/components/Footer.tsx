@@ -182,6 +182,9 @@ export default function Footer() {
           <FooterLink href="/bluetooth-fitness" className="py-1 hover:text-[var(--fg)]">
             Bluetooth GATT byte layouts
           </FooterLink>
+          <FooterLink href="/workout-types" className="py-1 hover:text-[var(--fg)]">
+            Workout type crosswalk
+          </FooterLink>
           {SDK_REPOS.length > 0 && (
             <FooterLink href="/sdk-releases" className="py-1 hover:text-[var(--fg)]">
               SDK release tracker

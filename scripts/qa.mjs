@@ -335,6 +335,7 @@ if (fs.existsSync(matrixPath)) {
     "google-health-api-data-types-2026",
     "health-mcp-servers-2026",
     "bluetooth-fitness-gatt-2026",
+    "workout-types-crosswalk-2026",
   ];
   // Both directions. Listing files catches a DELETION (a dataset a page
   // still cites); scanning the directory catches an ADDITION that was never
@@ -2589,6 +2590,169 @@ if (fs.existsSync(matrixPath)) {
       }
       console.log(
         `Bluetooth GATT: ${chars.length} characteristics with a hub row, ${eligible.length} pages, ${fieldsShown} structure fields shown with name, type and size.`,
+      );
+    }
+  }
+
+  // Workout types across four platforms (added 2026-10-18). Apple's
+  // HKWorkoutActivityType (84 cases), Health Connect's ExerciseSessionRecord
+  // EXERCISE_TYPE_* (61), Wear OS Health Services' ExerciseType (85 public) and
+  // the Google Health API's exerciseType enum (182), as the generator read
+  // them on 2026-10-18 (its own exact counts; these are the floors). Every
+  // constant must render on its platform page under the name its source
+  // spells; the crosswalk may join only constants whose names are identical
+  // after the one stated normalisation, and must not leave out a key two
+  // platforms share; a mapping a source states must carry that source's row;
+  // the activity pages must be exactly the rows the page rule passes, each
+  // showing the evidence for every fact it counts; and every published
+  // disagreement between sources must be on the hub.
+  {
+    const src = fs.readFileSync("src/data/workoutTypes.ts", "utf8");
+    const BASE = "/workout-types";
+    const FLOORS = { healthkit: 84, "health-connect": 61, "wear-os": 85, "google-health-api": 182 };
+    const lists = {
+      healthkit: jsonArray(src, "WT_HEALTHKIT"),
+      "health-connect": jsonArray(src, "WT_HEALTH_CONNECT"),
+      "wear-os": jsonArray(src, "WT_WEAR_OS"),
+      "google-health-api": jsonArray(src, "WT_GOOGLE_HEALTH_API"),
+    };
+    const crosswalk = jsonArray(src, "WT_CROSSWALK") ?? [];
+    const stated = jsonArray(src, "WT_STATED_MAPPINGS") ?? [];
+    const flags = jsonArray(src, "WT_FLAGS") ?? [];
+    const sources = jsonArray(src, "WT_SOURCES") ?? [];
+    const nameOf = { healthkit: (r) => r.case, "health-connect": (r) => r.name, "wear-os": (r) => r.name, "google-health-api": (r) => r.value };
+    const keyOf = (n) => n.replace(/^EXERCISE_TYPE_/, "").toLowerCase().replace(/[^a-z0-9]/g, "");
+    const rowId = (n) => `t-${n.toLowerCase()}`;
+    const norm = (t) => String(t ?? "").replace(/`/g, "").replace(/\s+/g, " ").trim();
+    const plain = (html) => norm(decode(html.replace(/<script[\s\S]*?<\/script>/g, " ").replace(/<!-- -->/g, "").replace(/<[^>]+>/g, " ")));
+    const short = Object.entries(FLOORS).filter(([p, n]) => !lists[p] || lists[p].length < n);
+    if (short.length) {
+      problems.push(`WORKOUT-TYPE-ROWS  src/data/workoutTypes.ts yields ${short.map(([p]) => `${lists[p]?.length ?? 0} ${p}`).join(", ")} constants, expected at least ${short.map(([p, n]) => `${n} ${p}`).join(", ")}`);
+    } else {
+      // 1. Every constant on its platform page, under its own spelling.
+      let rendered = 0;
+      for (const [p, rows] of Object.entries(lists)) {
+        const route = `${BASE}/${p}`;
+        const page = notFoundSet.has(route) ? null : htmlOf(route);
+        if (!page || !page.includes(`data-wt-list="${p}"`)) {
+          problems.push(`WORKOUT-TYPE-ROWS  ${route} was not built or renders no data-wt-list="${p}" table`);
+          continue;
+        }
+        const missing = [];
+        for (const r of rows) {
+          const row = rowOf(page, rowId(nameOf[p](r)));
+          if (!row || !row.includes(`>${nameOf[p](r)}<`)) missing.push(nameOf[p](r));
+          else rendered++;
+        }
+        if (missing.length) problems.push(`WORKOUT-TYPE-ROWS  ${route} does not show the row and source spelling for ${missing.slice(0, 5).join(", ")}${missing.length > 5 ? "…" : ""}`);
+      }
+      // 2. The join: keys, counterparts and crosswalk rows are name identity and nothing else.
+      const owners = new Map();
+      for (const [p, rows] of Object.entries(lists)) {
+        for (const r of rows) {
+          const n = nameOf[p](r);
+          if (r.key !== keyOf(n)) problems.push(`WORKOUT-TYPE-MAPPING  ${p} ${n} carries the key ${r.key}, not ${keyOf(n)}`);
+          (owners.get(keyOf(n)) ?? owners.set(keyOf(n), []).get(keyOf(n))).push({ platform: p, name: n });
+        }
+      }
+      for (const [k, cells] of owners) {
+        const plats = cells.map((c) => c.platform);
+        if (new Set(plats).size !== plats.length) problems.push(`WORKOUT-TYPE-MAPPING  two constants of one platform normalise to ${k}: ${cells.map((c) => `${c.platform} ${c.name}`).join(", ")}`);
+        if (cells.length > 1 && !crosswalk.some((r) => r.key === k)) problems.push(`WORKOUT-TYPE-MAPPING  ${cells.map((c) => `${c.platform} ${c.name}`).join(" and ")} share the key ${k} but the crosswalk has no row for it`);
+      }
+      for (const [p, rows] of Object.entries(lists)) {
+        for (const r of rows) {
+          const want = owners.get(r.key).filter((c) => c.platform !== p).map((c) => `${c.platform}:${c.name}`).sort().join(",");
+          const got = (r.counterparts ?? []).map((c) => `${c.platform}:${c.name}`).sort().join(",");
+          if (want !== got) problems.push(`WORKOUT-TYPE-MAPPING  ${p} ${nameOf[p](r)} lists counterparts [${got}] where the names give [${want}]`);
+        }
+      }
+      for (const r of crosswalk) {
+        if (r.cells.length < 2 || new Set(r.cells.map((c) => c.platform)).size !== r.cells.length) problems.push(`WORKOUT-TYPE-MAPPING  crosswalk row ${r.key} does not join constants of at least two different platforms`);
+        for (const c of r.cells) {
+          const known = (lists[c.platform] ?? []).some((x) => nameOf[c.platform](x) === c.name);
+          if (!known) problems.push(`WORKOUT-TYPE-MAPPING  crosswalk row ${r.key} names ${c.platform} ${c.name}, which is not a constant of that platform`);
+          else if (keyOf(c.name) !== r.key) problems.push(`WORKOUT-TYPE-MAPPING  crosswalk row ${r.key} joins ${c.platform} ${c.name}, whose name does not normalise to ${r.key}`);
+        }
+      }
+      for (const m of stated) {
+        const ok = [m.from, m.to].every((c) => (lists[c?.platform] ?? []).some((x) => nameOf[c.platform](x) === c.name));
+        if (!ok || m.from.platform === m.to.platform || !sources.some((x) => x.id === m.sourceId) || !m.url || !String(m.evidence ?? "").trim()) {
+          problems.push(`WORKOUT-TYPE-MAPPING  a stated mapping (${m.from?.name} → ${m.to?.name}) lacks a known source, its URL, the source's row, or two real constants of two platforms`);
+        }
+      }
+      // 3. The hub: a column per platform, a row per crosswalk key, every cell linked and spelled.
+      const hub = notFoundSet.has(BASE) ? null : htmlOf(BASE);
+      if (!hub || !hub.includes("data-wt-crosswalk")) problems.push(`WORKOUT-TYPE-CROSSWALK  ${BASE} was not built or renders no crosswalk`);
+      else {
+        const noColumn = Object.keys(lists).filter((p) => !hub.includes(`data-platform="${p}"`));
+        if (noColumn.length) problems.push(`WORKOUT-TYPE-CROSSWALK  the ${BASE} crosswalk has no column for ${noColumn.join(", ")}`);
+        for (const r of crosswalk) {
+          const row = rowOf(hub, `xw-${r.key}`);
+          if (!row) {
+            problems.push(`WORKOUT-TYPE-CROSSWALK  ${BASE} has no crosswalk row for ${r.key}`);
+            continue;
+          }
+          const absent = r.cells.filter((c) => !row.includes(`href="${BASE}/${c.platform}#${rowId(c.name)}"`) || !row.includes(`>${c.name}<`));
+          if (absent.length) problems.push(`WORKOUT-TYPE-CROSSWALK  ${BASE} row ${r.key} does not link and spell ${absent.map((c) => `${c.platform} ${c.name}`).join(", ")}`);
+        }
+        const shown = (hub.match(/data-wt-flag="/g) ?? []).length;
+        if (shown < flags.length) problems.push(`WORKOUT-TYPE-FLAG-SHOWN  ${BASE} shows ${shown} of the ${flags.length} disagreements the generator published`);
+        for (const p of Object.keys(lists)) {
+          const own = flags.filter((f) => f.platform === p).length;
+          const page = htmlOf(`${BASE}/${p}`);
+          const onPage = page ? (page.match(/data-wt-flag="/g) ?? []).length : 0;
+          if (onPage < own) problems.push(`WORKOUT-TYPE-FLAG-SHOWN  ${BASE}/${p} shows ${onPage} of the ${own} disagreements that concern it`);
+        }
+      }
+      // 4. The page rule, recomputed from the generated module.
+      const find = (p, n) => (lists[p] ?? []).find((x) => nameOf[p](x) === n);
+      const factsOf = (row) => {
+        const out = [];
+        for (const c of row.cells) {
+          const x = find(c.platform, c.name);
+          if (!x) continue;
+          if (c.platform === "healthkit") {
+            if (x.discussion?.length) out.push(["hk-discussion", x.discussion]);
+            if (x.deprecation?.message) out.push(["hk-deprecation", [x.deprecation.message]]);
+          } else if (c.platform === "health-connect") {
+            if (x.segments?.rule !== "universal-only" && x.segments?.evidence) out.push(["hc-segments", [x.segments.evidence]]);
+            if (x.description) out.push(["hc-description", [x.description]]);
+            if (x.platform?.deprecationNote) out.push(["hc-platform-deprecation", [x.platform.deprecationNote]]);
+          } else if (c.platform === "wear-os") {
+            if (x.description) out.push(["hs-description", [x.description]]);
+          }
+        }
+        return out;
+      };
+      const qualifying = crosswalk.filter((r) => r.cells.length >= 3 && factsOf(r).length >= 2);
+      const want = new Map(qualifying.map((r) => [`${BASE}/${r.slug}`, r]));
+      const built = htmls
+        .map(routeOf)
+        .filter((r) => r.startsWith(`${BASE}/`) && r.split("/").length === 3 && !notFoundSet.has(r) && !Object.keys(lists).includes(r.split("/")[2]));
+      for (const r of built) if (!want.has(r)) problems.push(`WORKOUT-TYPE-PAGE-RULE  ${r} is built, but no crosswalk row passes the page rule for it`);
+      let pages = 0;
+      for (const [route, r] of want) {
+        const html = htmlOf(route);
+        if (!html || notFoundSet.has(route)) {
+          problems.push(`WORKOUT-TYPE-PAGE-RULE  ${r.key} passes the page rule but ${route} was not built`);
+          continue;
+        }
+        pages++;
+        const facts = factsOf(r);
+        if (!html.includes(`data-wt-activity="${r.key}"`)) problems.push(`WORKOUT-TYPE-PAGE-RULE  ${route} does not carry data-wt-activity="${r.key}"`);
+        const declared = (/\bdata-wt-facts="([^"]*)"/.exec(html)?.[1] ?? "").split(" ").filter(Boolean).sort().join(" ");
+        if (declared !== facts.map(([k]) => k).sort().join(" ")) problems.push(`WORKOUT-TYPE-PAGE-RULE  ${route} declares facts [${declared}], the generated data gives [${facts.map(([k]) => k).join(" ")}]`);
+        for (const [kind, texts] of facts) {
+          const blocks = [...html.matchAll(new RegExp(`<blockquote\\b[^>]*\\bdata-evidence="${kind}"[^>]*>([\\s\\S]*?)</blockquote>`, "g"))].map((m) => plain(m[1]));
+          for (const t of texts) {
+            if (!blocks.some((b) => b.includes(norm(t)))) problems.push(`WORKOUT-TYPE-PAGE-RULE  ${route} counts its ${kind} fact but does not quote it in a data-evidence block`);
+          }
+        }
+        if (hub && !hrefsIn(hub).has(route)) problems.push(`WORKOUT-TYPE-PAGE-RULE  ${BASE} does not link ${route}`);
+      }
+      console.log(
+        `Workout types: ${rendered} constants rendered on 4 platform pages, ${crosswalk.length} name-identity rows and ${stated.length} stated mappings checked, ${pages} activity pages by the page rule, ${flags.length} source disagreements shown.`,
       );
     }
   }

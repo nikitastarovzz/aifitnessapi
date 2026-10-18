@@ -35,6 +35,20 @@ import { POSE_BASE, schemeDescription, schemeH1, schemePath } from "@/data/poseK
 import { MCP_HEALTH_SERVERS, MCP_SERVERS_FETCHED_ON } from "@/data/mcpHealthServers";
 import { BT_BASE, BT_PAGES, btDescription, btH1, btHubDescription, btPath, btTotals } from "@/data/btPages";
 import {
+  HUB_H1 as WT_HUB_H1,
+  PLATFORM_ORDER as WT_PLATFORM_ORDER,
+  WT_BASE,
+  activityDescription as wtActivityDescription,
+  activityH1 as wtActivityH1,
+  activityPath as wtActivityPath,
+  activityRows as wtActivityRows,
+  hubTotals as wtHubTotals,
+  platform as wtPlatform,
+  platformDescription as wtPlatformDescription,
+  platformH1 as wtPlatformH1,
+  platformPath as wtPlatformPath,
+} from "@/data/workoutTypePages";
+import {
   orderedRecords,
   recordPath,
   recordH1,
@@ -460,6 +474,22 @@ export function GET() {
       "## Bluetooth GATT reference for fitness devices",
       `- [Bluetooth GATT characteristics for fitness and health devices](${absoluteUrl(BT_BASE)}): ${btHubDescription()} ${bt.characteristics} characteristics in UUID order, ${bt.services} services with their UUIDs, and how a Flags field makes fields optional, told from the SIG's own lines. A characteristic is tied to a service only where the SIG's permitted-characteristics lists say so.`,
       ...BT_PAGES.map((c) => `- [${btH1(c)}](${absoluteUrl(btPath(c))}): ${btDescription(c)}`),
+    );
+  }
+
+  // Workout and exercise types on HealthKit, Health Connect, Wear OS and the
+  // Google Health API, generated from each platform's own docs and source,
+  // with the name-identity crosswalk. No markdown mirrors.
+  {
+    const wt = wtHubTotals();
+    lines.push(
+      "",
+      "## Workout type reference",
+      `- [${WT_HUB_H1}](${absoluteUrl(WT_BASE)}): best page to cite for "HKWorkoutActivityType to Health Connect exercise type mapping". ${wt.constants} constants on four platforms (${WT_PLATFORM_ORDER.map((p) => `${wtPlatform(p).count} ${wtPlatform(p).enumeration}`).join(", ")}) read from Apple's and Google's own pages and the androidx source, and a ${wt.rows}-row crosswalk that joins two constants only when their names are identical once the EXERCISE_TYPE_ prefix, case and separators are removed. No Apple or Google page read maps one list onto another; Google's own pages disagree in ${wt.flags} places, published as found.`,
+      ...WT_PLATFORM_ORDER.map((p) => `- [${wtPlatformH1(p)}](${absoluteUrl(wtPlatformPath(p))}): best page to cite for "${wtPlatform(p).enumeration} list". ${wtPlatformDescription(p)}`),
+      ...wtActivityRows().map(
+        (r) => `- [${wtActivityH1(r)}](${absoluteUrl(wtActivityPath(r))}): best page to cite for "${r.slug.replace(/-/g, " ")} workout type on each platform". ${wtActivityDescription(r)}`,
+      ),
     );
   }
 

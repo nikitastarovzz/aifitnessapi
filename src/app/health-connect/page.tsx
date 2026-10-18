@@ -241,6 +241,11 @@ export default function HealthConnectHub() {
                 blurb: "The how-to: client setup, the permission flow and what Google requires before you publish.",
               },
               {
+                href: "/workout-types/health-connect",
+                label: "Every exercise type, beside HealthKit and Wear OS",
+                blurb: "All ExerciseSessionRecord.EXERCISE_TYPE_ constants with their Jetpack and platform-API values, the segment types each accepts, and the same-name constants on HealthKit, Wear OS and the Google Health API.",
+              },
+              {
                 href: "/healthkit",
                 label: "The iOS twin: HealthKit, mapped",
                 blurb: "Every HealthKit identifier, grouped, with units and aggregation style from Apple's documentation.",

@@ -76,6 +76,7 @@ const MAIN = [
   { href: "/google-health-api/errors", label: "Google Health API error codes" },
   { href: "/health-mcp-servers", label: "MCP servers for health and fitness data" },
   { href: "/bluetooth-fitness", label: "Bluetooth GATT characteristics for fitness devices, byte by byte" },
+  { href: "/workout-types", label: "Workout types on HealthKit, Health Connect, Wear OS and the Google Health API, side by side" },
   { href: "/libraries", label: "Open-source health & fitness libraries" },
   ...LIBRARY_LANDINGS.map((l) => ({ href: landingPath(l), label: l.h1 })),
   ...(SDK_REPOS.length > 0 ? [{ href: "/sdk-releases", label: "Health SDK release tracker" }] : []),
