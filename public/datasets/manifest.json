@@ -162,6 +162,18 @@
       "bytes": 56538,
       "rows": 65,
       "sha256": "9adf2f39b06bff7364a906b0b4df7b8e22ea392f65b9ca471d4af4d8925e651c"
+    },
+    {
+      "file": "workout-types-crosswalk-2026.csv",
+      "bytes": 152975,
+      "rows": 412,
+      "sha256": "c8c186e2048eddd831262512e200bc0437c938b3d0160b8343712ad5e179ad87"
+    },
+    {
+      "file": "workout-types-crosswalk-2026.json",
+      "bytes": 357997,
+      "rows": 412,
+      "sha256": "5d05ffbc569f7ba7c4a00bedf6115122e2cfa32d11a59cb6e13b1f21cb7036f9"
     }
   ]
 }

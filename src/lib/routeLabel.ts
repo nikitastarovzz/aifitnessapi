@@ -9,6 +9,7 @@ import { hkPageIdentifiers, hkIdentifierPath, hkPageH1 } from "@/data/hkIdentifi
 import { hsPageTypes, hsDataTypePath, hsPageH1 } from "@/data/hsDataTypePages";
 import { GHAPI_PATHS, GHAPI_TOPICS, allTypes as ghapiTypes, typeH1 as ghapiTypeH1, typePath as ghapiTypePath } from "@/data/ghapiPages";
 import { BT_BASE, BT_HUB_H1, BT_PAGES, btH1, btPath } from "@/data/btPages";
+import { HUB_H1 as WT_HUB_H1, PLATFORM_ORDER as WT_PLATFORM_ORDER, WT_BASE, activityH1 as wtActivityH1, activityPath as wtActivityPath, activityRows as wtActivityRows, platformH1 as wtPlatformH1, platformPath as wtPlatformPath } from "@/data/workoutTypePages";
 
 /**
  * A page's name, for links built from data rather than written by hand (the
@@ -53,6 +54,10 @@ function build(): Map<string, string> {
   for (const p of GHAPI_TOPICS) m.set(p.path, `Google Health API ${p.label.toLowerCase()}`);
   for (const t of ghapiTypes()) m.set(ghapiTypePath(t), ghapiTypeH1(t));
   for (const c of BT_PAGES) m.set(btPath(c), btH1(c));
+  // The workout-type reference: hub, platform lists and activity pages.
+  m.set(WT_BASE, WT_HUB_H1);
+  for (const p of WT_PLATFORM_ORDER) m.set(wtPlatformPath(p), wtPlatformH1(p));
+  for (const r of wtActivityRows()) m.set(wtActivityPath(r), wtActivityH1(r));
   for (const [path, label] of Object.entries(STANDALONE)) m.set(path, label);
   return m;
 }

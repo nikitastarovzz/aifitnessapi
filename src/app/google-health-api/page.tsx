@@ -304,6 +304,14 @@ export default function GoogleHealthApiHub() {
             Grouped by the scope family Google’s table lists for each type (Google’s own scope ids, in the Scopes page’s
             order); within a family, in the table’s order. Operations are as the table prints them.
           </p>
+          <p className="mt-2 text-sm text-[var(--muted)]">
+            The exercise data type’s exerciseType values are listed one by one, beside the HealthKit, Health Connect
+            and Wear OS constants of the same name, on{" "}
+            <Link href="/workout-types/google-health-api" className={LINK}>
+              Google Health API exercise types
+            </Link>
+            .
+          </p>
           <nav aria-label="Scope families" className="mt-4 flex flex-wrap gap-2 text-sm">
             {groups.map((g) => (
               <a

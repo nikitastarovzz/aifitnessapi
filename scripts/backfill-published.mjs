@@ -72,6 +72,18 @@ const GENERATED_SECTIONS = [
     array: "GHAPI_DATA_TYPES",
     idKey: "dataType",
   },
+  // The workout-type hub and its four platform list pages. The [slug] route
+  // also serves the activity pages the page rule allows; those are not rows
+  // of a data array, so they keep the fallback (their data date) until the
+  // rule's output is exported as one.
+  {
+    base: "workout-types",
+    dir: "src/app/workout-types",
+    dynamic: "[slug]",
+    data: "src/data/workoutTypes.ts",
+    array: "WT_PLATFORMS",
+    idKey: "slug",
+  },
 ];
 
 function git(args) {

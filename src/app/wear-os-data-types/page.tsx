@@ -174,7 +174,11 @@ export default function WearOsDataTypesPage() {
           <Link href="/watch-apps/wear-os-passive-monitoring-measureclient" className={LINK}>
             PassiveMonitoringClient and MeasureClient
           </Link>
-          .
+          . The ExerciseType an exercise is configured with is a separate list:{" "}
+          <Link href="/workout-types/wear-os" className={LINK}>
+            every Wear OS exercise type
+          </Link>{" "}
+          beside the Health Connect, HealthKit and Google Health API names.
         </p>
 
         <section id="types" className="mt-12">

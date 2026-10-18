@@ -25,6 +25,7 @@ import { hsPageTypes, hsDataTypePath, hsPageModified } from "@/data/hsDataTypePa
 import { GHAPI_PATHS, allTypes as ghapiTypes, typePath as ghapiTypePath, ghapiModified } from "@/data/ghapiPages";
 import { MCP_SERVERS_FETCHED_ON } from "@/data/mcpHealthServers";
 import { BT_BASE, BT_FETCHED, BT_PAGES, btPath } from "@/data/btPages";
+import { PLATFORM_ORDER as WT_PLATFORM_ORDER, WT_BASE, WT_FETCHED, activityPath as wtActivityPath, activityRows as wtActivityRows, platformPath as wtPlatformPath } from "@/data/workoutTypePages";
 
 /**
  * Every row carries a `lastmod` that some dated record on the site backs, or
@@ -189,6 +190,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // dateModified.
   const btRows = [row(BT_BASE, BT_FETCHED), ...BT_PAGES.map((c) => row(btPath(c), BT_FETCHED))];
 
+  // Workout-type reference (generated from Apple's and Google's docs and the
+  // androidx source): the hub, the four platform list pages and the activity
+  // pages the page rule allows all declare WT_FETCHED as dateModified.
+  const wtRows = [
+    row(WT_BASE, WT_FETCHED),
+    ...WT_PLATFORM_ORDER.map((p) => row(wtPlatformPath(p), WT_FETCHED)),
+    ...wtActivityRows().map((r) => row(wtActivityPath(r), WT_FETCHED)),
+  ];
+
   // The list is empty until the authored entries land, and an empty list
   // emits no rows.
   const hkGroupDates = releasedHkGroups().map((g) => [g.slug, hkGroupModified(g.slug)] as const);
@@ -283,6 +293,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...libRows,
     ...generatedRefs.map(([p, d]) => row(p, d)),
     ...btRows,
+    ...wtRows,
     // Products without search demand of their own are noindex (NOINDEX_APIS).
     ...API_ENTRIES.filter((a) => !NOINDEX_APIS.has(a.id)).map((a) => row(`${APIS_PATH}/${a.id}`)),
     ...issues.map((d) => row(`${DIGEST_PATH}/${d.month}`, digestDate(d))),
