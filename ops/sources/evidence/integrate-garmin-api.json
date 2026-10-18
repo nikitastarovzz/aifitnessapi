@@ -1,0 +1,272 @@
+[
+  {
+    "claim": "Connect IQ is a different program from the cloud APIs, and one does not require the other.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "No, the Garmin Connect Developer Program APIs and the Connect IQ programs are different programs. One does not require the use of the other."
+  },
+  {
+    "claim": "Connect IQ has a free SDK for watch faces, data fields, widgets and apps.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "I see the Connect IQ developer program allows for the creation of watch faces, data fields, widgets and applications."
+  },
+  {
+    "claim": "Connect IQ's SDK is free.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "Learn more about Connect IQ and start using our free SDK."
+  },
+  {
+    "claim": "Garmin's FAQ says the program is available for enterprise use.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "The Garmin Connect Developer Program is available for enterprise use"
+  },
+  {
+    "claim": "The program is only for business use and has no licensing or maintenance fees.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Some metrics may require a license fee or minimum device order for commercial use.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+  },
+  {
+    "claim": "You submit a request and Garmin will quickly review your application.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "If you are interested, please request the Garmin Connect Developer Program and we'll quickly review your application."
+  },
+  {
+    "claim": "Garmin confirms the status of an application within two business days.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
+  },
+  {
+    "claim": "If approved, you get access to the Garmin Developer Portal and can start right away.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "If approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
+  },
+  {
+    "claim": "Garmin invites you to an integration call on your needs and the high-level technical details.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "In parallel, we will invite you to an integration call to help understand your needs and walk you through the high-level technical details of the Developer Program and its APIs."
+  },
+  {
+    "claim": "A typical integration takes between 1 and 4 weeks.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "A typical integration takes between 1 and 4 weeks."
+  },
+  {
+    "claim": "Approval includes API documentation.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "API documentation"
+  },
+  {
+    "claim": "Approval includes development against the production environment with throttled access.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Convenient and secure development against the production environment with throttled access"
+  },
+  {
+    "claim": "Approval includes Garmin Connect logo and branding requirements.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Access to official Garmin Connect logo and branding requirements"
+  },
+  {
+    "claim": "Approval includes direct access to the support team.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Direct access to the Developer Program support team"
+  },
+  {
+    "claim": "Approval includes sample integration code for the Health, Activity and Women's Health APIs.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Sample integration code for Health, Activity, and Women's Health APIs"
+  },
+  {
+    "claim": "The Health page adds an evaluation environment for testing after approval.",
+    "url": "https://developer.garmin.com/gc-developer-program/health-api/",
+    "quote": "After approval, you will have access to an evaluation environment to test the Garmin Connect Health API."
+  },
+  {
+    "claim": "The Activity page adds an evaluation environment for testing after approval.",
+    "url": "https://developer.garmin.com/gc-developer-program/activity-api/",
+    "quote": "After approval, you will have access to an evaluation environment to test the Garmin Connect Activity API."
+  },
+  {
+    "claim": "Every program page carried a banner reading Stay tuned for more updates on the program.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Stay tuned for more updates on the program"
+  },
+  {
+    "claim": "The FAQ page carries the same banner.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "Stay tuned for more updates on the program"
+  },
+  {
+    "claim": "Some APIs bring user data to you.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "These APIs allow you to receive user data from Garmin Connect to your platform:"
+  },
+  {
+    "claim": "Some APIs push content to the user's device.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "These APIs allow you to push workouts, training plans, and courses from your platform to users Garmin Connect accounts for them to sync to their devices:"
+  },
+  {
+    "claim": "You can use any or all APIs in a single application.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "Yes, you may use utilize any or all APIs in a single application (Health, Activity, Women's Health, Training, and Courses)."
+  },
+  {
+    "claim": "The Health API covers all-day metrics such as steps, heart rate, sleep and stress.",
+    "url": "https://developer.garmin.com/gc-developer-program/health-api/",
+    "quote": "The Health API enables you to leverage valuable all-day health metrics such as steps, heart rate, sleep, and stress"
+  },
+  {
+    "claim": "The Health API metric list includes Pulse Ox, Body Battery, body composition, respiration and blood pressure.",
+    "url": "https://developer.garmin.com/gc-developer-program/health-api/",
+    "quote": "Stress Pulse Ox Body Battery Body Composition Respiration Blood Pressure Enhanced Beat-To-Beat Interval *"
+  },
+  {
+    "claim": "The Health API metric list includes steps, intensity minutes, sleep, calories and heart rate.",
+    "url": "https://developer.garmin.com/gc-developer-program/health-api/",
+    "quote": "Steps Intensity Minutes Sleep Calories Heart Rate"
+  },
+  {
+    "claim": "Enhanced beat-to-beat interval is marked: commercial use requires a license fee payment.",
+    "url": "https://developer.garmin.com/gc-developer-program/health-api/",
+    "quote": "* Commercial use requires a license fee payment."
+  },
+  {
+    "claim": "The Activity API covers detailed fitness data captured during an activity.",
+    "url": "https://developer.garmin.com/gc-developer-program/activity-api/",
+    "quote": "The Activity API provides access to the detailed fitness data captured during an activity on the user's wearable device or cycling computer."
+  },
+  {
+    "claim": "The Activity API covers over 30 activity types.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Full activity data for over 30 activity types."
+  },
+  {
+    "claim": "Activity files come in FIT, GPX and TCX formats.",
+    "url": "https://developer.garmin.com/gc-developer-program/activity-api/",
+    "quote": "Full Activity Details Access: Activity data files (.FIT, GPX, .TCX formats) available for complete activity details"
+  },
+  {
+    "claim": "The Women's Health API covers menstrual cycle and pregnancy tracking, including schedules and pregnancy details.",
+    "url": "https://developer.garmin.com/gc-developer-program/womens-health-api/",
+    "quote": "The Garmin Connect Women's Health API provides information captured in Menstrual Cycle Tracking and Pregnancy Tracking, including schedules and pregnancy details."
+  },
+  {
+    "claim": "The Training API publishes workouts and training plans to the Garmin Connect calendar.",
+    "url": "https://developer.garmin.com/gc-developer-program/training-api/",
+    "quote": "The Training API allows you to publish workouts and training plans to the Garmin Connect calendar."
+  },
+  {
+    "claim": "Published training data is available for users to sync with compatible devices.",
+    "url": "https://developer.garmin.com/gc-developer-program/training-api/",
+    "quote": "Once published, the training data will be available for users to sync with their compatible Garmin devices."
+  },
+  {
+    "claim": "The overview describes structured workouts and training plans.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Publish structured workouts and training plans for users to sync to their compatible Garmin devices."
+  },
+  {
+    "claim": "The Courses API publishes courses that users follow from the standard Courses menu.",
+    "url": "https://developer.garmin.com/gc-developer-program/courses-api/",
+    "quote": "Users can start following a course on their wearable or cycling computer from the standard Courses menu."
+  },
+  {
+    "claim": "The Courses API publishes courses to Garmin Connect.",
+    "url": "https://developer.garmin.com/gc-developer-program/courses-api/",
+    "quote": "Similar to the Training API, Courses API allows you to publish courses to Garmin Connect."
+  },
+  {
+    "claim": "New devices are supported automatically.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "Yes, new devices are supported automatically."
+  },
+  {
+    "claim": "Garmin tries to add new data types as devices launch but cannot always offer every metric.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "makes every effort to ensure new data types are available as new devices launch, however it's not always possible to offer every metric."
+  },
+  {
+    "claim": "Ask support for missing data.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "If you need data that is not already included, please contact support with your request."
+  },
+  {
+    "claim": "All APIs in the Developer Program use OAuth 2.0.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "All APIs in the Developer Program use OAUTH 2.0."
+  },
+  {
+    "claim": "Health API delivery: ping/pull or push.",
+    "url": "https://developer.garmin.com/gc-developer-program/health-api/",
+    "quote": "Ping/Pull or Push Architecture: Choose the integration option that best matches your needs"
+  },
+  {
+    "claim": "Activity API delivery: ping/pull or push.",
+    "url": "https://developer.garmin.com/gc-developer-program/activity-api/",
+    "quote": "Ping/Pull or Push Architecture: Choose the integration option that best matches your needs"
+  },
+  {
+    "claim": "Women's Health API delivery: ping/pull or push.",
+    "url": "https://developer.garmin.com/gc-developer-program/womens-health-api/",
+    "quote": "Ping/Pull or Push Architecture: Choose the integration option that best matches your needs"
+  },
+  {
+    "claim": "Customized data feeds: only subscribe to the data you need.",
+    "url": "https://developer.garmin.com/gc-developer-program/health-api/",
+    "quote": "Customized Data Feeds: Only subscribe to the data you need"
+  },
+  {
+    "claim": "Multi-project support: each app is configured independently.",
+    "url": "https://developer.garmin.com/gc-developer-program/health-api/",
+    "quote": "Multi-Project Support: Create and configure your apps independently from each other"
+  },
+  {
+    "claim": "Developer web tools: on-boarding, sample data, backfill and auto-verification before production.",
+    "url": "https://developer.garmin.com/gc-developer-program/health-api/",
+    "quote": "Developer Web Tools: Easy on-boarding, sample data, backfill user data, and auto-verification of your integration before production"
+  },
+  {
+    "claim": "After consent, users sync their device with Garmin Connect, at which point data is accessible via the API.",
+    "url": "https://developer.garmin.com/gc-developer-program/health-api/",
+    "quote": "After initial consent, end-users sync their device with Garmin Connect to upload device data, at which point it is accessible via the API."
+  },
+  {
+    "claim": "The Health API delivers JSON summaries including detailed stress, Pulse Ox and epoch summaries.",
+    "url": "https://developer.garmin.com/gc-developer-program/health-api/",
+    "quote": "Data includes heart rate, steps, calories, sleep, respiration, body composition as well as detailed stress, pulse-ox, and epoch summaries for all-day activities."
+  },
+  {
+    "claim": "The Health API delivers data in JSON format summarizing uploaded user data.",
+    "url": "https://developer.garmin.com/gc-developer-program/health-api/",
+    "quote": "which summarizes the individual user data uploaded to Garmin Connect from supported devices."
+  },
+  {
+    "claim": "For Training and Courses, users consent, Garmin Connect handles the device side, and the user syncs.",
+    "url": "https://developer.garmin.com/gc-developer-program/training-api/",
+    "quote": "After providing consent, users can send your training data to Garmin Connect. Garmin Connect handles the interactions with the device. All the user needs to do is sync their device with Garmin Connect to download the data to their wearable or cycling computer."
+  },
+  {
+    "claim": "Training integrations are tested against production with throttled access.",
+    "url": "https://developer.garmin.com/gc-developer-program/training-api/",
+    "quote": "After approval, you will have access to test your integration against the production environment with throttled access."
+  },
+  {
+    "claim": "If you plan to supply Garmin wearables, enter the number of devices when you request the program.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "please request the Garmin Connect Developer Program and enter the number of devices you believe you will support."
+  },
+  {
+    "claim": "Garmin says the Connect APIs are cloud-to-cloud.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "The Garmin Connect APIs enable cloud-to-cloud based integrations."
+  },
+  {
+    "claim": "For a direct connection between a mobile app and wearables Garmin points to its Health SDKs.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "For real-time data and a direct connection between your mobile app and Garmin wearables, check out what is possible using our Garmin Health SDKs"
+  }
+]

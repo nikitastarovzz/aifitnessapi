@@ -1,0 +1,222 @@
+[
+  {
+    "claim": "Oura's API V2 is the only available integration point for Oura data.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "This document describes the Oura API Version 2 (V2), which is the only available integration point for Oura data."
+  },
+  {
+    "claim": "Oura users authorize over OAuth 2.0.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "The Oura Cloud API supports authentication through the industry-standard OAuth2 protocol."
+  },
+  {
+    "claim": "Oura marks PKCE as recommended.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "code_challenge Recommended PKCE code challenge."
+  },
+  {
+    "claim": "Oura users consent per data type.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "Oura users **must provide consent** to share each data type an API Application has access to."
+  },
+  {
+    "claim": "Oura calls webhooks the preferred way to consume its data.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "Webhooks are the preferred way to consume Oura data"
+  },
+  {
+    "claim": "Heart rate comes in 5-minute increments.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "Heart rate is provided at 5-minute increments."
+  },
+  {
+    "claim": "SpO2 is for Gen 3 rings.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "Data will only be available for users with a Gen 3 Oura Ring"
+  },
+  {
+    "claim": "Stress data.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "The daily stress route includes a summary of the number of minutes the user spends in high stress and high recovery each day."
+  },
+  {
+    "claim": "Resilience data.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "Resilience is an estimate of your ability to withstand physiological stress and recover from it over time."
+  },
+  {
+    "claim": "Cardiovascular age.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "Cardiovascular Age is an estimate of the health of your cardiovascular system in relation to your actual age."
+  },
+  {
+    "claim": "VO2 max.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "VO2 Max is a measure of the maximum volume of oxygen that an individual can use during intense exercise."
+  },
+  {
+    "claim": "New apps are limited to 10 users until Oura approves them.",
+    "url": "https://cloud.ouraring.com/docs/",
+    "quote": "By default, API Applications have a ten user limit. If you want to release your application to a wider audience, your application needs to be approved."
+  },
+  {
+    "claim": "No limit after approval.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "There is no limit once an application is approved."
+  },
+  {
+    "claim": "5,000 requests per 5-minute period.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "The Oura API is limited to 5000 requests per 5-minute period."
+  },
+  {
+    "claim": "Oura's error docs give the same limit.",
+    "url": "https://cloud.ouraring.com/docs/error-handling",
+    "quote": "The API V1 and V2 API are rate limited to 5000 requests in a 5 minute period."
+  },
+  {
+    "claim": "403 when the user's subscription has expired.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "The requested resource requires additional permissions or the user's Oura subscription has expired."
+  },
+  {
+    "claim": "Oura's FAQ says the API is free for personal and commercial use.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "Yes, the Oura API is free to use for both personal and commercial applications."
+  },
+  {
+    "claim": "Oura membership is $5.99 USD a month before tax in the US.",
+    "url": "https://ouraring.com/membership",
+    "quote": "$5.99 USD/month or $69.99 USD/annually before tax for US members,"
+  },
+  {
+    "claim": "Ultrahuman documents the UltraSignal API for metrics from Ultrahuman devices.",
+    "url": "https://vision.ultrahuman.com/developer-docs",
+    "quote": "Welcome to the UltraSignal API documentation. This API provides comprehensive access to health and fitness metrics collected by Ultrahuman devices."
+  },
+  {
+    "claim": "Ultrahuman makes a ring.",
+    "url": "https://www.ultrahuman.com/us/",
+    "quote": "The most powerful Ultrahuman Ring, yet"
+  },
+  {
+    "claim": "The daily metrics endpoint.",
+    "url": "https://vision.ultrahuman.com/developer-docs",
+    "quote": "https://partner.ultrahuman.com/api/v1/partner/daily_metrics"
+  },
+  {
+    "claim": "Date ranges cannot exceed 7 days.",
+    "url": "https://vision.ultrahuman.com/developer-docs",
+    "quote": "Date range queries cannot exceed 7 days"
+  },
+  {
+    "claim": "A date or an epoch range, not both.",
+    "url": "https://vision.ultrahuman.com/developer-docs",
+    "quote": "choose either date or epoch timestamps, not both"
+  },
+  {
+    "claim": "Create a personal API token in the developer portal.",
+    "url": "https://vision.ultrahuman.com/developer-docs",
+    "quote": "Create your Personal API token from the developer portal"
+  },
+  {
+    "claim": "Your own data needs no extra setup.",
+    "url": "https://vision.ultrahuman.com/developer-docs",
+    "quote": "If you want to access data for your own account (same email as your login), no additional setup is required."
+  },
+  {
+    "claim": "Other users' data needs their email and authorization in the Ultrahuman app.",
+    "url": "https://vision.ultrahuman.com/developer-docs",
+    "quote": "Their email address (to be used as a parameter in the API)"
+  },
+  {
+    "claim": "Users enter the data sharing code under Partner ID.",
+    "url": "https://vision.ultrahuman.com/developer-docs",
+    "quote": "Enter the data sharing code provided by the API developer"
+  },
+  {
+    "claim": "The Partner ID setting is under Profile, Settings.",
+    "url": "https://vision.ultrahuman.com/developer-docs",
+    "quote": "Go to Profile tab → Settings → Partner ID"
+  },
+  {
+    "claim": "Anyone with the token can use the API as you.",
+    "url": "https://vision.ultrahuman.com/developer-docs",
+    "quote": "Anyone with this Authorization Key can use the Ultrahuman API as you."
+  },
+  {
+    "claim": "Metrics include HRV, sleep stages, recovery and VO2 max.",
+    "url": "https://vision.ultrahuman.com/developer-docs",
+    "quote": "hrv Heart Rate Variability - a measure of the variation in time between heartbeats"
+  },
+  {
+    "claim": "Metrics include skin temperature.",
+    "url": "https://vision.ultrahuman.com/developer-docs",
+    "quote": "temp Skin temperature readings in Celsius"
+  },
+  {
+    "claim": "Metrics include glucose averages and time in target.",
+    "url": "https://vision.ultrahuman.com/developer-docs",
+    "quote": "time_in_target Percentage of time glucose levels stayed within target range"
+  },
+  {
+    "claim": "Metrics include SpO2.",
+    "url": "https://vision.ultrahuman.com/developer-docs",
+    "quote": "spo2 Blood oxygen saturation levels, measured as a percentage"
+  },
+  {
+    "claim": "OAuth app setup is shown after login.",
+    "url": "https://vision.ultrahuman.com/developer-docs",
+    "quote": "Want to access your personal tokens and create OAuth apps? Login to view authenticated documentation"
+  },
+  {
+    "claim": "The docs have OAuth and MCP tabs.",
+    "url": "https://vision.ultrahuman.com/developer-docs",
+    "quote": "API Docs OAuth Docs MCP Docs"
+  },
+  {
+    "claim": "Galaxy Ring data transfers to the paired phone's Samsung Health app.",
+    "url": "https://developer.samsung.com/health/data/overview.html",
+    "quote": "Health data in the Samsung Health app can also be collected from connected devices, like the Galaxy Watch or Galaxy Ring, which automatically transfers its data to a paired mobile phone’s Samsung Health app."
+  },
+  {
+    "claim": "The Data SDK reads selected data in Samsung Health's data store.",
+    "url": "https://developer.samsung.com/health/data/overview.html",
+    "quote": "An app using the SDK can access selected health data of the Samsung Health’s data store."
+  },
+  {
+    "claim": "Each data point names its source device.",
+    "url": "https://developer.samsung.com/health/data/faq.html",
+    "quote": "Each data point has data source information including the device ID indicating which device provided the health data."
+  },
+  {
+    "claim": "Samsung Health 6.30.2 or later.",
+    "url": "https://developer.samsung.com/health/data/overview.html",
+    "quote": "Samsung Health Data SDK requires Samsung Health version 6.30.2 or later."
+  },
+  {
+    "claim": "Android 10 or later.",
+    "url": "https://developer.samsung.com/health/data/overview.html",
+    "quote": "Samsung Health runs on devices with Android 10 (API level 29) or later."
+  },
+  {
+    "claim": "A released app needs partnership approval registering package name and signature.",
+    "url": "https://developer.samsung.com/health/data/process.html",
+    "quote": "Please submit partner request before your app distribution. Your app's information including the app package name and signature (SHA-256) will be registered in the Samsung Health's system after an approval."
+  },
+  {
+    "claim": "RingConn's sharing feature is for friends and family.",
+    "url": "https://ringconn.com/pages/app-features",
+    "quote": "Share your health data with friends and family anytime, anywhere."
+  },
+  {
+    "claim": "RingConn's site lists its rings.",
+    "url": "https://ringconn.com/",
+    "quote": "Entry-level smart ring, core health features included"
+  },
+  {
+    "claim": "RingConn's site lists user manuals.",
+    "url": "https://ringconn.com/pages/user-manual",
+    "quote": "RingConn Gen 3 Smart Ring User Manual"
+  }
+]

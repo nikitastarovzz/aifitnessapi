@@ -45,6 +45,9 @@ const ALIASES: Record<string, string[]> = {
   whoop: ["WHOOP"],
   strava: ["Strava"],
   polar: ["Polar"],
+  withings: ["Withings"],
+  suunto: ["Suunto"],
+  wahoo: ["Wahoo"],
   healthkit: ["HealthKit"],
   "health-connect": ["Health Connect"],
   terra: ["Terra"],
@@ -74,6 +77,9 @@ const SHORT: Record<string, string> = {
   whoop: "WHOOP",
   strava: "Strava",
   polar: "Polar",
+  withings: "Withings",
+  suunto: "Suunto",
+  wahoo: "Wahoo",
   healthkit: "HealthKit",
   "health-connect": "Health Connect",
   terra: "Terra",
@@ -119,6 +125,11 @@ export const API_ENTRIES: ApiEntry[] = COST_ITEMS.filter((i) => !EXCLUDED.has(i.
  * searches that mostly say "vital", but none of them mapped to a page here.
  * Re-judged at the 2026-10-31 review; scripts/build-api-demand.mjs prints
  * where each pull disagrees with this list.
+ *
+ * Withings, Suunto and Wahoo joined the directory on 2026-10-17 with their
+ * integration guides (ops/EXPANSION-3-2026-10-17.md item 1.4). The pull
+ * predates them, so none has shown demand of its own yet; they start out of
+ * the index under the same rule and are judged with the rest on 2026-10-31.
  */
 export const NOINDEX_APIS = new Set([
   "junction",
@@ -132,6 +143,9 @@ export const NOINDEX_APIS = new Set([
   "sency",
   "quickpose",
   "apple-vision",
+  "withings",
+  "suunto",
+  "wahoo",
 ]);
 
 export function getApi(id: string): ApiEntry | undefined {

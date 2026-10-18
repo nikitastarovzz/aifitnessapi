@@ -20,4 +20,5 @@ export const RELEASED_FITNESS_APIS = new Set<string>([
   "wearable-research-data-platforms",
   "wearable-data-to-ehr-fhir",
   "gym-management-software-apis",
+  "smart-ring-apis",
 ]);

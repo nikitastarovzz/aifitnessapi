@@ -1,0 +1,287 @@
+[
+  {
+    "claim": "Authorized partners use CGM data such as estimated glucose values and events.",
+    "url": "https://developer.dexcom.com/docs/",
+    "quote": "Using the Dexcom API, authorized Digital Health Partners can leverage Dexcom CGM data, such as estimated glucose values and events, to build or enhance their apps."
+  },
+  {
+    "claim": "Registration is simple and free.",
+    "url": "https://developer.dexcom.com/docs/dexcom/scopes-access",
+    "quote": "Registration is simple and free, however, and provides access to app credentials and Support Requests ."
+  },
+  {
+    "claim": "Registration includes accepting the Registered Developer Agreement.",
+    "url": "https://developer.dexcom.com/docs/dexcom/scopes-access",
+    "quote": "acceptance of the Registered Developer Agreement"
+  },
+  {
+    "claim": "Registered Developers get sandbox data.",
+    "url": "https://developer.dexcom.com/docs/dexcom/scopes-access",
+    "quote": "Access to sandbox data"
+  },
+  {
+    "claim": "Limited Access allows up to 5 users for testing with real data.",
+    "url": "https://developer.dexcom.com/docs/dexcom/getting-started",
+    "quote": "Limited access allows you to authenticate up to 5 users for testing with real data."
+  },
+  {
+    "claim": "Dexcom's Strategic Partnerships team reviews requests.",
+    "url": "https://developer.dexcom.com/docs/dexcom/scopes-access",
+    "quote": "Dexcom Strategic Partnerships team will review your application and determine if Dexcom would like to proceed with a Digital Health Partnership."
+  },
+  {
+    "claim": "Approved applicants get a standard, non-negotiable Data Licensing Agreement.",
+    "url": "https://developer.dexcom.com/docs/dexcom/scopes-access",
+    "quote": "If the team decides to authorize your request, you will be sent a standard, non-negotiable Data Licensing Agreement."
+  },
+  {
+    "claim": "Full Access uses the Full Access Questionnaire.",
+    "url": "https://developer.dexcom.com/docs/dexcom/scopes-access",
+    "quote": "Complete and submit the Full Access Questionnaire."
+  },
+  {
+    "claim": "Dexcom runs a technical and commercial review for Full Access.",
+    "url": "https://developer.dexcom.com/docs/dexcom/scopes-access",
+    "quote": "Once application is complete, Dexcom will setup a technical and commercial review of your app."
+  },
+  {
+    "claim": "Individual developers apply from the app's profile.",
+    "url": "https://developer.dexcom.com/docs/dexcom/scopes-access",
+    "quote": "Individual developer — Apply for Limited Access Upgrade within your app’s profile."
+  },
+  {
+    "claim": "Commercial developers request a commercial partnership.",
+    "url": "https://developer.dexcom.com/docs/dexcom/scopes-access",
+    "quote": "you must submit a request for a commercial partnership."
+  },
+  {
+    "claim": "Research use goes through a research portal.",
+    "url": "https://developer.dexcom.com/docs/dexcom/scopes-access",
+    "quote": "If you are looking to access the Dexcom Web API for research purposes, clinical studies, etc., please visit our research portal"
+  },
+  {
+    "claim": "Dexcom reserves the right to decline apps that miss commercial and technical standards.",
+    "url": "https://developer.dexcom.com/docs/",
+    "quote": "Dexcom values all companies that are interested in the Dexcom API but reserves the right to decline Limited or Full Access requests for apps that do not meet certain commercial and technical standards."
+  },
+  {
+    "claim": "Each app is reviewed on its own.",
+    "url": "https://developer.dexcom.com/docs/dexcom/scopes-access",
+    "quote": "Each app must undergo its own upgrade application, and each upgrade application is considered independently of any other app owned by that developer."
+  },
+  {
+    "claim": "Digital Health Partners need an active user within 60 days of public availability.",
+    "url": "https://developer.dexcom.com/docs/dexcom/scopes-access",
+    "quote": "Have at least one active Dexcom user of that app—a user who has connected their Dexcom account to the app—within 60 days of public availability and at any given time thereafter"
+  },
+  {
+    "claim": "Gallery inclusion is not an endorsement.",
+    "url": "https://developer.dexcom.com/docs/dexcom/scopes-access",
+    "quote": "Please note that inclusion in the Gallery should not be considered approval or endorsement of your app by Dexcom."
+  },
+  {
+    "claim": "Developers are responsible for regulatory compliance.",
+    "url": "https://developer.dexcom.com/docs/dexcom/scopes-access",
+    "quote": "Developers are responsible for ensuring that their apps comply with all applicable regulations."
+  },
+  {
+    "claim": "Dexcom points to the FDA's Digital Health site.",
+    "url": "https://developer.dexcom.com/docs/dexcom/scopes-access",
+    "quote": "Some additional information on relevant US regulations can be found at the FDA's Digital Health site."
+  },
+  {
+    "claim": "Partners must store tokens on their servers, not mobile devices.",
+    "url": "https://developer.dexcom.com/docs/dexcom/authentication",
+    "quote": "Dexcom requires that partners store tokens (e.g., client secret, access tokens) on their servers. Integrations with mobile applications should not store tokens on the mobile device."
+  },
+  {
+    "claim": "The login URL is /v3/oauth2/login with response_type=code and scope=offline_access.",
+    "url": "https://developer.dexcom.com/docs/dexcom/authentication",
+    "quote": "https://api.dexcom.com/v3/oauth2/login?client_id={{your_client_id}}&redirect_uri={{your_redirect_uri}}&response_type=code&scope=offline_access&state={{your_state_value}}"
+  },
+  {
+    "claim": "code is the only response type.",
+    "url": "https://developer.dexcom.com/docs/dexcom/authentication",
+    "quote": "The OAuth 2.0 response type; currently, code is the only acceptable input"
+  },
+  {
+    "claim": "offline_access is the only scope.",
+    "url": "https://developer.dexcom.com/docs/dexcom/authentication",
+    "quote": "The access scope being requested; currently, offline_access is the only acceptable input"
+  },
+  {
+    "claim": "The four data scopes.",
+    "url": "https://developer.dexcom.com/docs/dexcom/scopes-access",
+    "quote": "Estimated Blood Glucose Levels Calibration Data Events Entry Data Device Details"
+  },
+  {
+    "claim": "No subset can be requested or authorized.",
+    "url": "https://developer.dexcom.com/docs/dexcom/scopes-access",
+    "quote": "There is currently no way for developers to request a subset of these scopes, nor may a user choose to authorize access to only a subset of these scopes."
+  },
+  {
+    "claim": "The user signs a HIPAA authorization.",
+    "url": "https://developer.dexcom.com/docs/dexcom/authentication",
+    "quote": "After authenticating, the user will be presented with a HIPAA authorization statement."
+  },
+  {
+    "claim": "The code is single-use and expires after one minute.",
+    "url": "https://developer.dexcom.com/docs/dexcom/authentication",
+    "quote": "Note that the authorization_code is single-use and expires after one minute."
+  },
+  {
+    "claim": "The token endpoint is /v3/oauth2/token.",
+    "url": "https://developer.dexcom.com/docs/dexcom/authentication",
+    "quote": "https://api.dexcom.com/v3/oauth2/token"
+  },
+  {
+    "claim": "The example response has expires_in 7200.",
+    "url": "https://developer.dexcom.com/docs/dexcom/authentication",
+    "quote": "\"expires_in\" : 7200 ,"
+  },
+  {
+    "claim": "Each refresh token works once and is replaced.",
+    "url": "https://developer.dexcom.com/docs/dexcom/authentication",
+    "quote": "Each refresh_token can be used only once. When it is exchanged for an access_token , a new refresh_token will be issued and the one that was used will be invalidated."
+  },
+  {
+    "claim": "A refresh token is valid for at most one year.",
+    "url": "https://developer.dexcom.com/docs/dexcom/authentication",
+    "quote": "Each refresh_token is valid for a maximum of one year."
+  },
+  {
+    "claim": "A 401 means refresh.",
+    "url": "https://developer.dexcom.com/docs/dexcom/authentication",
+    "quote": "If a status code of 401 is returned on a request for data using an access_token , the next step is to use the refresh_token to acquire a new access_token ."
+  },
+  {
+    "claim": "A 400 on refresh means the refresh token is no longer valid.",
+    "url": "https://developer.dexcom.com/docs/dexcom/authentication",
+    "quote": "If a status code of 400 is returned when exchanging a refresh_token , that refresh_token is no longer valid."
+  },
+  {
+    "claim": "A password reset invalidates the refresh token.",
+    "url": "https://developer.dexcom.com/docs/dexcom/authentication",
+    "quote": "the user has reset their Dexcom account password"
+  },
+  {
+    "claim": "Users revoke in Permissions; earlier data is unaffected.",
+    "url": "https://developer.dexcom.com/docs/dexcom/authentication",
+    "quote": "Users can revoke their authorization at any time at Dexcom.com by signing in to their account and changing their authorizations in Permissions."
+  },
+  {
+    "claim": "Previously provided data is not affected.",
+    "url": "https://developer.dexcom.com/docs/dexcom/authentication",
+    "quote": "any information previously provided to the app will not be affected by this revocation."
+  },
+  {
+    "claim": "Endpoints include egvs, events, calibrations, alerts, devices and dataRange.",
+    "url": "https://developer.dexcom.com/docs/dexcomv3/endpoint-overview",
+    "quote": "GET /v3/users/self/egvs Estimated Glucose Values"
+  },
+  {
+    "claim": "The alerts endpoint.",
+    "url": "https://developer.dexcom.com/docs/dexcomv3/endpoint-overview",
+    "quote": "GET /v3/users/self/alerts Alerts"
+  },
+  {
+    "claim": "The dataRange endpoint.",
+    "url": "https://developer.dexcom.com/docs/dexcomv3/endpoint-overview",
+    "quote": "GET /v3/users/self/dataRange Data Range"
+  },
+  {
+    "claim": "Requests need a bearer token.",
+    "url": "https://developer.dexcom.com/docs/dexcomv3/endpoint-overview",
+    "quote": "All requests require a valid OAuth 2.0 bearer token"
+  },
+  {
+    "claim": "US base URL.",
+    "url": "https://developer.dexcom.com/docs/dexcomv3/endpoint-overview",
+    "quote": "US: https://api.dexcom.com"
+  },
+  {
+    "claim": "EU and outside the US base URL.",
+    "url": "https://developer.dexcom.com/docs/dexcomv3/endpoint-overview",
+    "quote": "EU and Outside of US: https://api.dexcom.eu"
+  },
+  {
+    "claim": "Japan base URL.",
+    "url": "https://developer.dexcom.com/docs/dexcomv3/endpoint-overview",
+    "quote": "Japan: https://api.dexcom.jp"
+  },
+  {
+    "claim": "v3 supports G6, G7, G7 15-day, Dexcom ONE and ONE+.",
+    "url": "https://developer.dexcom.com/docs/dexcomv3/endpoint-overview",
+    "quote": "The Dexcom API (version 3 and above) supports patient data from Dexcom G6, G7, G7 15-day, Dexcom ONE, and Dexcom ONE+ devices."
+  },
+  {
+    "claim": "Dexcom ONE and ONE+ are not available in the US.",
+    "url": "https://developer.dexcom.com/docs/dexcomv3/endpoint-overview",
+    "quote": "Dexcom ONE and Dexcom ONE+ devices are not available in the United States."
+  },
+  {
+    "claim": "Windows are at most 30 days; longer returns 400.",
+    "url": "https://developer.dexcom.com/docs/dexcomv3/endpoint-overview",
+    "quote": "This window can be a maximum of 30 days, and any request with a time window greater than 30 days returns a 400 (Bad Request) error."
+  },
+  {
+    "claim": "The window includes startDate and excludes endDate.",
+    "url": "https://developer.dexcom.com/docs/dexcomv3/endpoint-overview",
+    "quote": "Queries are inclusive of startDate and exclusive of endDate ."
+  },
+  {
+    "claim": "Queries run against systemTime.",
+    "url": "https://developer.dexcom.com/docs/dexcomv3/endpoint-overview",
+    "quote": "queries are executed against the systemTime field in the corresponding endpoint."
+  },
+  {
+    "claim": "systemTime is not true UTC.",
+    "url": "https://developer.dexcom.com/docs/dexcomv3/endpoint-overview",
+    "quote": "Note that systemTime is not \"true\" UTC time because of drift and/or user manipulation of the device's clock."
+  },
+  {
+    "claim": "Glucose in mg/dL, trends in mg/dL/min; conversion is the client's job.",
+    "url": "https://developer.dexcom.com/docs/dexcomv3/endpoint-overview",
+    "quote": "All glucose values are reported in units of mg/dL and trend rates in units of mg/dL/min. Conversion of these values into user-preferred units, such as mmol/L, is the responsibility of the client application."
+  },
+  {
+    "claim": "App data arrives with a one-hour delay in the US and three hours elsewhere.",
+    "url": "https://developer.dexcom.com/docs/dexcomv3/endpoint-overview",
+    "quote": "is available from the Dexcom API with a one-hour delay in the United States and with a three-hour delay outside the United States, including Japan."
+  },
+  {
+    "claim": "Receiver uploads are available immediately.",
+    "url": "https://developer.dexcom.com/docs/dexcomv3/endpoint-overview",
+    "quote": "Data uploaded directly from a receiver over USB via Dexcom Uploader is available immediately."
+  },
+  {
+    "claim": "The sandbox base URL.",
+    "url": "https://developer.dexcom.com/docs/dexcom/sandbox-data",
+    "quote": "To target the sandbox environment, use https://sandbox-api.dexcom.com as the base URL for requests."
+  },
+  {
+    "claim": "Sandbox users are chosen from a drop-down.",
+    "url": "https://developer.dexcom.com/docs/dexcom/sandbox-data",
+    "quote": "the authorization flow is slightly different, with a drop-down menu instead of a username and password login."
+  },
+  {
+    "claim": "Sandbox users cover G6, G7, D1 and G7 15-day.",
+    "url": "https://developer.dexcom.com/docs/dexcom/sandbox-data",
+    "quote": "Sandbox User - G715DAY G7 Mobile App"
+  },
+  {
+    "claim": "Sandbox data should not be used for formal testing, validation or training algorithms.",
+    "url": "https://developer.dexcom.com/docs/dexcom/sandbox-data",
+    "quote": "As such, this data should not be used for formal testing or validation, nor for training algorithms."
+  },
+  {
+    "claim": "60,000 calls per app per hour; 429 above.",
+    "url": "https://developer.dexcom.com/docs/dexcomv3/endpoint-overview",
+    "quote": "Request frequency is limited to 60,000 calls per app per hour. If the limit is exceeded, an HTTP 429 response is returned."
+  },
+  {
+    "claim": "TLS 1.3 is required.",
+    "url": "https://developer.dexcom.com/docs/dexcomv3/endpoint-overview",
+    "quote": "The Dexcom Web API requires the use of Transport Layer Security (TLS) version 1.3."
+  }
+]

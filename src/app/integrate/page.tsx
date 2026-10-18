@@ -37,12 +37,28 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Platform health stores",
     blurb: "On-device, per-OS permission (not OAuth).",
-    slugs: ["healthkit", "google-health-connect"],
+    slugs: ["healthkit", "google-health-connect", "samsung-health-api"],
   },
   {
     title: "Wearables & activity",
     blurb: "OAuth 2.0, per-user consent, often partner approval.",
-    slugs: ["fitbit-api", "strava-api", "garmin-api", "oura-api", "whoop-api", "polar-api"],
+    slugs: [
+      "fitbit-api",
+      "strava-api",
+      "garmin-api",
+      "oura-api",
+      "whoop-api",
+      "polar-api",
+      "suunto-api",
+      "coros-api",
+      "wahoo-api",
+      "concept2-api",
+    ],
+  },
+  {
+    title: "Health devices & CGM",
+    blurb: "Scales, blood pressure monitors and glucose sensors: OAuth 2.0, regional data hosts.",
+    slugs: ["withings-api", "dexcom-api"],
   },
   {
     title: "Aggregators",

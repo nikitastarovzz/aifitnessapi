@@ -1,0 +1,77 @@
+[
+  {
+    "claim": "WHOOP's API Terms of Use are effective October 6, 2026.",
+    "url": "https://developer.whoop.com/api-terms-of-use/",
+    "quote": "Effective Date: October 6, 2026"
+  },
+  {
+    "claim": "Access is currently provided at no charge, with prior notice if that changes.",
+    "url": "https://developer.whoop.com/api-terms-of-use/",
+    "quote": "Access to and use of the APIs is currently provided at no charge. In the event WHOOP decides to start charging for use of the APIs in the future, WHOOP will provide Company with prior notice."
+  },
+  {
+    "claim": "You must have a WHOOP membership to develop an app on the Developer Platform; your WHOOP account is your developer login.",
+    "url": "https://developer.whoop.com/docs/developing/overview/",
+    "quote": "You must have a WHOOP membership to develop an app on the Developer Platform. Your WHOOP account is also your WHOOP developer login."
+  },
+  {
+    "claim": "Users authorize your app with their own WHOOP accounts; WHOOP's docs call them members.",
+    "url": "https://developer.whoop.com/docs/developing/overview/",
+    "quote": "you can use the OAuth standard to request consent from WHOOP members to access data on their behalf."
+  },
+  {
+    "claim": "The terms let WHOOP decline, or attach additional terms or charges to, use beyond its limits.",
+    "url": "https://developer.whoop.com/api-terms-of-use/",
+    "quote": "WHOOP, in its sole discretion, may decline such request or condition acceptance on Company’s agreement to additional terms and/or charges for that use"
+  },
+  {
+    "claim": "WHOOP may limit requests and the number of users served.",
+    "url": "https://developer.whoop.com/api-terms-of-use/",
+    "quote": "WHOOP may set and enforce limits on Company’s use of the APIs (e.g., limiting the number of API requests that Company may make, or the number of users Company may serve), in WHOOP’s sole discretion."
+  },
+  {
+    "claim": "The developer site advertises a one-month free trial with a Peak membership, 5.0 hardware, an Onyx SuperKnit band and a battery pack.",
+    "url": "https://developer.whoop.com/",
+    "quote": "Try WHOOP free for 1 month. Trial includes Peak membership, 5.0 hardware, Onyx SuperKnit band, battery pack, and more."
+  },
+  {
+    "claim": "Every new app starts on the Sandbox tier with up to 10 members.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect."
+  },
+  {
+    "claim": "The tiers run Build 100, Growth 1,000, Scale 5,000 and Production unlimited.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Sandbox 10 Build 100 Growth 1,000 Scale 5,000 Production Unlimited"
+  },
+  {
+    "claim": "Tiers are requested one at a time, and from Build onward you need half of your current limit connected.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Tiers are earned one at a time. You can only request the tier directly above your current one. From Build onward, moving up requires at least 50% of your current tier's member limit to be connected."
+  },
+  {
+    "claim": "Each request is reviewed by hand.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Requests are reviewed manually, in the order they are received."
+  },
+  {
+    "claim": "The default is 100 requests per minute and 10,000 per day per client.",
+    "url": "https://developer.whoop.com/docs/developing/rate-limiting/",
+    "quote": "By default, clients may only send: 100 requests per minute. 10,000 requests per day."
+  },
+  {
+    "claim": "WHOOP raises limits on request.",
+    "url": "https://developer.whoop.com/docs/developing/rate-limiting/",
+    "quote": "Upon request, WHOOP can increase your rate limits."
+  },
+  {
+    "claim": "The terms forbid using WHOOP data to train or improve any machine-learning or AI model.",
+    "url": "https://developer.whoop.com/api-terms-of-use/",
+    "quote": "Use any API or WHOOP Data to create, develop, test, train, fine-tune or improve any large language model or any other machine learning or artificial intelligence model, application, or system;"
+  },
+  {
+    "claim": "The terms forbid caching data longer than the cache header allows.",
+    "url": "https://developer.whoop.com/api-terms-of-use/",
+    "quote": "keep cached copies longer than permitted by the cache header;"
+  }
+]

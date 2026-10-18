@@ -1,0 +1,362 @@
+[
+  {
+    "claim": "The Cloud API connects Wahoo users over OAuth 2.0 for profile data, zones and workout upload and download.",
+    "url": "https://developers.wahooligan.com/cloud",
+    "quote": "The Cloud API allows you to connect Wahoo users directly to your mobile and web applications. Using the OAuth2.0 standard protocol, the API authorizes login/connection to Wahoo, and supports managing profile data, heart rate and power zones, and the upload/download of workout data to the cloud."
+  },
+  {
+    "claim": "It is separate from Wahoo's iOS and Android APIs.",
+    "url": "https://developers.wahooligan.com/cloud",
+    "quote": "Unlike our IOS and Android APIs, the Cloud API has a live documentation site"
+  },
+  {
+    "claim": "Wahoo limits use of the API to those who request it and asks about scopes and purpose.",
+    "url": "https://developers.wahooligan.com/cloud",
+    "quote": "Wahoo Fitness is currently limiting use of the API to those who request it, as well as provide more information about the scopes involved and the purpose of the application."
+  },
+  {
+    "claim": "A submitted application shows as pending approval in your portal.",
+    "url": "https://developers.wahooligan.com/cloud",
+    "quote": "When you submit an application request to Wahoo, it will show up on your Developer Portal as pending approval."
+  },
+  {
+    "claim": "Sandbox and Production are separate applications and a sandbox app cannot be converted.",
+    "url": "https://developers.wahooligan.com/cloud",
+    "quote": "Sandbox and Production are separate applications. A Sandbox app cannot later be converted into a Production app."
+  },
+  {
+    "claim": "Submit two applications if you need both.",
+    "url": "https://developers.wahooligan.com/cloud",
+    "quote": "If your integration needs both, submit two applications — one with Sandbox selected and another with Production selected."
+  },
+  {
+    "claim": "Register at developers.wahooligan.com.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Create a user account and register your app in our developer portal https://developers.wahooligan.com ."
+  },
+  {
+    "claim": "Production apps go through a review and get a higher rate limit.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Production apps will have to go through a review process with Wahoo Fitness, and when approved your app can be released with a higher rate limit."
+  },
+  {
+    "claim": "Access is currently provided at no charge.",
+    "url": "https://www.wahoofitness.com/wahoo-api-agreement",
+    "quote": "Access to and use of the Wahoo API Materials and Wahoo Platform are currently provided at no charge."
+  },
+  {
+    "claim": "Wahoo reserves the right to charge in future.",
+    "url": "https://www.wahoofitness.com/wahoo-api-agreement",
+    "quote": "Wahoo reserves the right to charge you for use of the Wahoo API Materials and access to the Wahoo Platform"
+  },
+  {
+    "claim": "You may not charge end users for access to Wahoo's API materials.",
+    "url": "https://www.wahoofitness.com/wahoo-api-agreement",
+    "quote": "You may not charge end users in any manner for access to or use of the Wahoo API Materials or any services or functionality included in or related to the Wahoo API Materials or Wahoo Platform."
+  },
+  {
+    "claim": "You can charge for functionality Wahoo does not provide.",
+    "url": "https://www.wahoofitness.com/wahoo-api-agreement",
+    "quote": "the foregoing shall not prohibit you from charging for the provision of functionality not provided by the Wahoo Platform in your Developer Applications."
+  },
+  {
+    "claim": "You must attribute Wahoo using its links and logos.",
+    "url": "https://www.wahoofitness.com/wahoo-api-agreement",
+    "quote": "You agree to attribute your use of the Wahoo API Materials and/or Wahoo Data in your Developer Applications by using the links and logos Wahoo gives to you"
+  },
+  {
+    "claim": "PKCE is available.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "The Wahoo API does allow users to use the PKCE flow for authorization."
+  },
+  {
+    "claim": "For PKCE, set the Confidential field to No.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "select edit on your app and then select 'No' under the 'Confidential?' field."
+  },
+  {
+    "claim": "The base URL is api.wahooligan.com.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "base_url : api.wahooligan.com"
+  },
+  {
+    "claim": "The authorization URL takes client_id, redirect_uri, scope and response_type=code.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "https://<base_url>/oauth/authorize?client_id=<client_id>&redirect_uri=<redirect_uri>&scope=<scopes>&response_type=code"
+  },
+  {
+    "claim": "Scopes are space-separated.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "With shell, you can append the requested scopes as a space separated list of values"
+  },
+  {
+    "claim": "The token exchange is a POST with the code and your OAuth2 credentials.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Send an HTTP POST to Wahoo with the code and your app's OAuth2 credentials and receive the access_token and refresh_token"
+  },
+  {
+    "claim": "The token URL takes client_secret, code, redirect_uri, grant_type and client_id.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "https://<base_url>/oauth/token?client_secret=<client_secret>&code=<code>&redirect_uri=<redirect_uri>&grant_type=authorization_code&client_id=<client_id>"
+  },
+  {
+    "claim": "Wahoo accepts plain or S256 code challenges.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Wahoo supports both types of code challenges- ‘Plain’ which means the code challenge is the same as the code verifier and ‘S256’"
+  },
+  {
+    "claim": "The PKCE token call sends the code_verifier.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Send an HTTP POST to Wahoo with the code, your app's OAuth2 credentials, and the code verifier and receive the access_token and refresh_token:"
+  },
+  {
+    "claim": "The PKCE refresh call sends the code_verifier.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "you can use the refresh_token and the code verifier to get a new access_token and a new refresh_token."
+  },
+  {
+    "claim": "The portal lists twelve scopes.",
+    "url": "https://developers.wahooligan.com/cloud",
+    "quote": "For Wahoo Fitness, scopes within the Cloud API are limited to:"
+  },
+  {
+    "claim": "The list includes plans and routes scopes.",
+    "url": "https://developers.wahooligan.com/cloud",
+    "quote": "plans_read plans_write routes_read routes_write offline_data"
+  },
+  {
+    "claim": "The list includes email, user and power zone scopes.",
+    "url": "https://developers.wahooligan.com/cloud",
+    "quote": "email user_read user_write power_zones_read power_zones_write workouts_read workouts_write"
+  },
+  {
+    "claim": "Without user_read the API returns 403.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Please note: If the user_read scope is not included the API will return a 403 response."
+  },
+  {
+    "claim": "offline_data receives data even when the app is closed.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "offline_data Receive data even when the app is closed"
+  },
+  {
+    "claim": "Apps must only request what they intend to access or modify.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Applications must only request permission for resources they intend to access or modify."
+  },
+  {
+    "claim": "Access tokens expire after 2 hours; refresh returns new tokens.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "When the access_token expires after 2 hours you can use the refresh_token to get a new access_token and a new refresh_token."
+  },
+  {
+    "claim": "Old tokens are revoked once an API call uses the refreshed token.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Once an API call is made with the refreshed access token the previous access token and refresh tokens will be revoked."
+  },
+  {
+    "claim": "Refreshing alone does not revoke the previous token.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Refreshing a token alone does not revoke the previous access token."
+  },
+  {
+    "claim": "From January 1, 2026, 10 unrevoked access tokens per user.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Starting January 1, 2026 , applications will be limited to 10 unrevoked access tokens per user ."
+  },
+  {
+    "claim": "Unrevoked tokens are deleted 60 days after creation.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Access tokens that have not been revoked will be automatically deleted 60 days after creation ."
+  },
+  {
+    "claim": "Refresh only immediately before an API request.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Access tokens should only be refreshed immediately prior to making an API request."
+  },
+  {
+    "claim": "CDN file downloads do not revoke previous tokens.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Downloading files from Wahoo’s CDN (for example, FIT file downloads) does not make an API request and therefore does not invalidate previously issued access tokens."
+  },
+  {
+    "claim": "Deauthorize with DELETE /v1/permissions.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "DELETE https://api.wahooligan.com/v1/permissions"
+  },
+  {
+    "claim": "Portal flags trigger on that call or when a user revokes access.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "If these flags are set to true, the following actions will trigger when the above endpoint is called, or when a user revokes access to the application from their account settings."
+  },
+  {
+    "claim": "Delete Upcoming Workouts removes incomplete future workouts.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Delete Upcoming Workouts : This will delete incomplete workouts scheduled in the future."
+  },
+  {
+    "claim": "Delete Owned Plans removes plans available through your app.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Delete Owned Plans : This will delete all plans available to the user through your application."
+  },
+  {
+    "claim": "A workout is a single event, structured when it references a plan.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "A workout record holds information about a single workout event. A workout becomes a structured workout when it includes an association to a plan ."
+  },
+  {
+    "claim": "A workout summary holds the results such as distance, duration and calories.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "The workout_summary contains the results of the workout, such as distance, duration, and calories burned."
+  },
+  {
+    "claim": "Plans hold workout structure that plays on Wahoo devices and apps.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Plan records hold information pertaining to the structure of a workout that can be played on Wahoo devices and applications."
+  },
+  {
+    "claim": "Workout file uploads have a status.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Create a Workout File Upload"
+  },
+  {
+    "claim": "Users can be read and updated.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Get Authenticated User"
+  },
+  {
+    "claim": "Wahoo does not share completed workouts from third-party apps.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Wahoo does not share completed workout data that originates from third-party applications."
+  },
+  {
+    "claim": "The changelog dates that to April 1, 2025.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Wahoo no longer shares workout summaries created by third-party apps"
+  },
+  {
+    "claim": "fitness_app_id below 1000 is Wahoo, above 1000 a third party.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "A fitness_app_id < 1000 indicates that the workout was created by a Wahoo application, while a fitness_app_id > 1000 indicates that the workout was created by a third-party application."
+  },
+  {
+    "claim": "Plans follow a library model.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Wahoo uses a library data model approach for planned workouts."
+  },
+  {
+    "claim": "ELEMNT shows plans attached to workouts scheduled today through six days out.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "the plan must be attached to a workout that is scheduled for the current day through six days from the current day."
+  },
+  {
+    "claim": "Decimal values are returned as strings.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Our API returns strings for decimal data types in our responses."
+  },
+  {
+    "claim": "Webhook settings: webhook_enabled, webhook_url and webhook_token.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Specify a token that you would like us to send. Any request that doesn't include this token should be ignored."
+  },
+  {
+    "claim": "The workout_summary webhook requires offline_data.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Please make sure the offline_data scope is added and users have a valid access token with the scope to receive webhooks."
+  },
+  {
+    "claim": "The webhook event type is workout_summary.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "\"event_type\" : \"workout_summary\""
+  },
+  {
+    "claim": "Calls arrive as JSON POSTs.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "API Calls will be sent via HTTP POST with the HTTP header Content-Type: application/json"
+  },
+  {
+    "claim": "Without HTTP 200, Wahoo retries on a schedule.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "If we do not receive an HTTP 200 response code we will retry the api call on the following retry schedule:"
+  },
+  {
+    "claim": "Retries after 30 minutes, 4, 24 and 72 hours.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "After 30 minutes After 4 hours After 24 hours After 72 hours"
+  },
+  {
+    "claim": "Duplicates are possible.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "It is possible for duplicate webhooks to be made when files are updated or deleted."
+  },
+  {
+    "claim": "Rate limit headers report day, hour and 5-minute windows.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "X-RateLimit-Limit: <limit_day>, <limit_hour>, <limit_5min>"
+  },
+  {
+    "claim": "Sandbox 25, production 200 every 5 minutes.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Requests every 5 Min: 25 200"
+  },
+  {
+    "claim": "Sandbox 100, production 1,000 per hour.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Requests per Hour: 100 1000"
+  },
+  {
+    "claim": "Sandbox 250, production 5,000 per day.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Requests per Day: 250 5000"
+  },
+  {
+    "claim": "Authentication, refreshes and downloads do not count.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Requests to authenticate, refresh tokens, and download files do not count against rate limits."
+  },
+  {
+    "claim": "Contact support for higher throughput.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "If you require a higher throughput, please contact support to request an increase."
+  },
+  {
+    "claim": "429 means too many requests.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Too Many Requests -- You are sending too many requests in short period of time."
+  },
+  {
+    "claim": "422 can mean an app that is not approved.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Unprocessable Entity -- One or more parameters supplied are missing or invalid or your app is not approved."
+  },
+  {
+    "claim": "October 9, 2026 changelog: settings can be changed on the Applications page.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Added a note to the Authorization section explaining that scopes and other application settings can be changed on the Applications page of the developer portal"
+  },
+  {
+    "claim": "October 6, 2025 changelog: Wahoo Plans section.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Added the Wahoo Plans section"
+  },
+  {
+    "claim": "October 6, 2025 changelog: plan_ids on workouts.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Added the plan_ids attribute to workout objects"
+  },
+  {
+    "claim": "July 22, 2025 changelog: deauthorization features.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Added the deauthorization features documentation to the deauthorize endpoint"
+  },
+  {
+    "claim": "June 11, 2025 changelog: manual flag on summaries.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Added the manual flag to the 'workout_summaries' endpoint to indicate a manual workout"
+  },
+  {
+    "claim": "March 4, 2025 changelog: routes documented.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Added documentation for the routes endpoint"
+  }
+]

@@ -12,15 +12,15 @@
     "sourceHref": "aifitnessapi.com page carrying the verified claims"
   },
   "stats": {
-    "totalItems": 25,
+    "totalItems": 28,
     "byDevCost": {
-      "free": 12,
-      "contact-sales": 2,
-      "free-tier-then-paid": 5,
-      "usage-based": 6
+      "free": 17,
+      "usage-based": 6,
+      "free-tier-then-paid": 4,
+      "contact-sales": 1
     },
     "byCategory": {
-      "wearable-direct": 6,
+      "wearable-direct": 9,
       "platform-store": 2,
       "aggregator": 4,
       "nutrition": 4,
@@ -29,11 +29,11 @@
       "pose-model": 3,
       "llm-features": 1
     },
-    "withApprovalGate": 13,
-    "withUserSideCost": 5,
-    "contactSalesShare": 8,
-    "freeShare": 48,
-    "gatedShare": 52,
+    "withApprovalGate": 16,
+    "withUserSideCost": 9,
+    "contactSalesShare": 4,
+    "freeShare": 61,
+    "gatedShare": 57,
     "refreshTokenRotators": [
       "Strava",
       "WHOOP",
@@ -56,9 +56,9 @@
       "id": "garmin",
       "label": "Garmin Health / Activity API",
       "category": "wearable-direct",
-      "devCost": "contact-sales",
-      "userSideCost": "Your users must own a Garmin device.",
-      "approvalGate": "Garmin Connect Developer Program partner approval; third parties report sign-ups paused at times (verify).",
+      "devCost": "free",
+      "userSideCost": "Users sync their own Garmin devices; if you supply wearables, Garmin asks for the number of devices when you request the program.",
+      "approvalGate": "Garmin Connect Developer Program approval, for business use only; Garmin confirms an application's status within two business days.",
       "source": "https://aifitnessapi.com/pricing/garmin-api-pricing"
     },
     {
@@ -66,8 +66,8 @@
       "label": "Oura Cloud API",
       "category": "wearable-direct",
       "devCost": "free",
-      "userSideCost": "User must own an Oura Ring; Gen3 users reportedly need an active Oura Membership (verify).",
-      "approvalGate": "A fresh app connects only a small number of users (reported around 10) until Oura's review — the 'Oura for Organizations' partner path.",
+      "userSideCost": "Each user needs an Oura Ring and an active Oura Membership; the API returns 403 when a user's subscription has expired.",
+      "approvalGate": "A new API application is limited to 10 users until Oura approves it, with no limit once approved.",
       "source": "https://aifitnessapi.com/pricing/oura-api-pricing"
     },
     {
@@ -75,17 +75,17 @@
       "label": "WHOOP Developer Platform",
       "category": "wearable-direct",
       "devCost": "free",
-      "userSideCost": "Every end user needs an active WHOOP membership for their data to flow.",
-      "approvalGate": "Hard 10-member cap until production approval, and WHOOP requires developers to hold a membership.",
+      "userSideCost": "Users authorize your app with their own WHOOP accounts, so they are WHOOP members already.",
+      "approvalGate": "New apps start on a Sandbox tier of 10 members and move up through reviewed tiers of 100, 1,000, 5,000 and unlimited; developers need a WHOOP membership to build.",
       "source": "https://aifitnessapi.com/pricing/whoop-api-pricing"
     },
     {
       "id": "strava",
       "label": "Strava API",
       "category": "wearable-direct",
-      "devCost": "free-tier-then-paid",
-      "userSideCost": "A free or paid Strava account — the user's data has to exist before it can flow.",
-      "approvalGate": "Developer Program display rules: 'Connect with Strava' branding and screenshots of every surface where Strava data appears.",
+      "devCost": "free",
+      "userSideCost": "A Strava account whose data your app reads, authorized by the athlete; Standard Tier apps may require specified end users to hold an active Strava subscription.",
+      "approvalGate": "A Strava subscription is a prerequisite for creating an app, which starts in single-player mode; connecting more athletes needs Strava's review.",
       "source": "https://aifitnessapi.com/pricing/strava-api-pricing"
     },
     {
@@ -93,9 +93,36 @@
       "label": "Polar Open AccessLink",
       "category": "wearable-direct",
       "devCost": "free",
-      "userSideCost": null,
+      "userSideCost": "Each user needs a Polar Flow account and must accept all of Polar's mandatory consents; without them, user endpoints return 403.",
       "approvalGate": null,
-      "source": "https://aifitnessapi.com/fitness-apis/wearable-data-apis"
+      "source": "https://aifitnessapi.com/integrate/polar-api"
+    },
+    {
+      "id": "withings",
+      "label": "Withings Public API",
+      "category": "wearable-direct",
+      "devCost": "free",
+      "userSideCost": "Each user needs a Withings device and account; accounts created from October 12, 2026 need Withings+ to share data with a free-plan app.",
+      "approvalGate": "No review is described for the Public API; an app whose callback URL misses Withings' requirements stays in restricted mode, limited to 10 linked users.",
+      "source": "https://aifitnessapi.com/integrate/withings-api"
+    },
+    {
+      "id": "suunto",
+      "label": "Suunto Cloud API",
+      "category": "wearable-direct",
+      "devCost": "free",
+      "userSideCost": "Each user signs in with their Suunto App account, where their Suunto watch syncs its data.",
+      "approvalGate": "Suunto partner program application for companies and organizations, with the API agreement; Suunto replies within two weeks and offers no access for personal use.",
+      "source": "https://aifitnessapi.com/integrate/suunto-api"
+    },
+    {
+      "id": "wahoo",
+      "label": "Wahoo Cloud API",
+      "category": "wearable-direct",
+      "devCost": "free",
+      "userSideCost": "Each user connects their own Wahoo account; workouts recorded in third-party apps are not shared.",
+      "approvalGate": "Wahoo approves Cloud API requests, and production apps go through a further review for a higher rate limit.",
+      "source": "https://aifitnessapi.com/integrate/wahoo-api"
     },
     {
       "id": "healthkit",
