@@ -1,0 +1,192 @@
+[
+  {
+    "claim": "The Tasks API's num_poses option is documented as the maximum number of poses the PoseLandmarker can detect.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/cc/vision/pose_landmarker/pose_landmarker.h",
+    "quote": "The maximum number of poses can be detected by the PoseLandmarker."
+  },
+  {
+    "claim": "num_poses defaults to 1.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+    "quote": "num_poses: int = 1"
+  },
+  {
+    "claim": "World landmarks are meters from a hip-centre origin.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "Real-world 3D coordinates in meters with the origin at the center between hips."
+  },
+  {
+    "claim": "Three variants: lite, full and heavy.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe-samples/main/examples/pose_landmarker/android/app/download_tasks.gradle",
+    "quote": "dest project.ext.ASSET_DIR + '/pose_landmarker_lite.task'"
+  },
+  {
+    "claim": "MediaPipe's Android sample floor is SDK 24.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe-samples/main/examples/pose_landmarker/android/app/build.gradle",
+    "quote": "minSdk 24 targetSdk 34"
+  },
+  {
+    "claim": "ML Kit's sample app classifies pushups and squats.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection/classifying-poses?hl=en",
+    "quote": "Now you should be able to classify pushups and squats."
+  },
+  {
+    "claim": "KinesteX's own category term: AI motion analysis SDK.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-Kotlin/main/README.md",
+    "quote": "KinesteX provides plug-and-play and custom AI motion analysis SDK"
+  },
+  {
+    "claim": "The SwiftUI kit embeds the camera workout experience as a WebView.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-AI-Kit/main/README.md",
+    "quote": "A SwiftUI package that embeds KinesteX’s AI-powered camera workout experience as a WebView."
+  },
+  {
+    "claim": "Communication via postMessage events.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-PWA/main/README.md",
+    "quote": "Currently supported communication is via HTTP postMessages."
+  },
+  {
+    "claim": "The docs list SDKs for React Native, Flutter, Kotlin, Swift, Java, PWA and JavaScript.",
+    "url": "https://www.kinestex.com/docs",
+    "quote": "with SDKs for React Native, Flutter, Kotlin, Swift, Java, PWA, and JavaScript for quick integration."
+  },
+  {
+    "claim": "A React TypeScript package.",
+    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+    "quote": "npm i kinestex-sdk-react-ts"
+  },
+  {
+    "claim": "The docs point Swift users to the SwiftUI kit.",
+    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+    "quote": "2. Enter URL: https://github.com/KinesteX/KinesteX-AI-Kit.git"
+  },
+  {
+    "claim": "The installation docs ask for camera permission.",
+    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+    "quote": "<key>NSCameraUsageDescription</key>"
+  },
+  {
+    "claim": "The installation docs ask for a motion-sensor usage description on iOS.",
+    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+    "quote": "<string>Motion sensors help position your device correctly for workouts</string>"
+  },
+  {
+    "claim": "The Android manifest shown includes the INTERNET permission.",
+    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+    "quote": "<uses-permission android:name=\"android.permission.INTERNET\" />"
+  },
+  {
+    "claim": "Real-time monitoring of repetitions, mistakes, posture alignment and calories.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-Kotlin/main/README.md",
+    "quote": "Real-time monitoring and feedback for user movements, including:"
+  },
+  {
+    "claim": "Plug-and-play views include leaderboards.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-Swift-Demo/main/docs/integration/overview.md",
+    "quote": "Displays Real-time leaderboard for one challenge exercise"
+  },
+  {
+    "claim": "A custom camera component with pose analysis and feedback.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-Swift-Demo/main/docs/integration/overview.md",
+    "quote": "Integrate our camera component with pose-analysis and feedback"
+  },
+  {
+    "claim": "A content API and admin portal for building your own workouts.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-Kotlin/main/README.md",
+    "quote": "Create your own workouts with our API or through our admin portal."
+  },
+  {
+    "claim": "Assessments include Timed Up-and-Go.",
+    "url": "https://raw.githubusercontent.com/KinesteX/.github/main/profile/README.md",
+    "quote": "TUG (Timed Up and Go) Assessment"
+  },
+  {
+    "claim": "Assessments include the Functional Reach Test.",
+    "url": "https://raw.githubusercontent.com/KinesteX/.github/main/profile/README.md",
+    "quote": "FRT (Functional Reach Test) Assessment"
+  },
+  {
+    "claim": "Assessments output risk levels.",
+    "url": "https://raw.githubusercontent.com/KinesteX/.github/main/profile/README.md",
+    "quote": "Fall risk assessment"
+  },
+  {
+    "claim": "Gamified assessments.",
+    "url": "https://raw.githubusercontent.com/KinesteX/.github/main/profile/README.md",
+    "quote": "### Balloon Pop Game"
+  },
+  {
+    "claim": "Per-repetition and per-mistake events.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-Swift-Demo/main/docs/data.md",
+    "quote": "reps([String: Any]) - Logs successful repetitions."
+  },
+  {
+    "claim": "exercise_completed carries an optional average accuracy.",
+    "url": "https://raw.githubusercontent.com/KinesteX/.github/main/profile/README.md",
+    "quote": "average_accuracy?: number      // Average accuracy (0-1, optional)"
+  },
+  {
+    "claim": "exercise_overview items can carry per-rep accuracy scores.",
+    "url": "https://raw.githubusercontent.com/KinesteX/.github/main/profile/README.md",
+    "quote": "accuracy_reps?: number[],          // Optional: Per-rep accuracy scores"
+  },
+  {
+    "claim": "workout_overview carries an efficiency score.",
+    "url": "https://raw.githubusercontent.com/KinesteX/.github/main/profile/README.md",
+    "quote": "efficiency_score: number,               // Efficiency metric (0-100)"
+  },
+  {
+    "claim": "An API key plus company name is required.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-Swift-Demo/main/docs/getting-started.md",
+    "quote": "KinesteXAIKit(apiKey: \"YOUR_API_KEY\", companyName: \"YOUR_COMPANY_NAME\", userId: \"YOUR_USER_ID\")"
+  },
+  {
+    "claim": "Demo access goes through a contact form.",
+    "url": "https://www.kinestex.com/docs",
+    "quote": "To get demo access and your API key, fill out the contact form on our website."
+  },
+  {
+    "claim": "KinesteX's FAQ describes usage-based plans.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Our pricing is adaptable to your use case and business model, with usage-based plans that scale to support clients of different sizes."
+  },
+  {
+    "claim": "Priced per active user per month, falling at higher tiers.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "The pricing per-active-user-per-month will smoothly go down as you scale and reach new tiers."
+  },
+  {
+    "claim": "Integration fees possible.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Integration fees may apply depending on the complexity of your requirements"
+  },
+  {
+    "claim": "The README claims models consistently exceed 90% accuracy.",
+    "url": "https://raw.githubusercontent.com/KinesteX/AI-Fitness-SDK/main/README.md",
+    "quote": "Our movements recognition models consistently exceed 90% accuracy"
+  },
+  {
+    "claim": "The FAQ claims 97.2% accuracy.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Our AI-powered motion tracking achieves 97.2% accuracy"
+  },
+  {
+    "claim": "The SDK READMEs say optional edge processing.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-Kotlin/main/README.md",
+    "quote": "Ensures data security with optional edge processing (no cloud transmission)."
+  },
+  {
+    "claim": "The security page says all camera and vision processing stays on-device.",
+    "url": "https://www.kinestex.com/product/security",
+    "quote": "All camera and vision processing stays on-device"
+  },
+  {
+    "claim": "The security page says the cloud delivers content and AI models.",
+    "url": "https://www.kinestex.com/product/security",
+    "quote": "The KinesteX cloud is used only to deliver content and AI models and to store derived, non-identifying session metrics."
+  },
+  {
+    "claim": "The security page says pose estimation runs on the user's device.",
+    "url": "https://www.kinestex.com/product/security",
+    "quote": "The SDK renders workouts and performs real-time pose estimation and motion analysis directly on the end user's device."
+  }
+]

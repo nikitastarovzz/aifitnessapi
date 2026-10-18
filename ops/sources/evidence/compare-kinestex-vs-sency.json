@@ -1,0 +1,337 @@
+[
+  {
+    "claim": "Category language: \"AI motion analysis SDK\" for KinesteX.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-Kotlin/main/README.md",
+    "quote": "KinesteX provides plug-and-play and custom AI motion analysis SDK"
+  },
+  {
+    "claim": "Category language: \"AI motion analysis technology\" for Sency.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "specializing in AI motion analysis technology"
+  },
+  {
+    "claim": "KinesteX's SwiftUI kit README describes a SwiftUI package that embeds the camera workout experience as a WebView.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-AI-Kit/main/README.md",
+    "quote": "A SwiftUI package that embeds KinesteX’s AI-powered camera workout experience as a WebView."
+  },
+  {
+    "claim": "The web integration is an iframe.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-PWA/main/README.md",
+    "quote": "Displaying KinesteX through iframe:"
+  },
+  {
+    "claim": "KinesteX web communication uses postMessage.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-PWA/main/README.md",
+    "quote": "Currently supported communication is via HTTP postMessages."
+  },
+  {
+    "claim": "The React Native SDK needs react-native-webview.",
+    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+    "quote": "npm install kinestex-sdk-react-native react-native-webview"
+  },
+  {
+    "claim": "Sency's version table calls the core iOS kit a Native no-UI SDK.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "Native no-UI SDK."
+  },
+  {
+    "claim": "KinesteX publishes SDKs for iOS, Android, React Native, Flutter and the web.",
+    "url": "https://www.kinestex.com/docs",
+    "quote": "with SDKs for React Native, Flutter, Kotlin, Swift, Java, PWA, and JavaScript for quick integration."
+  },
+  {
+    "claim": "A React TypeScript package.",
+    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+    "quote": "npm i kinestex-sdk-react-ts"
+  },
+  {
+    "claim": "Sency's platform table marks JavaScript as NA.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "| **JavaScript** | NA | NA |"
+  },
+  {
+    "claim": "Sency's platform table marks Unity as NA.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "| **Unity** | NA | NA |"
+  },
+  {
+    "claim": "KinesteX bundles workout, plan, challenge and leaderboard views plus a content API.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-Swift-Demo/main/docs/integration/overview.md",
+    "quote": "Displays Real-time leaderboard for one challenge exercise"
+  },
+  {
+    "claim": "KinesteX content API.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-Swift-Demo/main/docs/integration/overview.md",
+    "quote": "Fetch workout, exercise, and plan data easily through API"
+  },
+  {
+    "claim": "Sency's README centers on assessments.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "Initial Movement and Fitness Assessments:"
+  },
+  {
+    "claim": "Sency: progress evaluations.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "Track improvements with regular monthly assessments."
+  },
+  {
+    "claim": "Branded Kit: quick, low-code.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "Ideal for stakeholders who need a quick, low-code solution."
+  },
+  {
+    "claim": "Custom Kit: no predefined UI.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "It does not include any predefined UI"
+  },
+  {
+    "claim": "KinesteX postMessage events.",
+    "url": "https://raw.githubusercontent.com/KinesteX/.github/main/profile/README.md",
+    "quote": "PostMessage events are sent to parent windows/webviews for integration with native apps and external systems"
+  },
+  {
+    "claim": "KinesteX: real-time reps, mistakes, posture alignment, calories.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-Kotlin/main/README.md",
+    "quote": "Real-time monitoring and feedback for user movements, including:"
+  },
+  {
+    "claim": "KinesteX assessments: TUG.",
+    "url": "https://raw.githubusercontent.com/KinesteX/.github/main/profile/README.md",
+    "quote": "TUG (Timed Up and Go) Assessment"
+  },
+  {
+    "claim": "KinesteX assessments: gait speed.",
+    "url": "https://raw.githubusercontent.com/KinesteX/.github/main/profile/README.md",
+    "quote": "Gait Speed Test Assessment"
+  },
+  {
+    "claim": "KinesteX assessments: sit-to-stand.",
+    "url": "https://raw.githubusercontent.com/KinesteX/.github/main/profile/README.md",
+    "quote": "STS (Sit-to-Stand 30 Second) Assessment"
+  },
+  {
+    "claim": "KinesteX: per-rep accuracy in data events.",
+    "url": "https://raw.githubusercontent.com/KinesteX/.github/main/profile/README.md",
+    "quote": "accuracy_reps?: number[],          // Optional: Per-rep accuracy scores"
+  },
+  {
+    "claim": "KinesteX white-label theming through an admin portal.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-Kotlin/main/README.md",
+    "quote": "Design customization on the go through our admin portal."
+  },
+  {
+    "claim": "Sency's iOS docs: Body Calibration.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "Body calibration reports whether the user is inside the expected frame region."
+  },
+  {
+    "claim": "Sency's iOS docs: Adaptive ROM.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "Adaptive ROM lets supported exercises calibrate a user's current range and then adjust feedback thresholds."
+  },
+  {
+    "claim": "Sency's iOS docs: Session Lifecycle.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "Implement `SMKitSessionDelegate`, create a flow manager, start a session, then start exercise detection."
+  },
+  {
+    "claim": "KinesteX's security page says its cloud delivers content and AI models.",
+    "url": "https://www.kinestex.com/product/security",
+    "quote": "The KinesteX cloud is used only to deliver content and AI models and to store derived, non-identifying session metrics."
+  },
+  {
+    "claim": "KinesteX's security page says the SDK runs pose estimation on the device.",
+    "url": "https://www.kinestex.com/product/security",
+    "quote": "The SDK renders workouts and performs real-time pose estimation and motion analysis directly on the end user's device."
+  },
+  {
+    "claim": "KinesteX's security page says all camera and vision processing stays on-device.",
+    "url": "https://www.kinestex.com/product/security",
+    "quote": "All camera and vision processing stays on-device"
+  },
+  {
+    "claim": "Sency models are downloaded from Sency's server at configuration, no bundled fallback.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "SMKit 2.3.6 downloads models and required SDK assets from the server. It does not include bundled fallback models."
+  },
+  {
+    "claim": "A valid Sency cache can be used offline later.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "a valid, previously downloaded cache can be used offline later"
+  },
+  {
+    "claim": "KinesteX iOS 14 (docs).",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-Swift-Demo/main/docs/getting-started.md",
+    "quote": "iOS: iOS 14.0 or higher"
+  },
+  {
+    "claim": "Sency Custom Kit demo Podfile pins iOS 16.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "platform :ios, '16.0'"
+  },
+  {
+    "claim": "SMKitUI iOS 15 or later.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ui-ios-demo/main/README.md",
+    "quote": "Support: iOS 15 or later; officially validated on iPhone X and newer."
+  },
+  {
+    "claim": "KinesteX Android via JitPack.",
+    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+    "quote": "maven { url = uri(\"https://jitpack.io\") }"
+  },
+  {
+    "claim": "Sency CocoaPods from a Sency Bitbucket repo.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "source 'https://bitbucket.org/sencyai/ios_sdks_release.git'"
+  },
+  {
+    "claim": "Sency SPM from Bitbucket.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "add `https://bitbucket.org/sencyai/smkit_package` at version `2.3.6` to your own app."
+  },
+  {
+    "claim": "Sency Maven artifacts.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-android-demo/main/app/build.gradle",
+    "quote": "implementation \"com.sency.smkit:smkit:1.9.4\""
+  },
+  {
+    "claim": "Apache-2.0 LICENSE in the Swift repo.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-Swift/main/LICENSE",
+    "quote": "Apache License Version 2.0, January 2004"
+  },
+  {
+    "claim": "Apache-2.0 LICENSE in the Kotlin repo.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-Kotlin/main/LICENSE.txt",
+    "quote": "Apache License Version 2.0, January 2004"
+  },
+  {
+    "claim": "Apache-2.0 LICENSE in the React Native repo.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-ReactNative/main/LICENSE",
+    "quote": "Apache License Version 2.0, January 2004"
+  },
+  {
+    "claim": "Apache-2.0 LICENSE in the HTML-JS repo.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-HTML-JS/main/LICENSE",
+    "quote": "Apache License Version 2.0, January 2004"
+  },
+  {
+    "claim": "Sency's repo LICENSE file is \"Sency Terms of Use\" (2022).",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/LICENSE",
+    "quote": "Last updated: [Sep 11th 2022]"
+  },
+  {
+    "claim": "Sency: commercial or production use needs a separate paid service agreement.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/LICENSE",
+    "quote": "ANY COMMERCIAL OR PRODUCTION USE OF THE SERVICES OR THE SOLUTION SHALL BE GOVERNED BY A SEPARATE PAID ENTERPRISE/PERSONAL SERVICE AGREEMENT"
+  },
+  {
+    "claim": "KinesteX's FAQ describes usage-based plans.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Our pricing is adaptable to your use case and business model, with usage-based plans that scale to support clients of different sizes."
+  },
+  {
+    "claim": "KinesteX: priced per active user per month, falling at higher tiers.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "The pricing per-active-user-per-month will smoothly go down as you scale and reach new tiers."
+  },
+  {
+    "claim": "KinesteX: integration fees may apply.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Integration fees may apply depending on the complexity of your requirements"
+  },
+  {
+    "claim": "KinesteX: no termination penalties.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "There are no termination penalties; we offer flexible exit options if you decide to discontinue use."
+  },
+  {
+    "claim": "KinesteX: access via contact form and API key.",
+    "url": "https://www.kinestex.com/docs",
+    "quote": "To get demo access and your API key, fill out the contact form on our website."
+  },
+  {
+    "claim": "Sency: free trial.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "You can integrate our SDK at no cost during the free trial."
+  },
+  {
+    "claim": "Sency's main pricing page: a minimal monthly fee covering up to 100 active users.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "After that, you'll start paying a minimal monthly fee to continue building and testing, which includes access for up to 100 active users."
+  },
+  {
+    "claim": "Sency: pay-as-you-go above 100, according to the rates listed on its pricing page.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "Once you exceed 100 unique active users, usage will be billed on a pay-as-you-go basis according to the rates listed on our pricing page."
+  },
+  {
+    "claim": "Sency's packages page lists a free Starter plan.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Build & Launch FREE"
+  },
+  {
+    "claim": "Sency's Starter plan covers up to 100 monthly active users.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Up to 100 monthly active users"
+  },
+  {
+    "claim": "Sency's Growth plan starts from $499 a month.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Publish & Monetize From $499 / month"
+  },
+  {
+    "claim": "Sency's Growth plan covers up to 3,800 monthly active users.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Up to 3,800 monthly active users"
+  },
+  {
+    "claim": "Sency's Growth plan lists $0.79 per active user.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "$0.79 per active user"
+  },
+  {
+    "claim": "Sency's Customized plan is on request.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "A Solution for All Let’s Discuss"
+  },
+  {
+    "claim": "Sency's FAQ says data is analyzed on the user's device and never sent to the cloud.",
+    "url": "https://www.sency.ai/faq-motion-tracking",
+    "quote": "All data is processed using edge computing, meaning it's analyzed directly on the user's device, never sent to the cloud."
+  },
+  {
+    "claim": "Sency's FAQ calls its accuracy unmatched, without a figure.",
+    "url": "https://www.sency.ai/faq-motion-tracking",
+    "quote": "Clients choose Sency for its unmatched accuracy, high engagement, and fast results."
+  },
+  {
+    "claim": "KinesteX's README claims its models consistently exceed 90% accuracy.",
+    "url": "https://raw.githubusercontent.com/KinesteX/AI-Fitness-SDK/main/README.md",
+    "quote": "Our movements recognition models consistently exceed 90% accuracy"
+  },
+  {
+    "claim": "KinesteX's FAQ claims 97.2% accuracy.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Our AI-powered motion tracking achieves 97.2% accuracy"
+  },
+  {
+    "claim": "KinesteX's SDK READMEs still say optional edge processing.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-Kotlin/main/README.md",
+    "quote": "Ensures data security with optional edge processing (no cloud transmission)."
+  },
+  {
+    "claim": "Sency's Android demo app builds with minSdk 24.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-android-demo/main/app/build.gradle",
+    "quote": "minSdk 24 targetSdk 36"
+  },
+  {
+    "claim": "Sency's iOS demo: you own the camera preview, session lifecycle, exercise UI, skeleton rendering and results.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "you own the camera preview, session lifecycle, exercise UI, skeleton rendering, and result presentation."
+  },
+  {
+    "claim": "Sency documents an MCP server that gives AI coding tools its SDK documentation.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "Sency provides an MCP server for AI development tools that need direct SMKit documentation and exercise context."
+  }
+]

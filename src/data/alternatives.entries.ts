@@ -703,21 +703,21 @@ export const alternativesEntries: ClusterEntry[] =
     "primaryQuery": "kinestex alternatives",
     "h1": "KinesteX Alternatives, From the Team Behind KinesteX (2026)",
     "metaTitle": "KinesteX Alternatives (2026): The Vendor's Own Honest List",
-    "metaDescription": "KinesteX funds this site; this page lists alternatives anyway. Sency, QuickPose, MediaPipe, MoveNet, Apple Vision — mapped to verified reasons to switch.",
-    "updated": "2026-08-02",
-    "answer": "The verifiable alternatives to KinesteX (this site's own product) are Sency (a native no-UI SDK plus a branded UI kit, iOS/Android/React Native/Flutter), QuickPose (an iOS-first MediaPipe/BlazePose wrapper with rep counters and range-of-motion measurement), and building on free pose models — MediaPipe, MoveNet, or Apple Vision — if you want to own the whole stack. Kemtai and Exer AI are named for clinical use and Asensei for connected coaching, but none could be verified from primary sources. Route by your reason to switch: in-process native SDK → Sency or QuickPose; owning the CV layer → the pose models; clinical focus → verify Kemtai directly.",
+    "metaDescription": "KinesteX funds this site; this page lists its alternatives anyway: Sency, QuickPose, Kemtai and free pose models, each tied to a verified reason to switch.",
+    "updated": "2026-10-18",
+    "answer": "The verifiable alternatives to KinesteX (this site's own product) are Sency, a native SDK with a no-UI kit and a branded UI kit for iOS, Android, React Native and Flutter; QuickPose, a MediaPipe-based toolkit with exercise counters, range-of-motion measurement and a published per-device price list; Kemtai for clinical rehab, which describes an FDA listing and CE marking; and free pose models such as MediaPipe, MoveNet, Apple Vision or ML Kit if you want to own the whole stack. Route by your reason to switch: an in-process native SDK points to Sency or QuickPose, a price you can read before a call to QuickPose or Sency, owning the computer-vision layer to the pose models, and clinical scope to Kemtai.",
     "faqs": [
       {
         "q": "Why would a KinesteX-funded site publish a KinesteX alternatives page?",
-        "a": "Because the alternative is worse: pretending no alternatives exist, which no developer believes. This site is run by the team behind KinesteX and says so in the first line. The page earns its keep by being method-bound — every claim, including claims about KinesteX itself, is limited to what public GitHub repos, package registries, and model documentation actually show, and vendors we could not verify are labeled as unverified rather than described from search snippets."
+        "a": "Because the alternative is worse: pretending no alternatives exist, which no developer believes. This site is run by the team behind KinesteX and says so in the first line. The page earns its keep by being method-bound: every claim, including claims about KinesteX itself, is limited to what public repositories, package registries, model documentation and the vendors' own pages show, and anything we could not verify is labelled as unverified rather than described from search snippets."
       },
       {
         "q": "What is the most direct competitor to KinesteX?",
-        "a": "Sency, based on what is publicly verifiable. Its repos document the same two-tier shape — a white-label prebuilt UI kit plus a customizable kit — across iOS, Android, React Native, and Flutter, with assessments and workout plans. The key architectural difference is integration surface: Sency's README describes a native no-UI SDK that runs in your process, while KinesteX's repos describe WebView and iframe wrappers around a hosted experience. Sency has no web target and a proprietary license, and its pricing page was unreachable in our research pass."
+        "a": "Sency, based on what is publicly verifiable. Its repositories document a similar two-tier shape, a white-label branded UI kit plus a no-UI custom kit, across iOS, Android, React Native and Flutter, with assessments and workout plans. The key architectural difference is the integration surface: Sency's SMKit is a native no-UI SDK that runs in your process, while KinesteX's repositories describe WebView and iframe wrappers around a hosted experience. Sency has no web target and a proprietary licence, downloads its models from its server at configuration, and publishes per-user prices on two pages that disagree about the first 100 users."
       },
       {
         "q": "Which KinesteX alternative can I try without talking to sales?",
-        "a": "From what the repos show, QuickPose is the self-serve option: its README says to get a free SDK key at dev.quickpose.ai, with the caveat that usage limits may apply and keys are tied to your bundle ID. KinesteX's repos direct you to a contact form or email for an API key, and Sency's README links a registration and pricing page whose contents we could not read. The fully gate-free path is Apple Vision or the open pose models, which need no key at all."
+        "a": "QuickPose is the self-serve option: its README says to get a free SDK key at dev.quickpose.ai, with usage limits that may apply, and its pricing page lists every plan from a free tier for 10 monthly active devices upward. Sency's packages page lists a free Starter plan, but its README says the API key arrives by email after you subscribe to a plan, and its sign-up path runs through a contact form. KinesteX starts with a contact form. The fully gate-free path is Apple Vision or the open pose models, which need no key at all."
       },
       {
         "q": "If I leave KinesteX for raw pose models, what am I signing up to build?",
@@ -725,13 +725,13 @@ export const alternativesEntries: ClusterEntry[] =
       },
       {
         "q": "Is Kemtai a verified alternative to KinesteX for physio and rehab?",
-        "a": "It is the name that consistently comes up for physio-first camera exercise tracking, but we could not verify its current offering from primary sources: its site and docs were unreachable in our research pass and it has no public GitHub SDK we could find. That is not evidence against the product — its distribution may simply be private — but it means claims about its features circulating in search results are ones we could not trace to a source. If your product is clinical, contact Kemtai and Exer AI directly and verify first-hand."
+        "a": "Its offering is now verifiable from its own site, which describes embeddable exercise and patient-management components, data APIs, a library of more than 2,000 exercises, processing on the device with no video recorded, and an FDA listing and CE marking as a medical device. Its accuracy claim rests on a validation study it describes but we have not read, its API documentation is behind an email request, and it publishes no prices. If your product is clinical, verify the regulatory status and the study with Kemtai directly."
       }
     ],
     "cta": {
       "pitch": "We publish what the repos actually show — for our own product and everyone else's. Get the update when a vendor in this category changes its SDK, license, or access model."
     },
-    "body": "**Disclosure: this site is run by the team behind KinesteX. You are reading a \"KinesteX alternatives\" page written by the vendor it lists alternatives to. Every claim below is restricted to what we could verify from public GitHub repos, package registries, and model documentation — including the claims about our own product — and the things we could not verify are labeled as such.** The disclosure is also checked mechanically: [the automated checks this site runs before every deploy](/gates) refuse any page that links to the site's funder without one.\n\nNobody expects a vendor-funded site to publish this page, so here is the deal that makes it worth your time: we name the real, repo-verifiable reasons a team would decide against KinesteX, and we route each reason to the alternative that actually fits it. If you came here having already decided to switch, the sections below are organized by your reason for switching, not by who we would prefer you pick. For what this site has verified about KinesteX access in one place, see the [KinesteX API overview](/apis/kinestex).\n\n## The verified reasons people switch away from KinesteX\n\nThese are not hypothetical objections. Each one traces to KinesteX's own public repos, so you can check them yourself at [github.com/KinesteX](https://github.com/KinesteX).\n\n**The integration surface is a WebView, not an in-process native library.** The KinesteX AI Kit README describes itself as \"a SwiftUI package that embeds KinesteX's AI-powered camera workout experience as a WebView\", with each view wrapping a `WKWebView`. The React Native demo depends on `react-native-webview`, the web integration is an iframe communicating over `postMessage`, and the Android manifest requires the `INTERNET` permission. That architecture is what makes the SDK thin and cross-platform, but if your requirement is in-process inference — direct access to camera frames, your own rendering pipeline, no hosted web surface inside your app — it is a structural mismatch, not something a version bump will change.\n\n**You want to own the computer-vision layer outright.** KinesteX's custom tier is its camera component plus PostMessage events (reps, mistakes, per-rep accuracy, workout summaries). If motion analysis is your core IP — you want the raw keypoints, your own exercise logic, your own models eventually — you are shopping in a different layer of the stack entirely, and the honest answer is a pose-estimation model, not any commercial fitness SDK.\n\n**Access is sales-gated.** The repos direct you to a contact form or email for demo access and an API key, and we found no self-serve signup or public pricing in any KinesteX repo. If you need to evaluate hands-on today without talking to anyone, that gate alone is a valid reason to look elsewhere.\n\n**\"Edge processing\" is optional, not guaranteed.** The SDK READMEs say KinesteX \"ensures data security with optional edge processing (no cloud transmission)\". If your compliance posture requires an unconditional on-device guarantee, you would need to get that in writing from KinesteX — or use a stack where inference verifiably runs in your own process.\n\n**You are iOS-only and want a Swift-native toolchain.** KinesteX's breadth (iOS, Android, React Native, Flutter, Web) is a cost, not a benefit, if you ship one platform. An iOS-first team can get closer to the metal with QuickPose or Apple's own Vision framework.\n\nFor balance, the verified reasons people stay: the same repos show genuinely broad platform coverage including web, plug-and-play workout/plan/challenge/leaderboard views, a content API, an extensive movement-assessment spec (TUG, gait speed, sit-to-stand and others), white-label theming, and active maintenance — public SDK commits as recent as July 2026, with current packages on npm and pub.dev. If none of the switch reasons above apply to you, the switching cost may not buy you anything.\n\n## The alternatives, by reason to switch\n\n### You want a native, in-process SDK with a full fitness feature set → Sency\n\nSency is the strongest verifiable direct competitor. Its [public repos](https://github.com/sency-ai) document two tiers: SMKitUI, a white-label prebuilt UI kit, and SMKit, which its README calls a \"Native no-UI SDK\" — you own the camera preview and UI, and the SDK runs in-process. The README documents movement and fitness assessments, progress evaluations, and personalized workout plans, across iOS, Android, React Native, and Flutter, with JavaScript and Unity explicitly marked as not available. The iOS demo pins a Podfile floor of iOS 16.0. The license is proprietary (Sency's own Terms of Use), and the repos were actively updated through mid-2026.\n\nTrade-offs against KinesteX: no web target (KinesteX has one), an iOS 16 floor versus KinesteX's iOS 14, and pricing we could not read — the README links a pricing page, but its contents were unreachable in our research pass, so verify directly. The full head-to-head is at [KinesteX vs Sency](/compare/kinestex-vs-sency).\n\n### You are iOS-first and want pose primitives with fitness helpers → QuickPose\n\nQuickPose sits one layer down the stack. Its [iOS SDK repo](https://github.com/quickpose/quickpose-ios-sdk) describes it as packaging \"cutting edge ML features of MediaPipe and BlazePose\" for \"pose estimation, skeleton tracking and fitness counting\" — a wrapper that ships MediaPipe model variants inside its SDK modules (on-device by design, in our reading), not a hosted experience. The README documents joint overlays, range-of-motion measurement for shoulder, hip, knee, back, and neck, and detection plus counters for roughly 21 named exercises, on iOS 14+. The repo code is Apache-2.0, but the SDK is keyed: \"Get your free SDK key on https://dev.quickpose.ai, usage limits may apply\" — so treat it as a keyed commercial SDK with open wrapper code, not open source. Android and React Native repos exist alongside multiple demo apps, all updated through 2026.\n\nWhat QuickPose does not give you: workout content, plans, prebuilt coaching UX, or assessments — everything above the keypoint-and-counter layer is yours to build. That makes it the middle path between buying a full experience and building from raw models. Details in [KinesteX vs QuickPose](/compare/kinestex-vs-quickpose).\n\n### You want to own the whole stack → MediaPipe, MoveNet, or Apple Vision\n\nIf the WebView objection is really an ownership objection, skip commercial SDKs entirely and build on a free pose model:\n\n- **MediaPipe Pose Landmarker (BlazePose GHUM)** — 33 landmarks with estimated 3D world landmarks, three model sizes (lite/full/heavy), Apache-2.0, and Google's own model card names \"fitness and repetition counting\" as an intended domain. The strongest choice when form feedback needs joint angles that survive viewpoint changes. See [KinesteX vs MediaPipe](/compare/kinestex-vs-mediapipe) for the direct comparison.\n- **MoveNet** — 17 COCO keypoints in 2D, tuned per its model card for \"fitness/fast movement\", with a MultiPose variant documented to track up to 6 people. Apache-2.0 (SinglePose card). The lean choice for rep counting.\n- **Apple Vision body pose** — an OS framework, no SDK key, no vendor: 2D body pose from iOS 14, 3D from iOS 17. The natural pick for the iOS-only team that wants zero third-party dependencies.\n\nThe honest cost: a pose model outputs per-frame keypoints and nothing else. To reach parity with what KinesteX or Sency ship, you build per-exercise form rules and phase detection, rep-counting state machines, mistake-to-feedback mapping, calibration and framing UX, an exercise and content library, analytics plumbing, and cross-device robustness (model-variant selection, thermals, lighting). The pose model is free; the exercise intelligence, content, and UX are the product. Work through [build vs buy for AI motion tracking](/motion/build-vs-buy-ai-motion-tracking) before committing, then the implementation set: [camera pose tracking](/guides/camera-pose-tracking), [rep counting](/guides/add-rep-counting), and [form feedback](/guides/add-form-feedback).\n\n### You need a clinical or physiotherapy focus → Kemtai is the name that comes up (unverified)\n\nKemtai is consistently named as the physio- and rehab-first vendor in this category, and Exer AI and Asensei also come up for clinical MSK and connected-coaching use cases respectively. Here we hit the limit of our method: all three companies' sites and docs were unreachable through our research proxy, and none has a public GitHub SDK we could inspect — Kemtai and Exer have no GitHub org we could find, and Asensei's org contains only general-purpose utilities (an archived Capacitor plugin-spec repo suggests its SDK is distributed privately). **We could not verify their current offerings from primary sources; check their sites directly.** We are deliberately not repeating the feature and regulatory claims that circulate in search snippets about them, because we could not trace those claims to a primary source.\n\nNames we checked and excluded: VAY (reported as acquired by Nautilus in 2021 and folded into JRNY — not a standalone option), Onyx (a consumer app, not an SDK vendor), and Sportsbox AI (golf vertical). Directory-style listicles name several other \"alternatives\" we could not verify at all.\n\n## What we verified, and where\n\nThis table is the page's spine. Anything not in the \"verified\" column is something we are not claiming.\n\n| Vendor | What we verified | From where | What we could not verify |\n| --- | --- | --- | --- |\n| KinesteX | WebView/iframe integration surface; iOS/Android/RN/Flutter/Web; rep, mistake, and accuracy events; assessment spec; Apache-2.0 on repos that carry a LICENSE file; commits through July 2026 | [github.com/KinesteX](https://github.com/KinesteX), npm, pub.dev | Pricing (no self-serve pricing in any repo); anything on kinestex.com |\n| Sency | Native no-UI SDK + branded UI kit; iOS, Android, RN, Flutter (JS/Unity marked NA); iOS 16 pod floor; proprietary license; active through 2026 | [github.com/sency-ai](https://github.com/sency-ai) (smkit-sdk, demos), npm | Pricing page contents; Android minimum version; docs site |\n| QuickPose | MediaPipe/BlazePose wrapper; iOS 14+; ROM measurement; ~21 exercise counters; Apache-2.0 repo with keyed SDK (\"usage limits may apply\"); active through 2026 | [github.com/quickpose](https://github.com/quickpose) | Pricing; docs.quickpose.ai content |\n| MediaPipe / MoveNet | Landmark counts, variants, licenses, fitness positioning | Google model cards and repos ([mediapipe](https://github.com/google-ai-edge/mediapipe), [tfjs-models](https://github.com/tensorflow/tfjs-models)) | Current live Google docs pages |\n| Apple Vision | 2D pose iOS 14+, 3D pose iOS 17+ | Apple developer documentation | Fitness-specific positioning (none found in the docs pages we fetched) |\n| Kemtai | Only that no public GitHub SDK exists | GitHub search | Everything else — site and docs unreachable |\n| Exer AI | Only that no public GitHub org/SDK was found | GitHub search | Everything else — site unreachable |\n| Asensei | GitHub org exists; no public motion SDK in it | [github.com/asensei](https://github.com/asensei) | Its actual offering — site unreachable; distribution appears private |\n\n## Routing by reason\n\n- **In-process native SDK, full fitness features, willing to buy** → Sency.\n- **iOS-first, want keypoints plus rep counters, self-serve key today** → QuickPose.\n- **Motion analysis is your IP, or you need unconditional on-device processing you control** → MediaPipe, MoveNet, or Apple Vision, plus the build cost above.\n- **Clinical/PT product** → put Kemtai and Exer AI on your call list, verify everything first-hand, and compare against building on MediaPipe with clinical logic you own.\n- **None of the switch reasons apply** → staying is a legitimate answer; the [AI workout tracking APIs overview](/fitness-apis/ai-workout-tracking-apis) maps the whole category if you want the wider view before deciding.\n\n## Is switching easy?\n\nCode-wise, leaving KinesteX is unusually cheap — the verified integration is a thin WebView/iframe wrapper plus event handlers, so there is little SDK surface to rip out. What is not cheap is replacing what the hosted experience did for you: the workout content, coaching UI, feedback logic, and assessments all lived on KinesteX's side of the WebView. Moving to Sency means re-integrating a native SDK and, on its custom kit, owning the UI; moving to QuickPose or raw pose models means owning everything above the keypoints. Budget for rebuilding the experience, not for deleting the wrapper.\n\n*Everything above reflects public repos and documentation as of 2026-08-02. Vendor repos change, our proxy could not reach several vendors' sites, and no pricing on any side was verifiable — confirm current terms with each vendor before you commit.*",
+    "body": "**Disclosure: this site is run by the team behind KinesteX, and KinesteX funds this site. You are reading a \"KinesteX alternatives\" page written by the vendor it lists alternatives to. Every claim below is restricted to what we could verify from public GitHub repositories, package registries, model documentation and each vendor's own published pages — including the claims about our own product — and the things we could not verify are labelled as such.** The disclosure is also checked mechanically: [the automated checks this site runs before every deploy](/gates) refuse any page that links to the site's funder without one.\n\nNobody expects a vendor-funded site to publish this page, so here is the deal that makes it worth your time: we name the real, verifiable reasons a team would decide against KinesteX, and we route each reason to the alternative that actually fits it. The sections below are organized by your reason for switching, not by who we would prefer you pick. For what this site has verified about KinesteX access in one place, see the [KinesteX API overview](/apis/kinestex).\n\n## The verified reasons people switch away from KinesteX\n\nThese are not hypothetical objections. Each one traces to KinesteX's own repositories or pages, so you can check them yourself at [github.com/KinesteX](https://github.com/KinesteX) and kinestex.com.\n\n**The integration surface is a WebView, not an in-process native library.** The KinesteX AI Kit README describes itself as \"a SwiftUI package that embeds KinesteX's AI-powered camera workout experience as a WebView\". The React Native SDK installs alongside `react-native-webview`, the web integration is an iframe communicating over `postMessage`, and the Android installation docs ask for the `INTERNET` permission. That architecture is what makes the SDK thin and cross-platform, but if your requirement is in-process inference, with direct access to camera frames, your own rendering pipeline and no hosted web surface inside your app, it is a structural mismatch, not something a version bump will change.\n\n**You want to own the computer-vision layer outright.** KinesteX's custom tier is its camera component plus `postMessage` events: reps, mistakes, accuracy and workout summaries. If motion analysis is your core IP and you want the raw keypoints, your own exercise logic and eventually your own models, you are shopping in a different layer of the stack, and the honest answer is a pose-estimation model, not any commercial fitness SDK.\n\n**No published prices, and access starts with a contact form.** KinesteX's FAQ describes usage-based plans priced per active user per month, with lower rates at higher tiers and integration fees that may apply, but gives no figure, and demo access and an API key come through a contact form. Two direct competitors now publish prices, QuickPose per monthly active device and Sency per monthly active user, so if you need a number before a call, that alone is a valid reason to look elsewhere.\n\n**Our on-device statements do not match each other.** The SDK READMEs say KinesteX \"ensures data security with optional edge processing (no cloud transmission)\", while KinesteX's security page says \"All camera and vision processing stays on-device\" and that its cloud delivers content and AI models. If your compliance posture needs an unconditional on-device guarantee, get the behaviour of your configuration from KinesteX in writing, or use a stack where inference verifiably runs in your own process.\n\n**You ship one platform.** KinesteX's breadth (iOS, Android, React Native, Flutter and the web) is a cost, not a benefit, if you ship one platform. An iOS-first team can get closer to the metal with QuickPose or Apple's own Vision framework.\n\nFor balance, the verified reasons people stay: the same sources show broad platform coverage including the web, plug-and-play workout, plan, challenge and leaderboard views, a content API, a documented set of movement assessments with risk-level outputs (Timed Up and Go, gait speed, sit-to-stand variants, the Functional Reach Test and balance stands), white-label theming, and active maintenance, with the Kotlin repository pushed on October 14, 2026 and kinestex-sdk-react-native 1.4.1 published on October 9, 2026. If none of the switch reasons above apply to you, the switching cost may not buy you anything.\n\n## The alternatives, by reason to switch\n\n### You want a native, in-process SDK with assessments and plans → Sency\n\nSency is the strongest verifiable direct competitor. Its [public repositories](https://github.com/sency-ai) document two kits: SMKitUI, a white-label Branded Kit where \"the entire user interface and experience are ready to use\", and SMKit, which its version table calls a \"Native no-UI SDK\", where you own the camera preview and UI. The README leads with movement and fitness assessments, monthly progress evaluations and personalized workout plans, across iOS, Android, React Native and Flutter, with JavaScript and Unity marked \"NA\". The Custom Kit's iOS demo pins iOS 16.0 and SMKitUI needs iOS 15 or later. Its iOS and Android SDKs download their models from Sency's server during configuration, with no bundled fallback, though Sency's FAQ says data is analyzed on the user's device and never sent to the cloud. The licence is Sency's own Terms of Use, which puts commercial or production use under a separate paid agreement. Sency publishes prices per monthly active user, though on two pages that disagree about the first 100 users: one lists a free Starter plan and a Growth plan from $499 a month, the other a free trial followed by a minimal monthly fee.\n\nTrade-offs against KinesteX: no web target (KinesteX has one), a higher iOS floor, a proprietary licence, and models fetched at first configuration. The full head-to-head is at [KinesteX vs Sency](/compare/kinestex-vs-sency), the plans are in [Sency pricing](/pricing/sency-pricing), and [Sency alternatives](/alternatives/sency-alternatives) maps the field from Sency's side.\n\n### You want pose building blocks with a published price list → QuickPose\n\nQuickPose sits one layer down the stack. Its [iOS SDK repository](https://github.com/quickpose/quickpose-ios-sdk) describes \"developer-oriented cutting edge ML features of MediaPipe and BlazePose\" for \"pose estimation, skeleton tracking and fitness counting\", and its Swift package ships MediaPipe lite, full and heavy libraries as modules; its product pages say all inference runs on the device. The README documents joint overlays, range-of-motion measurement for shoulders, hips, knees, back and neck, and counters for 20 named exercises, on iOS 14.0 or later; its docs add Android from API 26, and a React Native plugin covers both. The key is free to register (\"usage limits may apply\"), and QuickPose publishes its SDK plans per monthly active device, free for 10 and then $25 to $1,000 a month up to 100,000, with every feature on every plan. The iOS repository is Apache-2.0, and QuickPose's terms license the SDK under Apache 2.0 subject to the agreement and its fees, so treat it as a keyed commercial SDK with open wrapper code, not as open source.\n\nWhat QuickPose does not give you: workout content, plans, prebuilt coaching UX or assessments. Everything above the keypoint-and-counter layer is yours to build, which makes it the middle path between buying a full experience and building from raw models. Details in [KinesteX vs QuickPose](/compare/kinestex-vs-quickpose) and [QuickPose pricing](/pricing/quickpose-pricing).\n\n### You want to own the whole stack → MediaPipe, MoveNet, Apple Vision or ML Kit\n\nIf the WebView objection is really an ownership objection, skip commercial SDKs entirely and build on a free pose model:\n\n- **MediaPipe Pose Landmarker (BlazePose GHUM)** — 33 landmarks with estimated 3D world landmarks in meters, three model sizes (lite, full and heavy), Apache-2.0, and Google's model card names \"fitness and repetition counting\" as an intended domain. The strongest choice when form feedback needs joint angles that survive viewpoint changes. See [KinesteX vs MediaPipe](/compare/kinestex-vs-mediapipe) and [MediaPipe alternatives](/alternatives/mediapipe-alternatives).\n- **MoveNet** — 17 COCO keypoints in 2D, tuned per its model card for fitness and fast movement, with a MultiPose variant documented to detect up to 6 people. Apache 2.0 on the SinglePose card. The lean choice for rep counting; see [MoveNet models](/motion/movenet-models).\n- **Apple Vision body pose** — an OS framework with no SDK key and no vendor: 19 2D joints from iOS 14, 3D joints from iOS 17. The natural pick for the iOS-only team that wants no third-party dependency; see [Apple Vision body pose](/motion/apple-vision-body-pose).\n- **ML Kit Pose Detection** — 33 landmarks on Android and iOS for one person, offered in beta without an SLA; see [ML Kit pose detection](/motion/ml-kit-pose-detection).\n\nThe honest cost: a pose model outputs per-frame keypoints and nothing else. To reach parity with what KinesteX or Sency ship, you build per-exercise form rules and phase detection, rep-counting state machines, mistake-to-feedback mapping, calibration and framing UX, an exercise and content library, analytics plumbing, and cross-device robustness. The pose model is free; the exercise intelligence, content and UX are the product. Work through [build vs buy for AI motion tracking](/motion/build-vs-buy-ai-motion-tracking) before committing, then the implementation set: [camera pose tracking](/guides/camera-pose-tracking), [rep counting](/guides/add-rep-counting) and [form feedback](/guides/add-form-feedback).\n\n### You need a clinical or physiotherapy focus → Kemtai, and a look at Exer AI\n\n**Kemtai** positions itself for regulated rehab work, and its own site, read on October 17, 2026, describes embeddable exercise and patient-management components, data APIs that return exercise scores and range-of-motion results, a library of more than 2,000 exercises, processing on the device with no video recorded, and an FDA listing and CE marking as a medical device. It says its accuracy was validated in a study against a gold-standard motion lab that used 10 3D cameras and body sensors, which is a vendor statement about a study to ask to see. Two of its own pages disagree on how many body points it tracks, 111 on its home page and 113 on its computer-vision page. Its API documentation is behind an email request, it publishes no prices, and the pages we read route buyers to a demo request.\n\n**Exer AI** is a clinical platform rather than a developer SDK, on the pages we read: Exer Scan, Exer Health and Exer Hands for providers in orthopedics, senior care, neurology and rehab, a technology page saying everything runs on the edge on common laptops, phones and tablets, and a demo request. If you are building a clinical product of your own rather than buying one, it may not fit; if you are a provider, it may fit better than any SDK here.\n\nOther names circulate in listicles for this category. We list only vendors whose own pages or repositories we could read in this pass.\n\n## What we verified, and where\n\nThis table is the page's spine. Anything not in the \"verified\" column is something we are not claiming.\n\n| Vendor | What we verified | From where | What we could not verify |\n| --- | --- | --- | --- |\n| KinesteX | WebView and iframe surface; iOS, Android, React Native, Flutter and web; rep, mistake and accuracy events; assessment suite; Apache-2.0 on repos that carry a LICENSE file; per-active-user pricing model with no figures; two different on-device statements | [github.com/KinesteX](https://github.com/KinesteX), npm, pub.dev, kinestex.com | Prices; which on-device statement governs a given configuration; accuracy |\n| Sency | No-UI kit and branded UI kit; iOS, Android, React Native and Flutter (JavaScript and Unity \"NA\"); iOS 16 and 15 floors; server-downloaded models; Terms of Use licence; per-user plans on two pages | [github.com/sency-ai](https://github.com/sency-ai), npm, pub.dev, sency.ai | Which pricing page applies to the first 100 users; how the Growth base and per-user rate combine; accuracy |\n| QuickPose | MediaPipe and BlazePose toolkit; iOS 14, Android API 26, React Native; range of motion and 20 exercise counters; free key; per-device plans; Apache-2.0 iOS repo under fee-bearing terms | [github.com/quickpose](https://github.com/quickpose), npm, docs.quickpose.ai, quickpose.ai | The Wasm SDK its docs home mentions; accuracy |\n| MediaPipe and MoveNet | Landmark counts, variants, licences, fitness positioning, MoveNet MultiPose's 6-person limit | Google's model cards and repositories ([mediapipe](https://github.com/google-ai-edge/mediapipe), [tfjs-models](https://github.com/tensorflow/tfjs-models)) | Behaviour on your exercises |\n| Apple Vision | 19 2D joints from iOS 14, 3D joints from iOS 17 | Apple developer documentation | Accuracy figures (none published in the pages we read) |\n| ML Kit | 33 landmarks, one person, beta without an SLA | Google's ML Kit guide | Accuracy figures |\n| Kemtai | Embeddables, data APIs, 2,000+ exercises, edge processing, FDA listing and CE marking, a validation study claim | kemtai.com | API docs (email-gated); prices; the study itself |\n| Exer AI | Clinical products for providers; edge processing; demo request | exer.ai | Any developer SDK or API |\n\n## Routing by reason\n\n- **In-process native SDK, assessments and plans, willing to buy** → Sency.\n- **Keypoints plus counters and measurements, a price you can read today, self-serve key** → QuickPose.\n- **Motion analysis is your IP, or you need on-device processing you control** → MediaPipe, MoveNet, Apple Vision or ML Kit, plus the build cost above.\n- **Clinical or PT product** → Kemtai, with every regulatory and accuracy claim verified first-hand, and compare against building on MediaPipe with clinical logic you own.\n- **None of the switch reasons apply** → staying is a legitimate answer; the [AI workout tracking APIs overview](/fitness-apis/ai-workout-tracking-apis) maps the whole category if you want the wider view before deciding.\n\n## Is switching easy?\n\nCode-wise, leaving KinesteX is unusually cheap: the integration is a thin WebView or iframe wrapper plus event handlers, so there is little SDK surface to rip out. What is not cheap is replacing what the hosted experience did for you: the workout content, coaching UI, feedback logic and assessments all lived on KinesteX's side of the WebView. Moving to Sency means re-integrating a native SDK and, on its Custom Kit, owning the UI; moving to QuickPose or raw pose models means owning everything above the keypoints. Budget for rebuilding the experience, not for deleting the wrapper.\n\n*Everything above reflects public repositories, registries and vendor pages as read on October 17 and 18, 2026. Vendors change pages, prices and repositories without notice, so confirm current terms with each vendor before you commit.*",
     "related": [
       {
         "href": "/compare/kinestex-vs-sency",
@@ -746,11 +746,171 @@ export const alternativesEntries: ClusterEntry[] =
         "label": "KinesteX vs MediaPipe"
       },
       {
+        "href": "/alternatives/sency-alternatives",
+        "label": "Sency alternatives"
+      },
+      {
+        "href": "/alternatives/quickpose-alternatives",
+        "label": "QuickPose alternatives"
+      },
+      {
         "href": "/fitness-apis/ai-workout-tracking-apis",
         "label": "Best AI workout tracking APIs"
       }
     ],
-    "firstParty": true
+    "firstParty": true,
+    "sources": [
+      {
+        "url": "https://github.com/KinesteX",
+        "checked": "2026-10-17",
+        "note": "repositories, licences, push dates"
+      },
+      {
+        "url": "https://github.com/KinesteX/KinesteX-AI-Kit",
+        "checked": "2026-10-17",
+        "note": "WebView architecture"
+      },
+      {
+        "url": "https://github.com/KinesteX/.github",
+        "checked": "2026-10-17",
+        "note": "events, assessments with risk levels"
+      },
+      {
+        "url": "https://github.com/KinesteX/KinesteX-SDK-Kotlin",
+        "checked": "2026-10-17",
+        "note": "optional edge processing line; pushed 2026-10-14"
+      },
+      {
+        "url": "https://www.npmjs.com/package/kinestex-sdk-react-native",
+        "checked": "2026-10-17",
+        "note": "1.4.1 on 2026-10-09"
+      },
+      {
+        "url": "https://www.kinestex.com/docs",
+        "checked": "2026-10-17",
+        "note": "platforms, contact-form access (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+        "checked": "2026-10-17",
+        "note": "react-native-webview, INTERNET permission (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/product/faqs",
+        "checked": "2026-10-17",
+        "note": "pricing model (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/product/security",
+        "checked": "2026-10-17",
+        "note": "on-device statement, model delivery (snapshot)"
+      },
+      {
+        "url": "https://github.com/sency-ai/smkit-sdk",
+        "checked": "2026-10-17",
+        "note": "kits, platform table, features, key by email, Terms of Use LICENSE"
+      },
+      {
+        "url": "https://github.com/sency-ai/smkit-ios-demo",
+        "checked": "2026-10-17",
+        "note": "iOS 16.0, server-downloaded models"
+      },
+      {
+        "url": "https://github.com/sency-ai/smkit-ui-ios-demo",
+        "checked": "2026-10-17",
+        "note": "SMKitUI iOS 15 or later"
+      },
+      {
+        "url": "https://www.sency.ai/pricing-packages",
+        "checked": "2026-10-18",
+        "note": "Starter and Growth plans (read through a text reader; quotes re-checked on the page by CI)"
+      },
+      {
+        "url": "https://www.sency.ai/pricing",
+        "checked": "2026-10-17",
+        "note": "trial and minimal monthly fee (read through a text reader; quotes re-checked on the page by CI)"
+      },
+      {
+        "url": "https://www.sency.ai/faq-motion-tracking",
+        "checked": "2026-10-18",
+        "note": "on-device processing claim (read through a text reader; quotes re-checked on the page by CI)"
+      },
+      {
+        "url": "https://github.com/quickpose/quickpose-ios-sdk",
+        "checked": "2026-10-17",
+        "note": "description, modules, features, iOS 14.0, free key, Apache-2.0"
+      },
+      {
+        "url": "https://docs.quickpose.ai/docs/MobileSDK",
+        "checked": "2026-10-17",
+        "note": "Android API 26 (snapshot)"
+      },
+      {
+        "url": "https://quickpose.ai/sdk-pricing/",
+        "checked": "2026-10-17",
+        "note": "plans by monthly active device (snapshot)"
+      },
+      {
+        "url": "https://quickpose.ai/products/android-sdk/",
+        "checked": "2026-10-17",
+        "note": "on-device inference (snapshot)"
+      },
+      {
+        "url": "https://quickpose.ai/terms-and-conditions/",
+        "checked": "2026-10-17",
+        "note": "Apache 2.0 clause and fees (snapshot)"
+      },
+      {
+        "url": "https://storage.googleapis.com/mediapipe-assets/Model%20Card%20BlazePose%20GHUM%203D.pdf",
+        "checked": "2026-10-17",
+        "note": "33 landmarks, fitness domain, Apache-2.0"
+      },
+      {
+        "url": "https://storage.googleapis.com/movenet/MoveNet.SinglePose%20Model%20Card.pdf",
+        "checked": "2026-10-17",
+        "note": "fitness and fast movement, Apache 2.0"
+      },
+      {
+        "url": "https://storage.googleapis.com/movenet/MoveNet.MultiPose%20Model%20Card.pdf",
+        "checked": "2026-10-17",
+        "note": "up to 6 people"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/vision/vnhumanbodyposeobservation/jointname",
+        "checked": "2026-10-18",
+        "note": "19 2D joints; the 3D request from iOS 17"
+      },
+      {
+        "url": "https://developers.google.com/ml-kit/vision/pose-detection",
+        "checked": "2026-10-17",
+        "note": "one person, 33 landmarks, beta, no SLA"
+      },
+      {
+        "url": "https://kemtai.com/",
+        "checked": "2026-10-17",
+        "note": "exercises, edge processing, regulatory and validation claims, 111 points, API docs by email (snapshot)"
+      },
+      {
+        "url": "https://kemtai.com/kemtai-api-and-embeddables/",
+        "checked": "2026-10-17",
+        "note": "embeddables and data APIs (snapshot)"
+      },
+      {
+        "url": "https://kemtai.com/our-computer-vision/",
+        "checked": "2026-10-17",
+        "note": "113 body points (snapshot)"
+      },
+      {
+        "url": "https://www.exer.ai/",
+        "checked": "2026-10-17",
+        "note": "clinical products, demo request (snapshot)"
+      },
+      {
+        "url": "https://www.exer.ai/tech",
+        "checked": "2026-10-17",
+        "note": "edge processing (snapshot)"
+      }
+    ]
   },
   {
     "slug": "human-api-alternatives",
@@ -955,5 +1115,421 @@ export const alternativesEntries: ClusterEntry[] =
         "note": "Open Wearables provider setup"
       }
     ]
+  },
+  {
+    "slug": "mediapipe-alternatives",
+    "primaryQuery": "mediapipe alternatives",
+    "h1": "MediaPipe Pose Alternatives, Matched to the Reason You Need One",
+    "metaTitle": "MediaPipe Pose Alternatives (2026): Models and SDKs",
+    "metaDescription": "Alternatives to MediaPipe Pose Landmarker by reason: MoveNet for fast 2D, Apple Vision, ML Kit, YOLO26 or OpenPose for groups, or an SDK with rep logic.",
+    "updated": "2026-10-18",
+    "answer": "The best MediaPipe Pose Landmarker alternative depends on what MediaPipe does not do for you. For faster 2D tracking use MoveNet, for an iOS-native API Apple Vision, for a Google-maintained mobile SDK ML Kit Pose Detection, and for several people in one frame Ultralytics YOLO pose (AGPL-3.0), MoveNet MultiPose, RTMPose or OpenPose (noncommercial only), since Google's model card scopes MediaPipe's pose model to one person. If you want rep counting and feedback built for you, commercial SDKs such as QuickPose, which is itself built on MediaPipe, add that layer.",
+    "body": "MediaPipe Pose Landmarker is a strong default, so most teams that look for an alternative have one specific reason. This page names the reasons the primary sources support and routes each to the model or product that fits. Model facts come from each project's own repository, model card or documentation as read on October 17, 2026. **Disclosure: this site is funded by KinesteX, which sells a commercial motion SDK; it appears once below, in the commercial group, labelled as ours.**\n\n## What MediaPipe gives you\n\n- **33 landmarks per person**, each with x, y, z, visibility and presence, plus world landmarks that MediaPipe's documentation describes as \"real-world 3D coordinates in meters with the origin at the center between hips\".\n- **Three model sizes**, lite, full and heavy, as `.task` bundles from Google's model bucket, the same 33-point output from each; [MediaPipe Pose Landmarker models](/motion/mediapipe-pose-landmarker-models) covers the trade.\n- **The Tasks API on Android, iOS, web and Python**, running on the device.\n- **Apache-2.0** for the framework and, per Google's BlazePose GHUM model card, the models. No key and no fee.\n\n## Why teams look elsewhere\n\n- **More than one person in frame.** Google's model card says the model \"tracks only one person on scene if multiple present\" and lists multiple people as out of scope. The Tasks API does have a `num_poses` option, documented as \"the maximum number of poses can be detected by the PoseLandmarker\" with a default of 1, but the model card does not evaluate several people, so treat a raised value as something to test, not a supported mode.\n- **Distance and depth.** The card lists people further than about 14 feet or 4 meters as out of scope, and says z \"is not metric but up to scale\". Apps that need metric depth or a subject far from the camera have to look elsewhere.\n- **Frozen weights.** The three `.task` files Google serves were last modified in April 2023, and the older MediaPipe Pose solution was retired in favour of the Tasks version on May 10, 2023. Stability is a virtue, but nothing suggests the model will improve.\n- **Lighter 2D on weak hardware or in a browser**, where MoveNet's single-person models are smaller targets.\n- **Keypoints are not a product.** Rep counting, form feedback, calibration and exercise content are all yours to build on top. Some teams would rather buy that layer.\n\n## The alternatives, by reason\n\n### Faster 2D tracking: MoveNet\n\nMoveNet SinglePose Lightning (192x192 input) is tuned for latency and Thunder (256x256) for accuracy, both outputting the 17 COCO keypoints; Google's card targets the browser through TensorFlow.js and devices through TensorFlow Lite, for one person 3 to 6 feet from the camera. The SinglePose card says \"Licensed Under Apache License, Version 2.0\". You lose MediaPipe's 3D world landmarks and the extra face, hand and foot points. See [MoveNet models](/motion/movenet-models) and the [MediaPipe vs MoveNet head-to-head](/motion/pose-estimation-models-compared#mediapipe-vs-movenet-head-to-head).\n\n### An iOS-native API: Apple Vision\n\n`VNDetectHumanBodyPoseRequest` returns 19 named 2D joints from iOS 14, and `VNDetectHumanBodyPose3DRequest` returns 3D joints relative to the camera from iOS 17, with no model file to ship and nothing to license. Apple publishes no model card or accuracy figures. See [Apple Vision body pose](/motion/apple-vision-body-pose).\n\n### A Google-maintained mobile SDK: ML Kit Pose Detection\n\nML Kit returns 33 landmarks on Android and iOS from a bundled library, in a base and an accurate SDK. Google's guide says \"Pose detection can only detect one person in an image\" and that the API \"is offered in beta, and is not subject to any SLA or deprecation policy\". It is governed by Google's terms rather than an open-source licence. See [ML Kit pose detection](/motion/ml-kit-pose-detection).\n\n### Several people at once\n\n- **Ultralytics YOLO pose.** Ultralytics' pose docs now present YOLO26 pose models in five sizes, n to x, pretrained on COCO keypoints and returning 17 keypoints for each detected person. The code is AGPL-3.0 unless you buy Ultralytics' Enterprise License. See [Ultralytics YOLO pose models](/motion/yolo-pose-models).\n- **MoveNet MultiPose Lightning** detects up to 6 people; the text of its model card carries no licence line, so confirm its terms.\n- **RTMPose** from OpenMMLab's MMPose pairs a person detector with a pose model, in 17, 26 and 133 keypoint sets, under an Apache-2.0 codebase. See [RTMPose models](/motion/rtmpose-models).\n- **OpenPose** is a real-time multi-person system built on Part Affinity Fields, licensed for academic or non-profit noncommercial research only. See [OpenPose models](/motion/openpose-models).\n\n[Multi-person pose tracking](/motion/multi-person-pose-tracking) explains the tracking layer every one of these still needs.\n\n### Buy the fitness layer instead of building it\n\n- **QuickPose** is built on MediaPipe itself: its README describes \"developer-oriented cutting edge ML features of MediaPipe and BlazePose\", with counters, range-of-motion measurement and feedback on iOS, Android and React Native, and a published price list starting with a free tier for 10 monthly active devices. See [QuickPose pricing](/pricing/quickpose-pricing).\n- **Sency** ships assessments, progress evaluations and workout plans in a no-UI kit or a white-label UI kit, with models downloaded from Sency's server at configuration, and a pricing packages page that lists a free Starter plan for up to 100 monthly active users and a Growth plan from $499 a month. See [Sency pricing](/pricing/sency-pricing) and [QuickPose vs Sency](/compare/quickpose-vs-sency).\n- **Kemtai** targets clinical rehab, with embeddable components and an FDA listing and CE marking described on its site.\n- **KinesteX**, which funds this site, embeds a hosted workout experience through a WebView or iframe; its public repositories do not say which pose model runs inside it. See [KinesteX vs MediaPipe](/compare/kinestex-vs-mediapipe).\n\n## At a glance\n\n| Option | Keypoints | People | Licence | Runs on |\n| --- | --- | --- | --- | --- |\n| MediaPipe Pose Landmarker | 33, with world landmarks | One per the model card; `num_poses` option, default 1 | Apache-2.0 | Android, iOS, web, Python |\n| MoveNet SinglePose | 17 | One | Apache-2.0 | TensorFlow.js, TensorFlow Lite |\n| MoveNet MultiPose | 17 | Up to 6 | No licence line in the card text | TensorFlow.js, TensorFlow Lite |\n| Apple Vision | 19 (2D), 17 (3D) | One observation per detected body; Apple warns dense crowds are likely to be inaccurate | Ships with the OS | iOS 14+ (2D), iOS 17+ (3D) |\n| ML Kit Pose Detection | 33 | One | Google's terms, beta | Android, iOS |\n| Ultralytics YOLO26 pose | 17 | Every detected person | AGPL-3.0 or Enterprise | Exports including ONNX, CoreML and TensorRT |\n| RTMPose | 17, 26 or 133 | With a person detector | Apache-2.0 code | ONNX Runtime, TensorRT, ncnn and more |\n| OpenPose | 25 or 18 body | Many | Noncommercial research only | CUDA, OpenCL or CPU builds |\n\n## When to stay with MediaPipe\n\nIf your app tracks one person close to a phone camera and you want joint angles that survive changes of viewpoint, MediaPipe is still the default the others are measured against: free, on-device, three sizes with one output contract, and the only option here with hip-centred world landmarks on every platform. The usual reason to leave is a hard requirement it does not meet, more people, metric depth, a browser on weak hardware, or a wish to buy the fitness layer, so name yours before you switch.",
+    "faqs": [
+      {
+        "q": "Can MediaPipe Pose Landmarker track more than one person?",
+        "a": "The Tasks API has a num_poses option, documented as the maximum number of poses the PoseLandmarker can detect, with a default of 1. Google's BlazePose GHUM model card, however, says the model tracks only one person on scene if multiple are present and lists multiple people as out of scope. So the option exists, but multi-person use is not what the model was evaluated for; test it on your own scenes or choose a multi-person model."
+      },
+      {
+        "q": "What is the best free alternative to MediaPipe for multi-person pose estimation?",
+        "a": "It depends on your licence constraints. MoveNet MultiPose Lightning detects up to 6 people but the text of its model card carries no licence line, RTMPose's MMPose codebase is Apache-2.0 and pairs a person detector with the pose model, Ultralytics YOLO pose is AGPL-3.0 unless you buy an Enterprise License, and OpenPose is limited to noncommercial research. Read each licence before you build a commercial product on it."
+      },
+      {
+        "q": "Is MoveNet or Apple Vision a better MediaPipe alternative on iPhone?",
+        "a": "For an iOS-only app, Apple Vision avoids shipping any model: its 2D body pose request works from iOS 14 and its 3D request from iOS 17, with nothing to license, though Apple publishes no accuracy figures. MoveNet is the better fit when the same model must also run on Android or in a browser, through TensorFlow Lite or TensorFlow.js. Neither gives you MediaPipe's 33 points with hip-centred world landmarks."
+      },
+      {
+        "q": "Is there a paid SDK built on MediaPipe?",
+        "a": "Yes. QuickPose's README describes it as providing developer-oriented features of MediaPipe and BlazePose, and its Swift package ships MediaPipe lite, full and heavy libraries as modules, with exercise counters, range-of-motion measurement and feedback on top. It publishes plans by monthly active device, starting with a free tier for 10 devices."
+      }
+    ],
+    "related": [
+      {
+        "href": "/motion/pose-estimation-models-compared",
+        "label": "Pose estimation models compared"
+      },
+      {
+        "href": "/motion/mediapipe-pose-landmarker-models",
+        "label": "MediaPipe Pose Landmarker models"
+      },
+      {
+        "href": "/alternatives/quickpose-alternatives",
+        "label": "QuickPose alternatives"
+      },
+      {
+        "href": "/compare/kinestex-vs-mediapipe",
+        "label": "KinesteX vs MediaPipe"
+      }
+    ],
+    "cta": {
+      "pitch": "Pose models get renamed, re-benchmarked and relicensed. Subscribe and we will flag it when one of the options here changes its model, platforms or terms."
+    },
+    "sources": [
+      {
+        "url": "https://github.com/google-ai-edge/mediapipe/blob/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+        "checked": "2026-10-17",
+        "note": "num_poses, its default of 1 and its docstring"
+      },
+      {
+        "url": "https://github.com/google-ai-edge/mediapipe/blob/master/docs/solutions/pose.md",
+        "checked": "2026-10-17",
+        "note": "world landmarks in meters from the hip centre; the May 10, 2023 upgrade notice"
+      },
+      {
+        "url": "https://github.com/google-ai-edge/mediapipe/blob/master/README.md",
+        "checked": "2026-10-17",
+        "note": "Android, iOS, web and Python"
+      },
+      {
+        "url": "https://github.com/google-ai-edge/mediapipe/blob/master/LICENSE",
+        "checked": "2026-10-17",
+        "note": "Apache-2.0"
+      },
+      {
+        "url": "https://storage.googleapis.com/mediapipe-assets/Model%20Card%20BlazePose%20GHUM%203D.pdf",
+        "checked": "2026-10-17",
+        "note": "single person, out-of-scope list, z up to scale, Apache-2.0"
+      },
+      {
+        "url": "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_full/float16/latest/pose_landmarker_full.task",
+        "checked": "2026-10-17",
+        "note": "served files last modified April 2023 (all three variants)"
+      },
+      {
+        "url": "https://storage.googleapis.com/movenet/MoveNet.SinglePose%20Model%20Card.pdf",
+        "checked": "2026-10-17",
+        "note": "inputs, 17 keypoints, 3 to 6 feet, Apache-2.0"
+      },
+      {
+        "url": "https://storage.googleapis.com/movenet/MoveNet.MultiPose%20Model%20Card.pdf",
+        "checked": "2026-10-17",
+        "note": "up to 6 people; no licence line in the text"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/vision/vndetecthumanbodyposerequest",
+        "checked": "2026-10-17",
+        "note": "iOS 14.0; the 3D request from iOS 17.0"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/vision/detecting-human-body-poses-in-images",
+        "checked": "2026-10-18",
+        "note": "one observation per detected body pose; dense crowds likely inaccurate"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointname",
+        "checked": "2026-10-18",
+        "note": "17 3D joint names; 19 2D joint names on VNHumanBodyPoseObservation.JointName"
+      },
+      {
+        "url": "https://github.com/open-mmlab/mmpose/tree/main/projects/rtmpose",
+        "checked": "2026-10-18",
+        "note": "17, 26 and 133 keypoint models, RTMDet person-detector pairing, deployment backends"
+      },
+      {
+        "url": "https://github.com/open-mmlab/mmpose/blob/main/LICENSE",
+        "checked": "2026-10-18",
+        "note": "Apache-2.0"
+      },
+      {
+        "url": "https://developers.google.com/ml-kit/vision/pose-detection",
+        "checked": "2026-10-17",
+        "note": "one person, 33 landmarks, beta, no SLA"
+      },
+      {
+        "url": "https://github.com/ultralytics/ultralytics/blob/main/docs/en/tasks/pose.md",
+        "checked": "2026-10-17",
+        "note": "YOLO26 pose models, COCO keypoints"
+      },
+      {
+        "url": "https://github.com/ultralytics/ultralytics/blob/main/README.md",
+        "checked": "2026-10-17",
+        "note": "AGPL-3.0 and the Enterprise License"
+      },
+      {
+        "url": "https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/LICENSE",
+        "checked": "2026-10-17",
+        "note": "noncommercial research use only"
+      },
+      {
+        "url": "https://github.com/CMU-Perceptual-Computing-Lab/openpose",
+        "checked": "2026-10-17",
+        "note": "README: Part Affinity Fields, CUDA, OpenCL and CPU-only builds"
+      },
+      {
+        "url": "https://github.com/quickpose/quickpose-ios-sdk",
+        "checked": "2026-10-17",
+        "note": "MediaPipe and BlazePose description and modules"
+      },
+      {
+        "url": "https://quickpose.ai/sdk-pricing/",
+        "checked": "2026-10-17",
+        "note": "free tier for 10 monthly active devices (snapshot)"
+      },
+      {
+        "url": "https://github.com/sency-ai/smkit-ios-demo",
+        "checked": "2026-10-17",
+        "note": "server-downloaded models"
+      },
+      {
+        "url": "https://www.sency.ai/pricing-packages",
+        "checked": "2026-10-18",
+        "note": "Starter and Growth plans (read through a text reader; quotes re-checked on the page by CI)"
+      },
+      {
+        "url": "https://kemtai.com/",
+        "checked": "2026-10-17",
+        "note": "embeddables and regulatory claims (snapshot)"
+      }
+    ],
+    "firstParty": true
+  },
+  {
+    "slug": "quickpose-alternatives",
+    "primaryQuery": "quickpose alternatives",
+    "h1": "QuickPose Alternatives, Routed by Why You Are Leaving",
+    "metaTitle": "QuickPose Alternatives (2026): SDKs and Free Pose Models",
+    "metaDescription": "Alternatives to QuickPose by reason for leaving: MediaPipe directly, Apple Vision, ML Kit, Sency, Kemtai and more, checked against their own docs.",
+    "updated": "2026-10-18",
+    "answer": "The closest alternative to QuickPose is the model it wraps: QuickPose describes itself as packaging MediaPipe and BlazePose, so a team willing to write its own counting and range-of-motion logic can call MediaPipe Pose Landmarker directly, under Apache-2.0, with no key or fee. For an iOS-only app Apple's Vision body pose needs no SDK at all, and an Android-only app can use Google's ML Kit Pose Detection. Teams that want more packaged than QuickPose rather than less look at Sency's assessment and workout kits, Kemtai for regulated rehab, or KinesteX, which funds this site.",
+    "body": "**Disclosure: this site is funded by KinesteX, which sells a motion-tracking SDK that competes with QuickPose.** KinesteX appears below once, in the group where it genuinely fits, after the third-party options and labelled as ours. Every fact about every vendor, KinesteX included, comes from that vendor's own repositories, package registries or published pages as fetched on October 17, 2026; where we could not verify something, the page says so.\n\n## What you would be replacing\n\nQuickPose's iOS SDK README describes it as providing \"developer-oriented cutting edge ML features of MediaPipe and BlazePose, with easy integration and production ready code\". That is an accurate summary of the shape: the SDK modules bundle MediaPipe libraries (the README lists `QuickPoseMP-lite`, `QuickPoseMP-full` and `QuickPoseMP-heavy`), and QuickPose adds the fitness layer on top. Verified from its repositories and pages:\n\n- **Platforms.** iOS 14.0 or later; Android, where its docs give a minimum of API 26 and note that the sample code needs API 28 because of CameraX; and a React Native plugin, `@quickpose/react-native`, for iOS and Android.\n- **Features.** Overlays, range-of-motion measurement for shoulders, hips, knees, back and neck, detection and counting for 20 named exercises (22 entries in the README's table, two of them repeated), body-position and limb-not-visible feedback, and raised-finger and thumbs-up inputs.\n- **Runtime.** On-device. Its iOS and Android product pages describe a 33-point skeleton and on-device inference, with no video frames sent to a server.\n- **Price.** A free key, then plans by monthly active device: free for 10 devices, then $25 to $1,000 a month up to 100,000 devices. The full table is in [QuickPose pricing](/pricing/quickpose-pricing).\n\n## Why teams look elsewhere\n\nThese are the reasons the sources support, not guesses about QuickPose's customers:\n\n- **The price unit.** QuickPose bills per monthly active device. A free tier of 10 devices covers development and a pilot, not a launch. If your app has many occasional users, a per-device bill grows with reach rather than with engagement.\n- **No public web package.** QuickPose's docs home mentions Wasm SDKs, but the only QuickPose package we found on npm is the React Native plugin, and there is no public web repository. A product with a browser surface needs a plan for it.\n- **Building blocks, not content.** The repositories ship counters, measurements and overlays. They contain no exercise library, workout plans or coaching UI, so a team that wanted a finished experience still has to build one.\n- **Owning the model layer.** QuickPose sits between you and MediaPipe. A team that wants to pin a model version, swap variants on its own schedule or read every line of the pipeline may prefer to call MediaPipe itself.\n- **Mixed licence signals.** The iOS repository is Apache-2.0 and QuickPose's terms license the SDK under Apache 2.0, yet the same terms say use \"may be subject to fees\"; the Android repository has no LICENSE file and the npm plugin is MIT. In our reading this is permissive code in front of a keyed, metered service, which is fine, but procurement teams ask about it.\n\n## The alternatives, by reason for leaving\n\n### You want to drop the wrapper: MediaPipe Pose Landmarker\n\nThe most direct alternative is the model QuickPose wraps. MediaPipe Pose Landmarker returns 33 landmarks per person with world coordinates in meters, ships as lite, full and heavy `.task` files, runs on Android, iOS, web and Python through the MediaPipe Tasks API, and is Apache-2.0 for both the framework and, per Google's model card, the models. There is no key and no fee. What you give up is exactly what QuickPose adds: exercise counters, range-of-motion measurement, feedback events and camera plumbing become your code. [MediaPipe Pose Landmarker models](/motion/mediapipe-pose-landmarker-models) covers the variants, and [MediaPipe alternatives](/alternatives/mediapipe-alternatives) maps the field from the other side.\n\n### You ship on iOS only: Apple Vision body pose\n\nApple's Vision framework has two body pose requests with no model file to ship: `VNDetectHumanBodyPoseRequest` for 2D, available from iOS 14, and `VNDetectHumanBodyPose3DRequest` for 3D, from iOS 17. No SDK key, no third party, no bill; the trade is that Apple publishes no model card or accuracy figures. Details in [Apple Vision body pose](/motion/apple-vision-body-pose).\n\n### You ship on Android only: ML Kit Pose Detection\n\nGoogle's ML Kit Pose Detection returns 33 landmarks for one person on device, in a base and an accurate SDK, under Google's service terms rather than an open-source licence; Google labels the API beta. See [ML Kit pose detection](/motion/ml-kit-pose-detection).\n\n### You need a browser: MediaPipe Tasks for web or MoveNet\n\nBoth run client-side in the browser. MediaPipe's Pose Landmarker has a web Tasks API, and MoveNet runs through TensorFlow.js with SinglePose Lightning, Thunder and a MultiPose model for up to 6 people. [AI workout tracking on the web](/guides/ai-workout-tracking-web) walks through the browser path.\n\n### You want more packaged than QuickPose, not less\n\n- **Sency** ships two kits on iOS, Android, React Native and Flutter: a branded kit whose \"entire user interface and experience are ready to use\", and a custom kit with no predefined UI. Its README leads with movement and fitness assessments, monthly progress evaluations and personalized workout plans. Sency's iOS kits download their models from Sency's server at configuration, so the first run needs a connection. It bills per monthly active user: its packages page lists a free Starter plan for up to 100 and a Growth plan from $499 a month, though its main pricing page describes the first 100 users as a paid tier after a trial; see [Sency pricing](/pricing/sency-pricing). The head-to-head is [QuickPose vs Sency](/compare/quickpose-vs-sency).\n- **Kemtai** is the option for regulated rehab work. Its site describes embeddable exercise and patient-management components plus data APIs, a library of more than 2,000 exercises, processing on the device with no video recorded, and an FDA listing and CE marking as a medical device. Its API docs are behind an email request, and we found no public SDK repository.\n- **KinesteX**, which funds this site, embeds a hosted camera workout experience through a WebView or iframe on iOS, Android, React Native, Flutter and the web, with workout, plan, challenge and assessment views and a content API. It publishes no prices; access starts with a contact form. The disclosed comparison is [KinesteX vs QuickPose](/compare/kinestex-vs-quickpose).\n\n### Several people in one frame\n\nQuickPose's repositories describe single-subject features. For group scenes, [multi-person pose tracking](/motion/multi-person-pose-tracking) compares the approaches, and the model pages cover [MoveNet MultiPose](/motion/movenet-models), [Ultralytics YOLO pose](/motion/yolo-pose-models), which is AGPL-3.0 unless you buy Ultralytics' Enterprise License, and [RTMPose](/motion/rtmpose-models).\n\n## What we verified, and where\n\n| Option | Verified | From | Not verified |\n| --- | --- | --- | --- |\n| QuickPose | MediaPipe-based modules, platforms, features, on-device claim, device-based plans | Its GitHub repos, npm, docs, pricing and product pages | Accuracy; the Wasm SDK mentioned in its docs |\n| MediaPipe | 33 landmarks, variants, Tasks platforms, Apache-2.0 | google-ai-edge/mediapipe and Google's model card | Behaviour on your exercises |\n| Apple Vision | 2D from iOS 14, 3D from iOS 17 | Apple's documentation | Accuracy, which Apple does not publish |\n| ML Kit | 33 landmarks, one person, beta, base and accurate SDKs | Google's ML Kit guides | Google's future plans for the beta |\n| Sency | Kits, platforms, server-downloaded models, published plans | Its GitHub repos and pricing pages | How its Growth rates combine; accuracy |\n| Kemtai | Embeddables, data APIs, 2,000+ exercises, regulatory claims | Its website | API docs (email-gated); pricing |\n| KinesteX | WebView and iframe architecture, platforms, contact-form access | Its GitHub repos and website | Pricing (not published); accuracy |\n\n## Is switching easy?\n\nFrom QuickPose to MediaPipe directly, the model is the same family, so the landmark set carries over; the work is rebuilding the counters, measurements and feedback QuickPose gave you. From QuickPose to Sency or KinesteX, the work runs the other way: you adopt their session model and, with KinesteX, a hosted web experience, and you drop code you wrote around QuickPose's building blocks. Either way, run the candidate on your own recorded exercises before you commit; [how to evaluate motion SDKs](/guides/evaluate-motion-sdks) is a protocol for doing that fairly.",
+    "faqs": [
+      {
+        "q": "Is QuickPose built on MediaPipe?",
+        "a": "Yes, by its own description. QuickPose's iOS SDK README says it provides features of MediaPipe and BlazePose with easy integration, its Swift package lists MediaPipe lite, full and heavy library modules, and its product pages say it is built on MediaPipe. What QuickPose adds is the layer above the landmarks: exercise counters, range-of-motion measurement, feedback events, overlays and camera utilities."
+      },
+      {
+        "q": "What is a free alternative to the QuickPose SDK?",
+        "a": "MediaPipe Pose Landmarker, the model family QuickPose wraps, is Apache-2.0 with no key or fee and runs on Android, iOS, web and Python. Apple's Vision body pose is free on iOS 14 and later, Google's ML Kit Pose Detection is free on Android and iOS under Google's terms, and MoveNet's single-person models are Apache-2.0. All of them stop at keypoints, so the counting and feedback logic becomes your work."
+      },
+      {
+        "q": "Which QuickPose alternative runs in a web browser?",
+        "a": "MediaPipe Pose Landmarker through its web Tasks API, or MoveNet through TensorFlow.js, both client-side. QuickPose's docs home mentions Wasm SDKs, but the only QuickPose package we found on npm is its React Native plugin and there is no public web repository. KinesteX, which funds this site, embeds its experience in a web page through an iframe."
+      },
+      {
+        "q": "Which QuickPose alternatives include workouts or assessments, not just pose tracking?",
+        "a": "Sency's README leads with movement and fitness assessments, progress evaluations and personalized workout plans, in a branded kit or a no-UI custom kit. Kemtai's site describes an embeddable exercise player and a library of more than 2,000 exercises for rehab. KinesteX, which funds this site, ships workout, plan, challenge and assessment views. QuickPose's own repositories contain counters and measurements but no exercise library."
+      }
+    ],
+    "related": [
+      {
+        "href": "/pricing/quickpose-pricing",
+        "label": "QuickPose pricing"
+      },
+      {
+        "href": "/compare/quickpose-vs-sency",
+        "label": "QuickPose vs Sency"
+      },
+      {
+        "href": "/alternatives/mediapipe-alternatives",
+        "label": "MediaPipe alternatives"
+      },
+      {
+        "href": "/compare/kinestex-vs-quickpose",
+        "label": "KinesteX vs QuickPose"
+      }
+    ],
+    "cta": {
+      "pitch": "Motion SDKs change platforms, pricing units and licences between releases. Subscribe and we will tell you when one of the options on this page changes in a way that matters."
+    },
+    "sources": [
+      {
+        "url": "https://github.com/quickpose/quickpose-ios-sdk",
+        "checked": "2026-10-17",
+        "note": "README description, MediaPipe modules, features, iOS 14.0+, SDK key, Apache-2.0 LICENSE"
+      },
+      {
+        "url": "https://github.com/quickpose/quickpose-android-sdk",
+        "checked": "2026-10-17",
+        "note": "feature table, Android SDK 26, no LICENSE file"
+      },
+      {
+        "url": "https://github.com/quickpose/quickpose-react-native-pose-estimation",
+        "checked": "2026-10-17",
+        "note": "React Native plugin for iOS and Android; MIT on npm"
+      },
+      {
+        "url": "https://docs.quickpose.ai/docs/MobileSDK",
+        "checked": "2026-10-17",
+        "note": "min API 26, samples API 28; Wasm SDKs on the docs home (snapshot)"
+      },
+      {
+        "url": "https://quickpose.ai/products/android-sdk/",
+        "checked": "2026-10-17",
+        "note": "on-device inference, 33-point skeleton, built on MediaPipe (snapshot)"
+      },
+      {
+        "url": "https://quickpose.ai/terms-and-conditions/",
+        "checked": "2026-10-17",
+        "note": "Apache 2.0 licence clause and fees (snapshot)"
+      },
+      {
+        "url": "https://github.com/google-ai-edge/mediapipe",
+        "checked": "2026-10-17",
+        "note": "Pose Landmarker Tasks API and Apache-2.0"
+      },
+      {
+        "url": "https://storage.googleapis.com/mediapipe-assets/Model%20Card%20BlazePose%20GHUM%203D.pdf",
+        "checked": "2026-10-17",
+        "note": "model licence and single-person scope"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/vision/vndetecthumanbodyposerequest",
+        "checked": "2026-10-17",
+        "note": "iOS 14.0 availability; the 3D request from iOS 17.0"
+      },
+      {
+        "url": "https://github.com/sency-ai/smkit-sdk",
+        "checked": "2026-10-17",
+        "note": "kits, platforms, features"
+      },
+      {
+        "url": "https://github.com/sency-ai/smkit-ios-demo",
+        "checked": "2026-10-17",
+        "note": "server-downloaded models"
+      },
+      {
+        "url": "https://www.sency.ai/pricing-packages",
+        "checked": "2026-10-18",
+        "note": "Starter and Growth plans (read through a text reader; quotes re-checked on the page by CI)"
+      },
+      {
+        "url": "https://www.sency.ai/pricing",
+        "checked": "2026-10-17",
+        "note": "trial and paid monthly fee for the first 100 active users (read through a text reader; quotes re-checked on the page by CI)"
+      },
+      {
+        "url": "https://kemtai.com/",
+        "checked": "2026-10-17",
+        "note": "embeddables, exercises, edge processing, regulatory claims (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/docs",
+        "checked": "2026-10-17",
+        "note": "platforms and contact-form access (snapshot)"
+      }
+    ],
+    "firstParty": true
+  },
+  {
+    "slug": "sency-alternatives",
+    "primaryQuery": "sency alternatives",
+    "h1": "Sency Alternatives, Routed by Why You Are Leaving",
+    "metaTitle": "Sency Alternatives (2026): Motion SDKs and Pose Models",
+    "metaDescription": "Alternatives to Sency's SMKit by reason for leaving: web support, a cheaper paid plan, offline models, clinical scope or open licences. Checked, disclosed.",
+    "updated": "2026-10-18",
+    "answer": "The right Sency alternative depends on why you are leaving. Sency's own platform table marks JavaScript as not available, so web products turn to MediaPipe's web Tasks API, MoveNet or KinesteX, which funds this site; teams wanting a cheaper first paid plan look at QuickPose; and teams that need models inside the app from the first launch use MediaPipe, Apple Vision or ML Kit, since Sency's iOS kits download their models from Sency's server. Clinical teams look at Kemtai, which describes an FDA listing and CE marking.",
+    "body": "**Disclosure: this site is funded by KinesteX, which sells a motion-tracking SDK that competes with Sency.** KinesteX appears below in the groups where it genuinely fits, after the third-party options and labelled as ours. Every fact about every vendor comes from its own repositories, package registries or published pages as fetched on October 17, 2026; anything we could not verify is marked.\n\n## What you would be replacing\n\nSency's SDK README describes \"AI motion analysis technology that understands and enhances human movement through just a smartphone camera—no extra hardware needed\". In practice that is two products sharing one engine:\n\n- **The Custom Kit (SMKit)**, which Sency's version table calls a \"Native no-UI SDK\". Its iOS demo states the division of labour plainly: you own the camera preview, session lifecycle, exercise UI, skeleton rendering and result presentation.\n- **The Branded Kit (SMKitUI)**, where \"the entire user interface and experience are ready to use\" as a white label.\n\nBoth kits cover iOS, Android, React Native and Flutter; Sency's own platform table marks JavaScript and Unity as not available. The README leads with initial movement and fitness assessments, monthly progress evaluations and personalized workout plans, and the iOS demo documents body calibration, adaptive range of motion and a session lifecycle. Sency also documents an MCP server for AI coding tools that need its SDK documentation, and its FAQ says data is \"analyzed directly on the user's device, never sent to the cloud\". Pricing is per monthly active user, counted once a month: its packages page lists a free Starter plan for up to 100 and a Growth plan from $499 a month for up to 3,800, while its main pricing page describes the first 100 as a paid tier after a free trial. [Sency pricing](/pricing/sency-pricing) sets out both.\n\n## Why teams look elsewhere\n\nThese are the reasons the sources support:\n\n- **No web target.** The platform table marks JavaScript \"NA\". A product with a browser or PWA surface needs something else for it.\n- **Models arrive from Sency's server.** The iOS SMKit README says version 2.3.6 \"downloads models and required SDK assets from the server\" and \"does not include bundled fallback models\", so the first configuration needs a connection; a valid cache can be used offline later. The Android demo describes the same for its 1.9.4 release candidate. If a cold first launch must work offline, or you must pin model files in your own app, that is a structural mismatch.\n- **Commercial terms are a separate agreement.** The LICENSE file in Sency's repositories is its Terms of Use, last updated in September 2022, and it says any commercial or production use is governed by a separate paid service agreement. It is not an open-source licence.\n- **A big first paid step, and two pages that disagree.** Above the free Starter plan, Sency's packages page lists Growth from $499 a month, and its main pricing page describes the first 100 users as a paid tier instead. Sign-up runs through a contact form that leads to a call. Teams that want a cheaper first paid plan or one unambiguous price list look elsewhere.\n- **Platform floors.** The Custom Kit's iOS demo pins iOS 16.0, and SMKitUI states iOS 15 or later. Teams still supporting older devices should check this first.\n\n## The alternatives, by reason for leaving\n\n### You need a web or PWA surface\n\n- **MediaPipe Pose Landmarker** has a web Tasks API that runs in the browser, under Apache-2.0, with no key. You build the exercise logic. See [MediaPipe Pose Landmarker models](/motion/mediapipe-pose-landmarker-models).\n- **MoveNet** runs through TensorFlow.js; its SinglePose models are Apache-2.0. See [MoveNet models](/motion/movenet-models).\n- **KinesteX**, which funds this site, has HTML and JavaScript and PWA integrations that load its hosted experience in an iframe, alongside iOS, Android, React Native and Flutter SDKs that wrap the same experience in a WebView. See [KinesteX vs Sency](/compare/kinestex-vs-sency), written to the same disclosure standard as this page.\n\n### You want a cheaper first paid plan\n\n**QuickPose** publishes plans from $25 a month for up to 100 monthly active devices to $1,000 a month for up to 100,000, every SDK feature on every plan, with a free tier for 10 devices and a free SDK key. Units differ, devices against users, so model your own numbers. It is a MediaPipe-based toolkit of counters, range-of-motion measurement and overlays rather than an assessment and workout product, so compare scope as well as price: [QuickPose vs Sency](/compare/quickpose-vs-sency) and [QuickPose pricing](/pricing/quickpose-pricing).\n\n### Models must ship inside your app and work offline from the first launch\n\n- **MediaPipe Pose Landmarker** loads a `.task` file you can bundle and pin, which Google's own Android sample does with a versioned download URL.\n- **Apple Vision** body pose runs from the operating system on iOS 14 and later (3D from iOS 17), with no model file at all. See [Apple Vision body pose](/motion/apple-vision-body-pose).\n- **ML Kit Pose Detection** runs on Android and iOS under Google's terms; its Android guide says the API \"uses a bundled library that increases your app size\". Google labels it beta and says it detects one person. See [ML Kit pose detection](/motion/ml-kit-pose-detection).\n- **QuickPose** bundles MediaPipe libraries in its SDK modules and describes on-device inference.\n\n### Your product is clinical or regulated rehab\n\n**Kemtai** positions itself for that work: embeddable exercise and patient-management components, data APIs that pull exercise scores and range-of-motion results back into your system, a library of more than 2,000 exercises, processing on the device with no video recorded, and an FDA listing and CE marking as a medical device. Its API documentation is behind an email request and it publishes no prices, so expect a sales process.\n\n### You want an open-source licence end to end\n\nMediaPipe's framework and Pose Landmarker models are Apache-2.0, and MoveNet's SinglePose code and model card are Apache-2.0. The text of the MoveNet MultiPose card carries no licence line, Ultralytics YOLO is AGPL-3.0 unless you buy an Enterprise License, and OpenPose is for noncommercial research only. [Pose estimation model licenses](/motion/pose-estimation-model-licenses) reads each one.\n\n## What we verified, and where\n\n| Option | Verified | From | Not verified |\n| --- | --- | --- | --- |\n| Sency | Kits, platforms (JS and Unity NA), server-downloaded models, iOS floors, Terms of Use, published plans | Its GitHub repos and pricing pages | How its Growth rates combine; accuracy; the Exploration Kit's contents |\n| QuickPose | Published plans, MediaPipe-based modules, platforms, on-device claim | Its pricing page, GitHub repos and product pages | Accuracy |\n| MediaPipe | Web, Android, iOS and Python Tasks; Apache-2.0; pinned sample URLs | google-ai-edge repositories and Google's model card | Behaviour on your exercises |\n| Apple Vision | 2D from iOS 14, 3D from iOS 17 | Apple's documentation | Accuracy, which Apple does not publish |\n| ML Kit | 33 landmarks, one person, beta, Android and iOS | Google's ML Kit guide | Google's plans for the beta |\n| Kemtai | Embeddables, data APIs, exercise library, edge processing, regulatory claims | Its website | API docs (email-gated); pricing |\n| KinesteX | Iframe and WebView architecture, platforms, contact-form access | Its GitHub repos and website | Pricing (not published); accuracy |\n\n## Is switching easy?\n\nLeaving Sency's Branded Kit means replacing a whole UI as well as the tracking. Leaving the Custom Kit is closer to a model swap, because your app already owns the camera, rendering and results, but assessments, feedback and plans that Sency computed become your code unless the new vendor supplies them. Run any candidate on your own recorded exercises first; [how to evaluate motion SDKs](/guides/evaluate-motion-sdks) sets out a fair protocol.",
+    "faqs": [
+      {
+        "q": "Does Sency's SMKit work offline?",
+        "a": "After the first setup, partly. Sency's iOS SMKit README says the SDK downloads its models and required assets from Sency's server, includes no bundled fallback models, and needs the device online for the first configuration, after which a valid previously downloaded cache can be used offline. Its Android demo describes the same pattern. If a first launch must work with no connection, a model you bundle yourself, such as MediaPipe's, is the safer shape."
+      },
+      {
+        "q": "Is there a Sency alternative for web apps?",
+        "a": "Yes, several. Sency's platform table marks JavaScript as not available. MediaPipe Pose Landmarker has a web Tasks API that runs in the browser, MoveNet runs through TensorFlow.js, and KinesteX, which funds this site, loads its hosted experience in an iframe for HTML, JavaScript and PWA products. The free models stop at keypoints, so the counting and feedback logic becomes your work."
+      },
+      {
+        "q": "Is Sency's SDK open source?",
+        "a": "No. The LICENSE file in Sency's GitHub repositories is Sency's Terms of Use, last updated in September 2022, and it says commercial or production use is governed by a separate paid service agreement. The repositories are demos and documentation for a proprietary SDK. If you need an open-source licence end to end, MediaPipe and MoveNet's single-person models are Apache-2.0."
+      },
+      {
+        "q": "Which Sency alternative suits clinical rehab products?",
+        "a": "Kemtai positions itself for that work. Its site describes embeddable exercise and patient-management components, data APIs that return exercise scores and range-of-motion results, a library of more than 2,000 exercises, processing on the device with no video recorded, and an FDA listing and CE marking as a medical device. Its API documentation is behind an email request and it publishes no prices, so expect a sales process."
+      }
+    ],
+    "related": [
+      {
+        "href": "/compare/quickpose-vs-sency",
+        "label": "QuickPose vs Sency"
+      },
+      {
+        "href": "/compare/kinestex-vs-sency",
+        "label": "KinesteX vs Sency"
+      },
+      {
+        "href": "/alternatives/quickpose-alternatives",
+        "label": "QuickPose alternatives"
+      },
+      {
+        "href": "/alternatives/mediapipe-alternatives",
+        "label": "MediaPipe alternatives"
+      }
+    ],
+    "cta": {
+      "pitch": "Motion SDK vendors change platforms, pricing and licence terms between releases. Subscribe and we will flag it when an option on this page changes in a way that affects a build decision."
+    },
+    "sources": [
+      {
+        "url": "https://github.com/sency-ai/smkit-sdk",
+        "checked": "2026-10-17",
+        "note": "description, kits, platform table, version table, FAQ and Terms of Use LICENSE"
+      },
+      {
+        "url": "https://github.com/sency-ai/smkit-ios-demo",
+        "checked": "2026-10-17",
+        "note": "iOS 16.0 Podfile, server-downloaded models, session lifecycle, calibration, adaptive ROM, MCP server"
+      },
+      {
+        "url": "https://github.com/sency-ai/smkit-ui-ios-demo",
+        "checked": "2026-10-17",
+        "note": "SMKitUI iOS 15 or later"
+      },
+      {
+        "url": "https://github.com/sency-ai/smkit-android-demo",
+        "checked": "2026-10-17",
+        "note": "server-delivered models in the 1.9.4 release candidate"
+      },
+      {
+        "url": "https://www.sency.ai/pricing-packages",
+        "checked": "2026-10-18",
+        "note": "Starter and Growth plans (read through a text reader; quotes re-checked on the page by CI)"
+      },
+      {
+        "url": "https://www.sency.ai/pricing",
+        "checked": "2026-10-17",
+        "note": "trial, paid monthly fee for the first 100, contact form (read through a text reader; quotes re-checked on the page by CI)"
+      },
+      {
+        "url": "https://www.sency.ai/faq-motion-tracking",
+        "checked": "2026-10-18",
+        "note": "on-device processing claim (read through a text reader; quotes re-checked on the page by CI)"
+      },
+      {
+        "url": "https://quickpose.ai/sdk-pricing/",
+        "checked": "2026-10-17",
+        "note": "published plans (snapshot)"
+      },
+      {
+        "url": "https://github.com/google-ai-edge/mediapipe",
+        "checked": "2026-10-17",
+        "note": "Tasks platforms and Apache-2.0"
+      },
+      {
+        "url": "https://github.com/google-ai-edge/mediapipe-samples",
+        "checked": "2026-10-17",
+        "note": "the Android sample's versioned model URLs"
+      },
+      {
+        "url": "https://developers.google.com/ml-kit/vision/pose-detection",
+        "checked": "2026-10-17",
+        "note": "beta status, one person, 33 landmarks"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/vision/vndetecthumanbodyposerequest",
+        "checked": "2026-10-17",
+        "note": "iOS 14.0; the 3D request from iOS 17.0"
+      },
+      {
+        "url": "https://kemtai.com/",
+        "checked": "2026-10-17",
+        "note": "embeddables, data APIs, exercises, edge processing, regulatory claims (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/docs",
+        "checked": "2026-10-17",
+        "note": "platforms (snapshot)"
+      }
+    ],
+    "firstParty": true
   }
 ];

@@ -1,0 +1,177 @@
+[
+  {
+    "claim": "QuickPose's iOS SDK README describes it as providing developer-oriented ML features of MediaPipe and BlazePose.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "QuickPose provides developer-oriented cutting edge ML features of MediaPipe and BlazePose, with easy integration and production ready code"
+  },
+  {
+    "claim": "The SDK modules bundle MediaPipe libraries (QuickPoseMP-lite, -full and -heavy).",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "Mediapipe Lite Library"
+  },
+  {
+    "claim": "The SDK modules bundle MediaPipe libraries (QuickPoseMP-lite, -full and -heavy).",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "Mediapipe Heavy Library"
+  },
+  {
+    "claim": "iOS 14.0 or later.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "iOS 14.0+ - Xcode 10.0+"
+  },
+  {
+    "claim": "Range-of-motion measurement for shoulders, hips, knees, back and neck.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "Health - Range Of Motion"
+  },
+  {
+    "claim": "Body-position and limb-not-visible feedback.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "Named Leg or Arm not visible"
+  },
+  {
+    "claim": "Raised-finger and thumbs-up inputs.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "Raised Finger Detection & Count"
+  },
+  {
+    "claim": "Android: its docs give a minimum of API 26 and note that sample code needs API 28 because of CameraX.",
+    "url": "https://docs.quickpose.ai/docs/MobileSDK",
+    "quote": "Quickpose Min API 26, but sample code is restricted by camera X at Min API 28."
+  },
+  {
+    "claim": "A React Native plugin, @quickpose/react-native, for iOS and Android.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-react-native-pose-estimation/main/README.md",
+    "quote": "Provides real-time body tracking, fitness rep counting, range of motion measurement, and skeleton overlays on iOS and Android."
+  },
+  {
+    "claim": "Its product pages describe on-device inference with no video frames sent to a server.",
+    "url": "https://quickpose.ai/products/android-sdk/",
+    "quote": "All inference runs on the device's NPU. No video frames are ever sent to a server"
+  },
+  {
+    "claim": "Its product pages describe a 33-point skeleton.",
+    "url": "https://quickpose.ai/products/android-sdk/",
+    "quote": "33-point full-body skeleton detection in real time."
+  },
+  {
+    "claim": "Its product pages say it is built on MediaPipe.",
+    "url": "https://quickpose.ai/products/android-sdk/",
+    "quote": "Built on MediaPipe, Google's open-source ML framework."
+  },
+  {
+    "claim": "Plans by monthly active device: free for 10 devices.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Up to 10 devices is free — no card required."
+  },
+  {
+    "claim": "QuickPose's docs home mentions Wasm SDKs.",
+    "url": "https://docs.quickpose.ai/",
+    "quote": "Add Pose Estimation and Detection to your apps quickly with our iOS, Android and Wasm SDKs."
+  },
+  {
+    "claim": "QuickPose's terms license the SDK under Apache 2.0.",
+    "url": "https://quickpose.ai/terms-and-conditions/",
+    "quote": "QuickPose AI SDK and JointTrack API are licensed to the User under the Apache 2.0 license, subject to the terms of this agreement."
+  },
+  {
+    "claim": "The same terms say use \"may be subject to fees\".",
+    "url": "https://quickpose.ai/terms-and-conditions/",
+    "quote": "may be subject to fees, which the User agrees to pay in a timely manner."
+  },
+  {
+    "claim": "The iOS repository is Apache-2.0.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/LICENSE",
+    "quote": "Apache License Version 2.0, January 2004"
+  },
+  {
+    "claim": "MediaPipe Pose Landmarker: maximum number of poses option in the Tasks API (default 1).",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+    "quote": "num_poses: The maximum number of poses can be detected by the PoseLandmarker."
+  },
+  {
+    "claim": "MediaPipe framework is Apache-2.0.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/LICENSE",
+    "quote": "Apache License Version 2.0, January 2004"
+  },
+  {
+    "claim": "Sency's branded kit: the entire user interface and experience are ready to use.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "The *Branded Kit* offers a rapid deployment model where the entire user interface and experience are ready to use."
+  },
+  {
+    "claim": "Sency's custom kit has no predefined UI.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "It does not include any predefined UI, providing a clean slate for thorough customization and personalization."
+  },
+  {
+    "claim": "Sency's README leads with movement and fitness assessments, monthly progress evaluations and personalized workout plans.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "Track improvements with regular monthly assessments."
+  },
+  {
+    "claim": "Sency's iOS kits download their models from Sency's server at configuration.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "SMKit 2.3.6 downloads models and required SDK assets from the server. It does not include bundled fallback models."
+  },
+  {
+    "claim": "Sency's main pricing page describes the first 100 users as a paid tier after a trial.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "After that, you'll start paying a minimal monthly fee to continue building and testing, which includes access for up to 100 active users."
+  },
+  {
+    "claim": "Sency's packages page lists a free Starter plan for up to 100 monthly active users.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Up to 100 monthly active users"
+  },
+  {
+    "claim": "Sency's packages page lists a Growth plan from $499 a month.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Publish & Monetize From $499 / month"
+  },
+  {
+    "claim": "Kemtai: embeddable exercise and patient-management components.",
+    "url": "https://kemtai.com/kemtai-api-and-embeddables/",
+    "quote": "Integrate pre-built UI/UX components directly into your health app or EMR, with your branding and workflow."
+  },
+  {
+    "claim": "Kemtai: data APIs.",
+    "url": "https://kemtai.com/kemtai-api-and-embeddables/",
+    "quote": "Kemtai’s data APIs provide you with full access to the patient data generated within Kemtai, and you can push your own data into Kemtai."
+  },
+  {
+    "claim": "Kemtai: a library of more than 2,000 exercises.",
+    "url": "https://kemtai.com/",
+    "quote": "Library of 2,000+ exercises and movement variations"
+  },
+  {
+    "claim": "Kemtai: processing on the device with no video recorded.",
+    "url": "https://kemtai.com/",
+    "quote": "Processing is done on the edge device, and video is not recorded"
+  },
+  {
+    "claim": "Kemtai: an FDA listing and CE marking as a medical device.",
+    "url": "https://kemtai.com/",
+    "quote": "FDA-listed and CE-marked medical device"
+  },
+  {
+    "claim": "Kemtai's API docs are behind an email request.",
+    "url": "https://kemtai.com/",
+    "quote": "Please enter your email address to receive access to Kemtai’s API docs"
+  },
+  {
+    "claim": "KinesteX embeds a hosted camera workout experience through a WebView.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-AI-Kit/main/README.md",
+    "quote": "A SwiftUI package that embeds KinesteX’s AI-powered camera workout experience as a WebView."
+  },
+  {
+    "claim": "KinesteX: iframe on the web.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-PWA/main/README.md",
+    "quote": "Displaying KinesteX through iframe:"
+  },
+  {
+    "claim": "KinesteX access starts with a contact form.",
+    "url": "https://www.kinestex.com/docs",
+    "quote": "To get demo access and your API key, fill out the contact form on our website."
+  }
+]

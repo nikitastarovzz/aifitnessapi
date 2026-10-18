@@ -1,0 +1,97 @@
+[
+  {
+    "claim": "Google's sample download script fetches the lite model from the float16/latest path.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe-samples/main/examples/pose_landmarker/ios/RunScripts/download_models.sh",
+    "quote": "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/latest/pose_landmarker_lite.task"
+  },
+  {
+    "claim": "Google's sample download script fetches the full model from the float16/latest path.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe-samples/main/examples/pose_landmarker/ios/RunScripts/download_models.sh",
+    "quote": "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_full/float16/latest/pose_landmarker_full.task"
+  },
+  {
+    "claim": "Google's sample download script fetches the heavy model from the float16/latest path.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe-samples/main/examples/pose_landmarker/ios/RunScripts/download_models.sh",
+    "quote": "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_heavy/float16/latest/pose_landmarker_heavy.task"
+  },
+  {
+    "claim": "Google's Android sample fetches the files from a /1/ path in the version slot instead of /latest/.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe-samples/main/examples/pose_landmarker/android/app/download_tasks.gradle",
+    "quote": "src 'https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_heavy/float16/1/pose_landmarker_heavy.task'"
+  },
+  {
+    "claim": "The older MediaPipe Pose solution was superseded on May 10, 2023.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "As of May 10, 2023, this solution was upgraded to a new MediaPipe Solution."
+  },
+  {
+    "claim": "MediaPipe describes a two-step detector-plus-landmarker design.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "The solution utilizes a two-step detector-tracker ML pipeline"
+  },
+  {
+    "claim": "Fitness quality table: 17 COCO keypoints, a single person 2 to 4 m from the camera.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "Each image contains only a single person located 2-4 meters from the camera."
+  },
+  {
+    "claim": "Yoga PCK@0.2 96.4 and HIIT 97.5 for heavy.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "BlazePose GHUM Heavy | 68.1 | **96.4** | 73.0 | **97.2** | 74.0 | **97.5**"
+  },
+  {
+    "claim": "Yoga PCK@0.2 95.5 and HIIT 95.7 for full.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "BlazePose GHUM Full | 62.6 | **95.5** | 67.4 | **96.3** | 68.0 | **95.7**"
+  },
+  {
+    "claim": "Yoga PCK@0.2 90.2 and HIIT 93.5 for lite.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "BlazePose GHUM Lite | 45.0 | **90.2** | 53.6 | **92.5** | 53.8 | **93.5**"
+  },
+  {
+    "claim": "Pixel 3 TFLite GPU latency: heavy 53 ms.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "BlazePose GHUM Heavy | 53 ms"
+  },
+  {
+    "claim": "Pixel 3 TFLite GPU latency: full 25 ms.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "BlazePose GHUM Full | 25 ms"
+  },
+  {
+    "claim": "Pixel 3 TFLite GPU latency: lite 20 ms.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "BlazePose GHUM Lite | 20 ms"
+  },
+  {
+    "claim": "World landmarks in meters with the origin at the midpoint between the hips.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "Real-world 3D coordinates in meters with the origin at the center between hips."
+  },
+  {
+    "claim": "An optional segmentation mask with per-pixel values from 0.0 to 1.0.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "The mask has the same width and height as the input image, and contains values in `[0.0, 1.0]`"
+  },
+  {
+    "claim": "Per-landmark visibility and presence values.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/components/containers/landmark.py",
+    "quote": "presence: Landmark presence. Should stay unset if not supported."
+  },
+  {
+    "claim": "MediaPipe's source documents num_poses as the maximum number of poses the PoseLandmarker can detect.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/cc/vision/pose_landmarker/pose_landmarker.h",
+    "quote": "The maximum number of poses can be detected by the PoseLandmarker."
+  },
+  {
+    "claim": "num_poses defaults to 1 in the Python options.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+    "quote": "num_poses: int = 1"
+  },
+  {
+    "claim": "The MediaPipe framework is Apache-2.0.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/LICENSE",
+    "quote": "Apache License Version 2.0, January 2004"
+  }
+]

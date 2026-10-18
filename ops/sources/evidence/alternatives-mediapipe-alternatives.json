@@ -1,0 +1,162 @@
+[
+  {
+    "claim": "World landmarks: real-world 3D coordinates in meters with the origin at the center between hips.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "Real-world 3D coordinates in meters with the origin at the center between hips."
+  },
+  {
+    "claim": "The Tasks API on Android, web and Python (setup guides).",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/README.md",
+    "quote": "deploy to mobile (Android, iOS), web, desktop, edge devices, and IoT, effortlessly."
+  },
+  {
+    "claim": "Apache-2.0 for the framework.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/LICENSE",
+    "quote": "Apache License Version 2.0, January 2004"
+  },
+  {
+    "claim": "The Tasks API has a num_poses option documented as the maximum number of poses the PoseLandmarker can detect.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+    "quote": "num_poses: The maximum number of poses can be detected by the PoseLandmarker."
+  },
+  {
+    "claim": "num_poses defaults to 1.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+    "quote": "num_poses: int = 1"
+  },
+  {
+    "claim": "The older MediaPipe Pose solution was retired in favour of the Tasks version on May 10, 2023.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "As of May 10, 2023, this solution was upgraded to a new MediaPipe Solution."
+  },
+  {
+    "claim": "Ultralytics' pose docs present YOLO26 pose models pretrained on COCO keypoints.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/en/tasks/pose.md",
+    "quote": "YOLO26 Pose models pretrained on the [COCO keypoints]"
+  },
+  {
+    "claim": "Five sizes, n to x.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/macros/yolo-pose-perf.md",
+    "quote": "[YOLO26x-pose](https://platform.ultralytics.com/ultralytics/yolo26/yolo26x-pose)"
+  },
+  {
+    "claim": "17 keypoints.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/ultralytics/cfg/datasets/coco-pose.yaml",
+    "quote": "kpt_shape: [17, 3] # number of keypoints, number of dims (2 for x,y or 3 for x,y,visible)"
+  },
+  {
+    "claim": "AGPL-3.0 unless you buy Ultralytics' Enterprise License.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/README.md",
+    "quote": "bypassing the open-source requirements of AGPL-3.0"
+  },
+  {
+    "claim": "Ultralytics code is AGPL-3.0.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/LICENSE",
+    "quote": "GNU AFFERO GENERAL PUBLIC LICENSE Version 3, 19 November 2007"
+  },
+  {
+    "claim": "OpenPose is a multi-person system built on Part Affinity Fields.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/README.md",
+    "quote": "OpenPose: Realtime Multi-Person 2D Pose Estimation using Part Affinity Fields"
+  },
+  {
+    "claim": "OpenPose is licensed for academic or non-profit noncommercial research only.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/LICENSE",
+    "quote": "ACADEMIC OR NON-PROFIT ORGANIZATION NONCOMMERCIAL RESEARCH USE ONLY"
+  },
+  {
+    "claim": "OpenPose runs as CUDA, OpenCL or CPU-only builds.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/README.md",
+    "quote": "**Hardware compatibility**: CUDA (Nvidia GPU), OpenCL (AMD GPU), and non-GPU (CPU-only) versions."
+  },
+  {
+    "claim": "RTMPose pairs a person detector with the pose model.",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/main/projects/rtmpose/README.md",
+    "quote": "[RTMDet-nano](./rtmdet/person/rtmdet_nano_320-8xb32_coco-person.py) | [RTMPose-m](./rtmpose/body_2d_keypoint/rtmpose-m_8xb256-420e_coco-256x192.py)"
+  },
+  {
+    "claim": "RTMPose has 26-keypoint body models.",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/main/projects/rtmpose/README.md",
+    "quote": "#### 26 Keypoints"
+  },
+  {
+    "claim": "RTMPose has 133-keypoint whole-body models.",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/main/projects/rtmpose/README.md",
+    "quote": "### WholeBody 2d (133 Keypoints)"
+  },
+  {
+    "claim": "RTMPose deploys through ONNX Runtime, TensorRT, ncnn and more.",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/main/projects/rtmpose/README.md",
+    "quote": "multiple inference backends such as ONNXRuntime, TensorRT, ncnn, etc."
+  },
+  {
+    "claim": "MMPose's codebase is Apache-2.0.",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/main/LICENSE",
+    "quote": "Apache License Version 2.0, January 2004"
+  },
+  {
+    "claim": "YOLO26 pose models export to formats including ONNX, CoreML and TensorRT.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/en/tasks/pose.md",
+    "quote": "Yes, you can export a YOLO26-pose model to various formats like ONNX, CoreML, TensorRT, and more."
+  },
+  {
+    "claim": "MoveNet: 17 keypoints.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/README.md",
+    "quote": "MoveNet is an ultra fast and accurate model that detects 17 keypoints of a body."
+  },
+  {
+    "claim": "QuickPose's README describes developer-oriented ML features of MediaPipe and BlazePose.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "QuickPose provides developer-oriented cutting edge ML features of MediaPipe and BlazePose"
+  },
+  {
+    "claim": "QuickPose ships MediaPipe lite, full and heavy libraries as modules.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "Mediapipe Lite Library"
+  },
+  {
+    "claim": "QuickPose: a free tier for 10 monthly active devices.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Up to 10 devices is free — no card required."
+  },
+  {
+    "claim": "Sency: models downloaded from Sency's server at configuration.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "SMKit 2.3.6 downloads models and required SDK assets from the server."
+  },
+  {
+    "claim": "Sency ships assessments, progress evaluations and workout plans.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "Initial Movement and Fitness Assessments:"
+  },
+  {
+    "claim": "Sency's pricing packages page lists a free Starter plan.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Build & Launch FREE"
+  },
+  {
+    "claim": "Sency's Starter plan covers up to 100 monthly active users.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Up to 100 monthly active users"
+  },
+  {
+    "claim": "Sency's Growth plan starts from $499 a month.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Publish & Monetize From $499 / month"
+  },
+  {
+    "claim": "Kemtai: embeddable components.",
+    "url": "https://kemtai.com/kemtai-api-and-embeddables/",
+    "quote": "Integrate pre-built UI/UX components directly into your health app or EMR, with your branding and workflow."
+  },
+  {
+    "claim": "Kemtai: an FDA listing and CE marking described on its site.",
+    "url": "https://kemtai.com/",
+    "quote": "FDA-listed and CE-marked medical device"
+  },
+  {
+    "claim": "KinesteX embeds a hosted workout experience through a WebView.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-AI-Kit/main/README.md",
+    "quote": "A SwiftUI package that embeds KinesteX’s AI-powered camera workout experience as a WebView."
+  }
+]

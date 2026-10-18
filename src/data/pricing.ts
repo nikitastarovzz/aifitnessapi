@@ -30,6 +30,8 @@ export const RELEASED_PRICING = new Set<string>([
   "sahha-api-pricing",
   "thryve-api-pricing",
   "mindbody-api-pricing",
+  "quickpose-pricing",
+  "sency-pricing",
 ]);
 
 export const allPricing: ClusterEntry[] = pricingEntries;

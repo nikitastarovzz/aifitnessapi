@@ -1,0 +1,217 @@
+[
+  {
+    "claim": "Sency's SDK README describes AI motion analysis technology through just a smartphone camera.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "AI motion analysis technology that understands and enhances human movement through just a smartphone camera—no extra hardware needed"
+  },
+  {
+    "claim": "The Custom Kit (SMKit), which Sency's version table calls a \"Native no-UI SDK\".",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "Native no-UI SDK."
+  },
+  {
+    "claim": "Its iOS demo: you own the camera preview, session lifecycle, exercise UI, skeleton rendering and result presentation.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "It is the lower-level SDK demo: you own the camera preview, session lifecycle, exercise UI, skeleton rendering, and result presentation."
+  },
+  {
+    "claim": "The Branded Kit (SMKitUI), where the entire user interface and experience are ready to use as a white label.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "The *Branded Kit* offers a rapid deployment model where the entire user interface and experience are ready to use."
+  },
+  {
+    "claim": "Sency's platform table marks JavaScript as not available.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "| **JavaScript** | NA | NA |"
+  },
+  {
+    "claim": "Sency's platform table marks Unity as not available.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "| **Unity** | NA | NA |"
+  },
+  {
+    "claim": "The README leads with initial movement and fitness assessments.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "Initial Movement and Fitness Assessments:"
+  },
+  {
+    "claim": "Monthly progress evaluations.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "Track improvements with regular monthly assessments."
+  },
+  {
+    "claim": "Personalized workout plans.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "Personalized Workout Plans:"
+  },
+  {
+    "claim": "The iOS demo documents body calibration.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "Body calibration reports whether the user is inside the expected frame region."
+  },
+  {
+    "claim": "The iOS demo documents adaptive range of motion.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "Adaptive ROM lets supported exercises calibrate a user's current range and then adjust feedback thresholds."
+  },
+  {
+    "claim": "Sency documents an MCP server for AI coding tools that need its SDK documentation.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "Sency provides an MCP server for AI development tools that need direct SMKit documentation and exercise context."
+  },
+  {
+    "claim": "Pricing: a free trial.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "You can integrate our SDK at no cost during the free trial."
+  },
+  {
+    "claim": "Its main pricing page describes the first 100 as a paid tier after a free trial.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "After that, you'll start paying a minimal monthly fee to continue building and testing, which includes access for up to 100 active users."
+  },
+  {
+    "claim": "Its packages page lists a free Starter plan for up to 100 monthly active users.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Up to 100 monthly active users"
+  },
+  {
+    "claim": "Its packages page lists a Growth plan from $499 a month.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Publish & Monetize From $499 / month"
+  },
+  {
+    "claim": "Growth covers up to 3,800 monthly active users.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Up to 3,800 monthly active users"
+  },
+  {
+    "claim": "Its FAQ says data is analyzed directly on the user's device, never sent to the cloud.",
+    "url": "https://www.sency.ai/faq-motion-tracking",
+    "quote": "All data is processed using edge computing, meaning it's analyzed directly on the user's device, never sent to the cloud."
+  },
+  {
+    "claim": "Each active user is counted once a month.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "Each unique user is counted once per month, regardless of the number of times they use the SDK."
+  },
+  {
+    "claim": "The iOS SMKit README says version 2.3.6 downloads models and required SDK assets from the server and includes no bundled fallback models.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "SMKit 2.3.6 downloads models and required SDK assets from the server. It does not include bundled fallback models."
+  },
+  {
+    "claim": "A valid cache can be used offline later.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "a valid, previously downloaded cache can be used offline later"
+  },
+  {
+    "claim": "The Android demo describes the same for its 1.9.4 release candidate.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-android-demo/main/README.md",
+    "quote": "SMKit 1.9.4 obtains configuration and required models from the server and validates them before use."
+  },
+  {
+    "claim": "The Android demo is a 1.9.4 release candidate.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-android-demo/main/README.md",
+    "quote": "Local 1.9.4 release candidate; not yet publication or runtime sign-off."
+  },
+  {
+    "claim": "The LICENSE file is Sency's Terms of Use, last updated in September 2022.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/LICENSE",
+    "quote": "Last updated: [Sep 11th 2022]"
+  },
+  {
+    "claim": "Any commercial or production use is governed by a separate paid service agreement.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/LICENSE",
+    "quote": "ANY COMMERCIAL OR PRODUCTION USE OF THE SERVICES OR THE SOLUTION SHALL BE GOVERNED BY A SEPARATE PAID ENTERPRISE/PERSONAL SERVICE AGREEMENT"
+  },
+  {
+    "claim": "The Custom Kit's iOS demo pins iOS 16.0.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "platform :ios, '16.0'"
+  },
+  {
+    "claim": "SMKitUI states iOS 15 or later.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ui-ios-demo/main/README.md",
+    "quote": "Support: iOS 15 or later; officially validated on iPhone X and newer."
+  },
+  {
+    "claim": "KinesteX has HTML/JavaScript and PWA integrations that load its hosted experience in an iframe.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-PWA/main/README.md",
+    "quote": "Displaying KinesteX through iframe:"
+  },
+  {
+    "claim": "KinesteX's SDKs wrap the same experience in a WebView.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-AI-Kit/main/README.md",
+    "quote": "A SwiftUI package that embeds KinesteX’s AI-powered camera workout experience as a WebView."
+  },
+  {
+    "claim": "QuickPose: free for 10 monthly active devices.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Up to 10 devices is free — no card required."
+  },
+  {
+    "claim": "QuickPose: plans up to 100,000 devices at $1,000 a month.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Agency $ 1,000 per month"
+  },
+  {
+    "claim": "QuickPose: every SDK feature on every plan.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "The plans differ only in device limits and support level."
+  },
+  {
+    "claim": "QuickPose: plans from $25 a month for up to 100 monthly active devices.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Price | Free | $25/mo | $50/mo | $100/mo | $200/mo |"
+  },
+  {
+    "claim": "Google's own Android sample downloads the model with a versioned URL.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe-samples/main/examples/pose_landmarker/android/app/download_tasks.gradle",
+    "quote": "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_full/float16/1/pose_landmarker_full.task"
+  },
+  {
+    "claim": "QuickPose bundles MediaPipe libraries in its SDK modules.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "Mediapipe Full Library"
+  },
+  {
+    "claim": "The sign-up route is a contact form that leads to a call.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "We have received your message and have sent you an invitation to schedule a call with our team."
+  },
+  {
+    "claim": "ML Kit's Android guide says the API uses a bundled library that increases your app size.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection/android?hl=en",
+    "quote": "This API uses a bundled library that increases your app size."
+  },
+  {
+    "claim": "Kemtai: embeddable exercise and patient-management components.",
+    "url": "https://kemtai.com/kemtai-api-and-embeddables/",
+    "quote": "Clinicians can review patient performance, prescribe protocols, and modify care plans without leaving your product."
+  },
+  {
+    "claim": "Kemtai: data APIs that pull exercise scores and range-of-motion results back into your system.",
+    "url": "https://kemtai.com/kemtai-api-and-embeddables/",
+    "quote": "Extract detailed exercise scores, retrieve range of motion changes over time, track actual patient adherence and compliance and sync patient and staff records across systems."
+  },
+  {
+    "claim": "Kemtai: more than 2,000 exercises.",
+    "url": "https://kemtai.com/",
+    "quote": "Library of 2,000+ exercises and movement variations"
+  },
+  {
+    "claim": "Kemtai: processing on the device with no video recorded.",
+    "url": "https://kemtai.com/",
+    "quote": "Processing is done on the edge device, and video is not recorded"
+  },
+  {
+    "claim": "Kemtai: an FDA listing and CE marking as a medical device.",
+    "url": "https://kemtai.com/",
+    "quote": "FDA-listed and CE-marked medical device"
+  },
+  {
+    "claim": "Kemtai's API documentation is behind an email request.",
+    "url": "https://kemtai.com/",
+    "quote": "Please enter your email address to receive access to Kemtai’s API docs"
+  }
+]

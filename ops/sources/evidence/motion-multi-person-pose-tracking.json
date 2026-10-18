@@ -1,0 +1,37 @@
+[
+  {
+    "claim": "Ultralytics' pose docs present YOLO26 pose models.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/en/tasks/pose.md",
+    "quote": "The default YOLO26 Pose models predict the 17 COCO keypoints"
+  },
+  {
+    "claim": "RTMPose's published pipelines pair an RTMDet person detector with the pose model.",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/main/projects/rtmpose/README.md",
+    "quote": "[RTMDet-nano](./rtmdet/person/rtmdet_nano_320-8xb32_coco-person.py) | [RTMPose-m](./rtmpose/body_2d_keypoint/rtmpose-m_8xb256-420e_coco-256x192.py)"
+  },
+  {
+    "claim": "RTMPose has 26-keypoint body models.",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/main/projects/rtmpose/README.md",
+    "quote": "#### 26 Keypoints"
+  },
+  {
+    "claim": "RTMPose has 133-keypoint whole-body models.",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/main/projects/rtmpose/README.md",
+    "quote": "### WholeBody 2d (133 Keypoints)"
+  },
+  {
+    "claim": "MMPose is Apache-2.0.",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/main/LICENSE",
+    "quote": "Apache License Version 2.0, January 2004"
+  },
+  {
+    "claim": "MediaPipe's Tasks API has a num_poses setting that defaults to 1.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+    "quote": "num_poses: int = 1"
+  },
+  {
+    "claim": "PoseNet can detect multiple poses.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/README.md",
+    "quote": "PoseNet can detect multiple poses, each pose contains 17 keypoints."
+  }
+]

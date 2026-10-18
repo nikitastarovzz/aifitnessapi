@@ -69,6 +69,12 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
     blurb: "The honest overview and what drives cost.",
     slugs: ["are-fitness-apis-free", "fitness-api-free-tiers-compared", "how-much-does-a-fitness-api-cost"],
   },
+  {
+    title: "AI motion tracking SDKs",
+    blurb:
+      "Camera motion SDKs that publish their plans. KinesteX funds this site and competes with both; it publishes no prices, and these pages say so up front.",
+    slugs: ["quickpose-pricing", "sency-pricing"],
+  },
 ];
 
 const FAQS = [

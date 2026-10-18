@@ -213,7 +213,7 @@ No figures here: almost every specific price in this ecosystem is volatile, gate
 
 **The model layer is free.** Pose estimation is the rare case where the best mainstream options cost nothing per frame and run on hardware the user already owns. Apache-2.0 models plus on-device inference means no per-inference bill at all.
 
-**The commercial SDK layer is a sales conversation.** Coaching SDKs commonly price contact-sales, frequently described as usage-based per active user, and our roundup records that pricing for several vendors could not be verified from public sources. Start that conversation early: it gates unit economics, not engineering.
+**The commercial SDK layer is often a sales conversation.** Some coaching SDKs publish no prices at all, while others now publish plans per monthly active device or per active user, and our roundup records which is which. Start that conversation early: it gates unit economics, not engineering.
 
 **Aggregators are where a recurring API bill actually lands.** First-party wearable APIs mostly document no per-request fee. Aggregators do charge, typically on active or connected users, tiered, with an enterprise contact-sales top tier — so the bill scales with the thing you are trying to grow. Most per-user prices are not publicly listed.
 

@@ -36,6 +36,7 @@ export const RELEASED_COMPARE = new Set<string>([
   "terra-vs-thryve",
   "terra-vs-open-wearables",
   "terra-vs-sahha",
+  "quickpose-vs-sency",
 ]);
 
 export const allCompare: ClusterEntry[] = compareEntries;

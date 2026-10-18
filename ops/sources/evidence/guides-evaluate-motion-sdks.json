@@ -1,0 +1,97 @@
+[
+  {
+    "claim": "Apple: the subject's height should ideally be at least a third of the image height.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/detecting-human-body-poses-in-images.json",
+    "quote": "The subject’s height should ideally be at least a third of the overall image height."
+  },
+  {
+    "claim": "Apple: a large portion of the key body regions should be in the image.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/detecting-human-body-poses-in-images.json",
+    "quote": "A large portion of the subject’s key body regions and points should be present in the image."
+  },
+  {
+    "claim": "Apple: flowing or robe-like clothing reduces detection accuracy.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/detecting-human-body-poses-in-images.json",
+    "quote": "A subject wearing flowing or robe-like clothing reduces the detection accuracy."
+  },
+  {
+    "claim": "Apple's AVCam documentation: the Simulator does not have access to device cameras.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/avfoundation/avcam-building-a-camera-app.json",
+    "quote": "Because Simulator doesn’t have access to device cameras, it isn’t suitable for running the app"
+  },
+  {
+    "claim": "The Android emulator imports PNG or JPEG images into its virtual scene.",
+    "url": "https://developer.android.com/studio/run/emulator-use-camera?hl=en",
+    "quote": "you can import an image in PNG or JPEG format to be used within a virtual scene."
+  },
+  {
+    "claim": "QuickPose prices per monthly active device.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Pricing is based on monthly active devices"
+  },
+  {
+    "claim": "Sency prices per monthly active user.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Up to 100 monthly active users"
+  },
+  {
+    "claim": "Sency's main pricing page describes the first 100 users as a paid tier after a trial.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "After that, you'll start paying a minimal monthly fee to continue building and testing, which includes access for up to 100 active users."
+  },
+  {
+    "claim": "Our SDK READMEs say optional edge processing.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-Kotlin/main/README.md",
+    "quote": "Ensures data security with optional edge processing (no cloud transmission)."
+  },
+  {
+    "claim": "Our security page says all camera and vision processing stays on-device.",
+    "url": "https://www.kinestex.com/product/security",
+    "quote": "All camera and vision processing stays on-device"
+  },
+  {
+    "claim": "Sency's FAQ says data never leaves the device.",
+    "url": "https://www.sency.ai/faq-motion-tracking",
+    "quote": "All data is processed using edge computing, meaning it's analyzed directly on the user's device, never sent to the cloud."
+  },
+  {
+    "claim": "Sency's SDKs download their models from its server at configuration.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "SMKit 2.3.6 downloads models and required SDK assets from the server."
+  },
+  {
+    "claim": "Sency's platform table marks JavaScript NA.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "| **JavaScript** | NA | NA |"
+  },
+  {
+    "claim": "Sency's SMKit describes itself as a native no-UI SDK.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "Native no-UI SDK."
+  },
+  {
+    "claim": "QuickPose's public packages cover iOS, Android and React Native.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-react-native-pose-estimation/main/README.md",
+    "quote": "Provides real-time body tracking, fitness rep counting, range of motion measurement, and skeleton overlays on iOS and Android."
+  },
+  {
+    "claim": "KinesteX's SDKs embed a hosted camera experience via WebView.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-AI-Kit/main/README.md",
+    "quote": "A SwiftUI package that embeds KinesteX’s AI-powered camera workout experience as a WebView."
+  },
+  {
+    "claim": "KinesteX's README accuracy line.",
+    "url": "https://raw.githubusercontent.com/KinesteX/AI-Fitness-SDK/main/README.md",
+    "quote": "Our movements recognition models consistently exceed 90% accuracy"
+  },
+  {
+    "claim": "KinesteX's FAQ accuracy figure.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Our AI-powered motion tracking achieves 97.2% accuracy"
+  },
+  {
+    "claim": "Kemtai states its tracking was validated against a gold-standard motion lab.",
+    "url": "https://kemtai.com/",
+    "quote": "Kemtai’s accuracy on a standard consumer device was scientifically validated in a study comparing it to a gold-standard motion lab"
+  }
+]

@@ -962,5 +962,193 @@ export const pricingEntries: ClusterEntry[] =
         "note": "Accounts created on or after February 19, 2020 can only access V6.0 of the Public API."
       }
     ]
+  },
+  {
+    "slug": "quickpose-pricing",
+    "primaryQuery": "quickpose pricing",
+    "h1": "QuickPose Pricing: SDK Plans by Monthly Active Device",
+    "metaTitle": "QuickPose Pricing (2026): SDK Plans by Active Device",
+    "metaDescription": "QuickPose's published SDK prices: free for 10 monthly active devices, then $25 to $1,000 a month up to 100,000 devices. What counts and what costs extra.",
+    "updated": "2026-10-18",
+    "answer": "QuickPose publishes its SDK pricing by monthly active device: the free Personal tier covers 10 devices with no card required, and paid plans run from Builder at $25 a month for up to 100 devices to Agency at $1,000 a month for up to 100,000, with custom pricing above that. Its pricing page says every SDK feature is on every plan, so the tiers differ only in device limits and support. Billing is monthly through Stripe for the previous month's usage, and integration support and code audits cost extra. Prices are as QuickPose's SDK pricing page showed them on October 17, 2026.",
+    "body": "**Disclosure: this site is funded by KinesteX, which sells a motion-tracking SDK that competes with QuickPose.** So every figure below is copied from QuickPose's own pages as they stood on October 17, 2026, the comparison section holds KinesteX to the same \"what is actually published\" test as everyone else, and nothing here ranks KinesteX first. Where QuickPose is the cheaper or simpler choice, the page says so.\n\n## What QuickPose charges for\n\nQuickPose prices its pose-estimation SDK by **monthly active device**. Its pricing page defines one as \"any unique device that uses QuickPose features at least once in a calendar month\", counted once per month however many sessions it runs, and devices that do not use QuickPose that month are not counted. There is no per-user, per-session or per-frame fee on top. That unit matters more than the headline number: a device-based bill tracks how many phones open your camera feature, not how many accounts you have.\n\n## The SDK plans\n\nAs published on QuickPose's [SDK pricing page](https://quickpose.ai/sdk-pricing/) on October 17, 2026:\n\n| Plan | Price | Monthly active devices | Support listed |\n| --- | --- | --- | --- |\n| Personal | Free, no card required | Up to 10 | Community and developer docs, 72 hr response |\n| Builder | $25 a month | Up to 100 | Email support, 72 hr response |\n| Starter | $50 a month | Up to 1,000 | Email and ticket, 48 hr response |\n| Launch | $100 a month | Up to 2,000 | Email and ticket, 48 hr response |\n| Scale | $200 a month | Up to 5,000 | Chat, email and ticket, 48 hr response |\n| Growth | $400 a month | Up to 10,000 | Chat, email and ticket, 24 hr response |\n| Agency | $1,000 a month | Up to 100,000 | Phone, chat, email and ticket, 24 hr response |\n| Custom | Quoted | Over 100,000 | Custom SLA and contract, dedicated account manager, NDA available |\n\nThe page states that all SDK capabilities, \"including rep counting, yoga pose detection, range of motion, joint angle tracking, and sports biomechanics\", are on every plan including the free Personal tier, and that \"the plans differ only in device limits and support level\". Its plan comparison table also marks on-device processing on every plan it lists. In other words, you are not buying features by tier; you are buying headroom and response times.\n\n## Billing and what happens at the limit\n\n- **Billing** runs monthly through Stripe. QuickPose says you are charged on the 1st of each month for the previous month's usage, with \"no setup fees or long-term contracts on standard plans\".\n- **Going over** does not switch the SDK off. The page says QuickPose \"will continue working in your app\" and that you receive an invoice at the end of the month with your final device numbers.\n- **Changing or cancelling** is allowed at any time from the account dashboard; cancellations take effect at the end of the current billing period.\n- **Charging your own users** is allowed. QuickPose's answer to that question is that you are free to monetise your app however you choose.\n\n## What costs extra\n\nThe plans cover the SDK. Services are priced separately on the same page:\n\n| Service | Price as published |\n| --- | --- |\n| Integration Support (QuickPose's engineers integrate the SDK into your iOS or Android app) | On request, minimum 4 hours |\n| Code Audit of an existing integration | $150 an hour, minimum 2 hours |\n| Custom Exercise Development (a movement not in the standard library) | On request, scoped individually |\n\nAbove that sits an enterprise track with its own commercial models. QuickPose's enterprise page describes a fixed-fee proof of concept \"typically 4–8 weeks\", project-based development, monthly support retainers, NDAs on request, and containerised deployment inside your own Azure tenancy or private cloud. No prices are published for that track.\n\n## Getting a key, and what free really means\n\nThe SDK key is free to register: the iOS SDK README says \"Get your free SDK key on https://dev.quickpose.ai, usage limits may apply\", and that keys are linked to your app's bundle ID. The Android README says the same for the Play Store. In our reading, a 10-device free tier is a development and pilot allowance rather than a launch plan: a soft launch on a few hundred phones lands you on Starter. For a funded team that is small money next to the engineering QuickPose saves, and the device unit keeps the bill predictable.\n\n## Two QuickPose pages that disagree\n\nThe address quickpose.ai/pricing/ redirects to the pricing page of **JointTrack**, a separate QuickPose image-annotation API with its own per-image plans. That page still carries an older SDK FAQ which says you \"move to the Launch tier if your app has more than 100 monthly active devices\", and that education, non-profit, charity and volume pricing is available. The SDK pricing page's own table puts the free tier at 10 devices and Launch at up to 2,000 devices for $100 a month. We go by the SDK pricing page, which is the one QuickPose's navigation labels SDK Pricing, and suggest you ask QuickPose about the discount line before relying on it.\n\n## Licence and terms\n\nQuickPose's terms say the \"QuickPose AI SDK and JointTrack API are licensed to the User under the Apache 2.0 license, subject to the terms of this agreement\", and in the same section that their use \"may be subject to fees\". The iOS SDK repository carries an Apache-2.0 LICENSE file; the Android SDK repository has none, and the React Native plugin is published on npm as MIT. The terms name Sliced Backhand Ltd as QuickPose's owner and the laws of the United Kingdom as governing. Our reading: permissively licensed code in front of a keyed service that is metered by device, which is how the free key can coexist with paid plans.\n\n## How it compares with other motion SDKs\n\nOf the commercial motion SDKs we cover, only QuickPose and Sency publish prices. As each vendor's own pages stood when we read them:\n\n- **Sency** bills per monthly active user. Its pricing packages page, read on October 18, 2026, lists a free Starter plan for up to 100 monthly active users and a Growth plan from $499 a month for up to 3,800, at $0.79 per active user; its main pricing page describes a free trial and then a paid monthly fee for the first 100 instead. QuickPose's first paid plan, $25 a month, sits far below Sency's Growth plan, while Sency's free plan, if it applies, covers more users than QuickPose's. See [Sency pricing](/pricing/sency-pricing) and [QuickPose vs Sency](/compare/quickpose-vs-sency).\n- **Kemtai** publishes no prices on the pages we fetched; its site routes buyers to a demo request.\n- **KinesteX**, which funds this site, publishes no prices either. Its FAQ describes usage-based plans priced per active user per month that fall as you reach new tiers, says integration fees may apply, and access starts with a contact form. We hold it to the same standard: no number, so no number here.\n- **Free pose models** cost nothing to license: MediaPipe and MoveNet are Apache-2.0 and Apple's Vision body pose ships with the OS. What you pay instead is the engineering QuickPose packages, which [build vs buy for AI motion tracking](/motion/build-vs-buy-ai-motion-tracking) puts a shape on.\n\nIf QuickPose's per-device unit or its iOS and Android scope does not fit, the realistic options are mapped in [QuickPose alternatives](/alternatives/quickpose-alternatives).\n\n## Before you budget\n\nModel your bill on monthly active devices, not users or sessions, and check two things with QuickPose in writing: the current plan table, since the two pages above already disagree once, and whether your expected peak month crosses a tier boundary. Every price here is as published on October 17, 2026; vendors change price lists without notice, so re-open the [SDK pricing page](https://quickpose.ai/sdk-pricing/) before you commit. For what the SDK itself does, see [KinesteX vs QuickPose](/compare/kinestex-vs-quickpose), which also carries this site's disclosure.",
+    "faqs": [
+      {
+        "q": "Is QuickPose free to use?",
+        "a": "For development and very small apps, yes. QuickPose's SDK pricing page lists a free Personal tier for up to 10 monthly active devices with no card required, and says every SDK feature is available on it. Beyond 10 devices the paid plans start with Builder at $25 a month for up to 100 devices. The SDK key itself is free to register at dev.quickpose.ai, and the README notes that usage limits may apply."
+      },
+      {
+        "q": "What counts as a monthly active device for QuickPose billing?",
+        "a": "Any unique device that uses QuickPose features at least once in a calendar month. QuickPose counts a device once per month regardless of how many sessions or interactions it has, and a device that does not use QuickPose that month is not counted. Plan your tier on how many phones open the camera feature in your busiest month, not on total accounts."
+      },
+      {
+        "q": "What happens if an app goes over its QuickPose device limit?",
+        "a": "The SDK keeps working. QuickPose's pricing FAQ says it will continue working in your app, usage is calculated monthly, and you receive an invoice at the end of the month with your final device numbers. Billing runs through Stripe on the 1st of each month for the previous month, with no setup fees or long-term contracts on standard plans."
+      },
+      {
+        "q": "Do QuickPose's higher plans unlock more features?",
+        "a": "No, according to QuickPose. Its pricing page says rep counting, yoga pose detection, range of motion, joint angle tracking and sports biomechanics are available on every plan including the free tier, and that the plans differ only in device limits and support level. Higher plans buy device headroom and faster response times; integration help, code audits and custom exercises are priced as separate services."
+      },
+      {
+        "q": "Can I charge my own users for features built on QuickPose?",
+        "a": "Yes. QuickPose's pricing FAQ says you are free to monetise your app however you choose, whether through subscriptions, one-time purchases or freemium. Your QuickPose bill still depends only on monthly active devices, so a paid feature used by many devices moves you up the tiers like a free one would."
+      }
+    ],
+    "related": [
+      {
+        "href": "/compare/quickpose-vs-sency",
+        "label": "QuickPose vs Sency"
+      },
+      {
+        "href": "/alternatives/quickpose-alternatives",
+        "label": "QuickPose alternatives"
+      },
+      {
+        "href": "/pricing/sency-pricing",
+        "label": "Sency pricing"
+      },
+      {
+        "href": "/pricing",
+        "label": "All fitness & health API pricing"
+      }
+    ],
+    "cta": {
+      "pitch": "Motion SDK price lists change without notice and two of QuickPose's own pages already disagree. Subscribe and we will flag it when a published tier, unit or limit moves."
+    },
+    "sources": [
+      {
+        "url": "https://quickpose.ai/sdk-pricing/",
+        "checked": "2026-10-17",
+        "note": "plans, device limits, prices, support levels, billing, overage, cancellation and services (snapshot)"
+      },
+      {
+        "url": "https://quickpose.ai/products/jointtrack/pricing/",
+        "checked": "2026-10-17",
+        "note": "the redirect target of quickpose.ai/pricing/ and its older SDK FAQ (snapshot)"
+      },
+      {
+        "url": "https://quickpose.ai/services/enterprise/",
+        "checked": "2026-10-17",
+        "note": "enterprise proof of concept, engagement models and deployment (snapshot)"
+      },
+      {
+        "url": "https://quickpose.ai/terms-and-conditions/",
+        "checked": "2026-10-17",
+        "note": "Apache 2.0 licence clause, fees, owner and governing law (snapshot)"
+      },
+      {
+        "url": "https://github.com/quickpose/quickpose-ios-sdk",
+        "checked": "2026-10-17",
+        "note": "free SDK key line, bundle ID binding and the Apache-2.0 LICENSE"
+      },
+      {
+        "url": "https://github.com/quickpose/quickpose-android-sdk",
+        "checked": "2026-10-17",
+        "note": "SDK key line for the Play Store; no LICENSE file"
+      },
+      {
+        "url": "https://www.npmjs.com/package/@quickpose/react-native",
+        "checked": "2026-10-17",
+        "note": "MIT licence on the npm package"
+      },
+      {
+        "url": "https://www.sency.ai/pricing-packages",
+        "checked": "2026-10-18",
+        "note": "Sency's Starter and Growth plans (read through a text reader; quotes re-checked on the page by CI)"
+      },
+      {
+        "url": "https://www.sency.ai/pricing",
+        "checked": "2026-10-17",
+        "note": "Sency's trial and paid monthly fee for the first 100 active users (read through a text reader; quotes re-checked on the page by CI)"
+      },
+      {
+        "url": "https://www.kinestex.com/product/faqs",
+        "checked": "2026-10-17",
+        "note": "KinesteX pricing model answers (snapshot)"
+      }
+    ],
+    "firstParty": true
+  },
+  {
+    "slug": "sency-pricing",
+    "primaryQuery": "sency pricing",
+    "h1": "Sency Pricing: SencyMotion Plans by Monthly Active User",
+    "metaTitle": "Sency Pricing (2026): SencyMotion Plans per Active User",
+    "metaDescription": "Sency's SDK plans as published: Starter free for up to 100 monthly active users, Growth from $499 a month for up to 3,800, and where its two pages differ.",
+    "updated": "2026-10-18",
+    "answer": "Sency prices its SencyMotion SDK by monthly active user, counted once a month with unlimited activities. Its pricing packages page lists a free Starter plan for up to 100 monthly active users, a Growth plan from $499 a month for up to 3,800 at $0.79 per active user with the branded UI included, and a Customized plan priced on request. Its main pricing page describes the start differently, as a free trial followed by a minimal monthly fee that covers up to 100 active users, so confirm which applies before you budget.",
+    "body": "**Disclosure: this site is funded by KinesteX, which sells a motion-tracking SDK that competes with Sency.** So every figure below is copied from Sency's own pages and repositories, the comparison section holds KinesteX to the same test as everyone else, and nothing here ranks KinesteX first. Sency's pricing pages were read on October 17 and 18, 2026 through a text reader, because the part of the page our snapshot tool extracts holds only a contact form; every quoted passage is re-checked against Sency's live page by an automated quote check.\n\n## What Sency charges for\n\nSency prices its SencyMotion SDK by **monthly active user**. Its pricing pages define one as \"one of your users who actively uses Sency's SDK\", with an example: a platform with 10,000 users of whom 2,000 use the SDK in a month is charged for 2,000. Each unique user is counted once per month however often they use it, and Sency says it does not charge \"any additional fees for heavy usage per user\". Every plan lists unlimited monthly activities.\n\n## The plans\n\nAs listed on Sency's [pricing packages page](https://www.sency.ai/pricing-packages) on October 18, 2026:\n\n| Plan | Price | Monthly active users | What the plan lists |\n| --- | --- | --- | --- |\n| Starter (\"Build & Launch\") | Free | Up to 100 | $0 per active user, unlimited monthly activities, full access to the SencyMotion SDK, standard customer support |\n| Growth (\"Publish & Monetize\") | From $499 a month | Up to 3,800 | $0.79 per active user, unlimited monthly activities, full SDK access, premium customer support, branded UI |\n| Customized (\"A Solution for All\") | On request (\"Let's Discuss\") | Unlimited | An optimized price per active user, a dedicated support team, a tailored solution |\n\nOne thing the page does not explain is how the Growth figures combine: it shows \"From $499 / month\", \"Up to 3,800 monthly active users\" and \"$0.79 per active user\" side by side without saying whether the per-user rate is charged on top of the base, counts against it, or applies above some number of users. Ask before you model a bill.\n\n## Two Sency pages that describe the start differently\n\nSency's main [pricing page](https://www.sency.ai/pricing), read on October 17, describes the entry path in a different way. It says you can integrate \"at no cost during the free trial\", that \"after that, you'll start paying a minimal monthly fee to continue building and testing, which includes access for up to 100 active users\", and that above 100 unique active users usage is billed \"on a pay-as-you-go basis according to the rates listed on our pricing page\". The packages page calls the first 100 active users free; the main page calls them a paid tier after a trial. Both pages agree on the unit and on unlimited activities. We cannot tell from the pages which one is current, so get the answer in writing before you rely on the free tier for a launch.\n\n## Branded UI, kits and keys\n\n- **Branded UI.** Sency's FAQ says branded UI, the ability to customize, adjust or remove its default interface, \"is available for every Kit except the Exploration Kit\". The Growth plan lists \"Branded UI for your business\"; the Starter plan does not list it. Neither page says which plan the Exploration Kit belongs to.\n- **Getting a key.** The SDK README says to register \"a new client for free\" for demo access and an API client key, and that the key arrives \"automatically in a response email after you subscribe to one of our plans\". The pricing pages' contact form says Sency then invites you to schedule a call.\n- **Licence.** The LICENSE file in Sency's repositories is its Terms of Use, last updated in September 2022, which says any commercial or production use is governed by a separate paid service agreement. Plan in a contract, not just a checkout.\n- **Integration help.** The main pricing page lists free integration guidance and says integrating the SDK is the partner's responsibility, with Sency sharing best practices; it also cites a record of 54 minutes from installing the SDK to a working assessment in a partner's app, which is a speed claim, not a price.\n\n## How it compares with other motion SDKs\n\nUnits differ, so compare on your own numbers rather than on headline prices:\n\n- **QuickPose** bills per monthly active device: free for 10 devices, then $25 a month for up to 100 devices rising to $1,000 a month for up to 100,000, every SDK feature on every plan. Its paid entry is far cheaper than Sency's Growth plan; Sency's free Starter covers more users than QuickPose's free tier, if the packages page is the one that applies. See [QuickPose pricing](/pricing/quickpose-pricing) and [QuickPose vs Sency](/compare/quickpose-vs-sency).\n- **Kemtai** publishes no prices on the pages we fetched and routes buyers to a demo request.\n- **KinesteX**, which funds this site, publishes no prices either. Its FAQ describes usage-based plans priced per active user per month that fall as you reach new tiers, and says integration fees may apply.\n- **Free pose models** such as MediaPipe and MoveNet cost nothing to license; you pay in the engineering Sency packages. [Build vs buy for AI motion tracking](/motion/build-vs-buy-ai-motion-tracking) sets out that trade.\n\nIf the unit, the two-page ambiguity or the separate service agreement rules Sency out, the realistic options are in [Sency alternatives](/alternatives/sency-alternatives).\n\n## Before you budget\n\nModel the bill on monthly active users of the SDK, not total accounts. Then ask Sency three things in writing: whether the first 100 active users are free or covered by a paid monthly fee, how the Growth plan's $499 base and $0.79 per-user rate combine, and what the separate service agreement adds. Every figure here is as Sency's pages showed it on October 17 and 18, 2026; re-open both pages before you commit. For how Sency's SDK compares with ours, see [KinesteX vs Sency](/compare/kinestex-vs-sency), which carries this site's disclosure.",
+    "faqs": [
+      {
+        "q": "Is Sency free to use?",
+        "a": "It depends on which of Sency's pages applies. Its pricing packages page lists a free Starter plan for up to 100 monthly active users with full access to the SencyMotion SDK. Its main pricing page instead describes a free trial, after which a minimal monthly fee covers up to 100 active users and usage above that is pay-as-you-go. Ask Sency which one is current before you plan a launch on the free tier."
+      },
+      {
+        "q": "What counts as an active user in Sency's pricing?",
+        "a": "One of your users who actually uses Sency's SDK in the month. Sency's example is a platform with 10,000 users of whom 2,000 use the SDK, which is charged for 2,000. Each unique user is counted once per month regardless of how many times they use it, and Sency says it charges no extra fees for heavy usage per user."
+      },
+      {
+        "q": "How much does Sency's Growth plan cost?",
+        "a": "Sency's pricing packages page lists Growth from $499 a month for up to 3,800 monthly active users, with $0.79 per active user, premium customer support and the branded UI. The page shows those figures side by side without saying how the base price and the per-user rate combine, so get a written quote for your expected user count."
+      },
+      {
+        "q": "Does Sency's free plan include the branded UI?",
+        "a": "The Starter plan does not list it; the Growth plan lists branded UI for your business. Sency's FAQ says branded UI is available for every kit except the Exploration Kit, but neither pricing page says which plan the Exploration Kit belongs to, so confirm what your plan includes with Sency."
+      }
+    ],
+    "related": [
+      {
+        "href": "/compare/quickpose-vs-sency",
+        "label": "QuickPose vs Sency"
+      },
+      {
+        "href": "/alternatives/sency-alternatives",
+        "label": "Sency alternatives"
+      },
+      {
+        "href": "/pricing/quickpose-pricing",
+        "label": "QuickPose pricing"
+      },
+      {
+        "href": "/pricing",
+        "label": "All fitness & health API pricing"
+      }
+    ],
+    "cta": {
+      "pitch": "Sency's two pricing pages already disagree about the first 100 users. Subscribe and we will flag it when a motion SDK changes a plan, a unit or a free tier."
+    },
+    "sources": [
+      {
+        "url": "https://www.sency.ai/pricing-packages",
+        "checked": "2026-10-18",
+        "note": "plans, user limits, prices, per-user rate, support levels, active-user and branded UI answers (read through a text reader; quotes re-checked on the page by CI)"
+      },
+      {
+        "url": "https://www.sency.ai/pricing",
+        "checked": "2026-10-17",
+        "note": "trial, minimal monthly fee for up to 100 active users, pay-as-you-go, integration notes (read through a text reader; quotes re-checked on the page by CI)"
+      },
+      {
+        "url": "https://github.com/sency-ai/smkit-sdk",
+        "checked": "2026-10-17",
+        "note": "free client registration, API key by email after subscribing, Terms of Use LICENSE"
+      },
+      {
+        "url": "https://quickpose.ai/sdk-pricing/",
+        "checked": "2026-10-17",
+        "note": "QuickPose plans for comparison (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/product/faqs",
+        "checked": "2026-10-17",
+        "note": "KinesteX pricing model answers (snapshot)"
+      },
+      {
+        "url": "https://kemtai.com/",
+        "checked": "2026-10-17",
+        "note": "demo request (snapshot)"
+      }
+    ],
+    "firstParty": true
   }
 ];

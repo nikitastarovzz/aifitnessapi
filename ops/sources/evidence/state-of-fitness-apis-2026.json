@@ -58,5 +58,55 @@
     "claim": "Finding 4: Spike now publishes a starting price and bills on usage.",
     "url": "https://www.spikeapi.com/pricing",
     "quote": "Usage-driven, transparent, and flexible"
+  },
+  {
+    "claim": "Revision note: Sency's pricing packages page now lists per-active-user plans with prices.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Publish & Monetize From $499 / month"
+  },
+  {
+    "claim": "Revision note: Sency's packages page prices plans per active user.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "$0.79 per active user"
+  },
+  {
+    "claim": "Revision note: the packages page lists the first 100 monthly active users as free.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Build & Launch FREE"
+  },
+  {
+    "claim": "Revision note: the packages page's free Starter plan covers up to 100 monthly active users.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Up to 100 monthly active users"
+  },
+  {
+    "claim": "Revision note: Sency's main pricing page describes a free trial, then usage-based billing.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "then pay based on usage."
+  },
+  {
+    "claim": "Revision note: Sency's main pricing page describes a fixed monthly fee for up to 100 users.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "Fixed monthly fee for up to 100 users"
+  },
+  {
+    "claim": "Revision note: the main pricing page calls the first 100 active users a paid tier after the trial, so the two pages disagree.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "After that, you'll start paying a minimal monthly fee to continue building and testing, which includes access for up to 100 active users."
+  },
+  {
+    "claim": "Gate list, Sency: sign-up through a contact form that leads to a call.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "We have received your message and have sent you an invitation to schedule a call with our team."
+  },
+  {
+    "claim": "Gate list, Sency: a separate paid service agreement for commercial or production use under its Terms of Use.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/LICENSE",
+    "quote": "ANY COMMERCIAL OR PRODUCTION USE OF THE SERVICES OR THE SOLUTION SHALL BE GOVERNED BY A SEPARATE PAID ENTERPRISE/PERSONAL SERVICE AGREEMENT"
+  },
+  {
+    "claim": "Finding 4: Sency now publishes per-user plans.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Up to 3,800 monthly active users"
   }
 ]
