@@ -1,0 +1,37 @@
+[
+  {
+    "claim": "Thryve is its own company (thryve.health).",
+    "url": "https://www.thryve.health/about",
+    "quote": "since 2016 we have been transforming wearable health data into real-world impact"
+  },
+  {
+    "claim": "Thryve's wearable API integrates with over 500 wearables, including Fitbit.",
+    "url": "https://www.thryve.health/",
+    "quote": "plug-and-play wearable API integrates with over 500 leading wearables and health data ecosystems, including Apple HealthKit, Fitbit, Garmin, and Samsung Health."
+  },
+  {
+    "claim": "Sahha is its own company (sahha.ai).",
+    "url": "https://sahha.ai/",
+    "quote": "From phones and 800+ devices to biomarkers, scores, archetypes, tags and insights your product can act on."
+  },
+  {
+    "claim": "Thryve stays among vendors preparing for the move: its docs list Google Health as a data source.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "49 Google Health Web Bulk yes no"
+  },
+  {
+    "claim": "Thryve's docs mark Fitbit as deprecating on October 29, 2026.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Deprecating on Oct 29 2026"
+  },
+  {
+    "claim": "Thryve publishes guidance on the Fitbit shutdown.",
+    "url": "https://www.thryve.health/",
+    "quote": "Fitbit Shuts Down 30 October. Here Are Your Two Options to Keep Data Flowing."
+  },
+  {
+    "claim": "Sahha says Fitbit data on Android reaches its SDK through Health Connect.",
+    "url": "https://sahha.ai/integrations/",
+    "quote": "Samsung Health, Fitbit, Garmin, and hundreds of Android apps write to Health Connect — the same SDK reads it all on Android."
+  }
+]

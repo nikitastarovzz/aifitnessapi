@@ -113,45 +113,49 @@ export const entries: ClusterEntry[] =
     "slug": "health-data-aggregator-apis",
     "primaryQuery": "health data aggregator API",
     "h1": "The Best Health-Data Aggregator APIs (2026)",
-    "metaTitle": "Health-Data Aggregator APIs: Terra, Vital, Rook & Spike",
-    "metaDescription": "Compare the top health-data aggregator APIs — Terra, Vital/Junction, Rook, and Spike — on provider coverage, access friction, and pricing model.",
-    "updated": "2026-07-08",
-    "answer": "A health-data aggregator API lets you integrate once and read normalized data from hundreds of wearables instead of building a separate integration per device. The four to know in 2026 are Terra (widest coverage, credit/usage pricing), Vital/Junction (wearables plus lab diagnostics), Rook (usage-based active-user pricing with strong on-device SDKs), and Spike (broadest 360-degree scope including IoT, EMR, and labs). Pick by what you need: coverage and schema depth point to Terra, labs point to Vital/Junction, active-user pricing points to Rook, and non-wearable sources point to Spike.",
-    "body": "If you need to read data from many different wearables without building and maintaining a separate integration for each one, a health-data aggregator API is the tool for the job. Instead of writing code against Garmin, Oura, Whoop, Fitbit, and a dozen others one by one, you integrate once and the aggregator normalizes all of it into a single schema. The four worth knowing in 2026 are Terra, Vital (rebranded to Junction in 2025), Rook, and Spike. Which one fits depends less on who has the longest device list and more on how they charge, what data types they cover, and how much per-provider paperwork they leave on your plate.\n\n## Aggregators vs. platform SDKs — what an aggregator actually is\n\nThere are two different categories people lump together as \"health APIs,\" and it helps to be clear about which layer you are shopping for.\n\nPlatform SDKs — Apple `HealthKit` and Google `Health Connect` — are on-device, OS-locked data stores. They run inside one operating system, use per-data-type permission prompts rather than OAuth, and only expose what is already on that device. They are free, but they give you nothing server-side and nothing cross-user on their own.\n\nAggregators (Terra, Vital/Junction, Rook, Spike) are server-side and cross-device. One API and one OAuth-style flow normalizes data across hundreds of wearables and cloud accounts. Importantly, aggregators typically sit on top of the platform SDKs: their mobile SDKs pull from `HealthKit` and `Health Connect` on-device, and their servers pull from cloud provider APIs (Garmin, Fitbit, Oura, and so on). So it is not strictly either/or — an aggregator is the layer that unifies the platform SDKs plus the cloud accounts behind one integration.\n\n## How to compare aggregators\n\nProvider coverage looks like the obvious axis, but every vendor advertises \"500-plus\" or \"400-plus\" integrations, and those are marketing figures. Three things matter more in practice.\n\n- **Data-model fit.** Do they cover the data types you actually need — not just steps and heart rate, but sleep stages, HRV, VO2max, CGM/glucose, nutrition, body composition, or lab results? Breadth of device list matters less than whether the specific signals your product depends on come back cleanly normalized.\n- **Access and approval friction.** Aggregators broker most provider auth for you, but for several popular providers — commonly Garmin, Whoop, Strava, Dexcom, and Samsung Health — you must still register your own developer or partner credentials with that provider. That is real onboarding time, so check which providers on your list require it.\n- **Pricing model.** This is where the four genuinely diverge. Some charge usage/credit-based, some per connected user, some tier by active-user count, some are contact-sales only. Model your own volume before you commit, because the \"right\" pricing shape depends on how your user base grows.\n\nAll dollar figures below are volatile. Treat every number as \"as of 2026 — verify current pricing\" on the vendor's live pricing page before you budget against it.\n\n## The four aggregators at a glance\n\n| API | Best for | Access model | Pricing model | Watch out |\n|-----|----------|--------------|---------------|-----------|\n| Terra | Widest provider coverage plus a rich normalized schema (incl. CGM, nutrition) | OAuth-style per-user; Terra brokers provider auth | Subscription plus usage (credit-based) | Cost scales with connected users and event volume — model it first |\n| Vital / Junction | Products needing wearables and lab diagnostics in one integration | OAuth-style per-user; custom OAuth on higher tiers | Per-user / usage-based with a monthly minimum | Lab testing is US-focused; branding is mid-transition (Vital and Junction) |\n| Rook | Usage-based active-user pricing with strong on-device SDK support | Per-user; SDKs use OS permissions for Apple Health / Health Connect | Usage-based, tiered by active users | Several providers need your own developer credentials; confirm tier caps |\n| Spike | Broadest 360-degree scope beyond wearables (IoT, EMR, labs) | Per-user; dedicated implementation engineer from sandbox | Tiered, sales-assisted / contact-sales | Newer, smaller company; pricing is not itemized publicly |\n\n## Terra\n\nTerra is a unified data API built for the widest advertised provider coverage and a rich normalized schema. It exposes activity and workouts, sleep (including stages and latency), heart rate and HRV, VO2max, SpO2, nutrition, body composition, menstrual cycle, and CGM/glucose, and it markets over 500 providers spanning Garmin, Fitbit, Oura, Whoop, Polar, Withings, Strava, Samsung Health, Apple Health, and Google Fit. Access is OAuth-style per user, with Terra brokering provider auth — though for some providers you register your own developer credentials. The trade-off to know is pricing: Terra uses a subscription plus a credit-based usage model, where consumption scales with active authentications and event volume. That is fine at steady volume, but you should model your connected-user and event growth before committing (verify current pricing).\n\n## Vital / Junction\n\nVital — rebranded to Junction in 2025 alongside an $18M Series A — is the pick when you need both wearable data and lab diagnostics from one integration. Alongside wearable data across roughly 300 to 500-plus devices (activity, sleep, heart rate, workouts), it can order at-home lab kits, walk-in center visits, and mobile phlebotomy, returning structured lab results. That dual wearables-plus-labs scope is its genuine differentiator for longitudinal-care and screening products. Access is OAuth-style per user, with custom OAuth credentials on higher tiers, and pricing is per-user/usage-based with a monthly minimum. Two things to watch: the lab-testing features are US-focused, and the branding is mid-transition, so docs and domains are split between the Vital and Junction names — confirm you are reading the current docs (junction.com). Verify current pricing.\n\n## Rook\n\nRook is a unified wearable and health-data API/SDK built around usage-based, active-user pricing and strong out-of-the-box on-device support. Its SDKs integrate directly with `Health Connect` on Android and Apple Health on iOS using the OS permission model, and it covers activity, sleep, heart rate, body, and glucose/CGM across a stated 400-plus sources. Pricing is usage-based and tiered by active users — a starter tier up to roughly 750 active users, a growth tier up to around 15,000, and a custom/enterprise tier above that (\"pay only for what you use\"). The trade-off: several popular providers — Dexcom, Samsung Health, Strava, and Whoop among them — require you to bring your own developer credentials, and you should confirm the tier user-count caps against the live pricing page before you plan around them (verify current pricing).\n\n## Spike\n\nSpike positions itself as a \"Health 360-degree\" API — a single integration layer that reaches beyond wearables into IoT and medical devices, EMRs, and lab tests, with an AI/analytics layer on top. It markets normalized, ingestion-ready data from over 500 wearables and platforms (Garmin, Fitbit, Oura, Apple HealthKit, Dexcom, Withings, Whoop, and more) plus those non-wearable sources, and every org gets a dedicated implementation engineer from the sandbox stage. It is the broadest scope of the four if your product needs more than wrist data. The trade-offs: Spike is a newer, smaller company than Terra or Vital/Junction, and its pricing is tiered and sales-assisted with no durable itemized public figures — treat it as contact-sales, and verify both current pricing and any provider-specific credential requirements.\n\n## Which should you pick?\n\nThere is no single winner here; the right choice follows your use case.\n\n- **If you want the widest device coverage and a deep normalized schema (CGM, nutrition, cycle) → Terra.** Just model your usage, because the credit-based bill scales with connected users and events.\n- **If you need wearables plus lab diagnostics in one integration → Vital/Junction.** It is the one built around ordering and fulfilling lab tests, best suited to US-focused, care-oriented products.\n- **If you want usage-based, active-user pricing and first-class on-device SDKs → Rook.** Check which of your target providers require your own developer credentials, and confirm the active-user tier caps.\n- **If you need to go beyond wearables — IoT/medical devices, EMR, labs — with hands-on implementation help → Spike.** Expect a sales conversation rather than a public price.\n\n## Watch the fine print\n\nProvider counts, tier thresholds, and every dollar figure in this comparison move over time, and the vendor pricing pages are the only authoritative source. Before you commit, read the current pricing and integrations docs for whichever aggregator you shortlist, and specifically check the two things that bite later: which providers on your list require your own developer credentials, and how the pricing model behaves as your active-user count grows.",
+    "metaTitle": "Health Data Aggregator APIs Compared: Terra, Junction & More",
+    "metaDescription": "Ten health-data aggregator APIs compared from their own pages in October 2026: coverage, published prices, lab testing and which need your own credentials.",
+    "updated": "2026-10-17",
+    "answer": "A health-data aggregator API lets you integrate once and read normalized data from many wearables and health apps instead of building one integration per device. As of October 17, 2026, the main options split four ways on their own pages: breadth aggregators (Terra, Rook, Spike, Thryve), wearables plus lab ordering (Junction, and now Terra), a phone-first platform that adds scores (Sahha), and enterprise or self-hosted routes (Validic for remote patient monitoring, Open Wearables as MIT-licensed software you run). Most now publish an entry price, such as Validic's free developer tier, Junction's flat $300 a month and Terra's $399 a month billed annually, so compare the bill at your own user count and check which providers still need your own developer credentials. Human API, often listed alongside them, is now a LexisNexis product with no public price, and Metriport sells medical-record access to covered entities.",
+    "body": "If you need data from many wearables without building and maintaining a separate integration for each one, a health-data aggregator API is the tool for the job: you integrate once and the vendor normalizes Garmin, Oura, WHOOP, Fitbit, phone health stores and the rest into one schema. This page compares the ones developers shortlist, from what each vendor's own pages said when we read them on October 17, 2026. For the cost side in one place, see [health-data aggregator pricing](/pricing/health-data-aggregator-pricing).\n\n## Corrections in this revision\n\nEarlier versions of this page said Terra was wearables-only, that Junction priced per user with a monthly minimum, and that Rook's and Spike's prices could not be verified. The vendors' current pages say otherwise, so those claims are gone:\n\n- **Terra** now sells lab testing alongside its wearable API. Its homepage offers blood tests \"through home kits, mobile phlebotomy, or lab walk-ins\", and its lab page says \"Nationwide US, plus the UK\".\n- **Junction**'s pricing page lists a Launch plan at \"a flat $300 a month\" for up to 500 users and a custom Enterprise plan.\n- **Rook** publishes four plans, from Core at $399 a month for up to 750 active users, and now also sells medical-device and lab-report APIs.\n- **Spike**'s pricing page lists a Sandbox plan that \"Starts from $450 /month\", and a banner on its integrations page reads \"Raintree Systems Acquires Spike Technologies\".\n- **Human API**'s old domain now opens a LexisNexis Risk Solutions product page, covered under adjacent options below.\n\n## How to compare aggregators\n\nThree things decide the fit, in our experience, more than the size of a device list:\n\n- **The billing unit.** Terra bills credits for each connected data source and for events past a free allowance; Rook bills by active users; Sahha and Thryve charge per user above an included number; Junction's Launch plan is flat up to 500 connected users. The same 1,000 people can cost very different amounts. Model your own numbers, and see the worked comparison on our [aggregator pricing page](/pricing/health-data-aggregator-pricing).\n- **Who holds the provider credentials.** Most aggregators here still ask you to register your own developer app for some providers, commonly WHOOP, Dexcom, Strava and Samsung Health. That is onboarding time the integration code does not show.\n- **Phone health stores.** Apple Health, Health Connect and Samsung Health keep data on the device. Terra's docs say these \"have no cloud API for third parties, so your mobile app reads them with the Terra SDK and sends the data to Terra\". Terra, Junction, Rook, Spike, Sahha, Thryve and Open Wearables ship mobile SDKs for them, and Validic lists full mobile SDK access on its Enterprise plan. Our [HealthKit vs Health Connect comparison](/fitness-apis/apple-healthkit-vs-google-health-connect) covers the platform side.\n\nCoverage counts in this category are marketing figures, and the vendors count different things (providers, devices, apps that write to a phone store). Check your users' actual devices against each vendor's live list.\n\n## The aggregators at a glance\n\n| API | What it adds beyond wearables | Entry price on its pricing page | Your own provider credentials | Watch out |\n|---|---|---|---|---|\n| Terra | Lab testing in the US and UK, delivery to databases and queues, MCP server | $399 a month billed annually ($499 monthly), 100,000 credits included | Its integrations table marks Garmin, WHOOP, Strava, Dexcom and Samsung as Required | Credits scale with connected sources and events |\n| Junction (formerly Vital) | Lab testing across all 50 US states | Launch at a flat $300 a month for 1 to 500 connected users | Custom OAuth credentials are listed under Enterprise | Labs, a signed BAA and unlimited users are Enterprise-only |\n| Rook | Medical-device readings, lab-report parsing, a 0 to 100 health score | Core at $399 a month for up to 750 active users | Dexcom, Samsung Health, Strava and WHOOP | Standard contract term is 12 months |\n| Spike | Medical IoT, lab-report OCR, food-photo nutrition, MCP | Sandbox from $450 a month | Not stated in the docs we read | Its site announces an acquisition by Raintree Systems |\n| Sahha | Phone-as-sensor data, scores and archetypes | Starter at $299 a month billed annually with 1,000 users | Its beta cloud integrations use your own provider app, Garmin with approval | Direct cloud integrations are beta and sandbox-only |\n| Thryve | EU hosting in Germany, analytics for insurers and research | Start Up from 499 euros a month with 500 users | Your own OAuth client where Thryve has no shared one, such as Dexcom and WHOOP | Start Up stores data for two weeks |\n| Validic | Remote patient monitoring programs that write into the EHR | Inform Developer plan free for 5 users | Several vendors are closed to new applications | Acquired by ChartSpan in June 2026 |\n| Open Wearables | MIT-licensed software you host yourself | Free open-source core; custom Enterprise | Yes: you register with each cloud provider | You run, secure and upgrade it; pre-1.0 APIs |\n\nEvery price is a list price from the vendor's page on October 17, 2026, before taxes, add-ons and negotiated discounts.\n\n## Terra\n\nTerra's FAQ describes one API that \"returns standardised data from 500+ providers, including Garmin, Fitbit, Apple Health, Oura, WHOOP and Strava\"; its setup docs say the Unified API \"supports over 150+ Data Sources\", so ask which count your users' devices fall into. Data types cover \"sleep stages and latency, workouts, heart rate, HRV, VO2max, blood oxygen (SpO2), continuous glucose monitoring (CGM), menstrual cycle, body composition and per-set strength training\". Delivery goes to webhooks or straight into \"SQL databases (Postgres and MySQL), Supabase, cloud storage (S3, GCS and Azure Blob), queueing services (SQS and Kafka), MongoDB and Firestore\". Its Vantage API orders blood and DNA test kits and returns results in FHIR format, and its homepage lists home kits, mobile phlebotomy and lab walk-ins.\n\nPricing, per its pricing page: subscriptions start \"from $399 per month billed annually, or $499 per month billed monthly\", including 100,000 credits a month. \"An active authentication is one connected data source for one end user, and costs 200 credits per month\", and the first 400 events per active authentication each month are free. By our arithmetic the included credits cover 500 connected sources before events, and each further source costs about one dollar a month at the starting rate of $0.005 per credit. Note the unit: one person with two wearables is two active authentications.\n\nOn credentials, Terra's docs say it \"manages API Keys of data sources\", but they name WHOOP, Dexcom, Huawei, Strava and Virtuagym as needing special processes, and its integrations reference marks Garmin and Samsung as Required as well. Its homepage FAQ, by contrast, says Garmin data flows through Terra's own long-standing partner integration. Ask Terra which applies to your account before you promise Garmin support. Our [Terra integration guide](/integrate/terra-api) walks through the setup.\n\n## Junction (formerly Vital)\n\nJunction announced the rename from Vital on March 11, 2025, alongside an $18M Series A led by Creandum. Its homepage offers \"300+ wearables\" and lab testing \"spanning all 50 states\", through \"a nationwide network of labs (NY, NJ, and RI included)\" with walk-in, at-home kit and mobile phlebotomy collection. Its mobile SDKs cover Apple HealthKit and Android Health Connect, and its docs say it \"can push wearable device data as webhook events\".\n\nThe pricing page is two plans: Launch, \"a flat $300 a month\" for 1 to 500 connected users, billed monthly, and Enterprise, custom and billed annually, which is where lab testing, unlimited users, uptime SLAs and the signed BAA sit. Custom OAuth credentials appear in the Enterprise column, and Junction's docs warn that \"Some OAuth providers are unavailable unless you can Bring Your Own OAuth (BYOO)\". Each team is tied to an EU or US region, which, per its docs, \"dictates where data is stored\". Our [Terra vs Vital (Junction)](/fitness-apis/terra-vs-vital) comparison goes deeper.\n\n## Rook\n\nROOK's homepage now pitches \"Wearables, medical devices, EHR/EMR and labs\" behind one integration. Beyond the wearable API it sells a Medical Device API that tags glucose, blood pressure, oxygen saturation, temperature and ECG readings with the device that recorded them, a Lab Data API that turns PDF and image lab reports into biomarkers with LOINC codes and FHIR R4 output, and an EHR/EMR API, listed as a waitlist on its pricing page, whose page says that today it \"delivers wearable data to clinical systems\" as FHIR R4, with EHR records flowing into ROOK still \"coming soon\". Its health score runs from 0 to 100.\n\nCoverage claims differ by page: its docs say \"400+ wearables and health data sources\", while its integrations page says \"72 data sources and more than 500 devices\", 59 of the 72 marked Indirect, meaning they reach ROOK through Apple Health or Health Connect. Pricing is published per plan and active users: Core $399 a month up to 750 active users, Core+ $999 up to 5,000, Business $1,999 up to 15,000, and custom Enterprise, with \"billing adjusts based on usage\" past each limit and a standard 12-month contract. Dexcom, Samsung Health, Strava and WHOOP need your own developer accounts, which ROOK says \"can take several weeks\".\n\n## Spike\n\nSpike pitches \"360° Health Data for AI\": its homepage offers \"500+ wearables & IoT sensors\", nutrition from food photos and lab report data, and its pricing page says \"Access 40+ providers and 500+ devices via single SDK\". The Lab Reports API reads PDFs, JPEGs or PNG files up to 10MB with OCR and assigns LOINC codes, and Spike MCP feeds wearable, IoT, lab and nutrition data to the LLM of your choice. \"Every organization gets a dedicated implementation engineer from the sandbox level.\" Webhooks are signed with HMAC-SHA256 in an X-Body-Signature header.\n\nThe Sandbox plan \"Starts from $450 /month\" and Enterprise is custom; Spike calls its pricing \"Usage-driven, transparent, and flexible\" but does not itemize how the bill grows. Each of its plans is bought through a \"Book a demo\" button rather than a checkout. A banner on its integrations and blog pages reads \"Raintree Systems Acquires Spike Technologies\"; we found no further detail on Spike's own pages, so ask about roadmap and contract continuity. More in [Terra vs Spike](/compare/terra-vs-spike).\n\n## Sahha\n\nSahha is phone-first. Its homepage says it \"turns the smartphone itself into a passive sensor for sleep, activity, and behavior\", and that it covers \"800+ devices across 165 integrations\", which, per its integrations page, mostly \"arrive on-device through Apple Health or Health Connect\". Direct cloud integrations for Garmin, Oura and WHOOP \"are in public beta and are Sandbox only\", use an app you create with each provider, and Garmin's needs Garmin's approval. What it adds on top of the data is biomarkers, five scores, archetypes and insights.\n\nPricing: free for 30 days with 25 development users, then Starter at $299 a month billed annually with 1,000 users included and $0.40 per extra user, Pro at $1,499 a month billed annually with 10,000 users and $0.20 per extra user, and custom Enterprise. \"A BAA is included from Pro.\" Details on our [Sahha pricing page](/pricing/sahha-api-pricing).\n\n## Thryve\n\nThryve, founded in 2016, says its API \"integrates with over 500 leading wearables and health data ecosystems\", and that it is \"Developed and hosted entirely in Europe\"; its pricing FAQ adds that data \"is hosted in Germany\". Start Up starts at 499 euros a month with 500 users, one app and 0.50 euros per additional user; Scale Up starts at 1,000 euros a month for startups less than ten years old, with up to 5,000 users; Enterprise is bespoke. Its certifications page says \"BAA agreements included on all plans\".\n\nIts docs list which providers use a shared OAuth client; \"When no shared oAuth-client is available, you must bring your own oAuth-client\", which its table shows for Dexcom, WHOOP and Google Health among others. See [Thryve API pricing](/pricing/thryve-api-pricing) and [Terra vs Thryve](/compare/terra-vs-thryve).\n\n## Validic\n\nValidic is the enterprise option: its homepage says one platform \"normalizes 700+ devices into a single standard\", and its care product runs remote-monitoring programs \"that write directly to Epic, Cerner, and other EHRs\". ChartSpan announced \"the completed acquisition of Validic\" on June 22, 2026. On April 23, 2026 Validic opened its Inform API to self-serve sign-up \"at no cost\": the Developer plan covers 5 users, 5 cloud integrations and 90-day data retention, while Enterprise pricing is negotiated and carries the BAA. Its device list warns that some vendors are closed to new applications, including Fitbit \"due to the transition to Google Health\".\n\n## Open Wearables\n\nOpen Wearables is MIT-licensed software from Momentum: an \"Open-source platform that unifies wearable device data from multiple providers behind a single API\", which you deploy yourself (\"each deployment serves a single organization\"). The open-source core is \"Free forever\"; Enterprise support, with a BAA, is \"scoped per project\". Self-hosting means you hold every provider relationship: its docs say \"You must apply for Garmin Developer Program\", and the same for Suunto and Polar. Its README calls it \"an early-stage project under active development\" whose APIs \"may change before version 1.0\". See [Terra vs Open Wearables](/compare/terra-vs-open-wearables).\n\n## Adjacent options that are not wearable aggregators\n\n**Human API.** The humanapi.co domain now opens LexisNexis Health Intelligence, a life-insurance underwriting product \"formerly Human API Health Intelligence\". LexisNexis sells Human API to healthcare and life-science organizations as a consumer-consented network of \"over 30,000 data connections including medical records, labs, fitness wearables and apps\", through a contact form with no public price. Our [Human API alternatives](/alternatives/human-api-alternatives) page covers where developers go instead.\n\n**Metriport.** Metriport is open-source (AGPLv3) medical-records infrastructure: its docs say access to its Medical API requires requests \"on behalf of a covered entity with an NPI number for a valid Treatment purpose of use\". It is the records half of a health app, not a wearable feed.\n\n## Which should you pick?\n\nOur recommendation, by situation:\n\n- **Mixed consumer wearables, startup scale, a bill you can predict:** price Terra, Rook, Junction's Launch plan, Sahha and Thryve at your own user count, then check each one's credential list against your users' devices.\n- **Lab ordering in the same integration:** Junction for US-wide coverage, or Terra if you also need the UK.\n- **EU data residency:** Thryve hosts in Germany; Junction offers an EU region; Terra's Enterprise plan lists a dedicated instance in a localised area.\n- **Many users without a wearable, or scores without building them:** Sahha.\n- **Clinical remote-monitoring programs inside the EHR:** Validic.\n- **Health data must stay on your own servers:** Open Wearables, if you can register with every provider and run the stack.\n- **Medical records rather than wearables:** Metriport or LexisNexis Human API.\n\n## Watch the fine print\n\nPrices, plan limits and device counts in this category move, and two vendors here changed owners in 2026. Before you commit, read the live pricing and integrations pages for whichever aggregator you shortlist, and check the two things that bite later: which providers on your list need your own developer credentials, and how the bill behaves as your connected-user count grows.",
     "faqs": [
       {
         "q": "What is a health data aggregator API?",
-        "a": "It is a server-side API that normalizes data from many wearables and health accounts behind one integration, so you connect once instead of coding against Garmin, Oura, Fitbit, and others separately. Aggregators typically sit on top of platform SDKs like Apple HealthKit and Google Health Connect plus cloud provider APIs. Terra, Vital/Junction, Rook, and Spike are the main options."
+        "a": "It is a server-side API that normalizes data from many wearables and health accounts behind one integration, so you connect once instead of coding against Garmin, Oura, Fitbit and others separately. Aggregators also ship mobile SDKs for the phone health stores, because Apple Health, Health Connect and Samsung Health keep data on the device. Terra, Junction, Rook, Spike, Sahha, Thryve and Validic sell it as a service; Open Wearables is open-source software you host yourself."
       },
       {
         "q": "How is an aggregator different from Apple HealthKit or Google Health Connect?",
-        "a": "HealthKit and Health Connect are on-device, OS-locked SDKs that only expose data on that one device and are free but platform-bound. Aggregators are server-side and cross-device: one integration reads across hundreds of wearables and cloud accounts, and their mobile SDKs also pull from HealthKit and Health Connect. So aggregators sit on top of the platform SDKs rather than replacing them."
+        "a": "HealthKit and Health Connect are on-device stores, one per platform, and only expose what is on that phone. Aggregators work server-side and across devices, and their SDKs read the phone stores too: Terra's docs say those sources have no cloud API for third parties, so your app reads them with the Terra SDK and sends the data on. So aggregators sit on top of the platform stores rather than replacing them."
       },
       {
         "q": "Do I still need my own developer accounts with each wearable provider?",
-        "a": "For most providers the aggregator brokers the auth, but for several popular ones — commonly Garmin, Whoop, Strava, Dexcom, and Samsung Health — you must still register your own developer or partner credentials. Check which providers on your list require it, since it adds onboarding time. This applies across Terra, Vital/Junction, Rook, and Spike."
+        "a": "For some providers, yes, with every aggregator. As of October 17, 2026, Rook names Dexcom, Samsung Health, Strava and WHOOP; Terra's docs name WHOOP, Dexcom, Huawei, Strava and Virtuagym, and its integrations table also marks Garmin and Samsung as Required; Thryve requires your own OAuth client where it has no shared one, such as Dexcom and WHOOP; Open Wearables needs your own app for every cloud provider. Check your users' providers against each list, because approval can take weeks."
       },
       {
         "q": "How much do health data aggregator APIs cost?",
-        "a": "The pricing models differ and exact figures change, so verify current pricing on each vendor's page. As of 2026, Terra uses subscription plus credit/usage-based pricing, Vital/Junction is per-user with a monthly minimum, Rook is usage-based tiered by active users, and Spike is tiered and sales-assisted (effectively contact-sales)."
+        "a": "Most now publish an entry price. As of October 17, 2026: Validic's Inform Developer plan is free for 5 users, Open Wearables is free open-source software, Junction's Launch plan is a flat $300 a month for up to 500 connected users, Sahha's Starter is $299 a month billed annually with 1,000 users, Terra starts at $399 a month billed annually with 100,000 credits, Rook's Core is $399 a month for up to 750 active users, Spike's Sandbox starts from $450 a month, and Thryve's Start Up starts at 499 euros a month for 500 users. Each counts users differently, so compare at your own volume."
       },
       {
         "q": "Which aggregator API supports lab and diagnostics data?",
-        "a": "Vital/Junction is the option built around both wearable data and at-home or in-person lab diagnostics in one integration, though its lab testing is US-focused. Spike also markets lab tests as part of its broader 360-degree scope that includes IoT and EMR data. Verify current coverage in each vendor's docs."
+        "a": "Two order lab tests: Junction, across all 50 US states through a nationwide lab network on its Enterprise plan, and Terra, whose lab page says nationwide US plus the UK. Rook and Spike parse lab reports instead: both turn uploaded PDF or image reports into structured results with LOINC codes, and we found no test ordering on their pages. All of this is from the vendors' pages on October 17, 2026."
       }
     ],
     "related": [
+      {
+        "href": "/pricing/health-data-aggregator-pricing",
+        "label": "Health-data aggregator pricing compared"
+      },
       {
         "href": "/fitness-apis/terra-vs-vital",
         "label": "Terra vs Vital (Junction)"
       },
       {
-        "href": "/fitness-apis/wearable-data-apis",
-        "label": "Best wearable fitness APIs"
+        "href": "/alternatives/terra-alternatives",
+        "label": "Terra alternatives"
       },
       {
-        "href": "/fitness-apis/apple-healthkit-vs-google-health-connect",
-        "label": "HealthKit vs Health Connect"
+        "href": "/fitness-apis/wearable-data-apis",
+        "label": "Best wearable fitness APIs"
       },
       {
         "href": "/fitness-apis",
@@ -159,8 +163,285 @@ export const entries: ClusterEntry[] =
       }
     ],
     "cta": {
-      "pitch": "We break down a new wearable and health-data API every week — the provider-credential gotchas and pricing-model traps included, so you can subscribe and skip the surprises."
-    }
+      "pitch": "We re-read the aggregators' pricing and docs pages and log what changed, so you hear when a plan, a credential requirement or an owner moves. Subscribe to get the next update."
+    },
+    "sources": [
+      {
+        "url": "https://tryterra.co/",
+        "checked": "2026-10-17",
+        "note": "Terra coverage, data types, destinations, labs, compliance and pricing FAQ"
+      },
+      {
+        "url": "https://tryterra.co/products/lab-testing",
+        "checked": "2026-10-17",
+        "note": "Terra lab testing geography and collection methods"
+      },
+      {
+        "url": "https://www.junction.com/pricing",
+        "checked": "2026-10-17",
+        "note": "Junction Launch and Enterprise plans"
+      },
+      {
+        "url": "https://tryrook.io/pricing/",
+        "checked": "2026-10-17",
+        "note": "Rook plans, add-ons and contract terms"
+      },
+      {
+        "url": "https://tryrook.io/rookconnect/medical-device-api/",
+        "checked": "2026-10-17",
+        "note": "Rook Medical Device API"
+      },
+      {
+        "url": "https://tryrook.io/rookconnect/lab-data-api/",
+        "checked": "2026-10-17",
+        "note": "Rook Lab Data API"
+      },
+      {
+        "url": "https://www.spikeapi.com/pricing",
+        "checked": "2026-10-17",
+        "note": "Spike Sandbox and Enterprise plans"
+      },
+      {
+        "url": "https://www.spikeapi.com/integrations",
+        "checked": "2026-10-17",
+        "note": "Spike integrations and acquisition banner"
+      },
+      {
+        "url": "https://www.humanapi.co/",
+        "checked": "2026-10-17",
+        "note": "humanapi.co redirects to LexisNexis Health Intelligence"
+      },
+      {
+        "url": "https://tryterra.co/pricing",
+        "checked": "2026-10-17",
+        "note": "Terra plans, credits, add-ons and Enterprise terms"
+      },
+      {
+        "url": "https://sahha.ai/",
+        "checked": "2026-10-17",
+        "note": "Sahha coverage, pricing FAQ and compliance"
+      },
+      {
+        "url": "https://www.thryve.health/pricing",
+        "checked": "2026-10-17",
+        "note": "Thryve plans, storage and hosting"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/getting-started",
+        "checked": "2026-10-17",
+        "note": "Terra mobile-only sources, signed webhooks, rate limits"
+      },
+      {
+        "url": "https://docs.tryrook.io/data-sources/",
+        "checked": "2026-10-17",
+        "note": "Rook data sources and own developer accounts"
+      },
+      {
+        "url": "https://docs.tryterra.co/vantage-api/overview",
+        "checked": "2026-10-17",
+        "note": "Terra Vantage lab API"
+      },
+      {
+        "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+        "checked": "2026-10-17",
+        "note": "Terra integration credential requirements"
+      },
+      {
+        "url": "https://www.junction.com/",
+        "checked": "2026-10-17",
+        "note": "Junction devices and lab network"
+      },
+      {
+        "url": "https://docs.tryrook.io/",
+        "checked": "2026-10-17",
+        "note": "Rook health score"
+      },
+      {
+        "url": "https://www.spikeapi.com/",
+        "checked": "2026-10-17",
+        "note": "Spike scope, implementation engineer and customers"
+      },
+      {
+        "url": "https://www.spikeapi.com/lab-reports",
+        "checked": "2026-10-17",
+        "note": "Spike Lab Reports API"
+      },
+      {
+        "url": "https://www.spikeapi.com/mcp-health-ai-integration",
+        "checked": "2026-10-17",
+        "note": "Spike MCP"
+      },
+      {
+        "url": "https://docs.sahha.ai/docs/connect/integrations",
+        "checked": "2026-10-17",
+        "note": "Sahha cloud integrations beta"
+      },
+      {
+        "url": "https://www.thryve.health/",
+        "checked": "2026-10-17",
+        "note": "Thryve coverage and hosting"
+      },
+      {
+        "url": "https://docs.thryve.health/thryve-data-sources/overview",
+        "checked": "2026-10-17",
+        "note": "Thryve data sources and OAuth clients"
+      },
+      {
+        "url": "https://validic.com/",
+        "checked": "2026-10-17",
+        "note": "Validic devices and EHR programs"
+      },
+      {
+        "url": "https://validic.com/inform-signup/",
+        "checked": "2026-10-17",
+        "note": "Validic Inform plans"
+      },
+      {
+        "url": "https://validic.com/features/supported-devices/",
+        "checked": "2026-10-17",
+        "note": "Validic restricted devices"
+      },
+      {
+        "url": "https://validic.com/news/chartspan/",
+        "checked": "2026-10-17",
+        "note": "ChartSpan acquisition of Validic"
+      },
+      {
+        "url": "https://openwearables.io/pricing",
+        "checked": "2026-10-17",
+        "note": "Open Wearables licence and Enterprise"
+      },
+      {
+        "url": "https://openwearables.io/docs/providers/supported",
+        "checked": "2026-10-17",
+        "note": "Open Wearables provider setup"
+      },
+      {
+        "url": "https://github.com/the-momentum/open-wearables",
+        "checked": "2026-10-17",
+        "note": "Open Wearables README"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+        "checked": "2026-10-17",
+        "note": "Terra data source count and providers with special setup"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/integration-setup/dedicated-data-source-api-keys",
+        "checked": "2026-10-17",
+        "note": "Terra managed and dedicated provider keys"
+      },
+      {
+        "url": "https://www.junction.com/post/series-a",
+        "checked": "2026-10-17",
+        "note": "Junction rebrand from Vital and Series A"
+      },
+      {
+        "url": "https://docs.junction.com/home/welcome",
+        "checked": "2026-10-17",
+        "note": "Junction SDKs and webhooks"
+      },
+      {
+        "url": "https://docs.junction.com/wearables/connecting-providers/bring-your-own-oauth/overview",
+        "checked": "2026-10-17",
+        "note": "Junction Bring Your Own OAuth"
+      },
+      {
+        "url": "https://docs.junction.com/home/quickstart",
+        "checked": "2026-10-17",
+        "note": "Junction data regions"
+      },
+      {
+        "url": "https://tryrook.io/",
+        "checked": "2026-10-17",
+        "note": "Rook product scope"
+      },
+      {
+        "url": "https://tryrook.io/rookconnect/ehr-emr-api/",
+        "checked": "2026-10-17",
+        "note": "Rook EHR/EMR API"
+      },
+      {
+        "url": "https://tryrook.io/wearable-api-sdk/integrations/",
+        "checked": "2026-10-17",
+        "note": "Rook source catalogue"
+      },
+      {
+        "url": "https://docs.spikeapi.com/api-docs/webhooks",
+        "checked": "2026-10-17",
+        "note": "Spike webhook signing and retries"
+      },
+      {
+        "url": "https://www.spikeapi.com/blog",
+        "checked": "2026-10-17",
+        "note": "Spike acquisition banner"
+      },
+      {
+        "url": "https://sahha.ai/integrations/",
+        "checked": "2026-10-17",
+        "note": "Sahha integrations"
+      },
+      {
+        "url": "https://sahha.ai/pricing/",
+        "checked": "2026-10-17",
+        "note": "Sahha plans"
+      },
+      {
+        "url": "https://www.thryve.health/about",
+        "checked": "2026-10-17",
+        "note": "Thryve company"
+      },
+      {
+        "url": "https://www.thryve.health/certifications-compliance",
+        "checked": "2026-10-17",
+        "note": "Thryve certifications and BAA"
+      },
+      {
+        "url": "https://validic.com/blog/Validic-Inform-Is-Now-Free/",
+        "checked": "2026-10-17",
+        "note": "Validic Inform free tier"
+      },
+      {
+        "url": "https://github.com/the-momentum/open-wearables/blob/main/LICENSE",
+        "checked": "2026-10-17",
+        "note": "Open Wearables licence"
+      },
+      {
+        "url": "https://risk.lexisnexis.com/products/humanapi",
+        "checked": "2026-10-17",
+        "note": "LexisNexis Human API"
+      },
+      {
+        "url": "https://github.com/metriport/metriport",
+        "checked": "2026-10-17",
+        "note": "Metriport README and licence"
+      },
+      {
+        "url": "https://docs.metriport.com/medical-api/getting-started/quickstart",
+        "checked": "2026-10-17",
+        "note": "Metriport Medical API access"
+      },
+      {
+        "url": "https://openwearables.io/faq",
+        "checked": "2026-10-17",
+        "note": "Open Wearables FAQ"
+      },
+      {
+        "url": "https://openwearables.io/docs",
+        "checked": "2026-10-17",
+        "note": "Open Wearables docs"
+      },
+      {
+        "url": "https://docs.spikeapi.com/api-docs/provider_integration",
+        "checked": "2026-10-17",
+        "note": "Spike provider consent flow"
+      },
+      {
+        "url": "https://tryrook.io/rookconnect/wearable-api/",
+        "checked": "2026-10-17",
+        "note": "Rook wearable API, SDKs and delivery"
+      }
+    ]
   },
   {
     "slug": "ai-workout-tracking-apis",
@@ -460,30 +741,30 @@ export const entries: ClusterEntry[] =
     "primaryQuery": "Terra vs Vital",
     "h1": "Terra vs Vital (Junction): Health-Data APIs Compared (2026)",
     "metaTitle": "Terra vs Vital (Junction): Health-Data APIs Compared",
-    "metaDescription": "Terra vs Vital (now Junction): compare the two leading health-data aggregators on wearable coverage, lab diagnostics, and pricing to pick the right one.",
-    "updated": "2026-07-08",
-    "answer": "Pick Vital (rebranded to Junction in 2025) if you need wearable data plus US at-home or lab diagnostics in one integration. Pick Terra if you want the widest wearable and provider coverage plus a rich normalized schema, including CGM and nutrition. Both aggregate many wearables through a single API and can ingest Apple HealthKit and Android Health Connect via mobile SDKs; the choice comes down to whether labs are on your roadmap. Verify current pricing with each vendor before committing.",
-    "body": "## How Terra and Vital/Junction compare\n\nBoth products solve the same core problem — one integration instead of a separate build per wearable — so the decision comes down to three things:\n\n- **Scope of data.** This is the real fork in the road. Terra focuses on breadth of wearable and health-app coverage with a rich normalized model. Vital/Junction covers wearables too, but its differentiator is bundling that wearable data WITH US at-home and lab diagnostics (at-home kits, walk-in centers, mobile phlebotomy) in the same API. If you need labs, that decides it.\n- **Provider coverage and schema depth.** Terra advertises the widest provider list and a normalized schema that includes CGM/glucose and nutrition alongside the usual activity, sleep, heart rate, and HRV. If your product leans on continuous glucose or nutrition data across many devices, that breadth matters.\n- **Pricing model.** Both charge recurring fees, but the shape differs. Terra uses a subscription plus usage (credit-based) model, where cost scales with connected users and event volume. Vital/Junction uses per-user, usage-based pricing with a monthly minimum. Model your expected volume against each before you commit. All dollar figures shift often — verify current pricing in each vendor's docs.\n\nOne thing they share: for some providers (for example Garmin, Whoop, Dexcom, Strava, Samsung Health) you may still need to register your own developer or partner credentials with that provider, regardless of which aggregator you pick.\n\n## Terra vs Vital/Junction at a glance\n\n| API | Best for | Data scope | Pricing model | Watch out |\n|---|---|---|---|---|\n| Terra | Widest wearable coverage, rich schema (incl. CGM/nutrition) | Wearables and health apps across many providers; normalized activity, sleep, HR/HRV, VO2max, `SpO2`, nutrition, body comp, cycle, CGM | Subscription plus usage (credit-based); cost scales with active users and events (verify current pricing) | Credit/usage model means cost scales with connected users and event volume — model your volume first |\n| Vital / Junction | Wearables data plus US at-home and lab diagnostics in one API | Wearable data across many devices PLUS structured lab results (at-home kits, walk-in centers, mobile phlebotomy) | Per-user, usage-based with a monthly minimum; higher tiers add custom `OAuth`, support (verify current pricing) | Lab features are US-focused; branding is mid-transition (Vital to Junction) — confirm you are on current docs at junction.com |\n\n## Terra\n\nTerra is best when you want the widest wearable and health-app coverage behind a single integration, with a normalized schema that goes deep on metrics like CGM/glucose and nutrition. It is a server-side REST API with webhooks, plus mobile SDKs for pulling on-device Apple Health and Health Connect data, and it brokers per-user OAuth-style connections so you do not build each provider auth flow yourself. Data comes back in one normalized model spanning activity and workouts, sleep with stages and latency, heart rate and HRV, VO2max, `SpO2`, nutrition, body composition, menstrual cycle, and glucose. The trade-off to know: pricing is subscription plus usage on a credit model, so your bill scales with the number of connected users and the volume of events — model that carefully before committing, and verify current pricing in Terra's docs.\n\n## Vital / Junction\n\nVital/Junction is best when your product needs BOTH wearable data and diagnostics — lab tests and at-home kits — in a single integration, which is exactly its differentiator versus a wearables-only aggregator. Remember the rebrand: Vital became Junction in 2025 after an $18M raise, so the same product appears under both names and the current docs live at junction.com. It offers a server-side REST API with webhooks and mobile SDKs for wearable data across a wide device range, and on top of that it can order lab tests and return structured results through at-home kits, walk-in centers, and mobile phlebotomy. Pricing is per-user and usage-based with a monthly minimum, with higher tiers adding custom `OAuth` credentials and dedicated support. The trade-off to know: the lab and diagnostics features are US-focused, so if your users are outside the US that half of the value does not apply — and because branding is mid-transition, double-check you are reading the current junction.com docs. Verify current pricing before you build.\n\n## Which should you pick?\n\nRecommend by use-case rather than crowning a single winner:\n\n- **If you need lab or at-home diagnostics alongside wearable data** (longitudinal care, screening, anything that combines a blood panel with wearable trends) → pick Vital/Junction. Bundling wearables with US diagnostics in one API is the thing it does that Terra does not, but confirm your users are in the US, since the lab side is US-focused.\n- **If you want the widest wearable and provider coverage, or you lean on CGM/glucose and nutrition** across many devices → pick Terra for its breadth and rich normalized schema. Just model your volume against the credit-based pricing first.\n- **If you are US-based and unsure which way your product will grow** → Vital/Junction lets you start with wearables and add diagnostics later without a second integration, while Terra keeps you widest on the pure-wearable side. Match the choice to whether labs are on your roadmap.\n\nEither way, both let you ingest `HealthKit` and `Health Connect` through their SDKs, so on-device Apple and Android data is available regardless of which you choose.\n\n## Watch the fine print\n\nPricing models, credit and per-user rates, monthly minimums, and provider coverage counts in this category change often. Every dollar figure above is intentionally left as \"verify current pricing,\" and the coverage numbers each vendor advertises are marketing figures — directionally useful, but confirm them against the live integrations and pricing pages (tryterra.co and junction.com) before you commit, especially at scale.",
+    "metaDescription": "Terra vs Junction (formerly Vital) as of October 2026: both now sell lab testing. Compare wearable coverage, US vs US and UK labs, and published prices.",
+    "updated": "2026-10-17",
+    "answer": "Terra and Junction (Vital renamed itself Junction in March 2025) now overlap more than they used to: both connect wearables through one API and both sell lab testing, so the choice turns on reach and price shape. Pick Junction if your users are in the US and you want lab ordering across all 50 states, or a flat $300 a month for your first 500 connected users; its lab API, BAA and unlimited users sit on the custom Enterprise plan. Pick Terra if you need its wider marketed wearable list (500+ providers against Junction's 300+), labs in the UK as well as the US, or delivery straight into databases and queues, and can model a credit bill that starts at $399 a month billed annually. Prices are as of October 17, 2026.",
+    "body": "## How Terra and Vital/Junction compare\n\nBoth products solve the same core problem, one integration instead of a separate build per wearable, and since this page was first written they have converged: Terra's homepage now sells lab testing, and Junction's pricing page now publishes a flat entry plan. An earlier version of this page said labs were the thing Junction did that Terra did not, and that Junction priced per user with a monthly minimum; neither is true of the vendors' pages as we read them on October 17, 2026. What still separates them:\n\n- **Lab reach.** Junction offers lab testing \"spanning all 50 states\" through \"a nationwide network of labs (NY, NJ, and RI included)\". Terra's lab page says \"Nationwide US, plus the UK\", and its Vantage API docs list the United Kingdom and the USA as supported countries.\n- **Wearable coverage and delivery.** Terra markets 500+ providers and delivers to webhooks or straight into databases, cloud storage and queues. Junction markets 300+ wearables and devices and pushes webhook events, with ETL pipelines on its Enterprise plan.\n- **Price shape.** Terra bills a subscription plus credits per connected data source; Junction's Launch plan is a flat monthly fee for up to 500 connected users, and everything past that, including labs, is a custom Enterprise contract.\n\n## Terra vs Vital/Junction at a glance\n\n| Dimension | Terra | Junction (formerly Vital) |\n|---|---|---|\n| Wearables | 500+ providers on its site; mobile SDK for Apple Health, Samsung Health and Health Connect | 300+ wearables; mobile SDKs for Apple HealthKit and Android Health Connect |\n| Lab testing | Home kits, mobile phlebotomy or lab walk-ins; US and UK | Walk-in, at-home kit and mobile phlebotomy; all 50 US states; Enterprise plan only |\n| Delivery | Webhooks, SQL databases, Supabase, cloud storage, SQS and Kafka, MongoDB, Firestore | Webhook events; ETL pipelines to your warehouse on Enterprise |\n| Entry price | $399 a month billed annually, or $499 monthly, with 100,000 credits | Launch at a flat $300 a month, billed monthly, for 1 to 500 connected users |\n| Scaling | 200 credits per connected source per month, extra credits from $0.005 | Enterprise: custom, billed annually, unlimited users |\n| BAA | Enterprise | Enterprise |\n| Data location | Enterprise lists a \"Dedicated instance to localised area\" | US or EU region per team |\n\nPrices are list prices from the vendors' pricing pages on October 17, 2026.\n\n## Terra\n\nTerra is a server-side API with mobile SDKs: its FAQ describes one integration returning \"standardised data from 500+ providers, including Garmin, Fitbit, Apple Health, Oura, WHOOP and Strava\", covering \"sleep stages and latency, workouts, heart rate, HRV, VO2max, blood oxygen (SpO2), continuous glucose monitoring (CGM), menstrual cycle, body composition and per-set strength training\". Its docs explain why the SDK exists: Apple Health, Samsung Health and Health Connect \"have no cloud API for third parties, so your mobile app reads them with the Terra SDK and sends the data to Terra.\"\n\nIts lab side is the Vantage API, which, per its docs, lets you \"order blood and DNA test kits, track fulfilment, and receive lab results in FHIR format through a single API\". On pricing, \"Subscriptions start from $399 per month billed annually, or $499 per month billed monthly\", with 100,000 credits a month; each \"active authentication is one connected data source for one end user, and costs 200 credits per month\", and the first 400 events per active authentication are free. The signed BAA is on its Enterprise plan. Our [Terra integration guide](/integrate/terra-api) covers the build.\n\n## Vital / Junction\n\nJunction is Vital under a new name: it announced the rebrand on March 11, 2025, alongside an $18M Series A led by Creandum, and its docs still accept *.tryvital.io base URLs. Its homepage pitches \"300+ wearables\" plus lab operations \"spanning all 50 states\", and its 2025 announcement described ordering \"across all 50 states, with results from 10+ labs (including LabCorp & Quest)\". Collection options are walk-in, at-home kit and mobile phlebotomy.\n\nThe pricing page has two plans. Launch is \"a flat $300 a month\" for connecting \"wearables and devices for up to 500 users\", billed monthly. Enterprise is custom and billed annually, and it is where you go \"when you need lab testing, unlimited users, uptime SLAs, or a signed BAA\"; custom OAuth credentials are listed there too. Junction says device data \"is typically flowing within days of picking up the API keys\", while lab testing takes longer because kits and workflows are configured for you: \"expect 4-6 weeks depending on how much customization you need\". Each team is tied to an EU or US region, which \"dictates where data is stored\".\n\n## Which should you pick?\n\nRecommend by use case rather than crowning a winner:\n\n- **US-only product where labs matter and you want ordering across every state** → Junction. Its lab network and operations support are the center of the product; budget for Enterprise from the start, because labs are not on Launch.\n- **Labs for UK as well as US users, or wearables first with labs later** → Terra. Its lab ordering covers the US and the UK, and the wearable side keeps the widest marketed provider list of the two.\n- **Wearables only, up to 500 connected users, and a fixed bill** → Junction's Launch plan is the simplest number in the category: flat, monthly, no contract.\n- **Wearables at a few thousand users** → by our arithmetic Terra costs roughly $899 a month at 1,000 connected sources and $4,899 at 5,000 on annual billing, while Junction needs an Enterprise quote past 500; get the quote before deciding. Our [aggregator pricing page](/pricing/health-data-aggregator-pricing) shows the full comparison.\n- **Data stored in the EU** → Junction lets you pick an EU region on any plan; Terra's Enterprise plan lists a \"Dedicated instance to localised area\", so ask Terra where that can be.\n\nEither way, both let you ingest HealthKit and Health Connect through their SDKs, so on-device Apple and Android data is available whichever you choose. For the rest of the field, see [health-data aggregator APIs](/fitness-apis/health-data-aggregator-apis).\n\n## Watch the fine print\n\nPlan names, limits and prices in this category change, and this page has already had to reverse two of its own earlier claims. Before you commit, re-read both live pricing pages (tryterra.co/pricing and junction.com/pricing), and check which of your users' providers need your own OAuth credentials on each.",
     "faqs": [
       {
         "q": "Is Vital the same as Junction?",
-        "a": "Yes. Vital rebranded to Junction in 2025 after an $18M raise. It is the same product; current docs live at junction.com, and the older tryvital domain still resolves."
+        "a": "Yes. Junction announced its new brand, replacing Vital, on March 11, 2025, alongside an $18M Series A led by Creandum. It is the same company and product: its docs say older *.tryvital.io base URLs are still supported alongside *.junction.com, and tryvital.io now redirects to junction.com."
       },
       {
         "q": "What is the main difference between Terra and Vital/Junction?",
-        "a": "Terra focuses on the widest wearable and provider coverage with a rich normalized schema, including CGM and nutrition. Vital/Junction covers wearables too, but its differentiator is bundling that data with US at-home and lab diagnostics in the same API."
+        "a": "Reach and price shape, now that both sell lab testing. As of October 17, 2026, Junction offers lab ordering across all 50 US states and a flat $300 a month Launch plan for up to 500 connected users, with labs on its custom Enterprise plan. Terra markets 500+ wearable providers to Junction's 300+, offers labs in the US and the UK, and bills credits per connected data source from $399 a month on annual billing."
       },
       {
         "q": "Can Terra and Vital both pull Apple HealthKit and Health Connect data?",
-        "a": "Yes. Both are server-side aggregators that also ship mobile SDKs to ingest on-device Apple HealthKit (iOS) and Android Health Connect data, in addition to normalizing cloud wearable accounts."
+        "a": "Yes. Terra's mobile SDK connects Apple Health, Samsung Health and Health Connect, which its docs say have no cloud API for third parties. Junction's mobile SDKs integrate Apple HealthKit and Android Health Connect, in native, React Native and Flutter versions. Both also normalize cloud wearable accounts server-side."
       },
       {
         "q": "How do Terra and Vital pricing models differ?",
-        "a": "Terra uses a subscription plus usage credit-based model where cost scales with connected users and events. Vital/Junction uses per-user, usage-based pricing with a monthly minimum. Both shift often, so verify current pricing in each vendor's docs."
+        "a": "As of October 17, 2026, Terra starts at $399 a month billed annually or $499 monthly, includes 100,000 credits, and charges 200 credits a month for each connected data source plus credits for events past a free allowance. Junction's Launch plan is a flat $300 a month for 1 to 500 connected users, billed monthly, and anything bigger, or anything with lab testing, is a custom Enterprise contract billed annually."
       },
       {
         "q": "Does Vital/Junction support lab tests outside the US?",
-        "a": "Its lab and at-home diagnostics features are US-focused, spanning at-home kits, walk-in centers, and mobile phlebotomy across US states. If your users are outside the US, the wearable side still applies but the diagnostics value largely does not."
+        "a": "Not on the pages we read on October 17, 2026: Junction describes lab testing spanning all 50 states through a nationwide US lab network, and we found no non-US lab coverage. If you need labs in the UK, Terra's lab page says nationwide US plus the UK, and its Vantage API docs list both countries as supported."
       }
     ],
     "related": [
@@ -500,8 +781,8 @@ export const entries: ClusterEntry[] =
         "label": "Best health-data aggregator APIs"
       },
       {
-        "href": "/fitness-apis/wearable-data-apis",
-        "label": "Best wearable fitness APIs"
+        "href": "/pricing/health-data-aggregator-pricing",
+        "label": "Health-data aggregator pricing"
       },
       {
         "href": "/fitness-apis",
@@ -509,8 +790,75 @@ export const entries: ClusterEntry[] =
       }
     ],
     "cta": {
-      "pitch": "We break down a new health-data API every week — the pricing models, provider gaps, and integration gotchas included — so you can pick the right aggregator before you write a line of code."
-    }
+      "pitch": "We re-read Terra's and Junction's pricing and docs pages and log what changed, so you can pick an aggregator before you write a line of code. Subscribe for the next update."
+    },
+    "sources": [
+      {
+        "url": "https://tryterra.co/",
+        "checked": "2026-10-17",
+        "note": "Terra coverage, data types, destinations, labs, compliance and pricing FAQ"
+      },
+      {
+        "url": "https://www.junction.com/pricing",
+        "checked": "2026-10-17",
+        "note": "Junction Launch and Enterprise plans"
+      },
+      {
+        "url": "https://www.junction.com/",
+        "checked": "2026-10-17",
+        "note": "Junction devices and lab network"
+      },
+      {
+        "url": "https://tryterra.co/products/lab-testing",
+        "checked": "2026-10-17",
+        "note": "Terra lab testing geography and collection methods"
+      },
+      {
+        "url": "https://docs.tryterra.co/vantage-api/overview",
+        "checked": "2026-10-17",
+        "note": "Terra Vantage lab API"
+      },
+      {
+        "url": "https://docs.junction.com/home/welcome",
+        "checked": "2026-10-17",
+        "note": "Junction SDKs and webhooks"
+      },
+      {
+        "url": "https://tryterra.co/pricing",
+        "checked": "2026-10-17",
+        "note": "Terra plans, credits, add-ons and Enterprise terms"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/getting-started",
+        "checked": "2026-10-17",
+        "note": "Terra mobile-only sources, signed webhooks, rate limits"
+      },
+      {
+        "url": "https://docs.junction.com/home/quickstart",
+        "checked": "2026-10-17",
+        "note": "Junction data regions"
+      },
+      {
+        "url": "https://www.junction.com/post/series-a",
+        "checked": "2026-10-17",
+        "note": "Junction rebrand from Vital and Series A"
+      },
+      {
+        "url": "https://docs.junction.com/api-details/junction-api",
+        "checked": "2026-10-17",
+        "note": "Junction base URLs including tryvital.io"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/pricing",
+        "checked": "2026-10-17",
+        "note": "Terra credit tiers"
+      },
+      {
+        "url": "https://tryvital.io/",
+        "checked": "2026-10-17",
+        "note": "tryvital.io redirects to junction.com"
+      }
+    ]
   },
   {
     "slug": "fitbit-api-vs-garmin-api",

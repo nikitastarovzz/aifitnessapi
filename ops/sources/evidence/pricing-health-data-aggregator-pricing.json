@@ -1,0 +1,407 @@
+[
+  {
+    "claim": "Terra Quick Start: $399 a month billed annually, or $499 billed monthly; 100,000 credits a month.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly. That includes 100,000 credits each month for the Unified API, and you only pay extra if your usage goes beyond them."
+  },
+  {
+    "claim": "All integrations and data types included.",
+    "url": "https://tryterra.co/",
+    "quote": "All data types and integrations are included with no per-endpoint fee."
+  },
+  {
+    "claim": "200 credits per connected data source per month; events past 400 per source cost credits.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Two things consume credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
+  },
+  {
+    "claim": "Events past 400 per source cost 0.5 credits.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "The Unified API includes 400 events per active authentication free each month, and events beyond that cost 0.5 credits each. Terra's pricing docs note that 95% of customers are never charged for events."
+  },
+  {
+    "claim": "Extra credits from $0.005.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Only pay more when you go beyond 100,000 credits. Starting at $0.005 / credit."
+  },
+  {
+    "claim": "$0.003 past 1,000,000 credits.",
+    "url": "https://docs.tryterra.co/unified-api/pricing",
+    "quote": "100,001 - 1,000,000 $0.005 1,000,001+ $0.003"
+  },
+  {
+    "claim": "Junction Launch: a flat $300 a month.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "it covers the Link widget, 300+ device integrations, and usage analytics for a flat $300 a month."
+  },
+  {
+    "claim": "Junction Launch is billed monthly.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Launch is billed monthly, so there is no annual contract to get started."
+  },
+  {
+    "claim": "1 to 500 connected users.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Launch covers 1-500 connected users."
+  },
+  {
+    "claim": "300+ device integrations, the Link widget.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "it covers the Link widget, 300+ device integrations, and usage analytics for a flat $300 a month."
+  },
+  {
+    "claim": "Enterprise (custom, billed annually).",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Enterprise Custom Billed annually"
+  },
+  {
+    "claim": "Enterprise for unlimited users, lab testing and a signed BAA.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Move to Enterprise when you need lab testing, unlimited users, uptime SLAs, or a signed BAA."
+  },
+  {
+    "claim": "Rook Core: $399 a month, up to 750 active users.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For getting started with ROOK. $399 USD per month Up to 750 active users"
+  },
+  {
+    "claim": "All Wearable API integrations on Core.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Up to 750 active users All ROOK Connect Wearable API integrations"
+  },
+  {
+    "claim": "Core+ $999 (5,000 users).",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For teams growing past their first user base. $999 USD per month Up to 5,000 active users"
+  },
+  {
+    "claim": "Business $1,999 (15,000).",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For companies that need to scale. $1,999 USD per month Up to 15,000 active users"
+  },
+  {
+    "claim": "Enterprise custom.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For organizations with custom security or integration requirements. Custom Custom pricing Unlimited users"
+  },
+  {
+    "claim": "Past a plan's limit, \"billing adjusts based on usage\".",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Each plan includes an active user limit. Beyond that limit, billing adjusts based on usage."
+  },
+  {
+    "claim": "Spike Sandbox: \"Starts from $450 /month\".",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Purpose-built for fast innovation, Sandbox gives your team everything needed to build, test, and launch into production. Starts from $450 /month"
+  },
+  {
+    "claim": "40+ providers and 500+ devices.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Access 40+ providers and 500+ devices via single SDK"
+  },
+  {
+    "claim": "A dedicated implementation engineer.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Every organization gets a dedicated implementation engineer from the sandbox level to help with setup and optimization."
+  },
+  {
+    "claim": "Spike Enterprise is custom.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Designed for enterprise scale"
+  },
+  {
+    "claim": "Sahha Starter: $299 a month billed annually, 1,000 users.",
+    "url": "https://sahha.ai/",
+    "quote": "Start free with 25 development users and every product unlocked in sandbox. Production plans start at $299 a month billed annually, with 1,000 users included and per-user pricing as you grow."
+  },
+  {
+    "claim": "Every product on every plan.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "All products included from day one."
+  },
+  {
+    "claim": "$0.40 per extra user.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "1,000 users included, then $0.40/user"
+  },
+  {
+    "claim": "Pro at $1,499 a month billed annually.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "$1,499 $1,999 /month, billed annually"
+  },
+  {
+    "claim": "Pro includes 10,000 users, then $0.20 each.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "10,000 users included, then $0.20/user"
+  },
+  {
+    "claim": "Thryve Start Up: from 499 euros a month.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Start Up Starts at 499 € / Per Month"
+  },
+  {
+    "claim": "500 users, one app connection.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Get started with 500 users, one app connection, and access to real-time data."
+  },
+  {
+    "claim": "0.50 euros per extra user.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Additional users billed at €0.50 each."
+  },
+  {
+    "claim": "Scale Up from 1,000 euros a month.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Scale Up Starts at 1.000 € / Per Month"
+  },
+  {
+    "claim": "For startups under ten years old.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Special plan for startups with growth-stage needs (less than 10 years of founding)."
+  },
+  {
+    "claim": "Up to 5,000 users.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Up to 5000 users 1 app connected Own data source tenant / Custom Auth credentials Up to 14 days of Fetching historical data Up to 1 month of data storage"
+  },
+  {
+    "claim": "Then 999 euros per 10,000.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Scale your user base with additional €999 per 10,000 users."
+  },
+  {
+    "claim": "Validic Inform Developer: free.",
+    "url": "https://validic.com/blog/Validic-Inform-Is-Now-Free/",
+    "quote": "Starting today, people can sign up for Inform at no cost. No contract. No credit card. No sales call."
+  },
+  {
+    "claim": "5 users, 5 cloud integrations, 90-day retention.",
+    "url": "https://validic.com/inform-signup/",
+    "quote": "5 users Streaming API (SSE) + REST API preview 5 cloud integrations to start building immediately 90-day data retention"
+  },
+  {
+    "claim": "Validic Enterprise is negotiated.",
+    "url": "https://validic.com/inform-signup/",
+    "quote": "Negotiated pricing. Production-ready from day one."
+  },
+  {
+    "claim": "A Business plan is listed as coming soon.",
+    "url": "https://validic.com/inform-signup/",
+    "quote": "COMING SOON Business More functionality, and priority support."
+  },
+  {
+    "claim": "Open Wearables open source: free; MIT-licensed software you host.",
+    "url": "https://openwearables.io/pricing",
+    "quote": "Open Source Free forever Self-hosted wearable data infrastructure under MIT license."
+  },
+  {
+    "claim": "Enterprise support is scoped per project.",
+    "url": "https://openwearables.io/pricing",
+    "quote": "Enterprise is scoped per project."
+  },
+  {
+    "claim": "LexisNexis Human API offers a contact form.",
+    "url": "https://risk.lexisnexis.com/products/humanapi",
+    "quote": "Contact Us For More Information"
+  },
+  {
+    "claim": "Metriport asks you to book an intro call before production access.",
+    "url": "https://docs.metriport.com/medical-api/getting-started/quickstart",
+    "quote": "Press Book an Intro Call and select a time and a date to talk to us."
+  },
+  {
+    "claim": "Terra's pricing FAQ says \"An active authentication is one connected data source for one end user, and costs 200 credits per month\".",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Two things consume credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
+  },
+  {
+    "claim": "Rook prices \"based on the plan and the number of active users\".",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "ROOK pricing is based on the plan and the number of active users, with usage-based billing and the flexibility to activate only the products and add-ons needed."
+  },
+  {
+    "claim": "Sahha includes a number of users and charges per extra user.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "1,000 users included, then $0.40/user"
+  },
+  {
+    "claim": "Thryve includes a number of users and charges per extra user.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Additional users billed at €0.50 each."
+  },
+  {
+    "claim": "Sahha's pricing page has an FAQ titled \"What counts as a user?\".",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "What counts as a user?"
+  },
+  {
+    "claim": "Junction's Launch plan \"covers 1-500 connected users\" at a flat rate.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Launch covers 1-500 connected users."
+  },
+  {
+    "claim": "Terra says 95% of customers are never charged for events.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "The Unified API includes 400 events per active authentication free each month, and events beyond that cost 0.5 credits each. Terra's pricing docs note that 95% of customers are never charged for events."
+  },
+  {
+    "claim": "Arithmetic input: Terra $399 annual base and 100,000 included credits.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly. That includes 100,000 credits each month for the Unified API, and you only pay extra if your usage goes beyond them."
+  },
+  {
+    "claim": "Arithmetic input: 200 credits per source; 1,000 sources = 200,000 credits; 5,000 = 1,000,000.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Two things consume credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
+  },
+  {
+    "claim": "Arithmetic input: $0.005 per credit from 100,001 to 1,000,000 credits.",
+    "url": "https://docs.tryterra.co/unified-api/pricing",
+    "quote": "100,001 - 1,000,000 $0.005 1,000,001+ $0.003"
+  },
+  {
+    "claim": "Arithmetic input: Rook Core stops at 750; Core+ $999 to 5,000.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For teams growing past their first user base. $999 USD per month Up to 5,000 active users"
+  },
+  {
+    "claim": "Arithmetic input: Sahha Starter $299 incl. 1,000 users, $0.40 after; Pro $1,499 incl. 10,000.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "1,000 users included, then $0.40/user"
+  },
+  {
+    "claim": "Arithmetic input: Thryve Start Up 499 euros incl. 500 users, 0.50 euros after; Scale Up 1,000 euros to 5,000 users.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Up to 5000 users 1 app connected Own data source tenant / Custom Auth credentials Up to 14 days of Fetching historical data Up to 1 month of data storage"
+  },
+  {
+    "claim": "Arithmetic input: Junction Launch covers 1-500 connected users.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Launch covers 1-500 connected users."
+  },
+  {
+    "claim": "Terra lists a \"Signed BAA (data protection agreement)\" on Enterprise.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Signed BAA (data protection agreement)"
+  },
+  {
+    "claim": "Junction puts \"The signed Business Associate Agreement, our SOC 2 Type 2 and ISO 27001 reports, and customer-managed encryption keys\" in Enterprise.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "The signed Business Associate Agreement, our SOC 2 Type 2 and ISO 27001 reports, and customer-managed encryption keys are part of Enterprise."
+  },
+  {
+    "claim": "Rook signs one \"when the customer is a Covered Entity or Business Associate and a BAA applies\".",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Yes, when the customer is a Covered Entity or Business Associate and a BAA applies to the relationship."
+  },
+  {
+    "claim": "Its \"standard contract term is 12 months, with the flexibility to cancel with 30 days' prior notice\".",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "ROOK's standard contract term is 12 months, with the flexibility to cancel with 30 days' prior notice."
+  },
+  {
+    "claim": "Sahha: \"A BAA is included from Pro.\"",
+    "url": "https://sahha.ai/",
+    "quote": "The DPA is included on every plan. A BAA is included from Pro."
+  },
+  {
+    "claim": "Thryve says \"BAA agreements included on all plans\".",
+    "url": "https://www.thryve.health/certifications-compliance",
+    "quote": "BAA agreements included on all plans"
+  },
+  {
+    "claim": "Validic offers a BAA \"for Enterprise customers\".",
+    "url": "https://validic.com/inform-signup/",
+    "quote": "with BAA available for Enterprise customers."
+  },
+  {
+    "claim": "Open Wearables: \"BAA is available on the Enterprise plan\".",
+    "url": "https://openwearables.io/pricing",
+    "quote": "BAA is available on the Enterprise plan alongside HIPAA-eligible infrastructure and audit trail configuration."
+  },
+  {
+    "claim": "Terra prices \"Add-ons such as the Streaming API and Planned Workouts\" separately.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Add-ons such as the Streaming API and Planned Workouts are priced separately."
+  },
+  {
+    "claim": "Its Health Scores add-on starts from $499 a month on Quick Start.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Health scores are an add-on for Quick Start plans. Starting from $499 / month"
+  },
+  {
+    "claim": "Rook's Business and Enterprise plans include every add-on, Core+ includes three, and Core pays per add-on.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Business and Enterprise include every product and add-on, Core+ includes three of choice, and Core adds them at the listed price."
+  },
+  {
+    "claim": "Its Lab Data API is \"billed by the files processed each month, on every plan\".",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Lab Data API is billed by the files processed each month, on every plan."
+  },
+  {
+    "claim": "From $249 a month for up to 300 files.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Starter $249 USD / month Up to 300 files per month"
+  },
+  {
+    "claim": "Spike lists its Nutrition Scanner AI as a separate Sandbox plan.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Build smarter food experiences"
+  },
+  {
+    "claim": "Rook says own developer accounts \"can take several weeks\".",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "This process can take several weeks and partly depends on the timelines of the respective data sources."
+  },
+  {
+    "claim": "Two weeks of storage on Thryve's Start Up.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Data storage options 1 Day 2 Weeks 1 Month Flexible"
+  },
+  {
+    "claim": "30 days on Sahha's Starter.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "1,000 users included, then $0.40/user 30-day data retention"
+  },
+  {
+    "claim": "Two of the vendors here changed owners in 2026: Validic.",
+    "url": "https://validic.com/news/chartspan/",
+    "quote": "Cost-Effective Clinical Care &middot; June 22, 2026"
+  },
+  {
+    "claim": "Two of the vendors here changed owners in 2026: Spike.",
+    "url": "https://www.spikeapi.com/integrations",
+    "quote": "Raintree Systems Acquires Spike Technologies"
+  },
+  {
+    "claim": "FAQ: Validic's Inform Developer plan is free with no contract or credit card.",
+    "url": "https://validic.com/blog/Validic-Inform-Is-Now-Free/",
+    "quote": "Starting today, people can sign up for Inform at no cost. No contract. No credit card. No sales call."
+  },
+  {
+    "claim": "FAQ: Open Wearables is MIT-licensed software you can self-host.",
+    "url": "https://openwearables.io/docs",
+    "quote": "Self-hosted, MIT license, $0 per user."
+  },
+  {
+    "claim": "FAQ: Open Wearables means you register with each provider.",
+    "url": "https://openwearables.io/docs/providers/supported",
+    "quote": "Register as a developer with the provider Create an OAuth application to obtain client credentials"
+  },
+  {
+    "claim": "FAQ: Sahha's free plan lasts 30 days.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "$0 for 30 days Build and test in sandbox 25 development users All products unlocked Sandbox environment"
+  },
+  {
+    "claim": "FAQ: Thryve offers a 14-day trial.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Start 14-day free trial now"
+  },
+  {
+    "claim": "FAQ: Junction's sandbox is free.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "The sandbox and developer docs are free, so your team can build and test a full integration before committing to a plan."
+  }
+]

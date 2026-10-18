@@ -33,6 +33,9 @@ export const RELEASED_COMPARE = new Set<string>([
   "apple-watch-vs-garmin",
   "rook-vs-spike",
   "usda-fooddata-central-vs-open-food-facts",
+  "terra-vs-thryve",
+  "terra-vs-open-wearables",
+  "terra-vs-sahha",
 ]);
 
 export const allCompare: ClusterEntry[] = compareEntries;

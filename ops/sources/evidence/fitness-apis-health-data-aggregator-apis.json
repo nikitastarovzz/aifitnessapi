@@ -1,0 +1,927 @@
+[
+  {
+    "claim": "Terra now sells lab testing alongside its wearable API, through home kits, mobile phlebotomy or lab walk-ins.",
+    "url": "https://tryterra.co/",
+    "quote": "Order blood and DNA tests for your users through Terra API. Blood through home kits, mobile phlebotomy, or lab walk-ins, and DNA from a single at-home saliva swab, with results delivered straight to your app."
+  },
+  {
+    "claim": "Terra's lab page says \"Nationwide US, plus the UK\".",
+    "url": "https://tryterra.co/products/lab-testing",
+    "quote": "Nationwide US, plus the UK"
+  },
+  {
+    "claim": "Junction's pricing page lists a Launch plan at \"a flat $300 a month\" for up to 500 users.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "it covers the Link widget, 300+ device integrations, and usage analytics for a flat $300 a month."
+  },
+  {
+    "claim": "Junction's Launch plan is for up to 500 users.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Start on Launch if you are connecting wearables and devices for up to 500 users"
+  },
+  {
+    "claim": "Rook publishes four plans, from Core at $399 a month for up to 750 active users.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For getting started with ROOK. $399 USD per month Up to 750 active users"
+  },
+  {
+    "claim": "Rook also sells medical-device and lab-report APIs.",
+    "url": "https://tryrook.io/rookconnect/medical-device-api/",
+    "quote": "The ROOK Connect Medical Device API delivers glucose, blood pressure, oxygen saturation, temperature and ECG readings in one format, with the device that recorded each one."
+  },
+  {
+    "claim": "Rook also sells a lab-report API.",
+    "url": "https://tryrook.io/rookconnect/lab-data-api/",
+    "quote": "The ROOK Connect Lab Data API turns PDF and image lab reports into structured biomarkers with LOINC codes and FHIR R4 output, linked to each user's wearable data."
+  },
+  {
+    "claim": "Spike's pricing page lists a Sandbox plan that \"Starts from $450 /month\".",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Purpose-built for fast innovation, Sandbox gives your team everything needed to build, test, and launch into production. Starts from $450 /month"
+  },
+  {
+    "claim": "A banner on Spike's integrations page reads \"Raintree Systems Acquires Spike Technologies\".",
+    "url": "https://www.spikeapi.com/integrations",
+    "quote": "Raintree Systems Acquires Spike Technologies"
+  },
+  {
+    "claim": "Human API's old domain now opens a LexisNexis Risk Solutions product page.",
+    "url": "https://www.humanapi.co/",
+    "quote": "Health Intelligence, formerly Human API Health Intelligence"
+  },
+  {
+    "claim": "Terra bills credits for each connected data source and for events past a free allowance.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Two things consume credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
+  },
+  {
+    "claim": "Rook bills by active users.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "ROOK pricing is based on the plan and the number of active users, with usage-based billing and the flexibility to activate only the products and add-ons needed."
+  },
+  {
+    "claim": "Sahha bills by included users plus a per-user price.",
+    "url": "https://sahha.ai/",
+    "quote": "Start free with 25 development users and every product unlocked in sandbox. Production plans start at $299 a month billed annually, with 1,000 users included and per-user pricing as you grow."
+  },
+  {
+    "claim": "Thryve bills by users, with a per-user price past the included 500.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Additional users billed at €0.50 each."
+  },
+  {
+    "claim": "Junction's Launch plan covers connected users.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Launch covers 1-500 connected users."
+  },
+  {
+    "claim": "Terra's docs say phone health stores \"have no cloud API for third parties, so your mobile app reads them with the Terra SDK and sends the data to Terra\".",
+    "url": "https://docs.tryterra.co/unified-api/getting-started",
+    "quote": "These have no cloud API for third parties, so your mobile app reads them with the Terra SDK and sends the data to Terra."
+  },
+  {
+    "claim": "Rook names Dexcom and WHOOP among providers needing your own developer accounts.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "To enable data extraction from specific platforms with strict regulations, such as Dexcom and Whoop, the client organization must provision and manage its own developer accounts."
+  },
+  {
+    "claim": "Rook requires your own developer account for Samsung Health.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "Samsung Health Requires developer account"
+  },
+  {
+    "claim": "Rook requires your own developer account for Strava.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "Strava Requires developer account"
+  },
+  {
+    "claim": "Terra: lab testing in the US and UK.",
+    "url": "https://docs.tryterra.co/vantage-api/overview",
+    "quote": "Vantage API is Terra's diagnostics platform: order blood and DNA test kits, track fulfilment, and receive lab results in FHIR format through a single API."
+  },
+  {
+    "claim": "Terra: delivery to databases and queues.",
+    "url": "https://tryterra.co/",
+    "quote": "Terra delivers to webhooks, SQL databases (Postgres and MySQL), Supabase, cloud storage (S3, GCS and Azure Blob), queueing services (SQS and Kafka), MongoDB and Firestore."
+  },
+  {
+    "claim": "Terra: MCP server.",
+    "url": "https://tryterra.co/",
+    "quote": "Yes, through the AI Interface, an MCP server your agent connects to."
+  },
+  {
+    "claim": "Terra: $399 a month billed annually ($499 monthly), 100,000 credits included.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly. That includes 100,000 credits each month for the Unified API, and you only pay extra if your usage goes beyond them."
+  },
+  {
+    "claim": "Terra's integrations table marks Garmin as Required.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "Garmin GARMIN Event-Driven Required"
+  },
+  {
+    "claim": "Terra's integrations table marks WHOOP as Required.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "Whoop WHOOP Event-Driven Required"
+  },
+  {
+    "claim": "Terra's integrations table marks Strava as Required.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "Strava STRAVA Event-Driven Required"
+  },
+  {
+    "claim": "Terra's integrations table marks Dexcom as Required.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "Dexcom DEXCOM Periodically fetched Required"
+  },
+  {
+    "claim": "Terra's integrations table marks Samsung as Required.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "Samsung SAMSUNG Event-Driven Required"
+  },
+  {
+    "claim": "Junction: lab testing across all 50 US states.",
+    "url": "https://www.junction.com/",
+    "quote": "Integrate 300+ wearables, streamline lab operations, and build your own lab testing experience spanning all 50 states"
+  },
+  {
+    "claim": "Junction Launch at a flat $300 a month for 1 to 500 connected users.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Launch covers 1-500 connected users."
+  },
+  {
+    "claim": "Junction: custom OAuth credentials are listed under Enterprise.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Connected users Unlimited Device integrations 300+ devices Premium and Bluetooth integrations Link widget Sandbox and developer docs Custom OAuth credentials"
+  },
+  {
+    "claim": "Junction: labs, a signed BAA and unlimited users are Enterprise-only.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Move to Enterprise when you need lab testing, unlimited users, uptime SLAs, or a signed BAA."
+  },
+  {
+    "claim": "Rook: medical-device readings, lab-report parsing, a 0 to 100 health score.",
+    "url": "https://docs.tryrook.io/",
+    "quote": "It provides a simple score, ranging from 0 to 100, that reflects their current health status."
+  },
+  {
+    "claim": "Rook: standard contract term is 12 months.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "ROOK's standard contract term is 12 months, with the flexibility to cancel with 30 days' prior notice."
+  },
+  {
+    "claim": "Spike: medical IoT, lab-report OCR, food-photo nutrition, MCP.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Connect to 500+ wearables & IoT sensors, extract nutrition insights from food photos, and add lab report data via single API."
+  },
+  {
+    "claim": "Spike: lab-report OCR.",
+    "url": "https://www.spikeapi.com/lab-reports",
+    "quote": "Spike Lab Reports API processes lab reports from PDFs, JPEGs, or PNG files up to 10MB using OCR technology that converts document images into analyzable text."
+  },
+  {
+    "claim": "Spike: MCP.",
+    "url": "https://www.spikeapi.com/mcp-health-ai-integration",
+    "quote": "Spike MCP connects wearables data, medical IoT devices, lab reports, and nutrition logs to your LLM of choice."
+  },
+  {
+    "claim": "Spike: medical IoT.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Integrate data from a wide range of medical IoT devices"
+  },
+  {
+    "claim": "Sahha: phone-as-sensor data, scores and archetypes.",
+    "url": "https://sahha.ai/",
+    "quote": "No. Sahha turns the smartphone itself into a passive sensor for sleep, activity, and behavior."
+  },
+  {
+    "claim": "Sahha: Starter at $299 a month billed annually with 1,000 users.",
+    "url": "https://sahha.ai/",
+    "quote": "Start free with 25 development users and every product unlocked in sandbox. Production plans start at $299 a month billed annually, with 1,000 users included and per-user pricing as you grow."
+  },
+  {
+    "claim": "Sahha: its beta cloud integrations use your own provider app.",
+    "url": "https://docs.sahha.ai/docs/connect/integrations",
+    "quote": "Create an app with the provider"
+  },
+  {
+    "claim": "Sahha: Garmin with approval.",
+    "url": "https://docs.sahha.ai/docs/connect/integrations",
+    "quote": "Beta Garmin approval required"
+  },
+  {
+    "claim": "Sahha: direct cloud integrations are beta and sandbox-only.",
+    "url": "https://docs.sahha.ai/docs/connect/integrations",
+    "quote": "Integrations are in public beta and are Sandbox only"
+  },
+  {
+    "claim": "Thryve: EU hosting in Germany.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "All data processed and stored by Thryve is hosted in Germany."
+  },
+  {
+    "claim": "Thryve: analytics for insurers and research.",
+    "url": "https://www.thryve.health/",
+    "quote": "empower insurers and healthcare providers globally to deliver personalized, preventive care with full data security and compliance."
+  },
+  {
+    "claim": "Thryve: Start Up from 499 euros a month with 500 users.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Start Up Starts at 499 € / Per Month"
+  },
+  {
+    "claim": "Thryve: Start Up includes 500 users.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Get started with 500 users, one app connection, and access to real-time data."
+  },
+  {
+    "claim": "Thryve: your own OAuth client where Thryve has no shared one.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "When no shared oAuth-client is available, you must bring your own oAuth-client"
+  },
+  {
+    "claim": "Thryve: no shared OAuth client for Dexcom.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Dexcom Web Bulk yes no"
+  },
+  {
+    "claim": "Thryve: no shared OAuth client for WHOOP.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Whoop Web Ping yes no"
+  },
+  {
+    "claim": "Thryve: Start Up stores data for two weeks.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Data storage options 1 Day 2 Weeks 1 Month Flexible"
+  },
+  {
+    "claim": "Validic: remote patient monitoring programs that write into the EHR.",
+    "url": "https://validic.com/",
+    "quote": "Managed remote care programs that write directly to Epic, Cerner, and other EHRs."
+  },
+  {
+    "claim": "Validic: Inform Developer plan free for 5 users.",
+    "url": "https://validic.com/inform-signup/",
+    "quote": "5 users Streaming API (SSE) + REST API preview 5 cloud integrations to start building immediately 90-day data retention"
+  },
+  {
+    "claim": "Validic: several vendors are closed to new applications.",
+    "url": "https://validic.com/features/supported-devices/",
+    "quote": "Approval requires direct relationship with Samsung Health. Acceptance is not guaranteed and this vendor is not accepting new applications."
+  },
+  {
+    "claim": "Validic: acquired by ChartSpan in June 2026.",
+    "url": "https://validic.com/news/chartspan/",
+    "quote": "Cost-Effective Clinical Care &middot; June 22, 2026"
+  },
+  {
+    "claim": "Open Wearables: MIT-licensed software you host yourself.",
+    "url": "https://openwearables.io/pricing",
+    "quote": "Open Source Free forever Self-hosted wearable data infrastructure under MIT license."
+  },
+  {
+    "claim": "Open Wearables: free open-source core; custom Enterprise.",
+    "url": "https://openwearables.io/pricing",
+    "quote": "Enterprise Custom pricing For funded companies and scale-stage health products"
+  },
+  {
+    "claim": "Open Wearables: you register with each cloud provider.",
+    "url": "https://openwearables.io/docs/providers/supported",
+    "quote": "Register as a developer with the provider Create an OAuth application to obtain client credentials"
+  },
+  {
+    "claim": "Open Wearables: pre-1.0 APIs.",
+    "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
+    "quote": "This is an early-stage project under active development. APIs may change before version 1.0."
+  },
+  {
+    "claim": "Terra's FAQ describes one API that \"returns standardised data from 500+ providers, including Garmin, Fitbit, Apple Health, Oura, WHOOP and Strava\".",
+    "url": "https://tryterra.co/",
+    "quote": "One API call returns standardised data from 500+ providers, including Garmin, Fitbit, Apple Health, Oura, WHOOP and Strava, without writing separate authentication flows or data parsers."
+  },
+  {
+    "claim": "Terra's setup docs put the dashboard list at \"over 150+ Data Sources\".",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+    "quote": "The Unified API supports over 150+ Data Sources"
+  },
+  {
+    "claim": "Terra data types cover sleep stages and latency, workouts, heart rate, HRV, VO2max, SpO2, CGM, menstrual cycle, body composition and per-set strength training.",
+    "url": "https://tryterra.co/",
+    "quote": "That covers sleep stages and latency, workouts, heart rate, HRV, VO2max, blood oxygen (SpO2), continuous glucose monitoring (CGM), menstrual cycle, body composition and per-set strength training."
+  },
+  {
+    "claim": "Terra delivers to webhooks or SQL databases, Supabase, cloud storage, queueing services, MongoDB and Firestore.",
+    "url": "https://tryterra.co/",
+    "quote": "Terra delivers to webhooks, SQL databases (Postgres and MySQL), Supabase, cloud storage (S3, GCS and Azure Blob), queueing services (SQS and Kafka), MongoDB and Firestore."
+  },
+  {
+    "claim": "Terra's Vantage API orders blood and DNA test kits and returns results in FHIR format.",
+    "url": "https://docs.tryterra.co/vantage-api/overview",
+    "quote": "Vantage API is Terra's diagnostics platform: order blood and DNA test kits, track fulfilment, and receive lab results in FHIR format through a single API."
+  },
+  {
+    "claim": "Terra subscriptions start \"from $399 per month billed annually, or $499 per month billed monthly\", including 100,000 credits a month.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly. That includes 100,000 credits each month for the Unified API, and you only pay extra if your usage goes beyond them."
+  },
+  {
+    "claim": "\"An active authentication is one connected data source for one end user, and costs 200 credits per month\", and the first 400 events per active authentication each month are free.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Two things consume credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
+  },
+  {
+    "claim": "The starting rate is $0.005 per credit (used in our arithmetic: 200 credits x $0.005 = about one dollar per source per month; 100,000 / 200 = 500 sources).",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Only pay more when you go beyond 100,000 credits. Starting at $0.005 / credit."
+  },
+  {
+    "claim": "Terra's docs say it \"manages API Keys of data sources\".",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/dedicated-data-source-api-keys",
+    "quote": "Terra manages API Keys of data sources, meaning you can connect users without having to apply for each API Key."
+  },
+  {
+    "claim": "Terra names WHOOP, Dexcom, Huawei, Strava and Virtuagym as needing special processes.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+    "quote": "Some providers require special processes before being able to start using them: WHOOP Dexcom Huawei Strava Virtuagym"
+  },
+  {
+    "claim": "Terra's homepage FAQ says Garmin data flows through Terra's own long-standing partner integration.",
+    "url": "https://tryterra.co/",
+    "quote": "Terra has maintained a Garmin integration for years as an established partner, so Garmin data flows through Terra today."
+  },
+  {
+    "claim": "Junction announced the rename from Vital on March 11, 2025.",
+    "url": "https://www.junction.com/post/series-a",
+    "quote": "Mar 11, 2025 Blog / Company"
+  },
+  {
+    "claim": "Junction announced the rename alongside its new brand.",
+    "url": "https://www.junction.com/post/series-a",
+    "quote": "Alongside this milestone, we're unveiling our new brand: Junction"
+  },
+  {
+    "claim": "$18M Series A.",
+    "url": "https://www.junction.com/post/series-a",
+    "quote": "Meet Junction: $18M to Power the Future of Personalized Care"
+  },
+  {
+    "claim": "Led by Creandum.",
+    "url": "https://www.junction.com/post/series-a",
+    "quote": "This Series A was led by Creandum"
+  },
+  {
+    "claim": "Junction's homepage offers \"300+ wearables\" and lab testing \"spanning all 50 states\".",
+    "url": "https://www.junction.com/",
+    "quote": "Integrate 300+ wearables, streamline lab operations, and build your own lab testing experience spanning all 50 states"
+  },
+  {
+    "claim": "Through \"a nationwide network of labs (NY, NJ, and RI included)\".",
+    "url": "https://www.junction.com/",
+    "quote": "accessing a nationwide network of labs (NY, NJ, and RI included) and convenient collection methods."
+  },
+  {
+    "claim": "Walk-in, at-home kit and mobile phlebotomy collection.",
+    "url": "https://www.junction.com/",
+    "quote": "Walk-in At-home kit Mobile phlebotomy"
+  },
+  {
+    "claim": "Junction's mobile SDKs cover Apple HealthKit.",
+    "url": "https://docs.junction.com/home/welcome",
+    "quote": "Learn how to integrate with Apple HealthKit through Junction Mobile SDKs, available in Native iOS, React Native and Flutter."
+  },
+  {
+    "claim": "Junction's mobile SDKs cover Android Health Connect.",
+    "url": "https://docs.junction.com/home/welcome",
+    "quote": "Learn how to integrate with Android Health Connect through Junction Mobile SDKs, available in Native Android, React Native and Flutter."
+  },
+  {
+    "claim": "Junction's docs say it \"can push wearable device data as webhook events\".",
+    "url": "https://docs.junction.com/home/welcome",
+    "quote": "Junction can push wearable device data as webhook events to you as soon as they are discovered."
+  },
+  {
+    "claim": "Launch is billed monthly.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Launch is billed monthly, so there is no annual contract to get started."
+  },
+  {
+    "claim": "Enterprise is custom and billed annually.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Enterprise Custom Billed annually"
+  },
+  {
+    "claim": "Lab testing sits on Enterprise.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Lab testing is part of Enterprise."
+  },
+  {
+    "claim": "The signed BAA is part of Enterprise.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "The signed Business Associate Agreement, our SOC 2 Type 2 and ISO 27001 reports, and customer-managed encryption keys are part of Enterprise."
+  },
+  {
+    "claim": "Junction's docs warn that \"Some OAuth providers are unavailable unless you can Bring Your Own OAuth (BYOO)\".",
+    "url": "https://docs.junction.com/wearables/connecting-providers/bring-your-own-oauth/overview",
+    "quote": "Some OAuth providers are unavailable unless you can Bring Your Own OAuth (BYOO)"
+  },
+  {
+    "claim": "Teams choose a region, which \"dictates where data is stored\".",
+    "url": "https://docs.junction.com/home/quickstart",
+    "quote": "The region dictates where data is stored."
+  },
+  {
+    "claim": "ROOK's homepage pitches \"Wearables, medical devices, EHR/EMR and labs\".",
+    "url": "https://tryrook.io/",
+    "quote": "Wearables, medical devices, EHR/EMR and labs. One API integration, consistent records, scores and signals."
+  },
+  {
+    "claim": "A Medical Device API that tags glucose, blood pressure, oxygen saturation, temperature and ECG readings with the device that recorded them.",
+    "url": "https://tryrook.io/rookconnect/medical-device-api/",
+    "quote": "The ROOK Connect Medical Device API delivers glucose, blood pressure, oxygen saturation, temperature and ECG readings in one format, with the device that recorded each one."
+  },
+  {
+    "claim": "A Lab Data API that turns PDF and image lab reports into biomarkers with LOINC codes and FHIR R4 output.",
+    "url": "https://tryrook.io/rookconnect/lab-data-api/",
+    "quote": "The ROOK Connect Lab Data API turns PDF and image lab reports into structured biomarkers with LOINC codes and FHIR R4 output, linked to each user's wearable data."
+  },
+  {
+    "claim": "An EHR/EMR API that, today, sends wearable data to clinical systems.",
+    "url": "https://tryrook.io/rookconnect/ehr-emr-api/",
+    "quote": "Today the EHR/EMR API delivers wearable data to clinical systems."
+  },
+  {
+    "claim": "Bringing EHR records in is on a waitlist.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "EHR/EMR API Waitlist for EHR/EMR API"
+  },
+  {
+    "claim": "Its docs say \"400+ wearables and health data sources\".",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "ROOK is a single integration for 400+ wearables and health data sources that supports all major wearable providers"
+  },
+  {
+    "claim": "Its integrations page says \"72 data sources and more than 500 devices\".",
+    "url": "https://tryrook.io/wearable-api-sdk/integrations/",
+    "quote": "ROOK connects 72 data sources and more than 500 devices through a single integration."
+  },
+  {
+    "claim": "59 of the 72 marked Indirect.",
+    "url": "https://tryrook.io/wearable-api-sdk/integrations/",
+    "quote": "All 72 API 9 SDK 4 Indirect 59"
+  },
+  {
+    "claim": "Indirect sources reach ROOK through Apple Health or Health Connect via SDKs.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "ROOK classifies sources into two primary extraction methods: direct API-based integrations for centralized providers (such as Fitbit or Garmin) and SDK-based integrations for mobile devices (such as Apple Health and Health Connect)."
+  },
+  {
+    "claim": "Core $399 a month up to 750 active users.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For getting started with ROOK. $399 USD per month Up to 750 active users"
+  },
+  {
+    "claim": "Core+ $999 up to 5,000.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For teams growing past their first user base. $999 USD per month Up to 5,000 active users"
+  },
+  {
+    "claim": "Business $1,999 up to 15,000.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For companies that need to scale. $1,999 USD per month Up to 15,000 active users"
+  },
+  {
+    "claim": "Custom Enterprise.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For organizations with custom security or integration requirements. Custom Custom pricing Unlimited users"
+  },
+  {
+    "claim": "\"billing adjusts based on usage\" past each limit.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Each plan includes an active user limit. Beyond that limit, billing adjusts based on usage."
+  },
+  {
+    "claim": "Dexcom, Samsung Health, Strava and WHOOP need your own developer accounts.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "clients are required to create their own developer accounts with these providers."
+  },
+  {
+    "claim": "ROOK says it \"can take several weeks\".",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "This process can take several weeks and partly depends on the timelines of the respective data sources."
+  },
+  {
+    "claim": "Spike's homepage offers \"500+ wearables & IoT sensors\", nutrition from food photos and lab report data.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Connect to 500+ wearables & IoT sensors, extract nutrition insights from food photos, and add lab report data via single API."
+  },
+  {
+    "claim": "Its pricing page says \"Access 40+ providers and 500+ devices via single SDK\".",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Access 40+ providers and 500+ devices via single SDK"
+  },
+  {
+    "claim": "The Lab Reports API reads PDFs, JPEGs or PNG files up to 10MB with OCR.",
+    "url": "https://www.spikeapi.com/lab-reports",
+    "quote": "Spike Lab Reports API processes lab reports from PDFs, JPEGs, or PNG files up to 10MB using OCR technology that converts document images into analyzable text."
+  },
+  {
+    "claim": "And assigns LOINC codes.",
+    "url": "https://www.spikeapi.com/lab-reports",
+    "quote": "After OCR converts documents to text, our infrastructure assigns LOINC codes for each test, recognized worldwide, making lab test data from any language standardized."
+  },
+  {
+    "claim": "Spike MCP feeds wearable, IoT, lab and nutrition data to the LLM of your choice.",
+    "url": "https://www.spikeapi.com/mcp-health-ai-integration",
+    "quote": "Spike MCP connects wearables data, medical IoT devices, lab reports, and nutrition logs to your LLM of choice."
+  },
+  {
+    "claim": "\"Every organization gets a dedicated implementation engineer from the sandbox level.\"",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Every organization gets a dedicated implementation engineer from the sandbox level to help with setup and optimization."
+  },
+  {
+    "claim": "Webhooks are signed with HMAC-SHA256 in an X-Body-Signature header.",
+    "url": "https://docs.spikeapi.com/api-docs/webhooks",
+    "quote": "Each webhook event is signed using an HMAC-SHA256 signature for verification. The signature is included in the X-Body-Signature header."
+  },
+  {
+    "claim": "Enterprise is custom.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Designed for enterprise scale"
+  },
+  {
+    "claim": "Spike calls its pricing \"Usage-driven, transparent, and flexible\".",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Usage-driven, transparent, and flexible"
+  },
+  {
+    "claim": "Each of its plans is bought through a \"Book a demo\" button rather than a checkout (Wearables & IoT Sandbox).",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Dedicated Implementation Engineer Standartized data Support via Slack & Email Book a demo"
+  },
+  {
+    "claim": "Each of its plans is bought through a \"Book a demo\" button rather than a checkout (Enterprise).",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Activation best practices and optimization guidance Book a demo"
+  },
+  {
+    "claim": "A banner on its blog page reads \"Raintree Systems Acquires Spike Technologies\".",
+    "url": "https://www.spikeapi.com/blog",
+    "quote": "Raintree Systems Acquires Spike Technologies"
+  },
+  {
+    "claim": "Its homepage says it \"turns the smartphone itself into a passive sensor for sleep, activity, and behavior\".",
+    "url": "https://sahha.ai/",
+    "quote": "No. Sahha turns the smartphone itself into a passive sensor for sleep, activity, and behavior."
+  },
+  {
+    "claim": "It covers \"800+ devices across 165 integrations\".",
+    "url": "https://sahha.ai/",
+    "quote": "800+ devices across 165 integrations, including Apple Health, Health Connect, Garmin, Fitbit, Oura, WHOOP, and Samsung Health."
+  },
+  {
+    "claim": "They mostly \"arrive on-device through Apple Health or Health Connect\".",
+    "url": "https://sahha.ai/integrations/",
+    "quote": "Sources arrive on-device through Apple Health or Health Connect"
+  },
+  {
+    "claim": "Direct cloud integrations for Garmin, Oura and WHOOP \"are in public beta and are Sandbox only\".",
+    "url": "https://docs.sahha.ai/docs/connect/integrations",
+    "quote": "Integrations are in public beta and are Sandbox only"
+  },
+  {
+    "claim": "Oura and WHOOP are self sign-up betas.",
+    "url": "https://docs.sahha.ai/docs/connect/integrations",
+    "quote": "Oura oura Ring Cloud OAuth Beta self sign-up WHOOP whoop Band Cloud OAuth Beta self sign-up"
+  },
+  {
+    "claim": "Biomarkers, five scores, archetypes and insights.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "Biomarkers 100+ Scores 5 Archetypes 100+ Tags 75+ Insights 100+"
+  },
+  {
+    "claim": "Free for 30 days with 25 development users.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "$0 for 30 days Build and test in sandbox 25 development users All products unlocked Sandbox environment"
+  },
+  {
+    "claim": "Starter: 1,000 users included and $0.40 per extra user.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "1,000 users included, then $0.40/user"
+  },
+  {
+    "claim": "Pro at $1,499 a month billed annually.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "$1,499 $1,999 /month, billed annually"
+  },
+  {
+    "claim": "Pro: 10,000 users and $0.20 per extra user.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "10,000 users included, then $0.20/user"
+  },
+  {
+    "claim": "Custom Enterprise.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "Volume pricing Unlimited projects / workspaces SLAs & Custom contracting (MSA) Custom data retention"
+  },
+  {
+    "claim": "\"A BAA is included from Pro.\"",
+    "url": "https://sahha.ai/",
+    "quote": "The DPA is included on every plan. A BAA is included from Pro."
+  },
+  {
+    "claim": "Thryve, founded in 2016.",
+    "url": "https://www.thryve.health/about",
+    "quote": "since 2016 we have been transforming wearable health data into real-world impact"
+  },
+  {
+    "claim": "Its API \"integrates with over 500 leading wearables and health data ecosystems\".",
+    "url": "https://www.thryve.health/",
+    "quote": "plug-and-play wearable API integrates with over 500 leading wearables and health data ecosystems, including Apple HealthKit, Fitbit, Garmin, and Samsung Health."
+  },
+  {
+    "claim": "\"Developed and hosted entirely in Europe\".",
+    "url": "https://www.thryve.health/",
+    "quote": "Developed and hosted entirely in Europe, Thryve ensures full compliance with the strictest data protection standards, including GDPR, HIPAA, ISO 9001, 27001 and other international regulations."
+  },
+  {
+    "claim": "One app and 0.50 euros per additional user.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Additional users billed at €0.50 each."
+  },
+  {
+    "claim": "Scale Up starts at 1,000 euros a month.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Scale Up Starts at 1.000 € / Per Month"
+  },
+  {
+    "claim": "For startups less than ten years old.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Special plan for startups with growth-stage needs (less than 10 years of founding)."
+  },
+  {
+    "claim": "With up to 5,000 users.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Up to 5000 users 1 app connected Own data source tenant / Custom Auth credentials Up to 14 days of Fetching historical data Up to 1 month of data storage"
+  },
+  {
+    "claim": "Enterprise is bespoke.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "For organizations needing high-volume access, multiple app connections, advanced analytics, and dedicated support."
+  },
+  {
+    "claim": "\"BAA agreements included on all plans\".",
+    "url": "https://www.thryve.health/certifications-compliance",
+    "quote": "BAA agreements included on all plans"
+  },
+  {
+    "claim": "No shared OAuth client for Google Health.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Google Health Web Bulk yes no"
+  },
+  {
+    "claim": "Validic's homepage says one platform \"normalizes 700+ devices into a single standard\".",
+    "url": "https://validic.com/",
+    "quote": "One platform normalizes 700+ devices into a single standard"
+  },
+  {
+    "claim": "ChartSpan announced \"the completed acquisition of Validic\".",
+    "url": "https://validic.com/news/chartspan/",
+    "quote": "today announced the completed acquisition of Validic, the leading personal health data platform."
+  },
+  {
+    "claim": "On June 22, 2026.",
+    "url": "https://validic.com/news/chartspan/",
+    "quote": "Cost-Effective Clinical Care &middot; June 22, 2026"
+  },
+  {
+    "claim": "On April 23, 2026.",
+    "url": "https://validic.com/blog/Validic-Inform-Is-Now-Free/",
+    "quote": "Chief Executive Officer & Co-Founder &middot; April 23, 2026"
+  },
+  {
+    "claim": "Validic opened its Inform API to self-serve sign-up \"at no cost\".",
+    "url": "https://validic.com/blog/Validic-Inform-Is-Now-Free/",
+    "quote": "Starting today, people can sign up for Inform at no cost. No contract. No credit card. No sales call."
+  },
+  {
+    "claim": "The Developer plan covers 5 users, 5 cloud integrations and 90-day data retention.",
+    "url": "https://validic.com/inform-signup/",
+    "quote": "5 users Streaming API (SSE) + REST API preview 5 cloud integrations to start building immediately 90-day data retention"
+  },
+  {
+    "claim": "Enterprise pricing is negotiated.",
+    "url": "https://validic.com/inform-signup/",
+    "quote": "Negotiated pricing. Production-ready from day one."
+  },
+  {
+    "claim": "Enterprise carries the BAA.",
+    "url": "https://validic.com/inform-signup/",
+    "quote": "with BAA available for Enterprise customers."
+  },
+  {
+    "claim": "Fitbit closed to new applications \"due to the transition to Google Health\".",
+    "url": "https://validic.com/features/supported-devices/",
+    "quote": "this vendor is temporarily not accepting new applications due to the transition to Google Health."
+  },
+  {
+    "claim": "An \"Open-source platform that unifies wearable device data from multiple providers behind a single API\".",
+    "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
+    "quote": "Open-source platform that unifies wearable device data from multiple providers behind a single API and makes it available to AI."
+  },
+  {
+    "claim": "MIT-licensed software from Momentum.",
+    "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/LICENSE",
+    "quote": "MIT License Copyright (c) 2025 Momentum"
+  },
+  {
+    "claim": "\"each deployment serves a single organization\".",
+    "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
+    "quote": "The platform is designed for self-hosting, meaning each deployment serves a single organization."
+  },
+  {
+    "claim": "The open-source core is \"Free forever\".",
+    "url": "https://openwearables.io/pricing",
+    "quote": "Open Source Free forever Self-hosted wearable data infrastructure under MIT license."
+  },
+  {
+    "claim": "Enterprise support is \"scoped per project\".",
+    "url": "https://openwearables.io/pricing",
+    "quote": "Enterprise is scoped per project."
+  },
+  {
+    "claim": "Enterprise support comes with a BAA.",
+    "url": "https://openwearables.io/pricing",
+    "quote": "BAA is available on the Enterprise plan alongside HIPAA-eligible infrastructure and audit trail configuration."
+  },
+  {
+    "claim": "\"You must apply for Garmin Developer Program\".",
+    "url": "https://openwearables.io/docs/providers/supported",
+    "quote": "You must apply for Garmin Developer Program"
+  },
+  {
+    "claim": "The same for Suunto.",
+    "url": "https://openwearables.io/docs/providers/supported",
+    "quote": "You must apply for Suunto Developer Program"
+  },
+  {
+    "claim": "And Polar.",
+    "url": "https://openwearables.io/docs/providers/supported",
+    "quote": "You must register for the Polar API program"
+  },
+  {
+    "claim": "\"an early-stage project under active development\" whose APIs \"may change before version 1.0\".",
+    "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
+    "quote": "This is an early-stage project under active development. APIs may change before version 1.0."
+  },
+  {
+    "claim": "Life-insurance underwriting product.",
+    "url": "https://www.humanapi.co/",
+    "quote": "Fast-track underwriting decisions with the EHR for life insurance platform built for adoption at scale"
+  },
+  {
+    "claim": "\"formerly Human API Health Intelligence\".",
+    "url": "https://www.humanapi.co/",
+    "quote": "Health Intelligence, formerly Human API Health Intelligence"
+  },
+  {
+    "claim": "LexisNexis sells Human API as a consumer-consented network.",
+    "url": "https://risk.lexisnexis.com/products/humanapi",
+    "quote": "combines a vast consumer-permission health data network with next-generation digital capabilities to address the core challenges of data access."
+  },
+  {
+    "claim": "\"over 30,000 data connections including medical records, labs, fitness wearables and apps\".",
+    "url": "https://risk.lexisnexis.com/products/humanapi",
+    "quote": "a vast data network of over 30,000 data connections including medical records, labs, fitness wearables and apps"
+  },
+  {
+    "claim": "To healthcare and life-science organizations.",
+    "url": "https://risk.lexisnexis.com/products/humanapi",
+    "quote": "Connecting Health Data to Advance Clinical Research and Healthcare"
+  },
+  {
+    "claim": "Through a contact form.",
+    "url": "https://risk.lexisnexis.com/products/humanapi",
+    "quote": "Contact Us For More Information"
+  },
+  {
+    "claim": "Metriport is open-source (AGPLv3).",
+    "url": "https://raw.githubusercontent.com/metriport/metriport/develop/README.md",
+    "quote": "Distributed under the AGPLv3 License."
+  },
+  {
+    "claim": "Medical-records infrastructure.",
+    "url": "https://raw.githubusercontent.com/metriport/metriport/develop/README.md",
+    "quote": "Metriport provides real-time access to medical data for 340+ million individuals across the US."
+  },
+  {
+    "claim": "Access requires requests \"on behalf of a covered entity with an NPI number for a valid Treatment purpose of use\".",
+    "url": "https://docs.metriport.com/medical-api/getting-started/quickstart",
+    "quote": "Access to our Medical API will require you to make requests on behalf of a covered entity with an NPI number for a valid Treatment purpose of use."
+  },
+  {
+    "claim": "FAQ: Thryve requires your own OAuth client where it has no shared one.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "When no shared oAuth-client is available, you must bring your own oAuth-client"
+  },
+  {
+    "claim": "FAQ: Open Wearables needs your own app for every cloud provider.",
+    "url": "https://openwearables.io/docs/providers/supported",
+    "quote": "Register as a developer with the provider Create an OAuth application to obtain client credentials"
+  },
+  {
+    "claim": "FAQ: approval can take weeks.",
+    "url": "https://openwearables.io/faq",
+    "quote": "each wearable platform runs its own developer program, and approval ranges from immediate to several weeks depending on the provider."
+  },
+  {
+    "claim": "FAQ: Validic's Inform Developer plan is free for 5 users.",
+    "url": "https://validic.com/inform-signup/",
+    "quote": "5 users Streaming API (SSE) + REST API preview 5 cloud integrations to start building immediately 90-day data retention"
+  },
+  {
+    "claim": "FAQ: Open Wearables is free open-source software.",
+    "url": "https://openwearables.io/docs",
+    "quote": "Self-hosted, MIT license, $0 per user."
+  },
+  {
+    "claim": "FAQ: Rook's Core is $399 a month for up to 750 active users.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For getting started with ROOK. $399 USD per month Up to 750 active users"
+  },
+  {
+    "claim": "FAQ: Spike's Sandbox starts from $450 a month.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Purpose-built for fast innovation, Sandbox gives your team everything needed to build, test, and launch into production. Starts from $450 /month"
+  },
+  {
+    "claim": "FAQ: Rook turns uploaded lab reports into biomarkers with LOINC codes.",
+    "url": "https://tryrook.io/rookconnect/lab-data-api/",
+    "quote": "The ROOK Connect Lab Data API turns PDF and image lab reports into structured biomarkers with LOINC codes and FHIR R4 output, linked to each user's wearable data."
+  },
+  {
+    "claim": "FAQ: Spike turns uploaded lab reports into structured data with LOINC codes.",
+    "url": "https://www.spikeapi.com/lab-reports",
+    "quote": "After OCR converts documents to text, our infrastructure assigns LOINC codes for each test, recognized worldwide, making lab test data from any language standardized."
+  },
+  {
+    "claim": "Each team is tied to an EU or US region.",
+    "url": "https://docs.junction.com/home/quickstart",
+    "quote": "A team is associated with a region (either EU or US"
+  },
+  {
+    "claim": "Rook's EHR/EMR API delivers wearable data to clinical systems as FHIR R4.",
+    "url": "https://tryrook.io/rookconnect/ehr-emr-api/",
+    "quote": "ROOK's EHR/EMR API delivers each user's health data as FHIR R4, with LOINC codes and UCUM units, ready to integrate into clinical systems."
+  },
+  {
+    "claim": "EHR records flowing into ROOK are still \"coming soon\".",
+    "url": "https://tryrook.io/rookconnect/ehr-emr-api/",
+    "quote": "Bringing data from EHRs, EMRs, patient portals, and health networks into ROOK is coming soon."
+  },
+  {
+    "claim": "Validic lists full mobile SDK access on its Enterprise plan.",
+    "url": "https://validic.com/inform-signup/",
+    "quote": "Mobile SDK iOS & Android Coming Soon Coming Soon Full access"
+  },
+  {
+    "claim": "Sahha ships a mobile SDK.",
+    "url": "https://sahha.ai/integrations/",
+    "quote": "One SDK and one API, delivered as normalized biomarkers, scores, and archetypes."
+  },
+  {
+    "claim": "Spike pitches \"360° Health Data for AI\".",
+    "url": "https://www.spikeapi.com/",
+    "quote": "360° Health Data for AI"
+  },
+  {
+    "claim": "Spike ships SDK integrations for the phone stores.",
+    "url": "https://docs.spikeapi.com/api-docs/provider_integration",
+    "quote": "Refer to SDK Documentation for Apple Health, Health Connect & Samsung Health Data integrations."
+  },
+  {
+    "claim": "Rook ships mobile SDKs for the phone stores.",
+    "url": "https://tryrook.io/rookconnect/wearable-api/",
+    "quote": "Built for mobile apps. Connects Apple Health, Health Connect and Samsung Health."
+  },
+  {
+    "claim": "Thryve ships an SDK for Apple Health.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Apple Health Native SDK"
+  },
+  {
+    "claim": "Open Wearables ships mobile SDKs for on-device stores.",
+    "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
+    "quote": "Native SDKs for push-based health data sync from on-device health stores"
+  },
+  {
+    "claim": "Terra's homepage lists home kits, mobile phlebotomy and lab walk-ins.",
+    "url": "https://tryterra.co/",
+    "quote": "Order blood and DNA tests for your users through Terra API. Blood through home kits, mobile phlebotomy, or lab walk-ins, and DNA from a single at-home saliva swab, with results delivered straight to your app."
+  },
+  {
+    "claim": "Terra's Enterprise plan lists a dedicated instance in a localised area.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Dedicated instance to localised area"
+  }
+]

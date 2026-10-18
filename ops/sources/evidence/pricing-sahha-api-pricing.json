@@ -1,0 +1,237 @@
+[
+  {
+    "claim": "Free: $0 for 30 days, sandbox only, 25 development users.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "$0 for 30 days Build and test in sandbox 25 development users All products unlocked Sandbox environment"
+  },
+  {
+    "claim": "Starter: $299 a month, billed annually; 1,000 users.",
+    "url": "https://sahha.ai/",
+    "quote": "Start free with 25 development users and every product unlocked in sandbox. Production plans start at $299 a month billed annually, with 1,000 users included and per-user pricing as you grow."
+  },
+  {
+    "claim": "Starter: $0.40 each extra user; 30 days retention.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "1,000 users included, then $0.40/user 30-day data retention"
+  },
+  {
+    "claim": "Pro: $1,499 a month, billed annually.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "$1,499 $1,999 /month, billed annually"
+  },
+  {
+    "claim": "Pro: 10,000 users, $0.20 each extra.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "10,000 users included, then $0.20/user"
+  },
+  {
+    "claim": "Pro: 120 days retention.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "HIPAA (BAA) Custom tags Up to 5 projects / workspaces 120-day data retention"
+  },
+  {
+    "claim": "Enterprise: custom; volume pricing; custom retention.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "Volume pricing Unlimited projects / workspaces SLAs & Custom contracting (MSA) Custom data retention"
+  },
+  {
+    "claim": "Free: 30 days retention.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "Data retention 30 days 30 days 120 days Custom"
+  },
+  {
+    "claim": "Webhook deliveries a day: 10K, 100K, 1M, custom.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "Webhook deliveries / day 10K 100K 1M Custom"
+  },
+  {
+    "claim": "The billing toggle reads \"Monthly Annual −25%\".",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "Monthly Annual −25%"
+  },
+  {
+    "claim": "Pro adds custom tags, up to 5 projects or workspaces.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "HIPAA (BAA) Custom tags Up to 5 projects / workspaces 120-day data retention"
+  },
+  {
+    "claim": "Pro has an elevated API rate limit.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "API rate limit Standard Standard Elevated Custom"
+  },
+  {
+    "claim": "Enterprise adds unlimited projects, SLAs, custom contracting.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "Volume pricing Unlimited projects / workspaces SLAs & Custom contracting (MSA) Custom data retention"
+  },
+  {
+    "claim": "Enterprise adds a dedicated CS engineer.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "Custom data retention Dedicated CS engineer"
+  },
+  {
+    "claim": "The pricing page's headline is \"All products included from day one\".",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "All products included from day one."
+  },
+  {
+    "claim": "Included on every plan: 100+ biomarkers, 5 scores, 100+ archetypes, 75+ tags and 100+ insights.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "Biomarkers 100+ Scores 5 Archetypes 100+ Tags 75+ Insights 100+"
+  },
+  {
+    "claim": "Plus platform integrations, mobile SDKs, the REST API and webhooks, 30 days of historical data on day one, multi-device deduplication.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "Platform integrations Mobile SDKs REST API + Webhooks Privacy (no PII required) SOC 2 Type II DPA GDPR Day-1 historical data 30 days Multi-device deduplication"
+  },
+  {
+    "claim": "Its homepage says the 165 integrations cover \"800+ devices\", including Apple Health, Health Connect, Garmin, Fitbit, Oura, WHOOP and Samsung Health.",
+    "url": "https://sahha.ai/",
+    "quote": "800+ devices across 165 integrations, including Apple Health, Health Connect, Garmin, Fitbit, Oura, WHOOP, and Samsung Health."
+  },
+  {
+    "claim": "Arithmetic input: Starter $299 incl. 1,000 users, then $0.40/user.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "1,000 users included, then $0.40/user"
+  },
+  {
+    "claim": "Arithmetic input: Pro $1,499 incl. 10,000 users, then $0.20/user.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "10,000 users included, then $0.20/user"
+  },
+  {
+    "claim": "The page says \"then $0.40/user\" without naming a period.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "1,000 users included, then $0.40/user"
+  },
+  {
+    "claim": "Sahha's pricing page lists an FAQ titled \"What counts as a user?\".",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "What counts as a user?"
+  },
+  {
+    "claim": "Enterprise, where volume pricing applies, is a quote.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "Volume pricing Unlimited projects / workspaces SLAs & Custom contracting (MSA) Custom data retention"
+  },
+  {
+    "claim": "Sahha \"turns the smartphone itself into a passive sensor for sleep, activity, and behavior\".",
+    "url": "https://sahha.ai/",
+    "quote": "No. Sahha turns the smartphone itself into a passive sensor for sleep, activity, and behavior."
+  },
+  {
+    "claim": "Sources \"arrive on-device through Apple Health or Health Connect\", with \"no per-brand work required\".",
+    "url": "https://sahha.ai/integrations/",
+    "quote": "Sources arrive on-device through Apple Health or Health Connect — no per-brand work required."
+  },
+  {
+    "claim": "The data path runs through your app with Sahha's SDK.",
+    "url": "https://sahha.ai/integrations/",
+    "quote": "One SDK and one API, delivered as normalized biomarkers, scores, and archetypes."
+  },
+  {
+    "claim": "For select providers Sahha \"also connects directly through their cloud API\".",
+    "url": "https://sahha.ai/integrations/",
+    "quote": "For select providers, Sahha also connects directly through their cloud API"
+  },
+  {
+    "claim": "These integrations \"are in public beta and are Sandbox only\".",
+    "url": "https://docs.sahha.ai/docs/connect/integrations",
+    "quote": "Integrations are in public beta and are Sandbox only"
+  },
+  {
+    "claim": "Each uses an app you register with the provider (\"Create an app with the provider\").",
+    "url": "https://docs.sahha.ai/docs/connect/integrations",
+    "quote": "Create an app with the provider"
+  },
+  {
+    "claim": "Garmin's needs Garmin's approval.",
+    "url": "https://docs.sahha.ai/docs/connect/integrations",
+    "quote": "Beta Garmin approval required"
+  },
+  {
+    "claim": "Oura and WHOOP are self sign-up.",
+    "url": "https://docs.sahha.ai/docs/connect/integrations",
+    "quote": "Oura oura Ring Cloud OAuth Beta self sign-up WHOOP whoop Band Cloud OAuth Beta self sign-up"
+  },
+  {
+    "claim": "Data retention is 30 days on Free and Starter and 120 days on Pro.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "Data retention 30 days 30 days 120 days Custom"
+  },
+  {
+    "claim": "Webhook deliveries are capped per day by plan.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "Webhook deliveries / day 10K 100K 1M Custom"
+  },
+  {
+    "claim": "Sahha's docs describe the webhook interval as \"a deduplication window\".",
+    "url": "https://docs.sahha.ai/docs/connect/webhooks",
+    "quote": "The interval acts as a deduplication window."
+  },
+  {
+    "claim": "Only the final value is sent when the interval ends.",
+    "url": "https://docs.sahha.ai/docs/connect/webhooks",
+    "quote": "If multiple updates occur within the window, only the final value is sent when the interval ends."
+  },
+  {
+    "claim": "Scores and biomarkers update throughout the day.",
+    "url": "https://docs.sahha.ai/docs/connect/webhooks",
+    "quote": "Scores and biomarkers update throughout the day as new data arrives."
+  },
+  {
+    "claim": "\"SOC 2 Type II audited, HIPAA and GDPR compliant\".",
+    "url": "https://sahha.ai/",
+    "quote": "SOC 2 Type II audited, HIPAA and GDPR compliant"
+  },
+  {
+    "claim": "\"No names, emails, phones, or other identifiers\" required.",
+    "url": "https://sahha.ai/",
+    "quote": "No names, emails, phones, or other identifiers"
+  },
+  {
+    "claim": "You pass your own external ID.",
+    "url": "https://sahha.ai/",
+    "quote": "You provide an External ID for the user"
+  },
+  {
+    "claim": "\"The DPA is included on every plan. A BAA is included from Pro.\"",
+    "url": "https://sahha.ai/",
+    "quote": "The DPA is included on every plan. A BAA is included from Pro."
+  },
+  {
+    "claim": "Junction's Launch plan is a flat $300 a month.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "it covers the Link widget, 300+ device integrations, and usage analytics for a flat $300 a month."
+  },
+  {
+    "claim": "Terra bills credits per connected data source.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Two things consume credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
+  },
+  {
+    "claim": "Sahha's direct cloud integrations are still in beta.",
+    "url": "https://docs.sahha.ai/docs/connect/integrations",
+    "quote": "Integrations are in public beta and are Sandbox only"
+  },
+  {
+    "claim": "FAQ: Free includes every product unlocked, the sandbox environment and the Slack community.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "25 development users All products unlocked Sandbox environment Slack community"
+  },
+  {
+    "claim": "FAQ: the plan table lists HIPAA (BAA) under Pro.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "HIPAA (BAA) Custom tags Up to 5 projects / workspaces 120-day data retention"
+  },
+  {
+    "claim": "FAQ: add its OAuth credentials in the Sahha dashboard.",
+    "url": "https://docs.sahha.ai/docs/connect/integrations",
+    "quote": "Create an integration in Sahha — add those credentials to your project in the Sahha Dashboard"
+  },
+  {
+    "claim": "FAQ: Sahha backfills up to 30 days of history when a user connects.",
+    "url": "https://sahha.ai/",
+    "quote": "Sahha backfills up to 30 days on connect"
+  }
+]

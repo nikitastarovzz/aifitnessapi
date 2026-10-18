@@ -217,22 +217,26 @@ export const COST_ITEMS: CostItem[] = [
     sourceHref: "/fitness-apis/apple-healthkit-vs-google-health-connect",
   },
 
-  // provenance: "Terra uses a subscription plus usage (credit-based) model" — /fitness-apis/terra-vs-vital
-  // provenance: "cost scales with connected users and event volume" — /fitness-apis/terra-vs-vital
+  // provenance: "when we read the vendors' pricing pages on October 17, 2026, eight of them showed an entry price" — /pricing/health-data-aggregator-pricing
+  // provenance: "Terra bills a subscription plus credits per connected data source" — /fitness-apis/terra-vs-vital
+  // provenance: "Terra bills credits for each connected data source and for events past a free allowance" — /fitness-apis/health-data-aggregator-apis
+  // provenance: "Terra's homepage now sells lab testing" — /fitness-apis/terra-vs-vital
+  // provenance: "Terra's docs name WHOOP, Dexcom, Huawei, Strava and Virtuagym" — /fitness-apis/health-data-aggregator-apis
   {
     id: "terra",
     label: "Terra",
     category: "aggregator",
     devCost: "usage-based",
     userSideCost: null,
-    approvalGate: null,
+    approvalGate:
+      "Some providers need a special setup process first; Terra's docs name WHOOP, Dexcom, Huawei, Strava and Virtuagym.",
     engEffort: "low",
     notes:
-      "Subscription plus a credit/event layer, so the bill has two dimensions rather than one — a data-heavy integration can burn the allowance faster than the user count suggests. Per-user rates are not publicly listed; get a quote.",
+      "A published subscription with included credits, then credits per connected data source and for events past a free allowance, so a user who connects two devices costs twice. Now also sells lab testing.",
     sourceHref: "/fitness-apis/terra-vs-vital",
   },
 
-  // provenance: "Vital/Junction uses per-user, usage-based pricing with a monthly minimum" — /fitness-apis/terra-vs-vital
+  // provenance: "Junction's Launch plan is a flat monthly fee for up to 500 connected users, and everything past that, including labs, is a custom Enterprise contract" — /fitness-apis/terra-vs-vital
   {
     id: "junction",
     label: "Junction (formerly Vital)",
@@ -242,12 +246,14 @@ export const COST_ITEMS: CostItem[] = [
     approvalGate: null,
     engEffort: "low",
     notes:
-      "Per-user usage-based with a monthly minimum, so there is a floor under the bill before your first connected user. Wearables plus US-focused lab diagnostics in one integration.",
+      "A flat monthly fee for up to 500 connected users on its Launch plan; past that, and for lab testing, a custom Enterprise contract. Wearables plus US lab diagnostics in one integration.",
     sourceHref: "/fitness-apis/terra-vs-vital",
   },
 
-  // provenance: "Rook uses named active-user tiers" — /pricing/health-data-aggregator-pricing
-  // provenance: "Several providers need your own developer credentials; confirm tier caps" — /fitness-apis/health-data-aggregator-apis
+  // provenance: "Rook prices \"based on the plan and the number of active users\"" — /pricing/health-data-aggregator-pricing
+  // provenance: "Dexcom, Samsung Health, Strava and WHOOP need your own developer accounts, which ROOK says \"can take several weeks\"" — /fitness-apis/health-data-aggregator-apis
+  // provenance: "with \"billing adjusts based on usage\" past each limit and a standard 12-month contract" — /fitness-apis/health-data-aggregator-apis
+  // provenance: "SDKs for Apple Health and Health Connect" — /compare/terra-vs-rook
   {
     id: "rook",
     label: "Rook",
@@ -255,25 +261,29 @@ export const COST_ITEMS: CostItem[] = [
     devCost: "usage-based",
     userSideCost: null,
     approvalGate:
-      "Several underlying providers still need your own developer credentials — confirm tier caps.",
+      "Dexcom, Samsung Health, Strava and WHOOP need your own developer accounts, which Rook says can take several weeks.",
     engEffort: "low",
     notes:
-      "Usage-based, tiered by active users, with strong on-device SDK support for Apple Health and Health Connect. Third-party reports cite tier bands; the official pricing page could not be verified.",
+      "Published plans tiered by active users, with billing that adjusts past each plan's limit and a standard 12-month contract. SDKs cover Apple Health and Health Connect.",
     sourceHref: "/pricing/health-data-aggregator-pricing",
   },
 
-  // provenance: "tiered and sales-assisted with no durable itemized public figures" — /fitness-apis/health-data-aggregator-apis
-  // provenance: "Per-user; dedicated implementation engineer from sandbox" — /fitness-apis/health-data-aggregator-apis
+  // provenance: "Spike reaches into medical IoT, lab-report OCR, food-photo nutrition and EMR data" — /alternatives/terra-alternatives
+  // provenance: "Spike's pricing page lists a Sandbox plan that \"Starts from" — /fitness-apis/health-data-aggregator-apis
+  // provenance: "Spike calls its pricing \"Usage-driven, transparent, and flexible\" but does not itemize how the bill grows" — /fitness-apis/health-data-aggregator-apis
+  // provenance: "\"Every organization gets a dedicated implementation engineer from the sandbox level" — /fitness-apis/health-data-aggregator-apis
+  // provenance: "Each of its plans is bought through a \"Book a demo\" button rather than a checkout" — /fitness-apis/health-data-aggregator-apis
+  // provenance: "a banner on its integrations page reads \"Raintree Systems Acquires Spike Technologies\"" — /fitness-apis/health-data-aggregator-apis
   {
     id: "spike",
     label: "Spike",
     category: "aggregator",
-    devCost: "contact-sales",
+    devCost: "usage-based",
     userSideCost: null,
-    approvalGate: "Sales-assisted onboarding with a dedicated implementation engineer from sandbox.",
+    approvalGate: "Sales-assisted onboarding: every plan is bought through a demo call, with a dedicated implementation engineer from sandbox.",
     engEffort: "low",
     notes:
-      "Broadest scope beyond wearables — IoT and medical devices, EMR, labs — but a newer, smaller company, and its pricing is not itemized publicly. Treat it as contact-sales.",
+      "Broadest scope beyond wearables (medical IoT, EMR, lab reports, food photos). Its pricing page now shows a Sandbox starting price and calls the model usage-driven, but does not itemize how the bill grows. Its site also announces an acquisition by Raintree Systems.",
     sourceHref: "/fitness-apis/health-data-aggregator-apis",
   },
 

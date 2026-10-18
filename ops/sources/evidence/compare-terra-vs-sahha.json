@@ -1,0 +1,307 @@
+[
+  {
+    "claim": "Terra: \"One API call returns standardised data from 500+ providers\".",
+    "url": "https://tryterra.co/",
+    "quote": "One API call returns standardised data from 500+ providers, including Garmin, Fitbit, Apple Health, Oura, WHOOP and Strava, without writing separate authentication flows or data parsers."
+  },
+  {
+    "claim": "Sahha: \"From phones and 800+ devices to biomarkers, scores, archetypes, tags and insights your product can act on.\"",
+    "url": "https://sahha.ai/",
+    "quote": "From phones and 800+ devices to biomarkers, scores, archetypes, tags and insights your product can act on."
+  },
+  {
+    "claim": "Terra coverage: \"500+ providers\".",
+    "url": "https://tryterra.co/",
+    "quote": "One API call returns standardised data from 500+ providers, including Garmin, Fitbit, Apple Health, Oura, WHOOP and Strava, without writing separate authentication flows or data parsers."
+  },
+  {
+    "claim": "Terra docs: \"over 150+ Data Sources\".",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+    "quote": "The Unified API supports over 150+ Data Sources"
+  },
+  {
+    "claim": "Sahha: \"800+ devices across 165 integrations\".",
+    "url": "https://sahha.ai/",
+    "quote": "800+ devices across 165 integrations, including Apple Health, Health Connect, Garmin, Fitbit, Oura, WHOOP, and Samsung Health."
+  },
+  {
+    "claim": "Sahha: the phone itself is \"a passive sensor for sleep, activity, and behavior\".",
+    "url": "https://sahha.ai/",
+    "quote": "No. Sahha turns the smartphone itself into a passive sensor for sleep, activity, and behavior."
+  },
+  {
+    "claim": "Terra-managed keys for many sources.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/dedicated-data-source-api-keys",
+    "quote": "Terra manages API Keys of data sources, meaning you can connect users without having to apply for each API Key."
+  },
+  {
+    "claim": "Sahha cloud API \"For select providers\".",
+    "url": "https://sahha.ai/integrations/",
+    "quote": "For select providers, Sahha also connects directly through their cloud API"
+  },
+  {
+    "claim": "Those integrations \"are in public beta and are Sandbox only\".",
+    "url": "https://docs.sahha.ai/docs/connect/integrations",
+    "quote": "Integrations are in public beta and are Sandbox only"
+  },
+  {
+    "claim": "Terra entry: $399 a month billed annually, or $499 monthly, with 100,000 credits.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly. That includes 100,000 credits each month for the Unified API, and you only pay extra if your usage goes beyond them."
+  },
+  {
+    "claim": "Sahha Starter: $299 a month billed annually with 1,000 users.",
+    "url": "https://sahha.ai/",
+    "quote": "Start free with 25 development users and every product unlocked in sandbox. Production plans start at $299 a month billed annually, with 1,000 users included and per-user pricing as you grow."
+  },
+  {
+    "claim": "Terra: 200 credits a month per connected data source.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Two things consume credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
+  },
+  {
+    "claim": "Terra: events past a free allowance.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "The Unified API includes 400 events per active authentication free each month, and events beyond that cost 0.5 credits each. Terra's pricing docs note that 95% of customers are never charged for events."
+  },
+  {
+    "claim": "Sahha: $0.40 each past 1,000 on Starter.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "1,000 users included, then $0.40/user"
+  },
+  {
+    "claim": "Sahha: $0.20 each past 10,000 on Pro.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "10,000 users included, then $0.20/user"
+  },
+  {
+    "claim": "Terra: 30-day money-back guarantee.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "30-day money-back guarantee"
+  },
+  {
+    "claim": "Terra: testing environments capped at 50 users.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/understanding-terra-environments",
+    "quote": "Note that for testing & staging, there is a user limit of 50 users on each environment."
+  },
+  {
+    "claim": "Sahha Free plan: $0 for 30 days, 25 development users, sandbox.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "$0 for 30 days Build and test in sandbox 25 development users All products unlocked Sandbox environment"
+  },
+  {
+    "claim": "Terra: scores add-on from $499 a month on Quick Start.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Health scores are an add-on for Quick Start plans. Starting from $499 / month"
+  },
+  {
+    "claim": "Sahha: 5 scores on every plan.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "Biomarkers 100+ Scores 5 Archetypes 100+ Tags 75+ Insights 100+"
+  },
+  {
+    "claim": "Terra: BAA listed on Enterprise.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Signed BAA (data protection agreement)"
+  },
+  {
+    "claim": "Sahha: BAA from Pro.",
+    "url": "https://sahha.ai/",
+    "quote": "The DPA is included on every plan. A BAA is included from Pro."
+  },
+  {
+    "claim": "Sahha Pro: $1,499 a month billed annually.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "$1,499 $1,999 /month, billed annually"
+  },
+  {
+    "claim": "Terra: HMAC signature header.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "Every webhook sent by Terra includes an HMAC-based signature header"
+  },
+  {
+    "claim": "Terra: up to 10 retries.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "Terra retries the delivery up to 10 times with exponential backoff"
+  },
+  {
+    "claim": "Terra: about 8 hours across retries.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "The cumulative window across all retries is ~8 hours"
+  },
+  {
+    "claim": "Sahha: HMAC-SHA256 signature.",
+    "url": "https://docs.sahha.ai/docs/connect/webhooks",
+    "quote": "Compute an HMAC-SHA256 hash of the raw request body using your secret key, then compare it to the signature in the header."
+  },
+  {
+    "claim": "Sahha: up to 5 retries with exponential backoff.",
+    "url": "https://docs.sahha.ai/docs/connect/webhooks",
+    "quote": "Failed deliveries are retried up to 5 times with exponential backoff"
+  },
+  {
+    "claim": "Terra: blood and DNA test ordering.",
+    "url": "https://tryterra.co/",
+    "quote": "Order blood and DNA tests for your users through Terra API. Blood through home kits, mobile phlebotomy, or lab walk-ins, and DNA from a single at-home saliva swab, with results delivered straight to your app."
+  },
+  {
+    "claim": "Terra: US and UK.",
+    "url": "https://tryterra.co/products/lab-testing",
+    "quote": "Nationwide US, plus the UK"
+  },
+  {
+    "claim": "\"Terra manages API Keys of data sources, meaning you can connect users without having to apply for each API Key\".",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/dedicated-data-source-api-keys",
+    "quote": "Terra manages API Keys of data sources, meaning you can connect users without having to apply for each API Key."
+  },
+  {
+    "claim": "\"Garmin data flows through Terra today\".",
+    "url": "https://tryterra.co/",
+    "quote": "Terra has maintained a Garmin integration for years as an established partner, so Garmin data flows through Terra today."
+  },
+  {
+    "claim": "Sahha \"also connects directly through their cloud API\".",
+    "url": "https://sahha.ai/integrations/",
+    "quote": "For select providers, Sahha also connects directly through their cloud API"
+  },
+  {
+    "claim": "Each runs on an app you register with the provider.",
+    "url": "https://docs.sahha.ai/docs/connect/integrations",
+    "quote": "Create an app with the provider"
+  },
+  {
+    "claim": "Terra delivers \"to webhooks, SQL databases (Postgres and MySQL), Supabase, cloud storage (S3, GCS and Azure Blob), queueing services (SQS and Kafka), MongoDB and Firestore\".",
+    "url": "https://tryterra.co/",
+    "quote": "Terra delivers to webhooks, SQL databases (Postgres and MySQL), Supabase, cloud storage (S3, GCS and Azure Blob), queueing services (SQS and Kafka), MongoDB and Firestore."
+  },
+  {
+    "claim": "Terra can \"Order blood and DNA tests for your users through Terra API\".",
+    "url": "https://tryterra.co/",
+    "quote": "Order blood and DNA tests for your users through Terra API. Blood through home kits, mobile phlebotomy, or lab walk-ins, and DNA from a single at-home saliva swab, with results delivered straight to your app."
+  },
+  {
+    "claim": "Terra data types from \"sleep stages and latency\" to \"per-set strength training\".",
+    "url": "https://tryterra.co/",
+    "quote": "That covers sleep stages and latency, workouts, heart rate, HRV, VO2max, blood oxygen (SpO2), continuous glucose monitoring (CGM), menstrual cycle, body composition and per-set strength training."
+  },
+  {
+    "claim": "\"Health scores are an add-on for Quick Start plans. Starting from $499 / month\".",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Health scores are an add-on for Quick Start plans. Starting from $499 / month"
+  },
+  {
+    "claim": "\"No. Sahha turns the smartphone itself into a passive sensor for sleep, activity, and behavior.\"",
+    "url": "https://sahha.ai/",
+    "quote": "No. Sahha turns the smartphone itself into a passive sensor for sleep, activity, and behavior."
+  },
+  {
+    "claim": "Every plan includes \"Biomarkers 100+ Scores 5 Archetypes 100+ Tags 75+ Insights 100+\".",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "Biomarkers 100+ Scores 5 Archetypes 100+ Tags 75+ Insights 100+"
+  },
+  {
+    "claim": "Starter: 1,000 users, then \"$0.40/user\".",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "1,000 users included, then $0.40/user"
+  },
+  {
+    "claim": "Pro: $1,499 with 10,000 users, then \"$0.20/user\".",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "10,000 users included, then $0.20/user"
+  },
+  {
+    "claim": "Pro price.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "$1,499 $1,999 /month, billed annually"
+  },
+  {
+    "claim": "Arithmetic input: Terra $0.005 per extra credit.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Only pay more when you go beyond 100,000 credits. Starting at $0.005 / credit."
+  },
+  {
+    "claim": "Arithmetic input: Terra $0.005 per credit from 100,001 to 1,000,000.",
+    "url": "https://docs.tryterra.co/unified-api/pricing",
+    "quote": "100,001 - 1,000,000 $0.005 1,000,001+ $0.003"
+  },
+  {
+    "claim": "Sahha's page lists \"What counts as a user?\".",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "What counts as a user?"
+  },
+  {
+    "claim": "\"The DPA is included on every plan. A BAA is included from Pro.\"",
+    "url": "https://sahha.ai/",
+    "quote": "The DPA is included on every plan. A BAA is included from Pro."
+  },
+  {
+    "claim": "Terra lists its signed BAA on Enterprise.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Signed BAA (data protection agreement)"
+  },
+  {
+    "claim": "Sahha's data mostly arrives \"on-device through Apple Health or Health Connect\".",
+    "url": "https://sahha.ai/integrations/",
+    "quote": "Sources arrive on-device through Apple Health or Health Connect"
+  },
+  {
+    "claim": "Your app with Sahha's SDK.",
+    "url": "https://sahha.ai/integrations/",
+    "quote": "One SDK and one API, delivered as normalized biomarkers, scores, and archetypes."
+  },
+  {
+    "claim": "Data retention: 30 days on Starter, 120 on Pro.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "Data retention 30 days 30 days 120 days Custom"
+  },
+  {
+    "claim": "\"Every webhook sent by Terra includes an HMAC-based signature header\".",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "Every webhook sent by Terra includes an HMAC-based signature header"
+  },
+  {
+    "claim": "Terra \"retries the delivery up to 10 times with exponential backoff\".",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "Terra retries the delivery up to 10 times with exponential backoff"
+  },
+  {
+    "claim": "\"Compute an HMAC-SHA256 hash of the raw request body using your secret key, then compare it to the signature in the header\".",
+    "url": "https://docs.sahha.ai/docs/connect/webhooks",
+    "quote": "Compute an HMAC-SHA256 hash of the raw request body using your secret key, then compare it to the signature in the header."
+  },
+  {
+    "claim": "\"Failed deliveries are retried up to 5 times with exponential backoff\".",
+    "url": "https://docs.sahha.ai/docs/connect/webhooks",
+    "quote": "Failed deliveries are retried up to 5 times with exponential backoff"
+  },
+  {
+    "claim": "Its webhook interval \"acts as a deduplication window\".",
+    "url": "https://docs.sahha.ai/docs/connect/webhooks",
+    "quote": "The interval acts as a deduplication window."
+  },
+  {
+    "claim": "Scores and biomarkers update throughout the day.",
+    "url": "https://docs.sahha.ai/docs/connect/webhooks",
+    "quote": "Scores and biomarkers update throughout the day as new data arrives."
+  },
+  {
+    "claim": "Terra Enterprise: localised dedicated instance.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Dedicated instance to localised area"
+  },
+  {
+    "claim": "FAQ: Garmin's needs Garmin's approval.",
+    "url": "https://docs.sahha.ai/docs/connect/integrations",
+    "quote": "Beta Garmin approval required"
+  },
+  {
+    "claim": "FAQ: Terra's integrations table marks Garmin as Required.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "Garmin GARMIN Event-Driven Required"
+  },
+  {
+    "claim": "FAQ: Terra verifies against the raw body.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "Terra requires the raw, unaltered body of the request to perform signature verification."
+  }
+]

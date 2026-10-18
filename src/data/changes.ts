@@ -42,6 +42,16 @@ export type ChangeEvent = {
 
 export const CHANGE_EVENTS: ChangeEvent[] = [
   {
+    date: "2026-11-03",
+    sortDate: "2026-11-03",
+    title: "Terra legacy widget endpoint deprecation",
+    summary:
+      "Terra relaunched its connect widget. Its documentation says the older session endpoint, POST https://api.tryterra.co/v2/auth/generateWidgetSession, \"keeps working today, with deprecation planned for 3 November 2026\", and that \"Accounts created after 3 September 2026 cannot use it at all.\" New sessions are created at POST https://access.tryterra.co/api/widget/session; the response shape (session_id, url, status, expires_in) is unchanged, while the multi-provider and all-providers options are now sent differently.",
+    status: "confirmed",
+    page: { href: "/integrate/terra-api", label: "How to integrate Terra" },
+    verifiedOn: "2026-10-17",
+  },
+  {
     date: "2026-10-30",
     sortDate: "2026-10-30",
     title: "Fitbit Web API turn-off",

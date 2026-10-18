@@ -53,6 +53,8 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
     blurb: "Aggregators and content APIs that do charge.",
     slugs: [
       "health-data-aggregator-pricing",
+      "sahha-api-pricing",
+      "thryve-api-pricing",
       "nutrition-api-pricing",
       "exercise-database-api-pricing",
     ],

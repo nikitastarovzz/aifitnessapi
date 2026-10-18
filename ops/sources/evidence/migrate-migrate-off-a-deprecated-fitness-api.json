@@ -1,0 +1,22 @@
+[
+  {
+    "claim": "Thryve is a health-data aggregator in its own right.",
+    "url": "https://www.thryve.health/",
+    "quote": "plug-and-play wearable API integrates with over 500 leading wearables and health data ecosystems, including Apple HealthKit, Fitbit, Garmin, and Samsung Health."
+  },
+  {
+    "claim": "Thryve is its own company (thryve.health).",
+    "url": "https://www.thryve.health/about",
+    "quote": "since 2016 we have been transforming wearable health data into real-world impact"
+  },
+  {
+    "claim": "Sahha is a health-data aggregator in its own right.",
+    "url": "https://sahha.ai/",
+    "quote": "800+ devices across 165 integrations, including Apple Health, Health Connect, Garmin, Fitbit, Oura, WHOOP, and Samsung Health."
+  },
+  {
+    "claim": "Sahha is its own company (sahha.ai).",
+    "url": "https://sahha.ai/",
+    "quote": "From phones and 800+ devices to biomarkers, scores, archetypes, tags and insights your product can act on."
+  }
+]

@@ -54,7 +54,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Health-data aggregators",
     blurb: "One integration, many devices — which broker.",
-    slugs: ["terra-vs-rook", "terra-vs-spike", "rook-vs-spike"],
+    slugs: ["terra-vs-rook", "terra-vs-spike", "rook-vs-spike", "terra-vs-thryve", "terra-vs-sahha", "terra-vs-open-wearables"],
   },
   {
     title: "Nutrition & exercise content",

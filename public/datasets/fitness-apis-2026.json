@@ -15,9 +15,9 @@
     "totalItems": 25,
     "byDevCost": {
       "free": 12,
-      "contact-sales": 4,
+      "contact-sales": 3,
       "free-tier-then-paid": 5,
-      "usage-based": 4
+      "usage-based": 5
     },
     "byCategory": {
       "wearable-direct": 6,
@@ -29,11 +29,11 @@
       "pose-model": 3,
       "llm-features": 1
     },
-    "withApprovalGate": 12,
+    "withApprovalGate": 13,
     "withUserSideCost": 5,
-    "contactSalesShare": 16,
+    "contactSalesShare": 12,
     "freeShare": 48,
-    "gatedShare": 48,
+    "gatedShare": 52,
     "refreshTokenRotators": [
       "Strava",
       "WHOOP",
@@ -121,7 +121,7 @@
       "category": "aggregator",
       "devCost": "usage-based",
       "userSideCost": null,
-      "approvalGate": null,
+      "approvalGate": "Some providers need a special setup process first; Terra's docs name WHOOP, Dexcom, Huawei, Strava and Virtuagym.",
       "source": "https://aifitnessapi.com/fitness-apis/terra-vs-vital"
     },
     {
@@ -139,16 +139,16 @@
       "category": "aggregator",
       "devCost": "usage-based",
       "userSideCost": null,
-      "approvalGate": "Several underlying providers still need your own developer credentials — confirm tier caps.",
+      "approvalGate": "Dexcom, Samsung Health, Strava and WHOOP need your own developer accounts, which Rook says can take several weeks.",
       "source": "https://aifitnessapi.com/pricing/health-data-aggregator-pricing"
     },
     {
       "id": "spike",
       "label": "Spike",
       "category": "aggregator",
-      "devCost": "contact-sales",
+      "devCost": "usage-based",
       "userSideCost": null,
-      "approvalGate": "Sales-assisted onboarding with a dedicated implementation engineer from sandbox.",
+      "approvalGate": "Sales-assisted onboarding: every plan is bought through a demo call, with a dedicated implementation engineer from sandbox.",
       "source": "https://aifitnessapi.com/fitness-apis/health-data-aggregator-apis"
     },
     {

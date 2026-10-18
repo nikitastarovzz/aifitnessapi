@@ -15,6 +15,48 @@ export type Correction = {
 
 export const CORRECTIONS: Correction[] = [
   {
+    date: "2026-10-18",
+    page: { href: "/fix/wearable-data-delayed", label: "Why Is Wearable Data Missing or Delayed?" },
+    was: "The fix said to match the terra-reference header on your backfill request to the terra-signature on the eventual webhook.",
+    now: "Terra's docs say the event it later sends to your webhook carries the same terra-reference as the initial request, and that is the value to match. terra-signature is the webhook's HMAC signature header, in the form t=timestamp,v1=signature.",
+    how: "Found on 2026-10-17 while re-reading Terra's historical-data and webhook docs, fetched by a source-snapshot run, for the Terra integration guide.",
+  },
+  {
+    date: "2026-10-18",
+    page: { href: "/migrate/fitbit-web-api-to-google-health", label: "Migrating from the Fitbit Web API to the Google Health API" },
+    was: "The guide named \"Thryve/Sahha\" as one vendor, in its section on aggregators as insulation and in an FAQ answer.",
+    now: "Thryve and Sahha are separate companies. Thryve stays on the list of vendors reported to be preparing for the move, and Sahha has its own sentence: its integrations page says Fitbit data on Android reaches its SDK through Health Connect.",
+    how: "Found on 2026-10-17 while writing the aggregator pages from both vendors' own sites, fetched by source-snapshot runs. Thryve's docs list Google Health as a data source and mark Fitbit as deprecating on October 29, 2026, which is why it stays on the list.",
+  },
+  {
+    date: "2026-10-18",
+    page: { href: "/fitbit-api-shutdown", label: "Fitbit API Shutdown: What's Confirmed for 2026" },
+    was: "The page named \"Thryve/Sahha\" as one vendor, in its aggregator section and in an FAQ answer.",
+    now: "Thryve and Sahha are separate companies. Thryve stays on the list of vendors reported to have been preparing, and Sahha has its own sentence: its integrations page says Fitbit data on Android reaches its SDK through Health Connect.",
+    how: "Same finding as the Fitbit migration guide, found in a site-wide search for the same wording and corrected the same day.",
+  },
+  {
+    date: "2026-10-18",
+    page: { href: "/migrate/migrate-off-a-deprecated-fitness-api", label: "Migrate off a deprecated fitness API" },
+    was: "The playbook listed \"Thryve/Sahha\" as one vendor among its aggregator examples.",
+    now: "Thryve and Sahha are listed separately; they are different companies with their own sites and price sheets.",
+    how: "Same finding as the Fitbit migration guide, corrected the same day.",
+  },
+  {
+    date: "2026-10-17",
+    page: { href: "/state-of-fitness-apis-2026", label: "The State of Fitness APIs 2026" },
+    was: "The report counted 12 of 25 items (48%) as approval-gated and recorded no gate for Terra, and its usage-billing finding said Terra carries no documented approval gate at all.",
+    now: "13 of 25 (52%). Terra's docs say some providers \"require special processes before being able to start using them\" and name WHOOP, Dexcom, Huawei, Strava and Virtuagym, the same kind of own-credentials gate the report already recorded for Rook. A dated revision note at the top of the report lists every figure that moved, including Spike's move from contact-sales to usage-based, which it records as an update rather than a correction.",
+    how: "Found on 2026-10-17 while re-verifying the aggregator pages against Terra's docs, fetched by a source-snapshot run. The gate was already on this site when the report went up: the 2026-08-02 versions of the aggregator comparison and of Terra vs Vital said some providers need your own developer credentials with Terra, so the dataset's empty field was wrong at publication.",
+  },
+  {
+    date: "2026-10-17",
+    page: { href: "/apis/terra", label: "Terra API: Access Requirements, Changes & Guides" },
+    was: "The directory entry said: \"No approval gate is documented in the sources we checked, which is not the same as there being none.\"",
+    now: "It records the gate as Terra's docs state it: some providers need a special setup process first, and the docs name WHOOP, Dexcom, Huawei, Strava and Virtuagym.",
+    how: "Same root cause as the State of Fitness APIs 2026 report: both read the same empty cost-model field. Found the same day.",
+  },
+  {
     date: "2026-10-17",
     page: { href: "/pricing/fitbit-api-pricing", label: "Fitbit API Pricing: What Does It Actually Cost?" },
     was: "The page said the consumer Google Health API's pricing and quota model was not clearly public, in its cost breakdown and in its FAQ on the migration.",
