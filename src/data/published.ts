@@ -7,7 +7,7 @@
  * contained the entry and listed it in its cluster's release gate (blog
  * posts: the commit that added the file; generated sections: the commit that
  * added the route, or the item to the data file if that came later).
- * Keyed by URL path without the leading slash. 458 rows.
+ * Keyed by URL path without the leading slash. 464 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -45,8 +45,11 @@ export const PUBLISHED: Record<string, string> = {
   "alternatives/healthkit-alternatives": "2026-07-13",
   "alternatives/human-api-alternatives": "2026-10-18",
   "alternatives/kinestex-alternatives": "2026-08-02",
+  "alternatives/mediapipe-alternatives": "2026-10-18",
   "alternatives/nutritionix-alternatives": "2026-07-13",
   "alternatives/oura-api-alternatives": "2026-07-13",
+  "alternatives/quickpose-alternatives": "2026-10-18",
+  "alternatives/sency-alternatives": "2026-10-18",
   "alternatives/strava-api-alternatives": "2026-07-13",
   "alternatives/terra-alternatives": "2026-07-13",
   "alternatives/whoop-api-alternatives": "2026-07-13",
@@ -125,6 +128,7 @@ export const PUBLISHED: Record<string, string> = {
   "compare/kinestex-vs-sency": "2026-08-02",
   "compare/nutritionix-vs-edamam": "2026-07-23",
   "compare/oura-vs-whoop": "2026-07-23",
+  "compare/quickpose-vs-sency": "2026-10-18",
   "compare/rook-vs-spike": "2026-08-12",
   "compare/strava-vs-garmin-connect": "2026-07-23",
   "compare/terra-vs-open-wearables": "2026-10-18",
@@ -437,7 +441,9 @@ export const PUBLISHED: Record<string, string> = {
   "pricing/mindbody-api-pricing": "2026-10-18",
   "pricing/nutrition-api-pricing": "2026-07-23",
   "pricing/oura-api-pricing": "2026-07-23",
+  "pricing/quickpose-pricing": "2026-10-18",
   "pricing/sahha-api-pricing": "2026-10-18",
+  "pricing/sency-pricing": "2026-10-18",
   "pricing/strava-api-pricing": "2026-07-23",
   "pricing/thryve-api-pricing": "2026-10-18",
   "pricing/whoop-api-pricing": "2026-07-23",
