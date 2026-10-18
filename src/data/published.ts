@@ -7,7 +7,7 @@
  * contained the entry and listed it in its cluster's release gate (blog
  * posts: the commit that added the file; generated sections: the commit that
  * added the route, or the item to the data file if that came later).
- * Keyed by URL path without the leading slash. 440 rows.
+ * Keyed by URL path without the leading slash. 447 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -215,6 +215,7 @@ export const PUBLISHED: Record<string, string> = {
   "fitness-apis/fitness-api-vs-build-your-own": "2026-07-08",
   "fitness-apis/free-fitness-apis": "2026-07-08",
   "fitness-apis/garmin-connect-iq-vs-health-api": "2026-10-12",
+  "fitness-apis/gym-management-software-apis": "2026-10-18",
   "fitness-apis/health-data-aggregator-apis": "2026-07-08",
   "fitness-apis/nutrition-apis": "2026-07-08",
   "fitness-apis/terra-vs-vital": "2026-07-08",
@@ -352,14 +353,19 @@ export const PUBLISHED: Record<string, string> = {
   "integrate/exercisedb-api": "2026-07-09",
   "integrate/fitbit-api": "2026-07-09",
   "integrate/garmin-api": "2026-07-09",
+  "integrate/glofox-api": "2026-10-18",
   "integrate/google-health-connect": "2026-07-09",
   "integrate/healthkit": "2026-07-09",
+  "integrate/mariana-tek-api": "2026-10-18",
+  "integrate/mindbody-api": "2026-10-18",
   "integrate/nutritionix-api": "2026-07-09",
   "integrate/oura-api": "2026-07-09",
   "integrate/polar-api": "2026-08-12",
   "integrate/strava-api": "2026-07-09",
+  "integrate/teamup-api": "2026-10-18",
   "integrate/terra-api": "2026-07-09",
   "integrate/whoop-api": "2026-07-09",
+  "integrate/wodify-api": "2026-10-18",
   "learn/how-fitness-apps-estimate-calories": "2026-07-13",
   "learn/on-device-vs-cloud-health-data": "2026-07-13",
   "learn/webhooks-vs-polling-for-fitness-data": "2026-08-12",
@@ -419,6 +425,7 @@ export const PUBLISHED: Record<string, string> = {
   "pricing/garmin-api-pricing": "2026-07-23",
   "pricing/health-data-aggregator-pricing": "2026-07-23",
   "pricing/how-much-does-a-fitness-api-cost": "2026-07-23",
+  "pricing/mindbody-api-pricing": "2026-10-18",
   "pricing/nutrition-api-pricing": "2026-07-23",
   "pricing/oura-api-pricing": "2026-07-23",
   "pricing/strava-api-pricing": "2026-07-23",
