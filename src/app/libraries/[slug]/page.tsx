@@ -11,7 +11,6 @@ import VendorHubMenu from "@/components/VendorHubMenu";
 import { LIBRARIES_FETCHED_ON } from "@/data/libraries";
 import {
   LIBRARIES_BASE,
-  LIBRARIES_PUBLISHED,
   LIBRARIES_VERIFIED_ON,
   LIBRARY_GROUPS,
   ECOSYSTEM_LABEL,
@@ -20,8 +19,9 @@ import {
   libraryPages,
   librariesModified,
 } from "@/data/librariesEditorial";
+import { landingForGroup, landingPath } from "@/data/librariesLandings";
 import { absoluteUrl, site } from "@/lib/site";
-import { orgRef, WEBSITE_ID } from "@/lib/schema";
+import { orgRef, publishedDate, WEBSITE_ID } from "@/lib/schema";
 import { stringSeed } from "@/lib/cluster";
 import { CommandItem, FactList, Inline, LANGUAGE, NoteItem, factRows, githubUrl, sinceRead, spdxUrl } from "../_shared";
 
@@ -67,8 +67,11 @@ export default async function LibraryPage({ params }: { params: Promise<Params> 
   const path = `${LIBRARIES_BASE}/${slug}`;
   const url = absoluteUrl(path);
   const modified = librariesModified();
-  const published = LIBRARIES_PUBLISHED > modified ? modified : LIBRARIES_PUBLISHED;
+  // First commit of the page, from src/data/published.ts (git history), never
+  // later than dateModified.
+  const published = publishedDate(path.slice(1), modified);
   const group = LIBRARY_GROUPS.find((g) => g.id === l.group);
+  const landing = landingForGroup(l.group);
   const alternatives = libraryPages().filter((p) => p.lib.group === l.group && p.lib.slug !== slug);
   const comparisons = comparisonsFor(slug);
   const gh = githubUrl(l);
@@ -148,6 +151,7 @@ export default async function LibraryPage({ params }: { params: Promise<Params> 
           trail={[
             { name: "Home", path: "/" },
             { name: "Libraries", path: LIBRARIES_BASE },
+            ...(landing ? [{ name: landing.label, path: landingPath(landing) }] : []),
             { name: l.name, path },
           ]}
         />
@@ -268,6 +272,13 @@ export default async function LibraryPage({ params }: { params: Promise<Params> 
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">
             Other {group?.label ?? ""} packages on this list
           </h2>
+          {landing && (
+            <p className="mt-3 text-sm">
+              <Link href={landingPath(landing)} className="font-medium text-brand-600 hover:text-brand-500">
+                {landing.h1}: every package side by side, and how to choose →
+              </Link>
+            </p>
+          )}
           {comparisons.length > 0 && (
             <ul className="mt-3 space-y-1 text-sm">
               {comparisons.map((c) => (

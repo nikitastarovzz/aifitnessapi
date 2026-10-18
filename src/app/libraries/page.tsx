@@ -18,6 +18,7 @@ import {
   libraryPages,
   librariesModified,
 } from "@/data/librariesEditorial";
+import { LIBRARY_LANDINGS, landingForGroup, landingPath } from "@/data/librariesLandings";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 
@@ -71,17 +72,23 @@ export default function LibrariesHub() {
     speakable: { "@type": "SpeakableSpecification", cssSelector: ["#answer"] },
     mainEntity: {
       "@type": "ItemList",
-      numberOfItems: pages.length + LIBRARY_COMPARISONS.length,
+      numberOfItems: LIBRARY_LANDINGS.length + pages.length + LIBRARY_COMPARISONS.length,
       itemListElement: [
-        ...pages.map((p, i) => ({
+        ...LIBRARY_LANDINGS.map((l, i) => ({
           "@type": "ListItem",
           position: i + 1,
+          name: l.h1,
+          url: absoluteUrl(landingPath(l)),
+        })),
+        ...pages.map((p, i) => ({
+          "@type": "ListItem",
+          position: LIBRARY_LANDINGS.length + i + 1,
           name: p.lib.name,
           url: absoluteUrl(`${LIBRARIES_BASE}/${p.lib.slug}`),
         })),
         ...LIBRARY_COMPARISONS.map((c, i) => ({
           "@type": "ListItem",
-          position: pages.length + i + 1,
+          position: LIBRARY_LANDINGS.length + pages.length + i + 1,
           name: c.h1,
           url: absoluteUrl(`${LIBRARIES_BASE}/compare/${c.slug}`),
         })),
@@ -151,10 +158,18 @@ export default function LibrariesHub() {
 
         {LIBRARY_GROUPS.map((g) => {
           const rows = pages.filter((p) => p.lib.group === g.id);
+          const landing = landingForGroup(g.id);
           return (
             <section key={g.id} id={g.id} className="mt-14 scroll-mt-24">
               <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">{g.label}</h2>
               <p className="mt-2 text-sm text-[var(--muted)]">{g.blurb}</p>
+              {landing && (
+                <p className="mt-2 text-sm">
+                  <Link href={landingPath(landing)} className="font-medium text-brand-600 hover:text-brand-500">
+                    {landing.h1}: how to choose, and the platform rules they inherit →
+                  </Link>
+                </p>
+              )}
               <div className="mt-4 overflow-x-auto">
                 <table className="w-full min-w-[46rem] border-collapse text-left text-sm">
                   <thead>

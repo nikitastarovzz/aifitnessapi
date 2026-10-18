@@ -45,6 +45,7 @@ import {
   HC_AGGREGATES_PATH,
 } from "@/data/hcPages";
 import { LIBRARIES_BASE, LIBRARY_COMPARISONS, libraryPages } from "@/data/librariesEditorial";
+import { LIBRARY_LANDINGS, landingDescription, landingPackages, landingPath, landingTitle } from "@/data/librariesLandings";
 import { hkVersionPages, versionTitle, versionDescription, versionPrimaryQuery } from "@/lib/hkVersions";
 import { HC_ERROR_CONSTANTS } from "@/data/errorCodes";
 import { HC_RELEASES } from "@/data/hcReleases";
@@ -317,6 +318,14 @@ export function GET() {
     "Open-source packages for HealthKit, Health Connect and fitness APIs: latest versions, release dates, licences and README caveats.",
     "libraries packages sdk open source npm pub.dev pypi react native flutter capacitor python wrapper",
   );
+  for (const l of LIBRARY_LANDINGS) {
+    add(
+      landingPath(l),
+      landingTitle(l),
+      landingDescription(l),
+      [l.primaryQuery, l.label, "libraries packages", ...landingPackages(l).map((p) => p.lib.name)].join(" "),
+    );
+  }
   for (const { lib, ed } of libraryPages()) {
     add(`${LIBRARIES_BASE}/${ed.slug}`, ed.title, ed.metaDescription, [lib.name, ed.primaryQuery, lib.wraps?.join(" ") ?? ""].filter(Boolean).join(" "));
   }

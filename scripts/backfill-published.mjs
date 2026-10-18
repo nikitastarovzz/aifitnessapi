@@ -72,6 +72,17 @@ const GENERATED_SECTIONS = [
     array: "GHAPI_DATA_TYPES",
     idKey: "dataType",
   },
+  // The hub and the language landings are static routes; the package pages
+  // are per-item. Comparisons (compare/[pair]) come from the hand-written
+  // editorial, not a generated array, and keep LIBRARIES_PUBLISHED.
+  {
+    base: "libraries",
+    dir: "src/app/libraries",
+    dynamic: "[slug]",
+    data: "src/data/libraries.ts",
+    array: "LIBRARIES",
+    idKey: "slug",
+  },
 ];
 
 function git(args) {

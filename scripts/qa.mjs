@@ -2049,6 +2049,60 @@ if (fs.existsSync(matrixPath)) {
     }
   }
 
+  // Library landings (ops/EXPANSION-3-2026-10-17.md 4.6): one page per
+  // language or framework, declared in src/data/librariesLandings.ts and
+  // rendered from the generated rows. A landing that drops a package is the
+  // quiet failure here — it still reads like a complete list — so the built
+  // page must carry one data-lib-row per package of its groups, each linking
+  // the package page, and no row for anything else. Every landing must be
+  // built and linked from /libraries, every package page must link back to
+  // its landing, and a group with three or more packages must have one.
+  {
+    const rows = jsonArray(fs.readFileSync("src/data/libraries.ts", "utf8"), "LIBRARIES") ?? [];
+    const LANDINGS_SRC = "src/data/librariesLandings.ts";
+    const landSrc = fs.existsSync(LANDINGS_SRC) ? fs.readFileSync(LANDINGS_SRC, "utf8") : "";
+    const landings = [...landSrc.matchAll(/^\s{4}slug: "([a-z0-9-]+)",\n\s{4}groups: \[([^\]\n]*)\],$/gm)].map((m) => ({
+      slug: m[1],
+      groups: [...m[2].matchAll(/"([a-z0-9-]+)"/g)].map((g) => g[1]),
+    }));
+    if (!landings.length) problems.push(`LIBS-LANDING-ROWS  could not read the landings (slug and groups lines) from ${LANDINGS_SRC}`);
+    const hub = htmlOf("/libraries");
+    const hubLinks = hub ? hrefsIn(hub) : new Set();
+    const covered = new Set(landings.flatMap((l) => l.groups));
+    const sizes = new Map();
+    for (const r of rows) sizes.set(r.group, (sizes.get(r.group) ?? 0) + 1);
+    for (const [g, n] of sizes) {
+      if (n >= 3 && !covered.has(g)) problems.push(`LIBS-LANDING-ROWS  the ${g} group has ${n} packages but no landing page covers it`);
+    }
+    let rowsShown = 0;
+    for (const l of landings) {
+      const route = `/libraries/${l.slug}`;
+      const html = htmlOf(route);
+      if (!html) {
+        problems.push(`LIBS-LANDING-ROWS  ${route} has no built page`);
+        continue;
+      }
+      if (hub && !hubLinks.has(route)) problems.push(`LIBS-LANDING-ROWS  /libraries does not link ${route}`);
+      const shown = new Map(
+        [...html.matchAll(/<tr\b[^>]*\bdata-lib-row="([a-z0-9-]+)"[^>]*>([\s\S]*?)<\/tr>/g)].map((m) => [m[1], m[2]]),
+      );
+      const members = rows.filter((r) => l.groups.includes(r.group));
+      if (!members.length) problems.push(`LIBS-LANDING-ROWS  ${route} covers ${l.groups.join(", ")}, which hold no packages`);
+      for (const r of members) {
+        const row = shown.get(r.slug);
+        if (row === undefined) problems.push(`LIBS-LANDING-ROWS  ${route} has no table row for ${r.name} (${r.slug})`);
+        else if (!row.includes(`href="/libraries/${r.slug}"`)) problems.push(`LIBS-LANDING-ROWS  ${route}'s row for ${r.name} does not link /libraries/${r.slug}`);
+        else rowsShown++;
+        const pkg = htmlOf(`/libraries/${r.slug}`);
+        if (pkg && !hrefsIn(pkg).has(route)) problems.push(`LIBS-LANDING-ROWS  /libraries/${r.slug} does not link back to its landing ${route}`);
+      }
+      for (const slug of shown.keys()) {
+        if (!members.some((r) => r.slug === slug)) problems.push(`LIBS-LANDING-ROWS  ${route} has a row for ${slug}, which is not a package of ${l.groups.join(", ")}`);
+      }
+    }
+    console.log(`Library landings: ${landings.length} pages, ${rowsShown} of ${rows.length} packages on a landing row that links their page.`);
+  }
+
   // Audio coaching: written while the cross-platform framework docs were
   // unreachable, so it carries no framework claim at all; every outside link
   // goes to Apple's or Google's developer docs; and every entry's sources were

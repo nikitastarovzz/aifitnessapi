@@ -340,6 +340,16 @@ claude mcp add --transport stdio aifitnessapi -- node "$PWD/src/index.js"`}</Cod
             data, such as Apple’s and Google’s descriptions, is reproduced to identify the API surface and
             remains theirs.
           </p>
+          {all
+            .filter((c) => c.doc.licenseNote)
+            .map((c) => (
+              <p key={c.path} data-api-licence-note={c.path}>
+                <strong>{c.title}:</strong> {c.doc.licenseNote}{" "}
+                {c.doc.sourceTerms
+                  ? "Every response from this collection carries that note as licenseNote, and the collection response carries the source’s notice, verbatim, as sourceTerms."
+                  : "Every response from this collection carries that note as licenseNote."}
+              </p>
+            ))}
         </section>
 
         <section className="mt-12 space-y-4 text-[var(--fg)]">

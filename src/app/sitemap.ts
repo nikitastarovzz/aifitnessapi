@@ -14,6 +14,7 @@ import { digests, DIGEST_PATH, type Digest } from "@/data/digest";
 import { HC_FETCHED_ON } from "@/data/healthConnectRecords";
 import { orderedRecords, recordPath, HC_BASE, HC_PERMISSIONS_PATH, HC_AGGREGATES_PATH, hcModified } from "@/data/hcPages";
 import { LIBRARIES_BASE, LIBRARY_COMPARISONS, libraryPages, librariesModified } from "@/data/librariesEditorial";
+import { LIBRARY_LANDINGS, landingPath } from "@/data/librariesLandings";
 import { hkVersionPages, HK_VERSION_PAGES_PUBLISHED } from "@/lib/hkVersions";
 import { ERROR_CODES_FETCHED_ON } from "@/data/errorCodes";
 import { HC_RELEASES_FETCHED_ON } from "@/data/hcReleases";
@@ -163,10 +164,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...ghapiTypes().map((t) => row(ghapiTypePath(t), ghapiModified())),
   ];
 
-  // Open-source library pages: hub, package pages and comparisons all
-  // declare librariesModified() as dateModified.
+  // Open-source library pages: hub, language landings, package pages and
+  // comparisons all declare librariesModified() as dateModified.
   const libRows = [
     row(LIBRARIES_BASE, librariesModified()),
+    ...LIBRARY_LANDINGS.map((l) => row(landingPath(l), librariesModified())),
     ...libraryPages().map(({ ed }) => row(`${LIBRARIES_BASE}/${ed.slug}`, librariesModified())),
     ...LIBRARY_COMPARISONS.map((c) => row(`${LIBRARIES_BASE}/compare/${c.slug}`, librariesModified())),
   ];

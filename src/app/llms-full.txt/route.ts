@@ -35,6 +35,7 @@ import {
   typePath as ghapiTypePath,
 } from "@/data/ghapiPages";
 import { LIBRARIES_BASE, LIBRARY_COMPARISONS, LIBRARIES_HUB_FAQS, libraryPages } from "@/data/librariesEditorial";
+import { LIBRARY_LANDINGS, landingPath } from "@/data/librariesLandings";
 import { hkVersionPages, versionH1, versionPrimaryQuery, versionCapsule, versionFaqs } from "@/lib/hkVersions";
 import { HK_ID_BASE, hkPageIdentifiers, hkIdentifierPath, hkPageH1, hkPageCapsule, hkPageFaqs } from "@/data/hkIdentifierPages";
 import { HS_BASE, hsPageTypes, hsDataTypePath, hsPageH1, hsPageCapsule, hsPageFaqs } from "@/data/hsDataTypePages";
@@ -510,6 +511,12 @@ export function GET() {
   );
   for (const f of LIBRARIES_HUB_FAQS) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
   out.push("");
+  for (const l of LIBRARY_LANDINGS) {
+    out.push(`## ${l.h1} — ${absoluteUrl(landingPath(l))}`);
+    out.push(`Primary query: ${l.primaryQuery}`, "", l.answer, "");
+    for (const f of l.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+    out.push("");
+  }
   for (const { ed } of libraryPages()) {
     out.push(`## ${ed.h1} — ${absoluteUrl(`${LIBRARIES_BASE}/${ed.slug}`)}`);
     out.push(`Primary query: ${ed.primaryQuery}`, "", ed.answer, "");

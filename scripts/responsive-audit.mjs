@@ -36,7 +36,7 @@ const PAGES = ["/", "/devices", "/devices/ftms-fitness-machine-service", "/matri
   "/healthkit-queries", "/healthkit-queries/hkstatisticscollectionquery",
   "/phone-sensors", "/phone-sensors/cmpedometer",
   "/health-connect", "/health-connect/steps-record", "/health-connect/permissions",
-  "/libraries", "/libraries/react-native-health", "/libraries/compare/garminconnect-vs-garth",
+  "/libraries", "/libraries/react-native-health", "/libraries/compare/garminconnect-vs-garth", "/libraries/python",
   "/healthkit-versions/ios-8", "/health-connect-releases",
   "/health-connect-api", "/health-connect-api/healthkit-vs-health-connect-api-equivalents",
   "/healthkit-metadata-keys", "/wear-os-data-types",
