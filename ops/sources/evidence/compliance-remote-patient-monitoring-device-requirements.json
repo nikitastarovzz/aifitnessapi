@@ -1,0 +1,127 @@
+[
+  {
+    "claim": "CMS's remote patient monitoring page, last modified May 13, 2026.",
+    "url": "https://www.cms.gov/medicare/coverage/telehealth/remote-patient-monitoring",
+    "quote": "Page Last Modified: 05/13/2026 02:16 PM"
+  },
+  {
+    "claim": "\"Remote patient monitoring allows a patient to collect their own health data, like blood pressure, weight, and glucose levels, using a connected medical device that automatically transmits the data to their health care provider.\"",
+    "url": "https://www.cms.gov/medicare/coverage/telehealth/remote-patient-monitoring",
+    "quote": "Remote patient monitoring allows a patient to collect their own health data, like blood pressure, weight, and glucose levels, using a connected medical device that automatically transmits the data to their health care provider."
+  },
+  {
+    "claim": "The provider then uses that data \"to treat or manage (remotely monitor) the patient's condition.\"",
+    "url": "https://www.cms.gov/medicare/coverage/telehealth/remote-patient-monitoring",
+    "quote": "The provider then uses this data to treat or manage (remotely monitor) the patient’s condition."
+  },
+  {
+    "claim": "CMS names connected blood pressure cuffs, weight scales and pulse oximeters as example devices.",
+    "url": "https://www.cms.gov/medicare/coverage/telehealth/remote-patient-monitoring",
+    "quote": "Examples of these devices include connected blood pressure cuffs, weight scales, and pulse oximeters."
+  },
+  {
+    "claim": "\"Medicare broadly covers remote patient monitoring (sometimes called remote physiologic monitoring) for the collection of any type of physiologic data using a wide range of devices, for chronic and acute conditions.\"",
+    "url": "https://www.cms.gov/medicare/coverage/telehealth/remote-patient-monitoring",
+    "quote": "Medicare broadly covers remote patient monitoring (sometimes called remote physiologic monitoring) for the collection of any type of physiologic data using a wide range of devices, for chronic and acute conditions."
+  },
+  {
+    "claim": "The patient has \"a chronic or acute condition that requires monitoring\".",
+    "url": "https://www.cms.gov/medicare/coverage/telehealth/remote-patient-monitoring",
+    "quote": "Have a chronic or acute condition that requires monitoring"
+  },
+  {
+    "claim": "In CMS's example, the provider decides the service is medically necessary.",
+    "url": "https://www.cms.gov/medicare/coverage/telehealth/remote-patient-monitoring",
+    "quote": "The patient’s provider determines that the remote patient monitoring is medically necessary to treat his hypertension and the patient consents to getting it."
+  },
+  {
+    "claim": "An internet-connected device that \"Meets that FDA's definition of a medical device and digitally uploads data\".",
+    "url": "https://www.cms.gov/medicare/coverage/telehealth/remote-patient-monitoring",
+    "quote": "Meets that FDA’s definition of a medical device and digitally uploads data"
+  },
+  {
+    "claim": "A device that \"Collects and transmits health data at least 2 days every 30 days\".",
+    "url": "https://www.cms.gov/medicare/coverage/telehealth/remote-patient-monitoring",
+    "quote": "Collects and transmits health data at least 2 days every 30 days"
+  },
+  {
+    "claim": "The device-supply component counts readings: \"the collection and transmission of at least 2 readings every 30 days\".",
+    "url": "https://www.cms.gov/medicare/coverage/telehealth/remote-patient-monitoring",
+    "quote": "The internet-connected device, including the collection and transmission of at least 2 readings every 30 days, ensure that you get the appropriate health information."
+  },
+  {
+    "claim": "Education and setup, so the patient uses the device appropriately and collects accurate data.",
+    "url": "https://www.cms.gov/medicare/coverage/telehealth/remote-patient-monitoring",
+    "quote": "Education about how to use the device and transmit the health data helps ensure that patients use the device appropriately to collect accurate data."
+  },
+  {
+    "claim": "Treatment and management, the provider reviewing the data and using it to manage the patient's condition.",
+    "url": "https://www.cms.gov/medicare/coverage/telehealth/remote-patient-monitoring",
+    "quote": "Treatment management ensures that you review the health data and use it to manage the patient’s condition."
+  },
+  {
+    "claim": "CMS pays for each of the three components separately, at \"the same rate, regardless of the type of device the patient uses or the health data they collect\".",
+    "url": "https://www.cms.gov/medicare/coverage/telehealth/remote-patient-monitoring",
+    "quote": "We pay for each of the 3 main components separately and pay the same rate, regardless of the type of device the patient uses or the health data they collect."
+  },
+  {
+    "claim": "CMS doesn't \"require that physicians or other qualified health care providers order the services or that the information of the ordering provider be included on the claim.\"",
+    "url": "https://www.cms.gov/medicare/coverage/telehealth/remote-patient-monitoring",
+    "quote": "We don’t require that physicians or other qualified health care providers order the services or that the information of the ordering provider be included on the claim."
+  },
+  {
+    "claim": "The page names a general set of procedure codes but no codes or amounts.",
+    "url": "https://www.cms.gov/medicare/coverage/telehealth/remote-patient-monitoring",
+    "quote": "Bill Medicare for remote patient monitoring services using a general set of procedure codes, which represent different components of the monitoring."
+  },
+  {
+    "claim": "It has covered remote patient monitoring since 2018, and use has grown every year.",
+    "url": "https://www.cms.gov/medicare/coverage/telehealth/remote-patient-monitoring",
+    "quote": "Medicare started covering remote patient monitoring starting in 2018. Since that time, the number of patients getting remote patient monitoring has increased significantly each year."
+  },
+  {
+    "claim": "\"Many patients don't get education or help with device setup.\" It tells providers to deliver all three components.",
+    "url": "https://www.cms.gov/medicare/coverage/telehealth/remote-patient-monitoring",
+    "quote": "When providing for and billing the services, be sure you provide all 3 main components. Many patients don’t get education or help with device setup."
+  },
+  {
+    "claim": "The guidance says section 520(o)(1)(B) of the FD&C Act makes software intended \"for maintaining or encouraging a healthy lifestyle and is unrelated to the diagnosis, cure, mitigation, prevention, or treatment of a disease or condition\" not a device.",
+    "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/general-wellness-policy-low-risk-devices",
+    "quote": "Section 520(o)(1)(B) of the FD&C Act, states that software that is intended \"for maintaining or encouraging a healthy lifestyle and is unrelated to the diagnosis, cure, mitigation, prevention, or treatment of a disease or condition\" is not a device under section 201(h) of the FD&C Act."
+  },
+  {
+    "claim": "The FTC's tool asks whether you are \"developing, offering, or operating an app on behalf of a HIPAA covered entity (such as a hospital, doctor's office, health insurer, or health plan's wellness program)\".",
+    "url": "https://www.ftc.gov/business-guidance/resources/mobile-health-apps-interactive-tool",
+    "quote": "Are you developing, offering, or operating an app on behalf of a HIPAA covered entity (such as a hospital, doctor’s office, health insurer, or health plan’s wellness program)?"
+  },
+  {
+    "claim": "...and answers that if so, \"You likely are a HIPAA business associate\".",
+    "url": "https://www.ftc.gov/business-guidance/resources/mobile-health-apps-interactive-tool",
+    "quote": "You likely are a HIPAA business associate , and therefore subject to the HIPAA Security Rule and specific provisions of the HIPAA Privacy and Breach Notification Rules"
+  },
+  {
+    "claim": "HIPAA's definitions make a business associate a person who, on behalf of a covered entity, \"creates, receives, maintains, or transmits protected health information\".",
+    "url": "https://www.ecfr.gov/api/renderer/v1/content/enhanced/current/title-45?part=160&section=160.103",
+    "quote": "creates, receives, maintains, or transmits protected health information for a function or activity regulated by this subchapter"
+  },
+  {
+    "claim": "CMS says a covered entity that engages a business associate \"must have a written business associate contract or other arrangement\".",
+    "url": "https://www.cms.gov/priorities/key-initiatives/burden-reduction/administrative-simplification/hipaa/covered-entities",
+    "quote": "the covered entity must have a written business associate contract or other arrangement with the business associate"
+  },
+  {
+    "claim": "CMS's telehealth section lists a remote patient monitoring page and no remote therapeutic monitoring page.",
+    "url": "https://www.cms.gov/medicare/coverage/telehealth/remote-patient-monitoring",
+    "quote": "Telehealth List of Telehealth Services Requests for Additions CMS Review Criteria Useful Links Changes and Deletion of Services Remote Patient Monitoring"
+  },
+  {
+    "claim": "CMS's proposed 2027 physician fee schedule rule, CMS-1848-P, went on display on July 14, 2026, with comments closing on September 14, 2026.",
+    "url": "https://www.cms.gov/medicare/payment/fee-schedules/physician/federal-regulation-notices/cms-1848-p",
+    "quote": "The proposed rule with comment went on display at the Office of the Federal Register’s Public Inspection Desk on July 14, 2026, and will be available until the regulation is published on July 16, 2026. The comment period will close on September 14, 2026."
+  },
+  {
+    "claim": "The physician fee schedule is set by rulemaking each year.",
+    "url": "https://www.cms.gov/medicare/payment/fee-schedules/physician/federal-regulation-notices",
+    "quote": "Below lists yearly proposed and final regulations for the PFS."
+  }
+]

@@ -1,0 +1,272 @@
+[
+  {
+    "claim": "Spike's current pages agree on 500+ devices.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Access 40+ providers and 500+ devices via single SDK"
+  },
+  {
+    "claim": "Spike's homepage: 500+ wearables & IoT sensors.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Connect to 500+ wearables & IoT sensors, extract nutrition insights from food photos, and add lab report data via single API."
+  },
+  {
+    "claim": "The 200+ figure on its homepage counts customers.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "200+ customers in healthcare, digital health, insurance & government."
+  },
+  {
+    "claim": "Terra coverage: 500+ providers.",
+    "url": "https://tryterra.co/",
+    "quote": "One API call returns standardised data from 500+ providers, including Garmin, Fitbit, Apple Health, Oura, WHOOP and Strava, without writing separate authentication flows or data parsers."
+  },
+  {
+    "claim": "Terra docs: \"supports over 150+ Data Sources\".",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+    "quote": "The Unified API supports over 150+ Data Sources"
+  },
+  {
+    "claim": "Spike: \"Access 40+ providers and 500+ devices via single SDK\".",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Access 40+ providers and 500+ devices via single SDK"
+  },
+  {
+    "claim": "Terra: lab test ordering (US and UK).",
+    "url": "https://tryterra.co/products/lab-testing",
+    "quote": "Nationwide US, plus the UK"
+  },
+  {
+    "claim": "Terra: DNA tests.",
+    "url": "https://tryterra.co/",
+    "quote": "Order blood and DNA tests for your users through Terra API. Blood through home kits, mobile phlebotomy, or lab walk-ins, and DNA from a single at-home saliva swab, with results delivered straight to your app."
+  },
+  {
+    "claim": "Terra: lab-report parsing.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Standardize and orchestrate blood reports from all types of providers."
+  },
+  {
+    "claim": "Terra: streaming, planned workouts.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Add-ons such as the Streaming API and Planned Workouts are priced separately."
+  },
+  {
+    "claim": "Spike: medical IoT devices.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Integrate data from a wide range of medical IoT devices"
+  },
+  {
+    "claim": "Spike: lab-report OCR with LOINC codes.",
+    "url": "https://www.spikeapi.com/lab-reports",
+    "quote": "After OCR converts documents to text, our infrastructure assigns LOINC codes for each test, recognized worldwide, making lab test data from any language standardized."
+  },
+  {
+    "claim": "Spike: food-photo nutrition.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Convert any food image into complete nutritional data."
+  },
+  {
+    "claim": "Spike: EMR and EHR data.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Connect to top providers and access clinical data"
+  },
+  {
+    "claim": "Spike: voice agents for clinics.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Spike Voice AI Agents perform insurance eligibility checks, coordinate care, schedule patients, and maximize revenue recovery."
+  },
+  {
+    "claim": "Terra: an MCP server (its AI Interface).",
+    "url": "https://tryterra.co/",
+    "quote": "Yes, through the AI Interface, an MCP server your agent connects to."
+  },
+  {
+    "claim": "Spike MCP.",
+    "url": "https://www.spikeapi.com/mcp-health-ai-integration",
+    "quote": "Spike MCP connects wearables data, medical IoT devices, lab reports, and nutrition logs to your LLM of choice."
+  },
+  {
+    "claim": "Terra: full payloads to webhooks, databases, queues or cloud storage.",
+    "url": "https://tryterra.co/",
+    "quote": "Terra delivers to webhooks, SQL databases (Postgres and MySQL), Supabase, cloud storage (S3, GCS and Azure Blob), queueing services (SQS and Kafka), MongoDB and Firestore."
+  },
+  {
+    "claim": "Spike: webhook event after each data update.",
+    "url": "https://docs.spikeapi.com/api-docs/webhooks",
+    "quote": "After each data update from the provider, a webhook event will be sent to your endpoint."
+  },
+  {
+    "claim": "Terra: HMAC in a terra-signature header.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "Every webhook sent by Terra includes an HMAC-based signature header"
+  },
+  {
+    "claim": "Terra: HMAC with SHA256.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "Compute an HMAC with the SHA256 hash function. Use the endpoint's signing secret as the key, and use the signed_payload string as the message."
+  },
+  {
+    "claim": "Spike: HMAC-SHA256 in an X-Body-Signature header.",
+    "url": "https://docs.spikeapi.com/api-docs/webhooks",
+    "quote": "Each webhook event is signed using an HMAC-SHA256 signature for verification. The signature is included in the X-Body-Signature header."
+  },
+  {
+    "claim": "Terra entry: $399 a month billed annually ($499 monthly), 100,000 credits.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly. That includes 100,000 credits each month for the Unified API, and you only pay extra if your usage goes beyond them."
+  },
+  {
+    "claim": "Spike Sandbox from $450 a month.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Purpose-built for fast innovation, Sandbox gives your team everything needed to build, test, and launch into production. Starts from $450 /month"
+  },
+  {
+    "claim": "Terra Enterprise: 24/7 engineering support.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "24/7 expert engineering support"
+  },
+  {
+    "claim": "Terra: self-serve sign-up.",
+    "url": "https://docs.tryterra.co/introduction/account-setup-and-api-keys",
+    "quote": "Create an account at the Terra API Registration Page"
+  },
+  {
+    "claim": "\"Every organization gets a dedicated implementation engineer from the sandbox level\".",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Every organization gets a dedicated implementation engineer from the sandbox level to help with setup and optimization."
+  },
+  {
+    "claim": "Spike's site announces \"Raintree Systems Acquires Spike Technologies\".",
+    "url": "https://www.spikeapi.com/integrations",
+    "quote": "Raintree Systems Acquires Spike Technologies"
+  },
+  {
+    "claim": "\"An active authentication is one connected data source for one end user, and costs 200 credits per month\", the first 400 events per source are free.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Two things consume credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
+  },
+  {
+    "claim": "Extra credits start at $0.005.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Only pay more when you go beyond 100,000 credits. Starting at $0.005 / credit."
+  },
+  {
+    "claim": "Spike calls its pricing \"Usage-driven, transparent, and flexible\".",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Usage-driven, transparent, and flexible"
+  },
+  {
+    "claim": "Terra sends data straight into \"SQL databases (Postgres and MySQL), Supabase, cloud storage (S3, GCS and Azure Blob), queueing services (SQS and Kafka), MongoDB and Firestore\".",
+    "url": "https://tryterra.co/",
+    "quote": "Terra delivers to webhooks, SQL databases (Postgres and MySQL), Supabase, cloud storage (S3, GCS and Azure Blob), queueing services (SQS and Kafka), MongoDB and Firestore."
+  },
+  {
+    "claim": "Terra's homepage offers blood tests \"through home kits, mobile phlebotomy, or lab walk-ins\".",
+    "url": "https://tryterra.co/",
+    "quote": "Order blood and DNA tests for your users through Terra API. Blood through home kits, mobile phlebotomy, or lab walk-ins, and DNA from a single at-home saliva swab, with results delivered straight to your app."
+  },
+  {
+    "claim": "Its lab page says \"Nationwide US, plus the UK\".",
+    "url": "https://tryterra.co/products/lab-testing",
+    "quote": "Nationwide US, plus the UK"
+  },
+  {
+    "claim": "Spike's lab product parses reports users already have.",
+    "url": "https://www.spikeapi.com/lab-reports",
+    "quote": "Spike Lab Reports API processes lab reports from PDFs, JPEGs, or PNG files up to 10MB using OCR technology that converts document images into analyzable text."
+  },
+  {
+    "claim": "Spike's homepage pitches \"normalized, ingestion-ready data from wearables, EMRs, lab tests, IoT devices, and more\".",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Implement normalized, ingestion-ready data from wearables, EMRs, lab tests, IoT devices, and more without complex data processing."
+  },
+  {
+    "claim": "Medical IoT such as glucose monitors, ECGs and blood pressure cuffs.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Integrate data from a wide range of medical IoT devices — like glucose monitors, ECGs, blood pressure cuffs, and more."
+  },
+  {
+    "claim": "Its integrations page lists Dexcom.",
+    "url": "https://www.spikeapi.com/integrations",
+    "quote": "Dexcom A leading continuous glucose monitoring system used primarily by people with diabetes."
+  },
+  {
+    "claim": "Its integrations page lists Freestyle Libre.",
+    "url": "https://www.spikeapi.com/integrations",
+    "quote": "Freestyle Libre A continuous glucose monitoring system for real-time blood sugar tracking"
+  },
+  {
+    "claim": "The Lab Reports API takes \"PDFs, JPEGs, or PNG files up to 10MB\" through OCR.",
+    "url": "https://www.spikeapi.com/lab-reports",
+    "quote": "Spike Lab Reports API processes lab reports from PDFs, JPEGs, or PNG files up to 10MB using OCR technology that converts document images into analyzable text."
+  },
+  {
+    "claim": "Assigns LOINC codes \"making lab test data from any language standardized\".",
+    "url": "https://www.spikeapi.com/lab-reports",
+    "quote": "After OCR converts documents to text, our infrastructure assigns LOINC codes for each test, recognized worldwide, making lab test data from any language standardized."
+  },
+  {
+    "claim": "Its Nutrition AI turns \"any food image into complete nutritional data\".",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Convert any food image into complete nutritional data."
+  },
+  {
+    "claim": "\"Every organization gets a dedicated implementation engineer from the sandbox level to help with setup and optimization\".",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Every organization gets a dedicated implementation engineer from the sandbox level to help with setup and optimization."
+  },
+  {
+    "claim": "A banner on Spike's blog page reads \"Raintree Systems Acquires Spike Technologies\".",
+    "url": "https://www.spikeapi.com/blog",
+    "quote": "Raintree Systems Acquires Spike Technologies"
+  },
+  {
+    "claim": "Terra signs every webhook with HMAC-SHA256.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "Compute an HMAC with the SHA256 hash function. Use the endpoint's signing secret as the key, and use the signed_payload string as the message."
+  },
+  {
+    "claim": "Terra's signed payload includes the raw body.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "The actual JSON payload (that is, the request body)"
+  },
+  {
+    "claim": "Spike signs over the raw request body with a shared key.",
+    "url": "https://docs.spikeapi.com/api-docs/webhooks",
+    "quote": "The signature is computed by signing the raw request body as-is using a shared secret key."
+  },
+  {
+    "claim": "Terra retries a failed delivery \"up to 10 times with exponential backoff\".",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "Terra retries the delivery up to 10 times with exponential backoff"
+  },
+  {
+    "claim": "Spike will \"retry the request up to 10 times with exponential backoff\".",
+    "url": "https://docs.spikeapi.com/api-docs/webhooks",
+    "quote": "the system will retry the request up to 10 times with exponential backoff."
+  },
+  {
+    "claim": "Spike then discards the event.",
+    "url": "https://docs.spikeapi.com/api-docs/webhooks",
+    "quote": "After the final attempt, the event will be discarded."
+  },
+  {
+    "claim": "Spike's payload lists user, metrics, provider and time range.",
+    "url": "https://docs.spikeapi.com/api-docs/webhooks",
+    "quote": "metrics metric types involved with the event"
+  },
+  {
+    "claim": "Spike's provider docs describe a user consent redirect.",
+    "url": "https://docs.spikeapi.com/api-docs/provider_integration",
+    "quote": "Most providers (e.g., Garmin, Fitbit) require the user to grant consent before Spike API can access their data."
+  },
+  {
+    "claim": "FAQ: Terra charges credits for events past a free allowance.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "The Unified API includes 400 events per active authentication free each month, and events beyond that cost 0.5 credits each. Terra's pricing docs note that 95% of customers are never charged for events."
+  },
+  {
+    "claim": "FAQ: Spike's Enterprise plan is custom.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Designed for enterprise scale"
+  }
+]

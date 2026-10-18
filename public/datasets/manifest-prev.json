@@ -1,6 +1,18 @@
 {
-  "generated": "2026-10-12",
+  "generated": "2026-10-17",
   "files": [
+    {
+      "file": "bluetooth-fitness-gatt-2026.csv",
+      "bytes": 203249,
+      "rows": 378,
+      "sha256": "1ba7221e63d7a46fab84c2f8c5ff67ef36200810072895f08450f3df7e627362"
+    },
+    {
+      "file": "bluetooth-fitness-gatt-2026.json",
+      "bytes": 384778,
+      "rows": 378,
+      "sha256": "d0e0d5a6d6394b61b98d561d6324c318d3276727f91d12321796e67383adc345"
+    },
     {
       "file": "fitness-api-changes-2026.csv",
       "bytes": 7339,
@@ -36,6 +48,18 @@
       "bytes": 9800,
       "rows": 25,
       "sha256": "ea86a98bb6de78064c8244227595e006d196ce25e103e713b9fd3483727169b2"
+    },
+    {
+      "file": "google-health-api-data-types-2026.csv",
+      "bytes": 41299,
+      "rows": 44,
+      "sha256": "b2d65a74df079e523c59fe87a2b6fc696923eee178097eb3d9815679be6a645b"
+    },
+    {
+      "file": "google-health-api-data-types-2026.json",
+      "bytes": 70003,
+      "rows": 44,
+      "sha256": "0b1faed6f09933ceece4531a5cec4384b8ca70db1c4c79e9cc43252ea3f84f91"
     },
     {
       "file": "health-connect-permissions-2026.csv",
@@ -74,6 +98,18 @@
       "sha256": "9be00b02108f40024d5ef34685fdf919323f9ab3e2da608d6a798d4bc8f4636a"
     },
     {
+      "file": "health-mcp-servers-2026.csv",
+      "bytes": 111533,
+      "rows": 176,
+      "sha256": "117e9481089ea35533bf4b59b313bb407f67fdf0a3bca1525d9f7f8f4cb59888"
+    },
+    {
+      "file": "health-mcp-servers-2026.json",
+      "bytes": 212821,
+      "rows": 176,
+      "sha256": "2104cc7e36fd045465adf834207cbd224ad5e636ab6b6ba1f15cf6c2d71cd2cc"
+    },
+    {
       "file": "healthkit-metadata-keys-2026.csv",
       "bytes": 27686,
       "rows": 67,
@@ -102,6 +138,18 @@
       "bytes": 5080,
       "rows": 32,
       "sha256": "32a07594a0e6d8835f91c74088b5029b33b226c568e2589bb95d8bbf32efe357"
+    },
+    {
+      "file": "pose-keypoint-maps-2026.csv",
+      "bytes": 138592,
+      "rows": 321,
+      "sha256": "0ed667aeae75090af66fcb87e5068c689b2d71dd1ea904e8856de17fef791cc5"
+    },
+    {
+      "file": "pose-keypoint-maps-2026.json",
+      "bytes": 235064,
+      "rows": 321,
+      "sha256": "61ab7223e9749b5aeac64a0fafe0cefb61fa5d0f358d640e9413d4bcd649fe00"
     },
     {
       "file": "wear-os-health-services-data-types-2026.csv",

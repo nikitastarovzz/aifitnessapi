@@ -42,6 +42,9 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
       "gdpr-fitness-app",
       "fda-fitness-app-regulation",
       "is-fitness-data-phi",
+      "ftc-health-breach-notification-rule",
+      "washington-my-health-my-data-act",
+      "remote-patient-monitoring-device-requirements",
     ],
   },
   {

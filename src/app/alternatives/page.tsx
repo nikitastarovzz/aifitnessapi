@@ -51,7 +51,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Platforms & aggregators",
     blurb: "Deprecations and cross-platform gaps.",
-    slugs: ["google-fit-api-alternatives", "healthkit-alternatives", "terra-alternatives"],
+    slugs: ["google-fit-api-alternatives", "healthkit-alternatives", "terra-alternatives", "human-api-alternatives"],
   },
   {
     title: "Content & nutrition",

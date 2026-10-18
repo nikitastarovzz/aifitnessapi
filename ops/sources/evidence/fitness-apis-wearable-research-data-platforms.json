@@ -1,0 +1,467 @@
+[
+  {
+    "claim": "Fitabase describes itself as \"a comprehensive data management platform designed to support innovative research projects using wearable and internet-connected devices.\"",
+    "url": "https://fitabase.com/resources/faq/",
+    "quote": "Fitabase is a comprehensive data management platform designed to support innovative research projects using wearable and internet-connected devices."
+  },
+  {
+    "claim": "Its FAQ says it supports \"the entire ecosystem of wearable activity tracking devices and internet-connected scales from Fitbit and Garmin (except Fitbit Ace models and Garmin Jr models which do not sync data to their respective servers)\".",
+    "url": "https://fitabase.com/resources/faq/",
+    "quote": "Currently, we support the entire ecosystem of wearable activity tracking devices and internet-connected scales from Fitbit and Garmin (except Fitbit Ace models and Garmin Jr models which do not sync data to their respective servers)."
+  },
+  {
+    "claim": "It uses \"Garmin and Fitbit Partner APIs\".",
+    "url": "https://fitabase.com/resources/faq/",
+    "quote": "We use Garmin and Fitbit Partner APIs to generate access to a variety of data sets."
+  },
+  {
+    "claim": "Studies can use study-controlled or participant-owned devices.",
+    "url": "https://www.fitabase.com/",
+    "quote": "Easily connect study-controlled or participant owned devices."
+  },
+  {
+    "claim": "Fitbit physical activity covers steps, activity intensity, energy expenditure and METs.",
+    "url": "https://fitabase.com/resources/faq/",
+    "quote": "Fitabase collects all physical activity data tracked by Fitbit devices. This includes steps, activity intensity, energy expenditure, and METs."
+  },
+  {
+    "claim": "Garmin covers steps, activity intensity, energy expenditure and stress.",
+    "url": "https://fitabase.com/resources/faq/",
+    "quote": "Fitabase also collects physical activity data tracked by Garmin devices. This includes steps, activity intensity, energy expenditure, and stress."
+  },
+  {
+    "claim": "Heart rate comes at \"the highest resolution data available\" plus daily resting heart rate.",
+    "url": "https://fitabase.com/resources/faq/",
+    "quote": "we provide access to the highest resolution data available, as well as daily resting heart rate."
+  },
+  {
+    "claim": "Sleep includes stages on some devices.",
+    "url": "https://fitabase.com/resources/faq/",
+    "quote": "This includes access to sleep stages data from some devices."
+  },
+  {
+    "claim": "Weight comes from supported scales.",
+    "url": "https://fitabase.com/resources/faq/",
+    "quote": "If you are using the Fitbit Aria, Aria 2, the BodyTrace scale or the Garmin Index Smart Scale to seamlessly track participant weight"
+  },
+  {
+    "claim": "Fitabase's knowledge base lists Google Health heart rate as \"variable sampling with readings every 3-15 seconds\".",
+    "url": "https://www.fitabase.com/resources/knowledge-base/learn-about-fitbit-data/data-resolutions/",
+    "quote": "Heart Rate - variable sampling with readings every 3-15 seconds."
+  },
+  {
+    "claim": "...and sleep stages at 30 seconds.",
+    "url": "https://www.fitabase.com/resources/knowledge-base/learn-about-fitbit-data/data-resolutions/",
+    "quote": "Sleep stages - 30 seconds"
+  },
+  {
+    "claim": "\"Download CSV files for daily, hourly and minute-level data\", per participant or as custom batch exports.",
+    "url": "https://www.fitabase.com/",
+    "quote": "Export data from individual participants or create custom batch exports for groups or your whole study. Download CSV files for daily, hourly and minute-level data."
+  },
+  {
+    "claim": "The Fitabase API covers batch export, daily activity, connected device profiles and sync times.",
+    "url": "https://www.fitabase.com/resources/knowledge-base/fitabase-api/available-core-apis/",
+    "quote": "Daily Activity : Day level data (summary) for users in your Fitabase project."
+  },
+  {
+    "claim": "...connected device profiles and sync times.",
+    "url": "https://www.fitabase.com/resources/knowledge-base/fitabase-api/available-core-apis/",
+    "quote": "Profiles : Connected device profiles currently available in your Fitabase project."
+  },
+  {
+    "claim": "...sync times.",
+    "url": "https://www.fitabase.com/resources/knowledge-base/fitabase-api/available-core-apis/",
+    "quote": "Sync : Obtain the latest sync time from currently connected Fitabase project profiles"
+  },
+  {
+    "claim": "...batch export.",
+    "url": "https://www.fitabase.com/resources/knowledge-base/fitabase-api/available-core-apis/",
+    "quote": "Batch Export: Programmatic access to the batch export objects and .csv data download binaries from your Fitabase project."
+  },
+  {
+    "claim": "Fitabase says the API and automated batch exports \"are currently offered as separate add ons\".",
+    "url": "https://www.fitabase.com/resources/knowledge-base/fitabase-api/what-is-the-fitabase-api/",
+    "quote": "The Fitabase API and automated batch exports are currently offered as separate add ons to the Fitabase platform."
+  },
+  {
+    "claim": "Its pricing page lists an Aggregate Data API that \"Enables large-volume programmatic data exports in JSON or CSV formats\".",
+    "url": "https://www.fitabase.com/how-it-works/pricing/",
+    "quote": "Enables large-volume programmatic data exports in JSON or CSV formats, eliminating manual per-participant data retrieval."
+  },
+  {
+    "claim": "Fitabase says it has been used to collect de-identified data in studies of children and adolescents.",
+    "url": "https://fitabase.com/resources/faq/",
+    "quote": "Fitabase has been used to collected de-identified data during research studies involving children and adolescents of all ages."
+  },
+  {
+    "claim": "\"Garmin's privacy policy requires that users be at least 16 years old, or with consent from guardians.\"",
+    "url": "https://fitabase.com/resources/faq/",
+    "quote": "Garmin's privacy policy requires that users be at least 16 years old, or with consent from guardians."
+  },
+  {
+    "claim": "\"Fitabase will work with you to craft an exact pricing plan.\"",
+    "url": "https://www.fitabase.com/how-it-works/pricing/",
+    "quote": "Because no two studies are the same, Fitabase will work with you to craft an exact pricing plan."
+  },
+  {
+    "claim": "Fitabase's migration section was last updated October 14, 2026.",
+    "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/migration-overview/",
+    "quote": "Last updated October 14, 2026"
+  },
+  {
+    "claim": "Participants who are still collecting data \"will need to grant Fitabase permission again so their data keeps syncing\" after the Fitbit Web API shuts off on October 30, 2026.",
+    "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/migration-overview/",
+    "quote": "Google is retiring the Fitbit Web API on October 30, 2026, and requiring every third-party app, Fitabase included, to move to the new Google Health API. For your study, this means that participants who are still collecting data will need to grant Fitabase permission again so their data keeps syncing."
+  },
+  {
+    "claim": "Reauthorization opened in the Fitabase platform on October 15, 2026.",
+    "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/key-dates/",
+    "quote": "Reauthorization opens in the Fitabase platform."
+  },
+  {
+    "claim": "...on October 15, 2026, and participants can also reconnect from the Partner apps screen in the Google Health app.",
+    "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/migration-faq/",
+    "quote": "Participants can reconnect in the Google Health app now. Reauthorization in the Fitabase platform, including reauthorization links and Connect to Google Health , opens October 15, 2026."
+  },
+  {
+    "claim": "Participants can reconnect from the Partner apps screen in the Google Health app.",
+    "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/key-dates/",
+    "quote": "Participants can reconnect from the Partner apps screen in the Google Health app."
+  },
+  {
+    "claim": "They only need to do it once, in either place.",
+    "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/migration-faq/",
+    "quote": "No. They only need to do it once, in either place."
+  },
+  {
+    "claim": "Fitabase says there is no way to reauthorize programmatically.",
+    "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/migration-faq/",
+    "quote": "Is there a way to reauthorize programmatically? No. Each account has to go through Google's sign-in and permission screens."
+  },
+  {
+    "claim": "Participants whose data collection ends before the cutoff do not need to reauthorize.",
+    "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/who-needs-to-reauthorize/",
+    "quote": "If a participant's data collection ends before the Fitbit Web API shuts off, they don't need to reauthorize."
+  },
+  {
+    "claim": "The reconnect option stays in the Google Health app through November 30, 2026.",
+    "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/key-dates/",
+    "quote": "The reconnect option stays on the Partner apps screen in the Google Health app, giving participants who missed the deadline a way back."
+  },
+  {
+    "claim": "...through November 30, 2026.",
+    "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/key-dates/",
+    "quote": "Through November 30, 2026"
+  },
+  {
+    "claim": "Fitabase says it backfills a late participant's gap as long as their device kept syncing to the Google Health app.",
+    "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/migration-faq/",
+    "quote": "Past data is preserved, and once they reconnect, Fitabase backfills the gap as long as their device kept syncing to the Google Health app."
+  },
+  {
+    "claim": "Exports gain UTC time, time zone and source columns.",
+    "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/export-changes/",
+    "quote": "Exports will include UTC time and time zone columns alongside the existing local time columns."
+  },
+  {
+    "claim": "...and source columns.",
+    "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/export-changes/",
+    "quote": "A new source column shows which API each row came from: the Fitbit Web API or the Google Health API."
+  },
+  {
+    "claim": "\"We aren't renaming or removing existing columns.\"",
+    "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/export-changes/",
+    "quote": "We aren't renaming or removing existing columns."
+  },
+  {
+    "claim": "Fitabase says the Fitabase API is not changing.",
+    "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/export-changes/",
+    "quote": "If you pull data through the Fitabase API , you don't need to change your integration."
+  },
+  {
+    "claim": "Exports move \"one dataset at a time\", with a per-export availability table.",
+    "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/dataset-availability/",
+    "quote": "Fitabase is moving its exports from the Fitbit Web API to the Google Health API one dataset at a time. Use the table below to check whether an export includes Google Health API data yet."
+  },
+  {
+    "claim": "Classic sleep is rolled into the main sleep export.",
+    "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/migration-faq/",
+    "quote": "Instead, any sleep that qualifies as classic will be rolled into the main sleep export."
+  },
+  {
+    "claim": "Writing step goals to participants' apps \"isn't available in the Google Health API yet.\"",
+    "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/migration-faq/",
+    "quote": "Writing step goals to the participant's app isn't available in the Google Health API yet."
+  },
+  {
+    "claim": "Labfront's home page says it can \"Capture raw wearable and EMA data for research\".",
+    "url": "https://www.labfront.com/",
+    "quote": "Capture raw wearable and EMA data for research"
+  },
+  {
+    "claim": "Its devices FAQ says \"Labfront is currently compatible with select Garmin, Movesense and Dexcom devices\".",
+    "url": "https://www.labfront.com/compatible-devices",
+    "quote": "Labfront is currently compatible with select Garmin, Movesense and Dexcom devices, but we plan to add more devices in the near future."
+  },
+  {
+    "claim": "All Garmin devices work through Garmin Connect, but high-resolution data needs one of the select compatible devices.",
+    "url": "https://www.labfront.com/compatible-devices",
+    "quote": "All Garmin devices, including older models, are compatible with Garmin Connect on our platform. However, you can access high-resolution data through Labfront with these select compatible devices."
+  },
+  {
+    "claim": "Beat-to-beat interval from Garmin wearables at each heartbeat.",
+    "url": "https://www.labfront.com/collect/physiological-data",
+    "quote": "BBI captured through the pulse can be obtained from Garmin wearables."
+  },
+  {
+    "claim": "...at each heartbeat.",
+    "url": "https://www.labfront.com/collect/physiological-data",
+    "quote": "Each heartbeat (Garmin)"
+  },
+  {
+    "claim": "ECG waveform from Movesense...",
+    "url": "https://www.labfront.com/collect/physiological-data",
+    "quote": "RR-Interval captured via ECG is available through the Movesense Flash and Movesense Medical."
+  },
+  {
+    "claim": "...at 125Hz to 500Hz.",
+    "url": "https://www.labfront.com/collect/physiological-data",
+    "quote": "Sampling Rate 125Hz - 500Hz"
+  },
+  {
+    "claim": "9-axis motion at 12.5Hz to 208Hz from Movesense.",
+    "url": "https://www.labfront.com/collect/physiological-data",
+    "quote": "With Labfront and Movesense, track any type of motion with high-resolution 9-axis motion tracking."
+  },
+  {
+    "claim": "...at 12.5Hz to 208Hz.",
+    "url": "https://www.labfront.com/collect/physiological-data",
+    "quote": "12.5Hz - 208Hz"
+  },
+  {
+    "claim": "Continuous glucose from Dexcom at 5-minute resolution.",
+    "url": "https://www.labfront.com/collect/physiological-data",
+    "quote": "With Labfront's Dexcom integration, easily access high-resolution continuous glucose monitoring (CGM) data to measure metabolic health."
+  },
+  {
+    "claim": "Actigraphy from Garmin.",
+    "url": "https://www.labfront.com/collect/physiological-data",
+    "quote": "We've adapted medical-grade actigraphy algorithms to process raw accelerometer data from Garmin wearables"
+  },
+  {
+    "claim": "Respiration from Garmin.",
+    "url": "https://www.labfront.com/collect/physiological-data",
+    "quote": "Respiration is only supported on some Garmin devices"
+  },
+  {
+    "claim": "Oxygen saturation from Garmin.",
+    "url": "https://www.labfront.com/collect/physiological-data",
+    "quote": "Select Garmin wearables support wrist-based blood oxymetry."
+  },
+  {
+    "claim": "Stress from Garmin.",
+    "url": "https://www.labfront.com/collect/physiological-data",
+    "quote": "researchers can now obtain a more objective representation of their participants’ stress levels through Garmin’s stress score."
+  },
+  {
+    "claim": "Daily summaries.",
+    "url": "https://www.labfront.com/collect/physiological-data",
+    "quote": "A robust CSV file offering valuable insights on a number of different metrics over the course of a participant’s day."
+  },
+  {
+    "claim": "\"Download your data in a CSV format that is easily importable into your favorite analysis tools, like MATLAB.\"",
+    "url": "https://www.labfront.com/collect/physiological-data",
+    "quote": "Download your data in a CSV format that is easily importable into your favorite analysis tools, like MATLAB."
+  },
+  {
+    "claim": "Developer access to raw data for building dashboards and applications is in beta.",
+    "url": "https://www.labfront.com/research/data-management",
+    "quote": "Access your raw data to build dashboards and other applications"
+  },
+  {
+    "claim": "Developer access is in beta.",
+    "url": "https://www.labfront.com/research/data-management",
+    "quote": "Build on top of the Labfront platform with developer access"
+  },
+  {
+    "claim": "\"We currently only support U.S. data centers and the data is stored in Virginia, America.\"",
+    "url": "https://www.labfront.com/research/data-storage",
+    "quote": "We currently only support U.S. data centers and the data is stored in Virginia, America."
+  },
+  {
+    "claim": "Research data is typically kept \"for 3 years after study completion\".",
+    "url": "https://www.labfront.com/research/data-storage",
+    "quote": "We typically save research data for 3 years after study completion, following the write-up of the results."
+  },
+  {
+    "claim": "Labfront will delete all data if the researcher asks.",
+    "url": "https://www.labfront.com/research/data-storage",
+    "quote": "We provide the ability to delete all data if requested by the researcher as well."
+  },
+  {
+    "claim": "Plans are billed annually in advance.",
+    "url": "https://www.labfront.com/pricing",
+    "quote": "We currently bill annually, in advance"
+  },
+  {
+    "claim": "The free Tester plan collects from up to 5 participants, with downloads limited to a 30-day window.",
+    "url": "https://www.labfront.com/pricing",
+    "quote": "Remotely collect wearable, survey and event tracking data from up to 5 participants. However, there are some restrictions: the data access period is limited to a 30-day window for downloads"
+  },
+  {
+    "claim": "The Tester plan is free.",
+    "url": "https://www.labfront.com/pricing",
+    "quote": "Test before you commit. All settings enabled so you can confirm your protocol works before spending anything."
+  },
+  {
+    "claim": "Hardware is not included in any plan.",
+    "url": "https://www.labfront.com/compatible-devices",
+    "quote": "No, hardware is not included in any plan."
+  },
+  {
+    "claim": "Empatica's wearables send data over Bluetooth to a phone app...",
+    "url": "https://www.empatica.com/platform/research-studies",
+    "quote": "EmbracePlus and EmbraceMini continuously measure and record physiological and movement parameters, which are sent via Bluetooth® to a dedicated mobile app"
+  },
+  {
+    "claim": "...and from there to the Empatica Cloud.",
+    "url": "https://www.empatica.com/platform/research-studies",
+    "quote": "The Care Lab App uses the phone’s internet connection to automatically transfer all data to the Empatica Cloud"
+  },
+  {
+    "claim": "EmbracePlus has 510(k) clearance from the FDA and is marked under the EU MDR as a class IIa medical device.",
+    "url": "https://www.empatica.com/platform/research-studies",
+    "quote": "FDA-cleared and CE certified: 510(k) market clearance from the FDA and marked according to EU MDR 2017/745 as a class IIa medical device"
+  },
+  {
+    "claim": "EmbracePlus has optical PPG...",
+    "url": "https://www.empatica.com/platform/research-studies",
+    "quote": "Advanced optical PPG (Photoplethysmogram): Clinically validated PR and PRV measurements through a custom-made sensor"
+  },
+  {
+    "claim": "...electrodermal activity...",
+    "url": "https://www.empatica.com/platform/research-studies",
+    "quote": "Ventral EDA sensor (Electrodermal activity): Detects subtle changes in electrical conductance at the surface of the skin"
+  },
+  {
+    "claim": "...accelerometer, gyroscope...",
+    "url": "https://www.empatica.com/platform/research-studies",
+    "quote": "Accelerometer and gyroscope: Raw acceleration and angular velocity data"
+  },
+  {
+    "claim": "...and skin temperature sensors.",
+    "url": "https://www.empatica.com/platform/research-studies",
+    "quote": "Digital temperature sensor: Reads peripheral skin temperature"
+  },
+  {
+    "claim": "EmbraceMini has 510(k) clearance \"for sleep, circadian rhythm, and physical activity monitoring.\"",
+    "url": "https://www.empatica.com/platform/research-studies",
+    "quote": "FDA-cleared: 510(k) market clearance from the FDA for sleep, circadian rhythm, and physical activity monitoring."
+  },
+  {
+    "claim": "Empatica's research page offers \"comprehensive raw data, EDA, vital signs, activity and more, in one wearable solution\".",
+    "url": "https://www.empatica.com/platform/research-studies",
+    "quote": "Access comprehensive raw data, EDA, vital signs, activity and more, in one wearable solution."
+  },
+  {
+    "claim": "...plus digital biomarkers.",
+    "url": "https://www.empatica.com/platform/research-studies",
+    "quote": "Enhance your study with more data and validated digital biomarkers than ever"
+  },
+  {
+    "claim": "\"All collected data can be securely and directly downloaded from the Care Lab Portal\".",
+    "url": "https://www.empatica.com/platform/research-studies",
+    "quote": "All collected data can be securely and directly downloaded from the Care Lab Portal."
+  },
+  {
+    "claim": "Data is not viewable in real time.",
+    "url": "https://www.empatica.com/platform/research-studies",
+    "quote": "However, this data is not viewable in real-time. This means you cannot stream data live, but you can still view historical, timestamped data."
+  },
+  {
+    "claim": "\"We do not provide an SDK for academic research purposes.\"",
+    "url": "https://www.empatica.com/platform/research-studies",
+    "quote": "We do not provide an SDK for academic research purposes."
+  },
+  {
+    "claim": "The Cloud API is for sponsors and CROs.",
+    "url": "https://www.empatica.com/cloud-api",
+    "quote": "The Cloud API allows study sponsors and clinical research organizations to run and manage trials inside their own existing software infrastructure."
+  },
+  {
+    "claim": "The Cloud API works with \"two formats of files, Avro and CSV\".",
+    "url": "https://www.empatica.com/cloud-api",
+    "quote": "The Empatica Health Monitoring Platform uses two formats of files, Avro and CSV"
+  },
+  {
+    "claim": "\"Data will be available in S3.\"",
+    "url": "https://www.empatica.com/cloud-api",
+    "quote": "Data will be available in S3."
+  },
+  {
+    "claim": "Bundles pair one device with three or five years of cloud data access and portal access.",
+    "url": "https://www.empatica.com/platform/research-studies",
+    "quote": "Each bundle includes one Empatica wearable and access to the Care Lab App, Care Lab Portal, and Empatica Cloud for 3 or 5 years."
+  },
+  {
+    "claim": "Empatica offers a 25% academic discount.",
+    "url": "https://www.empatica.com/platform/research-studies",
+    "quote": "That's why we are delighted to offer an exclusive 25% academic discount"
+  },
+  {
+    "claim": "ActiGraph's site, theactigraph.com, now redirects to Ametris.",
+    "url": "https://theactigraph.com/",
+    "quote": "Ametris provides wearable digital health technology (DHT), along with integrated scientific and operational support"
+  },
+  {
+    "claim": "Ametris says it was \"Founded in 2004\" as \"Ametris (formerly ActiGraph)\".",
+    "url": "https://ametris.com/about-us",
+    "quote": "Founded in 2004, Ametris (formerly ActiGraph) began with a mission to deliver scientifically rigorous, device-based data for clinical research."
+  },
+  {
+    "claim": "...and joined Signant Health in 2026.",
+    "url": "https://ametris.com/about-us",
+    "quote": "In 2026, we joined Signant Health"
+  },
+  {
+    "claim": "The ActiGraph LEAP, which Ametris says \"is US FDA 510(k) cleared for the measurement of activity, sleep, and mobility\", with its additional vital signs \"for investigational use only\".",
+    "url": "https://ametris.com/actigraph-leap",
+    "quote": "The ActiGraph LEAP is US FDA 510(k) cleared for the measurement of activity, sleep, and mobility. Additional vital signs are for investigational use only."
+  },
+  {
+    "claim": "The CentrePoint Insight Watch.",
+    "url": "https://ametris.com/centrepoint",
+    "quote": "CentrePoint is compatible with the CentrePoint Insight Watch and the ActiGraph LEAP"
+  },
+  {
+    "claim": "The wGT3X-BT.",
+    "url": "https://ametris.com/wearable-devices?hsLang=en",
+    "quote": "ActiGraph wGT3X-BT"
+  },
+  {
+    "claim": "CentrePoint \"generates future-proof raw sensor data that can be reprocessed indefinitely as new methods emerge.\"",
+    "url": "https://ametris.com/centrepoint",
+    "quote": "CentrePoint generates future-proof raw sensor data that can be reprocessed indefinitely as new methods emerge."
+  },
+  {
+    "claim": "\"Data outcomes can be integrated directly to a third party system with the CentrePoint API.\"",
+    "url": "https://ametris.com/centrepoint",
+    "quote": "Data outcomes can be integrated directly to a third party system with the CentrePoint API."
+  },
+  {
+    "claim": "\"Pricing is calculated for each unique order.\"",
+    "url": "https://ametris.com/wearable-devices?hsLang=en",
+    "quote": "Pricing is calculated for each unique order."
+  },
+  {
+    "claim": "Ametris is built around clinical trials.",
+    "url": "https://ametris.com/centrepoint",
+    "quote": "CentrePoint is Ametris' robust, cloud software platform designed for collecting, processing, and managing real-world digital endpoint data in clinical investigations."
+  },
+  {
+    "claim": "Washington's My Health My Data Act leaves out research that an institutional review board approves, monitors and governs.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "is approved, monitored, and governed by an institutional review board, human subjects research ethics review board, or a similar independent oversight entity"
+  }
+]

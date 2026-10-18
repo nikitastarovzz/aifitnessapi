@@ -1,0 +1,377 @@
+[
+  {
+    "claim": "Open Wearables: MIT-licensed software from Momentum.",
+    "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/LICENSE",
+    "quote": "MIT License Copyright (c) 2025 Momentum"
+  },
+  {
+    "claim": "Open Wearables: \"Open-source platform that unifies wearable device data from multiple providers behind a single API\".",
+    "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
+    "quote": "Open-source platform that unifies wearable device data from multiple providers behind a single API and makes it available to AI."
+  },
+  {
+    "claim": "Optional paid Enterprise tier.",
+    "url": "https://openwearables.io/pricing",
+    "quote": "Enterprise Custom pricing For funded companies and scale-stage health products"
+  },
+  {
+    "claim": "\"each deployment serves a single organization\".",
+    "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
+    "quote": "The platform is designed for self-hosting, meaning each deployment serves a single organization."
+  },
+  {
+    "claim": "Terra entry: $399 a month billed annually, or $499 monthly, with 100,000 credits.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly. That includes 100,000 credits each month for the Unified API, and you only pay extra if your usage goes beyond them."
+  },
+  {
+    "claim": "Open Wearables: \"Free forever\".",
+    "url": "https://openwearables.io/pricing",
+    "quote": "Open Source Free forever Self-hosted wearable data infrastructure under MIT license."
+  },
+  {
+    "claim": "Enterprise \"Custom pricing\".",
+    "url": "https://openwearables.io/pricing",
+    "quote": "Enterprise Custom pricing For funded companies and scale-stage health products"
+  },
+  {
+    "claim": "Enterprise \"scoped per project\".",
+    "url": "https://openwearables.io/pricing",
+    "quote": "Enterprise is scoped per project."
+  },
+  {
+    "claim": "Terra: \"500+ providers\".",
+    "url": "https://tryterra.co/",
+    "quote": "One API call returns standardised data from 500+ providers, including Garmin, Fitbit, Apple Health, Oura, WHOOP and Strava, without writing separate authentication flows or data parsers."
+  },
+  {
+    "claim": "Terra docs: \"over 150+ Data Sources\".",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+    "quote": "The Unified API supports over 150+ Data Sources"
+  },
+  {
+    "claim": "Open Wearables cloud providers: Garmin, Oura, Whoop, Suunto, Polar, Ultrahuman, Strava, Fitbit, Withings and Google Health.",
+    "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
+    "quote": "Garmin, Oura, Whoop, Suunto, Polar, Ultrahuman, Strava, Fitbit, Withings, Google Health"
+  },
+  {
+    "claim": "Terra: a mobile SDK for Apple Health, Samsung Health and Health Connect.",
+    "url": "https://docs.tryterra.co/unified-api/getting-started",
+    "quote": "These have no cloud API for third parties, so your mobile app reads them with the Terra SDK and sends the data to Terra."
+  },
+  {
+    "claim": "Open Wearables: SDKs for Apple Health, Samsung Health and Health Connect.",
+    "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
+    "quote": "Apple Health, Samsung Health, Google Health Connect"
+  },
+  {
+    "claim": "Open Wearables: native SDKs for on-device stores.",
+    "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
+    "quote": "Native SDKs for push-based health data sync from on-device health stores"
+  },
+  {
+    "claim": "Terra-managed keys for many sources.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/dedicated-data-source-api-keys",
+    "quote": "Terra manages API Keys of data sources, meaning you can connect users without having to apply for each API Key."
+  },
+  {
+    "claim": "Terra: special processes for WHOOP, Dexcom, Huawei, Strava and Virtuagym.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+    "quote": "Some providers require special processes before being able to start using them: WHOOP Dexcom Huawei Strava Virtuagym"
+  },
+  {
+    "claim": "Open Wearables: your own credentials for every cloud provider.",
+    "url": "https://openwearables.io/faq",
+    "quote": "Cloud providers require you to register with each developer program and obtain credentials, then Open Wearables handles the OAuth flow, token refresh, and webhook ingestion."
+  },
+  {
+    "claim": "Terra Dexcom: through your own Dexcom developer app.",
+    "url": "https://docs.tryterra.co/unified-api/dexcom",
+    "quote": "Dexcom requires every company to connect users through its own app on the Dexcom developer portal"
+  },
+  {
+    "claim": "Open Wearables Dexcom: \"on the roadmap. No committed release date.\"",
+    "url": "https://openwearables.io/faq",
+    "quote": "Dexcom CGM integration is on the roadmap. No committed release date."
+  },
+  {
+    "claim": "Terra delivery: signed webhooks.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "Every webhook sent by Terra includes an HMAC-based signature header"
+  },
+  {
+    "claim": "Terra delivery: SQL databases, Supabase, cloud storage, SQS and Kafka, MongoDB and Firestore.",
+    "url": "https://tryterra.co/",
+    "quote": "Terra delivers to webhooks, SQL databases (Postgres and MySQL), Supabase, cloud storage (S3, GCS and Azure Blob), queueing services (SQS and Kafka), MongoDB and Firestore."
+  },
+  {
+    "claim": "Open Wearables: REST API.",
+    "url": "https://openwearables.io/pricing",
+    "quote": "All wearable provider integrations Basic health scoring algorithms (sleep, resilience) REST API and webhooks Community Discord support"
+  },
+  {
+    "claim": "Open Wearables: MCP server.",
+    "url": "https://openwearables.io/faq",
+    "quote": "An MCP server exposes scores, trends, and baselines to any LLM."
+  },
+  {
+    "claim": "Terra: blood and DNA test ordering.",
+    "url": "https://tryterra.co/",
+    "quote": "Order blood and DNA tests for your users through Terra API. Blood through home kits, mobile phlebotomy, or lab walk-ins, and DNA from a single at-home saliva swab, with results delivered straight to your app."
+  },
+  {
+    "claim": "Terra: health scores add-on from $499 a month on Quick Start.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Health scores are an add-on for Quick Start plans. Starting from $499 / month"
+  },
+  {
+    "claim": "Open Wearables: Sleep Score and Resilience Score.",
+    "url": "https://openwearables.io/faq",
+    "quote": "Two documented scores ship with the platform: Sleep Score, a nightly 0-100 value built from duration, stages, consistency, and interruptions, and Resilience Score, a weekly 0-100 measure of autonomic nervous system stability derived from heart rate variability."
+  },
+  {
+    "claim": "Terra BAA listed on Enterprise.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Signed BAA (data protection agreement)"
+  },
+  {
+    "claim": "Open Wearables BAA on Enterprise.",
+    "url": "https://openwearables.io/pricing",
+    "quote": "BAA is available on the Enterprise plan alongside HIPAA-eligible infrastructure and audit trail configuration."
+  },
+  {
+    "claim": "Terra Enterprise: \"Dedicated instance to localised area\".",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Dedicated instance to localised area"
+  },
+  {
+    "claim": "Open Wearables: AWS, GCP, Azure or bare metal.",
+    "url": "https://openwearables.io/faq",
+    "quote": "Deployment targets include AWS, GCP, Azure, and bare metal."
+  },
+  {
+    "claim": "Terra: a versioned OpenAPI spec.",
+    "url": "https://raw.githubusercontent.com/tryterra/openapi/master/dist/core/v2-bundled.yaml",
+    "quote": "version: 2026.10.08.1"
+  },
+  {
+    "claim": "Open Wearables: \"an early-stage project under active development\"; APIs \"may change before version 1.0\".",
+    "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
+    "quote": "This is an early-stage project under active development. APIs may change before version 1.0."
+  },
+  {
+    "claim": "\"Subscriptions start from $399 per month billed annually, or $499 per month billed monthly.\"",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly. That includes 100,000 credits each month for the Unified API, and you only pay extra if your usage goes beyond them."
+  },
+  {
+    "claim": "\"A managed cloud version is not currently available\".",
+    "url": "https://openwearables.io/faq",
+    "quote": "A managed cloud version is not currently available."
+  },
+  {
+    "claim": "\"Terra manages API Keys of data sources, meaning you can connect users without having to apply for each API Key\".",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/dedicated-data-source-api-keys",
+    "quote": "Terra manages API Keys of data sources, meaning you can connect users without having to apply for each API Key."
+  },
+  {
+    "claim": "\"Garmin data flows through Terra today\".",
+    "url": "https://tryterra.co/",
+    "quote": "Terra has maintained a Garmin integration for years as an established partner, so Garmin data flows through Terra today."
+  },
+  {
+    "claim": "Its integrations table still marks Garmin as Required.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "Garmin GARMIN Event-Driven Required"
+  },
+  {
+    "claim": "\"Cloud providers require you to register with each developer program and obtain credentials\".",
+    "url": "https://openwearables.io/faq",
+    "quote": "Cloud providers require you to register with each developer program and obtain credentials, then Open Wearables handles the OAuth flow, token refresh, and webhook ingestion."
+  },
+  {
+    "claim": "\"You must apply for Garmin Developer Program\".",
+    "url": "https://openwearables.io/docs/providers/supported",
+    "quote": "You must apply for Garmin Developer Program"
+  },
+  {
+    "claim": "Approval \"ranges from immediate to several weeks depending on the provider.\"",
+    "url": "https://openwearables.io/faq",
+    "quote": "each wearable platform runs its own developer program, and approval ranges from immediate to several weeks depending on the provider."
+  },
+  {
+    "claim": "Terra supports Dexcom.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "Dexcom DEXCOM Periodically fetched Required"
+  },
+  {
+    "claim": "Terra orders blood and DNA tests.",
+    "url": "https://tryterra.co/",
+    "quote": "Order blood and DNA tests for your users through Terra API. Blood through home kits, mobile phlebotomy, or lab walk-ins, and DNA from a single at-home saliva swab, with results delivered straight to your app."
+  },
+  {
+    "claim": "Terra delivers into databases, cloud storage and queues.",
+    "url": "https://tryterra.co/",
+    "quote": "Terra delivers to webhooks, SQL databases (Postgres and MySQL), Supabase, cloud storage (S3, GCS and Azure Blob), queueing services (SQS and Kafka), MongoDB and Firestore."
+  },
+  {
+    "claim": "Open Wearables Dexcom on its roadmap with no committed date.",
+    "url": "https://openwearables.io/faq",
+    "quote": "Dexcom CGM integration is on the roadmap. No committed release date."
+  },
+  {
+    "claim": "Open Wearables \"does not natively output FHIR resources.\"",
+    "url": "https://openwearables.io/faq",
+    "quote": "Open Wearables does not natively output FHIR resources."
+  },
+  {
+    "claim": "\"Every webhook sent by Terra includes an HMAC-based signature header\".",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "Every webhook sent by Terra includes an HMAC-based signature header"
+  },
+  {
+    "claim": "Terra \"retries the delivery up to 10 times with exponential backoff\".",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "Terra retries the delivery up to 10 times with exponential backoff"
+  },
+  {
+    "claim": "\"Self-hosted, MIT license, $0 per user\".",
+    "url": "https://openwearables.io/docs",
+    "quote": "Self-hosted, MIT license, $0 per user."
+  },
+  {
+    "claim": "You can \"ship it in a commercial product at no cost.\"",
+    "url": "https://openwearables.io/pricing",
+    "quote": "The core platform is MIT-licensed. You can self-host it, build on it, and ship it in a commercial product at no cost."
+  },
+  {
+    "claim": "\"An active authentication is one connected data source for one end user, and costs 200 credits per month\".",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Two things consume credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
+  },
+  {
+    "claim": "\"there is no third party holding your users' health records, and no data processing agreement needed with us because we never receive the data.\"",
+    "url": "https://openwearables.io/faq",
+    "quote": "there is no third party holding your users' health records, and no data processing agreement needed with us because we never receive the data."
+  },
+  {
+    "claim": "\"a small anonymous usage ping once a day (plus one on startup)\".",
+    "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
+    "quote": "Open Wearables sends a small anonymous usage ping once a day (plus one on startup)"
+  },
+  {
+    "claim": "\"contains only aggregate, bucketed counts and configuration flags, never health data, user data or credentials\".",
+    "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
+    "quote": "It contains only aggregate, bucketed counts and configuration flags, never health data, user data or credentials."
+  },
+  {
+    "claim": "The README documents how to turn it off.",
+    "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
+    "quote": "To turn it off, set"
+  },
+  {
+    "claim": "\"Two documented scores ship with the platform\": nightly 0 to 100 Sleep Score, weekly 0 to 100 Resilience Score from HRV.",
+    "url": "https://openwearables.io/faq",
+    "quote": "Two documented scores ship with the platform: Sleep Score, a nightly 0-100 value built from duration, stages, consistency, and interruptions, and Resilience Score, a weekly 0-100 measure of autonomic nervous system stability derived from heart rate variability."
+  },
+  {
+    "claim": "\"An MCP server exposes scores, trends, and baselines to any LLM.\"",
+    "url": "https://openwearables.io/faq",
+    "quote": "An MCP server exposes scores, trends, and baselines to any LLM."
+  },
+  {
+    "claim": "Terra sells health scores as an add-on.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Health scores are an add-on for Quick Start plans. Starting from $499 / month"
+  },
+  {
+    "claim": "Terra offers an MCP server through its AI Interface.",
+    "url": "https://tryterra.co/",
+    "quote": "Yes, through the AI Interface, an MCP server your agent connects to."
+  },
+  {
+    "claim": "README: \"Register HTTPS endpoints to get notified when new data arrives for your users. Filter by event type or user, verify signatures, send test events, and inspect delivery attempts.\"",
+    "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
+    "quote": "Register HTTPS endpoints to get notified when new data arrives for your users. Filter by event type or user, verify signatures, send test events, and inspect delivery attempts."
+  },
+  {
+    "claim": "FAQ: \"Outbound webhooks (pushing events to your backend when new data arrives) are in active development\".",
+    "url": "https://openwearables.io/faq",
+    "quote": "Outbound webhooks (pushing events to your backend when new data arrives) are in active development."
+  },
+  {
+    "claim": "Webhooks page: they \"are still in development, so plan around reading from the API for now.\"",
+    "url": "https://openwearables.io/webhooks",
+    "quote": "Outbound webhooks, where Open Wearables pushes events onward to your systems, are still in development, so plan around reading from the API for now."
+  },
+  {
+    "claim": "\"In production, pin the official images to a specific release version\".",
+    "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
+    "quote": "In production, pin the official images to a specific release version"
+  },
+  {
+    "claim": "Its comparison says it \"covers the same provider set\".",
+    "url": "https://openwearables.io/compare",
+    "quote": "Open Wearables covers the same provider set, self-hosted, on infrastructure you control."
+  },
+  {
+    "claim": "It describes Terra as charging \"a monthly fee plus per-API-call credits\".",
+    "url": "https://openwearables.io/compare",
+    "quote": "It charges a monthly fee plus per-API-call credits, runs cloud-only, and keeps its health scoring logic proprietary."
+  },
+  {
+    "claim": "Terra's pricing page bills credits for connected data sources and events.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Two things consume credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
+  },
+  {
+    "claim": "Events past a free allowance.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "The Unified API includes 400 events per active authentication free each month, and events beyond that cost 0.5 credits each. Terra's pricing docs note that 95% of customers are never charged for events."
+  },
+  {
+    "claim": "Open Wearables Enterprise: \"SLA-backed support HIPAA-eligible infrastructure BAA and GDPR documentation\".",
+    "url": "https://openwearables.io/pricing",
+    "quote": "SLA-backed support HIPAA-eligible infrastructure BAA and GDPR documentation"
+  },
+  {
+    "claim": "\"BAA is available on the Enterprise plan alongside HIPAA-eligible infrastructure and audit trail configuration.\"",
+    "url": "https://openwearables.io/pricing",
+    "quote": "BAA is available on the Enterprise plan alongside HIPAA-eligible infrastructure and audit trail configuration."
+  },
+  {
+    "claim": "Terra \"is HIPAA compliant, GDPR compliant, and SOC 2 Type II certified\".",
+    "url": "https://tryterra.co/",
+    "quote": "Yes. Terra is HIPAA compliant, GDPR compliant, and SOC 2 Type II certified."
+  },
+  {
+    "claim": "Terra lists a signed BAA on Enterprise.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Signed BAA (data protection agreement)"
+  },
+  {
+    "claim": "FAQ: same for Suunto.",
+    "url": "https://openwearables.io/docs/providers/supported",
+    "quote": "You must apply for Suunto Developer Program"
+  },
+  {
+    "claim": "FAQ: same for Polar.",
+    "url": "https://openwearables.io/docs/providers/supported",
+    "quote": "You must register for the Polar API program"
+  },
+  {
+    "claim": "FAQ: Docker Compose or one-click Railway.",
+    "url": "https://openwearables.io/compare",
+    "quote": "Docker Compose or one-click Railway. FastAPI, PostgreSQL, Redis, Celery."
+  },
+  {
+    "claim": "FAQ: Momentum maintains it.",
+    "url": "https://openwearables.io/pricing",
+    "quote": "Healthcare software & AI development agency specializing in turning health data into intelligent applications."
+  },
+  {
+    "claim": "FAQ: Enterprise deployment on your infrastructure.",
+    "url": "https://openwearables.io/pricing",
+    "quote": "Deployment on AWS, GCP, Azure, or on-prem"
+  }
+]

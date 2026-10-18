@@ -1,0 +1,312 @@
+[
+  {
+    "claim": "ROOK sells medical-device APIs.",
+    "url": "https://tryrook.io/rookconnect/medical-device-api/",
+    "quote": "The ROOK Connect Medical Device API delivers glucose, blood pressure, oxygen saturation, temperature and ECG readings in one format, with the device that recorded each one."
+  },
+  {
+    "claim": "ROOK sells lab-report APIs.",
+    "url": "https://tryrook.io/rookconnect/lab-data-api/",
+    "quote": "The ROOK Connect Lab Data API turns PDF and image lab reports into structured biomarkers with LOINC codes and FHIR R4 output, linked to each user's wearable data."
+  },
+  {
+    "claim": "Terra coverage claim: \"500+ providers\".",
+    "url": "https://tryterra.co/",
+    "quote": "One API call returns standardised data from 500+ providers, including Garmin, Fitbit, Apple Health, Oura, WHOOP and Strava, without writing separate authentication flows or data parsers."
+  },
+  {
+    "claim": "Terra docs: the Unified API \"supports over 150+ Data Sources\".",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+    "quote": "The Unified API supports over 150+ Data Sources"
+  },
+  {
+    "claim": "ROOK docs: \"400+ wearables and health data sources\".",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "ROOK is a single integration for 400+ wearables and health data sources that supports all major wearable providers"
+  },
+  {
+    "claim": "ROOK integrations page: \"72 data sources and more than 500 devices\".",
+    "url": "https://tryrook.io/wearable-api-sdk/integrations/",
+    "quote": "ROOK connects 72 data sources and more than 500 devices through a single integration."
+  },
+  {
+    "claim": "Terra: cloud APIs plus a mobile SDK for Apple Health, Samsung Health and Health Connect.",
+    "url": "https://docs.tryterra.co/unified-api/getting-started",
+    "quote": "These have no cloud API for third parties, so your mobile app reads them with the Terra SDK and sends the data to Terra."
+  },
+  {
+    "claim": "ROOK: direct API integrations for cloud providers; SDKs for Apple Health and Health Connect.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "ROOK classifies sources into two primary extraction methods: direct API-based integrations for centralized providers (such as Fitbit or Garmin) and SDK-based integrations for mobile devices (such as Apple Health and Health Connect)."
+  },
+  {
+    "claim": "59 of its 72 listed sources are Indirect.",
+    "url": "https://tryrook.io/wearable-api-sdk/integrations/",
+    "quote": "All 72 API 9 SDK 4 Indirect 59"
+  },
+  {
+    "claim": "Terra: signed webhooks.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "Every webhook sent by Terra includes an HMAC-based signature header"
+  },
+  {
+    "claim": "Terra: SQL databases, Supabase, cloud storage, SQS and Kafka, MongoDB or Firestore.",
+    "url": "https://tryterra.co/",
+    "quote": "Terra delivers to webhooks, SQL databases (Postgres and MySQL), Supabase, cloud storage (S3, GCS and Azure Blob), queueing services (SQS and Kafka), MongoDB and Firestore."
+  },
+  {
+    "claim": "ROOK: webhooks or API queries.",
+    "url": "https://tryrook.io/rookconnect/wearable-api/",
+    "quote": "The client receives the data in their backend through webhooks or API queries."
+  },
+  {
+    "claim": "Terra: lab test ordering (US and UK).",
+    "url": "https://tryterra.co/products/lab-testing",
+    "quote": "Nationwide US, plus the UK"
+  },
+  {
+    "claim": "Terra: DNA tests.",
+    "url": "https://tryterra.co/",
+    "quote": "Order blood and DNA tests for your users through Terra API. Blood through home kits, mobile phlebotomy, or lab walk-ins, and DNA from a single at-home saliva swab, with results delivered straight to your app."
+  },
+  {
+    "claim": "Terra: a lab-report parsing API, streaming, planned workouts.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Standardize and orchestrate blood reports from all types of providers."
+  },
+  {
+    "claim": "Terra: streaming and planned workouts add-ons.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Add-ons such as the Streaming API and Planned Workouts are priced separately."
+  },
+  {
+    "claim": "ROOK: Medical Device API.",
+    "url": "https://tryrook.io/rookconnect/medical-device-api/",
+    "quote": "The ROOK Connect Medical Device API delivers glucose, blood pressure, oxygen saturation, temperature and ECG readings in one format, with the device that recorded each one."
+  },
+  {
+    "claim": "ROOK: Lab Data API.",
+    "url": "https://tryrook.io/rookconnect/lab-data-api/",
+    "quote": "The ROOK Connect Lab Data API turns PDF and image lab reports into structured biomarkers with LOINC codes and FHIR R4 output, linked to each user's wearable data."
+  },
+  {
+    "claim": "ROOK: EHR/EMR API on a waitlist.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "EHR/EMR API Waitlist for EHR/EMR API"
+  },
+  {
+    "claim": "ROOK: a 0 to 100 health score.",
+    "url": "https://docs.tryrook.io/",
+    "quote": "It provides a simple score, ranging from 0 to 100, that reflects their current health status."
+  },
+  {
+    "claim": "Terra entry: $399 a month billed annually ($499 monthly), 100,000 credits.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly. That includes 100,000 credits each month for the Unified API, and you only pay extra if your usage goes beyond them."
+  },
+  {
+    "claim": "ROOK Core at $399 a month for up to 750 active users.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For getting started with ROOK. $399 USD per month Up to 750 active users"
+  },
+  {
+    "claim": "Terra: 200 credits per connected data source per month.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Two things consume credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
+  },
+  {
+    "claim": "Terra: extra credits from $0.005.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Only pay more when you go beyond 100,000 credits. Starting at $0.005 / credit."
+  },
+  {
+    "claim": "ROOK Core+ $999 (5,000 users).",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For teams growing past their first user base. $999 USD per month Up to 5,000 active users"
+  },
+  {
+    "claim": "ROOK Business $1,999 (15,000).",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For companies that need to scale. $1,999 USD per month Up to 15,000 active users"
+  },
+  {
+    "claim": "ROOK Enterprise custom.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For organizations with custom security or integration requirements. Custom Custom pricing Unlimited users"
+  },
+  {
+    "claim": "Terra: 30-day money-back guarantee on Quick Start.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "30-day money-back guarantee"
+  },
+  {
+    "claim": "ROOK: standard term 12 months, cancel with 30 days' notice.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "ROOK's standard contract term is 12 months, with the flexibility to cancel with 30 days' prior notice."
+  },
+  {
+    "claim": "Terra docs name WHOOP, Dexcom, Huawei, Strava and Virtuagym.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+    "quote": "Some providers require special processes before being able to start using them: WHOOP Dexcom Huawei Strava Virtuagym"
+  },
+  {
+    "claim": "Terra integrations table marks Garmin as Required.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "Garmin GARMIN Event-Driven Required"
+  },
+  {
+    "claim": "Terra integrations table marks Samsung as Required.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "Samsung SAMSUNG Event-Driven Required"
+  },
+  {
+    "claim": "ROOK: Dexcom, Samsung Health, Strava and WHOOP.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "clients are required to create their own developer accounts with these providers."
+  },
+  {
+    "claim": "ROOK: Dexcom and Whoop need own developer accounts.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "To enable data extraction from specific platforms with strict regulations, such as Dexcom and Whoop, the client organization must provision and manage its own developer accounts."
+  },
+  {
+    "claim": "ROOK: Samsung Health requires developer account.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "Samsung Health Requires developer account"
+  },
+  {
+    "claim": "ROOK: Strava requires developer account.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "Strava Requires developer account"
+  },
+  {
+    "claim": "\"Every webhook sent by Terra includes an HMAC-based signature header\".",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "Every webhook sent by Terra includes an HMAC-based signature header"
+  },
+  {
+    "claim": "Terra writes into \"SQL databases (Postgres and MySQL), Supabase, cloud storage (S3, GCS and Azure Blob), queueing services (SQS and Kafka), MongoDB and Firestore\".",
+    "url": "https://tryterra.co/",
+    "quote": "Terra delivers to webhooks, SQL databases (Postgres and MySQL), Supabase, cloud storage (S3, GCS and Azure Blob), queueing services (SQS and Kafka), MongoDB and Firestore."
+  },
+  {
+    "claim": "It orders lab tests (\"Nationwide US, plus the UK\").",
+    "url": "https://tryterra.co/products/lab-testing",
+    "quote": "Nationwide US, plus the UK"
+  },
+  {
+    "claim": "And DNA tests.",
+    "url": "https://tryterra.co/",
+    "quote": "Order blood and DNA tests for your users through Terra API. Blood through home kits, mobile phlebotomy, or lab walk-ins, and DNA from a single at-home saliva swab, with results delivered straight to your app."
+  },
+  {
+    "claim": "ROOK parses lab reports you already have.",
+    "url": "https://tryrook.io/rookconnect/lab-data-api/",
+    "quote": "The ROOK Connect Lab Data API turns PDF and image lab reports into structured biomarkers with LOINC codes and FHIR R4 output, linked to each user's wearable data."
+  },
+  {
+    "claim": "Terra's FAQ lists Garmin, Fitbit, Apple Watch, Oura Ring, WHOOP, Polar, Samsung Health, Withings, Suunto and Wahoo among sources.",
+    "url": "https://tryterra.co/",
+    "quote": "Terra connects to 500+ health data sources including wearables (Garmin, Fitbit, Apple Watch, Oura Ring, WHOOP, Polar, Samsung Health, Withings, Suunto, Wahoo), fitness apps (Strava, MyFitnessPal, Cronometer), blood testing providers, CGM devices, medical devices, and sensors."
+  },
+  {
+    "claim": "\"An active authentication is one connected data source for one end user, and costs 200 credits per month\".",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Two things consume credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
+  },
+  {
+    "claim": "ROOK prices by plan and active users.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "ROOK pricing is based on the plan and the number of active users, with usage-based billing and the flexibility to activate only the products and add-ons needed."
+  },
+  {
+    "claim": "Core $399 a month for up to 750 active users.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For getting started with ROOK. $399 USD per month Up to 750 active users"
+  },
+  {
+    "claim": "Core+ $999 for up to 5,000.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For teams growing past their first user base. $999 USD per month Up to 5,000 active users"
+  },
+  {
+    "claim": "Business $1,999 for up to 15,000.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "For companies that need to scale. $1,999 USD per month Up to 15,000 active users"
+  },
+  {
+    "claim": "Arithmetic input: Terra $399 annual base, 100,000 credits included.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly. That includes 100,000 credits each month for the Unified API, and you only pay extra if your usage goes beyond them."
+  },
+  {
+    "claim": "Arithmetic input: Terra $0.005 per credit from 100,001 to 1,000,000.",
+    "url": "https://docs.tryterra.co/unified-api/pricing",
+    "quote": "100,001 - 1,000,000 $0.005 1,000,001+ $0.003"
+  },
+  {
+    "claim": "Past a plan's ceiling, ROOK says \"billing adjusts based on usage\".",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Each plan includes an active user limit. Beyond that limit, billing adjusts based on usage."
+  },
+  {
+    "claim": "ROOK's Medical Device API delivers \"glucose, blood pressure, oxygen saturation, temperature and ECG readings in one format, with the device that recorded each one\".",
+    "url": "https://tryrook.io/rookconnect/medical-device-api/",
+    "quote": "The ROOK Connect Medical Device API delivers glucose, blood pressure, oxygen saturation, temperature and ECG readings in one format, with the device that recorded each one."
+  },
+  {
+    "claim": "Its Lab Data API \"turns PDF and image lab reports into structured biomarkers with LOINC codes and FHIR R4 output\".",
+    "url": "https://tryrook.io/rookconnect/lab-data-api/",
+    "quote": "The ROOK Connect Lab Data API turns PDF and image lab reports into structured biomarkers with LOINC codes and FHIR R4 output, linked to each user's wearable data."
+  },
+  {
+    "claim": "Its EHR/EMR API delivers wearable data to clinical systems as FHIR R4.",
+    "url": "https://tryrook.io/rookconnect/ehr-emr-api/",
+    "quote": "ROOK's EHR/EMR API delivers each user's health data as FHIR R4, with LOINC codes and UCUM units, ready to integrate into clinical systems."
+  },
+  {
+    "claim": "ROOK Score gives \"a simple score, ranging from 0 to 100\".",
+    "url": "https://docs.tryrook.io/",
+    "quote": "It provides a simple score, ranging from 0 to 100, that reflects their current health status."
+  },
+  {
+    "claim": "The ROOK App \"lets end users connect supported sources without embedding the SDKs\".",
+    "url": "https://tryrook.io/rookconnect/wearable-api/",
+    "quote": "ROOK App lets end users connect supported sources without embedding the SDKs."
+  },
+  {
+    "claim": "Business and Enterprise include every product and add-on, while Core+ includes three.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Business and Enterprise include every product and add-on, Core+ includes three of choice, and Core adds them at the listed price."
+  },
+  {
+    "claim": "ROOK pages describe webhook delivery.",
+    "url": "https://tryrook.io/rookconnect/wearable-api/",
+    "quote": "The client receives the data in their backend through webhooks or API queries."
+  },
+  {
+    "claim": "FAQ: ROOK says setting them up can take several weeks.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "This process can take several weeks and partly depends on the timelines of the respective data sources."
+  },
+  {
+    "claim": "FAQ: Terra's homepage says Garmin data flows through Terra's own partner integration.",
+    "url": "https://tryterra.co/",
+    "quote": "Terra has maintained a Garmin integration for years as an established partner, so Garmin data flows through Terra today."
+  },
+  {
+    "claim": "FAQ: Terra charges credits for events past a free allowance.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "The Unified API includes 400 events per active authentication free each month, and events beyond that cost 0.5 credits each. Terra's pricing docs note that 95% of customers are never charged for events."
+  },
+  {
+    "claim": "FAQ: ROOK ships mobile SDKs for Apple Health and Health Connect.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "ROOK SDKs integrate directly with Health Connect (Android) and Apple Health (iOS) to collect data on activity, sleep, heart rate, and more"
+  },
+  {
+    "claim": "FAQ: Terra returns one schema for every source.",
+    "url": "https://tryterra.co/",
+    "quote": "One API call returns standardised data from 500+ providers, including Garmin, Fitbit, Apple Health, Oura, WHOOP and Strava, without writing separate authentication flows or data parsers."
+  }
+]

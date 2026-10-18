@@ -15,10 +15,21 @@ import { orgRef } from "@/lib/schema";
  * never invents figures. Dataset JSON-LD + CC BY 4.0 downloads make this the
  * site's citation magnet; keep the version pinned (2026.1) and version, don't
  * overwrite, at the next edition.
+ *
+ * Revised in place on 2026-10-18, not re-editioned: only the four aggregator
+ * rows were re-verified, and two of their classifications moved (Spike's
+ * devCost, Terra's approval gate). REVISION states the before and after
+ * figures; the other 21 rows keep their 2026-08-11 verification, which is why
+ * the visible "Updated 11 August 2026" stamp stays.
  */
 
 const PAGE_PATH = "/state-of-fitness-apis-2026";
-const UPDATED = "2026-08-11";
+/** dateModified: the day the revision was published (the aggregator rows were
+ *  re-verified the day before, on 2026-10-17). The
+ *  sitemap reads this constant by name, so it keeps the name UPDATED. */
+const UPDATED = "2026-10-18";
+/** datePublished, and the verification date of the 21 rows not re-checked. */
+const FIRST_PUBLISHED = "2026-08-11";
 
 const RELATED: { href: string; label: string }[] = [
   {
@@ -41,18 +52,18 @@ const RELATED: { href: string; label: string }[] = [
 
 export const metadata: Metadata = {
   title: { absolute: "The State of Fitness APIs 2026: 25-API Dataset" },
-  description: "Original research on 25 fitness APIs, SDKs and models: 48% are free to call, 48% gate your launch on an approval, 16% hide terms. Open CC BY 4.0 dataset.",
+  description: "Original research on 25 fitness APIs, SDKs and models: 48% are free to call, 52% gate your launch on an approval, 12% hide terms. Open CC BY 4.0 dataset.",
   alternates: { canonical: PAGE_PATH },
   openGraph: {
     type: "article",
     title: "The State of Fitness APIs 2026",
-    description: "Original research on 25 fitness APIs, SDKs and models: 48% are free to call, 48% gate your launch on an approval, 16% hide terms. Open CC BY 4.0 dataset.",
+    description: "Original research on 25 fitness APIs, SDKs and models: 48% are free to call, 52% gate your launch on an approval, 12% hide terms. Open CC BY 4.0 dataset.",
     url: PAGE_PATH,
     images: ["/opengraph-image"],
   },
 };
 
-const ANSWER = "Of the 25 fitness APIs, SDKs and models surveyed for this report, 12 are free to call (48%) — but 12 also gate your launch behind someone else's approval (48%), and 5 require the end user to already own hardware or hold a membership before any data flows. Only 4 items (16%) are contact-sales-only: Garmin, Spike, Sency and KinesteX, which funds this site. The free layer and the gated layer are not the same items: all 3 pose-estimation models are free, Apache-2.0 or platform-bundled and ungated, while five of the six direct wearable APIs carry both an approval gate and a user-side cost. Every figure comes from an open, per-item-sourced dataset published under CC BY 4.0, and no dollar figure appears anywhere in it by design.";
+const ANSWER = "Of the 25 fitness APIs, SDKs and models surveyed for this report, as revised on 18 October 2026, 12 are free to call (48%) — but 13 gate your launch behind someone else's approval (52%), and 5 require the end user to already own hardware or hold a membership before any data flows. Only 3 items (12%) are contact-sales-only: Garmin, Sency and KinesteX, which funds this site. The free layer and the gated layer are not the same items: all 3 pose-estimation models are free, Apache-2.0 or platform-bundled and ungated, while five of the six direct wearable APIs carry both an approval gate and a user-side cost. Every figure comes from an open, per-item-sourced dataset published under CC BY 4.0, and no dollar figure appears anywhere in it by design.";
 
 const FAQS: { q: string; a: string }[] = [
   {
@@ -69,11 +80,11 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     "q": "Can I cite or redistribute the State of Fitness APIs 2026 dataset?",
-    "a": "Yes. The dataset is published under CC BY 4.0 as fitness-apis-2026.json and fitness-apis-2026.csv, version 2026.1, with a source link on every row so you can check each claim against the page it came from. Attribution is the only condition. Cite it as: AIFitnessAPI, 'The State of Fitness APIs 2026,' aifitnessapi.com, updated 11 August 2026, https://aifitnessapi.com/state-of-fitness-apis-2026. Future editions will be versioned rather than overwritten, so a citation to 2026.1 keeps pointing at what 2026.1 actually said."
+    "a": "Yes. The dataset is published under CC BY 4.0 as fitness-apis-2026.json and fitness-apis-2026.csv, version 2026.1, with a source link on every row so you can check each claim against the page it came from. Attribution is the only condition. Cite it as: AIFitnessAPI, 'The State of Fitness APIs 2026,' aifitnessapi.com, updated 11 August 2026, revised 18 October 2026, https://aifitnessapi.com/state-of-fitness-apis-2026. The 17 October revision changed two aggregator rows in place, and the revision note at the top of the report keeps the earlier figures on record; future editions will be versioned rather than overwritten."
   },
   {
     "q": "Does KinesteX get special treatment in its own dataset?",
-    "a": "No, and the report says so in the open: KinesteX funds this site. It appears as one of the 25 items and one of the 4 contact-sales items, classified by the same rule as Garmin, Spike and Sency — no public pricing, access through a contact form and an issued API key. There is no ranking in this dataset, no accuracy or performance claim for any vendor including KinesteX, and no exemption from the 'could not verify' treatment applied to competitors. The report also states plainly that the pose-estimation layer underneath the commercial motion SDKs is free and Apache-2.0 or platform-bundled, which is the strongest argument against buying a motion SDK at all."
+    "a": "No, and the report says so in the open: KinesteX funds this site. It appears as one of the 25 items and one of the 3 contact-sales items, classified by the same rule as Garmin and Sency — no public pricing, access through a contact form and an issued API key. There is no ranking in this dataset, no accuracy or performance claim for any vendor including KinesteX, and no exemption from the 'could not verify' treatment applied to competitors. The report also states plainly that the pose-estimation layer underneath the commercial motion SDKs is free and Apache-2.0 or platform-bundled, which is the strongest argument against buying a motion SDK at all."
   }
 ];
 
@@ -94,9 +105,9 @@ Now look at where the cost went. Fitbit, Oura, WHOOP, HealthKit and Health Conne
 
 **What it means:** "free" here describes one column of a spreadsheet that has four columns in it. Read it as "no per-request fee documented," then go find where the vendor took its cut instead. The [cost planner](/cost-planner) keeps those columns separate; [are fitness APIs free?](/pricing/are-fitness-apis-free) works the same distinction from the buyer's side.
 
-### 2. The approval-gate economy: 48% of the market makes you ask permission
+### 2. The approval-gate economy: 52% of the market makes you ask permission
 
-**12 of the 25 items (48%) carry an approval gate** — a review, declaration, cap or sales process you must clear before launch. All twelve, because the shapes differ enormously:
+**13 of the 25 items (52%) carry an approval gate** — a review, declaration, cap, provider registration or sales process you must clear before launch. All thirteen, because the shapes differ enormously:
 
 - **WHOOP** — a hard 10-member cap until production approval, and WHOOP requires developers to hold a membership themselves.
 - **Oura** — a fresh app connects only a small number of users (reported around 10) until Oura's review, via the "Oura for Organizations" partner path.
@@ -105,8 +116,9 @@ Now look at where the cost went. Fitbit, Oura, WHOOP, HealthKit and Health Conne
 - **Fitbit** — developer app registration; access to other users' intraday data is case-by-case (verify).
 - **Apple HealthKit** — App Store review checks that your health usage-description strings match what you do.
 - **Google Health Connect** — a Play Console health-data declaration and review before you can publish.
-- **Rook** — several underlying providers still need your own developer credentials.
-- **Spike** — sales-assisted onboarding with a dedicated implementation engineer from sandbox.
+- **Terra** — its docs say some providers "require special processes before being able to start using them" and name WHOOP, Dexcom, Huawei, Strava and Virtuagym.
+- **Rook** — Dexcom, Samsung Health, Strava and WHOOP need your own developer accounts, which Rook says can take several weeks.
+- **Spike** — sales-assisted onboarding: every plan is bought through a demo call, with a dedicated implementation engineer from sandbox.
 - **Nutritionix** — higher tiers gated through a Syndigo sales contact, not a self-serve checkout.
 - **KinesteX** — a contact form and an issued API key; no self-serve signup.
 - **Sency** — a free trial first (no credit card, per the vendor's site at our last check), then sales.
@@ -129,11 +141,11 @@ That is five of the six items in the wearable-direct category. **Polar Open Acce
 
 **What it means:** this is a market-size constraint wearing a cost-model costume. If your product needs WHOOP data, every prospective user is already a WHOOP subscriber — a ceiling that belongs in the business case, not the engineering budget. [Wearable data APIs compared](/fitness-apis/wearable-data-apis) walks it per vendor.
 
-### 4. Only 16% hides its terms completely — and it clusters in one layer
+### 4. Only 12% hides its terms completely — and it clusters in one layer
 
-**4 of the 25 items (16%) are contact-sales-only:** Garmin, Spike, Sency and KinesteX.
+**3 of the 25 items (12%) are contact-sales-only:** Garmin, Sency and KinesteX.
 
-The concentration is telling. In the aggregator layer, Terra, Junction and Rook all bill on usage while Spike, the newest and broadest of them, routes through sales. In the AI motion layer, only QuickPose publishes a self-serve free tier; KinesteX and Sency both require a conversation before you can see terms. Garmin is the odd one out — the single first-party wearable API whose commercial terms are settled privately with approved partners.
+The concentration is telling. In the AI motion layer, only QuickPose publishes a self-serve free tier; KinesteX and Sency both require a conversation before you can see terms. Garmin is the odd one out — the single first-party wearable API whose commercial terms are settled privately with approved partners. The aggregator layer has left this list: Spike, the one aggregator classed contact-sales on 11 August, now publishes a starting price and bills on usage (see the revision note).
 
 **Disclosure:** KinesteX funds this site. It appears in the dataset on exactly the same terms as everyone else — classified contact-sales, approval gate recorded, no ranking, no accuracy claim, no exemption from the "could not verify pricing" treatment applied to its competitors. See [KinesteX vs Sency](/compare/kinestex-vs-sency).
 
@@ -157,11 +169,11 @@ That gap is the finding. BlazePose returns 33 landmarks per frame; MoveNet retur
 
 **What it means:** the build-versus-buy question in AI fitness is not "can I get keypoints for free" (yes, trivially) but "who maintains everything between keypoints and a workout." Compare [MediaPipe and MoveNet](/motion/pose-estimation-models-compared#mediapipe-vs-movenet-head-to-head) at the model layer, [KinesteX vs MediaPipe](/compare/kinestex-vs-mediapipe) across the gap, and [fitness API vs build your own](/fitness-apis/fitness-api-vs-build-your-own) for scope.
 
-### 7. Usage-based billing is rare, and it is mostly a way to buy back time
+### 7. Usage-based billing is a minority, and it is mostly a way to buy back time
 
-Only **4 of the 25 items bill on usage**: Terra, Junction and Rook among the aggregators, plus the LLM feature layer, which meters tokens with output priced above input.
+Only **5 of the 25 items bill on usage**: all four aggregators (Terra, Junction, Rook and Spike), plus the LLM feature layer, which meters tokens with output priced above input.
 
-Read that against finding 2. Terra and Junction carry no documented approval gate at all, and they exist precisely to broker provider authentication — the gates you would otherwise clear one wearable vendor at a time. The middle of the stack offers a real trade: pay a metered bill and skip a queue, or clear the queues yourself and pay nothing per call.
+Read that against finding 2. Aggregators exist precisely to broker provider authentication — the gates you would otherwise clear one wearable vendor at a time — and their own gates are narrow: Junction carries no documented approval gate at all, Terra's and Rook's cover a named handful of providers that need your own setup, and Spike's is a sales-assisted start. The middle of the stack offers a real trade: pay a metered bill and skip most of the queue, or clear the queues yourself and pay nothing per call.
 
 **What it means:** the aggregator decision is a schedule decision as much as a cost one. What no aggregator removes is anything attached to your own app rather than the data source — App Store review and the Play Console declaration survive regardless. [Terra vs Vital/Junction](/fitness-apis/terra-vs-vital) and the [aggregator overview](/fitness-apis/health-data-aggregator-apis) cover what each broker actually brokers.
 
@@ -171,7 +183,7 @@ Read that against finding 2. Terra and Junction carry no documented approval gat
 | --- | --- | --- | --- |
 | Wearable APIs (direct) | 6 | Mostly free to call; Strava free-tier-then-paid; Garmin contact-sales | Gated everywhere except Polar; all but Polar need the user to own the device or account |
 | Platform health stores | 2 | Free (HealthKit, Health Connect) | Store review both sides: usage-description strings on iOS, health-data declaration on Android |
-| Health-data aggregators | 4 | Usage-based (Terra, Junction, Rook); contact-sales (Spike) | Lightest gate layer: Rook's bring-your-own credentials, Spike's sales onboarding |
+| Health-data aggregators | 4 | Usage-based (Terra, Junction, Rook, Spike) | Narrow gates: Terra's and Rook's provider setups for a named handful of providers, Spike's sales onboarding; none documented on Junction |
 | Nutrition and food data | 4 | Open data (USDA FoodData Central, Open Food Facts) versus freemium (Nutritionix, Edamam) | Only Nutritionix's higher tiers; open options charge in licence obligations |
 | Exercise content | 2 | Marketplace freemium (ExerciseDB); free self-hosted (wger) | None documented; wger's AGPL-3.0 copyleft is the real constraint |
 | AI motion / coaching SDKs | 3 | Contact-sales (KinesteX, Sency); free-tier-then-paid (QuickPose) | The sales process is the gate |
@@ -184,7 +196,7 @@ Per-vendor structure is broken out on [Fitbit API pricing](/pricing/fitbit-api-p
 
 **The sample.** 25 items, chosen as the APIs, SDKs and models this site's own verified pages already cover in depth. That makes it coverage-driven, not a census: it is not exhaustive, implies nothing about market share, and skews toward vendors with English-language developer documentation. One row ("LLM API") stands for a feature category rather than a named vendor. The eight categories are ours, not an industry taxonomy.
 
-**Verification.** Every non-judgement field was verified against vendor primary sources — developer documentation, public repositories, registries — during 2026, each backed by a sentence published on this site, with per-item provenance recorded in the cost model the dataset is generated from. Where the vendor's own material was absent or unreadable and only third-party reports existed, the claim is marked "reportedly" and carries a verify flag inline rather than being laundered into a fact.
+**Verification.** Every non-judgement field was verified against vendor primary sources — developer documentation, public repositories, registries — during 2026, each backed by a sentence published on this site, with per-item provenance recorded in the cost model the dataset is generated from. Where the vendor's own material was absent or unreadable and only third-party reports existed, the claim is marked "reportedly" and carries a verify flag inline rather than being laundered into a fact. The four aggregator rows were re-verified on 17 October 2026; the other 21 rows carry their 11 August 2026 verification.
 
 **Nulls are honest.** A null means we could not verify it — never that the answer is zero, never a guess. Polar's empty user-side cost means no sentence on our pages documents one, not that none exists.
 
@@ -192,11 +204,11 @@ Per-vendor structure is broken out on [Fitbit API pricing](/pricing/fitbit-api-p
 
 **What we left out.** Our engineering-effort estimate is judgement, not a vendor fact, so it stays in the planner where it is labelled as judgement and is excluded from the dataset. Counting gates is also binary and therefore lossy: an App Store review and a Garmin partner approval are both one gate here and are nothing alike. Read the per-item gate text, not just the count.
 
-**First-party disclosure.** KinesteX funds this site. It is one of the 25 items and one of the 4 contact-sales items, recorded on the same terms as every competitor.
+**First-party disclosure.** KinesteX funds this site. It is one of the 25 items and one of the 3 contact-sales items, recorded on the same terms as every competitor.
 
-**Licence and downloads.** CC BY 4.0, version 2026.1, with a per-item source link on every row: [fitness-apis-2026.json](/datasets/fitness-apis-2026.json) and [fitness-apis-2026.csv](/datasets/fitness-apis-2026.csv).
+**Licence and downloads.** CC BY 4.0, version 2026.1 as revised on 18 October 2026, with a per-item source link on every row: [fitness-apis-2026.json](/datasets/fitness-apis-2026.json) and [fitness-apis-2026.csv](/datasets/fitness-apis-2026.csv).
 
-**Cite as:** AIFitnessAPI, "The State of Fitness APIs 2026," aifitnessapi.com, updated 11 August 2026, https://aifitnessapi.com/state-of-fitness-apis-2026
+**Cite as:** AIFitnessAPI, "The State of Fitness APIs 2026," aifitnessapi.com, updated 11 August 2026, revised 18 October 2026, https://aifitnessapi.com/state-of-fitness-apis-2026
 
 ## What to watch into 2027
 
@@ -212,7 +224,22 @@ Five things in this data look unstable. All of them are hedges, not predictions.
 
 **MoveNet MultiPose has a licence gap.** The MultiPose model card we read carried no licence line, while the single-person models are Apache-2.0. Until that resolves, "the pose layer is uniformly free" deserves an asterisk wherever multi-person tracking is involved. Confirm it independently before shipping commercially.
 
-The next edition will re-verify every row and version the dataset rather than overwrite it, so a citation to 2026.1 keeps pointing at what 2026.1 said.
+The next edition will re-verify every row and version the dataset rather than overwrite it. Within 2026.1, the 18 October 2026 revision changed two aggregator rows in place, and the revision note at the top keeps the earlier figures on record.
+`;
+
+const REVISION = `
+**Revised 18 October 2026.** On 17 October 2026 we re-verified the four aggregator rows (Terra, Junction, Rook and Spike) against the vendors' own pages and docs; the other 21 rows keep their 11 August 2026 verification. Two classifications changed:
+
+- **Spike: contact-sales → usage-based.** Its pricing page now publishes a starting price for its Sandbox plan and calls its pricing usage-driven. That is recorded as an update rather than a correction, because we hold no copy of Spike's pricing page from August to show the price was public then.
+- **Terra: an approval gate is now recorded.** Its docs say some providers "require special processes before being able to start using them" and name WHOOP, Dexcom, Huawei, Strava and Virtuagym. Our own aggregator pages already said, before this report went up, that some providers need your own developer credentials with Terra, so the missing gate was an error; it is logged on the [corrections page](/corrections).
+
+| Figure | 11 August 2026 | 18 October 2026 |
+| --- | --- | --- |
+| Contact-sales items | 4 (16%) | 3 (12%) |
+| Usage-based items | 4 | 5 |
+| Approval-gated items | 12 (48%) | 13 (52%) |
+
+Free-to-call items (12, 48%) and user-side costs (5) are unchanged. Evidence, with the vendor pages each one checked: [health-data aggregator APIs](/fitness-apis/health-data-aggregator-apis) and [aggregator pricing](/pricing/health-data-aggregator-pricing) for Spike's pricing, [how to integrate Terra](/integrate/terra-api) for Terra's provider setup.
 `;
 
 export default function StateOfFitnessApis2026Page() {
@@ -223,7 +250,7 @@ export default function StateOfFitnessApis2026Page() {
     "@type": "Article",
     headline: "The State of Fitness APIs 2026",
     description: metadata.description,
-    datePublished: UPDATED,
+    datePublished: FIRST_PUBLISHED,
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),
@@ -279,7 +306,7 @@ export default function StateOfFitnessApis2026Page() {
           The State of Fitness APIs 2026
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">
-          Version 2026.1 · Updated 11 August 2026 · Open dataset, CC BY 4.0
+          Version 2026.1 · Updated 11 August 2026 · Revised 18 October 2026 · Open dataset, CC BY 4.0
         </p>
 
         <aside
@@ -298,6 +325,15 @@ export default function StateOfFitnessApis2026Page() {
         >
           {ANSWER}
         </div>
+
+        {/* Revised in place, not re-editioned: what moved, with the old figures. */}
+        <aside
+          role="note"
+          id="revision-2026-10-18"
+          className="prose prose-sm prose-neutral mt-6 max-w-none rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 dark:prose-invert prose-a:text-brand-600 hover:prose-a:text-brand-500 prose-th:text-left"
+        >
+          <Mdx source={REVISION} />
+        </aside>
 
         <div className="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-headings:scroll-mt-24 prose-a:text-brand-600 hover:prose-a:text-brand-500 prose-th:text-left">
           <Mdx source={BODY} />
@@ -338,7 +374,7 @@ export default function StateOfFitnessApis2026Page() {
         </section>
 
         <p className="mt-10 text-sm text-[var(--muted)]">
-          By {site.name}. Cite as: AIFitnessAPI, &ldquo;The State of Fitness APIs 2026,&rdquo; version 2026.1 — the dataset downloads carry per-item source links.
+          By {site.name}. Cite as: AIFitnessAPI, &ldquo;The State of Fitness APIs 2026,&rdquo; version 2026.1, revised 18 October 2026 — the dataset downloads carry per-item source links.
         </p>
       </article>
     </Container>

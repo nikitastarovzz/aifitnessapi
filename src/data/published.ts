@@ -7,7 +7,7 @@
  * contained the entry and listed it in its cluster's release gate (blog
  * posts: the commit that added the file; generated sections: the commit that
  * added the route, or the item to the data file if that came later).
- * Keyed by URL path without the leading slash. 440 rows.
+ * Keyed by URL path without the leading slash. 451 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -43,6 +43,7 @@ export const PUBLISHED: Record<string, string> = {
   "alternatives/garmin-api-alternatives": "2026-07-13",
   "alternatives/google-fit-api-alternatives": "2026-07-13",
   "alternatives/healthkit-alternatives": "2026-07-13",
+  "alternatives/human-api-alternatives": "2026-10-17",
   "alternatives/kinestex-alternatives": "2026-08-02",
   "alternatives/nutritionix-alternatives": "2026-07-13",
   "alternatives/oura-api-alternatives": "2026-07-13",
@@ -126,8 +127,11 @@ export const PUBLISHED: Record<string, string> = {
   "compare/oura-vs-whoop": "2026-07-23",
   "compare/rook-vs-spike": "2026-08-12",
   "compare/strava-vs-garmin-connect": "2026-07-23",
+  "compare/terra-vs-open-wearables": "2026-10-17",
   "compare/terra-vs-rook": "2026-07-23",
+  "compare/terra-vs-sahha": "2026-10-17",
   "compare/terra-vs-spike": "2026-07-23",
+  "compare/terra-vs-thryve": "2026-10-17",
   "compare/usda-fooddata-central-vs-open-food-facts": "2026-08-12",
   "compare/whoop-vs-garmin": "2026-07-23",
   "compliance/app-store-guideline-1-4-1-physical-harm": "2026-10-03",
@@ -141,6 +145,7 @@ export const PUBLISHED: Record<string, string> = {
   "compliance/app-store-health-data-rules": "2026-07-14",
   "compliance/apple-health-icon-works-with-apple-health": "2026-10-04",
   "compliance/fda-fitness-app-regulation": "2026-07-14",
+  "compliance/ftc-health-breach-notification-rule": "2026-10-18",
   "compliance/gdpr-fitness-app": "2026-07-14",
   "compliance/google-play-health-connect-publishing-requirements": "2026-10-03",
   "compliance/google-play-health-data-policy": "2026-07-14",
@@ -149,7 +154,9 @@ export const PUBLISHED: Record<string, string> = {
   "compliance/health-data-user-consent": "2026-07-14",
   "compliance/hipaa-compliance-fitness-app": "2026-07-14",
   "compliance/is-fitness-data-phi": "2026-07-14",
+  "compliance/remote-patient-monitoring-device-requirements": "2026-10-18",
   "compliance/store-health-data-securely": "2026-07-14",
+  "compliance/washington-my-health-my-data-act": "2026-10-18",
   "cookbook/backfill-checkpointer": "2026-08-12",
   "cookbook/day-boundary-rollup": "2026-08-12",
   "cookbook/dedupe-health-samples": "2026-10-02",
@@ -219,6 +226,8 @@ export const PUBLISHED: Record<string, string> = {
   "fitness-apis/nutrition-apis": "2026-07-08",
   "fitness-apis/terra-vs-vital": "2026-07-08",
   "fitness-apis/wearable-data-apis": "2026-07-08",
+  "fitness-apis/wearable-data-to-ehr-fhir": "2026-10-18",
+  "fitness-apis/wearable-research-data-platforms": "2026-10-18",
   "fix/fitbit-api-429-rate-limit": "2026-07-10",
   "fix/fitbit-error-code-401": "2026-08-11",
   "fix/fitness-api-401-unauthorized": "2026-07-10",
@@ -421,7 +430,9 @@ export const PUBLISHED: Record<string, string> = {
   "pricing/how-much-does-a-fitness-api-cost": "2026-07-23",
   "pricing/nutrition-api-pricing": "2026-07-23",
   "pricing/oura-api-pricing": "2026-07-23",
+  "pricing/sahha-api-pricing": "2026-10-17",
   "pricing/strava-api-pricing": "2026-07-23",
+  "pricing/thryve-api-pricing": "2026-10-17",
   "pricing/whoop-api-pricing": "2026-07-23",
   "test/background-sync": "2026-07-30",
   "test/camera-features-without-a-device": "2026-07-30",

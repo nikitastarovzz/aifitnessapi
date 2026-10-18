@@ -278,30 +278,30 @@ export const compareEntries: ClusterEntry[] =
     "primaryQuery": "terra vs rook",
     "h1": "Terra vs ROOK: Which Aggregator API for Your App?",
     "metaTitle": "Terra vs ROOK: Which Health Data Aggregator API?",
-    "metaDescription": "Terra vs ROOK for developers: coverage, normalization, webhooks, and pricing models compared. Pick the health-data aggregator API that fits your build.",
-    "updated": "2026-07-23",
-    "answer": "Terra and ROOK both give you one integration that returns normalized data from many wearables and health apps. Pick Terra for the broadest marketed provider catalog and a mature signed-webhook push pipeline with global reach. Pick ROOK if you are mobile-SDK-first, targeting Latin America, or want a bundled health score and a reported active-user tier pricing model. The biggest developer difference is delivery and reach: Terra emphasizes webhook push across the widest source list, while ROOK ships native Android/iOS SDKs for on-device sources plus regional focus. Provider counts and pricing here are vendor or third-party claims as of 2026, so verify against official docs.",
-    "body": "Both are single-integration aggregators, so this is not a \"which has an API\" question — it is which normalization model, delivery mechanism, and commercial fit match your app. All counts and pricing below are vendor marketing or third-party estimates as of 2026 and should be verified against official docs before you commit.\n\n## At a glance\n\n| Dimension | Terra | ROOK |\n|---|---|---|\n| Data exposed | One normalized API across activity, sleep, body, nutrition and daily data from many providers (Terra markets \"500+\" wearables/apps as of 2026, verify) | Unified normalized output across wearables and health sources (ROOK markets \"400+\" sources as of 2026, verify), plus a proprietary health score |\n| API access | Cloud REST API, code once against standardized endpoints | Unified API plus native Android/iOS SDKs; sources split into direct-API vs on-device SDK extraction |\n| User requirement | End user connects a supported device/app account via OAuth | Same, but on-device sources (Apple Health, Health Connect) require the mobile SDK embedded in your app |\n| Freshness / webhooks | Signed webhook push to a developer-configured Destination endpoint; near-real-time after auth (verify signing details) | Data delivered to your backend via unified API + SDKs; confirm webhook signing/format in docs (verify) |\n| Cost model | Not publicly listed in a self-serve table at last check; treat as sales-led/tiered — no per-MAU or per-connection figure confirmed (verify) | Tiered / active-user usage model (third-party reports cite tiers by active-user bands — not confirmed, official pricing page 403'd; verify) |\n| Regional note | Global scope | Explicitly positioned for LatAm markets (verify current positioning) |\n\nCells are hedged on purpose: several official pricing pages returned errors to automated fetch, so pricing is described as a model, not a number. See [health data aggregator pricing](/pricing/health-data-aggregator-pricing) for how these models generally work.\n\n## Where Terra wins\n\nBreadth and delivery. Terra markets the larger provider catalog (a \"500+\" figure as of 2026, verify), which matters when you cannot predict which device your users own and want the longest tail of sources covered by one contract. Its webhook model is push-first: normalized data and lifecycle events POST to a Destination endpoint you configure, signed for verification, so you avoid polling and get near-real-time updates after a user authorizes. If your product is backend/server-side and global, and you want one normalized schema across the widest set of wearables, Terra is the straightforward lean. See the [Terra integration guide](/integrate/terra-api) for the auth-and-webhook setup shape.\n\nTrade-off: pricing is not self-serve and publicly listed at last check, so you are into a sales conversation to get real numbers — plan for that in your timeline, and verify the current model directly.\n\n## Where ROOK wins\n\nMobile-first architecture and regional focus. ROOK classifies sources into two extraction methods — direct API integrations for centralized cloud providers (Fitbit, Garmin) and SDK-based integrations for on-device stores (Apple Health, Health Connect) — and ships native Android and iOS SDKs to handle the on-device half cleanly. If your app is mobile-native and leans on phone-resident health data, that SDK layer does real work for you. ROOK also bundles a proprietary health-score feature and is explicitly positioned for Latin America, letting regional teams build without importing or manufacturing devices (verify current positioning). Its commercial model is reported as tiered by active users, which can map neatly to a subscription app's growth.\n\nTrade-off: the official pricing page returned a 403 to automated fetch, so the specific tiers and active-user ceilings circulating in third-party write-ups are unconfirmed — do not budget against them; verify with ROOK directly. A commonly quoted market range of roughly $0.50–$2 per connected user per month is a third-party category estimate, not ROOK's published rate.\n\n## Which should you pick?\n\n- **Widest provider coverage, global, server-side webhook push:** lean Terra. One normalized schema across the largest marketed catalog, delivered by signed webhooks, suits a backend-first analytics or coaching product.\n- **Mobile-SDK-first app, or heavy reliance on Apple Health / Health Connect:** lean ROOK. The native SDKs carry the on-device extraction burden that a pure cloud API leaves to you.\n- **Latin America market focus:** lean ROOK for its explicit regional positioning (verify it still holds in 2026).\n- **Want a bundled health score out of the box:** lean ROOK, which markets a proprietary score; with Terra you would compute your own from normalized inputs.\n- **Pricing predictability up front:** neither publishes a fully confirmed self-serve table at last check — ROOK's model is reported as active-user tiers, Terra's reads as sales-led. Expect to verify both directly.\n\nEither way you get one integration across many devices, so the decision rides on delivery model, mobile-SDK need, region, and the commercial fit — not on whether the data is reachable. For the broader category and other options, see [health data aggregator APIs](/fitness-apis/health-data-aggregator-apis).\n\n## Bottom line\n\nTerra and ROOK both collapse dozens of wearable integrations into one normalized API. Terra's edge is catalog breadth and a mature signed-webhook push pipeline with global reach; ROOK's edge is mobile-first SDKs, a bundled health score, LatAm positioning, and a reported active-user tier model. Counts and pricing here are vendor or third-party claims as of 2026 — confirm provider counts, webhook signing details, and current pricing on each vendor's official docs before you build. When you have chosen, the [Terra integration guide](/integrate/terra-api) walks the setup, and [aggregator pricing](/pricing/health-data-aggregator-pricing) explains the cost models.",
+    "metaDescription": "Terra vs ROOK as of October 2026: credits per connected source vs active-user plans from $399, coverage, own-credential providers, labs and delivery.",
+    "updated": "2026-10-17",
+    "answer": "Terra and ROOK both connect wearables and phone health stores through one API and both now publish prices, so the decision is about the billing unit and the extras. ROOK's Core plan is $399 a month for up to 750 active users, with Core+ at $999 for 5,000 and Business at $1,999 for 15,000, and it adds medical-device readings, lab-report parsing and a 0 to 100 health score. Terra starts at $399 a month billed annually with 100,000 credits, charges per connected data source and per event past a free allowance, and adds lab ordering in the US and UK plus delivery straight into databases and queues. Both require your own developer accounts for some providers, including WHOOP, Strava and Dexcom; all of this is as of October 17, 2026.",
+    "body": "Both are single-integration aggregators, so this is not a \"which has an API\" question; it is which billing unit, delivery model and extras fit your app. Everything below is from Terra's and ROOK's own pages as we read them on October 17, 2026. An earlier version of this page described both vendors' pricing as unpublished, called ROOK wearables-only, and repeated a Latin America positioning and a third-party per-user price estimate; the current pages publish prices, show ROOK selling medical-device and lab-report APIs, and say nothing about Latin America, so those claims are gone.\n\n## At a glance\n\n| Dimension | Terra | ROOK |\n|---|---|---|\n| Coverage claim | \"500+ providers\" on its site; its docs say the Unified API \"supports over 150+ Data Sources\" | \"400+ wearables and health data sources\" in its docs; \"72 data sources and more than 500 devices\" on its integrations page |\n| How sources connect | Cloud APIs from your backend; a mobile SDK for Apple Health, Samsung Health and Health Connect | Direct API integrations for cloud providers; SDKs for Apple Health and Health Connect; 59 of its 72 listed sources are Indirect, reached through those phone stores |\n| Delivery | Signed webhooks, or straight into SQL databases, Supabase, cloud storage, SQS and Kafka, MongoDB or Firestore | Webhooks or API queries |\n| Beyond wearables | Lab test ordering (US and UK), DNA tests, a lab-report parsing API, streaming, planned workouts | Medical Device API, Lab Data API (report parsing), EHR/EMR API on a waitlist, a 0 to 100 health score |\n| Entry price | $399 a month billed annually ($499 monthly), 100,000 credits | Core at $399 a month for up to 750 active users |\n| How the bill grows | 200 credits per connected data source per month; extra credits from $0.005 | Core+ $999 (5,000 users), Business $1,999 (15,000), Enterprise custom |\n| Contract | 30-day money-back guarantee on Quick Start | Standard term 12 months, cancel with 30 days' notice |\n| Your own provider accounts | Its docs name WHOOP, Dexcom, Huawei, Strava and Virtuagym; its integrations table also marks Garmin and Samsung as Required | Dexcom, Samsung Health, Strava and WHOOP |\n\n## Where Terra wins\n\n**Delivery options and lab ordering.** Terra pushes every payload to a destination you choose, and its webhooks are signed: \"Every webhook sent by Terra includes an HMAC-based signature header\". Beyond webhooks it can write straight into \"SQL databases (Postgres and MySQL), Supabase, cloud storage (S3, GCS and Azure Blob), queueing services (SQS and Kafka), MongoDB and Firestore\". It also orders lab tests (\"Nationwide US, plus the UK\") and DNA tests, which we did not find on ROOK's pages; ROOK parses lab reports your users already have.\n\n**Breadth claims.** Terra's catalog claim is larger, and its FAQ lists Garmin, Fitbit, Apple Watch, Oura Ring, WHOOP, Polar, Samsung Health, Withings, Suunto and Wahoo among sources. Both vendors count differently, so check your users' devices in each live list.\n\n**The trade-off.** Terra's unit is the connected data source, not the person: \"An active authentication is one connected data source for one end user, and costs 200 credits per month\". A user with a watch and a ring costs twice. See the [Terra integration guide](/integrate/terra-api) for the build.\n\n## Where ROOK wins\n\n**A bill you can read off one table.** ROOK prices by plan and active users, and its pricing page lists each ceiling: Core $399 a month for up to 750 active users, Core+ $999 for up to 5,000, Business $1,999 for up to 15,000. At 1,000 users that is $999 on Core+, against about $899 on Terra by our arithmetic; at 5,000 users ROOK's Core+ is still $999 while Terra is about $4,899, assuming one source per person and annual billing. Past a plan's ceiling, ROOK says \"billing adjusts based on usage\" without a published rate.\n\n**Medical devices and lab reports.** ROOK's Medical Device API delivers \"glucose, blood pressure, oxygen saturation, temperature and ECG readings in one format, with the device that recorded each one\", and its Lab Data API \"turns PDF and image lab reports into structured biomarkers with LOINC codes and FHIR R4 output\". Its EHR/EMR API, a waitlist item on the pricing page, delivers wearable data to clinical systems as FHIR R4.\n\n**A score and an app.** ROOK Score gives \"a simple score, ranging from 0 to 100\", and the ROOK App \"lets end users connect supported sources without embedding the SDKs\", useful for programs without their own mobile app.\n\n**The trade-off.** The standard contract term is 12 months, and add-ons cost extra on Core: Business and Enterprise include every product and add-on, while Core+ includes three.\n\n## What we could not verify\n\n- **ROOK webhook signing.** The ROOK pages we read describe webhook delivery but not a signature scheme; check the docs before you rely on one.\n- **Overage rates.** Neither ROOK's usage rate past a plan's ceiling nor Terra's Enterprise terms are published.\n- **What \"500 devices\" means.** ROOK's own pages give two counts, 400+ sources in the docs and 72 sources with 500+ devices on the integrations page.\n\n## Which should you pick?\n\n- **Many users, mostly one device each, and a budget you want flat:** lean ROOK; its active-user ceilings are easier to plan against than per-source credits at a few thousand users.\n- **Users who connect several sources each, or data pushed straight into your warehouse:** lean Terra for its destinations; model the per-source credits first.\n- **Lab tests ordered for your users:** Terra, which orders them in the US and the UK; ROOK parses reports users upload.\n- **Blood pressure cuffs, CGMs and ECG with the device recorded:** lean ROOK's Medical Device API.\n- **Programs without a mobile app:** ROOK App covers the phone stores for you.\n\nFor the rest of the field, see [health-data aggregator APIs](/fitness-apis/health-data-aggregator-apis) and [aggregator pricing](/pricing/health-data-aggregator-pricing).\n\n## Bottom line\n\nTerra and ROOK both collapse dozens of wearable integrations into one normalized API. Terra's edge is delivery options and lab ordering; ROOK's is an active-user price sheet that stays flat longer, plus medical-device and lab-report APIs. Re-read both live pricing pages before you commit, because the numbers above are from October 17, 2026.",
     "faqs": [
       {
         "q": "Do Terra and ROOK both give one integration for many devices?",
-        "a": "Yes. Both are single-integration aggregators: you integrate once and receive normalized data from many providers such as Garmin, Fitbit, Apple Health, Oura and WHOOP. Terra markets a larger catalog ('500+' as of 2026, verify) while ROOK markets '400+' sources (verify). The choice is about delivery model, mobile-SDK need and region, not whether the data is reachable."
+        "a": "Yes. Both are single-integration aggregators that normalize data from many providers such as Garmin, Fitbit, Oura and WHOOP, plus Apple Health and Health Connect through mobile SDKs. As of October 17, 2026, Terra's site claims 500+ providers and ROOK's docs claim 400+ wearables and health data sources, while ROOK's integrations page lists 72 sources, so check your users' devices against each live list."
       },
       {
         "q": "How do their normalization models differ?",
-        "a": "Terra exposes standardized endpoints and data models across all sources so you code once. ROOK classifies sources into two extraction methods: direct API integrations for centralized cloud providers and SDK-based integrations for on-device stores like Apple Health and Health Connect, and it also bundles a proprietary health score. Verify the current schema details in each vendor's docs."
+        "a": "Terra returns one schema for every source and pushes it to a destination you configure, from webhooks to SQL databases and queues. ROOK classifies sources into direct API integrations for cloud providers and SDK-based integrations for phone stores, delivers through webhooks or API queries, and adds a 0 to 100 health score. Both normalize into their own data models, so mapping to your schema is still your work."
       },
       {
         "q": "What are Terra and ROOK pricing models?",
-        "a": "Neither publishes a fully confirmed self-serve pricing table at last check. Terra's pricing was not publicly listed and reads as sales-led/tiered. ROOK is reported to use a tiered active-user model, but its official pricing page returned a 403 to automated fetch, so specific tiers and per-user figures circulating online are unconfirmed. Do not budget against them; verify directly. A quoted ~$0.50-$2 per connected user per month is a third-party category estimate, not ROOK's published rate."
+        "a": "Both are published as of October 17, 2026. Terra starts at $399 a month billed annually or $499 monthly, includes 100,000 credits, and charges 200 credits a month per connected data source plus credits for events past a free allowance. ROOK prices by plan and active users: Core $399 a month up to 750 active users, Core+ $999 up to 5,000, Business $1,999 up to 15,000, and custom Enterprise, on a standard 12-month contract."
       },
       {
-        "q": "Is ROOK better than Terra for Latin America?",
-        "a": "ROOK is explicitly positioned for Latin America, letting regional teams build without importing or manufacturing devices. If LatAm is your primary market, that positioning is a point in ROOK's favor as of 2026 (verify it still holds). Terra's scope is global, so for worldwide reach with the widest catalog it remains a strong option."
+        "q": "Which providers need my own developer account with Terra or ROOK?",
+        "a": "As of October 17, 2026, ROOK names Dexcom, Samsung Health, Strava and WHOOP and says setting them up can take several weeks. Terra's docs name WHOOP, Dexcom, Huawei, Strava and Virtuagym as needing special processes, and its integrations table also marks Garmin and Samsung as Required, though its homepage says Garmin data flows through Terra's own partner integration. Ask both vendors about your exact provider list."
       },
       {
         "q": "Which should I pick for a mobile app versus a backend service?",
-        "a": "For a mobile-native app that relies on phone-resident data like Apple Health or Health Connect, ROOK's native Android/iOS SDKs handle the on-device extraction and are the easier lean. For a backend-first, server-side product that wants normalized data pushed via signed webhooks across the broadest source list, Terra fits well. Verify webhook signing and SDK details in each vendor's docs before committing."
+        "a": "Both ship mobile SDKs for Apple Health and Health Connect, so either works for a mobile app; ROOK also offers a ready-made ROOK App for programs without their own. For a backend-first product that wants data pushed into its own database, queue or cloud storage, Terra's destinations do more of the plumbing. Price the two at your expected user count before choosing."
       }
     ],
     "related": [
@@ -315,7 +315,11 @@ export const compareEntries: ClusterEntry[] =
       },
       {
         "href": "/pricing/health-data-aggregator-pricing",
-        "label": "Aggregator pricing models"
+        "label": "Aggregator pricing compared"
+      },
+      {
+        "href": "/compare/rook-vs-spike",
+        "label": "Rook vs Spike"
       },
       {
         "href": "/compare",
@@ -323,38 +327,120 @@ export const compareEntries: ClusterEntry[] =
       }
     ],
     "cta": {
-      "pitch": "Comparing health-data aggregators for your build? Get our developer newsletter for integration playbooks and pricing-model breakdowns on Terra, ROOK and more."
-    }
+      "pitch": "Comparing health-data aggregators for your build? Get our developer newsletter for the pricing and credential changes on Terra, ROOK and the rest, as we find them."
+    },
+    "sources": [
+      {
+        "url": "https://tryrook.io/rookconnect/medical-device-api/",
+        "checked": "2026-10-17",
+        "note": "Rook Medical Device API"
+      },
+      {
+        "url": "https://tryrook.io/rookconnect/lab-data-api/",
+        "checked": "2026-10-17",
+        "note": "Rook Lab Data API"
+      },
+      {
+        "url": "https://tryterra.co/",
+        "checked": "2026-10-17",
+        "note": "Terra coverage, data types, destinations, labs, compliance and pricing FAQ"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+        "checked": "2026-10-17",
+        "note": "Terra data source count and providers with special setup"
+      },
+      {
+        "url": "https://docs.tryrook.io/data-sources/",
+        "checked": "2026-10-17",
+        "note": "Rook data sources and own developer accounts"
+      },
+      {
+        "url": "https://tryrook.io/wearable-api-sdk/integrations/",
+        "checked": "2026-10-17",
+        "note": "Rook source catalogue"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/getting-started",
+        "checked": "2026-10-17",
+        "note": "Terra mobile-only sources, signed webhooks, rate limits"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+        "checked": "2026-10-17",
+        "note": "Terra webhook signing, retries and timeout"
+      },
+      {
+        "url": "https://tryrook.io/rookconnect/wearable-api/",
+        "checked": "2026-10-17",
+        "note": "Rook wearable API, SDKs and delivery"
+      },
+      {
+        "url": "https://tryterra.co/products/lab-testing",
+        "checked": "2026-10-17",
+        "note": "Terra lab testing geography and collection methods"
+      },
+      {
+        "url": "https://tryterra.co/pricing",
+        "checked": "2026-10-17",
+        "note": "Terra plans, credits, add-ons and Enterprise terms"
+      },
+      {
+        "url": "https://tryrook.io/pricing/",
+        "checked": "2026-10-17",
+        "note": "Rook plans, add-ons and contract terms"
+      },
+      {
+        "url": "https://docs.tryrook.io/",
+        "checked": "2026-10-17",
+        "note": "Rook health score"
+      },
+      {
+        "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+        "checked": "2026-10-17",
+        "note": "Terra integration credential requirements"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/pricing",
+        "checked": "2026-10-17",
+        "note": "Terra credit tiers"
+      },
+      {
+        "url": "https://tryrook.io/rookconnect/ehr-emr-api/",
+        "checked": "2026-10-17",
+        "note": "Rook EHR/EMR API"
+      }
+    ]
   },
   {
     "slug": "terra-vs-spike",
     "primaryQuery": "terra vs spike health",
     "h1": "Terra vs Spike Health: Which Aggregator for Your App?",
     "metaTitle": "Terra vs Spike Health: Aggregator API Compared",
-    "metaDescription": "Terra vs Spike Health for developers: coverage, normalization, webhooks, and pricing models. Pick Terra for broad wearables, Spike for clinical/IoT/EMR.",
-    "updated": "2026-07-23",
-    "answer": "Terra and Spike Health are both single-integration health-data aggregators, so the choice comes down to data reach. Pick Terra if you need broad consumer-wearable and fitness-app aggregation with a clean, normalized signed-webhook push feed. Lean Spike if your build is clinical- or medical-adjacent and needs IoT sensors, lab systems, and EMR/EHR data alongside wearables, plus AI add-ons like health-data interpretation, food-photo nutrition extraction, or an MCP server. Neither vendor publicly lists pricing, and Spike's own device-count claims vary, so treat every number and capability as 'as of 2026, verify.'",
-    "body": "## Terra vs Spike Health, for developers\n\nBoth Terra and Spike Health (from Spike Technologies) are **health-data aggregators**: you do one integration and get a normalized feed from many underlying sources, instead of building and maintaining a separate OAuth flow and schema for every wearable. The real difference for a build is *what universe of data each one reaches*. Terra is centered on consumer wearables and fitness apps — a broad, normalized activity/sleep/recovery feed. Spike reaches into the same wearable space but also markets IoT sensors, lab systems, and EMR/EHR data, plus a set of AI-flavored add-ons (health-data interpretation, food-photo nutrition extraction, and an MCP server for connecting device data to an LLM). Every capability and count below is vendor-marketed as of 2026 — verify against official docs before you commit.\n\n## At a glance\n\n| Dimension | Terra | Spike Health |\n|---|---|---|\n| Data exposed via API | Consumer wearables and fitness apps — normalized activity, sleep, body, nutrition, daily, workouts. Markets \"500+\" providers (verify). | Wearables plus IoT sensors, lab systems, and EMR/EHR data. Adds lab-report data; clinical/LOINC framing cited (verify). |\n| Coverage claim | \"500+\" wearables/apps/devices — vendor marketing, hedge and verify. | Large device catalog, but Spike's own materials cite varying figures (\"500+\" vs \"200+\") — do not treat any single number as fact; verify. |\n| API / normalization model | One integration, standardized endpoints and data models across all sources; you code once. | One standardized API; Spike manages new-device rollouts. Adds a low-code/managed data-pipeline (ETL) layer on top. |\n| Freshness / webhooks | Near-real-time push: streams normalized data and lifecycle events via signed HTTP POST to a developer-configured \"Destination.\" | One standardized API with managed provider updates; confirm webhook signing/format in Spike's docs — verify. |\n| Notable extras | Mature, wearable-focused push pipeline; global scope. | Generative-AI health-data interpretation SDK, food-photo (OCR-style) nutrition extraction, and a Spike MCP to feed medical-device data to an LLM — marketed capabilities, verify current availability. |\n| Pricing model | Not publicly listed in a self-serve table at research time — treat as sales-led / tiered / usage-based. Do not assume a per-MAU figure; verify. | Not publicly listed at research time — sales-led / tiered. No figures confirmed; verify. |\n| Best fit | Broad consumer-wearable aggregation, simple normalized feed, webhook push. | Clinical/medical-adjacent builds needing IoT + EMR/EHR + labs, plus built-in AI interpretation / MCP / food-photo extraction. |\n\nA note on the pricing rows: no per-MAU or per-connection dollar figure is publicly confirmed for **either** vendor, and aggregator pricing pages frequently can't be read from the outside. Plan around the *model* (sales-led, usage- or user-based, tiered with an enterprise top tier) and get a live quote before budgeting a number. The [health-data aggregator pricing breakdown](/pricing/health-data-aggregator-pricing) covers how this category charges in general.\n\n## Where Terra wins\n\n- **Breadth of consumer wearables and apps, one normalized schema.** If your product's job is \"connect whatever wearable my user already owns,\" Terra's core value is a single integration that returns standardized activity, sleep, body, and workout data across a large provider set (Terra markets \"500+\" — as of 2026, verify). You code against one data model, not N.\n- **A mature webhook-push pipeline.** Terra streams normalized data and lifecycle events via signed HTTP POST to a \"Destination\" endpoint you configure, so you get near-real-time updates after a user authorizes, rather than polling each provider. For an app that reacts to new sleep or workout data, that push model is the developer-friendly path.\n- **Global, consumer-fitness focus.** If you're not touching labs, EMRs, or IoT hardware, Terra keeps the surface area to what a fitness/wellness app actually needs.\n\nThe honest trade-off: Terra is squarely a **consumer-wearable** aggregator. If your roadmap heads toward clinical data, lab results, or medical-device/IoT ingestion, that's outside its center of gravity.\n\n## Where Spike wins\n\n- **Reach beyond wearables into IoT, labs, and EMR/EHR.** Spike's pitch is a single API that spans consumer wearables *and* IoT sensors, lab systems, and electronic medical records — with lab-report data and clinical/LOINC framing cited in its materials (verify LOINC specifics in the docs; don't assume). For a medical-adjacent build, that wider data universe is the differentiator.\n- **AI-flavored add-ons built in.** Spike markets a generative-AI SDK for interpreting health data, food-photo (OCR-style) nutrition extraction, and a Spike MCP to connect medical-device data to an LLM. If those sit on your roadmap, having them alongside the aggregation layer can save you assembling them yourself — treat each as a marketed capability and **verify current availability as of 2026**.\n- **A managed data-pipeline layer.** Beyond raw aggregation, Spike positions a low-code/managed ETL product and handles new-device rollouts on your behalf.\n\nThe honest trade-off: Spike's device-count claims are **inconsistent across its own pages** (\"500+\" versus \"200+\"), so don't anchor on a coverage number, and the AI/MCP/OCR features are marketing-stage capabilities you should confirm are production-ready before you design around them.\n\n## Which should you pick?\n\nDecide by what data your app actually needs to reach:\n\n- **Consumer fitness or wellness app — connect the user's wearable, react to new sleep/workout/recovery data.** Lean **Terra**: broad wearable/app coverage, one normalized schema, and a proven signed-webhook push pipeline. This is the common case for a coaching, training, or general health app.\n- **Clinical or medical-adjacent build — you need lab results, EMR/EHR data, or IoT sensors alongside wearables, or you want AI interpretation / an MCP / food-photo nutrition extraction in the box.** Lean **Spike**: its coverage story and add-ons are built for that wider, medical-flavored surface — provided you verify the specific capabilities and coverage before committing.\n- **Not sure yet / mostly wearables today but might grow toward clinical data.** Start from the wearable-aggregation need (where Terra is the safe default) and re-evaluate if and when labs/EMR/IoT become real requirements — switching or adding an aggregator later is a smaller problem than over-buying now.\n\nIf you're also weighing Terra against the other most-compared aggregator, see [Terra vs Vital (Junction)](/fitness-apis/terra-vs-vital). For the full category landscape, the [health-data aggregator APIs overview](/fitness-apis/health-data-aggregator-apis) lays out who's who.\n\n## Honest close\n\nTerra and Spike are both single-integration aggregators, so neither one saves you from the core aggregator trade-off — you're paying (in a model that isn't publicly listed for either, as of 2026) to remove per-provider integration work. The split that actually decides it is data reach: **consumer-wearable breadth with a clean push feed (Terra) versus a wider clinical/IoT/EMR/labs surface with AI add-ons (Spike)**. Every count, capability, and price above is vendor-marketed and, in several cases, inconsistent or unpublished — re-check each vendor's live docs and pricing before you build. Once you've picked, the [Terra API integration guide](/integrate/terra-api) walks through wiring up the wearable side.",
+    "metaDescription": "Terra vs Spike as of October 2026: credits from $399 a month vs a Sandbox from $450, wearables and lab ordering vs IoT, lab OCR, food photos and MCP.",
+    "updated": "2026-10-17",
+    "answer": "Terra and Spike both sell one API across many wearables, so the split is what else you need and how you learn the price. Pick Terra for a bill you can calculate from its pricing page (from $399 a month billed annually plus credits per connected source), lab ordering in the US and UK, and full payloads pushed into webhooks, databases or queues. Pick Spike if you also want medical IoT readings, lab-report OCR with LOINC codes, food-photo nutrition and an MCP server for LLM apps, with a dedicated implementation engineer from its Sandbox plan, which starts from $450 a month. Spike's site also carries a banner announcing that Raintree Systems acquires Spike Technologies, so ask about roadmap and contract terms; all of this is as of October 17, 2026.",
+    "body": "## Terra vs Spike Health, for developers\n\nBoth Terra and Spike are **health-data aggregators**: one integration, a normalized feed from many sources, instead of a separate OAuth flow and schema per wearable. The difference for a build is what else each one reaches and how you learn the price. Everything here is from the vendors' own pages as we read them on October 17, 2026. An earlier version of this page said neither vendor published pricing, that Spike's own pages disagreed on its device count, and that Spike sold a generative-AI interpretation SDK and a low-code data-pipeline product. Both now publish prices, Spike's current pages agree on 500+ devices (the 200+ figure on its homepage counts customers), and we did not find the SDK or the pipeline product on the pages we read, so those claims are gone.\n\n## At a glance\n\n| Dimension | Terra | Spike |\n|---|---|---|\n| Coverage claim | 500+ providers; its docs say the Unified API \"supports over 150+ Data Sources\" | \"Access 40+ providers and 500+ devices via single SDK\" |\n| Beyond wearables | Lab test ordering (US and UK), DNA tests, lab-report parsing, streaming, planned workouts | Medical IoT devices, lab-report OCR with LOINC codes, food-photo nutrition, EMR and EHR data, voice agents for clinics |\n| AI | An MCP server (its AI Interface) | Spike MCP |\n| Delivery | Full payloads to webhooks, databases, queues or cloud storage | Webhook notifications of what changed, then query the API |\n| Webhook signature | HMAC-SHA256 in a terra-signature header | HMAC-SHA256 in an X-Body-Signature header |\n| Entry price | $399 a month billed annually ($499 monthly), 100,000 credits | Sandbox from $450 a month |\n| Onboarding | Self-serve sign-up; 24/7 engineering support on Enterprise | \"Every organization gets a dedicated implementation engineer from the sandbox level\" |\n| Ownership | No change announced on the pages we read | Its site announces \"Raintree Systems Acquires Spike Technologies\" |\n\n## Where Terra wins\n\n- **A price you can calculate.** Terra's pricing page publishes the subscription, the credit allowance and the rates: \"An active authentication is one connected data source for one end user, and costs 200 credits per month\", the first 400 events per source are free, and extra credits start at $0.005. Spike publishes a starting price and calls its pricing \"Usage-driven, transparent, and flexible\", but does not itemize how the bill grows.\n- **Full payloads, wherever you want them.** Terra sends normalized data to webhooks or straight into \"SQL databases (Postgres and MySQL), Supabase, cloud storage (S3, GCS and Azure Blob), queueing services (SQS and Kafka), MongoDB and Firestore\". Spike's webhook event lists the metrics and time range that changed, and you fetch the records with the API.\n- **Lab tests ordered for your users.** Terra's homepage offers blood tests \"through home kits, mobile phlebotomy, or lab walk-ins\", and its lab page says \"Nationwide US, plus the UK\". Spike's lab product parses reports users already have.\n\n## Where Spike wins\n\n- **Reach past the wrist.** Spike's homepage pitches \"normalized, ingestion-ready data from wearables, EMRs, lab tests, IoT devices, and more\", including medical IoT such as glucose monitors, ECGs and blood pressure cuffs, and its integrations page lists CGMs like Dexcom and Freestyle Libre.\n- **Lab reports and food photos.** The Lab Reports API takes \"PDFs, JPEGs, or PNG files up to 10MB\" through OCR and assigns LOINC codes \"making lab test data from any language standardized\". Its Nutrition AI turns \"any food image into complete nutritional data\".\n- **A person on your build.** \"Every organization gets a dedicated implementation engineer from the sandbox level to help with setup and optimization\", which is unusual in a category where onboarding is normally the docs.\n\n**The trade-off.** A banner on Spike's integrations and blog pages reads \"Raintree Systems Acquires Spike Technologies\". We found no further detail on Spike's own pages, so ask about roadmap and contract continuity before you sign.\n\n## Webhooks compared\n\nBoth sign every event with HMAC-SHA256. Terra's header is terra-signature, computed over the timestamp and the raw body; Spike's is X-Body-Signature, computed over the raw request body with a shared key from its admin console. Terra retries a failed delivery \"up to 10 times with exponential backoff\"; Spike will \"retry the request up to 10 times with exponential backoff\" too, then discard the event. Spike's payload is a notification (user, metrics, provider and time range), so plan an API call per event.\n\n## What we could not verify\n\n- How Spike's price grows past the Sandbox starting price.\n- Whether Spike needs your own developer credentials for any provider; its provider docs describe a user consent redirect and say nothing either way.\n- The terms and timing of the Raintree acquisition.\n\n## Which should you pick?\n\n- **Consumer fitness or wellness app reacting to new sleep, workout or recovery data:** lean Terra for the calculable bill and the push-to-destination delivery.\n- **Clinical or medical-adjacent build with lab reports, medical IoT or EMR data, or food logging from photos:** lean Spike, after confirming each capability and the post-acquisition terms.\n- **Lab tests ordered for users in the US or UK:** Terra.\n\nIf you are also weighing Terra against a labs-first option, see [Terra vs Vital (Junction)](/fitness-apis/terra-vs-vital), and for the whole field, [health-data aggregator APIs](/fitness-apis/health-data-aggregator-apis).\n\n## Honest close\n\nTerra and Spike are both single-integration aggregators, so neither saves you from the core trade: you pay to remove per-provider integration work. The split that decides it is reach and visibility: Terra publishes a price you can model and pushes full payloads, Spike reaches further into clinical data and puts an engineer on your build, at a price you learn on a call. Re-check both live pricing pages before you build; the [Terra API integration guide](/integrate/terra-api) covers the wearable side.",
     "faqs": [
       {
         "q": "What's the core difference between Terra and Spike Health?",
-        "a": "Both are single-integration aggregators that return normalized data from many sources, so you code once. The difference is reach: Terra centers on consumer wearables and fitness apps with a mature normalized push feed, while Spike also markets IoT sensors, lab systems, and EMR/EHR data plus AI add-ons. Terra suits broad wearable aggregation; Spike suits clinical/medical-adjacent builds. Verify current coverage and features against each vendor's docs."
+        "a": "Reach and pricing visibility. Both are single-integration aggregators, but as of October 17, 2026, Terra publishes a credit-based price sheet, orders lab tests in the US and UK, and pushes full payloads to webhooks, databases and queues. Spike reaches into medical IoT, lab-report OCR, food-photo nutrition and EMR data, assigns a dedicated implementation engineer, and publishes only a starting price for its Sandbox plan."
       },
       {
         "q": "How much do Terra and Spike cost?",
-        "a": "No per-MAU or per-connection dollar figure is publicly confirmed for either vendor, and aggregator pricing pages often can't be read externally. Treat both as sales-led, likely tiered or usage-based models with an enterprise 'contact sales' top tier. Plan around the model, not a number, and get a live quote before budgeting. See the health-data aggregator pricing breakdown for how this category charges."
+        "a": "As of October 17, 2026, Terra starts at $399 a month billed annually or $499 monthly with 100,000 credits, then charges 200 credits a month per connected data source and credits for events past a free allowance, from $0.005 each. Spike's Sandbox plan starts from $450 a month and its Enterprise plan is custom; it describes pricing as usage-driven but does not itemize how it grows. Get a quote at your expected volume."
       },
       {
         "q": "Does Spike really support 500+ devices?",
-        "a": "Spike markets a large device catalog, but its own materials cite inconsistent figures (for example '500+' on one page and '200+' on another), so don't treat any single count as fact. Terra similarly markets '500+' providers. Both numbers are vendor marketing as of 2026 — verify the current supported-source list in each vendor's official documentation before relying on coverage claims."
+        "a": "That is Spike's own figure, and its current pages agree on it: the pricing page says 40+ providers and 500+ devices, and the homepage says 500+ wearables and IoT sensors. The 200+ on its homepage counts customers, not devices, which an earlier version of this page misread. Treat both vendors' counts as marketing and check your users' devices on the live integrations lists."
       },
       {
         "q": "Which is better for a clinical or medical app?",
-        "a": "Lean Spike for clinical or medical-adjacent builds. It markets a single API spanning wearables plus IoT sensors, lab systems, and EMR/EHR data, with lab-report data and clinical/LOINC framing cited, plus a generative-AI interpretation SDK and an MCP server. Verify LOINC support, MCP, and food-photo extraction are production-ready as of 2026 before designing around them."
+        "a": "Lean Spike if the clinical data is medical IoT, lab reports or EMR records: its pages describe all three, plus LOINC coding of lab results. Lean Terra if the clinical piece is ordering lab tests for users in the US or UK, which its lab product does through home kits, mobile phlebotomy or lab walk-ins. As of October 17, 2026; confirm production readiness and, for Spike, the terms after its announced acquisition."
       },
       {
         "q": "Do Terra and Spike offer webhooks?",
-        "a": "Terra streams normalized data and lifecycle events via signed HTTP POST to a developer-configured 'Destination' endpoint, giving near-real-time push after a user authorizes rather than polling. Spike offers one standardized API and manages provider updates; confirm its webhook signing and payload format in Spike's docs. Verify current webhook behavior for both before building an event-driven pipeline."
+        "a": "Yes, both signed with HMAC-SHA256. Terra pushes full normalized payloads with a terra-signature header and retries failed deliveries up to 10 times. Spike sends a notification with the user, metrics, provider and time range in an X-Body-Signature-signed request, retries up to 10 times, then discards the event, and you fetch the records with its API."
       }
     ],
     "related": [
@@ -367,8 +453,12 @@ export const compareEntries: ClusterEntry[] =
         "label": "Terra vs Vital (Junction)"
       },
       {
+        "href": "/compare/rook-vs-spike",
+        "label": "Rook vs Spike"
+      },
+      {
         "href": "/pricing/health-data-aggregator-pricing",
-        "label": "Aggregator pricing models"
+        "label": "Aggregator pricing compared"
       },
       {
         "href": "/compare",
@@ -376,8 +466,80 @@ export const compareEntries: ClusterEntry[] =
       }
     ],
     "cta": {
-      "pitch": "Aggregator coverage and pricing shift fast and are rarely published — get a heads-up when Terra, Spike, and other health-data APIs change terms, before your integration does."
-    }
+      "pitch": "Aggregator pricing, coverage and owners change quietly. Get a heads-up when Terra, Spike and the other health-data APIs change terms, before your integration does."
+    },
+    "sources": [
+      {
+        "url": "https://www.spikeapi.com/pricing",
+        "checked": "2026-10-17",
+        "note": "Spike Sandbox and Enterprise plans"
+      },
+      {
+        "url": "https://www.spikeapi.com/",
+        "checked": "2026-10-17",
+        "note": "Spike scope, implementation engineer and customers"
+      },
+      {
+        "url": "https://tryterra.co/",
+        "checked": "2026-10-17",
+        "note": "Terra coverage, data types, destinations, labs, compliance and pricing FAQ"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+        "checked": "2026-10-17",
+        "note": "Terra data source count and providers with special setup"
+      },
+      {
+        "url": "https://tryterra.co/products/lab-testing",
+        "checked": "2026-10-17",
+        "note": "Terra lab testing geography and collection methods"
+      },
+      {
+        "url": "https://tryterra.co/pricing",
+        "checked": "2026-10-17",
+        "note": "Terra plans, credits, add-ons and Enterprise terms"
+      },
+      {
+        "url": "https://www.spikeapi.com/lab-reports",
+        "checked": "2026-10-17",
+        "note": "Spike Lab Reports API"
+      },
+      {
+        "url": "https://www.spikeapi.com/mcp-health-ai-integration",
+        "checked": "2026-10-17",
+        "note": "Spike MCP"
+      },
+      {
+        "url": "https://docs.spikeapi.com/api-docs/webhooks",
+        "checked": "2026-10-17",
+        "note": "Spike webhook signing and retries"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+        "checked": "2026-10-17",
+        "note": "Terra webhook signing, retries and timeout"
+      },
+      {
+        "url": "https://docs.tryterra.co/introduction/account-setup-and-api-keys",
+        "checked": "2026-10-17",
+        "note": "Terra API key handling"
+      },
+      {
+        "url": "https://www.spikeapi.com/integrations",
+        "checked": "2026-10-17",
+        "note": "Spike integrations and acquisition banner"
+      },
+      {
+        "url": "https://www.spikeapi.com/blog",
+        "checked": "2026-10-17",
+        "note": "Spike acquisition banner"
+      },
+      {
+        "url": "https://docs.spikeapi.com/api-docs/provider_integration",
+        "checked": "2026-10-17",
+        "note": "Spike provider consent flow"
+      }
+    ]
   },
   {
     "slug": "nutritionix-vs-edamam",
@@ -811,29 +973,30 @@ export const compareEntries: ClusterEntry[] =
     "primaryQuery": "rook vs spike health data api",
     "h1": "Rook vs Spike: Which Health-Data API Fits Your Build?",
     "metaTitle": "Rook vs Spike: Health-Data Aggregators Compared",
-    "metaDescription": "Rook vs Spike for developers: mobile SDKs and active-user tiers against IoT, EMR and lab reach on contact-sales terms, plus what could not be verified.",
-    "updated": "2026-08-12",
-    "answer": "Both Rook and Spike are single-integration health-data aggregators, so the decision is about reach and how you learn the price. Pick Rook when your product is mobile-first and you need a cost you can model today: its native Android and iOS SDKs pull Apple Health and Health Connect through the OS permission model across a stated 400-plus sources, and its pricing is usage-based with named tiers by active-user ceiling. Pick Spike when your build needs to reach past the wrist into IoT and medical devices, EMRs and lab tests, and you will accept a sales conversation plus a dedicated implementation engineer from the sandbox stage in exchange. State the gaps plainly: Rook's official pricing page could not be verified and no per-user figure was sourced, while Spike's specific tiers and figures were not retrievable at all and its own materials cite inconsistent device counts. As of 2026, verify both directly.",
+    "metaDescription": "Rook vs Spike as of October 2026: both now reach medical devices and lab reports. Compare published prices, EHR features, webhooks and credentials.",
+    "updated": "2026-10-17",
+    "answer": "Rook and Spike now overlap more than they used to: as of October 17, 2026, both pages describe wearables plus medical devices and lab-report parsing behind one API, so the decision is about pricing visibility and support. Pick Rook when you need a cost you can model today: Core is $399 a month for up to 750 active users, Core+ $999 for 5,000 and Business $1,999 for 15,000, with a Medical Device API that records which device took each reading. Pick Spike when you want a dedicated implementation engineer from its Sandbox plan (from $450 a month), food-photo nutrition, an MCP server and EMR data, and can accept a custom quote. Spike's site also announces an acquisition by Raintree Systems, and ROOK's standard contract runs 12 months.",
+    "body": "## Same category, closer than they were\n\nNeither of these is usually the first aggregator a team shortlists; that is more often Terra or Junction. When Rook and Spike end up head-to-head, the old framing was a mobile-first wearable aggregator against an everything-source one. Their current pages, read on October 17, 2026, blur that line: ROOK now sells medical-device, lab-report and EHR/EMR products alongside its wearable API, and both publish prices. An earlier version of this page said Rook did not reach labs, EMRs or medical IoT, that neither vendor's pricing could be verified, and that Spike's own pages disagreed on its device count. Those claims are corrected below.\n\nROOK describes itself as \"the health data aggregation and intelligence platform for digital health, wellness and insurance products\". Its homepage pitch is \"Wearables, medical devices, EHR/EMR and labs\", priced by plan and active users. Spike pitches \"360° Health Data for AI\": wearables and IoT sensors, lab report data, food-photo nutrition and EMR access behind one API, with a dedicated implementation engineer from its entry plan.\n\n## Rook vs Spike at a glance\n\n| Dimension | Rook | Spike |\n|---|---|---|\n| Coverage claim | \"400+ wearables and health data sources\" in its docs; 72 data sources and 500+ devices on its integrations page | \"Access 40+ providers and 500+ devices via single SDK\" |\n| Medical devices | Medical Device API: glucose, blood pressure, SpO2, temperature and ECG, tagged with the recording device | Medical IoT devices such as glucose monitors, ECGs and blood pressure cuffs |\n| Labs | Lab Data API parses PDF and image reports into biomarkers with LOINC codes and FHIR R4 | Lab Reports API parses PDF, JPEG or PNG reports with OCR and LOINC codes |\n| Clinical records | EHR/EMR API (waitlist) sends wearable data to clinical systems as FHIR R4; EHR data into ROOK is coming soon | \"Connect to top providers and access clinical data\" for EMR and EHR |\n| Extras | 0 to 100 health score, health monitoring alerts, ROOK App | Food-photo nutrition, Spike MCP, voice agents for clinics |\n| Entry price | Core $399 a month for up to 750 active users | Sandbox from $450 a month |\n| Higher tiers | Core+ $999 (5,000), Business $1,999 (15,000), Enterprise custom | Enterprise custom |\n| Contract | 12-month standard term, cancel with 30 days' notice | Not published |\n| Your own provider accounts | Dexcom, Samsung Health, Strava and WHOOP | Not stated in the docs we read |\n| Webhook signature | Not described on the pages we read | HMAC-SHA256 in X-Body-Signature |\n| Ownership | No change announced | Banner: \"Raintree Systems Acquires Spike Technologies\" |\n\n## Where Rook wins\n\n**You can price it before the first call.** ROOK's pricing page lists every self-serve ceiling: Core \"$399 USD per month\" for up to 750 active users, Core+ $999 for up to 5,000, Business $1,999 for up to 15,000, and add-ons with listed prices. Spike lists a starting price and a custom Enterprise plan. Past a ROOK plan's limit, \"billing adjusts based on usage\", which is the one number ROOK does not publish.\n\n**Device provenance on every reading.** ROOK's Medical Device API delivers readings \"with the device that recorded each one\", so a remote-monitoring program can tell a cuff from a watch. Spike integrates medical IoT too; the device-metadata detail is what ROOK documents.\n\n**Phone stores without your own app.** The ROOK App \"lets end users connect supported sources without embedding the SDKs\", for programs that have no mobile app of their own.\n\n**The honest trade-off.** The standard contract is 12 months, several products are add-ons on Core, and four popular providers need your own developer accounts, which ROOK says \"can take several weeks\".\n\n## Where Spike wins\n\n**A human on your implementation.** \"Every organization gets a dedicated implementation engineer from the sandbox level to help with setup and optimization.\" That is a checkable differentiator in a category where onboarding is normally the docs.\n\n**Food photos and LLM tooling in the box.** Spike's Nutrition AI converts \"any food image into complete nutritional data\", and Spike MCP \"connects wearables data, medical IoT devices, lab reports, and nutrition logs to your LLM of choice\". ROOK lists neither.\n\n**EMR data today.** Spike's homepage offers EMR and EHR connections now; ROOK's page says bringing EHR and EMR data into ROOK is coming soon.\n\n**The honest trade-off.** Spike publishes less: no tier ceilings, no contract terms, and no word on provider credentials in the docs we read. Its integrations and blog pages carry a banner announcing that Raintree Systems acquires Spike Technologies, with no further detail on its own pages.\n\n## What we could not verify\n\n- **For Rook:** the usage rate past a plan's ceiling, and whether webhooks carry a signature.\n- **For Spike:** how the bill grows past the Sandbox starting price, whether any provider needs your own developer account, and what the acquisition changes.\n- **For both:** coverage counts are each vendor's marketing; check your users' providers on the live lists.\n\n## How to choose\n\n- **A budget you need to model now, at a few thousand users** → Rook. Core+ at $999 a month covers up to 5,000 active users.\n- **Remote-monitoring readings where the device matters** → Rook's Medical Device API.\n- **Implementation help, food logging from photos, or an LLM-facing MCP layer** → Spike.\n- **EMR and EHR data flowing into your product today** → Spike, after confirming the integration you need is live.\n- **You have not compared the category leaders** → do that first: [Terra vs Rook](/compare/terra-vs-rook) and [Terra vs Spike](/compare/terra-vs-spike) take those pairs, and [Terra vs Vital (Junction)](/fitness-apis/terra-vs-vital) covers lab ordering.\n\n## Honest close\n\nNeither vendor saves you from the core aggregator trade: you pay to remove per-provider integration work, and you still own your infrastructure, token handling and health-data compliance. What separates them now is visibility and support: Rook publishes a price sheet you can model and a broader set of clinical-adjacent APIs than it used to, while Spike pairs a wide data reach with an engineer on your build and a price you learn on a call. Re-check both live pages before you commit; for the wider field, see the [health-data aggregator APIs overview](/fitness-apis/health-data-aggregator-apis).",
     "faqs": [
       {
         "q": "How do Rook and Spike differ on pricing transparency?",
-        "a": "In shape, not in candour. Rook prices usage-based, pay only for what you use, with named tiers by active-user ceiling, which at least gives you a model you can sanity-check against a growth curve. Spike is tiered and sales-assisted with no durable itemized public figures, so treat it as contact-sales. Neither publishes a confirmed per-user rate: Rook's official pricing page could not be verified, and Spike's specific tiers and figures were not retrievable. Get live quotes rather than budgeting against any circulating number."
+        "a": "Rook publishes more. As of October 17, 2026, ROOK's pricing page lists Core at $399 a month for up to 750 active users, Core+ at $999 for 5,000, Business at $1,999 for 15,000, add-on prices and a 12-month standard contract. Spike lists a Sandbox plan that starts from $450 a month and a custom Enterprise plan, and calls its pricing usage-driven without itemizing it. Get a quote from Spike at your expected volume."
       },
       {
         "q": "Does Rook reach lab, EMR, or IoT sources the way Spike markets?",
-        "a": "No, and this is the clearest split between them. Rook's coverage is wearables and health apps — activity, sleep, heart rate, body, and glucose or CGM across a stated 400-plus sources. Spike positions itself as a Health 360-degree API spanning consumer wearables plus IoT and medical devices, EMRs, and lab tests, with an AI and analytics layer on top. If labs, EMR data, or medical IoT are on your roadmap, Rook means adding a second vendor later. Verify the current source lists in each vendor's docs."
+        "a": "Partly, and more than an earlier version of this page said. As of October 17, 2026, ROOK sells a Medical Device API for glucose, blood pressure, SpO2, temperature and ECG readings and a Lab Data API that parses lab reports into LOINC-coded biomarkers. Its EHR/EMR API sends wearable data to clinical systems as FHIR R4, while bringing EHR and EMR records into ROOK is still coming soon. Spike offers EMR and EHR connections, medical IoT and lab-report OCR today."
       },
       {
         "q": "Which handles on-device Apple Health and Health Connect extraction better, Rook or Spike?",
-        "a": "Rook, on the available evidence. Its native Android and iOS SDKs integrate directly with Health Connect and Apple Health using the OS permission model, and it organizes its catalogue around the distinction between direct-API cloud providers and SDK-based on-device stores, so the mobile layer is architectural rather than incidental. Spike markets Apple HealthKit among its supported sources, but confirm its on-device SDK details and webhook signing in Spike's own docs before assuming parity."
+        "a": "Both use mobile SDKs, because those stores keep data on the phone. ROOK's SDKs integrate with Apple Health and Health Connect, it adds Samsung Health, and its ROOK App connects them for programs without their own app; 59 of the 72 sources on its integrations page arrive indirectly through those stores. Spike's docs point to its SDK for Apple Health, Health Connect and Samsung Health. We have not tested either."
       },
       {
         "q": "Will I need my own provider credentials with Rook or Spike?",
-        "a": "Probably, for at least some providers, and it applies across this category rather than to one vendor. For several popular sources — commonly Garmin, WHOOP, Strava, Dexcom, and Samsung Health — you must still register your own developer or partner credentials even though the aggregator brokers everything else. Rook is documented as requiring this for several providers; verify which of your target sources are affected on each vendor's live integrations page, because it is real onboarding time either way."
+        "a": "With Rook, yes for Dexcom, Samsung Health, Strava and WHOOP: its docs say clients must create their own developer accounts with those providers, which can take several weeks. Spike's provider docs, as of October 17, 2026, describe a consent redirect for providers such as Garmin and Fitbit and say nothing about customer-held credentials, so ask Spike about the providers on your list."
       },
       {
-        "q": "Is Spike being a newer, smaller company a risk next to Rook?",
-        "a": "It is a factor to weigh rather than a disqualifier. Spike is described as a newer, smaller company than Terra or Vital/Junction, it publishes the least of the mainstream aggregators, and its own materials cite inconsistent device counts, for example 500-plus on one page and 200-plus on another. Against that, every organization gets a dedicated implementation engineer from the sandbox stage, which is unusual hands-on support. Confirm that its marketed AI interpretation, food-photo extraction, and MCP capabilities are production-ready before designing around them."
+        "q": "Is Spike being acquired a risk next to Rook?",
+        "a": "It is a factor to weigh, not a disqualifier. As of October 17, 2026, banners on Spike's integrations and blog pages read Raintree Systems Acquires Spike Technologies, and we found no further detail on Spike's own pages. Ask about roadmap, support and contract continuity before you sign; ROOK announced no ownership change on the pages we read."
       }
     ],
     "related": [
@@ -851,13 +1014,104 @@ export const compareEntries: ClusterEntry[] =
       },
       {
         "href": "/pricing/health-data-aggregator-pricing",
-        "label": "Aggregator pricing models"
+        "label": "Aggregator pricing compared"
       }
     ],
     "cta": {
-      "pitch": "Aggregator tiers, coverage counts and contact-sales terms move quietly and are rarely published — get a heads-up when Rook, Spike and the rest change what they charge or what they reach."
+      "pitch": "Aggregator tiers, coverage counts and owners move quietly. Get a heads-up when Rook, Spike and the rest change what they charge or what they reach."
     },
-    "body": "## Same category, opposite unknowns\n\nNeither of these is the vendor most teams shortlist first — that is usually Terra or Junction. So when Rook and Spike end up head-to-head, it is because a team has already decided the obvious choice does not fit, and what is left is the *usage-priced, mobile-first one* against the *sales-led, everything-source one*. Both halves of that sentence come with an unknown attached, and the unknowns are large enough to change the answer.\n\nRook is a unified wearable and health-data API and SDK built around usage-based, active-user pricing and strong out-of-the-box on-device support. Its SDKs integrate directly with Health Connect on Android and Apple Health on iOS using the OS permission model, and it covers activity, sleep, heart rate, body, and glucose or CGM across a stated 400-plus sources. It splits sources by extraction method — direct API integrations for centralized cloud providers, SDK-based extraction for on-device stores — which is why the mobile layer is more than marketing. Pricing is usage-based and tiered by active users, reported as named tiers (Core, Business, Enterprise) with a starter band up to roughly 750 active users, a growth band up to around 15,000, and custom above that.\n\nSpike positions itself as a \"Health 360-degree\" API: a single integration layer that reaches past wearables into IoT and medical devices, EMRs, and lab tests, with an AI and analytics layer on top. It markets normalized, ingestion-ready data from over 500 wearables and platforms plus those non-wearable sources, and every organization gets a dedicated implementation engineer from the sandbox stage. Its pricing is tiered and sales-assisted with no durable itemized public figures — treat it as contact-sales.\n\nSo the axes are **reach** and **how you learn the price**. Rook's number is nearly visible and you can model it yourself; Spike's arrives through a person, and that person also helps you implement.\n\n## Rook vs Spike at a glance\n\n| Dimension | Rook | Spike |\n|---|---|---|\n| Core scope | Wearables and health apps: activity, sleep, heart rate, body, glucose and CGM across a stated 400-plus sources | Wearables plus IoT and medical devices, EMRs, and lab tests — the broadest scope of the mainstream aggregators |\n| On-device story | Native Android and iOS SDKs pulling Health Connect and Apple Health through the OS permission model; sources are split explicitly into direct-API and SDK-based extraction | Markets Apple HealthKit among its supported sources; confirm the on-device SDK details and webhook signing in Spike's own docs |\n| Extras | A bundled proprietary health score | A generative-AI health-data interpretation SDK, food-photo nutrition extraction, an MCP server for feeding device data to an LLM, and a low-code managed data-pipeline layer — all marketed capabilities |\n| Pricing model | Usage-based, \"pay only for what you use,\" named tiers by active-user ceiling | Tiered and sales-assisted; markets usage-driven, flexible pricing that scales with the business |\n| Published figures | No per-user dollar figure sourced; tier bands reported by third parties | Specific tiers and figures were not retrievable |\n| Onboarding | Self-directed against the SDKs and API | Dedicated implementation engineer from the sandbox stage |\n| Company profile | Explicitly positioned for Latin America alongside global use — verify current positioning | A newer, smaller company than Terra or Vital/Junction |\n| Shared caveat | Several popular providers — Dexcom, Samsung Health, Strava and WHOOP among them — need your own developer credentials | The same per-provider credential requirement applies; verify which of your target providers are affected |\n\n## What we could not verify\n\nThis section is deliberately not buried, because on this pair the gaps are large enough to change a decision. No automated check would catch them either: [the gates this site's build runs](/gates) test whether a page is well formed, not whether it is true.\n\n**For Rook:** the official pricing page could not be verified — it returned a 403 to automated fetch — so the tier names and the active-user ceilings above are third-party reports, not confirmed rates. No per-user dollar figure was sourced at all. The 400-plus source count is vendor marketing. Confirm the tier caps against the live pricing page before you plan a growth curve around them, because \"up to roughly 750 active users\" is exactly the kind of number that quietly moves.\n\n**For Spike:** specific tiers and figures were not retrievable at all. Its own materials cite inconsistent device counts (500-plus on one page, 200-plus on another), so do not anchor on a coverage number. The clinical framing, the generative-AI interpretation SDK, the food-photo nutrition extraction, and the MCP server are marketed capabilities — confirm each is production-ready before you design around it.\n\n**For both:** no per-MAU or per-connection dollar rate is publicly confirmed for any aggregator in this category, and several vendor pricing pages return errors to automated fetching. A commonly quoted range of roughly 0.50 to 2 US dollars per connected user per month is a third-party *category* estimate, not either vendor's published rate. Do not budget against it. The [health-data aggregator pricing breakdown](/pricing/health-data-aggregator-pricing) explains how the models work when the numbers will not.\n\n## Where Rook wins\n\n**You can model the bill before you talk to anyone.** Active-user tiering is the most legible shape in this category: your cost tracks connected users, the bands are named, and you can sanity-check a launch budget against a growth curve without a sales cycle. Compare that with a contact-sales vendor, where the number that matters is negotiated and you cannot self-check the upper band at all. The caveat from the section above still stands — the ceilings are reported rather than confirmed — but a reported band beats no band.\n\n**The on-device half is first-class, not an afterthought.** Rook's SDKs read Health Connect and Apple Health through the OS permission model, and the source catalogue is organized around that distinction. If a meaningful share of your users' data lives in the phone's health store rather than in a cloud account, that layer does work you would otherwise write yourself.\n\n**A bundled health score.** Rook markets a proprietary score out of the box; with a plain aggregator you compute your own from normalized inputs.\n\n**The honest trade-off.** Rook is a wearable-and-phone aggregator. Labs, EMR data and medical IoT are not its centre of gravity, and if your roadmap turns clinical you will be adding a second vendor. Several popular providers still need your own developer credentials, so budget onboarding time for those regardless of the tier you land on.\n\n## Where Spike wins\n\n**Reach past the wrist.** This is the decisive advantage and the reason to accept a sales conversation. A single API spanning consumer wearables plus IoT and medical devices, EMRs and lab tests is a different product from a wearable aggregator with a good SDK. For a clinical or medical-adjacent build, nothing in Rook's scope substitutes for it.\n\n**A human assigned to your implementation.** Every organization gets a dedicated implementation engineer from the sandbox stage. That is a real, checkable differentiator — unusual in a category where onboarding is normally read-the-docs — and it partly offsets the opacity of the pricing.\n\n**AI-flavoured pieces already in the box.** A generative-AI interpretation SDK, food-photo nutrition extraction, and an MCP server for connecting device data to an LLM sit alongside the aggregation layer, plus a low-code managed data-pipeline product. If those are on your roadmap, not assembling them yourself has value — verify each is production-ready first.\n\n**The honest trade-off.** Spike is a newer, smaller company than the category leaders, and it publishes the least. You cannot estimate your cost before a call, its own device counts disagree with each other, and the AI features are marketing-stage until you confirm otherwise. For a small team with a wearables-only roadmap, that is a lot of uncertainty to buy.\n\n## How to choose\n\n- **Mobile-first product leaning on Apple Health or Health Connect, with a budget you need to model today** → Rook. The SDK layer and the named active-user bands are the two things it does that Spike does not.\n- **Clinical or medical-adjacent build needing labs, EMR data or medical IoT alongside wearables** → Spike. Rook's scope does not reach there, and adding a second vendor later is worse than starting with the wider one.\n- **You want implementation help rather than documentation** → Spike, for the dedicated engineer from sandbox onward.\n- **Latin America is your primary market** → Rook is explicitly positioned there; verify the positioning still holds.\n- **Coverage of one specific provider decides it** → neither count settles anything. Check that provider in each vendor's live integrations list, and check whether it is one of the ones needing your own credentials.\n- **You have not actually ruled out the category leaders** → most teams should compare against Terra before settling here. [Terra vs Rook](/compare/terra-vs-rook) and [Terra vs Spike](/compare/terra-vs-spike) take those pairs directly, and [Terra vs Vital (Junction)](/fitness-apis/terra-vs-vital) covers the wearables-plus-labs option this page does not.\n\n## Honest close\n\nNeither vendor saves you from the core aggregator trade: you are paying, on terms neither publishes cleanly, to remove per-provider integration work — and you still owe your own infrastructure, storage, token handling and health-data compliance on top. What separates them is narrow and real. Rook gives you a mobile-first architecture and a pricing shape you can model; Spike gives you reach into data Rook does not touch and a person to build with, at a price you will only learn by asking. Every count, tier and capability above is vendor-marketed or third-party reported as of 2026, and several could not be verified at all — re-check both vendors' live docs and get quotes before you commit. For the wider field, see the [health-data aggregator APIs overview](/fitness-apis/health-data-aggregator-apis)."
+    "sources": [
+      {
+        "url": "https://tryrook.io/rookconnect/medical-device-api/",
+        "checked": "2026-10-17",
+        "note": "Rook Medical Device API"
+      },
+      {
+        "url": "https://tryrook.io/rookconnect/lab-data-api/",
+        "checked": "2026-10-17",
+        "note": "Rook Lab Data API"
+      },
+      {
+        "url": "https://tryrook.io/rookconnect/ehr-emr-api/",
+        "checked": "2026-10-17",
+        "note": "Rook EHR/EMR API"
+      },
+      {
+        "url": "https://tryrook.io/pricing/",
+        "checked": "2026-10-17",
+        "note": "Rook plans, add-ons and contract terms"
+      },
+      {
+        "url": "https://www.spikeapi.com/pricing",
+        "checked": "2026-10-17",
+        "note": "Spike Sandbox and Enterprise plans"
+      },
+      {
+        "url": "https://tryrook.io/about-us/",
+        "checked": "2026-10-17",
+        "note": "Rook company description"
+      },
+      {
+        "url": "https://tryrook.io/",
+        "checked": "2026-10-17",
+        "note": "Rook product scope"
+      },
+      {
+        "url": "https://www.spikeapi.com/",
+        "checked": "2026-10-17",
+        "note": "Spike scope, implementation engineer and customers"
+      },
+      {
+        "url": "https://docs.tryrook.io/data-sources/",
+        "checked": "2026-10-17",
+        "note": "Rook data sources and own developer accounts"
+      },
+      {
+        "url": "https://tryrook.io/wearable-api-sdk/integrations/",
+        "checked": "2026-10-17",
+        "note": "Rook source catalogue"
+      },
+      {
+        "url": "https://www.spikeapi.com/lab-reports",
+        "checked": "2026-10-17",
+        "note": "Spike Lab Reports API"
+      },
+      {
+        "url": "https://docs.tryrook.io/",
+        "checked": "2026-10-17",
+        "note": "Rook health score"
+      },
+      {
+        "url": "https://tryrook.io/rookconnect/wearable-api/",
+        "checked": "2026-10-17",
+        "note": "Rook wearable API, SDKs and delivery"
+      },
+      {
+        "url": "https://www.spikeapi.com/mcp-health-ai-integration",
+        "checked": "2026-10-17",
+        "note": "Spike MCP"
+      },
+      {
+        "url": "https://docs.spikeapi.com/api-docs/webhooks",
+        "checked": "2026-10-17",
+        "note": "Spike webhook signing and retries"
+      },
+      {
+        "url": "https://www.spikeapi.com/integrations",
+        "checked": "2026-10-17",
+        "note": "Spike integrations and acquisition banner"
+      },
+      {
+        "url": "https://www.spikeapi.com/blog",
+        "checked": "2026-10-17",
+        "note": "Spike acquisition banner"
+      },
+      {
+        "url": "https://docs.spikeapi.com/api-docs/provider_integration",
+        "checked": "2026-10-17",
+        "note": "Spike provider consent flow"
+      }
+    ]
   },
   {
     "slug": "usda-fooddata-central-vs-open-food-facts",
@@ -911,5 +1165,412 @@ export const compareEntries: ClusterEntry[] =
       "pitch": "Open food data changes its licence terms and rate limits quietly. Subscribe and we will flag it when a free dataset stops being as free as it looks."
     },
     "body": "## How to compare USDA FoodData Central and Open Food Facts\n\nMost nutrition-API head-to-heads weigh price against coverage. That axis is dead here: neither charges a fee, and neither is a freemium slice a vendor can curtail next quarter. Three questions are left, and they decide the build:\n\n- **Licence philosophy.** USDA FoodData Central is US government data in the public domain under `CC0`: no copyright, no licence fee, attribution requested but not required. Open Food Facts is open data under the `ODbL`, with contents under `DbCL` and images under `CC-BY-SA` — free for any purpose including commercial use, but attribution is required and the share-alike obligation can require you to publish a derived database as open data. These are opposite philosophies, not two shades of the same one.\n- **Where the coverage sits.** USDA is a nutrient reference: Foundation Foods, SR Legacy, Survey (FNDDS) foods as consumed, and a Branded Foods dataset that carries GTIN/UPC fields. Open Food Facts is a global crowdsourced catalogue of packaged products queried by barcode or search, returning ingredients, nutrition facts, Nutri-Score, allergens, labels, categories, and images for a product code.\n- **Who stands behind the numbers.** USDA data is lab-grade and curated by a government agency. Open Food Facts is volunteer-contributed with no accuracy or completeness guarantee, and coverage quality varies by region.\n\nAccess friction barely enters it. USDA needs a free data.gov key — a shared `DEMO_KEY` exists for first exploration — and meters requests at a modest rate, reported around 1,000 per hour as of 2026 (our own pages describe that limit as per key in one place and per IP in another, so verify it). Open Food Facts needs no key to read, only a custom `User-Agent` header identifying your app, and the project has said it intends to keep the API free and add no keys. The licence and coverage points below are integration constraints, not a knock on either project.\n\n## USDA FoodData Central vs Open Food Facts at a glance\n\n| Dimension | USDA FoodData Central | Open Food Facts |\n|---|---|---|\n| Core data | Foundation Foods, SR Legacy, Survey (FNDDS) foods as consumed, Branded Foods with GTIN/UPC fields | Global packaged and branded products keyed by barcode: ingredients, nutrition facts, Nutri-Score, allergens, labels, categories, images |\n| Coverage centre | US reference and lab-grade nutrient values for whole and branded foods | Global packaged goods, crowdsourced; depth varies by region |\n| Licence | Public domain, `CC0 1.0` — attribution requested, not required | `ODbL` database, `DbCL` contents, `CC-BY-SA` images — attribution required, share-alike applies |\n| Obligations on you | Effectively none | Credit the source, and a derived database combining its data may have to be released as open data |\n| Access | Free data.gov API key; shared `DEMO_KEY` for exploration | No key to read; a custom `User-Agent` identifying your app is required |\n| Rate limiting | Modest, reported around 1,000 requests per hour as of 2026 — per key or per IP, verify | No key, so no per-key quota is documented; your `User-Agent` is how the project identifies your traffic |\n| Barcode product | GTIN/UPC fields exist in Branded Foods, but it is not a consumer barcode-lookup product | Barcode lookup is the core call |\n| Natural-language parsing | None | None |\n| Accuracy model | Curated by a government agency | Volunteer-contributed, no accuracy or completeness guarantee |\n| Cost model | Genuinely free, not a free tier | Genuinely free, not a free tier |\n\n## Where USDA FoodData Central pulls ahead\n\nIts edge is authority plus the cleanest licence in the category. When a dietitian or a regulator asks where a nutrient value came from, \"the USDA FoodData Central Foundation Foods dataset\" ends the conversation. Foods-as-consumed entries from the Survey (FNDDS) dataset suit modelling real meals rather than raw ingredients, and SR Legacy remains a workhorse reference for whole foods.\n\nThe licence is the part people underrate. `CC0` means there is no copyright to comply with at all: you can ingest the whole thing, reshape it, blend it with your own proprietary data, ship it inside a closed-source product, and owe nobody anything. USDA requests credit; it does not require it. That is the reason USDA is the safe default for a commercial build that wants to keep its derived catalogue private.\n\nThe trade-off that decides it against Open Food Facts: it is a nutrient-reference database, not a food-logging engine. There is no natural-language meal parsing, no restaurant-menu product, and no consumer barcode-lookup product, so you build the logging experience and fill the coverage gaps yourself. The hourly rate limit is modest enough that a busy client-side integration will feel it, which usually means caching or mirroring the data rather than proxying every request.\n\n## Where Open Food Facts pulls ahead\n\nIts edge is barcode coverage nobody else gives away. Point it at a product code and you get the packaged-goods picture — ingredients, nutrition facts, Nutri-Score, allergens, labels, categories, and images — globally, with no key, no signup, and no quota negotiation. If your product's first interaction is a user holding a phone camera against a packet in a supermarket, this is the dataset that makes that feature exist on day one. It is also what wger uses for its own nutrition data.\n\nThe trade-offs come in two flavours. The first is data quality: entries are volunteer-contributed with no accuracy or completeness guarantee, and regional coverage is uneven, so a barcode that resolves perfectly in one market may miss in another. Design for the miss — a \"product not found, add it yourself\" path is part of the feature, not an error state. The second is the licence, and that one reaches your architecture.\n\n## The licence question: CC0 versus share-alike\n\nThis is the real fork in the road, and worth being precise about, because \"both are free\" hides it completely.\n\n`CC0` imposes no obligations. `ODbL` imposes two that matter to a product team. Attribution: you credit Open Food Facts. Share-alike: a derived database that combines Open Food Facts data with your own may have to be released as open data. That second one is not a payment problem you can solve with a purchase order — it is a design constraint on what your food catalogue is allowed to be.\n\nTwo notes keep this from being a blanket blocker. Commercial use is explicitly fine; ODbL is not a non-commercial licence. And the obligation attaches to the database, not to the application around it — though where your merged catalogue sits on that line is a question for counsel, not for a comparison page. This is general guidance, not legal advice.\n\nThe pattern that avoids the question entirely: keep the two sources in separate stores. USDA-derived tables stay yours because `CC0` says so; Open Food Facts lookups stay attributed and unmerged, queried live or cached as a distinct dataset rather than folded into a proprietary master catalogue. Teams that decide this on day one rarely think about it again.\n\n## Which should you pick?\n\nMatch the dataset to the job rather than hunting for a single winner:\n\n- **If you need authoritative nutrient values you can absorb into a closed-source product** with zero licence obligations, pick USDA FoodData Central and build the logging layer around it.\n- **If your core interaction is scanning a barcode on a packaged product**, especially outside the US, pick Open Food Facts and plan for attribution, share-alike, and missing entries.\n- **If you need both — and most food apps do — run both**, in separate stores so the ODbL obligation never touches your USDA-derived tables. USDA for reference nutrients, Open Food Facts for the packet in the user's hand, covers a surprising amount before you pay anyone. The [nutrition APIs roundup](/fitness-apis/nutrition-apis) shows where that combination still leaves gaps.\n- **If you need natural-language meal logging or restaurant and chain-menu depth**, neither of these has it. That is the commercial pair's territory — see [Nutritionix vs Edamam](/compare/nutritionix-vs-edamam) for that decision and [nutrition API pricing](/pricing/nutrition-api-pricing) for what the category costs.\n- **If you are wiring an LLM in front of either one**, neither parses free text, and that is fine: the durable pattern is to have the model resolve input to a row and let your server do the arithmetic. Both work well as that catalogue — [AI food logging](/ai/ai-nutrition-logging) sets out the shape.\n\nFor how these two sit against the rest of the no-cost landscape, see the [free and open-source fitness APIs](/fitness-apis/free-fitness-apis) roundup.\n\n## Watch the fine print\n\nRate limits, dataset names, endpoint shapes, and the exact licence variants on Open Food Facts images and contents all change. Everything volatile above — the roughly 1,000 requests per hour figure, the current USDA dataset list, and the precise `ODbL`, `DbCL`, and `CC-BY-SA` terms — is flagged \"as of 2026, verify.\" Read the licence text yourself before merging either dataset into anything you intend to keep private, and have counsel settle a share-alike question rather than resolving it from a table."
+  },
+  {
+    "slug": "terra-vs-thryve",
+    "primaryQuery": "terra vs thryve",
+    "h1": "Terra vs Thryve: Which Wearable Data API for Your App?",
+    "metaTitle": "Terra vs Thryve: Wearable API Pricing, BAA and Hosting",
+    "metaDescription": "Terra vs Thryve as of October 2026: credits per connected source vs per-user euro plans, a BAA on every plan vs Enterprise, German hosting and webhooks.",
+    "updated": "2026-10-17",
+    "answer": "Terra and Thryve both connect wearables and phone health stores through one API, so the choice comes down to billing, compliance and plumbing. As of October 17, 2026, Terra starts at $399 a month billed annually with 100,000 credits, charges 200 credits a month per connected data source, lists its BAA on Enterprise, and can deliver to databases, cloud storage and queues as well as webhooks. Thryve's Start Up plan starts at 499 euros a month for 500 end users with 0.50 euros per extra user, includes a BAA on all plans and hosts all data in Germany, but stores data for only 2 weeks on Start Up and embeds its connect widget in an iframe.",
+    "body": "Terra and Thryve both turn many wearables and phone health stores into one normalized API, and both publish prices. They differ on the billing unit, where the BAA sits, where the data lives and how the connect flow and webhooks work. Everything below is from Terra's and Thryve's own pages as we read them on October 17, 2026.\n\n## At a glance\n\n| Dimension | Terra | Thryve |\n|---|---|---|\n| Coverage claim | \"500+ providers\" on its site; its docs say the Unified API \"supports over 150+ Data Sources\" | \"500+ Wearables & Health Data Sources\" on its site; the data-sources table in its docs lists 24 sources, two of them marked EOL (our count) |\n| Phone health stores | A mobile SDK for Apple Health, Samsung Health and Health Connect | A native SDK for Apple Health, Samsung Health and Health Connect |\n| Entry price | $399 a month billed annually, or $499 monthly, with 100,000 credits | Start Up from 499 euros a month with 500 end users |\n| Billing unit | 200 credits a month per connected data source, plus events past a free allowance | End users: 0.50 euros per user past the plan's included number |\n| Trying it | 30-day money-back guarantee | 14-day free trial with 25 end users |\n| BAA | Listed on Enterprise | Included on all plans |\n| Where data lives | Enterprise lists a \"Dedicated instance to localised area\" | \"All data processed and stored by Thryve is hosted in Germany\" |\n| Connect flow | Hosted widget session from your backend; no WebView or iframe | Connection Widget embedded in an iframe |\n| Webhooks | Signed with HMAC; up to 10 retries over about 8 hours; 8-second timeout | zstd-compressed; optional HMAC secret; up to 3 retries; respond within 2 seconds |\n| Other destinations | SQL databases, Supabase, cloud storage, SQS and Kafka, MongoDB and Firestore | None named; without webhooks you call its API |\n| Beyond wearables | Blood and DNA test ordering (US and UK), a lab-report API | Analytics and algorithms as value-added services |\n\n## Where Terra wins\n\n**Delivery options.** Terra delivers \"to webhooks, SQL databases (Postgres and MySQL), Supabase, cloud storage (S3, GCS and Azure Blob), queueing services (SQS and Kafka), MongoDB and Firestore\", and \"Every webhook sent by Terra includes an HMAC-based signature header\". Its retry budget is larger: it \"retries the delivery up to 10 times with exponential backoff\", and \"The cumulative window across all retries is ~8 hours\". Thryve retries \"up to 3 times\", and \"Recurring failed deliveries within a certain timeframe will lead to the automatic disabling of webhooks.\"\n\n**Lab ordering.** Terra can \"Order blood and DNA tests for your users through Terra API\", in the US and the UK. We did not find test ordering on the Thryve pages we read.\n\n**The trade-off.** Terra's unit is the connected data source: \"An active authentication is one connected data source for one end user, and costs 200 credits per month\", so a user with a watch and a ring costs twice. By our arithmetic the 100,000 included credits cover 500 connected sources before events past the free allowance. Its BAA sits on Enterprise.\n\n## Where Thryve wins\n\n**The BAA on every plan.** Thryve's certifications page says \"BAA agreements included on all plans — no enterprise upgrade required.\" For a HIPAA product that is the biggest difference on the two price sheets.\n\n**German hosting and two ISO certificates.** \"All data processed and stored by Thryve is hosted in Germany\", and its homepage claims compliance with \"GDPR, HIPAA, ISO 9001, 27001 and other international regulations\". Terra states that it is \"HIPAA compliant, GDPR compliant, and SOC 2 Type II certified\" and offers a localised dedicated instance on Enterprise.\n\n**Per-user plans with a startup tier.** Start Up starts at 499 euros a month for 500 users, and Scale Up, \"Special plan for startups with growth-stage needs (less than 10 years of founding)\", starts at 1,000 euros a month for up to 5,000 users. By our arithmetic, 5,000 one-source users cost about $4,899 a month on Terra at annual billing, against 2,749 euros on Thryve's Start Up or 1,000 euros on Scale Up if you qualify. We do not convert currencies; compare them at the rate you pay.\n\n**The trade-off.** Storage is short, 2 weeks on Start Up and 1 month on Scale Up, so keep your own history. The plan cards list custom auth credentials only on Scale Up and Enterprise, while Thryve's docs say that \"When no shared oAuth-client is available, you must bring your own oAuth-client\"; WHOOP, Dexcom and Google Health have none.\n\n## How the connect flow differs\n\nTerra's widget is a hosted page: you \"call POST https://access.tryterra.co/api/widget/session with your dev-id and x-api-key headers\" from your backend, send the user to the URL, and its docs say \"Do not use WebView or iFrame for the authentication flow.\" Thryve's is the opposite: \"The Connection Widget must be embedded in your app using an iframe component\", because \"Opening the URL in a new tab or window will prevent the widget from properly redirecting users back to your web app.\" You first \"create a Thryve user\", then call its widget endpoint with two Basic Auth headers. If your app already opens provider logins in the system browser, Terra's flow fits it as is; Thryve's needs a page that can host the iframe.\n\n## Your own provider credentials\n\n- **Terra** names \"WHOOP Dexcom Huawei Strava Virtuagym\" as providers that \"require special processes\", and its integrations table marks Garmin and Samsung as Required, though its homepage says Garmin data \"flows through Terra today\" through its long-standing partner integration.\n- **Thryve** marks WHOOP, Dexcom, Google Health and FreeStyle Libre (LibreView) without a shared OAuth client, while Garmin and Oura use Thryve's. Its table also marks Fitbit \"Deprecating on Oct 29 2026\".\n\n## What we could not verify\n\n- **Thryve's per-user rate.** The Start Up card says \"Additional users billed at €0.50 each\" in its description and \"0,50ct per additional user\" in its feature list, and neither names a billing period.\n- **Thryve's webhook signature format.** The docs say an HMAC secret can be configured, but the pages we read do not describe the header or algorithm.\n- **Fitbit on Thryve after October 29.** The docs mark the deprecation without saying how existing connections carry over.\n\n## Which should you pick?\n\n- **A HIPAA product that needs a BAA from the first plan:** lean Thryve, which includes it on all plans; on Terra it is an Enterprise line.\n- **Data that should stay in Germany or the EU by default:** Thryve hosts in Germany; ask Terra about its localised dedicated instance on Enterprise.\n- **Data pushed straight into your warehouse, queue or cloud storage:** lean Terra.\n- **Lab or DNA tests ordered for your users:** Terra.\n- **Users who connect several sources each:** Thryve's plans count end users, while Terra counts each connected source; confirm how Thryve counts a user with several devices.\n\nFor the rest of the field, see [health-data aggregator APIs](/fitness-apis/health-data-aggregator-apis), [Thryve API pricing](/pricing/thryve-api-pricing) and the [Terra integration guide](/integrate/terra-api).\n\n## Bottom line\n\nTerra is the broader delivery and diagnostics platform, priced in dollars per connected source. Thryve is the compliance-first choice, priced in euros per end user, with the BAA on every plan and data hosted in Germany, at the cost of short storage windows and an iframe-based connect flow. Re-read both live pricing pages before you commit; these figures are from October 17, 2026.",
+    "faqs": [
+      {
+        "q": "Is Terra or Thryve cheaper?",
+        "a": "It depends on your user count and how many sources each user connects. As of October 17, 2026, Terra starts at $399 a month billed annually and charges 200 credits per connected data source per month, while Thryve's Start Up starts at 499 euros a month for 500 end users plus 0.50 euros per extra user. By our arithmetic, 5,000 one-source users cost about $4,899 a month on Terra, against 2,749 euros on Thryve's Start Up or 1,000 euros on its startup-only Scale Up plan."
+      },
+      {
+        "q": "Do Terra and Thryve sign a BAA?",
+        "a": "Both offer one, on different plans. As of October 17, 2026, Terra's pricing page lists a signed BAA on its Enterprise plan, and Thryve's certifications page says BAA agreements are included on all plans with no enterprise upgrade required. Whether you need a BAA depends on your role under HIPAA."
+      },
+      {
+        "q": "Where do Terra and Thryve host health data?",
+        "a": "Thryve says all data it processes and stores is hosted in Germany. Terra's Enterprise plan lists a dedicated instance in a localised area; the Terra pages we read on October 17, 2026 do not name a default hosting region, so ask Terra where your data would live."
+      },
+      {
+        "q": "Can I embed the Terra or Thryve connect widget in an iframe?",
+        "a": "Only Thryve's. Thryve's docs say its Connection Widget must be embedded in an iframe, because opening it in a new tab breaks the redirect back to your app. Terra's docs say not to use a WebView or iframe for its authentication flow, and to open the hosted widget URL from a session your backend creates."
+      },
+      {
+        "q": "Which providers need my own developer credentials with Terra or Thryve?",
+        "a": "As of October 17, 2026, Terra's docs name WHOOP, Dexcom, Huawei, Strava and Virtuagym as needing special processes, and its integrations table also marks Garmin and Samsung as Required. Thryve's data-sources table shows no shared OAuth client for WHOOP, Dexcom, Google Health or FreeStyle Libre, so you bring your own; Garmin and Oura use Thryve's shared client. Check your exact provider list with each vendor."
+      }
+    ],
+    "related": [
+      {
+        "href": "/pricing/thryve-api-pricing",
+        "label": "Thryve API pricing"
+      },
+      {
+        "href": "/fitness-apis/health-data-aggregator-apis",
+        "label": "Best health-data aggregator APIs"
+      },
+      {
+        "href": "/integrate/terra-api",
+        "label": "Integrate Terra"
+      },
+      {
+        "href": "/pricing/health-data-aggregator-pricing",
+        "label": "Aggregator pricing compared"
+      },
+      {
+        "href": "/compare",
+        "label": "All API comparisons"
+      }
+    ],
+    "cta": {
+      "pitch": "Comparing health-data aggregators for your build? Get our developer newsletter for the pricing and credential changes on Terra, Thryve and the rest, as we find them."
+    },
+    "sources": [
+      {
+        "url": "https://tryterra.co/",
+        "checked": "2026-10-17",
+        "note": "Terra coverage, data types, destinations, labs, compliance and pricing FAQ"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+        "checked": "2026-10-17",
+        "note": "Terra data source count and providers with special setup"
+      },
+      {
+        "url": "https://www.thryve.health/",
+        "checked": "2026-10-17",
+        "note": "Thryve coverage and hosting"
+      },
+      {
+        "url": "https://docs.thryve.health/thryve-data-sources/overview",
+        "checked": "2026-10-17",
+        "note": "Thryve data sources and OAuth clients"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/getting-started",
+        "checked": "2026-10-17",
+        "note": "Terra mobile-only sources, signed webhooks, rate limits"
+      },
+      {
+        "url": "https://tryterra.co/pricing",
+        "checked": "2026-10-17",
+        "note": "Terra plans, credits, add-ons and Enterprise terms"
+      },
+      {
+        "url": "https://www.thryve.health/pricing",
+        "checked": "2026-10-17",
+        "note": "Thryve plans, storage and hosting"
+      },
+      {
+        "url": "https://www.thryve.health/certifications-compliance",
+        "checked": "2026-10-17",
+        "note": "Thryve certifications and BAA"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/user-authentication/implementation-terra-widget",
+        "checked": "2026-10-17",
+        "note": "Terra widget session endpoint and legacy deprecation"
+      },
+      {
+        "url": "https://docs.thryve.health/connect-data-sources",
+        "checked": "2026-10-17",
+        "note": "Thryve connection widget"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+        "checked": "2026-10-17",
+        "note": "Terra webhook signing, retries and timeout"
+      },
+      {
+        "url": "https://docs.thryve.health/receive-updates-via-webhooks/data-push",
+        "checked": "2026-10-17",
+        "note": "Thryve webhooks"
+      },
+      {
+        "url": "https://tryterra.co/products/lab-testing",
+        "checked": "2026-10-17",
+        "note": "Terra lab testing geography and collection methods"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/pricing",
+        "checked": "2026-10-17",
+        "note": "Terra credit tiers"
+      },
+      {
+        "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+        "checked": "2026-10-17",
+        "note": "Terra integration credential requirements"
+      }
+    ]
+  },
+  {
+    "slug": "terra-vs-open-wearables",
+    "primaryQuery": "terra vs open wearables",
+    "h1": "Terra vs Open Wearables: Managed API or Self-Hosted Open Source?",
+    "metaTitle": "Terra vs Open Wearables: Managed API or Self-Hosted?",
+    "metaDescription": "Terra vs Open Wearables as of October 2026: a managed API from $399 a month vs free MIT-licensed software you host, provider credentials, Dexcom, BAA.",
+    "updated": "2026-10-17",
+    "answer": "Terra is a managed health-data API; Open Wearables is MIT-licensed software you host yourself. As of October 17, 2026, Terra starts at $399 a month billed annually with 100,000 credits, manages API keys for many sources and adds Dexcom, lab ordering and delivery into databases and queues. Open Wearables' core is free with no per-user fee, keeps data on your own servers and ships open Sleep and Resilience scores, but you register with every cloud provider, run and secure the stack yourself, and its APIs may change before version 1.0.",
+    "body": "This is not two vendors with different price sheets. Terra is a managed API you pay for; Open Wearables is MIT-licensed software from Momentum that you deploy and run yourself, with an optional paid Enterprise tier. Everything below is from Terra's pages, Open Wearables' site, docs and GitHub README as we read them on October 17, 2026.\n\n## At a glance\n\n| Dimension | Terra | Open Wearables |\n|---|---|---|\n| What you get | A managed API | MIT-licensed software you host; \"each deployment serves a single organization\" |\n| Price | $399 a month billed annually, or $499 monthly, with 100,000 credits | Open source \"Free forever\"; Enterprise \"Custom pricing\", \"scoped per project\" |\n| Cloud providers | \"500+ providers\" on its site; its docs say \"over 150+ Data Sources\" | Garmin, Oura, Whoop, Suunto, Polar, Ultrahuman, Strava, Fitbit, Withings and Google Health |\n| Phone health stores | A mobile SDK for Apple Health, Samsung Health and Health Connect | Native SDKs for Apple Health, Samsung Health and Health Connect |\n| Provider credentials | Terra-managed keys for many sources; special processes for WHOOP, Dexcom, Huawei, Strava and Virtuagym | Yours for every cloud provider |\n| Dexcom | Supported, through your own Dexcom developer app | \"on the roadmap. No committed release date.\" |\n| Delivery | Signed webhooks, SQL databases, Supabase, cloud storage, SQS and Kafka, MongoDB and Firestore | REST API and an MCP server; outbound webhooks described differently across its own pages (see below) |\n| Labs | Blood and DNA test ordering | None listed |\n| Health scores | An add-on, from $499 a month on Quick Start | Sleep Score and Resilience Score, published as source code |\n| BAA | Listed on Enterprise | Available on the Enterprise plan |\n| Where data lives | Terra's platform; Enterprise lists a \"Dedicated instance to localised area\" | Your infrastructure: AWS, GCP, Azure or bare metal |\n| Maturity | Publishes a versioned OpenAPI spec | \"an early-stage project under active development\"; APIs \"may change before version 1.0\" |\n\n## Where Terra wins\n\n**Nothing to run.** Terra is a hosted service: \"Subscriptions start from $399 per month billed annually, or $499 per month billed monthly.\" Open Wearables' core is free, but \"A managed cloud version is not currently available\", so hosting, monitoring, security patches and upgrades are yours.\n\n**Fewer provider applications.** \"Terra manages API Keys of data sources, meaning you can connect users without having to apply for each API Key\", and its homepage says \"Garmin data flows through Terra today\" through a long-standing partner integration, although its integrations table still marks Garmin as Required. With Open Wearables, \"Cloud providers require you to register with each developer program and obtain credentials\"; its docs say \"You must apply for Garmin Developer Program\", and approval \"ranges from immediate to several weeks depending on the provider.\"\n\n**Breadth beyond wearables.** Terra supports Dexcom, orders blood and DNA tests, and delivers straight into databases, cloud storage and queues. Open Wearables says Dexcom is on its roadmap with no committed date and \"does not natively output FHIR resources.\"\n\n**Outbound delivery documented today.** \"Every webhook sent by Terra includes an HMAC-based signature header\", and Terra \"retries the delivery up to 10 times with exponential backoff\".\n\n## Where Open Wearables wins\n\n**No licence fee and no per-user bill.** Its docs put it as \"Self-hosted, MIT license, $0 per user\", and the pricing FAQ says you can \"ship it in a commercial product at no cost.\" Terra's bill grows with every connected data source: \"An active authentication is one connected data source for one end user, and costs 200 credits per month\".\n\n**Data that never leaves your servers.** Open Wearables' FAQ says \"there is no third party holding your users' health records, and no data processing agreement needed with us because we never receive the data.\" It does send \"a small anonymous usage ping once a day (plus one on startup)\", which \"contains only aggregate, bucketed counts and configuration flags, never health data, user data or credentials\", and the README documents how to turn it off.\n\n**Open scoring and an MCP server.** \"Two documented scores ship with the platform\": a nightly 0 to 100 Sleep Score and a weekly 0 to 100 Resilience Score derived from heart rate variability, and \"An MCP server exposes scores, trends, and baselines to any LLM.\" Terra sells health scores as an add-on and offers an MCP server of its own through its AI Interface.\n\n## Webhooks: check the release you deploy\n\nOpen Wearables' own pages disagree. Its README says you can \"Register HTTPS endpoints to get notified when new data arrives for your users. Filter by event type or user, verify signatures, send test events, and inspect delivery attempts.\" Its FAQ says \"Outbound webhooks (pushing events to your backend when new data arrives) are in active development\", and its webhooks page says they \"are still in development, so plan around reading from the API for now.\" The README lives with the code, but confirm in the release you pin. The README itself says \"In production, pin the official images to a specific release version\".\n\n## On Open Wearables' comparison page\n\nOpen Wearables publishes its own comparison, which says it \"covers the same provider set\" as Terra and describes Terra as charging \"a monthly fee plus per-API-call credits\". By the two vendors' own pages that is not quite right today: Open Wearables lists no Dexcom or lab ordering, and Terra's pricing page bills credits for connected data sources and for events past a free allowance, not for API calls.\n\n## Compliance\n\nSelf-hosting moves the compliance work to you rather than removing it. Open Wearables' Enterprise plan lists \"SLA-backed support HIPAA-eligible infrastructure BAA and GDPR documentation\", and its pricing FAQ says the \"BAA is available on the Enterprise plan alongside HIPAA-eligible infrastructure and audit trail configuration.\" Terra says it \"is HIPAA compliant, GDPR compliant, and SOC 2 Type II certified\" and lists a signed BAA on Enterprise. Whether you need one depends on your role under HIPAA; our [HIPAA compliance guide for fitness apps](/compliance/hipaa-compliance-fitness-app) explains when that applies. This is general information, not legal advice.\n\n## Which should you pick?\n\n- **Health data must stay on infrastructure you control, and you have the engineers to run it:** Open Wearables.\n- **You want to ship this quarter without registering with every provider:** Terra, after checking its credential list for your providers.\n- **Dexcom, lab tests or delivery into your warehouse:** Terra.\n- **Many users, each a cost on a per-source bill:** model both; Open Wearables has no licence fee, but price your own hosting and on-call before calling it cheaper.\n- **Custom scoring logic you can read and retune:** Open Wearables.\n\nFor managed alternatives, see [health-data aggregator APIs](/fitness-apis/health-data-aggregator-apis) and the [Terra integration guide](/integrate/terra-api).\n\n## Bottom line\n\nTerra sells breadth and convenience by the connected source; Open Wearables gives you the code and the responsibility. Pick by who should run the stack and hold the provider relationships, then re-check both projects' live pages, because Open Wearables' APIs are still pre-1.0 and Terra's prices are as of October 17, 2026.",
+    "faqs": [
+      {
+        "q": "Is Open Wearables a free alternative to Terra?",
+        "a": "The software is free: Open Wearables' core platform is MIT-licensed, and its docs describe it as self-hosted at $0 per user. Hosting, security, upgrades and provider registrations are your costs, and Enterprise support with a BAA is custom-priced. Terra, as of October 17, 2026, starts at $399 a month billed annually and runs the infrastructure for you."
+      },
+      {
+        "q": "Does Open Wearables need my own Garmin developer account?",
+        "a": "Yes. As of October 17, 2026, Open Wearables' docs say you must apply for the Garmin Developer Program, and the same holds for Suunto and Polar; every cloud provider needs your own registered app. Terra says Garmin data flows through its own partner integration, though its integrations table marks Garmin as Required, so ask Terra too."
+      },
+      {
+        "q": "Does Open Wearables support Dexcom?",
+        "a": "Not yet. As of October 17, 2026, Open Wearables' FAQ says Dexcom CGM integration is on the roadmap with no committed release date. Terra supports Dexcom, connected through your own app on the Dexcom developer portal."
+      },
+      {
+        "q": "Is there a hosted version of Open Wearables?",
+        "a": "No. Its FAQ says a managed cloud version is not currently available; you deploy it with Docker Compose on AWS, GCP, Azure or bare metal, or one-click Railway. Momentum, which maintains it, offers Enterprise deployment and support on your infrastructure, scoped per project."
+      },
+      {
+        "q": "Do Terra and Open Wearables offer a BAA?",
+        "a": "Both, on their top tiers. As of October 17, 2026, Terra's pricing page lists a signed BAA on Enterprise, and Open Wearables says a BAA is available on its Enterprise plan alongside HIPAA-eligible infrastructure. On Open Wearables' free tier you run the stack, so the safeguards are yours. Whether you need a BAA depends on your role under HIPAA."
+      }
+    ],
+    "related": [
+      {
+        "href": "/fitness-apis/health-data-aggregator-apis",
+        "label": "Best health-data aggregator APIs"
+      },
+      {
+        "href": "/alternatives/terra-alternatives",
+        "label": "Terra alternatives"
+      },
+      {
+        "href": "/integrate/terra-api",
+        "label": "Integrate Terra"
+      },
+      {
+        "href": "/pricing/health-data-aggregator-pricing",
+        "label": "Aggregator pricing compared"
+      },
+      {
+        "href": "/compare",
+        "label": "All API comparisons"
+      }
+    ],
+    "cta": {
+      "pitch": "Weighing a managed aggregator against running your own? Get our developer newsletter for pricing, credential and release changes on Terra, Open Wearables and the rest."
+    },
+    "sources": [
+      {
+        "url": "https://github.com/the-momentum/open-wearables/blob/main/LICENSE",
+        "checked": "2026-10-17",
+        "note": "Open Wearables licence"
+      },
+      {
+        "url": "https://github.com/the-momentum/open-wearables",
+        "checked": "2026-10-17",
+        "note": "Open Wearables README"
+      },
+      {
+        "url": "https://openwearables.io/pricing",
+        "checked": "2026-10-17",
+        "note": "Open Wearables licence and Enterprise"
+      },
+      {
+        "url": "https://tryterra.co/pricing",
+        "checked": "2026-10-17",
+        "note": "Terra plans, credits, add-ons and Enterprise terms"
+      },
+      {
+        "url": "https://tryterra.co/",
+        "checked": "2026-10-17",
+        "note": "Terra coverage, data types, destinations, labs, compliance and pricing FAQ"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+        "checked": "2026-10-17",
+        "note": "Terra data source count and providers with special setup"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/getting-started",
+        "checked": "2026-10-17",
+        "note": "Terra mobile-only sources, signed webhooks, rate limits"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/integration-setup/dedicated-data-source-api-keys",
+        "checked": "2026-10-17",
+        "note": "Terra managed and dedicated provider keys"
+      },
+      {
+        "url": "https://openwearables.io/faq",
+        "checked": "2026-10-17",
+        "note": "Open Wearables FAQ"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/dexcom",
+        "checked": "2026-10-17",
+        "note": "Terra Dexcom setup"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+        "checked": "2026-10-17",
+        "note": "Terra webhook signing, retries and timeout"
+      },
+      {
+        "url": "https://github.com/tryterra/openapi/blob/master/dist/core/v2-bundled.yaml",
+        "checked": "2026-10-17",
+        "note": "Terra OpenAPI spec: base URL and legacy widget endpoint"
+      },
+      {
+        "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+        "checked": "2026-10-17",
+        "note": "Terra integration credential requirements"
+      },
+      {
+        "url": "https://openwearables.io/docs/providers/supported",
+        "checked": "2026-10-17",
+        "note": "Open Wearables provider setup"
+      },
+      {
+        "url": "https://openwearables.io/docs",
+        "checked": "2026-10-17",
+        "note": "Open Wearables docs"
+      },
+      {
+        "url": "https://openwearables.io/webhooks",
+        "checked": "2026-10-17",
+        "note": "Open Wearables webhook status"
+      },
+      {
+        "url": "https://openwearables.io/compare",
+        "checked": "2026-10-17",
+        "note": "Open Wearables' own comparison with managed aggregators"
+      }
+    ]
+  },
+  {
+    "slug": "terra-vs-sahha",
+    "primaryQuery": "terra vs sahha",
+    "h1": "Terra vs Sahha: Which Health Data API for Your App?",
+    "metaTitle": "Terra vs Sahha: Wearable Data API or Phone-First Scores?",
+    "metaDescription": "Terra vs Sahha as of October 2026: credits per connected source from $399 vs per-user plans from $299, phone-first scores, cloud coverage, BAA, webhooks.",
+    "updated": "2026-10-17",
+    "answer": "Terra and Sahha solve different halves of the problem. As of October 17, 2026, Terra is a broad data pipe that normalizes data from 500+ providers through managed cloud connections and mobile SDKs, starting at $399 a month billed annually with credits per connected data source, and it sells scores as an add-on. Sahha turns the phone itself into a sensor and returns biomarkers, scores and insights on every plan, from $299 a month billed annually for 1,000 users, with a BAA from its Pro plan, but its direct cloud integrations are in public beta and sandbox only. Pick Terra for server-side wearable coverage and delivery options, and Sahha for users who may not own a wearable.",
+    "body": "Terra and Sahha both sit between your app and your users' health data, but they lead with different things. Terra's pitch is breadth: \"One API call returns standardised data from 500+ providers\". Sahha's is interpretation: \"From phones and 800+ devices to biomarkers, scores, archetypes, tags and insights your product can act on.\" Everything below is from the two vendors' own pages as we read them on October 17, 2026.\n\n## At a glance\n\n| Dimension | Terra | Sahha |\n|---|---|---|\n| Lead product | Normalized data from wearables, apps and phone health stores | Biomarkers, scores, archetypes, tags and insights |\n| Coverage claim | \"500+ providers\" on its site; its docs say \"over 150+ Data Sources\" | \"800+ devices across 165 integrations\" |\n| Users without a wearable | Data comes from the sources a user connects | The phone itself is \"a passive sensor for sleep, activity, and behavior\" |\n| Server-side cloud connections | The core of the product, with Terra-managed keys for many sources | \"For select providers\", and those integrations \"are in public beta and are Sandbox only\" |\n| Entry price | $399 a month billed annually, or $499 monthly, with 100,000 credits | Starter at $299 a month billed annually with 1,000 users |\n| Billing unit | 200 credits a month per connected data source, plus events past a free allowance | Users: $0.40 each past 1,000 on Starter, $0.20 each past 10,000 on Pro |\n| Free start | 30-day money-back guarantee; testing environments capped at 50 users | Free plan: $0 for 30 days, 25 development users, sandbox only |\n| Scores | An add-on, from $499 a month on Quick Start | 5 scores on every plan |\n| BAA | Listed on Enterprise | Included from Pro, at $1,499 a month billed annually |\n| Webhooks | HMAC signature header; up to 10 retries over about 8 hours | HMAC-SHA256 signature; up to 5 retries with exponential backoff |\n| Labs | Blood and DNA test ordering, US and UK | None listed |\n\n## Where Terra wins\n\n**Server-side coverage you can use in production.** Terra's model is cloud connections run by Terra: \"Terra manages API Keys of data sources, meaning you can connect users without having to apply for each API Key\", and \"Garmin data flows through Terra today\". Sahha says it \"also connects directly through their cloud API\" for select providers, but its docs say those integrations \"are in public beta and are Sandbox only\", and each one runs on an app you register with the provider. If you need Garmin, Oura or WHOOP data without your users installing your app, Terra is the one that offers it in production today.\n\n**More delivery options and diagnostics.** Terra delivers \"to webhooks, SQL databases (Postgres and MySQL), Supabase, cloud storage (S3, GCS and Azure Blob), queueing services (SQS and Kafka), MongoDB and Firestore\", and can \"Order blood and DNA tests for your users through Terra API\". Its data types run from \"sleep stages and latency\" to \"per-set strength training\".\n\n**The trade-off.** You pay per connected data source, and scores cost extra: \"Health scores are an add-on for Quick Start plans. Starting from $499 / month\".\n\n## Where Sahha wins\n\n**Users without a wearable.** Sahha's answer to \"do my users need a wearable?\" is \"No. Sahha turns the smartphone itself into a passive sensor for sleep, activity, and behavior.\" For a mass-market app where most users own only a phone, that is a different starting dataset, not just a cheaper one.\n\n**Interpretation included.** Every Sahha plan includes \"Biomarkers 100+ Scores 5 Archetypes 100+ Tags 75+ Insights 100+\". On Terra, scores are a separate add-on.\n\n**A lower, per-user bill.** Starter is $299 a month billed annually with 1,000 users, then \"$0.40/user\"; Pro is $1,499 with 10,000 users, then \"$0.20/user\". By our arithmetic, with one source per person and annual billing:\n\n| Users | Terra | Sahha |\n|---|---|---|\n| 1,000 | About $899 ($399 plus 100,000 extra credits at $0.005) | $299 on Starter |\n| 5,000 | About $4,899 ($399 plus 900,000 extra credits) | $1,499 on Pro, or about $1,899 on Starter |\n\nThose are list-price calculations, not quotes, and Sahha's page does not define a user in the text we fetched.\n\n**A BAA below Enterprise.** \"The DPA is included on every plan. A BAA is included from Pro.\" Terra lists its signed BAA on Enterprise.\n\n**The trade-off.** Sahha's data mostly arrives \"on-device through Apple Health or Health Connect\", so your app with Sahha's SDK has to be on the user's phone, and data retention is 30 days on Starter and 120 on Pro.\n\n## Webhooks and signatures\n\nBoth sign their webhooks. Terra says \"Every webhook sent by Terra includes an HMAC-based signature header\" and \"retries the delivery up to 10 times with exponential backoff\". Sahha tells you to \"Compute an HMAC-SHA256 hash of the raw request body using your secret key, then compare it to the signature in the header\", and says \"Failed deliveries are retried up to 5 times with exponential backoff\". Sahha also batches score and biomarker updates: its webhook interval \"acts as a deduplication window\".\n\n## What we could not verify\n\n- **Sahha's definition of a user.** Its pricing page lists the question \"What counts as a user?\", but the answer did not appear in the text we fetched.\n- **When Sahha's cloud integrations leave beta.** The docs say beta and sandbox only, with no date.\n- **Terra's default hosting region.** The Terra pages we read name a localised dedicated instance on Enterprise but no default region.\n\n## Which should you pick?\n\n- **Most of your users have a phone but no wearable:** lean Sahha.\n- **You want scores and insights without building them:** lean Sahha, where they come with every plan.\n- **You need server-side Garmin, Oura or WHOOP data in production, or many sources per user:** lean Terra.\n- **Lab tests, or data delivered into your own database or queue:** Terra.\n- **A HIPAA product on a mid-size budget:** compare Sahha's Pro, which includes the BAA, with Terra's Enterprise quote.\n\nSee [Sahha API pricing](/pricing/sahha-api-pricing), the [Terra integration guide](/integrate/terra-api) and [health-data aggregator APIs](/fitness-apis/health-data-aggregator-apis) for the rest of the field.\n\n## Bottom line\n\nTerra is the broader data pipe, billed per connected source; Sahha is the phone-first signal layer, billed per user, with scores and a lower BAA tier included. Pick by where your users' data starts, then re-read both live pricing pages, because these figures are from October 17, 2026.",
+    "faqs": [
+      {
+        "q": "Is Terra or Sahha cheaper?",
+        "a": "On list prices, Sahha. As of October 17, 2026, Sahha's Starter is $299 a month billed annually for 1,000 users and Pro is $1,499 for 10,000, while Terra starts at $399 a month billed annually and charges 200 credits per connected data source per month. By our arithmetic, 5,000 one-source users cost about $4,899 a month on Terra and $1,499 on Sahha's Pro. The products differ, so price what you need, not just the user count."
+      },
+      {
+        "q": "Does Sahha work if my users do not have a wearable?",
+        "a": "Yes. Sahha's homepage says users do not need a wearable because Sahha turns the smartphone itself into a passive sensor for sleep, activity and behavior. Terra works from the sources a user connects, such as a watch, ring or phone health store. As of October 17, 2026, that is the clearest difference between the two."
+      },
+      {
+        "q": "Can Sahha pull Garmin data from the cloud like Terra?",
+        "a": "Only in beta. As of October 17, 2026, Sahha's docs say its direct cloud integrations are in public beta and sandbox only, and Garmin's needs Garmin's approval of your own app. Terra's homepage says Garmin data flows through Terra's own partner integration today, though its integrations table marks Garmin as Required, so confirm the credential setup with Terra."
+      },
+      {
+        "q": "Which Terra and Sahha plans include a BAA?",
+        "a": "As of October 17, 2026, Sahha includes a BAA from its Pro plan, $1,499 a month billed annually, and its DPA on every plan. Terra lists a signed BAA on its Enterprise plan, which is priced by quote. Whether you need a BAA depends on your role under HIPAA."
+      },
+      {
+        "q": "Do Terra and Sahha sign their webhooks?",
+        "a": "Both do. Terra includes an HMAC-based signature header on every webhook and retries failed deliveries up to 10 times with exponential backoff. Sahha signs with HMAC-SHA256 over the raw request body and retries failed deliveries up to 5 times. Verify against the raw body in both cases, before any JSON parsing."
+      }
+    ],
+    "related": [
+      {
+        "href": "/pricing/sahha-api-pricing",
+        "label": "Sahha API pricing"
+      },
+      {
+        "href": "/fitness-apis/health-data-aggregator-apis",
+        "label": "Best health-data aggregator APIs"
+      },
+      {
+        "href": "/integrate/terra-api",
+        "label": "Integrate Terra"
+      },
+      {
+        "href": "/pricing/health-data-aggregator-pricing",
+        "label": "Aggregator pricing compared"
+      },
+      {
+        "href": "/compare",
+        "label": "All API comparisons"
+      }
+    ],
+    "cta": {
+      "pitch": "Comparing health-data APIs for your build? Get our developer newsletter for pricing, coverage and beta-status changes on Terra, Sahha and the rest."
+    },
+    "sources": [
+      {
+        "url": "https://tryterra.co/",
+        "checked": "2026-10-17",
+        "note": "Terra coverage, data types, destinations, labs, compliance and pricing FAQ"
+      },
+      {
+        "url": "https://sahha.ai/",
+        "checked": "2026-10-17",
+        "note": "Sahha coverage, pricing FAQ and compliance"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+        "checked": "2026-10-17",
+        "note": "Terra data source count and providers with special setup"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/integration-setup/dedicated-data-source-api-keys",
+        "checked": "2026-10-17",
+        "note": "Terra managed and dedicated provider keys"
+      },
+      {
+        "url": "https://sahha.ai/integrations/",
+        "checked": "2026-10-17",
+        "note": "Sahha integrations"
+      },
+      {
+        "url": "https://docs.sahha.ai/docs/connect/integrations",
+        "checked": "2026-10-17",
+        "note": "Sahha cloud integrations beta"
+      },
+      {
+        "url": "https://tryterra.co/pricing",
+        "checked": "2026-10-17",
+        "note": "Terra plans, credits, add-ons and Enterprise terms"
+      },
+      {
+        "url": "https://sahha.ai/pricing/",
+        "checked": "2026-10-17",
+        "note": "Sahha plans"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/integration-setup/understanding-terra-environments",
+        "checked": "2026-10-17",
+        "note": "Terra environments and test user limit"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+        "checked": "2026-10-17",
+        "note": "Terra webhook signing, retries and timeout"
+      },
+      {
+        "url": "https://docs.sahha.ai/docs/connect/webhooks",
+        "checked": "2026-10-17",
+        "note": "Sahha webhooks"
+      },
+      {
+        "url": "https://tryterra.co/products/lab-testing",
+        "checked": "2026-10-17",
+        "note": "Terra lab testing geography and collection methods"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/pricing",
+        "checked": "2026-10-17",
+        "note": "Terra credit tiers"
+      },
+      {
+        "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+        "checked": "2026-10-17",
+        "note": "Terra integration credential requirements"
+      }
+    ]
   }
 ];

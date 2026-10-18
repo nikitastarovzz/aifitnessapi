@@ -276,28 +276,28 @@ export const pricingEntries: ClusterEntry[] =
   {
     "slug": "health-data-aggregator-pricing",
     "primaryQuery": "health data aggregator api pricing",
-    "h1": "Health data aggregator API pricing: how Terra, Junction, Rook, and Spike charge",
-    "metaTitle": "Health Data Aggregator API Pricing Models",
-    "metaDescription": "How health data aggregators like Terra, Junction (formerly Vital), Rook, and Spike price API access: per-MAU and tiered models. Prices vary; verify.",
-    "updated": "2026-07-23",
-    "answer": "Unlike most first-party wearable APIs, health-data aggregators are where a recurring API bill actually lands. Terra, Junction (formerly Vital), Rook, and Spike almost all price on active or connected users (per-MAU), usually tiered by user count with an enterprise 'contact sales' top tier, and sometimes a credit or event layer on top. The biggest cost driver is that your bill scales directly with your connected-user base. Specific per-MAU prices are mostly not publicly listed, and several vendor pricing pages could not be verified, so treat the model as reliable and every number as 'as of 2026, verify with the vendor.'",
-    "body": "## What it actually costs\n\nThe honest way to read aggregator pricing is to separate the **model** (how they charge) from the **numbers** (what they charge), because the numbers are the part nobody publishes cleanly.\n\n| Vendor | Pricing model | What's public (as of 2026 — verify) |\n|---|---|---|\n| Terra | Usage-based on active connected users (\"active authentications\"), often with a credit/event allowance on top | Model is clear; specific figures are **not primary-verified** — verify on Terra's pricing page or with sales. |\n| Junction (formerly Vital) | Tiered by user count, plus a contact-sales Enterprise tier | Tiering exists (a smaller-user tier, a larger-user tier, Enterprise); **specific prices are not publicly listed** — verify. |\n| Rook | Usage-based, \"pay only for what you use,\" named tiers by active-user ceiling | Tier structure reported (Core / Business / Enterprise); **no per-user dollar figure sourced** — verify. |\n| Spike | Markets \"transparent, usage-driven, flexible\" pricing that scales with the business | **Specific tiers and figures were not retrievable** — verify with the vendor. |\n\nA few honest notes on that table. \"Active user\" or \"MAU\" is the near-universal unit — you generally pay for each end user whose wearable or app is connected and syncing in a given month, not per API call. **Tiering by user count** is the common wrapper: as your connected-user base grows you move up bands, and the largest band is almost always \"contact sales.\" Terra is the one that most visibly adds a **credit or event layer** on top of the user count, so its bill has two dimensions rather than one. None of these is inherently \"cheap\" or \"expensive\" — the right frame is whether the per-user model fits how your product grows.\n\nCritically: no per-MAU or per-connection dollar rate for any of these aggregators was verifiable during research, and several vendor pricing pages returned errors to automated fetching. Do not budget against a specific number you read secondhand — open the live pricing page or talk to sales before you commit.\n\n## The catch — what to budget for\n\nThe sticker (per-MAU or per-tier) is only part of the real cost. A few things bite:\n\n- **Your bill scales with your user base, by design.** Per-MAU pricing is predictable to model but it grows directly with adoption. A pricing tier that looks fine at launch is a different number at 50,000 connected users — and that upper band is usually the \"contact sales\" one you can't self-check.\n- **Credits and events can be a second meter.** Where a vendor (Terra, notably) layers a credit or event allowance on top of the user count, a data-heavy integration — high-frequency heart rate, sleep, workouts — can consume the allowance faster than user count alone suggests. Confirm how events are counted before you assume the base plan covers your volume.\n- **\"Contact sales\" means your real price is negotiated.** For anything past the self-serve tiers, the number that matters comes out of a sales conversation, not a public page. Budget lead time for that, and expect annual commitments at the enterprise end.\n- **The aggregator fee doesn't replace your own costs.** You still pay for your infrastructure, storage of high-volume wearable history, token and webhook handling, and health-data compliance (HIPAA/GDPR, encryption, BAAs). The aggregator removes integration labor, not your platform costs.\n\n## Why it costs money but can still save you money\n\nFirst-party wearable APIs are mostly free to call, so why pay an aggregator at all? Because the aggregator is a **build-vs-buy** trade. Supporting many wearables directly means N separate first-party integrations — each with its own OAuth flow, its own approval process, its own schema, and its own ongoing maintenance as that provider changes. An aggregator collapses that into one integration and one normalized data stream, and charges you a recurring per-user fee for doing so.\n\nThe rough heuristic: few devices, engineering to spare, and willingness to do each approval favors going direct (low API fee, high integration and maintenance cost). Many devices, a desire for one integration, and a predictable per-MAU budget favors an aggregator (a real recurring fee, much lower maintenance). Most teams end up mixing. What you're buying is the removal of per-provider integration and upkeep work — whether that's worth the per-user price depends on how many providers you'd otherwise build and maintain yourself.\n\n## How it compares and cheaper paths\n\n- For which aggregators exist and how they differ on coverage and features, see the [health-data aggregator APIs overview](/fitness-apis/health-data-aggregator-apis).\n- Weighing the two most-compared options head to head? See [Terra vs Vital (Junction)](/fitness-apis/terra-vs-vital).\n- To wire up a specific one, the [Terra API integration guide](/integrate/terra-api) walks through setup.\n- If you only need one or two wearables, going direct may be the lower-fee path — first-party APIs are mostly [free to call](/pricing/are-fitness-apis-free), and the [wider fitness API cost breakdown](/pricing/how-much-does-a-fitness-api-cost) covers the full build-vs-buy math.\n\n## Honest close\n\nAggregators are the part of the fitness-data landscape where recurring API spend genuinely accrues — but the exact numbers are the hardest to pin down, because most vendors keep them behind \"contact sales\" and their pricing pages frequently can't be read from the outside. The models above (per-MAU, tiered by user count, sometimes a credit layer, enterprise contact-sales) are stable enough to plan around. The prices are not. Re-open each vendor's live pricing page, or get a quote, before you budget against any figure — pricing here changes, and the public record is thin on purpose.",
+    "h1": "Health data aggregator API pricing: what Terra, Junction, Rook, Spike and four more charge",
+    "metaTitle": "Health Data Aggregator API Pricing Compared (2026)",
+    "metaDescription": "Published prices for Terra, Junction, Rook, Spike, Sahha, Thryve, Validic and Open Wearables as of October 2026, and what each counts as a billable user.",
+    "updated": "2026-10-17",
+    "answer": "As of October 17, 2026, eight health-data aggregators publish an entry price on their own pages: Validic's Inform developer tier and the open-source Open Wearables are free, Junction's Launch plan is a flat $300 a month for up to 500 connected users, Sahha's Starter is $299 a month billed annually with 1,000 users, Terra starts at $399 a month billed annually and Rook at $399 a month for 750 active users, Spike's Sandbox starts from $450 a month, and Thryve's Start Up starts at 499 euros a month for 500 users. The units differ: Terra bills credits per connected data source and per event past an allowance, Rook bills active users, Sahha and Thryve charge per user above an included number, and every vendor moves you to a custom contract at scale. LexisNexis Human API and Metriport publish no prices.",
+    "body": "## What each aggregator publishes\n\nUntil this revision, this page said aggregator prices were mostly not public. That is no longer true: when we read the vendors' pricing pages on October 17, 2026, eight of them showed an entry price.\n\n| Vendor | Entry plan and list price | What it includes | How the bill grows |\n|---|---|---|---|\n| Terra | Quick Start: $399 a month billed annually, or $499 billed monthly | 100,000 credits a month, all integrations and data types | 200 credits per connected data source per month; events past 400 per source cost 0.5 credits; extra credits from $0.005, $0.003 past 1,000,000 |\n| Junction | Launch: a flat $300 a month, billed monthly | 1 to 500 connected users, 300+ device integrations, the Link widget | Enterprise (custom, billed annually) for unlimited users, lab testing and a signed BAA |\n| Rook | Core: $399 a month | Up to 750 active users, all Wearable API integrations | Core+ $999 (5,000 users), Business $1,999 (15,000), Enterprise custom; past a plan's limit, \"billing adjusts based on usage\" |\n| Spike | Sandbox: \"Starts from $450 /month\" | 40+ providers and 500+ devices, a dedicated implementation engineer | Enterprise is custom; scaling is not itemized |\n| Sahha | Starter: $299 a month billed annually | 1,000 users, every product | $0.40 per extra user; Pro at $1,499 a month billed annually includes 10,000 users, then $0.20 each |\n| Thryve | Start Up: from 499 euros a month | 500 users, one app connection | 0.50 euros per extra user; Scale Up from 1,000 euros a month for startups under ten years old (up to 5,000 users, then 999 euros per 10,000) |\n| Validic | Inform Developer: free | 5 users, 5 cloud integrations, 90-day retention | Enterprise is negotiated; a Business plan is listed as coming soon |\n| Open Wearables | Open source: free | MIT-licensed software you host | Enterprise support is scoped per project |\n\nTwo more vendors that show up in aggregator shortlists publish no price: LexisNexis Human API offers a contact form, and Metriport asks you to book an intro call before production access. Read every figure as \"list price as of October 17, 2026\", before taxes, add-ons and negotiated discounts.\n\n## What each vendor counts as a user\n\nThe unit matters as much as the rate:\n\n- **Terra** bills \"active authentications\". Its pricing FAQ says \"An active authentication is one connected data source for one end user, and costs 200 credits per month\", so one person with a watch and a ring is two.\n- **Rook** prices \"based on the plan and the number of active users\".\n- **Sahha** and **Thryve** include a number of users and charge per extra user. Sahha's pricing page has an FAQ titled \"What counts as a user?\" whose answer did not appear in the page text we fetched, so confirm the definition with Sahha.\n- **Junction**'s Launch plan \"covers 1-500 connected users\" at a flat rate.\n\n## Our arithmetic: the same user counts on each price sheet\n\nThese are our own calculations from the list prices above, not vendor quotes. They assume one connected data source per person, annual billing where it is offered, Terra events within the free allowance (Terra says 95% of customers are never charged for events), and no add-ons.\n\n| Connected users | Terra | Rook | Sahha | Thryve | Junction |\n|---|---|---|---|---|---|\n| 1,000 | About $899 a month ($399 plus 100,000 extra credits at $0.005) | $999 on Core+ (Core stops at 750) | $299 on Starter | About 749 euros on Start Up | Enterprise (custom) |\n| 5,000 | About $4,899 a month ($399 plus 900,000 extra credits) | $999 on Core+ | $1,499 on Pro (Starter would be about $1,899) | About 2,749 euros on Start Up, or 1,000 euros on Scale Up if eligible | Enterprise (custom) |\n\nSpike, Validic past its free tier, and every vendor's Enterprise plan need a quote. Open Wearables has no licence fee, but the hosting, security and provider registrations are yours. If your users connect more than one source each, Terra's column grows with them while the per-user columns do not.\n\n## Where the BAA and the contract terms sit\n\nFor a HIPAA product the plan that carries the Business Associate Agreement can matter more than the entry price:\n\n- **Terra** lists a \"Signed BAA (data protection agreement)\" on Enterprise.\n- **Junction** puts \"The signed Business Associate Agreement, our SOC 2 Type 2 and ISO 27001 reports, and customer-managed encryption keys\" in Enterprise.\n- **Rook** signs one \"when the customer is a Covered Entity or Business Associate and a BAA applies\", reviewed during contracting, and its \"standard contract term is 12 months, with the flexibility to cancel with 30 days' prior notice\".\n- **Sahha**: \"A BAA is included from Pro.\"\n- **Thryve** says \"BAA agreements included on all plans\".\n- **Validic** offers a BAA \"for Enterprise customers\".\n- **Open Wearables**: \"BAA is available on the Enterprise plan\".\n\nThis is general information, not legal advice; whether you need a BAA depends on your role under HIPAA, which our [HIPAA compliance guide for fitness apps](/compliance/hipaa-compliance-fitness-app) explains.\n\n## Add-ons and second meters\n\n- Terra prices \"Add-ons such as the Streaming API and Planned Workouts\" separately, and its Health Scores add-on starts from $499 a month on Quick Start.\n- Rook's Business and Enterprise plans include every add-on, Core+ includes three, and Core pays per add-on; its Lab Data API is \"billed by the files processed each month, on every plan\", from $249 a month for up to 300 files.\n- Spike lists its Nutrition Scanner AI as a separate Sandbox plan.\n\n## The catch: what the aggregator fee does not cover\n\n- **Your own provider registrations.** Several providers need your own developer account behind any aggregator; Rook says that \"can take several weeks\". See the credential column in our [aggregator comparison](/fitness-apis/health-data-aggregator-apis).\n- **Retention.** Short retention windows (two weeks on Thryve's Start Up, 30 days on Sahha's Starter) mean you store history yourself.\n- **Your platform costs.** Infrastructure, storage of high-volume history, token and webhook handling and compliance work stay with you. The aggregator removes integration labor, not your platform.\n\n## Why it costs money but can still save you money\n\nFirst-party wearable APIs are mostly [free to call](/pricing/are-fitness-apis-free), so an aggregator is a build-vs-buy trade: one integration and one normalized stream instead of a separate OAuth flow, approval, schema and maintenance burden per provider. In our experience the trade favors going direct when you need one or two providers and favors an aggregator when you need many. The [wider fitness API cost breakdown](/pricing/how-much-does-a-fitness-api-cost) covers the full math.\n\n## Honest close\n\nThe category moved from contact-sales to published price sheets, which makes it possible to budget before a sales call. The sheets are not comparable at a glance, because the vendors bill different units, so run your own user count through each one, and re-open the live pricing pages before you commit: two of the vendors here changed owners in 2026.",
     "faqs": [
       {
         "q": "How do health data aggregators charge for API access?",
-        "a": "Most price on active or connected users (per monthly active user, or per-MAU), usually organized into tiers by user count with an enterprise 'contact sales' tier at the top. Some, notably Terra, add a credit or event allowance on top of the user count. You generally pay per connected end user per month rather than per API call. Specific figures are mostly not publicly listed, so verify current pricing with each vendor."
+        "a": "By connected users or connected sources, in tiers, with a custom contract at the top. As of October 17, 2026, Terra bills credits for each connected data source plus events past a free allowance, Rook prices by plan and active users, Sahha and Thryve include a number of users and charge per extra user, and Junction's Launch plan is flat for up to 500 connected users. You generally pay per connection per month, not per API call."
       },
       {
-        "q": "How much does Terra, Junction, Rook, or Spike cost per user?",
-        "a": "No reliable per-MAU or per-connection dollar figure is publicly listed for any of them, and several of their pricing pages could not be verified during research. Terra is usage-based on active connected users with a credit layer; Junction (formerly Vital) tiers by user count plus enterprise; Rook uses named active-user tiers; Spike markets usage-based pricing. Get a live quote or open the vendor's pricing page before budgeting a number."
+        "q": "How much does a health data aggregator cost for 1,000 users?",
+        "a": "By our arithmetic from the list prices on October 17, 2026, with one data source per person and annual billing: about $899 a month on Terra, $999 on Rook's Core+ plan, $299 on Sahha's Starter, about 749 euros on Thryve's Start Up, and a custom Enterprise quote on Junction, whose Launch plan stops at 500 connected users. Spike's scaling is not published. These are our calculations, not vendor quotes."
       },
       {
-        "q": "Why pay an aggregator when first-party wearable APIs are free to call?",
-        "a": "It is a build-vs-buy trade. Supporting many wearables directly means a separate integration, OAuth flow, approval, and schema for each provider, plus ongoing maintenance as they change. An aggregator collapses that into one integration and one normalized data stream and charges a recurring per-user fee for it. You are paying to remove per-provider integration and upkeep work, not per API call."
+        "q": "Which aggregator plans include a HIPAA BAA?",
+        "a": "It varies by plan. As of October 17, 2026, Thryve says BAAs are included on all plans, Sahha includes one from its Pro plan, Rook signs one when a BAA applies to the relationship, and Terra, Junction, Validic and Open Wearables list it on their Enterprise plans. Whether you need one depends on your role under HIPAA, so check that first."
       },
       {
-        "q": "Is aggregator pricing predictable?",
-        "a": "The per-MAU model is predictable to model, but it scales directly with your user base by design, so a tier that fits at launch is a different number at scale. Credit or event layers can add a second meter for data-heavy integrations, and anything past the self-serve tiers is negotiated through sales. Model the growth curve, not just the launch price, and verify current tiers."
+        "q": "Is there a free health data aggregator API?",
+        "a": "Two free routes exist as of October 17, 2026. Validic's Inform Developer plan is free with no contract or credit card, covering 5 users and 5 cloud integrations, and Open Wearables is MIT-licensed software you can self-host at no licence cost, though you register with each provider and run it yourself. Paid aggregators offer sandboxes or trials: Sahha's free plan lasts 30 days, Thryve offers a 14-day trial and Junction's sandbox is free."
       },
       {
         "q": "Does the aggregator fee replace my other costs?",
@@ -310,12 +310,16 @@ export const pricingEntries: ClusterEntry[] =
         "label": "Best health-data aggregator APIs"
       },
       {
-        "href": "/fitness-apis/terra-vs-vital",
-        "label": "Terra vs Vital (Junction)"
+        "href": "/pricing/sahha-api-pricing",
+        "label": "Sahha API pricing"
       },
       {
-        "href": "/integrate/terra-api",
-        "label": "Integrate Terra"
+        "href": "/pricing/thryve-api-pricing",
+        "label": "Thryve API pricing"
+      },
+      {
+        "href": "/fitness-apis/terra-vs-vital",
+        "label": "Terra vs Vital (Junction)"
       },
       {
         "href": "/pricing",
@@ -323,8 +327,115 @@ export const pricingEntries: ClusterEntry[] =
       }
     ],
     "cta": {
-      "pitch": "Get a heads-up when aggregator pricing tiers, per-MAU terms, and wearable API access rules change, so your budget isn't the last to hear about it."
-    }
+      "pitch": "Get a heads-up when an aggregator changes a plan, a per-user price or the plan its BAA sits on, so your budget isn't the last to hear about it."
+    },
+    "sources": [
+      {
+        "url": "https://tryterra.co/pricing",
+        "checked": "2026-10-17",
+        "note": "Terra plans, credits, add-ons and Enterprise terms"
+      },
+      {
+        "url": "https://tryterra.co/",
+        "checked": "2026-10-17",
+        "note": "Terra coverage, data types, destinations, labs, compliance and pricing FAQ"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/pricing",
+        "checked": "2026-10-17",
+        "note": "Terra credit tiers"
+      },
+      {
+        "url": "https://www.junction.com/pricing",
+        "checked": "2026-10-17",
+        "note": "Junction Launch and Enterprise plans"
+      },
+      {
+        "url": "https://tryrook.io/pricing/",
+        "checked": "2026-10-17",
+        "note": "Rook plans, add-ons and contract terms"
+      },
+      {
+        "url": "https://www.spikeapi.com/pricing",
+        "checked": "2026-10-17",
+        "note": "Spike Sandbox and Enterprise plans"
+      },
+      {
+        "url": "https://www.spikeapi.com/",
+        "checked": "2026-10-17",
+        "note": "Spike scope, implementation engineer and customers"
+      },
+      {
+        "url": "https://sahha.ai/",
+        "checked": "2026-10-17",
+        "note": "Sahha coverage, pricing FAQ and compliance"
+      },
+      {
+        "url": "https://sahha.ai/pricing/",
+        "checked": "2026-10-17",
+        "note": "Sahha plans"
+      },
+      {
+        "url": "https://www.thryve.health/pricing",
+        "checked": "2026-10-17",
+        "note": "Thryve plans, storage and hosting"
+      },
+      {
+        "url": "https://validic.com/blog/Validic-Inform-Is-Now-Free/",
+        "checked": "2026-10-17",
+        "note": "Validic Inform free tier"
+      },
+      {
+        "url": "https://validic.com/inform-signup/",
+        "checked": "2026-10-17",
+        "note": "Validic Inform plans"
+      },
+      {
+        "url": "https://openwearables.io/pricing",
+        "checked": "2026-10-17",
+        "note": "Open Wearables licence and Enterprise"
+      },
+      {
+        "url": "https://risk.lexisnexis.com/products/humanapi",
+        "checked": "2026-10-17",
+        "note": "LexisNexis Human API"
+      },
+      {
+        "url": "https://docs.metriport.com/medical-api/getting-started/quickstart",
+        "checked": "2026-10-17",
+        "note": "Metriport Medical API access"
+      },
+      {
+        "url": "https://www.thryve.health/certifications-compliance",
+        "checked": "2026-10-17",
+        "note": "Thryve certifications and BAA"
+      },
+      {
+        "url": "https://docs.tryrook.io/data-sources/",
+        "checked": "2026-10-17",
+        "note": "Rook data sources and own developer accounts"
+      },
+      {
+        "url": "https://validic.com/news/chartspan/",
+        "checked": "2026-10-17",
+        "note": "ChartSpan acquisition of Validic"
+      },
+      {
+        "url": "https://www.spikeapi.com/integrations",
+        "checked": "2026-10-17",
+        "note": "Spike integrations and acquisition banner"
+      },
+      {
+        "url": "https://openwearables.io/docs",
+        "checked": "2026-10-17",
+        "note": "Open Wearables docs"
+      },
+      {
+        "url": "https://openwearables.io/docs/providers/supported",
+        "checked": "2026-10-17",
+        "note": "Open Wearables provider setup"
+      }
+    ]
   },
   {
     "slug": "nutrition-api-pricing",
@@ -590,5 +701,190 @@ export const pricingEntries: ClusterEntry[] =
       "pitch": "Free tiers are the first thing a vendor tightens. Subscribe and we will tell you when one of these gates, caps, or licences moves."
     },
     "body": "## Four different things vendors call \"free\"\n\nThe word does four jobs in this market, and a comparison that does not separate them is useless. Every item below is one of these:\n\n1. **Free to call.** No per-request fee documented for the developer. The vendor is not billing you; the constraint arrives as an approval, a user-side dependency, or a scope restriction instead.\n2. **A free tier that runs out.** A real entry point into a paid product, sized so a prototype fits and production does not. Access you borrow, and the vendor can narrow or withdraw it.\n3. **Free code, paid service — or paid nothing, if you run it yourself.** Open-source software and open models cost nothing to obtain, and everything they do not do is your engineering bill. wger and the pose models sit here.\n4. **Free data with licence obligations.** No money changes hands, but attribution, share-alike, or copyleft terms constrain what you can ship. The invoice arrives as legal review.\n\nWhether fitness APIs are free at all is a separate question — [are fitness APIs free?](/pricing/are-fitness-apis-free) works through it by category. This page assumes the answer is \"some of them, conditionally,\" and compares those conditions side by side across the whole stack.\n\n## The 12 free-to-call items and what each one costs instead\n\nThese figures come from this site's published survey, [The State of Fitness APIs 2026](/state-of-fitness-apis-2026), and the open dataset behind it: 12 of 25 surveyed items (48%) are free to call. The catch column quotes the dataset's `approvalGate` and `userSideCost` fields verbatim, so you can check every cell against [fitness-apis-2026.json](/datasets/fitness-apis-2026.json).\n\n| Item | Layer | What \"free to call\" does not cover (verbatim from the dataset) |\n|---|---|---|\n| Fitbit Web API (Google) | Wearable direct | Approval gate: \"Developer app registration; access to other users' intraday data is case-by-case (verify).\" User-side cost: \"Each user must own a Fitbit device and account.\" |\n| Oura Cloud API | Wearable direct | Approval gate: \"A fresh app connects only a small number of users (reported around 10) until Oura's review — the 'Oura for Organizations' partner path.\" User-side cost: \"User must own an Oura Ring; Gen3 users reportedly need an active Oura Membership (verify).\" |\n| WHOOP Developer Platform | Wearable direct | Approval gate: \"Hard 10-member cap until production approval, and WHOOP requires developers to hold a membership.\" User-side cost: \"Every end user needs an active WHOOP membership for their data to flow.\" |\n| Polar Open AccessLink | Wearable direct | Both fields null: no gate, no user-side cost documented |\n| Apple HealthKit | Platform store | Approval gate: \"App Store review checks that your health usage-description strings match what you actually do.\" No user-side cost |\n| Google Health Connect | Platform store | Approval gate: \"Play Console health-data declaration and review before you can publish.\" No user-side cost |\n| USDA FoodData Central | Nutrition | Both fields null; licence is public domain (CC0), so no obligation either |\n| Open Food Facts | Nutrition | Both fields null; the catch is the licence: ODbL share-alike can require opening a derived database |\n| wger (self-hosted) | Exercise content | Both fields null; the catch is the licence: AGPL-3.0 code, Creative Commons data |\n| MediaPipe Pose Landmarker | Pose model | Both fields null; Apache-2.0, ungated |\n| TensorFlow MoveNet | Pose model | Both fields null; Apache-2.0, ungated |\n| Apple Vision body pose | Pose model | Both fields null; bundled with the Apple SDK, ungated |\n\nRead down that column and the shape is obvious. The free layer and the gated layer overlap heavily but are not the same set: five of these twelve put an approval on your critical path, three make your end user pay someone else first, and two swap money for licence obligations. Only five — Polar, USDA, and the three pose models — are free in the flat, unqualified sense, and every one of those five is a dataset or a model rather than a live personal-data feed. Not a coincidence: the moment an API returns a specific human's health history, somebody wants to review your app first.\n\n## The five free tiers, and where each one stops\n\nThe dataset classes five items as `free-tier-then-paid`: a genuine free entry point that ends somewhere. Where it ends is the only thing worth comparing, stated only as our own verified pages state it.\n\n- **Strava** — no per-call developer fee, but Standard-tier developers reportedly must hold a paid Strava subscription (2026, verify). The harder limit is architectural: an athlete's data may generally only be displayed back to that athlete, and using it to train AI or ML models is prohibited. A free tier that forbids your core feature is not a pricing question.\n- **Nutritionix** — freemium into tiered paid plans with an enterprise contact-sales top tier and annual billing on larger commitments. Higher tiers are gated through a Syndigo sales contact rather than a self-serve checkout. Reports conflict on whether the open free tier still exists at all, so verify before designing around it.\n- **Edamam** — a self-serve free Developer tier for low volume, then paid Enterprise tiers priced per product line. Two catches beyond volume: lower plans carry attribution requirements, and the terms reportedly restrict calls to end-user-driven requests and prohibit scraping or bulk saving. That rules out pre-fetching a catalogue — an architecture decision, not a budget line.\n- **ExerciseDB (via RapidAPI)** — a hard-capped free tier, then paid tiers metered by request volume with overage above quota. The free tier is often non-commercial, which is the part that catches people. Do not assume a specific quota; reported numbers vary and marketplace listings change without notice.\n- **QuickPose** — the one motion SDK you can start on today without a sales call: a fully-featured self-serve free tier with no watermark, moving to paid above a monthly-active-device threshold. Its public repos publish no tiers, so confirm the threshold directly.\n\nNotice how differently these five run out: Strava on permitted use, Edamam on request provenance and volume, ExerciseDB on commercial use and a hard cap, Nutritionix at a sales conversation, QuickPose on a device count. Only two end mainly at a request quota, so \"what is the limit?\" is the wrong first question to ask a vendor here.\n\n## Why there are no dollar figures anywhere on this page\n\nBecause the dataset behind it has none, by design. Its methodology note puts the reason plainly: prices are volatile; structures are stable. A vendor can reprice twice a year without changing the fact that its API sits behind a partner review, or that its data only exists for users who bought hardware.\n\nThere is a second, less principled reason. Serious tiers here are contact-sales, and many of the figures circulating in posts about fitness APIs are third-party guesses that were stale on publication. Printing one would make this page look more useful and be less true.\n\nSo the comparison is structural: who bills you, who gates you, who has to be paying someone else before your feature works, and what the licence makes you do. Those four columns survive a repricing. To turn structure into a number, the [fitness API cost planner](/cost-planner) walks the same dataset item by item.\n\n## The rule that makes this comparison usable\n\nRank the four meanings by how durable they are rather than by what they cost today, because that ordering is stable and prices are not.\n\nFree data under a permissive licence is the most durable: public domain and CC0 sources cannot be withdrawn, repriced, or gated, and USDA FoodData Central is the clearest example here. Open models come next — Apache-2.0 weights you have already downloaded do not stop working. Free-to-call APIs are durable in price but not in access, since the approval gate and the user-side membership are outside your control and both have tightened recently. A vendor free tier is the least durable: it is a business decision the vendor can reverse, and Nutritionix reportedly narrowing its open free tier is the worked example.\n\nCopyleft and share-alike sit awkwardly across that ranking. AGPL and ODbL data is as durable as public domain — nobody can take it back — but it constrains what you ship, and that constraint does not soften as you grow. Treat it as a permanent architectural fact, not a cost you can pay off later.\n\nFor the roundup of the open-source options themselves, with licence detail on each, see [free and open-source fitness APIs](/fitness-apis/free-fitness-apis). This page does not reproduce it.\n\n## Watch the fine print\n\nEvery gate, threshold, and restriction above is quoted from pages verified during 2026, and vendors change all of them. The dataset records what could be verified and leaves a null where it could not, so a blank cell means \"not documented on our pages,\" never \"no catch exists.\" Re-open each provider's live terms before you commit, and treat the free-tier five as the most volatile rows here — a free tier is the first thing a vendor tightens."
+  },
+  {
+    "slug": "sahha-api-pricing",
+    "primaryQuery": "sahha pricing",
+    "h1": "Sahha API pricing: plans, per-user costs and what each tier includes",
+    "metaTitle": "Sahha API Pricing (2026): Plans, Per-User Costs, BAA",
+    "metaDescription": "Sahha's published plans as of October 2026: a free 30-day sandbox, Starter at $299 a month with 1,000 users, Pro at $1,499 with 10,000, and the BAA tier.",
+    "updated": "2026-10-17",
+    "answer": "As of October 17, 2026, Sahha's pricing page lists four plans: Free at $0 for 30 days with 25 development users in sandbox only, Starter at $299 a month billed annually with 1,000 users included and $0.40 per extra user, Pro at $1,499 a month billed annually with 10,000 users included and $0.20 per extra user, and custom Enterprise. Every plan unlocks every product (biomarkers, scores, archetypes, tags and insights), and the BAA for HIPAA starts at Pro. By our arithmetic, Pro is cheaper than Starter above 4,000 users; annual billing is the discounted option, as the page's billing toggle marks Annual at 25% off.",
+    "body": "## What it costs\n\nSahha publishes its full price sheet. As we read it on October 17, 2026:\n\n| Plan | List price | Users included | Each extra user | Data retention | Webhook deliveries a day |\n|---|---|---|---|---|---|\n| Free | $0 for 30 days, sandbox only | 25 development users | n/a | 30 days | 10K |\n| Starter | $299 a month, billed annually | 1,000 | $0.40 | 30 days | 100K |\n| Pro | $1,499 a month, billed annually | 10,000 | $0.20 | 120 days | 1M |\n| Enterprise | Custom | Custom | Volume pricing | Custom | Custom |\n\nThe prices shown are for annual billing; the page's billing toggle reads \"Monthly Annual −25%\", so monthly billing costs more. Pro also adds custom tags, up to 5 projects or workspaces and an elevated API rate limit; Enterprise adds unlimited projects, SLAs, custom contracting and a dedicated CS engineer.\n\n## What every plan includes\n\nThe pricing page's headline is \"All products included from day one\", and the list under \"Included on every plan\" is the same on Free as on Enterprise: 100+ biomarkers, 5 scores, 100+ archetypes, 75+ tags and 100+ insights, plus platform integrations, mobile SDKs, the REST API and webhooks, 30 days of historical data on day one, and multi-device deduplication. Its homepage says the 165 integrations cover \"800+ devices\", including Apple Health, Health Connect, Garmin, Fitbit, Oura, WHOOP and Samsung Health.\n\n## Our arithmetic at different user counts\n\nThese are our calculations from the list prices above, at annual billing, not a quote from Sahha:\n\n| Users | Starter | Pro |\n|---|---|---|\n| 1,000 | $299 | $1,499 |\n| 4,000 | $1,499 ($299 plus 3,000 extra users at $0.40) | $1,499 |\n| 10,000 | $3,899 | $1,499 |\n| 20,000 | $7,899 | $3,499 ($1,499 plus 10,000 extra users at $0.20) |\n\nOn price alone the two plans cross at 4,000 users: below that Starter is cheaper, above it Pro is, before counting Pro's BAA and longer retention. Three caveats. We assume the per-user rates are monthly like the base fee; the page says \"then $0.40/user\" without naming a period. Sahha's pricing page lists an FAQ titled \"What counts as a user?\" whose answer did not appear in the page text we fetched, so confirm both points before you model growth. And Enterprise, where volume pricing applies, is a quote.\n\n## What the price buys, and what it does not\n\n**Phone-first data.** Sahha's pitch is that it \"turns the smartphone itself into a passive sensor for sleep, activity, and behavior\", so users without a wearable still produce data. Its integrations page says sources \"arrive on-device through Apple Health or Health Connect\", with \"no per-brand work required\", so for those sources the data path runs through your app with Sahha's SDK on the user's phone.\n\n**Cloud integrations are still beta.** For select providers Sahha \"also connects directly through their cloud API\", but its docs say these integrations \"are in public beta and are Sandbox only\". Each uses an app you register with the provider (\"Create an app with the provider\"), Garmin's needs Garmin's approval, and Oura and WHOOP are self sign-up. If server-side Garmin data is the core of your product, that is the line to test first.\n\n**Retention is short on Starter.** Data retention is 30 days on Free and Starter and 120 days on Pro, so plan to keep your own history if you need longer baselines.\n\n**Delivery limits.** Webhook deliveries are capped per day by plan: 10K on Free, 100K on Starter, 1M on Pro. Sahha's docs describe the webhook interval you set in the dashboard as \"a deduplication window\": when the same score or biomarker updates several times inside it, \"only the final value is sent when the interval ends\", so a longer interval means fewer deliveries against the cap.\n\n## Compliance\n\nSahha's homepage says it is \"SOC 2 Type II audited, HIPAA and GDPR compliant\", with \"No names, emails, phones, or other identifiers\" required: you pass your own external ID. Its pricing FAQ adds: \"The DPA is included on every plan. A BAA is included from Pro.\" If you are a HIPAA covered entity or business associate, that makes Pro the realistic floor; our [HIPAA compliance guide for fitness apps](/compliance/hipaa-compliance-fitness-app) explains when that applies. This is general information, not legal advice.\n\n## How it compares\n\nAt $299 a month billed annually, Sahha's Starter sits next to Junction's flat $300-a-month Launch plan at the bottom of the paid entry prices we track, and the per-user model is easy to forecast. Terra bills credits per connected data source instead, and in our [aggregator pricing arithmetic](/pricing/health-data-aggregator-pricing) Sahha comes out cheaper at both user counts we modeled. It is a different product, though: Sahha's data is phone-first and arrives as ready-made scores, while its direct cloud integrations are still in beta. See [Terra vs Sahha](/compare/terra-vs-sahha) for that trade.",
+    "faqs": [
+      {
+        "q": "How much does Sahha cost per user?",
+        "a": "As of October 17, 2026, Sahha's Starter plan includes 1,000 users for $299 a month billed annually and charges $0.40 per additional user; Pro includes 10,000 users for $1,499 a month billed annually and charges $0.20 per additional user; Enterprise uses volume pricing. By our arithmetic, the two plans cost the same at 4,000 users and Pro is cheaper above that. Confirm Sahha's definition of a user, and that the per-user rate is monthly, before modeling: the pricing page text we read states neither."
+      },
+      {
+        "q": "Does Sahha have a free plan?",
+        "a": "Yes, for building, not production. As of October 17, 2026, the Free plan is $0 for 30 days with 25 development users, every product unlocked, the sandbox environment and the Slack community. Production starts on Starter at $299 a month billed annually."
+      },
+      {
+        "q": "Which Sahha plan includes a HIPAA BAA?",
+        "a": "Pro and Enterprise. Sahha's pricing FAQ says the DPA is included on every plan and a BAA is included from Pro, and the plan table lists HIPAA (BAA) under Pro. Starter does not include one, as of October 17, 2026. Whether you need a BAA depends on your role under HIPAA."
+      },
+      {
+        "q": "Does Sahha need my own Garmin, Oura or WHOOP developer app?",
+        "a": "For its direct cloud integrations, yes. As of October 17, 2026, Sahha's docs say you create an app with the provider and add its OAuth credentials in the Sahha dashboard; Garmin requires Garmin's approval, while Oura and WHOOP are self sign-up. These cloud integrations are in public beta and sandbox only; outside them, Sahha's sources arrive on-device through Apple Health or Health Connect."
+      },
+      {
+        "q": "How long does Sahha keep user data on each plan?",
+        "a": "Per its pricing page on October 17, 2026: 30 days on Free and Starter, 120 days on Pro, and custom retention on Enterprise. Sahha also backfills up to 30 days of history when a user connects. If your product needs longer baselines than your plan keeps, store the data you receive yourself."
+      }
+    ],
+    "related": [
+      {
+        "href": "/pricing/health-data-aggregator-pricing",
+        "label": "Health-data aggregator pricing compared"
+      },
+      {
+        "href": "/compare/terra-vs-sahha",
+        "label": "Terra vs Sahha"
+      },
+      {
+        "href": "/fitness-apis/health-data-aggregator-apis",
+        "label": "Best health-data aggregator APIs"
+      },
+      {
+        "href": "/pricing",
+        "label": "All fitness & health API pricing"
+      }
+    ],
+    "cta": {
+      "pitch": "Sahha's plans, like every aggregator's, change. Subscribe and we'll tell you when a price, an included-user count or the BAA tier moves."
+    },
+    "sources": [
+      {
+        "url": "https://sahha.ai/pricing/",
+        "checked": "2026-10-17",
+        "note": "Sahha plans"
+      },
+      {
+        "url": "https://sahha.ai/",
+        "checked": "2026-10-17",
+        "note": "Sahha coverage, pricing FAQ and compliance"
+      },
+      {
+        "url": "https://sahha.ai/integrations/",
+        "checked": "2026-10-17",
+        "note": "Sahha integrations"
+      },
+      {
+        "url": "https://docs.sahha.ai/docs/connect/integrations",
+        "checked": "2026-10-17",
+        "note": "Sahha cloud integrations beta"
+      },
+      {
+        "url": "https://docs.sahha.ai/docs/connect/webhooks",
+        "checked": "2026-10-17",
+        "note": "Sahha webhooks"
+      },
+      {
+        "url": "https://www.junction.com/pricing",
+        "checked": "2026-10-17",
+        "note": "Junction Launch and Enterprise plans"
+      },
+      {
+        "url": "https://tryterra.co/pricing",
+        "checked": "2026-10-17",
+        "note": "Terra plans, credits, add-ons and Enterprise terms"
+      }
+    ]
+  },
+  {
+    "slug": "thryve-api-pricing",
+    "primaryQuery": "thryve pricing",
+    "h1": "Thryve API pricing: Start Up, Scale Up and what each plan includes",
+    "metaTitle": "Thryve API Pricing (2026): Plans, Euro Prices, BAA",
+    "metaDescription": "Thryve's plans as of October 2026: a 14-day trial, Start Up from 499 euros a month with 500 users, Scale Up from 1,000 euros, and a BAA on every plan.",
+    "updated": "2026-10-17",
+    "answer": "As of October 17, 2026, Thryve's pricing page lists a 14-day free trial with 25 end users, Start Up from 499 euros a month with 500 users and 0.50 euros per additional user, Scale Up from 1,000 euros a month for startups under ten years old with up to 5,000 users, and bespoke Enterprise. Data storage is 2 weeks on Start Up and 1 month on Scale Up, and Thryve says BAAs are included on all plans. By our arithmetic, an eligible startup pays less on Scale Up than on Start Up from roughly 1,500 end users.",
+    "body": "## What it costs\n\nThryve publishes a free trial and three plans. As we read its pricing page on October 17, 2026:\n\n| Plan | List price | End users included | Extra users | Apps | Data storage | Historical fetch |\n|---|---|---|---|---|---|---|\n| Free trial | Free for 14 days | 25 | n/a | 1 | 1 day | Not stated |\n| Start Up | Starts at 499 euros a month | 500 | 0.50 euros each | 1 | 2 weeks | Not stated |\n| Scale Up | Starts at 1,000 euros a month, for startups under ten years old | Up to 5,000 | 999 euros per 10,000 | 1 | 1 month | Up to 14 days |\n| Enterprise | Bespoke | Flexible | Tailored on request | Multiple | Flexible | Flexible |\n\nThe plan table gives no historical-fetch figure for the trial or Start Up, and lists one Thryve dashboard account on each of those, two on Scale Up and multiple on Enterprise. Prices are in euros, and both paid figures are \"Starts at\" floors; the page does not say whether VAT is included.\n\nScale Up is a \"Special plan for startups with growth-stage needs (less than 10 years of founding)\" that \"Includes custom authentication, extended data storage, concierge support, and more.\" Enterprise is \"For organizations needing high-volume access, multiple app connections, advanced analytics, and dedicated support.\"\n\nOne inconsistency to confirm before you budget: the Start Up card's description says \"Additional users billed at €0.50 each\", while its feature list reads \"0,50ct per additional user\". We use the description's 0.50 euros, as does our arithmetic below.\n\n## How you buy it\n\nStart Up is self-serve. Thryve's docs say: \"Visit Thryve Health Pricing to choose a suitable plan. You'll be directed to Stripe checkout for payment.\" Scale Up and Enterprise go through a \"Contact Us\" button, and the pricing FAQ says that \"To change your plan at any time, please contact our sales team\".\n\nAfter payment you get a welcome email, set up the account with two-factor authentication, and Thryve automatically creates two app environments, one for staging and one for live. One operational detail to plan for: \"All credentials are displayed only once and expire 24 hours after email delivery.\"\n\n## Our arithmetic: Start Up against Scale Up\n\nThese are our calculations from the list prices above, not a Thryve quote. They assume the per-user charge is monthly like the base fee, which the page does not state.\n\n| End users | Start Up | Scale Up, if you qualify |\n|---|---|---|\n| 500 | 499 euros | 1,000 euros |\n| 1,000 | 749 euros | 1,000 euros |\n| 2,000 | 1,249 euros | 1,000 euros |\n| 5,000 | 2,749 euros | 1,000 euros |\n\nOn these floors, an eligible startup pays less on Scale Up from roughly 1,500 end users. Past 5,000 the page says to \"Scale your user base with additional €999 per 10,000 users\"; we read that as 999 euros for each further block of 10,000, so 15,000 users would come to about 1,999 euros a month. Confirm the reading in writing.\n\n## What the plan does not cover\n\n**Your own OAuth clients for some sources.** Thryve's data-sources table has a \"Shared oAuth-client\" column, and its docs say that \"When no shared oAuth-client is available, you must bring your own oAuth-client\". The table marks WHOOP, Dexcom, Google Health and FreeStyle Libre (LibreView) \"no\"; Garmin and Oura are shared. The plan cards list \"Own data source tenant / Custom Auth credentials\" on Scale Up and Enterprise but not on Start Up, so if you need WHOOP or Dexcom, ask whether Start Up can carry your own client before you choose it.\n\n**Fitbit.** The same table marks Fitbit \"Deprecating on Oct 29 2026\" and lists Google Health as a separate source with no shared OAuth client. If Fitbit users matter to you, ask Thryve how those connections carry over and whose credentials they will need; our [Fitbit API shutdown center](/fitbit-api-shutdown) has Google's own timeline.\n\n**History you keep yourself.** Data storage is two weeks on Start Up and a month on Scale Up, so store what you need for longer baselines. The table also shows no historic data for Polar.\n\n**Phone-side sources.** Apple Health, Samsung Health and Health Connect are \"Native\" sources read through Thryve's SDK, so they need your mobile app.\n\n## Compliance and hosting\n\nThryve's certifications page says \"BAA agreements included on all plans — no enterprise upgrade required\" and that \"Business Associate Agreements and Data Processing Agreements are standard on every plan\". Its pricing FAQ says \"All data processed and stored by Thryve is hosted in Germany\", and its homepage claims compliance with \"GDPR, HIPAA, ISO 9001, 27001 and other international regulations\". Whether you need a BAA depends on your role under HIPAA; our [HIPAA compliance guide for fitness apps](/compliance/hipaa-compliance-fitness-app) explains when that applies. This is general information, not legal advice.\n\n## How it compares\n\nThe BAA is where Thryve's price sheet differs most: it is on every plan, where Sahha's starts at Pro and Terra's and Junction's sit in Enterprise. Against Terra's credits per connected data source, Thryve charges per end user, and its short storage windows leave long-term history to you. See [Terra vs Thryve](/compare/terra-vs-thryve) for the head-to-head and [health-data aggregator pricing](/pricing/health-data-aggregator-pricing) for every vendor's price sheet side by side.",
+    "faqs": [
+      {
+        "q": "How much does Thryve cost?",
+        "a": "As of October 17, 2026, Thryve's Start Up plan starts at 499 euros a month for 500 users, with additional users billed at 0.50 euros each; Scale Up starts at 1,000 euros a month for up to 5,000 users and is limited to startups less than ten years old; Enterprise is bespoke. A 14-day free trial covers 25 end users. Both paid prices are 'starts at' figures in euros."
+      },
+      {
+        "q": "Does Thryve include a BAA on every plan?",
+        "a": "Thryve says so. As of October 17, 2026, its certifications page states that BAA agreements are included on all plans with no enterprise upgrade required, and that Business Associate Agreements and Data Processing Agreements are standard on every plan. Whether you need a BAA depends on your role under HIPAA."
+      },
+      {
+        "q": "Who qualifies for Thryve's Scale Up plan?",
+        "a": "Startups. Thryve's pricing page describes Scale Up as a special plan for startups with growth-stage needs, less than ten years after founding. As of October 17, 2026, it starts at 1,000 euros a month for up to 5,000 users and adds custom authentication credentials, 14 days of historical fetching and one month of data storage. You request it through Thryve's sales contact rather than self-serve checkout."
+      },
+      {
+        "q": "How long does Thryve store data on each plan?",
+        "a": "Per Thryve's plan table on October 17, 2026: 1 day on the free trial, 2 weeks on Start Up, 1 month on Scale Up and flexible on Enterprise. Keep your own copy of anything you need for longer trends."
+      },
+      {
+        "q": "Do I need my own WHOOP or Dexcom credentials with Thryve?",
+        "a": "Yes, per Thryve's docs on October 17, 2026. Its data-sources table shows no shared OAuth client for WHOOP, Dexcom, Google Health or FreeStyle Libre, and the docs say that where no shared client exists you must bring your own. Garmin and Oura use Thryve's shared client. The plan cards list custom auth credentials on Scale Up and Enterprise, so confirm Start Up support first."
+      }
+    ],
+    "related": [
+      {
+        "href": "/pricing/health-data-aggregator-pricing",
+        "label": "Health-data aggregator pricing compared"
+      },
+      {
+        "href": "/compare/terra-vs-thryve",
+        "label": "Terra vs Thryve"
+      },
+      {
+        "href": "/fitness-apis/health-data-aggregator-apis",
+        "label": "Best health-data aggregator APIs"
+      },
+      {
+        "href": "/pricing/sahha-api-pricing",
+        "label": "Sahha API pricing"
+      }
+    ],
+    "cta": {
+      "pitch": "Thryve's plans, like every aggregator's, change. Subscribe and we'll tell you when a price, a storage window or a source's status moves."
+    },
+    "sources": [
+      {
+        "url": "https://www.thryve.health/pricing",
+        "checked": "2026-10-17",
+        "note": "Thryve plans, storage and hosting"
+      },
+      {
+        "url": "https://docs.thryve.health/getting-started/get-your-api-keys",
+        "checked": "2026-10-17",
+        "note": "Thryve sign-up"
+      },
+      {
+        "url": "https://docs.thryve.health/thryve-data-sources/overview",
+        "checked": "2026-10-17",
+        "note": "Thryve data sources and OAuth clients"
+      },
+      {
+        "url": "https://www.thryve.health/certifications-compliance",
+        "checked": "2026-10-17",
+        "note": "Thryve certifications and BAA"
+      },
+      {
+        "url": "https://www.thryve.health/",
+        "checked": "2026-10-17",
+        "note": "Thryve coverage and hosting"
+      },
+      {
+        "url": "https://sahha.ai/",
+        "checked": "2026-10-17",
+        "note": "Sahha coverage, pricing FAQ and compliance"
+      },
+      {
+        "url": "https://tryterra.co/pricing",
+        "checked": "2026-10-17",
+        "note": "Terra plans, credits, add-ons and Enterprise terms"
+      },
+      {
+        "url": "https://www.junction.com/pricing",
+        "checked": "2026-10-17",
+        "note": "Junction Launch and Enterprise plans"
+      }
+    ]
   }
 ];

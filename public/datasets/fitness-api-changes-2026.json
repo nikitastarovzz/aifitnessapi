@@ -16,12 +16,12 @@
     "verifiedOn": "Date this entry was last checked against its source page"
   },
   "stats": {
-    "totalItems": 14,
+    "totalItems": 16,
     "byStatus": {
-      "confirmed": 9,
+      "confirmed": 11,
       "reported": 5
     },
-    "confirmed": 9,
+    "confirmed": 11,
     "reported": 5,
     "watch": 0,
     "earliestSortDate": "2023-04-15",
@@ -37,6 +37,16 @@
       "source": "https://aifitnessapi.com/google-fit-shutdown",
       "sourceLabel": "Google Fit shutdown hub",
       "verifiedOn": "2026-10-02"
+    },
+    {
+      "date": "2026-11-03",
+      "sortDate": "2026-11-03",
+      "title": "Terra legacy widget endpoint deprecation",
+      "summary": "Terra relaunched its connect widget. Its documentation says the older session endpoint, POST https://api.tryterra.co/v2/auth/generateWidgetSession, \"keeps working today, with deprecation planned for 3 November 2026\", and that \"Accounts created after 3 September 2026 cannot use it at all.\" New sessions are created at POST https://access.tryterra.co/api/widget/session; the response shape (session_id, url, status, expires_in) is unchanged, while the multi-provider and all-providers options are now sent differently.",
+      "status": "confirmed",
+      "source": "https://aifitnessapi.com/integrate/terra-api",
+      "sourceLabel": "How to integrate Terra",
+      "verifiedOn": "2026-10-17"
     },
     {
       "date": "2026-10-30",
@@ -67,6 +77,16 @@
       "source": "https://aifitnessapi.com/changelog",
       "sourceLabel": "Site changelog",
       "verifiedOn": "2026-10-03"
+    },
+    {
+      "date": "2026-09-09",
+      "sortDate": "2026-09-09",
+      "title": "FTC rescinds its 2021 health-app breach policy statement",
+      "summary": "The FTC's press release says \"The Federal Trade Commission rescinded the 2021 Policy Statement on Breaches by Health Apps and Other Connected Devices\", because the Commission's 2024 update to the Health Breach Notification Rule covers \"health apps and connected devices like fitness trackers, rendering the policy statement unnecessary.\" The FTC's rule page dates the release September 9, 2026. The rule itself, 16 CFR part 318, still applies; eCFR's current text lists no amendment after May 30, 2024.",
+      "status": "confirmed",
+      "source": "https://aifitnessapi.com/compliance/ftc-health-breach-notification-rule",
+      "sourceLabel": "FTC Health Breach Notification Rule for fitness apps",
+      "verifiedOn": "2026-10-17"
     },
     {
       "date": "2026",

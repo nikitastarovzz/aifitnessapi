@@ -763,30 +763,30 @@ export const integrateEntries: ClusterEntry[] =
     "primaryQuery": "how to integrate Terra",
     "h1": "How to Integrate Terra (Health-Data Aggregator) (2026)",
     "metaTitle": "Terra Health Data API: Integrate via One Webhook (2026)",
-    "metaDescription": "Integrate Terra once to read Garmin, Fitbit, Oura, Whoop, and 500+ wearables via one normalized webhook. Widget session, payloads, and signature checks.",
-    "updated": "2026-07-09",
-    "answer": "Terra is a health-data aggregator: you integrate once and it returns normalized data from Garmin, Fitbit, Oura, Whoop, Strava, Apple Health, and hundreds of other sources behind a single schema. You authenticate to Terra with a dev-id and x-api-key header, then mint a hosted widget session from your backend so the user picks and authorizes their own provider through Terra's Connect flow. Terra runs each provider's OAuth for you and POSTs normalized data to one webhook, which you verify with an HMAC-SHA256 signature. The key caveat: for some providers (Garmin, Whoop, Strava, Oura) you must still register your own developer credentials and give them to Terra.",
-    "body": "The whole reason to use an aggregator, and the thing to hold onto: **one integration, many providers, delivered over one webhook.** You never write provider-specific parsing. For a broader look at where Terra sits among aggregators, see [health-data aggregator APIs](/fitness-apis/health-data-aggregator-apis) and the head-to-head [Terra vs Vital](/fitness-apis/terra-vs-vital) comparison; the [Terra API overview](/apis/terra) collects how you get access and every page on this site that covers Terra. This guide is also one step on [the reading path for supporting every wearable through one aggregator](/paths), which puts the pages for that job in working order.\n\n## One important caveat before you start\n\nTerra shields you from writing each provider's OAuth flow — but not always from each provider's paperwork. For several popular providers (commonly **Garmin, Whoop, Strava, and Oura**), you must still register your **own developer credentials** with that provider and hand them to Terra (Dashboard, then Connections, then the provider, then Edit). So \"one integration\" is completely true for your code and your data schema; you may still complete N provider registrations before those providers light up. Budget for that onboarding time up front. Verify the exact list of providers that need your own credentials in the current Terra docs, since it changes.\n\n## What you'll need\n\n- A **Terra account** (tryterra.co) with a project — this gives you a `dev-id` and an `x-api-key`.\n- A **Destination** configured in the Terra dashboard: the HTTPS **webhook URL** where Terra will POST auth events and normalized data.\n- A **backend** to call Terra's `/auth` endpoints. The API key must never be exposed client-side.\n- For providers that require it (Garmin, Whoop, Strava, Oura, and others), **your own developer credentials** with those providers, entered into the Terra dashboard.\n- Base URL for all API calls: `https://api.tryterra.co/v2/`. As of 2026, verify current endpoints and field names against docs.tryterra.co.\n\n## Step 1: Get your credentials and set up a Destination\n\nCreate a project in the Terra dashboard and copy your `dev-id` and `x-api-key`. Every API call to Terra sends both as headers:\n\n```http\ndev-id: YOUR_DEV_ID\nx-api-key: YOUR_API_KEY\n```\n\nThen configure a **Destination** — the webhook URL Terra will deliver events to (for example, `https://yourapp.com/terra/webhook`). This single endpoint is where every provider's data will arrive, normalized. Because everything funnels through here, you build and test one receiver, not one per wearable.\n\n## Step 2: Register your own credentials for the providers that need them\n\nSkip this step for providers Terra fully brokers. For **Garmin, Whoop, Strava, Oura** and any others flagged in the docs, go to the Terra dashboard, then Connections, select the provider, choose Edit, and paste in the client ID/secret you obtained from that provider's own developer program. Until you do this, those providers will not appear as authorizable options in your widget. This is the \"N registrations\" part of the caveat above — it is dashboard configuration, not code.\n\n## Step 3: Generate a widget session from your backend\n\nTo connect a user, your backend calls Terra's Connect endpoint to mint a hosted **widget session**. You pass the list of providers to offer, plus your own `reference_id` (your internal user ID) so you can correlate Terra's user back to your account.\n\n```bash\ncurl -X POST \"https://api.tryterra.co/v2/auth/generateWidgetSession\" \\\n  -H \"dev-id: YOUR_DEV_ID\" \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"reference_id\": \"user-1234\",\n    \"providers\": \"GARMIN,FITBIT,OURA,WHOOP,STRAVA\",\n    \"language\": \"en\",\n    \"auth_success_redirect_url\": \"https://yourapp.com/success\",\n    \"auth_failure_redirect_url\": \"https://yourapp.com/failure\"\n  }'\n```\n\nThe response includes a `session_id`, a `url`, a `status`, and `expires_in` (the session is short-lived, roughly 900 seconds). Note how `providers` is just a comma-separated list — adding a new wearable to your product is a one-line change here, not a new integration.\n\n## Step 4: Send the user to the widget and handle the auth webhook\n\nOpen the returned `url` for the user (redirect, in-app browser, or webview). Terra hosts the whole flow: the user **picks their provider and authorizes it**, and Terra runs that provider's OAuth for you. On success the user is sent to your `auth_success_redirect_url`.\n\nThe authoritative signal, though, is the webhook. Terra fires an **`auth`** event to your Destination containing the Terra `user_id` and your `reference_id`. Store that `user_id` against your account — it is the key you'll use for every future data pull and the routing key on every incoming payload.\n\n## Step 5: Receive normalized data on your webhook\n\nFrom then on, Terra **pushes normalized data to your one webhook** as events. Every payload carries a `type` (`activity`, `sleep`, `daily`, `body`, `nutrition`, `menstruation`, `athlete`, and `auth`) and a `user` block with the `user_id`, your `reference_id`, and which `provider` it came from. The `data` array is the same shape regardless of whether it originated from Garmin, Whoop, or Oura.\n\n```json\n{\n  \"type\": \"activity\",\n  \"user\": {\n    \"user_id\": \"9d5dc9eb-3e02-4b37-9a7b-b14b5a5a2b93\",\n    \"reference_id\": \"user-1234\",\n    \"provider\": \"WHOOP\",\n    \"active\": true,\n    \"last_webhook_update\": \"2026-07-09T11:13:43.360227+00:00\"\n  },\n  \"data\": [ { \"metadata\": {} } ]\n}\n```\n\nRoute on `type` and `user.user_id`. Because the schema is identical across providers, you write one handler for `activity`, one for `sleep`, and so on — never a Garmin parser and a separate Whoop parser.\n\n## Step 6: Verify the webhook signature\n\nTerra signs every webhook so you can confirm it genuinely came from Terra. The request carries a `terra-signature` header in the form `t=<timestamp>,v1=<signature>`. Terra signs with **HMAC-SHA256**: recompute the signature over the timestamp plus the **raw request body** using your signing secret, then compare it to the `v1` value. Reject the request on mismatch, and read the raw body before any JSON parsing so the bytes match exactly.\n\n```js\nconst crypto = require(\"crypto\");\n\nfunction verifyTerraSignature(rawBody, header, secret) {\n  // header example: \"t=1720523623,v1=abc123...\"\n  const parts = Object.fromEntries(\n    header.split(\",\").map((kv) => kv.split(\"=\", 2)) // split once: values never contain \"=\"\n  );\n  if (!parts.t || !parts.v1) return false;\n  const signedPayload = `${parts.t}.${rawBody}`; // verify exact layout in current docs\n  const expected = crypto\n    .createHmac(\"sha256\", secret)\n    .update(signedPayload)\n    .digest(\"hex\");\n  const provided = Buffer.from(parts.v1);\n  const expectedBuf = Buffer.from(expected);\n  // Length check first: timingSafeEqual throws if the buffers differ in length,\n  // so a forged signature of the wrong length would otherwise crash the handler.\n  return (\n    provided.length === expectedBuf.length &&\n    crypto.timingSafeEqual(expectedBuf, provided)\n  );\n}\n```\n\nTerra's official SDKs expose a helper (`verify_terra_webhook_signature(...)`) that does this for you — prefer it, and verify the exact signed-string construction in the current docs, since the precise layout can differ.\n\n## Step 7: Pull historical data via REST (optional)\n\nWebhooks give you new data as it arrives, but on first connect you'll usually want backfill. Terra exposes REST endpoints per datatype — `/v2/activity`, `/v2/sleep`, `/v2/daily`, `/v2/body`, `/v2/athlete`, `/v2/nutrition`, `/v2/menstruation` — all keyed by the Terra `user_id` plus a date range.\n\n```bash\ncurl -X GET \"https://api.tryterra.co/v2/activity?user_id=USER_ID&start_date=2026-07-01&end_date=2026-07-08&to_webhook=false&with_samples=true\" \\\n  -H \"dev-id: YOUR_DEV_ID\" \\\n  -H \"x-api-key: YOUR_API_KEY\"\n```\n\nSet `to_webhook=true` to have a large historical pull delivered asynchronously to your Destination instead of in the response, and `with_samples=true` for granular sample-level data. Same base URL, same headers, same normalized schema as the webhooks.\n\n## Gotchas and production notes\n\n- **Register provider credentials early.** The most common launch surprise is Garmin/Whoop/Strava/Oura not appearing in the widget because you haven't yet supplied your own developer credentials in the dashboard. Start those provider registrations before you need them.\n- **Never expose the API key.** Call `/auth` endpoints and any data pulls only from your backend. The widget `url` is the only thing that ever reaches the client.\n- **Verify signatures on day one.** Terra webhooks are HMAC-SHA256 signed; implement `terra-signature` verification from the start rather than retrofitting it.\n- **Widget sessions are short-lived.** Generate one per connection attempt (roughly 900 seconds); don't cache and reuse them.\n- **Pricing is usage/credit-based — model it.** As of 2026, Terra is a subscription plus credit-based usage model; entry tier is reported around $399/mo billed annually (about $499 monthly) including roughly 100,000 credits/mo, with credits scaling on active authentications and events. All figures are volatile — confirm on tryterra.co/pricing before you budget.\n- **Aggregator, not magic.** Terra removes per-provider OAuth code and per-provider parsing; it does not remove per-provider app approval where the provider requires it. That trade — a little dashboard paperwork for one codebase across [many wearables](/fitness-apis/wearable-data-apis) — is exactly what you're buying.",
+    "metaDescription": "Integrate Terra once to read Garmin, Oura, WHOOP and 500+ sources: the new widget session endpoint, webhook signature checks, backfills and pricing.",
+    "updated": "2026-10-17",
+    "answer": "Terra is a health-data aggregator: you integrate once and it returns normalized data from Garmin, Fitbit, Oura, WHOOP, Strava, Apple Health and, on its own count, 500+ providers behind one schema. Your backend authenticates with dev-id and x-api-key headers, creates a widget session at POST https://access.tryterra.co/api/widget/session so the user picks and authorizes their provider, and receives normalized events at a destination such as a webhook, verified with an HMAC-SHA256 terra-signature header. As of October 17, 2026, the older /v2/auth/generateWidgetSession endpoint is closed to accounts created after September 3, 2026 and planned for deprecation on November 3, 2026, and some providers, including WHOOP, Dexcom and Strava, still need your own developer app configured in Terra's dashboard.",
+    "body": "The whole reason to use an aggregator, and the thing to hold onto: **one integration, many providers, delivered to one destination.** You never write provider-specific parsing. For where Terra sits among aggregators, see [health-data aggregator APIs](/fitness-apis/health-data-aggregator-apis) and the head-to-head [Terra vs Vital](/fitness-apis/terra-vs-vital) comparison; the [Terra API overview](/apis/terra) collects how you get access and every page on this site that covers Terra. This guide is also one step on [the reading path for supporting every wearable through one aggregator](/paths), which puts the pages for that job in working order.\n\nEvery endpoint, field and limit below is from Terra's docs, OpenAPI spec and pricing page as we read them on October 17, 2026.\n\n## What changed in this revision\n\n- **The widget endpoint.** Terra relaunched its connect widget. New sessions are created at `POST https://access.tryterra.co/api/widget/session`. The older `/v2/auth/generateWidgetSession`, which an earlier version of this guide used, \"keeps working today, with deprecation planned for 3 November 2026\", and \"Accounts created after 3 September 2026 cannot use it at all.\"\n- **Which providers need your own credentials.** An earlier version listed Garmin, Whoop, Strava and Oura. Terra's current docs name WHOOP, Dexcom, Huawei, Strava and Virtuagym; its integrations table also marks Garmin and Samsung as Required, and lists Oura as Managed. Step 2 has the detail.\n- **Pricing** is now published in full on tryterra.co/pricing; the numbers are under the gotchas below.\n\n## What you'll need\n\n- A **Terra account** with a plan; the dashboard gives you a `dev-id` and an `x-api-key`. Terra keeps separate credentials for testing, staging and production, and the testing and staging environments are capped at 50 users each.\n- A **destination** configured in the Terra dashboard: a webhook URL, or a database, cloud storage bucket or queue that Terra writes into.\n- A **backend** to call Terra's API. Terra's docs are blunt: \"Never share your x-api-key publicly or embed it directly in client-side code (e.g., mobile apps, frontend JavaScript).\"\n- For WHOOP, Dexcom, Strava and the other providers in step 2, **your own developer app** with that provider.\n- The API surface: Terra's OpenAPI spec (version 2026.10.08.1) describes \"The Terra API (v2 surface, served at access.tryterra.co/api/v2)\".\n\n## Step 1: Get your credentials and set up a destination\n\nCreate your account and copy the `dev-id` and `x-api-key` from the dashboard's API Keys page. Every API call sends both as headers:\n\n```http\ndev-id: YOUR_DEV_ID\nx-api-key: YOUR_API_KEY\n```\n\nThen choose where data goes. A webhook is the simplest destination; Terra can also deliver to \"SQL databases (Postgres and MySQL), Supabase, cloud storage (S3, GCS and Azure Blob), queueing services (SQS and Kafka), MongoDB and Firestore\". Because everything funnels through one destination, you build and test one receiver, not one per wearable.\n\n## Step 2: Register your own credentials for the providers that need them\n\nTerra's docs say it \"manages API Keys of data sources, meaning you can connect users without having to apply for each API Key\", but \"Some providers require special processes before being able to start using them\": WHOOP, Dexcom, Huawei, Strava and Virtuagym.\n\n- **WHOOP and Dexcom.** Each \"requires every company to connect users through its own app\" on its developer portal, with the redirect URL (and, for WHOOP, the webhook URL) \"on a domain that belongs to you\". In the dashboard, open Connections, choose the provider and follow the setup; it configures the custom domain and shows the URLs to paste into your app, and then you apply for production access with the provider.\n- **Strava.** Create an application at strava.com/settings/api, then enter its client ID and secret in the dashboard's Strava setup.\n- **Garmin and Samsung.** Terra's supported-integrations table marks both as Required for integration credentials, while its homepage FAQ says \"Garmin data flows through Terra today\" through Terra's long-standing partner integration. Check the Connections page for your account before promising Garmin support. For Samsung Health's direct route, Terra says to apply through Samsung's partnership portal and develop on the Health Connect route while you wait.\n\nPlan as if a provider that needs special setup cannot be connected until that setup is finished. This is dashboard and paperwork time, not code, so start it first.\n\n## Step 3: Create a widget session from your backend\n\nTo connect a user, your backend creates a hosted **widget session** and sends the user to the URL it returns. Pass your own `reference_id` (your internal user ID) so you can match Terra's user to yours.\n\n```bash\ncurl --request POST \"https://access.tryterra.co/api/widget/session\" \\\n  --header \"dev-id: YOUR_DEV_ID\" \\\n  --header \"x-api-key: YOUR_API_KEY\" \\\n  --header \"Content-Type: application/json\" \\\n  --data '{\n    \"reference_id\": \"user-1234\",\n    \"providers\": \"GARMIN,FITBIT,OURA,WHOOP,STRAVA\",\n    \"auth_success_redirect_url\": \"https://yourapp.com/success\",\n    \"auth_failure_redirect_url\": \"https://yourapp.com/failure\"\n  }'\n```\n\nEvery body field is optional. `providers` is a comma-separated list \"of providers to show, in the order given\"; leave it out and the widget shows the sources enabled in your dashboard. A successful call returns HTTP 201 with the widget `url`, valid for `expires_in` seconds, which Terra documents as 24 hours. Create a fresh session per connect attempt rather than storing URLs. There is no `language` field any more: \"The widget follows the end user's browser language automatically.\"\n\nMigrating from the legacy endpoint? It lived at `POST https://api.tryterra.co/v2/auth/generateWidgetSession`, returned sessions valid for 900 seconds and took `language`, `\"providers\": \"multi-auth\"` and `\"providers\": \"ALL\"`; the new endpoint uses `multi_auth: true` and an omitted `providers` instead. Otherwise the response shape (`session_id`, `url`, `status`, `expires_in`) is unchanged.\n\n## Step 4: Send the user to the widget and handle the auth event\n\nOpen the `url` in a new tab or an in-app browser. Terra's docs say: \"Do not use WebView or iFrame for the authentication flow\", because the user cannot see which domain they are typing a password into, and providers may block it. The user picks a provider and logs in with that provider's own login; afterwards they land on your success URL \"with their Terra user_id and your reference_id as query parameters\".\n\nThe authoritative signal is the **auth event** Terra sends to your destination, carrying the Terra `user_id`, your `reference_id` and the `provider`. Store that `user_id` against your account: it is the key for every later request and the routing key on every payload. If a user reconnects the same provider under the same `reference_id`, Terra \"will delete the previous user record for that account and yield a new user_id\", and \"Terra sends a user_reauth event containing both the old and new user_id\", so handle that event or new data will stop matching your records.\n\n## Step 5: Receive normalized data at your destination\n\nFrom then on, Terra **pushes normalized data events** as the provider syncs. Its event reference lists the data event types as `activity`, `athlete`, `body`, `daily`, `hormone`, `menstruation`, `nutrition` and `sleep`, alongside lifecycle events such as `auth`, `deauth`, `user_reauth` and `access_revoked`. Each payload names the user and provider; the `data` array has the same shape whichever wearable it came from. An abridged example:\n\n```json\n{\n  \"type\": \"activity\",\n  \"user\": {\n    \"user_id\": \"4735eac4-31a2-47ef-8b11-51e98d84c680\",\n    \"reference_id\": \"user-1234\",\n    \"provider\": \"GARMIN\"\n  },\n  \"data\": [ { \"metadata\": {} } ]\n}\n```\n\nRoute on `type` and `user.user_id`. Because the schema is identical across providers, you write one handler for `activity`, one for `sleep`, and so on, never a Garmin parser and a separate WHOOP parser. Terra's guidance for `daily` and `body` events is to overwrite the stored day with the latest payload, because those arrive several times a day as running totals.\n\n## Step 6: Verify the webhook signature\n\n\"Every webhook sent by Terra includes an HMAC-based signature header\", `terra-signature`, in the form `t=<timestamp>,v1=<signature>`. Terra signs with HMAC-SHA256: the signed payload is the timestamp, a `.`, then \"The actual JSON payload (that is, the request body)\", and the key is your endpoint's signing secret. Terra \"requires the raw, unaltered body of the request to perform signature verification\", so read the raw body before any JSON parsing. Ignore every scheme except `v1`, and compare in constant time.\n\n```js\nconst crypto = require(\"crypto\");\n\nfunction verifyTerraSignature(rawBody, header, secret) {\n  // header example: \"t=1723808700,v1=a5ee9dba...\"\n  let timestamp = null;\n  const signatures = [];\n  for (const part of header.split(\",\")) {\n    const [key, value] = part.split(\"=\", 2); // hex values never contain \"=\"\n    if (key === \"t\") timestamp = value;\n    else if (key === \"v1\") signatures.push(value); // ignore other schemes\n  }\n  if (!timestamp || signatures.length === 0) return false;\n  const expected = Buffer.from(\n    crypto.createHmac(\"sha256\", secret).update(`${timestamp}.${rawBody}`).digest(\"hex\")\n  );\n  return signatures.some((sig) => {\n    const provided = Buffer.from(sig);\n    // timingSafeEqual throws on a length mismatch, so check length first\n    return provided.length === expected.length && crypto.timingSafeEqual(provided, expected);\n  });\n}\n```\n\nAlso check the timestamp against your own tolerance, as Terra's docs suggest, to reject replays. Terra recommends its official libraries over a manual check; its webhook docs show Python, JavaScript and Java SDK versions.\n\nRespond quickly: \"Terra waits 8 seconds for your server to respond before considering the request timed out.\" Failed deliveries are retried \"up to 10 times with exponential backoff\", over about eight hours, and then \"the event is dropped. There is no notification when this happens\", so return 200 at once, process asynchronously, and monitor your endpoint.\n\n## Step 7: Pull historical data via REST (optional)\n\nWebhooks give you new data as it arrives. For backfill on first connect, call the per-type endpoints, such as `/activity` (which \"Returns completed workout sessions\"), `/sleep`, `/daily`, `/body`, `/nutrition`, `/menstruation` and `/athlete`, keyed by the Terra `user_id`.\n\n```bash\ncurl --get \"https://access.tryterra.co/api/v2/activity\" \\\n  --header \"dev-id: YOUR_DEV_ID\" \\\n  --header \"x-api-key: YOUR_API_KEY\" \\\n  --data-urlencode \"user_id=USER_ID\" \\\n  --data-urlencode \"start_date=2026-10-01\" \\\n  --data-urlencode \"end_date=2026-10-08\" \\\n  --data-urlencode \"to_webhook=false\" \\\n  --data-urlencode \"with_samples=true\"\n```\n\nFour details from Terra's historical-data guide catch people out:\n\n- `user_id` and `start_date` are required, and `end_date` \"is exclusive on these endpoints\", so pass the day after the last day you want.\n- `to_webhook` \"will always be defaulted to true if not provided\", which sends the data to your destination instead of the response; set it to `false` for a synchronous reply.\n- \"For time ranges longer than 28 days, Terra will default to sending the data asynchronously\", in chunks of at most 10MB.\n- `with_samples` must be true to receive granular data.\n\n## Gotchas and production notes\n\n- **Start provider registrations early.** WHOOP and Dexcom need your own app on their portals and a domain you own, and production access is the provider's decision, not Terra's.\n- **Never expose the API key.** Create widget sessions and pull data only from your backend; calling the API from a browser also fails on CORS.\n- **Verify signatures on day one** and answer within 8 seconds, or events start retrying and, eventually, dropping.\n- **Rate limits.** Terra's overview says it \"has no rate limits of its own\", but its rate-limit reference says it \"applies rate limits on data-read endpoints\": no single request may span more than five years, and a user's requests may not total more than 6,000 requested days in an hour. Chunk backfills accordingly.\n- **Pricing is credit-based, so model it.** As of October 17, 2026, subscriptions \"start from $399 per month billed annually, or $499 per month billed monthly\", including 100,000 credits a month. Each connected data source costs 200 credits a month, the first 400 events per source are free, and extra credits start at $0.005. By our arithmetic, 100,000 credits cover 500 connected sources before events. Re-check tryterra.co/pricing before you budget.\n- **Aggregator, not magic.** Terra removes per-provider OAuth code and per-provider parsing; it does not remove per-provider app approval where the provider requires it. That trade, some dashboard paperwork for one codebase across [many wearables](/fitness-apis/wearable-data-apis), is what you are buying.",
     "faqs": [
       {
         "q": "What makes Terra different from integrating each wearable directly?",
-        "a": "Terra is an aggregator: you build one integration and receive Garmin, Fitbit, Oura, Whoop, Strava, Apple Health, and 500-plus other sources normalized into a single schema over one webhook. Instead of writing and maintaining separate OAuth flows and parsers per device, you write one receiver. The trade-off is usage-based pricing and, for some providers, still registering your own developer credentials."
+        "a": "Terra is an aggregator: you build one integration and receive Garmin, Fitbit, Oura, WHOOP, Strava, Apple Health and other sources normalized into a single schema at one destination, from a webhook to a database or queue. Instead of separate OAuth flows and parsers per device, you write one receiver. The trade-offs are a credit-based bill, from $399 a month billed annually as of October 17, 2026, and your own developer app for some providers."
       },
       {
         "q": "Do I still need my own developer credentials with each provider?",
-        "a": "For most providers Terra brokers the auth entirely. But for several popular ones (commonly Garmin, Whoop, Strava, and Oura) you must register your own developer credentials with that provider and enter them in the Terra dashboard under Connections. Terra shields you from writing the OAuth code, not always from the provider's app-approval process. Verify the current list in Terra's docs, since it changes."
+        "a": "For some. As of October 17, 2026, Terra's docs say it manages provider API keys in general but names WHOOP, Dexcom, Huawei, Strava and Virtuagym as needing special processes; WHOOP and Dexcom require your own app on their developer portals with URLs on a domain you own. Its integrations table also marks Garmin and Samsung as Required, while its homepage says Garmin data flows through Terra's partner integration, so check your dashboard's Connections page."
       },
       {
         "q": "How does a user connect their wearable through Terra?",
-        "a": "Your backend calls POST /v2/auth/generateWidgetSession with a list of providers and your reference_id, and Terra returns a hosted widget url. You send the user to that url, where they pick their provider and authorize it while Terra runs that provider's OAuth. On success Terra fires an auth webhook with the Terra user_id you use for all subsequent data."
+        "a": "Your backend calls POST https://access.tryterra.co/api/widget/session with your dev-id and x-api-key, optionally passing reference_id, a comma-separated providers list and redirect URLs. Terra answers with HTTP 201 and a widget url valid for 24 hours. The user opens it in a new tab or in-app browser, not a WebView or iframe, picks a provider and logs in, and Terra sends an auth event with the Terra user_id you store."
       },
       {
         "q": "How do I verify a Terra webhook is authentic?",
-        "a": "Terra signs each webhook with HMAC-SHA256 and sends a terra-signature header in the form t=timestamp,v1=signature. Recompute the signature over the timestamp plus the raw request body using your signing secret and compare it to v1, rejecting on mismatch. Terra's SDKs expose a verify_terra_webhook_signature helper; confirm the exact signed-string layout in the current docs."
+        "a": "Terra signs each webhook with HMAC-SHA256 and sends a terra-signature header in the form t=timestamp,v1=signature. Concatenate the timestamp, a period and the raw request body, compute the HMAC with your endpoint's signing secret, and compare it in constant time with each v1 value, ignoring other schemes. Read the raw body before parsing JSON, or use Terra's official Python, JavaScript or Java libraries."
       },
       {
         "q": "How much does Terra cost?",
-        "a": "As of 2026 Terra uses a subscription plus credit-based usage model. The entry tier is reported around $399/mo billed annually (about $499 monthly) including roughly 100,000 credits per month, with credits scaling on active authentications and events. All figures are volatile, so verify current numbers on tryterra.co/pricing before budgeting."
+        "a": "As of October 17, 2026, Terra's pricing page says subscriptions start from $399 a month billed annually or $499 billed monthly, including 100,000 credits a month. Each connected data source costs 200 credits a month, the first 400 events per source each month are free, extra events cost 0.5 credits, and extra credits start at $0.005, falling to $0.003 past 1,000,000. Add-ons such as streaming are priced separately."
       }
     ],
     "related": [
@@ -799,6 +799,10 @@ export const integrateEntries: ClusterEntry[] =
         "label": "Terra vs Vital (Junction)"
       },
       {
+        "href": "/alternatives/terra-alternatives",
+        "label": "Terra alternatives"
+      },
+      {
         "href": "/integrate/whoop-api",
         "label": "Integrate the WHOOP API"
       },
@@ -808,36 +812,143 @@ export const integrateEntries: ClusterEntry[] =
       }
     ],
     "cta": {
-      "pitch": "We publish a new wearable and aggregator integration walkthrough every week, provider-credential gotchas and pricing traps included, so subscribe and connect the next device without the surprises."
+      "pitch": "We publish wearable and aggregator integration walkthroughs and log endpoint changes like Terra's widget relaunch, so subscribe and connect the next device without the surprises."
     },
     "steps": [
       {
-        "name": "Get your credentials and set up a Destination",
-        "text": "Create a Terra project to obtain your dev-id and x-api-key, which you send as headers on every call. Configure a Destination, the single HTTPS webhook URL where Terra delivers auth events and normalized data for all providers."
+        "name": "Get your credentials and set up a destination",
+        "text": "Create a Terra account to obtain your dev-id and x-api-key, which you send as headers on every call from your backend. Configure a destination, such as a webhook URL, a SQL database, cloud storage or a queue, where Terra delivers events for all providers."
       },
       {
         "name": "Register your own credentials for providers that need them",
-        "text": "Terra brokers most provider auth, but for Garmin, Whoop, Strava, Oura and others you must paste your own developer client ID and secret into the Terra dashboard under Connections. Until you do, those providers will not appear as options in your widget."
+        "text": "Terra manages most provider keys, but WHOOP and Dexcom require your own app on their developer portals with URLs on a domain you own, and Strava needs your own application keys. Its integrations table also marks Garmin and Samsung as Required, so check the Connections page in your dashboard."
       },
       {
-        "name": "Generate a widget session from your backend",
-        "text": "Call POST /v2/auth/generateWidgetSession with the list of providers to offer and your own reference_id. Terra returns a short-lived session_id and a hosted url for the user."
+        "name": "Create a widget session from your backend",
+        "text": "Call POST https://access.tryterra.co/api/widget/session with your headers and optional reference_id, providers list and redirect URLs. Terra returns HTTP 201 with a widget url valid for 24 hours; the legacy generateWidgetSession endpoint is closed to accounts created after September 3, 2026."
       },
       {
-        "name": "Send the user to the widget and handle the auth webhook",
-        "text": "Open the returned url so the user picks and authorizes their provider while Terra runs that provider's OAuth. Terra fires an auth webhook containing the Terra user_id, which you store against your account for all future calls."
+        "name": "Send the user to the widget and handle the auth event",
+        "text": "Open the url in a new tab or in-app browser, not a WebView or iframe, so the user picks and authorizes their provider. Store the Terra user_id from the auth event, and handle user_reauth events, which carry the old and new user_id when a user reconnects."
       },
       {
-        "name": "Receive normalized data on your webhook",
-        "text": "Terra pushes activity, sleep, daily, body, and other events to your one webhook, each carrying a type and the user_id and provider. The data shape is identical across providers, so you write one handler per type, never per device."
+        "name": "Receive normalized data at your destination",
+        "text": "Terra pushes activity, athlete, body, daily, hormone, menstruation, nutrition and sleep events, each naming the user and provider, in the same shape for every source. Write one handler per type, and overwrite daily and body records with the latest payload."
       },
       {
         "name": "Verify the webhook signature",
-        "text": "Every webhook includes a terra-signature header of the form t=timestamp,v1=signature. Recompute an HMAC-SHA256 over the timestamp plus the raw body with your signing secret and reject the request if it does not match v1."
+        "text": "Every webhook carries a terra-signature header of the form t=timestamp,v1=signature. Compute an HMAC-SHA256 over the timestamp, a period and the raw body with your signing secret, compare it in constant time to each v1 value, and respond within 8 seconds."
       },
       {
         "name": "Pull historical data via REST",
-        "text": "For backfill, call the per-datatype endpoints such as /v2/activity or /v2/sleep with the Terra user_id and a date range. Set to_webhook=true to deliver large pulls asynchronously to your Destination and with_samples=true for granular data."
+        "text": "For backfill, call per-type endpoints such as /activity with the Terra user_id and a start_date; end_date is exclusive. to_webhook defaults to true, so set it to false for a synchronous reply, and expect ranges over 28 days to arrive asynchronously in chunks."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://docs.tryterra.co/unified-api/user-authentication/implementation-terra-widget",
+        "checked": "2026-10-17",
+        "note": "Terra widget session endpoint and legacy deprecation"
+      },
+      {
+        "url": "https://github.com/tryterra/openapi/blob/master/dist/core/v2-bundled.yaml",
+        "checked": "2026-10-17",
+        "note": "Terra OpenAPI spec: base URL and legacy widget endpoint"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+        "checked": "2026-10-17",
+        "note": "Terra data source count and providers with special setup"
+      },
+      {
+        "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+        "checked": "2026-10-17",
+        "note": "Terra integration credential requirements"
+      },
+      {
+        "url": "https://tryterra.co/pricing",
+        "checked": "2026-10-17",
+        "note": "Terra plans, credits, add-ons and Enterprise terms"
+      },
+      {
+        "url": "https://docs.tryterra.co/introduction/account-setup-and-api-keys",
+        "checked": "2026-10-17",
+        "note": "Terra API key handling"
+      },
+      {
+        "url": "https://docs.tryterra.co/introduction/core-concepts",
+        "checked": "2026-10-17",
+        "note": "Terra credentials"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/integration-setup/understanding-terra-environments",
+        "checked": "2026-10-17",
+        "note": "Terra environments and test user limit"
+      },
+      {
+        "url": "https://tryterra.co/",
+        "checked": "2026-10-17",
+        "note": "Terra coverage, data types, destinations, labs, compliance and pricing FAQ"
+      },
+      {
+        "url": "https://docs.tryterra.co/reference",
+        "checked": "2026-10-17",
+        "note": "Terra REST reference"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/integration-setup/dedicated-data-source-api-keys",
+        "checked": "2026-10-17",
+        "note": "Terra managed and dedicated provider keys"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/whoop",
+        "checked": "2026-10-17",
+        "note": "Terra WHOOP setup"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/dexcom",
+        "checked": "2026-10-17",
+        "note": "Terra Dexcom setup"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/quickstart",
+        "checked": "2026-10-17",
+        "note": "Terra quickstart"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/user-authentication/handling-authentication-events",
+        "checked": "2026-10-17",
+        "note": "Terra authentication and re-authentication events"
+      },
+      {
+        "url": "https://docs.tryterra.co/reference/health-and-fitness-api/event-types",
+        "checked": "2026-10-17",
+        "note": "Terra event types"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+        "checked": "2026-10-17",
+        "note": "Terra webhook signing, retries and timeout"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/managing-user-health-data/requesting-historical-data",
+        "checked": "2026-10-17",
+        "note": "Terra historical data requests"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/getting-started",
+        "checked": "2026-10-17",
+        "note": "Terra mobile-only sources, signed webhooks, rate limits"
+      },
+      {
+        "url": "https://docs.tryterra.co/reference/health-and-fitness-api/rate-limits",
+        "checked": "2026-10-17",
+        "note": "Terra data-read rate limits"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/pricing",
+        "checked": "2026-10-17",
+        "note": "Terra credit tiers"
       }
     ]
   },
