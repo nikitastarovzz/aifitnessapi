@@ -48,5 +48,10 @@
     "claim": "Subscribe pitch: Garmin's pages tell developers to stay tuned for program updates.",
     "url": "https://developer.garmin.com/gc-developer-program/overview/",
     "quote": "Stay tuned for more updates on the program"
+  },
+  {
+    "claim": "The Activity API carries per-activity data for over 30 activity types, by Garmin's count.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Full activity data for over 30 activity types."
   }
 ]

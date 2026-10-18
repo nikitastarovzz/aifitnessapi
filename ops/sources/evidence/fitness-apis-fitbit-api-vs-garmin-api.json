@@ -68,5 +68,10 @@
     "claim": "FAQ, can I still sign up: the program is only for business use.",
     "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
     "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Garmin's Activity API covers over 30 activity types by Garmin's count.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Full activity data for over 30 activity types."
   }
 ]
