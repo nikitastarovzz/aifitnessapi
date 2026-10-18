@@ -12,15 +12,15 @@
     "sourceHref": "aifitnessapi.com page carrying the verified claims"
   },
   "stats": {
-    "totalItems": 28,
+    "totalItems": 25,
     "byDevCost": {
-      "free": 17,
+      "free": 14,
       "usage-based": 6,
       "free-tier-then-paid": 4,
       "contact-sales": 1
     },
     "byCategory": {
-      "wearable-direct": 9,
+      "wearable-direct": 6,
       "platform-store": 2,
       "aggregator": 4,
       "nutrition": 4,
@@ -29,11 +29,11 @@
       "pose-model": 3,
       "llm-features": 1
     },
-    "withApprovalGate": 16,
-    "withUserSideCost": 9,
+    "withApprovalGate": 13,
+    "withUserSideCost": 6,
     "contactSalesShare": 4,
-    "freeShare": 61,
-    "gatedShare": 57,
+    "freeShare": 56,
+    "gatedShare": 52,
     "refreshTokenRotators": [
       "Strava",
       "WHOOP",
@@ -85,7 +85,7 @@
       "category": "wearable-direct",
       "devCost": "free",
       "userSideCost": "A Strava account whose data your app reads, authorized by the athlete; Standard Tier apps may require specified end users to hold an active Strava subscription.",
-      "approvalGate": "A Strava subscription is a prerequisite for creating an app, which starts in single-player mode; connecting more athletes needs Strava's review.",
+      "approvalGate": "A Strava subscription is a prerequisite for creating an app, which starts in single-player mode; a self-service upgrade raises its athlete capacity to 10, and connecting more than 10 needs Strava's review.",
       "source": "https://aifitnessapi.com/pricing/strava-api-pricing"
     },
     {
@@ -96,33 +96,6 @@
       "userSideCost": "Each user needs a Polar Flow account and must accept all of Polar's mandatory consents; without them, user endpoints return 403.",
       "approvalGate": null,
       "source": "https://aifitnessapi.com/integrate/polar-api"
-    },
-    {
-      "id": "withings",
-      "label": "Withings Public API",
-      "category": "wearable-direct",
-      "devCost": "free",
-      "userSideCost": "Each user needs a Withings device and account; accounts created from October 12, 2026 need Withings+ to share data with a free-plan app.",
-      "approvalGate": "No review is described for the Public API; an app whose callback URL misses Withings' requirements stays in restricted mode, limited to 10 linked users.",
-      "source": "https://aifitnessapi.com/integrate/withings-api"
-    },
-    {
-      "id": "suunto",
-      "label": "Suunto Cloud API",
-      "category": "wearable-direct",
-      "devCost": "free",
-      "userSideCost": "Each user signs in with their Suunto App account, where their Suunto watch syncs its data.",
-      "approvalGate": "Suunto partner program application for companies and organizations, with the API agreement; Suunto replies within two weeks and offers no access for personal use.",
-      "source": "https://aifitnessapi.com/integrate/suunto-api"
-    },
-    {
-      "id": "wahoo",
-      "label": "Wahoo Cloud API",
-      "category": "wearable-direct",
-      "devCost": "free",
-      "userSideCost": "Each user connects their own Wahoo account; workouts recorded in third-party apps are not shared.",
-      "approvalGate": "Wahoo approves Cloud API requests, and production apps go through a further review for a higher rate limit.",
-      "source": "https://aifitnessapi.com/integrate/wahoo-api"
     },
     {
       "id": "healthkit",

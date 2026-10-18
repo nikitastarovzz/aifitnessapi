@@ -164,7 +164,8 @@ export const COST_ITEMS: CostItem[] = [
   // provenance: "calls a prerequisite for creating an app" — /pricing/strava-api-pricing
   // provenance: "and they authorize your app themselves" — /pricing/strava-api-pricing
   // provenance: "makes Standard Tier apps subject to subscription requirements for the developer or specified end users" — /pricing/strava-api-pricing
-  // provenance: "New apps also start in single-player mode, where only your own account can connect" — /pricing/strava-api-pricing
+  // provenance: "New apps also start in single-player mode, where only your own account can connect, and the self-service upgrade raises the athlete capacity to 10." — /pricing/strava-api-pricing
+  // provenance: "To connect more than 10 athletes, Strava's getting-started guide says to submit your app for review." — /pricing/strava-api-pricing
   // provenance: "data may be shown only to the athlete it belongs to, AI use is banned and caches expire after seven days" — /pricing/strava-api-pricing
   {
     id: "strava",
@@ -174,7 +175,7 @@ export const COST_ITEMS: CostItem[] = [
     userSideCost:
       "A Strava account whose data your app reads, authorized by the athlete; Standard Tier apps may require specified end users to hold an active Strava subscription.",
     approvalGate:
-      "A Strava subscription is a prerequisite for creating an app, which starts in single-player mode; connecting more athletes needs Strava's review.",
+      "A Strava subscription is a prerequisite for creating an app, which starts in single-player mode; a self-service upgrade raises its athlete capacity to 10, and connecting more than 10 needs Strava's review.",
     engEffort: "medium",
     notes:
       "No per-call fee, but the subscription requirement comes first. The bigger constraints are architectural: data may be shown only to the athlete it belongs to, AI use is banned and caches expire after seven days.",
@@ -203,64 +204,8 @@ export const COST_ITEMS: CostItem[] = [
     sourceHref: "/integrate/polar-api",
   },
 
-  // provenance: "Setup is free with no prerequisites" — /integrate/withings-api
-  // provenance: "from October 12, 2026 newly created Withings accounts need Withings+ to share data with a free-plan app" — /integrate/withings-api
-  // provenance: "None is described for the Public API" — /integrate/withings-api
-  // provenance: "stays in restricted mode, limited to 10 linked users" — /integrate/withings-api
-  // provenance: "marks some as requiring the Advanced Biomarkers plan" — /integrate/withings-api
-  // provenance: "The Enterprise plan unlocks higher limits and dedicated support" — /integrate/withings-api
-  {
-    id: "withings",
-    label: "Withings Public API",
-    category: "wearable-direct",
-    devCost: "free",
-    userSideCost:
-      "Each user needs a Withings device and account; accounts created from October 12, 2026 need Withings+ to share data with a free-plan app.",
-    approvalGate:
-      "No review is described for the Public API; an app whose callback URL misses Withings' requirements stays in restricted mode, limited to 10 linked users.",
-    engEffort: "medium",
-    notes:
-      "Free to start with no prerequisites. Some biomarkers require the Advanced Biomarkers plan and higher limits come with Enterprise, neither priced on a page we could read.",
-    sourceHref: "/integrate/withings-api",
-  },
 
-  // provenance: "Suunto does not offer access for personal use and does not charge for the API" — /integrate/suunto-api
-  // provenance: "companies and organizations apply, accept the API agreement and hear back within two weeks" — /integrate/suunto-api
-  // provenance: "The user signs in with their **Suunto App** account" — /integrate/suunto-api
-  // provenance: "One account holds one app" — /integrate/suunto-api
-  // provenance: "Suunto says sleep data, points of interest and personal data such as weight or heart rate zones are not available yet" — /integrate/suunto-api
-  {
-    id: "suunto",
-    label: "Suunto Cloud API",
-    category: "wearable-direct",
-    devCost: "free",
-    userSideCost: "Each user signs in with their Suunto App account, where their Suunto watch syncs its data.",
-    approvalGate:
-      "Suunto partner program application for companies and organizations, with the API agreement; Suunto replies within two weeks and offers no access for personal use.",
-    engEffort: "medium",
-    notes:
-      "No charge for the API. One account holds one app, only workouts have a webhook, and sleep and personal data such as weight are not available yet.",
-    sourceHref: "/integrate/suunto-api",
-  },
 
-  // provenance: "Access is currently free under" — /integrate/wahoo-api
-  // provenance: "Wahoo limits it to developers who request it: you register at developers.wahooligan.com, submit an app for approval, and production apps go through a further review for a higher rate limit" — /integrate/wahoo-api
-  // provenance: "Wahoo does not share workouts recorded in third-party apps" — /integrate/wahoo-api
-  // provenance: "apps are capped at 10 unrevoked tokens per user from January 1, 2026" — /integrate/wahoo-api
-  // provenance: "forbids charging your end users for access to" — /integrate/wahoo-api
-  {
-    id: "wahoo",
-    label: "Wahoo Cloud API",
-    category: "wearable-direct",
-    devCost: "free",
-    userSideCost: "Each user connects their own Wahoo account; workouts recorded in third-party apps are not shared.",
-    approvalGate:
-      "Wahoo approves Cloud API requests, and production apps go through a further review for a higher rate limit.",
-    engEffort: "medium",
-    notes:
-      "Free for now under Wahoo's Public API Agreement, which forbids charging end users for access to Wahoo's API materials. Apps are capped at 10 unrevoked access tokens per user.",
-    sourceHref: "/integrate/wahoo-api",
-  },
 
   // provenance: "both are free and both use per-data-type OS permission prompts rather than OAuth" — /fitness-apis/apple-healthkit-vs-google-health-connect
   // provenance: "HealthKit is included with the Apple Developer Program (a paid membership is needed to ship apps" — /fitness-apis/apple-healthkit-vs-google-health-connect

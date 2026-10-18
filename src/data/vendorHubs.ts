@@ -36,9 +36,12 @@
  *    version, query or API method) are reached through that reference.
  *
  * Who gets a menu: a vendor with three or more pages; below that a menu is a
- * link to the directory entry and back. Polar, Suunto and Wahoo (a guide and
- * its entry each), wger, USDA FoodData Central, Open Food Facts, Sency,
- * QuickPose, MediaPipe, MoveNet and Apple Vision have fewer. KinesteX has five
+ * link to the directory entry and back. Polar (a guide and its entry),
+ * Withings (a guide and a library), Suunto and Wahoo (a guide each), wger,
+ * USDA FoodData Central, Open Food Facts, MoveNet and Apple Vision have fewer.
+ * QuickPose, Sency and MediaPipe reached three on 2026-10-18 (pricing and
+ * alternatives pages) and have no menu yet: whether competitors of the site's
+ * funder get one is an open decision, not an oversight. KinesteX has five
  * and gets none: the funder of this site would be the only motion vendor with
  * a menu, and it would sit on the comparison pages of competitors who have
  * none of their own (ops/GEO.md: never tilt the site toward our own product).
@@ -164,13 +167,6 @@ export const VENDOR_HUBS: VendorHub[] = [
       "/libraries/compare/oura-ring-vs-oura-python",
       "/apis/oura",
     ],
-  },
-  {
-    id: "withings",
-    hub: "/integrate/withings-api",
-    tokens: ["withings"],
-    wraps: ["Withings API"],
-    pages: ["/integrate/withings-api", "/libraries/withings-api", "/apis/withings"],
   },
   {
     id: "healthkit",

@@ -16,6 +16,34 @@ export type Correction = {
 export const CORRECTIONS: Correction[] = [
   {
     date: "2026-10-18",
+    page: { href: "/pricing/are-fitness-apis-free", label: "Are Fitness APIs Free? An Honest Overview" },
+    was: "The page said Garmin breaks the free-to-call pattern of first-party wearable APIs and is partner-approval-only with terms not publicly listed, repeated third-party reports of a setup fee, and said in an FAQ answer: \"Do not label Garmin free.\" A section added on 2026-10-13 said Garmin was the one product rated high engineering effort that was not free, classed contact-sales.",
+    now: "Free to call, with conditions. Garmin's program FAQ says there are no licensing or maintenance fees for access to the Garmin Connect Developer Program, which is only for business use, and that access to some metrics may require a licence fee or a minimum device order for commercial use; Garmin does not publish those amounts. The section's count of the API directory was redone on 2026-10-18: 14 of its 24 products are free, and all five rated high effort, Garmin included, are among them.",
+    how: "Found on 2026-10-18 while checking the page against the Garmin pages re-verified on 2026-10-17 from Garmin's program FAQ, fetched by a source-snapshot run. The site already said otherwise when the page went up on 2026-07-23: since 2026-07-08 the wearable data APIs comparison had listed Garmin as free to approved partners and said Garmin publishes no per-call fee and is documented as free to use. The contact-sales sentence repeated the API directory's Garmin row, the error logged below for the State of Fitness APIs 2026 report.",
+  },
+  {
+    date: "2026-10-18",
+    page: { href: "/pricing/are-fitness-apis-free", label: "Are Fitness APIs Free? An Honest Overview" },
+    was: "The page said Strava breaks the free-to-call pattern of first-party wearable APIs, answered \"not unconditionally\" in its table on whether Strava is free to call, and listed Strava among the APIs that are not free, on reports that Standard-tier developers must hold a paid Strava subscription, with a reported US price.",
+    now: "Free to call, with a subscription gate. Strava's API Agreement, effective June 1, 2026, says access is currently provided at no charge; its getting-started guide calls a Strava subscription a prerequisite for creating an app, and its API Policy makes Standard Tier apps subject to subscription requirements for the developer or specified end users. The subscription price is not on the Strava pages we read, so the page no longer gives one.",
+    how: "Found on 2026-10-18 while checking the page against the Strava pages re-verified on 2026-10-17 from Strava's API Agreement, API Policy and getting-started guide, fetched by a source-snapshot run. The site's Strava pricing page, published the same day as this page, already said the Strava API had no per-call developer fee, and the API Agreement gives its effective date as June 1, 2026, before the page went up.",
+  },
+  {
+    date: "2026-10-18",
+    page: { href: "/state-of-fitness-apis-2026", label: "The State of Fitness APIs 2026" },
+    was: "The report classed Garmin's Health and Activity API as contact-sales, one of 4 such items (16%), and called Garmin the single first-party wearable API whose commercial terms are settled privately with approved partners.",
+    now: "Free to call. Garmin's program FAQ says there are no licensing or maintenance fees for access to the Garmin Connect Developer Program, which is only for business use, and that access to some metrics may require a licence fee or a minimum device order for commercial use. The report now counts 14 of 25 items (56%) as free to call, and a dated revision note at the top lists every figure that moved.",
+    how: "Found on 2026-10-17 while re-verifying the Garmin pages against Garmin's program FAQ, fetched by a source-snapshot run. The fact was already on this site when the report went up: the 2026-07-08 versions of the wearable data APIs comparison and of Fitbit API vs Garmin API said Garmin was documented as free to use with approval. The report's row followed the Garmin pricing page instead, which said Garmin did not publish its terms.",
+  },
+  {
+    date: "2026-10-18",
+    page: { href: "/state-of-fitness-apis-2026", label: "The State of Fitness APIs 2026" },
+    was: "The report classed the Strava API as free-tier-then-paid, one of 5 such items, and its layer table listed Strava as the one wearable API billed that way.",
+    now: "Free to call. Strava's API Agreement says access is currently provided at no charge, and its getting-started guide calls a Strava subscription a prerequisite for creating an app, so the subscription is recorded as an approval gate rather than a developer fee. The revision note at the top of the report lists every figure that moved.",
+    how: "Found on 2026-10-17 while re-verifying the Strava pages against Strava's API Agreement, API Policy and getting-started guide, fetched by a source-snapshot run. The report's own source, the 2026-07-23 version of the Strava pricing page, already said the API had no per-call developer fee and that the subscription it reported gated Standard-tier access, so the classification was wrong at publication.",
+  },
+  {
+    date: "2026-10-18",
     page: { href: "/fix/wearable-data-delayed", label: "Why Is Wearable Data Missing or Delayed?" },
     was: "The fix said to match the terra-reference header on your backfill request to the terra-signature on the eventual webhook.",
     now: "Terra's docs say the event it later sends to your webhook carries the same terra-reference as the initial request, and that is the value to match. terra-signature is the webhook's HMAC signature header, in the form t=timestamp,v1=signature.",
