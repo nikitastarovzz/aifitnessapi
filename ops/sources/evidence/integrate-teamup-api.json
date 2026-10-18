@@ -1,0 +1,252 @@
+[
+  {
+    "claim": "TeamUp sells management software for fitness studios, boxes and gyms.",
+    "url": "https://goteamup.com/features/integrations-with-teamup",
+    "quote": "Professional management software for fitness studios, boxes and gyms"
+  },
+  {
+    "claim": "TeamUp's introduction calls it a full-featured API to interact with your TeamUp business that can power custom websites or apps for your business, or allow automations for your business.",
+    "url": "https://docs.goteamup.com/api-reference/introduction",
+    "quote": "We offer a full-featured API to interact with your TeamUp business. These APIs can power custom websites or apps for your business, or allow automations for your business."
+  },
+  {
+    "claim": "It is organized around REST, uses resource-oriented URLs, accepts and returns JSON, and uses standard HTTP response codes.",
+    "url": "https://docs.goteamup.com/api-reference/introduction",
+    "quote": "Our API has resource-oriented URLs, accepts and returns JSON, and uses standard HTTP response codes."
+  },
+  {
+    "claim": "Every endpoint is relative to one base URL: https://goteamup.com/api/v2",
+    "url": "https://docs.goteamup.com/guides/getting-started",
+    "quote": "All API endpoints are relative to: https://goteamup.com/api/v2"
+  },
+  {
+    "claim": "There is no api.goteamup.com subdomain, and URLs built on it have never existed.",
+    "url": "https://docs.goteamup.com/support/faq",
+    "quote": "There is no api.goteamup.com subdomain — URLs like https://api.goteamup.com/... have never existed."
+  },
+  {
+    "claim": "TeamUp moved from two parallel APIs (Customer vs Business) to a single unified API, where what you can see and do depends on who you are authenticated as, not which URL you call.",
+    "url": "https://docs.goteamup.com/support/faq",
+    "quote": "We’ve moved from two parallel APIs (Customer vs Business) to a single unified API, where the permissions and behavior are determined by who you are authenticated as (business staff vs customer), rather than which URL you call."
+  },
+  {
+    "claim": "The v2 API is the same API TeamUp's own web and mobile apps use, so external developers get the same functionality.",
+    "url": "https://docs.goteamup.com/support/faq",
+    "quote": "the v2 API is the same API that TeamUp's own web and mobile apps use — external developers get the same functionality"
+  },
+  {
+    "claim": "The first step is to create an API Application, which represents the system you're integrating: a custom website, an app or a back-office automation. The Application sets limits on what the integration may do, can generate access tokens for your users, and leaves a reporting trail in the business dashboard.",
+    "url": "https://docs.goteamup.com/api-reference/introduction",
+    "quote": "The first step is to create an Application, which represents the system you're integrating with TeamUp's API. It may be a custom website, app, or a back office automation. The Application sets limits on what integration is allowed to do and can generate access tokens for your users. It also provides a reporting trail, as you'll be able to see in TeamUp's business dashboard which registrations and other actions were performed by your Application."
+  },
+  {
+    "claim": "Applications are created and managed by staff members with the super admin permission at the business, typically the owner, directly in the business dashboard.",
+    "url": "https://docs.goteamup.com/support/faq",
+    "quote": "API Applications are created and managed by staff members with the super admin permission at the business (typically the business owner). Applications are created directly in the business dashboard"
+  },
+  {
+    "claim": "There is no extra fee for API access, and free trial accounts can create API Applications too.",
+    "url": "https://docs.goteamup.com/support/faq",
+    "quote": "There is no extra fee for API access"
+  },
+  {
+    "claim": "No paid plan is needed: free trial accounts can create API Applications.",
+    "url": "https://docs.goteamup.com/support/faq",
+    "quote": "You don't need a paid plan to start building: free trial accounts can create API Applications too."
+  },
+  {
+    "claim": "There is no separate sandbox environment; TeamUp's advice is to sign up for a free trial and use it as a test business.",
+    "url": "https://docs.goteamup.com/support/faq",
+    "quote": "There is no separate sandbox environment. To test your integration, sign up for a free trial account at goteamup.com and use it as a test business — trial accounts can create API Applications and use the API like any other account."
+  },
+  {
+    "claim": "TeamUp supports three ways to authenticate.",
+    "url": "https://docs.goteamup.com/guides/getting-started",
+    "quote": "The API supports three authentication methods, covered in detail on the Authentication page:"
+  },
+  {
+    "claim": "OAuth (recommended) acts as an end user, such as a trainer or a customer.",
+    "url": "https://docs.goteamup.com/llms.txt",
+    "quote": "OAuth allows your Application to request access to TeamUp **on behalf of an end user** - for example, a trainer or customer."
+  },
+  {
+    "claim": "OAuth: users see TeamUp's login screen, authorize your Application, and your app receives a temporary access token.",
+    "url": "https://docs.goteamup.com/llms.txt",
+    "quote": "When users connect, they’ll see TeamUp’s familiar login screen and will be prompted to authorize your Application. Once they do, your app receives a temporary access token with their permissions."
+  },
+  {
+    "claim": "The OAuth access token is a JWT.",
+    "url": "https://docs.goteamup.com/llms.txt",
+    "quote": "A JWT — three base64 segments separated by dots (`xxx.yyy.zzz`)"
+  },
+  {
+    "claim": "M2M token: acts as the business itself, for server-to-server and background integrations.",
+    "url": "https://docs.goteamup.com/guides/getting-started",
+    "quote": "M2M tokens — your app acts on behalf of the business itself, with no user login involved. Ideal for server-to-server and background integrations."
+  },
+  {
+    "claim": "M2M token: an opaque token ...",
+    "url": "https://docs.goteamup.com/llms.txt",
+    "quote": "Opaque key (no dots)"
+  },
+  {
+    "claim": "... created in the business dashboard.",
+    "url": "https://docs.goteamup.com/llms.txt",
+    "quote": "**You can create and manage M2M tokens directly from your business dashboard.**"
+  },
+  {
+    "claim": "Direct Authentication: a fully branded login, only after TeamUp reviews your use case.",
+    "url": "https://docs.goteamup.com/guides/getting-started",
+    "quote": "Direct Authentication — a fully branded login experience where your app handles user passwords directly. Only enabled after TeamUp reviews your use case."
+  },
+  {
+    "claim": "Because your app would handle user passwords, TeamUp only enables Direct Authentication after reviewing your use case, and then issues a secondary secret for the Password Login endpoint, which returns an access token.",
+    "url": "https://docs.goteamup.com/llms.txt",
+    "quote": "Due to this, we only enable Direct Authentication after reviewing your use case. If approved, we’ll issue your developers a secondary secret for securely calling the **Password Login endpoint**, which returns an access token."
+  },
+  {
+    "claim": "Their credentials are not interchangeable; sending the wrong credential is the most common integration mistake TeamUp sees.",
+    "url": "https://docs.goteamup.com/llms.txt",
+    "quote": "They are **not interchangeable** — sending the wrong one is the most common integration mistake we see."
+  },
+  {
+    "claim": "Every authenticated request carries its credential in the HTTP Authorization header ...",
+    "url": "https://docs.goteamup.com/llms.txt",
+    "quote": "All authenticated requests must include your credential in the HTTP `Authorization` header."
+  },
+  {
+    "claim": "... with the Bearer prefix (a missing or malformed Bearer prefix produces authentication_failed, Incorrect authentication credentials).",
+    "url": "https://docs.goteamup.com/llms.txt",
+    "quote": "The `Bearer` prefix is missing or malformed"
+  },
+  {
+    "claim": "Two different 401s: authentication_failed (\"Incorrect authentication credentials.\") ...",
+    "url": "https://docs.goteamup.com/llms.txt",
+    "quote": "`401` with code `authentication_failed` (\"Incorrect authentication credentials.\"), even though you sent a token"
+  },
+  {
+    "claim": "... and an expired or invalid token message, usually a client secret pasted where a token belongs or a revoked or expired token.",
+    "url": "https://docs.goteamup.com/llms.txt",
+    "quote": "The value isn't an active token — commonly the Client Secret pasted where a token belongs, or a revoked/expired token."
+  },
+  {
+    "claim": "The quickest first request uses an M2M token (curl to /events with page_size).",
+    "url": "https://docs.goteamup.com/guides/getting-started",
+    "quote": "The quickest way to make an authenticated request is with an M2M token"
+  },
+  {
+    "claim": "TeamUp does not support the OAuth client_credentials grant or static API keys; its token endpoint only accepts grant_type=authorization_code. If you want an API key for server-to-server access, an M2M token is the supported equivalent.",
+    "url": "https://docs.goteamup.com/llms.txt",
+    "quote": "TeamUp does **not** support the OAuth `client_credentials` grant or static API keys — the OAuth token endpoint only accepts `grant_type=authorization_code`. If you're looking for an \"API key\" for server-to-server access, an M2M token is the supported equivalent."
+  },
+  {
+    "claim": "The client ID and secret you see when you create the Application ...",
+    "url": "https://docs.goteamup.com/llms.txt",
+    "quote": "Shown when you create your API Application"
+  },
+  {
+    "claim": "... are only used as parameters in the OAuth flow, never in the Authorization header.",
+    "url": "https://docs.goteamup.com/llms.txt",
+    "quote": "Only as the `client_id` / `client_secret` parameters in the [OAuth flow](/guides/oauth) — **never** in the `Authorization` header"
+  },
+  {
+    "claim": "With an OAuth token, what your integration can do depends on the authenticated user's role and permissions. An M2M token always acts in provider (staff) mode with admin permissions.",
+    "url": "https://docs.goteamup.com/llms.txt",
+    "quote": "When using OAuth access tokens, the level of access your integration receives depends on the authenticated user’s role and permissions in TeamUp. If using a M2M token, your integration will always make requests in `Provider` mode under the admin permissions."
+  },
+  {
+    "claim": "TeamUp-Request-Mode (provider or customer) is only needed when an OAuth identity is both a customer and a staff member.",
+    "url": "https://docs.goteamup.com/guides/getting-started",
+    "quote": "TeamUp-Request-Mode — only required when using OAuth tokens where the underlying identity is linked to both a customer and a staff member"
+  },
+  {
+    "claim": "TeamUp-Provider-ID names the business a request acts on when your credentials reach more than one ...",
+    "url": "https://docs.goteamup.com/guides/getting-started",
+    "quote": "TeamUp-Provider-ID — specifies which business the request acts on when your credentials can access more than one."
+  },
+  {
+    "claim": "... as with franchises and multi-location businesses.",
+    "url": "https://docs.goteamup.com/llms.txt",
+    "quote": "For franchises or multi-location businesses, your access token may be linked to multiple providers."
+  },
+  {
+    "claim": "Your provider ID is the number at the start of the business's Customer Site URL.",
+    "url": "https://docs.goteamup.com/support/faq",
+    "quote": "Your provider ID (sometimes called your business ID) is the number at the start of your Customer Site URL."
+  },
+  {
+    "claim": "You can also call GET /auth/application, whose scoped_providers field lists the provider IDs your credentials can access.",
+    "url": "https://docs.goteamup.com/support/faq",
+    "quote": "call the Authenticated Application endpoint ( GET /auth/application ) and the response's scoped_providers field lists the provider IDs your credentials can access"
+  },
+  {
+    "claim": "Unless an endpoint says otherwise, TeamUp allows 250 requests per minute per caller, where the caller is the authenticated user, or the IP address for unauthenticated endpoints.",
+    "url": "https://docs.goteamup.com/api-reference/rate-limits",
+    "quote": "Unless otherwise noted in an endpoint's description, the rate limit is 250 requests per minute for a caller. The caller is identified by the authenticated user or in the case of unauthenticated endpoints, the IP address."
+  },
+  {
+    "claim": "Exceed it and you get HTTP 429.",
+    "url": "https://docs.goteamup.com/api-reference/rate-limits",
+    "quote": "If you send many requests in quick succession, you might see error responses with status code 429"
+  },
+  {
+    "claim": "TeamUp recommends retrying with exponential backoff ...",
+    "url": "https://docs.goteamup.com/api-reference/rate-limits",
+    "quote": "The retry mechanism should follow an exponential backoff schedule to reduce request volume when necessary."
+  },
+  {
+    "claim": "... and using the expand parameter to fetch related data in one request rather than several.",
+    "url": "https://docs.goteamup.com/api-reference/rate-limits",
+    "quote": "Leverage the expand parameter to fetch related data in the same request, rather than making multiple requests."
+  },
+  {
+    "claim": "Errors use conventional status codes ...",
+    "url": "https://docs.goteamup.com/llms.txt",
+    "quote": "TeamUp uses conventional HTTP response codes to indicate the success or failure of an API request."
+  },
+  {
+    "claim": "... and a JSON body with a code, a message, a type and, for validation problems, per-field field_errors. The code string is the one to branch on.",
+    "url": "https://docs.goteamup.com/llms.txt",
+    "quote": "A short string indicating the error code. Useful for handling certain errors programmatically."
+  },
+  {
+    "claim": "TeamUp's getting-started guide lists receiving event notifications with webhooks as a next step.",
+    "url": "https://docs.goteamup.com/guides/getting-started",
+    "quote": "Receive event notifications with Webhooks"
+  },
+  {
+    "claim": "Its authentication page names a webhook processor that receives TeamUp event notifications as a typical use for an M2M token.",
+    "url": "https://docs.goteamup.com/llms.txt",
+    "quote": "A webhook processor that receives TeamUp event notifications and fetches additional data as needed"
+  },
+  {
+    "claim": "TeamUp's API Terms of Use were last updated July 11, 2025.",
+    "url": "https://docs.goteamup.com/terms-of-service",
+    "quote": "Last Updated: July 11, 2025"
+  },
+  {
+    "claim": "They let TeamUp limit API calls in any period and, if you exceed the limits, charge fees or end your access.",
+    "url": "https://docs.goteamup.com/terms-of-service",
+    "quote": "TeamUp may limit the number of API calls during any period. If you exceed limits, TeamUp may charge fees or terminate access."
+  },
+  {
+    "claim": "They bar sharing access with competitors ...",
+    "url": "https://docs.goteamup.com/terms-of-service",
+    "quote": "Sharing access with competitors;"
+  },
+  {
+    "claim": "... using data for unauthorized purposes ...",
+    "url": "https://docs.goteamup.com/terms-of-service",
+    "quote": "Using data for unauthorized purposes;"
+  },
+  {
+    "claim": "... and publishing metrics about the API.",
+    "url": "https://docs.goteamup.com/terms-of-service",
+    "quote": "Creating or publishing metrics about the API."
+  },
+  {
+    "claim": "TeamUp may end access at any time, and you may end it with 90 days' notice.",
+    "url": "https://docs.goteamup.com/terms-of-service",
+    "quote": "TeamUp may terminate or suspend your access to the API at any time. You may also terminate by providing 90 days’ notice and ceasing all use."
+  }
+]

@@ -719,5 +719,204 @@ export const entries: ClusterEntry[] =
     "cta": {
       "pitch": "We track the access gates that decide what a wellness program can connect, including Garmin's partner approval and the Fitbit Web API turn-off. Subscribe to hear when one of them changes."
     }
+  },
+  {
+    "slug": "gym-management-software-apis",
+    "primaryQuery": "gym management software API",
+    "h1": "Gym and Studio Management Software APIs (2026)",
+    "metaTitle": "Gym Management Software & Studio Booking APIs (2026)",
+    "metaDescription": "Which gym and studio software has a developer API: Mindbody, TeamUp, Mariana Tek, Wodify and ABC Glofox compared on access, auth, limits and API pricing.",
+    "updated": "2026-10-17",
+    "answer": "As of October 17, 2026, Mindbody, TeamUp, Mariana Tek, Wodify and ABC Glofox publish developer API documentation we could read, and they differ most in who hands out credentials: a TeamUp business creates its own API Application, a Wodify gym gets its key from Wodify Core, Mindbody and Mariana Tek approve developers before each studio opts in, and ABC Fitness runs a partner program. Only Mindbody publishes a per-call API price, a third of a cent per call beyond 1,000 a day in its developer FAQ, while TeamUp says API access carries no extra fee. A studio's existing platform decides which API you must use, so start from the platforms your customers already run.",
+    "body": "If you are building a class booking app, a member portal, a payroll or marketing tool, or anything else that has to read and write a gym's members, classes and sales, the API you need is the one in the studio's management software. This page maps which of the platforms we checked on October 17, 2026 publish a developer API, how you get access, how requests authenticate, what the limits and prices are, and which push changes to you.\n\nEverything below comes from each vendor's own pages, read on that date. Several vendors run their developer portals as JavaScript applications that returned no readable text to our fetch, and where that hid a fact we say so rather than fill the gap.\n\n## The short answer, platform by platform\n\n| Platform | Developer docs we could read | Who issues credentials | Authentication | API price published | Webhooks |\n|---|---|---|---|---|---|\n| Mindbody | Webhooks API docs, FAQ, endpoints list, terms, release notes | Self-serve developer account, then Mindbody approves going live and each business activates you | API key in an `API-Key` header, server-side only | Yes: 1,000 calls a day, then a third of a cent per call | Yes, signed with HMAC-SHA-256 |\n| TeamUp | REST API v2 guides, reference, FAQ and terms | The business's super admin creates an API Application | OAuth, M2M tokens, or Direct Authentication after review | No extra fee for API access | Yes, per its getting-started guide |\n| Mariana Tek | Developer guides and a Customer API OpenAPI document | Mariana Tek's Integrations team, with technical review before going live | OAuth 2.0 (with PKCE for public clients) or an API key, as bearer tokens | Not in the guides we read | Yes, enabled on request |\n| Wodify | Getting started, authentication, rate limits, API reference | The gym (Web Integrations in Wodify Core) or, for partners, the Wodify Developer Portal | API key in an `x-api-key` header | Not published; quota of 500,000 requests a month | Not listed in its docs navigation |\n| ABC Glofox | API reference, version 2.3.0 | A \"Request access\" entry in its API portal, process not readable | Branch ID, API key and API token headers, server-side only | Not on the pages we read | Yes, events listed in the reference |\n| ABC Fitness partner program | Partner FAQ; developer portal not readable | Partner registration and review | Not readable | Tiers and terms discussed during onboarding | Not readable |\n| ABC Trainerize | API help article refused our fetch | Eligible Studio and Enterprise customers | Not readable | API access tied to Studio and Enterprise plans | Not readable |\n| ClubReady | Machine-generated operation list | Not documented on pages we could read | An `ApiKey` parameter on each operation | Not published | Not readable |\n| Zen Planner, PushPress, Virtuagym, Exercise.com, Sportivity | No public API reference found | | | | |\n\nOur integration guides go deeper on the five with readable documentation: [Mindbody](/integrate/mindbody-api), [TeamUp](/integrate/teamup-api), [Mariana Tek](/integrate/mariana-tek-api), [Wodify](/integrate/wodify-api) and [ABC Glofox](/integrate/glofox-api). Mindbody's per-call price has its own page: [Mindbody API pricing](/pricing/mindbody-api-pricing).\n\n## Three ways studio platforms hand out API access\n\nThe biggest difference between these APIs is not the endpoints. It is who decides that you may call them.\n\n**The business switches it on.** TeamUp lets a staff member with the super admin permission create an API Application directly in the business dashboard, and its FAQ says free trial accounts can do it too. Wodify's documentation tells a gym where its API key lives in Wodify Core, and its API reference says to request one through the Web Integrations screen. For a developer working for one studio, this is the fastest route: the studio can grant access the same day.\n\n**The platform approves you, then each studio opts in.** Mindbody's steps are a developer account, a request to go live, Mindbody's approval, and then an activation link or code from each business. Mariana Tek registers applications through its Integrations team, has you build against a sandbox tenant, and says a technical review before going live with a studio can take up to 1-3 weeks; production webhooks also need the studio owner's approval by email.\n\n**A partner program.** ABC Fitness, whose site lists ABC Ignite, ABC Trainerize, ABC Glofox and ABC Evo, runs a partner program for app partners and solution providers. Its FAQ says you register at partners.abcfitness.com and ABC reviews the request, and that you qualify if you are an ABC customer with your own in-house developer, or a vendor supporting an integration for a mutual customer, able to meet ABC's infosec and data privacy policies. The program has several tiers, with terms discussed during evaluation and onboarding. ABC describes this as its \"open API platform\"; its developer portal returned only an error message to our fetch, so we could not read the API itself.\n\nIn our experience, the approval routes take weeks, not days, and they decide your launch date more than any endpoint does. If your product depends on Mindbody or Mariana Tek, start the approval while you build.\n\n## Authentication at a glance\n\nEvery platform here expects its credentials to stay on your server:\n\n- **Header API keys.** Mindbody uses an `API-Key` header plus a required `User-Agent`, and says all requests must come from your back-end servers because keys cannot be safely stored on mobile devices or websites. Wodify uses an `x-api-key` header. ABC Glofox sends three headers, `x-glofox-branch-id`, `x-api-key` and `x-glofox-api-token`, and says to always proxy them through a secure backend.\n- **OAuth.** TeamUp recommends OAuth when your app acts for a customer or staff member, offers machine-to-machine tokens when it acts for the business, and says it does not support static API keys. Mariana Tek runs the OAuth 2.0 Authorization Code flow on each studio's own subdomain, with PKCE for single-page and mobile apps, and also issues API keys tied to a service account.\n- **Query-string keys.** ClubReady's operation metadata lists an `ApiKey` parameter described as the key that \"grants access to resources\", alongside a `StoreId`.\n\nIf your users log in to book classes, OAuth is the route on TeamUp and Mariana Tek; on the API-key platforms, your server holds the key and enforces who may do what. The [OAuth explainer](/learn/what-is-oauth-for-health-data) covers the difference.\n\n## Limits, and what API access costs\n\n| Platform | Published limit | Published API price |\n|---|---|---|\n| Mindbody | Daily call limits set per developer when you receive your API key; its FAQ cites 1,000 calls a day | One third of a cent per call beyond 1,000 a day; sandbox free, also limited to 1,000 calls a day |\n| TeamUp | 250 requests per minute per caller, unless an endpoint says otherwise | No extra fee for API access, and no paid plan needed to build |\n| Wodify | 5 requests per second, bursts of 20, 500,000 requests per month | Not published |\n| ABC Glofox | HTTP 429 when you exceed the rate limit; the number is not in the sections we read | Not on the pages we read |\n| Mariana Tek | Not in the guides we read | Not in the guides we read |\n| ABC Fitness partner program | Not readable | Several tiers, with terms discussed during onboarding |\n| ABC Trainerize | Not readable | API access for eligible Studio and Enterprise customers |\n\nMindbody is the only platform we checked that prints a per-call price, and the FAQ that prints it still describes the API as SOAP and XML web services, so confirm the current fee schedule before you budget. Its API Terms of Use add that fees are billed monthly, starting 30 days after you first receive access to a business's data. The details are on [Mindbody API pricing](/pricing/mindbody-api-pricing).\n\nNone of these figures is the studio's own subscription to the platform. That is a separate bill the studio pays, which we have not reviewed.\n\n## Webhooks: which platforms push changes\n\n- **Mindbody** pushes events for bookings, clients, memberships, contracts, sales, staff and more, signed with an `X-Mindbody-Signature` header. It retries every 15 minutes for up to 3 hours, and recommends re-syncing cached data through the Public API every 24 hours.\n- **Mariana Tek** posts events such as a new account, a reservation or a class check-in, after you request a subscription from its Integrations team.\n- **ABC Glofox** lists webhook events for bookings, members, memberships, invoices and more in its API reference.\n- **TeamUp** lists receiving event notifications with webhooks as a next step in its getting-started guide; we did not read its webhook pages.\n- **Wodify**'s documentation navigation does not mention webhooks, so plan to poll within its monthly quota.\n\nWhichever you integrate, process events idempotently and keep a scheduled re-sync. [Ingesting webhooks reliably](/architecture/webhook-ingestion) covers the pattern.\n\n## The rest of the market\n\n- **ABC Trainerize.** Trainerize's own summary lists \"API access for eligible Studio and Enterprise customers\" and workflow automation through Zapier. Its help-center article on the API and webhooks refused our fetch, so we could not read the details.\n- **ClubReady.** ClubReady serves a machine-generated list of operations, such as class bookings, check-ins and class schedules, with JSON, XML, JSV and CSV formats. Its class-schedule operation, for example, covers at most 7 days per request. How a developer obtains a key is not on any page we could read, and ClubReady's main site answered our fetch with an error.\n- **Zen Planner.** Its integrations page says Zen Planner's \"flexible API\" lets businesses build custom integrations or connect proprietary tools, and lists Zapier among its integrations. We found no public API reference.\n- **PushPress.** Its integrations page says integration partners are \"curated by actual gym owners\" rather than opened to thousands of integrations, and lists Zapier for syncing data with other systems. We found no public API reference.\n- **Exercise.com.** Its custom development page offers custom integrations built by its team and Zapier consulting. We found no public API reference.\n- **Virtuagym and Sportivity.** We found no current public API reference for either, and Sportivity's site returned no readable text to our fetch.\n\n\"No public reference found\" means only that: some of these vendors may share documentation with customers or partners privately. Ask the vendor before you rule it out.\n\n## How to choose\n\nOur recommendation, in order:\n\n1. **Start from your customers' platforms.** A studio rarely switches management software to suit an integration, so the platforms your customers already run decide which APIs you need.\n2. **Begin access work on day one.** Self-serve platforms take a day; approval and review routes take weeks.\n3. **Check that the booking flow you need exists.** Mindbody lists class registration and appointment booking, TeamUp's OAuth use cases include a customer website where users book spots, Mariana Tek's Customer API is built for custom booking and buying experiences, Glofox documents booking endpoints, and Wodify documents class reservations.\n4. **Design for push plus re-sync, within the terms.** Mindbody's API Terms of Use, for example, prohibit caching its data for more than 48 hours, so a long-term copy of a studio's data may not be yours to keep.\n\nFor the general build-versus-buy question across fitness APIs, see [fitness API vs building your own](/fitness-apis/fitness-api-vs-build-your-own), and for every other category, the [fitness API guide](/fitness-apis).",
+    "faqs": [
+      {
+        "q": "Which gym and studio management platforms have a public developer API?",
+        "a": "On October 17, 2026 we could read developer API documentation from Mindbody, TeamUp, Mariana Tek, Wodify and ABC Glofox. ABC Fitness runs a partner program whose developer portal we could not read, ABC Trainerize offers API access to eligible Studio and Enterprise customers, and ClubReady publishes a machine-generated list of operations. We found no public API reference for Zen Planner, PushPress, Virtuagym, Exercise.com or Sportivity."
+      },
+      {
+        "q": "Do gym management software APIs charge for API access?",
+        "a": "Mostly they publish no price. Mindbody is the exception: as of October 17, 2026 its developer FAQ says calls beyond 1,000 a day cost one third of a cent each, with a free sandbox limited to 1,000 calls a day. TeamUp's FAQ says there is no extra fee for API access, ABC Fitness discusses partner tiers and terms during onboarding, and ABC Trainerize ties API access to its Studio and Enterprise plans."
+      },
+      {
+        "q": "Can I build a class booking app on top of a studio's management software?",
+        "a": "Yes, on the platforms that document booking. Mindbody lists class registration and appointment booking, TeamUp's OAuth use cases include a customer website where users book spots, Mariana Tek's Customer API is built for custom booking and buying experiences, ABC Glofox documents booking endpoints, and Wodify documents class reservations. Each studio still has to grant access, and Mindbody and Mariana Tek approve developers first."
+      },
+      {
+        "q": "Is there a sandbox for testing gym and studio software APIs?",
+        "a": "It depends on the platform. Mindbody's FAQ says sandbox testing is free but limited to 1,000 calls a day, and Mariana Tek gives developers a sandbox tenant seeded with sample data. TeamUp has no separate sandbox and suggests using a free trial account as a test business."
+      },
+      {
+        "q": "How do I get API access to ABC Fitness products like Glofox or Trainerize?",
+        "a": "ABC Fitness runs a partner program: its FAQ says to register at partners.abcfitness.com, open to ABC customers with their own in-house developer and to vendors supporting an integration for a mutual customer who can meet ABC's infosec and data privacy policies. ABC Glofox's API portal has its own Request access entry, and ABC Trainerize lists API access for eligible Studio and Enterprise customers."
+      }
+    ],
+    "related": [
+      {
+        "href": "/integrate/mindbody-api",
+        "label": "Integrate the Mindbody API"
+      },
+      {
+        "href": "/integrate/teamup-api",
+        "label": "Integrate the TeamUp API"
+      },
+      {
+        "href": "/integrate/mariana-tek-api",
+        "label": "Integrate the Mariana Tek API"
+      },
+      {
+        "href": "/pricing/mindbody-api-pricing",
+        "label": "Mindbody API pricing"
+      },
+      {
+        "href": "/fitness-apis",
+        "label": "All fitness and wearable APIs"
+      }
+    ],
+    "cta": {
+      "pitch": "We track the access rules, limits and prices of gym and studio software APIs from the vendors' own pages. Subscribe to hear when one of them changes."
+    },
+    "sources": [
+      {
+        "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+        "checked": "2026-10-17",
+        "note": "Mindbody access steps, API-Key and User-Agent headers, server-side requests, webhook signing, retries and re-sync."
+      },
+      {
+        "url": "https://developers.mindbodyonline.com/resources/faqs",
+        "checked": "2026-10-17",
+        "note": "Mindbody API price and sandbox limit, activation link or code, SOAP and XML description."
+      },
+      {
+        "url": "https://developers.mindbodyonline.com/Resources/Endpoints",
+        "checked": "2026-10-17",
+        "note": "Mindbody class registration and appointment booking."
+      },
+      {
+        "url": "https://developers.mindbodyonline.com/Resources/DeveloperAgreement",
+        "checked": "2026-10-17",
+        "note": "Mindbody billing start, call limits and the 48-hour caching restriction."
+      },
+      {
+        "url": "https://docs.goteamup.com/support/faq",
+        "checked": "2026-10-17",
+        "note": "TeamUp: who creates API Applications, no extra fee, no sandbox."
+      },
+      {
+        "url": "https://docs.goteamup.com/guides/getting-started",
+        "checked": "2026-10-17",
+        "note": "TeamUp REST API v2, authentication methods and webhooks next step."
+      },
+      {
+        "url": "https://docs.goteamup.com/api-reference/rate-limits",
+        "checked": "2026-10-17",
+        "note": "TeamUp 250 requests per minute per caller."
+      },
+      {
+        "url": "https://docs.goteamup.com/llms.txt",
+        "checked": "2026-10-17",
+        "note": "TeamUp authentication page: OAuth use cases, M2M tokens, no static API keys."
+      },
+      {
+        "url": "https://guides.marianatek.com/credentials",
+        "checked": "2026-10-17",
+        "note": "Mariana Tek credentials through Integrations: OAuth or API keys."
+      },
+      {
+        "url": "https://guides.marianatek.com/integration-review",
+        "checked": "2026-10-17",
+        "note": "Mariana Tek technical review and its 1-3 week timeframe."
+      },
+      {
+        "url": "https://guides.marianatek.com/faqs",
+        "checked": "2026-10-17",
+        "note": "Mariana Tek sandbox tenants and webhook setup with studio owner approval."
+      },
+      {
+        "url": "https://guides.marianatek.com/auth",
+        "checked": "2026-10-17",
+        "note": "Mariana Tek OAuth on the studio's subdomain, with PKCE."
+      },
+      {
+        "url": "https://guides.marianatek.com/webhooks",
+        "checked": "2026-10-17",
+        "note": "Mariana Tek webhook events."
+      },
+      {
+        "url": "https://docs.marianatek.com/api/customer/v1/schema/",
+        "checked": "2026-10-17",
+        "note": "Mariana Tek Customer API description."
+      },
+      {
+        "url": "https://docs.wodify.com/docs/authentication",
+        "checked": "2026-10-17",
+        "note": "Wodify x-api-key and where gyms and partners get keys."
+      },
+      {
+        "url": "https://docs.wodify.com/docs/rate-limiting",
+        "checked": "2026-10-17",
+        "note": "Wodify rate, burst and monthly quota."
+      },
+      {
+        "url": "https://docs.wodify.com/docs/getting-started",
+        "checked": "2026-10-17",
+        "note": "Wodify documentation navigation and API categories."
+      },
+      {
+        "url": "https://docs.wodify.com/reference/get_dropin",
+        "checked": "2026-10-17",
+        "note": "Wodify Web Integrations screen and the reference's section list."
+      },
+      {
+        "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+        "checked": "2026-10-17",
+        "note": "ABC Glofox API reference 2.3.0: headers, server-side proxying, 429, webhook events, booking endpoints, Request access."
+      },
+      {
+        "url": "https://abcfitness.com/partners/",
+        "checked": "2026-10-17",
+        "note": "ABC Fitness partner program FAQ: registration, requirements, tiers, open API platform."
+      },
+      {
+        "url": "https://abcfitness.com/",
+        "checked": "2026-10-17",
+        "note": "ABC Fitness lists ABC Ignite, ABC Trainerize, ABC Glofox and ABC Evo."
+      },
+      {
+        "url": "https://developers.abcfitness.com/",
+        "checked": "2026-10-17",
+        "note": "Returned only an error message to our fetch."
+      },
+      {
+        "url": "https://www.trainerize.com/llm-info/",
+        "checked": "2026-10-17",
+        "note": "ABC Trainerize API access for eligible Studio and Enterprise customers; Zapier."
+      },
+      {
+        "url": "https://www.clubready.com/api/current/metadata",
+        "checked": "2026-10-17",
+        "note": "ClubReady operation list and formats."
+      },
+      {
+        "url": "https://www.clubready.com/api/current/json/metadata?op=GetClassScheduleRequest",
+        "checked": "2026-10-17",
+        "note": "ClubReady ApiKey and StoreId parameters and the 7-day schedule window."
+      },
+      {
+        "url": "https://www.zenplanner.com/integrations",
+        "checked": "2026-10-17",
+        "note": "Zen Planner's flexible API claim and Zapier."
+      },
+      {
+        "url": "https://www.pushpress.com/integrations",
+        "checked": "2026-10-17",
+        "note": "PushPress curated integrations and Zapier."
+      },
+      {
+        "url": "https://www.exercise.com/platform/custom-dev/",
+        "checked": "2026-10-17",
+        "note": "Exercise.com custom integrations and Zapier consulting."
+      }
+    ]
   }
 ];

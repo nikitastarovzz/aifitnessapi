@@ -70,6 +70,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
       "health-data-aggregator-apis",
       "ai-workout-tracking-apis",
       "nutrition-apis",
+      "gym-management-software-apis",
     ],
   },
   {

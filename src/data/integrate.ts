@@ -26,6 +26,11 @@ export const RELEASED_INTEGRATE = new Set<string>([
   "nutritionix-api",
   "exercisedb-api",
   "polar-api",
+  "mindbody-api",
+  "teamup-api",
+  "mariana-tek-api",
+  "wodify-api",
+  "glofox-api",
 ]);
 
 export const allIntegrations: ClusterEntry[] = integrateEntries;
