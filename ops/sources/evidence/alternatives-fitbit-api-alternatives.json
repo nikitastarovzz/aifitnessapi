@@ -1,0 +1,27 @@
+[
+  {
+    "claim": "Single wearables, watch out: Garmin is partner-approval-only.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "If approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
+  },
+  {
+    "claim": "Single wearables, watch out: by its own FAQ, Garmin's program is for business use only.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Single wearables, watch out: Oura limits a new app to 10 users until Oura approves it.",
+    "url": "https://cloud.ouraring.com/docs/",
+    "quote": "By default, API Applications have a ten user limit. If you want to release your application to a wider audience, your application needs to be approved."
+  },
+  {
+    "claim": "Single wearables, watch out: WHOOP starts every app on a Sandbox tier of 10 members.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect."
+  },
+  {
+    "claim": "Single wearables, watch out: WHOOP requires developers to hold a WHOOP membership.",
+    "url": "https://developer.whoop.com/docs/developing/overview/",
+    "quote": "You must have a WHOOP membership to develop an app on the Developer Platform. Your WHOOP account is also your WHOOP developer login."
+  }
+]

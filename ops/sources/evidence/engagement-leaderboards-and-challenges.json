@@ -1,0 +1,37 @@
+[
+  {
+    "claim": "Provider terms: Strava's API Policy, effective June 1, 2026.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "API Policy (2026) Effective Date: June 1, 2026"
+  },
+  {
+    "claim": "Provider terms: Strava data provided by a specific user may be displayed or disclosed in your app only to that user, even if it is publicly viewable on Strava.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Strava Data provided by a specific Strava user may be displayed or disclosed in your Developer Application only to that user. You may not display or disclose Strava Data related to other users, even if such data is publicly viewable on the Strava Platform."
+  },
+  {
+    "claim": "Provider terms: the same policy forbids using Strava data in connection with the development, training, evaluation or operation of any AI application.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "You may not use the Strava API Materials or Strava Data, directly or indirectly, in connection with the development, training, evaluation, or operation of any AI Application."
+  },
+  {
+    "claim": "Provider terms: Strava's getting-started guide calls a Strava subscription a prerequisite for creating an app.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "A Strava subscription is a prerequisite for creating an app."
+  },
+  {
+    "claim": "FAQ, ranking imported workouts: Strava's API Policy, effective June 1, 2026.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "API Policy (2026) Effective Date: June 1, 2026"
+  },
+  {
+    "claim": "FAQ, ranking imported workouts: data a Strava user provides may be displayed or disclosed in your app only to that user, even if it is publicly viewable on Strava.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Strava Data provided by a specific Strava user may be displayed or disclosed in your Developer Application only to that user. You may not display or disclose Strava Data related to other users, even if such data is publicly viewable on the Strava Platform."
+  },
+  {
+    "claim": "FAQ, ranking imported workouts: it forbids using Strava data in connection with any AI application.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "You may not use the Strava API Materials or Strava Data, directly or indirectly, in connection with the development, training, evaluation, or operation of any AI Application."
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "claim": "Answer: Strava's API Policy, effective June 1, 2026.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "API Policy (2026) Effective Date: June 1, 2026"
+  },
+  {
+    "claim": "Answer: prohibits operating, offering or facilitating an intermediary or aggregator that re-exposes Strava's API to third parties.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "operate, offer, or facilitate any abstraction layer, integration-platform-as-a-service, no-code-AI platform, pass-through proxy, intermediary, or aggregator that re-exposes the Strava API Materials, in whole or in part, to third parties; (b) operate any MCP Server, agent-mediated interface, or analogous mechanism that exposes the Strava API Materials, Strava Data, or any subset thereof"
+  },
+  {
+    "claim": "Table, routing row: the API Policy prohibits intermediaries and aggregators that re-expose the Strava API to third parties, and MCP servers that expose Strava data.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "operate, offer, or facilitate any abstraction layer, integration-platform-as-a-service, no-code-AI platform, pass-through proxy, intermediary, or aggregator that re-exposes the Strava API Materials, in whole or in part, to third parties; (b) operate any MCP Server, agent-mediated interface, or analogous mechanism that exposes the Strava API Materials, Strava Data, or any subset thereof"
+  },
+  {
+    "claim": "Table, subscription row: the getting-started guide calls a Strava subscription a prerequisite for creating an app.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "A Strava subscription is a prerequisite for creating an app."
+  },
+  {
+    "claim": "Table, subscription row: the API Policy, effective June 1, 2026.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "API Policy (2026) Effective Date: June 1, 2026"
+  },
+  {
+    "claim": "Table, subscription row: makes Standard Tier apps subject to subscription requirements for the developer or specified end users.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Standard Tier Applications are subject to subscription requirements as published on the Strava developer site , including a requirement that the developer or specified end users maintain an active Strava subscription."
+  },
+  {
+    "claim": "Table, webhook row: one push subscription per application.",
+    "url": "https://developers.strava.com/docs/webhooks/",
+    "quote": "Each application may only have one subscription, but that single subscription will allow the application to receive webhook events for all supported changes to data owned by athletes that have authorized that application."
+  },
+  {
+    "claim": "Step 7: Strava's getting-started guide says \"A Strava subscription is a prerequisite for creating an app.\"",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "A Strava subscription is a prerequisite for creating an app."
+  },
+  {
+    "claim": "Step 7: its API Policy can also require an active Strava subscription of the developer or specified end users on the Standard Tier.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Standard Tier Applications are subject to subscription requirements as published on the Strava developer site , including a requirement that the developer or specified end users maintain an active Strava subscription."
+  },
+  {
+    "claim": "HowTo step 7: a Strava subscription is a prerequisite for creating an app.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "A Strava subscription is a prerequisite for creating an app."
+  },
+  {
+    "claim": "HowTo step 7: the API Policy can require one of specified end users on the Standard Tier.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Standard Tier Applications are subject to subscription requirements as published on the Strava developer site , including a requirement that the developer or specified end users maintain an active Strava subscription."
+  },
+  {
+    "claim": "FAQ, aggregators: Strava's API Policy, effective June 1, 2026.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "API Policy (2026) Effective Date: June 1, 2026"
+  },
+  {
+    "claim": "FAQ, aggregators: prohibits operating, offering or facilitating any intermediary or aggregator that re-exposes the Strava API Materials to third parties, and operating any MCP server that exposes Strava data.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "operate, offer, or facilitate any abstraction layer, integration-platform-as-a-service, no-code-AI platform, pass-through proxy, intermediary, or aggregator that re-exposes the Strava API Materials, in whole or in part, to third parties; (b) operate any MCP Server, agent-mediated interface, or analogous mechanism that exposes the Strava API Materials, Strava Data, or any subset thereof"
+  }
+]

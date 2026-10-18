@@ -1,0 +1,137 @@
+[
+  {
+    "claim": "Table, Garmin row: no licensing or maintenance fees; business use only.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Table, Garmin row: some metrics may need a licence fee or a minimum device order for commercial use.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+  },
+  {
+    "claim": "Table, Oura row: free for personal and commercial apps.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "Yes, the Oura API is free to use for both personal and commercial applications."
+  },
+  {
+    "claim": "Table, WHOOP row: Sandbox tier of 10 members.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect."
+  },
+  {
+    "claim": "Table, WHOOP row: reviewed tiers above it.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Requests are reviewed manually, in the order they are received."
+  },
+  {
+    "claim": "Table, WHOOP row: API currently provided at no charge.",
+    "url": "https://developer.whoop.com/api-terms-of-use/",
+    "quote": "Access to and use of the APIs is currently provided at no charge. In the event WHOOP decides to start charging for use of the APIs in the future, WHOOP will provide Company with prior notice."
+  },
+  {
+    "claim": "Table, WHOOP row: users are WHOOP members.",
+    "url": "https://developer.whoop.com/docs/developing/overview/",
+    "quote": "you can use the OAuth standard to request consent from WHOOP members to access data on their behalf."
+  },
+  {
+    "claim": "Table, WHOOP row: 10-member Sandbox cap until WHOOP approves the next tier.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect. You can build and test on Sandbox without submitting a request. When you need more members, request the next tier from the Developer Dashboard ."
+  },
+  {
+    "claim": "Table, Polar row: free of charge at the moment, per Polar's API agreement.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "At the moment Polar offers the use and activation of Polar API's free of charge."
+  },
+  {
+    "claim": "Garmin section: the program is only for business use.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Garmin section: access to some metrics may require a licence fee or a minimum device order for commercial use.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+  },
+  {
+    "claim": "Garmin section: Garmin confirms an application's status within two business days.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
+  },
+  {
+    "claim": "Oura section: Oura documents 5,000 requests per 5-minute period.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "The Oura API is limited to 5000 requests per 5-minute period."
+  },
+  {
+    "claim": "Oura section: rate limits are enforced per-token and per-application.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "The API enforces rate limits at two layers to ensure fair access across all applications:"
+  },
+  {
+    "claim": "Oura section: the API returns 403 when a user's Oura subscription has expired.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "The requested resource requires additional permissions or the user's Oura subscription has expired."
+  },
+  {
+    "claim": "WHOOP section: every new app starts on the Sandbox tier, which allows up to 10 WHOOP members.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect."
+  },
+  {
+    "claim": "WHOOP section: you request the next tier from the Developer Dashboard.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect. You can build and test on Sandbox without submitting a request. When you need more members, request the next tier from the Developer Dashboard ."
+  },
+  {
+    "claim": "WHOOP section: WHOOP asks that you have tested with at least one member.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Ensure that you have tested your app with at least one WHOOP member."
+  },
+  {
+    "claim": "WHOOP section: and filled in your app name, contact emails and privacy-policy URL.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "In particular, make sure your App Name , Contact Email(s) , and Privacy Policy URL are filled in and accurate to accelerate the review."
+  },
+  {
+    "claim": "WHOOP section: the tiers above Sandbox are 100, 1,000, 5,000, then unlimited members.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Sandbox 10 Build 100 Growth 1,000 Scale 5,000 Production Unlimited"
+  },
+  {
+    "claim": "WHOOP section: tiers are earned one at a time.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Tiers are earned one at a time. You can only request the tier directly above your current one. From Build onward, moving up requires at least 50% of your current tier's member limit to be connected."
+  },
+  {
+    "claim": "WHOOP section: through a manual review.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Requests are reviewed manually, in the order they are received."
+  },
+  {
+    "claim": "WHOOP section: every user who connects is a WHOOP member.",
+    "url": "https://developer.whoop.com/docs/developing/overview/",
+    "quote": "you can use the OAuth standard to request consent from WHOOP members to access data on their behalf."
+  },
+  {
+    "claim": "Which to pick, Garmin: the program is only for business use.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Which to pick, Garmin: Garmin confirms an application's status within two business days.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
+  },
+  {
+    "claim": "FAQ, GPS and running: Garmin requires approval into its Connect Developer Program.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "If approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
+  },
+  {
+    "claim": "FAQ, GPS and running: which its FAQ says is only for business use.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  }
+]

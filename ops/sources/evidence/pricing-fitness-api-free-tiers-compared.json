@@ -1,0 +1,187 @@
+[
+  {
+    "claim": "Free-to-call count: Garmin is free to call; its program FAQ says there are no licensing or maintenance fees for access.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Free-to-call count: Strava is free to call; its API Agreement says access is currently provided at no charge.",
+    "url": "https://www.strava.com/legal/api",
+    "quote": "Access to and use of the Strava API Materials and the Strava Platform are currently provided at no charge."
+  },
+  {
+    "claim": "Table, Garmin row: approval gate, Garmin Connect Developer Program approval.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "If approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
+  },
+  {
+    "claim": "Table, Garmin row: for business use only.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Table, Garmin row: Garmin confirms an application's status within two business days.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
+  },
+  {
+    "claim": "Table, Garmin row: users sync their own Garmin devices.",
+    "url": "https://developer.garmin.com/gc-developer-program/health-api/",
+    "quote": "After initial consent, end-users sync their device with Garmin Connect to upload device data, at which point it is accessible via the API."
+  },
+  {
+    "claim": "Table, Garmin row: if you supply wearables, Garmin asks for the number of devices when you request the program.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "please request the Garmin Connect Developer Program and enter the number of devices you believe you will support."
+  },
+  {
+    "claim": "Table, Oura row: a new API application is limited to 10 users until Oura approves it.",
+    "url": "https://cloud.ouraring.com/docs/",
+    "quote": "By default, API Applications have a ten user limit. If you want to release your application to a wider audience, your application needs to be approved."
+  },
+  {
+    "claim": "Table, Oura row: with no limit once approved.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "There is no limit once an application is approved."
+  },
+  {
+    "claim": "Table, Oura row: each user needs an Oura Ring and an active Oura Membership.",
+    "url": "https://ouraring.com/membership",
+    "quote": "Yes, purchasing, activating, and consistently wearing an Oura Ring is the only way to unlock access to all of the daily health insights that come with the Oura Membership."
+  },
+  {
+    "claim": "Table, Oura row: the API returns 403 when a user's subscription has expired.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "The requested resource requires additional permissions or the user's Oura subscription has expired."
+  },
+  {
+    "claim": "Table, WHOOP row: new apps start on a Sandbox tier of 10 members.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect."
+  },
+  {
+    "claim": "Table, WHOOP row: and move up through tiers of 100, 1,000, 5,000 and unlimited.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Sandbox 10 Build 100 Growth 1,000 Scale 5,000 Production Unlimited"
+  },
+  {
+    "claim": "Table, WHOOP row: the tiers are reviewed.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Requests are reviewed manually, in the order they are received."
+  },
+  {
+    "claim": "Table, WHOOP row: developers need a WHOOP membership to build.",
+    "url": "https://developer.whoop.com/docs/developing/overview/",
+    "quote": "You must have a WHOOP membership to develop an app on the Developer Platform. Your WHOOP account is also your WHOOP developer login."
+  },
+  {
+    "claim": "Table, WHOOP row: users authorize your app with their own WHOOP accounts, so they are WHOOP members already.",
+    "url": "https://developer.whoop.com/docs/developing/overview/",
+    "quote": "you can use the OAuth standard to request consent from WHOOP members to access data on their behalf."
+  },
+  {
+    "claim": "Table, Strava row: a Strava subscription is a prerequisite for creating an app.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "A Strava subscription is a prerequisite for creating an app."
+  },
+  {
+    "claim": "Table, Strava row: which starts in single-player mode.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "All new applications start in single-player mode. This is the default state where only your own Strava account can authenticate with the app, which lets you build and test your integration against your own data."
+  },
+  {
+    "claim": "Table, Strava row: a self-service upgrade raises its athlete capacity to 10.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "Once your app is configured in your API dashboard, you can upgrade your access directly from your API Settings Dashboard. This raises your access to: Athlete capacity of 10 Read read limits: 200 requests / 15min & 2,000 requests / day Overall rate limits: 400 requests / 15min & 4,000 requests / day"
+  },
+  {
+    "claim": "Table, Strava row: connecting more than 10 needs Strava's review.",
+    "url": "https://developers.strava.com/docs/rate-limits/",
+    "quote": "If you want to scale beyond 10 connected athletes you’ll need to submit your app for review ."
+  },
+  {
+    "claim": "Table, Strava row: the athlete authorizes your app with their own Strava account.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "Redirect the user to GET https://www.strava.com/oauth/authorize ."
+  },
+  {
+    "claim": "Table, Strava row: Standard Tier apps may require specified end users to hold an active Strava subscription.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Standard Tier Applications are subject to subscription requirements as published on the Strava developer site , including a requirement that the developer or specified end users maintain an active Strava subscription."
+  },
+  {
+    "claim": "Table, Polar row: each user needs a Polar Flow account, through which they authorize your app.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "GET https://flow.polar.com/oauth2/authorization"
+  },
+  {
+    "claim": "Table, Polar row: each user must accept all of Polar's mandatory consents.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "each user needs to have all mandatory consents accepted in order to be able to access their data."
+  },
+  {
+    "claim": "Table, Polar row: without them, user endpoints return 403.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Status code 403 Forbidden is returned if user has not given consent to all mandatory data types"
+  },
+  {
+    "claim": "Table, Polar row: no approval gate is documented; any registered Polar Flow user can create an API client.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Any registered Polar Flow user can create API client to AccessLink by filling application details at https://admin.polaraccesslink.com"
+  },
+  {
+    "claim": "Strava paragraph: Strava's API Agreement, effective June 1, 2026.",
+    "url": "https://www.strava.com/legal/api",
+    "quote": "API Agreement (2026) Effective Date: June 1, 2026"
+  },
+  {
+    "claim": "Strava paragraph: says access is currently provided at no charge.",
+    "url": "https://www.strava.com/legal/api",
+    "quote": "Access to and use of the Strava API Materials and the Strava Platform are currently provided at no charge."
+  },
+  {
+    "claim": "Strava paragraph: its getting-started guide calls a Strava subscription a prerequisite for creating an app.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "A Strava subscription is a prerequisite for creating an app."
+  },
+  {
+    "claim": "Strava paragraph: its API Policy lets an app show Strava data only to the athlete who provided it, even when that data is public on Strava.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Strava Data provided by a specific Strava user may be displayed or disclosed in your Developer Application only to that user. You may not display or disclose Strava Data related to other users, even if such data is publicly viewable on the Strava Platform."
+  },
+  {
+    "claim": "Strava paragraph: and forbids using Strava data in connection with the development, training, evaluation or operation of any AI application.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "You may not use the Strava API Materials or Strava Data, directly or indirectly, in connection with the development, training, evaluation, or operation of any AI Application."
+  },
+  {
+    "claim": "FAQ, no gate and no user-side cost: Polar records a user-side condition, a Polar Flow account.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "GET https://flow.polar.com/oauth2/authorization"
+  },
+  {
+    "claim": "FAQ, no gate and no user-side cost: and acceptance of all of Polar's mandatory consents.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "each user needs to have all mandatory consents accepted in order to be able to access their data."
+  },
+  {
+    "claim": "FAQ, no gate and no user-side cost: Polar has no approval gate on record; any registered Polar Flow user can create an API client.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Any registered Polar Flow user can create API client to AccessLink by filling application details at https://admin.polaraccesslink.com"
+  },
+  {
+    "claim": "FAQ, commercial use: Strava lets you charge for functionality it does not provide.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "The foregoing does not prohibit you from charging for the provision of functionality not provided by the Strava Platform in your Developer Application and that is not substantially duplicative of functionality offered by Strava."
+  },
+  {
+    "claim": "FAQ, commercial use: its API Policy lets you show Strava data only to the athlete who provided it.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Strava Data provided by a specific Strava user may be displayed or disclosed in your Developer Application only to that user. You may not display or disclose Strava Data related to other users, even if such data is publicly viewable on the Strava Platform."
+  },
+  {
+    "claim": "FAQ, commercial use: and forbids using it in connection with the development, training, evaluation or operation of any AI application.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "You may not use the Strava API Materials or Strava Data, directly or indirectly, in connection with the development, training, evaluation, or operation of any AI Application."
+  }
+]

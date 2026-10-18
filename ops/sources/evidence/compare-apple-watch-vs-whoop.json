@@ -1,0 +1,92 @@
+[
+  {
+    "claim": "Answer: a Sandbox tier caps a new app at 10 members.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect."
+  },
+  {
+    "claim": "Answer: until WHOOP approves the next tier.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect. You can build and test on Sandbox without submitting a request. When you need more members, request the next tier from the Developer Dashboard ."
+  },
+  {
+    "claim": "How WHOOP works: every new app starts on WHOOP's Sandbox tier, which allows up to 10 WHOOP members.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect."
+  },
+  {
+    "claim": "How WHOOP works: connecting more needs a request for the next tier.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect. You can build and test on Sandbox without submitting a request. When you need more members, request the next tier from the Developer Dashboard ."
+  },
+  {
+    "claim": "How WHOOP works: each request is reviewed.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Requests are reviewed manually, in the order they are received."
+  },
+  {
+    "claim": "Table, approval gate, WHOOP: a 10-member Sandbox tier.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect."
+  },
+  {
+    "claim": "Table, approval gate, WHOOP: until WHOOP approves a request for the next tier.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect. You can build and test on Sandbox without submitting a request. When you need more members, request the next tier from the Developer Dashboard ."
+  },
+  {
+    "claim": "Honest trade-off: WHOOP's API Terms of Use are effective October 6, 2026.",
+    "url": "https://developer.whoop.com/api-terms-of-use/",
+    "quote": "Effective Date: October 6, 2026"
+  },
+  {
+    "claim": "Honest trade-off: they say access is currently provided at no charge.",
+    "url": "https://developer.whoop.com/api-terms-of-use/",
+    "quote": "Access to and use of the APIs is currently provided at no charge. In the event WHOOP decides to start charging for use of the APIs in the future, WHOOP will provide Company with prior notice."
+  },
+  {
+    "claim": "Honest trade-off: every new app starts on a Sandbox tier of 10 members.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect."
+  },
+  {
+    "claim": "Honest trade-off: each tier above it (100, 1,000, 5,000, then unlimited).",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Sandbox 10 Build 100 Growth 1,000 Scale 5,000 Production Unlimited"
+  },
+  {
+    "claim": "Honest trade-off: needs a reviewed request.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Requests are reviewed manually, in the order they are received."
+  },
+  {
+    "claim": "Which to pick, launching soon: WHOOP's 10-member Sandbox cap.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect."
+  },
+  {
+    "claim": "Which to pick, launching soon: lifts only when WHOOP approves a request for the next tier.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect. You can build and test on Sandbox without submitting a request. When you need more members, request the next tier from the Developer Dashboard ."
+  },
+  {
+    "claim": "Fine print: the 10-member Sandbox cap.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect."
+  },
+  {
+    "claim": "FAQ, which gate is harder: every new app starts on a Sandbox tier of up to 10 WHOOP members.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect."
+  },
+  {
+    "claim": "FAQ, which gate is harder: where you can build and test without submitting a request.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect. You can build and test on Sandbox without submitting a request. When you need more members, request the next tier from the Developer Dashboard ."
+  },
+  {
+    "claim": "FAQ, which gate is harder: each tier above it needs a reviewed request.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Requests are reviewed manually, in the order they are received."
+  }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "claim": "Answer: Oura's API spec says personal access tokens were deprecated in December 2025 and are no longer available.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "personal access tokens were deprecated in December 2025 and are no longer available for use."
+  },
+  {
+    "claim": "How to compare, roadmap: Oura deprecated personal access tokens in December 2025 in favor of OAuth.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "personal access tokens were deprecated in December 2025 and are no longer available for use."
+  },
+  {
+    "claim": "Table, API access, Oura: PATs deprecated December 2025 and no longer available.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "personal access tokens were deprecated in December 2025 and are no longer available for use."
+  },
+  {
+    "claim": "Table, roadmap, Oura: the v2 API is the only integration point since V1 was sunset.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "This document describes the Oura API Version 2 (V2), which is the only available integration point for Oura data. The previous V1 API has been sunset."
+  },
+  {
+    "claim": "Table, roadmap, Oura: OAuth-only since PATs were deprecated in December 2025.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "personal access tokens were deprecated in December 2025 and are no longer available for use."
+  },
+  {
+    "claim": "Where Oura pulls ahead: Oura's API spec says personal access tokens were deprecated in December 2025 and are no longer available for use.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "personal access tokens were deprecated in December 2025 and are no longer available for use."
+  },
+  {
+    "claim": "FAQ, personal access token: no; Oura's API spec says personal access tokens were deprecated in December 2025 and are no longer available for use.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "personal access tokens were deprecated in December 2025 and are no longer available for use."
+  }
+]

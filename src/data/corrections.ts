@@ -16,6 +16,34 @@ export type Correction = {
 export const CORRECTIONS: Correction[] = [
   {
     date: "2026-10-18",
+    page: { href: "/pricing/fitness-api-free-tiers-compared", label: "Fitness API Free Tiers Compared: What Free Actually Includes" },
+    was: "The page counted 12 of the 25 items in its source dataset (48%) as free to call, a count that left Garmin out because the dataset then classed it contact-sales, and listed Strava as one of five free tiers that run out, with Standard-tier developers said to need a paid Strava subscription.",
+    now: "14 of 25 (56%). Garmin and Strava are in the free-to-call table, quoting the dataset's re-verified gate and user-side text: Garmin's program FAQ says there are no licensing or maintenance fees for access to its program, which is only for business use, and Strava's API Agreement says access is currently provided at no charge, with a Strava subscription a prerequisite for creating an app. The free-tier list has the dataset's four free-tier-then-paid items, and a dated note beside the figure records the change.",
+    how: "Found on 2026-10-18 while checking the page, which quotes the fitness-apis-2026 dataset verbatim, against the dataset as regenerated from the Garmin and Strava pages re-verified on 2026-10-17. It carried the two misclassifications logged below for the State of Fitness APIs 2026 report, and the site already said otherwise when it went up on 2026-08-12: the wearable data APIs comparison had listed Garmin as free to approved partners since 2026-07-08, and the Strava pricing page had said the API had no per-call developer fee since 2026-07-23.",
+  },
+  {
+    date: "2026-10-18",
+    page: { href: "/cost-planner", label: "Fitness API Cost Planner" },
+    was: "The planner said Garmin does not publish pricing for its developer APIs at all and settles its commercial terms privately with approved partners, named Garmin in an FAQ answer among the APIs that need a sales call, and said roughly half of the market is contact-sales.",
+    now: "Garmin's program FAQ says there are no licensing or maintenance fees for access, though some metrics may require a licence fee or a minimum device order for commercial use, at amounts Garmin does not publish. Garmin is no longer in the planner's sales checklist, and the prose no longer gives a contact-sales share.",
+    how: "Found on 2026-10-18 while checking the page against Garmin's program FAQ, re-verified on 2026-10-17 by a source-snapshot run. The planner reads the cost model that carried the Garmin error logged below for the State of Fitness APIs 2026 report, and the site already said otherwise when the planner went up on 2026-08-11: since 2026-07-08 the wearable data APIs comparison had listed Garmin as free to approved partners. The share was never roughly half: the dataset behind the planner counted 4 of 25 items (16%) as contact-sales that day.",
+  },
+  {
+    date: "2026-10-18",
+    page: { href: "/compare/apple-watch-vs-garmin", label: "Apple Watch vs Garmin: Which Should You Build On?" },
+    was: "The comparison said no Garmin price was confirmed, with \"no confirmation the program is free either\", that Garmin's commercial terms are settled privately with approved partners, and, in its table, that Garmin's developer cost was not publicly listed and that third-party mentions of a setup fee and premium-metric licensing appeared on no Garmin-owned page.",
+    now: "Garmin's program FAQ says there are no licensing or maintenance fees for access to the Garmin Connect Developer Program, which is only for business use, and that access to some metrics may require a licence fee or a minimum device order for commercial use; Garmin does not publish those amounts. The table, the note under it and an FAQ answer now say so.",
+    how: "Found on 2026-10-18 while checking the page against Garmin's program FAQ, re-verified on 2026-10-17 by a source-snapshot run. The site already said otherwise when the page went up on 2026-08-12: since 2026-07-08 the wearable data APIs comparison had listed Garmin as free to approved partners, and Fitbit API vs Garmin API had said both APIs were documented as free to use with approval.",
+  },
+  {
+    date: "2026-10-18",
+    page: { href: "/compare/strava-vs-garmin-connect", label: "Strava vs Garmin: Which API for Your App?" },
+    was: "The comparison said an aggregator that normalizes Strava and Garmin behind one integration can sidestep both Garmin's approval gate and Strava's per-source rules.",
+    now: "An aggregator does not sidestep Strava's rules. Strava's API Policy, effective June 1, 2026, prohibits operating, offering or facilitating an intermediary or aggregator that re-exposes the Strava API Materials to third parties, and the page now says so.",
+    how: "Found on 2026-10-18 while checking the page against Strava's API Policy, re-verified on 2026-10-17 by a source-snapshot run. The policy took effect before the page went up on 2026-07-23, and the site's guide to adapting to Strava's API changes, published on 2026-07-20, already warned that aggregator-mediated Strava paths may be disallowed.",
+  },
+  {
+    date: "2026-10-18",
     page: { href: "/pricing/are-fitness-apis-free", label: "Are Fitness APIs Free? An Honest Overview" },
     was: "The page said Garmin breaks the free-to-call pattern of first-party wearable APIs and is partner-approval-only with terms not publicly listed, repeated third-party reports of a setup fee, and said in an FAQ answer: \"Do not label Garmin free.\" A section added on 2026-10-13 said Garmin was the one product rated high engineering effort that was not free, classed contact-sales.",
     now: "Free to call, with conditions. Garmin's program FAQ says there are no licensing or maintenance fees for access to the Garmin Connect Developer Program, which is only for business use, and that access to some metrics may require a licence fee or a minimum device order for commercial use; Garmin does not publish those amounts. The section's count of the API directory was redone on 2026-10-18: 14 of its 24 products are free, and all five rated high effort, Garmin included, are among them.",

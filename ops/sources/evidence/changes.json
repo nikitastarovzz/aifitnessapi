@@ -1,0 +1,62 @@
+[
+  {
+    "claim": "Strava entry: the API Policy makes Standard Tier apps \"subject to subscription requirements\", including \"that the developer or specified end users maintain an active Strava subscription\".",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Standard Tier Applications are subject to subscription requirements as published on the Strava developer site , including a requirement that the developer or specified end users maintain an active Strava subscription."
+  },
+  {
+    "claim": "Strava entry: the getting-started guide calls a subscription \"a prerequisite for creating an app\".",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "A Strava subscription is a prerequisite for creating an app."
+  },
+  {
+    "claim": "Strava entry: the API Agreement (2026), effective June 1, 2026.",
+    "url": "https://www.strava.com/legal/api",
+    "quote": "API Agreement (2026) Effective Date: June 1, 2026"
+  },
+  {
+    "claim": "Strava entry: says access is \"currently provided at no charge\".",
+    "url": "https://www.strava.com/legal/api",
+    "quote": "Access to and use of the Strava API Materials and the Strava Platform are currently provided at no charge."
+  },
+  {
+    "claim": "Strava entry: Strava data may be shown only to the athlete it belongs to.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Strava Data provided by a specific Strava user may be displayed or disclosed in your Developer Application only to that user. You may not display or disclose Strava Data related to other users, even if such data is publicly viewable on the Strava Platform."
+  },
+  {
+    "claim": "Strava entry: the API Policy forbids using it in the development, training, evaluation or operation of any AI application.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "You may not use the Strava API Materials or Strava Data, directly or indirectly, in connection with the development, training, evaluation, or operation of any AI Application."
+  },
+  {
+    "claim": "WHOOP entry: a developer must have a WHOOP membership to build an app.",
+    "url": "https://developer.whoop.com/docs/developing/overview/",
+    "quote": "You must have a WHOOP membership to develop an app on the Developer Platform. Your WHOOP account is also your WHOOP developer login."
+  },
+  {
+    "claim": "WHOOP entry: users connect with their own WHOOP accounts.",
+    "url": "https://developer.whoop.com/docs/developing/overview/",
+    "quote": "you can use the OAuth standard to request consent from WHOOP members to access data on their behalf."
+  },
+  {
+    "claim": "Garmin watch item: every program page read on 2026-10-17 carried a banner reading Stay tuned for more updates on the program (overview).",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Stay tuned for more updates on the program"
+  },
+  {
+    "claim": "Garmin watch item: the same banner on the program FAQ.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "Stay tuned for more updates on the program"
+  },
+  {
+    "claim": "Garmin watch item: the program FAQ still invited requests.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "If you are interested, please request the Garmin Connect Developer Program and we'll quickly review your application."
+  },
+  {
+    "claim": "Garmin watch item: and said Garmin confirms an application's status within two business days.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
+  }
+]

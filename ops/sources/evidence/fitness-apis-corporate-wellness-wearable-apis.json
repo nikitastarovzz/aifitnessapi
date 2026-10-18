@@ -28,5 +28,65 @@
     "claim": "...even if some users never connect a tracker.",
     "url": "https://www.ftc.gov/business-guidance/resources/complying-ftcs-health-breach-notification-rule-0",
     "quote": "even if some consumers choose to not connect the fitness tracker."
+  },
+  {
+    "claim": "Gate table, Garmin row: partner approval for the Connect Developer Program.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "If approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
+  },
+  {
+    "claim": "Gate table, Garmin row: which is for business use only.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Gate table, Garmin row: Garmin confirms an application's status within two business days.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
+  },
+  {
+    "claim": "Gate table, Garmin row: if you issue Garmin devices, Garmin asks how many when you apply.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "please request the Garmin Connect Developer Program and enter the number of devices you believe you will support."
+  },
+  {
+    "claim": "Garmin section: Garmin must approve your application before you receive any API credentials.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "If approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
+  },
+  {
+    "claim": "Garmin section: the program FAQ says the program is only for business use.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Garmin section: Garmin confirms an application's status within two business days.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
+  },
+  {
+    "claim": "Garmin section: for a program that issues devices, the FAQ asks you to enter the number of devices you expect to support.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "please request the Garmin Connect Developer Program and enter the number of devices you believe you will support."
+  },
+  {
+    "claim": "Garmin section: a member of the Garmin team will contact you about how to sell and provide the wearables.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "A member of the Garmin team will contact you to discuss how best to sell and provide the wearables to your users."
+  },
+  {
+    "claim": "Garmin section: access to some metrics may require a licence fee or a minimum device order for commercial use.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+  },
+  {
+    "claim": "FAQ, access gates: Garmin's program is for business use only.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "FAQ, access gates: Garmin confirms an application's status within two business days.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
   }
 ]

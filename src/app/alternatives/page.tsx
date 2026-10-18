@@ -69,7 +69,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
 const FAQS = [
   {
     q: "Why do teams switch fitness APIs?",
-    a: "The usual triggers are a deprecation or migration (Google Fit is winding down; the legacy Fitbit Web API is moving to the Google Health API), an access barrier (Garmin's developer program is partner-approval-only and reportedly paused for new signups), cost or a membership requirement (Oura, WHOOP), missing data or platform coverage, or wanting one integration instead of many. Each alternatives page below walks the specific trigger and the realistic options.",
+    a: "The usual triggers are a deprecation or migration (Google Fit is winding down; the legacy Fitbit Web API is moving to the Google Health API), an access barrier (Garmin's developer program is partner-approval-only and for business use only), cost or a membership requirement (Oura, WHOOP), missing data or platform coverage, or wanting one integration instead of many. Each alternatives page below walks the specific trigger and the realistic options.",
   },
   {
     q: "What's the fastest way to cover many wearables at once?",

@@ -45,8 +45,8 @@ export default function CorrectionsPage() {
       <section className="mt-10">
         <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Published corrections</h2>
         <ul className="mt-4 space-y-4">
-          {CORRECTIONS.map((c) => (
-            <li key={c.date + c.page.href} className="rounded-2xl border border-[var(--border)] p-5">
+          {CORRECTIONS.map((c, i) => (
+            <li key={`${c.date}-${c.page.href}-${i}`} className="rounded-2xl border border-[var(--border)] p-5">
               <div className="flex flex-wrap items-center gap-2 text-xs text-[var(--muted)]">
                 <time dateTime={c.date}>{c.date}</time>
                 <Link href={c.page.href} className="font-medium text-brand-600 hover:text-brand-500">
