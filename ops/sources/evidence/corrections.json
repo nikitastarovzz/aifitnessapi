@@ -1,0 +1,47 @@
+[
+  {
+    "claim": "Fix page correction: the event Terra later sends to your webhook carries the same terra-reference as the initial request.",
+    "url": "https://docs.tryterra.co/unified-api/managing-user-health-data/requesting-historical-data",
+    "quote": "When making a to_webhook=true request, keep track of the value of the terra-reference header. When the event is eventually sent to your webhook, the event's terra-reference will match that of the initial request, allowing you to mark off the data transfer as successfully completed"
+  },
+  {
+    "claim": "Fix page correction: terra-signature is the webhook's HMAC signature header, in the form t=timestamp,v1=signature.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "Every webhook sent by Terra includes an HMAC-based signature header"
+  },
+  {
+    "claim": "Fix page correction: the signature header's form.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "t=1723808700,v1=a5ee9dba96b4f65aeff6c841aa50121b1f73ec7990d28d53b201523776d4eb00"
+  },
+  {
+    "claim": "Migration guide correction: Thryve is its own company.",
+    "url": "https://www.thryve.health/about",
+    "quote": "since 2016 we have been transforming wearable health data into real-world impact"
+  },
+  {
+    "claim": "Migration guide correction: Sahha is its own company.",
+    "url": "https://sahha.ai/",
+    "quote": "From phones and 800+ devices to biomarkers, scores, archetypes, tags and insights your product can act on."
+  },
+  {
+    "claim": "Migration guide correction: Sahha says Fitbit data on Android reaches its SDK through Health Connect.",
+    "url": "https://sahha.ai/integrations/",
+    "quote": "Samsung Health, Fitbit, Garmin, and hundreds of Android apps write to Health Connect — the same SDK reads it all on Android."
+  },
+  {
+    "claim": "Migration guide correction: Thryve's docs list Google Health as a data source.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "49 Google Health Web Bulk yes no"
+  },
+  {
+    "claim": "Migration guide correction: Thryve's docs mark Fitbit as deprecating on October 29, 2026.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Deprecating on Oct 29 2026"
+  },
+  {
+    "claim": "Report and /apis/terra corrections: Terra's docs say some providers \"require special processes before being able to start using them\" and name WHOOP, Dexcom, Huawei, Strava and Virtuagym.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+    "quote": "Some providers require special processes before being able to start using them: WHOOP Dexcom Huawei Strava Virtuagym"
+  }
+]

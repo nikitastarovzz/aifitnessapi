@@ -1,0 +1,62 @@
+[
+  {
+    "claim": "Revision note: Spike's pricing page now publishes a starting price for its Sandbox plan.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Purpose-built for fast innovation, Sandbox gives your team everything needed to build, test, and launch into production. Starts from $450 /month"
+  },
+  {
+    "claim": "Revision note: and calls its pricing usage-driven.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Usage-driven, transparent, and flexible"
+  },
+  {
+    "claim": "Revision note: Terra's docs say some providers \"require special processes before being able to start using them\" and name WHOOP, Dexcom, Huawei, Strava and Virtuagym.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+    "quote": "Some providers require special processes before being able to start using them: WHOOP Dexcom Huawei Strava Virtuagym"
+  },
+  {
+    "claim": "Gate list, Terra: some providers \"require special processes before being able to start using them\": WHOOP, Dexcom, Huawei, Strava and Virtuagym.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+    "quote": "Some providers require special processes before being able to start using them: WHOOP Dexcom Huawei Strava Virtuagym"
+  },
+  {
+    "claim": "Gate list, Rook: Dexcom and WHOOP need your own developer accounts.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "To enable data extraction from specific platforms with strict regulations, such as Dexcom and Whoop, the client organization must provision and manage its own developer accounts."
+  },
+  {
+    "claim": "Gate list, Rook: Samsung Health needs your own developer account.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "Samsung Health Requires developer account"
+  },
+  {
+    "claim": "Gate list, Rook: Strava needs your own developer account.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "Strava Requires developer account"
+  },
+  {
+    "claim": "Gate list, Rook: which Rook says can take several weeks.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "This process can take several weeks and partly depends on the timelines of the respective data sources."
+  },
+  {
+    "claim": "Gate list, Spike: every plan is bought through a demo call (Sandbox).",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Dedicated Implementation Engineer Standartized data Support via Slack & Email Book a demo"
+  },
+  {
+    "claim": "Gate list, Spike: every plan is bought through a demo call (Enterprise).",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Activation best practices and optimization guidance Book a demo"
+  },
+  {
+    "claim": "Gate list, Spike: a dedicated implementation engineer from sandbox.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Every organization gets a dedicated implementation engineer from the sandbox level to help with setup and optimization."
+  },
+  {
+    "claim": "Finding 4: Spike now publishes a starting price and bills on usage.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Usage-driven, transparent, and flexible"
+  }
+]
