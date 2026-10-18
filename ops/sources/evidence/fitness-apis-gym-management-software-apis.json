@@ -1,0 +1,492 @@
+[
+  {
+    "claim": "Mindbody: self-serve developer account ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Go to our developer portal and create your developer account."
+  },
+  {
+    "claim": "... then a request to go live ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "While logged into your developer account, request to go live with your developer account."
+  },
+  {
+    "claim": "... Mindbody's approval, and then each business activates you.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Once Mindbody approves you for live access, activate the link between your developer account and at least one Mindbody business"
+  },
+  {
+    "claim": "... an activation link or code from each business.",
+    "url": "https://developers.mindbodyonline.com/resources/faqs",
+    "quote": "you've given them access to your site data using an activation link or code"
+  },
+  {
+    "claim": "Mindbody: API key in an API-Key header ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "To make a successful API call, pass an API key as an API-Key header."
+  },
+  {
+    "claim": "... plus a required User-Agent ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "You must specify a User-Agent header when working with Mindbody APIs."
+  },
+  {
+    "claim": "... and all requests must come from your back-end servers because keys cannot be safely stored on mobile devices or websites.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Because API keys cannot be safely stored on mobile devices or websites, all requests to the API must come from your back-end servers."
+  },
+  {
+    "claim": "Mindbody API price: 1,000 calls a day, then a third of a cent per call; sandbox free, also limited to 1,000 calls a day.",
+    "url": "https://developers.mindbodyonline.com/resources/faqs",
+    "quote": "There is a 1,000 call limit per day when using the API. Once this limit is reached, you will be charged one third of a cent for every call. You will be charged to use the API only with live clients. Testing through the sandbox is free of charge, but is restricted to 1,000 calls a day."
+  },
+  {
+    "claim": "Mindbody daily call limits are set when you receive your API key.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Your daily call limits are defined when you receive your API Key."
+  },
+  {
+    "claim": "The FAQ that prints the price still describes the API as SOAP and XML web services.",
+    "url": "https://developers.mindbodyonline.com/resources/faqs",
+    "quote": "Our API is developed using industry standard technologies (XML web services, SOAP, WSDL)"
+  },
+  {
+    "claim": "Mindbody fees are billed monthly ...",
+    "url": "https://developers.mindbodyonline.com/Resources/DeveloperAgreement",
+    "quote": "Mindbody calculates and bills its fees and charges on a monthly basis."
+  },
+  {
+    "claim": "... starting 30 days after you first receive access to a business's data.",
+    "url": "https://developers.mindbodyonline.com/Resources/DeveloperAgreement",
+    "quote": "Commencing 30 days from the date you receive access to Subscriber data"
+  },
+  {
+    "claim": "Mindbody webhooks are signed with an X-Mindbody-Signature header (HMAC-SHA-256).",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Encode the request body using an HMAC-SHA-256 library in your coding language of choice."
+  },
+  {
+    "claim": "Signature header name.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "The header name is X-Mindbody-Signature and the value is a UTF-8 encoded hash."
+  },
+  {
+    "claim": "Mindbody pushes events for bookings, clients, memberships, contracts, sales, staff and more.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Mindbody sends this event when a client is booked into a class."
+  },
+  {
+    "claim": "Mindbody events include memberships.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Mindbody sends this event when a client gets a new membership."
+  },
+  {
+    "claim": "Mindbody events include sales.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Mindbody sends this event when a sale is made to a client."
+  },
+  {
+    "claim": "It retries every 15 minutes for up to 3 hours.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "we try to resend the event every 15 minutes. After 3 hours, Mindbody stops trying to resend the event."
+  },
+  {
+    "claim": "It recommends re-syncing cached data through the Public API every 24 hours.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "To ensure your system has the most up-to-date data, please sync your cached data using the Public API every 24 hours."
+  },
+  {
+    "claim": "Mindbody lists class registration ...",
+    "url": "https://developers.mindbodyonline.com/Resources/Endpoints",
+    "quote": "Class Registration"
+  },
+  {
+    "claim": "... and appointment booking.",
+    "url": "https://developers.mindbodyonline.com/Resources/Endpoints",
+    "quote": "Book Appointments"
+  },
+  {
+    "claim": "Mindbody's API Terms of Use prohibit caching its data for more than 48 hours.",
+    "url": "https://developers.mindbodyonline.com/Resources/DeveloperAgreement",
+    "quote": "Cache (in excess of 48 hours), collect, compile, store, transfer or utilize Mindbody Data"
+  },
+  {
+    "claim": "TeamUp: full REST API v2.",
+    "url": "https://docs.goteamup.com/guides/getting-started",
+    "quote": "The TeamUp API is a REST API for interacting with your TeamUp business."
+  },
+  {
+    "claim": "TeamUp base URL is v2.",
+    "url": "https://docs.goteamup.com/guides/getting-started",
+    "quote": "https://goteamup.com/api/v2"
+  },
+  {
+    "claim": "TeamUp lets a staff member with the super admin permission create an API Application directly in the business dashboard.",
+    "url": "https://docs.goteamup.com/support/faq",
+    "quote": "API Applications are created and managed by staff members with the super admin permission at the business (typically the business owner). Applications are created directly in the business dashboard"
+  },
+  {
+    "claim": "Its FAQ says free trial accounts can do it too, and no paid plan is needed to build.",
+    "url": "https://docs.goteamup.com/support/faq",
+    "quote": "You don't need a paid plan to start building: free trial accounts can create API Applications too."
+  },
+  {
+    "claim": "TeamUp: no extra fee for API access.",
+    "url": "https://docs.goteamup.com/support/faq",
+    "quote": "There is no extra fee for API access"
+  },
+  {
+    "claim": "TeamUp: OAuth, M2M tokens, or Direct Authentication after review.",
+    "url": "https://docs.goteamup.com/guides/getting-started",
+    "quote": "Direct Authentication — a fully branded login experience where your app handles user passwords directly. Only enabled after TeamUp reviews your use case."
+  },
+  {
+    "claim": "TeamUp recommends OAuth when your app acts for a customer or staff member ...",
+    "url": "https://docs.goteamup.com/guides/getting-started",
+    "quote": "OAuth (recommended) — your app acts on behalf of an end user (a customer or staff member)"
+  },
+  {
+    "claim": "... offers machine-to-machine tokens when it acts for the business ...",
+    "url": "https://docs.goteamup.com/guides/getting-started",
+    "quote": "M2M tokens — your app acts on behalf of the business itself, with no user login involved."
+  },
+  {
+    "claim": "... and says it does not support static API keys.",
+    "url": "https://docs.goteamup.com/llms.txt",
+    "quote": "TeamUp does **not** support the OAuth `client_credentials` grant or static API keys"
+  },
+  {
+    "claim": "TeamUp's OAuth use cases include a customer website where users book spots.",
+    "url": "https://docs.goteamup.com/llms.txt",
+    "quote": "A branded customer website showing upcoming classes and allowing users to book spots"
+  },
+  {
+    "claim": "TeamUp: 250 requests per minute per caller, unless an endpoint says otherwise.",
+    "url": "https://docs.goteamup.com/api-reference/rate-limits",
+    "quote": "Unless otherwise noted in an endpoint's description, the rate limit is 250 requests per minute for a caller."
+  },
+  {
+    "claim": "TeamUp lists receiving event notifications with webhooks as a next step in its getting-started guide.",
+    "url": "https://docs.goteamup.com/guides/getting-started",
+    "quote": "Receive event notifications with Webhooks"
+  },
+  {
+    "claim": "TeamUp has no separate sandbox and suggests using a free trial account as a test business.",
+    "url": "https://docs.goteamup.com/support/faq",
+    "quote": "There is no separate sandbox environment. To test your integration, sign up for a free trial account at goteamup.com and use it as a test business"
+  },
+  {
+    "claim": "Mariana Tek registers applications through its Integrations team.",
+    "url": "https://guides.marianatek.com/credentials",
+    "quote": "In order to register your application and get credentials to start authenticating via OAuth, please contact integrations@marianatek.com ."
+  },
+  {
+    "claim": "Mariana Tek has you build against a sandbox tenant (seeded with sample data).",
+    "url": "https://guides.marianatek.com/faqs",
+    "quote": "A sandbox is a mock studio client that developers can leverage to build and test integrations."
+  },
+  {
+    "claim": "Mariana Tek sandbox is seeded with sample data.",
+    "url": "https://guides.marianatek.com/faqs",
+    "quote": "is seeded with sample data"
+  },
+  {
+    "claim": "Mariana Tek says a technical review before going live with a studio can take up to 1-3 weeks.",
+    "url": "https://guides.marianatek.com/integration-review",
+    "quote": "Reviews can take up to 1-3 weeks to complete."
+  },
+  {
+    "claim": "Technical review before going live with a studio.",
+    "url": "https://guides.marianatek.com/integration-review",
+    "quote": "Before you go live with a Mariana Tek Studio Client, you may need to submit your integration for technical review and approval."
+  },
+  {
+    "claim": "Production webhooks also need the studio owner's approval by email.",
+    "url": "https://guides.marianatek.com/faqs",
+    "quote": "To set up webhooks for a studio's production environment, you must have approval from the Studio Owner sent to Integrations by email."
+  },
+  {
+    "claim": "Mariana Tek: OAuth 2.0 (with PKCE for public clients) or an API key, as bearer tokens.",
+    "url": "https://guides.marianatek.com/credentials",
+    "quote": "Mariana Tek supports the Authorization Code flow for confidential applications and the Authorization Code w/ PKCE flow for public applications."
+  },
+  {
+    "claim": "API keys are sent with bearer authentication.",
+    "url": "https://guides.marianatek.com/credentials",
+    "quote": "To make an authenticated request with an API key, bearer authentication should be used:"
+  },
+  {
+    "claim": "Mariana Tek also issues API keys tied to a service account.",
+    "url": "https://guides.marianatek.com/credentials",
+    "quote": "those authenticated with an API key will be tied to the service account associated with your application"
+  },
+  {
+    "claim": "Mariana Tek runs the OAuth 2.0 Authorization Code flow on each studio's own subdomain.",
+    "url": "https://guides.marianatek.com/auth",
+    "quote": "The subdomain corresponding to the brand where the user is attempting to log in."
+  },
+  {
+    "claim": "Mariana Tek posts events such as a new account, a reservation or a class check-in ...",
+    "url": "https://guides.marianatek.com/webhooks",
+    "quote": "For example, you can rely on webhooks to trigger an action in your app/integration when a customer creates an account, makes a reservation, or checks in to class."
+  },
+  {
+    "claim": "... after you request a subscription from its Integrations team.",
+    "url": "https://guides.marianatek.com/webhooks",
+    "quote": "Please contact integrations@marianatek.com to start using webhooks."
+  },
+  {
+    "claim": "Mariana Tek: developer guides and a Customer API OpenAPI document (the document's description says the Customer API uses OpenAPI; the quote ends where a link begins).",
+    "url": "https://docs.marianatek.com/api/customer/v1/schema/",
+    "quote": "The Customer API uses OpenAPI with"
+  },
+  {
+    "claim": "Mariana Tek's Customer API is built for custom booking and buying experiences.",
+    "url": "https://docs.marianatek.com/api/customer/v1/schema/",
+    "quote": "Mariana Tek's Customer API gives you the power to build custom booking and buying experiences for fitness customers."
+  },
+  {
+    "claim": "Wodify's documentation tells a gym where its API key lives in Wodify Core.",
+    "url": "https://docs.wodify.com/docs/authentication",
+    "quote": "You can find it in Wodify Core via Digital Presence > Web Integrations > API Keys."
+  },
+  {
+    "claim": "Its API reference says to request one through the Web Integrations screen.",
+    "url": "https://docs.wodify.com/reference/get_dropin",
+    "quote": "If you don't have one, please request one through the Web Integrations screen."
+  },
+  {
+    "claim": "Wodify partners get keys from the Wodify Developer Portal.",
+    "url": "https://docs.wodify.com/docs/authentication",
+    "quote": "For Wodify Partners: You can retrieve your API Key by visiting the Wodify Developer Portal."
+  },
+  {
+    "claim": "Wodify uses an x-api-key header.",
+    "url": "https://docs.wodify.com/docs/authentication",
+    "quote": "To authenticate your requests to Wodify's APIs, you'll need to include an x-api-key header in your HTTP requests."
+  },
+  {
+    "claim": "Wodify: 5 requests per second ...",
+    "url": "https://docs.wodify.com/docs/rate-limiting",
+    "quote": "Rate 5 requests per second"
+  },
+  {
+    "claim": "... bursts of 20 ...",
+    "url": "https://docs.wodify.com/docs/rate-limiting",
+    "quote": "Burst 20 requests"
+  },
+  {
+    "claim": "... 500,000 requests per month.",
+    "url": "https://docs.wodify.com/docs/rate-limiting",
+    "quote": "Quota 500,000 requests per month"
+  },
+  {
+    "claim": "Wodify's documentation navigation (getting started, authentication, rate limiting, search) does not mention webhooks. Navigation item 1 of 4: its getting-started guide.",
+    "url": "https://docs.wodify.com/docs/getting-started",
+    "quote": "Getting Started with Wodify APIs"
+  },
+  {
+    "claim": "Wodify's documentation navigation (getting started, authentication, rate limiting, search) does not mention webhooks. Navigation item 2 of 4: its authentication guide.",
+    "url": "https://docs.wodify.com/docs/getting-started",
+    "quote": "Authentication"
+  },
+  {
+    "claim": "Wodify's documentation navigation (getting started, authentication, rate limiting, search) does not mention webhooks. Navigation item 3 of 4: its rate-limiting guide.",
+    "url": "https://docs.wodify.com/docs/getting-started",
+    "quote": "Rate Limiting"
+  },
+  {
+    "claim": "Wodify's documentation navigation (getting started, authentication, rate limiting, search) does not mention webhooks. Navigation item 4 of 4: its search guide.",
+    "url": "https://docs.wodify.com/docs/getting-started",
+    "quote": "Using Search Functionality"
+  },
+  {
+    "claim": "Wodify documents class reservations.",
+    "url": "https://docs.wodify.com/docs/getting-started",
+    "quote": "Get, search, create, and delete Class Reservations and Sign-ins for Clients, Leads, and Drop-ins."
+  },
+  {
+    "claim": "ABC Glofox: API reference, version 2.3.0.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Glofox API Reference ( 2.3.0 )"
+  },
+  {
+    "claim": "ABC Glofox: a Request access entry in its API portal.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Request access"
+  },
+  {
+    "claim": "ABC Glofox sends three headers, x-glofox-branch-id, x-api-key and x-glofox-api-token ...",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "x-glofox-branch-id Branch ID for the current request."
+  },
+  {
+    "claim": "x-api-key header.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "x-api-key API key for the integration."
+  },
+  {
+    "claim": "x-glofox-api-token header.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "x-glofox-api-token API token for the integration."
+  },
+  {
+    "claim": "... and says to always proxy them through a secure backend.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Always proxy API key and token requests through a secure backend. Never expose credentials in client-side applications."
+  },
+  {
+    "claim": "ABC Glofox: HTTP 429 when you exceed the rate limit.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "The API blocks the request when you exceed the rate limit."
+  },
+  {
+    "claim": "ABC Glofox lists webhook events for bookings ...",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Handle booking events"
+  },
+  {
+    "claim": "... members ...",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Handle member events"
+  },
+  {
+    "claim": "... memberships ...",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Handle membership events"
+  },
+  {
+    "claim": "... invoices and more.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Handle invoice events"
+  },
+  {
+    "claim": "Glofox documents booking endpoints.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Mark a booking as attended"
+  },
+  {
+    "claim": "ABC Fitness's site lists ABC Ignite ...",
+    "url": "https://abcfitness.com/",
+    "quote": "See why major global fitness brands choose ABC Ignite."
+  },
+  {
+    "claim": "... ABC Trainerize ...",
+    "url": "https://abcfitness.com/",
+    "quote": "ABC Trainerize enables you to expand your services online and offer personalized training programs to your members."
+  },
+  {
+    "claim": "... ABC Glofox ...",
+    "url": "https://abcfitness.com/",
+    "quote": "amplify your brand and strengthen your member experience at any scale with ABC Glofox."
+  },
+  {
+    "claim": "... and ABC Evo.",
+    "url": "https://abcfitness.com/",
+    "quote": "As part of the ABC Fitness family, ABC EVO provides a secure, flexible, all-in-one solution"
+  },
+  {
+    "claim": "ABC Fitness runs a partner program for app partners and solution providers.",
+    "url": "https://abcfitness.com/partners/",
+    "quote": "Reach thousands of gyms, studios, and fitness professionals by integrating your product or service with ABC Fitness."
+  },
+  {
+    "claim": "Its FAQ says you register at partners.abcfitness.com and ABC reviews the request.",
+    "url": "https://abcfitness.com/partners/",
+    "quote": "Please submit a new partner registration at https://partners.abcfitness.com/ . We will review your request and will be in touch to discuss next steps."
+  },
+  {
+    "claim": "You qualify if you are an ABC customer with your own in-house developer, or a vendor supporting an integration for a mutual customer, able to meet ABC's infosec and data privacy policies.",
+    "url": "https://abcfitness.com/partners/",
+    "quote": "You are a customer of ABC and have your own in house developer or you are a vendor and would like to support an integration for a mutual customer and have the ability to meet and adhere to ABC’s infosec and data privacy policies."
+  },
+  {
+    "claim": "The program has several tiers, with terms discussed during evaluation and onboarding.",
+    "url": "https://abcfitness.com/partners/",
+    "quote": "ABC Partner program consists of several tiers and related terms that we can discuss with you as part of your evaluation and onboarding process."
+  },
+  {
+    "claim": "ABC describes this as its open API platform.",
+    "url": "https://abcfitness.com/partners/",
+    "quote": "We provide ABC clients with the most comprehensive technology ecosystem thanks to our open API platform."
+  },
+  {
+    "claim": "ABC's developer portal returned only an error message to our fetch.",
+    "url": "https://developers.abcfitness.com/",
+    "quote": "Portal API unreachable or error occurs, please check logs."
+  },
+  {
+    "claim": "ABC Trainerize: API access for eligible Studio and Enterprise customers.",
+    "url": "https://www.trainerize.com/llm-info/",
+    "quote": "API access for eligible Studio and Enterprise customers."
+  },
+  {
+    "claim": "ABC Trainerize: workflow automation through Zapier.",
+    "url": "https://www.trainerize.com/llm-info/",
+    "quote": "Workflow automation through Zapier."
+  },
+  {
+    "claim": "ClubReady serves a machine-generated list of operations.",
+    "url": "https://www.clubready.com/api/current/metadata",
+    "quote": "The following operations are supported."
+  },
+  {
+    "claim": "ClubReady operations include class bookings ...",
+    "url": "https://www.clubready.com/api/current/metadata",
+    "quote": "CreateClassBookingRequest"
+  },
+  {
+    "claim": "... check-ins ...",
+    "url": "https://www.clubready.com/api/current/metadata",
+    "quote": "DoCheckInRequest JSON XML JSV CSV"
+  },
+  {
+    "claim": "... and class schedules, with JSON, XML, JSV and CSV formats.",
+    "url": "https://www.clubready.com/api/current/metadata",
+    "quote": "GetClassScheduleRequest JSON XML JSV CSV"
+  },
+  {
+    "claim": "ClubReady's operation metadata lists an ApiKey parameter described as the key that grants access to resources ...",
+    "url": "https://www.clubready.com/api/current/json/metadata?op=GetClassScheduleRequest",
+    "quote": "Api Key - grants access to resources"
+  },
+  {
+    "claim": "... alongside a StoreId.",
+    "url": "https://www.clubready.com/api/current/json/metadata?op=GetClassScheduleRequest",
+    "quote": "StoreId query integer Yes StoreID"
+  },
+  {
+    "claim": "Its class-schedule operation covers at most 7 days per request.",
+    "url": "https://www.clubready.com/api/current/json/metadata?op=GetClassScheduleRequest",
+    "quote": "Specify ToDate/FromDate (max 7 days) to get a list of classes within a date range."
+  },
+  {
+    "claim": "Zen Planner's integrations page says its flexible API lets businesses build custom integrations or connect proprietary tools.",
+    "url": "https://www.zenplanner.com/integrations",
+    "quote": "Zen Planner’s flexible API allows your to build custom integrations or connect proprietary tools to create a setup tailored to your operations."
+  },
+  {
+    "claim": "Zen Planner lists Zapier among its integrations.",
+    "url": "https://www.zenplanner.com/integrations",
+    "quote": "Automate workflows with Zapier"
+  },
+  {
+    "claim": "PushPress says integration partners are curated by actual gym owners rather than opened to thousands of integrations.",
+    "url": "https://www.pushpress.com/integrations",
+    "quote": "Integration partners are curated by actual gym owners. Rather than open up to 1,000s of integrations, we hand-picked the best one that offer the most value, and is the easiest to use."
+  },
+  {
+    "claim": "PushPress lists Zapier for syncing data with other systems.",
+    "url": "https://www.pushpress.com/integrations",
+    "quote": "Sync your PushPress data with other systems - no coding required!"
+  },
+  {
+    "claim": "Exercise.com's custom development page offers custom integrations built by its team ...",
+    "url": "https://www.exercise.com/platform/custom-dev/",
+    "quote": "If you need a custom software integration that we don't already have, let us explore a solution for your business."
+  },
+  {
+    "claim": "... and Zapier consulting.",
+    "url": "https://www.exercise.com/platform/custom-dev/",
+    "quote": "Need some help using Zapier? Let our team of experts hook up your zaps so that your fitness business is humming."
+  }
+]

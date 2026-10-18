@@ -29,6 +29,7 @@ export const RELEASED_PRICING = new Set<string>([
   "fitness-api-free-tiers-compared",
   "sahha-api-pricing",
   "thryve-api-pricing",
+  "mindbody-api-pricing",
 ]);
 
 export const allPricing: ClusterEntry[] = pricingEntries;

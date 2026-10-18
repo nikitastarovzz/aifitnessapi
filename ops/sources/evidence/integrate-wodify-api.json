@@ -1,0 +1,207 @@
+[
+  {
+    "claim": "Wodify sells all-in-one gym management software.",
+    "url": "https://www.wodify.com/",
+    "quote": "Wodify is an all-in-one gym management software"
+  },
+  {
+    "claim": "Its integrations page invites developers who are interested in building for studios to its API documentation.",
+    "url": "https://www.wodify.com/integrations",
+    "quote": "Interested in building for studios? Read our API documentation and guides to get started."
+  },
+  {
+    "claim": "Wodify describes a set of powerful APIs for its RESTful platform, organized by the business object each endpoint works on.",
+    "url": "https://docs.wodify.com/docs/getting-started",
+    "quote": "Wodify offers a set of powerful APIs that enable developers to interact with various aspects of the Wodify platform, including managing clients, leads, classes, memberships, and more."
+  },
+  {
+    "claim": "Organized by business object (RESTful APIs, categories).",
+    "url": "https://docs.wodify.com/docs/getting-started",
+    "quote": "Wodify's APIs are organized into different categories based on the business objects they interact with."
+  },
+  {
+    "claim": "Leads: create, update, delete and convert leads to clients; search their bookings and reservations; manage groups, tags, sources and statuses.",
+    "url": "https://docs.wodify.com/docs/getting-started",
+    "quote": "Leads: Manage leads (create, update, delete, convert to clients)."
+  },
+  {
+    "claim": "Clients: search, create, update, suspend, reinstate and deactivate clients; search bookings and reservations; manage roles, groups, tags and statuses.",
+    "url": "https://docs.wodify.com/docs/getting-started",
+    "quote": "Clients: Manage client information (search, create, update, suspend, reinstate, deactivate). Search client appointment bookings and class reservations, and manage roles, groups, tags, and statuses."
+  },
+  {
+    "claim": "Documents: manage contract templates; get client and lead waiver information.",
+    "url": "https://docs.wodify.com/docs/getting-started",
+    "quote": "Documents: Manage contract templates and get client and lead waiver information."
+  },
+  {
+    "claim": "Communications: send emails and SMS, and create tasks.",
+    "url": "https://docs.wodify.com/docs/getting-started",
+    "quote": "Communications: Send emails, SMS, and create tasks."
+  },
+  {
+    "claim": "Financials: manage discounts, tax rates, invoices and revenue categories.",
+    "url": "https://docs.wodify.com/docs/getting-started",
+    "quote": "Financials: Manage discounts, tax rates, invoices, and revenue categories."
+  },
+  {
+    "claim": "Memberships, including templates, billing, discounts, locations, programs, attendance types and hold reasons.",
+    "url": "https://docs.wodify.com/docs/getting-started",
+    "quote": "Memberships: Manage memberships, including templates, billing, discounts, locations, programs, attendance types, and hold reasons."
+  },
+  {
+    "claim": "Customers and Locations: employees and locations.",
+    "url": "https://docs.wodify.com/docs/getting-started",
+    "quote": "Customers and Locations: Handle customer-related data such as employees and locations."
+  },
+  {
+    "claim": "Programs and Classes: search and retrieve programs and classes; get, search, create and delete class reservations and sign-ins for clients, leads and drop-ins.",
+    "url": "https://docs.wodify.com/docs/getting-started",
+    "quote": "Get, search, create, and delete Class Reservations and Sign-ins for Clients, Leads, and Drop-ins."
+  },
+  {
+    "claim": "Appointments: appointments and bookings for clients and leads, and service information.",
+    "url": "https://docs.wodify.com/docs/getting-started",
+    "quote": "Appointments: Manage Appointments and Bookings, including searching and retrieving Client and Lead Booking and Appointment details. Retrieve and search Service information."
+  },
+  {
+    "claim": "Workouts: manage, create, edit and delete workouts.",
+    "url": "https://docs.wodify.com/docs/getting-started",
+    "quote": "Workouts: Manage, create, edit, and delete workouts."
+  },
+  {
+    "claim": "The API reference also has a Progressions section (progressions, levels, criteria and client progressions).",
+    "url": "https://docs.wodify.com/reference/get_dropin",
+    "quote": "Promote Client Progression"
+  },
+  {
+    "claim": "All requests go to one base URL: https://api.wodify.com/v1",
+    "url": "https://docs.wodify.com/docs/getting-started",
+    "quote": "All API requests should be made to the following base URL:"
+  },
+  {
+    "claim": "Base URL value.",
+    "url": "https://docs.wodify.com/docs/getting-started",
+    "quote": "https://api.wodify.com/v1"
+  },
+  {
+    "claim": "The example request on Wodify's authentication page sends Host: app-api.wodify.com.",
+    "url": "https://docs.wodify.com/docs/authentication",
+    "quote": "Host: app-api.wodify.com"
+  },
+  {
+    "claim": "Wodify customers: if the business uses the Wodify Workflows feature, it already has a key in Wodify Core under Digital Presence, Web Integrations, API Keys; click EDIT and look for the key named Wodify API.",
+    "url": "https://docs.wodify.com/docs/authentication",
+    "quote": "For Wodify Customers: If you use the Wodify Workflows feature, you already have an API key set up and ready to use! You can find it in Wodify Core via Digital Presence > Web Integrations > API Keys. Click the 'EDIT' button and locate the API key with the name 'Wodify API.'"
+  },
+  {
+    "claim": "The API reference tells you to request a key through the Web Integrations screen if you don't have one.",
+    "url": "https://docs.wodify.com/reference/get_dropin",
+    "quote": "A valid API key. If you don't have one, please request one through the Web Integrations screen."
+  },
+  {
+    "claim": "Partners retrieve their key from the Wodify Developer Portal, and Wodify support helps with access to the portal.",
+    "url": "https://docs.wodify.com/docs/authentication",
+    "quote": "For Wodify Partners: You can retrieve your API Key by visiting the Wodify Developer Portal. If you need assistance accessing the portal or obtaining your API Key, please reach out to Wodify support."
+  },
+  {
+    "claim": "If you cannot locate a key, Wodify's guide says to contact Wodify support.",
+    "url": "https://docs.wodify.com/docs/authentication",
+    "quote": "If you encounter any issues locating your API Key, contact Wodify support."
+  },
+  {
+    "claim": "Send the key in an x-api-key header on every request.",
+    "url": "https://docs.wodify.com/docs/authentication",
+    "quote": "To authenticate your requests to Wodify's APIs, you'll need to include an x-api-key header in your HTTP requests."
+  },
+  {
+    "claim": "Wodify's server checks that the key is valid and authorized for the resource, processes the request if it is, and otherwise returns an authentication or authorization error.",
+    "url": "https://docs.wodify.com/docs/authentication",
+    "quote": "Upon receiving your request, Wodify's API server will verify the API key included in the x-api-key header. If the API key is valid and authorized to access the requested resource, the server will process the request and return the appropriate response. Otherwise, an error response indicating authentication or authorization failure will be returned."
+  },
+  {
+    "claim": "GET /clients lists clients (the reference has Get Clients; the authentication example uses the /v1/clients path).",
+    "url": "https://docs.wodify.com/docs/authentication",
+    "quote": "POST /v1/clients HTTP/1.1"
+  },
+  {
+    "claim": "Rate: 5 requests per second.",
+    "url": "https://docs.wodify.com/docs/rate-limiting",
+    "quote": "Rate 5 requests per second"
+  },
+  {
+    "claim": "Burst: 20 requests.",
+    "url": "https://docs.wodify.com/docs/rate-limiting",
+    "quote": "Burst 20 requests"
+  },
+  {
+    "claim": "Quota: 500,000 requests per month.",
+    "url": "https://docs.wodify.com/docs/rate-limiting",
+    "quote": "Quota 500,000 requests per month"
+  },
+  {
+    "claim": "Sustained throughput; a short spike allowed above the rate before throttling; the total for a calendar month.",
+    "url": "https://docs.wodify.com/docs/rate-limiting",
+    "quote": "Rate defines the sustained throughput allowed per second. Burst allows a short spike above the rate limit before throttling kicks in. Quota is the total number of requests allowed within a calendar month."
+  },
+  {
+    "claim": "Over the limit, the API returns HTTP 429 Too Many Requests ...",
+    "url": "https://docs.wodify.com/docs/rate-limiting",
+    "quote": "If your integration exceeds the rate limit, the API will return: HTTP 429 Too Many Requests"
+  },
+  {
+    "claim": "... and Wodify recommends exponential backoff.",
+    "url": "https://docs.wodify.com/docs/rate-limiting",
+    "quote": "We recommend implementing exponential backoff"
+  },
+  {
+    "claim": "Best practices: batch requests rather than loop through single calls ...",
+    "url": "https://docs.wodify.com/docs/rate-limiting",
+    "quote": "Batch requests where possible — avoid sending individual requests in rapid loops."
+  },
+  {
+    "claim": "... cache data you reference often ...",
+    "url": "https://docs.wodify.com/docs/rate-limiting",
+    "quote": "Cache responses — store data you reference frequently rather than re-fetching it."
+  },
+  {
+    "claim": "... and keep the monthly count in mind for high-volume automations.",
+    "url": "https://docs.wodify.com/docs/rate-limiting",
+    "quote": "Monitor your usage — keep monthly request counts in mind if you're running high-volume automations."
+  },
+  {
+    "claim": "Wodify integrates with Zapier, which it says connects an account to hundreds of other apps and platforms.",
+    "url": "https://www.wodify.com/integrations",
+    "quote": "Yes. Wodify integrates with Zapier, enabling you to connect your account to hundreds of other apps and platforms"
+  },
+  {
+    "claim": "Wodify's integrations page lists QuickBooks, Slack, Facebook Leads, Google Analytics and MyZone among the tools it connects to.",
+    "url": "https://www.wodify.com/integrations",
+    "quote": "Yes, Wodify integrates with several popular business tools, including QuickBooks, Slack, Facebook Leads, Google Analytics, MyZone, and more."
+  },
+  {
+    "claim": "Integrations with platforms like Slack and Facebook Leads come at no additional cost.",
+    "url": "https://www.wodify.com/integrations",
+    "quote": "Wodify integrates with popular platforms like Slack and Facebook Leads at no additional cost."
+  },
+  {
+    "claim": "Neither Wodify's guide navigation (getting started, authentication, rate limiting and search) nor the section list of its API reference mentions webhooks. Navigation item 1 of 4: its getting-started guide.",
+    "url": "https://docs.wodify.com/docs/getting-started",
+    "quote": "Getting Started with Wodify APIs"
+  },
+  {
+    "claim": "Neither Wodify's guide navigation (getting started, authentication, rate limiting and search) nor the section list of its API reference mentions webhooks. Navigation item 2 of 4: its authentication guide.",
+    "url": "https://docs.wodify.com/docs/getting-started",
+    "quote": "Authentication"
+  },
+  {
+    "claim": "Neither Wodify's guide navigation (getting started, authentication, rate limiting and search) nor the section list of its API reference mentions webhooks. Navigation item 3 of 4: its rate-limiting guide.",
+    "url": "https://docs.wodify.com/docs/getting-started",
+    "quote": "Rate Limiting"
+  },
+  {
+    "claim": "Neither Wodify's guide navigation (getting started, authentication, rate limiting and search) nor the section list of its API reference mentions webhooks. Navigation item 4 of 4: its search guide.",
+    "url": "https://docs.wodify.com/docs/getting-started",
+    "quote": "Using Search Functionality"
+  }
+]

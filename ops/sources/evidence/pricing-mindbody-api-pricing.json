@@ -1,0 +1,97 @@
+[
+  {
+    "claim": "Mindbody's developer FAQ says there is a 1,000-call daily limit on the API and that each call beyond it is charged at one third of a cent, that you are charged only for use with live clients, and that sandbox testing is free but restricted to 1,000 calls a day.",
+    "url": "https://developers.mindbodyonline.com/resources/faqs",
+    "quote": "There is a 1,000 call limit per day when using the API. Once this limit is reached, you will be charged one third of a cent for every call. You will be charged to use the API only with live clients. Testing through the sandbox is free of charge, but is restricted to 1,000 calls a day."
+  },
+  {
+    "claim": "The address /Resources/Pricing on Mindbody's developer portal returned an error page on October 17, 2026.",
+    "url": "https://developers.mindbodyonline.com/Resources/Pricing",
+    "quote": "An error occurred while processing your request."
+  },
+  {
+    "claim": "Billing cycle: monthly ...",
+    "url": "https://developers.mindbodyonline.com/Resources/DeveloperAgreement",
+    "quote": "Mindbody calculates and bills its fees and charges on a monthly basis."
+  },
+  {
+    "claim": "... starting 30 days after you first receive access to Subscriber data ...",
+    "url": "https://developers.mindbodyonline.com/Resources/DeveloperAgreement",
+    "quote": "Commencing 30 days from the date you receive access to Subscriber data"
+  },
+  {
+    "claim": "... usage fees invoiced monthly for the previous calendar month.",
+    "url": "https://developers.mindbodyonline.com/Resources/DeveloperAgreement",
+    "quote": "Usage fees, if any, will be invoiced on a monthly basis for activity from the previous calendar month."
+  },
+  {
+    "claim": "Your call limits: set by Mindbody based on how your applications may be used and their anticipated volume.",
+    "url": "https://developers.mindbodyonline.com/Resources/DeveloperAgreement",
+    "quote": "Mindbody will determine call limits based on various factors, including the ways your Applications may be used or the anticipated volume of use associated with your Applications."
+  },
+  {
+    "claim": "Going over: Mindbody may charge for excess calls or terminate access.",
+    "url": "https://developers.mindbodyonline.com/Resources/DeveloperAgreement",
+    "quote": "If you exceed the call limits established by Mindbody, we reserve the right to charge you for excess API calls, in accordance with Section 10, or to terminate your access to the API, in accordance with Section 11."
+  },
+  {
+    "claim": "Unused calls never roll over to the next day or month.",
+    "url": "https://developers.mindbodyonline.com/Resources/DeveloperAgreement",
+    "quote": "In no event will unused API calls roll over to the next day or month, as applicable."
+  },
+  {
+    "claim": "Fee changes take effect 30 days after Mindbody posts them.",
+    "url": "https://developers.mindbodyonline.com/Resources/DeveloperAgreement",
+    "quote": "Changes to the fees are effective 30 days after being posted at the above link."
+  },
+  {
+    "claim": "You pay any taxes on the fees.",
+    "url": "https://developers.mindbodyonline.com/Resources/DeveloperAgreement",
+    "quote": "All fees made by you under this Agreement will exclude, and you will pay, any taxes associated with such fees, your Application, or this Agreement."
+  },
+  {
+    "claim": "Mindbody pitches its Webhooks API as a way to show near real-time updates to a business's data without having to long-poll the Public API.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "without having to long-poll the Public API"
+  },
+  {
+    "claim": "The same documentation tells you to re-sync cached data through the Public API every 24 hours ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "To ensure your system has the most up-to-date data, please sync your cached data using the Public API every 24 hours."
+  },
+  {
+    "claim": "... and an event carries only some fields, so follow-up reads cost calls too.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Because the event notification posted to your webhook only contains certain data, you may need to use the Public API to collect additional information about an item that has changed."
+  },
+  {
+    "claim": "The FAQ describes the API as built on XML web services, SOAP, WSDL.",
+    "url": "https://developers.mindbodyonline.com/resources/faqs",
+    "quote": "Our API is developed using industry standard technologies (XML web services, SOAP, WSDL)"
+  },
+  {
+    "claim": "Mindbody's documentation says developer accounts created on or after February 19, 2020 can only use V6.0 of the Public API.",
+    "url": "https://developers.mindbodyonline.com/PublicDocumentation/GettingStarted",
+    "quote": "If your developer account was created on or after February 19, 2020 your account can only access V6.0 of the Public API and its accompanying documentation."
+  },
+  {
+    "claim": "Section 10 of the API Terms of Use says fees are more fully described at https://developers.mindbodyonline.com.",
+    "url": "https://developers.mindbodyonline.com/Resources/DeveloperAgreement",
+    "quote": "you shall pay Mindbody any fees charged under this Agreement, as more fully described at https://developers.mindbodyonline.com"
+  },
+  {
+    "claim": "Mindbody's webhook reference describes a site as created when a new business subscribes to Mindbody's services.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Mindbody sends this event when a new business subscribes to Mindbody"
+  },
+  {
+    "claim": "Each business activates your access to its data.",
+    "url": "https://developers.mindbodyonline.com/resources/faqs",
+    "quote": "you've given them access to your site data using an activation link or code"
+  },
+  {
+    "claim": "If your product takes card payments through the API, Mindbody's FAQ says the studio needs an active Mindbody merchant account with a supported processor.",
+    "url": "https://developers.mindbodyonline.com/resources/faqs",
+    "quote": "this requires that the studio specified within the API request has an active merchant account with Mindbody"
+  }
+]

@@ -1,0 +1,472 @@
+[
+  {
+    "claim": "Mindbody gives developers two APIs: the Public API ... and the Webhooks API, which pushes an event to your server when that data changes.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "The Mindbody Webhooks API notifies you when specific events are triggered by a business that uses Mindbody."
+  },
+  {
+    "claim": "Mindbody's FAQ says the API can be used to output live data from your Mindbody system to your main website.",
+    "url": "https://developers.mindbodyonline.com/resources/faqs",
+    "quote": "The API can be used to output live data from your Mindbody system to your main website."
+  },
+  {
+    "claim": "The FAQ lists what the API does with site data: show the class or appointment schedule ...",
+    "url": "https://developers.mindbodyonline.com/resources/faqs",
+    "quote": "Display your class or appointment schedule"
+  },
+  {
+    "claim": "... add clients into services ...",
+    "url": "https://developers.mindbodyonline.com/resources/faqs",
+    "quote": "Add clients into any of your services"
+  },
+  {
+    "claim": "... access and manage client data ...",
+    "url": "https://developers.mindbodyonline.com/resources/faqs",
+    "quote": "Access client information and manage client data"
+  },
+  {
+    "claim": "... complete sales for services and retail products ...",
+    "url": "https://developers.mindbodyonline.com/resources/faqs",
+    "quote": "Complete sales for services and retail products"
+  },
+  {
+    "claim": "... and add and retrieve staff profiles and permissions.",
+    "url": "https://developers.mindbodyonline.com/resources/faqs",
+    "quote": "Add and retrieve staff profile information and permissions"
+  },
+  {
+    "claim": "The endpoints overview groups the data (Appointment, Class, Client, Sale, Site, Staff).",
+    "url": "https://developers.mindbodyonline.com/Resources/Endpoints",
+    "quote": "Here are some of the Mindbody data elements that you can work with through our API."
+  },
+  {
+    "claim": "Appointment: book appointments, update appointments, view a staff member's appointment schedule.",
+    "url": "https://developers.mindbodyonline.com/Resources/Endpoints",
+    "quote": "View Staff Appointment Schedule"
+  },
+  {
+    "claim": "Class: class registration, update a client's visit, enrollment registration, view the class schedule.",
+    "url": "https://developers.mindbodyonline.com/Resources/Endpoints",
+    "quote": "Enrollment Registration"
+  },
+  {
+    "claim": "Client: contact logs, relationships and indexes; purchases and account; visit history.",
+    "url": "https://developers.mindbodyonline.com/Resources/Endpoints",
+    "quote": "Add Contact Logs, Relationships, and client Indexes"
+  },
+  {
+    "claim": "Sale: complete service and product purchases; view pricing options, products and packages; update products.",
+    "url": "https://developers.mindbodyonline.com/Resources/Endpoints",
+    "quote": "Complete Service and Product Purchases"
+  },
+  {
+    "claim": "Site: ... activation codes ... (the endpoints overview lists generating activation codes under the Site service).",
+    "url": "https://developers.mindbodyonline.com/Resources/Endpoints",
+    "quote": "Generate Activation Codes"
+  },
+  {
+    "claim": "Staff: add or update staff information, view staff permissions, retrieve staff photos.",
+    "url": "https://developers.mindbodyonline.com/Resources/Endpoints",
+    "quote": "Retrieve Staff Photos"
+  },
+  {
+    "claim": "Asked whether the API can do everything, it answers \"Not yet\" and says the goal is to allow all Consumer and Business Mode functionality through the API.",
+    "url": "https://developers.mindbodyonline.com/resources/faqs",
+    "quote": "Not yet. The ultimate goal is to allow all Consumer and Business Mode functionality through the API."
+  },
+  {
+    "claim": "Card payments need the studio to hold an active Mindbody merchant account with one of the supported processors ... which limits that access to the US, Canada (except Moneris clients), the UK, the EU, Australia, New Zealand and Hong Kong.",
+    "url": "https://developers.mindbodyonline.com/resources/faqs",
+    "quote": "The Mindbody API has the ability to process credit cards, however this requires that the studio specified within the API request has an active merchant account with Mindbody. TSYS, Bluefin, Elavon, Paysafe, Ezidebit, and Adyen are the only API-supported merchant processors at this time, meaning that access is currently available to clients in the US, Canada (except Moneris clients), UK, EU, AU, NZ and HK."
+  },
+  {
+    "claim": "ACH, Direct Debit and SEPA are not supported through the API.",
+    "url": "https://developers.mindbodyonline.com/resources/faqs",
+    "quote": "Non-credit card methods such as ACH, Direct Debit and SEPA are not supported by the API."
+  },
+  {
+    "claim": "A developer account created on or after February 19, 2020 can only access V6.0 of the Public API, and the V5.0 and V5.1 documentation needs a login.",
+    "url": "https://developers.mindbodyonline.com/PublicDocumentation/GettingStarted",
+    "quote": "If you wish to view documentation for Public API versions V5.0 or V5.1, you must log into your developer account. If your developer account was created on or after February 19, 2020 your account can only access V6.0 of the Public API and its accompanying documentation."
+  },
+  {
+    "claim": "Step 1: create a developer account on Mindbody's developer portal.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Go to our developer portal and create your developer account."
+  },
+  {
+    "claim": "Step 2: while logged in, request to go live with that account.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "While logged into your developer account, request to go live with your developer account."
+  },
+  {
+    "claim": "Step 3: once Mindbody approves you for live access, activate the link between your developer account and at least one Mindbody business.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Once Mindbody approves you for live access, activate the link between your developer account and at least one Mindbody business"
+  },
+  {
+    "claim": "Once the developer has joined the program and the business has given access to its site data using an activation link or code, the integration can begin.",
+    "url": "https://developers.mindbodyonline.com/resources/faqs",
+    "quote": "Once they have joined the program, and you've given them access to your site data using an activation link or code, your API integration can begin!"
+  },
+  {
+    "claim": "Among the prohibited uses are accessing Mindbody Data without the authorization of the Subscriber ...",
+    "url": "https://developers.mindbodyonline.com/Resources/DeveloperAgreement",
+    "quote": "Access Mindbody Data without the authorization of the Subscriber or use Mindbody Data in any way beyond the purpose for which the Subscriber specifically provided you access"
+  },
+  {
+    "claim": "... and requiring end users to give their login credentials to a third-party developer.",
+    "url": "https://developers.mindbodyonline.com/Resources/DeveloperAgreement",
+    "quote": "Require end users to create a source name for a commercial integration or provide their log in credentials to a third-party developer;"
+  },
+  {
+    "claim": "Pass an API key in an API-Key header.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "To make a successful API call, pass an API key as an API-Key header."
+  },
+  {
+    "claim": "A call without one gets HTTP 401 ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "If you make a call without an API-Key header, you receive a 401 HTTP status code and the following error response:"
+  },
+  {
+    "claim": "... and the error type missingAPIKeyHeader.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "missingAPIKeyHeader"
+  },
+  {
+    "claim": "Keys live on the API Credentials page of your developer account, and the Webhooks API accepts the same keys as the Public API.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "The Webhooks API uses API keys from your developer account, which are located on the API Credentials page. You can use the same API keys created for the Public API for the Webhooks API."
+  },
+  {
+    "claim": "Because API keys cannot be safely stored on mobile devices or websites, all requests to the API must come from your back-end servers.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Because API keys cannot be safely stored on mobile devices or websites, all requests to the API must come from your back-end servers."
+  },
+  {
+    "claim": "Mindbody requires a User-Agent header on calls to its APIs.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "You must specify a User-Agent header when working with Mindbody APIs."
+  },
+  {
+    "claim": "Security Policy: store credentials securely at rest and in transit ...",
+    "url": "https://www.mindbodyonline.com/company/legal/security-policy",
+    "quote": "Ensure your API credentials are stored securely at rest and in transit;"
+  },
+  {
+    "claim": "... share them with your team only on a need-to-know basis ...",
+    "url": "https://www.mindbodyonline.com/company/legal/security-policy",
+    "quote": "Share your credentials with your team only on a need-to-know basis;"
+  },
+  {
+    "claim": "... never keep them in source control ...",
+    "url": "https://www.mindbodyonline.com/company/legal/security-policy",
+    "quote": "Never store credentials in source control, private or public;"
+  },
+  {
+    "claim": "... and never let them be logged, even in development tools.",
+    "url": "https://www.mindbodyonline.com/company/legal/security-policy",
+    "quote": "Never allow API credentials to be logged, even in development tools;"
+  },
+  {
+    "claim": "It warns that a violation could cost you access to the Mindbody API permanently.",
+    "url": "https://www.mindbodyonline.com/company/legal/security-policy",
+    "quote": "If you or a member of your team violates this policy, you could permanently lose access to the Mindbody API."
+  },
+  {
+    "claim": "Mindbody's release notes mention requests made with an OAuth consumer identity token ...",
+    "url": "https://developers.mindbodyonline.com/Resources/ApiReleaseNotes",
+    "quote": "Resolved an issue where GET ClientCompleteInfo returned an internal error when called using a valid OAuth consumer identity token."
+  },
+  {
+    "claim": "... and with business mode authentication.",
+    "url": "https://developers.mindbodyonline.com/Resources/ApiReleaseNotes",
+    "quote": "appointments were booked through AddAppointment using business mode authentication"
+  },
+  {
+    "claim": "The Webhooks API lives at https://mb-api.mindbodyonline.com/push/api/v1 ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "https://mb-api.mindbodyonline.com/push/api/v1"
+  },
+  {
+    "claim": "... accepts and returns JSON ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "All endpoints accept and return JSON"
+  },
+  {
+    "claim": "... and must be called over HTTPS with TLS 1.2 or higher.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "All calls to the Webhooks API must use HTTPS connections, using TLS v1.2 or higher."
+  },
+  {
+    "claim": "You create a subscription for one or more events with a POST ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Use the POST subscription endpoint to create a subscription for one or more events."
+  },
+  {
+    "claim": "... activate it with a PATCH ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Use the PATCH subscription endpoint to activate your subscription."
+  },
+  {
+    "claim": "... and deactivate it with a DELETE.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Optionally, use the DELETE subscription endpoint to deactivate the webhook you used for testing."
+  },
+  {
+    "claim": "Your webhook URL has to accept HTTPS connections using TLS 1.2 or higher.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Webhook URLs must accept HTTPS connections using TLS v1.2 or higher."
+  },
+  {
+    "claim": "... accept both POST requests, which deliver events, and HEAD requests, which Mindbody uses to check the URL when you create a subscription.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Webhook URLs must accept both POST and HEAD HTTP requests. Mindbody uses POST requests to deliver events to the URL, and HEAD requests to check the URL"
+  },
+  {
+    "claim": "... answer with a 2xx within 10 seconds. Otherwise Mindbody resends the event every 15 minutes and gives up after 3 hours.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "If Mindbody does not receive a 2xx response within 10 seconds of posting an event to your webhook URL, we try to resend the event every 15 minutes. After 3 hours, Mindbody stops trying to resend the event."
+  },
+  {
+    "claim": "Mindbody does not guarantee that an event arrives only once ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Events are not guaranteed to be delivered only once."
+  },
+  {
+    "claim": "... or in chronological order ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Events are not guaranteed to be delivered in chronological order."
+  },
+  {
+    "claim": "... so it recommends idempotent processing ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "we recommend that you make your event processing idempotent"
+  },
+  {
+    "claim": "... and it suggests putting incoming events on a queue so you can respond quickly.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "add incoming events to a queue for future processing so you can return a response to our API as quickly as possible"
+  },
+  {
+    "claim": "If Mindbody stops getting 2xx responses, it may deactivate the subscription and email the developer portal account that created it.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Your subscription may be deactivated because Mindbody stopped receiving a 2xx HTTP status code from the webhookUrl when posting events. When this occurs, Mindbody will send an email to the developer portal email account with which the subscription was created."
+  },
+  {
+    "claim": "Reactivate the subscription with a PATCH once the endpoint is fixed (FAQ) ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "After you have resolved the delivery issues, please update the subscription"
+  },
+  {
+    "claim": "... and run a manual sync through the Public API (FAQ).",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "In the meantime, we recommend using the Mindbody Public API to perform a manual sync of cached data."
+  },
+  {
+    "claim": "Events that happen while a subscription is inactive are not stored or delivered later.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Webhook API events are only delivered to subscriptions that are active at the time the event occurs. Events are not stored and delivered to subscriptions at a later time."
+  },
+  {
+    "claim": "Each delivery carries an X-Mindbody-Signature header.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "The header name is X-Mindbody-Signature and the value is a UTF-8 encoded hash."
+  },
+  {
+    "claim": "Compute an HMAC-SHA-256 of the request body, keyed with the messageSignatureKey returned when you created the subscription ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Encode the request body using an HMAC-SHA-256 library in your coding language of choice. When you do this, use the messageSignatureKey returned from the POST Subscription endpoint as the key for the algorithm."
+  },
+  {
+    "claim": "... prepend sha256= ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Prepend sha256= to the encoded signature."
+  },
+  {
+    "claim": "... and compare the result with the header (if they match, Mindbody says the message came from its servers).",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Compare the string with the header value. If they match, then the message came from our servers."
+  },
+  {
+    "claim": "Mindbody's C# sample Base64-encodes the hash before prepending the prefix.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Convert.ToBase64String(hash)"
+  },
+  {
+    "claim": "The event reference covers sites and business-day closures ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Mindbody sends this event when a business schedules a day or date-range for which the business is closed."
+  },
+  {
+    "claim": "... locations ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Mindbody sends this event when a business deactivates one of its locations."
+  },
+  {
+    "claim": "... appointments and appointment add-ons ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Mindbody sends this event when an add-on is created."
+  },
+  {
+    "claim": "... class schedules ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Mindbody sends this event when a business schedules a new class offering."
+  },
+  {
+    "claim": "... single classes ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Mindbody sends this event when a business changes a single class."
+  },
+  {
+    "claim": "... class bookings and their status ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Mindbody sends this event when a booking is altered in a way that does not result in it being cancelled."
+  },
+  {
+    "claim": "... class waitlists ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Mindbody sends this event when a client is added to a class waiting list."
+  },
+  {
+    "claim": "... clients (including profile merges) ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Mindbody sends this event when a business merges one client into another."
+  },
+  {
+    "claim": "... memberships ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Mindbody sends this event when a client gets a new membership."
+  },
+  {
+    "claim": "... contracts ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Mindbody sends this event when a client purchases a contract, or a staff member sells a contract to a client."
+  },
+  {
+    "claim": "... and staff.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Mindbody sends this event when a business adds a new staff member."
+  },
+  {
+    "claim": "classRosterBooking.created fires when a client is booked into a class ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Mindbody sends this event when a client is booked into a class."
+  },
+  {
+    "claim": "... client.created when a new client is added to a business ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Mindbody sends this event when a new client is added to a business."
+  },
+  {
+    "claim": "... and clientSale.created when a sale is made to a client.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Mindbody sends this event when a sale is made to a client."
+  },
+  {
+    "claim": "The June 2026 release notes added three Pick a Spot events: pickASpotReservation.created, pickASpotReservation.updated and pickASpotReservation.deleted.",
+    "url": "https://developers.mindbodyonline.com/Resources/ApiReleaseNotes",
+    "quote": "Three new event types are available through the Webhooks (Push) API: pickASpotReservation.created fires when a member's spot reservation is confirmed, pickASpotReservation.updated fires when a member's spot assignment changes, and pickASpotReservation.deleted fires when a spot is released or the class booking is cancelled."
+  },
+  {
+    "claim": "An event carries only some fields, so Mindbody tells you to call the Public API for the rest ...",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Because the event notification posted to your webhook only contains certain data, you may need to use the Public API to collect additional information about an item that has changed."
+  },
+  {
+    "claim": "... and to re-sync your cached data through the Public API every 24 hours.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "To ensure your system has the most up-to-date data, please sync your cached data using the Public API every 24 hours."
+  },
+  {
+    "claim": "Send the optional Transaction-Key header (up to 50 characters) on Public API calls.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "When calling the Public API, integrations may populate an optional Transaction-Key header. This header is a string limited to 50 characters (anything beyond 50 will be truncated)."
+  },
+  {
+    "claim": "Events those calls trigger carry it back as transactionKey, provided the source name making the call is the one that created the webhook subscription.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "Events dispatched, as a result of API calls, will set a transactionKey property in event payloads. This property will only be populated if the API source matches the Webhooks subscription source. API keys may differ, but the sourcename making the API call must be the same used to create the webhooks subscription."
+  },
+  {
+    "claim": "Two kinds of rate limits: daily call limits, which are defined when you receive your API key, and system limits. To raise yours, you contact your account manager.",
+    "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+    "quote": "There are two kinds of rate limits: daily call limits and system limits. Your daily call limits are defined when you receive your API Key. System limits are in place to ensure faster response times and stability. If you need Mindbody to increase your rate limits, contact your account manager."
+  },
+  {
+    "claim": "The API Terms of Use say Mindbody sets call limits based on how your applications may be used and their anticipated volume ...",
+    "url": "https://developers.mindbodyonline.com/Resources/DeveloperAgreement",
+    "quote": "Mindbody will determine call limits based on various factors, including the ways your Applications may be used or the anticipated volume of use associated with your Applications."
+  },
+  {
+    "claim": "... may charge for calls over the limit or terminate access ...",
+    "url": "https://developers.mindbodyonline.com/Resources/DeveloperAgreement",
+    "quote": "If you exceed the call limits established by Mindbody, we reserve the right to charge you for excess API calls, in accordance with Section 10, or to terminate your access to the API, in accordance with Section 11."
+  },
+  {
+    "claim": "... and never rolls unused calls over to the next day or month.",
+    "url": "https://developers.mindbodyonline.com/Resources/DeveloperAgreement",
+    "quote": "In no event will unused API calls roll over to the next day or month, as applicable."
+  },
+  {
+    "claim": "Mindbody's API Terms of Use, last updated September 30, 2023.",
+    "url": "https://developers.mindbodyonline.com/Resources/DeveloperAgreement",
+    "quote": "Last Updated: September 30, 2023"
+  },
+  {
+    "claim": "The prohibited uses include caching Mindbody Data in excess of 48 hours.",
+    "url": "https://developers.mindbodyonline.com/Resources/DeveloperAgreement",
+    "quote": "Cache (in excess of 48 hours), collect, compile, store, transfer or utilize Mindbody Data"
+  },
+  {
+    "claim": "You may not use the API in a product or service that competes with Mindbody's own products or services.",
+    "url": "https://developers.mindbodyonline.com/Resources/DeveloperAgreement",
+    "quote": "Use the API in a product or service that competes with products or services offered by Mindbody, including the Service;"
+  },
+  {
+    "claim": "Mindbody may suspend or terminate API access at any time.",
+    "url": "https://developers.mindbodyonline.com/Resources/DeveloperAgreement",
+    "quote": "Mindbody reserves the right to suspend or terminate your API access at any time"
+  },
+  {
+    "claim": "You can end the agreement with 90 days' written notice.",
+    "url": "https://developers.mindbodyonline.com/Resources/DeveloperAgreement",
+    "quote": "You may terminate this Agreement by (1) providing 90 days’ written notice to Mindbody of your intention to terminate your use of the API"
+  },
+  {
+    "claim": "July 2026: cancelling a class now requires credentials with both the Manage Class Schedules and Cancel Reservations permissions ...",
+    "url": "https://developers.mindbodyonline.com/Resources/ApiReleaseNotes",
+    "quote": "When cancelling a class, the API now requires the credentials making the request to have both the Manage Class Schedules and Cancel Reservations permissions."
+  },
+  {
+    "claim": "... without the second permission the request returns a permission error and cancels nothing ...",
+    "url": "https://developers.mindbodyonline.com/Resources/ApiReleaseNotes",
+    "quote": "returns a permission error without cancelling if the Cancel Reservations permission is missing"
+  },
+  {
+    "claim": "... in V5 and V6.",
+    "url": "https://developers.mindbodyonline.com/Resources/ApiReleaseNotes",
+    "quote": "This applies to both V5 and V6."
+  },
+  {
+    "claim": "June 2026: Apple Pay became available to every Public API customer ...",
+    "url": "https://developers.mindbodyonline.com/Resources/ApiReleaseNotes",
+    "quote": "Apple Pay is now available as an alternative payment method for every Public API customer."
+  },
+  {
+    "claim": "... through the existing alternative-payments checkout flow (payment method ID 801).",
+    "url": "https://developers.mindbodyonline.com/Resources/ApiReleaseNotes",
+    "quote": "Integrations can offer it through the existing alternative-payments checkout flow (payment method ID 801"
+  },
+  {
+    "claim": "May 2026: AddAppointment accepts multiple appointments in one request that either creates all of them or none ...",
+    "url": "https://developers.mindbodyonline.com/Resources/ApiReleaseNotes",
+    "quote": "AddAppointment now supports multiple appointments submitted in a single API request. All appointments are processed together, ensuring that either all services in a booking are successfully created or none are saved."
+  },
+  {
+    "claim": "... and AddMultipleAppointments was deprecated.",
+    "url": "https://developers.mindbodyonline.com/Resources/ApiReleaseNotes",
+    "quote": "As part of this change, AddMultipleAppointments has been deprecated."
+  }
+]
