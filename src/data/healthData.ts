@@ -36,6 +36,17 @@ export const RELEASED_DATA = new Set<string>([
   "mental-health-assessments-api",
   "clinical-records-api",
   "health-connect-medical-records-api",
+  // One metric across platforms (EXPANSION-3 1.8, 2026-10-18): metrics two or
+  // more platforms expose as a type, written from the generated references.
+  "body-temperature-api",
+  "ecg-api",
+  "distance-tracking-api",
+  "floors-elevation-api",
+  "active-minutes-api",
+  "heart-rate-zones-api",
+  "cycling-power-api",
+  "running-metrics-api",
+  "swimming-data-api",
 ]);
 
 export const allData: ClusterEntry[] = dataEntries;

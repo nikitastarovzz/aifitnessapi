@@ -2889,6 +2889,187 @@ if (fs.existsSync(matrixPath)) {
         `${hsBuilt} Wear OS data-type pages (${hsHeld} held back); ${hkLinked + hsLinked} linked from their table pages.`,
     );
   }
+
+  // ── One metric across platforms (ops/EXPANSION-3-2026-10-17.md 1.8, added
+  // 2026-10-18). src/data/metricTypeMap.ts pairs each /data guide with the
+  // type that carries its metric on each platform with a generated reference
+  // here — Google Health API, HealthKit, Health Connect, Wear OS, Bluetooth —
+  // and every pairing quotes the platform's own description of the type as
+  // its evidence. That quote is a claim about a generated file, so it is
+  // re-read here from the generated modules, independently of the TS code:
+  // a regeneration that rewords or drops the sentence fails the build instead
+  // of leaving the pairing standing on words Google or Apple no longer print.
+  // A mapped type must have a built page, and the two directions must agree:
+  // the guide's By platform block links exactly the mapped type pages, and
+  // each mapped type page links the guide (data-metric-guide), no more.
+  {
+    const MAP_SRC = "src/data/metricTypeMap.ts";
+    const map = jsonArray(fs.readFileSync(MAP_SRC, "utf8"), "METRIC_TYPE_MAP");
+    /** The object literal assigned to `export const <name>` in a generated module. */
+    const jsonObject = (src, name) => {
+      const m = new RegExp(`export const ${name}: [^=]+= `).exec(src);
+      if (!m) return null;
+      const open = m.index + m[0].length;
+      const end = src.indexOf("\n};", open);
+      if (end === -1) return null;
+      try { return JSON.parse(src.slice(open, end + 3).trim().replace(/;$/, "")); } catch { return null; }
+    };
+    const norm = (s) => String(s ?? "").replace(/\s+/g, " ").trim();
+    const attr = (tag, name) => {
+      const v = new RegExp(`\\s${name}="([^"]*)"`).exec(tag)?.[1];
+      return v === undefined ? null : decode(v);
+    };
+    const anchors = (html) => [...html.matchAll(/<a\b[^>]*>/g)].map((m) => m[0]);
+
+    const gSrc = fs.readFileSync("src/data/googleHealthApi.ts", "utf8");
+    const gTypes = jsonArray(gSrc, "GHAPI_DATA_TYPES") ?? [];
+    const gSchemas = jsonObject(gSrc, "GHAPI_SCHEMAS") ?? {};
+    const hkIds = jsonArray(fs.readFileSync("src/data/healthkitIdentifiers.ts", "utf8"), "HK_IDENTIFIERS") ?? [];
+    const hcRecs = jsonArray(fs.readFileSync("src/data/healthConnectRecords.ts", "utf8"), "HC_RECORDS") ?? [];
+    const hsTypes = jsonArray(fs.readFileSync("src/data/healthServicesDataTypes.ts", "utf8"), "HS_DATA_TYPES") ?? [];
+    const btChars = jsonArray(fs.readFileSync("src/data/bluetoothGatt.ts", "utf8"), "BT_CHARACTERISTICS") ?? [];
+    const matrixSrc = fs.readFileSync("src/data/matrix.ts", "utf8");
+    const matrixRows = [...matrixSrc.matchAll(/\{\s*id: "([a-z0-9-]+)",([\s\S]*?)\n {2}\},?/g)].map((m) => {
+      const lit = (key) => {
+        const v = new RegExp(`\\b${key}:\\s+"((?:[^"\\\\]|\\\\.)*)"`).exec(m[2])?.[1];
+        if (v === undefined) return "";
+        try { return JSON.parse(`"${v}"`); } catch { return v; }
+      };
+      return { id: m[1], href: lit("href"), apple: lit("apple"), android: lit("android") };
+    });
+    const appleCasesOf = (apple) =>
+      [...apple.replace(/\([^)]*\)/g, " ").matchAll(/(?:HK\w*TypeIdentifier)?\.([A-Za-z][A-Za-z0-9]*)/g)].map((m) => m[1]);
+    const hkSlug = (c) => c.replace(/([a-z0-9])([A-Z])/g, "$1-$2").replace(/([A-Z])([A-Z][a-z])/g, "$1-$2").toLowerCase();
+
+    // The texts a quote may come from, per family — the type's own record and
+    // nothing else, so a sentence about another type cannot stand in.
+    const schemaTexts = (id, nested = []) =>
+      [id, ...nested].flatMap((s) => {
+        const sc = s ? gSchemas[s] : null;
+        return sc ? [sc.description, ...sc.fields.map((f) => f.description)] : [];
+      });
+    const btTexts = (c) => {
+      const out = [c.gss?.description, ...(c.gss?.structure ?? []).map((f) => f.description)];
+      const walk = (defs) => {
+        for (const d of defs ?? []) {
+          out.push(d.description, ...d.rows.flatMap((r) => Object.values(r)));
+          walk(d.subfields);
+        }
+      };
+      walk(c.gss?.definitions);
+      return out;
+    };
+    const TYPES = new Map(); // "family:id" -> { route, texts }
+    for (const t of gTypes) {
+      TYPES.set(`google-health-api:${t.dataType}`, {
+        route: `/google-health-api/${t.dataType}`,
+        texts: [
+          ...schemaTexts(t.schema?.id, t.schema?.nested),
+          t.dataPointEvidence,
+          ...[t.rollup, t.dailyRollup].flatMap((r) => (r ? [r.evidence, ...schemaTexts(r.schema?.id, r.schema?.nested)] : [])),
+          t.fitbit?.description,
+        ],
+      });
+    }
+    for (const i of hkIds.filter((x) => ["quantity", "category", "characteristic"].includes(x.family))) {
+      TYPES.set(`healthkit:${i.case}`, { route: `/healthkit-identifiers/${hkSlug(i.case)}`, texts: [i.abstract, i.aggregationEvidence] });
+    }
+    for (const r of hcRecs) {
+      TYPES.set(`health-connect:${r.className}`, {
+        route: `/health-connect/${r.slug}`,
+        texts: [...r.description, ...r.properties.map((p) => p.description), ...r.aggregateMetrics.map((a) => a.description)],
+      });
+    }
+    for (const t of hsTypes) {
+      TYPES.set(`wear-os:${t.name}`, { route: `/wear-os-data-types/${t.name.toLowerCase().replace(/_/g, "-")}`, texts: [t.description, t.detail] });
+    }
+    for (const c of btChars.filter((x) => x.hasPage)) {
+      TYPES.set(`bluetooth:${c.id}`, { route: `/bluetooth-fitness/${c.slug}`, texts: btTexts(c) });
+    }
+    const keyOfRoute = new Map([...TYPES].map(([k, v]) => [v.route, k]));
+
+    if (!map?.length) {
+      problems.push(`METRIC-MAP-EVIDENCE  could not read METRIC_TYPE_MAP from ${MAP_SRC}`);
+    } else if (gTypes.length < 44 || hkIds.length < 241 || hcRecs.length < 42 || hsTypes.length < 65 || btChars.length < 97 || matrixRows.length < 10) {
+      problems.push(
+        `METRIC-MAP-EVIDENCE  read ${gTypes.length} Google Health API types, ${hkIds.length} HealthKit identifiers, ${hcRecs.length} Health Connect records, ` +
+          `${hsTypes.length} Wear OS data types, ${btChars.length} Bluetooth characteristics and ${matrixRows.length} matrix rows — the evidence cannot be re-read`,
+      );
+    } else {
+      const mapped = new Set(); // "guide|family:id"
+      let pairs = 0;
+      let backLinked = 0;
+      for (const g of map) {
+        const guideRoute = `/data/${g.guide}`;
+        const guideHtml = htmlOf(guideRoute);
+        if (!guideHtml) {
+          problems.push(`METRIC-MAP-NO-PAGE  ${MAP_SRC} maps the guide ${g.guide}, but ${guideRoute} is not a built page`);
+          continue;
+        }
+        const block = new RegExp(`<section\\b[^>]*\\bdata-metric-platforms="${g.guide}"[^>]*>([\\s\\S]*?)</section>`).exec(guideHtml)?.[1] ?? null;
+        if (block === null) problems.push(`METRIC-MAP-LINK  ${guideRoute} renders no By platform block (data-metric-platforms="${g.guide}")`);
+        const shown = new Map(); // data-metric-type -> href, inside the block
+        for (const a of anchors(block ?? "")) {
+          const k = attr(a, "data-metric-type");
+          if (k) shown.set(k, attr(a, "href"));
+        }
+        for (const t of g.types ?? []) {
+          const key = `${t.family}:${t.id}`;
+          mapped.add(`${g.guide}|${key}`);
+          pairs++;
+          const ty = TYPES.get(key);
+          if (!ty) {
+            problems.push(`METRIC-MAP-NO-PAGE  ${g.guide} maps ${key}, which the generated data does not contain`);
+            continue;
+          }
+          const quote = norm(t.quote);
+          if (!quote) problems.push(`METRIC-MAP-EVIDENCE  ${g.guide} maps ${key} with no quote`);
+          else if (!ty.texts.some((x) => norm(x).includes(quote))) {
+            problems.push(`METRIC-MAP-EVIDENCE  ${g.guide} maps ${key} on "${quote}", which is no longer in that type's generated text`);
+          }
+          if (t.matrixRow) {
+            const row = matrixRows.find((r) => r.id === t.matrixRow);
+            const names =
+              row && (t.family === "healthkit" ? appleCasesOf(row.apple).includes(t.id) : t.family === "health-connect" ? new RegExp(`\\b${t.id}\\b`).test(row.android) : false);
+            if (!row || row.href !== guideRoute || !names) {
+              problems.push(`METRIC-MAP-EVIDENCE  ${g.guide} cites matrix row "${t.matrixRow}" for ${key}, but that row ${!row ? "does not exist" : row.href !== guideRoute ? `belongs to ${row.href}` : "does not name it"}`);
+            }
+          }
+          const html = htmlOf(ty.route);
+          if (!html) {
+            problems.push(`METRIC-MAP-NO-PAGE  ${g.guide} maps ${key}, but ${ty.route} is not a built page`);
+            continue;
+          }
+          if (block !== null && shown.get(key) !== ty.route) {
+            problems.push(`METRIC-MAP-LINK  ${guideRoute} By platform block does not link ${ty.route} (${key})`);
+          }
+          const back = anchors(html).some((a) => attr(a, "data-metric-guide") === g.guide && attr(a, "href") === guideRoute);
+          if (back) backLinked++;
+          else problems.push(`METRIC-MAP-LINK  ${ty.route} does not link its metric guide ${guideRoute} (data-metric-guide="${g.guide}")`);
+        }
+        for (const [k, href] of shown) {
+          if (!mapped.has(`${g.guide}|${k}`)) problems.push(`METRIC-MAP-LINK  ${guideRoute} By platform block links ${href} (${k}), which ${MAP_SRC} does not map to it`);
+        }
+      }
+      // The other direction: a type page may claim only the guides that map it.
+      for (const [route, key] of keyOfRoute) {
+        const html = htmlOf(route);
+        if (!html) continue;
+        for (const a of anchors(html)) {
+          const slug = attr(a, "data-metric-guide");
+          if (slug && !mapped.has(`${slug}|${key}`)) {
+            problems.push(`METRIC-MAP-LINK  ${route} links /data/${slug} as its metric guide, but ${MAP_SRC} does not map ${key} there`);
+          }
+        }
+      }
+      const byFamily = {};
+      for (const g of map) for (const t of g.types ?? []) byFamily[t.family] = (byFamily[t.family] ?? 0) + 1;
+      console.log(
+        `Metric map: ${map.length} /data guides, ${pairs} type pairings (${Object.entries(byFamily).map(([f, n]) => `${n} ${f}`).join(", ")}), ` +
+          `each quote re-read from the generated modules; ${backLinked} type pages link back.`,
+      );
+    }
+  }
 }
 
 // ── The published gate list ─────────────────────────────────────────────

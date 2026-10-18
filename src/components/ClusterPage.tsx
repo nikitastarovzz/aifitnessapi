@@ -12,6 +12,7 @@ import PageToc from "@/components/PageToc";
 import FaqJump from "@/components/FaqJump";
 import NextSteps from "@/components/NextSteps";
 import MetricFacts from "@/components/MetricFacts";
+import MetricPlatforms from "@/components/MetricPlatforms";
 import ContentAge from "@/components/ContentAge";
 import ReferenceCallout from "@/components/ReferenceCallout";
 import KinestexNote from "@/components/KinestexNote";
@@ -342,6 +343,11 @@ export default function ClusterPage({
         <div className="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-headings:scroll-mt-24 prose-a:text-brand-600 hover:prose-a:text-brand-500 prose-th:text-left prose-pre:rounded-xl prose-pre:border prose-pre:border-[var(--border)]">
           <Mdx source={body} />
         </div>
+
+        {/* The metric's type on every platform with a generated reference,
+            from data/metricTypeMap.ts. Renders nothing off the /data guides
+            the map covers. */}
+        <MetricPlatforms path={path} />
 
         {entry.faqs.length > 0 && (
           <section className="mt-14">

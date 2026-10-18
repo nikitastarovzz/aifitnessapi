@@ -39,6 +39,7 @@ import {
   type GhapiSourceKey,
 } from "./googleHealthApi";
 import { getDataPage, DATA_PATH } from "./healthData";
+import { metricGuidesForType } from "./metricTypeMap";
 import { publishedDate } from "@/lib/schema";
 
 export const GHAPI_BASE = "/google-health-api";
@@ -283,34 +284,32 @@ export function dataPointMethods() {
 export const methodOf = (name: string | null) => (name ? (dataPointMethods().find((m) => m.name === name) ?? null) : null);
 
 // ---------------------------------------------------------------------------
-// This site's metric pages — editorial pairings, linked only when released.
+// This site's metric pages, linked only when released.
+//
+// The /data guide(s) a data type belongs to come from src/data/metricTypeMap.ts,
+// where each pairing carries Google's own description of the type as its
+// evidence and qa.mjs re-checks it against this module's generated data; the
+// guide's "By platform" block reads the same list, so the two links agree.
+// The one pairing kept outside it is the Exercise type's link to the workout
+// guide: workout and exercise types are not mapped there (the workout-type
+// crosswalk covers them), and this link predates the map.
 // ---------------------------------------------------------------------------
 
-const METRIC_PAGES: Record<string, string> = {
-  "heart-rate": "heart-rate-api",
-  steps: "step-counting-api",
-  sleep: "sleep-tracking-api",
-  "blood-glucose": "blood-glucose-api",
-  "oxygen-saturation": "blood-oxygen-api",
-  "daily-oxygen-saturation": "blood-oxygen-api",
-  "daily-resting-heart-rate": "resting-heart-rate-api",
-  "heart-rate-variability": "hrv-api",
-  "daily-heart-rate-variability": "hrv-api",
-  "vo2-max": "vo2-max-api",
-  "run-vo2-max": "vo2-max-api",
-  "daily-vo2-max": "vo2-max-api",
-  "daily-respiratory-rate": "respiratory-rate-api",
-  "respiratory-rate-sleep-summary": "respiratory-rate-api",
-  "menstrual-period": "menstrual-cycle-api",
-  weight: "body-composition-api",
-  "body-fat": "body-composition-api",
-  exercise: "workout-detection-api",
-};
+const WORKOUT_GUIDE: Record<string, string> = { exercise: "workout-detection-api" };
 
-export function metricPage(t: GhapiDataType): { href: string; label: string } | null {
-  const slug = METRIC_PAGES[t.dataType];
-  const e = slug ? getDataPage(slug) : undefined;
-  return e ? { href: `${DATA_PATH}/${slug}`, label: e.h1 } : null;
+export type MetricPageLink = { href: string; label: string; slug: string; mapped: boolean };
+
+export function metricPages(t: GhapiDataType): MetricPageLink[] {
+  const out: MetricPageLink[] = metricGuidesForType("google-health-api", t.dataType).map((g) => ({
+    href: g.href,
+    label: g.h1,
+    slug: g.slug,
+    mapped: true,
+  }));
+  const workout = WORKOUT_GUIDE[t.dataType];
+  const e = workout ? getDataPage(workout) : undefined;
+  if (e && !out.some((o) => o.slug === workout)) out.push({ href: `${DATA_PATH}/${workout}`, label: e.h1, slug: workout, mapped: false });
+  return out;
 }
 
 // ---------------------------------------------------------------------------

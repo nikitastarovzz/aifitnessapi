@@ -44,6 +44,7 @@ import {
   GUIDE_QUOTES,
   READ_DATA_GUIDE,
 } from "@/data/hcPages";
+import { metricGuidesForType } from "@/data/metricTypeMap";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 import { stringSeed } from "@/lib/cluster";
@@ -196,6 +197,7 @@ export default async function HcRecordPage({ params }: { params: Promise<Params>
   const faqs = recordFaqs(r);
   const faqId = (i: number) => `faq-${i + 1}`;
   const hk = hkCounterpart(r);
+  const guides = metricGuidesForType("health-connect", r.className);
   const shared = sharedPermissionDetail(r);
   const unresolved = r.permissionCheck.filter((c) => !c.inFrameworkReference && !c.inJetpackConstants);
   const related = recordsInCategory(r.category ?? "").filter((o) => o.className !== r.className);
@@ -266,6 +268,7 @@ export default async function HcRecordPage({ params }: { params: Promise<Params>
     ...(r.constants.length ? ([["#constants", "Constants"]] as [string, string][]) : []),
     ["#kotlin", "Kotlin"],
     ["#healthkit", "HealthKit"],
+    ...(guides.length ? ([["#metric", "Other platforms"]] as [string, string][]) : []),
     ["#faq", "Questions"],
   ];
 
@@ -662,6 +665,24 @@ export default async function HcRecordPage({ params }: { params: Promise<Params>
             </p>
           )}
         </section>
+
+        {guides.length > 0 && (
+          <section id="metric" className="mt-14 scroll-mt-24">
+            <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">The metric on other platforms</h2>
+            <p className="mt-2 text-[var(--muted)]">
+              {`${guides.length > 1 ? "These guides list" : "This guide lists"} ${r.className} beside the types on the other platforms this site covers whose own descriptions name the same metric, each quoted, with how each one is read.`}
+            </p>
+            <ul className="mt-3 space-y-1 text-sm">
+              {guides.map((g) => (
+                <li key={g.href}>
+                  <Link href={g.href} data-metric-guide={g.slug} className="font-medium text-brand-600 hover:text-brand-500">
+                    {g.h1}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         <section id="faq" className="mt-14 scroll-mt-24">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Questions</h2>
