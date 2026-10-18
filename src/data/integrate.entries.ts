@@ -1180,5 +1180,587 @@ export const integrateEntries: ClusterEntry[] =
       }
     ],
     "body": "Polar's cloud API is called **Open AccessLink**, and the fastest way to learn it is to read the code Polar publishes. This page is built from Polar's official `accesslink-example-python` repository on GitHub — README, OAuth wrapper, endpoint modules — fetched and read directly. Every host, path, and payload field below appears in that source.\n\n> **Sourcing note.** Polar's hosted reference at polar.com/accesslink-api is unreachable from our fetch environment (blocked at the egress layer), so this page is limited to what the official example repository contains. Anything it does not cover — webhooks, rate limits, token lifetimes, retention windows — is marked **not documented in the sources we could reach**. Verify those against Polar's live docs.\n\nStill choosing a provider? That belongs to our [wearable data APIs](/fitness-apis/wearable-data-apis) roundup; this page assumes the decision is made. Every page on this site that covers Polar is collected in the [Polar API overview](/apis/polar).\n\n## What you'll need\n\n- A **Polar Flow account** — the same consumer account your users have. You sign into the developer portal with it.\n- An **API client** created at the AccessLink admin portal, which issues a client ID and a client secret.\n- At least one registered **authorization redirect URL**. The README warns that a wrong callback URL is the most common reason the examples fail, and notes you can add or edit redirect URLs later as long as the right one is the default.\n- A **server-side token store**. The example writes tokens to a local YAML file; in production, a database row keyed to your internal user.\n\nThere is no partner-approval gate in the documented flow — you create the client yourself and start immediately.\n\n## Three hosts, two data families\n\nAccessLink v3 has three constants, taken straight from the example's client class:\n\n```python\nAUTHORIZATION_URL = \"https://flow.polar.com/oauth2/authorization\"\nACCESS_TOKEN_URL  = \"https://polarremote.com/v2/oauth2/token\"\nACCESSLINK_URL    = \"https://www.polaraccesslink.com/v3\"\n```\n\nThree hosts for three jobs: the Flow domain authorizes, a separate host mints tokens, the AccessLink host serves data. Teams assuming one base URL trip on this immediately.\n\nThere are then **two families of data endpoint**, and the split drives your whole ingestion design. The README states it plainly: transactional endpoints \"discard the data after it has been fetched,\" while non-transactional endpoints \"do not discard the data after it has been fetched.\" Exercises appear in both. Sleep and Nightly Recharge are documented in the example only as non-transactional; activity summaries and physical information only as transactional.\n\n## Step 1: Create an API client\n\nSign in at the AccessLink admin portal with your Polar Flow credentials and create a client. Set your authorization redirect URL — the example uses a localhost callback on port 5000 at the path `/oauth2_callback`, and stresses that the value must match exactly. Copy the client ID and secret into server-side config; the secret must never ship to a client.\n\n## Step 2: Send the user through Polar Flow\n\nThe authorization request is an ordinary authorization-code redirect. Per the README it is as short as this:\n\n```http\nGET https://flow.polar.com/oauth2/authorization\n  ?response_type=code\n  &client_id=YOUR_CLIENT_ID\n  &redirect_uri=https://yourapp.example.com/oauth2_callback\n```\n\nThose three parameters are all the example's URL builder sends. Two absences matter:\n\n- **No scope parameter anywhere in the example.** Unlike the eight toggleable scopes on an [Oura integration](/integrate/oura-api), there is nothing here to narrow. Whether AccessLink supports scoping at all is not documented in the sources we could reach — verify.\n- **No `state` parameter either.** The official sample omits it. That is a sample-app simplification, not a recommendation: generate a random state per request and check it on the callback, as you would in any [OAuth flow for health data](/learn/what-is-oauth-for-health-data).\n\nIf the user is not signed in, Polar Flow shows a login page; on consent the browser returns to your callback with a code.\n\n## Step 3: Exchange the code for a token, fast\n\nTwo details catch people out.\n\nFirst, **the code is short-lived**. A comment in both sample apps states that \"the authorization code is only valid for 10 minutes, so the access token should be fetched immediately after the authorization step.\" Do not queue the exchange behind a background job.\n\nSecond, **the token request authenticates with HTTP Basic**, not with credentials in the form body. The wrapper attaches Basic auth from the client ID and secret whenever no user token is present:\n\n```bash\ncurl -s -X POST \"https://polarremote.com/v2/oauth2/token\" \\\n  -u \"YOUR_CLIENT_ID:YOUR_CLIENT_SECRET\" \\\n  -H \"Content-Type: application/x-www-form-urlencoded\" \\\n  -H \"Accept: application/json;charset=UTF-8\" \\\n  -d \"grant_type=authorization_code\" \\\n  -d \"code=AUTHORIZATION_CODE\" \\\n  -d \"redirect_uri=https://yourapp.example.com/oauth2_callback\"\n```\n\nThe response carries two fields the example consumes: `access_token` and `x_user_id`, Polar's identifier for that user, needed in nearly every later path. Store both against your internal user ID.\n\nNote what the example does **not** do: it never reads an expiry, never stores a refresh token, and has no refresh logic. That is consistent with Polar's long-lived tokens, but the actual lifetime and whether a refresh grant exists are not documented in the sources we could reach — verify, and handle a 401 by re-running authorization.\n\n## Step 4: Register the user (the step everyone forgets)\n\nAuthorization alone does not give you data. The example's users resource is explicit: \"Once partner has been authorized by user, partner must register user before being able to access her data.\" POST to the users collection with **the user's** bearer token, carrying your own identifier for them:\n\n```bash\ncurl -s -X POST \"https://www.polaraccesslink.com/v3/users\" \\\n  -H \"Authorization: Bearer USER_ACCESS_TOKEN\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"member-id\": \"your-internal-user-id\"}'\n```\n\nThe field name is hyphenated — `member-id`. Both sample apps wrap this call with one specific carve-out: HTTP **409 Conflict means the user is already registered for this client** and can be ignored. Treat registration as idempotent, swallow the 409, and treat anything else as real.\n\nDe-registration is a DELETE on the user path; its docstring notes it \"will revoke the access token authorized by user,\" so it doubles as your disconnect action. Reading a user's basic profile is a GET on that same path.\n\n## Step 5: Ask what's available, then open a transaction\n\nFor transactional data you do not fetch a date range. You ask whether anything is waiting, then open a transaction that snapshots it.\n\nThe availability check is **client-level**: the example passes no user token, so it falls through to Basic auth and returns pending data across your users.\n\n```bash\ncurl -s \"https://www.polaraccesslink.com/v3/notifications\" \\\n  -u \"YOUR_CLIENT_ID:YOUR_CLIENT_SECRET\"\n```\n\nThe console app iterates the response's `available-user-data` array and branches on each item's `data-type`, handling three values:\n\n| Data type | Open a transaction with |\n|---|---|\n| `EXERCISE` | POST to the user's `exercise-transactions` path |\n| `ACTIVITY_SUMMARY` | POST to the user's `activity-transactions` path |\n| `PHYSICAL_INFORMATION` | POST to the user's `physical-information-transactions` path |\n\n```bash\ncurl -s -X POST \\\n  \"https://www.polaraccesslink.com/v3/users/USER_ID/exercise-transactions\" \\\n  -H \"Authorization: Bearer USER_ACCESS_TOKEN\"\n```\n\nA successful open returns a **`resource-uri`** — the transaction's own URL, used for everything that follows. An **empty response means nothing is new**: the example's HTTP layer turns a 204 into an empty object and the transaction factory returns nothing, which the console app prints as \"No new exercises available.\" Code that as a normal, frequent outcome, not an error.\n\n## Step 6: Read the resources, then commit\n\nGET the transaction URL for a list of resource URLs. The list key differs per type: exercises come back under `exercises`, daily activity under `activity-log`, physical information under `physical-informations`.\n\nThen GET each resource URL for its summary, plus any sub-resources. An exercise documents four: `/gpx` (Accept header `application/gpx+xml`), `/tcx` (Accept `application/vnd.garmin.tcx+xml` — that Garmin-flavoured media type is not a typo), `/heart-rate-zones`, and `/samples`, which returns one URL per sample type to fetch individually. Daily activity exposes `/step-samples` and `/zone-samples` the same way.\n\nFinally, **PUT the transaction URL to commit**. The docstring says this \"should be done after retrieving data from the transaction.\" Commit closes the loop — and because transactional endpoints discard data once fetched, it is the point of no return.\n\n## The non-transactional shortcut\n\nThree endpoints need no transaction, take only a bearer token, and leave the data in place:\n\n```bash\ncurl -s -H \"Authorization: Bearer USER_ACCESS_TOKEN\" \\\n  \"https://www.polaraccesslink.com/v3/exercises\"\ncurl -s -H \"Authorization: Bearer USER_ACCESS_TOKEN\" \\\n  \"https://www.polaraccesslink.com/v3/users/sleep/\"\ncurl -s -H \"Authorization: Bearer USER_ACCESS_TOKEN\" \\\n  \"https://www.polaraccesslink.com/v3/users/nightly-recharge/\"\n```\n\nThe example web app uses only these three plus the user profile, which is why the README calls it \"the easiest and fastest way to get started.\" If sleep and Nightly Recharge are what you need, you may never open a transaction. Whether these endpoints accept date parameters is not documented in the sources we could reach — verify.\n\n## Gotchas and production notes\n\n- **Commit destroys.** Committing discards that data on Polar's side. Persist everything you pulled, and confirm the write succeeded, *before* you PUT. Nothing in the example re-opens a committed transaction.\n- **Only what arrives after linking.** The README frames the data flow as beginning \"once user has linked their user account to client application and synchronizes data from Polar device to Polar Flow.\" A long-standing open issue on the same repository, filed by an outside developer and unresolved in the thread, reports that \"currently it is only possible to retrieve data that has been synced after the authorization date.\" Sync regularly or lose history — and set expectations that connecting Polar does not backfill a user's past.\n- **No webhooks in the documented example.** Polar's sample is pull-only: notifications, transaction, commit. Whether AccessLink offers a push callback is not documented in the sources we could reach — verify. Until then plan a scheduler, not a listener; [what are webhooks](/learn/what-are-webhooks) covers the shape you would migrate to.\n- **No published rate limits in reach.** The example has no retry, backoff, or 429 handling. Poll notifications on a conservative interval, not per-user in a tight loop.\n- **Two auth modes, not one.** Client-level calls (token exchange, notifications) use HTTP Basic with your client credentials; user-level calls use a bearer token. Mixing them up produces failures that look like bad tokens.\n- **AccessLink is not Polar's only surface.** Polar also publishes an official Bluetooth LE SDK for Android and iOS that streams real-time heart rate, ECG, accelerometer, and PPG from its sensors and watches — a different, on-device model for live signal during a session rather than summaries after a sync.\n\nThe rest of the cluster is at [how to integrate a fitness or health API](/integrate)."
+  },
+  {
+    "slug": "mindbody-api",
+    "primaryQuery": "how to integrate the Mindbody API",
+    "h1": "How to Integrate the Mindbody API (2026)",
+    "metaTitle": "Mindbody API Integration Guide (2026): Go-Live, Webhooks",
+    "metaDescription": "Integrate the Mindbody Public and Webhooks APIs: developer account, go-live approval, studio activation, the API-Key header, signed webhooks and limits.",
+    "updated": "2026-10-17",
+    "answer": "Mindbody's developer program starts with a self-serve developer account, but going live is approval-gated: you request to go live, Mindbody approves you, and each business then activates your access with an activation link or code. Every request carries an API key in an API-Key header plus a User-Agent header, and Mindbody says requests must come from your back-end servers because keys cannot be stored safely on mobile devices or websites. For changes, the Webhooks API pushes events such as class bookings, new clients and sales, signed with HMAC-SHA-256 and resent every 15 minutes for up to 3 hours, and Mindbody recommends re-syncing cached data through the Public API every 24 hours.",
+    "body": "Mindbody gives developers two APIs: the **Public API**, which reads and writes a business's schedule, clients, sales and staff, and the **Webhooks API**, which pushes an event to your server when that data changes. This guide is written from Mindbody's own developer pages as they stood on October 17, 2026: the developer FAQ, the endpoints overview, the Webhooks documentation, the API Terms of Use, the Security Policy and the API release notes.\n\n> **Sourcing note.** Mindbody's Public API V6 reference is a JavaScript application, and it returned no readable text to our fetch. Endpoint paths, request fields and any OAuth flow documented only there are not covered on this page. Check them in the reference itself before you build.\n\nStill choosing a platform? Our [gym and studio management software API comparison](/fitness-apis/gym-management-software-apis) puts Mindbody next to TeamUp, Mariana Tek, Wodify and ABC Glofox. What the API costs is on [Mindbody API pricing](/pricing/mindbody-api-pricing).\n\n## What the Mindbody API covers\n\nMindbody's FAQ says the API \"can be used to output live data from your Mindbody system to your main website\", and lists what it does with site data: show the class or appointment schedule, add clients into services, access and manage client data, complete sales for services and retail products, and add and retrieve staff profiles and permissions. The endpoints overview groups the data like this:\n\n| Service | What Mindbody lists |\n|---|---|\n| Appointment | Book appointments, update appointments, view a staff member's appointment schedule |\n| Class | Class registration, update a client's visit, enrollment registration, view the class schedule |\n| Client | Add or update basic client information; contact logs, relationships and indexes; purchases and account; visit history |\n| Sale | Complete service and product purchases; view pricing options, products and packages; update products |\n| Site | Site and location information, service categories, resources, session types, activation codes, relationship types |\n| Staff | Add or update staff information, view staff permissions, retrieve staff photos |\n\nThe same FAQ is candid about gaps. Asked whether the API can do everything, it answers \"Not yet\" and says the goal is to allow all Consumer and Business Mode functionality through the API. Card payments need the studio to hold an active Mindbody merchant account with one of the supported processors (TSYS, Bluefin, Elavon, Paysafe, Ezidebit and Adyen), which Mindbody says limits that access to the US, Canada (except Moneris clients), the UK, the EU, Australia, New Zealand and Hong Kong. ACH, Direct Debit and SEPA are not supported through the API.\n\nOn versions, Mindbody's documentation says a developer account created on or after February 19, 2020 can only access V6.0 of the Public API, and that the V5.0 and V5.1 documentation needs a login.\n\n## Access: sign up, go live, then activate each business\n\nMindbody's Webhooks getting-started steps spell out the access path:\n\n1. Create a developer account on Mindbody's developer portal.\n2. While logged in, request to go live with that account.\n3. Once Mindbody approves you for live access, activate the link between your developer account and at least one Mindbody business.\n\nThe FAQ describes the business side of step 3: once the developer has joined the program and the business has given access to its site data \"using an activation link or code\", the integration can begin. The endpoints overview lists generating activation codes under the Site service.\n\nIn our reading, that makes every studio an explicit opt-in. Mindbody's approval gets you live, but a business's data flows only after that business activates you. Mindbody's API Terms of Use point the same way: among the prohibited uses are accessing Mindbody Data without the authorization of the Subscriber, and requiring end users to give their login credentials to a third-party developer.\n\n## Authentication: an API key, from your server only\n\n- **Header.** Pass an API key in an `API-Key` header. A call without one gets HTTP 401 and the error type `missingAPIKeyHeader`.\n- **One set of keys.** Keys live on the API Credentials page of your developer account, and the Webhooks API accepts the same keys as the Public API.\n- **Server-side only.** Mindbody says that because API keys cannot be safely stored on mobile devices or websites, all requests to the API must come from your back-end servers.\n- **User-Agent.** Mindbody requires a `User-Agent` header on calls to its APIs.\n\nMindbody's Security Policy adds handling rules: store credentials securely at rest and in transit, share them with your team only on a need-to-know basis, never keep them in source control, and never let them be logged, even in development tools. It warns that a violation could cost you access to the Mindbody API permanently.\n\nMindbody's release notes also mention requests made with an OAuth consumer identity token and with business mode authentication. How to obtain those tokens is documented in the V6 reference we could not read.\n\n## Webhooks: subscriptions, signatures and retries\n\nThe Webhooks API lives at `https://mb-api.mindbodyonline.com/push/api/v1`, accepts and returns JSON, and must be called over HTTPS with TLS 1.2 or higher. You create a subscription for one or more events with a POST, activate it with a PATCH, and deactivate it with a DELETE.\n\nYour webhook URL has to:\n\n- accept HTTPS connections using TLS 1.2 or higher;\n- accept both POST requests, which deliver events, and HEAD requests, which Mindbody uses to check the URL when you create a subscription;\n- answer with a 2xx within 10 seconds. Otherwise Mindbody resends the event every 15 minutes and gives up after 3 hours.\n\nMindbody does not guarantee that an event arrives only once or in chronological order, so it recommends idempotent processing, and it suggests putting incoming events on a queue so you can respond quickly. If Mindbody stops getting 2xx responses, it may deactivate the subscription and email the developer portal account that created it. Events that happen while a subscription is inactive are not stored or delivered later.\n\n### Verify the signature\n\nEach delivery carries an `X-Mindbody-Signature` header. Mindbody's instructions: compute an HMAC-SHA-256 of the request body, keyed with the `messageSignatureKey` returned when you created the subscription, prepend `sha256=`, and compare the result with the header. Mindbody's C# sample Base64-encodes the hash before prepending the prefix. The same check in Node.js:\n\n```js\nimport crypto from \"node:crypto\";\n\n// rawBody: the exact bytes Mindbody posted.\n// key: the messageSignatureKey returned when the subscription was created.\nexport function isMindbodySignatureValid(rawBody, header, key) {\n  const expected =\n    \"sha256=\" + crypto.createHmac(\"sha256\", key).update(rawBody, \"utf8\").digest(\"base64\");\n  const a = Buffer.from(expected);\n  const b = Buffer.from(header ?? \"\");\n  return a.length === b.length && crypto.timingSafeEqual(a, b);\n}\n```\n\n### What you can subscribe to\n\nMindbody's event reference covers sites and business-day closures, locations, appointments and appointment add-ons, class schedules, single classes, class bookings and their status, class waitlists, class descriptions, clients (including profile merges), memberships, contracts, sales and staff. For example, `classRosterBooking.created` fires when a client is booked into a class, `client.created` when a new client is added to a business, and `clientSale.created` when a sale is made to a client. The June 2026 release notes added three Pick a Spot events: `pickASpotReservation.created`, `pickASpotReservation.updated` and `pickASpotReservation.deleted`.\n\nAn event carries only some fields, so Mindbody tells you to call the Public API for the rest and to re-sync your cached data through the Public API every 24 hours. To match events with your own writes, send the optional `Transaction-Key` header (up to 50 characters) on Public API calls. Events those calls trigger carry it back as `transactionKey`, provided the source name making the call is the one that created the webhook subscription.\n\n## Limits\n\nThe Webhooks documentation describes two kinds of rate limits: daily call limits, which are defined when you receive your API key, and system limits. To raise yours, you contact your account manager. The API Terms of Use say Mindbody sets call limits based on how your applications may be used and their anticipated volume, may charge for calls over the limit or terminate access, and never rolls unused calls over to the next day or month. Mindbody's FAQ puts a number on the daily allowance and the charge beyond it, which we cover on [Mindbody API pricing](/pricing/mindbody-api-pricing).\n\n## Terms that shape your architecture\n\nThree clauses in Mindbody's API Terms of Use, last updated September 30, 2023, affect design, not just legal review:\n\n- **Caching.** The prohibited uses include caching Mindbody Data in excess of 48 hours. Together with the Webhooks advice to re-sync every 24 hours, in our reading the intended pattern is a short-lived cache refreshed from Mindbody, not a long-term copy. Read the full clause with counsel before you design storage.\n- **Competition.** You may not use the API in a product or service that competes with Mindbody's own products or services.\n- **Termination.** Mindbody may suspend or terminate API access at any time. You can end the agreement with 90 days' written notice.\n\nThis is general information, not legal advice.\n\n## What changed in 2026\n\nFrom Mindbody's API release notes:\n\n- **July 2026.** Cancelling a class now requires credentials with both the Manage Class Schedules and Cancel Reservations permissions, in V5 and V6. Without the second permission the request returns a permission error and cancels nothing.\n- **June 2026.** Apple Pay became available to every Public API customer through the existing alternative-payments checkout flow (payment method ID 801), and Pick a Spot reservations gained webhook events.\n- **May 2026.** `AddAppointment` accepts multiple appointments in one request that either creates all of them or none, and `AddMultipleAppointments` was deprecated.\n\nFor the general patterns behind this page, see [what webhooks are](/learn/what-are-webhooks) and [ingesting webhooks reliably](/architecture/webhook-ingestion). The rest of the cluster is at [how to integrate a fitness or health API](/integrate).",
+    "faqs": [
+      {
+        "q": "Does the Mindbody API need approval before an integration goes live?",
+        "a": "Yes. Mindbody's getting-started steps are to create a developer account, request to go live while logged in, and, once Mindbody approves you for live access, activate the link between your developer account and at least one Mindbody business. Mindbody's FAQ says a business gives a developer access to its site data with an activation link or code, so each studio opts in separately after Mindbody's approval."
+      },
+      {
+        "q": "How are Mindbody API requests authenticated?",
+        "a": "With an API key sent in an API-Key header, created on the API Credentials page of your Mindbody developer account. The same keys work for the Public API and the Webhooks API, a call without the header returns HTTP 401, and Mindbody requires a User-Agent header too. Mindbody says all requests must come from your back-end servers, because API keys cannot be safely stored on mobile devices or websites."
+      },
+      {
+        "q": "How do I verify that a webhook really came from Mindbody?",
+        "a": "Check the X-Mindbody-Signature header. Mindbody's instructions are to compute an HMAC-SHA-256 of the request body using the messageSignatureKey returned when you created the subscription, prepend sha256= to the encoded result, and compare it with the header; Mindbody's C# sample Base64-encodes the hash. If the strings match, Mindbody says the message came from its servers."
+      },
+      {
+        "q": "What happens when my Mindbody webhook endpoint is down?",
+        "a": "Mindbody resends an event every 15 minutes when it gets no 2xx response within 10 seconds, and stops after 3 hours. If it keeps failing, Mindbody may deactivate the subscription and email the developer portal account that created it, and events that occur while the subscription is inactive are not stored for later delivery. Reactivate the subscription with a PATCH once the endpoint is fixed, and run a manual sync through the Public API."
+      },
+      {
+        "q": "Can I keep a copy of Mindbody data in my own database?",
+        "a": "Only with care. Mindbody's API Terms of Use list caching Mindbody Data in excess of 48 hours among the prohibited uses, and its Webhooks documentation recommends re-syncing cached data through the Public API every 24 hours. In our reading that points to a short-lived cache refreshed from Mindbody rather than a permanent copy. Read the full clause with counsel; this is not legal advice."
+      }
+    ],
+    "related": [
+      {
+        "href": "/pricing/mindbody-api-pricing",
+        "label": "Mindbody API pricing"
+      },
+      {
+        "href": "/fitness-apis/gym-management-software-apis",
+        "label": "Gym and studio management software APIs"
+      },
+      {
+        "href": "/architecture/webhook-ingestion",
+        "label": "Ingesting webhooks reliably"
+      },
+      {
+        "href": "/learn/what-are-webhooks",
+        "label": "What are webhooks?"
+      },
+      {
+        "href": "/integrate",
+        "label": "How to integrate a fitness or health API"
+      }
+    ],
+    "cta": {
+      "pitch": "We read Mindbody's developer pages, terms and release notes so you don't have to. Subscribe to hear when its access rules, limits or fees change."
+    },
+    "steps": [
+      {
+        "name": "Create a developer account",
+        "text": "Sign up on Mindbody's developer portal. The account holds your API keys on its API Credentials page, and the same keys work for the Public API and the Webhooks API."
+      },
+      {
+        "name": "Request to go live",
+        "text": "While logged into the developer account, request to go live. Mindbody has to approve you for live access before you can work with a real business."
+      },
+      {
+        "name": "Get each business to activate you",
+        "text": "Once approved, activate the link between your developer account and each Mindbody business you serve. Mindbody's FAQ says the business gives you access to its site data with an activation link or code."
+      },
+      {
+        "name": "Call the Public API from your server",
+        "text": "Send your key in the API-Key header with a User-Agent header, from back-end servers only. Mindbody says keys cannot be safely stored on mobile devices or websites."
+      },
+      {
+        "name": "Subscribe to webhooks and verify signatures",
+        "text": "Create a subscription for the events you need with a POST, activate it with a PATCH, and accept both POST and HEAD requests over TLS 1.2 or higher. Check every delivery's X-Mindbody-Signature against an HMAC-SHA-256 of the body."
+      },
+      {
+        "name": "Queue, deduplicate and re-sync",
+        "text": "Respond with a 2xx within 10 seconds, process events idempotently because they can repeat or arrive out of order, and re-sync cached data through the Public API every 24 hours as Mindbody recommends."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+        "checked": "2026-10-17",
+        "note": "Getting started (developer account, go-live request, business activation), API-Key and User-Agent headers, server-side requests, signature verification, webhook URL requirements, retries, rate limit kinds, re-sync advice, Transaction-Key, base URL and the event reference."
+      },
+      {
+        "url": "https://developers.mindbodyonline.com/resources/faqs",
+        "checked": "2026-10-17",
+        "note": "What the API does, activation link or code, card-processing requirements, and what the API cannot do yet."
+      },
+      {
+        "url": "https://developers.mindbodyonline.com/Resources/Endpoints",
+        "checked": "2026-10-17",
+        "note": "Appointment, Class, Client, Sale, Site and Staff data elements."
+      },
+      {
+        "url": "https://developers.mindbodyonline.com/PublicDocumentation/GettingStarted",
+        "checked": "2026-10-17",
+        "note": "Accounts created on or after February 19, 2020 can only access V6.0 of the Public API."
+      },
+      {
+        "url": "https://developers.mindbodyonline.com/Resources/DeveloperAgreement",
+        "checked": "2026-10-17",
+        "note": "API Terms of Use (last updated September 30, 2023): call limits, prohibited uses including the 48-hour caching limit, termination."
+      },
+      {
+        "url": "https://www.mindbodyonline.com/company/legal/security-policy",
+        "checked": "2026-10-17",
+        "note": "API credential handling rules."
+      },
+      {
+        "url": "https://developers.mindbodyonline.com/Resources/ApiReleaseNotes",
+        "checked": "2026-10-17",
+        "note": "May to July 2026 changes: AddAppointment, Apple Pay, Pick a Spot events, class cancellation permissions; OAuth consumer identity token and business mode references."
+      }
+    ]
+  },
+  {
+    "slug": "teamup-api",
+    "primaryQuery": "how to integrate the TeamUp API",
+    "h1": "How to Integrate the TeamUp API (2026)",
+    "metaTitle": "TeamUp API Integration Guide (2026): OAuth and M2M Tokens",
+    "metaDescription": "Integrate the TeamUp API v2: create an API Application, pick OAuth, an M2M token or Direct Authentication, and stay under 250 requests a minute per caller.",
+    "updated": "2026-10-17",
+    "answer": "TeamUp's API is a single REST API at goteamup.com/api/v2, and access starts inside the business: a staff member with the super admin permission creates an API Application in the TeamUp dashboard, with no extra fee for API access and no paid plan required, since free trial accounts can create Applications too. Use OAuth when your app acts for a customer or staff member, an M2M token from the business dashboard for server-to-server work, and Direct Authentication only if TeamUp approves your use case; TeamUp does not support static API keys or the client_credentials grant. Unless an endpoint says otherwise, each caller gets 250 requests per minute, and there is no separate sandbox, so TeamUp suggests testing against a free trial business.",
+    "body": "TeamUp sells management software for fitness studios, boxes and gyms, and publishes one REST API for the business data in it. This guide is written from TeamUp's developer documentation at docs.goteamup.com as it stood on October 17, 2026: the introduction, getting-started guide, authentication and errors pages, rate limits, FAQ and API Terms of Use.\n\nStill choosing a platform? Our [gym and studio management software API comparison](/fitness-apis/gym-management-software-apis) puts TeamUp next to Mindbody, Mariana Tek, Wodify and ABC Glofox.\n\n## What the API is\n\nTeamUp's introduction calls it \"a full-featured API to interact with your TeamUp business\" that can \"power custom websites or apps for your business, or allow automations for your business\". It is organized around REST, uses resource-oriented URLs, accepts and returns JSON, and uses standard HTTP response codes. Every endpoint is relative to one base URL:\n\n```text\nhttps://goteamup.com/api/v2\n```\n\nThe FAQ adds two warnings worth pinning to your config file. There is no `api.goteamup.com` subdomain, and URLs built on it \"have never existed\". And v2 replaced the older pair of APIs: TeamUp moved \"from two parallel APIs (Customer vs Business) to a single unified API\", where what you can see and do depends on who you are authenticated as, not which URL you call.\n\nThe FAQ also says the v2 API is the same API TeamUp's own web and mobile apps use, so external developers get the same functionality.\n\n## Access: the business creates an Application\n\nThe first step is to create an API Application, which TeamUp describes as representing the system you're integrating: a custom website, an app or a back-office automation. The Application sets limits on what the integration may do, can generate access tokens for your users, and leaves a reporting trail, because the business dashboard shows which registrations and other actions your Application performed.\n\nWho can do that, per TeamUp's FAQ:\n\n- **Staff with the super admin permission.** Applications are created and managed by staff members with the super admin permission at the business, typically the owner, directly in the business dashboard.\n- **No fee, no paid plan.** There is no extra fee for API access, and free trial accounts can create API Applications too.\n- **No sandbox.** There is no separate sandbox environment. TeamUp's advice is to sign up for a free trial and use it as a test business.\n\nIn our reading, that makes TeamUp the most open model among the studio platforms we checked: a business can switch the API on for itself, the same day, without a partner application. Our recommendation if you are an outside developer building for a TeamUp business: ask its super admin to create the Application, and agree up front which credential type you will use.\n\n## Authentication: three methods, three kinds of credential\n\nTeamUp supports three ways to authenticate, and it is emphatic that their credentials are not interchangeable:\n\n| Method | Acts as | Use it for | What you send |\n|---|---|---|---|\n| OAuth (recommended) | An end user, such as a trainer or a customer | Apps and websites where people log in | A short-lived OAuth access token, a JWT |\n| M2M token | The business itself | Server-to-server and background integrations | An opaque token created in the business dashboard |\n| Direct Authentication | An end user, through your own login screen | Fully branded logins | An access token from the Password Login endpoint, after TeamUp approves your use case |\n\nEvery authenticated request carries its credential in the HTTP `Authorization` header with the `Bearer` prefix:\n\n```bash\ncurl \"https://goteamup.com/api/v2/events?page_size=5\" \\\n  -H \"Authorization: Bearer YOUR_M2M_TOKEN\"\n```\n\nPoints from TeamUp's authentication page that save debugging time:\n\n- **No static API keys.** TeamUp does not support the OAuth `client_credentials` grant or static API keys; its token endpoint only accepts `grant_type=authorization_code`. If you want an \"API key\" for server-to-server access, an M2M token is the supported equivalent.\n- **The client secret never goes in the header.** The client ID and secret you see when you create the Application are only used as parameters in the OAuth flow. TeamUp says sending the wrong credential is \"the most common integration mistake we see\".\n- **Two different 401s.** A missing or malformed `Bearer` prefix makes the API treat the request as unauthenticated, which surfaces as `authentication_failed` (\"Incorrect authentication credentials.\"). A message that the token is expired or invalid usually means a client secret was pasted where a token belongs, or the token was revoked or expired.\n- **Direct Authentication is gated.** Because your app would handle user passwords, TeamUp only enables it after reviewing your use case, and then issues a secondary secret for the Password Login endpoint.\n\n### Request mode and provider headers\n\nWith an OAuth token, what your integration can do depends on the authenticated user's role and permissions. An M2M token always acts in provider (staff) mode with admin permissions. Two headers resolve ambiguity:\n\n- `TeamUp-Request-Mode` (`provider` or `customer`) is only needed when an OAuth identity is both a customer and a staff member.\n- `TeamUp-Provider-ID` names the business a request acts on when your credentials reach more than one, as with franchises and multi-location businesses.\n\nYour provider ID is the number at the start of the business's Customer Site URL. You can also call `GET /auth/application`, whose `scoped_providers` field lists the provider IDs your credentials can access.\n\n## Rate limits and errors\n\nUnless an endpoint says otherwise, TeamUp allows **250 requests per minute per caller**, where the caller is the authenticated user, or the IP address for unauthenticated endpoints. Exceed it and you get HTTP 429. TeamUp recommends retrying with exponential backoff and using the `expand` parameter to fetch related data in one request rather than several.\n\nErrors use conventional status codes and a JSON body with a `code`, a `message`, a `type` and, for validation problems, per-field `field_errors`. The `code` string is the one to branch on in your handler.\n\n## Webhooks\n\nTeamUp's getting-started guide lists receiving event notifications with webhooks as a next step, and its authentication page names \"a webhook processor that receives TeamUp event notifications\" as a typical use for an M2M token. The webhook pages themselves were not among the pages we read, so check event names and delivery behavior in TeamUp's webhooks guide before you build on them.\n\n## API terms in brief\n\nTeamUp's API Terms of Use were last updated July 11, 2025. They let TeamUp limit API calls in any period and, if you exceed the limits, charge fees or end your access. They also bar sharing access with competitors, using data for unauthorized purposes and publishing metrics about the API, and let either side end the arrangement, TeamUp at any time and you with 90 days' notice. This is general information, not legal advice.\n\nFor the patterns this API leans on, see [how OAuth works for health and fitness data](/learn/what-is-oauth-for-health-data) and [webhooks versus polling](/learn/webhooks-vs-polling-for-fitness-data). The rest of the cluster is at [how to integrate a fitness or health API](/integrate).",
+    "faqs": [
+      {
+        "q": "Does TeamUp give out static API keys?",
+        "a": "No. TeamUp's authentication page says it does not support the OAuth client_credentials grant or static API keys, and its token endpoint only accepts the authorization_code grant. For server-to-server access, the supported equivalent of an API key is a machine-to-machine (M2M) token, which the business creates in its dashboard and which always acts in provider mode with admin permissions."
+      },
+      {
+        "q": "What is the TeamUp API rate limit?",
+        "a": "Unless an endpoint's description says otherwise, TeamUp allows 250 requests per minute for a caller, where the caller is the authenticated user or, for unauthenticated endpoints, the IP address. Over the limit you get HTTP 429. TeamUp recommends retrying on an exponential backoff schedule and using the expand parameter to fetch related data in fewer requests."
+      },
+      {
+        "q": "Is there a TeamUp API sandbox for testing?",
+        "a": "No. TeamUp's FAQ says there is no separate sandbox environment. Instead, sign up for a free trial account at goteamup.com and use it as a test business; trial accounts can create API Applications and use the API like any other account."
+      },
+      {
+        "q": "Who can create a TeamUp API Application, and does it cost anything?",
+        "a": "Staff members with the super admin permission at the business, typically the owner, create and manage API Applications in the business dashboard. TeamUp's FAQ says there is no extra fee for API access and no paid subscription is required, because free trial accounts can create Applications too."
+      },
+      {
+        "q": "How do I find a business's TeamUp provider ID?",
+        "a": "It is the number at the start of the business's Customer Site URL; for a site at goteamup.com/p/12345-your-business-name, the provider ID is 12345. You can also call GET /auth/application, whose scoped_providers field lists the provider IDs your credentials can access. Send it in the TeamUp-Provider-ID header when your credentials reach more than one business."
+      }
+    ],
+    "related": [
+      {
+        "href": "/fitness-apis/gym-management-software-apis",
+        "label": "Gym and studio management software APIs"
+      },
+      {
+        "href": "/learn/what-is-oauth-for-health-data",
+        "label": "What is OAuth for health data?"
+      },
+      {
+        "href": "/learn/webhooks-vs-polling-for-fitness-data",
+        "label": "Webhooks vs polling"
+      },
+      {
+        "href": "/integrate/mindbody-api",
+        "label": "Integrate the Mindbody API"
+      },
+      {
+        "href": "/integrate",
+        "label": "How to integrate a fitness or health API"
+      }
+    ],
+    "cta": {
+      "pitch": "We follow the developer docs of the studio platforms your customers run, TeamUp included. Subscribe to hear when access rules, limits or terms change."
+    },
+    "steps": [
+      {
+        "name": "Create an API Application",
+        "text": "A staff member with the super admin permission creates the Application in the TeamUp business dashboard. It sets what the integration may do, generates tokens and leaves a reporting trail in the dashboard."
+      },
+      {
+        "name": "Pick the credential type",
+        "text": "Use OAuth when your app acts for a logged-in customer or staff member, an M2M token from the dashboard for server-to-server work, and Direct Authentication only after TeamUp approves your use case."
+      },
+      {
+        "name": "Find the provider ID",
+        "text": "Read it from the start of the business's Customer Site URL, or call GET /auth/application and read scoped_providers. Send TeamUp-Provider-ID when your credentials can reach more than one business."
+      },
+      {
+        "name": "Make a first request",
+        "text": "Call GET /events on https://goteamup.com/api/v2 with your token in the Authorization header using the Bearer prefix, and expect a JSON list of event objects."
+      },
+      {
+        "name": "Handle errors and the rate limit",
+        "text": "Branch on the error code string in failed responses, and on HTTP 429 retry with exponential backoff. The default limit is 250 requests per minute per caller."
+      },
+      {
+        "name": "Test on a free trial business",
+        "text": "TeamUp has no separate sandbox, so create a free trial account, use it as a test business and build against it before you connect a live studio."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://docs.goteamup.com/api-reference/introduction",
+        "checked": "2026-10-17",
+        "note": "What the API is for, REST and JSON, and what an API Application does."
+      },
+      {
+        "url": "https://docs.goteamup.com/guides/getting-started",
+        "checked": "2026-10-17",
+        "note": "Base URL, creating an Application in the business dashboard, the three authentication methods, request headers and the webhooks next step."
+      },
+      {
+        "url": "https://docs.goteamup.com/llms.txt",
+        "checked": "2026-10-17",
+        "note": "TeamUp's documentation export, read for the Authentication and Errors pages: OAuth, M2M tokens, Direct Authentication, credential types, 401 causes, request modes and the error format."
+      },
+      {
+        "url": "https://docs.goteamup.com/api-reference/rate-limits",
+        "checked": "2026-10-17",
+        "note": "250 requests per minute per caller, 429 responses, backoff and the expand parameter."
+      },
+      {
+        "url": "https://docs.goteamup.com/support/faq",
+        "checked": "2026-10-17",
+        "note": "No api.goteamup.com subdomain, provider ID, no sandbox, no API fee, who creates Applications, the unified v2 API."
+      },
+      {
+        "url": "https://docs.goteamup.com/terms-of-service",
+        "checked": "2026-10-17",
+        "note": "API Terms of Use last updated July 11, 2025: call limits, restrictions, termination."
+      },
+      {
+        "url": "https://goteamup.com/features/integrations-with-teamup",
+        "checked": "2026-10-17",
+        "note": "TeamUp's description of its software for fitness studios, boxes and gyms."
+      }
+    ]
+  },
+  {
+    "slug": "mariana-tek-api",
+    "primaryQuery": "how to integrate the Mariana Tek API",
+    "h1": "How to Integrate the Mariana Tek API (2026)",
+    "metaTitle": "Mariana Tek API Integration Guide (2026): OAuth, Review",
+    "metaDescription": "Integrate Mariana Tek's Admin and Customer APIs: credentials from its Integrations team, OAuth with PKCE or API keys, sandbox tenants and technical review.",
+    "updated": "2026-10-17",
+    "answer": "Mariana Tek issues API credentials through its Integrations team rather than an open sign-up form: you contact integrations@marianatek.com to register an application, build against a sandbox tenant, and may need to pass a technical review that Mariana Tek says can take up to 1 to 3 weeks before you go live with a studio. Requests use bearer authentication, with either an OAuth 2.0 access token from the Authorization Code flow on the studio's own subdomain, adding PKCE for single-page and mobile apps, or an API key tied to your application's service account for server-side work. Webhooks are switched on by request, and production webhooks for a studio need the studio owner's approval by email.",
+    "body": "Mariana Tek sells boutique fitness software to studios and franchises, and publishes a family of APIs for the developers who build around it. This guide is written from Mariana Tek's developer guides at guides.marianatek.com and its Customer API OpenAPI document as they stood on October 17, 2026.\n\nStill choosing a platform? Our [gym and studio management software API comparison](/fitness-apis/gym-management-software-apis) puts Mariana Tek next to Mindbody, TeamUp, Wodify and ABC Glofox.\n\n## Which Mariana Tek API you need\n\nMariana Tek's API overview lists seven surfaces:\n\n| API | What Mariana Tek says it is for |\n|---|---|\n| Admin API | Its primary API, the control arm for backend and business needs; tools for fitness business administration |\n| Customer API | Bespoke customer experiences, built from the customer's perspective |\n| Studio API | Endpoints to manage studio configurations |\n| MT Stripe API | A custom checkout flow on Mariana Tek's Stripe integration |\n| Documents API | Waivers, documents and contracts |\n| Pricing API | Pricing control |\n| Webhooks | Notifications about account events |\n\nIts \"ways to build\" page maps them to projects. Custom development for a studio's website uses the pre-built Web Integrations, the Customer API, or both. A studio app that helps owners run the business extends the Admin Application with the Admin API, and can use the Pricing Engine to change class prices dynamically. A customer app used by one or many studios combines the Customer API with Universal Authentication. A booking app that partners with many studios uses Bypass Bookings.\n\nThe Customer API is described in an OpenAPI document at `https://docs.marianatek.com/api/customer/v1/schema/`, which Mariana Tek introduces as giving you \"the power to build custom booking and buying experiences for fitness customers\". Generate a client from it rather than hand-writing request types.\n\n## Access: through Mariana Tek's Integrations team\n\nThere is no public sign-up form in the guides we read. To register an application and get OAuth credentials, the credentials guide says to contact `integrations@marianatek.com`, and the same address manages API keys. Mariana Tek's FAQ describes a Developer Portal for managing sandbox integrations, generating credentials and starting a technical review, but says it is in Beta and not uniformly available yet.\n\nYou build against a **sandbox**: a mock studio seeded with sample data, with its own tenant name, sandbox API and Web Integrations, almost identical to production. Every studio, live or sandbox, is addressed by its tenant name (the MT subdomain), and the sandbox API lives at `https://{tenant_name}.marianatek.com/api`. Sandbox tenant names often end in `.sandbox`. Integration partners get access to their sandbox Admin App during onboarding.\n\n## Credentials: OAuth or an API key\n\nMariana Tek accepts two kinds of credential, and both are sent with bearer authentication:\n\n- **OAuth 2.0 client credentials**, when requests should act for an end user: apps that need a studio owner or customer to log in, user-scoped views and profiles, or single sign-on. Single-page and mobile apps must use OAuth.\n- **An API key**, tied to a service account for your application, when you manipulate data for many users without any one user's login. You choose the service user's permissions when you register, and keys belong only on a server: Mariana Tek says never to commit them to version control or use them in client-side code.\n\n```bash\ncurl -H \"Authorization: Bearer YOUR_API_KEY_OR_ACCESS_TOKEN\" \\\n  \"https://YOUR_TENANT.marianatek.com/api/users/self\"\n```\n\n## The OAuth flow, on the studio's subdomain\n\nMariana Tek supports the Authorization Code flow for confidential clients, such as server-side web apps, and the Authorization Code flow with PKCE for public clients, such as single-page and mobile apps. Both run on the brand's own subdomain:\n\n```text\nGET  https://{SUBDOMAIN}.marianatek.com/o/authorize\n       ?response_type=code&client_id=...&redirect_uri=...&state=...\n       (PKCE adds code_challenge and code_challenge_method=S256)\n\nPOST https://{SUBDOMAIN}.marianatek.com/o/token/\n       grant_type=authorization_code, client_id, code, redirect_uri,\n       plus client_secret (Authorization Code) or code_verifier (PKCE)\n```\n\nDetails from the guide:\n\n- `state` is required, and Mariana Tek tells you to check it on the callback to prevent CSRF.\n- `prompt=True` forces a login even when the user already has a session. Without it, a user with an active session is sent straight back to your `redirect_uri`.\n- The example token response has `expires_in` of 604800 seconds, which is seven days, along with a `refresh_token`. Exchange it with `grant_type=refresh_token`; confidential clients also send their `client_secret`.\n- The redirect URL must match the registered one exactly. Mariana Tek's FAQ lists the usual causes of a mismatch error: no redirect URL registered yet, a typo, a trailing backslash on only one of the two URLs, URL encoding, or an old URL still registered.\n\nThe [OAuth explainer](/learn/what-is-oauth-for-health-data) covers why public clients need PKCE.\n\n## Webhooks are enabled on request\n\nMariana Tek can post events to your URL, for example when a customer creates an account, makes a reservation or checks in to class. There is no self-serve subscription in the guides: you ask Integrations, giving your HTTPS subscriber URL, the events you want and the environment. For a studio's production environment, Integrations needs the studio owner's approval by email.\n\nOne design rule matters if you plan to serve many studios. Mariana Tek calls an integration that can be switched on for a new studio from one bundle of credentials a one-click-install, and for webhooks that requires subscriber URLs that are identical across clients or differ only by the MT subdomain. Build the subdomain into your URL path from day one.\n\n## Technical review before going live\n\nBefore going live with a studio, you may have to pass a technical review; Mariana Tek says not every app needs one. The integration must be fully built and tested in the sandbox first. The submission covers how the integration works, the endpoints and webhooks it uses, credentialed access to a test environment, a screen recording, and the studios you work with or plan to. Mariana Tek says reviews \"can take up to 1-3 weeks to complete\".\n\nTwo consequences of approval to plan for:\n\n- **Scoped access.** Your account permissions are limited to the endpoints and use cases that were reviewed and approved, and using other endpoints you can reach is not permitted.\n- **Ongoing standing.** If a launched integration falls outside the approved guidelines, Mariana Tek discontinues its API access until you work through a consultation with your integration manager.\n\n## What we could not find\n\nNeither rate limits nor API pricing appear in the guides we read, and the Admin API reference was not among the pages we fetched. Ask Integrations about both before you size a production rollout.\n\nMariana Tek also lists its existing partners in a marketplace at partners.marianatek.com, including ClassPass, Wellhub and Spivi, which is a quick way to see which kinds of integrations it already approves. The rest of the cluster is at [how to integrate a fitness or health API](/integrate).",
+    "faqs": [
+      {
+        "q": "How do I get Mariana Tek API credentials?",
+        "a": "Contact Mariana Tek's Integrations team at integrations@marianatek.com to register your application and receive OAuth client credentials or an API key; its guides do not describe an open sign-up form. Mariana Tek's FAQ mentions a self-service Developer Portal for managing sandbox integrations and credentials, but says it is in Beta and not uniformly available yet."
+      },
+      {
+        "q": "Should a Mariana Tek integration use OAuth or an API key?",
+        "a": "Use OAuth when a studio owner or customer logs in, for user-scoped views and profiles, or for single sign-on; single-page and mobile apps must use OAuth. Use an API key, tied to your application's service account, for server-side data work across many users with no individual login. Both are sent as bearer tokens, and Mariana Tek says API keys must never be committed to version control or used client-side."
+      },
+      {
+        "q": "How long does Mariana Tek's technical review take?",
+        "a": "Mariana Tek says reviews can take up to 1-3 weeks to complete, and not every app needs one. Submit only a fully built integration tested in the sandbox, with a description, the endpoints and webhooks it uses, test-environment logins, a screen recording and the studios you work with. After approval, your permissions are scoped to the endpoints and use cases that were approved."
+      },
+      {
+        "q": "How do I turn on Mariana Tek webhooks?",
+        "a": "Ask Mariana Tek's Integrations team for a webhooks subscription, giving your HTTPS subscriber URL, the events you want and the environment, sandbox or production. For a studio's production environment, the studio owner must send approval to Integrations by email. To stay a one-click-install, keep subscriber URLs identical across studios or differing only by the MT subdomain."
+      },
+      {
+        "q": "What is a Mariana Tek tenant name?",
+        "a": "It is the MT subdomain that identifies a live studio or a sandbox, and you need it to call the API and set up Web Integrations; the sandbox API lives at your tenant name followed by .marianatek.com/api. Sandbox tenant names often end in .sandbox, and you receive yours once you are set up as a developer with Mariana Tek."
+      }
+    ],
+    "related": [
+      {
+        "href": "/fitness-apis/gym-management-software-apis",
+        "label": "Gym and studio management software APIs"
+      },
+      {
+        "href": "/learn/what-is-oauth-for-health-data",
+        "label": "What is OAuth for health data?"
+      },
+      {
+        "href": "/architecture/webhook-ingestion",
+        "label": "Ingesting webhooks reliably"
+      },
+      {
+        "href": "/integrate/teamup-api",
+        "label": "Integrate the TeamUp API"
+      },
+      {
+        "href": "/integrate",
+        "label": "How to integrate a fitness or health API"
+      }
+    ],
+    "cta": {
+      "pitch": "We track how studio platforms like Mariana Tek grant API access, from credentials to technical review. Subscribe to hear when the process changes."
+    },
+    "steps": [
+      {
+        "name": "Contact Integrations",
+        "text": "Email integrations@marianatek.com to register your application. Say whether you need OAuth client credentials, an API key with a service user's permissions, or both."
+      },
+      {
+        "name": "Build against a sandbox tenant",
+        "text": "Use the sandbox, a mock studio seeded with sample data, through its tenant name: the sandbox API is your tenant name followed by .marianatek.com/api."
+      },
+      {
+        "name": "Run the OAuth flow on the studio's subdomain",
+        "text": "Send users to /o/authorize on the brand's subdomain with response_type=code, client_id, redirect_uri and state, adding a code challenge for PKCE in single-page and mobile apps. Exchange the code at /o/token/ and refresh before the token expires."
+      },
+      {
+        "name": "Call the APIs with bearer authentication",
+        "text": "Send the OAuth access token or the API key in the Authorization header as a bearer token, from your server whenever an API key is involved."
+      },
+      {
+        "name": "Request webhooks",
+        "text": "Ask Integrations for a subscription with your HTTPS subscriber URL, the events and the environment. Production webhooks need the studio owner's approval by email."
+      },
+      {
+        "name": "Submit for technical review",
+        "text": "Once the integration is fully built and tested in the sandbox, submit the Technical Review Form. Mariana Tek says reviews can take up to 1-3 weeks, and approved access is scoped to the reviewed endpoints."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://guides.marianatek.com/api-overview",
+        "checked": "2026-10-17",
+        "note": "The Admin, Customer, Studio, MT Stripe, Documents and Pricing APIs and Webhooks."
+      },
+      {
+        "url": "https://guides.marianatek.com/ways-to-build",
+        "checked": "2026-10-17",
+        "note": "Which APIs fit studio websites, studio apps, customer apps and booking apps."
+      },
+      {
+        "url": "https://docs.marianatek.com/api/customer/v1/schema/",
+        "checked": "2026-10-17",
+        "note": "Customer API OpenAPI document and its description."
+      },
+      {
+        "url": "https://guides.marianatek.com/credentials",
+        "checked": "2026-10-17",
+        "note": "OAuth versus API keys, registering through Integrations, bearer authentication, key handling."
+      },
+      {
+        "url": "https://guides.marianatek.com/auth",
+        "checked": "2026-10-17",
+        "note": "Authorization Code and PKCE flows, parameters, token response and refresh tokens."
+      },
+      {
+        "url": "https://guides.marianatek.com/faqs",
+        "checked": "2026-10-17",
+        "note": "Sandbox, Developer Portal (Beta), tenant name, one-click-install, credential choice, redirect mismatch errors, webhook setup."
+      },
+      {
+        "url": "https://guides.marianatek.com/webhooks",
+        "checked": "2026-10-17",
+        "note": "What webhooks deliver and that they start through Integrations."
+      },
+      {
+        "url": "https://guides.marianatek.com/integration-review",
+        "checked": "2026-10-17",
+        "note": "Technical review requirements, 1-3 week timeframe, scoped permissions and loss of access."
+      },
+      {
+        "url": "https://partners.marianatek.com/",
+        "checked": "2026-10-17",
+        "note": "Partner marketplace listings including ClassPass, Wellhub and Spivi."
+      },
+      {
+        "url": "https://www.marianatek.com/",
+        "checked": "2026-10-17",
+        "note": "Mariana Tek's description of its boutique fitness software."
+      }
+    ]
+  },
+  {
+    "slug": "wodify-api",
+    "primaryQuery": "how to integrate the Wodify API",
+    "h1": "How to Integrate the Wodify API (2026)",
+    "metaTitle": "Wodify API Integration Guide (2026): x-api-key and Limits",
+    "metaDescription": "Integrate the Wodify REST API: where gyms and partners get an API key, the x-api-key header, the base URL, endpoint groups, and 5 requests a second.",
+    "updated": "2026-10-17",
+    "answer": "Wodify's REST API lives at api.wodify.com/v1 and authenticates every request with an API key in an x-api-key header. A gym that uses Wodify's Workflows feature already has a key in Wodify Core under Digital Presence, Web Integrations, API Keys, while Wodify partners retrieve theirs from the Wodify Developer Portal. As of October 17, 2026, Wodify documents limits of 5 requests per second, bursts of 20 requests and 500,000 requests per month, answers HTTP 429 when you exceed them, and covers leads, clients, memberships, classes, appointments, communications, financials and workouts.",
+    "body": "Wodify sells all-in-one gym management software, and its integrations page invites developers who are \"interested in building for studios\" to its API documentation at docs.wodify.com. This guide is written from that documentation as it stood on October 17, 2026: the getting-started, authentication and rate-limiting guides and the API reference.\n\nStill choosing a platform? Our [gym and studio management software API comparison](/fitness-apis/gym-management-software-apis) puts Wodify next to Mindbody, TeamUp, Mariana Tek and ABC Glofox.\n\n## What the API covers\n\nWodify describes \"a set of powerful APIs\" for its RESTful platform, organized by the business object each endpoint works on. Its getting-started guide lists the categories:\n\n| Category | What Wodify says you can do |\n|---|---|\n| Leads | Create, update, delete and convert leads to clients; search their appointment bookings and class reservations; manage groups, tags, sources and statuses |\n| Clients | Search, create, update, suspend, reinstate and deactivate clients; search bookings and reservations; manage roles, groups, tags and statuses |\n| Documents | Manage contract templates; get client and lead waiver information |\n| Communications | Send emails and SMS, and create tasks |\n| Financials | Manage discounts, tax rates, invoices and revenue categories |\n| Memberships | Memberships, including templates, billing, discounts, locations, programs, attendance types and hold reasons |\n| Customers and Locations | Employees and locations |\n| Programs and Classes | Search and retrieve programs and classes; get, search, create and delete class reservations and sign-ins for clients, leads and drop-ins |\n| Appointments | Appointments and bookings for clients and leads, and service information |\n| Workouts | Manage, create, edit and delete workouts |\n\nThe API reference also has a Progressions section (progressions, levels, criteria and client progressions) that the getting-started list does not mention.\n\nAll requests go to one base URL:\n\n```text\nhttps://api.wodify.com/v1\n```\n\nOne inconsistency to know about: the example request on Wodify's authentication page sends `Host: app-api.wodify.com`, while the getting-started guide gives the base URL above. We use the base URL from the getting-started guide; if a call fails, check which host your Wodify contact expects.\n\n## Access: where the API key comes from\n\nWodify authenticates every request with one API key, and its authentication guide describes two ways to get one:\n\n- **Wodify customers.** If the business uses the Wodify Workflows feature, it already has a key. It is in Wodify Core under Digital Presence, then Web Integrations, then API Keys: click EDIT and look for the key named \"Wodify API\". The API reference describes the same route, telling you to request a key through the Web Integrations screen if you don't have one.\n- **Wodify partners.** Partners retrieve their key from the Wodify Developer Portal, and Wodify support helps with access to the portal.\n\nIn our reading, a developer building for one gym works with that gym's key from Wodify Core, while a company building for many gyms goes through Wodify's partner route. The guides we read do not describe how to become a partner or whether there is a fee, so ask Wodify before you plan a multi-gym product.\n\n## Authentication: the x-api-key header\n\nSend the key in an `x-api-key` header on every request. Wodify's server checks that the key is valid and authorized for the resource, processes the request if it is, and otherwise returns an authentication or authorization error.\n\n```bash\ncurl \"https://api.wodify.com/v1/clients\" \\\n  -H \"x-api-key: YOUR_WODIFY_API_KEY\" \\\n  -H \"Accept: application/json\"\n```\n\nWodify's guides do not say where to keep the key. Our recommendation: treat it like any server credential, keep it out of browsers and mobile apps, and call Wodify from your own back end.\n\n## Rate limits\n\nWodify publishes three limits, and they apply together:\n\n| Limit | Value | What it means |\n|---|---|---|\n| Rate | 5 requests per second | Sustained throughput |\n| Burst | 20 requests | A short spike allowed above the rate before throttling |\n| Quota | 500,000 requests per month | The total for a calendar month |\n\nOver the limit, the API returns HTTP 429 Too Many Requests, and Wodify recommends exponential backoff. Its best practices are to batch requests rather than loop through single calls, to cache data you reference often, and to keep the monthly count in mind for high-volume automations.\n\nThe monthly quota is the one that bites a sync job. At a steady 5 requests per second, a job would use 500,000 requests in under 28 hours (500,000 divided by 5 is 100,000 seconds), so in our experience the design question is not how fast you can poll but how little.\n\n## Webhooks\n\nNeither Wodify's guide navigation (getting started, authentication, rate limiting and search) nor the section list of its API reference mentions webhooks, so we cannot say whether Wodify pushes events to your server. Wodify does integrate with Zapier, which it says connects an account to hundreds of other apps and platforms. For a custom integration, plan on polling within the quota above until Wodify documents a push mechanism. [Webhooks versus polling](/learn/webhooks-vs-polling-for-fitness-data) covers the trade-off, and [caching fitness API responses](/architecture/caching-fitness-api-responses) covers how to poll less.\n\n## Integrations that need no code\n\nBefore writing code, check whether a built-in integration already does the job. Wodify's integrations page lists QuickBooks, Slack, Facebook Leads, Google Analytics and MyZone among the tools it connects to, and says integrations with platforms like Slack and Facebook Leads come at no additional cost.\n\nThe rest of the cluster is at [how to integrate a fitness or health API](/integrate).",
+    "faqs": [
+      {
+        "q": "Where do I find my Wodify API key?",
+        "a": "If the gym uses Wodify's Workflows feature, the key already exists: in Wodify Core go to Digital Presence, then Web Integrations, then API Keys, click EDIT and find the key named Wodify API. Wodify partners retrieve their key from the Wodify Developer Portal instead. If you cannot locate a key, Wodify's guide says to contact Wodify support."
+      },
+      {
+        "q": "What are the Wodify API rate limits?",
+        "a": "As of October 17, 2026, Wodify documents a rate of 5 requests per second, a burst of 20 requests above that rate before throttling, and a quota of 500,000 requests per calendar month. Exceeding them returns HTTP 429 Too Many Requests, and Wodify recommends exponential backoff, batching requests and caching data you reference often."
+      },
+      {
+        "q": "Does the Wodify API support webhooks?",
+        "a": "As of October 17, 2026, neither Wodify's guide navigation nor the section list of its API reference mentions webhooks, so we could not confirm a push mechanism. Wodify does integrate with Zapier, and for a custom integration you should plan on polling within the 500,000-requests-a-month quota until Wodify documents one."
+      },
+      {
+        "q": "What base URL and header does the Wodify API use?",
+        "a": "Wodify's getting-started guide gives https://api.wodify.com/v1 as the base URL for all requests, and every request carries the API key in an x-api-key header. Note that the example on Wodify's authentication page sends Host: app-api.wodify.com, so if a call fails, confirm the host with Wodify."
+      }
+    ],
+    "related": [
+      {
+        "href": "/fitness-apis/gym-management-software-apis",
+        "label": "Gym and studio management software APIs"
+      },
+      {
+        "href": "/learn/webhooks-vs-polling-for-fitness-data",
+        "label": "Webhooks vs polling"
+      },
+      {
+        "href": "/architecture/caching-fitness-api-responses",
+        "label": "Caching fitness API responses"
+      },
+      {
+        "href": "/integrate/teamup-api",
+        "label": "Integrate the TeamUp API"
+      },
+      {
+        "href": "/integrate",
+        "label": "How to integrate a fitness or health API"
+      }
+    ],
+    "cta": {
+      "pitch": "Gym platforms change their API limits quietly. Subscribe and we will tell you when Wodify or the other studio platforms we track change theirs."
+    },
+    "steps": [
+      {
+        "name": "Get an API key",
+        "text": "For a single gym, find the key in Wodify Core under Digital Presence, Web Integrations, API Keys (the one named Wodify API). Partners retrieve theirs from the Wodify Developer Portal."
+      },
+      {
+        "name": "Keep the key on your server",
+        "text": "Store the key in server-side configuration and call Wodify from your own back end, so it never reaches a browser or a mobile app."
+      },
+      {
+        "name": "Call the base URL with x-api-key",
+        "text": "Send requests to https://api.wodify.com/v1 with the key in the x-api-key header, for example GET /clients to list clients."
+      },
+      {
+        "name": "Stay under the rate and burst limits",
+        "text": "Keep sustained traffic under 5 requests per second with bursts of no more than 20, and batch work instead of looping through single calls."
+      },
+      {
+        "name": "Budget the monthly quota",
+        "text": "Count requests against the 500,000-per-month quota, cache data you read often, and poll on a schedule rather than continuously."
+      },
+      {
+        "name": "Back off on 429",
+        "text": "When the API returns HTTP 429, wait and retry with exponential backoff, increasing the wait on each retry."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://docs.wodify.com/docs/getting-started",
+        "checked": "2026-10-17",
+        "note": "Overview, x-api-key authentication, base URL and API categories."
+      },
+      {
+        "url": "https://docs.wodify.com/docs/authentication",
+        "checked": "2026-10-17",
+        "note": "Where customers and partners get API keys, the header, and the example request host."
+      },
+      {
+        "url": "https://docs.wodify.com/docs/rate-limiting",
+        "checked": "2026-10-17",
+        "note": "Rate, burst and monthly quota, 429 handling and best practices."
+      },
+      {
+        "url": "https://docs.wodify.com/reference/get_dropin",
+        "checked": "2026-10-17",
+        "note": "API reference sections including Progressions, and the Web Integrations note on the x-api-key header."
+      },
+      {
+        "url": "https://www.wodify.com/integrations",
+        "checked": "2026-10-17",
+        "note": "Built-in integrations, no-cost integrations, Zapier, and the link to the API documentation."
+      },
+      {
+        "url": "https://www.wodify.com/",
+        "checked": "2026-10-17",
+        "note": "Wodify's description of its all-in-one gym management software."
+      }
+    ]
+  },
+  {
+    "slug": "glofox-api",
+    "primaryQuery": "how to integrate the Glofox API",
+    "h1": "How to Integrate the ABC Glofox API (2026)",
+    "metaTitle": "Glofox API Integration Guide (2026): Keys, Branch ID",
+    "metaDescription": "Integrate the ABC Glofox API: the x-api-key, x-glofox-api-token and branch-ID headers, server-side proxying, branches and namespaces, errors, webhooks.",
+    "updated": "2026-10-17",
+    "answer": "ABC Glofox publishes a REST API reference, version 2.3.0 on October 17, 2026, for managing members, memberships, credits, classes, bookings and payments, with JSON responses. Every call carries three headers, x-glofox-branch-id, x-api-key and x-glofox-api-token, and Glofox says to proxy them through a secure backend and never expose them in client-side applications. Plan for two quirks: some older endpoints return HTTP 200 with a success field set to false for a bad request, and the API answers 429 when you exceed its rate limit. Access is requested through Glofox's API portal, whose process we could not read.",
+    "body": "ABC Glofox is the studio and gym platform in ABC Fitness's product family; ABC's own site lists it next to ABC Ignite, ABC Trainerize and ABC Evo. Glofox publishes an API reference on its API portal, and this guide is written from that reference (version 2.3.0) as it stood on October 17, 2026.\n\n> **Sourcing note.** The reference is a long static page; we read its navigation and its introductory sections (introduction, authentication, errors, branches and the first endpoints). The rest of the portal, including its \"Request access\" section, is a JavaScript application that returned no readable text to our fetch. How access is granted, and any rate-limit numbers or fees, are therefore not covered here.\n\nStill choosing a platform? Our [gym and studio management software API comparison](/fitness-apis/gym-management-software-apis) puts Glofox next to Mindbody, TeamUp, Mariana Tek and Wodify.\n\n## What the API covers\n\nGlofox introduces its API as \"a REST API that lets integrations manage members, memberships, credits, classes, bookings, and payments\", with JSON responses. The reference groups endpoints like this:\n\n| Group | Examples from the reference |\n|---|---|\n| Branches | Retrieve the locations allowed to your integration; get a branch |\n| Users | Create, update and get leads and clients; search members by email or phone; get staff; register a user |\n| Leads | Contact sources and marketing sources |\n| Memberships and credits | List memberships, purchase a membership, purchase with flexible payment, cancel a membership; a user's credit packs |\n| Classes and bookings | Classes, events and programs by branch; create, cancel and list bookings; mark a booking as attended; class availability and price |\n| Payments and cart | Payment methods for a branch, payment links for invoices, overdue subscription invoices; create, update and check out a cart |\n| Other | Access, reports, electronic agreements, price calculators, appointment availability, facilities, courses, products and push notifications |\n\nThe reference page offers a download of the underlying OpenAPI specification, which is the quickest way to generate a typed client.\n\n## Authentication: three headers on every call\n\nEvery request carries three headers:\n\n| Header | What it is |\n|---|---|\n| `x-glofox-branch-id` | The branch (studio or location) the request is for |\n| `x-api-key` | Your integration's API key |\n| `x-glofox-api-token` | Your integration's API token |\n\nGlofox's instruction is blunt: \"Always proxy API key and token requests through a secure backend. Never expose credentials in client-side applications.\" So a member-facing app calls your server, and your server calls Glofox.\n\nRequests go to the production server shown throughout the reference, `https://gf-api.aws.glofox.com/prod`, followed by a versioned path such as `/2.0/branches/{id}` or `/v3.0/locations/retrieve`:\n\n```bash\ncurl \"https://gf-api.aws.glofox.com/prod/2.0/branches/YOUR_BRANCH_ID\" \\\n  -H \"x-glofox-branch-id: YOUR_BRANCH_ID\" \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"x-glofox-api-token: YOUR_API_TOKEN\"\n```\n\n## Branches and namespaces\n\nTwo words carry most of the data model:\n\n- **Branch.** Glofox defines a branch, also called a studio or location, as a physical location with its own set of members and staff.\n- **Namespace.** A group of branches assigned to your integration. `POST /v3.0/locations/retrieve` returns the branches in your integration's allowed namespaces, all of them if you pass no filter, and Glofox says it filters access by the integrator's configured permissions.\n\nMember search works across a whole namespace: the namespace is taken from the branch in your `x-glofox-branch-id` header, and the same email or phone can return more than one member when it exists at several locations. Phone search is an exact match on the member's normalized E.164 number and excludes staff. Plan your identity mapping for that before you merge members across locations.\n\n## Errors, including the 200 that is really a 400\n\nThe reference lists the status codes to handle: 400 for invalid input, 401 when the request is not authenticated, 403 when the client lacks permission, 404 for a missing resource, 429 when \"the API blocks the request when you exceed the rate limit\", and 500 for server-side problems. Error bodies carry a human-readable `message` and a `message_code` meant for client-side handling.\n\nOne quirk to code for: Glofox says older endpoints \"sometimes return a 200 status code with a success field set to false\", which indicates a bad request, and recommends middleware that maps those responses to 400. In our experience this is the bug that slips through testing, because the happy path never sees it. Check `success` on every response from the older `/2.0` endpoints, not just the status code.\n\nThe introductory sections we read do not state the rate limit itself. Treat 429 as the signal and retry with backoff.\n\n## Webhooks\n\nThe reference's navigation lists webhook events for access, bookings, course bookings, electronic agreements, events, invoices, members, memberships, services and push notifications. We did not read those sections in full, so check the reference and the portal for how to register an endpoint and what each payload carries. For processing webhooks safely, see [ingesting webhooks reliably](/architecture/webhook-ingestion).\n\n## Access and the wider ABC ecosystem\n\nThe portal's navigation has a \"Request access\" entry, but the process behind it sits in the part of the portal we could not read. If you plan to sell an integration across ABC's product family, ABC Fitness also runs a partner program for app partners and solution providers. Its requirements and tiers are summarized in our [gym and studio software API comparison](/fitness-apis/gym-management-software-apis).\n\nThe rest of the cluster is at [how to integrate a fitness or health API](/integrate).",
+    "faqs": [
+      {
+        "q": "Which headers does every Glofox API call need?",
+        "a": "Three: x-glofox-branch-id for the branch (studio or location) the request is for, x-api-key for your integration's API key, and x-glofox-api-token for its API token. Glofox's reference says to always proxy the key and token through a secure backend and never expose them in client-side applications."
+      },
+      {
+        "q": "Why does the Glofox API return 200 when a request failed?",
+        "a": "Glofox's reference says older endpoints sometimes return a 200 status code with a success field set to false, which indicates a bad request, and recommends middleware that maps those responses to 400. Check the success field on responses from the older endpoints rather than relying on the status code alone."
+      },
+      {
+        "q": "What are branches and namespaces in the Glofox API?",
+        "a": "A branch, also called a studio or location, is a physical location with its own members and staff. Branches are grouped into namespaces, and POST /v3.0/locations/retrieve returns the branches in your integration's allowed namespaces. Member search runs across the whole namespace of the branch in your x-glofox-branch-id header, so one email or phone can match members at several locations."
+      },
+      {
+        "q": "Does the Glofox API send webhooks?",
+        "a": "Yes. The navigation of Glofox's API reference lists webhook events for access, bookings, course bookings, electronic agreements, events, invoices, members, memberships, services and push notifications. We did not read those sections in full, so check the reference and Glofox's API portal for how to register an endpoint."
+      }
+    ],
+    "related": [
+      {
+        "href": "/fitness-apis/gym-management-software-apis",
+        "label": "Gym and studio management software APIs"
+      },
+      {
+        "href": "/architecture/webhook-ingestion",
+        "label": "Ingesting webhooks reliably"
+      },
+      {
+        "href": "/architecture/identity-and-account-linking",
+        "label": "Identity and account linking"
+      },
+      {
+        "href": "/integrate/mindbody-api",
+        "label": "Integrate the Mindbody API"
+      },
+      {
+        "href": "/integrate",
+        "label": "How to integrate a fitness or health API"
+      }
+    ],
+    "cta": {
+      "pitch": "We follow the API references of the studio platforms your customers use, ABC Glofox included. Subscribe to hear when access, limits or versions change."
+    },
+    "steps": [
+      {
+        "name": "Request access",
+        "text": "Start from the Request access entry in Glofox's API portal. The process behind it was not readable to our fetch, so confirm with Glofox how your integration's API key and API token are issued."
+      },
+      {
+        "name": "Keep credentials on a backend",
+        "text": "Store the key and token server-side and proxy every call through your backend, as Glofox's reference instructs; never ship them in a browser or mobile app."
+      },
+      {
+        "name": "List your allowed branches",
+        "text": "Call POST /v3.0/locations/retrieve on https://gf-api.aws.glofox.com/prod to get the branches in your integration's allowed namespaces."
+      },
+      {
+        "name": "Send the three headers",
+        "text": "Add x-glofox-branch-id, x-api-key and x-glofox-api-token to every request, then call the endpoints you need, such as bookings or memberships."
+      },
+      {
+        "name": "Normalize errors",
+        "text": "Handle 400, 401, 403, 404, 429 and 500, read message and message_code from error bodies, and map 200 responses with success set to false on older endpoints to 400."
+      },
+      {
+        "name": "Wire up webhooks",
+        "text": "Check the reference's webhook sections for the events you need, such as bookings, members and memberships, and register your endpoint through the API portal."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+        "checked": "2026-10-17",
+        "note": "Glofox API Reference 2.3.0: introduction, authentication headers, error handling, error structure, branches, namespaces, member search, production server, endpoint groups, webhook event list, Request access entry."
+      },
+      {
+        "url": "https://abcfitness.com/",
+        "checked": "2026-10-17",
+        "note": "ABC Fitness lists ABC Ignite, ABC Trainerize, ABC Glofox and ABC Evo."
+      },
+      {
+        "url": "https://abcfitness.com/partners/",
+        "checked": "2026-10-17",
+        "note": "ABC Fitness partner program for app partners and solution providers."
+      }
+    ]
   }
 ];

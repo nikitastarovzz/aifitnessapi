@@ -886,5 +886,81 @@ export const pricingEntries: ClusterEntry[] =
         "note": "Junction Launch and Enterprise plans"
       }
     ]
+  },
+  {
+    "slug": "mindbody-api-pricing",
+    "primaryQuery": "mindbody api pricing",
+    "h1": "Mindbody API Pricing: What Each Call Costs",
+    "metaTitle": "Mindbody API Pricing: 1,000 Calls a Day, Then Per Call",
+    "metaDescription": "Mindbody's developer FAQ prices API calls past 1,000 a day at a third of a cent each. What its API terms add on billing, call limits and fee changes.",
+    "updated": "2026-10-17",
+    "answer": "As of October 17, 2026, Mindbody's developer FAQ says there is a 1,000-call daily limit on the API and that each call beyond it is charged at one third of a cent, that you are charged only for use with live clients, and that sandbox testing is free but restricted to 1,000 calls a day. Mindbody's API Terms of Use add that fees are billed monthly starting 30 days after you first receive access to a business's data, that Mindbody sets each developer's call limits and may charge for excess calls, and that fee changes take effect 30 days after posting. The FAQ still describes the API as SOAP and XML web services, so treat the per-call price as Mindbody's published statement and confirm the current schedule before you budget.",
+    "body": "## What Mindbody publishes\n\nMindbody is the one gym and studio platform we checked that prints a per-call API price. It sits in the developer FAQ rather than on a pricing page: the address `/Resources/Pricing` on Mindbody's developer portal returned an error page on October 17, 2026. Here is everything about API fees that we could read on Mindbody's own pages that day.\n\n| Item | What Mindbody says | Where it says it |\n|---|---|---|\n| Daily allowance | A limit of 1,000 calls per day when using the API | Developer FAQ |\n| Calls beyond it | One third of a cent for every call | Developer FAQ |\n| When you are charged | Only for use with live clients | Developer FAQ |\n| Sandbox | Free, but restricted to 1,000 calls a day | Developer FAQ |\n| Billing cycle | Monthly, starting 30 days after you first receive access to Subscriber data; usage fees invoiced monthly for the previous calendar month | API Terms of Use, section 10 |\n| Your call limits | Set by Mindbody based on how your applications may be used and their anticipated volume | API Terms of Use, section 6 |\n| Going over | Mindbody may charge for excess calls or terminate access | API Terms of Use, section 6 |\n| Unused calls | Never roll over to the next day or month | API Terms of Use, section 6 |\n| Fee changes | Take effect 30 days after Mindbody posts them | API Terms of Use, section 10 |\n| Taxes | You pay any taxes on the fees | API Terms of Use, section 10 |\n\nThe FAQ does not say whether the 1,000-call allowance counts per developer account or per business, and we found no page that does. Ask Mindbody before you model a multi-studio integration.\n\n## What the numbers mean in practice\n\nAt the FAQ's rate, every 1,000 calls above the daily allowance costs about $3.33 (1,000 times one third of a cent). That is arithmetic on Mindbody's published figure, not a quote.\n\nIn our experience the bill is set by sync design more than by user count, because every poll is a call. Two things from Mindbody's own documentation pull in opposite directions:\n\n- **Webhooks cut polling.** Mindbody pitches its Webhooks API as a way to show near real-time updates to a business's data \"without having to long-poll the Public API\". Every event you receive is a poll you did not make.\n- **Daily re-syncs add calls.** The same documentation tells you to re-sync cached data through the Public API every 24 hours, and an event carries only some fields, so follow-up reads cost calls too.\n\nOur recommendation: subscribe to webhooks for anything that changes during the day, keep the daily re-sync to what you actually display, and meter your own call count per business from the first week.\n\n## Why to confirm the price before you budget\n\nThree things make the FAQ figure a starting point rather than a contract:\n\n- **The FAQ looks dated.** It describes the API as built on \"XML web services, SOAP, WSDL\", while Mindbody's documentation says developer accounts created on or after February 19, 2020 can only use V6.0 of the Public API. A page that old may not reflect today's fee schedule.\n- **The terms point elsewhere.** Section 10 of the API Terms of Use says fees are \"more fully described at https://developers.mindbodyonline.com\". That address is a JavaScript application that returned no readable text to our fetch.\n- **Fees can change on notice.** The same section says changes take effect 30 days after they are posted.\n\nSo treat one third of a cent per call as Mindbody's published statement as of October 17, 2026, and confirm the current schedule in your developer account, or with Mindbody, before you put it in a budget.\n\n## Costs that sit with the studio\n\nThe API fee is the developer's bill. A business that uses your integration is a Mindbody subscriber in its own right: Mindbody's webhook reference describes a site as created when \"a new business subscribes to Mindbody's services\", and each business activates your access to its data. If your product takes card payments through the API, Mindbody's FAQ says the studio needs an active Mindbody merchant account with a supported processor. We have not reviewed Mindbody's business software pricing, so this page makes no claim about it.\n\nFor the integration itself (access, keys, webhooks and limits), see the [Mindbody API integration guide](/integrate/mindbody-api). To compare Mindbody with other studio platforms, including those that charge nothing extra for API access, see [gym and studio management software APIs](/fitness-apis/gym-management-software-apis). For the wider picture, [how much a fitness API costs](/pricing/how-much-does-a-fitness-api-cost) breaks down where the money goes across the categories this site covers.",
+    "faqs": [
+      {
+        "q": "Is the Mindbody API free to use?",
+        "a": "Partly. As of October 17, 2026, Mindbody's developer FAQ says there is a 1,000-call daily limit and that each call after it costs one third of a cent, charged only for use with live clients. Testing in the sandbox is free but restricted to 1,000 calls a day. The FAQ looks dated, so confirm the current fee schedule with Mindbody before you rely on it."
+      },
+      {
+        "q": "When does Mindbody start billing API fees?",
+        "a": "Mindbody's API Terms of Use say fees are calculated and billed monthly, starting 30 days from the date you first receive access to Subscriber data, and that usage fees are invoiced monthly for the previous calendar month's activity. You also pay any taxes on those fees."
+      },
+      {
+        "q": "Can Mindbody change its API fees or call limits?",
+        "a": "Yes. The API Terms of Use say fee changes take effect 30 days after Mindbody posts them, and that Mindbody determines each developer's call limits based on how the applications may be used and their anticipated volume. If you exceed your limits, Mindbody may charge for the excess calls or terminate your access."
+      },
+      {
+        "q": "Do unused Mindbody API calls roll over?",
+        "a": "No. Mindbody's API Terms of Use say unused API calls never roll over to the next day or month. A quiet day does not buy you headroom for a busy one, so size webhook subscriptions and daily re-syncs to stay under the allowance every day."
+      }
+    ],
+    "related": [
+      {
+        "href": "/integrate/mindbody-api",
+        "label": "Integrate the Mindbody API"
+      },
+      {
+        "href": "/fitness-apis/gym-management-software-apis",
+        "label": "Gym and studio management software APIs"
+      },
+      {
+        "href": "/pricing/how-much-does-a-fitness-api-cost",
+        "label": "How much does a fitness API cost?"
+      },
+      {
+        "href": "/pricing",
+        "label": "All fitness & health API pricing"
+      }
+    ],
+    "cta": {
+      "pitch": "Mindbody can change its API fees 30 days after posting them. Subscribe and we will tell you when its published pricing, limits or terms change."
+    },
+    "sources": [
+      {
+        "url": "https://developers.mindbodyonline.com/resources/faqs",
+        "checked": "2026-10-17",
+        "note": "The 1,000-call daily limit, one third of a cent per call beyond it, charges only with live clients, free sandbox restricted to 1,000 calls a day, and the SOAP/XML description."
+      },
+      {
+        "url": "https://developers.mindbodyonline.com/Resources/DeveloperAgreement",
+        "checked": "2026-10-17",
+        "note": "API Terms of Use sections 6 and 10: call limits, excess-call charges, no rollover, monthly billing from 30 days after access to Subscriber data, 30-day notice of fee changes, taxes."
+      },
+      {
+        "url": "https://developers.mindbodyonline.com/Resources/Pricing",
+        "checked": "2026-10-17",
+        "note": "Returned Mindbody's error page; there is no separate API pricing page at this address."
+      },
+      {
+        "url": "https://developers.mindbodyonline.com/WebhooksDocumentation",
+        "checked": "2026-10-17",
+        "note": "Webhooks as an alternative to long-polling, the 24-hour re-sync advice, and the site.created event for businesses subscribing to Mindbody."
+      },
+      {
+        "url": "https://developers.mindbodyonline.com/PublicDocumentation/GettingStarted",
+        "checked": "2026-10-17",
+        "note": "Accounts created on or after February 19, 2020 can only access V6.0 of the Public API."
+      }
+    ]
   }
 ];

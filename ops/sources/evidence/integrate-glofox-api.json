@@ -1,0 +1,302 @@
+[
+  {
+    "claim": "ABC Glofox is the studio and gym platform in ABC Fitness's product family; ABC's own site lists it next to ABC Ignite, ABC Trainerize and ABC Evo.",
+    "url": "https://abcfitness.com/",
+    "quote": "Discover a gym software platform nimble enough to power operations for boutique studios and gyms. Whether you’re a start-up or a growing global franchise, amplify your brand and strengthen your member experience at any scale with ABC Glofox."
+  },
+  {
+    "claim": "ABC's site lists ABC Ignite.",
+    "url": "https://abcfitness.com/",
+    "quote": "See why major global fitness brands choose ABC Ignite."
+  },
+  {
+    "claim": "ABC's site lists ABC Trainerize.",
+    "url": "https://abcfitness.com/",
+    "quote": "ABC Trainerize enables you to expand your services online and offer personalized training programs to your members."
+  },
+  {
+    "claim": "ABC's site lists ABC Evo as part of the ABC Fitness family.",
+    "url": "https://abcfitness.com/",
+    "quote": "As part of the ABC Fitness family, ABC EVO provides a secure, flexible, all-in-one solution"
+  },
+  {
+    "claim": "Glofox publishes an API reference on its API portal, version 2.3.0.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Glofox API Reference ( 2.3.0 )"
+  },
+  {
+    "claim": "The portal's navigation has a Request access entry.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Request access"
+  },
+  {
+    "claim": "Glofox introduces its API as a REST API that lets integrations manage members, memberships, credits, classes, bookings, and payments, with JSON responses.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "The Glofox API is a REST API that lets integrations manage members, memberships, credits, classes, bookings, and payments. Responses use JSON."
+  },
+  {
+    "claim": "Branches: retrieve the locations allowed to your integration; get a branch.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Retrieve locations (branches) for allowed namespaces"
+  },
+  {
+    "claim": "Branches: get a branch.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Get a Branch"
+  },
+  {
+    "claim": "Users: create, update and get leads and clients; search members by email or phone; get staff; register a user.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Search members by email or phone within a namespace"
+  },
+  {
+    "claim": "Users group includes creating a user (lead or client), getting staff members and registering a user.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Create a user (Lead or Client)"
+  },
+  {
+    "claim": "Users group: get staff members; register a user.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Get staff members"
+  },
+  {
+    "claim": "Leads: contact sources and marketing sources.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Get list of marketing sources."
+  },
+  {
+    "claim": "Memberships and credits: list memberships, purchase a membership, purchase with flexible payment, cancel a membership; a user's credit packs.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Purchase Membership with Flexible payment"
+  },
+  {
+    "claim": "Memberships: cancel a user membership.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Cancel a user membership"
+  },
+  {
+    "claim": "Credits: a user's credit packs.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Get a Users Credit Packs"
+  },
+  {
+    "claim": "Classes and bookings: classes, events and programs by branch; create, cancel and list bookings; mark a booking as attended; class availability and price.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Mark a booking as attended"
+  },
+  {
+    "claim": "Classes: classes, events and programs by branch.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Classes - Events & Programs by branch"
+  },
+  {
+    "claim": "Bookings: class availability and price.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Get class availability booking price"
+  },
+  {
+    "claim": "Payments and cart: payment methods for a branch, payment links for invoices, overdue subscription invoices.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Get Payment Methods Available for a Branch"
+  },
+  {
+    "claim": "Payments: payment links for invoices.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Get Payment Link for Invoice (Member)"
+  },
+  {
+    "claim": "Payments: overdue subscription invoices.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Retrieve overdue subscription Invoices by user ID."
+  },
+  {
+    "claim": "Cart: create, update and check out a cart.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Checks out a cart"
+  },
+  {
+    "claim": "Cart: create a cart.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Creates a new cart"
+  },
+  {
+    "claim": "Cart: update a cart.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Updates an existing cart."
+  },
+  {
+    "claim": "Other groups: access, reports, electronic agreements, price calculators, appointment availability, facilities, courses, products and push notifications.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Retrieve all the available appointments of the given branch."
+  },
+  {
+    "claim": "The reference page offers a download of the underlying OpenAPI specification.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Download OpenAPI specification"
+  },
+  {
+    "claim": "x-glofox-branch-id: the branch the request is for.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "x-glofox-branch-id Branch ID for the current request."
+  },
+  {
+    "claim": "x-api-key: your integration's API key.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "x-api-key API key for the integration."
+  },
+  {
+    "claim": "x-glofox-api-token: your integration's API token.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "x-glofox-api-token API token for the integration."
+  },
+  {
+    "claim": "Every request carries three headers.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Include these headers in every API call:"
+  },
+  {
+    "claim": "Always proxy API key and token requests through a secure backend. Never expose credentials in client-side applications.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Always proxy API key and token requests through a secure backend. Never expose credentials in client-side applications."
+  },
+  {
+    "claim": "Requests go to the production server https://gf-api.aws.glofox.com/prod followed by a versioned path such as /v3.0/locations/retrieve ...",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "https://gf-api.aws.glofox.com/prod /v3.0/locations/retrieve"
+  },
+  {
+    "claim": "... or /2.0/branches/{id}.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "https://gf-api.aws.glofox.com/prod /2.0/branches/{id}"
+  },
+  {
+    "claim": "Glofox defines a branch, also called a studio or location, as a physical location with its own set of members and staff.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "A branch (a.k.a. studio or location) is a physical location. They will have their own set of members and staff (even roaming ones can be shared)."
+  },
+  {
+    "claim": "POST /v3.0/locations/retrieve returns the branches in your integration's allowed namespaces, all of them if you pass no filter, and Glofox says it filters access by the integrator's configured permissions.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Retrieves locations (branches) associated with an integrator's allowed namespaces. Acts as a proxy to the core Glofox API, filtering access based on the integrator's configured permissions. If no namespaces are provided in the request body, all locations from the integrator's assigned namespaces are returned."
+  },
+  {
+    "claim": "Member search works across a whole namespace taken from the branch in your x-glofox-branch-id header, and the same email or phone can return more than one member when it exists at several locations.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Searches for users (members) across an entire namespace by email address, phone number, or both. The namespace is determined by the branch in the x-glofox-branch-id header."
+  },
+  {
+    "claim": "The same email or phone can return more than one member when it exists at several locations.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "More than one user may be returned when the same email or phone exists at multiple locations in the namespace."
+  },
+  {
+    "claim": "Phone search is an exact match on the member's normalized E.164 number and excludes staff.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Phone matching is an exact match against the member's normalized E.164 phone; members without a normalized phone are not returned. Phone searches return users of type MEMBER only (including leads and cancelled members). Staff are excluded from phone searches."
+  },
+  {
+    "claim": "400 for invalid input.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Indicates an issue with the request data, typically caused by invalid input."
+  },
+  {
+    "claim": "401 when the request is not authenticated.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "401 Unauthorized The request is not authenticated."
+  },
+  {
+    "claim": "403 when the client lacks permission.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "The client does not have permission to access the requested resource."
+  },
+  {
+    "claim": "404 for a missing resource.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "404 Not Found The requested resource does not exist."
+  },
+  {
+    "claim": "429 when the API blocks the request when you exceed the rate limit.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "429 Too Many Requests The API blocks the request when you exceed the rate limit."
+  },
+  {
+    "claim": "500 for server-side problems.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "A generic error indicating a problem on the server side."
+  },
+  {
+    "claim": "Error bodies carry a human-readable message ...",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "message — human-readable explanation of the error"
+  },
+  {
+    "claim": "... and a message_code meant for client-side handling.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "message_code — key you can use on the client side"
+  },
+  {
+    "claim": "Older endpoints sometimes return a 200 status code with a success field set to false ...",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "sometimes return a 200 status code with a success field set to false"
+  },
+  {
+    "claim": "... which indicates a bad request, and Glofox recommends middleware that maps those responses to 400.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "That indicates a bad request. Add middleware to map those responses to 400"
+  },
+  {
+    "claim": "Webhook events for access ...",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Handle access events"
+  },
+  {
+    "claim": "... bookings ...",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Handle booking events"
+  },
+  {
+    "claim": "... course bookings ...",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Handle course booking events"
+  },
+  {
+    "claim": "... electronic agreements ...",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Handle eagreement events"
+  },
+  {
+    "claim": "... events ...",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Handle event events"
+  },
+  {
+    "claim": "... invoices ...",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Handle invoice events"
+  },
+  {
+    "claim": "... members ...",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Handle member events"
+  },
+  {
+    "claim": "... memberships ...",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Handle membership events"
+  },
+  {
+    "claim": "... services ...",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Handle service events"
+  },
+  {
+    "claim": "... and push notifications.",
+    "url": "https://api-portal.glofox.com/api-portal/glofox/api/openapi-reference.html",
+    "quote": "Handle push notification events"
+  },
+  {
+    "claim": "ABC Fitness also runs a partner program for app partners and solution providers.",
+    "url": "https://abcfitness.com/partners/",
+    "quote": "Reach thousands of gyms, studios, and fitness professionals by integrating your product or service with ABC Fitness."
+  }
+]

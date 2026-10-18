@@ -60,6 +60,11 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
     ],
   },
   {
+    title: "Gym & studio software",
+    blurb: "Mindbody prices its API by the call.",
+    slugs: ["mindbody-api-pricing"],
+  },
+  {
     title: "Budgeting",
     blurb: "The honest overview and what drives cost.",
     slugs: ["are-fitness-apis-free", "fitness-api-free-tiers-compared", "how-much-does-a-fitness-api-cost"],

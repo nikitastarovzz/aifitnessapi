@@ -54,6 +54,11 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
     blurb: "API-key REST — the simplest to start.",
     slugs: ["exercisedb-api", "nutritionix-api"],
   },
+  {
+    title: "Gym & studio software",
+    blurb: "Members, classes and sales, with each studio's consent.",
+    slugs: ["mindbody-api", "teamup-api", "mariana-tek-api", "wodify-api", "glofox-api"],
+  },
 ];
 
 const FAQS = [
