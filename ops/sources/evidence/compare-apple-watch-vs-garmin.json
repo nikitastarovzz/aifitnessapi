@@ -83,5 +83,10 @@
     "claim": "FAQ, recurring fee: some metrics may need a licence fee for commercial use.",
     "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
     "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+  },
+  {
+    "claim": "Garmin's Activity API covers over 30 activity types, per Garmin's overview.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Full activity data for over 30 activity types."
   }
 ]
