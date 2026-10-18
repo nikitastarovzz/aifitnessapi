@@ -1,0 +1,242 @@
+[
+  {
+    "claim": "A camera jumping jack counter can follow two cycles: the distance between the hands and the distance between the feet, each running from its maximum through its minimum to the next maximum, as a 2022 study defined them.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9090847&retmode=xml",
+    "quote": "Time of Hand movement cycle (from maximal hand distance over minimal hand distance to next maximal hand distance)"
+  },
+  {
+    "claim": "A camera jumping jack counter can follow two cycles: the distance between the hands and the distance between the feet, each running from its maximum through its minimum to the next maximum, as a 2022 study defined them.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9090847&retmode=xml",
+    "quote": "Time of Feet movement cycle (from maximal feet distance over minimal feet distance to next maximal feet distance)"
+  },
+  {
+    "claim": "The two studies we found that measured jumping jacks with a camera used a Kinect depth sensor placed in front of the person, and neither reports counting accuracy, so this page has no measured accuracy figure to quote.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9090847&retmode=xml",
+    "quote": "Throughout performance of each task, subjects were recorded by a 3D-infrared camera (Microsoft Kinect for Xbox one) at a 30 Hz sampling rate. The sensor was placed on a tripod at 1.4-m height with a vertical angle of − 8°. For all tasks except walking and finger-tapping, participants stood at a distance of 2.5 m from the sensor."
+  },
+  {
+    "claim": "The two studies we found that measured jumping jacks with a camera used a Kinect depth sensor placed in front of the person, and neither reports counting accuracy, so this page has no measured accuracy figure to quote.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8742363&retmode=xml",
+    "quote": "The Kinect camera was positioned directly in front and approximately 1 m away from the testing area"
+  },
+  {
+    "claim": "Both studies come from clinical motor research and both used a Kinect, a 3D infrared camera that reports joints in three dimensions, rather than a 2D model running on a phone's RGB video.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9090847&retmode=xml",
+    "quote": "82 individuals (37 ASD and 45 healthy controls, HC)"
+  },
+  {
+    "claim": "Both studies come from clinical motor research and both used a Kinect, a 3D infrared camera that reports joints in three dimensions, rather than a 2D model running on a phone's RGB video.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9090847&retmode=xml",
+    "quote": "Throughout performance of each task, subjects were recorded by a 3D-infrared camera (Microsoft Kinect for Xbox one) at a 30 Hz sampling rate."
+  },
+  {
+    "claim": "Both studies come from clinical motor research and both used a Kinect, a 3D infrared camera that reports joints in three dimensions, rather than a 2D model running on a phone's RGB video.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8742363&retmode=xml",
+    "quote": "The x, y and z coordinates from the twenty-five joints from the skeletal model of the Kinect V2 system were recorded concurrently with the GaitWayXR™ game. These coordinates were time stamped and stored at a sampling rate of 30 Hz."
+  },
+  {
+    "claim": "Both studies come from clinical motor research and both used a Kinect, a 3D infrared camera that reports joints in three dimensions, rather than a 2D model running on a phone's RGB video.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8742363&retmode=xml",
+    "quote": "Ten children and adolescents (10–17 years) completed six, 20-min VR-based motor training sessions over 2 weeks while whole-body movement was tracked with a low-cost motion capture system."
+  },
+  {
+    "claim": "Cho and colleagues (Scientific Reports, 2022) filmed 82 adults aged 18 to 65, 37 with autism and 45 controls, with a Kinect depth camera during nine movement tasks, one of which was 10 continuous jumping jacks.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9090847&retmode=xml",
+    "quote": "82 individuals (37 ASD and 45 healthy controls, HC)"
+  },
+  {
+    "claim": "Cho and colleagues (Scientific Reports, 2022) filmed 82 adults aged 18 to 65, 37 with autism and 45 controls, with a Kinect depth camera during nine movement tasks, one of which was 10 continuous jumping jacks.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9090847&retmode=xml",
+    "quote": "aged 18 to 65 years performed nine movement tasks and were filmed by a 3D-infrared camera."
+  },
+  {
+    "claim": "Cho and colleagues (Scientific Reports, 2022) filmed 82 adults aged 18 to 65, 37 with autism and 45 controls, with a Kinect depth camera during nine movement tasks, one of which was 10 continuous jumping jacks.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9090847&retmode=xml",
+    "quote": "Performing 10 jumping jacks continuously"
+  },
+  {
+    "claim": "Hocking and colleagues (Journal of NeuroEngineering and Rehabilitation, 2022) tracked ten children and adolescents with autism, aged 10 to 17, with a Kinect V2 during six virtual-reality training sessions, recognised jumping jacks with a neural network, and measured each one.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8742363&retmode=xml",
+    "quote": "Ten children and adolescents (10–17 years) completed six, 20-min VR-based motor training sessions over 2 weeks while whole-body movement was tracked with a low-cost motion capture system."
+  },
+  {
+    "claim": "Hocking and colleagues (Journal of NeuroEngineering and Rehabilitation, 2022) tracked ten children and adolescents with autism, aged 10 to 17, with a Kinect V2 during six virtual-reality training sessions, recognised jumping jacks with a neural network, and measured each one.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8742363&retmode=xml",
+    "quote": "Participants were a convenience community sample of ten children with a previously confirmed diagnosis of ASD"
+  },
+  {
+    "claim": "Hocking and colleagues (Journal of NeuroEngineering and Rehabilitation, 2022) tracked ten children and adolescents with autism, aged 10 to 17, with a Kinect V2 during six virtual-reality training sessions, recognised jumping jacks with a neural network, and measured each one.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8742363&retmode=xml",
+    "quote": "The game software integrated a Microsoft Kinect V2 camera with the customized GaitWayXR™ platform, with the Kinect camera tracking movements that were recognized by a fully customized machine learning (ML) model."
+  },
+  {
+    "claim": "Hocking and colleagues (Journal of NeuroEngineering and Rehabilitation, 2022) tracked ten children and adolescents with autism, aged 10 to 17, with a Kinect V2 during six virtual-reality training sessions, recognised jumping jacks with a neural network, and measured each one.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8742363&retmode=xml",
+    "quote": "We then quantified each jumping jack (JJ) movement performance by calculating various measures in three main categories"
+  },
+  {
+    "claim": "In our reading, a jumping jack moves in the frontal plane: Hocking and colleagues define it as jumping from standing to a position with legs spread and arms raised, then back.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8742363&retmode=xml",
+    "quote": "jumping jacks were performed from a standing position by jumping to a position with legs spread and arms raised and then back to the original position"
+  },
+  {
+    "claim": "Cho and colleagues measure it as two cycles, the hand cycle from maximal hand distance over minimal hand distance to the next maximal hand distance, and the matching feet cycle.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9090847&retmode=xml",
+    "quote": "Time of Hand movement cycle (from maximal hand distance over minimal hand distance to next maximal hand distance)"
+  },
+  {
+    "claim": "Cho and colleagues measure it as two cycles, the hand cycle from maximal hand distance over minimal hand distance to the next maximal hand distance, and the matching feet cycle.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9090847&retmode=xml",
+    "quote": "Time of Feet movement cycle (from maximal feet distance over minimal feet distance to next maximal feet distance)"
+  },
+  {
+    "claim": "Hocking and colleagues measure the highest wrist position as the maximum difference between wrist and shoulder heights divided by body height, and the widest leg split as the widest distance between the ankles divided by height.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8742363&retmode=xml",
+    "quote": "Highest wrist position normalized by height: Maximum difference wrists and shoulders heights, divided by height"
+  },
+  {
+    "claim": "Hocking and colleagues measure the highest wrist position as the maximum difference between wrist and shoulder heights divided by body height, and the widest leg split as the widest distance between the ankles divided by height.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8742363&retmode=xml",
+    "quote": "Widest leg split normalized by height: Widest distance between the ankles, divided by height"
+  },
+  {
+    "claim": "The Kinect V2 skeleton Hocking and colleagues recorded has 25 joints and is not one of the maps on this site.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8742363&retmode=xml",
+    "quote": "The x, y and z coordinates from the twenty-five joints from the skeletal model of the Kinect V2 system"
+  },
+  {
+    "claim": "In our reading, dividing by body height, as they did, is what lets one threshold work for people of different sizes and at different distances from the camera.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8742363&retmode=xml",
+    "quote": "Widest leg split normalized by height: Widest distance between the ankles, divided by height"
+  },
+  {
+    "claim": "Cho and colleagues mounted their sensor on a tripod at 1.4 m height with a vertical angle of −8°, with participants standing 2.5 m away.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9090847&retmode=xml",
+    "quote": "The sensor was placed on a tripod at 1.4-m height with a vertical angle of − 8°. For all tasks except walking and finger-tapping, participants stood at a distance of 2.5 m from the sensor."
+  },
+  {
+    "claim": "Hocking and colleagues placed theirs directly in front of the testing area, about 1 m away.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8742363&retmode=xml",
+    "quote": "The Kinect camera was positioned directly in front and approximately 1 m away from the testing area"
+  },
+  {
+    "claim": "Cho and colleagues also controlled the scene: light, silhouette-fitting clothing, comfortable footwear, and an evenly lit environment free of distracting objects.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9090847&retmode=xml",
+    "quote": "Filming conditions included light, silhouette-fitting clothing and comfortable footwear of the subjects and an evenly lit environment, free of any distracting objects."
+  },
+  {
+    "claim": "One participant was excluded from their analysis for not meeting those filming conditions.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9090847&retmode=xml",
+    "quote": "was excluded from the statistical analysis for not meeting the filming conditions"
+  },
+  {
+    "claim": "In our reading, Cho and colleagues' cycle definition is a ready-made state machine: count one repetition each time the normalised hand distance passes a high threshold, drops below a low one and rises past the high one again, with the gap between the two as the hysteresis described in how rep counting works.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9090847&retmode=xml",
+    "quote": "Time of Hand movement cycle (from maximal hand distance over minimal hand distance to next maximal hand distance)"
+  },
+  {
+    "claim": "Cho and colleagues also report arrhythmicity, the absolute ratio between the standard deviation and the average of the cycle time, which a counter could use to flag irregular sets.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9090847&retmode=xml",
+    "quote": "Absolute ratio between standard deviation and average of the hand cycle time"
+  },
+  {
+    "claim": "Cho and colleagues also report arrhythmicity, the absolute ratio between the standard deviation and the average of the cycle time, which a counter could use to flag irregular sets.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9090847&retmode=xml",
+    "quote": "Arrhythmicity was determined from stepping in place and jumping jack task"
+  },
+  {
+    "claim": "Hocking and colleagues recognised movements with a neural network over a sliding window of 60 frames, updating the result every 15 frames of new data, 0.5 s.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8742363&retmode=xml",
+    "quote": "To do so, a realtime sliding window of frames captured by the Kinect camera was maintained and updated. Once 60 frames were collected, they were sent to a neural network to recognize the current action. The action recognition results were updated every 15 frames of novel data (0.5 s)."
+  },
+  {
+    "claim": "Because they needed accurate start and finish times for each jumping jack, they checked every movement the network labelled as one and manually corrected the start or finish frames where they were wrong.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8742363&retmode=xml",
+    "quote": "Since we needed these movements and their start/finish times to be highly accurate, we manually checked and adjusted the results of the data segmentation step as follows. We went through all of the movements labelled as a jumping jack by the action recognition network and for each of those movements, we checked the start/finish frames to make sure that they were accurate. If not, we manually corrected the start and/or finish frames to reflect the correct values."
+  },
+  {
+    "claim": "They low-pass filtered the joint data at 12 Hz, shifted the coordinates so the pelvic joint sat at the origin, and cleaned each jumping jack's signals with a zero-lag Butterworth filter at a 3 Hz cut-off.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8742363&retmode=xml",
+    "quote": "Data from the Kinect was filtered using a 12 Hz low-pass filter to reduce the influence of noise during tracking. In order to reduce the variability caused by different positioning of participants in front of the Kinect camera, the joint coordinates were shifted such that the pelvic joint was positioned at the origin"
+  },
+  {
+    "claim": "They low-pass filtered the joint data at 12 Hz, shifted the coordinates so the pelvic joint sat at the origin, and cleaned each jumping jack's signals with a zero-lag Butterworth filter at a 3 Hz cut-off.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8742363&retmode=xml",
+    "quote": "order zero-lag Butterworth filter with cut-off frequency of 3 Hz to remove the high-frequency components of the movement signals."
+  },
+  {
+    "claim": "Hocking and colleagues' network found the movements, but its start and finish frames were not accurate enough for their analysis without manual correction.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8742363&retmode=xml",
+    "quote": "Since we needed these movements and their start/finish times to be highly accurate, we manually checked and adjusted the results of the data segmentation step as follows. We went through all of the movements labelled as a jumping jack by the action recognition network and for each of those movements, we checked the start/finish frames to make sure that they were accurate. If not, we manually corrected the start and/or finish frames to reflect the correct values."
+  },
+  {
+    "claim": "Hocking and colleagues filtered the joint data twice, the second time to remove high-frequency parts of the signals that the participants could not physically have produced and that came from the noisy extraction process.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8742363&retmode=xml",
+    "quote": "Data from the Kinect was filtered using a 12 Hz low-pass filter to reduce the influence of noise during tracking."
+  },
+  {
+    "claim": "Hocking and colleagues filtered the joint data twice, the second time to remove high-frequency parts of the signals that the participants could not physically have produced and that came from the noisy extraction process.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8742363&retmode=xml",
+    "quote": "This step helped with removing the high-frequency (HF) parts of the collected signals which were not physically possible for the participants to perform and were a result of the noisy extraction process."
+  },
+  {
+    "claim": "Cho and colleagues' protocol depends on controlled light, clothing and background, and excluded a participant who did not meet it.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9090847&retmode=xml",
+    "quote": "Filming conditions included light, silhouette-fitting clothing and comfortable footwear of the subjects and an evenly lit environment, free of any distracting objects."
+  },
+  {
+    "claim": "Cho and colleagues' protocol depends on controlled light, clothing and background, and excluded a participant who did not meet it.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9090847&retmode=xml",
+    "quote": "was excluded from the statistical analysis for not meeting the filming conditions"
+  },
+  {
+    "claim": "Cho and colleagues cite an earlier technical validation of their protocol in healthy subjects, which we did not read.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9090847&retmode=xml",
+    "quote": "This protocol has previously been technically validated in healthy subjects"
+  },
+  {
+    "claim": "Hocking and colleagues describe their sample as very small.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8742363&retmode=xml",
+    "quote": "First, these data were collected on a very small sample size of children with ASD without a comparison to typically developing children."
+  },
+  {
+    "claim": "Cho and colleagues defined a jumping jack by two cycles, the distance between the hands and the distance between the feet, each from its maximum through its minimum to the next maximum.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9090847&retmode=xml",
+    "quote": "Time of Hand movement cycle (from maximal hand distance over minimal hand distance to next maximal hand distance)"
+  },
+  {
+    "claim": "Cho and colleagues defined a jumping jack by two cycles, the distance between the hands and the distance between the feet, each from its maximum through its minimum to the next maximum.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9090847&retmode=xml",
+    "quote": "Time of Feet movement cycle (from maximal feet distance over minimal feet distance to next maximal feet distance)"
+  },
+  {
+    "claim": "Hocking and colleagues normalised wrist height above the shoulders and ankle spread by body height.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8742363&retmode=xml",
+    "quote": "Highest wrist position normalized by height: Maximum difference wrists and shoulders heights, divided by height"
+  },
+  {
+    "claim": "Hocking and colleagues normalised wrist height above the shoulders and ankle spread by body height.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8742363&retmode=xml",
+    "quote": "Widest leg split normalized by height: Widest distance between the ankles, divided by height"
+  },
+  {
+    "claim": "Both studies we read placed a Kinect depth camera in front of the person: on a tripod at 1.4 m height with a vertical angle of −8° and the person 2.5 m away in one, and about 1 m from the testing area in the other.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9090847&retmode=xml",
+    "quote": "The sensor was placed on a tripod at 1.4-m height with a vertical angle of − 8°. For all tasks except walking and finger-tapping, participants stood at a distance of 2.5 m from the sensor."
+  },
+  {
+    "claim": "Both studies we read placed a Kinect depth camera in front of the person: on a tripod at 1.4 m height with a vertical angle of −8° and the person 2.5 m away in one, and about 1 m from the testing area in the other.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8742363&retmode=xml",
+    "quote": "The Kinect camera was positioned directly in front and approximately 1 m away from the testing area"
+  },
+  {
+    "claim": "The two studies that measured jumping jacks with a camera used a depth sensor and analysed cycle timing in one and range, synchrony and symmetry in the other, not counts, so test any counter on your own users and cameras.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9090847&retmode=xml",
+    "quote": "Tests of repetitive movements, e.g. stepping in place, jumping jacks and finger tapping were described by movement frequency."
+  },
+  {
+    "claim": "The two studies that measured jumping jacks with a camera used a depth sensor and analysed cycle timing in one and range, synchrony and symmetry in the other, not counts, so test any counter on your own users and cameras.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8742363&retmode=xml",
+    "quote": "We then quantified each jumping jack (JJ) movement performance by calculating various measures in three main categories: (1) efficiency measures, evaluating how efficiently a participant executes a JJ (i.e. the limits of how far their distal limbs can go), (2) synchrony measures, evaluating how coordinated a participant is while performing a JJ (i.e. quantify how different limbic angles are synchronized together), and (3) symmetry measures, evaluating how symmetrical the participant performs a JJ (i.e. evaluate how symmetrical the positions and velocities of their limbs are)."
+  }
+]

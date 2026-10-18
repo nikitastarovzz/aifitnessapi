@@ -35,6 +35,16 @@ export const RELEASED_MOTION = new Set<string>([
   "yolo-pose-models",
   "rtmpose-models",
   "openpose-models",
+  "squat-detection-pose-estimation",
+  "push-up-counter-computer-vision",
+  "lunge-detection-pose-estimation",
+  "plank-detection-pose-estimation",
+  "deadlift-pose-estimation",
+  "bicep-curl-counter-pose-estimation",
+  "jumping-jack-counter-pose-estimation",
+  "sit-up-counter-pose-estimation",
+  "pull-up-counter-computer-vision",
+  "overhead-press-pose-estimation",
 ]);
 
 export const allMotion: ClusterEntry[] = motionEntries;

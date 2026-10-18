@@ -1,0 +1,307 @@
+[
+  {
+    "claim": "A camera pull-up counter has to find the bar as well as the body: in a 2025 study, the system estimated the bar's height from the hands, which hold still once they grip it, and counted a repetition when the mouth rose above that height after a low position with the elbows extended past a 150-degree threshold.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "Since the system employs a purely vision-based solution without prior camera calibration, the height of the horizontal bar must be estimated during the execution of the algorithm. By analyzing the entire pull-up movement, we observe that after the test-taker completes the upward motion to grasp the bar, a distinct feature emerges: the height of the hands remains constant."
+  },
+  {
+    "claim": "A camera pull-up counter has to find the bar as well as the body: in a 2025 study, the system estimated the bar's height from the hands, which hold still once they grip it, and counted a repetition when the mouth rose above that height after a low position with the elbows extended past a 150-degree threshold.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "The blue line illustrates the height of the human mouth as the sequence of frames progresses, while the red line indicates the height of the horizontal bar as estimated by the horizontal bar height measurement algorithm. It is intuitively apparent that during a standard pull-up exercise, the curve representing the mouth’s height consistently intersects with the straight line denoting the height of the horizontal bar."
+  },
+  {
+    "claim": "A camera pull-up counter has to find the bar as well as the body: in a 2025 study, the system estimated the bar's height from the hands, which hold still once they grip it, and counted a repetition when the mouth rose above that height after a low position with the elbows extended past a 150-degree threshold.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "the red line represents the elbow angle threshold, which has been set at 150 degrees (an empirical value). This setting encourages the test-taker to keep their elbows fully extended when lowering to the low position."
+  },
+  {
+    "claim": "A camera pull-up counter has to find the bar as well as the body: in a 2025 study, the system estimated the bar's height from the hands, which hold still once they grip it, and counted a repetition when the mouth rose above that height after a low position with the elbows extended past a 150-degree threshold.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "Consequently, the final assessment score is determined to be 4, which corresponds to 4 sequences of “State4-State3-State1” in the state machine."
+  },
+  {
+    "claim": "That system counted 96.6% of pull-ups correctly against human assessors, and a 2026 rule-based study counted every pull-up in its test set.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "Overall, the assessment algorithm demonstrates a relatively high accuracy rate among test-takers with high physical fitness levels. However, the recognition accuracy rate decreases slightly among ordinary college students and teachers. The overall accuracy rate of the algorithm is 96.6%, which indicates that the algorithm can effectively assess pull-ups in most cases."
+  },
+  {
+    "claim": "That system counted 96.6% of pull-ups correctly against human assessors, and a 2026 rule-based study counted every pull-up in its test set.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "was meticulously recorded as ground truth by experienced human assessors"
+  },
+  {
+    "claim": "That system counted 96.6% of pull-ups correctly against human assessors, and a 2026 rule-based study counted every pull-up in its test set.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Accuracy was consistently high across exercise categories, with lunges, pull-ups, and thrusters achieving perfect detection (100%)."
+  },
+  {
+    "claim": "Lei and colleagues (Sensors, 2025) built a fixed-camera assessment system on MediaPipe's BlazePose landmarks with state machines for pull-ups, push-ups and sit-ups, and compared its pull-up counts with repetitions recorded by experienced human assessors.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "Posture reconstruction employs BlazePose model to generate anatomical landmarks"
+  },
+  {
+    "claim": "Lei and colleagues (Sensors, 2025) built a fixed-camera assessment system on MediaPipe's BlazePose landmarks with state machines for pull-ups, push-ups and sit-ups, and compared its pull-up counts with repetitions recorded by experienced human assessors.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "In the aforementioned pull-up, push-up, and sit-up experiments, we conducted tests with individual subjects. In fact, our system is designed under the specification that one camera is dedicated to capturing one person to ensure accurate posture recognition."
+  },
+  {
+    "claim": "Lei and colleagues (Sensors, 2025) built a fixed-camera assessment system on MediaPipe's BlazePose landmarks with state machines for pull-ups, push-ups and sit-ups, and compared its pull-up counts with repetitions recorded by experienced human assessors.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "To evaluate the recognition accuracy of the pull-up algorithm, a set of experimental trials was conducted involving multiple participants performing pull-ups. During these trials, the actual number of valid pull-up repetitions performed by each participant was meticulously recorded as ground truth by experienced human assessors"
+  },
+  {
+    "claim": "Sousa and colleagues (Journal of Functional Morphology and Kinesiology, 2026) counted pull-ups among 12 exercises with angle-threshold state machines on MediaPipe landmarks.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Experimental validation was conducted on a dataset of 1513 videos of 12 functional exercises (squats, deadlifts, lunges, shoulder presses, planks, push-ups, pull-ups, bent-over rows, box jumps, thrusters, overhead squats, and burpees)"
+  },
+  {
+    "claim": "Sousa and colleagues (Journal of Functional Morphology and Kinesiology, 2026) counted pull-ups among 12 exercises with angle-threshold state machines on MediaPipe landmarks.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "The proposed MDL models each exercise as a finite-state machine defined by pose-derived angle proxy transitions, allowing movements to be described in a modular and reusable way. Demonstrated with MediaPipe landmark extraction from monocular video, while the MDL remains compatible with any pose estimation algorithm, the framework focuses on exercise phase detection and repetition counting."
+  },
+  {
+    "claim": "Their pull-up videos were 4 they recorded and 26 from public pose datasets.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Recorded Videos (R): 240 videos of squats, 160 videos of deadlifts, 160 videos of shoulder presses, 2 videos of bent-over rows, 4 videos of box jumps, 6 videos of burpees, 3 videos of lunges, 5 videos of push-ups, 4 videos of pull-ups"
+  },
+  {
+    "claim": "Their pull-up videos were 4 they recorded and 26 from public pose datasets.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Public Pose Datasets (P): 47 videos of deadlifts, 7 videos of planks, 26 videos of pull-ups"
+  },
+  {
+    "claim": "Lei and colleagues judge the pull-up from heights as well as an angle: the mouth against the height of the bar for the top, and the eyes plus the elbow angle for the bottom.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "The blue line illustrates the height of the human mouth as the sequence of frames progresses, while the red line indicates the height of the horizontal bar as estimated by the horizontal bar height measurement algorithm. It is intuitively apparent that during a standard pull-up exercise, the curve representing the mouth’s height consistently intersects with the straight line denoting the height of the horizontal bar."
+  },
+  {
+    "claim": "Lei and colleagues judge the pull-up from heights as well as an angle: the mouth against the height of the bar for the top, and the eyes plus the elbow angle for the bottom.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "Eye height &lt; Elbow height &amp; Angle of the human elbow &gt; Elbow angle threshold"
+  },
+  {
+    "claim": "Sousa and colleagues use the elbow and torso angles and require the chin to move above the bar, and they also check that the body moves up and down along a consistent vertical axis.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "For the pull-up, there are three phases: phase 1, the starting position, where the arms are fully extended, the elbow angle is above"
+  },
+  {
+    "claim": "Sousa and colleagues use the elbow and torso angles and require the chin to move above the bar, and they also check that the body moves up and down along a consistent vertical axis.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": ", the chin is moved above the bar, and the torso may lean slightly below"
+  },
+  {
+    "claim": "Sousa and colleagues use the elbow and torso angles and require the chin to move above the bar, and they also check that the body moves up and down along a consistent vertical axis.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "In addition, the system verifies a vertical displacement of key points, ensuring that the body moves upward and downward along a consistent vertical axis, confirming a proper pull-up motion"
+  },
+  {
+    "claim": "Lei and colleagues dedicate one camera to each person and recommend one camera per person when several people are tested at once, and their calibration-free system estimates the bar's height from the video rather than from a measured set-up.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "our system is designed under the specification that one camera is dedicated to capturing one person to ensure accurate posture recognition. When there are multiple people for testing simultaneously, we recommend configuring multiple cameras (one camera per person) to avoid interference between individuals."
+  },
+  {
+    "claim": "Lei and colleagues dedicate one camera to each person and recommend one camera per person when several people are tested at once, and their calibration-free system estimates the bar's height from the video rather than from a measured set-up.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "Since the system employs a purely vision-based solution without prior camera calibration, the height of the horizontal bar must be estimated during the execution of the algorithm."
+  },
+  {
+    "claim": "They add that the design is potentially vulnerable to large changes in viewing perspective or camera position.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "potentially vulnerable to significant alterations in viewing perspective or large-scale camera displacements."
+  },
+  {
+    "claim": "Once the test-taker grips it, the height of the hands stays constant, so they compute the variance of hand height in sliding windows, keep the windows below a variance threshold, and take the one with the highest average height as the bar.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "By analyzing the entire pull-up movement, we observe that after the test-taker completes the upward motion to grasp the bar, a distinct feature emerges: the height of the hands remains constant."
+  },
+  {
+    "claim": "Once the test-taker grips it, the height of the hands stays constant, so they compute the variance of hand height in sliding windows, keep the windows below a variance threshold, and take the one with the highest average height as the bar.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "The sliding window method is employed, and the variance is calculated for each window."
+  },
+  {
+    "claim": "Once the test-taker grips it, the height of the hands stays constant, so they compute the variance of hand height in sliding windows, keep the windows below a variance threshold, and take the one with the highest average height as the bar.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "Select windows that have relatively small variance values"
+  },
+  {
+    "claim": "Once the test-taker grips it, the height of the hands stays constant, so they compute the variance of hand height in sliding windows, keep the windows below a variance threshold, and take the one with the highest average height as the bar.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "Among all stable intervals, the algorithm selects the one with the highest average height value as the final horizontal bar height"
+  },
+  {
+    "claim": "They derive the eye-height threshold the same way, from the stable height after the test-taker mounts the bar.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "Similarly, the algorithm employs the same deductive logic to determine the eye height threshold"
+  },
+  {
+    "claim": "They derive the eye-height threshold the same way, from the stable height after the test-taker mounts the bar.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "The algorithm extracts the stable height value after the tester mounts the bar during the assessment. This value acts as the threshold that the eyes should remain below when descending to the low position of pull-up, which is referred to as the eye height threshold."
+  },
+  {
+    "claim": "Their state machine has a high state, a low state and two transition states.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "The state in which the human body is pulled to a high position during a pull-up."
+  },
+  {
+    "claim": "Their state machine has a high state, a low state and two transition states.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "The state in which the human body exits State1 during a pull-up."
+  },
+  {
+    "claim": "Their state machine has a high state, a low state and two transition states.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "The state in which the human body exits State4 during a pull-up."
+  },
+  {
+    "claim": "Their state machine has a high state, a low state and two transition states.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "The state in which the human body is in a low position during a pull-up."
+  },
+  {
+    "claim": "The judgment function returns up when the mouth is above the bar height, and down when the eyes are low enough, below the elbows in their pseudocode and below the eye-height threshold in their figures, and the elbow angle is above its threshold, set at 150 degrees as an empirical value to encourage fully extended elbows at the bottom.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "The blue line illustrates the height of the human mouth as the sequence of frames progresses, while the red line indicates the height of the horizontal bar as estimated by the horizontal bar height measurement algorithm. It is intuitively apparent that during a standard pull-up exercise, the curve representing the mouth’s height consistently intersects with the straight line denoting the height of the horizontal bar."
+  },
+  {
+    "claim": "The judgment function returns up when the mouth is above the bar height, and down when the eyes are low enough, below the elbows in their pseudocode and below the eye-height threshold in their figures, and the elbow angle is above its threshold, set at 150 degrees as an empirical value to encourage fully extended elbows at the bottom.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "Eye height &lt; Elbow height &amp; Angle of the human elbow &gt; Elbow angle threshold"
+  },
+  {
+    "claim": "The judgment function returns up when the mouth is above the bar height, and down when the eyes are low enough, below the elbows in their pseudocode and below the eye-height threshold in their figures, and the elbow angle is above its threshold, set at 150 degrees as an empirical value to encourage fully extended elbows at the bottom.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "The algorithm extracts the stable height value after the tester mounts the bar during the assessment. This value acts as the threshold that the eyes should remain below when descending to the low position of pull-up, which is referred to as the eye height threshold."
+  },
+  {
+    "claim": "The judgment function returns up when the mouth is above the bar height, and down when the eyes are low enough, below the elbows in their pseudocode and below the eye-height threshold in their figures, and the elbow angle is above its threshold, set at 150 degrees as an empirical value to encourage fully extended elbows at the bottom.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "the red line represents the elbow angle threshold, which has been set at 150 degrees (an empirical value). This setting encourages the test-taker to keep their elbows fully extended when lowering to the low position."
+  },
+  {
+    "claim": "Each counted repetition is one pass from State4 through State3 to State1, so a pull that never brings the mouth over the bar, or a descent that stops short, does not count.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "The main issues identified include: the mouth height not exceeding the horizontal bar during the upward pull and the eyes not being below the designated threshold height. Consequently, the final assessment score is determined to be 4, which corresponds to 4 sequences of “State4-State3-State1” in the state machine."
+  },
+  {
+    "claim": "Before any of this, they correct keypoints that jump between frames and smooth them over a 10-frame window.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "To optimize the “flying points” and coordinate jitter errors in human keypoints detection, we employ a frame-based inter-frame joint correction and smoothing algorithm. This algorithm effectively enhances the keypoints detection results by implementing inter-frame position correction and sliding window smoothing."
+  },
+  {
+    "claim": "Before any of this, they correct keypoints that jump between frames and smooth them over a 10-frame window.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "are set to 1/30th of the frame width and height, respectively. This determination is based on experimental test results. The size of the sliding window for the smoothing process is set to 10 frames."
+  },
+  {
+    "claim": "Sousa and colleagues' pull-up has three phases: a start with the arms fully extended, the elbow angle above a threshold and the torso upright; pulling, with the elbows flexed below a lower threshold, the chin above the bar and the torso allowed to lean slightly; and lowering, with the elbows re-extended and the torso upright again.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "For the pull-up, there are three phases: phase 1, the starting position, where the arms are fully extended, the elbow angle is above"
+  },
+  {
+    "claim": "Sousa and colleagues' pull-up has three phases: a start with the arms fully extended, the elbow angle above a threshold and the torso upright; pulling, with the elbows flexed below a lower threshold, the chin above the bar and the torso allowed to lean slightly; and lowering, with the elbows re-extended and the torso upright again.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "phase 2, pulling, where the elbows are flexed below"
+  },
+  {
+    "claim": "Sousa and colleagues' pull-up has three phases: a start with the arms fully extended, the elbow angle above a threshold and the torso upright; pulling, with the elbows flexed below a lower threshold, the chin above the bar and the torso allowed to lean slightly; and lowering, with the elbows re-extended and the torso upright again.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": ", the chin is moved above the bar, and the torso may lean slightly below"
+  },
+  {
+    "claim": "Sousa and colleagues' pull-up has three phases: a start with the arms fully extended, the elbow angle above a threshold and the torso upright; pulling, with the elbows flexed below a lower threshold, the chin above the bar and the torso allowed to lean slightly; and lowering, with the elbows re-extended and the torso upright again.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "phase 3, lowering, where the elbows are re-extended above"
+  },
+  {
+    "claim": "Sousa and colleagues' pull-up has three phases: a start with the arms fully extended, the elbow angle above a threshold and the torso upright; pulling, with the elbows flexed below a lower threshold, the chin above the bar and the torso allowed to lean slightly; and lowering, with the elbows re-extended and the torso upright again.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": ", and the torso returns to an upright position."
+  },
+  {
+    "claim": "The gap between the extension and flexion thresholds is the hysteresis described in how rep counting works, and their phase persistence keeps the last valid phase for typically 3 to 5 frames when no phase matches.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Instead of immediately accepting a “None” value when a phase cannot be matched, the system temporarily retains the last valid phase for a short duration of N frames (typically N = 3–5)."
+  },
+  {
+    "claim": "Lei and colleagues found accuracy relatively high among test-takers with high physical fitness levels and slightly lower among ordinary college students and teachers.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "Overall, the assessment algorithm demonstrates a relatively high accuracy rate among test-takers with high physical fitness levels. However, the recognition accuracy rate decreases slightly among ordinary college students and teachers."
+  },
+  {
+    "claim": "In a non-standard pull-up test, their system scored 4 because the mouth did not exceed the bar on the way up and the eyes did not drop below the threshold on the way down.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "shows the results of a pull-up assessment process that encounters multiple errors. The data indicates that only a few movements meets the standard assessment criteria. The main issues identified include: the mouth height not exceeding the horizontal bar during the upward pull and the eyes not being below the designated threshold height. Consequently, the final assessment score is determined to be 4, which corresponds to 4 sequences of “State4-State3-State1” in the state machine."
+  },
+  {
+    "claim": "Keypoints jumped when occlusion occurred or lighting was poor, which their correction step targets.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "When occlusions occur or lighting conditions are poor, the posture processing module may inaccurately detect key points, leading to the phenomenon of “flying points”."
+  },
+  {
+    "claim": "Their calibration-free design is potentially vulnerable to large changes in viewing perspective or camera position.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "potentially vulnerable to significant alterations in viewing perspective or large-scale camera displacements."
+  },
+  {
+    "claim": "Lei and colleagues report an overall pull-up counting accuracy of 96.6%, defined as correctly recognised repetitions over the actual repetitions recorded by human assessors.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "Overall, the assessment algorithm demonstrates a relatively high accuracy rate among test-takers with high physical fitness levels. However, the recognition accuracy rate decreases slightly among ordinary college students and teachers. The overall accuracy rate of the algorithm is 96.6%, which indicates that the algorithm can effectively assess pull-ups in most cases."
+  },
+  {
+    "claim": "Lei and colleagues report an overall pull-up counting accuracy of 96.6%, defined as correctly recognised repetitions over the actual repetitions recorded by human assessors.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "the accuracy represents the ratio of correctly recognized repetitions to the total actual repetitions"
+  },
+  {
+    "claim": "Sousa and colleagues report perfect detection (100%) for pull-ups on their 30 pull-up videos.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Accuracy was consistently high across exercise categories, with lunges, pull-ups, and thrusters achieving perfect detection (100%)."
+  },
+  {
+    "claim": "Sousa and colleagues report perfect detection (100%) for pull-ups on their 30 pull-up videos.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Recorded Videos (R): 240 videos of squats, 160 videos of deadlifts, 160 videos of shoulder presses, 2 videos of bent-over rows, 4 videos of box jumps, 6 videos of burpees, 3 videos of lunges, 5 videos of push-ups, 4 videos of pull-ups"
+  },
+  {
+    "claim": "Sousa and colleagues report perfect detection (100%) for pull-ups on their 30 pull-up videos.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Public Pose Datasets (P): 47 videos of deadlifts, 7 videos of planks, 26 videos of pull-ups"
+  },
+  {
+    "claim": "Once the hands grip the bar, their height stays constant, so the system looks for sliding windows with low variance in hand height and takes the stable window with the highest average height as the bar.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "By analyzing the entire pull-up movement, we observe that after the test-taker completes the upward motion to grasp the bar, a distinct feature emerges: the height of the hands remains constant."
+  },
+  {
+    "claim": "Once the hands grip the bar, their height stays constant, so the system looks for sliding windows with low variance in hand height and takes the stable window with the highest average height as the bar.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "Among all stable intervals, the algorithm selects the one with the highest average height value as the final horizontal bar height"
+  },
+  {
+    "claim": "Lei and colleagues count the top when the mouth rises above the estimated bar height, and Sousa and colleagues require the elbows to flex below a threshold with the chin above the bar.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "The blue line illustrates the height of the human mouth as the sequence of frames progresses, while the red line indicates the height of the horizontal bar as estimated by the horizontal bar height measurement algorithm. It is intuitively apparent that during a standard pull-up exercise, the curve representing the mouth’s height consistently intersects with the straight line denoting the height of the horizontal bar."
+  },
+  {
+    "claim": "Lei and colleagues count the top when the mouth rises above the estimated bar height, and Sousa and colleagues require the elbows to flex below a threshold with the chin above the bar.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "phase 2, pulling, where the elbows are flexed below"
+  },
+  {
+    "claim": "Lei and colleagues count the top when the mouth rises above the estimated bar height, and Sousa and colleagues require the elbows to flex below a threshold with the chin above the bar.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": ", the chin is moved above the bar, and the torso may lean slightly below"
+  },
+  {
+    "claim": "Lei and colleagues counted 96.6% of pull-ups correctly against human assessors, with lower accuracy for ordinary students and teachers than for very fit test-takers, and Sousa and colleagues counted every pull-up in 30 videos.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "Overall, the assessment algorithm demonstrates a relatively high accuracy rate among test-takers with high physical fitness levels. However, the recognition accuracy rate decreases slightly among ordinary college students and teachers. The overall accuracy rate of the algorithm is 96.6%, which indicates that the algorithm can effectively assess pull-ups in most cases."
+  },
+  {
+    "claim": "Lei and colleagues counted 96.6% of pull-ups correctly against human assessors, with lower accuracy for ordinary students and teachers than for very fit test-takers, and Sousa and colleagues counted every pull-up in 30 videos.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML",
+    "quote": "Accuracy was consistently high across exercise categories, with lunges, pull-ups, and thrusters achieving perfect detection (100%)."
+  }
+]

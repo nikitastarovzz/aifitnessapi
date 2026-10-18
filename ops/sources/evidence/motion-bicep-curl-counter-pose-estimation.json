@@ -1,0 +1,362 @@
+[
+  {
+    "claim": "A camera curl counter follows either the elbow angle, from the shoulder, elbow and wrist landmarks, or the hand's vertical position: a 2022 study set its joint of interest at the elbow for curls, and a 2023 study counted curls from the periodicity of the hand's height.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9371130&retmode=xml",
+    "quote": "When the user did a biceps-curl, the NoI was adjusted to the position of the elbow."
+  },
+  {
+    "claim": "A camera curl counter follows either the elbow angle, from the shoulder, elbow and wrist landmarks, or the hand's vertical position: a 2022 study set its joint of interest at the elbow for curls, and a 2023 study counted curls from the periodicity of the hand's height.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "To count repetitions of exercises, we proposed an algorithm based on the position data of the hand for five types of exercise. The counting algorithm analyzes the periodicity of the hand position for each exercise to count the repetition. Considering the characteristics of exercise, four types of exercise except chest press estimate the repetition based on the y-coordinate of the left hand, and chest press estimates the repetition of an exercise based on the x-coordinate of the left hand."
+  },
+  {
+    "claim": "Curls are not the easy case they look: that 2023 study counted biceps curls with larger errors than presses and rows, and the 2022 study found the wrist blocked by the equipment.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "Clearly, the accuracy depends on the type of exercise. The “Chest Press”, “Shoulder Press”, and “Seated Row” categories were accurately counted with small values of the average absolute errors, whereas “Biceps curl” and “Overhead Triceps Extension” were counted with larger errors."
+  },
+  {
+    "claim": "Curls are not the easy case they look: that 2023 study counted biceps curls with larger errors than presses and rows, and the 2022 study found the wrist blocked by the equipment.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9371130&retmode=xml",
+    "quote": "the wrist is blocked by the fitness equipment, leading to detection node error."
+  },
+  {
+    "claim": "Chen and colleagues (Sensors, 2022) detected 12 exercises, biceps curls among them, from videos of 20 users, using an object detector to recognise the exercise and MediaPipe landmarks to measure a joint angle per exercise.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9371130&retmode=xml",
+    "quote": "We used Yolov4 to judge 12 types of fitness. Afterward, Mediapipe was used to detect the body nodes of fitness users, in which different fitness movements had different nodes of interest (NoI). The current NoI was adjusted based on the detection results of Yolov4. By calculating the angle of the NoI, one can calculate the bending angle of the current joint."
+  },
+  {
+    "claim": "Chen and colleagues (Sensors, 2022) detected 12 exercises, biceps curls among them, from videos of 20 users, using an object detector to recognise the exercise and MediaPipe landmarks to measure a joint angle per exercise.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9371130&retmode=xml",
+    "quote": "Collect 12 types of fitness videos from 20 users"
+  },
+  {
+    "claim": "Chen and colleagues (Sensors, 2022) detected 12 exercises, biceps curls among them, from videos of 20 users, using an object detector to recognise the exercise and MediaPipe landmarks to measure a joint angle per exercise.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9371130&retmode=xml",
+    "quote": "When the user did a biceps-curl, the NoI was adjusted to the position of the elbow."
+  },
+  {
+    "claim": "Hwang and colleagues (Sensors, 2023) had 30 healthy adults with less than three months of exercise experience do five seated upper-body exercises, biceps curls among them, with dumbbells and resistance bands, and counted repetitions from OpenPose BODY_25 keypoints.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "Thirty healthy participants participated in this study. Thirteen men and seventeen women aged between nineteen and twenty-nine were randomly recruited through public advertisements. The inclusion criterion was to have less than three months of exercise experience."
+  },
+  {
+    "claim": "Hwang and colleagues (Sensors, 2023) had 30 healthy adults with less than three months of exercise experience do five seated upper-body exercises, biceps curls among them, with dumbbells and resistance bands, and counted repetitions from OpenPose BODY_25 keypoints.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "Each subject performed a variety of upper-extremity muscular exercises: chest presses (Ex1), shoulder presses (Ex2), seated rows (Ex3), biceps curls (Ex4), and overhead triceps extensions (Ex5) targeting the chest, shoulder, back, biceps, and triceps, respectively."
+  },
+  {
+    "claim": "Hwang and colleagues (Sensors, 2023) had 30 healthy adults with less than three months of exercise experience do five seated upper-body exercises, biceps curls among them, with dumbbells and resistance bands, and counted repetitions from OpenPose BODY_25 keypoints.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "All five exercises (Ex1–Ex5) were performed using dumbbells and bands in a sitting position."
+  },
+  {
+    "claim": "Hwang and colleagues (Sensors, 2023) had 30 healthy adults with less than three months of exercise experience do five seated upper-body exercises, biceps curls among them, with dumbbells and resistance bands, and counted repetitions from OpenPose BODY_25 keypoints.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "In this research, the Body_25 model was used because the Body_25 model presents more joint position data."
+  },
+  {
+    "claim": "Noteboom and colleagues (Frontiers in Sports and Active Living, 2022) filmed five young male athletes doing biceps curls and lateral flies with one camera, estimated 3D joint centres with a deep-learning model, and compared the muscle forces this produced with a marker-based system.",
+    "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2022.994221/full",
+    "quote": "Five healthy male participants (mean ± SD age 16.8 ± 1.3 years, body mass 80.4 ± 4.2 kg, body height 1.84 ± 0.07 m) were included in this study. The participants were high-level baseball pitchers with a lot of experience in strength training."
+  },
+  {
+    "claim": "Noteboom and colleagues (Frontiers in Sports and Active Living, 2022) filmed five young male athletes doing biceps curls and lateral flies with one camera, estimated 3D joint centres with a deep-learning model, and compared the muscle forces this produced with a marker-based system.",
+    "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2022.994221/full",
+    "quote": "During the actual measurements, participants performed two upper extremity dumbbell exercises: the lateral fly and the biceps curl"
+  },
+  {
+    "claim": "Noteboom and colleagues (Frontiers in Sports and Active Living, 2022) filmed five young male athletes doing biceps curls and lateral flies with one camera, estimated 3D joint centres with a deep-learning model, and compared the muscle forces this produced with a marker-based system.",
+    "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2022.994221/full",
+    "quote": "Therefore, the objective of the present study was to assess the feasibility of a single camera, CNN driven musculoskeletal model (proof-of-concept) and provide some first clues regarding the accuracy of estimated upper-body muscle forces (including prime mover and stabilizing muscles) during strength exercises, by comparing against forces obtained from a (state-of-the-art) marker driven musculoskeletal model."
+  },
+  {
+    "claim": "Noteboom and colleagues (Frontiers in Sports and Active Living, 2022) filmed five young male athletes doing biceps curls and lateral flies with one camera, estimated 3D joint centres with a deep-learning model, and compared the muscle forces this produced with a marker-based system.",
+    "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2022.994221/full",
+    "quote": "To generate 3D joint center coordinates from the captured videos, a two-step approach for 3D pose estimation"
+  },
+  {
+    "claim": "Peres and colleagues (Journal of Functional Morphology and Kinesiology, 2025) filmed ten men doing barbell curls under three loads and tracked a marker on the bar rather than body landmarks.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11942819/fullTextXML",
+    "quote": "Twelve male volunteers, all with more than six months of experience in resistance training, participated in the study. At the beginning of the tests, the volunteers self-reported their training sessions, with 8 to 10 maximum repetitions, 3 to 4 sets per exercise, and 6 to 9 exercises per session, 3 to 5 times per week. Two volunteers were excluded because they were unable to complete all the repetitions. The remaining ten (age: 26 ± 4.9 years, height: 177 ± 8.0 cm, body weight: 86 ± 16 kg) completed all the proposed repetitions."
+  },
+  {
+    "claim": "Peres and colleagues (Journal of Functional Morphology and Kinesiology, 2025) filmed ten men doing barbell curls under three loads and tracked a marker on the bar rather than body landmarks.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11942819/fullTextXML",
+    "quote": "The volunteers performed a sequence of three complete repetitions of a biceps-curl weight-lifting exercise using only the barbell (9 kg/considered no load). After a ten minute rest, they performed three more repetitions of the exercise with a load (using the barbell with weights) of 25% of their body weight. This was followed by another break and three additional repetitions of the biceps-curl weight-lifting exercise with a load of 50% of their body weight"
+  },
+  {
+    "claim": "Peres and colleagues (Journal of Functional Morphology and Kinesiology, 2025) filmed ten men doing barbell curls under three loads and tracked a marker on the bar rather than body landmarks.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11942819/fullTextXML",
+    "quote": "In this work, we utilize the trajectory of a marker on the bar to analyse its movement trajectory"
+  },
+  {
+    "claim": "Fieraru and Goedemé (Journal of Imaging, 2026) benchmarked 19 monocular 3D reconstruction methods on fitness motions.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13413046/fullTextXML",
+    "quote": "conducted a comparative benchmark study of 19 representative methods"
+  },
+  {
+    "claim": "Fieraru and Goedemé (Journal of Imaging, 2026) benchmarked 19 monocular 3D reconstruction methods on fitness motions.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13413046/fullTextXML",
+    "quote": "designed to remain stable under the extreme articulations and self-occlusions characteristic of fitness motions."
+  },
+  {
+    "claim": "Chen and colleagues compute the angle at a node of interest from two other nodes, and for the biceps curl they place that node at the elbow; in our reading, the other two are the shoulder and the wrist.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9371130&retmode=xml",
+    "quote": "The angle of the NoI can be calculated, and the completion degree of the current fitness movement can be determined. Through the coordinate positions of the two yellow nodes"
+  },
+  {
+    "claim": "Chen and colleagues compute the angle at a node of interest from two other nodes, and for the biceps curl they place that node at the elbow; in our reading, the other two are the shoulder and the wrist.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9371130&retmode=xml",
+    "quote": "When the user did a biceps-curl, the NoI was adjusted to the position of the elbow."
+  },
+  {
+    "claim": "They then turn the angle into a completion value between the joint's initial angle when the exercise is ready and its final bending angle when it is completed.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9371130&retmode=xml",
+    "quote": "The angle of the NoI can be calculated, and the completion degree of the current fitness movement can be determined."
+  },
+  {
+    "claim": "They then turn the angle into a completion value between the joint's initial angle when the exercise is ready and its final bending angle when it is completed.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9371130&retmode=xml",
+    "quote": "indicates the initial angle of the joint when the exercise is ready, and"
+  },
+  {
+    "claim": "They then turn the angle into a completion value between the joint's initial angle when the exercise is ready and its final bending angle when it is completed.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9371130&retmode=xml",
+    "quote": "indicates the final bending angle of the joint when the exercise is completed."
+  },
+  {
+    "claim": "Hwang and colleagues skip the angle: they count from the periodicity of the left hand's position, using its vertical coordinate for curls, after dividing all coordinates by the length of the torso to remove the effect of distance and body size.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "To count repetitions of exercises, we proposed an algorithm based on the position data of the hand for five types of exercise. The counting algorithm analyzes the periodicity of the hand position for each exercise to count the repetition. Considering the characteristics of exercise, four types of exercise except chest press estimate the repetition based on the y-coordinate of the left hand, and chest press estimates the repetition of an exercise based on the x-coordinate of the left hand."
+  },
+  {
+    "claim": "Hwang and colleagues skip the angle: they count from the periodicity of the left hand's position, using its vertical coordinate for curls, after dividing all coordinates by the length of the torso to remove the effect of distance and body size.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "To unify the distance and physical conditions between the camera and the user, scale normalization is conducted."
+  },
+  {
+    "claim": "Hwang and colleagues skip the angle: they count from the periodicity of the left hand's position, using its vertical coordinate for curls, after dividing all coordinates by the length of the torso to remove the effect of distance and body size.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "Then, we divide the relative coordinates by the length of the torso and multiply by 100 to unify the scale."
+  },
+  {
+    "claim": "The studies placed the camera in front or to the side.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "The camera was located 1.5 m in front of the experimenter at a height of 1.2 m to capture the subjects during the exercises."
+  },
+  {
+    "claim": "The studies placed the camera in front or to the side.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11942819/fullTextXML",
+    "quote": "The camera was stationary, with its optical axis perpendicular to the participant’s sagittal plane"
+  },
+  {
+    "claim": "Hwang and colleagues put theirs 1.5 m in front of the seated participant at a height of 1.2 m, and Noteboom and colleagues 1.5 m in front at a height of 1.5 m, angled 15 degrees downwards.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "The camera was located 1.5 m in front of the experimenter at a height of 1.2 m to capture the subjects during the exercises."
+  },
+  {
+    "claim": "Hwang and colleagues put theirs 1.5 m in front of the seated participant at a height of 1.2 m, and Noteboom and colleagues 1.5 m in front at a height of 1.5 m, angled 15 degrees downwards.",
+    "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2022.994221/full",
+    "quote": "The single camera was placed 1.5 meters in front of the subject at a height of 1.5 meters and a downwards angle of 15 degrees."
+  },
+  {
+    "claim": "Peres and colleagues set the camera's optical axis perpendicular to the sagittal plane, a side view, and note that 2D analyses are prone to parallax and perspective errors.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11942819/fullTextXML",
+    "quote": "The camera was stationary, with its optical axis perpendicular to the participant’s sagittal plane"
+  },
+  {
+    "claim": "Peres and colleagues set the camera's optical axis perpendicular to the sagittal plane, a side view, and note that 2D analyses are prone to parallax and perspective errors.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11942819/fullTextXML",
+    "quote": "Moreover, a 3D model including the sagittal plane would provide more accurate data by avoiding parallax and perspective errors often associated with 2D analyses"
+  },
+  {
+    "claim": "Noteboom and colleagues point out that the curl moves mainly in the sagittal plane and that occlusion of the upper arm can be expected.",
+    "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2022.994221/full",
+    "quote": "The lateral fly movement occurs predominantly in the frontal plane, whereas the biceps curl movement occurs mainly in the sagittal plane. In addition, axial rotation of the upper and lower arm can be expected during the lateral fly, and segment occlusion of the upper arm can be expected during the biceps curl"
+  },
+  {
+    "claim": "In our reading, a front camera therefore sees the forearm swing towards the lens, which foreshortens the 2D elbow angle, while the hand's height still changes clearly; a side camera sees the elbow angle in its plane but, as Chen and colleagues found, detects only about half of the body's nodes.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9371130&retmode=xml",
+    "quote": "when exercising with the shooting angle on the side, only half of the body nodes were detected, and the other body nodes were lost."
+  },
+  {
+    "claim": "Chen and colleagues define a complete repetition by its completion signal: it rises from 0% to 100% and drops back to 0%, changing steadily and slowly.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9371130&retmode=xml",
+    "quote": "rose from 0% to 100% and then dropped to 0%, during which the change was stable and slow."
+  },
+  {
+    "claim": "A signal that does not reach 100% or return to 0%, and changes unsteadily and fast, is an incomplete one, and a signal with almost no change is no movement.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9371130&retmode=xml",
+    "quote": "did not rise to 100% or drop to 0% but did not stop at 0% and 100%. In addition, the value change was unstable and fast."
+  },
+  {
+    "claim": "A signal that does not reach 100% or return to 0%, and changes unsteadily and fast, is an incomplete one, and a signal with almost no change is no movement.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9371130&retmode=xml",
+    "quote": "had almost no change, that is, the state of preparation for fitness movements."
+  },
+  {
+    "claim": "Hwang and colleagues count the zero-crossings of the filtered hand height.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "The number of repetitions was then estimated based on zero-crossing."
+  },
+  {
+    "claim": "Before counting, they pass the keypoints through a 15-sample moving median filter, which they use to cope with occlusions shorter than about 0.25 s, and remove the signal's average.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "To minimize the effect of occlusion, we filtered the joint position estimation data through a 15-window-sized moving median filter (MMF). When using the MMF, we included one datum and its peripheral values, sorted the values in order, and took the intermediate value to cope with occlusions occurring within a short time (≤0.25 s)."
+  },
+  {
+    "claim": "Before counting, they pass the keypoints through a 15-sample moving median filter, which they use to cope with occlusions shorter than about 0.25 s, and remove the signal's average.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "and the DC offset is removed by subtracting the average value of the input data."
+  },
+  {
+    "claim": "Chen and colleagues apply a similar rule to the exercise label: it changes only after 15 frames, 0.5 s, of a different detection.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9371130&retmode=xml",
+    "quote": "a buffer of 15 frames was set, which is equivalent to a buffer time of 0.5 s. Only when 15 frames of images are incorrectly detected will the current fitness type detected by Yolov4 change and the position of NoI will change."
+  },
+  {
+    "claim": "Chen and colleagues found the wrist blocked by the fitness equipment, causing node errors, and saw only half of the body's nodes detected when filming from the side.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9371130&retmode=xml",
+    "quote": "the wrist is blocked by the fitness equipment, leading to detection node error."
+  },
+  {
+    "claim": "Chen and colleagues found the wrist blocked by the fitness equipment, causing node errors, and saw only half of the body's nodes detected when filming from the side.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9371130&retmode=xml",
+    "quote": "when exercising with the shooting angle on the side, only half of the body nodes were detected, and the other body nodes were lost."
+  },
+  {
+    "claim": "Hwang and colleagues counted correctly in long sets, where the periodicity was constant, but in sets with few repetitions the timing of each flexion varied and the count tended to be overestimated.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "After the subjects had performed a large number of exercises, the periodicity of the exercises was constant, so the number of repetitions was properly identified. However, in datasets with a small number of exercises, the number of repetitions varied, and flexion did not always occur at the same time in each repetition. In such cases, the number of exercises was not properly identified and tended to be overestimated."
+  },
+  {
+    "claim": "Their method also produces high-frequency noise when the hand is occluded and is vulnerable to non-repeating, nonlinear movements with heavy weights.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "This algorithm rapidly generates high-frequency noise during hand occlusion and is vulnerable to non-repeating and nonlinear movements during exercises with heavy weights."
+  },
+  {
+    "claim": "Noteboom and colleagues lost three trials, 2%, because a second person was visible in the background, which produced impossible skeletons.",
+    "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2022.994221/full",
+    "quote": "Based on the standard camera and deep-learning method, almost all trials could be included except three trials (2%) in which joint estimations were completely insufficient because there was a second person visible in the background. Insufficient trials were identified from the stick figure videos and joint center coordinate data, which for instance showed segment lengths of just a few centimeters, or (unrealistic) stick figure projections at the wrong location not near the participant."
+  },
+  {
+    "claim": "Hwang and colleagues counted biceps curls and overhead triceps extensions with larger errors than chest presses, shoulder presses and seated rows; across the five exercises, the mean absolute counting error ranged from 0.88 to 3.21 repetitions.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "Clearly, the accuracy depends on the type of exercise. The “Chest Press”, “Shoulder Press”, and “Seated Row” categories were accurately counted with small values of the average absolute errors, whereas “Biceps curl” and “Overhead Triceps Extension” were counted with larger errors."
+  },
+  {
+    "claim": "Hwang and colleagues counted biceps curls and overhead triceps extensions with larger errors than chest presses, shoulder presses and seated rows; across the five exercises, the mean absolute counting error ranged from 0.88 to 3.21 repetitions.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "The mean absolute error of the repetition counting algorithm ranges from 0.88 (seated row) to 3.21 (overhead triceps extension)."
+  },
+  {
+    "claim": "Chen and colleagues classified movements as complete, incomplete or no movement with 92.84% accuracy across all 12 exercises, and found complete and incomplete repetitions hard to tell apart because participants were not specifically asked to perform them.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9371130&retmode=xml",
+    "quote": "The results showed that the accuracy was 92.84%, precision was 92.85, recall was 92.84%, and the F1-score was 92.83%. Although this classification result did not achieve high performance, it could still effectively classify the fitness status."
+  },
+  {
+    "claim": "Chen and colleagues classified movements as complete, incomplete or no movement with 92.84% accuracy across all 12 exercises, and found complete and incomplete repetitions hard to tell apart because participants were not specifically asked to perform them.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9371130&retmode=xml",
+    "quote": "In the analysis of fitness movements, we divided the completion of fitness movements into three categories and use the MLP to classify them."
+  },
+  {
+    "claim": "Chen and colleagues classified movements as complete, incomplete or no movement with 92.84% accuracy across all 12 exercises, and found complete and incomplete repetitions hard to tell apart because participants were not specifically asked to perform them.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9371130&retmode=xml",
+    "quote": "contained a total of 587 records. These data contained the data of 12 types of fitness movements."
+  },
+  {
+    "claim": "Chen and colleagues classified movements as complete, incomplete or no movement with 92.84% accuracy across all 12 exercises, and found complete and incomplete repetitions hard to tell apart because participants were not specifically asked to perform them.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9371130&retmode=xml",
+    "quote": "which shows that the classification results of complete and no-complete are poor."
+  },
+  {
+    "claim": "Chen and colleagues classified movements as complete, incomplete or no movement with 92.84% accuracy across all 12 exercises, and found complete and incomplete repetitions hard to tell apart because participants were not specifically asked to perform them.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9371130&retmode=xml",
+    "quote": "were not specifically required to perform the complete and no-complete fitness movements when the videos were shot. Therefore, there is not a great difference between these two categories."
+  },
+  {
+    "claim": "Noteboom and colleagues cite their earlier work, in which upper-limb joint angles from the camera method differed from a marker-based model by about 4 to 8 degrees RMSD on average.",
+    "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2022.994221/full",
+    "quote": "Our previous work has shown that upper-extremity joint angle RMSDs between the deep-learning camera-based and state-of-the-art marker-based biomechanical (linked segment) model, are about 4–8 degrees on average"
+  },
+  {
+    "claim": "Fieraru and Goedemé found upright exercises such as standing dumbbell curls among the easiest for monocular 3D methods, at about 67 mm mean error, against 118 to 155 mm for the hardest ground-level poses.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13413046/fullTextXML",
+    "quote": "The hardest are dynamic, ground-level, and inverted poses with heavy self-occlusion"
+  },
+  {
+    "claim": "Fieraru and Goedemé found upright exercises such as standing dumbbell curls among the easiest for monocular 3D methods, at about 67 mm mean error, against 118 to 155 mm for the hardest ground-level poses.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13413046/fullTextXML",
+    "quote": "(118–155 mm). The easiest are upright, low-articulation exercises such as standing dumbbell curls and most other warm-up routines (∼67 mm)."
+  },
+  {
+    "claim": "Fieraru and Goedemé found upright exercises such as standing dumbbell curls among the easiest for monocular 3D methods, at about 67 mm mean error, against 118 to 155 mm for the hardest ground-level poses.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13413046/fullTextXML",
+    "quote": "mean error over all 19 benchmarked methods and the 3 test subjects"
+  },
+  {
+    "claim": "Chen and colleagues measured the angle at the elbow for curls, and Hwang and colleagues counted from the periodicity of the hand's vertical position after normalising by torso length.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9371130&retmode=xml",
+    "quote": "When the user did a biceps-curl, the NoI was adjusted to the position of the elbow."
+  },
+  {
+    "claim": "Chen and colleagues measured the angle at the elbow for curls, and Hwang and colleagues counted from the periodicity of the hand's vertical position after normalising by torso length.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "To count repetitions of exercises, we proposed an algorithm based on the position data of the hand for five types of exercise. The counting algorithm analyzes the periodicity of the hand position for each exercise to count the repetition. Considering the characteristics of exercise, four types of exercise except chest press estimate the repetition based on the y-coordinate of the left hand, and chest press estimates the repetition of an exercise based on the x-coordinate of the left hand."
+  },
+  {
+    "claim": "Chen and colleagues measured the angle at the elbow for curls, and Hwang and colleagues counted from the periodicity of the hand's vertical position after normalising by torso length.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "Then, we divide the relative coordinates by the length of the torso and multiply by 100 to unify the scale."
+  },
+  {
+    "claim": "Hwang and colleagues filmed from 1.5 m in front at 1.2 m height, Noteboom and colleagues from 1.5 m in front at 1.5 m height angled 15 degrees down, and Peres and colleagues from the side.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "The camera was located 1.5 m in front of the experimenter at a height of 1.2 m to capture the subjects during the exercises."
+  },
+  {
+    "claim": "Hwang and colleagues filmed from 1.5 m in front at 1.2 m height, Noteboom and colleagues from 1.5 m in front at 1.5 m height angled 15 degrees down, and Peres and colleagues from the side.",
+    "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2022.994221/full",
+    "quote": "The single camera was placed 1.5 meters in front of the subject at a height of 1.5 meters and a downwards angle of 15 degrees."
+  },
+  {
+    "claim": "Hwang and colleagues filmed from 1.5 m in front at 1.2 m height, Noteboom and colleagues from 1.5 m in front at 1.5 m height angled 15 degrees down, and Peres and colleagues from the side.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11942819/fullTextXML",
+    "quote": "The camera was stationary, with its optical axis perpendicular to the participant’s sagittal plane"
+  },
+  {
+    "claim": "Chen and colleagues found that a side view detected only about half of the body's nodes, so test the placement you plan to ship.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9371130&retmode=xml",
+    "quote": "when exercising with the shooting angle on the side, only half of the body nodes were detected, and the other body nodes were lost."
+  },
+  {
+    "claim": "In the studies we read, the equipment blocked the wrist, a second person in the background broke the skeleton, and short or uneven sets made a periodicity-based counter overestimate.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9371130&retmode=xml",
+    "quote": "the wrist is blocked by the fitness equipment, leading to detection node error."
+  },
+  {
+    "claim": "In the studies we read, the equipment blocked the wrist, a second person in the background broke the skeleton, and short or uneven sets made a periodicity-based counter overestimate.",
+    "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2022.994221/full",
+    "quote": "Based on the standard camera and deep-learning method, almost all trials could be included except three trials (2%) in which joint estimations were completely insufficient because there was a second person visible in the background. Insufficient trials were identified from the stick figure videos and joint center coordinate data, which for instance showed segment lengths of just a few centimeters, or (unrealistic) stick figure projections at the wrong location not near the participant."
+  },
+  {
+    "claim": "In the studies we read, the equipment blocked the wrist, a second person in the background broke the skeleton, and short or uneven sets made a periodicity-based counter overestimate.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "After the subjects had performed a large number of exercises, the periodicity of the exercises was constant, so the number of repetitions was properly identified. However, in datasets with a small number of exercises, the number of repetitions varied, and flexion did not always occur at the same time in each repetition. In such cases, the number of exercises was not properly identified and tended to be overestimated."
+  },
+  {
+    "claim": "Hwang and colleagues used a moving median filter to ride out occlusions of up to about 0.25 s.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "To minimize the effect of occlusion, we filtered the joint position estimation data through a 15-window-sized moving median filter (MMF). When using the MMF, we included one datum and its peripheral values, sorted the values in order, and took the intermediate value to cope with occlusions occurring within a short time (≤0.25 s)."
+  },
+  {
+    "claim": "Hwang and colleagues counted biceps curls with larger errors than presses and rows, with mean absolute errors across their five exercises from 0.88 to 3.21 repetitions.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "Clearly, the accuracy depends on the type of exercise. The “Chest Press”, “Shoulder Press”, and “Seated Row” categories were accurately counted with small values of the average absolute errors, whereas “Biceps curl” and “Overhead Triceps Extension” were counted with larger errors."
+  },
+  {
+    "claim": "Hwang and colleagues counted biceps curls with larger errors than presses and rows, with mean absolute errors across their five exercises from 0.88 to 3.21 repetitions.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9862694&retmode=xml",
+    "quote": "The mean absolute error of the repetition counting algorithm ranges from 0.88 (seated row) to 3.21 (overhead triceps extension)."
+  }
+]

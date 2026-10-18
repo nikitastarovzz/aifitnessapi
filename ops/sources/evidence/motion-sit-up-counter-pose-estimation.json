@@ -1,0 +1,252 @@
+[
+  {
+    "claim": "A camera sit-up counter in one 2025 study used two signals: the distance between elbow and knee, which falls below a threshold when the person sits up, and the angle between the body and the horizontal, which falls below another threshold when they lie back down.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "When leaning up, the distance between the elbow and knee is less than the threshold value"
+  },
+  {
+    "claim": "A camera sit-up counter in one 2025 study used two signals: the distance between elbow and knee, which falls below a threshold when the person sits up, and the angle between the body and the horizontal, which falls below another threshold when they lie back down.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "When lying down, the angle between the body and the horizontal line is less than the threshold value"
+  },
+  {
+    "claim": "Camera angle decides whether a pose model can see the movement at all: in a 2026 study, a camera branch recognised sit-up frames 95.0% of the time from the side, 88.5% from the front and 25.7% from behind.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "Under the side view, the frame-level accuracies for push-ups, sit-ups, and squats were 100.0%, 95.0%, and 99.2%, respectively. Under the front view, the corresponding accuracies were 93.2%, 88.5%, and 86.6%. Under the posterior view, the accuracies were 0.0%, 25.7%, and 66.2%, respectively."
+  },
+  {
+    "claim": "The 2025 study describes its thresholds as adjustable, so calibrate them for your camera, model and users.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "The red line represents the sit-up-threshold. This threshold can be adjusted at different actual conditions."
+  },
+  {
+    "claim": "Lei and colleagues (Sensors, 2025) built a fixed-camera assessment system on MediaPipe's BlazePose landmarks with state machines for pull-ups, push-ups and sit-ups.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "Posture reconstruction employs BlazePose model to generate anatomical landmarks"
+  },
+  {
+    "claim": "Lei and colleagues (Sensors, 2025) built a fixed-camera assessment system on MediaPipe's BlazePose landmarks with state machines for pull-ups, push-ups and sit-ups.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "In the aforementioned pull-up, push-up, and sit-up experiments, we conducted tests with individual subjects. In fact, our system is designed under the specification that one camera is dedicated to capturing one person to ensure accurate posture recognition."
+  },
+  {
+    "claim": "Their sit-up result is a demonstration with one test-taker rather than an accuracy study.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "this experiment concludes that the test-taker performed 7 standard sit-up movements."
+  },
+  {
+    "claim": "Their sit-up result is a demonstration with one test-taker rather than an accuracy study.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "In the aforementioned pull-up, push-up, and sit-up experiments, we conducted tests with individual subjects."
+  },
+  {
+    "claim": "Gu and colleagues (Sensors, 2026) recorded 10 participants, 6 men and 4 women, doing 30 repetitions each of push-ups, sit-ups and squats from the side, the front and behind, and report how often their camera branch recognised each exercise from each view.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "A total of 10 participants were recruited for data collection, including 6 males and 4 females."
+  },
+  {
+    "claim": "Gu and colleagues (Sensors, 2026) recorded 10 participants, 6 men and 4 women, doing 30 repetitions each of push-ups, sit-ups and squats from the side, the front and behind, and report how often their camera branch recognised each exercise from each view.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "IMV-Exercise included three exercise types: push-ups, sit-ups, and squats. Each participant performed 30 standardized repetitions for each exercise type, resulting in 90 exercise samples per participant."
+  },
+  {
+    "claim": "Gu and colleagues (Sensors, 2026) recorded 10 participants, 6 men and 4 women, doing 30 repetitions each of push-ups, sit-ups and squats from the side, the front and behind, and report how often their camera branch recognised each exercise from each view.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "three exercise categories (push-ups, sit-ups, and squats), and side-, front-, and posterior-view recordings."
+  },
+  {
+    "claim": "Gu and colleagues (Sensors, 2026) recorded 10 participants, 6 men and 4 women, doing 30 repetitions each of push-ups, sit-ups and squats from the side, the front and behind, and report how often their camera branch recognised each exercise from each view.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "Under the side view, the frame-level accuracies for push-ups, sit-ups, and squats were 100.0%, 95.0%, and 99.2%, respectively. Under the front view, the corresponding accuracies were 93.2%, 88.5%, and 86.6%. Under the posterior view, the accuracies were 0.0%, 25.7%, and 66.2%, respectively."
+  },
+  {
+    "claim": "They fused the camera with a nine-axis inertial sensor; this page uses only the camera results.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "This study presents a dual-stream prototype that combines a nine-axis inertial measurement unit (IMU) with vision-based pose estimation."
+  },
+  {
+    "claim": "Lei and colleagues define the top of the sit-up by distance and the bottom by angle: when leaning up, the distance between the elbow and the knee is less than a sit-up threshold, and when lying down, the angle between the body and the horizontal line is less than a sit-down threshold.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "When leaning up, the distance between the elbow and knee is less than the threshold value"
+  },
+  {
+    "claim": "Lei and colleagues define the top of the sit-up by distance and the bottom by angle: when leaning up, the distance between the elbow and the knee is less than a sit-up threshold, and when lying down, the angle between the body and the horizontal line is less than a sit-down threshold.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "When lying down, the angle between the body and the horizontal line is less than the threshold value"
+  },
+  {
+    "claim": "Gu and colleagues kept 17 of MediaPipe's 33 keypoints, the shoulders, elbows, wrists, hips, knees and ankles plus head and foot reference points, and expressed them relative to the hip centre to reduce the influence of body size and camera distance.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "Human keypoints were extracted from RGB video frames using MediaPipe Pose, which initially outputs 33 keypoints. Considering that the exercises in this study primarily involve upper-limb support, trunk flexion, and lower-limb squats, 17 core keypoints—including the shoulders, elbows, wrists, hips, knees, and ankles, together with additional head and foot reference points—were selected from the original set for subsequent temporal modeling in the visual branch."
+  },
+  {
+    "claim": "Gu and colleagues kept 17 of MediaPipe's 33 keypoints, the shoulders, elbows, wrists, hips, knees and ankles plus head and foot reference points, and expressed them relative to the hip centre to reduce the influence of body size and camera distance.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "To reduce the influence of participant body size and camera distance on the posture sequence, the keypoint coordinates were normalized using the hip center as the local coordinate origin"
+  },
+  {
+    "claim": "Gu and colleagues' camera branch recognised sit-up frames 95.0% of the time from the side, 88.5% from the front and 25.7% from behind.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "Under the side view, the frame-level accuracies for push-ups, sit-ups, and squats were 100.0%, 95.0%, and 99.2%, respectively. Under the front view, the corresponding accuracies were 93.2%, 88.5%, and 86.6%. Under the posterior view, the accuracies were 0.0%, 25.7%, and 66.2%, respectively."
+  },
+  {
+    "claim": "From behind, 675 of 1000 sit-up frames went unrecognised and 68 more were assigned to the wrong exercise; the authors attribute the posterior decline, for push-ups and sit-ups in particular, to core keypoints occluded by the trunk or the ground.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "Of the 3000 posterior-view frames, 2013 were unrecognized, including all 1000 push-up frames, 675 sit-up frames, and 338 squat frames; only 68 frames were recorded as cross-class errors, all from the sit-up subset."
+  },
+  {
+    "claim": "From behind, 675 of 1000 sit-up frames went unrecognised and 68 more were assigned to the wrong exercise; the authors attribute the posterior decline, for push-ups and sit-ups in particular, to core keypoints occluded by the trunk or the ground.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "Experimental results indicate that the visual modality exhibits a pronounced performance decline under posterior-view conditions, particularly for push-ups and sit-ups, where core keypoints are frequently occluded by the trunk or the ground."
+  },
+  {
+    "claim": "Lei and colleagues dedicate one camera to each person and recommend one camera per person when several people are tested at once.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "our system is designed under the specification that one camera is dedicated to capturing one person to ensure accurate posture recognition. When there are multiple people for testing simultaneously, we recommend configuring multiple cameras (one camera per person) to avoid interference between individuals."
+  },
+  {
+    "claim": "They add that their calibration-free 2D design is potentially vulnerable to large changes in viewing perspective or camera position, so in our reading a side camera, fixed once, is the set-up to start from.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "Specifically, our calibration-free design, while enhancing deployment flexibility"
+  },
+  {
+    "claim": "They add that their calibration-free 2D design is potentially vulnerable to large changes in viewing perspective or camera position, so in our reading a side camera, fixed once, is the set-up to start from.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "potentially vulnerable to significant alterations in viewing perspective or large-scale camera displacements."
+  },
+  {
+    "claim": "Lei and colleagues' sit-up machine has a sitting-up state, a lying-down state, transition states between them and a misaligned state, and they say its transitions follow the same principle as their pull-up machine, where each counted repetition is one pass from State4 through State3 to State1.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "When leaning up, the distance between the elbow and knee is less than the threshold value"
+  },
+  {
+    "claim": "Lei and colleagues' sit-up machine has a sitting-up state, a lying-down state, transition states between them and a misaligned state, and they say its transitions follow the same principle as their pull-up machine, where each counted repetition is one pass from State4 through State3 to State1.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "When lying down, the angle between the body and the horizontal line is less than the threshold value"
+  },
+  {
+    "claim": "Lei and colleagues' sit-up machine has a sitting-up state, a lying-down state, transition states between them and a misaligned state, and they say its transitions follow the same principle as their pull-up machine, where each counted repetition is one pass from State4 through State3 to State1.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "The posture of the human body in a misaligned position during sit-ups."
+  },
+  {
+    "claim": "Lei and colleagues' sit-up machine has a sitting-up state, a lying-down state, transition states between them and a misaligned state, and they say its transitions follow the same principle as their pull-up machine, where each counted repetition is one pass from State4 through State3 to State1.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "The principle of state machine transition for sit-up is essentially the same as that for pull-up."
+  },
+  {
+    "claim": "Lei and colleagues' sit-up machine has a sitting-up state, a lying-down state, transition states between them and a misaligned state, and they say its transitions follow the same principle as their pull-up machine, where each counted repetition is one pass from State4 through State3 to State1.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "Consequently, the final assessment score is determined to be 4, which corresponds to 4 sequences of “State4-State3-State1” in the state machine."
+  },
+  {
+    "claim": "Lei and colleagues describe their thresholds as empirical values set from assessment standards or from each individual's performance, and say the sit-up threshold can be adjusted for actual conditions.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "refers to an empirical threshold set according to assessment standards, or it may be a self-determined threshold based on each individual’s performance during exercise."
+  },
+  {
+    "claim": "Lei and colleagues describe their thresholds as empirical values set from assessment standards or from each individual's performance, and say the sit-up threshold can be adjusted for actual conditions.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "The red line represents the sit-up-threshold. This threshold can be adjusted at different actual conditions."
+  },
+  {
+    "claim": "The same system cleans keypoints before the state machine sees them, correcting sudden jumps they call flying points and smoothing over a 10-frame window.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "To optimize the “flying points” and coordinate jitter errors in human keypoints detection, we employ a frame-based inter-frame joint correction and smoothing algorithm. This algorithm effectively enhances the keypoints detection results by implementing inter-frame position correction and sliding window smoothing."
+  },
+  {
+    "claim": "The same system cleans keypoints before the state machine sees them, correcting sudden jumps they call flying points and smoothing over a 10-frame window.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "are set to 1/30th of the frame width and height, respectively. This determination is based on experimental test results. The size of the sliding window for the smoothing process is set to 10 frames."
+  },
+  {
+    "claim": "Gu and colleagues gate the camera on confidence instead: when the mean keypoint confidence in a window falls below 0.45, the visual contribution is switched off, a value they describe as a fixed engineering setting rather than an optimised one.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "The confidence gate was designed to reduce the visual contribution when mean keypoint confidence falls below 0.45."
+  },
+  {
+    "claim": "Gu and colleagues gate the camera on confidence instead: when the mean keypoint confidence in a window falls below 0.45, the visual contribution is switched off, a value they describe as a fixed engineering setting rather than an optimised one.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "falls below this threshold, the visual contribution is disabled; otherwise, the two weights vary linearly with the mean confidence."
+  },
+  {
+    "claim": "Gu and colleagues gate the camera on confidence instead: when the mean keypoint confidence in a window falls below 0.45, the visual contribution is switched off, a value they describe as a fixed engineering setting rather than an optimised one.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "The retained evaluation did not include a threshold-sensitivity study, so 0.45 is treated only as the fixed engineering setting used by this prototype, not as an optimized or generally applicable value."
+  },
+  {
+    "claim": "For form feedback, Gu and colleagues list partial sit-up completion as an example of insufficient movement amplitude, which in our reading is a repetition that leaves the lying-down state but never satisfies the sitting-up threshold.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "Correctness feedback highlights insufficient movement amplitude, for example, inadequate squat depth, incomplete push-up lowering, or partial sit-up completion."
+  },
+  {
+    "claim": "Gu and colleagues' posterior view lost most sit-up frames, and the only posterior frames assigned to the wrong exercise, 68 of them, all came from the sit-up subset.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "Of the 3000 posterior-view frames, 2013 were unrecognized, including all 1000 push-up frames, 675 sit-up frames, and 338 squat frames; only 68 frames were recorded as cross-class errors, all from the sit-up subset."
+  },
+  {
+    "claim": "Lei and colleagues saw keypoints jump when occlusion occurred or lighting was poor, which is what their correction step targets.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "When occlusions occur or lighting conditions are poor, the posture processing module may inaccurately detect key points, leading to the phenomenon of “flying points”."
+  },
+  {
+    "claim": "Lei and colleagues' calibration-free design is potentially vulnerable to large changes in viewing perspective or camera position.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "potentially vulnerable to significant alterations in viewing perspective or large-scale camera displacements."
+  },
+  {
+    "claim": "Gu and colleagues' frame-level figures measure whether the camera branch recognised the exercise, not whether repetitions were counted.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "For the visual-modality viewpoint experiment, the numbers of correctly recognized frames, misclassified frames, and unrecognized frames were calculated separately for the side, front, and posterior views using the 1000-frame subsets sampled for each exercise–viewpoint pair. Frame-level accuracy was computed as the proportion of correctly recognized frames among all test frames, with unrecognized frames treated as incorrect predictions."
+  },
+  {
+    "claim": "Across the three exercises, the micro-averaged accuracy was 98.1% from the side, 89.4% from the front and 30.6% from behind.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "The corresponding micro-averaged accuracies were 98.1%, 89.4%, and 30.6%"
+  },
+  {
+    "claim": "Lei and colleagues report counting accuracy for push-ups and pull-ups but, in the text we read, not for sit-ups; their sit-up experiment concludes that one test-taker performed 7 standard sit-ups.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "achieving 96.6% accuracy for pull-ups and 97.4% for push-ups"
+  },
+  {
+    "claim": "Lei and colleagues report counting accuracy for push-ups and pull-ups but, in the text we read, not for sit-ups; their sit-up experiment concludes that one test-taker performed 7 standard sit-ups.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "this experiment concludes that the test-taker performed 7 standard sit-up movements."
+  },
+  {
+    "claim": "Lei and colleagues used the distance between elbow and knee for the sitting-up position and the angle between the body and the horizontal for the lying-down position.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "When leaning up, the distance between the elbow and knee is less than the threshold value"
+  },
+  {
+    "claim": "Lei and colleagues used the distance between elbow and knee for the sitting-up position and the angle between the body and the horizontal for the lying-down position.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "When lying down, the angle between the body and the horizontal line is less than the threshold value"
+  },
+  {
+    "claim": "To the side, on the evidence we read: Gu and colleagues' camera branch recognised sit-up frames 95.0% of the time from the side, 88.5% from the front and 25.7% from behind, where the trunk and the ground hid core keypoints.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "Under the side view, the frame-level accuracies for push-ups, sit-ups, and squats were 100.0%, 95.0%, and 99.2%, respectively. Under the front view, the corresponding accuracies were 93.2%, 88.5%, and 86.6%. Under the posterior view, the accuracies were 0.0%, 25.7%, and 66.2%, respectively."
+  },
+  {
+    "claim": "To the side, on the evidence we read: Gu and colleagues' camera branch recognised sit-up frames 95.0% of the time from the side, 88.5% from the front and 25.7% from behind, where the trunk and the ground hid core keypoints.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "Experimental results indicate that the visual modality exhibits a pronounced performance decline under posterior-view conditions, particularly for push-ups and sit-ups, where core keypoints are frequently occluded by the trunk or the ground."
+  },
+  {
+    "claim": "Keep the camera fixed, since Lei and colleagues note their calibration-free design is vulnerable to large camera moves.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "potentially vulnerable to significant alterations in viewing perspective or large-scale camera displacements."
+  },
+  {
+    "claim": "Gu and colleagues measured exercise recognition rather than counting, and Lei and colleagues demonstrated their sit-up counter on one test-taker, so measure your own counter before relying on it.",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=13611031&retmode=xml",
+    "quote": "For the visual-modality viewpoint experiment, the numbers of correctly recognized frames, misclassified frames, and unrecognized frames were calculated separately for the side, front, and posterior views using the 1000-frame subsets sampled for each exercise–viewpoint pair. Frame-level accuracy was computed as the proportion of correctly recognized frames among all test frames, with unrecognized frames treated as incorrect predictions."
+  },
+  {
+    "claim": "Gu and colleagues measured exercise recognition rather than counting, and Lei and colleagues demonstrated their sit-up counter on one test-taker, so measure your own counter before relying on it.",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12610833/fullTextXML",
+    "quote": "this experiment concludes that the test-taker performed 7 standard sit-up movements."
+  }
+]
