@@ -1,0 +1,267 @@
+[
+  {
+    "claim": "QuickPose's README describes developer-oriented ML features of MediaPipe and BlazePose.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "QuickPose provides developer-oriented cutting edge ML features of MediaPipe and BlazePose"
+  },
+  {
+    "claim": "Its Swift package ships MediaPipe lite, full and heavy libraries as modules.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "Mediapipe Library with all models (one QuickPoseMP variant is required)"
+  },
+  {
+    "claim": "Range-of-motion measurement for shoulders, hips, knees, back and neck.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "Health - Range Of Motion"
+  },
+  {
+    "claim": "Body-position feedback.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "Fitness - Feedback"
+  },
+  {
+    "claim": "iOS 14.0+.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "iOS 14.0+ - Xcode 10.0+"
+  },
+  {
+    "claim": "QuickPose's SDK key is free to register at dev.quickpose.ai.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "usage limits may apply. SDK Keys are linked to your bundle ID"
+  },
+  {
+    "claim": "Android API 26 (sample code API 28).",
+    "url": "https://docs.quickpose.ai/docs/MobileSDK",
+    "quote": "Quickpose Min API 26, but sample code is restricted by camera X at Min API 28."
+  },
+  {
+    "claim": "Maven artifacts ai.quickpose.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-android-sdk/main/README.md",
+    "quote": "implementation(\"ai.quickpose:quickpose-core:0.25\")"
+  },
+  {
+    "claim": "React Native plugin for iOS and Android.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-react-native-pose-estimation/main/README.md",
+    "quote": "skeleton overlays on iOS and Android."
+  },
+  {
+    "claim": "QuickPose's documentation home mentions Wasm SDKs.",
+    "url": "https://docs.quickpose.ai/",
+    "quote": "Add Pose Estimation and Detection to your apps quickly with our iOS, Android and Wasm SDKs."
+  },
+  {
+    "claim": "QuickPose's product pages describe on-device inference with no frames sent to a server.",
+    "url": "https://quickpose.ai/products/android-sdk/",
+    "quote": "All inference runs on the device's NPU. No video frames are ever sent to a server"
+  },
+  {
+    "claim": "QuickPose's Android page adds that the SDK does not collect, store or transmit video or image data.",
+    "url": "https://quickpose.ai/products/android-sdk/",
+    "quote": "The SDK does not collect, store, or transmit any video or image data."
+  },
+  {
+    "claim": "QuickPose pricing: free for 10 monthly active devices.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Up to 10 devices is free — no card required."
+  },
+  {
+    "claim": "QuickPose pricing: $25 to $200 a month for the first paid tiers.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Price | Free | $25/mo | $50/mo | $100/mo | $200/mo |"
+  },
+  {
+    "claim": "QuickPose pricing: up to $1,000 a month for up to 100,000 devices.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Agency $ 1,000 per month"
+  },
+  {
+    "claim": "QuickPose pricing: the Agency plan covers up to 100,000 devices.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Up to 100,000 monthly devices"
+  },
+  {
+    "claim": "QuickPose pricing: $25 a month buys up to 100 monthly active devices, rising in small steps.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Monthly active devices | 10 | 100 | 1,000 | 2,000 | 5,000 |"
+  },
+  {
+    "claim": "QuickPose pricing: every SDK feature is on every plan.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "The plans differ only in device limits and support level."
+  },
+  {
+    "claim": "Sency's packages page lists a free Starter plan.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Build & Launch FREE"
+  },
+  {
+    "claim": "Sency's Starter plan covers up to 100 monthly active users.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Up to 100 monthly active users"
+  },
+  {
+    "claim": "Sency's Starter plan includes full access to the SDK.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Full access to SencyMotion SDK"
+  },
+  {
+    "claim": "Sency's first published paid plan, Growth, starts from $499 a month.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Publish & Monetize From $499 / month"
+  },
+  {
+    "claim": "Sency's Growth plan covers up to 3,800 monthly active users.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Up to 3,800 monthly active users"
+  },
+  {
+    "claim": "Sency's FAQ says data is analyzed directly on the user's device and never sent to the cloud.",
+    "url": "https://www.sency.ai/faq-motion-tracking",
+    "quote": "All data is processed using edge computing, meaning it's analyzed directly on the user's device, never sent to the cloud."
+  },
+  {
+    "claim": "QuickPose bills by monthly active device.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Pricing is based on monthly active devices"
+  },
+  {
+    "claim": "QuickPose's terms license the SDK under Apache 2.0 with fees.",
+    "url": "https://quickpose.ai/terms-and-conditions/",
+    "quote": "QuickPose AI SDK and JointTrack API are licensed to the User under the Apache 2.0 license, subject to the terms of this agreement."
+  },
+  {
+    "claim": "Apache-2.0 on the iOS repo.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/LICENSE",
+    "quote": "Apache License Version 2.0, January 2004"
+  },
+  {
+    "claim": "Sency's Custom Kit (SMKit) is a Native no-UI SDK.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "Native no-UI SDK."
+  },
+  {
+    "claim": "Per the iOS demo, you own the camera preview, session lifecycle, exercise UI, skeleton rendering and results.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "you own the camera preview, session lifecycle, exercise UI, skeleton rendering, and result presentation."
+  },
+  {
+    "claim": "Its Branded Kit (SMKitUI) is a white-label UI where the whole experience is ready to use.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "The *Branded Kit* offers a rapid deployment model where the entire user interface and experience are ready to use."
+  },
+  {
+    "claim": "Sency: JavaScript and Unity marked NA.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "| **JavaScript** | NA | NA |"
+  },
+  {
+    "claim": "Sency ships Flutter packages for both kits.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "[flutter_smkit_ui](https://github.com/sency-ai/smkit-ui-flutter-demo)"
+  },
+  {
+    "claim": "Sency: assessments, progress evaluations, workout plans.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "Initial Movement and Fitness Assessments:"
+  },
+  {
+    "claim": "Sency: the Custom Kit demo Podfile pins iOS 16.0.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "platform :ios, '16.0'"
+  },
+  {
+    "claim": "Sency: SMKitUI iOS 15 or later.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ui-ios-demo/main/README.md",
+    "quote": "Support: iOS 15 or later; officially validated on iPhone X and newer."
+  },
+  {
+    "claim": "Sency models are downloaded from Sency's server at configuration, with no bundled fallback.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "SMKit 2.3.6 downloads models and required SDK assets from the server. It does not include bundled fallback models."
+  },
+  {
+    "claim": "SMKitUI downloads models from the server during configuration too.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ui-ios-demo/main/README.md",
+    "quote": "SMKitUI 2.5.1 downloads models and required SDK assets from the server during configuration and before a relevant session begins."
+  },
+  {
+    "claim": "A valid cache works offline later.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "a valid, previously downloaded cache can be used offline later"
+  },
+  {
+    "claim": "Sency's Android SDK obtains its models from the server.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-android-demo/main/README.md",
+    "quote": "SMKit 1.9.4 obtains configuration and required models from the server and validates them before use."
+  },
+  {
+    "claim": "Sency: CocoaPods and SPM from Sency's Bitbucket.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "source 'https://bitbucket.org/sencyai/ios_sdks_release.git'"
+  },
+  {
+    "claim": "Sency: Maven (com.sency).",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-android-demo/main/app/build.gradle",
+    "quote": "implementation \"com.sency.smkit:smkit:1.9.4\""
+  },
+  {
+    "claim": "Sency's iOS demo documents body calibration.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "Body calibration reports whether the user is inside the expected frame region."
+  },
+  {
+    "claim": "Sency's iOS demo documents adaptive range of motion.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "Adaptive ROM lets supported exercises calibrate a user's current range and then adjust feedback thresholds."
+  },
+  {
+    "claim": "Sency's iOS documentation describes an MCP server for AI coding tools.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "Sency provides an MCP server for AI development tools that need direct SMKit documentation and exercise context."
+  },
+  {
+    "claim": "Sency's key is emailed after you subscribe to a plan.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "you can either get it automatically in a response email after you subscribe to one of our"
+  },
+  {
+    "claim": "Sency's sign-up path runs through a contact form.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "We have received your message and have sent you an invitation to schedule a call with our team."
+  },
+  {
+    "claim": "Sency: commercial or production use needs a separate paid agreement.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/LICENSE",
+    "quote": "ANY COMMERCIAL OR PRODUCTION USE OF THE SERVICES OR THE SOLUTION SHALL BE GOVERNED BY A SEPARATE PAID ENTERPRISE/PERSONAL SERVICE AGREEMENT"
+  },
+  {
+    "claim": "Sency pricing: free trial.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "You can integrate our SDK at no cost during the free trial."
+  },
+  {
+    "claim": "Sency pricing: a monthly fee covering up to 100 active users.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "After that, you'll start paying a minimal monthly fee to continue building and testing, which includes access for up to 100 active users."
+  },
+  {
+    "claim": "Sency pricing: pay-as-you-go per active user above that, at rates listed on its pricing page.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "Once you exceed 100 unique active users, usage will be billed on a pay-as-you-go basis according to the rates listed on our pricing page."
+  },
+  {
+    "claim": "Sency counts each active user once a month and charges no extra for heavy use.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "We do not charge any additional fees for heavy usage per user."
+  },
+  {
+    "claim": "Sency's pricing page describes an assessment that takes less than 4 minutes.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "In less than 4 minutes, our four-step assessment enhances member onboarding and tracks progress over time."
+  },
+  {
+    "claim": "Sency's pricing page mentions a record of 54 minutes from installing the SDK to a working assessment.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "The current record is 54 minutes from installing the SDK to having a full fitness assessment working on our partner's app."
+  }
+]

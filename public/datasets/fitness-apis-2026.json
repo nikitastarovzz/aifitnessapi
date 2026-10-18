@@ -15,9 +15,9 @@
     "totalItems": 25,
     "byDevCost": {
       "free": 12,
-      "contact-sales": 3,
+      "contact-sales": 2,
       "free-tier-then-paid": 5,
-      "usage-based": 5
+      "usage-based": 6
     },
     "byCategory": {
       "wearable-direct": 6,
@@ -31,7 +31,7 @@
     },
     "withApprovalGate": 13,
     "withUserSideCost": 5,
-    "contactSalesShare": 12,
+    "contactSalesShare": 8,
     "freeShare": 48,
     "gatedShare": 52,
     "refreshTokenRotators": [
@@ -218,9 +218,9 @@
       "id": "sency",
       "label": "Sency (SMKit)",
       "category": "motion-sdk",
-      "devCost": "contact-sales",
+      "devCost": "usage-based",
       "userSideCost": null,
-      "approvalGate": "Free trial first (no credit card, per the vendor's site at our last check), then a sales conversation.",
+      "approvalGate": "Sign-up runs through a contact form that leads to a call, and Sency's Terms of Use put commercial or production use under a separate paid service agreement.",
       "source": "https://aifitnessapi.com/fitness-apis/ai-workout-tracking-apis"
     },
     {

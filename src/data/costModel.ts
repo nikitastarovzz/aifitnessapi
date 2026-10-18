@@ -380,7 +380,7 @@ export const COST_ITEMS: CostItem[] = [
   },
 
   // provenance: "Contact-sales; vendor-described per-active-user pricing" — /fitness-apis/ai-workout-tracking-apis
-  // provenance: "KinesteX's repos contain no self-serve pricing; access goes through a contact form" — /compare/kinestex-vs-sency
+  // provenance: "KinesteX publishes no price list, so this page will not guess its number: access goes through a contact form and API key" — /compare/kinestex-vs-sency
   {
     id: "kinestex",
     label: "KinesteX",
@@ -390,27 +390,34 @@ export const COST_ITEMS: CostItem[] = [
     approvalGate: "Access runs through a contact form and an issued API key — no self-serve signup.",
     engEffort: "low",
     notes:
-      "This site's own product — see disclosure on linked page. No public pricing appears in its repos; the vendor describes usage-based per-active-user pricing, so budgeting needs a sales conversation.",
+      "This site's own product — see disclosure on linked page. KinesteX publishes no price list; the vendor describes usage-based per-active-user pricing, so budgeting needs a sales conversation.",
     sourceHref: "/compare/kinestex-vs-sency",
   },
 
-  // provenance: "Free trial, then usage-based; contact-sales" — /fitness-apis/ai-workout-tracking-apis
-  // provenance: "we could not read the page itself, so we will not characterize what it offers" — /compare/kinestex-vs-sency
+  // provenance: "Sency prices by monthly active user" — /fitness-apis/ai-workout-tracking-apis
+  // provenance: "Free trial, then usage-based" — /fitness-apis/ai-workout-tracking-apis
+  // provenance: "Sign-up runs through a contact form" — /fitness-apis/ai-workout-tracking-apis
+  // provenance: "The pricing pages' contact form says Sency then invites you to schedule a call" — /pricing/sency-pricing
+  // provenance: "commercial use falls under a separate paid agreement in its Terms of Use" — /fitness-apis/ai-workout-tracking-apis
+  // provenance: "per-user plans published on two pages that disagree" — /fitness-apis/ai-workout-tracking-apis
+  // provenance: "Models download from Sency's server at configuration" — /fitness-apis/ai-workout-tracking-apis
   {
     id: "sency",
     label: "Sency (SMKit)",
     category: "motion-sdk",
-    devCost: "contact-sales",
+    devCost: "usage-based",
     userSideCost: null,
-    approvalGate: "Free trial first (no credit card, per the vendor's site at our last check), then a sales conversation.",
+    approvalGate:
+      "Sign-up runs through a contact form that leads to a call, and Sency's Terms of Use put commercial or production use under a separate paid service agreement.",
     engEffort: "low",
     notes:
-      "Detailed pricing sits behind sales. Sency's README links a pricing and registration page whose contents could not be read from our research environment, so we will not characterize the terms — use the trial to confirm scope.",
+      "Sency publishes per-user plans, but on two pages that disagree about whether its first active users are free or covered by a paid monthly fee, and sign-up runs through a contact form, so confirm the terms in writing. Models download from Sency's server at configuration.",
     sourceHref: "/fitness-apis/ai-workout-tracking-apis",
   },
 
   // provenance: "Self-serve free tier, paid above a device threshold" — /fitness-apis/ai-workout-tracking-apis
-  // provenance: "its public repos publish no tiers, so confirm current terms" — /fitness-apis/ai-workout-tracking-apis
+  // provenance: "without a sales call to start" — /fitness-apis/ai-workout-tracking-apis
+  // provenance: "with every SDK feature on every plan" — /fitness-apis/ai-workout-tracking-apis
   {
     id: "quickpose",
     label: "QuickPose",
@@ -420,7 +427,7 @@ export const COST_ITEMS: CostItem[] = [
     approvalGate: null,
     engEffort: "medium",
     notes:
-      "The one coaching SDK here you can start on today without a sales call: a fully-featured self-serve free tier with no watermark, moving to paid above a monthly-active-device threshold. Its public repos publish no tiers, so confirm current terms. iOS-first, and exercise programming and UI stay on you.",
+      "A coaching SDK you can start on today without a sales call: a free SDK key, a free tier for a small number of monthly active devices, and paid plans by monthly active device published on its pricing page, with every SDK feature on every plan. iOS, Android and React Native; exercise programming and UI stay on you.",
     sourceHref: "/fitness-apis/ai-workout-tracking-apis",
   },
 
@@ -454,7 +461,7 @@ export const COST_ITEMS: CostItem[] = [
     sourceHref: "/motion/pose-estimation-model-licenses",
   },
 
-  // provenance: "free within the Apple toolchain but iOS and macOS only" — /fitness-apis/ai-workout-tracking-apis
+  // provenance: "free within the Apple toolchain, on Apple platforms only" — /fitness-apis/ai-workout-tracking-apis
   {
     id: "apple-vision",
     label: "Apple Vision body pose",
@@ -464,7 +471,7 @@ export const COST_ITEMS: CostItem[] = [
     approvalGate: null,
     engEffort: "high",
     notes:
-      "Free within the Apple SDK with no model file to ship, running locally with no network and no per-call cost — but iOS and macOS only, so a cross-platform product still needs a second model. Everything above the joints is yours to build.",
+      "Free within the Apple SDK with no model file to ship, running locally with no network and no per-call cost — but on Apple platforms only, so a cross-platform product still needs a second model. Everything above the joints is yours to build.",
     sourceHref: "/fitness-apis/ai-workout-tracking-apis",
   },
 

@@ -33,7 +33,7 @@ const ANSWER =
 const FAQS = [
   {
     q: "Why does this cost planner refuse to show prices?",
-    a: "Because a number we could show you would probably be wrong by the time you read it. In this category the serious tiers are mostly contact-sales — Garmin settles terms privately with approved partners, aggregator per-user rates are rarely listed, and motion SDK pricing sits behind a form — so any dollar figure would be a third-party report rather than a vendor-published fact. The figures that are public change: Strava's developer terms shifted in 2026, Fitbit is migrating to the Google Health API, and marketplace quotas change without notice. What does not change month to month is the structure: who bills whom, what meters, what gates you. That is what the planner models, and it is the part you can actually design against.",
+    a: "Because a number we could show you would probably be wrong by the time you read it. In this category the serious tiers are mostly contact-sales — Garmin settles terms privately with approved partners, aggregator per-user rates are rarely listed, and some motion SDK pricing sits behind a form — so any dollar figure would be a third-party report rather than a vendor-published fact. The figures that are public change: Strava's developer terms shifted in 2026, Fitbit is migrating to the Google Health API, and marketplace quotas change without notice. What does not change month to month is the structure: who bills whom, what meters, what gates you. That is what the planner models, and it is the part you can actually design against.",
   },
   {
     q: "How reliable is the engineering-effort estimate in this planner?",
@@ -62,7 +62,7 @@ What it will not do is add those up into a monthly figure, because the honest ve
 
 This is the part most cost calculators get wrong, so it is worth being direct about it.
 
-Most of the money in this category is not visible from outside. Garmin does not publish pricing for its developer APIs at all; access runs through a partner program and the commercial terms are settled privately, which means you cannot see them until you are far enough into the process to be quoted. Aggregator per-user rates are almost never listed publicly. Motion SDK pricing routes through a contact form. When roughly half of a market is contact-sales, a calculator that produces a total is producing fiction for half its inputs.
+Most of the money in this category is not visible from outside. Garmin does not publish pricing for its developer APIs at all; access runs through a partner program and the commercial terms are settled privately, which means you cannot see them until you are far enough into the process to be quoted. Aggregator per-user rates are almost never listed publicly. Some motion SDK pricing routes through a contact form. When roughly half of a market is contact-sales, a calculator that produces a total is producing fiction for half its inputs.
 
 The figures that *are* public do not hold still either. Strava's developer access terms reportedly changed during 2026 and the membership figure involved is US-specific and varies by country. Fitbit is mid-migration to the Google Health API and the successor's pricing model is not clearly public yet. RapidAPI marketplace quotas and prices change without notice. Nutritionix reportedly curtailed its open free tier. A number captured today and rendered into a page is a liability with a shelf life.
 

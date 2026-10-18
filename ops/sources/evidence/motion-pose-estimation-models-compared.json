@@ -1,0 +1,107 @@
+[
+  {
+    "claim": "MediaPipe's Tasks API has a num_poses setting that defaults to 1.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+    "quote": "num_poses: int = 1"
+  },
+  {
+    "claim": "num_poses is documented as the maximum number of poses the PoseLandmarker can detect.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/cc/vision/pose_landmarker/pose_landmarker.h",
+    "quote": "The maximum number of poses can be detected by the PoseLandmarker."
+  },
+  {
+    "claim": "Each MediaPipe landmark carries visibility and presence.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/components/containers/landmark.py",
+    "quote": "presence: Landmark presence. Should stay unset if not supported."
+  },
+  {
+    "claim": "World landmarks in meters with a hip-centre origin.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "Real-world 3D coordinates in meters with the origin at the center between hips."
+  },
+  {
+    "claim": "The legacy Pose solution was upgraded to the Tasks version on May 10, 2023.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "As of May 10, 2023, this solution was upgraded to a new MediaPipe Solution."
+  },
+  {
+    "claim": "Ultralytics' pose docs present YOLO26 pose models pretrained on COCO keypoints.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/en/tasks/pose.md",
+    "quote": "YOLO26 Pose models use the `-pose` suffix, i.e., `yolo26n-pose.pt`, and are pretrained on"
+  },
+  {
+    "claim": "The default YOLO26 pose models predict the 17 COCO keypoints.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/en/tasks/pose.md",
+    "quote": "The default YOLO26 Pose models predict the 17 COCO keypoints"
+  },
+  {
+    "claim": "The COCO-Pose dataset config stores each keypoint as x, y, visible.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/ultralytics/cfg/datasets/coco-pose.yaml",
+    "quote": "kpt_shape: [17, 3] # number of keypoints, number of dims (2 for x,y or 3 for x,y,visible)"
+  },
+  {
+    "claim": "Five YOLO26 pose sizes, n to x.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/macros/yolo-pose-perf.md",
+    "quote": "[YOLO26x-pose](https://platform.ultralytics.com/ultralytics/yolo26/yolo26x-pose)"
+  },
+  {
+    "claim": "Ultralytics code is AGPL-3.0.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/README.md",
+    "quote": "**AGPL-3.0 License**: This [OSI-approved](https://opensource.org/license/agpl-3.0) open-source license"
+  },
+  {
+    "claim": "Ultralytics sells an Enterprise License to bypass the AGPL requirements.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/README.md",
+    "quote": "Request an Enterprise License for commercial use at [Ultralytics Licensing](https://www.ultralytics.com/license)."
+  },
+  {
+    "claim": "PoseNet can detect multiple poses of 17 keypoints each.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/README.md",
+    "quote": "PoseNet can detect multiple poses, each pose contains 17 keypoints."
+  },
+  {
+    "claim": "The pose-detection package serves MoveNet, BlazePose and PoseNet.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/README.md",
+    "quote": "including `MoveNet`, `BlazePose` and `PoseNet`."
+  },
+  {
+    "claim": "The standalone posenet package is deprecated in favor of pose-detection.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/posenet/README.md",
+    "quote": "This package is deprecated in favor of the new [pose-detection package]"
+  },
+  {
+    "claim": "tfjs-models is Apache-2.0.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/LICENSE",
+    "quote": "Apache License Version 2.0, January 2004"
+  },
+  {
+    "claim": "tfhub.dev links have redirected to Kaggle Models since November 15, 2023.",
+    "url": "https://raw.githubusercontent.com/tensorflow/hub/master/README.md",
+    "quote": "Starting November 15th 2023, links to [tfhub.dev](https://tfhub.dev) redirect to their counterparts on Kaggle Models."
+  },
+  {
+    "claim": "OpenPose is a real-time multi-person system built on Part Affinity Fields.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/README.md",
+    "quote": "OpenPose: Realtime Multi-Person 2D Pose Estimation using Part Affinity Fields"
+  },
+  {
+    "claim": "OpenPose's output document names the BODY_25, COCO_18, MPI_15 and BODY_25B models.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/doc/02_output.md",
+    "quote": "const auto& poseBodyPartMappingBody25B = getPoseBodyPartMapping(PoseModel::BODY_25B);"
+  },
+  {
+    "claim": "Output diagrams for BODY_25 and the COCO set.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/doc/02_output.md",
+    "quote": "### Pose Output Format (COCO)"
+  },
+  {
+    "claim": "OpenPose's license: academic or non-profit noncommercial research use only.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/LICENSE",
+    "quote": "ACADEMIC OR NON-PROFIT ORGANIZATION NONCOMMERCIAL RESEARCH USE ONLY"
+  },
+  {
+    "claim": "Its README points commercial users to a separate licence.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/README.md",
+    "quote": "Interested in a commercial license?"
+  }
+]

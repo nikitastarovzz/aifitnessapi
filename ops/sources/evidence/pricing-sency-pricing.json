@@ -1,0 +1,182 @@
+[
+  {
+    "claim": "An active user is one of your users who actively uses Sency's SDK; the 10,000 and 2,000 example.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "An active user is counted as one of your users who actively uses Sency’s SDK. For example, if you have 10,000 users on your platform but only 2,000 are using the SDK during the month, you will only be charged for 2,000 active users."
+  },
+  {
+    "claim": "Each unique user is counted once per month; no additional fees for heavy usage per user.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "We do not charge any additional fees for heavy usage per user. Each unique user is counted once per month, regardless of the number of times they use the SDK."
+  },
+  {
+    "claim": "Every plan lists unlimited monthly activities.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Unlimited monthly activities"
+  },
+  {
+    "claim": "Starter (\"Build & Launch\"): free.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Build & Launch FREE"
+  },
+  {
+    "claim": "Starter: up to 100 monthly active users.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Up to 100 monthly active users"
+  },
+  {
+    "claim": "Starter: $0 per active user (Sency's wording: per activity user).",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "$0 per activity user"
+  },
+  {
+    "claim": "Starter: full access to the SencyMotion SDK.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Full access to SencyMotion SDK"
+  },
+  {
+    "claim": "Starter: standard customer support.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Standard customer support"
+  },
+  {
+    "claim": "Growth (\"Publish & Monetize\"): from $499 a month.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Publish & Monetize From $499 / month"
+  },
+  {
+    "claim": "Growth: up to 3,800 monthly active users.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Up to 3,800 monthly active users"
+  },
+  {
+    "claim": "Growth: $0.79 per active user.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "$0.79 per active user"
+  },
+  {
+    "claim": "Growth: premium customer support.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Premium customer support"
+  },
+  {
+    "claim": "Growth: branded UI.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Branded UI for your business"
+  },
+  {
+    "claim": "Customized (\"A Solution for All\"): on request.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "A Solution for All Let’s Discuss"
+  },
+  {
+    "claim": "Customized: unlimited monthly active users.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Unlimited monthly active users"
+  },
+  {
+    "claim": "Customized: an optimized price per active user.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Optimized price per active user"
+  },
+  {
+    "claim": "Customized: a dedicated support team.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Dedicated support team"
+  },
+  {
+    "claim": "Customized: a tailored solution.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Tailored solution for your needs"
+  },
+  {
+    "claim": "Branded UI is available for every kit except the Exploration Kit.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "This customization option is available for every Kit except the Exploration Kit."
+  },
+  {
+    "claim": "Main pricing page: integrate at no cost during the free trial.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "You can integrate our SDK at no cost during the free trial."
+  },
+  {
+    "claim": "Main pricing page: a minimal monthly fee that includes access for up to 100 active users.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "After that, you'll start paying a minimal monthly fee to continue building and testing, which includes access for up to 100 active users."
+  },
+  {
+    "claim": "Main pricing page: pay-as-you-go above 100 unique active users.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "Once you exceed 100 unique active users, usage will be billed on a pay-as-you-go basis according to the rates listed on our pricing page."
+  },
+  {
+    "claim": "Main pricing page: free integration guidance.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "Get guidance on the best way to integrate Sency into your platform."
+  },
+  {
+    "claim": "Integrating the SDK is the partner's responsibility, with Sency sharing best practices.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "The responsibility for integrating the SDK into your platform lies with you, our partner."
+  },
+  {
+    "claim": "A record of 54 minutes from installing the SDK to a working assessment.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "The current record is 54 minutes from installing the SDK to having a full fitness assessment working on our partner's app."
+  },
+  {
+    "claim": "The contact form leads to an invitation to schedule a call.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "We have received your message and have sent you an invitation to schedule a call with our team."
+  },
+  {
+    "claim": "The README says to register a new client for free for demo access and an API client key.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "now a new client for free and get your demo access and your api client key."
+  },
+  {
+    "claim": "The key arrives automatically in a response email after you subscribe to a plan.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "you can either get it automatically in a response email after you subscribe to one of our"
+  },
+  {
+    "claim": "The LICENSE file is Sency's Terms of Use, last updated in September 2022.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/LICENSE",
+    "quote": "Last updated: [Sep 11th 2022]"
+  },
+  {
+    "claim": "Commercial or production use is governed by a separate paid service agreement.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/LICENSE",
+    "quote": "ANY COMMERCIAL OR PRODUCTION USE OF THE SERVICES OR THE SOLUTION SHALL BE GOVERNED BY A SEPARATE PAID ENTERPRISE/PERSONAL SERVICE AGREEMENT"
+  },
+  {
+    "claim": "QuickPose: free for 10 devices.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Up to 10 devices is free — no card required."
+  },
+  {
+    "claim": "QuickPose: $25 a month for up to 100 devices.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Price | Free | $25/mo | $50/mo | $100/mo | $200/mo |"
+  },
+  {
+    "claim": "QuickPose: $1,000 a month for up to 100,000 devices.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Agency $ 1,000 per month"
+  },
+  {
+    "claim": "Kemtai routes buyers to a demo request.",
+    "url": "https://kemtai.com/",
+    "quote": "Please enter your business email to receive more information and a demo"
+  },
+  {
+    "claim": "KinesteX: usage-based plans priced per active user per month that fall at higher tiers.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "The pricing per-active-user-per-month will smoothly go down as you scale and reach new tiers."
+  },
+  {
+    "claim": "KinesteX: integration fees may apply.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Integration fees may apply depending on the complexity of your requirements"
+  }
+]

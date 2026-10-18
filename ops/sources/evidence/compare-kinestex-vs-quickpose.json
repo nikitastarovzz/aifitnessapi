@@ -1,0 +1,317 @@
+[
+  {
+    "claim": "QuickPose's README: developer-oriented ML features of MediaPipe and BlazePose.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "QuickPose provides developer-oriented cutting edge ML features of MediaPipe and BlazePose, with easy integration and production ready code"
+  },
+  {
+    "claim": "Aimed at pose estimation, skeleton tracking and fitness counting features.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "pose estimation, skeleton tracking and fitness counting features into mobile applications"
+  },
+  {
+    "claim": "Range-of-motion measurement.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "Health - Range Of Motion"
+  },
+  {
+    "claim": "A measuring line in beta.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "Distance Independent Measuring Line"
+  },
+  {
+    "claim": "Feedback for a named limb out of view.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "Named Leg or Arm not visible"
+  },
+  {
+    "claim": "Raised-finger and thumbs-up inputs.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "Thumbs Up Detection, Thumbs up and down detection"
+  },
+  {
+    "claim": "MediaPipe lite, full and heavy libraries as modules.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "Mediapipe Library with all models (one QuickPoseMP variant is required)"
+  },
+  {
+    "claim": "iOS 14.0 or later.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "iOS 14.0+ - Xcode 10.0+"
+  },
+  {
+    "claim": "The free SDK key and usage limits.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "usage limits may apply. SDK Keys are linked to your bundle ID"
+  },
+  {
+    "claim": "Android from API 26, samples API 28.",
+    "url": "https://docs.quickpose.ai/docs/MobileSDK",
+    "quote": "Quickpose Min API 26, but sample code is restricted by camera X at Min API 28."
+  },
+  {
+    "claim": "The Android README lists Android SDK 26.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-android-sdk/main/README.md",
+    "quote": "Android SDK 26"
+  },
+  {
+    "claim": "The Android SDK is distributed through Maven.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-android-sdk/main/README.md",
+    "quote": "implementation(\"ai.quickpose:quickpose-core:0.25\")"
+  },
+  {
+    "claim": "The React Native plugin covers body tracking, rep counting, range of motion and overlays on iOS and Android.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-react-native-pose-estimation/main/README.md",
+    "quote": "Provides real-time body tracking, fitness rep counting, range of motion measurement, and skeleton overlays on iOS and Android."
+  },
+  {
+    "claim": "QuickPose's product pages say all inference runs on the device and no frames go to a server.",
+    "url": "https://quickpose.ai/products/android-sdk/",
+    "quote": "All inference runs on the device's NPU. No video frames are ever sent to a server"
+  },
+  {
+    "claim": "QuickPose's docs home mentions Wasm SDKs.",
+    "url": "https://docs.quickpose.ai/",
+    "quote": "Add Pose Estimation and Detection to your apps quickly with our iOS, Android and Wasm SDKs."
+  },
+  {
+    "claim": "QuickPose: free for 10 devices.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Up to 10 devices is free — no card required."
+  },
+  {
+    "claim": "QuickPose device limits.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Monthly active devices | 10 | 100 | 1,000 | 2,000 | 5,000 |"
+  },
+  {
+    "claim": "QuickPose prices.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Price | Free | $25/mo | $50/mo | $100/mo | $200/mo |"
+  },
+  {
+    "claim": "QuickPose: $1,000 a month for the Agency plan.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Agency $ 1,000 per month"
+  },
+  {
+    "claim": "QuickPose: the Agency plan covers up to 100,000 devices.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Up to 100,000 monthly devices"
+  },
+  {
+    "claim": "QuickPose: every feature on every plan.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "The plans differ only in device limits and support level."
+  },
+  {
+    "claim": "QuickPose bills by monthly active device.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Pricing is based on monthly active devices"
+  },
+  {
+    "claim": "QuickPose's terms license the SDK under Apache 2.0 subject to the agreement.",
+    "url": "https://quickpose.ai/terms-and-conditions/",
+    "quote": "QuickPose AI SDK and JointTrack API are licensed to the User under the Apache 2.0 license, subject to the terms of this agreement."
+  },
+  {
+    "claim": "QuickPose's terms say use may be subject to fees.",
+    "url": "https://quickpose.ai/terms-and-conditions/",
+    "quote": "may be subject to fees, which the User agrees to pay in a timely manner."
+  },
+  {
+    "claim": "The JointTrack page's older answer about the Launch tier.",
+    "url": "https://quickpose.ai/products/jointtrack/pricing/",
+    "quote": "You move to the Launch tier if your app has more than 100 monthly active devices."
+  },
+  {
+    "claim": "Apache-2.0 LICENSE in the QuickPose iOS repo.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/LICENSE",
+    "quote": "Apache License Version 2.0, January 2004"
+  },
+  {
+    "claim": "KinesteX's SwiftUI kit embeds the experience as a WebView.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-AI-Kit/main/README.md",
+    "quote": "A SwiftUI package that embeds KinesteX’s AI-powered camera workout experience as a WebView."
+  },
+  {
+    "claim": "KinesteX's installation docs point Swift users to the SwiftUI kit.",
+    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+    "quote": "2. Enter URL: https://github.com/KinesteX/KinesteX-AI-Kit.git"
+  },
+  {
+    "claim": "The web path is an iframe.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-PWA/main/README.md",
+    "quote": "Displaying KinesteX through iframe:"
+  },
+  {
+    "claim": "Communication over postMessage.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-PWA/main/README.md",
+    "quote": "Currently supported communication is via HTTP postMessages."
+  },
+  {
+    "claim": "React Native installs alongside react-native-webview.",
+    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+    "quote": "npm install kinestex-sdk-react-native react-native-webview"
+  },
+  {
+    "claim": "A React TypeScript package.",
+    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+    "quote": "npm i kinestex-sdk-react-ts"
+  },
+  {
+    "claim": "A personalized-plan view in beta.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-Swift-Demo/main/docs/integration/overview.md",
+    "quote": "Personalized AI Workout Plan (Beta)"
+  },
+  {
+    "claim": "A custom camera component with pose analysis and feedback.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-Swift-Demo/main/docs/integration/overview.md",
+    "quote": "Integrate our camera component with pose-analysis and feedback"
+  },
+  {
+    "claim": "Leaderboard views.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-Swift-Demo/main/docs/integration/overview.md",
+    "quote": "Displays Real-time leaderboard for one challenge exercise"
+  },
+  {
+    "claim": "Real-time monitoring of reps, mistakes, posture alignment and calories.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-Kotlin/main/README.md",
+    "quote": "Real-time monitoring and feedback for user movements, including:"
+  },
+  {
+    "claim": "Theming through an admin portal.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-Kotlin/main/README.md",
+    "quote": "Design customization on the go through our admin portal."
+  },
+  {
+    "claim": "Per-rep and per-mistake events.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-Swift-Demo/main/docs/data.md",
+    "quote": "mistake([String: Any]) - Logs detected mistakes."
+  },
+  {
+    "claim": "Timed Up and Go assessment.",
+    "url": "https://raw.githubusercontent.com/KinesteX/.github/main/profile/README.md",
+    "quote": "TUG (Timed Up and Go) Assessment"
+  },
+  {
+    "claim": "Gait speed assessment.",
+    "url": "https://raw.githubusercontent.com/KinesteX/.github/main/profile/README.md",
+    "quote": "Gait Speed Test Assessment"
+  },
+  {
+    "claim": "Sit-to-stand variants.",
+    "url": "https://raw.githubusercontent.com/KinesteX/.github/main/profile/README.md",
+    "quote": "STS (Sit-to-Stand 30 Second) Assessment"
+  },
+  {
+    "claim": "Functional Reach Test.",
+    "url": "https://raw.githubusercontent.com/KinesteX/.github/main/profile/README.md",
+    "quote": "FRT (Functional Reach Test) Assessment"
+  },
+  {
+    "claim": "Balance stands with risk-level outputs.",
+    "url": "https://raw.githubusercontent.com/KinesteX/.github/main/profile/README.md",
+    "quote": "### SBSS (Side-by-Side Stand) Assessment"
+  },
+  {
+    "claim": "Risk-level outputs.",
+    "url": "https://raw.githubusercontent.com/KinesteX/.github/main/profile/README.md",
+    "quote": "Balance risk assessment"
+  },
+  {
+    "claim": "iOS 14 and macOS 11 in the Swift packages.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-Swift/main/Package.swift",
+    "quote": ".iOS(.v14), .macOS(.v11)"
+  },
+  {
+    "claim": "The Android README's feature table lists range of motion.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-android-sdk/main/README.md",
+    "quote": "<p><b>Health - Range Of Motion</b></p>"
+  },
+  {
+    "claim": "The Android README's feature table lists the exercise counters.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-android-sdk/main/README.md",
+    "quote": "<p><b>Fitness - Exercise Detection & Counter</b></p>"
+  },
+  {
+    "claim": "Camera permission on iOS.",
+    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+    "quote": "<string>Camera access is required for AI-powered workout tracking</string>"
+  },
+  {
+    "claim": "A motion-sensor usage description on iOS.",
+    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+    "quote": "<key>NSMotionUsageDescription</key>"
+  },
+  {
+    "claim": "CAMERA and INTERNET permissions on Android.",
+    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+    "quote": "<uses-permission android:name=\"android.permission.INTERNET\" />"
+  },
+  {
+    "claim": "KinesteX's FAQ describes usage-based plans.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Our pricing is adaptable to your use case and business model, with usage-based plans that scale to support clients of different sizes."
+  },
+  {
+    "claim": "Priced per active user per month, falling at higher tiers.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "The pricing per-active-user-per-month will smoothly go down as you scale and reach new tiers."
+  },
+  {
+    "claim": "Integration fees may apply.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Integration fees may apply depending on the complexity of your requirements"
+  },
+  {
+    "claim": "Contact form for demo access and an API key.",
+    "url": "https://www.kinestex.com/docs",
+    "quote": "To get demo access and your API key, fill out the contact form on our website."
+  },
+  {
+    "claim": "Apache-2.0 in the Swift repo.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-Swift/main/LICENSE",
+    "quote": "Apache License Version 2.0, January 2004"
+  },
+  {
+    "claim": "Apache-2.0 in the Kotlin repo.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-Kotlin/main/LICENSE.txt",
+    "quote": "Apache License Version 2.0, January 2004"
+  },
+  {
+    "claim": "Apache-2.0 in the React Native repo.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-ReactNative/main/LICENSE",
+    "quote": "Apache License Version 2.0, January 2004"
+  },
+  {
+    "claim": "Apache-2.0 in the HTML-JS repo.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-HTML-JS/main/LICENSE",
+    "quote": "Apache License Version 2.0, January 2004"
+  },
+  {
+    "claim": "The README accuracy claim.",
+    "url": "https://raw.githubusercontent.com/KinesteX/AI-Fitness-SDK/main/README.md",
+    "quote": "Our movements recognition models consistently exceed 90% accuracy"
+  },
+  {
+    "claim": "The FAQ accuracy claim.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Our AI-powered motion tracking achieves 97.2% accuracy"
+  },
+  {
+    "claim": "The SDK READMEs say optional edge processing.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-Kotlin/main/README.md",
+    "quote": "Ensures data security with optional edge processing (no cloud transmission)."
+  },
+  {
+    "claim": "The security page says all camera and vision processing stays on-device.",
+    "url": "https://www.kinestex.com/product/security",
+    "quote": "All camera and vision processing stays on-device"
+  },
+  {
+    "claim": "The security page says the cloud delivers content and AI models.",
+    "url": "https://www.kinestex.com/product/security",
+    "quote": "The KinesteX cloud is used only to deliver content and AI models and to store derived, non-identifying session metrics."
+  }
+]

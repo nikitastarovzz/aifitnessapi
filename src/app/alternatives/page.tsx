@@ -60,8 +60,9 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   },
   {
     title: "AI motion tracking",
-    blurb: "Alternatives to this site's own product, disclosed and repo-verified.",
-    slugs: ["kinestex-alternatives"],
+    blurb:
+      "Motion SDKs and pose models, including this site's own product. KinesteX funds this site; every page here says so and is verified from public repos and the vendors' own pages.",
+    slugs: ["mediapipe-alternatives", "quickpose-alternatives", "sency-alternatives", "kinestex-alternatives"],
   },
 ];
 

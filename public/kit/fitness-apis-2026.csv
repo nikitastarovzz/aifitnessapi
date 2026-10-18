@@ -18,7 +18,7 @@ id,label,category,devCost,userSideCost,approvalGate,source
 "exercisedb","ExerciseDB (via RapidAPI)","exercise-content","free-tier-then-paid",,,"https://aifitnessapi.com/pricing/exercise-database-api-pricing"
 "wger","wger (self-hosted)","exercise-content","free",,,"https://aifitnessapi.com/compare/exercisedb-vs-wger"
 "kinestex","KinesteX","motion-sdk","contact-sales",,"Access runs through a contact form and an issued API key — no self-serve signup.","https://aifitnessapi.com/compare/kinestex-vs-sency"
-"sency","Sency (SMKit)","motion-sdk","contact-sales",,"Free trial first (no credit card, per the vendor's site at our last check), then a sales conversation.","https://aifitnessapi.com/fitness-apis/ai-workout-tracking-apis"
+"sency","Sency (SMKit)","motion-sdk","usage-based",,"Sign-up runs through a contact form that leads to a call, and Sency's Terms of Use put commercial or production use under a separate paid service agreement.","https://aifitnessapi.com/fitness-apis/ai-workout-tracking-apis"
 "quickpose","QuickPose","motion-sdk","free-tier-then-paid",,,"https://aifitnessapi.com/fitness-apis/ai-workout-tracking-apis"
 "mediapipe","MediaPipe Pose Landmarker (BlazePose)","pose-model","free",,,"https://aifitnessapi.com/compare/kinestex-vs-mediapipe"
 "movenet","TensorFlow MoveNet","pose-model","free",,,"https://aifitnessapi.com/motion/pose-estimation-model-licenses"

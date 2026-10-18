@@ -1,0 +1,207 @@
+[
+  {
+    "claim": "QuickPose prices its pose-estimation SDK by monthly active device, counted once per month however many sessions it runs.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Pricing is based on monthly active devices — a device is counted once per month regardless of how many sessions it runs."
+  },
+  {
+    "claim": "Its pricing page defines one as \"any unique device that uses QuickPose features at least once in a calendar month\".",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "A monthly active device is any unique device that uses QuickPose features at least once in a calendar month."
+  },
+  {
+    "claim": "Personal: free, no card required, up to 10 monthly active devices.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Up to 10 devices is free — no card required."
+  },
+  {
+    "claim": "Device limits for Personal, Builder, Starter, Launch and Scale: 10, 100, 1,000, 2,000 and 5,000.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Monthly active devices | 10 | 100 | 1,000 | 2,000 | 5,000 |"
+  },
+  {
+    "claim": "Prices for Personal, Builder, Starter, Launch and Scale: free, $25, $50, $100 and $200 a month.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Price | Free | $25/mo | $50/mo | $100/mo | $200/mo |"
+  },
+  {
+    "claim": "Growth: $400 a month for up to 10,000 monthly active devices.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Growth $ 400 per month"
+  },
+  {
+    "claim": "Growth: up to 10,000 monthly active devices.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Up to 10,000 monthly devices"
+  },
+  {
+    "claim": "Agency: $1,000 a month.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Agency $ 1,000 per month"
+  },
+  {
+    "claim": "Agency: up to 100,000 monthly active devices.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Up to 100,000 monthly devices"
+  },
+  {
+    "claim": "Custom: over 100,000 devices, custom SLA and contract, dedicated account manager, NDA available.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Yes, for over 100,000 monthly devices or enterprise requirements including custom SLAs, NDAs, and dedicated support."
+  },
+  {
+    "claim": "All SDK capabilities are on every plan including the free Personal tier; the plans differ only in device limits and support level.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "All SDK capabilities — including rep counting, yoga pose detection, range of motion, joint angle tracking, and sports biomechanics — are available on every plan including the free Personal tier. The plans differ only in device limits and support level."
+  },
+  {
+    "claim": "Going over does not switch the SDK off; you receive an invoice at the end of the month with your final device numbers.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "QuickPose will continue working in your app. Your device usage is calculated on a monthly basis, therefore you will receive an invoice at the end of the month with your final device numbers."
+  },
+  {
+    "claim": "Billing runs monthly through Stripe, charged on the 1st for the previous month, with no setup fees or long-term contracts on standard plans.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Plans are billed monthly via Stripe. You'll be charged on the 1st of each month for the previous months usage. There are no setup fees or long-term contracts on standard plans."
+  },
+  {
+    "claim": "Cancellations take effect at the end of the current billing period.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Cancellations take effect at the end of your current billing period"
+  },
+  {
+    "claim": "Charging your own users is allowed.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "You're free to monetise your app however you choose"
+  },
+  {
+    "claim": "Integration Support: QuickPose's engineers integrate the SDK into your iOS or Android app; on request, minimum 4 hours.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Our engineering team integrates QuickPose directly into your iOS or Android app, configured to your specific use case, exercises, and UI. Minimum 4 hours."
+  },
+  {
+    "claim": "Code Audit: $150 an hour, minimum 2 hours.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Minimum 2 hours. $150 per hour"
+  },
+  {
+    "claim": "Custom Exercise Development for a movement not in the standard library.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Our AI team builds and trains custom models specifically for your use case."
+  },
+  {
+    "claim": "Its plan comparison table also marks on-device processing on every plan it lists.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "On-device processing"
+  },
+  {
+    "claim": "A fixed-fee proof of concept \"typically 4–8 weeks\".",
+    "url": "https://quickpose.ai/services/enterprise/",
+    "quote": "A tightly scoped proof of concept with defined deliverables, timeline and price — typically 4–8 weeks."
+  },
+  {
+    "claim": "Containerised deployment inside your own Azure tenancy or private cloud.",
+    "url": "https://quickpose.ai/services/enterprise/",
+    "quote": "Containerised deployments run inside your own Azure tenancy or private cloud"
+  },
+  {
+    "claim": "The iOS SDK README says \"Get your free SDK key on https://dev.quickpose.ai, usage limits may apply\", and keys are linked to the bundle ID.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "usage limits may apply. SDK Keys are linked to your bundle ID"
+  },
+  {
+    "claim": "The Android README says the same for the Play Store.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-android-sdk/main/README.md",
+    "quote": "please check Key before distributing to the Play Store."
+  },
+  {
+    "claim": "The older SDK FAQ on the JointTrack pricing page says you move to the Launch tier above 100 monthly active devices.",
+    "url": "https://quickpose.ai/products/jointtrack/pricing/",
+    "quote": "You move to the Launch tier if your app has more than 100 monthly active devices."
+  },
+  {
+    "claim": "The JointTrack page FAQ says education, non-profit, charity and volume pricing is available.",
+    "url": "https://quickpose.ai/products/jointtrack/pricing/",
+    "quote": "Special pricing for education, non profit organizations, charities, as well as volume discounts are available."
+  },
+  {
+    "claim": "JointTrack is a separate QuickPose image-annotation API.",
+    "url": "https://docs.quickpose.ai/",
+    "quote": "Image Processing API to add range of motion annotations to images and receive results in a json format."
+  },
+  {
+    "claim": "QuickPose's terms license the SDK under Apache 2.0 subject to the agreement.",
+    "url": "https://quickpose.ai/terms-and-conditions/",
+    "quote": "QuickPose AI SDK and JointTrack API are licensed to the User under the Apache 2.0 license, subject to the terms of this agreement."
+  },
+  {
+    "claim": "Their use \"may be subject to fees\".",
+    "url": "https://quickpose.ai/terms-and-conditions/",
+    "quote": "The use of QuickPose AI SDK and JointTrack API may be subject to fees, which the User agrees to pay in a timely manner."
+  },
+  {
+    "claim": "The terms name Sliced Backhand Ltd as QuickPose's owner.",
+    "url": "https://quickpose.ai/terms-and-conditions/",
+    "quote": "QuickPose is owned and operated by Sliced Backhand Ltd."
+  },
+  {
+    "claim": "Governed by the laws of the United Kingdom.",
+    "url": "https://quickpose.ai/terms-and-conditions/",
+    "quote": "These terms and conditions are governed by and construed in accordance with the laws of United Kingdom"
+  },
+  {
+    "claim": "The iOS SDK repository carries an Apache-2.0 LICENSE file.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/LICENSE",
+    "quote": "Apache License Version 2.0, January 2004"
+  },
+  {
+    "claim": "Sency's main pricing page: a free trial and then a paid monthly fee for the first 100 active users.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "After that, you'll start paying a minimal monthly fee to continue building and testing, which includes access for up to 100 active users."
+  },
+  {
+    "claim": "Sency's packages page: a free Starter plan for up to 100 monthly active users.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Up to 100 monthly active users"
+  },
+  {
+    "claim": "Sency's packages page: a Growth plan from $499 a month.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Publish & Monetize From $499 / month"
+  },
+  {
+    "claim": "Sency's packages page: Growth up to 3,800 monthly active users.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Up to 3,800 monthly active users"
+  },
+  {
+    "claim": "Sency's packages page: $0.79 per active user.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "$0.79 per active user"
+  },
+  {
+    "claim": "Kemtai's site routes buyers to a demo request.",
+    "url": "https://kemtai.com/",
+    "quote": "Please enter your business email to receive more information and a demo"
+  },
+  {
+    "claim": "KinesteX's FAQ describes usage-based plans.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Our pricing is adaptable to your use case and business model, with usage-based plans that scale to support clients of different sizes."
+  },
+  {
+    "claim": "KinesteX: priced per active user per month, falling as you reach new tiers.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "The pricing per-active-user-per-month will smoothly go down as you scale and reach new tiers."
+  },
+  {
+    "claim": "KinesteX: integration fees may apply.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Integration fees may apply depending on the complexity of your requirements"
+  },
+  {
+    "claim": "KinesteX access starts with a contact form.",
+    "url": "https://www.kinestex.com/docs",
+    "quote": "To get demo access and your API key, fill out the contact form on our website."
+  }
+]

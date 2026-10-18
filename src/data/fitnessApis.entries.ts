@@ -448,18 +448,18 @@ export const entries: ClusterEntry[] =
     "primaryQuery": "AI workout tracking API",
     "h1": "The Best AI Workout & Motion-Tracking APIs (2026)",
     "metaTitle": "Best AI Workout Tracking APIs & SDKs (2026)",
-    "metaDescription": "Compare the best AI workout tracking APIs and SDKs: KinesteX, Kemtai, Sency, and QuickPose vs free pose primitives like MediaPipe and MoveNet.",
-    "updated": "2026-08-02",
-    "answer": "For camera-based rep counting and form feedback without building a computer-vision team, an AI workout-tracking SDK is usually the most direct path. Pick KinesteX or Sency for broad cross-platform consumer fitness coaching, Kemtai for clinical and physiotherapy work, and QuickPose for iOS teams that want a self-serve free tier. If motion analysis is your core product, build on free pose primitives like MediaPipe, MoveNet, or Apple Vision instead. The keypoints are free and commoditized; the recurring cost is the rep logic, form rules, and exercise coverage on top.",
-    "body": "## The two layers: pose primitives vs coaching SDKs\n\nThere are two very different things people mean by an \"AI workout tracking API,\" and confusing them is the most common mistake.\n\nThe bottom layer is **pose-estimation primitives**: MediaPipe/BlazePose, TensorFlow MoveNet, and Apple Vision. These give you a skeleton of joint keypoints per video frame (roughly 17 to 33 landmarks in 2D and, in some cases, 3D) and nothing more. They are free, run on-device, and are permissively licensed.\n\nThe top layer is **coaching SDKs**: KinesteX, Kemtai, Sency, and QuickPose. These sit on the keypoints and add the application logic that turns a stream of landmarks into a product: rep counting, per-exercise form rules, exercise libraries, assessments, and feedback UI.\n\nHere is the key thing to internalize before you compare vendors: **the keypoints are the easy, commoditized part. The recurring cost is everything after them.** Getting 33 landmarks per frame is a solved, free problem. Turning noisy landmarks into reliable rep counts and per-exercise form feedback across body types, camera angles, lighting, and low-end devices is the actual engineering cost, and it recurs as maintenance rather than being a one-time build. Every new exercise needs its own state logic and joint-angle thresholds; accuracy across real-world conditions needs continuous tuning, test data, and QA. That second column of work is exactly what the coaching SDKs sell.\n\n## How to compare AI workout-tracking SDKs\n\nFour criteria decide this category for most builders:\n\n- **Scope fit.** Are you building consumer fitness, or clinical/rehab? The vendors specialize differently, and paying for rehab-grade scope you don't need (or missing it when you do) is a common mismatch.\n- **Platform coverage.** iOS-only, or do you need Android, web, Flutter, and React Native at parity? This alone rules some options in or out.\n- **Access and pricing model.** Self-serve with a free tier, or contact-sales with usage-based pricing? This affects how fast you can start and how you budget.\n- **How much you still build.** A thin pose+logic wrapper leaves the exercise programming and UI to you; a broader white-label platform ships more of the product but gives you less control over the exact form logic.\n\nOne accuracy note that applies to every product below: vendor-published accuracy and frames-per-second figures are **vendor-stated**, not independently verified here. Treat them as marketing claims to confirm in a trial, not as established fact.\n\n## Comparison table\n\n| SDK | Best for | Platforms | Access model | Watch out |\n|---|---|---|---|---|\n| KinesteX | Broad white-label AI fitness coaching | iOS, Android, Flutter, React Native, web/PWA | Contact-sales; vendor-described per-active-user pricing | No public pricing; budget needs a sales conversation |\n| Kemtai | Clinical / physiotherapy / MSK | Any camera device; embedded + API | Contact-sales, API key required | Clinical-first scope may exceed a pure consumer need |\n| Sency | Consumer fitness plus a packaged body assessment | iOS, Android, React Native, Flutter | Free trial, then usage-based; contact-sales | Confirm exercise breadth and iOS/Android parity in trial |\n| QuickPose | iOS teams wanting MediaPipe pose + ready rep/form logic | iOS-first; React Native package | Self-serve free tier, paid above a device threshold | iOS-centric; content and programming are more on you |\n\n_Pricing, tiers, and platform details are volatile — treat all as \"as of 2026, verify in the vendor's docs.\"_\n\n## The options in detail\n\n### KinesteX\n\nKinesteX (this blog's own company, described here to the same factual bar as the others) is a white-label AI fitness coaching SDK that adds camera-based motion analysis to a partner's app. It publishes SDKs for Swift, Kotlin, Flutter, React Native, and HTML/JS plus PWA, so it covers iOS, Android, and web. It provides ready-made workouts and plans, AI movement assessments, rep counting, calorie-burn estimation, posture tracking, and real-time form-correction feedback, and it exposes workout-performance and engagement metrics. The vendor's SDK READMEs describe optional edge processing (no cloud transmission) — optional, so confirm whether your configuration keeps processing on-device — and the vendor describes the offering as HIPAA-compliant. It is best for teams that want a broad, brandable, multi-platform coaching layer without building pose logic in-house. Watch out: pricing is not self-serve or public (the vendor describes it as usage-based per active user; contact sales), so budgeting requires a conversation, and any accuracy or fps figures are vendor-published and worth verifying.\n\n### Kemtai\n\nKemtai is a computer-vision movement-analysis platform oriented toward physiotherapy, rehab, and medical fitness (MSK, orthopedic, neurological, chronic care), while also serving general fitness. It runs on nearly any camera device with no wearables, and ships both as an embedded experience and via a backend API for creating sessions, running digital assessments, and pulling adherence data back into your system. The vendor cites tracking of 111 body data points and a library of over 2,000 exercises and variations, and states its tracking was validated against a gold-standard 3D motion lab (a vendor claim worth confirming before you cite the study). It is best for clinical, PT, and MSK use cases needing a large validated exercise library plus assessment and adherence data. Watch out: the positioning is clinical-first, so a pure consumer-fitness team may pay for rehab-oriented scope it doesn't need, and both pricing and the validation study require direct confirmation.\n\n### Sency\n\nSency is an AI motion-tracking SDK (\"SMKit\") for fitness and health apps that uses only a phone camera. It ships iOS and Android native, with React Native and Flutter wrappers, and the vendor emphasizes on-device inference (stated at up to 60 fps). Beyond real-time tracking and coach-style feedback, it includes a structured roughly four-minute \"Body Assessment\" covering functional movement, strength, mobility, and endurance, which is a useful onboarding step. Access starts with a free trial (no credit card, per the vendor's site at our last check) before moving to usage-based pricing via a sales conversation, and public SDK repos exist. It is best for consumer fitness and health apps that want quick on-device tracking plus a packaged assessment, with a low-friction way to evaluate first. Watch out: detailed pricing is behind sales, so use the trial to confirm exercise-library breadth and whether iOS and Android match for your specific exercises.\n\n### QuickPose\n\nQuickPose is a production-ready pose-estimation SDK, iOS-first (native Swift and SwiftUI via Swift Package Manager), with a React Native package published as well. It is built as a transparent wrapper on Google's MediaPipe, runs on-device with no cloud dependency, and is optimized for the iPhone Neural Engine. It provides 33-point full-body skeleton detection plus pre-built helpers for rep counting, form feedback, exercise and yoga recognition, and joint-angle metrics; you can use its overlay UI or consume raw landmarks and build your own. Its distinguishing trait is access: a fully-featured self-serve free tier with no watermark, moving to a paid tier above a device threshold — the vendor has cited roughly 100 monthly active devices, though its public repos publish no tiers, so confirm current terms — with education and volume discounts. Because it is MediaPipe-based it inherits a commercially permissive foundation. It is best for iOS teams that want MediaPipe pose plus ready-made rep and form logic without a sales call to start. Watch out: it is iOS-centric (evaluate React Native and Android parity), and it is a pose+logic SDK rather than a full branded workout platform, so exercise programming and UI are more on you.\n\n## The build-your-own alternative: pose primitives\n\nIf motion analysis is your core product, you can skip the coaching SDKs and build on free primitives. All run on-device and are commercially usable:\n\n- **MediaPipe / BlazePose** (Google AI Edge) detects 33 body landmarks in 2D and 3D, is explicitly optimized for on-device real-time fitness, and runs on Android, iOS, Python, and web under an Apache-2.0 license.\n- **TensorFlow MoveNet** detects 17 keypoints very fast, in a latency-focused \"Lightning\" and a higher-accuracy \"Thunder\" variant, and runs in TensorFlow Lite and TensorFlow.js. Google recommends it over the older PoseNet.\n- **Apple Vision** provides on-device body-pose detection inside the Apple SDK: 19 2D joints, plus a newer 3D request, free within the Apple toolchain but iOS and macOS only.\n\nThe catch is the one from the top of this page: these give you keypoints and stop there. Rep logic, form rules, exercise coverage, calibration, and edge-case handling are all on you, and that work recurs. Whether owning it is worth it is a build-vs-buy decision, not a feature checklist — we cover that trade-off in depth in the linked guide. [How to build an AI fitness app](/ai-fitness-app) maps this layer and the five others, with a build-versus-buy position for each.\n\n## Which should you pick?\n\nMatch the tool to the job rather than hunting for a single winner:\n\n- **If you're adding fitness coaching as a feature in a broader consumer app and want cross-platform coverage** → KinesteX or Sency. Choose KinesteX for a broad white-label workouts-plus-assessments layer across iOS, Android, and web; choose Sency if a packaged onboarding body assessment and a no-credit-card trial matter to you.\n- **If you're in physiotherapy, rehab, or medical fitness** → Kemtai, for its large exercise library, assessments, and clinical positioning.\n- **If you're an iOS team that wants to start today without a sales call** → QuickPose, for its self-serve free tier and transparent MediaPipe foundation.\n- **If motion analysis is your core IP, you have CV/ML talent, or you need exercises the vendors don't cover** → build on MediaPipe, MoveNet, or Apple Vision, and accept that the rep/form/library logic is yours to build and maintain.\n\n## Watch the fine print\n\nPricing tiers, device thresholds, exercise counts, frame rates, and platform parity all change, and most of the commercial vendors keep detailed pricing behind a sales conversation. Confirm every volatile number against the vendor's own docs before you commit, and use trials and free tiers to verify accuracy and platform parity on your actual exercises and target devices.",
+    "metaDescription": "AI workout tracking SDKs compared from their own docs: QuickPose, Sency, Kemtai and KinesteX (which funds this site), vs free pose models like MediaPipe.",
+    "updated": "2026-10-18",
+    "answer": "For camera-based rep counting and form feedback without building a computer-vision team, an AI workout-tracking SDK is usually the most direct path. Pick QuickPose for MediaPipe-based building blocks with a published per-device price list, Sency for assessments and workout plans in a native kit, Kemtai for clinical and physiotherapy work, and KinesteX (this site's own product) for a hosted white-label coaching experience across mobile and the web. If motion analysis is your core product, build on free pose models like MediaPipe, MoveNet, Apple Vision or ML Kit instead; the keypoints are free, and the recurring cost is the rep logic, form rules and exercise coverage on top.",
+    "body": "**Disclosure: KinesteX, one of the four SDKs below, is this site's own product, and KinesteX funds this site.** It is listed last, described to the same factual bar as the others, and nothing here ranks it first. Every vendor fact on this page comes from the vendor's own repositories, documentation or published pages as read on October 17 and 18, 2026.\n\n## The two layers: pose primitives vs coaching SDKs\n\nThere are two very different things people mean by an \"AI workout tracking API,\" and confusing them is the most common mistake.\n\nThe bottom layer is **pose-estimation primitives**: MediaPipe/BlazePose, TensorFlow MoveNet, Apple Vision and Google's ML Kit. These give you a skeleton of joint keypoints per video frame (17 to 33 landmarks in 2D and, in some cases, 3D) and nothing more. They are free, run on-device, and are permissively licensed or bundled with the platform.\n\nThe top layer is **coaching SDKs**: QuickPose, Sency, Kemtai and KinesteX. These sit on the keypoints and add the application logic that turns a stream of landmarks into a product: rep counting, per-exercise form rules, exercise libraries, assessments, and feedback UI.\n\nHere is the key thing to internalize before you compare vendors: **the keypoints are the easy, commoditized part. The recurring cost is everything after them.** Getting 33 landmarks per frame is a solved, free problem. Turning noisy landmarks into reliable rep counts and per-exercise form feedback across body types, camera angles, lighting, and low-end devices is the actual engineering cost, and it recurs as maintenance rather than being a one-time build. Every new exercise needs its own state logic and joint-angle thresholds; accuracy across real-world conditions needs continuous tuning, test data, and QA. That second column of work is exactly what the coaching SDKs sell.\n\n## How to compare AI workout-tracking SDKs\n\nFour criteria decide this category for most builders:\n\n- **Scope fit.** Are you building consumer fitness, or clinical/rehab? The vendors specialize differently, and paying for rehab-grade scope you don't need (or missing it when you do) is a common mismatch.\n- **Platform coverage.** iOS-only, or do you need Android, web, Flutter, and React Native at parity? This alone rules some options in or out.\n- **Access and pricing model.** Published plans with a free tier, or a demo request and a quote? This affects how fast you can start and how you budget.\n- **How much you still build.** A pose-and-logic toolkit leaves the exercise programming and UI to you; a white-label platform ships more of the product but gives you less control over the exact form logic.\n\nOne accuracy note that applies to every product below: none of these vendors publishes an independent benchmark, and we have not measured any of them. Treat every accuracy or speed figure as a marketing claim to confirm in a trial; [how to evaluate motion SDKs](/guides/evaluate-motion-sdks) sets out a protocol.\n\n## Comparison table\n\n| SDK | Best for | Platforms | Access model | Watch out |\n|---|---|---|---|---|\n| QuickPose | MediaPipe pose plus ready rep, range-of-motion and feedback logic inside your own UI | iOS 14+, Android API 26+, React Native plugin | Self-serve free tier, paid above a device threshold; every plan published per monthly active device | Building blocks, not content: exercise programming and UI stay on you |\n| Sency | Assessments and workout plans, as a no-UI native kit or a white-label UI kit | iOS, Android, React Native, Flutter; JavaScript and Unity marked \"NA\" | Free trial, then usage-based; contact-sales sign-up, with per-user plans published on two pages that disagree about the first 100 users | Models download from Sency's server at configuration; proprietary Terms of Use |\n| Kemtai | Clinical, physiotherapy and MSK | Any device with a camera; embeddable components plus data APIs | Demo request; API docs by email; no published prices | Clinical-first scope may exceed a pure consumer need |\n| KinesteX (this site's own product) | A hosted white-label coaching experience with content, plans and assessments | iOS, Android, Flutter, React Native, web (iframe, PWA, React TypeScript) | Contact-sales; vendor-described per-active-user pricing | A WebView or iframe experience, not native rendering; no published prices |\n\n_Prices, tiers and platform details are volatile: everything above is as of October 2026, so verify in the vendor's own pages._\n\n## The options in detail\n\n### QuickPose\n\nQuickPose is a pose-estimation toolkit built on Google's MediaPipe: its iOS README describes \"developer-oriented cutting edge ML features of MediaPipe and BlazePose\", and its Swift package ships MediaPipe lite, full and heavy libraries as modules. It runs on iOS 14 and later (its product page says all iPhones from iPhone 8 onwards), on Android from API 26, and in React Native through a plugin, and its product pages say all inference runs on the device with no video frames sent to a server. It provides joint overlays, range-of-motion measurement for shoulders, hips, knees, back and neck, counters for 20 named exercises, body-position feedback, and yoga pose detection; you can use its overlays or consume raw landmarks and build your own. Its distinguishing trait is access: a free SDK key, and a published price list by monthly active device, free for up to 10 devices and then from $25 a month for 100 devices to $1,000 a month for 100,000, with every SDK feature on every plan ([QuickPose pricing](/pricing/quickpose-pricing)). It is best for teams that want MediaPipe pose plus ready-made rep and range-of-motion logic without a sales call to start. Watch out: it is a pose-and-logic SDK rather than a workout platform, so exercise programming and UI are on you, and the Android README's feature table is shorter than the iOS one.\n\n### Sency\n\nSency is a motion SDK for fitness and health apps that uses only a phone camera, in two kits: SMKit, which its version table calls a \"Native no-UI SDK\" where you own the camera preview and UI, and SMKitUI, a white-label Branded Kit. It ships for iOS, Android, React Native and Flutter, with JavaScript and Unity marked \"NA\". Its README leads with movement and fitness assessments, monthly progress evaluations and personalized workout plans, and its pricing page describes a four-step assessment that takes less than 4 minutes and covers functional movement, core strength, mobility and endurance. Its FAQ says data is analyzed on the user's device and never sent to the cloud, but its iOS and Android SDKs download their models from Sency's server during configuration, with no bundled fallback. Sency prices by monthly active user on two pages that disagree about the start: its packages page lists a free Starter plan for up to 100 users and a Growth plan from $499 a month for up to 3,800, while its main pricing page describes a free trial and then a minimal monthly fee covering up to 100 active users, with pay-as-you-go above that ([Sency pricing](/pricing/sency-pricing)). Its main pricing page invites you to start with a free trial, \"no commitment required\". Sign-up runs through a contact form, and commercial use falls under a separate paid agreement in its Terms of Use. It is best for consumer fitness and health apps that want assessments and plans in a native kit. Watch out: the first configuration needs a connection, and the two pricing pages need reconciling in writing.\n\n### Kemtai\n\nKemtai is a computer-vision movement-analysis platform oriented toward physiotherapy, rehab and medical fitness. Its site says it works on any device with a camera, with no sensors or wearables, and that it ships as embeddable components plus data APIs that return exercise scores, range-of-motion changes and adherence data to your system. It cites a library of more than 2,000 exercises and movement variations, processing on the device with no video recorded, and an FDA listing and CE marking as a medical device. It says its accuracy was validated in a study against a gold-standard motion lab that used 10 3D cameras and body sensors, a vendor claim about a study worth asking to see, and two of its own pages give different body-point counts, 111 and 113. Its API documentation is behind an email request and it publishes no prices. It is best for clinical, PT and MSK products that need a large exercise library plus assessment and adherence data. Watch out: the positioning is clinical-first, so a pure consumer-fitness team may pay for scope it doesn't need.\n\n### KinesteX\n\nKinesteX (this site's own product, described here to the same factual bar as the others) is a white-label AI fitness coaching SDK whose iOS, Android, Flutter, React Native and web SDKs embed a hosted camera workout experience through a WebView or iframe, plus a content API. It provides ready-made workouts and plans, challenges and leaderboards, AI movement assessments with risk-level outputs, rep counting, mistake detection, posture tracking and calorie estimates, and it sends rep, mistake, exercise and workout events back to your app. Its SDK READMEs describe \"optional edge processing (no cloud transmission)\", while its security page says all camera and vision processing stays on-device and its HIPAA page says KinesteX is HIPAA compliant; confirm what your configuration does. It is best for teams that want a brandable, multi-platform coaching layer, including the web, without building pose logic in-house. Watch out: it publishes no prices (its FAQ describes usage-based plans priced per active user per month; access starts with a contact form), the experience is the vendor's hosted web app rather than native rendering you control, and its accuracy figures (above 90 percent in a README, 97.2 percent in its FAQ) are its own claims.\n\n## The build-your-own alternative: pose primitives\n\nIf motion analysis is your core product, you can skip the coaching SDKs and build on free primitives. All run on-device and are commercially usable:\n\n- **MediaPipe / BlazePose** (Google AI Edge) detects 33 body landmarks with 3D world landmarks, is positioned by its model card for on-device real-time fitness, and runs on Android, iOS, Python, and web under an Apache-2.0 license. See [MediaPipe Pose Landmarker models](/motion/mediapipe-pose-landmarker-models).\n- **TensorFlow MoveNet** detects 17 keypoints in a latency-focused \"Lightning\" and a higher-accuracy \"Thunder\" variant, plus a MultiPose model for up to 6 people, and runs in TensorFlow Lite and TensorFlow.js. The older standalone PoseNet package is deprecated in its favour. See [MoveNet models](/motion/movenet-models).\n- **Apple Vision** provides on-device body-pose detection inside the Apple SDK: 19 2D joints from iOS 14, plus a 3D request from iOS 17, free within the Apple toolchain, on Apple platforms only. See [Apple Vision body pose](/motion/apple-vision-body-pose).\n- **ML Kit Pose Detection** returns 33 landmarks for one person on Android and iOS, offered in beta. See [ML Kit pose detection](/motion/ml-kit-pose-detection).\n\nThe catch is the one from the top of this page: these give you keypoints and stop there. Rep logic, form rules, exercise coverage, calibration, and edge-case handling are all on you, and that work recurs. Whether owning it is worth it is a build-vs-buy decision, not a feature checklist. [How to build an AI fitness app](/ai-fitness-app) maps this layer and the five others, with a build-versus-buy position for each, and [pose estimation models compared](/motion/pose-estimation-models-compared) covers the model choice.\n\n## Which should you pick?\n\nMatch the tool to the job rather than hunting for a single winner:\n\n- **If you want building blocks inside your own UI and a price you can read today** → QuickPose, for its free key, published per-device plans and MediaPipe foundation.\n- **If you want assessments and workout plans in a native kit, or Flutter** → Sency, with its two pricing pages reconciled in writing.\n- **If you're in physiotherapy, rehab, or medical fitness** → Kemtai, for its exercise library, embeddables and clinical positioning, with its regulatory and validation claims confirmed first-hand.\n- **If you want a white-label coaching experience with content across mobile and the web** → KinesteX, which funds this site; [KinesteX alternatives](/alternatives/kinestex-alternatives) lists the reasons you might not.\n- **If motion analysis is your core IP, you have CV/ML talent, or you need exercises the vendors don't cover** → build on MediaPipe, MoveNet, Apple Vision or ML Kit, and accept that the rep, form and library logic is yours to build and maintain.\n\nHead-to-heads with the same sourcing: [QuickPose vs Sency](/compare/quickpose-vs-sency), [KinesteX vs Sency](/compare/kinestex-vs-sency) and [KinesteX vs QuickPose](/compare/kinestex-vs-quickpose).\n\n## Watch the fine print\n\nPricing tiers, device and user thresholds, exercise counts and platform parity all change, and two of these four vendors publish no prices at all. Confirm every volatile number against the vendor's own pages before you commit, and use trials and free tiers to verify accuracy and platform parity on your actual exercises and target devices.",
     "faqs": [
       {
         "q": "What is the difference between a pose estimation API and an AI workout tracking SDK?",
-        "a": "A pose-estimation API such as MediaPipe, MoveNet, or Apple Vision gives you a skeleton of joint keypoints per frame and nothing more. A workout-tracking SDK such as KinesteX, Kemtai, Sency, or QuickPose adds the application logic on top: rep counting, per-exercise form rules, exercise libraries, and feedback UI."
+        "a": "A pose-estimation API such as MediaPipe, MoveNet, Apple Vision or ML Kit gives you a skeleton of joint keypoints per frame and nothing more. A workout-tracking SDK such as QuickPose, Sency, Kemtai or KinesteX adds the application logic on top: rep counting, per-exercise form rules, exercise libraries, assessments and feedback UI."
       },
       {
         "q": "Is there a free AI workout tracking API?",
-        "a": "The pose-estimation primitives are free and permissively licensed: MediaPipe/BlazePose and TensorFlow MoveNet are Apache-2.0, and Apple Vision is free within the Apple SDK. Among commercial coaching SDKs, QuickPose offers a self-serve free tier up to a device threshold; others are usage-based and mostly contact-sales. Verify current tiers in each vendor's docs."
+        "a": "The pose-estimation primitives are free: MediaPipe/BlazePose and TensorFlow MoveNet are Apache-2.0, and Apple Vision and ML Kit come with their platforms. Among commercial coaching SDKs, QuickPose publishes a free tier for up to 10 monthly active devices, and Sency's packages page lists a free Starter plan for up to 100 monthly active users, though its main pricing page describes those users as a paid tier after a free trial. Kemtai and KinesteX publish no prices."
       },
       {
         "q": "Can I build my own rep counting instead of using an SDK?",
@@ -467,14 +467,22 @@ export const entries: ClusterEntry[] =
       },
       {
         "q": "Which AI motion-tracking SDK is best for physiotherapy or rehab?",
-        "a": "Kemtai is positioned for clinical, physiotherapy, and MSK use cases, citing a large exercise library plus assessment and adherence data delivered as both an embedded experience and an API. Confirm its pricing and any validation claims directly with the vendor."
+        "a": "Kemtai is positioned for clinical, physiotherapy, and MSK use cases: its site describes embeddable exercise and patient-management components, data APIs for exercise scores and adherence, more than 2,000 exercises, and an FDA listing and CE marking as a medical device. It publishes no prices and its API documentation is behind an email request, so confirm the regulatory status, the validation study it cites and the terms directly with Kemtai."
       },
       {
         "q": "Do these workout tracking SDKs run on-device or in the cloud?",
-        "a": "The raw pose primitives run on the client. The commercial SDKs differ: QuickPose ships MediaPipe models inside your app, Sency emphasizes on-device inference, and KinesteX describes optional edge processing — optional, so confirm what your configuration does. Verify the specifics per vendor before relying on them for privacy or compliance positioning."
+        "a": "The raw pose primitives run on the client. The commercial SDKs all claim on-device analysis, with differences worth checking: QuickPose bundles MediaPipe and says no video frames are sent to a server; Sency's FAQ says data is analyzed on the device, but its SDKs download their models from Sency's server at configuration; Kemtai says processing is done on the edge device and video is not recorded; and KinesteX's READMEs say optional edge processing while its security page says all camera and vision processing stays on-device. Get your configuration's behaviour in writing before relying on it for privacy or compliance."
       }
     ],
     "related": [
+      {
+        "href": "/compare/quickpose-vs-sency",
+        "label": "QuickPose vs Sency"
+      },
+      {
+        "href": "/guides/evaluate-motion-sdks",
+        "label": "How to evaluate motion SDKs"
+      },
       {
         "href": "/fitness-apis/exercise-database-apis",
         "label": "Best exercise database APIs"
@@ -490,7 +498,125 @@ export const entries: ClusterEntry[] =
     ],
     "cta": {
       "pitch": "We break down a new fitness and motion API every week, including the on-device latency, platform-parity, and contact-sales pricing gotchas that never make the marketing page."
-    }
+    },
+    "sources": [
+      {
+        "url": "https://github.com/quickpose/quickpose-ios-sdk",
+        "checked": "2026-10-17",
+        "note": "MediaPipe and BlazePose description, modules, features, iOS 14.0"
+      },
+      {
+        "url": "https://docs.quickpose.ai/docs/MobileSDK",
+        "checked": "2026-10-17",
+        "note": "Android API 26 (snapshot)"
+      },
+      {
+        "url": "https://quickpose.ai/products/ios-sdk/",
+        "checked": "2026-10-17",
+        "note": "iPhone 8 onwards, on-device inference, yoga pose detection (snapshot)"
+      },
+      {
+        "url": "https://quickpose.ai/sdk-pricing/",
+        "checked": "2026-10-17",
+        "note": "plans by monthly active device (snapshot)"
+      },
+      {
+        "url": "https://github.com/sency-ai/smkit-sdk",
+        "checked": "2026-10-17",
+        "note": "kits, platform table, features, Terms of Use LICENSE"
+      },
+      {
+        "url": "https://github.com/sency-ai/smkit-ios-demo",
+        "checked": "2026-10-17",
+        "note": "server-downloaded models"
+      },
+      {
+        "url": "https://github.com/sency-ai/smkit-android-demo",
+        "checked": "2026-10-17",
+        "note": "server-delivered models"
+      },
+      {
+        "url": "https://www.sency.ai/pricing",
+        "checked": "2026-10-17",
+        "note": "trial, usage-based billing, four-step assessment, contact form (read through a text reader; quotes re-checked on the page by CI)"
+      },
+      {
+        "url": "https://www.sency.ai/pricing-packages",
+        "checked": "2026-10-18",
+        "note": "Starter and Growth plans (read through a text reader; quotes re-checked on the page by CI)"
+      },
+      {
+        "url": "https://www.sency.ai/faq-motion-tracking",
+        "checked": "2026-10-18",
+        "note": "on-device processing claim (read through a text reader; quotes re-checked on the page by CI)"
+      },
+      {
+        "url": "https://kemtai.com/",
+        "checked": "2026-10-17",
+        "note": "devices, exercises, edge processing, regulatory and validation claims, 111 points, API docs by email (snapshot)"
+      },
+      {
+        "url": "https://kemtai.com/kemtai-api-and-embeddables/",
+        "checked": "2026-10-17",
+        "note": "embeddables and data APIs (snapshot)"
+      },
+      {
+        "url": "https://kemtai.com/our-computer-vision/",
+        "checked": "2026-10-17",
+        "note": "113 body points (snapshot)"
+      },
+      {
+        "url": "https://github.com/KinesteX",
+        "checked": "2026-10-17",
+        "note": "WebView and iframe SDKs, events, assessments, accuracy claim"
+      },
+      {
+        "url": "https://www.kinestex.com/docs",
+        "checked": "2026-10-17",
+        "note": "platforms, contact-form access (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/product/faqs",
+        "checked": "2026-10-17",
+        "note": "pricing model, 97.2% claim (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/product/security",
+        "checked": "2026-10-17",
+        "note": "on-device statement (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/product/hipaa",
+        "checked": "2026-10-17",
+        "note": "HIPAA compliance claim (snapshot)"
+      },
+      {
+        "url": "https://storage.googleapis.com/mediapipe-assets/Model%20Card%20BlazePose%20GHUM%203D.pdf",
+        "checked": "2026-10-17",
+        "note": "33 landmarks, fitness positioning, Apache-2.0"
+      },
+      {
+        "url": "https://github.com/tensorflow/tfjs-models/tree/master/pose-detection",
+        "checked": "2026-10-17",
+        "note": "MoveNet 17 keypoints; PoseNet package deprecated"
+      },
+      {
+        "url": "https://storage.googleapis.com/movenet/MoveNet.MultiPose%20Model%20Card.pdf",
+        "checked": "2026-10-17",
+        "note": "up to 6 people"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/vision/vnhumanbodyposeobservation/jointname",
+        "checked": "2026-10-18",
+        "note": "19 2D joints; the 3D request from iOS 17"
+      },
+      {
+        "url": "https://developers.google.com/ml-kit/vision/pose-detection",
+        "checked": "2026-10-17",
+        "note": "33 landmarks, one person, beta"
+      }
+    ],
+    "firstParty": true
   },
   {
     "slug": "nutrition-apis",
