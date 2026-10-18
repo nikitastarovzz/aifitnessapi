@@ -7,7 +7,7 @@
  * contained the entry and listed it in its cluster's release gate (blog
  * posts: the commit that added the file; generated sections: the commit that
  * added the route, or the item to the data file if that came later).
- * Keyed by URL path without the leading slash. 440 rows.
+ * Keyed by URL path without the leading slash. 465 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -373,6 +373,31 @@ export const PUBLISHED: Record<string, string> = {
   "learn/what-is-pose-estimation": "2026-07-13",
   "learn/what-is-rpe": "2026-08-12",
   "learn/what-is-vo2-max": "2026-07-13",
+  "libraries": "2026-10-03",
+  "libraries/capacitor-cordova": "2026-10-18",
+  "libraries/capacitor-health": "2026-10-03",
+  "libraries/capgo-capacitor-health": "2026-10-03",
+  "libraries/cordova-plugin-health": "2026-10-03",
+  "libraries/expo-health-connect": "2026-10-03",
+  "libraries/flutter": "2026-10-18",
+  "libraries/flutter-health": "2026-10-03",
+  "libraries/flutter-health-connect": "2026-10-03",
+  "libraries/garminconnect": "2026-10-03",
+  "libraries/garth": "2026-10-03",
+  "libraries/health-connector": "2026-10-03",
+  "libraries/health-kit-reporter": "2026-10-03",
+  "libraries/kingstinct-react-native-healthkit": "2026-10-03",
+  "libraries/oura-python": "2026-10-03",
+  "libraries/oura-ring": "2026-10-03",
+  "libraries/perfood-capacitor-healthkit": "2026-10-03",
+  "libraries/python": "2026-10-18",
+  "libraries/python-fitbit": "2026-10-03",
+  "libraries/react-native": "2026-10-18",
+  "libraries/react-native-google-fit": "2026-10-03",
+  "libraries/react-native-health": "2026-10-03",
+  "libraries/react-native-health-connect": "2026-10-03",
+  "libraries/stravalib": "2026-10-03",
+  "libraries/withings-api": "2026-10-03",
   "migrate/adapt-to-strava-api-changes": "2026-07-20",
   "migrate/add-android-to-healthkit-app": "2026-07-20",
   "migrate/aggregator-to-direct-integration": "2026-07-20",
