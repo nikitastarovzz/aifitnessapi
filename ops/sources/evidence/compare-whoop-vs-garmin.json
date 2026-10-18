@@ -1,0 +1,107 @@
+[
+  {
+    "claim": "Answer: Garmin's Health API is for business use only by Garmin's own FAQ.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "How to compare, access: Garmin's Connect Developer Program is for business use only.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Table, API access, Garmin: business use only, with no licensing or maintenance fees.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Note under the table: Garmin's program FAQ says there are no licensing or maintenance fees.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Note under the table: some metrics may need a licence fee or a minimum device order for commercial use.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+  },
+  {
+    "claim": "Note under the table: Garmin does not publish those amounts; the FAQ names the fee and the minimum order without a figure.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+  },
+  {
+    "claim": "Where Garmin pulls ahead: the partner program is only for business use.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Where Garmin pulls ahead: Garmin confirms an application's status within two business days.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
+  },
+  {
+    "claim": "Which to pick, Garmin: the program is for business use only.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Which to pick, shipping soon: Garmin says it confirms an application's status within two business days.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
+  },
+  {
+    "claim": "Fine print: Garmin's FAQ says there are no licensing or maintenance fees.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Fine print: Garmin does not publish the amounts for the metrics that need a licence fee.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+  },
+  {
+    "claim": "FAQ, access: Garmin's Connect Developer Program is for business use only.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "FAQ, access: Garmin confirms an application's status within two business days.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
+  },
+  {
+    "claim": "FAQ, end-user cost: Garmin's program FAQ says there are no licensing or maintenance fees.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "FAQ, end-user cost: some metrics may need a licence fee for commercial use.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+  },
+  {
+    "claim": "FAQ, Garmin fee: there are no licensing or maintenance fees for access to the program, which is only for business use.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "FAQ, Garmin fee: access to some metrics may require a licence fee payment or a minimum device order quantity for commercial use.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+  },
+  {
+    "claim": "FAQ, Garmin fee: Garmin's Health API page marks enhanced beat-to-beat interval as needing a licence fee for commercial use (the marker).",
+    "url": "https://developer.garmin.com/gc-developer-program/health-api/",
+    "quote": "Enhanced Beat-To-Beat Interval *"
+  },
+  {
+    "claim": "FAQ, Garmin fee: Garmin's Health API page marks enhanced beat-to-beat interval as needing a licence fee for commercial use (the footnote).",
+    "url": "https://developer.garmin.com/gc-developer-program/health-api/",
+    "quote": "* Commercial use requires a license fee payment."
+  },
+  {
+    "claim": "FAQ, Garmin fee: Garmin does not publish those amounts; the FAQ names the fee and the minimum order without a figure.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+  }
+]

@@ -1,0 +1,317 @@
+[
+  {
+    "claim": "The API returns workout data tracked with Suunto devices as FIT files.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "Application interface (API) provides you possibility to access the workout data tracked with Suunto devices. The API provides you the FIT files common in sports industry."
+  },
+  {
+    "claim": "FIT files contain GPS tracks and measured samples.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "These also have all the measured samples such as heart rate, r-r data, power data, altitude, temperature. These files also contain GPS tracks."
+  },
+  {
+    "claim": "Authorization is based on OAuth2.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "API authorization is based on OAuth2."
+  },
+  {
+    "claim": "Access is for companies and organizations building for a public audience.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "The API will be provided to companies, organizations who are providing tools / apps / services for public audience."
+  },
+  {
+    "claim": "Suunto does not offer access for personal use.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "We currently don't offer the API access for personal use."
+  },
+  {
+    "claim": "Applicants are reviewed on brand fit, customer interest and innovation mindset.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "We are reviewing the applicants based on for example the fit to our brand, interest from our customers and illustration of the innovation mindset"
+  },
+  {
+    "claim": "Suunto does not charge for the API.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "We do not charge from the use of the API."
+  },
+  {
+    "claim": "Applying includes accepting the API agreement.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "When submitting your application you need to accept the API agreement."
+  },
+  {
+    "claim": "Applications are reviewed weekly with a maximum two-week wait.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "The applications are reviewed on weekly bases, so you have to wait few days prior getting the acceptance. There is maximum two week waiting period."
+  },
+  {
+    "claim": "Accepted partners hear back within two weeks.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "If you have been accepted to the Suunto partner program, you should get the response in within two weeks."
+  },
+  {
+    "claim": "The Development API has every endpoint but smaller request limits.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "The Development API includes all the endpoints but has smaller request limits."
+  },
+  {
+    "claim": "You submit your application information and subscribe to the production API.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "When you are ready you need to submit your application information in your profile page. Then subscribe to the production API."
+  },
+  {
+    "claim": "Suunto then grants production access and publishes the app on Suunto.com.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "After this we will grant you access to production API and publish your application to Suunto.com."
+  },
+  {
+    "claim": "One account can have only one app.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "One account can have only one app. One account is associated to one email address."
+  },
+  {
+    "claim": "An agency's client company applies and signs the API agreement.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "Please ask your client company to submit the partner program application, so that they can sign the API Agreement."
+  },
+  {
+    "claim": "Selecting the Suunto Cloud API on the application provides the API agreement.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "If you select Suunto Cloud API you will be provided the API agreement."
+  },
+  {
+    "claim": "Every data call needs the subscription key.",
+    "url": "https://apizone.suunto.com/how-to-start",
+    "quote": "To be able to use Integration API you have to subscribe to the API and add the subscription key to each request."
+  },
+  {
+    "claim": "Two keys allow regeneration without downtime.",
+    "url": "https://apizone.suunto.com/how-to-start",
+    "quote": "The purpose of having 2 keys it to allow key regeneration and redeployment without app downtime."
+  },
+  {
+    "claim": "OAuth requests do not need the subscription key.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "Ocp-Apim-Subscription-Key parameter is required for Cloud API requests but not for OAuth related requests."
+  },
+  {
+    "claim": "Set app name, client secret and redirect URI; the client ID is generated.",
+    "url": "https://apizone.suunto.com/how-to-start",
+    "quote": "The Client Id is generating automatically."
+  },
+  {
+    "claim": "The authorization host is https://cloudapi-oauth.suunto.com.",
+    "url": "https://apizone.suunto.com/how-to-start",
+    "quote": "Authorization API has the address https://cloudapi-oauth.suunto.com."
+  },
+  {
+    "claim": "The authorization URL takes response_type=code, client_id and redirect_uri.",
+    "url": "https://apizone.suunto.com/how-to-start",
+    "quote": "https://cloudapi-oauth.suunto.com/oauth/authorize?response_type=code&client_id=<CLIENT_ID>&redirect_uri=<REDIRECT_URI>"
+  },
+  {
+    "claim": "The token exchange uses HTTP Basic client credentials.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "The endpoint is protected using Basic authentication scheme in the following format:"
+  },
+  {
+    "claim": "The token endpoint is https://cloudapi-oauth.suunto.com/oauth/token.",
+    "url": "https://apizone.suunto.com/how-to-start",
+    "quote": "curl -v https://cloudapi-oauth.suunto.com/oauth/token --user <CLIENT_ID>:<CLIENT_SECRET> -d grant_type=authorization_code"
+  },
+  {
+    "claim": "The example response has expires_in 86400 and the workout scope.",
+    "url": "https://apizone.suunto.com/how-to-start",
+    "quote": "\"expires_in\": 86400, \"scope\": \"workout\""
+  },
+  {
+    "claim": "The JWT's user claim is the Suunto App username.",
+    "url": "https://apizone.suunto.com/how-to-start",
+    "quote": "You may parse it and extract a custom claim named ' user' which is the authorizing user's Suunto app account username."
+  },
+  {
+    "claim": "Users must use Suunto App credentials, not Movescount.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "Common issues are users using the Movescount credentials, these do not work. User needs to use the Suunto App credentials."
+  },
+  {
+    "claim": "There is no mobile SDK; authorization is optimized for mobile use.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "The authorisation process is optimized for mobile use. There is no mobile SDK at the moment."
+  },
+  {
+    "claim": "The integration API is at https://cloudapi.suunto.com.",
+    "url": "https://apizone.suunto.com/how-to-start",
+    "quote": "The integration API has the address https://cloudapi.suunto.com."
+  },
+  {
+    "claim": "Data calls need the Authorization and Ocp-Apim-Subscription-Key headers.",
+    "url": "https://apizone.suunto.com/how-to-start",
+    "quote": "Making requests to the APIs requires using two HTTP headers:"
+  },
+  {
+    "claim": "The workout list is at /v2/workouts.",
+    "url": "https://apizone.suunto.com/how-to-start",
+    "quote": "curl -v https://cloudapi.suunto.com/v2/workouts"
+  },
+  {
+    "claim": "You can get workouts and daily activities.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "You can get workouts and daily activities."
+  },
+  {
+    "claim": "Daily activity contains steps and calories.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "This contains daily steps and calories."
+  },
+  {
+    "claim": "You can push routes and workouts.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "You can push routes and workouts."
+  },
+  {
+    "claim": "Routes are GPX files with waypoints that sync to watches for navigation.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "The routes are GPX files which have route location data enriched with waypoints. The routes are shown in Suunto App and can be then synched to Suunto watches for navigation."
+  },
+  {
+    "claim": "Workouts can be pushed as FIT files.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "You can push the workouts in FIT file format for the users account."
+  },
+  {
+    "claim": "Sleep data is not available yet.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "The Suunto Cloud API doesn’t yet support the sleep data fetch/push."
+  },
+  {
+    "claim": "Points of interest are not available yet.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "The Suunto Cloud API doesn’t yet support the point of interests."
+  },
+  {
+    "claim": "Personal data such as weight or heart rate zones is not available.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "Personal data such as weight data or heartrate zones are not available yet from Suunto Cloud API"
+  },
+  {
+    "claim": "Use the workout list for history.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "To get list of the workouts from the past history."
+  },
+  {
+    "claim": "FIT files have the most comprehensive dataset.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "Fit files has most comprehensive dataset from each workout. Consisting all the sample data, laps and summary value from each exercise."
+  },
+  {
+    "claim": "Workout JSON has startTime and stopTime in epoch milliseconds.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "startTime is an integer in UNIX epoch milliseconds specifying when the workout was started."
+  },
+  {
+    "claim": "timeOffsetInMinutes is the UTC offset when the exercise stopped.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "timeOffsetInMinutes is an integer in minutes specifying the user's local time difference to UTC at the time when the exercise stopped."
+  },
+  {
+    "claim": "Workout contents depend on the watch model.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "The workouts are stored with Suunto watches and depend of the model."
+  },
+  {
+    "claim": "Sport modes can stop GPS or heart rate measurement.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "This makes it possible for example stop GPS tracking or heartrate measurements."
+  },
+  {
+    "claim": "Webhooks notify you about new workouts.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "Use the webhook method to get a notification about new workouts."
+  },
+  {
+    "claim": "The webhook is set in your app's OAuth settings and must be public.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "You can setup the webhook in your app oauth settings under your profile in Suunto Apizone"
+  },
+  {
+    "claim": "The notification POST carries username and workoutid.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "Suunto partner notification has two parameters passed in the POST request username and workoutid."
+  },
+  {
+    "claim": "There is no webhook for daily activity.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "There is no webhook / notification model in place for activity data."
+  },
+  {
+    "claim": "Fetch daily activity with workouts, and about once a day otherwise.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "You can additionally fetch the daily activity for the user i.e. once a day, just in case user has synched their device with Suunto app wihout workouts."
+  },
+  {
+    "claim": "Suunto asks partners to avoid unnecessary polling.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "Avoid unnecessary polling of the API"
+  },
+  {
+    "claim": "The developer API has the same capabilities but is rate-limited.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "There developer API has same capabilities as the production API. However, the number of calls you can do with developer API are rate-limited."
+  },
+  {
+    "claim": "Expect larger volumes at weekends and the start of the year.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "You can expect a larger data volume on weekends as people are more active and doing more workouts."
+  },
+  {
+    "claim": "Spikes at the start of the year.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "There is also spikes for example in start of the year"
+  },
+  {
+    "claim": "Partners are added to a newsletter about new capabilities.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "Once you register to Suunto partner program, you will same time be included to newsletter which we are sending for participants when there are new capabilities available."
+  },
+  {
+    "claim": "Movescount is a completely separate system.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "There is nothing common with these. Movescount is completely separate system."
+  },
+  {
+    "claim": "Suunto encourages the Suunto App and Cloud API.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "we encourage people to change into Suunto App and therefore the Suunto Cloud API will be the way for Suunto Compatibility."
+  },
+  {
+    "claim": "China uses a separate API with different endpoints.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "We will then provide you the access to our Chinese API. This is technically the same, just with different address endpoints."
+  },
+  {
+    "claim": "A 500 usually means a bad workout key, a 12-byte hex string.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "Workout key format: hexadecimal string, key length - 12 bytes."
+  },
+  {
+    "claim": "Development runs against the production system with real tester data.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "The development with the API is done with the production system, so you can use the real data from your testers with your app/service."
+  },
+  {
+    "claim": "Suunto publishes example FIT files.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "There is also example FIT files available"
+  },
+  {
+    "claim": "SuuntoPlus data sits in FIT developer fields.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "The Suuntoplus data is stored in FIT files as developer fields."
+  },
+  {
+    "claim": "API reference access requires partner acceptance.",
+    "url": "https://apizone.suunto.com/apis",
+    "quote": "In order to get access to try the API you need to be accepted for Suunto partner program."
+  }
+]

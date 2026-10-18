@@ -1,0 +1,77 @@
+[
+  {
+    "claim": "There are no licensing or maintenance fees for access to the program, but it is only for business use.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+  },
+  {
+    "claim": "Enhanced beat-to-beat interval is marked: commercial use requires a license fee payment.",
+    "url": "https://developer.garmin.com/gc-developer-program/health-api/",
+    "quote": "* Commercial use requires a license fee payment."
+  },
+  {
+    "claim": "The metric carrying the asterisk is enhanced beat-to-beat interval.",
+    "url": "https://developer.garmin.com/gc-developer-program/health-api/",
+    "quote": "Enhanced Beat-To-Beat Interval *"
+  },
+  {
+    "claim": "The Health API lists steps, intensity minutes, sleep, calories and heart rate.",
+    "url": "https://developer.garmin.com/gc-developer-program/health-api/",
+    "quote": "Steps Intensity Minutes Sleep Calories Heart Rate"
+  },
+  {
+    "claim": "The Health API lists stress, Pulse Ox, Body Battery, body composition, respiration and blood pressure.",
+    "url": "https://developer.garmin.com/gc-developer-program/health-api/",
+    "quote": "Stress Pulse Ox Body Battery Body Composition Respiration Blood Pressure"
+  },
+  {
+    "claim": "Users sync their own Garmin devices.",
+    "url": "https://developer.garmin.com/gc-developer-program/health-api/",
+    "quote": "After initial consent, end-users sync their device with Garmin Connect to upload device data, at which point it is accessible via the API."
+  },
+  {
+    "claim": "If you want to supply wearables, Garmin asks for the number of devices when you request the program.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "please request the Garmin Connect Developer Program and enter the number of devices you believe you will support."
+  },
+  {
+    "claim": "Garmin's team discusses how to sell and provide wearables to your users.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "A member of the Garmin team will contact you to discuss how best to sell and provide the wearables to your users."
+  },
+  {
+    "claim": "Garmin confirms an application's status within two business days.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "we will confirm the status of your application within two business days."
+  },
+  {
+    "claim": "A typical integration takes 1 to 4 weeks.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "A typical integration takes between 1 and 4 weeks."
+  },
+  {
+    "claim": "An integration call is part of the process.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "In parallel, we will invite you to an integration call to help understand your needs and walk you through the high-level technical details of the Developer Program and its APIs."
+  },
+  {
+    "claim": "If approved you get access to the Garmin Developer Portal.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "If approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
+  },
+  {
+    "claim": "Garmin's FAQ says the program is available for enterprise use.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "The Garmin Connect Developer Program is available for enterprise use"
+  },
+  {
+    "claim": "Every program page carried a Stay tuned banner on October 17, 2026.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Stay tuned for more updates on the program"
+  }
+]

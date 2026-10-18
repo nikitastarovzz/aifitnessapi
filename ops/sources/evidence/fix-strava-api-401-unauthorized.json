@@ -1,0 +1,37 @@
+[
+  {
+    "claim": "Program changes: an API Policy, effective June 1, 2026.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "API Policy (2026) Effective Date: June 1, 2026"
+  },
+  {
+    "claim": "Program changes: prohibits intermediaries and aggregators re-exposing Strava's API to third parties.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "operate, offer, or facilitate any abstraction layer, integration-platform-as-a-service, no-code-AI platform, pass-through proxy, intermediary, or aggregator that re-exposes the Strava API Materials, in whole or in part, to third parties; (b) operate any MCP Server, agent-mediated interface, or analogous mechanism that exposes the Strava API Materials, Strava Data, or any subset thereof"
+  },
+  {
+    "claim": "Program changes: subscription requirements for Standard Tier apps.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Standard Tier Applications are subject to subscription requirements as published on the Strava developer site , including a requirement that the developer or specified end users maintain an active Strava subscription."
+  },
+  {
+    "claim": "Program changes: Strava's getting-started guide calls a Strava subscription a prerequisite for creating an app.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "A Strava subscription is a prerequisite for creating an app."
+  },
+  {
+    "claim": "FAQ, subscription and 401s: subscription requirements for Standard Tier apps under its API Policy.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Standard Tier Applications are subject to subscription requirements as published on the Strava developer site , including a requirement that the developer or specified end users maintain an active Strava subscription."
+  },
+  {
+    "claim": "FAQ, subscription and 401s: the API Policy is effective June 1, 2026.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "API Policy (2026) Effective Date: June 1, 2026"
+  },
+  {
+    "claim": "FAQ, subscription and 401s: its getting-started guide calls a Strava subscription a prerequisite for creating an app.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "A Strava subscription is a prerequisite for creating an app."
+  }
+]

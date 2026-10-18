@@ -1,0 +1,462 @@
+[
+  {
+    "claim": "Strava's getting-started guide says a Strava subscription is a prerequisite for creating an app.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "A Strava subscription is a prerequisite for creating an app."
+  },
+  {
+    "claim": "Every new app starts in single-player mode, where only your own Strava account can authenticate with the app.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "All new applications start in single-player mode. This is the default state where only your own Strava account can authenticate with the app, which lets you build and test your integration against your own data."
+  },
+  {
+    "claim": "A new app's default limits are 200 requests per 15 minutes and 2,000 per day overall, and 100 per 15 minutes and 1,000 per day for non-upload endpoints.",
+    "url": "https://developers.strava.com/docs/rate-limits/",
+    "quote": "The default overall rate limit allows 200 requests every 15 minutes, with up to 2,000 requests per day."
+  },
+  {
+    "claim": "The non-upload default is 100 requests per 15 minutes and 1,000 per day.",
+    "url": "https://developers.strava.com/docs/rate-limits/",
+    "quote": "rate limit allows 100 requests every 15 minutes, with up to 1,000 requests per day."
+  },
+  {
+    "claim": "The self-service upgrade from the API Settings Dashboard raises the athlete capacity to 10, read limits to 200 per 15 minutes and 2,000 per day, and overall limits to 400 per 15 minutes and 4,000 per day.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "Once your app is configured in your API dashboard, you can upgrade your access directly from your API Settings Dashboard. This raises your access to: Athlete capacity of 10 Read read limits: 200 requests / 15min & 2,000 requests / day Overall rate limits: 400 requests / 15min & 4,000 requests / day"
+  },
+  {
+    "claim": "More than 10 athletes requires submitting the app for review.",
+    "url": "https://developers.strava.com/docs/rate-limits/",
+    "quote": "If you want to scale beyond 10 connected athletes you’ll need to submit your app for review ."
+  },
+  {
+    "claim": "The review form asks for screenshots of every place Strava data appears and of the Connect with Strava button, and increased access is not a guarantee.",
+    "url": "https://developers.strava.com/docs/rate-limits/",
+    "quote": "Please complete our Developer Program form for review and be sure to include screenshots of all the places Strava data is shown and the"
+  },
+  {
+    "claim": "Strava says increased access is not a guarantee.",
+    "url": "https://developers.strava.com/docs/rate-limits/",
+    "quote": "Please note: increased access is not a guarantee."
+  },
+  {
+    "claim": "The API Policy, effective June 1, 2026, says admission to the Developer Program is at Strava's discretion with no fixed review-time commitment.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Admission to the Strava Developer Program is at Strava's discretion and is not guaranteed. Strava does not commit to a fixed review-time service-level agreement"
+  },
+  {
+    "claim": "The API Policy took effect on June 1, 2026.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "API Policy (2026) Effective Date: June 1, 2026"
+  },
+  {
+    "claim": "The Standard Tier covers apps limited to 10 registered users and apps limited to 9,999.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Developer Applications limited to 10 registered Strava users (generally intended for hobbyists, side projects, and early development); and Developer Applications limited to 9,999 registered Strava users"
+  },
+  {
+    "claim": "Standard Tier apps are subject to subscription requirements, including that the developer or specified end users maintain an active Strava subscription.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Standard Tier Applications are subject to subscription requirements as published on the Strava developer site , including a requirement that the developer or specified end users maintain an active Strava subscription."
+  },
+  {
+    "claim": "The Extended Access Tier, generally for apps serving 10,000 users or more, is admitted case by case and is not subject to the subscription requirements unless Strava publishes otherwise.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "generally inclusive of Developer Applications serving 10,000 users or more and approved by Strava. Extended Access Tier Applications are admitted on a case-by-case basis and are not subject to subscription requirements, except as Strava may publish from time to time."
+  },
+  {
+    "claim": "Apps are created at https://www.strava.com/settings/api.",
+    "url": "https://developers.strava.com/docs/",
+    "quote": "Any registered Strava user can obtain an access_token by first creating an application at https://www.strava.com/settings/api ."
+  },
+  {
+    "claim": "The redirect_uri must be within the app's callback domain, and localhost and 127.0.0.1 are white-listed.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "Must be within the callback domain specified by the application. localhost and 127.0.0.1 are white-listed."
+  },
+  {
+    "claim": "Strava uses OAuth 2.0; registered apps get a client ID and a client secret that should never be shared.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "All developers need to register their application before getting started. A registered application will be assigned a client ID and client secret. The secret is used for authentication and should never be shared."
+  },
+  {
+    "claim": "Web apps send the athlete to GET https://www.strava.com/oauth/authorize.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "Redirect the user to GET https://www.strava.com/oauth/authorize ."
+  },
+  {
+    "claim": "Android and iOS apps use https://www.strava.com/oauth/mobile/authorize.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "Android apps can use an Implicit Intent to redirect users to the GET https://www.strava.com/oauth/mobile/authorize endpoint."
+  },
+  {
+    "claim": "Mobile OAuth needs the Strava app at version 75.0 or later; otherwise the athlete authorizes on the web.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "Users must have version 75.0 or later of the Strava app installed in order to take advantage of mobile OAuth."
+  },
+  {
+    "claim": "The read scope covers public segments, public routes, public profile data, public posts, public events, club feeds and leaderboards.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "read : read public segments, public routes, public profile data, public posts, public events, club feeds, and leaderboards"
+  },
+  {
+    "claim": "read_all covers private routes, private segments and private events.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "read_all :read private routes, private segments, and private events for the user"
+  },
+  {
+    "claim": "profile:read_all reads all profile information even if visibility is Followers or Only You.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "profile:read_all : read all profile information even if the user has set their profile visibility to Followers or Only You"
+  },
+  {
+    "claim": "profile:write updates weight and FTP and stars or unstars segments.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "profile:write : update the user's weight and Functional Threshold Power (FTP), and access to star or unstar segments on their behalf"
+  },
+  {
+    "claim": "activity:read covers activities visible to Everyone and Followers, excluding privacy zone data.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "activity:read : read the user's activity data for activities that are visible to Everyone and Followers, excluding privacy zone data"
+  },
+  {
+    "claim": "activity:read_all adds privacy zone data and Only You activities.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "activity:read_all : the same access as activity:read , plus privacy zone data and access to read the user's activities with visibility set to Only You"
+  },
+  {
+    "claim": "activity:write creates manual activities and uploads and edits activities visible to the app.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "activity:write : access to create manual activities and uploads, and access to edit any activities that are visible to the app, based on activity read access level"
+  },
+  {
+    "claim": "Scopes go in the scope parameter as a comma- or URL-safe space-delimited string, and activity:read is required for activity webhooks.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "Requested scopes, as a comma- or URL-safe space-delimited string"
+  },
+  {
+    "claim": "activity:read is required for activity webhooks.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "The scope activity:read is required for activity webhooks."
+  },
+  {
+    "claim": "The athlete can untick requested scopes on the consent screen.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "Scopes requested by the application are shown as checked boxes, but the user may opt out of any requested scopes."
+  },
+  {
+    "claim": "approval_prompt is auto by default; force always shows the prompt.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "force or auto , use force to always show the authorization prompt even if the user has already authorized the current application, default is auto ."
+  },
+  {
+    "claim": "A denial comes back as error=access_denied.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "If access is denied, error=access_denied will be included in the query string."
+  },
+  {
+    "claim": "The authorization code is short-lived and single-use, and is exchanged at POST https://www.strava.com/oauth/token with the client ID and secret.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "code is short lived and can only be used once. The application must now call the POST https://www.strava.com/oauth/token with its client ID and client secret to exchange the authorization code for a refresh token and short-lived access token."
+  },
+  {
+    "claim": "The token response carries a refresh token, access token and expiry.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "A refresh token, access token, and access token expiration date will be issued upon successful authentication."
+  },
+  {
+    "claim": "Since April 23, 2026 token responses include a space-delimited scope field.",
+    "url": "https://developers.strava.com/docs/changelog/",
+    "quote": "Authentication returns a scope field containing a space-delimited list of granted scopes."
+  },
+  {
+    "claim": "The changelog dates that change to April 23, 2026.",
+    "url": "https://developers.strava.com/docs/changelog/",
+    "quote": "April 23, 2026"
+  },
+  {
+    "claim": "The granted scope list may differ from what was requested.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "This may differ from the originally-requested list if the athlete unchecked any of the requested scopes on the Authorization page."
+  },
+  {
+    "claim": "Access tokens expire six hours after they are created.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "Access tokens expire six hours after they are created, so they must be refreshed in order for an application to maintain access to a user"
+  },
+  {
+    "claim": "Refreshing returns the existing access token if it expires in more than an hour, and a new one if it expires within the hour.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "If the application has an access token for the user that expires in more than one hour, the existing access token will be returned."
+  },
+  {
+    "claim": "Within the last hour a new access token is returned.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "for the user are expired or will expire in one hour (3,600 seconds) or less, a new access token will be returned."
+  },
+  {
+    "claim": "Every successful token call can return a different refresh token, and the older one is invalidated immediately once a new one is returned.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "The refresh token may or may not be the same refresh token used to make the request. Applications should persist the refresh token contained in the response, and always use the most recent refresh token for subsequent requests to obtain a new access token. Once a new refresh token is returned, the older refresh token is invalidated immediately."
+  },
+  {
+    "claim": "The v3 REST API includes data on athletes, activities, routes and gear.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "The Strava REST API includes data on athletes, activities, routes, and gear."
+  },
+  {
+    "claim": "The athlete activities endpoint takes before and after as epoch timestamps.",
+    "url": "https://developers.strava.com/swagger/swagger.json",
+    "quote": "An epoch timestamp to use for filtering activities that have taken place before a certain time."
+  },
+  {
+    "claim": "The after parameter filters activities that took place after a time.",
+    "url": "https://developers.strava.com/swagger/swagger.json",
+    "quote": "An epoch timestamp to use for filtering activities that have taken place after a certain time."
+  },
+  {
+    "claim": "The endpoint requires activity:read and filters Only You activities unless the token has activity:read_all.",
+    "url": "https://developers.strava.com/swagger/swagger.json",
+    "quote": "Requires activity:read. Only Me activities will be filtered out unless requested by a token with activity:read_all."
+  },
+  {
+    "claim": "Lists are paginated to 30 items by default and per_page goes up to 200.",
+    "url": "https://developers.strava.com/docs/",
+    "quote": "Requests that return multiple items will be paginated to 30 items by default. The page parameter can be used to specify further pages or offsets. The per_page may also be used for custom page sizes up to 200."
+  },
+  {
+    "claim": "A page can hold fewer items than requested even when it is not the last, so iterate until an empty page.",
+    "url": "https://developers.strava.com/docs/",
+    "quote": "If you need to fully go through the full set of results, prefer iterating until an empty page is returned."
+  },
+  {
+    "claim": "Strava publishes its Swagger spec at https://developers.strava.com/swagger/swagger.json for client generation with Swagger Codegen 2.x.",
+    "url": "https://developers.strava.com/docs/",
+    "quote": "Use https://developers.strava.com/swagger/swagger.json for Strava"
+  },
+  {
+    "claim": "Client generation uses Swagger Codegen 2.x.",
+    "url": "https://developers.strava.com/docs/",
+    "quote": "To generate client code, you first need to install Swagger Codegen 2.X ."
+  },
+  {
+    "claim": "Strava encourages every app to use its webhook events API.",
+    "url": "https://developers.strava.com/docs/webhooks/",
+    "quote": "We encourage all API applications to use our webhook events API."
+  },
+  {
+    "claim": "Per the API terms, you need webhooks to know when an athlete has deauthorized your app.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "Per our API terms, you need to implement webhooks to know when an athlete has deauthorized your API application"
+  },
+  {
+    "claim": "Each application may have only one subscription, which receives events for every athlete who authorized it.",
+    "url": "https://developers.strava.com/docs/webhooks/",
+    "quote": "Each application may only have one subscription, but that single subscription will allow the application to receive webhook events for all supported changes to data owned by athletes that have authorized that application."
+  },
+  {
+    "claim": "Subscriptions are managed at https://www.strava.com/api/v3/push_subscriptions with the client ID, secret, callback URL and verify token.",
+    "url": "https://developers.strava.com/docs/webhooks/",
+    "quote": "Webhook subscriptions, also referred to as push subscriptions, are managed through the push subscription API at:"
+  },
+  {
+    "claim": "The subscription request includes the client_id, client_secret, a callback address and a verification token.",
+    "url": "https://developers.strava.com/docs/webhooks/",
+    "quote": "It defines the callback address where events will be sent and also defines a verification token used in validating the callback address."
+  },
+  {
+    "claim": "Strava validates the callback with a GET carrying hub.mode=subscribe, hub.verify_token and hub.challenge.",
+    "url": "https://developers.strava.com/docs/webhooks/",
+    "quote": "GET https://mycallbackurl.com?hub.verify_token=STRAVA&hub.challenge=15f7d1a91c1f40f8a748fd134752feb3&hub.mode=subscribe"
+  },
+  {
+    "claim": "The callback must respond within two seconds with HTTP 200 and the challenge echoed as JSON.",
+    "url": "https://developers.strava.com/docs/webhooks/",
+    "quote": "The response should indicate status code 200 and should echo the hub.challenge field in the response body as application/json content type"
+  },
+  {
+    "claim": "The callback must answer the validation GET within two seconds.",
+    "url": "https://developers.strava.com/docs/webhooks/",
+    "quote": "Your callback address must respond within two seconds to the GET request from Strava"
+  },
+  {
+    "claim": "Events fire when an activity is created or deleted, when its title, type or privacy changes, and when an athlete revokes access.",
+    "url": "https://developers.strava.com/docs/webhooks/",
+    "quote": "Specifically, webhook events are pushed when an athlete revokes access to an application, or when an activity is created, deleted, or one of the following activity fields are updated:"
+  },
+  {
+    "claim": "Privacy update events need activity:read_all.",
+    "url": "https://developers.strava.com/docs/webhooks/",
+    "quote": "Privacy, requires an access token with activity:read_all scope"
+  },
+  {
+    "claim": "Deauthorization events carry \"authorized\": \"false\" in updates.",
+    "url": "https://developers.strava.com/docs/webhooks/",
+    "quote": "For app deauthorization events, there is always an \"authorized\" : \"false\" key-value pair."
+  },
+  {
+    "claim": "Events carry object_type, object_id, aspect_type, owner_id, subscription_id, event_time and updates; object_type is activity or athlete.",
+    "url": "https://developers.strava.com/docs/webhooks/",
+    "quote": "Always either \"activity\" or \"athlete.\""
+  },
+  {
+    "claim": "aspect_type is create, update or delete.",
+    "url": "https://developers.strava.com/docs/webhooks/",
+    "quote": "Always \"create,\" \"update,\" or \"delete.\""
+  },
+  {
+    "claim": "If you need more data about the object you fetch it yourself.",
+    "url": "https://developers.strava.com/docs/webhooks/",
+    "quote": "If additional information about the object is required, an application must decide how or if it wants to fetch the most up-to-date data."
+  },
+  {
+    "claim": "Acknowledge each POST with 200 within two seconds; Strava retries for up to three attempts in total.",
+    "url": "https://developers.strava.com/docs/webhooks/",
+    "quote": "The subscription callback endpoint must acknowledge the POST of each new event with a status code of 200 OK within two seconds. Event pushes are retried (up to a total of three attempts) if a 200 is not returned."
+  },
+  {
+    "claim": "One save can produce several webhook events.",
+    "url": "https://developers.strava.com/docs/webhooks/",
+    "quote": "action by the athlete can result in multiple webhook events."
+  },
+  {
+    "claim": "Apps with activity:read but not activity:read_all get a delete event when an activity becomes Only You, and a create event when it becomes visible again.",
+    "url": "https://developers.strava.com/docs/webhooks/",
+    "quote": "Applications that have activity:read scope (recommended) and not activity:read_all scope will receive a delete event when an activity"
+  },
+  {
+    "claim": "Those apps receive a create event when visibility changes from Only You to another setting.",
+    "url": "https://developers.strava.com/docs/webhooks/",
+    "quote": "Similarly, these applications will receive a create event when an activity"
+  },
+  {
+    "claim": "The deauthorize endpoint POST https://www.strava.com/oauth/deauthorize invalidates all of the athlete's tokens for the app.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "The endpoint is POST https://www.strava.com/oauth/deauthorize ."
+  },
+  {
+    "claim": "Deauthorizing invalidates all refresh and access tokens the app has for the athlete.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "Applications can revoke access to an athlete’s data. This will invalidate all refresh tokens and access tokens that the application has for the athlete"
+  },
+  {
+    "claim": "From June 1, 2026 apps can use POST https://www.strava.com/oauth/revoke, the recommended method, which will be the only supported deauthorization endpoint from June 1, 2027.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "As of June 1, 2026 applications can choose to leverage the endpoint POST https://www.strava.com/oauth/revoke . This is the recommended method for deauthorization and will be the only endpoint supported for deauthorization effective June 1, 2027."
+  },
+  {
+    "claim": "The revoke endpoint authenticates with HTTP Basic using the client ID and secret.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "Authenticate using HTTP Basic Auth with your application"
+  },
+  {
+    "claim": "It takes the token to revoke, with an optional token_type_hint.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "access_token or refresh_token. Used as a hint to optimize lookup. Not required"
+  },
+  {
+    "claim": "Revocation returns 200 whether or not the token was found.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "Success: HTTP 200 with an empty body. Revocation returns 200 whether or not the token was found."
+  },
+  {
+    "claim": "Limits are per application, with a 15-minute and a daily limit, and an overall limit plus a separate non-upload limit.",
+    "url": "https://developers.strava.com/docs/rate-limits/",
+    "quote": "Strava API usage is limited on a per-application basis using both a 15-minute and daily request limit. Applications have an overall rate limit as well as a separate rate limit associated with the endpoints we consider"
+  },
+  {
+    "claim": "The 15-minute window resets at 0, 15, 30 and 45 minutes past the hour and the daily window at midnight UTC; over-limit requests return 429 and still count toward the daily limit.",
+    "url": "https://developers.strava.com/docs/rate-limits/",
+    "quote": "15-minute limit is reset at natural 15-minute intervals corresponding to 0, 15, 30 and 45 minutes after the hour. The daily limit resets at midnight UTC. Requests exceeding the limit will return 429 Too Many Requests along with a JSON error message. Note that requests violating the short term limit will still count toward the long term limit."
+  },
+  {
+    "claim": "Non-upload covers every endpoint except creating activities, uploads and media uploads.",
+    "url": "https://developers.strava.com/docs/rate-limits/",
+    "quote": "POST activities (activities#create) POST uploads (uploads#create) activities#upload_media"
+  },
+  {
+    "claim": "Usage is reported in X-RateLimit-Limit and X-RateLimit-Usage, plus X-ReadRateLimit-Limit and X-ReadRateLimit-Usage, each a 15-minute, daily pair.",
+    "url": "https://developers.strava.com/docs/rate-limits/",
+    "quote": "X-ReadRateLimit-Usage integer, integer two comma-separated values 15-minute usage, followed by daily usage."
+  },
+  {
+    "claim": "Strava's advice for apps under 100 users that hit limits is to implement webhooks and throttle backfills using the headers.",
+    "url": "https://developers.strava.com/docs/rate-limits/",
+    "quote": "Activity polling is causing you to hit your daily rate limits Implement webhooks"
+  },
+  {
+    "claim": "Backfills should be throttled by checking the response headers.",
+    "url": "https://developers.strava.com/docs/rate-limits/",
+    "quote": "Check API response headers (see above) and throttle back requests when necessary"
+  },
+  {
+    "claim": "Strava Data from a user may be shown only to that user, even data that is public on Strava.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Strava Data provided by a specific Strava user may be displayed or disclosed in your Developer Application only to that user. You may not display or disclose Strava Data related to other users, even if such data is publicly viewable on the Strava Platform."
+  },
+  {
+    "claim": "The policy forbids using Strava API materials or data in connection with the development, training, evaluation or operation of any AI application, including embeddings, retrieval-augmented generation and context windows.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "You may not use the Strava API Materials or Strava Data, directly or indirectly, in connection with the development, training, evaluation, or operation of any AI Application."
+  },
+  {
+    "claim": "The AI prohibition extends to embeddings, retrieval-augmented generation and context windows.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "embedding generation, retrieval-augmented generation, ingestion into a context window or working memory"
+  },
+  {
+    "claim": "Strava Data may not be cached for more than seven days.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "You may not retain Strava Data in your cache for longer than seven (7) days."
+  },
+  {
+    "claim": "Data an athlete deletes must disappear from your app within 48 hours.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Deletions must be reflected in your Developer Application expeditiously but in all cases within forty-eight (48) hours."
+  },
+  {
+    "claim": "Pass-through proxies, aggregators that re-expose the API, and MCP servers exposing Strava data are prohibited.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "operate, offer, or facilitate any abstraction layer, integration-platform-as-a-service, no-code-AI platform, pass-through proxy, intermediary, or aggregator that re-exposes the Strava API Materials, in whole or in part, to third parties; (b) operate any MCP Server, agent-mediated interface, or analogous mechanism that exposes the Strava API Materials, Strava Data, or any subset thereof"
+  },
+  {
+    "claim": "Strava's own MCP is the only authorized agent interface.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "The Strava MCP is the sole authorized first-party agent-mediated interface to the Strava Platform."
+  },
+  {
+    "claim": "Displaying Garmin-sourced data requires Garmin attribution per Garmin's brand guidelines.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "If your Developer Application displays information derived from Garmin-sourced data, you must display attribution to Garmin in the form and manner required by Garmin's brand guidelines."
+  },
+  {
+    "claim": "On May 21, 2026 Strava began ingesting FIT set messages for strength training and accepting JSON uploads for weight training.",
+    "url": "https://developers.strava.com/docs/changelog/",
+    "quote": "Addition of set message support for FIT file uploads ."
+  },
+  {
+    "claim": "JSON uploads are limited to weight training activities.",
+    "url": "https://developers.strava.com/docs/changelog/",
+    "quote": "Introduction of JSON file format support for uploads , limited to weight training activities."
+  },
+  {
+    "claim": "June 1, 2026 brought the new deauthorization endpoint, the tier in the dashboard and self-service expanded access for single-player developers.",
+    "url": "https://developers.strava.com/docs/changelog/",
+    "quote": "Introduction of new deauthorization endpoint . Expose application tier in API Settings Dashboard . Introduction of self service expanded access in API Settings Dashboard for single player developers."
+  },
+  {
+    "claim": "The API Agreement was last updated June 1, 2026.",
+    "url": "https://developers.strava.com/docs/rate-limits/",
+    "quote": "Our API Agreement was last updated June 1, 2026."
+  },
+  {
+    "claim": "On September 1, 2026 the Club Activities, Club Members and Club Admins endpoints were removed and Explore Segments was restricted to approved Extended Access Tier developers.",
+    "url": "https://developers.strava.com/docs/changelog/",
+    "quote": "Club Activities , Club Members , and Club Admins endpoints removed Explore Segments endpoint restricted to approved Extended Access Tier developers"
+  },
+  {
+    "claim": "The base URL moves from https://www.strava.com/api/v3 to https://api-v3.strava.com, available from January 4, 2027.",
+    "url": "https://developers.strava.com/docs/changelog/",
+    "quote": "The API base URL is changing from https://www.strava.com/api/v3 to https://api-v3.strava.com . The new base URL will be available starting January 4, 2027"
+  }
+]

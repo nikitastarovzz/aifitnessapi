@@ -15,15 +15,15 @@
     },
     {
       "file": "fitness-api-changes-2026.csv",
-      "bytes": 8777,
+      "bytes": 9403,
       "rows": 16,
-      "sha256": "f9ee76402b2c81ebc00ffd6bff6d1fc1e124d156b57fb69ba802dbfa275beb72"
+      "sha256": "d0527d247512dacced12811dc579ae269381226147130bd05adcbb0d2b0d0728"
     },
     {
       "file": "fitness-api-changes-2026.json",
-      "bytes": 13021,
+      "bytes": 13647,
       "rows": 16,
-      "sha256": "28cc2e0f99c253785221911000ac641f4ce19953680c21f5a05621a5f6f7690e"
+      "sha256": "ea1701134d0de1a4563617c9d6f1dfe9f033f1d1de2e22218fc1eeb35a43992f"
     },
     {
       "file": "fitness-api-glossary-2026.csv",
@@ -39,15 +39,15 @@
     },
     {
       "file": "fitness-apis-2026.csv",
-      "bytes": 4833,
+      "bytes": 5278,
       "rows": 25,
-      "sha256": "0996205430bf7f9b427c932aeafdb80f64505c7d37e0874f3626491158b5e976"
+      "sha256": "e3abc8f56a437450d9d56d5d532cffa9c1fd0e870f93e501f1b596043840b2db"
     },
     {
       "file": "fitness-apis-2026.json",
-      "bytes": 10024,
+      "bytes": 10465,
       "rows": 25,
-      "sha256": "4f52b84cd9b66c3da444bdecd319a2451d9910a3e349cb59d0f06632459d9eca"
+      "sha256": "0ed76764a340da36f21350c50d175346d6c6d4db23e7a47dfba3ce2aecba5a5f"
     },
     {
       "file": "google-health-api-data-types-2026.csv",

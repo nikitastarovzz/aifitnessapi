@@ -1,0 +1,272 @@
+[
+  {
+    "claim": "The API reads and writes results with the Concept2 Logbook.",
+    "url": "https://log.concept2.com/developers/home",
+    "quote": "You can use the Concept2 API to read and write results with the Concept2 Logbook."
+  },
+  {
+    "claim": "Result types range from rower, skierg and bike to multierg.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "Fetches only results of this type. Must be one of rower skierg bike dynamic slides paddle water snow rollerski multierg"
+  },
+  {
+    "claim": "Set up a client on the API Keys page.",
+    "url": "https://log.concept2.com/developers/home",
+    "quote": "To use it, you’ll need to set up an API key on the \"API Keys\" page. There, you can set up and manage your own client and get the client information needed to authenticate users using OAuth."
+  },
+  {
+    "claim": "A registered application gets a client ID and client secret.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "A registered OAuth application is assigned a unique Client ID and Client Secret. The Client Secret should not be shared."
+  },
+  {
+    "claim": "Managing the client requires a Concept2 Logbook account.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "as the manager of the client you will be required to log in with a Concept2 Logbook account to create and manage your client."
+  },
+  {
+    "claim": "Read-only apps can develop against production.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "If you are only reading data from the Logbook, you can develop against production."
+  },
+  {
+    "claim": "Write apps develop against log-dev and need approval for the live API.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "If you are writing data to the Logbook, before using the live API, you must first develop against the development server and database on https://log-dev.concept2.com . When ready, please contact Concept2 for approval for the live API."
+  },
+  {
+    "claim": "Contact ranking@concept2.com for validation.",
+    "url": "https://log.concept2.com/developers/home",
+    "quote": "Once the application is ready to go live, please contact ranking@concept2.com for validation."
+  },
+  {
+    "claim": "Applications requesting write permissions are set up on log-dev.",
+    "url": "https://log.concept2.com/developers/home",
+    "quote": "Applications requesting write permissions should be set up on log-dev.concept2.com ."
+  },
+  {
+    "claim": "Development data may be reset.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "Results and users in the development database may occasionally be reset. You should not rely on data persisting there."
+  },
+  {
+    "claim": "For personal use, generate a long-lived token from your profile.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "If you’re just developing an app to read data for your personal use, it might be easier to generate a long-lived authorization token from the Edit Profile > Applications > Concept2 Logbook API integration."
+  },
+  {
+    "claim": "Four grants are implemented.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "The OAuth Grant types implemented are Authorization Code, Refresh, Client Credentials and Password ."
+  },
+  {
+    "claim": "All applications have authorization code and refresh.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "All applications have access to the Authorization Code and Refresh grant types."
+  },
+  {
+    "claim": "Password grant is only for certain trusted applications.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "This grant type is only available for certain trusted applications."
+  },
+  {
+    "claim": "Client credentials is only for certain applications.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "This grant type is only available for certain applications and is used for activities such as creating a user account."
+  },
+  {
+    "claim": "The authorize URL takes client_id, scope, response_type and redirect_uri.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "GET /oauth/authorize?client_id={client_id}&scope={scope}&response_type={response_type}&redirect_uri={redirect_uri}"
+  },
+  {
+    "claim": "user:read grants read access to the profile.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "user:read Grants read access to a user's profile"
+  },
+  {
+    "claim": "user:write grants read/write access to the profile.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "user:write Grants read/write access to a user's profile"
+  },
+  {
+    "claim": "results:read grants read access to results.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "results:read Grants read access to a user's results"
+  },
+  {
+    "claim": "results:write grants read/write access to results.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "results:write Grants read/write access to a user's results"
+  },
+  {
+    "claim": "Scopes are comma-separated.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "To get more than one scope, they should be concatenated with a comma"
+  },
+  {
+    "claim": "A write scope includes its read scope.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "requesting the write version of a permission will also include the read version."
+  },
+  {
+    "claim": "Without a scope the default is user:read,results:write and may change.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "If a scope is not passed, it currently defaults to having user:read,results:write as the scopes. This is for backwards compatibility with existing clients and this behaviour may change in the future."
+  },
+  {
+    "claim": "Pass the original scopes on later calls; fewer allowed, not more.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "It is possible to request fewer scopes but not to request additional scopes after the initial authorization code."
+  },
+  {
+    "claim": "Scopes are passed on authorization and token calls.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "Scopes should be passed when fetching an authorization code, and getting an access token (either with an autorization code or when using a refresh token)."
+  },
+  {
+    "claim": "The token endpoint is POST /oauth/access_token.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "POST /oauth/access_token"
+  },
+  {
+    "claim": "The example token response has expires_in 604800.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "\" expires_in \": 604800 ,"
+  },
+  {
+    "claim": "The refresh token lasts one year and each refresh returns a new one.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "The lifetime of the refresh token is currently one year."
+  },
+  {
+    "claim": "Active users never re-authenticate; after a year away they must log in.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "If the user does not use the client for over a year, they will need to log back in."
+  },
+  {
+    "claim": "A new refresh token comes back with each refresh.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "When you use it, as well as a new access_token, you will also get back a new refresh token, meaning you can use the API indefinitely without the user needing to reauthenticate."
+  },
+  {
+    "claim": "Pin version 1 with the Accept header.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "Accept: application/vnd.c2logbook.v1+json"
+  },
+  {
+    "claim": "Concept2 encourages requesting the version explicitly.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "In order to avoid potential issues, you are encouraged to explicitly request this version via the Accept header."
+  },
+  {
+    "claim": "GET /api/users/me/results fetches the user's workouts.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "fetches all the workouts for the authenticated user"
+  },
+  {
+    "claim": "Results filter by from, to, type and updated_after.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "Fetches only results created or updated on or after this date."
+  },
+  {
+    "claim": "updated_after is in GMT.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "The timezone of the updated_after date is GMT, so you should convert to this when making the call."
+  },
+  {
+    "claim": "The bulk endpoint adds several results.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "If you want to add more than one workout at once, you can post to /api/users/me/results/bulk."
+  },
+  {
+    "claim": "PATCH updates a result.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "PATCH api/users/me/results/123 will update a specific workout"
+  },
+  {
+    "claim": "DELETE deletes a result.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "DELETE api/users/me/results/123 will delete a specific workout"
+  },
+  {
+    "claim": "Stroke data for a workout.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "Get stroke data for a workout."
+  },
+  {
+    "claim": "File export as csv, fit or tcx.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "one of `csv`, `fit`, or `tcx`"
+  },
+  {
+    "claim": "time is in tenths of a second.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "Time in tenths of a second. e.g. one minute would be 600."
+  },
+  {
+    "claim": "date is the end of the workout.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "Note: this should be the date as stored in the monitor, which is the end of the workout, NOT the beginning."
+  },
+  {
+    "claim": "Duplicates are workouts with the same date, time and distance.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "the Logbook filters for duplicate workouts, so will return a Duplicate Entry error if you post a workout which has the same date, time and distance as an existing workout."
+  },
+  {
+    "claim": "Pagination defaults to 50 per page, up to 250.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "The default number of results returned per page is 50. If you pass number=[number] as a query string parameter you can change the number of results you get back. The maximum number of results you can return in any call is 250."
+  },
+  {
+    "claim": "Pages are 1-based.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "Page numbering is 1-based and omitting the ?page parameter will return the first page."
+  },
+  {
+    "claim": "409 means a duplicate result.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "409 Duplicate result"
+  },
+  {
+    "claim": "422 means a well-formed request that failed validation.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "Can't be processed. Generally means a well-formed request which fails validation."
+  },
+  {
+    "claim": "Optional headers report device details for debugging and analytics.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "you can also set optional HTTP custom headers to help with debugging and analytics."
+  },
+  {
+    "claim": "The webhook is registered from the self-service developer portal.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "Through your self-service developer portal, you can register and manage a webhook that will fire when a relevant result is added, updated, or deleted."
+  },
+  {
+    "claim": "Relevant results belong to users who authorized the client.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "Relevant results for a given client are those belonging to users who have authorized the client."
+  },
+  {
+    "claim": "The webhook returns result-added, result-updated or result-deleted with the payload.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "When firing, the webhook will return one of result-added , result-updated or result-deleted , along with the result payload."
+  },
+  {
+    "claim": "The payload is the same as requesting the result.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "This is the same information as a client would receive from requesting the result directly."
+  },
+  {
+    "claim": "Deletions carry the result ID.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "your webhook will receive a POST at the specified endpoint with the type of event (see above) and the ID of the deleted result."
+  },
+  {
+    "claim": "The API is not currently rate limited.",
+    "url": "https://log.concept2.com/developers/documentation/",
+    "quote": "The API is not currently rate limited. This may change in the future. Abuse of the API will result in either rate limits or removal of access."
+  }
+]

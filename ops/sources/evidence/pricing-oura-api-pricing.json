@@ -1,0 +1,112 @@
+[
+  {
+    "claim": "Oura's API FAQ says the Oura API is free to use for both personal and commercial applications.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "Yes, the Oura API is free to use for both personal and commercial applications."
+  },
+  {
+    "claim": "API applications accessing more than 10 users require approval from Oura.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "However, API applications accessing more than 10 users require approval from Oura."
+  },
+  {
+    "claim": "A new API application is limited to 10 users until Oura approves it.",
+    "url": "https://cloud.ouraring.com/docs/",
+    "quote": "By default, API Applications have a ten user limit. If you want to release your application to a wider audience, your application needs to be approved."
+  },
+  {
+    "claim": "There is no limit once an application is approved.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "There is no limit once an application is approved."
+  },
+  {
+    "claim": "Submit for review from the application's page.",
+    "url": "https://cloud.ouraring.com/docs/",
+    "quote": "Once you have finished developing your application, you can submit it for review from the application's page."
+  },
+  {
+    "claim": "Oura's API returns 403 when the resource needs additional permissions or the user's Oura subscription has expired.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "The requested resource requires additional permissions or the user's Oura subscription has expired."
+  },
+  {
+    "claim": "Purchasing, activating and wearing a ring is the only way to unlock the membership's insights.",
+    "url": "https://ouraring.com/membership",
+    "quote": "Yes, purchasing, activating, and consistently wearing an Oura Ring is the only way to unlock access to all of the daily health insights that come with the Oura Membership."
+  },
+  {
+    "claim": "The membership is $5.99 USD a month or $69.99 USD a year before tax for US members.",
+    "url": "https://ouraring.com/membership",
+    "quote": "$5.99 USD/month or $69.99 USD/annually before tax for US members,"
+  },
+  {
+    "claim": "New members get their first month free.",
+    "url": "https://ouraring.com/membership",
+    "quote": "New members get their first month free."
+  },
+  {
+    "claim": "EU members pay €5.99 a month or €69.99 a year after tax.",
+    "url": "https://ouraring.com/membership",
+    "quote": "€5.99/month or €69.99/annually after tax for EU members,"
+  },
+  {
+    "claim": "UK members pay £5.99 a month or £69.99 a year after tax.",
+    "url": "https://ouraring.com/membership",
+    "quote": "£5.99/month or £69.99/annually after tax for UK members,"
+  },
+  {
+    "claim": "Canadian members pay CA$7.99 CAD a month or CA$89.99 CAD a year before tax.",
+    "url": "https://ouraring.com/membership",
+    "quote": "CA$7.99 CAD/month or CA$89.99 CAD/annually before tax for Canadian members,"
+  },
+  {
+    "claim": "Australian members pay A$9.99 AUD a month or A$109.99 AUD a year after tax.",
+    "url": "https://ouraring.com/membership",
+    "quote": "A$9.99 AUD/month or A$109.99 AUD/annually after tax for Australian members,"
+  },
+  {
+    "claim": "The rest of the world pays $6.99 USD a month or $79.00 USD a year after tax.",
+    "url": "https://ouraring.com/membership",
+    "quote": "$6.99 USD/month or $79.00 USD/annually after tax for rest of world."
+  },
+  {
+    "claim": "The page also lists Japan and Switzerland.",
+    "url": "https://ouraring.com/membership",
+    "quote": "¥999/month or ¥11,800/annually after tax for Japanese members,"
+  },
+  {
+    "claim": "The page also lists Switzerland.",
+    "url": "https://ouraring.com/membership",
+    "quote": "CHF5.99/month or CHF69.99/annually after tax for Swiss members,"
+  },
+  {
+    "claim": "Without a membership the ring and app still work but insights and personal health data are much more limited.",
+    "url": "https://ouraring.com/membership",
+    "quote": "If you choose not to begin or continue your Oura Membership, your Oura Ring and Oura App will still function, but the insights, personal health data, and benefits you receive will be much more limited."
+  },
+  {
+    "claim": "Oura's FAQ gives 5,000 requests per 5-minute period.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "The Oura API is limited to 5000 requests per 5-minute period."
+  },
+  {
+    "claim": "Oura's error-handling page gives 5,000 requests per 5-minute period.",
+    "url": "https://cloud.ouraring.com/docs/error-handling",
+    "quote": "The API V1 and V2 API are rate limited to 5000 requests in a 5 minute period."
+  },
+  {
+    "claim": "Oura says customers who implement webhooks properly have not hit rate limits.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "We have not had customers hit rate limits with webhooks properly implemented"
+  },
+  {
+    "claim": "Contact Oura's API support if you expect to need higher limits.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "if you expect your usage to require higher limits."
+  },
+  {
+    "claim": "Personal access tokens were deprecated in December 2025 and are no longer available for use.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "personal access tokens were deprecated in December 2025 and are no longer available for use."
+  }
+]

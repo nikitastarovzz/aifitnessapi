@@ -1,0 +1,47 @@
+[
+  {
+    "claim": "Pricing models table, wrinkle row: Strava, a Strava subscription to create an app.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "A Strava subscription is a prerequisite for creating an app."
+  },
+  {
+    "claim": "Pricing models table, wrinkle row: Garmin, business use only.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Pricing models table, wrinkle row: Garmin, licence fees for some metrics.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+  },
+  {
+    "claim": "Pricing models table, wrinkle row: no per-call fee for Strava; its API Agreement says access is currently provided at no charge.",
+    "url": "https://www.strava.com/legal/api",
+    "quote": "Access to and use of the Strava API Materials and the Strava Platform are currently provided at no charge."
+  },
+  {
+    "claim": "Pricing models table, wrinkle row: Strava's API Agreement, effective June 1, 2026.",
+    "url": "https://www.strava.com/legal/api",
+    "quote": "API Agreement (2026) Effective Date: June 1, 2026"
+  },
+  {
+    "claim": "Pricing models table, wrinkle row: its getting-started guide calls a Strava subscription a prerequisite for creating an app.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "A Strava subscription is a prerequisite for creating an app."
+  },
+  {
+    "claim": "Pricing models table, wrinkle row: Garmin's program FAQ says there are no licensing or maintenance fees, but the program is for business use only.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Pricing models table, wrinkle row: access to some metrics may require a licence fee or a minimum device order for commercial use.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+  },
+  {
+    "claim": "Pricing models table, wrinkle row: Garmin does not publish those amounts; the FAQ names the fee and the minimum order without a figure.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+  }
+]

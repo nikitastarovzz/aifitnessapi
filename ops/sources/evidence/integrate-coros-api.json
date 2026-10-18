@@ -1,0 +1,282 @@
+[
+  {
+    "claim": "The Build on COROS MCP article was published on September 2, 2026.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "\"created_at\":\"2026-09-02T18:30:33Z\",\"updated_at\":\"2026-09-10T03:35:55Z\",\"name\":\"Build on COROS MCP\""
+  },
+  {
+    "claim": "The Partner API Access article was published on September 2, 2026 and last updated October 12, 2026.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "\"created_at\":\"2026-09-02T18:34:37Z\",\"updated_at\":\"2026-10-12T18:15:42Z\",\"name\":\"Partner API Access\""
+  },
+  {
+    "claim": "The Submit an API Application article was last updated on October 12, 2026.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "\"updated_at\":\"2026-10-12T20:15:30Z\",\"name\":\"Submit an API Application\""
+  },
+  {
+    "claim": "COROS supports data sharing in alignment with EU data protection regulations.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "COROS supports automated data sharing and API access for third-party platforms authorized by our users, in alignment with EU data protection regulations (including GDPR and the EU Data Act)."
+  },
+  {
+    "claim": "COROS uses a standardized, objective onboarding process.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "We manage third-party API access through a standardized, objective developer onboarding process."
+  },
+  {
+    "claim": "Rather than custom integrations or manual selection reviews, access goes to any platform meeting standard requirements.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Rather than building custom integrations or conducting manual selection reviews, we grant access through our standard OAuth 2.0 API framework to any platform that satisfies our standard security and operational requirements."
+  },
+  {
+    "claim": "Building on the MCP needs no application or approval.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "No application or approval required."
+  },
+  {
+    "claim": "Users connect their COROS account and grant access to their own data.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Implement OAuth 2.0 in your app, and your users can connect their COROS account and grant access to their own data."
+  },
+  {
+    "claim": "The MCP server endpoint is https://mcp.coros.com/mcp.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "MCP server endpoint: <a href=\\\"https://mcp.coros.com/mcp\\\">https://mcp.coros.com/mcp</a>"
+  },
+  {
+    "claim": "MCP access is scoped to the authorizing user only.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "All data access is scoped to the authorizing user only (single-user)"
+  },
+  {
+    "claim": "Any OAuth 2.0 client library will work.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "COROS uses the standard OAuth 2.0 protocol. Any OAuth 2.0 client library in your language of choice will work."
+  },
+  {
+    "claim": "Your app reads training data and writes workout plans through the MCP.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Your app reads training data and writes workout plans through the MCP."
+  },
+  {
+    "claim": "The MCP path has no webhooks; your app polls.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "No webhook push notifications (your app polls the MCP)"
+  },
+  {
+    "claim": "The MCP path has no GPX routes.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "No GPX route import/export"
+  },
+  {
+    "claim": "The MCP path has no two-way activity sync.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "No two-way activity sync (COROS to your platform requires Partner API)"
+  },
+  {
+    "claim": "The Partner API is for established platforms with multi-user credentials, webhooks, two-way sync and GPX routes.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "The COROS Partner API provides full programmatic access for established platforms. This includes multi-user OAuth credentials, webhook push notifications, two-way data sync, GPX route import/export, and enterprise-scale integration support."
+  },
+  {
+    "claim": "Requirement: an established platform with a demonstrated user base.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Established platform with demonstrated user base"
+  },
+  {
+    "claim": "Requirement: a registered company with an authorized technical representative.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Registered company with authorized technical representative"
+  },
+  {
+    "claim": "Requirement: standard security and data privacy compliance.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Standard security and data privacy compliance"
+  },
+  {
+    "claim": "Requirement: agreement to COROS API Terms of Use.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Agreement to COROS API Terms of Use"
+  },
+  {
+    "claim": "Multi-user OAuth 2.0 credentials.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Multi-user OAuth 2.0 credentials (serve your entire user base)"
+  },
+  {
+    "claim": "Workout push within about 5 minutes.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Webhook push notifications (workout data pushed to your endpoint within ~5 minutes)"
+  },
+  {
+    "claim": "Two-way activity data sync.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Two-way activity data sync"
+  },
+  {
+    "claim": "Structured workout and training plan sync.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Structured workout and training plan sync (push to COROS users)"
+  },
+  {
+    "claim": "GPX route import/export up to 50MB.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "GPX route import/export (up to 50MB)"
+  },
+  {
+    "claim": "Partner API rate limit is 1,000 calls per minute.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Rate limit: 1,000 calls/minute"
+  },
+  {
+    "claim": "Terms are standard and non-discriminatory.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Agree to our standard, non-discriminatory API Terms of Use, which include standard security requirements, data privacy compliance, and system rate limits."
+  },
+  {
+    "claim": "COROS issues the client ID and secret after verification.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Once your identity and security specifications are verified, our team will issue your API Client ID and Secret to enable automated data transfers."
+  },
+  {
+    "claim": "Apply by email to api@coros.com with company details, contacts and redirect URIs.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "with your company details, technical contacts, and OAuth 2.0 redirect URIs."
+  },
+  {
+    "claim": "Applying uses COROS's form and an email to api@coros.com.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "To apply, submit your platform details using the form below and email"
+  },
+  {
+    "claim": "Platforms not yet at scale can build on the MCP.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "If you don't yet meet the requirements for Partner API access, you can build on COROS using the MCP with OAuth 2.0 ("
+  },
+  {
+    "claim": "Partner auth covers authorize, access token, refresh, deauthorize and bind state.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "OAuth 2.0 (authorize, access token, refresh, deauthorize, bind state)"
+  },
+  {
+    "claim": "getWorkoutRecords has a 30-day maximum and 3-month lookback.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "getUserInfo, getWorkoutRecords (30-day max, 3-month lookback), getDailyData"
+  },
+  {
+    "claim": "getWorkoutDetailFit downloads FIT files.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "getWorkoutDetailFit (FIT file download)"
+  },
+  {
+    "claim": "Workout summary push in about 5 minutes with retry logic and credentials in the header.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Workout summary push (~5 min, retry logic), client_id/secret in header"
+  },
+  {
+    "claim": "Training plan functions.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "tp/list/push, tp/workout/deleteById"
+  },
+  {
+    "claim": "Routes up to 50MB, GPX or KML.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "route/push (GPX/KML, 50MB max)"
+  },
+  {
+    "claim": "Workout upload functions.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "file/synchronous, file/upload (async), file/upload/get (status)"
+  },
+  {
+    "claim": "MCP data: activity records.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Lap and segment data for workouts"
+  },
+  {
+    "claim": "MCP data: workout feedback and training notes.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Workout feedback and training notes"
+  },
+  {
+    "claim": "FIT files with GPS tracks are capped at 50 requests per day.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": ".FIT files, including GPS tracks (capped at 50 file requests per day)"
+  },
+  {
+    "claim": "MCP data: menstrual cycle data.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Menstrual cycle data"
+  },
+  {
+    "claim": "MCP data: daily steps, calories, workout duration and weekly Training Load.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Daily steps, calories, workout duration, and weekly Training Load"
+  },
+  {
+    "claim": "MCP data: daily heart rate, HRV, stress, Wellness Checks and resting heart rate.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Daily heart rate, HRV, stress, Wellness Checks, and resting heart rate"
+  },
+  {
+    "claim": "MCP data: training plan and calendar.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Current training plan and training calendar"
+  },
+  {
+    "claim": "MCP data: VO2 Max, Running Fitness, race predictions and recovery status.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "VO2 Max, Running Fitness, race prediction times, and recovery status"
+  },
+  {
+    "claim": "MCP data: threshold pace and pace zones.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Threshold pace, and pace zones"
+  },
+  {
+    "claim": "MCP data: profile and connected devices.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "User profile and connected device information"
+  },
+  {
+    "claim": "Writes: road running, trail running and cycling workouts.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Create road running, trail running, and cycling workouts that sync to your COROS workout library"
+  },
+  {
+    "claim": "The data list is as of September 2026.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "As of September 2026 update, the COROS MCP can query the following data:"
+  },
+  {
+    "claim": "Workout and plan creation available September 21, 2026.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Workouts and Training Plans (available September 21, 2026)"
+  },
+  {
+    "claim": "Power data is not in the standard query set.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Power data is not part of the standard query set, even when a power meter is paired and recording. This means a power curve and FTP estimation is not possible."
+  },
+  {
+    "claim": "Detailed analyses require FIT files.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "The following analyses are not available in a basic query, but require pulling the .FIT files first so the MCP has the raw data to analyze:"
+  },
+  {
+    "claim": "Training plans must be 4 to 16 weeks long.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Training plans must be between 4 and 16 weeks long."
+  },
+  {
+    "claim": "The start date can be up to 14 days out.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "The start date can be anytime from today to 14 days from now."
+  },
+  {
+    "claim": "Deleting must be done in the COROS app.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "However, you are not able to delete a plan or workout with AI; this must be done manually in the COROS app."
+  }
+]

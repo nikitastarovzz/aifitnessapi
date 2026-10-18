@@ -1,0 +1,232 @@
+[
+  {
+    "claim": "The Samsung Health Data SDK accesses health data in the Samsung Health app.",
+    "url": "https://developer.samsung.com/health/data/overview.html",
+    "quote": "Samsung Health Data SDK enables access to health data in Samsung Health app. An app using the SDK can access selected health data of the Samsung Health’s data store."
+  },
+  {
+    "claim": "A Galaxy Watch or Galaxy Ring transfers its data to the paired phone's Samsung Health app.",
+    "url": "https://developer.samsung.com/health/data/overview.html",
+    "quote": "Health data in the Samsung Health app can also be collected from connected devices, like the Galaxy Watch or Galaxy Ring, which automatically transfers its data to a paired mobile phone’s Samsung Health app."
+  },
+  {
+    "claim": "Accessories include Galaxy Fit, a blood glucose monitor and a weight scale.",
+    "url": "https://developer.samsung.com/health/data/faq.html",
+    "quote": "These accessories include Galaxy Watch, Galaxy Fit, Galaxy Ring, a blood glucose monitor, and a weight scale."
+  },
+  {
+    "claim": "The SDK lets Android apps read selected data from Samsung Health's data store.",
+    "url": "https://developer.samsung.com/health/data/faq.html",
+    "quote": "The Samsung Health Data SDK allows Android applications to read selected health data from Samsung Health’s data store."
+  },
+  {
+    "claim": "The old Samsung Health SDK for Android was deprecated on July 31, 2025.",
+    "url": "https://developer.samsung.com/health/android/overview.html",
+    "quote": "Samsung Health SDK for Android has been depricated as of 31 July, 2025. Please use Samsung Health Data SDK to access Samsung Health data to integrate with Samsung Health."
+  },
+  {
+    "claim": "The Sensor SDK works on Galaxy Watch4 and later.",
+    "url": "https://developer.samsung.com/health/sensor/overview.html",
+    "quote": "Samsung Health Sensor SDK is compatible with Galaxy Watch4 series and later models."
+  },
+  {
+    "claim": "The Sensor SDK exposes accelerometer, raw ECG and PPG data.",
+    "url": "https://developer.samsung.com/health/sensor/overview.html",
+    "quote": "SDK supports health tracking capabilities that allow apps to track user health data using the accelerometer, raw ECG (electrocardiogram), PPG (photoplethysmogram), and heart rate, including inter-beat intervals."
+  },
+  {
+    "claim": "Sensor SDK apps run on the watch.",
+    "url": "https://developer.samsung.com/health/sensor/overview.html",
+    "quote": "A watch application utilizing Samsung Health Sensor SDK runs on a Galaxy Watch with Wear OS powered by Samsung."
+  },
+  {
+    "claim": "Developer mode is for testing and debugging only.",
+    "url": "https://developer.samsung.com/health/data/process.html",
+    "quote": "The developer mode is intended only for testing or debugging your app. It is not intended for app users."
+  },
+  {
+    "claim": "Writing needs an access code after partnership approval.",
+    "url": "https://developer.samsung.com/health/data/process.html",
+    "quote": "To write health data to Samsung Health from an app, the access code is required. You can request partnership and receive the access code after an approval."
+  },
+  {
+    "claim": "Submit a partner request before distribution; package name and SHA-256 signature get registered.",
+    "url": "https://developer.samsung.com/health/data/process.html",
+    "quote": "Please submit partner request before your app distribution. Your app's information including the app package name and signature (SHA-256) will be registered in the Samsung Health's system after an approval."
+  },
+  {
+    "claim": "Without approval the app works only in developer mode.",
+    "url": "https://developer.samsung.com/health/data/process.html",
+    "quote": "Otherwise, the app using the Samsung Health Data SDK works only with the developer mode turned on."
+  },
+  {
+    "claim": "Samsung describes the partnership as an exclusive service.",
+    "url": "https://developer.samsung.com/health/data/process.html",
+    "quote": "Our partnership is an exclusive service for the Samsung Health Data SDK that allows users to discover engaging health and fitness apps."
+  },
+  {
+    "claim": "The access code is for one application.",
+    "url": "https://developer.samsung.com/health/data/faq.html",
+    "quote": "That access code is available for one application."
+  },
+  {
+    "claim": "Samsung Health 6.30.2 or later is required.",
+    "url": "https://developer.samsung.com/health/data/overview.html",
+    "quote": "Samsung Health Data SDK requires Samsung Health version 6.30.2 or later."
+  },
+  {
+    "claim": "Android 10 or later; all Samsung and non-Samsung Android phones.",
+    "url": "https://developer.samsung.com/health/data/overview.html",
+    "quote": "Samsung Health runs on devices with Android 10 (API level 29) or later. It is available on all Samsung smartphones and also non-Samsung Android smartphones."
+  },
+  {
+    "claim": "Java 17 or later.",
+    "url": "https://developer.samsung.com/health/data/overview.html",
+    "quote": "Samsung Health Data SDK supports Java 17 or later."
+  },
+  {
+    "claim": "No emulators.",
+    "url": "https://developer.samsung.com/health/data/overview.html",
+    "quote": "The SDK does not support emulators."
+  },
+  {
+    "claim": "Fitness and wellness purposes only.",
+    "url": "https://developer.samsung.com/health/data/overview.html",
+    "quote": "Data measured using Samsung Health Data SDK is intended for fitness and wellness purposes only and is not for the diagnosis or treatment of any medical condition."
+  },
+  {
+    "claim": "The download page lists v1.1.0.",
+    "url": "https://developer.samsung.com/health/data/overview.html",
+    "quote": "Samsung Health Data SDK v1.1.0 (1.78 MB)"
+  },
+  {
+    "claim": "The SDK ships as an .aar library.",
+    "url": "https://developer.samsung.com/codelab/health/steps-data.html",
+    "quote": "The samsung-health-data-api-1.1.0.aar library is added to the app\\libs folder, and included as a dependency in the module-level build.gradle file."
+  },
+  {
+    "claim": "Samsung Health must be installed.",
+    "url": "https://developer.samsung.com/health/data/faq.html",
+    "quote": "The Samsung Health Data SDK requires prior Samsung Health installation."
+  },
+  {
+    "claim": "Each data type has its own permission, read and write separate.",
+    "url": "https://developer.samsung.com/codelab/health/steps-data.html",
+    "quote": "Each health data type has its own permission. Additionally, separate permissions are required for reading and writing operations."
+  },
+  {
+    "claim": "Get the store with HealthDataService.getStore.",
+    "url": "https://developer.samsung.com/codelab/health/steps-data.html",
+    "quote": "You can access data from Samsung Health by obtaining a HealthDataStore object using the HealthDataService.getStore(appContext) method."
+  },
+  {
+    "claim": "Check granted permissions with getGrantedPermissions.",
+    "url": "https://developer.samsung.com/codelab/health/steps-data.html",
+    "quote": "HealthDataStore.getGrantedPermissions(permissions: Set<Permission>): Set<Permission>"
+  },
+  {
+    "claim": "Request permissions with requestPermissions.",
+    "url": "https://developer.samsung.com/codelab/health/steps-data.html",
+    "quote": "val result = healthDataStore.requestPermissions(PERMISSIONS, context)"
+  },
+  {
+    "claim": "Permissions are created per data type and access type.",
+    "url": "https://developer.samsung.com/codelab/health/steps-data.html",
+    "quote": "Creates a permission for DataType (e.g. DataTypes.STEPS ) and AccessType ( AccessType.READ or AccessType.WRITE )"
+  },
+  {
+    "claim": "The permission APIs show a pop-up.",
+    "url": "https://developer.samsung.com/health/data/faq.html",
+    "quote": "These APIs display a data permission pop-up to the user and the user can then allow each data permission."
+  },
+  {
+    "claim": "Do not repeat denied requests; guide users to allow in Samsung Health.",
+    "url": "https://developer.samsung.com/health/data/faq.html",
+    "quote": "Avoid annoying the user with endlessly repeating permission requests. If the user denies few times, stop requesting permissions."
+  },
+  {
+    "claim": "Read types include activity summary through user profile.",
+    "url": "https://developer.samsung.com/health/data/overview.html",
+    "quote": "Activity summary Active calories burned goal Active time goal Blood glucose Blood oxygen Blood pressure Body composition Body temperature Energy score Exercise Exercise location Floors climbed Heart rate Irregular heart rhythm notification Nutrition Nutrition goal Skin temperature Sleep Sleep apnea Sleep goal Steps Step goal Water intake Water intake goal User profile"
+  },
+  {
+    "claim": "Write types.",
+    "url": "https://developer.samsung.com/health/data/overview.html",
+    "quote": "Samsung Health Data SDK supports various write data types: Blood glucose Blood oxygen Blood pressure Body composition Body temperature Exercise Exercise location Floors climbed Heart rate Nutrition Sleep Water intake"
+  },
+  {
+    "claim": "Aggregate requests run operations like TOTAL and LAST.",
+    "url": "https://developer.samsung.com/codelab/health/steps-data.html",
+    "quote": "It represents a request for an aggregation query over time. It is used to run aggregate operations like TOTAL and LAST for HealthDataPoint ."
+  },
+  {
+    "claim": "Groupings run from MINUTELY to YEARLY, plus HOURLY.",
+    "url": "https://developer.samsung.com/codelab/health/steps-data.html",
+    "quote": "You can also group by other time periods such as MINUTELY , DAILY , WEEKLY , MONTHLY , and YEARLY ."
+  },
+  {
+    "claim": "Aggregates combine sources, e.g. total steps from multiple devices.",
+    "url": "https://developer.samsung.com/health/data/overview.html",
+    "quote": "eliminating the need for complex processing across multiple sources. For example, total steps from multiple devices."
+  },
+  {
+    "claim": "Only periods with non-zero steps are returned.",
+    "url": "https://developer.samsung.com/codelab/health/steps-data.html",
+    "quote": "HealthDataStore only returns values for periods when the step count is greater than zero."
+  },
+  {
+    "claim": "TOTAL with a LocalTimeFilter totals steps.",
+    "url": "https://developer.samsung.com/codelab/health/steps-data.html",
+    "quote": "val aggregateRequest = DataType.StepsType.TOTAL.requestBuilder"
+  },
+  {
+    "claim": "readChanges returns changes for a data type and time filter.",
+    "url": "https://developer.samsung.com/health/data/faq.html",
+    "quote": "HealthDataStore.readChanges() and HealthDataStore.readChangesAsync() provide data change information for a given data type and a time filter."
+  },
+  {
+    "claim": "Change info includes type, deleted ID, data point and time.",
+    "url": "https://developer.samsung.com/health/data/faq.html",
+    "quote": "A change type indicating new, updated, or deleted data"
+  },
+  {
+    "claim": "Each data point names its source device.",
+    "url": "https://developer.samsung.com/health/data/faq.html",
+    "quote": "Each data point has data source information including the device ID indicating which device provided the health data."
+  },
+  {
+    "claim": "DeviceManager.getDevice returns the device.",
+    "url": "https://developer.samsung.com/health/data/faq.html",
+    "quote": "DeviceManager.getDevice(deviceId: String): Device"
+  },
+  {
+    "claim": "Device types include Galaxy Watch, Ring, Fit, phone or accessory.",
+    "url": "https://developer.samsung.com/health/data/faq.html",
+    "quote": "The DataType in the device’s details can be a Galaxy Watch, Galaxy Ring, Galaxy Fit, a smartphone, or a health accessory device."
+  },
+  {
+    "claim": "Error 2003 means a package name or signature mismatch.",
+    "url": "https://developer.samsung.com/health/data/faq.html",
+    "quote": "This error occurs when your app's package name or the SHA-256 signature does not match the information registered with Samsung."
+  },
+  {
+    "claim": "During development, use developer mode without registration.",
+    "url": "https://developer.samsung.com/health/data/faq.html",
+    "quote": "During development, you can use the SDK without registration by enabling the developer mode."
+  },
+  {
+    "claim": "PLATFORM_NOT_INSTALLED and OLD_VERSION_PLATFORM resolve via ResolvablePlatformException.",
+    "url": "https://developer.samsung.com/health/data/faq.html",
+    "quote": "It can be resolved by invoking ResolvablePlatformException.resolve(activityContext) ."
+  },
+  {
+    "claim": "ERR_NO_USER_PERMISSION needs the user's agreement.",
+    "url": "https://developer.samsung.com/health/data/faq.html",
+    "quote": "Accessing Samsung Health’s data requires the user’s agreement for the SDK data permissions."
+  },
+  {
+    "claim": "ERROR_ACCESS_CONTROL means the type is outside the app's scope.",
+    "url": "https://developer.samsung.com/health/data/faq.html",
+    "quote": "It means that the data type is not included in the available data scope for your application."
+  }
+]

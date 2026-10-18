@@ -1,0 +1,42 @@
+[
+  {
+    "claim": "FAQ, why no prices: Garmin publishes no amounts for the metrics its FAQ says may need a licence fee for commercial use; the FAQ names the fee without a figure.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+  },
+  {
+    "claim": "FAQ, sales call: Garmin's program FAQ says there are no licensing or maintenance fees for access.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "FAQ, sales call: some metrics may require a licence fee or a minimum device order for commercial use, at amounts it does not publish.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+  },
+  {
+    "claim": "Why there are no numbers: Garmin's program FAQ says there are no licensing or maintenance fees for access.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Why there are no numbers: some metrics may require a licence fee or a minimum device order for commercial use, and it publishes no amounts for either.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+  },
+  {
+    "claim": "Why there are no numbers: Strava's API Agreement took effect on June 1, 2026.",
+    "url": "https://www.strava.com/legal/api",
+    "quote": "API Agreement (2026) Effective Date: June 1, 2026"
+  },
+  {
+    "claim": "Why there are no numbers: Strava's API Policy took effect on June 1, 2026.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "API Policy (2026) Effective Date: June 1, 2026"
+  },
+  {
+    "claim": "Why there are no numbers: its getting-started guide calls a Strava subscription a prerequisite for creating an app.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "A Strava subscription is a prerequisite for creating an app."
+  }
+]

@@ -1,0 +1,142 @@
+[
+  {
+    "claim": "Strava's API Agreement (2026), effective June 1, 2026, says access to and use of the API materials are currently provided at no charge.",
+    "url": "https://www.strava.com/legal/api",
+    "quote": "Access to and use of the Strava API Materials and the Strava Platform are currently provided at no charge."
+  },
+  {
+    "claim": "The API Agreement (2026) took effect on June 1, 2026.",
+    "url": "https://www.strava.com/legal/api",
+    "quote": "API Agreement (2026) Effective Date: June 1, 2026"
+  },
+  {
+    "claim": "Strava reserves the right to start charging later, with notice.",
+    "url": "https://www.strava.com/legal/api",
+    "quote": "We will provide you with notice in the event we decide to start charging for use."
+  },
+  {
+    "claim": "The getting-started guide calls a Strava subscription a prerequisite for creating an app.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "A Strava subscription is a prerequisite for creating an app."
+  },
+  {
+    "claim": "Standard Tier apps are subject to subscription requirements, including that the developer or specified end users maintain an active Strava subscription.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Standard Tier Applications are subject to subscription requirements as published on the Strava developer site , including a requirement that the developer or specified end users maintain an active Strava subscription."
+  },
+  {
+    "claim": "The Extended Access Tier, generally for apps serving 10,000 or more users and approved case by case, is not subject to subscription requirements unless Strava publishes otherwise.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "generally inclusive of Developer Applications serving 10,000 users or more and approved by Strava. Extended Access Tier Applications are admitted on a case-by-case basis and are not subject to subscription requirements, except as Strava may publish from time to time."
+  },
+  {
+    "claim": "The Standard Tier's 10-user level is generally intended for hobbyists, side projects and early development.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Developer Applications limited to 10 registered Strava users (generally intended for hobbyists, side projects, and early development)"
+  },
+  {
+    "claim": "The 9,999-user level is for growing apps with a substantial user base.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Developer Applications limited to 9,999 registered Strava users (generally intended for growing apps with a substantial user base)"
+  },
+  {
+    "claim": "New apps start in single-player mode, where only your own account can connect.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "All new applications start in single-player mode. This is the default state where only your own Strava account can authenticate with the app"
+  },
+  {
+    "claim": "The self-service upgrade raises the athlete capacity to 10.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "you can upgrade your access directly from your API Settings Dashboard. This raises your access to: Athlete capacity of 10"
+  },
+  {
+    "claim": "To connect more than 10 athletes, the getting-started guide says to submit the app for review.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "please submit your app for review !"
+  },
+  {
+    "claim": "Strava does not commit to a review-time service level for admissions or capacity increases.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Similarly, requests to increase rate limits or athlete capacity will be handled at Strava’s discretion, and increases are not guaranteed."
+  },
+  {
+    "claim": "Strava Data from one user may be shown only to that user, even if it is public on Strava.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Strava Data provided by a specific Strava user may be displayed or disclosed in your Developer Application only to that user. You may not display or disclose Strava Data related to other users, even if such data is publicly viewable on the Strava Platform."
+  },
+  {
+    "claim": "The API Policy forbids using Strava data in the development, training, evaluation or operation of any AI application, down to embeddings, retrieval and context windows.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "You may not use the Strava API Materials or Strava Data, directly or indirectly, in connection with the development, training, evaluation, or operation of any AI Application."
+  },
+  {
+    "claim": "The AI prohibition covers fine-tuning, embeddings, retrieval-augmented generation and context windows.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "training, pre-training, post-training, fine-tuning, reinforcement learning, alignment, grounding, evaluation, benchmarking, embedding generation, retrieval-augmented generation, ingestion into a context window or working memory"
+  },
+  {
+    "claim": "The only exception named is Strava's own MCP for a subscriber's personal use of their own data.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "This prohibition does not extend to use of the Strava MCP, as discussed above in Section 3.5."
+  },
+  {
+    "claim": "Strava subscribers may use the Strava MCP for personal use of their own data.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Subscribers to Strava may access the Strava MCP in connection with their personal use of their own Strava data"
+  },
+  {
+    "claim": "You may not charge users for access to the API or to Strava functionality.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "You may not charge end users, in any manner, for access to or use of the Strava API Materials or any services or functionality included in or related to the Strava API Materials or the Strava Platform."
+  },
+  {
+    "claim": "You may charge for functionality Strava does not provide.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "The foregoing does not prohibit you from charging for the provision of functionality not provided by the Strava Platform in your Developer Application and that is not substantially duplicative of functionality offered by Strava."
+  },
+  {
+    "claim": "You may not resell or syndicate access to the API.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "You may not sell, rent, lease, sublicense, redistribute, or syndicate access to the Strava API Materials"
+  },
+  {
+    "claim": "Strava Data may not sit in a cache longer than seven days.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "You may not retain Strava Data in your cache for longer than seven (7) days."
+  },
+  {
+    "claim": "Deletions must reach your app within 48 hours.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Deletions must be reflected in your Developer Application expeditiously but in all cases within forty-eight (48) hours."
+  },
+  {
+    "claim": "No competing or replicating apps.",
+    "url": "https://www.strava.com/legal/api",
+    "quote": "You may not create applications that compete with or replicate Strava functionality."
+  },
+  {
+    "claim": "No proxies, aggregators or MCP servers that re-expose Strava data.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "pass-through proxy, intermediary, or aggregator that re-exposes the Strava API Materials, in whole or in part, to third parties; (b) operate any MCP Server, agent-mediated interface, or analogous mechanism that exposes the Strava API Materials, Strava Data, or any subset thereof"
+  },
+  {
+    "claim": "Strava documents a default of 200 requests per 15 minutes and 2,000 per day overall.",
+    "url": "https://developers.strava.com/docs/rate-limits/",
+    "quote": "The default overall rate limit allows 200 requests every 15 minutes, with up to 2,000 requests per day."
+  },
+  {
+    "claim": "The non-upload default is 100 per 15 minutes and 1,000 per day.",
+    "url": "https://developers.strava.com/docs/rate-limits/",
+    "quote": "rate limit allows 100 requests every 15 minutes, with up to 1,000 requests per day."
+  },
+  {
+    "claim": "The self-service upgrade lifts limits to 400 and 4,000 overall and 200 and 2,000 for reads.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "Read read limits: 200 requests / 15min & 2,000 requests / day Overall rate limits: 400 requests / 15min & 4,000 requests / day"
+  },
+  {
+    "claim": "Higher limits are at Strava's discretion.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "requests to increase rate limits or athlete capacity will be handled at Strava’s discretion"
+  }
+]

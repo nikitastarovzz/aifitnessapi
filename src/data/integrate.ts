@@ -31,6 +31,13 @@ export const RELEASED_INTEGRATE = new Set<string>([
   "mariana-tek-api",
   "wodify-api",
   "glofox-api",
+  "withings-api",
+  "samsung-health-api",
+  "suunto-api",
+  "coros-api",
+  "wahoo-api",
+  "dexcom-api",
+  "concept2-api",
 ]);
 
 export const allIntegrations: ClusterEntry[] = integrateEntries;

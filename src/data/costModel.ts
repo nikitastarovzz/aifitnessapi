@@ -100,90 +100,112 @@ export const COST_ITEMS: CostItem[] = [
     sourceHref: "/pricing/fitbit-api-pricing",
   },
 
-  // provenance: "Garmin does not publish pricing for its developer APIs" — /pricing/garmin-api-pricing
-  // provenance: "partner-approval-only rather than self-serve, so commercial terms are settled privately" — /pricing/garmin-api-pricing
-  // provenance: "your users must own a Garmin device" — /pricing/garmin-api-pricing
+  // provenance: "Connect Developer Program has no licensing or maintenance fees" — /pricing/garmin-api-pricing
+  // provenance: "but it is only for business use" — /pricing/garmin-api-pricing
+  // provenance: "some metrics need a license fee or a minimum device order for commercial use" — /pricing/garmin-api-pricing
+  // provenance: "Users sync their own Garmin devices; if you want to supply wearables, Garmin asks for the number of devices when you request the program" — /pricing/garmin-api-pricing
+  // provenance: "confirms the status of an application within two business days" — /pricing/garmin-api-pricing
+  // provenance: "Garmin does not publish those fee amounts, so get them in writing" — /pricing/garmin-api-pricing
   {
     id: "garmin",
     label: "Garmin Health / Activity API",
     category: "wearable-direct",
-    devCost: "contact-sales",
-    userSideCost: "Your users must own a Garmin device.",
+    devCost: "free",
+    userSideCost:
+      "Users sync their own Garmin devices; if you supply wearables, Garmin asks for the number of devices when you request the program.",
     approvalGate:
-      "Garmin Connect Developer Program partner approval; third parties report sign-ups paused at times (verify).",
+      "Garmin Connect Developer Program approval, for business use only; Garmin confirms an application's status within two business days.",
     engEffort: "high",
     notes:
-      "You cannot see the terms until you are far enough into the partner process to be quoted. Do not label Garmin free. Factor the approval queue in from the start.",
+      "No licensing or maintenance fees, but some metrics need a license fee or a minimum device order for commercial use, and Garmin does not publish those amounts. Get them in writing before you promise a metric.",
     sourceHref: "/pricing/garmin-api-pricing",
   },
 
-  // provenance: "The Oura API is free to call: there is no publicly listed developer or per-request fee" — /pricing/oura-api-pricing
-  // provenance: "Gen3 ring users reportedly need an active Oura Membership for their data" — /pricing/oura-api-pricing
-  // provenance: "A new app can connect only a small number of users, reported around 10" — /pricing/oura-api-pricing
+  // provenance: "says it is free to use for both personal and commercial applications" — /pricing/oura-api-pricing
+  // provenance: "they need an Oura Ring and an active Oura Membership" — /pricing/oura-api-pricing
+  // provenance: "a lapsed membership shows up as failed calls" — /pricing/oura-api-pricing
+  // provenance: "A new API application is limited to 10 users until Oura approves it, and there is no limit once it is approved" — /pricing/oura-api-pricing
+  // provenance: "personal access tokens were deprecated in December 2025 and are no longer available for use" — /pricing/oura-api-pricing
   {
     id: "oura",
     label: "Oura Cloud API",
     category: "wearable-direct",
     devCost: "free",
     userSideCost:
-      "User must own an Oura Ring; Gen3 users reportedly need an active Oura Membership (verify).",
-    approvalGate:
-      "A fresh app connects only a small number of users (reported around 10) until Oura's review — the 'Oura for Organizations' partner path.",
+      "Each user needs an Oura Ring and an active Oura Membership; the API returns 403 when a user's subscription has expired.",
+    approvalGate: "A new API application is limited to 10 users until Oura approves it, with no limit once approved.",
     engEffort: "medium",
     notes:
-      "Free to call today, but the membership requirement and partner terms are not publicly listed and change over time.",
+      "Free for personal and commercial apps by Oura's own FAQ. Personal access tokens are gone, so every integration, even a personal script, uses OAuth 2.0.",
     sourceHref: "/pricing/oura-api-pricing",
   },
 
-  // provenance: "The WHOOP API is free to call — there is no documented per-request fee" — /pricing/whoop-api-pricing
-  // provenance: "every end user needs an active WHOOP membership for their data to flow" — /pricing/whoop-api-pricing
-  // provenance: "Hard 10-member cap until production approval" — /fitness-apis/wearable-data-apis
+  // provenance: "effective October 6, 2026, say access is currently provided at no charge" — /pricing/whoop-api-pricing
+  // provenance: "Your users authorize your app with their own WHOOP accounts, so they are WHOOP members already" — /pricing/whoop-api-pricing
+  // provenance: "Every new app starts on the Sandbox tier with up to 10 members" — /pricing/whoop-api-pricing
+  // provenance: "tiers then run Build (100), Growth (1,000), Scale (5,000) and Production (unlimited)" — /pricing/whoop-api-pricing
+  // provenance: "You must have a WHOOP membership to develop an app on the Developer Platform" — /pricing/whoop-api-pricing
+  // provenance: "The terms forbid using WHOOP data to train or improve any machine-learning or AI model" — /pricing/whoop-api-pricing
   {
     id: "whoop",
     label: "WHOOP Developer Platform",
     category: "wearable-direct",
     devCost: "free",
-    userSideCost: "Every end user needs an active WHOOP membership for their data to flow.",
+    userSideCost: "Users authorize your app with their own WHOOP accounts, so they are WHOOP members already.",
     approvalGate:
-      "Hard 10-member cap until production approval, and WHOOP requires developers to hold a membership.",
+      "New apps start on a Sandbox tier of 10 members and move up through reviewed tiers of 100, 1,000, 5,000 and unlimited; developers need a WHOOP membership to build.",
     engEffort: "medium",
     notes:
-      "WHOOP has changed its membership structure recently — verify current terms before you budget.",
+      "Free under API terms effective October 6, 2026, which let WHOOP attach charges to use beyond its limits and forbid using WHOOP data to train AI models.",
     sourceHref: "/pricing/whoop-api-pricing",
   },
 
-  // provenance: "The Strava API has no per-call developer fee" — /pricing/strava-api-pricing
-  // provenance: "Standard-tier developers now reportedly must hold a paid Strava subscription" — /pricing/strava-api-pricing
-  // provenance: "A free or paid Strava account; the user's data must exist to flow" — /pricing/strava-api-pricing
+  // provenance: "2026 API Agreement says access is currently provided at no charge" — /pricing/strava-api-pricing
+  // provenance: "calls a prerequisite for creating an app" — /pricing/strava-api-pricing
+  // provenance: "and they authorize your app themselves" — /pricing/strava-api-pricing
+  // provenance: "makes Standard Tier apps subject to subscription requirements for the developer or specified end users" — /pricing/strava-api-pricing
+  // provenance: "New apps also start in single-player mode, where only your own account can connect, and the self-service upgrade raises the athlete capacity to 10." — /pricing/strava-api-pricing
+  // provenance: "To connect more than 10 athletes, Strava's getting-started guide says to submit your app for review." — /pricing/strava-api-pricing
+  // provenance: "data may be shown only to the athlete it belongs to, AI use is banned and caches expire after seven days" — /pricing/strava-api-pricing
   {
     id: "strava",
     label: "Strava API",
     category: "wearable-direct",
-    devCost: "free-tier-then-paid",
-    userSideCost: "A free or paid Strava account — the user's data has to exist before it can flow.",
+    devCost: "free",
+    userSideCost:
+      "A Strava account whose data your app reads, authorized by the athlete; Standard Tier apps may require specified end users to hold an active Strava subscription.",
     approvalGate:
-      "Developer Program display rules: 'Connect with Strava' branding and screenshots of every surface where Strava data appears.",
+      "A Strava subscription is a prerequisite for creating an app, which starts in single-player mode; a self-service upgrade raises its athlete capacity to 10, and connecting more than 10 needs Strava's review.",
     engEffort: "medium",
     notes:
-      "No per-request fee, but Standard-tier developers reportedly must hold a paid Strava subscription (2026, verify). The bigger constraint is architectural: an athlete's data may generally only be displayed back to that athlete, and using it to train AI or ML models is prohibited.",
+      "No per-call fee, but the subscription requirement comes first. The bigger constraints are architectural: data may be shown only to the athlete it belongs to, AI use is banned and caches expire after seven days.",
     sourceHref: "/pricing/strava-api-pricing",
   },
 
-  // provenance: "Fitbit/Google, Garmin, Oura, WHOOP and Polar all publish no per-call fee" — /fitness-apis/wearable-data-apis
-  // provenance: "Polar, whose self-serve client registration and long-lived tokens" — /fitness-apis/wearable-data-apis
+  // provenance: "license agreement says the APIs are currently free of charge" — /integrate/polar-api
+  // provenance: "Users authorize through OAuth 2.0 at flow.polar.com" — /integrate/polar-api
+  // provenance: "any registered Polar Flow user can create an API client at admin.polaraccesslink.com" — /integrate/polar-api
+  // provenance: "Each user must accept all mandatory consents; without them, user endpoints return 403" — /integrate/polar-api
+  // provenance: "Polar uses a dynamic limit that scales with your number of registered users" — /integrate/polar-api
+  // provenance: "Exercise endpoints return only data uploaded after the user registered with your client, and only from the last 30 days" — /integrate/polar-api
   {
     id: "polar",
     label: "Polar Open AccessLink",
     category: "wearable-direct",
     devCost: "free",
-    // No sentence on our pages states a Polar user-side membership or device cost, so this stays null.
-    userSideCost: null,
+    userSideCost:
+      "Each user needs a Polar Flow account and must accept all of Polar's mandatory consents; without them, user endpoints return 403.",
+    // Polar documents no review: any registered Polar Flow user creates a
+    // client themselves, so this is null (none documented).
     approvalGate: null,
     engEffort: "low",
     notes:
-      "Documented as free (verify) and the most self-serve option in this group — you register a client yourself and tokens are long-lived. Watch the data shape, not the price: only recent data is exposed, so sync regularly or lose history.",
-    sourceHref: "/fitness-apis/wearable-data-apis",
+      "Free of charge at the moment under Polar's license agreement, which reserves the right to charge later. Rate limits scale with your registered users, and exercise data covers only uploads from the last 30 days after the user registered with your client.",
+    sourceHref: "/integrate/polar-api",
   },
+
+
+
 
   // provenance: "both are free and both use per-data-type OS permission prompts rather than OAuth" — /fitness-apis/apple-healthkit-vs-google-health-connect
   // provenance: "HealthKit is included with the Apple Developer Program (a paid membership is needed to ship apps" — /fitness-apis/apple-healthkit-vs-google-health-connect

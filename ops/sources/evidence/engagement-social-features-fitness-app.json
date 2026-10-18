@@ -1,0 +1,17 @@
+[
+  {
+    "claim": "Answer: Strava's API Policy lets an app show Strava data only to the user who provided it, even when it is public on Strava.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Strava Data provided by a specific Strava user may be displayed or disclosed in your Developer Application only to that user. You may not display or disclose Strava Data related to other users, even if such data is publicly viewable on the Strava Platform."
+  },
+  {
+    "claim": "Provider terms: Strava's API Policy, effective June 1, 2026.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "API Policy (2026) Effective Date: June 1, 2026"
+  },
+  {
+    "claim": "Provider terms: Strava data provided by a specific user may be displayed or disclosed in your app only to that user, and you may not display or disclose Strava data related to other users even if it is publicly viewable on Strava.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Strava Data provided by a specific Strava user may be displayed or disclosed in your Developer Application only to that user. You may not display or disclose Strava Data related to other users, even if such data is publicly viewable on the Strava Platform."
+  }
+]

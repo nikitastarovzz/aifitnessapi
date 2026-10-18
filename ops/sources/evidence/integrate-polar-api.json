@@ -1,0 +1,472 @@
+[
+  {
+    "claim": "Any registered Polar Flow user can create an API client at admin.polaraccesslink.com.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Any registered Polar Flow user can create API client to AccessLink by filling application details at https://admin.polaraccesslink.com"
+  },
+  {
+    "claim": "You create the client and note its OAuth2 client ID and secret.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "After client is created, remember to write down OAuth2 client id and secret for later use"
+  },
+  {
+    "claim": "The license agreement says Polar offers the use and activation of its APIs free of charge at the moment.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "At the moment Polar offers the use and activation of Polar API's free of charge."
+  },
+  {
+    "claim": "Polar reserves the right to charge fees.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "Polar reserves the right to charge fees from time to time at its discretion."
+  },
+  {
+    "claim": "Each user must accept all mandatory consents to access their data.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "each user needs to have all mandatory consents accepted in order to be able to access their data."
+  },
+  {
+    "claim": "Without consents, user endpoints return 403.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Status code 403 Forbidden is returned if user has not given consent to all mandatory data types"
+  },
+  {
+    "claim": "Users can change their consents at any time at account.polar.com.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "User consents can be changed anytime at https://account.polar.com"
+  },
+  {
+    "claim": "Getting started: create a Polar Flow account and log in at the admin site.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Go to https://admin.polaraccesslink.com and log in using your Polar Flow credentials"
+  },
+  {
+    "claim": "Register the user before you read anything.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Register user using register user endpoint to be able to access user's data"
+  },
+  {
+    "claim": "Polar says code is the only response type supported.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "\"code\" is the only response type supported and means that authorization code flow is used."
+  },
+  {
+    "claim": "The authorization endpoint is https://flow.polar.com/oauth2/authorization.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "GET https://flow.polar.com/oauth2/authorization"
+  },
+  {
+    "claim": "AccessLink uses the accesslink.read_all scope.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Accesslink uses accesslink.read_all -scope, which allows access to user's data."
+  },
+  {
+    "claim": "Without scope, the user is asked to authorize every scope linked to your client.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "If not provided, user will be asked to grant authorization for all scopes linked to client."
+  },
+  {
+    "claim": "redirect_uri must be identical to one registered for the client.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Must be identical to the redirect URL given during Accesslink client registration or any other URL that has been added for the client."
+  },
+  {
+    "claim": "Without the parameter, the only or default URL is used.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "If redirect_uri is not specified in the request the only existing URL or the one flagged as the default URL will be used."
+  },
+  {
+    "claim": "You can register several redirect URLs and pick a default.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "You can also select which URL to use as the default URL when redirect_uri is not provided in the request."
+  },
+  {
+    "claim": "State can be used to prevent CSRF attacks.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "It can be used to prevent CSRF attacks"
+  },
+  {
+    "claim": "The code expires in 10 minutes and must only be used once; reuse makes Polar deny the request and delete all tokens.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Authorization code that expires in 10 minutes. This code must only be used once. If it's used more than once, the request will be denied and ALL issued tokens will be deleted."
+  },
+  {
+    "claim": "The token endpoint is https://polarremote.com/v2/oauth2/token.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "POST https://polarremote.com/v2/oauth2/token"
+  },
+  {
+    "claim": "The token request authenticates with HTTP Basic.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Authorization = Basic auth with base64 encoded string client_id:client_secret."
+  },
+  {
+    "claim": "redirect_uri is required at the token endpoint only if you sent it to the authorization endpoint.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Must be specified if redirect_uri was passed to authorization endpoint"
+  },
+  {
+    "claim": "The response holds token_type bearer.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "token_type (string) = Token will have type \"bearer\"."
+  },
+  {
+    "claim": "expires_in example is 31535999 seconds, about one year.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "For example, the value \"31535999\" denotes that the access token will expire about one year from the time the response was generated."
+  },
+  {
+    "claim": "x_user_id is the Polar user ID.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "x_user_id (long) = Polar Ecosystem user identifier"
+  },
+  {
+    "claim": "The making-requests section says access tokens will not expire unless revoked by partners or users.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Access tokens will not expire unless explicitly revoked by partners or users."
+  },
+  {
+    "claim": "Requests to /v3/users use the user's token; other /v3/ requests use client credentials.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "All requests to /v3/users and its subresources are done with user token authentication, and all other /v3/ requests (/v3/notifications for example) are done with client credentials."
+  },
+  {
+    "claim": "Polar says you must register the user before being able to access its data.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "Once partner has been authorized by user, partner must register the user before being able to access its data."
+  },
+  {
+    "claim": "A 409 means already registered or a duplicate member-id.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "User already registered to partner or duplicated member-id."
+  },
+  {
+    "claim": "A 403 means the user has not accepted all mandatory consents.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "User has not accepted all mandatory consents."
+  },
+  {
+    "claim": "member-id is your custom identifier for the user.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Partner's custom identifier for user."
+  },
+  {
+    "claim": "GET /v3/users/{user-id} returns basic information.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "List user basic information."
+  },
+  {
+    "claim": "DELETE de-registers the user and revokes the access token.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "When partner wishes no longer to receive user data, user can be de-registered. This will revoke the access token authorized by user."
+  },
+  {
+    "claim": "Exercise endpoints need no transaction.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "These endpoints do not require an active transaction, but they use hashed id."
+  },
+  {
+    "claim": "Exercises: last 30 days, only after the user registered with your client.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "Only Exercises uploaded to Flow in the last 30 days are returned. Only exercises that have been uploaded to Flow after the user is registered with your client will be returned."
+  },
+  {
+    "claim": "Exercise list takes samples and zones flags.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "Use samples and zones query parameters to return optional samples and zone information of the exercises."
+  },
+  {
+    "claim": "Exercise list takes a route flag.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "description: Return all route data for this exercise."
+  },
+  {
+    "claim": "Exercises have FIT, TCX and GPX endpoints.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "/v3/exercises/{exerciseId}/fit:"
+  },
+  {
+    "claim": "Daily activity: last 28 days by default; from up to 365 days; at most 28 days between from and to.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "When no date range is given, activities from the last 28 days are returned. When `from` is given, activities for the specified date range are returned. From date cannot be older than 365 days from today and the maximum range between from and to is 28 days."
+  },
+  {
+    "claim": "Physical info has a non-transactional endpoint.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "Retrieve user's physical information."
+  },
+  {
+    "claim": "Continuous heart rate samples come in 5-minute intervals on supported devices, excluding training sessions.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "Samples are recording in 5 minute intervals. Heart rate samples from training sessions are not available through this resource."
+  },
+  {
+    "claim": "Continuous heart rate needs heart rate tracking turned on in device settings.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "Continuous heart rate is recorded with supported devices when the heart rate tracking is turned on in device settings."
+  },
+  {
+    "claim": "Cardio load: last 28 days with one entry for every day in the range.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "Returns cardio load data for the last 28 days. The response list contains cardio load objects for every day in the range, even if values cannot be calculated"
+  },
+  {
+    "claim": "Cardio load also by days and months.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "'/v3/users/cardio-load/period/months/{months}':"
+  },
+  {
+    "claim": "Sleep: last 28 days.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "List sleep data of user for the last 28 days."
+  },
+  {
+    "claim": "Sleep availability: last 28 days.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "Get the dates with sleep start and end times, where user has sleep data available in the last 28 days."
+  },
+  {
+    "claim": "Nightly Recharge: last 28 days.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "List Nightly Recharge data of user for the last 28 days."
+  },
+  {
+    "claim": "SleepWise alertness: last 28 days.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "Get user's alertness period data for the last 28 days."
+  },
+  {
+    "claim": "SleepWise needs at least 5 days of sleep data on supported devices.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "supported devices when minimum of 5 days of sleep data is available."
+  },
+  {
+    "claim": "Elixir biosensing covers body temperature, skin temperature, skin contacts, ECG and SpO2.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "Biosensing data consists of body temperature data, sleep skin temperature data, skin contacts data, wrist ECG test report data and SpO2 test report data."
+  },
+  {
+    "claim": "Biosensing endpoints take optional inclusive from and to dates.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "description: 'Inclusive start date of range as ISO-8601 date string, example: \"2023-10-01\"' required: false"
+  },
+  {
+    "claim": "Transactions: commit deletes the data.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "Transaction has been committed and data deleted."
+  },
+  {
+    "claim": "Partners are expected to commit after retrieving data.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "After successfully retrieving training session data within a transaction, partners are expected to commit the transaction."
+  },
+  {
+    "claim": "An exercise transaction holds at most 50 items.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "Each transaction will consist of at most 50 training sessions."
+  },
+  {
+    "claim": "An activity transaction holds at most 50 items.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "Each transaction will consist of at most 50 activity summaries."
+  },
+  {
+    "claim": "Deprecated transactions: only data after registration, last 28 days.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "Only data that has been uploaded to Flow after the user has been registered to your client will be available. Only data that has been uploaded in the last 28 days will be available."
+  },
+  {
+    "claim": "The exercise transaction POST says the last 30 days.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "Only data uploaded to Flow in the last 30 days will be available."
+  },
+  {
+    "claim": "Transactional daily activity and exercises deprecated August 18, 2025, with non-transactional daily activity added.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "New non-transactional endpoints for Daily activity added"
+  },
+  {
+    "claim": "Transactional exercises deprecated on August 18, 2025.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Transactional endpoint for Exercises is deprecated"
+  },
+  {
+    "claim": "Transactional daily activity deprecated on August 18, 2025.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Transactional endpoint for Daily activity is deprecated"
+  },
+  {
+    "claim": "Transactional physical info deprecated on January 13, 2026.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Transactional endpoint for Physical info is deprecated"
+  },
+  {
+    "claim": "A non-transactional physical info endpoint added January 13, 2026.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "New non-transactional endpoint for Physical info added"
+  },
+  {
+    "claim": "A PHYSICAL_INFORMATION webhook event added January 13, 2026.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "New webhook event PHYSICAL_INFORMATION added"
+  },
+  {
+    "claim": "Notifications list exercises and activities available for users.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "Get list of available exercises and activities for users"
+  },
+  {
+    "claim": "Notifications use client credentials.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "This resource allows partners to check if their users have available data for downloading. Use client credentials authentication."
+  },
+  {
+    "claim": "A 204 from notifications means nothing is available.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "No content when no available data found"
+  },
+  {
+    "claim": "A client application can only have one webhook registered.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Note! Client application can only have one webhook registered."
+  },
+  {
+    "claim": "On creation Polar sends a ping and the webhook is not created unless your endpoint answers 200 OK.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "When creating webhook the AccessLink sends a ping message to the url in request body. The ping message must be answered with 200 OK or otherwise the webhook is not created."
+  },
+  {
+    "claim": "Updating the URL triggers a new ping.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "When updating webhook url the AccessLink sends a ping message to the new address."
+  },
+  {
+    "claim": "The webhook can be edited for event types and URL.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "Edit webhook event types and/or url."
+  },
+  {
+    "claim": "The signature_secret_key is not available after create.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "This signing key is not available after create so make sure to save the key when creating webhook."
+  },
+  {
+    "claim": "Polar signs every payload with HMAC SHA-256.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Hash-based message authentication code (HMAC SHA-256) is used to sign every webhook payload Accesslink sends."
+  },
+  {
+    "claim": "The signature arrives in Polar-Webhook-Signature.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Signature is included in \"Polar-Webhook-Signature\" header, and receiving endpoint should verify the signature when receiving message to verify origin of message."
+  },
+  {
+    "claim": "The event type arrives in Polar-Webhook-Event.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Polar-Webhook-Event: EXERCISE"
+  },
+  {
+    "claim": "Event types include EXERCISE, SLEEP, CONTINUOUS_HEART_RATE, SLEEP_WISE_CIRCADIAN_BEDTIME, SLEEP_WISE_ALERTNESS, ACTIVITY_SUMMARY and PHYSICAL_INFORMATION.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Payload schemas for different event types are available at:"
+  },
+  {
+    "claim": "The SleepWise and summary event names.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "SLEEP_WISE_CIRCADIAN_BEDTIME"
+  },
+  {
+    "claim": "The exercise example carries event, user_id, entity_id, timestamp and url.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "\"entity_id\": \"aQlC83\","
+  },
+  {
+    "claim": "Delivery expects a 200 response.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Webhook delivery expects response 200 from remote endpoint."
+  },
+  {
+    "claim": "A webhook failing for seven days is deactivated automatically.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Webhook will be automatically deactivated if push notifications have not been successful for a period of seven (7) days."
+  },
+  {
+    "claim": "Activation succeeds only if the URL answers the ping.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "Activation is successful if the configured webhook url returns HTTP status 200 (OK) for the issued ping request."
+  },
+  {
+    "claim": "Deactivate pauses deliveries.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Webhook deliveries can be temporarily paused by calling the deactivate webhook endpoint."
+  },
+  {
+    "claim": "The rate limit scales with registered users and is updated daily.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Dynamic rate limit scales partners rate limit values based on number of registered users. Rate limit values are updated daily."
+  },
+  {
+    "claim": "Short-term limit: 500 + users x 20 per 15 minutes.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "15min rate limit: 500 + number of users x 20"
+  },
+  {
+    "claim": "Long-term limit: 5,000 + users x 100 per 24 hours.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "24h rate limit: 5000 + number of users x 100"
+  },
+  {
+    "claim": "RateLimit-Usage holds two comma-separated values.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Two comma separated values, short term followed by long term usage."
+  },
+  {
+    "claim": "Limits, usage and reset come back with every request.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Partner's limits, usage and reset time are returned with every API request as part of the HTTP Headers."
+  },
+  {
+    "claim": "Requests over the limit get 429 and short-term violations count toward the long-term limit.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Requests exceeding the limit will return 429 - Too Many Requests. Note that requests violating the short term limit will still count toward the long term limit."
+  },
+  {
+    "claim": "Load testing without prior approval is treated as interfering.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "Load testing without prior approval by Polar will be construed as interfering with the proper working of Polar Ecosystem"
+  },
+  {
+    "claim": "March 21, 2024: route data added to exercises.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Route data added to exercise"
+  },
+  {
+    "claim": "March 5, 2024: body temperature endpoint added.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Body temperature endpoint added to Elixir"
+  },
+  {
+    "claim": "January 18, 2024: active property added to webhook info.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "New property active added to webhookInfo"
+  },
+  {
+    "claim": "December 19, 2023: Elixir biosensing in beta.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "biosensing data released in beta status"
+  },
+  {
+    "claim": "June 28, 2023: mandatory consents checked on data requests.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Mandatory consents are checked when requesting user data"
+  },
+  {
+    "claim": "June 28, 2023: webhooks deactivated after 7 days of failed delivery.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Webhooks are automatically deactivated if they fail to deliver data for 7 days"
+  },
+  {
+    "claim": "June 28, 2023: activate and deactivate endpoints added.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "New endpoints for activating and deactivating webhooks"
+  }
+]

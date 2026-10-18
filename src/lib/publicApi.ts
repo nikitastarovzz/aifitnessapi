@@ -21,8 +21,8 @@ import { HC_PERMISSIONS_PATH, permissionAnchor } from "@/data/hcPages";
  * collection endpoint, an endpoint per item, its paths and schemas in the
  * OpenAPI document, its row on /developers and the index, and qa coverage
  * (the API-* gates read the built output, not this file). To publish another
- * dataset through the API — the Google Health API data types, say — add one
- * entry here; there is no other list to update.
+ * dataset through the API, add one entry here; there is no other list to
+ * update.
  */
 
 export const API_BASE = "/api/v1";
@@ -66,9 +66,15 @@ type DatasetDoc = {
   version: string;
   publisher: string;
   license: string;
+  /** What the licence covers, where a dataset limits it (the Bluetooth SIG's
+   *  facts are restated, not relicensed). Carried by every response. */
+  licenseNote?: string;
+  /** The source's own notice, verbatim. Carried by the collection response. */
+  sourceTerms?: string;
   methodology: string;
   generatedFrom: string;
-  isBasedOn?: string;
+  /** One URL, or the list of sources a dataset was read from. */
+  isBasedOn?: string | string[];
   sourceReadOn?: string;
   fields?: Record<string, string>;
   items: Row[];
@@ -119,9 +125,14 @@ const oldest = (dates: string[]) => [...dates].sort()[0];
 
 /** Dataset generators record the day they read the vendor's documentation. */
 function readOn(doc: DatasetDoc, what: string): Verified {
+  const based = Array.isArray(doc.isBasedOn)
+    ? ` (${doc.isBasedOn.length} sources, listed in the dataset's isBasedOn)`
+    : doc.isBasedOn
+      ? ` (${doc.isBasedOn})`
+      : "";
   return {
     date: day(doc.sourceReadOn, `${doc.name} sourceReadOn`),
-    meaning: `The date the generator read ${what}${doc.isBasedOn ? ` (${doc.isBasedOn})` : ""} for every row: the dataset's sourceReadOn.`,
+    meaning: `The date the generator read ${what}${based} for every row: the dataset's sourceReadOn.`,
   };
 }
 
@@ -135,6 +146,35 @@ const slugify = (s: string) =>
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
+
+/** The fragment of a row's `page` URL: the row's own anchor on the page that
+ *  presents it, as the dataset generator wrote it. */
+function pageFragment(r: Row, what: string): string {
+  const frag = String(r.page ?? "").split("#")[1];
+  if (!frag) throw new Error(`${what}: a row's page URL has no #fragment (${String(r.page)}) — regenerate the datasets (npm run datasets).`);
+  return frag;
+}
+
+/** An MCP server's id: its row anchor on /health-mcp-servers without the
+ *  server- prefix, i.e. the registry name lowercased with each run of other
+ *  characters made a hyphen (scripts/fetch-mcp-health-servers.mjs, slugOf). */
+function mcpServerId(r: Row): string {
+  const frag = pageFragment(r, "mcp-servers");
+  if (!frag.startsWith("server-")) throw new Error(`mcp-servers: ${String(r.name)} is anchored at #${frag}, not #server-…`);
+  return frag.slice("server-".length);
+}
+
+/** A GATT row's id: the characteristic's UUID, then the field's order in the
+ *  structure; the UUID alone for a characteristic with no published structure. */
+function gattFieldId(r: Row): string {
+  return r.order === null || r.order === undefined ? String(r.characteristicUuid) : `${String(r.characteristicUuid)}.${String(r.order)}`;
+}
+
+/** A keypoint's id: the scheme, then the source's index — or the joint name
+ *  for Apple Vision's joints, which have no index. */
+function keypointId(r: Row): string {
+  return `${String(r.scheme)}.${String(r.index ?? r.name)}`;
+}
 
 /** The aliases the directory matches products by, with the same word-boundary
  *  rule as lib/apiCoverage.ts, applied to the published change rows. */
@@ -453,6 +493,103 @@ const COLLECTIONS: Collection[] = [
     }),
     itemSource: (r) => String(r.href),
   },
+  {
+    dataset: "google-health-api-data-types-2026",
+    path: "google-health-api/data-types",
+    param: "dataType",
+    key: (r) => String(r.dataType),
+    plural: "GoogleHealthDataTypes",
+    singular: "GoogleHealthDataType",
+    tag: "Google Health API",
+    title: "Google Health API data types",
+    description:
+      "Every data type in Google's Google Health API data-types table, joined to the v4 discovery document: record type, storage resolution, operations and the methods they map to, scopes, fields, rollup fields and the Fitbit Web API predecessor. methods, scopes and dataPointProperty are derived and keep their evidence; flags names the kinds of disagreement between Google's own pages.",
+    page: "/google-health-api",
+    verified: (doc) => readOn(doc, "Google's Google Health API data-types table and the v4 discovery document"),
+    itemSource: (r) => String(r.page),
+    fieldNotes: {
+      name: "Google's display name for the data type, as its data-types table prints it",
+      fields: "Every field of that schema in the discovery document, semicolon-separated",
+      rollupFields: "The fields of rollupSchema in the discovery document, semicolon-separated",
+      fitbitDescription: "The description in Google's Fitbit Web API mapping row for the type, verbatim; null where the row has none",
+      compatibleDevices: "The compatible devices Google's table lists for the type, semicolon-separated; null where it lists none",
+    },
+  },
+  {
+    dataset: "bluetooth-fitness-gatt-2026",
+    path: "bluetooth/gatt-fields",
+    param: "id",
+    key: gattFieldId,
+    plural: "BluetoothGattFields",
+    singular: "BluetoothGattField",
+    tag: "Bluetooth GATT",
+    title: "Bluetooth fitness GATT characteristic fields",
+    description:
+      "One row per structure field of the GATT characteristics this site covers for fitness and health devices, read from the Bluetooth SIG's public repository; a struct's fields are rows under it, and a characteristic with no published structure is one row. CC BY 4.0 covers this compilation and its derived columns only: the UUIDs, identifiers, names, types and sizes are the SIG's, restated as facts, and presentIf and unitEvidence quote its lines; the SIG's descriptions are left out, and its notice is carried in sourceTerms (the collection response and the dataset) and summed up in licenseNote on every response.",
+    page: "/bluetooth-fitness",
+    extra: {
+      compute: (r) => ({ id: gattFieldId(r) }),
+      schema: {
+        id: {
+          type: "string",
+          description:
+            "The row's id in this API: the characteristic's 16-bit UUID, a dot and the field's order (0x2A37.1; 0x2A18.6.1 for the first field of the struct at position 6), or the UUID alone for a characteristic with no published structure (0x2A5E)",
+        },
+      },
+    },
+    verified: (doc) => readOn(doc, "the Bluetooth SIG's public repository"),
+    itemSource: (r) => String(r.page),
+  },
+  {
+    dataset: "health-mcp-servers-2026",
+    path: "mcp-servers",
+    param: "id",
+    key: mcpServerId,
+    plural: "McpServers",
+    singular: "McpServer",
+    tag: "MCP servers",
+    title: "Health and fitness MCP servers",
+    description:
+      "Every latest-version entry in the official MCP Registry whose name, title or description matches a health or fitness data-source term, copied from the registry unchanged, with npm and PyPI facts for the packages it names. matchedTerms and publisherIsVendor are derived and keep their evidence. Descriptions are the publishers' own words; repositories were not read and no server was run.",
+    page: "/health-mcp-servers",
+    extra: {
+      compute: (r) => ({ id: mcpServerId(r) }),
+      schema: {
+        id: {
+          type: "string",
+          description:
+            "The server's row anchor on /health-mcp-servers without its server- prefix: the registry name lowercased, each run of other characters replaced by a hyphen",
+        },
+      },
+    },
+    verified: (doc) => readOn(doc, "the official MCP Registry listing"),
+    itemSource: (r) => String(r.page),
+  },
+  {
+    dataset: "pose-keypoint-maps-2026",
+    path: "pose/keypoints",
+    param: "id",
+    key: keypointId,
+    plural: "PoseKeypoints",
+    singular: "PoseKeypoint",
+    tag: "Pose estimation",
+    title: "Pose-estimation keypoint maps",
+    description:
+      "Every point of each pose-estimation keypoint scheme this site maps, with its index and name exactly as the model's own source spells them (Apple Vision's named joints have no index, so theirs is null), the source file and the SHA-256 of the bytes read. crosswalkKey is derived (the name lowercased, everything outside a-z0-9 removed), and points are joined across schemes on it and nothing else.",
+    page: "/pose-keypoints",
+    extra: {
+      compute: (r) => ({ id: keypointId(r) }),
+      schema: {
+        id: {
+          type: "string",
+          description:
+            "The scheme slug, a dot and the point's index in that scheme (coco-17.5); for Apple Vision's named joints, which have no index, the joint name (apple-vision-2d.leftEar)",
+        },
+      },
+    },
+    verified: (doc) => readOn(doc, "each scheme's own source file or documentation page"),
+    itemSource: (r) => String(r.page),
+  },
 ];
 
 /** Same rule as the UID of each event in /changes/calendar.ics. */
@@ -530,6 +667,9 @@ function provenance(c: BuiltCollection) {
   return {
     license: LICENSE_ID,
     licenseUrl: LICENSE_URL,
+    // Where the dataset limits what the licence covers, every response says
+    // so: one item is often all a client keeps.
+    ...(c.doc.licenseNote ? { licenseNote: c.doc.licenseNote } : {}),
     attribution: ATTRIBUTION,
     citeAs: `AIFitnessAPI, "${c.doc.name}," version ${c.doc.version}, aifitnessapi.com, ${absoluteUrl(`/datasets/${c.dataset}.json`)}`,
     dataset: {
@@ -554,6 +694,7 @@ function collectionBody(c: BuiltCollection): Record<string, unknown> {
     source: absoluteUrl(c.page),
     verified: c.verifiedNow,
     ...provenance(c),
+    ...(c.doc.sourceTerms ? { sourceTerms: c.doc.sourceTerms } : {}),
     methodology: c.doc.methodology,
     key: c.param,
     itemUrl: c.itemUrl,
@@ -619,7 +760,7 @@ export function apiIndex(tools: { name: string; description: string }[]): Record
       "Answers come only from verified data: every value is copied from a published dataset row, and each row links the page carrying its sourced claim.",
       "null means the source does not state it or it could not be verified. It never means zero, and it is never a guess.",
       "Collections are served whole; the largest is a few hundred rows, so there is no pagination.",
-      "Item ids are case-sensitive and come from the data itself (an identifier, a class name, a change's date and title), so an id lasts as long as its row; an unknown id returns HTTP 404.",
+      "Item ids are case-sensitive and come from the data itself (an identifier, a class name, a row's anchor on its page, a change's date and title, or two fields joined by a dot), so an id lasts as long as its row; an unknown id returns HTTP 404.",
     ],
     mcp: {
       url: absoluteUrl(MCP_PATH),

@@ -114,22 +114,22 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
   {
     date: "2026",
     sortDate: "2026-06-01",
-    title: "Strava developer terms: Standard-tier subscription (reported)",
+    title: "Strava developer terms: Standard Tier subscription",
     summary:
-      "Strava's developer access terms reportedly changed during 2026, with Standard-tier developers said to need a paid Strava subscription. The architectural constraints matter more than the fee: athlete data may generally only be displayed back to that athlete, and using it to train AI/ML models is prohibited.",
-    status: "reported",
-    page: { href: "/migrate/adapt-to-strava-api-changes", label: "Adapting to Strava API changes" },
-    verifiedOn: "2026-08-12",
+      "Strava's API Policy makes Standard Tier apps \"subject to subscription requirements\", including \"that the developer or specified end users maintain an active Strava subscription\", and its getting-started guide calls a subscription \"a prerequisite for creating an app\". Access itself is free: the API Agreement (2026), effective June 1, 2026, says it is \"currently provided at no charge\". The architectural constraints matter more than the fee: Strava data may be shown only to the athlete it belongs to, and the API Policy forbids using it in the development, training, evaluation or operation of any AI application. Graded reported until Strava's own pages were re-read on 2026-10-17.",
+    status: "confirmed",
+    page: { href: "/pricing/strava-api-pricing", label: "Strava API pricing" },
+    verifiedOn: "2026-10-17",
   },
   {
     date: "2026",
     sortDate: "2026-04-01",
     title: "WHOOP membership restructuring",
     summary:
-      "WHOOP has restructured its membership recently. Because WHOOP requires both a developer membership and an active end-user membership for data to flow, a restructuring moves two columns of the cost model at once — verify current terms before budgeting.",
+      "Reported, not confirmed: 2026 press coverage said WHOOP had restructured its membership and upgrade model, and this site's WHOOP pricing page repeated it until the page was re-verified on 2026-10-17. WHOOP's developer pages read for that re-verification do not mention a restructuring. They do say a developer must have a WHOOP membership to build an app and that users connect with their own WHOOP accounts, so a membership change moves two columns of the cost model at once — check WHOOP's current terms before budgeting.",
     status: "reported",
     page: { href: "/pricing/whoop-api-pricing", label: "WHOOP API pricing" },
-    verifiedOn: "2026-08-12",
+    verifiedOn: "2026-10-17",
   },
   {
     date: "2026",
@@ -220,7 +220,7 @@ export const WATCH_ITEMS: { title: string; summary: string; page: { href: string
   {
     title: "Garmin developer program sign-ups",
     summary:
-      "Third parties report new partner sign-ups paused at times, with no reopening ETA. Existing partners are unaffected. Verify current status before planning a Garmin integration.",
+      "Every Garmin Connect Developer Program page read on 2026-10-17 carried a banner reading \"Stay tuned for more updates on the program\", without saying what the updates are. The program FAQ still invited requests and said Garmin confirms an application's status within two business days; third-party reports earlier in 2026 that new partner sign-ups were paused could not be verified on Garmin's own pages.",
     page: { href: "/fix/garmin-api-approval", label: "Garmin API approval" },
   },
 ];
