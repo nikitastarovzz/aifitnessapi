@@ -30,7 +30,7 @@ export const CORRECTIONS: Correction[] = [
   },
   {
     date: "2026-10-18",
-    page: { href: "/fitbit-api-shutdown", label: "Fitbit API Shutdown: What's Confirmed for 2026" },
+    page: { href: "/fitbit-api-shutdown", label: "Fitbit Web API Retirement: Deadlines and the Migration Path" },
     was: "The page named \"Thryve/Sahha\" as one vendor, in its aggregator section and in an FAQ answer.",
     now: "Thryve and Sahha are separate companies. Thryve stays on the list of vendors reported to have been preparing, and Sahha has its own sentence: its integrations page says Fitbit data on Android reaches its SDK through Health Connect.",
     how: "Same finding as the Fitbit migration guide, found in a site-wide search for the same wording and corrected the same day.",
@@ -43,14 +43,14 @@ export const CORRECTIONS: Correction[] = [
     how: "Same finding as the Fitbit migration guide, corrected the same day.",
   },
   {
-    date: "2026-10-17",
+    date: "2026-10-18",
     page: { href: "/state-of-fitness-apis-2026", label: "The State of Fitness APIs 2026" },
     was: "The report counted 12 of 25 items (48%) as approval-gated and recorded no gate for Terra, and its usage-billing finding said Terra carries no documented approval gate at all.",
     now: "13 of 25 (52%). Terra's docs say some providers \"require special processes before being able to start using them\" and name WHOOP, Dexcom, Huawei, Strava and Virtuagym, the same kind of own-credentials gate the report already recorded for Rook. A dated revision note at the top of the report lists every figure that moved, including Spike's move from contact-sales to usage-based, which it records as an update rather than a correction.",
     how: "Found on 2026-10-17 while re-verifying the aggregator pages against Terra's docs, fetched by a source-snapshot run. The gate was already on this site when the report went up: the 2026-08-02 versions of the aggregator comparison and of Terra vs Vital said some providers need your own developer credentials with Terra, so the dataset's empty field was wrong at publication.",
   },
   {
-    date: "2026-10-17",
+    date: "2026-10-18",
     page: { href: "/apis/terra", label: "Terra API: Access Requirements, Changes & Guides" },
     was: "The directory entry said: \"No approval gate is documented in the sources we checked, which is not the same as there being none.\"",
     now: "It records the gate as Terra's docs state it: some providers need a special setup process first, and the docs name WHOOP, Dexcom, Huawei, Strava and Virtuagym.",

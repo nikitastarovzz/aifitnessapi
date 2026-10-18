@@ -16,7 +16,7 @@ import { orgRef } from "@/lib/schema";
  * site's citation magnet; keep the version pinned (2026.1) and version, don't
  * overwrite, at the next edition.
  *
- * Revised in place on 2026-10-17, not re-editioned: only the four aggregator
+ * Revised in place on 2026-10-18, not re-editioned: only the four aggregator
  * rows were re-verified, and two of their classifications moved (Spike's
  * devCost, Terra's approval gate). REVISION states the before and after
  * figures; the other 21 rows keep their 2026-08-11 verification, which is why
@@ -24,9 +24,10 @@ import { orgRef } from "@/lib/schema";
  */
 
 const PAGE_PATH = "/state-of-fitness-apis-2026";
-/** dateModified: the aggregator re-verification behind the revision. The
+/** dateModified: the day the revision was published (the aggregator rows were
+ *  re-verified the day before, on 2026-10-17). The
  *  sitemap reads this constant by name, so it keeps the name UPDATED. */
-const UPDATED = "2026-10-17";
+const UPDATED = "2026-10-18";
 /** datePublished, and the verification date of the 21 rows not re-checked. */
 const FIRST_PUBLISHED = "2026-08-11";
 
@@ -62,7 +63,7 @@ export const metadata: Metadata = {
   },
 };
 
-const ANSWER = "Of the 25 fitness APIs, SDKs and models surveyed for this report, as revised on 17 October 2026, 12 are free to call (48%) — but 13 gate your launch behind someone else's approval (52%), and 5 require the end user to already own hardware or hold a membership before any data flows. Only 3 items (12%) are contact-sales-only: Garmin, Sency and KinesteX, which funds this site. The free layer and the gated layer are not the same items: all 3 pose-estimation models are free, Apache-2.0 or platform-bundled and ungated, while five of the six direct wearable APIs carry both an approval gate and a user-side cost. Every figure comes from an open, per-item-sourced dataset published under CC BY 4.0, and no dollar figure appears anywhere in it by design.";
+const ANSWER = "Of the 25 fitness APIs, SDKs and models surveyed for this report, as revised on 18 October 2026, 12 are free to call (48%) — but 13 gate your launch behind someone else's approval (52%), and 5 require the end user to already own hardware or hold a membership before any data flows. Only 3 items (12%) are contact-sales-only: Garmin, Sency and KinesteX, which funds this site. The free layer and the gated layer are not the same items: all 3 pose-estimation models are free, Apache-2.0 or platform-bundled and ungated, while five of the six direct wearable APIs carry both an approval gate and a user-side cost. Every figure comes from an open, per-item-sourced dataset published under CC BY 4.0, and no dollar figure appears anywhere in it by design.";
 
 const FAQS: { q: string; a: string }[] = [
   {
@@ -79,7 +80,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     "q": "Can I cite or redistribute the State of Fitness APIs 2026 dataset?",
-    "a": "Yes. The dataset is published under CC BY 4.0 as fitness-apis-2026.json and fitness-apis-2026.csv, version 2026.1, with a source link on every row so you can check each claim against the page it came from. Attribution is the only condition. Cite it as: AIFitnessAPI, 'The State of Fitness APIs 2026,' aifitnessapi.com, updated 11 August 2026, revised 17 October 2026, https://aifitnessapi.com/state-of-fitness-apis-2026. The 17 October revision changed two aggregator rows in place, and the revision note at the top of the report keeps the earlier figures on record; future editions will be versioned rather than overwritten."
+    "a": "Yes. The dataset is published under CC BY 4.0 as fitness-apis-2026.json and fitness-apis-2026.csv, version 2026.1, with a source link on every row so you can check each claim against the page it came from. Attribution is the only condition. Cite it as: AIFitnessAPI, 'The State of Fitness APIs 2026,' aifitnessapi.com, updated 11 August 2026, revised 18 October 2026, https://aifitnessapi.com/state-of-fitness-apis-2026. The 17 October revision changed two aggregator rows in place, and the revision note at the top of the report keeps the earlier figures on record; future editions will be versioned rather than overwritten."
   },
   {
     "q": "Does KinesteX get special treatment in its own dataset?",
@@ -205,9 +206,9 @@ Per-vendor structure is broken out on [Fitbit API pricing](/pricing/fitbit-api-p
 
 **First-party disclosure.** KinesteX funds this site. It is one of the 25 items and one of the 3 contact-sales items, recorded on the same terms as every competitor.
 
-**Licence and downloads.** CC BY 4.0, version 2026.1 as revised on 17 October 2026, with a per-item source link on every row: [fitness-apis-2026.json](/datasets/fitness-apis-2026.json) and [fitness-apis-2026.csv](/datasets/fitness-apis-2026.csv).
+**Licence and downloads.** CC BY 4.0, version 2026.1 as revised on 18 October 2026, with a per-item source link on every row: [fitness-apis-2026.json](/datasets/fitness-apis-2026.json) and [fitness-apis-2026.csv](/datasets/fitness-apis-2026.csv).
 
-**Cite as:** AIFitnessAPI, "The State of Fitness APIs 2026," aifitnessapi.com, updated 11 August 2026, revised 17 October 2026, https://aifitnessapi.com/state-of-fitness-apis-2026
+**Cite as:** AIFitnessAPI, "The State of Fitness APIs 2026," aifitnessapi.com, updated 11 August 2026, revised 18 October 2026, https://aifitnessapi.com/state-of-fitness-apis-2026
 
 ## What to watch into 2027
 
@@ -223,16 +224,16 @@ Five things in this data look unstable. All of them are hedges, not predictions.
 
 **MoveNet MultiPose has a licence gap.** The MultiPose model card we read carried no licence line, while the single-person models are Apache-2.0. Until that resolves, "the pose layer is uniformly free" deserves an asterisk wherever multi-person tracking is involved. Confirm it independently before shipping commercially.
 
-The next edition will re-verify every row and version the dataset rather than overwrite it. Within 2026.1, the 17 October 2026 revision changed two aggregator rows in place, and the revision note at the top keeps the earlier figures on record.
+The next edition will re-verify every row and version the dataset rather than overwrite it. Within 2026.1, the 18 October 2026 revision changed two aggregator rows in place, and the revision note at the top keeps the earlier figures on record.
 `;
 
 const REVISION = `
-**Revised 17 October 2026.** We re-verified the four aggregator rows (Terra, Junction, Rook and Spike) against the vendors' own pages and docs; the other 21 rows keep their 11 August 2026 verification. Two classifications changed:
+**Revised 18 October 2026.** On 17 October 2026 we re-verified the four aggregator rows (Terra, Junction, Rook and Spike) against the vendors' own pages and docs; the other 21 rows keep their 11 August 2026 verification. Two classifications changed:
 
 - **Spike: contact-sales → usage-based.** Its pricing page now publishes a starting price for its Sandbox plan and calls its pricing usage-driven. That is recorded as an update rather than a correction, because we hold no copy of Spike's pricing page from August to show the price was public then.
 - **Terra: an approval gate is now recorded.** Its docs say some providers "require special processes before being able to start using them" and name WHOOP, Dexcom, Huawei, Strava and Virtuagym. Our own aggregator pages already said, before this report went up, that some providers need your own developer credentials with Terra, so the missing gate was an error; it is logged on the [corrections page](/corrections).
 
-| Figure | 11 August 2026 | 17 October 2026 |
+| Figure | 11 August 2026 | 18 October 2026 |
 | --- | --- | --- |
 | Contact-sales items | 4 (16%) | 3 (12%) |
 | Usage-based items | 4 | 5 |
@@ -305,7 +306,7 @@ export default function StateOfFitnessApis2026Page() {
           The State of Fitness APIs 2026
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">
-          Version 2026.1 · Updated 11 August 2026 · Revised 17 October 2026 · Open dataset, CC BY 4.0
+          Version 2026.1 · Updated 11 August 2026 · Revised 18 October 2026 · Open dataset, CC BY 4.0
         </p>
 
         <aside
@@ -328,7 +329,7 @@ export default function StateOfFitnessApis2026Page() {
         {/* Revised in place, not re-editioned: what moved, with the old figures. */}
         <aside
           role="note"
-          id="revision-2026-10-17"
+          id="revision-2026-10-18"
           className="prose prose-sm prose-neutral mt-6 max-w-none rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 dark:prose-invert prose-a:text-brand-600 hover:prose-a:text-brand-500 prose-th:text-left"
         >
           <Mdx source={REVISION} />
@@ -373,7 +374,7 @@ export default function StateOfFitnessApis2026Page() {
         </section>
 
         <p className="mt-10 text-sm text-[var(--muted)]">
-          By {site.name}. Cite as: AIFitnessAPI, &ldquo;The State of Fitness APIs 2026,&rdquo; version 2026.1, revised 17 October 2026 — the dataset downloads carry per-item source links.
+          By {site.name}. Cite as: AIFitnessAPI, &ldquo;The State of Fitness APIs 2026,&rdquo; version 2026.1, revised 18 October 2026 — the dataset downloads carry per-item source links.
         </p>
       </article>
     </Container>
