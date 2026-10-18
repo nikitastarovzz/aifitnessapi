@@ -7,7 +7,7 @@
  * contained the entry and listed it in its cluster's release gate (blog
  * posts: the commit that added the file; generated sections: the commit that
  * added the route, or the item to the data file if that came later).
- * Keyed by URL path without the leading slash. 458 rows.
+ * Keyed by URL path without the leading slash. 468 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -401,21 +401,31 @@ export const PUBLISHED: Record<string, string> = {
   "migrate/polling-to-webhooks": "2026-07-20",
   "motion/2d-vs-3d-pose-estimation": "2026-07-25",
   "motion/apple-vision-body-pose": "2026-08-02",
+  "motion/bicep-curl-counter-pose-estimation": "2026-10-18",
   "motion/build-vs-buy-ai-motion-tracking": "2026-07-25",
+  "motion/deadlift-pose-estimation": "2026-10-18",
   "motion/how-form-feedback-works": "2026-07-25",
   "motion/how-rep-counting-works": "2026-07-25",
+  "motion/jumping-jack-counter-pose-estimation": "2026-10-18",
+  "motion/lunge-detection-pose-estimation": "2026-10-18",
   "motion/mediapipe-pose-landmarker-models": "2026-08-02",
   "motion/ml-kit-pose-detection": "2026-10-17",
   "motion/movenet-models": "2026-10-17",
   "motion/multi-person-pose-tracking": "2026-07-25",
   "motion/on-device-vs-cloud-pose-estimation": "2026-07-25",
   "motion/openpose-models": "2026-10-17",
+  "motion/overhead-press-pose-estimation": "2026-10-18",
+  "motion/plank-detection-pose-estimation": "2026-10-18",
   "motion/pose-estimation-accuracy": "2026-07-25",
   "motion/pose-estimation-hardware-requirements": "2026-07-25",
   "motion/pose-estimation-model-licenses": "2026-10-12",
   "motion/pose-estimation-models-compared": "2026-07-25",
+  "motion/pull-up-counter-computer-vision": "2026-10-18",
+  "motion/push-up-counter-computer-vision": "2026-10-18",
   "motion/real-time-pose-estimation": "2026-07-25",
   "motion/rtmpose-models": "2026-10-17",
+  "motion/sit-up-counter-pose-estimation": "2026-10-18",
+  "motion/squat-detection-pose-estimation": "2026-10-18",
   "motion/yolo-pose-models": "2026-10-17",
   "phone-sensors/android-16-body-sensors-health-permissions": "2026-10-03",
   "phone-sensors/android-activity-recognition-transition-api": "2026-10-03",
