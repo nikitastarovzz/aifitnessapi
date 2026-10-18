@@ -40,6 +40,9 @@ export const RELEASED_COMPLIANCE = new Set<string>([
   "app-store-guideline-2-5-4-background-services",
   "app-store-guideline-2-5-11-sirikit-shortcuts",
   "apple-health-icon-works-with-apple-health",
+  "ftc-health-breach-notification-rule",
+  "washington-my-health-my-data-act",
+  "remote-patient-monitoring-device-requirements",
 ]);
 
 export const allCompliance: ClusterEntry[] = complianceEntries;

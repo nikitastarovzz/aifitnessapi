@@ -82,6 +82,16 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
     verifiedOn: "2026-10-03",
   },
   {
+    date: "2026-09-09",
+    sortDate: "2026-09-09",
+    title: "FTC rescinds its 2021 health-app breach policy statement",
+    summary:
+      "The FTC's press release says \"The Federal Trade Commission rescinded the 2021 Policy Statement on Breaches by Health Apps and Other Connected Devices\", because the Commission's 2024 update to the Health Breach Notification Rule covers \"health apps and connected devices like fitness trackers, rendering the policy statement unnecessary.\" The FTC's rule page dates the release September 9, 2026. The rule itself, 16 CFR part 318, still applies; eCFR's current text lists no amendment after May 30, 2024.",
+    status: "confirmed",
+    page: { href: "/compliance/ftc-health-breach-notification-rule", label: "FTC Health Breach Notification Rule for fitness apps" },
+    verifiedOn: "2026-10-17",
+  },
+  {
     date: "2026-12",
     sortDate: "2026-12-31",
     title: "Google Fit APIs: end of documented support",

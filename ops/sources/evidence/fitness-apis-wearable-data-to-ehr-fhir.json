@@ -1,0 +1,367 @@
+[
+  {
+    "claim": "R4 is version 4.0.1, a \"Mixed Normative and STU\" release, and HL7's R4 pages say \"The current version which supercedes this version is 5.0.0\".",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "This page is part of the FHIR Specification (v4.0.1: R4 - Mixed Normative and STU ) in it's permanent home (it will always be available at this URL). The current version which supercedes this version is 5.0.0 ."
+  },
+  {
+    "claim": "The Vital Signs profile page carries the same version notice.",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "The current version which supercedes this version is 5.0.0"
+  },
+  {
+    "claim": "HL7 defines Observation as \"Measurements and simple assertions made about a patient, device or other subject.\"",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "Measurements and simple assertions made about a patient, device or other subject."
+  },
+  {
+    "claim": "Its listed uses include \"Vital signs such as body weight, blood pressure, and temperature\"...",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "Vital signs such as body weight , blood pressure , and temperature"
+  },
+  {
+    "claim": "...and \"Device measurements such as EKG data or Pulse Oximetry data\".",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "Device measurements such as EKG data or Pulse Oximetry data"
+  },
+  {
+    "claim": "The Vital Signs profile: a single vocabulary is needed \"Particularly with the use of wearables by patients where they want to/need to share information from those devices.\"",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "Vital signs will be one of the first areas where there is a need for a single, global vocabulary to allow for ubiquitous access and re-use. Particularly with the use of wearables by patients where they want to/need to share information from those devices."
+  },
+  {
+    "claim": "In R4 the Observation resource is \"Normative (from v4.0.0)\".",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "Normative (from v4.0.0)"
+  },
+  {
+    "claim": "The Vital Signs profile page gives its standards status as Informative.",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "Standards Status : Informative"
+  },
+  {
+    "claim": "\"At its simplest, a resource instance can consist of only a code and a value, and status flag.\"",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "At its simplest, a resource instance can consist of only a code and a value, and status flag."
+  },
+  {
+    "claim": "status is 1..1: registered, preliminary, final, amended and further codes, from a required code list.",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "status | ?! Σ | 1..1 | code | registered | preliminary | final | amended + ObservationStatus ( Required )"
+  },
+  {
+    "claim": "code is 1..1, with LOINC as the example binding.",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "code | Σ | 1..1 | CodeableConcept | Type of observation (code / type) LOINC Codes ( Example )"
+  },
+  {
+    "claim": "subject is 0..1: a Patient, Group, Device or Location.",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "subject | Σ | 0..1 | Reference ( Patient | Group | Device | Location ) | Who and/or what the observation is about"
+  },
+  {
+    "claim": "effective[x] is 0..1: the clinically relevant time or period, as a dateTime, Period, Timing or instant.",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "effective[x] | Σ | 0..1 | | Clinically relevant time/time-period for observation | effectiveDateTime | | | dateTime | | effectivePeriod | | | Period | | effectiveTiming | | | Timing | | effectiveInstant | | | instant"
+  },
+  {
+    "claim": "issued is 0..1: when this version was made available.",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "issued | Σ | 0..1 | instant | Date/Time this version was made available"
+  },
+  {
+    "claim": "value[x] is 0..1, as a Quantity, CodeableConcept, string, boolean, integer, Range, Ratio, SampledData, time, dateTime or Period.",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "Observation.value[x] : 0..1 Actual result . One of these 11"
+  },
+  {
+    "claim": "The eleven value types.",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "valueQuantity valueCodeableConcept valueString valueBoolean valueInteger valueRange valueRatio valueSampledData valueTime valueDateTime valuePeriod"
+  },
+  {
+    "claim": "dataAbsentReason is 0..1: why the result is missing.",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "dataAbsentReason | I | 0..1 | CodeableConcept | Why the result is missing"
+  },
+  {
+    "claim": "device is 0..1: the measuring Device or DeviceMetric.",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "device | | 0..1 | Reference ( Device | DeviceMetric ) | (Measurement) Device"
+  },
+  {
+    "claim": "component is 0..*: results read together, such as systolic and diastolic pressure.",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "Observations that are commonly produced and interpreted together. For example, systolic and diastolic blood pressure are represented as a single Blood pressure panel ."
+  },
+  {
+    "claim": "derivedFrom and hasMember link the observations a value was made from, or the members a panel groups.",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "hasMember | Σ | 0..* | Reference ( Observation | QuestionnaireResponse | MolecularSequence ) | Related resource that belongs to the Observation group"
+  },
+  {
+    "claim": "derivedFrom: related measurements the observation is made from.",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "Related measurements the observation is made from"
+  },
+  {
+    "claim": "Rule obs-6 says \"dataAbsentReason SHALL only be present if Observation.value[x] is not present\".",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "obs-6 | Rule | (base) | dataAbsentReason SHALL only be present if Observation.value[x] is not present"
+  },
+  {
+    "claim": "Rule obs-7: if Observation.code matches a component's code, the value for that code \"SHALL NOT be present\".",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "obs-7 | Rule | (base) | If Observation.code is the same as an Observation.component.code then the value element associated with the code SHALL NOT be present"
+  },
+  {
+    "claim": "effectiveDateTime or effectivePeriod \"is the time that the observation is most relevant as an observation of the subject\", which for a person is \"the physiologically relevant time of the observation\".",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "The effectiveDateTime or effectivePeriod is the time that the observation is most relevant as an observation of the subject. For a biological subject (e.g. a human patient), this is the physiologically relevant time of the observation."
+  },
+  {
+    "claim": "For an observation obtained directly from the subject, such as blood pressure, it is the start and end of the observation process.",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "In the case of an observation obtained directly from a subject (e.g. BP, Chest X-ray), this is the start and end time of the observation process"
+  },
+  {
+    "claim": "The Observation page says that if implementations use the resource to express the profile's concepts as structured data, \"they SHALL conform to the following profiles\", naming Vital signs.",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "If implementations use this Resource when expressing the profile-specific concepts as structured data, they SHALL conform to the following profiles:"
+  },
+  {
+    "claim": "\"When a FHIR implementation supports any of the vital signs listed below, the implementation SHALL conform to this profile for the vital sign observation.\"",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "When a FHIR implementation supports any of the vital signs listed below, the implementation SHALL conform to this profile for the vital sign observation."
+  },
+  {
+    "claim": "Each vital-signs Observation must have a status...",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "The following data-elements are mandatory (i.e. data SHALL be present)."
+  },
+  {
+    "claim": "...a category code of 'vital-signs'...",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "a category code of 'vital-signs'"
+  },
+  {
+    "claim": "...a LOINC code for what is measured, which the profile calls the \"magic value\"...",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "a \"magic value\" which tells you what is being measured"
+  },
+  {
+    "claim": "...LOINC was chosen for the magic values.",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "LOINC was chosen for the \"magic values\" because this aligns with the most countries"
+  },
+  {
+    "claim": "...a time indicating when the measurement was taken...",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "a time indicating when the measurement was taken"
+  },
+  {
+    "claim": "...a numeric result value with a standard UCUM unit...",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "a numeric result value and standard UCUM unit which is taken from the Unit Code column in the table below."
+  },
+  {
+    "claim": "...or, when there is no numeric result, a reason.",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "note: if there is no numeric result then you have to supply a reason"
+  },
+  {
+    "claim": "Vital signs panel 85353-1, with member observations linked with hasMember and no value.",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "When used, Observation.valueQuantity is not present; instead, related links (with type=has-member) reference the vital signs observations"
+  },
+  {
+    "claim": "Vital signs panel code 85353-1.",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "Vital Signs Panel 85353-1"
+  },
+  {
+    "claim": "Respiratory rate 9279-1, /min.",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "Respiratory Rate 9279-1 Respiratory Rate /min"
+  },
+  {
+    "claim": "Heart rate 8867-4, /min.",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "Heart rate 8867-4 Heart rate - To supplement this vital sign observation, 8887-2 - Heart rate device type MAY be included as an additional observation. /min"
+  },
+  {
+    "claim": "Oxygen saturation 2708-6, %.",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "Oxygen saturation 2708-6 Oxygen saturation in Arterial blood"
+  },
+  {
+    "claim": "Oxygen saturation unit %.",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "59408-5 Oxygen saturation in Arterial blood by Pulse oximetry which MAY be included as an additional observation code. % Oxygen Saturation Example"
+  },
+  {
+    "claim": "Body temperature 8310-5, Cel or [degF].",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "MAY be used as additional observations. Cel, [degF] Body Temperature Example"
+  },
+  {
+    "claim": "Body temperature code 8310-5.",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "Body temperature 8310-5 Body temperature"
+  },
+  {
+    "claim": "Body height 8302-2, cm or [in_i].",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "Body height 8302-2 Body height"
+  },
+  {
+    "claim": "Body height unit cm or [in_i].",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "MAY be included as an additional observation code. cm, [in_i] Body height Example"
+  },
+  {
+    "claim": "Head circumference 9843-4, cm or [in_i].",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "Head circumference 9843-4 Head Occipital-frontal circumference cm, [in_i]"
+  },
+  {
+    "claim": "Body weight 29463-7, g, kg or [lb_av].",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "Body weight 29463-7 Body weight"
+  },
+  {
+    "claim": "Body weight unit g, kg or [lb_av].",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "g, kg,[lb_av] Body Weight Example"
+  },
+  {
+    "claim": "Body mass index 39156-5, kg/m2.",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "Body mass index 39156-5 Body mass index (BMI) [Ratio] kg/m2"
+  },
+  {
+    "claim": "Blood pressure panel 85354-9, no value; systolic and diastolic go in components.",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "Blood pressure panel with all children optional - This is a component observation. It has no value in Observation.valueQuantity and contains at least one component (systolic and/or diastolic)."
+  },
+  {
+    "claim": "Blood pressure panel code 85354-9.",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "Blood pressure systolic and diastolic 85354-9"
+  },
+  {
+    "claim": "Systolic blood pressure 8480-6, mm[Hg].",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "Systolic blood pressure 8480-6 Systolic blood pressure - Observation.component code for a blood pressure Observation mm[Hg]"
+  },
+  {
+    "claim": "Diastolic blood pressure 8462-4, mm[Hg].",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "Diastolic blood pressure 8462-4 Diastolic blood pressure - Observation.component code for a blood pressure Observation mm[Hg]"
+  },
+  {
+    "claim": "For blood pressure, \"you must have both a systolic and a diastolic component, though one or both may have dataAbsentReason instead of a value.\"",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "In addition, if you have a blood pressure observation, you must have both a systolic and a diastolic component, though one or both may have dataAbsentReason instead of a value."
+  },
+  {
+    "claim": "The bindings are extensible.",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "These are extensible bindings and require that when a system supports any of these vital signs concepts, they must represent them using these codes."
+  },
+  {
+    "claim": "If you also record a more specific code, \"implementers must support both the values (LOINC) listed below and the translated code\".",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "If a more specific code or another code system is recorded or required, implementers must support both the values (LOINC) listed below and the translated code"
+  },
+  {
+    "claim": "\"The table above is the minimum set, additional vital signs are allowed.\"",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "The table above is the minimum set, additional vital signs are allowed."
+  },
+  {
+    "claim": "The profile's quick start lists searches servers must support: a patient's vital signs by category, by category and date, and by one or more of the LOINC codes, for example GET [base]/Observation?patient=[id]&category=vital-signs.",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "A server is capable of returning all of a patient's vital signs that it supports using GET [base]/Observation?patient=[id]&category=vital-signs ."
+  },
+  {
+    "claim": "...by category and date...",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "Support: Mandatory to support search by category code and date"
+  },
+  {
+    "claim": "...and by one or more of the LOINC codes.",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "Support: Mandatory to support search by vital sign LOINC(s) listed above."
+  },
+  {
+    "claim": "The code parameter \"searches only Observation.code\", so searching for the systolic or diastolic component code \"will not return the resource\", and the profile points to the combo-code search parameter to search both.",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "The \"code\" parameter searches only Observation.code . For example when fetching blood pressures the resource will be only be returned when the search is based on 85354-9(Systolic and Diastolic BP). Using the component codes 8480-6(Systolic BP) or 8462-4 (Diastolic BP) will not return the resource . In order to search both Observation.code and Observation.component.code in a single query, use the \"combo-code\" search parameter."
+  },
+  {
+    "claim": "The profile has the server ensure \"that every API request includes a valid Authorization token\"...",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "A server has ensured that every API request includes a valid Authorization token"
+  },
+  {
+    "claim": "...and reject unauthorized requests \"by returning an HTTP 401 Unauthorized response code\".",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "A server has rejected any unauthorized requests by returning an HTTP 401 Unauthorized response code."
+  },
+  {
+    "claim": "A waveform, such as ECG samples, goes in valueSampledData.",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "The special values \"E\" (error), \"L\" (below detection limit) and \"U\" (above detection limit) can be used are in the SampledData data type."
+  },
+  {
+    "claim": "A metric computed from other readings uses derivedFrom, pointing at the source observations.",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "When linking to other Observations from which an Observation is derived. In this case both Observation.code and Observation.value[x] are present, and the linked observations are listed in Observation.derivedFrom ."
+  },
+  {
+    "claim": "HL7's examples use \"http://loinc.org\" as the coding system for LOINC codes.",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "\"system\": \"http://loinc.org\", \"code\": \"74076-1\""
+  },
+  {
+    "claim": "HL7's examples give a valueQuantity with value, unit, system \"http://unitsofmeasure.org\" and code.",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "\"unit\": \"mmol/l\", \"system\": \"http://unitsofmeasure.org\", \"code\": \"mmol/L\""
+  },
+  {
+    "claim": "HL7's grouping notes add that \"Profiling will normally be necessary for implementation.\"",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "Profiling will normally be necessary for implementation."
+  },
+  {
+    "claim": "HL7 also publishes a Personal Health Device FHIR implementation guide, version 2.0.0 (STU 2), based on R4.",
+    "url": "https://hl7.org/fhir/uv/phd/",
+    "quote": "This page is part of the Personal Health Device FHIR IG (v2.0.0: STU 2) based on FHIR"
+  },
+  {
+    "claim": "HL7 says a body mass index Observation \"should not contain components for height and weight because they are clinically relevant observations on their own\".",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "For example a Body Mass Index (BMI) Observation should not contain components for height and weight because they are clinically relevant observations on their own and should be represented by separate Observation resources."
+  },
+  {
+    "claim": "...and asks for separate Observations linked with derivedFrom instead.",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "An example of this would be a Body Mass Index (BMI) Observation where the height and weight measurements are referenced."
+  },
+  {
+    "claim": "The FTC's health-app tool says a developer operating an app on behalf of a HIPAA covered entity likely is a business associate.",
+    "url": "https://www.ftc.gov/business-guidance/resources/mobile-health-apps-interactive-tool",
+    "quote": "Are you developing, offering, or operating an app on behalf of a HIPAA covered entity (such as a hospital, doctor’s office, health insurer, or health plan’s wellness program)?"
+  },
+  {
+    "claim": "The profile adds that 8887-2, heart rate device type, may be included as an additional observation.",
+    "url": "https://hl7.org/fhir/R4/observation-vitalsigns.html",
+    "quote": "8887-2 - Heart rate device type MAY be included as an additional observation."
+  },
+  {
+    "claim": "When the reading failed with an error, HL7's Observation notes say to use dataAbsentReason with the value error or NaN.",
+    "url": "https://hl7.org/fhir/R4/observation.html",
+    "quote": "In addition, when there is an error the dataAbsentReason element should be used with the appropriate value ('error' or 'NaN')."
+  }
+]
