@@ -1,0 +1,357 @@
+[
+  {
+    "claim": "Washington's My Health My Data Act is chapter 19.373 of the Revised Code of Washington.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "Chapter 191, Laws of 2023 may be known and cited as the Washington my health my data act."
+  },
+  {
+    "claim": "Enacted in 2023.",
+    "url": "https://www.atg.wa.gov/protecting-washingtonians-personal-health-data-and-privacy",
+    "quote": "passed the Washington State Legislature on April 17, 2023, and was signed into law by Governor Jay Inslee on April 27, 2023."
+  },
+  {
+    "claim": "HIPAA \"only covers health data collected by specific health care entities\", and \"Health data collected by noncovered entities, including certain apps and websites, are not afforded the same protections.\"",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "However, HIPAA only covers health data collected by specific health care entities, including most health care providers. Health data collected by noncovered entities, including certain apps and websites, are not afforded the same protections."
+  },
+  {
+    "claim": "Washington's Attorney General calls it \"the first privacy-focused law in the country to protect personal health data that falls outside the ambit of\" HIPAA.",
+    "url": "https://www.atg.wa.gov/protecting-washingtonians-personal-health-data-and-privacy",
+    "quote": "The My Health My Data Act is the first privacy-focused law in the country to protect personal health data that falls outside the ambit of the Health Insurance Portability and Accountability Act, or HIPAA."
+  },
+  {
+    "claim": "A regulated entity is any legal entity that \"(a) Conducts business in Washington, or produces or provides products or services that are targeted to consumers in Washington; and (b) alone or jointly with others, determines the purpose and means of collecting, processing, sharing, or selling of consumer health data.\"",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "\"Regulated entity\" means any legal entity that: (a) Conducts business in Washington, or produces or provides products or services that are targeted to consumers in Washington; and (b) alone or jointly with others, determines the purpose and means of collecting, processing, sharing, or selling of consumer health data."
+  },
+  {
+    "claim": "The Attorney General's FAQ says \"An entity that only stores data in Washington is not a regulated entity.\"",
+    "url": "https://www.atg.wa.gov/protecting-washingtonians-personal-health-data-and-privacy",
+    "quote": "An entity that only stores data in Washington is not a regulated entity."
+  },
+  {
+    "claim": "Small businesses handle the consumer health data of fewer than 100,000 consumers in a calendar year, or earn less than 50 percent of gross revenue from it and handle fewer than 25,000 consumers' data.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "Collects, processes, sells, or shares consumer health data of fewer than 100,000 consumers during a calendar year; or"
+  },
+  {
+    "claim": "...or earn less than 50 percent of gross revenue from it and handle fewer than 25,000 consumers' data.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "Derives less than 50 percent of gross revenue from the collection, processing, selling, or sharing of consumer health data, and controls, processes, sells, or shares consumer health data of fewer than 25,000 consumers."
+  },
+  {
+    "claim": "Small businesses comply with most sections from a later date; the Attorney General gives the start dates: the geofencing section from July 23, 2023, and sections 4 through 9 from March 31, 2024 for regulated entities and June 30, 2024 for small businesses.",
+    "url": "https://www.atg.wa.gov/protecting-washingtonians-personal-health-data-and-privacy",
+    "quote": "All persons, as defined in the Act, must comply with section 10 beginning July 23, 2023. Regulated entities that are not small businesses must comply with sections 4 through 9 beginning March 31, 2024. Small businesses, as defined in the Act, must comply with sections 4 through 9 beginning June 30, 2024."
+  },
+  {
+    "claim": "Section 10 is the geofencing section.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "or (3) send notifications, messages, or advertisements to consumers related to their consumer health data or health care services. [ 2023 c 191 s 10 .]"
+  },
+  {
+    "claim": "Processors handle data on a regulated entity's behalf under \"a binding contract\".",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "a processor may process consumer health data only pursuant to a binding contract between the processor and the regulated entity or the small business"
+  },
+  {
+    "claim": "A processor that processes data outside its instructions \"is considered a regulated entity or a small business with regard to such data\".",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "the processor is considered a regulated entity or a small business with regard to such data and is subject to all the requirements of this chapter with regard to such data."
+  },
+  {
+    "claim": "The Attorney General says out-of-state processors for regulated entities must comply.",
+    "url": "https://www.atg.wa.gov/protecting-washingtonians-personal-health-data-and-privacy",
+    "quote": "Out-of-state entities that are processors for regulated entities or a small business must comply with the Act."
+  },
+  {
+    "claim": "Consumers are Washington residents and people \"whose consumer health data is collected in Washington\", acting in an individual or household context; the definition \"does not include an individual acting in an employment context\".",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "\"Consumer\" means (a) a natural person who is a Washington resident; or (b) a natural person whose consumer health data is collected in Washington. \"Consumer\" means a natural person who acts only in an individual or household context, however identified, including by any unique identifier. \"Consumer\" does not include an individual acting in an employment context."
+  },
+  {
+    "claim": "Consumer health data is \"personal information that is linked or reasonably linkable to a consumer and that identifies the consumer's past, present, or future physical or mental health status.\"",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "\"Consumer health data\" means personal information that is linked or reasonably linkable to a consumer and that identifies the consumer's past, present, or future physical or mental health status."
+  },
+  {
+    "claim": "Health status includes bodily functions, vital signs, symptoms, or measurements.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "Bodily functions, vital signs, symptoms, or measurements of the information described in this subsection (8)(b);"
+  },
+  {
+    "claim": "Health status includes biometric data, defined to include gait patterns or rhythms that contain identifying information.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "Keystroke patterns or rhythms and gait patterns or rhythms that contain identifying information."
+  },
+  {
+    "claim": "Health status includes precise location that could reasonably indicate an attempt to receive health services.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "Precise location information that could reasonably indicate a consumer's attempt to acquire or receive health services or supplies;"
+  },
+  {
+    "claim": "Precise location means within a radius of 1,750 feet.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "directly identifies the specific location of an individual with precision and accuracy within a radius of 1,750 feet."
+  },
+  {
+    "claim": "Health information derived or extrapolated from nonhealth information, including inferences made by any means, including algorithms or machine learning.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "that is derived or extrapolated from nonhealth information (such as proxy, derivative, inferred, or emergent data by any means, including algorithms or machine learning)."
+  },
+  {
+    "claim": "Buying toilet paper or deodorant is not consumer health data, while \"an app that tracks someone's digestion or perspiration is collecting consumer health data\".",
+    "url": "https://www.atg.wa.gov/protecting-washingtonians-personal-health-data-and-privacy",
+    "quote": "For example, while information about the purchase of toilet paper or deodorant is not consumer health data, an app that tracks someone’s digestion or perspiration is collecting consumer health data."
+  },
+  {
+    "claim": "Health inferences drawn from purchases can be consumer health data.",
+    "url": "https://www.atg.wa.gov/protecting-washingtonians-personal-health-data-and-privacy",
+    "quote": "Likewise, any inferences drawn from purchases could be consumer health data."
+  },
+  {
+    "claim": "Personal information \"includes, but is not limited to, data associated with a persistent unique identifier, such as a cookie ID, an IP address, a device identifier\".",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "\"Personal information\" includes, but is not limited to, data associated with a persistent unique identifier, such as a cookie ID, an IP address, a device identifier, or any other form of persistent unique identifier."
+  },
+  {
+    "claim": "Privacy policy: disclose the categories collected and why, their sources, what is shared and with which third parties and affiliates, and how to exercise rights.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "A list of the categories of third parties and specific affiliates with whom the regulated entity or the small business shares the consumer health data; and"
+  },
+  {
+    "claim": "Link it prominently from the homepage.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "A regulated entity and a small business shall prominently publish a link to its consumer health data privacy policy on its homepage."
+  },
+  {
+    "claim": "Collect only with consent for a specified purpose, or to the extent necessary to provide a product or service the consumer requested.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "a regulated entity or a small business may not collect any consumer health data except: (i) With consent from the consumer for such collection for a specified purpose; or (ii) To the extent necessary to provide a product or service that the consumer to whom such consumer health data relates has requested from such regulated entity or small business."
+  },
+  {
+    "claim": "Share only with consent that is separate and distinct from the consent to collect, or as necessary for a requested product or service.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "With consent from the consumer for such sharing that is separate and distinct from the consent obtained to collect consumer health data; or"
+  },
+  {
+    "claim": "Confirm and give access, with a list of third parties and affiliates.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "a consumer has the right to confirm whether a regulated entity or a small business is collecting, sharing, or selling consumer health data concerning the consumer and to access such data, including a list of all third parties and affiliates with whom the regulated entity or the small business has shared or sold the consumer health data"
+  },
+  {
+    "claim": "Honor withdrawal of consent.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "A consumer has the right to withdraw consent from the regulated entity's or the small business's collection and sharing of consumer health data concerning the consumer."
+  },
+  {
+    "claim": "Delete on request.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "A consumer has the right to have consumer health data concerning the consumer deleted"
+  },
+  {
+    "claim": "Security: restrict access to people who need it.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "Restrict access to consumer health data by the employees, processors, and contractors of such regulated entity or small business to only those employees, processors, and contractors for which access is necessary"
+  },
+  {
+    "claim": "Security: safeguards that meet a reasonable standard of care in the industry.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "Establish, implement, and maintain administrative, technical, and physical data security practices that, at a minimum, satisfy reasonable standard of care within the regulated entity's or the small business's industry"
+  },
+  {
+    "claim": "Sell only with a signed valid authorization, separate from the consent to collect or share.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "it is unlawful for any person to sell or offer to sell consumer health data concerning a consumer without first obtaining valid authorization from the consumer. The sale of consumer health data must be consistent with the valid authorization signed by the consumer. This authorization must be separate and distinct from the consent obtained to collect or share consumer health data"
+  },
+  {
+    "claim": "Consent is \"a clear affirmative act that signifies a consumer's freely given, specific, informed, opt-in, voluntary, and unambiguous agreement\".",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "\"Consent\" means a clear affirmative act that signifies a consumer's freely given, specific, informed, opt-in, voluntary, and unambiguous agreement, which may include written consent provided by electronic means."
+  },
+  {
+    "claim": "Consent may not be obtained through \"A consumer's acceptance of a general or broad terms of use agreement\".",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "A consumer's acceptance of a general or broad terms of use agreement or a similar document that contains descriptions of personal data processing along with other unrelated information;"
+  },
+  {
+    "claim": "...by \"A consumer hovering over, muting, pausing, or closing a given piece of content\", or through deceptive designs.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "A consumer hovering over, muting, pausing, or closing a given piece of content; or"
+  },
+  {
+    "claim": "...or through deceptive designs.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "A consumer's agreement obtained through the use of deceptive designs."
+  },
+  {
+    "claim": "Consent must come before the collection or sharing, and the request must disclose the categories of data, the purpose and specific uses, the categories of recipients, and how to withdraw.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "Consent required under this section must be obtained prior to the collection or sharing, as applicable, of any consumer health data, and the request for consent must clearly and conspicuously disclose: (i) The categories of consumer health data collected or shared; (ii) the purpose of the collection or sharing of the consumer health data, including the specific ways in which it will be used; (iii) the categories of entities with whom the consumer health data is shared; and (iv) how the consumer can withdraw consent"
+  },
+  {
+    "claim": "For \"an online service, such as a mobile application, homepage means the application's platform page or download page, and a link within the application, such as from the application configuration, \"about,\" \"information,\" or settings page.\"",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "In the case of an online service, such as a mobile application, homepage means the application's platform page or download page, and a link within the application, such as from the application configuration, \"about,\" \"information,\" or settings page."
+  },
+  {
+    "claim": "The Attorney General adds that the policy \"must be a separate and distinct link\" on the homepage and may not contain additional information the Act does not require.",
+    "url": "https://www.atg.wa.gov/protecting-washingtonians-personal-health-data-and-privacy",
+    "quote": "The Consumer Health Privacy Policy must be a separate and distinct link on the regulated entity’s homepage and may not contain additional information not required under the My Health My Data Act."
+  },
+  {
+    "claim": "A regulated entity must act on access, withdrawal and deletion requests \"within 45 days of receipt\".",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "without undue delay, but in all cases within 45 days of receipt of the request submitted pursuant to the methods described in this section."
+  },
+  {
+    "claim": "Extendable once by 45 more days if it tells the consumer why within the first 45.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "The response period may be extended once by 45 additional days when reasonably necessary, taking into account the complexity and number of the consumer's requests, so long as the regulated entity or the small business informs the consumer of any such extension within the initial 45-day response period, together with the reason for the extension."
+  },
+  {
+    "claim": "Deletion must cover \"all parts of the regulated entity's or the small business's network, including archived or backup systems\".",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "Delete the consumer health data from its records, including from all parts of the regulated entity's or the small business's network, including archived or backup systems"
+  },
+  {
+    "claim": "Deletion from archived or backup systems may be delayed by up to six months.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "such delay may not exceed six months from authenticating the deletion request."
+  },
+  {
+    "claim": "Every affiliate, processor, contractor or other third party that received the data must be told of the request...",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "Notify all affiliates, processors, contractors, and other third parties with whom the regulated entity or the small business has shared consumer health data of the deletion request."
+  },
+  {
+    "claim": "...and must delete it too.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "All affiliates, processors, contractors, and other third parties that receive notice of a consumer's deletion request shall honor the consumer's deletion request and delete the consumer health data from its records"
+  },
+  {
+    "claim": "Responses are free up to twice a year.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "must be provided by a regulated entity and a small business free of charge, up to twice annually per consumer."
+  },
+  {
+    "claim": "An appeal process is required.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "A regulated entity and a small business shall establish a process for a consumer to appeal the regulated entity's or the small business's refusal to take action on a request"
+  },
+  {
+    "claim": "A company \"may not require a consumer to create a new account in order to exercise consumer rights\".",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "may not require a consumer to create a new account in order to exercise consumer rights pursuant to this chapter but may require a consumer to use an existing account."
+  },
+  {
+    "claim": "The authorization must name the specific data, the seller and the purchaser with contact details, and the purpose.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "The specific consumer health data concerning the consumer that the person intends to sell;"
+  },
+  {
+    "claim": "...say that goods or services cannot be conditioned on signing...",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "A statement that the provision of goods or services may not be conditioned on the consumer signing the valid authorization;"
+  },
+  {
+    "claim": "...that it can be revoked...",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "A statement that the consumer has a right to revoke the valid authorization at any time"
+  },
+  {
+    "claim": "...and that the purchaser may redisclose the data.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "A statement that the consumer health data sold pursuant to the valid authorization may be subject to redisclosure by the purchaser"
+  },
+  {
+    "claim": "Carry \"an expiration date for the valid authorization that expires one year from when the consumer signs\".",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "An expiration date for the valid authorization that expires one year from when the consumer signs the valid authorization; and"
+  },
+  {
+    "claim": "Bear the consumer's signature and date.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "The signature of the consumer and date."
+  },
+  {
+    "claim": "Seller and purchaser must each keep a copy for six years.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "The seller and purchaser of consumer health data must retain a copy of all valid authorizations for sale of consumer health data for six years"
+  },
+  {
+    "claim": "It is \"unlawful for any person to implement a geofence around an entity that provides in-person health care services\" to identify or track consumers seeking health care, to collect consumer health data, or to send notifications, messages or advertisements about their health data or health care services.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "It is unlawful for any person to implement a geofence around an entity that provides in-person health care services where such geofence is used to: (1) Identify or track consumers seeking health care services; (2) collect consumer health data from consumers; or (3) send notifications, messages, or advertisements to consumers related to their consumer health data or health care services."
+  },
+  {
+    "claim": "A geofence here is \"a virtual boundary that is 2,000 feet or less from the perimeter of the physical location.\"",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "For purposes of this definition, \"geofence\" means a virtual boundary that is 2,000 feet or less from the perimeter of the physical location."
+  },
+  {
+    "claim": "The Act makes a violation \"an unfair or deceptive act in trade or commerce and an unfair method of competition for the purpose of applying the consumer protection act, chapter 19.86 RCW.\"",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "is an unfair or deceptive act in trade or commerce and an unfair method of competition for the purpose of applying the consumer protection act, chapter 19.86 RCW."
+  },
+  {
+    "claim": "The Attorney General's FAQ says any violation \"is a per se violation of the Washington Consumer Protection Act (CPA), RCW 19.86, which is enforced by the Attorney General as well as through private action.\"",
+    "url": "https://www.atg.wa.gov/protecting-washingtonians-personal-health-data-and-privacy",
+    "quote": "Section 11 of the My Health My Data Act provides that any violation of the Act is a per se violation of the Washington Consumer Protection Act (CPA), RCW 19.86, which is enforced by the Attorney General as well as through private action."
+  },
+  {
+    "claim": "RCW 19.86.090 lets a person injured in their business or property by a violation of the sections it lists \"bring a civil action in superior court to enjoin further violations, to recover the actual damages sustained by him or her, or both, together with the costs of the suit, including a reasonable attorney's fee.\"",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.86.090",
+    "quote": "may bring a civil action in superior court to enjoin further violations, to recover the actual damages sustained by him or her, or both, together with the costs of the suit, including a reasonable attorney's fee."
+  },
+  {
+    "claim": "RCW 19.86.090 applies to a person injured in their business or property.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.86.090",
+    "quote": "Any person who is injured in his or her business or property by a violation of RCW"
+  },
+  {
+    "claim": "RCW 19.373.100 exempts protected health information under HIPAA.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "Protected health information for purposes of the federal health insurance portability and accountability act of 1996 and related regulations;"
+  },
+  {
+    "claim": "...information originating from that data and intermingled with it so as to be indistinguishable, when maintained by a HIPAA covered entity or business associate.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "Information originating from, and intermingled to be indistinguishable with, information under (a) of this subsection that is maintained by:"
+  },
+  {
+    "claim": "...identifiable private information for human subjects research under 45 C.F.R. Part 46 and related research rules.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "Identifiable private information for purposes of the federal policy for the protection of human subjects, 45 C.F.R. Part 46;"
+  },
+  {
+    "claim": "...personal information governed by laws including the Gramm-Leach-Bliley Act, the Fair Credit Reporting Act and FERPA.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "(a) The Gramm-Leach-Bliley act (15 U.S.C. 6801 et seq.) and implementing regulations; (b) part C of Title XI of the social security act (42 U.S.C. 1320d et seq.); (c) the fair credit reporting act (15 U.S.C. 1681 et seq.); (d) the family educational rights and privacy act"
+  },
+  {
+    "claim": "The definition of consumer health data leaves out information used in public-interest research that an institutional review board or similar independent oversight entity approves, monitors and governs.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "\"Consumer health data\" does not include personal information that is used to engage in public or peer-reviewed scientific, historical, or statistical research in the public interest that adheres to all other applicable ethics and privacy laws and is approved, monitored, and governed by an institutional review board, human subjects research ethics review board, or a similar independent oversight entity"
+  },
+  {
+    "claim": "Data used to prevent or respond to security incidents, fraud and other illegal activity is not restricted...",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "does not restrict a regulated entity's, small business's, or processor's ability for collection, use, or disclosure of consumer health data to prevent, detect, protect against, or respond to security incidents, identity theft, fraud, harassment, malicious or deceptive activities"
+  },
+  {
+    "claim": "...but the entity relying on that exception bears the burden of showing it qualifies.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "such entity bears the burden of demonstrating that such processing qualifies for the exemption and complies with the requirements of this section."
+  },
+  {
+    "claim": "A disclosure to a processor is not sharing when it provides goods or services consistent with the purpose the data was collected for.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "The disclosure of consumer health data by a regulated entity or a small business to a processor when such sharing is to provide goods or services in a manner consistent with the purpose for which the consumer health data was collected and disclosed to the consumer;"
+  },
+  {
+    "claim": "A partner that is not your processor receives it as a third party unless another exception applies.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "consumer health data by a regulated entity or a small business to a third party or affiliate."
+  }
+]
