@@ -1,0 +1,47 @@
+[
+  {
+    "claim": "New WHOOP apps start on a Sandbox tier of 10 members.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect."
+  },
+  {
+    "claim": "The tiers run 10, 100, 1,000, 5,000 and unlimited.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Sandbox 10 Build 100 Growth 1,000 Scale 5,000 Production Unlimited"
+  },
+  {
+    "claim": "Tiers are requested one at a time; from Build onward half the current limit must be connected.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Tiers are earned one at a time. You can only request the tier directly above your current one. From Build onward, moving up requires at least 50% of your current tier's member limit to be connected."
+  },
+  {
+    "claim": "Each request is reviewed by hand.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Requests are reviewed manually, in the order they are received."
+  },
+  {
+    "claim": "Each request needs testing with at least one real member.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Ensure that you have tested your app with at least one WHOOP member."
+  },
+  {
+    "claim": "Each request needs complete app details.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "In particular, make sure your App Name , Contact Email(s) , and Privacy Policy URL are filled in and accurate to accelerate the review."
+  },
+  {
+    "claim": "Each request needs adherence to WHOOP's brand guidelines.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Verify your app adheres to the WHOOP Design and Brand Guidelines ."
+  },
+  {
+    "claim": "Garmin's developer program is only for business use.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Some metrics need a license fee or minimum device order for commercial use.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+  }
+]

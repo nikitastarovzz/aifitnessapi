@@ -26,6 +26,13 @@ export const RELEASED_INTEGRATE = new Set<string>([
   "nutritionix-api",
   "exercisedb-api",
   "polar-api",
+  "withings-api",
+  "samsung-health-api",
+  "suunto-api",
+  "coros-api",
+  "wahoo-api",
+  "dexcom-api",
+  "concept2-api",
 ]);
 
 export const allIntegrations: ClusterEntry[] = integrateEntries;

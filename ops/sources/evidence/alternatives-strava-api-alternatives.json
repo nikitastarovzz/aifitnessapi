@@ -1,0 +1,52 @@
+[
+  {
+    "claim": "A Strava subscription is a prerequisite for creating an app.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "A Strava subscription is a prerequisite for creating an app."
+  },
+  {
+    "claim": "Every new app starts in single-player mode, where only your own account can connect.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "All new applications start in single-player mode. This is the default state where only your own Strava account can authenticate with the app"
+  },
+  {
+    "claim": "The API Policy is effective June 1, 2026.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "API Policy (2026) Effective Date: June 1, 2026"
+  },
+  {
+    "claim": "Standard Tier apps are subject to subscription requirements.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Standard Tier Applications are subject to subscription requirements as published on the Strava developer site , including a requirement that the developer or specified end users maintain an active Strava subscription."
+  },
+  {
+    "claim": "The Extended Access Tier, generally 10,000 users or more, is admitted case by case.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Extended Access Tier Applications are admitted on a case-by-case basis"
+  },
+  {
+    "claim": "The policy prohibits pass-through proxies and aggregators that re-expose the API.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "pass-through proxy, intermediary, or aggregator that re-exposes the Strava API Materials, in whole or in part, to third parties"
+  },
+  {
+    "claim": "Garmin's developer program is only for business use.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Some metrics need a license fee or minimum device order for commercial use.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+  },
+  {
+    "claim": "Garmin confirms an application's status within two business days.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
+  },
+  {
+    "claim": "Every program page carries a Stay tuned banner.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Stay tuned for more updates on the program"
+  }
+]

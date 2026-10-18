@@ -1,0 +1,442 @@
+[
+  {
+    "claim": "WHOOP's developer overview says you must have a WHOOP membership to develop an app, and your WHOOP account doubles as your developer login.",
+    "url": "https://developer.whoop.com/docs/developing/overview/",
+    "quote": "You must have a WHOOP membership to develop an app on the Developer Platform. Your WHOOP account is also your WHOOP developer login."
+  },
+  {
+    "claim": "Members grant your app permission to access their data on their behalf.",
+    "url": "https://developer.whoop.com/docs/developing/overview/",
+    "quote": "you can use the OAuth standard to request consent from WHOOP members to access data on their behalf."
+  },
+  {
+    "claim": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members, and you can build and test there without a request.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect. You can build and test on Sandbox without submitting a request. When you need more members, request the next tier from the Developer Dashboard ."
+  },
+  {
+    "claim": "The tiers are Sandbox 10, Build 100, Growth 1,000, Scale 5,000 and Production unlimited.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Sandbox 10 Build 100 Growth 1,000 Scale 5,000 Production Unlimited"
+  },
+  {
+    "claim": "Tiers are earned one at a time, and from Build onward moving up requires at least 50% of the current tier's limit connected.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Tiers are earned one at a time. You can only request the tier directly above your current one. From Build onward, moving up requires at least 50% of your current tier's member limit to be connected."
+  },
+  {
+    "claim": "Requests are reviewed manually in the order received, and requests without specific, detailed answers are rejected.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Requests are reviewed manually, in the order they are received. Requests without specific, detailed answers will be rejected."
+  },
+  {
+    "claim": "Before requesting, WHOOP asks that you have tested with at least one member.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Ensure that you have tested your app with at least one WHOOP member."
+  },
+  {
+    "claim": "Fill in app name, contact emails and privacy policy URL.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "In particular, make sure your App Name , Contact Email(s) , and Privacy Policy URL are filled in and accurate to accelerate the review."
+  },
+  {
+    "claim": "Follow WHOOP's design and brand guidelines.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Verify your app adheres to the WHOOP Design and Brand Guidelines ."
+  },
+  {
+    "claim": "Contacting WHOOP employees about a request outside the Dashboard may get the app disabled.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Contacting WHOOP employees about your request by personal email, social, or any other channel outside the Developer Dashboard is strictly prohibited and may result in your app being disabled."
+  },
+  {
+    "claim": "The Dashboard asks you to create a team first.",
+    "url": "https://developer.whoop.com/docs/developing/getting-started/",
+    "quote": "You will be prompted to create a Team if you have not yet done so."
+  },
+  {
+    "claim": "You can create up to five apps and request more from the Dashboard.",
+    "url": "https://developer.whoop.com/docs/developing/getting-started/",
+    "quote": "You can create up to 5 Apps. If you need more, open your app in the Developer Dashboard , click Open Request , and choose App limit increase ."
+  },
+  {
+    "claim": "WHOOP says the client secret should only be used server side.",
+    "url": "https://developer.whoop.com/docs/developing/getting-started/",
+    "quote": "Note: your Client Secret should never be logged or shared with anyone. It should only be used server side and should never be exposed in a client, web, or mobile application."
+  },
+  {
+    "claim": "At least one scope is required to create an app.",
+    "url": "https://developer.whoop.com/docs/developing/getting-started/",
+    "quote": "At least one scope must be specified to create an App."
+  },
+  {
+    "claim": "The redirect URI must match the value in the Developer Dashboard.",
+    "url": "https://developer.whoop.com/docs/developing/getting-started/",
+    "quote": "The redirect URI on your OAuth authorization request must match the value in the Developer Dashboard."
+  },
+  {
+    "claim": "The authorization URL is https://api.prod.whoop.com/oauth/oauth2/auth and the token URL is https://api.prod.whoop.com/oauth/oauth2/token.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "Authorization URL: https://api.prod.whoop.com/oauth/oauth2/auth Token URL: https://api.prod.whoop.com/oauth/oauth2/token"
+  },
+  {
+    "claim": "read:recovery reads recovery data, including score, heart rate variability and resting heart rate.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "read:recovery - Read Recovery data, including score, heart rate variability, and resting heart rate."
+  },
+  {
+    "claim": "read:cycles reads cycles data, including day Strain and average heart rate.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "read:cycles - Read cycles data, including day Strain and average heart rate during a physiological cycle."
+  },
+  {
+    "claim": "read:workout reads workout data, including activity Strain and average heart rate.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "read:workout - Read workout data, including activity Strain and average heart rate."
+  },
+  {
+    "claim": "read:sleep reads sleep data, including performance % and duration per sleep stage.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "read:sleep - Read sleep data, including performance % and duration per sleep stage."
+  },
+  {
+    "claim": "read:profile reads profile data, including name and email.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "read:profile - Read profile data, including name and email."
+  },
+  {
+    "claim": "read:body_measurement reads height, weight and max heart rate.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "read:body_measurement - Read body measurements data, including height, weight, and max heart rate."
+  },
+  {
+    "claim": "You must request the offline scope to receive a refresh token.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "You must request the offline scope to receive a refresh token."
+  },
+  {
+    "claim": "The state parameter must be eight characters long if you generate it yourself.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "The state parameter must be eight characters long if you need to generate it yourself."
+  },
+  {
+    "claim": "The member sees the requested scopes and must authorize them before WHOOP issues a token.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "The user must authorize access to them before WHOOP grants your app a token."
+  },
+  {
+    "claim": "The code is exchanged at the token URL for an access token, and a refresh token if offline was requested.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "Your application will send a request to the Token URL, exchanging the authorization code for an access token (and optionally a refresh token if your app requested the offline scope)."
+  },
+  {
+    "claim": "WHOOP reports the token lifetime in expires_in, and its sample response shows 3600 seconds.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "WHOOP provides the token expiry in the expires_in parameter"
+  },
+  {
+    "claim": "The sample refresh response shows expires_in of 3600.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "\"expires_in\" : 3600 ,"
+  },
+  {
+    "claim": "An expired access token gets a 401.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "WHOOP will respond with a (401 - Unauthorized) HTTP status code if your app sends a request with an expired access token."
+  },
+  {
+    "claim": "WHOOP's sample refresh payload includes scope offline.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "\"scope\" : \"offline\""
+  },
+  {
+    "claim": "Using the refresh token invalidates existing access tokens, and the new refresh token replaces the old one.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "Existing access tokens are invalidated once your app uses the refresh token to generate a new access token."
+  },
+  {
+    "claim": "The refresh token from the response must be used on the next refresh.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "the refresh token from the refresh response is now the valid refresh token, and your app must use the new refresh token on the subsequent refresh request."
+  },
+  {
+    "claim": "Simultaneous refreshes fail because the first invalidates the refresh token.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "When your app makes simultaneous refresh token requests, the first refresh request that reaches WHOOP will succeed. The second request would fail because the first request invalidates the refresh token."
+  },
+  {
+    "claim": "WHOOP suggests refreshing on a schedule, for example a background job.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "One strategy is to execute refreshing access tokens using a background cron job."
+  },
+  {
+    "claim": "Revoke with revokeUserOAuthAccess when a member disables the integration, which also stops their webhooks.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "If you have adopted webhooks , revoking an access token will ensure that you no longer receive webhooks for this user."
+  },
+  {
+    "claim": "The revocation endpoint is revokeUserOauthAccess.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "To revoke an access token, you can use the revokeUserOauthAccess API endpoint."
+  },
+  {
+    "claim": "The data API's base URL is https://api.prod.whoop.com/developer.",
+    "url": "https://api.prod.whoop.com/developer/doc/openapi.json",
+    "quote": "\"url\" : \"https://api.prod.whoop.com/developer\""
+  },
+  {
+    "claim": "Sleep collection lives at /v2/activity/sleep under the developer base URL.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "https://api.prod.whoop.com/developer /v2/activity/sleep"
+  },
+  {
+    "claim": "Cycles are at /v2/cycle and /v2/cycle/{cycleId}.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "https://api.prod.whoop.com/developer /v2/cycle/{cycleId}"
+  },
+  {
+    "claim": "Recovery for a cycle is at /v2/cycle/{cycleId}/recovery.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "https://api.prod.whoop.com/developer /v2/cycle/{cycleId}/recovery"
+  },
+  {
+    "claim": "Recovery collection is at /v2/recovery.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "https://api.prod.whoop.com/developer /v2/recovery"
+  },
+  {
+    "claim": "Workouts are at /v2/activity/workout and /v2/activity/workout/{workoutId}.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "https://api.prod.whoop.com/developer /v2/activity/workout/{workoutId}"
+  },
+  {
+    "claim": "Sleep by ID is at /v2/activity/sleep/{sleepId}.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "https://api.prod.whoop.com/developer /v2/activity/sleep/{sleepId}"
+  },
+  {
+    "claim": "Basic profile is at /v2/user/profile/basic.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "https://api.prod.whoop.com/developer /v2/user/profile/basic"
+  },
+  {
+    "claim": "Body measurements are at /v2/user/measurement/body.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "https://api.prod.whoop.com/developer /v2/user/measurement/body"
+  },
+  {
+    "claim": "The cycle endpoints require read:cycles.",
+    "url": "https://api.prod.whoop.com/developer/doc/openapi.json",
+    "quote": "\"operationId\" : \"getCycleCollection\""
+  },
+  {
+    "claim": "Since September 23, 2026 each cycle includes step_count, covered by read:cycles with no re-consent.",
+    "url": "https://developer.whoop.com/docs/api-changelog/",
+    "quote": "Scopes : Covered by the existing read:cycles scope — no new scope or re-consent required."
+  },
+  {
+    "claim": "Cycles now include the total number of steps.",
+    "url": "https://developer.whoop.com/docs/api-changelog/",
+    "quote": "Cycles now include the total number of steps taken during the cycle."
+  },
+  {
+    "claim": "The default page size is 10 and the maximum is 25.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "Default: 10 Limit on the number of sleeps returned"
+  },
+  {
+    "claim": "The sleep collection limit is at most 25.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "limit integer < int32 > <= 25"
+  },
+  {
+    "claim": "Collections are paginated with next_token, sent back as nextToken, until next_token comes back empty.",
+    "url": "https://developer.whoop.com/docs/developing/pagination/",
+    "quote": "The Collection APIs return a token to represent the current page on each response. You send that token on the subsequent request to retrieve the next page. You iterated through all pages if the next_token field is empty on the response."
+  },
+  {
+    "claim": "The next page uses the nextToken query parameter with the same start and end.",
+    "url": "https://developer.whoop.com/docs/developing/pagination/",
+    "quote": "The next_token can be placed on the subsequent request to fetch the next page of Sleeps using the same query parameters."
+  },
+  {
+    "claim": "A member's current cycle has a start time and no end yet.",
+    "url": "https://developer.whoop.com/docs/developing/user-data/cycle/",
+    "quote": "When you request a member's latest Cycle, the member's current Cycle will only have a Start Time ."
+  },
+  {
+    "claim": "Sleep and workout IDs are UUIDs in v2.",
+    "url": "https://developer.whoop.com/docs/developing/v1-v2-migration/",
+    "quote": "IDs changed from long to UUID for some resources (e.g., Sleep, Workout)"
+  },
+  {
+    "claim": "The one-time GET /v1/activity-mapping/{activityV1Id} lookup returns the v2 UUID, and WHOOP says to use it for migration only.",
+    "url": "https://developer.whoop.com/docs/developing/v1-v2-migration/",
+    "quote": "This endpoint is intended for migration purposes only. Once you migrate to v2, you should store and use V2 UUIDs exclusively."
+  },
+  {
+    "claim": "The mapping endpoint is GET /v1/activity-mapping/{activityV1Id}.",
+    "url": "https://developer.whoop.com/docs/developing/v1-v2-migration/",
+    "quote": "GET /v1/activity-mapping/{activityV1Id}"
+  },
+  {
+    "claim": "Add an HTTPS URL in the app's Webhook URL setting and WHOOP POSTs when a connected member's data changes.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "Simply add your HTTPS URL to the Webhook URL section at the bottom of the page and save the app."
+  },
+  {
+    "claim": "With several apps you need a separate endpoint per app.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "If you are using multiple apps in the WHOOP dashboard, you will need a unique Webhook endpoint per app."
+  },
+  {
+    "claim": "The default model version is v2, which uses UUIDs.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "v2 webhooks use UUID identifiers instead of integer IDs, providing better alignment with the v2 API endpoints."
+  },
+  {
+    "claim": "v1 webhooks are no longer published.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "v1 webhooks are no longer published."
+  },
+  {
+    "claim": "The event types are workout, sleep and recovery updated and deleted.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "Enum : \"workout.updated\" \"workout.deleted\" \"sleep.updated\" \"sleep.deleted\" \"recovery.updated\" \"recovery.deleted\""
+  },
+  {
+    "claim": "Each body carries user_id, id, type and trace_id.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "Trace ID for the event that triggered this webhook"
+  },
+  {
+    "claim": "Creates arrive as updates.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "When workouts, sleeps, or recoveries are created those events are published as an \"update\" event."
+  },
+  {
+    "claim": "A v2 recovery event carries the UUID of the associated sleep, not a cycle ID.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "Recovery webhooks will include the UUID identifier of the sleep that the recovery is associated with, rather than the cycle ID"
+  },
+  {
+    "claim": "There are no webhooks for day Strain, cycles or body measurements.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "Not at the moment; these data points should be retrieved by calling their respective APIs."
+  },
+  {
+    "claim": "WHOOP sends X-WHOOP-Signature and X-WHOOP-Signature-Timestamp.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "X-WHOOP-Signature-Timestamp - the milliseconds since epoch timestamp used to verify the signature"
+  },
+  {
+    "claim": "The signature is base64 of HMAC-SHA256 over the timestamp header plus the raw body, keyed by the client secret.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "calculated_signature_string = base64Encode(HMACSHA256(timestamp_header + raw_http_request_body, client_secret))"
+  },
+  {
+    "claim": "Drop the request if the signature does not match.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "If they do not match then the request is invalid and should be dropped."
+  },
+  {
+    "claim": "WHOOP retries a failed delivery five times over about an hour, and anything but a 2XX or no response counts as a failure.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "WHOOP will retry webhook delivery for failed webhook requests five times over the course of about one hour . A webhook delivery is considered failed if it receives any response other than a successful 2XX , or if it receives no response before timing out."
+  },
+  {
+    "claim": "WHOOP recommends returning 2XX within a second and doing the work on a queue.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "We recommend designing your webhook API to return a successful 2XX status code within a second and for high availability."
+  },
+  {
+    "claim": "Duplicates happen and can be detected with trace_id.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "It is possible you will receive multiple webhook invocations for the same triggering event. You can make use of the trace_id field in the webhook to detect duplicate webhooks."
+  },
+  {
+    "claim": "Events can be missed, and WHOOP recommends a reconciliation job.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "It is possible that a webhook may be missed. You should implement a reconciliation job that can occasionally reach out to the WHOOP API for the data types you care about to fetch data that may have been missed."
+  },
+  {
+    "claim": "By default every client may send 100 requests per minute and 10,000 per day.",
+    "url": "https://developer.whoop.com/docs/developing/rate-limiting/",
+    "quote": "All clients are subject to two sets of rate limiting for requests. By default, clients may only send: 100 requests per minute. 10,000 requests per day."
+  },
+  {
+    "claim": "Responses carry X-RateLimit-Limit, for example 100, 100;window=60, 10000;window=86400, plus X-RateLimit-Remaining and X-RateLimit-Reset.",
+    "url": "https://developer.whoop.com/docs/developing/rate-limiting/",
+    "quote": "X-RateLimit-Limit = \"100, 100;window=60, 10000;window=86400\" X-RateLimit-Remaining = \"98\" X-RateLimit-Reset = \"3\""
+  },
+  {
+    "claim": "An over-limit request returns 429.",
+    "url": "https://developer.whoop.com/docs/developing/rate-limiting/",
+    "quote": "After an API key's rate limit has been reached or exceeded, WHOOP's servers will respond with a 429 - Too Many Requests HTTP status code."
+  },
+  {
+    "claim": "WHOOP can raise limits on request via Open Request, Rate limit increase.",
+    "url": "https://developer.whoop.com/docs/developing/rate-limiting/",
+    "quote": "Upon request, WHOOP can increase your rate limits. Open your app in the Developer Dashboard , click Open Request , and choose Rate limit increase ."
+  },
+  {
+    "claim": "WHOOP's API Terms of Use are effective October 6, 2026.",
+    "url": "https://developer.whoop.com/api-terms-of-use/",
+    "quote": "Effective Date: October 6, 2026"
+  },
+  {
+    "claim": "Access to the APIs is currently provided at no charge, with notice before charging.",
+    "url": "https://developer.whoop.com/api-terms-of-use/",
+    "quote": "Access to and use of the APIs is currently provided at no charge. In the event WHOOP decides to start charging for use of the APIs in the future, WHOOP will provide Company with prior notice."
+  },
+  {
+    "claim": "The terms prohibit using the API or WHOOP data to create, train, fine-tune or improve any machine-learning or AI model or system.",
+    "url": "https://developer.whoop.com/api-terms-of-use/",
+    "quote": "Use any API or WHOOP Data to create, develop, test, train, fine-tune or improve any large language model or any other machine learning or artificial intelligence model, application, or system;"
+  },
+  {
+    "claim": "The terms prohibit keeping cached copies longer than the cache header allows.",
+    "url": "https://developer.whoop.com/api-terms-of-use/",
+    "quote": "Scrape, build databases, or otherwise create permanent copies of WHOOP Data, or keep cached copies longer than permitted by the cache header;"
+  },
+  {
+    "claim": "July 1, 2025: v2 API launched and developers encouraged to migrate.",
+    "url": "https://developer.whoop.com/docs/api-changelog/",
+    "quote": "The v2 API is now available, featuring improved data models and new capabilities. All developers are encouraged to migrate from v1."
+  },
+  {
+    "claim": "August 1, 2025: docs clarified that v2 recovery webhooks use the associated sleep's UUID.",
+    "url": "https://developer.whoop.com/docs/api-changelog/",
+    "quote": "Updated webhook documentation to clarify that v2 recovery webhooks use the UUID of the associated sleep, not the cycle ID."
+  },
+  {
+    "claim": "November 1, 2025: v1 webhooks no longer published and the mapping endpoint documented.",
+    "url": "https://developer.whoop.com/docs/api-changelog/",
+    "quote": "Updated webhook documentation to clarify that v1 webhooks are no longer being published. Provided documentation for new activity mapping endpoint to look up historical v1 activity ids."
+  },
+  {
+    "claim": "The changelog lists entries dated 2026-09-23, 2025-11-01, 2025-08-01 and 2025-07-01.",
+    "url": "https://developer.whoop.com/docs/api-changelog/",
+    "quote": "2026-09-23 Step Count on Cycles 2025-11-01 Webhook Updates, New V1 Migration API 2025-08-01 Webhook Documentation Clarification 2025-07-01 v2 API Launch"
+  },
+  {
+    "claim": "The v1 API is no longer supported and new features go to v2 only.",
+    "url": "https://developer.whoop.com/docs/developing/v1-v2-migration/",
+    "quote": "The v1 API is no longer supported and any new features or functionality will be added to v2 only."
+  },
+  {
+    "claim": "The Healthcare Partner API is a server-to-server integration for healthcare partners.",
+    "url": "https://developer.whoop.com/docs/partner/overview/",
+    "quote": "The WHOOP Healthcare Partner API is a server-to-server integration designed for healthcare partners."
+  },
+  {
+    "claim": "It is available only to WHOOP-approved healthcare partners, not general developers.",
+    "url": "https://developer.whoop.com/docs/partner/overview/",
+    "quote": "The Partner API is available exclusively to WHOOP-approved healthcare partners . It is not available to general developers."
+  },
+  {
+    "claim": "Partner integrations cover lab requisitions and diagnostic reports.",
+    "url": "https://developer.whoop.com/docs/partner/overview/",
+    "quote": "Lab results submitted by the partner for a completed service request"
+  }
+]

@@ -719,5 +719,104 @@ export const entries: ClusterEntry[] =
     "cta": {
       "pitch": "We track the access gates that decide what a wellness program can connect, including Garmin's partner approval and the Fitbit Web API turn-off. Subscribe to hear when one of them changes."
     }
+  },
+  {
+    "slug": "smart-ring-apis",
+    "primaryQuery": "smart ring api",
+    "h1": "Smart Ring APIs: Which Rings Give Developers Access (2026)",
+    "metaTitle": "Smart Ring APIs (2026): Which Rings Let Developers In",
+    "metaDescription": "Oura, Ultrahuman, Galaxy Ring and RingConn compared for developers: cloud API or SDK, how users consent, approval gates, limits and what users must pay.",
+    "updated": "2026-10-17",
+    "answer": "Of the four smart rings compared here, two have documented cloud APIs. Oura's API V2 uses OAuth 2.0 and webhooks, is free for personal and commercial apps by Oura's own account, limits new apps to 10 users until Oura approves them, and returns 403 when a user's membership has expired. Ultrahuman's UltraSignal API uses personal API tokens, with other users opting in by entering your sharing code in the Ultrahuman app. Samsung's Galaxy Ring data reaches developers only through the Samsung Health Data SDK on Android. We found no developer API for RingConn.",
+    "body": "Smart rings measure much the same things (sleep, heart rate, HRV, temperature, activity), but the way a developer gets at that data differs completely from ring to ring. This roundup covers four rings: Oura, Ultrahuman, Samsung's Galaxy Ring and RingConn, from each maker's own developer pages as read on October 17, 2026. Two have a documented cloud API, one reaches developers only through the phone's health app, and for one we found no developer access at all.\n\n## What to look for in a smart ring API\n\n- **Cloud API or on-device SDK.** A cloud API lets your server pull data for many users; an on-device SDK means your Android or iOS app reads the data on the user's phone.\n- **How users consent.** OAuth with per-scope consent, a code the user types into the ring's app, or OS-level permissions each shape your onboarding.\n- **Approval and user limits.** Some APIs cap how many users a new app can connect until the vendor approves it.\n- **What the user must pay.** A ring membership on the user's side can decide whether your API calls succeed at all.\n- **Limits and push.** Rate limits, date-range limits and webhooks decide how you sync.\n\n## The comparison\n\n| Ring | Developer access | How users connect | Gate and limits | Developer cost |\n|---|---|---|---|---|\n| Oura | Cloud REST API V2, with webhooks | OAuth 2.0, PKCE recommended | 10 users until Oura approves the app; 5,000 requests per 5 minutes | Free for personal and commercial apps, per Oura's FAQ; users need an active membership |\n| Ultrahuman | UltraSignal API, a cloud REST API | A personal API token for your own data; other users enter your data-sharing code in the Ultrahuman app | Date ranges of up to 7 days per request | Not stated on the public docs |\n| Samsung Galaxy Ring | Samsung Health Data SDK, an Android library | Per-data-type permissions in Samsung Health | A partnership request before release | Not stated on Samsung's pages |\n| RingConn | None found on RingConn's site | Not applicable | Not applicable | Not applicable |\n\n## Oura: the most complete ring API\n\nOura's API V2 is, in Oura's words, \"the only available integration point for Oura data\". Users authorize your app over OAuth 2.0 with per-data-type consent, and Oura's documentation marks PKCE as recommended. It covers daily sleep, readiness and activity summaries, sleep periods, 5-minute heart rate, SpO2 for Gen 3 rings, stress, resilience, cardiovascular age, VO2 max, workouts, sessions and tags, and Oura calls webhooks \"the preferred way to consume Oura data\".\n\nTwo gates matter. A new API application is limited to 10 users until Oura approves it, with no limit after approval. And Oura's API returns 403 when a user's Oura subscription has expired, so your users need an active membership, which Oura lists at $5.99 USD a month before tax in the US. The API itself is free: Oura's FAQ says it is free to use for both personal and commercial applications. The full walkthrough is in the [Oura API integration guide](/integrate/oura-api), and the costs are broken down in [Oura API pricing](/pricing/oura-api-pricing).\n\n## Ultrahuman: a token-based cloud API\n\nUltrahuman documents the **UltraSignal API** for \"health and fitness metrics collected by Ultrahuman devices\". Its public documentation describes a daily metrics endpoint at `https://partner.ultrahuman.com/api/v1/partner/daily_metrics` that takes either a single `date` or a `start_epoch` and `end_epoch` range of up to 7 days.\n\nAccess works differently from OAuth. You create a personal API token in Ultrahuman's developer portal; with it alone you can read your own account. To read another user's data you pass their email address, and that user must authorize you in the Ultrahuman app by entering the data-sharing code you give them under Profile, Settings, Partner ID. Ultrahuman warns that anyone with the token can use the API as you, so keep it on your server.\n\nThe metrics list is long: heart rate, skin temperature, HRV, steps, sleep stages and scores, recovery, VO2 max, SpO2, and glucose metrics such as average glucose and time in target. The public docs also have tabs for OAuth and MCP documentation, but Ultrahuman shows the OAuth app setup only after you log in, so we cannot describe it here.\n\n## Samsung Galaxy Ring: through Samsung Health on Android\n\nOn Samsung's developer pages, Galaxy Ring data reaches developers through Samsung Health. Samsung says the ring, like the Galaxy Watch, automatically transfers its data to the paired phone's Samsung Health app, and the **Samsung Health Data SDK** lets an Android app read selected data from Samsung Health's data store. Each data point names its source device, so you can tell ring data from watch or phone data.\n\nThat makes Galaxy Ring data an on-device, Android-only integration: the user grants per-data-type permissions in Samsung Health, the SDK needs Samsung Health 6.30.2 or later on Android 10 or later, and a released app needs Samsung's partnership approval, which registers its package name and signature. The details are in the [Samsung Health integration guide](/integrate/samsung-health-api).\n\n## RingConn: no developer API found\n\nRingConn's site, as we read it on October 17, 2026, lists its rings, its app features and user manuals, but its pages and footer link no developer API or developer documentation. The sharing feature RingConn describes is for people: \"Share your health data with friends and family anytime, anywhere.\" If RingConn data matters to you, ask RingConn directly; we found nothing a developer can integrate.\n\n## Which should you pick?\n\n- **You need ring data from many users, synced to your server:** Oura, through its OAuth API and webhooks, with the 10-user approval step and the user-side membership in your plan.\n- **You want Ultrahuman users:** the UltraSignal API, with its sharing-code consent and 7-day request ranges.\n- **Your users have Galaxy Rings and Android phones:** the Samsung Health Data SDK in your Android app.\n- **You need many rings and other wearables at once:** compare the device APIs in [wearable data APIs](/fitness-apis/wearable-data-apis) before you commit to one ring.",
+    "faqs": [
+      {
+        "q": "Which smart rings have a developer API?",
+        "a": "Oura and Ultrahuman document cloud APIs: Oura's API V2 with OAuth 2.0 and webhooks, and Ultrahuman's UltraSignal API with personal tokens. Samsung's pages route Galaxy Ring data through Samsung Health, where an Android app reads it with the Samsung Health Data SDK. RingConn's site, as we read it, offers no developer API."
+      },
+      {
+        "q": "Do smart ring APIs cost money?",
+        "a": "Oura's API FAQ says its API is free for both personal and commercial applications, but your users need an active Oura membership, because the API returns 403 when it has expired. Ultrahuman's public API docs and Samsung's SDK pages state no developer fees. Check each vendor's terms before launch."
+      },
+      {
+        "q": "How do developers get Samsung Galaxy Ring data?",
+        "a": "Through the phone. Samsung says the Galaxy Ring automatically transfers its data to the paired phone's Samsung Health app, and an Android app reads it with the Samsung Health Data SDK after the user grants per-data-type permissions. A released app needs Samsung's partnership approval first."
+      },
+      {
+        "q": "Does Ultrahuman have an API?",
+        "a": "Yes, the UltraSignal API. You create a personal API token in Ultrahuman's developer portal; to read another user's data you pass their email, and the user authorizes you by entering your data-sharing code in the Ultrahuman app. Each request covers one date or a range of up to 7 days."
+      },
+      {
+        "q": "Does RingConn have a developer API?",
+        "a": "We found none. RingConn's site, read on October 17, 2026, covers its rings, app features and user manuals, and the sharing feature it describes is for sharing health data with friends and family. Ask RingConn directly if you need its data in your app."
+      }
+    ],
+    "related": [
+      {
+        "href": "/integrate/oura-api",
+        "label": "Integrate the Oura API"
+      },
+      {
+        "href": "/pricing/oura-api-pricing",
+        "label": "Oura API pricing"
+      },
+      {
+        "href": "/integrate/samsung-health-api",
+        "label": "Integrate Samsung Health"
+      },
+      {
+        "href": "/fitness-apis/wearable-data-apis",
+        "label": "Best wearable data APIs"
+      },
+      {
+        "href": "/fitness-apis",
+        "label": "All fitness & workout APIs"
+      }
+    ],
+    "cta": {
+      "pitch": "We track which wearables open their data to developers and on what terms, from ring APIs to membership rules, so you can plan an integration on facts rather than spec sheets."
+    },
+    "sources": [
+      {
+        "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+        "checked": "2026-10-17",
+        "note": "Oura API V2: only integration point, data types, webhooks, user limit, 403 on expired subscription, FAQ on cost and rate limits"
+      },
+      {
+        "url": "https://cloud.ouraring.com/docs/authentication",
+        "checked": "2026-10-17",
+        "note": "Oura OAuth 2.0 and PKCE"
+      },
+      {
+        "url": "https://ouraring.com/membership",
+        "checked": "2026-10-17",
+        "note": "Oura membership price"
+      },
+      {
+        "url": "https://vision.ultrahuman.com/developer-docs",
+        "checked": "2026-10-17",
+        "note": "UltraSignal API: tokens, sharing codes, endpoint, date ranges, metrics"
+      },
+      {
+        "url": "https://www.ultrahuman.com/us/",
+        "checked": "2026-10-17",
+        "note": "Ultrahuman Ring"
+      },
+      {
+        "url": "https://developer.samsung.com/health/data/overview.html",
+        "checked": "2026-10-17",
+        "note": "Galaxy Ring data in Samsung Health and the Data SDK"
+      },
+      {
+        "url": "https://developer.samsung.com/health/data/process.html",
+        "checked": "2026-10-17",
+        "note": "partnership request before release"
+      },
+      {
+        "url": "https://ringconn.com/pages/app-features",
+        "checked": "2026-10-17",
+        "note": "RingConn app features and health data sharing"
+      }
+    ]
   }
 ];

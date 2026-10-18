@@ -17,4 +17,5 @@ export const RELEASED_FITNESS_APIS = new Set<string>([
   "fitness-api-vs-build-your-own",
   "garmin-connect-iq-vs-health-api",
   "corporate-wellness-wearable-apis",
+  "smart-ring-apis",
 ]);

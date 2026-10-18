@@ -1,0 +1,42 @@
+[
+  {
+    "claim": "Garmin's developer program is only for business use.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Some metrics need a license fee or minimum device order for commercial use.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+  },
+  {
+    "claim": "Garmin confirms an application's status within two business days.",
+    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
+  },
+  {
+    "claim": "Every program page carries a Stay tuned banner.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Stay tuned for more updates on the program"
+  },
+  {
+    "claim": "Oura limits an application to 10 users before approval.",
+    "url": "https://cloud.ouraring.com/docs/",
+    "quote": "By default, API Applications have a ten user limit. If you want to release your application to a wider audience, your application needs to be approved."
+  },
+  {
+    "claim": "There is no limit once approved.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "quote": "There is no limit once an application is approved."
+  },
+  {
+    "claim": "New WHOOP apps start on a Sandbox tier of 10 members.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect."
+  },
+  {
+    "claim": "The tiers run 10, 100, 1,000, 5,000 and unlimited.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Sandbox 10 Build 100 Growth 1,000 Scale 5,000 Production Unlimited"
+  }
+]

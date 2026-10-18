@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-17",
+  "generated": "2026-10-18",
   "files": [
     {
       "file": "bluetooth-fitness-gatt-2026.csv",
@@ -39,15 +39,15 @@
     },
     {
       "file": "fitness-apis-2026.csv",
-      "bytes": 4604,
-      "rows": 25,
-      "sha256": "24852ab5505864f909cd4f4a1a449aa9b4585e09abba747df31ada81f88bf962"
+      "bytes": 6057,
+      "rows": 28,
+      "sha256": "071d57340c8af759830934e9bfb01cd58bd125ad5532327f46352cbb65caf42a"
     },
     {
       "file": "fitness-apis-2026.json",
-      "bytes": 9800,
-      "rows": 25,
-      "sha256": "ea86a98bb6de78064c8244227595e006d196ce25e103e713b9fd3483727169b2"
+      "bytes": 11672,
+      "rows": 28,
+      "sha256": "66b8c825395fb66974f7e7aa897e0e7b5cb8ae6ae474489adbe0902453d58c16"
     },
     {
       "file": "google-health-api-data-types-2026.csv",

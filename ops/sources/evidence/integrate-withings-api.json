@@ -1,0 +1,412 @@
+[
+  {
+    "claim": "The Public API is designed for individuals and partners without a formal contract.",
+    "url": "https://developer.withings.com/",
+    "quote": "Start integrating Withings devices into your application with our Public API, designed for individuals and partners without a formal contract."
+  },
+  {
+    "claim": "Withings' other solutions include Cellular, Withings RPM, Logistics Services and an Advanced Research API.",
+    "url": "https://developer.withings.com/",
+    "quote": "Access advanced data points for research and build insights with a specialized API for clinical and academic studies."
+  },
+  {
+    "claim": "Withings devices include scales, sleep, trackers, blood pressure and thermometers.",
+    "url": "https://developer.withings.com/developer-guide/v3/data-api/all-available-health-data/",
+    "quote": "All devices Scales Sleep Trackers Blood Pressure Thermo BeamO U-Scan"
+  },
+  {
+    "claim": "Withings+ becomes required on the Start for Free API plan from October 12, 2026.",
+    "url": "https://developer.withings.com/",
+    "quote": "Withings+ becomes required on the Start for Free API plan from October 12, 2026."
+  },
+  {
+    "claim": "Accounts created after that date need a membership to share health data with a free-plan app, including apps already live.",
+    "url": "https://developer.withings.com/",
+    "quote": "Withings accounts created after that date will need a membership to share health data with a free-plan app, including apps that are already live."
+  },
+  {
+    "claim": "Accounts created before that date are unaffected, and Enterprise lifts the requirement for specific use cases.",
+    "url": "https://developer.withings.com/",
+    "quote": "Accounts created before that date are unaffected, and Enterprise lifts the requirement for specific use cases."
+  },
+  {
+    "claim": "There are no prerequisites, and free access is provided on the EU Medical Cloud.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/developer-account/create-your-accesses-no-medical-cloud/",
+    "quote": "There are no prerequisites, and free access is provided."
+  },
+  {
+    "claim": "The EU Medical Cloud endpoint is https://wbsapi.withings.net.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/developer-account/create-your-accesses-no-medical-cloud/",
+    "quote": "EU Medical Cloud / Public Cloud https://wbsapi.withings.net"
+  },
+  {
+    "claim": "Creating an application provides the client_id and client_secret.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/developer-account/create-your-accesses-no-medical-cloud/",
+    "quote": "Creating an application will provide you with the necessary client_id and client_secret to access Withings services."
+  },
+  {
+    "claim": "Withings recommends a shared professional email for the developer account.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/developer-account/create-your-accesses-no-medical-cloud/",
+    "quote": "we recommend creating a new account specifically for your organization using a shared professional email address"
+  },
+  {
+    "claim": "Teams have three roles: Admin, Developer and Support Agent.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/developer-account/create-your-accesses-no-medical-cloud/",
+    "quote": "You can assign them one of three roles: Admin, Developer, or Support Agent."
+  },
+  {
+    "claim": "Only an Admin can manage applications in production.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/developer-account/create-your-accesses-no-medical-cloud/",
+    "quote": "Create, edit, delete applications in dev, beta, and prod. Yes - -"
+  },
+  {
+    "claim": "Users set up their devices in the Withings app before connecting.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/oauth-web-flow/",
+    "quote": "Before connecting to your application, the user needs to set up their Withings devices using the Withings app on their phone."
+  },
+  {
+    "claim": "An app whose callback URL misses the requirements is limited to 10 linked users.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-subscribe/",
+    "quote": "If your URL doesn't meet these requirements (e.g. uses HTTP, localhost, or a non-standard port), your application will be limited to 10 linked users. This is intended for development and testing only."
+  },
+  {
+    "claim": "The EU Medical Cloud in France is the default for the Public API.",
+    "url": "https://developer.withings.com/",
+    "quote": "Hosted in France. The default cloud for Public API and most partner contracts."
+  },
+  {
+    "claim": "The US Medical Cloud is for HIPAA-covered entities that need data onshore.",
+    "url": "https://developer.withings.com/",
+    "quote": "Hosted in the United States, for entities covered by HIPAA that need their data to stay onshore."
+  },
+  {
+    "claim": "Access to the US cloud is by request.",
+    "url": "https://developer.withings.com/",
+    "quote": "Request access to the US cloud"
+  },
+  {
+    "claim": "The cloud is set when the access contract is created and cannot be switched.",
+    "url": "https://developer.withings.com/",
+    "quote": "Your cloud is set when your access contract is created and cannot be switched afterwards"
+  },
+  {
+    "claim": "The authorization URL is https://account.withings.com/oauth2_user/authorize2.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/oauth-authorization-url/",
+    "quote": "https://account.withings.com/oauth2_user/authorize2?response_type=code&client_id=YOUR_CLIENT_ID&scope=user.info,user.metrics,user.activity&redirect_uri=YOUR_REDIRECT_URI&state=YOUR_STATE"
+  },
+  {
+    "claim": "The state parameter is a CSRF protection mechanism.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/oauth-authorization-url/",
+    "quote": "The state parameter acts as a CSRF protection mechanism by allowing you to include a unique string with your request."
+  },
+  {
+    "claim": "The authorization code is only valid for 30 seconds.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/oauth-authorization-url/",
+    "quote": "Please note that the authorization code is only valid for 30 seconds."
+  },
+  {
+    "claim": "You have 30 seconds to exchange the code.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/oauth-web-flow/",
+    "quote": "You have 30 seconds to exchange the authorization code for an access token and a refresh token."
+  },
+  {
+    "claim": "user.activity covers activity and sleep and is required for notification management.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/oauth-authorization-url/",
+    "quote": "Get data related to user physical activity and sleep activities. Also required for notification management."
+  },
+  {
+    "claim": "user.metrics covers health measurements, heart recordings, stethoscope data and goals.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/oauth-authorization-url/",
+    "quote": "Get data related to user health measurements, heart recordings, stethoscope data, and user goals. Also required for notification management."
+  },
+  {
+    "claim": "user.info covers account information, linked devices and goals, and device linking.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/oauth-authorization-url/",
+    "quote": "Access user account information, linked devices, goals, and manage device linking."
+  },
+  {
+    "claim": "user.sleepevents covers sleep-event notifications.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/oauth-authorization-url/",
+    "quote": "Scope used to receive notifications when sleep events happen (bed in, bed out, inflate done)."
+  },
+  {
+    "claim": "mode=demo logs in as a demo user.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/oauth-authorization-url/",
+    "quote": "you can use the optional parameter mode with the value demo . You will be redirected to the authorisation page and automatically logged in as a demo user."
+  },
+  {
+    "claim": "Partners must sign some requests using HMAC SHA-256.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/sign-your-requests/",
+    "quote": "To securely interact with Withings APIs, partners must sign some of their requests using HMAC SHA-256 ."
+  },
+  {
+    "claim": "The nonce comes from the Signature v2 getnonce endpoint.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/sign-your-requests/",
+    "quote": "This is done by invoking the Signature v2 - Getnonce endpoint."
+  },
+  {
+    "claim": "Every request requires a fresh nonce.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/sign-your-requests/",
+    "quote": "The nonce is a transient token, and every request requires a fresh one."
+  },
+  {
+    "claim": "The HMAC key is the client secret.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/sign-your-requests/",
+    "quote": "The secret key for the HMAC function is your client secret"
+  },
+  {
+    "claim": "The token exchange is the requesttoken action.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/access-and-refresh-tokens-no-recover/",
+    "quote": "action: 'requesttoken',"
+  },
+  {
+    "claim": "The token exchange is posted to /v2/oauth2.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/access-and-refresh-tokens-no-recover/",
+    "quote": "await axios.post(API_ENDPOINT + '/v2/oauth2', params);"
+  },
+  {
+    "claim": "The access token expires after 3 hours.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/access-and-refresh-tokens-no-recover/",
+    "quote": "access_token : Expires after 3 hours"
+  },
+  {
+    "claim": "The refresh token expires after 1 year.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/access-and-refresh-tokens-no-recover/",
+    "quote": "refresh_token : Expires after 1 year"
+  },
+  {
+    "claim": "The old refresh token expires 8 hours after a new one or once the new access token is used.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/access-and-refresh-tokens-no-recover/",
+    "quote": "Old refresh_token : Expires 8 hours after new issuance or once the new access_token is used"
+  },
+  {
+    "claim": "Each refresh returns a new refresh token; failing to replace it can lose access.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/access-and-refresh-tokens-no-recover/",
+    "quote": "Important: Always replace the previous refresh_token with the new one. Failure to do so may result in losing access once the old refresh_token expires."
+  },
+  {
+    "claim": "Once authorized, you access all historical health data collected by the devices.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/oauth-web-flow/",
+    "quote": "you will have access not only to new data but also to all historical health data collected by the devices"
+  },
+  {
+    "claim": "getmeas on the measure service is the endpoint for weight.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/fetch-data-example/",
+    "quote": "The snippet calls getmeas on the measure service"
+  },
+  {
+    "claim": "The fetch example posts to https://wbsapi.withings.net/measure.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/fetch-data-example/",
+    "quote": "axios.post('https://wbsapi.withings.net/measure', data, {"
+  },
+  {
+    "claim": "Weight is meastype 1, fat ratio 6 and bone mass 88.",
+    "url": "https://developer.withings.com/",
+    "quote": "{ \"type\": 1, \"value\": 72400, \"unit\": -3 }, // weight kg"
+  },
+  {
+    "claim": "Measure v2 getactivity, getintradayactivity and getworkouts serve activity.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-content/",
+    "quote": "Call Measure v2 - Getactivity → Call Measure v2 - Getintradayactivity → Call Measure v2 - Getworkouts →"
+  },
+  {
+    "claim": "Sleep v2 get and getsummary serve sleep.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-content/",
+    "quote": "Call Sleep v2 - Get → Call Sleep v2 - Getsummary →"
+  },
+  {
+    "claim": "Heart v2 list serves ECG recordings.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-content/",
+    "quote": "Call Heart v2 - List →"
+  },
+  {
+    "claim": "Blood pressure, heart rate and SpO2 come through getmeas.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-content/",
+    "quote": "A new blood pressure measurement (and heart rate, when supported) was recorded."
+  },
+  {
+    "claim": "Glucose comes through getmeas.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-content/",
+    "quote": "A new glucose measurement was recorded."
+  },
+  {
+    "claim": "lastupdate returns everything created or modified since, including missed updates.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/fetch-data-example/",
+    "quote": "For ongoing sync, we recommend lastupdate instead: pass the timestamp of your last successful fetch and the Data API returns everything created or modified since, including any updates you missed if a notification was lost."
+  },
+  {
+    "claim": "The catalogue lists 96 biomarkers across 9 device families.",
+    "url": "https://developer.withings.com/developer-guide/v3/data-api/all-available-health-data/",
+    "quote": "96 biomarkers across 9 device families"
+  },
+  {
+    "claim": "Some biomarkers require the Advanced Biomarkers plan.",
+    "url": "https://developer.withings.com/developer-guide/v3/data-api/all-available-health-data/",
+    "quote": "Requires the Advanced Biomarkers plan"
+  },
+  {
+    "claim": "Withings POSTs a notification and your handler fetches the data.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "Withings POSTs to your callback URL the moment new measurements arrive, then your handler fetches the data via the Data API."
+  },
+  {
+    "claim": "Subscribe a callback URL to a category with the subscribe action on the notify service.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-subscribe/",
+    "quote": "action: 'subscribe',"
+  },
+  {
+    "claim": "The subscribe call posts to the notify service.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-subscribe/",
+    "quote": "axios.post('https://wbsapi.withings.net/notify', data, {"
+  },
+  {
+    "claim": "Each category is identified by an integer called appli.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-content/",
+    "quote": "Each notification category is identified by an integer called appli ."
+  },
+  {
+    "claim": "Category 1 is weight and body composition.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-content/",
+    "quote": "A new weight or body composition measurement was recorded by a Withings scale."
+  },
+  {
+    "claim": "Category 16 is activity.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-content/",
+    "quote": "New activity data is available — steps, distance, calories, intensity, or workouts."
+  },
+  {
+    "claim": "Category 44 is the sleep summary.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-content/",
+    "quote": "New sleep data is available — duration, sleep state, deep/light state duration (no REM), and wakeup counts."
+  },
+  {
+    "claim": "Notifications carry userid, appli and a start and end date.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/fetch-data-example/",
+    "quote": "Three fields matter: userid tells you which user the measurement belongs to, appli indicates which data category was updated"
+  },
+  {
+    "claim": "Callback URLs must be HTTPS only.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-subscribe/",
+    "quote": "HTTPS only — plain HTTP URLs are not accepted"
+  },
+  {
+    "claim": "No IP addresses or localhost.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-subscribe/",
+    "quote": "No IP addresses or localhost — must be a proper domain name"
+  },
+  {
+    "claim": "Ports 80 or 443 only.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-subscribe/",
+    "quote": "Ports 80 or 443 only — non-standard ports are not supported in production"
+  },
+  {
+    "claim": "At most 255 characters.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-subscribe/",
+    "quote": "Max 255 characters"
+  },
+  {
+    "claim": "The URL must answer HEAD with a 2xx.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-subscribe/",
+    "quote": "Withings sends a HEAD request to verify your URL is reachable before registering it. Make sure your server handles HEAD and returns a 2xx status code."
+  },
+  {
+    "claim": "Withings retries on a schedule, 2 attempts per cycle and 10 in total.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "Each cycle does 2 HTTP attempts (10 attempts total)."
+  },
+  {
+    "claim": "The retry cycles run over about 5 hours.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "Per notification — 5 retry cycles over ~5 hours"
+  },
+  {
+    "claim": "Withings retries when the endpoint does not answer below 400.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "If your endpoint doesn't return HTTP < 400 , Withings retries the same notification on this schedule:"
+  },
+  {
+    "claim": "4 failed notifications in a row trigger warning emails.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "4 failed notifications in a row → A warning email is sent for each (max 4 emails)."
+  },
+  {
+    "claim": "20 days of failures cancel the subscription.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "20 days of unresolved failures → Subscription is auto-cancelled, with a final notice email."
+  },
+  {
+    "claim": "Missed notifications are not redelivered; backfill with lastupdate.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "Missed notifications are not redelivered. Once your endpoint is back up, backfill via the Data API using lastupdate ."
+  },
+  {
+    "claim": "Typical delivery is under 2 minutes, with no real-time SLA on the standard plan.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "Withings does not commit to a real-time SLA on the standard plan."
+  },
+  {
+    "claim": "Typical delivery delay is under 2 minutes.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "Typical delivery delay is under 2 minutes"
+  },
+  {
+    "claim": "Withings publishes its notification IP ranges as DNS TXT records.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "The current IP ranges are published as DNS TXT records, queryable with dig :"
+  },
+  {
+    "claim": "The EU record is ipblock-notify.withings.net.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "dig +short TXT ipblock-notify.withings.net"
+  },
+  {
+    "claim": "Withings suggests a secret query parameter on the callback URL.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "When you set the callback URL on your subscription, append a query parameter only you and Withings know."
+  },
+  {
+    "claim": "The handler should answer within a few seconds.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "Your endpoint returns HTTP 2xx within a few seconds."
+  },
+  {
+    "claim": "The standard API enforces 120 requests per minute across your application.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "The standard Withings API enforces a 120 requests-per-minute limit across your application"
+  },
+  {
+    "claim": "The Enterprise plan unlocks higher limits and dedicated support.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "If your use case demands a higher request rate or stricter SLA guarantees, the Enterprise plan unlocks higher limits and dedicated support."
+  },
+  {
+    "claim": "Major changes get one month's notice, up to three months for business-critical ones.",
+    "url": "https://developer.withings.com/developer-guide/v3/maintain-your-integration/understand-our-timeline-for-notice/",
+    "quote": "One month - Up to three months for a Business Critical change"
+  },
+  {
+    "claim": "Emergency changes come with up to two weeks or no notice.",
+    "url": "https://developer.withings.com/developer-guide/v3/maintain-your-integration/understand-our-timeline-for-notice/",
+    "quote": "No notification - Up to two weeks"
+  },
+  {
+    "claim": "Normal changes have no impact and no notification.",
+    "url": "https://developer.withings.com/developer-guide/v3/maintain-your-integration/understand-our-timeline-for-notice/",
+    "quote": "There is no impact on partner integration. No action required on partner integration of the Service No notification"
+  },
+  {
+    "claim": "Withings publishes breaking changes and deprecations on a developer updates portal.",
+    "url": "https://developer.withings.com/developer-guide/v3/maintain-your-integration/track-changes-on-our-services/",
+    "quote": "Withings tracks the Service breaking changes and deprecations at the following location:"
+  },
+  {
+    "claim": "The developer application's contact email is added to the mailing list automatically.",
+    "url": "https://developer.withings.com/developer-guide/v3/maintain-your-integration/track-changes-on-our-services/",
+    "quote": "the contact email address used to register your Developer Application will be automatically added to the email mailing list."
+  },
+  {
+    "claim": "Access tokens are short-lived; an expired one returns 401.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/fetch-data-example/",
+    "quote": "Access tokens are short-lived, so check the expiry and refresh with the refresh token if needed — otherwise the Data API rejects the call with 401 Unauthorized ."
+  }
+]
