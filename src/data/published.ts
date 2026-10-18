@@ -7,7 +7,7 @@
  * contained the entry and listed it in its cluster's release gate (blog
  * posts: the commit that added the file; generated sections: the commit that
  * added the route, or the item to the data file if that came later).
- * Keyed by URL path without the leading slash. 440 rows.
+ * Keyed by URL path without the leading slash. 448 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -217,6 +217,7 @@ export const PUBLISHED: Record<string, string> = {
   "fitness-apis/garmin-connect-iq-vs-health-api": "2026-10-12",
   "fitness-apis/health-data-aggregator-apis": "2026-07-08",
   "fitness-apis/nutrition-apis": "2026-07-08",
+  "fitness-apis/smart-ring-apis": "2026-10-18",
   "fitness-apis/terra-vs-vital": "2026-07-08",
   "fitness-apis/wearable-data-apis": "2026-07-08",
   "fix/fitbit-api-429-rate-limit": "2026-07-10",
@@ -349,6 +350,9 @@ export const PUBLISHED: Record<string, string> = {
   "healthkit/sleep-mindfulness-self-care": "2026-09-04",
   "healthkit/vital-signs": "2026-09-04",
   "healthkit/workout-activities": "2026-09-04",
+  "integrate/concept2-api": "2026-10-18",
+  "integrate/coros-api": "2026-10-18",
+  "integrate/dexcom-api": "2026-10-18",
   "integrate/exercisedb-api": "2026-07-09",
   "integrate/fitbit-api": "2026-07-09",
   "integrate/garmin-api": "2026-07-09",
@@ -357,9 +361,13 @@ export const PUBLISHED: Record<string, string> = {
   "integrate/nutritionix-api": "2026-07-09",
   "integrate/oura-api": "2026-07-09",
   "integrate/polar-api": "2026-08-12",
+  "integrate/samsung-health-api": "2026-10-18",
   "integrate/strava-api": "2026-07-09",
+  "integrate/suunto-api": "2026-10-18",
   "integrate/terra-api": "2026-07-09",
+  "integrate/wahoo-api": "2026-10-18",
   "integrate/whoop-api": "2026-07-09",
+  "integrate/withings-api": "2026-10-18",
   "learn/how-fitness-apps-estimate-calories": "2026-07-13",
   "learn/on-device-vs-cloud-health-data": "2026-07-13",
   "learn/webhooks-vs-polling-for-fitness-data": "2026-08-12",
