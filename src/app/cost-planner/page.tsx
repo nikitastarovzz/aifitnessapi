@@ -45,7 +45,7 @@ const FAQS = [
   },
   {
     q: "Which parts of a fitness stack will need a sales call?",
-    a: "As a rule: anything where the vendor's value is a negotiated relationship rather than a metered endpoint. On the pages we source, that means Garmin among the first-party wearable APIs, Spike among the aggregators, the enterprise top tiers of the commercial nutrition APIs, and most of the AI coaching SDKs including KinesteX, this site's own product. The planner collects those into a separate checklist so you can start them early, because a quote has lead time the way an approval does. The counter-examples worth knowing: Polar's client registration is self-serve, QuickPose publishes a self-serve free tier, and the pose models themselves need no conversation with anyone.",
+    a: "As a rule: anything where the vendor's value is a negotiated relationship rather than a metered endpoint. On the pages we source, that means Garmin among the first-party wearable APIs, the enterprise top tiers of the commercial nutrition APIs, and KinesteX, this site's own product, among the AI coaching SDKs. The planner collects those into a separate checklist so you can start them early, because a quote has lead time the way an approval does. The counter-examples worth knowing: Polar's client registration is self-serve, QuickPose publishes a self-serve free tier, and the pose models themselves need no conversation with anyone.",
   },
 ];
 
