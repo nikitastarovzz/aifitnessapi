@@ -1,28 +1,28 @@
 [
   {
-    "claim": "FAQ, why no prices: Garmin publishes no amounts for the metrics its FAQ says may need a licence fee for commercial use; the FAQ names the fee without a figure.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+    "claim": "FAQ, why no prices / FAQ, sales call / why there are no numbers: Garmin says Enterprise options and commercial terms are tailored, without publishing amounts.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Designed for companies operating at scale requiring capabilities beyond Starter Access. Available options and commercial terms are tailored based on business and technical requirements."
   },
   {
-    "claim": "FAQ, sales call: Garmin's program FAQ says there are no licensing or maintenance fees for access.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "claim": "FAQ, sales call: features such as ping/pull delivery and backfill are marked Supported with Enterprise Access only.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Push or *Ping/Pull Architecture: Choose the integration option that best matches your needs"
+  },
+  {
+    "claim": "FAQ, sales call: features such as ping/pull delivery and backfill are marked Supported with Enterprise Access only.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Developer Web Tools: Easy on-boarding, sample data, *backfill user data, and auto-verification of your integration before production"
+  },
+  {
+    "claim": "FAQ, sales call: features such as ping/pull delivery and backfill are marked Supported with Enterprise Access only.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Supported with Enterprise Access only"
+  },
+  {
+    "claim": "Why there are no numbers: the FAQ sentence that there were no licensing or maintenance fees (Wayback Machine capture of 17 October 2026, removed by 22 October).",
+    "url": "https://web.archive.org/web/20261017191828id_/https://developer.garmin.com/gc-developer-program/program-faq",
     "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
-  },
-  {
-    "claim": "FAQ, sales call: some metrics may require a licence fee or a minimum device order for commercial use, at amounts it does not publish.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
-  },
-  {
-    "claim": "Why there are no numbers: Garmin's program FAQ says there are no licensing or maintenance fees for access.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
-  },
-  {
-    "claim": "Why there are no numbers: some metrics may require a licence fee or a minimum device order for commercial use, and it publishes no amounts for either.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
   },
   {
     "claim": "Why there are no numbers: Strava's API Agreement took effect on June 1, 2026.",

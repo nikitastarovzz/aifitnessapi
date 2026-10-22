@@ -195,7 +195,7 @@ Settles it: [fitness app tech stack](/build/fitness-app-tech-stack), plus the pe
 
 Three sub-questions. Which metrics does a feature actually need, as opposed to which look good on a dashboard? Does your backend need the data, or only the app? How many device brands must you support at launch?
 
-If the app is enough and your users are on one platform, the on-device store is the cheapest correct answer. If your backend needs the data, on-device stores alone cannot supply it, because neither HealthKit nor Health Connect has a server endpoint; you either sync from the app yourself or move to cloud APIs. If you need many brands, the direct-integration cost compounds — Garmin's developer program is partner-approval-only and for business use only, and Strava's terms changed from 2024 onward — which is the case for an aggregator.
+If the app is enough and your users are on one platform, the on-device store is the cheapest correct answer. If your backend needs the data, on-device stores alone cannot supply it, because neither HealthKit nor Health Connect has a server endpoint; you either sync from the app yourself or move to cloud APIs. If you need many brands, the direct-integration cost compounds — Garmin's developer program needs Garmin's approval, now as Starter and Enterprise Access, and Strava's terms changed from 2024 onward — which is the case for an aggregator.
 
 Settles it: [Apple HealthKit vs Google Health Connect](/fitness-apis/apple-healthkit-vs-google-health-connect), [what is a health-data aggregator](/learn/what-is-a-health-data-aggregator), [aggregator APIs](/fitness-apis/health-data-aggregator-apis), [the picker](/picker), [the data-type matrix](/matrix). On Google Fit today? Start at [the shutdown hub](/google-fit-shutdown).
 

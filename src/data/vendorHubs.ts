@@ -87,6 +87,7 @@ export const VENDOR_HUBS: VendorHub[] = [
       "/compare/whoop-vs-garmin",
       "/compare/apple-watch-vs-garmin",
       "/fix/garmin-api-approval",
+      "/fix/garmin-api-personal-use",
       "/libraries/garminconnect",
       "/libraries/garth",
       "/libraries/compare/garminconnect-vs-garth",

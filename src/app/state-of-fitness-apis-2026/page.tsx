@@ -24,13 +24,18 @@ import { orgRef } from "@/lib/schema";
  * REVISION states the before and after figures; the other 13 rows keep their
  * 2026-08-11 verification, which is why the visible "Updated 11 August 2026"
  * stamp stays.
+ *
+ * Revised in place again on 2026-10-22: Garmin reorganised its developer
+ * program, the Garmin row was re-verified against the new pages, and its text
+ * changed while every classification and figure stayed the same.
  */
 
 const PAGE_PATH = "/state-of-fitness-apis-2026";
-/** dateModified: the day the revision was published (the aggregator and
- *  wearable rows were re-verified the day before, on 2026-10-17). The
- *  sitemap reads this constant by name, so it keeps the name UPDATED. */
-const UPDATED = "2026-10-18";
+/** dateModified: the day the latest revision was published (2026-10-22, the
+ *  Garmin row re-verified that day; the 2026-10-18 revision's rows were
+ *  re-verified on 2026-10-17). The sitemap reads this constant by name, so it
+ *  keeps the name UPDATED. */
+const UPDATED = "2026-10-22";
 /** datePublished, and the verification date of the 13 rows not re-checked. */
 const FIRST_PUBLISHED = "2026-08-11";
 
@@ -75,7 +80,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     "q": "Which fitness APIs in this survey require the end user to own hardware or hold an account or membership?",
-    "a": "6 of the 25 items carry a documented user-side cost or requirement, and all six are direct wearable APIs. Fitbit requires each user to own a Fitbit device and account. Garmin's users sync their own Garmin devices, and if you supply the wearables, Garmin asks for the number of devices when you request its program. Oura requires an Oura Ring and an active Oura Membership, and its API returns 403 when a user's subscription has expired. WHOOP's users authorize your app with their own WHOOP accounts, so they are WHOOP members already. Strava needs each athlete's own Strava account, and Standard Tier apps may require specified end users to hold an active Strava subscription. Polar requires a Polar Flow account with all of Polar's mandatory consents accepted; without them, its user endpoints return 403. Treat this column as a market-size ceiling rather than a cost line: it is free to you and expensive to your funnel."
+    "a": "6 of the 25 items carry a documented user-side cost or requirement, and all six are direct wearable APIs. Fitbit requires each user to own a Fitbit device and account. Garmin's users sync their own Garmin devices, and if you want to offer Garmin wearables, Garmin asks you to contact it through its inquiry form when you request its program. Oura requires an Oura Ring and an active Oura Membership, and its API returns 403 when a user's subscription has expired. WHOOP's users authorize your app with their own WHOOP accounts, so they are WHOOP members already. Strava needs each athlete's own Strava account, and Standard Tier apps may require specified end users to hold an active Strava subscription. Polar requires a Polar Flow account with all of Polar's mandatory consents accepted; without them, its user endpoints return 403. Treat this column as a market-size ceiling rather than a cost line: it is free to you and expensive to your funnel."
   },
   {
     "q": "How was the 25-item sample for the State of Fitness APIs 2026 chosen?",
@@ -83,7 +88,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     "q": "Can I cite or redistribute the State of Fitness APIs 2026 dataset?",
-    "a": "Yes. The dataset is published under CC BY 4.0 as fitness-apis-2026.json and fitness-apis-2026.csv, version 2026.1, with a source link on every row so you can check each claim against the page it came from. Attribution is the only condition. Cite it as: AIFitnessAPI, 'The State of Fitness APIs 2026,' aifitnessapi.com, updated 11 August 2026, revised 18 October 2026, https://aifitnessapi.com/state-of-fitness-apis-2026. The 18 October revision changed two aggregator rows, the Sency row and three direct wearable rows (Garmin, Strava and Polar) in place, and the revision note at the top of the report keeps the earlier figures on record; future editions will be versioned rather than overwritten."
+    "a": "Yes. The dataset is published under CC BY 4.0 as fitness-apis-2026.json and fitness-apis-2026.csv, version 2026.1, with a source link on every row so you can check each claim against the page it came from. Attribution is the only condition. Cite it as: AIFitnessAPI, 'The State of Fitness APIs 2026,' aifitnessapi.com, updated 11 August 2026, revised 22 October 2026, https://aifitnessapi.com/state-of-fitness-apis-2026. The 18 October revision changed two aggregator rows, the Sency row and three direct wearable rows (Garmin, Strava and Polar) in place, and the revision note at the top of the report keeps the earlier figures on record; future editions will be versioned rather than overwritten."
   },
   {
     "q": "Does KinesteX get special treatment in its own dataset?",
@@ -104,7 +109,7 @@ The dataset behind this report covers **25 APIs, SDKs and models** across eight 
 
 **14 of the 25 items (56%) are free to call.** That list: Fitbit, Garmin, Oura, WHOOP, Strava, Polar, Apple HealthKit, Google Health Connect, USDA FoodData Central, Open Food Facts, wger, MediaPipe Pose Landmarker, TensorFlow MoveNet and Apple Vision body pose.
 
-Now look at where the cost went. Fitbit, Garmin, Oura, WHOOP, Strava, HealthKit and Health Connect are free *and* gated — someone else's review stands between your code and your launch. All six direct wearable APIs are free *and* carry a user-side cost or requirement. Garmin's program has no licensing or maintenance fees, but some metrics may need a licence fee or a minimum device order for commercial use; Strava charges nothing for API access, but creating an app requires a Strava subscription. wger is free *and* AGPL-3.0 copyleft, so the bill arrives as legal review; Open Food Facts is free *and* ODbL share-alike, which can force you to open a derived database.
+Now look at where the cost went. Fitbit, Garmin, Oura, WHOOP, Strava, HealthKit and Health Connect are free *and* gated — someone else's review stands between your code and your launch. All six direct wearable APIs are free *and* carry a user-side cost or requirement. Garmin publishes no price for Starter Access and says Enterprise commercial terms are tailored; Strava charges nothing for API access, but creating an app requires a Strava subscription. wger is free *and* AGPL-3.0 copyleft, so the bill arrives as legal review; Open Food Facts is free *and* ODbL share-alike, which can force you to open a derived database.
 
 **What it means:** "free" here describes one column of a spreadsheet that has four columns in it. Read it as "no per-request fee documented," then go find where the vendor took its cut instead. The [cost planner](/cost-planner) keeps those columns separate; [are fitness APIs free?](/pricing/are-fitness-apis-free) works the same distinction from the buyer's side.
 
@@ -114,7 +119,7 @@ Now look at where the cost went. Fitbit, Garmin, Oura, WHOOP, Strava, HealthKit 
 
 - **WHOOP** — new apps start on a Sandbox tier of 10 members and move up through reviewed tiers of 100, 1,000, 5,000 and unlimited; developers need a WHOOP membership to build.
 - **Oura** — a new API application is limited to 10 users until Oura approves it, with no limit once approved.
-- **Garmin** — Garmin Connect Developer Program approval, for business use only; Garmin confirms an application's status within two business days.
+- **Garmin** — Garmin Connect Developer Program approval, as Starter or Enterprise Access; Garmin's pages state no review time.
 - **Strava** — a Strava subscription is a prerequisite for creating an app, which starts in single-player mode; a self-service upgrade raises its athlete capacity to 10, and connecting more than 10 needs Strava's review.
 - **Fitbit** — developer app registration; access to other users' intraday data is case-by-case (verify).
 - **Apple HealthKit** — App Store review checks that your health usage-description strings match what you do.
@@ -135,7 +140,7 @@ Now look at where the cost went. Fitbit, Garmin, Oura, WHOOP, Strava, HealthKit 
 | Item | What the end user must have |
 | --- | --- |
 | Fitbit Web API | A Fitbit device and account |
-| Garmin Health / Activity API | Their own Garmin device, which they sync; if you supply the wearables, Garmin asks for the number of devices when you request its program |
+| Garmin Health / Activity API | Their own Garmin device, which they sync; if you want to offer Garmin wearables, Garmin asks you to use its inquiry form when you request its program |
 | Oura Cloud API | An Oura Ring and an active Oura Membership; the API returns 403 when a user's subscription has expired |
 | WHOOP Developer Platform | Their own WHOOP account, so they are WHOOP members already |
 | Strava API | Their own Strava account, authorized by the athlete; Standard Tier apps may require specified end users to hold an active Strava subscription |
@@ -149,7 +154,7 @@ That is every item in the wearable-direct category. **Polar Open AccessLink is s
 
 **1 of the 25 items (4%) is contact-sales-only:** KinesteX.
 
-The list keeps shrinking. In the AI motion layer, QuickPose publishes a self-serve free tier and per-device plans, and Sency, classed contact-sales on 11 August, now publishes per-user plans, though on two pages that disagree about its first 100 users (see the revision note). KinesteX still requires a conversation before you can see terms. The wearables have left this list: Garmin, classed contact-sales on 11 August, says in its program FAQ that there are no licensing or maintenance fees, though access to some metrics may require a licence fee or a minimum device order for commercial use. The aggregator layer has left it too: Spike, the one aggregator classed contact-sales on 11 August, now publishes a starting price and bills on usage.
+The list keeps shrinking. In the AI motion layer, QuickPose publishes a self-serve free tier and per-device plans, and Sency, classed contact-sales on 11 August, now publishes per-user plans, though on two pages that disagree about its first 100 users (see the revision note). KinesteX still requires a conversation before you can see terms. The wearables have left this list: Garmin, classed contact-sales on 11 August, documents no fee for its Starter Access, though since its October reorganisation its pages say Enterprise options and commercial terms are tailored to business and technical requirements. The aggregator layer has left it too: Spike, the one aggregator classed contact-sales on 11 August, now publishes a starting price and bills on usage.
 
 **Disclosure:** KinesteX funds this site. It appears in the dataset on exactly the same terms as everyone else — classified contact-sales, approval gate recorded, no ranking, no accuracy claim, no exemption from the "could not verify pricing" treatment applied to its competitors. See [KinesteX vs Sency](/compare/kinestex-vs-sency).
 
@@ -185,7 +190,7 @@ Read that against finding 2. Aggregators exist precisely to broker provider auth
 
 | Layer | Items | How it bills you | Gates and user-side costs |
 | --- | --- | --- | --- |
-| Wearable APIs (direct) | 6 | Free to call, all six; Garmin says some metrics may need a licence fee for commercial use | Gated everywhere except Polar, and Strava's gate starts with a Strava subscription; all six need the user's device, account or membership |
+| Wearable APIs (direct) | 6 | Free to call, all six; Garmin says Enterprise commercial terms are tailored | Gated everywhere except Polar, and Strava's gate starts with a Strava subscription; all six need the user's device, account or membership |
 | Platform health stores | 2 | Free (HealthKit, Health Connect) | Store review both sides: usage-description strings on iOS, health-data declaration on Android |
 | Health-data aggregators | 4 | Usage-based (Terra, Junction, Rook, Spike) | Narrow gates: Terra's and Rook's provider setups for a named handful of providers, Spike's sales onboarding; none documented on Junction |
 | Nutrition and food data | 4 | Open data (USDA FoodData Central, Open Food Facts) versus freemium (Nutritionix, Edamam) | Only Nutritionix's higher tiers; open options charge in licence obligations |
@@ -200,7 +205,7 @@ Per-vendor structure is broken out on [Fitbit API pricing](/pricing/fitbit-api-p
 
 **The sample.** 25 items, chosen as the APIs, SDKs and models this site's own verified pages already cover in depth. That makes it coverage-driven, not a census: it is not exhaustive, implies nothing about market share, and skews toward vendors with English-language developer documentation. One row ("LLM API") stands for a feature category rather than a named vendor. The eight categories are ours, not an industry taxonomy.
 
-**Verification.** Every non-judgement field was verified against vendor primary sources — developer documentation, public repositories, registries — during 2026, each backed by a sentence published on this site, with per-item provenance recorded in the cost model the dataset is generated from. Where the vendor's own material was absent or unreadable and only third-party reports existed, the claim is marked "reportedly" and carries a verify flag inline rather than being laundered into a fact. The four aggregator rows and five of the six direct wearable rows (Garmin, Strava, Oura, WHOOP and Polar) were re-verified on 17 October 2026 and the three AI motion SDK rows on 17 and 18 October 2026; the other 13 rows carry their 11 August 2026 verification.
+**Verification.** Every non-judgement field was verified against vendor primary sources — developer documentation, public repositories, registries — during 2026, each backed by a sentence published on this site, with per-item provenance recorded in the cost model the dataset is generated from. Where the vendor's own material was absent or unreadable and only third-party reports existed, the claim is marked "reportedly" and carries a verify flag inline rather than being laundered into a fact. The four aggregator rows and five of the six direct wearable rows (Garmin, Strava, Oura, WHOOP and Polar) were re-verified on 17 October 2026 and the three AI motion SDK rows on 17 and 18 October 2026, and the Garmin row again on 22 October 2026; the other 13 rows carry their 11 August 2026 verification.
 
 **Nulls are honest.** A null means we could not verify it — never that the answer is zero, never a guess. Polar's empty approval gate means no sentence on our pages documents one, not that none exists.
 
@@ -212,7 +217,7 @@ Per-vendor structure is broken out on [Fitbit API pricing](/pricing/fitbit-api-p
 
 **Licence and downloads.** CC BY 4.0, version 2026.1 as revised on 18 October 2026, with a per-item source link on every row: [fitness-apis-2026.json](/datasets/fitness-apis-2026.json) and [fitness-apis-2026.csv](/datasets/fitness-apis-2026.csv).
 
-**Cite as:** AIFitnessAPI, "The State of Fitness APIs 2026," aifitnessapi.com, updated 11 August 2026, revised 18 October 2026, https://aifitnessapi.com/state-of-fitness-apis-2026
+**Cite as:** AIFitnessAPI, "The State of Fitness APIs 2026," aifitnessapi.com, updated 11 August 2026, revised 22 October 2026, https://aifitnessapi.com/state-of-fitness-apis-2026
 
 ## What to watch into 2027
 
@@ -228,10 +233,12 @@ Five things in this data look unstable. All of them are hedges, not predictions.
 
 **MoveNet MultiPose has a licence gap.** The MultiPose model card we read carried no licence line, while the single-person models are Apache-2.0. Until that resolves, "the pose layer is uniformly free" deserves an asterisk wherever multi-person tracking is involved. Confirm it independently before shipping commercially.
 
-The next edition will re-verify every row and version the dataset rather than overwrite it. Within 2026.1, the 18 October 2026 revision changed two aggregator rows, the Sency row and three direct wearable rows (Garmin, Strava and Polar) in place, and the revision note at the top keeps the earlier figures on record.
+The next edition will re-verify every row and version the dataset rather than overwrite it. Within 2026.1, the 18 October 2026 revision changed two aggregator rows, the Sency row and three direct wearable rows (Garmin, Strava and Polar) in place, the 22 October 2026 revision rewrote the Garmin row's text, and the revision note at the top keeps the earlier figures on record.
 `;
 
 const REVISION = `
+**Revised 22 October 2026.** Garmin reorganised its Connect Developer Program between our 17 and 22 October reads: access now comes as Starter Access and Enterprise Access, with a separate Personal API for individuals' own data, and the program FAQ moved to a new address. We re-read Garmin's pages on 22 October and rewrote the Garmin row to match them. Its approval gate now reads "Garmin Connect Developer Program approval, as Starter or Enterprise Access; Garmin's pages state no review time", and its user-side text points to Garmin's inquiry form for anyone offering Garmin wearables, where it used to ask for a device count. The classification stays free to call, because Garmin documents no fee for Starter Access. The FAQ sentence it rested on, "There are no licensing or maintenance fees", is gone, though, and Garmin's overview says Enterprise commercial terms are tailored, so that cell is now the least certain in the wearable layer. No figure moved. This is recorded as an update rather than a correction, because the 18 October text matched Garmin's FAQ as a Wayback Machine capture shows it on 17 October. The [changes tracker](/changes) dates the restructure.
+
 **Revised 18 October 2026.** On 17 October 2026 we re-verified the four aggregator rows (Terra, Junction, Rook and Spike) and five of the six direct wearable rows (Garmin, Strava, Oura, WHOOP and Polar), and on 17 and 18 October 2026 the three AI motion SDK rows (KinesteX, QuickPose and Sency), against the vendors' own pages, docs and repositories; the other 13 rows keep their 11 August 2026 verification. Six classifications changed:
 
 - **Spike: contact-sales → usage-based.** Its pricing page now publishes a starting price for its Sandbox plan and calls its pricing usage-driven. That is recorded as an update rather than a correction, because we hold no copy of Spike's pricing page from August to show the price was public then.
@@ -385,7 +392,7 @@ export default function StateOfFitnessApis2026Page() {
         </section>
 
         <p className="mt-10 text-sm text-[var(--muted)]">
-          By {site.name}. Cite as: AIFitnessAPI, &ldquo;The State of Fitness APIs 2026,&rdquo; version 2026.1, revised 18 October 2026 — the dataset downloads carry per-item source links.
+          By {site.name}. Cite as: AIFitnessAPI, &ldquo;The State of Fitness APIs 2026,&rdquo; version 2026.1, revised 22 October 2026 — the dataset downloads carry per-item source links.
         </p>
       </article>
     </Container>

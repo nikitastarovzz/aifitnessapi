@@ -1,77 +1,127 @@
 [
   {
-    "claim": "There are no licensing or maintenance fees for access to the program, but it is only for business use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+    "claim": "Answer/table: Personal API, secure access to your own Garmin Connect data for individuals.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Secure access to your own Garmin Connect data for individuals who want to explore, analyze, and build personalized experiences using their own data."
   },
   {
-    "claim": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+    "claim": "Table: Personal API data is pull only.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Women's Health Data JSON Delivery Pull only"
   },
   {
-    "claim": "Enhanced beat-to-beat interval is marked: commercial use requires a license fee payment.",
-    "url": "https://developer.garmin.com/gc-developer-program/health-api/",
-    "quote": "* Commercial use requires a license fee payment."
+    "claim": "Table: you create the personal key on Garmin Connect Web.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Log in to the Garmin Connect website to retrieve your personal API key and generate access tokens for Garmin Connect API requests."
   },
   {
-    "claim": "The metric carrying the asterisk is enhanced beat-to-beat interval.",
-    "url": "https://developer.garmin.com/gc-developer-program/health-api/",
-    "quote": "Enhanced Beat-To-Beat Interval *"
+    "claim": "Table: Starter Access is the starting point for organizations building apps.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "The starting point for organizations building apps with Garmin Connect API access. Build, test, and launch integrations using core Garmin Connect APIs."
   },
   {
-    "claim": "The Health API lists steps, intensity minutes, sleep, calories and heart rate.",
-    "url": "https://developer.garmin.com/gc-developer-program/health-api/",
-    "quote": "Steps Intensity Minutes Sleep Calories Heart Rate"
+    "claim": "Answer/table/bottom line: Enterprise Access is for companies at scale and its commercial terms are tailored.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Designed for companies operating at scale requiring capabilities beyond Starter Access. Available options and commercial terms are tailored based on business and technical requirements."
   },
   {
-    "claim": "The Health API lists stress, Pulse Ox, Body Battery, body composition, respiration and blood pressure.",
-    "url": "https://developer.garmin.com/gc-developer-program/health-api/",
-    "quote": "Stress Pulse Ox Body Battery Body Composition Respiration Blood Pressure"
+    "claim": "Body: you create an app with Starter Access and request Enterprise Access through the Developer Portal as needs grow.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Apply for the Garmin Connect Developer Program and create an app with Starter Access. As your business and integration needs evolve, you can request Enterprise Access through Garmin Developer Portal."
   },
   {
-    "claim": "Users sync their own Garmin devices.",
-    "url": "https://developer.garmin.com/gc-developer-program/health-api/",
-    "quote": "After initial consent, end-users sync their device with Garmin Connect to upload device data, at which point it is accessible via the API."
+    "claim": "What changed: the former FAQ, as captured on October 17, 2026, said there were no licensing or maintenance fees, business use only, and licence fees or minimum device orders for some metrics.",
+    "url": "https://web.archive.org/web/20261017191828id_/https://developer.garmin.com/gc-developer-program/program-faq",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use. Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
   },
   {
-    "claim": "If you want to supply wearables, Garmin asks for the number of devices when you request the program.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "please request the Garmin Connect Developer Program and enter the number of devices you believe you will support."
+    "claim": "FAQ, when does Garmin answer: on October 17, 2026 the FAQ said Garmin confirmed an application's status within two business days.",
+    "url": "https://web.archive.org/web/20261017191828id_/https://developer.garmin.com/gc-developer-program/program-faq",
+    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
   },
   {
-    "claim": "Garmin's team discusses how to sell and provide wearables to your users.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "A member of the Garmin team will contact you to discuss how best to sell and provide the wearables to your users."
+    "claim": "What changed: the replacement FAQ describes Starter Access.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Starter Access: Developers can gain immediate access and launch with Garmin, with access to core data and tools."
   },
   {
-    "claim": "Garmin confirms an application's status within two business days.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "we will confirm the status of your application within two business days."
+    "claim": "What changed / table: the replacement FAQ describes Enterprise Access for companies operating at scale.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Enterprise Access: For companies operating at scale, this new model aligns with growth, offering expanded data access, reliability, and enterprise-grade support."
   },
   {
-    "claim": "A typical integration takes 1 to 4 weeks.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "claim": "What changed: the replacement FAQ sends personal-use questions to the Personal API.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Please visit the Garmin Connect Personal API for more information."
+  },
+  {
+    "claim": "Costs you can plan for / FAQ: after approval you get the Developer Portal and can start right away.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "After you request access to the Garmin Connect Developer Program and your request has been approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
+  },
+  {
+    "claim": "Costs you can plan for / FAQ: a typical integration takes 1 to 4 weeks.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
     "quote": "A typical integration takes between 1 and 4 weeks."
   },
   {
-    "claim": "An integration call is part of the process.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "In parallel, we will invite you to an integration call to help understand your needs and walk you through the high-level technical details of the Developer Program and its APIs."
+    "claim": "Costs you can plan for: to offer Garmin wearables, request the program and use the inquiry form.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "If you want to enhance your project by offering Garmin wearables, request the Garmin Connect Developer Program and contact us using the inquiry form with more information about your project."
   },
   {
-    "claim": "If approved you get access to the Garmin Developer Portal.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "If approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
+    "claim": "Costs you can plan for: OAuth 2.0 token handling.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "All APIs in the Developer Program use OAUTH 2.0."
   },
   {
-    "claim": "Garmin's FAQ says the program is available for enterprise use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "The Garmin Connect Developer Program is available for enterprise use"
+    "claim": "Enterprise features: the Health API lists enhanced beat-to-beat interval with an asterisk.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Enhanced Beat-To-Beat Interval *"
   },
   {
-    "claim": "Every program page carried a Stay tuned banner on October 17, 2026.",
+    "claim": "Enterprise features / FAQ: the asterisk reads Supported with Enterprise Access only.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Supported with Enterprise Access only"
+  },
+  {
+    "claim": "Enterprise features: Health API ping/pull delivery carries the asterisk.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Push or *Ping/Pull Architecture: Choose the integration option that best matches your needs"
+  },
+  {
+    "claim": "Enterprise features: Women's Health API ping/pull delivery carries the asterisk.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/womens-health-api/",
+    "quote": "Push or *Ping/Pull Architecture: Choose the integration option that best matches your needs"
+  },
+  {
+    "claim": "Enterprise features: multi-project support and backfill carry the asterisk.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "*Multi-Project Support: Create and configure your apps independently from each other"
+  },
+  {
+    "claim": "Enterprise features: backfill of user data carries the asterisk.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Developer Web Tools: Easy on-boarding, sample data, *backfill user data, and auto-verification of your integration before production"
+  },
+  {
+    "claim": "Costs you can plan for: users sync their own Garmin devices.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "After initial consent, end-users sync their device with Garmin Connect to upload device data, at which point it is accessible via the API."
+  },
+  {
+    "claim": "Cheaper paths / FAQ: the Personal API is not intended for commercial applications serving multiple end users.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "It is not intended for commercial applications serving multiple end users."
+  },
+  {
+    "claim": "Table/Enterprise features: Starter is push only, with no historical data and limited user capacity.",
     "url": "https://developer.garmin.com/gc-developer-program/overview/",
-    "quote": "Stay tuned for more updates on the program"
+    "quote": "Push only Historical Data Not included User Capacity Limited"
+  },
+  {
+    "claim": "Table/FAQ: Enterprise adds a Golf API, push or ping/pull, a month or more of history, unlimited user capacity and technical support.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Golf API JSON Delivery Push or Ping/Pull Historical Data 1 month + User Capacity Unlimited Technical Support Included"
   }
 ]

@@ -1,38 +1,33 @@
 [
   {
-    "claim": "Free-to-call count: Garmin is free to call; its program FAQ says there are no licensing or maintenance fees for access.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+    "claim": "Table, Garmin row: approval gate, Garmin Connect Developer Program approval.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "After you request access to the Garmin Connect Developer Program and your request has been approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
+  },
+  {
+    "claim": "Table, Garmin row: as Starter or Enterprise Access.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Starter Access: Developers can gain immediate access and launch with Garmin, with access to core data and tools."
+  },
+  {
+    "claim": "Table, Garmin row: as Starter or Enterprise Access.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Enterprise Access: For companies operating at scale, this new model aligns with growth, offering expanded data access, reliability, and enterprise-grade support."
+  },
+  {
+    "claim": "Table, Garmin row: users sync their own Garmin devices.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "After initial consent, end-users sync their device with Garmin Connect to upload device data, at which point it is accessible via the API."
+  },
+  {
+    "claim": "Table, Garmin row: to offer Garmin wearables, Garmin asks you to use its inquiry form.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "If you want to enhance your project by offering Garmin wearables, request the Garmin Connect Developer Program and contact us using the inquiry form with more information about your project."
   },
   {
     "claim": "Free-to-call count: Strava is free to call; its API Agreement says access is currently provided at no charge.",
     "url": "https://www.strava.com/legal/api",
     "quote": "Access to and use of the Strava API Materials and the Strava Platform are currently provided at no charge."
-  },
-  {
-    "claim": "Table, Garmin row: approval gate, Garmin Connect Developer Program approval.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "If approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
-  },
-  {
-    "claim": "Table, Garmin row: for business use only.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
-  },
-  {
-    "claim": "Table, Garmin row: Garmin confirms an application's status within two business days.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
-  },
-  {
-    "claim": "Table, Garmin row: users sync their own Garmin devices.",
-    "url": "https://developer.garmin.com/gc-developer-program/health-api/",
-    "quote": "After initial consent, end-users sync their device with Garmin Connect to upload device data, at which point it is accessible via the API."
-  },
-  {
-    "claim": "Table, Garmin row: if you supply wearables, Garmin asks for the number of devices when you request the program.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "please request the Garmin Connect Developer Program and enter the number of devices you believe you will support."
   },
   {
     "claim": "Table, Oura row: a new API application is limited to 10 users until Oura approves it.",

@@ -1,13 +1,18 @@
 [
   {
-    "claim": "Decision 4: Garmin's developer program is partner-approval-only.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "If approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
+    "claim": "Decision 4: Garmin's developer program needs Garmin's approval.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "After you request access to the Garmin Connect Developer Program and your request has been approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
   },
   {
-    "claim": "Decision 4: and for business use only.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+    "claim": "Decision 4: now as Starter and Enterprise Access.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Starter Access: Developers can gain immediate access and launch with Garmin, with access to core data and tools."
+  },
+  {
+    "claim": "Decision 4: now as Starter and Enterprise Access.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Enterprise Access: For companies operating at scale, this new model aligns with growth, offering expanded data access, reliability, and enterprise-grade support."
   },
   {
     "claim": "Cost shape, memberships: WHOOP's developer docs describe the people who connect as WHOOP members.",
