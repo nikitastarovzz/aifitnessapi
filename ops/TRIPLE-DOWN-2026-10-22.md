@@ -111,7 +111,7 @@ winning clusters had moved under us, so the same PR re-verifies them:_
   access is now Personal (a self-serve API key for your own data), Starter and
   Enterprise, and the "business use only" line our pages quoted is gone.
   /pricing/garmin-api-pricing and /integrate/garmin-api were rewritten and
-  re-stamped; the Garmin claims on 20 other pages and every evidence row that
+  re-stamped; the Garmin claims on some 20 other pages and every evidence row that
   cited the dead address were brought in line; a change event records it._
 - _**ExerciseDB** (exercisedb.dev) is now AscendAPI, with a free keyless V1
   and a free watermarked V2 plan; API Ninjas' Exercises API now returns images
