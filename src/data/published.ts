@@ -7,7 +7,7 @@
  * contained the entry and listed it in its cluster's release gate (blog
  * posts: the commit that added the file; generated sections: the commit that
  * added the route, or the item to the data file if that came later).
- * Keyed by URL path without the leading slash. 524 rows.
+ * Keyed by URL path without the leading slash. 528 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -47,6 +47,7 @@ export const PUBLISHED: Record<string, string> = {
   "alternatives/kinestex-alternatives": "2026-08-02",
   "alternatives/mediapipe-alternatives": "2026-10-18",
   "alternatives/nutritionix-alternatives": "2026-07-13",
+  "alternatives/openpose-alternatives": "2026-10-22",
   "alternatives/oura-api-alternatives": "2026-07-13",
   "alternatives/quickpose-alternatives": "2026-10-18",
   "alternatives/sency-alternatives": "2026-10-18",
@@ -128,6 +129,8 @@ export const PUBLISHED: Record<string, string> = {
   "compare/kinestex-vs-mediapipe": "2026-08-02",
   "compare/kinestex-vs-quickpose": "2026-08-02",
   "compare/kinestex-vs-sency": "2026-08-02",
+  "compare/mediapipe-vs-movenet": "2026-10-22",
+  "compare/mediapipe-vs-yolo-pose": "2026-10-22",
   "compare/nutritionix-vs-edamam": "2026-07-23",
   "compare/oura-vs-whoop": "2026-07-23",
   "compare/quickpose-vs-sency": "2026-10-18",
@@ -496,6 +499,7 @@ export const PUBLISHED: Record<string, string> = {
   "pricing/mindbody-api-pricing": "2026-10-18",
   "pricing/nutrition-api-pricing": "2026-07-23",
   "pricing/oura-api-pricing": "2026-07-23",
+  "pricing/polar-api-pricing": "2026-10-22",
   "pricing/quickpose-pricing": "2026-10-18",
   "pricing/sahha-api-pricing": "2026-10-18",
   "pricing/sency-pricing": "2026-10-18",
