@@ -1972,7 +1972,7 @@ export const integrateEntries: ClusterEntry[] =
     "slug": "withings-api",
     "primaryQuery": "withings api",
     "h1": "How to Integrate the Withings API (2026)",
-    "metaTitle": "Withings API (2026): OAuth, Notifications, Withings+ Rule",
+    "metaTitle": "Withings API (2026): OAuth, Notifications and Plans",
     "metaDescription": "Integrate the Withings Public API: OAuth with signed requests, 3-hour tokens, getmeas and lastupdate sync, notifications, limits and the Withings+ rule.",
     "updated": "2026-10-17",
     "answer": "The Withings Public API gives your app the measurements from a user's Withings scales, blood pressure monitors, sleep sensors and trackers after they authorize you over OAuth 2.0. Setup is free with no prerequisites: create an application, send users to Withings' authorization URL, exchange the code within 30 seconds using a signed requesttoken call, then fetch data with getmeas and the other services, ideally after Withings notifies your callback URL. Access tokens last 3 hours, the standard API allows 120 requests per minute per application, and Withings announced that from October 12, 2026 newly created accounts would need Withings+ to share data with a free-plan app, a notice that was gone from its developer home page by October 22, 2026.",
