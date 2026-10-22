@@ -192,7 +192,7 @@
   {
     "claim": "The combined dist/exercises.json we counted on 2026-10-22: 876 records, 1,746 image paths, all .jpg. The quote shows a record's image paths.",
     "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/dist/exercises.json",
-    "quote": "\"images\": ["
+    "quote": "\"images\": [ \"3_4_Sit-Up/0.jpg\", \"3_4_Sit-Up/1.jpg\" ]"
   },
   {
     "claim": "free-exercise-db's LICENSE.md is the Unlicense, public domain.",

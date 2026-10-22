@@ -197,7 +197,7 @@
   {
     "claim": "The REST router registers a video endpoint.",
     "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/urls.py",
-    "quote": "r'video',"
+    "quote": "r'video', exercises_api_views.ExerciseVideoViewSet, basename='video',"
   },
   {
     "claim": "The REST router registers a license endpoint (GET /api/v2/license/).",
