@@ -37,8 +37,9 @@
  *
  * Who gets a menu: a vendor with three or more pages; below that a menu is a
  * link to the directory entry and back. Polar (a guide and its entry),
- * Withings (a guide and a library), Suunto and Wahoo (a guide each), wger,
+ * Withings (a guide and a library), Suunto and Wahoo (a guide each),
  * USDA FoodData Central, Open Food Facts, MoveNet and Apple Vision have fewer.
+ * wger reached three on 2026-10-22 with its alternatives page.
  * QuickPose, Sency and MediaPipe reached three on 2026-10-18 (pricing and
  * alternatives pages) and have no menu yet: whether competitors of the site's
  * funder get one is an open decision, not an oversight. KinesteX has five
@@ -333,8 +334,16 @@ export const VENDOR_HUBS: VendorHub[] = [
       "/pricing/exercise-database-api-pricing",
       "/alternatives/exercisedb-alternatives",
       "/compare/exercisedb-vs-wger",
+      "/compare/exercisedb-vs-free-exercise-db",
       "/apis/exercisedb",
     ],
+  },
+  {
+    id: "wger",
+    hub: "/apis/wger",
+    tokens: ["wger"],
+    wraps: [],
+    pages: ["/apis/wger", "/alternatives/wger-alternatives", "/compare/exercisedb-vs-wger"],
   },
   {
     id: "nutritionix",

@@ -16,12 +16,12 @@
     "verifiedOn": "Date this entry was last checked against its source page"
   },
   "stats": {
-    "totalItems": 16,
+    "totalItems": 17,
     "byStatus": {
-      "confirmed": 12,
+      "confirmed": 13,
       "reported": 4
     },
-    "confirmed": 12,
+    "confirmed": 13,
     "reported": 4,
     "watch": 0,
     "earliestSortDate": "2023-04-15",
@@ -117,6 +117,16 @@
       "source": "https://aifitnessapi.com/pricing/whoop-api-pricing",
       "sourceLabel": "WHOOP API pricing",
       "verifiedOn": "2026-10-17"
+    },
+    {
+      "date": "2026",
+      "sortDate": "2026-03-30",
+      "title": "ExerciseDB becomes AscendAPI, with free V1 and V2 tiers",
+      "summary": "The exercisedb.dev home page now reads \"Previously ExerciseDB\" above the name AscendAPI, and AscendAPI's documentation (pages last modified in March 2026) describes two products. ExerciseDB V1 has a free hosted tier of \"1,500 exercises with 180p GIFs. No authentication required\" at oss.exercisedb.dev, plus a paid RapidAPI tier; ExerciseDB V2, on RapidAPI only, gives each exercise an MP4 video and has a free Basic plan of 2,000 requests a month and 200 exercises, on which \"free tier media is watermarked\". This site first saw the AscendAPI name on 2026-10-22; neither the rename's date nor the paid prices are published on the pages we could read.",
+      "status": "confirmed",
+      "source": "https://aifitnessapi.com/pricing/exercise-database-api-pricing",
+      "sourceLabel": "Exercise database API pricing",
+      "verifiedOn": "2026-10-22"
     },
     {
       "date": "2026",

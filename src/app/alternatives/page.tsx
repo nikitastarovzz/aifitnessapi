@@ -56,7 +56,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Content & nutrition",
     blurb: "Exercise libraries and food databases.",
-    slugs: ["exercisedb-alternatives", "nutritionix-alternatives"],
+    slugs: ["exercisedb-alternatives", "wger-alternatives", "nutritionix-alternatives"],
   },
   {
     title: "AI motion tracking",

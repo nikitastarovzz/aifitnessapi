@@ -189,7 +189,7 @@
     },
     {
       "id": "exercisedb",
-      "label": "ExerciseDB (via RapidAPI)",
+      "label": "ExerciseDB (AscendAPI)",
       "category": "exercise-content",
       "devCost": "free-tier-then-paid",
       "userSideCost": null,

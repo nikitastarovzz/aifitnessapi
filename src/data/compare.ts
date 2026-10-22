@@ -26,6 +26,7 @@ export const RELEASED_COMPARE = new Set<string>([
   "nutritionix-vs-edamam",
   "edamam-vs-spoonacular",
   "exercisedb-vs-wger",
+  "exercisedb-vs-free-exercise-db",
   "kinestex-vs-sency",
   "kinestex-vs-quickpose",
   "kinestex-vs-mediapipe",

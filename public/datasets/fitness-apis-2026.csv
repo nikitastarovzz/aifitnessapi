@@ -15,7 +15,7 @@ id,label,category,devCost,userSideCost,approvalGate,source
 "edamam","Edamam","nutrition","free-tier-then-paid",,,"https://aifitnessapi.com/pricing/nutrition-api-pricing"
 "usda-fdc","USDA FoodData Central","nutrition","free",,,"https://aifitnessapi.com/pricing/nutrition-api-pricing"
 "open-food-facts","Open Food Facts","nutrition","free",,,"https://aifitnessapi.com/pricing/nutrition-api-pricing"
-"exercisedb","ExerciseDB (via RapidAPI)","exercise-content","free-tier-then-paid",,,"https://aifitnessapi.com/pricing/exercise-database-api-pricing"
+"exercisedb","ExerciseDB (AscendAPI)","exercise-content","free-tier-then-paid",,,"https://aifitnessapi.com/pricing/exercise-database-api-pricing"
 "wger","wger (self-hosted)","exercise-content","free",,,"https://aifitnessapi.com/compare/exercisedb-vs-wger"
 "kinestex","KinesteX","motion-sdk","contact-sales",,"Access runs through a contact form and an issued API key — no self-serve signup.","https://aifitnessapi.com/compare/kinestex-vs-sency"
 "sency","Sency (SMKit)","motion-sdk","usage-based",,"Sign-up runs through a contact form that leads to a call, and Sency's Terms of Use put commercial or production use under a separate paid service agreement.","https://aifitnessapi.com/fitness-apis/ai-workout-tracking-apis"

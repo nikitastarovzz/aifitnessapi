@@ -133,6 +133,16 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
   },
   {
     date: "2026",
+    sortDate: "2026-03-30",
+    title: "ExerciseDB becomes AscendAPI, with free V1 and V2 tiers",
+    summary:
+      "The exercisedb.dev home page now reads \"Previously ExerciseDB\" above the name AscendAPI, and AscendAPI's documentation (pages last modified in March 2026) describes two products. ExerciseDB V1 has a free hosted tier of \"1,500 exercises with 180p GIFs. No authentication required\" at oss.exercisedb.dev, plus a paid RapidAPI tier; ExerciseDB V2, on RapidAPI only, gives each exercise an MP4 video and has a free Basic plan of 2,000 requests a month and 200 exercises, on which \"free tier media is watermarked\". This site first saw the AscendAPI name on 2026-10-22; neither the rename's date nor the paid prices are published on the pages we could read.",
+    status: "confirmed",
+    page: { href: "/pricing/exercise-database-api-pricing", label: "Exercise database API pricing" },
+    verifiedOn: "2026-10-22",
+  },
+  {
+    date: "2026",
     sortDate: "2026-03-01",
     title: "Nutritionix open free tier reportedly curtailed",
     summary:

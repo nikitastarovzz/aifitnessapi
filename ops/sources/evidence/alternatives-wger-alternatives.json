@@ -1,0 +1,372 @@
+[
+  {
+    "claim": "wger's README describes it as a free workout and fitness manager.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/README.md",
+    "quote": "wger (ˈvɛɡɐ) is a free workout and fitness manager."
+  },
+  {
+    "claim": "Nutrition logging against an Open Food Facts food database.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/README.md",
+    "quote": "Log your calories with a food database"
+  },
+  {
+    "claim": "Body-weight tracking.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/README.md",
+    "quote": "Track diet plans, body weight, and custom measurements."
+  },
+  {
+    "claim": "A community exercise wiki.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/README.md",
+    "quote": "Access and contribute to the built-in exercises."
+  },
+  {
+    "claim": "Multi-user and basic gym management.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/README.md",
+    "quote": "Includes basic gym management features."
+  },
+  {
+    "claim": "Self-hosting with Docker.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/README.md",
+    "quote": "Deploy easily with Docker for full control."
+  },
+  {
+    "claim": "A REST API for third-party integrations or automations.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/README.md",
+    "quote": "REST API for third-party integrations or automations."
+  },
+  {
+    "claim": "wger's README describes community translation via Weblate.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/README.md",
+    "quote": "Translated by the community via Weblate."
+  },
+  {
+    "claim": "Application code is AGPL-3.0-or-later.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/README.md",
+    "quote": "Application Code: [AGPL-3.0-or-later](https://www.gnu.org/licenses/agpl-3.0.html)"
+  },
+  {
+    "claim": "Exercise and ingredient data is Creative Commons, set per entry.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/README.md",
+    "quote": "Exercise/Ingredient Data: Creative Commons (see individual entries)"
+  },
+  {
+    "claim": "Documentation is CC-BY-SA-4.0.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/README.md",
+    "quote": "Documentation: [CC-BY-SA-4.0](https://creativecommons.org/licenses/by-sa/4.0/)"
+  },
+  {
+    "claim": "wger's code mounts its REST router under /api/v2/.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/urls.py",
+    "quote": "path('api/v2/', include(router.urls)),"
+  },
+  {
+    "claim": "The read-only exerciseinfo endpoint is described as the recommended way to access the exercise data.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/exercises/api/views.py",
+    "quote": "is the recommended way to access the exercise data."
+  },
+  {
+    "claim": "The exercise endpoints' permission class is commented \"Everybody can read\".",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/exercises/api/permissions.py",
+    "quote": "# Everybody can read"
+  },
+  {
+    "claim": "Creating or editing needs a logged-in, trusted account (or the add_exercise permission).",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/exercises/api/permissions.py",
+    "quote": "return request.user.userprofile.is_trustworthy or request.user.has_perm("
+  },
+  {
+    "claim": "In the code's default settings, list endpoints page results 20 at a time.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/settings/settings_global.py",
+    "quote": "'PAGE_SIZE': 20,"
+  },
+  {
+    "claim": "Self-hosting is basically just a docker compose up -d away.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/README.md",
+    "quote": "Hosting your own instance is basically just a `docker compose up -d` away."
+  },
+  {
+    "claim": "wger is a Django application.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/exercises/models/image.py",
+    "quote": "from django.db import models"
+  },
+  {
+    "claim": "sync-exercises synchronizes exercise data from a wger instance to the local database.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/exercises/management/commands/sync-exercises.py",
+    "quote": "Synchronizes exercise data from a wger instance to the local database"
+  },
+  {
+    "claim": "download-exercise-images pulls images from wger.de.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/exercises/management/commands/download-exercise-images.py",
+    "quote": "Download exercise images from wger.de"
+  },
+  {
+    "claim": "A validator rejects animated images.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/exercises/models/image.py",
+    "quote": "validators=[validate_image_static_no_animation],"
+  },
+  {
+    "claim": "Exercises inherit the shared license model.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/exercises/models/base.py",
+    "quote": "class Exercise(AbstractLicenseModel, AbstractHistoryMixin, models.Model):"
+  },
+  {
+    "claim": "Exercise translations inherit the shared license model.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/exercises/models/translation.py",
+    "quote": "class Translation(AbstractLicenseModel, AbstractHistoryMixin, models.Model):"
+  },
+  {
+    "claim": "Exercise videos inherit the same license model (per-video license fields).",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/exercises/models/video.py",
+    "quote": "class ExerciseVideo(AbstractLicenseModel, AbstractHistoryMixin, models.Model):"
+  },
+  {
+    "claim": "Exercise images inherit the shared license model.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/exercises/models/image.py",
+    "quote": "class ExerciseImage(AbstractLicenseModel, AbstractHistoryMixin, models.Model, BaseImageMixin):"
+  },
+  {
+    "claim": "The license model's docstring says it implements TASL attribution.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/utils/models.py",
+    "quote": "Implements TASL (Title - Author - Source - License) for proper attribution"
+  },
+  {
+    "claim": "License fields include license_derivative_source_url (alongside license_title, license_author, license_author_url, license_object_url).",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/utils/models.py",
+    "quote": "license_derivative_source_url = models.URLField("
+  },
+  {
+    "claim": "The image API serializer returns the license fields.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/exercises/api/serializers.py",
+    "quote": "'license_derivative_source_url',"
+  },
+  {
+    "claim": "wger's license table includes CC-BY-SA 3.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/core/fixtures/licenses.json",
+    "quote": "\"short_name\": \"CC-BY-SA 3\","
+  },
+  {
+    "claim": "wger's license table includes CC-BY-SA 4.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/core/fixtures/licenses.json",
+    "quote": "\"short_name\": \"CC-BY-SA 4\","
+  },
+  {
+    "claim": "wger's license table includes CC0.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/core/fixtures/licenses.json",
+    "quote": "\"short_name\": \"CC0\","
+  },
+  {
+    "claim": "wger's license table includes CC-BY 4.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/core/fixtures/licenses.json",
+    "quote": "\"short_name\": \"CC-BY 4\","
+  },
+  {
+    "claim": "wger's license table includes ODbL.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/core/fixtures/licenses.json",
+    "quote": "\"short_name\": \"ODbL\","
+  },
+  {
+    "claim": "A new upload defaults to CC-BY-SA 4.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/utils/models.py",
+    "quote": "default=CC_BY_SA_4_LICENSE_ID,"
+  },
+  {
+    "claim": "CC-BY-SA 4 is license ID 2 in wger's code.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/utils/constants.py",
+    "quote": "CC_BY_SA_4_LICENSE_ID = 2"
+  },
+  {
+    "claim": "Image records carry an is_ai_generated flag.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/exercises/models/image.py",
+    "quote": "is_ai_generated = models.BooleanField("
+  },
+  {
+    "claim": "Image records carry a style: line art, 3D, low-poly, photo or other.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/exercises/models/image.py",
+    "quote": "(LOW_POLY, 'Low-poly'),"
+  },
+  {
+    "claim": "The exerciseimage endpoint accepts is_main, exercise, license and license_author filters.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/exercises/api/views.py",
+    "quote": "'license_author',"
+  },
+  {
+    "claim": "The REST router registers an exerciseimage endpoint.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/urls.py",
+    "quote": "r'exerciseimage',"
+  },
+  {
+    "claim": "The REST router registers a video endpoint.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/urls.py",
+    "quote": "r'video',"
+  },
+  {
+    "claim": "The REST router registers a license endpoint (GET /api/v2/license/).",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/urls.py",
+    "quote": "router.register(r'license', core_api_views.LicenseViewSet, basename='license')"
+  },
+  {
+    "claim": "wger's code defines CC0 as license ID 3.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/utils/constants.py",
+    "quote": "CC_0_LICENSE_ID = 3"
+  },
+  {
+    "claim": "free-exercise-db's README calls it an \"Open Public Domain Exercise Dataset\", with 800+ exercises. (Our count of 876 exercises and 1,746 image paths was made by parsing dist/exercises.json on 2026-10-22; a count has no verbatim quote.)",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "Open Public Domain Exercise Dataset in `JSON` format, 800+ exercises with a browsable public searchable frontend"
+  },
+  {
+    "claim": "The combined dist/exercises.json we counted (876 records; 1,746 image paths, all .jpg). Quote shows the record shape the count was taken over.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/dist/exercises.json",
+    "quote": "\"name\": \"3/4 Sit-Up\""
+  },
+  {
+    "claim": "The repository's LICENSE.md is the Unlicense, which dedicates the work to the public domain.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/LICENSE.md",
+    "quote": "This is free and unencumbered software released into the public domain."
+  },
+  {
+    "claim": "Its README says the data was restructured from wrkout/exercises.json.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "so I restructured the data and built a simple frontend to it"
+  },
+  {
+    "claim": "The upstream wrkout/exercises.json repository's LICENSE.md is also the Unlicense.",
+    "url": "https://raw.githubusercontent.com/wrkout/exercises.json/master/LICENSE.md",
+    "quote": "This is free and unencumbered software released into the public domain."
+  },
+  {
+    "claim": "You can fetch the combined JSON and images from raw GitHub URLs as the README describes, prefixing image paths with the exercises/ raw URL.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "prefix any of image path's contained in the `JSON` with `https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/` to get a hosted version of the image"
+  },
+  {
+    "claim": "You can clone the repo and use the JSON files and images locally.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "You can check the repo out and use the `JSON` files and images locally"
+  },
+  {
+    "claim": "Muscles come from a fixed list of 17 values (the enum runs abdominals ... triceps).",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/schema.json",
+    "quote": "\"quadriceps\","
+  },
+  {
+    "claim": "IDs are strings built from the name, such as Alternate_Incline_Dumbbell_Curl.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "\"id\": \"Alternate_Incline_Dumbbell_Curl\","
+  },
+  {
+    "claim": "The exercisedb-api repository carries an AGPL-3.0 LICENSE file. (That the repository holds only README.md and LICENSE was established by a git clone on 2026-10-22: three commits, latest 401ef93 of 2025-11-25.)",
+    "url": "https://raw.githubusercontent.com/ExerciseDB/exercisedb-api/main/LICENSE",
+    "quote": "GNU AFFERO GENERAL PUBLIC LICENSE"
+  },
+  {
+    "claim": "Body/table: allowed image formats.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/utils/images.py",
+    "quote": "IMAGE_ALLOWED_FORMATS = ('jpeg', 'jpg', 'png', 'webp', 'avif')"
+  },
+  {
+    "claim": "Body/table: animation rejected.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/utils/images.py",
+    "quote": "raise ValidationError('Animated images are not supported.')"
+  },
+  {
+    "claim": "exercisedb.dev now presents itself as AscendAPI, previously ExerciseDB.",
+    "url": "https://exercisedb.dev/",
+    "quote": "Previously ExerciseDB"
+  },
+  {
+    "claim": "The free V1 tier is 1,500 exercises with 180p GIFs and needs no authentication.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "1,500 exercises with 180p GIFs. No authentication required, just call the hosted API directly."
+  },
+  {
+    "claim": "The free V1 endpoint is oss.exercisedb.dev/api/v1/exercises.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "https://oss.exercisedb.dev/api/v1/exercises"
+  },
+  {
+    "claim": "Free V1 media is 180p GIFs only; 360p to 1080p images and GIFs are on the paid RapidAPI tier.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "The free tier includes 180p GIFs only . Multi-resolution images and GIFs (360p–1080p) are available on the paid RapidAPI tier ."
+  },
+  {
+    "claim": "ExerciseDB V1 records carry bodyParts, targetMuscles and equipments arrays.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "| bodyParts | string[] | Target body regions |"
+  },
+  {
+    "claim": "AscendAPI describes ExerciseDB V2 as 11,000+ exercises, 15,000+ videos and 20,000+ images.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "A multipurpose exercise dataset with 11,000+ exercises, 15,000+ videos, and 20,000+ images"
+  },
+  {
+    "claim": "ExerciseDB V2 gives each exercise an MP4 demonstration video.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "Each exercise includes an MP4 demonstration video for in-app playback."
+  },
+  {
+    "claim": "Both V2 tiers are accessed via RapidAPI, and free-tier media is watermarked.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "Both free and paid tiers are accessed via RapidAPI. The only difference is that free tier media is watermarked ."
+  },
+  {
+    "claim": "The free Basic plan includes 2,000 requests a month.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "2,000 requests / month"
+  },
+  {
+    "claim": "The free Basic plan includes 200 exercises in the library.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "200 exercises in library"
+  },
+  {
+    "claim": "V2 records carry exercise tips, variations and related exercise IDs.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "exerciseTips | string[] | Pro tips for form and hypertrophy"
+  },
+  {
+    "claim": "AscendAPI lists multilingual support for ExerciseDB V2.",
+    "url": "https://docs.ascendapi.com/",
+    "quote": "HD images, videos, richer metadata, multilingual support"
+  },
+  {
+    "claim": "The README links separate terms of use, which we could not open.",
+    "url": "https://raw.githubusercontent.com/ExerciseDB/exercisedb-api/main/README.md",
+    "quote": "Terms Of Use"
+  },
+  {
+    "claim": "API Ninjas says its Exercises API covers over 3,000 exercises.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "over 3000 exercises targeting every major muscle group"
+  },
+  {
+    "claim": "Images are included only on premium plans.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "On premium plans, exercises with photos also include an images array of image URLs in movement order."
+  },
+  {
+    "claim": "API Ninjas' Free plan is for evaluation and demo purposes only.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "Evaluation and demo purposes only - no payment information required"
+  },
+  {
+    "claim": "The Developer plan is listed at $59 a month, or $39 a month on yearly billing.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "$ 59 $ 39 / month"
+  },
+  {
+    "claim": "The /v1/exercises endpoint returns up to 5 exercises per request.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Returns up to 5 exercises that satisfy the given parameters."
+  },
+  {
+    "claim": "Business: 1,000,000 calls a month, commercial use and caching or storing allowed.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "API calls per month 1,000,000 Commercial use Yes Data caching/storing allowed Yes"
+  },
+  {
+    "claim": "Developer: 100,000 calls a month, commercial use allowed, caching or storing data not allowed.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "API calls per month 100,000 Commercial use Yes Data caching/storing allowed No"
+  }
+]

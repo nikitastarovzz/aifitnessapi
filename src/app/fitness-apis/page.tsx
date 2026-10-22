@@ -65,6 +65,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
     blurb: "Pick the kind of data or capability you need.",
     slugs: [
       "exercise-database-apis",
+      "exercise-video-apis",
       "wearable-data-apis",
       "smart-ring-apis",
       "corporate-wellness-wearable-apis",
