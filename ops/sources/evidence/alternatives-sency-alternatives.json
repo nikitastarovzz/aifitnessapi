@@ -105,14 +105,9 @@
     "quote": "a valid, previously downloaded cache can be used offline later"
   },
   {
-    "claim": "The Android demo describes the same for its 1.9.4 release candidate.",
+    "claim": "The Android demo README says the same of SMKit Android 1.9.6.",
     "url": "https://raw.githubusercontent.com/sency-ai/smkit-android-demo/main/README.md",
-    "quote": "SMKit 1.9.4 obtains configuration and required models from the server and validates them before use."
-  },
-  {
-    "claim": "The Android demo is a 1.9.4 release candidate.",
-    "url": "https://raw.githubusercontent.com/sency-ai/smkit-android-demo/main/README.md",
-    "quote": "Local 1.9.4 release candidate; not yet publication or runtime sign-off."
+    "quote": "SMKit 1.9.6 obtains configuration and required models from the server and validates them before use."
   },
   {
     "claim": "The LICENSE file is Sency's Terms of Use, last updated in September 2022.",

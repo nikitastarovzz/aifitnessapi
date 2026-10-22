@@ -1,8 +1,8 @@
 [
   {
-    "claim": "Free: $0 for 30 days, sandbox only, 25 development users.",
+    "claim": "Any plan can be tried free for 30 days, with a card required.",
     "url": "https://sahha.ai/pricing/",
-    "quote": "$0 for 30 days Build and test in sandbox 25 development users All products unlocked Sandbox environment"
+    "quote": "Try any plan for 30 days The plan you choose, free for 30 days All products unlocked Card required, nothing charged today Cancel before it ends and pay nothing"
   },
   {
     "claim": "Starter: $299 a month, billed annually; 1,000 users.",
@@ -35,14 +35,9 @@
     "quote": "Volume pricing Unlimited projects / workspaces SLAs & Custom contracting (MSA) Custom data retention"
   },
   {
-    "claim": "Free: 30 days retention.",
+    "claim": "Webhook deliveries a day: 100K on Starter, 1M on Pro, custom on Enterprise.",
     "url": "https://sahha.ai/pricing/",
-    "quote": "Data retention 30 days 30 days 120 days Custom"
-  },
-  {
-    "claim": "Webhook deliveries a day: 10K, 100K, 1M, custom.",
-    "url": "https://sahha.ai/pricing/",
-    "quote": "Webhook deliveries / day 10K 100K 1M Custom"
+    "quote": "Webhook deliveries / day 100K 1M Custom"
   },
   {
     "claim": "The billing toggle reads \"Monthly Annual −25%\".",
@@ -57,7 +52,7 @@
   {
     "claim": "Pro has an elevated API rate limit.",
     "url": "https://sahha.ai/pricing/",
-    "quote": "API rate limit Standard Standard Elevated Custom"
+    "quote": "API rate limit Standard Elevated Custom"
   },
   {
     "claim": "Enterprise adds unlimited projects, SLAs, custom contracting.",
@@ -155,14 +150,14 @@
     "quote": "Oura oura Ring Cloud OAuth Beta self sign-up WHOOP whoop Band Cloud OAuth Beta self sign-up"
   },
   {
-    "claim": "Data retention is 30 days on Free and Starter and 120 days on Pro.",
+    "claim": "Data retention is 30 days on Starter and 120 days on Pro.",
     "url": "https://sahha.ai/pricing/",
-    "quote": "Data retention 30 days 30 days 120 days Custom"
+    "quote": "Data retention 30 days 120 days Custom"
   },
   {
     "claim": "Webhook deliveries are capped per day by plan.",
     "url": "https://sahha.ai/pricing/",
-    "quote": "Webhook deliveries / day 10K 100K 1M Custom"
+    "quote": "Webhook deliveries / day 100K 1M Custom"
   },
   {
     "claim": "Sahha's docs describe the webhook interval as \"a deduplication window\".",
@@ -215,9 +210,9 @@
     "quote": "Integrations are in public beta and are Sandbox only"
   },
   {
-    "claim": "FAQ: Free includes every product unlocked, the sandbox environment and the Slack community.",
+    "claim": "FAQ: the pricing page offers a 30-day free trial of whichever plan you choose; card required, nothing charged on the day, nothing to pay if cancelled before it ends.",
     "url": "https://sahha.ai/pricing/",
-    "quote": "25 development users All products unlocked Sandbox environment Slack community"
+    "quote": "Try any plan for 30 days The plan you choose, free for 30 days All products unlocked Card required, nothing charged today Cancel before it ends and pay nothing"
   },
   {
     "claim": "FAQ: the plan table lists HIPAA (BAA) under Pro.",
@@ -233,5 +228,35 @@
     "claim": "FAQ: Sahha backfills up to 30 days of history when a user connects.",
     "url": "https://sahha.ai/",
     "quote": "Sahha backfills up to 30 days on connect"
+  },
+  {
+    "claim": "There is no free plan in the table: it compares Starter, Pro and Enterprise.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "Compare plans Capabilities and support grow with you. Starter Pro Enterprise"
+  },
+  {
+    "claim": "Sahha's homepage FAQ still says \"Start free with 25 development users and every product unlocked in sandbox\".",
+    "url": "https://sahha.ai/",
+    "quote": "Start free with 25 development users and every product unlocked in sandbox."
+  },
+  {
+    "claim": "Its homepage describes a separate sandbox environment with its own keys.",
+    "url": "https://sahha.ai/",
+    "quote": "Sandbox environment A separate account and API host with its own keys."
+  },
+  {
+    "claim": "The sandbox has sample profiles for building before production.",
+    "url": "https://sahha.ai/",
+    "quote": "Sample profiles Pre-populated profiles with months of realistic history."
+  },
+  {
+    "claim": "Included on every plan: the list is the same on Starter as on Enterprise.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "Included on every plan Biomarkers 100+ Scores 5 Archetypes 100+"
+  },
+  {
+    "claim": "The October 17, 2026 capture shows a Free plan: $0 for 30 days, build and test in sandbox, 25 development users.",
+    "url": "https://web.archive.org/web/20261017191948id_/https://sahha.ai/pricing/",
+    "quote": "Build and test in sandbox 25 development users All products unlocked Sandbox environment Slack community"
   }
 ]

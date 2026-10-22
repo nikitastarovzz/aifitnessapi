@@ -420,9 +420,9 @@
     "quote": "Additional users billed at €0.50 each."
   },
   {
-    "claim": "\"0,50ct per additional user\".",
+    "claim": "\"€0.50 per additional user\" in the feature list.",
     "url": "https://www.thryve.health/pricing",
-    "quote": "Up to 500 users 0,50ct per additional user 1 app connected"
+    "quote": "Up to 500 users €0.50 per additional user 1 app connected"
   },
   {
     "claim": "An HMAC secret can be configured.",

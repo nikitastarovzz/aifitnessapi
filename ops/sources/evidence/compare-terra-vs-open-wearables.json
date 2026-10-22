@@ -152,7 +152,7 @@
   {
     "claim": "Terra: a versioned OpenAPI spec.",
     "url": "https://raw.githubusercontent.com/tryterra/openapi/master/dist/core/v2-bundled.yaml",
-    "quote": "version: 2026.10.08.1"
+    "quote": "version: 2026.10.21.1"
   },
   {
     "claim": "Open Wearables: \"an early-stage project under active development\"; APIs \"may change before version 1.0\".",

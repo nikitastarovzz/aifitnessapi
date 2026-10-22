@@ -85,9 +85,9 @@
     "quote": "Note that for testing & staging, there is a user limit of 50 users on each environment."
   },
   {
-    "claim": "Sahha Free plan: $0 for 30 days, 25 development users, sandbox.",
+    "claim": "Sahha: 30-day free trial of any plan, card required.",
     "url": "https://sahha.ai/pricing/",
-    "quote": "$0 for 30 days Build and test in sandbox 25 development users All products unlocked Sandbox environment"
+    "quote": "Try any plan for 30 days The plan you choose, free for 30 days All products unlocked Card required, nothing charged today Cancel before it ends and pay nothing"
   },
   {
     "claim": "Terra: scores add-on from $499 a month on Quick Start.",
@@ -252,7 +252,7 @@
   {
     "claim": "Data retention: 30 days on Starter, 120 on Pro.",
     "url": "https://sahha.ai/pricing/",
-    "quote": "Data retention 30 days 30 days 120 days Custom"
+    "quote": "Data retention 30 days 120 days Custom"
   },
   {
     "claim": "\"Every webhook sent by Terra includes an HMAC-based signature header\".",

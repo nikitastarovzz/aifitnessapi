@@ -72,6 +72,16 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
     verifiedOn: "2026-10-22",
   },
   {
+    date: "2026-10",
+    sortDate: "2026-10-22",
+    title: "Sahha replaces its Free plan with a 30-day free trial",
+    summary:
+      "Sahha's pricing page no longer lists a Free plan. The Internet Archive's capture of 2026-10-17 shows Free at $0 for 30 days, to \"Build and test in sandbox\" with 25 development users; on 2026-10-22 the page instead offers \"Try any plan for 30 days\", with \"Card required, nothing charged today\" and \"Cancel before it ends and pay nothing\". Starter ($299 a month billed annually, 1,000 users) and Pro ($1,499, 10,000 users) are unchanged. Sahha gives no date for the change, and its homepage FAQ still says to \"Start free with 25 development users\" in sandbox.",
+    status: "confirmed",
+    page: { href: "/pricing/sahha-api-pricing", label: "Sahha API pricing" },
+    verifiedOn: "2026-10-22",
+  },
+  {
     date: "2026-09-30",
     sortDate: "2026-09-30",
     title: "Fitbit Web API end of support",

@@ -205,11 +205,6 @@
     "quote": "Please submit partner request before your app distribution. Your app's information including the app package name and signature (SHA-256) will be registered in the Samsung Health's system after an approval."
   },
   {
-    "claim": "RingConn's sharing feature is for friends and family.",
-    "url": "https://ringconn.com/pages/app-features",
-    "quote": "Share your health data with friends and family anytime, anywhere."
-  },
-  {
     "claim": "RingConn's site lists its rings.",
     "url": "https://ringconn.com/",
     "quote": "Entry-level smart ring, core health features included"
