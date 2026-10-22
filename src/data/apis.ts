@@ -115,13 +115,13 @@ export const API_ENTRIES: ApiEntry[] = COST_ITEMS.filter((i) => !EXCLUDED.has(i.
  * the machine surfaces.
  *
  * The rule binds first-party KinesteX like everyone else: no product-named
- * search for it was disclosed in the window. Junction cleared the Bing bar on
- * searches that mostly say "vital", but none of them mapped to a page here.
- * Re-judged at the 2026-10-31 review; scripts/build-api-demand.mjs prints
- * where each pull disagrees with this list.
+ * search for it was disclosed in the window. Re-judged on 2026-10-22 from the
+ * pull for 2026-09-22 to 2026-10-19 (ops/TRIPLE-DOWN-2026-10-22.md): Apple
+ * Vision (21 Google) and Junction (15 Bing, now surfacing a page here) cleared
+ * the bar and are indexed. Re-judged again at the 2026-10-31 review;
+ * scripts/build-api-demand.mjs prints where each pull disagrees with this list.
  */
 export const NOINDEX_APIS = new Set([
-  "junction",
   "rook",
   "nutritionix",
   "edamam",
@@ -131,7 +131,6 @@ export const NOINDEX_APIS = new Set([
   "kinestex",
   "sency",
   "quickpose",
-  "apple-vision",
 ]);
 
 export function getApi(id: string): ApiEntry | undefined {

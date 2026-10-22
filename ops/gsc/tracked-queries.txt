@@ -47,3 +47,12 @@ pose estimation models
 mcp server health data
 wearable data aggregator api
 mindbody api
+movenet vs mediapipe
+mediapipe vs yolo
+openpose alternatives
+wger alternatives
+free-exercise-db
+exercise video api
+workout video api
+garmin api for personal use
+polar api pricing
