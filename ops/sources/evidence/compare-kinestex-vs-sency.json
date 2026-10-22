@@ -192,7 +192,7 @@
   {
     "claim": "Sency Maven artifacts.",
     "url": "https://raw.githubusercontent.com/sency-ai/smkit-android-demo/main/app/build.gradle",
-    "quote": "implementation \"com.sency.smkit:smkit:1.9.4\""
+    "quote": "implementation \"com.sency.smkit:smkit:1.9.6\""
   },
   {
     "claim": "Apache-2.0 LICENSE in the Swift repo.",

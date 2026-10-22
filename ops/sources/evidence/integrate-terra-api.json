@@ -75,9 +75,9 @@
     "quote": "Never share your x-api-key publicly or embed it directly in client-side code (e.g., mobile apps, frontend JavaScript)."
   },
   {
-    "claim": "Terra's OpenAPI spec (version 2026.10.08.1).",
+    "claim": "Terra's OpenAPI spec (version 2026.10.21.1).",
     "url": "https://raw.githubusercontent.com/tryterra/openapi/master/dist/core/v2-bundled.yaml",
-    "quote": "version: 2026.10.08.1"
+    "quote": "version: 2026.10.21.1"
   },
   {
     "claim": "\"The Terra API (v2 surface, served at access.tryterra.co/api/v2)\".",

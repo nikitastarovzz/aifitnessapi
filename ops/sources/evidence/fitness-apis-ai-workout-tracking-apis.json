@@ -142,7 +142,7 @@
   {
     "claim": "Sency's Android SDK obtains its models from the server.",
     "url": "https://raw.githubusercontent.com/sency-ai/smkit-android-demo/main/README.md",
-    "quote": "SMKit 1.9.4 obtains configuration and required models from the server and validates them before use."
+    "quote": "SMKit 1.9.6 obtains configuration and required models from the server and validates them before use."
   },
   {
     "claim": "Sency's main pricing page: free trial, then pay based on usage.",

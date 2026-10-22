@@ -192,7 +192,7 @@
   {
     "claim": "Sency's Android SDK obtains its models from the server.",
     "url": "https://raw.githubusercontent.com/sency-ai/smkit-android-demo/main/README.md",
-    "quote": "SMKit 1.9.4 obtains configuration and required models from the server and validates them before use."
+    "quote": "SMKit 1.9.6 obtains configuration and required models from the server and validates them before use."
   },
   {
     "claim": "Sency: CocoaPods and SPM from Sency's Bitbucket.",
@@ -202,7 +202,7 @@
   {
     "claim": "Sency: Maven (com.sency).",
     "url": "https://raw.githubusercontent.com/sency-ai/smkit-android-demo/main/app/build.gradle",
-    "quote": "implementation \"com.sency.smkit:smkit:1.9.4\""
+    "quote": "implementation \"com.sency.smkit:smkit:1.9.6\""
   },
   {
     "claim": "Sency's iOS demo documents body calibration.",

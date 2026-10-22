@@ -100,9 +100,9 @@
     "quote": "Additional users billed at €0.50 each."
   },
   {
-    "claim": "The feature list reads \"0,50ct per additional user\".",
+    "claim": "The feature list says \"€0.50 per additional user\".",
     "url": "https://www.thryve.health/pricing",
-    "quote": "Up to 500 users 0,50ct per additional user 1 app connected"
+    "quote": "Up to 500 users €0.50 per additional user 1 app connected"
   },
   {
     "claim": "\"Visit Thryve Health Pricing to choose a suitable plan. You'll be directed to Stripe checkout for payment.\"",
