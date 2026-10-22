@@ -1124,7 +1124,7 @@ export const alternativesEntries: ClusterEntry[] =
     "metaDescription": "Alternatives to MediaPipe Pose Landmarker by reason: MoveNet for fast 2D, Apple Vision, ML Kit, YOLO26 or OpenPose for groups, or an SDK with rep logic.",
     "updated": "2026-10-18",
     "answer": "The best MediaPipe Pose Landmarker alternative depends on what MediaPipe does not do for you. For faster 2D tracking use MoveNet, for an iOS-native API Apple Vision, for a Google-maintained mobile SDK ML Kit Pose Detection, and for several people in one frame Ultralytics YOLO pose (AGPL-3.0), MoveNet MultiPose, RTMPose or OpenPose (noncommercial only), since Google's model card scopes MediaPipe's pose model to one person. If you want rep counting and feedback built for you, commercial SDKs such as QuickPose, which is itself built on MediaPipe, add that layer.",
-    "body": "MediaPipe Pose Landmarker is a strong default, so most teams that look for an alternative have one specific reason. This page names the reasons the primary sources support and routes each to the model or product that fits. Model facts come from each project's own repository, model card or documentation as read on October 17, 2026. **Disclosure: this site is funded by KinesteX, which sells a commercial motion SDK; it appears once below, in the commercial group, labelled as ours.**\n\n## What MediaPipe gives you\n\n- **33 landmarks per person**, each with x, y, z, visibility and presence, plus world landmarks that MediaPipe's documentation describes as \"real-world 3D coordinates in meters with the origin at the center between hips\".\n- **Three model sizes**, lite, full and heavy, as `.task` bundles from Google's model bucket, the same 33-point output from each; [MediaPipe Pose Landmarker models](/motion/mediapipe-pose-landmarker-models) covers the trade.\n- **The Tasks API on Android, iOS, web and Python**, running on the device.\n- **Apache-2.0** for the framework and, per Google's BlazePose GHUM model card, the models. No key and no fee.\n\n## Why teams look elsewhere\n\n- **More than one person in frame.** Google's model card says the model \"tracks only one person on scene if multiple present\" and lists multiple people as out of scope. The Tasks API does have a `num_poses` option, documented as \"the maximum number of poses can be detected by the PoseLandmarker\" with a default of 1, but the model card does not evaluate several people, so treat a raised value as something to test, not a supported mode.\n- **Distance and depth.** The card lists people further than about 14 feet or 4 meters as out of scope, and says z \"is not metric but up to scale\". Apps that need metric depth or a subject far from the camera have to look elsewhere.\n- **Frozen weights.** The three `.task` files Google serves were last modified in April 2023, and the older MediaPipe Pose solution was retired in favour of the Tasks version on May 10, 2023. Stability is a virtue, but nothing suggests the model will improve.\n- **Lighter 2D on weak hardware or in a browser**, where MoveNet's single-person models are smaller targets.\n- **Keypoints are not a product.** Rep counting, form feedback, calibration and exercise content are all yours to build on top. Some teams would rather buy that layer.\n\n## The alternatives, by reason\n\n### Faster 2D tracking: MoveNet\n\nMoveNet SinglePose Lightning (192x192 input) is tuned for latency and Thunder (256x256) for accuracy, both outputting the 17 COCO keypoints; Google's card targets the browser through TensorFlow.js and devices through TensorFlow Lite, for one person 3 to 6 feet from the camera. The SinglePose card says \"Licensed Under Apache License, Version 2.0\". You lose MediaPipe's 3D world landmarks and the extra face, hand and foot points. See [MoveNet models](/motion/movenet-models) and the [MediaPipe vs MoveNet head-to-head](/motion/pose-estimation-models-compared#mediapipe-vs-movenet-head-to-head).\n\n### An iOS-native API: Apple Vision\n\n`VNDetectHumanBodyPoseRequest` returns 19 named 2D joints from iOS 14, and `VNDetectHumanBodyPose3DRequest` returns 3D joints relative to the camera from iOS 17, with no model file to ship and nothing to license. Apple publishes no model card or accuracy figures. See [Apple Vision body pose](/motion/apple-vision-body-pose).\n\n### A Google-maintained mobile SDK: ML Kit Pose Detection\n\nML Kit returns 33 landmarks on Android and iOS from a bundled library, in a base and an accurate SDK. Google's guide says \"Pose detection can only detect one person in an image\" and that the API \"is offered in beta, and is not subject to any SLA or deprecation policy\". It is governed by Google's terms rather than an open-source licence. See [ML Kit pose detection](/motion/ml-kit-pose-detection).\n\n### Several people at once\n\n- **Ultralytics YOLO pose.** Ultralytics' pose docs now present YOLO26 pose models in five sizes, n to x, pretrained on COCO keypoints and returning 17 keypoints for each detected person. The code is AGPL-3.0 unless you buy Ultralytics' Enterprise License. See [Ultralytics YOLO pose models](/motion/yolo-pose-models).\n- **MoveNet MultiPose Lightning** detects up to 6 people; the text of its model card carries no licence line, so confirm its terms.\n- **RTMPose** from OpenMMLab's MMPose pairs a person detector with a pose model, in 17, 26 and 133 keypoint sets, under an Apache-2.0 codebase. See [RTMPose models](/motion/rtmpose-models).\n- **OpenPose** is a real-time multi-person system built on Part Affinity Fields, licensed for academic or non-profit noncommercial research only. See [OpenPose models](/motion/openpose-models).\n\n[Multi-person pose tracking](/motion/multi-person-pose-tracking) explains the tracking layer every one of these still needs.\n\n### Buy the fitness layer instead of building it\n\n- **QuickPose** is built on MediaPipe itself: its README describes \"developer-oriented cutting edge ML features of MediaPipe and BlazePose\", with counters, range-of-motion measurement and feedback on iOS, Android and React Native, and a published price list starting with a free tier for 10 monthly active devices. See [QuickPose pricing](/pricing/quickpose-pricing).\n- **Sency** ships assessments, progress evaluations and workout plans in a no-UI kit or a white-label UI kit, with models downloaded from Sency's server at configuration, and a pricing packages page that lists a free Starter plan for up to 100 monthly active users and a Growth plan from $499 a month. See [Sency pricing](/pricing/sency-pricing) and [QuickPose vs Sency](/compare/quickpose-vs-sency).\n- **Kemtai** targets clinical rehab, with embeddable components and an FDA listing and CE marking described on its site.\n- **KinesteX**, which funds this site, embeds a hosted workout experience through a WebView or iframe; its public repositories do not say which pose model runs inside it. See [KinesteX vs MediaPipe](/compare/kinestex-vs-mediapipe).\n\n## At a glance\n\n| Option | Keypoints | People | Licence | Runs on |\n| --- | --- | --- | --- | --- |\n| MediaPipe Pose Landmarker | 33, with world landmarks | One per the model card; `num_poses` option, default 1 | Apache-2.0 | Android, iOS, web, Python |\n| MoveNet SinglePose | 17 | One | Apache-2.0 | TensorFlow.js, TensorFlow Lite |\n| MoveNet MultiPose | 17 | Up to 6 | No licence line in the card text | TensorFlow.js, TensorFlow Lite |\n| Apple Vision | 19 (2D), 17 (3D) | One observation per detected body; Apple warns dense crowds are likely to be inaccurate | Ships with the OS | iOS 14+ (2D), iOS 17+ (3D) |\n| ML Kit Pose Detection | 33 | One | Google's terms, beta | Android, iOS |\n| Ultralytics YOLO26 pose | 17 | Every detected person | AGPL-3.0 or Enterprise | Exports including ONNX, CoreML and TensorRT |\n| RTMPose | 17, 26 or 133 | With a person detector | Apache-2.0 code | ONNX Runtime, TensorRT, ncnn and more |\n| OpenPose | 25 or 18 body | Many | Noncommercial research only | CUDA, OpenCL or CPU builds |\n\n## When to stay with MediaPipe\n\nIf your app tracks one person close to a phone camera and you want joint angles that survive changes of viewpoint, MediaPipe is still the default the others are measured against: free, on-device, three sizes with one output contract, and the only option here with hip-centred world landmarks on every platform. The usual reason to leave is a hard requirement it does not meet, more people, metric depth, a browser on weak hardware, or a wish to buy the fitness layer, so name yours before you switch.",
+    "body": "MediaPipe Pose Landmarker is a strong default, so most teams that look for an alternative have one specific reason. This page names the reasons the primary sources support and routes each to the model or product that fits. Model facts come from each project's own repository, model card or documentation as read on October 17, 2026. **Disclosure: this site is funded by KinesteX, which sells a commercial motion SDK; it appears once below, in the commercial group, labelled as ours.**\n\n## What MediaPipe gives you\n\n- **33 landmarks per person**, each with x, y, z, visibility and presence, plus world landmarks that MediaPipe's documentation describes as \"real-world 3D coordinates in meters with the origin at the center between hips\".\n- **Three model sizes**, lite, full and heavy, as `.task` bundles from Google's model bucket, the same 33-point output from each; [MediaPipe Pose Landmarker models](/motion/mediapipe-pose-landmarker-models) covers the trade.\n- **The Tasks API on Android, iOS, web and Python**, running on the device.\n- **Apache-2.0** for the framework and, per Google's BlazePose GHUM model card, the models. No key and no fee.\n\n## Why teams look elsewhere\n\n- **More than one person in frame.** Google's model card says the model \"tracks only one person on scene if multiple present\" and lists multiple people as out of scope. The Tasks API does have a `num_poses` option, documented as \"the maximum number of poses can be detected by the PoseLandmarker\" with a default of 1, but the model card does not evaluate several people, so treat a raised value as something to test, not a supported mode.\n- **Distance and depth.** The card lists people further than about 14 feet or 4 meters as out of scope, and says z \"is not metric but up to scale\". Apps that need metric depth or a subject far from the camera have to look elsewhere.\n- **Frozen weights.** The three `.task` files Google serves were last modified in April 2023, and the older MediaPipe Pose solution was retired in favour of the Tasks version on May 10, 2023. Stability is a virtue, but nothing suggests the model will improve.\n- **Lighter 2D on weak hardware or in a browser**, where MoveNet's single-person models are smaller targets.\n- **Keypoints are not a product.** Rep counting, form feedback, calibration and exercise content are all yours to build on top. Some teams would rather buy that layer.\n\n## The alternatives, by reason\n\n### Faster 2D tracking: MoveNet\n\nMoveNet SinglePose Lightning (192x192 input) is tuned for latency and Thunder (256x256) for accuracy, both outputting the 17 COCO keypoints; Google's card targets the browser through TensorFlow.js and devices through TensorFlow Lite, for one person 3 to 6 feet from the camera. The SinglePose card says \"Licensed Under Apache License, Version 2.0\". You lose MediaPipe's 3D world landmarks and the extra face, hand and foot points. See [MoveNet models](/motion/movenet-models) and the [MediaPipe vs MoveNet head-to-head](/compare/mediapipe-vs-movenet).\n\n### An iOS-native API: Apple Vision\n\n`VNDetectHumanBodyPoseRequest` returns 19 named 2D joints from iOS 14, and `VNDetectHumanBodyPose3DRequest` returns 3D joints relative to the camera from iOS 17, with no model file to ship and nothing to license. Apple publishes no model card or accuracy figures. See [Apple Vision body pose](/motion/apple-vision-body-pose).\n\n### A Google-maintained mobile SDK: ML Kit Pose Detection\n\nML Kit returns 33 landmarks on Android and iOS from a bundled library, in a base and an accurate SDK. Google's guide says \"Pose detection can only detect one person in an image\" and that the API \"is offered in beta, and is not subject to any SLA or deprecation policy\". It is governed by Google's terms rather than an open-source licence. See [ML Kit pose detection](/motion/ml-kit-pose-detection).\n\n### Several people at once\n\n- **Ultralytics YOLO pose.** Ultralytics' pose docs now present YOLO26 pose models in five sizes, n to x, pretrained on COCO keypoints and returning 17 keypoints for each detected person. The code is AGPL-3.0 unless you buy Ultralytics' Enterprise License. See [Ultralytics YOLO pose models](/motion/yolo-pose-models) and [MediaPipe vs YOLO pose](/compare/mediapipe-vs-yolo-pose).\n- **MoveNet MultiPose Lightning** detects up to 6 people; the text of its model card carries no licence line, so confirm its terms.\n- **RTMPose** from OpenMMLab's MMPose pairs a person detector with a pose model, in 17, 26 and 133 keypoint sets, under an Apache-2.0 codebase. See [RTMPose models](/motion/rtmpose-models).\n- **OpenPose** is a real-time multi-person system built on Part Affinity Fields, licensed for academic or non-profit noncommercial research only. See [OpenPose models](/motion/openpose-models) and [OpenPose alternatives](/alternatives/openpose-alternatives).\n\n[Multi-person pose tracking](/motion/multi-person-pose-tracking) explains the tracking layer every one of these still needs.\n\n### Buy the fitness layer instead of building it\n\n- **QuickPose** is built on MediaPipe itself: its README describes \"developer-oriented cutting edge ML features of MediaPipe and BlazePose\", with counters, range-of-motion measurement and feedback on iOS, Android and React Native, and a published price list starting with a free tier for 10 monthly active devices. See [QuickPose pricing](/pricing/quickpose-pricing).\n- **Sency** ships assessments, progress evaluations and workout plans in a no-UI kit or a white-label UI kit, with models downloaded from Sency's server at configuration, and a pricing packages page that lists a free Starter plan for up to 100 monthly active users and a Growth plan from $499 a month. See [Sency pricing](/pricing/sency-pricing) and [QuickPose vs Sency](/compare/quickpose-vs-sency).\n- **Kemtai** targets clinical rehab, with embeddable components and an FDA listing and CE marking described on its site.\n- **KinesteX**, which funds this site, embeds a hosted workout experience through a WebView or iframe; its public repositories do not say which pose model runs inside it. See [KinesteX vs MediaPipe](/compare/kinestex-vs-mediapipe).\n\n## At a glance\n\n| Option | Keypoints | People | Licence | Runs on |\n| --- | --- | --- | --- | --- |\n| MediaPipe Pose Landmarker | 33, with world landmarks | One per the model card; `num_poses` option, default 1 | Apache-2.0 | Android, iOS, web, Python |\n| MoveNet SinglePose | 17 | One | Apache-2.0 | TensorFlow.js, TensorFlow Lite |\n| MoveNet MultiPose | 17 | Up to 6 | No licence line in the card text | TensorFlow.js, TensorFlow Lite |\n| Apple Vision | 19 (2D), 17 (3D) | One observation per detected body; Apple warns dense crowds are likely to be inaccurate | Ships with the OS | iOS 14+ (2D), iOS 17+ (3D) |\n| ML Kit Pose Detection | 33 | One | Google's terms, beta | Android, iOS |\n| Ultralytics YOLO26 pose | 17 | Every detected person | AGPL-3.0 or Enterprise | Exports including ONNX, CoreML and TensorRT |\n| RTMPose | 17, 26 or 133 | With a person detector | Apache-2.0 code | ONNX Runtime, TensorRT, ncnn and more |\n| OpenPose | 25 or 18 body | Many | Noncommercial research only | CUDA, OpenCL or CPU builds |\n\n## When to stay with MediaPipe\n\nIf your app tracks one person close to a phone camera and you want joint angles that survive changes of viewpoint, MediaPipe is still the default the others are measured against: free, on-device, three sizes with one output contract, and the only option here with hip-centred world landmarks on every platform. The usual reason to leave is a hard requirement it does not meet, more people, metric depth, a browser on weak hardware, or a wish to buy the fitness layer, so name yours before you switch.",
     "faqs": [
       {
         "q": "Can MediaPipe Pose Landmarker track more than one person?",
@@ -1528,6 +1528,168 @@ export const alternativesEntries: ClusterEntry[] =
         "url": "https://www.kinestex.com/docs",
         "checked": "2026-10-17",
         "note": "platforms (snapshot)"
+      }
+    ],
+    "firstParty": true
+  }
+,
+  {
+    "slug": "openpose-alternatives",
+    "primaryQuery": "openpose alternatives",
+    "h1": "OpenPose Alternatives, Matched to the Reason You Are Leaving",
+    "metaTitle": "OpenPose Alternatives (2026): Commercial-Use Pose Models",
+    "metaDescription": "OpenPose alternatives by reason: an Apache-2.0 licence, BODY_25-style foot points, phones and browsers. AlphaPose shares OpenPose's noncommercial licence.",
+    "updated": "2026-10-22",
+    "answer": "Most teams leave OpenPose because its licence allows only noncommercial research use, because it has no phone build, or because its release notes end at version 1.7.0 from November 2020. For several people under a licence you can ship, RTMPose from OpenMMLab's Apache-2.0 MMPose is the closest match, and its 26-keypoint Halpe26 models carry the neck, hip and foot points BODY_25 users rely on; Ultralytics YOLO26 pose works if AGPL-3.0 or its paid Enterprise License suits you. For one person on a phone or in a browser, MediaPipe Pose Landmarker and MoveNet are Apache-2.0. AlphaPose, often named next to OpenPose, carries the same kind of noncommercial licence.",
+    "body": "**Disclosure: this site is funded by KinesteX, which sells a commercial motion-tracking SDK; it does not appear in the list below, and none of the models here is ours.** Every fact comes from each project's own repository, model card or documentation, read on October 22, 2026. What OpenPose itself outputs is covered in [OpenPose models](/motion/openpose-models).\n\n## Why teams look for an OpenPose alternative\n\n- **The licence.** OpenPose's LICENSE is headed \"ACADEMIC OR NON-PROFIT ORGANIZATION NONCOMMERCIAL RESEARCH USE ONLY\" and grants a licence \"to use the Software for noncommercial research purposes\". It also says that derivatives and modifications you make \"will be owned by Licensor\". The README sends anyone wanting a commercial licence to a CMU FlintBox page. A paid app needs that separate deal or a different model.\n- **Its age.** The last release in OpenPose's release notes is 1.7.0, dated November 15, 2020; the section after it is headed \"Current version - Future OpenPose 1.7.1\".\n- **Where it runs.** The README lists Ubuntu, Windows, Mac OSX and the Nvidia TX2, with CUDA, OpenCL and CPU-only builds. It lists no Android or iOS build, so a phone app needs another model.\n\n## What OpenPose still does well\n\nBe fair to it before leaving. The README says body runtime is \"invariant to number of detected people\", it detects body, 2x21 hand and 70 face keypoints from one system, it offers BODY_25 with six foot points, and it documents single-person 3D by triangulating multiple camera views. For research, or for a pipeline built around BODY_25, it can still be the right tool.\n\n## The alternatives, by reason\n\n### Several people under a licence you can ship: RTMPose\n\nRTMPose is the real-time project in OpenMMLab's MMPose, whose LICENSE is the Apache License, Version 2.0. Its README offers body models in a 17-keypoint COCO set, a 26-keypoint Halpe26 set and a 133-keypoint COCO-WholeBody set, and its pipeline table pairs each pose model with an RTMDet person detector. It deploys through ONNX Runtime, TensorRT, ncnn and OpenVINO, with Android examples on ncnn, and the rtmlib package \"does not require Pytorch or MMCV\". MMPose also publishes RTMO, which its README calls \"a state-of-the-art real-time method for multi-person pose estimation\". We found no separate terms for the pretrained checkpoints, so check those before shipping. See [RTMPose models](/motion/rtmpose-models).\n\n### Several people, if AGPL-3.0 works for you: Ultralytics YOLO26 pose\n\nUltralytics' default pose models predict the 17 COCO keypoints for every person detected, each with a box, in five sizes from n to x, and its export table covers CoreML and LiteRT for phones. The code is AGPL-3.0; the README sells an Enterprise License for products that cannot meet it. See [Ultralytics YOLO pose models](/motion/yolo-pose-models) and [MediaPipe vs YOLO pose](/compare/mediapipe-vs-yolo-pose).\n\n### Up to six people in a browser: MoveNet MultiPose\n\nMoveNet's TF.js README describes `MULTIPOSE_LIGHTNING` as a \"Multi-pose detector that detects up to 6 poses\", with optional tracking IDs across frames. The tfjs-models code is Apache-2.0, but the text of the MultiPose model card carries no licence line, so confirm its terms. See [MoveNet models](/motion/movenet-models).\n\n### One person on a phone or in a browser: MediaPipe, MoveNet, ML Kit, Apple Vision\n\n- **MediaPipe Pose Landmarker** returns 33 landmarks with 3D world coordinates, on Android, iOS, web and Python, under Apache-2.0; its model card scopes it to one person.\n- **MoveNet SinglePose** returns the 17 COCO keypoints, Lightning for speed and Thunder for accuracy, with an Apache-2.0 SinglePose card. [MediaPipe vs MoveNet](/compare/mediapipe-vs-movenet) decides between the two.\n- **ML Kit Pose Detection** returns 33 landmarks on Android and iOS, but Google's guide says it \"can only detect one person in an image\" and that the API \"is offered in beta, and is not subject to any SLA or deprecation policy\". See [ML Kit pose detection](/motion/ml-kit-pose-detection).\n- **Apple Vision** runs body pose with no model file to ship: Apple's documentation gives iOS 14 and macOS 11 as the first versions of its 2D body pose request. See [Apple Vision body pose](/motion/apple-vision-body-pose).\n\n### Not an escape: AlphaPose\n\nAlphaPose is one of the systems OpenPose's README compares its runtime against, and it supports COCO 17, Halpe 26 and Halpe 136 keypoint sets with tracking. Its licence is the same kind as OpenPose's: the LICENSE is headed \"ACADEMIC OR NON-PROFIT ORGANIZATION NONCOMMERCIAL RESEARCH USE ONLY\", with Shanghai Jiao Tong University as licensor, and the README says it is \"freely available for free non-commercial use\". Swapping OpenPose for AlphaPose does not fix a commercial licensing problem.\n\n## If you depend on BODY_25\n\nBODY_25 is OpenPose's 25-point body model: every point of its 18-point COCO model, Neck included, plus MidHip and six foot points (LBigToe, LSmallToe, LHeel and their right-side counterparts). No alternative here emits it as-is, so compare the points you use:\n\n| BODY_25 point | Halpe26 (RTMPose, AlphaPose) | BlazePose 33 (MediaPipe) | COCO 17 (MoveNet, YOLO) |\n| --- | --- | --- | --- |\n| Neck | `neck` | None | None |\n| MidHip | `hip`, a single unpaired point | None | None |\n| BigToe, SmallToe | `left_big_toe`, `left_small_toe` and right-side pairs | `LEFT_FOOT_INDEX` and `RIGHT_FOOT_INDEX`, one toe point per foot | None |\n| Heel | `left_heel`, `right_heel` | `LEFT_HEEL`, `RIGHT_HEEL` | None |\n\nIn our reading, Halpe26 has a counterpart for every BODY_25 point, which makes RTMPose's 26-keypoint models the closest commercial-friendly match; MMPose's Halpe26 config also adds a `head` point. Names and order differ throughout, so remap by hand rather than by index. Every index is in [the BODY_25 keypoint map](/pose-keypoints/openpose-body-25) and [the Halpe26 keypoint map](/pose-keypoints/halpe-26).\n\n## At a glance\n\n| Option | Body keypoints | People | Licence | Runs on |\n| --- | --- | --- | --- | --- |\n| OpenPose | BODY_25 or COCO 18, among others | Many | Noncommercial research only | CUDA, OpenCL or CPU builds; Ubuntu, Windows, Mac OSX, Nvidia TX2 |\n| RTMPose (MMPose) | 17, 26 or 133 | Many, with a person detector | Apache-2.0 code; checkpoint terms not found | ONNX Runtime, TensorRT, ncnn, OpenVINO |\n| Ultralytics YOLO26 pose | 17 | Every detected person | AGPL-3.0 or Enterprise License | PyTorch plus 22 export formats |\n| MoveNet MultiPose | 17 | Up to 6 | No licence line in the card text | TF.js, TF Lite |\n| MediaPipe Pose Landmarker | 33 | One | Apache-2.0 | Android, iOS, web, Python |\n| ML Kit Pose Detection | 33 | One | Beta, no SLA | Android, iOS |\n| AlphaPose | 17, 26 or 136 | Many | Noncommercial research only | Linux, Windows |\n\n## Which should you pick?\n\n- **A commercial product with several people in frame** → RTMPose for an Apache-2.0 codebase, or YOLO26 pose with the AGPL-3.0 question settled.\n- **A pipeline that consumes BODY_25 foot points** → RTMPose's Halpe26 models, remapped by name.\n- **One user on a phone** → MediaPipe Pose Landmarker or MoveNet; native iOS apps can also use Apple Vision.\n- **Research only, and you need body, hands and face from one system** → OpenPose's licence covers you, or RTMPose's 133-point wholebody models.\n\nEach licence is read in full in [pose estimation model licenses](/motion/pose-estimation-model-licenses), and the tracking layer every multi-person option still needs is in [multi-person pose tracking](/motion/multi-person-pose-tracking).",
+    "faqs": [
+      {
+        "q": "What is a commercially usable alternative to OpenPose?",
+        "a": "For several people in frame, RTMPose from OpenMMLab's MMPose is the closest: the MMPose code is Apache-2.0, and it ships 17, 26 and 133-keypoint body models with ONNX Runtime, TensorRT and ncnn deployment. Check its pretrained checkpoints' terms separately. Ultralytics YOLO26 pose is AGPL-3.0 unless you buy an Enterprise License. For a single person, MediaPipe Pose Landmarker and MoveNet SinglePose are Apache-2.0."
+      },
+      {
+        "q": "Which OpenPose alternative outputs foot keypoints like BODY_25?",
+        "a": "Models trained on Halpe26, such as RTMPose's 26-keypoint models, output a big toe, small toe and heel on each foot, plus neck and a single hip point, which in our reading covers every BODY_25 point under different names and indices. MediaPipe's 33 landmarks include a heel and one foot index point per foot. The 17-keypoint COCO models, MoveNet and YOLO pose included, stop at the ankles."
+      },
+      {
+        "q": "Is AlphaPose a commercial-friendly replacement for OpenPose?",
+        "a": "No. AlphaPose's LICENSE is headed academic or non-profit organization noncommercial research use only, with Shanghai Jiao Tong University as licensor, and its README says it is freely available for free non-commercial use, with commercial queries handled by email. Moving from OpenPose to AlphaPose changes the model but not the licensing problem."
+      },
+      {
+        "q": "Is OpenPose still maintained?",
+        "a": "Its release notes list version 1.7.0, dated November 15, 2020, as the last release, followed by a section headed Current version - Future OpenPose 1.7.1. We could not read the repository's commit history from our environment, so we cannot say whether code has landed since. For a new commercial product, the licence usually rules it out before maintenance does."
+      }
+    ],
+    "related": [
+      {
+        "href": "/motion/openpose-models",
+        "label": "OpenPose models: BODY_25 vs COCO"
+      },
+      {
+        "href": "/motion/rtmpose-models",
+        "label": "RTMPose models"
+      },
+      {
+        "href": "/motion/pose-estimation-model-licenses",
+        "label": "Pose model licences"
+      },
+      {
+        "href": "/compare/mediapipe-vs-yolo-pose",
+        "label": "MediaPipe vs YOLO pose"
+      },
+      {
+        "href": "/alternatives/mediapipe-alternatives",
+        "label": "MediaPipe alternatives"
+      }
+    ],
+    "cta": {
+      "pitch": "Pose model licences and releases change without much notice. Subscribe and we will flag it when OpenPose or one of its alternatives changes its terms or ships a new model."
+    },
+    "sources": [
+      {
+        "url": "https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/LICENSE",
+        "checked": "2026-10-22",
+        "note": "noncommercial research heading and grant; derivatives owned by licensor"
+      },
+      {
+        "url": "https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/README.md",
+        "checked": "2026-10-22",
+        "note": "FlintBox commercial licensing, OS and hardware list, runtime invariance, hand and face keypoints, 3D triangulation, AlphaPose comparison"
+      },
+      {
+        "url": "https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/doc/08_release_notes.md",
+        "checked": "2026-10-22",
+        "note": "1.7.0 on November 15, 2020; Future OpenPose 1.7.1"
+      },
+      {
+        "url": "https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/doc/02_output.md",
+        "checked": "2026-10-22",
+        "note": "BODY_25 and COCO formats"
+      },
+      {
+        "url": "https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/src/openpose/pose/poseParameters.cpp",
+        "checked": "2026-10-22",
+        "note": "BODY_25 part names"
+      },
+      {
+        "url": "https://github.com/open-mmlab/mmpose/blob/main/projects/rtmpose/README.md",
+        "checked": "2026-10-22",
+        "note": "keypoint sets, RTMDet pipeline, deployment backends, rtmlib"
+      },
+      {
+        "url": "https://github.com/open-mmlab/mmpose/blob/main/README.md",
+        "checked": "2026-10-22",
+        "note": "RTMO"
+      },
+      {
+        "url": "https://github.com/open-mmlab/mmpose/blob/main/configs/_base_/datasets/halpe26.py",
+        "checked": "2026-10-22",
+        "note": "Halpe26 names: head, neck, hip, toes and heels"
+      },
+      {
+        "url": "https://github.com/open-mmlab/mmpose/blob/main/LICENSE",
+        "checked": "2026-10-22",
+        "note": "Apache-2.0"
+      },
+      {
+        "url": "https://github.com/ultralytics/ultralytics/blob/main/docs/en/tasks/pose.md",
+        "checked": "2026-10-22",
+        "note": "17 COCO keypoints, boxes per instance"
+      },
+      {
+        "url": "https://github.com/ultralytics/ultralytics/blob/main/docs/macros/export-table.md",
+        "checked": "2026-10-22",
+        "note": "export formats including CoreML and LiteRT"
+      },
+      {
+        "url": "https://github.com/ultralytics/ultralytics/blob/main/README.md",
+        "checked": "2026-10-22",
+        "note": "AGPL-3.0 and the Enterprise License"
+      },
+      {
+        "url": "https://github.com/tensorflow/tfjs-models/blob/master/pose-detection/src/movenet/README.md",
+        "checked": "2026-10-22",
+        "note": "MultiPose up to 6, tracking"
+      },
+      {
+        "url": "https://storage.googleapis.com/movenet/MoveNet.MultiPose%20Model%20Card.pdf",
+        "checked": "2026-10-22",
+        "note": "no licence line in the text"
+      },
+      {
+        "url": "https://storage.googleapis.com/movenet/MoveNet.SinglePose%20Model%20Card.pdf",
+        "checked": "2026-10-22",
+        "note": "Apache-2.0 line"
+      },
+      {
+        "url": "https://github.com/google-ai-edge/mediapipe/blob/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+        "checked": "2026-10-22",
+        "note": "PoseLandmark heel and foot index names"
+      },
+      {
+        "url": "https://storage.googleapis.com/mediapipe-assets/Model%20Card%20BlazePose%20GHUM%203D.pdf",
+        "checked": "2026-10-22",
+        "note": "single-person scope, Apache-2.0"
+      },
+      {
+        "url": "https://developers.google.com/ml-kit/vision/pose-detection",
+        "checked": "2026-10-22",
+        "note": "one person, 33 landmarks, Android and iOS, beta with no SLA"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/vision/vndetecthumanbodyposerequest",
+        "checked": "2026-10-22",
+        "note": "iOS 14.0 and macOS 11.0"
+      },
+      {
+        "url": "https://github.com/MVIG-SJTU/AlphaPose/blob/master/LICENSE",
+        "checked": "2026-10-22",
+        "note": "noncommercial research heading; Shanghai Jiao Tong University"
+      },
+      {
+        "url": "https://github.com/MVIG-SJTU/AlphaPose/blob/master/README.md",
+        "checked": "2026-10-22",
+        "note": "COCO 17, Halpe 26 and 136 keypoints, tracking, non-commercial use"
       }
     ],
     "firstParty": true

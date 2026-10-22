@@ -1,0 +1,357 @@
+[
+  {
+    "claim": "OpenPose licence heading.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/LICENSE",
+    "quote": "ACADEMIC OR NON-PROFIT ORGANIZATION NONCOMMERCIAL RESEARCH USE ONLY"
+  },
+  {
+    "claim": "OpenPose grant is for noncommercial research.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/LICENSE",
+    "quote": "to use the Software for noncommercial research purposes"
+  },
+  {
+    "claim": "Derivatives are owned by the licensor.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/LICENSE",
+    "quote": "all and any such derivatives and modifications will be owned by Licensor"
+  },
+  {
+    "claim": "README points commercial users to FlintBox.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/README.md",
+    "quote": "Interested in a commercial license? Check this [FlintBox link]"
+  },
+  {
+    "claim": "Last release 1.7.0 on November 15, 2020.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/doc/08_release_notes.md",
+    "quote": "OpenPose 1.7.0 (Nov 15, 2020)"
+  },
+  {
+    "claim": "Next section is Future OpenPose 1.7.1.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/doc/08_release_notes.md",
+    "quote": "Current version - Future OpenPose 1.7.1"
+  },
+  {
+    "claim": "OS list.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/README.md",
+    "quote": "**OS**: Ubuntu (20, 18, 16, 14), Windows (10, 8), Mac OSX, Nvidia TX2."
+  },
+  {
+    "claim": "CUDA, OpenCL and CPU builds.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/README.md",
+    "quote": "**Hardware compatibility**: CUDA (Nvidia GPU), OpenCL (AMD GPU), and non-GPU (CPU-only) versions."
+  },
+  {
+    "claim": "Body runtime invariant to people.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/README.md",
+    "quote": "Runtime invariant to number of detected people"
+  },
+  {
+    "claim": "Six foot keypoints in 25-keypoint body/foot.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/README.md",
+    "quote": "**25-keypoint body/foot keypoint estimation**, including **6 foot keypoints**"
+  },
+  {
+    "claim": "2x21 hand keypoints.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/README.md",
+    "quote": "**2x21-keypoint hand keypoint estimation**"
+  },
+  {
+    "claim": "70 face keypoints.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/README.md",
+    "quote": "**70-keypoint face keypoint estimation**"
+  },
+  {
+    "claim": "3D by multi-view triangulation.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/README.md",
+    "quote": "3D triangulation from multiple single views."
+  },
+  {
+    "claim": "3D is single-person.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/README.md",
+    "quote": "3D real-time single-person keypoint detection"
+  },
+  {
+    "claim": "OpenPose README compares runtime with AlphaPose.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/README.md",
+    "quote": "OpenPose, Alpha-Pose (fast Pytorch version), and Mask R-CNN"
+  },
+  {
+    "claim": "BODY_25 = COCO + foot.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/doc/02_output.md",
+    "quote": "// Result for BODY_25 (25 body parts consisting of COCO + foot)"
+  },
+  {
+    "claim": "BODY_25 includes Neck.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/src/openpose/pose/poseParameters.cpp",
+    "quote": "{1,  \"Neck\"},"
+  },
+  {
+    "claim": "BODY_25 includes MidHip.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/src/openpose/pose/poseParameters.cpp",
+    "quote": "{8,  \"MidHip\"},"
+  },
+  {
+    "claim": "BODY_25 includes LBigToe.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/src/openpose/pose/poseParameters.cpp",
+    "quote": "{19, \"LBigToe\"},"
+  },
+  {
+    "claim": "BODY_25 includes LSmallToe.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/src/openpose/pose/poseParameters.cpp",
+    "quote": "{20, \"LSmallToe\"},"
+  },
+  {
+    "claim": "BODY_25 includes LHeel.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/src/openpose/pose/poseParameters.cpp",
+    "quote": "{21, \"LHeel\"},"
+  },
+  {
+    "claim": "BODY_25 includes RHeel.",
+    "url": "https://raw.githubusercontent.com/CMU-Perceptual-Computing-Lab/openpose/master/src/openpose/pose/poseParameters.cpp",
+    "quote": "{24, \"RHeel\"},"
+  },
+  {
+    "claim": "MMPose is Apache-2.0.",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/main/LICENSE",
+    "quote": "Copyright 2018-2020 Open-MMLab. All rights reserved. Apache License Version 2.0, January 2004"
+  },
+  {
+    "claim": "RTMPose 17-keypoint set is COCO.",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/main/projects/rtmpose/README.md",
+    "quote": "Keypoints are defined as [COCO](http://cocodataset.org/)."
+  },
+  {
+    "claim": "RTMPose 26-keypoint set is Halpe26.",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/main/projects/rtmpose/README.md",
+    "quote": "Keypoints are defined as [Halpe26](https://github.com/Fang-Haoshu/Halpe-FullBody/)."
+  },
+  {
+    "claim": "RTMPose 133-keypoint set is COCO-WholeBody.",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/main/projects/rtmpose/README.md",
+    "quote": "WholeBody 2d (133 Keypoints)"
+  },
+  {
+    "claim": "Pipeline pairs RTMDet with RTMPose.",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/main/projects/rtmpose/README.md",
+    "quote": "| [RTMDet-nano](./rtmdet/person/rtmdet_nano_320-8xb32_coco-person.py) | [RTMPose-m](./rtmpose/body_2d_keypoint/rtmpose-m_8xb256-420e_coco-256x192.py) |      320x320<br>256x192       |      40.3<br>75.3       |            73.2            |        0.99<br/>13.59         |        0.31<br/>1.93         |               26.613               |                   4.312                   |  [det](https://download.openmmlab.com/mmpose/v1/projects/rtmpose/rtmdet_nano_8xb32-100e_coco-obj365-person-05d8511e.pth)<br/>[pose](https://download.openmmlab.com/mmpose/v1/projects/rtmposev1/rtmpose-m_simcc-aic-coco_pt-aic-coco_420e-256x192-63eb25f7_20230126.pth)   |"
+  },
+  {
+    "claim": "Backends ONNX Runtime, TensorRT, ncnn.",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/main/projects/rtmpose/README.md",
+    "quote": "multiple inference backends such as ONNXRuntime, TensorRT, ncnn, etc."
+  },
+  {
+    "claim": "Android examples on ncnn.",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/main/projects/rtmpose/README.md",
+    "quote": "Android examples with ncnn backend."
+  },
+  {
+    "claim": "rtmlib: OpenVINO, no PyTorch or MMCV.",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/main/projects/rtmpose/README.md",
+    "quote": "Support OpenCV/ONNXRuntime/OpenVINO inference and does not require Pytorch or MMCV."
+  },
+  {
+    "claim": "RTMO for multi-person.",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/main/README.md",
+    "quote": "Release [RTMO](/projects/rtmo), a state-of-the-art real-time method for multi-person pose estimation."
+  },
+  {
+    "claim": "Halpe26 head.",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/main/configs/_base_/datasets/halpe26.py",
+    "quote": "dict(name='head', id=17, color=[255, 128, 0], type='upper', swap='')"
+  },
+  {
+    "claim": "Halpe26 neck.",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/main/configs/_base_/datasets/halpe26.py",
+    "quote": "dict(name='neck', id=18, color=[255, 128, 0], type='upper', swap='')"
+  },
+  {
+    "claim": "Halpe26 single unpaired hip.",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/main/configs/_base_/datasets/halpe26.py",
+    "quote": "dict(name='hip', id=19, color=[255, 128, 0], type='lower', swap='')"
+  },
+  {
+    "claim": "Halpe26 big toe.",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/main/configs/_base_/datasets/halpe26.py",
+    "quote": "name='left_big_toe'"
+  },
+  {
+    "claim": "Halpe26 small toe.",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/main/configs/_base_/datasets/halpe26.py",
+    "quote": "name='left_small_toe'"
+  },
+  {
+    "claim": "Halpe26 heel.",
+    "url": "https://raw.githubusercontent.com/open-mmlab/mmpose/main/configs/_base_/datasets/halpe26.py",
+    "quote": "name='right_heel'"
+  },
+  {
+    "claim": "YOLO default models predict 17 COCO keypoints.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/en/tasks/pose.md",
+    "quote": "The default YOLO26 Pose models predict the 17 COCO keypoints"
+  },
+  {
+    "claim": "YOLO boxes per instance.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/en/tasks/pose.md",
+    "quote": "`result.boxes` for the detected instances that those keypoints belong to."
+  },
+  {
+    "claim": "YOLO sizes n to x.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/macros/yolo-pose-perf.md",
+    "quote": "[YOLO26x-pose](https://platform.ultralytics.com/ultralytics/yolo26/yolo26x-pose)"
+  },
+  {
+    "claim": "YOLO export CoreML.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/macros/export-table.md",
+    "quote": "| [CoreML]({{ integrations_path or \"../integrations\" }}/coreml.md)                | `coreml`          | `{{ model_name or \"yolo26n\" }}.mlpackage`         | ✅       | `imgsz`, `dynamic`, `quantize`, `nms`{{ tip1 }}, `batch`, `device`                                                       |"
+  },
+  {
+    "claim": "YOLO export LiteRT.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/macros/export-table.md",
+    "quote": "| [LiteRT]({{ integrations_path or \"../integrations\" }}/litert.md)                | `litert`          | `{{ model_name or \"yolo26n\" }}.tflite`            | ✅       | `imgsz`, `quantize`, `batch`, `data`, `fraction`, `device`                                                               |"
+  },
+  {
+    "claim": "Ultralytics is AGPL-3.0.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/README.md",
+    "quote": "**AGPL-3.0 License**: This [OSI-approved](https://opensource.org/license/agpl-3.0) open-source license"
+  },
+  {
+    "claim": "Enterprise License bypasses AGPL.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/README.md",
+    "quote": "bypassing the open-source requirements of AGPL-3.0"
+  },
+  {
+    "claim": "MoveNet MultiPose up to 6 poses.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/src/movenet/README.md",
+    "quote": "`MULTIPOSE_LIGHTNING`. Multi-pose detector that detects up to 6 poses."
+  },
+  {
+    "claim": "MultiPose tracking IDs.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/src/movenet/README.md",
+    "quote": "If true, each pose will have an ID that uniquely identifies a person. Only used with multi-pose models."
+  },
+  {
+    "claim": "tfjs-models is Apache-2.0.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/LICENSE",
+    "quote": "Apache License Version 2.0, January 2004"
+  },
+  {
+    "claim": "MediaPipe Android/iOS/web.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/README.md",
+    "quote": "contains everything that you need to customize and deploy to mobile (Android, iOS), web, desktop, edge devices, and IoT"
+  },
+  {
+    "claim": "MediaPipe Python.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/README.md",
+    "quote": "[Python](https://developers.google.com/edge/mediapipe/solutions/setup_python)"
+  },
+  {
+    "claim": "MediaPipe is Apache-2.0.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/LICENSE",
+    "quote": "Apache License Version 2.0, January 2004"
+  },
+  {
+    "claim": "MediaPipe 33 landmarks.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+    "quote": "\"\"\"The 33 pose landmarks.\"\"\""
+  },
+  {
+    "claim": "MediaPipe world landmarks.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "Real-world 3D coordinates in meters with the origin at the center between hips."
+  },
+  {
+    "claim": "MediaPipe heel.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+    "quote": "LEFT_HEEL = 29"
+  },
+  {
+    "claim": "MediaPipe foot index.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+    "quote": "RIGHT_FOOT_INDEX = 32"
+  },
+  {
+    "claim": "MoveNet 17 keypoints.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/src/movenet/README.md",
+    "quote": "MoveNet is an ultra fast and accurate model that detects 17 keypoints of a body."
+  },
+  {
+    "claim": "Lightning speed, Thunder accuracy.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/src/movenet/README.md",
+    "quote": "Lightning is intended for latency-critical applications, and Thunder is intended for applications that require high accuracy."
+  },
+  {
+    "claim": "ML Kit one person.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection?hl=en",
+    "quote": "Pose detection can only detect one person in an image."
+  },
+  {
+    "claim": "ML Kit beta, no SLA.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection?hl=en",
+    "quote": "This API is offered in beta, and is not subject to any SLA or deprecation policy."
+  },
+  {
+    "claim": "ML Kit 33 landmarks.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection?hl=en",
+    "quote": "The model returns 33 key skeletal landmark points"
+  },
+  {
+    "claim": "ML Kit Android and iOS.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection?hl=en",
+    "quote": "Enjoy the same experience on both Android and iOS."
+  },
+  {
+    "claim": "Apple body pose request from iOS 14.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/vndetecthumanbodyposerequest.json",
+    "quote": "{\"introducedAt\":\"14.0\",\"name\":\"iOS\"}"
+  },
+  {
+    "claim": "Apple body pose request from macOS 11.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/vndetecthumanbodyposerequest.json",
+    "quote": "{\"introducedAt\":\"11.0\",\"name\":\"macOS\"}"
+  },
+  {
+    "claim": "AlphaPose licence heading.",
+    "url": "https://raw.githubusercontent.com/MVIG-SJTU/AlphaPose/master/LICENSE",
+    "quote": "ALPHAPOSE: MULTIPERSON KEYPOINT DETECTION SOFTWARE LICENSE AGREEMENT ACADEMIC OR NON-PROFIT ORGANIZATION NONCOMMERCIAL RESEARCH USE ONLY"
+  },
+  {
+    "claim": "AlphaPose licensor is SJTU.",
+    "url": "https://raw.githubusercontent.com/MVIG-SJTU/AlphaPose/master/LICENSE",
+    "quote": "Shanghai Jiao Tong University (called \"Licensor\" in this Agreement)"
+  },
+  {
+    "claim": "AlphaPose free for non-commercial use.",
+    "url": "https://raw.githubusercontent.com/MVIG-SJTU/AlphaPose/master/README.md",
+    "quote": "AlphaPose is freely available for free non-commercial use"
+  },
+  {
+    "claim": "AlphaPose commercial queries by email.",
+    "url": "https://raw.githubusercontent.com/MVIG-SJTU/AlphaPose/master/README.md",
+    "quote": "For commercial queries, please drop an e-mail"
+  },
+  {
+    "claim": "AlphaPose multi-person.",
+    "url": "https://raw.githubusercontent.com/MVIG-SJTU/AlphaPose/master/README.md",
+    "quote": "is an accurate multi-person pose estimator"
+  },
+  {
+    "claim": "AlphaPose Linux and Windows.",
+    "url": "https://raw.githubusercontent.com/MVIG-SJTU/AlphaPose/master/README.md",
+    "quote": "AlphaPose supports both Linux and **Windows!**"
+  },
+  {
+    "claim": "AlphaPose COCO 17.",
+    "url": "https://raw.githubusercontent.com/MVIG-SJTU/AlphaPose/master/README.md",
+    "quote": "COCO 17 keypoints"
+  },
+  {
+    "claim": "AlphaPose Halpe 26 with tracking.",
+    "url": "https://raw.githubusercontent.com/MVIG-SJTU/AlphaPose/master/README.md",
+    "quote": "Halpe 26 keypoints</a></b> + tracking"
+  },
+  {
+    "claim": "AlphaPose Halpe 136 with tracking.",
+    "url": "https://raw.githubusercontent.com/MVIG-SJTU/AlphaPose/master/README.md",
+    "quote": "Halpe 136 keypoints</a></b> + tracking"
+  }
+]

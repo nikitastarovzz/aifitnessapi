@@ -67,6 +67,12 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
       "Camera-based coaching SDKs head-to-head. KinesteX funds this site — these pages disclose that up front and are verified from public repos and the vendors' own pages.",
     slugs: ["quickpose-vs-sency", "kinestex-vs-sency", "kinestex-vs-quickpose", "kinestex-vs-mediapipe"],
   },
+  {
+    title: "Pose estimation models",
+    blurb:
+      "Open pose models head-to-head, from the model cards and source repositories. Neither side is KinesteX, which funds this site; each page says so up front.",
+    slugs: ["mediapipe-vs-movenet", "mediapipe-vs-yolo-pose"],
+  },
 ];
 
 const FAQS = [

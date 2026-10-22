@@ -1,0 +1,267 @@
+[
+  {
+    "claim": "MediaPipe Pose is built on BlazePose research.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "research that also powers the [ML Kit Pose Detection API]"
+  },
+  {
+    "claim": "BlazePose link in that sentence.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "[BlazePose](https://ai.googleblog.com/2020/08/on-device-real-time-body-pose-tracking.html)"
+  },
+  {
+    "claim": "Ultralytics presents YOLO26 pose models.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/en/tasks/pose.md",
+    "quote": "YOLO26 Pose models use the `-pose` suffix, i.e., `yolo26n-pose.pt`, and are pretrained on"
+  },
+  {
+    "claim": "num_poses defaults to 1.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+    "quote": "num_poses: int = 1"
+  },
+  {
+    "claim": "One Results object per image.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/en/tasks/pose.md",
+    "quote": "Pose estimation returns one `Results` object per image."
+  },
+  {
+    "claim": "Boxes for the instances the keypoints belong to.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/en/tasks/pose.md",
+    "quote": "`result.boxes` for the detected instances that those keypoints belong to."
+  },
+  {
+    "claim": "keypoints.data shape (N, K, 2 or 3).",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/en/tasks/pose.md",
+    "quote": "| `result.keypoints.data` | `torch.float32` | `(N,K,2/3)` | `x,y` plus optional visibility/confidence. |"
+  },
+  {
+    "claim": "keypoints.xy are pixel keypoints.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/en/tasks/pose.md",
+    "quote": "| `result.keypoints.xy`   | `torch.float32` | `(N,K,2)`   | Pixel keypoints."
+  },
+  {
+    "claim": "keypoints.xyn are normalized.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/en/tasks/pose.md",
+    "quote": "| `result.keypoints.xyn`  | `torch.float32` | `(N,K,2)`   | Normalized keypoints."
+  },
+  {
+    "claim": "The training config's only class is person.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/ultralytics/cfg/datasets/coco-pose.yaml",
+    "quote": "names: 0: person"
+  },
+  {
+    "claim": "Default models predict 17 COCO keypoints.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/en/tasks/pose.md",
+    "quote": "The default YOLO26 Pose models predict the 17 COCO keypoints"
+  },
+  {
+    "claim": "COCO order ends at index 16, right ankle.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/en/tasks/pose.md",
+    "quote": "16. Right Ankle"
+  },
+  {
+    "claim": "Five sizes n to x; YOLO26n figures.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/macros/yolo-pose-perf.md",
+    "quote": "| [YOLO26n-pose](https://platform.ultralytics.com/ultralytics/yolo26/yolo26n-pose) | 640                         | 57.2                             | 83.3                          | **40.3 ± 0.5**                       | **1.8 ± 0.0**                             | **2.9**                  | **7.6**                 |"
+  },
+  {
+    "claim": "YOLO26x figures.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/macros/yolo-pose-perf.md",
+    "quote": "| [YOLO26x-pose](https://platform.ultralytics.com/ultralytics/yolo26/yolo26x-pose) | 640                         | **71.6**                         | **91.6**                      | 565.4 ± 3.0                          | 12.2 ± 0.2                                | 57.6                     | 202.3                   |"
+  },
+  {
+    "claim": "YOLO26s size exists.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/macros/yolo-pose-perf.md",
+    "quote": "[YOLO26s-pose](https://platform.ultralytics.com/ultralytics/yolo26/yolo26s-pose)"
+  },
+  {
+    "claim": "YOLO26m size exists.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/macros/yolo-pose-perf.md",
+    "quote": "[YOLO26m-pose](https://platform.ultralytics.com/ultralytics/yolo26/yolo26m-pose)"
+  },
+  {
+    "claim": "YOLO26l size exists.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/macros/yolo-pose-perf.md",
+    "quote": "[YOLO26l-pose](https://platform.ultralytics.com/ultralytics/yolo26/yolo26l-pose)"
+  },
+  {
+    "claim": "Benchmark: ONNX on CPU and TensorRT10 on a T4.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/en/tasks/pose.md",
+    "quote": "averaged over COCO val images with ONNX on CPU and TensorRT10 on an NVIDIA T4 GPU."
+  },
+  {
+    "claim": "mAP on COCO Keypoints val2017.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/en/tasks/pose.md",
+    "quote": "values are for single-model single-scale on [COCO Keypoints val2017](https://cocodataset.org/) dataset."
+  },
+  {
+    "claim": "Export to CoreML .mlpackage.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/macros/export-table.md",
+    "quote": "| [CoreML]({{ integrations_path or \"../integrations\" }}/coreml.md)                | `coreml`          | `{{ model_name or \"yolo26n\" }}.mlpackage`         | ✅       | `imgsz`, `dynamic`, `quantize`, `nms`{{ tip1 }}, `batch`, `device`                                                       |"
+  },
+  {
+    "claim": "Export to LiteRT .tflite.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/macros/export-table.md",
+    "quote": "| [LiteRT]({{ integrations_path or \"../integrations\" }}/litert.md)                | `litert`          | `{{ model_name or \"yolo26n\" }}.tflite`            | ✅       | `imgsz`, `quantize`, `batch`, `data`, `fraction`, `device`                                                               |"
+  },
+  {
+    "claim": "Export to NCNN.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/macros/export-table.md",
+    "quote": "| [NCNN]({{ integrations_path or \"../integrations\" }}/ncnn.md)                    | `ncnn`            | `{{ model_name or \"yolo26n\" }}_ncnn_model/`       | ✅       | `imgsz`, `quantize`, `batch`, `device`                                                                                   |"
+  },
+  {
+    "claim": "Export to ExecuTorch.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/macros/export-table.md",
+    "quote": "| [ExecuTorch]({{ integrations_path or \"../integrations\" }}/executorch.md)        | `executorch`      | `{{ model_name or \"yolo26n\" }}_executorch_model/` | ✅       | `imgsz`, `batch`, `device`                                                                                               |"
+  },
+  {
+    "claim": "Export to TensorRT.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/macros/export-table.md",
+    "quote": "| [TensorRT]({{ integrations_path or \"../integrations\" }}/tensorrt.md)            | `engine`          | `{{ model_name or \"yolo26n\" }}.engine`            | ✅       | `imgsz`, `quantize`, `dynamic`, `simplify`, `opset`, `workspace`, `nms`{{ tip1 }}, `batch`, `data`, `fraction`, `device` |"
+  },
+  {
+    "claim": "Export to OpenVINO.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/macros/export-table.md",
+    "quote": "| [OpenVINO]({{ integrations_path or \"../integrations\" }}/openvino.md)            | `openvino`        | `{{ model_name or \"yolo26n\" }}_openvino_model/`   | ✅       | `imgsz`, `quantize`, `dynamic`, `nms`{{ tip1 }}, `batch`, `data`, `fraction`, `device`                                   |"
+  },
+  {
+    "claim": "Export to Qualcomm QNN.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/macros/export-table.md",
+    "quote": "| [Qualcomm QNN]({{ integrations_path or \"../integrations\" }}/qnn.md)             | `qnn`             | `{{ model_name or \"yolo26n\" }}_qnn.onnx`          | ✅       | `imgsz`, `batch`, `name`, `quantize`, `simplify`, `opset`, `data`, `fraction`, `device`                                  |"
+  },
+  {
+    "claim": "Export to Hailo.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/macros/export-table.md",
+    "quote": "| [Hailo]({{ integrations_path or \"../integrations\" }}/hailo.md)                  | `hailo`           | `{{ model_name or \"yolo26n\" }}_hailo_model/`      | ✅       | `imgsz`, `name`, `quantize`, `data`, `fraction`, `simplify`, `conf`, `iou`, `device`                                     |"
+  },
+  {
+    "claim": "Export to RKNN.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/macros/export-table.md",
+    "quote": "| [RKNN]({{ integrations_path or \"../integrations\" }}/rockchip-rknn.md)           | `rknn`            | `{{ model_name or \"yolo26n\" }}_rknn_model/`       | ✅       | `imgsz`, `batch`, `name`, `quantize`, `simplify`, `opset`, `data`, `fraction`, `device`                                  |"
+  },
+  {
+    "claim": "Export table starts with PyTorch itself.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/macros/export-table.md",
+    "quote": "| [PyTorch](https://pytorch.org/)                                                 | -                 | `{{ model_name or \"yolo26n\" }}.pt`                | ✅       | -                                                                                                                        |"
+  },
+  {
+    "claim": "Converting COCO keypoint JSON with convert_coco and use_keypoints=True.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/en/tasks/pose.md",
+    "quote": "use the built-in `convert_coco` function with `use_keypoints=True`"
+  },
+  {
+    "claim": "Custom pose datasets: Tiger-Pose, Hand Keypoints, Dog-Pose.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/en/tasks/pose.md",
+    "quote": "For custom pose estimation tasks, you can also explore specialized datasets like [Tiger-Pose](../datasets/pose/tiger-pose.md) for animal pose estimation, [Hand Keypoints](../datasets/pose/hand-keypoints.md) for hand tracking, or [Dog-Pose](../datasets/pose/dog-pose.md) for canine pose analysis."
+  },
+  {
+    "claim": "Annotation supports custom keypoint layouts.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/en/tasks/pose.md",
+    "quote": "built-in skeleton templates for person, hand, face, and custom keypoint layouts."
+  },
+  {
+    "claim": "Docs train YOLO26n-pose.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/en/tasks/pose.md",
+    "quote": "Train YOLO26n-pose on the [COCO8-pose](../datasets/pose/coco8-pose.md) dataset"
+  },
+  {
+    "claim": "MediaPipe ships pre-trained, ready-to-run models.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/README.md",
+    "quote": "Pre-trained, ready-to-run models for use with each"
+  },
+  {
+    "claim": "Ultralytics models can track across frames.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/README.md",
+    "quote": "can [track](https://docs.ultralytics.com/modes/track) detected objects across video frames."
+  },
+  {
+    "claim": "Ultralytics LICENSE is the GNU AGPL v3.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/LICENSE",
+    "quote": "GNU AFFERO GENERAL PUBLIC LICENSE Version 3, 19 November 2007"
+  },
+  {
+    "claim": "AGPL section 13 network clause.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/LICENSE",
+    "quote": "your modified version must prominently offer all users interacting with it remotely through a computer network"
+  },
+  {
+    "claim": "Enterprise License bypasses AGPL requirements.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/README.md",
+    "quote": "this license enables seamless integration of Ultralytics software and AI models into business products and services, including internal tools, automated workflows, and production deployments, bypassing the open-source requirements of AGPL-3.0."
+  },
+  {
+    "claim": "Request an Enterprise License for commercial use.",
+    "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/README.md",
+    "quote": "Request an Enterprise License for commercial use at [Ultralytics Licensing](https://www.ultralytics.com/license)."
+  },
+  {
+    "claim": "MediaPipe is Apache-2.0.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/LICENSE",
+    "quote": "Apache License Version 2.0, January 2004"
+  },
+  {
+    "claim": "MediaPipe covers web apps.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/README.md",
+    "quote": "[Web apps](https://developers.google.com/edge/mediapipe/solutions/setup_web)"
+  },
+  {
+    "claim": "MediaPipe covers Android and iOS.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/README.md",
+    "quote": "[Android](https://developers.google.com/edge/mediapipe/solutions/setup_android)"
+  },
+  {
+    "claim": "MediaPipe covers iOS.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/README.md",
+    "quote": "[iOS](https://developers.google.com/edge/mediapipe/solutions/setup_ios)"
+  },
+  {
+    "claim": "MediaPipe covers Python.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/README.md",
+    "quote": "[Python](https://developers.google.com/edge/mediapipe/solutions/setup_python)"
+  },
+  {
+    "claim": "World landmarks in meters from the hip centre.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "Real-world 3D coordinates in meters with the origin at the center between hips."
+  },
+  {
+    "claim": "BlazePose GHUM Heavy 68.1 / 73.0 / 74.0 mAP on Yoga, Dance, HIIT.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "BlazePose GHUM Heavy                                                                                  | 68.1               | **96.4**               | 73.0                | **97.2**                | 74.0               | **97.5**"
+  },
+  {
+    "claim": "Quality sets have one person 2 to 4 meters away, scored on 17 COCO keypoints.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "Each image contains only a single person located 2-4 meters from the camera. To be consistent with other solutions, we perform evaluation only for 17 keypoints"
+  },
+  {
+    "claim": "Validation sets are Yoga, Dance and HIIT.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "we use three different validation datasets, representing different verticals: Yoga, Dance and HIIT."
+  },
+  {
+    "claim": "LEFT_HIP is 23.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+    "quote": "LEFT_HIP = 23"
+  },
+  {
+    "claim": "Heels in MediaPipe's landmarks.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+    "quote": "LEFT_HEEL = 29"
+  },
+  {
+    "claim": "Foot index in MediaPipe's landmarks.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+    "quote": "LEFT_FOOT_INDEX = 31"
+  },
+  {
+    "claim": "Thumb knuckle in MediaPipe's landmarks.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+    "quote": "LEFT_THUMB = 21"
+  },
+  {
+    "claim": "Mouth corners in MediaPipe's landmarks.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+    "quote": "MOUTH_LEFT = 9"
+  }
+]

@@ -30,6 +30,7 @@ export const RELEASED_ALTERNATIVES = new Set<string>([
   "mediapipe-alternatives",
   "quickpose-alternatives",
   "sency-alternatives",
+  "openpose-alternatives",
 ]);
 
 export const allAlternatives: ClusterEntry[] = alternativesEntries;

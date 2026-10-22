@@ -62,7 +62,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
     title: "AI motion tracking",
     blurb:
       "Motion SDKs and pose models, including this site's own product. KinesteX funds this site; every page here says so and is verified from public repos and the vendors' own pages.",
-    slugs: ["mediapipe-alternatives", "quickpose-alternatives", "sency-alternatives", "kinestex-alternatives"],
+    slugs: ["mediapipe-alternatives", "openpose-alternatives", "quickpose-alternatives", "sency-alternatives", "kinestex-alternatives"],
   },
 ];
 
