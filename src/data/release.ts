@@ -6,6 +6,7 @@
  */
 export const RELEASED_FITNESS_APIS = new Set<string>([
   "exercise-database-apis",
+  "exercise-video-apis",
   "wearable-data-apis",
   "health-data-aggregator-apis",
   "ai-workout-tracking-apis",

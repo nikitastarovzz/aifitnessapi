@@ -371,18 +371,18 @@ export const COST_ITEMS: CostItem[] = [
     sourceHref: "/pricing/nutrition-api-pricing",
   },
 
-  // provenance: "a free BASIC tier with a hard monthly request cap, then paid tiers, with overage" — /pricing/exercise-database-api-pricing
-  // provenance: "Do not assume a specific free-tier quota — the numbers reported around ExerciseDB's free tier vary" — /pricing/exercise-database-api-pricing
+  // provenance: "AscendAPI, the company formerly branded ExerciseDB, serves 1,500 exercises with GIFs free and without an API key, and its ExerciseDB V2 has a free Basic plan on RapidAPI with 2,000 requests a month, 200 exercises and watermarked video" — /pricing/exercise-database-api-pricing (re-verified 2026-10-22)
+  // provenance: "AscendAPI's paid prices are on its RapidAPI listings, which render nothing without a browser, and its terms of use sit behind a short link that answered our snapshot runner with a bot check" — /pricing/exercise-database-api-pricing
   {
     id: "exercisedb",
-    label: "ExerciseDB (via RapidAPI)",
+    label: "ExerciseDB (AscendAPI)",
     category: "exercise-content",
     devCost: "free-tier-then-paid",
     userSideCost: null,
     approvalGate: null,
     engEffort: "low",
     notes:
-      "Freemium per-request gateway: a hard-capped free tier, then paid tiers metered by request volume with overage above quota. Marketplace quotas and prices change without notice, and the free tier is often non-commercial — re-open the live listing before you budget.",
+      "Hosted API, now sold by AscendAPI (formerly exercisedb.dev). Two free entry points as of 2026-10-22: ExerciseDB V1 serves 1,500 exercises with 180p GIFs with no API key, and ExerciseDB V2's Basic plan on RapidAPI gives 2,000 requests a month and 200 exercises with watermarked video. Full catalogs, higher resolutions and clean media are on paid RapidAPI plans whose prices, like the terms of use, we could not read. Not self-hostable.",
     sourceHref: "/pricing/exercise-database-api-pricing",
   },
 

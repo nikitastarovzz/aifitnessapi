@@ -1,0 +1,302 @@
+[
+  {
+    "claim": "Body: exercisedb.dev presents itself as AscendAPI, previously ExerciseDB.",
+    "url": "https://exercisedb.dev/",
+    "quote": "Previously ExerciseDB"
+  },
+  {
+    "claim": "Answer/body/FAQ: each exercise includes an MP4 demonstration video.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "Each exercise includes an MP4 demonstration video for in-app playback."
+  },
+  {
+    "claim": "Body/FAQ: videoUrl field.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "Exercise demonstration video URL"
+  },
+  {
+    "claim": "Body/FAQ: imageUrls in multiple resolutions.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "Multi-resolution images (360p–1080p)"
+  },
+  {
+    "claim": "Body: vendor figures for exercises, videos and images.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "A multipurpose exercise dataset with 11,000+ exercises, 15,000+ videos, and 20,000+ images built for fitness, physiotherapy, strength training, and beyond."
+  },
+  {
+    "claim": "Answer/body/FAQ: free tier media is watermarked; free and paid via RapidAPI.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "Both free and paid tiers are accessed via RapidAPI. The only difference is that free tier media is watermarked ."
+  },
+  {
+    "claim": "Body: paid tier serves watermark-free assets.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "Paid tier serves clean, watermark-free assets across all resolutions."
+  },
+  {
+    "claim": "Body: AscendAPI is accessed via RapidAPI.",
+    "url": "https://docs.ascendapi.com/",
+    "quote": "Currently AscendAPI is accessed via RapidAPI ."
+  },
+  {
+    "claim": "Body/FAQ: Basic plan 2,000 requests a month.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "2,000 requests / month"
+  },
+  {
+    "claim": "Body/FAQ: Basic plan 200 exercises.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "200 exercises in library"
+  },
+  {
+    "claim": "Body/FAQ: Basic plan includes images and videos.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "Exercise images & videos"
+  },
+  {
+    "claim": "Body: Basic plan is free.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "Select the Basic plan it's completely free:"
+  },
+  {
+    "claim": "Body: free plans 1,000 requests per hour.",
+    "url": "https://docs.ascendapi.com/guides/ratelimiting",
+    "quote": "All free plans include a limit of 1,000 requests per hour per API key."
+  },
+  {
+    "claim": "Body: paid plans no strict rate limit.",
+    "url": "https://docs.ascendapi.com/guides/ratelimiting",
+    "quote": "Paid plans have no strict rate limit."
+  },
+  {
+    "claim": "Body: CDN media generally unlimited.",
+    "url": "https://docs.ascendapi.com/guides/ratelimiting",
+    "quote": "All media (images, GIFs, and videos) is served through our CDN and is generally unlimited ."
+  },
+  {
+    "claim": "Body/table: V1 free tier 1,500 exercises with 180p GIFs, no auth.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "1,500 exercises with 180p GIFs. No authentication required, just call the hosted API directly."
+  },
+  {
+    "claim": "Body: free endpoint.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "curl -X GET \"https://oss.exercisedb.dev/api/v1/exercises\""
+  },
+  {
+    "claim": "Body: exercisedb.dev home page, no sign-up, no API key.",
+    "url": "https://exercisedb.dev/",
+    "quote": "1,500 exercises with GIFs. No sign-up, no API key — just call the endpoint directly."
+  },
+  {
+    "claim": "Body/table: paid V1 adds multi-resolution images and GIFs.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "Multi-resolution images and GIFs (360p–1080p) are available on the paid RapidAPI tier ."
+  },
+  {
+    "claim": "Body: V1 dataset over 2,000 exercises.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "A developer-friendly fitness exercise database featuring over 2,000 structured exercises with rich metadata, images, and GIFs."
+  },
+  {
+    "claim": "Body/FAQ/table: wger video extensions.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/exercises/models/video.py",
+    "quote": "VIDEO_EXTENSIONS = ['mp4', 'mov', 'webm', 'ogv', 'ogg']"
+  },
+  {
+    "claim": "Body/FAQ: 100 MB limit.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/exercises/models/video.py",
+    "quote": "MAX_FILE_SIZE_MB = 100"
+  },
+  {
+    "claim": "Body/FAQ: ExerciseVideo model with licence model.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/exercises/models/video.py",
+    "quote": "class ExerciseVideo(AbstractLicenseModel, AbstractHistoryMixin, models.Model):"
+  },
+  {
+    "claim": "FAQ: docs suggest video on detail screens, images in lists.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "Use videoUrl on exercise detail screens. Fall back to imageUrls for list and card views to keep load times fast."
+  },
+  {
+    "claim": "Body/FAQ: records size.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/exercises/models/video.py",
+    "quote": "\"\"\"The video filesize, in bytes\"\"\""
+  },
+  {
+    "claim": "Body/FAQ: records width.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/exercises/models/video.py",
+    "quote": "\"\"\"The video width, in pixels\"\"\""
+  },
+  {
+    "claim": "Body/FAQ: records height.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/exercises/models/video.py",
+    "quote": "\"\"\"The video height, in pixels\"\"\""
+  },
+  {
+    "claim": "Body/FAQ: records duration.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/exercises/models/video.py",
+    "quote": "\"\"\"The video duration, in seconds\"\"\""
+  },
+  {
+    "claim": "Body/FAQ: records codec.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/exercises/models/video.py",
+    "quote": "\"\"\"The video codec\"\"\""
+  },
+  {
+    "claim": "Body/FAQ: licence fields - original title.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/utils/models.py",
+    "quote": "The original title of this object, if available"
+  },
+  {
+    "claim": "Body/FAQ: licence fields - link to original object.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/utils/models.py",
+    "quote": "Link to original object, if available"
+  },
+  {
+    "claim": "Body/FAQ: licence fields - author.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/utils/models.py",
+    "quote": "license_author = models.TextField("
+  },
+  {
+    "claim": "Body/FAQ: REST router registers a video endpoint.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/urls.py",
+    "quote": "exercises_api_views.ExerciseVideoViewSet,"
+  },
+  {
+    "claim": "Body/table: allowed image formats.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/utils/images.py",
+    "quote": "IMAGE_ALLOWED_FORMATS = ('jpeg', 'jpg', 'png', 'webp', 'avif')"
+  },
+  {
+    "claim": "Body/table: animation rejected.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/wger/utils/images.py",
+    "quote": "raise ValidationError('Animated images are not supported.')"
+  },
+  {
+    "claim": "Body/table/FAQ: AGPL 3 or later.",
+    "url": "https://wger.readthedocs.io/en/latest/",
+    "quote": "The application is licenced under the Affero GNU General Public License 3 or at your choice any later version (AGPL 3+)."
+  },
+  {
+    "claim": "Body/table: initial data CC-BY-SA 3.0.",
+    "url": "https://wger.readthedocs.io/en/latest/",
+    "quote": "The initial exercise and ingredient data is licensed additionally under a Creative Commons Attribution Share-Alike 3.0 (CC-BY-SA 3.0)"
+  },
+  {
+    "claim": "Body/FAQ: API Ninjas images premium only, movement order.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Array of image URLs showing the exercise, in movement order (usually the start and finish positions)."
+  },
+  {
+    "claim": "Body/FAQ: API Ninjas images on premium plans.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "On premium plans, exercises with photos also include an images array of image URLs in movement order."
+  },
+  {
+    "claim": "Body/FAQ: commercial use not permitted on free tier.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Commercial use of the Exercises API is not permitted on the free tier."
+  },
+  {
+    "claim": "Body: all paid plans are premium plans.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "All paid plans (Developer, Business, Professional, Enterprise) are premium plans."
+  },
+  {
+    "claim": "Body/table: free-exercise-db public domain, 800+ exercises.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "Open Public Domain Exercise Dataset in `JSON` format, 800+ exercises with a browsable public searchable frontend"
+  },
+  {
+    "claim": "Body: JPG image paths.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "\"Alternate_Incline_Dumbbell_Curl/0.jpg\","
+  },
+  {
+    "claim": "Body: images via raw.githubusercontent.com prefix.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "prefix any of image path's contained in the `JSON` with `https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/` to get a hosted version of the image"
+  },
+  {
+    "claim": "Body/table: Unlicense.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "License: Unlicense"
+  },
+  {
+    "claim": "Body: GymVisual sells royalty-free animations, GIFs and illustrations.",
+    "url": "https://www.gymvisual.com/",
+    "quote": "royalty-free workout animations , GIFs , and fitness illustrations designed for apps, websites, YouTube videos, and other digital fitness platforms."
+  },
+  {
+    "claim": "Body: GymVisual names app developers.",
+    "url": "https://www.gymvisual.com/",
+    "quote": "Developers building workout apps can use G ym Visual animations to provide step-by-step exercise guidance for users."
+  },
+  {
+    "claim": "Body/table: 9,935 videos.",
+    "url": "https://gymvisual.com/12-videos",
+    "quote": "Videos There are 9935 products."
+  },
+  {
+    "claim": "Body: video volume price.",
+    "url": "https://gymvisual.com/12-videos",
+    "quote": "$6 per 1 video after 5 items in cart"
+  },
+  {
+    "claim": "Body/table: 6,558 animated GIFs.",
+    "url": "https://gymvisual.com/16-animated-gifs",
+    "quote": "Animated GIFs There are 6558 products."
+  },
+  {
+    "claim": "Body: GIF volume price.",
+    "url": "https://gymvisual.com/16-animated-gifs",
+    "quote": "$0.9 per 1 animated GIF after 10 items in cart"
+  },
+  {
+    "claim": "Body/FAQ: pay once, use as many times.",
+    "url": "https://gymvisual.com/content/9-license",
+    "quote": "What Non-Exclusive Commercial Royalty-Free License (N-CRFL) means is that you pay for the Media only once and then you can use it as many times as you like, with just a few restrictions."
+  },
+  {
+    "claim": "Body/FAQ: permitted in Android or iOS apps.",
+    "url": "https://gymvisual.com/content/9-license",
+    "quote": "Android or iOS mobile application (apps);"
+  },
+  {
+    "claim": "Body/FAQ: no resale or redistribution.",
+    "url": "https://gymvisual.com/content/9-license",
+    "quote": "to resell or redistribute;"
+  },
+  {
+    "claim": "Body/FAQ: not available for download.",
+    "url": "https://gymvisual.com/content/9-license",
+    "quote": "to make available on a website for download (as wallpapers for example)."
+  },
+  {
+    "claim": "Body/FAQ: no AI training.",
+    "url": "https://gymvisual.com/content/9-license",
+    "quote": "to process, modify, or use for training by any Artificial Intelligence (AI) systems."
+  },
+  {
+    "claim": "Body/FAQ: one-person licence, not transferable.",
+    "url": "https://gymvisual.com/content/3-terms-and-conditions-of-use",
+    "quote": "This is a one-person license and can be used only by the account owner or his employee, for the company`s own projects or clients and cannot be transmitted to another party."
+  },
+  {
+    "claim": "The combined dist/exercises.json we counted on 2026-10-22: 876 records, 1,746 image paths, all .jpg. The quote shows a record's image paths.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/dist/exercises.json",
+    "quote": "\"images\": ["
+  },
+  {
+    "claim": "The Developer plan is listed at $59 a month, or $39 a month on yearly billing.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "$ 59 $ 39 / month"
+  },
+  {
+    "claim": "API Ninjas lists monthly and yearly prices, yearly at 34% off.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "Monthly Yearly 34% off"
+  }
+]

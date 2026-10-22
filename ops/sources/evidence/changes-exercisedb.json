@@ -1,0 +1,37 @@
+[
+  {
+    "claim": "exercisedb.dev now presents itself as AscendAPI, previously ExerciseDB.",
+    "url": "https://exercisedb.dev/",
+    "quote": "Previously ExerciseDB"
+  },
+  {
+    "claim": "The free V1 tier is 1,500 exercises with 180p GIFs and needs no authentication.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "1,500 exercises with 180p GIFs. No authentication required, just call the hosted API directly."
+  },
+  {
+    "claim": "The free V1 endpoint is oss.exercisedb.dev/api/v1/exercises.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "https://oss.exercisedb.dev/api/v1/exercises"
+  },
+  {
+    "claim": "ExerciseDB V2 gives each exercise an MP4 demonstration video.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "Each exercise includes an MP4 demonstration video for in-app playback."
+  },
+  {
+    "claim": "Both V2 tiers are accessed via RapidAPI, and free-tier media is watermarked.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "Both free and paid tiers are accessed via RapidAPI. The only difference is that free tier media is watermarked ."
+  },
+  {
+    "claim": "The free Basic plan includes 2,000 requests a month.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "2,000 requests / month"
+  },
+  {
+    "claim": "The free Basic plan includes 200 exercises in the library.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "200 exercises in library"
+  }
+]

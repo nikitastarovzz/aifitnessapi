@@ -1,0 +1,82 @@
+[
+  {
+    "claim": "free-exercise-db's README calls it an open public domain exercise dataset with 800+ exercises; our count of dist/exercises.json at commit f00c92c (2026-09-27) on 2026-10-22 found 876 records and 1,746 JPEG image paths.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "Open Public Domain Exercise Dataset in `JSON` format, 800+ exercises"
+  },
+  {
+    "claim": "The combined dist/exercises.json we counted on 2026-10-22: 876 records, 1,746 image paths, all .jpg. The quote shows a record's image paths.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/dist/exercises.json",
+    "quote": "\"images\": ["
+  },
+  {
+    "claim": "free-exercise-db's LICENSE.md is the Unlicense, public domain.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/LICENSE.md",
+    "quote": "This is free and unencumbered software released into the public domain."
+  },
+  {
+    "claim": "The free V1 tier is 1,500 exercises with 180p GIFs and needs no authentication.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "1,500 exercises with 180p GIFs. No authentication required, just call the hosted API directly."
+  },
+  {
+    "claim": "exercisedb.dev now presents itself as AscendAPI, previously ExerciseDB.",
+    "url": "https://exercisedb.dev/",
+    "quote": "Previously ExerciseDB"
+  },
+  {
+    "claim": "The free Basic plan includes 2,000 requests a month.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "2,000 requests / month"
+  },
+  {
+    "claim": "The free Basic plan includes 200 exercises in the library.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "200 exercises in library"
+  },
+  {
+    "claim": "The free Basic plan includes exercise images and videos.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "Exercise images & videos"
+  },
+  {
+    "claim": "Both V2 tiers are accessed via RapidAPI, and free-tier media is watermarked.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "Both free and paid tiers are accessed via RapidAPI. The only difference is that free tier media is watermarked ."
+  },
+  {
+    "claim": "A free API key is available with no credit card.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Get a free API key to get started — no credit card required."
+  },
+  {
+    "claim": "API Ninjas' Free plan is for evaluation and demo purposes only.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "Evaluation and demo purposes only - no payment information required"
+  },
+  {
+    "claim": "Commercial use of the Exercises API is not permitted on the free tier.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Commercial use of the Exercises API is not permitted on the free tier."
+  },
+  {
+    "claim": "Images are included only on premium plans.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "On premium plans, exercises with photos also include an images array of image URLs in movement order."
+  },
+  {
+    "claim": "Paging past the first results uses the premium offset parameter.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "you can page through more using the premium offset parameter"
+  },
+  {
+    "claim": "The Developer plan is listed at $59 a month, or $39 a month on yearly billing.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "$ 59 $ 39 / month"
+  },
+  {
+    "claim": "API Ninjas lists monthly and yearly prices, yearly at 34% off.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "Monthly Yearly 34% off"
+  }
+]

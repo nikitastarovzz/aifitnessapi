@@ -652,18 +652,18 @@ export const compareEntries: ClusterEntry[] =
     "primaryQuery": "exercisedb vs wger",
     "h1": "ExerciseDB vs wger: Which Exercise API for Your App?",
     "metaTitle": "ExerciseDB vs wger: Which Exercise API? 6 Dimensions",
-    "metaDescription": "ExerciseDB is a paid RapidAPI gateway with GIF media; wger is free, self-hosted and AGPL. Compare data, hosting, licensing and cost by use-case.",
-    "updated": "2026-07-23",
-    "answer": "Pick ExerciseDB when you want a media-rich, ready-to-call hosted API with GIF and video and you will pay a per-request gateway; pick wger when you want full data ownership, no per-call fees, and are comfortable self-hosting and complying with its licenses. The biggest developer difference is the delivery model: ExerciseDB is most commonly a paid, RapidAPI-hosted gateway billed per request, while wger is open-source software you run yourself. Note the name ambiguity - 'ExerciseDB' is both the RapidAPI product and the separate exercisedb.dev API, whose repository holds only a README and an AGPL-3.0 license file as of October 12, 2026 - and treat every count and price as 'as of 2026, verify.'",
-    "body": "## First, disambiguate \"ExerciseDB\"\n\nTwo different things share the name, and conflating them will lead you to the wrong licensing conclusion:\n\n- **The RapidAPI-hosted ExerciseDB product** — historically distributed through the `RapidAPI` marketplace as a paid gateway: you get a key via RapidAPI, receive GIF media, and the free tier is limited (often \"non-commercial\"). This path is governed by RapidAPI and vendor commercial terms, not by an open-source license.\n- **The `exercisedb.dev` API** — a hosted service with its own paid plans. [Its GitHub repository](https://github.com/ExerciseDB/exercisedb-api) (`exercisedb/exercisedb-api`) carries an `AGPL-3.0` LICENSE file but, as of October 12, 2026, contains only that and a README, so there is no code to self-host; the README labels its v2 playground \"for exploration only and not recommended for production integration\".\n\nSo in production ExerciseDB is a hosted API either way: through the RapidAPI gateway or on exercisedb.dev's own plans. Confirm which license and terms apply to the exact path you sign up for.\n\n## How to compare ExerciseDB and wger\n\nThree factors decide this head-to-head. Weigh them in this order:\n\n- **Delivery model.** ExerciseDB is easiest to consume as a hosted gateway (RapidAPI) — a key and you are calling it in minutes, with per-request billing. wger is software you deploy (Docker Compose) or use via its hosted demo instance, exposing a REST API you run and own.\n- **Media depth vs data ownership.** ExerciseDB markets large media libraries (GIFs, videos, images) that are its main draw. wger's media is community-contributed and generally lighter, but you own the whole stack and pay no per-call fee.\n- **Licensing fit for your product.** This is the factor most likely to bite a closed-source commercial build. A hosted/paid API path sidesteps copyleft entanglement; self-hosting AGPL code can trigger source-disclosure obligations. wger additionally splits its licensing between code and data.\n\nThe access, licensing, and roadmap items below are factual integration constraints, not a knock on either project.\n\n## ExerciseDB vs wger at a glance\n\n| Dimension | ExerciseDB | wger |\n|---|---|---|\n| Data exposed | Exercises with metadata (target body part, equipment, instructions); markets \"11,000+\" exercises (vendor claim, verify) | Community-contributed exercise database plus workout, bodyweight and nutrition tracking; third-party cites \"~520+\" exercises (verify); nutrition via Open Food Facts |\n| Media | Large libraries marketed as \"15,000+\" videos, \"20,000+\" images, \"5,000+\" GIFs (vendor claims, verify) | Images and videos are community-contributed; generally lighter media coverage (verify) |\n| Hosting / access | Two hosted paths: the `exercisedb.dev` API on its own plans, or the `RapidAPI` gateway; the repo has no code to self-host (as of Oct 12, 2026) | Self-host via Docker Compose, or use the hosted demo instance at `https://wger.de`; REST API for integrations |\n| API access model | RapidAPI path: key via RapidAPI, tiered request plans plus a limited free tier | Your own deployment; you control auth and rate limits |\n| Cost model | RapidAPI path = paid gateway, per-request tiered billing plus limited free tier; exercisedb.dev = its own paid plans (prices not verified) | Free software; cost = self-hosting/infra plus ops. No per-call fee |\n| Licensing | exercisedb.dev repo LICENSE is `AGPL-3.0` and its API has separate terms of use; RapidAPI distribution follows RapidAPI/vendor commercial terms — verify which applies to your path | Code is `AGPL-3.0-or-later`; exercise/ingredient DATA is Creative Commons (e.g. `CC-BY-SA`), docs `CC-BY-SA-4.0` (verify exact variant) |\n\nDo not rely on any specific RapidAPI tier price, request quota, or free-tier limit quoted here or elsewhere — those are set per-API on the live listing and change often. For the paid-vs-open breakdown see [exercise database API pricing](/pricing/exercise-database-api-pricing).\n\n## Where ExerciseDB pulls ahead\n\nExerciseDB's edge is time-to-first-call and media. Via the RapidAPI gateway you can grab a key and be pulling exercise records with GIF and video assets almost immediately, without standing up any infrastructure — a real advantage if animated demonstration media is central to your UX and you would rather pay a gateway than build and maintain a content pipeline. It also markets a much larger exercise catalog than wger (verify the counts). The trade-off that decides it against wger: on the hosted path you pay per request and you do not own the data or the pipeline, so cost scales with usage and you are subject to the gateway's terms and availability. And because \"ExerciseDB\" spans a commercial RapidAPI product and the separate exercisedb.dev API, you must be deliberate about which one you are actually integrating and under what terms.\n\n## Where wger pulls ahead\n\nwger's edge is ownership and zero usage fees. It is open-source fitness software — an exercise database plus workout, bodyweight, and nutrition tracking (nutrition via Open Food Facts) — that you self-host and control end to end, with a REST API for your own app and no per-call charge. For a product that wants to avoid gateway lock-in and metered billing, that is compelling. The trade-offs are real, though: its exercise set is smaller and more curated (third-party cites roughly 520 exercises, verify), its media is community-contributed and lighter than ExerciseDB's libraries, and you carry the hosting, updates, and ops yourself. Licensing also needs attention — wger deliberately splits it: the application **code is `AGPL-3.0-or-later`**, while the exercise and ingredient **DATA is Creative Commons** (attribution / share-alike per the specific CC variant, which you should verify before relying on it).\n\n## The AGPL copyleft question (read before you self-host)\n\nThis is the decision factor most likely to matter for a commercial build, and it applies to wger's code. (The `exercisedb.dev` repository carries an AGPL-3.0 LICENSE but no code, so in practice you use it as a hosted API under its terms of use.) `AGPL-3.0` is strong copyleft with a **network clause**: if you modify AGPL-covered code and let users interact with it over a network (a SaaS), you must offer those users the corresponding modified source under AGPL.\n\nTwo nuances keep this from being a blanket blocker:\n\n- **Merely calling a hosted API over HTTP** does not by itself make your app a derivative work — using the hosted ExerciseDB gateway or a commercially licensed feed is a different situation from shipping the code.\n- **Self-hosting and modifying** the AGPL codebase is what can trigger the source-disclosure obligation for a closed-source product.\n\nFor wger specifically, remember the split: the AGPL obligation attaches to the **code**, while the exercise **data** is under Creative Commons with its own attribution/share-alike terms — a different obligation than the code. The practical takeaway for a closed-source SaaS: a hosted/paid API path (the RapidAPI ExerciseDB path, or another commercially licensed feed) sidesteps the AGPL source-disclosure risk, whereas self-hosting AGPL code warrants legal review. This is general guidance, not legal advice — have counsel review your specific setup.\n\n## Which should you pick?\n\nMatch the source to your use-case rather than hunting for a single winner:\n\n- **If you want media-rich (GIF/video) exercise content fast**, via a hosted key, and you are willing to pay a gateway → lean ExerciseDB on the hosted/RapidAPI path.\n- **If you want full data ownership, no per-call fees, and control of the stack**, and you are comfortable self-hosting and complying with AGPL (code) plus Creative Commons (data) → lean wger; `exercisedb.dev` offers no self-host path.\n- **If you are building a closed-source commercial SaaS and want to avoid copyleft entanglement** → prefer a hosted/commercial API path over self-hosting AGPL code, and verify the terms. See how the whole category splits in [exercise database APIs](/fitness-apis/exercise-database-apis) and the genuinely [free fitness APIs](/fitness-apis/free-fitness-apis) overview. For setup on the hosted path, read the [ExerciseDB integration guide](/integrate/exercisedb-api).\n\n## Watch the fine print\n\nMedia counts, exercise counts, RapidAPI tier prices, free-tier limits, and even which license governs a given access path all shift over time. Everything volatile above — the \"11,000+\" / \"520+\" figures, media-library sizes, RapidAPI pricing, and the exact Creative Commons variant on wger's data — is flagged \"as of 2026, verify.\" Confirm the current license, terms, and quotas on each project's primary source (the GitHub repositories and the live RapidAPI listing) before you build, and get any AGPL dependency reviewed by counsel.",
+    "metaDescription": "ExerciseDB is a hosted API (free GIF tier, MP4 video on paid RapidAPI plans); wger is free, self-hosted and AGPL. Compare data, media, licensing and cost.",
+    "updated": "2026-10-22",
+    "answer": "Pick ExerciseDB when you want a hosted API with demonstration media and are willing to rent it: AscendAPI, its current publisher, serves 1,500 exercises with GIFs free and with no key, and ExerciseDB V2's MP4 videos for 11,000+ exercises on RapidAPI plans, free for a watermarked 200-exercise trial. Pick wger when you want to own the stack with no per-call fee and can run a Django application under AGPL-3.0-or-later, with exercise data licensed Creative Commons per entry. The deciding difference is the delivery model, rented API against self-hosted software, and the licence that comes with each. All of this was checked on October 22, 2026.",
+    "body": "## First, which ExerciseDB?\n\nThe exercisedb.dev home page now reads \"Previously ExerciseDB\" above the name AscendAPI, and AscendAPI's documentation names the `ExerciseDB/exercisedb-api` GitHub repository as its own. It sells two exercise products: **ExerciseDB V1**, free with no key at `oss.exercisedb.dev` (1,500 exercises with 180p GIFs) with a paid RapidAPI tier for higher resolutions, and **ExerciseDB V2**, on RapidAPI only, with an MP4 video per exercise. An older ExerciseDB listing on RapidAPI under the publisher justin-WFnsXH_t6 also exists; we could not read it on October 22, 2026, or establish whether it is the same product. On this page, \"ExerciseDB\" means AscendAPI's products.\n\nNone of them is self-hostable. A git clone of [the exercisedb-api repository](https://github.com/ExerciseDB/exercisedb-api) on October 22, 2026 found a README and an AGPL-3.0 LICENSE and no code, so in production ExerciseDB is an API you call under AscendAPI's terms of use.\n\n## How to compare ExerciseDB and wger\n\nThree factors decide this head-to-head, in this order:\n\n- **Delivery model.** ExerciseDB is a hosted API: a key (or none, for V1 free) and you are calling it in minutes. wger is software you deploy, with a REST API you run, or a public instance at wger.de you can read.\n- **Media against ownership.** ExerciseDB's draw is media: GIFs on V1, MP4 video on V2. wger's media is community-contributed still images plus whatever videos you upload, but you own the whole stack.\n- **Licence fit.** Calling a hosted API under its terms is a different situation from deploying AGPL code; wger also splits its licensing between code and data.\n\n## ExerciseDB vs wger at a glance\n\n| Dimension | ExerciseDB (AscendAPI) | wger |\n|---|---|---|\n| Data | V1: 1,500 exercises free, \"over 2,000\" in total; V2: 11,000+ (AscendAPI's figures) | Community exercise database plus routines, nutrition (Open Food Facts) and body weight; live count not readable from our environment |\n| Media | V1: GIFs, 180p free, up to 1080p paid; V2: an MP4 per exercise plus images, watermarked on the free plan | Still images (animation rejected); video files you upload (mp4, mov, webm, ogv, ogg) |\n| Hosting / access | Hosted: V1 free tier with no key, everything else through RapidAPI | Self-host with Docker, or read the public endpoints on wger.de |\n| Cost | Free tiers (V1 keyless; V2 Basic: 2,000 requests a month, 200 exercises); paid plans on RapidAPI, prices not read | No licence or per-call fee; you pay for hosting and operations |\n| Rate limits | Free plans: 1,000 requests per hour per key; paid: \"no strict rate limit\" | Whatever you configure on your own instance |\n| Licensing | AscendAPI's terms of use (not readable from our environment); the repository's AGPL-3.0 file covers no code | Code AGPL-3.0-or-later; exercise data Creative Commons per entry; docs CC-BY-SA-4.0 |\n\nFor what each plan costs, see [exercise database API pricing](/pricing/exercise-database-api-pricing).\n\n## Where ExerciseDB pulls ahead\n\nTime to first call and media. V1's free tier answers without a key, and V2 hands you an MP4 demonstration, multi-resolution images, `overview`, `exerciseTips`, `variations` and `relatedExerciseIds` for each exercise, which wger has no equivalent for. AscendAPI also states a much larger catalog. The trade: you rent the data. Paid prices sit on RapidAPI listings we could not read, the free tiers come with terms we could not read either, and your app depends on someone else's service. For [exercise APIs with video](/fitness-apis/exercise-video-apis), V2 is the hosted option.\n\n## Where wger pulls ahead\n\nOwnership and no usage fees. wger's README calls it \"a free workout and fitness manager\" with a \"REST API for third-party integrations or automations\", and self-hosting \"is basically just a `docker compose up -d` away\". In its code the exercise endpoints are commented \"Everybody can read\", and every exercise, image and video carries its own licence, author and source fields, so attribution travels with the data. The trade-offs: you operate a whole application, its media is lighter than ExerciseDB's, and the licensing needs attention. The code is AGPL-3.0-or-later, the data is \"Creative Commons (see individual entries)\", and new image uploads default to CC-BY-SA 4.\n\n## The AGPL copyleft question (read before you self-host)\n\nThis applies to wger's code. AGPL-3.0 is strong copyleft with a network clause: if you modify AGPL-covered code and let users interact with it over a network, you must offer them the modified source under AGPL.\n\n- **Calling a hosted API over HTTP** does not by itself make your app a derivative work, which is why ExerciseDB, used as a hosted API, raises a terms-of-use question rather than a copyleft one.\n- **Self-hosting and modifying** wger is what can trigger the source-disclosure obligation for a closed-source service. Running it unmodified, or reading its public API, is a different situation.\n- **The data is separate.** wger's Creative Commons data brings attribution and, for CC-BY-SA entries, share-alike, whichever way you get it.\n\nThis is general guidance, not legal advice; have counsel review your setup.\n\n## Which should you pick?\n\n- **You want GIF or video demonstrations fast from a hosted key** → ExerciseDB. Prototype on V1's free tier or V2's Basic plan, then read the paid prices and terms on RapidAPI.\n- **You want full data ownership, no per-call fees and control of the stack**, and can comply with AGPL (code) plus Creative Commons (data) → wger. ExerciseDB offers no self-host path. If wger's AGPL code or share-alike data is the blocker, see the [wger alternatives](/alternatives/wger-alternatives).\n- **You want data you own with no licence strings at all** → neither; free-exercise-db is public domain. See [ExerciseDB vs free-exercise-db](/compare/exercisedb-vs-free-exercise-db).\n\nThe whole category is compared in [exercise database APIs](/fitness-apis/exercise-database-apis), and setup on the hosted path is in the [ExerciseDB integration guide](/integrate/exercisedb-api).\n\n## Watch the fine print\n\nThis page was re-checked on October 22, 2026 against AscendAPI's documentation and home page, and against the wger and exercisedb-api repositories. AscendAPI's paid prices, its terms of use and the older RapidAPI listing could not be read, and wger.de's bot check kept us from counting its live catalog. Confirm the current terms and the licence on the exact data you ship before you build.",
     "faqs": [
       {
         "q": "Are ExerciseDB and exercisedb.dev the same thing?",
-        "a": "They share a name but are not the same. The ExerciseDB commonly used via the RapidAPI marketplace is a paid, hosted gateway governed by RapidAPI and vendor commercial terms. exercisedb.dev is a separate hosted API with its own plans and terms of use; its GitHub repository carries an AGPL-3.0 license file but, as of October 12, 2026, only that and a README, so there is no self-host option. Which one you integrate changes both the cost and the licensing, so confirm the exact path you sign up for."
+        "a": "exercisedb.dev is where ExerciseDB now lives: its home page presents AscendAPI, previously ExerciseDB, which sells ExerciseDB V1 (free with no key at oss.exercisedb.dev, plus a paid RapidAPI tier) and ExerciseDB V2 (on RapidAPI). An older ExerciseDB listing on RapidAPI under the publisher justin-WFnsXH_t6 also exists, and as of October 22, 2026 we could not establish whether it is the same product. Neither is self-hostable."
       },
       {
         "q": "Is wger really free?",
-        "a": "The software and data carry no license or usage fee: wger's code is AGPL-3.0-or-later and its exercise/ingredient data is Creative Commons (verify the exact variant). But self-hosting still costs servers, bandwidth, uptime, and engineering time to run and update it, and the AGPL code carries copyleft obligations. 'Free' here means no per-call fee, not zero total cost."
+        "a": "The software and data carry no license or usage fee: wger's code is AGPL-3.0-or-later and its exercise data is Creative Commons, set per entry. But self-hosting still costs servers, bandwidth, uptime, and engineering time to run and update it, and the AGPL code carries copyleft obligations if you modify and deploy it. 'Free' here means no per-call fee, not zero total cost."
       },
       {
         "q": "Does the AGPL license affect my closed-source app?",
@@ -671,17 +671,25 @@ export const compareEntries: ClusterEntry[] =
       },
       {
         "q": "Which has more exercises and media, ExerciseDB or wger?",
-        "a": "ExerciseDB markets a much larger catalog - vendor claims cite '11,000+' exercises plus large GIF, video and image libraries - while third-party sources cite roughly 520 curated exercises for wger with lighter, community-contributed media. Treat all of these counts as vendor or third-party claims to re-verify against each project's primary source as of 2026."
+        "a": "ExerciseDB, by its publisher's figures: AscendAPI states 11,000+ exercises, 15,000+ videos and 20,000+ images for ExerciseDB V2 and 1,500 exercises with GIFs on its free V1 tier. wger's media is community-contributed still images plus videos you upload; we could not count its live catalog on wger.de on October 22, 2026, so we give no number for it."
       },
       {
         "q": "What does it actually take to run wger yourself?",
-        "a": "More than a first deploy, though that is the easy part - the documented path is Docker Compose, and there is a hosted demo instance at wger.de for evaluation rather than production. Running it yourself means you own the hosting bill, upgrades, backups, and uptime for a service your app now depends on, plus whatever auth and rate limiting you put in front of the REST API. That ongoing ops load is the real trade for no per-call fee and full ownership of the data."
+        "a": "More than a first deploy, though that is the easy part: wger's README says hosting your own instance is basically a docker compose up away, and wger.de is its public live system. Running it yourself means you own the hosting bill, upgrades, backups, and uptime for a service your app now depends on, plus whatever auth and rate limiting you put in front of the REST API. That ongoing ops load is the real trade for no per-call fee and full ownership of the data."
       }
     ],
     "related": [
       {
         "href": "/fitness-apis/exercise-database-apis",
         "label": "Best exercise database APIs"
+      },
+      {
+        "href": "/compare/exercisedb-vs-free-exercise-db",
+        "label": "ExerciseDB vs free-exercise-db"
+      },
+      {
+        "href": "/alternatives/wger-alternatives",
+        "label": "wger alternatives"
       },
       {
         "href": "/fitness-apis/free-fitness-apis",
@@ -697,8 +705,169 @@ export const compareEntries: ClusterEntry[] =
       }
     ],
     "cta": {
-      "pitch": "RapidAPI quotas shift and AGPL terms are easy to miss - subscribe for plain-English updates when exercise API pricing and licensing change."
-    }
+      "pitch": "RapidAPI plans shift and AGPL terms are easy to miss - subscribe for plain-English updates when exercise API pricing and licensing change."
+    },
+    "sources": [
+      {
+        "url": "https://exercisedb.dev/",
+        "checked": "2026-10-22",
+        "note": "AscendAPI, previously ExerciseDB; free V1 (snapshot)"
+      },
+      {
+        "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+        "checked": "2026-10-22",
+        "note": "V1 free and paid tiers (snapshot)"
+      },
+      {
+        "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+        "checked": "2026-10-22",
+        "note": "V2 catalog, fields, MP4, watermark (snapshot)"
+      },
+      {
+        "url": "https://docs.ascendapi.com/quickstart/overview",
+        "checked": "2026-10-22",
+        "note": "free Basic plan (snapshot)"
+      },
+      {
+        "url": "https://docs.ascendapi.com/guides/ratelimiting",
+        "checked": "2026-10-22",
+        "note": "rate limits (snapshot)"
+      },
+      {
+        "url": "https://docs.ascendapi.com/llms.txt",
+        "checked": "2026-10-22",
+        "note": "GitHub repository link (snapshot)"
+      },
+      {
+        "url": "https://github.com/ExerciseDB/exercisedb-api",
+        "checked": "2026-10-22",
+        "note": "README and AGPL LICENSE only (git clone)"
+      },
+      {
+        "url": "https://github.com/wger-project/wger",
+        "checked": "2026-10-22",
+        "note": "README, licences, API permissions, licence fields, image and video models"
+      }
+    ]
+  },
+  {
+    "slug": "exercisedb-vs-free-exercise-db",
+    "primaryQuery": "exercisedb vs free-exercise-db",
+    "h1": "ExerciseDB vs free-exercise-db: Hosted API or Open Dataset?",
+    "metaTitle": "ExerciseDB vs free-exercise-db: Paid API or Free Dataset?",
+    "metaDescription": "ExerciseDB is a hosted API (1,500 GIF exercises free, MP4 video on RapidAPI plans); free-exercise-db is 876 public-domain exercises as JSON with images.",
+    "updated": "2026-10-22",
+    "answer": "Pick ExerciseDB when you need animated GIFs or video from a hosted API; pick free-exercise-db when you want exercise data you own outright, with no key, no fee and no license obligations. ExerciseDB, now sold by AscendAPI, serves 1,500 exercises with GIFs free and without a key, and its V2 adds an MP4 video per exercise on RapidAPI plans, free for a watermarked 200-exercise trial. free-exercise-db is a public-domain (Unlicense) dataset on GitHub: 876 exercises and 1,746 JPEG images when we counted its combined JSON on October 22, 2026, served as static files rather than a live API.",
+    "body": "## First, which ExerciseDB?\n\nThe exercisedb.dev home page now reads \"Previously ExerciseDB\" above the name AscendAPI, and AscendAPI's documentation, read on October 22, 2026, describes two products:\n\n- **ExerciseDB V1.** A free hosted tier of \"1,500 exercises with 180p GIFs. No authentication required\", at `oss.exercisedb.dev/api/v1/exercises`, plus a paid RapidAPI tier with 360p to 1080p images and GIFs. Records carry `bodyParts`, `targetMuscles`, `equipments` and a `gifUrl`.\n- **ExerciseDB V2.** On RapidAPI only, with an MP4 video per exercise and a stated 11,000+ exercises. Its free Basic plan gives 2,000 requests a month and 200 exercises, with watermarked media.\n\nAn older ExerciseDB listing on RapidAPI, published by justin-WFnsXH_t6 and covered by the [ExerciseDB integration guide](/integrate/exercisedb-api), also exists; we could not read it today or establish whether it is the same product. AscendAPI's paid prices and terms of use were out of reach too, and none of it is self-hostable: when we cloned [its GitHub repository](https://github.com/ExerciseDB/exercisedb-api) on October 22, 2026 it held only a README and an AGPL-3.0 LICENSE.\n\nSo ExerciseDB is an API you call, free to start, with the full catalogs on paid plans. free-exercise-db is the opposite model: files you download and own.\n\n## ExerciseDB vs free-exercise-db at a glance\n\n| Dimension | ExerciseDB (AscendAPI) | free-exercise-db |\n|---|---|---|\n| What it is | A hosted API: V1 free and keyless, V1 paid and V2 through RapidAPI | A static dataset on GitHub, JSON plus images |\n| Catalog | 1,500 free on V1, \"over 2,000\" in V1, 11,000+ in V2 (AscendAPI's figures) | 876 exercises in `dist/exercises.json`, counted October 22, 2026 (README says 800+) |\n| Media | GIFs on V1 (180p free, up to 1080p paid); an MP4 per exercise plus images on V2, watermarked on the free plan | 1,746 JPEG images, two per exercise for 873 exercises and none for 3; no GIFs or video |\n| Access | No key for V1 free; a RapidAPI key for everything else | No key, no signup: clone the repo or fetch raw GitHub URLs |\n| License | AscendAPI's terms of use, not readable from our environment | The Unlicense: public domain, no attribution required |\n| Cost | Free tiers; paid plans on RapidAPI, prices not read | $0 for the data; you pay for wherever you serve it |\n| Rate limits | Free plans 1,000 requests per hour per key; V2 Basic 2,000 a month | None: the files are yours |\n\nFor the cost side across the whole category, see [exercise database API pricing](/pricing/exercise-database-api-pricing).\n\n## What is actually in free-exercise-db\n\nWe downloaded the combined file the README points to and counted it on October 22, 2026, rather than repeating the README's \"800+\". Every record has `id`, `name`, `force`, `level`, `mechanic`, `equipment`, `primaryMuscles`, `secondaryMuscles`, `instructions`, `category` and `images`, validated against a JSON Schema in the repository.\n\n| Category | Exercises |\n|---|---|\n| strength | 584 |\n| stretching | 123 |\n| plyometrics | 61 |\n| powerlifting | 38 |\n| olympic weightlifting | 35 |\n| strongman | 21 |\n| cardio | 14 |\n\nBy level, 525 are beginner, 294 intermediate and 57 expert. The gaps are documented: the README lists `force`, `mechanic` and `equipment` as incomplete in some files, and in our count those fields were null in 30, 87 and 77 records respectively. Five records have an empty instructions list, and the README notes \"a small number of duplicate images\". Muscles come from a fixed list of 17 values (`biceps`, `lats`, `quadriceps` and so on), and IDs are strings built from the name, such as `Alternate_Incline_Dumbbell_Curl`.\n\nServing it takes no backend. The README's documented shortcut is to fetch the combined JSON from raw.githubusercontent.com and prefix each image path with the repository's `exercises/` raw URL:\n\n```bash\ncurl -O https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/dist/exercises.json\n# an image path such as Air_Bike/0.jpg becomes:\n# https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Air_Bike/0.jpg\n```\n\nFor production, copy the files to your own storage or CDN rather than hot-linking GitHub. The repository also has Makefile tasks to rebuild the combined file and to emit newline-delimited JSON for a PostgreSQL import, and a searchable Vue front end at yuhonas.github.io/free-exercise-db for browsing.\n\nOn provenance, the README says the data was restructured from wrkout/exercises.json, and that upstream repository's LICENSE.md is also the Unlicense. Neither README we read names who made the original photographs; if image provenance matters to your legal review, that is the question to ask.\n\n## Where ExerciseDB pulls ahead\n\nMedia and scale. If your UX depends on a moving demonstration, ExerciseDB is the only one of the two that serves it: animated GIFs on V1, free at 180p, and on V2 a record with a `videoUrl` pointing at an `.mp4`, plus `overview`, `exerciseTips`, `variations`, `keywords` and `relatedExerciseIds` that free-exercise-db has no equivalent for. V2 also names muscles anatomically (\"Pectoralis Major Clavicular Head\" in its sample) and tags a `gender` for its demonstrations. And it is a live service: someone else hosts it, adds exercises and fixes data, and V1's free tier lets you try that without a key.\n\n## Where free-exercise-db pulls ahead\n\nOwnership and zero obligations. The Unlicense dedicates the work to the public domain, so you can ship the data and images in a closed-source commercial app with no attribution, no share-alike and no copyleft. There is no key to leak, no quota to hit, no per-request bill, and no terms of use that can change under you. Because the whole dataset is about a megabyte of JSON, you can bundle it into an app and search it offline. The cost is that you own everything a service would do: hosting, search, fixes, and filling the null fields.\n\n## Which should you pick?\n\n- **You need GIF or video demonstrations:** ExerciseDB. V1 for GIFs, free at 180p, or V2 for MP4 video on RapidAPI plans; read the terms that govern the media files before you ship them.\n- **You need data you can own, with no license strings:** free-exercise-db. It is the most permissive exercise source this site has reviewed.\n- **You are prototyping:** either works for free. free-exercise-db works offline and has no terms to read; ExerciseDB V1's free tier needs no key but comes with terms we could not read. Move to a paid plan once you know whether motion is worth paying for.\n- **You want an open catalog with an API and translations instead:** neither; look at wger, with its AGPL code and per-entry Creative Commons data. The [wger alternatives](/alternatives/wger-alternatives) page compares it against both of these.\n\n## Moving between them\n\nIt is a field-by-field re-map, not a swap. free-exercise-db's `primaryMuscles` uses 17 broad group names; ExerciseDB V1 uses `targetMuscles` arrays such as `pectorals`, and V2 anatomical names; the older RapidAPI listing used a single `target` in our July review. Equipment labels differ in vocabulary and case (`body only` and `e-z curl bar` in free-exercise-db against `LEVERAGE MACHINE` in the V2 README sample). IDs share nothing, so keep a mapping table keyed by your own IDs. Media is the expensive part: going from ExerciseDB to free-exercise-db means two still images per exercise where you had motion, and going the other way means checking that the exercises your users already logged exist in the new catalog. For other ways out of either product, see [ExerciseDB alternatives](/alternatives/exercisedb-alternatives).\n\n## Watch the fine print\n\nOur counts describe free-exercise-db's main branch as we downloaded it on October 22, 2026; a later commit can change them. ExerciseDB's catalog and media figures are AscendAPI's own, its free tiers are as its documentation described them that day, and its paid prices and terms sit on pages we could not read from our environment, so verify them before you budget.",
+    "faqs": [
+      {
+        "q": "How many exercises are in free-exercise-db?",
+        "a": "876, when we counted the combined dist/exercises.json on its main branch on October 22, 2026; the README rounds this to 800+. The same file references 1,746 JPEG images, two for each of 873 exercises and none for three. Recount after pulling, since community commits can change the total."
+      },
+      {
+        "q": "Is free-exercise-db an API?",
+        "a": "No. It is a static dataset: individual JSON files plus a combined exercises.json and an images folder in a GitHub repository. You can clone it, or fetch the JSON and images from raw GitHub URLs as its README describes, but there are no endpoints, search or filters; you build those yourself or load the data into your own database."
+      },
+      {
+        "q": "Can free-exercise-db images be used in a commercial app?",
+        "a": "Its repository's LICENSE.md is the Unlicense, which places the work in the public domain for any purpose, commercial or not, with no attribution required, and the README presents the images as part of the dataset. The upstream project it was restructured from carries the same license. Neither README names who made the original photos, so ask that question if your legal review needs provenance. This is not legal advice."
+      },
+      {
+        "q": "Does free-exercise-db have GIFs or exercise videos?",
+        "a": "No. Every image path in the dataset is a still JPEG, two per exercise for all but three exercises, which have none. If you need motion, AscendAPI's ExerciseDB V1 serves animated GIFs, free at 180p with no key, and its ExerciseDB V2 gives each exercise an MP4 video through RapidAPI, watermarked on the free plan."
+      }
+    ],
+    "related": [
+      {
+        "href": "/compare/exercisedb-vs-wger",
+        "label": "ExerciseDB vs wger"
+      },
+      {
+        "href": "/alternatives/exercisedb-alternatives",
+        "label": "ExerciseDB alternatives"
+      },
+      {
+        "href": "/alternatives/wger-alternatives",
+        "label": "wger alternatives"
+      },
+      {
+        "href": "/fitness-apis/exercise-video-apis",
+        "label": "Exercise video APIs"
+      },
+      {
+        "href": "/pricing/exercise-database-api-pricing",
+        "label": "Exercise database API pricing"
+      },
+      {
+        "href": "/compare",
+        "label": "All API comparisons"
+      }
+    ],
+    "cta": {
+      "pitch": "Exercise API quotas shift and dataset counts drift - subscribe for plain-English updates when exercise data pricing and licensing change."
+    },
+    "sources": [
+      {
+        "url": "https://github.com/yuhonas/free-exercise-db/blob/main/README.md",
+        "checked": "2026-10-22",
+        "note": "dataset description, raw-URL hosting, Makefile tasks, incomplete fields, duplicate images, provenance"
+      },
+      {
+        "url": "https://github.com/yuhonas/free-exercise-db/blob/main/LICENSE.md",
+        "checked": "2026-10-22",
+        "note": "Unlicense"
+      },
+      {
+        "url": "https://github.com/yuhonas/free-exercise-db/blob/main/schema.json",
+        "checked": "2026-10-22",
+        "note": "fields, 17 muscle values, category and level enums"
+      },
+      {
+        "url": "https://github.com/yuhonas/free-exercise-db/blob/main/dist/exercises.json",
+        "checked": "2026-10-22",
+        "note": "counted: 876 exercises, categories, levels, null fields, 1,746 JPEG image paths"
+      },
+      {
+        "url": "https://github.com/wrkout/exercises.json/blob/master/LICENSE.md",
+        "checked": "2026-10-22",
+        "note": "upstream dataset is also the Unlicense"
+      },
+      {
+        "url": "https://github.com/ExerciseDB/exercisedb-api",
+        "checked": "2026-10-22",
+        "note": "README claims, v2 sample record, playground warning; repository still README + LICENSE only"
+      },
+      {
+        "url": "https://github.com/ExerciseDB/exercisedb-api/blob/main/LICENSE",
+        "checked": "2026-10-22",
+        "note": "AGPL-3.0 license file"
+      },
+      {
+        "url": "https://exercisedb.dev/",
+        "checked": "2026-10-22",
+        "note": "AscendAPI, previously ExerciseDB (snapshot)"
+      },
+      {
+        "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+        "checked": "2026-10-22",
+        "note": "V1 free and paid tiers, fields (snapshot)"
+      },
+      {
+        "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+        "checked": "2026-10-22",
+        "note": "V2 catalog, MP4, watermark (snapshot)"
+      },
+      {
+        "url": "https://docs.ascendapi.com/quickstart/overview",
+        "checked": "2026-10-22",
+        "note": "free Basic plan (snapshot)"
+      },
+      {
+        "url": "https://docs.ascendapi.com/guides/ratelimiting",
+        "checked": "2026-10-22",
+        "note": "free-plan rate limit (snapshot)"
+      }
+    ]
   },
   {
     "slug": "kinestex-vs-sency",

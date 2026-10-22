@@ -25,6 +25,7 @@ export const RELEASED_ALTERNATIVES = new Set<string>([
   "terra-alternatives",
   "nutritionix-alternatives",
   "exercisedb-alternatives",
+  "wger-alternatives",
   "kinestex-alternatives",
   "human-api-alternatives",
   "mediapipe-alternatives",
