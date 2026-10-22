@@ -69,7 +69,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Access & migration",
     blurb: "Can't get approved, or the API is going away.",
-    slugs: ["garmin-api-approval", "google-fit-api-deprecated"],
+    slugs: ["garmin-api-approval", "garmin-api-personal-use", "google-fit-api-deprecated"],
   },
 ];
 

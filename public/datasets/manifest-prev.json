@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-18",
+  "generated": "2026-10-22",
   "files": [
     {
       "file": "bluetooth-fitness-gatt-2026.csv",
@@ -15,15 +15,15 @@
     },
     {
       "file": "fitness-api-changes-2026.csv",
-      "bytes": 9403,
-      "rows": 16,
-      "sha256": "d0527d247512dacced12811dc579ae269381226147130bd05adcbb0d2b0d0728"
+      "bytes": 10216,
+      "rows": 17,
+      "sha256": "8dd7a44f9519cd1b69d637be93c5e3aa69fa26cf18490b4983e32bf5bcd511fa"
     },
     {
       "file": "fitness-api-changes-2026.json",
-      "bytes": 13647,
-      "rows": 16,
-      "sha256": "ea1701134d0de1a4563617c9d6f1dfe9f033f1d1de2e22218fc1eeb35a43992f"
+      "bytes": 14617,
+      "rows": 17,
+      "sha256": "d2ea5cfa9bd01948ac319c291bd39bc929ad79079c509e66fa9d4de855696f36"
     },
     {
       "file": "fitness-api-glossary-2026.csv",
@@ -39,15 +39,15 @@
     },
     {
       "file": "fitness-apis-2026.csv",
-      "bytes": 5278,
+      "bytes": 5290,
       "rows": 25,
-      "sha256": "e3abc8f56a437450d9d56d5d532cffa9c1fd0e870f93e501f1b596043840b2db"
+      "sha256": "3808a559ed550701b180bfc351831f19225e3b48b0cf65fe086e7e9353d6d646"
     },
     {
       "file": "fitness-apis-2026.json",
-      "bytes": 10465,
+      "bytes": 10477,
       "rows": 25,
-      "sha256": "0ed76764a340da36f21350c50d175346d6c6d4db23e7a47dfba3ce2aecba5a5f"
+      "sha256": "74c69baf90e6afe7100c4debd033fe4ed86884b04202ee5896d6b7cb8cfba14b"
     },
     {
       "file": "google-health-api-data-types-2026.csv",
@@ -162,6 +162,18 @@
       "bytes": 56538,
       "rows": 65,
       "sha256": "9adf2f39b06bff7364a906b0b4df7b8e22ea392f65b9ca471d4af4d8925e651c"
+    },
+    {
+      "file": "workout-types-crosswalk-2026.csv",
+      "bytes": 152975,
+      "rows": 412,
+      "sha256": "c8c186e2048eddd831262512e200bc0437c938b3d0160b8343712ad5e179ad87"
+    },
+    {
+      "file": "workout-types-crosswalk-2026.json",
+      "bytes": 357997,
+      "rows": 412,
+      "sha256": "5d05ffbc569f7ba7c4a00bedf6115122e2cfa32d11a59cb6e13b1f21cb7036f9"
     }
   ]
 }

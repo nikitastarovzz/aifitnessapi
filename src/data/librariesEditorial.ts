@@ -948,7 +948,7 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
     h1: "garminconnect (Python)",
     primaryQuery: "garminconnect python",
     answer:
-      "garminconnect is an unofficial Python client for Garmin Connect, the web service behind Garmin's consumer app, signed in with the user's own credentials. Its README says it logs in through the same mobile SSO flow as the official Garmin Connect Android app, stores tokens in ~/.garminconnect/garmin_tokens.json, and stopped using garth in version 0.3.0. It requires Python 3.12 or later.",
+      "garminconnect is an unofficial Python client for Garmin Connect, the web service behind Garmin's consumer app, signed in with the user's own credentials. Its README says it logs in through the same mobile SSO flow as the official Garmin Connect mobile apps, stores tokens in ~/.garminconnect/garmin_tokens.json, and stopped using garth in version 0.3.0. It requires Python 3.12 or later.",
     wraps: {
       text: "Garmin Connect's web services, signed in as the user with their own credentials. The README describes it as an unofficial client that does not pair with the phone app or connect to a watch.",
       quote: "This is an unofficial client for Garmin's web services; it does not pair with the Garmin Connect phone app or connect directly to a watch.",
@@ -981,6 +981,7 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
     nativeLinks: [
       { href: "/integrate/garmin-api", label: "Garmin API integration guide", why: "Garmin's official developer program — the route for an app serving other people's data." },
       { href: "/fix/garmin-api-approval", label: "Garmin API approval", why: "What the official program's access gate involves." },
+      { href: "/fix/garmin-api-personal-use", label: "Garmin API for personal use", why: "Garmin's official Personal API, the sanctioned route to your own account's data." },
     ],
     faqs: [
       {
@@ -989,7 +990,7 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
       },
       {
         q: "Is garminconnect an official Garmin API?",
-        a: "No. Its README calls it an unofficial client for Garmin's web services that signs in with the user's own credentials. For an app that serves other people's Garmin data, see our Garmin API guide, which covers Garmin's official developer program.",
+        a: "No. Its README calls it an unofficial client for Garmin's web services that signs in with the user's own credentials. For your own account's data, Garmin now offers an official Personal API with a key you create on Garmin Connect Web; for an app that serves other people's Garmin data, see our Garmin API guide, which covers Garmin's official developer program.",
       },
     ],
   },
@@ -1026,7 +1027,10 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
         sourceLabel: README,
       },
     ],
-    nativeLinks: [{ href: "/integrate/garmin-api", label: "Garmin API integration guide", why: "Garmin's official developer program, which does not depend on mobile-app sign-in." }],
+    nativeLinks: [
+      { href: "/integrate/garmin-api", label: "Garmin API integration guide", why: "Garmin's official developer program, which does not depend on mobile-app sign-in." },
+      { href: "/fix/garmin-api-personal-use", label: "Garmin API for personal use", why: "Garmin's Personal API, an official key for your own data that needs no third-party login." },
+    ],
     faqs: [
       {
         q: "Why does garth login stop working?",
@@ -1488,7 +1492,7 @@ export const LIBRARY_COMPARISONS: LibraryComparison[] = [
       {
         side: "a",
         note: {
-          text: "Since 0.3.0 no longer uses garth; signs in through the same mobile SSO flow as the official Garmin Connect Android app, with an MFA callback.",
+          text: "Since 0.3.0 no longer uses garth; signs in through the same mobile SSO flow as the official Garmin Connect mobile apps, with an MFA callback.",
           source: R.garminconnect,
           sourceLabel: README,
         },

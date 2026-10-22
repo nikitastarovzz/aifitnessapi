@@ -1,0 +1,102 @@
+[
+  {
+    "claim": "exercisedb.dev now presents itself as AscendAPI, previously ExerciseDB.",
+    "url": "https://exercisedb.dev/",
+    "quote": "Previously ExerciseDB"
+  },
+  {
+    "claim": "The free V1 tier is 1,500 exercises with 180p GIFs and needs no authentication.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "1,500 exercises with 180p GIFs. No authentication required, just call the hosted API directly."
+  },
+  {
+    "claim": "The free V1 endpoint is oss.exercisedb.dev/api/v1/exercises.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "https://oss.exercisedb.dev/api/v1/exercises"
+  },
+  {
+    "claim": "The free V1 endpoint reported a total of 1,500 exercises when read on October 22, 2026.",
+    "url": "https://oss.exercisedb.dev/api/v1/exercises",
+    "quote": "\"total\":1500"
+  },
+  {
+    "claim": "The free V1 endpoint returns success, a meta object with total and a nextCursor, and data.",
+    "url": "https://oss.exercisedb.dev/api/v1/exercises",
+    "quote": "\"hasNextPage\":true"
+  },
+  {
+    "claim": "A paid V1 tier on RapidAPI adds multi-resolution media, difficulty levels and exercise types.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "Enhanced data with multi-resolution media, difficulty levels, exercise types, and more."
+  },
+  {
+    "claim": "Free V1 media is 180p GIFs only; 360p to 1080p images and GIFs are on the paid RapidAPI tier.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "The free tier includes 180p GIFs only . Multi-resolution images and GIFs (360p–1080p) are available on the paid RapidAPI tier ."
+  },
+  {
+    "claim": "The paid V1 tier's RapidAPI host is edb-with-gifs-and-images-by-ascendapi.p.rapidapi.com.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "X-RapidAPI-Host | edb-with-gifs-and-images-by-ascendapi.p.rapidapi.com"
+  },
+  {
+    "claim": "ExerciseDB V2 gives each exercise an MP4 demonstration video.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "Each exercise includes an MP4 demonstration video for in-app playback."
+  },
+  {
+    "claim": "The V2 record carries a videoUrl field.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "videoUrl | string | Exercise demonstration video URL"
+  },
+  {
+    "claim": "AscendAPI's quickstart calls the V2 Basic plan completely free.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "Select the Basic plan it’s completely free:"
+  },
+  {
+    "claim": "The free Basic plan includes 2,000 requests a month.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "2,000 requests / month"
+  },
+  {
+    "claim": "The free Basic plan includes 200 exercises in the library.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "200 exercises in library"
+  },
+  {
+    "claim": "The free Basic plan includes exercise images and videos.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "Exercise images & videos"
+  },
+  {
+    "claim": "The free Basic plan needs no credit card.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "No credit card required"
+  },
+  {
+    "claim": "V2 requests send X-RapidAPI-Key and X-RapidAPI-Host edb-with-videos-and-images-by-ascendapi.p.rapidapi.com.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "X-RapidAPI-Host | edb-with-videos-and-images-by-ascendapi.p.rapidapi.com"
+  },
+  {
+    "claim": "The quickstart's first request searches exercises at /api/v1/exercises/search.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "https://edb-with-videos-and-images-by-ascendapi.p.rapidapi.com/api/v1/exercises/search?search=chest%20press"
+  },
+  {
+    "claim": "Both V2 tiers are accessed via RapidAPI, and free-tier media is watermarked.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "Both free and paid tiers are accessed via RapidAPI. The only difference is that free tier media is watermarked ."
+  },
+  {
+    "claim": "AscendAPI's free plans are limited to 1,000 requests per hour per API key.",
+    "url": "https://docs.ascendapi.com/guides/ratelimiting",
+    "quote": "All free plans include a limit of 1,000 requests per hour per API key."
+  },
+  {
+    "claim": "The exercisedb-api repository carries an AGPL-3.0 LICENSE file (a git clone on 2026-10-22 showed only README.md and LICENSE, last commit 2025-11-25).",
+    "url": "https://raw.githubusercontent.com/ExerciseDB/exercisedb-api/main/LICENSE",
+    "quote": "GNU AFFERO GENERAL PUBLIC LICENSE"
+  }
+]

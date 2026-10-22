@@ -15,6 +15,27 @@ export type Correction = {
 
 export const CORRECTIONS: Correction[] = [
   {
+    date: "2026-10-22",
+    page: { href: "/pricing/exercise-database-api-pricing", label: "Exercise Database API Pricing: What Does It Cost?" },
+    was: "The page said the free way into exercisedb.dev was a v2 playground that is not for production, that exercisedb.dev points production use to paid plans, and, in an FAQ answer, that exercisedb.dev was not one of the free exercise database APIs.",
+    now: "exercisedb.dev now presents itself as AscendAPI, previously ExerciseDB, and its documentation describes two free tiers: ExerciseDB V1 serves 1,500 exercises with 180p GIFs with no authentication at oss.exercisedb.dev, and ExerciseDB V2 has a free Basic plan on RapidAPI with 2,000 requests a month and 200 exercises, with watermarked media. The page now leads with both, and says that the paid prices and the terms of use could not be read.",
+    how: "Found on 2026-10-22, when a source-snapshot run reached exercisedb.dev and AscendAPI's documentation from a GitHub runner for the first time; on 2026-10-12 the claim had been written from the GitHub README alone. The documentation pages that describe the free tiers carry last-modified dates in March 2026, before the claim was published.",
+  },
+  {
+    date: "2026-10-22",
+    page: { href: "/fitness-apis/exercise-database-apis", label: "The Best Exercise Database APIs for Developers" },
+    was: "The roundup said API Ninjas Exercises returns no images, GIFs or video, that its Exercises endpoint is premium-only on the Business or Professional plans, and, in an FAQ answer, that API Ninjas offers no free exercise endpoint.",
+    now: "API Ninjas documents an images field of start and finish photos on premium plans, and a free key calls the Exercises API on a free plan that is for evaluation and demo only, without commercial use. Commercial use starts at the Developer plan; only the full-list endpoint, /v1/allexercises, needs the Business tier or an annual plan. It still serves no GIFs or video.",
+    how: "Found on 2026-10-22, when a source-snapshot run read API Ninjas' Exercises and pricing pages. We cannot tell whether API Ninjas added the images field and the evaluation plan after the page went up on 2026-07-08 or the page was wrong from the start; it is logged because the page stated it as fact.",
+  },
+  {
+    date: "2026-10-22",
+    page: { href: "/alternatives/exercisedb-alternatives", label: "The Best ExerciseDB Alternatives" },
+    was: "The page called API Ninjas Exercises metadata-only, with no GIFs, video or images.",
+    now: "API Ninjas returns start and finish photos in an images field on premium plans; it still serves no GIFs or video.",
+    how: "Same finding as the exercise database APIs roundup, on 2026-10-22.",
+  },
+  {
     date: "2026-10-18",
     page: { href: "/pricing/fitness-api-free-tiers-compared", label: "Fitness API Free Tiers Compared: What Free Actually Includes" },
     was: "The page counted 12 of the 25 items in its source dataset (48%) as free to call, a count that left Garmin out because the dataset then classed it contact-sales, and listed Strava as one of five free tiers that run out, with Standard-tier developers said to need a paid Strava subscription.",

@@ -1,13 +1,18 @@
 [
   {
-    "claim": "Single wearables, watch out: Garmin is partner-approval-only.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "If approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
+    "claim": "Single wearables, watch out: Garmin needs approval into its Connect Developer Program (Garmin FAQ).",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "After you request access to the Garmin Connect Developer Program and your request has been approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
   },
   {
-    "claim": "Single wearables, watch out: by its own FAQ, Garmin's program is for business use only.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+    "claim": "Single wearables, watch out: since October 2026 it comes as Starter and Enterprise Access.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Starter Access: Developers can gain immediate access and launch with Garmin, with access to core data and tools."
+  },
+  {
+    "claim": "Single wearables, watch out: since October 2026 it comes as Starter and Enterprise Access.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Enterprise Access: For companies operating at scale, this new model aligns with growth, offering expanded data access, reliability, and enterprise-grade support."
   },
   {
     "claim": "Single wearables, watch out: Oura limits a new app to 10 users until Oura approves it.",

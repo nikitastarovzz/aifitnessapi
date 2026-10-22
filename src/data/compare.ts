@@ -26,6 +26,7 @@ export const RELEASED_COMPARE = new Set<string>([
   "nutritionix-vs-edamam",
   "edamam-vs-spoonacular",
   "exercisedb-vs-wger",
+  "exercisedb-vs-free-exercise-db",
   "kinestex-vs-sency",
   "kinestex-vs-quickpose",
   "kinestex-vs-mediapipe",
@@ -37,6 +38,8 @@ export const RELEASED_COMPARE = new Set<string>([
   "terra-vs-open-wearables",
   "terra-vs-sahha",
   "quickpose-vs-sency",
+  "mediapipe-vs-movenet",
+  "mediapipe-vs-yolo-pose",
 ]);
 
 export const allCompare: ClusterEntry[] = compareEntries;

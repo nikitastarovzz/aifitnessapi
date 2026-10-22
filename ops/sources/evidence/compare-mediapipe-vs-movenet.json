@@ -1,0 +1,217 @@
+[
+  {
+    "claim": "MediaPipe Pose Landmarker returns 33 landmarks.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+    "quote": "\"\"\"The 33 pose landmarks.\"\"\""
+  },
+  {
+    "claim": "MoveNet returns 17 keypoints.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/src/movenet/README.md",
+    "quote": "MoveNet is an ultra fast and accurate model that detects 17 keypoints of a body."
+  },
+  {
+    "claim": "PoseNet and MoveNet return 17 keypoints and BlazePose 33, each with x, y, score and name.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/README.md",
+    "quote": "PoseNet and MoveNet both return 17 keypoints. MediaPipe BlazePose returns 33 keypoints. Each keypoint contains x, y, score and name."
+  },
+  {
+    "claim": "BlazePose adds keypoints3D and a segmentation mask.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/README.md",
+    "quote": "In addition, MediaPipe BlazePose also returns an array of 3D keypoints and a segmentation mask."
+  },
+  {
+    "claim": "Each MediaPipe landmark carries visibility and presence.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/components/containers/landmark.py",
+    "quote": "presence: Landmark presence. Should stay unset if not supported."
+  },
+  {
+    "claim": "Each MediaPipe landmark carries visibility.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/components/containers/landmark.py",
+    "quote": "visibility: Landmark visibility. Should stay unset if not supported."
+  },
+  {
+    "claim": "World landmarks in meters with the origin between the hips.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "Real-world 3D coordinates in meters with the origin at the center between hips."
+  },
+  {
+    "claim": "TF.js places BlazePose keypoints3D in a 2 x 2 x 2 meter space.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/README.md",
+    "quote": "x, y and z represent absolute distance in meters in a 2 x 2 x 2 meter cubic space."
+  },
+  {
+    "claim": "The hip centre is (0, 0, 0) in BlazePose's keypoints3D.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/README.md",
+    "quote": "so the coordinate for the hip center is (0, 0, 0)."
+  },
+  {
+    "claim": "The Tasks num_poses option defaults to 1.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+    "quote": "num_poses: int = 1"
+  },
+  {
+    "claim": "num_poses is the maximum number of poses the PoseLandmarker can detect.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+    "quote": "num_poses: The maximum number of poses can be detected by the PoseLandmarker."
+  },
+  {
+    "claim": "MoveNet SinglePose Lightning is the default and fastest single-pose model.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/src/movenet/README.md",
+    "quote": "`SINGLEPOSE_LIGHTNING`. Default. The fastest single-pose detector."
+  },
+  {
+    "claim": "MoveNet SinglePose Thunder is more accurate but slower.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/src/movenet/README.md",
+    "quote": "`SINGLEPOSE_THUNDER`. A more accurate but slower single-pose detector."
+  },
+  {
+    "claim": "MoveNet MultiPose Lightning detects up to 6 people.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/src/movenet/README.md",
+    "quote": "`MULTIPOSE_LIGHTNING`. Multi-pose detector that detects up to 6 poses."
+  },
+  {
+    "claim": "MultiPose can track people across frames with an ID.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/src/movenet/README.md",
+    "quote": "If true, each pose will have an ID that uniquely identifies a person. Only used with multi-pose models."
+  },
+  {
+    "claim": "Lightning takes 192x192 input.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/src/movenet/constants.ts",
+    "quote": "MOVENET_SINGLEPOSE_LIGHTNING_RESOLUTION = 192"
+  },
+  {
+    "claim": "Thunder takes 256x256 input.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/src/movenet/constants.ts",
+    "quote": "MOVENET_SINGLEPOSE_THUNDER_RESOLUTION = 256"
+  },
+  {
+    "claim": "MediaPipe deploys to Android, iOS, web and more.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/README.md",
+    "quote": "contains everything that you need to customize and deploy to mobile (Android, iOS), web, desktop, edge devices, and IoT"
+  },
+  {
+    "claim": "MediaPipe has a Python setup path.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/README.md",
+    "quote": "[Python](https://developers.google.com/edge/mediapipe/solutions/setup_python)"
+  },
+  {
+    "claim": "MediaPipe is Apache-2.0.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/LICENSE",
+    "quote": "Apache License Version 2.0, January 2004"
+  },
+  {
+    "claim": "tfjs-models is Apache-2.0.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/LICENSE",
+    "quote": "Apache License Version 2.0, January 2004"
+  },
+  {
+    "claim": "MediaPipe Pose targets fitness applications.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "it can form the basis for yoga, dance, and fitness applications."
+  },
+  {
+    "claim": "One createDetector call serves MoveNet, BlazePose and PoseNet.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/README.md",
+    "quote": "You first create a detector by choosing one of the models from `SupportedModels`, including `MoveNet`, `BlazePose` and `PoseNet`."
+  },
+  {
+    "claim": "MoveNet README FPS order: SinglePose Lightning, SinglePose Thunder, MultiPose Lightning.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/src/movenet/README.md",
+    "quote": "SinglePose Lightning | SinglePose Thunder | Multipose Lightning"
+  },
+  {
+    "claim": "MoveNet WebGL FPS on MacBook Pro, iPhone 12, Pixel 5 and desktop.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/src/movenet/README.md",
+    "quote": "|       *WebGL*                        |  104 \\| 77 \\| 54 | 51 \\| 43 \\| 24 | 34 \\| 12 \\| 8 | 87 \\| 82 \\| 62 |"
+  },
+  {
+    "claim": "MoveNet benchmark machines.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/src/movenet/README.md",
+    "quote": "|              | MacBook Pro 15\" 2019 <br> Intel core i9. <br> AMD Radeon Pro Vega 20 Graphics. <br> (FPS) | iPhone 12 <br> (FPS) | Pixel 5 <br> (FPS) | Desktop <br> Intel i9-10900K. <br> Nvidia GTX 1070 GPU. <br> (FPS) |"
+  },
+  {
+    "claim": "BlazePose FPS under the MediaPipe runtime on the same machines.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/src/blazepose_tfjs/README.md",
+    "quote": "|       *MediaPipe Runtime* <br> With WASM & GPU Accel.                        |  92 \\| 81 \\| 38 | N/A | 32 \\| 22 \\| N/A | 160 \\| 140 \\| 98 |"
+  },
+  {
+    "claim": "BlazePose FPS under the TF.js runtime on the same machines.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/src/blazepose_tfjs/README.md",
+    "quote": "|  *TensorFlow.js Runtime* <br> with WebGL backend |  48 \\| 53 \\| 28 | 34 \\| 30 \\| N/A | 12  \\| 11 \\| 5 | 44 \\| 40 \\| 30 |"
+  },
+  {
+    "claim": "BlazePose benchmark machines match MoveNet's.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/src/blazepose_tfjs/README.md",
+    "quote": "|  |MacBook Pro 15\" 2019<br>Intel core i9.<br>AMD Radeon Pro Vega 20 Graphics.<br> (FPS)| iPhone12<br>(FPS) | Pixel5 <br> (FPS)|Desktop <br> Intel i9-10900K. <br> Nvidia GTX 1070 GPU. <br> (FPS)|"
+  },
+  {
+    "claim": "BlazePose quality table compares with AlphaPose and Apple Vision.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "[AlphaPose ResNet50](https://github.com/MVIG-SJTU/AlphaPose)"
+  },
+  {
+    "claim": "BlazePose quality table includes Apple Vision.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "[Apple Vision](https://developer.apple.com/documentation/vision/detecting_human_body_poses_in_images)"
+  },
+  {
+    "claim": "COCO order puts left_hip at index 11.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/src/constants.ts",
+    "quote": "'nose', 'left_eye', 'right_eye', 'left_ear', 'right_ear', 'left_shoulder', 'right_shoulder', 'left_elbow', 'right_elbow', 'left_wrist', 'right_wrist', 'left_hip', 'right_hip'"
+  },
+  {
+    "claim": "MediaPipe's enum puts LEFT_HIP at 23.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+    "quote": "LEFT_HIP = 23"
+  },
+  {
+    "claim": "MediaPipe's enum puts LEFT_SHOULDER at 11.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+    "quote": "LEFT_SHOULDER = 11"
+  },
+  {
+    "claim": "MediaPipe's extra points include heels and foot index.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+    "quote": "LEFT_HEEL = 29"
+  },
+  {
+    "claim": "MediaPipe's extra points include foot index.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+    "quote": "LEFT_FOOT_INDEX = 31"
+  },
+  {
+    "claim": "MediaPipe's extra points include knuckles.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+    "quote": "LEFT_PINKY = 17"
+  },
+  {
+    "claim": "BlazePose-MediaPipe cannot be used with tfjs-react-native.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/src/blazepose_mediapipe/README.md",
+    "quote": "Note that BlazePose-MediaPipe uses WebAssembly behind the scene and cannot be used with [tfjs-react-native]"
+  },
+  {
+    "claim": "MoveNet modelUrl accepts io.IOHandler for tfjs-react-native bundleResourceIO.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/src/movenet/README.md",
+    "quote": "It also accepts `io.IOHandler` which can be used with"
+  },
+  {
+    "claim": "bundleResourceIO loads from the app bundle.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/src/movenet/README.md",
+    "quote": "to load model from app bundle directory using"
+  },
+  {
+    "claim": "BlazePose lite model size under the MediaPipe runtime.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/src/blazepose_tfjs/README.md",
+    "quote": "| Lite model | 10.6MB | 1.91s |"
+  },
+  {
+    "claim": "BlazePose full model size.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/src/blazepose_tfjs/README.md",
+    "quote": "| Full model | 14MB | 1.91s |"
+  },
+  {
+    "claim": "BlazePose heavy model size.",
+    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/src/blazepose_tfjs/README.md",
+    "quote": "| Heavy model | 34.9MB | 4.82s |"
+  }
+]

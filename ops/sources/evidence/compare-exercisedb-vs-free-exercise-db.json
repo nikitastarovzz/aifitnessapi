@@ -1,0 +1,232 @@
+[
+  {
+    "claim": "exercisedb.dev's README advertises 11,000+ structured exercises.",
+    "url": "https://raw.githubusercontent.com/ExerciseDB/exercisedb-api/main/README.md",
+    "quote": "11,000+ structured exercises"
+  },
+  {
+    "claim": "It advertises 15,000+ videos.",
+    "url": "https://raw.githubusercontent.com/ExerciseDB/exercisedb-api/main/README.md",
+    "quote": "15,000+ high-quality videos"
+  },
+  {
+    "claim": "It advertises 20,000+ images.",
+    "url": "https://raw.githubusercontent.com/ExerciseDB/exercisedb-api/main/README.md",
+    "quote": "20,000+ exercise images"
+  },
+  {
+    "claim": "It advertises 5,000+ GIFs.",
+    "url": "https://raw.githubusercontent.com/ExerciseDB/exercisedb-api/main/README.md",
+    "quote": "5,000+ GIF animations"
+  },
+  {
+    "claim": "The exercisedb-api repository carries an AGPL-3.0 LICENSE file. (That the repository holds only README.md and LICENSE was established by a git clone on 2026-10-22: three commits, latest 401ef93 of 2025-11-25.)",
+    "url": "https://raw.githubusercontent.com/ExerciseDB/exercisedb-api/main/LICENSE",
+    "quote": "GNU AFFERO GENERAL PUBLIC LICENSE"
+  },
+  {
+    "claim": "The README labels its v2 playground for exploration only and not for production.",
+    "url": "https://raw.githubusercontent.com/ExerciseDB/exercisedb-api/main/README.md",
+    "quote": "These endpoints are for exploration only and <strong>not recommended for production integration</strong>"
+  },
+  {
+    "claim": "The v2 sample record carries a videoUrl pointing at an .mp4 file.",
+    "url": "https://raw.githubusercontent.com/ExerciseDB/exercisedb-api/main/README.md",
+    "quote": "\"videoUrl\": \"Lever-Pec-Deck-Fly-Chest.mp4\","
+  },
+  {
+    "claim": "The v2 sample record has an overview.",
+    "url": "https://raw.githubusercontent.com/ExerciseDB/exercisedb-api/main/README.md",
+    "quote": "\"overview\": \"The Lever Pec Deck Fly is a strength-building exercise"
+  },
+  {
+    "claim": "The v2 sample record has exerciseTips.",
+    "url": "https://raw.githubusercontent.com/ExerciseDB/exercisedb-api/main/README.md",
+    "quote": "\"exerciseTips\": ["
+  },
+  {
+    "claim": "The v2 sample record has variations.",
+    "url": "https://raw.githubusercontent.com/ExerciseDB/exercisedb-api/main/README.md",
+    "quote": "\"variations\": ["
+  },
+  {
+    "claim": "The v2 sample record has keywords.",
+    "url": "https://raw.githubusercontent.com/ExerciseDB/exercisedb-api/main/README.md",
+    "quote": "\"keywords\": ["
+  },
+  {
+    "claim": "The v2 sample record has relatedExerciseIds.",
+    "url": "https://raw.githubusercontent.com/ExerciseDB/exercisedb-api/main/README.md",
+    "quote": "\"relatedExerciseIds\": ["
+  },
+  {
+    "claim": "exercisedb.dev names muscles anatomically, e.g. Pectoralis Major Clavicular Head, in targetMuscles.",
+    "url": "https://raw.githubusercontent.com/ExerciseDB/exercisedb-api/main/README.md",
+    "quote": "\"Pectoralis Major Clavicular Head\""
+  },
+  {
+    "claim": "The v2 sample tags a gender for the demonstration.",
+    "url": "https://raw.githubusercontent.com/ExerciseDB/exercisedb-api/main/README.md",
+    "quote": "\"gender\":\"male\","
+  },
+  {
+    "claim": "exercisedb.dev's sample uses equipment labels like LEVERAGE MACHINE.",
+    "url": "https://raw.githubusercontent.com/ExerciseDB/exercisedb-api/main/README.md",
+    "quote": "\"LEVERAGE MACHINE\""
+  },
+  {
+    "claim": "free-exercise-db's README calls it an \"Open Public Domain Exercise Dataset\", with 800+ exercises. (Our count of 876 exercises and 1,746 image paths was made by parsing dist/exercises.json on 2026-10-22; a count has no verbatim quote.)",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "Open Public Domain Exercise Dataset in `JSON` format, 800+ exercises with a browsable public searchable frontend"
+  },
+  {
+    "claim": "The combined dist/exercises.json we counted (876 records; 1,746 image paths, all .jpg). Quote shows the record shape the count was taken over.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/dist/exercises.json",
+    "quote": "\"name\": \"3/4 Sit-Up\""
+  },
+  {
+    "claim": "Records conform to a JSON Schema in the repository.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "All exercises are stored as seperate `JSON` documents and conform to the following [JSON Schema](./schema.json)"
+  },
+  {
+    "claim": "Every record has id, name, level, mechanic, equipment, primaryMuscles, secondaryMuscles, instructions, category and images (force is also present in every record in our count).",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/schema.json",
+    "quote": "\"required\": ["
+  },
+  {
+    "claim": "The README lists force, mechanic and equipment as incomplete in some files.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "The following fields are incomplete in _some_ `JSON` files and in such have had to allow `null` in [schema.json](./schema.json)"
+  },
+  {
+    "claim": "The README notes a small number of duplicate images.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "There are also a small number of duplicate images eg."
+  },
+  {
+    "claim": "Muscles come from a fixed list of 17 values (the enum runs abdominals ... triceps).",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/schema.json",
+    "quote": "\"quadriceps\","
+  },
+  {
+    "claim": "IDs are strings built from the name, such as Alternate_Incline_Dumbbell_Curl.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "\"id\": \"Alternate_Incline_Dumbbell_Curl\","
+  },
+  {
+    "claim": "You can fetch the combined JSON and images from raw GitHub URLs as the README describes, prefixing image paths with the exercises/ raw URL.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "prefix any of image path's contained in the `JSON` with `https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/` to get a hosted version of the image"
+  },
+  {
+    "claim": "You can clone the repo and use the JSON files and images locally.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "You can check the repo out and use the `JSON` files and images locally"
+  },
+  {
+    "claim": "Makefile tasks rebuild the combined file and emit newline-delimited JSON for a PostgreSQL import.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "To combine all `JSON` files into [Newline Delimeted JSON](https://en.wikipedia.org/wiki/JSON_streaming#Newline-delimited_JSON) suitable for import into PostgreSQL use the following make task"
+  },
+  {
+    "claim": "A searchable Vue front end at yuhonas.github.io/free-exercise-db.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "There is a simple searchable/browsable frontend to the data written in [Vue.js](https://vuejs.org/)  available at [yuhonas.github.io/free-exercise-db](https://yuhonas.github.io/free-exercise-db/)"
+  },
+  {
+    "claim": "Its README says the data was restructured from wrkout/exercises.json.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "so I restructured the data and built a simple frontend to it"
+  },
+  {
+    "claim": "The upstream wrkout/exercises.json repository's LICENSE.md is also the Unlicense.",
+    "url": "https://raw.githubusercontent.com/wrkout/exercises.json/master/LICENSE.md",
+    "quote": "This is free and unencumbered software released into the public domain."
+  },
+  {
+    "claim": "The repository's LICENSE.md is the Unlicense, which dedicates the work to the public domain.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/LICENSE.md",
+    "quote": "This is free and unencumbered software released into the public domain."
+  },
+  {
+    "claim": "The Unlicense permits any use, commercial or not.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/LICENSE.md",
+    "quote": "distribute this software, either in source code form or as a compiled binary, for any purpose, commercial or non-commercial, and by any means."
+  },
+  {
+    "claim": "Equipment labels in free-exercise-db include body only and e-z curl bar.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/schema.json",
+    "quote": "\"e-z curl bar\","
+  },
+  {
+    "claim": "exercisedb.dev now presents itself as AscendAPI, previously ExerciseDB.",
+    "url": "https://exercisedb.dev/",
+    "quote": "Previously ExerciseDB"
+  },
+  {
+    "claim": "The free V1 tier is 1,500 exercises with 180p GIFs and needs no authentication.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "1,500 exercises with 180p GIFs. No authentication required, just call the hosted API directly."
+  },
+  {
+    "claim": "The free V1 endpoint is oss.exercisedb.dev/api/v1/exercises.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "https://oss.exercisedb.dev/api/v1/exercises"
+  },
+  {
+    "claim": "Free V1 media is 180p GIFs only; 360p to 1080p images and GIFs are on the paid RapidAPI tier.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "The free tier includes 180p GIFs only . Multi-resolution images and GIFs (360p–1080p) are available on the paid RapidAPI tier ."
+  },
+  {
+    "claim": "AscendAPI describes the whole V1 dataset as over 2,000 exercises, available as a free hosted tier and a paid RapidAPI tier.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "featuring over 2,000 structured exercises with rich metadata, images, and GIFs. Available as a free hosted tier and a paid RapidAPI tier with enhanced features."
+  },
+  {
+    "claim": "ExerciseDB V1 records carry bodyParts, targetMuscles and equipments arrays.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "| bodyParts | string[] | Target body regions |"
+  },
+  {
+    "claim": "ExerciseDB V1's sample record lists targetMuscles such as pectorals.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "\"targetMuscles\" : [ \"pectorals\" ]"
+  },
+  {
+    "claim": "AscendAPI describes ExerciseDB V2 as 11,000+ exercises, 15,000+ videos and 20,000+ images.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "A multipurpose exercise dataset with 11,000+ exercises, 15,000+ videos, and 20,000+ images"
+  },
+  {
+    "claim": "ExerciseDB V2 gives each exercise an MP4 demonstration video.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "Each exercise includes an MP4 demonstration video for in-app playback."
+  },
+  {
+    "claim": "Both V2 tiers are accessed via RapidAPI, and free-tier media is watermarked.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "Both free and paid tiers are accessed via RapidAPI. The only difference is that free tier media is watermarked ."
+  },
+  {
+    "claim": "The free Basic plan includes 2,000 requests a month.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "2,000 requests / month"
+  },
+  {
+    "claim": "The free Basic plan includes 200 exercises in the library.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "200 exercises in library"
+  },
+  {
+    "claim": "AscendAPI's free plans are limited to 1,000 requests per hour per API key.",
+    "url": "https://docs.ascendapi.com/guides/ratelimiting",
+    "quote": "All free plans include a limit of 1,000 requests per hour per API key."
+  },
+  {
+    "claim": "The README links separate terms of use, which we could not open.",
+    "url": "https://raw.githubusercontent.com/ExerciseDB/exercisedb-api/main/README.md",
+    "quote": "Terms Of Use"
+  }
+]

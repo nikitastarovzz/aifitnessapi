@@ -170,6 +170,17 @@ export const MODEL_PAGES: Record<string, { href: string; label: string }> = {
   "apple-vision-3d": { href: "/motion/apple-vision-body-pose", label: "Apple Vision body pose" },
 };
 
+/**
+ * Editorial: a page for readers moving off a scheme's model, keyed by scheme
+ * slug. Rendered under "Models that output it"; it adds no claim to the page.
+ */
+export const SCHEME_ALTERNATIVES: Record<string, { href: string; label: string }> = {
+  "openpose-body-25": {
+    href: "/alternatives/openpose-alternatives",
+    label: "alternatives to OpenPose with BODY_25-style foot points",
+  },
+};
+
 export const mapped = (s: PoseScheme) => s.points.filter((p) => p.sharedWith.length > 0);
 export const unmapped = (s: PoseScheme) => s.points.filter((p) => p.sharedWith.length === 0);
 export const shortNameOf = (slug: string) => getScheme(slug)?.shortName ?? slug;

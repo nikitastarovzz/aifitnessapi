@@ -8,6 +8,7 @@ import PageActions from "@/components/PageActions";
 import { POSE_SCHEMES } from "@/data/poseKeypoints";
 import {
   MODEL_PAGES,
+  SCHEME_ALTERNATIVES,
   POSE_BASE,
   POSE_FETCHED,
   crosswalkId,
@@ -160,6 +161,15 @@ export default async function PoseSchemePage({ params }: { params: Promise<Param
               );
             })}
           </ul>
+          {SCHEME_ALTERNATIVES[s.slug] && (
+            <p className="mt-4 text-sm leading-relaxed text-[var(--muted)]">
+              Moving off OpenPose? See{" "}
+              <Link href={SCHEME_ALTERNATIVES[s.slug].href} className={LINK}>
+                {SCHEME_ALTERNATIVES[s.slug].label}
+              </Link>
+              .
+            </p>
+          )}
         </section>
 
         <section id="points" className="mt-14">

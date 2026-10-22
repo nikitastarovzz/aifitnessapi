@@ -1,0 +1,202 @@
+[
+  {
+    "claim": "Answer/body: Garmin says the Personal API is available for personal use.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "The Garmin Connect Personal API is available for personal use and is the quickest way to gain access to your data for use in personal applications."
+  },
+  {
+    "claim": "Body: lets Garmin customers securely access their own Garmin Connect data using an API.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "The Garmin Connect Personal API allows Garmin customers to securely access their own Garmin Connect data using an API."
+  },
+  {
+    "claim": "Body: aimed at developers, hobbyists, data enthusiasts and individuals.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "It is intended for developers, hobbyists, data enthusiasts, and individuals who want to build personal applications using their own Garmin data."
+  },
+  {
+    "claim": "Answer/body/FAQ: not intended for commercial applications serving multiple end users; for individual users' own data.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "The Personal API is intended for individual Garmin users who want programmatic access to their own data. It is not intended for commercial applications serving multiple end users."
+  },
+  {
+    "claim": "Table/FAQ: Developer Program is designed for organizations building integrations for multiple users and includes commercial business APIs and enterprise options; Personal API uses a self-generated key.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "The Personal API provides access to an individual user's own data using a self-generated API key. The Garmin Connect Developer Program is designed for organizations building integrations for multiple users and includes commercial business APIs and enterprise options."
+  },
+  {
+    "claim": "Body: the Business FAQ answers the personal-use question by pointing to the Personal API.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Please visit the Garmin Connect Personal API for more information."
+  },
+  {
+    "claim": "Body: Starter Access wording.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Starter Access: Developers can gain immediate access and launch with Garmin, with access to core data and tools."
+  },
+  {
+    "claim": "Body: Enterprise Access is for companies operating at scale.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Enterprise Access: For companies operating at scale, this new model aligns with growth, offering expanded data access, reliability, and enterprise-grade support."
+  },
+  {
+    "claim": "Table: OAuth 2.0 for every program API.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "All APIs in the Developer Program use OAUTH 2.0."
+  },
+  {
+    "claim": "Table: request access, approval, Developer Portal.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "After you request access to the Garmin Connect Developer Program and your request has been approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
+  },
+  {
+    "claim": "Table: Health, Activity, Women's Health, Training and Courses APIs.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Yes, you may utilize any or all APIs in a single application (Health, Activity, Women's Health, Training and Courses)."
+  },
+  {
+    "claim": "Table/FAQ: Personal access is for individuals using their own data (overview).",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Secure access to your own Garmin Connect data for individuals who want to explore, analyze, and build personalized experiences using their own data."
+  },
+  {
+    "claim": "Table/FAQ: activity data in JSON and .FIT.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Activity Data JSON & .FIT"
+  },
+  {
+    "claim": "Table/FAQ: women's health data in JSON.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Women's Health Data JSON"
+  },
+  {
+    "claim": "Table/FAQ: delivery is pull only.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Delivery Pull only"
+  },
+  {
+    "claim": "Answer/FAQ: you create the key on Garmin Connect Web (overview).",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Log in to the Garmin Connect website to retrieve your personal API key and generate access tokens for Garmin Connect API requests."
+  },
+  {
+    "claim": "Steps: go to the Personal API Key page while logged in.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-api/",
+    "quote": "Go to the Personal API Key page while logged in to your Garmin Connect Web account"
+  },
+  {
+    "claim": "Steps: read and accept the Terms and Conditions.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-api/",
+    "quote": "Read and Accept the Terms and Conditions"
+  },
+  {
+    "claim": "Steps: key displayed only once.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-api/",
+    "quote": "For your security, the key will only be displayed once so copy, save, and protect the key like a password"
+  },
+  {
+    "claim": "Steps/code: the token endpoint and ApiKey header.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-api/",
+    "quote": "curl -X POST 'https://personal.connectapi.garmin.com/personalapitoken-service/personal-api/personal-api-key/token' -H 'Authorization: ApiKey [your-api-key]'"
+  },
+  {
+    "claim": "Steps/FAQ: key expiry options and the reminder email.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "When creating a personal API key, you can configure the key to expire after 30 days, 90 days, 180 days, or one year. We'll send you an email notification about a week before your key expires"
+  },
+  {
+    "claim": "Body: if you lose the key, delete it and generate a new one.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "If you lose the key, you must delete it and generate a new one."
+  },
+  {
+    "claim": "Body: the key cannot be used directly; exchange it for a token.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "Garmin Connect APIs use OAuth2 access tokens for authentication so your Personal API key cannot be used directly."
+  },
+  {
+    "claim": "Body: the token endpoint returns an access token for supported Garmin Connect APIs.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "The API will return an access token that can be used to call supported Garmin Connect APIs."
+  },
+  {
+    "claim": "Body/FAQ: token lifetime.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "Access tokens are valid for 24 hours or until the Personal API key expires, whichever occurs first."
+  },
+  {
+    "claim": "Body/FAQ: no refresh tokens.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "No, refresh tokens are not supported. You can simply obtain a new access token using the endpoint described above."
+  },
+  {
+    "claim": "Body: deleting the key makes key and tokens unusable.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "Once deleted, the key and any access tokens associated with that key, will no longer be usable."
+  },
+  {
+    "claim": "Body: Garmin points developers to Swagger docs.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "Developers should consult the Personal API Swagger documentation and GitHub resources"
+  },
+  {
+    "claim": "Body: garminconnect calls itself unofficial.",
+    "url": "https://raw.githubusercontent.com/cyberjunky/python-garminconnect/master/README.md",
+    "quote": "This is an unofficial client for Garmin's web services"
+  },
+  {
+    "claim": "Body: garminconnect logs in through the mobile sign-in flow.",
+    "url": "https://raw.githubusercontent.com/cyberjunky/python-garminconnect/master/README.md",
+    "quote": "Authentication uses the same mobile SSO flow as the official Garmin Connect mobile apps."
+  },
+  {
+    "claim": "Body: token storage path.",
+    "url": "https://raw.githubusercontent.com/cyberjunky/python-garminconnect/master/README.md",
+    "quote": "~/.garminconnect/garmin_tokens.json"
+  },
+  {
+    "claim": "Body: write methods can change account data.",
+    "url": "https://raw.githubusercontent.com/cyberjunky/python-garminconnect/master/README.md",
+    "quote": "write methods can change Garmin account data."
+  },
+  {
+    "claim": "Body: login strategies with and without TLS impersonation.",
+    "url": "https://raw.githubusercontent.com/cyberjunky/python-garminconnect/master/README.md",
+    "quote": "each with and without TLS impersonation"
+  },
+  {
+    "claim": "Body/FAQ: garth is deprecated.",
+    "url": "https://raw.githubusercontent.com/matin/garth/main/README.md",
+    "quote": "Garth is deprecated and no longer maintained."
+  },
+  {
+    "claim": "Body: Garmin changed its auth flow.",
+    "url": "https://raw.githubusercontent.com/matin/garth/main/README.md",
+    "quote": "Garmin recently changed their auth flow, breaking the mobile auth approach that Garth and other libraries depend on"
+  },
+  {
+    "claim": "Body/FAQ: new logins will not work; saved sessions until token expiry.",
+    "url": "https://raw.githubusercontent.com/matin/garth/main/README.md",
+    "quote": "If you already have a saved session with a valid OAuth1 token, Garth may continue to work until that token expires (~1 year from when it was issued). New logins will not work."
+  },
+  {
+    "claim": "Intro: this site's approval guide quoted Garmin's program FAQ, read on October 17, 2026, saying the program was only for business use (Wayback Machine capture of the FAQ that day).",
+    "url": "https://web.archive.org/web/20261017191828id_/https://developer.garmin.com/gc-developer-program/program-faq",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Intro: the program pages now sit under a Business section.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Menu Business"
+  },
+  {
+    "claim": "Table: Developer Program delivery is push, with ping/pull marked as Enterprise-only (Health API page).",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Push or *Ping/Pull Architecture: Choose the integration option that best matches your needs"
+  },
+  {
+    "claim": "Table: the asterisk means Supported with Enterprise Access only.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Supported with Enterprise Access only"
+  }
+]

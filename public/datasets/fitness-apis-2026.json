@@ -57,8 +57,8 @@
       "label": "Garmin Health / Activity API",
       "category": "wearable-direct",
       "devCost": "free",
-      "userSideCost": "Users sync their own Garmin devices; if you supply wearables, Garmin asks for the number of devices when you request the program.",
-      "approvalGate": "Garmin Connect Developer Program approval, for business use only; Garmin confirms an application's status within two business days.",
+      "userSideCost": "Users sync their own Garmin devices; if you want to offer Garmin wearables, Garmin asks you to contact it through its inquiry form when you request the program.",
+      "approvalGate": "Garmin Connect Developer Program approval, as Starter or Enterprise Access; Garmin's pages state no review time.",
       "source": "https://aifitnessapi.com/pricing/garmin-api-pricing"
     },
     {
@@ -189,7 +189,7 @@
     },
     {
       "id": "exercisedb",
-      "label": "ExerciseDB (via RapidAPI)",
+      "label": "ExerciseDB (AscendAPI)",
       "category": "exercise-content",
       "devCost": "free-tier-then-paid",
       "userSideCost": null,

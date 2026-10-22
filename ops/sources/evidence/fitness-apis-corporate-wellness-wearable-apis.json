@@ -30,63 +30,43 @@
     "quote": "even if some consumers choose to not connect the fitness tracker."
   },
   {
-    "claim": "Gate table, Garmin row: partner approval for the Connect Developer Program.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "If approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
+    "claim": "Gate table / Garmin section / FAQ, access gates: approval for the Connect Developer Program, after which you get the Developer Portal.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "After you request access to the Garmin Connect Developer Program and your request has been approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
   },
   {
-    "claim": "Gate table, Garmin row: which is for business use only.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+    "claim": "Gate table / Garmin section / FAQ: now as Starter or Enterprise Access.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Starter Access: Developers can gain immediate access and launch with Garmin, with access to core data and tools."
   },
   {
-    "claim": "Gate table, Garmin row: Garmin confirms an application's status within two business days.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
+    "claim": "Gate table / Garmin section / FAQ: now as Starter or Enterprise Access.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Enterprise Access: For companies operating at scale, this new model aligns with growth, offering expanded data access, reliability, and enterprise-grade support."
   },
   {
-    "claim": "Gate table, Garmin row: if you issue Garmin devices, Garmin asks how many when you apply.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "please request the Garmin Connect Developer Program and enter the number of devices you believe you will support."
+    "claim": "Gate table / Garmin section: to offer Garmin devices, use the inquiry form.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "If you want to enhance your project by offering Garmin wearables, request the Garmin Connect Developer Program and contact us using the inquiry form with more information about your project."
   },
   {
-    "claim": "Garmin section: Garmin must approve your application before you receive any API credentials.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "If approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
+    "claim": "Garmin section: the Health API page names corporate wellness among its markets.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "The Health API enables you to leverage valuable all-day health metrics such as steps, heart rate, sleep, and stress to create compelling applications in the markets of Corporate Wellness, Population Health, and Patient Monitoring."
   },
   {
-    "claim": "Garmin section: the program FAQ says the program is only for business use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+    "claim": "Garmin section: Starter has limited user capacity; Enterprise unlimited, with tailored commercial terms.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Push only Historical Data Not included User Capacity Limited"
   },
   {
-    "claim": "Garmin section: Garmin confirms an application's status within two business days.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
+    "claim": "Garmin section: Starter has limited user capacity; Enterprise unlimited, with tailored commercial terms.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Golf API JSON Delivery Push or Ping/Pull Historical Data 1 month + User Capacity Unlimited Technical Support Included"
   },
   {
-    "claim": "Garmin section: for a program that issues devices, the FAQ asks you to enter the number of devices you expect to support.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "please request the Garmin Connect Developer Program and enter the number of devices you believe you will support."
-  },
-  {
-    "claim": "Garmin section: a member of the Garmin team will contact you about how to sell and provide the wearables.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "A member of the Garmin team will contact you to discuss how best to sell and provide the wearables to your users."
-  },
-  {
-    "claim": "Garmin section: access to some metrics may require a licence fee or a minimum device order for commercial use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
-  },
-  {
-    "claim": "FAQ, access gates: Garmin's program is for business use only.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
-  },
-  {
-    "claim": "FAQ, access gates: Garmin confirms an application's status within two business days.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
+    "claim": "Garmin section: Starter has limited user capacity; Enterprise unlimited, with tailored commercial terms.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Designed for companies operating at scale requiring capabilities beyond Starter Access. Available options and commercial terms are tailored based on business and technical requirements."
   }
 ]

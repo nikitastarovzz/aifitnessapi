@@ -59,13 +59,19 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Nutrition & exercise content",
     blurb: "Food databases and exercise libraries.",
-    slugs: ["nutritionix-vs-edamam", "edamam-vs-spoonacular", "exercisedb-vs-wger", "usda-fooddata-central-vs-open-food-facts"],
+    slugs: ["nutritionix-vs-edamam", "edamam-vs-spoonacular", "exercisedb-vs-wger", "exercisedb-vs-free-exercise-db", "usda-fooddata-central-vs-open-food-facts"],
   },
   {
     title: "AI motion tracking SDKs",
     blurb:
       "Camera-based coaching SDKs head-to-head. KinesteX funds this site — these pages disclose that up front and are verified from public repos and the vendors' own pages.",
     slugs: ["quickpose-vs-sency", "kinestex-vs-sency", "kinestex-vs-quickpose", "kinestex-vs-mediapipe"],
+  },
+  {
+    title: "Pose estimation models",
+    blurb:
+      "Open pose models head-to-head, from the model cards and source repositories. Neither side is KinesteX, which funds this site; each page says so up front.",
+    slugs: ["mediapipe-vs-movenet", "mediapipe-vs-yolo-pose"],
   },
 ];
 

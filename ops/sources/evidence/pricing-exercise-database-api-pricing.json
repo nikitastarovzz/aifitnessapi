@@ -1,0 +1,212 @@
+[
+  {
+    "claim": "exercisedb.dev now presents itself as AscendAPI, previously ExerciseDB.",
+    "url": "https://exercisedb.dev/",
+    "quote": "Previously ExerciseDB"
+  },
+  {
+    "claim": "AscendAPI's documentation names github.com/ExerciseDB/exercisedb-api as its GitHub.",
+    "url": "https://docs.ascendapi.com/llms.txt",
+    "quote": "[Github](https://github.com/ExerciseDB/exercisedb-api)"
+  },
+  {
+    "claim": "The free V1 tier is 1,500 exercises with 180p GIFs and needs no authentication.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "1,500 exercises with 180p GIFs. No authentication required, just call the hosted API directly."
+  },
+  {
+    "claim": "The free V1 endpoint is oss.exercisedb.dev/api/v1/exercises.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "https://oss.exercisedb.dev/api/v1/exercises"
+  },
+  {
+    "claim": "The free V1 endpoint reported a total of 1,500 exercises when read on October 22, 2026.",
+    "url": "https://oss.exercisedb.dev/api/v1/exercises",
+    "quote": "\"total\":1500"
+  },
+  {
+    "claim": "AscendAPI describes the whole V1 dataset as over 2,000 exercises, available as a free hosted tier and a paid RapidAPI tier.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "featuring over 2,000 structured exercises with rich metadata, images, and GIFs. Available as a free hosted tier and a paid RapidAPI tier with enhanced features."
+  },
+  {
+    "claim": "Free V1 media is 180p GIFs only; 360p to 1080p images and GIFs are on the paid RapidAPI tier.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "The free tier includes 180p GIFs only . Multi-resolution images and GIFs (360p–1080p) are available on the paid RapidAPI tier ."
+  },
+  {
+    "claim": "AscendAPI's quickstart calls the V2 Basic plan completely free.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "Select the Basic plan it’s completely free:"
+  },
+  {
+    "claim": "The free Basic plan includes 2,000 requests a month.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "2,000 requests / month"
+  },
+  {
+    "claim": "The free Basic plan includes 200 exercises in the library.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "200 exercises in library"
+  },
+  {
+    "claim": "The free Basic plan includes exercise images and videos.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "Exercise images & videos"
+  },
+  {
+    "claim": "The free Basic plan needs no credit card.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "No credit card required"
+  },
+  {
+    "claim": "Both V2 tiers are accessed via RapidAPI, and free-tier media is watermarked.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "Both free and paid tiers are accessed via RapidAPI. The only difference is that free tier media is watermarked ."
+  },
+  {
+    "claim": "The paid V2 tier serves watermark-free media.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "Paid tier serves clean, watermark-free assets across all resolutions."
+  },
+  {
+    "claim": "AscendAPI describes ExerciseDB V2 as 11,000+ exercises, 15,000+ videos and 20,000+ images.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "A multipurpose exercise dataset with 11,000+ exercises, 15,000+ videos, and 20,000+ images"
+  },
+  {
+    "claim": "AscendAPI's free plans are limited to 1,000 requests per hour per API key.",
+    "url": "https://docs.ascendapi.com/guides/ratelimiting",
+    "quote": "All free plans include a limit of 1,000 requests per hour per API key."
+  },
+  {
+    "claim": "AscendAPI's paid plans have no strict rate limit.",
+    "url": "https://docs.ascendapi.com/guides/ratelimiting",
+    "quote": "Paid plans have no strict rate limit."
+  },
+  {
+    "claim": "AscendAPI says media served through its CDN is generally unlimited.",
+    "url": "https://docs.ascendapi.com/guides/ratelimiting",
+    "quote": "is served through our CDN and is generally unlimited"
+  },
+  {
+    "claim": "AscendAPI is accessed via RapidAPI, with a RapidAPI account and an active subscription.",
+    "url": "https://docs.ascendapi.com/",
+    "quote": "You will need a RapidAPI account and an active subscription to authenticate your requests."
+  },
+  {
+    "claim": "The exercisedb-api repository carries an AGPL-3.0 LICENSE file (a git clone on 2026-10-22 showed only README.md and LICENSE, last commit 2025-11-25).",
+    "url": "https://raw.githubusercontent.com/ExerciseDB/exercisedb-api/main/LICENSE",
+    "quote": "GNU AFFERO GENERAL PUBLIC LICENSE"
+  },
+  {
+    "claim": "The README links separate terms of use, which we could not open.",
+    "url": "https://raw.githubusercontent.com/ExerciseDB/exercisedb-api/main/README.md",
+    "quote": "Terms Of Use"
+  },
+  {
+    "claim": "API Ninjas says all paid plans are premium plans.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "All paid plans (Developer, Business, Professional, Enterprise) are premium plans."
+  },
+  {
+    "claim": "API Ninjas' Free plan is for evaluation and demo purposes only.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "Evaluation and demo purposes only - no payment information required"
+  },
+  {
+    "claim": "The Free plan: 3,000 calls a month, no commercial use, no caching or storing, 100 calls an hour, attribution required.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "API calls per month 3,000 Commercial use No Data caching/storing allowed No Rate limiting 100 API calls per hour Attribution required Yes"
+  },
+  {
+    "claim": "API Ninjas lists monthly and yearly prices, yearly at 34% off.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "Monthly Yearly 34% off"
+  },
+  {
+    "claim": "The Developer plan is listed at $59 a month, or $39 a month on yearly billing.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "$ 59 $ 39 / month"
+  },
+  {
+    "claim": "Developer: 100,000 calls a month, commercial use allowed, caching or storing data not allowed.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "API calls per month 100,000 Commercial use Yes Data caching/storing allowed No"
+  },
+  {
+    "claim": "The Business plan is listed at $149 a month, or $99 a month on yearly billing.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "$ 149 $ 99 / month"
+  },
+  {
+    "claim": "Business: 1,000,000 calls a month, commercial use and caching or storing allowed.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "API calls per month 1,000,000 Commercial use Yes Data caching/storing allowed Yes"
+  },
+  {
+    "claim": "The Professional plan is listed at $299 a month, or $199 a month on yearly billing.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "$ 299 $ 199 / month"
+  },
+  {
+    "claim": "Professional: 10,000,000 calls a month.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "API calls per month 10,000,000"
+  },
+  {
+    "claim": "The /v1/exercises endpoint returns up to 5 exercises per request.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Returns up to 5 exercises that satisfy the given parameters."
+  },
+  {
+    "claim": "Paging past the first results uses the premium offset parameter.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "you can page through more using the premium offset parameter"
+  },
+  {
+    "claim": "API Ninjas documents an images field of image URLs in movement order, usually start and finish positions.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Array of image URLs showing the exercise, in movement order (usually the start and finish positions)."
+  },
+  {
+    "claim": "Images are included only on premium plans.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "On premium plans, exercises with photos also include an images array of image URLs in movement order."
+  },
+  {
+    "claim": "/v1/allexercises needs the Business tier or above, or any annual plan.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Business tier and above, or any annual plan"
+  },
+  {
+    "claim": "Commercial use of the Exercises API is not permitted on the free tier.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Commercial use of the Exercises API is not permitted on the free tier."
+  },
+  {
+    "claim": "free-exercise-db's README calls it an open public domain exercise dataset with 800+ exercises; our count of dist/exercises.json at commit f00c92c (2026-09-27) on 2026-10-22 found 876 records and 1,746 JPEG image paths.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "Open Public Domain Exercise Dataset in `JSON` format, 800+ exercises"
+  },
+  {
+    "claim": "The combined dist/exercises.json we counted on 2026-10-22: 876 records, 1,746 image paths, all .jpg. The quote shows a record's image paths.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/dist/exercises.json",
+    "quote": "\"images\": [ \"3_4_Sit-Up/0.jpg\", \"3_4_Sit-Up/1.jpg\" ]"
+  },
+  {
+    "claim": "free-exercise-db's LICENSE.md is the Unlicense, public domain.",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/LICENSE.md",
+    "quote": "This is free and unencumbered software released into the public domain."
+  },
+  {
+    "claim": "wger's application code is AGPL-3.0-or-later.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/README.md",
+    "quote": "Application Code: [AGPL-3.0-or-later]"
+  },
+  {
+    "claim": "wger's exercise and ingredient data is Creative Commons, per entry.",
+    "url": "https://raw.githubusercontent.com/wger-project/wger/master/README.md",
+    "quote": "Exercise/Ingredient Data: Creative Commons (see individual entries)"
+  }
+]

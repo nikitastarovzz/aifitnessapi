@@ -5,9 +5,49 @@
     "quote": "A Strava subscription is a prerequisite for creating an app."
   },
   {
-    "claim": "Answer: Garmin's full server-side access requires approval into a program its FAQ says is for business use only.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+    "claim": "Answer / how to compare, access / table / where Garmin pulls ahead / FAQ, Garmin sign-up: Garmin's access requires approval, after which you get the Developer Portal.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "After you request access to the Garmin Connect Developer Program and your request has been approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
+  },
+  {
+    "claim": "Answer / how to compare / table / where Garmin pulls ahead: now offered as Starter and Enterprise Access.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Starter Access: Developers can gain immediate access and launch with Garmin, with access to core data and tools."
+  },
+  {
+    "claim": "Answer / how to compare / table / where Garmin pulls ahead: now offered as Starter and Enterprise Access.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Enterprise Access: For companies operating at scale, this new model aligns with growth, offering expanded data access, reliability, and enterprise-grade support."
+  },
+  {
+    "claim": "How to compare, rules / table, watch out: some features, enhanced beat-to-beat interval and ping/pull among them, are marked Supported with Enterprise Access only.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Enhanced Beat-To-Beat Interval *"
+  },
+  {
+    "claim": "How to compare, rules / table, watch out: some features, enhanced beat-to-beat interval and ping/pull among them, are marked Supported with Enterprise Access only.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Push or *Ping/Pull Architecture: Choose the integration option that best matches your needs"
+  },
+  {
+    "claim": "How to compare, rules / table, watch out: some features, enhanced beat-to-beat interval and ping/pull among them, are marked Supported with Enterprise Access only.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Supported with Enterprise Access only"
+  },
+  {
+    "claim": "Table, cost model / where Garmin pulls ahead / FAQ, Garmin sign-up / FAQ, end users: Enterprise commercial terms are tailored.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Designed for companies operating at scale requiring capabilities beyond Starter Access. Available options and commercial terms are tailored based on business and technical requirements."
+  },
+  {
+    "claim": "FAQ, Garmin sign-up: starting with Starter Access.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Apply for the Garmin Connect Developer Program and create an app with Starter Access. As your business and integration needs evolve, you can request Enterprise Access through Garmin Developer Portal."
+  },
+  {
+    "claim": "Where Garmin pulls ahead / FAQ, data: the Activity API covers per-activity data such as running, cycling and swimming.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/activity-api/",
+    "quote": "Running Cycling Swimming Yoga Strength Training Activity Details"
   },
   {
     "claim": "Answer: Strava's getting-started guide calls a Strava subscription a prerequisite for creating an app.",
@@ -30,11 +70,6 @@
     "quote": "A Strava subscription is a prerequisite for creating an app."
   },
   {
-    "claim": "How to compare, access: Garmin's partner program is for business use only.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
-  },
-  {
     "claim": "How to compare, rules: Strava's API Policy, effective June 1, 2026.",
     "url": "https://www.strava.com/legal/api_policy",
     "quote": "API Policy (2026) Effective Date: June 1, 2026"
@@ -55,16 +90,6 @@
     "quote": "A Strava subscription is a prerequisite for creating an app."
   },
   {
-    "claim": "How to compare, rules: Garmin's program is for business use only.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
-  },
-  {
-    "claim": "How to compare, rules: some Garmin metrics may require a licence fee or a minimum device order for commercial use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
-  },
-  {
     "claim": "Table, API access, Strava: a Strava subscription is needed to create an app.",
     "url": "https://developers.strava.com/docs/getting-started/",
     "quote": "A Strava subscription is a prerequisite for creating an app."
@@ -78,11 +103,6 @@
     "claim": "Table, API access, Strava: more than 10 athletes needs Strava's review.",
     "url": "https://developers.strava.com/docs/rate-limits/",
     "quote": "If you want to scale beyond 10 connected athletes you’ll need to submit your app for review ."
-  },
-  {
-    "claim": "Table, API access, Garmin: business use only.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
   },
   {
     "claim": "Table, user requirement, Strava: Standard Tier apps may require specified end users to hold an active Strava subscription.",
@@ -110,16 +130,6 @@
     "quote": "A Strava subscription is a prerequisite for creating an app."
   },
   {
-    "claim": "Table, cost model, Garmin: no licensing or maintenance fees, per Garmin's program FAQ.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
-  },
-  {
-    "claim": "Table, cost model, Garmin: some metrics may need a licence fee or a minimum device order for commercial use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
-  },
-  {
     "claim": "Table, watch out, Strava: data may be shown only to the athlete who provided it.",
     "url": "https://www.strava.com/legal/api_policy",
     "quote": "Strava Data provided by a specific Strava user may be displayed or disclosed in your Developer Application only to that user. You may not display or disclose Strava Data related to other users, even if such data is publicly viewable on the Strava Platform."
@@ -133,16 +143,6 @@
     "claim": "Table, watch out, Strava: default limits of 200 requests per 15 minutes and 2,000 a day.",
     "url": "https://developers.strava.com/docs/rate-limits/",
     "quote": "The default overall rate limit allows 200 requests every 15 minutes, with up to 2,000 requests per day."
-  },
-  {
-    "claim": "Table, watch out, Garmin: business use only.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
-  },
-  {
-    "claim": "Table, watch out, Garmin: Garmin confirms an application's status within two business days.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
   },
   {
     "claim": "Where Strava pulls ahead: a Strava subscription is a prerequisite for creating an app.",
@@ -170,26 +170,6 @@
     "quote": "You may not use the Strava API Materials or Strava Data, directly or indirectly, in connection with the development, training, evaluation, or operation of any AI Application."
   },
   {
-    "claim": "Where Garmin pulls ahead: the program is only for business use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
-  },
-  {
-    "claim": "Where Garmin pulls ahead: Garmin confirms an application's status within two business days.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
-  },
-  {
-    "claim": "Where Garmin pulls ahead: no licensing or maintenance fees.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
-  },
-  {
-    "claim": "Where Garmin pulls ahead: access to some metrics may require a licence fee or a minimum device order for commercial use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
-  },
-  {
     "claim": "Which to pick, Strava: the Strava subscription its getting-started guide requires to create an app.",
     "url": "https://developers.strava.com/docs/getting-started/",
     "quote": "A Strava subscription is a prerequisite for creating an app."
@@ -198,11 +178,6 @@
     "claim": "Which to pick, AI products: Strava's API Policy forbids using Strava data in connection with any AI application.",
     "url": "https://www.strava.com/legal/api_policy",
     "quote": "You may not use the Strava API Materials or Strava Data, directly or indirectly, in connection with the development, training, evaluation, or operation of any AI Application."
-  },
-  {
-    "claim": "Which to pick, Garmin: partner approval is for business use only.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
   },
   {
     "claim": "Which to pick, aggregators: Strava's API Policy prohibits operating, offering or facilitating an aggregator that re-exposes its API to third parties.",
@@ -218,11 +193,6 @@
     "claim": "Fine print: Strava's API Policy is effective June 1, 2026.",
     "url": "https://www.strava.com/legal/api_policy",
     "quote": "API Policy (2026) Effective Date: June 1, 2026"
-  },
-  {
-    "claim": "Fine print: Garmin does not publish the licence-fee amounts; the FAQ names the fee without a figure.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
   },
   {
     "claim": "FAQ, is Strava free: Strava's API Agreement, effective June 1, 2026.",
@@ -248,26 +218,6 @@
     "claim": "FAQ, is Strava free: Standard Tier apps are subject to subscription requirements for the developer or specified end users.",
     "url": "https://www.strava.com/legal/api_policy",
     "quote": "Standard Tier Applications are subject to subscription requirements as published on the Strava developer site , including a requirement that the developer or specified end users maintain an active Strava subscription."
-  },
-  {
-    "claim": "FAQ, Garmin sign-up: you request the program and Garmin confirms an application's status within two business days.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
-  },
-  {
-    "claim": "FAQ, Garmin sign-up: the program is only for business use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
-  },
-  {
-    "claim": "FAQ, Garmin sign-up: no licensing or maintenance fees.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
-  },
-  {
-    "claim": "FAQ, Garmin sign-up: some metrics may need a licence fee or a minimum device order for commercial use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
   },
   {
     "claim": "FAQ, AI training: Strava's API Policy, effective June 1, 2026.",
@@ -308,15 +258,5 @@
     "claim": "FAQ, end users: Strava calls a Strava subscription a prerequisite for creating an app.",
     "url": "https://developers.strava.com/docs/getting-started/",
     "quote": "A Strava subscription is a prerequisite for creating an app."
-  },
-  {
-    "claim": "FAQ, end users: Garmin's FAQ says some metrics may need a licence fee or a minimum device order for commercial use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
-  },
-  {
-    "claim": "Garmin's Activity API covers over 30 activity types by Garmin's count.",
-    "url": "https://developer.garmin.com/gc-developer-program/overview/",
-    "quote": "Full activity data for over 30 activity types."
   }
 ]

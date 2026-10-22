@@ -60,10 +60,11 @@ const nextConfig: NextConfig = {
       // FAQs and traps moved to /matrix.
       { source: "/health-connect-records", destination: "/health-connect", permanent: true },
       // MediaPipe vs MoveNet was folded into the pose roundup's head-to-head
-      // section (ops/GROWTH-30-2026-10-12.md #18): 1 click on 229 impressions
-      // while the roundup took the same queries. The markdown mirror follows.
-      { source: "/motion/mediapipe-vs-movenet", destination: "/motion/pose-estimation-models-compared", permanent: true },
-      { source: "/motion/mediapipe-vs-movenet.md", destination: "/motion/pose-estimation-models-compared.md", permanent: true },
+      // section (ops/GROWTH-30-2026-10-12.md #18), then given its own
+      // comparison page (ops/TRIPLE-DOWN-2026-10-22.md), where the old address
+      // now goes. The markdown mirror follows.
+      { source: "/motion/mediapipe-vs-movenet", destination: "/compare/mediapipe-vs-movenet", permanent: true },
+      { source: "/motion/mediapipe-vs-movenet.md", destination: "/compare/mediapipe-vs-movenet.md", permanent: true },
       // Twelve blog posts Google never showed were folded into the pages that
       // own their topics (ops/GROWTH-30-2026-10-12.md #20). Each .md address
       // follows to the destination's markdown mirror where one exists, and to

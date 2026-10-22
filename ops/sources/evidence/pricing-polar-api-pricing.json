@@ -1,0 +1,132 @@
+[
+  {
+    "claim": "Answer/body/FAQ: free of charge at the moment.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "At the moment Polar offers the use and activation of Polar API's free of charge."
+  },
+  {
+    "claim": "Answer/body/FAQ: Polar reserves the right to charge fees.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "However, Polar reserves the right to charge fees from time to time at its discretion."
+  },
+  {
+    "claim": "Answer/body/FAQ: agreement last updated 22 August 2025.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "Latest update: 22 August 2025"
+  },
+  {
+    "claim": "Body/FAQ: royalty-free license.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "a royalty-free, non-transferable, non-exclusive, worldwide and limited license to use the Licensed Materials"
+  },
+  {
+    "claim": "Answer/body: any registered Polar Flow user can create a client.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Any registered Polar Flow user can create API client to AccessLink by filling application details at https://admin.polaraccesslink.com"
+  },
+  {
+    "claim": "Body/FAQ: updates and support fees agreed separately.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "Polar shall not have any obligations to provide any updates or new versions of Licensed Material, or maintenance or support for Licensed Materials."
+  },
+  {
+    "claim": "Body/FAQ: fees for updates or support agreed separately.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "In such case fees, if any, payable by You to Polar shall be agreed separately."
+  },
+  {
+    "claim": "Answer/body: AccessLink serves data recorded by Polar devices.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "AccessLink is the access channel to the training and daily activity data recorded by Polar devices."
+  },
+  {
+    "claim": "Body/FAQ: two APIs, AccessLink and Team Pro.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "Currently Polar has two application programming interfaces, AccessLink and Polar Team Pro API"
+  },
+  {
+    "claim": "Body/FAQ: AccessLink moves Polar Flow data; Team Pro moves Team Pro data; terms apply to both.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "AccessLink enbales transfer of data from Polar Flow to other applications, and Polar Team Pro API enables transfer of data from Polar Team Pro system to other applications, respectively. These terms apply to Your use of either Polar API."
+  },
+  {
+    "claim": "Body: Polar mobile SDK reads live data.",
+    "url": "https://www.polar.com/en/developers",
+    "quote": "Polar mobile SDK enables you to read and interpret live data from Polar devices, including ECG data, acceleration data and heart rate broadcast."
+  },
+  {
+    "claim": "Body/FAQ: dynamic rate limit scales with registered users.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Dynamic rate limit scales partners rate limit values based on number of registered users. Rate limit values are updated daily."
+  },
+  {
+    "claim": "Body/FAQ: 15-minute formula.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "15min rate limit: 500 + number of users x 20"
+  },
+  {
+    "claim": "Body/FAQ: 24-hour formula.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "24h rate limit: 5000 + number of users x 100"
+  },
+  {
+    "claim": "Body/FAQ: 429 and short-term violations count toward long-term.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Requests exceeding the limit will return 429 - Too Many Requests. Note that requests violating the short term limit will still count toward the long term limit."
+  },
+  {
+    "claim": "Body/FAQ: changes take effect on posting.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "Such changes shall become effective upon posting updated agreement terms on this site"
+  },
+  {
+    "claim": "Body: Polar recommends visiting regularly.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "Polar recommends You to regularly visit this site to monitor possible changes in these terms."
+  },
+  {
+    "claim": "Body: suspension for any or no reason.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "to suspend or terminate Your, Your Corporate Customer's or any Member's access to Polar Ecosystem for any or no reason, with immediate effect"
+  },
+  {
+    "claim": "Body: liability capped at 500 euros.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "POLAR'S AGGREGATE TOTAL LIABILITY UNDER THIS AGREEMENT SHALL BE LIMITED TO FIVE HUNDRED EUROS (500 €)."
+  },
+  {
+    "claim": "Body/FAQ: no competing service.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "You may not use, or permit others use the Licensed Materials in creating a service similar to or competing with Polar Ecosystem"
+  },
+  {
+    "claim": "Body: credit Polar Ecosystem as the source.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "shall credit Polar Ecosystem as the source of Data when displaying any Data"
+  },
+  {
+    "claim": "Body/FAQ: load testing without approval may result in blacklisting.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "Load testing without prior approval by Polar will be construed as interfering with the proper working of Polar Ecosystem and may result in blacklisting of Your application or service by Polar."
+  },
+  {
+    "claim": "Body/FAQ: DMA gatekeepers not eligible.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "Gatekeepers shall not be eligible to enter into this Agreement."
+  },
+  {
+    "claim": "FAQ: no automated scraping.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "You may not use any automated means ( e.g ., scraping and robots) other than Your application or software to access, query or otherwise collect Data"
+  },
+  {
+    "claim": "Body: aggregators accept the agreement per corporate customer.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "You will have to accept Application Programming Interface (API) Limited License Agreement for each Corporate Customer separately."
+  },
+  {
+    "claim": "Body: Validic connection to Polar devices.",
+    "url": "https://www.polar.com/en/developers",
+    "quote": "Connections to Polar's devices are available via the Validic platform and integration."
+  }
+]
