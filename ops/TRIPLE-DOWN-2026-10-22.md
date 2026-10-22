@@ -102,4 +102,20 @@ Re-pull on 2026-11-05 and compare section clicks/page against this file.
 
 ## Status
 
-_2026-10-22: wave 1 in progress._
+_2026-10-22: wave 1 shipped — all eight pages above, each linked from the
+winning page beside it. The source snapshot for it showed two of the three
+winning clusters had moved under us, so the same PR re-verifies them:_
+
+- _**Garmin** restructured its developer program between 17 and 21 October:
+  the program FAQ moved under /enterprise/ (the old address is a 404),
+  access is now Personal (a self-serve API key for your own data), Starter and
+  Enterprise, and the "business use only" line our pages quoted is gone.
+  /pricing/garmin-api-pricing and /integrate/garmin-api were rewritten and
+  re-stamped; the Garmin claims on 20 other pages and every evidence row that
+  cited the dead address were brought in line; a change event records it._
+- _**ExerciseDB** (exercisedb.dev) is now AscendAPI, with a free keyless V1
+  and a free watermarked V2 plan; API Ninjas' Exercises API now returns images
+  on paid plans. The four exercise money pages were re-verified and re-stamped,
+  four more corrected in part, and the corrections log records what was wrong._
+- _Directory: Apple Vision and Junction now clear the demand bar and are
+  indexed._

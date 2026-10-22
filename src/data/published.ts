@@ -7,7 +7,7 @@
  * contained the entry and listed it in its cluster's release gate (blog
  * posts: the commit that added the file; generated sections: the commit that
  * added the route, or the item to the data file if that came later).
- * Keyed by URL path without the leading slash. 522 rows.
+ * Keyed by URL path without the leading slash. 529 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -47,11 +47,13 @@ export const PUBLISHED: Record<string, string> = {
   "alternatives/kinestex-alternatives": "2026-08-02",
   "alternatives/mediapipe-alternatives": "2026-10-18",
   "alternatives/nutritionix-alternatives": "2026-07-13",
+  "alternatives/openpose-alternatives": "2026-10-22",
   "alternatives/oura-api-alternatives": "2026-07-13",
   "alternatives/quickpose-alternatives": "2026-10-18",
   "alternatives/sency-alternatives": "2026-10-18",
   "alternatives/strava-api-alternatives": "2026-07-13",
   "alternatives/terra-alternatives": "2026-07-13",
+  "alternatives/wger-alternatives": "2026-10-22",
   "alternatives/whoop-api-alternatives": "2026-07-13",
   "architecture/background-sync": "2026-07-27",
   "architecture/caching-fitness-api-responses": "2026-08-12",
@@ -120,12 +122,15 @@ export const PUBLISHED: Record<string, string> = {
   "compare/apple-watch-vs-garmin": "2026-08-12",
   "compare/apple-watch-vs-whoop": "2026-08-11",
   "compare/edamam-vs-spoonacular": "2026-07-23",
+  "compare/exercisedb-vs-free-exercise-db": "2026-10-22",
   "compare/exercisedb-vs-wger": "2026-07-23",
   "compare/fitbit-vs-apple-watch": "2026-07-23",
   "compare/fitbit-vs-oura": "2026-07-23",
   "compare/kinestex-vs-mediapipe": "2026-08-02",
   "compare/kinestex-vs-quickpose": "2026-08-02",
   "compare/kinestex-vs-sency": "2026-08-02",
+  "compare/mediapipe-vs-movenet": "2026-10-22",
+  "compare/mediapipe-vs-yolo-pose": "2026-10-22",
   "compare/nutritionix-vs-edamam": "2026-07-23",
   "compare/oura-vs-whoop": "2026-07-23",
   "compare/quickpose-vs-sency": "2026-10-18",
@@ -231,6 +236,7 @@ export const PUBLISHED: Record<string, string> = {
   "fitness-apis/apple-healthkit-vs-google-health-connect": "2026-07-08",
   "fitness-apis/corporate-wellness-wearable-apis": "2026-10-12",
   "fitness-apis/exercise-database-apis": "2026-07-08",
+  "fitness-apis/exercise-video-apis": "2026-10-22",
   "fitness-apis/fitbit-api-vs-garmin-api": "2026-07-08",
   "fitness-apis/fitness-api-vs-build-your-own": "2026-07-08",
   "fitness-apis/free-fitness-apis": "2026-07-08",
@@ -494,6 +500,7 @@ export const PUBLISHED: Record<string, string> = {
   "pricing/mindbody-api-pricing": "2026-10-18",
   "pricing/nutrition-api-pricing": "2026-07-23",
   "pricing/oura-api-pricing": "2026-07-23",
+  "pricing/polar-api-pricing": "2026-10-22",
   "pricing/quickpose-pricing": "2026-10-18",
   "pricing/sahha-api-pricing": "2026-10-18",
   "pricing/sency-pricing": "2026-10-18",
