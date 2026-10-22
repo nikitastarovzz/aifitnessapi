@@ -45,9 +45,29 @@
     "quote": "Some providers require special processes before being able to start using them: WHOOP Dexcom Huawei Strava Virtuagym"
   },
   {
-    "claim": "Free tiers correction: Garmin's program FAQ says there are no licensing or maintenance fees for access to its program, which is only for business use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "claim": "Free tiers correction (dated 2026-10-18): Garmin's program FAQ said there were no licensing or maintenance fees for access to its program, which was only for business use (Wayback Machine capture of 17 October 2026).",
+    "url": "https://web.archive.org/web/20261017191828id_/https://developer.garmin.com/gc-developer-program/program-faq",
     "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Cost planner correction (dated 2026-10-18): no licensing or maintenance fees for access (17 October 2026 capture).",
+    "url": "https://web.archive.org/web/20261017191828id_/https://developer.garmin.com/gc-developer-program/program-faq",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Cost planner correction (dated 2026-10-18): some metrics may require a licence fee or a minimum device order for commercial use (17 October 2026 capture).",
+    "url": "https://web.archive.org/web/20261017191828id_/https://developer.garmin.com/gc-developer-program/program-faq",
+    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+  },
+  {
+    "claim": "Apple Watch vs Garmin correction (dated 2026-10-18): no licensing or maintenance fees, only for business use (17 October 2026 capture).",
+    "url": "https://web.archive.org/web/20261017191828id_/https://developer.garmin.com/gc-developer-program/program-faq",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+  },
+  {
+    "claim": "Apple Watch vs Garmin correction (dated 2026-10-18): some metrics may require a licence fee or a minimum device order (17 October 2026 capture).",
+    "url": "https://web.archive.org/web/20261017191828id_/https://developer.garmin.com/gc-developer-program/program-faq",
+    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
   },
   {
     "claim": "Free tiers correction: Strava's API Agreement says access is currently provided at no charge.",
@@ -58,26 +78,6 @@
     "claim": "Free tiers correction: a Strava subscription is a prerequisite for creating an app.",
     "url": "https://developers.strava.com/docs/getting-started/",
     "quote": "A Strava subscription is a prerequisite for creating an app."
-  },
-  {
-    "claim": "Cost planner correction: Garmin's program FAQ says there are no licensing or maintenance fees for access.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
-  },
-  {
-    "claim": "Cost planner correction: some metrics may require a licence fee or a minimum device order for commercial use, at amounts Garmin does not publish.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
-  },
-  {
-    "claim": "Apple Watch vs Garmin correction: no licensing or maintenance fees for access to the Garmin Connect Developer Program, which is only for business use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
-  },
-  {
-    "claim": "Apple Watch vs Garmin correction: access to some metrics may require a licence fee or a minimum device order for commercial use; Garmin does not publish those amounts.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
   },
   {
     "claim": "Strava vs Garmin correction: Strava's API Policy, effective June 1, 2026.",

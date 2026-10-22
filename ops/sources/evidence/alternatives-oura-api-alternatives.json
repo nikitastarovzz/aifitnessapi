@@ -30,13 +30,18 @@
     "quote": "Sandbox 10 Build 100 Growth 1,000 Scale 5,000 Production Unlimited"
   },
   {
-    "claim": "Garmin's developer program is only for business use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+    "claim": "Garmin: the Connect Developer Program needs Garmin's approval.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "After you request access to the Garmin Connect Developer Program and your request has been approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
   },
   {
-    "claim": "Some metrics need a license fee or minimum device order for commercial use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+    "claim": "Garmin and table: some features, enhanced beat-to-beat interval among them, are marked Supported with Enterprise Access only.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Enhanced Beat-To-Beat Interval *"
+  },
+  {
+    "claim": "Garmin and table: some features, enhanced beat-to-beat interval among them, are marked Supported with Enterprise Access only.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Supported with Enterprise Access only"
   }
 ]

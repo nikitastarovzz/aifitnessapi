@@ -40,23 +40,33 @@
     "quote": "you can use the OAuth standard to request consent from WHOOP members to access data on their behalf."
   },
   {
-    "claim": "Garmin watch item: every program page read on 2026-10-17 carried a banner reading Stay tuned for more updates on the program (overview).",
-    "url": "https://developer.garmin.com/gc-developer-program/overview/",
-    "quote": "Stay tuned for more updates on the program"
+    "claim": "Garmin entry: the Personal API is available for personal use.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "The Garmin Connect Personal API is available for personal use and is the quickest way to gain access to your data for use in personal applications."
   },
   {
-    "claim": "Garmin watch item: the same banner on the program FAQ.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "Stay tuned for more updates on the program"
+    "claim": "Garmin entry: not intended for commercial applications serving multiple end users.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "It is not intended for commercial applications serving multiple end users."
   },
   {
-    "claim": "Garmin watch item: the program FAQ still invited requests.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "If you are interested, please request the Garmin Connect Developer Program and we'll quickly review your application."
+    "claim": "Garmin entry: individuals create their own API key on Garmin Connect Web.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-api/",
+    "quote": "Go to the Personal API Key page while logged in to your Garmin Connect Web account"
   },
   {
-    "claim": "Garmin watch item: and said Garmin confirms an application's status within two business days.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
+    "claim": "Garmin entry: the business program describes Starter Access and Enterprise Access.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Starter Access: Developers can gain immediate access and launch with Garmin, with access to core data and tools."
+  },
+  {
+    "claim": "Garmin entry: the business program describes Starter Access and Enterprise Access.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Enterprise Access: For companies operating at scale, this new model aligns with growth, offering expanded data access, reliability, and enterprise-grade support."
+  },
+  {
+    "claim": "Garmin entry: the earlier FAQ statement that the program was only for business use (Wayback Machine capture of 17 October 2026).",
+    "url": "https://web.archive.org/web/20261017191828id_/https://developer.garmin.com/gc-developer-program/program-faq",
+    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
   }
 ]

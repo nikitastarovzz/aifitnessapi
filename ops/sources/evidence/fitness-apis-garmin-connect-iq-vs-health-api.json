@@ -1,57 +1,37 @@
 [
   {
-    "claim": "Answer: the Health and Activity APIs require approval into the Garmin Connect Developer Program.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "If approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
+    "claim": "Answer / table / bullets / FAQ, getting started: the Health and Activity APIs require approval into the Garmin Connect Developer Program.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "After you request access to the Garmin Connect Developer Program and your request has been approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
   },
   {
-    "claim": "Answer: which Garmin's FAQ says is only for business use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+    "claim": "Answer / table / bullets / FAQ: now as Starter and Enterprise Access.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Starter Access: Developers can gain immediate access and launch with Garmin, with access to core data and tools."
   },
   {
-    "claim": "Answer: Garmin confirms an application's status within two business days.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
+    "claim": "Answer / table / bullets / FAQ: now as Starter and Enterprise Access.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Enterprise Access: For companies operating at scale, this new model aligns with growth, offering expanded data access, reliability, and enterprise-grade support."
   },
   {
-    "claim": "Table, access row: approval into the Garmin Connect Developer Program, for business use only.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+    "claim": "Bullets: personal-use questions go to the Personal API.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Please visit the Garmin Connect Personal API for more information."
   },
   {
-    "claim": "Table, access row: Garmin confirms an application's status within two business days.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
+    "claim": "Answer / table / bullets / FAQ: the Activity API page names running, cycling, swimming, yoga and strength training.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/activity-api/",
+    "quote": "Running Cycling Swimming Yoga Strength Training Activity Details"
   },
   {
-    "claim": "Health and Activity API bullets, access: Garmin's program FAQ says the program is only for business use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+    "claim": "Answer / table / bullets / FAQ: the Activity API page names running, cycling, swimming, yoga and strength training.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/activity-api/",
+    "quote": "The Activity API provides access to the detailed fitness data captured during an activity on the user's wearable device or cycling computer."
   },
   {
-    "claim": "Health and Activity API bullets, access: Garmin confirms an application's status within two business days.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
-  },
-  {
-    "claim": "FAQ, getting started: the Health and Activity APIs require approval into the Garmin Connect Developer Program, which is only for business use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
-  },
-  {
-    "claim": "FAQ, getting started: Garmin confirms an application's status within two business days.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
-  },
-  {
-    "claim": "Subscribe pitch: Garmin's pages tell developers to stay tuned for program updates.",
-    "url": "https://developer.garmin.com/gc-developer-program/overview/",
-    "quote": "Stay tuned for more updates on the program"
-  },
-  {
-    "claim": "The Activity API carries per-activity data for over 30 activity types, by Garmin's count.",
-    "url": "https://developer.garmin.com/gc-developer-program/overview/",
-    "quote": "Full activity data for over 30 activity types."
+    "claim": "Garminconnect paragraph: Garmin's official Personal API for your own data.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "The Garmin Connect Personal API is available for personal use and is the quickest way to gain access to your data for use in personal applications."
   }
 ]

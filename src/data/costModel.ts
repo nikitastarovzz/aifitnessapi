@@ -100,24 +100,26 @@ export const COST_ITEMS: CostItem[] = [
     sourceHref: "/pricing/fitbit-api-pricing",
   },
 
-  // provenance: "Connect Developer Program has no licensing or maintenance fees" — /pricing/garmin-api-pricing
-  // provenance: "but it is only for business use" — /pricing/garmin-api-pricing
-  // provenance: "some metrics need a license fee or a minimum device order for commercial use" — /pricing/garmin-api-pricing
-  // provenance: "Users sync their own Garmin devices; if you want to supply wearables, Garmin asks for the number of devices when you request the program" — /pricing/garmin-api-pricing
-  // provenance: "confirms the status of an application within two business days" — /pricing/garmin-api-pricing
-  // provenance: "Garmin does not publish those fee amounts, so get them in writing" — /pricing/garmin-api-pricing
+  // provenance: "Garmin does not publish a price for Personal, Starter or Enterprise access" — /pricing/garmin-api-pricing
+  // provenance: "\"Commercial terms are tailored based on business and technical requirements\"" — /pricing/garmin-api-pricing
+  // provenance: "Starter is push only with no historical data and limited user capacity, Enterprise adds ping/pull, history and unlimited users" — /pricing/garmin-api-pricing
+  // provenance: "Your users sync their own Garmin devices. If you want to offer Garmin wearables ... \"and contact us using the inquiry form\"" — /pricing/garmin-api-pricing
+  // provenance: "after your request is approved you get the Garmin Developer Portal ... It no longer states how long the review takes" — /pricing/garmin-api-pricing
+  // devCost stays "free" under the DevCost definition above (no fee documented for calling it): Garmin
+  // documents no fee for Starter Access. Its explicit "no licensing or maintenance fees" sentence was removed
+  // in October 2026 and Enterprise terms are negotiated, so the notes say so; re-check when Garmin states terms.
   {
     id: "garmin",
     label: "Garmin Health / Activity API",
     category: "wearable-direct",
     devCost: "free",
     userSideCost:
-      "Users sync their own Garmin devices; if you supply wearables, Garmin asks for the number of devices when you request the program.",
+      "Users sync their own Garmin devices; if you want to offer Garmin wearables, Garmin asks you to contact it through its inquiry form when you request the program.",
     approvalGate:
-      "Garmin Connect Developer Program approval, for business use only; Garmin confirms an application's status within two business days.",
+      "Garmin Connect Developer Program approval, as Starter or Enterprise Access; Garmin's pages state no review time.",
     engEffort: "high",
     notes:
-      "No licensing or maintenance fees, but some metrics need a license fee or a minimum device order for commercial use, and Garmin does not publish those amounts. Get them in writing before you promise a metric.",
+      "Garmin publishes no price for Starter Access and says Enterprise commercial terms are tailored; ping/pull delivery, backfill and enhanced beat-to-beat interval are Enterprise-only. Its earlier statement that there were no licensing or maintenance fees is no longer on its site, so get terms in writing before you promise a feature.",
     sourceHref: "/pricing/garmin-api-pricing",
   },
 

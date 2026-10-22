@@ -30,23 +30,23 @@
     "quote": "pass-through proxy, intermediary, or aggregator that re-exposes the Strava API Materials, in whole or in part, to third parties"
   },
   {
-    "claim": "Garmin's developer program is only for business use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+    "claim": "Garmin: the Connect Developer Program needs Garmin's approval; its pages no longer state a review time.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "After you request access to the Garmin Connect Developer Program and your request has been approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
   },
   {
-    "claim": "Some metrics need a license fee or minimum device order for commercial use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+    "claim": "Garmin and table: enhanced beat-to-beat interval and ping/pull delivery are marked Supported with Enterprise Access only.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Enhanced Beat-To-Beat Interval *"
   },
   {
-    "claim": "Garmin confirms an application's status within two business days.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
+    "claim": "Garmin and table: enhanced beat-to-beat interval and ping/pull delivery are marked Supported with Enterprise Access only.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Push or *Ping/Pull Architecture: Choose the integration option that best matches your needs"
   },
   {
-    "claim": "Every program page carries a Stay tuned banner.",
-    "url": "https://developer.garmin.com/gc-developer-program/overview/",
-    "quote": "Stay tuned for more updates on the program"
+    "claim": "Garmin and table: enhanced beat-to-beat interval and ping/pull delivery are marked Supported with Enterprise Access only.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Supported with Enterprise Access only"
   }
 ]

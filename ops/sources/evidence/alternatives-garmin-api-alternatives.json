@@ -1,23 +1,48 @@
 [
   {
-    "claim": "Garmin's developer program is only for business use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
+    "claim": "Answer / personal section / FAQ: Garmin's Personal API is available for personal use.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "The Garmin Connect Personal API is available for personal use and is the quickest way to gain access to your data for use in personal applications."
+  },
+  {
+    "claim": "Personal section: not intended for commercial applications serving multiple end users.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "It is not intended for commercial applications serving multiple end users."
+  },
+  {
+    "claim": "Personal section / FAQ: you create the key on Garmin Connect Web.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-api/",
+    "quote": "Go to the Personal API Key page while logged in to your Garmin Connect Web account"
+  },
+  {
+    "claim": "Personal section: until October 2026 the FAQ said the program was only for business use (Wayback Machine capture of October 17, 2026).",
+    "url": "https://web.archive.org/web/20261017191828id_/https://developer.garmin.com/gc-developer-program/program-faq",
     "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
   },
   {
-    "claim": "Some metrics need a license fee or minimum device order for commercial use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+    "claim": "Personal section: garminconnect authenticates with the same mobile SSO flow as Garmin's mobile apps.",
+    "url": "https://raw.githubusercontent.com/cyberjunky/python-garminconnect/master/README.md",
+    "quote": "Authentication uses the same mobile SSO flow as the official Garmin Connect mobile apps."
   },
   {
-    "claim": "Garmin confirms an application's status within two business days.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
+    "claim": "Why teams look / FAQ: the FAQ now describes Starter Access.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Starter Access: Developers can gain immediate access and launch with Garmin, with access to core data and tools."
   },
   {
-    "claim": "Every program page carries a Stay tuned banner.",
+    "claim": "Why teams look / FAQ: and Enterprise Access.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Enterprise Access: For companies operating at scale, this new model aligns with growth, offering expanded data access, reliability, and enterprise-grade support."
+  },
+  {
+    "claim": "Why teams look / FAQ: once your request is approved you get the Garmin Developer Portal.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "After you request access to the Garmin Connect Developer Program and your request has been approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
+  },
+  {
+    "claim": "Why teams look: Enterprise commercial terms are tailored.",
     "url": "https://developer.garmin.com/gc-developer-program/overview/",
-    "quote": "Stay tuned for more updates on the program"
+    "quote": "Designed for companies operating at scale requiring capabilities beyond Starter Access. Available options and commercial terms are tailored based on business and technical requirements."
   },
   {
     "claim": "Oura limits an application to 10 users before approval.",

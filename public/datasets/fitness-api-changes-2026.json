@@ -16,12 +16,12 @@
     "verifiedOn": "Date this entry was last checked against its source page"
   },
   "stats": {
-    "totalItems": 16,
+    "totalItems": 17,
     "byStatus": {
-      "confirmed": 12,
+      "confirmed": 13,
       "reported": 4
     },
-    "confirmed": 12,
+    "confirmed": 13,
     "reported": 4,
     "watch": 0,
     "earliestSortDate": "2023-04-15",
@@ -57,6 +57,16 @@
       "source": "https://aifitnessapi.com/fitbit-api-shutdown",
       "sourceLabel": "Fitbit API shutdown center",
       "verifiedOn": "2026-10-12"
+    },
+    {
+      "date": "2026-10",
+      "sortDate": "2026-10-22",
+      "title": "Garmin Connect Personal API and Starter/Enterprise access",
+      "summary": "Garmin reorganised its Connect Developer Program and gives no launch date: first seen on 2026-10-22, absent from the 2026-10-17 snapshot. A new Garmin Connect Personal API lets individuals create their own API key on Garmin Connect Web for their own data; Garmin says it \"is available for personal use\" and \"is not intended for commercial applications serving multiple end users\". The business program now describes Starter Access and Enterprise Access, its FAQ moved under a new Business section (the old address no longer loads), and the earlier FAQ statement that the program was only for business use is gone.",
+      "status": "confirmed",
+      "source": "https://aifitnessapi.com/fix/garmin-api-personal-use",
+      "sourceLabel": "Garmin API for personal use",
+      "verifiedOn": "2026-10-22"
     },
     {
       "date": "2026-09-30",

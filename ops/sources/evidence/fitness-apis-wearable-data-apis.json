@@ -1,13 +1,58 @@
 [
   {
-    "claim": "Table, Garmin row: no licensing or maintenance fees; business use only.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
+    "claim": "Table, Garmin row: no price for Starter; Enterprise terms tailored.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Designed for companies operating at scale requiring capabilities beyond Starter Access. Available options and commercial terms are tailored based on business and technical requirements."
   },
   {
-    "claim": "Table, Garmin row: some metrics may need a licence fee or a minimum device order for commercial use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
+    "claim": "Table, Garmin row / Garmin section / which to pick: Starter is push only; ping/pull, backfill and some metrics are Enterprise-only.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Push only Historical Data Not included User Capacity Limited"
+  },
+  {
+    "claim": "Table, Garmin row / Garmin section / which to pick: Starter is push only; ping/pull, backfill and some metrics are Enterprise-only.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Push or *Ping/Pull Architecture: Choose the integration option that best matches your needs"
+  },
+  {
+    "claim": "Table, Garmin row / Garmin section / which to pick: Starter is push only; ping/pull, backfill and some metrics are Enterprise-only.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Developer Web Tools: Easy on-boarding, sample data, *backfill user data, and auto-verification of your integration before production"
+  },
+  {
+    "claim": "Table, Garmin row / Garmin section / which to pick: Starter is push only; ping/pull, backfill and some metrics are Enterprise-only.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Enhanced Beat-To-Beat Interval *"
+  },
+  {
+    "claim": "Table, Garmin row / Garmin section / which to pick: Starter is push only; ping/pull, backfill and some metrics are Enterprise-only.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Supported with Enterprise Access only"
+  },
+  {
+    "claim": "Garmin section: since October 2026 the program comes as Starter and Enterprise Access.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Starter Access: Developers can gain immediate access and launch with Garmin, with access to core data and tools."
+  },
+  {
+    "claim": "Garmin section: since October 2026 the program comes as Starter and Enterprise Access.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Enterprise Access: For companies operating at scale, this new model aligns with growth, offering expanded data access, reliability, and enterprise-grade support."
+  },
+  {
+    "claim": "FAQ, GPS and running: Garmin requires approval into its Connect Developer Program.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "After you request access to the Garmin Connect Developer Program and your request has been approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
+  },
+  {
+    "claim": "Answer / Garmin section / FAQ: the Activity API covers per-activity data such as running, cycling and swimming.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/activity-api/",
+    "quote": "Running Cycling Swimming Yoga Strength Training Activity Details"
+  },
+  {
+    "claim": "Garmin section / FAQ: Garmin's official Personal API for your own data.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "The Garmin Connect Personal API is available for personal use and is the quickest way to gain access to your data for use in personal applications."
   },
   {
     "claim": "Table, Oura row: free for personal and commercial apps.",
@@ -43,21 +88,6 @@
     "claim": "Table, Polar row: free of charge at the moment, per Polar's API agreement.",
     "url": "https://www.polar.com/en/legal/polar-api-agreement",
     "quote": "At the moment Polar offers the use and activation of Polar API's free of charge."
-  },
-  {
-    "claim": "Garmin section: the program is only for business use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
-  },
-  {
-    "claim": "Garmin section: access to some metrics may require a licence fee or a minimum device order for commercial use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "Access to some metrics may require a license fee payment or minimum device order quantity for commercial use."
-  },
-  {
-    "claim": "Garmin section: Garmin confirms an application's status within two business days.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
   },
   {
     "claim": "Oura section: Oura documents 5,000 requests per 5-minute period.",
@@ -113,35 +143,5 @@
     "claim": "WHOOP section: every user who connects is a WHOOP member.",
     "url": "https://developer.whoop.com/docs/developing/overview/",
     "quote": "you can use the OAuth standard to request consent from WHOOP members to access data on their behalf."
-  },
-  {
-    "claim": "Which to pick, Garmin: the program is only for business use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
-  },
-  {
-    "claim": "Which to pick, Garmin: Garmin confirms an application's status within two business days.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "After you request the Garmin Connect Developer Program, we will confirm the status of your application within two business days."
-  },
-  {
-    "claim": "FAQ, GPS and running: Garmin requires approval into its Connect Developer Program.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "If approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
-  },
-  {
-    "claim": "FAQ, GPS and running: which its FAQ says is only for business use.",
-    "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-    "quote": "There are no licensing or maintenance fees for access to the Garmin Connect Developer Program, but it is only for business use."
-  },
-  {
-    "claim": "Garmin's Activity API covers over 30 activity types by Garmin's own overview, with GPS, heart rate and session detail.",
-    "url": "https://developer.garmin.com/gc-developer-program/overview/",
-    "quote": "Full activity data for over 30 activity types."
-  },
-  {
-    "claim": "Answer: Garmin's Activity API covers over 30 activity types, per Garmin's overview.",
-    "url": "https://developer.garmin.com/gc-developer-program/overview/",
-    "quote": "Full activity data for over 30 activity types."
   }
 ]

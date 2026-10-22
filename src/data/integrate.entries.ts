@@ -572,36 +572,40 @@ export const integrateEntries: ClusterEntry[] =
     "primaryQuery": "how to integrate the Garmin API",
     "h1": "How to Integrate the Garmin API (2026)",
     "metaTitle": "How to Integrate the Garmin API (2026): Approval First",
-    "metaDescription": "Integrate Garmin's Connect Developer Program: business-only approval, five APIs, OAuth 2.0, ping/pull or push delivery, and the metrics that carry fees.",
-    "updated": "2026-10-17",
-    "answer": "Garmin's Connect Developer Program is a set of cloud-to-cloud APIs (Health, Activity, Women's Health, Training and Courses) that is only for business use. You request access, Garmin says it confirms an application's status within two business days, and it puts a typical integration at one to four weeks. There are no licensing or maintenance fees, though some metrics need a license fee or a minimum device order for commercial use. All the APIs use OAuth 2.0, and data reaches you by ping/pull or push after users sync their devices.",
-    "body": "Garmin is not a sign-up-and-ship API. Everything below comes from Garmin's public Connect Developer Program pages as read on October 17, 2026; the detailed API reference is only available to approved developers, so where a value lives behind that login this guide says so instead of guessing. The [Garmin API overview](/apis/garmin) tracks the access gate alongside every page on this site that covers Garmin.\n\nOne naming trap first: Connect IQ, Garmin's platform and free SDK for apps that run on the watch itself, is a different program from the cloud APIs covered here, and Garmin says one does not require the other; [Connect IQ vs the Health and Activity APIs](/fitness-apis/garmin-connect-iq-vs-health-api) explains the split. If all you need is your own account's data rather than other users', the unofficial Python clients are compared in [garminconnect vs garth](/libraries/compare/garminconnect-vs-garth).\n\n## Access and approval\n\nGarmin's FAQ says the Connect Developer Program \"is available for enterprise use\" and is \"only for business use\". The path it describes:\n\n| Step | What Garmin says |\n|---|---|\n| Request the program | You submit a request and Garmin will \"quickly review your application\" |\n| Decision | Garmin confirms the status of your application within two business days |\n| Portal access | If approved, you get access to the Garmin Developer Portal and can start right away |\n| Integration call | Garmin invites you to a call on your needs and the high-level technical details |\n| Build | \"A typical integration takes between 1 and 4 weeks\" |\n\nApproval gets you API documentation, development against the production environment with throttled access, Garmin Connect logo and branding requirements, direct access to the program's support team, and sample integration code for the Health, Activity and Women's Health APIs. The Health and Activity pages add an evaluation environment for testing after approval.\n\nOn status: earlier versions of this guide passed on community reports that new sign-ups were on hold. Garmin's own pages do not say that. On October 17, 2026 every program page carried a banner reading \"Stay tuned for more updates on the program\", while the FAQ still invited requests and promised a decision within two business days. Check the program overview before you plan a launch date around Garmin.\n\n## The five APIs\n\nGarmin splits the program into APIs that bring user data to you and APIs that push content to the user's device, and says you can use any or all of them in a single application:\n\n| API | Direction | What Garmin's page says it covers |\n|---|---|---|\n| Health API | Garmin to you | All-day metrics: steps, intensity minutes, sleep, calories, heart rate, stress, Pulse Ox, Body Battery, body composition, respiration, blood pressure and enhanced beat-to-beat interval |\n| Activity API | Garmin to you | Detailed fitness data captured during an activity, for over 30 activity types, with activity files in FIT, GPX and TCX formats |\n| Women's Health API | Garmin to you | Menstrual cycle tracking and pregnancy tracking, including schedules and pregnancy details |\n| Training API | You to Garmin | Structured workouts and training plans published to the Garmin Connect calendar for users to sync to compatible devices |\n| Courses API | You to Garmin | Courses and course points that users can follow from the standard Courses menu on a wearable or cycling computer |\n\nThe Health API's metric list marks enhanced beat-to-beat interval with an asterisk: \"Commercial use requires a license fee payment.\" Garmin says new devices are supported automatically and that it tries to add new data types as devices launch, but that \"it's not always possible to offer every metric\"; ask its support team if you need one that is missing.\n\n## Auth and scopes\n\nGarmin's FAQ answers the auth question in one line: \"All APIs in the Developer Program use OAUTH 2.0.\" The authorization and token endpoints, scopes and token lifetimes are in the documentation approved developers receive, not on Garmin's public pages, so this guide does not reproduce them. Earlier versions of this page described a PKCE flow, token lifetimes and a sample payload from secondary sources; they are gone because Garmin's public pages do not state them. Take those values from Garmin's documentation once you have access.\n\n## Getting data: ping/pull or push\n\nGarmin's Health and Activity pages describe the delivery model, and the Women's Health page offers the same ping/pull or push choice:\n\n- **Ping/pull or push.** \"Choose the integration option that best matches your needs.\"\n- **Customized data feeds.** \"Only subscribe to the data you need.\"\n- **Multi-project support.** Each app is created and configured independently.\n- **Developer web tools.** On-boarding, sample data, backfill of user data and auto-verification of your integration before production.\n\nData arrives on the user's schedule: after initial consent, users sync their device with Garmin Connect, \"at which point it is accessible via the API\". The Health API delivers JSON summaries of what the user uploaded, including detailed stress, Pulse Ox and epoch summaries for all-day activity. Plan an endpoint Garmin can reach and an ingestion path that tolerates data arriving whenever a user happens to sync.\n\nFor the reverse direction, the Training and Courses APIs publish to the user's Garmin Connect account after they consent, and Garmin Connect handles the device side: the user syncs and the workout or course lands on the watch or cycling computer.\n\n## Rate limits\n\nGarmin's public pages publish no request limits. What they say is that approved developers build against the production environment \"with throttled access\"; the numbers are not on a page we could fetch.\n\n## Fees\n\nThere are no licensing or maintenance fees for the program, but access to some metrics \"may require a license fee payment or minimum device order quantity for commercial use\". If you plan to supply Garmin wearables to your users, Garmin asks you to enter the number of devices when you request the program. The [Garmin API pricing](/pricing/garmin-api-pricing) page breaks this down.\n\n## What changed recently\n\nGarmin publishes no public changelog for the program, so there are no dated changes to list. What its pages showed on October 17, 2026, compared with this guide's July 2026 version:\n\n- **A banner, not a pause notice.** Every program page reads \"Stay tuned for more updates on the program\", while the FAQ still invites requests with a decision within two business days. This guide used to repeat community reports that sign-ups were on hold.\n- **Five APIs.** The overview lists Health, Activity, Women's Health, Training and Courses, all usable from one application.\n- **Activity coverage as Garmin states it.** Garmin's overview describes the Activity API as covering \"over 30 activity types\"; this guide used to say 100-plus sports, which Garmin's pages do not state.\n- **OAuth 2.0 across the board.** The FAQ says every API in the program uses it.\n\n## Gotchas and production notes\n\n- **Business use only.** The program is only for business use, so there is no path for an individual developer.\n- **Some metrics cost money commercially.** Check the asterisks on the Health API page and ask about license fees before you promise a metric to customers.\n- **Sync drives freshness.** Nothing reaches the API until the user syncs their device with Garmin Connect.\n- **Real-time is a different product.** Garmin says the Connect APIs are cloud-to-cloud; for a direct connection between your mobile app and Garmin wearables it points to its Garmin Health SDKs.\n- **Consider an aggregator if approval stalls.** A wearable-data aggregator that already holds Garmin access can cover it through one integration; compare that path in [wearable data APIs](/fitness-apis/wearable-data-apis) and see how Garmin stacks up against self-serve options in [Fitbit API vs Garmin API](/fitness-apis/fitbit-api-vs-garmin-api).",
+    "metaDescription": "Integrate Garmin's Connect Developer Program: Starter or Enterprise Access, five APIs, OAuth 2.0, push or ping/pull delivery, and what Enterprise unlocks.",
+    "updated": "2026-10-22",
+    "answer": "Garmin's Connect Developer Program is a set of APIs (Health, Activity, Women's Health, Training and Courses) for organizations building apps on other people's Garmin data. You request access, start with Starter Access once Garmin approves you, and can move to Enterprise Access, which adds ping/pull delivery, historical data and other features; Garmin puts a typical integration at one to four weeks. All the APIs use OAuth 2.0, and data reaches you after users sync their devices. For your own data only, Garmin now offers a separate Personal API.",
+    "body": "Garmin is not a sign-up-and-ship API. Everything below comes from Garmin's public Connect Developer Program pages as read on October 22, 2026, after Garmin reorganised them into Business and Personal sections; the detailed API reference is only available to approved developers, so where a value lives behind that login this guide says so instead of guessing. The [Garmin API overview](/apis/garmin) tracks the access gate alongside every page on this site that covers Garmin.\n\nTwo naming traps first. Connect IQ, Garmin's platform and free SDK for apps that run on the watch itself, is a different program from the cloud APIs covered here, and Garmin says one does not require the other; [Connect IQ vs the Health and Activity APIs](/fitness-apis/garmin-connect-iq-vs-health-api) explains the split. And if all you need is your own account's data rather than other users', Garmin now has a Personal API with a key you create yourself; see [Garmin API for personal use](/fix/garmin-api-personal-use).\n\n## Access and approval\n\nGarmin's FAQ says the program \"supports a broad range of organizations, from individual developers and startups to companies operating at significant scale\". Access comes in two levels:\n\n| Level | What Garmin says |\n|---|---|\n| Starter Access | \"Developers can gain immediate access and launch with Garmin, with access to core data and tools.\" The overview lists the Activity, Courses, Health, Training and Women's Health APIs, push delivery, no historical data and limited user capacity |\n| Enterprise Access | \"For companies operating at scale\", with expanded data access, reliability and enterprise-grade support. The overview adds a Golf API, push or ping/pull delivery, a month or more of history, unlimited user capacity and technical support, with \"commercial terms\" tailored to your requirements |\n\nThe path the FAQ describes is short: request access, and once your request has been approved you get the Garmin Developer Portal and \"can get started on your integration right away\". \"All detailed technical information and documentation is available within the Garmin Developer Portal.\" Garmin says \"A typical integration takes between 1 and 4 weeks.\" The overview says to create an app with Starter Access and request Enterprise Access through the Developer Portal as your needs grow. The Health API page adds an evaluation environment for testing after approval.\n\nGarmin no longer states how long the review takes. Until October 2026 its FAQ promised a decision within two business days and an integration call; neither is on the current pages.\n\n## The five APIs\n\nGarmin says you can use any or all of the program's APIs in a single application:\n\n| API | Direction | What Garmin's page says it covers |\n|---|---|---|\n| Health API | Garmin to you | All-day metrics: steps, intensity minutes, sleep, calories, heart rate, stress, Pulse Ox, Body Battery, body composition, respiration, blood pressure and enhanced beat-to-beat interval (Enterprise only) |\n| Activity API | Garmin to you | Detailed fitness data captured during an activity, with running, cycling, swimming, yoga and strength training named on the page, as JSON summaries or activity files in FIT, GPX and TCX formats |\n| Women's Health API | Garmin to you | Menstrual cycle tracking and pregnancy tracking, including schedules and pregnancy details |\n| Training API | You to Garmin | Workouts and training plans published to the Garmin Connect calendar for users to sync to compatible devices |\n| Courses API | You to Garmin | Courses and course points that users can follow from the standard Courses menu on a wearable or cycling computer |\n\nEnterprise Access adds a sixth, the Golf API, on the overview's plan card; it has no page of its own in the program menu. The Health API page positions the API for corporate wellness, population health and patient monitoring. Garmin says new devices are supported automatically and that it tries to add new data types as devices launch, but that \"it's not always possible to offer every metric\".\n\nGarmin's Activity API page no longer gives a count of activity types. Earlier versions of this guide quoted the overview's \"over 30 activity types\"; that sentence is not on the reorganised pages.\n\n## Auth and scopes\n\nGarmin's FAQ answers the auth question in one line: \"All APIs in the Developer Program use OAUTH 2.0.\" The authorization and token endpoints, scopes and token lifetimes are in the documentation approved developers receive, not on Garmin's public pages, so this guide does not reproduce them. Take those values from the Developer Portal once you have access.\n\n## Getting data: push or ping/pull\n\nGarmin's API pages describe the delivery model, and mark some of it with an asterisk that reads \"Supported with Enterprise Access only\":\n\n- **Push, or ping/pull on Enterprise.** The Health and Women's Health pages offer \"Push or *Ping/Pull Architecture\"; the overview lists Starter delivery as push only.\n- **Customized data feeds.** \"Only subscribe to the data you need.\"\n- **Multi-project support (Enterprise only).** Each app is created and configured independently.\n- **Developer web tools.** On-boarding, sample data, backfill of user data (Enterprise only) and auto-verification of your integration before production.\n\nData arrives on the user's schedule: after initial consent, users sync their device with Garmin Connect, \"at which point it is accessible via the API\". The Health API delivers JSON summaries of what the user uploaded, including detailed stress, Pulse Ox and epoch summaries for all-day activity. On Starter, plan an endpoint Garmin can push to and an ingestion path that tolerates data arriving whenever a user happens to sync, with no historical backfill to lean on.\n\nFor the reverse direction, the Training and Courses APIs publish to the user's Garmin Connect account after they consent, and Garmin Connect handles the device side: the user syncs and the workout or course lands on the watch or cycling computer.\n\n## Rate limits\n\nGarmin's public pages publish no request limits. The overview gives Starter a \"Limited\" user capacity and Enterprise an \"Unlimited\" one without saying what the Starter limit is; ask for it in writing.\n\n## Fees\n\nGarmin's pages, read on October 22, 2026, state no price for Starter Access and say Enterprise options and commercial terms \"are tailored based on business and technical requirements\". The FAQ sentence this guide used to quote, that there were no licensing or maintenance fees with licence fees for some metrics, is gone. If you plan to supply Garmin wearables to your users, the FAQ now says to request the program and use Garmin's inquiry form. The [Garmin API pricing](/pricing/garmin-api-pricing) page breaks this down.\n\n## What changed recently\n\nGarmin publishes no public changelog for the program. Comparing its pages on October 22, 2026 with this guide's October 17 version:\n\n- **Starter and Enterprise Access.** The program now has two levels, with ping/pull delivery, multi-project support, backfill, historical data and enhanced beat-to-beat interval on the Enterprise side.\n- **A Personal API.** Individuals can create their own key for their own data; the business FAQ sends personal-use questions there.\n- **New addresses.** The program FAQ and the five API pages moved under `/gc-developer-program/enterprise/`; the old addresses return 404.\n- **Gone from the pages:** the \"Stay tuned for more updates on the program\" banner, the business-use-only and no-licensing-fee sentence, the two-business-day decision, the integration call and the \"over 30 activity types\" line.\n- **OAuth 2.0 across the board,** still.\n\n## Gotchas and production notes\n\n- **Starter is push only, without history.** If you need ping/pull, backfill or more than limited user capacity, you are planning for Enterprise and its tailored terms.\n- **Personal API is not a shortcut for products.** Garmin says it is not intended for commercial applications serving multiple end users.\n- **Sync drives freshness.** Nothing reaches the API until the user syncs their device with Garmin Connect.\n- **Consider an aggregator if approval stalls.** A wearable-data aggregator that already holds Garmin access can cover it through one integration; compare that path in [wearable data APIs](/fitness-apis/wearable-data-apis) and see how Garmin stacks up against self-serve options in [Fitbit API vs Garmin API](/fitness-apis/fitbit-api-vs-garmin-api).",
     "faqs": [
       {
         "q": "Does Garmin require approval to use its API?",
-        "a": "Yes. The Garmin Connect Developer Program is only for business use: you request access, and Garmin says it confirms the status of an application within two business days, then grants access to the Garmin Developer Portal and invites you to an integration call. Garmin puts a typical integration at one to four weeks."
+        "a": "For other users' data, yes. Garmin's FAQ says that after you request access to the Garmin Connect Developer Program and your request has been approved, you get the Garmin Developer Portal and can start right away, beginning with Starter Access. Garmin puts a typical integration at one to four weeks. Its own Personal API, for your own data, needs no application."
       },
       {
         "q": "Does Garmin charge for API access?",
-        "a": "Mostly. Garmin's FAQ says there are no licensing or maintenance fees for the program, but it is only for business use, and access to some metrics may require a license fee payment or a minimum device order quantity for commercial use. On the Health API page, enhanced beat-to-beat interval carries that license-fee note."
+        "a": "Garmin's pages, read on October 22, 2026, state no price for Starter Access and say Enterprise options and commercial terms are tailored to business and technical requirements. The earlier FAQ sentence that there were no licensing or maintenance fees, with licence fees for some metrics, is no longer on Garmin's site, so get terms in writing."
       },
       {
         "q": "What authentication does the Garmin API use?",
-        "a": "OAuth 2.0: Garmin's FAQ says all APIs in the Developer Program use it. The authorization and token endpoints, scopes and token lifetimes are in the documentation approved developers receive rather than on Garmin's public pages, so take them from there instead of from third-party write-ups."
+        "a": "OAuth 2.0: Garmin's FAQ says all APIs in the Developer Program use it. The authorization and token endpoints, scopes and token lifetimes are in the documentation approved developers receive in the Garmin Developer Portal rather than on Garmin's public pages, so take them from there instead of from third-party write-ups."
       },
       {
         "q": "How does Garmin deliver data, and do I poll it?",
-        "a": "Garmin offers a ping/pull or push model for its Health, Activity and Women's Health APIs and lets you subscribe only to the data feeds you need. Data becomes available after the user syncs their device with Garmin Connect, and Garmin's web tools include sample data and backfill of user data for testing."
+        "a": "On Starter Access, Garmin pushes data to you; its overview lists Starter delivery as push only. Ping/pull delivery, multi-project support and backfill of user data are marked as supported with Enterprise Access only. Either way, data becomes available after the user syncs their device with Garmin Connect, and you can subscribe only to the feeds you need."
       },
       {
         "q": "Can I use the Garmin API for a personal project?",
-        "a": "Not through the Connect Developer Program, which Garmin says is only for business use. Connect IQ, with its free SDK for watch faces, data fields, widgets and apps on the device, is a different program that the Connect APIs do not require. For your own account's data, people use unofficial third-party Python clients instead."
+        "a": "Yes, through Garmin's Personal API rather than the Connect Developer Program: Garmin's business FAQ now sends personal-use questions there, and you create the key yourself on Garmin Connect Web. Connect IQ, with its free SDK for watch faces, data fields, widgets and apps on the device, is a separate program that the Connect APIs do not require."
       }
     ],
     "related": [
       {
         "href": "/pricing/garmin-api-pricing",
         "label": "Garmin API pricing"
+      },
+      {
+        "href": "/fix/garmin-api-personal-use",
+        "label": "Garmin API for personal use"
       },
       {
         "href": "/libraries/garminconnect",
@@ -625,65 +629,70 @@ export const integrateEntries: ClusterEntry[] =
       }
     ],
     "cta": {
-      "pitch": "We track wearable API access as vendors change it, including Garmin's program status, the metrics that carry license fees, and how the aggregator alternatives compare."
+      "pitch": "We track wearable API access as vendors change it, including Garmin's Starter and Enterprise tiers, its Personal API, and how the aggregator alternatives compare."
     },
     "steps": [
       {
         "name": "Request the Connect Developer Program",
-        "text": "Request access from Garmin's developer site with your business details and, if you plan to supply wearables, the number of devices. Garmin says it confirms an application's status within two business days."
+        "text": "Request access from Garmin's developer site. If you plan to offer Garmin wearables, Garmin's FAQ says to also contact it through its inquiry form with details of your project."
       },
       {
-        "name": "Get portal access and join the integration call",
-        "text": "If approved, you get access to the Garmin Developer Portal and an invitation to an integration call that walks through your needs and the high-level technical details of the APIs."
+        "name": "Get portal access and create a Starter app",
+        "text": "Once your request is approved, Garmin grants access to the Garmin Developer Portal, where the detailed documentation lives, and you create an app with Starter Access."
       },
       {
         "name": "Connect users with OAuth 2.0",
         "text": "Implement the OAuth 2.0 flow from Garmin's developer documentation to connect each user, and store their tokens against your own user ID."
       },
       {
-        "name": "Choose ping/pull or push and subscribe to feeds",
-        "text": "Pick the ping/pull or push model for the Health, Activity or Women's Health API and subscribe only to the data you need. Test with the web tools' sample data and backfill of user data."
+        "name": "Receive pushed data and subscribe to feeds",
+        "text": "On Starter, data is pushed to an endpoint you host; subscribe only to the feeds you need. Request Enterprise Access if you need ping/pull delivery, backfill or historical data."
       },
       {
         "name": "Verify the integration and go to production",
-        "text": "Use Garmin's auto-verification of your integration before production. Garmin puts a typical integration at one to four weeks from approval."
+        "text": "Use Garmin's auto-verification of your integration before production. Garmin puts a typical integration at one to four weeks."
       }
     ],
     "sources": [
       {
         "url": "https://developer.garmin.com/gc-developer-program/overview/",
-        "checked": "2026-10-17",
-        "note": "the five APIs, what approval includes, throttled production access, cloud-to-cloud versus Health SDKs, status banner"
+        "checked": "2026-10-22",
+        "note": "Personal, Starter and Enterprise access and what each plan card lists"
       },
       {
-        "url": "https://developer.garmin.com/gc-developer-program/program-faq/",
-        "checked": "2026-10-17",
-        "note": "business use only, fees, two business days, 1 to 4 weeks, OAuth 2.0, new devices, Connect IQ, device orders"
+        "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+        "checked": "2026-10-22",
+        "note": "who the program is for, Starter and Enterprise Access, approval and Developer Portal, 1 to 4 weeks, OAuth 2.0, new devices, Connect IQ, wearables inquiry form, personal use"
       },
       {
-        "url": "https://developer.garmin.com/gc-developer-program/health-api/",
-        "checked": "2026-10-17",
-        "note": "Health API metrics, license-fee asterisk, ping/pull or push, web tools, evaluation environment"
+        "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+        "checked": "2026-10-22",
+        "note": "Health API metrics, delivery and web tools, Enterprise-only features, evaluation environment"
       },
       {
-        "url": "https://developer.garmin.com/gc-developer-program/activity-api/",
-        "checked": "2026-10-17",
-        "note": "Activity API data, FIT, GPX and TCX files, delivery model"
+        "url": "https://developer.garmin.com/gc-developer-program/enterprise/activity-api/",
+        "checked": "2026-10-22",
+        "note": "Activity API data, named activities, FIT, GPX and TCX files, delivery model"
       },
       {
-        "url": "https://developer.garmin.com/gc-developer-program/womens-health-api/",
-        "checked": "2026-10-17",
-        "note": "menstrual cycle and pregnancy tracking"
+        "url": "https://developer.garmin.com/gc-developer-program/enterprise/womens-health-api/",
+        "checked": "2026-10-22",
+        "note": "menstrual cycle and pregnancy tracking, delivery model"
       },
       {
-        "url": "https://developer.garmin.com/gc-developer-program/training-api/",
-        "checked": "2026-10-17",
+        "url": "https://developer.garmin.com/gc-developer-program/enterprise/training-api/",
+        "checked": "2026-10-22",
         "note": "workouts and training plans published to the Garmin Connect calendar"
       },
       {
-        "url": "https://developer.garmin.com/gc-developer-program/courses-api/",
-        "checked": "2026-10-17",
+        "url": "https://developer.garmin.com/gc-developer-program/enterprise/courses-api/",
+        "checked": "2026-10-22",
         "note": "courses and course points"
+      },
+      {
+        "url": "https://web.archive.org/web/20261017191828id_/https://developer.garmin.com/gc-developer-program/program-faq",
+        "checked": "2026-10-22",
+        "note": "the former program FAQ as captured on October 17, 2026, for what changed"
       }
     ]
   },

@@ -24,6 +24,7 @@ export const RELEASED_FIX = new Set<string>([
   "health-connect-no-data",
   "wearable-data-delayed",
   "garmin-api-approval",
+  "garmin-api-personal-use",
   "refresh-token-not-working",
   "oura-personal-access-token-deprecated",
   "fitbit-error-code-401",

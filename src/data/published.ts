@@ -7,7 +7,7 @@
  * contained the entry and listed it in its cluster's release gate (blog
  * posts: the commit that added the file; generated sections: the commit that
  * added the route, or the item to the data file if that came later).
- * Keyed by URL path without the leading slash. 521 rows.
+ * Keyed by URL path without the leading slash. 522 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -247,6 +247,7 @@ export const PUBLISHED: Record<string, string> = {
   "fix/fitbit-error-code-401": "2026-08-11",
   "fix/fitness-api-401-unauthorized": "2026-07-10",
   "fix/garmin-api-approval": "2026-07-10",
+  "fix/garmin-api-personal-use": "2026-10-22",
   "fix/google-fit-api-deprecated": "2026-07-10",
   "fix/health-connect-changes-token-expired": "2026-10-03",
   "fix/health-connect-no-data": "2026-07-10",
