@@ -113,3 +113,10 @@ verification stamp is a quality signal, not metadata.
 - Every change goes through a pull request into `main`; never force-push. The branch ruleset rejects direct pushes and requires the `gates` check, so this is enforced, not advisory. Use auto-merge (`gh pr merge --auto --squash --delete-branch`) to keep unattended runs autonomous.
 - Secrets live only in `.env.local` (gitignored), GitHub Secrets, or Vercel
   env — the repo is public.
+
+## Deployment costs
+
+- Batch related, verified edits into one PR update; avoid pushing each generated file separately. Keep required CI and useful application previews enabled.
+- `vercel.json` skips builds only for the explicit non-site paths in `scripts/vercel-ignore-build.sh`. Site content, public assets, code, dependencies, configuration, and unknown paths still build. Never put website assets under a skipped path.
+- The comparison uses the last successful deployment. Missing history and same-commit redeployments build normally. Set `FORCE_VERCEL_BUILD=1` to force a build after environment or platform changes.
+- Keep social production sources and exports outside `public/` unless the website actually serves them. Do not remove published assets or disable security/quality checks to save build minutes.
