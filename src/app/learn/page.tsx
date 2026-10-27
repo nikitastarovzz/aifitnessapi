@@ -149,6 +149,13 @@ export default function LearnPillar() {
             build, the <Link href="/integrate">integration guides</Link> and{" "}
             <Link href="/fitness-apis">API comparisons</Link> take it from there.
           </p>
+          <p>
+            Looking for an exercise video API rather than a concept?{" "}
+            <Link href="/fitness-apis/exercise-video-apis">Exercise video APIs</Link> compares which
+            exercise databases serve demonstration video, and{" "}
+            <Link href="/fitness-apis/exercise-database-apis">exercise database APIs</Link> compares
+            the catalogs themselves.
+          </p>
         </div>
 
         {GROUPS.map((group) => {

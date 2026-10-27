@@ -47,9 +47,8 @@ function deprecationNote(e: HkError): string | null {
 }
 
 export const metadata: Metadata = {
-  title: { absolute: "Every HealthKit Error Code" },
-  description:
-    "All 17 HKError.Code cases from Apple's own docs, what each actually means, and why a denied HealthKit read never raises one at all.",
+  title: { absolute: "HealthKit Error Codes: Every HKError.Code Case, Explained" },
+  description: `All ${HK_ERRORS.length} HKError.Code cases from Apple's own docs, what each actually means, and why a denied HealthKit read never raises one at all.`,
   alternates: { canonical: PATH },
   openGraph: {
     type: "website",

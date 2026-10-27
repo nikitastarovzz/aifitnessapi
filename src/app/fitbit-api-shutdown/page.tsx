@@ -118,7 +118,7 @@ This is the section to read twice. For months the dates circulated with more con
 
 | Claim | Status | Where it comes from |
 | --- | --- | --- |
-| Google announced the legacy Fitbit Web API's retirement in favour of the cloud Google Health API | Announced by Google as "the next phase of the Fitbit Web API"; recorded in our [Fitbit integration guide](/integrate/fitbit-api) | Vendor announcement |
+| Google announced the legacy Fitbit Web API's retirement in favour of the cloud Google Health API | Announced by Google as "the next phase of the Fitbit Web API"; recorded in our [Fitbit API integration guide](/integrate/fitbit-api) | Vendor announcement |
 | The Google Health API is the recommended path for Fitbit Web API integrations | **Confirmed.** Google's Fit migration guide (updated September 10, 2026) lists it for "Fitbit Web API" integrations and marks it Available; checked on developer.android.com on October 2, 2026 | Google's Fit migration guide |
 | Existing Fitbit access and refresh tokens do not transfer | **Confirmed.** Google's migration guide: they "cannot be transferred, requiring users to re-consent"; read October 12, 2026 | Google's Health API migration guide |
 | Every user must sign in again with a Google Account and re-grant permissions | **Confirmed** by the same guide, which adds that a user must first link Google Health to their Google Account in the Google Health mobile app | Google's Health API migration guide |
@@ -152,7 +152,7 @@ If Fitbit reaches you through a health-data aggregator, the retirement may be la
 
 One caveat that no aggregator removes: it caps the engineering to one integration, but it does not erase the user reconnect step. If the underlying grant changes provider, your users still act.
 
-If instead you read Fitbit data that the user has synced into Apple HealthKit or Google Health Connect, you are on the on-device path and this retirement touches you least — but you also have no server-side read, so [the Health Connect integration guide](/integrate/google-health-connect) and [the data-type reference](/matrix) are where the real constraints live.
+If instead you read Fitbit data that the user has synced into Apple HealthKit or Google Health Connect, you are on the on-device path and this retirement touches you least — but you also have no server-side read, so [the Health Connect API integration guide](/integrate/google-health-connect) and [the data-type reference](/matrix) are where the real constraints live.
 
 ### Shape 3: analytics and history, not live sync
 

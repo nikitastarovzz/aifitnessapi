@@ -17,3 +17,34 @@
 /blog/fitness-api-talk-to-sales
 /blog/health-app-without-health-data
 /blog/wearable-api-user-side-cost
+# 2026-10-27: SEO-10 item 3 (ops/SEO-10-2026-10-27.md)
+/libraries/garminconnect
+/compare/apple-watch-vs-whoop
+/integrate/oura-api
+/devices/ant-plus-vs-bluetooth
+/fix/garmin-api-approval
+/integrate/whoop-api
+/google-fit-shutdown
+/engagement/activitykit-live-activity-workout
+/libraries/kingstinct-react-native-healthkit
+/google-health-api
+/libraries/react-native-health
+/integrate/polar-api
+/compliance/google-play-health-connect-publishing-requirements
+/health-connect-releases
+/healthkit-errors
+/pricing/whoop-api-pricing
+/compliance/app-store-health-data-rules
+/fix/health-connect-no-data
+/audio-coaching/audiofocus-request-failed-android-15
+/changelog
+/compliance/app-store-guideline-5-1-3-health-research
+/devices/ftms-fitness-machine-service
+/fix/healthkit-workout-session-errors
+/health-connect-api/permission-ui-guidelines
+# /pricing/strava-api-pricing was retitled again (listed above since 2026-10-02).
+# 2026-10-27: SEO-10 item 2, vendor targets retitled to lead with "<Vendor> API" (ops/SEO-10-2026-10-27.md)
+/integrate/garmin-api
+/integrate/fitbit-api
+/integrate/healthkit
+/integrate/google-health-connect

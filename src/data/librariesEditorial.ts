@@ -64,6 +64,12 @@ export type LibraryEditorial = {
   notes: SourcedNote[];
   nativeLinks: NativeLink[];
   faqs: Faq[];
+  /**
+   * One sentence under the capsule for a search that lands here but is
+   * answered by another page (ops/SEO-10-2026-10-27.md, item 1). It may only
+   * say what this page or the linked one already states.
+   */
+  handoff?: { before: string; href: string; label: string; after: string };
 };
 
 export const LIBRARY_GROUPS: { id: LibraryGroup; label: string; blurb: string }[] = [
@@ -181,9 +187,9 @@ const HC_LINKS: NativeLink[] = [
 export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
   {
     slug: "react-native-health",
-    title: "react-native-health: HealthKit Bridge for React Native",
+    title: "react-native-health: React Native HealthKit Bridge (iOS)",
     metaDescription:
-      "react-native-health connects React Native apps to Apple HealthKit on iOS. Install steps from its README, release dates, repo activity and the caveats.",
+      "react-native-health bridges React Native to Apple HealthKit, iOS only and not in Expo Go. New features on hold since 2023 for a Swift rewrite.",
     h1: "react-native-health",
     primaryQuery: "react-native-health",
     answer: `react-native-health is an npm package that bridges React Native apps to Apple HealthKit on iOS; it does not cover Android. Its README asks for the HealthKit capability and two Info.plist usage strings, and says the package is not available in Expo Go. Since August 2023 the README has said its maintainers are focused on a Swift rewrite and holding off on new features, and the latest npm release is ${lib("react-native-health").latestVersion} from ${monthYear(lib("react-native-health").latestPublished)} — so check that the HealthKit types you need are supported before you build on it.`,
@@ -240,12 +246,19 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
         a: "The README lists NSHealthShareUsageDescription and NSHealthUpdateUsageDescription, plus NSHealthClinicalHealthRecordsShareUsageDescription only if you request clinical records. It also asks you to add the HealthKit capability to the target in Xcode, and to tick Clinical Health Records there if you use clinical types.",
       },
     ],
+    handoff: {
+      before:
+        "Searching for “react native healthkit”? That name fits two packages: this one, whose npm metadata still names its repository agencyenterprise/react-native-healthkit, and the separate @kingstinct/react-native-healthkit. ",
+      href: "/libraries/compare/react-native-health-vs-kingstinct-react-native-healthkit",
+      label: "react-native-health vs @kingstinct/react-native-healthkit",
+      after: " compares the two side by side.",
+    },
   },
   {
     slug: "kingstinct-react-native-healthkit",
-    title: "@kingstinct/react-native-healthkit: Setup and Caveats",
+    title: "@kingstinct/react-native-healthkit: Install, Expo, Caveats",
     metaDescription:
-      "@kingstinct/react-native-healthkit: TypeScript HealthKit bindings for React Native. Install for Expo and bare apps, the crash its README warns of, dates.",
+      "TypeScript HealthKit bindings for React Native, on Nitro modules since v9. Needs a dev client, not Expo Go; reading before authorizing crashes the app.",
     h1: "@kingstinct/react-native-healthkit",
     primaryQuery: "@kingstinct/react-native-healthkit",
     answer: `@kingstinct/react-native-healthkit is a TypeScript-first React Native binding for Apple HealthKit that keeps HealthKit's own identifier strings, such as HKQuantityTypeIdentifierStepCount. Since version 9 it is built on react-native-nitro-modules, which you install alongside it, and its latest npm release is ${lib("kingstinct-react-native-healthkit").latestVersion}. Its README warns that reading a type before requesting authorization for it crashes the app, and that the package does not run in Expo Go.`,
@@ -944,9 +957,9 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
   },
   {
     slug: "garminconnect",
-    title: "garminconnect: Unofficial Garmin Connect API for Python",
+    title: "garminconnect: Garmin Connect Python Library Without garth",
     metaDescription:
-      "garminconnect (repo python-garminconnect) is an unofficial Python client for Garmin Connect: install, login and token storage, garth migration, releases.",
+      "garminconnect, the unofficial Python client for Garmin Connect: its README says it dropped garth (now deprecated) in 0.3.0 and needs Python 3.12+.",
     h1: "garminconnect (Python)",
     primaryQuery: "garminconnect python",
     answer:
@@ -995,6 +1008,12 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
         a: "No. Its README calls it an unofficial client for Garmin's web services that signs in with the user's own credentials. For your own account's data, Garmin now offers an official Personal API with a key you create on Garmin Connect Web; for an app that serves other people's Garmin data, see our Garmin API guide, which covers Garmin's official developer program.",
       },
     ],
+    handoff: {
+      before: "Coming from garth? Its README calls it deprecated, and garminconnect stopped using it in 0.3.0; ",
+      href: "/libraries/garth",
+      label: "garth (deprecated)",
+      after: " covers what still works for saved garth sessions.",
+    },
   },
   {
     slug: "garth",
