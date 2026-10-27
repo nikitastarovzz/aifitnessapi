@@ -9,6 +9,8 @@ import NextSteps from "@/components/NextSteps";
 import Feedback from "@/components/Feedback";
 import ContentAge from "@/components/ContentAge";
 import VendorHubMenu from "@/components/VendorHubMenu";
+import { VENDOR_HUBS } from "@/data/vendorHubs";
+import { menuLabel } from "@/lib/vendorMenu";
 import { site, absoluteUrl } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 import { clampTitle, clampDescription } from "@/lib/cluster";
@@ -128,6 +130,7 @@ export default async function ApiPage({ params }: { params: Promise<Params> }) {
 
   const path = `${APIS_PATH}/${api.id}`;
   const url = absoluteUrl(path);
+  const integrateHub = VENDOR_HUBS.find((v) => v.id === api.id && v.hub.startsWith("/integrate/"))?.hub;
   const coverage = coverageFor(api.id);
   const total = pageCount(api.id);
   const changes = changesFor(api);
@@ -270,6 +273,19 @@ export default async function ApiPage({ params }: { params: Promise<Params> }) {
         </AnswerCapsule>
 
         <PageActions path={path} url={url} title={api.label} updated={UPDATED} markdown={false} />
+
+        {/* Where the vendor's hub is an integration guide, the search for
+            "<vendor> api" belongs to that guide (ops/SEO-10-2026-10-27.md,
+            item 2), so this entry points there first. */}
+        {integrateHub && (
+          <p className="mt-6 text-sm leading-relaxed text-[var(--muted)]">
+            Integrating {api.short}? Start with the{" "}
+            <Link href={integrateHub} className="font-medium text-brand-600 hover:text-brand-500">
+              {menuLabel(integrateHub)}
+            </Link>
+            ; this entry summarises the access requirements and lists every page on {api.short}.
+          </p>
+        )}
 
         {/* Where this entry is its vendor's hub (no integration guide exists),
             the vendor's pages lead the page. Renders nothing otherwise. */}

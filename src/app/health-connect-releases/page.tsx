@@ -64,10 +64,27 @@ function monthsBetween(a: string, b: string): number {
   return (by - ay) * 12 + (bm - am);
 }
 
-const DESCRIPTION = `All ${ALL.length} connect-client releases from Google's Jetpack notes: version, date, stage and what changed. Latest stable ${LATEST_STABLE?.version ?? "none"}, newest ${NEWEST.version}.`;
+const DESCRIPTION = `${ARTIFACT}: latest stable ${LATEST_STABLE?.version ?? "none"}, newest ${NEWEST.version}. All ${ALL.length} releases from Google's Jetpack notes, with dates and stages.`;
+
+/**
+ * The search result answers "which version?" (SEO-10 item 3, 2026-10-27:
+ * the searches are "androidx.health.connect:connect-client" and "health
+ * connect sdk"). The version comes from the generated release list, so the
+ * title moves with the data; the first candidate that fits 60 characters wins.
+ */
+const META_TITLE =
+  [
+    ...(LATEST_STABLE
+      ? [
+          `Health Connect SDK Version: connect-client ${LATEST_STABLE.version} Stable`,
+          `Health Connect SDK: connect-client ${LATEST_STABLE.version}`,
+        ]
+      : []),
+    TITLE,
+  ].find((t) => t.length <= 60) ?? TITLE;
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: META_TITLE },
   description: DESCRIPTION,
   alternates: { canonical: PATH },
   openGraph: {

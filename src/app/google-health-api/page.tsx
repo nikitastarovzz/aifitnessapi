@@ -58,9 +58,18 @@ import { CAPSULE, Code, FetchedLine, FlagList, H2, Inline, LINK, SourcesChecked,
 
 const PATH = GHAPI_BASE;
 const T = ghapiTotals();
-const TITLE = fitTitle([`Google Health API: All ${T.types} Data Types, Scopes and Methods`, `Google Health API: ${T.types} Data Types and Scopes`]);
+// SEO-10 item 3 (2026-10-27): the searches are "google health api" and
+// "google health api documentation"; the snippet leads with the second and
+// says what the docs mean for a Fitbit integration (restricted scopes and the
+// 100-user cap are both quoted on this page from Google's app-verification guide).
+const TITLE = fitTitle([
+  `Google Health API Documentation: ${T.types} Data Types, Scopes`,
+  `Google Health API: All ${T.types} Data Types, Scopes and Methods`,
+  `Google Health API: ${T.types} Data Types and Scopes`,
+]);
 const H1 = "Google Health API reference: every data type, scope and method";
 const DESCRIPTION = fitDescription([
+  `Google Health API, the Fitbit Web API's successor, from Google's docs: ${T.types} data types, mostly restricted scopes, a 100-user cap until verified, limits.`,
   `The Google Health API, the Fitbit Web API's successor, read from Google's docs: ${T.types} data types with operations, scopes, fields and rollups, and limits.`,
   `The Google Health API from Google's docs: ${T.types} data types with operations, scopes, fields and rollups, plus methods and limits.`,
 ]);

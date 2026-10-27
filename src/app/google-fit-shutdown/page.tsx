@@ -16,9 +16,11 @@ const UPDATED = "2026-10-02";
 const GUIDE_URL = "https://developer.android.com/health-and-fitness/health-connect/migration/fit";
 
 export const metadata: Metadata = {
-  title: { absolute: "Google Fit Shutdown: the 2026 Timeline, Verified" },
+  // SEO-10 item 3 (2026-10-27): the searches are "google fit deprecated" and
+  // "when is google fit going away", so the snippet leads with the answer.
+  title: { absolute: "Google Fit Shutdown: APIs Supported Only Until End of 2026" },
   description:
-    "Google Fit APIs are supported only until the end of 2026. What is shutting down, who is affected, and where each kind of integration migrates.",
+    "When is Google Fit going away? Google supports the Fit APIs, REST included, only until the end of 2026. Who is affected and where each use migrates.",
   alternates: { canonical: PATH },
   openGraph: {
     type: "article",

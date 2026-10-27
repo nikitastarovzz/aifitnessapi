@@ -180,6 +180,16 @@ export default async function LibraryPage({ params }: { params: Promise<Params> 
 
         <AnswerCapsule>{ed.answer}</AnswerCapsule>
 
+        {ed.handoff && (
+          <p className="mt-4 text-sm leading-relaxed text-[var(--muted)]">
+            {ed.handoff.before}
+            <Link href={ed.handoff.href} className="font-medium text-brand-600 hover:text-brand-500">
+              {ed.handoff.label}
+            </Link>
+            {ed.handoff.after}
+          </p>
+        )}
+
         <nav aria-label="On this page" className="mt-6 flex flex-wrap gap-2 text-sm">
           {[
             ["#install", ed.commandsHeading],
