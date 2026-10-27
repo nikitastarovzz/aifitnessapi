@@ -1,0 +1,87 @@
+[
+  {
+    "claim": "Capsule / table / FAQ: Suunto does not charge for the API.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "We do not charge from the use of the API."
+  },
+  {
+    "claim": "Capsule / price is access: the API is for companies and organizations serving a public audience.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "The API will be provided to companies, organizations who are providing tools / apps / services for public audience."
+  },
+  {
+    "claim": "Capsule / price is access: no personal use.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "We currently don't offer the API access for personal use."
+  },
+  {
+    "claim": "Comparison: Wahoo's agreement reserves the right to charge.",
+    "url": "https://www.wahoofitness.com/wahoo-api-agreement",
+    "quote": "Wahoo reserves the right to charge you for use of the Wahoo API Materials and access to the Wahoo Platform"
+  },
+  {
+    "claim": "Price is access: commercial and non-commercial use.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "We can provide access to companies/organizations that are building tools/apps/services for commercial & non-commercial usage."
+  },
+  {
+    "claim": "Price is access: review criteria.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "We are reviewing the applicants based on for example the fit to our brand, interest from our customers and illustration of the innovation mindset"
+  },
+  {
+    "claim": "Table / FAQ: weekly review, maximum two-week wait.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "The applications are reviewed on weekly bases, so you have to wait few days prior getting the acceptance. There is maximum two week waiting period."
+  },
+  {
+    "claim": "Capsule / table / FAQ: the API agreement is provided on the form when you select the Suunto Cloud API.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "If you select Suunto Cloud API you will be provided the API agreement."
+  },
+  {
+    "claim": "Price is access: agencies ask the client company to apply and sign.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "Please ask your client company to submit the partner program application, so that they can sign the API Agreement."
+  },
+  {
+    "claim": "Table / FAQ: no loan watches, but a deal for partner companies.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "We are not able to provide a Suunto watches for partner companies, but if you contact us we can provide partner companies a deal for Suunto watches."
+  },
+  {
+    "claim": "FAQ: development runs against production; testers can use real data.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "The development with the API is done with the production system, so you can use the real data from your testers with your app/service."
+  },
+  {
+    "claim": "Table / catch: the Development API has smaller request limits.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "The Development API includes all the endpoints but has smaller request limits."
+  },
+  {
+    "claim": "Besides data: showcased on Suunto.com and promoted.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "You can have your application showcased in Suunto.com and promoted in our media channels."
+  },
+  {
+    "claim": "Besides data: mention commercial interests when applying.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "When you apply the access to the API let us know if you have commercial interests or special marketing activities in your mind."
+  },
+  {
+    "claim": "Besides data: Suunto Valuepack.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "Suunto Valuepack is combination of offers that Suunto partners are providing for Suunto watch buyer."
+  },
+  {
+    "claim": "Catch: no sleep data yet.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "The Suunto Cloud API doesn’t yet support the sleep data fetch/push."
+  },
+  {
+    "claim": "Catch: webhooks cover workouts only.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "The webhook model is in place only for the workouts."
+  }
+]

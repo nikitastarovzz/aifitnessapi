@@ -1,0 +1,117 @@
+[
+  {
+    "claim": "Apple Health and Strava / which to pick: the Cloud API covers profile data, heart rate and power zones, workouts.",
+    "url": "https://developers.wahooligan.com/cloud",
+    "quote": "supports managing profile data, heart rate and power zones, and the upload/download of workout data to the cloud"
+  },
+  {
+    "claim": "Why: access limited to those who request it.",
+    "url": "https://developers.wahooligan.com/cloud",
+    "quote": "Wahoo Fitness is currently limiting use of the API to those who request it"
+  },
+  {
+    "claim": "Why: production apps go through a review.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Production apps will have to go through a review process with Wahoo Fitness"
+  },
+  {
+    "claim": "Why: sandbox apps 250 requests a day.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Requests per Day: | 250 | 5000 |"
+  },
+  {
+    "claim": "Why: a sandbox app cannot be converted into a production app.",
+    "url": "https://developers.wahooligan.com/cloud",
+    "quote": "A Sandbox app cannot later be converted into a Production app."
+  },
+  {
+    "claim": "Why / FAQ: no third-party workouts.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Wahoo does not share completed workout data that originates from third-party applications."
+  },
+  {
+    "claim": "FAQ: workouts from third-party apps are not available in the API.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "the workout will not be available in the Wahoo API"
+  },
+  {
+    "claim": "Why: competitive-use clause.",
+    "url": "https://www.wahoofitness.com/wahoo-api-agreement",
+    "quote": "in connection with any application, website or other product or service that also includes, features, endorses, or otherwise supports in any way a third party that provides services competitive to Wahoo's products and services, as determined in our sole discretion"
+  },
+  {
+    "claim": "Capsule / Apple Health and Strava / FAQ: Wahoo syncs to Strava, TrainingPeaks, Apple Health, Komoot.",
+    "url": "https://www.wahoofitness.com/fitness-apps",
+    "quote": "Sync routes and workouts or send completed activities to Strava, TrainingPeaks, Apple Health, Komoot, and more."
+  },
+  {
+    "claim": "Apple Health and Strava: over 110 apps.",
+    "url": "https://www.wahoofitness.com/fitness-apps",
+    "quote": "Wahoo works with over 110 training and fitness apps."
+  },
+  {
+    "claim": "Terra lists Wahoo event-driven with Managed credentials and Wahoo's portal link.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "Wahoo WAHOO Event-Driven Managed https://developers.wahooligan.com/applications"
+  },
+  {
+    "claim": "Terra's table explains Managed credentials: you may create your own credentials and give them to Terra.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "Managed credentials for integrations mean that you may create your own credentials and provide them to Terra, using the integration's developer dashboard"
+  },
+  {
+    "claim": "Spike lists Wahoo.",
+    "url": "https://www.spikeapi.com/integrations",
+    "quote": "A fitness tech brand offering bike trainers, heart rate monitors, and training apps."
+  },
+  {
+    "claim": "Rook's SDKs integrate with Health Connect and Apple Health; the SDK-connected list follows.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "ROOK SDKs integrate directly with Health Connect (Android) and Apple Health (iOS)"
+  },
+  {
+    "claim": "Rook lists Wahoo among SDK-connected sources.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "Wahoo | Wearable"
+  },
+  {
+    "claim": "Sahha lists Wahoo among its sources.",
+    "url": "https://sahha.ai/integrations/",
+    "quote": "VeryFitPro Wahoo WaterLlama"
+  },
+  {
+    "claim": "Sahha says sources arrive on-device through Apple Health or Health Connect.",
+    "url": "https://sahha.ai/integrations/",
+    "quote": "Sources arrive on-device through Apple Health or Health Connect — no per-brand work required."
+  },
+  {
+    "claim": "EU Data Act: effective September 12, 2025.",
+    "url": "https://www.wahoofitness.com/eu-data-act",
+    "quote": "Effective as of September 12, 2025"
+  },
+  {
+    "claim": "EU Data Act: applies to users, businesses and other entities in the EU.",
+    "url": "https://www.wahoofitness.com/eu-data-act",
+    "quote": "It applies to users, businesses, and other entities located in the European Union."
+  },
+  {
+    "claim": "EU Data Act / FAQ: right to request sharing with a third party.",
+    "url": "https://www.wahoofitness.com/eu-data-act",
+    "quote": "Request to Share Data with a Third Party"
+  },
+  {
+    "claim": "EU Data Act / FAQ: access requests free of charge.",
+    "url": "https://www.wahoofitness.com/eu-data-act",
+    "quote": "Access requests are provided free of charge."
+  },
+  {
+    "claim": "EU Data Act / FAQ: formats .FIT, .CSV, .JSON.",
+    "url": "https://www.wahoofitness.com/eu-data-act",
+    "quote": "Data is provided in structured, commonly used formats such as .FIT, .CSV, or .JSON."
+  },
+  {
+    "claim": "EU Data Act / FAQ: Wahoo may decline requests for reasons permitted under the Data Act.",
+    "url": "https://www.wahoofitness.com/eu-data-act",
+    "quote": "Wahoo may require additional information and may decline the request for reasons permitted under the Data Act."
+  }
+]

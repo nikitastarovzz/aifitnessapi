@@ -32,6 +32,12 @@ export const RELEASED_ALTERNATIVES = new Set<string>([
   "quickpose-alternatives",
   "sency-alternatives",
   "openpose-alternatives",
+  "withings-api-alternatives",
+  "samsung-health-api-alternatives",
+  "suunto-api-alternatives",
+  "coros-api-alternatives",
+  "wahoo-api-alternatives",
+  "dexcom-api-alternatives",
 ]);
 
 export const allAlternatives: ClusterEntry[] = alternativesEntries;

@@ -1,0 +1,117 @@
+[
+  {
+    "claim": "Switching: COROS Partner API FIT download.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/articles/53181766856724.json",
+    "quote": "getWorkoutDetailFit (FIT file download)"
+  },
+  {
+    "claim": "Switching: Suunto's API provides FIT files.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "The API provides you the FIT files common in sports industry."
+  },
+  {
+    "claim": "Other watches: Suunto provides the API to companies and organizations.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "The API will be provided to companies, organizations who are providing tools / apps / services for public audience."
+  },
+  {
+    "claim": "Capsule / why / FAQ: MCP access is single-user.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/articles/53181619102996.json",
+    "quote": "All data access is scoped to the authorizing user only (single-user)"
+  },
+  {
+    "claim": "Capsule / why / FAQ: no webhook push notifications on the MCP.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/articles/53181619102996.json",
+    "quote": "No webhook push notifications (your app polls the MCP)"
+  },
+  {
+    "claim": "FAQ: no GPX route import/export on the MCP.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/articles/53181619102996.json",
+    "quote": "No GPX route import/export"
+  },
+  {
+    "claim": "FAQ: no two-way activity sync on the MCP.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/articles/53181619102996.json",
+    "quote": "No two-way activity sync (COROS to your platform requires Partner API)"
+  },
+  {
+    "claim": "Capsule / FAQ: the MCP needs no application or approval.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/articles/53181619102996.json",
+    "quote": "No application or approval required."
+  },
+  {
+    "claim": "Capsule / why / FAQ: FIT files capped at 50 requests a day.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": ".FIT files, including GPS tracks (capped at 50 file requests per day)"
+  },
+  {
+    "claim": "Why: cycling power is not in the standard query set.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+    "quote": "Power data is not part of the standard query set, even when a power meter is paired and recording."
+  },
+  {
+    "claim": "Capsule / why: Partner API needs an established platform.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/articles/53181766856724.json",
+    "quote": "Established platform with demonstrated user base"
+  },
+  {
+    "claim": "Why: Partner API needs a registered company.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/articles/53181766856724.json",
+    "quote": "Registered company with authorized technical representative"
+  },
+  {
+    "claim": "Why: workout records 30-day max, 3-month lookback.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/articles/53181766856724.json",
+    "quote": "getWorkoutRecords (30-day max, 3-month lookback)"
+  },
+  {
+    "claim": "Capsule / Partner path / FAQ: standard, non-discriminatory API Terms of Use.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/articles/53181766856724.json",
+    "quote": "Agree to our standard, non-discriminatory API Terms of Use"
+  },
+  {
+    "claim": "Partner path: build on the MCP and apply as you grow.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/articles/53181766856724.json",
+    "quote": "As your platform grows, you can apply for full Partner API access."
+  },
+  {
+    "claim": "Terra lists COROS periodically fetched with Managed credentials.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "Coros COROS Periodically fetched Managed"
+  },
+  {
+    "claim": "Terra's developer-portal link for COROS is COROS's API application page.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "https://support.coros.com/hc/en-us/articles/17085887816340-Submit-an-API-Application"
+  },
+  {
+    "claim": "Terra's table explains Managed credentials: you may create your own credentials and give them to Terra.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "Managed credentials for integrations mean that you may create your own credentials and provide them to Terra, using the integration's developer dashboard"
+  },
+  {
+    "claim": "Spike lists COROS.",
+    "url": "https://www.spikeapi.com/integrations",
+    "quote": "A brand of wearable devices and a companion app designed for endurance athletes"
+  },
+  {
+    "claim": "Rook's SDKs integrate with Health Connect and Apple Health; the SDK-connected list follows.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "ROOK SDKs integrate directly with Health Connect (Android) and Apple Health (iOS)"
+  },
+  {
+    "claim": "Rook lists COROS among SDK-connected sources.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "COROS | Wearable"
+  },
+  {
+    "claim": "Sahha lists Coros among its sources.",
+    "url": "https://sahha.ai/integrations/",
+    "quote": "Contour Coros Cronometer"
+  },
+  {
+    "claim": "Sahha says sources arrive on-device through Apple Health or Health Connect.",
+    "url": "https://sahha.ai/integrations/",
+    "quote": "Sources arrive on-device through Apple Health or Health Connect — no per-brand work required."
+  }
+]

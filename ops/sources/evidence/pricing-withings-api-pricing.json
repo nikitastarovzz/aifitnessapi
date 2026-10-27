@@ -1,0 +1,97 @@
+[
+  {
+    "claim": "Capsule / table: no prerequisites and free access.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/developer-account/create-your-accesses-no-medical-cloud/",
+    "quote": "There are no prerequisites, and free access is provided."
+  },
+  {
+    "claim": "FAQ: Withings services are hosted on the EU Medical Cloud.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/developer-account/create-your-accesses-no-medical-cloud/",
+    "quote": "Withings services are hosted on the EU Medical Cloud"
+  },
+  {
+    "claim": "Comparison: Unlike Withings, Wahoo says its API is currently provided at no charge.",
+    "url": "https://www.wahoofitness.com/wahoo-api-agreement",
+    "quote": "Access to and use of the Wahoo API Materials and Wahoo Platform are currently provided at no charge."
+  },
+  {
+    "claim": "What it costs: the Public API is for individuals and partners without a formal contract.",
+    "url": "https://developer.withings.com/",
+    "quote": "designed for individuals and partners without a formal contract"
+  },
+  {
+    "claim": "What it costs: the guide also applies to accessing your own Withings data.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/public-health-data-api-overview/",
+    "quote": "Want to access your own Withings data through your API."
+  },
+  {
+    "claim": "Capsule / table / FAQ: the Enterprise plan unlocks higher limits and dedicated support.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "the Enterprise plan unlocks higher limits and dedicated support"
+  },
+  {
+    "claim": "Capsule / free plan / FAQ: the standard API enforces 120 requests per minute across the application.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "The standard Withings API enforces a 120 requests-per-minute limit across your application"
+  },
+  {
+    "claim": "Free plan: polling hits the ceiling quickly.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "Polling for fresh data hits this ceiling quickly"
+  },
+  {
+    "claim": "Free plan / FAQ: no real-time SLA on the standard plan.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "Withings does not commit to a real-time SLA on the standard plan."
+  },
+  {
+    "claim": "Capsule / table / FAQ: the catalogue marks entries that require the Advanced Biomarkers plan.",
+    "url": "https://developer.withings.com/developer-guide/v3/data-api/all-available-health-data/",
+    "quote": "Requires the Advanced Biomarkers plan"
+  },
+  {
+    "claim": "Free plan / FAQ: 96 biomarkers across 9 device families.",
+    "url": "https://developer.withings.com/developer-guide/v3/data-api/all-available-health-data/",
+    "quote": "96 biomarkers across 9 device families"
+  },
+  {
+    "claim": "Table: users may own devices or you may distribute them through your own channels.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/public-health-data-api-overview/",
+    "quote": "or you may choose to distribute Withings devices to them through your own channels"
+  },
+  {
+    "claim": "Table: Logistics Services ship pre-configured devices and kits direct to patients.",
+    "url": "https://developer.withings.com/",
+    "quote": "Direct-to-patient dropshipping of pre-configured devices and kits, with personalization options and full API integration."
+  },
+  {
+    "claim": "What it costs: the home page links Compare API plans.",
+    "url": "https://developer.withings.com/",
+    "quote": "Compare plans, browse the biomarker catalogue and review our security posture"
+  },
+  {
+    "claim": "Withings+: the October 16, 2026 capture's notice.",
+    "url": "https://web.archive.org/web/20261016222934id_/https://developer.withings.com/",
+    "quote": "Withings+ becomes required on the Start for Free API plan from October 12, 2026."
+  },
+  {
+    "claim": "Withings+ / FAQ: accounts created after that date need a membership, including for apps already live.",
+    "url": "https://web.archive.org/web/20261016222934id_/https://developer.withings.com/",
+    "quote": "Withings accounts created after that date will need a membership to share health data with a free-plan app, including apps that are already live."
+  },
+  {
+    "claim": "Withings+ / FAQ: earlier accounts unaffected; Enterprise lifts the requirement for specific use cases.",
+    "url": "https://web.archive.org/web/20261016222934id_/https://developer.withings.com/",
+    "quote": "Accounts created before that date are unaffected, and Enterprise lifts the requirement for specific use cases."
+  },
+  {
+    "claim": "Catch: the cloud is fixed when the access contract is created.",
+    "url": "https://developer.withings.com/",
+    "quote": "Your cloud is set when your access contract is created and cannot be switched afterwards"
+  },
+  {
+    "claim": "Catch: the US Medical Cloud is for HIPAA-covered entities needing onshore data.",
+    "url": "https://developer.withings.com/",
+    "quote": "Hosted in the United States, for entities covered by HIPAA that need their data to stay onshore."
+  }
+]

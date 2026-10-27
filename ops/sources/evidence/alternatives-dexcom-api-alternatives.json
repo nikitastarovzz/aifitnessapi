@@ -1,0 +1,127 @@
+[
+  {
+    "claim": "FAQ: Clarity shows trends and can email data to the healthcare professional.",
+    "url": "https://developer.dexcom.com/docs/",
+    "quote": "Clarity® is a great tool to view trends, statistics, and day-by-day data, as well as email them to your healthcare professional"
+  },
+  {
+    "claim": "Why: registration is free.",
+    "url": "https://developer.dexcom.com/docs/dexcom/scopes-access",
+    "quote": "Registration is simple and free, however, and provides access to app credentials and Support Requests"
+  },
+  {
+    "claim": "Why: Limited Access up to 5 authorized users.",
+    "url": "https://developer.dexcom.com/docs/dexcom/scopes-access",
+    "quote": "For the production environment, an app with Limited Access can have up to 5 authorized users."
+  },
+  {
+    "claim": "Why: Full Access needs a technical and commercial review.",
+    "url": "https://developer.dexcom.com/docs/dexcom/scopes-access",
+    "quote": "Dexcom will setup a technical and commercial review of your app."
+  },
+  {
+    "claim": "Why: a standard, non-negotiable Data Licensing Agreement.",
+    "url": "https://developer.dexcom.com/docs/dexcom/scopes-access",
+    "quote": "If the team decides to authorize your request, you will be sent a standard, non-negotiable Data Licensing Agreement."
+  },
+  {
+    "claim": "Capsule / why: Dexcom reserves the right to decline.",
+    "url": "https://developer.dexcom.com/docs/",
+    "quote": "reserves the right to decline Limited or Full Access requests for apps that do not meet certain commercial and technical standards"
+  },
+  {
+    "claim": "Why: developers are responsible for regulatory compliance.",
+    "url": "https://developer.dexcom.com/docs/dexcom/scopes-access",
+    "quote": "Developers are responsible for ensuring that their apps comply with all applicable regulations."
+  },
+  {
+    "claim": "Why: Dexcom points to the FDA's Digital Health site.",
+    "url": "https://developer.dexcom.com/docs/dexcom/scopes-access",
+    "quote": "Some additional information on relevant US regulations can be found at the FDA's Digital Health site."
+  },
+  {
+    "claim": "Capsule / aggregators / FAQ: Terra says Dexcom requires every company's own app.",
+    "url": "https://docs.tryterra.co/unified-api/dexcom",
+    "quote": "Dexcom requires every company to connect users through its own app on the Dexcom developer portal"
+  },
+  {
+    "claim": "Aggregators: the relationship is entirely between your company and Dexcom.",
+    "url": "https://docs.tryterra.co/unified-api/dexcom",
+    "quote": "the relationship being set forward is entirely between your company and Dexcom"
+  },
+  {
+    "claim": "Aggregators: Terra marks Dexcom credentials Required.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "Dexcom DEXCOM Periodically fetched Required"
+  },
+  {
+    "claim": "Capsule / aggregators / FAQ: Rook marks Dexcom as requiring a developer account.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "Dexcom Requires developer account | API | Body"
+  },
+  {
+    "claim": "Aggregators: Rook says the process can take several weeks.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "This process can take several weeks and partly depends on the timelines of the respective data sources."
+  },
+  {
+    "claim": "Capsule / aggregators / FAQ: Thryve lists Dexcom with no shared OAuth client.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Dexcom Web Bulk yes no"
+  },
+  {
+    "claim": "Thryve's table columns include Historic data and Shared oAuth-client.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Historic data Shared oAuth-client"
+  },
+  {
+    "claim": "Capsule / aggregators / FAQ: Validic on Dexcom.",
+    "url": "https://validic.com/features/supported-devices/",
+    "quote": "Available, the customer may need to apply with the vendor in certain circumstances. Acceptance is not guaranteed. Supported in the US and EU only. EU is currently not accepting applications."
+  },
+  {
+    "claim": "Spike lists Dexcom.",
+    "url": "https://www.spikeapi.com/integrations",
+    "quote": "A leading continuous glucose monitoring system used primarily by people with diabetes."
+  },
+  {
+    "claim": "Sahha lists Dexcom with a cloud API connection.",
+    "url": "https://sahha.ai/integrations/",
+    "quote": "Decathlon Dexcom + Cloud API"
+  },
+  {
+    "claim": "HealthKit bloodGlucose measures the user's blood glucose level.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/hkquantitytypeidentifier/bloodglucose.json",
+    "quote": "A quantity sample type that measures the user’s blood glucose level."
+  },
+  {
+    "claim": "Health Connect BloodGlucoseRecord captures glucose, one reading per record.",
+    "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/records/BloodGlucoseRecord?hl=en",
+    "quote": "Captures the concentration of glucose in the blood. Each record represents a single instantaneous blood glucose reading."
+  },
+  {
+    "claim": "Rook's SDKs integrate with Health Connect and Apple Health; the SDK-connected list follows.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "ROOK SDKs integrate directly with Health Connect (Android) and Apple Health (iOS)"
+  },
+  {
+    "claim": "Rook lists Dexcom among SDK-connected sources.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "Dexcom | Glucose monitor"
+  },
+  {
+    "claim": "Sahha says sources arrive on-device through Apple Health or Health Connect.",
+    "url": "https://sahha.ai/integrations/",
+    "quote": "Sources arrive on-device through Apple Health or Health Connect — no per-brand work required."
+  },
+  {
+    "claim": "Research / FAQ: Dexcom's research portal.",
+    "url": "https://developer.dexcom.com/docs/dexcom/scopes-access",
+    "quote": "If you are looking to access the Dexcom Web API for research purposes, clinical studies, etc., please visit our research portal"
+  },
+  {
+    "claim": "Own data / FAQ: Dexcom Clarity.",
+    "url": "https://developer.dexcom.com/docs/",
+    "quote": "If you're a user of Dexcom products and want to see your data in the cloud, do retrospective analysis, or even download your data as a CSV, check out Dexcom Clarity"
+  }
+]

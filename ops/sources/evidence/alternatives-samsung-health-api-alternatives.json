@@ -1,0 +1,127 @@
+[
+  {
+    "claim": "Why: submit a partner request before distribution.",
+    "url": "https://developer.samsung.com/health/data/process.html",
+    "quote": "Please submit partner request before your app distribution."
+  },
+  {
+    "claim": "Why: without approval the app works only with developer mode.",
+    "url": "https://developer.samsung.com/health/data/process.html",
+    "quote": "Otherwise, the app using the Samsung Health Data SDK works only with the developer mode turned on."
+  },
+  {
+    "claim": "Why: the partnership is an exclusive service for the Data SDK.",
+    "url": "https://developer.samsung.com/health/data/process.html",
+    "quote": "Our partnership is an exclusive service for the Samsung Health Data SDK that allows users to discover engaging health and fitness apps."
+  },
+  {
+    "claim": "Which to pick: writing needs Samsung's access code after approval.",
+    "url": "https://developer.samsung.com/health/data/process.html",
+    "quote": "To write health data to Samsung Health from an app, the access code is required."
+  },
+  {
+    "claim": "Why: Terra lists Samsung Health as a mobile-based integration.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+    "quote": "These integrations are mobile-based integrations."
+  },
+  {
+    "claim": "Why: mobile-based integrations need a Mobile SDK on the user's device.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+    "quote": "They require a mobile app with a Mobile SDK integration on the user's device to fetch the data."
+  },
+  {
+    "claim": "Why / FAQ: Validic says Samsung approval needs a direct relationship and it is not accepting new applications.",
+    "url": "https://validic.com/features/supported-devices/",
+    "quote": "Approval requires direct relationship with Samsung Health. Acceptance is not guaranteed and this vendor is not accepting new applications."
+  },
+  {
+    "claim": "Capsule / Health Connect / FAQ: Samsung Health syncs with Health Connect since 6.22.5 (October 2022).",
+    "url": "https://developer.samsung.com/health/health-connect-faq.html",
+    "quote": "Samsung Health synchronizes data with Health Connect since version 6.22.5 (October 2022) and later."
+  },
+  {
+    "claim": "Capsule / Health Connect / FAQ: synced types are activity such as steps and exercise, heart rate and sleep.",
+    "url": "https://developer.samsung.com/health/health-connect-faq.html",
+    "quote": "Activity data, such as steps and exercise, heart rate, and sleep, are synchronized between Samsung Health and Health Connect."
+  },
+  {
+    "claim": "Capsule / Health Connect / FAQ: Galaxy Watch data goes to Samsung Health on the phone and syncs to Health Connect.",
+    "url": "https://developer.samsung.com/health/health-connect-faq.html",
+    "quote": "Health data from the Galaxy Watch is transferred to the Samsung Health application on the user’s smartphone and synchronized to Health Connect."
+  },
+  {
+    "claim": "Health Connect / FAQ: Health Connect data permission must be granted.",
+    "url": "https://developer.samsung.com/health/health-connect-faq.html",
+    "quote": "data permission must be granted for Health Connect"
+  },
+  {
+    "claim": "Health Connect / FAQ: Health Connect runs on Android mobile devices and does not support Wear OS.",
+    "url": "https://developer.samsung.com/health/health-connect-faq.html",
+    "quote": "The Health Connect application can be installed on Android mobile devices. It does not support Wear OS devices."
+  },
+  {
+    "claim": "Watch / FAQ: Sensor SDK compatible with Galaxy Watch4 and later.",
+    "url": "https://developer.samsung.com/health/sensor/overview.html",
+    "quote": "Samsung Health Sensor SDK is compatible with Galaxy Watch4 series and later models."
+  },
+  {
+    "claim": "Watch / FAQ: raw signals and processed data.",
+    "url": "https://developer.samsung.com/health/sensor/overview.html",
+    "quote": "It provides both raw sensor signal data from the Samsung BioActive Sensor and processed data with our differentiated features."
+  },
+  {
+    "claim": "Watch / FAQ: a watch application on Wear OS powered by Samsung.",
+    "url": "https://developer.samsung.com/health/sensor/overview.html",
+    "quote": "A watch application utilizing Samsung Health Sensor SDK runs on a Galaxy Watch with Wear OS powered by Samsung."
+  },
+  {
+    "claim": "Watch: Wear OS 3 and higher includes Health Services.",
+    "url": "https://developer.android.com/health-and-fitness/health-services?hl=en",
+    "quote": "Wear OS 3 and higher includes a service called Health Services"
+  },
+  {
+    "claim": "Aggregators / FAQ: Terra lists Samsung event-driven with Required credentials.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "Samsung SAMSUNG Event-Driven Required"
+  },
+  {
+    "claim": "Aggregators: Terra sends Samsung Health to the Mobile SDK.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+    "quote": "To connect to Apple Health, Google Health, Samsung Health, please refer to the Terra Mobile SDK"
+  },
+  {
+    "claim": "Aggregators: Rook lists Samsung Health as an SDK source requiring a developer account.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "Samsung Health Requires developer account | SDK | Body Physical Sleep"
+  },
+  {
+    "claim": "Aggregators / FAQ: Rook says clients must create their own developer accounts.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "clients are required to create their own developer accounts with these providers."
+  },
+  {
+    "claim": "Aggregators / FAQ: Rook says this can take several weeks.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "This process can take several weeks and partly depends on the timelines of the respective data sources."
+  },
+  {
+    "claim": "Aggregators: Thryve lists Samsung Health as a native SDK source.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Samsung Health Native SDK yes n.a."
+  },
+  {
+    "claim": "Aggregators: Open Wearables lists Samsung Health via SDKs.",
+    "url": "https://openwearables.io/docs/providers/supported",
+    "quote": "Samsung Health | Setup Guide → | Via Android, Flutter & React Native SDK"
+  },
+  {
+    "claim": "Aggregators: Spike lists Samsung Health.",
+    "url": "https://www.spikeapi.com/integrations",
+    "quote": "A health app that tracks steps, workouts, and wellness data from Samsung devices."
+  },
+  {
+    "claim": "Aggregators: Sahha says Samsung Health writes to Health Connect, which its SDK reads.",
+    "url": "https://sahha.ai/integrations/",
+    "quote": "Samsung Health, Fitbit, Garmin, and hundreds of Android apps write to Health Connect — the same SDK reads it all on Android."
+  }
+]
