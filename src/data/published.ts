@@ -7,7 +7,7 @@
  * contained the entry and listed it in its cluster's release gate (blog
  * posts: the commit that added the file; generated sections: the commit that
  * added the route, or the item to the data file if that came later).
- * Keyed by URL path without the leading slash. 529 rows.
+ * Keyed by URL path without the leading slash. 528 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -94,7 +94,6 @@ export const PUBLISHED: Record<string, string> = {
   "blog/hrv-sdnn-vs-rmssd": "2026-09-01",
   "blog/no-data-means-four-things": "2026-09-01",
   "blog/wearable-api-user-side-cost": "2026-09-01",
-  "blog/welcome-to-aifitnessapi": "2026-07-08",
   "build/ai-fitness-coaching-app": "2026-07-09",
   "build/corporate-wellness-app": "2026-07-09",
   "build/cycle-tracking-app": "2026-09-01",
