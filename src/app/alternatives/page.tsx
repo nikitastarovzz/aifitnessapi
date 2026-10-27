@@ -8,6 +8,8 @@ import ClusterHero from "@/components/ClusterHero";
 import HubFreshness from "@/components/HubFreshness";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
+import { HubGlanceTable, HubDirectAnswers } from "@/components/HubGlance";
+import { hubQaJsonLd } from "@/data/hubGlance";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
@@ -101,11 +103,16 @@ export default function AlternativesPillar() {
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: FAQS.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
+    mainEntity: [
+      ...FAQS.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+      // The hub's direct answers (src/data/hubGlance.ts); pointer-only
+      // questions another page owns are left out.
+      ...hubQaJsonLd("/alternatives", url),
+    ],
   };
   const itemListJsonLd = {
     "@context": "https://schema.org",
@@ -156,6 +163,9 @@ export default function AlternativesPillar() {
             <Link href="/integrate">integration guide</Link> for whichever alternative you pick.
           </p>
         </div>
+
+        <HubGlanceTable hub="/alternatives" />
+        <HubDirectAnswers hub="/alternatives" />
 
         {GROUPS.map((group) => {
           const items = group.slugs.map((s) => getAlternative(s)).filter((e) => e !== undefined);

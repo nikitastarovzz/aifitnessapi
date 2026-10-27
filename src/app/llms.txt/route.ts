@@ -1,4 +1,6 @@
 import { getAllPosts } from "@/lib/posts";
+import { GLANCE_HUBS, HUB_NAMES, hubGlance, hubQa } from "@/data/hubGlance";
+import { moneyPages, moneyCluster, MONEY_GROUP_LABELS, MONEY_GROUP_ORDER } from "@/data/moneyPages";
 import { site, absoluteUrl } from "@/lib/site";
 import { markdownUrl } from "@/lib/schema";
 import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
@@ -107,6 +109,29 @@ export function GET() {
     "- Each page states the one question it owns; FAQ answers are individually addressable at `#faq-1`, `#faq-2`, …",
     "- Sourcing: claims trace to a primary source checked on the review date, and unverifiable claims are labelled as such rather than rounded up.",
     "- Funding: this site is funded by KinesteX, an AI motion SDK. Pages covering KinesteX carry a disclosure and are flagged `first_party` in answers.json.",
+    "",
+    // The pages developers arrive with a buying question for, first, each
+    // with the opening of its own capsule (src/data/moneyPages.ts decides
+    // membership by rule, so a new pricing, alternatives, compare or
+    // integration page is listed here with no edit). Every page below is
+    // also listed again in its section further down, with its full capsule.
+    "## Start here: section hubs with an at-a-glance table and direct answers",
+    ...GLANCE_HUBS.map(
+      (h) =>
+        `- [${HUB_NAMES[h]}](${absoluteUrl(h)}): ${hubGlance(h).heading.replace(/^At a glance: /, "")} — a table built from the site's cost model, plus ${hubQa(h).length} direct answers (${absoluteUrl(`${h}#direct-answers`)}).`,
+    ),
+    ...MONEY_GROUP_ORDER.flatMap((g) => {
+      const items = moneyPages().filter((m) => m.group === g);
+      if (!items.length) return [];
+      return [
+        "",
+        `## Start here — ${MONEY_GROUP_LABELS[g]}`,
+        ...items.map(
+          (m) =>
+            `- [${m.entry.h1}](${absoluteUrl(m.path)}): ${m.oneLine}${g === "new" ? ` (${moneyCluster(m)}${m.published ? `, published ${m.published}` : ""})` : ""}`,
+        ),
+      ];
+    }),
     "",
     "## Fitness & workout APIs (comparison cluster)",
     `- [Best Fitness & Workout APIs (guide + hub)](${absoluteUrl(PILLAR_PATH)}): start here to choose a fitness API by job — exercise content, wearables, aggregators, nutrition, or AI motion tracking.`,

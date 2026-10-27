@@ -1,6 +1,17 @@
 import { clusterMap, CLUSTER_LABELS } from "@/lib/clusterRegistry";
 import { absoluteUrl, site } from "@/lib/site";
 import { markdownUrl } from "@/lib/schema";
+import { CATEGORY_LABELS, DEV_COST_LABELS } from "@/data/costModel";
+import {
+  DEV_COST_MEANING,
+  GLANCE_COST_ITEMS,
+  GLANCE_HUBS,
+  hubGlance,
+  hubQa,
+  qaText,
+  segText,
+} from "@/data/hubGlance";
+import { moneyPages, MONEY_GROUP_LABELS, MONEY_GROUP_ORDER } from "@/data/moneyPages";
 import { changesSorted, WATCH_ITEMS } from "@/data/changes";
 import { ROWS as MATRIX_ROWS } from "@/data/matrix";
 import { HK_IDENTIFIERS, HK_FAMILIES, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
@@ -83,6 +94,58 @@ export function GET() {
     },
     generated: answers.length,
     clusters: Object.keys(map).length,
+    // The money pages first, each with the opening of its own capsule, and
+    // the four section hubs' direct answers and at-a-glance tables. Built by
+    // src/data/moneyPages.ts and src/data/hubGlance.ts from the cost model and
+    // the pages' capsules, so nothing here is not also on the page it names.
+    start_here: {
+      description:
+        "Pricing, alternatives, head-to-head and per-vendor integration pages, plus the newest pages, each with the opening sentence(s) of its own answer capsule. The full record for each is in `answers` below.",
+      groups: MONEY_GROUP_ORDER.map((g) => ({
+        group: g,
+        label: MONEY_GROUP_LABELS[g],
+        pages: moneyPages()
+          .filter((m) => m.group === g)
+          .map((m) => ({
+            title: m.entry.h1,
+            question: m.entry.primaryQuery,
+            one_line_answer: m.oneLine,
+            url: absoluteUrl(m.path),
+            answer_url: `${absoluteUrl(m.path)}#answer`,
+            markdown: markdownUrl(m.path),
+            cluster: CLUSTER_LABELS[m.basePath] ?? m.basePath,
+            published: m.published,
+            last_reviewed: m.entry.updated,
+            first_party: Boolean(m.entry.firstParty),
+          })),
+      })).filter((g) => g.pages.length > 0),
+      hub_answers: GLANCE_HUBS.map((h) => ({
+        hub: absoluteUrl(h),
+        questions: hubQa(h).map((q) => ({
+          question: q.q,
+          url: `${absoluteUrl(h)}#${q.id}`,
+          // "route": another page owns this question; the hub only points there.
+          kind: q.kind,
+          answer: qaText(q),
+          sources: [...new Set(q.parts.map((p) => absoluteUrl(p.href)))],
+        })),
+      })),
+      at_a_glance: GLANCE_HUBS.map((h) => {
+        const g = hubGlance(h);
+        return {
+          hub: absoluteUrl(h),
+          url: `${absoluteUrl(h)}#at-a-glance`,
+          title: g.heading,
+          columns: g.columns,
+          rows: g.rows.map((r) => ({
+            id: `${absoluteUrl(h)}#${r.id}`,
+            cells: r.cells.map((c) => segText(c)),
+            links: [...new Set(r.cells.flat().flatMap((s) => (s.href ? [absoluteUrl(s.href)] : [])))],
+          })),
+          note: g.footnote,
+        };
+      }),
+    },
     answers,
     // The blog carries findings derived from the datasets below rather than
     // reference answers, so it is a separate collection: an agent looking for
@@ -260,6 +323,25 @@ export function GET() {
           android_health_connect: r.android,
           caveat: r.watchOut ?? null,
           guide: absoluteUrl(r.href),
+        })),
+      },
+      // How each product bills developers, what its users need and what gates
+      // launch, one row per product of the cost model, at the row of the
+      // /pricing hub's at-a-glance table that renders it.
+      api_access_structures: {
+        count: GLANCE_COST_ITEMS.length,
+        note:
+          "From the site's cost model (src/data/costModel.ts), whose every field quotes a sentence on `source_page`. No dollar amounts by design. A null field means the site has not recorded one, not that none exists.",
+        items: GLANCE_COST_ITEMS.map((c) => ({
+          id: `${absoluteUrl("/pricing")}#cost-${c.id}`,
+          product: c.label,
+          category: CATEGORY_LABELS[c.category],
+          developer_billing: DEV_COST_LABELS[c.devCost],
+          developer_billing_meaning: DEV_COST_MEANING[c.devCost],
+          end_user_needs: c.userSideCost,
+          approval_gate: c.approvalGate,
+          source_page: absoluteUrl(c.sourceHref),
+          directory_page: absoluteUrl(`/apis/${c.id}`),
         })),
       },
       glossary: {

@@ -834,6 +834,63 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     area: "Links and anchors",
     refuses: "A published fact whose fragment does not resolve on the page it points into, which would break every citation already made to it.",
   },
+  {
+    code: "CLAIMS-INVALID",
+    area: "Feeds and mirrors",
+    refuses: "A build whose claims.json is missing or carries no claims array, so the quoting index machine readers are pointed at is gone.",
+  },
+  {
+    code: "CLAIMS-DEAD-ANCHOR",
+    area: "Links and anchors",
+    refuses: "A claim in claims.json whose fragment URL does not resolve on the built page it names, though readers are told to cite that fragment.",
+  },
+
+  // ── Hub at-a-glance tables and direct answers ─────────────────────────
+  {
+    code: "HUB-GLANCE-MISSING",
+    area: "Derived blocks",
+    refuses: "A /fitness-apis, /pricing, /alternatives or /compare hub that renders no at-a-glance table or no direct-answers block.",
+  },
+  {
+    code: "HUB-GLANCE-ROWS",
+    area: "Derived blocks",
+    refuses: "A /pricing at-a-glance table that leaves out a product in the cost model, another hub's table with fewer than five rows, or a row with no id to cite.",
+  },
+  {
+    code: "HUB-GLANCE-VALUE",
+    area: "Derived blocks",
+    refuses: "A value in a hub table or direct answer that differs from the cost-model field or the answer capsule it says it comes from, read again from the source rather than from the module that rendered it.",
+  },
+  {
+    code: "HUB-GLANCE-SOURCE",
+    area: "Derived blocks",
+    refuses: "A hub table or answer value whose source names no cost-model field, a page with no built answer capsule, or nothing the check recognises.",
+  },
+  {
+    code: "HUB-GLANCE-UNLINKED",
+    area: "Derived blocks",
+    refuses: "A hub table row or answer that quotes a page without linking it, so a reader cannot reach the page that holds the fact.",
+  },
+  {
+    code: "HUB-GLANCE-LINK",
+    area: "Links and anchors",
+    refuses: "A hub table row or answer that links a page which was not built or renders notFound().",
+  },
+  {
+    code: "HUB-QA-COUNT",
+    area: "Derived blocks",
+    refuses: "A hub with fewer than three or more than five direct answers.",
+  },
+  {
+    code: "HUB-QA-MARKUP",
+    area: "Structured data / GEO",
+    refuses: "A direct answer missing from its hub's FAQPage or its anchor, a pointer to the page that owns a question still marked up as the hub's own FAQ, or an answer with no linked parts.",
+  },
+  {
+    code: "MONEY-UNLISTED",
+    area: "Feeds and mirrors",
+    refuses: "A released pricing, alternatives, comparison or integration page missing from the Start here sections of llms.txt or from start_here in answers.json.",
+  },
 
   // ── Calendar feed ─────────────────────────────────────────────────────
   {
