@@ -59,7 +59,14 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Nutrition & exercise content",
     blurb: "Food databases and exercise libraries.",
-    slugs: ["nutritionix-vs-edamam", "edamam-vs-spoonacular", "exercisedb-vs-wger", "exercisedb-vs-free-exercise-db", "usda-fooddata-central-vs-open-food-facts"],
+    slugs: [
+      "nutritionix-vs-edamam",
+      "edamam-vs-spoonacular",
+      "exercisedb-vs-wger",
+      "exercisedb-vs-free-exercise-db",
+      "exercisedb-vs-api-ninjas",
+      "usda-fooddata-central-vs-open-food-facts",
+    ],
   },
   {
     title: "AI motion tracking SDKs",
@@ -70,8 +77,8 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Pose estimation models",
     blurb:
-      "Open pose models head-to-head, from the model cards and source repositories. Neither side is KinesteX, which funds this site; each page says so up front.",
-    slugs: ["mediapipe-vs-movenet", "mediapipe-vs-yolo-pose"],
+      "Pose models and platform pose APIs head-to-head, from the model cards, vendor documentation and source repositories. Neither side is KinesteX, which funds this site; each page says so up front.",
+    slugs: ["mediapipe-vs-movenet", "mediapipe-vs-yolo-pose", "apple-vision-vs-mediapipe", "ml-kit-vs-mediapipe"],
   },
 ];
 

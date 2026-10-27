@@ -15,7 +15,7 @@ import {
   typeH1 as ghapiTypeH1,
   typePath as ghapiTypePath,
 } from "@/data/ghapiPages";
-import { LIBRARIES_BASE, LIBRARY_COMPARISONS, libraryPages, librariesModified } from "@/data/librariesEditorial";
+import { LIBRARIES_BASE, LIBRARY_COMPARISONS, comparisonModified, libraryPages, librariesModified } from "@/data/librariesEditorial";
 import { LIBRARY_LANDINGS, landingPath } from "@/data/librariesLandings";
 import { hkPageIdentifiers, hkIdentifierPath, hkPageH1, hkPageCapsule, hkPageFaqs, hkPageModified } from "@/data/hkIdentifierPages";
 import { hsPageTypes, hsDataTypePath, hsPageH1, hsPageCapsule, hsPageFaqs, hsPageModified } from "@/data/hsDataTypePages";
@@ -192,7 +192,7 @@ export function GET() {
           title: c.h1,
           url,
           section: "Open-source libraries",
-          last_reviewed: librariesModified(),
+          last_reviewed: comparisonModified(c),
           first_party: false,
           faqs: c.faqs.map((f, i) => ({ question: f.q, answer: f.a, url: `${url}#faq-${i + 1}` })),
         };

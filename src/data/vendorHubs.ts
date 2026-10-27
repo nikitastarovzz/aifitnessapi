@@ -336,6 +336,7 @@ export const VENDOR_HUBS: VendorHub[] = [
       "/alternatives/exercisedb-alternatives",
       "/compare/exercisedb-vs-wger",
       "/compare/exercisedb-vs-free-exercise-db",
+      "/compare/exercisedb-vs-api-ninjas",
       "/apis/exercisedb",
     ],
   },

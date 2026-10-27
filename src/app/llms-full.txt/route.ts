@@ -526,6 +526,11 @@ export function GET() {
   for (const c of LIBRARY_COMPARISONS) {
     out.push(`## ${c.h1} — ${absoluteUrl(`${LIBRARIES_BASE}/compare/${c.slug}`)}`);
     out.push(`Primary query: ${c.primaryQuery}`, "", c.answer, "");
+    for (const sec of c.sections ?? []) {
+      out.push(`${sec.heading}:`);
+      for (const n of sec.notes) out.push(`- ${n.text} (${n.sourceLabel}: ${n.source})`);
+      out.push("");
+    }
     for (const f of c.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
     out.push("");
   }
