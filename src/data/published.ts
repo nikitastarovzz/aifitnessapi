@@ -7,7 +7,7 @@
  * contained the entry and listed it in its cluster's release gate (blog
  * posts: the commit that added the file; generated sections: the commit that
  * added the route, or the item to the data file if that came later).
- * Keyed by URL path without the leading slash. 529 rows.
+ * Keyed by URL path without the leading slash. 538 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -38,6 +38,8 @@ export const PUBLISHED: Record<string, string> = {
   "ai/llm-safety-fitness-advice": "2026-07-27",
   "ai/personalize-with-wearable-data": "2026-07-27",
   "ai/structured-output-for-workout-plans": "2026-08-12",
+  "alternatives/coros-api-alternatives": "2026-10-27",
+  "alternatives/dexcom-api-alternatives": "2026-10-27",
   "alternatives/exercisedb-alternatives": "2026-07-13",
   "alternatives/fitbit-api-alternatives": "2026-07-13",
   "alternatives/garmin-api-alternatives": "2026-07-13",
@@ -50,11 +52,15 @@ export const PUBLISHED: Record<string, string> = {
   "alternatives/openpose-alternatives": "2026-10-22",
   "alternatives/oura-api-alternatives": "2026-07-13",
   "alternatives/quickpose-alternatives": "2026-10-18",
+  "alternatives/samsung-health-api-alternatives": "2026-10-27",
   "alternatives/sency-alternatives": "2026-10-18",
   "alternatives/strava-api-alternatives": "2026-07-13",
+  "alternatives/suunto-api-alternatives": "2026-10-27",
   "alternatives/terra-alternatives": "2026-07-13",
+  "alternatives/wahoo-api-alternatives": "2026-10-27",
   "alternatives/wger-alternatives": "2026-10-22",
   "alternatives/whoop-api-alternatives": "2026-07-13",
+  "alternatives/withings-api-alternatives": "2026-10-27",
   "architecture/background-sync": "2026-07-27",
   "architecture/caching-fitness-api-responses": "2026-08-12",
   "architecture/data-deletion-and-export": "2026-07-27",
@@ -505,8 +511,11 @@ export const PUBLISHED: Record<string, string> = {
   "pricing/sahha-api-pricing": "2026-10-18",
   "pricing/sency-pricing": "2026-10-18",
   "pricing/strava-api-pricing": "2026-07-23",
+  "pricing/suunto-api-pricing": "2026-10-27",
   "pricing/thryve-api-pricing": "2026-10-18",
+  "pricing/wahoo-api-pricing": "2026-10-27",
   "pricing/whoop-api-pricing": "2026-07-23",
+  "pricing/withings-api-pricing": "2026-10-27",
   "test/background-sync": "2026-07-30",
   "test/camera-features-without-a-device": "2026-07-30",
   "test/data-deletion": "2026-07-30",
