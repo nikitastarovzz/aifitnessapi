@@ -19,10 +19,14 @@ const UPDATED = "2026-07-09";
  *  /questions index is built from so the two can never disagree. */
 const QUESTION_COUNT = releasedIntegrations().reduce((n, e) => n + e.faqs.length, 0);
 
+// 2026-10-27 (ops/SEO-10-2026-10-27.md item 8): Google showed this hub for
+// "fitness api" at position 93 in the 28 days to 2026-10-24, a search one
+// index of per-provider guides cannot answer. The title and description now
+// say it is that index; the guides keep the provider queries.
 export const metadata: Metadata = {
-  title: "How to Integrate a Fitness or Health API",
+  title: { absolute: "Health API Integration Guides: An Index by Provider" },
   description:
-    "Step-by-step integration guides for fitness and health APIs: OAuth, fetching data, and webhooks for HealthKit, Fitbit, Strava, Garmin, Oura, and Terra.",
+    "An index of step-by-step integration guides, one per provider: OAuth, data and webhooks for HealthKit, Fitbit, Strava, Garmin, Oura, Terra and more.",
   alternates: { canonical: INTEGRATE_PATH },
   openGraph: {
     type: "website",

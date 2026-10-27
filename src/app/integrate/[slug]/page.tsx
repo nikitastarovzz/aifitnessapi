@@ -9,6 +9,7 @@ import {
   INTEGRATE_PATH,
   INTEGRATE_CONFIG,
 } from "@/data/integrate";
+import { robotsFor } from "@/data/noindex";
 
 export const dynamicParams = false;
 
@@ -33,6 +34,7 @@ export async function generateMetadata({
     title: { absolute: title },
     description,
     alternates: { canonical },
+    ...robotsFor(canonical),
     openGraph: {
       type: "article",
       title,

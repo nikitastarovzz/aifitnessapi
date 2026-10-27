@@ -1851,6 +1851,116 @@ if (fs.existsSync(matrixPath)) {
   }
 }
 
+// ── Index decisions (ops/SEO-10-2026-10-27.md item 4). Two lists say which
+// pages ask not to be indexed: src/data/indexDemand.ts, generated from the
+// search pulls by scripts/build-index-demand.mjs for the generated per-item
+// reference pages, and NOINDEX_PAGES in src/data/noindex.ts, decided by hand
+// for older hand-written pages. Each list is only true if the built site
+// does what it says, and a decision lives in three places a later edit can
+// separate: the list, the page's robots meta and the sitemap. So every row
+// is held to both: a noindex row renders `noindex, follow` and is absent from
+// the sitemap; an index row of the generated list renders no noindex and is
+// listed. Neither list may name a hub — a noindexed hub would hide the
+// indexed pages under it — and a hand-written entry must still build (a page
+// folded away has to leave the list too).
+{
+  const SITE = "https://aifitnessapi.com";
+  const sm = fs.existsSync(`${ROOT}/sitemap.xml.body`) ? fs.readFileSync(`${ROOT}/sitemap.xml.body`, "utf8") : "";
+  const listed = new Set(
+    [...sm.matchAll(/<loc>([^<]*)<\/loc>/g)].map(([, loc]) => (loc === SITE ? "/" : loc.slice(SITE.length))),
+  );
+  const htmlByRoute = new Map(htmls.map((h) => [routeOf(h), h]));
+  /** The page's robots directives, or null when no page builds there. */
+  const robotsAt = (route) => {
+    const h = htmlByRoute.get(route);
+    if (!h || notFoundSet.has(route)) return null;
+    return robotsOf(fs.readFileSync(h, "utf8")).join(" | ");
+  };
+  const isNoindexFollow = (r) => /\bnoindex\b/i.test(r) && /\bfollow\b/i.test(r) && !/\bnofollow\b/i.test(r);
+  const hubOk = (route) => {
+    const segs = route.split("/").filter(Boolean);
+    if (segs.length < 2) return false;
+    const hub = `/${segs[0]}`;
+    const r = robotsAt(hub);
+    return r !== null && !/noindex/i.test(r) && listed.has(hub);
+  };
+
+  // Generated pages: the data-driven rule.
+  const src = fs.existsSync("src/data/indexDemand.ts") ? fs.readFileSync("src/data/indexDemand.ts", "utf8") : "";
+  const m = /export const INDEX_DEMAND: [^=]+= /.exec(src);
+  const end = m ? src.indexOf("\n];", m.index) : -1;
+  let rows = null;
+  try {
+    rows = m && end !== -1 ? JSON.parse(src.slice(m.index + m[0].length, end + 2)) : null;
+  } catch {
+    rows = null;
+  }
+  if (!Array.isArray(rows) || rows.length === 0) {
+    problems.push("INDEX-DEMAND-READ  src/data/indexDemand.ts has no readable INDEX_DEMAND rows — run npm run build && node scripts/build-index-demand.mjs");
+  } else {
+    let judged = 0;
+    const unbuilt = [];
+    for (const r of rows) {
+      const robots = robotsAt(r.path);
+      if (robots === null) {
+        unbuilt.push(r.path);
+        continue;
+      }
+      judged++;
+      if (r.decision === "noindex") {
+        if (!isNoindexFollow(robots)) problems.push(`INDEX-DEMAND-ROBOTS  ${r.path} is noindex in src/data/indexDemand.ts but renders robots "${robots}"`);
+        if (listed.has(r.path)) problems.push(`INDEX-DEMAND-SITEMAP  ${r.path} is noindex in src/data/indexDemand.ts but sitemap.xml lists it`);
+        if (!hubOk(r.path)) problems.push(`INDEX-DEMAND-HUB  ${r.path} is noindexed but is a hub, or its hub is not indexed and listed`);
+      } else if (r.decision === "index") {
+        if (/noindex/i.test(robots)) problems.push(`INDEX-DEMAND-ROBOTS  ${r.path} is indexed in src/data/indexDemand.ts but renders robots "${robots}"`);
+        if (!listed.has(r.path)) problems.push(`INDEX-DEMAND-SITEMAP  ${r.path} is indexed in src/data/indexDemand.ts but sitemap.xml does not list it`);
+      } else {
+        problems.push(`INDEX-DEMAND-READ  ${r.path} carries decision "${r.decision}"`);
+      }
+    }
+    const noindexed = rows.filter((r) => r.decision === "noindex").length;
+    console.log(
+      `Index demand: ${judged} generated pages held to src/data/indexDemand.ts (${noindexed} noindex)` +
+        (unbuilt.length ? `; ${unbuilt.length} rows name pages this build does not have — regenerate after a data change (${unbuilt.slice(0, 3).join(", ")}${unbuilt.length > 3 ? ", …" : ""})` : ""),
+    );
+  }
+
+  // Hand-written pages: the decided list.
+  const nsrc = fs.existsSync("src/data/noindex.ts") ? fs.readFileSync("src/data/noindex.ts", "utf8") : "";
+  const block = /export const NOINDEX_PAGES[^=]*=\s*new Set\(\[([\s\S]*?)\]\)/.exec(nsrc)?.[1];
+  if (block === undefined) problems.push("NOINDEX-PAGE-READ  NOINDEX_PAGES not found in src/data/noindex.ts");
+  else {
+    const pages = [...block.matchAll(/"(\/[^"]+)"/g)].map((x) => x[1]);
+    for (const p of pages) {
+      const robots = robotsAt(p);
+      if (robots === null) {
+        problems.push(`NOINDEX-PAGE-GONE  ${p} is in NOINDEX_PAGES but no page builds there — a folded or removed page leaves the list too`);
+        continue;
+      }
+      if (!isNoindexFollow(robots)) problems.push(`NOINDEX-PAGE-ROBOTS  ${p} is in NOINDEX_PAGES but renders robots "${robots}"`);
+      if (listed.has(p)) problems.push(`NOINDEX-PAGE-SITEMAP  ${p} is in NOINDEX_PAGES but sitemap.xml lists it`);
+      if (!hubOk(p)) problems.push(`NOINDEX-PAGE-HUB  ${p} is in NOINDEX_PAGES but is a hub, or its hub is not indexed and listed`);
+    }
+    console.log(`Noindex list: ${pages.length} hand-written pages render noindex, follow and are out of the sitemap.`);
+  }
+}
+
+// ── /opensearch.xml is for browsers, not for results pages: Google showed it
+// for "fitness api" (ops/SEO-10-2026-10-27.md item 8). An XML file cannot
+// carry a robots meta, so next.config.ts sends X-Robots-Tag: noindex for it.
+// The rule has to stay, and the file has to keep working for the browsers it
+// is for.
+{
+  const cfg = fs.existsSync("next.config.ts") ? fs.readFileSync("next.config.ts", "utf8") : "";
+  if (!/source:\s*"\/opensearch\.xml",\s*headers:\s*\[\s*\{\s*key:\s*"X-Robots-Tag",\s*value:\s*"noindex"\s*\}/.test(cfg)) {
+    problems.push('OPENSEARCH-NOINDEX  next.config.ts does not send "X-Robots-Tag: noindex" for /opensearch.xml');
+  }
+  const body = fs.existsSync(`${ROOT}/opensearch.xml.body`) ? fs.readFileSync(`${ROOT}/opensearch.xml.body`, "utf8") : "";
+  if (!/<OpenSearchDescription\b/.test(body) || !/<Url\b[^>]*template="[^"]*\{searchTerms\}/.test(body)) {
+    problems.push("OPENSEARCH-NOINDEX  /opensearch.xml did not build as an OpenSearch description with a {searchTerms} template");
+  }
+}
+
 // ── Year markers. A year in parentheses in a page's <title> or <h1> —
 // "(2026)", "(2026 Guide)", "(2026 Update)" — is a freshness claim: it tells
 // a searcher the page is current as of that year. The only honest backing

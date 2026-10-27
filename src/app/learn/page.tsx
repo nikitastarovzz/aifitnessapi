@@ -23,15 +23,22 @@ export const metadata: Metadata = {
   // Intent first rather than another "Fitness & Health API …" title: Google
   // tested every hub for "fitness api" and ranked none of them
   // (ops/SERP-30-2026-10-12.md #3). The H1 keeps the section's name.
-  title: { absolute: "Health Data Concepts for Developers: OAuth, Webhooks, HRV" },
+  //
+  // 2026-10-27 (ops/SEO-10-2026-10-27.md item 8): Google still showed this
+  // hub for "fitness api", "exercise video api" and "exercise api" at
+  // positions 28 to 49 in the 28 days to 2026-10-24 — searches for an API,
+  // which an index of concept explainers cannot answer. The title and
+  // description now say it is an index of explainers, and the intro hands
+  // those searches to the roundups that own them.
+  title: { absolute: "Health Data Concepts: An Index of Developer Explainers" },
   description:
-    "Plain-English explainers for health-tech builders: fitness APIs, OAuth, webhooks, aggregators, pose estimation, HRV, VO2 max, and sleep stages.",
+    "An index of plain-English explainers for health-tech builders: OAuth, webhooks, aggregators, pose estimation, HRV, VO2 max and sleep stages.",
   alternates: { canonical: LEARN_PATH },
   openGraph: {
     type: "website",
-    title: "Health Data Concepts for Developers: OAuth, Webhooks, HRV",
+    title: "Health Data Concepts: An Index of Developer Explainers",
     description:
-      "The vocabulary of health-tech, explained for builders: APIs, OAuth, webhooks, aggregators, pose estimation, and the metrics inside your data.",
+      "An index of the vocabulary of health-tech, explained for builders: OAuth, webhooks, aggregators, pose estimation, and the metrics inside your data.",
     url: LEARN_PATH,
   },
 };
@@ -135,9 +142,29 @@ export default function LearnPillar() {
         >
           Building in health-tech means learning a specific vocabulary: what a fitness API is, how OAuth
           and webhooks work, the difference between on-device stores and cloud aggregators, pose
-          estimation, and what metrics like HRV and VO2 max actually mean. These plain-English
-          explainers define each concept, then point you to the hands-on guides.
+          estimation, and what metrics like HRV and VO2 max actually mean. This page is an index of
+          plain-English explainers that define each concept, then point you to the hands-on guides.
         </div>
+
+        <p className="mt-5 text-[var(--muted)]">
+          Looking for an API rather than a definition? The roundups compare them:{" "}
+          <Link href="/fitness-apis/exercise-video-apis" className="text-brand-600 underline hover:text-brand-500">
+            exercise APIs that serve demonstration videos
+          </Link>
+          ,{" "}
+          <Link href="/fitness-apis/exercise-database-apis" className="text-brand-600 underline hover:text-brand-500">
+            exercise database APIs
+          </Link>{" "}
+          and{" "}
+          <Link href="/fitness-apis/wearable-data-apis" className="text-brand-600 underline hover:text-brand-500">
+            wearable data APIs
+          </Link>
+          , with every category in the{" "}
+          <Link href="/fitness-apis" className="text-brand-600 underline hover:text-brand-500">
+            fitness API roundups
+          </Link>
+          .
+        </p>
 
         <div className="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-a:text-brand-600 hover:prose-a:text-brand-500">
           <p>

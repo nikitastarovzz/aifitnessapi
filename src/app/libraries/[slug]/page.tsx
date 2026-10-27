@@ -24,6 +24,7 @@ import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, publishedDate, WEBSITE_ID } from "@/lib/schema";
 import { stringSeed } from "@/lib/cluster";
 import { CommandItem, FactList, Inline, LANGUAGE, NoteItem, factRows, githubUrl, sinceRead, spdxUrl } from "../_shared";
+import { robotsFor } from "@/data/noindex";
 
 /**
  * One page per open-source package. Every registry and repository fact on
@@ -53,6 +54,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     title: { absolute: ed.title },
     description: ed.metaDescription,
     alternates: { canonical },
+    ...robotsFor(canonical),
     openGraph: { type: "article", title: ed.title, description: ed.metaDescription, url: canonical },
     twitter: { card: "summary_large_image", title: ed.title, description: ed.metaDescription },
   };

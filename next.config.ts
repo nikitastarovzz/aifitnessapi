@@ -93,6 +93,13 @@ const nextConfig: NextConfig = {
       { source: "/blog/building-the-healthkit-dataset.md", destination: "/healthkit-category-values", permanent: true },
       { source: "/blog/health-app-without-health-data", destination: "/build/fitness-app-tech-stack", permanent: true },
       { source: "/blog/health-app-without-health-data.md", destination: "/build/fitness-app-tech-stack.md", permanent: true },
+      // The launch announcement was folded into /about, which owns what the
+      // site is and who it is for (ops/SEO-10-2026-10-27.md item 4b). Google
+      // last showed it in the July window and neither engine since; it held no
+      // fact /about lacks, so nothing moved. /about has no markdown mirror, so
+      // the .md address follows to the page itself, as #20's posts did.
+      { source: "/blog/welcome-to-aifitnessapi", destination: "/about", permanent: true },
+      { source: "/blog/welcome-to-aifitnessapi.md", destination: "/about", permanent: true },
     ];
   },
   async rewrites() {
@@ -164,6 +171,16 @@ const nextConfig: NextConfig = {
           },
         ],
       })),
+      // The OpenSearch descriptor is for browsers (the <link rel="search"> in
+      // every page's head), not for a results page, yet Google showed it 26
+      // times in the 28 days to 2026-10-24 for "fitness api" at position 50
+      // (ops/SEO-10-2026-10-27.md item 8). An XML file cannot carry a robots
+      // meta, so the header says it; browsers ignore X-Robots-Tag and keep
+      // reading the file. qa's OPENSEARCH-NOINDEX holds this rule in place.
+      {
+        source: "/opensearch.xml",
+        headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+      },
       // The read-only JSON API (src/app/api/v1). Its GET responses carry their
       // own CORS and cache headers; this rule is for preflights, which Next
       // answers itself, because a route file that exported OPTIONS would stop

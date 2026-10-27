@@ -19,8 +19,21 @@ Inside the aifitnessapi cloud environment:
 ```
 NODE_USE_ENV_PROXY=1 node scripts/search-pull.mjs   # Google + Bing, last 28 days of final data
 node scripts/build-api-demand.mjs                   # regenerates src/data/apiDemand.ts
+npm run build && node scripts/build-index-demand.mjs  # regenerates src/data/indexDemand.ts
 npm run gsc
 ```
+
+`scripts/build-index-demand.mjs` (since 2026-10-27, ops/SEO-10-2026-10-27.md
+item 4) decides which generated per-item reference pages stay in the index:
+a page with zero Google and zero Bing impressions in every snapshot whose
+window ends after its first publication, at least 60 days old at the newest
+pull's end and covered by at least two pulls, becomes `noindex, follow` and
+leaves the sitemap. Hubs and list pages are never judged. It prints each
+family's count and the date the first unseen page becomes eligible, and fails
+on a short snapshot or a short build. Build again afterwards so the pages and
+the sitemap carry the result; qa's INDEX-DEMAND-* gates check they do. The
+hand-decided list for older hand-written pages is `NOINDEX_PAGES` in
+`src/data/noindex.ts`, re-judged at each review.
 
 `scripts/search-pull.mjs` reads Search Console through the environment
 proxy's read-only credential (send no Authorization header; never request

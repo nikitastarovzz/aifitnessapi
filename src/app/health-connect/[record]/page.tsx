@@ -48,6 +48,7 @@ import { metricGuidesForType } from "@/data/metricTypeMap";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 import { stringSeed } from "@/lib/cluster";
+import { robotsFor } from "@/data/noindex";
 
 /**
  * One page per Health Connect record class — the query is the class name
@@ -86,6 +87,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     title: { absolute: title },
     description,
     alternates: { canonical },
+    ...robotsFor(canonical),
     openGraph: {
       type: "article",
       title,

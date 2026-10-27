@@ -9,6 +9,7 @@ import {
   COMPARE_PATH,
   COMPARE_CONFIG,
 } from "@/data/compare";
+import { robotsFor } from "@/data/noindex";
 
 export const dynamicParams = false;
 
@@ -33,6 +34,7 @@ export async function generateMetadata({
     title: { absolute: title },
     description,
     alternates: { canonical },
+    ...robotsFor(canonical),
     openGraph: {
       type: "article",
       title,
