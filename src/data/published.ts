@@ -2,12 +2,13 @@
  * GENERATED — do not hand-edit. Rebuild with:
  *   node scripts/backfill-published.mjs
  *
- * First-published date of every cluster spoke, blog post and generated
- * reference page, read from git history: the first commit that both
- * contained the entry and listed it in its cluster's release gate (blog
- * posts: the commit that added the file; generated sections: the commit that
- * added the route, or the item to the data file if that came later).
- * Keyed by URL path without the leading slash. 540 rows.
+ * First-published date of every cluster spoke, blog post, translated spoke
+ * and generated reference page, read from git history: the first commit that
+ * both contained the entry and listed it in its cluster's release gate (blog
+ * posts and translations: the commit that added the file; generated
+ * sections: the commit that added the route, or the item to the data file if
+ * that came later). Keyed by URL path without the leading slash.
+ * 550 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -518,6 +519,16 @@ export const PUBLISHED: Record<string, string> = {
   "pricing/wahoo-api-pricing": "2026-10-27",
   "pricing/whoop-api-pricing": "2026-07-23",
   "pricing/withings-api-pricing": "2026-10-27",
+  "pt-br/alternatives/exercisedb-alternatives": "2026-10-27",
+  "pt-br/alternatives/terra-alternatives": "2026-10-27",
+  "pt-br/fitness-apis/ai-workout-tracking-apis": "2026-10-27",
+  "pt-br/fitness-apis/wearable-data-apis": "2026-10-27",
+  "pt-br/fix/garmin-api-approval": "2026-10-27",
+  "pt-br/integrate/garmin-api": "2026-10-27",
+  "pt-br/integrate/oura-api": "2026-10-27",
+  "pt-br/integrate/strava-api": "2026-10-27",
+  "pt-br/integrate/terra-api": "2026-10-27",
+  "pt-br/pricing/exercise-database-api-pricing": "2026-10-27",
   "test/background-sync": "2026-07-30",
   "test/camera-features-without-a-device": "2026-07-30",
   "test/data-deletion": "2026-07-30",
