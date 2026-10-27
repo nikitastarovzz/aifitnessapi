@@ -10,6 +10,7 @@ import { hkStandaloneModified } from "@/data/hkStandalone";
 import { HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { changesSorted } from "@/data/changes";
 import { API_ENTRIES, APIS_PATH, NOINDEX_APIS } from "@/data/apis";
+import { isNoindexed } from "@/data/noindex";
 import { digests, DIGEST_PATH, type Digest } from "@/data/digest";
 import { HC_FETCHED_ON } from "@/data/healthConnectRecords";
 import { orderedRecords, recordPath, HC_BASE, HC_PERMISSIONS_PATH, HC_AGGREGATES_PATH, hcModified } from "@/data/hcPages";
@@ -278,7 +279,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     DIGEST_PATH,
   ];
 
-  return [
+  const rows: MetadataRoute.Sitemap = [
     ...standalone.map((p) => row(p, p in derived ? derived[p] : pageStamp(p))),
     ...hkPages.map(([p, d]) => row(p, d)),
     ...tools.map(([p, d]) => row(p, d)),
@@ -303,4 +304,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // lastmod is the re-verification date, not first publication.
     ...posts.map((post) => row(`/blog/${post.slug}`, post.updated)),
   ];
+
+  // Pages that ask not to be indexed leave the sitemap in one place, whatever
+  // section listed them: the hand-written list and the data-driven rule for
+  // generated pages (src/data/noindex.ts, src/data/indexDemand.ts;
+  // ops/SEO-10-2026-10-27.md item 4). A sitemap row is a request to index, so
+  // listing a noindex page would contradict the page (qa: SITEMAP-NOINDEX).
+  return rows.filter((r) => !isNoindexed(new URL(r.url).pathname));
 }

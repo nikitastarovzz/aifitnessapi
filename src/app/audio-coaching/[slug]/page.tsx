@@ -9,6 +9,7 @@ import {
   AUDIO_PATH,
   AUDIO_CONFIG,
 } from "@/data/audioCoaching";
+import { robotsFor } from "@/data/noindex";
 
 export const dynamicParams = false;
 
@@ -33,6 +34,7 @@ export async function generateMetadata({
     title: { absolute: title },
     description,
     alternates: { canonical },
+    ...robotsFor(canonical),
     openGraph: {
       type: "article",
       title,

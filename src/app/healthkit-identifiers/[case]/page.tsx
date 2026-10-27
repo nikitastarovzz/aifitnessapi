@@ -40,6 +40,7 @@ import { hkVersionPages, hubAnchor, versionH1 } from "@/lib/hkVersions";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, publishedDate, WEBSITE_ID } from "@/lib/schema";
 import { stringSeed } from "@/lib/cluster";
+import { robotsFor } from "@/data/noindex";
 
 /**
  * One page per HealthKit identifier that clears the thin-page rule in
@@ -76,6 +77,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     title: { absolute: title },
     description,
     alternates: { canonical },
+    ...robotsFor(canonical),
     openGraph: {
       type: "article",
       title,

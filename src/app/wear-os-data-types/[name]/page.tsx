@@ -40,6 +40,7 @@ import { metricGuidesForType } from "@/data/metricTypeMap";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, publishedDate, WEBSITE_ID } from "@/lib/schema";
 import { stringSeed } from "@/lib/cluster";
+import { robotsFor } from "@/data/noindex";
 
 /**
  * One page per Wear OS Health Services DataType constant that clears the
@@ -77,6 +78,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     title: { absolute: title },
     description,
     alternates: { canonical },
+    ...robotsFor(canonical),
     openGraph: {
       type: "article",
       title,

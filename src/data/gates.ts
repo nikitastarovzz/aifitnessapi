@@ -23,6 +23,62 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
       "A route listed in sitemap.xml whose own HTML says noindex. The two are contradictory instructions — the sitemap asks a crawler to index what the page tells it to skip — and the contradiction is easy to create, because noindexing a page and de-listing it are edits in different files.",
   },
   {
+    code: "INDEX-DEMAND-READ",
+    area: "Hosting and crawl",
+    refuses:
+      "A build whose generated index decisions (src/data/indexDemand.ts) cannot be read, or carry a decision other than index or noindex. Without the file nothing holds the generated reference pages' robots meta and sitemap rows to the search data.",
+  },
+  {
+    code: "INDEX-DEMAND-ROBOTS",
+    area: "Hosting and crawl",
+    refuses:
+      "A generated reference page whose rendered robots meta disagrees with its row in src/data/indexDemand.ts: a page the search data took out of the index that does not say noindex, follow, or one the data keeps that says noindex.",
+  },
+  {
+    code: "INDEX-DEMAND-SITEMAP",
+    area: "Hosting and crawl",
+    refuses:
+      "A generated reference page whose sitemap row disagrees with its index decision: listed although the search data took it out of the index, or missing although the data keeps it in.",
+  },
+  {
+    code: "INDEX-DEMAND-HUB",
+    area: "Hosting and crawl",
+    refuses:
+      "A noindex decision on a hub, or on a page whose hub is not itself indexed and listed. The rule judges items, never the indexes that lead to them; a hidden hub would hide every page under it.",
+  },
+  {
+    code: "NOINDEX-PAGE-READ",
+    area: "Hosting and crawl",
+    refuses: "A build in which the hand-decided noindex list (NOINDEX_PAGES in src/data/noindex.ts) cannot be found.",
+  },
+  {
+    code: "NOINDEX-PAGE-GONE",
+    area: "Hosting and crawl",
+    refuses:
+      "An entry in the hand-decided noindex list that no longer builds. A page folded into another must leave the list in the same change, or the list stops describing the site.",
+  },
+  {
+    code: "NOINDEX-PAGE-ROBOTS",
+    area: "Hosting and crawl",
+    refuses: "A page on the hand-decided noindex list that does not render noindex, follow.",
+  },
+  {
+    code: "NOINDEX-PAGE-SITEMAP",
+    area: "Hosting and crawl",
+    refuses: "A page on the hand-decided noindex list that sitemap.xml still lists.",
+  },
+  {
+    code: "NOINDEX-PAGE-HUB",
+    area: "Hosting and crawl",
+    refuses: "A hub on the hand-decided noindex list, or a listed page whose hub is not itself indexed and listed.",
+  },
+  {
+    code: "OPENSEARCH-NOINDEX",
+    area: "Hosting and crawl",
+    refuses:
+      "A build that drops the X-Robots-Tag: noindex header for /opensearch.xml, or breaks the file itself. Google showed the browser's search descriptor as a result for \"fitness api\"; the header keeps it out of results while browsers keep reading it.",
+  },
+  {
     code: "CANNIBAL-QUERY",
     area: "Search",
     refuses:
