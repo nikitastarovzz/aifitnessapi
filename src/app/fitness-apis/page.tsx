@@ -8,6 +8,8 @@ import ClusterHero from "@/components/ClusterHero";
 import HubFreshness from "@/components/HubFreshness";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
+import { HubGlanceTable, HubDirectAnswers } from "@/components/HubGlance";
+import { hubQaJsonLd } from "@/data/hubGlance";
 import { site, absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
@@ -129,11 +131,16 @@ export default function FitnessApisPillar() {
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: FAQS.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
+    mainEntity: [
+      ...FAQS.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+      // The hub's direct answers (src/data/hubGlance.ts); pointer-only
+      // questions another page owns are left out.
+      ...hubQaJsonLd("/fitness-apis", url),
+    ],
   };
   const itemListJsonLd = {
     "@context": "https://schema.org",
@@ -243,6 +250,9 @@ export default function FitnessApisPillar() {
             <Link href={`${PILLAR_PATH}/free-fitness-apis`}>free &amp; open-source fitness APIs</Link>.
           </p>
         </div>
+
+        <HubGlanceTable hub="/fitness-apis" />
+        <HubDirectAnswers hub="/fitness-apis" />
 
         {/* Hub: crawlable index linking down to every released spoke, grouped. */}
         {GROUPS.map((group) => {

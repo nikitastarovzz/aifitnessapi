@@ -3,6 +3,10 @@ import { HK_READONLY } from "@/data/healthkitWritability";
 import { ROWS as MATRIX_ROWS } from "@/data/matrix";
 import { GROUPS as GLOSSARY_GROUPS, termSlug } from "@/data/glossary";
 import { absoluteUrl, site } from "@/lib/site";
+import { allSpokes } from "@/lib/clusterRegistry";
+import { DEV_COST_LABELS } from "@/data/costModel";
+import { DEV_COST_MEANING, GLANCE_COST_ITEMS } from "@/data/hubGlance";
+import { moneyPages } from "@/data/moneyPages";
 
 /**
  * The claims index: every citable fact this site publishes, flattened to one
@@ -40,6 +44,26 @@ function claim(id: string, text: string, reviewed: string): Claim {
 
 export function GET() {
   const claims: Claim[] = [];
+
+  // First, the money pages: the opening of each one's answer capsule, cited
+  // at the capsule itself (src/data/moneyPages.ts). The sentence is the
+  // page's own, so the claim cannot say more than the page does.
+  for (const m of moneyPages()) {
+    claims.push(claim(`${absoluteUrl(m.path)}#answer`, m.oneLine, m.entry.updated));
+  }
+
+  // Then how each product bills developers, from the cost model, cited at the
+  // row of the /pricing hub's at-a-glance table that renders it. Reviewed as
+  // of the page the cost model quotes for that product.
+  const reviewedOn = new Map(allSpokes().map(({ basePath, entry }) => [`${basePath}/${entry.slug}`, entry.updated]));
+  for (const c of GLANCE_COST_ITEMS) {
+    const parts = [`${c.label} bills developers: ${DEV_COST_LABELS[c.devCost]} (${DEV_COST_MEANING[c.devCost]}).`];
+    if (c.userSideCost) parts.push(`Each end user: ${c.userSideCost}`);
+    if (c.approvalGate) parts.push(`Before launch: ${c.approvalGate}`);
+    const reviewed = reviewedOn.get(c.sourceHref);
+    if (!reviewed) throw new Error(`claims.json: cost model source ${c.sourceHref} is not a released page`);
+    claims.push(claim(`${absoluteUrl("/pricing")}#cost-${c.id}`, parts.join(" "), reviewed));
+  }
 
   for (const r of HK_IDENTIFIERS) {
     const id = `${absoluteUrl("/healthkit-identifiers")}#id-${r.case.toLowerCase()}`;

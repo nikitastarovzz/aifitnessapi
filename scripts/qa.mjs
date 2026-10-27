@@ -3236,6 +3236,217 @@ if (fs.existsSync(matrixPath)) {
   }
 }
 
+// ── Hub at-a-glance tables and direct answers (ops/SEO-10-2026-10-27.md #9).
+// /fitness-apis, /pricing, /alternatives and /compare carry a table and a
+// short Q&A built by src/data/hubGlance.ts from the cost model and released
+// capsules. Their promise is that they add no fact, so every rendered value
+// is held here to its source: each element carries data-glance="cost:<id>:
+// <field>" or "capsule:<path>" (a trailing ~ marks an excerpt), and the cost
+// model is re-read from src/data/costModel.ts itself rather than from the
+// module that rendered it. Every value's holding page must be linked from its
+// row or answer, every link must land on a built page, the pricing table must
+// carry every product, answered questions must sit in the hub's FAQPage and
+// pointer-only ones (owned by another page) must not.
+{
+  const GLANCE_HUBS = ["/fitness-apis", "/pricing", "/alternatives", "/compare"];
+  const { default: ts } = await import("typescript");
+  let model = null;
+  try {
+    const src = fs.readFileSync("src/data/costModel.ts", "utf8");
+    const js = ts.transpileModule(src, {
+      compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 },
+    }).outputText;
+    model = await import(`data:text/javascript;base64,${Buffer.from(js).toString("base64")}`);
+  } catch (err) {
+    problems.push(`HUB-GLANCE-SOURCE  src/data/costModel.ts could not be loaded: ${err.message}`);
+  }
+  const items = new Map((model?.COST_ITEMS ?? []).map((c) => [c.id, c]));
+  const products = [...items.keys()].filter((id) => id !== "llm-apis");
+  const norm = (s) => decode(s.replace(/<!--[\s\S]*?-->/g, "").replace(/<[^>]+>/g, "")).replace(/\s+/g, " ").trim();
+  const fileOf = (route) => htmls.find((h) => routeOf(h) === route);
+  const capsuleCache = new Map();
+  const capsuleOf = (route) => {
+    if (!capsuleCache.has(route)) {
+      const f = fileOf(route);
+      const m = f && !notFoundSet.has(route) ? /<div\b[^>]*\bid="answer"[^>]*>([\s\S]*?)<\/div>/.exec(fs.readFileSync(f, "utf8")) : null;
+      capsuleCache.set(route, m ? norm(m[1]) : null);
+    }
+    return capsuleCache.get(route);
+  };
+  const NONE = "None documented.";
+
+  /** Check one data-glance element; returns the page that holds its value, or null. */
+  function checkValue(where, key, text) {
+    const excerpt = key.endsWith("~");
+    const k = excerpt ? key.slice(0, -1) : key;
+    if (k.startsWith("cost:")) {
+      const [, id, field] = k.split(":");
+      const c = items.get(id);
+      if (!c || !["label", "devCost", "userSideCost", "approvalGate", "notes"].includes(field)) {
+        problems.push(`HUB-GLANCE-SOURCE  ${where}: "${key}" names no cost-model field`);
+        return null;
+      }
+      const want =
+        field === "devCost" ? model.DEV_COST_LABELS[c.devCost] : field === "userSideCost" || field === "approvalGate" ? (c[field] ?? NONE) : c[field];
+      const ok = excerpt ? text.length >= 20 && norm(want).includes(text) : text === norm(want);
+      if (!ok) problems.push(`HUB-GLANCE-VALUE  ${where}: "${text.slice(0, 80)}" is not ${excerpt ? "in " : ""}the cost model's ${id}.${field}`);
+      return c.sourceHref;
+    }
+    if (k.startsWith("capsule:")) {
+      const route = k.slice("capsule:".length);
+      const cap = capsuleOf(route);
+      if (cap === null) {
+        problems.push(`HUB-GLANCE-SOURCE  ${where}: quotes ${route}, which has no built answer capsule`);
+        return null;
+      }
+      if (!(excerpt ? text.length >= 20 && cap.includes(text) : text === cap)) {
+        problems.push(`HUB-GLANCE-VALUE  ${where}: "${text.slice(0, 80)}" is not in ${route}'s answer capsule`);
+      }
+      return route;
+    }
+    problems.push(`HUB-GLANCE-SOURCE  ${where}: unknown source "${key}"`);
+    return null;
+  }
+
+  /** Every value in a block checked, its holding page linked, every link built. */
+  function checkBlock(where, inner) {
+    const hrefs = new Set([...inner.matchAll(/\bhref="([^"#?]*)/g)].map((m) => m[1]));
+    for (const h of hrefs) {
+      if (h.startsWith("/") && (!valid.has(h) || notFoundSet.has(h))) problems.push(`HUB-GLANCE-LINK  ${where} links ${h}, which is not a built page`);
+    }
+    let n = 0;
+    for (const m of inner.matchAll(/<(a|span)\b([^>]*\bdata-glance="([^"]+)"[^>]*)>([\s\S]*?)<\/\1>/g)) {
+      n++;
+      const holder = checkValue(where, decode(m[3]), norm(m[4]));
+      if (holder && !hrefs.has(holder)) problems.push(`HUB-GLANCE-UNLINKED  ${where}: a value from ${holder} does not link it`);
+    }
+    return n;
+  }
+
+  let values = 0;
+  let rowsSeen = 0;
+  let qaSeen = 0;
+  for (const hub of GLANCE_HUBS) {
+    const f = fileOf(hub);
+    if (!f) {
+      problems.push(`HUB-GLANCE-MISSING  ${hub} was not built`);
+      continue;
+    }
+    const html = fs.readFileSync(f, "utf8");
+    if (!html.includes(`data-hub-glance="${hub}"`) || !html.includes('id="direct-answers"')) {
+      problems.push(`HUB-GLANCE-MISSING  ${hub} renders no at-a-glance table or no direct answers`);
+      continue;
+    }
+    const rows = [...html.matchAll(/<tr\b([^>]*\bdata-glance-row\b[^>]*)>([\s\S]*?)<\/tr>/g)];
+    rowsSeen += rows.length;
+    const rowIds = rows.map((r) => /\bid="([^"]+)"/.exec(r[1])?.[1]);
+    if (hub === "/pricing") {
+      const missing = products.filter((id) => !rowIds.includes(`cost-${id}`));
+      if (missing.length || rows.length !== products.length) {
+        problems.push(`HUB-GLANCE-ROWS  /pricing renders ${rows.length} rows for ${products.length} cost-model products${missing.length ? ` — missing: ${missing.join(", ")}` : ""}`);
+      }
+    } else if (rows.length < 5) {
+      problems.push(`HUB-GLANCE-ROWS  ${hub} renders ${rows.length} at-a-glance rows (at least 5)`);
+    }
+    for (const [i, r] of rows.entries()) {
+      if (!rowIds[i]) problems.push(`HUB-GLANCE-ROWS  ${hub} row ${i + 1} has no id to cite`);
+      values += checkBlock(`${hub}#${rowIds[i] ?? i + 1}`, r[2]);
+    }
+
+    // Direct answers and their markup.
+    const faqNodes = [];
+    for (const l of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+      try {
+        const parsed = JSON.parse(decode(l[1]));
+        for (const node of Array.isArray(parsed) ? parsed : [parsed]) {
+          if (node["@type"] === "FAQPage") faqNodes.push(...(node.mainEntity ?? []));
+        }
+      } catch { /* BAD-JSON-LD reports it */ }
+    }
+    const qaItems = [...html.matchAll(/<div\b([^>]*\bdata-hub-qa="(answer|route)"[^>]*)>\s*<h3\b[^>]*>([\s\S]*?)<\/h3>/g)];
+    qaSeen += qaItems.length;
+    if (qaItems.length < 3 || qaItems.length > 5) problems.push(`HUB-QA-COUNT  ${hub} renders ${qaItems.length} direct answers (3 to 5)`);
+    for (const m of qaItems) {
+      const id = /\bid="([^"]+)"/.exec(m[1])?.[1];
+      const q = norm(m[3]);
+      const node = faqNodes.find((n) => n.name === q);
+      if (m[2] === "answer" && !(node && String(node.url ?? "").endsWith(`#${id}`))) {
+        problems.push(`HUB-QA-MARKUP  ${hub}#${id} is answered on the hub but not in its FAQPage with that anchor`);
+      }
+      if (m[2] === "route" && node) problems.push(`HUB-QA-MARKUP  ${hub}#${id} points to the page that owns it but is still marked up as the hub's FAQ`);
+      // The block from this item's start to the next item (or the section end).
+      const start = m.index;
+      const rest = html.slice(start + m[0].length);
+      const stop = rest.search(/<div\b[^>]*\bdata-hub-qa="|<\/section>/);
+      const block = rest.slice(0, stop === -1 ? undefined : stop);
+      const parts = [...block.matchAll(/<li\b[^>]*\bdata-qa-part="([^"]+)"[^>]*>([\s\S]*?)<\/li>/g)];
+      if (!parts.length) problems.push(`HUB-QA-MARKUP  ${hub}#${id} has no linked answer parts`);
+      for (const p of parts) {
+        if (!new RegExp(`href="${p[1].replace(/[.*+?^${}()|[\]\\/]/g, "\\$&")}"`).test(p[2])) {
+          problems.push(`HUB-GLANCE-UNLINKED  ${hub}#${id}: a part does not link ${p[1]}`);
+        }
+        values += checkBlock(`${hub}#${id}`, p[2]);
+      }
+    }
+  }
+
+  // The answer surfaces list the money pages first (src/data/moneyPages.ts):
+  // every released pricing, alternatives, compare and integration page must
+  // sit in llms.txt's "Start here" sections and in answers.json start_here.
+  const llmsBody = fs.existsSync(`${ROOT}/llms.txt.body`) ? fs.readFileSync(`${ROOT}/llms.txt.body`, "utf8") : "";
+  const llmsLines = llmsBody.split("\n");
+  const firstSection = llmsLines.findIndex((l) => l.startsWith("## Start here"));
+  const endSection = llmsLines.findIndex((l, i) => i > firstSection && l.startsWith("## ") && !l.startsWith("## Start here"));
+  const startBlock = firstSection === -1 ? "" : llmsLines.slice(firstSection, endSection === -1 ? undefined : endSection).join("\n");
+  let answersStart = null;
+  try {
+    answersStart = JSON.parse(fs.readFileSync(`${ROOT}/answers.json.body`, "utf8")).start_here ?? null;
+  } catch { /* GEO-ANSWERS-INVALID reports it */ }
+  const startUrls = new Set((answersStart?.groups ?? []).flatMap((g) => g.pages.map((p) => p.url)));
+  let money = 0;
+  for (const h of htmls) {
+    const r = routeOf(h);
+    const seg = r.split("/").filter(Boolean);
+    if (seg.length !== 2 || !["pricing", "alternatives", "compare", "integrate"].includes(seg[0]) || notFoundSet.has(r)) continue;
+    money++;
+    if (!startBlock.includes(`(https://aifitnessapi.com${r})`)) problems.push(`MONEY-UNLISTED  ${r} is not in llms.txt's Start here sections`);
+    if (!startUrls.has(`https://aifitnessapi.com${r}`)) problems.push(`MONEY-UNLISTED  ${r} is not in answers.json start_here`);
+  }
+
+  // claims.json tells machine readers to cite each claim's fragment URL, so
+  // every fragment has to resolve on the built page it names.
+  let claimsChecked = 0;
+  const claimsBody = fs.existsSync(`${ROOT}/claims.json.body`) ? fs.readFileSync(`${ROOT}/claims.json.body`, "utf8") : null;
+  let claimsParsed = null;
+  try {
+    claimsParsed = claimsBody === null ? null : JSON.parse(claimsBody);
+  } catch { /* reported below */ }
+  if (!claimsParsed || !Array.isArray(claimsParsed.claims)) {
+    problems.push("CLAIMS-INVALID  claims.json is missing from the build or has no claims array");
+  } else {
+    const idCache = new Map();
+    for (const c of claimsParsed.claims) {
+      const [pageUrl, fragment] = String(c.id ?? "").split("#");
+      if (!fragment) continue;
+      const rel = pageUrl.replace(/^https?:\/\/[^/]+/, "") || "/";
+      if (!idCache.has(rel)) {
+        const f = fileOf(rel);
+        idCache.set(rel, f && !notFoundSet.has(rel) ? new Set([...fs.readFileSync(f, "utf8").matchAll(/\sid="([^"]*)"/g)].map((m) => m[1])) : null);
+      }
+      const ids = idCache.get(rel);
+      if (!ids || !ids.has(fragment)) {
+        problems.push(`CLAIMS-DEAD-ANCHOR  ${rel}#${fragment} does not resolve`);
+        continue;
+      }
+      claimsChecked++;
+    }
+  }
+  console.log(
+    `Hub glance: ${rowsSeen} table rows and ${qaSeen} direct answers on ${GLANCE_HUBS.length} hubs, ${values} sourced values held to the cost model and capsules; ` +
+      `${money} money pages listed first on the answer surfaces; ${claimsChecked} claim fragments resolve.`,
+  );
+}
+
 // ── The published gate list ─────────────────────────────────────────────
 // /gates publishes this suite as prose: one row per failure code, saying in
 // a sentence what the build refuses to ship when that code fires. A written

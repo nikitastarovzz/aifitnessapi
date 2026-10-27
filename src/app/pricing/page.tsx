@@ -8,6 +8,8 @@ import ClusterHero from "@/components/ClusterHero";
 import HubFreshness from "@/components/HubFreshness";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
+import { HubGlanceTable, HubDirectAnswers } from "@/components/HubGlance";
+import { hubQaJsonLd } from "@/data/hubGlance";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
@@ -113,11 +115,16 @@ export default function PricingPillar() {
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: FAQS.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
+    mainEntity: [
+      ...FAQS.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+      // The hub's direct answers (src/data/hubGlance.ts); pointer-only
+      // questions another page owns are left out.
+      ...hubQaJsonLd("/pricing", url),
+    ],
   };
   const itemListJsonLd = {
     "@context": "https://schema.org",
@@ -172,6 +179,9 @@ export default function PricingPillar() {
             documentation.
           </p>
         </div>
+
+        <HubGlanceTable hub="/pricing" />
+        <HubDirectAnswers hub="/pricing" />
 
         {GROUPS.map((group) => {
           const items = group.slugs.map((s) => getPricing(s)).filter((e) => e !== undefined);
