@@ -133,6 +133,8 @@ const req = (slug: string, key: string) => lib(slug).requires?.[key] ?? null;
 
 const readme = (repo: string, path = "README.md") => `https://github.com/${repo}/blob/HEAD/${path}`;
 const README = "README";
+const GARMIN_PERSONAL_FAQ = "https://developer.garmin.com/gc-developer-program/personal/personal-faq/";
+const GARMIN_OVERVIEW = "https://developer.garmin.com/gc-developer-program/overview/";
 const FIT_GUIDE = "https://developer.android.com/health-and-fitness/health-connect/migration/fit";
 const FIT_GUIDE_LABEL = "Google's Fit migration guide (last updated 2026-09-10)";
 const pubInstall = (name: string) => `https://pub.dev/packages/${name}/install`;
@@ -1290,9 +1292,21 @@ export type LibraryComparison = {
   answer: string;
   /** What each side's own README says that bears on the choice. */
   points: { side: "a" | "b"; note: SourcedNote }[];
+  /**
+   * Optional sourced sections between the README points and the decision
+   * rules, for facts that come from outside the two READMEs (a vendor's own
+   * API, say). Same evidence rule as every note.
+   */
+  sections?: { heading: string; intro?: string; link?: { href: string; label: string }; notes: SourcedNote[] }[];
   /** Decision rules derived from the facts above — labelled as our reading. */
   choose: string[];
   faqs: Faq[];
+  /**
+   * The date this comparison's notes were re-checked against their sources,
+   * when that is later than LIBRARIES_VERIFIED_ON. Only a full re-read of
+   * every note on the page earns it (CLAUDE.md, Freshness).
+   */
+  verifiedOn?: string;
 };
 
 export const LIBRARY_COMPARISONS: LibraryComparison[] = [
@@ -1482,17 +1496,19 @@ export const LIBRARY_COMPARISONS: LibraryComparison[] = [
     slug: "garminconnect-vs-garth",
     a: "garminconnect",
     b: "garth",
-    title: "garminconnect vs garth: Garmin Connect in Python",
+    title: "garminconnect vs garth: Unofficial Garmin Connect in Python",
     metaDescription:
-      "garminconnect vs garth for Garmin Connect in Python: garth is deprecated and garminconnect dropped it in 0.3.0. Registry dates, status and migration.",
-    h1: "garminconnect vs garth",
+      "garth is deprecated and new logins fail; garminconnect, the unofficial Garmin Connect Python client, signs in itself. Migration, tokens, the Personal API.",
+    h1: "garminconnect vs garth: Garmin Connect in Python",
     primaryQuery: "garminconnect vs garth",
-    answer: `This is less a choice than a migration. garth's README says it is deprecated because Garmin changed its auth flow and new logins no longer work${lib("garth").registryStatus ? `, and its PyPI classifier reads "${lib("garth").registryStatus}"` : ""}. garminconnect used garth until version 0.3.0 and now handles sign-in itself, per its README; its latest release is ${lib("garminconnect").latestVersion} from ${lib("garminconnect").latestPublished}. Sessions saved with garth cannot be converted, so plan one fresh login.`,
+    answer: `Use garminconnect; garth is finished. garth's README says it is deprecated and no longer maintained because Garmin changed its auth flow, so new logins fail and only a saved session with a valid OAuth1 token keeps working until that token expires, about a year after issue${lib("garth").registryStatus ? `; its PyPI classifier reads "${lib("garth").registryStatus}"` : ""}. garminconnect, the unofficial Garmin Connect client that used garth until 0.3.0, now signs in through Garmin's mobile SSO flow itself, but garth session files cannot be converted, so plan one fresh login. For your own data only, Garmin now documents an official Personal API as well.`,
     points: [
       {
         side: "a",
         note: {
-          text: "Since 0.3.0 no longer uses garth; signs in through the same mobile SSO flow as the official Garmin Connect mobile apps, with an MFA callback.",
+          text: "Dropped garth in 0.3.0. Session files saved by garth (`oauth1_token.json`, `oauth2_token.json`) cannot be converted; log in once and new tokens go to `garmin_tokens.json`.",
+          quote:
+            "Since 0.3.0 this library no longer uses `garth`, which is deprecated. Sessions saved by older versions (`oauth1_token.json`/`oauth2_token.json`, created with `garth.save()`) cannot be converted",
           source: R.garminconnect,
           sourceLabel: README,
         },
@@ -1500,7 +1516,33 @@ export const LIBRARY_COMPARISONS: LibraryComparison[] = [
       {
         side: "a",
         note: {
-          text: "Requires Python 3.12 or later; tokens stored in `~/.garminconnect/garmin_tokens.json`.",
+          text: "Signs in like Garmin's own mobile apps: a first login against `sso.garmin.com/mobile/api/login` with the iOS app's client ID, then DI OAuth access and refresh tokens from `diauth.garmin.com`, refreshed automatically before each request.",
+          quote: "Authentication uses the same mobile SSO flow as the official Garmin Connect mobile apps.",
+          source: R.garminconnect,
+          sourceLabel: README,
+        },
+      },
+      {
+        side: "a",
+        note: {
+          text: "Built to survive login changes: `login()` tries several strategies in order (mobile, SSO widget, web portal, each with and without TLS impersonation) and accepts a token only once the API does. The install line now adds `curl_cffi`: `pip install --upgrade garminconnect curl_cffi`, on Python 3.12 or later.",
+          source: R.garminconnect,
+          sourceLabel: README,
+        },
+      },
+      {
+        side: "a",
+        note: {
+          text: "MFA works in a server: with `return_on_mfa=True`, `login()` returns `needs_mfa` and a JSON-serializable `client_state`, and `resume_login()` finishes later, even in another process.",
+          source: R.garminconnect,
+          sourceLabel: README,
+        },
+      },
+      {
+        side: "a",
+        note: {
+          text: "Unofficial, with account-level reach: the README lists 348 public methods, and says write methods such as uploads, edits and deletes can change Garmin account data. `logout()` deletes the local token file but does not revoke an issued token.",
+          quote: "This is an unofficial client for Garmin's web services; it does not pair with the Garmin Connect phone app or connect directly to a watch.",
           source: R.garminconnect,
           sourceLabel: README,
         },
@@ -1508,7 +1550,9 @@ export const LIBRARY_COMPARISONS: LibraryComparison[] = [
       {
         side: "b",
         note: {
-          text: "Deprecated and no longer maintained; the latest release is described as final.",
+          text: "Deprecated and no longer maintained, because Garmin changed its auth flow; the README calls the latest release the final one.",
+          quote:
+            "Garth is deprecated and no longer maintained. Garmin changed their auth flow, breaking the mobile auth approach that Garth depends on.",
           source: R.garth,
           sourceLabel: README,
         },
@@ -1516,17 +1560,62 @@ export const LIBRARY_COMPARISONS: LibraryComparison[] = [
       {
         side: "b",
         note: {
-          text: "A saved session with a valid OAuth1 token may keep working until it expires, about a year after issue; new logins will not work.",
+          text: "Existing sessions only: a saved session with a valid OAuth1 token may keep working until it expires, about a year after issue.",
+          quote: "New logins will not work.",
+          source: R.garth,
+          sourceLabel: README,
+        },
+      },
+      {
+        side: "b",
+        note: {
+          text: "Documentation stays online at garth.readthedocs.io for reference, and the maintainer invites anyone to fork garth as a starting point for a new library; the README names no successor.",
           source: R.garth,
           sourceLabel: README,
         },
       },
     ],
+    sections: [
+      {
+        heading: "Garmin's official route for your own data",
+        intro:
+          "Both packages are unofficial clients that sign in as the user. Garmin's developer site now also documents an official Garmin Connect Personal API, read through a source snapshot on 2026-10-27.",
+        link: { href: "/fix/garmin-api-personal-use", label: "Garmin API for personal use: setup and limits" },
+        notes: [
+          {
+            text: "Garmin says the Personal API is for your own data, and not for apps that serve other people.",
+            quote:
+              "The Personal API is intended for individual Garmin users who want programmatic access to their own data. It is not intended for commercial applications serving multiple end users.",
+            source: GARMIN_PERSONAL_FAQ,
+            sourceLabel: "Garmin's Personal API FAQ",
+          },
+          {
+            text: "You create the key yourself on Garmin Connect Web and choose when it expires: 30, 90 or 180 days, or one year. It is shown once.",
+            quote:
+              "When creating a personal API key, you can configure the key to expire after 30 days, 90 days, 180 days, or one year.",
+            source: GARMIN_PERSONAL_FAQ,
+            sourceLabel: "Garmin's Personal API FAQ",
+          },
+          {
+            text: "The key is exchanged for an access token at Garmin's token endpoint. Tokens last 24 hours, or until the key expires, and there are no refresh tokens: you request a new one.",
+            quote: "Access tokens are valid for 24 hours or until the Personal API key expires, whichever occurs first.",
+            source: GARMIN_PERSONAL_FAQ,
+            sourceLabel: "Garmin's Personal API FAQ",
+          },
+          {
+            text: "Garmin's overview lists activity data as JSON and .FIT, health and women's health data as JSON, and pull-only delivery for personal access.",
+            source: GARMIN_OVERVIEW,
+            sourceLabel: "Garmin Connect Developer Program overview",
+          },
+        ],
+      },
+    ],
     choose: [
-      "Starting fresh: garth's own README says new logins do not work, which settles it.",
-      "Running garth today on a saved session: it may keep working until the OAuth1 token expires; schedule the move before then rather than after.",
-      "Moving to garminconnect: its README says garth-era token files cannot be converted, so budget for one interactive login (with MFA if the account uses it).",
-      "Building for other people's Garmin data rather than your own: both are unofficial clients; Garmin's official developer program is the route for that.",
+      "Starting fresh: not garth. Its own README says new logins do not work.",
+      "Reading only your own account: start with Garmin's Personal API, which is official and uses a key you control; reach for garminconnect when you need something the Personal API does not return. We have not compared the two endpoint lists, since Garmin's Swagger docs were not part of our read.",
+      "Running garth today on a saved session: it may keep working until the OAuth1 token expires; move before then rather than after.",
+      "Moving to garminconnect: budget one interactive login, with MFA if the account uses it, install curl_cffi alongside it, and treat garmin_tokens.json like a password.",
+      "Serving other people's Garmin data: neither package, and not the Personal API either. Garmin's Connect Developer Program is the route Garmin describes for organisations building for multiple users.",
     ],
     faqs: [
       {
@@ -1535,9 +1624,18 @@ export const LIBRARY_COMPARISONS: LibraryComparison[] = [
       },
       {
         q: "How do I migrate a Python script from garth to garminconnect?",
-        a: "Install garminconnect, then log in once with username and password: its README shows Garmin(email, password) followed by login with a token-store path, after which new tokens are saved to garmin_tokens.json and reused. Old oauth1_token.json and oauth2_token.json files from garth cannot be converted, and the README requires Python 3.12 or later.",
+        a: "Install it with pip install --upgrade garminconnect curl_cffi on Python 3.12 or later, then log in once with username and password: the README shows Garmin(email, password) followed by login with a token-store path, after which new tokens are saved to garmin_tokens.json and refreshed automatically. Old oauth1_token.json and oauth2_token.json files from garth cannot be converted.",
+      },
+      {
+        q: "Is there an official Garmin Connect API for Python instead of garth or garminconnect?",
+        a: "Not as a Python package in the pages we read. Garmin documents an official Garmin Connect Personal API for your own data: you create a key on Garmin Connect Web, exchange it for a 24-hour access token, and call Garmin's REST endpoints from any language, Python included. garminconnect and garth are unofficial clients that sign in with your Garmin username and password.",
+      },
+      {
+        q: "Could garminconnect stop working the way garth did?",
+        a: "Nothing rules it out, since both depend on Garmin's login flow rather than a published contract. garminconnect's README describes a defence: login() tries several strategies, mobile, SSO widget and web portal, each with and without TLS impersonation, and only accepts a token the API accepts. Garmin's Personal API is the route Garmin itself documents, for your own account's data.",
       },
     ],
+    verifiedOn: "2026-10-27",
   },
   {
     slug: "oura-ring-vs-oura-python",
@@ -1623,6 +1721,18 @@ export function getLibraryPage(slug: string): LibraryPage | undefined {
 
 export function getLibraryComparison(slug: string): LibraryComparison | undefined {
   return LIBRARY_COMPARISONS.find((c) => c.slug === slug);
+}
+
+/** When a comparison's notes were last checked: its own re-check, or the shared one. */
+export function comparisonVerifiedOn(c: LibraryComparison): string {
+  return c.verifiedOn && c.verifiedOn > LIBRARIES_VERIFIED_ON ? c.verifiedOn : LIBRARIES_VERIFIED_ON;
+}
+
+/** dateModified for one comparison: the later of librariesModified() and its own re-check. */
+export function comparisonModified(c: LibraryComparison): string {
+  const v = comparisonVerifiedOn(c);
+  const m = librariesModified();
+  return v > m ? v : m;
 }
 
 /** Comparisons a package appears in, for cross-links. */

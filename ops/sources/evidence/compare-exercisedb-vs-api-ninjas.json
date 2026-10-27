@@ -1,0 +1,232 @@
+[
+  {
+    "claim": "ExerciseDB is now AscendAPI.",
+    "url": "https://exercisedb.dev/",
+    "quote": "Previously ExerciseDB"
+  },
+  {
+    "claim": "V1 free: 1,500 exercises with GIFs, no sign-up, no key.",
+    "url": "https://exercisedb.dev/",
+    "quote": "1,500 exercises with GIFs. No sign-up, no API key"
+  },
+  {
+    "claim": "V1 has over 2,000 exercises and a free hosted tier and paid RapidAPI tier.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "A developer-friendly fitness exercise database featuring over 2,000 structured exercises with rich metadata, images, and GIFs."
+  },
+  {
+    "claim": "V1 free tier: 1,500 exercises with 180p GIFs, no authentication.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "1,500 exercises with 180p GIFs. No authentication required, just call the hosted API directly."
+  },
+  {
+    "claim": "V1 free is 180p GIFs only; multi-resolution on paid.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "The free tier includes 180p GIFs only . Multi-resolution images and GIFs (360p–1080p) are available on the paid RapidAPI tier ."
+  },
+  {
+    "claim": "V1 muscle arrays.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "| secondaryMuscles | string[] | Supporting muscles |"
+  },
+  {
+    "claim": "V1 difficulty is in the paid schema.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "| difficulty | string | Difficulty level | ✅ Available |"
+  },
+  {
+    "claim": "V1 muscle activation images next update.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "| maleMuscleActivationUrl | string | Male Workout activation URL | 🔜 Next Update |"
+  },
+  {
+    "claim": "V2 catalog size.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "A multipurpose exercise dataset with 11,000+ exercises, 15,000+ videos, and 20,000+ images"
+  },
+  {
+    "claim": "V2 free and paid via RapidAPI; free media watermarked.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "Both free and paid tiers are accessed via RapidAPI. The only difference is that free tier media is watermarked ."
+  },
+  {
+    "claim": "V2 MP4 video.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "Each exercise includes an MP4 demonstration video for in-app playback."
+  },
+  {
+    "claim": "V2 paid watermark-free.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "Paid tier serves clean, watermark-free assets across all resolutions."
+  },
+  {
+    "claim": "V2 tips field.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "| exerciseTips | string[] | Pro tips for form and hypertrophy | ✅ Available |"
+  },
+  {
+    "claim": "V2 variations field.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "| variations | string[] | Exercise variations with descriptions | ✅ Available |"
+  },
+  {
+    "claim": "V2 difficulty coming soon.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "| difficultyLevel | string | Difficulty level | 🔵 Coming Soon |"
+  },
+  {
+    "claim": "V2 RapidAPI key header.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "| X-RapidAPI-Key | Your unique API key from the RapidAPI dashboard |"
+  },
+  {
+    "claim": "Basic plan: 2,000 requests a month.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "2,000 requests / month"
+  },
+  {
+    "claim": "Basic plan: 200 exercises.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "200 exercises in library"
+  },
+  {
+    "claim": "Basic plan: no credit card.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "No credit card required"
+  },
+  {
+    "claim": "Free plans: 1,000 requests per hour per key.",
+    "url": "https://docs.ascendapi.com/guides/ratelimiting",
+    "quote": "All free plans include a limit of 1,000 requests per hour per API key."
+  },
+  {
+    "claim": "Paid plans: no strict limit.",
+    "url": "https://docs.ascendapi.com/guides/ratelimiting",
+    "quote": "Paid plans have no strict rate limit."
+  },
+  {
+    "claim": "API Ninjas: over 3000 exercises.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "The Exercises API provides access to a comprehensive list of over 3000 exercises targeting every major muscle group."
+  },
+  {
+    "claim": "API Ninjas: up to 5 per call.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Returns up to 5 exercises that satisfy the given parameters."
+  },
+  {
+    "claim": "API Ninjas: seven types.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Possible values are: cardio , olympic_weightlifting , plyometrics , powerlifting , strength , stretching , strongman ."
+  },
+  {
+    "claim": "API Ninjas: 16 muscles.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "abdominals abductors adductors biceps calves chest forearms glutes hamstrings lats lower_back middle_back neck quadriceps traps triceps"
+  },
+  {
+    "claim": "API Ninjas: difficulty values.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Difficulty level of the exercise. Possible values are: beginner , intermediate , expert ."
+  },
+  {
+    "claim": "API Ninjas: equipments filter.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Equipment required for the exercise. Multiple equipments can be specified using comma separation"
+  },
+  {
+    "claim": "API Ninjas: offset premium only.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "offset optional Premium only"
+  },
+  {
+    "claim": "API Ninjas: one primary muscle.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Primary muscle group targeted by the exercise."
+  },
+  {
+    "claim": "API Ninjas: safety_info.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Additional safety guidance and cues for performing the exercise safely."
+  },
+  {
+    "claim": "API Ninjas: images premium only, start and finish.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Array of image URLs showing the exercise, in movement order (usually the start and finish positions)."
+  },
+  {
+    "claim": "API Ninjas: images premium only marker.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "images Premium only"
+  },
+  {
+    "claim": "API Ninjas: allexercises tier.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Business tier and above, or any annual plan"
+  },
+  {
+    "claim": "API Ninjas: commercial use not on free tier.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Commercial use of the Exercises API is not permitted on the free tier."
+  },
+  {
+    "claim": "API Ninjas: over-quota requests denied.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Your API requests will simply be denied once you hit your monthly quota"
+  },
+  {
+    "claim": "API Ninjas: X-Api-Key header.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "then pass it in the X-Api-Key header on every request"
+  },
+  {
+    "claim": "API Ninjas: Calories Burned API pairing.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Pair it with the Calories Burned API"
+  },
+  {
+    "claim": "Free plan is evaluation only.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "Evaluation and demo purposes only - no payment information required"
+  },
+  {
+    "claim": "Developer price, monthly or billed yearly.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "$ 59 $ 39 / month"
+  },
+  {
+    "claim": "Developer plan: 100,000 calls, commercial use, no storing data, no rate limit.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "API calls per month 100,000 Commercial use Yes Data caching/storing allowed No Rate limiting No"
+  },
+  {
+    "claim": "Developer plan: 99% uptime SLA.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "Attribution required No Support and Reliability Uptime SLA 99% Support level Standard support"
+  },
+  {
+    "claim": "Business price, monthly or billed yearly.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "$ 149 $ 99 / month"
+  },
+  {
+    "claim": "Business plan: 1,000,000 calls, storing data allowed.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "API calls per month 1,000,000 Commercial use Yes Data caching/storing allowed Yes"
+  },
+  {
+    "claim": "Business plan: 99.95% SLA.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "API calls per month 1,000,000 Commercial use Yes Data caching/storing allowed Yes Rate limiting No Attribution required No Support and Reliability Uptime SLA 99.95%"
+  },
+  {
+    "claim": "Yearly discount toggle.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "Monthly Yearly 34% off"
+  },
+  {
+    "claim": "Free plan: 3,000 calls, no commercial use, no storage, 100 an hour, attribution.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "API calls per month 3,000 Commercial use No Data caching/storing allowed No Rate limiting 100 API calls per hour Attribution required Yes"
+  }
+]

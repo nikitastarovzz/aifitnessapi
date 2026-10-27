@@ -1,0 +1,197 @@
+[
+  {
+    "claim": "Library comparison garminconnect vs garth: garminconnect dropped garth in 0.3.0.",
+    "url": "https://raw.githubusercontent.com/cyberjunky/python-garminconnect/HEAD/README.md",
+    "quote": "Since 0.3.0 this library no longer uses `garth`, which is deprecated."
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: garth session files cannot be converted.",
+    "url": "https://raw.githubusercontent.com/cyberjunky/python-garminconnect/HEAD/README.md",
+    "quote": "created with `garth.save()`) cannot be converted"
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: New tokens go to garmin_tokens.json.",
+    "url": "https://raw.githubusercontent.com/cyberjunky/python-garminconnect/HEAD/README.md",
+    "quote": "new tokens are saved to `garmin_tokens.json` in your"
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: Signs in like Garmin's mobile apps.",
+    "url": "https://raw.githubusercontent.com/cyberjunky/python-garminconnect/HEAD/README.md",
+    "quote": "Authentication uses the same mobile SSO flow as the official Garmin Connect mobile apps."
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: First login endpoint and iOS client ID.",
+    "url": "https://raw.githubusercontent.com/cyberjunky/python-garminconnect/HEAD/README.md",
+    "quote": "Authenticates via `sso.garmin.com/mobile/api/login` using the iOS"
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: Token exchange at diauth.garmin.com.",
+    "url": "https://raw.githubusercontent.com/cyberjunky/python-garminconnect/HEAD/README.md",
+    "quote": "The service ticket is exchanged for DI OAuth Bearer tokens"
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: Auto-refresh before each request.",
+    "url": "https://raw.githubusercontent.com/cyberjunky/python-garminconnect/HEAD/README.md",
+    "quote": "Before each API request the library checks whether the DI token is about"
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: login() multi-strategy with TLS impersonation.",
+    "url": "https://raw.githubusercontent.com/cyberjunky/python-garminconnect/HEAD/README.md",
+    "quote": "`login()` tries several authentication strategies in order (mobile, SSO widget,"
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: Accepts a token only once the API does.",
+    "url": "https://raw.githubusercontent.com/cyberjunky/python-garminconnect/HEAD/README.md",
+    "quote": "when the resulting token is actually accepted by the API."
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: Install line adds curl_cffi.",
+    "url": "https://raw.githubusercontent.com/cyberjunky/python-garminconnect/HEAD/README.md",
+    "quote": "pip install --upgrade garminconnect curl_cffi"
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: Python 3.12 or later.",
+    "url": "https://raw.githubusercontent.com/cyberjunky/python-garminconnect/HEAD/README.md",
+    "quote": "Requires Python 3.12 or later."
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: MFA return_on_mfa.",
+    "url": "https://raw.githubusercontent.com/cyberjunky/python-garminconnect/HEAD/README.md",
+    "quote": "with `return_on_mfa=True`, `login()` returns"
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: client_state is JSON-serializable.",
+    "url": "https://raw.githubusercontent.com/cyberjunky/python-garminconnect/HEAD/README.md",
+    "quote": "`client_state` is"
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: 348 public methods.",
+    "url": "https://raw.githubusercontent.com/cyberjunky/python-garminconnect/HEAD/README.md",
+    "quote": "348 public methods on `Garmin`"
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: Unofficial client.",
+    "url": "https://raw.githubusercontent.com/cyberjunky/python-garminconnect/HEAD/README.md",
+    "quote": "This is an unofficial client for Garmin's web services; it does not pair with"
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: Write methods can change account data.",
+    "url": "https://raw.githubusercontent.com/cyberjunky/python-garminconnect/HEAD/README.md",
+    "quote": "write methods can change Garmin account data."
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: logout() does not revoke an issued token.",
+    "url": "https://raw.githubusercontent.com/cyberjunky/python-garminconnect/HEAD/README.md",
+    "quote": "It does **not** revoke a token that has already"
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: garth is deprecated and no longer maintained.",
+    "url": "https://raw.githubusercontent.com/matin/garth/HEAD/README.md",
+    "quote": "Garth is deprecated and no longer maintained."
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: Garmin changed its auth flow.",
+    "url": "https://raw.githubusercontent.com/matin/garth/HEAD/README.md",
+    "quote": "Garmin changed their auth"
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: This is the final release.",
+    "url": "https://raw.githubusercontent.com/matin/garth/HEAD/README.md",
+    "quote": "This is the final release."
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: Saved session may continue until the token expires, about a year.",
+    "url": "https://raw.githubusercontent.com/matin/garth/HEAD/README.md",
+    "quote": "If you already have a saved session with a valid OAuth1 token, Garth may"
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: Approximately one year.",
+    "url": "https://raw.githubusercontent.com/matin/garth/HEAD/README.md",
+    "quote": "continue to work until that token expires (~1 year from when it was issued)."
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: New logins will not work.",
+    "url": "https://raw.githubusercontent.com/matin/garth/HEAD/README.md",
+    "quote": "New logins will not work."
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: Forks welcome.",
+    "url": "https://raw.githubusercontent.com/matin/garth/HEAD/README.md",
+    "quote": "Anyone is welcome to fork Garth as a starting point for a new library."
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: Docs remain online.",
+    "url": "https://raw.githubusercontent.com/matin/garth/HEAD/README.md",
+    "quote": "Documentation is still available at"
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: Personal API is for personal use.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "The Garmin Connect Personal API is available for personal use and is the quickest way to gain access to your data for use in personal applications."
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: Not for commercial apps serving multiple users.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "The Personal API is intended for individual Garmin users who want programmatic access to their own data. It is not intended for commercial applications serving multiple end users."
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: Developer Program is for organisations building for multiple users.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "The Garmin Connect Developer Program is designed for organizations building integrations for multiple users and includes commercial business APIs and enterprise options."
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: Key created on Garmin Connect Web.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "Go to the Personal API Key page while logged in to your Garmin Connect Web account"
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: Key shown once.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "For your security, the key will only be displayed once so copy, save, and protect the key like a password"
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: Key expiry options.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "When creating a personal API key, you can configure the key to expire after 30 days, 90 days, 180 days, or one year."
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: Key exchanged for an access token.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "Garmin Connect APIs use OAuth2 access tokens for authentication so your Personal API key cannot be used directly."
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: Tokens last 24 hours.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "Access tokens are valid for 24 hours or until the Personal API key expires, whichever occurs first."
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: No refresh tokens.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "No, refresh tokens are not supported."
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: Swagger docs and GitHub resources.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "Developers should consult the Personal API Swagger documentation and GitHub resources"
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: Overview: personal access to your own data.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Secure access to your own Garmin Connect data for individuals who want to explore, analyze, and build personalized experiences using their own data."
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: Overview: activity data JSON and .FIT.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Activity Data JSON & .FIT"
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: Overview: women's health data JSON.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Women's Health Data JSON"
+  },
+  {
+    "claim": "Library comparison garminconnect vs garth: Overview: pull only.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Delivery Pull only"
+  }
+]

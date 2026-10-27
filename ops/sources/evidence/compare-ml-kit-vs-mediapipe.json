@@ -1,0 +1,232 @@
+[
+  {
+    "claim": "BlazePose research also powers ML Kit.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "research that also powers the"
+  },
+  {
+    "claim": "ML Kit is beta with no SLA or deprecation policy.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection?hl=en",
+    "quote": "This API is offered in beta, and is not subject to any SLA or deprecation policy."
+  },
+  {
+    "claim": "Changes may break backward compatibility.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection?hl=en",
+    "quote": "Changes may be made to this API that break backward compatibility."
+  },
+  {
+    "claim": "ML Kit returns 33 landmarks.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection?hl=en",
+    "quote": "The model returns 33 key skeletal landmark points"
+  },
+  {
+    "claim": "ML Kit detects one person.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection?hl=en",
+    "quote": "Pose detection can only detect one person in an image."
+  },
+  {
+    "claim": "Highest-confidence person gets the landmarks.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection?hl=en",
+    "quote": "the model will assign landmarks to the person detected with the highest confidence"
+  },
+  {
+    "claim": "Face must be present.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection?hl=en",
+    "quote": "The user's face must be present in order to detect a pose."
+  },
+  {
+    "claim": "Z is experimental.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection?hl=en",
+    "quote": "The Z Coordinate is an experimental value that is calculated for every landmark."
+  },
+  {
+    "claim": "Z is not a true 3D value.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection?hl=en",
+    "quote": "but it is not a true 3D value"
+  },
+  {
+    "claim": "Z has no bound.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection?hl=en",
+    "quote": "The Z coordinate does not have an upper or lower bound."
+  },
+  {
+    "claim": "InFrameLikelihood definition.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection?hl=en",
+    "quote": "a measure that indicates the probability that the landmark is within the image frame"
+  },
+  {
+    "claim": "Missing landmarks get coordinates outside the image.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection?hl=en",
+    "quote": "the landmarks that are not recognized are assigned coordinates outside of the image"
+  },
+  {
+    "claim": "No meaning attached to landmarks.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection?hl=en",
+    "quote": "Pose Detection does not attach any meaning to the"
+  },
+  {
+    "claim": "Android base and accurate SDK sizes.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection/android?hl=en",
+    "quote": "App size impact (including code and assets) ~10.1MB ~13.3MB"
+  },
+  {
+    "claim": "Android base SDK speed on a Pixel 3XL.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection/android?hl=en",
+    "quote": "Performance Pixel 3XL: ~30FPS Pixel 3XL"
+  },
+  {
+    "claim": "Android speeds on a Pixel 3XL.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection/android?hl=en",
+    "quote": "Pixel 3XL: ~23FPS with CPU, ~30FPS with GPU"
+  },
+  {
+    "claim": "Android API level 23.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection/android?hl=en",
+    "quote": "This API requires Android API level 23 or above."
+  },
+  {
+    "claim": "Android code and assets statically linked.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection/android?hl=en",
+    "quote": "Code and assets are statically linked to your app at build time."
+  },
+  {
+    "claim": "Android hardware configs.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection/android?hl=en",
+    "quote": "CPU_GPU : run the detector by using both CPU and GPU"
+  },
+  {
+    "claim": "STREAM_MODE tracks the most prominent person.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection/android?hl=en",
+    "quote": "The pose detector will first detect the most"
+  },
+  {
+    "claim": "iOS sizes.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection/ios?hl=en",
+    "quote": "App size Up to 29.6MB Up to 33.2MB"
+  },
+  {
+    "claim": "iOS speeds on an iPhone X.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection/ios?hl=en",
+    "quote": "iPhone X: ~45FPS iPhone X: ~29FPS"
+  },
+  {
+    "claim": "iOS assets statically linked.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection/ios?hl=en",
+    "quote": "Assets for base detector are statically linked to your app at build time."
+  },
+  {
+    "claim": "ML Kit LEFT_MOUTH constant.",
+    "url": "https://developers.google.com/android/reference/com/google/mlkit/vision/pose/PoseLandmark?hl=en",
+    "quote": "The landmark which corresponds to the left mouth."
+  },
+  {
+    "claim": "ML Kit LEFT_HIP constant.",
+    "url": "https://developers.google.com/android/reference/com/google/mlkit/vision/pose/PoseLandmark?hl=en",
+    "quote": "The landmark which corresponds to the left hip."
+  },
+  {
+    "claim": "MediaPipe mouth naming.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+    "quote": "MOUTH_LEFT = 9"
+  },
+  {
+    "claim": "MediaPipe LEFT_HIP index.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+    "quote": "LEFT_HIP = 23"
+  },
+  {
+    "claim": "Terms last modified.",
+    "url": "https://developers.google.com/ml-kit/terms?hl=en",
+    "quote": "Last modified: May 14, 2025"
+  },
+  {
+    "claim": "On-device processing.",
+    "url": "https://developers.google.com/ml-kit/terms?hl=en",
+    "quote": "processing of the input data (e.g. images, video, text) fully happens on-device"
+  },
+  {
+    "claim": "Metrics sent to Google.",
+    "url": "https://developers.google.com/ml-kit/terms?hl=en",
+    "quote": "The ML Kit APIs also send metrics about the performance and utilization of the APIs in your app to Google."
+  },
+  {
+    "claim": "Developer informs users.",
+    "url": "https://developers.google.com/ml-kit/terms?hl=en",
+    "quote": "You are responsible for informing users of your app about Google's processing"
+  },
+  {
+    "claim": "Models are related software.",
+    "url": "https://developers.google.com/ml-kit/terms?hl=en",
+    "quote": "machine learning models will be considered related software"
+  },
+  {
+    "claim": "No reverse engineering.",
+    "url": "https://developers.google.com/ml-kit/terms?hl=en",
+    "quote": "you may not reverse engineer or attempt to extract the source code or any related software"
+  },
+  {
+    "claim": "k-NN pose classification and rep counting tips.",
+    "url": "https://developers.google.com/ml-kit/vision/pose-detection/classifying-poses?hl=en",
+    "quote": "To recognize poses we use the k-nearest neighbors algorithm (k-NN)"
+  },
+  {
+    "claim": "MediaPipe running modes.",
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker?hl=en",
+    "quote": "LIVE_STREAM: The mode for a livestream of input"
+  },
+  {
+    "claim": "MediaPipe num_poses option.",
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker?hl=en",
+    "quote": "The maximum number of poses that can be detected by the Pose Landmarker."
+  },
+  {
+    "claim": "MediaPipe segmentation masks.",
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker?hl=en",
+    "quote": "Whether Pose Landmarker outputs a segmentation mask for the detected"
+  },
+  {
+    "claim": "MediaPipe web guide.",
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker/web_js?hl=en",
+    "quote": "npm install @mediapipe/tasks-vision"
+  },
+  {
+    "claim": "MediaPipe Android library.",
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker/android?hl=en",
+    "quote": "The Pose Landmarker task uses the com.google.mediapipe:tasks-vision library."
+  },
+  {
+    "claim": "MediaPipe iOS library.",
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker/ios?hl=en",
+    "quote": "Pose Landmarker uses the MediaPipeTasksVision library, which can be installed"
+  },
+  {
+    "claim": "World landmarks in meters.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "Real-world 3D coordinates in meters with the origin at the center between hips."
+  },
+  {
+    "claim": "Normalized z scale.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "The magnitude of `z` uses roughly the same scale as `x`."
+  },
+  {
+    "claim": "Pixel 3 latencies.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "BlazePose GHUM Heavy | 53 ms"
+  },
+  {
+    "claim": "MediaPipe landmarks carry visibility.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/components/containers/landmark.py",
+    "quote": "visibility: Landmark visibility. Should stay unset if not supported."
+  },
+  {
+    "claim": "MediaPipe landmarks carry presence.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/components/containers/landmark.py",
+    "quote": "presence: Landmark presence. Should stay unset if not supported."
+  },
+  {
+    "claim": "MediaPipe is Apache-2.0.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/LICENSE",
+    "quote": "Apache License"
+  }
+]

@@ -7,7 +7,7 @@
  * contained the entry and listed it in its cluster's release gate (blog
  * posts: the commit that added the file; generated sections: the commit that
  * added the route, or the item to the data file if that came later).
- * Keyed by URL path without the leading slash. 529 rows.
+ * Keyed by URL path without the leading slash. 532 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -119,9 +119,11 @@ export const PUBLISHED: Record<string, string> = {
   "build/triathlon-app": "2026-09-04",
   "build/weight-loss-app": "2026-09-01",
   "build/yoga-app": "2026-07-09",
+  "compare/apple-vision-vs-mediapipe": "2026-10-27",
   "compare/apple-watch-vs-garmin": "2026-08-12",
   "compare/apple-watch-vs-whoop": "2026-08-11",
   "compare/edamam-vs-spoonacular": "2026-07-23",
+  "compare/exercisedb-vs-api-ninjas": "2026-10-27",
   "compare/exercisedb-vs-free-exercise-db": "2026-10-22",
   "compare/exercisedb-vs-wger": "2026-07-23",
   "compare/fitbit-vs-apple-watch": "2026-07-23",
@@ -131,6 +133,7 @@ export const PUBLISHED: Record<string, string> = {
   "compare/kinestex-vs-sency": "2026-08-02",
   "compare/mediapipe-vs-movenet": "2026-10-22",
   "compare/mediapipe-vs-yolo-pose": "2026-10-22",
+  "compare/ml-kit-vs-mediapipe": "2026-10-27",
   "compare/nutritionix-vs-edamam": "2026-07-23",
   "compare/oura-vs-whoop": "2026-07-23",
   "compare/quickpose-vs-sency": "2026-10-18",

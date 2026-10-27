@@ -641,6 +641,10 @@ export const pricingEntries: ClusterEntry[] =
         "label": "ExerciseDB vs free-exercise-db"
       },
       {
+        "href": "/compare/exercisedb-vs-api-ninjas",
+        "label": "ExerciseDB vs API Ninjas"
+      },
+      {
         "href": "/integrate/exercisedb-api",
         "label": "Integrate ExerciseDB"
       },

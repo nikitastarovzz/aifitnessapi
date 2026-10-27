@@ -52,6 +52,10 @@ export const entries: ClusterEntry[] =
         "label": "ExerciseDB vs free-exercise-db"
       },
       {
+        "href": "/compare/exercisedb-vs-api-ninjas",
+        "label": "ExerciseDB vs API Ninjas"
+      },
+      {
         "href": "/fitness-apis/free-fitness-apis",
         "label": "Free & open-source fitness APIs"
       },

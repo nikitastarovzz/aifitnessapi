@@ -2426,5 +2426,379 @@ export const compareEntries: ClusterEntry[] =
       }
     ],
     "firstParty": true
+  },
+  {
+    "slug": "apple-vision-vs-mediapipe",
+    "primaryQuery": "apple vision vs mediapipe",
+    "h1": "Apple Vision vs MediaPipe: Native iOS Body Pose or a Cross-Platform Model?",
+    "metaTitle": "Apple Vision vs MediaPipe (2026): Body Pose on iOS",
+    "metaDescription": "Apple Vision body pose vs MediaPipe Pose Landmarker, from Apple's and Google's docs: 19 vs 33 points, 3D in meters, people per frame, platforms.",
+    "updated": "2026-10-27",
+    "answer": "Pick Apple Vision when the app only runs on Apple devices: VNDetectHumanBodyPoseRequest ships inside the OS from iOS 14, returns 19 named 2D joints for each person it detects, and adds no model file to your app. Pick MediaPipe Pose Landmarker when you also need Android or the web, hand and foot points, or a model version you can pin: it returns 33 landmarks plus world coordinates in meters from a .task bundle you ship, under Apache-2.0. For 3D on Apple hardware, Vision's separate iOS 17 request returns 17 joints in meters, for the most prominent person only.",
+    "body": "**Disclosure: this site is funded by KinesteX, which sells a motion-tracking SDK that sits a layer above pose models like these.** Neither product on this page is ours, and we have no reason to prefer either. Apple facts come from Apple's Vision documentation; MediaPipe facts come from Google's Pose Landmarker guides and the google-ai-edge/mediapipe repository. All were read on October 27, 2026.\n\nThe two names do not sit at quite the same layer. Apple Vision is an operating-system framework: `VNDetectHumanBodyPoseRequest` and its 3D sibling run a pose model Apple ships inside iOS, iPadOS, macOS, tvOS and visionOS. MediaPipe Pose Landmarker is a model bundle plus a cross-platform task library that you add to your app. What Apple documents about its own request, on its own, is in [Apple Vision body pose on iOS](/motion/apple-vision-body-pose); this page puts the two side by side.\n\n## Apple Vision vs MediaPipe at a glance\n\n| | Apple Vision body pose | MediaPipe Pose Landmarker |\n| --- | --- | --- |\n| 2D points | 19 named joints (`VNHumanBodyPoseObservation.JointName`) | 33 landmarks, indexed 0 to 32 |\n| Hands and feet | None in the 19; the iOS 18 `DetectHumanBodyPoseRequest` can add hand observations | Pinky, index and thumb points per hand; heel and foot index per foot |\n| 3D | Separate request from iOS 17 and macOS 14: 17 joints in meters, origin at the root joint between the hips | World landmarks in meters, origin at the centre between the hips, from the same call |\n| People per frame | 2D: one observation per detected pose; 3D: the most prominent person only | Up to `num_poses`, which defaults to 1 |\n| Platforms | Apple only: iOS and iPadOS 14, macOS 11, Mac Catalyst 14, tvOS 14, visionOS 1 for the 2D request | Android, iOS, Python and web |\n| What you ship | Nothing: the model is part of the OS | A `.task` model bundle: lite, full or heavy |\n| Versioning | Request revisions inside the OS | The bundle file you choose and keep |\n| Licence | Part of Apple's SDK | Apache-2.0 |\n\n## What each returns in 2D\n\n**Vision names 19 joints.** Apple's documentation says that starting in iOS 14 and macOS 11, Vision identifies human body poses \"by detecting up to 19 unique body points\". The joint names are grouped as head (nose, eyes, ears, neck), arms (shoulders, elbows, wrists), waist (`root`) and legs (hips, knees, ankles). Each `VNRecognizedPoint` carries x and y in normalized coordinates and a confidence score, and Apple's article says to ignore points with a confidence of 0, \"because they’re invalid\". The same article puts the origin at the bottom-left of the image.\n\n**MediaPipe has 33 landmarks.** Google's Pose Landmarker guide lists them from 0 nose to 32 right foot index, and each landmark carries x, y, z, visibility and presence. Sixteen of the 33 have no Vision counterpart: four eye corners, two mouth corners, three hand points per side and two foot points per side. The heel and foot index points are what an ankle angle or a heel-lift check needs, which the 19 Vision joints cannot supply. Vision has two points MediaPipe does not: `neck` and `root`. In MediaPipe you would derive them, for example as midpoints of the shoulders and of the hips.\n\n**Hands are a recent addition on Apple's side.** `DetectHumanBodyPoseRequest`, the Swift-only request available from iOS 18 and macOS 15, has a `detectsHands` property that Apple describes as \"A Boolean value that detects hands of the body in the results, if they’re visible\", defaulting to true and requiring the request's revision 2. Its observation exposes `leftHand` and `rightHand` as separate hand-pose observations rather than adding points to the body skeleton.\n\n## Several people in frame\n\nApple's 2D article says the request \"returns a unique observation for each detected human body pose\", so one call can return several skeletons. Its accuracy advice also warns that \"Attempting to detect body poses in dense crowd scenes is likely to produce inaccurate results\". MediaPipe's `num_poses` option is \"The maximum number of poses that can be detected by the Pose Landmarker\", default 1, so you raise it explicitly. Neither guide documents keeping each person's identity from frame to frame; [multi-person pose tracking](/motion/multi-person-pose-tracking) covers that layer.\n\n## 3D: two different promises\n\nVision's 3D request is a separate API with a higher floor: iOS 17 and macOS 14. Apple's article says it measures \"17 individual joint locations in 3D space\", in meters, relative to a root joint between the left and right hip. Three details matter for fitness code:\n\n- **One person.** \"The request only supports the detection and results for the most prominent person in the frame, so it generates a single observation.\"\n- **All or nothing.** \"The framework doesn’t return a partial list of joints, so you get all 17 joints or none.\"\n- **Depth helps but is optional.** The request runs without depth data, and Apple says providing it \"improves detection accuracy\". `bodyHeight` is a measured value only when the capture session uses the LiDAR camera; otherwise Apple says it returns \"a reference height of `1.8` meters\".\n\nMediaPipe returns its 3D output from the same call as the 2D landmarks. Google's legacy Pose documentation describes world landmarks as \"Real-world 3D coordinates in meters with the origin at the center between hips\", and the Pose Landmarker guide says the model \"outputs an estimate of 33 3-dimensional pose landmarks\". Its inputs are still images, decoded video frames or a live feed; the guide lists no depth input. Whether you need a third axis at all is the subject of [2D vs 3D pose estimation](/motion/2d-vs-3d-pose-estimation).\n\n## Shipping and keeping it working\n\n**Vision adds no model bytes.** The model ships in the OS, and the request is the API. The flip side is that the implementation updates when Apple updates it. The 2D request documents `VNDetectHumanBodyPoseRequestRevision1`, and the iOS 18 request has a `Revision` type whose listed case is `revision2`; what changes between them, and when, is Apple's to decide.\n\n**MediaPipe adds a file you control.** The iOS guide installs the `MediaPipeTasksVision` library through Swift Package Manager and points `BaseOptions.modelAssetPath` at a `pose_landmarker.task` file in the app bundle; Android uses the `com.google.mediapipe:tasks-vision` library, and the web uses the `@mediapipe/tasks-vision` npm package. When we requested the three bundles from Google's model storage on October 27, 2026, they were 5,777,746 bytes (lite), 9,398,198 bytes (full) and 30,664,242 bytes (heavy). Because the file is yours, an old version stays reproducible in a regression suite. [MediaPipe Pose Landmarker models](/motion/mediapipe-pose-landmarker-models) compares the three.\n\n**Platform reach decides many projects outright.** Every platform Apple lists for Vision is an Apple platform. A team with an Android app either writes a second pose pipeline, with different joints and different failure modes, or uses one model on both, which MediaPipe supports.\n\n## What is published about accuracy\n\nApple's documentation gives guidance rather than figures. For the 2D request it says the subject's height \"should ideally be at least a third of the overall image height\", that a large portion of the body should be in frame, and that \"A subject wearing flowing or robe-like clothing reduces the detection accuracy.\"\n\nThe only side-by-side numbers come from Google. MediaPipe's legacy Pose documentation scores BlazePose GHUM against \"Apple Vision\" on Google's own Yoga, Dance and HIIT validation sets, each image holding one person 2 to 4 meters from the camera, on the 17 COCO keypoints. Apple Vision scored 32.8, 36.4 and 44.5 mAP and 82.7, 91.4 and 88.6 PCK@0.2; BlazePose GHUM Heavy scored 68.1, 73.0 and 74.0 mAP. Read it as a vendor benchmarking a competitor on its own test set, with no Vision version stated. [Pose estimation accuracy](/motion/pose-estimation-accuracy) explains the metrics, and your own footage is the only test that settles it.\n\n## Mapping joints between them\n\nVision identifies joints by name, not by integer index, so code that reads MediaPipe's `landmarks[23]` has no direct equivalent. The 12 limb joints (shoulders, elbows, wrists, hips, knees, ankles) and the five face points (nose, eyes, ears) exist on both sides under matching names, which makes a name-keyed lookup the safe way to share form rules. The full lists are in [the Apple Vision 2D joint map](/pose-keypoints/apple-vision-2d), [the Apple Vision 3D joint map](/pose-keypoints/apple-vision-3d) and [the BlazePose 33 keypoint map](/pose-keypoints/blazepose-33).\n\n## Which should you pick?\n\n- **An iOS-only app that counts reps from elbow, hip or knee angles in 2D** → Apple Vision. No model file, no extra dependency, and a 2D request available back to iOS 14.\n- **An app on iOS and Android, or in a browser** → MediaPipe, so one model and one set of joint rules serve every platform.\n- **Squat depth, heel lift, ankle angles or grip** → MediaPipe, whose heel, foot index and hand points Vision's 19 joints do not include.\n- **3D on Apple hardware with a depth camera** → test Vision's 3D request, which uses depth when it is present and can measure body height with LiDAR; remember it reports one person only.\n- **Golden-clip regression tests that must not move between releases** → MediaPipe, because the model file is pinned in your repository; with Vision, plan to re-run the clips on each OS release.\n\n## What neither gives you\n\nBoth return points, not workouts. Rep counting, form rules and feedback are yours to build or buy: [how rep counting works](/motion/how-rep-counting-works) shows the logic, [AI workout tracking in Swift](/guides/ai-workout-tracking-ios-swift) wires Vision into an iOS app, and [AI workout tracking APIs](/fitness-apis/ai-workout-tracking-apis) compares products that sell the layer above.",
+    "faqs": [
+      {
+        "q": "How many joints does Apple Vision detect compared with MediaPipe?",
+        "a": "Apple's 2D request, VNDetectHumanBodyPoseRequest, detects up to 19 named body points: nose, eyes, ears, neck, shoulders, elbows, wrists, a root point at the waist, hips, knees and ankles. Its 3D request returns 17 joints. MediaPipe Pose Landmarker returns 33 landmarks, including eye and mouth corners, three points on each hand, and a heel and foot index on each foot, which Vision's 19 do not include."
+      },
+      {
+        "q": "Can Apple Vision body pose run on Android?",
+        "a": "No. Every platform Apple lists for VNDetectHumanBodyPoseRequest is an Apple one: iOS, iPadOS, Mac Catalyst, macOS, tvOS and visionOS. An Android version of the same app needs a different pose model. MediaPipe Pose Landmarker documents Android, iOS, Python and web, so teams shipping on both phones often use it everywhere and keep one set of joint rules."
+      },
+      {
+        "q": "Does Apple Vision detect more than one person, unlike MediaPipe's default?",
+        "a": "The 2D request does: Apple's article says it returns a unique observation for each detected human body pose, though it warns that dense crowd scenes are likely to produce inaccurate results. The 3D request supports only the most prominent person in the frame. MediaPipe Pose Landmarker detects up to num_poses people, an option that defaults to 1, so you raise it to track more."
+      },
+      {
+        "q": "Is Apple Vision less accurate than MediaPipe BlazePose?",
+        "a": "Apple publishes no accuracy figures to answer that. The only side-by-side numbers come from Google: MediaPipe's legacy Pose documentation scores Apple Vision at 32.8 to 44.5 mAP on Google's own Yoga, Dance and HIIT sets, against 68.1 to 74.0 for BlazePose GHUM Heavy. That is a vendor benchmarking a competitor on its own test set with no Vision version stated, so test both on your own footage."
+      },
+      {
+        "q": "Does Apple Vision body pose need a depth camera for 3D?",
+        "a": "No. Apple says VNDetectHumanBodyPose3DRequest runs without depth data, uses it when available, and that providing depth improves detection accuracy. Body height is measured only when the capture session uses the LiDAR camera; otherwise bodyHeight returns a reference height of 1.8 meters. MediaPipe's world landmarks come from ordinary image or video input, with no depth input in its guide."
+      }
+    ],
+    "related": [
+      {
+        "href": "/motion/apple-vision-body-pose",
+        "label": "Apple Vision body pose on iOS"
+      },
+      {
+        "href": "/compare/ml-kit-vs-mediapipe",
+        "label": "ML Kit vs MediaPipe"
+      },
+      {
+        "href": "/compare/mediapipe-vs-movenet",
+        "label": "MediaPipe vs MoveNet"
+      },
+      {
+        "href": "/motion/mediapipe-pose-landmarker-models",
+        "label": "MediaPipe Pose Landmarker models"
+      },
+      {
+        "href": "/pose-keypoints/apple-vision-2d",
+        "label": "All 19 Vision 2D joint names"
+      },
+      {
+        "href": "/alternatives/mediapipe-alternatives",
+        "label": "MediaPipe alternatives"
+      }
+    ],
+    "cta": {
+      "pitch": "Apple revises Vision with each OS release and Google moves MediaPipe's guides quietly. Subscribe and we will flag it when either side of this comparison changes."
+    },
+    "sources": [
+      {
+        "url": "https://developer.apple.com/documentation/vision/vndetecthumanbodyposerequest",
+        "checked": "2026-10-27",
+        "note": "platforms from iOS 14 and macOS 11; revision 1"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/vision/detecting-human-body-poses-in-images",
+        "checked": "2026-10-27",
+        "note": "19 body points, one observation per detected pose, normalized points with a lower-left origin, confidence 0 invalid, accuracy guidance"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/vision/vnhumanbodyposeobservation/jointname",
+        "checked": "2026-10-27",
+        "note": "the 19 joint names by group"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/vision/vndetecthumanbodypose3drequest",
+        "checked": "2026-10-27",
+        "note": "3D request from iOS 17 and macOS 14; depth data improves accuracy"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/vision/identifying-3d-human-body-poses-in-images",
+        "checked": "2026-10-27",
+        "note": "17 joints in meters, most prominent person only, all 17 or none, root origin, 1.8 m reference height, LiDAR"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/vision/detecthumanbodyposerequest",
+        "checked": "2026-10-27",
+        "note": "Swift request from iOS 18 and macOS 15"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/vision/detecthumanbodyposerequest/detectshands",
+        "checked": "2026-10-27",
+        "note": "detectsHands, default true, needs revision 2"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/vision/humanbodyposeobservation",
+        "checked": "2026-10-27",
+        "note": "leftHand and rightHand observations"
+      },
+      {
+        "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker",
+        "checked": "2026-10-27",
+        "note": "33 landmarks, image and world coordinates, segmentation mask, num_poses default 1, running modes, lite/full/heavy bundles"
+      },
+      {
+        "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker/ios",
+        "checked": "2026-10-27",
+        "note": "MediaPipeTasksVision via Swift Package Manager; modelAssetPath"
+      },
+      {
+        "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker/android",
+        "checked": "2026-10-27",
+        "note": "com.google.mediapipe:tasks-vision"
+      },
+      {
+        "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker/web_js",
+        "checked": "2026-10-27",
+        "note": "@mediapipe/tasks-vision on npm"
+      },
+      {
+        "url": "https://github.com/google-ai-edge/mediapipe/blob/master/docs/solutions/pose.md",
+        "checked": "2026-10-27",
+        "note": "world landmarks in meters; quality table including Apple Vision"
+      },
+      {
+        "url": "https://github.com/google-ai-edge/mediapipe/blob/master/mediapipe/tasks/python/components/containers/landmark.py",
+        "checked": "2026-10-27",
+        "note": "visibility and presence fields"
+      },
+      {
+        "url": "https://github.com/google-ai-edge/mediapipe/blob/master/LICENSE",
+        "checked": "2026-10-27",
+        "note": "Apache-2.0"
+      },
+      {
+        "url": "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_full/float16/latest/pose_landmarker_full.task",
+        "checked": "2026-10-27",
+        "note": "bundle sizes from the Content-Length of the lite, full and heavy files"
+      }
+    ],
+    "firstParty": true
+  },
+  {
+    "slug": "ml-kit-vs-mediapipe",
+    "primaryQuery": "ml kit vs mediapipe pose",
+    "h1": "ML Kit vs MediaPipe Pose: Same 33 Landmarks, Different Packaging",
+    "metaTitle": "ML Kit vs MediaPipe Pose (2026): Which to Use?",
+    "metaDescription": "ML Kit Pose Detection vs MediaPipe Pose Landmarker from Google's docs: same 33 landmarks, beta SDK vs Apache-2.0, platforms, 3D, people, sizes and speed.",
+    "updated": "2026-10-27",
+    "answer": "ML Kit Pose Detection and MediaPipe Pose Landmarker come from the same Google research and return the same 33 landmarks at the same indices; the choice is about packaging. Pick ML Kit for an Android and iOS app that wants one person's skeleton with no model file to manage, and can accept a beta API that Google says has no SLA or deprecation policy. Pick MediaPipe for the web or Python, world landmarks in meters, more than one person, segmentation masks, or an Apache-2.0 model you ship and pin yourself.",
+    "body": "**Disclosure: this site is funded by KinesteX, which sells a motion-tracking SDK that sits a layer above pose models like these.** Both products on this page are Google's, neither is ours, and we have no reason to prefer either. Every fact below comes from Google's ML Kit guides, reference and terms, Google's MediaPipe Pose Landmarker guides, and the google-ai-edge/mediapipe repository, all read on October 27, 2026.\n\nThese are close relatives rather than rivals. Google's MediaPipe Pose documentation says its BlazePose research \"also powers the ML Kit Pose Detection API\". Both return 33 body landmarks at the same indices. What differs is the packaging around the model: ML Kit is a closed, beta SDK for Android and iOS with no model file to handle, and MediaPipe Pose Landmarker is an open-source task library with a model bundle you ship, on more platforms and with more options. What ML Kit documents about itself is in [ML Kit pose detection](/motion/ml-kit-pose-detection); this page sets the two side by side.\n\n## ML Kit vs MediaPipe at a glance\n\n| | ML Kit Pose Detection | MediaPipe Pose Landmarker |\n| --- | --- | --- |\n| Landmarks | 33, values 0 to 32 | 33, indices 0 to 32 |\n| Per landmark | x, y, an experimental z, in-frame likelihood | x, y, z, visibility, presence; plus world landmarks in meters |\n| People | One per image | Up to `num_poses`, default 1 |\n| Variants | Base SDK and accurate SDK | Lite, full and heavy model bundles |\n| Platforms | Android and iOS | Android, iOS, Python and web |\n| How the model ships | Statically linked into the app at build time | A `.task` file you bundle and load |\n| Extras | None documented | Optional segmentation masks |\n| Status | Beta, with no SLA or deprecation policy | Open source |\n| Terms | ML Kit Terms of Service; usage metrics go to Google | Apache-2.0 |\n\n## Same landmarks, almost the same names\n\nML Kit's Android `PoseLandmark` reference and MediaPipe's `PoseLandmark` enum assign the same numbers to the same body points, from 0 nose to 32 right foot index; `LEFT_HIP` is 23 in both. Only the mouth corners are spelled differently: ML Kit's `LEFT_MOUTH` (9) and `RIGHT_MOUTH` (10) are MediaPipe's `MOUTH_LEFT` and `MOUTH_RIGHT`. Index-based code moves between them unchanged, which makes a later switch cheaper than between most pose models. Both maps are on [the ML Kit landmark page](/pose-keypoints/ml-kit) and [the BlazePose 33 keypoint map](/pose-keypoints/blazepose-33).\n\n## Where they differ in output\n\n**Depth.** ML Kit calls its Z coordinate \"an experimental value\" that is measured in image pixels like X and Y \"but it is not a true 3D value\", with its origin near the centre between the hips and no upper or lower bound. MediaPipe returns two sets of landmarks from one call: normalized image landmarks, whose z uses the hip midpoint as origin and \"roughly the same scale as x\", and world landmarks that Google's documentation describes as \"Real-world 3D coordinates in meters with the origin at the center between hips\". If you need joint angles that survive the user turning side-on, MediaPipe's world landmarks are the documented route; [2D vs 3D pose estimation](/motion/2d-vs-3d-pose-estimation) covers when that matters.\n\n**Per-point scores.** ML Kit's InFrameLikelihood is, in Google's words, \"a measure that indicates the probability that the landmark is within the image frame\", from 0.0 to 1.0. When part of the body is outside the image, ML Kit still returns all 33 points and gives the missing ones coordinates outside the frame. MediaPipe gives two scores per landmark, visibility and presence.\n\n**People and masks.** ML Kit's overview is direct: \"Pose detection can only detect one person in an image.\" With two people, it assigns the landmarks to the person detected with the highest confidence, and Google adds that \"The user's face must be present in order to detect a pose.\" MediaPipe's `num_poses` sets \"The maximum number of poses that can be detected\", defaulting to 1, and its `output_segmentation_masks` option returns a person mask. For groups, start from [multi-person pose tracking](/motion/multi-person-pose-tracking).\n\n## Speed and size, as Google publishes them\n\nML Kit publishes both. Its Android guide lists the base `pose-detection` SDK at about 10.1 MB and about 30 FPS on a Pixel 3XL, and `pose-detection-accurate` at about 13.3 MB and about 23 FPS with CPU or about 30 FPS with GPU. Its iOS guide lists up to 29.6 MB at about 45 FPS for `PoseDetection` and up to 33.2 MB at about 29 FPS for `PoseDetectionAccurate`, both on an iPhone X.\n\nMediaPipe's current Pose Landmarker guides, the overview and the Android, iOS and web pages, publish neither figure. When we requested the three bundles from Google's model storage on October 27, 2026, they were 5,777,746 bytes (lite), 9,398,198 bytes (full) and 30,664,242 bytes (heavy); that is the model file alone, before the task library. For speed, Google's legacy Pose documentation gives BlazePose GHUM latencies on a Pixel 3 with TFLite GPU of 20 ms for lite, 25 ms for full and 53 ms for heavy. Those are different devices and different measures from ML Kit's, so they do not compare; measure on your target phones. [MediaPipe Pose Landmarker models](/motion/mediapipe-pose-landmarker-models) goes deeper on the three variants.\n\n## Platforms and integration\n\nML Kit's pose guides cover Android and iOS only. The Android guide needs API level 23 or above and, on the day we read it, printed the dependencies `com.google.mlkit:pose-detection:18.0.0-beta5` and `com.google.mlkit:pose-detection-accurate:18.0.0-beta5`; the iOS guide printed the pods `GoogleMLKit/PoseDetection` and `GoogleMLKit/PoseDetectionAccurate` at 8.0.0. Google says the Android SDKs' code and assets, and the iOS detectors' assets, are statically linked into the app at build time, so there is no model file to download or version separately. Detection runs in `STREAM_MODE`, which tracks the most prominent person between frames, or `SINGLE_IMAGE_MODE`, and on Android `setPreferredHardwareConfigs` chooses between `CPU` and `CPU_GPU`.\n\nMediaPipe adds Python and the web. Android uses the `com.google.mediapipe:tasks-vision` library, iOS the `MediaPipeTasksVision` package through Swift Package Manager, and the web the `@mediapipe/tasks-vision` npm package; each loads a `.task` model you supply. Running modes are `IMAGE`, `VIDEO` and `LIVE_STREAM`. Shipping the file yourself is extra work, and it is also what lets you pin a model version for regression tests.\n\n## Terms, status and data\n\n**ML Kit is beta.** Google's overview says the API \"is offered in beta, and is not subject to any SLA or deprecation policy\", and that changes \"may be made to this API that break backward compatibility\".\n\n**ML Kit has terms, not a licence file.** The ML Kit Terms of Service, last modified May 14, 2025, say processing of input data \"fully happens on-device\", and also that the APIs \"send metrics about the performance and utilization of the APIs in your app to Google\", which the developer is responsible for telling users about where the law requires it. The terms treat machine learning models as related software and forbid attempts to reverse engineer or extract them.\n\n**MediaPipe is Apache-2.0.** The repository's LICENSE is the Apache License, Version 2.0, and the code is there to read, fork or build from source. [Pose estimation model licenses](/motion/pose-estimation-model-licenses) reads both sets of terms in full; this is not legal advice.\n\n## Which should you pick?\n\n- **An Android and iOS app that wants one person's skeleton with the least setup** → ML Kit. No model file to ship or update, and Google publishes size and frame-rate figures for both SDKs.\n- **A web app, a Python pipeline or a server-side batch job** → MediaPipe; ML Kit's pose guides cover only Android and iOS.\n- **Joint angles in 3D, or a user who turns side-on** → MediaPipe, for world landmarks in meters rather than an experimental pixel-scale Z.\n- **Two or more people, or a segmentation mask** → MediaPipe, by raising `num_poses` or enabling masks; ML Kit detects one person.\n- **A product that cannot sit on a beta API or send usage metrics** → MediaPipe, under Apache-2.0 with a model file you control.\n- **Already on ML Kit and outgrowing it** → the shared landmark indices make MediaPipe the cheapest move; rename the two mouth constants and keep your rules.\n\n## What neither gives you\n\nGoogle's ML Kit overview says pose detection \"does not attach any meaning to the landmarks in a pose or the pose itself\", and the same is true of MediaPipe. Google's [pose classification tips](https://developers.google.com/ml-kit/vision/pose-detection/classifying-poses) show a k-NN approach for exercise classification and rep counting; [how rep counting works](/motion/how-rep-counting-works) covers the logic, and [AI workout tracking APIs](/fitness-apis/ai-workout-tracking-apis) compares products that sell that layer.",
+    "faqs": [
+      {
+        "q": "Is ML Kit pose detection built on MediaPipe?",
+        "a": "On the same research, by Google's account. MediaPipe's Pose documentation says its BlazePose research also powers the ML Kit Pose Detection API, and both return 33 landmarks with the same numbering, from 0 nose to 32 right foot index. The products differ: ML Kit is a beta SDK for Android and iOS with its model linked into the app, and MediaPipe is an open-source task library with a model bundle you load."
+      },
+      {
+        "q": "Can I switch from ML Kit to MediaPipe without rewriting my pose code?",
+        "a": "Mostly. ML Kit's PoseLandmark constants and MediaPipe's PoseLandmark enum give the same index to the same point, so rules written against landmark numbers carry over. Only the mouth corners are named differently, LEFT_MOUTH and RIGHT_MOUTH in ML Kit against MOUTH_LEFT and MOUTH_RIGHT in MediaPipe. The output objects, scores and setup code still change: in-frame likelihood becomes visibility and presence."
+      },
+      {
+        "q": "Does ML Kit or MediaPipe run in a web browser?",
+        "a": "MediaPipe does: Google documents a web guide that loads Pose Landmarker from the @mediapipe/tasks-vision npm package or a CDN, alongside Android, iOS and Python guides. ML Kit's pose detection guides cover Android and iOS only, so a web or desktop build needs MediaPipe or another model."
+      },
+      {
+        "q": "Which is safer for a production app, ML Kit or MediaPipe?",
+        "a": "It depends on which risk you weigh. ML Kit pose detection is offered in beta and, per Google, is not subject to any SLA or deprecation policy, and its terms say the APIs send performance and usage metrics to Google. MediaPipe is Apache-2.0 open source with a model file you control, but you ship, size and update that file yourself. Neither gives you rep counting or form feedback."
+      }
+    ],
+    "related": [
+      {
+        "href": "/motion/ml-kit-pose-detection",
+        "label": "ML Kit pose detection"
+      },
+      {
+        "href": "/compare/apple-vision-vs-mediapipe",
+        "label": "Apple Vision vs MediaPipe"
+      },
+      {
+        "href": "/compare/mediapipe-vs-movenet",
+        "label": "MediaPipe vs MoveNet"
+      },
+      {
+        "href": "/pose-keypoints/ml-kit",
+        "label": "ML Kit's 33 landmark constants"
+      },
+      {
+        "href": "/motion/pose-estimation-model-licenses",
+        "label": "Pose model licences and ML Kit's terms"
+      },
+      {
+        "href": "/alternatives/mediapipe-alternatives",
+        "label": "MediaPipe alternatives"
+      }
+    ],
+    "cta": {
+      "pitch": "ML Kit's pose API is beta and MediaPipe's guides change without notice. Subscribe and we will flag it when either moves."
+    },
+    "sources": [
+      {
+        "url": "https://developers.google.com/ml-kit/vision/pose-detection",
+        "checked": "2026-10-27",
+        "note": "beta status, 33 landmarks, one person, face required, in-frame likelihood, base vs accurate SDK, experimental Z, no meaning attached"
+      },
+      {
+        "url": "https://developers.google.com/ml-kit/vision/pose-detection/android",
+        "checked": "2026-10-27",
+        "note": "SDK sizes and Pixel 3XL speeds, API level 23, 18.0.0-beta5, detection modes, hardware configs"
+      },
+      {
+        "url": "https://developers.google.com/ml-kit/vision/pose-detection/ios",
+        "checked": "2026-10-27",
+        "note": "SDK sizes and iPhone X speeds, pods at 8.0.0, statically linked assets"
+      },
+      {
+        "url": "https://developers.google.com/android/reference/com/google/mlkit/vision/pose/PoseLandmark",
+        "checked": "2026-10-27",
+        "note": "constant values, LEFT_MOUTH 9, LEFT_HIP 23"
+      },
+      {
+        "url": "https://developers.google.com/ml-kit/terms",
+        "checked": "2026-10-27",
+        "note": "last modified May 14, 2025: on-device processing, metrics to Google, models as related software"
+      },
+      {
+        "url": "https://developers.google.com/ml-kit/vision/pose-detection/classifying-poses",
+        "checked": "2026-10-27",
+        "note": "k-NN classification and rep counting tips"
+      },
+      {
+        "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker",
+        "checked": "2026-10-27",
+        "note": "33 landmarks, world coordinates, segmentation mask, num_poses, running modes, bundles"
+      },
+      {
+        "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker/android",
+        "checked": "2026-10-27",
+        "note": "tasks-vision library"
+      },
+      {
+        "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker/ios",
+        "checked": "2026-10-27",
+        "note": "MediaPipeTasksVision via Swift Package Manager"
+      },
+      {
+        "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker/web_js",
+        "checked": "2026-10-27",
+        "note": "@mediapipe/tasks-vision on npm"
+      },
+      {
+        "url": "https://github.com/google-ai-edge/mediapipe/blob/master/docs/solutions/pose.md",
+        "checked": "2026-10-27",
+        "note": "BlazePose also powers ML Kit; world landmarks; Pixel 3 latencies"
+      },
+      {
+        "url": "https://github.com/google-ai-edge/mediapipe/blob/master/mediapipe/tasks/python/vision/pose_landmarker.py",
+        "checked": "2026-10-27",
+        "note": "PoseLandmark enum, MOUTH_LEFT and MOUTH_RIGHT"
+      },
+      {
+        "url": "https://github.com/google-ai-edge/mediapipe/blob/master/mediapipe/tasks/python/components/containers/landmark.py",
+        "checked": "2026-10-27",
+        "note": "visibility and presence fields"
+      },
+      {
+        "url": "https://github.com/google-ai-edge/mediapipe/blob/master/LICENSE",
+        "checked": "2026-10-27",
+        "note": "Apache-2.0"
+      },
+      {
+        "url": "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_full/float16/latest/pose_landmarker_full.task",
+        "checked": "2026-10-27",
+        "note": "bundle sizes from the Content-Length of the lite, full and heavy files"
+      }
+    ],
+    "firstParty": true
+  },
+  {
+    "slug": "exercisedb-vs-api-ninjas",
+    "primaryQuery": "exercisedb vs api ninjas",
+    "h1": "ExerciseDB vs API Ninjas: GIFs and Video or a Simple Exercise Lookup?",
+    "metaTitle": "ExerciseDB vs API Ninjas (2026): Exercise API Compared",
+    "metaDescription": "ExerciseDB (AscendAPI) vs API Ninjas Exercises: GIFs and MP4 video vs start and finish photos, free tiers, commercial terms, storage and call limits.",
+    "updated": "2026-10-27",
+    "answer": "Pick ExerciseDB, now sold by AscendAPI, when your app needs demonstration media: its V1 serves 1,500 exercises with GIFs free and with no key, and its V2 on RapidAPI gives each exercise an MP4 video, watermarked on the free 200-exercise plan. Pick API Ninjas Exercises when text metadata and a start and finish photo are enough and you want terms you can read: commercial use starts at $59 a month, or $39 billed yearly, and storing the data needs the Business plan. Both were checked on October 27, 2026.",
+    "body": "**Disclosure: this site is funded by KinesteX, which sells a motion-tracking SDK for fitness apps.** Neither API on this page is ours, and we have no reason to prefer either. AscendAPI and API Ninjas facts come from their own documentation, home and pricing pages, read through a source snapshot on October 27, 2026; every count below is the vendor's own figure.\n\n## First, which ExerciseDB?\n\nThe exercisedb.dev home page now reads \"Previously ExerciseDB\" above the name AscendAPI, and it sells two exercise products. **ExerciseDB V1** is free with no key at `oss.exercisedb.dev`, 1,500 exercises with 180p GIFs, with a paid tier on RapidAPI. **ExerciseDB V2** is on RapidAPI only, with an MP4 video per exercise. On this page \"ExerciseDB\" means those two. [ExerciseDB vs wger](/compare/exercisedb-vs-wger) covers the older RapidAPI listing under the same name.\n\nAPI Ninjas is a catalog of small APIs sold under one key, and its Exercises API is one of them. The two meet on the same question, \"give my app an exercise list\", but they sell different things: ExerciseDB sells media, and API Ninjas sells a simple lookup.\n\n## ExerciseDB vs API Ninjas at a glance\n\n| | ExerciseDB (AscendAPI) | API Ninjas Exercises |\n| --- | --- | --- |\n| Catalog, vendor's figure | V1: 1,500 free, \"over 2,000\" in total; V2: 11,000+ | \"over 3000 exercises\" |\n| Media | V1: one 180p GIF free, images and GIFs at 360p to 1080p paid; V2: MP4 video and images, watermarked on the free plan | `images`: start and finish photos, premium plans only; no GIF or video |\n| Muscles | `bodyParts`, `targetMuscles` and `secondaryMuscles` arrays | One `muscle` per exercise, from 16 values |\n| Per call | Paginated REST endpoints, per AscendAPI | `/v1/exercises` returns up to 5; paging with `offset` is premium |\n| Free tier | V1: no sign-up, no key; V2 Basic: 2,000 requests a month, 200 exercises | 3,000 calls a month, 100 an hour, evaluation and demo only |\n| Commercial use | Terms not stated on the pages we read | Paid plans only, from $59 a month or $39 billed yearly |\n| Storing data | Not stated on the pages we read | Business plan and above |\n| Auth | None for V1 free; `X-RapidAPI-Key` for everything else | `X-Api-Key` |\n\nPrices for every plan are in [exercise database API pricing](/pricing/exercise-database-api-pricing).\n\n## Where ExerciseDB wins\n\n**Demonstration media.** AscendAPI's V2 overview says \"Each exercise includes an MP4 demonstration video for in-app playback\", alongside images at 360p, 480p, 720p and 1080p, and it states 11,000+ exercises, 15,000+ videos and 20,000+ images. V1's paid tier serves images and GIFs at the same four sizes, and its free tier one 180p GIF per exercise. API Ninjas returns photos only, and only on premium plans. For a workout player, that difference usually decides it; [exercise APIs with video](/fitness-apis/exercise-video-apis) compares every source of demo video.\n\n**Richer records.** A V1 record carries arrays of body parts, target muscles, secondary muscles and equipment, plus step-by-step instructions. V2 adds an `overview`, `exerciseTips`, `variations`, `keywords` and `relatedExerciseIds`. API Ninjas returns one primary muscle per exercise.\n\n**A free path you can ship a prototype on.** V1's free tier needs no sign-up and no key, and AscendAPI's rate-limit guide gives free plans \"a limit of 1,000 requests per hour per API key\". V2's Basic plan, per AscendAPI's quickstart, is free with 2,000 requests a month, 200 exercises, images and videos, and no credit card.\n\n## Where API Ninjas wins\n\n**Terms you can read before you build.** API Ninjas' pricing page puts commercial use, data storage, rate limits, attribution and uptime in one table. The Free plan is \"Evaluation and demo purposes only\", with attribution required and no commercial use; Developer adds commercial use with 100,000 calls a month and a 99% uptime SLA; Business adds \"Data caching/storing allowed\" with 1,000,000 calls and a 99.95% SLA. AscendAPI's pages we read state rate limits but not its terms on commercial use or on keeping a copy of the data, and its paid prices sit on RapidAPI listings our snapshot did not read.\n\n**One key, no marketplace.** API Ninjas keys come from its own site and go in an `X-Api-Key` header; ExerciseDB's paid tiers and all of V2 go through RapidAPI, with its own account, subscription and `X-RapidAPI-Key`. If your app already calls other API Ninjas endpoints, such as its Calories Burned API, one plan covers them all.\n\n**Simple filters and safety cues.** `/v1/exercises` filters by `name` (partial matches), `type` (seven values from cardio to strongman), `muscle`, `difficulty` (beginner, intermediate or expert) and `equipments`, and each result carries `instructions` and `safety_info`. API Ninjas' FAQ also promises that over-quota requests \"will simply be denied\", so a traffic spike never bills you beyond your plan.\n\n## The catches on each side\n\n**ExerciseDB.** Free V2 media is watermarked; AscendAPI says paid plans serve \"clean, watermark-free assets\". Some fields in its schema tables are still marked \"Next Update\" or \"Coming Soon\", among them muscle activation images on both versions and a difficulty level on V2, so check the field you need is \"Available\" before designing around it.\n\n**API Ninjas.** `/v1/exercises` \"Returns up to 5 exercises\", and the `offset` parameter that pages past them is premium. The full list of exercise names for a muscle group, `/v1/allexercises`, is for \"Business tier and above, or any annual plan\". The Developer plan does not allow caching or storing data, so an app that keeps a local copy of the catalog needs Business.\n\n## Which should you pick?\n\n- **Video or animated demos in the app** → ExerciseDB: V2 for MP4 video, V1 for GIFs.\n- **A free prototype that may become a product** → ExerciseDB V1 free or the V2 Basic plan to build, then read AscendAPI's paid plans and terms on RapidAPI before launch.\n- **Text metadata and a still photo, under terms you can cite** → API Ninjas on a paid plan; Business if you store the data.\n- **Filtering by difficulty or equipment on a budget** → API Ninjas' Developer plan covers both filters, while ExerciseDB V1 lists `difficulty` only in its paid-tier schema.\n- **Data you own outright, with no API at all** → neither: free-exercise-db is public domain. See [ExerciseDB vs free-exercise-db](/compare/exercisedb-vs-free-exercise-db).\n\nThe wider field, wger included, is in [exercise database APIs compared](/fitness-apis/exercise-database-apis) and [ExerciseDB alternatives](/alternatives/exercisedb-alternatives).",
+    "faqs": [
+      {
+        "q": "Does API Ninjas have exercise GIFs or videos like ExerciseDB?",
+        "a": "No. API Ninjas' Exercises API documents an images field, premium only, with image URLs in movement order, usually the start and finish positions, and no GIF or video. ExerciseDB serves animated GIFs on its V1, a 180p GIF free and 360p to 1080p on the paid tier, and an MP4 demonstration video per exercise on its V2, watermarked on the free plan."
+      },
+      {
+        "q": "Which has more exercises, ExerciseDB or API Ninjas?",
+        "a": "By the vendors' own figures, ExerciseDB V2: AscendAPI states 11,000+ exercises with 15,000+ videos and 20,000+ images. ExerciseDB V1 states over 2,000, 1,500 of them on the free tier, and API Ninjas says its Exercises API covers over 3000. We did not count either catalog, and API Ninjas returns at most five exercises per search call."
+      },
+      {
+        "q": "Can I use ExerciseDB or API Ninjas for free in a commercial app?",
+        "a": "Not API Ninjas: its pricing page calls the Free plan evaluation and demo purposes only, and its FAQ says commercial use of the Exercises API is not permitted on the free tier. AscendAPI's documentation describes free tiers for ExerciseDB V1 and V2 but, on the pages we read on October 27, 2026, does not state its commercial-use terms, so read them on RapidAPI or ask AscendAPI before launch."
+      },
+      {
+        "q": "Do I need a RapidAPI account for ExerciseDB but not for API Ninjas?",
+        "a": "Mostly, yes. ExerciseDB's V1 free tier needs no sign-up or key, but its paid V1 tier and every V2 plan are subscribed on RapidAPI and called with an X-RapidAPI-Key header. API Ninjas issues its own key from its website, passed in an X-Api-Key header, and one plan covers its other APIs too."
+      }
+    ],
+    "related": [
+      {
+        "href": "/pricing/exercise-database-api-pricing",
+        "label": "Exercise database API pricing"
+      },
+      {
+        "href": "/fitness-apis/exercise-database-apis",
+        "label": "Best exercise database APIs"
+      },
+      {
+        "href": "/alternatives/exercisedb-alternatives",
+        "label": "ExerciseDB alternatives"
+      },
+      {
+        "href": "/compare/exercisedb-vs-wger",
+        "label": "ExerciseDB vs wger"
+      },
+      {
+        "href": "/fitness-apis/exercise-video-apis",
+        "label": "Exercise APIs with video"
+      },
+      {
+        "href": "/compare",
+        "label": "All API comparisons"
+      }
+    ],
+    "cta": {
+      "pitch": "Exercise API plans, watermarks and terms move often. Subscribe and we will flag it when ExerciseDB or API Ninjas changes what you get for free."
+    },
+    "sources": [
+      {
+        "url": "https://exercisedb.dev/",
+        "checked": "2026-10-27",
+        "note": "AscendAPI, previously ExerciseDB; free V1 with no sign-up or key (snapshot)"
+      },
+      {
+        "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+        "checked": "2026-10-27",
+        "note": "V1 catalog, free 180p GIFs, paid multi-resolution media, schema (snapshot)"
+      },
+      {
+        "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+        "checked": "2026-10-27",
+        "note": "V2 catalog, MP4 video, watermark, schema (snapshot)"
+      },
+      {
+        "url": "https://docs.ascendapi.com/quickstart/overview",
+        "checked": "2026-10-27",
+        "note": "free Basic plan on RapidAPI (snapshot)"
+      },
+      {
+        "url": "https://docs.ascendapi.com/guides/ratelimiting",
+        "checked": "2026-10-27",
+        "note": "free and paid rate limits (snapshot)"
+      },
+      {
+        "url": "https://api-ninjas.com/api/exercises",
+        "checked": "2026-10-27",
+        "note": "endpoints, parameters, fields, premium images and offset, FAQ (snapshot)"
+      },
+      {
+        "url": "https://api-ninjas.com/pricing",
+        "checked": "2026-10-27",
+        "note": "plans, calls, commercial use, storage, rate limit, SLA (snapshot)"
+      }
+    ],
+    "firstParty": true
   }
 ];
