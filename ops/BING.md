@@ -1,5 +1,12 @@
 # Bing
 
+> **Status 2026-10-27:** the property is live and read every week. Since
+> 2026-10-12 `scripts/search-pull.mjs` pulls Bing Webmaster Tools data
+> (`data/gsc/bing-latest.json`, `ops/gsc/bing-<date>.csv`); in the window
+> 2026-09-27 to 2026-10-24 Bing sent 30 clicks on 1,260 impressions, a 2.4%
+> CTR against Google's 1.0%. The owner actions below are done; the rest of
+> this file is the original 2026-10-03 plan, kept for its reasoning.
+
 Written 2026-10-03, after the five-day 402 outage, for a site that has **no
 Bing presence or data of any kind**: no claimed Bing Webmaster Tools property,
 no `bing-*.csv` in `ops/gsc/`, and nothing Bing-specific in the build beyond
