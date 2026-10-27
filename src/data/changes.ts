@@ -63,6 +63,16 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
   },
   {
     date: "2026-10",
+    sortDate: "2026-10-27",
+    title: "Open Wearables adds a paid Pro plan and ships outbound webhooks",
+    summary:
+      "Open Wearables gives no date for the change: first seen on 2026-10-27, absent from its pages on 2026-10-17. Its pricing page now lists three plans: Core, self-hosted at \"$0 Forever\" under the MIT licence; Pro, \"From $999 a month, per deployment\", with health scores and other licensed modules; and Enterprise, a custom-priced annual agreement that carries the BAA. Its FAQ now says \"Health scores come with Pro\" and \"Pro is priced per deployment rather than per user\". Outbound webhooks, which its FAQ and webhooks page called in development on 2026-10-17, are now described as shipped: signed, retried and off by default.",
+    status: "confirmed",
+    page: { href: "/compare/terra-vs-open-wearables", label: "Terra vs Open Wearables" },
+    verifiedOn: "2026-10-27",
+  },
+  {
+    date: "2026-10",
     sortDate: "2026-10-22",
     title: "Garmin Connect Personal API and Starter/Enterprise access",
     summary:

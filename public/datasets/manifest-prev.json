@@ -15,15 +15,15 @@
     },
     {
       "file": "fitness-api-changes-2026.csv",
-      "bytes": 11076,
-      "rows": 18,
-      "sha256": "b23f402d684e4c09fb0af414c7fa09e178b9a57cd98aca7fbc7845f97d0ce8db"
+      "bytes": 11823,
+      "rows": 19,
+      "sha256": "3e25e5854c25b590226eb9bb6d149e72d226710bf82be733091dc98215cb31e5"
     },
     {
       "file": "fitness-api-changes-2026.json",
-      "bytes": 15634,
-      "rows": 18,
-      "sha256": "06b9927b00469ce2f7f3b59a81a32469da54dff5aafeb6ac8eff191493228e9c"
+      "bytes": 16538,
+      "rows": 19,
+      "sha256": "fdbdaecbee5fe92963b9a9e1c0859336e5242c28929b862557e60cd6c36eeaf0"
     },
     {
       "file": "fitness-api-glossary-2026.csv",

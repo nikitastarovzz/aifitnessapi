@@ -42,7 +42,7 @@
   {
     "claim": "Terra: lab-report parsing.",
     "url": "https://tryterra.co/pricing",
-    "quote": "Standardize and orchestrate blood reports from all types of providers."
+    "quote": "Turn any lab report into structured data for your app, from blood, urine and stool tests to hormone panels, DEXA scans and more."
   },
   {
     "claim": "Terra: streaming, planned workouts.",
@@ -112,7 +112,7 @@
   {
     "claim": "Terra entry: $399 a month billed annually ($499 monthly), 100,000 credits.",
     "url": "https://tryterra.co/pricing",
-    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly. That includes 100,000 credits each month for the Unified API, and you only pay extra if your usage goes beyond them."
+    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly. That includes 100,000 Unified API credits each month, and you only pay extra if your usage goes beyond them."
   },
   {
     "claim": "Spike Sandbox from $450 a month.",
@@ -140,14 +140,14 @@
     "quote": "Raintree Systems Acquires Spike Technologies"
   },
   {
-    "claim": "\"An active authentication is one connected data source for one end user, and costs 200 credits per month\", the first 400 events per source are free.",
+    "claim": "\"An active authentication is one connected data source for one end user, and costs 200 Unified API credits per month\", the first 400 events per source are free.",
     "url": "https://tryterra.co/pricing",
-    "quote": "Two things consume credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
+    "quote": "Two things consume Unified API credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 Unified API credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
   },
   {
     "claim": "Extra credits start at $0.005.",
     "url": "https://tryterra.co/pricing",
-    "quote": "Only pay more when you go beyond 100,000 credits. Starting at $0.005 / credit."
+    "quote": "Only pay more when you go beyond 100,000 Unified API credits. Starting at $0.005 / credit."
   },
   {
     "claim": "Spike calls its pricing \"Usage-driven, transparent, and flexible\".",
@@ -262,7 +262,7 @@
   {
     "claim": "FAQ: Terra charges credits for events past a free allowance.",
     "url": "https://tryterra.co/pricing",
-    "quote": "The Unified API includes 400 events per active authentication free each month, and events beyond that cost 0.5 credits each. Terra's pricing docs note that 95% of customers are never charged for events."
+    "quote": "The Unified API includes 400 events per active authentication free each month, and events beyond that cost 0.5 Unified API credits each. Terra's pricing docs note that 95% of customers are never charged for events."
   },
   {
     "claim": "FAQ: Spike's Enterprise plan is custom.",
