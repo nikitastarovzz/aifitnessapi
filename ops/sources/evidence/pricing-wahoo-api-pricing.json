@@ -1,0 +1,132 @@
+[
+  {
+    "claim": "Capsule / What it costs: access and use are currently provided at no charge.",
+    "url": "https://www.wahoofitness.com/wahoo-api-agreement",
+    "quote": "Access to and use of the Wahoo API Materials and Wahoo Platform are currently provided at no charge."
+  },
+  {
+    "claim": "Capsule / What it costs: Wahoo reserves the right to charge in future.",
+    "url": "https://www.wahoofitness.com/wahoo-api-agreement",
+    "quote": "Wahoo reserves the right to charge you for use of the Wahoo API Materials and access to the Wahoo Platform"
+  },
+  {
+    "claim": "Capsule / What it costs: the reserved charges include rated and differentiated pricing for business users.",
+    "url": "https://www.wahoofitness.com/wahoo-api-agreement",
+    "quote": "including, without limitation, rated pricing and/or differentiated pricing for business users"
+  },
+  {
+    "claim": "Capsule / table: access needs Wahoo's approval; Wahoo limits use to those who request it.",
+    "url": "https://developers.wahooligan.com/cloud",
+    "quote": "Wahoo Fitness is currently limiting use of the API to those who request it"
+  },
+  {
+    "claim": "Table / rate limits: production apps go through a review and get a higher rate limit.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Production apps will have to go through a review process with Wahoo Fitness, and when approved your app can be released with a higher rate limit."
+  },
+  {
+    "claim": "Capsule / rate-limit table: 25 and 200 requests every 5 minutes.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Requests every 5 Min: | 25 | 200 |"
+  },
+  {
+    "claim": "Rate-limit table: 100 and 1,000 requests per hour.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Requests per Hour: | 100 | 1000 |"
+  },
+  {
+    "claim": "Capsule / rate-limit table: 250 and 5,000 requests per day.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Requests per Day: | 250 | 5000 |"
+  },
+  {
+    "claim": "Rate limits: authentication, token refreshes and file downloads do not count.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Requests to authenticate, refresh tokens, and download files do not count against rate limits."
+  },
+  {
+    "claim": "Rate limits: contact support to request an increase.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "If you require a higher throughput, please contact support to request an increase."
+  },
+  {
+    "claim": "Rate limits: a Sandbox app cannot later be converted into a Production app.",
+    "url": "https://developers.wahooligan.com/cloud",
+    "quote": "A Sandbox app cannot later be converted into a Production app."
+  },
+  {
+    "claim": "Table: Wahoo has no obligation to provide support.",
+    "url": "https://www.wahoofitness.com/wahoo-api-agreement",
+    "quote": "Wahoo has no obligation to provide any type of technical or other support for the Wahoo API Materials"
+  },
+  {
+    "claim": "Table: you provide customer and technical support for your app.",
+    "url": "https://www.wahoofitness.com/wahoo-api-agreement",
+    "quote": "you are responsible for providing all customer and technical support and maintenance for your Developer Application, not Wahoo"
+  },
+  {
+    "claim": "Table: workouts recorded in third-party apps are not shared.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Wahoo does not share completed workout data that originates from third-party applications."
+  },
+  {
+    "claim": "Capsule / catch: you may not charge end users for access to Wahoo's API materials.",
+    "url": "https://www.wahoofitness.com/wahoo-api-agreement",
+    "quote": "You may not charge end users in any manner for access to or use of the Wahoo API Materials or any services or functionality included in or related to the Wahoo API Materials or Wahoo Platform."
+  },
+  {
+    "claim": "Catch / FAQ: you can charge for functionality Wahoo does not provide.",
+    "url": "https://www.wahoofitness.com/wahoo-api-agreement",
+    "quote": "the foregoing shall not prohibit you from charging for the provision of functionality not provided by the Wahoo Platform in your Developer Applications"
+  },
+  {
+    "claim": "Catch / FAQ: competitive-use restriction, including apps supporting a competing third party, in Wahoo's sole discretion.",
+    "url": "https://www.wahoofitness.com/wahoo-api-agreement",
+    "quote": "You may not use the Wahoo API Materials in any manner that is competitive to Wahoo or the Wahoo Platform, including, without limitation, in connection with any application, website or other product or service that also includes, features, endorses, or otherwise supports in any way a third party that provides services competitive to Wahoo's products and services, as determined in our sole discretion."
+  },
+  {
+    "claim": "Catch / FAQ: the contact address the agreement gives.",
+    "url": "https://www.wahoofitness.com/wahoo-api-agreement",
+    "quote": "please contact wahooapi@wahoofitness.com"
+  },
+  {
+    "claim": "Catch: no selling or licensing Wahoo Data, even with user consent.",
+    "url": "https://www.wahoofitness.com/wahoo-api-agreement",
+    "quote": "You may not, directly or indirectly, disclose, market, sell, license or lease any Wahoo Data to any third party, including but not limited to advertisers or data brokers, even if your Developer Applications' users consents to such use."
+  },
+  {
+    "claim": "Catch: delete Wahoo Data on request within 48 hours.",
+    "url": "https://www.wahoofitness.com/wahoo-api-agreement",
+    "quote": "and that you will do so promptly, and in all events within forty-eight (48) hours after receiving the request"
+  },
+  {
+    "claim": "Catch: breach notice within 24 hours.",
+    "url": "https://www.wahoofitness.com/wahoo-api-agreement",
+    "quote": "notify Wahoo of any security breach related your Developer Application or the Wahoo Data not later than twenty-four hours of your discovery of any such security incident"
+  },
+  {
+    "claim": "Catch: attribution with Wahoo's links and logos.",
+    "url": "https://www.wahoofitness.com/wahoo-api-agreement",
+    "quote": "You agree to attribute your use of the Wahoo API Materials and/or Wahoo Data in your Developer Applications by using the links and logos Wahoo gives to you"
+  },
+  {
+    "claim": "Catch: Wahoo may stop making the API available at any time.",
+    "url": "https://www.wahoofitness.com/wahoo-api-agreement",
+    "quote": "Wahoo may cease making the Wahoo API Materials available to you at any time."
+  },
+  {
+    "claim": "Catch: Wahoo may amend the agreement; continued use is consent.",
+    "url": "https://www.wahoofitness.com/wahoo-api-agreement",
+    "quote": "Your continued usage of the Wahoo API Materials after any Agreement amendment evidences your consent to be bound to that amended Agreement."
+  },
+  {
+    "claim": "Catch: liability capped at the greater of fees paid in the last year or 100 dollars.",
+    "url": "https://www.wahoofitness.com/wahoo-api-agreement",
+    "quote": "WAHOO'S AGGREGATE LIABILITY UNDER THIS AGREEMENT WILL NOT EXCEED THE GREATER OF (i) THE FEES YOU PAID TO WAHOO, IF ANY, FOR USE OF THE WAHOO API MATERIALS IN THE LAST YEAR OR (ii) ONE HUNDRED DOLLARS ($100)."
+  },
+  {
+    "claim": "Money the other way: Wahoo Fitness Affiliate program.",
+    "url": "https://developers.wahooligan.com/cloud",
+    "quote": "consider joining the Wahoo Fitness Affiliate program to get credit for the Wahoo Fitness items your users buy"
+  }
+]

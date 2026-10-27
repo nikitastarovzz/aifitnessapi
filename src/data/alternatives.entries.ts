@@ -121,7 +121,7 @@ export const alternativesEntries: ClusterEntry[] =
     "metaDescription": "No Garmin approval? For your own data, Garmin's own Personal API; for an app serving users: Terra, Strava, Fitbit, on-device and more.",
     "updated": "2026-07-09",
     "answer": "If your own Garmin data is all you need, Garmin's Personal API now gives you a key without an application. If you are building for other users and can't get into Garmin's approval-gated developer program, the practical alternatives are an aggregator that may broker Garmin if you bring your own credentials (Terra), a different accessible wearable (Fitbit, Oura, WHOOP), Strava for activities and GPS, and on-device HealthKit or Health Connect, which can surface Garmin data a user has already synced to their phone. Pick an aggregator to remove the single-vendor gate, Strava if you mainly need runs and rides, Fitbit for broad consumer reach, or on-device APIs if your app lives on the phone and the user already syncs Garmin there.",
-    "body": "Garmin builds a deep first-party health and activity dataset, and its devices are well regarded for GPS and multi-sport tracking. The reason you are reading an alternatives page is almost never the data quality. It is access. (For what this site has verified about Garmin access in one place, see the [Garmin API overview](/apis/garmin).)\n\n## Just want your own Garmin data? Personal and private projects\n\nUntil October 2026 Garmin's developer program FAQ said the program was only for business use, which is why a personal dashboard or a script over your own runs could not get in. That has changed. Garmin's developer site now has a Personal section, and its FAQ says the Garmin Connect Personal API \"is available for personal use\" and is \"not intended for commercial applications serving multiple end users\". The routes, none of which needs developer-program approval:\n\n- **Garmin's Personal API.** You create a key on Garmin Connect Web and exchange it for an access token; [Garmin API for personal use](/fix/garmin-api-personal-use) walks through the steps and what we could not verify about it. It is the official route, so start here.\n- **An unofficial client for your own account.** [garminconnect](/libraries/garminconnect), a Python package, signs in to Garmin Connect's web services with your own username and password. Its README calls it \"an unofficial client for Garmin's web services; it does not pair with the Garmin Connect phone app or connect directly to a watch\", and says authentication \"uses the same mobile SSO flow as the official Garmin Connect mobile apps\"; it stores tokens in a local file (treat it like a password). Unofficial means nothing guarantees it keeps working: garth, the library it used to rely on, was deprecated after Garmin changed its auth flow. Our [Garmin approval page](/fix/garmin-api-approval) also records that Garmin blocks third-party clients and that using them breaks its terms of service, so read Garmin's terms before relying on one even for your own account, and never build a product for other people on it. [garminconnect vs garth](/libraries/compare/garminconnect-vs-garth) sets out garth's deprecation and the one fresh login the move to garminconnect needs.\n- **Your phone's health store.** If your watch syncs to your phone, the data often lands in Apple Health or Health Connect, where an app you write can read it on-device (details in the list below).\n- **Code on the watch itself.** Connect IQ apps run on the device rather than reading Garmin's cloud; [Connect IQ vs the Health and Activity APIs](/fitness-apis/garmin-connect-iq-vs-health-api) explains where that route fits.\n\nIf you are building a product for other people, skip to the alternatives below: those are the routes that hold up in production.\n\n## Why teams look for a Garmin API alternative\n\nFor an app that reads other people's data, Garmin's Health and Activity APIs are reachable only through the Garmin Connect Developer Program. Garmin reorganised it in October 2026: read on October 22, its FAQ describes Starter Access and Enterprise Access, says that once your request is approved you get the Garmin Developer Portal, and no longer states a review time or any fee; its overview says Enterprise \"commercial terms are tailored based on business and technical requirements\". Earlier versions of this page repeated community reports that new sign-ups were on hold; Garmin's own pages never said that. If you cannot get approved, the API's depth does not help you.\n\nThis is an access gate, not a knock on the product. A partner-review model often reflects stricter handling of user health data, and approved teams get a genuinely rich push-based feed. But if the gate is what is blocking you, these are the routes around it. (If you have not yet exhausted the direct path, our note on the [Garmin API approval gate](/fix/garmin-api-approval) covers what to try before switching.)\n\n## The alternatives\n\n**Terra (aggregator).** A health-data aggregator that normalizes many providers behind one schema and may reach Garmin data through its own integration access — though some flows are bring-your-own-credentials, so confirm current Garmin brokering terms (verify). Best for: removing the single-vendor gate and getting Garmin-where-available plus fallbacks behind one integration. Trade-off: you add a middle-layer dependency and cost, and Garmin coverage still depends on Garmin's partner terms.\n\n**Strava.** Activity- and social-focused, and many Garmin users auto-sync their activities into Strava. Best for: runs, rides, and other workouts with GPS when that is the data you actually need. Trade-off: health metrics like sleep, HRV, and recovery are not there, and Strava has its own limits (one webhook subscription per app, published rate limits).\n\n**Fitbit / Google Health API.** A broad consumer install base without Garmin's approval gate. Best for: mainstream reach and intraday heart-rate and sleep data. Trade-off: Google's Google Health API page (read October 12, 2026) lists end of support for the legacy Fitbit Web API on September 30, 2026 and a full turn-off on October 30, 2026, and says every integration must move to the Google Health API as soon as possible. See [Fitbit API deprecation status](/fitbit-api-shutdown), and plan for user re-consent and new OAuth.\n\n**Oura / WHOOP.** Recovery-, sleep-, and readiness-centric devices if a different wearable is acceptable to your users. Best for: HRV and recovery use cases. Trade-off: each is single-vendor with its own approval step (Oura limits a new app to 10 users until it approves the app; WHOOP starts new apps at 10 members and raises the cap one reviewed tier at a time), and WHOOP requires a paid membership.\n\n**HealthKit / Health Connect (on-device).** If a user has synced their Garmin to their phone, the Garmin data often lands in Apple Health (iOS) or Health Connect (Android), where your app can read it locally — no Garmin developer approval required. Best for: mobile apps where the phone is online and the user already syncs Garmin. Trade-off: it is on-device and per-platform (you implement both), depends on the user's own sync being set up, and gives you no server-side access on its own.\n\n| Alternative | Best for | Watch out |\n|---|---|---|\n| Terra (aggregator) | Removing the single-vendor gate; Garmin-where-available plus fallbacks | Garmin flows may be bring-your-own-credentials; confirm brokering terms (verify) |\n| Strava | Activities, runs, rides, GPS | No sleep/HRV/recovery; one webhook per app; rate limits |\n| Fitbit / Google Health API | Broad consumer reach, intraday HR and sleep | Legacy Web API unsupported since Sept 30, 2026, off Oct 30, 2026; re-consent |\n| Oura / WHOOP | Recovery, sleep, HRV; different device acceptable | Single-vendor; 10 users (Oura) or 10 members (WHOOP's first tier) until reviewed; WHOOP needs paid membership |\n| HealthKit / Health Connect | On-device apps; user already syncs Garmin to phone | On-device only, per-platform, depends on the user's own sync |\n\n## Which should you pick?\n\nMatch the route to your use-case rather than looking for one winner:\n\n- **You want Garmin data specifically and the gate is the only blocker** → try an aggregator like Terra, which may broker Garmin so you skip your own partner approval; verify its current Garmin terms and whether it is bring-your-own-credentials.\n- **You mainly need activities, runs, rides, and GPS** → Strava is the lightest path, since Garmin activities already flow there — just accept it is thin on sleep and recovery.\n- **You need broad consumer reach or intraday HR and sleep, and Garmin is not essential** → Fitbit via the Google Health API, planning for the migration.\n- **Your use-case is recovery and readiness** → Oura or WHOOP, if asking users to wear a different device is acceptable.\n- **Your app runs on the phone and users already sync Garmin there** → read it on-device through HealthKit or Health Connect and skip the developer gate entirely.\n\nFor the head-to-head data-depth comparison behind these picks, see [Fitbit API vs Garmin API](/fitness-apis/fitbit-api-vs-garmin-api), and for the full category see our [fitness API comparison](/fitness-apis).\n\n## Is switching easy?\n\nUsually it is a real re-integration, not a config change. Moving off Garmin means new OAuth flows, re-mapping fields to a different provider's schema, and — for anything user-facing — asking your users to reconnect their accounts. Strava, Fitbit, Oura, and WHOOP each have their own consent model and data shape, and on-device HealthKit and Health Connect are a different architecture again.\n\nThe one place you re-integrate once instead of per-vendor is an aggregator: a single normalized schema covers many sources, so Garmin-where-available plus fallbacks sit behind one interface. If you go that way, our [Terra integration guide](/integrate/terra-api) walks through the connection, and you should still confirm each aggregator's current Garmin brokering terms before you commit (verify).",
+    "body": "Garmin builds a deep first-party health and activity dataset, and its devices are well regarded for GPS and multi-sport tracking. The reason you are reading an alternatives page is almost never the data quality. It is access. (For what this site has verified about Garmin access in one place, see the [Garmin API overview](/apis/garmin).)\n\n## Just want your own Garmin data? Personal and private projects\n\nUntil October 2026 Garmin's developer program FAQ said the program was only for business use, which is why a personal dashboard or a script over your own runs could not get in. That has changed. Garmin's developer site now has a Personal section, and its FAQ says the Garmin Connect Personal API \"is available for personal use\" and is \"not intended for commercial applications serving multiple end users\". The routes, none of which needs developer-program approval:\n\n- **Garmin's Personal API.** You create a key on Garmin Connect Web and exchange it for an access token; [Garmin API for personal use](/fix/garmin-api-personal-use) walks through the steps and what we could not verify about it. It is the official route, so start here.\n- **An unofficial client for your own account.** [garminconnect](/libraries/garminconnect), a Python package, signs in to Garmin Connect's web services with your own username and password. Its README calls it \"an unofficial client for Garmin's web services; it does not pair with the Garmin Connect phone app or connect directly to a watch\", and says authentication \"uses the same mobile SSO flow as the official Garmin Connect mobile apps\"; it stores tokens in a local file (treat it like a password). Unofficial means nothing guarantees it keeps working: garth, the library it used to rely on, was deprecated after Garmin changed its auth flow. Our [Garmin approval page](/fix/garmin-api-approval) also records that Garmin blocks third-party clients and that using them breaks its terms of service, so read Garmin's terms before relying on one even for your own account, and never build a product for other people on it. [garminconnect vs garth](/libraries/compare/garminconnect-vs-garth) sets out garth's deprecation and the one fresh login the move to garminconnect needs.\n- **Your phone's health store.** If your watch syncs to your phone, the data often lands in Apple Health or Health Connect, where an app you write can read it on-device (details in the list below).\n- **Code on the watch itself.** Connect IQ apps run on the device rather than reading Garmin's cloud; [Connect IQ vs the Health and Activity APIs](/fitness-apis/garmin-connect-iq-vs-health-api) explains where that route fits.\n\nIf you are building a product for other people, skip to the alternatives below: those are the routes that hold up in production.\n\n## Why teams look for a Garmin API alternative\n\nFor an app that reads other people's data, Garmin's Health and Activity APIs are reachable only through the Garmin Connect Developer Program. Garmin reorganised it in October 2026: read on October 22, its FAQ describes Starter Access and Enterprise Access, says that once your request is approved you get the Garmin Developer Portal, and no longer states a review time or any fee; its overview says Enterprise \"commercial terms are tailored based on business and technical requirements\". Earlier versions of this page repeated community reports that new sign-ups were on hold; Garmin's own pages never said that. If you cannot get approved, the API's depth does not help you.\n\nThis is an access gate, not a knock on the product. A partner-review model often reflects stricter handling of user health data, and approved teams get a genuinely rich push-based feed. But if the gate is what is blocking you, these are the routes around it. (If you have not yet exhausted the direct path, our note on the [Garmin API approval gate](/fix/garmin-api-approval) covers what to try before switching.)\n\n## The alternatives\n\n**Terra (aggregator).** A health-data aggregator that normalizes many providers behind one schema and may reach Garmin data through its own integration access — though some flows are bring-your-own-credentials, so confirm current Garmin brokering terms (verify). Best for: removing the single-vendor gate and getting Garmin-where-available plus fallbacks behind one integration. Trade-off: you add a middle-layer dependency and cost, and Garmin coverage still depends on Garmin's partner terms.\n\n**Strava.** Activity- and social-focused, and many Garmin users auto-sync their activities into Strava. Best for: runs, rides, and other workouts with GPS when that is the data you actually need. Trade-off: health metrics like sleep, HRV, and recovery are not there, and Strava has its own limits (one webhook subscription per app, published rate limits).\n\n**Fitbit / Google Health API.** A broad consumer install base without Garmin's approval gate. Best for: mainstream reach and intraday heart-rate and sleep data. Trade-off: Google's Google Health API page (read October 12, 2026) lists end of support for the legacy Fitbit Web API on September 30, 2026 and a full turn-off on October 30, 2026, and says every integration must move to the Google Health API as soon as possible. See [Fitbit API deprecation status](/fitbit-api-shutdown), and plan for user re-consent and new OAuth.\n\n**Oura / WHOOP.** Recovery-, sleep-, and readiness-centric devices if a different wearable is acceptable to your users. Best for: HRV and recovery use cases. Trade-off: each is single-vendor with its own approval step (Oura limits a new app to 10 users until it approves the app; WHOOP starts new apps at 10 members and raises the cap one reviewed tier at a time), and WHOOP requires a paid membership.\n\n**HealthKit / Health Connect (on-device).** If a user has synced their Garmin to their phone, the Garmin data often lands in Apple Health (iOS) or Health Connect (Android), where your app can read it locally — no Garmin developer approval required. Best for: mobile apps where the phone is online and the user already syncs Garmin. Trade-off: it is on-device and per-platform (you implement both), depends on the user's own sync being set up, and gives you no server-side access on its own.\n\n| Alternative | Best for | Watch out |\n|---|---|---|\n| Terra (aggregator) | Removing the single-vendor gate; Garmin-where-available plus fallbacks | Garmin flows may be bring-your-own-credentials; confirm brokering terms (verify) |\n| Strava | Activities, runs, rides, GPS | No sleep/HRV/recovery; one webhook per app; rate limits |\n| Fitbit / Google Health API | Broad consumer reach, intraday HR and sleep | Legacy Web API unsupported since Sept 30, 2026, off Oct 30, 2026; re-consent |\n| Oura / WHOOP | Recovery, sleep, HRV; different device acceptable | Single-vendor; 10 users (Oura) or 10 members (WHOOP's first tier) until reviewed; WHOOP needs paid membership |\n| HealthKit / Health Connect | On-device apps; user already syncs Garmin to phone | On-device only, per-platform, depends on the user's own sync |\n\n## Which should you pick?\n\nMatch the route to your use-case rather than looking for one winner:\n\n- **You want Garmin data specifically and the gate is the only blocker** → try an aggregator like Terra, which may broker Garmin so you skip your own partner approval; verify its current Garmin terms and whether it is bring-your-own-credentials.\n- **You mainly need activities, runs, rides, and GPS** → Strava is the lightest path, since Garmin activities already flow there — just accept it is thin on sleep and recovery.\n- **You need broad consumer reach or intraday HR and sleep, and Garmin is not essential** → Fitbit via the Google Health API, planning for the migration.\n- **Your use-case is recovery and readiness** → Oura or WHOOP, if asking users to wear a different device is acceptable.\n- **Your app runs on the phone and users already sync Garmin there** → read it on-device through HealthKit or Health Connect and skip the developer gate entirely.\n\nIf you are weighing another sports-watch or cycling brand instead, [Suunto API alternatives](/alternatives/suunto-api-alternatives), [COROS API alternatives](/alternatives/coros-api-alternatives) and [Wahoo API alternatives](/alternatives/wahoo-api-alternatives) set out their routes. For the head-to-head data-depth comparison behind these picks, see [Fitbit API vs Garmin API](/fitness-apis/fitbit-api-vs-garmin-api), and for the full category see our [fitness API comparison](/fitness-apis).\n\n## Is switching easy?\n\nUsually it is a real re-integration, not a config change. Moving off Garmin means new OAuth flows, re-mapping fields to a different provider's schema, and — for anything user-facing — asking your users to reconnect their accounts. Strava, Fitbit, Oura, and WHOOP each have their own consent model and data shape, and on-device HealthKit and Health Connect are a different architecture again.\n\nThe one place you re-integrate once instead of per-vendor is an aggregator: a single normalized schema covers many sources, so Garmin-where-available plus fallbacks sit behind one interface. If you go that way, our [Terra integration guide](/integrate/terra-api) walks through the connection, and you should still confirm each aggregator's current Garmin brokering terms before you commit (verify).",
     "faqs": [
       {
         "q": "Why can't I get access to the Garmin API?",
@@ -1952,5 +1952,651 @@ export const alternativesEntries: ClusterEntry[] =
       }
     ],
     "firstParty": true
+  },
+  {
+    "slug": "withings-api-alternatives",
+    "primaryQuery": "withings api alternatives",
+    "h1": "Withings API Alternatives: Aggregators and Health Stores (2026)",
+    "metaTitle": "Withings API Alternatives (2026): Aggregators, HealthKit",
+    "metaDescription": "Other routes to Withings scale, blood pressure and sleep data: aggregators that list Withings, Apple HealthKit and Health Connect, and when to stay direct.",
+    "updated": "2026-10-27",
+    "answer": "The main alternatives to integrating the Withings API yourself are health-data aggregators that list Withings, such as Terra, Thryve, Rook, Spike and the open-source Open Wearables, and the phone health stores, Apple HealthKit and Google Health Connect, which have their own weight and blood-pressure types. An aggregator suits an app that needs Withings beside other devices; the health stores suit a phone app that wants measurements whatever scale or cuff wrote them. Withings' own Public API stays the most direct route, free to start with no prerequisites, as of October 27, 2026.",
+    "body": "Withings' Public API is free to start: its setup page says \"There are no prerequisites, and free access is provided.\" Teams look elsewhere for other reasons, and this page sets out the realistic options as of October 27, 2026. For the direct build, see the [Withings API integration guide](/integrate/withings-api).\n\n## Why teams look for a Withings API alternative\n\n- **Limits and paid plans.** The standard API allows 120 requests a minute across your application; higher limits and dedicated support are on the Enterprise plan, and some biomarkers need the Advanced Biomarkers plan. The plans page did not render for us, so the price of moving up is unknown until you ask. [Withings API pricing](/pricing/withings-api-pricing) has the detail.\n- **An unsettled user-side rule.** Withings announced that accounts created after October 12, 2026 would need Withings+ to share data with a free-plan app; the notice had left the developer home page by October 27, 2026, and we could not confirm where it stands.\n- **One brand.** A direct Withings integration covers Withings devices only. An app whose users weigh themselves on several brands of scale needs more than one source.\n\n## The alternatives\n\n**Aggregators that list Withings.** Several unified APIs name Withings as a source, so it becomes one connection among many:\n\n- **Terra** lists Withings as event-driven, with credentials marked \"Managed\", which Terra's table says means you may create your own credentials and provide them to Terra. See the [Terra integration guide](/integrate/terra-api).\n- **Thryve** lists Withings as a web source with historic data, and marks it yes in its Shared oAuth-client column. [Terra vs Thryve](/compare/terra-vs-thryve) compares the two.\n- **Rook** lists Withings as an API source covering body, physical and sleep data.\n- **Spike** lists Withings on its integrations page.\n- **Open Wearables**, the self-hosted open-source option, lists Withings as a cloud provider and notes that a Withings account is required and that webhook subscriptions are created per user, not per app. See [Terra vs Open Wearables](/compare/terra-vs-open-wearables).\n- **Sahha** lists Withings among sources that arrive on-device through Apple Health or Health Connect.\n\nThe trade-off is a recurring aggregator fee and a normalised schema that may not carry every Withings field; [health data aggregator pricing](/pricing/health-data-aggregator-pricing) compares the bills.\n\n**Apple HealthKit and Google Health Connect.** Both stores have device-neutral types for what Withings measures. Apple documents `bodyMass` as \"A quantity sample type that measures the user's weight\" and `bloodPressureSystolic` for systolic blood pressure; Health Connect has `WeightRecord`, which \"Captures the user's weight\", and `BloodPressureRecord`. An app that reads these gets measurements from whichever scale or cuff wrote them, on the user's phone, with no Withings developer account. Whether a particular user's Withings readings are there depends on how their Withings app is set up; the Withings developer pages we read do not describe that sync, so treat it as something to test, not promise. See [integrating HealthKit](/integrate/healthkit), [integrating Health Connect](/integrate/google-health-connect), and the [blood pressure](/data/blood-pressure-api) and [body composition](/data/body-composition-api) data guides.\n\n**Withings' contracted solutions.** If the Public API is too small rather than too big, Withings itself offers a Cellular Solution, Withings RPM and Logistics Services under contract. Validic, another integration platform, lists Withings Pro cellular devices with the note that approval \"requires direct relationship with Withings\".\n\n| Alternative | Best for | Watch out |\n|---|---|---|\n| Terra, Thryve, Rook, Spike | Withings beside many other devices | Recurring fee; normalised fields; check whose credentials each uses |\n| Open Wearables | Self-hosting, no per-user fee | You run it; Withings webhooks are per user |\n| HealthKit or Health Connect | Phone apps that want any brand's weight or blood pressure | On-device only, one platform each, depends on the user's own sync |\n| Withings Cellular, RPM | Remote patient monitoring programs | A contract with Withings |\n\n## Which should you pick?\n\n- **You need Withings and other wearables in one schema.** An aggregator. Pick by price and by whether it brokers Withings with its own credentials or yours.\n- **Your app lives on the phone and only needs the numbers.** Read HealthKit and Health Connect, and treat Withings as one of the sources that may write there.\n- **You run a clinical program that ships devices.** Talk to Withings about its cellular and RPM solutions before building on the Public API.\n- **You only need Withings, at modest volume.** Stay direct: the Public API is free to start and its notifications keep you under the rate limit.\n\nThe closest comparisons on this site are [Dexcom API alternatives](/alternatives/dexcom-api-alternatives) for another health-device maker and the [wearable data APIs comparison](/fitness-apis/wearable-data-apis).\n\n## Is switching easy?\n\nLeaving a direct Withings integration means re-mapping Withings' measure types to the new source's fields and asking every user to connect again through the new flow. Moving to an aggregator is a one-time version of that, after which other devices are connect-flow options; moving to HealthKit or Health Connect changes the architecture, from server-side pulls to reads on the phone.",
+    "faqs": [
+      {
+        "q": "Can I get Withings data without the Withings API?",
+        "a": "Through an intermediary, yes. Aggregators such as Terra, Thryve, Rook and Spike list Withings as a source, and Open Wearables connects it in software you host. On the phone, HealthKit and Health Connect have their own weight and blood-pressure types that any scale or cuff app can write to, though whether a user's Withings readings land there depends on their setup."
+      },
+      {
+        "q": "Which aggregators support Withings?",
+        "a": "As of October 27, 2026, Terra lists Withings as an event-driven integration, Thryve as a web source, Rook as an API source for body, physical and sleep data, Spike on its integrations page, Open Wearables as a cloud provider, and Sahha among sources that arrive through Apple Health or Health Connect. Each charges or hosts differently, so compare them before choosing."
+      },
+      {
+        "q": "Do aggregators need my own Withings developer app?",
+        "a": "It varies. Thryve marks Withings yes in its Shared oAuth-client column. Terra marks Withings credentials Managed, which its table explains as meaning you may create your own credentials and provide them to Terra. Open Wearables, which you host, notes that a Withings account is required. Confirm the arrangement with the vendor you pick."
+      },
+      {
+        "q": "Can I read Withings weight from Apple Health or Health Connect?",
+        "a": "Only if the user's Withings app has written it there, which the Withings developer pages we read do not describe. What both stores do document is the type itself: Apple's bodyMass measures the user's weight, and Health Connect's WeightRecord captures it. Reading those gives you weight from any source that writes to them, Withings included when it does."
+      }
+    ],
+    "related": [
+      {
+        "href": "/integrate/withings-api",
+        "label": "Integrate the Withings API"
+      },
+      {
+        "href": "/pricing/withings-api-pricing",
+        "label": "Withings API pricing"
+      },
+      {
+        "href": "/fitness-apis/health-data-aggregator-apis",
+        "label": "Health data aggregator APIs compared"
+      },
+      {
+        "href": "/alternatives",
+        "label": "All fitness & health API alternatives"
+      }
+    ],
+    "cta": {
+      "pitch": "We track device APIs and the aggregators that resell them, from Withings' plan changes to who brokers which brand, so you can pick a route before you build."
+    },
+    "sources": [
+      {
+        "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/developer-account/create-your-accesses-no-medical-cloud/",
+        "checked": "2026-10-27",
+        "note": "free access with no prerequisites"
+      },
+      {
+        "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+        "checked": "2026-10-27",
+        "note": "120 requests a minute, Enterprise plan"
+      },
+      {
+        "url": "https://developer.withings.com/developer-guide/v3/data-api/all-available-health-data/",
+        "checked": "2026-10-27",
+        "note": "Advanced Biomarkers plan"
+      },
+      {
+        "url": "https://developer.withings.com/",
+        "checked": "2026-10-27",
+        "note": "Cellular Solution, Withings RPM, Logistics Services"
+      },
+      {
+        "url": "https://web.archive.org/web/20261016222934id_/https://developer.withings.com/",
+        "checked": "2026-10-27",
+        "note": "Withings+ notice as captured October 16, 2026"
+      },
+      {
+        "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+        "checked": "2026-10-27",
+        "note": "Withings integration, managed credentials"
+      },
+      {
+        "url": "https://docs.thryve.health/thryve-data-sources/overview",
+        "checked": "2026-10-27",
+        "note": "Withings data source row"
+      },
+      {
+        "url": "https://docs.tryrook.io/data-sources/",
+        "checked": "2026-10-27",
+        "note": "Withings data source row"
+      },
+      {
+        "url": "https://www.spikeapi.com/integrations",
+        "checked": "2026-10-27",
+        "note": "Withings on the integrations list"
+      },
+      {
+        "url": "https://openwearables.io/docs/providers/supported",
+        "checked": "2026-10-27",
+        "note": "Withings provider notes"
+      },
+      {
+        "url": "https://sahha.ai/integrations/",
+        "checked": "2026-10-27",
+        "note": "Withings among on-device sources"
+      },
+      {
+        "url": "https://validic.com/features/supported-devices/",
+        "checked": "2026-10-27",
+        "note": "Withings Pro cellular devices"
+      },
+      {
+        "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/hkquantitytypeidentifier/bodymass.json",
+        "checked": "2026-10-27",
+        "note": "HealthKit bodyMass"
+      },
+      {
+        "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/hkquantitytypeidentifier/bloodpressuresystolic.json",
+        "checked": "2026-10-27",
+        "note": "HealthKit bloodPressureSystolic"
+      },
+      {
+        "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/records/WeightRecord?hl=en",
+        "checked": "2026-10-27",
+        "note": "Health Connect WeightRecord"
+      },
+      {
+        "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/records/BloodPressureRecord?hl=en",
+        "checked": "2026-10-27",
+        "note": "Health Connect BloodPressureRecord"
+      }
+    ]
+  },
+  {
+    "slug": "samsung-health-api-alternatives",
+    "primaryQuery": "samsung health api alternatives",
+    "h1": "Samsung Health API Alternatives: Health Connect and More (2026)",
+    "metaTitle": "Samsung Health API Alternatives (2026): Health Connect",
+    "metaDescription": "Samsung says Samsung Health syncs with Health Connect, so Android apps can read its data there. Other routes: watch SDKs, Health Services, aggregators.",
+    "updated": "2026-10-27",
+    "answer": "The main alternative to the Samsung Health Data SDK is Google's Health Connect: Samsung says Samsung Health has synchronized data with Health Connect since version 6.22.5 (October 2022), including activity such as steps and exercise, heart rate and sleep, and Galaxy Watch data reaches it through the phone. For readings on the watch itself there is the Samsung Health Sensor SDK and Wear OS Health Services, and for many devices at once, aggregators whose mobile SDKs read Samsung Health. The Data SDK stays the direct route, but a released app needs Samsung's partnership approval, as of October 27, 2026.",
+    "body": "Samsung's own route to Samsung Health data is the Samsung Health Data SDK, covered in [how to integrate Samsung Health](/integrate/samsung-health-api). This page is for when that route does not fit, as of October 27, 2026.\n\n## Why teams look for a Samsung Health API alternative\n\n- **Partnership before release.** Samsung asks you to \"submit partner request before your app distribution\"; without approval, an app using the Data SDK works only with developer mode turned on. Samsung calls the partnership \"an exclusive service for the Samsung Health Data SDK\".\n- **Android, on the phone.** The Data SDK reads the Samsung Health app on the user's Android phone. Terra's documentation lists Samsung Health with Apple Health and Health Connect as mobile-based integrations that \"require a mobile app with a Mobile SDK integration on the user's device\".\n- **Brokers hit the same gate.** Validic lists Samsung under vendors not accepting new applications, saying approval \"requires direct relationship with Samsung Health\".\n\n## The alternatives\n\n**Google Health Connect.** Samsung's own Health Connect FAQ answers the question directly: Samsung Health \"synchronizes data with Health Connect since version 6.22.5 (October 2022) and later\". Samsung lists activity data such as steps and exercise, heart rate and sleep as synchronized, and says Galaxy Watch data is transferred to Samsung Health on the phone and synchronized to Health Connect. Reading or writing it needs the user's Health Connect data permission. Two limits: the Health Connect app runs on Android phones and does not support Wear OS devices, and Samsung lists those data types, not everything Samsung Health holds. See [integrating Health Connect](/integrate/google-health-connect).\n\n**On the watch: the Samsung Health Sensor SDK and Health Services.** For an app that runs on the wrist, Samsung's Sensor SDK is compatible with Galaxy Watch4 and later and provides both raw signals from the BioActive Sensor and processed data, in a watch app running on Wear OS powered by Samsung. Google's Health Services is the platform-wide equivalent: Google says Wear OS 3 and higher includes it. The [Wear OS data types reference](/wear-os-data-types) lists what Health Services exposes.\n\n**Aggregators with mobile SDKs.** These read Samsung Health or Health Connect inside your app and deliver the data to your backend with other sources:\n\n- **Terra** lists Samsung as event-driven with credentials \"Required\", and its docs send Samsung Health to the Terra Mobile SDK.\n- **Rook** lists Samsung Health as an SDK source and says that to integrate with it, \"clients are required to create their own developer accounts\", which \"can take several weeks\".\n- **Thryve** lists Samsung Health as a native source read through its SDK.\n- **Open Wearables** lists Samsung Health via its Android, Flutter and React Native SDK.\n- **Spike** lists Samsung Health on its integrations page, and **Sahha** says Samsung Health is among the Android apps that write to Health Connect, which its SDK reads.\n\nThe point to check before you buy: an aggregator's direct Samsung Health route can still need your own Samsung relationship, as Rook says outright. [Health data aggregator APIs](/fitness-apis/health-data-aggregator-apis) compares them.\n\n| Alternative | Best for | Watch out |\n|---|---|---|\n| Health Connect | Android apps that need steps, exercise, heart rate or sleep | The types Samsung syncs; phone only; user permission |\n| Samsung Health Sensor SDK | Watch apps that need raw sensor signals | Galaxy Watch4 and later only |\n| Health Services on Wear OS | Watch apps across Wear OS brands | On the watch, not historical cloud data |\n| Aggregator mobile SDKs | Samsung Health beside many other sources | Fees; some still need your own Samsung developer account |\n\n## Which should you pick?\n\n- **Your Android app needs everyday activity, heart rate and sleep.** Health Connect, which Samsung itself points to, without a Samsung partnership.\n- **You need data types Samsung does not sync to Health Connect, or you write data back.** The Data SDK with a partnership request; writing needs Samsung's access code.\n- **You are building for the watch.** The Sensor SDK for Galaxy-specific signals, Health Services for anything that runs on Wear OS.\n- **You also need iPhone users and cloud wearables.** An aggregator, accepting that Samsung access may still go through your own developer account.\n\nFor the comparable Apple platform, see [HealthKit alternatives](/alternatives/healthkit-alternatives); for Galaxy Ring data specifically, [smart ring APIs](/fitness-apis/smart-ring-apis).\n\n## Is switching easy?\n\nMoving from the Data SDK to Health Connect is mostly a change of client library on the same phone: Health Connect records instead of Samsung's data types, and a Health Connect permission prompt instead of Samsung Health's. Moving to an aggregator adds a vendor and a backend pipeline but makes iOS and cloud devices connect-flow options rather than new projects.",
+    "faqs": [
+      {
+        "q": "Can I read Samsung Health data through Health Connect?",
+        "a": "Yes, for the types Samsung syncs. Samsung's Health Connect FAQ says Samsung Health has synchronized data with Health Connect since version 6.22.5 (October 2022), lists activity data such as steps and exercise, heart rate and sleep, and says the user must grant Health Connect data permission. Galaxy Watch data reaches Health Connect through Samsung Health on the phone."
+      },
+      {
+        "q": "Do aggregators remove the need for Samsung partnership approval?",
+        "a": "Not always. Rook says that to integrate with Samsung Health, clients are required to create their own developer accounts, which can take several weeks, and Terra's table marks Samsung credentials as Required. Validic lists Samsung as not accepting new applications. The Health Connect route, which Samsung documents, avoids the Samsung partnership for the types it syncs."
+      },
+      {
+        "q": "Can Health Connect read data on a Galaxy Watch directly?",
+        "a": "No. Samsung says the Health Connect app can be installed on Android mobile devices and does not support Wear OS devices; Galaxy Watch data is sent to Samsung Health on the phone and synchronized to Health Connect from there. On the watch itself, use the Samsung Health Sensor SDK or Wear OS Health Services."
+      },
+      {
+        "q": "What is the Samsung Health Sensor SDK for?",
+        "a": "Apps that run on the watch. Samsung says it is compatible with Galaxy Watch4 series and later and provides both raw sensor signal data from the BioActive Sensor and processed data, for a watch application on Wear OS powered by Samsung. It complements, rather than replaces, the phone-side Data SDK."
+      }
+    ],
+    "related": [
+      {
+        "href": "/integrate/samsung-health-api",
+        "label": "Integrate Samsung Health"
+      },
+      {
+        "href": "/integrate/google-health-connect",
+        "label": "Integrate Google Health Connect"
+      },
+      {
+        "href": "/fitness-apis/health-data-aggregator-apis",
+        "label": "Health data aggregator APIs compared"
+      },
+      {
+        "href": "/alternatives",
+        "label": "All fitness & health API alternatives"
+      }
+    ],
+    "cta": {
+      "pitch": "We track the platform health stores and the SDKs around them, from Samsung's partnership rules to Health Connect sync, so your Android integration takes the shortest route."
+    },
+    "sources": [
+      {
+        "url": "https://developer.samsung.com/health/data/process.html",
+        "checked": "2026-10-27",
+        "note": "partner request before distribution, developer mode, exclusive service, access code for writing"
+      },
+      {
+        "url": "https://developer.samsung.com/health/health-connect-faq.html",
+        "checked": "2026-10-27",
+        "note": "Samsung Health sync with Health Connect, synced data types, Galaxy Watch data, Wear OS support"
+      },
+      {
+        "url": "https://developer.samsung.com/health/sensor/overview.html",
+        "checked": "2026-10-27",
+        "note": "Samsung Health Sensor SDK on Galaxy Watch4 and later"
+      },
+      {
+        "url": "https://developer.android.com/health-and-fitness/health-services?hl=en",
+        "checked": "2026-10-27",
+        "note": "Health Services on Wear OS 3 and higher"
+      },
+      {
+        "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+        "checked": "2026-10-27",
+        "note": "Samsung integration row"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+        "checked": "2026-10-27",
+        "note": "mobile-based integrations need the Mobile SDK"
+      },
+      {
+        "url": "https://docs.tryrook.io/data-sources/",
+        "checked": "2026-10-27",
+        "note": "Samsung Health row and own developer accounts"
+      },
+      {
+        "url": "https://docs.thryve.health/thryve-data-sources/overview",
+        "checked": "2026-10-27",
+        "note": "Samsung Health row"
+      },
+      {
+        "url": "https://openwearables.io/docs/providers/supported",
+        "checked": "2026-10-27",
+        "note": "Samsung Health via SDK"
+      },
+      {
+        "url": "https://www.spikeapi.com/integrations",
+        "checked": "2026-10-27",
+        "note": "Samsung Health on the integrations list"
+      },
+      {
+        "url": "https://sahha.ai/integrations/",
+        "checked": "2026-10-27",
+        "note": "Samsung Health writes to Health Connect"
+      },
+      {
+        "url": "https://validic.com/features/supported-devices/",
+        "checked": "2026-10-27",
+        "note": "Samsung not accepting new applications"
+      }
+    ]
+  },
+  {
+    "slug": "suunto-api-alternatives",
+    "primaryQuery": "suunto api alternatives",
+    "h1": "Suunto API Alternatives for Partners and Personal Projects (2026)",
+    "metaTitle": "Suunto API Alternatives (2026): Aggregators, Strava, Others",
+    "metaDescription": "Suunto's API is partners only, with no personal use. Other routes to Suunto data: aggregators such as Thryve and Terra, Strava, and other watch APIs.",
+    "updated": "2026-10-27",
+    "answer": "If Suunto's partner-only Cloud API does not fit, the main alternatives are aggregators that list Suunto, such as Thryve, Terra, Spike and Open Wearables, the phone health stores that Rook and Sahha read Suunto data from, and Strava, which Suunto names among its published partners. Another sports-watch API is the answer when the brand is negotiable: COROS documents a self-service route with no application. As of October 27, 2026, Suunto says it does not offer API access for personal use, which rules the direct route out for hobby projects.",
+    "body": "Suunto's Cloud API is free, but only for companies and organizations it accepts as partners; the [Suunto API integration guide](/integrate/suunto-api) covers that route, and [Suunto API pricing](/pricing/suunto-api-pricing) what it costs. This page is for when it does not fit, as of October 27, 2026.\n\n## Why teams look for a Suunto API alternative\n\n- **No personal use.** Suunto says \"We currently don't offer the API access for personal use.\" A dashboard over your own workouts cannot get a key.\n- **An application and an agreement.** Companies apply to Suunto's partner program and sign an API agreement shown on the form; Suunto reviews weekly, with a maximum two-week wait.\n- **Data gaps.** Suunto's FAQ says the Cloud API does not yet support sleep data, and that personal data such as weight or heart rate zones is not available yet.\n- **Mixed signals on new applications.** Terra's supported-integrations table, in its developer-portal column for Suunto, reads \"Applications no longer open\". Suunto's own API Zone still describes the application process on October 27, 2026, so ask Suunto rather than assume either.\n\n## The alternatives\n\n**Aggregators that list Suunto.**\n\n- **Thryve** lists Suunto as a web source with historic data and marks it yes in its Shared oAuth-client column, which suggests Thryve connects it with its own client. [Terra vs Thryve](/compare/terra-vs-thryve) compares the two.\n- **Terra** lists Suunto as event-driven with credentials \"Managed\", which its table says means you may create your own credentials and provide them to Terra, next to the \"Applications no longer open\" note above.\n- **Open Wearables**, which you host, lists Suunto with the note \"You must apply for Suunto Developer Program\", so it does not remove the partner gate.\n- **Spike** lists Suunto on its integrations page.\n- **Rook** and **Sahha** list Suunto among sources they read through Apple Health and Health Connect on the phone, rather than through Suunto's cloud.\n\n**Strava.** Suunto's API Zone names Strava and TrainingPeaks among the latest partners it has published, so a Suunto user can have workouts in Strava, where the [Strava API](/integrate/strava-api) can read them with that user's consent. It suits activity apps and does nothing for daily steps or the data Suunto's own API lacks; [Strava API alternatives](/alternatives/strava-api-alternatives) covers Strava's own limits.\n\n**Another sports-watch API.** If your users are not tied to Suunto, COROS documents a self-service route: its help center says building on the COROS MCP needs \"No application or approval required\", one authorizing user at a time. For other brands, see [COROS API alternatives](/alternatives/coros-api-alternatives), the [Garmin API guide](/integrate/garmin-api) and the [Polar API guide](/integrate/polar-api).\n\n| Alternative | Best for | Watch out |\n|---|---|---|\n| Thryve, Terra, Spike | Suunto beside other devices, without your own Suunto contract where the vendor brokers it | Fees; confirm whose credentials and whether new Suunto connections are open |\n| Open Wearables | Self-hosting | You still apply to Suunto's program |\n| Rook, Sahha via phone health stores | Mobile apps | Only what reaches Apple Health or Health Connect |\n| Strava | Workouts and GPS | Activities only; Strava's own terms |\n| COROS, Garmin, Polar | Users who can choose their watch | A different brand, a separate integration each |\n\n## Which should you pick?\n\n- **You are a company that fits Suunto's partner criteria.** Apply directly; the API is free and the review takes at most two weeks.\n- **You need Suunto with other brands and no Suunto contract of your own.** An aggregator that brokers Suunto, after confirming it can still add new connections.\n- **You only need workouts.** Strava, if your users already sync Suunto there.\n- **It is a personal project.** Suunto's direct route is not open to you; read your workouts from a service you sync Suunto to, such as Strava, or use a watch brand with a self-service API.\n\n## Is switching easy?\n\nSuunto's API delivers workouts as FIT files, and so do both of COROS's routes, so a FIT parser you build carries over between those two brands. What does not carry over is the user connection: every route above needs each user to authorize again.",
+    "faqs": [
+      {
+        "q": "Can I get Suunto data without joining Suunto's partner program?",
+        "a": "Through an intermediary, sometimes. Thryve marks Suunto yes in its Shared oAuth-client column, Terra and Spike list Suunto, and Rook and Sahha read Suunto data that reaches Apple Health or Health Connect. Open Wearables, which you host, says you must apply for the Suunto program yourself. Strava, a published Suunto partner, has the workouts users sync to it."
+      },
+      {
+        "q": "Is the Suunto API available for personal projects?",
+        "a": "No. Suunto's API Zone says it currently does not offer API access for personal use; access is for companies and organizations building tools, apps or services for a public audience. For your own data, look at a service you already sync Suunto to, such as Strava, one of Suunto's published partners."
+      },
+      {
+        "q": "Which aggregators connect to Suunto?",
+        "a": "As of October 27, 2026, Terra lists Suunto as an event-driven integration, Thryve as a web source with historic data, Spike on its integrations page, Open Wearables as a cloud provider that needs your own Suunto program access, and Rook and Sahha among sources read through Apple Health and Health Connect. Terra's table also notes that applications are no longer open, so confirm before relying on it."
+      },
+      {
+        "q": "Are Suunto API applications still open?",
+        "a": "Suunto's own API Zone still described how to apply on October 27, 2026, with weekly reviews and a maximum two-week wait. Terra's supported-integrations table, in its developer-portal column for Suunto, reads Applications no longer open. The two disagree, so ask Suunto at partners@suunto.com before you plan around either."
+      }
+    ],
+    "related": [
+      {
+        "href": "/integrate/suunto-api",
+        "label": "Integrate the Suunto API"
+      },
+      {
+        "href": "/pricing/suunto-api-pricing",
+        "label": "Suunto API pricing"
+      },
+      {
+        "href": "/alternatives/coros-api-alternatives",
+        "label": "COROS API alternatives"
+      },
+      {
+        "href": "/alternatives",
+        "label": "All fitness & health API alternatives"
+      }
+    ],
+    "cta": {
+      "pitch": "We track sports-watch API programs, from Suunto's partner gate to COROS's self-service route, and report changes weekly so your plan matches what is open."
+    },
+    "sources": [
+      {
+        "url": "https://apizone.suunto.com/",
+        "checked": "2026-10-27",
+        "note": "no personal use, partner application, review timing, published partners"
+      },
+      {
+        "url": "https://apizone.suunto.com/faq",
+        "checked": "2026-10-27",
+        "note": "sleep and personal data not available, partners contact"
+      },
+      {
+        "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+        "checked": "2026-10-27",
+        "note": "Suunto row, managed credentials, applications no longer open"
+      },
+      {
+        "url": "https://docs.thryve.health/thryve-data-sources/overview",
+        "checked": "2026-10-27",
+        "note": "Suunto data source row"
+      },
+      {
+        "url": "https://openwearables.io/docs/providers/supported",
+        "checked": "2026-10-27",
+        "note": "Suunto provider note"
+      },
+      {
+        "url": "https://www.spikeapi.com/integrations",
+        "checked": "2026-10-27",
+        "note": "Suunto on the integrations list"
+      },
+      {
+        "url": "https://docs.tryrook.io/data-sources/",
+        "checked": "2026-10-27",
+        "note": "Suunto among SDK-connected sources"
+      },
+      {
+        "url": "https://sahha.ai/integrations/",
+        "checked": "2026-10-27",
+        "note": "Suunto among on-device sources"
+      },
+      {
+        "url": "https://support.coros.com/api/v2/help_center/en-us/articles/53181619102996.json",
+        "checked": "2026-10-27",
+        "note": "COROS MCP needs no application"
+      }
+    ]
+  },
+  {
+    "slug": "coros-api-alternatives",
+    "primaryQuery": "coros api alternatives",
+    "h1": "COROS API Alternatives: Beyond the MCP and the Partner API (2026)",
+    "metaTitle": "COROS API Alternatives (2026): Aggregators and Other Watches",
+    "metaDescription": "When COROS's single-user MCP is too small and the Partner API is out of reach: aggregators that list COROS, phone health stores and other watch APIs.",
+    "updated": "2026-10-27",
+    "answer": "COROS already has a no-approval route, its self-service MCP, so the alternatives matter when that is too small: it serves one authorizing user at a time, sends no webhooks and caps FIT files at 50 requests a day, while the Partner API needs an established platform. The main alternatives are aggregators that list COROS, such as Terra and Spike, the phone health stores that Rook and Sahha read COROS data from, and other sports-watch APIs. As of October 27, 2026, COROS says its Partner API terms are standard and non-discriminatory, so growing into it later is also a real path.",
+    "body": "COROS documents two routes of its own, compared in the [COROS API integration guide](/integrate/coros-api): a self-service MCP endpoint and the Partner API. This page covers what else there is, as of October 27, 2026. COROS's help center states no price for either route, which is why this site has no COROS pricing page.\n\n## Why teams look for a COROS API alternative\n\n- **The MCP is one user at a time.** COROS says \"All data access is scoped to the authorizing user only (single-user)\", with no webhook push notifications, so your app polls.\n- **FIT files are rationed.** COROS caps FIT file requests through the MCP at 50 per day.\n- **The Partner API has an entry bar.** It requires an \"Established platform with demonstrated user base\" and a registered company, and its workout records reach back three months in 30-day windows.\n- **Some data is missing.** COROS says cycling power is not part of the standard query set.\n\n## The alternatives\n\n**Aggregators that list COROS.**\n\n- **Terra** lists COROS as periodically fetched, with credentials \"Managed\", which its table explains as meaning you may create your own credentials and provide them to Terra; the developer-portal link it gives is COROS's own API application page. See the [Terra integration guide](/integrate/terra-api).\n- **Spike** lists COROS on its integrations page.\n- **Rook** and **Sahha** list COROS among sources they read on the phone through Apple Health and Health Connect, not through COROS's cloud.\n\nOf the other aggregators this site covers, Thryve's data-sources table and Open Wearables' provider list did not include COROS when we read them on October 27, 2026. Compare fees in [health data aggregator pricing](/pricing/health-data-aggregator-pricing).\n\n**Another sports-watch API.** If your users can choose their watch, Suunto runs a partner program for companies, and this site covers Garmin and Polar too; see the [Garmin API guide](/integrate/garmin-api), [Suunto API alternatives](/alternatives/suunto-api-alternatives) and the [Polar API guide](/integrate/polar-api).\n\n**Growing into the Partner API.** COROS says platforms not yet at scale can build on the MCP and apply for full Partner API access as they grow, and describes its terms as \"standard, non-discriminatory API Terms of Use\". For a product with a real user base, that may be the shortest path to webhooks and multi-user credentials.\n\n| Alternative | Best for | Watch out |\n|---|---|---|\n| COROS MCP | One user's own data, AI tools, prototypes | Single-user, polling, 50 FIT files a day |\n| COROS Partner API | Established platforms | Entry bar; 3-month lookback |\n| Terra, Spike | COROS beside many other devices | Fees; check whose COROS credentials are used |\n| Rook, Sahha via phone health stores | Mobile apps | Only what reaches Apple Health or Health Connect |\n| Garmin, Suunto, Polar | Users who can choose their watch | A separate integration each |\n\n## Which should you pick?\n\n- **A personal tool or prototype.** COROS's own MCP; nothing else is simpler.\n- **A product that needs many users and push.** Apply for the Partner API if you meet its bar; otherwise an aggregator that lists COROS.\n- **A mobile app that only needs what syncs to the phone.** Read Apple Health or Health Connect, directly or through Rook or Sahha.\n- **A multi-brand training platform.** An aggregator, or direct integrations brand by brand.\n\n## Is switching easy?\n\nCOROS workouts come as FIT files on both COROS routes, and Suunto's API delivers FIT files too, so a FIT parser carries over between them. What does not carry over is the authorization: each user connects again on every new route.",
+    "faqs": [
+      {
+        "q": "Can I get COROS data for many users without the Partner API?",
+        "a": "Through an aggregator, yes: Terra lists COROS as a periodically fetched integration and Spike lists it on its integrations page, and Rook and Sahha read COROS data that reaches Apple Health or Health Connect. COROS's own MCP route needs no approval but serves one authorizing user at a time, with no webhooks."
+      },
+      {
+        "q": "Which aggregators support COROS?",
+        "a": "As of October 27, 2026, Terra lists COROS as periodically fetched with managed credentials, Spike lists it, and Rook and Sahha list it among sources read through the phone health stores. Thryve's data-sources table and Open Wearables' provider list did not include COROS when we read them."
+      },
+      {
+        "q": "Is the COROS MCP enough for a production app?",
+        "a": "For a single-user tool, it can be. COROS says MCP access is scoped to the authorizing user only, has no webhook push notifications, no GPX route import or export and no two-way activity sync, and caps FIT file requests at 50 a day. COROS points platforms that need more to its Partner API."
+      },
+      {
+        "q": "Does COROS charge for its API?",
+        "a": "COROS's help center does not state a price for either route as of October 27, 2026. The MCP path is self-service with no application, and the Partner API requires agreeing to what COROS calls standard, non-discriminatory API Terms of Use. We did not find a fee in the articles we read."
+      }
+    ],
+    "related": [
+      {
+        "href": "/integrate/coros-api",
+        "label": "Integrate the COROS API"
+      },
+      {
+        "href": "/alternatives/suunto-api-alternatives",
+        "label": "Suunto API alternatives"
+      },
+      {
+        "href": "/fitness-apis/health-data-aggregator-apis",
+        "label": "Health data aggregator APIs compared"
+      },
+      {
+        "href": "/alternatives",
+        "label": "All fitness & health API alternatives"
+      }
+    ],
+    "cta": {
+      "pitch": "We track how sports-watch makers open their data, from COROS's self-service MCP to partner programs, and report what changes each week."
+    },
+    "sources": [
+      {
+        "url": "https://support.coros.com/api/v2/help_center/en-us/articles/53181619102996.json",
+        "checked": "2026-10-27",
+        "note": "MCP: no application, single-user, no webhooks, no GPX or two-way sync"
+      },
+      {
+        "url": "https://support.coros.com/api/v2/help_center/en-us/articles/53181766856724.json",
+        "checked": "2026-10-27",
+        "note": "Partner API requirements, terms, lookback, not-at-scale path"
+      },
+      {
+        "url": "https://support.coros.com/api/v2/help_center/en-us/sections/53180979524884/articles.json",
+        "checked": "2026-10-27",
+        "note": "FIT file cap, cycling power not in the standard query set"
+      },
+      {
+        "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+        "checked": "2026-10-27",
+        "note": "COROS row, managed credentials"
+      },
+      {
+        "url": "https://www.spikeapi.com/integrations",
+        "checked": "2026-10-27",
+        "note": "COROS on the integrations list"
+      },
+      {
+        "url": "https://docs.tryrook.io/data-sources/",
+        "checked": "2026-10-27",
+        "note": "COROS among SDK-connected sources"
+      },
+      {
+        "url": "https://sahha.ai/integrations/",
+        "checked": "2026-10-27",
+        "note": "Coros among on-device sources"
+      },
+      {
+        "url": "https://docs.thryve.health/thryve-data-sources/overview",
+        "checked": "2026-10-27",
+        "note": "no COROS row"
+      },
+      {
+        "url": "https://openwearables.io/docs/providers/supported",
+        "checked": "2026-10-27",
+        "note": "no COROS provider"
+      }
+    ]
+  },
+  {
+    "slug": "wahoo-api-alternatives",
+    "primaryQuery": "wahoo api alternatives",
+    "h1": "Wahoo API Alternatives: Apple Health, Strava and Aggregators (2026)",
+    "metaTitle": "Wahoo API Alternatives (2026): Apple Health, Strava, Terra",
+    "metaDescription": "Wahoo says its apps send completed activities to Strava, TrainingPeaks and Apple Health. Other routes to Wahoo data: aggregators and the EU Data Act.",
+    "updated": "2026-10-27",
+    "answer": "The main alternatives to the Wahoo Cloud API are the places Wahoo already sends its users' data: Wahoo says its apps sync routes and workouts or send completed activities to Strava, TrainingPeaks, Apple Health, Komoot and more, so an app can read Wahoo rides through Apple HealthKit or the Strava API. Aggregators that list Wahoo, such as Terra, Spike, Rook and Sahha, are the multi-device option, and EU users can ask Wahoo for their own data under the EU Data Act. The Cloud API stays the direct route, free for now but approval-gated, as of October 27, 2026.",
+    "body": "Wahoo's Cloud API is free to use under its Public API Agreement, but access is by request and the terms are strict; the [Wahoo API integration guide](/integrate/wahoo-api) covers the build and [Wahoo API pricing](/pricing/wahoo-api-pricing) the terms. This page covers the other routes, as of October 27, 2026.\n\n## Why teams look for a Wahoo API alternative\n\n- **Approval first.** Wahoo is \"currently limiting use of the API to those who request it\", and production apps go through a further review.\n- **Tight sandbox limits.** A sandbox app gets 250 requests a day, and a sandbox app cannot later be converted into a production app.\n- **No third-party workouts.** Wahoo says it \"does not share completed workout data that originates from third-party applications\".\n- **Competitive-use terms.** The agreement bars using Wahoo's API in an app that also supports a third party providing services competitive to Wahoo's products, as Wahoo determines. A multi-brand app may need another route, or Wahoo's blessing.\n\n## The alternatives\n\n**Apple Health, Strava and other apps Wahoo syncs to.** Wahoo's apps page says: \"Sync routes and workouts or send completed activities to Strava, TrainingPeaks, Apple Health, Komoot, and more\", and that Wahoo works with over 110 training and fitness apps. So, with the user's own sync turned on:\n\n- An iPhone app can read Wahoo activities from **Apple Health** through HealthKit, on the device and with no Wahoo developer account. See [integrating HealthKit](/integrate/healthkit).\n- A web app can read them from **Strava** through the [Strava API](/integrate/strava-api), under Strava's own approval and limits; [Strava API alternatives](/alternatives/strava-api-alternatives) covers those.\n\nThe catch is that you get what those platforms store, not Wahoo's own resources such as profile data and power zones, and only for users who switched the sync on.\n\n**Aggregators that list Wahoo.**\n\n- **Terra** lists Wahoo as event-driven, with credentials \"Managed\", which its table explains as meaning you may create your own credentials and provide them to Terra; the developer-portal link it gives is Wahoo's own. See the [Terra integration guide](/integrate/terra-api).\n- **Spike** lists Wahoo on its integrations page.\n- **Rook** and **Sahha** list Wahoo among sources they read through Apple Health and Health Connect on the phone.\n\nThryve's data-sources table and Open Wearables' provider list did not include Wahoo when we read them on October 27, 2026. Note that if an aggregator connects Wahoo with your own Wahoo credentials, Wahoo's agreement still applies to you.\n\n**The EU Data Act, for EU users.** Wahoo's EU Data Act Addendum, effective September 12, 2025, gives EU users, businesses and other entities the right to access their data, delete it and request that it be shared with a third party; access requests are free of charge, and Wahoo says data comes in formats such as .FIT, .CSV or .JSON. It is a per-user request process, not an API, and Wahoo says it may decline a request for reasons the Data Act permits.\n\n**Another device maker.** If your users are not tied to Wahoo, this site's [Garmin API guide](/integrate/garmin-api) and [COROS API alternatives](/alternatives/coros-api-alternatives) cover other cycling and running devices.\n\n| Alternative | Best for | Watch out |\n|---|---|---|\n| Apple Health via HealthKit | iPhone apps | Only users who sync Wahoo to Apple Health; on-device |\n| Strava API | Web apps that need rides and runs | Strava's approval and limits; activities only |\n| Terra, Spike | Wahoo beside other devices | Fees; Wahoo's terms if your credentials are used |\n| Rook, Sahha | Mobile apps reading the phone health stores | Only what reaches Apple Health or Health Connect |\n| EU Data Act request | An EU user's own data | Per-user request, not an API |\n\n## Which should you pick?\n\n- **Your app is on the iPhone and needs completed rides.** Apple Health, which Wahoo names as a sync destination.\n- **Your users already live in Strava.** The Strava API, if activity summaries and streams are enough.\n- **You need Wahoo's own resources, such as profile data or power zones.** Those come through the Cloud API; request access.\n- **You support many brands.** An aggregator, and a read of Wahoo's competitive-use clause either way.\n\n## Is switching easy?\n\nWahoo's API, Strava and Apple Health each hold the same activities in their own shapes, so plan to re-map fields. Every route needs each user to connect again, and the Apple Health route moves your reads from your server to the phone.",
+    "faqs": [
+      {
+        "q": "Can I read Wahoo workouts through Apple Health or Strava?",
+        "a": "For users who turn the sync on, yes. Wahoo's apps page says Wahoo can sync routes and workouts or send completed activities to Strava, TrainingPeaks, Apple Health, Komoot and more. An iPhone app can then read them through HealthKit and a web app through the Strava API, though you get those platforms' fields rather than Wahoo's own."
+      },
+      {
+        "q": "Which aggregators connect to Wahoo?",
+        "a": "As of October 27, 2026, Terra lists Wahoo as an event-driven integration with managed credentials, Spike lists it on its integrations page, and Rook and Sahha list it among sources read through Apple Health and Health Connect. Thryve's data-sources table and Open Wearables' provider list did not include Wahoo when we read them."
+      },
+      {
+        "q": "Can EU users get their Wahoo data under the Data Act?",
+        "a": "Yes. Wahoo's EU Data Act Addendum, effective September 12, 2025, lets EU users access and delete their data and request that it be shared with a third party. Access requests are free of charge, and data comes in formats such as .FIT, .CSV or .JSON. Wahoo may decline requests for reasons the Data Act permits."
+      },
+      {
+        "q": "Does the Wahoo API include workouts from other apps?",
+        "a": "No. Wahoo's Cloud API documentation says Wahoo does not share completed workout data that originates from third-party applications, so a workout a user recorded in another app is not available through the Wahoo API. If you need those, read them from where the user records them."
+      }
+    ],
+    "related": [
+      {
+        "href": "/integrate/wahoo-api",
+        "label": "Integrate the Wahoo Cloud API"
+      },
+      {
+        "href": "/pricing/wahoo-api-pricing",
+        "label": "Wahoo API pricing"
+      },
+      {
+        "href": "/alternatives/strava-api-alternatives",
+        "label": "Strava API alternatives"
+      },
+      {
+        "href": "/alternatives",
+        "label": "All fitness & health API alternatives"
+      }
+    ],
+    "cta": {
+      "pitch": "We track cycling and training APIs, from Wahoo's terms to where its data syncs, and report changes weekly so your integration takes the route that fits."
+    },
+    "sources": [
+      {
+        "url": "https://developers.wahooligan.com/cloud",
+        "checked": "2026-10-27",
+        "note": "access by request, separate sandbox and production apps"
+      },
+      {
+        "url": "https://cloud-api.wahooligan.com/",
+        "checked": "2026-10-27",
+        "note": "production review, sandbox limits, third-party workouts"
+      },
+      {
+        "url": "https://www.wahoofitness.com/wahoo-api-agreement",
+        "checked": "2026-10-27",
+        "note": "competitive-use clause"
+      },
+      {
+        "url": "https://www.wahoofitness.com/fitness-apps",
+        "checked": "2026-10-27",
+        "note": "sync to Strava, TrainingPeaks, Apple Health, Komoot; over 110 apps"
+      },
+      {
+        "url": "https://www.wahoofitness.com/eu-data-act",
+        "checked": "2026-10-27",
+        "note": "EU Data Act Addendum: rights, free access requests, formats, effective date"
+      },
+      {
+        "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+        "checked": "2026-10-27",
+        "note": "Wahoo row, managed credentials"
+      },
+      {
+        "url": "https://www.spikeapi.com/integrations",
+        "checked": "2026-10-27",
+        "note": "Wahoo on the integrations list"
+      },
+      {
+        "url": "https://docs.tryrook.io/data-sources/",
+        "checked": "2026-10-27",
+        "note": "Wahoo among SDK-connected sources"
+      },
+      {
+        "url": "https://sahha.ai/integrations/",
+        "checked": "2026-10-27",
+        "note": "Wahoo among on-device sources"
+      },
+      {
+        "url": "https://docs.thryve.health/thryve-data-sources/overview",
+        "checked": "2026-10-27",
+        "note": "no Wahoo row"
+      },
+      {
+        "url": "https://openwearables.io/docs/providers/supported",
+        "checked": "2026-10-27",
+        "note": "no Wahoo provider"
+      }
+    ]
+  },
+  {
+    "slug": "dexcom-api-alternatives",
+    "primaryQuery": "dexcom api alternatives",
+    "h1": "Dexcom API Alternatives: What Changes and What Does Not (2026)",
+    "metaTitle": "Dexcom API Alternatives (2026): Aggregators, HealthKit",
+    "metaDescription": "Aggregators that list Dexcom, Apple HealthKit and Health Connect glucose types, and Dexcom Clarity. Most routes still need Dexcom's approval.",
+    "updated": "2026-10-27",
+    "answer": "There is no route to Dexcom CGM data at scale that skips Dexcom's own approval: aggregators that list Dexcom, such as Terra, Rook, Thryve and Validic, say you need your own Dexcom developer account or may need to apply to Dexcom. The real alternatives are the phone health stores, where Apple HealthKit's bloodGlucose and Health Connect's BloodGlucoseRecord hold readings from any source that writes them, Dexcom's research portal for studies, and Dexcom Clarity for a user's own data. As of October 27, 2026, Dexcom says it reserves the right to decline access requests that do not meet its commercial and technical standards.",
+    "body": "Dexcom's API gives authorized apps a user's continuous glucose monitor data after a staged approval, covered in the [Dexcom API integration guide](/integrate/dexcom-api). This page sets out the other routes and, as importantly, which apparent alternatives still lead back to Dexcom, as of October 27, 2026. It makes no regulatory claims beyond what Dexcom's own pages state.\n\n## Why teams look for a Dexcom API alternative\n\n- **Staged approval.** Registration is free, but real data needs Limited Access, where an app can have up to 5 authorized users, and then Full Access after Dexcom \"will setup a technical and commercial review of your app\".\n- **A fixed contract.** If Dexcom authorizes a Limited Access request, it sends \"a standard, non-negotiable Data Licensing Agreement\".\n- **No guarantee.** Dexcom says it \"reserves the right to decline Limited or Full Access requests for apps that do not meet certain commercial and technical standards\".\n- **Regulation is on you.** Dexcom states that developers are responsible for ensuring that their apps comply with all applicable regulations, and points to the FDA's Digital Health site for US information.\n\n## Aggregators: one integration, the same Dexcom gate\n\nSeveral aggregators list Dexcom, and the four whose pages describe how they connect it route you back to Dexcom's own process:\n\n- **Terra** says \"Dexcom requires every company to connect users through its own app on the Dexcom developer portal\", and that when you discuss the production upgrade the relationship is entirely between your company and Dexcom. Its table marks Dexcom credentials \"Required\". See the [Terra integration guide](/integrate/terra-api).\n- **Rook** marks Dexcom \"Requires developer account\" and says the process \"can take several weeks\".\n- **Thryve** lists Dexcom as a web source with \"no\" in its Shared oAuth-client column.\n- **Validic** says the customer \"may need to apply with the vendor in certain circumstances\", that Dexcom is supported in the US and EU only, and that the EU is currently not accepting applications.\n- **Spike** lists Dexcom on its integrations page, and **Sahha** lists it as a source with a cloud API connection; neither page we read says whose Dexcom credentials are used.\n\nWhat an aggregator adds is the plumbing: one schema with your other devices, and someone else maintaining the connection once you are approved. [Health data aggregator APIs](/fitness-apis/health-data-aggregator-apis) compares them, and [Terra vs Open Wearables](/compare/terra-vs-open-wearables) covers the self-hosted option.\n\n## The alternatives that do change the route\n\n**Apple HealthKit and Google Health Connect.** Both stores have a device-neutral glucose type: Apple documents `bloodGlucose` as \"A quantity sample type that measures the user's blood glucose level\", and Health Connect's `BloodGlucoseRecord` \"Captures the concentration of glucose in the blood\", one reading per record. An app that reads them gets glucose from any source that writes there, on the user's phone, without a Dexcom developer account. Whether a user's Dexcom readings are there, and how often, depends on their own setup; the Dexcom developer pages we read do not describe that sync, so test it rather than promise it. Rook and Sahha both list Dexcom among sources they read this way. See the [blood glucose data guide](/data/blood-glucose-api).\n\n**Research.** For studies, Dexcom's access page sends researchers to its research portal rather than the developer program: \"If you are looking to access the Dexcom Web API for research purposes, clinical studies, etc., please visit our research portal\". Platforms built for study teams are compared in [wearable research data platforms](/fitness-apis/wearable-research-data-platforms).\n\n**A user's own data.** Dexcom points users who want to see their data in the cloud, do retrospective analysis or download it as a CSV to Dexcom Clarity, not to the API.\n\n| Alternative | Best for | Watch out |\n|---|---|---|\n| Aggregators (Terra, Rook, Thryve, Validic, Spike, Sahha) | Dexcom beside other devices, once approved | You still go through Dexcom; fees |\n| HealthKit or Health Connect glucose types | Phone apps that accept any glucose source | Depends on the user's own sync; on-device |\n| Dexcom research portal | Clinical and academic studies | A separate Dexcom process |\n| Dexcom Clarity | A user looking at or exporting their own data | Not an API for your app |\n\n## Which should you pick?\n\n- **A commercial app built around Dexcom CGM data.** Dexcom's developer program, directly or through an aggregator, and plan for the review and the Data Licensing Agreement either way.\n- **A phone app that wants glucose from whatever meter or sensor a user has.** Read HealthKit and Health Connect, and treat Dexcom as one possible source.\n- **A study.** Start with Dexcom's research portal.\n- **One person's own data.** Dexcom Clarity's export.\n\nFor another health-device maker's options, see [Withings API alternatives](/alternatives/withings-api-alternatives).\n\n## Is switching easy?\n\nMoving between aggregators after approval is mostly re-mapping fields, because the Dexcom relationship stays yours. Moving to HealthKit or Health Connect changes the architecture from server-side pulls to reads on the phone, and the data you get is whatever the user's apps wrote, so validate it against your product's needs.",
+    "faqs": [
+      {
+        "q": "Do aggregators let me skip Dexcom's approval?",
+        "a": "Not in the documentation we read on October 27, 2026. Terra says Dexcom requires every company to connect users through its own app on the Dexcom developer portal, Rook marks Dexcom as requiring a developer account, Thryve shows no shared OAuth client for Dexcom, and Validic says customers may need to apply with Dexcom and that the EU is not accepting applications."
+      },
+      {
+        "q": "Can I read Dexcom glucose from Apple Health or Health Connect?",
+        "a": "If the user's Dexcom readings are written there, which the Dexcom developer pages we read do not describe. Both stores document the type: Apple's bloodGlucose measures the user's blood glucose level, and Health Connect's BloodGlucoseRecord captures one blood glucose reading per record. Reading them gives you glucose from any source that writes to them."
+      },
+      {
+        "q": "How can a Dexcom user get their own data without building an app?",
+        "a": "Dexcom points users who want to see their data in the cloud, do retrospective analysis or download it as a CSV to Dexcom Clarity, its own web tool. Dexcom says Clarity shows trends, statistics and day-by-day data and can email them to the user's healthcare professional, all without registering as a developer."
+      },
+      {
+        "q": "Is there a Dexcom route for research studies?",
+        "a": "Yes. Dexcom's Scopes and Access page tells developers who want the Dexcom Web API for research purposes or clinical studies to visit its research portal instead of applying through the standard developer upgrade. This site's research data platforms comparison covers tools built for study teams."
+      }
+    ],
+    "related": [
+      {
+        "href": "/integrate/dexcom-api",
+        "label": "Integrate the Dexcom API"
+      },
+      {
+        "href": "/data/blood-glucose-api",
+        "label": "Blood glucose data APIs"
+      },
+      {
+        "href": "/fitness-apis/health-data-aggregator-apis",
+        "label": "Health data aggregator APIs compared"
+      },
+      {
+        "href": "/alternatives",
+        "label": "All fitness & health API alternatives"
+      }
+    ],
+    "cta": {
+      "pitch": "We track health-device APIs as their access rules change, from Dexcom's review stages to which aggregators broker which devices, so your plan matches what is actually open."
+    },
+    "sources": [
+      {
+        "url": "https://developer.dexcom.com/docs/dexcom/scopes-access",
+        "checked": "2026-10-27",
+        "note": "free registration, Limited and Full Access, Data Licensing Agreement, technical and commercial review, research portal, developers' regulatory responsibility"
+      },
+      {
+        "url": "https://developer.dexcom.com/docs/",
+        "checked": "2026-10-27",
+        "note": "right to decline, Dexcom Clarity"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/dexcom",
+        "checked": "2026-10-27",
+        "note": "own Dexcom app required, relationship between you and Dexcom"
+      },
+      {
+        "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+        "checked": "2026-10-27",
+        "note": "Dexcom row, credentials required"
+      },
+      {
+        "url": "https://docs.tryrook.io/data-sources/",
+        "checked": "2026-10-27",
+        "note": "Dexcom requires developer account; SDK-connected list"
+      },
+      {
+        "url": "https://docs.thryve.health/thryve-data-sources/overview",
+        "checked": "2026-10-27",
+        "note": "Dexcom data source row"
+      },
+      {
+        "url": "https://validic.com/features/supported-devices/",
+        "checked": "2026-10-27",
+        "note": "Dexcom restrictions"
+      },
+      {
+        "url": "https://www.spikeapi.com/integrations",
+        "checked": "2026-10-27",
+        "note": "Dexcom on the integrations list"
+      },
+      {
+        "url": "https://sahha.ai/integrations/",
+        "checked": "2026-10-27",
+        "note": "Dexcom with cloud API"
+      },
+      {
+        "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/hkquantitytypeidentifier/bloodglucose.json",
+        "checked": "2026-10-27",
+        "note": "HealthKit bloodGlucose"
+      },
+      {
+        "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/records/BloodGlucoseRecord?hl=en",
+        "checked": "2026-10-27",
+        "note": "Health Connect BloodGlucoseRecord"
+      }
+    ]
   }
 ];

@@ -40,6 +40,12 @@
  * Withings (a guide and a library), Suunto and Wahoo (a guide each),
  * USDA FoodData Central, Open Food Facts, MoveNet and Apple Vision have fewer.
  * wger reached three on 2026-10-22 with its alternatives page.
+ * Withings, Samsung Health, Suunto, COROS, Wahoo and Dexcom reached three or
+ * more on 2026-10-27 (alternatives pages for all six, pricing pages for
+ * Withings, Suunto and Wahoo; ops/SEO-10-2026-10-27.md item 6) but have no
+ * product entry in data/apis.ts, which a menu needs for its name and which
+ * would add a directory page with cost-model rows. Like Polar (a guide, a
+ * pricing page and its entry) they have no menu yet: an open decision.
  * QuickPose, Sency and MediaPipe reached three on 2026-10-18 (pricing and
  * alternatives pages) and have no menu yet: whether competitors of the site's
  * funder get one is an open decision, not an oversight. KinesteX has five

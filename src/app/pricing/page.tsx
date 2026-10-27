@@ -47,6 +47,9 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
       "oura-api-pricing",
       "whoop-api-pricing",
       "polar-api-pricing",
+      "withings-api-pricing",
+      "suunto-api-pricing",
+      "wahoo-api-pricing",
     ],
   },
   {

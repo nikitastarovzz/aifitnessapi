@@ -33,6 +33,9 @@ export const RELEASED_PRICING = new Set<string>([
   "quickpose-pricing",
   "sency-pricing",
   "polar-api-pricing",
+  "withings-api-pricing",
+  "suunto-api-pricing",
+  "wahoo-api-pricing",
 ]);
 
 export const allPricing: ClusterEntry[] = pricingEntries;

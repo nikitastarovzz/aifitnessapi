@@ -1,0 +1,122 @@
+[
+  {
+    "claim": "Which to pick: polling hits the rate limit quickly.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "Polling for fresh data hits this ceiling quickly"
+  },
+  {
+    "claim": "Comparisons: Withings measures with medical-grade devices.",
+    "url": "https://developer.withings.com/",
+    "quote": "40+ biomarkers, measured by medical-grade devices."
+  },
+  {
+    "claim": "Intro: no prerequisites and free access.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/developer-account/create-your-accesses-no-medical-cloud/",
+    "quote": "There are no prerequisites, and free access is provided."
+  },
+  {
+    "claim": "Why: 120 requests a minute across your application.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "The standard Withings API enforces a 120 requests-per-minute limit across your application"
+  },
+  {
+    "claim": "Why: Enterprise unlocks higher limits and dedicated support.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "the Enterprise plan unlocks higher limits and dedicated support"
+  },
+  {
+    "claim": "Why: some biomarkers need the Advanced Biomarkers plan.",
+    "url": "https://developer.withings.com/developer-guide/v3/data-api/all-available-health-data/",
+    "quote": "Requires the Advanced Biomarkers plan"
+  },
+  {
+    "claim": "Why: Withings announced Withings+ for accounts created after October 12, 2026 on free-plan apps.",
+    "url": "https://web.archive.org/web/20261016222934id_/https://developer.withings.com/",
+    "quote": "Withings accounts created after that date will need a membership to share health data with a free-plan app, including apps that are already live."
+  },
+  {
+    "claim": "Terra lists Withings as event-driven with Managed credentials.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "Withings WITHINGS Event-Driven Managed"
+  },
+  {
+    "claim": "Terra's table explains Managed credentials: you may create your own credentials and give them to Terra.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "Managed credentials for integrations mean that you may create your own credentials and provide them to Terra, using the integration's developer dashboard"
+  },
+  {
+    "claim": "Thryve lists Withings as a web source with historic data and shared OAuth client yes.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Withings Web Ping yes yes"
+  },
+  {
+    "claim": "Thryve's table columns include Historic data and Shared oAuth-client.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Historic data Shared oAuth-client"
+  },
+  {
+    "claim": "Rook lists Withings as an API source covering body, physical and sleep.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "Withings | API | Body Physical Sleep"
+  },
+  {
+    "claim": "Spike lists Withings.",
+    "url": "https://www.spikeapi.com/integrations",
+    "quote": "A connected health device company offering smart scales, sleep analyzers, and watches."
+  },
+  {
+    "claim": "Open Wearables: Withings account required; webhook subscriptions per user.",
+    "url": "https://openwearables.io/docs/providers/supported",
+    "quote": "Withings account required; webhook subscriptions are created per-user, not per-app"
+  },
+  {
+    "claim": "Sahha lists Withings among its sources.",
+    "url": "https://sahha.ai/integrations/",
+    "quote": "Weight Gurus WHOOP + Cloud API Withings WomanLog"
+  },
+  {
+    "claim": "Sahha says sources arrive on-device through Apple Health or Health Connect.",
+    "url": "https://sahha.ai/integrations/",
+    "quote": "Sources arrive on-device through Apple Health or Health Connect — no per-brand work required."
+  },
+  {
+    "claim": "HealthKit bodyMass measures the user's weight.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/hkquantitytypeidentifier/bodymass.json",
+    "quote": "A quantity sample type that measures the user’s weight."
+  },
+  {
+    "claim": "HealthKit bloodPressureSystolic.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/hkquantitytypeidentifier/bloodpressuresystolic.json",
+    "quote": "A quantity sample type that measures the user’s systolic blood pressure."
+  },
+  {
+    "claim": "Health Connect WeightRecord captures the user's weight.",
+    "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/records/WeightRecord?hl=en",
+    "quote": "Captures the user's weight."
+  },
+  {
+    "claim": "Health Connect BloodPressureRecord.",
+    "url": "https://developer.android.com/reference/kotlin/androidx/health/connect/client/records/BloodPressureRecord?hl=en",
+    "quote": "Captures the blood pressure of a user."
+  },
+  {
+    "claim": "Withings Cellular Solution.",
+    "url": "https://developer.withings.com/",
+    "quote": "Experience best-in-class cellular connectivity for seamless remote patient monitoring with instant setup of pre-configured devices."
+  },
+  {
+    "claim": "Withings RPM.",
+    "url": "https://developer.withings.com/",
+    "quote": "Give healthcare providers seamless access to patient data for real-time monitoring and improved patient outcomes."
+  },
+  {
+    "claim": "Withings Logistics Services.",
+    "url": "https://developer.withings.com/",
+    "quote": "Direct-to-patient dropshipping of pre-configured devices and kits"
+  },
+  {
+    "claim": "Validic: Withings Pro cellular approval requires a direct relationship with Withings.",
+    "url": "https://validic.com/features/supported-devices/",
+    "quote": "Withings Pro (cellular devices) | Approval requires direct relationship with Withings. Acceptance is not guaranteed."
+  }
+]

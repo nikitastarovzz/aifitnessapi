@@ -1332,7 +1332,7 @@ export const pricingEntries: ClusterEntry[] =
     "metaDescription": "Polar's API agreement says AccessLink is free of charge at the moment and that Polar may charge fees later. What is free, rate limits, real costs.",
     "updated": "2026-10-22",
     "answer": "Polar's AccessLink API, often searched as the Polar Flow API, costs nothing to use today: Polar's API license agreement, last updated August 22, 2025, says Polar offers the use and activation of its APIs free of charge \"at the moment\" and reserves the right to charge fees at its discretion. Any registered Polar Flow user can create an API client, so there is no approval fee or partner tier to buy. The costs that remain are your users' Polar devices, rate limits that grow with your registered users, and your own servers; none of Polar's pages we read on October 22, 2026 lists a paid plan.",
-    "body": "## What it actually costs\n\nPolar answers the price question in one clause of its API license agreement, which a source-snapshot run read on October 22, 2026 (the agreement says it was last updated on 22 August 2025): \"At the moment Polar offers the use and activation of Polar API's free of charge.\" The next sentence keeps the door open: \"However, Polar reserves the right to charge fees from time to time at its discretion.\"\n\nEvery page on this site that covers Polar is collected in the [Polar API overview](/apis/polar).\n\n| Cost | Who pays | What Polar's pages say |\n|---|---|---|\n| Using and activating the API | You (the developer) | Free of charge \"at the moment\"; Polar may charge fees at its discretion |\n| The license | You (the developer) | A \"royalty-free, non-transferable, non-exclusive, worldwide and limited license\" |\n| Getting a client | You (the developer) | \"Any registered Polar Flow user\" can create one at admin.polaraccesslink.com |\n| Updates, new versions, support | You, only if Polar offers them | Polar has no obligation to provide them; if it does, fees \"shall be agreed separately\" |\n| Polar devices | Your users | AccessLink serves data \"recorded by Polar devices\" |\n| Capacity | You (the developer) | Rate limits that grow with your registered users (below) |\n| Your infrastructure | You (the developer) | Servers, storage, token handling, the webhook endpoint |\n\nNone of the Polar pages we read lists a paid plan, a price per user or a price per request, so this page quotes none.\n\n## Polar Flow API, AccessLink and Team Pro: which one is \"the Polar API\"\n\nThe names get mixed up in searches. Polar's agreement says \"Currently Polar has two application programming interfaces, AccessLink and Polar Team Pro API\": AccessLink moves data out of Polar Flow, the consumer service, and the Team Pro API does the same for the Polar Team Pro system. So the \"Polar Flow API\" people search for is AccessLink, and the same agreement, including the fee clause, covers both. Polar's developer page also lists a Polar mobile SDK that \"enables you to read and interpret live data from Polar devices\", which runs in your app rather than against Polar's cloud; none of the pages we read gives it a price.\n\n## Rate limits are the real ceiling\n\nFree does not mean unlimited. AccessLink's documentation describes a dynamic limit that \"scales partners rate limit values based on number of registered users\":\n\n| Window | Formula Polar publishes |\n|---|---|\n| 15 minutes | 500 + number of users x 20 |\n| 24 hours | 5000 + number of users x 100 |\n\nRequests over the limit get 429 Too Many Requests, and short-term violations still count toward the long-term limit. The rate-limit section of Polar's documentation describes no paid tier that raises these numbers. The mechanics, from OAuth to webhooks, are in the [Polar API integration guide](/integrate/polar-api).\n\n## The catch: terms, not invoices\n\nThe costs that can surprise you are in the agreement's conditions rather than a bill.\n\n- **The price can change.** Besides the fee clause, Polar may change the agreement itself, and changes take effect \"upon posting updated agreement terms on this site\". Polar recommends visiting the page regularly.\n- **Access can stop.** Polar may suspend or terminate your access \"for any or no reason, with immediate effect\", and caps its total liability under the agreement at 500 euros.\n- **No competing service.** You may not use the API \"in creating a service similar to or competing with Polar Ecosystem\".\n- **Credit Polar.** You must credit Polar Ecosystem as the source when you display its data.\n- **No load testing.** Load testing without Polar's prior approval counts as interfering with the Polar Ecosystem and \"may result in blacklisting\".\n- **Not for gatekeepers.** Companies designated gatekeepers under the EU Digital Markets Act are not eligible to enter the agreement.\n- **Aggregators sign per customer.** An aggregator serving corporate customers has to accept the agreement for each Corporate Customer separately.\n\n## How it compares and other paths\n\nPolar sits with the wearable APIs that cost nothing to call, where the spending goes on integration work, the user's device and your own servers. For the closest comparisons, see [Oura API pricing](/pricing/oura-api-pricing) and [WHOOP API pricing](/pricing/whoop-api-pricing), and for every wearable side by side, [wearable data APIs](/fitness-apis/wearable-data-apis).\n\nIf you need Polar alongside many other devices, an aggregator is the other route. Polar's developer page names Validic among the organisations using Polar data and says \"Connections to Polar's devices are available via the Validic platform and integration.\" Aggregators charge for that; see [health data aggregator pricing](/pricing/health-data-aggregator-pricing).\n\n## Bottom line\n\nAs of October 22, 2026, Polar's AccessLink API is free to use under an agreement that lets Polar start charging whenever it chooses and change its terms by posting new ones. Budget for your users' Polar devices, design for rate limits that scale with your user count, and re-read the agreement before each launch rather than assuming today's price holds.",
+    "body": "## What it actually costs\n\nPolar answers the price question in one clause of its API license agreement, which a source-snapshot run read on October 22, 2026 (the agreement says it was last updated on 22 August 2025): \"At the moment Polar offers the use and activation of Polar API's free of charge.\" The next sentence keeps the door open: \"However, Polar reserves the right to charge fees from time to time at its discretion.\"\n\nEvery page on this site that covers Polar is collected in the [Polar API overview](/apis/polar).\n\n| Cost | Who pays | What Polar's pages say |\n|---|---|---|\n| Using and activating the API | You (the developer) | Free of charge \"at the moment\"; Polar may charge fees at its discretion |\n| The license | You (the developer) | A \"royalty-free, non-transferable, non-exclusive, worldwide and limited license\" |\n| Getting a client | You (the developer) | \"Any registered Polar Flow user\" can create one at admin.polaraccesslink.com |\n| Updates, new versions, support | You, only if Polar offers them | Polar has no obligation to provide them; if it does, fees \"shall be agreed separately\" |\n| Polar devices | Your users | AccessLink serves data \"recorded by Polar devices\" |\n| Capacity | You (the developer) | Rate limits that grow with your registered users (below) |\n| Your infrastructure | You (the developer) | Servers, storage, token handling, the webhook endpoint |\n\nNone of the Polar pages we read lists a paid plan, a price per user or a price per request, so this page quotes none.\n\n## Polar Flow API, AccessLink and Team Pro: which one is \"the Polar API\"\n\nThe names get mixed up in searches. Polar's agreement says \"Currently Polar has two application programming interfaces, AccessLink and Polar Team Pro API\": AccessLink moves data out of Polar Flow, the consumer service, and the Team Pro API does the same for the Polar Team Pro system. So the \"Polar Flow API\" people search for is AccessLink, and the same agreement, including the fee clause, covers both. Polar's developer page also lists a Polar mobile SDK that \"enables you to read and interpret live data from Polar devices\", which runs in your app rather than against Polar's cloud; none of the pages we read gives it a price.\n\n## Rate limits are the real ceiling\n\nFree does not mean unlimited. AccessLink's documentation describes a dynamic limit that \"scales partners rate limit values based on number of registered users\":\n\n| Window | Formula Polar publishes |\n|---|---|\n| 15 minutes | 500 + number of users x 20 |\n| 24 hours | 5000 + number of users x 100 |\n\nRequests over the limit get 429 Too Many Requests, and short-term violations still count toward the long-term limit. The rate-limit section of Polar's documentation describes no paid tier that raises these numbers. The mechanics, from OAuth to webhooks, are in the [Polar API integration guide](/integrate/polar-api).\n\n## The catch: terms, not invoices\n\nThe costs that can surprise you are in the agreement's conditions rather than a bill.\n\n- **The price can change.** Besides the fee clause, Polar may change the agreement itself, and changes take effect \"upon posting updated agreement terms on this site\". Polar recommends visiting the page regularly.\n- **Access can stop.** Polar may suspend or terminate your access \"for any or no reason, with immediate effect\", and caps its total liability under the agreement at 500 euros.\n- **No competing service.** You may not use the API \"in creating a service similar to or competing with Polar Ecosystem\".\n- **Credit Polar.** You must credit Polar Ecosystem as the source when you display its data.\n- **No load testing.** Load testing without Polar's prior approval counts as interfering with the Polar Ecosystem and \"may result in blacklisting\".\n- **Not for gatekeepers.** Companies designated gatekeepers under the EU Digital Markets Act are not eligible to enter the agreement.\n- **Aggregators sign per customer.** An aggregator serving corporate customers has to accept the agreement for each Corporate Customer separately.\n\n## How it compares and other paths\n\nPolar sits with the wearable APIs that cost nothing to call, where the spending goes on integration work, the user's device and your own servers. For the closest comparisons, see [Oura API pricing](/pricing/oura-api-pricing) and [WHOOP API pricing](/pricing/whoop-api-pricing), and for every wearable side by side, [wearable data APIs](/fitness-apis/wearable-data-apis). Wahoo's API agreement also says access is currently provided at no charge and reserves the right to charge, and Suunto's API Zone says it does not charge for its API at all: see [Wahoo API pricing](/pricing/wahoo-api-pricing) and [Suunto API pricing](/pricing/suunto-api-pricing).\n\nIf you need Polar alongside many other devices, an aggregator is the other route. Polar's developer page names Validic among the organisations using Polar data and says \"Connections to Polar's devices are available via the Validic platform and integration.\" Aggregators charge for that; see [health data aggregator pricing](/pricing/health-data-aggregator-pricing).\n\n## Bottom line\n\nAs of October 22, 2026, Polar's AccessLink API is free to use under an agreement that lets Polar start charging whenever it chooses and change its terms by posting new ones. Budget for your users' Polar devices, design for rate limits that scale with your user count, and re-read the agreement before each launch rather than assuming today's price holds.",
     "faqs": [
       {
         "q": "Is the Polar AccessLink API free?",
@@ -1391,6 +1391,210 @@ export const pricingEntries: ClusterEntry[] =
         "url": "https://www.polar.com/en/developers",
         "checked": "2026-10-22",
         "note": "Polar mobile SDK, Validic connection"
+      }
+    ]
+  },
+  {
+    "slug": "wahoo-api-pricing",
+    "primaryQuery": "wahoo api pricing",
+    "h1": "Wahoo API Pricing: Is the Wahoo Cloud API Free?",
+    "metaTitle": "Wahoo API Pricing (2026): Free Now, Charges Reserved",
+    "metaDescription": "Wahoo's API agreement says access is currently free and reserves the right to charge, business pricing included. Rate limits, terms and real costs.",
+    "updated": "2026-10-27",
+    "answer": "Wahoo's Cloud API costs nothing to use today: Wahoo's Public API Agreement says access to and use of its API materials and platform \"are currently provided at no charge\", and reserves Wahoo's right to charge in future, naming rated pricing and differentiated pricing for business users. Access still needs Wahoo's approval, a sandbox app is limited to 250 requests a day and a production app to 5,000, and the agreement forbids charging your own users for access to Wahoo's API. None of the Wahoo pages we read on October 27, 2026 lists a price.",
+    "body": "## What it actually costs\n\nWahoo answers the price question in its Public API Agreement, which a source-snapshot run read on October 27, 2026: \"Access to and use of the Wahoo API Materials and Wahoo Platform are currently provided at no charge.\" The same paragraph keeps the door open. Wahoo reserves the right to charge for the API materials and platform access, \"including, without limitation, rated pricing and/or differentiated pricing for business users.\"\n\n| Cost | Who pays | What Wahoo's pages say |\n|---|---|---|\n| Using the Cloud API | You (the developer) | \"Currently provided at no charge\"; Wahoo may charge in future, business pricing included |\n| Getting in | You (the developer) | Wahoo is \"currently limiting use of the API to those who request it\", and production apps go through a review |\n| Capacity | You (the developer) | Sandbox apps 250 requests a day, production apps 5,000; more on request to support (below) |\n| Support | You, for your own users | Wahoo has no obligation to provide technical or other support; you support and maintain your app |\n| Wahoo devices and apps | Your users | The API does not share workouts recorded in third-party apps |\n| Your infrastructure | You (the developer) | Servers, storage, token handling, the webhook endpoint |\n\nNone of the Wahoo pages we read lists a paid plan, a price per user or a price per request, so this page quotes none. The mechanics of the API itself are in the [Wahoo API integration guide](/integrate/wahoo-api).\n\n## Rate limits are the ceiling you can see\n\nWahoo publishes the limits in its Cloud API documentation:\n\n| Window | Sandbox apps | Production apps |\n|---|---|---|\n| Every 5 minutes | 25 | 200 |\n| Per hour | 100 | 1,000 |\n| Per day | 250 | 5,000 |\n\nRequests to authenticate, refresh tokens and download files do not count against them. A production app gets the higher numbers only after Wahoo's review, and Sandbox and Production are separate applications: Wahoo says a Sandbox app cannot later be converted into a Production app. For more throughput, Wahoo's documentation says to contact support to request an increase; it does not say whether an increase costs anything.\n\n## The catch: terms that cost money\n\nThe costs that can surprise you sit in the agreement's conditions rather than on an invoice.\n\n- **You cannot sell access to Wahoo's data.** The agreement says you may not charge end users in any manner for access to or use of the Wahoo API materials or anything included in them. You can still charge for functionality the Wahoo platform does not provide.\n- **Supporting competitors is restricted.** You may not use the API materials \"in any manner that is competitive to Wahoo or the Wahoo Platform\", including in an app that also supports a third party providing services competitive to Wahoo's products, as Wahoo determines in its sole discretion. In our reading, an app that also connects other brands' trainers or bike computers should raise this with Wahoo (wahooapi@wahoofitness.com is the contact the agreement gives) before launch.\n- **Data cannot be resold.** You may not sell, license or lease Wahoo Data to any third party, including advertisers or data brokers, even if your users consent.\n- **Deletion on demand.** Wahoo may ask you to remove Wahoo Data you hold, and you must do so within 48 hours.\n- **Breach notice.** You must tell Wahoo about a security breach involving your app or Wahoo Data within 24 hours of discovering it.\n- **Attribution.** You attribute Wahoo using the links and logos Wahoo gives you.\n- **Access can end.** Wahoo may stop making the API available to you at any time and may amend the agreement; continuing to use the API after an amendment counts as accepting it.\n- **A small liability cap.** Wahoo's aggregate liability under the agreement is capped at the greater of the fees you paid Wahoo in the last year, if any, or 100 dollars.\n\n## Money that can flow the other way\n\nWahoo's developer page invites API developers to join the Wahoo Fitness Affiliate program \"to get credit for the Wahoo Fitness items your users buy\". It does not state the commission, and we did not read the affiliate terms.\n\n## How it compares\n\nWahoo sits with the wearable APIs that cost nothing to call, where the spending goes on integration work, your users' devices and your own servers; [Polar API pricing](/pricing/polar-api-pricing) is the closest comparison on this site. [Garmin API pricing](/pricing/garmin-api-pricing) and [Strava API pricing](/pricing/strava-api-pricing) cover the other sports platforms. If Wahoo's approval or terms do not fit, [Wahoo API alternatives](/alternatives/wahoo-api-alternatives) lists the other routes to the same users, and aggregators that connect Wahoo charge for it: see [health data aggregator pricing](/pricing/health-data-aggregator-pricing).\n\n## Bottom line\n\nAs of October 27, 2026, the Wahoo Cloud API is free to use under an agreement that lets Wahoo start charging, including business pricing, and change its terms whenever it chooses. Budget for the approval wait, design for the published rate limits, check the competitive-use clause against your product, and re-read the agreement before each launch.",
+    "faqs": [
+      {
+        "q": "Does Wahoo charge for its Cloud API?",
+        "a": "Not today. Wahoo's Public API Agreement says access to and use of its API materials and platform are currently provided at no charge. It also reserves the right to charge in future at Wahoo's discretion, naming rated pricing and differentiated pricing for business users, so treat free as the current state rather than a promise."
+      },
+      {
+        "q": "Can I charge my users for features built on Wahoo data?",
+        "a": "Only for what Wahoo does not provide. The agreement says you may not charge end users in any manner for access to or use of the Wahoo API materials or anything included in them, but it does not stop you charging for functionality the Wahoo platform does not provide."
+      },
+      {
+        "q": "How do I get a higher Wahoo API rate limit?",
+        "a": "First by getting a production app approved: Wahoo's documentation lists 25 requests every 5 minutes, 100 an hour and 250 a day for sandbox apps, and 200, 1,000 and 5,000 for production apps after Wahoo's review. Beyond that, Wahoo says to contact support to request an increase; its pages do not say whether that costs anything."
+      },
+      {
+        "q": "Can a multi-brand app use the Wahoo API?",
+        "a": "Check with Wahoo first. The agreement bars using the API materials in any manner competitive to Wahoo, including in an app that also supports a third party providing services competitive to Wahoo's products, as Wahoo determines in its sole discretion. That is our reading of the clause, not Wahoo's guidance; wahooapi@wahoofitness.com is the contact the agreement gives."
+      }
+    ],
+    "related": [
+      {
+        "href": "/integrate/wahoo-api",
+        "label": "Integrate the Wahoo Cloud API"
+      },
+      {
+        "href": "/alternatives/wahoo-api-alternatives",
+        "label": "Wahoo API alternatives"
+      },
+      {
+        "href": "/pricing/polar-api-pricing",
+        "label": "Polar API pricing"
+      },
+      {
+        "href": "/pricing",
+        "label": "All fitness & health API pricing"
+      }
+    ],
+    "cta": {
+      "pitch": "Wahoo's API is free under an agreement that reserves business pricing. We watch wearable API terms for changes like that and report them weekly."
+    },
+    "sources": [
+      {
+        "url": "https://www.wahoofitness.com/wahoo-api-agreement",
+        "checked": "2026-10-27",
+        "note": "no charge currently, right to charge including business pricing, no charging end users, competitive use, data resale, deletion, breach notice, attribution, termination, amendment, liability cap, support"
+      },
+      {
+        "url": "https://developers.wahooligan.com/cloud",
+        "checked": "2026-10-27",
+        "note": "access by request, separate sandbox and production apps, affiliate program"
+      },
+      {
+        "url": "https://cloud-api.wahooligan.com/",
+        "checked": "2026-10-27",
+        "note": "review for production, rate limits, requests that do not count, third-party workouts"
+      }
+    ]
+  },
+  {
+    "slug": "withings-api-pricing",
+    "primaryQuery": "withings api pricing",
+    "h1": "Withings API Pricing: Free Access, Paid Plans and Withings+",
+    "metaTitle": "Withings API Pricing (2026): Free Access, Enterprise Plans",
+    "metaDescription": "Withings gives free Public API access with no prerequisites; Enterprise and Advanced Biomarkers plans cost extra. What is free, what is not, Withings+.",
+    "updated": "2026-10-27",
+    "answer": "Withings gives free access to its Public API: its setup page says \"There are no prerequisites, and free access is provided.\" Withings also sells API plans. Its documentation says the Enterprise plan unlocks higher limits than the standard 120 requests a minute, plus dedicated support, and its biomarker catalogue marks some data as requiring the Advanced Biomarkers plan; the plans page did not render for us on October 27, 2026, so we cannot quote prices. A Withings+ requirement for new users of free-plan apps, announced for October 12, 2026, was no longer on Withings' developer home page that day.",
+    "body": "## What it actually costs\n\nWithings has a free entry point and paid plans above it. The free part is stated plainly on its setup page, read through a source-snapshot run on October 27, 2026: \"There are no prerequisites, and free access is provided.\" Withings describes the Public API as \"designed for individuals and partners without a formal contract\", and its integration guide says it also applies if you want to access your own Withings data through the API.\n\n| Cost | Who pays | What Withings' pages say |\n|---|---|---|\n| Public API access | You (the developer) | \"There are no prerequisites, and free access is provided\" |\n| Higher limits and dedicated support | You, on the Enterprise plan | \"the Enterprise plan unlocks higher limits and dedicated support\" |\n| Some biomarkers | You, on the Advanced Biomarkers plan | The catalogue marks entries that require the Advanced Biomarkers plan |\n| Withings devices | Your users, or you | Users may already own devices, or you may distribute them \"through your own channels\" |\n| Cellular devices, RPM, logistics | You, under a contract | Separate Withings solutions, including direct-to-patient dropshipping of pre-configured devices and kits |\n| Your infrastructure | You (the developer) | Servers, storage, token refresh, the notification endpoint |\n\nWithings' home page links \"Compare API plans\", but that page did not render in our snapshot, so this page quotes no plan prices and no list of what each plan includes. Ask Withings for the plan sheet before you budget.\n\n## Where the free plan stops\n\nThe standard API enforces a limit of 120 requests a minute across your whole application, and Withings warns that polling for fresh data \"hits this ceiling quickly\", which is why it points integrations to notifications. Withings also says it does not commit to a real-time SLA on the standard plan. If you need a higher request rate or stricter guarantees, its documentation sends you to the Enterprise plan. Withings' catalogue lists 96 biomarkers across 9 device families and flags the ones that need the Advanced Biomarkers plan, so check a metric there before you promise it to users. The integration itself is covered in the [Withings API integration guide](/integrate/withings-api).\n\n## Withings+: announced, then gone from the home page\n\nOn October 16, 2026 the Internet Archive captured a notice on Withings' developer home page: \"Withings+ becomes required on the Start for Free API plan from October 12, 2026.\" It said Withings accounts created after that date \"will need a membership to share health data with a free-plan app, including apps that are already live\", that accounts created before it are unaffected, and that Enterprise lifts the requirement for specific use cases. On a free-plan app, that membership would be something your newer users need, not a fee charged to you.\n\nThe notice was not on the home page when we read it on October 27, 2026, and nothing we read replaced it. We could not confirm whether the requirement still applies; ask Withings before you build pricing or onboarding around either answer.\n\n## The catch\n\n- **The plan sheet is the missing piece.** Free access, Enterprise and Advanced Biomarkers are all named in Withings' documentation, but the prices and the exact plan boundaries are on a page we could not read.\n- **Your cloud choice is permanent.** Withings says your cloud is set when your access contract is created and cannot be switched afterwards. The US Medical Cloud is for entities covered by HIPAA that need their data to stay onshore, by request.\n- **The user-side cost may have moved.** Whether new users need Withings+ to share with a free-plan app is the open question above.\n\n## How it compares\n\nWithings names paid plans where many device makers have none: Wahoo, for one, says its API is currently provided at no charge and lists no tiers (see [Wahoo API pricing](/pricing/wahoo-api-pricing)), and [Polar API pricing](/pricing/polar-api-pricing) covers another sports-device maker's terms. If you want Withings data alongside other devices through one integration, aggregators that list Withings charge for it; see [health data aggregator pricing](/pricing/health-data-aggregator-pricing) and [Withings API alternatives](/alternatives/withings-api-alternatives).\n\n## Bottom line\n\nAs of October 27, 2026, you can start on the Withings Public API for free, with no prerequisites, at 120 requests a minute. Higher limits, dedicated support and some biomarkers are on paid plans whose prices Withings' plans page did not show us, and the Withings+ rule for new users is unconfirmed. Get both answers from Withings in writing before you commit.",
+    "faqs": [
+      {
+        "q": "Does Withings charge for API access?",
+        "a": "Not to start. Withings' setup page says there are no prerequisites and free access is provided on its EU Medical Cloud. It also sells API plans above that: its documentation names an Enterprise plan with higher limits and dedicated support, and an Advanced Biomarkers plan that some catalogue entries require. The plans page did not render for us on October 27, 2026, so we cannot quote prices."
+      },
+      {
+        "q": "What does the Withings Enterprise plan add?",
+        "a": "Withings' notification guide says the standard API enforces 120 requests a minute across your application and that the Enterprise plan unlocks higher limits and dedicated support. It also says Withings does not commit to a real-time SLA on the standard plan and points to Enterprise for stricter guarantees. Withings' plans page, which would give the price, did not render for us."
+      },
+      {
+        "q": "What is the Withings Advanced Biomarkers plan?",
+        "a": "It is a Withings API plan that some data requires: the biomarker catalogue, which lists 96 biomarkers across 9 device families, marks the entries that need the Advanced Biomarkers plan. Check the catalogue for each metric you plan to show before you promise it, because the free Public API does not cover those entries."
+      },
+      {
+        "q": "Do Withings users need Withings+ for my app to read their data?",
+        "a": "We could not confirm it. A notice captured on Withings' developer home page on October 16, 2026 said Withings accounts created after October 12, 2026 would need a membership to share health data with a free-plan app, with Enterprise lifting that for specific use cases. The notice was gone from the home page on October 27, 2026. Ask Withings before you plan around it."
+      }
+    ],
+    "related": [
+      {
+        "href": "/integrate/withings-api",
+        "label": "Integrate the Withings API"
+      },
+      {
+        "href": "/alternatives/withings-api-alternatives",
+        "label": "Withings API alternatives"
+      },
+      {
+        "href": "/pricing/health-data-aggregator-pricing",
+        "label": "Health data aggregator pricing"
+      },
+      {
+        "href": "/pricing",
+        "label": "All fitness & health API pricing"
+      }
+    ],
+    "cta": {
+      "pitch": "Withings announced a Withings+ rule for free-plan apps and then took the notice down. We watch device API terms for moves like that and report them weekly."
+    },
+    "sources": [
+      {
+        "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/developer-account/create-your-accesses-no-medical-cloud/",
+        "checked": "2026-10-27",
+        "note": "free access with no prerequisites, EU Medical Cloud"
+      },
+      {
+        "url": "https://developer.withings.com/",
+        "checked": "2026-10-27",
+        "note": "Public API for partners without a contract, plan links, other solutions, US cloud, cloud fixed at contract; no Withings+ notice"
+      },
+      {
+        "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/public-health-data-api-overview/",
+        "checked": "2026-10-27",
+        "note": "devices distributed through your own channels, access to your own data"
+      },
+      {
+        "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+        "checked": "2026-10-27",
+        "note": "120 requests a minute, Enterprise plan, no real-time SLA on the standard plan"
+      },
+      {
+        "url": "https://developer.withings.com/developer-guide/v3/data-api/all-available-health-data/",
+        "checked": "2026-10-27",
+        "note": "96 biomarkers across 9 device families, Advanced Biomarkers plan"
+      },
+      {
+        "url": "https://web.archive.org/web/20261016222934id_/https://developer.withings.com/",
+        "checked": "2026-10-27",
+        "note": "Internet Archive capture of October 16, 2026: the Withings+ notice"
+      }
+    ]
+  },
+  {
+    "slug": "suunto-api-pricing",
+    "primaryQuery": "suunto api pricing",
+    "h1": "Suunto API Pricing: Free, for Accepted Partners",
+    "metaTitle": "Suunto API Pricing (2026): Free, Partners Only",
+    "metaDescription": "Suunto says it does not charge for its Cloud API. The price is access: a partner application, an API agreement, no personal use. What else you pay for.",
+    "updated": "2026-10-27",
+    "answer": "Suunto does not charge for its Cloud API: its API Zone says \"We do not charge from the use of the API.\" What you pay instead is access. The API is for companies and organizations that Suunto accepts into its partner program, not for personal use, and you sign an API agreement that Suunto shows only inside the application form. As of October 27, 2026, Suunto's pages list no paid tier; the costs left are test watches, rate limits Suunto does not publish, and your own servers.",
+    "body": "## What it actually costs\n\nSuunto's API Zone, read through a source-snapshot run on October 27, 2026, puts the price in one sentence: \"We do not charge from the use of the API.\" Everything else that costs you something is about getting in and building.\n\n| Cost | Who pays | What Suunto's pages say |\n|---|---|---|\n| Using the Cloud API | You (the developer) | \"We do not charge from the use of the API.\" |\n| Getting accepted | Your company or organization | Access is through the Suunto partner program; applications are reviewed weekly, with a maximum two-week wait |\n| The API agreement | Your company | Shown on the application form once you select the Suunto Cloud API; we could not read it |\n| Test watches | You | Suunto does not lend watches to partners but can offer partner companies a deal on them |\n| Capacity | You | The Development API has smaller request limits; Suunto publishes no numbers |\n| Your infrastructure | You (the developer) | Servers, storage, token handling, the workout webhook endpoint |\n\nNone of the Suunto pages we read lists a paid plan or a price per user or request, so this page quotes none.\n\n## The price is access\n\nSuunto provides the API to \"companies, organizations who are providing tools / apps / services for public audience\", for commercial and non-commercial use, and says \"We currently don't offer the API access for personal use.\" Applicants are reviewed on criteria such as the fit to Suunto's brand, interest from Suunto's customers and the innovation mindset they show. If an agency builds the integration, Suunto asks the client company to submit the application so that it can sign the API agreement.\n\nThe agreement is the gap in this page. Suunto says that when you select the Suunto Cloud API on the partner application \"you will be provided the API agreement\", and it is not published on the API Zone. Any fee, liability or termination terms it holds were not visible to us; read them before you sign.\n\n## What you get besides data\n\nSuunto offers accepted partners marketing in return: your application can be \"showcased in Suunto.com and promoted in our media channels\", and Suunto invites partners to mention commercial interests when they apply. Partners can also join Suunto Valuepack, a set of offers that partners provide to new Suunto watch buyers. None of this is priced on Suunto's pages.\n\n## The catch\n\n- **Personal projects are out.** There is no individual tier; a hobby dashboard over your own workouts cannot get a key.\n- **Limits are unpublished.** Suunto says the Development API has every endpoint but smaller request limits, and gives no numbers for either API.\n- **The data has gaps.** Suunto's FAQ says the Cloud API does not yet support sleep data, and the webhook covers workouts only, so a daily-activity sync is polling you pay for in servers.\n- **The terms are unseen until you apply.** Budget legal review time for the agreement.\n\nThe build itself, from the subscription key to FIT files, is in the [Suunto API integration guide](/integrate/suunto-api).\n\n## How it compares\n\nSuunto is one of several sports-watch makers that charge nothing for their API and gate it instead. [Wahoo API pricing](/pricing/wahoo-api-pricing) is free under a published agreement that reserves the right to charge, [Polar API pricing](/pricing/polar-api-pricing) covers Polar's terms, and [Garmin API pricing](/pricing/garmin-api-pricing) covers Garmin's program. If Suunto's partner gate is the problem, [Suunto API alternatives](/alternatives/suunto-api-alternatives) lists the other routes to Suunto users' data.\n\n## Bottom line\n\nAs of October 27, 2026, the Suunto Cloud API is free to use once your company is accepted into Suunto's partner program. Budget for the application wait, a legal read of an agreement you only see on the form, test watches, and the server time that polling for daily activity takes.",
+    "faqs": [
+      {
+        "q": "Does Suunto charge for API access?",
+        "a": "No. Suunto's API Zone says \"We do not charge from the use of the API.\" The gate is acceptance instead: your company or organization applies to the Suunto partner program and signs Suunto's API agreement, and Suunto reviews applications weekly, with a maximum two-week wait. None of Suunto's pages we read on October 27, 2026 lists a paid tier."
+      },
+      {
+        "q": "Where are the Suunto API agreement terms?",
+        "a": "On the partner application. Suunto says that when you select the Suunto Cloud API on its partner program form you will be provided the API agreement to sign, and it is not published on the API Zone. We could not read it, so check it for fees, liability and termination terms before you sign."
+      },
+      {
+        "q": "Can Suunto partners get watches for testing?",
+        "a": "Not on loan. Suunto's FAQ says it is not able to provide Suunto watches to partner companies, but that partner companies who contact it can get a deal on Suunto watches. Suunto adds that development runs against the production system, so testers can use their own real Suunto data."
+      }
+    ],
+    "related": [
+      {
+        "href": "/integrate/suunto-api",
+        "label": "Integrate the Suunto API"
+      },
+      {
+        "href": "/alternatives/suunto-api-alternatives",
+        "label": "Suunto API alternatives"
+      },
+      {
+        "href": "/pricing/polar-api-pricing",
+        "label": "Polar API pricing"
+      },
+      {
+        "href": "/pricing",
+        "label": "All fitness & health API pricing"
+      }
+    ],
+    "cta": {
+      "pitch": "Suunto's API is free, but only for accepted partners. We track sports-watch API programs and their terms and report changes weekly."
+    },
+    "sources": [
+      {
+        "url": "https://apizone.suunto.com/",
+        "checked": "2026-10-27",
+        "note": "no charge, who it is for, no personal use, review criteria and timing, API agreement on the form, marketing for partners"
+      },
+      {
+        "url": "https://apizone.suunto.com/faq",
+        "checked": "2026-10-27",
+        "note": "commercial and non-commercial use, agency applications, Development API limits, test watches, Valuepack, sleep data, workout-only webhook"
       }
     ]
   }

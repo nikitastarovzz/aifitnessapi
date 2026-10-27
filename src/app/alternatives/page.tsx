@@ -46,6 +46,12 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
       "strava-api-alternatives",
       "oura-api-alternatives",
       "whoop-api-alternatives",
+      "withings-api-alternatives",
+      "samsung-health-api-alternatives",
+      "suunto-api-alternatives",
+      "coros-api-alternatives",
+      "wahoo-api-alternatives",
+      "dexcom-api-alternatives",
     ],
   },
   {
