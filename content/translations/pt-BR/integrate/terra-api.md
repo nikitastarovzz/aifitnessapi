@@ -2,7 +2,7 @@
 path: "/integrate/terra-api"
 translatedOn: "2026-10-27"
 sourceUpdated: "2026-10-17"
-sourceHash: "a373151adbdee90b"
+sourceHash: "65fda8be5a97c6e5"
 metaTitle: "API de dados de saúde Terra: integre com um webhook (2026)"
 metaDescription: >-
   Integre o Terra uma vez para ler Garmin, Oura, WHOOP e mais de 500 fontes: o novo endpoint de sessão do widget, assinatura do webhook, backfill e preços.
@@ -77,7 +77,7 @@ Todo endpoint, campo e limite abaixo vem da documentação, da especificação O
 - Um **destino** configurado no painel do Terra: uma URL de webhook, ou um banco de dados, bucket de armazenamento em nuvem ou fila em que o Terra escreve.
 - Um **backend** para chamar a API do Terra. A documentação do Terra é direta: "Never share your x-api-key publicly or embed it directly in client-side code (e.g., mobile apps, frontend JavaScript)." [Nunca compartilhe a sua x-api-key publicamente nem a embuta diretamente em código do lado do cliente (por exemplo, apps móveis, JavaScript de frontend).]
 - Para WHOOP, Dexcom, Strava e os outros fornecedores do passo 2, **o seu próprio app de desenvolvedor** naquele fornecedor.
-- A superfície da API: a especificação OpenAPI do Terra (versão 2026.10.21.1) descreve "The Terra API (v2 surface, served at access.tryterra.co/api/v2)" [a API do Terra (superfície v2, servida em access.tryterra.co/api/v2)].
+- A superfície da API: a especificação OpenAPI do Terra descreve "The Terra API (v2 surface, served at access.tryterra.co/api/v2)" [a API do Terra (superfície v2, servida em access.tryterra.co/api/v2)].
 
 ## Passo 1: obtenha as credenciais e configure um destino
 
