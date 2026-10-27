@@ -382,6 +382,82 @@ export function spokeGraph({
 }
 
 /**
+ * The JSON-LD graph for a translated spoke (src/lib/translations.ts).
+ *
+ * The translated document is a work of its own, published and modified on
+ * the day it was translated, so dateModified is `translatedOn` — the date the
+ * sitemap's lastmod for it carries too. It is NOT a re-verification: the
+ * review date (`lastReviewed`, on the WebPage as for every spoke) is the
+ * English page's, and `translationOfWork` names the English article the
+ * claims were checked in. Citations are the English page's evidence, since
+ * the translation adds none.
+ */
+export function translationGraph({
+  entry,
+  path,
+  enPath,
+  inLanguage,
+  translatedOn,
+  hubLabel,
+  sourceBody,
+  capsuleId = "answer",
+}: {
+  /** The translated entry, as rendered (its `updated` is the English review date). */
+  entry: ClusterEntry;
+  path: string;
+  enPath: string;
+  inLanguage: string;
+  translatedOn: string;
+  hubLabel: string;
+  /** The English body, whose links are the evidence the translation carries. */
+  sourceBody: string;
+  capsuleId?: string;
+}) {
+  const url = absoluteUrl(path);
+  const enUrl = absoluteUrl(enPath);
+  const pageId = `${url}#webpage`;
+  const articleId = `${url}#article`;
+  const citation = entryCitations({ body: sourceBody, sources: entry.sources });
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "@id": articleId,
+        headline: entry.h1,
+        description: entry.metaDescription,
+        abstract: entry.answer,
+        datePublished: publishedDate(path.slice(1), translatedOn),
+        dateModified: translatedOn,
+        author: orgRef(),
+        publisher: orgRef(),
+        inLanguage,
+        translationOfWork: { "@id": `${enUrl}#article` },
+        articleSection: hubLabel,
+        wordCount: wordCount(entry.body),
+        isPartOf: { "@id": WEBSITE_ID },
+        mainEntityOfPage: { "@id": pageId },
+        url,
+        speakable: { "@type": "SpeakableSpecification", cssSelector: [`#${capsuleId}`] },
+        ...(citation.length ? { citation } : {}),
+      },
+      {
+        "@type": "WebPage",
+        "@id": pageId,
+        url,
+        name: entry.h1,
+        inLanguage,
+        isPartOf: { "@id": WEBSITE_ID },
+        lastReviewed: entry.updated,
+        reviewedBy: orgRef(),
+        primaryImageOfPage: { "@type": "ImageObject", url: `${enUrl}/opengraph-image` },
+        encoding: { "@type": "MediaObject", encodingFormat: "text/markdown", contentUrl: markdownUrl(path) },
+      },
+    ],
+  };
+}
+
+/**
  * The JSON-LD graph for a blog post: one Article node and its WebPage.
  *
  * A post is a TechArticle in the same sense a spoke is — technical reference

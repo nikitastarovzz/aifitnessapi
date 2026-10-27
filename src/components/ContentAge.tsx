@@ -19,7 +19,16 @@ import { useEffect, useState } from "react";
  * Hydration: the server and first client render both emit null, so the
  * server's HTML cannot disagree with the client's.
  */
-export default function ContentAge({ date, staleAfterDays = 90 }: { date: string; staleAfterDays?: number }) {
+export default function ContentAge({
+  date,
+  staleAfterDays = 90,
+  locale,
+}: {
+  date: string;
+  staleAfterDays?: number;
+  /** "pt-BR" on a translated page. Same thresholds, Portuguese words. */
+  locale?: "pt-BR";
+}) {
   const [days, setDays] = useState<number | null>(null);
 
   useEffect(() => {
@@ -32,8 +41,22 @@ export default function ContentAge({ date, staleAfterDays = 90 }: { date: string
 
   if (days === null) return null;
 
-  const label =
-    days === 0 ? "today" : days === 1 ? "yesterday" : days < 60 ? `${days} days ago` : `${Math.round(days / 30)} months ago`;
+  const pt = locale === "pt-BR";
+  const label = pt
+    ? days === 0
+      ? "hoje"
+      : days === 1
+        ? "ontem"
+        : days < 60
+          ? `há ${days} dias`
+          : `há ${Math.round(days / 30)} meses`
+    : days === 0
+      ? "today"
+      : days === 1
+        ? "yesterday"
+        : days < 60
+          ? `${days} days ago`
+          : `${Math.round(days / 30)} months ago`;
 
   if (days < staleAfterDays) return <> ({label})</>;
 
@@ -42,9 +65,13 @@ export default function ContentAge({ date, staleAfterDays = 90 }: { date: string
       {" "}
       <span
         className="rounded-full border border-amber-400/50 bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-[var(--fg)]"
-        title="Older than our re-verification target. The sourced claims were true when checked; the ecosystem may have moved."
+        title={
+          pt
+            ? "Mais antigo que a nossa meta de reverificação. As afirmações eram verdadeiras quando conferidas; o ecossistema pode ter mudado."
+            : "Older than our re-verification target. The sourced claims were true when checked; the ecosystem may have moved."
+        }
       >
-        {label} — due a re-check
+        {label} — {pt ? "revisão pendente" : "due a re-check"}
       </span>
     </>
   );

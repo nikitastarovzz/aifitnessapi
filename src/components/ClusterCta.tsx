@@ -10,11 +10,15 @@ export default function ClusterCta({
   pitch,
   source,
   id,
+  locale,
 }: {
   pitch: string;
   source: CtaSource;
   id: string;
+  /** "pt-BR" on a translated page. The newsletter itself is in English, and says so. */
+  locale?: "pt-BR";
 }) {
+  const pt = locale === "pt-BR";
   return (
     <aside className="not-prose my-12 rounded-2xl border border-brand-400/30 bg-brand-500/5 p-6 sm:p-8">
       <p className="text-base text-[var(--fg)]">{pitch}</p>
@@ -25,13 +29,15 @@ export default function ClusterCta({
           id={id}
           className="group rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-500"
         >
-          Get the newsletter{" "}
+          {pt ? "Assine a newsletter (em inglês)" : "Get the newsletter"}{" "}
           <span aria-hidden className="inline-block transition-transform group-hover:translate-x-0.5">
             →
           </span>
         </CtaLink>
         <span className="text-xs text-[var(--muted)]">
-          New API breakdowns for builders. No spam, unsubscribe anytime.
+          {pt
+            ? "Análises de APIs para quem desenvolve. Sem spam; cancele quando quiser."
+            : "New API breakdowns for builders. No spam, unsubscribe anytime."}
         </span>
       </div>
     </aside>

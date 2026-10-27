@@ -10,6 +10,7 @@ import {
   INTEGRATE_CONFIG,
 } from "@/data/integrate";
 import { robotsFor } from "@/data/noindex";
+import { languageAlternates } from "@/lib/translations";
 
 export const dynamicParams = false;
 
@@ -33,7 +34,8 @@ export async function generateMetadata({
   return {
     title: { absolute: title },
     description,
-    alternates: { canonical },
+    // hreflang to the Portuguese edition, only while it is current.
+    alternates: { canonical, ...languageAlternates(canonical) },
     ...robotsFor(canonical),
     openGraph: {
       type: "article",

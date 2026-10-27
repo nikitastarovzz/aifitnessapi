@@ -11,6 +11,7 @@ import { HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { changesSorted } from "@/data/changes";
 import { API_ENTRIES, APIS_PATH, NOINDEX_APIS } from "@/data/apis";
 import { isNoindexed } from "@/data/noindex";
+import { ptPages, ptIndexIndexable, PT_PREFIX } from "@/lib/translations";
 import { digests, DIGEST_PATH, type Digest } from "@/data/digest";
 import { HC_FETCHED_ON } from "@/data/healthConnectRecords";
 import { orderedRecords, recordPath, HC_BASE, HC_PERMISSIONS_PATH, HC_AGGREGATES_PATH, hcModified } from "@/data/hcPages";
@@ -303,6 +304,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...issues.map((d) => row(`${DIGEST_PATH}/${d.month}`, digestDate(d))),
     // lastmod is the re-verification date, not first publication.
     ...posts.map((post) => row(`/blog/${post.slug}`, post.updated)),
+    // The Portuguese edition (src/lib/translations.ts): only translations
+    // that are current, each dated by its translation day, which is the
+    // dateModified the page declares. A stale one is noindex and absent.
+    // The index is listed once it is indexable, dated by the newest
+    // translation it lists (its declared dateModified).
+    ...ptPages()
+      .filter((p) => p.status === "current")
+      .map((p) => row(p.t.path, p.t.translatedOn)),
+    ...(ptIndexIndexable() ? [row(PT_PREFIX, newest(ptPages().map((p) => p.t.translatedOn)))] : []),
   ];
 
   // Pages that ask not to be indexed leave the sitemap in one place, whatever

@@ -1752,7 +1752,10 @@ if (fs.existsSync(matrixPath)) {
       .replace(/<script[\s\S]*?<\/script>/g, "")
       .replace(/<a\b[^>]*>[\s\S]*?<\/a>/g, "");
     const mentions = (prose.match(/KinesteX/g) ?? []).length;
-    if (mentions >= 3 && !disclosureRe.test(html)) {
+    // A translated page discloses in its own language; PTBR-DISCLOSURE holds
+    // /pt-br pages to the translated banner on top of this.
+    const disclosed = disclosureRe.test(html) || (r.startsWith("/pt-br/") && /financia este site/.test(html));
+    if (mentions >= 3 && !disclosed) {
       problems.push(`FIRSTPARTY     ${r} mentions KinesteX ${mentions}× in prose with no funding disclosure`);
     }
   }
@@ -3554,6 +3557,325 @@ if (fs.existsSync(matrixPath)) {
   console.log(
     `Hub glance: ${rowsSeen} table rows and ${qaSeen} direct answers on ${GLANCE_HUBS.length} hubs, ${values} sourced values held to the cost model and capsules; ` +
       `${money} money pages listed first on the answer surfaces; ${claimsChecked} claim fragments resolve.`,
+  );
+}
+
+// ── Translations (ops/SEO-10-2026-10-27.md item 10). A translated page is a
+// second copy of claims that were verified in English, and it is only safe
+// to publish while it says the same thing and never claims to be newer than
+// it is. So the status is recomputed here from the English entries and the
+// translation store (src/lib/translationStore.mjs, the same hash the build
+// uses), and the built pages are held to it:
+//
+//   - a stale translation (English text changed since translatedOn) renders
+//     noindex and a visible notice linking the English page, and leaves the
+//     sitemap and hreflang; a current one does none of that;
+//   - the translated page carries every number, external source, code span,
+//     quoted source sentence and internal link the English page carries, and
+//     no number or link it does not;
+//   - its verification date is the English page's, labelled as such, and a
+//     first-party page carries the translated disclosure.
+//
+// Text comparisons read the rendered HTML of both pages (capsule, body, each
+// FAQ), so what is checked is what a reader gets.
+{
+  const { loadTranslations, loadEnglishEntries, translationStatus } = await import(
+    new URL("../src/lib/translationStore.mjs", import.meta.url)
+  );
+  const SITE = "https://aifitnessapi.com";
+  const fileByRoute = new Map(htmls.map((h) => [routeOf(h), h]));
+  const htmlOf = (r) => (fileByRoute.has(r) ? fs.readFileSync(fileByRoute.get(r), "utf8") : null);
+  const fullDecode = (s) =>
+    decode(s)
+      .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16)))
+      .replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(Number(d)))
+      .replace(/&nbsp;/g, " ");
+  /** The outer HTML of the element whose opening tag starts at `at`, by tag depth. */
+  const elementAt = (html, at) => {
+    const tag = /^<([a-z0-9]+)/.exec(html.slice(at))?.[1];
+    if (!tag) return "";
+    const re = new RegExp(`<(/?)${tag}\\b[^>]*>`, "g");
+    re.lastIndex = at;
+    let depth = 0;
+    for (let m; (m = re.exec(html)); ) {
+      if (m[0].endsWith("/>")) continue;
+      depth += m[1] ? -1 : 1;
+      if (depth === 0) return html.slice(at, re.lastIndex);
+    }
+    return html.slice(at);
+  };
+  const region = (html, marker) => {
+    const i = html.search(marker);
+    return i === -1 ? "" : elementAt(html, i);
+  };
+  const textOf = (h) => fullDecode(h.replace(/<script[\s\S]*?<\/script>/g, "").replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ");
+  const parts = (html) => {
+    const faqs = [];
+    for (const m of html.matchAll(/<div[^>]*\bid="faq-(\d+)"[^>]*>([\s\S]*?)<\/div>/g)) faqs[Number(m[1]) - 1] = m[2];
+    return {
+      capsule: region(html, /<div[^>]*\bid="answer"/),
+      body: region(html, /<div[^>]*\bdata-article-body/),
+      faqs,
+    };
+  };
+  /** Digit runs with their separators removed: "1,500" and "1.500" are one number. */
+  const numbers = (text) => new Set([...text.matchAll(/\d+(?:[.,]\d+)*/g)].map((m) => m[0].replace(/[.,]/g, "")));
+  const hrefsOf = (h) => [...h.matchAll(/<a\b[^>]*\bhref="([^"]*)"/g)].map((m) => fullDecode(m[1]));
+  const codesOf = (h) => new Set([...h.matchAll(/<code\b[^>]*>([\s\S]*?)<\/code>/g)].map((m) => textOf(m[1]).trim()).filter(Boolean));
+  const diff = (a, b) => [...a].filter((x) => !b.has(x));
+  const short = (xs, n = 6) => xs.slice(0, n).join(", ") + (xs.length > n ? ` … (+${xs.length - n})` : "");
+
+  let translations = [];
+  try {
+    translations = loadTranslations("pt-br");
+  } catch (e) {
+    problems.push(`PTBR-STORE  ${e.message}`);
+  }
+  const english = loadEnglishEntries([...new Set(translations.map((t) => `/${t.enPath.split("/")[1]}`))]);
+  const status = new Map();
+  for (const t of translations) {
+    const e = english.get(t.enPath);
+    const built = e && valid.has(t.enPath) && !notFoundSet.has(t.enPath);
+    status.set(t.enPath, built ? translationStatus(t, e).status : "orphan");
+  }
+  const currentPt = new Set(translations.filter((t) => status.get(t.enPath) === "current").map((t) => t.enPath));
+  /** The rule src/lib/translations.ts localizeHref applies. */
+  const localize = (href) => {
+    const i = href.indexOf("#");
+    const p = i === -1 ? href : href.slice(0, i);
+    const frag = i === -1 ? "" : href.slice(i + 1);
+    if (frag && !/^(faq-\d+|answer)$/.test(frag)) return href;
+    return currentPt.has(p) ? `/pt-br${href}` : href;
+  };
+  const sm = fs.existsSync(`${ROOT}/sitemap.xml.body`) ? fs.readFileSync(`${ROOT}/sitemap.xml.body`, "utf8") : "";
+  const smRows = new Map(
+    [...sm.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(([, u]) => [
+      (/<loc>([^<]*)<\/loc>/.exec(u)?.[1] ?? "").replace(SITE, "") || "/",
+      /<lastmod>([^<]*)<\/lastmod>/.exec(u)?.[1]?.slice(0, 10),
+    ]),
+  );
+  const hreflangsOf = (html) =>
+    Object.fromEntries(
+      [...html.matchAll(/<link\b[^>]*\bhrefLang="([^"]+)"[^>]*>/gi)].map((m) => [m[1], /\bhref="([^"]*)"/.exec(m[0])?.[1]]),
+    );
+  const ptDate = (iso) =>
+    new Date(`${iso}T00:00:00Z`).toLocaleDateString("pt-BR", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
+  const today = new Date().toISOString().slice(0, 10);
+
+  let stale = 0;
+  // What the faithfulness checks compared, printed so a vacuous pass shows.
+  const seen = { numbers: 0, links: 0, external: 0, code: 0, quotes: 0 };
+  for (const t of translations) {
+    const st = status.get(t.enPath);
+    const e = english.get(t.enPath);
+    if (st === "orphan") {
+      problems.push(`PTBR-ORPHAN  ${t.file} translates ${t.enPath}, which is not a built English page — delete the translation in the same change`);
+      continue;
+    }
+    if (st === "stale") stale++;
+    const pt = htmlOf(t.path);
+    const en = htmlOf(t.enPath);
+    if (!pt || notFoundSet.has(t.path)) {
+      problems.push(`PTBR-NOT-BUILT  ${t.path} has a translation file but no built page`);
+      continue;
+    }
+    const tag = `${t.path} (${st})`;
+
+    // Status, as the page renders it, against the status computed here.
+    const shown = /\bdata-ptbr-status="([a-z]+)"/.exec(pt)?.[1];
+    if (shown !== st) problems.push(`PTBR-STATUS  ${t.path} renders status ${shown ?? "(none)"} but the English entry's hash says ${st}`);
+
+    // The freshness mechanism itself.
+    const robots = robotsOf(pt).join(" ");
+    const notice = region(pt, /<aside[^>]*\bdata-ptbr-stale-notice/);
+    const enLink = new RegExp(`href="${t.enPath}"`);
+    if (st === "stale") {
+      if (!/noindex/i.test(robots)) problems.push(`PTBR-STALE-RENDER  ${tag} does not render noindex`);
+      if (!notice || !enLink.test(notice)) problems.push(`PTBR-STALE-RENDER  ${tag} has no stale notice linking ${t.enPath}`);
+    } else {
+      if (/noindex/i.test(robots)) problems.push(`PTBR-CURRENT-RENDER  ${tag} renders noindex`);
+      if (notice) problems.push(`PTBR-CURRENT-RENDER  ${tag} renders the stale notice`);
+    }
+    const listed = smRows.has(t.path);
+    if (st === "current" && (!listed || smRows.get(t.path) !== t.translatedOn)) {
+      problems.push(`PTBR-SITEMAP  ${tag} ${listed ? `has lastmod ${smRows.get(t.path)}, not its translatedOn ${t.translatedOn}` : "is not in sitemap.xml"}`);
+    }
+    if (st === "stale" && listed) problems.push(`PTBR-SITEMAP  ${tag} is in sitemap.xml`);
+
+    // hreflang both ways while current, on neither page once stale; the
+    // language switch on the English page follows the same rule.
+    const want = { en: `${SITE}${t.enPath}`, "pt-BR": `${SITE}${t.path}`, "x-default": `${SITE}${t.enPath}` };
+    const enSwitch = en ? new RegExp(`<a\\b[^>]*\\bhref="${t.path}"[^>]*\\bdata-lang-switch="pt-BR"|<a\\b[^>]*\\bdata-lang-switch="pt-BR"[^>]*\\bhref="${t.path}"`).test(en) : false;
+    for (const [where, html] of [["pt", pt], ["en", en ?? ""]]) {
+      const got = hreflangsOf(html);
+      if (st === "current") {
+        for (const [k, v] of Object.entries(want)) {
+          if (got[k] !== v) problems.push(`PTBR-HREFLANG  ${tag}: the ${where} page's hreflang ${k} is ${got[k] ?? "(missing)"}, expected ${v}`);
+        }
+      } else if (got["pt-BR"]) {
+        problems.push(`PTBR-HREFLANG  ${tag}: the ${where} page still offers hreflang pt-BR`);
+      }
+    }
+    if (st === "current" && !enSwitch) problems.push(`PTBR-HREFLANG  ${t.enPath} has no language switch to its current translation`);
+    if (st === "stale" && enSwitch) problems.push(`PTBR-HREFLANG  ${t.enPath} still links its stale translation as a language switch`);
+    if (canonicalOf(pt) !== `${SITE}${t.path}`) problems.push(`PTBR-CANONICAL  ${t.path} canonical is ${canonicalOf(pt)}, not itself`);
+
+    // Dates: the English page's verification date, labelled; never a new one.
+    const verified = st === "current" ? e.updated : t.sourceUpdated;
+    const vAttr = /\bdata-ptbr-verified="([^"]*)"/.exec(pt)?.[1];
+    const vText = `Verificado em ${ptDate(verified)} (versão em inglês)`;
+    if (vAttr !== verified || !textOf(pt).includes(vText)) {
+      problems.push(`PTBR-DATES  ${tag} must show "${vText}" (found data-ptbr-verified=${vAttr ?? "none"})`);
+    }
+    if (!(t.sourceUpdated <= t.translatedOn && t.translatedOn <= today && t.sourceUpdated <= e.updated)) {
+      problems.push(`PTBR-DATES  ${t.file}: sourceUpdated ${t.sourceUpdated} / translatedOn ${t.translatedOn} out of order (English updated ${e.updated}, today ${today})`);
+    }
+    if (st === "current") {
+      const missing = (e.sources ?? []).filter((s) => !pt.includes(`href="${s.url.replace(/&/g, "&amp;")}"`));
+      if (missing.length) problems.push(`PTBR-SOURCES  ${tag} omits ${missing.length} of the English page's checked sources: ${short(missing.map((s) => s.url))}`);
+    }
+
+    // Shape: one translated FAQ per English FAQ, one step per step, the
+    // English related links in the English order.
+    const relHrefs = t.related.map((r) => r.href).join(" ");
+    if (t.faqs.length !== e.faqs.length || t.steps.length !== (e.steps ?? []).length || relHrefs !== e.related.map((r) => r.href).join(" ")) {
+      problems.push(
+        `PTBR-STRUCTURE  ${t.file}: ${t.faqs.length}/${e.faqs.length} FAQs, ${t.steps.length}/${(e.steps ?? []).length} steps, related ${relHrefs === e.related.map((r) => r.href).join(" ") ? "match" : "differ from the English hrefs or order"}`,
+      );
+    }
+
+    if (!en) continue;
+    const P = parts(pt);
+    const E = parts(en);
+
+    // Numbers, both directions, per block.
+    const blocks = [
+      ["capsule", E.capsule, P.capsule],
+      ["body", E.body, P.body],
+      ...E.faqs.map((f, i) => [`faq-${i + 1}`, f, P.faqs[i] ?? ""]),
+      ...(e.steps ?? []).map((s, i) => [`step-${i + 1}`, `${s.name} ${s.text}`, t.steps[i] ? `${t.steps[i].name} ${t.steps[i].text}` : ""]),
+    ];
+    for (const [where, a, b] of blocks) {
+      const na = numbers(textOf(a));
+      const nb = numbers(textOf(b));
+      seen.numbers += na.size;
+      const lost = diff(na, nb);
+      const added = diff(nb, na);
+      if (lost.length) problems.push(`PTBR-NUMBERS  ${t.path} ${where} drops ${short(lost)} from the English text`);
+      if (added.length) problems.push(`PTBR-NUMBERS  ${t.path} ${where} adds ${short(added)} that the English text does not have`);
+    }
+    const metaNums = numbers(`${t.metaTitle} ${t.metaDescription} ${t.h1}`);
+    const enMetaNums = numbers(`${e.metaTitle} ${e.metaDescription} ${e.h1}`);
+    const metaAdded = diff(metaNums, enMetaNums);
+    if (metaAdded.length) problems.push(`PTBR-NUMBERS  ${t.path} title/description/h1 add ${short(metaAdded)}`);
+
+    // Links in the body: the English body's internal links, localized by the
+    // site's rule, and its external sources — no more, no fewer.
+    const enInternal = new Set([...e.body.matchAll(/\]\((\/[^)\s]*)\)/g)].map((m) => localize(m[1])));
+    const ptHrefs = hrefsOf(P.body);
+    const ptInternal = new Set(ptHrefs.filter((h) => h.startsWith("/")));
+    seen.links += enInternal.size;
+    const lostI = diff(enInternal, ptInternal);
+    const addedI = diff(ptInternal, enInternal);
+    if (lostI.length || addedI.length) {
+      problems.push(`PTBR-LINKS  ${t.path} body links differ from the English body's (localized): missing ${short(lostI) || "none"}; extra ${short(addedI) || "none"}`);
+    }
+    const relWant = t.related.map((r) => localize(r.href));
+    const relSection = (() => {
+      const i = pt.search(/>Continue lendo</);
+      if (i === -1) return "";
+      const start = pt.lastIndexOf("<section", i);
+      return start === -1 ? "" : elementAt(pt, start);
+    })();
+    const relGot = hrefsOf(relSection);
+    if (relGot.join(" ") !== relWant.join(" ")) {
+      problems.push(`PTBR-LINKS  ${t.path} related links render ${short(relGot)}, expected ${short(relWant)}`);
+    }
+    const enExt = new Set(hrefsOf(E.body).filter((h) => /^https?:/.test(h)));
+    const ptExt = new Set(ptHrefs.filter((h) => /^https?:/.test(h)));
+    seen.external += enExt.size;
+    const lostX = diff(enExt, ptExt);
+    const addedX = diff(ptExt, enExt);
+    if (lostX.length || addedX.length) {
+      problems.push(`PTBR-EXTERNAL  ${t.path} external links differ from the English body's: missing ${short(lostX) || "none"}; extra ${short(addedX) || "none"}`);
+    }
+
+    // Code and quoted source text stay exactly as in English.
+    seen.code += codesOf(E.body).size;
+    const lostCode = diff(codesOf(E.body), codesOf(P.body));
+    if (lostCode.length) problems.push(`PTBR-CODE  ${t.path} changes or drops code spans: ${short(lostCode.map((c) => JSON.stringify(c.slice(0, 60))))}`);
+    // Prose only: code carries its own quotation marks (PTBR-CODE holds it),
+    // and one odd count inside a block would pair every quote after it wrongly.
+    const prose = (h) => textOf(h.replace(/<pre\b[\s\S]*?<\/pre>/g, " ").replace(/<code\b[\s\S]*?<\/code>/g, " "));
+    const enText = prose(E.body);
+    const ptText = prose(P.body);
+    const quotes = new Set();
+    // Every pair is matched, short ones too ("NA"), and filtered after:
+    // skipping a short pair would pair its closing mark with the next
+    // opening one and read the prose between them as a quotation.
+    for (const m of enText.matchAll(/"([^"]*)"|“([^”]*)”/g)) {
+      const q = (m[1] ?? m[2]).trim();
+      if (q.split(/\s+/).length >= 2) quotes.add(q);
+    }
+    // Block quotes are not collected: on this site they hold editorial
+    // callouts ("Checked against Strava's own pages on …"), which translate;
+    // source text is always in quotation marks.
+    seen.quotes += quotes.size;
+    const lostQ = [...quotes].filter((q) => !ptText.includes(q));
+    if (lostQ.length) problems.push(`PTBR-QUOTES  ${t.path} does not keep ${lostQ.length} quoted source passage(s) verbatim: ${short(lostQ.map((q) => JSON.stringify(q.slice(0, 50))), 3)}`);
+
+    // First-party pages: the translated disclosure, and KinesteX mentioned in
+    // the body exactly as often as in English (no added praise, no omission).
+    if (e.firstParty) {
+      const disc = region(pt, /<aside[^>]*\bdata-ptbr-disclosure/);
+      if (!/KinesteX/.test(disc) || !/financia este site/.test(disc)) problems.push(`PTBR-DISCLOSURE  ${t.path} is first-party but renders no translated disclosure`);
+    }
+    const kx = (h) => (textOf(h).match(/KinesteX/g) ?? []).length;
+    if (kx(E.body) !== kx(P.body) || kx(E.capsule) !== kx(P.capsule)) {
+      problems.push(`PTBR-DISCLOSURE  ${t.path} mentions KinesteX ${kx(P.body)}+${kx(P.capsule)}× (body+capsule) where English has ${kx(E.body)}+${kx(E.capsule)}×`);
+    }
+  }
+
+  // Language of every page.
+  for (const h of htmls) {
+    const r = routeOf(h);
+    if (r.startsWith("/_") || notFoundSet.has(r)) continue;
+    const lang = /<html\b[^>]*\blang="([^"]*)"/.exec(fs.readFileSync(h, "utf8"))?.[1];
+    const wantLang = r === "/pt-br" || r.startsWith("/pt-br/") ? "pt-BR" : "en";
+    if (lang !== wantLang) problems.push(`PTBR-LANG  ${r} renders <html lang="${lang}">, expected "${wantLang}"`);
+  }
+
+  // The index: lists every built translation, and asks to be indexed only
+  // with at least three current ones.
+  const built = translations.filter((t) => status.get(t.enPath) !== "orphan");
+  const current = built.filter((t) => status.get(t.enPath) === "current").length;
+  if (built.length) {
+    const idx = htmlOf("/pt-br");
+    if (!idx) problems.push("PTBR-INDEX  /pt-br is not built");
+    else {
+      const noindex = robotsOf(idx).some((c) => /noindex/i.test(c));
+      if (noindex !== current < 3) problems.push(`PTBR-INDEX  /pt-br ${noindex ? "is noindex" : "is indexable"} with ${current} current translations (noindex below 3)`);
+      if (!noindex !== smRows.has("/pt-br")) problems.push(`PTBR-INDEX  /pt-br sitemap row disagrees with its robots meta`);
+      const links = new Set(hrefsOf(idx));
+      const unlisted = built.filter((t) => !links.has(t.path)).map((t) => t.path);
+      if (unlisted.length) problems.push(`PTBR-INDEX  /pt-br does not list ${short(unlisted)}`);
+    }
+  }
+
+  // The machine surfaces stay English-only: they index the English pages,
+  // and a translation is reachable from its English page's hreflang.
+  for (const f of ["llms.txt", "llms-full.txt", "answers.json", "search-index.json"]) {
+    const p = `${ROOT}/${f}.body`;
+    if (fs.existsSync(p) && fs.readFileSync(p, "utf8").includes("/pt-br/")) {
+      problems.push(`PTBR-SURFACES  /${f} lists a /pt-br page`);
+    }
+  }
+
+  console.log(
+    `Translations: ${translations.length} pt-BR pages, ${current} current, ${stale} stale` +
+      (stale ? " (noindex, out of sitemap and hreflang — run node scripts/translation-status.mjs)" : "") +
+      `; held to the English pages: ${seen.numbers} numbers, ${seen.links} internal and ${seen.external} external links, ` +
+      `${seen.code} code spans, ${seen.quotes} quoted passages.`,
   );
 }
 

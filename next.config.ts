@@ -119,6 +119,9 @@ const nextConfig: NextConfig = {
         source: `/${c}/:slug.md`,
         destination: `/md/${c}/:slug`,
       })),
+      // The Portuguese edition's mirrors (src/app/pt-br/md), at the same
+      // convention: the translated page's URL with `.md` appended.
+      { source: "/pt-br/:cluster/:slug.md", destination: "/pt-br/md/:cluster/:slug" },
     ];
   },
   async headers() {
@@ -145,7 +148,9 @@ const nextConfig: NextConfig = {
       // (/index.md, /blog.md, /fix.md, /fix/<slug>.md), which is how those
       // requests look when header rules see them. `.*` with an empty match
       // keeps `/` itself covered, as `/:path*` did.
-      { source: "/:path((?!md(?:/|$))(?!.*\\.md$).*)", headers: [describedBy] },
+      // The Portuguese mirrors' implementation address (/pt-br/md/*) is skipped
+      // for the same reason.
+      { source: "/:path((?!md(?:/|$))(?!pt-br/md(?:/|$))(?!.*\\.md$).*)", headers: [describedBy] },
       {
         source: `/blog/:slug(${SLUG})`,
         headers: [
@@ -171,6 +176,24 @@ const nextConfig: NextConfig = {
           },
         ],
       })),
+      // The Portuguese edition (ops/SEO-10-2026-10-27.md item 10): its pages
+      // say their language in the HTTP header as well as in <html lang>, and
+      // a translated spoke names its own markdown mirror like an English one.
+      {
+        source: "/pt-br/:path*",
+        headers: [{ key: "Content-Language", value: "pt-BR" }],
+      },
+      {
+        source: `/pt-br/:cluster([a-z-]+)/:slug(${SLUG})`,
+        headers: [
+          {
+            key: "Link",
+            value:
+              `<${SITE}/pt-br/:cluster/:slug.md>; rel="alternate"; type="text/markdown", ` +
+              `<${SITE}/llms.txt>; rel="describedby"; type="text/plain"`,
+          },
+        ],
+      },
       // The OpenSearch descriptor is for browsers (the <link rel="search"> in
       // every page's head), not for a results page, yet Google showed it 26
       // times in the 28 days to 2026-10-24 for "fitness api" at position 50

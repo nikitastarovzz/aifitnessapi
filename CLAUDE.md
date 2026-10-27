@@ -90,6 +90,36 @@ verification stamp is a quality signal, not metadata.
 - Bumping an `updated` stamp without actually re-checking the sources is
   falsifying the one number the reader is trusting. Re-verify or leave it.
 
+### Translations (pt-BR)
+
+Ten money pages have a Brazilian Portuguese edition at `/pt-br/<cluster>/<slug>`
+(ops/SEO-10-2026-10-27.md item 10), one file each in
+`content/translations/pt-BR/<cluster>/<slug>.md`, rendered by the same
+`ClusterPage`. A translation is a rendering of the English page, never a
+re-verification: it shows the English `updated` date labelled "(versão em
+inglês)", and translating never moves an English stamp.
+
+- **How stale works.** Each file records `sourceHash`, the hash of the English
+  entry's translatable text when it was translated (`src/lib/translationStore.mjs`).
+  Edit the English page and the hash moves: the translation turns stale on the
+  next build by itself — noindex, out of the sitemap and hreflang, a notice in
+  Portuguese linking the English page, other translations link English instead.
+  English work never waits on a translation. `node scripts/translation-status.mjs`
+  lists current and stale pages; `npm run qa` prints the count.
+- **How to re-translate.** Translate the English page as it now stands, then
+  set `sourceHash` from `node scripts/translation-status.mjs --hash <english path>`,
+  `sourceUpdated` to the English `updated`, `translatedOn` to today. Pasting a
+  new hash over old Portuguese is the same falsehood as bumping `updated`.
+- **What qa holds (PTBR-\*).** Every number, internal link (localized),
+  external source, code span and quoted source passage of the English page,
+  and nothing added; quoted vendor, licence and agreement text stays in
+  English with an optional `[gloss]`; first-party pages carry the translated
+  disclosure and name KinesteX exactly as often as English does.
+- **Removing an English page** that has a translation: delete the translation
+  in the same change (PTBR-ORPHAN). **Translating a page in a new cluster:**
+  add `languageAlternates` to that cluster's `[slug]/page.tsx` and a label to
+  `HUB_LABELS_PT` in `src/lib/translations.ts`, or PTBR-HREFLANG fails.
+
 ## Binding documents
 
 - `ops/GEO.md` — citation/GEO rules; binds every content change. First-party

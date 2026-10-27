@@ -22,7 +22,8 @@ import Feedback from "@/components/Feedback";
 import VendorHubMenu from "@/components/VendorHubMenu";
 import { formatDate } from "@/lib/posts";
 import { site, absoluteUrl } from "@/lib/site";
-import { spokeGraph, markdownUrl } from "@/lib/schema";
+import { spokeGraph, translationGraph, markdownUrl } from "@/lib/schema";
+import { currentPtPath, formatDatePt, PT_PREFIX, type TranslationView } from "@/lib/translations";
 import { heroSeed } from "@/lib/cluster";
 import { clusterMap, clusterNeighbors } from "@/lib/clusterRegistry";
 import { relatedAcrossSite } from "@/lib/related";
@@ -121,20 +122,37 @@ const TOOL_FOR_PATH: Record<string, keyof typeof TOOLS> = {
 export default function ClusterPage({
   entry,
   config,
+  translation,
+  sourceBody,
 }: {
   entry: ClusterEntry;
   config: ClusterConfig;
+  /**
+   * Render as a translation (src/lib/translations.ts): `entry` holds the
+   * translated text, `config.basePath` the translated section path, and the
+   * chrome switches to the translation's language. English-only blocks (tool
+   * and vendor menus, matrix facts, cross-site reading lists) are left out
+   * rather than shown untranslated. Absent, the page renders exactly as an
+   * English spoke always has.
+   */
+  translation?: TranslationView;
+  /** With `translation`: the English body, whose links are the citations. */
+  sourceBody?: string;
 }) {
   const { basePath, hubLabel } = config;
   const url = absoluteUrl(`${basePath}/${entry.slug}`);
   const capsuleId = "answer";
+  const tr = translation;
 
   const path = `${basePath}/${entry.slug}`;
   const mdUrl = markdownUrl(path);
+  // The current translation of this English page, for the language switch.
+  const ptPath = tr ? null : currentPtPath(path);
   // First mention of each glossary concept becomes a link (never inside code
   // or an existing link — see lib/autolink), so the vocabulary is navigable
-  // without a writer remembering to wire it.
-  const body = autolinkGlossary(entry.body, path);
+  // without a writer remembering to wire it. The glossary is English, so a
+  // translation keeps its own links only.
+  const body = tr ? entry.body : autolinkGlossary(entry.body, path);
   const toc = headings(entry.body);
   const minutes = Math.max(1, Math.round(readingTime(entry.body).minutes));
   const alsoRead = relatedAcrossSite(basePath, entry.slug);
@@ -152,7 +170,18 @@ export default function ClusterPage({
 
   // TechArticle + WebPage graph (review metadata, glossary `about` links,
   // citations, markdown encoding). Built centrally so every spoke agrees.
-  const graphJsonLd = spokeGraph({ entry, basePath, hubLabel, capsuleId });
+  const graphJsonLd = tr
+    ? translationGraph({
+        entry,
+        path,
+        enPath: tr.enPath,
+        inLanguage: tr.lang,
+        translatedOn: tr.translatedOn,
+        hubLabel,
+        sourceBody: sourceBody ?? "",
+        capsuleId,
+      })
+    : spokeGraph({ entry, basePath, hubLabel, capsuleId });
 
   // Emit HowTo alongside Article for step-based how-to pages (§7).
   const howToJsonLd = entry.steps?.length
@@ -214,11 +243,19 @@ export default function ClusterPage({
 
       <article className="mx-auto max-w-2xl">
         <Breadcrumbs
-          trail={[
-            { name: "Home", path: "/" },
-            { name: hubLabel, path: basePath },
-            { name: entry.h1, path: `${basePath}/${entry.slug}` },
-          ]}
+          trail={
+            tr
+              ? [
+                  { name: "Home", path: "/" },
+                  { name: "Em português", path: PT_PREFIX },
+                  { name: entry.h1, path },
+                ]
+              : [
+                  { name: "Home", path: "/" },
+                  { name: hubLabel, path: basePath },
+                  { name: entry.h1, path: `${basePath}/${entry.slug}` },
+                ]
+          }
         />
 
         <ClusterHero label={hubLabel} seed={heroSeed(basePath)} />
@@ -227,13 +264,62 @@ export default function ClusterPage({
           {entry.h1}
         </h1>
         <div className="mt-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
-          <p className="text-sm text-[var(--muted)]">
-            Last verified {formatDate(entry.updated)}
-            <ContentAge date={entry.updated} /> · {minutes} min read
-          </p>
+          {tr ? (
+            // A translation is not a re-verification: the date is the English
+            // page's, and says so (qa's PTBR-DATES holds it to that date).
+            <p className="text-sm text-[var(--muted)]" data-ptbr-verified={entry.updated}>
+              Verificado em {formatDatePt(entry.updated)} (versão em inglês)
+              <ContentAge date={entry.updated} locale="pt-BR" /> · Traduzido em{" "}
+              {formatDatePt(tr.translatedOn)} · {minutes} min de leitura ·{" "}
+              <Link
+                href={tr.enPath}
+                hrefLang="en"
+                lang="en"
+                data-lang-switch="en"
+                className="text-brand-600 hover:text-brand-500"
+              >
+                Read in English
+              </Link>
+            </p>
+          ) : (
+            <p className="text-sm text-[var(--muted)]">
+              Last verified {formatDate(entry.updated)}
+              <ContentAge date={entry.updated} /> · {minutes} min read
+              {ptPath && (
+                <>
+                  {" · "}
+                  <Link
+                    href={ptPath}
+                    hrefLang="pt-BR"
+                    lang="pt-BR"
+                    data-lang-switch="pt-BR"
+                    className="text-brand-600 hover:text-brand-500"
+                  >
+                    Leia em português
+                  </Link>
+                </>
+              )}
+            </p>
+          )}
           {/* Save-for-later. Browser-local, no account — see BookmarkButton. */}
-          <BookmarkButton path={path} title={entry.h1} />
+          {!tr && <BookmarkButton path={path} title={entry.h1} />}
         </div>
+
+        {tr?.status === "stale" && (
+          <aside
+            role="note"
+            data-ptbr-stale-notice
+            className="mt-6 rounded-xl border border-amber-400/50 bg-amber-500/10 px-4 py-3 text-sm text-[var(--fg)]"
+          >
+            <strong>Tradução desatualizada.</strong> A página em inglês mudou depois desta
+            tradução, feita em {formatDatePt(tr.translatedOn)}, e o texto abaixo pode não
+            refletir o que ela diz hoje. A versão atual é a original em inglês:{" "}
+            <Link href={tr.enPath} hrefLang="en" lang="en" className="text-brand-600 underline hover:text-brand-500">
+              {tr.enH1}
+            </Link>
+            .
+          </aside>
+        )}
 
         {/* What the "Last verified" date above was checked against. Collapsed
             so it stays one line until a reader asks; renders nothing for an
@@ -246,8 +332,8 @@ export default function ClusterPage({
           return (
             <details className="mt-2 text-sm text-[var(--muted)]">
               <summary className="cursor-pointer select-none hover:text-[var(--fg)]">
-                Sources checked ({sources.length})
-                {sameDay && <> · {formatDate(sources[0].checked)}</>}
+                {tr ? "Fontes conferidas na versão em inglês" : "Sources checked"} ({sources.length})
+                {sameDay && <> · {tr ? formatDatePt(sources[0].checked) : formatDate(sources[0].checked)}</>}
               </summary>
               <ul className="mt-2 space-y-1.5 border-l border-[var(--border)] pl-4">
                 {sources.map((s) => (
@@ -260,7 +346,11 @@ export default function ClusterPage({
                       {s.url.replace(/^https?:\/\//, "")}
                     </a>
                     {s.note && <span> — {s.note}</span>}
-                    {!sameDay && <span className="text-xs"> · checked {formatDate(s.checked)}</span>}
+                    {!sameDay && (
+                      <span className="text-xs">
+                        {tr ? ` · conferida em ${formatDatePt(s.checked)}` : ` · checked ${formatDate(s.checked)}`}
+                      </span>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -268,7 +358,25 @@ export default function ClusterPage({
           );
         })()}
 
-        {entry.firstParty && (
+        {entry.firstParty && tr && (
+          <aside
+            role="note"
+            data-ptbr-disclosure
+            className="mt-6 rounded-xl border border-amber-400/40 bg-amber-500/10 px-4 py-3 text-sm text-[var(--fg)]"
+          >
+            <strong>Aviso de conflito de interesse:</strong> a KinesteX, empresa que financia este
+            site, vende um SDK de rastreamento de movimento, e esta página trata dele ou de produtos
+            que concorrem com ele. Os fatos abaixo vêm de repositórios públicos e das páginas
+            publicadas pelos próprios fornecedores, os pontos fortes dos concorrentes estão
+            declarados, e o que não conseguimos verificar está indicado — veja{" "}
+            <Link href="/methodology" className="text-brand-600 underline hover:text-brand-500">
+              como verificamos
+            </Link>{" "}
+            (em inglês).
+          </aside>
+        )}
+
+        {entry.firstParty && !tr && (
           <aside
             role="note"
             className="mt-6 rounded-xl border border-amber-400/40 bg-amber-500/10 px-4 py-3 text-sm text-[var(--fg)]"
@@ -298,15 +406,19 @@ export default function ClusterPage({
             a slug with no hand-authored drawing. */}
         {basePath === "/architecture" && <ArchDiagram slug={entry.slug} />}
 
-        <PageActions path={path} url={url} title={entry.h1} updated={entry.updated} />
+        {!tr && <PageActions path={path} url={url} title={entry.h1} updated={entry.updated} />}
 
-        <FaqJump questions={entry.faqs.map((f) => f.q)} />
+        <FaqJump
+          questions={entry.faqs.map((f) => f.q)}
+          label={tr ? "Perguntas respondidas aqui" : undefined}
+          navLabel={tr ? "Perguntas respondidas nesta página" : undefined}
+        />
 
         {/* On a vendor's hub (data/vendorHubs.ts), every page about the vendor,
             up front. Renders nothing on any other page. */}
-        <VendorHubMenu path={path} placement="top" />
+        {!tr && <VendorHubMenu path={path} placement="top" />}
 
-        {products.length > 0 && (
+        {!tr && products.length > 0 && (
           <p className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-[var(--muted)]">
             <span>Covered here:</span>
             {products.map((p) => (
@@ -321,7 +433,7 @@ export default function ClusterPage({
           </p>
         )}
 
-        {tool && (
+        {!tr && tool && (
           <aside
             data-try-tool
             aria-label="Related tool"
@@ -340,19 +452,19 @@ export default function ClusterPage({
           </aside>
         )}
 
-        <div className="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-headings:scroll-mt-24 prose-a:text-brand-600 hover:prose-a:text-brand-500 prose-th:text-left prose-pre:rounded-xl prose-pre:border prose-pre:border-[var(--border)]">
+        <div data-article-body className="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-headings:scroll-mt-24 prose-a:text-brand-600 hover:prose-a:text-brand-500 prose-th:text-left prose-pre:rounded-xl prose-pre:border prose-pre:border-[var(--border)]">
           <Mdx source={body} />
         </div>
 
         {/* The metric's type on every platform with a generated reference,
             from data/metricTypeMap.ts. Renders nothing off the /data guides
             the map covers. */}
-        <MetricPlatforms path={path} />
+        {!tr && <MetricPlatforms path={path} />}
 
         {entry.faqs.length > 0 && (
           <section className="mt-14">
             <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">
-              Frequently asked questions
+              {tr ? "Perguntas frequentes" : "Frequently asked questions"}
             </h2>
             <dl className="mt-6 divide-y divide-[var(--border)]">
               {entry.faqs.map((f, i) => (
@@ -362,7 +474,7 @@ export default function ClusterPage({
                 </div>
               ))}
             </dl>
-            {clusterEntries.length > 0 && (
+            {!tr && clusterEntries.length > 0 && (
               <p className="mt-2 text-sm">
                 <Link
                   href={`/questions/${basePath.replace(/^\//, "")}`}
@@ -377,14 +489,19 @@ export default function ClusterPage({
 
         {/* Every page about the vendor(s) this page belongs to, with the hub
             marked. Renders nothing on a page that is no vendor's. */}
-        <VendorHubMenu path={path} placement="end" />
+        {!tr && <VendorHubMenu path={path} placement="end" />}
 
-        <ClusterCta pitch={entry.cta.pitch} source="spoke-inline" id={`cta-${entry.slug}`} />
+        <ClusterCta
+          pitch={entry.cta.pitch}
+          source="spoke-inline"
+          id={tr ? `cta-ptbr-${entry.slug}` : `cta-${entry.slug}`}
+          locale={tr ? "pt-BR" : undefined}
+        />
 
         {entry.related.length > 0 && (
           <section className="mt-4">
             <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
-              Keep reading
+              {tr ? "Continue lendo" : "Keep reading"}
             </h2>
             <ul className="mt-4 grid gap-3 sm:grid-cols-2">
               {entry.related.map((r) => (
@@ -393,7 +510,12 @@ export default function ClusterPage({
                     href={r.href}
                     className="block rounded-xl border border-[var(--border)] p-4 text-sm font-medium text-[var(--fg)] transition-colors hover:border-brand-400 hover:bg-[var(--surface)]"
                   >
-                    {r.label} →
+                    {r.label}
+                    {/* A link a translation could not localize leads to English. */}
+                    {tr && !r.href.startsWith(`${PT_PREFIX}/`) && (
+                      <span className="font-normal text-[var(--muted)]"> (em inglês)</span>
+                    )}{" "}
+                    →
                   </Link>
                 </li>
               ))}
@@ -401,7 +523,7 @@ export default function ClusterPage({
           </section>
         )}
 
-        {(() => {
+        {!tr && (() => {
           const { prev, next } = clusterNeighbors(basePath, entry.slug);
           if (!prev && !next) return null;
           return (
@@ -432,13 +554,17 @@ export default function ClusterPage({
 
         {/* Verified platform facts, on the guides that have a matrix row.
             Renders nothing everywhere else. */}
-        <MetricFacts path={path} />
-        <AppStack path={path} />
-        <ReferenceCallout path={path} />
-        <PostLinks path={path} />
-        <KinestexNote path={path} />
+        {!tr && (
+          <>
+            <MetricFacts path={path} />
+            <AppStack path={path} />
+            <ReferenceCallout path={path} />
+            <PostLinks path={path} />
+            <KinestexNote path={path} />
+          </>
+        )}
 
-        {alsoRead.length > 0 && (
+        {!tr && alsoRead.length > 0 && (
           <section className="defer-paint mt-12">
             <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
               Elsewhere on the site
@@ -464,18 +590,31 @@ export default function ClusterPage({
           </section>
         )}
 
-        <NextSteps />
+        {!tr && <NextSteps />}
 
-        <Feedback path={path} title={entry.h1} repo={site.social.github || undefined} />
+        {!tr && <Feedback path={path} title={entry.h1} repo={site.social.github || undefined} />}
 
-        <ClusterDisclaimer updated={entry.updated} variant={config.disclaimer} />
+        <ClusterDisclaimer
+          updated={entry.updated}
+          variant={config.disclaimer}
+          locale={tr ? "pt-BR" : undefined}
+        />
 
-        <p className="mt-8 text-sm">
-          <Link href={basePath} className="text-brand-600 hover:text-brand-500">
-            ← All {hubLabel.toLowerCase()}
-          </Link>{" "}
-          <span className="text-[var(--muted)]">· by {site.name}</span>
-        </p>
+        {tr ? (
+          <p className="mt-8 text-sm">
+            <Link href={PT_PREFIX} className="text-brand-600 hover:text-brand-500">
+              ← Todas as páginas em português
+            </Link>{" "}
+            <span className="text-[var(--muted)]">· {site.name}</span>
+          </p>
+        ) : (
+          <p className="mt-8 text-sm">
+            <Link href={basePath} className="text-brand-600 hover:text-brand-500">
+              ← All {hubLabel.toLowerCase()}
+            </Link>{" "}
+            <span className="text-[var(--muted)]">· by {site.name}</span>
+          </p>
+        )}
       </article>
     </Container>
   );
