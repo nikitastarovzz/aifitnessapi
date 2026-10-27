@@ -52,7 +52,7 @@
   {
     "claim": "Terra bills credits for each connected data source and for events past a free allowance.",
     "url": "https://tryterra.co/pricing",
-    "quote": "Two things consume credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
+    "quote": "Two things consume Unified API credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 Unified API credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
   },
   {
     "claim": "Rook bills by active users.",
@@ -112,7 +112,7 @@
   {
     "claim": "Terra: $399 a month billed annually ($499 monthly), 100,000 credits included.",
     "url": "https://tryterra.co/pricing",
-    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly. That includes 100,000 credits each month for the Unified API, and you only pay extra if your usage goes beyond them."
+    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly. That includes 100,000 Unified API credits each month, and you only pay extra if your usage goes beyond them."
   },
   {
     "claim": "Terra's integrations table marks Garmin as Required.",
@@ -277,12 +277,12 @@
   {
     "claim": "Open Wearables: MIT-licensed software you host yourself.",
     "url": "https://openwearables.io/pricing",
-    "quote": "Open Source Free forever Self-hosted wearable data infrastructure under MIT license."
+    "quote": "For teams building their first wearable features. You run the open-source platform yourself. $0 Forever"
   },
   {
-    "claim": "Open Wearables: free open-source core; custom Enterprise.",
+    "claim": "Open Wearables: free open-source Core; Pro from $999 a month per deployment; custom Enterprise.",
     "url": "https://openwearables.io/pricing",
-    "quote": "Enterprise Custom pricing For funded companies and scale-stage health products"
+    "quote": "For products in production. Licensed modules, with our engineers behind your deployment. From $999 a month, per deployment"
   },
   {
     "claim": "Open Wearables: you register with each cloud provider.",
@@ -322,17 +322,17 @@
   {
     "claim": "Terra subscriptions start \"from $399 per month billed annually, or $499 per month billed monthly\", including 100,000 credits a month.",
     "url": "https://tryterra.co/pricing",
-    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly. That includes 100,000 credits each month for the Unified API, and you only pay extra if your usage goes beyond them."
+    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly. That includes 100,000 Unified API credits each month, and you only pay extra if your usage goes beyond them."
   },
   {
-    "claim": "\"An active authentication is one connected data source for one end user, and costs 200 credits per month\", and the first 400 events per active authentication each month are free.",
+    "claim": "\"An active authentication is one connected data source for one end user, and costs 200 Unified API credits per month\", and the first 400 events per active authentication each month are free.",
     "url": "https://tryterra.co/pricing",
-    "quote": "Two things consume credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
+    "quote": "Two things consume Unified API credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 Unified API credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
   },
   {
     "claim": "The starting rate is $0.005 per credit (used in our arithmetic: 200 credits x $0.005 = about one dollar per source per month; 100,000 / 200 = 500 sources).",
     "url": "https://tryterra.co/pricing",
-    "quote": "Only pay more when you go beyond 100,000 credits. Starting at $0.005 / credit."
+    "quote": "Only pay more when you go beyond 100,000 Unified API credits. Starting at $0.005 / credit."
   },
   {
     "claim": "Terra's docs say it \"manages API Keys of data sources\".",
@@ -600,9 +600,9 @@
     "quote": "Biomarkers 100+ Scores 5 Archetypes 100+ Tags 75+ Insights 100+"
   },
   {
-    "claim": "A 30-day free trial of whichever plan you choose, card required.",
+    "claim": "A 30-day free trial of whichever plan you choose.",
     "url": "https://sahha.ai/pricing/",
-    "quote": "Try any plan for 30 days The plan you choose, free for 30 days All products unlocked Card required, nothing charged today Cancel before it ends and pay nothing"
+    "quote": "Every plan starts with a 30-day free trial."
   },
   {
     "claim": "Starter: 1,000 users included and $0.40 per extra user.",
@@ -672,7 +672,7 @@
   {
     "claim": "\"BAA agreements included on all plans\".",
     "url": "https://www.thryve.health/certifications-compliance",
-    "quote": "BAA agreements included on all plans"
+    "quote": "Business Associate Agreements and Data Processing Agreements are standard on every plan"
   },
   {
     "claim": "No shared OAuth client for Google Health.",
@@ -720,11 +720,6 @@
     "quote": "with BAA available for Enterprise customers."
   },
   {
-    "claim": "Fitbit closed to new applications \"due to the transition to Google Health\".",
-    "url": "https://validic.com/features/supported-devices/",
-    "quote": "this vendor is temporarily not accepting new applications due to the transition to Google Health."
-  },
-  {
     "claim": "An \"Open-source platform that unifies wearable device data from multiple providers behind a single API\".",
     "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
     "quote": "Open-source platform that unifies wearable device data from multiple providers behind a single API and makes it available to AI."
@@ -740,19 +735,19 @@
     "quote": "The platform is designed for self-hosting, meaning each deployment serves a single organization."
   },
   {
-    "claim": "The open-source core is \"Free forever\".",
+    "claim": "The self-hosted Core is \"$0 Forever\".",
     "url": "https://openwearables.io/pricing",
-    "quote": "Open Source Free forever Self-hosted wearable data infrastructure under MIT license."
+    "quote": "For teams building their first wearable features. You run the open-source platform yourself. $0 Forever"
   },
   {
-    "claim": "Enterprise support is \"scoped per project\".",
+    "claim": "Pro, with health scores and other licensed modules, is \"From $999 a month, per deployment\".",
     "url": "https://openwearables.io/pricing",
-    "quote": "Enterprise is scoped per project."
+    "quote": "Everything in Core, plus The Pro modules, in your deployment Health scores Health agent Medical-grade integrations Observability"
   },
   {
-    "claim": "Enterprise support comes with a BAA.",
+    "claim": "Enterprise, with a BAA, is a custom-priced annual agreement.",
     "url": "https://openwearables.io/pricing",
-    "quote": "BAA is available on the Enterprise plan alongside HIPAA-eligible infrastructure and audit trail configuration."
+    "quote": "Enterprise Annual agreement"
   },
   {
     "claim": "\"You must apply for Garmin Developer Program\".",
@@ -832,7 +827,7 @@
   {
     "claim": "FAQ: approval can take weeks.",
     "url": "https://openwearables.io/faq",
-    "quote": "each wearable platform runs its own developer program, and approval ranges from immediate to several weeks depending on the provider."
+    "quote": "How long does provider approval usually take? From days to months, depending on the provider and on what you are building."
   },
   {
     "claim": "FAQ: Validic's Inform Developer plan is free for 5 users.",

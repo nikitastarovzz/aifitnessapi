@@ -15,6 +15,7 @@ import {
 } from "@/data/workoutTypePages";
 import PlatformPage from "../_platform";
 import ActivityPage from "../_activity";
+import { robotsFor } from "@/data/noindex";
 
 /**
  * /workout-types/<slug>: the four platform list pages (healthkit,
@@ -54,6 +55,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     title: { absolute: title },
     description,
     alternates: { canonical: path },
+    ...robotsFor(path),
     openGraph: { type: "article", title, description, url: path, modifiedTime: WT_FETCHED },
     twitter: { card: "summary_large_image", title, description },
   };

@@ -49,7 +49,7 @@ const DESCRIPTION =
   "Every content change on this site, straight from the operational log it is generated from: what shipped, when, and what prompted it.";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: "AIFitnessAPI Changelog: Every Content Change, Dated" },
   description: DESCRIPTION,
   alternates: { canonical: "/changelog" },
   openGraph: {

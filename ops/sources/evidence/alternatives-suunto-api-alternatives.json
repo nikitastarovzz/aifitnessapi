@@ -1,0 +1,112 @@
+[
+  {
+    "claim": "Switching: Suunto's API provides FIT files.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "The API provides you the FIT files common in sports industry."
+  },
+  {
+    "claim": "Switching: COROS Partner API FIT download.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/articles/53181766856724.json",
+    "quote": "getWorkoutDetailFit (FIT file download)"
+  },
+  {
+    "claim": "Capsule / why / FAQ: no personal use.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "We currently don't offer the API access for personal use."
+  },
+  {
+    "claim": "FAQ: access is for companies and organizations serving a public audience.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "The API will be provided to companies, organizations who are providing tools / apps / services for public audience."
+  },
+  {
+    "claim": "Why / FAQ: weekly review, maximum two-week wait.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "The applications are reviewed on weekly bases, so you have to wait few days prior getting the acceptance. There is maximum two week waiting period."
+  },
+  {
+    "claim": "Why: the API agreement is on the application form.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "When submitting your application you need to accept the API agreement."
+  },
+  {
+    "claim": "Why: no sleep data yet.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "The Suunto Cloud API doesn’t yet support the sleep data fetch/push."
+  },
+  {
+    "claim": "Why: personal data such as weight or heart rate zones not available yet.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "Personal data such as weight data or heartrate zones are not available yet from Suunto Cloud API"
+  },
+  {
+    "claim": "Why / aggregators / FAQ: Terra lists Suunto event-driven, Managed, Applications no longer open.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "Suunto SUUNTO Event-Driven Managed Applications no longer open"
+  },
+  {
+    "claim": "Terra's table explains Managed credentials: you may create your own credentials and give them to Terra.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "Managed credentials for integrations mean that you may create your own credentials and provide them to Terra, using the integration's developer dashboard"
+  },
+  {
+    "claim": "Thryve lists Suunto as a web source with historic data and shared OAuth client yes.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Suunto Web Bulk yes yes"
+  },
+  {
+    "claim": "Thryve's table columns include Historic data and Shared oAuth-client.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Historic data Shared oAuth-client"
+  },
+  {
+    "claim": "Open Wearables: you must apply for the Suunto Developer Program.",
+    "url": "https://openwearables.io/docs/providers/supported",
+    "quote": "You must apply for Suunto Developer Program"
+  },
+  {
+    "claim": "Spike lists Suunto.",
+    "url": "https://www.spikeapi.com/integrations",
+    "quote": "A sports watch brand focused on adventure and endurance activities like trail running and diving."
+  },
+  {
+    "claim": "Rook's SDKs integrate with Health Connect and Apple Health; the SDK-connected list follows.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "ROOK SDKs integrate directly with Health Connect (Android) and Apple Health (iOS)"
+  },
+  {
+    "claim": "Rook lists Suunto among SDK-connected sources.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "Suunto | Wearable"
+  },
+  {
+    "claim": "Sahha lists Suunto among its sources.",
+    "url": "https://sahha.ai/integrations/",
+    "quote": "Stryd Suunto Swim.com"
+  },
+  {
+    "claim": "Sahha says sources arrive on-device through Apple Health or Health Connect.",
+    "url": "https://sahha.ai/integrations/",
+    "quote": "Sources arrive on-device through Apple Health or Health Connect — no per-brand work required."
+  },
+  {
+    "claim": "Capsule / Strava: Suunto names Strava and TrainingPeaks among published partners.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "You can also check the latest partners that have been published such as Strava"
+  },
+  {
+    "claim": "Capsule / watch API: COROS MCP needs no application or approval.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/articles/53181619102996.json",
+    "quote": "No application or approval required."
+  },
+  {
+    "claim": "Watch API: COROS MCP access is single-user.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/articles/53181619102996.json",
+    "quote": "All data access is scoped to the authorizing user only (single-user)"
+  },
+  {
+    "claim": "FAQ: partners@suunto.com contact.",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "send an email to partners@suunto.com"
+  }
+]

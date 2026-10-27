@@ -9,6 +9,7 @@ import {
   WATCH_PATH,
   WATCH_CONFIG,
 } from "@/data/watchApps";
+import { robotsFor } from "@/data/noindex";
 
 export const dynamicParams = false;
 
@@ -33,6 +34,7 @@ export async function generateMetadata({
     title: { absolute: title },
     description,
     alternates: { canonical },
+    ...robotsFor(canonical),
     openGraph: {
       type: "article",
       title,

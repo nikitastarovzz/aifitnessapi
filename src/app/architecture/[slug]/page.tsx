@@ -9,6 +9,7 @@ import {
   ARCHITECTURE_PATH,
   ARCHITECTURE_CONFIG,
 } from "@/data/architecture";
+import { robotsFor } from "@/data/noindex";
 
 export const dynamicParams = false;
 
@@ -33,6 +34,7 @@ export async function generateMetadata({
     title: { absolute: title },
     description,
     alternates: { canonical },
+    ...robotsFor(canonical),
     openGraph: {
       type: "article",
       title,

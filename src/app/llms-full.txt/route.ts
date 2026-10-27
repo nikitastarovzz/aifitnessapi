@@ -1,5 +1,7 @@
 import { site, absoluteUrl } from "@/lib/site";
 import { getAllPosts } from "@/lib/posts";
+import { GLANCE_HUBS, hubQa, segText } from "@/data/hubGlance";
+import { moneyPages, MONEY_GROUP_LABELS, MONEY_GROUP_ORDER } from "@/data/moneyPages";
 import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
 import { releasedGuides, GUIDES_PATH } from "@/data/guides";
 import { releasedBuilds, BUILD_PATH } from "@/data/build";
@@ -56,6 +58,31 @@ export function GET() {
     "",
     "Independent, non-sponsored comparisons for developers choosing fitness/health APIs. Verify volatile specifics (pricing, rate limits) in each provider's official docs.",
     "",
+    // Direct answers from the four section hubs, then the money pages'
+    // one-line answers, ahead of the full per-section dump. Both come from
+    // src/data/hubGlance.ts and src/data/moneyPages.ts, which quote the cost
+    // model and the pages' own capsules, so this adds no claim.
+    "# Start here: direct answers from the section hubs",
+    "",
+    ...GLANCE_HUBS.flatMap((h) =>
+      hubQa(h).flatMap((q) => [
+        `## ${q.q} — ${absoluteUrl(`${h}#${q.id}`)}`,
+        ...(q.kind === "route" ? ["Answered on its own page; its opening:"] : []),
+        ...q.parts.map((p) => `- ${segText(p.segs).trim()} (${absoluteUrl(p.href)})`),
+        "",
+      ]),
+    ),
+    "# Start here: pricing, alternatives, comparisons and integration guides",
+    "",
+    ...MONEY_GROUP_ORDER.flatMap((g) => {
+      const items = moneyPages().filter((m) => m.group === g);
+      if (!items.length) return [];
+      return [
+        `## ${MONEY_GROUP_LABELS[g]}`,
+        ...items.map((m) => `- ${m.entry.h1} — ${absoluteUrl(m.path)}: ${m.oneLine}`),
+        "",
+      ];
+    }),
     `## Best Fitness & Workout APIs — ${absoluteUrl(PILLAR_PATH)}`,
     "There is no single best fitness API; choose by job — exercise/workout content, wearable & device data, health-data aggregators, nutrition data, or AI motion tracking. Pick the category first, then compare within it.",
     "",
@@ -526,6 +553,11 @@ export function GET() {
   for (const c of LIBRARY_COMPARISONS) {
     out.push(`## ${c.h1} — ${absoluteUrl(`${LIBRARIES_BASE}/compare/${c.slug}`)}`);
     out.push(`Primary query: ${c.primaryQuery}`, "", c.answer, "");
+    for (const sec of c.sections ?? []) {
+      out.push(`${sec.heading}:`);
+      for (const n of sec.notes) out.push(`- ${n.text} (${n.sourceLabel}: ${n.source})`);
+      out.push("");
+    }
     for (const f of c.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
     out.push("");
   }

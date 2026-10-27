@@ -11,12 +11,12 @@ import { LIBRARIES_FETCHED_ON, type Library } from "@/data/libraries";
 import {
   LIBRARIES_BASE,
   LIBRARIES_PUBLISHED,
-  LIBRARIES_VERIFIED_ON,
   LIBRARY_COMPARISONS,
   ECOSYSTEM_LABEL,
+  comparisonModified,
+  comparisonVerifiedOn,
   getLibraryComparison,
   lib,
-  librariesModified,
 } from "@/data/librariesEditorial";
 import { landingForGroup, landingPath } from "@/data/librariesLandings";
 import { absoluteUrl } from "@/lib/site";
@@ -102,7 +102,8 @@ export default async function LibraryComparisonPage({ params }: { params: Promis
 
   const path = `${LIBRARIES_BASE}/compare/${c.slug}`;
   const url = absoluteUrl(path);
-  const modified = librariesModified();
+  const modified = comparisonModified(c);
+  const verified = comparisonVerifiedOn(c);
   const published = LIBRARIES_PUBLISHED > modified ? modified : LIBRARIES_PUBLISHED;
   const faqId = (i: number) => `faq-${i + 1}`;
   const side = (s: "a" | "b") => (s === "a" ? A : B);
@@ -141,7 +142,7 @@ export default async function LibraryComparisonPage({ params }: { params: Promis
         url,
         name: c.title,
         isPartOf: { "@id": WEBSITE_ID },
-        lastReviewed: LIBRARIES_VERIFIED_ON,
+        lastReviewed: verified,
         reviewedBy: orgRef(),
       },
     ],
@@ -180,7 +181,7 @@ export default async function LibraryComparisonPage({ params }: { params: Promis
         <p className="mt-3 text-sm text-[var(--muted)]">
           Registry data read {LIBRARIES_FETCHED_ON}
           <ContentAge date={LIBRARIES_FETCHED_ON} />
-          {LIBRARIES_VERIFIED_ON !== LIBRARIES_FETCHED_ON && <> · README notes checked {LIBRARIES_VERIFIED_ON}</>}
+          {verified !== LIBRARIES_FETCHED_ON && <> · Notes checked {verified}</>}
         </p>
 
         <AnswerCapsule>{c.answer}</AnswerCapsule>
@@ -234,6 +235,25 @@ export default async function LibraryComparisonPage({ params }: { params: Promis
             ))}
           </div>
         </section>
+
+        {c.sections?.map((sec) => (
+          <section key={sec.heading} className="mt-12">
+            <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">{sec.heading}</h2>
+            {sec.intro && <p className="mt-2 text-sm text-[var(--muted)]">{sec.intro}</p>}
+            <ul className="mt-4 rounded-2xl border border-[var(--border)] px-5 text-sm">
+              {sec.notes.map((n) => (
+                <NoteItem key={n.text} note={n} />
+              ))}
+            </ul>
+            {sec.link && (
+              <p className="mt-3 text-sm">
+                <Link href={sec.link.href} className="text-brand-600 hover:text-brand-500">
+                  {sec.link.label} →
+                </Link>
+              </p>
+            )}
+          </section>
+        ))}
 
         <section className="mt-12">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">How to choose: our reading</h2>

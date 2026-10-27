@@ -12,10 +12,15 @@ import PageSummary from "@/components/PageSummary";
 const PICKER_PATH = "/picker";
 const UPDATED = "2026-07-24";
 
+// 2026-10-27 (ops/SEO-10-2026-10-27.md item 8): Google showed this page for
+// "fitness api" at position 76 in the 28 days to 2026-10-24. The page is a
+// three-question tool that routes a reader to the roundups; it compares
+// nothing itself. The title and description now say it is a picker tool, and
+// the browse list names the roundups that answer those searches.
 export const metadata: Metadata = {
-  title: { absolute: "Which Fitness API Should I Use? Picker" },
+  title: { absolute: "Fitness API Picker: A Three-Question Tool" },
   description:
-    "Answer three quick questions — what you're building, your platform, and your top priority — and get a tailored fitness API recommendation with next steps.",
+    "A tool, not a review: answer three questions (what you're building, your platform, your top priority) and it points to the API roundup and guides to read.",
   alternates: { canonical: PICKER_PATH },
   openGraph: {
     type: "website",
@@ -33,6 +38,7 @@ const BROWSE: { title: string; href: string }[] = [
   { title: "Health-data aggregators (many devices)", href: "/fitness-apis/health-data-aggregator-apis" },
   { title: "AI workout tracking APIs", href: "/fitness-apis/ai-workout-tracking-apis" },
   { title: "Exercise database APIs", href: "/fitness-apis/exercise-database-apis" },
+  { title: "Exercise APIs with demonstration videos", href: "/fitness-apis/exercise-video-apis" },
   { title: "Nutrition APIs", href: "/fitness-apis/nutrition-apis" },
   { title: "Health data by metric", href: "/data" },
 ];
@@ -71,7 +77,8 @@ export default function PickerPage() {
         <PageSummary path="/picker" name="Which Fitness API Should You Use?" updated={UPDATED} className="mt-4 text-lg text-[var(--muted)]">
           Answer three quick questions — what you&rsquo;re building, your platform, and what matters most —
           and get a tailored recommendation with the exact comparisons, integration guides, and pricing to
-          read next. Independent and free; we&rsquo;re not paid to recommend anything.
+          read next. Independent and free; we&rsquo;re not paid to recommend anything. The picker is a
+          router, not a comparison: the roundups below compare the APIs themselves.
         </PageSummary>
 
         <div className="mt-8">

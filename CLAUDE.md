@@ -63,6 +63,7 @@ silently reverts it.
 | `src/data/workoutTypes.ts` | `NODE_USE_ENV_PROXY=1 node scripts/fetch-workout-types.mjs` (Apple's HKWorkoutActivityType index and per-case docs JSON; Google's ExerciseSessionRecord, ExerciseSegment, ExerciseSessionType and Health Services ExerciseType references and the Health Connect data-types guide, `?hl=en`; the androidx source those references link as View Source, on `androidx-main`; and `src/data/healthkitIdentifiers.ts` and `src/data/googleHealthApi.ts`, so regenerate those first; `--offline` reparses `.cache/workout-types`). Then `npm run datasets`. |
 | `src/data/published.ts` | `node scripts/backfill-published.mjs` |
 | `src/data/apiDemand.ts` | `node scripts/build-api-demand.mjs` (reads the live pull: `NODE_USE_ENV_PROXY=1 node scripts/search-pull.mjs` in the aifitnessapi environment) |
+| `src/data/indexDemand.ts` | `npm run build && node scripts/build-index-demand.mjs`, then build again (after every pull: reads `data/gsc/snapshots/*.json` and the build's page list; noindexes generated per-item pages with zero Google and Bing impressions across their pulls once 60 days old; its dates are a ledger, so never delete the file — see the script header) |
 | `public/datasets/*.{json,csv}` + `manifest*.json` | `npm run datasets` (build + manifest) |
 | `public/kit/*` | `node scripts/build-kit.mjs` |
 | `public/favicon.ico`, `public/icon-192.png`, `public/icon-512.png`, `public/logo.png` | `node scripts/build-icons.mjs` (rasterizes `src/app/icon.svg` with Playwright's Chromium) |

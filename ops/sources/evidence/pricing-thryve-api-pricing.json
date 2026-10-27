@@ -215,11 +215,6 @@
     "quote": "Health Connect Native SDK yes n.a."
   },
   {
-    "claim": "\"BAA agreements included on all plans — no enterprise upgrade required\".",
-    "url": "https://www.thryve.health/certifications-compliance",
-    "quote": "BAA agreements included on all plans — no enterprise upgrade required."
-  },
-  {
     "claim": "\"Business Associate Agreements and Data Processing Agreements are standard on every plan\".",
     "url": "https://www.thryve.health/certifications-compliance",
     "quote": "Business Associate Agreements and Data Processing Agreements are standard on every plan"
@@ -252,6 +247,6 @@
   {
     "claim": "Terra bills credits per connected data source.",
     "url": "https://tryterra.co/pricing",
-    "quote": "Two things consume credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
+    "quote": "Two things consume Unified API credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 Unified API credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
   }
 ]

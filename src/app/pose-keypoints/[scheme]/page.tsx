@@ -6,6 +6,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import ContentAge from "@/components/ContentAge";
 import PageActions from "@/components/PageActions";
 import { POSE_SCHEMES } from "@/data/poseKeypoints";
+import { robotsFor } from "@/data/noindex";
 import {
   MODEL_PAGES,
   SCHEME_ALTERNATIVES,
@@ -60,6 +61,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     title: { absolute: title },
     description,
     alternates: { canonical: path },
+    ...robotsFor(path),
     openGraph: { type: "article", title, description, url: path, modifiedTime: POSE_FETCHED },
     twitter: { card: "summary_large_image", title, description },
   };

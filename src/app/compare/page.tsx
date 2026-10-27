@@ -8,6 +8,8 @@ import ClusterHero from "@/components/ClusterHero";
 import HubFreshness from "@/components/HubFreshness";
 import EntryBadge from "@/components/EntryBadge";
 import HubJsonLd from "@/components/HubJsonLd";
+import { HubGlanceTable, HubDirectAnswers } from "@/components/HubGlance";
+import { hubQaJsonLd } from "@/data/hubGlance";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import { heroSeed } from "@/lib/cluster";
@@ -59,7 +61,14 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Nutrition & exercise content",
     blurb: "Food databases and exercise libraries.",
-    slugs: ["nutritionix-vs-edamam", "edamam-vs-spoonacular", "exercisedb-vs-wger", "exercisedb-vs-free-exercise-db", "usda-fooddata-central-vs-open-food-facts"],
+    slugs: [
+      "nutritionix-vs-edamam",
+      "edamam-vs-spoonacular",
+      "exercisedb-vs-wger",
+      "exercisedb-vs-free-exercise-db",
+      "exercisedb-vs-api-ninjas",
+      "usda-fooddata-central-vs-open-food-facts",
+    ],
   },
   {
     title: "AI motion tracking SDKs",
@@ -70,8 +79,8 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Pose estimation models",
     blurb:
-      "Open pose models head-to-head, from the model cards and source repositories. Neither side is KinesteX, which funds this site; each page says so up front.",
-    slugs: ["mediapipe-vs-movenet", "mediapipe-vs-yolo-pose"],
+      "Pose models and platform pose APIs head-to-head, from the model cards, vendor documentation and source repositories. Neither side is KinesteX, which funds this site; each page says so up front.",
+    slugs: ["mediapipe-vs-movenet", "mediapipe-vs-yolo-pose", "apple-vision-vs-mediapipe", "ml-kit-vs-mediapipe"],
   },
 ];
 
@@ -110,11 +119,16 @@ export default function ComparePillar() {
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: FAQS.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
+    mainEntity: [
+      ...FAQS.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+      // The hub's direct answers (src/data/hubGlance.ts); pointer-only
+      // questions another page owns are left out.
+      ...hubQaJsonLd("/compare", url),
+    ],
   };
   const itemListJsonLd = {
     "@context": "https://schema.org",
@@ -163,6 +177,9 @@ export default function ComparePillar() {
             Costs come up throughout — the <Link href="/pricing">pricing</Link> pages go deeper.
           </p>
         </div>
+
+        <HubGlanceTable hub="/compare" />
+        <HubDirectAnswers hub="/compare" />
 
         {GROUPS.map((group) => {
           const items = group.slugs.map((s) => getComparison(s)).filter((e) => e !== undefined);

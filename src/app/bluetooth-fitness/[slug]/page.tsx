@@ -28,6 +28,7 @@ import {
 import { metricGuidesForType } from "@/data/metricTypeMap";
 import { site } from "@/lib/site";
 import { Code, Definition, FieldNotes, GssText, LINK, LayoutTable } from "../_render";
+import { robotsFor } from "@/data/noindex";
 
 /**
  * One page per in-scope Bluetooth GATT characteristic that passes the
@@ -64,6 +65,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     title: { absolute: title },
     description,
     alternates: { canonical },
+    ...robotsFor(canonical),
     openGraph: { type: "article", title, description, url: canonical, modifiedTime: BT_FETCHED },
     twitter: { card: "summary_large_image", title, description },
   };

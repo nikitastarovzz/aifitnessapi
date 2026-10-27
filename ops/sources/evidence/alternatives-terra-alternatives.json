@@ -12,22 +12,22 @@
   {
     "claim": "Subscriptions \"start from $399 per month billed annually, or $499 per month billed monthly\", including 100,000 credits a month.",
     "url": "https://tryterra.co/pricing",
-    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly. That includes 100,000 credits each month for the Unified API, and you only pay extra if your usage goes beyond them."
+    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly. That includes 100,000 Unified API credits each month, and you only pay extra if your usage goes beyond them."
   },
   {
-    "claim": "\"An active authentication is one connected data source for one end user, and costs 200 credits per month\", the first 400 events per active authentication each month are free.",
+    "claim": "\"An active authentication is one connected data source for one end user, and costs 200 Unified API credits per month\", the first 400 events per active authentication each month are free.",
     "url": "https://tryterra.co/pricing",
-    "quote": "Two things consume credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
+    "quote": "Two things consume Unified API credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 Unified API credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
   },
   {
     "claim": "Unused credits do not roll over.",
     "url": "https://tryterra.co/pricing",
-    "quote": "No, your credit balance resets to 100,000 at the start of each billing period. Unused credits from the previous month don't carry over."
+    "quote": "No, your Unified API credit balance resets to 100,000 at the start of each billing period. Unused credits from the previous month don't carry over."
   },
   {
     "claim": "Arithmetic input: $0.005 per extra credit.",
     "url": "https://tryterra.co/pricing",
-    "quote": "Only pay more when you go beyond 100,000 credits. Starting at $0.005 / credit."
+    "quote": "Only pay more when you go beyond 100,000 Unified API credits. Starting at $0.005 / credit."
   },
   {
     "claim": "Terra's homepage offers blood tests \"through home kits, mobile phlebotomy, or lab walk-ins\".",
@@ -175,9 +175,9 @@
     "quote": "Additional users billed at €0.50 each."
   },
   {
-    "claim": "\"BAA agreements included on all plans\".",
+    "claim": "\"Business Associate Agreements and Data Processing Agreements are standard on every plan\".",
     "url": "https://www.thryve.health/certifications-compliance",
-    "quote": "BAA agreements included on all plans"
+    "quote": "Business Associate Agreements and Data Processing Agreements are standard on every plan"
   },
   {
     "claim": "Start Up stores data for two weeks.",
@@ -260,9 +260,9 @@
     "quote": "Approval requires direct relationship with Samsung Health. Acceptance is not guaranteed and this vendor is not accepting new applications."
   },
   {
-    "claim": "Open Wearables: MIT-licensed, self-hosted, \"Free forever\".",
+    "claim": "Open Wearables: MIT-licensed and self-hosted; the Core is \"$0 Forever\".",
     "url": "https://openwearables.io/pricing",
-    "quote": "Open Source Free forever Self-hosted wearable data infrastructure under MIT license."
+    "quote": "For teams building their first wearable features. You run the open-source platform yourself. $0 Forever"
   },
   {
     "claim": "From Momentum.",
@@ -313,5 +313,10 @@
     "claim": "FAQ: and Polar.",
     "url": "https://openwearables.io/docs/providers/supported",
     "quote": "You must register for the Polar API program"
+  },
+  {
+    "claim": "Open Wearables: a Pro plan with health scores starts \"From $999 a month, per deployment\".",
+    "url": "https://openwearables.io/pricing",
+    "quote": "For products in production. Licensed modules, with our engineers behind your deployment. From $999 a month, per deployment"
   }
 ]

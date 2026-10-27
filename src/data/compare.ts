@@ -40,6 +40,9 @@ export const RELEASED_COMPARE = new Set<string>([
   "quickpose-vs-sency",
   "mediapipe-vs-movenet",
   "mediapipe-vs-yolo-pose",
+  "apple-vision-vs-mediapipe",
+  "ml-kit-vs-mediapipe",
+  "exercisedb-vs-api-ninjas",
 ]);
 
 export const allCompare: ClusterEntry[] = compareEntries;

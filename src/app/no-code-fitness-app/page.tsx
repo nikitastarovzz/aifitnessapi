@@ -234,6 +234,29 @@ export default function NoCodeFitnessAppPage() {
           {ANSWER}
         </div>
 
+        {/* 2026-10-27 (ops/SEO-10-2026-10-27.md item 8): Google showed this
+            worked example for "fitness api" and "workout video api" at
+            positions 46 to 90. It is one assembled app, not a comparison, so
+            the searches for an API go to the roundups that own them. The
+            title stays: it answers "fitness app builder", the page's own
+            query at position 21. */}
+        <p className="mt-5 text-[var(--muted)]">
+          This page is one worked example, not a comparison. To choose the APIs themselves, the roundups
+          compare{" "}
+          <Link href="/fitness-apis/exercise-database-apis" className="text-brand-600 underline hover:text-brand-500">
+            exercise database APIs
+          </Link>
+          ,{" "}
+          <Link href="/fitness-apis/exercise-video-apis" className="text-brand-600 underline hover:text-brand-500">
+            exercise APIs with demonstration videos
+          </Link>{" "}
+          and{" "}
+          <Link href="/fitness-apis/wearable-data-apis" className="text-brand-600 underline hover:text-brand-500">
+            wearable data APIs
+          </Link>
+          .
+        </p>
+
         <div className="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-a:text-brand-600 hover:prose-a:text-brand-500 prose-headings:tracking-tight">
           <Mdx source={BODY} />
         </div>

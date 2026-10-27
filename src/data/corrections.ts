@@ -15,6 +15,13 @@ export type Correction = {
 
 export const CORRECTIONS: Correction[] = [
   {
+    date: "2026-10-27",
+    page: { href: "/motion/apple-vision-body-pose", label: "VNDetectHumanBodyPoseRequest: Apple Vision Body Pose on iOS" },
+    was: "The page said Apple's documentation does not state a person-count limit for either body pose request, in either direction, and that it contains no fitness positioning and no statement of intended use cases.",
+    now: "Apple's 2D article says VNDetectHumanBodyPoseRequest returns a unique observation for each detected human body pose, and its 3D article says VNDetectHumanBodyPose3DRequest supports only the most prominent person in the frame. The 2D article lists example uses, among them a fitness app that tracks the exercise a user performs, and gives qualitative accuracy advice. It still publishes no model card, accuracy figures or distance guidance.",
+    how: "Found on 2026-10-27 while writing the Apple Vision vs MediaPipe comparison from Apple's articles \"Detecting Human Body Poses in Images\" and \"Identifying 3D human body poses in images\". The page had been written from the API reference pages, which link both articles; Apple's articles carry no dates, so we cannot show they changed after 2026-08-02 and log it as a correction rather than a source change. The page's review date stays 2026-08-02 because only these sentences were re-checked.",
+  },
+  {
     date: "2026-10-22",
     page: { href: "/pricing/exercise-database-api-pricing", label: "Exercise Database API Pricing: What Does It Cost?" },
     was: "The page said the free way into exercisedb.dev was a v2 playground that is not for production, that exercisedb.dev points production use to paid plans, and, in an FAQ answer, that exercisedb.dev was not one of the free exercise database APIs.",

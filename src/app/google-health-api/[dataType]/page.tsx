@@ -34,6 +34,7 @@ import { absoluteUrl } from "@/lib/site";
 import { stringSeed } from "@/lib/cluster";
 import { FaqSection, JsonLd, faqGraph } from "../../error-codes/_shared";
 import { CAPSULE, Code, FetchedLine, FieldsTable, FlagList, H2, Inline, LINK, SourcesChecked, TH, ghapiGraph } from "../_shared";
+import { robotsFor } from "@/data/noindex";
 
 /**
  * One page per data type in Google's Google Health API data-types table. The
@@ -65,6 +66,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     title: { absolute: title },
     description,
     alternates: { canonical },
+    ...robotsFor(canonical),
     openGraph: {
       type: "article",
       title,

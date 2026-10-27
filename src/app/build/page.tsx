@@ -19,16 +19,21 @@ const UPDATED = "2026-07-09";
  *  /questions index is built from so the two can never disagree. */
 const QUESTION_COUNT = releasedBuilds().reduce((n, e) => n + e.faqs.length, 0);
 
+// 2026-10-27 (ops/SEO-10-2026-10-27.md item 8): the hub drew "develop an ai
+// workout app" and "gym app builder" searches at positions 57 to 99 in the 28
+// days to 2026-10-24 — searches the guides answer one app type at a time and
+// the hub cannot. The title and description now say what the hub is, an index
+// of those guides, and the intro links the API roundups by name.
 export const metadata: Metadata = {
-  title: "How to Build a Workout App (2026)",
+  title: { absolute: "Workout App Build Guides: An Index by App Type" },
   description:
-    "A builder's playbook for shipping a workout app — scope, core features, which APIs to use, MVP, and launch — with a guide for each app type.",
+    "An index of build guides, one per app type (running, strength, rehab, sleep and more), each naming the hard technical problem and the APIs it needs.",
   alternates: { canonical: BUILD_PATH },
   openGraph: {
     type: "website",
-    title: "How to Build a Workout App (2026): The Builder's Playbook",
+    title: "Workout App Build Guides: An Index by App Type",
     description:
-      "Scope, features, APIs, MVP, and launch — plus a build guide for personal training, home workout, AI coaching, rehab, yoga, and more.",
+      "An index of build guides — personal training, home workout, AI coaching, rehab, yoga and more — each with its scope, features, APIs, MVP and launch.",
     url: BUILD_PATH,
   },
 };
@@ -154,9 +159,26 @@ export default function BuildPillar() {
         >
           Building a workout app comes down to a handful of decisions: pick one app type and its core loop,
           decide what to build versus buy (exercise content, wearable data, nutrition, and AI motion
-          tracking are all APIs), ship a thin MVP of that loop, then add breadth. These guides walk
-          each app type end to end, and link to the exact APIs and integration steps for the pieces.
+          tracking are all APIs), ship a thin MVP of that loop, then add breadth. This page is an index of
+          build guides, one per app type, each walking that type end to end with the exact APIs and
+          integration steps for the pieces.
         </div>
+
+        <p className="mt-5 text-[var(--muted)]">
+          Choosing the APIs themselves? The roundups compare{" "}
+          <Link href="/fitness-apis/exercise-database-apis" className="text-brand-600 underline hover:text-brand-500">
+            exercise database APIs
+          </Link>
+          ,{" "}
+          <Link href="/fitness-apis/exercise-video-apis" className="text-brand-600 underline hover:text-brand-500">
+            exercise APIs with demonstration videos
+          </Link>{" "}
+          and{" "}
+          <Link href="/fitness-apis/wearable-data-apis" className="text-brand-600 underline hover:text-brand-500">
+            wearable data APIs
+          </Link>
+          .
+        </p>
 
         <div className="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-a:text-brand-600 hover:prose-a:text-brand-500">
           <h2>The five phases, whatever you&rsquo;re building</h2>

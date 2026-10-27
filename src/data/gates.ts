@@ -23,6 +23,62 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
       "A route listed in sitemap.xml whose own HTML says noindex. The two are contradictory instructions — the sitemap asks a crawler to index what the page tells it to skip — and the contradiction is easy to create, because noindexing a page and de-listing it are edits in different files.",
   },
   {
+    code: "INDEX-DEMAND-READ",
+    area: "Hosting and crawl",
+    refuses:
+      "A build whose generated index decisions (src/data/indexDemand.ts) cannot be read, or carry a decision other than index or noindex. Without the file nothing holds the generated reference pages' robots meta and sitemap rows to the search data.",
+  },
+  {
+    code: "INDEX-DEMAND-ROBOTS",
+    area: "Hosting and crawl",
+    refuses:
+      "A generated reference page whose rendered robots meta disagrees with its row in src/data/indexDemand.ts: a page the search data took out of the index that does not say noindex, follow, or one the data keeps that says noindex.",
+  },
+  {
+    code: "INDEX-DEMAND-SITEMAP",
+    area: "Hosting and crawl",
+    refuses:
+      "A generated reference page whose sitemap row disagrees with its index decision: listed although the search data took it out of the index, or missing although the data keeps it in.",
+  },
+  {
+    code: "INDEX-DEMAND-HUB",
+    area: "Hosting and crawl",
+    refuses:
+      "A noindex decision on a hub, or on a page whose hub is not itself indexed and listed. The rule judges items, never the indexes that lead to them; a hidden hub would hide every page under it.",
+  },
+  {
+    code: "NOINDEX-PAGE-READ",
+    area: "Hosting and crawl",
+    refuses: "A build in which the hand-decided noindex list (NOINDEX_PAGES in src/data/noindex.ts) cannot be found.",
+  },
+  {
+    code: "NOINDEX-PAGE-GONE",
+    area: "Hosting and crawl",
+    refuses:
+      "An entry in the hand-decided noindex list that no longer builds. A page folded into another must leave the list in the same change, or the list stops describing the site.",
+  },
+  {
+    code: "NOINDEX-PAGE-ROBOTS",
+    area: "Hosting and crawl",
+    refuses: "A page on the hand-decided noindex list that does not render noindex, follow.",
+  },
+  {
+    code: "NOINDEX-PAGE-SITEMAP",
+    area: "Hosting and crawl",
+    refuses: "A page on the hand-decided noindex list that sitemap.xml still lists.",
+  },
+  {
+    code: "NOINDEX-PAGE-HUB",
+    area: "Hosting and crawl",
+    refuses: "A hub on the hand-decided noindex list, or a listed page whose hub is not itself indexed and listed.",
+  },
+  {
+    code: "OPENSEARCH-NOINDEX",
+    area: "Hosting and crawl",
+    refuses:
+      "A build that drops the X-Robots-Tag: noindex header for /opensearch.xml, or breaks the file itself. Google showed the browser's search descriptor as a result for \"fitness api\"; the header keeps it out of results while browsers keep reading it.",
+  },
+  {
     code: "CANNIBAL-QUERY",
     area: "Search",
     refuses:
@@ -833,6 +889,63 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     code: "FACTS-DEAD-ANCHOR",
     area: "Links and anchors",
     refuses: "A published fact whose fragment does not resolve on the page it points into, which would break every citation already made to it.",
+  },
+  {
+    code: "CLAIMS-INVALID",
+    area: "Feeds and mirrors",
+    refuses: "A build whose claims.json is missing or carries no claims array, so the quoting index machine readers are pointed at is gone.",
+  },
+  {
+    code: "CLAIMS-DEAD-ANCHOR",
+    area: "Links and anchors",
+    refuses: "A claim in claims.json whose fragment URL does not resolve on the built page it names, though readers are told to cite that fragment.",
+  },
+
+  // ── Hub at-a-glance tables and direct answers ─────────────────────────
+  {
+    code: "HUB-GLANCE-MISSING",
+    area: "Derived blocks",
+    refuses: "A /fitness-apis, /pricing, /alternatives or /compare hub that renders no at-a-glance table or no direct-answers block.",
+  },
+  {
+    code: "HUB-GLANCE-ROWS",
+    area: "Derived blocks",
+    refuses: "A /pricing at-a-glance table that leaves out a product in the cost model, another hub's table with fewer than five rows, or a row with no id to cite.",
+  },
+  {
+    code: "HUB-GLANCE-VALUE",
+    area: "Derived blocks",
+    refuses: "A value in a hub table or direct answer that differs from the cost-model field or the answer capsule it says it comes from, read again from the source rather than from the module that rendered it.",
+  },
+  {
+    code: "HUB-GLANCE-SOURCE",
+    area: "Derived blocks",
+    refuses: "A hub table or answer value whose source names no cost-model field, a page with no built answer capsule, or nothing the check recognises.",
+  },
+  {
+    code: "HUB-GLANCE-UNLINKED",
+    area: "Derived blocks",
+    refuses: "A hub table row or answer that quotes a page without linking it, so a reader cannot reach the page that holds the fact.",
+  },
+  {
+    code: "HUB-GLANCE-LINK",
+    area: "Links and anchors",
+    refuses: "A hub table row or answer that links a page which was not built or renders notFound().",
+  },
+  {
+    code: "HUB-QA-COUNT",
+    area: "Derived blocks",
+    refuses: "A hub with fewer than three or more than five direct answers.",
+  },
+  {
+    code: "HUB-QA-MARKUP",
+    area: "Structured data / GEO",
+    refuses: "A direct answer missing from its hub's FAQPage or its anchor, a pointer to the page that owns a question still marked up as the hub's own FAQ, or an answer with no linked parts.",
+  },
+  {
+    code: "MONEY-UNLISTED",
+    area: "Feeds and mirrors",
+    refuses: "A released pricing, alternatives, comparison or integration page missing from the Start here sections of llms.txt or from start_here in answers.json.",
   },
 
   // ── Calendar feed ─────────────────────────────────────────────────────

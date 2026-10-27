@@ -2,6 +2,7 @@ import { clusterMap, CLUSTER_LABELS } from "@/lib/clusterRegistry";
 import { getAllPosts } from "@/lib/posts";
 import { absoluteUrl, site } from "@/lib/site";
 import { markdownUrl } from "@/lib/schema";
+import { hubGlanceMarkdown, isGlanceHub } from "@/data/hubGlance";
 
 /**
  * Clean-markdown mirrors (GEO). Generated from the same data modules as the
@@ -201,6 +202,9 @@ export async function GET(
       `> ${entries.length} pages. Each entry below shows the question the page owns, followed by its answer capsule.`,
       "",
     );
+    // The four Bing-ranked hubs carry an at-a-glance table and direct
+    // answers (src/data/hubGlance.ts); their mirror carries the same.
+    if (isGlanceHub(base)) out.push(...hubGlanceMarkdown(base, absoluteUrl), "## Pages in this section", "");
     for (const e of entries) {
       out.push(`## ${e.h1}`, "");
       out.push(`- Question: ${e.primaryQuery}`);

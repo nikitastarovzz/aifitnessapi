@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Container from "@/components/Container";
 import PostCard from "@/components/PostCard";
 import { getAllPosts } from "@/lib/posts";
@@ -7,10 +8,15 @@ import PageSummary from "@/components/PageSummary";
 
 // The <title> leads with what this page is for (ops/SERP-30-2026-10-12.md #3);
 // TITLE stays the section name for the H1 and the structured data.
-const META_TITLE = "Research Notes on Fitness & Health APIs";
+//
+// 2026-10-27 (ops/SEO-10-2026-10-27.md item 8): Google showed this index for
+// "fitness api" and "workout api" at positions 55 to 60 in the 28 days to
+// 2026-10-24. The title and description now say it is an index of research
+// notes, and the summary hands API searches to the roundups that own them.
+const META_TITLE = "Blog Index: Research Notes on Fitness & Health APIs";
 const TITLE = "Fitness & Health API Blog";
 const DESCRIPTION =
-  "Product breakdowns, API deep-dives, and playbooks for builders in health, wellness, and fitness tech.";
+  "An index of dated research notes counted from this site's datasets: what is in HealthKit, where the platforms disagree, what APIs cost, what is changing.";
 
 export const metadata: Metadata = {
   title: { absolute: META_TITLE },
@@ -94,8 +100,21 @@ export default function BlogIndex() {
           Blog
         </h1>
         <PageSummary path="/blog" name="AIFitnessAPI blog" className="mt-3 max-w-2xl text-lg text-[var(--muted)]">
-          Product breakdowns, API deep-dives, and playbooks for builders in
-          health, wellness, and fitness tech.
+          An index of dated research notes for builders in health, wellness and
+          fitness tech, grouped by topic and counted out of this site&rsquo;s own
+          datasets. Looking for an API to use? The roundups compare them:{" "}
+          <Link href="/fitness-apis/wearable-data-apis" className="text-brand-600 underline hover:text-brand-500">
+            wearable data APIs
+          </Link>
+          ,{" "}
+          <Link href="/fitness-apis/exercise-database-apis" className="text-brand-600 underline hover:text-brand-500">
+            exercise database APIs
+          </Link>{" "}
+          and{" "}
+          <Link href="/fitness-apis/exercise-video-apis" className="text-brand-600 underline hover:text-brand-500">
+            exercise APIs with demonstration videos
+          </Link>
+          .
         </PageSummary>
       </header>
 

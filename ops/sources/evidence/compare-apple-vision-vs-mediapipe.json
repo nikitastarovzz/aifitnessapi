@@ -1,0 +1,202 @@
+[
+  {
+    "claim": "Vision's 2D request is available from iOS 14.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/vndetecthumanbodyposerequest.json",
+    "quote": "{\"introducedAt\":\"14.0\",\"name\":\"iOS\"}"
+  },
+  {
+    "claim": "Vision's 2D request is available from macOS 11.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/vndetecthumanbodyposerequest.json",
+    "quote": "{\"introducedAt\":\"11.0\",\"name\":\"macOS\"}"
+  },
+  {
+    "claim": "Vision detects up to 19 unique body points.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/detecting-human-body-poses-in-images.json",
+    "quote": "detecting up to 19 unique body points"
+  },
+  {
+    "claim": "Apple names fitness tracking as a use of body pose detection.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/detecting-human-body-poses-in-images.json",
+    "quote": "a fitness app could automatically track the exercise a user performs"
+  },
+  {
+    "claim": "The 2D request returns one observation per detected pose, with a confidence score.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/detecting-human-body-poses-in-images.json",
+    "quote": "The request returns a unique observation for each detected human body pose, with each containing the recognized points and a confidence score indicating the accuracy of the observation."
+  },
+  {
+    "claim": "Points with a confidence of 0 are invalid.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/detecting-human-body-poses-in-images.json",
+    "quote": "because they’re invalid"
+  },
+  {
+    "claim": "Vision's normalized points have a bottom-left origin.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/detecting-human-body-poses-in-images.json",
+    "quote": "in normalized coordinates (0.0 to 1.0), with the origin at the bottom-left"
+  },
+  {
+    "claim": "Subject height guidance.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/detecting-human-body-poses-in-images.json",
+    "quote": "The subject’s height should ideally be at least a third of the overall image height."
+  },
+  {
+    "claim": "Flowing clothing reduces accuracy.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/detecting-human-body-poses-in-images.json",
+    "quote": "A subject wearing flowing or robe-like clothing reduces the detection accuracy."
+  },
+  {
+    "claim": "Dense crowds are likely inaccurate.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/detecting-human-body-poses-in-images.json",
+    "quote": "Attempting to detect body poses in dense crowd scenes is likely to produce inaccurate results."
+  },
+  {
+    "claim": "The 3D request is available from iOS 17.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/vndetecthumanbodypose3drequest.json",
+    "quote": "{\"introducedAt\":\"17.0\",\"name\":\"iOS\"}"
+  },
+  {
+    "claim": "The 3D request is available from macOS 14.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/vndetecthumanbodypose3drequest.json",
+    "quote": "{\"introducedAt\":\"14.0\",\"name\":\"macOS\"}"
+  },
+  {
+    "claim": "The 3D request measures 17 joints in 3D.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/identifying-3d-human-body-poses-in-images.json",
+    "quote": "measures 17 individual joint locations in 3D space"
+  },
+  {
+    "claim": "The 3D request handles the most prominent person only.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/identifying-3d-human-body-poses-in-images.json",
+    "quote": "The request only supports the detection and results for the most prominent person in the frame, so it generates a single observation."
+  },
+  {
+    "claim": "All 17 joints or none.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/identifying-3d-human-body-poses-in-images.json",
+    "quote": "The framework doesn’t return a partial list of joints, so you get all 17 joints or none."
+  },
+  {
+    "claim": "Depth is optional and improves accuracy.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/identifying-3d-human-body-poses-in-images.json",
+    "quote": "The request doesn’t require images with depth data to run. However, providing depth data improves detection accuracy."
+  },
+  {
+    "claim": "3D output in meters.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/identifying-3d-human-body-poses-in-images.json",
+    "quote": "provides body pose information in 3D space, in meters"
+  },
+  {
+    "claim": "Measured height only with LiDAR.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/identifying-3d-human-body-poses-in-images.json",
+    "quote": "The framework provides a measured height only when configuring an"
+  },
+  {
+    "claim": "Otherwise a reference height is returned.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/identifying-3d-human-body-poses-in-images.json",
+    "quote": "returns a reference height of "
+  },
+  {
+    "claim": "The 2D request documents revision 1.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/vndetecthumanbodyposerequestrevision1.json",
+    "quote": "A constant for specifying revision 1 of the body pose detection request."
+  },
+  {
+    "claim": "DetectHumanBodyPoseRequest is available from iOS 18.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/detecthumanbodyposerequest.json",
+    "quote": "{\"introducedAt\":\"18.0\",\"name\":\"iOS\"}"
+  },
+  {
+    "claim": "detectsHands description.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/detecthumanbodyposerequest/detectshands.json",
+    "quote": "A Boolean value that detects hands of the body in the results, if they’re visible."
+  },
+  {
+    "claim": "HumanBodyPoseObservation exposes the observed left hand.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/humanbodyposeobservation/lefthand.json",
+    "quote": "The observed left hand."
+  },
+  {
+    "claim": "Vision 2D joint names include root (waist).",
+    "url": "https://developer.apple.com/tutorials/data/documentation/vision/vnhumanbodyposeobservation/jointname.json",
+    "quote": "The supported joint names for the body pose."
+  },
+  {
+    "claim": "MediaPipe outputs image and world coordinates.",
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker?hl=en",
+    "quote": "The task outputs body pose landmarks in image coordinates and in 3-dimensional world coordinates."
+  },
+  {
+    "claim": "MediaPipe num_poses option.",
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker?hl=en",
+    "quote": "The maximum number of poses that can be detected by the Pose Landmarker."
+  },
+  {
+    "claim": "MediaPipe estimates 33 3D landmarks.",
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker?hl=en",
+    "quote": "The model outputs an estimate of 33 3-dimensional pose landmarks."
+  },
+  {
+    "claim": "MediaPipe bundle is optimized for fitness.",
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker?hl=en",
+    "quote": "optimized for on-device, real-time fitness applications"
+  },
+  {
+    "claim": "MediaPipe optional segmentation mask.",
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker?hl=en",
+    "quote": "Optional: a segmentation mask for the pose."
+  },
+  {
+    "claim": "MediaPipe iOS uses MediaPipeTasksVision through Swift Package Manager.",
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker/ios?hl=en",
+    "quote": "Pose Landmarker uses the MediaPipeTasksVision library, which can be installed"
+  },
+  {
+    "claim": "MediaPipe iOS loads the model from the app bundle.",
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker/ios?hl=en",
+    "quote": "property to specify the path to the model"
+  },
+  {
+    "claim": "MediaPipe Android library.",
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker/android?hl=en",
+    "quote": "The Pose Landmarker task uses the com.google.mediapipe:tasks-vision library."
+  },
+  {
+    "claim": "MediaPipe web npm package.",
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker/web_js?hl=en",
+    "quote": "npm install @mediapipe/tasks-vision"
+  },
+  {
+    "claim": "World landmarks in meters from the hip centre.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "Real-world 3D coordinates in meters with the origin at the center between hips."
+  },
+  {
+    "claim": "Google's quality table: single person 2-4 m, 17 COCO keypoints.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "Each image contains only a single person located 2-4 meters from the camera."
+  },
+  {
+    "claim": "Google's quality table row for Apple Vision.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "| 32.8               | **82.7**               | 36.4                | **91.4**                | 44.5               | **88.6**"
+  },
+  {
+    "claim": "Google's quality table row for BlazePose GHUM Heavy.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "BlazePose GHUM Heavy                                                                                  | 68.1               | **96.4**               | 73.0                | **97.2**                | 74.0"
+  },
+  {
+    "claim": "MediaPipe landmarks carry visibility.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/components/containers/landmark.py",
+    "quote": "visibility: Landmark visibility. Should stay unset if not supported."
+  },
+  {
+    "claim": "MediaPipe landmarks carry presence.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/components/containers/landmark.py",
+    "quote": "presence: Landmark presence. Should stay unset if not supported."
+  },
+  {
+    "claim": "MediaPipe is Apache-2.0.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/LICENSE",
+    "quote": "Apache License"
+  }
+]

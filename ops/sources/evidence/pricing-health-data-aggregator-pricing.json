@@ -2,7 +2,7 @@
   {
     "claim": "Terra Quick Start: $399 a month billed annually, or $499 billed monthly; 100,000 credits a month.",
     "url": "https://tryterra.co/pricing",
-    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly. That includes 100,000 credits each month for the Unified API, and you only pay extra if your usage goes beyond them."
+    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly. That includes 100,000 Unified API credits each month, and you only pay extra if your usage goes beyond them."
   },
   {
     "claim": "All integrations and data types included.",
@@ -12,17 +12,17 @@
   {
     "claim": "200 credits per connected data source per month; events past 400 per source cost credits.",
     "url": "https://tryterra.co/pricing",
-    "quote": "Two things consume credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
+    "quote": "Two things consume Unified API credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 Unified API credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
   },
   {
     "claim": "Events past 400 per source cost 0.5 credits.",
     "url": "https://tryterra.co/pricing",
-    "quote": "The Unified API includes 400 events per active authentication free each month, and events beyond that cost 0.5 credits each. Terra's pricing docs note that 95% of customers are never charged for events."
+    "quote": "The Unified API includes 400 events per active authentication free each month, and events beyond that cost 0.5 Unified API credits each. Terra's pricing docs note that 95% of customers are never charged for events."
   },
   {
     "claim": "Extra credits from $0.005.",
     "url": "https://tryterra.co/pricing",
-    "quote": "Only pay more when you go beyond 100,000 credits. Starting at $0.005 / credit."
+    "quote": "Only pay more when you go beyond 100,000 Unified API credits. Starting at $0.005 / credit."
   },
   {
     "claim": "$0.003 past 1,000,000 credits.",
@@ -190,14 +190,14 @@
     "quote": "COMING SOON Business More functionality, and priority support."
   },
   {
-    "claim": "Open Wearables open source: free; MIT-licensed software you host.",
+    "claim": "Open Wearables Core: free; MIT-licensed software you host.",
     "url": "https://openwearables.io/pricing",
-    "quote": "Open Source Free forever Self-hosted wearable data infrastructure under MIT license."
+    "quote": "For teams building their first wearable features. You run the open-source platform yourself. $0 Forever"
   },
   {
-    "claim": "Enterprise support is scoped per project.",
+    "claim": "Pro, from $999 a month per deployment, adds health scores and other licensed modules; Enterprise is a custom annual agreement.",
     "url": "https://openwearables.io/pricing",
-    "quote": "Enterprise is scoped per project."
+    "quote": "For products in production. Licensed modules, with our engineers behind your deployment. From $999 a month, per deployment"
   },
   {
     "claim": "LexisNexis Human API offers a contact form.",
@@ -210,9 +210,9 @@
     "quote": "Press Book an Intro Call and select a time and a date to talk to us."
   },
   {
-    "claim": "Terra's pricing FAQ says \"An active authentication is one connected data source for one end user, and costs 200 credits per month\".",
+    "claim": "Terra's pricing FAQ says \"An active authentication is one connected data source for one end user, and costs 200 Unified API credits per month\".",
     "url": "https://tryterra.co/pricing",
-    "quote": "Two things consume credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
+    "quote": "Two things consume Unified API credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 Unified API credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
   },
   {
     "claim": "Rook prices \"based on the plan and the number of active users\".",
@@ -242,17 +242,17 @@
   {
     "claim": "Terra says 95% of customers are never charged for events.",
     "url": "https://tryterra.co/pricing",
-    "quote": "The Unified API includes 400 events per active authentication free each month, and events beyond that cost 0.5 credits each. Terra's pricing docs note that 95% of customers are never charged for events."
+    "quote": "The Unified API includes 400 events per active authentication free each month, and events beyond that cost 0.5 Unified API credits each. Terra's pricing docs note that 95% of customers are never charged for events."
   },
   {
     "claim": "Arithmetic input: Terra $399 annual base and 100,000 included credits.",
     "url": "https://tryterra.co/pricing",
-    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly. That includes 100,000 credits each month for the Unified API, and you only pay extra if your usage goes beyond them."
+    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly. That includes 100,000 Unified API credits each month, and you only pay extra if your usage goes beyond them."
   },
   {
     "claim": "Arithmetic input: 200 credits per source; 1,000 sources = 200,000 credits; 5,000 = 1,000,000.",
     "url": "https://tryterra.co/pricing",
-    "quote": "Two things consume credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
+    "quote": "Two things consume Unified API credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 Unified API credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
   },
   {
     "claim": "Arithmetic input: $0.005 per credit from 100,001 to 1,000,000 credits.",
@@ -305,9 +305,9 @@
     "quote": "The DPA is included on every plan. A BAA is included from Pro."
   },
   {
-    "claim": "Thryve says \"BAA agreements included on all plans\".",
+    "claim": "Thryve says \"Business Associate Agreements and Data Processing Agreements are standard on every plan\".",
     "url": "https://www.thryve.health/certifications-compliance",
-    "quote": "BAA agreements included on all plans"
+    "quote": "Business Associate Agreements and Data Processing Agreements are standard on every plan"
   },
   {
     "claim": "Validic offers a BAA \"for Enterprise customers\".",
@@ -315,9 +315,9 @@
     "quote": "with BAA available for Enterprise customers."
   },
   {
-    "claim": "Open Wearables: \"BAA is available on the Enterprise plan\".",
-    "url": "https://openwearables.io/pricing",
-    "quote": "BAA is available on the Enterprise plan alongside HIPAA-eligible infrastructure and audit trail configuration."
+    "claim": "Open Wearables: \"A BAA comes with Enterprise, where your cloud provider and your scope support it.\"",
+    "url": "https://openwearables.io/faq",
+    "quote": "A BAA comes with Enterprise, where your cloud provider and your scope support it."
   },
   {
     "claim": "Terra prices \"Add-ons such as the Streaming API and Planned Workouts\" separately.",
@@ -392,7 +392,7 @@
   {
     "claim": "FAQ: Sahha's free trial lasts 30 days.",
     "url": "https://sahha.ai/pricing/",
-    "quote": "Try any plan for 30 days The plan you choose, free for 30 days All products unlocked Card required, nothing charged today Cancel before it ends and pay nothing"
+    "quote": "Every plan starts with a 30-day free trial."
   },
   {
     "claim": "FAQ: Thryve offers a 14-day trial.",
