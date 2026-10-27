@@ -5,15 +5,24 @@
  * answer (assistants deep-link them). This surfaces the same anchors near the
  * top, where somebody who arrived with one specific question can use them.
  */
-export default function FaqJump({ questions }: { questions: string[] }) {
+export default function FaqJump({
+  questions,
+  label = "Questions answered here",
+  navLabel = "Questions answered on this page",
+}: {
+  questions: string[];
+  /** Visible heading and accessible name, for a translated page. */
+  label?: string;
+  navLabel?: string;
+}) {
   if (questions.length === 0) return null;
   return (
     <nav
-      aria-label="Questions answered on this page"
+      aria-label={navLabel}
       className="not-prose mt-8 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4"
     >
       <p className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">
-        Questions answered here
+        {label}
       </p>
       <ul className="mt-3 space-y-1.5">
         {questions.map((q, i) => (

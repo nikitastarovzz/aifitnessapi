@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { site, absoluteUrl } from "@/lib/site";
 import SiteInstrumentation from "@/components/SiteInstrumentation";
+import HtmlRoot from "@/components/HtmlRoot";
 import { organizationNode, searchActionNode, ORG_ID, WEBSITE_ID } from "@/lib/schema";
 
 /**
@@ -133,7 +134,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en">
+    <HtmlRoot>
       <body className="flex min-h-screen flex-col">
         {/* Machine-readable surfaces. `describedby` points at the llms.txt
             that documents every convention this site follows; React hoists
@@ -170,6 +171,6 @@ export default function RootLayout({
         <Footer />
         <SiteInstrumentation />
       </body>
-    </html>
+    </HtmlRoot>
   );
 }

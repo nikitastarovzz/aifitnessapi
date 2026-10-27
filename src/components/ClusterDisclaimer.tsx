@@ -1,4 +1,5 @@
 import { formatDate } from "@/lib/posts";
+import { formatDatePt } from "@/lib/datePt";
 
 /**
  * Trust line for cluster content (§9). Two variants:
@@ -16,10 +17,26 @@ import { formatDate } from "@/lib/posts";
 export default function ClusterDisclaimer({
   updated,
   variant = "comparison",
+  locale,
 }: {
   updated: string;
   variant?: "comparison" | "legal" | "health-ai";
+  /** "pt-BR" on a translated page; only the comparison line is translated,
+   *  because only comparison clusters are. */
+  locale?: "pt-BR";
 }) {
+  if (locale === "pt-BR" && variant === "comparison") {
+    return (
+      <p className="not-prose mt-12 border-t border-[var(--border)] pt-6 text-xs leading-relaxed text-[var(--muted)]">
+        Comparação independente, revisada pela última vez em {formatDatePt(updated)} (versão em
+        inglês). Preços, limites de requisições e recursos disponíveis mudam com frequência —
+        confirme os detalhes atuais na documentação oficial de cada fornecedor antes de se
+        comprometer. Os nomes de produtos e empresas são marcas de seus respectivos donos; o
+        AIFitnessAPI não é afiliado, endossado nem patrocinado por nenhum produto citado aqui.
+        Esta é uma tradução: em caso de divergência, vale a página em inglês.
+      </p>
+    );
+  }
   if (variant === "health-ai") {
     return (
       <p className="not-prose mt-12 border-t border-[var(--border)] pt-6 text-xs leading-relaxed text-[var(--muted)]">

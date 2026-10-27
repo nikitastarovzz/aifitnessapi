@@ -1154,6 +1154,133 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     area: "Metadata",
     refuses: "A page whose title or h1 puts a year in parentheses, such as (2026), when that year differs from the year of the newest dateModified in the page's structured data, or when the page declares no dateModified to back it.",
   },
+  // ── Translations (ops/SEO-10-2026-10-27.md item 10) ───────────────────
+  {
+    code: "PTBR-STORE",
+    area: "Translations",
+    refuses:
+      "A translation file (content/translations/pt-BR) that cannot be parsed or is missing a field, a sourceHash, or its dates. A half-filled translation would render a page that is partly English and partly blank.",
+  },
+  {
+    code: "PTBR-ORPHAN",
+    area: "Translations",
+    refuses:
+      "A translation whose English page no longer builds. With nothing to translate or point back to, the file must be deleted in the same change that removes the English page.",
+  },
+  {
+    code: "PTBR-NOT-BUILT",
+    area: "Translations",
+    refuses:
+      "A translation file whose /pt-br page did not build.",
+  },
+  {
+    code: "PTBR-STATUS",
+    area: "Translations",
+    refuses:
+      "A translated page whose rendered status (current or stale) differs from the status recomputed from the English entry's hash, which would mean the site and the checker disagree about whether the translation still matches.",
+  },
+  {
+    code: "PTBR-STALE-RENDER",
+    area: "Translations",
+    refuses:
+      "A stale translation (the English text changed after it was translated) that does not render noindex, or does not show the notice in Portuguese linking the English page as the current version.",
+  },
+  {
+    code: "PTBR-CURRENT-RENDER",
+    area: "Translations",
+    refuses:
+      "A current translation that renders noindex or the stale notice.",
+  },
+  {
+    code: "PTBR-SITEMAP",
+    area: "Translations",
+    refuses:
+      "A current translation missing from sitemap.xml or dated other than its translation day, or a stale one still listed.",
+  },
+  {
+    code: "PTBR-HREFLANG",
+    area: "Translations",
+    refuses:
+      "hreflang that offers a stale translation, or a current translation without hreflang en, pt-BR and x-default on both the English and the translated page, or an English page whose language switch disagrees with the translation's status.",
+  },
+  {
+    code: "PTBR-CANONICAL",
+    area: "Translations",
+    refuses:
+      "A translated page whose canonical is not its own address.",
+  },
+  {
+    code: "PTBR-DATES",
+    area: "Translations",
+    refuses:
+      "A translated page that does not show the English page's verification date as \"Verificado em … (versão em inglês)\", or whose translation and source dates are out of order. A translation is not a re-verification and must not look like one.",
+  },
+  {
+    code: "PTBR-SOURCES",
+    area: "Translations",
+    refuses:
+      "A current translation that drops any of the English page's checked sources.",
+  },
+  {
+    code: "PTBR-STRUCTURE",
+    area: "Translations",
+    refuses:
+      "A translation with a different number of FAQs or steps than the English page, or related links that are not the English page's, in its order.",
+  },
+  {
+    code: "PTBR-NUMBERS",
+    area: "Translations",
+    refuses:
+      "A translated capsule, body, FAQ or step that drops a number the English text has or adds one it does not, or a title or description with a number the English one lacks. Thousands and decimal separators are ignored, so 1,500 and 1.500 are the same number.",
+  },
+  {
+    code: "PTBR-LINKS",
+    area: "Translations",
+    refuses:
+      "A translated body or related list whose internal links are not the English page's, each pointed at its current translation where one exists and at the English page otherwise.",
+  },
+  {
+    code: "PTBR-EXTERNAL",
+    area: "Translations",
+    refuses:
+      "A translated body that drops an external source the English body links, or adds one.",
+  },
+  {
+    code: "PTBR-CODE",
+    area: "Translations",
+    refuses:
+      "A translated body that changes or drops a code span or block from the English page; code, endpoints and identifiers are never translated.",
+  },
+  {
+    code: "PTBR-QUOTES",
+    area: "Translations",
+    refuses:
+      "A translated body that does not keep a quoted source passage of two words or more (vendor, licence or agreement text in quotation marks) verbatim in English. A Portuguese gloss may follow it in brackets; it may not replace it.",
+  },
+  {
+    code: "PTBR-DISCLOSURE",
+    area: "Translations",
+    refuses:
+      "A translation of a first-party page without the translated funding disclosure, or one that names KinesteX more or less often than the English text does.",
+  },
+  {
+    code: "PTBR-LANG",
+    area: "Translations",
+    refuses:
+      "A page whose <html lang> is wrong for its address: pt-BR under /pt-br, en everywhere else.",
+  },
+  {
+    code: "PTBR-INDEX",
+    area: "Translations",
+    refuses:
+      "A /pt-br index that does not list every built translation, or that asks to be indexed with fewer than three current translations (or not with three or more), or whose sitemap row disagrees with its robots meta.",
+  },
+  {
+    code: "PTBR-SURFACES",
+    area: "Translations",
+    refuses:
+      "A /pt-br page listed in llms.txt, llms-full.txt, answers.json or the search index, which describe the English pages.",
+  },
 ];
 
 /** Group order on /gates. Every area used above must appear here. */
@@ -1171,4 +1298,6 @@ export const GATE_AREAS = [
   "Blog",
   "Derived blocks",
   "Hosting and crawl",
+  // The translated edition, held to the English pages it renders.
+  "Translations",
 ] as const;

@@ -16,6 +16,10 @@
  *     sitting unreleased was not published, so the gate date wins when it is
  *     later. Clusters without a gate (the HealthKit reference pages) use (a).
  *   - Blog post: the commit that first added content/posts/<slug>.mdx.
+ *   - Translated spoke (content/translations/<locale>/<cluster>/<slug>.md,
+ *     served at /<prefix>/<cluster>/<slug>): the commit that first added the
+ *     translation file. The translation is its own document, published when
+ *     its file landed, whatever the English page's date.
  *   - Generated reference section (GENERATED_SECTIONS below): a static
  *     route is dated by the commit that first added its page.tsx; a per-item
  *     route by the later of the commit that added the dynamic route and the
@@ -44,6 +48,8 @@ import path from "node:path";
 
 const DATA = "src/data";
 const POSTS = "content/posts";
+/** Translation stores and the URL prefix each is served under (src/lib/translationStore.mjs). */
+const TRANSLATIONS = [{ dir: "content/translations/pt-BR", prefix: "pt-br" }];
 const OUT = "src/data/published.ts";
 
 /**
@@ -205,6 +211,19 @@ for (const file of postFiles) {
   rows.set(key, date);
 }
 
+for (const { dir, prefix } of TRANSLATIONS) {
+  if (!fs.existsSync(dir)) continue;
+  for (const cluster of fs.readdirSync(dir, { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name).sort()) {
+    for (const file of fs.readdirSync(path.join(dir, cluster)).filter((f) => f.endsWith(".md")).sort()) {
+      expected++;
+      const key = `${prefix}/${cluster}/${file.replace(/\.md$/, "")}`;
+      const date = firstAdded(path.join(dir, cluster, file));
+      if (date) rows.set(key, date);
+      else missing.push(key);
+    }
+  }
+}
+
 for (const s of GENERATED_SECTIONS) {
   // Static routes: every page.tsx under the section outside a dynamic
   // segment or a private (_) folder.
@@ -261,12 +280,13 @@ const body = `/**
  * GENERATED — do not hand-edit. Rebuild with:
  *   node scripts/backfill-published.mjs
  *
- * First-published date of every cluster spoke, blog post and generated
- * reference page, read from git history: the first commit that both
- * contained the entry and listed it in its cluster's release gate (blog
- * posts: the commit that added the file; generated sections: the commit that
- * added the route, or the item to the data file if that came later).
- * Keyed by URL path without the leading slash. ${sorted.length} rows.
+ * First-published date of every cluster spoke, blog post, translated spoke
+ * and generated reference page, read from git history: the first commit that
+ * both contained the entry and listed it in its cluster's release gate (blog
+ * posts and translations: the commit that added the file; generated
+ * sections: the commit that added the route, or the item to the data file if
+ * that came later). Keyed by URL path without the leading slash.
+ * ${sorted.length} rows.
  *
  * This is datePublished; an entry's \`updated\` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
