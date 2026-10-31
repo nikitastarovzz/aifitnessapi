@@ -19,8 +19,8 @@ export default function Footer() {
   const has = (p: string) => (populated[p]?.length ?? 0) > 0;
   return (
     <footer className="mt-24 border-t border-[var(--border)]">
-      <Container className="flex flex-col items-center justify-between gap-4 py-10 sm:flex-row">
-        <div className="flex max-w-xs flex-col items-center gap-2 text-center sm:items-start sm:text-left">
+      <Container className="flex flex-col-reverse items-center gap-6 py-10">
+        <div className="flex max-w-xl flex-col items-center gap-2 text-center">
           <p className="text-sm text-[var(--muted)]">
             © {year} {site.name}. All rights reserved.
           </p>
