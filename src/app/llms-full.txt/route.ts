@@ -1,6 +1,7 @@
 import { site, absoluteUrl } from "@/lib/site";
 import { TASKS_VISION_VERSION, VERIFIED_ON as POSE_BENCH_VERIFIED_ON } from "@/lib/poseBenchmark";
 import { getAllPosts } from "@/lib/posts";
+import { EVENTS as SHIP_IT_EVENTS, PATH as SHIP_IT_PATH, RUNWAY_WEEKS as SHIP_IT_RUNWAY } from "@/lib/shipIt";
 import { GLANCE_HUBS, hubQa, segText } from "@/data/hubGlance";
 import { moneyPages, MONEY_GROUP_LABELS, MONEY_GROUP_ORDER } from "@/data/moneyPages";
 import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
@@ -592,6 +593,13 @@ export function GET() {
   out.push("");
   out.push(
     `A client-side tool that loads Google's @mediapipe/tasks-vision ${TASKS_VISION_VERSION} runtime and the Pose Landmarker lite, full and heavy model files when the reader presses Run, times them on the reader's own camera or a synthetic test frame with the GPU and CPU delegates, and reports load time, median and p95 inference time, FPS and the browser's device details as a markdown table. Frames never leave the tab. The page publishes no latency or accuracy figure of its own: the only honest number is the one measured on the target hardware. MoveNet is not included because its default weights load from tfhub.dev, which could not be reached to verify on ${POSE_BENCH_VERIFIED_ON}.`,
+  );
+  out.push("");
+  out.push(`## Ship It: a fitness-app survival game — ${absoluteUrl(SHIP_IT_PATH)}`);
+  out.push("Primary query: fitness api deprecation game");
+  out.push("");
+  out.push(
+    `A short client-side game. The player picks a product (running app, AI running coach, sleep app, employer wellness, camera workout app) and up to three data stacks, then meets, in date order, each of the ${SHIP_IT_EVENTS.length} real events that hit those stacks: ${SHIP_IT_EVENTS.map((e) => `${e.title} (${e.date})`).join("; ")}. Every event quotes the page on this site that sources it, and a build check fails if the quote or its date stops appearing there. Each choice (act now, hedge, ignore) costs game weeks or game users against a ${SHIP_IT_RUNWAY}-week runway; those numbers are invented rules, not estimates of real migration effort or churn. The result is shared as a canvas-drawn card and spoiler-free text.`,
   );
   out.push("");
   out.push(`## Wearable webhook verifier — ${absoluteUrl("/tools/webhook-verifier")}`);

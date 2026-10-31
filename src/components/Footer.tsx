@@ -126,6 +126,9 @@ export default function Footer() {
           <FooterLink href="/compare-apis" className="py-1 hover:text-[var(--fg)]">
             Compare APIs
           </FooterLink>
+          <FooterLink href="/play/ship-it" className="py-1 hover:text-[var(--fg)]">
+            Ship It (game)
+          </FooterLink>
           <FooterLink href="/picker" className="py-1 hover:text-[var(--fg)]">
             API Picker
           </FooterLink>

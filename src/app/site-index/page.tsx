@@ -84,6 +84,7 @@ const MAIN = [
   ...(SDK_REPOS.length > 0 ? [{ href: "/sdk-releases", label: "Health SDK release tracker" }] : []),
   { href: "/day-boundaries", label: "Why “today’s steps” is a bug (live demo)" },
   { href: "/changes", label: "Changes & deadlines tracker" },
+  { href: "/play/ship-it", label: "Ship It: a fitness-app survival game" },
   { href: "/alerts", label: "API change alerts — watch what you depend on" },
   { href: "/digest", label: "Monthly digest archive" },
   { href: "/state-of-fitness-apis-2026", label: "The State of Fitness APIs 2026" },

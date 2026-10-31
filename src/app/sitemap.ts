@@ -285,6 +285,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     API_INDEX_PATH,
     "/alerts",
     "/compare-apis",
+    "/play/ship-it",
     "/datasets",
     "/developers",
     "/badges",

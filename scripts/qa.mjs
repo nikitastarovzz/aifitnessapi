@@ -720,6 +720,39 @@ if (fs.existsSync(matrixPath)) {
   }
 }
 
+// ── Ship It (/play/ship-it, ops/VIRAL-30-2026-10-31.md item 7). A game built
+// on the dated record must never present a vendor event the record does not
+// carry. scripts/ship-it-check.mjs holds every event's quote and date to the
+// text of the on-site page that sources it (a released cluster entry or a
+// /changes entry), checks that cited pages and stacks exist, and that an
+// event only names stacks it affects. The build half: every page an event
+// cites was built, and the page lists every event.
+{
+  const { checkShipIt, loadShipIt } = await import(new URL("./ship-it-check.mjs", import.meta.url));
+  let events = [];
+  try {
+    const { problems: shipProblems } = await checkShipIt();
+    for (const p of shipProblems) problems.push(`SHIP-IT  ${p}`);
+    events = (await loadShipIt()).EVENTS;
+  } catch (err) {
+    problems.push(`SHIP-IT  the game's source check could not run: ${err.message}`);
+  }
+  const built = new Set(htmls.map(routeOf));
+  for (const e of events) {
+    if (!built.has(e.source.href)) problems.push(`SHIP-IT  event ${e.id} cites ${e.source.href}, which was not built`);
+  }
+  const h = htmls.find((x) => routeOf(x) === "/play/ship-it");
+  if (!h) problems.push("SHIP-IT  /play/ship-it was not built");
+  else {
+    const rendered = [...fs.readFileSync(h, "utf8").matchAll(/data-ship-it-event="([a-z0-9-]+)"/g)].map((m) => m[1]);
+    const missing = events.filter((e) => !rendered.includes(e.id)).map((e) => e.id);
+    if (missing.length || rendered.length !== events.length) {
+      problems.push(`SHIP-IT  /play/ship-it lists ${rendered.length} of ${events.length} events${missing.length ? ` — missing: ${missing.join(", ")}` : ""}`);
+    }
+  }
+  console.log(`Ship It: ${events.length} events, each held to its source page's text.`);
+}
+
 // ── Vendor menus (ops/EXPANSION-3-2026-10-17.md, item 1.2). src/data/vendorHubs.ts
 // lists every page about each vendor; each of them renders the same menu
 // (components/VendorHubMenu), and the vendor's hub links them all, so a search

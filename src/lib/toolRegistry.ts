@@ -104,6 +104,12 @@ export const TOOL_PLANNERS: Tool[] = [
       "Interactive: DST days aren't 24 hours, so a fixed UTC window drops or double-counts an hour.",
   },
   {
+    path: "/play/ship-it",
+    name: "Ship It: a fitness-app survival game",
+    blurb:
+      "Pick a product and a data stack, then live through the real, dated API events that hit it: Fitbit turn-off, Google Fit end of support, Garmin approval, Strava rules.",
+  },
+  {
     path: "/tools/pose-benchmark",
     name: "Pose model benchmark",
     blurb:

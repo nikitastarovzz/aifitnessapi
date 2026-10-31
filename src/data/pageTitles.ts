@@ -28,4 +28,5 @@ export const PAGE_H1 = {
   "/developers": "The AIFitnessAPI Data API and MCP Server",
   "/market-map": "The fitness & health API market map",
   "/fitness-api-index": "The fitness API index",
+  "/play/ship-it": "Ship It: a fitness-app survival game",
 } as const;

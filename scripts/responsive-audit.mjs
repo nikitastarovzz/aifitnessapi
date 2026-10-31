@@ -23,7 +23,7 @@ const VIEWPORTS = [
 ];
 // One page of every distinct template on the site.
 const PAGES = ["/", "/devices", "/devices/ftms-fitness-machine-service", "/matrix",
-  "/picker", "/cost-planner", "/day-boundaries", "/changes", "/ai-fitness-app",
+  "/picker", "/cost-planner", "/day-boundaries", "/play/ship-it", "/changes", "/ai-fitness-app",
   "/no-code-fitness-app", "/state-of-fitness-apis-2026", "/fitbit-api-shutdown",
   "/google-fit-shutdown", "/cookbook", "/cookbook/refresh-rotation",
   "/compare/oura-vs-whoop", "/integrate/healthkit", "/signup", "/glossary",
