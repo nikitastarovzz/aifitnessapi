@@ -800,8 +800,11 @@ if (fs.existsSync(matrixPath)) {
       problems.push(`GRAVEYARD-STATUS  ${id} has status ${JSON.stringify(e?.status)}`);
     } else if (asOf && e.status === "dying") {
       if (!e.end) problems.push(`GRAVEYARD-DYING  ${id} is dying with no end date; dying means the vendor names one`);
-      else if (!(endOfPeriod(e.end) > asOf)) {
-        problems.push(`GRAVEYARD-DYING  ${id} is dying but its end (${e.end}) is not after the build date ${asOf} — re-read the source and move it to dead or deprecated`);
+      // A passed deadline renders on the page as "due for a re-check" at
+      // once; the build fails only after a 14-day grace, so one vendor's
+      // switch-off never blocks every unrelated PR on the day it happens.
+      else if (!(new Date(`${endOfPeriod(e.end)}T00:00:00Z`).getTime() + 14 * 86400000 > new Date(`${asOf}T00:00:00Z`).getTime())) {
+        problems.push(`GRAVEYARD-DYING  ${id} is dying but its end (${e.end}) passed more than 14 days before the build date ${asOf} — re-read the source and move it to dead or deprecated`);
       }
     } else if (asOf && e.status === "dead" && e.end && startOfPeriod(e.end) > asOf) {
       problems.push(`GRAVEYARD-STATUS  ${id} is dead with an end (${e.end}) after the build date ${asOf}`);

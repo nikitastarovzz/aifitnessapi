@@ -408,7 +408,7 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     code: "GRAVEYARD-DYING",
     area: "Content integrity",
     refuses:
-      "A graveyard entry marked dying whose end date is missing or no longer after the build date. A passed deadline fails the build until its source is re-read and the entry moved to dead or deprecated, so a countdown never sits at zero claiming the API is still dying.",
+      "A graveyard entry marked dying whose end date is missing or no longer after the build date. Once the deadline passes the page marks the stone as due for a re-check; 14 days after it, the build fails until the source is re-read and the entry moved to dead or deprecated, so a stone never sits past its deadline still claiming the API is dying.",
   },
   {
     code: "GRAVEYARD-EVIDENCE",
