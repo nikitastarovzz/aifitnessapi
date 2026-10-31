@@ -304,6 +304,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     GRAVEYARD_PATH,
     "/alerts",
     "/compare-apis",
+    "/play/ship-it",
     "/datasets",
     "/developers",
     "/badges",

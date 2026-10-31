@@ -361,6 +361,12 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
       "A market map (the page or its embed) that shows a different set of tiles from the products in the API directory: a derived landscape with a product missing, or one the directory does not have.",
   },
   {
+    code: "SHIP-IT",
+    area: "Content integrity",
+    refuses:
+      "A Ship It game event whose quote or date no longer appears on the page on this site that sources it, a vendor quote that is not in quotation marks there, an event whose /changes entry has a different date or page, a cited page that was not built, or an event whose title does not name exactly the stacks it hits, or whose source page does not name each of them — the game may never present a vendor event the record does not carry.",
+  },
+  {
     code: "MARKET-MAP-FUNDER",
     area: "Disclosure",
     refuses:

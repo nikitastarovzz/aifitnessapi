@@ -30,4 +30,5 @@ export const PAGE_H1 = {
   "/fitness-api-index": "The fitness API index",
   "/daily": "The daily health-API developer puzzle",
   "/graveyard": "The Fitness API Graveyard",
+  "/play/ship-it": "Ship It: a fitness-app survival game",
 } as const;

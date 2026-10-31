@@ -7,6 +7,7 @@ import { SOURCES_CHECKED_ON as STEP_LAB_CHECKED_ON } from "@/lib/stepLab";
 import { getAllPosts } from "@/lib/posts";
 import { slides as yearSlides, storyTitle as yearTitle } from "@/lib/year2026";
 import { graveyardCopy } from "@/lib/graveyardCopy";
+import { EVENTS as SHIP_IT_EVENTS, PATH as SHIP_IT_PATH, RUNWAY_WEEKS as SHIP_IT_RUNWAY } from "@/lib/shipIt";
 import { GLANCE_HUBS, hubQa, segText } from "@/data/hubGlance";
 import { moneyPages, MONEY_GROUP_LABELS, MONEY_GROUP_ORDER } from "@/data/moneyPages";
 import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
@@ -627,6 +628,13 @@ export function GET() {
   out.push("");
   out.push(
     "A client-side Web Bluetooth tool. The reader picks a heart-rate device in the browser's chooser; the page subscribes to Heart Rate Measurement (0x2A37) notifications and shows each one as bytes, coloured by field, decoded against the Bluetooth SIG's GATT Specification Supplement structure as this site's generated dataset holds it: the Flags octet bit by bit, the uint8 or uint16 heart-rate value, sensor contact, Energy Expended and RR-intervals (1/1024 s each, as many as the remaining octets hold). Whether a device can give HRV is in those bytes: RR intervals are present only when bit 4 of Flags is set, and without them there is no beat-to-beat timing to compute HRV from. The page gives a running yes/no, a demo RMSSD (not a medical measurement), Body Sensor Location and Battery Level where present, a CSV of the session and a share card made on a canvas. Byte order is little-endian per the Web Bluetooth specification's heart-rate example. Browsers without Web Bluetooth get a synthetic replay, labelled as synthetic. Nothing is uploaded or stored.",
+  );
+  out.push("");
+  out.push(`## Ship It: a fitness-app survival game — ${absoluteUrl(SHIP_IT_PATH)}`);
+  out.push("Primary query: fitness api deprecation game");
+  out.push("");
+  out.push(
+    `A short client-side game. The player picks a product (running app, AI running coach, sleep app, employer wellness, camera workout app) and up to three data stacks, then meets, in date order, each of the ${SHIP_IT_EVENTS.length} real events that hit those stacks: ${SHIP_IT_EVENTS.map((e) => `${e.title} (${e.date})`).join("; ")}. Every event quotes the page on this site that sources it, and a build check fails if the quote or its date stops appearing there. Each choice (act now, hedge, ignore) costs game weeks or game users against a ${SHIP_IT_RUNWAY}-week runway; those numbers are invented rules, not estimates of real migration effort or churn. The result is shared as a canvas-drawn card and spoiler-free text.`,
   );
   out.push("");
   out.push(`## Wearable webhook verifier — ${absoluteUrl("/tools/webhook-verifier")}`);

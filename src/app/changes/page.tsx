@@ -165,6 +165,15 @@ export default function ChangesPage() {
           vendor&rsquo;s own words, filters, an embed and a JSON download.
         </p>
 
+        <p className="mt-2 text-sm text-[var(--muted)]">
+          Play the record:{" "}
+          <Link href="/play/ship-it" className="font-medium text-brand-600 hover:text-brand-500">
+            Ship It
+          </Link>{" "}
+          is a short game that puts your app&rsquo;s stack through the dated events below, each card quoting its
+          source page.
+        </p>
+
         <section className="mt-10">
           <ol className="relative space-y-6 border-l border-[var(--border)] pl-6">
             {events.map((e) => (
