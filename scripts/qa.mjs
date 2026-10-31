@@ -674,6 +674,50 @@ if (fs.existsSync(matrixPath)) {
     if (!html.includes('"SoftwareApplication"')) problems.push(`APIS-NO-ENTITY  ${r}`);
   }
   console.log(`Directory: ${dir.length} product pages, ${thin} with no coverage.`);
+
+  // ── The market map and the index (added 2026-10-31). Both are derived views
+  // of the directory, so the directory's product set is what they must show:
+  // a tile or a row that quietly drops out is a landscape with a hole in it.
+  // And the one invariant that matters more than completeness: the funder's
+  // row on the index is never ranked — it carries data-unranked, the
+  // "funds this site" label and no position — and its tile on the map and in
+  // the embed carries its marker, because the embed travels without the
+  // page's disclosure.
+  const tilesOn = (html) => [...html.matchAll(/data-map-tile="([a-z0-9-]+)"/g)].map((m) => m[1]);
+  for (const route of ["/market-map", "/embed/market-map"]) {
+    const h = htmls.find((x) => routeOf(x) === route);
+    if (!h) { problems.push(`MARKET-MAP-TILES  ${route} was not built`); continue; }
+    const html = fs.readFileSync(h, "utf8");
+    const tiles = tilesOn(html);
+    const missing = expected.filter((id) => !tiles.includes(id));
+    if (missing.length || tiles.length !== expected.length) {
+      problems.push(`MARKET-MAP-TILES  ${route} renders ${tiles.length} tiles for ${expected.length} directory products${missing.length ? ` — missing: ${missing.join(", ")}` : ""}`);
+    }
+    const funderTile = /data-map-tile="kinestex"[\s\S]*?<\/li>/.exec(html)?.[0] ?? "";
+    if (expected.includes("kinestex") && !/funds (?:this site|aifitnessapi\.com)/.test(funderTile)) {
+      problems.push(`MARKET-MAP-FUNDER  ${route}: the KinesteX tile does not carry its funds-this-site marker`);
+    }
+  }
+  {
+    const h = htmls.find((x) => routeOf(x) === "/fitness-api-index");
+    if (!h) problems.push("API-INDEX-ROWS  /fitness-api-index was not built");
+    else {
+      const html = fs.readFileSync(h, "utf8");
+      const rows = [...html.matchAll(/data-index-row="([a-z0-9-]+)"/g)].map((m) => m[1]);
+      const missing = expected.filter((id) => !rows.includes(id));
+      if (missing.length || rows.length !== expected.length) {
+        problems.push(`API-INDEX-ROWS  /fitness-api-index renders ${rows.length} rows for ${expected.length} directory products${missing.length ? ` — missing: ${missing.join(", ")}` : ""}`);
+      }
+      const unranked = [...html.matchAll(/<tr[^>]*data-index-row="([a-z0-9-]+)"[^>]*data-unranked=""[^>]*>([\s\S]*?)<\/tr>/g)];
+      const ok = unranked.length === 1 && unranked[0][1] === "kinestex" && /Funds this site — not ranked/.test(unranked[0][2]) && /not ranked<\/span><\/td>/.test(unranked[0][2]);
+      if (expected.includes("kinestex") && !ok) {
+        problems.push("API-INDEX-FUNDER-RANKED  /fitness-api-index must render exactly one unranked row, KinesteX's, labelled funds this site with no position");
+      }
+      if (/"@type":"[^"]*"[^}]*"ratingValue"|data-composite-score/.test(html)) {
+        problems.push("API-INDEX-SCORE  /fitness-api-index renders a composite score; it publishes raw signals only");
+      }
+    }
+  }
 }
 
 // ── Vendor menus (ops/EXPANSION-3-2026-10-17.md, item 1.2). src/data/vendorHubs.ts

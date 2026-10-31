@@ -450,6 +450,8 @@ export function GET() {
     );
   }
 
+  add("/market-map", "Fitness & Health API Market Map", "Every product in the directory as one map, grouped by category, filterable by billing model, approval gate and tracked library.", "market map landscape ecosystem vendors categories overview embed");
+  add("/fitness-api-index", "Fitness API Index: Ecosystem Signals", "Sortable raw signals per product: SDK and library releases, dated changes in the last 12 months, approval gates, verification age. No score.", "index scorecard signals release cadence deprecations changes freshness data");
   add("/picker", "Which Fitness API Should I Use? (interactive)", "Three questions, a tailored recommendation.", "picker tool quiz choose");
   add("/cost-planner", "Fitness API Cost Planner (interactive)", "The cost structure of your stack: billing models, user-side costs, approval gates, eng effort.", "cost calculator pricing budget planner tool");
   add("/changes", "Fitness API Changes & Deadlines Tracker", "The dated, graded record of ecosystem changes: deprecations, deadlines, term changes \u2014 confirmed vs reported.", "changes changelog deadlines deprecations tracker news updates");
@@ -464,7 +466,7 @@ export function GET() {
   add("/fitbit-api-shutdown", "Fitbit Web API Retirement: Deadlines and Migration", "Google's published timeline (end of support September 30, turn-off November 2, 2026), what else is confirmed vs reported, and the migration path by integration shape.", "fitbit api shutdown deprecated retirement google health september october 30 2026 turn off end of support");
   add("/datasets", "Open datasets (CC BY 4.0)", "Every dataset this site publishes: API access structures, the HealthKit/Health Connect type matrix, the changes log, the glossary.", "datasets open data csv json cc by download research");
   add("/developers", "Developer API & MCP server", "The verified datasets as a free, read-only JSON API with an OpenAPI 3.1 document, and as MCP tools for AI assistants. No key.", "api json rest openapi swagger mcp server model context protocol developers endpoint claude assistant");
-  add("/badges", "Embeds & badges", "Put the type reference or the deadlines tracker on your own page, or link back with a badge.", "embed iframe widget badge link back");
+  add("/badges", "Embeds & badges", "Put the type reference, the deadlines tracker or the API market map on your own page, or link back with a badge.", "embed iframe widget badge link back");
   add("/compare-apis", "Compare two fitness APIs side by side", "Access structure, user-side cost and approval gates for any two products in the directory.", "compare versus vs side by side tool");
   add("/alerts", "API change alerts", "Watch the fitness APIs you depend on and get an email when a dated deprecation or terms change lands.", "alerts watch notify subscribe deprecation deadline");
   add("/digest", "Monthly digest archive", "What changed in the fitness and health API ecosystem each month, and which pages were verified.", "digest newsletter archive monthly issues");
@@ -474,7 +476,7 @@ export function GET() {
   add("/glossary", "Fitness & Health API Glossary", "Every term in one or two honest sentences, linked to the page that treats it properly.", "glossary terms definitions dictionary");
   add("/methodology", "How We Verify", "Primary sources, adversarial review, and who funds the site.", "methodology how we verify sources");
   add("/paths", "Reading paths", "Curated page sequences for a goal: ship HealthKit in a week, escape Google Fit, wearables without tears.", "reading path learning sequence curriculum guide");
-  add("/tools", "Free tools for health-app builders", "Twelve tools: diagnose an error, check an aggregation, build a permission set, generate test data, benchmark a pose model on your device.", "tools free interactive utilities");
+  add("/tools", "Free tools for health-app builders", "Fourteen tools: diagnose an error, check an aggregation, generate test data, benchmark a pose model, map the API market.", "tools free interactive utilities");
   add("/tools/error-diagnoser", "Diagnose a HealthKit or OAuth error", "Paste an error, get the matching diagnosis from the error dataset and the fix guides.", "error diagnoser paste debug hkerror oauth 401 429 tool");
   add("/tools/aggregation-checker", "Sum or average? Check any HealthKit type", "Type an identifier, get the cumulative-vs-discrete verdict with Apple's own sentence as evidence.", "aggregation cumulative discrete sum average statistics tool");
   add("/tools/identifier-translator", "HealthKit to Health Connect translator", "Two-way lookup over the verified cross-platform matrix, honest about everything it has not verified.", "translate healthkit health connect identifier record mapping tool");

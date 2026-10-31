@@ -24,7 +24,7 @@ export type Coverage = {
 
 const BODY_MENTION_FLOOR = 2;
 
-function countMatches(hay: string, alias: string): number {
+export function countMatches(hay: string, alias: string): number {
   const re = new RegExp(`(?<![\\w-])${alias.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?![\\w-])`, "g");
   return (hay.match(re) ?? []).length;
 }

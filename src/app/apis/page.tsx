@@ -146,6 +146,11 @@ export default function ApiDirectory() {
             <Link href="/compare-apis">compare any pair</Link>.
           </p>
           <p>
+            The same products as one picture: the{" "}
+            <Link href="/market-map">market map</Link>. Their release, change and verification
+            signals side by side: the <Link href="/fitness-api-index">fitness API index</Link>.
+          </p>
+          <p>
             Depending on one of these? <Link href="/alerts">Watch it for changes</Link> and
             hear when a dated deprecation or terms change lands.
           </p>

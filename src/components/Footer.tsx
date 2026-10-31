@@ -117,6 +117,12 @@ export default function Footer() {
           <FooterLink href="/apis" className="py-1 hover:text-[var(--fg)]">
             API Directory
           </FooterLink>
+          <FooterLink href="/market-map" className="py-1 hover:text-[var(--fg)]">
+            API Market Map
+          </FooterLink>
+          <FooterLink href="/fitness-api-index" className="py-1 hover:text-[var(--fg)]">
+            Fitness API Index
+          </FooterLink>
           <FooterLink href="/compare-apis" className="py-1 hover:text-[var(--fg)]">
             Compare APIs
           </FooterLink>
