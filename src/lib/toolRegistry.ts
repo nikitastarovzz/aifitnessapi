@@ -85,6 +85,12 @@ export const TOOL_PLANNERS: Tool[] = [
     blurb:
       "Interactive: DST days aren't 24 hours, so a fixed UTC window drops or double-counts an hour.",
   },
+  {
+    path: "/tools/pose-benchmark",
+    name: "Pose model benchmark",
+    blurb:
+      "Time MediaPipe Pose Landmarker lite, full and heavy on your own device and copy the latency table as markdown.",
+  },
 ];
 
 export const ALL_TOOLS: Tool[] = [...TOOL_LOOKUPS, ...TOOL_PLANNERS];

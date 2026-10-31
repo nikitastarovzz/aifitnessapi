@@ -1,4 +1,5 @@
 import { site, absoluteUrl } from "@/lib/site";
+import { TASKS_VISION_VERSION, VERIFIED_ON as POSE_BENCH_VERIFIED_ON } from "@/lib/poseBenchmark";
 import { getAllPosts } from "@/lib/posts";
 import { GLANCE_HUBS, hubQa, segText } from "@/data/hubGlance";
 import { moneyPages, MONEY_GROUP_LABELS, MONEY_GROUP_ORDER } from "@/data/moneyPages";
@@ -584,6 +585,11 @@ export function GET() {
   out.push("");
   out.push(
     "A client-side tool that generates seeded, deterministic synthetic fixtures for Apple HealthKit, Android Health Connect and the Google Health API, as JSON or CSV. Field names, Kotlin and discovery types, validation ranges and enum values come from this site's generated copies of Apple's and Google's references, and a field the datasets do not describe is left out rather than guessed. Each record carries the offset in force at its own instant: Health Connect's nullable ZoneOffset beside each Instant, the Google Health API's required utcOffset durations, HealthKit's optional HKMetadataKeyTimeZone. Values are synthetic and illustrative, not real or physiologically validated.",
+  out.push(`## Pose model benchmark (runs on your device) — ${absoluteUrl("/tools/pose-benchmark")}`);
+  out.push("Primary query: mediapipe pose landmarker benchmark");
+  out.push("");
+  out.push(
+    `A client-side tool that loads Google's @mediapipe/tasks-vision ${TASKS_VISION_VERSION} runtime and the Pose Landmarker lite, full and heavy model files when the reader presses Run, times them on the reader's own camera or a synthetic test frame with the GPU and CPU delegates, and reports load time, median and p95 inference time, FPS and the browser's device details as a markdown table. Frames never leave the tab. The page publishes no latency or accuracy figure of its own: the only honest number is the one measured on the target hardware. MoveNet is not included because its default weights load from tfhub.dev, which could not be reached to verify on ${POSE_BENCH_VERIFIED_ON}.`,
   );
   out.push("");
   out.push(`## HealthKit and Health Connect data-type reference — ${absoluteUrl("/matrix")}`);

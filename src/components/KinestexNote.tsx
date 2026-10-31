@@ -294,6 +294,10 @@ const MAP: Record<string, Note> = {
   "/no-code-fitness-app": {
     anchor: "KinesteX's developer site",
     lead: "The embedded camera-coaching example used on this page is documented at",
+  // ── Tools ──
+  "/tools/pose-benchmark": {
+    anchor: "KinesteX",
+    lead: "If you would rather ship a hosted camera experience than tune a pose pipeline, see",
   },
 };
 

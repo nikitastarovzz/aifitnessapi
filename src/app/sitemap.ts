@@ -210,7 +210,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const hkGroups = hkGroupDates.map(([slug, d]) => row(`${HK_BASE}/${slug}`, d));
 
   // Tools: the three built on the HealthKit corpus declare HK_FETCHED_ON as
-  // dateModified; the other three carry a page-local UPDATED.
+  // dateModified; the other four carry a page-local UPDATED.
   const tools: [string, string | undefined][] = [
     ["/tools/error-diagnoser", HK_FETCHED_ON],
     ["/tools/aggregation-checker", HK_FETCHED_ON],
@@ -219,6 +219,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/tools/query-generator", pageStamp("/tools/query-generator")],
     ["/tools/stack-generator", pageStamp("/tools/stack-generator")],
     ["/tools/sample-data", pageStamp("/tools/sample-data")],
+    ["/tools/pose-benchmark", pageStamp("/tools/pose-benchmark")],
   ];
 
   // Routes whose date comes from data, or from the members they index.
