@@ -85,6 +85,7 @@ const MAIN = [
   ...LIBRARY_LANDINGS.map((l) => ({ href: landingPath(l), label: l.h1 })),
   ...(SDK_REPOS.length > 0 ? [{ href: "/sdk-releases", label: "Health SDK release tracker" }] : []),
   { href: "/day-boundaries", label: "Why “today’s steps” is a bug (live demo)" },
+  { href: "/challenge", label: "The 30-second webcam rep challenge" },
   { href: "/changes", label: "Changes & deadlines tracker" },
   { href: "/play/ship-it", label: "Ship It: a fitness-app survival game" },
   { href: "/alerts", label: "API change alerts — watch what you depend on" },

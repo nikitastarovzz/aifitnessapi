@@ -141,6 +141,9 @@ export default function Footer() {
           <FooterLink href="/cost-planner" className="py-1 hover:text-[var(--fg)]">
             Cost Planner
           </FooterLink>
+          <FooterLink href="/challenge" className="py-1 hover:text-[var(--fg)]">
+            Rep Challenge
+          </FooterLink>
           <FooterLink href="/ai-fitness-app" className="py-1 hover:text-[var(--fg)]">
             Build an AI Fitness App
           </FooterLink>

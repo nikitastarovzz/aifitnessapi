@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import ShareCard from "@/components/ShareCard";
+import { localDate } from "@/lib/shareCard";
 import {
   BENCH_MODELS,
   TASKS_VISION_BUNDLE,
@@ -20,11 +22,12 @@ import {
  * deliberate: the only honest latency figure for a pose model is the one taken
  * on the hardware it will run on.
  *
- * Nothing leaves the tab. Frames go from the camera (or a canvas the page
- * draws itself) straight into the WebAssembly runtime; the only network
- * traffic is the download of the runtime from cdn.jsdelivr.net and of the
- * model file from storage.googleapis.com, the same requests any app using
- * the library makes.
+ * No frame leaves the tab. Frames go from the camera (or a canvas the page
+ * draws itself) straight into the WebAssembly runtime; the network traffic
+ * is the download of the runtime from cdn.jsdelivr.net and of the model file
+ * from storage.googleapis.com, the same requests any app using the library
+ * makes, plus the runtime's own usage report to Google
+ * (TASKS_VISION_USAGE_LOG_URL in src/lib/poseBenchmark.ts: timings, no images).
  *
  * The runtime is imported from the CDN at run time, not bundled: the site
  * adds no npm dependency for it and a reader who never presses Run downloads
@@ -193,6 +196,15 @@ function toMarkdown(rows: Row[], device: Device | null, input: string, when: str
   return lines.join("\n");
 }
 
+/** The row a share card leads with: the fastest median among lite runs, or
+ *  among any model if lite was not run or failed. */
+function headlineRow(rows: Row[]): Row | undefined {
+  const ok = rows.filter((r) => r.status === "ok" && r.medianMs !== undefined && !Number.isNaN(r.medianMs));
+  const lite = ok.filter((r) => r.model === BENCH_MODELS[0].name);
+  const pool = lite.length ? lite : ok;
+  return [...pool].sort((a, b) => (a.medianMs ?? 0) - (b.medianMs ?? 0))[0];
+}
+
 export default function PoseBenchmark() {
   const [device, setDevice] = useState<Device | null>(null);
   const [source, setSource] = useState<Source>("camera");
@@ -348,7 +360,7 @@ export default function PoseBenchmark() {
           setRows([...out]);
         }
       }
-      setStatus(stopRef.current ? "Stopped." : "Done. Results are below; nothing was sent anywhere.");
+      setStatus(stopRef.current ? "Stopped." : "Done. Results are below; no frame was sent anywhere.");
     } finally {
       streamRef.current?.getTracks().forEach((t) => t.stop());
       streamRef.current = null;
@@ -369,7 +381,11 @@ export default function PoseBenchmark() {
     }
   }
 
-  const nothingPicked = !Object.values(models).some(Boolean) || !Object.values(delegates).some(Boolean);
+  // Rows exist only after a run in the browser, so reading the clock here
+  // cannot differ between server and client renders.
+  const top = headlineRow(rows);
+  const share = top ? { ...top, date: localDate() } : null;
+  const nothingPicked =!Object.values(models).some(Boolean) || !Object.values(delegates).some(Boolean);
   const box = "rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6";
   const chip = "inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1.5 text-sm text-[var(--fg)]";
 
@@ -531,6 +547,22 @@ export default function PoseBenchmark() {
             aria-label="Results as markdown"
             className="mt-3 h-40 w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] p-3 font-mono text-xs text-[var(--fg)]"
           />
+          {!running && share && (
+            <ShareCard
+              filename={`pose-benchmark-${share.date}.png`}
+              text={`⚡ ${share.model} runs at ${ms(share.medianMs)} ms per frame on my device (median of ${share.frames}, ${share.delegate} delegate) aifitnessapi.com/tools/pose-benchmark`}
+              spec={{
+                eyebrow: `${share.model} on my device`,
+                headline: `${ms(share.medianMs)} ms per frame`,
+                lines: [
+                  `Median of ${share.frames} frames, ${share.delegate} delegate, p95 ${ms(share.p95Ms)} ms`,
+                  `@mediapipe/tasks-vision ${TASKS_VISION_VERSION} in the browser · one device, one run`,
+                ],
+                url: "aifitnessapi.com/tools/pose-benchmark",
+                stamp: share.date,
+              }}
+            />
+          )}
         </div>
       )}
 

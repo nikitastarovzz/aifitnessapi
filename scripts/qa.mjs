@@ -1596,10 +1596,10 @@ if (fs.existsSync(matrixPath)) {
   {
     const withNote = htmls.filter((h) => fs.readFileSync(h, "utf8").includes("data-kinestex-note"));
     // 13 pages where KinesteX is the subject or one listed option, plus 47
-    // build-vs-buy camera-motion pages, /tools/pose-benchmark and
-    // /tools/keypoint-playground (widened 2026-10-31; the placement rule is
-    // in the component's header comment).
-    const EXPECTED = 62;
+    // build-vs-buy camera-motion pages, /tools/pose-benchmark,
+    // /tools/keypoint-playground and /challenge (widened 2026-10-31; the
+    // placement rule is in the component's header comment).
+    const EXPECTED = 63;
     if (withNote.length !== EXPECTED) {
       problems.push(
         `KINESTEX-NOTE  ${withNote.length} pages render the first-party link, expected ${EXPECTED} — a mapped path was probably renamed`,

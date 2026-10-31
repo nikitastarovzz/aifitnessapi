@@ -25,7 +25,8 @@
     "test:keypoints": "node --test scripts/keypoint-mapping.test.mjs",
     "test:hr-lab": "node --test scripts/hr-measurement.test.mjs",
     "test:daily": "node --test scripts/daily-puzzle.test.mjs",
-    "test:step-lab": "node --test scripts/step-detector.test.mjs"
+    "test:step-lab": "node --test scripts/step-detector.test.mjs",
+    "test:reps": "node --test scripts/rep-counter.test.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "~1.32.0",
