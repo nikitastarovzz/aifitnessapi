@@ -51,6 +51,12 @@ export const TOOL_LOOKUPS: Tool[] = [
     blurb:
       "Answer four questions and get the HealthKit types and APIs that survive them, with the exclusions shown.",
   },
+  {
+    path: "/tools/webhook-verifier",
+    name: "Is this webhook real?",
+    blurb:
+      "Paste an Oura, WHOOP, Terra, Polar, Strava, Withings, Wahoo or Google Health API webhook: the vendor's documented check, run in your browser.",
+  },
 ];
 
 /** The planners and demos already published on the site. Blurbs match the

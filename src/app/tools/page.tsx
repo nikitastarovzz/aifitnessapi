@@ -27,7 +27,7 @@ import { orgRef, WEBSITE_ID } from "@/lib/schema";
 const PATH = "/tools";
 const TITLE = "Free Tools for Health-App Builders";
 const DESCRIPTION =
-  "Ten free tools for HealthKit and Health Connect work: error lookup, aggregation checker, identifier translator, permission and query builders.";
+  "Eleven free tools for health-app builders: HealthKit error lookup, aggregation checker, permission and query builders, and a wearable webhook verifier.";
 
 export const metadata: Metadata = {
   // Plain, not `absolute` — the layout template appends the site suffix and
@@ -106,7 +106,8 @@ export default function ToolsHubPage() {
           {ALL_TOOLS.length}{" "}tools that answer a question with a lookup instead of an essay. Every
           one runs in your browser off this site&rsquo;s published datasets — the HealthKit
           identifier set read from Apple&rsquo;s documentation on {HK_FETCHED_ON}, the HealthKit ↔
-          Health Connect matrix verified against both vendors, and the API directory. No account, no
+          Health Connect matrix verified against both vendors, and the API directory — or, for the
+          webhook verifier, off each vendor&rsquo;s own documented signing rule. No account, no
           upload, no server round trip, and nothing invented where the source is silent.
         </p>
 
@@ -115,7 +116,8 @@ export default function ToolsHubPage() {
             Lookups and generators
           </h2>
           <p className="mt-2 text-sm text-[var(--muted)]">
-            Built on the HealthKit identifier dataset and the verified cross-platform matrix.
+            Built on the HealthKit identifier dataset, the verified cross-platform matrix and, for
+            webhooks, the vendors&rsquo; own signing rules.
           </p>
           <ul className="mt-5 grid gap-4 sm:grid-cols-2">
             {TOOL_LOOKUPS.map((t) => (
