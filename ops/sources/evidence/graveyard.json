@@ -1,0 +1,52 @@
+[
+  {
+    "claim": "Terra's legacy widget session endpoint keeps working for existing integrations and is planned for deprecation on 3 November 2026; accounts created after 3 September 2026 cannot use it.",
+    "url": "https://docs.tryterra.co/unified-api/user-authentication/implementation-terra-widget",
+    "quote": "Existing integrations keep working today, and the legacy endpoint is planned for deprecation on 3 November 2026. Accounts created after 3 September 2026 cannot use it at all."
+  },
+  {
+    "claim": "Strava's changelog records the Club Activities, Club Members and Club Admins endpoints as removed under September 1, 2026.",
+    "url": "https://developers.strava.com/docs/changelog/",
+    "quote": "and Club Admins endpoints removed"
+  },
+  {
+    "claim": "Strava's changelog entry of June 1, 2026 announced the club endpoints' removal for September 1, 2026.",
+    "url": "https://developers.strava.com/docs/changelog/",
+    "quote": "and Club Admins endpoints will be removed on September 1, 2026"
+  },
+  {
+    "claim": "Strava's Running Races endpoints returned empty values from October 15, 2021 and were removed by November 1, 2021.",
+    "url": "https://developers.strava.com/docs/changelog/",
+    "quote": "The get running race and list races endpoints will start to return empty values starting October 15th, 2021, and will be removed completely by November 1st, 2021."
+  },
+  {
+    "claim": "Samsung Health SDK for Android is deprecated as of July 31, 2025, and Samsung points to the Samsung Health Data SDK.",
+    "url": "https://developer.samsung.com/health/android/overview.html",
+    "quote": "Samsung Health SDK for Android has been depricated as of 31 July, 2025. Please use Samsung Health Data SDK to access Samsung Health data to integrate with Samsung Health."
+  },
+  {
+    "claim": "Oura's getting-started page dates the V1 API's removal to January 22, 2024.",
+    "url": "https://cloud.ouraring.com/docs/",
+    "quote": "The V1 API was removed on January 22nd, 2024."
+  },
+  {
+    "claim": "Oura's API V2 specification says personal access tokens were deprecated in December 2025 and can no longer be used.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "Please note that personal access tokens were deprecated in December 2025 and are no longer available for use."
+  },
+  {
+    "claim": "WHOOP's migration guide says the v1 API is no longer supported and new features go to v2 only.",
+    "url": "https://developer.whoop.com/docs/developing/v1-v2-migration/",
+    "quote": "The v1 API is no longer supported and any new features or functionality will be added to v2 only."
+  },
+  {
+    "claim": "The Moves developer site, as captured on December 31, 2018, says the Moves app could no longer be used as of July 31, 2018.",
+    "url": "https://web.archive.org/web/20181231164810/https://dev.moves-app.com/",
+    "quote": "you can no longer log in or use the Moves app."
+  },
+  {
+    "claim": "Google's June 24, 2011 blog post set Google Health's retirement for January 1, 2012, with downloads through January 1, 2013.",
+    "url": "https://web.archive.org/web/20120107124413/http://googleblog.blogspot.com/2011/06/update-on-google-health-and-google.html",
+    "quote": "Google Health (retiring January 1, 2012; data available for download through January 1, 2013)"
+  }
+]

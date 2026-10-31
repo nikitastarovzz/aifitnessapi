@@ -149,6 +149,15 @@ export default function ChangesPage() {
           </p>
         </div>
 
+        <p className="mt-4 text-sm text-[var(--muted)]">
+          Looking only for the endings?{" "}
+          <Link href="/graveyard" className="font-medium text-brand-600 hover:text-brand-500">
+            The Fitness API Graveyard
+          </Link>{" "}
+          collects every shut-down, dying and deprecated fitness and health API we could source, with the
+          vendor&rsquo;s own words, filters, an embed and a JSON download.
+        </p>
+
         <section className="mt-10">
           <ol className="relative space-y-6 border-l border-[var(--border)] pl-6">
             {events.map((e) => (

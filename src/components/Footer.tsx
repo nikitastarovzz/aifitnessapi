@@ -123,6 +123,9 @@ export default function Footer() {
           <FooterLink href="/fitness-api-index" className="py-1 hover:text-[var(--fg)]">
             Fitness API Index
           </FooterLink>
+          <FooterLink href="/graveyard" className="py-1 hover:text-[var(--fg)]">
+            API Graveyard
+          </FooterLink>
           <FooterLink href="/compare-apis" className="py-1 hover:text-[var(--fg)]">
             Compare APIs
           </FooterLink>

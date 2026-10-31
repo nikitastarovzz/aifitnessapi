@@ -9,6 +9,7 @@ import { releasedHkGroups, HK_BASE, hkGroupModified } from "@/data/hkGroupPages"
 import { hkStandaloneModified } from "@/data/hkStandalone";
 import { HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { changesSorted } from "@/data/changes";
+import { GRAVEYARD_PATH, graveyardCheckedOn } from "@/data/graveyard";
 import { API_ENTRIES, APIS_PATH, NOINDEX_APIS } from "@/data/apis";
 import { API_INDEX_PATH, MARKET_MAP_PATH, indexDataDate } from "@/lib/ecosystemSignals";
 import { isNoindexed } from "@/data/noindex";
@@ -244,6 +245,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // or checked, and this reads the same function.
     [MARKET_MAP_PATH]: undefined,
     [API_INDEX_PATH]: indexDataDate(),
+    // The graveyard declares the newest day any entry's source was read as its
+    // dateModified; this reads the same function.
+    [GRAVEYARD_PATH]: graveyardCheckedOn(),
   };
 
   const standalone = [
@@ -283,6 +287,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     APIS_PATH,
     MARKET_MAP_PATH,
     API_INDEX_PATH,
+    GRAVEYARD_PATH,
     "/alerts",
     "/compare-apis",
     "/datasets",

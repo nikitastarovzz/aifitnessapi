@@ -45,6 +45,7 @@ const MAIN = [
   { href: "/apis", label: "Fitness & health API directory" },
   { href: "/market-map", label: "Fitness & health API market map" },
   { href: "/fitness-api-index", label: "Fitness API index: ecosystem signals per product" },
+  { href: "/graveyard", label: "The Fitness API Graveyard: shut-down and deprecated APIs" },
   { href: "/compare-apis", label: "Compare two APIs side by side" },
   { href: "/picker", label: "Which fitness API should I use? (picker)" },
   { href: "/cost-planner", label: "Fitness API cost planner" },

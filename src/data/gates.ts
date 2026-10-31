@@ -384,6 +384,44 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses:
       "A fitness API index that renders a composite score or rating. It publishes raw signals and leaves the weighting to the reader.",
   },
+
+  // ── Fitness API Graveyard ─────────────────────────────────────────────
+  {
+    code: "GRAVEYARD-READ",
+    area: "Content integrity",
+    refuses:
+      "A build whose /graveyard/data.json is missing, unparseable, empty, or carries no build date. Without it nothing holds the graveyard's entries to their sources.",
+  },
+  {
+    code: "GRAVEYARD-SOURCE",
+    area: "Content integrity",
+    refuses:
+      "A graveyard entry without an https source URL, a publisher, the date its source was read (not later than the build) and a non-empty verbatim quote; an end date sharper or looser than YYYY, YYYY-MM or YYYY-MM-DD; a milestone or launch date without its own source; or a duplicate id.",
+  },
+  {
+    code: "GRAVEYARD-STATUS",
+    area: "Content integrity",
+    refuses:
+      "A graveyard entry whose status is not dead, dying or deprecated, or that is marked dead with an end date still after the build.",
+  },
+  {
+    code: "GRAVEYARD-DYING",
+    area: "Content integrity",
+    refuses:
+      "A graveyard entry marked dying whose end date is missing or no longer after the build date. A passed deadline fails the build until its source is re-read and the entry moved to dead or deprecated, so a countdown never sits at zero claiming the API is still dying.",
+  },
+  {
+    code: "GRAVEYARD-EVIDENCE",
+    area: "Content integrity",
+    refuses:
+      "A graveyard entry read through the source-snapshot workflow whose quoted passage has no row, for the same URL, in ops/sources/evidence/graveyard.json, the file source-quotes.yml re-checks against the live page.",
+  },
+  {
+    code: "GRAVEYARD-ROWS",
+    area: "Content integrity",
+    refuses:
+      "A graveyard page or graveyard embed that was not built, or renders a different set of entries from the ones its JSON download publishes.",
+  },
   {
     code: "APIS-NO-ENTITY",
     area: "Structured data / GEO",

@@ -1,4 +1,5 @@
 import { getAllPosts } from "@/lib/posts";
+import { graveyardCopy } from "@/lib/graveyardCopy";
 import { TASKS_VISION_VERSION } from "@/lib/poseBenchmark";
 import { GLANCE_HUBS, HUB_NAMES, hubGlance, hubQa } from "@/data/hubGlance";
 import { moneyPages, moneyCluster, MONEY_GROUP_LABELS, MONEY_GROUP_ORDER } from "@/data/moneyPages";
@@ -86,6 +87,7 @@ import {
 export const dynamic = "force-static";
 
 export function GET() {
+  const graveyard = graveyardCopy();
   const spokes = releasedEntries();
   const posts = getAllPosts();
 
@@ -557,6 +559,7 @@ export function GET() {
     `- [Fitness & health API directory](${absoluteUrl("/apis")}): one page per product (Fitbit, Garmin, Oura, WHOOP, Strava, Polar, HealthKit, Health Connect, Terra, Junction, Rook, Spike, Nutritionix, Edamam, USDA FoodData Central, Open Food Facts, ExerciseDB, wger, KinesteX, Sency, QuickPose, MediaPipe, MoveNet, Apple Vision) stating how it bills developers, what each end user must own, what approval gates launch, and every page here that covers it. No prices, by design.`,
     `- [Fitness & health API market map](${absoluteUrl("/market-map")}): every directory product as one map, grouped by the cost model's categories and filterable by billing model, approval gate and tracked open-source library; not ranked, and KinesteX (which funds this site) is marked. Embeddable at ${absoluteUrl("/embed/market-map")}; the fields are the fitness-apis-2026 open dataset.`,
     `- [Fitness API index](${absoluteUrl("/fitness-api-index")}): raw, sortable ecosystem signals per product, recomputed at every build from the site's data files: vendor SDK and open-source package releases, tracked changes in the last 12 months, billing model, approval gate, and the age of the last verification. No composite score; KinesteX is shown but not ranked. Rows at ${absoluteUrl("/fitness-api-index/data.json")} and ${absoluteUrl("/fitness-api-index/data.csv")}.`,
+    `- [The Fitness API Graveyard](${absoluteUrl("/graveyard")}): every fitness and health developer API, SDK and endpoint this site could source that its vendor has shut down, scheduled to shut down or deprecated (${graveyard.total}: ${graveyard.dead} dead, ${graveyard.dying} dying, ${graveyard.deprecated} deprecated), each with the end date at the vendor's precision, the replacement the vendor names and a verbatim quote from the vendor's page or an Internet Archive capture of it, with the date it was read. Rows at ${absoluteUrl("/graveyard/data.json")}; embeddable at ${absoluteUrl("/embed/graveyard")}.`,
     `- [Monthly digest archive](${absoluteUrl("/digest")}): one issue per month, generated from the changes tracker and the pages' own review dates; each issue also served as plain text at /digest/<month>/digest.md.`,
     `- [Open datasets](${absoluteUrl("/datasets")}): every dataset this site publishes, CC BY 4.0, JSON and CSV, versioned rather than overwritten.`,
     `- [Developer API & MCP server](${absoluteUrl("/developers")}): the same datasets as a free, read-only JSON API (${absoluteUrl("/api/v1")}, described by ${absoluteUrl("/api/v1/openapi.json")}) and as MCP tools for AI assistants at ${absoluteUrl("/mcp")}. Every response carries its source page, licence and verification date; a field the site could not verify is null, never guessed.`,
