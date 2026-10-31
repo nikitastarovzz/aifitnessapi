@@ -585,6 +585,8 @@ export function GET() {
   out.push("");
   out.push(
     "A client-side tool that generates seeded, deterministic synthetic fixtures for Apple HealthKit, Android Health Connect and the Google Health API, as JSON or CSV. Field names, Kotlin and discovery types, validation ranges and enum values come from this site's generated copies of Apple's and Google's references, and a field the datasets do not describe is left out rather than guessed. Each record carries the offset in force at its own instant: Health Connect's nullable ZoneOffset beside each Instant, the Google Health API's required utcOffset durations, HealthKit's optional HKMetadataKeyTimeZone. Values are synthetic and illustrative, not real or physiologically validated.",
+  );
+  out.push("");
   out.push(`## Pose model benchmark (runs on your device) — ${absoluteUrl("/tools/pose-benchmark")}`);
   out.push("Primary query: mediapipe pose landmarker benchmark");
   out.push("");
