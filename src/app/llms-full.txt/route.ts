@@ -579,6 +579,13 @@ export function GET() {
     "A three-question tool (what you're building, your platform, your top priority) that recommends a fitness/health API approach and links to the relevant comparisons, integration guides, and pricing. Independent, not sponsored.",
   );
   out.push("");
+  out.push(`## Synthetic health data generator — ${absoluteUrl("/tools/sample-data")}`);
+  out.push("Primary query: synthetic healthkit health connect test data generator");
+  out.push("");
+  out.push(
+    "A client-side tool that generates seeded, deterministic synthetic fixtures for Apple HealthKit, Android Health Connect and the Google Health API, as JSON or CSV. Field names, Kotlin and discovery types, validation ranges and enum values come from this site's generated copies of Apple's and Google's references, and a field the datasets do not describe is left out rather than guessed. Each record carries the offset in force at its own instant: Health Connect's nullable ZoneOffset beside each Instant, the Google Health API's required utcOffset durations, HealthKit's optional HKMetadataKeyTimeZone. Values are synthetic and illustrative, not real or physiologically validated.",
+  );
+  out.push("");
   out.push(`## HealthKit and Health Connect data-type reference — ${absoluteUrl("/matrix")}`);
   out.push("Primary query: healthkit health connect data types");
   out.push("");
