@@ -9,6 +9,7 @@ import { releasedHkGroups, HK_BASE, hkGroupModified } from "@/data/hkGroupPages"
 import { hkStandaloneModified } from "@/data/hkStandalone";
 import { HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { changesSorted } from "@/data/changes";
+import { GRAVEYARD_PATH, graveyardCheckedOn } from "@/data/graveyard";
 import { API_ENTRIES, APIS_PATH, NOINDEX_APIS } from "@/data/apis";
 import { API_INDEX_PATH, MARKET_MAP_PATH, indexDataDate } from "@/lib/ecosystemSignals";
 import { DAILY_PATH, dailyDataDate } from "@/lib/dailyBank";
@@ -256,6 +257,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // The 2026 story declares the newest date any of its inputs was written
     // or checked, through the same function.
     [YEAR_PATH]: yearDataDate(),
+    // The graveyard declares the newest day any entry's source was read as its
+    // dateModified; this reads the same function.
+    [GRAVEYARD_PATH]: graveyardCheckedOn(),
   };
 
   const standalone = [
@@ -297,6 +301,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     MARKET_MAP_PATH,
     API_INDEX_PATH,
     DAILY_PATH,
+    GRAVEYARD_PATH,
     "/alerts",
     "/compare-apis",
     "/datasets",

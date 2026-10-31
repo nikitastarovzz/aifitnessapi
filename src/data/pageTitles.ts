@@ -29,4 +29,5 @@ export const PAGE_H1 = {
   "/market-map": "The fitness & health API market map",
   "/fitness-api-index": "The fitness API index",
   "/daily": "The daily health-API developer puzzle",
+  "/graveyard": "The Fitness API Graveyard",
 } as const;

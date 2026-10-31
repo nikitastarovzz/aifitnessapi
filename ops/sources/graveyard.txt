@@ -1,0 +1,26 @@
+# /graveyard — vendor notices for shut-down, dying and deprecated fitness and
+# health developer APIs (ops/VIRAL-30-2026-10-31.md item 1). These are the
+# pages on hosts the dev environment cannot reach that the 2026-10-31 entries
+# were read from through source-snapshot.yml; the quoted passages are in
+# ops/sources/evidence/graveyard.json. Re-run this list to re-verify.
+#
+# Read directly in the writing session (not listed): developers.google.com,
+# developer.android.com, raw.githubusercontent.com, registry.npmjs.org.
+#
+# Tried on 2026-10-31 and not used, because no capture or page carried the
+# vendor's own shutdown notice: healthvault.com (and account./international.),
+# microsoft.com/en-us/band, developer.microsoftband.com,
+# dashboard.microsofthealth.com, jawbone.com/up/developer, developer.nike.com,
+# build.misfit.com, developer.runkeeper.com/healthgraph, movescount.com,
+# learn.microsoft.com Azure Kinect DK docs, github.com/microsoft/Azure-Kinect-Sensor-SDK,
+# thisisant.com (now redirects to developer.garmin.com/ant-program, rendered
+# client-side).
+https://cloud.ouraring.com/docs/
+https://cloud.ouraring.com/v2/static/json/openapi-1.43.json
+https://docs.tryterra.co/unified-api/user-authentication/implementation-terra-widget
+https://developer.whoop.com/docs/developing/v1-v2-migration/
+https://developer.samsung.com/health/android/overview.html
+https://developers.strava.com/docs/changelog/
+https://web.archive.org/web/20181231164810/https://dev.moves-app.com/
+https://web.archive.org/web/20120107124413/http://googleblog.blogspot.com/2011/06/update-on-google-health-and-google.html
+https://web.archive.org/web/20130111034326/http://www.google.com/intl/en_us/health/about/

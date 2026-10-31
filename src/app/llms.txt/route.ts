@@ -1,4 +1,5 @@
 import { getAllPosts } from "@/lib/posts";
+import { graveyardCopy } from "@/lib/graveyardCopy";
 import { TASKS_VISION_VERSION } from "@/lib/poseBenchmark";
 import { POSE_KEYPOINTS_FETCHED_ON } from "@/data/poseKeypoints";
 import { totalPairs } from "@/lib/keypointMapping.mjs";
@@ -90,6 +91,7 @@ import {
 export const dynamic = "force-static";
 
 export function GET() {
+  const graveyard = graveyardCopy();
   const spokes = releasedEntries();
   const posts = getAllPosts();
 
@@ -562,6 +564,7 @@ export function GET() {
     `- [Fitness & health API market map](${absoluteUrl("/market-map")}): every directory product as one map, grouped by the cost model's categories and filterable by billing model, approval gate and tracked open-source library; not ranked, and KinesteX (which funds this site) is marked. Embeddable at ${absoluteUrl("/embed/market-map")}; the fields are the fitness-apis-2026 open dataset.`,
     `- [Fitness API index](${absoluteUrl("/fitness-api-index")}): raw, sortable ecosystem signals per product, recomputed at every build from the site's data files: vendor SDK and open-source package releases, tracked changes in the last 12 months, billing model, approval gate, and the age of the last verification. No composite score; KinesteX is shown but not ranked. Rows at ${absoluteUrl("/fitness-api-index/data.json")} and ${absoluteUrl("/fitness-api-index/data.csv")}.`,
     `- [Fitness APIs in 2026, the year in numbers](${absoluteUrl("/2026")}): a scroll story of one computed stat per slide: tracked changes dated 2026 and the busiest month, pricing and plan changes, the Google Health API launch date and the Fitbit Web API turn-off date as Google's own pages give them, Health Connect client and open-source package releases, and the median age of this site's verification stamps, each with its source file and date. Recomputed at every build and titled "so far" until the first build of 2027. It counts what the changes tracker records and repeats nothing from the State of Fitness APIs 2026 report.`,
+    `- [The Fitness API Graveyard](${absoluteUrl("/graveyard")}): every fitness and health developer API, SDK and endpoint this site could source that its vendor has shut down, scheduled to shut down or deprecated (${graveyard.total}: ${graveyard.dead} dead, ${graveyard.dying} dying, ${graveyard.deprecated} deprecated), each with the end date at the vendor's precision, the replacement the vendor names and a verbatim quote from the vendor's page or an Internet Archive capture of it, with the date it was read. Rows at ${absoluteUrl("/graveyard/data.json")}; embeddable at ${absoluteUrl("/embed/graveyard")}.`,
     `- [Monthly digest archive](${absoluteUrl("/digest")}): one issue per month, generated from the changes tracker and the pages' own review dates; each issue also served as plain text at /digest/<month>/digest.md.`,
     `- [Open datasets](${absoluteUrl("/datasets")}): every dataset this site publishes, CC BY 4.0, JSON and CSV, versioned rather than overwritten.`,
     `- [Developer API & MCP server](${absoluteUrl("/developers")}): the same datasets as a free, read-only JSON API (${absoluteUrl("/api/v1")}, described by ${absoluteUrl("/api/v1/openapi.json")}) and as MCP tools for AI assistants at ${absoluteUrl("/mcp")}. Every response carries its source page, licence and verification date; a field the site could not verify is null, never guessed.`,
