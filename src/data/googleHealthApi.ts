@@ -8,21 +8,21 @@
  *   NODE_USE_ENV_PROXY=1 node scripts/fetch-google-health-api.mjs
  *
  * Sources:
- *   https://health.googleapis.com/$discovery/rest?version=v4 (revision 20261014) — fetched 2026-10-17
- *   https://health.googleapis.com/$discovery/rest?version=v4beta (revision 20261014) — fetched 2026-10-17
- *   https://developers.google.com/health/data-types (Last updated 2026-10-06) — fetched 2026-10-17
- *   https://developers.google.com/health/scopes (Last updated 2026-10-09) — fetched 2026-10-17
- *   https://developers.google.com/health/migration/api-specifications (Last updated 2026-09-22) — fetched 2026-10-17
- *   https://developers.google.com/health/about (Last updated 2026-09-29) — fetched 2026-10-17
- *   https://developers.google.com/health/migration (Last updated 2026-09-28) — fetched 2026-10-17
- *   https://developers.google.com/health/rate-limits (Last updated 2026-05-18) — fetched 2026-10-17
- *   https://developers.google.com/health/app-verification (Last updated 2026-09-25) — fetched 2026-10-17
- *   https://developers.google.com/health/webhooks (Last updated 2026-09-24) — fetched 2026-10-17
- *   https://developers.google.com/health/reference/rest/v4/errors (Last updated 2026-10-01) — fetched 2026-10-17
- *   https://developers.google.com/health/troubleshooting (Last updated 2026-09-28) — fetched 2026-10-17
- *   https://developers.google.com/health/release-notes (Last updated 2026-10-09) — fetched 2026-10-17
- *   https://developers.google.com/health/endpoints (Last updated 2026-10-05) — fetched 2026-10-17
- * Fetched: 2026-10-17
+ *   https://health.googleapis.com/$discovery/rest?version=v4 (revision 20261030) — fetched 2026-10-31
+ *   https://health.googleapis.com/$discovery/rest?version=v4beta (revision 20261030) — fetched 2026-10-31
+ *   https://developers.google.com/health/data-types (Last updated 2026-10-06) — fetched 2026-10-31
+ *   https://developers.google.com/health/scopes (Last updated 2026-10-09) — fetched 2026-10-31
+ *   https://developers.google.com/health/migration/api-specifications (Last updated 2026-09-22) — fetched 2026-10-31
+ *   https://developers.google.com/health/about (Last updated 2026-10-23) — fetched 2026-10-31
+ *   https://developers.google.com/health/migration (Last updated 2026-09-28) — fetched 2026-10-31
+ *   https://developers.google.com/health/rate-limits (Last updated 2026-05-18) — fetched 2026-10-31
+ *   https://developers.google.com/health/app-verification (Last updated 2026-09-25) — fetched 2026-10-31
+ *   https://developers.google.com/health/webhooks (Last updated 2026-10-20) — fetched 2026-10-31
+ *   https://developers.google.com/health/reference/rest/v4/errors (Last updated 2026-10-01) — fetched 2026-10-31
+ *   https://developers.google.com/health/troubleshooting (Last updated 2026-09-28) — fetched 2026-10-31
+ *   https://developers.google.com/health/release-notes (Last updated 2026-10-14) — fetched 2026-10-31
+ *   https://developers.google.com/health/endpoints (Last updated 2026-10-05) — fetched 2026-10-31
+ * Fetched: 2026-10-31
  *
  * Copied verbatim: names, ids, filter parameters, record types, storage
  * resolutions, badges, devices, operations, scope strings and consent text,
@@ -198,7 +198,7 @@ export type GhapiMethod = {
 };
 
 /** The date the generator fetched Google's data-types page. */
-export const GHAPI_FETCHED_ON = "2026-10-17";
+export const GHAPI_FETCHED_ON = "2026-10-31";
 
 /** Every source read, with its fetch date and Google's own "Last updated". */
 export const GHAPI_SOURCES: GhapiSource[] = [
@@ -206,25 +206,25 @@ export const GHAPI_SOURCES: GhapiSource[] = [
     "key": "discoveryV4",
     "title": "Google Health API discovery document (v4)",
     "url": "https://health.googleapis.com/$discovery/rest?version=v4",
-    "fetchedOn": "2026-10-17",
+    "fetchedOn": "2026-10-31",
     "lastUpdated": null,
-    "revision": "20261014",
+    "revision": "20261030",
     "license": null
   },
   {
     "key": "discoveryV4beta",
     "title": "Google Health API discovery document (v4beta)",
     "url": "https://health.googleapis.com/$discovery/rest?version=v4beta",
-    "fetchedOn": "2026-10-17",
+    "fetchedOn": "2026-10-31",
     "lastUpdated": null,
-    "revision": "20261014",
+    "revision": "20261030",
     "license": null
   },
   {
     "key": "dataTypes",
     "title": "Google Health API data types",
     "url": "https://developers.google.com/health/data-types",
-    "fetchedOn": "2026-10-17",
+    "fetchedOn": "2026-10-31",
     "lastUpdated": "2026-10-06",
     "revision": null,
     "license": "Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License."
@@ -233,7 +233,7 @@ export const GHAPI_SOURCES: GhapiSource[] = [
     "key": "scopes",
     "title": "Scopes",
     "url": "https://developers.google.com/health/scopes",
-    "fetchedOn": "2026-10-17",
+    "fetchedOn": "2026-10-31",
     "lastUpdated": "2026-10-09",
     "revision": null,
     "license": "Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License."
@@ -242,7 +242,7 @@ export const GHAPI_SOURCES: GhapiSource[] = [
     "key": "apiSpecifications",
     "title": "API specifications",
     "url": "https://developers.google.com/health/migration/api-specifications",
-    "fetchedOn": "2026-10-17",
+    "fetchedOn": "2026-10-31",
     "lastUpdated": "2026-09-22",
     "revision": null,
     "license": "Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License."
@@ -251,8 +251,8 @@ export const GHAPI_SOURCES: GhapiSource[] = [
     "key": "about",
     "title": "About the Google Health API",
     "url": "https://developers.google.com/health/about",
-    "fetchedOn": "2026-10-17",
-    "lastUpdated": "2026-09-29",
+    "fetchedOn": "2026-10-31",
+    "lastUpdated": "2026-10-23",
     "revision": null,
     "license": "Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License."
   },
@@ -260,7 +260,7 @@ export const GHAPI_SOURCES: GhapiSource[] = [
     "key": "migration",
     "title": "Overview",
     "url": "https://developers.google.com/health/migration",
-    "fetchedOn": "2026-10-17",
+    "fetchedOn": "2026-10-31",
     "lastUpdated": "2026-09-28",
     "revision": null,
     "license": "Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License."
@@ -269,7 +269,7 @@ export const GHAPI_SOURCES: GhapiSource[] = [
     "key": "rateLimits",
     "title": "Quotas and Rate Limits",
     "url": "https://developers.google.com/health/rate-limits",
-    "fetchedOn": "2026-10-17",
+    "fetchedOn": "2026-10-31",
     "lastUpdated": "2026-05-18",
     "revision": null,
     "license": "Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License."
@@ -278,7 +278,7 @@ export const GHAPI_SOURCES: GhapiSource[] = [
     "key": "appVerification",
     "title": "App verification",
     "url": "https://developers.google.com/health/app-verification",
-    "fetchedOn": "2026-10-17",
+    "fetchedOn": "2026-10-31",
     "lastUpdated": "2026-09-25",
     "revision": null,
     "license": "Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License."
@@ -287,8 +287,8 @@ export const GHAPI_SOURCES: GhapiSource[] = [
     "key": "webhooks",
     "title": "Webhook subscriptions",
     "url": "https://developers.google.com/health/webhooks",
-    "fetchedOn": "2026-10-17",
-    "lastUpdated": "2026-09-24",
+    "fetchedOn": "2026-10-31",
+    "lastUpdated": "2026-10-20",
     "revision": null,
     "license": "Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License."
   },
@@ -296,7 +296,7 @@ export const GHAPI_SOURCES: GhapiSource[] = [
     "key": "errors",
     "title": "Google Health API Version v4: Error Catalog",
     "url": "https://developers.google.com/health/reference/rest/v4/errors",
-    "fetchedOn": "2026-10-17",
+    "fetchedOn": "2026-10-31",
     "lastUpdated": "2026-10-01",
     "revision": null,
     "license": "Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License."
@@ -305,7 +305,7 @@ export const GHAPI_SOURCES: GhapiSource[] = [
     "key": "troubleshooting",
     "title": "Troubleshooting",
     "url": "https://developers.google.com/health/troubleshooting",
-    "fetchedOn": "2026-10-17",
+    "fetchedOn": "2026-10-31",
     "lastUpdated": "2026-09-28",
     "revision": null,
     "license": "Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License."
@@ -314,8 +314,8 @@ export const GHAPI_SOURCES: GhapiSource[] = [
     "key": "releaseNotes",
     "title": "Release notes",
     "url": "https://developers.google.com/health/release-notes",
-    "fetchedOn": "2026-10-17",
-    "lastUpdated": "2026-10-09",
+    "fetchedOn": "2026-10-31",
+    "lastUpdated": "2026-10-14",
     "revision": null,
     "license": "Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License."
   },
@@ -323,7 +323,7 @@ export const GHAPI_SOURCES: GhapiSource[] = [
     "key": "endpoints",
     "title": "Endpoints",
     "url": "https://developers.google.com/health/endpoints",
-    "fetchedOn": "2026-10-17",
+    "fetchedOn": "2026-10-31",
     "lastUpdated": "2026-10-05",
     "revision": null,
     "license": "Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License."
@@ -337,14 +337,14 @@ export const GHAPI_DISCOVERY = {
   "title": "Google Health API",
   "description": "The Google Health API lets you view and manage health and fitness metrics and measurement data.",
   "version": "v4",
-  "revision": "20261014",
-  "betaRevision": "20261014",
+  "revision": "20261030",
+  "betaRevision": "20261030",
   "rootUrl": "https://health.googleapis.com/",
   "documentationLink": "https://developers.google.com/health",
   "schemaCount": 151,
   "betaSchemaCount": 154,
   "dataPointPropertyCount": 44,
-  "betaOnlySchemas": ["SkinTemperatureSensors","SensorData","SensorMetadata"],
+  "betaOnlySchemas": ["SensorData","SensorMetadata","SkinTemperatureSensors"],
   "methodCount": 27
 };
 
@@ -5217,10 +5217,122 @@ export const GHAPI_DOCUMENTED_SCOPES: {
 /** Every scope the v4 discovery document defines. */
 export const GHAPI_DISCOVERY_SCOPES: { url: string; description: string | null; googleHealth: boolean; shorthand: string | null; onScopesPage: boolean; inV4beta: boolean }[] = [
   {
+    "url": "https://www.googleapis.com/auth/googlehealth.ecg.readonly",
+    "description": "See your Google Health ECG data",
+    "googleHealth": true,
+    "shorthand": ".ecg.readonly",
+    "onScopesPage": true,
+    "inV4beta": true
+  },
+  {
+    "url": "https://www.googleapis.com/auth/googlehealth.sleep.writeonly",
+    "description": "Add sleep data to Google Health, and edit or delete the data it adds.",
+    "googleHealth": true,
+    "shorthand": ".sleep.writeonly",
+    "onScopesPage": true,
+    "inV4beta": true
+  },
+  {
+    "url": "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly",
+    "description": "See your Google Health activity and fitness data",
+    "googleHealth": true,
+    "shorthand": ".activity_and_fitness.readonly",
+    "onScopesPage": true,
+    "inV4beta": true
+  },
+  {
+    "url": "https://www.googleapis.com/auth/googlehealth.settings.writeonly",
+    "description": "Add settings data to Google Health, and edit or delete the data it adds.",
+    "googleHealth": true,
+    "shorthand": ".settings.writeonly",
+    "onScopesPage": true,
+    "inV4beta": true
+  },
+  {
     "url": "https://www.googleapis.com/auth/googlehealth.reproductive_health.readonly",
     "description": "See your Google Health reproductive health data",
     "googleHealth": true,
     "shorthand": ".reproductive_health.readonly",
+    "onScopesPage": false,
+    "inV4beta": true
+  },
+  {
+    "url": "https://www.googleapis.com/auth/googlehealth.mindfulness.readonly",
+    "description": "See your Google Health mindfulness data",
+    "googleHealth": true,
+    "shorthand": ".mindfulness.readonly",
+    "onScopesPage": false,
+    "inV4beta": true
+  },
+  {
+    "url": "https://www.googleapis.com/auth/googlehealth.sleep.readonly",
+    "description": "See your Google Health sleep data",
+    "googleHealth": true,
+    "shorthand": ".sleep.readonly",
+    "onScopesPage": true,
+    "inV4beta": true
+  },
+  {
+    "url": "https://www.googleapis.com/auth/googlehealth.location.readonly",
+    "description": "See exercise GPS location data in Google Health",
+    "googleHealth": true,
+    "shorthand": ".location.readonly",
+    "onScopesPage": true,
+    "inV4beta": true
+  },
+  {
+    "url": "https://www.googleapis.com/auth/googlehealth.reproductive_health.writeonly",
+    "description": "Add reproductive health data to Google Health, and edit or delete the data it adds",
+    "googleHealth": true,
+    "shorthand": ".reproductive_health.writeonly",
+    "onScopesPage": true,
+    "inV4beta": true
+  },
+  {
+    "url": "https://www.googleapis.com/auth/googlehealth.logged_symptoms.readonly",
+    "description": "See your Google Health logged symptoms data",
+    "googleHealth": true,
+    "shorthand": ".logged_symptoms.readonly",
+    "onScopesPage": false,
+    "inV4beta": true
+  },
+  {
+    "url": "https://www.googleapis.com/auth/googlehealth.settings.readonly",
+    "description": "See your Google Health settings",
+    "googleHealth": true,
+    "shorthand": ".settings.readonly",
+    "onScopesPage": true,
+    "inV4beta": true
+  },
+  {
+    "url": "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly",
+    "description": "See your Google Health health metrics and measurement data",
+    "googleHealth": true,
+    "shorthand": ".health_metrics_and_measurements.readonly",
+    "onScopesPage": true,
+    "inV4beta": true
+  },
+  {
+    "url": "https://www.googleapis.com/auth/googlehealth.profile.writeonly",
+    "description": "Add profile data to Google Health, and edit or delete the data it adds.",
+    "googleHealth": true,
+    "shorthand": ".profile.writeonly",
+    "onScopesPage": true,
+    "inV4beta": true
+  },
+  {
+    "url": "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly",
+    "description": "Add activity and fitness data to Google Health, and edit or delete the data it adds.",
+    "googleHealth": true,
+    "shorthand": ".activity_and_fitness.writeonly",
+    "onScopesPage": true,
+    "inV4beta": true
+  },
+  {
+    "url": "https://www.googleapis.com/auth/cloud-platform",
+    "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account.",
+    "googleHealth": false,
+    "shorthand": null,
     "onScopesPage": false,
     "inV4beta": true
   },
@@ -5241,90 +5353,10 @@ export const GHAPI_DISCOVERY_SCOPES: { url: string; description: string | null; 
     "inV4beta": true
   },
   {
-    "url": "https://www.googleapis.com/auth/googlehealth.logged_symptoms.readonly",
-    "description": "See your Google Health logged symptoms data",
-    "googleHealth": true,
-    "shorthand": ".logged_symptoms.readonly",
-    "onScopesPage": false,
-    "inV4beta": true
-  },
-  {
-    "url": "https://www.googleapis.com/auth/googlehealth.settings.writeonly",
-    "description": "Add settings data to Google Health, and edit or delete the data it adds.",
-    "googleHealth": true,
-    "shorthand": ".settings.writeonly",
-    "onScopesPage": true,
-    "inV4beta": true
-  },
-  {
-    "url": "https://www.googleapis.com/auth/googlehealth.sleep.readonly",
-    "description": "See your Google Health sleep data",
-    "googleHealth": true,
-    "shorthand": ".sleep.readonly",
-    "onScopesPage": true,
-    "inV4beta": true
-  },
-  {
-    "url": "https://www.googleapis.com/auth/googlehealth.profile.writeonly",
-    "description": "Add profile data to Google Health, and edit or delete the data it adds.",
-    "googleHealth": true,
-    "shorthand": ".profile.writeonly",
-    "onScopesPage": true,
-    "inV4beta": true
-  },
-  {
-    "url": "https://www.googleapis.com/auth/cloud-platform",
-    "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account.",
-    "googleHealth": false,
-    "shorthand": null,
-    "onScopesPage": false,
-    "inV4beta": true
-  },
-  {
-    "url": "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly",
-    "description": "See your Google Health activity and fitness data",
-    "googleHealth": true,
-    "shorthand": ".activity_and_fitness.readonly",
-    "onScopesPage": true,
-    "inV4beta": true
-  },
-  {
-    "url": "https://www.googleapis.com/auth/googlehealth.reproductive_health.writeonly",
-    "description": "Add reproductive health data to Google Health, and edit or delete the data it adds",
-    "googleHealth": true,
-    "shorthand": ".reproductive_health.writeonly",
-    "onScopesPage": true,
-    "inV4beta": true
-  },
-  {
     "url": "https://www.googleapis.com/auth/googlehealth.irn.readonly",
     "description": "See your Google Health Irregular Rhythm Notifications data",
     "googleHealth": true,
     "shorthand": ".irn.readonly",
-    "onScopesPage": true,
-    "inV4beta": true
-  },
-  {
-    "url": "https://www.googleapis.com/auth/googlehealth.profile.readonly",
-    "description": "See your Google Health profile data",
-    "googleHealth": true,
-    "shorthand": ".profile.readonly",
-    "onScopesPage": true,
-    "inV4beta": true
-  },
-  {
-    "url": "https://www.googleapis.com/auth/googlehealth.sleep.writeonly",
-    "description": "Add sleep data to Google Health, and edit or delete the data it adds.",
-    "googleHealth": true,
-    "shorthand": ".sleep.writeonly",
-    "onScopesPage": true,
-    "inV4beta": true
-  },
-  {
-    "url": "https://www.googleapis.com/auth/googlehealth.settings.readonly",
-    "description": "See your Google Health settings",
-    "googleHealth": true,
-    "shorthand": ".settings.readonly",
     "onScopesPage": true,
     "inV4beta": true
   },
@@ -5337,50 +5369,18 @@ export const GHAPI_DISCOVERY_SCOPES: { url: string; description: string | null; 
     "inV4beta": true
   },
   {
+    "url": "https://www.googleapis.com/auth/googlehealth.profile.readonly",
+    "description": "See your Google Health profile data",
+    "googleHealth": true,
+    "shorthand": ".profile.readonly",
+    "onScopesPage": true,
+    "inV4beta": true
+  },
+  {
     "url": "https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly",
     "description": "Add mindfulness data to Google Health, and edit or delete the data it adds",
     "googleHealth": true,
     "shorthand": ".mindfulness.writeonly",
-    "onScopesPage": true,
-    "inV4beta": true
-  },
-  {
-    "url": "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly",
-    "description": "See your Google Health health metrics and measurement data",
-    "googleHealth": true,
-    "shorthand": ".health_metrics_and_measurements.readonly",
-    "onScopesPage": true,
-    "inV4beta": true
-  },
-  {
-    "url": "https://www.googleapis.com/auth/googlehealth.ecg.readonly",
-    "description": "See your Google Health ECG data",
-    "googleHealth": true,
-    "shorthand": ".ecg.readonly",
-    "onScopesPage": true,
-    "inV4beta": true
-  },
-  {
-    "url": "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly",
-    "description": "Add activity and fitness data to Google Health, and edit or delete the data it adds.",
-    "googleHealth": true,
-    "shorthand": ".activity_and_fitness.writeonly",
-    "onScopesPage": true,
-    "inV4beta": true
-  },
-  {
-    "url": "https://www.googleapis.com/auth/googlehealth.mindfulness.readonly",
-    "description": "See your Google Health mindfulness data",
-    "googleHealth": true,
-    "shorthand": ".mindfulness.readonly",
-    "onScopesPage": false,
-    "inV4beta": true
-  },
-  {
-    "url": "https://www.googleapis.com/auth/googlehealth.location.readonly",
-    "description": "See exercise GPS location data in Google Health",
-    "googleHealth": true,
-    "shorthand": ".location.readonly",
     "onScopesPage": true,
     "inV4beta": true
   }
@@ -5574,13 +5574,6 @@ export const GHAPI_METHODS: GhapiMethod[] = [
         "description": "Required. The parent subscriber. Format: projects/{project}/subscribers/{subscriber} The {subscriber} ID is user-settable (4-36 characters, matching /[a-z]([a-z0-9-]{2,34}[a-z0-9])/) if provided during creation, or system-generated otherwise."
       },
       {
-        "name": "pageToken",
-        "location": "query",
-        "required": false,
-        "type": "string",
-        "description": "Optional. A page token, received from a previous `ListSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscriptions` must match the call that provided the page token."
-      },
-      {
         "name": "filter",
         "location": "query",
         "required": false,
@@ -5593,6 +5586,13 @@ export const GHAPI_METHODS: GhapiMethod[] = [
         "required": false,
         "type": "integer",
         "description": "Optional. The maximum number of subscriptions to return. The service may return fewer than this value. If unspecified, at most 50 subscriptions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000."
+      },
+      {
+        "name": "pageToken",
+        "location": "query",
+        "required": false,
+        "type": "string",
+        "description": "Optional. A page token, received from a previous `ListSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscriptions` must match the call that provided the page token."
       }
     ],
     "request": null,
@@ -5652,18 +5652,18 @@ export const GHAPI_METHODS: GhapiMethod[] = [
     "scopes": [],
     "parameters": [
       {
-        "name": "resourceToken",
-        "location": "path",
-        "required": true,
-        "type": "string",
-        "description": "Required. Encoded, encrypted message containing resource access details"
-      },
-      {
         "name": "externalShlId",
         "location": "path",
         "required": true,
         "type": "string",
         "description": "Required. External ID mapping to a ShlSharedLinkCapabilityToken object See https://docs.google.com/document/d/1Pch20pxJHRbsaMxp0EYgs3ZU0Gu7QTUznk8LhvbQvfY/edit?tab=t.0#heading=h.17wg41voij6q"
+      },
+      {
+        "name": "resourceToken",
+        "location": "path",
+        "required": true,
+        "type": "string",
+        "description": "Required. Encoded, encrypted message containing resource access details"
       }
     ],
     "request": null,
@@ -5679,15 +5679,25 @@ export const GHAPI_METHODS: GhapiMethod[] = [
     "description": "Gets the user's identity. It includes the legacy Fitbit user ID and the Google user ID and it can be used by migrating clients to map identifiers between the two systems.",
     "scopes": [
       "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly",
+      "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly",
       "https://www.googleapis.com/auth/googlehealth.ecg.readonly",
       "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly",
+      "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly",
       "https://www.googleapis.com/auth/googlehealth.irn.readonly",
+      "https://www.googleapis.com/auth/googlehealth.location.readonly",
       "https://www.googleapis.com/auth/googlehealth.logged_symptoms.readonly",
+      "https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly",
       "https://www.googleapis.com/auth/googlehealth.mindfulness.readonly",
+      "https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly",
+      "https://www.googleapis.com/auth/googlehealth.nutrition.writeonly",
       "https://www.googleapis.com/auth/googlehealth.profile.readonly",
+      "https://www.googleapis.com/auth/googlehealth.profile.writeonly",
       "https://www.googleapis.com/auth/googlehealth.reproductive_health.readonly",
+      "https://www.googleapis.com/auth/googlehealth.reproductive_health.writeonly",
       "https://www.googleapis.com/auth/googlehealth.settings.readonly",
-      "https://www.googleapis.com/auth/googlehealth.sleep.readonly"
+      "https://www.googleapis.com/auth/googlehealth.settings.writeonly",
+      "https://www.googleapis.com/auth/googlehealth.sleep.readonly",
+      "https://www.googleapis.com/auth/googlehealth.sleep.writeonly"
     ],
     "parameters": [{"name":"name","location":"path","required":true,"type":"string","description":"Required. The resource name of the Identity. Format: `users/me/identity`"}],
     "request": null,
@@ -5973,12 +5983,13 @@ export const GHAPI_METHODS: GhapiMethod[] = [
       "https://www.googleapis.com/auth/googlehealth.sleep.writeonly"
     ],
     "parameters": [
+      {"name":"pageToken","location":"query","required":false,"type":"string","description":"Optional. The `next_page_token` from a previous request, if any."},
       {
-        "name": "dataSourceFamily",
-        "location": "query",
-        "required": false,
+        "name": "parent",
+        "location": "path",
+        "required": true,
         "type": "string",
-        "description": "Optional. The data source family name to filter by. If empty, data points from all available data sources will be returned. Format: `users/{user}/dataSourceFamilies/{data_source_family}` The `{user}` can be either the alias `me` or the authenticated user's numeric Health User ID, retrieved via GetIdentity (e.g. `users/me/dataSourceFamilies/...` or `users/1234567890/dataSourceFamilies/...`). The supported values are: - `users/{user}/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/{user}/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/{user}/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/{user}/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data types may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error. Filtering by data source family is not supported for the `sleep`, `food` and `food-measurement-unit` data types, because the underlying listing implementation cannot restrict results by data source. Such requests fail with `INVALID_ARGUMENT` when the data source family is set explicitly, and with `PERMISSION_DENIED` when the restriction is only implied by the caller's scopes. For `sleep`, use ReconcileDataPoints instead."
+        "description": "Required. Parent data type of the Data Point collection. Format: `users/{user}/dataTypes/{data_type}`, e.g.: - `users/me/dataTypes/steps` - `users/1234567890/dataTypes/steps` - `users/me/dataTypes/weight` - `users/1234567890/dataTypes/weight` The `{user}` can be either the alias `me` or the authenticated user's numeric Health User ID (retrieved via GetIdentity). For a list of the supported data types see the DataPoint data union field."
       },
       {
         "name": "filter",
@@ -5988,20 +5999,19 @@ export const GHAPI_METHODS: GhapiMethod[] = [
         "description": "Optional. Filter expression following https://google.aip.dev/160. A time range (either physical or civil) can be specified. The supported filter fields are: - Interval start time: - Pattern: `{interval_data_type}.interval.start_time` - Supported comparison operators: `>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND` - Example: - `steps.interval.start_time >= \"2023-11-24T00:00:00Z\" AND steps.interval.start_time < \"2023-11-25T00:00:00Z\"` - `distance.interval.start_time >= \"2024-08-14T12:34:56Z\"` - Interval civil start time: - Pattern: `{interval_data_type}.interval.civil_start_time` - Supported comparison operators: `>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `steps.interval.civil_start_time >= \"2023-11-24\" AND steps.interval.civil_start_time < \"2023-11-25\"` - `distance.interval.civil_start_time >= \"2024-08-14T12:34:56\"` - Sample observation physical time: - Pattern: `{sample_data_type}.sample_time.physical_time` - Supported comparison operators: `>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND` - Example: - `weight.sample_time.physical_time >= \"2023-11-24T00:00:00Z\" AND weight.sample_time.physical_time < \"2023-11-25T00:00:00Z\"` - `weight.sample_time.physical_time >= \"2024-08-14T12:34:56Z\"` - Sample observation civil time: - Pattern: `{sample_data_type}.sample_time.civil_time` - Supported comparison operators: `>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `weight.sample_time.civil_time >= \"2023-11-24\" AND weight.sample_time.civil_time < \"2023-11-25\"` - `weight.sample_time.civil_time >= \"2024-08-14T12:34:56\"` - Daily summary date: - Pattern: `{daily_summary_data_type}.date` - Supported comparison operators: `>=`, `<` - Date literal expected in ISO 8601 `YYYY-MM-DD` format - Supported logical operators: `AND` - Example: - `daily_heart_rate_variability.date < \"2024-08-15\"` - Session civil start time (**Excluding Sleep and ECG**): - Pattern: `{session_data_type}.interval.civil_start_time` - Supported comparison operators: `>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `exercise.interval.civil_start_time >= \"2023-11-24\" AND exercise.interval.civil_start_time < \"2023-11-25\"` - `exercise.interval.civil_start_time >= \"2024-08-14T12:34:56\"` - Session start time (**ECG specific**): - Pattern: `electrocardiogram.interval.start_time` - Supported comparison operators: `>=` - Timestamp literal expected in RFC-3339 format - Example: - `electrocardiogram.interval.start_time >= \"2024-08-14T12:34:56Z\"` - Note: Only filtering by start time is supported for ECG. Filtering by end time (e.g., `electrocardiogram.interval.end_time`) is not supported. - Session end time (**Sleep specific**): - Pattern: `sleep.interval.end_time` - Supported comparison operators: `>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND`, `OR` - Example: - `sleep.interval.end_time >= \"2023-11-24T00:00:00Z\" AND sleep.interval.end_time < \"2023-11-25T00:00:00Z\"` - Session civil end time (**Sleep specific**): - Pattern: `sleep.interval.civil_end_time` - Supported comparison operators: `>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND`, `OR` - Example: - `sleep.interval.civil_end_time >= \"2023-11-24\" AND sleep.interval.civil_end_time < \"2023-11-25\"` Data points in the response will be ordered by the interval start time in descending order."
       },
       {
-        "name": "parent",
-        "location": "path",
-        "required": true,
-        "type": "string",
-        "description": "Required. Parent data type of the Data Point collection. Format: `users/{user}/dataTypes/{data_type}`, e.g.: - `users/me/dataTypes/steps` - `users/1234567890/dataTypes/steps` - `users/me/dataTypes/weight` - `users/1234567890/dataTypes/weight` The `{user}` can be either the alias `me` or the authenticated user's numeric Health User ID (retrieved via GetIdentity). For a list of the supported data types see the DataPoint data union field."
-      },
-      {
         "name": "pageSize",
         "location": "query",
         "required": false,
         "type": "integer",
         "description": "Optional. The maximum number of data points to return. If unspecified, at most 1440 data points will be returned. The maximum page size is 10000; values above that will be truncated accordingly. For `exercise` and `sleep` the default page size is 25. The maximum page size for `exercise` and `sleep` is 25."
       },
-      {"name":"pageToken","location":"query","required":false,"type":"string","description":"Optional. The `next_page_token` from a previous request, if any."}
+      {
+        "name": "dataSourceFamily",
+        "location": "query",
+        "required": false,
+        "type": "string",
+        "description": "Optional. The data source family name to filter by. If empty, data points from all available data sources will be returned. Format: `users/{user}/dataSourceFamilies/{data_source_family}` The `{user}` can be either the alias `me` or the authenticated user's numeric Health User ID, retrieved via GetIdentity (e.g. `users/me/dataSourceFamilies/...` or `users/1234567890/dataSourceFamilies/...`). The supported values are: - `users/{user}/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/{user}/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/{user}/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/{user}/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data types may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error. Filtering by data source family is not supported for the `sleep`, `food` and `food-measurement-unit` data types, because the underlying listing implementation cannot restrict results by data source. Such requests fail with `INVALID_ARGUMENT` when the data source family is set explicitly, and with `PERMISSION_DENIED` when the restriction is only implied by the caller's scopes. For `sleep`, use ReconcileDataPoints instead."
+      }
     ],
     "request": null,
     "response": "ListDataPointsResponse"
@@ -6063,11 +6073,11 @@ export const GHAPI_METHODS: GhapiMethod[] = [
     ],
     "parameters": [
       {
-        "name": "dataSourceFamily",
-        "location": "query",
-        "required": false,
+        "name": "parent",
+        "location": "path",
+        "required": true,
         "type": "string",
-        "description": "Optional. The data source family name to reconcile. If empty, data points from all data sources will be reconciled. Format: `users/{user}/dataSourceFamilies/{data_source_family}` The `{user}` can be either the alias `me` or the authenticated user's numeric Health User ID, retrieved via GetIdentity (e.g. `users/me/dataSourceFamilies/...` or `users/1234567890/dataSourceFamilies/...`). The supported values are: - `users/{user}/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/{user}/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/{user}/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/{user}/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data type may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error."
+        "description": "Required. Parent data type of the Data Point collection. Format: `users/{user}/dataTypes/{data_type}`, e.g.: - `users/me/dataTypes/steps` - `users/1234567890/dataTypes/steps` - `users/me/dataTypes/heart-rate` - `users/1234567890/dataTypes/heart-rate` The `{user}` can be either the alias `me` or the authenticated user's numeric Health User ID (retrieved via GetIdentity). For a list of the supported data types see the DataPoint data union field."
       },
       {
         "name": "filter",
@@ -6076,13 +6086,12 @@ export const GHAPI_METHODS: GhapiMethod[] = [
         "type": "string",
         "description": "Optional. Filter expression based on https://aip.dev/160. A time range, either physical or civil, can be specified. See the ListDataPointsRequest.filter for the supported fields and syntax."
       },
-      {"name":"pageToken","location":"query","required":false,"type":"string","description":"Optional. The `next_page_token` from a previous request, if any."},
       {
-        "name": "parent",
-        "location": "path",
-        "required": true,
+        "name": "dataSourceFamily",
+        "location": "query",
+        "required": false,
         "type": "string",
-        "description": "Required. Parent data type of the Data Point collection. Format: `users/{user}/dataTypes/{data_type}`, e.g.: - `users/me/dataTypes/steps` - `users/1234567890/dataTypes/steps` - `users/me/dataTypes/heart-rate` - `users/1234567890/dataTypes/heart-rate` The `{user}` can be either the alias `me` or the authenticated user's numeric Health User ID (retrieved via GetIdentity). For a list of the supported data types see the DataPoint data union field."
+        "description": "Optional. The data source family name to reconcile. If empty, data points from all data sources will be reconciled. Format: `users/{user}/dataSourceFamilies/{data_source_family}` The `{user}` can be either the alias `me` or the authenticated user's numeric Health User ID, retrieved via GetIdentity (e.g. `users/me/dataSourceFamilies/...` or `users/1234567890/dataSourceFamilies/...`). The supported values are: - `users/{user}/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. - `users/{user}/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. - `users/{user}/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker devices, manually logged data, and Health Connect. - `users/{user}/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote through this API, that is, data points whose data source was registered through this API with the same OAuth client ID as the caller. Callers that were only granted write scopes for the requested data type may only read the data they wrote themselves: their requests are implicitly restricted to `self-sources`, and requesting any other data source family fails with `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty list rather than an error."
       },
       {
         "name": "pageSize",
@@ -6090,7 +6099,8 @@ export const GHAPI_METHODS: GhapiMethod[] = [
         "required": false,
         "type": "integer",
         "description": "Optional. The maximum number of data points to return. If unspecified, at most 1440 data points will be returned. The maximum page size is 10000; values above that will be truncated accordingly. For `exercise` and `sleep` the default page size is 25. The maximum page size for `exercise` and `sleep` is 25."
-      }
+      },
+      {"name":"pageToken","location":"query","required":false,"type":"string","description":"Optional. The `next_page_token` from a previous request, if any."}
     ],
     "request": null,
     "response": "ReconcileDataPointsResponse"
@@ -6165,18 +6175,18 @@ export const GHAPI_METHODS: GhapiMethod[] = [
     "scopes": ["https://www.googleapis.com/auth/googlehealth.settings.readonly"],
     "parameters": [
       {
-        "name": "parent",
-        "location": "path",
-        "required": true,
-        "type": "string",
-        "description": "Required. The parent, which owns this collection of devices. Format: users/{user}"
-      },
-      {
         "name": "pageSize",
         "location": "query",
         "required": false,
         "type": "integer",
         "description": "Optional. The maximum number of devices to return. The service may return fewer than this value. If unspecified, at most 5 devices will be returned. The maximum value is 100. values above 100 will be coerced to 100."
+      },
+      {
+        "name": "parent",
+        "location": "path",
+        "required": true,
+        "type": "string",
+        "description": "Required. The parent, which owns this collection of devices. Format: users/{user}"
       },
       {
         "name": "pageToken",
@@ -7441,7 +7451,7 @@ export const GHAPI_SCHEMAS: Record<string, GhapiSchema> = {
         "label": "Optional",
         "required": false,
         "readOnly": false,
-        "description": "Optional. The maximum number of data points to return. If unspecified, at most 1440 data points will be returned. The maximum page size is 10000; values above that will be truncated accordingly.",
+        "description": "Optional. The maximum number of data points to return. If unspecified, at most `90` data points will be returned. The maximum page size is `90`. For `calories-in-heart-rate-zone`, `heart-rate`, `active-minutes`, and `total-calories`, the default and maximum page size is `14`.",
         "enum": null
       },
       {
@@ -11711,11 +11721,11 @@ export const GHAPI_TIMELINE: { date: string; dateText: string; label: string; te
     "item": "September 30, 2026 (End of support): Support for the Fitbit Web API ends. The API will continue to operate, but Google will no longer fix bugs or provide API support."
   },
   {
-    "date": "2026-10-30",
-    "dateText": "October 30, 2026",
+    "date": "2026-11-02",
+    "dateText": "November 2, 2026",
     "label": "API turn-off",
-    "text": "The Fitbit Web API will be turned off and will no longer function or sync data to or from Fitbit users.",
-    "item": "October 30, 2026 (API turn-off): The Fitbit Web API will be turned off and will no longer function or sync data to or from Fitbit users."
+    "text": "The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users. Requests to these endpoints will fail and return an HTTP `410 Gone` status code.",
+    "item": "November 2, 2026 (API turn-off): The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users. Requests to these endpoints will fail and return an HTTP `410 Gone` status code."
   }
 ];
 
@@ -11909,6 +11919,48 @@ export const GHAPI_WEBHOOK_TOKENS: { token: string; dataType: string; systemEven
 /** Dated release-note entries, newest first, as Google prints them. */
 export const GHAPI_RELEASE_NOTES: { date: string; dateText: string; id: string | null; intro: GhapiBlock[]; sections: { heading: string | null; id: string | null; blocks: GhapiBlock[] }[] }[] = [
   {
+    "date": "2026-10-14",
+    "dateText": "October 14, 2026",
+    "id": "october_14_2026",
+    "intro": [],
+    "sections": [
+      {
+        "heading": "Data source family filtering",
+        "id": "data_source_family_filtering",
+        "blocks": [
+          {"kind":"p","text":"Updated data source family filtering with the following capabilities:"},
+          {
+            "kind": "list",
+            "ordered": false,
+            "items": [
+              {
+                "text": "Added `dataSourceFamily` parameter support to the `users.dataTypes.dataPoints` `list` endpoint for all data types except `sleep`, `food`, and `food-measurement-unit`."
+              },
+              {
+                "text": "Added the `users/me/dataSourceFamilies/self-sources` data source family to the `list`, `reconcile`, `rollUp`, and `dailyRollUp` endpoints so clients can query data points they wrote themselves, including when granted only `.writeonly` scopes."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Highlighted Documentation Updates",
+        "id": "highlighted_documentation_updates",
+        "blocks": [
+          {
+            "kind": "list",
+            "ordered": false,
+            "items": [
+              {
+                "text": "Updated the Filter data guide with details and examples for using `dataSourceFamily` on the `list` endpoint, querying `self-sources` with write-only scopes, and handling data type limitations."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
     "date": "2026-10-01",
     "dateText": "October 1, 2026",
     "id": "october_1_2026",
@@ -11972,7 +12024,7 @@ export const GHAPI_RELEASE_NOTES: { date: string; dateText: string; id: string |
       },
       {
         "heading": "Highlighted Documentation Updates",
-        "id": "highlighted_documentation_updates",
+        "id": "highlighted_documentation_updates_2",
         "blocks": [
           {
             "kind": "list",
@@ -12121,7 +12173,7 @@ export const GHAPI_RELEASE_NOTES: { date: string; dateText: string; id: string |
       },
       {
         "heading": "Highlighted Documentation Updates",
-        "id": "highlighted_documentation_updates_2",
+        "id": "highlighted_documentation_updates_3",
         "blocks": [
           {
             "kind": "list",
@@ -12678,21 +12730,21 @@ export const GHAPI_FLAGS: GhapiFlag[] = [
   {
     "dataType": null,
     "kind": "scope-not-on-scopes-page",
-    "scope": "https://www.googleapis.com/auth/googlehealth.logged_symptoms.readonly",
-    "summary": "The v4 discovery document defines .logged_symptoms.readonly (\"See your Google Health logged symptoms data\"); the Scopes page does not list it.",
-    "evidence": [
-      {"source":"discoveryV4","text":"https://www.googleapis.com/auth/googlehealth.logged_symptoms.readonly"},
-      {"source":"discoveryV4","text":"See your Google Health logged symptoms data"}
-    ]
-  },
-  {
-    "dataType": null,
-    "kind": "scope-not-on-scopes-page",
     "scope": "https://www.googleapis.com/auth/googlehealth.mindfulness.readonly",
     "summary": "The v4 discovery document defines .mindfulness.readonly (\"See your Google Health mindfulness data\"); the Scopes page does not list it.",
     "evidence": [
       {"source":"discoveryV4","text":"https://www.googleapis.com/auth/googlehealth.mindfulness.readonly"},
       {"source":"discoveryV4","text":"See your Google Health mindfulness data"}
+    ]
+  },
+  {
+    "dataType": null,
+    "kind": "scope-not-on-scopes-page",
+    "scope": "https://www.googleapis.com/auth/googlehealth.logged_symptoms.readonly",
+    "summary": "The v4 discovery document defines .logged_symptoms.readonly (\"See your Google Health logged symptoms data\"); the Scopes page does not list it.",
+    "evidence": [
+      {"source":"discoveryV4","text":"https://www.googleapis.com/auth/googlehealth.logged_symptoms.readonly"},
+      {"source":"discoveryV4","text":"See your Google Health logged symptoms data"}
     ]
   },
   {
@@ -12854,9 +12906,6 @@ export const GHAPI_PAGES: Record<Exclude<GhapiSourceKey, "discoveryV4" | "discov
             "items": [
               {
                 "text": "For minute-level blood oxygen saturation (`oxygen-saturation`), the API returns only validated readings and removes minutes marked invalid due to arm movement, a loose wrist fit, or a sensor confidence score under 50%, as well as the 3 minutes before and after an invalid reading and isolated valid stretches shorter than 4 minutes. As a result, minute-level coverage can be sparse and gaps are expected. For details, see Minute-level SpO2 filtering and data validity."
-              },
-              {
-                "text": "For activity and movement data types that support on-wrist detection, the API excludes off-wrist noise and explicitly records stationary on-wrist intervals as true zeros. For details, see Data presence and true zeros."
               }
             ]
           }
@@ -13004,10 +13053,6 @@ export const GHAPI_PAGES: Record<Exclude<GhapiSourceKey, "discoveryV4" | "discov
         "level": 2,
         "blocks": [
           {"kind":"p","text":"Here is a list of Google Health API data types and how they map to the Fitbit Web API."},
-          {
-            "kind": "p",
-            "text": "For more information on how data is reported for these types, see the Data presence and true zeros guide. This guide includes details on inactivity and on-wrist filtering."
-          },
           {
             "kind": "table",
             "caption": "Table: Fitbit Web API to Google Health API data type mappings",
@@ -13343,7 +13388,9 @@ export const GHAPI_PAGES: Record<Exclude<GhapiSourceKey, "discoveryV4" | "discov
               {
                 "text": "September 30, 2026 (End of support): Support for the Fitbit Web API ends. The API will continue to operate, but Google will no longer fix bugs or provide API support."
               },
-              {"text":"October 30, 2026 (API turn-off): The Fitbit Web API will be turned off and will no longer function or sync data to or from Fitbit users."}
+              {
+                "text": "November 2, 2026 (API turn-off): The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users. Requests to these endpoints will fail and return an HTTP `410 Gone` status code."
+              }
             ]
           },
           {
@@ -14115,6 +14162,11 @@ export const GHAPI_PAGES: Record<Exclude<GhapiSourceKey, "discoveryV4" | "discov
             "kind": "code",
             "text": "POST https://your-endpoint-uri\nAuthorization: Bearer example-secret-token\nGOOGLE-HEALTH-API-SIGNATURE: signature-value\nContent-Type: application/json\n\n{\n  \"data\": {\n    \"version\": \"1\",\n    \"clientProvidedSubscriptionName\": \"subscription-name\",\n    \"healthUserId\": \"health-user-id\",\n    \"operation\": \"DELETE\",\n    \"dataType\": \"sleep\",\n    \"intervals\": [\n      {\n        \"physicalTimeInterval\": {\n          \"startTime\": \"2026-08-12T22:00:00Z\",\n          \"endTime\": \"2026-08-13T06:00:00Z\"\n        },\n        \"civilIso8601TimeInterval\": {\n          \"startTime\": \"2026-08-12T22:00:00\",\n          \"endTime\": \"2026-08-13T06:00:00\"\n        }\n      }\n    ],\n    \"recordId\": \"9875412\"\n  }\n}"
           },
+          {"kind":"label","text":"Batch (multiple users and data types)"},
+          {
+            "kind": "code",
+            "text": "POST https://your-endpoint-uri\nAuthorization: Bearer example-secret-token\nGOOGLE-HEALTH-API-SIGNATURE: signature-value\nContent-Type: application/json\n\n[\n  {\n    \"data\": {\n      \"version\": \"1\",\n      \"clientProvidedSubscriptionName\": \"auto-project-number-subscriber-id-WEBHOOK_DATA_TYPE_STEPS\",\n      \"healthUserId\": \"health-user-id-1\",\n      \"operation\": \"UPSERT\",\n      \"dataType\": \"steps\",\n      \"intervals\": [\n        {\n          \"physicalTimeInterval\": {\n            \"startTime\": \"2026-03-08T01:29:00Z\",\n            \"endTime\": \"2026-03-08T01:34:00Z\"\n          },\n          \"civilDateTimeInterval\": {\n            \"startDateTime\": {\n              \"date\": {\n                \"year\": 2026,\n                \"month\": 3,\n                \"day\": 7\n              },\n              \"time\": {\n                \"hours\": 17,\n                \"minutes\": 29\n              }\n            },\n            \"endDateTime\": {\n              \"date\": {\n                \"year\": 2026,\n                \"month\": 3,\n                \"day\": 7\n              },\n              \"time\": {\n                \"hours\": 17,\n                \"minutes\": 34\n              }\n            }\n          },\n          \"civilIso8601TimeInterval\": {\n            \"startTime\": \"2026-03-07T17:29:00\",\n            \"endTime\": \"2026-03-07T17:34:00\"\n          }\n        }\n      ]\n    }\n  },\n  {\n    \"data\": {\n      \"version\": \"1\",\n      \"clientProvidedSubscriptionName\": \"auto-project-number-subscriber-id-WEBHOOK_DATA_TYPE_WEIGHT\",\n      \"healthUserId\": \"health-user-id-1\",\n      \"operation\": \"UPSERT\",\n      \"dataType\": \"weight\",\n      \"intervals\": [\n        {\n          \"physicalTimeInterval\": {\n            \"startTime\": \"2026-03-07T15:14:00Z\",\n            \"endTime\": \"2026-03-07T15:16:00Z\"\n          },\n          \"civilDateTimeInterval\": {\n            \"startDateTime\": {\n              \"date\": {\n                \"year\": 2026,\n                \"month\": 3,\n                \"day\": 7\n              },\n              \"time\": {\n                \"hours\": 7,\n                \"minutes\": 14\n              }\n            },\n            \"endDateTime\": {\n              \"date\": {\n                \"year\": 2026,\n                \"month\": 3,\n                \"day\": 7\n              },\n              \"time\": {\n                \"hours\": 7,\n                \"minutes\": 16\n              }\n            }\n          },\n          \"civilIso8601TimeInterval\": {\n            \"startTime\": \"2026-03-07T07:14:00\",\n            \"endTime\": \"2026-03-07T07:16:00\"\n          }\n        }\n      ]\n    }\n  },\n  {\n    \"data\": {\n      \"version\": \"1\",\n      \"clientProvidedSubscriptionName\": \"auto-project-number-subscriber-id-WEBHOOK_DATA_TYPE_STEPS\",\n      \"healthUserId\": \"health-user-id-2\",\n      \"operation\": \"UPSERT\",\n      \"dataType\": \"steps\",\n      \"intervals\": [\n        {\n          \"civilDateTimeInterval\": {\n            \"startDateTime\": {\n              \"date\": {\n                \"year\": 2026,\n                \"month\": 8,\n                \"day\": 20\n              },\n              \"time\": {\n                \"hours\": 0,\n                \"minutes\": 0\n              }\n            },\n            \"endDateTime\": {\n              \"date\": {\n                \"year\": 2026,\n                \"month\": 8,\n                \"day\": 21\n              },\n              \"time\": {\n                \"hours\": 0,\n                \"minutes\": 0\n              }\n            }\n          },\n          \"civilIso8601TimeInterval\": {\n            \"startTime\": \"2026-08-20T00:00:00\",\n            \"endTime\": \"2026-08-21T00:00:00\"\n          }\n        }\n      ]\n    }\n  },\n  {\n    \"data\": {\n      \"version\": \"1\",\n      \"clientProvidedSubscriptionName\": \"subscription-name\",\n      \"healthUserId\": \"health-user-id-2\",\n      \"operation\": \"UPSERT\",\n      \"dataType\": \"sleep\",\n      \"intervals\": [\n        {\n          \"physicalTimeInterval\": {\n            \"startTime\": \"2026-08-12T22:00:00Z\",\n            \"endTime\": \"2026-08-13T06:00:00Z\"\n          },\n          \"civilDateTimeInterval\": {\n            \"startDateTime\": {\n              \"date\": {\n                \"year\": 2026,\n                \"month\": 8,\n                \"day\": 12\n              },\n              \"time\": {\n                \"hours\": 22,\n                \"minutes\": 0\n              }\n            },\n            \"endDateTime\": {\n              \"date\": {\n                \"year\": 2026,\n                \"month\": 8,\n                \"day\": 13\n              },\n              \"time\": {\n                \"hours\": 6,\n                \"minutes\": 0\n              }\n            }\n          },\n          \"civilIso8601TimeInterval\": {\n            \"startTime\": \"2026-08-12T22:00:00\",\n            \"endTime\": \"2026-08-13T06:00:00\"\n          }\n        }\n      ],\n      \"recordId\": \"9875412\"\n    }\n  }\n]"
+          },
           {"kind":"p","text":"The `operation` field indicates the type of change that triggered the notification:"},
           {
             "kind": "list",
@@ -14276,12 +14328,16 @@ export const GHAPI_PAGES: Record<Exclude<GhapiSourceKey, "discoveryV4" | "discov
         "blocks": [
           {
             "kind": "p",
-            "text": "Your server must respond to notifications with an HTTP `204 No Content` status code immediately. To avoid timeouts, process the notification payload asynchronously after sending the response. If the Google Health API receives any other status code or the request times out, it retries sending the notification later."
+            "text": "Your server must validate the `Authorization` header, handle the synchronous endpoint verification handshake, and respond to data change notifications with an HTTP `204 No Content` status code immediately. To avoid timeouts, process the notification payload asynchronously after sending the response. If the Google Health API receives any other status code or the request times out, it retries sending the notification later."
           },
           {"kind":"p","text":"Node.js (Express) Example:"},
           {
             "kind": "code",
-            "text": "app.post('/webhook-receiver', (req, res) => {\n    // 1. Immediately acknowledge the notification batch\n    res.status(204).send();\n\n    // 2. Process the data asynchronously in the background\n    const notification = req.body;\n    setImmediate(() => {\n        for (const notification of notifications) {\n            console.log(`Update for user ${notification.data.healthUserId} of type ${notification.data.dataType}`);\n            // Trigger your data retrieval logic here\n        }\n    });\n});"
+            "text": "app.post('/webhook-receiver', (req, res) => {\n    if (req.headers.authorization !== EXPECTED_SECRET) {\n        return res.status(401).send();\n    }\n    if (req.body && !Array.isArray(req.body) && req.body.type === 'verification') {\n        return res.status(200).send();\n    }\n\n    // 1. Immediately acknowledge the notification batch\n    res.status(204).send();\n\n    // 2. Normalize single-object or batched array notifications and reconcile asynchronously\n    const notifications = Array.isArray(req.body) ? req.body : [req.body];\n    setImmediate(async () => {\n        for (const notification of notifications) {\n            const { healthUserId, dataType, intervals = [] } = notification.data || {};\n            console.log(`Update for user ${healthUserId} of type ${dataType}`);\n            // Query /v4/users/${healthUserId}/dataTypes/${dataType}/dataPoints:reconcile?filter=...\n            // for each interval in `intervals` (using >= and < comparators; for sleep, filter on\n            // sleep.interval.end_time or sleep.interval.civil_end_time).\n        }\n    });\n});"
+          },
+          {
+            "kind": "p",
+            "text": "To fetch the updated data for each notified interval, call the `reconcile` endpoint with a filter for the interval's time range. This automatically deduplicates overlapping intervals from connected devices. For details and examples, see Get a reconciled view of interval data."
           },
           {"kind":"p","text":"There are three common strategies for updating your database after receiving a data change notification:"},
           {

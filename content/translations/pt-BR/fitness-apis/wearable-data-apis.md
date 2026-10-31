@@ -1,8 +1,8 @@
 ---
 path: "/fitness-apis/wearable-data-apis"
-translatedOn: "2026-10-27"
+translatedOn: "2026-10-31"
 sourceUpdated: "2026-07-08"
-sourceHash: "4dd358532b1504c0"
+sourceHash: "fe7fb71a0a5eeb43"
 metaTitle: "As melhores APIs de wearables: Fitbit, Garmin, Oura e mais"
 metaDescription: >-
   Compare as melhores APIs de wearables de fitness em 2026 — Fitbit, Garmin, Oura, WHOOP e Polar — em dados, aprovação e preço para escolher a certa.
@@ -54,7 +54,7 @@ Uma observação sobre o atrito de aprovação em toda esta página: é um requi
 
 | API | Melhor para | Modelo de acesso | Modelo de preço | Atenção |
 |---|---|---|---|---|
-| Fitbit / Google Health | Amplo alcance no consumidor, frequência cardíaca e sono intradiários | Autosserviço para os próprios dados; caso a caso para dados intradiários de outros usuários | Uso gratuito (confira os termos comerciais) | O suporte à Web API legada terminou em 30 de set. de 2026 e ela é desligada em 30 de out. de 2026; a Google Health API é o caminho recomendado; os tokens não podem ser transferidos |
+| Fitbit / Google Health | Amplo alcance no consumidor, frequência cardíaca e sono intradiários | Autosserviço para os próprios dados; caso a caso para dados intradiários de outros usuários | Uso gratuito (confira os termos comerciais) | O suporte à Web API legada terminou em 30 de set. de 2026 e ela é desligada em 2 de nov. de 2026; a Google Health API é o caminho recomendado; os tokens não podem ser transferidos |
 | Garmin | GPS/esporte, maior variedade de métricas de saúde | Candidatura ao programa; aprovação de parceiro obrigatória | Sem preço publicado para o Starter Access; termos do Enterprise ajustados | Ping/pull, backfill e algumas métricas só no Enterprise |
 | Oura | Sono, prontidão (readiness), HRV, recuperação | App OAuth autosserviço; aprovação para passar de 10 usuários | Gratuito para apps pessoais e comerciais; o usuário precisa de um anel Oura | Personal Access Tokens descontinuados em dez. de 2025 — agora só OAuth |
 | WHOOP | Recuperação, esforço (strain), coaching de HRV | App de desenvolvedor autosserviço; nível Sandbox de 10 membros, níveis revisados acima dele | API hoje oferecida sem custo; os usuários são membros do WHOOP | Teto de 10 membros no Sandbox até o WHOOP aprovar o próximo nível |
@@ -62,7 +62,7 @@ Uma observação sobre o atrito de aprovação em toda esta página: é um requi
 
 ## Fitbit Web API (Google)
 
-A Fitbit é melhor para alcance amplo no grande público, com dados ricos de sono, frequência cardíaca e intradiários em uma grande base de dispositivos. Ela expõe os dados da conta Fitbit de um usuário — atividade e passos, frequência cardíaca (incluindo séries temporais intradiárias com granularidade de até 1 segundo ou 1 minuto), sono, `SpO2`, HRV e registros de treino — via `OAuth 2.0` (grant authorization code, PKCE recomendado). Registrar um app Personal para os seus próprios dados é autosserviço; o acesso a dados intradiários de alta resolução de outros usuários é concedido caso a caso, mediante pedido, e o limite de requisições é de 150 requisições por hora por usuário que consentiu, em 2026. A contrapartida a conhecer: a [página da Google Health API do Google](https://developers.google.com/health/about) (lida em 12 de outubro de 2026) lista o fim do suporte à Fitbit Web API legada em 30 de setembro de 2026 e o desligamento total em 30 de outubro de 2026, com a Google Health API e o `OAuth 2.0` do Google como substitutos. O guia de migração do Fit do Google, atualizado em 10 de setembro de 2026, lista a Google Health API como o caminho recomendado para integrações com a Fitbit Web API. Projetos novos devem mirar a Google Health API, e o guia de migração da Health API do Google diz que os tokens existentes não podem ser transferidos, então planeje que todo usuário consinta de novo. A nossa página de [status da descontinuação da API da Fitbit](/fitbit-api-shutdown) separa o que está confirmado do que é só relatado. Confira os termos atuais na documentação.
+A Fitbit é melhor para alcance amplo no grande público, com dados ricos de sono, frequência cardíaca e intradiários em uma grande base de dispositivos. Ela expõe os dados da conta Fitbit de um usuário — atividade e passos, frequência cardíaca (incluindo séries temporais intradiárias com granularidade de até 1 segundo ou 1 minuto), sono, `SpO2`, HRV e registros de treino — via `OAuth 2.0` (grant authorization code, PKCE recomendado). Registrar um app Personal para os seus próprios dados é autosserviço; o acesso a dados intradiários de alta resolução de outros usuários é concedido caso a caso, mediante pedido, e o limite de requisições é de 150 requisições por hora por usuário que consentiu, em 2026. A contrapartida a conhecer: a [página da Google Health API do Google](https://developers.google.com/health/about) (lida em 31 de outubro de 2026) lista o fim do suporte à Fitbit Web API legada em 30 de setembro de 2026 e o desligamento total em 2 de novembro de 2026, com a Google Health API e o `OAuth 2.0` do Google como substitutos. O guia de migração do Fit do Google, atualizado em 10 de setembro de 2026, lista a Google Health API como o caminho recomendado para integrações com a Fitbit Web API. Projetos novos devem mirar a Google Health API, e o guia de migração da Health API do Google diz que os tokens existentes não podem ser transferidos, então planeje que todo usuário consinta de novo. A nossa página de [status da descontinuação da API da Fitbit](/fitbit-api-shutdown) separa o que está confirmado do que é só relatado. Confira os termos atuais na documentação.
 
 ## Garmin (Health API + Connect Developer Program)
 

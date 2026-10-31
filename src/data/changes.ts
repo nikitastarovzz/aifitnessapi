@@ -52,14 +52,14 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
     verifiedOn: "2026-10-17",
   },
   {
-    date: "2026-10-30",
-    sortDate: "2026-10-30",
-    title: "Fitbit Web API turn-off",
+    date: "2026-11-02",
+    sortDate: "2026-11-02",
+    title: "Fitbit Web API turn-off moves to November 2, 2026",
     summary:
-      "Google's Google Health API page states that on October 30, 2026 \"the Fitbit Web API will be turned off and will no longer function or sync data to or from Fitbit users\", and that all current integrations \"must migrate their applications and users to the Google Health API and Google OAuth 2.0 as soon as possible\". Until then the legacy API keeps operating without support, and Google's migration guide has apps support both login methods while it does. Existing tokens cannot be transferred, so every user re-consents through Google OAuth.",
+      "Google's Google Health API page, last updated October 23, 2026, now gives November 2, 2026 as the turn-off: \"The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users. Requests to these endpoints will fail and return an HTTP `410 Gone` status code.\" When we read the page on October 12 it gave October 30. A 410 from a Fitbit endpoint after that date means the turn-off, not a fault in your integration.",
     status: "confirmed",
     page: { href: "/fitbit-api-shutdown", label: "Fitbit API shutdown center" },
-    verifiedOn: "2026-10-12",
+    verifiedOn: "2026-10-31",
   },
   {
     date: "2026-10",
@@ -96,7 +96,7 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
     sortDate: "2026-09-30",
     title: "Fitbit Web API end of support",
     summary:
-      "Google's Google Health API page states that on September 30, 2026 \"support for the Fitbit Web API ends. The API will continue to operate, but Google will no longer fix bugs or provide API support.\" The turn-off follows on October 30, 2026. Third-party guides had named September 30 before Google published the timeline; it is the end-of-support date, not the switch-off.",
+      "Google's Google Health API page states that on September 30, 2026 \"support for the Fitbit Web API ends. The API will continue to operate, but Google will no longer fix bugs or provide API support.\" The turn-off follows on November 2, 2026. Third-party guides had named September 30 before Google published the timeline; it is the end-of-support date, not the switch-off.",
     status: "confirmed",
     page: { href: "/fitbit-api-shutdown", label: "Fitbit API shutdown center" },
     verifiedOn: "2026-10-12",
