@@ -26,4 +26,6 @@ export const PAGE_H1 = {
   "/error-codes": "HealthKit and Health Connect error codes",
   "/error-codes/health-connect": "Health Connect error codes and exceptions",
   "/developers": "The AIFitnessAPI Data API and MCP Server",
+  "/market-map": "The fitness & health API market map",
+  "/fitness-api-index": "The fitness API index",
 } as const;

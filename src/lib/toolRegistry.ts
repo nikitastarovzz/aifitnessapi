@@ -68,6 +68,18 @@ export const TOOL_PLANNERS: Tool[] = [
       "The cost structure of your stack: billing models, user-side costs, approval gates, eng effort.",
   },
   {
+    path: "/market-map",
+    name: "Fitness & health API market map",
+    blurb:
+      "Every product in the directory as one map, grouped by category, filterable by billing model, approval gate and tracked library.",
+  },
+  {
+    path: "/fitness-api-index",
+    name: "Fitness API index",
+    blurb:
+      "Sortable raw signals per product: SDK and library releases, dated changes in the last 12 months, approval gates, verification age. No score.",
+  },
+  {
     path: "/compare-apis",
     name: "Compare two fitness APIs side by side",
     blurb:

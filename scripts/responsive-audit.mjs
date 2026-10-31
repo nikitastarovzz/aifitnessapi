@@ -30,6 +30,7 @@ const PAGES = ["/", "/devices", "/devices/ftms-fitness-machine-service", "/matri
   "/site-index", "/blog", "/about", "/methodology", "/privacy",
   "/apis", "/apis/fitbit", "/apis/mediapipe", "/alerts", "/digest", "/digest/2026-08",
   "/search", "/compare-apis", "/datasets", "/badges", "/embed/matrix", "/embed/deadlines",
+  "/market-map", "/fitness-api-index", "/embed/market-map",
   "/accessibility", "/accessibility/voiceover-live-workout-metrics",
   "/audio-coaching", "/audio-coaching/android-audio-focus-may-duck",
   "/audio-coaching/audiofocus-request-failed-android-15",

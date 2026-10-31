@@ -45,6 +45,14 @@ const RELATED: { href: string; label: string }[] = [
     "label": "Fitness API Cost Planner"
   },
   {
+    "href": "/market-map",
+    "label": "The fitness & health API market map"
+  },
+  {
+    "href": "/fitness-api-index",
+    "label": "The fitness API index: release, change and verification signals"
+  },
+  {
     "href": "/pricing/are-fitness-apis-free",
     "label": "Are fitness APIs free? An honest overview"
   },

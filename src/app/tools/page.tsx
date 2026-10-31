@@ -27,7 +27,7 @@ import { orgRef, WEBSITE_ID } from "@/lib/schema";
 const PATH = "/tools";
 const TITLE = "Free Tools for Health-App Builders";
 const DESCRIPTION =
-  "Ten free tools for HealthKit and Health Connect work: error lookup, aggregation checker, identifier translator, permission and query builders.";
+  "Twelve free tools for HealthKit and Health Connect work: error lookup, aggregation checker, identifier translator, permission and query builders.";
 
 export const metadata: Metadata = {
   // Plain, not `absolute` — the layout template appends the site suffix and

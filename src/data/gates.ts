@@ -355,6 +355,36 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "A directory page that lists no pages covering its product, which is a thin page pretending to be an entity.",
   },
   {
+    code: "MARKET-MAP-TILES",
+    area: "Content integrity",
+    refuses:
+      "A market map (the page or its embed) that shows a different set of tiles from the products in the API directory: a derived landscape with a product missing, or one the directory does not have.",
+  },
+  {
+    code: "MARKET-MAP-FUNDER",
+    area: "Disclosure",
+    refuses:
+      "A market map or market-map embed whose KinesteX tile does not say that KinesteX funds this site. The embed travels without the page's disclosure, so the marker has to be on the tile.",
+  },
+  {
+    code: "API-INDEX-ROWS",
+    area: "Content integrity",
+    refuses:
+      "A fitness API index that was not built, or whose table has a different set of rows from the products in the API directory.",
+  },
+  {
+    code: "API-INDEX-FUNDER-RANKED",
+    area: "Disclosure",
+    refuses:
+      "A fitness API index in which the site's funder is ranked: anything other than exactly one unranked row, KinesteX's, labelled as funding the site and given no position.",
+  },
+  {
+    code: "API-INDEX-SCORE",
+    area: "Disclosure",
+    refuses:
+      "A fitness API index that renders a composite score or rating. It publishes raw signals and leaves the weighting to the reader.",
+  },
+  {
     code: "APIS-NO-ENTITY",
     area: "Structured data / GEO",
     refuses: "A directory page with no SoftwareApplication node identifying the product it describes.",

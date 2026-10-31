@@ -8,7 +8,7 @@ import { orgRef, WEBSITE_ID } from "@/lib/schema";
 import { ROWS } from "@/data/matrix";
 
 /**
- * The embed page: the two iframe widgets under /embed plus the link badge,
+ * The embed page: the three iframe widgets under /embed plus the link badge,
  * each with a copy-paste snippet.
  *
  * What this page must not do is oversell. An embed is our content living on
@@ -23,13 +23,13 @@ const TITLE = "Fitness API Embeds & Badges";
 export const metadata: Metadata = {
   title: { absolute: `${TITLE} · ${site.name}` },
   description:
-    "Copy-paste widgets for your site: the HealthKit ↔ Health Connect type table, the fitness-API deadline tracker, and a small link badge. Attribution only.",
+    "Copy-paste widgets: the HealthKit ↔ Health Connect type table, the API deadline tracker, the API market map and a link badge. Attribution only.",
   alternates: { canonical: PAGE_PATH },
   openGraph: {
     type: "website",
     title: TITLE,
     description:
-      "Two embeddable widgets — the HealthKit ↔ Health Connect type table and the deadline tracker — plus a link badge. Free to use, attribution required.",
+      "Three embeddable widgets — the HealthKit ↔ Health Connect type table, the deadline tracker and the API market map — plus a link badge. Attribution required.",
     url: PAGE_PATH,
   },
 };
@@ -70,6 +70,10 @@ const LIVE_BADGES = [
     note: "The newest verification date across the datasets — not today's date.",
   },
 ];
+
+const MARKET_MAP_SNIPPET = `<iframe src="https://aifitnessapi.com/embed/market-map"
+        title="Fitness and health API market map"
+        width="100%" height="720" loading="lazy" style="border:0"></iframe>`;
 
 const BADGE_SNIPPET = `<a href="https://aifitnessapi.com/apis" target="_blank" rel="noreferrer">
   <img src="https://aifitnessapi.com/badges/badge.svg"
@@ -126,9 +130,10 @@ export default function BadgesPage() {
         <p className="mt-3 text-sm text-[var(--muted)]">Updated August 22, 2026</p>
 
         <AnswerCapsule>
-          Two of our reference pages are available as iframe widgets you can drop into your own
-          site — the HealthKit ↔ Health Connect type table and the dated fitness-API deadline
-          tracker — plus a small badge if you just want to link back. All three are free. The only
+          Three of our reference pages are available as iframe widgets you can drop into your own
+          site — the HealthKit ↔ Health Connect type table, the dated fitness-API deadline
+          tracker and the fitness &amp; health API market map — plus a small badge if you just want to
+          link back. All four are free. The only
           condition is attribution: the widgets carry a visible link back to the source page, and
           that link stays.
         </AnswerCapsule>
@@ -190,7 +195,36 @@ export default function BadgesPage() {
 
         <section className="mt-12">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">
-            3. &ldquo;Listed on AIFitnessAPI&rdquo; badge
+            3. Fitness &amp; health API market map
+          </h2>
+          <p className="mt-3 text-[var(--muted)]">
+            Every product in the{" "}
+            <Link href="/apis" className="text-brand-600 hover:text-brand-500">
+              API directory
+            </Link>{" "}
+            as a compact tile, grouped by category, with a dot for how each bills developers — the
+            same data as{" "}
+            <Link href="/market-map" className="text-brand-600 hover:text-brand-500">
+              the market map
+            </Link>
+            , without its filters. Nothing is ranked. The product made by the company that funds
+            this site carries a marker saying so inside the widget, because an embed travels without
+            the page&rsquo;s disclosure.{" "}
+            <Link
+              href="/embed/market-map"
+              target="_blank"
+              className="text-brand-600 hover:text-brand-500"
+            >
+              Preview the widget
+            </Link>
+            .
+          </p>
+          <Snippet code={MARKET_MAP_SNIPPET} label="Embed code for the market map" />
+        </section>
+
+        <section className="mt-12">
+          <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">
+            4. &ldquo;Listed on AIFitnessAPI&rdquo; badge
           </h2>
           <p className="mt-3 text-[var(--muted)]">
             A 200×40 SVG for anyone whose product we cover in the{" "}

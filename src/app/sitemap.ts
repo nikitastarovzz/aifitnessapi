@@ -10,6 +10,7 @@ import { hkStandaloneModified } from "@/data/hkStandalone";
 import { HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { changesSorted } from "@/data/changes";
 import { API_ENTRIES, APIS_PATH, NOINDEX_APIS } from "@/data/apis";
+import { API_INDEX_PATH, MARKET_MAP_PATH, indexDataDate } from "@/lib/ecosystemSignals";
 import { isNoindexed } from "@/data/noindex";
 import { ptPages, ptIndexIndexable, PT_PREFIX } from "@/lib/translations";
 import { digests, DIGEST_PATH, type Digest } from "@/data/digest";
@@ -235,6 +236,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // dateModified, and apis.ts records no verification date — so the hub
     // and its entries stay undated rather than borrow one.
     [APIS_PATH]: undefined,
+    // The map is drawn from the same directory, so it is undated for the same
+    // reason. The index declares the newest date any of its inputs was written
+    // or checked, and this reads the same function.
+    [MARKET_MAP_PATH]: undefined,
+    [API_INDEX_PATH]: indexDataDate(),
   };
 
   const standalone = [
@@ -272,6 +278,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // without asking for the indexing we just removed. SITEMAP-NOINDEX in
     // qa.mjs stops it, or anything else noindexed, coming back.
     APIS_PATH,
+    MARKET_MAP_PATH,
+    API_INDEX_PATH,
     "/alerts",
     "/compare-apis",
     "/datasets",
