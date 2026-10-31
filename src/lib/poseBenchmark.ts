@@ -29,6 +29,21 @@ export const TASKS_VISION_VERSION = "1.1.1";
 export const TASKS_VISION_BUNDLE = `https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@${TASKS_VISION_VERSION}/vision_bundle.mjs`;
 export const TASKS_VISION_WASM = `https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@${TASKS_VISION_VERSION}/wasm`;
 
+/**
+ * The runtime reports its own usage to Google. Read in the 1.1.1 tarball's
+ * vision_bundle.mjs on 2026-10-31 and seen in a Playwright run of
+ * /tools/pose-benchmark and /challenge the same day: every task creates a
+ * logger that POSTs a protobuf to this URL about once a minute and when the
+ * task closes. In that code the report is built from the task name
+ * ("PoseLandmarker"), the running mode, an operating-system family parsed
+ * from the user agent, the library version string and timing counters
+ * (initialisation time, frames processed, total and maximum latency, dropped
+ * frames); no image, video or landmark value is passed to it. The package's
+ * public options expose no way to turn it off. Pages that say what is sent
+ * cite this, rather than "nothing is uploaded".
+ */
+export const TASKS_VISION_USAGE_LOG_URL = "https://odml.pa.googleapis.com/v1/log";
+
 export type BenchModel = {
   id: "lite" | "full" | "heavy";
   name: string;

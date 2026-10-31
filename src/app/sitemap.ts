@@ -252,6 +252,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/google-fit-shutdown",
     "/methodology",
     "/day-boundaries",
+    "/challenge",
     "/glossary",
     "/picker",
     "/cost-planner",

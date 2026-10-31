@@ -1,5 +1,12 @@
 import { site, absoluteUrl } from "@/lib/site";
 import { TASKS_VISION_VERSION, VERIFIED_ON as POSE_BENCH_VERIFIED_ON } from "@/lib/poseBenchmark";
+import {
+  CHALLENGE_SECONDS as REP_CHALLENGE_SECONDS,
+  COUNTDOWN_SECONDS as REP_COUNTDOWN_SECONDS,
+  EXERCISES as REP_EXERCISES,
+  MIN_HOLD_MS as REP_MIN_HOLD_MS,
+  describeZone,
+} from "@/lib/repCounter.mjs";
 import { getAllPosts } from "@/lib/posts";
 import { GLANCE_HUBS, hubQa, segText } from "@/data/hubGlance";
 import { moneyPages, MONEY_GROUP_LABELS, MONEY_GROUP_ORDER } from "@/data/moneyPages";
@@ -591,8 +598,19 @@ export function GET() {
   out.push("Primary query: mediapipe pose landmarker benchmark");
   out.push("");
   out.push(
-    `A client-side tool that loads Google's @mediapipe/tasks-vision ${TASKS_VISION_VERSION} runtime and the Pose Landmarker lite, full and heavy model files when the reader presses Run, times them on the reader's own camera or a synthetic test frame with the GPU and CPU delegates, and reports load time, median and p95 inference time, FPS and the browser's device details as a markdown table. Frames never leave the tab. The page publishes no latency or accuracy figure of its own: the only honest number is the one measured on the target hardware. MoveNet is not included because its default weights load from tfhub.dev, which could not be reached to verify on ${POSE_BENCH_VERIFIED_ON}.`,
+    `A client-side tool that loads Google's @mediapipe/tasks-vision ${TASKS_VISION_VERSION} runtime and the Pose Landmarker lite, full and heavy model files when the reader presses Run, times them on the reader's own camera or a synthetic test frame with the GPU and CPU delegates, and reports load time, median and p95 inference time, FPS and the browser's device details as a markdown table. Frames never leave the tab; the runtime itself posts a usage report to Google (task name, running mode, OS family, library version and timing counters, no images). The page publishes no latency or accuracy figure of its own: the only honest number is the one measured on the target hardware. MoveNet is not included because its default weights load from tfhub.dev, which could not be reached to verify on ${POSE_BENCH_VERIFIED_ON}.`,
   );
+  out.push("");
+  out.push(`## The 30-second webcam rep challenge — ${absoluteUrl("/challenge")}`);
+  out.push("Primary query: webcam squat counter challenge");
+  out.push("");
+  {
+    const sq = REP_EXERCISES.squat;
+    const jj = REP_EXERCISES["jumping-jack"];
+    out.push(
+      `A browser game: pick squats or jumping jacks, a ${REP_COUNTDOWN_SECONDS}-second countdown, then ${REP_CHALLENGE_SECONDS} seconds counted live from the webcam by MediaPipe Pose Landmarker lite (@mediapipe/tasks-vision ${TASKS_VISION_VERSION}) and a two-phase state machine with hysteresis on one angle per frame, computed from the model's world landmarks. Squat: knee angle (hip-knee-ankle), a rep is ${describeZone(sq.active)} and back ${describeZone(sq.rest)}, the example definition the squat detection page reports from a 2026 study. Jumping jack: arm angle (hip-shoulder-wrist, both arms visible), ${describeZone(jj.active)} and back ${describeZone(jj.rest)}, the site's own uncalibrated choice. A zone must hold ${REP_MIN_HOLD_MS} ms; cycles faster than ${sq.minCycleMs} ms (squat) or ${jj.minCycleMs} ms (jumping jack) are rejected. The end screen draws a share card on a canvas and offers a one-line text result with pace squares per 5-second slice. It is a demo of the method, not a measurement, coaching or medical advice, and the count can be wrong. Frames never leave the tab and no scores are stored; the runtime posts its own usage report to Google (timings, no images).`,
+    );
+  }
   out.push("");
   out.push(`## Wearable webhook verifier — ${absoluteUrl("/tools/webhook-verifier")}`);
   out.push("Primary query: how to verify a wearable webhook signature");
