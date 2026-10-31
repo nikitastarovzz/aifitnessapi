@@ -15,7 +15,7 @@ import MetricFacts from "@/components/MetricFacts";
 import MetricPlatforms from "@/components/MetricPlatforms";
 import ContentAge from "@/components/ContentAge";
 import ReferenceCallout from "@/components/ReferenceCallout";
-import KinestexNote from "@/components/KinestexNote";
+import KinestexNote, { KINESTEX_NOTE_PATHS } from "@/components/KinestexNote";
 import AppStack from "@/components/AppStack";
 import PostLinks from "@/components/PostLinks";
 import Feedback from "@/components/Feedback";
@@ -55,6 +55,11 @@ const TOOLS = {
     name: "Fitness app stack generator",
     does: "answer four questions and get the HealthKit types and APIs that survive them, with the exclusions shown.",
   },
+  webhook: {
+    href: "/tools/webhook-verifier",
+    name: "Webhook verifier",
+    does: "paste a webhook you received and check it the way the vendor documents, in your browser, with each field explained and the response the vendor expects.",
+  },
 } as const;
 
 /**
@@ -85,6 +90,16 @@ const TOOL_FOR_PATH: Record<string, keyof typeof TOOLS> = {
   "/fix/fitbit-api-429-rate-limit": "diagnoser",
   "/fix/garmin-api-approval": "diagnoser",
   "/integrate/healthkit": "permissions",
+  // Every integration guide whose vendor the webhook verifier covers, and the
+  // webhook troubleshooting spoke.
+  "/integrate/oura-api": "webhook",
+  "/integrate/whoop-api": "webhook",
+  "/integrate/terra-api": "webhook",
+  "/integrate/polar-api": "webhook",
+  "/integrate/strava-api": "webhook",
+  "/integrate/withings-api": "webhook",
+  "/integrate/wahoo-api": "webhook",
+  "/fix/strava-webhook-not-firing": "webhook",
   // Every build guide: the generator is these guides' stacks, narrowed.
   "/build/personal-training-app": "stack",
   "/build/home-workout-app": "stack",
@@ -598,6 +613,11 @@ export default function ClusterPage({
           updated={entry.updated}
           variant={config.disclaimer}
           locale={tr ? "pt-BR" : undefined}
+          funderListed={
+            entry.firstParty === true ||
+            (!tr && KINESTEX_NOTE_PATHS.includes(path)) ||
+            /KinesteX/.test([entry.answer, entry.body, ...entry.faqs.map((f) => f.a)].join(" "))
+          }
         />
 
         {tr ? (

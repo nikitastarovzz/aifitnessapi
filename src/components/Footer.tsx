@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ComponentProps } from "react";
 import Container from "./Container";
+import FooterFunding from "./FooterFunding";
 import { SDK_REPOS } from "@/data/sdkReleases";
 import { site } from "@/lib/site";
 import { clusterMap } from "@/lib/clusterRegistry";
@@ -18,10 +19,13 @@ export default function Footer() {
   const has = (p: string) => (populated[p]?.length ?? 0) > 0;
   return (
     <footer className="mt-24 border-t border-[var(--border)]">
-      <Container className="flex flex-col items-center justify-between gap-4 py-10 sm:flex-row">
-        <p className="text-sm text-[var(--muted)]">
-          © {year} {site.name}. All rights reserved.
-        </p>
+      <Container className="flex flex-col-reverse items-center gap-6 py-10">
+        <div className="flex max-w-xl flex-col items-center gap-2 text-center">
+          <p className="text-sm text-[var(--muted)]">
+            © {year} {site.name}. All rights reserved.
+          </p>
+          <FooterFunding />
+        </div>
         <nav aria-label="Footer" className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-[var(--muted)]">
           <FooterLink href="/fitness-apis" className="py-1 hover:text-[var(--fg)]">
             Fitness APIs
@@ -112,6 +116,12 @@ export default function Footer() {
           )}
           <FooterLink href="/apis" className="py-1 hover:text-[var(--fg)]">
             API Directory
+          </FooterLink>
+          <FooterLink href="/market-map" className="py-1 hover:text-[var(--fg)]">
+            API Market Map
+          </FooterLink>
+          <FooterLink href="/fitness-api-index" className="py-1 hover:text-[var(--fg)]">
+            Fitness API Index
           </FooterLink>
           <FooterLink href="/compare-apis" className="py-1 hover:text-[var(--fg)]">
             Compare APIs

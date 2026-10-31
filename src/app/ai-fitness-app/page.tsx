@@ -4,6 +4,7 @@ import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterHero from "@/components/ClusterHero";
 import ClusterCta from "@/components/ClusterCta";
+import KinestexNote from "@/components/KinestexNote";
 import { Mdx } from "@/components/mdx";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
@@ -355,6 +356,8 @@ export default function AiFitnessAppPage() {
             ))}
           </dl>
         </section>
+
+        <KinestexNote path="/ai-fitness-app" />
 
         <ClusterCta pitch="Mapping your own build? Get our developer notes on where each layer's real cost lands — and which vendor claims to re-verify before you commit." source="pillar-inline" id="cta-ai-fitness-app" />
 

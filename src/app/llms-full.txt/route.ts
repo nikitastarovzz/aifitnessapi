@@ -1,4 +1,5 @@
 import { site, absoluteUrl } from "@/lib/site";
+import { TASKS_VISION_VERSION, VERIFIED_ON as POSE_BENCH_VERIFIED_ON } from "@/lib/poseBenchmark";
 import { getAllPosts } from "@/lib/posts";
 import { GLANCE_HUBS, hubQa, segText } from "@/data/hubGlance";
 import { moneyPages, MONEY_GROUP_LABELS, MONEY_GROUP_ORDER } from "@/data/moneyPages";
@@ -577,6 +578,27 @@ export function GET() {
   out.push("");
   out.push(
     "A three-question tool (what you're building, your platform, your top priority) that recommends a fitness/health API approach and links to the relevant comparisons, integration guides, and pricing. Independent, not sponsored.",
+  );
+  out.push("");
+  out.push(`## Synthetic health data generator — ${absoluteUrl("/tools/sample-data")}`);
+  out.push("Primary query: synthetic healthkit health connect test data generator");
+  out.push("");
+  out.push(
+    "A client-side tool that generates seeded, deterministic synthetic fixtures for Apple HealthKit, Android Health Connect and the Google Health API, as JSON or CSV. Field names, Kotlin and discovery types, validation ranges and enum values come from this site's generated copies of Apple's and Google's references, and a field the datasets do not describe is left out rather than guessed. Each record carries the offset in force at its own instant: Health Connect's nullable ZoneOffset beside each Instant, the Google Health API's required utcOffset durations, HealthKit's optional HKMetadataKeyTimeZone. Values are synthetic and illustrative, not real or physiologically validated.",
+  );
+  out.push("");
+  out.push(`## Pose model benchmark (runs on your device) — ${absoluteUrl("/tools/pose-benchmark")}`);
+  out.push("Primary query: mediapipe pose landmarker benchmark");
+  out.push("");
+  out.push(
+    `A client-side tool that loads Google's @mediapipe/tasks-vision ${TASKS_VISION_VERSION} runtime and the Pose Landmarker lite, full and heavy model files when the reader presses Run, times them on the reader's own camera or a synthetic test frame with the GPU and CPU delegates, and reports load time, median and p95 inference time, FPS and the browser's device details as a markdown table. Frames never leave the tab. The page publishes no latency or accuracy figure of its own: the only honest number is the one measured on the target hardware. MoveNet is not included because its default weights load from tfhub.dev, which could not be reached to verify on ${POSE_BENCH_VERIFIED_ON}.`,
+  );
+  out.push("");
+  out.push(`## Wearable webhook verifier — ${absoluteUrl("/tools/webhook-verifier")}`);
+  out.push("Primary query: how to verify a wearable webhook signature");
+  out.push("");
+  out.push(
+    "A client-side webhook debugger. Pick Oura, WHOOP, Terra, Polar, Strava, Withings, Wahoo or the Google Health API, paste the received body, headers and your secret, and it checks the request the way that vendor documents, using WebCrypto in the browser (the secret never leaves the tab). As read from each vendor's page on 2026-10-31: Oura signs the x-oura-timestamp value + JSON.stringify(body) with HMAC-SHA256 keyed by the client secret, upper-case hex, in x-oura-signature; WHOOP signs the X-WHOOP-Signature-Timestamp value + the raw body with the client secret, base64, in X-WHOOP-Signature; Terra signs timestamp + '.' + raw body with the destination's signing secret, hex, in terra-signature (t=…,v1=…); Polar signs the payload with the signature_secret_key returned at webhook creation, hex, in Polar-Webhook-Signature. Strava documents no signature on events, only a hub.challenge validation GET answered within two seconds; Withings suggests a secret query parameter on the callback URL plus its published IP allowlist; Wahoo sends the webhook_token you configured in the JSON body; the Google Health API sends your configured endpointAuthorization secret in the Authorization header. The tool also explains each payload field, the response and time limit each vendor expects, and the call that fetches the data.",
   );
   out.push("");
   out.push(`## HealthKit and Health Connect data-type reference — ${absoluteUrl("/matrix")}`);

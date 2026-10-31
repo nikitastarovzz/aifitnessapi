@@ -18,12 +18,18 @@ export default function ClusterDisclaimer({
   updated,
   variant = "comparison",
   locale,
+  funderListed = false,
 }: {
   updated: string;
   variant?: "comparison" | "legal" | "health-ai";
   /** "pt-BR" on a translated page; only the comparison line is translated,
    *  because only comparison clusters are. */
   locale?: "pt-BR";
+  /** The page names KinesteX, the site's funder. The "not sponsored by any
+   *  product listed here" line would then be false, so it states the one
+   *  exception. Worded so it does not match FIRSTPARTY's disclosure test: it
+   *  makes the trademark line true, and is not the page's disclosure. */
+  funderListed?: boolean;
 }) {
   if (locale === "pt-BR" && variant === "comparison") {
     return (
@@ -32,7 +38,7 @@ export default function ClusterDisclaimer({
         inglês). Preços, limites de requisições e recursos disponíveis mudam com frequência —
         confirme os detalhes atuais na documentação oficial de cada fornecedor antes de se
         comprometer. Os nomes de produtos e empresas são marcas de seus respectivos donos; o
-        AIFitnessAPI não é afiliado, endossado nem patrocinado por nenhum produto citado aqui.
+        AIFitnessAPI não é afiliado, endossado nem patrocinado por nenhum produto citado aqui{funderListed ? ", exceto a KinesteX, que financia o site" : ""}.
         Esta é uma tradução: em caso de divergência, vale a página em inglês.
       </p>
     );
@@ -69,7 +75,8 @@ export default function ClusterDisclaimer({
       limits, and feature availability change often — confirm current details in
       each provider&rsquo;s official documentation before you commit. Product and
       company names are trademarks of their respective owners; AIFitnessAPI is not
-      affiliated with, endorsed by, or sponsored by any product listed here.
+      affiliated with, endorsed by, or sponsored by any product listed here
+      {funderListed ? " except KinesteX, the site’s funder" : ""}.
     </p>
   );
 }

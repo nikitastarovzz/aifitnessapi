@@ -5,6 +5,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterHero from "@/components/ClusterHero";
 import ClusterCta from "@/components/ClusterCta";
 import ContentAge from "@/components/ContentAge";
+import MigrationWizard from "@/components/MigrationWizard";
 import VendorHubMenu from "@/components/VendorHubMenu";
 import { Mdx } from "@/components/mdx";
 import { PAGE_H1 } from "@/data/pageTitles";
@@ -227,6 +228,52 @@ export default function FitbitApiShutdownPage() {
         >
           {ANSWER}
         </div>
+
+        {/* Read 2026-10-31 on developers.google.com/health/about (last updated
+            2026-10-23). The rest of the page still carries the October 12
+            reading; a separate change moves those dates. */}
+        <aside
+          id="http-410"
+          className="mt-6 rounded-2xl border border-amber-500/40 bg-amber-500/5 p-5 text-sm leading-relaxed text-[var(--fg)]"
+        >
+          <p className="font-semibold">Getting HTTP 410 from a Fitbit endpoint?</p>
+          <p className="mt-2 text-[var(--muted)]">
+            Google&rsquo;s Google Health API page (last updated October 23, 2026, read October 31, 2026) gives
+            November 2, 2026 as the turn-off: &ldquo;The Fitbit Web API and Fitbit OAuth endpoints will be turned
+            off and will no longer function or sync data to or from Fitbit users. Requests to these endpoints will
+            fail and return an HTTP 410 Gone status code.&rdquo; So after November 2, 2026 a 410 from a Fitbit Web
+            API or Fitbit OAuth endpoint means the turn-off, not a malformed request, and retrying will not bring it
+            back.
+          </p>
+          <p className="mt-2 text-[var(--muted)]">
+            The fix is the migration itself. Move each user to the Google Health API with Google OAuth 2.0: Google&rsquo;s
+            migration guide says existing tokens &ldquo;cannot be transferred, requiring users to re-consent&rdquo;, and
+            that a user must link Google Health to their Google Account in the Google Health app first. For users who
+            reconnect late, the same guide says their data stays available &ldquo;as long as they continue syncing
+            their device to the Google Health app&rdquo;, so you can backfill the gap once they re-authenticate.{" "}
+            <Link href="/migrate/fitbit-web-api-to-google-health" className="underline hover:text-[var(--fg)]">
+              The migration playbook
+            </Link>{" "}
+            has the steps, and{" "}
+            <Link href="/google-health-api/errors" className="underline hover:text-[var(--fg)]">
+              the Google Health API errors page
+            </Link>{" "}
+            covers what the new API returns instead.
+          </p>
+        </aside>
+
+        <section className="mt-10" id="migration-wizard" aria-labelledby="migration-wizard-h">
+          <h2 id="migration-wizard-h" className="text-2xl font-bold tracking-tight text-[var(--fg)]">
+            Find your migration path in four questions
+          </h2>
+          <p className="mt-2 text-sm text-[var(--muted)]">
+            Fitbit Web API, Google Fit or both: the answer quotes Google&rsquo;s migration pages for every rule, and
+            its link can be shared with your team.
+          </p>
+          <div className="mt-5">
+            <MigrationWizard first="fitbit-web" currentPath={PAGE_PATH} />
+          </div>
+        </section>
 
         <div className="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-headings:scroll-mt-24 prose-a:text-brand-600 hover:prose-a:text-brand-500 prose-th:text-left">
           <Mdx source={BODY} />

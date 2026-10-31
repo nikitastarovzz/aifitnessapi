@@ -674,6 +674,50 @@ if (fs.existsSync(matrixPath)) {
     if (!html.includes('"SoftwareApplication"')) problems.push(`APIS-NO-ENTITY  ${r}`);
   }
   console.log(`Directory: ${dir.length} product pages, ${thin} with no coverage.`);
+
+  // ── The market map and the index (added 2026-10-31). Both are derived views
+  // of the directory, so the directory's product set is what they must show:
+  // a tile or a row that quietly drops out is a landscape with a hole in it.
+  // And the one invariant that matters more than completeness: the funder's
+  // row on the index is never ranked — it carries data-unranked, the
+  // "funds this site" label and no position — and its tile on the map and in
+  // the embed carries its marker, because the embed travels without the
+  // page's disclosure.
+  const tilesOn = (html) => [...html.matchAll(/data-map-tile="([a-z0-9-]+)"/g)].map((m) => m[1]);
+  for (const route of ["/market-map", "/embed/market-map"]) {
+    const h = htmls.find((x) => routeOf(x) === route);
+    if (!h) { problems.push(`MARKET-MAP-TILES  ${route} was not built`); continue; }
+    const html = fs.readFileSync(h, "utf8");
+    const tiles = tilesOn(html);
+    const missing = expected.filter((id) => !tiles.includes(id));
+    if (missing.length || tiles.length !== expected.length) {
+      problems.push(`MARKET-MAP-TILES  ${route} renders ${tiles.length} tiles for ${expected.length} directory products${missing.length ? ` — missing: ${missing.join(", ")}` : ""}`);
+    }
+    const funderTile = /data-map-tile="kinestex"[\s\S]*?<\/li>/.exec(html)?.[0] ?? "";
+    if (expected.includes("kinestex") && !/funds (?:this site|aifitnessapi\.com)/.test(funderTile)) {
+      problems.push(`MARKET-MAP-FUNDER  ${route}: the KinesteX tile does not carry its funds-this-site marker`);
+    }
+  }
+  {
+    const h = htmls.find((x) => routeOf(x) === "/fitness-api-index");
+    if (!h) problems.push("API-INDEX-ROWS  /fitness-api-index was not built");
+    else {
+      const html = fs.readFileSync(h, "utf8");
+      const rows = [...html.matchAll(/data-index-row="([a-z0-9-]+)"/g)].map((m) => m[1]);
+      const missing = expected.filter((id) => !rows.includes(id));
+      if (missing.length || rows.length !== expected.length) {
+        problems.push(`API-INDEX-ROWS  /fitness-api-index renders ${rows.length} rows for ${expected.length} directory products${missing.length ? ` — missing: ${missing.join(", ")}` : ""}`);
+      }
+      const unranked = [...html.matchAll(/<tr[^>]*data-index-row="([a-z0-9-]+)"[^>]*data-unranked=""[^>]*>([\s\S]*?)<\/tr>/g)];
+      const ok = unranked.length === 1 && unranked[0][1] === "kinestex" && /Funds this site — not ranked/.test(unranked[0][2]) && /not ranked<\/span><\/td>/.test(unranked[0][2]);
+      if (expected.includes("kinestex") && !ok) {
+        problems.push("API-INDEX-FUNDER-RANKED  /fitness-api-index must render exactly one unranked row, KinesteX's, labelled funds this site with no position");
+      }
+      if (/"@type":"[^"]*"[^}]*"ratingValue"|data-composite-score/.test(html)) {
+        problems.push("API-INDEX-SCORE  /fitness-api-index renders a composite score; it publishes raw signals only");
+      }
+    }
+  }
 }
 
 // ── Vendor menus (ops/EXPANSION-3-2026-10-17.md, item 1.2). src/data/vendorHubs.ts
@@ -1369,7 +1413,7 @@ if (fs.existsSync(matrixPath)) {
       const r = routeOf(h);
       return (r === "/tools" || r.startsWith("/tools/")) && fs.readFileSync(h, "utf8").includes("data-tool");
     }).length;
-    const EXPECTED_TOOLS = 7; // hub + 6 tools
+    const EXPECTED_TOOLS = 10; // hub + 9 tools (the 6 lookups, sample-data, webhook-verifier and pose-benchmark)
     if (rendered !== EXPECTED_TOOLS) {
       problems.push(`TOOLS          ${rendered} /tools pages carry data-tool, expected ${EXPECTED_TOOLS}`);
     } else {
@@ -1402,11 +1446,27 @@ if (fs.existsSync(matrixPath)) {
   // relying on the component being written correctly.
   {
     const withNote = htmls.filter((h) => fs.readFileSync(h, "utf8").includes("data-kinestex-note"));
-    const EXPECTED = 13;
+    // 13 pages where KinesteX is the subject or one listed option, plus 47
+    // build-vs-buy camera-motion pages and /tools/pose-benchmark (widened
+    // 2026-10-31; the placement rule is in the component's header comment).
+    const EXPECTED = 61;
     if (withNote.length !== EXPECTED) {
       problems.push(
         `KINESTEX-NOTE  ${withNote.length} pages render the first-party link, expected ${EXPECTED} — a mapped path was probably renamed`,
       );
+    }
+    // The count alone could balance a renamed path against a stray one, so
+    // the rendered set must also be exactly the component's map.
+    {
+      const mapped = [...fs.readFileSync("src/components/KinestexNote.tsx", "utf8").matchAll(/^  "(\/[^"]+)": \{$/gm)].map((m) => m[1]);
+      const rendered = new Set(withNote.map(routeOf));
+      for (const p of mapped) {
+        if (!rendered.has(p)) problems.push(`KINESTEX-NOTE  ${p} is in the KinestexNote map but no built page renders the note`);
+      }
+      const mappedSet = new Set(mapped);
+      for (const r of rendered) {
+        if (!mappedSet.has(r)) problems.push(`KINESTEX-NOTE  ${r} renders the note but is not in the KinestexNote map`);
+      }
     }
     for (const h of withNote) {
       const html = fs.readFileSync(h, "utf8");
@@ -1414,6 +1474,26 @@ if (fs.existsSync(matrixPath)) {
         problems.push(`KINESTEX-UNDISCLOSED  ${routeOf(h)} links to the funder without the disclosure`);
       }
     }
+    // The sitewide footer credit links the funder on every page, so the same
+    // rule holds it: every footer link to the funder must sit in the funding
+    // line, and that line must say who funds the site in the page's language.
+    let footerCredits = 0;
+    const funderHref = /<a\b[^>]*\bhref="https?:\/\/(?:www\.)?kinestex\.com[^"]*"/g;
+    for (const h of htmls) {
+      const html = fs.readFileSync(h, "utf8");
+      const footer = html.match(/<footer\b[\s\S]*?<\/footer>/)?.[0] ?? "";
+      const links = (footer.match(funderHref) ?? []).length;
+      if (!links) continue;
+      const line = footer.match(/<p\b[^>]*\bdata-funding-line[^>]*>([\s\S]*?)<\/p>/)?.[1] ?? "";
+      const lineText = line.replace(/<!-- -->/g, "").replace(/<[^>]+>/g, "").replace(/\s+/g, " ");
+      const inLine = (line.match(funderHref) ?? []).length;
+      const pt = routeOf(h).startsWith("/pt-br");
+      const says = pt ? /financiada pela KinesteX/.test(lineText) : /funded by KinesteX/.test(lineText);
+      if (inLine !== links || !says) {
+        problems.push(`KINESTEX-UNDISCLOSED  ${routeOf(h)} footer links to the funder outside a funding line that says who funds the site`);
+      } else footerCredits++;
+    }
+    console.log(`First-party: ${withNote.length} disclosed notes; footer funding credit on ${footerCredits} of ${htmls.length} pages.`);
   }
 
   // ── Content freshness ─────────────────────────────────────────────────
@@ -1754,7 +1834,10 @@ if (fs.existsSync(matrixPath)) {
     const mentions = (prose.match(/KinesteX/g) ?? []).length;
     // A translated page discloses in its own language; PTBR-DISCLOSURE holds
     // /pt-br pages to the translated banner on top of this.
-    const disclosed = disclosureRe.test(html) || (r.startsWith("/pt-br/") && /financia este site/.test(html));
+    // The sitewide footer credit is not this page's disclosure: a page that
+    // features KinesteX owes its own, so the footer is cut before the test.
+    const own = html.replace(/<footer\b[\s\S]*?<\/footer>/g, "");
+    const disclosed = disclosureRe.test(own) || (r.startsWith("/pt-br/") && /financia este site/.test(own));
     if (mentions >= 3 && !disclosed) {
       problems.push(`FIRSTPARTY     ${r} mentions KinesteX ${mentions}× in prose with no funding disclosure`);
     }

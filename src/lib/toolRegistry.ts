@@ -51,6 +51,18 @@ export const TOOL_LOOKUPS: Tool[] = [
     blurb:
       "Answer four questions and get the HealthKit types and APIs that survive them, with the exclusions shown.",
   },
+  {
+    path: "/tools/sample-data",
+    name: "Synthetic health data generator",
+    blurb:
+      "Seeded synthetic HealthKit, Health Connect and Google Health API fixtures as JSON or CSV, with per-record UTC offsets.",
+  },
+  {
+    path: "/tools/webhook-verifier",
+    name: "Is this webhook real?",
+    blurb:
+      "Paste an Oura, WHOOP, Terra, Polar, Strava, Withings, Wahoo or Google Health API webhook: the vendor's documented check, run in your browser.",
+  },
 ];
 
 /** The planners and demos already published on the site. Blurbs match the
@@ -68,6 +80,18 @@ export const TOOL_PLANNERS: Tool[] = [
       "The cost structure of your stack: billing models, user-side costs, approval gates, eng effort.",
   },
   {
+    path: "/market-map",
+    name: "Fitness & health API market map",
+    blurb:
+      "Every product in the directory as one map, grouped by category, filterable by billing model, approval gate and tracked library.",
+  },
+  {
+    path: "/fitness-api-index",
+    name: "Fitness API index",
+    blurb:
+      "Sortable raw signals per product: SDK and library releases, dated changes in the last 12 months, approval gates, verification age. No score.",
+  },
+  {
     path: "/compare-apis",
     name: "Compare two fitness APIs side by side",
     blurb:
@@ -78,6 +102,12 @@ export const TOOL_PLANNERS: Tool[] = [
     name: "Why “today’s steps” is a bug",
     blurb:
       "Interactive: DST days aren't 24 hours, so a fixed UTC window drops or double-counts an hour.",
+  },
+  {
+    path: "/tools/pose-benchmark",
+    name: "Pose model benchmark",
+    blurb:
+      "Time MediaPipe Pose Landmarker lite, full and heavy on your own device and copy the latency table as markdown.",
   },
 ];
 

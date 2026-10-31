@@ -4,6 +4,7 @@ import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterHero from "@/components/ClusterHero";
 import ClusterCta from "@/components/ClusterCta";
+import KinestexNote from "@/components/KinestexNote";
 import { Mdx } from "@/components/mdx";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
@@ -274,6 +275,8 @@ export default function NoCodeFitnessAppPage() {
             ))}
           </dl>
         </section>
+
+        <KinestexNote path="/no-code-fitness-app" />
 
         <ClusterCta
           pitch="When a provider in this stack changes its terms, its pricing, or its deadline, the no-code builder feels it exactly like the coded one — subscribers hear about it first, with the source."
