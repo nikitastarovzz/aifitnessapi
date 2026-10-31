@@ -55,6 +55,8 @@ export default function AboutPage() {
             <Link href="/methodology">how we verify</Link>, and what got through anyway is in{" "}
             <Link href="/corrections">corrections</Link>.
           </p>
+          {/* The footer's sitewide funding line links here (#funding). */}
+          <h2 id="funding">Who funds the site</h2>
           <p>
             KinesteX, an AI motion-tracking SDK, funds this site. It does not buy conclusions: pages
             that feature it carry a disclosure, and comparisons say where its competitors win.

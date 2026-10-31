@@ -1402,11 +1402,27 @@ if (fs.existsSync(matrixPath)) {
   // relying on the component being written correctly.
   {
     const withNote = htmls.filter((h) => fs.readFileSync(h, "utf8").includes("data-kinestex-note"));
-    const EXPECTED = 13;
+    // 13 pages where KinesteX is the subject or one listed option, plus 47
+    // build-vs-buy camera-motion pages (widened 2026-10-31; the placement
+    // rule is in the component's header comment).
+    const EXPECTED = 60;
     if (withNote.length !== EXPECTED) {
       problems.push(
         `KINESTEX-NOTE  ${withNote.length} pages render the first-party link, expected ${EXPECTED} — a mapped path was probably renamed`,
       );
+    }
+    // The count alone could balance a renamed path against a stray one, so
+    // the rendered set must also be exactly the component's map.
+    {
+      const mapped = [...fs.readFileSync("src/components/KinestexNote.tsx", "utf8").matchAll(/^  "(\/[^"]+)": \{$/gm)].map((m) => m[1]);
+      const rendered = new Set(withNote.map(routeOf));
+      for (const p of mapped) {
+        if (!rendered.has(p)) problems.push(`KINESTEX-NOTE  ${p} is in the KinestexNote map but no built page renders the note`);
+      }
+      const mappedSet = new Set(mapped);
+      for (const r of rendered) {
+        if (!mappedSet.has(r)) problems.push(`KINESTEX-NOTE  ${r} renders the note but is not in the KinestexNote map`);
+      }
     }
     for (const h of withNote) {
       const html = fs.readFileSync(h, "utf8");
@@ -1414,6 +1430,26 @@ if (fs.existsSync(matrixPath)) {
         problems.push(`KINESTEX-UNDISCLOSED  ${routeOf(h)} links to the funder without the disclosure`);
       }
     }
+    // The sitewide footer credit links the funder on every page, so the same
+    // rule holds it: every footer link to the funder must sit in the funding
+    // line, and that line must say who funds the site in the page's language.
+    let footerCredits = 0;
+    const funderHref = /<a\b[^>]*\bhref="https?:\/\/(?:www\.)?kinestex\.com[^"]*"/g;
+    for (const h of htmls) {
+      const html = fs.readFileSync(h, "utf8");
+      const footer = html.match(/<footer\b[\s\S]*?<\/footer>/)?.[0] ?? "";
+      const links = (footer.match(funderHref) ?? []).length;
+      if (!links) continue;
+      const line = footer.match(/<p\b[^>]*\bdata-funding-line[^>]*>([\s\S]*?)<\/p>/)?.[1] ?? "";
+      const lineText = line.replace(/<!-- -->/g, "").replace(/<[^>]+>/g, "").replace(/\s+/g, " ");
+      const inLine = (line.match(funderHref) ?? []).length;
+      const pt = routeOf(h).startsWith("/pt-br");
+      const says = pt ? /financiada pela KinesteX/.test(lineText) : /funded by KinesteX/.test(lineText);
+      if (inLine !== links || !says) {
+        problems.push(`KINESTEX-UNDISCLOSED  ${routeOf(h)} footer links to the funder outside a funding line that says who funds the site`);
+      } else footerCredits++;
+    }
+    console.log(`First-party: ${withNote.length} disclosed notes; footer funding credit on ${footerCredits} of ${htmls.length} pages.`);
   }
 
   // ── Content freshness ─────────────────────────────────────────────────
@@ -1754,7 +1790,10 @@ if (fs.existsSync(matrixPath)) {
     const mentions = (prose.match(/KinesteX/g) ?? []).length;
     // A translated page discloses in its own language; PTBR-DISCLOSURE holds
     // /pt-br pages to the translated banner on top of this.
-    const disclosed = disclosureRe.test(html) || (r.startsWith("/pt-br/") && /financia este site/.test(html));
+    // The sitewide footer credit is not this page's disclosure: a page that
+    // features KinesteX owes its own, so the footer is cut before the test.
+    const own = html.replace(/<footer\b[\s\S]*?<\/footer>/g, "");
+    const disclosed = disclosureRe.test(own) || (r.startsWith("/pt-br/") && /financia este site/.test(own));
     if (mentions >= 3 && !disclosed) {
       problems.push(`FIRSTPARTY     ${r} mentions KinesteX ${mentions}× in prose with no funding disclosure`);
     }
