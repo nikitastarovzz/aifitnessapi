@@ -1413,7 +1413,7 @@ if (fs.existsSync(matrixPath)) {
       const r = routeOf(h);
       return (r === "/tools" || r.startsWith("/tools/")) && fs.readFileSync(h, "utf8").includes("data-tool");
     }).length;
-    const EXPECTED_TOOLS = 12; // hub + 11 tools (the 6 lookups, sample-data, webhook-verifier, keypoint-playground, pose-benchmark and heart-rate-lab)
+    const EXPECTED_TOOLS = 13; // hub + 12 tools (the 6 lookups, sample-data, webhook-verifier, keypoint-playground, pose-benchmark, heart-rate-lab and step-lab)
     if (rendered !== EXPECTED_TOOLS) {
       problems.push(`TOOLS          ${rendered} /tools pages carry data-tool, expected ${EXPECTED_TOOLS}`);
     } else {

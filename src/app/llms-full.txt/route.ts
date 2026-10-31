@@ -2,6 +2,8 @@ import { site, absoluteUrl } from "@/lib/site";
 import { TASKS_VISION_VERSION, VERIFIED_ON as POSE_BENCH_VERIFIED_ON } from "@/lib/poseBenchmark";
 import { POSE_CROSSWALK, POSE_KEYPOINTS_FETCHED_ON, POSE_SCHEMES } from "@/data/poseKeypoints";
 import { totalPairs } from "@/lib/keypointMapping.mjs";
+import { DEFAULT_PARAMS as STEP_DEFAULTS, REPLAY_TRUE_STEPS as STEP_REPLAY_TRUE } from "@/lib/stepDetector.mjs";
+import { SOURCES_CHECKED_ON as STEP_LAB_CHECKED_ON } from "@/lib/stepLab";
 import { getAllPosts } from "@/lib/posts";
 import { GLANCE_HUBS, hubQa, segText } from "@/data/hubGlance";
 import { moneyPages, MONEY_GROUP_LABELS, MONEY_GROUP_ORDER } from "@/data/moneyPages";
@@ -628,6 +630,13 @@ export function GET() {
   out.push(DAILY_CAPSULE);
   out.push("");
   for (const f of dailyFaqs()) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+  out.push("");
+  out.push(`## Step lab: why two step counters disagree — ${absoluteUrl("/tools/step-lab")}`);
+  out.push("Primary query: why do step counters disagree");
+  out.push("");
+  out.push(
+    `A client-side tool. On a phone, Start reads the browser's devicemotion event (MDN: accelerationIncludingGravity, in m/s², "represents the raw data measured by an accelerometer"; on iOS Safari DeviceMotionEvent.requestPermission() must be called from a tap and resolves "granted" or "denied"), and runs a detector written for the page, not any platform's: acceleration magnitude, an exponential low-pass at ${STEP_DEFAULTS.cutoffHz} Hz, a ${STEP_DEFAULTS.baselineSeconds} s running baseline, and a step at each filtered peak at least a threshold (default ${STEP_DEFAULTS.threshold} m/s²) above the baseline and at least a minimum interval (default ${STEP_DEFAULTS.minIntervalMs} ms) after the last step. Every counted step is marked on the live trace, and sliders recount the whole recording, which is the point: the same walk gives different counts under different settings. Without a sensor it replays a synthetic, labelled trace of ${STEP_REPLAY_TRUE} generated steps (three soft, one double impact, a jitter burst). Motion data never leaves the device; the share card is drawn on a canvas in the browser. The W3C Device Orientation and Motion draft tells browsers to limit acceleration precision to no more than 0.1 m/s² and to expose the API only in secure contexts. Platform step counters are not described beyond what the site's phone-sensor pages quote: Google's motion guide says Android's step counter and detector "are either hardware-based or software-based", and Apple calls CMPedometer's data system-generated. Browser-API sources read ${STEP_LAB_CHECKED_ON}.`,
+  );
   out.push("");
   out.push(`## HealthKit and Health Connect data-type reference — ${absoluteUrl("/matrix")}`);
   out.push("Primary query: healthkit health connect data types");

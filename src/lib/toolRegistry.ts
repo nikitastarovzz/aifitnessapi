@@ -127,6 +127,12 @@ export const TOOL_PLANNERS: Tool[] = [
     blurb:
       "Five questions a day from the site's datasets: which platform throws this error, HealthKit to Health Connect, sum or average, name the keypoint.",
   },
+  {
+    path: "/tools/step-lab",
+    name: "Step lab",
+    blurb:
+      "Walk with your phone and watch a visible step detector count; move its threshold and interval to see why two apps disagree.",
+  },
 ];
 
 export const ALL_TOOLS: Tool[] = [...TOOL_LOOKUPS, ...TOOL_PLANNERS];
