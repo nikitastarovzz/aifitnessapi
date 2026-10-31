@@ -51,6 +51,12 @@ export const TOOL_LOOKUPS: Tool[] = [
     blurb:
       "Answer four questions and get the HealthKit types and APIs that survive them, with the exclusions shown.",
   },
+  {
+    path: "/tools/sample-data",
+    name: "Synthetic health data generator",
+    blurb:
+      "Seeded synthetic HealthKit, Health Connect and Google Health API fixtures as JSON or CSV, with per-record UTC offsets.",
+  },
 ];
 
 /** The planners and demos already published on the site. Blurbs match the

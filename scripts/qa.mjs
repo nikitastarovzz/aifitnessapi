@@ -1369,7 +1369,7 @@ if (fs.existsSync(matrixPath)) {
       const r = routeOf(h);
       return (r === "/tools" || r.startsWith("/tools/")) && fs.readFileSync(h, "utf8").includes("data-tool");
     }).length;
-    const EXPECTED_TOOLS = 7; // hub + 6 tools
+    const EXPECTED_TOOLS = 8; // hub + 7 tools
     if (rendered !== EXPECTED_TOOLS) {
       problems.push(`TOOLS          ${rendered} /tools pages carry data-tool, expected ${EXPECTED_TOOLS}`);
     } else {

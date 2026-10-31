@@ -218,6 +218,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/tools/permission-builder", pageStamp("/tools/permission-builder")],
     ["/tools/query-generator", pageStamp("/tools/query-generator")],
     ["/tools/stack-generator", pageStamp("/tools/stack-generator")],
+    ["/tools/sample-data", pageStamp("/tools/sample-data")],
   ];
 
   // Routes whose date comes from data, or from the members they index.
