@@ -6,7 +6,7 @@ import ClusterHero from "@/components/ClusterHero";
 import KinestexNote from "@/components/KinestexNote";
 import PoseBenchmark from "@/components/tools/PoseBenchmark";
 import { POSE_SCHEMES, POSE_KEYPOINTS_FETCHED_ON } from "@/data/poseKeypoints";
-import { BENCH_MODELS, TASKS_VISION_VERSION, VERIFIED_ON, mib } from "@/lib/poseBenchmark";
+import { BENCH_MODELS, TASKS_VISION_USAGE_LOG_URL, TASKS_VISION_VERSION, VERIFIED_ON, mib } from "@/lib/poseBenchmark";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
 
@@ -32,7 +32,7 @@ const UPDATED = "2026-10-31";
 // Stays within 45 characters: the layout appends the site suffix.
 const TITLE = "Pose Landmarker Benchmark on Your Device";
 const DESCRIPTION =
-  "Time MediaPipe Pose Landmarker lite, full and heavy on your own device: load time, median and p95 latency, FPS, delegate. Runs in the browser; no upload.";
+  "Time MediaPipe Pose Landmarker lite, full and heavy on your own device: load time, median and p95 latency, FPS, delegate. In the browser; no video upload.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     type: "website",
     title: TITLE,
     description:
-      "Run MediaPipe Pose Landmarker on your own camera or a test frame and get load time, latency percentiles and FPS as a markdown table. Nothing is uploaded.",
+      "Run MediaPipe Pose Landmarker on your own camera or a test frame and get load time, latency percentiles and FPS as a markdown table. No video is uploaded.",
     url: PATH,
     images: ["/opengraph-image"],
   },
@@ -92,7 +92,8 @@ export default function PoseBenchmarkPage() {
           heavy) in your browser, runs it on your camera or a test frame, and reports load time,
           median and p95 inference time, frames per second and the delegate used, as a table you can
           copy as markdown. Frames never leave the tab: the page downloads Google&rsquo;s runtime and
-          model files and uploads nothing.
+          model files and sends nothing from the camera; the runtime&rsquo;s own usage report to Google
+          carries timings, not images.
         </p>
 
         <section data-tool="pose-benchmark" aria-label="In-browser pose model benchmark">
@@ -235,6 +236,16 @@ export default function PoseBenchmarkPage() {
               those hosts see an ordinary download.
             </p>
             <p>
+              The runtime also reports its own usage to Google. Version {TASKS_VISION_VERSION}{" "}posts to{" "}
+              <code className="font-mono text-xs">{TASKS_VISION_USAGE_LOG_URL}</code> about once a minute and
+              when a model closes, which we saw in our own test of this page on {VERIFIED_ON}. In the
+              library&rsquo;s code the report is built from the task name, the running mode, an
+              operating-system family read from the user agent, the library version and timing counters
+              such as frames processed and latency; no image, video or landmark value goes into it. Its
+              public options offer no switch to turn it off, and blocking that host does not stop the
+              benchmark.
+            </p>
+            <p>
               The device details are what your browser chooses to report. Some browsers hide the GPU
               name or round the memory figure on purpose, and the table says &ldquo;not
               reported&rdquo; rather than guessing.
@@ -255,7 +266,11 @@ export default function PoseBenchmarkPage() {
         <KinestexNote path={PATH} />
 
         <p className="mt-8 text-sm text-[var(--muted)]">
-          A free tool from {site.name}. Every topic in camera-based tracking is at{" "}
+          A free tool from {site.name}. To see the same lite model count reps, try{" "}
+          <Link href="/challenge" className={linkCls}>
+            the 30-second rep challenge
+          </Link>
+          . Every topic in camera-based tracking is at{" "}
           <Link href="/motion" className={linkCls}>
             AI motion tracking
           </Link>

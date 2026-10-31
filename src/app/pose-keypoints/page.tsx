@@ -138,6 +138,11 @@ export default function PoseKeypointsHub() {
             what each licence allows
           </Link>
           . This page is for the step after, when code has to read point 13 and needs to know which joint that is.
+          To click through the same data on a drawn body and copy an index map between two schemes, use the{" "}
+          <Link href="/tools/keypoint-playground" className={LINK}>
+            pose keypoint playground
+          </Link>
+          .
         </p>
 
         <section id="schemes" className="mt-12">

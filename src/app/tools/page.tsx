@@ -14,10 +14,11 @@ import { orgRef, WEBSITE_ID } from "@/lib/schema";
  *
  * Everything listed here answers a question with a lookup rather than an
  * essay, and every one of them runs in the browser off this site's published
- * datasets — no accounts, no uploads, no server round trip. That is the whole
+ * datasets — no accounts, no server round trip, and user data stays on the
+ * device (MediaPipe's own usage log is the disclosed exception). That is the whole
  * organising idea, and it is also the reason these belong on one page: a
  * reader who found one of them by searching an error string should be able to
- * see the other nine.
+ * see the others.
  *
  * The blurbs for the planners and demos are the same sentences the site
  * search index uses for them, so a tool is described identically wherever it
@@ -27,7 +28,7 @@ import { orgRef, WEBSITE_ID } from "@/lib/schema";
 const PATH = "/tools";
 const TITLE = "Free Tools for Health-App Builders";
 const DESCRIPTION =
-  "Fifteen free tools for health-app builders: error lookup, webhook verifier, query builders, synthetic test data, a pose benchmark and an API map.";
+  "Free browser tools for health-app builders: error lookup, webhook verifier, test data, keypoint mapper, pose benchmark, heart-rate and step labs.";
 
 export const metadata: Metadata = {
   // Plain, not `absolute` — the layout template appends the site suffix and
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
     type: "website",
     title: TITLE,
     description:
-      "Lookups, builders, planners and a pose-model benchmark for health-app developers — each one running client-side in your browser, with no upload.",
+      "Lookups, builders, planners, a pose-model benchmark, a Bluetooth heart-rate lab and a step lab for health-app developers, each running in your browser.",
     url: PATH,
   },
 };
@@ -108,8 +109,11 @@ export default function ToolsHubPage() {
           datasets — the HealthKit identifier set read from Apple&rsquo;s documentation on{" "}
           {HK_FETCHED_ON}, the HealthKit ↔ Health Connect matrix verified against both vendors, and the
           API directory — the webhook verifier off each vendor&rsquo;s own documented signing rule,
-          and the pose benchmark on your own device. No account, no upload, no server round trip,
-          and nothing invented where the source is silent.
+          the pose benchmark and step lab on your own device, and the heart-rate lab on the bytes your
+          own Bluetooth strap sends. No account, no server round trip, and nothing invented where the
+          source is silent. Your camera frames, motion and Bluetooth data never leave the device; the
+          one outbound request is Google&rsquo;s own MediaPipe library, used by the pose benchmark,
+          which sends Google a usage log of timing counters, as that page explains.
         </p>
 
         <section data-tool="hub" aria-label="Free developer tools">
@@ -117,8 +121,8 @@ export default function ToolsHubPage() {
             Lookups and generators
           </h2>
           <p className="mt-2 text-sm text-[var(--muted)]">
-            Built on the HealthKit identifier dataset, the verified cross-platform matrix and, for
-            webhooks, the vendors&rsquo; own signing rules.
+            Built on the HealthKit identifier dataset, the verified cross-platform matrix, the pose
+            keypoint dataset and, for webhooks, the vendors&rsquo; own signing rules.
           </p>
           <ul className="mt-5 grid gap-4 sm:grid-cols-2">
             {TOOL_LOOKUPS.map((t) => (
@@ -131,8 +135,10 @@ export default function ToolsHubPage() {
           </h2>
           <p className="mt-2 text-sm text-[var(--muted)]">
             Decision support for picking a stack, one demo of the bug that costs the most debugging
-            time, and a pose-model benchmark that times Google&rsquo;s published models on your
-            hardware.
+            time, a pose-model benchmark that times Google&rsquo;s published models on your
+            hardware, a heart-rate lab that decodes your own strap&rsquo;s Bluetooth notifications, a
+            step lab that shows why two step counters disagree, and a daily five-question puzzle drawn
+            from the same datasets.
           </p>
           <ul className="mt-5 grid gap-4 sm:grid-cols-2">
             {TOOL_PLANNERS.map((t) => (

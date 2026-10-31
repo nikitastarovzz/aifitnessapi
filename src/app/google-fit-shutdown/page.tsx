@@ -299,6 +299,12 @@ export default function GoogleFitShutdownPage() {
             <Link href="/libraries/react-native-google-fit">react-native-google-fit package page</Link>{" "}
             quotes what its README says about the shutdown.
           </p>
+          <p>
+            Google Fit is not the first fitness API to go, and its Goals API is one of several that end
+            with no replacement named. <Link href="/graveyard">The Fitness API Graveyard</Link>{" "}lists
+            every shut-down, dying and deprecated fitness and health API we could source, each in its
+            vendor&rsquo;s own words.
+          </p>
         </div>
 
         <section className="mt-12">

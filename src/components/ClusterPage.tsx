@@ -55,6 +55,11 @@ const TOOLS = {
     name: "Fitness app stack generator",
     does: "answer four questions and get the HealthKit types and APIs that survive them, with the exclusions shown.",
   },
+  keypoints: {
+    href: "/tools/keypoint-playground",
+    name: "Pose keypoint playground",
+    does: "click a joint and see its index in BlazePose, COCO, OpenPose, ML Kit and Apple Vision, then copy an index map built from matching names only.",
+  },
   webhook: {
     href: "/tools/webhook-verifier",
     name: "Webhook verifier",
@@ -100,6 +105,8 @@ const TOOL_FOR_PATH: Record<string, keyof typeof TOOLS> = {
   "/integrate/withings-api": "webhook",
   "/integrate/wahoo-api": "webhook",
   "/fix/strava-webhook-not-firing": "webhook",
+  // The model comparison readers leave for the keypoint maps once a model is chosen.
+  "/motion/pose-estimation-models-compared": "keypoints",
   // Every build guide: the generator is these guides' stacks, narrowed.
   "/build/personal-training-app": "stack",
   "/build/home-workout-app": "stack",

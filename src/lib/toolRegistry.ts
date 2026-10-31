@@ -63,6 +63,12 @@ export const TOOL_LOOKUPS: Tool[] = [
     blurb:
       "Paste an Oura, WHOOP, Terra, Polar, Strava, Withings, Wahoo or Google Health API webhook: the vendor's documented check, run in your browser.",
   },
+  {
+    path: "/tools/keypoint-playground",
+    name: "Pose keypoint playground",
+    blurb:
+      "Click a joint and see its index in BlazePose, COCO, OpenPose, ML Kit and Apple Vision, then copy an index map built from matching names only.",
+  },
 ];
 
 /** The planners and demos already published on the site. Blurbs match the
@@ -104,10 +110,34 @@ export const TOOL_PLANNERS: Tool[] = [
       "Interactive: DST days aren't 24 hours, so a fixed UTC window drops or double-counts an hour.",
   },
   {
+    path: "/play/ship-it",
+    name: "Ship It: a fitness-app survival game",
+    blurb:
+      "Pick a product and a data stack, then live through the real, dated API events that hit it: Fitbit turn-off, Google Fit end of support, Garmin approval, Strava rules.",
+  },
+  {
     path: "/tools/pose-benchmark",
     name: "Pose model benchmark",
     blurb:
       "Time MediaPipe Pose Landmarker lite, full and heavy on your own device and copy the latency table as markdown.",
+  },
+  {
+    path: "/tools/heart-rate-lab",
+    name: "Bluetooth heart-rate lab",
+    blurb:
+      "Connect a BLE heart-rate strap in the browser: every 0x2A37 byte decoded, and whether it sends the RR intervals HRV needs.",
+  },
+  {
+    path: "/daily",
+    name: "Daily health-API developer puzzle",
+    blurb:
+      "Five questions a day from the site's datasets: which platform throws this error, HealthKit to Health Connect, sum or average, name the keypoint.",
+  },
+  {
+    path: "/tools/step-lab",
+    name: "Step lab",
+    blurb:
+      "Walk with your phone and watch a visible step detector count; move its threshold and interval to see why two apps disagree.",
   },
 ];
 

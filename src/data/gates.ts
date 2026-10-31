@@ -361,6 +361,12 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
       "A market map (the page or its embed) that shows a different set of tiles from the products in the API directory: a derived landscape with a product missing, or one the directory does not have.",
   },
   {
+    code: "SHIP-IT",
+    area: "Content integrity",
+    refuses:
+      "A Ship It game event whose quote or date no longer appears on the page on this site that sources it, a vendor quote that is not in quotation marks there, an event whose /changes entry has a different date or page, a cited page that was not built, or an event whose title does not name exactly the stacks it hits, or whose source page does not name each of them — the game may never present a vendor event the record does not carry.",
+  },
+  {
     code: "MARKET-MAP-FUNDER",
     area: "Disclosure",
     refuses:
@@ -383,6 +389,44 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     area: "Disclosure",
     refuses:
       "A fitness API index that renders a composite score or rating. It publishes raw signals and leaves the weighting to the reader.",
+  },
+
+  // ── Fitness API Graveyard ─────────────────────────────────────────────
+  {
+    code: "GRAVEYARD-READ",
+    area: "Content integrity",
+    refuses:
+      "A build whose /graveyard/data.json is missing, unparseable, empty, or carries no build date. Without it nothing holds the graveyard's entries to their sources.",
+  },
+  {
+    code: "GRAVEYARD-SOURCE",
+    area: "Content integrity",
+    refuses:
+      "A graveyard entry without an https source URL, a publisher, the date its source was read (not later than the build) and a non-empty verbatim quote; an end date sharper or looser than YYYY, YYYY-MM or YYYY-MM-DD; a milestone or launch date without its own source; or a duplicate id.",
+  },
+  {
+    code: "GRAVEYARD-STATUS",
+    area: "Content integrity",
+    refuses:
+      "A graveyard entry whose status is not dead, dying or deprecated, or that is marked dead with an end date still after the build.",
+  },
+  {
+    code: "GRAVEYARD-DYING",
+    area: "Content integrity",
+    refuses:
+      "A graveyard entry marked dying whose end date is missing or no longer after the build date. Once the deadline passes the page marks the stone as due for a re-check; 14 days after it, the build fails until the source is re-read and the entry moved to dead or deprecated, so a stone never sits past its deadline still claiming the API is dying.",
+  },
+  {
+    code: "GRAVEYARD-EVIDENCE",
+    area: "Content integrity",
+    refuses:
+      "A graveyard entry read through the source-snapshot workflow whose quoted passage has no row, for the same URL, in ops/sources/evidence/graveyard.json, the file source-quotes.yml re-checks against the live page.",
+  },
+  {
+    code: "GRAVEYARD-ROWS",
+    area: "Content integrity",
+    refuses:
+      "A graveyard page or graveyard embed that was not built, or renders a different set of entries from the ones its JSON download publishes.",
   },
   {
     code: "APIS-NO-ENTITY",

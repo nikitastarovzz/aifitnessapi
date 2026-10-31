@@ -300,6 +300,15 @@ const MAP: Record<string, Note> = {
     anchor: "KinesteX",
     lead: "If you would rather ship a hosted camera experience than tune a pose pipeline, see",
   },
+  "/tools/keypoint-playground": {
+    anchor: "KinesteX",
+    lead: "If you would rather not map keypoints between models at all, a packaged motion SDK hands you reps and form events instead. One, from the company that funds this site, is",
+  },
+  // ── Games (ops/VIRAL-30-2026-10-31.md item 3) ──
+  "/challenge": {
+    anchor: "KinesteX",
+    lead: "This counter is a few dozen lines of angle rules. If you want rep counting and form feedback in your own app without tuning them yourself, see",
+  },
 };
 
 /** Paths this component covers, for the qa gate. */

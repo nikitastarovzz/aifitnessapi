@@ -17,10 +17,16 @@
     "test:cookbook": "node --test \"cookbook/**/*.test.mjs\"",
     "test:wizard": "node --test scripts/migration-wizard.test.mjs",
     "test:sample-data": "node --test scripts/sample-data.test.mjs",
+    "test:ship-it": "node --test scripts/ship-it.test.mjs",
     "test:responsive": "node scripts/responsive-audit.mjs",
     "test:perf": "node scripts/perf-audit.mjs",
     "stale": "node scripts/stale-report.mjs",
-    "test:webhooks": "node --test scripts/webhook-verifier.test.mjs"
+    "test:webhooks": "node --test scripts/webhook-verifier.test.mjs",
+    "test:keypoints": "node --test scripts/keypoint-mapping.test.mjs",
+    "test:hr-lab": "node --test scripts/hr-measurement.test.mjs",
+    "test:daily": "node --test scripts/daily-puzzle.test.mjs",
+    "test:step-lab": "node --test scripts/step-detector.test.mjs",
+    "test:reps": "node --test scripts/rep-counter.test.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "~1.32.0",

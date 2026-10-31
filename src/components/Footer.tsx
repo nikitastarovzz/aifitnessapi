@@ -123,14 +123,26 @@ export default function Footer() {
           <FooterLink href="/fitness-api-index" className="py-1 hover:text-[var(--fg)]">
             Fitness API Index
           </FooterLink>
+          <FooterLink href="/graveyard" className="py-1 hover:text-[var(--fg)]">
+            API Graveyard
+          </FooterLink>
           <FooterLink href="/compare-apis" className="py-1 hover:text-[var(--fg)]">
             Compare APIs
+          </FooterLink>
+          <FooterLink href="/daily" className="py-1 hover:text-[var(--fg)]">
+            Daily Puzzle
+          </FooterLink>
+          <FooterLink href="/play/ship-it" className="py-1 hover:text-[var(--fg)]">
+            Ship It (game)
           </FooterLink>
           <FooterLink href="/picker" className="py-1 hover:text-[var(--fg)]">
             API Picker
           </FooterLink>
           <FooterLink href="/cost-planner" className="py-1 hover:text-[var(--fg)]">
             Cost Planner
+          </FooterLink>
+          <FooterLink href="/challenge" className="py-1 hover:text-[var(--fg)]">
+            Rep Challenge
           </FooterLink>
           <FooterLink href="/ai-fitness-app" className="py-1 hover:text-[var(--fg)]">
             Build an AI Fitness App
@@ -140,6 +152,9 @@ export default function Footer() {
           </FooterLink>
           <FooterLink href="/state-of-fitness-apis-2026" className="py-1 hover:text-[var(--fg)]">
             State of Fitness APIs
+          </FooterLink>
+          <FooterLink href="/2026" className="py-1 hover:text-[var(--fg)]">
+            Fitness APIs in 2026
           </FooterLink>
           <FooterLink href="/changes" className="py-1 hover:text-[var(--fg)]">
             Changes &amp; Deadlines

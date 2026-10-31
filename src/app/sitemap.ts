@@ -9,8 +9,11 @@ import { releasedHkGroups, HK_BASE, hkGroupModified } from "@/data/hkGroupPages"
 import { hkStandaloneModified } from "@/data/hkStandalone";
 import { HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { changesSorted } from "@/data/changes";
+import { GRAVEYARD_PATH, graveyardCheckedOn } from "@/data/graveyard";
 import { API_ENTRIES, APIS_PATH, NOINDEX_APIS } from "@/data/apis";
 import { API_INDEX_PATH, MARKET_MAP_PATH, indexDataDate } from "@/lib/ecosystemSignals";
+import { DAILY_PATH, dailyDataDate } from "@/lib/dailyBank";
+import { YEAR_PATH, yearDataDate } from "@/lib/year2026";
 import { isNoindexed } from "@/data/noindex";
 import { ptPages, ptIndexIndexable, PT_PREFIX } from "@/lib/translations";
 import { digests, DIGEST_PATH, type Digest } from "@/data/digest";
@@ -211,7 +214,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const hkGroups = hkGroupDates.map(([slug, d]) => row(`${HK_BASE}/${slug}`, d));
 
   // Tools: the three built on the HealthKit corpus declare HK_FETCHED_ON as
-  // dateModified; the other six carry a page-local UPDATED.
+  // dateModified; the other seven carry a page-local UPDATED.
   const tools: [string, string | undefined][] = [
     ["/tools/error-diagnoser", HK_FETCHED_ON],
     ["/tools/aggregation-checker", HK_FETCHED_ON],
@@ -221,7 +224,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/tools/stack-generator", pageStamp("/tools/stack-generator")],
     ["/tools/sample-data", pageStamp("/tools/sample-data")],
     ["/tools/pose-benchmark", pageStamp("/tools/pose-benchmark")],
+    ["/tools/heart-rate-lab", pageStamp("/tools/heart-rate-lab")],
     ["/tools/webhook-verifier", pageStamp("/tools/webhook-verifier")],
+    ["/tools/keypoint-playground", pageStamp("/tools/keypoint-playground")],
+    ["/tools/step-lab", pageStamp("/tools/step-lab")],
   ];
 
   // Routes whose date comes from data, or from the members they index.
@@ -244,6 +250,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // or checked, and this reads the same function.
     [MARKET_MAP_PATH]: undefined,
     [API_INDEX_PATH]: indexDataDate(),
+    // The daily puzzle declares the newest read date of the datasets its
+    // bank draws from, not the date of today's draw: the page itself is the
+    // same static file every day.
+    [DAILY_PATH]: dailyDataDate(),
+    // The 2026 story declares the newest date any of its inputs was written
+    // or checked, through the same function.
+    [YEAR_PATH]: yearDataDate(),
+    // The graveyard declares the newest day any entry's source was read as its
+    // dateModified; this reads the same function.
+    [GRAVEYARD_PATH]: graveyardCheckedOn(),
   };
 
   const standalone = [
@@ -252,6 +268,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/google-fit-shutdown",
     "/methodology",
     "/day-boundaries",
+    "/challenge",
     "/glossary",
     "/picker",
     "/cost-planner",
@@ -259,6 +276,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/no-code-fitness-app",
     "/fitbit-api-shutdown",
     "/state-of-fitness-apis-2026",
+    YEAR_PATH,
     "/changes",
     "/matrix",
     HK_BASE,
@@ -283,8 +301,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     APIS_PATH,
     MARKET_MAP_PATH,
     API_INDEX_PATH,
+    DAILY_PATH,
+    GRAVEYARD_PATH,
     "/alerts",
     "/compare-apis",
+    "/play/ship-it",
     "/datasets",
     "/developers",
     "/badges",

@@ -55,6 +55,10 @@ const RELATED: { href: string; label: string }[] = [
   {
     "href": "/migrate/keep-users-connected-during-migration",
     "label": "Keep users connected during a migration"
+  },
+  {
+    "href": "/graveyard",
+    "label": "The Fitness API Graveyard: every API that went before"
   }
 ];
 

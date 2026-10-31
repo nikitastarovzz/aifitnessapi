@@ -149,6 +149,31 @@ export default function ChangesPage() {
           </p>
         </div>
 
+        <p className="mt-4 text-sm text-[var(--muted)]">
+          {"This year's entries, counted by month, with releases and our own verification age: "}
+          <Link href="/2026" className="font-medium text-brand-600 hover:text-brand-500">
+            Fitness APIs in 2026, in numbers →
+          </Link>
+        </p>
+
+        <p className="mt-2 text-sm text-[var(--muted)]">
+          Looking only for the endings?{" "}
+          <Link href="/graveyard" className="font-medium text-brand-600 hover:text-brand-500">
+            The Fitness API Graveyard
+          </Link>{" "}
+          collects every shut-down, dying and deprecated fitness and health API we could source, with the
+          vendor&rsquo;s own words, filters, an embed and a JSON download.
+        </p>
+
+        <p className="mt-2 text-sm text-[var(--muted)]">
+          Play the record:{" "}
+          <Link href="/play/ship-it" className="font-medium text-brand-600 hover:text-brand-500">
+            Ship It
+          </Link>{" "}
+          is a short game that puts your app&rsquo;s stack through the dated events below, each card quoting its
+          source page.
+        </p>
+
         <section className="mt-10">
           <ol className="relative space-y-6 border-l border-[var(--border)] pl-6">
             {events.map((e) => (

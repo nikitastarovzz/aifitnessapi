@@ -228,3 +228,82 @@ h4:hover > .heading-anchor {
     scroll-behavior: auto;
   }
 }
+
+/* ——— /2026 scroll story ———————————————————————————————————————————————
+   Static by default: every slide is fully visible with no JS, no
+   scroll-timeline support, or prefers-reduced-motion. Motion is added only
+   where the browser has scroll-driven animations AND the reader has not asked
+   for less, so nothing ever waits on a script to become readable. */
+.year-hero {
+  background:
+    radial-gradient(60% 80% at 85% 0%, color-mix(in srgb, var(--color-brand-500) 22%, transparent) 0%, transparent 70%),
+    var(--bg);
+}
+.year-numeral {
+  font-size: clamp(5rem, 22vw, 15rem);
+  background: linear-gradient(100deg, var(--color-brand-400), var(--color-brand-700) 70%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0.9;
+}
+.year-value {
+  font-size: clamp(3rem, 12vw, 7.5rem);
+  overflow-wrap: anywhere;
+  background: linear-gradient(100deg, var(--fg) 30%, var(--color-brand-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.year-progress {
+  display: none;
+}
+@keyframes year-rise {
+  from { opacity: 0.15; transform: translateY(3rem); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes year-grow-y {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+@keyframes year-grow-x {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes year-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .year-reveal {
+      animation: year-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 30%;
+    }
+    .year-bar {
+      transform-box: fill-box;
+      transform-origin: bottom;
+      animation: year-grow-y linear both;
+      animation-timeline: view();
+      animation-range: entry 20% cover 45%;
+    }
+    .year-bar-h {
+      transform-origin: left;
+      animation: year-grow-x linear both;
+      animation-timeline: view();
+      animation-range: entry 20% cover 45%;
+    }
+    .year-progress {
+      display: block;
+      position: fixed;
+      inset: 0 0 auto 0;
+      height: 3px;
+      z-index: 60;
+      background: var(--color-brand-500);
+      transform-origin: left;
+      animation: year-progress linear both;
+      animation-timeline: scroll(root);
+    }
+  }
+}

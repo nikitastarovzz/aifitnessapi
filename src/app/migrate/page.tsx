@@ -152,6 +152,10 @@ export default function MigratePillar() {
             <Link href="/fix">troubleshooting</Link> if an API just broke. Once you know the target, each
             playbook here links to its <Link href="/integrate">integration guide</Link>.
           </p>
+          <p>
+            Want to feel the timing first? <Link href="/play/ship-it">Ship It</Link> is a short game that runs
+            your stack through the real, dated deprecations these playbooks answer.
+          </p>
         </div>
 
         {GROUPS.map((group) => {

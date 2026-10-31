@@ -23,14 +23,14 @@ const VIEWPORTS = [
 ];
 // One page of every distinct template on the site.
 const PAGES = ["/", "/devices", "/devices/ftms-fitness-machine-service", "/matrix",
-  "/picker", "/cost-planner", "/day-boundaries", "/changes", "/ai-fitness-app",
+  "/picker", "/cost-planner", "/day-boundaries", "/play/ship-it", "/changes", "/ai-fitness-app",
   "/no-code-fitness-app", "/state-of-fitness-apis-2026", "/fitbit-api-shutdown",
   "/google-fit-shutdown", "/cookbook", "/cookbook/refresh-rotation",
   "/compare/oura-vs-whoop", "/integrate/healthkit", "/signup", "/glossary",
   "/site-index", "/blog", "/about", "/methodology", "/privacy",
   "/apis", "/apis/fitbit", "/apis/mediapipe", "/alerts", "/digest", "/digest/2026-08",
   "/search", "/compare-apis", "/datasets", "/badges", "/embed/matrix", "/embed/deadlines",
-  "/market-map", "/fitness-api-index", "/embed/market-map",
+  "/market-map", "/fitness-api-index", "/embed/market-map", "/daily", "/graveyard", "/embed/graveyard", "/challenge",
   "/accessibility", "/accessibility/voiceover-live-workout-metrics",
   "/audio-coaching", "/audio-coaching/android-audio-focus-may-duck",
   "/audio-coaching/audiofocus-request-failed-android-15",
@@ -49,6 +49,7 @@ const PAGES = ["/", "/devices", "/devices/ftms-fitness-machine-service", "/matri
   "/health-mcp-servers", "/ai/connect-wearable-data-to-ai-assistants",
   "/bluetooth-fitness", "/bluetooth-fitness/heart-rate-measurement", "/bluetooth-fitness/cross-trainer-data",
   "/workout-types", "/workout-types/health-connect", "/workout-types/google-health-api", "/workout-types/running",
+  "/tools/keypoint-playground",
   "/not-a-real-page"];
 
 const exe = process.env.PLAYWRIGHT_CHROMIUM;

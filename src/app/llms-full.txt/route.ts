@@ -1,6 +1,20 @@
 import { site, absoluteUrl } from "@/lib/site";
 import { TASKS_VISION_VERSION, VERIFIED_ON as POSE_BENCH_VERIFIED_ON } from "@/lib/poseBenchmark";
+import { POSE_CROSSWALK, POSE_KEYPOINTS_FETCHED_ON, POSE_SCHEMES } from "@/data/poseKeypoints";
+import { totalPairs } from "@/lib/keypointMapping.mjs";
+import { DEFAULT_PARAMS as STEP_DEFAULTS, REPLAY_TRUE_STEPS as STEP_REPLAY_TRUE } from "@/lib/stepDetector.mjs";
+import { SOURCES_CHECKED_ON as STEP_LAB_CHECKED_ON } from "@/lib/stepLab";
+import {
+  CHALLENGE_SECONDS as REP_CHALLENGE_SECONDS,
+  COUNTDOWN_SECONDS as REP_COUNTDOWN_SECONDS,
+  EXERCISES as REP_EXERCISES,
+  MIN_HOLD_MS as REP_MIN_HOLD_MS,
+  describeZone,
+} from "@/lib/repCounter.mjs";
 import { getAllPosts } from "@/lib/posts";
+import { slides as yearSlides, storyTitle as yearTitle } from "@/lib/year2026";
+import { graveyardCopy } from "@/lib/graveyardCopy";
+import { EVENTS as SHIP_IT_EVENTS, PATH as SHIP_IT_PATH, RUNWAY_WEEKS as SHIP_IT_RUNWAY } from "@/lib/shipIt";
 import { GLANCE_HUBS, hubQa, segText } from "@/data/hubGlance";
 import { moneyPages, MONEY_GROUP_LABELS, MONEY_GROUP_ORDER } from "@/data/moneyPages";
 import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
@@ -42,6 +56,8 @@ import { LIBRARY_LANDINGS, landingPath } from "@/data/librariesLandings";
 import { hkVersionPages, versionH1, versionPrimaryQuery, versionCapsule, versionFaqs } from "@/lib/hkVersions";
 import { HK_ID_BASE, hkPageIdentifiers, hkIdentifierPath, hkPageH1, hkPageCapsule, hkPageFaqs } from "@/data/hkIdentifierPages";
 import { HS_BASE, hsPageTypes, hsDataTypePath, hsPageH1, hsPageCapsule, hsPageFaqs } from "@/data/hsDataTypePages";
+import { PAGE_H1 } from "@/data/pageTitles";
+import { DAILY_CAPSULE, DAILY_PATH, DAILY_PRIMARY_QUERY, dailyFaqs } from "@/lib/dailyBank";
 
 /**
  * llms-full.txt — the fuller LLM-facing dump: each spoke's answer capsule and
@@ -580,6 +596,16 @@ export function GET() {
     "A three-question tool (what you're building, your platform, your top priority) that recommends a fitness/health API approach and links to the relevant comparisons, integration guides, and pricing. Independent, not sponsored.",
   );
   out.push("");
+  {
+    const ys = yearSlides();
+    out.push(`## ${yearTitle()} — ${absoluteUrl("/2026")}`);
+    out.push("Primary query: fitness apis 2026 year in review");
+    out.push("");
+    out.push(
+      `A scroll story of one computed number per slide, recomputed from this site's data files at every build and titled "so far" until the first build of 2027. It counts what the changes tracker (/changes) records and repeats nothing from the State of Fitness APIs 2026 report. As of this build: ${ys.map((s) => `${s.value} ${s.label} (${s.source.file}, ${s.source.dateLabel})`).join("; ")}.`,
+    );
+    out.push("");
+  }
   out.push(`## Synthetic health data generator — ${absoluteUrl("/tools/sample-data")}`);
   out.push("Primary query: synthetic healthkit health connect test data generator");
   out.push("");
@@ -587,12 +613,47 @@ export function GET() {
     "A client-side tool that generates seeded, deterministic synthetic fixtures for Apple HealthKit, Android Health Connect and the Google Health API, as JSON or CSV. Field names, Kotlin and discovery types, validation ranges and enum values come from this site's generated copies of Apple's and Google's references, and a field the datasets do not describe is left out rather than guessed. Each record carries the offset in force at its own instant: Health Connect's nullable ZoneOffset beside each Instant, the Google Health API's required utcOffset durations, HealthKit's optional HKMetadataKeyTimeZone. Values are synthetic and illustrative, not real or physiologically validated.",
   );
   out.push("");
+  {
+    const kp = totalPairs(POSE_SCHEMES, POSE_CROSSWALK);
+    out.push(`## Pose keypoint playground — ${absoluteUrl("/tools/keypoint-playground")}`);
+    out.push("Primary query: convert coco keypoints to mediapipe blazepose index");
+    out.push("");
+    out.push(
+      `A client-side tool over this site's pose keypoint dataset (sources read ${POSE_KEYPOINTS_FETCHED_ON}): ${POSE_SCHEMES.length} schemes — ${POSE_SCHEMES.map((s) => s.shortName).join(", ")}. Pick a scheme, click a joint on a drawn body, and see the same point's index and name in every scheme or "not in this scheme"; copy a TypeScript or Python dict from one scheme's indices to another's (Apple Vision joints have no index, so their side uses the joint name). Two points pair only when their names match after lowercasing and removing non-alphanumerics, which gives ${kp.unordered} pairs across ${kp.schemePairsWithAny} of ${(POSE_SCHEMES.length * (POSE_SCHEMES.length - 1)) / 2} scheme pairs; OpenPose's L/R spellings (LShoulder) therefore pair only with OpenPose, and unmatched points are listed in the snippet rather than guessed. The figure and dot positions are a drawing, not data, and no skeleton edges are drawn because the dataset records no connections.`,
+    );
+    out.push("");
+  }
   out.push(`## Pose model benchmark (runs on your device) — ${absoluteUrl("/tools/pose-benchmark")}`);
   out.push("Primary query: mediapipe pose landmarker benchmark");
   out.push("");
   out.push(
-    `A client-side tool that loads Google's @mediapipe/tasks-vision ${TASKS_VISION_VERSION} runtime and the Pose Landmarker lite, full and heavy model files when the reader presses Run, times them on the reader's own camera or a synthetic test frame with the GPU and CPU delegates, and reports load time, median and p95 inference time, FPS and the browser's device details as a markdown table. Frames never leave the tab. The page publishes no latency or accuracy figure of its own: the only honest number is the one measured on the target hardware. MoveNet is not included because its default weights load from tfhub.dev, which could not be reached to verify on ${POSE_BENCH_VERIFIED_ON}.`,
+    `A client-side tool that loads Google's @mediapipe/tasks-vision ${TASKS_VISION_VERSION} runtime and the Pose Landmarker lite, full and heavy model files when the reader presses Run, times them on the reader's own camera or a synthetic test frame with the GPU and CPU delegates, and reports load time, median and p95 inference time, FPS and the browser's device details as a markdown table. Frames never leave the tab; the runtime itself posts a usage report to Google (task name, running mode, OS family, library version and timing counters, no images). The page publishes no latency or accuracy figure of its own: the only honest number is the one measured on the target hardware. MoveNet is not included because its default weights load from tfhub.dev, which could not be reached to verify on ${POSE_BENCH_VERIFIED_ON}.`,
   );
+  out.push("");
+  out.push(`## Bluetooth heart-rate lab (runs on your device) — ${absoluteUrl("/tools/heart-rate-lab")}`);
+  out.push("Primary query: does my heart rate strap send rr intervals");
+  out.push("");
+  out.push(
+    "A client-side Web Bluetooth tool. The reader picks a heart-rate device in the browser's chooser; the page subscribes to Heart Rate Measurement (0x2A37) notifications and shows each one as bytes, coloured by field, decoded against the Bluetooth SIG's GATT Specification Supplement structure as this site's generated dataset holds it: the Flags octet bit by bit, the uint8 or uint16 heart-rate value, sensor contact, Energy Expended and RR-intervals (1/1024 s each, as many as the remaining octets hold). Whether a device can give HRV is in those bytes: RR intervals are present only when bit 4 of Flags is set, and without them there is no beat-to-beat timing to compute HRV from. The page gives a running yes/no, a demo RMSSD (not a medical measurement), Body Sensor Location and Battery Level where present, a CSV of the session and a share card made on a canvas. Byte order is little-endian per the Web Bluetooth specification's heart-rate example. Browsers without Web Bluetooth get a synthetic replay, labelled as synthetic. Nothing is uploaded or stored.",
+  );
+  out.push("");
+  out.push(`## Ship It: a fitness-app survival game — ${absoluteUrl(SHIP_IT_PATH)}`);
+  out.push("Primary query: fitness api deprecation game");
+  out.push("");
+  out.push(
+    `A short client-side game. The player picks a product (running app, AI running coach, sleep app, employer wellness, camera workout app) and up to three data stacks, then meets, in date order, each of the ${SHIP_IT_EVENTS.length} real events that hit those stacks: ${SHIP_IT_EVENTS.map((e) => `${e.title} (${e.date})`).join("; ")}. Every event quotes the page on this site that sources it, and a build check fails if the quote or its date stops appearing there. Each choice (act now, hedge, ignore) costs game weeks or game users against a ${SHIP_IT_RUNWAY}-week runway; those numbers are invented rules, not estimates of real migration effort or churn. The result is shared as a canvas-drawn card and spoiler-free text.`,
+  );
+  out.push("");
+  out.push(`## The 30-second webcam rep challenge — ${absoluteUrl("/challenge")}`);
+  out.push("Primary query: webcam squat counter challenge");
+  out.push("");
+  {
+    const sq = REP_EXERCISES.squat;
+    const jj = REP_EXERCISES["jumping-jack"];
+    out.push(
+      `A browser game: pick squats or jumping jacks, a ${REP_COUNTDOWN_SECONDS}-second countdown, then ${REP_CHALLENGE_SECONDS} seconds counted live from the webcam by MediaPipe Pose Landmarker lite (@mediapipe/tasks-vision ${TASKS_VISION_VERSION}) and a two-phase state machine with hysteresis on one angle per frame, computed from the model's world landmarks. Squat: knee angle (hip-knee-ankle), a rep is ${describeZone(sq.active)} and back ${describeZone(sq.rest)}, the example definition the squat detection page reports from a 2026 study. Jumping jack: arm angle (hip-shoulder-wrist, both arms visible), ${describeZone(jj.active)} and back ${describeZone(jj.rest)}, the site's own uncalibrated choice. A zone must hold ${REP_MIN_HOLD_MS} ms; cycles faster than ${sq.minCycleMs} ms (squat) or ${jj.minCycleMs} ms (jumping jack) are rejected. The end screen draws a share card on a canvas and offers a one-line text result with pace squares per 5-second slice. It is a demo of the method, not a measurement, coaching or medical advice, and the count can be wrong. Frames never leave the tab and no scores are stored; the runtime posts its own usage report to Google (timings, no images).`,
+    );
+  }
   out.push("");
   out.push(`## Wearable webhook verifier — ${absoluteUrl("/tools/webhook-verifier")}`);
   out.push("Primary query: how to verify a wearable webhook signature");
@@ -601,6 +662,28 @@ export function GET() {
     "A client-side webhook debugger. Pick Oura, WHOOP, Terra, Polar, Strava, Withings, Wahoo or the Google Health API, paste the received body, headers and your secret, and it checks the request the way that vendor documents, using WebCrypto in the browser (the secret never leaves the tab). As read from each vendor's page on 2026-10-31: Oura signs the x-oura-timestamp value + JSON.stringify(body) with HMAC-SHA256 keyed by the client secret, upper-case hex, in x-oura-signature; WHOOP signs the X-WHOOP-Signature-Timestamp value + the raw body with the client secret, base64, in X-WHOOP-Signature; Terra signs timestamp + '.' + raw body with the destination's signing secret, hex, in terra-signature (t=…,v1=…); Polar signs the payload with the signature_secret_key returned at webhook creation, hex, in Polar-Webhook-Signature. Strava documents no signature on events, only a hub.challenge validation GET answered within two seconds; Withings suggests a secret query parameter on the callback URL plus its published IP allowlist; Wahoo sends the webhook_token you configured in the JSON body; the Google Health API sends your configured endpointAuthorization secret in the Authorization header. The tool also explains each payload field, the response and time limit each vendor expects, and the call that fetches the data.",
   );
   out.push("");
+  out.push(`## ${PAGE_H1[DAILY_PATH]} — ${absoluteUrl(DAILY_PATH)}`);
+  out.push(`Primary query: ${DAILY_PRIMARY_QUERY}`);
+  out.push("");
+  out.push(DAILY_CAPSULE);
+  out.push("");
+  for (const f of dailyFaqs()) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+  out.push("");
+  out.push(`## Step lab: why two step counters disagree — ${absoluteUrl("/tools/step-lab")}`);
+  out.push("Primary query: why do step counters disagree");
+  out.push("");
+  out.push(
+    `A client-side tool. On a phone, Start reads the browser's devicemotion event (MDN: accelerationIncludingGravity, in m/s², "represents the raw data measured by an accelerometer"; on iOS Safari DeviceMotionEvent.requestPermission() must be called from a tap and resolves "granted" or "denied"), and runs a detector written for the page, not any platform's: acceleration magnitude, an exponential low-pass at ${STEP_DEFAULTS.cutoffHz} Hz, a ${STEP_DEFAULTS.baselineSeconds} s running baseline, and a step at each filtered peak at least a threshold (default ${STEP_DEFAULTS.threshold} m/s²) above the baseline and at least a minimum interval (default ${STEP_DEFAULTS.minIntervalMs} ms) after the last step. Every counted step is marked on the live trace, and sliders recount the whole recording, which is the point: the same walk gives different counts under different settings. Without a sensor it replays a synthetic, labelled trace of ${STEP_REPLAY_TRUE} generated steps (three soft, one double impact, a jitter burst). Motion data never leaves the device; the share card is drawn on a canvas in the browser. The W3C Device Orientation and Motion draft tells browsers to limit acceleration precision to no more than 0.1 m/s² and to expose the API only in secure contexts. Platform step counters are not described beyond what the site's phone-sensor pages quote: Google's motion guide says Android's step counter and detector "are either hardware-based or software-based", and Apple calls CMPedometer's data system-generated. Browser-API sources read ${STEP_LAB_CHECKED_ON}.`,
+  );
+  out.push("");
+  {
+    const g = graveyardCopy();
+    out.push(`## The Fitness API Graveyard — ${absoluteUrl("/graveyard")}`);
+    out.push("Primary query: which fitness apis have been shut down or deprecated");
+    out.push("", g.capsule, "");
+    for (const f of g.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+    out.push("");
+  }
   out.push(`## HealthKit and Health Connect data-type reference — ${absoluteUrl("/matrix")}`);
   out.push("Primary query: healthkit health connect data types");
   out.push("");

@@ -720,6 +720,155 @@ if (fs.existsSync(matrixPath)) {
   }
 }
 
+// ── The Fitness API Graveyard (added 2026-10-31, ops/VIRAL-30 item 1). Every
+// stone is a claim about a vendor's own words, so the gate holds each entry to
+// its evidence: a source URL, the day it was read and a non-empty verbatim
+// quote (milestones too). A "dying" entry must still be ahead of the build —
+// once its date passes the page marks it due for a re-check, and 14 days
+// later the build fails until someone re-reads the source and moves it to
+// dead, which is the point: a countdown that hit zero and kept
+// saying "dying" would be the one stale claim a graveyard cannot afford. A
+// snapshot-sourced entry must have its passage in the evidence file that
+// source-quotes.yml re-reads. Read from the build's own JSON, so the gate
+// checks exactly what the page and the download publish.
+{
+  const GY_JSON = `${ROOT}/graveyard/data.json.body`;
+  const GY_EVIDENCE = "ops/sources/evidence/graveyard.json";
+  let gy = null;
+  try {
+    gy = JSON.parse(fs.readFileSync(GY_JSON, "utf8"));
+  } catch (e) {
+    problems.push(`GRAVEYARD-READ  ${GY_JSON} could not be read or parsed (${String(e.message).slice(0, 60)})`);
+  }
+  const items = Array.isArray(gy?.items) ? gy.items : [];
+  const asOf = typeof gy?.as_of === "string" && /^\d{4}-\d{2}-\d{2}$/.test(gy.as_of) ? gy.as_of : null;
+  if (gy && (items.length === 0 || !asOf)) {
+    problems.push(`GRAVEYARD-READ  ${GY_JSON} has ${items.length} items and as_of ${gy.as_of ?? "(none)"}`);
+  }
+  const DAY = /^\d{4}-\d{2}-\d{2}$/;
+  const PRECISION = /^\d{4}(-\d{2}(-\d{2})?)?$/;
+  const endOfPeriod = (d) => {
+    if (/^\d{4}$/.test(d)) return `${d}-12-31`;
+    if (/^\d{4}-\d{2}$/.test(d)) {
+      const [y, m] = d.split("-").map(Number);
+      return `${d}-${String(new Date(Date.UTC(y, m, 0)).getUTCDate()).padStart(2, "0")}`;
+    }
+    return d;
+  };
+  const startOfPeriod = (d) => (/^\d{4}$/.test(d) ? `${d}-01-01` : /^\d{4}-\d{2}$/.test(d) ? `${d}-01` : d);
+  // Whitespace and the space a stripped link leaves before punctuation are
+  // not part of a quote's meaning; everything else is compared as written.
+  const norm = (s) =>
+    String(s ?? "")
+      .normalize("NFKC")
+      .replace(/[‘’]/g, "'")
+      .replace(/[“”]/g, '"')
+      .replace(/\s+/g, " ")
+      .replace(/ ([,.;:])/g, "$1")
+      .trim();
+  let evidence = [];
+  try {
+    evidence = JSON.parse(fs.readFileSync(GY_EVIDENCE, "utf8"));
+  } catch {
+    if (items.some((e) => e?.source?.via === "snapshot")) {
+      problems.push(`GRAVEYARD-EVIDENCE  ${GY_EVIDENCE} could not be read, and snapshot-sourced entries need it`);
+    }
+  }
+  const ids = new Set();
+  for (const e of items) {
+    const id = e?.id ?? "(no id)";
+    if (ids.has(id)) problems.push(`GRAVEYARD-SOURCE  duplicate id ${id}`);
+    ids.add(id);
+    const s = e?.source ?? {};
+    const miss = [];
+    if (!/^https:\/\/\S+$/.test(s.url ?? "")) miss.push("an https source url");
+    if (!DAY.test(s.checkedOn ?? "")) miss.push("a checkedOn date");
+    else if (asOf && s.checkedOn > asOf) miss.push(`a checkedOn not after the build (${s.checkedOn})`);
+    if (!String(s.quote ?? "").trim()) miss.push("a non-empty quote");
+    if (!String(s.publisher ?? "").trim()) miss.push("a publisher");
+    if (e?.end !== null && !PRECISION.test(e?.end ?? "")) miss.push(`an end date of YYYY, YYYY-MM or YYYY-MM-DD, or null (got ${JSON.stringify(e?.end)})`);
+    for (const m of e?.milestones ?? []) {
+      if (!/^https:\/\/\S+$/.test(m?.url ?? "") || !String(m?.quote ?? "").trim() || !PRECISION.test(m?.date ?? "")) {
+        miss.push(`a url, date and quote on milestone "${m?.label ?? "?"}"`);
+      }
+    }
+    if (e?.launched && (!/^https:\/\/\S+$/.test(e.launched.url ?? "") || !String(e.launched.evidence ?? "").trim())) {
+      miss.push("a url and evidence on its launch date");
+    }
+    if (miss.length) problems.push(`GRAVEYARD-SOURCE  ${id} lacks ${miss.join("; ")}`);
+
+    if (!["dead", "dying", "deprecated"].includes(e?.status)) {
+      problems.push(`GRAVEYARD-STATUS  ${id} has status ${JSON.stringify(e?.status)}`);
+    } else if (asOf && e.status === "dying") {
+      if (!e.end) problems.push(`GRAVEYARD-DYING  ${id} is dying with no end date; dying means the vendor names one`);
+      // A passed deadline renders on the page as "due for a re-check" at
+      // once; the build fails only after a 14-day grace, so one vendor's
+      // switch-off never blocks every unrelated PR on the day it happens.
+      else if (!(new Date(`${endOfPeriod(e.end)}T00:00:00Z`).getTime() + 14 * 86400000 > new Date(`${asOf}T00:00:00Z`).getTime())) {
+        problems.push(`GRAVEYARD-DYING  ${id} is dying but its end (${e.end}) passed more than 14 days before the build date ${asOf} — re-read the source and move it to dead or deprecated`);
+      }
+    } else if (asOf && e.status === "dead" && e.end && startOfPeriod(e.end) > asOf) {
+      problems.push(`GRAVEYARD-STATUS  ${id} is dead with an end (${e.end}) after the build date ${asOf}`);
+    }
+
+    if (s.via === "snapshot") {
+      const rows = (Array.isArray(evidence) ? evidence : []).filter((r) => r?.url === s.url);
+      if (!rows.some((r) => String(r.quote ?? "").trim() && norm(s.quote).includes(norm(r.quote)))) {
+        problems.push(`GRAVEYARD-EVIDENCE  ${id} is snapshot-sourced but ${GY_EVIDENCE} has no row for ${s.url} whose quote is part of the entry's quote`);
+      }
+    } else if (s.via !== "direct") {
+      problems.push(`GRAVEYARD-SOURCE  ${id} has via ${JSON.stringify(s.via)}; it must say direct or snapshot`);
+    }
+  }
+  const expected = [...ids].sort();
+  for (const route of ["/graveyard", "/embed/graveyard"]) {
+    const h = htmls.find((x) => routeOf(x) === route);
+    if (!h) { problems.push(`GRAVEYARD-ROWS  ${route} was not built`); continue; }
+    const shown = [...fs.readFileSync(h, "utf8").matchAll(/data-grave="([a-z0-9-]+)"/g)].map((m) => m[1]).sort();
+    if (shown.join() !== expected.join()) {
+      const missing = expected.filter((x) => !shown.includes(x));
+      problems.push(`GRAVEYARD-ROWS  ${route} renders ${shown.length} entries for ${expected.length} in data.json${missing.length ? ` — missing: ${missing.join(", ")}` : ""}`);
+    }
+  }
+  if (items.length) {
+    const c = (st) => items.filter((e) => e.status === st).length;
+    console.log(`Graveyard: ${items.length} entries (${c("dead")} dead, ${c("dying")} dying, ${c("deprecated")} deprecated), ${items.filter((e) => e?.source?.via === "snapshot").length} snapshot-sourced, as of ${asOf}.`);
+  }
+}
+
+// ── Ship It (/play/ship-it, ops/VIRAL-30-2026-10-31.md item 7). A game built
+// on the dated record must never present a vendor event the record does not
+// carry. scripts/ship-it-check.mjs holds every event's quote and date to the
+// text of the on-site page that sources it (a released cluster entry or a
+// /changes entry), checks that cited pages and stacks exist, and that an
+// event only names stacks it affects. The build half: every page an event
+// cites was built, and the page lists every event.
+{
+  const { checkShipIt, loadShipIt } = await import(new URL("./ship-it-check.mjs", import.meta.url));
+  let events = [];
+  try {
+    const { problems: shipProblems } = await checkShipIt();
+    for (const p of shipProblems) problems.push(`SHIP-IT  ${p}`);
+    events = (await loadShipIt()).EVENTS;
+  } catch (err) {
+    problems.push(`SHIP-IT  the game's source check could not run: ${err.message}`);
+  }
+  const built = new Set(htmls.map(routeOf));
+  for (const e of events) {
+    if (!built.has(e.source.href)) problems.push(`SHIP-IT  event ${e.id} cites ${e.source.href}, which was not built`);
+  }
+  const h = htmls.find((x) => routeOf(x) === "/play/ship-it");
+  if (!h) problems.push("SHIP-IT  /play/ship-it was not built");
+  else {
+    const rendered = [...fs.readFileSync(h, "utf8").matchAll(/data-ship-it-event="([a-z0-9-]+)"/g)].map((m) => m[1]);
+    const missing = events.filter((e) => !rendered.includes(e.id)).map((e) => e.id);
+    if (missing.length || rendered.length !== events.length) {
+      problems.push(`SHIP-IT  /play/ship-it lists ${rendered.length} of ${events.length} events${missing.length ? ` — missing: ${missing.join(", ")}` : ""}`);
+    }
+  }
+  console.log(`Ship It: ${events.length} events, each held to its source page's text.`);
+}
+
 // ── Vendor menus (ops/EXPANSION-3-2026-10-17.md, item 1.2). src/data/vendorHubs.ts
 // lists every page about each vendor; each of them renders the same menu
 // (components/VendorHubMenu), and the vendor's hub links them all, so a search
@@ -1413,7 +1562,7 @@ if (fs.existsSync(matrixPath)) {
       const r = routeOf(h);
       return (r === "/tools" || r.startsWith("/tools/")) && fs.readFileSync(h, "utf8").includes("data-tool");
     }).length;
-    const EXPECTED_TOOLS = 10; // hub + 9 tools (the 6 lookups, sample-data, webhook-verifier and pose-benchmark)
+    const EXPECTED_TOOLS = 13; // hub + 12 tools (the 6 lookups, sample-data, webhook-verifier, keypoint-playground, pose-benchmark, heart-rate-lab and step-lab)
     if (rendered !== EXPECTED_TOOLS) {
       problems.push(`TOOLS          ${rendered} /tools pages carry data-tool, expected ${EXPECTED_TOOLS}`);
     } else {
@@ -1447,9 +1596,10 @@ if (fs.existsSync(matrixPath)) {
   {
     const withNote = htmls.filter((h) => fs.readFileSync(h, "utf8").includes("data-kinestex-note"));
     // 13 pages where KinesteX is the subject or one listed option, plus 47
-    // build-vs-buy camera-motion pages and /tools/pose-benchmark (widened
-    // 2026-10-31; the placement rule is in the component's header comment).
-    const EXPECTED = 61;
+    // build-vs-buy camera-motion pages, /tools/pose-benchmark,
+    // /tools/keypoint-playground and /challenge (widened 2026-10-31; the
+    // placement rule is in the component's header comment).
+    const EXPECTED = 63;
     if (withNote.length !== EXPECTED) {
       problems.push(
         `KINESTEX-NOTE  ${withNote.length} pages render the first-party link, expected ${EXPECTED} — a mapped path was probably renamed`,

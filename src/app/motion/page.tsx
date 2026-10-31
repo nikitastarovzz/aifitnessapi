@@ -201,6 +201,13 @@ export default function MotionPillar() {
             Writing code against a model’s output? The <Link href="/pose-keypoints">pose keypoint maps</Link> list
             every index of {POSE_SCHEMES.length} keypoint schemes, read from each model’s own source.
           </p>
+          <p>
+            Want to see it run? The <Link href="/challenge">30-second rep challenge</Link> counts your
+            squats or jumping jacks from the webcam with the rules{" "}
+            <Link href="/motion/how-rep-counting-works">rep counting</Link> describes, and{" "}
+            <Link href="/tools/pose-benchmark">the pose model benchmark</Link> times the model on your
+            own device. Both run in the browser and never upload camera frames.
+          </p>
         </div>
 
         {GROUPS.map((group) => {
