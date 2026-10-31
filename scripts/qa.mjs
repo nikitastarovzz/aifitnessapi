@@ -834,6 +834,8 @@ if (fs.existsSync(matrixPath)) {
     const c = (st) => items.filter((e) => e.status === st).length;
     console.log(`Graveyard: ${items.length} entries (${c("dead")} dead, ${c("dying")} dying, ${c("deprecated")} deprecated), ${items.filter((e) => e?.source?.via === "snapshot").length} snapshot-sourced, as of ${asOf}.`);
   }
+}
+
 // ── Ship It (/play/ship-it, ops/VIRAL-30-2026-10-31.md item 7). A game built
 // on the dated record must never present a vendor event the record does not
 // carry. scripts/ship-it-check.mjs holds every event's quote and date to the
