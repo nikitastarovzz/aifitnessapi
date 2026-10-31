@@ -19,7 +19,8 @@
     "test:sample-data": "node --test scripts/sample-data.test.mjs",
     "test:responsive": "node scripts/responsive-audit.mjs",
     "test:perf": "node scripts/perf-audit.mjs",
-    "stale": "node scripts/stale-report.mjs"
+    "stale": "node scripts/stale-report.mjs",
+    "test:webhooks": "node --test scripts/webhook-verifier.test.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "~1.32.0",

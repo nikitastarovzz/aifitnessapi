@@ -1,0 +1,357 @@
+[
+  {
+    "claim": "Oura: HMAC-SHA256 keyed by the client secret over the x-oura-timestamp value followed by JSON.stringify(body).",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "hmac.update(timestamp + JSON.stringify(body));"
+  },
+  {
+    "claim": "Oura: the digest is hex, upper-case.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "const calculatedSignature = hmac.digest('hex').toUpperCase();"
+  },
+  {
+    "claim": "Oura: the HMAC is keyed by the client secret.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "const hmac = crypto.createHmac('sha256', clientSecret);"
+  },
+  {
+    "claim": "Oura: the signature and timestamp arrive in x-oura-signature and x-oura-timestamp.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "const signature = headers['x-oura-signature'];"
+  },
+  {
+    "claim": "Oura: respond with a 2xx in under 10 seconds.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "Respond quickly (under 10 seconds) with a 2xx status"
+  },
+  {
+    "claim": "Oura: 10 retries each for 4xx, 5xx and timeouts.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "For 4xx responses: 10 retries"
+  },
+  {
+    "claim": "Oura: retries last about an hour.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "Oura will retry webhook deliveries for about an hour if your server doesn't respond properly."
+  },
+  {
+    "claim": "Oura: a 410 response cancels the subscription.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "Or respond with a 410 status code to automatically cancel"
+  },
+  {
+    "claim": "Oura: use object_id to fetch the complete data.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "Use the object_id to fetch the complete data via the API"
+  },
+  {
+    "claim": "Oura: the spec lists single-document routes such as /v2/usercollection/sleep/{document_id}.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "/v2/usercollection/sleep/{document_id}"
+  },
+  {
+    "claim": "WHOOP: X-WHOOP-Signature carries the signature.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "X-WHOOP-Signature - the actual signature"
+  },
+  {
+    "claim": "WHOOP: X-WHOOP-Signature-Timestamp is milliseconds since epoch.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "X-WHOOP-Signature-Timestamp - the milliseconds since epoch timestamp used to verify the signature"
+  },
+  {
+    "claim": "WHOOP: HMAC-SHA256 of timestamp + raw body, keyed by the app secret, base64-encoded.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "To verify the signature, first prepend the timestamp header value to the raw http request body. Then, generate a SHA256 HMAC signature of that string using the secret key for your app, which can be found in the WHOOP Developer Dashboard . Finally, base64 encode the result, and compare it to the signature header."
+  },
+  {
+    "claim": "WHOOP: five retries over about one hour; non-2XX or timeout counts as failed.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "WHOOP will retry webhook delivery for failed webhook requests five times over the course of about one hour . A webhook delivery is considered failed if it receives any response other than a successful 2XX , or if it receives no response before timing out."
+  },
+  {
+    "claim": "WHOOP: return a 2XX within a second.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "We recommend designing your webhook API to return a successful 2XX status code within a second and for high availability."
+  },
+  {
+    "claim": "WHOOP: trace_id detects duplicates.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "You can make use of the trace_id field in the webhook to detect duplicate webhooks."
+  },
+  {
+    "claim": "WHOOP: the next call for sleep.updated is GET v2/activity/sleep/{id}.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "your app makes a GET request to the v2/activity/sleep/550e8400-e29b-41d4-a716-446655440000 endpoint using the access token for WHOOP user 456 in order to retrieve the sleep data."
+  },
+  {
+    "claim": "WHOOP: in v2 a recovery event's id is the associated sleep's UUID.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "For recovery events in v2, this is the id (UUID) of the sleep that the recovery is associated with."
+  },
+  {
+    "claim": "Terra: terra-signature header of the form t=<timestamp>,v1=<signature>.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "Every webhook sent by Terra includes an HMAC-based signature header terra-signature , which takes the form:"
+  },
+  {
+    "claim": "Terra: the signed payload is timestamp, a period, then the body.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "The signed_payload string is created by concatenating:"
+  },
+  {
+    "claim": "Terra: HMAC-SHA256 keyed by the endpoint's signing secret.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "Compute an HMAC with the SHA256 hash function. Use the endpoint’s signing secret as the key, and use the signed_payload string as the message."
+  },
+  {
+    "claim": "Terra: ignore schemes other than v1.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "To prevent downgrade attacks , ignore all schemes that aren’t v1"
+  },
+  {
+    "claim": "Terra: compare in constant time against each received signature.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "To protect against timing attacks, use a constant-time-string comparison to compare the expected signature to each of the received signatures."
+  },
+  {
+    "claim": "Terra: the raw, unaltered body is required.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "Terra requires the raw, unaltered body of the request to perform signature verification."
+  },
+  {
+    "claim": "Terra: up to 10 retries with exponential backoff from 30 seconds, about 8 hours in total.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "Terra retries the delivery up to 10 times with exponential backoff , starting at 30 seconds between the first and second attempt and approximately doubling between each subsequent attempt. The cumulative window across all retries is ~8 hours ."
+  },
+  {
+    "claim": "Terra: after the retry budget the event is dropped without notification.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "After the retry budget is exhausted, the event is dropped. There is no notification when this happens"
+  },
+  {
+    "claim": "Terra: respond within 8 seconds.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "Terra waits 8 seconds for your server to respond before considering the request timed out."
+  },
+  {
+    "claim": "Terra: accept immediately (return 200) and process asynchronously.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "If you need more time to process the data, accept the webhook immediately (return 200) and process it asynchronously."
+  },
+  {
+    "claim": "Terra ping mode: a pre-signed url to download with GET, and expires_in of 300 = 5 minutes.",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "expires_in — URL validity in seconds (300 = 5 minutes)."
+  },
+  {
+    "claim": "Terra: the healthcheck event format used by the example.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/event-types",
+    "quote": "Healthcheck event sent periodically to verify your event is functional"
+  },
+  {
+    "claim": "Polar: HMAC SHA-256 signs every payload with the key given at webhook creation.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Hash-based message authentication code (HMAC SHA-256) is used to sign every webhook payload Accesslink sends. The secret key for calculating signature is given to client when they create the webhook."
+  },
+  {
+    "claim": "Polar: the signature is in Polar-Webhook-Signature.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Signature is included in \"Polar-Webhook-Signature\" header, and receiving endpoint should verify"
+  },
+  {
+    "claim": "Polar: the sample returns the hex string of the MAC.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "return toHexString(mac.doFinal(data.getBytes()));"
+  },
+  {
+    "claim": "Polar: delivery expects response 200.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Webhook delivery expects response 200 from remote endpoint."
+  },
+  {
+    "claim": "Polar: the PING must be answered with 200 OK.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Receiving service must response to ping message with 200 OK or the webhook is not created/modified."
+  },
+  {
+    "claim": "Polar: deactivated after seven days of failed pushes.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Webhook will be automatically deactivated if push notifications have not been successful for a period of seven (7) days."
+  },
+  {
+    "claim": "Polar: the example payload carries the url of the data, e.g. https://www.polaraccesslink.com/v3/exercises/aQlC83.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "https://www.polaraccesslink.com/v3/exercises/aQlC83"
+  },
+  {
+    "claim": "Strava: validation is a GET whose query string carries hub.challenge.",
+    "url": "https://developers.strava.com/docs/webhooks/",
+    "quote": "The query string of this GET request will contain a \"hub.challenge\" field that you must use to validate your callback address."
+  },
+  {
+    "claim": "Strava: answer the validation GET within two seconds.",
+    "url": "https://developers.strava.com/docs/webhooks/",
+    "quote": "Your callback address must respond within two seconds to the GET request from Strava"
+  },
+  {
+    "claim": "Strava: status 200, echo hub.challenge as application/json.",
+    "url": "https://developers.strava.com/docs/webhooks/",
+    "quote": "The response should indicate status code 200 and should echo the hub.challenge field in the response body as application/json content type"
+  },
+  {
+    "claim": "Strava: acknowledge each event with 200 OK within two seconds.",
+    "url": "https://developers.strava.com/docs/webhooks/",
+    "quote": "The subscription callback endpoint must acknowledge the POST of each new event with a status code of 200 OK within two seconds."
+  },
+  {
+    "claim": "Strava: up to a total of three attempts.",
+    "url": "https://developers.strava.com/docs/webhooks/",
+    "quote": "Event pushes are retried (up to a total of three attempts) if a 200 is not returned."
+  },
+  {
+    "claim": "Strava: hub.verify_token is the token passed with the subscription request.",
+    "url": "https://developers.strava.com/docs/webhooks/",
+    "quote": "This will be set to whatever verify_token is passed in with the initial subscription request"
+  },
+  {
+    "claim": "Strava: fetch an activity with GET /activities/{id} (getActivityById) on www.strava.com/api/v3.",
+    "url": "https://developers.strava.com/swagger/swagger.json",
+    "quote": "getActivityById"
+  },
+  {
+    "claim": "Withings: append a secret query parameter to the callback URL.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "When you set the callback URL on your subscription, append a query parameter only you and Withings know."
+  },
+  {
+    "claim": "Withings: reject any token that doesn't match; combine with the IP allowlist.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "Your handler reads token from the incoming request and rejects any value that doesn't match the secret you configured. Combine this with the IP allowlist for defense in depth."
+  },
+  {
+    "claim": "Withings: the EU IP ranges are a DNS TXT record.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "dig +short TXT ipblock-notify.withings.net"
+  },
+  {
+    "claim": "Withings: return HTTP 2xx within a few seconds.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "Your endpoint returns HTTP 2xx within a few seconds."
+  },
+  {
+    "claim": "Withings: 5 retry cycles over about 5 hours, 2 attempts each.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "Each cycle does 2 HTTP attempts (10 attempts total)."
+  },
+  {
+    "claim": "Withings: auto-cancel after 20 days of failures.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "20 days of unresolved failures → Subscription is auto-cancelled, with a final notice email."
+  },
+  {
+    "claim": "Withings: missed notifications are not redelivered; backfill using lastupdate.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-overview/",
+    "quote": "Missed notifications are not redelivered. Once your endpoint is back up, backfill via the Data API using lastupdate ."
+  },
+  {
+    "claim": "Withings: notifications are form-encoded POSTs.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-content/",
+    "quote": "Withings sends an application/x-www-form-urlencoded POST request to your callback URL."
+  },
+  {
+    "claim": "Withings: userid is the user the notification concerns.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-content/",
+    "quote": "The user this notification concerns."
+  },
+  {
+    "claim": "Withings: after a weight notification, call Measure - Getmeas.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-content/",
+    "quote": "Call Measure - Getmeas"
+  },
+  {
+    "claim": "Withings: after a sleep summary notification, call Sleep v2 - Get or Getsummary.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-content/",
+    "quote": "Call Sleep v2 - Get → Call Sleep v2 - Getsummary"
+  },
+  {
+    "claim": "Withings: the callback URL must answer HEAD with 2xx.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/data-api/notifications/notification-subscribe/",
+    "quote": "Withings sends a HEAD request to verify your URL is reachable before registering it."
+  },
+  {
+    "claim": "Wahoo: requests without the configured webhook_token should be ignored.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Specify a token that you would like us to send. Any request that doesn't include this token should be ignored."
+  },
+  {
+    "claim": "Wahoo: retries after 30 minutes, 4 hours, 24 hours, 72 hours without a 200.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "If we do not receive an HTTP 200 response code we will retry the api call on the following retry schedule:"
+  },
+  {
+    "claim": "Wahoo: duplicates are possible.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "It is possible for duplicate webhooks to be made when files are updated or deleted."
+  },
+  {
+    "claim": "Wahoo: the offline_data scope is needed for webhooks.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Please make sure the offline_data scope is added and users have a valid access token with the scope to receive webhooks."
+  },
+  {
+    "claim": "Wahoo: the workout summary endpoint returns the summary for a workout.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Returns the workout summary object for a workout."
+  },
+  {
+    "claim": "Google Health API: the configured secret is sent in the Authorization header with each notification.",
+    "url": "https://developers.google.com/health/webhooks",
+    "quote": "The value of secret is sent in the Authorization header with each notification message. You can use this token to verify that incoming requests are from the Google Health API."
+  },
+  {
+    "claim": "Google Health API: verification handshake, 200/201 with credentials.",
+    "url": "https://developers.google.com/health/webhooks",
+    "quote": "The first request is sent with your configured Authorization header. Your server must respond with a 200 OK or 201 Created status."
+  },
+  {
+    "claim": "Google Health API: verification handshake, 401/403 without credentials.",
+    "url": "https://developers.google.com/health/webhooks",
+    "quote": "The second request is sent without credentials. Your server must respond with a 401 Unauthorized or 403 Forbidden status."
+  },
+  {
+    "claim": "Google Health API: respond 204 immediately; other codes or timeouts are retried.",
+    "url": "https://developers.google.com/health/webhooks",
+    "quote": "respond to data change notifications with an HTTP 204 No Content status code immediately."
+  },
+  {
+    "claim": "Google Health API: other codes or timeouts are retried later.",
+    "url": "https://developers.google.com/health/webhooks",
+    "quote": "If the Google Health API receives any other status code or the request times out, it retries sending the notification later."
+  },
+  {
+    "claim": "Google Health API: up to 99 messages per batch.",
+    "url": "https://developers.google.com/health/webhooks",
+    "quote": "The system is configured to send out a maximum of 99 messages per batch"
+  },
+  {
+    "claim": "Google Health API: fetch the data with the reconcile endpoint.",
+    "url": "https://developers.google.com/health/webhooks",
+    "quote": "To fetch the updated data for each notified interval, call the reconcile endpoint with a filter for the interval's time range."
+  },
+  {
+    "claim": "Google Health API: example notifications show a GOOGLE-HEALTH-API-SIGNATURE header (its computation is not described).",
+    "url": "https://developers.google.com/health/webhooks",
+    "quote": "GOOGLE-HEALTH-API-SIGNATURE: signature-value"
+  },
+  {
+    "claim": "Fitbit Web API: legacy API and Fitbit OAuth endpoints turned off on November 2, 2026.",
+    "url": "https://developers.google.com/health/webhooks",
+    "quote": "On November 2, 2026 , the legacy Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users."
+  },
+  {
+    "claim": "Garmin: the public Health API page offers push or ping/pull delivery and states no request format or signing rule.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Push or *Ping/Pull Architecture: Choose the integration option that best matches your needs"
+  }
+]
