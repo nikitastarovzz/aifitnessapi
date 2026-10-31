@@ -1,6 +1,7 @@
 import { site, absoluteUrl } from "@/lib/site";
 import { TASKS_VISION_VERSION, VERIFIED_ON as POSE_BENCH_VERIFIED_ON } from "@/lib/poseBenchmark";
 import { getAllPosts } from "@/lib/posts";
+import { slides as yearSlides, storyTitle as yearTitle } from "@/lib/year2026";
 import { GLANCE_HUBS, hubQa, segText } from "@/data/hubGlance";
 import { moneyPages, MONEY_GROUP_LABELS, MONEY_GROUP_ORDER } from "@/data/moneyPages";
 import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
@@ -580,6 +581,16 @@ export function GET() {
     "A three-question tool (what you're building, your platform, your top priority) that recommends a fitness/health API approach and links to the relevant comparisons, integration guides, and pricing. Independent, not sponsored.",
   );
   out.push("");
+  {
+    const ys = yearSlides();
+    out.push(`## ${yearTitle()} — ${absoluteUrl("/2026")}`);
+    out.push("Primary query: fitness apis 2026 year in review");
+    out.push("");
+    out.push(
+      `A scroll story of one computed number per slide, recomputed from this site's data files at every build and titled "so far" until the first build of 2027. It counts what the changes tracker (/changes) records and repeats nothing from the State of Fitness APIs 2026 report. As of this build: ${ys.map((s) => `${s.value} ${s.label} (${s.source.file}, ${s.source.dateLabel})`).join("; ")}.`,
+    );
+    out.push("");
+  }
   out.push(`## Synthetic health data generator — ${absoluteUrl("/tools/sample-data")}`);
   out.push("Primary query: synthetic healthkit health connect test data generator");
   out.push("");

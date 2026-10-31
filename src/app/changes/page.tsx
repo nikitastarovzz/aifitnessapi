@@ -149,6 +149,13 @@ export default function ChangesPage() {
           </p>
         </div>
 
+        <p className="mt-4 text-sm text-[var(--muted)]">
+          {"This year's entries, counted by month, with releases and our own verification age: "}
+          <Link href="/2026" className="font-medium text-brand-600 hover:text-brand-500">
+            Fitness APIs in 2026, in numbers →
+          </Link>
+        </p>
+
         <section className="mt-10">
           <ol className="relative space-y-6 border-l border-[var(--border)] pl-6">
             {events.map((e) => (

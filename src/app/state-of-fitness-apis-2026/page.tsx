@@ -45,6 +45,10 @@ const RELATED: { href: string; label: string }[] = [
     "label": "Fitness API Cost Planner"
   },
   {
+    "href": "/2026",
+    "label": "Fitness APIs in 2026: the year in numbers, slide by slide"
+  },
+  {
     "href": "/market-map",
     "label": "The fitness & health API market map"
   },
