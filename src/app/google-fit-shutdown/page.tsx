@@ -133,8 +133,8 @@ const PATHS: { who: string; go: string; how: React.ReactNode }[] = [
         natural moment to <Link href="/migrate/consolidate-wearables-with-aggregator">consolidate
         behind one aggregator</Link>{" "}instead of migrating one integration and keeping four. And if
         one of those sources is the legacy Fitbit Web API, note that it has its own, separate
-        retirement: Google&rsquo;s Google Health API page, read on October 12, 2026, lists end of
-        support on September 30, 2026 and a full turn-off on October 30, 2026. Google&rsquo;s Fit guide
+        retirement: Google&rsquo;s Google Health API page, read on October 31, 2026, lists end of
+        support on September 30, 2026 and a full turn-off on November 2, 2026. Google&rsquo;s Fit guide
         lists the Google Health API as its path too — <Link href="/fitbit-api-shutdown">the Fitbit API
         shutdown page</Link> keeps the two events apart.
       </>
