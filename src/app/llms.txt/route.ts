@@ -1,4 +1,5 @@
 import { getAllPosts } from "@/lib/posts";
+import { TASKS_VISION_VERSION } from "@/lib/poseBenchmark";
 import { GLANCE_HUBS, HUB_NAMES, hubGlance, hubQa } from "@/data/hubGlance";
 import { moneyPages, moneyCluster, MONEY_GROUP_LABELS, MONEY_GROUP_ORDER } from "@/data/moneyPages";
 import { site, absoluteUrl } from "@/lib/site";
@@ -560,6 +561,7 @@ export function GET() {
     `- [Compare two APIs side by side](${absoluteUrl("/compare-apis")}): the verified access fields for any two products, shareable as ?a=<id>&b=<id>. No score and no winner: the fields describe access, not quality.`,
     `- [API change alerts](${absoluteUrl("/alerts")}): subscribe to dated changes for specific products.`,
     `- [Search every page and answer](${absoluteUrl("/search")}): query the same index the site's own search uses; ${absoluteUrl("/search?q=<terms>")} is a working URL.`,
+    `- [Pose model benchmark](${absoluteUrl("/tools/pose-benchmark")}): runs MediaPipe Pose Landmarker lite, full and heavy (@mediapipe/tasks-vision ${TASKS_VISION_VERSION}) in the reader's browser on their camera or a synthetic frame, and reports load time, median and p95 inference latency, FPS and delegate as a copyable markdown table. Nothing is uploaded, and the page states no speed figure of its own; MoveNet is left out until its tfhub.dev weight URLs can be verified.`,
     `- [Which Fitness API Should I Use? (interactive picker)](${absoluteUrl("/picker")}): a 3-question tool that recommends a fitness/health API approach by job, platform, and priority, linking to the relevant comparisons, guides, and pricing.`,
     `- [HealthKit ↔ Health Connect data-type reference](${absoluteUrl("/matrix")}): the matching Apple HealthKit and Android Health Connect type identifier for ten common metrics, plus cross-platform gotchas (notably Apple stores HRV as SDNN while Health Connect stores RMSSD — not interconvertible). Verified against Apple's and Google's own docs.`,
     `- [Every HealthKit type identifier](${absoluteUrl("/healthkit-identifiers")}): all ${HK_IDENTIFIERS.length} HealthKit identifiers across four families — HKQuantityTypeIdentifier, HKCategoryTypeIdentifier, HKCharacteristicTypeIdentifier and HKWorkoutActivityType — read from Apple's own documentation JSON, with unit family, the HKCategoryValue enum that decodes each category sample, iOS availability, and the cumulative-vs-discrete split that decides whether HKStatisticsQuery should sum or average. Apple states aggregation style only in prose, so it is derived and the sentence it came from is kept.`,

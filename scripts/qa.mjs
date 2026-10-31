@@ -1369,7 +1369,7 @@ if (fs.existsSync(matrixPath)) {
       const r = routeOf(h);
       return (r === "/tools" || r.startsWith("/tools/")) && fs.readFileSync(h, "utf8").includes("data-tool");
     }).length;
-    const EXPECTED_TOOLS = 7; // hub + 6 tools
+    const EXPECTED_TOOLS = 8; // hub + 7 tools (the 6 lookups and /tools/pose-benchmark)
     if (rendered !== EXPECTED_TOOLS) {
       problems.push(`TOOLS          ${rendered} /tools pages carry data-tool, expected ${EXPECTED_TOOLS}`);
     } else {
@@ -1402,7 +1402,7 @@ if (fs.existsSync(matrixPath)) {
   // relying on the component being written correctly.
   {
     const withNote = htmls.filter((h) => fs.readFileSync(h, "utf8").includes("data-kinestex-note"));
-    const EXPECTED = 13;
+    const EXPECTED = 14;
     if (withNote.length !== EXPECTED) {
       problems.push(
         `KINESTEX-NOTE  ${withNote.length} pages render the first-party link, expected ${EXPECTED} — a mapped path was probably renamed`,

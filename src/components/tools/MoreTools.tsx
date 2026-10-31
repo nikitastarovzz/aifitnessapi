@@ -40,8 +40,8 @@ export default function MoreTools({ path }: { path: string }) {
         ))}
       </ul>
       <p className="mt-4 text-sm text-[var(--muted)]">
-        The planners and demos — the API picker, the cost planner, the side-by-side comparison and
-        the day-boundary demo — are listed with these on{" "}
+        The planners and demos — the API picker, the cost planner, the side-by-side comparison, the
+        day-boundary demo and the pose-model benchmark — are listed with these on{" "}
         <Link href="/tools" className="font-medium text-brand-600 hover:text-brand-500">
           free tools for health-app builders
         </Link>

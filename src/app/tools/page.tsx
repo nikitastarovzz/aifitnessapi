@@ -27,7 +27,7 @@ import { orgRef, WEBSITE_ID } from "@/lib/schema";
 const PATH = "/tools";
 const TITLE = "Free Tools for Health-App Builders";
 const DESCRIPTION =
-  "Ten free tools for HealthKit and Health Connect work: error lookup, aggregation checker, identifier translator, permission and query builders.";
+  "Eleven free tools for health-app builders: HealthKit error lookup, aggregation checker, identifier translator, query builders and a pose benchmark.";
 
 export const metadata: Metadata = {
   // Plain, not `absolute` — the layout template appends the site suffix and
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     type: "website",
     title: TITLE,
     description:
-      "Lookups, builders and planners for health-app developers — each one running client-side off this site's verified HealthKit and Health Connect datasets.",
+      "Lookups, builders, planners and a pose-model benchmark for health-app developers — each one running client-side in your browser, with no upload.",
     url: PATH,
   },
 };
@@ -103,11 +103,12 @@ export default function ToolsHubPage() {
         </h1>
 
         <p id="answer" className="speakable mt-4 text-lg leading-relaxed text-[var(--muted)]">
-          {ALL_TOOLS.length}{" "}tools that answer a question with a lookup instead of an essay. Every
-          one runs in your browser off this site&rsquo;s published datasets — the HealthKit
-          identifier set read from Apple&rsquo;s documentation on {HK_FETCHED_ON}, the HealthKit ↔
-          Health Connect matrix verified against both vendors, and the API directory. No account, no
-          upload, no server round trip, and nothing invented where the source is silent.
+          {ALL_TOOLS.length}{" "}tools that answer a question with a lookup or a measurement instead of
+          an essay. Every one runs in your browser: the lookups off this site&rsquo;s published
+          datasets — the HealthKit identifier set read from Apple&rsquo;s documentation on{" "}
+          {HK_FETCHED_ON}, the HealthKit ↔ Health Connect matrix verified against both vendors, and the
+          API directory — and the pose benchmark on your own device. No account, no upload, no server
+          round trip, and nothing invented where the source is silent.
         </p>
 
         <section data-tool="hub" aria-label="Free developer tools">
@@ -127,8 +128,9 @@ export default function ToolsHubPage() {
             Planners and demos
           </h2>
           <p className="mt-2 text-sm text-[var(--muted)]">
-            Decision support for picking a stack, and one demo of the bug that costs the most
-            debugging time.
+            Decision support for picking a stack, one demo of the bug that costs the most debugging
+            time, and a pose-model benchmark that times Google&rsquo;s published models on your
+            hardware.
           </p>
           <ul className="mt-5 grid gap-4 sm:grid-cols-2">
             {TOOL_PLANNERS.map((t) => (

@@ -83,6 +83,12 @@ const MAP: Record<string, Note> = {
     anchor: "KinesteX",
     lead: "Form feedback is the hardest part to build well. A vendor that ships it, and the one behind this site, is",
   },
+
+  // ── Tools ──
+  "/tools/pose-benchmark": {
+    anchor: "KinesteX",
+    lead: "If you would rather ship a hosted camera experience than tune a pose pipeline, see",
+  },
 };
 
 /** Paths this component covers, for the qa gate. */
