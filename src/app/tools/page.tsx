@@ -27,7 +27,7 @@ import { orgRef, WEBSITE_ID } from "@/lib/schema";
 const PATH = "/tools";
 const TITLE = "Free Tools for Health-App Builders";
 const DESCRIPTION =
-  "Fifteen free tools for health-app builders: error lookup, webhook verifier, query builders, synthetic test data, a pose benchmark and an API map.";
+  "Sixteen free tools for health-app builders: error lookup, webhook verifier, query builders, test data, a pose benchmark, an API map and a daily puzzle.";
 
 export const metadata: Metadata = {
   // Plain, not `absolute` — the layout template appends the site suffix and
@@ -131,8 +131,8 @@ export default function ToolsHubPage() {
           </h2>
           <p className="mt-2 text-sm text-[var(--muted)]">
             Decision support for picking a stack, one demo of the bug that costs the most debugging
-            time, and a pose-model benchmark that times Google&rsquo;s published models on your
-            hardware.
+            time, a pose-model benchmark that times Google&rsquo;s published models on your
+            hardware, and a daily five-question puzzle drawn from the same datasets.
           </p>
           <ul className="mt-5 grid gap-4 sm:grid-cols-2">
             {TOOL_PLANNERS.map((t) => (

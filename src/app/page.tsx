@@ -524,6 +524,13 @@ export default function Home() {
           </Link>
         </div>
         </Reveal>
+        <p className="mt-5 text-sm text-[var(--muted)]">
+          New every UTC day:{" "}
+          <Link href="/daily" className="font-semibold text-brand-600 hover:text-brand-500">
+            the daily developer puzzle
+          </Link>
+          , five questions drawn from these datasets with a result grid you can share.
+        </p>
       </Container>
 
       {/* ——— Reference: the facts, not the guides ——— */}

@@ -109,6 +109,12 @@ export const TOOL_PLANNERS: Tool[] = [
     blurb:
       "Time MediaPipe Pose Landmarker lite, full and heavy on your own device and copy the latency table as markdown.",
   },
+  {
+    path: "/daily",
+    name: "Daily health-API developer puzzle",
+    blurb:
+      "Five questions a day from the site's datasets: which platform throws this error, HealthKit to Health Connect, sum or average, name the keypoint.",
+  },
 ];
 
 export const ALL_TOOLS: Tool[] = [...TOOL_LOOKUPS, ...TOOL_PLANNERS];
