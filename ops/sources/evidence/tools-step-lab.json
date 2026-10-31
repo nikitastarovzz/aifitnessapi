@@ -1,0 +1,57 @@
+[
+  {
+    "claim": "The devicemotion event fires at a regular interval.",
+    "url": "https://raw.githubusercontent.com/mdn/content/main/files/en-us/web/api/window/devicemotion_event/index.md",
+    "quote": "event is fired at a regular interval and indicates the acceleration rate of the device"
+  },
+  {
+    "claim": "DeviceMotionEvent acceleration including gravity is expressed in m/s².",
+    "url": "https://raw.githubusercontent.com/mdn/content/main/files/en-us/web/api/devicemotionevent/index.md",
+    "quote": "An object giving the acceleration of the device on the three axis X, Y and Z with the effect of gravity. Acceleration is expressed in"
+  },
+  {
+    "claim": "interval is the time between samples, in milliseconds.",
+    "url": "https://raw.githubusercontent.com/mdn/content/main/files/en-us/web/api/devicemotionevent/index.md",
+    "quote": "A number representing the interval of time, in milliseconds, at which data is obtained from the device."
+  },
+  {
+    "claim": "accelerationIncludingGravity represents the raw data measured by an accelerometer.",
+    "url": "https://raw.githubusercontent.com/mdn/content/main/files/en-us/web/api/devicemotionevent/accelerationincludinggravity/index.md",
+    "quote": "In practice, this value represents the raw data measured by an"
+  },
+  {
+    "claim": "accelerationIncludingGravity may be the only value on devices that cannot remove gravity.",
+    "url": "https://raw.githubusercontent.com/mdn/content/main/files/en-us/web/api/devicemotionevent/accelerationincludinggravity/index.md",
+    "quote": "but may be the only value available on devices that aren't able to remove gravity from the acceleration data"
+  },
+  {
+    "claim": "requestPermission() must be called from a UI event such as a tap (transient activation).",
+    "url": "https://raw.githubusercontent.com/mdn/content/main/files/en-us/web/api/devicemotionevent/requestpermission_static/index.md",
+    "quote": "it must be triggered by a UI event such as a button click"
+  },
+  {
+    "claim": "requestPermission() resolves to \"granted\" or \"denied\".",
+    "url": "https://raw.githubusercontent.com/mdn/content/main/files/en-us/web/api/devicemotionevent/requestpermission_static/index.md",
+    "quote": "that resolves with a string which is either `\"granted\"` or `\"denied\"`."
+  },
+  {
+    "claim": "The W3C draft tells browsers to limit acceleration precision to no more than 0.1 m/s².",
+    "url": "https://raw.githubusercontent.com/w3c/deviceorientation/main/index.bs",
+    "quote": "limit its precision to no more than 0.1 m/s"
+  },
+  {
+    "claim": "The precision requirements exist to mitigate passive fingerprinting.",
+    "url": "https://raw.githubusercontent.com/w3c/deviceorientation/main/index.bs",
+    "quote": "Updates have been made to the coordinate system explanations and precision requirements to mitigate passive fingerprinting risks."
+  },
+  {
+    "claim": "The interfaces are only available in secure contexts.",
+    "url": "https://raw.githubusercontent.com/w3c/deviceorientation/main/index.bs",
+    "quote": "Interfaces are now only available in [=secure contexts=]"
+  },
+  {
+    "claim": "Acceleration is expressed in metres per second squared (W3C).",
+    "url": "https://raw.githubusercontent.com/w3c/deviceorientation/main/index.bs",
+    "quote": "It is expressed in meters per second squared (m/s"
+  }
+]

@@ -1413,7 +1413,7 @@ if (fs.existsSync(matrixPath)) {
       const r = routeOf(h);
       return (r === "/tools" || r.startsWith("/tools/")) && fs.readFileSync(h, "utf8").includes("data-tool");
     }).length;
-    const EXPECTED_TOOLS = 10; // hub + 9 tools (the 6 lookups, sample-data, webhook-verifier and pose-benchmark)
+    const EXPECTED_TOOLS = 11; // hub + 10 tools (the 6 lookups, sample-data, webhook-verifier, pose-benchmark and step-lab)
     if (rendered !== EXPECTED_TOOLS) {
       problems.push(`TOOLS          ${rendered} /tools pages carry data-tool, expected ${EXPECTED_TOOLS}`);
     } else {

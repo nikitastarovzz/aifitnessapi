@@ -109,6 +109,12 @@ export const TOOL_PLANNERS: Tool[] = [
     blurb:
       "Time MediaPipe Pose Landmarker lite, full and heavy on your own device and copy the latency table as markdown.",
   },
+  {
+    path: "/tools/step-lab",
+    name: "Step lab",
+    blurb:
+      "Walk with your phone and watch a visible step detector count; move its threshold and interval to see why two apps disagree.",
+  },
 ];
 
 export const ALL_TOOLS: Tool[] = [...TOOL_LOOKUPS, ...TOOL_PLANNERS];
