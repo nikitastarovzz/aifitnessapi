@@ -60,7 +60,7 @@ const FAQS = [
   },
   {
     q: "Which Google Fit successor applies to which integration?",
-    a: "Match the successor to how your integration uses Fit, not to feature lists. Google's Fit migration guide recommends the Google Health API for cloud-based integrations, and lists it for the Fit History and Session APIs. Reading mobile steps through the Recording API moves to Health Connect, which the guide describes as on-device storage with no OAuth. Fit on Wear OS moves to Health Services. The Goals API has no replacement API. Multi-vendor products should also consider consolidating behind one aggregator instead of migrating Fit in isolation.",
+    a: "Match the successor to how your integration uses Fit, not to feature lists. Google's Fit migration guide recommends the Google Health API for cloud-based integrations, and lists it for the Fit History and Session APIs on the phone; for inserting a session it also tells mobile apps to write an ExerciseSessionRecord or SleepSessionRecord to Health Connect. Reading mobile steps through the Recording API moves to Health Connect, which the guide describes as on-device storage with no OAuth. Fit on Wear OS moves to Health Services for recording, sensors and session start and stop, while History and session reads and writes go through Health Connect in the phone app. The Goals API has no replacement API. Multi-vendor products should also consider consolidating behind one aggregator instead of migrating Fit in isolation.",
   },
   {
     q: "We built on Fit years ago and it still works. Can we wait?",
@@ -106,9 +106,12 @@ const PATHS: { who: string; go: string; how: React.ReactNode }[] = [
     go: "Health Services",
     how: (
       <>
-        Google&rsquo;s listed path for the Fit API on Wear OS. Then decide separately how watch data
-        reaches your backend — that is the same on-device-store problem as above, not a Fit-specific
-        one.
+        Google&rsquo;s listed path for the Fit API on Wear OS, but its per-API tables split it:
+        recording, sensors and starting or stopping sessions move to Health Services, while
+        History on the watch is &ldquo;Not applicable. Use Health Connect from your mobile app and
+        not the wearable,&rdquo; and session reads and writes go through Health Connect in your phone
+        app. Then decide separately how watch data reaches your backend — that is the same
+        on-device-store problem as above, not a Fit-specific one.
       </>
     ),
   },
