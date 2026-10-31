@@ -21,7 +21,7 @@
   },
   {
     "claim": "Cost shape, memberships: Oura's API returns 403 when a user's Oura subscription has expired.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "The requested resource requires additional permissions or the user's Oura subscription has expired."
   },
   {

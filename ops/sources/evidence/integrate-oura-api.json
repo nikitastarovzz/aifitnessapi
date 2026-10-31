@@ -1,7 +1,7 @@
 [
   {
     "claim": "Oura's spec describes API V2 as the only available integration point for Oura data and says the V1 API has been sunset.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "This document describes the Oura API Version 2 (V2), which is the only available integration point for Oura data. The previous V1 API has been sunset."
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "claim": "Personal access tokens were deprecated in December 2025 and are no longer available for use.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "personal access tokens were deprecated in December 2025 and are no longer available for use."
   },
   {
@@ -21,7 +21,7 @@
   },
   {
     "claim": "There is no user limit once Oura approves the app.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "There is no limit once an application is approved."
   },
   {
@@ -31,17 +31,17 @@
   },
   {
     "claim": "Oura says users must consent to share each data type your app has access to.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Oura users **must provide consent** to share each data type an API Application has access to."
   },
   {
     "claim": "The API returns 403 when a request needs more permissions or the user's Oura subscription has expired.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "The requested resource requires additional permissions or the user's Oura subscription has expired."
   },
   {
     "claim": "Oura's FAQ says a 403 usually means an expired subscription or a missing permission for the data type.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "This usually means the user's Oura subscription has expired or they haven't granted permission for the specific data type you're requesting."
   },
   {
@@ -111,7 +111,7 @@
   },
   {
     "claim": "The spec's own scope list adds a ninth scope, heart_health (Heart health data).",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "\"spo2\": \"SpO2 Average recorded during sleep\", \"heart_health\": \"Heart health data\""
   },
   {
@@ -161,12 +161,12 @@
   },
   {
     "claim": "One troubleshooting section of the spec says access tokens typically expire after 24 hours.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "OAuth2 access tokens expire after a period (typically 24 hours for Oura)."
   },
   {
     "claim": "The spec's FAQ says tokens typically last 30 days.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "The token hasn't expired (they typically last 30 days)"
   },
   {
@@ -186,287 +186,287 @@
   },
   {
     "claim": "All data lives under https://api.ouraring.com/v2/usercollection/.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "curl -X GET https://api.ouraring.com/v2/usercollection/personal_info"
   },
   {
     "claim": "daily_activity holds daily activity summaries and activity levels.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "The Daily Activity scope includes daily activity summary values and detailed activity levels."
   },
   {
     "claim": "daily_spo2 data is only available for users with a Gen 3 ring.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "The Daily SpO2 (blood oxygenation) routes include daily SpO2 average. Data will only be available for users with a Gen 3 Oura Ring"
   },
   {
     "claim": "daily_stress holds minutes in high stress and high recovery each day.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "The daily stress route includes a summary of the number of minutes the user spends in high stress and high recovery each day."
   },
   {
     "claim": "daily_resilience is an estimate of resilience.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Resilience is an estimate of your ability to withstand physiological stress and recover from it over time."
   },
   {
     "claim": "daily_cardiovascular_age is a cardiovascular age estimate.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Cardiovascular Age is an estimate of the health of your cardiovascular system in relation to your actual age."
   },
   {
     "claim": "vO2_max holds VO2 max.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "VO2 Max is a measure of the maximum volume of oxygen that an individual can use during intense exercise."
   },
   {
     "claim": "A user can have several sleep periods per day.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "A user can have multiple sleep periods per day."
   },
   {
     "claim": "sleep_time is a recommended bedtime window calculated from sleep data.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Recommendations for the optimal bedtime window that is calculated based on sleep data."
   },
   {
     "claim": "heartrate is time-series heart rate in 5-minute increments.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Heart rate is provided at 5-minute increments."
   },
   {
     "claim": "session covers guided and unguided sessions.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "The Sessions data scope provides information on how users engage with guided and unguided sessions in the Oura app"
   },
   {
     "claim": "tag is deprecated in favor of enhanced_tag.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Tag is deprecated. We recommend transitioning to [Enhanced Tag](#tag/Enhanced-Tag-Routes)."
   },
   {
     "claim": "ring_configuration holds the ring model, size and color.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "The Ring Configuration scope includes information about the user's ring(s). This includes the model, size, color, etc."
   },
   {
     "claim": "rest_mode_period holds rest mode periods.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "The Rest Mode scope includes information about rest mode periods."
   },
   {
     "claim": "ring_battery_level holds battery level documents.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "\"summary\": \"Multiple Ring Battery Level Documents\""
   },
   {
     "claim": "personal_info holds the user's profile.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "The Personal Info scope includes personal information (e.g. age, email, weight, and height) about the user."
   },
   {
     "claim": "List responses wrap records in a data array with a next_token.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "\"required\": [ \"data\", \"next_token\" ], \"title\": \"MultiDocumentResponseDict\""
   },
   {
     "claim": "next_token comes back as a string or null.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "\"next_token\": { \"anyOf\": [ { \"type\": \"string\" }, { \"type\": \"null\" } ], \"title\": \"Next Token\" }"
   },
   {
     "claim": "The spec has a sandbox endpoint for each data type, serving fake data that you can access without an Oura account.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Fake user data that you can access without an Oura account. There is a corresponding sandbox endpoint to each available data type."
   },
   {
     "claim": "Sandbox endpoints live under /v2/sandbox/usercollection/.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "\"/v2/sandbox/usercollection/daily_activity\""
   },
   {
     "claim": "Sandbox calls share your rate limit with the real data endpoints.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "The rate limit for the sandbox endpoints is shared with your rate limit on other data endpoints."
   },
   {
     "claim": "Sleep data requires users to open the Oura app, while daily activity and stress may sync in the background.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "sleep data requires users to open the Oura app, while daily activity and stress may sync in the background"
   },
   {
     "claim": "Oura calls webhooks the preferred way to consume Oura data.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Webhooks are the preferred way to consume Oura data"
   },
   {
     "claim": "Oura says customers who implement webhooks properly have not hit rate limits.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "We have not had customers hit rate limits with webhooks properly implemented"
   },
   {
     "claim": "The recommended pattern is one request for historical data when a user first connects, then webhooks.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Make a single request for historical data when a user first connects, then use webhooks for ongoing updates"
   },
   {
     "claim": "Create one subscription per combination of event_type and data_type.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "You need to create separate subscriptions for each combination of:"
   },
   {
     "claim": "event_type is create, update or delete.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "\"enum\": [ \"create\", \"update\", \"delete\" ], \"title\": \"WebhookOperation\""
   },
   {
     "claim": "Subscriptions are created with POST /v2/webhook/subscription.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Call the `POST /v2/webhook/subscription` endpoint to register your webhook:"
   },
   {
     "claim": "The subscription call uses your app's x-client-id and x-client-secret headers.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Client ID for webhook subscription endpoints. Must be used together with x-client-secret header."
   },
   {
     "claim": "The subscription body has callback_url, verification_token, event_type and data_type.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "\"required\": [ \"callback_url\", \"verification_token\", \"event_type\", \"data_type\" ], \"title\": \"CreateWebhookSubscriptionRequest\""
   },
   {
     "claim": "The data types you can subscribe to are listed in the spec, ending daily_stress, daily_cardiovascular_age, daily_resilience and vo2_max.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "\"daily_stress\", \"daily_cardiovascular_age\", \"daily_resilience\", \"vo2_max\" ], \"title\": \"ExtApiV2DataType\", \"description\": \"Data types that partners can subscribe to via ExtApiV2 webhooks.\""
   },
   {
     "claim": "Oura verifies the endpoint with a GET carrying verification_token and challenge.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "const { verification_token, challenge } = req.query;"
   },
   {
     "claim": "Respond with the challenge to activate the subscription.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "If verification succeeds, your subscription is activated"
   },
   {
     "claim": "Each event body carries event_type, data_type, object_id and user_id.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "const { event_type, data_type, object_id, user_id } = req.body;"
   },
   {
     "claim": "Events come with an x-oura-signature header.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "x-oura-signature: HMAC_SIGNATURE"
   },
   {
     "claim": "Events come with an x-oura-timestamp header.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "x-oura-timestamp: 1234567890"
   },
   {
     "claim": "The signature is an HMAC-SHA256 keyed by the client secret.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "const hmac = crypto.createHmac('sha256', clientSecret);"
   },
   {
     "claim": "The HMAC covers the timestamp plus the JSON body.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "hmac.update(timestamp + JSON.stringify(body));"
   },
   {
     "claim": "The digest is hex, upper-case.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "const calculatedSignature = hmac.digest('hex').toUpperCase();"
   },
   {
     "claim": "Respond with a 2xx in under 10 seconds.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Respond quickly (under 10 seconds) with a 2xx status"
   },
   {
     "claim": "Fetch the record by object_id afterwards.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Use the object_id to fetch the complete data via the API"
   },
   {
     "claim": "Oura retries 10 times for 4xx responses.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "For 4xx responses: 10 retries"
   },
   {
     "claim": "Oura retries 10 times for 5xx responses.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "For 5xx responses: 10 retries"
   },
   {
     "claim": "Oura retries 10 times for timeouts.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "For timeouts: 10 retries"
   },
   {
     "claim": "Oura retries for about an hour.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Oura will retry webhook deliveries for about an hour if your server doesn't respond properly."
   },
   {
     "claim": "A 410 response cancels the subscription.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Or respond with a 410 status code to automatically cancel"
   },
   {
     "claim": "DELETE /v2/webhook/subscription/{id} cancels a subscription.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Use the DELETE endpoint: `DELETE /v2/webhook/subscription/{id}`"
   },
   {
     "claim": "Every subscription carries an expiration_time.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "\"data_type\", \"expiration_time\" ], \"title\": \"WebhookSubscriptionModel\""
   },
   {
     "claim": "Renew a subscription with PUT /v2/webhook/subscription/renew/{id}.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "\"summary\": \"Renew Webhook Subscription\", \"operationId\": \"renew_webhook_subscription_v2_webhook_subscription_renew__id__put\""
   },
   {
     "claim": "Notifications arrive about 30 seconds after data syncs from the app.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Webhook notifications arrive approximately 30 seconds after data syncs from the mobile app."
   },
   {
     "claim": "For longer outages, run a reconciliation job.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "It's a good practice to implement a reconciliation process that can fetch data for periods when your webhook might have been unavailable."
   },
   {
     "claim": "The spec describes rate limits at two layers.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "The API enforces rate limits at two layers to ensure fair access across all applications:"
   },
   {
     "claim": "One layer is a per-access-token limit.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "a per-access-token limit, which throttles single-token floods, and"
   },
   {
     "claim": "The other is a per-application limit across all of an app's user tokens.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "a per-application limit, which caps the aggregate traffic across all of an application's end-user tokens"
   },
   {
     "claim": "Either returns 429 and X-RateLimit-Tier names the layer that fired.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "The `X-RateLimit-Tier` response header identifies which layer fired."
   },
   {
     "claim": "Oura says to prefer the rate-limit headers over fixed-interval backoff.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "five headers are included to guide retries. Prefer these over fixed-interval backoff:"
   },
   {
     "claim": "The FAQ in the spec gives 5,000 requests per 5-minute period.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "The Oura API is limited to 5000 requests per 5-minute period."
   },
   {
@@ -476,17 +476,17 @@
   },
   {
     "claim": "Oura's FAQ suggests fetching history in date ranges of about one to three months.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Use date range queries with reasonable time spans (e.g., 1-3 months at a time)"
   },
   {
     "claim": "Paging uses next_token.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Implement pagination using the next_token parameter for large result sets"
   },
   {
     "claim": "Contact Oura if you expect to need higher limits.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "if you expect your usage to require higher limits."
   },
   {
@@ -496,12 +496,12 @@
   },
   {
     "claim": "Date parameters are interpreted in the user's local time zone.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "When querying data with date parameters, the dates are interpreted in the user's local timezone."
   },
   {
     "claim": "Timestamps come back in ISO 8601 with time zone information.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "All timestamps in the Oura API use ISO 8601 format with timezone information."
   }
 ]
