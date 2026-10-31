@@ -246,7 +246,7 @@
   },
   {
     "claim": "Gate list, Oura: with no limit once approved.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "There is no limit once an application is approved."
   },
   {
@@ -271,7 +271,7 @@
   },
   {
     "claim": "Membership table, Oura: the API returns 403 when a user's subscription has expired.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "The requested resource requires additional permissions or the user's Oura subscription has expired."
   },
   {
@@ -321,7 +321,7 @@
   },
   {
     "claim": "FAQ, user-side: its API returns 403 when a user's subscription has expired.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "The requested resource requires additional permissions or the user's Oura subscription has expired."
   },
   {

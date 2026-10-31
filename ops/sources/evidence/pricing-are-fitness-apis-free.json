@@ -51,7 +51,7 @@
   },
   {
     "claim": "Free to call, but gated: Oura's API FAQ says the Oura API is free to use for both personal and commercial applications.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Yes, the Oura API is free to use for both personal and commercial applications."
   },
   {
@@ -106,7 +106,7 @@
   },
   {
     "claim": "The catch, approval: Oura's approval for apps past 10 users.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "However, API applications accessing more than 10 users require approval from Oura."
   },
   {
@@ -141,7 +141,7 @@
   },
   {
     "claim": "FAQ, what costs money: Oura's approval past 10 users.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "However, API applications accessing more than 10 users require approval from Oura."
   },
   {

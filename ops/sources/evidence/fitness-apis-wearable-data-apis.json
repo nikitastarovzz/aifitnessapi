@@ -56,7 +56,7 @@
   },
   {
     "claim": "Table, Oura row: free for personal and commercial apps.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Yes, the Oura API is free to use for both personal and commercial applications."
   },
   {
@@ -91,17 +91,17 @@
   },
   {
     "claim": "Oura section: Oura documents 5,000 requests per 5-minute period.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "The Oura API is limited to 5000 requests per 5-minute period."
   },
   {
     "claim": "Oura section: rate limits are enforced per-token and per-application.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "The API enforces rate limits at two layers to ensure fair access across all applications:"
   },
   {
     "claim": "Oura section: the API returns 403 when a user's Oura subscription has expired.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "The requested resource requires additional permissions or the user's Oura subscription has expired."
   },
   {

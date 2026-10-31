@@ -1,7 +1,7 @@
 [
   {
     "claim": "Oura's API V2 is the only available integration point for Oura data.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "This document describes the Oura API Version 2 (V2), which is the only available integration point for Oura data."
   },
   {
@@ -16,42 +16,42 @@
   },
   {
     "claim": "Oura users consent per data type.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Oura users **must provide consent** to share each data type an API Application has access to."
   },
   {
     "claim": "Oura calls webhooks the preferred way to consume its data.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Webhooks are the preferred way to consume Oura data"
   },
   {
     "claim": "Heart rate comes in 5-minute increments.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Heart rate is provided at 5-minute increments."
   },
   {
     "claim": "SpO2 is for Gen 3 rings.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Data will only be available for users with a Gen 3 Oura Ring"
   },
   {
     "claim": "Stress data.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "The daily stress route includes a summary of the number of minutes the user spends in high stress and high recovery each day."
   },
   {
     "claim": "Resilience data.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Resilience is an estimate of your ability to withstand physiological stress and recover from it over time."
   },
   {
     "claim": "Cardiovascular age.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Cardiovascular Age is an estimate of the health of your cardiovascular system in relation to your actual age."
   },
   {
     "claim": "VO2 max.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "VO2 Max is a measure of the maximum volume of oxygen that an individual can use during intense exercise."
   },
   {
@@ -61,12 +61,12 @@
   },
   {
     "claim": "No limit after approval.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "There is no limit once an application is approved."
   },
   {
     "claim": "5,000 requests per 5-minute period.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "The Oura API is limited to 5000 requests per 5-minute period."
   },
   {
@@ -76,12 +76,12 @@
   },
   {
     "claim": "403 when the user's subscription has expired.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "The requested resource requires additional permissions or the user's Oura subscription has expired."
   },
   {
     "claim": "Oura's FAQ says the API is free for personal and commercial use.",
-    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "Yes, the Oura API is free to use for both personal and commercial applications."
   },
   {

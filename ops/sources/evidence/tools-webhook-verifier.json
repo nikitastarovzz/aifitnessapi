@@ -306,47 +306,47 @@
   },
   {
     "claim": "Google Health API: the configured secret is sent in the Authorization header with each notification.",
-    "url": "https://developers.google.com/health/webhooks",
+    "url": "https://developers.google.com/health/webhooks?hl=en",
     "quote": "The value of secret is sent in the Authorization header with each notification message. You can use this token to verify that incoming requests are from the Google Health API."
   },
   {
     "claim": "Google Health API: verification handshake, 200/201 with credentials.",
-    "url": "https://developers.google.com/health/webhooks",
+    "url": "https://developers.google.com/health/webhooks?hl=en",
     "quote": "The first request is sent with your configured Authorization header. Your server must respond with a 200 OK or 201 Created status."
   },
   {
     "claim": "Google Health API: verification handshake, 401/403 without credentials.",
-    "url": "https://developers.google.com/health/webhooks",
+    "url": "https://developers.google.com/health/webhooks?hl=en",
     "quote": "The second request is sent without credentials. Your server must respond with a 401 Unauthorized or 403 Forbidden status."
   },
   {
     "claim": "Google Health API: respond 204 immediately; other codes or timeouts are retried.",
-    "url": "https://developers.google.com/health/webhooks",
+    "url": "https://developers.google.com/health/webhooks?hl=en",
     "quote": "respond to data change notifications with an HTTP 204 No Content status code immediately."
   },
   {
     "claim": "Google Health API: other codes or timeouts are retried later.",
-    "url": "https://developers.google.com/health/webhooks",
+    "url": "https://developers.google.com/health/webhooks?hl=en",
     "quote": "If the Google Health API receives any other status code or the request times out, it retries sending the notification later."
   },
   {
     "claim": "Google Health API: up to 99 messages per batch.",
-    "url": "https://developers.google.com/health/webhooks",
+    "url": "https://developers.google.com/health/webhooks?hl=en",
     "quote": "The system is configured to send out a maximum of 99 messages per batch"
   },
   {
     "claim": "Google Health API: fetch the data with the reconcile endpoint.",
-    "url": "https://developers.google.com/health/webhooks",
+    "url": "https://developers.google.com/health/webhooks?hl=en",
     "quote": "To fetch the updated data for each notified interval, call the reconcile endpoint with a filter for the interval's time range."
   },
   {
     "claim": "Google Health API: example notifications show a GOOGLE-HEALTH-API-SIGNATURE header (its computation is not described).",
-    "url": "https://developers.google.com/health/webhooks",
+    "url": "https://developers.google.com/health/webhooks?hl=en",
     "quote": "GOOGLE-HEALTH-API-SIGNATURE: signature-value"
   },
   {
     "claim": "Fitbit Web API: legacy API and Fitbit OAuth endpoints turned off on November 2, 2026.",
-    "url": "https://developers.google.com/health/webhooks",
+    "url": "https://developers.google.com/health/webhooks?hl=en",
     "quote": "On November 2, 2026 , the legacy Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users."
   },
   {
