@@ -63,6 +63,12 @@ export const TOOL_LOOKUPS: Tool[] = [
     blurb:
       "Paste an Oura, WHOOP, Terra, Polar, Strava, Withings, Wahoo or Google Health API webhook: the vendor's documented check, run in your browser.",
   },
+  {
+    path: "/tools/keypoint-playground",
+    name: "Pose keypoint playground",
+    blurb:
+      "Click a joint and see its index in BlazePose, COCO, OpenPose, ML Kit and Apple Vision, then copy an index map built from matching names only.",
+  },
 ];
 
 /** The planners and demos already published on the site. Blurbs match the

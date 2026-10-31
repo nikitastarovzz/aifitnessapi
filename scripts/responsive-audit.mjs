@@ -49,6 +49,7 @@ const PAGES = ["/", "/devices", "/devices/ftms-fitness-machine-service", "/matri
   "/health-mcp-servers", "/ai/connect-wearable-data-to-ai-assistants",
   "/bluetooth-fitness", "/bluetooth-fitness/heart-rate-measurement", "/bluetooth-fitness/cross-trainer-data",
   "/workout-types", "/workout-types/health-connect", "/workout-types/google-health-api", "/workout-types/running",
+  "/tools/keypoint-playground",
   "/not-a-real-page"];
 
 const exe = process.env.PLAYWRIGHT_CHROMIUM;

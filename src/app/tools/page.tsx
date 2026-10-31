@@ -27,7 +27,7 @@ import { orgRef, WEBSITE_ID } from "@/lib/schema";
 const PATH = "/tools";
 const TITLE = "Free Tools for Health-App Builders";
 const DESCRIPTION =
-  "Fifteen free tools for health-app builders: error lookup, webhook verifier, query builders, synthetic test data, a pose benchmark and an API map.";
+  "Sixteen free tools for health-app builders: error lookup, webhook verifier, query builders, test data, a keypoint mapper, a pose benchmark and an API map.";
 
 export const metadata: Metadata = {
   // Plain, not `absolute` — the layout template appends the site suffix and
@@ -117,8 +117,8 @@ export default function ToolsHubPage() {
             Lookups and generators
           </h2>
           <p className="mt-2 text-sm text-[var(--muted)]">
-            Built on the HealthKit identifier dataset, the verified cross-platform matrix and, for
-            webhooks, the vendors&rsquo; own signing rules.
+            Built on the HealthKit identifier dataset, the verified cross-platform matrix, the pose
+            keypoint dataset and, for webhooks, the vendors&rsquo; own signing rules.
           </p>
           <ul className="mt-5 grid gap-4 sm:grid-cols-2">
             {TOOL_LOOKUPS.map((t) => (

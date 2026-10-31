@@ -300,6 +300,10 @@ const MAP: Record<string, Note> = {
     anchor: "KinesteX",
     lead: "If you would rather ship a hosted camera experience than tune a pose pipeline, see",
   },
+  "/tools/keypoint-playground": {
+    anchor: "KinesteX",
+    lead: "If you would rather not map keypoints between models at all, a packaged motion SDK hands you reps and form events instead. One, from the company that funds this site, is",
+  },
 };
 
 /** Paths this component covers, for the qa gate. */

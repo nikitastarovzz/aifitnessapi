@@ -1,5 +1,7 @@
 import { site, absoluteUrl } from "@/lib/site";
 import { TASKS_VISION_VERSION, VERIFIED_ON as POSE_BENCH_VERIFIED_ON } from "@/lib/poseBenchmark";
+import { POSE_CROSSWALK, POSE_KEYPOINTS_FETCHED_ON, POSE_SCHEMES } from "@/data/poseKeypoints";
+import { totalPairs } from "@/lib/keypointMapping.mjs";
 import { getAllPosts } from "@/lib/posts";
 import { GLANCE_HUBS, hubQa, segText } from "@/data/hubGlance";
 import { moneyPages, MONEY_GROUP_LABELS, MONEY_GROUP_ORDER } from "@/data/moneyPages";
@@ -587,6 +589,16 @@ export function GET() {
     "A client-side tool that generates seeded, deterministic synthetic fixtures for Apple HealthKit, Android Health Connect and the Google Health API, as JSON or CSV. Field names, Kotlin and discovery types, validation ranges and enum values come from this site's generated copies of Apple's and Google's references, and a field the datasets do not describe is left out rather than guessed. Each record carries the offset in force at its own instant: Health Connect's nullable ZoneOffset beside each Instant, the Google Health API's required utcOffset durations, HealthKit's optional HKMetadataKeyTimeZone. Values are synthetic and illustrative, not real or physiologically validated.",
   );
   out.push("");
+  {
+    const kp = totalPairs(POSE_SCHEMES, POSE_CROSSWALK);
+    out.push(`## Pose keypoint playground — ${absoluteUrl("/tools/keypoint-playground")}`);
+    out.push("Primary query: convert coco keypoints to mediapipe blazepose index");
+    out.push("");
+    out.push(
+      `A client-side tool over this site's pose keypoint dataset (sources read ${POSE_KEYPOINTS_FETCHED_ON}): ${POSE_SCHEMES.length} schemes — ${POSE_SCHEMES.map((s) => s.shortName).join(", ")}. Pick a scheme, click a joint on a drawn body, and see the same point's index and name in every scheme or "not in this scheme"; copy a TypeScript or Python dict from one scheme's indices to another's (Apple Vision joints have no index, so their side uses the joint name). Two points pair only when their names match after lowercasing and removing non-alphanumerics, which gives ${kp.unordered} pairs across ${kp.schemePairsWithAny} of ${(POSE_SCHEMES.length * (POSE_SCHEMES.length - 1)) / 2} scheme pairs; OpenPose's L/R spellings (LShoulder) therefore pair only with OpenPose, and unmatched points are listed in the snippet rather than guessed. The figure and dot positions are a drawing, not data, and no skeleton edges are drawn because the dataset records no connections.`,
+    );
+    out.push("");
+  }
   out.push(`## Pose model benchmark (runs on your device) — ${absoluteUrl("/tools/pose-benchmark")}`);
   out.push("Primary query: mediapipe pose landmarker benchmark");
   out.push("");
