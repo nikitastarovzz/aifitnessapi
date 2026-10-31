@@ -17,7 +17,7 @@ import { orgRef, WEBSITE_ID } from "@/lib/schema";
  * datasets — no accounts, no uploads, no server round trip. That is the whole
  * organising idea, and it is also the reason these belong on one page: a
  * reader who found one of them by searching an error string should be able to
- * see the other nine.
+ * see the others.
  *
  * The blurbs for the planners and demos are the same sentences the site
  * search index uses for them, so a tool is described identically wherever it
@@ -27,7 +27,7 @@ import { orgRef, WEBSITE_ID } from "@/lib/schema";
 const PATH = "/tools";
 const TITLE = "Free Tools for Health-App Builders";
 const DESCRIPTION =
-  "Sixteen free tools for health-app builders: error lookup, webhook verifier, query builders, test data, a keypoint mapper, a pose benchmark and an API map.";
+  "Free browser tools for health-app builders: error lookup, webhook verifier, test data, keypoint mapper, pose benchmark, heart-rate lab and API map.";
 
 export const metadata: Metadata = {
   // Plain, not `absolute` — the layout template appends the site suffix and
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     type: "website",
     title: TITLE,
     description:
-      "Lookups, builders, planners and a pose-model benchmark for health-app developers — each one running client-side in your browser, with no upload.",
+      "Lookups, builders, planners, a pose-model benchmark and a Bluetooth heart-rate lab for health-app developers — each one running client-side in your browser, with no upload.",
     url: PATH,
   },
 };
@@ -108,7 +108,8 @@ export default function ToolsHubPage() {
           datasets — the HealthKit identifier set read from Apple&rsquo;s documentation on{" "}
           {HK_FETCHED_ON}, the HealthKit ↔ Health Connect matrix verified against both vendors, and the
           API directory — the webhook verifier off each vendor&rsquo;s own documented signing rule,
-          and the pose benchmark on your own device. No account, no upload, no server round trip,
+          the pose benchmark on your own device, and the heart-rate lab on the bytes your own Bluetooth strap
+          sends. No account, no upload, no server round trip,
           and nothing invented where the source is silent.
         </p>
 
@@ -131,8 +132,8 @@ export default function ToolsHubPage() {
           </h2>
           <p className="mt-2 text-sm text-[var(--muted)]">
             Decision support for picking a stack, one demo of the bug that costs the most debugging
-            time, and a pose-model benchmark that times Google&rsquo;s published models on your
-            hardware.
+            time, a pose-model benchmark that times Google&rsquo;s published models on your
+            hardware, and a heart-rate lab that decodes your own strap&rsquo;s Bluetooth notifications.
           </p>
           <ul className="mt-5 grid gap-4 sm:grid-cols-2">
             {TOOL_PLANNERS.map((t) => (

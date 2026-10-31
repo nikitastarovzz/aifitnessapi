@@ -21,7 +21,8 @@
     "test:perf": "node scripts/perf-audit.mjs",
     "stale": "node scripts/stale-report.mjs",
     "test:webhooks": "node --test scripts/webhook-verifier.test.mjs",
-    "test:keypoints": "node --test scripts/keypoint-mapping.test.mjs"
+    "test:keypoints": "node --test scripts/keypoint-mapping.test.mjs",
+    "test:hr-lab": "node --test scripts/hr-measurement.test.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "~1.32.0",
