@@ -12,6 +12,7 @@ import { changesSorted } from "@/data/changes";
 import { API_ENTRIES, APIS_PATH, NOINDEX_APIS } from "@/data/apis";
 import { API_INDEX_PATH, MARKET_MAP_PATH, indexDataDate } from "@/lib/ecosystemSignals";
 import { DAILY_PATH, dailyDataDate } from "@/lib/dailyBank";
+import { YEAR_PATH, yearDataDate } from "@/lib/year2026";
 import { isNoindexed } from "@/data/noindex";
 import { ptPages, ptIndexIndexable, PT_PREFIX } from "@/lib/translations";
 import { digests, DIGEST_PATH, type Digest } from "@/data/digest";
@@ -252,6 +253,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // bank draws from, not the date of today's draw: the page itself is the
     // same static file every day.
     [DAILY_PATH]: dailyDataDate(),
+    // The 2026 story declares the newest date any of its inputs was written
+    // or checked, through the same function.
+    [YEAR_PATH]: yearDataDate(),
   };
 
   const standalone = [
@@ -267,6 +271,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/no-code-fitness-app",
     "/fitbit-api-shutdown",
     "/state-of-fitness-apis-2026",
+    YEAR_PATH,
     "/changes",
     "/matrix",
     HK_BASE,

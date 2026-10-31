@@ -144,6 +144,9 @@ export default function Footer() {
           <FooterLink href="/state-of-fitness-apis-2026" className="py-1 hover:text-[var(--fg)]">
             State of Fitness APIs
           </FooterLink>
+          <FooterLink href="/2026" className="py-1 hover:text-[var(--fg)]">
+            Fitness APIs in 2026
+          </FooterLink>
           <FooterLink href="/changes" className="py-1 hover:text-[var(--fg)]">
             Changes &amp; Deadlines
           </FooterLink>
