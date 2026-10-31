@@ -839,17 +839,17 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
   {
     code: "KINESTEX-NOTE",
     area: "Disclosure",
-    refuses: "A build where the disclosed first-party link renders on a different number of pages than the map declares.",
+    refuses: "A build where the disclosed first-party link renders on a different set of pages than the map declares.",
   },
   {
     code: "KINESTEX-UNDISCLOSED",
     area: "Disclosure",
-    refuses: "A page linking to the site's funder without the funding disclosure beside it.",
+    refuses: "A page linking to the site's funder without the funding disclosure beside it, including the footer's funding credit.",
   },
   {
     code: "FIRSTPARTY",
     area: "Disclosure",
-    refuses: "A page whose prose features the site's funder three or more times with no funding disclosure anywhere on it.",
+    refuses: "A page whose prose features the site's funder three or more times with no funding disclosure of its own; the sitewide footer credit does not count.",
   },
 
   // ── Derived metric facts ──────────────────────────────────────────────

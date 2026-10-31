@@ -15,7 +15,7 @@ import MetricFacts from "@/components/MetricFacts";
 import MetricPlatforms from "@/components/MetricPlatforms";
 import ContentAge from "@/components/ContentAge";
 import ReferenceCallout from "@/components/ReferenceCallout";
-import KinestexNote from "@/components/KinestexNote";
+import KinestexNote, { KINESTEX_NOTE_PATHS } from "@/components/KinestexNote";
 import AppStack from "@/components/AppStack";
 import PostLinks from "@/components/PostLinks";
 import Feedback from "@/components/Feedback";
@@ -598,6 +598,11 @@ export default function ClusterPage({
           updated={entry.updated}
           variant={config.disclaimer}
           locale={tr ? "pt-BR" : undefined}
+          funderListed={
+            entry.firstParty === true ||
+            (!tr && KINESTEX_NOTE_PATHS.includes(path)) ||
+            /KinesteX/.test([entry.answer, entry.body, ...entry.faqs.map((f) => f.a)].join(" "))
+          }
         />
 
         {tr ? (
