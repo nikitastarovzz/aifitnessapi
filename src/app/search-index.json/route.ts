@@ -452,6 +452,7 @@ export function GET() {
 
   add("/market-map", "Fitness & Health API Market Map", "Every product in the directory as one map, grouped by category, filterable by billing model, approval gate and tracked library.", "market map landscape ecosystem vendors categories overview embed");
   add("/fitness-api-index", "Fitness API Index: Ecosystem Signals", "Sortable raw signals per product: SDK and library releases, dated changes in the last 12 months, approval gates, verification age. No score.", "index scorecard signals release cadence deprecations changes freshness data");
+  add("/daily", "Daily Health-API Developer Puzzle", "Five questions a day from the site's datasets: which platform throws this error, HealthKit to Health Connect, sum or average, name the keypoint.", "daily puzzle game quiz wordle trivia streak share healthkit health connect error keypoint");
   add("/picker", "Which Fitness API Should I Use? (interactive)", "Three questions, a tailored recommendation.", "picker tool quiz choose");
   add("/cost-planner", "Fitness API Cost Planner (interactive)", "The cost structure of your stack: billing models, user-side costs, approval gates, eng effort.", "cost calculator pricing budget planner tool");
   add("/changes", "Fitness API Changes & Deadlines Tracker", "The dated, graded record of ecosystem changes: deprecations, deadlines, term changes \u2014 confirmed vs reported.", "changes changelog deadlines deprecations tracker news updates");

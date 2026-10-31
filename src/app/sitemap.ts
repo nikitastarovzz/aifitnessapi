@@ -11,6 +11,7 @@ import { HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { changesSorted } from "@/data/changes";
 import { API_ENTRIES, APIS_PATH, NOINDEX_APIS } from "@/data/apis";
 import { API_INDEX_PATH, MARKET_MAP_PATH, indexDataDate } from "@/lib/ecosystemSignals";
+import { DAILY_PATH, dailyDataDate } from "@/lib/dailyBank";
 import { isNoindexed } from "@/data/noindex";
 import { ptPages, ptIndexIndexable, PT_PREFIX } from "@/lib/translations";
 import { digests, DIGEST_PATH, type Digest } from "@/data/digest";
@@ -246,6 +247,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // or checked, and this reads the same function.
     [MARKET_MAP_PATH]: undefined,
     [API_INDEX_PATH]: indexDataDate(),
+    // The daily puzzle declares the newest read date of the datasets its
+    // bank draws from, not the date of today's draw: the page itself is the
+    // same static file every day.
+    [DAILY_PATH]: dailyDataDate(),
   };
 
   const standalone = [
@@ -285,6 +290,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     APIS_PATH,
     MARKET_MAP_PATH,
     API_INDEX_PATH,
+    DAILY_PATH,
     "/alerts",
     "/compare-apis",
     "/datasets",

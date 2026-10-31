@@ -22,7 +22,8 @@
     "stale": "node scripts/stale-report.mjs",
     "test:webhooks": "node --test scripts/webhook-verifier.test.mjs",
     "test:keypoints": "node --test scripts/keypoint-mapping.test.mjs",
-    "test:hr-lab": "node --test scripts/hr-measurement.test.mjs"
+    "test:hr-lab": "node --test scripts/hr-measurement.test.mjs",
+    "test:daily": "node --test scripts/daily-puzzle.test.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "~1.32.0",

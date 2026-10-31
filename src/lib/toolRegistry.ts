@@ -121,6 +121,12 @@ export const TOOL_PLANNERS: Tool[] = [
     blurb:
       "Connect a BLE heart-rate strap in the browser: every 0x2A37 byte decoded, and whether it sends the RR intervals HRV needs.",
   },
+  {
+    path: "/daily",
+    name: "Daily health-API developer puzzle",
+    blurb:
+      "Five questions a day from the site's datasets: which platform throws this error, HealthKit to Health Connect, sum or average, name the keypoint.",
+  },
 ];
 
 export const ALL_TOOLS: Tool[] = [...TOOL_LOOKUPS, ...TOOL_PLANNERS];

@@ -133,7 +133,8 @@ export default function ToolsHubPage() {
           <p className="mt-2 text-sm text-[var(--muted)]">
             Decision support for picking a stack, one demo of the bug that costs the most debugging
             time, a pose-model benchmark that times Google&rsquo;s published models on your
-            hardware, and a heart-rate lab that decodes your own strap&rsquo;s Bluetooth notifications.
+            hardware, a heart-rate lab that decodes your own strap&rsquo;s Bluetooth notifications,
+            and a daily five-question puzzle drawn from the same datasets.
           </p>
           <ul className="mt-5 grid gap-4 sm:grid-cols-2">
             {TOOL_PLANNERS.map((t) => (

@@ -126,6 +126,9 @@ export default function Footer() {
           <FooterLink href="/compare-apis" className="py-1 hover:text-[var(--fg)]">
             Compare APIs
           </FooterLink>
+          <FooterLink href="/daily" className="py-1 hover:text-[var(--fg)]">
+            Daily Puzzle
+          </FooterLink>
           <FooterLink href="/picker" className="py-1 hover:text-[var(--fg)]">
             API Picker
           </FooterLink>
