@@ -221,6 +221,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/tools/stack-generator", pageStamp("/tools/stack-generator")],
     ["/tools/sample-data", pageStamp("/tools/sample-data")],
     ["/tools/pose-benchmark", pageStamp("/tools/pose-benchmark")],
+    ["/tools/heart-rate-lab", pageStamp("/tools/heart-rate-lab")],
     ["/tools/webhook-verifier", pageStamp("/tools/webhook-verifier")],
   ];
 

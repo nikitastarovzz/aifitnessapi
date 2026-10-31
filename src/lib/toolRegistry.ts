@@ -109,6 +109,12 @@ export const TOOL_PLANNERS: Tool[] = [
     blurb:
       "Time MediaPipe Pose Landmarker lite, full and heavy on your own device and copy the latency table as markdown.",
   },
+  {
+    path: "/tools/heart-rate-lab",
+    name: "Bluetooth heart-rate lab",
+    blurb:
+      "Connect a BLE heart-rate strap in the browser: every 0x2A37 byte decoded, and whether it sends the RR intervals HRV needs.",
+  },
 ];
 
 export const ALL_TOOLS: Tool[] = [...TOOL_LOOKUPS, ...TOOL_PLANNERS];
