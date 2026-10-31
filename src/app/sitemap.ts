@@ -222,6 +222,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/tools/sample-data", pageStamp("/tools/sample-data")],
     ["/tools/pose-benchmark", pageStamp("/tools/pose-benchmark")],
     ["/tools/webhook-verifier", pageStamp("/tools/webhook-verifier")],
+    ["/tools/keypoint-playground", pageStamp("/tools/keypoint-playground")],
   ];
 
   // Routes whose date comes from data, or from the members they index.

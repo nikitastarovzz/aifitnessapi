@@ -1413,7 +1413,7 @@ if (fs.existsSync(matrixPath)) {
       const r = routeOf(h);
       return (r === "/tools" || r.startsWith("/tools/")) && fs.readFileSync(h, "utf8").includes("data-tool");
     }).length;
-    const EXPECTED_TOOLS = 10; // hub + 9 tools (the 6 lookups, sample-data, webhook-verifier and pose-benchmark)
+    const EXPECTED_TOOLS = 11; // hub + 10 tools (the 6 lookups, sample-data, webhook-verifier, keypoint-playground and pose-benchmark)
     if (rendered !== EXPECTED_TOOLS) {
       problems.push(`TOOLS          ${rendered} /tools pages carry data-tool, expected ${EXPECTED_TOOLS}`);
     } else {
@@ -1447,9 +1447,10 @@ if (fs.existsSync(matrixPath)) {
   {
     const withNote = htmls.filter((h) => fs.readFileSync(h, "utf8").includes("data-kinestex-note"));
     // 13 pages where KinesteX is the subject or one listed option, plus 47
-    // build-vs-buy camera-motion pages and /tools/pose-benchmark (widened
-    // 2026-10-31; the placement rule is in the component's header comment).
-    const EXPECTED = 61;
+    // build-vs-buy camera-motion pages, /tools/pose-benchmark and
+    // /tools/keypoint-playground (widened 2026-10-31; the placement rule is
+    // in the component's header comment).
+    const EXPECTED = 62;
     if (withNote.length !== EXPECTED) {
       problems.push(
         `KINESTEX-NOTE  ${withNote.length} pages render the first-party link, expected ${EXPECTED} — a mapped path was probably renamed`,
