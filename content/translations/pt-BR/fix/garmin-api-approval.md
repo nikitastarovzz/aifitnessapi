@@ -1,11 +1,11 @@
 ---
 path: "/fix/garmin-api-approval"
-translatedOn: "2026-10-27"
-sourceUpdated: "2026-07-09"
-sourceHash: "cde577db1e109dea"
+translatedOn: "2026-11-02"
+sourceUpdated: "2026-11-02"
+sourceHash: "a720189da90caf7b"
 metaTitle: "Garmin Developer Program: acesso e aprovação (2026)"
 metaDescription: >-
-  Chaves da API da Garmin ainda exigem pedido de acesso aprovado pela Garmin. Desde outubro de 2026: Starter e Enterprise Access, e uma Personal API.
+  Chaves da API da Garmin ainda exigem um pedido aprovado pela Garmin. Desde outubro de 2026: Starter e Enterprise Access, e uma Personal API autosserviço.
 h1: "Acesso à API da Garmin em espera ou suspenso? Entenda o que está acontecendo"
 answer: >-
   Se você não encontra um jeito de se cadastrar para obter chaves da API da Garmin, não está fazendo nada errado: o Connect Developer Program da Garmin ainda começa com um pedido que a Garmin precisa aprovar. A Garmin reorganizou o programa em outubro de 2026. Nas páginas lidas de novo em 2 de novembro, ela oferece o Starter Access, que segundo o FAQ dá "immediate access" [acesso imediato] a dados e ferramentas essenciais, e o Enterprise Access para empresas em escala, e as páginas não trazem mais o aviso "Stay tuned" [fique atento] nem dizem quanto tempo leva a análise. Se você só quer os seus próprios dados, a nova Personal API da Garmin dispensa o pedido por completo; para um produto, faça o pedido e, se estiver bloqueado, use um agregador como ponte só depois de confirmar de quem são as credenciais da Garmin que ele usa.
