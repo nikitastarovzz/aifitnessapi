@@ -38,6 +38,8 @@ export const RELEASED_ALTERNATIVES = new Set<string>([
   "coros-api-alternatives",
   "wahoo-api-alternatives",
   "dexcom-api-alternatives",
+  "rook-alternatives",
+  "sahha-alternatives",
 ]);
 
 export const allAlternatives: ClusterEntry[] = alternativesEntries;

@@ -1,0 +1,432 @@
+[
+  {
+    "claim": "ROOK describes itself as the health data aggregation and intelligence platform, founded by biomedical engineers.",
+    "url": "https://tryrook.io/about-us/",
+    "quote": "ROOK, founded by biomedical engineers, is the health data aggregation and intelligence platform for digital health, wellness and insurance products."
+  },
+  {
+    "claim": "Docs name Rookeries Development Corp (RookDev) as the company behind the ROOK platform.",
+    "url": "https://docs.tryrook.io/docs/definitions/",
+    "quote": "RookDev is the company behind the ROOK platform."
+  },
+  {
+    "claim": "Homepage pitch: Wearables, medical devices, EHR/EMR and labs.",
+    "url": "https://tryrook.io/",
+    "quote": "Wearables, medical devices, EHR/EMR and labs. One API integration, consistent records, scores and signals."
+  },
+  {
+    "claim": "Docs: 400+ wearables and health data sources.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "ROOK is a single integration for 400+ wearables and health data sources"
+  },
+  {
+    "claim": "Integrations page counts 72 sources.",
+    "url": "https://tryrook.io/wearable-api-sdk/integrations/",
+    "quote": "72 sources"
+  },
+  {
+    "claim": "9 by API, 4 by SDK, 59 indirect.",
+    "url": "https://tryrook.io/wearable-api-sdk/integrations/",
+    "quote": "All 72 API 9 SDK 4 Indirect 59"
+  },
+  {
+    "claim": "Dexcom, Samsung Health, Strava and WHOOP need your own developer accounts, which can take several weeks.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "To integrate with Dexcom , Samsung Health , Strava and Whoop , clients are required to create their own developer accounts with these providers."
+  },
+  {
+    "claim": "Own developer accounts can take several weeks.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "This process can take several weeks and partly depends on the timelines of the respective data sources."
+  },
+  {
+    "claim": "History on connect: up to seven previous days from API sources, 29 days from SDK sources, as a reference.",
+    "url": "https://tryrook.io/rookconnect/wearable-api/",
+    "quote": "As a reference, API-based sources may provide up to seven previous days and SDK-based mobile sources up to 29 days, subject to provider restrictions and contracted configuration."
+  },
+  {
+    "claim": "The ROOK App lets end users connect sources without embedding the SDKs.",
+    "url": "https://tryrook.io/rookconnect/wearable-api/",
+    "quote": "ROOK App lets end users connect supported sources without embedding the SDKs."
+  },
+  {
+    "claim": "ROOK reads Apple Health and Health Connect through SDKs.",
+    "url": "https://tryrook.io/rookconnect/wearable-api/",
+    "quote": "Apple Health and Health Connect through SDKs"
+  },
+  {
+    "claim": "Medical Device API: glucose, blood pressure, SpO2, temperature and ECG tagged with the recording device.",
+    "url": "https://tryrook.io/rookconnect/medical-device-api/",
+    "quote": "The ROOK Connect Medical Device API delivers glucose, blood pressure, oxygen saturation, temperature and ECG readings in one format, with the device that recorded each one."
+  },
+  {
+    "claim": "Each reading carries manufacturer, model, device type and source type.",
+    "url": "https://tryrook.io/rookconnect/medical-device-api/",
+    "quote": "Every supported event includes the manufacturer, model, device type, and source type the data came from."
+  },
+  {
+    "claim": "Lab Data API parses PDF and image reports into LOINC-coded biomarkers with FHIR R4.",
+    "url": "https://tryrook.io/rookconnect/lab-data-api/",
+    "quote": "The ROOK Connect Lab Data API turns PDF and image lab reports into structured biomarkers with LOINC codes and FHIR R4 output, linked to each user's wearable data."
+  },
+  {
+    "claim": "ROOK signs BAAs with covered entities.",
+    "url": "https://tryrook.io/compliance/",
+    "quote": "ROOK operates under a HIPAA-aligned security program and signs BAAs with covered entities."
+  },
+  {
+    "claim": "ROOK score 0 to 100.",
+    "url": "https://docs.tryrook.io/",
+    "quote": "It provides a simple score, ranging from 0 to 100, that reflects their current health status."
+  },
+  {
+    "claim": "ROOK prices by plan and active users.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "ROOK pricing is based on the plan and the number of active users, with usage-based billing and the flexibility to activate only the products and add-ons needed."
+  },
+  {
+    "claim": "Core $399 a month for up to 750 active users.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "$399 USD per month Up to 750 active users"
+  },
+  {
+    "claim": "Core+ $999 for up to 5,000 active users, with three add-ons of your choice.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "$999 USD per month Up to 5,000 active users Everything in Core 3 free add-ons of your choice"
+  },
+  {
+    "claim": "Business $1,999 for up to 15,000 active users.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "$1,999 USD per month Up to 15,000 active users"
+  },
+  {
+    "claim": "Enterprise is custom.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Custom Custom pricing Unlimited users"
+  },
+  {
+    "claim": "Past a plan's limit, billing adjusts based on usage, rate not published.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Each plan includes an active user limit. Beyond that limit, billing adjusts based on usage."
+  },
+  {
+    "claim": "12-month standard contract, 30 days' notice to cancel.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "ROOK's standard contract term is 12 months, with the flexibility to cancel with 30 days' prior notice."
+  },
+  {
+    "claim": "Sandbox access before you buy.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "ROOK provides Sandbox access to test the portal and integration before enabling Production."
+  },
+  {
+    "claim": "Core+ includes three add-ons of your choice; Business includes all of them; Core pays listed prices.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Business and Enterprise include every product and add-on. Core adds them at the listed price. Core+ includes three add-ons of your choice"
+  },
+  {
+    "claim": "Health Scores list at $249 a month on Core (scores are an add-on on Core).",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Health Scores +$249 , Purchased separately"
+  },
+  {
+    "claim": "Health Monitor lists at $249 on Core.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Health Monitor +$249 , Purchased separately"
+  },
+  {
+    "claim": "Granular Data lists at $249 on Core.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Granular Data Wearable API only +$249 , Purchased separately"
+  },
+  {
+    "claim": "ROOK App lists at $499 on Core.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "ROOK App +$499 , Purchased separately"
+  },
+  {
+    "claim": "Notification Webhook lists at $99 on Core.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Notification Webhook +$99 , Purchased separately"
+  },
+  {
+    "claim": "EHR/EMR API is still a waitlist item on the pricing page.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "EHR/EMR API Waitlist for EHR/EMR API"
+  },
+  {
+    "claim": "Lab Data API billed by files processed.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Lab Data API is billed by the files processed each month, on every plan."
+  },
+  {
+    "claim": "Lab Data API from $249 a month for up to 300 files.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "$249 USD / month Up to 300 files per month"
+  },
+  {
+    "claim": "ROOK's pricing FAQ reviews BAA eligibility during contracting.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Eligibility and scope are reviewed during the contracting process."
+  },
+  {
+    "claim": "Terra Quick Start: 100,000 Unified API credits a month that reset monthly.",
+    "url": "https://docs.tryterra.co/unified-api/pricing",
+    "quote": "100,000 included Unified API credits that reset monthly"
+  },
+  {
+    "claim": "Credits do not roll over.",
+    "url": "https://docs.tryterra.co/unified-api/pricing",
+    "quote": "Unified API credits reset to 100,000 each billing period and do not roll over."
+  },
+  {
+    "claim": "200 Unified API credits per active authentication per month.",
+    "url": "https://docs.tryterra.co/unified-api/pricing",
+    "quote": "200 Unified API credits per active authentication per month"
+  },
+  {
+    "claim": "Active authentication is one connected source for one user (bill grows per source).",
+    "url": "https://docs.tryterra.co/unified-api/pricing",
+    "quote": "An active authentication represents an end-user's wearable, sensor, or fitness app that has been authenticated with Terra"
+  },
+  {
+    "claim": "First 400 events per active authentication free.",
+    "url": "https://docs.tryterra.co/unified-api/pricing",
+    "quote": "The first 400 events per active authentication are free."
+  },
+  {
+    "claim": "Extra credits at $0.005 up to 1,000,000.",
+    "url": "https://docs.tryterra.co/unified-api/pricing",
+    "quote": "100,001 - 1,000,000 $0.005"
+  },
+  {
+    "claim": "Pricing page text shows Quick Start From $499 / month with 100,000 credits.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "From $499 / month Includes 100,000 Unified API credits"
+  },
+  {
+    "claim": "30-day money-back guarantee.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "30-day money-back guarantee"
+  },
+  {
+    "claim": "Monthly and Yearly toggle on the pricing page.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Monthly Yearly Quick Start"
+  },
+  {
+    "claim": "Signed BAA listed under Enterprise.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Signed BAA (data protection agreement)"
+  },
+  {
+    "claim": "Access to 9 destinations such as AWS S3, Google Cloud Storage, MongoDB.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Access to 9 destinations Receive data to AWS S3, Google Cloud Storage, MongoDB, and more"
+  },
+  {
+    "claim": "Terra orders blood and DNA tests.",
+    "url": "https://tryterra.co/",
+    "quote": "Order blood and DNA tests for your users through Terra API."
+  },
+  {
+    "claim": "Lab testing: Nationwide US, plus the UK.",
+    "url": "https://tryterra.co/products/lab-testing",
+    "quote": "Nationwide US, plus the UK"
+  },
+  {
+    "claim": "Terra mobile SDK reads Apple Health, Samsung Health and more.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Connect to Apple Health, Samsung Health, and more"
+  },
+  {
+    "claim": "Launch $300 a month, billed monthly.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "$300 /mo Billed monthly"
+  },
+  {
+    "claim": "Launch: 1 to 500 connected users.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Connected users 1-500"
+  },
+  {
+    "claim": "300+ devices.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Device integrations 300+ devices"
+  },
+  {
+    "claim": "Enterprise adds the Lab testing API and ETL pipelines.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Lab testing API and ETL pipelines"
+  },
+  {
+    "claim": "Enterprise is custom, billed annually.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Custom Billed annually Wearables + Lab testing"
+  },
+  {
+    "claim": "Lab testing spanning all 50 states.",
+    "url": "https://www.junction.com/",
+    "quote": "build your own lab testing experience spanning all 50 states"
+  },
+  {
+    "claim": "Nationwide network of labs (NY, NJ, and RI included).",
+    "url": "https://www.junction.com/",
+    "quote": "accessing a nationwide network of labs (NY, NJ, and RI included)"
+  },
+  {
+    "claim": "BAA row exists in the comparison table (plan marks not in text).",
+    "url": "https://www.junction.com/pricing",
+    "quote": "HIPAA Business Associate Agreement"
+  },
+  {
+    "claim": "Sandbox starts from $450 a month.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Starts from $450 /month"
+  },
+  {
+    "claim": "Access 40+ providers and 500+ devices via single SDK.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Access 40+ providers and 500+ devices via single SDK"
+  },
+  {
+    "claim": "Dedicated implementation engineer from the sandbox level.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Every organization gets a dedicated implementation engineer from the sandbox level to help with setup and optimization."
+  },
+  {
+    "claim": "Food-photo nutrition.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Convert any food image into complete nutritional data."
+  },
+  {
+    "claim": "EMR and EHR connections.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Connect to top providers and access clinical data"
+  },
+  {
+    "claim": "Medical IoT devices.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Integrate data from a wide range of medical IoT devices"
+  },
+  {
+    "claim": "Lab report data.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "add lab report data via single API"
+  },
+  {
+    "claim": "Pricing past the start not itemized: usage-driven.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Usage-driven, transparent, and flexible"
+  },
+  {
+    "claim": "Acquisition banner.",
+    "url": "https://www.spikeapi.com/integrations",
+    "quote": "Raintree Systems Acquires Spike Technologies"
+  },
+  {
+    "claim": "Sahha turns the smartphone into a passive sensor.",
+    "url": "https://sahha.ai/",
+    "quote": "Sahha turns the smartphone itself into a passive sensor for sleep, activity, and behavior."
+  },
+  {
+    "claim": "Homepage headline.",
+    "url": "https://sahha.ai/",
+    "quote": "Health data for every user, wearable or not."
+  },
+  {
+    "claim": "Wearable data reconciled and deduplicated with phone data into one stream.",
+    "url": "https://sahha.ai/",
+    "quote": "When users do have a wearable, its data is reconciled and deduplicated with phone data into one stream."
+  },
+  {
+    "claim": "Starter $299 a month billed annually.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "$299 $399 /month, billed annually"
+  },
+  {
+    "claim": "Starter 1,000 users included then $0.40/user.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "1,000 users included, then $0.40/user"
+  },
+  {
+    "claim": "Starter 30-day retention.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "1,000 users included, then $0.40/user 30-day data retention"
+  },
+  {
+    "claim": "Pro $1,499 a month billed annually.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "$1,499 $1,999 /month, billed annually"
+  },
+  {
+    "claim": "Pro 10,000 users then $0.20/user.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "10,000 users included, then $0.20/user"
+  },
+  {
+    "claim": "Cloud integrations in public beta and Sandbox only.",
+    "url": "https://docs.sahha.ai/docs/connect/integrations",
+    "quote": "Integrations are in public beta and are Sandbox only"
+  },
+  {
+    "claim": "Developed and hosted entirely in Europe.",
+    "url": "https://www.thryve.health/",
+    "quote": "Developed and hosted entirely in Europe"
+  },
+  {
+    "claim": "Hosted in Germany.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "All data processed and stored by Thryve is hosted in Germany."
+  },
+  {
+    "claim": "Start Up 499 euros for up to 500 users.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Start Up Starts at 499 € / Per Month Get started with 500 users"
+  },
+  {
+    "claim": "EUR 0.50 per additional user.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "€0.50 per additional user"
+  },
+  {
+    "claim": "Bring your own OAuth client when no shared one exists.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "When no shared oAuth-client is available, you must bring your own oAuth-client"
+  },
+  {
+    "claim": "Core $0 Forever, self-hosted.",
+    "url": "https://openwearables.io/pricing",
+    "quote": "$0 Forever"
+  },
+  {
+    "claim": "Open source, MIT license.",
+    "url": "https://openwearables.io/pricing",
+    "quote": "Open source, MIT license, Discord support"
+  },
+  {
+    "claim": "Runs in your own cloud account.",
+    "url": "https://openwearables.io/pricing",
+    "quote": "Everything runs in your own cloud account."
+  },
+  {
+    "claim": "Pro from $999 a month per deployment, with health scores.",
+    "url": "https://openwearables.io/pricing",
+    "quote": "From $999 a month, per deployment"
+  },
+  {
+    "claim": "You must apply for Garmin Developer Program.",
+    "url": "https://openwearables.io/docs/providers/supported",
+    "quote": "You must apply for Garmin Developer Program"
+  },
+  {
+    "claim": "Polar and Suunto registration too.",
+    "url": "https://openwearables.io/docs/providers/supported",
+    "quote": "You must apply for Suunto Developer Program"
+  },
+  {
+    "claim": "SDK-based Apple Health, Health Connect, Samsung Health.",
+    "url": "https://openwearables.io/docs/providers/supported",
+    "quote": "Via Android, Flutter & React Native SDK"
+  }
+]
