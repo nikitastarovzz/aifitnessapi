@@ -1,0 +1,22 @@
+[
+  {
+    "claim": "MDN documents getUserMedia() as available only in secure contexts.",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia",
+    "quote": "This feature is available only in secure contexts (HTTPS), in some or all supporting browsers"
+  },
+  {
+    "claim": "In an insecure context navigator.mediaDevices is undefined.",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia",
+    "quote": "This can also happen if you try to call getUserMedia() in an insecure context, since navigator.mediaDevices is undefined in an insecure context."
+  },
+  {
+    "claim": "When the user denies permission the promise rejects with NotAllowedError.",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia",
+    "quote": "If the user denies permission, or matching media is not available, then the promise is rejected with NotAllowedError or NotFoundError DOMException respectively."
+  },
+  {
+    "claim": "A page loaded from localhost is a secure context.",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia",
+    "quote": "A secure context is, in short, a page loaded using HTTPS or the file:/// URL scheme, or a page loaded from localhost"
+  }
+]

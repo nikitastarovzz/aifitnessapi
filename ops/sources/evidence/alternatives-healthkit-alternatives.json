@@ -1,0 +1,57 @@
+[
+  {
+    "claim": "Junction is the former Vital: the company announced the new name on March 11, 2025.",
+    "url": "https://www.junction.com/post/series-a",
+    "quote": "Alongside this milestone, we’re unveiling our new brand: Junction"
+  },
+  {
+    "claim": "The Junction post names Vital as the previous brand.",
+    "url": "https://www.junction.com/post/series-a",
+    "quote": "Vital was always about helping healthcare systems operate more effectively. As Junction, our new brand reflects the pivotal role we play"
+  },
+  {
+    "claim": "The Junction post is dated March 11, 2025.",
+    "url": "https://www.junction.com/post/series-a",
+    "quote": "Mar 11, 2025"
+  },
+  {
+    "claim": "Junction offers wearables through a single API.",
+    "url": "https://www.junction.com/",
+    "quote": "Integrate 300+ wearables, streamline lab operations, and build your own lab testing experience spanning all 50 states – with a single API."
+  },
+  {
+    "claim": "Terra normalizes many sources behind one integration, including Garmin, Fitbit, Apple Health, Oura and WHOOP.",
+    "url": "https://tryterra.co/",
+    "quote": "One API call returns standardised data from 500+ providers, including Garmin, Fitbit, Apple Health, Oura, WHOOP and Strava, without writing separate authentication flows or data parsers."
+  },
+  {
+    "claim": "ROOK reads Apple Health and Health Connect through SDKs and cloud providers through APIs.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "ROOK classifies sources into two primary extraction methods: direct API-based integrations for centralized providers (such as Fitbit or Garmin) and SDK-based integrations for mobile devices (such as Apple Health and Health Connect)."
+  },
+  {
+    "claim": "ROOK names Dexcom, Samsung Health, Strava and Whoop as needing your own developer account.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "To integrate with Dexcom , Samsung Health , Strava and Whoop , clients are required to create their own developer accounts with these providers."
+  },
+  {
+    "claim": "ROOK is one API integration.",
+    "url": "https://tryrook.io/",
+    "quote": "One API integration, consistent records, scores and signals."
+  },
+  {
+    "claim": "Garmin's Connect Developer Program starts with an access request Garmin approves.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "After you request access to the Garmin Connect Developer Program and your request has been approved, you will be granted access to the Garmin Developer Portal"
+  },
+  {
+    "claim": "Oura limits an API application to 10 users before it needs Oura's approval.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "API Applications are limited to **10** users before requiring approval from Oura."
+  },
+  {
+    "claim": "WHOOP requires a membership to build on its developer platform.",
+    "url": "https://developer.whoop.com/docs/developing/overview/",
+    "quote": "You must have a WHOOP membership to develop an app on the Developer Platform."
+  }
+]
