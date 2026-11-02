@@ -2,7 +2,7 @@
 path: "/alternatives/terra-alternatives"
 translatedOn: "2026-11-02"
 sourceUpdated: "2026-10-17"
-sourceHash: "78dc0c7a2b900faa"
+sourceHash: "fbf346606c04b2f6"
 metaTitle: "Alternativas à API do Terra 2026: Junction, ROOK, Sahha e +6"
 metaDescription: >-
   Alternativas ao Terra, out. 2026: Junction a US$ 300/mês fixos até 500 usuários, Rook e Sahha desde US$ 399 e US$ 299, Thryve na UE, Open Wearables grátis.
