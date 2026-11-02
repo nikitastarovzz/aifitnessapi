@@ -62,6 +62,16 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
     verifiedOn: "2026-10-31",
   },
   {
+    date: "2026-10-29",
+    sortDate: "2026-10-29",
+    title: "Thryve deprecates its Fitbit data source",
+    summary:
+      "Thryve's data-sources table marked Fitbit \"Deprecating on Oct 29 2026\" when we read it in October. When we read it on November 2, 2026 it listed \"Fitbit (Deprecated)\", with no date, beside Google Health as a separate source with no shared OAuth client. The docs do not say how existing Fitbit connections carry over, so ask Thryve before relying on them.",
+    status: "confirmed",
+    page: { href: "/pricing/thryve-api-pricing", label: "Thryve API pricing" },
+    verifiedOn: "2026-11-02",
+  },
+  {
     date: "2026-10",
     sortDate: "2026-10-27",
     title: "Open Wearables adds a paid Pro plan and ships outbound webhooks",

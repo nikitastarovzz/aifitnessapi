@@ -35,9 +35,9 @@
     "quote": "49 Google Health Web Bulk yes no"
   },
   {
-    "claim": "Migration guide correction: Thryve's docs mark Fitbit as deprecating on October 29, 2026.",
+    "claim": "Migration guide correction: as of November 2, 2026 Thryve's docs list \"Fitbit (Deprecated)\".",
     "url": "https://docs.thryve.health/thryve-data-sources/overview",
-    "quote": "Deprecating on Oct 29 2026"
+    "quote": "Fitbit (Deprecated)"
   },
   {
     "claim": "Report and /apis/terra corrections: Terra's docs say some providers \"require special processes before being able to start using them\" and name WHOOP, Dexcom, Huawei, Strava and Virtuagym.",

@@ -136,23 +136,28 @@
   },
   {
     "claim": "Body: GymVisual sells royalty-free animations, GIFs and illustrations.",
-    "url": "https://www.gymvisual.com/",
+    "url": "https://web.archive.org/web/20261019011654id_/https://gymvisual.com/",
     "quote": "royalty-free workout animations , GIFs , and fitness illustrations designed for apps, websites, YouTube videos, and other digital fitness platforms."
   },
   {
     "claim": "Body/FAQ: permitted in Android or iOS apps.",
-    "url": "https://gymvisual.com/content/9-license",
+    "url": "https://web.archive.org/web/20260729083641id_/https://gymvisual.com/content/9-license",
     "quote": "Android or iOS mobile application (apps);"
   },
   {
     "claim": "Body/FAQ: no resale or redistribution.",
-    "url": "https://gymvisual.com/content/9-license",
+    "url": "https://web.archive.org/web/20260729083641id_/https://gymvisual.com/content/9-license",
     "quote": "to resell or redistribute;"
   },
   {
-    "claim": "Body/FAQ: no AI training.",
-    "url": "https://gymvisual.com/content/9-license",
-    "quote": "to process, modify, or use for training by any Artificial Intelligence (AI) systems."
+    "claim": "Body/table: no posting on AI platforms or generating content with AI tools, as archived on July 29, 2026.",
+    "url": "https://web.archive.org/web/20260729083641id_/https://gymvisual.com/content/9-license",
+    "quote": "to post, distribute or sell on any Artificial Intelligence (AI) platform;"
+  },
+  {
+    "claim": "Body: no using the files to generate content with AI tools, as archived on July 29, 2026.",
+    "url": "https://web.archive.org/web/20260729083641id_/https://gymvisual.com/content/9-license",
+    "quote": "to use as a basis for creating and generating content (images, animations, videos) using Artificial Intelligence (AI) tools and technologies;"
   },
   {
     "claim": "Body/FAQ/table: wger video extensions.",

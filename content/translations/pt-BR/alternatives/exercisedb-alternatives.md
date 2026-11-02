@@ -1,8 +1,8 @@
 ---
 path: "/alternatives/exercisedb-alternatives"
-translatedOn: "2026-10-27"
+translatedOn: "2026-11-02"
 sourceUpdated: "2026-10-22"
-sourceHash: "4108122fd78c2060"
+sourceHash: "3a6fcecb469c9438"
 metaTitle: "Alternativas ao ExerciseDB (2026): 4 opções comparadas"
 metaDescription: >-
   Alternativas ao ExerciseDB: free-exercise-db (domínio público), wger (auto-hospedado, AGPL), API Ninjas (a partir de US$ 39/mês) e bancos de vídeo.
@@ -74,7 +74,7 @@ Uma API hospedada que, segundo o fabricante, cobre "over 3000 exercises" [mais d
 
 ### Um banco de vídeos de exercícios
 
-Se o que você quer do ExerciseDB é mídia de demonstração, comprar arquivos é o outro caminho. O GymVisual, por exemplo, vende "royalty-free workout animations, GIFs, and fitness illustrations" [animações de treino, GIFs e ilustrações de fitness royalty-free], e a licença dele lista apps Android e iOS entre os usos permitidos, enquanto proíbe revenda ou redistribuição e o uso "for training by any Artificial Intelligence (AI) systems" [para treinamento de quaisquer sistemas de inteligência artificial (IA)]. Você paga por arquivo e hospeda por conta própria; não há API. Bancos, formatos e marcas d'água são comparados em [opções de APIs de vídeos de exercícios](/fitness-apis/exercise-video-apis).
+Se o que você quer do ExerciseDB é mídia de demonstração, comprar arquivos é o outro caminho. O GymVisual, por exemplo, vende "royalty-free workout animations, GIFs, and fitness illustrations" [animações de treino, GIFs e ilustrações de fitness royalty-free], e a licença dele lista apps Android e iOS entre os usos permitidos, enquanto proíbe revenda ou redistribuição e, na captura do Internet Archive de 29 de julho de 2026, publicar os arquivos "on any Artificial Intelligence (AI) platform" [em qualquer plataforma de inteligência artificial (IA)] ou usá-los para gerar conteúdo com ferramentas de IA. Você paga por arquivo e hospeda por conta própria; não há API. Bancos, formatos e marcas d'água são comparados em [opções de APIs de vídeos de exercícios](/fitness-apis/exercise-video-apis).
 
 ### Comparação
 
@@ -83,7 +83,7 @@ Se o que você quer do ExerciseDB é mídia de demonstração, comprar arquivos 
 | free-exercise-db | Ser dono dos dados de vez | Unlicense; US$ 0 | 1.746 JPEGs | Arquivos estáticos, sem API, só em inglês |
 | wger | Uma plataforma aberta auto-hospedada | Código AGPL-3.0-or-later, dados Creative Commons; US$ 0 mais hospedagem | Imagens estáticas; vídeo que você fornece | Você roda o app; compartilhamento pela mesma licença em boa parte dos dados |
 | API Ninjas Exercises | Uma consulta hospedada simples | Uso comercial de US$ 39 a US$ 59 por mês | Fotos de início e fim (premium) | Cinco resultados por chamada; armazenar exige o Business |
-| Banco de mídia (ex.: GymVisual) | Arquivos de vídeo sob seu controle | Licença royalty-free, por arquivo | Vídeo, GIFs, ilustrações | Sem API; sem redistribuição nem treino de IA |
+| Banco de mídia (ex.: GymVisual) | Arquivos de vídeo sob seu controle | Licença royalty-free, por arquivo | Vídeo, GIFs, ilustrações | Sem API; sem redistribuição nem uso em IA |
 
 ## Qual escolher?
 

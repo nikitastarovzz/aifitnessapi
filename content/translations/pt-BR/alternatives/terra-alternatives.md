@@ -2,7 +2,7 @@
 path: "/alternatives/terra-alternatives"
 translatedOn: "2026-11-02"
 sourceUpdated: "2026-10-17"
-sourceHash: "fbf346606c04b2f6"
+sourceHash: "d05ba3167c18e1c1"
 metaTitle: "Alternativas à API do Terra 2026: Junction, ROOK, Sahha e +6"
 metaDescription: >-
   Alternativas ao Terra, out. 2026: Junction a US$ 300/mês fixos até 500 usuários, Rook e Sahha desde US$ 399 e US$ 299, Thryve na UE, Open Wearables grátis.
@@ -67,7 +67,7 @@ Exames laboratoriais costumavam estar nessa lista. Para a maioria das equipes, n
 
 **Validic (validic.com).** A opção corporativa de monitoramento remoto, agora da ChartSpan, com "700+ devices" [mais de 700 dispositivos] e programas que escrevem no prontuário eletrônico (EHR); a Inform API dele tem um plano Developer gratuito para 5 usuários. *Contrapartida:* o uso em produção exige um contrato Enterprise negociado, e a lista de dispositivos dele mostra alguns fornecedores fechados a novos pedidos.
 
-**Open Wearables (openwearables.io).** Licença MIT e auto-hospedado, da Momentum: o Core é "$0 Forever" [US$ 0 para sempre], e um plano Pro com pontuações de saúde começa em "From $999 a month, per deployment" [a partir de US$ 999 por mês, por implantação] (27 de outubro de 2026). *Contrapartida:* você mesmo se cadastra em cada fornecedor ("You must apply for Garmin Developer Program" [você precisa se candidatar ao Garmin Developer Program]), e o README o chama de "an early-stage project" [um projeto em estágio inicial]. Veja [Terra vs Open Wearables](/compare/terra-vs-open-wearables).
+**Open Wearables (openwearables.io).** Licença MIT e auto-hospedado, da Momentum: o Core é "$0 Forever" [US$ 0 para sempre], e um plano Pro com pontuações de saúde começa em "From $999 a month, per deployment" [a partir de US$ 999 por mês, por implantação] (27 de outubro de 2026). *Contrapartida:* você mesmo se cadastra em cada fornecedor ("You must apply for Garmin Developer Program" [você precisa se candidatar ao Garmin Developer Program]), e ele ainda está antes da versão 1.0 (versão 0.11.0 quando o lemos em 2 de novembro de 2026). Veja [Terra vs Open Wearables](/compare/terra-vs-open-wearables).
 
 **Integrações diretas por fornecedor** (Garmin, Oura, WHOOP, Strava, Polar, a Google Health API). Melhor para ser dono do pipeline e não pagar taxa de agregador. *Contrapartida:* você constrói e mantém cada conector, fluxo OAuth e renovação de token por conta própria, e passa pela aprovação de cada fornecedor.
 

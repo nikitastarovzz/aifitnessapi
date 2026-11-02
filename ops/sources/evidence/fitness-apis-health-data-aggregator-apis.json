@@ -291,8 +291,8 @@
   },
   {
     "claim": "Open Wearables: pre-1.0 APIs.",
-    "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
-    "quote": "This is an early-stage project under active development. APIs may change before version 1.0."
+    "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/backend/pyproject.toml",
+    "quote": "version = \"0.11.0\""
   },
   {
     "claim": "Terra's FAQ describes one API that \"returns standardised data from 500+ providers, including Garmin, Fitbit, Apple Health, Oura, WHOOP and Strava\".",
@@ -720,9 +720,9 @@
     "quote": "with BAA available for Enterprise customers."
   },
   {
-    "claim": "An \"Open-source platform that unifies wearable device data from multiple providers behind a single API\".",
+    "claim": "An \"open-source platform that connects wearable devices and health apps, standardizes their data into one schema, and serves it through a single REST API\".",
     "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
-    "quote": "Open-source platform that unifies wearable device data from multiple providers behind a single API and makes it available to AI."
+    "quote": "Open Wearables is an open-source platform that connects wearable devices and health apps, standardizes their data into one schema, and serves it through a single REST API."
   },
   {
     "claim": "MIT-licensed software from Momentum.",
@@ -732,7 +732,7 @@
   {
     "claim": "\"each deployment serves a single organization\".",
     "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
-    "quote": "The platform is designed for self-hosting, meaning each deployment serves a single organization."
+    "quote": "Each deployment serves a single organization, with no multi-tenancy."
   },
   {
     "claim": "The self-hosted Core is \"$0 Forever\".",
@@ -765,9 +765,14 @@
     "quote": "You must register for the Polar API program"
   },
   {
-    "claim": "\"an early-stage project under active development\" whose APIs \"may change before version 1.0\".",
+    "claim": "It is still pre-1.0: its backend declared version 0.11.0 when we read it on November 2, 2026.",
+    "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/backend/pyproject.toml",
+    "quote": "version = \"0.11.0\""
+  },
+  {
+    "claim": "Its README tells you to read the release notes before upgrading.",
     "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
-    "quote": "This is an early-stage project under active development. APIs may change before version 1.0."
+    "quote": "read the [release notes](https://github.com/the-momentum/open-wearables/releases) before upgrading"
   },
   {
     "claim": "Life-insurance underwriting product.",
@@ -907,7 +912,7 @@
   {
     "claim": "Open Wearables ships mobile SDKs for on-device stores.",
     "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
-    "quote": "Native SDKs for push-based health data sync from on-device health stores"
+    "quote": "Apple Health, Samsung Health and Health Connect keep data on the phone, with no cloud API. The SDKs read it on the device and upload it to your deployment."
   },
   {
     "claim": "Terra's homepage lists home kits, mobile phlebotomy and lab walk-ins.",
