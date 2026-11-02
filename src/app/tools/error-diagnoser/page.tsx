@@ -115,6 +115,7 @@ const FIX_KEYWORDS: Record<string, string[]> = {
     "access token expired",
   ],
   "fitbit-error-code-401": ["fitbit", "expired_token", "errortype"],
+  "fitbit-api-410-gone": ["410", "410 gone", "http 410"],
   "strava-api-401-unauthorized": ["strava", "authorization error", "access_token"],
   "oauth-redirect-uri-mismatch": [
     "redirect_uri",

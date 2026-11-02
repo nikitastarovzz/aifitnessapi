@@ -69,7 +69,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Access & migration",
     blurb: "Can't get approved, or the API is going away.",
-    slugs: ["garmin-api-approval", "garmin-api-personal-use", "google-fit-api-deprecated"],
+    slugs: ["fitbit-api-410-gone", "garmin-api-approval", "garmin-api-personal-use", "google-fit-api-deprecated"],
   },
 ];
 
@@ -88,6 +88,7 @@ function groupsWithUngrouped(released: { slug: string }[]): typeof GROUPS {
  *  Console supports a volume claim for Fitbit 401 only. */
 const COMMON_FIXES: { label: string; slug: string }[] = [
   { label: "Fitbit error code 401", slug: "fitbit-error-code-401" },
+  { label: "Fitbit API 410 Gone", slug: "fitbit-api-410-gone" },
   { label: "Garmin API access approval", slug: "garmin-api-approval" },
   { label: "Health Connect returns no data", slug: "health-connect-no-data" },
   { label: "Refresh token invalid_grant", slug: "refresh-token-not-working" },

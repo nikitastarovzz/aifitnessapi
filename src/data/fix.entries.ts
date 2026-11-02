@@ -2602,5 +2602,112 @@ export const fixEntries: ClusterEntry[] =
         "note": "Jetpack maps unmapped platform codes, including rate limiting, to IllegalStateException(this)"
       }
     ]
+  },
+  {
+    "slug": "fitbit-api-410-gone",
+    "primaryQuery": "fitbit api 410 gone",
+    "h1": "Fitbit API Returns 410 Gone: What Changed and the Fix",
+    "metaTitle": "Fitbit API 410 Gone: The Turn-Off and the Fix",
+    "metaDescription": "A 410 Gone from a Fitbit Web API or Fitbit OAuth endpoint is the November 2, 2026 turn-off. Retrying won't help; move users to the Google Health API.",
+    "updated": "2026-11-02",
+    "answer": "An HTTP 410 Gone from a Fitbit Web API or Fitbit OAuth endpoint is the turn-off Google scheduled, not a fault in your request. Google's Google Health API page sets November 2, 2026 as the date the legacy Fitbit Web API and the Fitbit OAuth endpoints are turned off, and says requests to them will fail and return an HTTP 410 Gone status code, so retries and token refreshes will not bring the connection back. The fix is to move each user to the Google Health API with Google OAuth 2.0: Google's migration guide says Fitbit tokens cannot be transferred, so every user re-consents, and data from the gap can be backfilled once they reconnect.",
+    "steps": [
+      {
+        "name": "Confirm the 410 is the turn-off",
+        "text": "Check the host and the date. Google's Google Health API page says that from November 2, 2026, requests to the Fitbit Web API and the Fitbit OAuth endpoints fail with HTTP 410 Gone. A 410 from api.fitbit.com, including the oauth2/token endpoint, on or after that date is the turn-off, not a token or request problem."
+      },
+      {
+        "name": "Stop retrying and flag the user",
+        "text": "Treat a 410 from a Fitbit endpoint as permanent for that connection. Stop the sync job, keep the history you already stored, and mark the user as needing to reconnect."
+      },
+      {
+        "name": "Register for the Google Health API",
+        "text": "Set up Google OAuth 2.0 credentials for the Google Health API. Google says every Google Health API scope is Restricted and needs a privacy and security review, so start the review early."
+      },
+      {
+        "name": "Run the re-consent flow",
+        "text": "Send each user through Google OAuth. Google's migration guide says existing Fitbit access and refresh tokens cannot be transferred, so there is no token exchange to fall back on."
+      },
+      {
+        "name": "Check the account is linked",
+        "text": "After the code exchange, call users.getIdentity before marking the account connected. If it returns HTTP 400 FAILED_PRECONDITION with reason ACCOUNT_NOT_LINKED, prompt the user to link Google Health to their Google Account in the Google Health app, using the redirect_uri in the error metadata."
+      },
+      {
+        "name": "Map identities and backfill the gap",
+        "text": "Store the legacyUserId to healthUserId mapping that users.getIdentity returns, then backfill from the last day you stored. Google says the data stays available while the user keeps syncing their device to the Google Health app."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Why is the Fitbit API returning 410 Gone?",
+        "a": "Because Google set November 2, 2026 as the turn-off date for the legacy Fitbit Web API and the Fitbit OAuth endpoints. Google's Google Health API page says that requests to these endpoints will fail and return an HTTP 410 Gone status code. So a 410 from a Fitbit endpoint on or after that date is the turn-off, not a malformed request, an expired token or a rate limit."
+      },
+      {
+        "q": "Will a token refresh fix a 410 from the Fitbit API?",
+        "a": "No. Google's turn-off covers the Fitbit OAuth endpoints as well as the Web API, so the refresh call to the Fitbit token endpoint is turned off too. Google's migration guide adds that existing Fitbit access and refresh tokens cannot be transferred to the Google Health API. The only way back to the user's data is a fresh Google OAuth consent."
+      },
+      {
+        "q": "Does a 410 from the Fitbit token endpoint mean my client secret is wrong?",
+        "a": "No. A wrong client secret or a revoked grant shows up as an OAuth error such as invalid_client or invalid_grant, not as 410. Google's page lists the Fitbit OAuth endpoints in the November 2, 2026 turn-off and gives 410 Gone as the status those requests return, so stop debugging the refresh and move the user to Google OAuth."
+      },
+      {
+        "q": "Do Fitbit users lose their data if they reconnect after the turn-off?",
+        "a": "Not according to Google. Its migration guide says that a user who does not authenticate to the Google Health API before the legacy endpoints are turned down keeps their data as long as they continue syncing their device to the Google Health app, though your app may have a gap. Once they re-authenticate, Google says you can use the Google Health API to backfill their historical data."
+      },
+      {
+        "q": "Has Google confirmed the Fitbit Web API is switched off?",
+        "a": "Not in so many words. When we read Google's Google Health API page on November 2, 2026, it still said the Fitbit Web API and Fitbit OAuth endpoints will be turned off on November 2, 2026, and that requests will fail with HTTP 410 Gone. It sets the date and the status code but does not yet describe the turn-off as complete. A 410 from a Fitbit endpoint is the signal to act on."
+      }
+    ],
+    "related": [
+      {
+        "href": "/fitbit-api-shutdown",
+        "label": "Fitbit API shutdown: what's confirmed"
+      },
+      {
+        "href": "/migrate/fitbit-web-api-to-google-health",
+        "label": "Migrate the Fitbit Web API to Google Health"
+      },
+      {
+        "href": "/migrate/keep-users-connected-during-migration",
+        "label": "Keep users connected during a migration"
+      },
+      {
+        "href": "/google-health-api",
+        "label": "Google Health API reference"
+      },
+      {
+        "href": "/google-health-api/errors",
+        "label": "Google Health API errors"
+      },
+      {
+        "href": "/google-health-api/access-and-limits",
+        "label": "Google Health API access and limits"
+      },
+      {
+        "href": "/integrate/fitbit-api",
+        "label": "Fitbit API integration guide"
+      },
+      {
+        "href": "/graveyard",
+        "label": "The Fitness API Graveyard"
+      }
+    ],
+    "cta": {
+      "pitch": "Google set November 2, 2026 as the Fitbit Web API turn-off date. We read Google's pages for changes to the timeline, the re-consent rules and the Google Health API itself. Subscribe and we will flag what changes."
+    },
+    "body": "Your Fitbit sync worked last week. Now every request your backend sends to a Fitbit endpoint comes back `410 Gone`, including the token refresh that would normally fix a failing call:\n\n```bash\ncurl -i \"https://api.fitbit.com/1/user/-/activities/date/2026-11-02.json\" \\\n  -H \"Authorization: Bearer $ACCESS_TOKEN\"\n```\n\nNothing is wrong with the request. Google set November 2, 2026 as the date the legacy Fitbit Web API is turned off, and a 410 is the status Google says those requests return after it.\n\n## What Google says happens on November 2, 2026\n\nGoogle's [Google Health API page](https://developers.google.com/health/about) (last updated October 23, 2026; we read it on November 2, 2026) gives the timeline in two steps. September 30, 2026 was end of support: \"Support for the Fitbit Web API ends. The API will continue to operate, but Google will no longer fix bugs or provide API support.\" Then the turn-off:\n\n> November 2, 2026 (API turn-off): The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users. Requests to these endpoints will fail and return an HTTP 410 Gone status code.\n\nTwo details in that passage decide how you debug it:\n\n- **The OAuth endpoints are included.** It is not only the data reads under `api.fitbit.com/1/user/...`. The token endpoint your refresh job calls, `api.fitbit.com/oauth2/token`, is a Fitbit OAuth endpoint, so a 410 there is the same turn-off. It does not mean a bad client secret, a rotated refresh token or a revoked grant.\n- **Google names the status code.** On or after November 2, 2026, a 410 from these endpoints is the turn-off Google described. It is not a malformed request, an expired token or a rate limit, so the fixes on [Fitbit error code 401](/fix/fitbit-error-code-401) and [the Fitbit 429 page](/fix/fitbit-api-429-rate-limit) do not apply.\n\nWhen we read it on November 2, 2026, Google's page still described the turn-off in the future tense (\"will be turned off\"). It sets the date and the status code; it does not yet say the switch-off has been carried out. The same notice runs as a banner on Google's [migration guide](https://developers.google.com/health/migration). Our [Fitbit API shutdown page](/fitbit-api-shutdown) grades every date in the story as confirmed or reported.\n\n## Is it the turn-off? A quick triage\n\n| What you see | What it means | What to do |\n| --- | --- | --- |\n| `410 Gone` from a Fitbit Web API data endpoint, on or after November 2, 2026 | The turn-off Google scheduled | Stop retrying; move the user to the Google Health API |\n| `410 Gone` from `api.fitbit.com/oauth2/token` during a refresh | The same turn-off: Google's page includes the Fitbit OAuth endpoints | Do not debug the refresh; mark the user for Google OAuth re-consent |\n| `401` with `errorType` `expired_token` or `invalid_token` | A credential problem on an endpoint that still answers | [Fitbit error code 401](/fix/fitbit-error-code-401) |\n| `429 Too Many Requests` | A rate limit on an endpoint that still answers | [Fitbit 429 rate limit](/fix/fitbit-api-429-rate-limit) |\n| `400` `FAILED_PRECONDITION` with reason `ACCOUNT_NOT_LINKED` from `health.googleapis.com` | You are on the new API, but the user has not linked Google Health to their Google Account | Step 4 below, and [the Google Health API errors page](/google-health-api/errors) |\n\n## The fix: move each user to the Google Health API\n\nThere is no setting that brings the legacy path back. Google's page says: \"All current integrations utilizing the Fitbit Web API and Fitbit Authorization must migrate their applications and users to the Google Health API and Google OAuth 2.0 as soon as possible to ensure uninterrupted data continuity.\" The full engineering, from the new console to endpoint mapping, is in [the Fitbit Web API to Google Health API migration playbook](/migrate/fitbit-web-api-to-google-health). In the order that matters once the 410s have started:\n\n### 1. Stop retrying, and mark the user\n\nIf your sync worker retries 4xx responses, a 410 from a Fitbit endpoint will loop. Our recommendation: treat it as permanent for that connection. Stop the job, keep the history you already stored, and set a flag such as `needs_reconnect` that your app can show the user. Google's guide suggests an `oauth_type` flag (`fitbit` or `google`) per user; this is the moment the `fitbit` ones need attention.\n\n### 2. Get onto the Google Health API and Google OAuth 2.0\n\nIf you have not registered yet, start now, because access takes a review. Google's page says: \"All Google Health API scopes are categorized as Restricted, necessitating a privacy and security review for access.\" The default quotas and the cap on unverified apps are tabled on [our Google Health API access and limits page](/google-health-api/access-and-limits), and the data types and scopes that replace the Fitbit ones are in [the Google Health API reference](/google-health-api).\n\n### 3. Ask every user to re-consent\n\nGoogle's migration guide is explicit that nothing carries over: \"Because of the switch to a new OAuth library, existing access and refresh tokens cannot be transferred, requiring users to re-consent to your updated integration.\" There is no exchange that turns a stored Fitbit refresh token into a Google one, so each user has to go through Google OAuth once. [Keeping users connected during a migration](/migrate/keep-users-connected-during-migration) covers the reconnect campaign: prompts, reminders, and measuring who has moved.\n\n### 4. Check the account is linked before you call it connected\n\nGoogle OAuth succeeding is not the end of it. Google's migration guide says: \"A user must sign in to the Google Health mobile app to link Google Health to their Google Account before your app can sync data through the Google Health API.\" If they have not, it says, \"calling users.getIdentity or a data endpoint returns an HTTP 400 Bad Request error with status FAILED_PRECONDITION and reason ACCOUNT_NOT_LINKED\". Google's advice is to exchange the authorization code, then immediately call `users.getIdentity` (`GET https://health.googleapis.com/v4/users/me/identity`) before marking the account as linked, and to show a prompt with a button that opens the `redirect_uri` from the error metadata (`https://fitbit.google.com/auth/signup`).\n\nThe same guidance tells you to keep a migrating user's Fitbit connection active and not revoke their legacy tokens in this case. That was written for the period when the legacy connection still worked. Once it returns 410, the part that still applies is the prompt: tell the user what to link, then let them retry the connection.\n\n### 5. Map the old user to the new one\n\nGoogle's guide says the legacy API identifies accounts with \"a 6-character alphanumeric string (such as A1B2C3), whereas the Google Health API utilizes a healthUserId formatted as a string of up to 63 digits & characters\". `users.getIdentity` returns both `legacyUserId` and `healthUserId`, so store the mapping and attach the new ID to the history you already hold.\n\n### 6. Backfill the gap\n\nA user who reconnects after the turn-off has not lost their data, according to Google: \"If a user does not authenticate to the new Google Health API endpoints before the legacy endpoints are turned down, their data will still be available as long as they continue syncing their device to the Google Health app. However, you may have a gap in data for this user.\" Once they re-authenticate, the guide says, \"you can use our Google Health API to backfill their historical data\", pointing at its [query historical data](https://developers.google.com/health/endpoints#query-historical-data) guidance. Run the backfill from the last day you stored, and keep it within the quotas on [the access and limits page](/google-health-api/access-and-limits).\n\n### 7. Clean up the legacy tokens\n\nGoogle's guide has you revoke a user's legacy Fitbit tokens when they complete the Google Health flow, and its sample code posts them to `https://api.fitbit.com/oauth2/revoke`. That is a Fitbit OAuth endpoint too. Our reading of Google's page is that after the turn-off the revoke call can return 410 like everything else, so treat a 410 there as nothing left to revoke and delete the stored Fitbit tokens either way.\n\n## What to tell users\n\nGoogle's guide asks for a recovery path for people who missed the deadline: \"If a user has not re-consented after the hard cutoff, provide a graceful recovery path. Provide a help message in a banner, card or tooltip that helps them understand why their data is missing, and how to fix it.\" It also suggests leading with what the user gets, not with the API change. Its example of what to say: \"To continue seeing detailed workouts with heart rate data, re-consent to the Google Health APIs.\"\n\n## Where this fits\n\nThe [Fitbit API integration guide](/integrate/fitbit-api) still documents the legacy OAuth flow for reference. The Fitbit Web API has a stone in [the Fitness API Graveyard](/graveyard), next to other fitness APIs that their vendors retired. If you are reconsidering the provider entirely, [Fitbit API alternatives](/alternatives/fitbit-api-alternatives) weighs the Google Health API against aggregators.\n\nEvery quotation on this page comes from Google's [Google Health API page](https://developers.google.com/health/about) (last updated October 23, 2026) and its [Fitbit Web API migration guide](https://developers.google.com/health/migration) (last updated September 28, 2026), both read on November 2, 2026. Check them for changes before you schedule work.",
+    "sources": [
+      {
+        "url": "https://developers.google.com/health/about",
+        "checked": "2026-11-02",
+        "note": "page last updated 2026-10-23: end of support 2026-09-30; turn-off 2026-11-02 of the Fitbit Web API and Fitbit OAuth endpoints; requests fail with HTTP 410 Gone; all integrations must migrate; Restricted scopes need a privacy and security review"
+      },
+      {
+        "url": "https://developers.google.com/health/migration",
+        "checked": "2026-11-02",
+        "note": "page last updated 2026-09-28: tokens cannot be transferred, users re-consent; Google Health linking and ACCOUNT_NOT_LINKED; users.getIdentity legacyUserId to healthUserId; backfill after re-authentication; revoke legacy tokens; recovery path after the hard cutoff"
+      }
+    ]
   }
 ];

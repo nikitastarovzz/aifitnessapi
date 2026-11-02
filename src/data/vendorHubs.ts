@@ -114,6 +114,7 @@ export const VENDOR_HUBS: VendorHub[] = [
       "/compare/fitbit-vs-apple-watch",
       "/fix/fitbit-api-429-rate-limit",
       "/fix/fitbit-error-code-401",
+      "/fix/fitbit-api-410-gone",
       "/libraries/python-fitbit",
       "/fitbit-api-shutdown",
       "/migrate/fitbit-web-api-to-google-health",

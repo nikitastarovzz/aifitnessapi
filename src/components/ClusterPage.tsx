@@ -92,6 +92,7 @@ const TOOL_FOR_PATH: Record<string, keyof typeof TOOLS> = {
   // Non-HealthKit errors only where the diagnoser's authored keyword map
   // (FIX_KEYWORDS in app/tools/error-diagnoser/page.tsx) routes to the page.
   "/fix/fitbit-error-code-401": "diagnoser",
+  "/fix/fitbit-api-410-gone": "diagnoser",
   "/fix/fitbit-api-429-rate-limit": "diagnoser",
   "/fix/garmin-api-approval": "diagnoser",
   "/integrate/healthkit": "permissions",
