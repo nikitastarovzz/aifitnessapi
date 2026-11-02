@@ -80,7 +80,11 @@ export const GRAVEYARD: GraveEntry[] = [
     kind: "API",
     status: "dying",
     end: "2026-11-02",
-    endLabel: "Turned off",
+    // Google's heading is "November 2, 2026 (API turn-off)" and, read again on
+    // 2026-11-02, still words it as future ("will be turned off"). So the stone
+    // names the scheduled event, not a completed one, and stays dying until a
+    // Google page says the endpoints are off.
+    endLabel: "Turn-off",
     launched: null,
     replacedBy: [{ label: "Google Health API", href: "/google-health-api" }],
     summary:
