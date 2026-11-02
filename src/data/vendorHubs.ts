@@ -318,6 +318,7 @@ export const VENDOR_HUBS: VendorHub[] = [
       "/pricing/health-data-aggregator-pricing",
       "/compare/terra-vs-rook",
       "/compare/rook-vs-spike",
+      "/alternatives/rook-alternatives",
     ],
   },
   {
