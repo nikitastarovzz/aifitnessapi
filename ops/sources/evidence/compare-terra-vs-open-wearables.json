@@ -5,14 +5,14 @@
     "quote": "MIT License Copyright (c) 2025 Momentum"
   },
   {
-    "claim": "Open Wearables: \"Open-source platform that unifies wearable device data from multiple providers behind a single API\".",
+    "claim": "Open Wearables is MIT-licensed software you host yourself.",
     "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
-    "quote": "Open-source platform that unifies wearable device data from multiple providers behind a single API and makes it available to AI."
+    "quote": "Open-source, self-hosted wearable data layer: one API and one schema for the devices your users already wear."
   },
   {
     "claim": "\"each deployment serves a single organization\".",
     "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
-    "quote": "The platform is designed for self-hosting, meaning each deployment serves a single organization."
+    "quote": "Each deployment serves a single organization, with no multi-tenancy."
   },
   {
     "claim": "Terra entry: $399 a month billed annually, or $499 monthly, with 100,000 Unified API credits.",
@@ -30,9 +30,9 @@
     "quote": "The Unified API supports over 150+ Data Sources"
   },
   {
-    "claim": "Open Wearables cloud providers: Garmin, Oura, Whoop, Suunto, Polar, Ultrahuman, Strava, Fitbit, Withings and Google Health.",
+    "claim": "Open Wearables cloud providers: Garmin, Oura, Whoop, Polar, Suunto, Strava, Withings, Ultrahuman, SensorBio and Google Health, with Fitbit marked deprecated.",
     "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
-    "quote": "Garmin, Oura, Whoop, Suunto, Polar, Ultrahuman, Strava, Fitbit, Withings, Google Health"
+    "quote": "[Garmin](https://openwearables.io/docs/providers/garmin-api-integration) · [Oura](https://openwearables.io/docs/providers/oura-api-integration) · [Whoop](https://openwearables.io/docs/providers/whoop-api-integration) · [Polar](https://openwearables.io/docs/providers/polar-api-integration) · [Suunto](https://openwearables.io/docs/providers/suunto-api-integration) · [Strava](https://openwearables.io/docs/providers/strava-api-integration) · [Withings](https://openwearables.io/docs/providers/withings-api-integration) · [Ultrahuman](https://openwearables.io/docs/providers/ultrahuman-api-integration) · [SensorBio](https://openwearables.io/docs/providers/sensorbio-api-integration) · [Google Health](https://openwearables.io/docs/providers/google-api-integration) · [Fitbit](https://openwearables.io/docs/providers/fitbit-api-integration) (deprecated)"
   },
   {
     "claim": "Terra: a mobile SDK for Apple Health, Samsung Health and Health Connect.",
@@ -45,9 +45,9 @@
     "quote": "Apple Health, Samsung Health, Google Health Connect"
   },
   {
-    "claim": "Open Wearables: native SDKs for on-device stores.",
+    "claim": "Open Wearables: native SDKs for Apple Health, Samsung Health and Health Connect.",
     "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
-    "quote": "Native SDKs for push-based health data sync from on-device health stores"
+    "quote": "Apple Health, Samsung Health and Health Connect keep data on the phone, with no cloud API. The SDKs read it on the device and upload it to your deployment."
   },
   {
     "claim": "Terra-managed keys for many sources.",
@@ -95,9 +95,14 @@
     "quote": "Dedicated instance to localised area"
   },
   {
-    "claim": "Open Wearables: \"an early-stage project under active development\"; APIs \"may change before version 1.0\".",
+    "claim": "Open Wearables maturity: pre-1.0, version 0.11.0 as of November 2, 2026.",
+    "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/backend/pyproject.toml",
+    "quote": "version = \"0.11.0\""
+  },
+  {
+    "claim": "The README says to read the release notes before upgrading.",
     "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
-    "quote": "This is an early-stage project under active development. APIs may change before version 1.0."
+    "quote": "read the [release notes](https://github.com/the-momentum/open-wearables/releases) before upgrading"
   },
   {
     "claim": "\"Subscriptions start from $399 per month billed annually, or $499 per month billed monthly.\"",
@@ -160,14 +165,14 @@
     "quote": "Two things consume Unified API credits: active authentications and events. An active authentication is one connected data source for one end user, and costs 200 Unified API credits per month. Events are the payloads Terra sends you, and the first 400 per active authentication each month are free."
   },
   {
-    "claim": "\"a small anonymous usage ping once a day (plus one on startup)\".",
+    "claim": "\"a small anonymous usage ping once a day, plus one on startup\".",
     "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
-    "quote": "Open Wearables sends a small anonymous usage ping once a day (plus one on startup)"
+    "quote": "Open Wearables sends a small anonymous usage ping once a day, plus one on startup"
   },
   {
-    "claim": "\"contains only aggregate, bucketed counts and configuration flags, never health data, user data or credentials\".",
+    "claim": "The ping carries a random instance identifier, version numbers and \"aggregate, bucketed counts and configuration flags\" and \"never contains health data, user data or credentials\".",
     "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
-    "quote": "It contains only aggregate, bucketed counts and configuration flags, never health data, user data or credentials."
+    "quote": "It contains a random instance identifier generated locally on first run, the Open Wearables, Python and OS versions, and aggregate, bucketed counts and configuration flags. It never contains health data, user data or credentials."
   },
   {
     "claim": "The README documents how to turn it off.",
@@ -185,9 +190,9 @@
     "quote": "Yes, through the AI Interface, an MCP server your agent connects to."
   },
   {
-    "claim": "\"In production, pin the official images to a specific release version\".",
+    "claim": "\"In production, run the official images pinned to a release tag\", not a nightly build or a build of main.",
     "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
-    "quote": "In production, pin the official images to a specific release version"
+    "quote": "In production, run the official images pinned to a release tag, not `nightly` or a build of `main`"
   },
   {
     "claim": "Terra \"is HIPAA compliant, GDPR compliant, and SOC 2 Type II certified\".",

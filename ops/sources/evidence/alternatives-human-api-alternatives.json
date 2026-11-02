@@ -162,7 +162,7 @@
   {
     "claim": "Open Wearables: software you host yourself.",
     "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/README.md",
-    "quote": "The platform is designed for self-hosting, meaning each deployment serves a single organization."
+    "quote": "Open-source, self-hosted wearable data layer: one API and one schema for the devices your users already wear."
   },
   {
     "claim": "Metriport: \"Healthcare data infrastructure for next generation care delivery\".",

@@ -110,7 +110,7 @@ export const CORRECTIONS: Correction[] = [
     page: { href: "/migrate/fitbit-web-api-to-google-health", label: "Migrating from the Fitbit Web API to the Google Health API" },
     was: "The guide named \"Thryve/Sahha\" as one vendor, in its section on aggregators as insulation and in an FAQ answer.",
     now: "Thryve and Sahha are separate companies. Thryve stays on the list of vendors reported to be preparing for the move, and Sahha has its own sentence: its integrations page says Fitbit data on Android reaches its SDK through Health Connect.",
-    how: "Found on 2026-10-17 while writing the aggregator pages from both vendors' own sites, fetched by source-snapshot runs. Thryve's docs list Google Health as a data source and mark Fitbit as deprecating on October 29, 2026, which is why it stays on the list.",
+    how: "Found on 2026-10-17 while writing the aggregator pages from both vendors' own sites, fetched by source-snapshot runs. Thryve's docs list Google Health as a data source and marked Fitbit as deprecating on October 29, 2026 (as of November 2, 2026 they list \"Fitbit (Deprecated)\"), which is why it stays on the list.",
   },
   {
     date: "2026-10-18",

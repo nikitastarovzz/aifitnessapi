@@ -95,9 +95,9 @@
     "quote": "For Wodify Customers: If you use the Wodify Workflows feature, you already have an API key set up and ready to use! You can find it in Wodify Core via Digital Presence > Web Integrations > API Keys. Click the 'EDIT' button and locate the API key with the name 'Wodify API.'"
   },
   {
-    "claim": "The API reference tells you to request a key through the Web Integrations screen if you don't have one.",
+    "claim": "As of November 2, 2026 the API reference tells you to request a key through the Automations → Integrations page if you don't have one.",
     "url": "https://docs.wodify.com/reference/get_dropin",
-    "quote": "A valid API key. If you don't have one, please request one through the Web Integrations screen."
+    "quote": "A valid API key. If you don't have one, please request one through the Automations → Integrations page."
   },
   {
     "claim": "Partners retrieve their key from the Wodify Developer Portal, and Wodify support helps with access to the portal.",
