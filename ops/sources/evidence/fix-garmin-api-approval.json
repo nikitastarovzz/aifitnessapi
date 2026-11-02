@@ -55,14 +55,24 @@
     "quote": "It is not intended for commercial applications serving multiple end users."
   },
   {
-    "claim": "Step 1 / step 2: the overview invites you to create an app with Starter Access and request Enterprise Access through the Developer Portal.",
-    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "claim": "Step 2: the overview's Business section (served in the page's script bundle since the overview HTML now renders the Personal plan) says you create an app with Starter Access and request Enterprise Access through the Developer Portal.",
+    "url": "https://developer.garmin.com/bacb893da51e7512e517ca68243a172efd33dfce-d7c4ee3c7fafda5c76df.js",
     "quote": "Apply for the Garmin Connect Developer Program and create an app with Starter Access. As your business and integration needs evolve, you can request Enterprise Access through Garmin Developer Portal."
   },
   {
-    "claim": "Step 2: Starter is push-only, without historical data and with limited user capacity.",
-    "url": "https://developer.garmin.com/gc-developer-program/overview/",
-    "quote": "Push only Historical Data Not included User Capacity Limited"
+    "claim": "Step 2: Starter is push-only (the Starter plan's Delivery cell in the overview bundle).",
+    "url": "https://developer.garmin.com/bacb893da51e7512e517ca68243a172efd33dfce-d7c4ee3c7fafda5c76df.js",
+    "quote": "s.a.createElement(\"p\",null,\"Push only\")"
+  },
+  {
+    "claim": "Step 2: Starter has no historical data.",
+    "url": "https://developer.garmin.com/bacb893da51e7512e517ca68243a172efd33dfce-d7c4ee3c7fafda5c76df.js",
+    "quote": "\"Historical Data\"),s.a.createElement(\"p\",null,\"Not included\")"
+  },
+  {
+    "claim": "Step 2: Starter has limited user capacity.",
+    "url": "https://developer.garmin.com/bacb893da51e7512e517ca68243a172efd33dfce-d7c4ee3c7fafda5c76df.js",
+    "quote": "\"User Capacity\"),s.a.createElement(\"p\",null,\"Limited\")"
   },
   {
     "claim": "Body / FAQ: the October 17, 2026 FAQ (Wayback Machine capture) carried the Stay tuned banner.",
@@ -83,5 +93,85 @@
     "claim": "Reported pause / FAQ: on October 17 the FAQ still invited requests.",
     "url": "https://web.archive.org/web/20261017191828id_/https://developer.garmin.com/gc-developer-program/program-faq",
     "quote": "If you are interested, please request the Garmin Connect Developer Program and we'll quickly review your application."
+  },
+  {
+    "claim": "Step 1 / reported pause / FAQ: on November 2, 2026 the program FAQ still invited requests.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "If you are interested, please request access to the Garmin Connect Developer Program."
+  },
+  {
+    "claim": "Reported pause / FAQ: Terra's homepage says Garmin has paused new applications.",
+    "url": "https://tryterra.co/",
+    "quote": "Garmin has paused new applications to its Connect Developer Program while it completes updates, and has not announced a reopening date"
+  },
+  {
+    "claim": "Step 3 / FAQ: Terra's homepage says Garmin data flows through its long-standing partner integration.",
+    "url": "https://tryterra.co/",
+    "quote": "Terra has maintained a Garmin integration for years as an established partner, so Garmin data flows through Terra today."
+  },
+  {
+    "claim": "Step 3 / FAQ: Terra's supported-integrations table marks Garmin's integration credentials as Required and links Garmin's developer portal.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "Garmin GARMIN Event-Driven Required https://developerportal.garmin.com"
+  },
+  {
+    "claim": "Step 3 / FAQ: ROOK lists Garmin as an API integration.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "Garmin API Body Physical Sleep"
+  },
+  {
+    "claim": "Step 3 / FAQ: ROOK names Dexcom, Samsung Health, Strava and Whoop as needing your own developer account.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "To integrate with Dexcom , Samsung Health , Strava and Whoop , clients are required to create their own developer accounts with these providers."
+  },
+  {
+    "claim": "Step 4: Strava's API Policy is effective June 1, 2026.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "Effective Date: June 1, 2026"
+  },
+  {
+    "claim": "Step 4: data obtained through the Strava API may include Garmin-sourced data, which must carry Garmin attribution.",
+    "url": "https://www.strava.com/legal/api_policy",
+    "quote": "If your Developer Application displays information derived from Garmin-sourced data, you must display attribution to Garmin in the form and manner required by Garmin's brand guidelines."
+  },
+  {
+    "claim": "Step 4 / FAQ: the FIT SDK languages.",
+    "url": "https://developer.garmin.com/fit/overview/",
+    "quote": "The FIT SDK is available for C, C++, C#, Java, JavaScript, Objective-C, Python, and Swift."
+  },
+  {
+    "claim": "Step 4 / FAQ: Oura limits an API application to 10 users before approval.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "API Applications are limited to **10** users before requiring approval from Oura."
+  },
+  {
+    "claim": "Step 4 / FAQ: WHOOP requires a membership to build on its developer platform.",
+    "url": "https://developer.whoop.com/docs/developing/overview/",
+    "quote": "You must have a WHOOP membership to develop an app on the Developer Platform."
+  },
+  {
+    "claim": "Step 4 / FAQ: WHOOP asks you to submit your app for approval at launch.",
+    "url": "https://developer.whoop.com/docs/developing/overview/",
+    "quote": "When you are ready to launch your app, submit it for approval"
+  },
+  {
+    "claim": "Step 4 / FAQ: Google gives November 2, 2026 as the turn-off date for the legacy Fitbit Web API and points to the Google Health API.",
+    "url": "https://developers.google.com/health/webhooks?hl=en",
+    "quote": "On November 2, 2026 , the legacy Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users. To continue accessing data for your users after this date, migrate to the Google Health API."
+  },
+  {
+    "claim": "Unofficial clients: garth's README says Garmin changed its auth flow, breaking garth's mobile auth approach.",
+    "url": "https://raw.githubusercontent.com/matin/garth/HEAD/README.md",
+    "quote": "Garmin changed their auth\n> flow, breaking the mobile auth approach that Garth depends on."
+  },
+  {
+    "claim": "Unofficial clients: garth's README says new logins will not work.",
+    "url": "https://raw.githubusercontent.com/matin/garth/HEAD/README.md",
+    "quote": "New logins will not work."
+  },
+  {
+    "claim": "Unofficial clients: python-garminconnect tries several login strategies, some with TLS impersonation.",
+    "url": "https://raw.githubusercontent.com/cyberjunky/python-garminconnect/HEAD/README.md",
+    "quote": "`login()` tries several authentication strategies in order (mobile, SSO widget,\nweb portal — each with and without TLS impersonation)"
   }
 ]

@@ -1,0 +1,162 @@
+[
+  {
+    "claim": "Nutritionix pricing: a free Business Trial, then Starter at $499 a month.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "FREE Business Trial $ 499 /Month* Starter"
+  },
+  {
+    "claim": "MVP at $999 a month and Unicorn from $1,850 a month.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "$ 999 /Month* MVP starting at $ 1850 /Month* Unicorn"
+  },
+  {
+    "claim": "Up to 2, 200 and 1,000 monthly active users, then customizable.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "Active Users (MAU) up to 2 up to 200 up to 1000 Customizable"
+  },
+  {
+    "claim": "Plans are billed annually.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "API plans are billed annually."
+  },
+  {
+    "claim": "A custom plan for freemium apps or more than 100K monthly active users.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "If you have a freemium app business model, sell a hardware product, or have more than 100K monthly active users, please contact us to discuss a customized pricing plan"
+  },
+  {
+    "claim": "Nutritionix no longer offers non-commercial free trials.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "Unfortunately, we no longer offer non-commercial free trials."
+  },
+  {
+    "claim": "Natural-language food logging is a Nutritionix feature.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "Turn spoken text into precise nutrition analysis with our state-of-the-art natural language functionality."
+  },
+  {
+    "claim": "Nutritionix's homepage says its full website is temporarily offline during upgrades.",
+    "url": "https://www.nutritionix.com/",
+    "quote": "Our full website is temporarily offline while we roll out major upgrades."
+  },
+  {
+    "claim": "The database and API remain available to registered partners.",
+    "url": "https://www.nutritionix.com/",
+    "quote": "is still available in the Nutritionix database and API to registered partners."
+  },
+  {
+    "claim": "Database size: 1,266,570 food items.",
+    "url": "https://www.nutritionix.com/database",
+    "quote": "1,266,570 food items and growing!"
+  },
+  {
+    "claim": "Restaurant coverage: 202,837 items from 860 restaurants.",
+    "url": "https://www.nutritionix.com/database",
+    "quote": "202,837 items from 860 restaurants"
+  },
+  {
+    "claim": "Grocery coverage is stated for the US and Canada.",
+    "url": "https://www.nutritionix.com/database",
+    "quote": "coverage for over 92% of grocery items in the U.S. and Canada"
+  },
+  {
+    "claim": "Nutritionix offers a bulk database export as well as the API.",
+    "url": "https://www.nutritionix.com/database",
+    "quote": "Our bulk data delivery service provides semi-monthly links to the latest version of the Nutritionix database for download"
+  },
+  {
+    "claim": "Edamam's Nutrition Analysis API uses natural language processing.",
+    "url": "https://developer.edamam.com/edamam-nutrition-api",
+    "quote": "The Nutrition Analysis API uses Natural Language Processing and semantically structured data."
+  },
+  {
+    "claim": "Edamam Nutrition Analysis from $29 a month with a 10-day trial.",
+    "url": "https://developer.edamam.com/edamam-nutrition-api",
+    "quote": "Enterprise Basic Multilingual $29 per month Prepaid Subscribe now 10 days Trial period"
+  },
+  {
+    "claim": "The cheapest Nutrition Analysis plan does not allow data caching.",
+    "url": "https://developer.edamam.com/edamam-nutrition-api",
+    "quote": "Data caching allowed? No"
+  },
+  {
+    "claim": "Edamam Food and Grocery Database API from $14 a month with a 30-day trial.",
+    "url": "https://developer.edamam.com/food-database-api",
+    "quote": "Enterprise Basic Vision $14 per month Prepaid Subscribe now 30 days Trial period"
+  },
+  {
+    "claim": "Edamam's top plans are custom Enterprise Unlimited.",
+    "url": "https://developer.edamam.com/food-database-api",
+    "quote": "Enterprise Unlimited Custom"
+  },
+  {
+    "claim": "Spoonacular's free plan: 50 points a day, backlink required.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "Free $ 0 /mo 50 points/day then no more calls"
+  },
+  {
+    "claim": "The free plan requires a backlink.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "No SLA Backlink Required"
+  },
+  {
+    "claim": "Paid plans from $29 a month for 1,500 points a day, then billed per point.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "Cook $ 29 /mo 1,500 points/day then $0.005 /point"
+  },
+  {
+    "claim": "Spoonacular offers meal planning.",
+    "url": "https://spoonacular.com/food-api",
+    "quote": "you can find individual recipes or even create entire meal plans"
+  },
+  {
+    "claim": "USDA FoodData Central data are public domain under CC0 1.0.",
+    "url": "https://fdc.nal.usda.gov/api-guide",
+    "quote": "USDA FoodData Central data are in the public domain and they are not copyrighted. They are published under CC0 1.0 Universal (CC0 1.0)"
+  },
+  {
+    "claim": "Each request carries a data.gov API key.",
+    "url": "https://fdc.nal.usda.gov/api-guide",
+    "quote": "Anyone may access and use the API. However, a data.gov API key must be incorporated into each API request."
+  },
+  {
+    "claim": "FoodData Central covers Branded Foods.",
+    "url": "https://fdc.nal.usda.gov/",
+    "quote": "Branded Foods"
+  },
+  {
+    "claim": "FoodData Central covers FNDDS.",
+    "url": "https://fdc.nal.usda.gov/",
+    "quote": "Food and Nutrient Database for Dietary Studies (FNDDS)"
+  },
+  {
+    "claim": "FoodData Central covers Foundation Foods.",
+    "url": "https://fdc.nal.usda.gov/",
+    "quote": "Foundation Foods"
+  },
+  {
+    "claim": "FoodData Central covers SR Legacy.",
+    "url": "https://fdc.nal.usda.gov/",
+    "quote": "SR Legacy Foods"
+  },
+  {
+    "claim": "Open Food Facts: 4,000,000+ products from 150 countries.",
+    "url": "https://world.openfoodfacts.org/discover",
+    "quote": "have added 4 000 000+ products from 150 countries"
+  },
+  {
+    "claim": "Open Food Facts is under the Open Database License.",
+    "url": "https://world.openfoodfacts.org/data",
+    "quote": "The Open Food Facts database is available under the Open Database License (ODbL)"
+  },
+  {
+    "claim": "ODbL requires share-alike for adapted databases used publicly.",
+    "url": "https://world.openfoodfacts.org/data",
+    "quote": "If you publicly use any adapted version of this database, or works produced from an adapted database, you must also offer that adapted database under the ODbL"
+  },
+  {
+    "claim": "Reads need no authentication beyond a custom User-Agent.",
+    "url": "https://openfoodfacts.github.io/openfoodfacts-server/api/",
+    "quote": "READ operations (getting info about a product, etc...) do not require authentication other than the custom User-Agent."
+  }
+]
