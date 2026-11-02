@@ -16,6 +16,7 @@ import { PAGE_H1 } from "@/data/pageTitles";
 import VendorHubMenu from "@/components/VendorHubMenu";
 import { absoluteUrl } from "@/lib/site";
 import { CAPSULE, FaqSection, JsonLd, LINK, TH, articleGraph, count, faqGraph, listOf, site, type Faq } from "../error-codes/_shared";
+import SeeAlsoCallout from "@/components/SeeAlsoCallout";
 
 /**
  * Every androidx.health.connect:connect-client release, from Google's
@@ -253,6 +254,8 @@ export default function HealthConnectReleasesPage() {
         })}
 
         <FaqSection faqs={FAQS} />
+
+        <SeeAlsoCallout path={PATH} />
 
         <VendorHubMenu path={PATH} placement="end" />
 

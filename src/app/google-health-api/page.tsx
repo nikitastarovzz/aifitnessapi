@@ -42,6 +42,7 @@ import { absoluteUrl } from "@/lib/site";
 import { stringSeed } from "@/lib/cluster";
 import { FaqSection, JsonLd, faqGraph, type Faq } from "../error-codes/_shared";
 import { CAPSULE, Code, FetchedLine, FlagList, H2, Inline, LINK, SourcesChecked, TH, ghapiGraph } from "./_shared";
+import SeeAlsoCallout from "@/components/SeeAlsoCallout";
 
 /**
  * The Google Health API hub: Google's own description and turn-down
@@ -590,6 +591,8 @@ export default function GoogleHealthApiHub() {
         </section>
 
         <FaqSection faqs={FAQS} />
+
+        <SeeAlsoCallout path={PATH} />
 
         <ClusterCta
           pitch="This reference is generated from Google's discovery document and developer guide by a script, not typed by hand. Subscribe to hear when Google adds a data type, a scope or a method, or moves a Fitbit Web API date."

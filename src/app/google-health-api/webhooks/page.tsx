@@ -4,6 +4,7 @@ import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterCta from "@/components/ClusterCta";
 import PageActions from "@/components/PageActions";
+import SeeAlsoCallout from "@/components/SeeAlsoCallout";
 import { GHAPI_FETCHED_ON, GHAPI_FLAGS, GHAPI_PAGES, GHAPI_WEBHOOK_TOKENS, GHAPI_WEBHOOK_TYPES } from "@/data/googleHealthApi";
 import { GHAPI_BASE, GHAPI_PATHS, allTypes, fitDescription, fitTitle, getType, joinList, quote, source, typePath } from "@/data/ghapiPages";
 import { absoluteUrl } from "@/lib/site";
@@ -214,6 +215,8 @@ export default function GhapiWebhooksPage() {
           </Link>
           .
         </p>
+
+        <SeeAlsoCallout path={PATH} />
 
         <FaqSection faqs={FAQS} />
 

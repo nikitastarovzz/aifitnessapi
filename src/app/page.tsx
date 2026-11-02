@@ -105,6 +105,17 @@ const CLUSTERS: { href: string; title: string; blurb: string }[] = [
 
 /** The providers and SDKs people actually arrive searching for. Every href is
  *  a released page; blurbs stay qualitative so nothing here can go stale. */
+/** The "New on the site" row. Each blurb is the page's own description,
+ *  shortened, or its blurb on /tools. */
+const NEW_PAGES: { href: string; title: string; blurb: string }[] = [
+  { href: "/graveyard", title: "The Fitness API Graveyard", blurb: "Shut-down, dying and deprecated fitness and health APIs: end dates, replacements, each vendor's own words." },
+  { href: "/tools/heart-rate-lab", title: "Bluetooth heart-rate lab", blurb: "Connect a BLE heart-rate strap in the browser: every 0x2A37 byte decoded, and whether it sends the RR intervals HRV needs." },
+  { href: "/challenge", title: "30-second webcam rep challenge", blurb: "A pose model in your browser counts your squats or jumping jacks live from your webcam; the video stays on your device." },
+  { href: "/daily", title: "Daily health-API developer puzzle", blurb: "Five questions a day from our HealthKit, Health Connect, Google Health API and pose-keypoint datasets." },
+  { href: "/play/ship-it", title: "Ship It: a fitness-app survival game", blurb: "Pick a fitness app and its data stack, then survive the real, dated API changes of 2025–26." },
+  { href: "/tools/pose-benchmark", title: "Pose model benchmark", blurb: "Time MediaPipe Pose Landmarker lite, full and heavy on your own device and copy the latency table as markdown." },
+];
+
 const POPULAR: { href: string; name: string; tag: string; blurb: string }[] = [
   { href: "/integrate/healthkit", name: "Apple HealthKit", tag: "On-device · iOS", blurb: "No OAuth, no servers — and read-denial is invisible by design. The full Swift integration guide." },
   { href: "/integrate/google-health-connect", name: "Health Connect API", tag: "On-device · Android", blurb: "The successor to Google Fit on Android: permissions, the 30-day read window, and the quirks." },
@@ -266,6 +277,37 @@ export default function Home() {
           </dl>
         </Container>
       </section>
+
+      {/* ——— New on the site ———
+          The strongest of the pages shipped on 2026-10-31, linked from the
+          page Google crawls most so they are found (ops/GSC-10-2026-11-02.md
+          item 6). Blurbs restate each page's own description or its /tools
+          hub blurb. Replace the set at the next launch rather than growing it. */}
+      <Container className="pt-16">
+        <div className="mb-6 flex items-baseline justify-between">
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+            New on the site
+          </h2>
+          <Link href="/tools" className="inline-block py-1 text-sm font-medium text-brand-600 hover:text-brand-500">
+            All free tools →
+          </Link>
+        </div>
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {NEW_PAGES.map((p) => (
+            <li key={p.href}>
+              <Link
+                href={p.href}
+                data-cta={`home-new-${p.href.replace(/^\//, "").replace(/\//g, "-")}`}
+                data-cta-source="home-new"
+                className="group flex h-full flex-col rounded-2xl border border-[var(--border)] p-5 transition hover:-translate-y-0.5 hover:border-brand-400 hover:bg-[var(--surface)]"
+              >
+                <span className="font-semibold text-[var(--fg)]">{p.title}</span>
+                <span className="mt-1 flex-1 text-sm text-[var(--muted)]">{p.blurb}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Container>
 
       {/* ——— What a fitness API is, and every one we cover ———
           The list intent behind "fitness api": the pages that outrank us lead

@@ -35,6 +35,7 @@ import { stringSeed } from "@/lib/cluster";
 import { FaqSection, JsonLd, faqGraph } from "../../error-codes/_shared";
 import { CAPSULE, Code, FetchedLine, FieldsTable, FlagList, H2, Inline, LINK, SourcesChecked, TH, ghapiGraph } from "../_shared";
 import { robotsFor } from "@/data/noindex";
+import SeeAlsoCallout from "@/components/SeeAlsoCallout";
 
 /**
  * One page per data type in Google's Google Health API data-types table. The
@@ -587,6 +588,8 @@ export default async function GhapiTypePage({ params }: { params: Promise<Params
             </p>
           </section>
         )}
+
+        <SeeAlsoCallout path={path} />
 
         <ClusterCta
           pitch="These pages are generated from Google's own documentation by a script, not typed by hand. Subscribe to hear when a Google Health API data type gains a field, an operation or a scope."

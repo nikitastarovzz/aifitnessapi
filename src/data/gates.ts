@@ -579,6 +579,16 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "A build where the reference callout renders on a different number of guides than the map declares, which is how a renamed slug drops it.",
   },
   {
+    code: "SEE-ALSO",
+    area: "Derived blocks",
+    refuses: "A build where a page mapped to tool and record links does not render them, or a page renders them with no map entry, which is how a renamed path drops the link to a new page.",
+  },
+  {
+    code: "SEE-ALSO-MAP",
+    area: "Derived blocks",
+    refuses: "A change to the see-also map that does not also update the count of mapped pages it declares.",
+  },
+  {
     code: "APP-STACK",
     area: "Derived blocks",
     refuses: "A build where the derived type-and-API stack block is missing from any /build guide that should carry it.",
