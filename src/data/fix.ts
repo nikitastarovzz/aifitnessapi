@@ -45,6 +45,7 @@ export const RELEASED_FIX = new Set<string>([
   "health-connect-not-available",
   "health-connect-changes-token-expired",
   "health-connect-rate-limit",
+  "fitbit-api-410-gone",
 ]);
 
 export const allFixes: ClusterEntry[] = fixEntries;
