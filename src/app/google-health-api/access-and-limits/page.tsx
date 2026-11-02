@@ -18,9 +18,25 @@ import { Blocks, CAPSULE, Code, FetchedLine, FlagList, GoogleSection, H2, Inline
  */
 
 const PATH = GHAPI_PATHS.access;
-const TITLE = fitTitle(["Google Health API Verification, Quotas and Rate Limits", "Google Health API Verification and Rate Limits"]);
+// GSC-10 item 5 (ops/GSC-10-2026-11-02.md): the snippet leads with the two
+// numbers the page exists for. The per-user quota is read from the generated
+// rate-limits table, so a regeneration that changes it changes the title too;
+// if the row disappears, the old wording is used.
+const PER_USER_MINUTE = /^(\d[\d,]*) requests \/ minute$/.exec(
+  GHAPI_RATE_LIMITS.find((r) => r.metric === "Per user (minutely)")?.defaultLimit ?? "",
+)?.[1];
+const TITLE = fitTitle([
+  ...(PER_USER_MINUTE ? [`Google Health API Limits: 100-User Cap, ${PER_USER_MINUTE} Requests/Min`] : []),
+  "Google Health API Verification, Quotas and Rate Limits",
+  "Google Health API Verification and Rate Limits",
+]);
 const H1 = "Google Health API access: verification, the 100-user cap and rate limits";
 const DESCRIPTION = fitDescription([
+  ...(PER_USER_MINUTE
+    ? [
+        `Unverified Google Health API apps are capped at 100 users; the default quota is ${PER_USER_MINUTE} requests a minute per user. CASA, quota increases and 429s, quoted.`,
+      ]
+    : []),
   "Google Health API app verification, the annual CASA security assessment, the 100-user cap on unverified apps, the default quotas and 429 handling, quoted from Google.",
   "Google Health API verification, CASA, the 100-user cap on unverified apps, default quotas and 429 handling, quoted from Google's pages.",
 ]);
