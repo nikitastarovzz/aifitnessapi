@@ -32,6 +32,7 @@ import {
 import { releasedDevices } from "@/data/devices";
 import { absoluteUrl, site } from "@/lib/site";
 import { Code, Definition, GssText, LINK, TH } from "./_render";
+import SeeAlsoCallout from "@/components/SeeAlsoCallout";
 
 /**
  * The hub of the Bluetooth GATT reference: the in-scope services with their
@@ -446,6 +447,8 @@ export default function BluetoothFitnessHub() {
             ))}
           </div>
         </section>
+
+        <SeeAlsoCallout path="/bluetooth-fitness" />
 
         <section id="terms" className="mt-14 scroll-mt-24">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Source and terms</h2>

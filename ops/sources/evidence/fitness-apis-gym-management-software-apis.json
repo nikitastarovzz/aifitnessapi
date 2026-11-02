@@ -250,9 +250,9 @@
     "quote": "You can find it in Wodify Core via Digital Presence > Web Integrations > API Keys."
   },
   {
-    "claim": "Its API reference says to request one through the Web Integrations screen.",
+    "claim": "Its API reference says to request one through the Automations → Integrations page.",
     "url": "https://docs.wodify.com/reference/get_dropin",
-    "quote": "If you don't have one, please request one through the Web Integrations screen."
+    "quote": "If you don't have one, please request one through the Automations → Integrations page."
   },
   {
     "claim": "Wodify partners get keys from the Wodify Developer Portal.",

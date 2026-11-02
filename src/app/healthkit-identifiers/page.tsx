@@ -28,6 +28,7 @@ import {
   hkIdentifierPagePath,
   hkIdentifierPath,
 } from "@/data/hkIdentifierPages";
+import SeeAlsoCallout from "@/components/SeeAlsoCallout";
 
 /**
  * The complete HKQuantityTypeIdentifier reference.
@@ -490,6 +491,8 @@ export default function HealthKitIdentifiersPage() {
             ))}
           </div>
         </section>
+
+        <SeeAlsoCallout path={PATH} />
 
         <VendorHubMenu path={PATH} placement="end" />
 

@@ -1355,6 +1355,30 @@ if (fs.existsSync(matrixPath)) {
     }
   }
 
+  // ── See-also callouts ─────────────────────────────────────────────────
+  // SeeAlsoCallout maps specific page paths to tools and site-wide records
+  // (ops/GSC-10-2026-11-02.md item 6). Same failure as above: a renamed path
+  // silently drops the callout, and with it the crawl path to a new page. The
+  // expected set is read from the component's own map, so every mapped path
+  // must render it and nothing unmapped may.
+  {
+    const src = fs.readFileSync("src/components/SeeAlsoCallout.tsx", "utf8");
+    const mapped = new Set([...src.matchAll(/^ {2}"(\/[^"]*)": \[/gm)].map((m) => m[1]));
+    const rendered = new Set(
+      htmls.filter((h) => fs.readFileSync(h, "utf8").includes("data-see-also")).map(routeOf),
+    );
+    const EXPECTED = 32;
+    if (mapped.size !== EXPECTED) {
+      problems.push(`SEE-ALSO-MAP  SeeAlsoCallout maps ${mapped.size} paths, expected ${EXPECTED} — update the count with the map`);
+    }
+    for (const p of mapped) {
+      if (!rendered.has(p)) problems.push(`SEE-ALSO  ${p} is mapped in SeeAlsoCallout but does not render it — renamed path or template without the callout`);
+    }
+    for (const r of rendered) {
+      if (!mapped.has(r)) problems.push(`SEE-ALSO  ${r} renders the see-also callout without a map entry`);
+    }
+  }
+
   // ── Build-guide stacks ────────────────────────────────────────────────
   // AppStack joins an authored category→types map against the generated
   // identifier dataset and the API directory. A renamed identifier or a

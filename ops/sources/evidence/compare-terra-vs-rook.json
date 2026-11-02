@@ -308,5 +308,95 @@
     "claim": "FAQ: Terra returns one schema for every source.",
     "url": "https://tryterra.co/",
     "quote": "One API call returns standardised data from 500+ providers, including Garmin, Fitbit, Apple Health, Oura, WHOOP and Strava, without writing separate authentication flows or data parsers."
+  },
+  {
+    "claim": "Evaluating ROOK: harmonized data is adjusted to consistent units and formats (miles to kilometers).",
+    "url": "https://docs.tryrook.io/docs/definitions/",
+    "quote": "Harmonized Data is adjusted to consistent units and formats. Example: Converting distances from miles to kilometers."
+  },
+  {
+    "claim": "Standardized data is formatted uniformly across different providers.",
+    "url": "https://docs.tryrook.io/docs/definitions/",
+    "quote": "Standardized Data is formatted uniformly across different providers."
+  },
+  {
+    "claim": "Clean data is free from duplicates or inconsistencies.",
+    "url": "https://docs.tryrook.io/docs/definitions/",
+    "quote": "Clean Data is free from duplicates or inconsistencies, ensuring accuracy."
+  },
+  {
+    "claim": "Normalized data is adjusted to consistent scales for comparability.",
+    "url": "https://docs.tryrook.io/docs/definitions/",
+    "quote": "Normalized Data is adjusted to consistent scales for comparability."
+  },
+  {
+    "claim": "Structured data has undergone harmonization, standardization, cleansing, and normalization.",
+    "url": "https://docs.tryrook.io/docs/definitions/",
+    "quote": "Structured Data is processed and refined health data that has undergone harmonization, standardization, cleansing, and normalization."
+  },
+  {
+    "claim": "Raw payloads are a separate add-on: Proprietary & Unstructured Data, $149 a month on Core.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Proprietary & Unstructured Data Wearable API only +$149 , Purchased separately"
+  },
+  {
+    "claim": "Three pillars, Physical, Body and Sleep Health.",
+    "url": "https://docs.tryrook.io/docs/rookconnect/introduction/",
+    "quote": "ROOKConnect classifies the extracted information into three fundamental pillars"
+  },
+  {
+    "claim": "Delivered as daily summaries and as events.",
+    "url": "https://docs.tryrook.io/docs/rookconnect/introduction/",
+    "quote": "Summaries: It represents the collection of data around the day."
+  },
+  {
+    "claim": "Events: granular data points with exact timestamps.",
+    "url": "https://docs.tryrook.io/docs/rookconnect/introduction/",
+    "quote": "Events: Granular data points representing specific activities or punctual measurements with exact timestamps."
+  },
+  {
+    "claim": "Always validate document_version and datetime fields to avoid duplication.",
+    "url": "https://docs.tryrook.io/docs/rookconnect/introduction/",
+    "quote": "the engineering team must always validate the document_version and datetime fields included in the payload. This ensures the client backend updates records properly and prevents data duplication."
+  },
+  {
+    "claim": "ROOK applies cleaning, prioritization and deduplication rules; exact rule depends on data type and source.",
+    "url": "https://tryrook.io/rookconnect/wearable-api/",
+    "quote": "ROOK applies cleaning, prioritization, and deduplication rules to reduce duplicate or inconsistent data. The exact rule depends on the data type and source."
+  },
+  {
+    "claim": "ROOK prioritizes webhooks, keeping the REST API for on-demand queries.",
+    "url": "https://docs.tryrook.io/docs/rookconnect/introduction/",
+    "quote": "Prioritizes real-time asynchronous delivery via webhooks, keeping the REST API available for on-demand queries."
+  },
+  {
+    "claim": "API reference version 2.0.1 with a downloadable OpenAPI specification.",
+    "url": "https://docs.tryrook.io/api/",
+    "quote": "ROOK ( 2.0.1 ) Download OpenAPI specification"
+  },
+  {
+    "claim": "Production server api.rook-connect.com.",
+    "url": "https://docs.tryrook.io/api/",
+    "quote": "Production Server https://api.rook-connect.com"
+  },
+  {
+    "claim": "Sandbox server api.rook-connect.review.",
+    "url": "https://docs.tryrook.io/api/",
+    "quote": "Sandbox Server https://api.rook-connect.review"
+  },
+  {
+    "claim": "Demo credentials return default responses.",
+    "url": "https://docs.tryrook.io/api/",
+    "quote": "You can use the following constants to test the API and receive default responses"
+  },
+  {
+    "claim": "History: up to seven previous days from API sources and up to 29 days from SDK sources, as a reference.",
+    "url": "https://tryrook.io/rookconnect/wearable-api/",
+    "quote": "As a reference, API-based sources may provide up to seven previous days and SDK-based mobile sources up to 29 days, subject to provider restrictions and contracted configuration."
+  },
+  {
+    "claim": "Connections Page is sandbox only; production uses the per-source authorization endpoint.",
+    "url": "https://docs.tryrook.io/docs/rookconnect/introduction/",
+    "quote": "The Connections Page is designed exclusively for the sandbox environment . For production integrations, the frontend or mobile team must implement the individual authorization endpoint"
   }
 ]
