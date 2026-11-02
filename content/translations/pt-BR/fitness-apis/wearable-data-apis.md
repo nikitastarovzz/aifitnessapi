@@ -1,8 +1,8 @@
 ---
 path: "/fitness-apis/wearable-data-apis"
-translatedOn: "2026-10-31"
+translatedOn: "2026-11-02"
 sourceUpdated: "2026-07-08"
-sourceHash: "fe7fb71a0a5eeb43"
+sourceHash: "cd96cdacc50a32eb"
 metaTitle: "As melhores APIs de wearables: Fitbit, Garmin, Oura e mais"
 metaDescription: >-
   Compare as melhores APIs de wearables de fitness em 2026 — Fitbit, Garmin, Oura, WHOOP e Polar — em dados, aprovação e preço para escolher a certa.
@@ -29,13 +29,15 @@ faqs:
       O Open AccessLink da Polar costuma ser o mais autosserviço: você mesmo registra um cliente e os tokens têm vida longa. A contrapartida é que ele expõe só dados recentes, então você precisa sincronizar ou exportar com regularidade para manter o histórico. Confira os termos atuais na documentação de desenvolvedores da Polar.
 related:
   - href: "/fitness-apis/health-data-aggregator-apis"
-    label: "Melhores APIs agregadoras de dados de saúde"
+    label: "Melhores APIs agregadoras de dados de saúde de wearables"
   - href: "/fitness-apis/fitbit-api-vs-garmin-api"
     label: "API da Fitbit vs API da Garmin"
   - href: "/fitness-apis"
     label: "Todas as APIs de fitness e treino"
 ---
 Se você precisa de uma API de wearable de fitness, a escolha depende mais de uma coisa do que de dados ou de preço: da facilidade de conseguir aprovação para ler dados de outras pessoas. Todas as cinco principais opções aqui — Fitbit (agora Google), Garmin, Oura, WHOOP e Polar — usam `OAuth 2.0` com consentimento por usuário, e todas são documentadas como de uso gratuito em 2026 (sempre confira os termos comerciais atuais). O que de fato as separa é o portão de aprovação, a profundidade dos dados e, no caso da Fitbit, uma migração para a Google Health API que muda a forma de integrar.
+
+Procura o melhor agregador de dados de saúde de wearables, uma API que cubra muitos wearables e sensores? É outro produto, e a [comparação de APIs agregadoras de dados de saúde de wearables](/fitness-apis/health-data-aggregator-apis) trata dele: Terra, Junction, Rook, Spike, Sahha, Thryve, Validic e Open Wearables. Só precisa dos seus próprios dados do Garmin Connect? A [Personal API oficial da Garmin para uso pessoal](/fix/garmin-api-personal-use) não exige aprovação no Developer Program.
 
 Veio pelos passos de cadastro e OAuth de um fornecedor específico? Cada um tem o seu guia: os guias de integração da [API da Garmin](/integrate/garmin-api), da [API da Fitbit](/integrate/fitbit-api), da [API do Oura](/integrate/oura-api), da [API do WHOOP](/integrate/whoop-api) e da [API da Polar](/integrate/polar-api).
 
@@ -89,6 +91,7 @@ Combine a API com o seu caso de uso em vez de caçar um único vencedor:
 - **Se você quer o maior alcance de dispositivos no grande público e dados ricos de frequência cardíaca e sono intradiários** → escolha a Fitbit, mas construa sobre a Google Health API e planeje o novo consentimento dos usuários durante a migração.
 - **Se você quer lançar rápido com o menor atrito de aprovação** → escolha a Polar, cujo registro de cliente autosserviço e tokens de vida longa fazem dela a opção mais autosserviço daqui, desde que você consiga conviver com apenas os dados recentes disponíveis e os sincronize com regularidade.
 - **Se você está conectando uma força de trabalho inteira para um programa de bem-estar de uma empresa** → comece pela mistura de dispositivos e pelos portões de acesso, que [APIs de dados de wearables para programas de bem-estar corporativo](/fitness-apis/corporate-wellness-wearable-apis) mapeia rota por rota.
+- **Se você quer muitos wearables e sensores atrás de uma única integração em vez de cinco** → você quer um agregador, não uma destas APIs; as [melhores APIs agregadoras de dados de saúde de wearables](/fitness-apis/health-data-aggregator-apis) são comparadas por caso de uso na página delas.
 
 ## Atenção às letras miúdas
 

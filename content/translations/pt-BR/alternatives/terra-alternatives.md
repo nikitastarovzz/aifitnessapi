@@ -1,11 +1,11 @@
 ---
 path: "/alternatives/terra-alternatives"
-translatedOn: "2026-10-27"
+translatedOn: "2026-11-02"
 sourceUpdated: "2026-10-17"
-sourceHash: "a52b07f535ca0653"
-metaTitle: "Alternativas ao Terra (2026): 9 opções de dados de saúde"
+sourceHash: "78dc0c7a2b900faa"
+metaTitle: "Alternativas à API do Terra 2026: Junction, ROOK, Sahha e +6"
 metaDescription: >-
-  Alternativas ao Terra (tryterra.co) em outubro de 2026: Junction, Rook, Spike, Thryve, Sahha, Validic, Open Wearables, APIs diretas ou dados no aparelho.
+  Alternativas ao Terra, out. 2026: Junction a US$ 300/mês fixos até 500 usuários, Rook e Sahha desde US$ 399 e US$ 299, Thryve na UE, Open Wearables grátis.
 h1: "As melhores alternativas ao Terra (tryterra.co) (2026)"
 answer: >-
   As principais alternativas ao Terra (tryterra.co), segundo as páginas delas em 17 de outubro de 2026, são o Junction (antigo Vital), para pedidos de exames laboratoriais nos EUA e um preço fixo de US$ 300 por mês para até 500 usuários; o Rook, com faixas por usuário ativo a partir de US$ 399 por mês; o Spike, para IoT médica, OCR de laudos laboratoriais e nutrição por foto de comida; o Thryve, para hospedagem na UE, na Alemanha; o Sahha, para dados e pontuações a partir do celular; o Validic, para monitoramento remoto corporativo; e o Open Wearables, se você quer um software com licença MIT que você mesmo hospeda. Você também pode largar o agregador e partir para integrações diretas por fornecedor ou para HealthKit e Health Connect no aparelho. Escolha pelo que está empurrando você para fora do Terra: os créditos por fonte conectada, a hospedagem ou uma fonte de dados com a qual ele não combina; exames laboratoriais por si só não são mais motivo, já que o Terra agora os vende nos EUA e no Reino Unido.

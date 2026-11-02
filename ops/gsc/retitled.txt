@@ -48,3 +48,14 @@
 /integrate/fitbit-api
 /integrate/healthkit
 /integrate/google-health-connect
+# 2026-11-02: GSC-10 item 5 (ops/GSC-10-2026-11-02.md), zero-click top-10 pages outside the 2026-10-27 cohort.
+# /alternatives/terra-alternatives was last retitled 2026-10-18 (listed above since 2026-10-02).
+/alternatives/terra-alternatives
+/compare/exercisedb-vs-wger
+/compare/terra-vs-rook
+/google-health-api/access-and-limits
+/motion/apple-vision-body-pose
+/integrate/dexcom-api
+# 2026-11-02: GSC-10 item 4, owner pages retitled toward the queries routed to them.
+/fitness-apis/health-data-aggregator-apis
+/fix/garmin-api-personal-use
