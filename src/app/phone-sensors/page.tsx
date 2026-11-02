@@ -18,6 +18,7 @@ import {
   SENSORS_PATH,
   SENSORS_CONFIG,
 } from "@/data/phoneSensors";
+import SeeAlsoCallout from "@/components/SeeAlsoCallout";
 
 const UPDATED = "2026-10-03";
 
@@ -272,6 +273,8 @@ export default function PhoneSensorsPillar() {
             </Link>
           </p>
         </section>
+
+        <SeeAlsoCallout path="/phone-sensors" />
 
         <ClusterDisclaimer updated={UPDATED} />
 

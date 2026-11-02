@@ -41,6 +41,7 @@ import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, publishedDate, WEBSITE_ID } from "@/lib/schema";
 import { stringSeed } from "@/lib/cluster";
 import { robotsFor } from "@/data/noindex";
+import SeeAlsoCallout from "@/components/SeeAlsoCallout";
 
 /**
  * One page per HealthKit identifier that clears the thin-page rule in
@@ -679,6 +680,8 @@ export default async function HkIdentifierPage({ params }: { params: Promise<Par
             ))}
           </dl>
         </section>
+
+        <SeeAlsoCallout path={path} />
 
         <ClusterCta
           pitch="These pages are generated from Apple's documentation and re-published when it changes. Subscribe to hear when a HealthKit type is added, deprecated or finally documented."

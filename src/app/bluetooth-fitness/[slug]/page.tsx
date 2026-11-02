@@ -29,6 +29,7 @@ import { metricGuidesForType } from "@/data/metricTypeMap";
 import { site } from "@/lib/site";
 import { Code, Definition, FieldNotes, GssText, LINK, LayoutTable } from "../_render";
 import { robotsFor } from "@/data/noindex";
+import SeeAlsoCallout from "@/components/SeeAlsoCallout";
 
 /**
  * One page per in-scope Bluetooth GATT characteristic that passes the
@@ -298,6 +299,8 @@ export default async function BtCharacteristicPage({ params }: { params: Promise
             </p>
           )}
         </section>
+
+        <SeeAlsoCallout path={path} />
 
         <section id="faq" className="mt-14 scroll-mt-24">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Questions</h2>

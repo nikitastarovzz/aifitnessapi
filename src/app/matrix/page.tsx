@@ -13,6 +13,7 @@ import { orgRef } from "@/lib/schema";
 import PageSummary from "@/components/PageSummary";
 import VendorHubMenu from "@/components/VendorHubMenu";
 import { PAGE_H1 } from "@/data/pageTitles";
+import SeeAlsoCallout from "@/components/SeeAlsoCallout";
 
 const MATRIX_PATH = "/matrix";
 const UPDATED = "2026-07-26";
@@ -261,6 +262,8 @@ export default function MatrixPage() {
             ))}
           </dl>
         </section>
+
+        <SeeAlsoCallout path={MATRIX_PATH} />
 
         <VendorHubMenu path={MATRIX_PATH} placement="end" />
 

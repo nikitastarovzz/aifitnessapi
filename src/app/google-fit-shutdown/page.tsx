@@ -10,6 +10,7 @@ import VendorHubMenu from "@/components/VendorHubMenu";
 import { PAGE_H1 } from "@/data/pageTitles";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
+import SeeAlsoCallout from "@/components/SeeAlsoCallout";
 
 const PATH = "/google-fit-shutdown";
 const UPDATED = "2026-10-02";
@@ -318,6 +319,8 @@ export default function GoogleFitShutdownPage() {
             ))}
           </dl>
         </section>
+
+        <SeeAlsoCallout path={PATH} />
 
         <VendorHubMenu path={PATH} placement="end" />
 

@@ -15,6 +15,7 @@ import MetricFacts from "@/components/MetricFacts";
 import MetricPlatforms from "@/components/MetricPlatforms";
 import ContentAge from "@/components/ContentAge";
 import ReferenceCallout from "@/components/ReferenceCallout";
+import SeeAlsoCallout from "@/components/SeeAlsoCallout";
 import KinestexNote, { KINESTEX_NOTE_PATHS } from "@/components/KinestexNote";
 import AppStack from "@/components/AppStack";
 import PostLinks from "@/components/PostLinks";
@@ -65,6 +66,26 @@ const TOOLS = {
     name: "Webhook verifier",
     does: "paste a webhook you received and check it the way the vendor documents, in your browser, with each field explained and the response the vendor expects.",
   },
+  poseBenchmark: {
+    href: "/tools/pose-benchmark",
+    name: "Pose model benchmark",
+    does: "time MediaPipe Pose Landmarker lite, full and heavy on your own device and copy the latency table as markdown.",
+  },
+  heartRate: {
+    href: "/tools/heart-rate-lab",
+    name: "Bluetooth heart-rate lab",
+    does: "connect a BLE heart-rate strap in the browser: every 0x2A37 byte decoded, and whether it sends the RR intervals HRV needs.",
+  },
+  stepLab: {
+    href: "/tools/step-lab",
+    name: "Step lab",
+    does: "walk with your phone and watch a visible step detector count; move its threshold and interval to see why two apps disagree.",
+  },
+  sampleData: {
+    href: "/tools/sample-data",
+    name: "Synthetic health data generator",
+    does: "seeded synthetic HealthKit, Health Connect and Google Health API fixtures as JSON or CSV, with per-record UTC offsets.",
+  },
 } as const;
 
 /**
@@ -108,6 +129,23 @@ const TOOL_FOR_PATH: Record<string, keyof typeof TOOLS> = {
   "/fix/strava-webhook-not-firing": "webhook",
   // The model comparison readers leave for the keypoint maps once a model is chosen.
   "/motion/pose-estimation-models-compared": "keypoints",
+  // Model pages whose keypoint scheme the playground maps (Apple Vision; the
+  // COCO 17 that Ultralytics YOLO pose emits), and the MediaPipe page whose
+  // three variants the benchmark times.
+  "/motion/apple-vision-body-pose": "keypoints",
+  "/motion/yolo-pose-models": "keypoints",
+  "/motion/mediapipe-pose-landmarker-models": "poseBenchmark",
+  // The Bluetooth heart-rate pages: the lab decodes the standard Heart Rate
+  // Measurement characteristic these guides explain, over Web Bluetooth.
+  "/devices/ant-plus-vs-bluetooth": "heartRate",
+  "/devices/bluetooth-heart-rate-monitor": "heartRate",
+  "/devices/web-bluetooth-fitness": "heartRate",
+  // The phone step-counter APIs: they return a count, and the lab shows a
+  // step detector deciding one from the accelerometer, thresholds visible.
+  "/phone-sensors/android-step-counter-sensor": "stepLab",
+  "/phone-sensors/cmpedometer": "stepLab",
+  // The platform comparison: the generator emits both platforms' fixtures.
+  "/fitness-apis/apple-healthkit-vs-google-health-connect": "sampleData",
   // Every build guide: the generator is these guides' stacks, narrowed.
   "/build/personal-training-app": "stack",
   "/build/home-workout-app": "stack",
@@ -582,6 +620,7 @@ export default function ClusterPage({
             <MetricFacts path={path} />
             <AppStack path={path} />
             <ReferenceCallout path={path} />
+            <SeeAlsoCallout path={path} />
             <PostLinks path={path} />
             <KinestexNote path={path} />
           </>
