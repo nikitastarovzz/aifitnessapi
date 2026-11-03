@@ -1,145 +1,172 @@
 {
-  "exportedAt": "2026-10-27T07:10:00.316Z",
+  "exportedAt": "2026-11-03T09:39:08.582Z",
   "range": {
-    "start": "2026-09-27",
-    "end": "2026-10-24"
+    "start": "2026-10-04",
+    "end": "2026-10-31"
   },
   "source": "scripts/search-pull.mjs (Bing GetPageStats, GetQueryStats, GetQueryPageStats)",
   "byPage": [
     {
       "keys": [
-        "https://aifitnessapi.com/motion/mediapipe-pose-landmarker-models"
+        "https://aifitnessapi.com/integrate/garmin-api"
       ],
-      "clicks": 0,
-      "impressions": 159,
-      "ctr": 0,
-      "position": 6.754716981132075
+      "clicks": 2,
+      "impressions": 175,
+      "ctr": 0.011428571428571429,
+      "position": 6.691428571428571
     },
     {
       "keys": [
-        "https://aifitnessapi.com/integrate/garmin-api"
+        "https://aifitnessapi.com/motion/mediapipe-pose-landmarker-models"
       ],
-      "clicks": 1,
-      "impressions": 105,
-      "ctr": 0.009523809523809525,
-      "position": 6.333333333333333
+      "clicks": 0,
+      "impressions": 161,
+      "ctr": 0,
+      "position": 6.745341614906832
     },
     {
       "keys": [
         "https://www.aifitnessapi.com/fitness-apis/nutrition-apis"
       ],
-      "clicks": 3,
-      "impressions": 83,
-      "ctr": 0.03614457831325301,
-      "position": 5.951807228915663
-    },
-    {
-      "keys": [
-        "https://www.aifitnessapi.com/migrate/fitbit-web-api-to-google-health"
-      ],
-      "clicks": 1,
-      "impressions": 79,
-      "ctr": 0.012658227848101266,
-      "position": 5.556962025316456
-    },
-    {
-      "keys": [
-        "https://aifitnessapi.com/integrate/whoop-api"
-      ],
       "clicks": 2,
-      "impressions": 67,
-      "ctr": 0.029850746268656716,
-      "position": 6.701492537313433
+      "impressions": 103,
+      "ctr": 0.019417475728155338,
+      "position": 6.407766990291262
     },
     {
       "keys": [
-        "https://www.aifitnessapi.com/fitness-apis"
-      ],
-      "clicks": 7,
-      "impressions": 60,
-      "ctr": 0.11666666666666667,
-      "position": 3.966666666666667
-    },
-    {
-      "keys": [
-        "https://aifitnessapi.com/integrate/google-health-connect"
-      ],
-      "clicks": 1,
-      "impressions": 55,
-      "ctr": 0.01818181818181818,
-      "position": 5.890909090909091
-    },
-    {
-      "keys": [
-        "https://www.aifitnessapi.com/integrate/healthkit"
+        "https://aifitnessapi.com/fix/garmin-api-personal-use"
       ],
       "clicks": 0,
-      "impressions": 50,
+      "impressions": 90,
       "ctr": 0,
-      "position": 6.4
+      "position": 7
     },
     {
       "keys": [
         "https://www.aifitnessapi.com/compliance/app-store-health-data-rules"
       ],
       "clicks": 2,
-      "impressions": 49,
-      "ctr": 0.04081632653061224,
-      "position": 4.224489795918367
+      "impressions": 77,
+      "ctr": 0.025974025974025976,
+      "position": 4.142857142857143
     },
     {
       "keys": [
-        "https://aifitnessapi.com/integrate/polar-api"
+        "https://www.aifitnessapi.com/migrate/fitbit-web-api-to-google-health"
       ],
-      "clicks": 0,
-      "impressions": 39,
-      "ctr": 0,
-      "position": 6.0256410256410255
+      "clicks": 1,
+      "impressions": 67,
+      "ctr": 0.014925373134328358,
+      "position": 5.477611940298507
     },
     {
       "keys": [
         "https://aifitnessapi.com/libraries/garminconnect"
       ],
       "clicks": 0,
+      "impressions": 60,
+      "ctr": 0,
+      "position": 6.016666666666667
+    },
+    {
+      "keys": [
+        "https://aifitnessapi.com/integrate/google-health-connect"
+      ],
+      "clicks": 1,
+      "impressions": 56,
+      "ctr": 0.017857142857142856,
+      "position": 5.803571428571429
+    },
+    {
+      "keys": [
+        "https://www.aifitnessapi.com/fitness-apis"
+      ],
+      "clicks": 5,
+      "impressions": 55,
+      "ctr": 0.09090909090909091,
+      "position": 3.963636363636364
+    },
+    {
+      "keys": [
+        "https://aifitnessapi.com/integrate/whoop-api"
+      ],
+      "clicks": 2,
+      "impressions": 52,
+      "ctr": 0.038461538461538464,
+      "position": 6.8076923076923075
+    },
+    {
+      "keys": [
+        "https://www.aifitnessapi.com/integrate/healthkit"
+      ],
+      "clicks": 0,
+      "impressions": 49,
+      "ctr": 0,
+      "position": 6.918367346938775
+    },
+    {
+      "keys": [
+        "https://aifitnessapi.com/integrate/polar-api"
+      ],
+      "clicks": 0,
+      "impressions": 37,
+      "ctr": 0,
+      "position": 5.594594594594595
+    },
+    {
+      "keys": [
+        "https://aifitnessapi.com/integrate/samsung-health-api"
+      ],
+      "clicks": 1,
+      "impressions": 34,
+      "ctr": 0.029411764705882353,
+      "position": 5.588235294117647
+    },
+    {
+      "keys": [
+        "https://www.aifitnessapi.com/integrate/oura-api"
+      ],
+      "clicks": 0,
       "impressions": 33,
       "ctr": 0,
-      "position": 5.212121212121212
+      "position": 7.03030303030303
+    },
+    {
+      "keys": [
+        "https://aifitnessapi.com/integrate/strava-api"
+      ],
+      "clicks": 0,
+      "impressions": 31,
+      "ctr": 0,
+      "position": 7.064516129032258
+    },
+    {
+      "keys": [
+        "https://www.aifitnessapi.com/motion/pose-estimation-models-compared"
+      ],
+      "clicks": 1,
+      "impressions": 27,
+      "ctr": 0.037037037037037035,
+      "position": 4.851851851851852
     },
     {
       "keys": [
         "https://aifitnessapi.com/fitness-apis/exercise-database-apis"
       ],
       "clicks": 0,
-      "impressions": 32,
+      "impressions": 26,
       "ctr": 0,
-      "position": 4.4375
+      "position": 4.076923076923077
     },
     {
       "keys": [
-        "https://www.aifitnessapi.com/integrate/oura-api"
+        "https://aifitnessapi.com/motion/rtmpose-models"
       ],
       "clicks": 1,
-      "impressions": 26,
-      "ctr": 0.038461538461538464,
-      "position": 6.615384615384615
-    },
-    {
-      "keys": [
-        "https://www.aifitnessapi.com/motion/pose-estimation-models-compared"
-      ],
-      "clicks": 0,
-      "impressions": 22,
-      "ctr": 0,
-      "position": 4.818181818181818
-    },
-    {
-      "keys": [
-        "https://www.aifitnessapi.com/integrate/fitbit-api"
-      ],
-      "clicks": 0,
-      "impressions": 19,
-      "ctr": 0,
-      "position": 7.105263157894737
+      "impressions": 21,
+      "ctr": 0.047619047619047616,
+      "position": 9.523809523809524
     },
     {
       "keys": [
@@ -152,84 +179,66 @@
     },
     {
       "keys": [
+        "https://www.aifitnessapi.com/integrate/fitbit-api"
+      ],
+      "clicks": 0,
+      "impressions": 17,
+      "ctr": 0,
+      "position": 7.411764705882353
+    },
+    {
+      "keys": [
         "https://www.aifitnessapi.com/pricing/strava-api-pricing"
       ],
       "clicks": 0,
-      "impressions": 15,
+      "impressions": 12,
       "ctr": 0,
-      "position": 4.8
+      "position": 4.916666666666667
     },
     {
       "keys": [
-        "https://aifitnessapi.com/integrate/strava-api"
+        "https://aifitnessapi.com/fitness-apis/free-fitness-apis"
       ],
-      "clicks": 0,
-      "impressions": 15,
-      "ctr": 0,
-      "position": 7.133333333333334
-    },
-    {
-      "keys": [
-        "https://www.aifitnessapi.com/compliance/google-play-health-data-policy"
-      ],
-      "clicks": 0,
-      "impressions": 14,
-      "ctr": 0,
-      "position": 4.214285714285714
+      "clicks": 2,
+      "impressions": 12,
+      "ctr": 0.16666666666666666,
+      "position": 4.25
     },
     {
       "keys": [
         "https://www.aifitnessapi.com/integrate/terra-api"
       ],
       "clicks": 0,
-      "impressions": 14,
+      "impressions": 11,
       "ctr": 0,
-      "position": 6.214285714285714
+      "position": 6
     },
     {
       "keys": [
-        "https://aifitnessapi.com/fitness-apis/free-fitness-apis"
-      ],
-      "clicks": 3,
-      "impressions": 13,
-      "ctr": 0.23076923076923078,
-      "position": 3.5384615384615383
-    },
-    {
-      "keys": [
-        "https://www.aifitnessapi.com/compliance/hipaa-compliance-fitness-app"
+        "https://aifitnessapi.com/integrate/withings-api"
       ],
       "clicks": 0,
-      "impressions": 12,
+      "impressions": 11,
       "ctr": 0,
-      "position": 8
+      "position": 6
     },
     {
       "keys": [
-        "https://www.aifitnessapi.com/matrix"
+        "https://www.aifitnessapi.com/pricing/garmin-api-pricing"
       ],
       "clicks": 0,
       "impressions": 10,
       "ctr": 0,
-      "position": 5.6
-    },
-    {
-      "keys": [
-        "https://aifitnessapi.com/fitness-apis/health-data-aggregator-apis"
-      ],
-      "clicks": 0,
-      "impressions": 10,
-      "ctr": 0,
-      "position": 3
+      "position": 4.3
     },
     {
       "keys": [
         "https://www.aifitnessapi.com/fix/google-fit-api-deprecated"
       ],
       "clicks": 0,
-      "impressions": 10,
+      "impressions": 9,
       "ctr": 0,
-      "position": 6.9
+      "position": 6.888888888888889
     },
     {
       "keys": [
@@ -239,24 +248,6 @@
       "impressions": 8,
       "ctr": 0,
       "position": 6
-    },
-    {
-      "keys": [
-        "https://aifitnessapi.com/motion/rtmpose-models"
-      ],
-      "clicks": 1,
-      "impressions": 8,
-      "ctr": 0.125,
-      "position": 12
-    },
-    {
-      "keys": [
-        "https://www.aifitnessapi.com/fix/garmin-api-approval"
-      ],
-      "clicks": 0,
-      "impressions": 7,
-      "ctr": 0,
-      "position": 6.714285714285714
     },
     {
       "keys": [
@@ -278,21 +269,12 @@
     },
     {
       "keys": [
-        "https://aifitnessapi.com/integrate/samsung-health-api"
+        "https://aifitnessapi.com/fitness-apis/health-data-aggregator-apis"
       ],
       "clicks": 0,
       "impressions": 7,
       "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "https://aifitnessapi.com/fix/oura-personal-access-token-deprecated"
-      ],
-      "clicks": 0,
-      "impressions": 6,
-      "ctr": 0,
-      "position": 5.5
+      "position": 3
     },
     {
       "keys": [
@@ -350,16 +332,16 @@
     },
     {
       "keys": [
-        "https://aifitnessapi.com/apis/fitbit"
+        "https://aifitnessapi.com/devices/treadmill-app-integration"
       ],
-      "clicks": 0,
+      "clicks": 1,
       "impressions": 5,
-      "ctr": 0,
-      "position": 6
+      "ctr": 0.2,
+      "position": 7.4
     },
     {
       "keys": [
-        "https://aifitnessapi.com/devices/wear-os-health-services"
+        "https://www.aifitnessapi.com/matrix"
       ],
       "clicks": 0,
       "impressions": 5,
@@ -368,12 +350,12 @@
     },
     {
       "keys": [
-        "https://aifitnessapi.com/devices/treadmill-app-integration"
+        "https://www.aifitnessapi.com/compliance/google-play-health-data-policy"
       ],
-      "clicks": 1,
+      "clicks": 0,
       "impressions": 5,
-      "ctr": 0.2,
-      "position": 7.4
+      "ctr": 0,
+      "position": 4.6
     },
     {
       "keys": [
@@ -386,15 +368,6 @@
     },
     {
       "keys": [
-        "https://www.aifitnessapi.com/guides/camera-pose-tracking"
-      ],
-      "clicks": 0,
-      "impressions": 5,
-      "ctr": 0,
-      "position": 5.8
-    },
-    {
-      "keys": [
         "https://www.aifitnessapi.com/data/sleep-tracking-api"
       ],
       "clicks": 0,
@@ -404,30 +377,57 @@
     },
     {
       "keys": [
-        "https://aifitnessapi.com/fitbit-api-shutdown"
+        "https://www.aifitnessapi.com/guides/camera-pose-tracking"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 5.8
+    },
+    {
+      "keys": [
+        "https://www.aifitnessapi.com/fix/garmin-api-approval"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "https://www.aifitnessapi.com/fitness-apis/terra-vs-vital"
       ],
       "clicks": 1,
-      "impressions": 4,
-      "ctr": 0.25,
-      "position": 5.5
+      "impressions": 5,
+      "ctr": 0.2,
+      "position": 7.4
     },
     {
       "keys": [
-        "https://www.aifitnessapi.com/alternatives/healthkit-alternatives"
+        "https://aifitnessapi.com/motion/movenet-models"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "https://aifitnessapi.com/integrate/coros-api"
+      ],
+      "clicks": 1,
+      "impressions": 5,
+      "ctr": 0.2,
+      "position": 5
+    },
+    {
+      "keys": [
+        "https://www.aifitnessapi.com/compliance/hipaa-compliance-fitness-app"
       ],
       "clicks": 0,
       "impressions": 4,
       "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "https://aifitnessapi.com/devices"
-      ],
-      "clicks": 0,
-      "impressions": 4,
-      "ctr": 0,
-      "position": 6
+      "position": 10
     },
     {
       "keys": [
@@ -449,6 +449,15 @@
     },
     {
       "keys": [
+        "https://aifitnessapi.com/fix/oura-personal-access-token-deprecated"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 6.25
+    },
+    {
+      "keys": [
         "https://aifitnessapi.com/healthkit-errors"
       ],
       "clicks": 0,
@@ -458,34 +467,16 @@
     },
     {
       "keys": [
-        "https://www.aifitnessapi.com/pricing/garmin-api-pricing"
+        "https://aifitnessapi.com/engagement/push-notifications-fitness-app"
       ],
       "clicks": 1,
-      "impressions": 3,
-      "ctr": 0.3333333333333333,
-      "position": 3.6666666666666665
+      "impressions": 4,
+      "ctr": 0.25,
+      "position": 6
     },
     {
       "keys": [
-        "https://aifitnessapi.com/devices/cycling-sensors-power-cadence"
-      ],
-      "clicks": 0,
-      "impressions": 3,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "keys": [
-        "https://www.aifitnessapi.com/fitness-apis/apple-healthkit-vs-google-health-connect"
-      ],
-      "clicks": 0,
-      "impressions": 3,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "https://aifitnessapi.com/fitness-apis/wearable-data-apis"
+        "https://aifitnessapi.com/fitbit-api-shutdown"
       ],
       "clicks": 0,
       "impressions": 3,
@@ -503,6 +494,15 @@
     },
     {
       "keys": [
+        "https://aifitnessapi.com/compliance/google-play-health-connect-publishing-requirements"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
         "https://aifitnessapi.com/build/nutrition-tracking-app"
       ],
       "clicks": 0,
@@ -512,12 +512,12 @@
     },
     {
       "keys": [
-        "https://aifitnessapi.com/compliance/google-play-health-connect-publishing-requirements"
+        "https://aifitnessapi.com/compliance/app-store-guideline-5-1-1-data-collection-storage"
       ],
       "clicks": 0,
       "impressions": 3,
       "ctr": 0,
-      "position": 8
+      "position": 5
     },
     {
       "keys": [
@@ -530,66 +530,39 @@
     },
     {
       "keys": [
-        "https://www.aifitnessapi.com/fitness-apis/terra-vs-vital"
+        "https://aifitnessapi.com/google-health-api/active-energy-burned"
       ],
       "clicks": 0,
       "impressions": 3,
       "ctr": 0,
-      "position": 9
+      "position": 3.3333333333333335
     },
     {
       "keys": [
-        "https://aifitnessapi.com/motion/movenet-models"
-      ],
-      "clicks": 0,
-      "impressions": 3,
-      "ctr": 0,
-      "position": 7
-    },
-    {
-      "keys": [
-        "https://www.aifitnessapi.com/data/step-counting-api"
+        "https://aifitnessapi.com/google-health-api/active-minutes"
       ],
       "clicks": 1,
-      "impressions": 2,
-      "ctr": 0.5,
-      "position": 2
+      "impressions": 3,
+      "ctr": 0.3333333333333333,
+      "position": 3
     },
     {
       "keys": [
-        "https://aifitnessapi.com/pricing/oura-api-pricing"
+        "https://aifitnessapi.com/cookbook/refresh-rotation"
       ],
       "clicks": 0,
-      "impressions": 2,
+      "impressions": 3,
       "ctr": 0,
       "position": 4
     },
     {
       "keys": [
-        "https://aifitnessapi.com/data/gps-activity-api"
+        "https://aifitnessapi.com/integrate/suunto-api"
       ],
       "clicks": 0,
-      "impressions": 2,
+      "impressions": 3,
       "ctr": 0,
       "position": 6
-    },
-    {
-      "keys": [
-        "https://aifitnessapi.com/compare/usda-fooddata-central-vs-open-food-facts"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "https://aifitnessapi.com/devices/apple-watch-live-heart-rate"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 7.5
     },
     {
       "keys": [
@@ -602,21 +575,21 @@
     },
     {
       "keys": [
-        "https://www.aifitnessapi.com/compliance/health-app-privacy-policy"
+        "https://aifitnessapi.com/devices/wear-os-health-services"
       ],
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 5
+      "position": 8
     },
     {
       "keys": [
-        "https://aifitnessapi.com/libraries/react-native-health"
+        "https://aifitnessapi.com/fitness-apis/wearable-data-apis"
       ],
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 7
+      "position": 3
     },
     {
       "keys": [
@@ -638,21 +611,30 @@
     },
     {
       "keys": [
+        "https://www.aifitnessapi.com/compliance/health-app-privacy-policy"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "https://aifitnessapi.com/libraries/react-native-health"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
         "https://www.aifitnessapi.com/pricing/exercise-database-api-pricing"
       ],
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
       "position": 4
-    },
-    {
-      "keys": [
-        "https://aifitnessapi.com/libraries/garth"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6
     },
     {
       "keys": [
@@ -683,21 +665,21 @@
     },
     {
       "keys": [
+        "https://aifitnessapi.com/libraries/garth"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
         "https://aifitnessapi.com/compliance/store-health-data-securely"
       ],
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
       "position": 2
-    },
-    {
-      "keys": [
-        "https://aifitnessapi.com/phone-sensors/cmheadphonemotionmanager"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 5
     },
     {
       "keys": [
@@ -710,79 +692,70 @@
     },
     {
       "keys": [
-        "https://aifitnessapi.com/ai/ai-nutrition-logging"
-      ],
-      "clicks": 1,
-      "impressions": 1,
-      "ctr": 1,
-      "position": 2
-    },
-    {
-      "keys": [
-        "https://www.aifitnessapi.com/alternatives/exercisedb-alternatives"
+        "https://aifitnessapi.com/phone-sensors/cmheadphonemotionmanager"
       ],
       "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "https://www.aifitnessapi.com/alternatives/garmin-api-alternatives"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "https://aifitnessapi.com/compliance/fda-fitness-app-regulation"
-      ],
-      "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
       "ctr": 0,
       "position": 5
     },
     {
       "keys": [
-        "https://aifitnessapi.com/google-fit-shutdown"
+        "https://aifitnessapi.com/devices/indoor-bike-trainer-integration"
       ],
       "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
       "ctr": 0,
-      "position": 7
+      "position": 8
     },
     {
       "keys": [
-        "https://aifitnessapi.com/fix/healthkit-background-delivery-not-working"
+        "https://aifitnessapi.com/motion/jumping-jack-counter-pose-estimation"
+      ],
+      "clicks": 1,
+      "impressions": 2,
+      "ctr": 0.5,
+      "position": 8
+    },
+    {
+      "keys": [
+        "https://aifitnessapi.com/compare/mediapipe-vs-movenet"
+      ],
+      "clicks": 1,
+      "impressions": 2,
+      "ctr": 0.5,
+      "position": 4
+    },
+    {
+      "keys": [
+        "https://aifitnessapi.com/motion/openpose-models"
       ],
       "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
       "ctr": 0,
       "position": 10
     },
     {
       "keys": [
-        "https://aifitnessapi.com/watch-apps/mirroring-workouts-to-iphone"
+        "https://aifitnessapi.com/compliance/app-store-guideline-1-4-1-physical-harm"
       ],
       "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
       "ctr": 0,
-      "position": 3
+      "position": 1
     },
     {
       "keys": [
-        "https://aifitnessapi.com/data/workout-detection-api"
+        "https://aifitnessapi.com/alternatives/openpose-alternatives"
       ],
       "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
       "ctr": 0,
-      "position": 4
+      "position": 7
     },
     {
       "keys": [
-        "https://aifitnessapi.com/devices/ant-plus-vs-bluetooth"
+        "https://aifitnessapi.com/compare/usda-fooddata-central-vs-open-food-facts"
       ],
       "clicks": 0,
       "impressions": 1,
@@ -791,48 +764,12 @@
     },
     {
       "keys": [
-        "https://aifitnessapi.com/healthkit"
+        "https://aifitnessapi.com/ai/ai-workout-plan-generation"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 2
-    },
-    {
-      "keys": [
-        "https://aifitnessapi.com/guides/ai-workout-tracking-android-kotlin"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 9
-    },
-    {
-      "keys": [
-        "https://aifitnessapi.com/pricing/nutrition-api-pricing.md"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 10
-    },
-    {
-      "keys": [
-        "https://aifitnessapi.com/healthkit/exercise-and-fitness"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "https://aifitnessapi.com/integrate/nutritionix-api"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 10
+      "position": 7
     },
     {
       "keys": [
@@ -845,7 +782,7 @@
     },
     {
       "keys": [
-        "https://aifitnessapi.com/motion/apple-vision-body-pose"
+        "https://aifitnessapi.com/watch-apps/wear-os-passive-monitoring-measureclient"
       ],
       "clicks": 0,
       "impressions": 1,
@@ -863,15 +800,6 @@
     },
     {
       "keys": [
-        "https://aifitnessapi.com/ai/ai-workout-plan-generation"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 7
-    },
-    {
-      "keys": [
         "https://aifitnessapi.com/compare/kinestex-vs-sency"
       ],
       "clicks": 0,
@@ -881,12 +809,21 @@
     },
     {
       "keys": [
-        "https://aifitnessapi.com/watch-apps/wear-os-passive-monitoring-measureclient"
+        "https://aifitnessapi.com/motion/apple-vision-body-pose"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 7
+    },
+    {
+      "keys": [
+        "https://aifitnessapi.com/integrate/nutritionix-api"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10
     },
     {
       "keys": [
@@ -899,15 +836,6 @@
     },
     {
       "keys": [
-        "https://www.aifitnessapi.com/"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
         "https://aifitnessapi.com/compliance/app-store-health-data-rules.md"
       ],
       "clicks": 0,
@@ -917,12 +845,39 @@
     },
     {
       "keys": [
-        "https://aifitnessapi.com/architecture/incremental-sync"
+        "https://www.aifitnessapi.com/"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 7
+      "position": 4
+    },
+    {
+      "keys": [
+        "https://aifitnessapi.com/data/blood-glucose-api"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "keys": [
+        "https://aifitnessapi.com/build/hiking-app"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "https://aifitnessapi.com/apis/strava"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10
     },
     {
       "keys": [
@@ -935,7 +890,43 @@
     },
     {
       "keys": [
-        "https://aifitnessapi.com/engagement/gamification-in-fitness-apps"
+        "https://aifitnessapi.com/healthkit-queries/hkanchoredobjectquery"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "https://aifitnessapi.com/phone-sensors/cmaltimeter"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "https://aifitnessapi.com/fix/healthkit-database-inaccessible"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "https://aifitnessapi.com/devices/apple-watch-live-heart-rate"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "https://aifitnessapi.com/architecture/incremental-sync"
       ],
       "clicks": 0,
       "impressions": 1,
@@ -953,66 +944,12 @@
     },
     {
       "keys": [
-        "https://aifitnessapi.com/fix/healthkit-database-inaccessible"
+        "https://aifitnessapi.com/engagement/gamification-in-fitness-apps"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "https://aifitnessapi.com/build/hiking-app"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 2
-    },
-    {
-      "keys": [
-        "https://aifitnessapi.com/phone-sensors/cmaltimeter"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "https://aifitnessapi.com/compliance/app-store-guideline-5-1-1-data-collection-storage"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "https://aifitnessapi.com/apis/strava"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 10
-    },
-    {
-      "keys": [
-        "https://aifitnessapi.com/data/blood-glucose-api"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "keys": [
-        "https://aifitnessapi.com/healthkit-queries/hkanchoredobjectquery"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 5
+      "position": 7
     },
     {
       "keys": [
@@ -1025,30 +962,30 @@
     },
     {
       "keys": [
-        "https://aifitnessapi.com/build"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "https://aifitnessapi.com/devices/indoor-bike-trainer-integration"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 10
-    },
-    {
-      "keys": [
         "https://aifitnessapi.com/health-connect/steps-record"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 2
+    },
+    {
+      "keys": [
+        "https://www.aifitnessapi.com/fitness-apis/apple-healthkit-vs-google-health-connect"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "keys": [
+        "https://aifitnessapi.com/health-connect/steps-cadence-record"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
     },
     {
       "keys": [
@@ -1061,16 +998,16 @@
     },
     {
       "keys": [
-        "https://aifitnessapi.com/google-health-api/active-energy-burned"
+        "https://aifitnessapi.com/compliance/health-data-retention-deletion"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 2
+      "position": 7
     },
     {
       "keys": [
-        "https://aifitnessapi.com/compliance/health-data-retention-deletion"
+        "https://aifitnessapi.com/audio-coaching/avspeechsynthesizer-workout-cues"
       ],
       "clicks": 0,
       "impressions": 1,
@@ -1088,7 +1025,52 @@
     },
     {
       "keys": [
-        "https://aifitnessapi.com/health-connect/steps-cadence-record"
+        "https://aifitnessapi.com/healthkit-queries/hkworkoutroutequery"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "https://aifitnessapi.com/build"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "https://aifitnessapi.com/apis"
+      ],
+      "clicks": 1,
+      "impressions": 1,
+      "ctr": 1,
+      "position": 10
+    },
+    {
+      "keys": [
+        "https://aifitnessapi.com/google-health-api/active-zone-minutes"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "https://aifitnessapi.com/bluetooth-fitness/activity-goal"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "https://aifitnessapi.com/phone-sensors/cmpedometer"
       ],
       "clicks": 0,
       "impressions": 1,
@@ -1097,21 +1079,39 @@
     },
     {
       "keys": [
-        "https://aifitnessapi.com/audio-coaching/avspeechsynthesizer-workout-cues"
+        "https://aifitnessapi.com/healthkit-identifiers/blood-pressure-diastolic"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 7
+      "position": 5
     },
     {
       "keys": [
-        "https://aifitnessapi.com/healthkit-queries/hkworkoutroutequery"
+        "https://aifitnessapi.com/pose-keypoints/openpose-body-25"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 4
+    },
+    {
+      "keys": [
+        "https://www.aifitnessapi.com/integrate/exercisedb-api"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "https://aifitnessapi.com/audio-coaching/headphones-disconnect-route-change"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
     }
   ],
   "byQuery": [
@@ -1120,27 +1120,45 @@
         "mediapipe pose landmarker"
       ],
       "clicks": 0,
-      "impressions": 16,
+      "impressions": 15,
       "ctr": 0,
-      "position": 7.6875
+      "position": 7.533333333333333
+    },
+    {
+      "keys": [
+        "garmin personal api"
+      ],
+      "clicks": 0,
+      "impressions": 15,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "fitbit get the current running pace api"
+      ],
+      "clicks": 0,
+      "impressions": 14,
+      "ctr": 0,
+      "position": 8
     },
     {
       "keys": [
         "whoop api"
       ],
       "clicks": 1,
-      "impressions": 11,
-      "ctr": 0.09090909090909091,
-      "position": 8.818181818181818
+      "impressions": 13,
+      "ctr": 0.07692307692307693,
+      "position": 8.384615384615385
     },
     {
       "keys": [
-        "fitbit api google"
+        "garmin api for personal use"
       ],
       "clicks": 0,
-      "impressions": 10,
+      "impressions": 11,
       "ctr": 0,
-      "position": 7.4
+      "position": 6
     },
     {
       "keys": [
@@ -1162,39 +1180,30 @@
     },
     {
       "keys": [
+        "best way to nutrition facts database"
+      ],
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 5.555555555555555
+    },
+    {
+      "keys": [
+        "exclusive nutrition facts database"
+      ],
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "keys": [
         "in what situation would a health app or fitness tracker be considered a covered entity under the hipaa privacy rule? if a client enters their personal data into the app or tracker if a behavioral healthcare provider asks a client to find a sleep tracker app to use to monitor the client's sleep patterns if a client orders a tracker from their healthcare insurance provider to monitor blood pressure if a treatment program developed the app to collect, use, and store client information"
       ],
       "clicks": 0,
       "impressions": 8,
       "ctr": 0,
       "position": 10
-    },
-    {
-      "keys": [
-        "mediapipe pose landmarker lite"
-      ],
-      "clicks": 0,
-      "impressions": 7,
-      "ctr": 0,
-      "position": 3.5714285714285716
-    },
-    {
-      "keys": [
-        "best way to nutrition facts database"
-      ],
-      "clicks": 0,
-      "impressions": 7,
-      "ctr": 0,
-      "position": 5.142857142857143
-    },
-    {
-      "keys": [
-        "exercisedb api cost"
-      ],
-      "clicks": 0,
-      "impressions": 6,
-      "ctr": 0,
-      "position": 6
     },
     {
       "keys": [
@@ -1207,12 +1216,12 @@
     },
     {
       "keys": [
-        "fitness api"
+        "pose landmarker"
       ],
-      "clicks": 2,
+      "clicks": 0,
       "impressions": 5,
-      "ctr": 0.4,
-      "position": 1.8
+      "ctr": 0,
+      "position": 8.4
     },
     {
       "keys": [
@@ -1234,30 +1243,39 @@
     },
     {
       "keys": [
-        "fitbit api google api"
+        "python-garminconnect"
       ],
       "clicks": 0,
-      "impressions": 4,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 4.6
+    },
+    {
+      "keys": [
+        "garmin connect personal api"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "keys": [
+        "garmin personal api key"
+      ],
+      "clicks": 0,
+      "impressions": 5,
       "ctr": 0,
       "position": 6
     },
     {
       "keys": [
-        "apple fitness api integration guide"
+        "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/1/pose_landmarker_lite.task"
       ],
       "clicks": 0,
-      "impressions": 4,
+      "impressions": 5,
       "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "polar flow api"
-      ],
-      "clicks": 0,
-      "impressions": 4,
-      "ctr": 0,
-      "position": 9.75
+      "position": 10
     },
     {
       "keys": [
@@ -1267,6 +1285,15 @@
       "impressions": 4,
       "ctr": 0,
       "position": 5
+    },
+    {
+      "keys": [
+        "fitbit api google"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 8
     },
     {
       "keys": [
@@ -1288,6 +1315,33 @@
     },
     {
       "keys": [
+        "mediapipe pose landmarker lite"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "reviews for nutrition facts database"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "data aggregator for hst and sleep wearable data - vital"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
         "google fitbit air api"
       ],
       "clicks": 0,
@@ -1306,21 +1360,12 @@
     },
     {
       "keys": [
-        "data aggregator for hst and sleep wearable data - vital"
+        "fitness api"
       ],
-      "clicks": 0,
+      "clicks": 1,
       "impressions": 4,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "reviews for nutrition facts database"
-      ],
-      "clicks": 0,
-      "impressions": 4,
-      "ctr": 0,
-      "position": 7
+      "ctr": 0.25,
+      "position": 2
     },
     {
       "keys": [
@@ -1342,30 +1387,21 @@
     },
     {
       "keys": [
-        "are fitness tracking apps hipaa compliance"
+        "fitnessvolt alternative wholesale api"
       ],
       "clicks": 0,
-      "impressions": 3,
+      "impressions": 4,
       "ctr": 0,
-      "position": 7
+      "position": 8
     },
     {
       "keys": [
-        "api polar"
+        "garmin connect api personal use"
       ],
       "clicks": 0,
-      "impressions": 3,
+      "impressions": 4,
       "ctr": 0,
-      "position": 9
-    },
-    {
-      "keys": [
-        "in what situation would a health app or fitness tracker be considered a covered entity under the hipaa privacy rule?"
-      ],
-      "clicks": 0,
-      "impressions": 3,
-      "ctr": 0,
-      "position": 9
+      "position": 8
     },
     {
       "keys": [
@@ -1387,30 +1423,12 @@
     },
     {
       "keys": [
-        "pose landmarker"
-      ],
-      "clicks": 0,
-      "impressions": 3,
-      "ctr": 0,
-      "position": 8.666666666666666
-    },
-    {
-      "keys": [
         "polar access link v3"
       ],
       "clicks": 0,
       "impressions": 3,
       "ctr": 0,
       "position": 4
-    },
-    {
-      "keys": [
-        "apple (healthkit + apple intelligence),"
-      ],
-      "clicks": 0,
-      "impressions": 3,
-      "ctr": 0,
-      "position": 9
     },
     {
       "keys": [
@@ -1432,48 +1450,12 @@
     },
     {
       "keys": [
-        "fitbit get the current running pace api"
+        "apple (healthkit + apple intelligence),"
       ],
       "clicks": 0,
       "impressions": 3,
       "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/latest/pose_landmarker_lite.task"
-      ],
-      "clicks": 0,
-      "impressions": 3,
-      "ctr": 0,
-      "position": 5.666666666666667
-    },
-    {
-      "keys": [
-        "python-garminconnect"
-      ],
-      "clicks": 0,
-      "impressions": 3,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "androidx.health.connect.client.records exercisesessionrecord exercise_type_weightlifting json"
-      ],
-      "clicks": 0,
-      "impressions": 3,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "how do i allow unlimited connections to my strava api"
-      ],
-      "clicks": 0,
-      "impressions": 3,
-      "ctr": 0,
-      "position": 7
+      "position": 9
     },
     {
       "keys": [
@@ -1486,399 +1468,84 @@
     },
     {
       "keys": [
-        "does any fitness app in the market allows api keys"
-      ],
-      "clicks": 1,
-      "impressions": 2,
-      "ctr": 0.5,
-      "position": 2
-    },
-    {
-      "keys": [
-        "fitbit os sdk deprecation google 2025 sideload apps fitbit studio"
-      ],
-      "clicks": 1,
-      "impressions": 2,
-      "ctr": 0.5,
-      "position": 4
-    },
-    {
-      "keys": [
-        "free api for fitness"
-      ],
-      "clicks": 1,
-      "impressions": 2,
-      "ctr": 0.5,
-      "position": 2
-    },
-    {
-      "keys": [
-        "garmin api pricing"
-      ],
-      "clicks": 1,
-      "impressions": 2,
-      "ctr": 0.5,
-      "position": 3
-    },
-    {
-      "keys": [
-        "fitbit api deprecation"
+        "how do i allow unlimited connections to my strava api"
       ],
       "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 10
-    },
-    {
-      "keys": [
-        "garmin health api access individual developer approval required 2026"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "fitness exercise database api subscription animations pricing 2026"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 2
-    },
-    {
-      "keys": [
-        "visit https://dev.fitbit.com/docs/oauth2 for more information on the fitbit web api authorization process."
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "oura api personal access token deprecated oauth2 required"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "apple healthkit equivalent for android"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "rep ai fitness app uses which api"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "rep ai fitness app uses which api for counting reps"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 2
-    },
-    {
-      "keys": [
-        "scope of whoop"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "dependence on rigid templates and external apis in fitness tracking app"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "garmin api over agregator"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "google fitbit api"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "roba un huevo pero soy spiderman completo (steal an egg roblox) video game release"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 2
-    },
-    {
-      "keys": [
-        "impact of dependence on rigid templates and external apis in fitness tracking app"
-      ],
-      "clicks": 0,
-      "impressions": 2,
+      "impressions": 3,
       "ctr": 0,
       "position": 7
     },
     {
       "keys": [
-        "terra garmin integration"
+        "androidx.health.connect.client.records exercisesessionrecord exercise_type_weightlifting json"
       ],
       "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "keys": [
-        "healthkit auto detect workout type api for third party apps"
-      ],
-      "clicks": 0,
-      "impressions": 2,
+      "impressions": 3,
       "ctr": 0,
       "position": 4
     },
     {
       "keys": [
-        "do you get api keys with a whoop account ai mode"
+        "garmin api"
+      ],
+      "clicks": 1,
+      "impressions": 3,
+      "ctr": 0.3333333333333333,
+      "position": 8.666666666666666
+    },
+    {
+      "keys": [
+        "app store review guidelines 5.1.3 healthkit health data advertising data mining"
       ],
       "clicks": 0,
-      "impressions": 2,
+      "impressions": 3,
       "ctr": 0,
       "position": 6
     },
     {
       "keys": [
-        "what is an ap for fitness"
+        "what is mediapipe pose landmarker full"
       ],
       "clicks": 0,
-      "impressions": 2,
+      "impressions": 3,
       "ctr": 0,
       "position": 4
     },
     {
       "keys": [
-        "android health connect apple healthkit interoperability fitness data standard"
+        "withings api"
       ],
       "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "sparvana.de domain"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 2
-    },
-    {
-      "keys": [
-        "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 10
-    },
-    {
-      "keys": [
-        "fitbit whoop google api"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "movenet vs mediapipe pose"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "garmin fit api"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "\"garmin\" september 2026 api changes developers hrv stress data access news"
-      ],
-      "clicks": 0,
-      "impressions": 2,
+      "impressions": 3,
       "ctr": 0,
       "position": 8
     },
     {
       "keys": [
-        "3rd party providers that i can integrate to connect to apple health kit and google health connect"
+        "apple health kit list of sensors"
       ],
       "clicks": 0,
-      "impressions": 2,
+      "impressions": 3,
       "ctr": 0,
-      "position": 5
+      "position": 3
     },
     {
       "keys": [
-        "wearable data aggregator api comparison terra rook spike vital"
+        "api  garmin"
       ],
       "clicks": 0,
-      "impressions": 2,
+      "impressions": 3,
       "ctr": 0,
-      "position": 2
+      "position": 9
     },
     {
       "keys": [
-        "apple app store review guidelines health fitness healthkit data advertising use"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "pose_landmarker.task"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 10
-    },
-    {
-      "keys": [
-        "fitbit api google api what does api mean"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "digital fitness app privacy data minimization health data guidance"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 2
-    },
-    {
-      "keys": [
-        "nsca exercise technique database licensing exercise library api fitness app"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "garmin connect developer program cost fees free join health api pricing"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "terra garmin api terms"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 9.5
-    },
-    {
-      "keys": [
-        "pose landmarker full"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "apple healthkit google health connect fitness app integration requirements"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "ai fitness app privacy local data architecture"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "find me the top fitness wearables that expose api endpoints and i can easily integrate"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "pose landmarker models download"
+        "google fit rest api deprecated shutdown date fitness api migration health connect 2026 still available"
       ],
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
       "position": 7
-    },
-    {
-      "keys": [
-        "google fitness api fitbit"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 5
     },
     {
       "keys": [
@@ -1892,6 +1559,150 @@
     {
       "keys": [
         "apple app store health app privacy data collection guidelines 2026"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "keys": [
+        "openpose yolo alternative"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "health fitness api apple healthkit garmin connect fitbit developer platform limits 2026"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "fitness app user data monetization aggregate insights gdpr health data special category"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "google play health connect permissions policy"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "google fitness api fitbit"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "hrv data and stress scores data access et"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "apple healthkit google health connect fitness app integration requirements"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "google fit api shutdown developers 2024 official google health may 2026 blog"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "garmin health api commercial license fitbit api pricing strava api free"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "media pipe landmarker"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "movenet mediapipe blazepose exercise recognition app"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "sency movement sdk exercise motion analysis official"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "free calorie tracking food database apis with every food and raw material and ingredient in the world"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "keys": [
+        "hkobserverquery enablebackgrounddelivery new samples"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "tải model pose landmarker full."
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "health connect getchanges changes token incremental sync"
       ],
       "clicks": 0,
       "impressions": 2,
@@ -1915,6 +1726,42 @@
       "impressions": 2,
       "ctr": 0,
       "position": 6
+    },
+    {
+      "keys": [
+        "apple health third party integration"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "terra health data"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "healthkit determine read authorization denied no data privacy"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "apple fitness api integration guide"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
     },
     {
       "keys": [
@@ -1945,12 +1792,12 @@
     },
     {
       "keys": [
-        "google fit api shutdown developers 2024 official google health may 2026 blog"
+        "polar flow api"
       ],
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 6
+      "position": 10
     },
     {
       "keys": [
@@ -1963,48 +1810,12 @@
     },
     {
       "keys": [
-        "media pipe landmarker"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "hkobserverquery enablebackgrounddelivery new samples"
+        "free fitness api"
       ],
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
       "position": 4
-    },
-    {
-      "keys": [
-        "google fit rest api deprecated shutdown date fitness api migration health connect 2026 still available"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 7
-    },
-    {
-      "keys": [
-        "apple health third party integration"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "terra health data"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 7
     },
     {
       "keys": [
@@ -2017,12 +1828,21 @@
     },
     {
       "keys": [
-        "healthkit determine read authorization denied no data privacy"
+        "fitness api's"
       ],
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
       "position": 2
+    },
+    {
+      "keys": [
+        "android health connect official hydration data type apple healthkit water dietary water documentation"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
     },
     {
       "keys": [
@@ -2035,16 +1855,43 @@
     },
     {
       "keys": [
-        "movenet mediapipe blazepose exercise recognition app"
+        "apple health equivalent in android"
       ],
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 2
+      "position": 8
     },
     {
       "keys": [
-        "sency movement sdk exercise motion analysis official"
+        "ai fitness app privacy local data architecture"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "find me the top fitness wearables that expose api endpoints and i can easily integrate"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "pose landmarker models download"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "terra api vital supported integrations keep fit china fitness apps"
       ],
       "clicks": 0,
       "impressions": 2,
@@ -2062,129 +1909,12 @@
     },
     {
       "keys": [
-        "terra api vital supported integrations keep fit china fitness apps"
+        "garmin api for integrating with other applications"
       ],
-      "clicks": 0,
+      "clicks": 1,
       "impressions": 2,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "health fitness api apple healthkit garmin connect fitbit developer platform limits 2026"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
+      "ctr": 0.5,
       "position": 4
-    },
-    {
-      "keys": [
-        "free fitness api"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "openpose yolo alternative"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 2
-    },
-    {
-      "keys": [
-        "garmin health api commercial license fitbit api pricing strava api free"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 2
-    },
-    {
-      "keys": [
-        "free calorie tracking food database apis with every food and raw material and ingredient in the world"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 9
-    },
-    {
-      "keys": [
-        "fitness app user data monetization aggregate insights gdpr health data special category"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "fitness api's"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 2
-    },
-    {
-      "keys": [
-        "google play health connect permissions policy"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "hrv data and stress scores data access et"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "apple health equivalent in android"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "tải model pose landmarker full."
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 7
-    },
-    {
-      "keys": [
-        "android health connect official hydration data type apple healthkit water dietary water documentation"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "health connect getchanges changes token incremental sync"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 3
     },
     {
       "keys": [
@@ -2197,30 +1927,84 @@
     },
     {
       "keys": [
-        "garmin api for integrating with other applications"
-      ],
-      "clicks": 1,
-      "impressions": 2,
-      "ctr": 0.5,
-      "position": 4
-    },
-    {
-      "keys": [
-        "apple healthkit app review guidelines health data use for financial trading coaching app healthkit permissible"
+        "polar accesslink"
       ],
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 4
+      "position": 5
     },
     {
       "keys": [
-        "oura personal access token developer portal 2026"
+        "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/latest/pose_landmarker_lite.task"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "cmmotionactivitymanager"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "flutter health package healthkit steps ios setup 2026"
       ],
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
       "position": 6
+    },
+    {
+      "keys": [
+        "site.polar.com loop no subscription accesslink api"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "health connect stepsrecord count long kotlin official"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "apple app store health data advertising tracking restrictions 5.1.3"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "fitness management software integrations api comparison"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "garmin  community api"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 9
     },
     {
       "keys": [
@@ -2239,312 +2023,6 @@
       "impressions": 2,
       "ctr": 0,
       "position": 6
-    },
-    {
-      "keys": [
-        "apple app store health data privacy requirements fitness app 2026"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 2
-    },
-    {
-      "keys": [
-        "site.polar.com loop no subscription accesslink api"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "mediapipe pose vs movenet"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "sleep api services fitbit oura ring whoop health data"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "@kingstinct/react-native-healthkit what is this"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "flutter health package healthkit steps ios setup 2026"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "sensor.type_step_counter"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "谷歌  cervicalmucusrecord"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "hkqueryanchor、android の changes token"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "cmmotionactivitymanager"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 7
-    },
-    {
-      "keys": [
-        "exercise database open source exercise api license exercises free exercise db wger"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "site.developer.apple.com healthkit authorizing read data cannot determine denied"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "hkstateofmind"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "site.garmin.com developer health api business approval"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "rook health api pricing garmin"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 7
-    },
-    {
-      "keys": [
-        "谷歌 健康 cervicalmucusrecord"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "aimyfitnessapi.com"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "keys": [
-        "when did we tested nutrition apis ? is it correct"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "polar accesslink"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "exercise database free api"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "siri workout sound"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "motion and fitness api"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 2
-    },
-    {
-      "keys": [
-        "health connect stepsrecord count long kotlin official"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "open wearables garmin hrv api pricing per user 2026"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "what is fitness oauth"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "google health api deprecation"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "garmin connect python library"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "apple app store health data advertising tracking restrictions 5.1.3"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 2
-    },
-    {
-      "keys": [
-        "gdpr personal data fitness app commercial use restrictions"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "garmin api for app"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "wear os health services exerciseclient datatype heart_rate_bpm pace distance elevation exerciseupdate callback"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "fitness management software integrations api comparison"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "wearable heart rate data fitness app privacy consent guidance"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "exercisedb wger exercise library api license animations"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 5
     },
     {
       "keys": [
@@ -2611,12 +2089,12 @@
     },
     {
       "keys": [
-        "garmin  community api"
+        "apple healthkit app review guidelines health data use for financial trading coaching app healthkit permissible"
       ],
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 9
+      "position": 4
     },
     {
       "keys": [
@@ -2629,6 +2107,60 @@
     },
     {
       "keys": [
+        "sleep api services fitbit oura ring whoop health data"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "aimyfitnessapi.com"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "keys": [
+        "motion and fitness api"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "exercise database free api"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "谷歌 健康 cervicalmucusrecord"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "exercise database open source exercise api license exercises free exercise db wger"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
         "pose_landmarker_heavy.task"
       ],
       "clicks": 0,
@@ -2638,290 +2170,209 @@
     },
     {
       "keys": [
+        "site.developer.apple.com healthkit authorizing read data cannot determine denied"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "hkstateofmind"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "site.garmin.com developer health api business approval"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "sensor.type_step_counter"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "mediapipe pose vs movenet"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "oura personal access token developer portal 2026"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "what is fitness oauth"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "open wearables garmin hrv api pricing per user 2026"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "garmin api for app"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "wear os health services exerciseclient datatype heart_rate_bpm pace distance elevation exerciseupdate callback"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "google health api deprecation"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "garmin connect python library"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "rook health api pricing garmin"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "wearable heart rate data fitness app privacy consent guidance"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "exercisedb wger exercise library api license animations"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "谷歌  cervicalmucusrecord"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "when did we tested nutrition apis ? is it correct"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "hkqueryanchor、android の changes token"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "siri workout sound"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "gdpr personal data fitness app commercial use restrictions"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "apple app store health data privacy requirements fitness app 2026"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "@kingstinct/react-native-healthkit what is this"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
         "vo2master api"
       ],
       "clicks": 1,
       "impressions": 2,
       "ctr": 0.5,
-      "position": 6
-    },
-    {
-      "keys": [
-        "mediapipe pose landmarker is another systems?"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 9
-    },
-    {
-      "keys": [
-        "site.developer.apple.com cmpedometer querypedometerdata from to distance isdistanceavailable nsmotionusagedescription"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "oura api whoop api apple healthkit function health longevity membership competitors"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "keys": [
-        "health data api aggregator europe wearable activity data oauth platform"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "healthconnect steps record type"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 2
-    },
-    {
-      "keys": [
-        "fitbit api integration is it free"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "apple healthkit developer documentation \"food\" data type"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "healthkit api"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 10
-    },
-    {
-      "keys": [
-        "junction vital tryvital wearable api apple health garmin samsung"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "log activity api calories burned valid values"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "health connect play console permission approval form \"health apps declaration\" data safety review how long"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "device encryption for sensitive health and fitness logs"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 2
-    },
-    {
-      "keys": [
-        "androidx.health.connect.client.exerciserecordentry weight lifting json"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "european fitness data aggregator api garmin strava polar suunto alternative terra"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "\"5.1.2\" \"data use and sharing\" \"explicit permission\" app review guidelines text"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "apple healthkit background delivery not real time guaranteed"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "android health connect permissions manifest play console declaration"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "free exercise video library download app wger license"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 2
-    },
-    {
-      "keys": [
-        "androidx.health.connect.client.records exercisesessionrecord exercise_type_weightlifting"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "keys": [
-        "terra junction"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "site.developer.apple.com healthkit enablebackgrounddelivery step count hourly"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "health connect permission dialog learn more link privacy policy app rationale activity"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "\"google health api\" rest endpoints steps sleep heartrate data types scopes"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "top nutrition facts database comparison"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 9
-    },
-    {
-      "keys": [
-        "whoop developer account pricing"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "fitness app hipaa and gdpr"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "terra api alternatives health fitness data aggregation strava google fit apple health 2026"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 2
-    },
-    {
-      "keys": [
-        "oura whoop api health data developer access 2026"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "keys": [
-        "site.developer.android.com health connect aggregate total calories burned nutrition body fat weight data types"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "junction tryvital pricing garmin wearables api"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 9
-    },
-    {
-      "keys": [
-        "google play health apps declaration health connect policy 2026"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
       "position": 6
     },
     {
@@ -2935,102 +2386,12 @@
     },
     {
       "keys": [
-        "fitbit met-hours integratio"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 9
-    },
-    {
-      "keys": [
-        "free exercise video library api open license"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "health fitness apps public api availability garmin oura whoop developer api"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 2
-    },
-    {
-      "keys": [
-        "apple's healthkit rule"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "api fitness overview"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 2
-    },
-    {
-      "keys": [
         "strava free trial subscription standard tier api access"
       ],
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
       "position": 7
-    },
-    {
-      "keys": [
-        "weightlifting app with api"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "site.developer.apple.com healthkit requesting authorization read denied cannot determine"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "health connect bloodpressurerecord systolic diastolic mmhg fields"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "oura ring api v2 personal access token self-serve developer 2026"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 7
-    },
-    {
-      "keys": [
-        "complete list hkcharacteristictypeidentifier hksampletypeidentifier all apple healthkit data types"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 6
     },
     {
       "keys": [
@@ -3043,6 +2404,15 @@
     },
     {
       "keys": [
+        "weightlifting app with api"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
         "healthkit name"
       ],
       "clicks": 0,
@@ -3052,21 +2422,39 @@
     },
     {
       "keys": [
-        "nutrition database apis fatsecret edamam nutritionix chomp barcode food logging comparison"
+        "health connect bloodpressurerecord systolic diastolic mmhg fields"
       ],
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 6
+      "position": 4
     },
     {
       "keys": [
-        "fitness app hipaa and gdpr  mtechub"
+        "free-exercise-db"
       ],
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 6
+      "position": 7
+    },
+    {
+      "keys": [
+        "fitness wearables data aggregation api providers europe rouvy fitrockr human api"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "fitbit api integration is it free"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
     },
     {
       "keys": [
@@ -3088,12 +2476,21 @@
     },
     {
       "keys": [
-        "mediapipe heavy"
+        "site.developer.apple.com cmpedometer querypedometerdata from to distance isdistanceavailable nsmotionusagedescription"
       ],
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 6
+      "position": 4
+    },
+    {
+      "keys": [
+        "oura api whoop api apple healthkit function health longevity membership competitors"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
     },
     {
       "keys": [
@@ -3106,15 +2503,6 @@
     },
     {
       "keys": [
-        "free-exercise-db"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 7
-    },
-    {
-      "keys": [
         "fitbit web api shutdown october 30 2026 google health api migration deadline"
       ],
       "clicks": 0,
@@ -3124,12 +2512,102 @@
     },
     {
       "keys": [
-        "fitness wearables data aggregation api providers europe rouvy fitrockr human api"
+        "is thre a met api? for fitness"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "health data api aggregator europe wearable activity data oauth platform"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "mediapipe pose landmarker is another systems?"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "keys": [
+        "plant fitnss api"
       ],
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
       "position": 4
+    },
+    {
+      "keys": [
+        "oura whoop api health data developer access 2026"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "keys": [
+        "nutrition database apis fatsecret edamam nutritionix chomp barcode food logging comparison"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "fitbit met-hours integratio"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "keys": [
+        "top nutrition facts database comparison"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "keys": [
+        "google play health apps declaration health connect policy 2026"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "fitness app hipaa and gdpr  mtechub"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "terra api alternatives health fitness data aggregation strava google fit apple health 2026"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
     },
     {
       "keys": [
@@ -3151,12 +2629,201 @@
     },
     {
       "keys": [
-        "is thre a met api? for fitness"
+        "health connect play console permission approval form \"health apps declaration\" data safety review how long"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "site.developer.android.com health connect aggregate total calories burned nutrition body fat weight data types"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "device encryption for sensitive health and fitness logs"
       ],
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
       "position": 2
+    },
+    {
+      "keys": [
+        "androidx.health.connect.client.exerciserecordentry weight lifting json"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "junction tryvital pricing garmin wearables api"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "keys": [
+        "european fitness data aggregator api garmin strava polar suunto alternative terra"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "log activity api calories burned valid values"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "junction vital tryvital wearable api apple health garmin samsung"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "\"5.1.2\" \"data use and sharing\" \"explicit permission\" app review guidelines text"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "apple healthkit background delivery not real time guaranteed"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "healthconnect steps record type"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "api fitness overview"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "health fitness apps public api availability garmin oura whoop developer api"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "android health connect permissions manifest play console declaration"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "free exercise video library download app wger license"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "site.developer.apple.com healthkit enablebackgrounddelivery step count hourly"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "site.developer.apple.com healthkit requesting authorization read denied cannot determine"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "health connect permission dialog learn more link privacy policy app rationale activity"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "\"google health api\" rest endpoints steps sleep heartrate data types scopes"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "apple healthkit developer documentation \"food\" data type"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "oura ring api v2 personal access token self-serve developer 2026"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "complete list hkcharacteristictypeidentifier hksampletypeidentifier all apple healthkit data types"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
     },
     {
       "keys": [
@@ -3169,7 +2836,16 @@
     },
     {
       "keys": [
-        "plant fitnss api"
+        "mediapipe heavy"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "apple's healthkit rule"
       ],
       "clicks": 0,
       "impressions": 2,
@@ -3178,462 +2854,723 @@
     },
     {
       "keys": [
-        "oura developer portal getting 400 invalid_request invalid request when attempint to launch"
+        "whoop developer account pricing"
       ],
-      "clicks": 1,
-      "impressions": 1,
-      "ctr": 1,
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "healthkit api"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 10
+    },
+    {
+      "keys": [
+        "androidx.health.connect.client.records exercisesessionrecord exercise_type_weightlifting"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "keys": [
+        "terra junction"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "fitness app hipaa and gdpr"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "free exercise video library api open license"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
       "position": 4
     },
     {
       "keys": [
-        "ai photo logging api"
+        "fitness api for showing moves"
+      ],
+      "clicks": 2,
+      "impressions": 2,
+      "ctr": 1,
+      "position": 6
+    },
+    {
+      "keys": [
+        "terra api, junction (antigo vital) e thryve"
       ],
       "clicks": 1,
-      "impressions": 1,
-      "ctr": 1,
+      "impressions": 2,
+      "ctr": 0.5,
+      "position": 3
+    },
+    {
+      "keys": [
+        "mediapipe pose vs movenet performance"
+      ],
+      "clicks": 1,
+      "impressions": 2,
+      "ctr": 0.5,
       "position": 2
     },
     {
       "keys": [
-        "is there a workout and nutrition api"
-      ],
-      "clicks": 1,
-      "impressions": 1,
-      "ctr": 1,
-      "position": 1
-    },
-    {
-      "keys": [
-        "can you get steps from android phone via api to build own dashboard"
-      ],
-      "clicks": 1,
-      "impressions": 1,
-      "ctr": 1,
-      "position": 2
-    },
-    {
-      "keys": [
-        "usda food database api - jakie inne bazy jedzenia udostępniają darmowe api?"
-      ],
-      "clicks": 1,
-      "impressions": 1,
-      "ctr": 1,
-      "position": 2
-    },
-    {
-      "keys": [
-        "does apple app store have restrictions on fitness apps on individual accounts, like google app store does?"
-      ],
-      "clicks": 1,
-      "impressions": 1,
-      "ctr": 1,
-      "position": 1
-    },
-    {
-      "keys": [
-        "fitbit air api"
+        "\"https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/latest/pose_landmarker_lite.task\""
       ],
       "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 1
+    },
+    {
+      "keys": [
+        "android health connect background read history permissions exercise route access"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "usda fooddata central open food facts dataset api difference"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "openpose alternatives"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "best food nutrition database"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "python-garminconnect upload activity new auth 2026 garth replacement"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "health connect metadata dataorigin device recordingmethod garmin writes to health connect which data types"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "garmin health api application process and approval criteria"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "suunto api zone"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "google health connect heart rate variability readiness metric documentation"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "apple app review guidelines 5.1.1(ix) personal health data offline app"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "best fitness watch data export api review latest"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "best fitness api connector personal training garmin strava apple health google fit 2026"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "how to get a business api for garmin for free"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "mediapipe pose landmarker lite full heavy pixel 3 iphone latency coco map license weights"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "garmin personal api key permissions read activities health api personal key documentation 2026"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "oura api access developer pricing 2026"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "keys": [
+        "hkerrordatabaseinaccessible device locked healthkit query"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "polar loop price germany api accesslink free"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "garmin connect api python"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "movenet tensorflow lite pose estimation fitness app advantages limitations"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "site.developer.garmin.com health api fees commercial use"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "openpose 25 body keypoints 135 keypoints coco predefined keypoints"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "garmin api key"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "mediapipe, openpose vs yolo-pose best for lightweight and privacy-preserving   framework for human movement analysis using pose-based representation"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "keys": [
+        "google health api v4 data types scopes rate limits webhooks"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "ml kit pose base sdk"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "github samsung galaxy health monitoring system project ideas"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "garmin api starter enterprise"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "apple healthkit heartratevariabilitysdnn health connect rmssd heart rate variability documentation"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "@capgo/capacitor-health npm free open source health connect plugin steps"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "ftms treadmill bluetooth characteristic treadmill data uuid notification"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "healthkit entitlement simulator code_signing_allowed=no hkhealthstore ishealthdataavailable"
+      ],
+      "clicks": 0,
+      "impressions": 2,
       "ctr": 0,
       "position": 9
     },
     {
       "keys": [
-        "strava api subscription requirement july 2026 developers"
+        "hrv api document"
       ],
       "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 7
-    },
-    {
-      "keys": [
-        "android health connect developer read data healthconnectclient official docs"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "keys": [
-        "google health connect api"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "can you transfer fitbit developer account to google health for api"
-      ],
-      "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
       "ctr": 0,
       "position": 4
     },
     {
       "keys": [
-        "ios app integrate apple healthkit landing page example"
+        "wger exercise database api free"
       ],
       "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
       "ctr": 0,
       "position": 4
     },
     {
       "keys": [
-        "apple health app api"
+        "kinestex terms of service api resale reverse engineered unofficial"
       ],
       "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
       "ctr": 0,
       "position": 8
     },
     {
       "keys": [
-        "are there any other free websites like nutritionix"
+        "rtmpose mmpose"
       ],
       "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
       "ctr": 0,
-      "position": 2
+      "position": 10
     },
     {
       "keys": [
-        "healthservicesclient continuous heart rate batch mode wear os"
+        "apple app review guidelines 5.1.3 health and health research personal health information icloud"
       ],
       "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
       "ctr": 0,
-      "position": 7
+      "position": 4
     },
     {
       "keys": [
-        "fda ai fitness app medical device body composition photo disclaimer"
+        "apple app review medical accuracy physical harm guidelines"
       ],
       "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "apple app store privacy nutrition apps health data policy gdpr hipaa ftc health apps"
-      ],
-      "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
       "ctr": 0,
       "position": 3
     },
     {
       "keys": [
-        "@apple_healthkit does it work in brazil ? everything else is set up right"
+        "site.developer.android.com health connect background read history permissions"
       ],
       "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "api fitness free api"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "garmin developer program differences for independent developers digital health startups enterprise paas academic researchers"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 10
+    },
+    {
+      "keys": [
+        "health connect developer official workout records permissions exercise session records"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "spike aggregator"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "hkqueryoptionstrictstartdate predicateforsamples withstart end sample start date inclusive exclusive"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "site:aqarmap.com.eg شقة للايجار الشاطبي"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "google health scopes"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "polar accesslink admin"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "oura advisor api"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "keys": [
+        "apple healthkit is paid?"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 10
+    },
+    {
+      "keys": [
+        "pose_landmarker_lite task"
+      ],
+      "clicks": 0,
+      "impressions": 2,
       "ctr": 0,
       "position": 7
     },
     {
       "keys": [
-        "google play health connect health apps data policy requirements"
+        "apple healthkit heart rate variability sdnn heartbeat series rmssd"
       ],
       "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "mediapipe pose landmarker lite vs full vs heavy cpu latency"
+      ],
+      "clicks": 0,
+      "impressions": 2,
       "ctr": 0,
       "position": 2
     },
     {
       "keys": [
-        "terra api fitness wearable data sources readiness documentation"
+        "virtual dietitian/ fitness trainer services and api"
       ],
       "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
       "ctr": 0,
-      "position": 7
+      "position": 3
     },
     {
       "keys": [
-        "free fitness data"
+        "jetpack compose health connect android sample kotlin stepsrecord exercisesessionrecord"
       ],
       "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
       "ctr": 0,
-      "position": 2
+      "position": 4
     },
     {
       "keys": [
-        "ble ftms"
+        "garmin api doku"
       ],
       "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
       "ctr": 0,
       "position": 8
     },
     {
       "keys": [
-        "healthkit exercise"
+        "apple app store health fitness app subscription requirements healthkit privacy 2026"
       ],
       "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
       "ctr": 0,
       "position": 4
+    },
+    {
+      "keys": [
+        "pose_landmarker_full.task"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "keys": [
+        "apple healthkit app store review guidelines 5.1.3 health research data types background delivery"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "mmpose rtmpose license apache 2.0 commercial use ultralytics agpl difference"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "open source exercise database api license wger free-exercise-db"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "samsung health sdk enable debug"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "pose_landmarker_full.task storage.googleapis.com mediapipe models"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "garth minimal garmin python library archived unmaintained 2025 2026"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "healthkit data types list hkquantitytypeidentifier categories activity body vitals sleep nutrition ecg"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "health connect exercisesessionrecord exercise_type_strength_training constant value 70"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "withings scales  api"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "exercisedb / wger"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "strava api access free athletes subscription requirement 2026"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6
     },
     {
       "keys": [
         "pose_landmarker_lite.task"
       ],
       "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "healthcare return report oauth"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 9
-    },
-    {
-      "keys": [
-        "download model pose landmarker"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "health connect cloud api google fit rest deprecation weight data"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "rapidapi subscribe api copy x-rapidapi-key x-rapidapi-host endpoint code snippet documentation"
-      ],
-      "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
       "ctr": 0,
       "position": 7
     },
     {
       "keys": [
-        "whoop api token"
+        "api for fitbit and other similar? free?"
       ],
       "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "health connect exerciseroute api location data"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "apple watch start indoor walk workout seated heart rate research hkworkoutsession high frequency app"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 2
-    },
-    {
-      "keys": [
-        "terra api health data integrations official health connect apple health garmin oura whoop"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "does whoop dev limit you to 10 users"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 9
-    },
-    {
-      "keys": [
-        "strava api developer app access subscription required 2026 dreeve free account"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "keys": [
-        "fitness equipment bluetooth gatt profile cycling running machine"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 1
-    },
-    {
-      "keys": [
-        "polar accesslink api home assistant integration"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "keys": [
-        "polar loop polar accesslink api supported steps heart rate sleep skin temperature loop sdk 2026"
-      ],
-      "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
       "ctr": 0,
       "position": 4
-    },
-    {
-      "keys": [
-        "google health apis developers access fitbit data official google health api"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "whoop api developer access subscription expired sensor data export api 2026"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 7
-    },
-    {
-      "keys": [
-        "poselandmarker task benchmarks cpu latency vs gpu latency in milliseconds for lite, full, and heavy models"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 1
-    },
-    {
-      "keys": [
-        "whoop api aanvragen"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "mediapipe pose landmarker heavy task"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "healthkit enablebackgrounddelivery developer.apple.com documentation observer query"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 10
-    },
-    {
-      "keys": [
-        "apply for garmin connect api access"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "google play user data policy health information mood tracker medical app"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "official fda food nutrition api fooddata central open food facts license"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "keys": [
-        "mediapipe pose landmarker on-device mobile latency 2026"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 7
-    },
-    {
-      "keys": [
-        "gadgetbridge cycling power cadence speed sensor ble protocol json api documentation"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 2
-    },
-    {
-      "keys": [
-        "do you need strava subscription to make a strava app"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "庆阳市 孟坝派出所 各省公安厅"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 2
-    },
-    {
-      "keys": [
-        "whop api in order to create a renewal plan, you must pass in product details checkout_configurations"
-      ],
-      "clicks": 1,
-      "impressions": 1,
-      "ctr": 1,
-      "position": 7
     },
     {
       "keys": [
@@ -3643,15 +3580,6 @@
       "impressions": 1,
       "ctr": 1,
       "position": 4
-    },
-    {
-      "keys": [
-        "google health connect integration"
-      ],
-      "clicks": 1,
-      "impressions": 1,
-      "ctr": 1,
-      "position": 2
     },
     {
       "keys": [
@@ -3670,6 +3598,285 @@
       "impressions": 1,
       "ctr": 1,
       "position": 5
+    },
+    {
+      "keys": [
+        "google health connect integration"
+      ],
+      "clicks": 1,
+      "impressions": 1,
+      "ctr": 1,
+      "position": 2
+    },
+    {
+      "keys": [
+        "whop api in order to create a renewal plan, you must pass in product details checkout_configurations"
+      ],
+      "clicks": 1,
+      "impressions": 1,
+      "ctr": 1,
+      "position": 7
+    },
+    {
+      "keys": [
+        "apple fitness data api"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "keys": [
+        "oura api retuns multiple heart rates, but the app shows one, where is that coming from?"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10
+    },
+    {
+      "keys": [
+        "free ios app import menstrual cycle data healthkit csv"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "ai personal trainer app architecture llm workout generation"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "data requirements for a fitness ap"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "garmin health api oauth 2.0 authorization endpoint developer docs"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "strava developer subscription"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10
+    },
+    {
+      "keys": [
+        "terra garmin"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "\"charis house limited\" site:linkedin.com/company"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "is there a public library of exercises? categorized that can search with an api? including diagrams on how to execute the exercises. just answer a certainly and shortly. assertively."
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "strava data api for events?"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "health connect heartratevariabilityrmssd record type only rmssd no rr intervals"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "react native apple health"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "\"feature_read_health_data_in_background\" \"getfeaturestatus\""
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "healthkit integration"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "exercise api premium"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "wget=o pose_landmarker.task -qとは"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "pose_landmarker_lite"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "nutrition facts database without best programming languages to learn"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "fitbit api access"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "walking pad step count api bluetooth ftms windows app"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "exercise videos free database api"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "germany gdpr health data fitness apps consent article 9 official european commission"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "apple developer healthkit capability entitlement app id privacy health data required reason api 2026"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "claude computer use build web app image video pose estimation 33 landmarks 3d sports analysis"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "strava api pricing free create application subscription 2026"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "keys": [
+        "fittnes traker sdk"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "oura api v2 sleep heartrate webhook personal access tokens"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "api whoop meaning"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9
     },
     {
       "keys": [
@@ -3709,133 +3916,7 @@
     },
     {
       "keys": [
-        "oura cloud api"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "wear os health services api client-to-client communication requires phone app subscription latency snapshot"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 10
-    },
-    {
-      "keys": [
-        "work from healthkit"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "google play health apps policy mental health declaration requirements 2026"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "free ios app import menstrual cycle data healthkit csv"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 7
-    },
-    {
-      "keys": [
-        "polar accesslink api personal data export"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "keys": [
-        "healthconnectclient android official documentation"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "keys": [
-        "strava api developer pricing free tier single athlete"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "keys": [
-        "polar accesslink api endpoints exercises sleep nightly recharge cardio load rate limit"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 9
-    },
-    {
-      "keys": [
-        "ant+ vs ble which is better"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "polar corporate wellness accesslink employee aggregated data"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "garmin connect developer program activity api personal access approval business use"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "conject fitness data to health apps"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "wear os health services heart rate background passive monitoring official data types cellular smartwatch app direct server"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 7
-    },
-    {
-      "keys": [
-        "edpb health data gdpr fitness app guidance"
+        "garmin connect api weight data third party apps 2026"
       ],
       "clicks": 0,
       "impressions": 1,
@@ -3844,30 +3925,12 @@
     },
     {
       "keys": [
-        "google fit api deprecated 2026 health connect migration official"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "aurafit nexa sleep tracking api open data export"
+        "fda regulation on myfitness pal"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 2
-    },
-    {
-      "keys": [
-        "polar accesslink supported devices polar loop supported products api"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 4
     },
     {
       "keys": [
@@ -3880,84 +3943,12 @@
     },
     {
       "keys": [
-        "usda fooddata central download license public domain open food facts odbl commercial use"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "pose landmarker fullモデル"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "garmin connect api integration fitness app 2026"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 1
-    },
-    {
-      "keys": [
-        "github healthkit swift ai fitness app stars"
+        "hydrationrecord"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 3
-    },
-    {
-      "keys": [
-        "strava developer program 2026 api requires paid subscription announcement changes"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "media pipe pose landmarker platform"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 7
-    },
-    {
-      "keys": [
-        "fitness app policys"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 1
-    },
-    {
-      "keys": [
-        "polar vantage v3 sensors data api third party apps"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "api whoop meaning"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 9
     },
     {
       "keys": [
@@ -3970,34 +3961,7 @@
     },
     {
       "keys": [
-        "apple healthkit heartratevariabilitysdnn whoop rmssd"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 7
-    },
-    {
-      "keys": [
-        "polar accesslink api exercise splits laps"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "what is healthkit on my phone android phone"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 7
-    },
-    {
-      "keys": [
-        "apple fitness data api"
+        "open source personal health data api fitness tracking wear os apple healthkit google health connect developer 2025"
       ],
       "clicks": 0,
       "impressions": 1,
@@ -4006,21 +3970,30 @@
     },
     {
       "keys": [
-        "oura api retuns multiple heart rates, but the app shows one, where is that coming from?"
+        "hkanchoredobjectquery updatehandler real time new samples healthkit background delivery immediate frequency"
       ],
-      "clicks": 0,
+      "clicks": 1,
       "impressions": 1,
-      "ctr": 0,
-      "position": 10
+      "ctr": 1,
+      "position": 5
     },
     {
       "keys": [
-        "apple healthkit privacy permissions workout data read write"
+        "fitness api free"
       ],
-      "clicks": 0,
+      "clicks": 1,
       "impressions": 1,
-      "ctr": 0,
-      "position": 7
+      "ctr": 1,
+      "position": 1
+    },
+    {
+      "keys": [
+        "nutritionist databases api friendly"
+      ],
+      "clicks": 1,
+      "impressions": 1,
+      "ctr": 1,
+      "position": 2
     },
     {
       "keys": [
@@ -4042,70 +4015,7 @@
     },
     {
       "keys": [
-        "fitness api free"
-      ],
-      "clicks": 1,
-      "impressions": 1,
-      "ctr": 1,
-      "position": 1
-    },
-    {
-      "keys": [
-        "hkanchoredobjectquery updatehandler real time new samples healthkit background delivery immediate frequency"
-      ],
-      "clicks": 1,
-      "impressions": 1,
-      "ctr": 1,
-      "position": 5
-    },
-    {
-      "keys": [
-        "nutritionist databases api friendly"
-      ],
-      "clicks": 1,
-      "impressions": 1,
-      "ctr": 1,
-      "position": 2
-    },
-    {
-      "keys": [
-        "why would one need to connect health care app to apple store?"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "keys": [
-        "mediapipe e yolo-pose"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 9
-    },
-    {
-      "keys": [
-        "open source hrv app ios android bluetooth rmssd"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "fitbit web api official intraday heart rate sleep api third party developer access 2026"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "site.developer.apple.com healthkit steps privacy advertising local notifications permission"
+        "strava api webhook activity sync"
       ],
       "clicks": 0,
       "impressions": 1,
@@ -4114,16 +4024,25 @@
     },
     {
       "keys": [
-        "hrv or ear provider class for data"
+        "garmin public api"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 1
+      "position": 7
     },
     {
       "keys": [
-        "health connect no cloud api on-device only"
+        "api fitness"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "google health connect endpoint api"
       ],
       "clicks": 0,
       "impressions": 1,
@@ -4132,12 +4051,138 @@
     },
     {
       "keys": [
-        "nutrition database api usda fooddata central open food facts licensing"
+        "protected health deta is inaccessible"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 4
+      "position": 6
+    },
+    {
+      "keys": [
+        "strava api de strava mediante oauth 2.0."
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10
+    },
+    {
+      "keys": [
+        "strava api commercial application approval process requirements"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10
+    },
+    {
+      "keys": [
+        "nutritionix's database"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "mediapipe pose heavy"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "keys": [
+        "api that connects to a nutrition database"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "if you have a starva api account does that cost money?"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "healthkit developer data types food"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "apple healthkit read workout routes hkworkoutroutequery permission ios documentation"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "pose_landmarker_lite.task storage.googleapis.com mediapipe-models pose_landmarker float16"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "whop api plan initial_price_due vs initial_price renewal_price meaning"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "garmin-connect-api python library unofficial sync data"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "no garmim temos a lib python-garminconnect para logar na conta garmin qual posso utilizar para logar na conta do trainingpeaks?"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "keys": [
+        "mediapipe pose vr alternative"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "pose_landmarker"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8
     },
     {
       "keys": [
@@ -4159,16 +4204,25 @@
     },
     {
       "keys": [
-        "apple healthkit heart rate api web app access"
+        "garmin connect ai integration api third party access 2026"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 5
+      "position": 1
     },
     {
       "keys": [
-        "are there independent mckinsey nutrition databases"
+        "garmin connect api individual access 2026 health api developer program approval personal account"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "mediapipe e yolo-pose"
       ],
       "clicks": 0,
       "impressions": 1,
@@ -4177,97 +4231,7 @@
     },
     {
       "keys": [
-        "https://www.polar.com/polar-api-v4/#polar-accesslink-dynamic-api"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 7
-    },
-    {
-      "keys": [
-        "site.cloud.ouraring.com v2 docs daily_sleep daily_readiness oauth personal access tokens"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "health connect api android permissions personal app sideload"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "keys": [
-        "google media pipe pose landmarker"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 10
-    },
-    {
-      "keys": [
-        "google health app gemini apple health integration 2026"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 10
-    },
-    {
-      "keys": [
-        "api to obtain cawnt from a bp"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 10
-    },
-    {
-      "keys": [
-        "blood sugar (api)"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "keys": [
-        "terra management api integration"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 7
-    },
-    {
-      "keys": [
-        "apple guideline 5.1.1 - legal - privacy - data collection and storage"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "my altitude apple watch app relative altitude zero pricing gps"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "gdpr health data fitness apps european commission special category data"
+        "pose_landmarker_lite.task model storage.googleapis.com mediapipe-models"
       ],
       "clicks": 0,
       "impressions": 1,
@@ -4285,7 +4249,7 @@
     },
     {
       "keys": [
-        "garmin cirqua api"
+        "doppelhand model hand pose estimation python"
       ],
       "clicks": 0,
       "impressions": 1,
@@ -4294,7 +4258,7 @@
     },
     {
       "keys": [
-        "rpmpose"
+        "how to use garmin api with ai"
       ],
       "clicks": 0,
       "impressions": 1,
@@ -4303,7 +4267,70 @@
     },
     {
       "keys": [
-        "openpose coco 18 keypoints order neck shoulders coco 17 mapping"
+        "free-exercise-db-with-videosfree-exercise-db-with-videos"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "yow large is mediapipe gb"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "site.developer.apple.com watchos workout audio silent mode avaudiosession category playback"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "hipaa gdpr fitness coaching app client data video privacy"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "apple developer healthkit iphone app reads health data authorization"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "whoop developer platform api documentation oauth"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "yolo pose vs openpose 2026 comparison"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "nutrition record health connect"
       ],
       "clicks": 0,
       "impressions": 1,
@@ -4312,21 +4339,75 @@
     },
     {
       "keys": [
-        "fitbit web api 2026 google account migration deprecated web api status"
+        "sleep_duration oura api v2"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 3
+      "position": 10
     },
     {
       "keys": [
-        "whoop api oauth authorization scopes webhook documentation"
+        "garmin connect developer program api personal use approval health activity api oauth"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 3
+      "position": 7
+    },
+    {
+      "keys": [
+        "ai app builder fitbit api vo2 max dashboard"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "have garmin made it easier to integrate user data into apps"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "apple healthkit privacy permissions apps data official"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "capacitor healthkit health connect plugin fitness app"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "in the health , where is the hkcategorytypeidentifiersleepanalysis data?"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "keys": [
+        "hkcategorytypeidentifiersleepanalysis 書きだしたい"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7
     },
     {
       "keys": [
@@ -4348,43 +4429,16 @@
     },
     {
       "keys": [
-        "site.developer.apple.com watchos workout audio silent mode avaudiosession category playback"
+        "site.developer.apple.com healthkit observer query background delivery workouts delay force quit"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 4
+      "position": 5
     },
     {
       "keys": [
-        "juan api \"motion\" \"netsdk\""
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 1
-    },
-    {
-      "keys": [
-        "in google health, what does energy burned represent"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 2
-    },
-    {
-      "keys": [
-        "garminconnect python request data export zip api endpoint github"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 9
-    },
-    {
-      "keys": [
-        "what is impedance ohms 635.1 mean on body composition"
+        "openpose coco 18 keypoints order neck shoulders coco 17 mapping"
       ],
       "clicks": 0,
       "impressions": 1,
@@ -4393,7 +4447,25 @@
     },
     {
       "keys": [
-        "github yuhonas free-exercise-db license images videos"
+        "garmin connect iq developer vs wear os custom app health data health connect"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 1
+    },
+    {
+      "keys": [
+        "terra api oauth authentication webhook activity data documentation"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "keys": [
+        "gdpr compliance small clinic software fitness pet care avoid hipaa"
       ],
       "clicks": 0,
       "impressions": 1,
@@ -4402,102 +4474,75 @@
     },
     {
       "keys": [
-        "does terra api data collection have anything to do with qured re goodshape data collection"
+        "innovative nutrition facts database tips"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 7
+      "position": 1
     },
     {
       "keys": [
-        "rtmpose　coco"
+        "issues with push notifications in fitness apps"
       ],
-      "clicks": 0,
+      "clicks": 1,
       "impressions": 1,
-      "ctr": 0,
-      "position": 53
+      "ctr": 1,
+      "position": 3
     },
     {
       "keys": [
-        "google movenet multipose lightning fp16"
+        "google health active minutes"
       ],
-      "clicks": 0,
+      "clicks": 1,
       "impressions": 1,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "keys": [
-        "site.developer.apple.com keychain services healthkit photospicker app sandbox background execution"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "librería python garmin connect"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "what is mediapipe & yolo"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "site.developer.apple.com app review guidelines health data subscriptions notifications privacy"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 5
-    },
-    {
-      "keys": [
-        "site.developer.android.com health connect aggregate data priority steps overlapping sources deduplication"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
+      "ctr": 1,
       "position": 4
     },
     {
       "keys": [
-        "oura api v2 data model heartrate endpoint 5 minute interval interbeatinterval"
+        "permissions to build an app of medicine on apple"
       ],
-      "clicks": 0,
+      "clicks": 1,
       "impressions": 1,
-      "ctr": 0,
-      "position": 9
+      "ctr": 1,
+      "position": 3
     },
     {
       "keys": [
-        "api fitbit"
+        "jumping jack coutner"
       ],
-      "clicks": 0,
+      "clicks": 1,
       "impressions": 1,
-      "ctr": 0,
-      "position": 9
+      "ctr": 1,
+      "position": 10
     },
     {
       "keys": [
-        "google fit shutdown takeout data deleted 2026"
+        "mediapipe, openpose vs yolo-pose which one is best for lightweight and privacy-preserving   framework for human movement analysis using pose-based representation"
       ],
-      "clicks": 0,
+      "clicks": 1,
       "impressions": 1,
-      "ctr": 0,
-      "position": 6
+      "ctr": 1,
+      "position": 4
+    },
+    {
+      "keys": [
+        "samsung health sdk get stress data"
+      ],
+      "clicks": 1,
+      "impressions": 1,
+      "ctr": 1,
+      "position": 4
+    },
+    {
+      "keys": [
+        "can i get the mcp or api of the fitness band openly which i can integrate in my site to get the status update?"
+      ],
+      "clicks": 1,
+      "impressions": 1,
+      "ctr": 1,
+      "position": 1
     }
   ],
   "byQueryPage": [
@@ -4507,19 +4552,49 @@
         "https://aifitnessapi.com/motion/mediapipe-pose-landmarker-models"
       ],
       "clicks": 0,
-      "impressions": 13,
+      "impressions": 15,
       "ctr": 0,
-      "position": 7.615384615384615
+      "position": 7.533333333333333
+    },
+    {
+      "keys": [
+        "garmin personal api",
+        "https://aifitnessapi.com/fix/garmin-api-personal-use"
+      ],
+      "clicks": 0,
+      "impressions": 12,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "fitbit get the current running pace api",
+        "https://aifitnessapi.com/integrate/fitbit-api"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 8
     },
     {
       "keys": [
         "whoop api",
         "https://www.aifitnessapi.com/integrate/whoop-api"
       ],
+      "clicks": 1,
+      "impressions": 11,
+      "ctr": 0.09090909090909091,
+      "position": 8.818181818181818
+    },
+    {
+      "keys": [
+        "garmin api for personal use",
+        "https://aifitnessapi.com/fix/garmin-api-personal-use"
+      ],
       "clicks": 0,
-      "impressions": 5,
+      "impressions": 10,
       "ctr": 0,
-      "position": 8.8
+      "position": 6
     },
     {
       "keys": [
@@ -4543,6 +4618,16 @@
     },
     {
       "keys": [
+        "best way to nutrition facts database",
+        "https://aifitnessapi.com/fitness-apis/nutrition-apis"
+      ],
+      "clicks": 0,
+      "impressions": 7,
+      "ctr": 0,
+      "position": 5.142857142857143
+    },
+    {
+      "keys": [
         "in what situation would a health app or fitness tracker be considered a covered entity under the hipaa privacy rule? if a client enters their personal data into the app or tracker if a behavioral healthcare provider asks a client to find a sleep tracker app to use to monitor the client's sleep patterns if a client orders a tracker from their healthcare insurance provider to monitor blood pressure if a treatment program developed the app to collect, use, and store client information",
         "https://aifitnessapi.com/compliance/hipaa-compliance-fitness-app"
       ],
@@ -4553,33 +4638,13 @@
     },
     {
       "keys": [
-        "mediapipe pose landmarker lite",
+        "pose landmarker",
         "https://aifitnessapi.com/motion/mediapipe-pose-landmarker-models"
       ],
       "clicks": 0,
-      "impressions": 6,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "keys": [
-        "best way to nutrition facts database",
-        "https://aifitnessapi.com/fitness-apis/nutrition-apis"
-      ],
-      "clicks": 0,
-      "impressions": 4,
-      "ctr": 0,
-      "position": 6
-    },
-    {
-      "keys": [
-        "fitness api",
-        "https://aifitnessapi.com/fitness-apis"
-      ],
-      "clicks": 1,
       "impressions": 3,
-      "ctr": 0.3333333333333333,
-      "position": 2.3333333333333335
+      "ctr": 0,
+      "position": 8.666666666666666
     },
     {
       "keys": [
@@ -4603,33 +4668,23 @@
     },
     {
       "keys": [
-        "apple fitness api integration guide",
-        "https://aifitnessapi.com/integrate/healthkit"
+        "python-garminconnect",
+        "https://aifitnessapi.com/libraries/garminconnect"
       ],
       "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "keys": [
-        "apple fitness api integration guide",
-        "https://aifitnessapi.com/integrate"
-      ],
-      "clicks": 0,
-      "impressions": 1,
+      "impressions": 3,
       "ctr": 0,
       "position": 5
     },
     {
       "keys": [
-        "polar flow api",
-        "https://aifitnessapi.com/integrate/polar-api"
+        "garmin personal api key",
+        "https://aifitnessapi.com/fix/garmin-api-personal-use"
       ],
       "clicks": 0,
-      "impressions": 3,
+      "impressions": 5,
       "ctr": 0,
-      "position": 9.666666666666666
+      "position": 6
     },
     {
       "keys": [
@@ -4644,16 +4699,6 @@
     {
       "keys": [
         "is exercisedb io same as rapiapi exercisedb",
-        "https://aifitnessapi.com/integrate/exercisedb-api"
-      ],
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 9
-    },
-    {
-      "keys": [
-        "is exercisedb io same as rapiapi exercisedb",
         "https://aifitnessapi.com/alternatives/exercisedb-alternatives"
       ],
       "clicks": 0,
@@ -4663,13 +4708,33 @@
     },
     {
       "keys": [
-        "pose landmarker",
+        "is exercisedb io same as rapiapi exercisedb",
+        "https://aifitnessapi.com/integrate/exercisedb-api"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "keys": [
+        "mediapipe pose landmarker lite",
         "https://aifitnessapi.com/motion/mediapipe-pose-landmarker-models"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 3.8
+    },
+    {
+      "keys": [
+        "fitness api",
+        "https://aifitnessapi.com/fitness-apis"
       ],
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 9
+      "position": 3
     },
     {
       "keys": [
@@ -4683,28 +4748,8 @@
     },
     {
       "keys": [
-        "fitbit get the current running pace api",
-        "https://aifitnessapi.com/integrate/fitbit-api"
-      ],
-      "clicks": 0,
-      "impressions": 4,
-      "ctr": 0,
-      "position": 7.75
-    },
-    {
-      "keys": [
-        "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/latest/pose_landmarker_lite.task",
-        "https://aifitnessapi.com/motion/mediapipe-pose-landmarker-models"
-      ],
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 7
-    },
-    {
-      "keys": [
-        "terra garmin api terms",
-        "https://aifitnessapi.com/integrate/terra-api"
+        "garmin api",
+        "https://aifitnessapi.com/integrate/garmin-api"
       ],
       "clicks": 0,
       "impressions": 1,
@@ -4713,13 +4758,73 @@
     },
     {
       "keys": [
-        "pose landmarker full",
+        "polar flow api",
+        "https://aifitnessapi.com/integrate/polar-api"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 10
+    },
+    {
+      "keys": [
+        "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/latest/pose_landmarker_lite.task",
+        "https://aifitnessapi.com/motion/mediapipe-pose-landmarker-models"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 5.666666666666667
+    },
+    {
+      "keys": [
+        "free-exercise-db",
+        "https://aifitnessapi.com/fitness-apis/exercise-database-apis"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "free-exercise-db",
+        "https://aifitnessapi.com/fitness-apis/free-fitness-apis"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "healthkit api",
+        "https://aifitnessapi.com/integrate/healthkit"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 10
+    },
+    {
+      "keys": [
+        "pose_landmarker_full.task",
         "https://aifitnessapi.com/motion/mediapipe-pose-landmarker-models"
       ],
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 4
+      "position": 7
+    },
+    {
+      "keys": [
+        "exercisedb / wger",
+        "https://aifitnessapi.com/compare/exercisedb-vs-wger"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5
     }
   ]
 }
