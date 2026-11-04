@@ -100,8 +100,8 @@ export function GET() {
         "",
       ];
     }),
-    `## Best Fitness & Workout APIs — ${absoluteUrl(PILLAR_PATH)}`,
-    "There is no single best fitness API; choose by job — exercise/workout content, wearable & device data, health-data aggregators, nutrition data, or AI motion tracking. Pick the category first, then compare within it.",
+    `## Fitness APIs: what they are and which to use — ${absoluteUrl(PILLAR_PATH)}`,
+    "A fitness API is a service your app calls for fitness or health data and capabilities: an exercise library, a user's wearable metrics, nutrition data, or camera-based workout tracking. There is no single best fitness API; choose by job — exercise/workout content, wearable & device data, health-data aggregators, nutrition data, or AI motion tracking. Pick the category first, then compare within it.",
     "",
   ];
 

@@ -43,6 +43,7 @@ export const RELEASED_COMPARE = new Set<string>([
   "apple-vision-vs-mediapipe",
   "ml-kit-vs-mediapipe",
   "exercisedb-vs-api-ninjas",
+  "cliniko-vs-healthkit",
 ]);
 
 export const allCompare: ClusterEntry[] = compareEntries;

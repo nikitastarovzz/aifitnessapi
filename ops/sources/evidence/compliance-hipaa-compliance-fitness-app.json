@@ -128,5 +128,50 @@
     "claim": "FAQ: covered entities are health plans, health care clearinghouses and health care providers that transmit health information electronically in standard transactions such as claims.",
     "url": "https://www.ftc.gov/business-guidance/resources/collecting-using-or-sharing-consumer-health-information-look-hipaa-ftc-act-health-breach",
     "quote": "The HIPAA Rules apply to you if you are a HIPAA covered entity – a health plan, a health care provider that conducts standard health care transactions electronically, or a health care clearinghouse."
+  },
+  {
+    "claim": "FAQ, health app or tracker as covered entity: HHS lists covered entities as health care providers, health plans and clearinghouses.",
+    "url": "https://web.archive.org/web/20261028163611/https://www.hhs.gov/hipaa/for-professionals/covered-entities/index.html",
+    "quote": "The HIPAA Rules apply to covered entities and business associates"
+  },
+  {
+    "claim": "FAQ: providers such as doctors, clinics and psychologists, only if they transmit electronically in a standard transaction.",
+    "url": "https://web.archive.org/web/20261028163611/https://www.hhs.gov/hipaa/for-professionals/covered-entities/index.html",
+    "quote": "but only if they transmit any information in an electronic form in connection with a transaction for which HHS has adopted a standard"
+  },
+  {
+    "claim": "FAQ: health plans include health insurance companies.",
+    "url": "https://web.archive.org/web/20261028163611/https://www.hhs.gov/hipaa/for-professionals/covered-entities/index.html",
+    "quote": "Health insurance companies"
+  },
+  {
+    "claim": "FAQ: health plans include company health plans.",
+    "url": "https://web.archive.org/web/20261028163611/https://www.hhs.gov/hipaa/for-professionals/covered-entities/index.html",
+    "quote": "Company health plans"
+  },
+  {
+    "claim": "FAQ: a health care clearinghouse is a covered entity.",
+    "url": "https://web.archive.org/web/20261028163611/https://www.hhs.gov/hipaa/for-professionals/covered-entities/index.html",
+    "quote": "A Health Care Clearinghouse"
+  },
+  {
+    "claim": "FAQ: HHS's business associate guidance names an app developer that contracts with a covered entity to provide the app to its patients.",
+    "url": "https://web.archive.org/web/20261026014247/https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/business-associates/index.html",
+    "quote": "developer that contracts with a covered entity to provide the health care app to the covered entity's patients"
+  },
+  {
+    "claim": "FAQ: for services such as monitoring of patients' food and exercise.",
+    "url": "https://web.archive.org/web/20261026014247/https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/business-associates/index.html",
+    "quote": "monitoring of patients' food and exercise"
+  },
+  {
+    "claim": "FAQ: if an entity is neither, it does not have to comply with HIPAA.",
+    "url": "https://web.archive.org/web/20261028163611/https://www.hhs.gov/hipaa/for-professionals/covered-entities/index.html",
+    "quote": "If an entity does not meet the definition of a covered entity or business associate, it does not have to comply with the HIPAA Rules."
+  },
+  {
+    "claim": "Context: HHS's health-apps page says its scenarios explain when an app developer may be acting as a business associate.",
+    "url": "https://web.archive.org/web/20261023152821/https://www.hhs.gov/hipaa/for-professionals/special-topics/health-apps/index.html",
+    "quote": "explains when an app developer may be acting as a business associate under the HIPAA Rules"
   }
 ]

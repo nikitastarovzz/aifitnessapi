@@ -1,0 +1,317 @@
+[
+  {
+    "claim": "Article 4 defines the controller as the body which determines the purposes and means of the processing.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/4/adopted",
+    "quote": "alone or jointly with others, determines the purposes and means of the processing of personal data"
+  },
+  {
+    "claim": "Article 4 defines the processor as one which processes personal data on behalf of the controller.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/4/adopted",
+    "quote": "which processes personal data on behalf of the controller"
+  },
+  {
+    "claim": "The EDPB: the controller decides the purpose and means; the processor processes on behalf of the controller.",
+    "url": "https://www.edpb.europa.eu/topics/key-gdpr-concepts/controllerprocessor_en",
+    "quote": "The controller, alone or jointly with other controllers, decides the purpose and means of data processing operations. The processor processes personal data on behalf of the controller."
+  },
+  {
+    "claim": "Cliniko's help centre: in some cases it serves as a processor and a controller.",
+    "url": "https://help.cliniko.com/en/articles/1908020-how-cliniko-helps-you-with-gdpr-compliance",
+    "quote": "In some cases, we serve as a Processor and a Controller."
+  },
+  {
+    "claim": "EDPB: GDPR applies to an organisation outside the EEA whose products or services are offered to individuals in the EEA.",
+    "url": "https://www.edpb.europa.eu/sme/learn-the-basics/data-protection-basics_en",
+    "quote": "products or services are offered to individuals who are in the EEA"
+  },
+  {
+    "claim": "EDPB: GDPR applies in the same way to any sub-contractor.",
+    "url": "https://www.edpb.europa.eu/sme/learn-the-basics/data-protection-basics_en",
+    "quote": "The GDPR also applies in the same way to any sub-contractor"
+  },
+  {
+    "claim": "Article 4(15) definition of data concerning health.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/4/adopted",
+    "quote": "personal data related to the physical or mental health of a natural person, including the provision of health care services, which reveal information about his or her health status"
+  },
+  {
+    "claim": "Table: the ICO lists any information on injury, disease, disability or disease risk, including medical history.",
+    "url": "https://web.archive.org/web/20261017232808/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/special-category-data/what-is-special-category-data/",
+    "quote": "any information on injury, disease, disability or disease risk, including medical history"
+  },
+  {
+    "claim": "Table: the ICO lists data from fitness trackers as health data.",
+    "url": "https://web.archive.org/web/20261017232808/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/special-category-data/what-is-special-category-data/",
+    "quote": "medical examination data, test results, data from medical devices, or data from fitness trackers"
+  },
+  {
+    "claim": "Table: the ICO on physiotherapy and osteopathy appointments and invoices.",
+    "url": "https://web.archive.org/web/20261017232808/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/special-category-data/what-is-special-category-data/",
+    "quote": "you could reasonably infer health data from an individual's list of appointments at an osteopath clinic or from an invoice for a series of physiotherapy sessions"
+  },
+  {
+    "claim": "Table: the ICO's gym fingerprint example.",
+    "url": "https://web.archive.org/web/20261017232808/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/special-category-data/what-is-special-category-data/",
+    "quote": "This system is processing biometric data to identify individual members, so the gym needs a valid condition for processing that special category data."
+  },
+  {
+    "claim": "Table: the EDPB lists booking references and purchase history as personal data.",
+    "url": "https://www.edpb.europa.eu/sme/learn-the-basics/data-protection-basics_en",
+    "quote": "a booking reference"
+  },
+  {
+    "claim": "Table: the EDPB lists purchase history as personal data.",
+    "url": "https://www.edpb.europa.eu/sme/learn-the-basics/data-protection-basics_en",
+    "quote": "an individual's purchase history and receipts"
+  },
+  {
+    "claim": "The ICO: special categories may also catch information that is not seen as particularly sensitive; a broken leg is health data.",
+    "url": "https://web.archive.org/web/20261017232808/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/special-category-data/what-is-special-category-data/",
+    "quote": "may also catch information that is not seen as particularly sensitive"
+  },
+  {
+    "claim": "The ICO's broken leg example.",
+    "url": "https://web.archive.org/web/20261017232808/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/special-category-data/what-is-special-category-data/",
+    "quote": "details about an individual's mental health are likely to be much more sensitive than whether they have a broken leg – but both are data concerning health"
+  },
+  {
+    "claim": "Article 6 lawful bases include performance of a contract to which the data subject is party.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/6/adopted",
+    "quote": "processing is necessary for the performance of a contract to which the data subject is party"
+  },
+  {
+    "claim": "EDPB: where processing will be necessary in the context of a contract, consent is not the appropriate legal basis.",
+    "url": "https://www.edpb.europa.eu/sme/learn-the-basics/data-protection-basics_en",
+    "quote": "If you realise that the processing of their data will nevertheless be necessary (i.e. in the context of a contract), it means that consent is not the appropriate legal basis."
+  },
+  {
+    "claim": "Article 9(1): processing of health data and biometric data for unique identification shall be prohibited.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/9/adopted",
+    "quote": "biometric data for the purpose of uniquely identifying a natural person, data concerning health or data concerning a natural person's sex life or sexual orientation shall be prohibited"
+  },
+  {
+    "claim": "Article 9(2)(a) explicit consent.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/9/adopted",
+    "quote": "the data subject has given explicit consent to the processing of those personal data for one or more specified purposes"
+  },
+  {
+    "claim": "ICO: explicit consent must be confirmed in a clear statement.",
+    "url": "https://web.archive.org/web/20261015055930/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/special-category-data/what-are-the-conditions-for-processing/",
+    "quote": "explicit consent must be confirmed in a clear statement (whether oral or written), rather than by any other type of affirmative action"
+  },
+  {
+    "claim": "ICO: explicit consent must specify the nature of the special category data.",
+    "url": "https://web.archive.org/web/20261015055930/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/special-category-data/what-are-the-conditions-for-processing/",
+    "quote": "it must specify the nature of the special category data"
+  },
+  {
+    "claim": "ICO: explicit consent should be separate from other consents.",
+    "url": "https://web.archive.org/web/20261015055930/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/special-category-data/what-are-the-conditions-for-processing/",
+    "quote": "it should be separate from any other consents you are seeking"
+  },
+  {
+    "claim": "ICO gym example: facial recognition as a condition of entry.",
+    "url": "https://web.archive.org/web/20261015055930/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/special-category-data/what-are-the-conditions-for-processing/",
+    "quote": "It requires all members to agree to facial recognition as a condition of entry"
+  },
+  {
+    "claim": "ICO gym example: not objectively necessary.",
+    "url": "https://web.archive.org/web/20261015055930/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/special-category-data/what-are-the-conditions-for-processing/",
+    "quote": "it is not objectively necessary in order to provide access to gym facilities, so consent is not freely given"
+  },
+  {
+    "claim": "ICO gym example: a choice with a membership card means the gym could rely on explicit consent.",
+    "url": "https://web.archive.org/web/20261015055930/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/special-category-data/what-are-the-conditions-for-processing/",
+    "quote": "if the gym provides an alternative, such as a choice between access via facial recognition and access via a membership card, consent could be considered freely given. The gym could rely on explicit consent"
+  },
+  {
+    "claim": "Article 9(3) ties 9(2)(h) to a professional subject to professional secrecy.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/9/adopted",
+    "quote": "processed by or under the responsibility of a professional subject to the obligation of professional secrecy"
+  },
+  {
+    "claim": "Article 9(4): member states may maintain or introduce further conditions.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/9/adopted",
+    "quote": "Member States may maintain or introduce further conditions, including limitations, with regard to the processing of genetic data, biometric data or data concerning health."
+  },
+  {
+    "claim": "Article 35(3)(b): DPIA for large-scale processing of special categories.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/35/adopted",
+    "quote": "processing on a large scale of special categories of data referred to in Article 9(1)"
+  },
+  {
+    "claim": "EDPB: processing meeting two of the criteria should be assessed through a DPIA in most cases.",
+    "url": "https://www.edpb.europa.eu/sme/be-compliant/be-compliant_en",
+    "quote": "In most cases, processing operations meeting two of the following criteria should be assessed through a DPIA"
+  },
+  {
+    "claim": "EDPB: the criteria include sensitive data, systematic monitoring and large scale.",
+    "url": "https://www.edpb.europa.eu/sme/be-compliant/be-compliant_en",
+    "quote": "sensitive data or data of a highly personal nature"
+  },
+  {
+    "claim": "EDPB example: processing biometric data such as fingerprints or facial features.",
+    "url": "https://www.edpb.europa.eu/sme/be-compliant/be-compliant_en",
+    "quote": "processing biometric data, for example scanning fingerprints or facial features to identify patients"
+  },
+  {
+    "claim": "ICO: smart technologies including wearables are innovative technology.",
+    "url": "https://web.archive.org/web/20261012165422/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/when-do-we-need-to-do-a-dpia/",
+    "quote": "smart technologies (including wearables)"
+  },
+  {
+    "claim": "ICO: a DPIA is required where innovative technology is combined with another criterion, e.g. sensitive data.",
+    "url": "https://web.archive.org/web/20261012165422/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/when-do-we-need-to-do-a-dpia/",
+    "quote": "The ICO list of high-risk processing operations requires a DPIA if your processing involves innovative technology in combination with another criterion from the European guidelines (e.g. evaluation or scoring, or sensitive data)."
+  },
+  {
+    "claim": "ICO list: any processing of biometric data.",
+    "url": "https://web.archive.org/web/20261012165422/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/when-do-we-need-to-do-a-dpia/",
+    "quote": "Biometrics: any processing of biometric data. A DPIA is required where this processing is combined with any of the criteria from the European guidelines."
+  },
+  {
+    "claim": "ICO list: tracking an individual's geolocation or behaviour.",
+    "url": "https://web.archive.org/web/20261012165422/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/when-do-we-need-to-do-a-dpia/",
+    "quote": "Tracking: processing which involves tracking an individual's geolocation or behaviour"
+  },
+  {
+    "claim": "Article 28(1): only processors providing sufficient guarantees.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/28/adopted",
+    "quote": "the controller shall use only processors providing sufficient guarantees"
+  },
+  {
+    "claim": "Article 28(2): no other processor without prior specific or general written authorisation.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/28/adopted",
+    "quote": "The processor shall not engage another processor without prior specific or general written authorisation of the controller."
+  },
+  {
+    "claim": "Article 28(3): contract setting out subject-matter, duration, nature and purpose, type of personal data.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/28/adopted",
+    "quote": "sets out the subject-matter and duration of the processing, the nature and purpose of the processing, the type of personal data and categories of data subjects"
+  },
+  {
+    "claim": "Article 28(3)(a): documented instructions.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/28/adopted",
+    "quote": "processes the personal data only on documented instructions from the controller"
+  },
+  {
+    "claim": "Article 28(3)(b): confidentiality.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/28/adopted",
+    "quote": "ensures that persons authorised to process the personal data have committed themselves to confidentiality"
+  },
+  {
+    "claim": "Article 28(3)(c): Article 32 security measures.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/28/adopted",
+    "quote": "takes all measures required pursuant to Article 32"
+  },
+  {
+    "claim": "Article 28(3)(e): assists with data subject requests.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/28/adopted",
+    "quote": "for the fulfilment of the controller's obligation to respond to requests for exercising the data subject's rights"
+  },
+  {
+    "claim": "Article 28(3)(f): assists with Articles 32 to 36.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/28/adopted",
+    "quote": "assists the controller in ensuring compliance with the obligations pursuant to Articles 32 to 36"
+  },
+  {
+    "claim": "Article 28(3)(g): deletes or returns all the personal data.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/28/adopted",
+    "quote": "at the choice of the controller, deletes or returns all the personal data to the controller after the end of the provision of services relating to processing"
+  },
+  {
+    "claim": "Cliniko's DPA includes Standard Contractual Clauses.",
+    "url": "https://help.cliniko.com/en/articles/1908020-how-cliniko-helps-you-with-gdpr-compliance",
+    "quote": "The DPA includes Standard Contractual Clauses"
+  },
+  {
+    "claim": "Cliniko: it and its subprocessors aren't physically in the EU/EEA.",
+    "url": "https://help.cliniko.com/en/articles/1908020-how-cliniko-helps-you-with-gdpr-compliance",
+    "quote": "although Cliniko and its subprocessors aren't physically in the EU/EEA"
+  },
+  {
+    "claim": "Article 5(1)(e) storage limitation.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/5/adopted",
+    "quote": "kept in a form which permits identification of data subjects for no longer than is necessary for the purposes for which the personal data are processed"
+  },
+  {
+    "claim": "ICO: the UK GDPR does not set specific time limits.",
+    "url": "https://web.archive.org/web/20261025165245/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/data-protection-principles/a-guide-to-the-data-protection-principles/storage-limitation/",
+    "quote": "The UK GDPR does not set specific time limits for different types of data."
+  },
+  {
+    "claim": "ICO: should not keep data indefinitely just in case.",
+    "url": "https://web.archive.org/web/20261025165245/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/data-protection-principles/a-guide-to-the-data-protection-principles/storage-limitation/",
+    "quote": "you should not keep data indefinitely 'just in case'"
+  },
+  {
+    "claim": "ICO: a retention policy with standard retention periods.",
+    "url": "https://web.archive.org/web/20261025165245/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/data-protection-principles/a-guide-to-the-data-protection-principles/storage-limitation/",
+    "quote": "You need a policy setting standard retention periods wherever possible"
+  },
+  {
+    "claim": "ICO: keep some data about a previous customer to deal with complaints.",
+    "url": "https://web.archive.org/web/20261025165245/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/data-protection-principles/a-guide-to-the-data-protection-principles/storage-limitation/",
+    "quote": "A business may need to keep some personal data about a previous customer so that they can deal with any complaints the customer might make about the services they provided."
+  },
+  {
+    "claim": "EDPB: national legislation may oblige you to keep certain data for tax reasons.",
+    "url": "https://www.edpb.europa.eu/sme/learn-the-basics/data-protection-basics_en",
+    "quote": "national legislation may oblige you to keep certain data (i.e. for tax reasons)"
+  },
+  {
+    "claim": "EDPB lists the rights.",
+    "url": "https://www.edpb.europa.eu/sme/be-compliant/respect-individuals-rights_en",
+    "quote": "Right not be subject to a decision based solely on automated processing"
+  },
+  {
+    "claim": "Article 12(3): within one month of receipt.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/12/adopted",
+    "quote": "without undue delay and in any event within one month of receipt of the request"
+  },
+  {
+    "claim": "Article 12(3): extendable by two further months.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/12/adopted",
+    "quote": "That period may be extended by two further months where necessary"
+  },
+  {
+    "claim": "Article 12(5): free of charge unless manifestly unfounded or excessive.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/12/adopted",
+    "quote": "shall be provided free of charge. Where requests from a data subject are manifestly unfounded or excessive"
+  },
+  {
+    "claim": "EDPB: the data processor must assist the data controller.",
+    "url": "https://www.edpb.europa.eu/sme/be-compliant/respect-individuals-rights_en",
+    "quote": "The data processor must assist the data controller in this task."
+  },
+  {
+    "claim": "Article 15(3): commonly used electronic form for electronic requests.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/15/adopted",
+    "quote": "Where the data subject makes the request by electronic means, and unless otherwise requested by the data subject, the information shall be provided in a commonly used electronic form."
+  },
+  {
+    "claim": "Article 20: structured, commonly used and machine-readable format.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/20/adopted",
+    "quote": "in a structured, commonly used and machine-readable format"
+  },
+  {
+    "claim": "Article 20(1)(a): consent or contract basis.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/20/adopted",
+    "quote": "the processing is based on consent pursuant to point (a) of Article 6(1) or point (a) of Article 9(2) or on a contract pursuant to point (b) of Article 6(1)"
+  },
+  {
+    "claim": "Article 20(1)(b): automated means.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/20/adopted",
+    "quote": "the processing is carried out by automated means"
+  },
+  {
+    "claim": "Article 33(1): 72 hours.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/33/adopted",
+    "quote": "without undue delay and, where feasible, not later than 72 hours after having become aware of it"
+  },
+  {
+    "claim": "Sources: the ICO's guidance is under review because of the Data (Use and Access) Act.",
+    "url": "https://web.archive.org/web/20261017232808/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/special-category-data/what-is-special-category-data/",
+    "quote": "Due to changes made by the Data (Use and Access) Act, this guidance is under review and may be subject to change."
+  }
+]

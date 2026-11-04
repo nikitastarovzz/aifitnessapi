@@ -37,6 +37,10 @@ export const complianceEntries: ClusterEntry[] =
       {
         "q": "Is an app built for a hospital or health insurer a HIPAA covered entity?",
         "a": "Usually the hospital or insurer is the covered entity, not the app company. HIPAA's regulation defines covered entities as health plans, health care clearinghouses and health care providers that transmit health information electronically in standard transactions such as claims. The FTC's Mobile Health Apps Interactive Tool says a company that develops, offers or operates an app on behalf of a covered entity, such as a hospital, doctor's office, health insurer or a health plan's wellness program, likely is a business associate, which brings the HIPAA Security Rule and parts of the Privacy and Breach Notification Rules."
+      },
+      {
+        "q": "In what situation is a health app or fitness tracker treated as a HIPAA covered entity?",
+        "a": "An app or tracker is not a covered entity on its own; HIPAA reaches it through the organization behind it. HHS lists covered entities as health care providers, such as doctors, clinics and psychologists, that transmit information electronically in a transaction HHS has adopted a standard for; health plans, including health insurance companies and company health plans; and health care clearinghouses. So an app that a covered treatment program builds and runs for its patients holds that covered entity's data, and HHS's business associate guidance names an app developer that contracts with a covered entity to provide the app to its patients, for services such as monitoring of patients' food and exercise, as a business associate; in our reading a tracker an insurer supplies through a vendor follows the same logic. When a person picks an app and enters their own data, or a provider only suggests one the person then chooses, in our reading no covered entity or business associate holds the data, so HIPAA does not apply, though the FTC's rules may."
       }
     ],
     "related": [
@@ -112,6 +116,10 @@ export const complianceEntries: ClusterEntry[] =
       {
         "href": "/compliance/health-data-retention-deletion",
         "label": "Health-data retention & deletion"
+      },
+      {
+        "href": "/compliance/gym-gdpr-compliance",
+        "label": "GDPR for gyms and studios"
       },
       {
         "href": "/compliance",
@@ -1765,6 +1773,160 @@ export const complianceEntries: ClusterEntry[] =
         "url": "https://www.cms.gov/medicare/payment/fee-schedules/physician/federal-regulation-notices/cms-1848-p",
         "checked": "2026-10-17",
         "note": "The CY 2027 proposed rule's display date and comment deadline."
+      }
+    ]
+  },
+  {
+    "slug": "gym-gdpr-compliance",
+    "primaryQuery": "gym gdpr compliance",
+    "h1": "GDPR for Gyms and Studios: Member Health, Wearable and Biometric Data",
+    "metaTitle": "Gym GDPR Compliance: Member Health and Wearable Data",
+    "metaDescription": "GDPR for gyms and studios: special category health and biometric data, lawful basis, DPIAs, your gym software as processor, retention and member rights.",
+    "updated": "2026-11-04",
+    "answer": "Yes, GDPR applies to a gym or studio with members in the EU, and the UK GDPR to one in the UK, and the gym is the controller of its member records. The parts of those records that reveal health, such as injury notes, health questionnaires, heart-rate and fitness-tracker data, and fingerprint or face-scan entry, are special category data: Article 9 prohibits processing them unless a condition such as explicit consent applies, on top of an Article 6 lawful basis. Your gym management software vendor normally processes member data on your behalf, so Article 28 requires a written contract with it, and large-scale health or biometric processing calls for a DPIA. This is general guidance, not legal advice; confirm your obligations with a qualified professional.",
+    "body": "## Who is responsible for member data at a gym\n\nGDPR splits responsibility between two roles. Article 4 defines the controller as the body which, \"alone or jointly with others, determines the purposes and means of the processing of personal data\", and the processor as one \"which processes personal data on behalf of the controller\". The European Data Protection Board (EDPB) puts it in one line: \"The controller, alone or jointly with other controllers, decides the purpose and means of data processing operations. The processor processes personal data on behalf of the controller.\"\n\nIn our reading, a gym or studio decides why it collects member data and what it does with it, so it is the controller. The membership, booking or access-control platform that stores the records for it is usually its processor. Some vendors say they are both: Cliniko, practice software for clinics, writes in its help centre that \"In some cases, we serve as a Processor and a Controller.\" Ask your own vendor which role it claims for which data, and get the answer in its contract.\n\nScope is wide. The EDPB's guide for small businesses says GDPR applies to an organisation established in the EU or EEA, and to one outside it whose \"products or services are offered to individuals who are in the EEA\", and that it \"applies in the same way to any sub-contractor\" processing data on an organisation's behalf. A UK gym answers to the UK GDPR and the Information Commissioner's Office (ICO), whose guidance this page also quotes.\n\n## Which member data counts as health data\n\nArticle 4(15) defines data concerning health as \"personal data related to the physical or mental health of a natural person, including the provision of health care services, which reveal information about his or her health status\". The ICO's guidance reads it broadly and names fitness trackers outright. Applied to what a gym typically holds:\n\n| What a gym holds | Special category? | What the source says |\n| --- | --- | --- |\n| Injury notes, medical history and health questionnaire answers | Yes, health data | The ICO lists \"any information on injury, disease, disability or disease risk, including medical history\" |\n| Heart-rate, wearable and fitness-tracker data | Yes, health data | The ICO lists \"medical examination data, test results, data from medical devices, or data from fitness trackers\" |\n| Physiotherapy or osteopathy bookings and invoices | Can be | The ICO says you \"could reasonably infer health data from an individual's list of appointments at an osteopath clinic or from an invoice for a series of physiotherapy sessions\" |\n| Fingerprint or face-scan entry | Yes, biometric data | The ICO's example: a gym's fingerprint turnstile \"is processing biometric data to identify individual members, so the gym needs a valid condition\" |\n| Name, contact details, payment and ordinary class history | Personal data, not special category on its own | The EDPB lists booking references and purchase history as personal data |\n\nThe ICO adds that the special categories \"may also catch information that is not seen as particularly sensitive\": a broken leg is data concerning health just as much as a mental-health condition.\n\n## Lawful basis: two layers, not one\n\nEvery use of member data needs one of the six Article 6 lawful bases, among them consent, \"performance of a contract to which the data subject is party\", legal obligation and legitimate interests. Membership billing and class bookings usually sit on the contract basis. The EDPB's small-business guide warns that where processing \"will nevertheless be necessary (i.e. in the context of a contract), it means that consent is not the appropriate legal basis.\"\n\nHealth and biometric data need a second layer. Article 9(1) says processing of \"data concerning health\" and of biometric data used to identify someone \"shall be prohibited\", and Article 9(2) lifts that only under a listed condition. For a gym the realistic one is usually (a), where \"the data subject has given explicit consent to the processing of those personal data for one or more specified purposes\". The ICO says explicit consent must be confirmed in a clear statement, must specify the nature of the special category data, and should be separate from any other consents.\n\nConsent has to be a real choice. The ICO's own example is a gym: one that makes facial recognition \"a condition of entry\" with no other way in has no valid consent, because \"it is not objectively necessary in order to provide access to gym facilities\". If the same gym offers \"a choice between access via facial recognition and access via a membership card\", it \"could rely on explicit consent\" for the members who choose the scan.\n\nArticle 9(2)(h), health or social care, is the condition clinics lean on, but Article 9(3) ties it to data processed by or under the responsibility of a professional subject to an obligation of professional secrecy. In our reading that may fit an in-house physiotherapist and is unlikely to fit front-desk staff or class instructors; take advice before relying on it. Article 9(4) also lets member states \"maintain or introduce further conditions, including limitations\" for health and biometric data, so check the national law where your members are.\n\n## Wearables, heart-rate screens and biometrics: when a DPIA is due\n\nArticle 35(3)(b) makes a data protection impact assessment (DPIA) mandatory for \"processing on a large scale of special categories of data referred to in Article 9(1)\". Below that threshold, the EDPB says processing that meets two of nine criteria, among them sensitive data, systematic monitoring and data processed on a large scale, should be assessed through a DPIA in most cases, and gives \"processing biometric data, for example scanning fingerprints or facial features\" as an example of when one may be required.\n\nThe ICO's list is more specific to gyms. It names \"smart technologies (including wearables)\" as innovative technology, and requires a DPIA when innovative technology is combined with another criterion such as sensitive data. It also lists \"any processing of biometric data\" and tracking of \"an individual's geolocation or behaviour\" among the operations that need one in combination with another criterion. In our reading, a gym that pulls members' wearable data into its app or shows live heart rates in class should expect to need a DPIA. If you are building that feature, the wearable side is covered in [wearable data APIs](/fitness-apis/wearable-data-apis).\n\n## Your gym software vendor and Article 28\n\nIf the platform is your processor, Article 28 sets the terms. You may use \"only processors providing sufficient guarantees\", the processor may not engage another processor \"without prior specific or general written authorisation of the controller\", and the work must be governed by a contract that sets out the subject-matter, duration, nature and purpose of the processing and the type of personal data. That contract must say, among other things, that the processor:\n\n- \"processes the personal data only on documented instructions from the controller\";\n- ensures the people handling the data are bound by confidentiality;\n- takes the security measures Article 32 requires;\n- assists you with data subject requests and with your obligations under Articles 32 to 36, which include breach notification and DPIAs;\n- \"at the choice of the controller, deletes or returns all the personal data\" when the service ends.\n\nIn practice that is the vendor's data processing agreement plus its list of sub-processors and the places your data is stored. Cliniko's, as an example of the shape, is a Data Processing Addendum that \"includes Standard Contractual Clauses\", which it says it needs because \"Cliniko and its subprocessors aren't physically in the EU/EEA\". Which studio platforms publish an API, and how each hands out access, is compared in [gym and studio management software APIs](/fitness-apis/gym-management-software-apis); the [Mindbody](/integrate/mindbody-api) and [Glofox](/integrate/glofox-api) guides cover two of them.\n\n## How long a gym can keep member data\n\nArticle 5(1)(e) says personal data must be \"kept in a form which permits identification of data subjects for no longer than is necessary for the purposes for which the personal data are processed\". The ICO is explicit that \"The UK GDPR does not set specific time limits for different types of data\" and that you \"should not keep data indefinitely 'just in case'\". It expects a retention policy with standard periods where possible, and allows you to keep some details of a former customer, for example to deal with complaints, or records a law requires. The EDPB's checklist gives the same caveat: \"national legislation may oblige you to keep certain data (i.e. for tax reasons)\".\n\nFor a gym, our recommendation is to set separate periods for billing records, for health questionnaires and injury notes, for wearable data and for biometric templates, and to delete the health and biometric data when membership ends unless you can name a reason to keep it. The engineering side is in [health-data retention and deletion](/compliance/health-data-retention-deletion).\n\n## Member rights a gym must answer\n\nThe EDPB lists the rights as information, access, rectification, erasure, restriction, data portability, objection, and the right not to be subject to solely automated decisions. Requests must be answered \"without undue delay and in any event within one month of receipt\", extendable \"by two further months where necessary\" (Article 12(3)), and free of charge unless a request is \"manifestly unfounded or excessive\" (Article 12(5)). The EDPB adds that \"The data processor must assist the data controller in this task\", which is why your vendor's export and delete tools matter.\n\nTwo rights bite on fitness data in particular. Access (Article 15) means a copy of everything, wearable history included, provided in a commonly used electronic form when the request comes electronically. Portability (Article 20) means data the member provided, in \"a structured, commonly used and machine-readable format\", where processing is based on consent or contract and carried out by automated means.\n\n## If member data leaks\n\nArticle 33 requires notifying the supervisory authority \"without undue delay and, where feasible, not later than 72 hours after having become aware of it\", unless the breach is unlikely to result in a risk to people. Health and biometric data raise that risk. The app-side version of this duty is in [GDPR for fitness apps](/compliance/gdpr-fitness-app).\n\n## A gym's GDPR checklist (our recommendation)\n\n- Map what you hold: membership and billing, health questionnaires, injury notes, wearable and heart-rate data, biometric entry, CCTV.\n- Give each a lawful basis, and each health or biometric item an Article 9 condition, usually explicit consent asked for separately and with a non-biometric alternative.\n- Sign a data processing agreement with every platform that stores member data, and keep its sub-processor list.\n- Screen wearable, heart-rate and biometric features for a DPIA before launch.\n- Write retention periods per data type and delete on schedule.\n- Make sure your software can export and delete one member's data, so a request can be answered within a month.\n\n## Sources and limits\n\nAs of November 4, 2026. The GDPR articles are quoted from the regulation as adopted in 2016, read from legislation.gov.uk's copy of the original EU text; EUR-Lex refused our fetches, so check its current consolidated version for later amendments. The EDPB pages were read directly. The ICO's pages refused direct fetches and were read from Internet Archive captures dated October 2026, and the ICO itself says that because of the Data (Use and Access) Act its guidance \"is under review and may be subject to change\". How a rule applies to your gym depends on your country, your members and your systems, so treat this as a starting map and take advice from a qualified professional.",
+    "faqs": [
+      {
+        "q": "Is a gym's member health questionnaire special category data under GDPR?",
+        "a": "Usually yes. GDPR's Article 4(15) defines data concerning health as personal data that reveals information about a person's health status, and the UK regulator, the ICO, lists any information on injury, disease, disability or disease risk, including medical history, as health data. Answers to a joining questionnaire about injuries or conditions fall in that list, so the gym needs an Article 9 condition, usually explicit consent, as well as an Article 6 lawful basis."
+      },
+      {
+        "q": "Can a gym make fingerprint or face-scan entry a condition of membership?",
+        "a": "Not on the basis of consent, according to the ICO. Its guidance gives the example of a gym that requires facial recognition as a condition of entry with no other way in, and says that is not valid consent because members have no real choice and the scan is not objectively necessary to provide access. If the gym offers a membership card as an alternative, it could rely on explicit consent for the members who choose the scan."
+      },
+      {
+        "q": "Is gym management software a data processor under GDPR?",
+        "a": "Usually, for the member records it stores for you. GDPR defines a processor as a body that processes personal data on behalf of the controller, and the gym, which decides why the data is collected, is the controller. Article 28 then requires a contract with the vendor that limits it to your documented instructions, binds it to confidentiality and security, controls its sub-processors and has it delete or return the data when the service ends. Some vendors are also controllers for part of the data, so check what yours claims."
+      },
+      {
+        "q": "Does a gym need a DPIA to use members' wearable or heart-rate data?",
+        "a": "Often. GDPR's Article 35 makes a DPIA mandatory for large-scale processing of health data, and the ICO requires one when innovative technology, which it says includes wearables, is combined with another high-risk criterion such as sensitive data. Biometric entry systems are on the ICO's list too. In our reading, pulling members' wearable data into a gym app or showing live heart rates in class should be screened for a DPIA before launch."
+      },
+      {
+        "q": "How long can a gym keep a former member's data under GDPR?",
+        "a": "No longer than it needs it for the purpose it was collected for, under Article 5(1)(e). The ICO says the law sets no fixed periods, that data should not be kept indefinitely just in case, and that some details of a former customer can be kept, for example to handle complaints or where another law such as tax law requires. Set a retention period per data type, and delete health and biometric data when membership ends unless you can name a reason to keep it."
+      }
+    ],
+    "related": [
+      {
+        "href": "/compliance/gdpr-fitness-app",
+        "label": "GDPR for fitness & health apps"
+      },
+      {
+        "href": "/compliance/health-data-user-consent",
+        "label": "Valid consent for health data"
+      },
+      {
+        "href": "/compliance/health-data-retention-deletion",
+        "label": "Health-data retention & deletion"
+      },
+      {
+        "href": "/fitness-apis/gym-management-software-apis",
+        "label": "Gym and studio management software APIs"
+      },
+      {
+        "href": "/compliance",
+        "label": "Health-data compliance & privacy"
+      }
+    ],
+    "cta": {
+      "pitch": "EU and UK data-protection guidance is being revised in 2026. Subscribe and we will flag changes that affect how gyms and studios handle member health data."
+    },
+    "sources": [
+      {
+        "url": "https://www.legislation.gov.uk/eur/2016/679/article/4/adopted",
+        "checked": "2026-11-04",
+        "note": "Article 4(7), 4(8) and 4(15): controller, processor, data concerning health (the regulation as adopted)."
+      },
+      {
+        "url": "https://www.legislation.gov.uk/eur/2016/679/article/5/adopted",
+        "checked": "2026-11-04",
+        "note": "Article 5(1)(e), storage limitation."
+      },
+      {
+        "url": "https://www.legislation.gov.uk/eur/2016/679/article/6/adopted",
+        "checked": "2026-11-04",
+        "note": "Article 6(1) lawful bases."
+      },
+      {
+        "url": "https://www.legislation.gov.uk/eur/2016/679/article/9/adopted",
+        "checked": "2026-11-04",
+        "note": "Article 9(1), 9(2)(a) and (h), 9(3), 9(4)."
+      },
+      {
+        "url": "https://www.legislation.gov.uk/eur/2016/679/article/12/adopted",
+        "checked": "2026-11-04",
+        "note": "Article 12(3) one month plus two, 12(5) free of charge."
+      },
+      {
+        "url": "https://www.legislation.gov.uk/eur/2016/679/article/15/adopted",
+        "checked": "2026-11-04",
+        "note": "Article 15(3) copy in a commonly used electronic form."
+      },
+      {
+        "url": "https://www.legislation.gov.uk/eur/2016/679/article/20/adopted",
+        "checked": "2026-11-04",
+        "note": "Article 20 portability."
+      },
+      {
+        "url": "https://www.legislation.gov.uk/eur/2016/679/article/28/adopted",
+        "checked": "2026-11-04",
+        "note": "Article 28(1) to (3) processor guarantees, sub-processors and contract terms."
+      },
+      {
+        "url": "https://www.legislation.gov.uk/eur/2016/679/article/33/adopted",
+        "checked": "2026-11-04",
+        "note": "Article 33(1) 72-hour breach notification."
+      },
+      {
+        "url": "https://www.legislation.gov.uk/eur/2016/679/article/35/adopted",
+        "checked": "2026-11-04",
+        "note": "Article 35(3)(b) DPIA for large-scale special category data."
+      },
+      {
+        "url": "https://www.edpb.europa.eu/sme/learn-the-basics/data-protection-basics_en",
+        "checked": "2026-11-04",
+        "note": "Scope, personal data examples, lawful basis and consent, tax-law retention caveat."
+      },
+      {
+        "url": "https://www.edpb.europa.eu/sme/be-compliant/be-compliant_en",
+        "checked": "2026-11-04",
+        "note": "When a DPIA is required, the two-of-nine criteria, biometric example."
+      },
+      {
+        "url": "https://www.edpb.europa.eu/sme/be-compliant/respect-individuals-rights_en",
+        "checked": "2026-11-04",
+        "note": "List of rights; processor must assist."
+      },
+      {
+        "url": "https://www.edpb.europa.eu/topics/key-gdpr-concepts/controllerprocessor_en",
+        "checked": "2026-11-04",
+        "note": "Controller and processor in one line."
+      },
+      {
+        "url": "https://web.archive.org/web/20261017232808/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/special-category-data/what-is-special-category-data/",
+        "checked": "2026-11-04",
+        "note": "ICO: health data includes fitness-tracker data; gym fingerprint example (Internet Archive capture of Oct 17, 2026)."
+      },
+      {
+        "url": "https://web.archive.org/web/20261015055930/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/special-category-data/what-are-the-conditions-for-processing/",
+        "checked": "2026-11-04",
+        "note": "ICO: explicit consent requirements; gym facial-recognition example (capture of Oct 15, 2026)."
+      },
+      {
+        "url": "https://web.archive.org/web/20261012165422/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/when-do-we-need-to-do-a-dpia/",
+        "checked": "2026-11-04",
+        "note": "ICO: wearables as innovative technology; biometrics and tracking on the DPIA list (capture of Oct 12, 2026)."
+      },
+      {
+        "url": "https://web.archive.org/web/20261025165245/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/data-protection-principles/a-guide-to-the-data-protection-principles/storage-limitation/",
+        "checked": "2026-11-04",
+        "note": "ICO: no fixed retention periods, no keeping just in case (capture of Oct 25, 2026)."
+      },
+      {
+        "url": "https://help.cliniko.com/en/articles/1908020-how-cliniko-helps-you-with-gdpr-compliance",
+        "checked": "2026-11-04",
+        "note": "A practice-software vendor's processor and controller roles and its DPA with Standard Contractual Clauses."
       }
     ]
   }

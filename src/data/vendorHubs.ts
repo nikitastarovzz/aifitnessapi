@@ -190,6 +190,7 @@ export const VENDOR_HUBS: VendorHub[] = [
       "/compare/fitbit-vs-apple-watch",
       "/compare/apple-watch-vs-garmin",
       "/compare/apple-watch-vs-whoop",
+      "/compare/cliniko-vs-healthkit",
       "/healthkit-errors",
       "/error-codes",
       "/fix/healthkit-no-data",
