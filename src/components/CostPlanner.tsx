@@ -50,8 +50,8 @@ const PROFILE_FRAMING: Record<Profile, Record<EngEffort, string>> = {
     low: "Days each — the part you can genuinely fit around other work.",
   },
   funded: {
-    high: "Months of a dedicated engineer each. These parallelise if you have the headcount, but they also carry ongoing maintenance and tuning, not just a build.",
-    medium: "Weeks of one engineer each. Schedulable, and they parallelise across a team.",
+    high: "Months of a dedicated engineer each. These parallelize if you have the headcount, but they also carry ongoing maintenance and tuning, not just a build.",
+    medium: "Weeks of one engineer each. Schedulable, and they parallelize across a team.",
     low: "Days each. Small enough to absorb into an existing sprint.",
   },
 };
@@ -375,7 +375,7 @@ export default function CostPlanner() {
               </h3>
               <p className="mt-3 text-sm text-[var(--muted)]">
                 Unlike everything above, this is not sourced from a vendor — it is{" "}
-                <strong className="font-semibold text-[var(--fg)]">our rough judgement</strong> of
+                <strong className="font-semibold text-[var(--fg)]">our rough judgment</strong> of
                 integration plus first-year maintenance, on a scale of low ≈ days, medium ≈ weeks,
                 high ≈ months. Your team, codebase, and scope will move it.
               </p>

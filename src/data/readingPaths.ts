@@ -85,7 +85,7 @@ export const READING_PATHS: ReadingPath[] = [
       {
         href: "/learn/what-is-a-health-data-aggregator",
         label: "What is a health-data aggregator?",
-        why: "Start with what the category does and does not absorb — aggregators broker OAuth and normalise payloads; they do not remove the provider approval gates.",
+        why: "Start with what the category does and does not absorb — aggregators broker OAuth and normalize payloads; they do not remove the provider approval gates.",
       },
       {
         href: "/fitness-apis/health-data-aggregator-apis",
@@ -133,7 +133,7 @@ export const READING_PATHS: ReadingPath[] = [
       {
         href: "/motion/pose-estimation-models-compared",
         label: "Pose estimation models compared",
-        why: "MediaPipe, MoveNet, YOLO and the rest differ in keypoint count, speed and licence. Choosing here decides most of what follows.",
+        why: "MediaPipe, MoveNet, YOLO and the rest differ in keypoint count, speed and license. Choosing here decides most of what follows.",
       },
       {
         href: "/motion/on-device-vs-cloud-pose-estimation",

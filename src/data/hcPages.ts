@@ -415,7 +415,7 @@ export function recordFaqs(r: HcRecord): { q: string; a: string }[] {
       q: `Which constants does ${r.className} define?`,
       a: `Google's reference lists ${r.constants.length} constant${r.constants.length === 1 ? "" : "s"} on ${r.className}, including ${joinList(
         shown.map((c) => `${c.name} = ${c.value}`),
-      )}${r.constants.length > shown.length ? " and more" : ""}. Store the constant name or the value it maps to, and treat values you do not recognise as unknown.`,
+      )}${r.constants.length > shown.length ? " and more" : ""}. Store the constant name or the value it maps to, and treat values you do not recognize as unknown.`,
     });
   }
 

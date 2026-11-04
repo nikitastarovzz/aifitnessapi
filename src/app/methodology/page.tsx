@@ -94,7 +94,7 @@ export default function MethodologyPage() {
           <Link href="/gates">the gates</Link>.
         </p>
 
-        <h2>Judgement is labelled as judgement</h2>
+        <h2>Judgment is labeled as judgment</h2>
         <p>
           Engineering recommendations — which architecture to pick, what to
           test first, when to buy instead of build — are opinions, and the
@@ -119,7 +119,7 @@ export default function MethodologyPage() {
           that cannot be reconfirmed is cut or hedged rather than left under an old date.
           Re-checks are scheduled by stamp age, oldest first, because choosing by what comes to
           mind leaves the quiet pages to rot. Pages show how long ago they were checked and flag
-          anything past 90 days, a threshold that is our judgement about tolerable staleness, not
+          anything past 90 days, a threshold that is our judgment about tolerable staleness, not
           a finding.
         </p>
         <p>

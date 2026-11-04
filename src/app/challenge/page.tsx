@@ -174,7 +174,7 @@ export default function ChallengePage() {
                 BlazePose 33 map
               </Link>
               , each with a visibility score. It also returns the same pose as world landmarks, which the
-              package&rsquo;s type definitions describe as coordinates in metres; the angle is computed from
+              package&rsquo;s type definitions describe as coordinates in meters; the angle is computed from
               those, so it does not depend on where you stand in the frame.
             </li>
             <li>

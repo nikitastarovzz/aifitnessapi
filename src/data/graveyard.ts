@@ -374,7 +374,7 @@ export const GRAVEYARD: GraveEntry[] = [
     },
     replacedBy: [{ label: "@tensorflow-models/pose-detection", href: "/motion/movenet-models" }],
     summary:
-      "The PoseNet browser pose model package. Its README says it is deprecated in favour of the pose-detection package and gives no date; the last version on npm, 2.2.2, was published on March 10, 2021.",
+      "The PoseNet browser pose model package. Its README says it is deprecated in favor of the pose-detection package and gives no date; the last version on npm, 2.2.2, was published on March 10, 2021.",
     source: {
       url: "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/posenet/README.md",
       publisher: "tfjs-models repository (TensorFlow)",

@@ -69,7 +69,7 @@ const FAQS = [
   },
   {
     q: "Which Health Connect records match Apple's calorie types?",
-    a: "ActiveCaloriesBurnedRecord and TotalCaloriesBurnedRecord sit opposite Apple's activeEnergyBurned and basalEnergyBurned. The split is not the same on both sides, so map them explicitly and never add the active figure to the total figure. Both platforms are giving you modelled estimates rather than measurements.",
+    a: "ActiveCaloriesBurnedRecord and TotalCaloriesBurnedRecord sit opposite Apple's activeEnergyBurned and basalEnergyBurned. The split is not the same on both sides, so map them explicitly and never add the active figure to the total figure. Both platforms are giving you modeled estimates rather than measurements.",
   },
 ];
 
@@ -196,7 +196,7 @@ export default function MatrixPage() {
             <strong>Do not add active calories to total calories.</strong>{" "}Apple splits active and
             basal; Health Connect offers active and total. Those are not the same split, and the rule
             for the Android pair is simply that you must not add active to total &mdash; the result is a
-            plausible number that nothing will flag. Both figures are modelled estimates on both
+            plausible number that nothing will flag. Both figures are modeled estimates on both
             platforms, not measurements.
           </p>
           <p>

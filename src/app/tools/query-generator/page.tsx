@@ -139,7 +139,7 @@ export default function QueryGeneratorPage() {
                 What Apple leaves undocumented &rarr;
               </Link>{" "}
               <span className="text-[var(--muted)]">
-                — the beta, undocumented and deprecated edges of the catalogue.
+                — the beta, undocumented and deprecated edges of the catalog.
               </span>
             </li>
             <li>

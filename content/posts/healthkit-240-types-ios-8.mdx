@@ -59,7 +59,7 @@ on 2026-08-28 and republished as an open dataset on [/datasets](/datasets).
 | 27.0 | 2 |
 
 The version strings are Apple's, including the jump from 18.0 to 26.2. We
-record what the documentation says rather than normalising it.
+record what the documentation says rather than normalizing it.
 
 Read down that column and the pattern is obvious. After the opening 127, the
 biggest single release is 20 identifiers in iOS 10.0. Then 17 in iOS 16.0, 14
@@ -121,12 +121,12 @@ Apple's page saying what to use instead.
 
 None of the four has been removed. A snapshot taken on one date cannot prove
 Apple has never withdrawn anything, but what this one shows is that a
-deprecated identifier stays in the catalogue beside its replacement, and the
+deprecated identifier stays in the catalog beside its replacement, and the
 list you have to handle only grows. Any switch
 statement, database column mapping or analytics dimension you build over these
 identifiers is a structure that gets longer every year and never gets shorter.
 
-Design for that. A `default` case that silently drops an unrecognised
+Design for that. A `default` case that silently drops an unrecognized
 identifier will start dropping real user data the first autumn after you ship,
 and nobody will report it because the app will not crash. Store the raw
 identifier string alongside whatever you map it to, so that a type you did not

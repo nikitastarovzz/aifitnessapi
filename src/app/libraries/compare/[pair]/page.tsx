@@ -64,7 +64,7 @@ const ROWS: Row[] = [
   { label: "Latest published", cell: (l) => `${l.latestPublished} (${sinceRead(l.latestPublished)})` },
   { label: "First published", cell: (l) => l.firstPublished },
   { label: "Versions published", cell: (l) => String(l.versionCount) },
-  { label: "Licence", cell: (l) => (l.license ? `${l.license} (${l.licenseEvidence})` : "not stated") },
+  { label: "License", cell: (l) => (l.license ? `${l.license} (${l.licenseEvidence})` : "not stated") },
   {
     label: "Platforms",
     cell: (l) => (l.platforms ? `${l.platforms.join(", ")} (${l.platformsEvidence})` : "not stated in registry metadata"),
@@ -258,7 +258,7 @@ export default async function LibraryComparisonPage({ params }: { params: Promis
         <section className="mt-12">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">How to choose: our reading</h2>
           <p className="mt-2 text-sm text-[var(--muted)]">
-            Judgement, labelled as such, drawn only from the facts above.
+            Judgment, labeled as such, drawn only from the facts above.
           </p>
           <ul className="mt-4 list-disc space-y-2 pl-5 text-[var(--fg)]">
             {c.choose.map((x) => (

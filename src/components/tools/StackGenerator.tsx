@@ -159,7 +159,7 @@ function wearableExclusion(api: ApiPick, wearables: Wearables, aggregatorsKept: 
 
 function effortExclusion(api: ApiPick, constraint: Constraint): string | null {
   if (constraint === "ship-fast" && api.engEffort === "high") {
-    return "you picked fastest to ship, and our rough judgement of the integration work here is high — months, not weeks.";
+    return "you picked fastest to ship, and our rough judgment of the integration work here is high — months, not weeks.";
   }
   return null;
 }
@@ -173,7 +173,7 @@ function factsFor(api: ApiPick): string[] {
     api.userSideCost
       ? `Every end user: ${api.userSideCost}`
       : "Nothing documented that each end user has to own or pay for.",
-    `Integration effort: ${EFFORT_LABEL[api.engEffort]} (our rough judgement, not a vendor fact).`,
+    `Integration effort: ${EFFORT_LABEL[api.engEffort]} (our rough judgment, not a vendor fact).`,
   ];
 }
 
@@ -233,7 +233,7 @@ function compose(
 
   const orderNote =
     constraint === "ship-fast"
-      ? "Ordered by integration effort (our rough judgement) lowest first, then by whether an approval gate is documented, then by how it bills developers."
+      ? "Ordered by integration effort (our rough judgment) lowest first, then by whether an approval gate is documented, then by how it bills developers."
       : "Ordered by whether an approval gate is documented (none first), then by how it bills developers — free, free tier, usage-based, contact sales — then by integration effort.";
 
   const roundups: { href: string; label: string }[] = [];
@@ -332,7 +332,7 @@ function buildMarkdown(
   lines.push(`- Every HealthKit type identifier: ${origin}/healthkit-identifiers`);
   lines.push("");
   lines.push(
-    "Every field above is copied from the same provenance-tracked model the rest of the site uses. Integration effort is this site's rough judgement and is labelled as such; nothing here is ranked by anything outside that data.",
+    "Every field above is copied from the same provenance-tracked model the rest of the site uses. Integration effort is this site's rough judgment and is labeled as such; nothing here is ranked by anything outside that data.",
   );
   return lines.join("\n");
 }

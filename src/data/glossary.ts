@@ -34,8 +34,8 @@ export const GROUPS: Group[] = [
       { term: "HealthKit", def: "Apple's on-device health store. Not a cloud API — there is no server endpoint; your app reads it locally with permission and syncs itself.", href: "/integrate/healthkit" },
       { term: "Health Connect", def: "Android's on-device health store — Google's counterpart to HealthKit. Also local-only, and it deduplicates only Activity and Sleep, via its aggregate API.", href: "/integrate/google-health-connect" },
       { term: "Health-data aggregator", def: "A third party (Terra, Rook, and others) that normalizes many wearable and health sources behind one API — often the right buy instead of building integrations yourself.", href: "/learn/what-is-a-health-data-aggregator" },
-      { term: "Exercise database API", def: "A catalogue of exercises with metadata and media. Watch the licensing — some open options are AGPL copyleft, which matters for closed-source apps.", href: "/fitness-apis/exercise-database-apis" },
-      { term: "Fitness API", def: "Any API a developer uses to get fitness or health data or content — wearables, aggregators, exercise or nutrition catalogues, or AI motion tracking. Choose by job.", href: "/learn/what-is-a-fitness-api" },
+      { term: "Exercise database API", def: "A catalog of exercises with metadata and media. Watch the licensing — some open options are AGPL copyleft, which matters for closed-source apps.", href: "/fitness-apis/exercise-database-apis" },
+      { term: "Fitness API", def: "Any API a developer uses to get fitness or health data or content — wearables, aggregators, exercise or nutrition catalogs, or AI motion tracking. Choose by job.", href: "/learn/what-is-a-fitness-api" },
     ],
   },
   {
@@ -53,7 +53,7 @@ export const GROUPS: Group[] = [
     terms: [
       { term: "Pose estimation", def: "Finding body keypoints in each camera frame. A normal RGB phone camera is enough for 2D and even monocular 3D — no depth sensor required.", href: "/learn/what-is-pose-estimation" },
       { term: "2D vs 3D pose", def: "2D gives pixel coordinates; monocular 3D adds an estimated depth that is less reliable for occluded and out-of-plane joints. Say which you need.", href: "/motion/2d-vs-3d-pose-estimation" },
-      { term: "Rep counting", def: "Turning a keypoint stream into a count — a classification problem, tested with precision and recall against a labelled corpus, not a demo of ten push-ups.", href: "/motion/how-rep-counting-works" },
+      { term: "Rep counting", def: "Turning a keypoint stream into a count — a classification problem, tested with precision and recall against a labeled corpus, not a demo of ten push-ups.", href: "/motion/how-rep-counting-works" },
       { term: "Form feedback", def: "Comparing joint angles and range of motion to a target. A coaching aid, not medical or physical-therapy advice — a distinction worth stating in the product.", href: "/motion/how-form-feedback-works" },
       { term: "On-device vs cloud inference", def: "Running the model on the phone (low latency, private, no per-frame cost) versus in the cloud (heavier models, consistent, but latency and streaming-video privacy weight).", href: "/motion/on-device-vs-cloud-pose-estimation" },
     ],
@@ -96,7 +96,7 @@ export const GROUPS: Group[] = [
     terms: [
       { term: "PHI (protected health information)", def: "The HIPAA category. Whether your fitness data is PHI depends on who you are and who you share it with — a consumer app is often outside HIPAA entirely, but not always.", href: "/compliance/is-fitness-data-phi" },
       { term: "General wellness policy", def: "The FDA position that it does not intend to examine low-risk wellness products. There is no approval to claim — and diagnosis or treatment claims can push you out of it.", href: "/compliance/fda-fitness-app-regulation" },
-      { term: "RAG / grounding", def: "Constraining an LLM to a vetted catalogue instead of free-generating. For a few-thousand-row exercise table, plain retrieval usually beats vector search.", href: "/ai/ground-llm-in-exercise-database" },
+      { term: "RAG / grounding", def: "Constraining an LLM to a vetted catalog instead of free-generating. For a few-thousand-row exercise table, plain retrieval usually beats vector search.", href: "/ai/ground-llm-in-exercise-database" },
       { term: "Guardrails (health advice)", def: "The deterministic gate in front of an LLM giving exercise or nutrition guidance. A model asked to police itself in the same call gets talked out of it.", href: "/ai/llm-safety-fitness-advice" },
     ],
   },

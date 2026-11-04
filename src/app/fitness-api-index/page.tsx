@@ -176,7 +176,7 @@ export default function FitnessApiIndexPage() {
         >
           <strong>Disclosure:</strong>{" "}KinesteX, the company that funds this site, is one of the products in the
           directory. Its row is shown and computed exactly like the others, but it is kept out of every sort
-          and given no position: it sits below the ranked rows, labelled &ldquo;funds this site — not
+          and given no position: it sits below the ranked rows, labeled &ldquo;funds this site — not
           ranked&rdquo;.
         </aside>
 
@@ -362,7 +362,7 @@ export default function FitnessApiIndexPage() {
               None of these signals says a product is good. More tracked changes can mean an unstable API or a
               vendor that documents what it changes; an approval gate protects users as often as it slows
               builders; a package with no release this year may be finished rather than abandoned. Any weighting
-              would be our judgement presented as a measurement, so the index publishes the measurements and
+              would be our judgment presented as a measurement, so the index publishes the measurements and
               leaves the weighting to you. Download the rows and apply your own.
             </p>
             <p>

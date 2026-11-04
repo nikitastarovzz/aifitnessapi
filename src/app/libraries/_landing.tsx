@@ -199,7 +199,7 @@ export function LandingPage({ slug }: { slug: string }) {
                   <th scope="col" className="py-2 pr-4 font-semibold">Connects to</th>
                   <th scope="col" className="py-2 pr-4 font-semibold">Repository</th>
                   <th scope="col" className="py-2 pr-4 font-semibold">Latest release</th>
-                  <th scope="col" className="py-2 pr-4 font-semibold">Licence</th>
+                  <th scope="col" className="py-2 pr-4 font-semibold">License</th>
                   <th scope="col" className="py-2 pr-4 font-semibold">Registry status</th>
                   <th scope="col" className="py-2 font-semibold">Last commit</th>
                 </tr>
@@ -257,14 +257,14 @@ export function LandingPage({ slug }: { slug: string }) {
             </table>
           </div>
           <p className="mt-3 text-xs text-[var(--muted)]">
-            {`Versions, dates and licences read from ${ecosystems.map((e) => ECOSYSTEM_LABEL[e]).join(" and ")} on ${LIBRARIES_FETCHED_ON}; last-commit dates read by git on ${commitReads.join(", ") || "no date"}; archive flags from the GitHub API, read ${githubReads.join(", ") || "never"}. This data records no download counts, so the table has no downloads column. Repository is the GitHub owner and name as GitHub reports it, which is how the data names a maintainer.`}
+            {`Versions, dates and licenses read from ${ecosystems.map((e) => ECOSYSTEM_LABEL[e]).join(" and ")} on ${LIBRARIES_FETCHED_ON}; last-commit dates read by git on ${commitReads.join(", ") || "no date"}; archive flags from the GitHub API, read ${githubReads.join(", ") || "never"}. This data records no download counts, so the table has no downloads column. Repository is the GitHub owner and name as GitHub reports it, which is how the data names a maintainer.`}
           </p>
         </section>
 
         <section id="choose" className="mt-14 scroll-mt-24">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">How to choose: our reading</h2>
           <p className="mt-2 text-sm text-[var(--muted)]">
-            Judgement, labelled as such, drawn only from the README notes and registry facts on each package’s page
+            Judgment, labeled as such, drawn only from the README notes and registry facts on each package’s page
             and from the comparisons. No package is ranked first.
           </p>
           <div className="mt-6 space-y-8">

@@ -553,7 +553,7 @@ export default function StepLab() {
             value={threshold}
             onChange={(e) => setThreshold(Number(e.target.value))}
             className="mt-2 w-full accent-[var(--color-brand-600)]"
-            aria-label="Threshold above baseline in metres per second squared"
+            aria-label="Threshold above baseline in meters per second squared"
           />
           <span className="text-xs text-[var(--muted)]">
             How far the filtered signal must rise above its running baseline to be a step. Higher misses soft

@@ -37,7 +37,7 @@ const FAQS = [
   },
   {
     q: "How reliable is the engineering-effort estimate in this planner?",
-    a: "Treat it as our rough judgement, which is exactly how the tool labels it. Every other field in the output is backed by a sentence published on this site and links to the page it came from; the effort tally is not, because no vendor publishes it and nobody could. It is a coarse three-band read — low is roughly days, medium roughly weeks, high roughly months — covering integration plus first-year maintenance, and it assumes an engineer who has not built this before. A team that already runs OAuth token refresh at scale will find the wearable items cheaper than the tally suggests. A team building its first pose pipeline will find the high band optimistic.",
+    a: "Treat it as our rough judgment, which is exactly how the tool labels it. Every other field in the output is backed by a sentence published on this site and links to the page it came from; the effort tally is not, because no vendor publishes it and nobody could. It is a coarse three-band read — low is roughly days, medium roughly weeks, high roughly months — covering integration plus first-year maintenance, and it assumes an engineer who has not built this before. A team that already runs OAuth token refresh at scale will find the wearable items cheaper than the tally suggests. A team building its first pose pipeline will find the high band optimistic.",
   },
   {
     q: "Does using an aggregator remove the approval gates?",
@@ -80,13 +80,13 @@ The output comes back in five blocks. Each does a different job.
 
 **Approval gates and lead time.** Calendar time is a real cost at a fee of zero. A partner review, a connected-user cap that only lifts after someone reads your submission, a store-level health-data declaration — each of these is a dependency with a queue in front of it. The list exists so you start them before you need them rather than after.
 
-**Engineering effort.** The one block that is judgement rather than sourced fact, and the tool says so on the panel. It bands each item as low, medium, or high, meaning roughly days, weeks, or months of integration plus first-year maintenance. The team profile toggle changes only the framing — a high-effort item reads differently when you are the entire engineering team than when you have someone to assign it to — and never the underlying band. It is a sanity check on scope, not an estimate you should put in a plan.
+**Engineering effort.** The one block that is judgment rather than sourced fact, and the tool says so on the panel. It bands each item as low, medium, or high, meaning roughly days, weeks, or months of integration plus first-year maintenance. The team profile toggle changes only the framing — a high-effort item reads differently when you are the entire engineering team than when you have someone to assign it to — and never the underlying band. It is a sanity check on scope, not an estimate you should put in a plan.
 
 **Get real quotes.** The contact-sales items, collected into a checklist, each linking the page that explains what the vendor's model actually is. Read that before the call. The difference between asking "what does it cost" and asking "is that priced per connected user or per event, and what happens to the credit allowance at high sync frequency" is usually the difference between one call and three.
 
 ## What the planner does not model
 
-It does not price your own infrastructure, and for wearable data at scale that is a genuine line item — continuous high-volume history, token refresh, webhook handling, monitoring. It does not price compliance work, which health data carries regardless of what the API costs. It does not price the licence obligations attached to the free and open options, where the cost arrives as legal review or an architecture constraint rather than an invoice. And it makes no attempt to guess your volumes, because a usage-based bill without your growth curve is not a number, it is a shape.
+It does not price your own infrastructure, and for wearable data at scale that is a genuine line item — continuous high-volume history, token refresh, webhook handling, monitoring. It does not price compliance work, which health data carries regardless of what the API costs. It does not price the license obligations attached to the free and open options, where the cost arrives as legal review or an architecture constraint rather than an invoice. And it makes no attempt to guess your volumes, because a usage-based bill without your growth curve is not a number, it is a shape.
 
 Use it to find the questions worth asking. Then go ask the vendors.
 `;

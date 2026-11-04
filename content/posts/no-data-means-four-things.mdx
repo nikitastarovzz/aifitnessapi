@@ -34,7 +34,7 @@ telling them apart is the whole job.
 Apple documents the authorization-denied error as the case where the user has
 not given the app permission to *save* data. There is no read-denied case in the
 17 errors HealthKit defines. A refused read completes normally and hands you an
-empty array — identical to a query against a type the user authorised and simply
+empty array — identical to a query against a type the user authorized and simply
 has no samples for. That design decision, and the full error list, are covered
 in [the HealthKit error that never fires](/blog/healthkit-error-that-never-fires).
 
@@ -81,7 +81,7 @@ reports than everything else on this list.
 
 **4. Check the day boundary and the timezone.** A query for "today" is a query
 for an interval, and which interval depends on whose midnight you used. Samples
-written while a user was travelling land on a different local day than the one
+written while a user was traveling land on a different local day than the one
 they expect. A rollup computed in UTC against a user in a distant offset drops
 or duplicates the edges. This has its own failure taxonomy in
 [timezones and day boundaries](/architecture/timezones-and-day-boundaries), and

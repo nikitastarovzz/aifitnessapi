@@ -53,14 +53,14 @@ export const CORRECTIONS: Correction[] = [
     date: "2026-10-18",
     page: { href: "/cost-planner", label: "Fitness API Cost Planner" },
     was: "The planner said Garmin does not publish pricing for its developer APIs at all and settles its commercial terms privately with approved partners, named Garmin in an FAQ answer among the APIs that need a sales call, and said roughly half of the market is contact-sales.",
-    now: "Garmin's program FAQ says there are no licensing or maintenance fees for access, though some metrics may require a licence fee or a minimum device order for commercial use, at amounts Garmin does not publish. Garmin is no longer in the planner's sales checklist, and the prose no longer gives a contact-sales share.",
+    now: "Garmin's program FAQ says there are no licensing or maintenance fees for access, though some metrics may require a license fee or a minimum device order for commercial use, at amounts Garmin does not publish. Garmin is no longer in the planner's sales checklist, and the prose no longer gives a contact-sales share.",
     how: "Found on 2026-10-18 while checking the page against Garmin's program FAQ, re-verified on 2026-10-17 by a source-snapshot run. The planner reads the cost model that carried the Garmin error logged below for the State of Fitness APIs 2026 report, and the site already said otherwise when the planner went up on 2026-08-11: since 2026-07-08 the wearable data APIs comparison had listed Garmin as free to approved partners. The share was never roughly half: the dataset behind the planner counted 4 of 25 items (16%) as contact-sales that day.",
   },
   {
     date: "2026-10-18",
     page: { href: "/compare/apple-watch-vs-garmin", label: "Apple Watch vs Garmin: Which Should You Build On?" },
     was: "The comparison said no Garmin price was confirmed, with \"no confirmation the program is free either\", that Garmin's commercial terms are settled privately with approved partners, and, in its table, that Garmin's developer cost was not publicly listed and that third-party mentions of a setup fee and premium-metric licensing appeared on no Garmin-owned page.",
-    now: "Garmin's program FAQ says there are no licensing or maintenance fees for access to the Garmin Connect Developer Program, which is only for business use, and that access to some metrics may require a licence fee or a minimum device order for commercial use; Garmin does not publish those amounts. The table, the note under it and an FAQ answer now say so.",
+    now: "Garmin's program FAQ says there are no licensing or maintenance fees for access to the Garmin Connect Developer Program, which is only for business use, and that access to some metrics may require a license fee or a minimum device order for commercial use; Garmin does not publish those amounts. The table, the note under it and an FAQ answer now say so.",
     how: "Found on 2026-10-18 while checking the page against Garmin's program FAQ, re-verified on 2026-10-17 by a source-snapshot run. The site already said otherwise when the page went up on 2026-08-12: since 2026-07-08 the wearable data APIs comparison had listed Garmin as free to approved partners, and Fitbit API vs Garmin API had said both APIs were documented as free to use with approval.",
   },
   {
@@ -74,7 +74,7 @@ export const CORRECTIONS: Correction[] = [
     date: "2026-10-18",
     page: { href: "/pricing/are-fitness-apis-free", label: "Are Fitness APIs Free? An Honest Overview" },
     was: "The page said Garmin breaks the free-to-call pattern of first-party wearable APIs and is partner-approval-only with terms not publicly listed, repeated third-party reports of a setup fee, and said in an FAQ answer: \"Do not label Garmin free.\" A section added on 2026-10-13 said Garmin was the one product rated high engineering effort that was not free, classed contact-sales.",
-    now: "Free to call, with conditions. Garmin's program FAQ says there are no licensing or maintenance fees for access to the Garmin Connect Developer Program, which is only for business use, and that access to some metrics may require a licence fee or a minimum device order for commercial use; Garmin does not publish those amounts. The section's count of the API directory was redone on 2026-10-18: 14 of its 24 products are free, and all five rated high effort, Garmin included, are among them.",
+    now: "Free to call, with conditions. Garmin's program FAQ says there are no licensing or maintenance fees for access to the Garmin Connect Developer Program, which is only for business use, and that access to some metrics may require a license fee or a minimum device order for commercial use; Garmin does not publish those amounts. The section's count of the API directory was redone on 2026-10-18: 14 of its 24 products are free, and all five rated high effort, Garmin included, are among them.",
     how: "Found on 2026-10-18 while checking the page against the Garmin pages re-verified on 2026-10-17 from Garmin's program FAQ, fetched by a source-snapshot run. The site already said otherwise when the page went up on 2026-07-23: since 2026-07-08 the wearable data APIs comparison had listed Garmin as free to approved partners and said Garmin publishes no per-call fee and is documented as free to use. The contact-sales sentence repeated the API directory's Garmin row, the error logged below for the State of Fitness APIs 2026 report.",
   },
   {
@@ -88,7 +88,7 @@ export const CORRECTIONS: Correction[] = [
     date: "2026-10-18",
     page: { href: "/state-of-fitness-apis-2026", label: "The State of Fitness APIs 2026" },
     was: "The report classed Garmin's Health and Activity API as contact-sales, one of 4 such items (16%), and called Garmin the single first-party wearable API whose commercial terms are settled privately with approved partners.",
-    now: "Free to call. Garmin's program FAQ says there are no licensing or maintenance fees for access to the Garmin Connect Developer Program, which is only for business use, and that access to some metrics may require a licence fee or a minimum device order for commercial use. The report now counts 14 of 25 items (56%) as free to call, and a dated revision note at the top lists every figure that moved.",
+    now: "Free to call. Garmin's program FAQ says there are no licensing or maintenance fees for access to the Garmin Connect Developer Program, which is only for business use, and that access to some metrics may require a license fee or a minimum device order for commercial use. The report now counts 14 of 25 items (56%) as free to call, and a dated revision note at the top lists every figure that moved.",
     how: "Found on 2026-10-17 while re-verifying the Garmin pages against Garmin's program FAQ, fetched by a source-snapshot run. The fact was already on this site when the report went up: the 2026-07-08 versions of the wearable data APIs comparison and of Fitbit API vs Garmin API said Garmin was documented as free to use with approval. The report's row followed the Garmin pricing page instead, which said Garmin did not publish its terms.",
   },
   {
@@ -164,7 +164,7 @@ export const CORRECTIONS: Correction[] = [
   {
     date: "2026-10-02",
     page: { href: "/integrate/healthkit", label: "How to Integrate Apple HealthKit" },
-    was: "The guide labelled HKQuantityType(.stepCount) — the type-safe initializer used in its code — as iOS 16 and later, in four places.",
+    was: "The guide labeled HKQuantityType(.stepCount) — the type-safe initializer used in its code — as iOS 16 and later, in four places.",
     now: "iOS 15 and later, which is the version Apple's reference for HKQuantityType.init(_:) gives on iOS, iPadOS and Mac Catalyst.",
     how: "Found while re-verifying every claim on the page against developer.apple.com on 2026-10-02.",
   },

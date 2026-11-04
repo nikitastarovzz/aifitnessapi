@@ -2,7 +2,7 @@
 path: "/fix/garmin-api-approval"
 translatedOn: "2026-11-02"
 sourceUpdated: "2026-11-02"
-sourceHash: "a720189da90caf7b"
+sourceHash: "741d3cc151670027"
 metaTitle: "Garmin Developer Program: acesso e aprovação (2026)"
 metaDescription: >-
   Chaves da API da Garmin ainda exigem um pedido aprovado pela Garmin. Desde outubro de 2026: Starter e Enterprise Access, e uma Personal API autosserviço.

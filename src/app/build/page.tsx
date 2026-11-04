@@ -72,7 +72,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
     slugs: ["cycling-app", "swimming-app", "hiking-app", "triathlon-app"],
   },
   {
-    title: "Programmes and populations",
+    title: "Programs and populations",
     blurb: "Apps someone else buys on behalf of a group.",
     slugs: ["corporate-wellness-app", "step-challenge-app"],
   },
@@ -219,7 +219,7 @@ export default function BuildPillar() {
           <p className="text-sm font-semibold text-[var(--fg)]">Know your app type already?</p>
           <p className="mt-1 text-sm text-[var(--muted)]">
             Answer four questions — what you are building, which platforms ship, how much wearable
-            data you need, and whether the team is optimising for speed or control — and get the
+            data you need, and whether the team is optimizing for speed or control — and get the
             HealthKit types that category touches and the APIs that survive those answers, each
             with the reason it survived.
           </p>

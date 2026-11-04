@@ -105,7 +105,7 @@ export const TOOLS = [
     name: "health_data_cross_platform",
     title: "HealthKit to Health Connect mapping",
     description:
-      "Map a health metric between Apple HealthKit and Android Health Connect. Returns the type identifier on each platform plus the cross-platform gotcha where one exists — for example Apple stores HRV as SDNN while Health Connect stores RMSSD, which are different calculations and must not be normalised into a single field. Use this when building anything that must work on both platforms.",
+      "Map a health metric between Apple HealthKit and Android Health Connect. Returns the type identifier on each platform plus the cross-platform gotcha where one exists — for example Apple stores HRV as SDNN while Health Connect stores RMSSD, which are different calculations and must not be normalized into a single field. Use this when building anything that must work on both platforms.",
     inputSchema: {
       type: "object",
       properties: {

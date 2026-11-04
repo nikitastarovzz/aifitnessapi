@@ -170,7 +170,7 @@ export default async function ApiPage({ params }: { params: Promise<Params> }) {
     {
       label: "Integration effort",
       value: { low: "Low — days", medium: "Medium — weeks", high: "High — months" }[api.engEffort],
-      note: "our rough judgement, not a vendor fact",
+      note: "our rough judgment, not a vendor fact",
     },
   ];
 
@@ -283,7 +283,7 @@ export default async function ApiPage({ params }: { params: Promise<Params> }) {
             <Link href={integrateHub} className="font-medium text-brand-600 hover:text-brand-500">
               {menuLabel(integrateHub)}
             </Link>
-            ; this entry summarises the access requirements and lists every page on {api.short}.
+            ; this entry summarizes the access requirements and lists every page on {api.short}.
           </p>
         )}
 

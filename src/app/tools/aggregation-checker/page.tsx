@@ -141,7 +141,7 @@ export default function AggregationCheckerPage() {
             Where Apple states no style, do not build a rollup on an assumption. As of September 1,
             2026 that meant three quantity types, appleSleepingBreathingDisturbances,
             estimatedWorkoutEffortScore and workoutEffortScore, and the October 2, 2026 read added
-            heartRateVariabilityRMSSD. Show the samples you have, or probe the behaviour yourself and
+            heartRateVariabilityRMSSD. Show the samples you have, or probe the behavior yourself and
             write down what you found.
           </p>
         </section>

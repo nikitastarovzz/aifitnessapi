@@ -416,7 +416,7 @@ export function btTotals() {
 
 /** The device categories the "device" part of the scope was chosen for — ours, as the generator's comments say. */
 export const BT_SCOPE_DEVICES =
-  "heart rate monitors, cycling power and speed-and-cadence sensors, running sensors, fitness machines (treadmills, cross trainers, step and stair climbers, rowers, indoor bikes), weight scales, body composition analysers, glucose meters and CGMs, blood pressure monitors, pulse oximeters and thermometers";
+  "heart rate monitors, cycling power and speed-and-cadence sensors, running sensors, fitness machines (treadmills, cross trainers, step and stair climbers, rowers, indoor bikes), weight scales, body composition analyzers, glucose meters and CGMs, blood pressure monitors, pulse oximeters and thermometers";
 
 /** Optional-size fields in scope, and how many of them carry a parsed "Present if bit…" line. */
 export function btOptionalStats() {
@@ -457,7 +457,7 @@ export function btHubFaqs(): Faq[] {
     },
     {
       q: "Where does this Bluetooth GATT data come from, and under what terms?",
-      a: `From the Bluetooth SIG's public repository on Bitbucket (bitbucket.org/bluetooth-SIG/public), branch ${BT_GATT_SOURCE.branch} at commit ${BT_COMMIT_SHORT}, committed ${BT_GATT_SOURCE.commitDate} and read ${BT_FETCHED}. The repository has no README or licence file; every file carries the same notice, which says “This document is proprietary to Bluetooth SIG.” and “The furnishing of this document does not grant any license to any intellectual property of Bluetooth SIG or its members.” The SIG's text is quoted here with that attribution; this site is not affiliated with Bluetooth SIG.`,
+      a: `From the Bluetooth SIG's public repository on Bitbucket (bitbucket.org/bluetooth-SIG/public), branch ${BT_GATT_SOURCE.branch} at commit ${BT_COMMIT_SHORT}, committed ${BT_GATT_SOURCE.commitDate} and read ${BT_FETCHED}. The repository has no README or license file; every file carries the same notice, which says “This document is proprietary to Bluetooth SIG.” and “The furnishing of this document does not grant any license to any intellectual property of Bluetooth SIG or its members.” The SIG's text is quoted here with that attribution; this site is not affiliated with Bluetooth SIG.`,
     },
   ];
 }

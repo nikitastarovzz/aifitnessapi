@@ -135,7 +135,7 @@ export default function PoseKeypointsHub() {
           </Link>{" "}
           and{" "}
           <Link href="/motion/pose-estimation-model-licenses" className={LINK}>
-            what each licence allows
+            what each license allows
           </Link>
           . This page is for the step after, when code has to read point 13 and needs to know which joint that is.
           To click through the same data on a drawn body and copy an index map between two schemes, use the{" "}
@@ -254,7 +254,7 @@ export default function PoseKeypointsHub() {
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Points left unmapped ({T.unmappedPoints})</h2>
           <p className="mt-3 leading-relaxed text-[var(--muted)]">
             A point is unmapped when no other scheme here spells its name the same way. That is a statement about
-            names, not anatomy; it is the honest result of the rule above, not a judgement that the point has no
+            names, not anatomy; it is the honest result of the rule above, not a judgment that the point has no
             counterpart.
           </p>
           <ul className="mt-4 space-y-2 text-sm text-[var(--muted)]">

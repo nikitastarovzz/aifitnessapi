@@ -180,7 +180,7 @@ export default function DevelopersPage() {
           JSON API at {absoluteUrl(API_BASE)}, described by an OpenAPI 3.1 document, and a hosted MCP
           server at {mcpUrl} that AI assistants connect to directly. Both answer only from the CC BY 4.0
           datasets this site publishes, {all.length} collections and {rows} rows in all, and every
-          response carries the page holding the sourced claim, the licence, the attribution and the date
+          response carries the page holding the sourced claim, the license, the attribution and the date
           the data was verified.
         </PageSummary>
 
@@ -401,7 +401,7 @@ claude mcp add --transport stdio aifitnessapi -- node "$PWD/src/index.js"`}</Cod
         </section>
 
         <section className="mt-12 space-y-4 text-[var(--fg)]">
-          <h2 className="text-2xl font-bold tracking-tight">Licence and attribution</h2>
+          <h2 className="text-2xl font-bold tracking-tight">License and attribution</h2>
           <p>
             The data is{" "}
             <a href={LICENSE_URL} rel="license noopener" className="text-brand-600 hover:text-brand-500">

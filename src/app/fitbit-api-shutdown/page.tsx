@@ -86,7 +86,7 @@ export const metadata: Metadata = {
   },
 };
 
-const ANSWER = "Google is retiring the legacy Fitbit Web API in favour of the cloud Google Health API, which uses Google OAuth 2.0, a new developer console, and a new bundled-data-type schema. Google's Google Health API page, read on October 31, 2026, gives the timeline: support ended on September 30, 2026, after which the API kept operating without bug fixes or support, and Google set November 2, 2026 as the turn-off date, after which the Fitbit Web API and Fitbit OAuth endpoints no longer function or sync data and requests to them return HTTP 410 Gone. Google's migration guide says existing access and refresh tokens cannot be transferred, so every user has to re-consent through Google OAuth, after first linking Google Health to their Google Account in the Google Health app. This is a separate event from the Google Fit shutdown, which Google documents as supported until the end of 2026 and which has different migration targets.";
+const ANSWER = "Google is retiring the legacy Fitbit Web API in favor of the cloud Google Health API, which uses Google OAuth 2.0, a new developer console, and a new bundled-data-type schema. Google's Google Health API page, read on October 31, 2026, gives the timeline: support ended on September 30, 2026, after which the API kept operating without bug fixes or support, and Google set November 2, 2026 as the turn-off date, after which the Fitbit Web API and Fitbit OAuth endpoints no longer function or sync data and requests to them return HTTP 410 Gone. Google's migration guide says existing access and refresh tokens cannot be transferred, so every user has to re-consent through Google OAuth, after first linking Google Health to their Google Account in the Google Health app. This is a separate event from the Google Fit shutdown, which Google documents as supported until the end of 2026 and which has different migration targets.";
 
 const FAQS: { q: string; a: string }[] = [
   {
@@ -134,7 +134,7 @@ This is the section to read twice. For months the dates circulated with more con
 
 | Claim | Status | Where it comes from |
 | --- | --- | --- |
-| Google announced the legacy Fitbit Web API's retirement in favour of the cloud Google Health API | Announced by Google as "the next phase of the Fitbit Web API"; recorded in our [Fitbit API integration guide](/integrate/fitbit-api) | Vendor announcement |
+| Google announced the legacy Fitbit Web API's retirement in favor of the cloud Google Health API | Announced by Google as "the next phase of the Fitbit Web API"; recorded in our [Fitbit API integration guide](/integrate/fitbit-api) | Vendor announcement |
 | The Google Health API is the recommended path for Fitbit Web API integrations | **Confirmed.** Google's Fit migration guide (updated September 10, 2026) lists it for "Fitbit Web API" integrations and marks it Available; checked on developer.android.com on October 2, 2026 | Google's Fit migration guide |
 | Existing Fitbit access and refresh tokens do not transfer | **Confirmed.** Google's migration guide: they "cannot be transferred, requiring users to re-consent"; read October 12, 2026 | Google's Health API migration guide |
 | Every user must sign in again with a Google Account and re-grant permissions | **Confirmed** by the same guide, which adds that a user must first link Google Health to their Google Account in the Google Health mobile app | Google's Health API migration guide |

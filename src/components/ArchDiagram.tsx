@@ -623,7 +623,7 @@ const DIAGRAMS: Record<string, React.JSX.Element> = {
       <title>Four layers of divergence, and why SDNN and RMSSD cannot share a column</title>
       <Defs />
       {[
-        ["1. Units — kcal vs kJ, metres vs feet", "a lookup table; the bug is loud"],
+        ["1. Units — kcal vs kJ, meters vs feet", "a lookup table; the bug is loud"],
         ["2. Field names — StepsRecord vs steps", "one adapter per provider; also loud"],
         ["3. Semantics — where a sleep session starts, what a day is", "no mechanical fix: decide it and write it down"],
         ["4. Measurement definition — SDNN vs RMSSD", "no fix at all: they do not convert"],
@@ -830,7 +830,7 @@ const DIAGRAMS: Record<string, React.JSX.Element> = {
         w={640}
         h={30}
         size={11}
-        lines={["measured, non-zero — we saw data and it totalled something"]}
+        lines={["measured, non-zero — we saw data and it totaled something"]}
       />
       <Box
         x={0}
@@ -1124,7 +1124,7 @@ const DIAGRAMS: Record<string, React.JSX.Element> = {
     <svg
       viewBox="0 0 640 288"
       role="img"
-      aria-label="Health responses sorted by what makes them wrong: immutable catalogue data on a long shared TTL, settled days invalidated by change events, and the current day never authoritative, plus the midnight trap where an entry written before local midnight serves yesterday's total under today's label."
+      aria-label="Health responses sorted by what makes them wrong: immutable catalog data on a long shared TTL, settled days invalidated by change events, and the current day never authoritative, plus the midnight trap where an entry written before local midnight serves yesterday's total under today's label."
       className="h-auto w-full max-w-full"
     >
       <title>Three mutability classes, and why a cache key must be a civil date</title>
@@ -1136,7 +1136,7 @@ const DIAGRAMS: Record<string, React.JSX.Element> = {
         h={46}
         size={11}
         lines={[
-          "effectively immutable — exercise catalogue, media, provider capability metadata",
+          "effectively immutable — exercise catalog, media, provider capability metadata",
           "long TTL, shared tier, versioned key; the only invalidation is a deploy",
         ]}
       />
@@ -1147,7 +1147,7 @@ const DIAGRAMS: Record<string, React.JSX.Element> = {
         h={46}
         size={11}
         lines={[
-          "mutable but change-signalled — settled days, workout detail, profile-derived aggregates",
+          "mutable but change-signaled — settled days, workout detail, profile-derived aggregates",
           "whatever marks a day dirty also evicts the entry; TTL is the backstop, not the mechanism",
         ]}
       />

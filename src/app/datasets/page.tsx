@@ -272,7 +272,7 @@ const ENTRIES: Entry[] = [
     ],
     presentedBy: { href: "/bluetooth-fitness", label: "Bluetooth GATT characteristics for fitness devices" },
     caveat:
-      "The licence covers this compilation and its derived columns. The UUIDs, names, types and sizes are the Bluetooth SIG's, restated as facts, and its files say they are proprietary to Bluetooth SIG and grant no licence, so the SIG's descriptions are left out (the pages quote them with attribution) and the file carries the SIG's notice in sourceTerms. Offsets, flag bits and units are derived, each beside the line it was read from.",
+      "The license covers this compilation and its derived columns. The UUIDs, names, types and sizes are the Bluetooth SIG's, restated as facts, and its files say they are proprietary to Bluetooth SIG and grant no license, so the SIG's descriptions are left out (the pages quote them with attribution) and the file carries the SIG's notice in sourceTerms. Offsets, flag bits and units are derived, each beside the line it was read from.",
   },
   {
     slug: "workout-types-crosswalk-2026",
@@ -392,7 +392,7 @@ export default function DatasetsPage() {
         <AnswerCapsule>
           AIFitnessAPI publishes {LOADED.length} open datasets about fitness and health APIs, each in
           both JSON and CSV, each versioned 2026.1 and licensed CC BY 4.0 with attribution as the only
-          condition (where a dataset restates another publisher’s facts, its note says what the licence
+          condition (where a dataset restates another publisher’s facts, its note says what the license
           covers): the access-structure survey of{" "}
           {bySlug["fitness-apis-2026"]}{" "}APIs, SDKs and models; the HealthKit &harr; Health Connect
           identifier matrix covering {bySlug["health-data-type-matrix-2026"]} health metrics; the dated
@@ -439,7 +439,7 @@ export default function DatasetsPage() {
 
               <dl className="mt-5 grid gap-2 text-sm">
                 <div className="flex min-w-0 flex-wrap gap-x-2">
-                  <dt className="font-semibold text-[var(--fg)]">Licence:</dt>
+                  <dt className="font-semibold text-[var(--fg)]">License:</dt>
                   <dd className="min-w-0 break-words text-[var(--muted)]">
                     <a
                       href={LICENSE_URL}
@@ -479,7 +479,7 @@ export default function DatasetsPage() {
           <p>
             <strong>A null means we could not verify it.</strong> It never means zero and it is never a
             guess. If a field is empty in the CSV, the corresponding page on this site carries no
-            sentence documenting it — that is the whole claim. Judgement calls stay out of the data
+            sentence documenting it — that is the whole claim. Judgment calls stay out of the data
             entirely rather than being laundered into a column.
           </p>
           <p>

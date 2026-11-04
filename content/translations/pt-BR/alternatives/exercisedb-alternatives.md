@@ -2,7 +2,7 @@
 path: "/alternatives/exercisedb-alternatives"
 translatedOn: "2026-11-02"
 sourceUpdated: "2026-10-22"
-sourceHash: "3a6fcecb469c9438"
+sourceHash: "6d863fe72c410005"
 metaTitle: "Alternativas ao ExerciseDB (2026): 4 opções comparadas"
 metaDescription: >-
   Alternativas ao ExerciseDB: free-exercise-db (domínio público), wger (auto-hospedado, AGPL), API Ninjas (a partir de US$ 39/mês) e bancos de vídeo.

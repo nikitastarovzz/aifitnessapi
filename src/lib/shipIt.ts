@@ -370,7 +370,7 @@ export const EVENTS: ShipEvent[] = [
     id: "garmin-gate",
     date: "2026-10",
     sortDate: "2026-10-22",
-    dateNote: "Garmin's program pages, reorganised in October 2026",
+    dateNote: "Garmin's program pages, reorganized in October 2026",
     kind: "gate",
     title: "Garmin access still starts with an approval",
     stacks: ["garmin"],

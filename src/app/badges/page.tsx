@@ -182,7 +182,7 @@ export default async function BadgesPage() {
             (the vendor&rsquo;s own words, quoted on the linked page) or{" "}
             <strong className="font-semibold text-[var(--fg)]">reported</strong> (consistent notices
             with no official page we could verify). The grading travels with the widget, because a
-            deadline without its evidence class is a rumour with a date on it. Full record:{" "}
+            deadline without its evidence class is a rumor with a date on it. Full record:{" "}
             <Link href="/changes" className="text-brand-600 hover:text-brand-500">
               changes &amp; deadlines
             </Link>
@@ -378,7 +378,7 @@ export default async function BadgesPage() {
               instead — a link never breaks in a layout.
             </p>
             <p>
-              <strong className="font-semibold text-[var(--fg)]">The licence is attribution.</strong>{" "}
+              <strong className="font-semibold text-[var(--fg)]">The license is attribution.</strong>{" "}
               Use the widgets on commercial or personal sites, no permission needed, as long as the
               attribution link inside each one stays visible and intact. Do not restyle the frame to
               hide it, and do not present the content as your own research. If you would rather

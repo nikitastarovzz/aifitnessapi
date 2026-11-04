@@ -93,7 +93,7 @@ export default function CompareApisPage() {
           pay for, what approval stands between you and launch, and roughly how much
           integration work it is. There is no score and no winner — these fields describe how
           you get access, not which product is better, and arithmetic over &ldquo;has an
-          approval gate&rdquo; would be a judgement wearing a number.
+          approval gate&rdquo; would be a judgment wearing a number.
         </AnswerCapsule>
 
         <div className="mt-10">

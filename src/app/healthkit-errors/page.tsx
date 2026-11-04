@@ -71,7 +71,7 @@ const FAQS = [
   },
   {
     q: "Are there HealthKit errors Apple ships with no documentation?",
-    a: `Yes — ${undocumented.length} of the ${HK_ERRORS.length} cases carry a declaration and nothing else as of our ${HK_FETCHED_ON} read: ${undocumented.map((e) => e.case).join(", ")}. They compile and they can be returned to you, but Apple's reference does not say what triggers them or what you should do about it. If you hit one, anything you conclude is inference from observed behaviour rather than documented contract.`,
+    a: `Yes — ${undocumented.length} of the ${HK_ERRORS.length} cases carry a declaration and nothing else as of our ${HK_FETCHED_ON} read: ${undocumented.map((e) => e.case).join(", ")}. They compile and they can be returned to you, but Apple's reference does not say what triggers them or what you should do about it. If you hit one, anything you conclude is inference from observed behavior rather than documented contract.`,
   },
 ];
 

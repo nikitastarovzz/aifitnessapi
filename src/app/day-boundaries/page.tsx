@@ -94,7 +94,7 @@ export default function DayBoundariesPage() {
         <div className="prose prose-neutral max-w-none dark:prose-invert prose-a:text-brand-600 hover:prose-a:text-brand-500">
           <h2>Why this bites health apps specifically</h2>
           <p>
-            In most software a mislabelled day is cosmetic. In a fitness app it corrupts the numbers
+            In most software a mislabeled day is cosmetic. In a fitness app it corrupts the numbers
             users check obsessively: a step count that drops an hour reads as the app losing their
             walk, a streak that spans a DST night breaks when it shouldn&rsquo;t, and a
             &ldquo;daily average&rdquo; computed over 23- and 25-hour days is subtly off forever. The

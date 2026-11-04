@@ -340,7 +340,7 @@ export default function QueryGenerator({ options }: { options: QueryOption[] }) 
                 here is nothing.
               </p>
               <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
-                If you know from testing which behaviour this type has, write the query by hand and
+                If you know from testing which behavior this type has, write the query by hand and
                 comment why. Do not take the answer from a generator that does not have it.
               </p>
               <p className="mt-3 text-sm">
@@ -428,7 +428,7 @@ export default function QueryGenerator({ options }: { options: QueryOption[] }) 
                       "unstated"
                     )}{" "}
                     family, and HKQuantity converts silently between compatible units — reading
-                    metres and rendering miles is a wrong number, not a crash. Pick the unit
+                    meters and rendering miles is a wrong number, not a crash. Pick the unit
                     deliberately at{" "}
                     <Link
                       href="/healthkit-units"

@@ -222,7 +222,7 @@ function Verdict({ row }: { row: AggRow }) {
             ) : (
               <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
                 Apple&rsquo;s documentation does not state an aggregation style for this type, so
-                this site does not assign one. Treat any behaviour you observe as unverified —{" "}
+                this site does not assign one. Treat any behavior you observe as unverified —{" "}
                 <Link href="/healthkit-status" className="font-medium text-brand-600 hover:text-brand-500">
                   the status page
                 </Link>{" "}

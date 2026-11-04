@@ -223,7 +223,7 @@ export function GET() {
   add(
     HK_BASE,
     "HealthKit data types by group",
-    "Apple's HealthKit identifiers organised the way Apple groups them: activity, nutrition, vital signs, body measurements, lab results and the rest.",
+    "Apple's HealthKit identifiers organized the way Apple groups them: activity, nutrition, vital signs, body measurements, lab results and the rest.",
     "healthkit groups data types activity nutrition vital signs reference",
   );
   for (const g of releasedHkGroups()) {
@@ -330,7 +330,7 @@ export function GET() {
   add(
     LIBRARIES_BASE,
     "Open-source health & fitness libraries",
-    "Open-source packages for HealthKit, Health Connect and fitness APIs: latest versions, release dates, licences and README caveats.",
+    "Open-source packages for HealthKit, Health Connect and fitness APIs: latest versions, release dates, licenses and README caveats.",
     "libraries packages sdk open source npm pub.dev pypi react native flutter capacitor python wrapper",
   );
   for (const l of LIBRARY_LANDINGS) {

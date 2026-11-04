@@ -85,7 +85,7 @@ function bitList(s) {
     return out;
   }
   if (/^\d+$/.test(String(s).trim())) return [Number(s)];
-  throw new Error(`Unrecognised bit "${s}" in the Flags definition`);
+  throw new Error(`Unrecognized bit "${s}" in the Flags definition`);
 }
 
 /** The sentence of `text` that matches `re`, or null. */

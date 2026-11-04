@@ -2,7 +2,7 @@
 path: "/pricing/exercise-database-api-pricing"
 translatedOn: "2026-10-27"
 sourceUpdated: "2026-10-22"
-sourceHash: "d000c4b833a39ecb"
+sourceHash: "ae4bf42c486d4ffc"
 metaTitle: "Preço de APIs de banco de exercícios: grátis vs planos pagos"
 metaDescription: >-
   ExerciseDB grátis: 1.500 exercícios em GIF sem chave, ou 200 com vídeo. API Ninjas: US$ 39-59/mês para uso comercial. wger, free-exercise-db: US$ 0.

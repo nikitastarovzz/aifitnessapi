@@ -547,7 +547,7 @@ export function platformFaqs(slug: WtPlatformSlug): Faq[] {
     }
     if (other?.description) {
       faqs.push({
-        q: "What happens to an exercise type Health Connect does not recognise?",
+        q: "What happens to an exercise type Health Connect does not recognize?",
         a: `Google's reference for EXERCISE_TYPE_OTHER_WORKOUT says: “${other.description.replace(/`/g, "")}” When the library converts a platform record, it also maps any platform value it has no constant for to EXERCISE_TYPE_OTHER_WORKOUT (toSdkExerciseSessionType in IntDefMappings.kt).`,
       });
     }

@@ -224,6 +224,12 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     area: "Content integrity",
     refuses: "The same question answered in the FAQ data of two pages, where the two entries would compete in one rich result.",
   },
+  {
+    code: "US-SPELLING",
+    area: "Content integrity",
+    refuses:
+      "A British spelling from the site's word list (\"licence\", \"behaviour\", \"catalogue\", \"colour\", \"centre\", \"normalise\", \"judgement\" and the rest) in an English page's own prose. Text in quotation marks, blockquotes, code, URLs, organizations' own names and wording the generated data files take from vendors keeps its original spelling and is not counted.",
+  },
 
   // ── Type reference ────────────────────────────────────────────────────
   {
@@ -251,7 +257,7 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
   {
     code: "DATASET-NO-LICENCE",
     area: "Datasets and artifacts",
-    refuses: "A dataset published without the licence field that tells a reuser what they may do with it.",
+    refuses: "A dataset published without the license field that tells a reuser what they may do with it.",
   },
   {
     code: "DATASET-CSV-ROWS",
@@ -319,7 +325,7 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
   {
     code: "API-ENVELOPE",
     area: "Datasets and artifacts",
-    refuses: "An API response without its CC BY 4.0 licence, its attribution, its source page, or a verified date that says what it means.",
+    refuses: "An API response without its CC BY 4.0 license, its attribution, its source page, or a verified date that says what it means.",
   },
   {
     code: "API-SOURCE-DEAD",
@@ -412,7 +418,7 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     code: "EMBED-BACKLINK",
     area: "Links and anchors",
     refuses:
-      "An iframe widget without the visible attribution link to the same page its canonical names. That link is the condition of the embed licence and the reason the widgets exist.",
+      "An iframe widget without the visible attribution link to the same page its canonical names. That link is the condition of the embed license and the reason the widgets exist.",
   },
   {
     code: "EMBED-SITEMAP",
@@ -462,7 +468,7 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     code: "API-INDEX-FUNDER-RANKED",
     area: "Disclosure",
     refuses:
-      "A fitness API index in which the site's funder is ranked: anything other than exactly one unranked row, KinesteX's, labelled as funding the site and given no position.",
+      "A fitness API index in which the site's funder is ranked: anything other than exactly one unranked row, KinesteX's, labeled as funding the site and given no position.",
   },
   {
     code: "API-INDEX-SCORE",
@@ -955,7 +961,7 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
   {
     code: "MCP-SERVER-OFFICIAL",
     area: "Derived blocks",
-    refuses: "An MCP server labelled official when the generator did not find it under the vendor's own domain namespace, or one marked as the vendor's whose namespace is not the reverse-DNS form of a domain listed for a source it names.",
+    refuses: "An MCP server labeled official when the generator did not find it under the vendor's own domain namespace, or one marked as the vendor's whose namespace is not the reverse-DNS form of a domain listed for a source it names.",
   },
   {
     code: "MCP-SERVER-EVIDENCE",
@@ -1144,7 +1150,7 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
   {
     code: "HUB-GLANCE-SOURCE",
     area: "Derived blocks",
-    refuses: "A hub table or answer value whose source names no cost-model field, a page with no built answer capsule, or nothing the check recognises.",
+    refuses: "A hub table or answer value whose source names no cost-model field, a page with no built answer capsule, or nothing the check recognizes.",
   },
   {
     code: "HUB-GLANCE-UNLINKED",
@@ -1479,7 +1485,7 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     code: "PTBR-QUOTES",
     area: "Translations",
     refuses:
-      "A translated body that does not keep a quoted source passage of two words or more (vendor, licence or agreement text in quotation marks) verbatim in English. A Portuguese gloss may follow it in brackets; it may not replace it.",
+      "A translated body that does not keep a quoted source passage of two words or more (vendor, license or agreement text in quotation marks) verbatim in English. A Portuguese gloss may follow it in brackets; it may not replace it.",
   },
   {
     code: "PTBR-DISCLOSURE",

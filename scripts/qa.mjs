@@ -15,6 +15,7 @@
  */
 import fs from "node:fs";
 import path from "node:path";
+import { findBritish, fromGenerated, generatedPairs, pageProse } from "./lib/usEnglish.mjs";
 
 const ROOT = ".next/server/app";
 const TITLE_MAX = 60;
@@ -4605,6 +4606,65 @@ if (fs.existsSync(matrixPath)) {
   if (factPages === 0) problems.push("KEY-FACTS-SOURCED  no page renders a key-facts block; the markup contract moved");
   console.log(
     `Entity and citation: one Organization definition held on ${orgPages} pages; key facts on ${factPages} pages (${factLines} lines, each a verbatim evidence quote from a checked source); citation box on ${citePages} cluster pages.`,
+  );
+}
+
+// US-SPELLING: the site writes US English (ops/NEXT-10-2026-11-04.md item
+// 10; 28% of Google impressions are US, and US developers search "license",
+// "behavior", "catalog"). scripts/us-english.mjs converted the prose once;
+// this keeps it converted. Every built English page's title, description and
+// body text is scanned with the same word list and the same scanner the
+// conversion used (scripts/lib/usEnglish.mjs), so what the conversion may not
+// touch the gate does not flag either: quotations, blockquotes, code, URLs
+// and paths, the listed proper nouns, and wording the generated data files
+// supply (vendor text rendered into reference pages). /pt-br is Portuguese
+// and skipped. /changelog renders ops/content-log.jsonl, a dated ledger
+// written at the time of each change: the ledger's own lines are a record and
+// are not rewritten, so their text is set aside on that page and the rest of
+// the page is held like any other. A hit means new prose arrived in British spelling: fix the
+// prose, or, if it quotes a source, put it in quotation marks — never widen
+// the exemptions to let a page through.
+{
+  const pairs = generatedPairs((f) => fs.readFileSync(f, "utf8"));
+  let pagesScanned = 0;
+  let exempted = 0;
+  const hits = [];
+  const ledger = fs.existsSync("ops/content-log.jsonl")
+    ? fs
+        .readFileSync("ops/content-log.jsonl", "utf8")
+        .split("\n")
+        .flatMap((l) => {
+          try {
+            const o = JSON.parse(l);
+            // pageProse decodes &lt; and &gt; to ‹ and › so the scanner never reads a tag.
+            return [o.summary, o.signal, o.notes]
+              .filter((v) => typeof v === "string" && v.length > 0)
+              .map((v) => v.replace(/</g, "‹").replace(/>/g, "›"));
+          } catch {
+            return [];
+          }
+        })
+        .sort((a, b) => b.length - a.length)
+    : [];
+  for (const h of htmls) {
+    const route = routeOf(h);
+    if (route.startsWith("/_") || route.startsWith("/pt-br") || notFoundSet.has(route)) continue;
+    pagesScanned++;
+    let prose = pageProse(fs.readFileSync(h, "utf8"));
+    if (route === "/changelog") for (const t of ledger) prose = prose.split(t).join(" ");
+    for (const f of findBritish(prose)) {
+      if (fromGenerated(pairs, f.chunk, f.index, f.word)) {
+        exempted++;
+        continue;
+      }
+      hits.push(`${route}: "${f.word}" in …${f.context.replace(/\s+/g, " ").trim()}…`);
+    }
+  }
+  for (const hit of hits.slice(0, 40)) problems.push(`US-SPELLING  ${hit}`);
+  if (hits.length > 40) problems.push(`US-SPELLING  …and ${hits.length - 40} more British spellings in page prose`);
+  if (pagesScanned === 0) problems.push("US-SPELLING  no English page was scanned; the build layout moved");
+  console.log(
+    `US spelling: ${pagesScanned} English pages scanned, ${hits.length} British spellings in prose; ${exempted} left as generated vendor text.`,
   );
 }
 

@@ -169,11 +169,11 @@ export default function StackGeneratorPage() {
 
         <PageSummary path={PATH} name="Fitness app stack generator" updated={UPDATED}>
           Four questions — what you are building, which platforms ship, how much wearable data
-          you need, and whether the team is optimising for speed or control — and you get the
+          you need, and whether the team is optimizing for speed or control — and you get the
           HealthKit types that category touches and the APIs that survive those answers, each
           one carrying the reason it survived. The reasons are fields, not opinions: how the
           product bills developers, what every end user must own, what approval gates your
-          launch, and our published rough judgement of the integration work.
+          launch, and our published rough judgment of the integration work.
         </PageSummary>
 
         <div className="mt-8">
@@ -191,8 +191,8 @@ export default function StackGeneratorPage() {
             It will not rank. There is no score behind the ordering — products are filtered by
             your answers and then sorted by the same fields the{" "}
             <Link href="/compare-apis">comparison tool</Link> prints, with the sort key stated on
-            screen so you can disagree with it. The one judgement in the model, integration
-            effort, is labelled as ours everywhere it appears, because it is the only field in{" "}
+            screen so you can disagree with it. The one judgment in the model, integration
+            effort, is labeled as ours everywhere it appears, because it is the only field in{" "}
             <Link href="/apis">the directory</Link> that is not backed by a published sentence.
           </p>
           <p>
