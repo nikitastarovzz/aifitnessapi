@@ -6,6 +6,7 @@ import AnswerCapsule from "@/components/AnswerCapsule";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 import { ROWS } from "@/data/matrix";
+import { allEmbeddableTables, clusterLabel, EMBED_TABLE_CLUSTERS, embedSnippets, embedTablePath } from "@/lib/embedTables";
 
 /**
  * The embed page: the three iframe widgets under /embed plus the link badge,
@@ -17,7 +18,7 @@ import { ROWS } from "@/data/matrix";
  * uptime or an SLA we do not offer.
  */
 const PAGE_PATH = "/badges";
-const UPDATED = "2026-08-22";
+const UPDATED = "2026-11-04";
 const TITLE = "Fitness API Embeds & Badges";
 
 export const metadata: Metadata = {
@@ -91,7 +92,11 @@ function Snippet({ code, label }: { code: string; label: string }) {
   );
 }
 
-export default function BadgesPage() {
+export default async function BadgesPage() {
+  const tables = await allEmbeddableTables();
+  const tablePages = new Set(tables.map((t) => `${t.basePath}/${t.entry.slug}`)).size;
+  // The first pricing table: the kind of table people quote most.
+  const example = tables.find((t) => t.basePath === "/pricing") ?? tables[0];
   const url = absoluteUrl(PAGE_PATH);
 
   const graph = {
@@ -127,13 +132,14 @@ export default function BadgesPage() {
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
           Embeds &amp; badges
         </h1>
-        <p className="mt-3 text-sm text-[var(--muted)]">Updated August 22, 2026</p>
+        <p className="mt-3 text-sm text-[var(--muted)]">Updated November 4, 2026</p>
 
         <AnswerCapsule>
           Three of our reference pages are available as iframe widgets you can drop into your own
           site — the HealthKit ↔ Health Connect type table, the dated fitness-API deadline
           tracker and the fitness &amp; health API market map — plus a small badge if you just want to
-          link back. All four are free. The only
+          link back. Every comparison and pricing table on the site can be embedded the same way,
+          one table per frame. All of it is free. The only
           condition is attribution: the widgets carry a visible link back to the source page, and
           that link stays.
         </AnswerCapsule>
@@ -248,6 +254,67 @@ export default function BadgesPage() {
             />
           </p>
           <Snippet code={BADGE_SNIPPET} label="HTML for the link badge" />
+        </section>
+
+        <section id="tables" className="mt-12 scroll-mt-24">
+          <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">
+            5. Any comparison or pricing table
+          </h2>
+          <p className="mt-3 text-[var(--muted)]">
+            Every table on our{" "}
+            {EMBED_TABLE_CLUSTERS.map((b, i) => (
+              <span key={b}>
+                {i > 0 && (i === EMBED_TABLE_CLUSTERS.length - 1 ? " and " : ", ")}
+                <Link href={b} className="text-brand-600 hover:text-brand-500">
+                  {clusterLabel(b)}
+                </Link>
+              </span>
+            ))}{" "}
+            pages — {tables.length} tables on {tablePages} pages — has a small{" "}
+            <strong className="font-semibold text-[var(--fg)]">Embed</strong> button under it.
+            It gives you the iframe code for that one table and a plain link for places that do
+            not allow iframes. The widget shows the table as the page shows it, the date the page
+            was last verified, and a link back to the page.
+          </p>
+          {example && (
+            <>
+              <p className="mt-3 text-[var(--muted)]">
+                For example, table {example.table.n} of{" "}
+                <Link
+                  href={`${example.basePath}/${example.entry.slug}`}
+                  className="text-brand-600 hover:text-brand-500"
+                >
+                  {example.entry.h1}
+                </Link>
+                .{" "}
+                <Link
+                  href={embedTablePath(example.basePath, example.entry.slug, example.table.n)}
+                  target="_blank"
+                  className="text-brand-600 hover:text-brand-500"
+                >
+                  Preview the widget
+                </Link>
+                .
+              </p>
+              <Snippet
+                code={
+                  embedSnippets({
+                    basePath: example.basePath,
+                    slug: example.entry.slug,
+                    title: example.entry.h1,
+                    n: example.table.n,
+                    rows: example.table.rows,
+                    section: example.table.section,
+                  }).iframe
+                }
+                label="Example embed code for a pricing table"
+              />
+            </>
+          )}
+          <p className="mt-2 text-sm text-[var(--muted)]">
+            The snippet ends with an ordinary link to the source page. Keep it: it is the
+            attribution, and it is the part that still works where the frame does not load.
+          </p>
         </section>
 
         <section className="mt-14">

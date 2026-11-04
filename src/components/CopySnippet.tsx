@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { track } from "@/lib/track";
 
 /**
  * A code snippet with a copy button. The snippet is server-rendered in a
@@ -8,7 +9,18 @@ import { useState } from "react";
  * unavailable (an insecure context, an old browser); the button is the
  * convenience, not the only way.
  */
-export default function CopySnippet({ code, label }: { code: string; label: string }) {
+export default function CopySnippet({
+  code,
+  label,
+  buttonLabel = "Copy embed code",
+  trackId,
+}: {
+  code: string;
+  label: string;
+  buttonLabel?: string;
+  /** When set, a successful copy is counted as this event id (lib/track). */
+  trackId?: string;
+}) {
   const [state, setState] = useState<"idle" | "copied" | "failed">("idle");
   return (
     <div className="mt-3">
@@ -24,6 +36,7 @@ export default function CopySnippet({ code, label }: { code: string; label: stri
           try {
             await navigator.clipboard.writeText(code);
             setState("copied");
+            if (trackId) track(trackId, window.location.pathname);
           } catch {
             setState("failed");
           }
@@ -31,7 +44,7 @@ export default function CopySnippet({ code, label }: { code: string; label: stri
         }}
         className="mt-2 rounded-lg border border-[var(--border)] px-3 py-1.5 text-xs font-semibold text-[var(--fg)] transition-colors hover:border-brand-400"
       >
-        {state === "copied" ? "Copied" : state === "failed" ? "Copy failed — select the code above" : "Copy embed code"}
+        {state === "copied" ? "Copied" : state === "failed" ? "Copy failed — select the code above" : buttonLabel}
       </button>
     </div>
   );

@@ -373,6 +373,68 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
       "A market map or market-map embed whose KinesteX tile does not say that KinesteX funds this site. The embed travels without the page's disclosure, so the marker has to be on the tile.",
   },
   {
+    code: "EMBED-TABLE-FUNDER",
+    area: "Disclosure",
+    refuses:
+      "A table embed whose table names KinesteX without a line inside the frame saying that KinesteX funds this site. The page's disclosure banner does not travel with the widget.",
+  },
+  {
+    code: "EMBED-NOINDEX",
+    area: "Hosting and crawl",
+    refuses:
+      "An iframe widget under /embed that does not render noindex. A widget that can be indexed competes in search with the page it was cut from.",
+  },
+  {
+    code: "EMBED-CANONICAL",
+    area: "Hosting and crawl",
+    refuses:
+      "An iframe widget whose canonical is not a built page on this site outside /embed. The canonical is how a widget points search engines at its source page.",
+  },
+  {
+    code: "EMBED-BACKLINK",
+    area: "Links and anchors",
+    refuses:
+      "An iframe widget without the visible attribution link to the same page its canonical names. That link is the condition of the embed licence and the reason the widgets exist.",
+  },
+  {
+    code: "EMBED-SITEMAP",
+    area: "Hosting and crawl",
+    refuses: "A sitemap.xml that lists an iframe widget. Widgets are noindex and stay out of the sitemap.",
+  },
+  {
+    code: "EMBED-TABLE-READ",
+    area: "Content integrity",
+    refuses:
+      "A build in which the list of clusters whose tables can be embedded (EMBED_TABLE_CLUSTERS in src/lib/embedTables.ts) cannot be read and resolved to cluster paths. Without it nothing holds the Embed controls to the widgets.",
+  },
+  {
+    code: "EMBED-TABLE-CONTROL",
+    area: "Content integrity",
+    refuses:
+      "A table in the body of a pricing, alternatives, compare, fitness-API or integration page that has no Embed control offering its own widget, numbered in page order.",
+  },
+  {
+    code: "EMBED-TABLE-ROUTE",
+    area: "Content integrity",
+    refuses: "An Embed control on a page whose table widget was not built: a copy-paste snippet that would put a 404 inside someone else's page.",
+  },
+  {
+    code: "EMBED-TABLE-ORPHAN",
+    area: "Content integrity",
+    refuses: "A table widget that was built but is not offered by an Embed control on its source page.",
+  },
+  {
+    code: "EMBED-TABLE-DRIFT",
+    area: "Content integrity",
+    refuses:
+      "A table widget that does not render exactly one table, or whose table text differs from the table at the same position on its source page.",
+  },
+  {
+    code: "EMBED-TABLE-VERIFIED",
+    area: "Content integrity",
+    refuses: "A table widget whose last-verified date is missing or differs from the date its source page shows.",
+  },
+  {
     code: "API-INDEX-ROWS",
     area: "Content integrity",
     refuses:
