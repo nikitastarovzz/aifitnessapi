@@ -3871,7 +3871,14 @@ if (fs.existsSync(matrixPath)) {
     for (const m of html.matchAll(/<div[^>]*\bid="faq-(\d+)"[^>]*>([\s\S]*?)<\/div>/g)) faqs[Number(m[1]) - 1] = m[2];
     return {
       capsule: region(html, /<div[^>]*\bid="answer"/),
-      body: region(html, /<div[^>]*\bdata-article-body/),
+      // The Embed control under an English table (TableEmbed) is page UI, not
+      // body text: its snippets are English iframe code that a translation
+      // does not carry, because embeds render the English table. Cut it
+      // before comparing; the table itself stays and is held as before.
+      body: region(html, /<div[^>]*\bdata-article-body/).replace(
+        /<details\b[^>]*\bdata-embed-table="[^"]*"[^>]*>[\s\S]*?<\/details>/g,
+        "",
+      ),
       faqs,
     };
   };
@@ -4133,6 +4140,135 @@ if (fs.existsSync(matrixPath)) {
       (stale ? " (noindex, out of sitemap and hreflang — run node scripts/translation-status.mjs)" : "") +
       `; held to the English pages: ${seen.numbers} numbers, ${seen.links} internal and ${seen.external} external links, ` +
       `${seen.code} code spans, ${seen.quotes} quoted passages.`,
+  );
+}
+
+// ── Embeds (/embed/*, ops/NEXT-10-2026-11-04.md item 7). A widget renders on
+// someone else's page, so three things hold for every one of them, old and
+// new: it is noindex (an iframe target competing with its own source page in
+// search is the site duplicating itself), its canonical names the built human
+// page it comes from, and it carries the visible backlink to that same page —
+// the attribution the /badges licence asks for, and the reason the widgets
+// exist. None of them is in the sitemap.
+//
+// The table widgets (/embed/table/<cluster>/<slug>/<n>) are held to the page
+// in both directions: every table in an embeddable cluster's body shows an
+// Embed control, every control offers a built widget, every built widget is
+// offered by a control, and the widget's table says what the page's n-th
+// table says, under the page's own verification date. A widget whose table
+// names KinesteX carries the funding disclosure, because the page's banner
+// does not travel with it (ops/GEO.md).
+{
+  const SITE = "https://aifitnessapi.com";
+  const fileByRoute = new Map(htmls.map((h) => [routeOf(h), h]));
+  const read = (r) => (fileByRoute.has(r) ? fs.readFileSync(fileByRoute.get(r), "utf8") : "");
+  const built = (r) => valid.has(r) && !notFoundSet.has(r);
+  const outer = (html, at) => {
+    const tag = /^<([a-z0-9]+)/.exec(html.slice(at))?.[1];
+    if (!tag) return "";
+    const re = new RegExp(`<(/?)${tag}\\b[^>]*>`, "g");
+    re.lastIndex = at;
+    let depth = 0;
+    for (let m; (m = re.exec(html)); ) {
+      if (m[0].endsWith("/>")) continue;
+      depth += m[1] ? -1 : 1;
+      if (depth === 0) return html.slice(at, re.lastIndex);
+    }
+    return html.slice(at);
+  };
+  const plain = (h) =>
+    decode(h.replace(/<script[\s\S]*?<\/script>/g, "").replace(/<[^>]+>/g, " "))
+      .replace(/&#x([0-9a-f]+);/gi, (_, x) => String.fromCodePoint(parseInt(x, 16)))
+      .replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(Number(d)))
+      .replace(/&nbsp;/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  const verifiedOn = (html) => /Last verified (?:<!-- -->)?([A-Z][a-z]+ \d{1,2}, \d{4})/.exec(html)?.[1] ?? null;
+
+  const embeds = [...valid].filter((r) => r.startsWith("/embed/") && !notFoundSet.has(r)).sort();
+  for (const r of embeds) {
+    const html = read(r);
+    if (!robotsOf(html).some((c) => /noindex/i.test(c))) problems.push(`EMBED-NOINDEX  ${r} does not render noindex`);
+    const canonical = decode(canonicalOf(html) ?? "");
+    const target = canonical.startsWith(SITE) ? canonical.slice(SITE.length) || "/" : null;
+    if (!target || target.startsWith("/embed/") || !built(target)) {
+      problems.push(`EMBED-CANONICAL  ${r} canonicals to "${canonical}", which is not a built page outside /embed`);
+      continue;
+    }
+    const backlinks = [...html.matchAll(/<a\b[^>]*\bdata-embed-backlink\b[^>]*>/g)].map(
+      (m) => decode(/\bhref="([^"]*)"/.exec(m[0])?.[1] ?? ""),
+    );
+    if (!backlinks.includes(canonical)) {
+      problems.push(`EMBED-BACKLINK  ${r} has no visible backlink to its canonical page ${canonical}`);
+    }
+  }
+  const sm = fs.existsSync(`${ROOT}/sitemap.xml.body`) ? fs.readFileSync(`${ROOT}/sitemap.xml.body`, "utf8") : "";
+  for (const m of sm.matchAll(/<loc>[^<]*?(\/embed\/[^<]*)<\/loc>/g)) {
+    problems.push(`EMBED-SITEMAP  sitemap.xml lists the widget ${m[1]}`);
+  }
+
+  // The embeddable clusters, read from src/lib/embedTables.ts and resolved
+  // through each cluster's own *_PATH constant, so qa and the site agree.
+  const libSrc = fs.existsSync("src/lib/embedTables.ts") ? fs.readFileSync("src/lib/embedTables.ts", "utf8") : "";
+  const ids = /EMBED_TABLE_CLUSTERS = \[([\s\S]*?)\]/.exec(libSrc)?.[1].match(/[A-Z_]+_PATH/g) ?? [];
+  const dataSrc = fs.readdirSync("src/data").filter((f) => f.endsWith(".ts")).map((f) => fs.readFileSync(`src/data/${f}`, "utf8")).join("\n");
+  const clusters = ids.map((id) => new RegExp(`export const ${id} = "(/[a-z0-9-]+)"`).exec(dataSrc)?.[1]);
+  if (!ids.length || clusters.some((c) => !c)) {
+    problems.push("EMBED-TABLE-READ  EMBED_TABLE_CLUSTERS in src/lib/embedTables.ts could not be resolved to cluster paths");
+  }
+
+  const offered = new Map(); // widget route → source page
+  let tableCount = 0;
+  const pages = [...valid].filter((r) => built(r) && clusters.some((c) => c && r.startsWith(`${c}/`) && r.split("/").length === 3));
+  for (const page of pages) {
+    const html = read(page);
+    const at = html.search(/<div[^>]*\bdata-article-body/);
+    const body = at === -1 ? "" : outer(html, at);
+    const tables = [...body.matchAll(/<table\b[^>]*>/g)];
+    const controls = new Set([...body.matchAll(/<details\b[^>]*\bdata-embed-table="([^"]*)"/g)].map((m) => m[1]));
+    tables.forEach((m, i) => {
+      const n = /\bdata-table-index="(\d+)"/.exec(m[0])?.[1];
+      const want = `/embed/table${page}/${i + 1}`;
+      if (n !== String(i + 1) || !controls.has(want)) {
+        problems.push(`EMBED-TABLE-CONTROL  ${page} table ${i + 1} shows no Embed control offering ${want}`);
+      }
+    });
+    for (const route of controls) {
+      offered.set(route, page);
+      if (!built(route)) problems.push(`EMBED-TABLE-ROUTE  ${page} shows an Embed control for ${route}, which was not built`);
+    }
+    tableCount += tables.length;
+  }
+
+  const tableEmbeds = embeds.filter((r) => r.startsWith("/embed/table/"));
+  for (const r of tableEmbeds) {
+    const m = /^\/embed\/table(\/[a-z0-9-]+\/[a-z0-9-]+)\/(\d+)$/.exec(r);
+    const page = m?.[1];
+    if (!m || offered.get(r) !== page) {
+      problems.push(`EMBED-TABLE-ORPHAN  ${r} is built but no Embed control on its source page offers it`);
+      continue;
+    }
+    const html = read(r);
+    const pageHtml = read(page);
+    const pAt = pageHtml.search(new RegExp(`<table\\b[^>]*\\bdata-table-index="${m[2]}"`));
+    const wAt = html.search(/<div[^>]*\bdata-embed-source=/);
+    const widget = wAt === -1 ? "" : outer(html, wAt);
+    const wTables = [...widget.matchAll(/<table\b/g)].length;
+    const wText = wTables === 1 ? plain(outer(widget, widget.search(/<table\b/))) : "";
+    const pText = pAt === -1 ? null : plain(outer(pageHtml, pAt));
+    if (wTables !== 1 || wText !== pText) {
+      problems.push(`EMBED-TABLE-DRIFT  ${r} renders ${wTables} table(s), and not the same table as ${page} table ${m[2]}`);
+    }
+    if (verifiedOn(html) === null || verifiedOn(html) !== verifiedOn(pageHtml)) {
+      problems.push(`EMBED-TABLE-VERIFIED  ${r} says last verified ${verifiedOn(html)}, ${page} says ${verifiedOn(pageHtml)}`);
+    }
+    if (/KinesteX/i.test(wText) && !/<p[^>]*\bdata-embed-funder[^>]*>[^<]*funds this site/.test(html)) {
+      problems.push(`EMBED-TABLE-FUNDER  ${r} shows a table naming KinesteX without the funds-this-site disclosure`);
+    }
+  }
+  console.log(
+    `Embeds: ${embeds.length} widgets, all held to noindex, canonical and backlink; ` +
+      `${tableEmbeds.length} table widgets for ${tableCount} tables on ${pages.length} pages in ${clusters.filter(Boolean).join(", ")}.`,
   );
 }
 

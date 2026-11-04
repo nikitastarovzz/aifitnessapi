@@ -38,6 +38,8 @@ export default function EmbedFrame({
       <p className="mt-3 border-t border-[var(--border)] pt-2 text-[11px] leading-relaxed text-[var(--muted)]">
         <a
           href={absoluteUrl(canonicalPath)}
+          // qa (EMBED-BACKLINK) holds this link to the page's canonical.
+          data-embed-backlink=""
           target="_blank"
           rel="noreferrer"
           className="font-semibold text-brand-600 hover:text-brand-500"

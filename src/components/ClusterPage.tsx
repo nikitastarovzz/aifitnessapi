@@ -31,6 +31,7 @@ import { relatedAcrossSite } from "@/lib/related";
 import { apisOnPage } from "@/lib/apiCoverage";
 import { APIS_PATH } from "@/data/apis";
 import { autolinkGlossary } from "@/lib/autolink";
+import { offersTableEmbeds } from "@/lib/embedTables";
 import { headings } from "@/lib/toc";
 import readingTime from "reading-time";
 import type { ClusterEntry, ClusterConfig } from "@/lib/cluster";
@@ -514,7 +515,14 @@ export default function ClusterPage({
         )}
 
         <div data-article-body className="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-headings:scroll-mt-24 prose-a:text-brand-600 hover:prose-a:text-brand-500 prose-th:text-left prose-pre:rounded-xl prose-pre:border prose-pre:border-[var(--border)]">
-          <Mdx source={body} />
+          <Mdx
+            source={body}
+            tableEmbeds={
+              !tr && offersTableEmbeds(basePath)
+                ? { basePath, slug: entry.slug, title: entry.h1 }
+                : undefined
+            }
+          />
         </div>
 
         {/* The metric's type on every platform with a generated reference,
