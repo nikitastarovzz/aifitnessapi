@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Container from "@/components/Container";
 import { site } from "@/lib/site";
 
-const UPDATED = "2026-07-31";
+const UPDATED = "2026-11-04";
 
 const TITLE = "Privacy";
 const DESCRIPTION =
@@ -69,9 +69,39 @@ export default function PrivacyPage() {
 
         <h2>Analytics</h2>
         <p>
-          We keep lightweight, anonymous counts of which calls-to-action get
-          clicked (a page identifier and a source label — no names, no emails,
-          no cross-site tracking).
+          We use Vercel Web Analytics to count page views, and send it a few
+          events of our own. Our events carry no name and no email, we set no
+          cookie for them, and they do not follow you to other sites:
+        </p>
+        <ul>
+          <li>
+            <strong>Where your visit came from.</strong> On the first page you
+            open in a browser session, your browser sorts the referring site
+            and any <code>utm_source</code>{" "}tag in the link into a broad group
+            (an AI assistant such as ChatGPT or Perplexity, a search engine,
+            another site, or none) and sends that group, a short label for it
+            (for example &ldquo;chatgpt&rdquo;, &ldquo;google&rdquo; or the
+            referring site&rsquo;s domain) and the page you landed on. The full
+            referring address and the rest of the link are not sent. A
+            &ldquo;sent&rdquo; flag is kept in your browser&rsquo;s session
+            storage so this happens once per session; it is gone when you
+            close the tab.
+          </li>
+          <li>
+            <strong>Which calls-to-action get clicked</strong>: an identifier
+            for the button or link, where on the page it sits, and the page.
+          </li>
+          <li>
+            <strong>Clicks on links to KinesteX</strong>, the company that
+            funds this site: where the link sits and the page. Those links
+            also carry <code>utm_</code>{" "}tags naming this site, the link&rsquo;s
+            placement and the page, so KinesteX&rsquo;s own analytics can see
+            that a visit came from here. Nothing about you is in the tags.
+          </li>
+        </ul>
+        <p>
+          None of this runs inside the widgets other sites embed from{" "}
+          <code>/embed</code>.
         </p>
       </div>
     </Container>

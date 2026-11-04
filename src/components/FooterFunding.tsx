@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { funderHref } from "@/lib/measure.mjs";
 
 /**
  * The sitewide funding credit: one muted line in the footer.
@@ -26,7 +27,7 @@ export default function FooterFunding() {
   const p = usePathname() ?? "";
   const pt = p === "/pt-br" || p.startsWith("/pt-br/");
   const product = (
-    <a href="https://kinestex.com" rel="sponsored" className="underline decoration-dotted underline-offset-2 hover:text-[var(--fg)]">
+    <a href={funderHref("footer_funding", p || "/")} data-funder="footer_funding" rel="sponsored" className="underline decoration-dotted underline-offset-2 hover:text-[var(--fg)]">
       KinesteX
     </a>
   );
