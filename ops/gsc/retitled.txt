@@ -59,3 +59,33 @@
 # 2026-11-02: GSC-10 item 4, owner pages retitled toward the queries routed to them.
 /fitness-apis/health-data-aggregator-apis
 /fix/garmin-api-personal-use
+# 2026-11-04: NEXT-10 item 5 (ops/NEXT-10-2026-11-04.md), CTR engine: /integrate, /fix, /compliance and /libraries
+# pages with 40+ impressions and CTR under 1.5% in data/gsc/latest.json (Oct 4-31), outside the held cohorts.
+# /integrate/terra-api was last retitled in the October wave (listed above since 2026-10-02).
+/integrate/terra-api
+/integrate/coros-api
+/integrate/concept2-api
+/integrate/strava-api
+/compliance/app-store-guideline-5-1-1-data-collection-storage
+/compliance/app-store-guideline-2-5-4-background-services
+/compliance/ftc-health-breach-notification-rule
+/fix/healthkit-no-data
+/fix/healthkit-background-delivery-not-working
+/libraries/flutter-health
+/libraries/react-native
+# Same day, item 5 part 2: the /libraries package-page description template (registryMeta in
+# src/data/librariesEditorial.ts: exact registry name + latest version + release month), applied to
+# package pages not held and not already above 1.5% CTR.
+/libraries/react-native-health-connect
+/libraries/expo-health-connect
+/libraries/capacitor-health
+/libraries/perfood-capacitor-healthkit
+/libraries/cordova-plugin-health
+/libraries/health-connector
+/libraries/health-kit-reporter
+/libraries/flutter-health-connect
+/libraries/garth
+/libraries/stravalib
+/libraries/oura-ring
+/libraries/oura-python
+/libraries/withings-api

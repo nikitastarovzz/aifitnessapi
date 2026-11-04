@@ -1,11 +1,11 @@
 ---
 path: "/integrate/strava-api"
-translatedOn: "2026-10-27"
+translatedOn: "2026-11-04"
 sourceUpdated: "2026-10-17"
-sourceHash: "311bd5e263cb18c0"
-metaTitle: "API do Strava (2026): níveis de acesso, OAuth, webhooks"
+sourceHash: "ec657c66bd6b0521"
+metaTitle: "API do Strava (2026): single-player, 10 atletas, revisão"
 metaDescription: >-
-  Integre a API do Strava: modo single-player, revisão para 10 atletas, escopos OAuth, tokens rotativos, um webhook por app, limites e mudanças de 2026.
+  Apps novos da API do Strava começam em single-player; um upgrade autosserviço libera 10 atletas, mais pede revisão. 200 requisições/15 min, OAuth, webhook.
 h1: "Guia de integração da API do Strava (2026)"
 answer: >-
   A API do Strava dá ao seu app as atividades, rotas, equipamentos e o perfil de um atleta via OAuth 2.0: você leva o atleta à tela de consentimento do Strava, troca o code devolvido por um access token de seis horas e um refresh token que pode mudar a cada renovação, e chama a API REST v3 com um token Bearer. O acesso tem um portão antes de qualquer código rodar: o Strava diz que uma assinatura é pré-requisito para criar um app, todo app novo começa no modo single-player, em que só a sua própria conta pode se conectar, um upgrade autosserviço eleva isso a 10 atletas, e mais de 10 exige a revisão do Strava. Use a única assinatura de webhook que cada app pode ter em vez de fazer polling, e leia os headers de limite de requisições geral e de não upload em toda resposta.
