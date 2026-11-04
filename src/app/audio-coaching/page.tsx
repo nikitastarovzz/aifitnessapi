@@ -147,10 +147,10 @@ export default function AudioCoachingPillar() {
           and most audio bugs in fitness apps come from getting that sharing wrong: the cue stops the
           music and never gives it back, goes silent when the screen locks, talks over a podcast,
           carries on through the speaker after an earbud falls out, or fails without a sound in the
-          background on a newer Android release. Each of those is a documented platform behaviour with
+          background on a newer Android release. Each of those is a documented platform behavior with
           an exact API name attached &mdash; duckOthers and notifyOthersOnDeactivation on iOS,
           AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK and AUDIOFOCUS_REQUEST_FAILED on Android &mdash; and
-          these pages are organised around those names. Every claim comes from Apple&rsquo;s or
+          these pages are organized around those names. Every claim comes from Apple&rsquo;s or
           Google&rsquo;s own developer documentation, read on 3 October 2026.
         </div>
 

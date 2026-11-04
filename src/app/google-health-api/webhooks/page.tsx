@@ -209,7 +209,7 @@ export default function GhapiWebhooksPage() {
           <Link href={`${GHAPI_BASE}#methods`} className={LINK}>
             the methods overview
           </Link>
-          . Every error reason Google catalogues:{" "}
+          . Every error reason Google catalogs:{" "}
           <Link href={GHAPI_PATHS.errors} className={LINK}>
             Google Health API errors
           </Link>

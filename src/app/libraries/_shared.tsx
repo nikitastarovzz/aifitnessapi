@@ -125,7 +125,7 @@ export function factRows(l: Library): FactRow[] {
       ),
     },
     { label: "First published", value: `${l.firstPublished} · ${l.versionCount} versions published` },
-    { label: "Licence", value: <Evidenced value={l.license ?? "not stated"} evidence={l.licenseEvidence} /> },
+    { label: "License", value: <Evidenced value={l.license ?? "not stated"} evidence={l.licenseEvidence} /> },
     {
       label: "Platforms",
       value: (

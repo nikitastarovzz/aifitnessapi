@@ -81,7 +81,7 @@ const PROVENANCE: Record<string, Schema> = {
 const OPTIONAL_PROVENANCE: Record<string, Schema> = {
   licenseNote: {
     type: "string",
-    description: "What the licence covers, where the dataset limits it (for example, facts restated from a source that is not relicensed); present only on such datasets",
+    description: "What the license covers, where the dataset limits it (for example, facts restated from a source that is not relicensed); present only on such datasets",
   },
 };
 

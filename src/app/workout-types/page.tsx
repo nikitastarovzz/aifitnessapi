@@ -453,7 +453,7 @@ export default function WorkoutTypesHub() {
 
         <SourceList
           sources={WT_SOURCES}
-          note="Read by scripts/fetch-workout-types.mjs, which refuses to publish when a count differs from the last verified read or a normalisation would put two constants of one platform on one row. GitHub files are read on the branch shown; the hash is SHA-256 of the bytes served."
+          note="Read by scripts/fetch-workout-types.mjs, which refuses to publish when a count differs from the last verified read or a normalization would put two constants of one platform on one row. GitHub files are read on the branch shown; the hash is SHA-256 of the bytes served."
         />
 
         <p className="mt-12 text-sm text-[var(--muted)]">

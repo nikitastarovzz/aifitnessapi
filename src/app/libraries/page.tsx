@@ -38,7 +38,7 @@ import { orgRef, WEBSITE_ID } from "@/lib/schema";
 
 const TITLE = "Open-Source Health & Fitness Libraries";
 const DESCRIPTION =
-  "Open-source packages for HealthKit, Health Connect and fitness APIs: latest versions, release dates, licences and README caveats, read from the registries.";
+  "Open-source packages for HealthKit, Health Connect and fitness APIs: latest versions, release dates, licenses and README caveats, read from the registries.";
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -129,7 +129,7 @@ export default function LibrariesHub() {
           Most apps reach Apple HealthKit or Android Health Connect through an open-source wrapper rather
           than native code, and the wrapper decides which data types, frameworks and OS versions you get.
           This page tracks {pages.length} packages — wrappers for React Native, Capacitor, Cordova and
-          Flutter, plus Python clients for vendor APIs — with every version, date and licence read from
+          Flutter, plus Python clients for vendor APIs — with every version, date and license read from
           npm, pub.dev and PyPI by a script. {deprecatedCount}{" "}of them are marked deprecated or inactive in their own registry
           entry, and several more carry a status note in their README — each page quotes it in the
           project&rsquo;s words.
@@ -178,7 +178,7 @@ export default function LibrariesHub() {
                       <th scope="col" className="py-2 pr-4 font-semibold">Wraps</th>
                       <th scope="col" className="py-2 pr-4 font-semibold">Latest</th>
                       <th scope="col" className="py-2 pr-4 font-semibold">Published</th>
-                      <th scope="col" className="py-2 pr-4 font-semibold">Licence</th>
+                      <th scope="col" className="py-2 pr-4 font-semibold">License</th>
                       <th scope="col" className="py-2 font-semibold">Registry status</th>
                     </tr>
                   </thead>
@@ -250,7 +250,7 @@ export default function LibrariesHub() {
               {
                 href: "/integrate/healthkit",
                 name: "HealthKit integration guide",
-                blurb: "What every iOS wrapper here calls into, and the behaviour no wrapper can hide.",
+                blurb: "What every iOS wrapper here calls into, and the behavior no wrapper can hide.",
               },
               {
                 href: "/integrate/google-health-connect",

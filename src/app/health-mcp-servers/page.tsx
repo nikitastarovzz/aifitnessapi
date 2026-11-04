@@ -105,7 +105,7 @@ function officialSentence(names: string[]): string {
   if (rows.length === 0) return `The registry held no entry naming ${listOf(names.map(labelOf))} on ${FETCHED}.`;
   const github = rows.filter((s) => s.namespace.startsWith("io.github.")).length;
   return official.length === 0
-    ? `Not in the official MCP Registry as read on ${FETCHED}. ${count(rows.length, "entry names", "entries name")} ${orList(keys.map((g) => g.label))}, and none is published under the vendor's own domain namespace: ${github} sit under a GitHub account or organisation (io.github.<name>) and ${rows.length - github} under other publishers' domains. The registry records who published an entry, not whether the vendor endorses it.`
+    ? `Not in the official MCP Registry as read on ${FETCHED}. ${count(rows.length, "entry names", "entries name")} ${orList(keys.map((g) => g.label))}, and none is published under the vendor's own domain namespace: ${github} sit under a GitHub account or organization (io.github.<name>) and ${rows.length - github} under other publishers' domains. The registry records who published an entry, not whether the vendor endorses it.`
     : `As read on ${FETCHED}, ${count(official.length, "entry is", "entries are")} published under the vendor's own domain namespace: ${listOf(official.map((s) => s.name))}. The other ${rows.length - official.length} that name ${orList(keys.map((g) => g.label))} are published by others.`;
 }
 
@@ -119,7 +119,7 @@ const FAQS: Faq[] = [
   },
   {
     q: "What does unofficial mean for a health MCP server?",
-    a: `On this page it means the server's registry name is not under the vendor's own domain. The registry's authentication guide lets a publisher use a domain namespace such as com.example only after proving control of the domain by DNS or HTTP, and an io.github.<name> namespace only through the GitHub account or organisation called <name>, so a vendor-domain name is the registry's evidence that the vendor published it. Unofficial says nothing about quality or safety either way: ${GITHUB_NS.length} of the ${SERVERS.length} servers here sit under a personal or organisation GitHub namespace.`,
+    a: `On this page it means the server's registry name is not under the vendor's own domain. The registry's authentication guide lets a publisher use a domain namespace such as com.example only after proving control of the domain by DNS or HTTP, and an io.github.<name> namespace only through the GitHub account or organization called <name>, so a vendor-domain name is the registry's evidence that the vendor published it. Unofficial says nothing about quality or safety either way: ${GITHUB_NS.length} of the ${SERVERS.length} servers here sit under a personal or organization GitHub namespace.`,
   },
   {
     q: "Why not use the MCP Registry's search to find health servers?",
@@ -198,7 +198,7 @@ function PackageFacts({ p }: { p: McpPackage }) {
       </a>
       {f.latestVersion ? `: latest ${f.latestVersion}` : ": no latest version named"}
       {f.lastPublished ? `, published ${f.lastPublished}` : ""}
-      {`, licence ${f.license ?? "not stated"}`}
+      {`, license ${f.license ?? "not stated"}`}
       {f.deprecated ? <span className="block text-amber-700 dark:text-amber-400">Deprecated: {f.deprecated}</span> : null}
     </li>
   );
@@ -364,7 +364,7 @@ export default function HealthMcpServersPage() {
           <div className="mt-3 space-y-3 leading-relaxed text-[var(--muted)]">
             <p>
               Every registry name has a namespace before the slash. The registry’s authentication guide says a publisher
-              who signs in with GitHub gets {"io.github.<username>"} (or an organisation they own), and one who proves
+              who signs in with GitHub gets {"io.github.<username>"} (or an organization they own), and one who proves
               control of a domain by DNS or HTTP gets that domain in reverse order, so com.example for example.com. This
               page marks a server official only when its namespace is the vendor’s own domain as this site already cites it
               for that vendor’s developer documentation (garmin.com for Garmin, ouraring.com for Oura and so on).{" "}
@@ -462,7 +462,7 @@ export default function HealthMcpServersPage() {
           </aside>
           <div className="mt-4 space-y-3 leading-relaxed text-[var(--muted)]">
             <p>
-              <code className="font-mono text-base text-[var(--fg)]">{SITE.name}</code> {SITE.version}, licence{" "}
+              <code className="font-mono text-base text-[var(--fg)]">{SITE.name}</code> {SITE.version}, license{" "}
               {SITE.license}. It reads no wearable or personal data. It
               {SITE.stdio ? " runs over stdio and" : ""} exposes {count(SITE.tools.length, "tool")},{" "}
               {listOf(SITE.tools)}, which answer from {count(SITE.datasets.length, "dataset")} bundled with the package (

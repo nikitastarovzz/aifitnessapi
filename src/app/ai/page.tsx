@@ -69,7 +69,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
 const FAQS = [
   {
     q: "Can an LLM safely give workout and nutrition advice?",
-    a: "Not on its own. A language model will produce a confident, specific, plausible-sounding training plan or calorie target with no idea whether it's appropriate for the person reading it — and it has no way to notice a symptom that should stop the conversation. The shipping pattern is to constrain rather than trust: generate from a vetted exercise or food catalogue instead of free text, validate the output against your own rules server-side, escalate or refuse on risk signals (chest pain, fainting, pregnancy, disordered-eating language, minors), and keep a clear not-medical-advice framing. Whatever your app says is your responsibility, not the model vendor's.",
+    a: "Not on its own. A language model will produce a confident, specific, plausible-sounding training plan or calorie target with no idea whether it's appropriate for the person reading it — and it has no way to notice a symptom that should stop the conversation. The shipping pattern is to constrain rather than trust: generate from a vetted exercise or food catalog instead of free text, validate the output against your own rules server-side, escalate or refuse on risk signals (chest pain, fainting, pregnancy, disordered-eating language, minors), and keep a clear not-medical-advice framing. Whatever your app says is your responsibility, not the model vendor's.",
   },
   {
     q: "Should I use an LLM or ordinary rules for workout programming?",
@@ -201,7 +201,7 @@ export default function AiPillar() {
         </section>
 
         <ClusterCta
-          pitch="Model behaviour, pricing, and platform AI policies change faster than any other part of this stack. We track what actually changes for people shipping AI health features. Get the updates."
+          pitch="Model behavior, pricing, and platform AI policies change faster than any other part of this stack. We track what actually changes for people shipping AI health features. Get the updates."
           source="pillar-inline"
           id="cta-ai-pillar"
         />

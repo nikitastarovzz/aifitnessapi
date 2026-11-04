@@ -76,7 +76,7 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
     sortDate: "2026-10-27",
     title: "Open Wearables adds a paid Pro plan and ships outbound webhooks",
     summary:
-      "Open Wearables gives no date for the change: first seen on 2026-10-27, absent from its pages on 2026-10-17. Its pricing page now lists three plans: Core, self-hosted at \"$0 Forever\" under the MIT licence; Pro, \"From $999 a month, per deployment\", with health scores and other licensed modules; and Enterprise, a custom-priced annual agreement that carries the BAA. Its FAQ now says \"Health scores come with Pro\" and \"Pro is priced per deployment rather than per user\". Outbound webhooks, which its FAQ and webhooks page called in development on 2026-10-17, are now described as shipped: signed, retried and off by default.",
+      "Open Wearables gives no date for the change: first seen on 2026-10-27, absent from its pages on 2026-10-17. Its pricing page now lists three plans: Core, self-hosted at \"$0 Forever\" under the MIT license; Pro, \"From $999 a month, per deployment\", with health scores and other licensed modules; and Enterprise, a custom-priced annual agreement that carries the BAA. Its FAQ now says \"Health scores come with Pro\" and \"Pro is priced per deployment rather than per user\". Outbound webhooks, which its FAQ and webhooks page called in development on 2026-10-17, are now described as shipped: signed, retried and off by default.",
     status: "confirmed",
     page: { href: "/compare/terra-vs-open-wearables", label: "Terra vs Open Wearables" },
     verifiedOn: "2026-10-27",
@@ -86,7 +86,7 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
     sortDate: "2026-10-22",
     title: "Garmin Connect Personal API and Starter/Enterprise access",
     summary:
-      "Garmin reorganised its Connect Developer Program and gives no launch date: first seen on 2026-10-22, absent from the 2026-10-17 snapshot. A new Garmin Connect Personal API lets individuals create their own API key on Garmin Connect Web for their own data; Garmin says it \"is available for personal use\" and \"is not intended for commercial applications serving multiple end users\". The business program now describes Starter Access and Enterprise Access, its FAQ moved under a new Business section (the old address no longer loads), and the earlier FAQ statement that the program was only for business use is gone.",
+      "Garmin reorganized its Connect Developer Program and gives no launch date: first seen on 2026-10-22, absent from the 2026-10-17 snapshot. A new Garmin Connect Personal API lets individuals create their own API key on Garmin Connect Web for their own data; Garmin says it \"is available for personal use\" and \"is not intended for commercial applications serving multiple end users\". The business program now describes Starter Access and Enterprise Access, its FAQ moved under a new Business section (the old address no longer loads), and the earlier FAQ statement that the program was only for business use is gone.",
     status: "confirmed",
     page: { href: "/fix/garmin-api-personal-use", label: "Garmin API for personal use" },
     verifiedOn: "2026-10-22",
@@ -262,9 +262,9 @@ export const WATCH_ITEMS: { title: string; summary: string; page: { href: string
     page: { href: "/pricing/fitbit-api-pricing", label: "Fitbit API pricing" },
   },
   {
-    title: "MoveNet MultiPose licence gap",
+    title: "MoveNet MultiPose license gap",
     summary:
-      "The MultiPose model card we read carried no licence line, while the single-person models are Apache-2.0. Confirm independently before shipping multi-person tracking commercially.",
+      "The MultiPose model card we read carried no license line, while the single-person models are Apache-2.0. Confirm independently before shipping multi-person tracking commercially.",
     page: { href: "/motion/multi-person-pose-tracking", label: "Multi-person pose tracking" },
   },
 ];

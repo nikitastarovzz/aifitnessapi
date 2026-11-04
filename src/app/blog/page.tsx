@@ -55,7 +55,7 @@ const GROUPS: { title: string; blurb: string; tags: string[] }[] = [
   },
   {
     title: "What is changing",
-    blurb: "Dated deprecations, wind-downs, and how to tell a confirmed date from a rumour.",
+    blurb: "Dated deprecations, wind-downs, and how to tell a confirmed date from a rumor.",
     tags: ["deprecation", "ecosystem"],
   },
   {

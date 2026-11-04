@@ -95,7 +95,7 @@ export default function StepLabPage() {
           simple detector on your phone&rsquo;s accelerometer in the browser, marks every step it counts on
           the live trace, and gives you sliders for the threshold and the minimum interval so you can
           watch the count change for a walk that has already happened. Motion data never leaves your
-          device. Without a motion sensor, it replays a synthetic, labelled walk.
+          device. Without a motion sensor, it replays a synthetic, labeled walk.
         </p>
 
         <section data-tool="step-lab" aria-label="Step detector on your phone's accelerometer">
@@ -136,7 +136,7 @@ export default function StepLabPage() {
             </li>
           </ol>
           <p className="mt-4 leading-relaxed text-[var(--muted)]">
-            Every one of those numbers is a judgement. Raise the threshold and soft steps (a shuffle, a
+            Every one of those numbers is a judgment. Raise the threshold and soft steps (a shuffle, a
             step on carpet, a phone in a loose bag) disappear; lower it and bumps that are not steps get
             counted. Lengthen the interval and a double impact merges into one step, until it passes your
             step period and every other step vanishes. The synthetic replay has {REPLAY_TRUE_STEPS}{" "}
@@ -201,7 +201,7 @@ export default function StepLabPage() {
               reports it.
             </li>
             <li>
-              Acceleration in metres per second squared. The page reads{" "}
+              Acceleration in meters per second squared. The page reads{" "}
               <code className="font-mono text-sm">accelerationIncludingGravity</code>, which{" "}
               <Cite id="mdn-aig">MDN</Cite> says <q>represents the raw data measured by an accelerometer</q>{" "}
               and <q>may be the only value available on devices that aren&apos;t able to remove gravity</q>
@@ -219,7 +219,7 @@ export default function StepLabPage() {
             <li>
               Rounded values, on purpose. The <Cite id="w3c">W3C Device Orientation and Motion draft</Cite>{" "}
               tells browsers to limit each acceleration value&rsquo;s precision to no more than 0.1 m/s² and
-              to expose the interfaces only in secure contexts, as fingerprinting defences. This detector&rsquo;s default
+              to expose the interfaces only in secure contexts, as fingerprinting defenses. This detector&rsquo;s default
               threshold is {DEFAULT_PARAMS.threshold.toFixed(1)} m/s², so the rounding does not hide a step from it.
             </li>
           </ul>

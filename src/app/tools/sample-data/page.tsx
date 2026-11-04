@@ -283,7 +283,7 @@ export default function SampleDataPage() {
               workout-type crosswalk
             </Link>{" "}
             names identically on all three platforms (read {SOURCES.workouts.fetchedOn}), so the same seed gives the same
-            activity on each. Heart rate variability is generated from one stream but labelled per platform: HealthKit
+            activity on each. Heart rate variability is generated from one stream but labeled per platform: HealthKit
             stores SDNN and Health Connect and Google store RMSSD, and the{" "}
             <Link href="/matrix" className={A}>
               cross-platform matrix

@@ -68,7 +68,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     "q": "Do I need a machine learning team to add camera workout tracking?",
-    "a": "Not for the parts most people assume. Pose estimation itself is a solved, downloadable capability — you adopt a model rather than train one. Rep counting is a small state machine over one smoothed joint angle with hysteresis so jitter cannot double-fire, and form feedback compares measured angles against target ranges you define; neither is machine learning. What you do need is engineering capacity to repeat that work per exercise and tune it across body types, camera angles, lighting and low-end devices, plus a test setup that can replay labelled clips. If you have that capacity, build; if you do not, a coaching SDK sells exactly that layer."
+    "a": "Not for the parts most people assume. Pose estimation itself is a solved, downloadable capability — you adopt a model rather than train one. Rep counting is a small state machine over one smoothed joint angle with hysteresis so jitter cannot double-fire, and form feedback compares measured angles against target ranges you define; neither is machine learning. What you do need is engineering capacity to repeat that work per exercise and tune it across body types, camera angles, lighting and low-end devices, plus a test setup that can replay labeled clips. If you have that capacity, build; if you do not, a coaching SDK sells exactly that layer."
   },
   {
     "q": "Can one cross-platform codebase handle camera-based workout tracking?",
@@ -87,7 +87,7 @@ This page is the map, not the manual. Each layer below gets what it actually pro
 
 ## The anatomy: six layers
 
-Read this table top to bottom and you have the shape of the build. The two right-hand columns are engineering judgement, drawn from the build-versus-buy pages linked below; the factual claims underneath are sourced page by page.
+Read this table top to bottom and you have the shape of the build. The two right-hand columns are engineering judgment, drawn from the build-versus-buy pages linked below; the factual claims underneath are sourced page by page.
 
 | Layer | What it produces | Build it when | Buy it when |
 | --- | --- | --- | --- |
@@ -132,7 +132,7 @@ Build-versus-buy here splits on license and hosting rather than on price. Genuin
 - [Exercise database APIs](/fitness-apis/exercise-database-apis) — the landscape, sorted by license and media depth.
 - [Exercise database API pricing](/pricing/exercise-database-api-pricing) — the AGPL and per-request-overage traps.
 - [ExerciseDB vs wger](/compare/exercisedb-vs-wger) and [ExerciseDB alternatives](/alternatives/exercisedb-alternatives) — hosted gateway versus self-hosted ownership.
-- [Grounding an LLM in your exercise database](/ai/ground-llm-in-exercise-database) — why the catalogue also becomes your safety boundary once AI plan generation shows up.
+- [Grounding an LLM in your exercise database](/ai/ground-llm-in-exercise-database) — why the catalog also becomes your safety boundary once AI plan generation shows up.
 
 ### Layer 4 — Health and wearable data
 
@@ -149,7 +149,7 @@ Nobody builds this layer, but "buy" here is a coverage decision rather than one 
 
 The language-model layer: plan generation, coaching chat, explanations, natural-language food logging, and narration of a user's own numbers. It is the newest layer and the one where this site's advice is most counter-intuitive: the model does not compute anything.
 
-Our AI cluster's position throughout is that most good AI fitness features are a rules engine wearing a language interface. Deterministic code owns anything with a single correct answer — progression, set and rep arithmetic, volume caps, deload timing, equipment substitution, heart-rate zone maths — and the model owns the open-ended jobs, selecting from a candidate set you supplied and writing prose about numbers you handed it. For food logging the same rule appears as: never persist a nutrition number the model emitted; resolve to a food identity, then look the macros up in a vetted database.
+Our AI cluster's position throughout is that most good AI fitness features are a rules engine wearing a language interface. Deterministic code owns anything with a single correct answer — progression, set and rep arithmetic, volume caps, deload timing, equipment substitution, heart-rate zone math — and the model owns the open-ended jobs, selecting from a candidate set you supplied and writing prose about numbers you handed it. For food logging the same rule appears as: never persist a nutrition number the model emitted; resolve to a food identity, then look the macros up in a vetted database.
 
 One hard constraint is worth pulling forward, because it is a shipping blocker rather than a design preference. Sending a user's health profile to a third-party language-model API is exactly what Apple's App Store Review Guideline 5.1.2(i) covers, so you must clearly disclose it and get explicit permission before the first call.
 
@@ -182,7 +182,7 @@ Settles it: [track workouts without wearables](/guides/track-workouts-without-we
 
 ### Decision 2 — Pose model, or a coaching SDK on top of one?
 
-Given a yes on camera, this is the fork. Build on a free pose model when camera-based motion analysis is your core differentiator and you have the computer-vision staff to own rep logic, form rules, exercise coverage and per-platform camera pipelines. Buy a coaching SDK when motion coaching is a feature inside a larger product and cross-platform maintenance matters more than control. Our motion cluster notes that most teams land hybrid: adopt an on-device pose model, then build only the coaching layer above it. If you build, the model choice follows what you compute downstream — 33 landmarks and monocular 3D favour joint-angle form work, 17 keypoints at minimum latency favour a rep counter on modest hardware.
+Given a yes on camera, this is the fork. Build on a free pose model when camera-based motion analysis is your core differentiator and you have the computer-vision staff to own rep logic, form rules, exercise coverage and per-platform camera pipelines. Buy a coaching SDK when motion coaching is a feature inside a larger product and cross-platform maintenance matters more than control. Our motion cluster notes that most teams land hybrid: adopt an on-device pose model, then build only the coaching layer above it. If you build, the model choice follows what you compute downstream — 33 landmarks and monocular 3D favor joint-angle form work, 17 keypoints at minimum latency favor a rep counter on modest hardware.
 
 Settles it: [pose estimation models compared](/motion/pose-estimation-models-compared), [MediaPipe Pose Landmarker variants](/motion/mediapipe-pose-landmarker-models), [AI workout tracking APIs](/fitness-apis/ai-workout-tracking-apis), and — for the build path in code — [add rep counting](/guides/add-rep-counting) and [add form feedback](/guides/add-form-feedback).
 
@@ -224,7 +224,7 @@ No figures here: almost every specific price in this ecosystem is volatile, gate
 
 **Language-model cost is arithmetic you can do today.** Tokens in plus tokens out, times the rate, times calls per user per period, times users. Input tokens are the usual surprise, because system prompts, safety rules, tool schemas and retrieved context are re-sent every turn, and chat history is re-sent on top. That is why a weekly plan generator and an always-on chat coach are different businesses.
 
-**Engineering time dominates all of it.** Every layer above has a cheap option whose real price is your team's attention, and the recurring costs that hurt are maintenance-shaped: per-exercise form logic, provider terms that change under you, approval renewals, re-verification. Judgement rather than a sourced claim — but it is the through-line of every build-versus-buy page here.
+**Engineering time dominates all of it.** Every layer above has a cheap option whose real price is your team's attention, and the recurring costs that hurt are maintenance-shaped: per-exercise form logic, provider terms that change under you, approval renewals, re-verification. Judgment rather than a sourced claim — but it is the through-line of every build-versus-buy page here.
 
 Start at [how much does a fitness API cost](/pricing/how-much-does-a-fitness-api-cost), [are fitness APIs free](/pricing/are-fitness-apis-free), [aggregator pricing](/pricing/health-data-aggregator-pricing), [nutrition API pricing](/pricing/nutrition-api-pricing), [AI fitness app cost](/ai/ai-fitness-app-cost).
 
@@ -242,7 +242,7 @@ Six failure modes, each drawn from a page that documents it in detail, ordered r
 
 **5. Shipping without the store-policy work.** Both platforms gate health apps on paperwork, not code. Apple requires a privacy policy in the app and in App Store Connect, bans using health data for advertising or selling it, and requires in-app account deletion if you offer accounts. Google Play requires prominent disclosure plus consent, an accurate Data safety form, deletion paths, and — before a Health Connect integration ships — a Play Console health-data declaration listing every type you read or write. Both revise and renumber often, so verify current text. See [App Store health data rules](/compliance/app-store-health-data-rules) and [Google Play health data policy](/compliance/google-play-health-data-policy).
 
-**6. Underestimating the exercise-content layer.** It looks like a spreadsheet and behaves like a product. Advertised library counts vary by project and version; the free options carry AGPL obligations or push hosting and normalization onto you; paid gateways meter per request with overage above quota. And once AI plan generation arrives, the catalogue becomes your safety boundary — the model may only return identifiers it was given. See [exercise database API pricing](/pricing/exercise-database-api-pricing) and [grounding an LLM in your exercise database](/ai/ground-llm-in-exercise-database).
+**6. Underestimating the exercise-content layer.** It looks like a spreadsheet and behaves like a product. Advertised library counts vary by project and version; the free options carry AGPL obligations or push hosting and normalization onto you; paid gateways meter per request with overage above quota. And once AI plan generation arrives, the catalog becomes your safety boundary — the model may only return identifiers it was given. See [exercise database API pricing](/pricing/exercise-database-api-pricing) and [grounding an LLM in your exercise database](/ai/ground-llm-in-exercise-database).
 
 Plus one that only bites camera apps: **retrofitting the test seam.** Simulators and emulators cannot give you a live camera feed, so a recorded clip is the only frame source CI can drive on both platforms — which forces a day-one decision that every frame enters through an injectable source. Retrofitting that later means re-deriving timestamps, orientation, backpressure and end-of-stream: a rewrite, not a refactor. See [testing camera features without a device](/test/camera-features-without-a-device).
 
@@ -260,7 +260,7 @@ Work top to bottom. Anything you cannot tick is a decision you have deferred rat
 **Camera pipeline, if you have one**
 
 - Every frame enters through an injectable source, and a recorded clip drives the pipeline in CI — [camera features without a device](/test/camera-features-without-a-device).
-- Rep counting is scored per clip against a labelled corpus, not on an aggregate where a miss and a double-count cancel — [testing rep counting](/test/rep-counting).
+- Rep counting is scored per clip against a labeled corpus, not on an aggregate where a miss and a double-count cancel — [testing rep counting](/test/rep-counting).
 - Keypoint drift is scored per keypoint against a pinned model revision — [pose detection accuracy](/test/pose-detection-accuracy).
 - A thermal soak runs on a physical device and fails the build on drift — [device lab and CI](/test/device-lab-and-ci).
 - Capture-side work is done: framing, distance, lighting, camera angle matched to the plane of motion — [improve pose detection accuracy](/guides/improve-pose-detection-accuracy).
@@ -283,7 +283,7 @@ Work top to bottom. Anything you cannot tick is a decision you have deferred rat
 **AI features, if you have them**
 
 - A deterministic gate runs before the model, evaluated against the whole conversation rather than the latest message — [LLM safety for fitness advice](/ai/llm-safety-fitness-advice).
-- Every generated plan validates server-side against your catalogue and the user's equipment, injuries and volume caps — [AI workout plan generation](/ai/ai-workout-plan-generation).
+- Every generated plan validates server-side against your catalog and the user's equipment, injuries and volume caps — [AI workout plan generation](/ai/ai-workout-plan-generation).
 - A golden set is frozen before launch and a grader runs without you — [evaluating AI fitness features](/ai/evaluating-ai-fitness-features).
 - Per-user token arithmetic is done and fits inside your subscription margin — [AI fitness app cost](/ai/ai-fitness-app-cost).
 
@@ -380,7 +380,7 @@ export default function AiFitnessAppPage() {
         </section>
 
         <p className="mt-10 text-sm text-[var(--muted)]">
-          By {site.name}. Synthesis of our verified cluster pages — every claim links its source; judgement is labelled as judgement.
+          By {site.name}. Synthesis of our verified cluster pages — every claim links its source; judgment is labeled as judgment.
         </p>
       </article>
     </Container>

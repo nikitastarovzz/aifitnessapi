@@ -155,7 +155,7 @@ const MAP: Record<string, Note> = {
   },
   "/motion/pose-estimation-model-licenses": {
     anchor: "KinesteX, this site's funder",
-    lead: "If you would rather not carry a model licence decision at all, a commercial SDK swaps it for a vendor agreement you read instead. One such vendor is",
+    lead: "If you would rather not carry a model license decision at all, a commercial SDK swaps it for a vendor agreement you read instead. One such vendor is",
   },
   "/motion/movenet-models": {
     anchor: "KinesteX's packaged SDK",
@@ -167,7 +167,7 @@ const MAP: Record<string, Note> = {
   },
   "/motion/yolo-pose-models": {
     anchor: "KinesteX's SDK, from this site's funder",
-    lead: "If you would rather not build on YOLO and work through its licence terms yourself, one commercial motion SDK to compare is",
+    lead: "If you would rather not build on YOLO and work through its license terms yourself, one commercial motion SDK to compare is",
   },
   "/motion/rtmpose-models": {
     anchor: "KinesteX's hosted camera experience",
@@ -175,7 +175,7 @@ const MAP: Record<string, Note> = {
   },
   "/motion/openpose-models": {
     anchor: "the KinesteX motion-tracking SDK",
-    lead: "If OpenPose's licence rules it out and you would rather not assemble a replacement yourself, one commercial option is",
+    lead: "If OpenPose's license rules it out and you would rather not assemble a replacement yourself, one commercial option is",
   },
   "/motion/squat-detection-pose-estimation": {
     anchor: "KinesteX's documentation",
@@ -338,7 +338,7 @@ export default function KinestexNote({ path }: { path: string }) {
       </p>
       <p className="mt-2 text-xs text-[var(--muted)]">
         <strong className="font-semibold text-[var(--fg)]">Disclosure:</strong> KinesteX makes the
-        product linked above and funds this site. That is why the link is labelled rather than
+        product linked above and funds this site. That is why the link is labeled rather than
         dropped into the prose, and why nothing here ranks KinesteX first on our own say-so.
       </p>
     </aside>

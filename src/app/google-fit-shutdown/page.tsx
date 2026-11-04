@@ -260,7 +260,7 @@ export default function GoogleFitShutdownPage() {
             years ahead of the end of documented support.
           </p>
           <p>
-            The check generalises. For every third-party dependency you hold, ask whether a new
+            The check generalizes. For every third-party dependency you hold, ask whether a new
             developer can still sign up for it today; it costs one browser tab per vendor per
             quarter.{" "}
             <Link href="/migrate/migrate-off-a-deprecated-fitness-api">Migrating off a deprecated

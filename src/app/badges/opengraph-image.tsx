@@ -10,7 +10,7 @@ export default function Image() {
     ogCard({
       eyebrow: "Embeds",
       title: "Put our tables on your site",
-      line: "Two copy-paste iframe widgets and a link badge — attribution is the licence",
+      line: "Two copy-paste iframe widgets and a link badge — attribution is the license",
     }),
     { ...OG_SIZE },
   );

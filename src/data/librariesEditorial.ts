@@ -490,7 +490,7 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
     h1: "react-native-google-fit",
     primaryQuery: "react-native-google-fit",
     answer:
-      "react-native-google-fit is a React Native bridge to the Google Fit API on Android. Its README acknowledges that Google has deprecated the Google Fit API in favour of Health Connect and says the maintainers will support the library while the API remains accessible. Google's Fit migration guide says the Google Fit API will only be supported until the end of 2026 and recommends Health Connect for step tracking and mobile-first apps.",
+      "react-native-google-fit is a React Native bridge to the Google Fit API on Android. Its README acknowledges that Google has deprecated the Google Fit API in favor of Health Connect and says the maintainers will support the library while the API remains accessible. Google's Fit migration guide says the Google Fit API will only be supported until the end of 2026 and recommends Health Connect for step tracking and mobile-first apps.",
     wraps: {
       text: "The Google Fit API on Android, through Google Play Services and an OAuth 2.0 client configured in Google Cloud Console, according to the README's requirements.",
       quote: "A React Native bridge module for interacting with Google Fit on Android.",
@@ -613,10 +613,10 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
     slug: "capgo-capacitor-health",
     title: "@capgo/capacitor-health: HealthKit and Health Connect",
     metaDescription:
-      "@capgo/capacitor-health: Capgo's Capacitor plugin for HealthKit and Health Connect. Version-to-Capacitor mapping, the 30-day read cap, licence, dates.",
+      "@capgo/capacitor-health: Capgo's Capacitor plugin for HealthKit and Health Connect. Version-to-Capacitor mapping, the 30-day read cap, license, dates.",
     h1: "@capgo/capacitor-health",
     primaryQuery: "@capgo/capacitor-health",
-    answer: `@capgo/capacitor-health is Capgo's Capacitor plugin for reading and writing Apple HealthKit on iOS and Health Connect on Android with one set of data types and units. Its major version follows Capacitor's major version, and its README says only the latest major is actively maintained. Its npm metadata lists the licence as ${lib("capgo-capacitor-health").license ?? "unstated"}; the other Capacitor and Cordova health plugins listed here declare ${[...new Set(["capacitor-health", "perfood-capacitor-healthkit", "cordova-plugin-health"].map((x) => lib(x).license ?? "no licence"))].join(" / ")}.`,
+    answer: `@capgo/capacitor-health is Capgo's Capacitor plugin for reading and writing Apple HealthKit on iOS and Health Connect on Android with one set of data types and units. Its major version follows Capacitor's major version, and its README says only the latest major is actively maintained. Its npm metadata lists the license as ${lib("capgo-capacitor-health").license ?? "unstated"}; the other Capacitor and Cordova health plugins listed here declare ${[...new Set(["capacitor-health", "perfood-capacitor-healthkit", "cordova-plugin-health"].map((x) => lib(x).license ?? "no license"))].join(" / ")}.`,
     wraps: {
       text: "Apple HealthKit on iOS and Health Connect on Android. The README says the plugin uses Health Connect instead of Google Fit and that its manifest already declares the permissions for the basic data types.",
       quote: "Capacitor plugin to read and write health metrics via Apple HealthKit (iOS) and Health Connect (Android).",
@@ -647,7 +647,7 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
         sourceLabel: README,
       },
       {
-        text: `A claim to read with the list beside it. The README calls this "the only free, unified health data plugin for Capacitor". capacitor-health (${lib("capacitor-health").license ?? "licence unstated"}) and cordova-plugin-health (${lib("cordova-plugin-health").license ?? "licence unstated"}), both listed here, also cover both stores according to their READMEs and npm metadata.`,
+        text: `A claim to read with the list beside it. The README calls this "the only free, unified health data plugin for Capacitor". capacitor-health (${lib("capacitor-health").license ?? "license unstated"}) and cordova-plugin-health (${lib("cordova-plugin-health").license ?? "license unstated"}), both listed here, also cover both stores according to their READMEs and npm metadata.`,
         source: R.capgo,
         sourceLabel: "README and npm metadata",
       },
@@ -855,7 +855,7 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
       registryMeta("health-connector", "is a newer Flutter SDK for HealthKit and Health Connect: Flutter 3.38, Dart 3.10, iOS 15, Android API 26."),
     h1: "health_connector",
     primaryQuery: "health_connector flutter",
-    answer: `health_connector is a Flutter SDK for Apple HealthKit and Android Health Connect, first published on pub.dev in ${monthYear(lib("health-connector").firstPublished)}. Its README describes typed access to 143 health data types, incremental synchronisation and update operations — the project's own description. It sets higher floors than older plugins: its requirements table lists Flutter 3.38, Dart 3.10, iOS 15 and Android API 26.`,
+    answer: `health_connector is a Flutter SDK for Apple HealthKit and Android Health Connect, first published on pub.dev in ${monthYear(lib("health-connector").firstPublished)}. Its README describes typed access to 143 health data types, incremental synchronization and update operations — the project's own description. It sets higher floors than older plugins: its requirements table lists Flutter 3.38, Dart 3.10, iOS 15 and Android API 26.`,
     wraps: {
       text: "Apple HealthKit on iOS and Android Health Connect. Its app-facing pubspec declares no platforms itself; it depends on separate health_connector_hk_ios and health_connector_hc_android packages, and pub.dev's own analysis tags it for Android and iOS.",
       quote: "Production-grade Flutter health SDK for iOS HealthKit and Android Health Connect.",
@@ -883,7 +883,7 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
         sourceLabel: README,
       },
       {
-        text: "Marketing, labelled. \"Production-grade\" and \"143 typed health data types\" are the README's words. We have not counted the types; the project links a searchable type catalog on its own website.",
+        text: "Marketing, labeled. \"Production-grade\" and \"143 typed health data types\" are the README's words. We have not counted the types; the project links a searchable type catalog on its own website.",
         source: R.healthConnector,
         sourceLabel: README,
       },
@@ -951,7 +951,7 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
     primaryQuery: "flutter_health_connect",
     answer: `flutter_health_connect is a Flutter plugin for Android Health Connect only. Its latest pub.dev release dates from ${monthYear(lib("flutter-health-connect").latestPublished)}, and its pubspec declares a Dart SDK constraint of ${req("flutter-health-connect", "sdk") ?? "(unstated)"}. The cross-platform Flutter packages listed here published their latest releases on ${lib("flutter-health").latestPublished} (health) and ${lib("health-connector").latestPublished} (health_connector) — compare those dates with its own before adding it to a project.`,
     wraps: {
-      text: "Android Health Connect. The README documents Android setup only. Its pubspec also registers an iOS plugin class, but the README describes no iOS behaviour and never mentions HealthKit.",
+      text: "Android Health Connect. The README documents Android setup only. Its pubspec also registers an iOS plugin class, but the README describes no iOS behavior and never mentions HealthKit.",
       quote: "Flutter plugin for Google Health Connect integration.",
       source: R.flutterHc,
       sourceLabel: README,
@@ -976,7 +976,7 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
     faqs: [
       {
         q: "Does flutter_health_connect work on iOS?",
-        a: "Not for health data. Health Connect is an Android platform, and the README documents Android setup only. Its pubspec does register an iOS plugin class, but the README describes no iOS behaviour and does not mention HealthKit; for both stores in Flutter, look at health or health_connector.",
+        a: "Not for health data. Health Connect is an Android platform, and the README documents Android setup only. Its pubspec does register an iOS plugin class, but the README describes no iOS behavior and does not mention HealthKit; for both stores in Flutter, look at health or health_connector.",
       },
       {
         q: "When was flutter_health_connect last updated?",
@@ -1425,10 +1425,10 @@ export const LIBRARY_COMPARISONS: LibraryComparison[] = [
     b: "capgo-capacitor-health",
     title: "capacitor-health vs @capgo/capacitor-health Compared",
     metaDescription:
-      "capacitor-health vs @capgo/capacitor-health: two Capacitor plugins for HealthKit and Health Connect. Licences, release dates and README-documented limits.",
+      "capacitor-health vs @capgo/capacitor-health: two Capacitor plugins for HealthKit and Health Connect. Licenses, release dates and README-documented limits.",
     h1: "capacitor-health vs @capgo/capacitor-health",
     primaryQuery: "capacitor-health vs @capgo/capacitor-health",
-    answer: `Both are Capacitor plugins that cover Apple HealthKit and Health Connect behind one TypeScript API, and both declare iOS and Android native code. The visible differences are the licence (${lib("capacitor-health").license ?? "unstated"} for capacitor-health, ${lib("capgo-capacitor-health").license ?? "unstated"} for @capgo/capacitor-health, per npm), who publishes it (mley/capacitor-health versus Capgo, whose README also advertises Capgo's app-update and plugin-building services), and the limits each README documents, set out below — including Health Connect history, which only one of them requests.`,
+    answer: `Both are Capacitor plugins that cover Apple HealthKit and Health Connect behind one TypeScript API, and both declare iOS and Android native code. The visible differences are the license (${lib("capacitor-health").license ?? "unstated"} for capacitor-health, ${lib("capgo-capacitor-health").license ?? "unstated"} for @capgo/capacitor-health, per npm), who publishes it (mley/capacitor-health versus Capgo, whose README also advertises Capgo's app-update and plugin-building services), and the limits each README documents, set out below — including Health Connect history, which only one of them requests.`,
     points: [
       {
         side: "a",
@@ -1464,7 +1464,7 @@ export const LIBRARY_COMPARISONS: LibraryComparison[] = [
       },
     ],
     choose: [
-      "Your organisation keeps a licence allow-list: compare the licence row first. Different licences carry different obligations, and that decision belongs to whoever owns your licence policy, not to a feature table.",
+      "Your organization keeps a license allow-list: compare the license row first. Different licenses carry different obligations, and that decision belongs to whoever owns your license policy, not to a feature table.",
       "You chart hourly data on Android: capacitor-health's README documents day-only buckets there, so plan to bucket raw records yourself; @capgo/capacitor-health's README lists the types it cannot aggregate at all.",
       "You need Health Connect history beyond the default window: @capgo/capacitor-health documents a requestHistoryAccess option for it, and capacitor-health's README says its queries do not request that permission.",
       "Check that the plugin's peer dependency matches your Capacitor major before either one.",
@@ -1472,7 +1472,7 @@ export const LIBRARY_COMPARISONS: LibraryComparison[] = [
     faqs: [
       {
         q: "Are capacitor-health and @capgo/capacitor-health the same plugin?",
-        a: "No. They are separate packages from separate repositories, mley/capacitor-health and Cap-go/capacitor-health, with different licences in their npm metadata and different documented APIs. capacitor-health's README credits cordova-plugin-health for some of its ideas; @capgo/capacitor-health's README does not describe a shared origin.",
+        a: "No. They are separate packages from separate repositories, mley/capacitor-health and Cap-go/capacitor-health, with different licenses in their npm metadata and different documented APIs. capacitor-health's README credits cordova-plugin-health for some of its ideas; @capgo/capacitor-health's README does not describe a shared origin.",
       },
       {
         q: "Which Capacitor health plugin can read more than 30 days of Health Connect data?",
@@ -1486,7 +1486,7 @@ export const LIBRARY_COMPARISONS: LibraryComparison[] = [
     b: "health-connector",
     title: "Flutter health vs health_connector: Facts Compared",
     metaDescription:
-      "Flutter's health package vs health_connector for HealthKit and Health Connect: release history, SDK floors, licences and what each README documents.",
+      "Flutter's health package vs health_connector for HealthKit and Health Connect: release history, SDK floors, licenses and what each README documents.",
     h1: "Flutter health vs health_connector",
     primaryQuery: "flutter health vs health_connector",
     answer: `Both pub.dev packages read and write Apple HealthKit and Health Connect from Flutter. health has a long release history — first published ${monthYear(lib("flutter-health").firstPublished)}, ${lib("flutter-health").versionCount} versions — and declares Flutter ${req("flutter-health", "flutter") ?? "(unstated)"}. health_connector is newer — first published ${monthYear(lib("health-connector").firstPublished)}, ${lib("health-connector").versionCount} versions — and declares Flutter ${req("health-connector", "flutter") ?? "(unstated)"}, so the deciding fact for many teams is which Flutter version they can run.`,
@@ -1663,7 +1663,7 @@ export const LIBRARY_COMPARISONS: LibraryComparison[] = [
       "Reading only your own account: start with Garmin's Personal API, which is official and uses a key you control; reach for garminconnect when you need something the Personal API does not return. We have not compared the two endpoint lists, since Garmin's Swagger docs were not part of our read.",
       "Running garth today on a saved session: it may keep working until the OAuth1 token expires; move before then rather than after.",
       "Moving to garminconnect: budget one interactive login, with MFA if the account uses it, install curl_cffi alongside it, and treat garmin_tokens.json like a password.",
-      "Serving other people's Garmin data: neither package, and not the Personal API either. Garmin's Connect Developer Program is the route Garmin describes for organisations building for multiple users.",
+      "Serving other people's Garmin data: neither package, and not the Personal API either. Garmin's Connect Developer Program is the route Garmin describes for organizations building for multiple users.",
     ],
     faqs: [
       {
@@ -1680,7 +1680,7 @@ export const LIBRARY_COMPARISONS: LibraryComparison[] = [
       },
       {
         q: "Could garminconnect stop working the way garth did?",
-        a: "Nothing rules it out, since both depend on Garmin's login flow rather than a published contract. garminconnect's README describes a defence: login() tries several strategies, mobile, SSO widget and web portal, each with and without TLS impersonation, and only accepts a token the API accepts. Garmin's Personal API is the route Garmin itself documents, for your own account's data.",
+        a: "Nothing rules it out, since both depend on Garmin's login flow rather than a published contract. garminconnect's README describes a defense: login() tries several strategies, mobile, SSO widget and web portal, each with and without TLS impersonation, and only accepts a token the API accepts. Garmin's Personal API is the route Garmin itself documents, for your own account's data.",
       },
     ],
     verifiedOn: "2026-10-27",

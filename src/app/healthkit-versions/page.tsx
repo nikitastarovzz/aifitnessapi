@@ -284,7 +284,7 @@ export default function HealthKitVersionsPage() {
                   <p className="mt-3 leading-relaxed text-[var(--muted)]">
                     {g.members.length} identifiers — over{" "}
                     {Math.round((g.members.length / HK_IDENTIFIERS.length) * 100)}% of the whole
-                    catalogue — date from this release. They are the baseline every app already
+                    catalog — date from this release. They are the baseline every app already
                     has, so they are collapsed here rather than listed as a table you would scroll
                     past.
                   </p>

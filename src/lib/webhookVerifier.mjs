@@ -244,13 +244,13 @@ export const WEBHOOK_VENDORS = [
       url: "In ping mode (type s3_payload): a pre-signed link to the full data payload. Download it with a GET request.",
       expires_in: "In ping mode: URL validity in seconds (300 = 5 minutes).",
       user: "The Terra user the event belongs to.",
-      data: "The normalised records for data events.",
+      data: "The normalized records for data events.",
     },
     next: (body) => {
       if (body?.type === "s3_payload")
         return [`GET ${typeof body.url === "string" ? body.url : "{url}"} before it expires (expires_in seconds), then process that JSON as a normal webhook payload.`];
       if (body?.type === "healthcheck") return ["Nothing to fetch: a healthcheck is sent periodically to confirm the destination is healthy."];
-      return ["Data events carry the normalised data in the body itself, so there is usually nothing to fetch; in ping mode (type s3_payload) download the url instead."];
+      return ["Data events carry the normalized data in the body itself, so there is usually nothing to fetch; in ping mode (type s3_payload) download the url instead."];
     },
   },
   {
@@ -356,7 +356,7 @@ export const WEBHOOK_VENDORS = [
     respond: [
       "Your endpoint returns HTTP 2xx within a few seconds.",
       "If it does not return HTTP < 400, Withings retries the same notification in 5 cycles over about 5 hours (+10 s, +1 min, +1 h, +4 h), 2 HTTP attempts each.",
-      "After 20 days of unresolved failures the subscription is auto-cancelled; missed notifications are not redelivered — backfill via the Data API using lastupdate.",
+      "After 20 days of unresolved failures the subscription is auto-canceled; missed notifications are not redelivered — backfill via the Data API using lastupdate.",
     ],
     tokenParam: "token",
     fields: {

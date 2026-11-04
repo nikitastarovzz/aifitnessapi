@@ -745,7 +745,7 @@ export function apiIndex(tools: { name: string; description: string }[]): Record
     apiVersion: "v1",
     self: absoluteUrl(API_BASE),
     description:
-      "Read-only JSON over the datasets aifitnessapi.com publishes: every response is a static file built from the CC BY 4.0 downloads at /datasets, and carries its source page, licence and verification date. No key, no writes, no user data.",
+      "Read-only JSON over the datasets aifitnessapi.com publishes: every response is a static file built from the CC BY 4.0 downloads at /datasets, and carries its source page, license and verification date. No key, no writes, no user data.",
     source: absoluteUrl("/datasets"),
     docs: absoluteUrl(DEVELOPERS_PATH),
     openapi: absoluteUrl(OPENAPI_PATH),

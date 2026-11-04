@@ -206,8 +206,8 @@ export default function HeartRateLabPage() {
           <p className="mt-4 leading-relaxed text-[var(--muted)]">
             The RMSSD the lab shows is the root mean square of successive differences between RR intervals, computed
             only within runs of notifications that all carried RR values. It is there so you can see the arithmetic
-            work on your own data, labelled a demo, and it is not a medical or training measurement: there is no
-            artefact or ectopic-beat correction, no minimum recording length and no baseline. What HRV is, and how the
+            work on your own data, labeled a demo, and it is not a medical or training measurement: there is no
+            artifact or ectopic-beat correction, no minimum recording length and no baseline. What HRV is, and how the
             platforms store it, is covered in{" "}
             <Link href="/learn/what-is-hrv" className={linkCls}>
               what is HRV
@@ -264,7 +264,7 @@ export default function HeartRateLabPage() {
             <li>
               Whether the RR values are measured. The bytes say a device sent values in the RR field, not how it got
               them; the lab shows how many distinct values arrived so a suspiciously uniform stream is visible, and
-              leaves the judgement to you.
+              leaves the judgment to you.
             </li>
             <li>
               Accuracy. Nothing here compares a device with a reference; we publish no accuracy figure for any strap

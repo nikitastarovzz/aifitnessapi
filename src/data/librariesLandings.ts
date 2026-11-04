@@ -196,15 +196,15 @@ const capLicences = (() => {
   const by = new Map<string, string[]>();
   for (const s of CAP_BOTH) {
     const l = lib(s);
-    const key = l.license ?? "no licence stated";
+    const key = l.license ?? "no license stated";
     by.set(key, [...(by.get(key) ?? []), l.name]);
   }
   return [...by.entries()];
 })();
 const capLicenceSentence =
   capLicences.length === 1
-    ? `Their npm metadata declares the same licence, ${capLicences[0][0]}, for all three`
-    : `Their npm metadata declares different licences — ${capLicences.map(([lic, names]) => `${lic} for ${listJoin(names)}`).join("; ")} —`;
+    ? `Their npm metadata declares the same license, ${capLicences[0][0]}, for all three`
+    : `Their npm metadata declares different licenses — ${capLicences.map(([lic, names]) => `${lic} for ${listJoin(names)}`).join("; ")} —`;
 
 // ── Flutter ───────────────────────────────────────────────────────────────
 
@@ -314,7 +314,7 @@ export const LIBRARY_LANDINGS: LibraryLanding[] = [
     label: "Capacitor and Cordova",
     title: "Capacitor and Cordova Health Plugins for iOS and Android",
     metaDescription:
-      "Capacitor and Cordova plugins for Apple HealthKit and Health Connect: which cover both stores, licences, Health Connect limits, versions and release dates.",
+      "Capacitor and Cordova plugins for Apple HealthKit and Health Connect: which cover both stores, licenses, Health Connect limits, versions and release dates.",
     h1: "Capacitor and Cordova health plugins",
     primaryQuery: "capacitor health plugin",
     answer: `Three of the ${CAP.length} Capacitor and Cordova plugins this site tracks cover both Apple HealthKit and Android Health Connect behind one API: capacitor-health and @capgo/capacitor-health for Capacitor, and cordova-plugin-health, a Cordova plugin whose README also documents a manual setup for Capacitor. ${capLicenceSentence} and their READMEs document different Health Connect limits: @capgo/capacitor-health has an option to request history older than about 30 days, which capacitor-health's README says its queries do not request. @perfood/capacitor-healthkit is iOS-only, and its README says its main branch no longer accepts pull requests while a v2 is published as an alpha.`,
@@ -324,7 +324,7 @@ export const LIBRARY_LANDINGS: LibraryLanding[] = [
         slugs: ["capacitor-health", "capgo-capacitor-health"],
         compare: "capacitor-health-vs-capgo-capacitor-health",
         points: [
-          "Your organisation keeps a licence allow-list: compare the Licence column above first. Different licences carry different obligations, and that decision belongs to whoever owns your licence policy, not to a feature table.",
+          "Your organization keeps a license allow-list: compare the License column above first. Different licenses carry different obligations, and that decision belongs to whoever owns your license policy, not to a feature table.",
           ...standalonePoints("capacitor-health-vs-capgo-capacitor-health"),
         ],
       },
@@ -357,8 +357,8 @@ export const LIBRARY_LANDINGS: LibraryLanding[] = [
         a: "It depends on the plugin. cordova-plugin-health's README says it will not add permissions for the data types you need, so each one is declared by hand. @capgo/capacitor-health's README says its manifest already declares the permissions for the basic data types. capacitor-health's README warns that Health Connect shows every declared permission on the consent screen, so declare only what you request.",
       },
       {
-        q: "Which licences do the Capacitor and Cordova health plugins use?",
-        a: `As each package's npm metadata states it: ${CAP.map((l) => `${l.name} ${l.license ?? "states none"}`).join(", ")}. Different licences carry different obligations, and that decision belongs to whoever owns your licence policy.`,
+        q: "Which licenses do the Capacitor and Cordova health plugins use?",
+        a: `As each package's npm metadata states it: ${CAP.map((l) => `${l.name} ${l.license ?? "states none"}`).join(", ")}. Different licenses carry different obligations, and that decision belongs to whoever owns your license policy.`,
       },
     ],
   },
@@ -423,10 +423,10 @@ export const LIBRARY_LANDINGS: LibraryLanding[] = [
     label: "Python",
     title: "Python Libraries for Fitness APIs: Garmin, Strava, Oura",
     metaDescription:
-      "Python clients for the Garmin Connect, Strava, Oura, Fitbit and Withings APIs: PyPI versions, release dates, licences, how each signs in, README caveats.",
+      "Python clients for the Garmin Connect, Strava, Oura, Fitbit and Withings APIs: PyPI versions, release dates, licenses, how each signs in, README caveats.",
     h1: "Python libraries for fitness APIs",
     primaryQuery: "fitness api python",
-    answer: `The ${PY.length} Python packages this site tracks are clients for fitness vendors' web APIs — ${pyApiList} — for scripts, back ends and personal data exports; none of them reads Apple HealthKit or Android Health Connect, which apps read on the device. For Garmin Connect, garminconnect has handled sign-in itself since version 0.3.0, and garth, which it used before, says in its README that it is deprecated because Garmin changed its auth flow and new logins no longer work. oura-ring documents the OAuth2 flow new Oura integrations need, and python-fitbit's latest release dates from ${monthYear(fitbit.latestPublished)}, for the Fitbit Web API that Google is retiring in favour of the Google Health API.`,
+    answer: `The ${PY.length} Python packages this site tracks are clients for fitness vendors' web APIs — ${pyApiList} — for scripts, back ends and personal data exports; none of them reads Apple HealthKit or Android Health Connect, which apps read on the device. For Garmin Connect, garminconnect has handled sign-in itself since version 0.3.0, and garth, which it used before, says in its README that it is deprecated because Garmin changed its auth flow and new logins no longer work. oura-ring documents the OAuth2 flow new Oura integrations need, and python-fitbit's latest release dates from ${monthYear(fitbit.latestPublished)}, for the Fitbit Web API that Google is retiring in favor of the Google Health API.`,
     choose: [
       {
         heading: "Garmin Connect",
@@ -485,7 +485,7 @@ export const LIBRARY_LANDINGS: LibraryLanding[] = [
       {
         text: FITBIT_TURN_OFF
           ? `Google gives ${FITBIT_TURN_OFF.dateText} as the Fitbit Web API's turn-off date, after which it no longer functions or syncs data (Google's Google Health API documentation, read ${GHAPI_FETCHED_ON}). python-fitbit was written for that API.`
-          : "Google is retiring the Fitbit Web API, the API python-fitbit was written for, in favour of the Google Health API.",
+          : "Google is retiring the Fitbit Web API, the API python-fitbit was written for, in favor of the Google Health API.",
         links: [
           { href: "/fitbit-api-shutdown", label: "Fitbit API shutdown: what is confirmed" },
           { href: "/google-health-api", label: "Google Health API reference" },

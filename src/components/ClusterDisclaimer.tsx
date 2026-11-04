@@ -51,7 +51,7 @@ export default function ClusterDisclaimer({
         confident output that can still be wrong — and when the output is exercise
         or nutrition guidance, being wrong has consequences. Whatever your app
         tells a user is your responsibility, not the model vendor&rsquo;s. Model
-        behaviour, pricing, and platform AI policies change often; verify against
+        behavior, pricing, and platform AI policies change often; verify against
         current official documentation, and design for a qualified human in the
         loop wherever the advice could cause harm.
       </p>

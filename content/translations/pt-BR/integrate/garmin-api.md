@@ -2,7 +2,7 @@
 path: "/integrate/garmin-api"
 translatedOn: "2026-10-27"
 sourceUpdated: "2026-10-22"
-sourceHash: "eb5d75d308115ab6"
+sourceHash: "1fc14e9a3de9c61b"
 metaTitle: "API da Garmin (2026): aprovação, cinco APIs e OAuth 2.0"
 metaDescription: >-
   A API da Garmin é o Connect Developer Program: peça acesso, depois Starter ou Enterprise Access, cinco APIs, OAuth 2.0 e entrega por push ou ping/pull.

@@ -47,7 +47,7 @@ export default function AboutPage() {
           <h2>How the pages are checked</h2>
           <p>
             Factual claims come from vendor documentation fetched while researching that page, and
-            a claim we could not verify is labelled as such rather than filled in. Before anything
+            a claim we could not verify is labeled as such rather than filled in. Before anything
             deploys, the build runs {GATES.length} automated refusals over the rendered site —
             broken anchors, truncated titles, undisclosed first-party links, and more — and every
             one is listed, with what it refuses to ship, at{" "}

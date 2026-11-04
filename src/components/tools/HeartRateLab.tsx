@@ -562,7 +562,7 @@ export default function HeartRateLab({ layout, bsl }: { layout: HrmLayout; bsl: 
             <p className="mt-2 text-xs leading-relaxed text-[var(--muted)]">
               {snapshot.hrv ? `${snapshot.hrv.differences} successive differences, ` : ""}
               {snapshot.rrCount} RR values, {snapshot.distinctRr} distinct. Root mean square of the differences between
-              consecutive RR intervals, never taken across a notification without RR values or a reconnect. No artefact
+              consecutive RR intervals, never taken across a notification without RR values or a reconnect. No artifact
               or ectopic-beat correction, no minimum duration, no baseline: a number to see the arithmetic with, not one to
               judge recovery by.
             </p>
@@ -678,7 +678,7 @@ function PacketView({ d, bytes, layout }: { d: HrmDecoded; bytes: Uint8Array; la
   };
   return (
     <div className="mt-4">
-      <div className="flex flex-wrap gap-1.5" aria-label="Bytes, coloured by field">
+      <div className="flex flex-wrap gap-1.5" aria-label="Bytes, colored by field">
         {Array.from(bytes).map((b, i) => {
           const s = kindOf(i);
           return (

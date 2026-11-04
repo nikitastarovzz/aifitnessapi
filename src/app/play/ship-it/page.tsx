@@ -240,7 +240,7 @@ export default function ShipItPage() {
             <Link href="/migrate/google-fit-to-health-connect" className={linkCls}>
               Google Fit to Health Connect
             </Link>
-            , or the shutdown centres for{" "}
+            , or the shutdown centers for{" "}
             <Link href="/fitbit-api-shutdown" className={linkCls}>
               Fitbit
             </Link>{" "}

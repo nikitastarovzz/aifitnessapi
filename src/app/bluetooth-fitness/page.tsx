@@ -463,7 +463,7 @@ export default function BluetoothFitnessHub() {
             </a>
             , committed {BT_GATT_SOURCE.commitDate}, as one archive of that commit, by{" "}
             <Code>scripts/fetch-bluetooth-gatt.mjs</Code>. {BT_GATT_TOTALS.filesRead} files were read. The repository has no
-            README or licence file; every one of those files opens with the same notice, reproduced below. The SIG’s text
+            README or license file; every one of those files opens with the same notice, reproduced below. The SIG’s text
             is quoted on these pages with that attribution and is not relicensed by this site, and the open dataset built
             from this reference carries the structural facts, not the SIG’s descriptions. {site.name} is not affiliated
             with Bluetooth SIG, Inc., which owns the Bluetooth word mark and logos; the SIG’s files remain the authority.

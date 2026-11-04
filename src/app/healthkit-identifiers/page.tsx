@@ -179,7 +179,7 @@ const FAQS = [
   },
   {
     q: "Are there HealthKit types Apple ships without any documentation?",
-    a: `Yes. As of our ${HK_FETCHED_ON} read of Apple's documentation, ${undocumented.length} identifiers — ${UNDOC_FAMILIES} — carry neither an abstract nor a discussion: ${UNDOC_BY_VERSION}. The identifiers are real and usable, but Apple's own reference says nothing about what they contain or how they are calculated, so treat any behaviour you observe as unverified until Apple documents it.`,
+    a: `Yes. As of our ${HK_FETCHED_ON} read of Apple's documentation, ${undocumented.length} identifiers — ${UNDOC_FAMILIES} — carry neither an abstract nor a discussion: ${UNDOC_BY_VERSION}. The identifiers are real and usable, but Apple's own reference says nothing about what they contain or how they are calculated, so treat any behavior you observe as unverified until Apple documents it.`,
   },
 ];
 
@@ -393,7 +393,7 @@ export default function HealthKitIdentifiersPage() {
             Apple names a unit family for {QUANTITY.filter((r) => r.unitFamily).length} of the{" "}
             {QUANTITY.length} quantity types — the only family that carries units at all. It matters because{" "}
             <code className="font-mono text-sm">HKQuantity</code> will happily convert between any two
-            compatible units and throw only when they are incompatible — so a distance read in metres
+            compatible units and throw only when they are incompatible — so a distance read in meters
             and rendered as miles is a silent bug, not a crash.
           </p>
           <ul className="mt-4 flex flex-wrap gap-2">
@@ -467,7 +467,7 @@ export default function HealthKitIdentifiersPage() {
             </Link>{" "}
             maps the metrics we could verify on both platforms, including the ones that look
             equivalent and are not — Apple stores HRV as SDNN while Health Connect stores RMSSD, and
-            those are different calculations that must not be normalised into one field.
+            those are different calculations that must not be normalized into one field.
             {RMSSD_UNDESCRIBED && (
               <>
                 {" "}

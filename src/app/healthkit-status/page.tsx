@@ -302,7 +302,7 @@ export default function HealthKitStatusPage() {
 
         <section id="table" data-hk-status="" className="mt-14">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">
-            The four status edges of the catalogue
+            The four status edges of the catalog
           </h2>
           <p className="mt-3 leading-relaxed text-[var(--muted)]">
             Every count below is read from Apple&rsquo;s documentation for the{" "}

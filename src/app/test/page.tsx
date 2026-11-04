@@ -139,7 +139,7 @@ export default function TestPillar() {
 
         <div className="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-a:text-brand-600 hover:prose-a:text-brand-500">
           <p>
-            Three neighbouring clusters, kept deliberately distinct.{" "}
+            Three neighboring clusters, kept deliberately distinct.{" "}
             <Link href="/fix">Troubleshooting</Link> is <em>it is broken right now</em>.{" "}
             <Link href="/architecture">Architecture</Link> is <em>a design that prevents a class of
             breakage</em>. This cluster is <em>the assertion that proves the design holds</em>. Each

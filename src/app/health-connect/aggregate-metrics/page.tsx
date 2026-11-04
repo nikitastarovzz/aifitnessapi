@@ -89,7 +89,7 @@ export default function HcAggregatesPage() {
       q: "Which Health Connect records have no aggregate metrics?",
       a: `As read on ${HC_FETCHED_ON}, Google's Jetpack reference defines no AggregateMetric constants on ${without.length} of the ${T.records} record classes: ${without
         .map((r) => r.className)
-        .join(", ")}. Read those with readRecords and summarise them yourself.`,
+        .join(", ")}. Read those with readRecords and summarize them yourself.`,
     },
     {
       q: "What value types do Health Connect aggregate metrics return?",

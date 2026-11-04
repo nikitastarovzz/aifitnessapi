@@ -33,7 +33,7 @@ const kb = (bytes: number) => `${Math.max(1, Math.round(bytes / 1024))} KB`;
 /** Reference hubs that have no llms-full section of their own. Each line is
  *  the opening of what /llms-index.txt says about the same hub. */
 const REFERENCE_HUBS: { label: string; path: string; text: string }[] = [
-  { label: "HealthKit data types by group", path: HK_BASE, text: "Apple's HealthKit identifiers organised the way Apple groups them, one page per group." },
+  { label: "HealthKit data types by group", path: HK_BASE, text: "Apple's HealthKit identifiers organized the way Apple groups them, one page per group." },
   { label: "Deprecated and beta HealthKit types", path: "/healthkit-status", text: "The identifiers Apple marks deprecated, beta or undocumented, and what each status means for shipping code." },
   { label: "Every HKCategoryValue enum", path: "/healthkit-category-values", text: "The value enum that decodes each HealthKit category sample." },
   { label: "Every HKUnit HealthKit uses", path: "/healthkit-units", text: "The units and unit families quantity samples are expressed in, and which identifiers use each." },
@@ -82,7 +82,7 @@ export function GET() {
     `- Hosted MCP server for AI assistants (Streamable HTTP, stateless, read-only tools): ${absoluteUrl("/mcp")}`,
     `- Per-section RSS: ${absoluteUrl("/feeds/<cluster>.xml")} (e.g. ${absoluteUrl("/feeds/devices.xml")}); blog as JSON Feed: ${absoluteUrl("/feed.json")}`,
     "- Each page states the one question it owns; FAQ answers are individually addressable at `#faq-1`, `#faq-2`, …",
-    "- Sourcing: claims trace to a primary source checked on the review date, and unverifiable claims are labelled as such rather than rounded up.",
+    "- Sourcing: claims trace to a primary source checked on the review date, and unverifiable claims are labeled as such rather than rounded up.",
     "- Funding: this site is funded by KinesteX, an AI motion SDK. Pages covering KinesteX carry a disclosure and are flagged `first_party` in answers.json.",
     "",
     // The pages people reach from Google, ranked by the rule in

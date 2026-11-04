@@ -94,7 +94,7 @@ export default function ApiCompare({ items }: { items: CompareItem[] }) {
     {
       label: "Integration effort",
       get: (i) => i.effort,
-      note: "our rough judgement, not a vendor fact",
+      note: "our rough judgment, not a vendor fact",
     },
     { label: "Pages here covering it", get: (i) => `${i.pages}` },
   ];

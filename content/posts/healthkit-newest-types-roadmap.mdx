@@ -12,7 +12,7 @@ faqs:
   - q: "Are any HealthKit identifiers still in beta?"
     a: "Not as of October 2, 2026, when this site last read Apple's documentation. On August 28, 2026 two were: bleedingAfterMenopause and menopausalState, both introduced in iOS 27.0 and then the only identifiers in the set marked beta on any platform. Neither is marked beta now. Check the flag on Apple's page at the moment you build rather than trusting a cached status."
   - q: "Why do the newest HealthKit types have so little documentation?"
-    a: "As of October 2, 2026, Apple lists five identifiers with no abstract at all, and every one of them arrived in iOS 18.0 or later, the newest being iOS 27.0's heartRateVariabilityRMSSD. Four quantity types state no aggregation style, and they are the same recent additions. Median discussion length across the catalogue is fifteen words, so thin prose is normal, but the newest types are the thinnest. Test on device."
+    a: "As of October 2, 2026, Apple lists five identifiers with no abstract at all, and every one of them arrived in iOS 18.0 or later, the newest being iOS 27.0's heartRateVariabilityRMSSD. Four quantity types state no aggregation style, and they are the same recent additions. Median discussion length across the catalog is fifteen words, so thin prose is normal, but the newest types are the thinnest. Test on device."
 ---
 
 Apple's documentation, read for this site's HealthKit dataset on 2026-08-28,
@@ -45,7 +45,7 @@ Four of the 240 identifiers are deprecated in Apple's availability data:
 `audioExposureEvent`, each deprecated in iOS 14.0 or earlier. None has been
 removed, and every one is available on all six platforms Apple lists: iOS,
 iPadOS, Mac Catalyst, macOS, visionOS and watchOS. Apple adds and does not
-prune; a deprecated identifier stays in the catalogue beside its replacement.
+prune; a deprecated identifier stays in the catalog beside its replacement.
 Each new identifier is a permanent commitment to a storage shape, which is
 exactly why the additions are worth reading as a roadmap.
 
@@ -93,7 +93,7 @@ iOS 16 did for the run: `cyclingCadence`, `cyclingSpeed`, `cyclingPower` and
 `cyclingFunctionalThresholdPower`.
 
 FTP is the interesting one. It is not a raw sensor reading, it is a training
-construct — the number a cyclist organises a whole training plan around. Apple
+construct — the number a cyclist organizes a whole training plan around. Apple
 adding a first-class type for it means the platform is willing to hold derived
 training state, not just samples. If you are reading power from a
 [crank or trainer over BLE](/devices/cycling-sensors-power-cadence), there is
@@ -114,7 +114,7 @@ and `paddleSportsSpeed`, `distanceCrossCountrySkiing` and
 The rest are the ones to pay attention to: `workoutEffortScore`,
 `estimatedWorkoutEffortScore` and `appleSleepingBreathingDisturbances`.
 
-Those are the 3 quantity types in the entire catalogue for which Apple states no
+Those are the 3 quantity types in the entire catalog for which Apple states no
 aggregation style — is a workout effort score something you sum over a week or
 something you average? The documentation does not say. Apple resolves a unit
 family for 116 of 120 quantity types, and the exceptions are `physicalEffort`
@@ -128,14 +128,14 @@ devices rather than in reading time.
 An effort score, and separately an *estimated* effort score the system produces
 on your behalf, is a platform-level answer to the question every training app
 solves privately: how hard was that. If you have built your own
-[RPE](/learn/what-is-rpe) capture, you now have a system-provided neighbour
+[RPE](/learn/what-is-rpe) capture, you now have a system-provided neighbor
 to reconcile against, and no prose from Apple telling you how it behaves. You
 will be reading the enum and [testing on device](/test/healthkit-integration).
 
 ## iOS 26.2 and iOS 27: hypertension, and the only two beta types
 
 iOS 26.2 added exactly one identifier: `hypertensionEvent`. It is a category
-type, and it is one of only two category types in the catalogue with no value
+type, and it is one of only two category types in the catalog with no value
 enum resolved in Apple's documentation. It also has no abstract. A single event
 type, shipped alone, with the semantics left to the reader — that is what an
 early platform bet looks like before the feature it supports is announced. If

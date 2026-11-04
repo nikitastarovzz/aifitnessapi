@@ -61,7 +61,7 @@ export default function DigestIndex() {
           What changed in the fitness and health API ecosystem each month, and which pages we
           published or re-checked. Each issue is generated from the changes tracker and from
           the review dates on the pages themselves, which means the archive cannot describe an
-          issue that never happened and cannot drift from the site it summarises. Subscribers
+          issue that never happened and cannot drift from the site it summarizes. Subscribers
           get the same document by email.
         </AnswerCapsule>
 

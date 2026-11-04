@@ -84,7 +84,7 @@ const FAQS = [
   },
   {
     q: "Where should a team start if the app already shipped without any of this?",
-    a: "Start with the screen somebody spends the workout on, not the settings screen. Turn on the screen reader and try to complete one set without looking: that single exercise surfaces unlabelled controls, a counter that either says nothing or will not stop talking, and buttons too small to hit while moving. Then run the platform's own tooling over the same screen — Apple's Accessibility Inspector audit, Android's Accessibility Scanner — because those catch the unlabelled and low-contrast elements faster than you can. What the tools cannot tell you is whether the flow works while somebody is actually exercising, which is why the testing page ends with people rather than tools.",
+    a: "Start with the screen somebody spends the workout on, not the settings screen. Turn on the screen reader and try to complete one set without looking: that single exercise surfaces unlabeled controls, a counter that either says nothing or will not stop talking, and buttons too small to hit while moving. Then run the platform's own tooling over the same screen — Apple's Accessibility Inspector audit, Android's Accessibility Scanner — because those catch the unlabeled and low-contrast elements faster than you can. What the tools cannot tell you is whether the flow works while somebody is actually exercising, which is why the testing page ends with people rather than tools.",
   },
 ];
 

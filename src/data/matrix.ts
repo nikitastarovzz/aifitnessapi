@@ -112,7 +112,7 @@ export const ROWS: Row[] = [
     apple: "HKQuantityTypeIdentifier.activeEnergyBurned, .basalEnergyBurned",
     android: "ActiveCaloriesBurnedRecord, TotalCaloriesBurnedRecord",
     watchOut:
-      "Modelled estimates, not measurements. Note the asymmetry: Apple splits active/basal, Android offers active and total — don't add active to total.",
+      "Modeled estimates, not measurements. Note the asymmetry: Apple splits active/basal, Android offers active and total — don't add active to total.",
   },
   {
     id: "body-composition",
