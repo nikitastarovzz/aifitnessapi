@@ -2960,5 +2960,263 @@ export const alternativesEntries: ClusterEntry[] =
           "note": "Open Wearables provider registration (snapshot)"
         }
       ]
-    }
+    },
+  {
+    "slug": "spike-api-alternatives",
+    "primaryQuery": "spike api alternatives",
+    "h1": "The Best Spike API (spikeapi.com) Alternatives (2026)",
+    "metaTitle": "Spike API Alternatives (2026): 6 Options With Prices",
+    "metaDescription": "Spike (spikeapi.com) alternatives as of November 2026: Terra, ROOK, Junction, Sahha, Thryve and Open Wearables, with prices and when to stay with Spike.",
+    "updated": "2026-11-04",
+    "answer": "The main Spike (spikeapi.com) alternatives, from the vendors' own pages on November 4, 2026, are Terra for credit-based pricing from $399 a month billed annually and delivery into your own storage, ROOK for a published active-user price sheet from $399 a month for 750 users, Junction for a flat $300 a month up to 500 users and US lab testing, Sahha for phone-first data and scores from $299 a month billed annually, Thryve for hosting in Germany, and Open Wearables for MIT-licensed software you run yourself. Teams usually look because Spike publishes only a starting price, $450 a month for its Sandbox plan, sells every plan through a demo, and carries a banner announcing its acquisition by Raintree Systems. Stay with Spike if you want a dedicated implementation engineer, food-photo nutrition, or medical IoT, lab-report and EMR data from one vendor.",
+    "body": "Spike is a health-data aggregator that reaches past wearables: its homepage says you can \"Connect to 500+ wearables & IoT sensors, extract nutrition insights from food photos, and add lab report data via single API.\" Teams that look elsewhere usually want a price they can read before a call, a different billing unit, or certainty about the vendor's future. Everything below is from the vendors' own pages as we read them on November 4, 2026. For head-to-heads, see [Terra vs Spike](/compare/terra-vs-spike) and [ROOK vs Spike](/compare/rook-vs-spike).\n\n## First, what Spike is and what it costs\n\n- **Scope.** Wearables, medical IoT devices (\"glucose monitors, ECGs, blood pressure cuffs, and more\"), nutrition from photos (\"Convert any food image into complete nutritional data\"), lab reports, EMR and EHR connections, and voice AI agents for clinics.\n- **Price.** Two product lines, Wearables & IoT API and Nutrition Scanner AI, each with a Sandbox plan that \"Starts from $450 /month\" and a custom Enterprise plan. The wearables Sandbox lists \"Access 40+ providers and 500+ devices via single SDK\", medical IoT integrations, historic data retrieval and event deduplication. Spike calls its pricing \"Usage-driven, transparent, and flexible\" but does not itemize how the bill grows.\n- **Help.** \"Every organization gets a dedicated implementation engineer from the sandbox level to help with setup and optimization.\"\n- **Enterprise.** Adds bespoke MSAs and SLAs, a dedicated account manager, data \"instantly consumable by LLM agents (MCP-compatible)\", and Spike Analytics, its \"proprietary Sleep, Stress and Activity Scores\".\n\nEvery page on this site about Spike is collected in the [Spike API overview](/apis/spike).\n\n## Why teams look for a Spike alternative\n\n- **A price you can only start from.** $450 a month is a floor; the rate per user or per connection is not published, and every plan's button is \"Book a demo\".\n- **The acquisition.** Spike's integrations page carries the banner \"Raintree Systems Acquires Spike Technologies\". We found no statement on Spike's pages about what changes for API customers, which is a question for a contract review rather than a reason to panic.\n- **Breadth you will not use.** If you only need wearable data, a vendor priced for wearables alone may cost less.\n- **A billing unit you can forecast.** Some alternatives below publish per-user or flat prices.\n\n## The alternatives\n\n### Terra (tryterra.co)\n\n**What it is.** The best-known aggregator, billed in credits: subscriptions \"start from $399 per month billed annually, or $499 per month billed monthly\", with 100,000 Unified API credits a month; each active authentication, one connected source for one user, uses 200 credits a month. Its plan lists \"Access to 9 destinations\", such as AWS S3, Google Cloud Storage and MongoDB, and its homepage says you can \"Order blood and DNA tests for your users through Terra API\".\n\n**Best for.** Delivery straight into your own storage, and lab or DNA test ordering.\n\n**Trade-off.** The bill counts each source a user connects, add-ons such as streaming are billed separately, and the signed BAA is an Enterprise item. See [Terra API pricing](/pricing/terra-api-pricing).\n\n### ROOK (tryrook.io)\n\n**What it is.** The closest match to Spike's medical scope with a published price sheet: Core $399 a month for up to 750 active users, Core+ $999 for up to 5,000, Business $1,999 for up to 15,000. The Wearable API and the Medical Device API are included on every plan; the Lab Data API is billed by files processed, from $249 a month for up to 300 files.\n\n**Best for.** Medical devices and lab reports with a price you can read off one table.\n\n**Trade-off.** \"ROOK's standard contract term is 12 months\", add-ons cost extra on Core, and its EHR/EMR API is still a waitlist item, where Spike markets EMR and EHR connections today. See [ROOK API pricing](/pricing/rook-api-pricing).\n\n### Junction (formerly Vital)\n\n**What it is.** Wearables plus US lab testing. Launch is \"$300 /mo\", billed monthly, for 1 to 500 connected users and 300+ devices; Enterprise, billed annually, adds the \"Lab testing API and ETL pipelines\".\n\n**Best for.** The simplest flat bill at small user counts, and lab tests ordered across the US.\n\n**Trade-off.** Past 500 users, for labs and for the signed BAA you need a custom Enterprise quote. See [Junction API pricing](/pricing/junction-api-pricing).\n\n### Sahha (sahha.ai)\n\n**What it is.** Phone-first health data with ready-made scores. Starter is $299 a month billed annually with \"1,000 users included, then $0.40/user\"; Pro is $1,499 billed annually with 10,000 users and the BAA. \"Every plan starts with a 30-day free trial.\"\n\n**Best for.** Users without a wearable, and products that want scores rather than raw data.\n\n**Trade-off.** Starter keeps 30 days of data, and the BAA starts at Pro. See [Sahha API pricing](/pricing/sahha-api-pricing).\n\n### Thryve (thryve.health)\n\n**What it is.** A European aggregator whose pricing page says \"All data processed and stored by Thryve is hosted in Germany.\" Start Up is 499 euros a month for up to 500 users, with \"Additional users billed at €0.50 each\", and a 14-day free trial.\n\n**Best for.** EU buyers whose data-protection review wants German hosting.\n\n**Trade-off.** Its docs say that \"When no shared oAuth-client is available, you must bring your own oAuth-client\", so some providers need your own developer registration. See [Thryve API pricing](/pricing/thryve-api-pricing).\n\n### Open Wearables (openwearables.io)\n\n**What it is.** Open-source software you run in your own cloud. Core is \"$0 Forever\", self-hosted, \"Open source, MIT license\"; Pro, with health scores and medical-grade integrations, is \"From $999 a month, per deployment\".\n\n**Best for.** Health data that never leaves your infrastructure, with no per-user fee.\n\n**Trade-off.** You register with each provider yourself; its provider table says, for example, \"You must apply for Garmin Developer Program\". See [Terra vs Open Wearables](/compare/terra-vs-open-wearables).\n\n| Alternative | Best for | Entry price (Nov 4, 2026) | Watch out |\n| --- | --- | --- | --- |\n| Terra | Delivery into your own storage; lab and DNA ordering | $399 a month billed annually, $499 monthly | Billed per connected source; BAA on Enterprise |\n| ROOK | Medical devices and lab reports on a published price sheet | $399 a month, 750 active users | 12-month standard contract; EHR/EMR on a waitlist |\n| Junction | A flat bill up to 500 users; US labs | $300 a month, billed monthly | Labs, BAA and more users need Enterprise |\n| Sahha | Users without wearables; ready-made scores | $299 a month billed annually, 1,000 users | 30-day retention on Starter |\n| Thryve | Hosting in Germany | 499 euros a month, 500 users | Own OAuth client for some providers |\n| Open Wearables | Data that stays on your servers | $0 to self-host | You hold every provider registration |\n\n## Which should you pick?\n\n- **You want to see the bill before a sales call** → ROOK or Sahha for per-user price sheets, Junction for a flat fee up to 500 users.\n- **You want data pushed into your warehouse or bucket** → Terra's destinations.\n- **You need lab tests ordered** → Junction for the US, Terra for blood and DNA tests.\n- **Medical-device readings and lab reports** → ROOK.\n- **EU hosting** → Thryve.\n- **Data must stay on your servers** → Open Wearables.\n\n[Aggregator pricing](/pricing/health-data-aggregator-pricing) runs the same user counts through each vendor's price sheet.\n\n## When to stay with Spike\n\n- **You want a person on your integration.** Every Spike customer gets a dedicated implementation engineer from the Sandbox level. Among the alternatives' published plans, assisted onboarding appears on ROOK's Business plan at $1,999 a month and on Terra's and Junction's custom Enterprise plans.\n- **You log food from photos.** Spike sells a Nutrition Scanner AI line with \"Real-time calorie and nutrient data analysis from pictures\"; we found no food-photo product on the six alternatives' pricing pages.\n- **You need medical IoT, lab reports and EMR data from one vendor.** Spike markets all three alongside wearables.\n- **You want data shaped for LLM agents.** Spike's Enterprise plan lists MCP-compatible data, and its pricing page announces a Spike MCP Server.\n\n## Evaluating Spike before you switch\n\nIf you are evaluating Spike rather than leaving it, check four things in the demo:\n\n- **The price at your volume.** Ask for the rate past the $450 Sandbox floor in writing, per user or per connection, and what moves you to Enterprise.\n- **The acquisition.** Ask what the Raintree Systems acquisition changes for API customers, and whether contract terms carry over.\n- **Authentication.** Spike's docs describe \"Secure authentication using HMAC signatures\"; confirm how your backend signs requests and verifies what Spike sends.\n- **Your providers.** Its integrations page lists, among others, Apple HealthKit, Health Connect, Garmin, Oura, WHOOP, Polar, Suunto, COROS and Dexcom; check each source your users have, and whether any needs your own developer account.\n\n## Is switching easy?\n\nIt is a re-integration, not a config change. Expect a new app registration with the new vendor and with any provider that needs your own credentials, field mapping to a different schema, and every existing user reconnecting through the new vendor's flow. Food-photo nutrition has no equivalent in the aggregators above, so that feature needs a separate vendor. The [guide to migrating between health-data aggregators](/migrate/between-health-data-aggregators) covers the order of work.\n\n## What we could not verify\n\n- Spike's rate past the $450 Sandbox floor, and what Enterprise costs.\n- What the Raintree Systems acquisition changes for Spike's API customers.\n- Which of Spike's providers require your own developer account; the pages we read do not say.\n\n*Prices, plans and coverage above are from November 4, 2026 and change often; re-check each vendor's live pricing and integrations pages before you sign.*",
+    "faqs": [
+      {
+        "q": "Why do teams look for a Spike API alternative?",
+        "a": "Mostly price visibility and vendor certainty. As of November 4, 2026, Spike's pricing page shows only a Sandbox plan that starts from $450 a month and a custom Enterprise plan, both bought through a demo, and its integrations page announces that Raintree Systems acquires Spike Technologies. Teams that only need wearable data may also find a wearables-only vendor cheaper."
+      },
+      {
+        "q": "Which Spike alternative publishes a full price sheet?",
+        "a": "ROOK and Sahha publish per-user tiers and Junction a flat entry plan. As of November 4, 2026, ROOK's Core is $399 a month for up to 750 active users, Sahha's Starter $299 a month billed annually with 1,000 users included, and Junction's Launch $300 a month for up to 500 connected users. Terra publishes credits per connected source, starting from $399 a month billed annually."
+      },
+      {
+        "q": "Is Spike's acquisition by Raintree a reason to switch?",
+        "a": "Not on its own. Spike's integrations page, read on November 4, 2026, carries the banner Raintree Systems Acquires Spike Technologies, and we found nothing on Spike's pages about changes for API customers. Ask Spike what the acquisition changes for your contract and roadmap, and keep an exit plan, before deciding."
+      },
+      {
+        "q": "When should I stay with Spike instead of switching?",
+        "a": "When you use what only Spike sells together. As of November 4, 2026, Spike gives every customer a dedicated implementation engineer from its Sandbox plan, sells food-photo nutrition through its Nutrition Scanner AI, and markets medical IoT, lab-report and EMR or EHR data beside wearables. We found no food-photo product on the alternatives' pricing pages."
+      }
+    ],
+    "related": [
+      {
+        "href": "/compare/terra-vs-spike",
+        "label": "Terra vs Spike"
+      },
+      {
+        "href": "/compare/rook-vs-spike",
+        "label": "ROOK vs Spike"
+      },
+      {
+        "href": "/alternatives/rook-alternatives",
+        "label": "ROOK alternatives"
+      },
+      {
+        "href": "/alternatives/terra-alternatives",
+        "label": "Terra alternatives"
+      },
+      {
+        "href": "/pricing/health-data-aggregator-pricing",
+        "label": "Aggregator pricing compared"
+      },
+      {
+        "href": "/alternatives",
+        "label": "All fitness & health API alternatives"
+      }
+    ],
+    "cta": {
+      "pitch": "We re-read aggregator price sheets, coverage lists and ownership news as they change. Subscribe and pick your next vendor on current facts."
+    },
+    "sources": [
+      {
+        "url": "https://www.spikeapi.com/",
+        "checked": "2026-11-04",
+        "note": "Spike scope and implementation engineer (snapshot)"
+      },
+      {
+        "url": "https://www.spikeapi.com/pricing",
+        "checked": "2026-11-04",
+        "note": "Sandbox and Enterprise plans, both product lines (snapshot)"
+      },
+      {
+        "url": "https://www.spikeapi.com/integrations",
+        "checked": "2026-11-04",
+        "note": "provider list, acquisition banner (snapshot)"
+      },
+      {
+        "url": "https://docs.spikeapi.com/overview",
+        "checked": "2026-11-04",
+        "note": "HMAC authentication (snapshot)"
+      },
+      {
+        "url": "https://tryterra.co/pricing",
+        "checked": "2026-11-04",
+        "note": "Terra plans and destinations (snapshot)"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/pricing",
+        "checked": "2026-11-04",
+        "note": "Terra credits (snapshot)"
+      },
+      {
+        "url": "https://tryterra.co/",
+        "checked": "2026-11-04",
+        "note": "Terra blood and DNA tests (snapshot)"
+      },
+      {
+        "url": "https://tryrook.io/pricing/",
+        "checked": "2026-11-04",
+        "note": "ROOK plans, Lab Data API, contract (snapshot)"
+      },
+      {
+        "url": "https://www.junction.com/pricing",
+        "checked": "2026-11-04",
+        "note": "Junction Launch and Enterprise (snapshot)"
+      },
+      {
+        "url": "https://sahha.ai/pricing/",
+        "checked": "2026-11-04",
+        "note": "Sahha plans (snapshot)"
+      },
+      {
+        "url": "https://www.thryve.health/pricing",
+        "checked": "2026-11-04",
+        "note": "Thryve plans and hosting (snapshot)"
+      },
+      {
+        "url": "https://docs.thryve.health/thryve-data-sources/overview",
+        "checked": "2026-11-04",
+        "note": "Thryve OAuth clients (snapshot)"
+      },
+      {
+        "url": "https://openwearables.io/pricing",
+        "checked": "2026-11-04",
+        "note": "Open Wearables Core and Pro (snapshot)"
+      },
+      {
+        "url": "https://openwearables.io/docs/providers/supported",
+        "checked": "2026-11-04",
+        "note": "Open Wearables provider registration (snapshot)"
+      }
+    ]
+  },
+  {
+    "slug": "polar-api-alternatives",
+    "primaryQuery": "polar api alternatives",
+    "h1": "Polar API Alternatives: Aggregators, Other Watch APIs and the Polar SDK",
+    "metaTitle": "Polar API Alternatives (2026): Aggregators and Watch APIs",
+    "metaDescription": "Polar API alternatives as of November 2026: aggregators that list Polar (Terra, ROOK, Thryve, Spike), the Polar SDK, and COROS, Suunto and Garmin APIs.",
+    "updated": "2026-11-04",
+    "answer": "If Polar's AccessLink API does not fit, the main alternatives as of November 4, 2026 are aggregators that list Polar, such as Terra, ROOK, Thryve, Spike and Validic, which put Polar beside other brands behind one integration; Polar's own mobile SDK, which reads live data from Polar devices on the phone; and another watch maker's API, such as COROS, which documents a route with no application, or Suunto, which says it does not charge for its partner API. AccessLink itself is self-serve and free \"at the moment\" under Polar's API agreement, which reserves the right to charge fees later. So teams usually look elsewhere for its terms or its single-brand coverage, not its price.",
+    "body": "Polar's AccessLink API is the cloud route to data from Polar watches and sensors; the [Polar API integration guide](/integrate/polar-api) covers building on it, and [Polar API pricing](/pricing/polar-api-pricing) what it costs. This page is for when it does not fit, as we read the sources on November 4, 2026. Every page on this site about Polar is collected in the [Polar API overview](/apis/polar).\n\n## First, what AccessLink is and what it costs\n\n- **Self-serve.** Polar's documentation says \"Any registered Polar Flow user can create API client to AccessLink\", at admin.polaraccesslink.com, with OAuth2. Each user must accept all of Polar's mandatory consents before their data is available.\n- **Free, for now.** Polar's API agreement, last updated 22 August 2025, says \"At the moment Polar offers the use and activation of Polar API's free of charge\", and that \"Polar reserves the right to charge fees from time to time at its discretion.\"\n- **Data.** Exercises (downloadable as FIT, TCX and GPX), daily activity, continuous heart rate, cardio load, sleep, Nightly Recharge, SleepWise and Elixir Biosensing, which Polar says covers body and skin temperature, wrist ECG test reports and SpO2 test reports.\n- **Limits.** A dynamic rate limit of 500 requests plus 20 per registered user every 15 minutes, and 5,000 plus 100 per user every 24 hours; past it, \"429 - Too Many Requests\".\n\n## Why teams look for a Polar API alternative\n\n- **One brand.** AccessLink is \"the access channel to the training and daily activity data recorded by Polar devices\". A product whose users wear several brands needs one integration per brand, or an aggregator.\n- **Terms Polar can change.** Beyond the fee clause, Polar may change the agreement \"from time to time in its sole discretion\", and \"has the right ... to suspend or terminate Your, Your Corporate Customer's or any Member's access to Polar Ecosystem for any or no reason, with immediate effect\".\n- **What you may build.** You may not use the API \"in creating a service similar to or competing with Polar Ecosystem\", load testing without Polar's approval \"may result in blacklisting\", and companies designated gatekeepers under the EU Digital Markets Act \"shall not be eligible to enter into this Agreement\".\n- **One webhook.** \"Client application can only have one webhook registered\", which matters if several of your services want Polar events.\n\n## The alternatives\n\n### Aggregators that list Polar\n\nAn aggregator puts Polar beside other brands behind one integration and one bill. Read each vendor's Polar row before you choose, because \"supports Polar\" means different things:\n\n- **Terra** lists Polar as event-driven with credentials marked \"Managed\", which its table explains means \"you may create your own credentials and provide them to Terra\", and it links admin.polaraccesslink.com as the developer portal. See [Terra API pricing](/pricing/terra-api-pricing).\n- **ROOK** lists Polar among its API-based sources, with body, physical and sleep data, and does not include Polar among the four providers where you need your own developer account. See [ROOK API pricing](/pricing/rook-api-pricing).\n- **Thryve** lists Polar as a web source retrieved by ping, with \"no\" for historic data and \"yes\" for a shared OAuth client, so Thryve connects it with its own client but does not backfill history. See [Thryve API pricing](/pricing/thryve-api-pricing).\n- **Spike** lists Polar on its integrations page as \"A brand of heart rate monitors and fitness watches for athletes and health enthusiasts\". See [Spike API alternatives](/alternatives/spike-api-alternatives) for its pricing.\n- **Validic** is the aggregator Polar names on its own developer page: \"Connections to Polar's devices are available via the Validic platform and integration.\"\n- **Open Wearables**, which you host yourself, lists Polar with the note \"You must register for the Polar API program\", so you still hold the AccessLink client.\n- **Sahha** lists Polar among sources that \"arrive on-device through Apple Health or Health Connect\", without the \"+ Cloud API\" mark it gives providers it also reads server-side.\n\n### Polar's mobile SDK\n\nIf what you need is live data during a workout rather than synced history, Polar's developer page offers a different tool: the \"Polar mobile SDK enables you to read and interpret live data from Polar devices, including ECG data, acceleration data and heart rate broadcast.\" It runs in your app over Bluetooth, so there is no cloud client and no AccessLink rate limit, but also no data from sessions recorded while your app was not connected.\n\n### Another watch maker's API\n\nWhen your users can choose their watch, another brand's terms may suit you better:\n\n- **COROS** documents building on the COROS MCP with OAuth 2.0: \"No application or approval required.\" Its help center adds that \"All data access is scoped to the authorizing user only (single-user)\". See [COROS API alternatives](/alternatives/coros-api-alternatives).\n- **Suunto** says \"We do not charge from the use of the API\", but access is for companies building services \"for public audience\": \"We currently don't offer the API access for personal use.\" Applications are reviewed weekly with \"maximum two week waiting period\". See the [Suunto API guide](/integrate/suunto-api).\n- **Garmin** offers a Personal API for \"Secure access to your own Garmin Connect data\", delivered pull only, for your own account; products serving other users go through Garmin's developer program, covered in the [Garmin API guide](/integrate/garmin-api) and [Garmin API alternatives](/alternatives/garmin-api-alternatives).\n\n| Alternative | Best for | Watch out |\n|---|---|---|\n| Terra, ROOK, Spike, Validic | Polar beside other brands, one integration | Per-user or per-source fees; check each vendor's Polar row |\n| Thryve | Polar through a shared OAuth client | No historic Polar data in its table |\n| Open Wearables | Self-hosting | You still register your own AccessLink client |\n| Sahha | Phone-first apps | Only what reaches Apple Health or Health Connect |\n| Polar mobile SDK | Live ECG, acceleration and heart rate in your app | No cloud history |\n| COROS, Suunto, Garmin | Users who can choose their watch | A different brand, a separate integration each |\n\n## Which should you pick?\n\n- **Your users wear several brands** → an aggregator; ROOK or Thryve if you want the vendor to hold the Polar client, after confirming whether you need history.\n- **You need live sensor data during a session** → the Polar mobile SDK.\n- **You want to avoid Polar's competing-service clause** → an aggregator does not remove it from Polar's side; read the aggregator's own terms and ask how it applies.\n- **Your users can choose their watch** → COROS for a self-serve route, Suunto for a free partner API.\n\n## When to stay with Polar\n\n- **It is free and self-serve today.** Any registered Polar Flow user can create a client, and the agreement charges nothing \"at the moment\".\n- **You want Polar's own metrics.** Nightly Recharge, SleepWise, cardio load and Elixir Biosensing's ECG and SpO2 test reports come straight from the source.\n- **You want signed webhooks.** Polar signs every webhook payload with HMAC SHA-256, using a key it returns once when you create the webhook.\n- **Your users are mostly Polar owners.** An aggregator adds a per-user or per-source fee for data you can read directly.\n\n## Evaluating Polar AccessLink\n\nIf you are evaluating AccessLink rather than leaving it, check four things against your product:\n\n- **The terms.** Read the fee clause, the suspension clause and the competing-service clause against your business model before you build.\n- **Your request budget.** At 1,000 registered users, Polar's formula gives 20,500 requests per 15 minutes and 105,000 per 24 hours by our arithmetic; size your sync against the long-term limit, which short-term violations also count toward.\n- **Consents.** Users must accept all of Polar's mandatory consents, and can change them at account.polar.com, so handle withdrawn access.\n- **One webhook per client.** Plan a single receiver that fans out events to your services.\n\n## Is switching easy?\n\nFrom AccessLink to an aggregator, it is a re-integration: a new schema, and every user authorizing again through the aggregator's flow. If the aggregator uses your own Polar credentials, as Terra's managed option and Open Wearables do, you keep your AccessLink client but still map data afresh. Moving to another watch brand means your users change devices, so plan it as a product decision, not a migration.\n\n## What we could not verify\n\n- What each aggregator charges for Polar specifically; none of the price sheets we read prices by provider.\n- Whether Terra requires or only allows your own Polar credentials: its table marks Polar \"Managed\", which it defines as credentials you \"may\" create.\n- Validic's prices and how much Polar history it backfills; we read only Polar's description of the connection.\n\n*Terms, coverage and prices above are from November 4, 2026; re-read Polar's agreement and each vendor's Polar row before you commit.*",
+    "faqs": [
+      {
+        "q": "Can I get Polar data without registering my own AccessLink client?",
+        "a": "Through some aggregators. As of November 4, 2026, Thryve's data-sources table marks Polar yes for a shared OAuth client, and ROOK lists Polar as an API source without it among the providers that need your own developer account. Terra marks Polar as managed credentials you may supply, Open Wearables says you must register for the Polar API program, and Sahha reads Polar data that reaches Apple Health or Health Connect."
+      },
+      {
+        "q": "Which aggregators support Polar watches?",
+        "a": "As of November 4, 2026, Terra lists Polar as an event-driven integration, ROOK as an API source, Thryve as a web source without historic data, Spike on its integrations page, and Open Wearables as a cloud provider that needs your own Polar registration. Polar's developer page names Validic, and Sahha reads Polar through Apple Health and Health Connect."
+      },
+      {
+        "q": "Is there a cheaper alternative to the Polar API?",
+        "a": "Not on price today. Polar's API agreement, read on November 4, 2026, says the API is free of charge at the moment, while the aggregators that list Polar charge monthly fees, such as $399 a month for ROOK's Core plan or Terra's Quick Start billed annually. Teams switch for coverage across brands or for different terms; Polar reserves the right to charge fees later."
+      },
+      {
+        "q": "When should I stay with Polar AccessLink?",
+        "a": "When your users mostly wear Polar and its terms suit your product. As of November 4, 2026, any registered Polar Flow user can create a client, use is free of charge at the moment, webhooks are signed with HMAC SHA-256, and the API exposes Polar's own Nightly Recharge, SleepWise, cardio load and Elixir Biosensing data. An aggregator would add a fee for the same data."
+      }
+    ],
+    "related": [
+      {
+        "href": "/integrate/polar-api",
+        "label": "Integrate the Polar API"
+      },
+      {
+        "href": "/pricing/polar-api-pricing",
+        "label": "Polar API pricing"
+      },
+      {
+        "href": "/alternatives/suunto-api-alternatives",
+        "label": "Suunto API alternatives"
+      },
+      {
+        "href": "/alternatives/coros-api-alternatives",
+        "label": "COROS API alternatives"
+      },
+      {
+        "href": "/fitness-apis/wearable-data-apis",
+        "label": "Best wearable data APIs"
+      },
+      {
+        "href": "/alternatives",
+        "label": "All fitness & health API alternatives"
+      }
+    ],
+    "cta": {
+      "pitch": "Polar's API is free under terms it can change. We watch wearable API agreements and aggregator coverage lists, and report changes weekly."
+    },
+    "sources": [
+      {
+        "url": "https://www.polar.com/accesslink-api/",
+        "checked": "2026-11-04",
+        "note": "self-serve client, consents, data types, rate limits, webhooks and signatures (snapshot)"
+      },
+      {
+        "url": "https://www.polar.com/en/legal/polar-api-agreement",
+        "checked": "2026-11-04",
+        "note": "fee clause, changes, suspension, competing services, load testing, gatekeepers (snapshot)"
+      },
+      {
+        "url": "https://www.polar.com/en/developers",
+        "checked": "2026-11-04",
+        "note": "Polar mobile SDK, Validic connection (snapshot)"
+      },
+      {
+        "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+        "checked": "2026-11-04",
+        "note": "Terra Polar row, managed credentials (snapshot)"
+      },
+      {
+        "url": "https://docs.tryrook.io/data-sources/",
+        "checked": "2026-11-04",
+        "note": "ROOK Polar row, own developer accounts (snapshot)"
+      },
+      {
+        "url": "https://docs.thryve.health/thryve-data-sources/overview",
+        "checked": "2026-11-04",
+        "note": "Thryve Polar row (snapshot)"
+      },
+      {
+        "url": "https://www.spikeapi.com/integrations",
+        "checked": "2026-11-04",
+        "note": "Spike Polar listing (snapshot)"
+      },
+      {
+        "url": "https://openwearables.io/docs/providers/supported",
+        "checked": "2026-11-04",
+        "note": "Open Wearables Polar note (snapshot)"
+      },
+      {
+        "url": "https://sahha.ai/integrations/",
+        "checked": "2026-11-04",
+        "note": "Sahha on-device sources (snapshot)"
+      },
+      {
+        "url": "https://support.coros.com/api/v2/help_center/en-us/articles/53181619102996.json",
+        "checked": "2026-11-04",
+        "note": "COROS MCP, no application (snapshot)"
+      },
+      {
+        "url": "https://apizone.suunto.com/",
+        "checked": "2026-11-04",
+        "note": "Suunto partner API, no charge, no personal use (snapshot)"
+      },
+      {
+        "url": "https://developer.garmin.com/gc-developer-program/overview/",
+        "checked": "2026-11-04",
+        "note": "Garmin Personal API, pull only (snapshot)"
+      },
+      {
+        "url": "https://tryrook.io/pricing/",
+        "checked": "2026-11-04",
+        "note": "ROOK entry price (snapshot)"
+      },
+      {
+        "url": "https://tryterra.co/pricing",
+        "checked": "2026-11-04",
+        "note": "Terra entry price (snapshot)"
+      }
+    ]
+  }
 ];

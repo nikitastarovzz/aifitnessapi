@@ -1,0 +1,232 @@
+[
+  {
+    "claim": "Spike homepage scope.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Connect to 500+ wearables & IoT sensors, extract nutrition insights from food photos, and add lab report data via single API."
+  },
+  {
+    "claim": "Medical IoT examples.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "glucose monitors, ECGs, blood pressure cuffs, and more"
+  },
+  {
+    "claim": "Food images to nutrition.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Convert any food image into complete nutritional data."
+  },
+  {
+    "claim": "EMR and EHR connections.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Integrate with major EMR & EHR systems"
+  },
+  {
+    "claim": "Voice AI agents for clinics.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Spike Voice AI Agents perform insurance eligibility checks, coordinate care, schedule patients, and maximize revenue recovery."
+  },
+  {
+    "claim": "Dedicated implementation engineer from sandbox.",
+    "url": "https://www.spikeapi.com/",
+    "quote": "Every organization gets a dedicated implementation engineer from the sandbox level to help with setup and optimization."
+  },
+  {
+    "claim": "Sandbox starts from $450 a month.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Starts from $450 /month"
+  },
+  {
+    "claim": "Two product lines.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Wearables & IoT API Nutrition Scanner AI"
+  },
+  {
+    "claim": "Sandbox: 40+ providers, 500+ devices.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Access 40+ providers and 500+ devices via single SDK"
+  },
+  {
+    "claim": "Pricing described as usage-driven.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Usage-driven, transparent, and flexible"
+  },
+  {
+    "claim": "Enterprise: MCP-compatible data.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "instantly consumable by LLM agents (MCP-compatible)"
+  },
+  {
+    "claim": "Enterprise: Spike Analytics scores.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Spike Analytics (proprietary Sleep, Stress and Activity Scores)"
+  },
+  {
+    "claim": "Plans bought via Book a demo.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Book a demo"
+  },
+  {
+    "claim": "Nutrition Scanner from pictures.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Real-time calorie and nutrient data analysis from pictures"
+  },
+  {
+    "claim": "Spike MCP Server announcement.",
+    "url": "https://www.spikeapi.com/pricing",
+    "quote": "Spike Technologies launches Spike MCP Server"
+  },
+  {
+    "claim": "Acquisition banner.",
+    "url": "https://www.spikeapi.com/integrations",
+    "quote": "Raintree Systems Acquires Spike Technologies"
+  },
+  {
+    "claim": "Integrations list includes Polar.",
+    "url": "https://www.spikeapi.com/integrations",
+    "quote": "A brand of heart rate monitors and fitness watches for athletes and health enthusiasts."
+  },
+  {
+    "claim": "Integrations list includes Dexcom.",
+    "url": "https://www.spikeapi.com/integrations",
+    "quote": "A leading continuous glucose monitoring system used primarily by people with diabetes."
+  },
+  {
+    "claim": "Docs: HMAC signatures.",
+    "url": "https://docs.spikeapi.com/",
+    "quote": "Secure authentication using HMAC signatures"
+  },
+  {
+    "claim": "Comparison: Terra from $399 a month billed annually or $499 monthly, 100,000 credits.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly."
+  },
+  {
+    "claim": "Terra: 200 credits per active authentication.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "An active authentication is one connected data source for one end user, and costs 200 Unified API credits per month."
+  },
+  {
+    "claim": "Terra: 9 destinations.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Receive data to AWS S3, Google Cloud Storage, MongoDB, and more"
+  },
+  {
+    "claim": "Terra: blood and DNA tests.",
+    "url": "https://tryterra.co/",
+    "quote": "Order blood and DNA tests for your users through Terra API."
+  },
+  {
+    "claim": "Terra: BAA on Enterprise.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Signed BAA (data protection agreement)"
+  },
+  {
+    "claim": "Comparison: ROOK Core $399 a month for up to 750 active users.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Up to 750 active users"
+  },
+  {
+    "claim": "Comparison: ROOK Core+ $999 for up to 5,000 active users.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Up to 5,000 active users"
+  },
+  {
+    "claim": "ROOK Business up to 15,000.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Up to 15,000 active users"
+  },
+  {
+    "claim": "ROOK Business assisted onboarding.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Assisted onboarding with CS Engineer"
+  },
+  {
+    "claim": "ROOK Lab Data API billed by files.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Lab Data API is billed by the files processed each month, on every plan."
+  },
+  {
+    "claim": "ROOK standard term.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "ROOK’s standard contract term is 12 months"
+  },
+  {
+    "claim": "Junction Launch.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Launch covers 1-500 connected users."
+  },
+  {
+    "claim": "Junction Launch price.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Launch $300 /mo Billed monthly"
+  },
+  {
+    "claim": "Junction Enterprise labs.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Lab testing API and ETL pipelines"
+  },
+  {
+    "claim": "Junction Enterprise white-glove implementation.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Implementation support White glove"
+  },
+  {
+    "claim": "Comparison: Sahha Starter $299 a month billed annually with 1,000 users included.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "1,000 users included, then $0.40/user"
+  },
+  {
+    "claim": "Comparison: Sahha Pro with 10,000 users included.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "10,000 users included, then $0.20/user"
+  },
+  {
+    "claim": "Sahha free trial.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "Every plan starts with a 30-day free trial."
+  },
+  {
+    "claim": "Sahha Starter retention.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "30-day data retention"
+  },
+  {
+    "claim": "Thryve hosted in Germany.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "All data processed and stored by Thryve is hosted in Germany."
+  },
+  {
+    "claim": "Thryve additional users.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Additional users billed at €0.50 each."
+  },
+  {
+    "claim": "Thryve 14-day trial.",
+    "url": "https://www.thryve.health/pricing",
+    "quote": "Start 14-day free trial now"
+  },
+  {
+    "claim": "Thryve own OAuth client.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "When no shared oAuth-client is available, you must bring your own oAuth-client"
+  },
+  {
+    "claim": "Open Wearables Core $0 Forever.",
+    "url": "https://openwearables.io/pricing",
+    "quote": "$0 Forever"
+  },
+  {
+    "claim": "Open Wearables MIT.",
+    "url": "https://openwearables.io/pricing",
+    "quote": "Open source, MIT license, Discord support"
+  },
+  {
+    "claim": "Open Wearables Pro.",
+    "url": "https://openwearables.io/pricing",
+    "quote": "From $999 a month, per deployment"
+  },
+  {
+    "claim": "Open Wearables Garmin registration.",
+    "url": "https://openwearables.io/docs/providers/supported",
+    "quote": "You must apply for Garmin Developer Program"
+  }
+]

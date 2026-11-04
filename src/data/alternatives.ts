@@ -40,6 +40,8 @@ export const RELEASED_ALTERNATIVES = new Set<string>([
   "dexcom-api-alternatives",
   "rook-alternatives",
   "sahha-alternatives",
+  "spike-api-alternatives",
+  "polar-api-alternatives",
 ]);
 
 export const allAlternatives: ClusterEntry[] = alternativesEntries;

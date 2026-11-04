@@ -54,6 +54,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
       "coros-api-alternatives",
       "wahoo-api-alternatives",
       "dexcom-api-alternatives",
+      "polar-api-alternatives",
     ],
   },
   {
@@ -65,6 +66,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
       "terra-alternatives",
       "rook-alternatives",
       "sahha-alternatives",
+      "spike-api-alternatives",
       "human-api-alternatives",
     ],
   },

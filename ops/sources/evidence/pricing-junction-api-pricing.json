@@ -1,0 +1,157 @@
+[
+  {
+    "claim": "Launch $300 a month billed monthly.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Launch $300 /mo Billed monthly"
+  },
+  {
+    "claim": "Launch description.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "For startups and scaleups shipping on health data."
+  },
+  {
+    "claim": "Enterprise custom, billed annually.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Enterprise Custom Billed annually"
+  },
+  {
+    "claim": "Enterprise description.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "For organizations that need scale, SLAs, and white-glove support."
+  },
+  {
+    "claim": "Two plans, no per-seat surprises.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Two plans, no per-seat surprises."
+  },
+  {
+    "claim": "Connected users 1-500 on Launch.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Launch covers 1-500 connected users."
+  },
+  {
+    "claim": "Enterprise adds custom OAuth credentials.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Custom OAuth credentials"
+  },
+  {
+    "claim": "Enterprise adds premium and Bluetooth integrations.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Premium and Bluetooth integrations"
+  },
+  {
+    "claim": "Enterprise adds ETL pipelines.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "ETL pipelines to your warehouse"
+  },
+  {
+    "claim": "Enterprise lab network NY, NJ and RI.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Nationwide lab network NY, NJ and RI included"
+  },
+  {
+    "claim": "Enterprise compliance items.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Customer managed encryption keys"
+  },
+  {
+    "claim": "When to move to Enterprise.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Move to Enterprise when you need lab testing, unlimited users, uptime SLAs, or a signed BAA."
+  },
+  {
+    "claim": "Past 500: sales sizes an Enterprise plan.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "If you expect to grow past that, talk to sales and we will size an Enterprise plan around your volume"
+  },
+  {
+    "claim": "No startup discounts; marketing claim on cheapest plan.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Launch is the cheapest plan on the market at $300 a month, so there is nothing below it for us to discount."
+  },
+  {
+    "claim": "Sandbox and developer docs free.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "The sandbox and developer docs are free, so your team can build and test a full integration before committing to a plan."
+  },
+  {
+    "claim": "Launch billed monthly, no annual contract.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Launch is billed monthly, so there is no annual contract to get started."
+  },
+  {
+    "claim": "Device data within days.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Device data is typically flowing within days of picking up the API keys."
+  },
+  {
+    "claim": "No upcharges on tests.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "There are no upcharges on the tests themselves."
+  },
+  {
+    "claim": "Lab setup 4-6 weeks.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Our current process takes about 4-6 weeks to set up depending on the amount of customization you need."
+  },
+  {
+    "claim": "Minimum 250 kits.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Our current minimum order quantity is 250 kits"
+  },
+  {
+    "claim": "CLIA and CAP labs.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "We only work with CLIA and CAP certified labs."
+  },
+  {
+    "claim": "Doctor's order provided.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "We provide the doctor’s order for the test, but we do not currently offer physician consults or personal result interpretations."
+  },
+  {
+    "claim": "Results within 2-3 business days.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "results within 2-3 days — all in business days"
+  },
+  {
+    "claim": "BAA and reports part of Enterprise.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "The signed Business Associate Agreement, our SOC 2 Type 2 and ISO 27001 reports, and customer-managed encryption keys are part of Enterprise."
+  },
+  {
+    "claim": "Every plan HIPAA-compliant handling.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "Every plan handles data in a HIPAA-compliant way."
+  },
+  {
+    "claim": "Homepage: 300+ wearables, labs in all 50 states.",
+    "url": "https://www.junction.com/",
+    "quote": "Integrate 300+ wearables, streamline lab operations, and build your own lab testing experience spanning all 50 states"
+  },
+  {
+    "claim": "Docs: Demo Connections emit synthetic data.",
+    "url": "https://docs.junction.com/",
+    "quote": "emit synthetic data mimicking selected providers"
+  },
+  {
+    "claim": "Comparison: Terra from $399 a month billed annually or $499 monthly, 100,000 credits.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly."
+  },
+  {
+    "claim": "Comparison: Terra monthly view from $499.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "From $499 / month"
+  },
+  {
+    "claim": "Comparison: ROOK Core $399 a month for up to 750 active users.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Up to 750 active users"
+  },
+  {
+    "claim": "Comparison: Sahha Starter $299 a month billed annually with 1,000 users included.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "1,000 users included, then $0.40/user"
+  }
+]
