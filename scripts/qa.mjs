@@ -4377,6 +4377,237 @@ if (fs.existsSync(matrixPath)) {
   );
 }
 
+// ── Entity, key facts and citation box (ops/NEXT-10-2026-11-04.md item 6) ──
+// ORG-ONCE: the site's Organization is defined once per page — the root
+// layout's node, with its logo, knowsAbout and funder — and everything else
+// points at it by @id. A second full definition, or an inline copy named
+// AIFitnessAPI with no @id, reads to a crawler as a second publisher with
+// the same name. The funder (KinesteX) is a different organisation: it is an
+// Organization node of its own, by design, and never carries the site's @id.
+// A typed stub ({@type, @id, name, url} — orgNamed() in src/lib/schema.ts,
+// for consumers that do not resolve @id across blocks) is a reference, not a
+// definition.
+//
+// KEY-FACTS-SOURCED: every "Key facts" line is a verbatim quote from a row
+// of the page's evidence file (ops/sources/evidence/<cluster>-<slug>.json,
+// re-checked against the live source by source-quotes.yml), its link is that
+// row's URL, and that URL is one of the entry's checked `sources`. Three to
+// five lines, on money-cluster pages only.
+//
+// CITE-BOX: every page the shared cluster template renders carries one
+// "Cite this page" box naming its canonical URL, its title, the publisher,
+// and the date the page's WebPage node gives as lastReviewed.
+{
+  const { loadEnglishEntries } = await import(new URL("../src/lib/translationStore.mjs", import.meta.url));
+  const SITE = "https://aifitnessapi.com";
+  const ORG_ID = `${SITE}/#organization`;
+  const ORG_NAME = "AIFitnessAPI";
+  const KF_CLUSTERS = ["/pricing", "/alternatives", "/compare", "/integrate", "/fix", "/fitness-apis", "/motion"];
+  const EVIDENCE_DIR = "ops/sources/evidence";
+  const fullDecode = (s) =>
+    decode(s)
+      .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16)))
+      .replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(Number(d)))
+      .replace(/&nbsp;/g, " ");
+  const textOf = (h) => fullDecode(h.replace(/<!--[\s\S]*?-->/g, "").replace(/<[^>]+>/g, "")).replace(/\s+/g, " ").trim();
+  const urlKey = (u) => {
+    try {
+      const x = new URL(u);
+      x.hash = "";
+      return decodeURI(x.href).replace(/\/$/, "");
+    } catch {
+      return u;
+    }
+  };
+  /** The outer HTML of the element whose opening tag starts at `at`, by tag depth. */
+  const elementAt = (html, at) => {
+    const tag = /^<([a-z0-9]+)/.exec(html.slice(at))?.[1];
+    if (!tag) return "";
+    const re = new RegExp(`<(/?)${tag}\\b[^>]*>`, "g");
+    re.lastIndex = at;
+    let depth = 0;
+    for (let m; (m = re.exec(html)); ) {
+      depth += m[1] ? -1 : 1;
+      if (depth === 0) return html.slice(at, re.lastIndex);
+    }
+    return html.slice(at);
+  };
+  const regions = (html, marker) => {
+    const out = [];
+    for (const m of html.matchAll(marker)) out.push(elementAt(html, m.index));
+    return out;
+  };
+  const jsonLdOf = (html) => {
+    const out = [];
+    for (const l of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+      try {
+        out.push(JSON.parse(decode(l[1])));
+      } catch {
+        // BAD-JSON-LD reports it.
+      }
+    }
+    return out;
+  };
+
+  // Which clusters the shared template renders: every [slug] route that uses it.
+  const templateClusters = fs
+    .readdirSync("src/app", { withFileTypes: true })
+    .filter((d) => d.isDirectory() && fs.existsSync(`src/app/${d.name}/[slug]/page.tsx`))
+    .filter((d) => fs.readFileSync(`src/app/${d.name}/[slug]/page.tsx`, "utf8").includes("<ClusterPage"))
+    .map((d) => `/${d.name}`);
+  const english = loadEnglishEntries(KF_CLUSTERS);
+  const evidenceCache = new Map();
+  const evidenceOf = (enPath) => {
+    if (!evidenceCache.has(enPath)) {
+      const f = `${EVIDENCE_DIR}/${enPath.slice(1).replace("/", "-")}.json`;
+      let rows = [];
+      try {
+        rows = fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, "utf8")) : [];
+      } catch {
+        rows = [];
+      }
+      evidenceCache.set(enPath, Array.isArray(rows) ? rows : []);
+    }
+    return evidenceCache.get(enPath);
+  };
+
+  let orgPages = 0;
+  let factPages = 0;
+  let factLines = 0;
+  let citePages = 0;
+  for (const h of htmls) {
+    const route = routeOf(h);
+    if (route.startsWith("/_") || notFoundSet.has(route)) continue;
+    const html = fs.readFileSync(h, "utf8");
+
+    // ORG-ONCE
+    let defs = 0;
+    const inline = [];
+    const walk = (n) => {
+      if (Array.isArray(n)) return n.forEach(walk);
+      if (!n || typeof n !== "object") return;
+      const types = [].concat(n["@type"] ?? []);
+      if (types.includes("Organization")) {
+        if (n["@id"] === ORG_ID) {
+          if (Object.keys(n).some((k) => !["@type", "@id", "name", "url"].includes(k))) defs++;
+        } else if (!n["@id"] && n.name === ORG_NAME) {
+          inline.push(n.url ?? "(no url)");
+        }
+      }
+      for (const v of Object.values(n)) if (v && typeof v === "object") walk(v);
+    };
+    for (const j of jsonLdOf(html)) walk(j);
+    orgPages++;
+    if (defs !== 1 || inline.length) {
+      problems.push(
+        `ORG-ONCE  ${route} defines the site's Organization ${defs}× (expected 1)` +
+          (inline.length ? ` and carries ${inline.length} inline ${ORG_NAME} Organization node(s) with no @id` : ""),
+      );
+    }
+
+    const seg = route.split("/").filter(Boolean);
+    const pt = seg[0] === "pt-br";
+    const enPath = pt ? `/${seg.slice(1).join("/")}` : route;
+    const cluster = `/${enPath.split("/")[1]}`;
+    const isSpoke = html.includes("data-article-body");
+
+    // KEY-FACTS-SOURCED
+    const blocks = regions(html, /<section\b[^>]*\bdata-key-facts\b/g);
+    if (blocks.length) {
+      const entry = english.get(enPath);
+      if (blocks.length > 1) problems.push(`KEY-FACTS-SOURCED  ${route} renders ${blocks.length} key-facts blocks`);
+      if (!KF_CLUSTERS.includes(cluster) || !entry) {
+        problems.push(`KEY-FACTS-SOURCED  ${route} renders key facts outside the money clusters, or for no known entry`);
+      } else {
+        const sources = new Set((entry.sources ?? []).map((s) => urlKey(s.url)));
+        const ev = evidenceOf(enPath);
+        const lines = regions(blocks[0], /<li\b[^>]*\bdata-key-fact\b/g);
+        factPages++;
+        factLines += lines.length;
+        if (lines.length < 3 || lines.length > 5) {
+          problems.push(`KEY-FACTS-SOURCED  ${route} renders ${lines.length} key facts (3 to 5, or no block)`);
+        }
+        for (const li of lines) {
+          const src = fullDecode(/\bdata-source="([^"]*)"/.exec(li)?.[1] ?? "");
+          const href = fullDecode(/<a\b[^>]*\bhref="([^"]*)"/.exec(li)?.[1] ?? "");
+          const quote = textOf(/<q\b[^>]*>([\s\S]*?)<\/q>/.exec(li)?.[1] ?? "");
+          const tag = `${route} key fact "${quote.slice(0, 50)}"`;
+          if (!src || href !== src) {
+            problems.push(`KEY-FACTS-SOURCED  ${tag} links ${href || "nothing"}, not its source ${src || "(none)"}`);
+            continue;
+          }
+          if (!sources.has(urlKey(src))) {
+            problems.push(`KEY-FACTS-SOURCED  ${tag} cites ${src}, which is not in the entry's checked sources`);
+          }
+          // A digit not ending a word ("Concept2" is a name): the rule src/lib/keyFacts.ts applies.
+          if (!/(?<![A-Za-z])\d/.test(quote)) problems.push(`KEY-FACTS-SOURCED  ${tag} states no number`);
+          const row = ev.find(
+            (r) =>
+              typeof r.quote === "string" &&
+              urlKey(r.url ?? "") === urlKey(src) &&
+              r.quote.trim().replace(/[,;:]$/, "").replace(/\s+/g, " ") === quote,
+          );
+          if (!row) {
+            problems.push(`KEY-FACTS-SOURCED  ${tag} is not, verbatim, a quote ${EVIDENCE_DIR} holds for ${src}`);
+          }
+        }
+      }
+    }
+
+    // CITE-BOX
+    if (isSpoke) {
+      const boxes = regions(html, /<section\b[^>]*\bdata-cite-box\b/g);
+      if (boxes.length !== 1) {
+        problems.push(`CITE-BOX  ${route} renders ${boxes.length} citation boxes (expected 1)`);
+        continue;
+      }
+      citePages++;
+      const box = boxes[0];
+      const open = /^<section\b[^>]*>/.exec(box)?.[0] ?? "";
+      const citeUrl = fullDecode(/\bdata-cite-url="([^"]*)"/.exec(open)?.[1] ?? "");
+      const verified = /\bdata-cite-verified="([^"]*)"/.exec(open)?.[1] ?? "";
+      const canonical = canonicalOf(html);
+      const canonicalAbs = canonical && canonical.startsWith("/") ? `${SITE}${canonical}` : canonical;
+      const h1 = textOf(/<h1\b[^>]*>([\s\S]*?)<\/h1>/.exec(html)?.[1] ?? "");
+      let reviewed = null;
+      for (const j of jsonLdOf(html)) {
+        for (const n of j["@graph"] ?? [j]) {
+          if ([].concat(n["@type"]).includes("WebPage") && n["@id"] === `${SITE}${route}#webpage`) reviewed = n.lastReviewed;
+        }
+      }
+      const text = textOf(box);
+      const miss = [];
+      if (citeUrl !== `${SITE}${route}` || (canonicalAbs && citeUrl !== fullDecode(canonicalAbs))) miss.push(`URL ${citeUrl} (canonical ${canonicalAbs})`);
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(verified) || verified !== reviewed) miss.push(`date ${verified} (WebPage lastReviewed ${reviewed})`);
+      if (!text.includes(citeUrl)) miss.push("the URL in its text");
+      if (!h1 || !text.includes(h1)) miss.push("the page title");
+      if (!text.includes(ORG_NAME)) miss.push(`the publisher ${ORG_NAME}`);
+      if (!text.includes(verified)) miss.push("the date in its citation text");
+      if (!/data-cite-plain/.test(box) || !/data-cite-bibtex/.test(box) || !/@misc\{/.test(text)) miss.push("plain and BibTeX citations");
+      if (miss.length) problems.push(`CITE-BOX  ${route}: the citation box is wrong or missing ${miss.join("; ")}`);
+    }
+  }
+  // Vacuity guards: the template renders the box on every spoke, and money
+  // pages with qualifying evidence exist — zero of either means the markup
+  // contract moved and the checks above read nothing.
+  const templateSpokes = [...valid].filter((p) => {
+    const s = p.split("/").filter(Boolean);
+    return s.length === 2 && templateClusters.includes(`/${s[0]}`) && !notFoundSet.has(p);
+  });
+  const fileOfRoute = new Map(htmls.map((x) => [routeOf(x), x]));
+  const missingBox = templateSpokes.filter((p) => {
+    const h = fileOfRoute.get(p);
+    return h && !fs.readFileSync(h, "utf8").includes("data-cite-box");
+  });
+  if (missingBox.length) {
+    problems.push(`CITE-BOX  ${missingBox.length} cluster page(s) render no citation box: ${missingBox.slice(0, 6).join(", ")}`);
+  }
+  if (factPages === 0) problems.push("KEY-FACTS-SOURCED  no page renders a key-facts block; the markup contract moved");
+  console.log(
+    `Entity and citation: one Organization definition held on ${orgPages} pages; key facts on ${factPages} pages (${factLines} lines, each a verbatim evidence quote from a checked source); citation box on ${citePages} cluster pages.`,
+  );
+}
+
 // ── The published gate list ─────────────────────────────────────────────
 // /gates publishes this suite as prose: one row per failure code, saying in
 // a sentence what the build refuses to ship when that code fires. A written

@@ -140,6 +140,24 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "A page emitting more than one BreadcrumbList, which makes its breadcrumb trail ambiguous.",
   },
   {
+    code: "ORG-ONCE",
+    area: "Structured data / GEO",
+    refuses:
+      "A page that defines the site's Organization other than exactly once, or carries an inline AIFitnessAPI Organization with no @id. Every other mention must point at the one node by @id, so a crawler sees one publisher; the funder, KinesteX, is a separate Organization and never takes the site's @id.",
+  },
+  {
+    code: "KEY-FACTS-SOURCED",
+    area: "Structured data / GEO",
+    refuses:
+      "A Key facts line that is not, word for word, a quote from the page's evidence file for the URL it links, that links a page outside the entry's checked sources, or that states no number; a block with fewer than three or more than five lines; key facts outside the money clusters; or a build in which no page renders the block at all.",
+  },
+  {
+    code: "CITE-BOX",
+    area: "Structured data / GEO",
+    refuses:
+      "A page rendered by the shared cluster template without exactly one Cite this page box, or with one whose URL is not the page's canonical, whose date is not the lastReviewed date of the page's WebPage node, or that leaves out the title, the publisher, or the plain and BibTeX citations.",
+  },
+  {
     code: "LINK-TO-404",
     area: "Links and anchors",
     refuses: "A site that links to a route which builds a file but renders notFound() to the reader.",

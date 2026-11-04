@@ -233,3 +233,23 @@ for that copy.
 (fewer Search Console picks, terser lines); never raise GEO-LLMS-SIZE to fit.
 A page dropped from /llms.txt is still in /llms-index.txt and its section
 files, so nothing becomes invisible.
+
+Changed 2026-11-04 (ops/NEXT-10-2026-11-04.md item 6), all gated:
+
+- **Key facts.** Money-cluster spokes (pricing, alternatives, compare,
+  integrate, fix, fitness-apis, motion) open with three to five verbatim,
+  numbered quotes under the capsule, each linking its source. They are rows
+  of the page's `ops/sources/evidence/<cluster>-<slug>.json` whose URL is in
+  the entry's `sources` — never written or inferred (src/lib/keyFacts.ts);
+  a page without three qualifying rows shows no block. KEY-FACTS-SOURCED.
+  Because the evidence files are now a build input,
+  `scripts/vercel-ignore-build.sh` no longer skips `ops/sources/evidence/`.
+- **Cite this page.** A server-rendered box at the foot of every cluster
+  spoke (URL, title, publisher, the `updated` date; plain text and BibTeX).
+  CITE-BOX.
+- **One entity per page.** `citation` and the new `isBasedOn` (the checked
+  `sources`; a translation's is the English article) are plain URLs, not
+  `WebPage` objects, so a page no longer declares one WebPage per source;
+  hub Articles point `mainEntityOfPage` at the hub's CollectionPage `@id`.
+  The site's Organization is defined once, in the layout; the KinesteX
+  `funder` is a separate Organization by design. ORG-ONCE.
