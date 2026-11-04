@@ -71,7 +71,9 @@ export default function GraveyardPage() {
     publisher: orgRef(),
     dateModified: checkedOn,
     speakable: { "@type": "SpeakableSpecification", cssSelector: ["#answer"] },
-    citation: [...new Set(entries.map((e) => e.source.url))].map((u) => ({ "@type": "WebPage", url: u })),
+    // Plain URLs: one WebPage node per source made the page declare a dozen
+    // WebPage entities besides itself (schema.org citation takes Text).
+    citation: [...new Set(entries.map((e) => e.source.url))],
     mainEntity: {
       "@type": "ItemList",
       numberOfItems: entries.length,

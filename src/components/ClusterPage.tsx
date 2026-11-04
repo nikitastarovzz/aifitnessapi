@@ -21,6 +21,9 @@ import AppStack from "@/components/AppStack";
 import PostLinks from "@/components/PostLinks";
 import Feedback from "@/components/Feedback";
 import VendorHubMenu from "@/components/VendorHubMenu";
+import KeyFacts from "@/components/KeyFacts";
+import CiteBox from "@/components/CiteBox";
+import { keyFacts } from "@/lib/keyFacts";
 import { formatDate } from "@/lib/posts";
 import { site, absoluteUrl } from "@/lib/site";
 import { spokeGraph, translationGraph, markdownUrl } from "@/lib/schema";
@@ -228,6 +231,10 @@ export default function ClusterPage({
   // page counts, so the number in the link is the number on the page.
   const clusterEntries = clusterMap()[basePath] ?? [];
   const clusterQuestions = clusterEntries.reduce((n, e) => n + e.faqs.length, 0);
+  // Verbatim, numbered quotes from the page's checked sources (lib/keyFacts).
+  // A translation shows the English page's, which its sources list is — and
+  // a stale translation has no sources list, so it shows none.
+  const facts = keyFacts(tr ? tr.enPath : path, entry);
 
   // TechArticle + WebPage graph (review metadata, glossary `about` links,
   // citations, markdown encoding). Built centrally so every spoke agrees.
@@ -463,11 +470,13 @@ export default function ClusterPage({
           {entry.answer}
         </div>
 
+        <KeyFacts facts={facts} locale={tr ? "pt-BR" : undefined} />
+
         {/* Mechanism diagram, on architecture spokes only. Renders nothing for
             a slug with no hand-authored drawing. */}
         {basePath === "/architecture" && <ArchDiagram slug={entry.slug} />}
 
-        {!tr && <PageActions path={path} url={url} title={entry.h1} updated={entry.updated} />}
+        {!tr && <PageActions path={path} url={url} title={entry.h1} updated={entry.updated} citeHref="#cite" />}
 
         <FaqJump
           questions={entry.faqs.map((f) => f.q)}
@@ -655,6 +664,14 @@ export default function ClusterPage({
         {!tr && <NextSteps />}
 
         {!tr && <Feedback path={path} title={entry.h1} repo={site.social.github || undefined} />}
+
+        <CiteBox
+          path={path}
+          url={url}
+          title={entry.h1}
+          verified={entry.updated}
+          locale={tr ? "pt-BR" : undefined}
+        />
 
         <ClusterDisclaimer
           updated={entry.updated}

@@ -98,7 +98,7 @@ export default function HealthKitErrorsPage() {
     dateModified: HK_FETCHED_ON,
     author: orgRef(),
     publisher: orgRef(),
-    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    mainEntityOfPage: { "@id": `${url}#webpage` },
     url,
     speakable: { "@type": "SpeakableSpecification", cssSelector: ["#answer"] },
   };

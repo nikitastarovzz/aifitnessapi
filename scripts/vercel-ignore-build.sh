@@ -16,7 +16,9 @@ if git diff --quiet "$base" HEAD --; then
   echo "Same commit redeployment; build."
   exit 1
 fi
-if git diff --quiet --no-renames "$base" HEAD -- . ':(exclude)README.md' ':(exclude)CLAUDE.md' ':(exclude)AGENTS.md' ':(exclude)ops/**/*.md' ':(exclude)ops/*.md' ':(exclude)ops/content-log.jsonl' ':(exclude)ops/sources/**'; then
+# ops/sources/evidence/*.json is a build input: the key facts on money pages
+# are rows of it (src/lib/keyFacts.ts), so only the snapshot lists skip.
+if git diff --quiet --no-renames "$base" HEAD -- . ':(exclude)README.md' ':(exclude)CLAUDE.md' ':(exclude)AGENTS.md' ':(exclude)ops/**/*.md' ':(exclude)ops/*.md' ':(exclude)ops/content-log.jsonl' ':(exclude)ops/sources/*.txt'; then
   echo "Only non-site documentation or source assets changed; skip."
   exit 0
 fi

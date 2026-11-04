@@ -208,3 +208,25 @@ export function ptConfig(p: PtPage): ClusterConfig {
 export function ptOgImage(p: PtPage): string {
   return absoluteUrl(`${p.t.enPath}/opengraph-image`);
 }
+
+/**
+ * Portuguese labels for the shared blocks ClusterPage renders on a
+ * translation: the key facts under the capsule and the citation box at the
+ * foot. The facts themselves stay in English (they are quoted source text).
+ */
+export const PT_UI = {
+  keyFacts: "Fatos principais",
+  keyFactsNote:
+    "Trechos citados literalmente, em inglês, das fontes conferidas na versão em inglês; cada linha leva à página que a afirma.",
+  cite: "Cite esta página",
+  citeTitle: "Título",
+  citePublisher: "Publicado por",
+  citeVerified: "Verificado em",
+  citeVerifiedSuffix: " (versão em inglês)",
+  citePlain: "Texto",
+  citeCopyPlain: "Copiar texto",
+  citeCopyBibtex: "Copiar BibTeX",
+  citeCopied: "Copiado",
+  citeFailed: "Falhou — selecione o texto",
+  citeNote: "Cite a página, não o site: cada página tem a sua própria data de verificação.",
+} as const;

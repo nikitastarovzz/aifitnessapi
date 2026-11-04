@@ -95,7 +95,7 @@ export default function DevicesPillar() {
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),
-    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    mainEntityOfPage: { "@id": `${url}#collection` },
     url,
     speakable: { "@type": "SpeakableSpecification", cssSelector: ["#answer"] },
   };

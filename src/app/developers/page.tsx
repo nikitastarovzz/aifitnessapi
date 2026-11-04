@@ -119,7 +119,7 @@ export default function DevelopersPage() {
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),
-    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    mainEntityOfPage: { "@id": `${url}#webpage` },
     about: {
       "@type": "WebAPI",
       name: "AI Fitness API (aifitnessapi.com)",
