@@ -25,10 +25,13 @@ export default function SiteInstrumentation() {
     setEnabled(!window.location.pathname.startsWith("/embed/"));
   }, []);
   if (!enabled) return null;
+  // <Analytics /> first: its mount effect creates the window.va queue, and
+  // sibling effects run in order, so CtaTracker's landing event (sent on
+  // mount) lands in the queue instead of being dropped.
   return (
     <>
-      <CtaTracker />
       <Analytics />
+      <CtaTracker />
       <WebVitals />
     </>
   );

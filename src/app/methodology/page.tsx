@@ -3,6 +3,7 @@ import Link from "next/link";
 import Container from "@/components/Container";
 import { site } from "@/lib/site";
 import PageSummary from "@/components/PageSummary";
+import { funderHref } from "@/lib/measure.mjs";
 
 const UPDATED = "2026-07-31";
 
@@ -134,7 +135,7 @@ export default function MethodologyPage() {
         <h2>Who pays for this, and independence</h2>
         <p>
           {site.name} is run by the team behind{" "}
-          <a href="https://kinestex.com" rel="noopener">KinesteX</a>, an AI
+          <a href={funderHref("methodology", "/methodology")} data-funder="methodology" rel="noopener">KinesteX</a>, an AI
           motion-tracking SDK. That funds the site. It does not buy
           conclusions: comparisons include competitors, our
           build-vs-buy pages regularly recommend building or buying from
