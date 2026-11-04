@@ -135,6 +135,35 @@ export function monthYear(iso: string): string {
 }
 const req = (slug: string, key: string) => lib(slug).requires?.[key] ?? null;
 
+const REGISTRY_LABEL: Record<Library["ecosystem"], string> = { npm: "npm", pub: "pub.dev", pypi: "PyPI" };
+const SHORT_MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+/**
+ * The search-snippet template for a package page (ops/NEXT-10-2026-11-04.md,
+ * item 5): the exact registry name people type, then the latest release from
+ * the generated row — "health 13.3.2 (pub.dev, Aug 2026)" — then the
+ * hand-written tail. Version and date are interpolated, never typed, so the
+ * snippet moves with each registry refresh and cannot disagree with the
+ * page's fact table. If a refresh makes it too long, the date goes first,
+ * then the version; a tail that cannot fit even after that fails the build.
+ * Opt-in per page: the pages held in an open retitle test
+ * (ops/gsc/retitled.txt) and the pages already earning clicks keep their
+ * hand-written description.
+ */
+export function registryMeta(slug: string, tail: string, max = 155): string {
+  const l = lib(slug);
+  const [y, m] = l.latestPublished.split("-");
+  const join = (lead: string) => `${lead}${tail.startsWith(",") ? "" : " "}${tail}`;
+  const candidates = [
+    `${l.name} ${l.latestVersion} (${REGISTRY_LABEL[l.ecosystem]}, ${SHORT_MONTHS[Number(m) - 1]} ${y})`,
+    `${l.name} ${l.latestVersion} (${REGISTRY_LABEL[l.ecosystem]})`,
+    l.name,
+  ].map(join);
+  const fit = candidates.find((c) => c.length <= max);
+  if (!fit) throw new Error(`librariesEditorial: the meta description for "${slug}" is ${candidates[2].length} characters even without its version (${max} max)`);
+  return fit;
+}
+
 // ── Sources ───────────────────────────────────────────────────────────────
 
 const readme = (repo: string, path = "README.md") => `https://github.com/${repo}/blob/HEAD/${path}`;
@@ -332,7 +361,7 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
     slug: "react-native-health-connect",
     title: "react-native-health-connect: Setup, Expo and Caveats",
     metaDescription:
-      "react-native-health-connect wraps Android Health Connect for React Native. Install for bare and Expo apps, the MainActivity delegate, release dates.",
+      registryMeta("react-native-health-connect", "wraps Health Connect for React Native: Expo setup, the MainActivity delegate, manifest permissions."),
     h1: "react-native-health-connect",
     primaryQuery: "react-native-health-connect",
     answer:
@@ -400,7 +429,7 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
     slug: "expo-health-connect",
     title: "expo-health-connect Is Deprecated: How to Remove It",
     metaDescription:
-      "expo-health-connect is deprecated and merged into react-native-health-connect v4. The three migration steps and the duplicate-class build error it causes.",
+      registryMeta("expo-health-connect", "is deprecated, merged into react-native-health-connect v4: three migration steps, the duplicate-class error."),
     h1: "expo-health-connect (deprecated)",
     primaryQuery: "expo-health-connect deprecated",
     answer:
@@ -518,7 +547,7 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
     slug: "capacitor-health",
     title: "capacitor-health: Apple Health + Health Connect Plugin",
     metaDescription:
-      "capacitor-health reads Apple Health and Health Connect from one Capacitor API. Install, manifest setup, the daily-bucket limit on Android, release dates.",
+      registryMeta("capacitor-health", "reads Apple Health and Health Connect via one Capacitor API: manifest setup, day-only buckets on Android."),
     h1: "capacitor-health",
     primaryQuery: "capacitor-health",
     answer:
@@ -639,7 +668,7 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
     slug: "perfood-capacitor-healthkit",
     title: "@perfood/capacitor-healthkit: Status and Alternatives",
     metaDescription:
-      "@perfood/capacitor-healthkit is an iOS-only Capacitor plugin for Apple Health. Its v2 alpha, the Capacitor version it targets, release dates, alternatives.",
+      registryMeta("perfood-capacitor-healthkit", "is an iOS-only Capacitor plugin for Apple Health: its v2 alpha, the Capacitor version it targets."),
     h1: "@perfood/capacitor-healthkit",
     primaryQuery: "@perfood/capacitor-healthkit",
     answer: `@perfood/capacitor-healthkit is an iOS-only Capacitor plugin for reading and writing Apple Health data. Its README says the maintainers are slowly working on a version 2, no longer accept pull requests to the main branch, and publish v2 as an alpha on npm. Its latest stable release declares a peer dependency of @capacitor/core ${req("perfood-capacitor-healthkit", "@capacitor/core") ?? "(unstated)"}, so check that against your Capacitor version before adopting it.`,
@@ -686,7 +715,7 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
     slug: "cordova-plugin-health",
     title: "cordova-plugin-health: HealthKit + Health Connect",
     metaDescription:
-      "cordova-plugin-health abstracts Apple HealthKit and Google Health Connect for Cordova and Capacitor. Install, manifest permissions, the end of Google Fit.",
+      registryMeta("cordova-plugin-health", "wraps HealthKit and Health Connect for Cordova/Capacitor. v3 dropped Google Fit; you declare permissions."),
     h1: "cordova-plugin-health",
     primaryQuery: "cordova-plugin-health",
     answer:
@@ -759,9 +788,9 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
   },
   {
     slug: "flutter-health",
-    title: "Flutter health Package: HealthKit and Health Connect",
+    title: "Flutter health Package (pub.dev): HealthKit + Health Connect",
     metaDescription:
-      "The Flutter health package reads and writes Apple Health and Health Connect. Install, the 30-day Health Connect limit, Google Fit removal, release dates.",
+      registryMeta("flutter-health", ", the Flutter plugin for Apple Health and Health Connect: the 30-day Android read limit, Google Fit removed in 11.0.0."),
     h1: "health (Flutter package)",
     primaryQuery: "flutter health package",
     answer:
@@ -823,7 +852,7 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
     slug: "health-connector",
     title: "health_connector: Flutter HealthKit + Health Connect",
     metaDescription:
-      "health_connector is a newer Flutter SDK for HealthKit and Health Connect. Install, minimum Flutter, Dart, iOS and Android versions, release dates.",
+      registryMeta("health-connector", "is a newer Flutter SDK for HealthKit and Health Connect: Flutter 3.38, Dart 3.10, iOS 15, Android API 26."),
     h1: "health_connector",
     primaryQuery: "health_connector flutter",
     answer: `health_connector is a Flutter SDK for Apple HealthKit and Android Health Connect, first published on pub.dev in ${monthYear(lib("health-connector").firstPublished)}. Its README describes typed access to 143 health data types, incremental synchronisation and update operations — the project's own description. It sets higher floors than older plugins: its requirements table lists Flutter 3.38, Dart 3.10, iOS 15 and Android API 26.`,
@@ -875,7 +904,7 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
     slug: "health-kit-reporter",
     title: "health_kit_reporter: iOS-Only HealthKit for Flutter",
     metaDescription:
-      "health_kit_reporter is an iOS-only Flutter wrapper around the HealthKitReporter pod. Install, the README vs published-version gap, release dates.",
+      registryMeta("health-kit-reporter", "is an iOS-only Flutter wrapper for the HealthKitReporter pod; its README and published version differ."),
     h1: "health_kit_reporter",
     primaryQuery: "health_kit_reporter",
     answer: `health_kit_reporter is an iOS-only Flutter plugin that wraps the HealthKitReporter CocoaPods library for reading, writing and observing HealthKit data. Its latest pub.dev release is ${lib("health-kit-reporter").latestVersion}, published ${monthYear(lib("health-kit-reporter").latestPublished)}. When we read it on ${LIBRARIES_VERIFIED_ON}, the README on the repository's default branch documented a 3.1.0 dependency and a temporary Podfile override instead, so follow the README that matches the version you install.`,
@@ -917,7 +946,7 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
     slug: "flutter-health-connect",
     title: "flutter_health_connect: Health Connect for Flutter",
     metaDescription:
-      "flutter_health_connect is a Health Connect-only Flutter plugin. Install, its Android requirements, its Dart SDK constraint and how recently it shipped.",
+      registryMeta("flutter-health-connect", "is a Health Connect-only Flutter plugin: Android requirements, its Dart SDK constraint, alternatives."),
     h1: "flutter_health_connect",
     primaryQuery: "flutter_health_connect",
     answer: `flutter_health_connect is a Flutter plugin for Android Health Connect only. Its latest pub.dev release dates from ${monthYear(lib("flutter-health-connect").latestPublished)}, and its pubspec declares a Dart SDK constraint of ${req("flutter-health-connect", "sdk") ?? "(unstated)"}. The cross-platform Flutter packages listed here published their latest releases on ${lib("flutter-health").latestPublished} (health) and ${lib("health-connector").latestPublished} (health_connector) — compare those dates with its own before adding it to a project.`,
@@ -1019,7 +1048,7 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
     slug: "garth",
     title: "garth Is Deprecated: Garmin Auth for Python",
     metaDescription:
-      "garth, the Python Garmin Connect auth library, is deprecated: Garmin changed its auth flow. What still works for existing sessions and what replaced it.",
+      registryMeta("garth", "is deprecated: Garmin changed its auth flow, so new logins fail. What still works for saved sessions and what replaced it."),
     h1: "garth (deprecated)",
     primaryQuery: "garth deprecated",
     answer: `garth, a Python library for Garmin Connect authentication, is deprecated: its README says Garmin changed its auth flow, breaking the mobile auth approach garth depended on, and calls the latest release the final one. A saved session with a valid OAuth1 token may keep working until that token expires, but new logins will not. ${lib("garth").registryStatus ? `Its PyPI classifier reads "${lib("garth").registryStatus}", and` : "And"} garminconnect dropped it as a dependency in version 0.3.0.`,
@@ -1067,7 +1096,7 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
     slug: "stravalib",
     title: "stravalib: Python Client for the Strava V3 API",
     metaDescription:
-      "stravalib is the Python package for the Strava V3 API: auth, activities, clubs and athlete data. Install, required Python version, release dates.",
+      registryMeta("stravalib", "is the Python client for the Strava V3 API: auth, activities, clubs, athlete data. Python 3.11+ and install steps."),
     h1: "stravalib",
     primaryQuery: "stravalib",
     answer: `stravalib is a Python package for the Strava V3 API: authenticating, keeping a token current, downloading activity, club and profile data, and changing a user's activities. Its README lists Python 3.11+ with requests, pint, arrow and pydantic 2.x, and it uses Pint for unit-aware quantities. It wraps Strava's API rather than replacing it, so you still register a Strava app first, as its first tutorial explains; its latest PyPI release is ${lib("stravalib").latestVersion}.`,
@@ -1112,7 +1141,7 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
     slug: "oura-ring",
     title: "oura-ring: Python Client for the Oura API v2",
     metaDescription:
-      "oura-ring is a Python client for the Oura API v2 with an OAuth2 helper. Install, the personal-access-token change, endpoints covered, release dates.",
+      registryMeta("oura-ring", "is a Python client for the Oura API v2 with an OAuth2 helper. Oura deprecated personal access tokens in December 2025."),
     h1: "oura-ring (Python)",
     primaryQuery: "oura-ring python",
     answer: `oura-ring is a Python client for the Oura API v2 with an OAuth2 helper, OuraAuth, for the authorization-code flow. Its README notes that Oura deprecated personal access tokens in December 2025, so new integrations must use OAuth2, though OuraClient still accepts a previously issued token. Its PyPI metadata requires Python ${req("oura-ring", "python") ?? "(unstated)"}.`,
@@ -1160,7 +1189,7 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
     slug: "oura-python",
     title: "oura (python-ouraring): Maintenance and API v2 Status",
     metaDescription:
-      "oura on PyPI is python-ouraring, an older Oura API client. Its maintainer's handover note, v2 client status, the PAT change, release dates.",
+      registryMeta("oura-python", "is python-ouraring, an older Oura API client: the maintainer's handover note, v2 client status, the token change."),
     h1: "oura (python-ouraring)",
     primaryQuery: "python-ouraring",
     answer: `oura is the PyPI name of python-ouraring, an older Python client for the Oura API. Its README says the maintainer cannot commit to the quality and responsiveness users deserve and invites someone to take the project over, and that the v2 clients have not been tested with the OAuth2 flow. Its examples still start from a personal access token, which Oura stopped issuing in December 2025 according to the oura-ring README; its latest PyPI release dates from ${monthYear(lib("oura-python").latestPublished)}.`,
@@ -1257,7 +1286,7 @@ export const LIBRARY_EDITORIAL: LibraryEditorial[] = [
     slug: "withings-api",
     title: "withings-api: Python Client for the Withings API",
     metaDescription:
-      "withings-api is a Python client for the Withings Health API over OAuth 2.0. Install, demo mode for testing, supported Python versions, release dates.",
+      registryMeta("withings-api", "is a Python client for the Withings Health API over OAuth 2.0: install, demo mode, supported Python versions."),
     h1: "withings-api (Python)",
     primaryQuery: "withings-api python",
     answer: `withings-api is a Python client for the Withings Health API that authenticates with OAuth 2.0, using a client ID and consumer secret from a Withings developer application. Its README shows a demo mode for testing against Withings' demo data. Its latest PyPI release dates from ${monthYear(lib("withings-api").latestPublished)} and declares Python ${req("withings-api", "python") ?? "(unstated)"}, so test it against your Python version before relying on it.`,
