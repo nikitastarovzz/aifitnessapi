@@ -43,6 +43,7 @@ export const RELEASED_COMPLIANCE = new Set<string>([
   "ftc-health-breach-notification-rule",
   "washington-my-health-my-data-act",
   "remote-patient-monitoring-device-requirements",
+  "gym-gdpr-compliance",
 ]);
 
 export const allCompliance: ClusterEntry[] = complianceEntries;

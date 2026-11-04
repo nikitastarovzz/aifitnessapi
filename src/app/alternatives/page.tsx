@@ -54,6 +54,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
       "coros-api-alternatives",
       "wahoo-api-alternatives",
       "dexcom-api-alternatives",
+      "polar-api-alternatives",
     ],
   },
   {
@@ -65,6 +66,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
       "terra-alternatives",
       "rook-alternatives",
       "sahha-alternatives",
+      "spike-api-alternatives",
       "human-api-alternatives",
     ],
   },
@@ -109,7 +111,7 @@ export default function AlternativesPillar() {
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),
-    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    mainEntityOfPage: { "@id": `${url}#collection` },
     url,
     speakable: { "@type": "SpeakableSpecification", cssSelector: ["#answer"] },
   };

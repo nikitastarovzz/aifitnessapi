@@ -45,7 +45,8 @@
  * Withings, Suunto and Wahoo; ops/SEO-10-2026-10-27.md item 6) but have no
  * product entry in data/apis.ts, which a menu needs for its name and which
  * would add a directory page with cost-model rows. Like Polar (a guide, a
- * pricing page and its entry) they have no menu yet: an open decision.
+ * pricing page, an alternatives page since 2026-11-04, and its entry) they
+ * have no menu yet: an open decision.
  * QuickPose, Sency and MediaPipe reached three on 2026-10-18 (pricing and
  * alternatives pages) and have no menu yet: whether competitors of the site's
  * funder get one is an open decision, not an oversight. KinesteX has five
@@ -190,6 +191,7 @@ export const VENDOR_HUBS: VendorHub[] = [
       "/compare/fitbit-vs-apple-watch",
       "/compare/apple-watch-vs-garmin",
       "/compare/apple-watch-vs-whoop",
+      "/compare/cliniko-vs-healthkit",
       "/healthkit-errors",
       "/error-codes",
       "/fix/healthkit-no-data",
@@ -285,6 +287,7 @@ export const VENDOR_HUBS: VendorHub[] = [
     wraps: [],
     pages: [
       "/integrate/terra-api",
+      "/pricing/terra-api-pricing",
       "/pricing/health-data-aggregator-pricing",
       "/alternatives/terra-alternatives",
       "/fitness-apis/terra-vs-vital",
@@ -303,6 +306,7 @@ export const VENDOR_HUBS: VendorHub[] = [
     wraps: [],
     pages: [
       "/apis/junction",
+      "/pricing/junction-api-pricing",
       "/pricing/health-data-aggregator-pricing",
       // Vital is Junction's former name, and the page's H1 says so.
       "/fitness-apis/terra-vs-vital",
@@ -315,6 +319,7 @@ export const VENDOR_HUBS: VendorHub[] = [
     wraps: [],
     pages: [
       "/apis/rook",
+      "/pricing/rook-api-pricing",
       "/pricing/health-data-aggregator-pricing",
       "/compare/terra-vs-rook",
       "/compare/rook-vs-spike",
@@ -329,6 +334,7 @@ export const VENDOR_HUBS: VendorHub[] = [
     pages: [
       "/apis/spike",
       "/pricing/health-data-aggregator-pricing",
+      "/alternatives/spike-api-alternatives",
       "/compare/terra-vs-spike",
       "/compare/rook-vs-spike",
     ],
@@ -362,6 +368,7 @@ export const VENDOR_HUBS: VendorHub[] = [
     wraps: [],
     pages: [
       "/integrate/nutritionix-api",
+      "/pricing/nutritionix-api-pricing",
       "/pricing/nutrition-api-pricing",
       "/alternatives/nutritionix-alternatives",
       "/compare/nutritionix-vs-edamam",

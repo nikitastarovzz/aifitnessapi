@@ -93,7 +93,7 @@ const MAIN = [
   { href: "/state-of-fitness-apis-2026", label: "The State of Fitness APIs 2026" },
   { href: "/2026", label: "Fitness APIs in 2026: the year in numbers" },
   { href: "/ai-fitness-app", label: "How to build an AI fitness app" },
-  { href: "/no-code-fitness-app", label: "AI fitness app builder guide: no code, just APIs" },
+  { href: "/no-code-fitness-app", label: "Fitness app builder guide: an AI fitness app from APIs" },
   { href: "/google-fit-shutdown", label: "Google Fit shutdown centre" },
   { href: "/fitbit-api-shutdown", label: "Fitbit Web API retirement centre" },
   { href: "/datasets", label: "Open datasets (CC BY 4.0)" },

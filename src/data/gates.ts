@@ -140,6 +140,24 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "A page emitting more than one BreadcrumbList, which makes its breadcrumb trail ambiguous.",
   },
   {
+    code: "ORG-ONCE",
+    area: "Structured data / GEO",
+    refuses:
+      "A page that defines the site's Organization other than exactly once, or carries an inline AIFitnessAPI Organization with no @id. Every other mention must point at the one node by @id, so a crawler sees one publisher; the funder, KinesteX, is a separate Organization and never takes the site's @id.",
+  },
+  {
+    code: "KEY-FACTS-SOURCED",
+    area: "Structured data / GEO",
+    refuses:
+      "A Key facts line that is not, word for word, a quote from the page's evidence file for the URL it links, that links a page outside the entry's checked sources, or that states no number; a block with fewer than three or more than five lines; key facts outside the money clusters; or a build in which no page renders the block at all.",
+  },
+  {
+    code: "CITE-BOX",
+    area: "Structured data / GEO",
+    refuses:
+      "A page rendered by the shared cluster template without exactly one Cite this page box, or with one whose URL is not the page's canonical, whose date is not the lastReviewed date of the page's WebPage node, or that leaves out the title, the publisher, or the plain and BibTeX citations.",
+  },
+  {
     code: "LINK-TO-404",
     area: "Links and anchors",
     refuses: "A site that links to a route which builds a file but renders notFound() to the reader.",
@@ -373,6 +391,68 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
       "A market map or market-map embed whose KinesteX tile does not say that KinesteX funds this site. The embed travels without the page's disclosure, so the marker has to be on the tile.",
   },
   {
+    code: "EMBED-TABLE-FUNDER",
+    area: "Disclosure",
+    refuses:
+      "A table embed whose table names KinesteX without a line inside the frame saying that KinesteX funds this site. The page's disclosure banner does not travel with the widget.",
+  },
+  {
+    code: "EMBED-NOINDEX",
+    area: "Hosting and crawl",
+    refuses:
+      "An iframe widget under /embed that does not render noindex. A widget that can be indexed competes in search with the page it was cut from.",
+  },
+  {
+    code: "EMBED-CANONICAL",
+    area: "Hosting and crawl",
+    refuses:
+      "An iframe widget whose canonical is not a built page on this site outside /embed. The canonical is how a widget points search engines at its source page.",
+  },
+  {
+    code: "EMBED-BACKLINK",
+    area: "Links and anchors",
+    refuses:
+      "An iframe widget without the visible attribution link to the same page its canonical names. That link is the condition of the embed licence and the reason the widgets exist.",
+  },
+  {
+    code: "EMBED-SITEMAP",
+    area: "Hosting and crawl",
+    refuses: "A sitemap.xml that lists an iframe widget. Widgets are noindex and stay out of the sitemap.",
+  },
+  {
+    code: "EMBED-TABLE-READ",
+    area: "Content integrity",
+    refuses:
+      "A build in which the list of clusters whose tables can be embedded (EMBED_TABLE_CLUSTERS in src/lib/embedTables.ts) cannot be read and resolved to cluster paths. Without it nothing holds the Embed controls to the widgets.",
+  },
+  {
+    code: "EMBED-TABLE-CONTROL",
+    area: "Content integrity",
+    refuses:
+      "A table in the body of a pricing, alternatives, compare, fitness-API or integration page that has no Embed control offering its own widget, numbered in page order.",
+  },
+  {
+    code: "EMBED-TABLE-ROUTE",
+    area: "Content integrity",
+    refuses: "An Embed control on a page whose table widget was not built: a copy-paste snippet that would put a 404 inside someone else's page.",
+  },
+  {
+    code: "EMBED-TABLE-ORPHAN",
+    area: "Content integrity",
+    refuses: "A table widget that was built but is not offered by an Embed control on its source page.",
+  },
+  {
+    code: "EMBED-TABLE-DRIFT",
+    area: "Content integrity",
+    refuses:
+      "A table widget that does not render exactly one table, or whose table text differs from the table at the same position on its source page.",
+  },
+  {
+    code: "EMBED-TABLE-VERIFIED",
+    area: "Content integrity",
+    refuses: "A table widget whose last-verified date is missing or differs from the date its source page shows.",
+  },
+  {
     code: "API-INDEX-ROWS",
     area: "Content integrity",
     refuses:
@@ -493,12 +573,57 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
   {
     code: "GEO-LLMS-MISSING",
     area: "Feeds and mirrors",
-    refuses: "A spoke page that llms.txt does not list, so a model reading the index never learns it exists.",
+    refuses: "A spoke page or blog post that /llms-index.txt, the exhaustive page list, does not name, so a model reading the index never learns it exists.",
   },
   {
     code: "GEO-LLMS-SURFACE",
     area: "Feeds and mirrors",
-    refuses: "An llms.txt that fails to advertise the answers, changes and full-text surfaces.",
+    refuses: "An llms.txt that fails to advertise the answers, answers-by-section, changes, full-text and exhaustive-index surfaces.",
+  },
+  {
+    code: "GEO-NO-LLMS-INDEX",
+    area: "Feeds and mirrors",
+    refuses: "A build with no /llms-index.txt, the exhaustive page list that /llms.txt links to.",
+  },
+  {
+    code: "GEO-LLMS-SIZE",
+    area: "Feeds and mirrors",
+    refuses: "An llms.txt over 50 KB. It reached 590 KB listing every page with its capsule, more than an assistant keeps of one fetch; the full list lives in /llms-index.txt.",
+  },
+  {
+    code: "GEO-LLMS-SHAPE",
+    area: "Feeds and mirrors",
+    refuses: "An llms.txt that does not open with an H1 and a summary blockquote.",
+  },
+  {
+    code: "GEO-LLMS-HUB",
+    area: "Feeds and mirrors",
+    refuses: "A cluster hub that the curated llms.txt does not name.",
+  },
+  {
+    code: "GEO-FULL-SECTIONS",
+    area: "Feeds and mirrors",
+    refuses: "A build with no /llms-full/<section>.txt files, or with no llms-full.txt to compare them with.",
+  },
+  {
+    code: "GEO-FULL-UNLISTED",
+    area: "Feeds and mirrors",
+    refuses: "A /llms-full/<section>.txt file that llms.txt does not link, so nothing points a model at it.",
+  },
+  {
+    code: "GEO-FULL-DRIFT",
+    area: "Feeds and mirrors",
+    refuses: "A /llms-full/<section>.txt whose text is not the same as its part of llms-full.txt, or section files that together hold more than the whole.",
+  },
+  {
+    code: "GEO-FULL-MISSING",
+    area: "Feeds and mirrors",
+    refuses: "A spoke page or blog post with no entry in any /llms-full/<section>.txt file.",
+  },
+  {
+    code: "GEO-SECTION-404",
+    area: "Feeds and mirrors",
+    refuses: "An llms.txt link to a /llms-full/ or /answers/ section file that the build did not produce.",
   },
 
   // ── Crawler access ────────────────────────────────────────────────────
@@ -515,7 +640,7 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
   {
     code: "GEO-ROBOTS-SURFACE",
     area: "Structured data / GEO",
-    refuses: "A robots.txt that does not point crawlers at llms.txt, answers.json and the changes feed.",
+    refuses: "A robots.txt that does not point crawlers at llms.txt, llms-index.txt, llms-full.txt, answers.json, the answers-by-section index and the changes feed.",
   },
   {
     code: "JSX-ENTITY-SPACE",
@@ -558,6 +683,21 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     code: "GEO-ANSWERS-FIELDS",
     area: "Structured data / GEO",
     refuses: "An answers.json record missing its question, answer, URL, markdown mirror or last-reviewed date.",
+  },
+  {
+    code: "GEO-ANSWERS-INDEX",
+    area: "Structured data / GEO",
+    refuses: "An /answers/index.json that is missing or lists no sections, that leaves out a built /answers/<section>.json, names a wrong URL, or lists a section with no date.",
+  },
+  {
+    code: "GEO-ANSWERS-SECTION",
+    area: "Structured data / GEO",
+    refuses: "An /answers/<section>.json that is missing or invalid, or whose record count differs from the count it states or the index states for it.",
+  },
+  {
+    code: "GEO-ANSWERS-UNION",
+    area: "Structured data / GEO",
+    refuses: "Per-section answer files whose records together are not exactly the answers, reference pages, posts, changes, facts and start-here of answers.json, or an index whose totals disagree with it.",
   },
 
   // ── Changes feed ──────────────────────────────────────────────────────
@@ -1363,7 +1503,7 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     code: "PTBR-SURFACES",
     area: "Translations",
     refuses:
-      "A /pt-br page listed in llms.txt, llms-full.txt, answers.json or the search index, which describe the English pages.",
+      "A /pt-br page listed in llms.txt, llms-index.txt, llms-full.txt or its section files, answers.json or its section files, or the search index, which describe the English pages.",
   },
 ];
 

@@ -249,9 +249,8 @@ export const LIBRARY_LANDINGS: LibraryLanding[] = [
     slug: "react-native",
     groups: ["react-native"],
     label: "React Native",
-    title: "React Native Health Data Libraries for iOS and Android",
-    metaDescription:
-      "React Native libraries for Apple HealthKit, Health Connect and Google Fit: which to install per platform, Expo support, versions, dates and licences.",
+    title: "React Native Health Libraries: One for iOS, One for Android",
+    metaDescription: `None of the ${RN.length} React Native health packages tracked here covers both stores: react-native-health is iOS-only, react-native-health-connect Android-only.`,
     h1: "React Native health data libraries",
     primaryQuery: "react native health data library",
     answer: `None of the ${RN.length} React Native packages this site tracks covers both health stores: react-native-health and @kingstinct/react-native-healthkit bridge Apple HealthKit on iOS, and react-native-health-connect wraps Health Connect on Android, so an app that ships on both platforms usually installs one of each. react-native-health-connect has carried its own Expo config plugin since v4, which is why expo-health-connect is deprecated on npm and its README says to remove it. react-native-google-fit bridges the Google Fit API, which Google's Fit migration guide says will only be supported until the end of 2026.`,

@@ -993,6 +993,10 @@ export const entries: ClusterEntry[] =
         "label": "Best wearable fitness APIs"
       },
       {
+        "href": "/compare/cliniko-vs-healthkit",
+        "label": "Cliniko vs HealthKit: patient data in a clinic"
+      },
+      {
         "href": "/fitness-apis",
         "label": "All fitness & workout APIs"
       }
@@ -1725,6 +1729,10 @@ export const entries: ClusterEntry[] =
       }
     ],
     "related": [
+      {
+        "href": "/compliance/gym-gdpr-compliance",
+        "label": "GDPR for gyms and studios"
+      },
       {
         "href": "/integrate/mindbody-api",
         "label": "Integrate the Mindbody API"

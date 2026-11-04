@@ -226,20 +226,43 @@ function urlKey(url: string): string {
  * every page in `entry.sources`. A recorded source is evidence by
  * construction — it is the page a re-verification checked the claims against
  * — so it is cited whatever its domain, which the body heuristic cannot do.
- * One node per page, body links first, in first-seen order.
+ * One URL per page, body links first, in first-seen order.
+ *
+ * Emitted as plain URLs (schema.org `citation` takes CreativeWork or Text).
+ * They used to be `{"@type": "WebPage", url}` objects, which made a page with
+ * twelve sources declare thirteen WebPage entities — twelve of them other
+ * people's — beside the one page it is (Nov 3 audit, A49). A URL says the
+ * same thing about evidence without minting a node per source.
  */
-export function entryCitations(entry: Pick<ClusterEntry, "body" | "sources">) {
+export function entryCitations(entry: Pick<ClusterEntry, "body" | "sources">): string[] {
   const seen = new Set<string>();
-  const out: { "@type": string; url: string }[] = [];
+  const out: string[] = [];
   const add = (url: string) => {
     const key = urlKey(url);
     if (seen.has(key)) return;
     seen.add(key);
-    out.push({ "@type": "WebPage", url });
+    out.push(url);
   };
   for (const c of citationsFromBody(entry.body)) add(c.url);
   for (const s of entry.sources ?? []) add(s.url);
   return out;
+}
+
+/**
+ * What the page's text rests on: the pages its last full re-verification
+ * checked (`entry.sources`), as URLs. Narrower than `citation`, which also
+ * carries documentation the body links; absent when nothing is recorded.
+ */
+export function entryBasis(entry: Pick<ClusterEntry, "sources">): string[] {
+  const seen = new Set<string>();
+  return (entry.sources ?? [])
+    .map((s) => s.url)
+    .filter((u) => {
+      const k = urlKey(u);
+      if (seen.has(k)) return false;
+      seen.add(k);
+      return true;
+    });
 }
 
 /** Projects, repositories and tools an entry links — mentioned, not cited. */
@@ -288,8 +311,9 @@ export function spokeGraph({
     inDefinedTermSet: absoluteUrl("/glossary"),
   }));
   const citation = entryCitations(entry);
+  const basis = entryBasis(entry);
   // A page cited as evidence is not also merely "mentioned".
-  const cited = new Set(citation.map((c) => urlKey(c.url)));
+  const cited = new Set(citation.map((c) => urlKey(c)));
   const mentions = mentionsFromBody(entry.body).filter((m) => !cited.has(urlKey(m.url)));
 
   // Cookbook pages are runnable recipes: mark the code as SoftwareSourceCode
@@ -355,6 +379,7 @@ export function spokeGraph({
         },
         ...(about.length ? { about } : {}),
         ...(citation.length ? { citation } : {}),
+        ...(basis.length ? { isBasedOn: basis } : {}),
         ...(mentions.length ? { mentions } : {}),
       },
       {
@@ -433,6 +458,9 @@ export function translationGraph({
         publisher: orgRef(),
         inLanguage,
         translationOfWork: { "@id": `${enUrl}#article` },
+        // The translated text is based on the English article, not on the
+        // sources directly — it was never re-verified against them.
+        isBasedOn: { "@id": `${enUrl}#article` },
         articleSection: hubLabel,
         wordCount: wordCount(entry.body),
         isPartOf: { "@id": WEBSITE_ID },

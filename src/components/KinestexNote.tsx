@@ -43,6 +43,8 @@
  * describing the same destination is just writing.
  */
 
+import { funderHref } from "@/lib/measure.mjs";
+
 type Note = { anchor: string; lead: string };
 
 const MAP: Record<string, Note> = {
@@ -326,7 +328,8 @@ export default function KinestexNote({ path }: { path: string }) {
       <p className="text-[var(--muted)]">
         {note.lead}{" "}
         <a
-          href="https://kinestex.com"
+          href={funderHref("kinestex_note", path)}
+          data-funder="kinestex_note"
           className="font-semibold text-brand-600 hover:text-brand-500"
         >
           {note.anchor}

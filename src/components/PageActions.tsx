@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { bibtexCitation, plainCitation } from "@/lib/cite";
 
 /**
  * The row of things a reader might want to DO with a page rather than read:
@@ -17,6 +18,7 @@ export default function PageActions({
   title,
   updated,
   markdown = true,
+  citeHref,
 }: {
   /** Site-relative path, e.g. "/watch-apps/wear-os-tiles". */
   path: string;
@@ -29,21 +31,18 @@ export default function PageActions({
    *  and offering a "Copy for AI" button that 404s is worse than not
    *  offering one. */
   markdown?: boolean;
+  /** The page renders its own server-side citation box (CiteBox) at this
+   *  fragment: "Cite this page" jumps there instead of opening a copy here,
+   *  so the page carries one citation, not two. */
+  citeHref?: string;
 }) {
   const [state, setState] = useState<"idle" | "copying" | "copied" | "failed">("idle");
   const [showCite, setShowCite] = useState(false);
 
   const mdPath = `${path}.md`;
-  const year = updated.slice(0, 4);
   const citations: { label: string; text: string }[] = [
-    {
-      label: "Plain",
-      text: `AIFitnessAPI. "${title}." Last reviewed ${updated}. ${url}`,
-    },
-    {
-      label: "BibTeX",
-      text: `@misc{aifitnessapi-${path.split("/").filter(Boolean).join("-")},\n  author = {{AIFitnessAPI}},\n  title = {${title}},\n  year = {${year}},\n  url = {${url}},\n  note = {Last reviewed ${updated}}\n}`,
-    },
+    { label: "Plain", text: plainCitation({ title, url, verified: updated }) },
+    { label: "BibTeX", text: bibtexCitation({ path, title, url, verified: updated }) },
   ];
 
   async function copyMarkdown() {
@@ -83,14 +82,20 @@ export default function PageActions({
       </a>
         </>
       )}
-      <button
-        type="button"
-        onClick={() => setShowCite((s) => !s)}
-        aria-expanded={showCite}
-        className={btn}
-      >
-        Cite this page
-      </button>
+      {citeHref ? (
+        <a href={citeHref} className={btn}>
+          Cite this page
+        </a>
+      ) : (
+        <button
+          type="button"
+          onClick={() => setShowCite((s) => !s)}
+          aria-expanded={showCite}
+          className={btn}
+        >
+          Cite this page
+        </button>
+      )}
       <span aria-hidden className="mx-0.5 h-4 w-px bg-[var(--border)]" />
       <a
         className={btn}
@@ -125,7 +130,7 @@ export default function PageActions({
         LinkedIn
       </a>
 
-      {showCite && (
+      {!citeHref && showCite && (
         <div className="mt-2 w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4">
           <p className="text-xs text-[var(--muted)]">
             Cite the page, not the site — every page carries its own review date.

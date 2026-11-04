@@ -1193,13 +1193,70 @@ if (fs.existsSync(matrixPath)) {
     }
   }
 
+  // llms.txt is the curated map and /llms-index.txt the exhaustive one
+  // (ops/GEO.md, decision of 2026-11-04). The every-spoke rule moved with the
+  // list, and the curated file gained its own rules: a size cap, every
+  // cluster hub named, and every per-section file linked and built.
+  const llmsIndex = readBody(".next/server/app/llms-index.txt.body");
+  const LLMS_MAX_BYTES = 50 * 1024;
   if (llms === null) problems.push("GEO-NO-LLMS  llms.txt missing from build output");
   else {
-    for (const r of spokes) {
-      if (!llms.includes(`aifitnessapi.com${r})`)) problems.push(`GEO-LLMS-MISSING  ${r} not listed in llms.txt`);
-    }
-    for (const surface of ["/answers.json", "/changes.xml", "/llms-full.txt"]) {
+    for (const surface of ["/answers.json", "/changes.xml", "/llms-full.txt", "/llms-index.txt", "/answers/index.json"]) {
       if (!llms.includes(surface)) problems.push(`GEO-LLMS-SURFACE  ${surface} not advertised in llms.txt`);
+    }
+    const llmsBytes = Buffer.byteLength(llms, "utf8");
+    if (llmsBytes > LLMS_MAX_BYTES) problems.push(`GEO-LLMS-SIZE  llms.txt is ${llmsBytes} bytes, over the ${LLMS_MAX_BYTES}-byte cap`);
+    if (!llms.startsWith("# ") || !/\n\n> \S/.test(llms.slice(0, 400))) problems.push("GEO-LLMS-SHAPE  llms.txt does not open with an H1 and a summary blockquote");
+    for (const top of clusterTops) {
+      if (!llms.includes(`aifitnessapi.com/${top})`) && !llms.includes(`Hub: https://aifitnessapi.com/${top}.`)) {
+        problems.push(`GEO-LLMS-HUB  the /${top} hub is not named in llms.txt`);
+      }
+    }
+  }
+  if (llmsIndex === null) problems.push("GEO-NO-LLMS-INDEX  llms-index.txt missing from build output");
+  else {
+    for (const r of spokes) {
+      if (!llmsIndex.includes(`aifitnessapi.com${r})`)) problems.push(`GEO-LLMS-MISSING  ${r} not listed in llms-index.txt`);
+    }
+  }
+
+  // Per-section full text: every section file is built, linked from
+  // llms.txt, carries exactly the lines of its part of /llms-full.txt, and
+  // together they hold every cluster spoke and blog post.
+  {
+    const dir = ".next/server/app/llms-full";
+    const files = fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => f.endsWith(".txt.body")) : [];
+    const full = readBody(".next/server/app/llms-full.txt.body");
+    if (files.length === 0) problems.push("GEO-FULL-SECTIONS  no /llms-full/<section>.txt files in the build output");
+    if (full === null) problems.push("GEO-FULL-SECTIONS  llms-full.txt missing from build output");
+    const sectionHeads = new Set();
+    let stitched = "";
+    for (const f of files) {
+      const id = f.replace(/\.txt\.body$/, "");
+      const body = fs.readFileSync(path.join(dir, f), "utf8");
+      if (llms !== null && !llms.includes(`(https://aifitnessapi.com/llms-full/${id}.txt)`)) {
+        problems.push(`GEO-FULL-UNLISTED  /llms-full/${id}.txt is not linked from llms.txt`);
+      }
+      // The section text is everything after the header's first "\n# " line.
+      const start = body.indexOf("\n# ");
+      const section = start === -1 ? "" : body.slice(start + 1);
+      if (!section || (full !== null && !full.includes(section))) {
+        problems.push(`GEO-FULL-DRIFT  /llms-full/${id}.txt is not the same text as its part of llms-full.txt`);
+      }
+      stitched += section;
+      for (const m of section.matchAll(/^## .* — https:\/\/aifitnessapi\.com(\/[^\s#]*)$/gm)) sectionHeads.add(m[1]);
+    }
+    for (const r of spokes) {
+      if (!sectionHeads.has(r)) problems.push(`GEO-FULL-MISSING  ${r} has no entry in any /llms-full/<section>.txt`);
+    }
+    if (full !== null && files.length && Buffer.byteLength(stitched) > Buffer.byteLength(full)) {
+      problems.push("GEO-FULL-DRIFT  the section files together hold more text than llms-full.txt");
+    }
+    if (llms !== null) {
+      for (const m of llms.matchAll(/https:\/\/aifitnessapi\.com\/(llms-full|answers)\/([a-z0-9-]+)\.(txt|json)/g)) {
+        const p = `.next/server/app/${m[1]}/${m[2]}.${m[3]}.body`;
+        if (!fs.existsSync(p)) problems.push(`GEO-SECTION-404  llms.txt links /${m[1]}/${m[2]}.${m[3]}, which the build did not produce`);
+      }
     }
   }
 
@@ -1277,7 +1334,7 @@ if (fs.existsSync(matrixPath)) {
     for (const ua of required) {
       if (!robotsTxt.includes(ua)) problems.push(`GEO-ROBOTS  ${ua} not explicitly allowed in robots.txt`);
     }
-    for (const surface of ["/llms.txt", "/answers.json", "/changes.xml"]) {
+    for (const surface of ["/llms.txt", "/llms-index.txt", "/llms-full.txt", "/answers.json", "/answers/index.json", "/changes.xml"]) {
       if (!robotsTxt.includes(surface)) problems.push(`GEO-ROBOTS-SURFACE  ${surface} not advertised in robots.txt`);
     }
     // The canonical host is set in one place, the hosting provider's domain
@@ -1331,6 +1388,51 @@ if (fs.existsSync(matrixPath)) {
         (a) => !a.question || !a.answer || !a.url || !a.markdown || !a.last_reviewed,
       );
       if (bad.length) problems.push(`GEO-ANSWERS-FIELDS  ${bad.length} answers.json records missing required fields`);
+
+      // The per-section split (ops/GEO.md, 2026-11-04): /answers/index.json
+      // lists every /answers/<id>.json with its count; each count is its
+      // file's record count, every built section file is listed, and the
+      // sections' records together are exactly the whole file's.
+      const dir = ".next/server/app/answers";
+      const indexRaw = readBody(`${dir}/index.json.body`);
+      let index = null;
+      try { index = indexRaw === null ? null : JSON.parse(indexRaw); } catch { /* reported below */ }
+      if (!index || !Array.isArray(index.sections) || index.sections.length === 0) {
+        problems.push("GEO-ANSWERS-INDEX  /answers/index.json is missing, invalid or lists no sections");
+      } else {
+        const built = fs.readdirSync(dir).filter((f) => f.endsWith(".json.body") && f !== "index.json.body").map((f) => f.replace(/\.json\.body$/, ""));
+        const listed = new Set(index.sections.map((s) => s.id));
+        for (const id of built) if (!listed.has(id)) problems.push(`GEO-ANSWERS-INDEX  /answers/${id}.json is built but not listed in /answers/index.json`);
+        const union = { answers: [], reference_pages: [], posts: [], changes: [] };
+        for (const s of index.sections) {
+          if (s.url !== `https://aifitnessapi.com/answers/${s.id}.json`) problems.push(`GEO-ANSWERS-INDEX  section ${s.id} lists url ${s.url}`);
+          if (!s.last_reviewed && s.kind !== "facts") problems.push(`GEO-ANSWERS-INDEX  section ${s.id} carries no date`);
+          const raw = readBody(`${dir}/${s.id}.json.body`);
+          let doc = null;
+          try { doc = raw === null ? null : JSON.parse(raw); } catch { /* reported below */ }
+          if (!doc) { problems.push(`GEO-ANSWERS-SECTION  /answers/${s.id}.json is listed but missing or invalid`); continue; }
+          const records = doc[s.key];
+          const n = Array.isArray(records)
+            ? records.length
+            : s.key === "facts"
+              ? Object.values(records ?? {}).reduce((k, g) => k + (Array.isArray(g?.items) ? g.items.length : 0), 0)
+              : s.key === "start_here"
+                ? (records?.groups ?? []).reduce((k, g) => k + g.pages.length, 0)
+                : -1;
+          if (n !== s.count || doc.count !== s.count) problems.push(`GEO-ANSWERS-SECTION  /answers/${s.id}.json holds ${n} records; the index says ${s.count}, the file says ${doc.count}`);
+          if (union[s.key] && Array.isArray(records)) union[s.key].push(...records);
+          if (s.key === "facts" && JSON.stringify(records) !== JSON.stringify(parsed.facts)) problems.push("GEO-ANSWERS-UNION  /answers/facts.json differs from answers.json facts");
+          if (s.key === "start_here" && JSON.stringify(records) !== JSON.stringify(parsed.start_here)) problems.push("GEO-ANSWERS-UNION  /answers/start-here.json differs from answers.json start_here");
+        }
+        for (const key of Object.keys(union)) {
+          const whole = (parsed[key] ?? []).map((r) => JSON.stringify(r)).sort();
+          const parts = union[key].map((r) => JSON.stringify(r)).sort();
+          if (whole.length !== parts.length || whole.some((r, i) => r !== parts[i])) {
+            problems.push(`GEO-ANSWERS-UNION  the sections' ${key} (${parts.length}) are not exactly answers.json's ${key} (${whole.length})`);
+          }
+          if (index.totals?.[key] !== whole.length) problems.push(`GEO-ANSWERS-UNION  /answers/index.json totals.${key} is ${index.totals?.[key]}, answers.json has ${whole.length}`);
+        }
+      }
     }
   }
 
@@ -3871,7 +3973,14 @@ if (fs.existsSync(matrixPath)) {
     for (const m of html.matchAll(/<div[^>]*\bid="faq-(\d+)"[^>]*>([\s\S]*?)<\/div>/g)) faqs[Number(m[1]) - 1] = m[2];
     return {
       capsule: region(html, /<div[^>]*\bid="answer"/),
-      body: region(html, /<div[^>]*\bdata-article-body/),
+      // The Embed control under an English table (TableEmbed) is page UI, not
+      // body text: its snippets are English iframe code that a translation
+      // does not carry, because embeds render the English table. Cut it
+      // before comparing; the table itself stays and is held as before.
+      body: region(html, /<div[^>]*\bdata-article-body/).replace(
+        /<details\b[^>]*\bdata-embed-table="[^"]*"[^>]*>[\s\S]*?<\/details>/g,
+        "",
+      ),
       faqs,
     };
   };
@@ -4121,7 +4230,10 @@ if (fs.existsSync(matrixPath)) {
 
   // The machine surfaces stay English-only: they index the English pages,
   // and a translation is reachable from its English page's hreflang.
-  for (const f of ["llms.txt", "llms-full.txt", "answers.json", "search-index.json"]) {
+  const sectionFiles = ["llms-full", "answers"].flatMap((d) =>
+    fs.existsSync(`${ROOT}/${d}`) ? fs.readdirSync(`${ROOT}/${d}`).filter((f) => f.endsWith(".body")).map((f) => `${d}/${f.replace(/\.body$/, "")}`) : [],
+  );
+  for (const f of ["llms.txt", "llms-index.txt", "llms-full.txt", "answers.json", "search-index.json", ...sectionFiles]) {
     const p = `${ROOT}/${f}.body`;
     if (fs.existsSync(p) && fs.readFileSync(p, "utf8").includes("/pt-br/")) {
       problems.push(`PTBR-SURFACES  /${f} lists a /pt-br page`);
@@ -4133,6 +4245,366 @@ if (fs.existsSync(matrixPath)) {
       (stale ? " (noindex, out of sitemap and hreflang — run node scripts/translation-status.mjs)" : "") +
       `; held to the English pages: ${seen.numbers} numbers, ${seen.links} internal and ${seen.external} external links, ` +
       `${seen.code} code spans, ${seen.quotes} quoted passages.`,
+  );
+}
+
+// ── Embeds (/embed/*, ops/NEXT-10-2026-11-04.md item 7). A widget renders on
+// someone else's page, so three things hold for every one of them, old and
+// new: it is noindex (an iframe target competing with its own source page in
+// search is the site duplicating itself), its canonical names the built human
+// page it comes from, and it carries the visible backlink to that same page —
+// the attribution the /badges licence asks for, and the reason the widgets
+// exist. None of them is in the sitemap.
+//
+// The table widgets (/embed/table/<cluster>/<slug>/<n>) are held to the page
+// in both directions: every table in an embeddable cluster's body shows an
+// Embed control, every control offers a built widget, every built widget is
+// offered by a control, and the widget's table says what the page's n-th
+// table says, under the page's own verification date. A widget whose table
+// names KinesteX carries the funding disclosure, because the page's banner
+// does not travel with it (ops/GEO.md).
+{
+  const SITE = "https://aifitnessapi.com";
+  const fileByRoute = new Map(htmls.map((h) => [routeOf(h), h]));
+  const read = (r) => (fileByRoute.has(r) ? fs.readFileSync(fileByRoute.get(r), "utf8") : "");
+  const built = (r) => valid.has(r) && !notFoundSet.has(r);
+  const outer = (html, at) => {
+    const tag = /^<([a-z0-9]+)/.exec(html.slice(at))?.[1];
+    if (!tag) return "";
+    const re = new RegExp(`<(/?)${tag}\\b[^>]*>`, "g");
+    re.lastIndex = at;
+    let depth = 0;
+    for (let m; (m = re.exec(html)); ) {
+      if (m[0].endsWith("/>")) continue;
+      depth += m[1] ? -1 : 1;
+      if (depth === 0) return html.slice(at, re.lastIndex);
+    }
+    return html.slice(at);
+  };
+  const plain = (h) =>
+    decode(h.replace(/<script[\s\S]*?<\/script>/g, "").replace(/<[^>]+>/g, " "))
+      .replace(/&#x([0-9a-f]+);/gi, (_, x) => String.fromCodePoint(parseInt(x, 16)))
+      .replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(Number(d)))
+      .replace(/&nbsp;/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  const verifiedOn = (html) => /Last verified (?:<!-- -->)?([A-Z][a-z]+ \d{1,2}, \d{4})/.exec(html)?.[1] ?? null;
+
+  const embeds = [...valid].filter((r) => r.startsWith("/embed/") && !notFoundSet.has(r)).sort();
+  for (const r of embeds) {
+    const html = read(r);
+    if (!robotsOf(html).some((c) => /noindex/i.test(c))) problems.push(`EMBED-NOINDEX  ${r} does not render noindex`);
+    const canonical = decode(canonicalOf(html) ?? "");
+    const target = canonical.startsWith(SITE) ? canonical.slice(SITE.length) || "/" : null;
+    if (!target || target.startsWith("/embed/") || !built(target)) {
+      problems.push(`EMBED-CANONICAL  ${r} canonicals to "${canonical}", which is not a built page outside /embed`);
+      continue;
+    }
+    const backlinks = [...html.matchAll(/<a\b[^>]*\bdata-embed-backlink\b[^>]*>/g)].map(
+      (m) => decode(/\bhref="([^"]*)"/.exec(m[0])?.[1] ?? ""),
+    );
+    if (!backlinks.includes(canonical)) {
+      problems.push(`EMBED-BACKLINK  ${r} has no visible backlink to its canonical page ${canonical}`);
+    }
+  }
+  const sm = fs.existsSync(`${ROOT}/sitemap.xml.body`) ? fs.readFileSync(`${ROOT}/sitemap.xml.body`, "utf8") : "";
+  for (const m of sm.matchAll(/<loc>[^<]*?(\/embed\/[^<]*)<\/loc>/g)) {
+    problems.push(`EMBED-SITEMAP  sitemap.xml lists the widget ${m[1]}`);
+  }
+
+  // The embeddable clusters, read from src/lib/embedTables.ts and resolved
+  // through each cluster's own *_PATH constant, so qa and the site agree.
+  const libSrc = fs.existsSync("src/lib/embedTables.ts") ? fs.readFileSync("src/lib/embedTables.ts", "utf8") : "";
+  const ids = /EMBED_TABLE_CLUSTERS = \[([\s\S]*?)\]/.exec(libSrc)?.[1].match(/[A-Z_]+_PATH/g) ?? [];
+  const dataSrc = fs.readdirSync("src/data").filter((f) => f.endsWith(".ts")).map((f) => fs.readFileSync(`src/data/${f}`, "utf8")).join("\n");
+  const clusters = ids.map((id) => new RegExp(`export const ${id} = "(/[a-z0-9-]+)"`).exec(dataSrc)?.[1]);
+  if (!ids.length || clusters.some((c) => !c)) {
+    problems.push("EMBED-TABLE-READ  EMBED_TABLE_CLUSTERS in src/lib/embedTables.ts could not be resolved to cluster paths");
+  }
+
+  const offered = new Map(); // widget route → source page
+  let tableCount = 0;
+  const pages = [...valid].filter((r) => built(r) && clusters.some((c) => c && r.startsWith(`${c}/`) && r.split("/").length === 3));
+  for (const page of pages) {
+    const html = read(page);
+    const at = html.search(/<div[^>]*\bdata-article-body/);
+    const body = at === -1 ? "" : outer(html, at);
+    const tables = [...body.matchAll(/<table\b[^>]*>/g)];
+    const controls = new Set([...body.matchAll(/<details\b[^>]*\bdata-embed-table="([^"]*)"/g)].map((m) => m[1]));
+    tables.forEach((m, i) => {
+      const n = /\bdata-table-index="(\d+)"/.exec(m[0])?.[1];
+      const want = `/embed/table${page}/${i + 1}`;
+      if (n !== String(i + 1) || !controls.has(want)) {
+        problems.push(`EMBED-TABLE-CONTROL  ${page} table ${i + 1} shows no Embed control offering ${want}`);
+      }
+    });
+    for (const route of controls) {
+      offered.set(route, page);
+      if (!built(route)) problems.push(`EMBED-TABLE-ROUTE  ${page} shows an Embed control for ${route}, which was not built`);
+    }
+    tableCount += tables.length;
+  }
+
+  const tableEmbeds = embeds.filter((r) => r.startsWith("/embed/table/"));
+  for (const r of tableEmbeds) {
+    const m = /^\/embed\/table(\/[a-z0-9-]+\/[a-z0-9-]+)\/(\d+)$/.exec(r);
+    const page = m?.[1];
+    if (!m || offered.get(r) !== page) {
+      problems.push(`EMBED-TABLE-ORPHAN  ${r} is built but no Embed control on its source page offers it`);
+      continue;
+    }
+    const html = read(r);
+    const pageHtml = read(page);
+    const pAt = pageHtml.search(new RegExp(`<table\\b[^>]*\\bdata-table-index="${m[2]}"`));
+    const wAt = html.search(/<div[^>]*\bdata-embed-source=/);
+    const widget = wAt === -1 ? "" : outer(html, wAt);
+    const wTables = [...widget.matchAll(/<table\b/g)].length;
+    const wText = wTables === 1 ? plain(outer(widget, widget.search(/<table\b/))) : "";
+    const pText = pAt === -1 ? null : plain(outer(pageHtml, pAt));
+    if (wTables !== 1 || wText !== pText) {
+      problems.push(`EMBED-TABLE-DRIFT  ${r} renders ${wTables} table(s), and not the same table as ${page} table ${m[2]}`);
+    }
+    if (verifiedOn(html) === null || verifiedOn(html) !== verifiedOn(pageHtml)) {
+      problems.push(`EMBED-TABLE-VERIFIED  ${r} says last verified ${verifiedOn(html)}, ${page} says ${verifiedOn(pageHtml)}`);
+    }
+    if (/KinesteX/i.test(wText) && !/<p[^>]*\bdata-embed-funder[^>]*>[^<]*funds this site/.test(html)) {
+      problems.push(`EMBED-TABLE-FUNDER  ${r} shows a table naming KinesteX without the funds-this-site disclosure`);
+    }
+  }
+  console.log(
+    `Embeds: ${embeds.length} widgets, all held to noindex, canonical and backlink; ` +
+      `${tableEmbeds.length} table widgets for ${tableCount} tables on ${pages.length} pages in ${clusters.filter(Boolean).join(", ")}.`,
+  );
+}
+
+// ── Entity, key facts and citation box (ops/NEXT-10-2026-11-04.md item 6) ──
+// ORG-ONCE: the site's Organization is defined once per page — the root
+// layout's node, with its logo, knowsAbout and funder — and everything else
+// points at it by @id. A second full definition, or an inline copy named
+// AIFitnessAPI with no @id, reads to a crawler as a second publisher with
+// the same name. The funder (KinesteX) is a different organisation: it is an
+// Organization node of its own, by design, and never carries the site's @id.
+// A typed stub ({@type, @id, name, url} — orgNamed() in src/lib/schema.ts,
+// for consumers that do not resolve @id across blocks) is a reference, not a
+// definition.
+//
+// KEY-FACTS-SOURCED: every "Key facts" line is a verbatim quote from a row
+// of the page's evidence file (ops/sources/evidence/<cluster>-<slug>.json,
+// re-checked against the live source by source-quotes.yml), its link is that
+// row's URL, and that URL is one of the entry's checked `sources`. Three to
+// five lines, on money-cluster pages only.
+//
+// CITE-BOX: every page the shared cluster template renders carries one
+// "Cite this page" box naming its canonical URL, its title, the publisher,
+// and the date the page's WebPage node gives as lastReviewed.
+{
+  const { loadEnglishEntries } = await import(new URL("../src/lib/translationStore.mjs", import.meta.url));
+  const SITE = "https://aifitnessapi.com";
+  const ORG_ID = `${SITE}/#organization`;
+  const ORG_NAME = "AIFitnessAPI";
+  const KF_CLUSTERS = ["/pricing", "/alternatives", "/compare", "/integrate", "/fix", "/fitness-apis", "/motion"];
+  const EVIDENCE_DIR = "ops/sources/evidence";
+  const fullDecode = (s) =>
+    decode(s)
+      .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16)))
+      .replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(Number(d)))
+      .replace(/&nbsp;/g, " ");
+  const textOf = (h) => fullDecode(h.replace(/<!--[\s\S]*?-->/g, "").replace(/<[^>]+>/g, "")).replace(/\s+/g, " ").trim();
+  const urlKey = (u) => {
+    try {
+      const x = new URL(u);
+      x.hash = "";
+      return decodeURI(x.href).replace(/\/$/, "");
+    } catch {
+      return u;
+    }
+  };
+  /** The outer HTML of the element whose opening tag starts at `at`, by tag depth. */
+  const elementAt = (html, at) => {
+    const tag = /^<([a-z0-9]+)/.exec(html.slice(at))?.[1];
+    if (!tag) return "";
+    const re = new RegExp(`<(/?)${tag}\\b[^>]*>`, "g");
+    re.lastIndex = at;
+    let depth = 0;
+    for (let m; (m = re.exec(html)); ) {
+      depth += m[1] ? -1 : 1;
+      if (depth === 0) return html.slice(at, re.lastIndex);
+    }
+    return html.slice(at);
+  };
+  const regions = (html, marker) => {
+    const out = [];
+    for (const m of html.matchAll(marker)) out.push(elementAt(html, m.index));
+    return out;
+  };
+  const jsonLdOf = (html) => {
+    const out = [];
+    for (const l of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+      try {
+        out.push(JSON.parse(decode(l[1])));
+      } catch {
+        // BAD-JSON-LD reports it.
+      }
+    }
+    return out;
+  };
+
+  // Which clusters the shared template renders: every [slug] route that uses it.
+  const templateClusters = fs
+    .readdirSync("src/app", { withFileTypes: true })
+    .filter((d) => d.isDirectory() && fs.existsSync(`src/app/${d.name}/[slug]/page.tsx`))
+    .filter((d) => fs.readFileSync(`src/app/${d.name}/[slug]/page.tsx`, "utf8").includes("<ClusterPage"))
+    .map((d) => `/${d.name}`);
+  const english = loadEnglishEntries(KF_CLUSTERS);
+  const evidenceCache = new Map();
+  const evidenceOf = (enPath) => {
+    if (!evidenceCache.has(enPath)) {
+      const f = `${EVIDENCE_DIR}/${enPath.slice(1).replace("/", "-")}.json`;
+      let rows = [];
+      try {
+        rows = fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, "utf8")) : [];
+      } catch {
+        rows = [];
+      }
+      evidenceCache.set(enPath, Array.isArray(rows) ? rows : []);
+    }
+    return evidenceCache.get(enPath);
+  };
+
+  let orgPages = 0;
+  let factPages = 0;
+  let factLines = 0;
+  let citePages = 0;
+  for (const h of htmls) {
+    const route = routeOf(h);
+    if (route.startsWith("/_") || notFoundSet.has(route)) continue;
+    const html = fs.readFileSync(h, "utf8");
+
+    // ORG-ONCE
+    let defs = 0;
+    const inline = [];
+    const walk = (n) => {
+      if (Array.isArray(n)) return n.forEach(walk);
+      if (!n || typeof n !== "object") return;
+      const types = [].concat(n["@type"] ?? []);
+      if (types.includes("Organization")) {
+        if (n["@id"] === ORG_ID) {
+          if (Object.keys(n).some((k) => !["@type", "@id", "name", "url"].includes(k))) defs++;
+        } else if (!n["@id"] && n.name === ORG_NAME) {
+          inline.push(n.url ?? "(no url)");
+        }
+      }
+      for (const v of Object.values(n)) if (v && typeof v === "object") walk(v);
+    };
+    for (const j of jsonLdOf(html)) walk(j);
+    orgPages++;
+    if (defs !== 1 || inline.length) {
+      problems.push(
+        `ORG-ONCE  ${route} defines the site's Organization ${defs}× (expected 1)` +
+          (inline.length ? ` and carries ${inline.length} inline ${ORG_NAME} Organization node(s) with no @id` : ""),
+      );
+    }
+
+    const seg = route.split("/").filter(Boolean);
+    const pt = seg[0] === "pt-br";
+    const enPath = pt ? `/${seg.slice(1).join("/")}` : route;
+    const cluster = `/${enPath.split("/")[1]}`;
+    const isSpoke = html.includes("data-article-body");
+
+    // KEY-FACTS-SOURCED
+    const blocks = regions(html, /<section\b[^>]*\bdata-key-facts\b/g);
+    if (blocks.length) {
+      const entry = english.get(enPath);
+      if (blocks.length > 1) problems.push(`KEY-FACTS-SOURCED  ${route} renders ${blocks.length} key-facts blocks`);
+      if (!KF_CLUSTERS.includes(cluster) || !entry) {
+        problems.push(`KEY-FACTS-SOURCED  ${route} renders key facts outside the money clusters, or for no known entry`);
+      } else {
+        const sources = new Set((entry.sources ?? []).map((s) => urlKey(s.url)));
+        const ev = evidenceOf(enPath);
+        const lines = regions(blocks[0], /<li\b[^>]*\bdata-key-fact\b/g);
+        factPages++;
+        factLines += lines.length;
+        if (lines.length < 3 || lines.length > 5) {
+          problems.push(`KEY-FACTS-SOURCED  ${route} renders ${lines.length} key facts (3 to 5, or no block)`);
+        }
+        for (const li of lines) {
+          const src = fullDecode(/\bdata-source="([^"]*)"/.exec(li)?.[1] ?? "");
+          const href = fullDecode(/<a\b[^>]*\bhref="([^"]*)"/.exec(li)?.[1] ?? "");
+          const quote = textOf(/<q\b[^>]*>([\s\S]*?)<\/q>/.exec(li)?.[1] ?? "");
+          const tag = `${route} key fact "${quote.slice(0, 50)}"`;
+          if (!src || href !== src) {
+            problems.push(`KEY-FACTS-SOURCED  ${tag} links ${href || "nothing"}, not its source ${src || "(none)"}`);
+            continue;
+          }
+          if (!sources.has(urlKey(src))) {
+            problems.push(`KEY-FACTS-SOURCED  ${tag} cites ${src}, which is not in the entry's checked sources`);
+          }
+          // A digit not ending a word ("Concept2" is a name): the rule src/lib/keyFacts.ts applies.
+          if (!/(?<![A-Za-z])\d/.test(quote)) problems.push(`KEY-FACTS-SOURCED  ${tag} states no number`);
+          const row = ev.find(
+            (r) =>
+              typeof r.quote === "string" &&
+              urlKey(r.url ?? "") === urlKey(src) &&
+              r.quote.trim().replace(/[,;:]$/, "").replace(/\s+/g, " ") === quote,
+          );
+          if (!row) {
+            problems.push(`KEY-FACTS-SOURCED  ${tag} is not, verbatim, a quote ${EVIDENCE_DIR} holds for ${src}`);
+          }
+        }
+      }
+    }
+
+    // CITE-BOX
+    if (isSpoke) {
+      const boxes = regions(html, /<section\b[^>]*\bdata-cite-box\b/g);
+      if (boxes.length !== 1) {
+        problems.push(`CITE-BOX  ${route} renders ${boxes.length} citation boxes (expected 1)`);
+        continue;
+      }
+      citePages++;
+      const box = boxes[0];
+      const open = /^<section\b[^>]*>/.exec(box)?.[0] ?? "";
+      const citeUrl = fullDecode(/\bdata-cite-url="([^"]*)"/.exec(open)?.[1] ?? "");
+      const verified = /\bdata-cite-verified="([^"]*)"/.exec(open)?.[1] ?? "";
+      const canonical = canonicalOf(html);
+      const canonicalAbs = canonical && canonical.startsWith("/") ? `${SITE}${canonical}` : canonical;
+      const h1 = textOf(/<h1\b[^>]*>([\s\S]*?)<\/h1>/.exec(html)?.[1] ?? "");
+      let reviewed = null;
+      for (const j of jsonLdOf(html)) {
+        for (const n of j["@graph"] ?? [j]) {
+          if ([].concat(n["@type"]).includes("WebPage") && n["@id"] === `${SITE}${route}#webpage`) reviewed = n.lastReviewed;
+        }
+      }
+      const text = textOf(box);
+      const miss = [];
+      if (citeUrl !== `${SITE}${route}` || (canonicalAbs && citeUrl !== fullDecode(canonicalAbs))) miss.push(`URL ${citeUrl} (canonical ${canonicalAbs})`);
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(verified) || verified !== reviewed) miss.push(`date ${verified} (WebPage lastReviewed ${reviewed})`);
+      if (!text.includes(citeUrl)) miss.push("the URL in its text");
+      if (!h1 || !text.includes(h1)) miss.push("the page title");
+      if (!text.includes(ORG_NAME)) miss.push(`the publisher ${ORG_NAME}`);
+      if (!text.includes(verified)) miss.push("the date in its citation text");
+      if (!/data-cite-plain/.test(box) || !/data-cite-bibtex/.test(box) || !/@misc\{/.test(text)) miss.push("plain and BibTeX citations");
+      if (miss.length) problems.push(`CITE-BOX  ${route}: the citation box is wrong or missing ${miss.join("; ")}`);
+    }
+  }
+  // Vacuity guards: the template renders the box on every spoke, and money
+  // pages with qualifying evidence exist — zero of either means the markup
+  // contract moved and the checks above read nothing.
+  const templateSpokes = [...valid].filter((p) => {
+    const s = p.split("/").filter(Boolean);
+    return s.length === 2 && templateClusters.includes(`/${s[0]}`) && !notFoundSet.has(p);
+  });
+  const fileOfRoute = new Map(htmls.map((x) => [routeOf(x), x]));
+  const missingBox = templateSpokes.filter((p) => {
+    const h = fileOfRoute.get(p);
+    return h && !fs.readFileSync(h, "utf8").includes("data-cite-box");
+  });
+  if (missingBox.length) {
+    problems.push(`CITE-BOX  ${missingBox.length} cluster page(s) render no citation box: ${missingBox.slice(0, 6).join(", ")}`);
+  }
+  if (factPages === 0) problems.push("KEY-FACTS-SOURCED  no page renders a key-facts block; the markup contract moved");
+  console.log(
+    `Entity and citation: one Organization definition held on ${orgPages} pages; key facts on ${factPages} pages (${factLines} lines, each a verbatim evidence quote from a checked source); citation box on ${citePages} cluster pages.`,
   );
 }
 

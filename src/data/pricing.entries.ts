@@ -1369,6 +1369,10 @@ export const pricingEntries: ClusterEntry[] =
         "label": "Integrate the Polar API"
       },
       {
+        "href": "/alternatives/polar-api-alternatives",
+        "label": "Polar API alternatives"
+      },
+      {
         "href": "/pricing/oura-api-pricing",
         "label": "Oura API pricing"
       },
@@ -1603,6 +1607,348 @@ export const pricingEntries: ClusterEntry[] =
         "url": "https://apizone.suunto.com/faq",
         "checked": "2026-10-27",
         "note": "commercial and non-commercial use, agency applications, Development API limits, test watches, Valuepack, sleep data, workout-only webhook"
+      }
+    ]
+  },
+  {
+    "slug": "terra-api-pricing",
+    "primaryQuery": "terra api pricing",
+    "h1": "Terra API Pricing: Plans, Credits and What Each User Costs",
+    "metaTitle": "Terra API Pricing (2026): Plans, Credits, Per-User Cost",
+    "metaDescription": "Terra's Quick Start is $399 a month billed annually or $499 monthly, with 100,000 credits; each connected source costs 200. Add-ons, BAA, our arithmetic.",
+    "updated": "2026-11-04",
+    "answer": "As of November 4, 2026, Terra's pricing page says subscriptions start from $399 a month billed annually or $499 billed monthly, on a Quick Start plan that includes 100,000 Unified API credits a month; Enterprise is a custom quote. Each connected data source for one end user costs 200 credits a month, so the included credits cover 500 connected sources, and extra credits cost $0.005 each, falling to $0.003 past 1,000,000 a month. Add-ons such as the Lab Reports API, Health Scores, Streaming and Planned Workouts are billed separately, and the signed BAA is listed under Enterprise.",
+    "body": "## What Terra charges\n\nTerra publishes two plans. As we read its pricing page and its pricing documentation on November 4, 2026:\n\n| Plan | List price | Included | What Terra lists |\n|---|---|---|---|\n| Quick Start | $399 a month billed annually, or $499 billed monthly | 100,000 Unified API credits a month | Unlimited API integrations and data destinations, the mobile SDK, event deduplication, historic data retrieval, the authentication widget, a 30-day money-back guarantee |\n| Enterprise | Custom, \"Plans tailored to your usage\" | Tailored | Everything in Quick Start plus 24/7 engineering support, guided integration, custom integrations and destinations, tailored MSAs and SLAs, a signed BAA, a dedicated server and data storage |\n\nThe pricing page's toggle shows Quick Start \"From $499 / month\" on its monthly view, and its FAQ gives both figures: \"Subscriptions start from $399 per month billed annually, or $499 per month billed monthly.\" Every page on this site about Terra is collected in the [Terra API overview](/apis/terra); to build against it, see the [Terra API integration guide](/integrate/terra-api).\n\n## How the credits work\n\nTerra's bill is counted in Unified API credits. Its pricing documentation names what uses them:\n\n| What uses credits | Cost |\n|---|---|\n| An active authentication: one data source an end user has connected and not disconnected | 200 credits a month |\n| Events: each payload Terra sends to your backend | The first 400 per active authentication each month free, then 0.5 credits each |\n| A model run: one of Terra's health models applied to one user's data for a date range | 1 model credit, at $0.01 a credit, billed apart from Unified API credits |\n\nThe included credits \"reset to 100,000 each billing period and do not roll over\". Past the allowance, Terra's tier table prices extra credits at $0.005 from 100,001 to 1,000,000 a month and $0.003 from 1,000,001. Its docs add that \"95% of customers are never charged for events\".\n\nThe unit matters more than the price. Terra bills per connected source, not per person: a user who connects a watch and a ring is two active authentications.\n\n## Our arithmetic at different user counts\n\nThese are our calculations from the list prices above, not a quote from Terra. They assume one connected source per user, events inside the free 400, the same credit rates on both billing periods, and that $0.003 applies only to the credits past 1,000,000 (the tier table reads that way but does not say so).\n\n| Connected sources | Credits used a month | Annual billing | Monthly billing |\n|---|---|---|---|\n| 500 | 100,000 | $399 | $499 |\n| 1,000 | 200,000 | $899 ($399 plus 100,000 credits at $0.005) | $999 |\n| 5,000 | 1,000,000 | $4,899 | $4,999 |\n| 10,000 | 2,000,000 | $7,899 ($399, then $4,500 and $3,000 in extra credits) | $7,999 |\n\nPast the first 500 sources, each extra source costs $1 a month (200 credits at $0.005), and $0.60 past 5,000. If your users connect two sources each, halve the user counts in the table.\n\n## Add-ons, priced separately\n\nTerra's docs say \"Each add-on is billed separately from your plan fee\", and an add-on that uses credits has its own balance, so it never draws down your Unified API credits:\n\n| Add-on (on Quick Start) | Price | Includes |\n|---|---|---|\n| Lab Reports API | $499 a month plus usage | 100,000 Lab Reports credits a month |\n| Health Scores | $499 a month | A 14-day free trial |\n| Planned Workouts | $99 a month plus usage | 20,000 Planned Workouts credits a month |\n| Streaming API | $99 a month plus usage | 20,000 Streaming credits a month |\n| Graph API | $50 a month per 2 graphs | Included on Enterprise |\n| Health Rewards | \"Contact us\" in the docs | The pricing page says \"Starting from $499 / month\" |\n\nTerra's product menu also lists Lab Testing and DNA Testing; its homepage says you can \"Order blood and DNA tests for your users through Terra API\". Neither price is on the pricing page.\n\n## What Quick Start does not include\n\n- **A BAA.** The pricing page lists \"Signed BAA (data protection agreement)\" under Enterprise. Whether you need one depends on your role under HIPAA; see [HIPAA for fitness apps](/compliance/hipaa-compliance-fitness-app). This is general information, not legal advice.\n- **Engineering support.** 24/7 expert engineering support, end-to-end guided integration and custom integrations are Enterprise items.\n- **Rollover.** Unused credits do not carry over to the next month.\n\n## Usage spikes and refunds\n\nTerra's docs describe Usage Spike Protection: if \"you receive an unexpectedly large bill in your initial 6 months\" from rapid user growth or a testing error, \"you may be eligible for a one-time refund\", with criteria such as a bill threshold. Both plans list a 30-day money-back guarantee.\n\n## Evaluating Terra on price\n\nIf Terra is the API you are evaluating, check four things against your own product before you sign:\n\n- **Sources per user, not users.** The bill counts active authentications, so estimate how many sources a typical user connects.\n- **Event volume.** 400 free events per source a month, then 0.5 credits an event. A daily summary per data type stays well inside that by our arithmetic; a source that pushes many intraday updates may not, so watch the usage breakdown in the dashboard during your trial.\n- **The add-ons you need.** Streaming, Health Scores, Lab Reports and Planned Workouts each carry their own monthly fee.\n- **Whether you are really an Enterprise buyer.** A BAA, a dedicated server, data storage or custom integrations put you on a custom quote.\n\n## How it compares\n\nRead on November 4, 2026, Terra's $399 annual entry price sits beside ROOK's Core at $399 a month for up to 750 active users, Junction's Launch at a flat $300 a month for up to 500 connected users, and Sahha's Starter at $299 a month billed annually with 1,000 users included. By our arithmetic, at 1,000 users with one source each Terra comes to $899 a month on annual billing, against $999 on ROOK's Core+ and $299 on Sahha's Starter; at 5,000 it is $4,899, against $999 on Core+ and $1,499 on Sahha's Pro. Terra costs more per user at a few thousand users and offers, in return, delivery to your own storage (its plan lists \"Access to 9 destinations\", such as AWS S3, Google Cloud Storage and MongoDB) and lab ordering.\n\n- Per-user price sheets in detail: [ROOK API pricing](/pricing/rook-api-pricing), [Junction API pricing](/pricing/junction-api-pricing), [Sahha API pricing](/pricing/sahha-api-pricing).\n- The same user counts run through every vendor: [health-data aggregator pricing](/pricing/health-data-aggregator-pricing).\n- If Terra does not fit: [Terra alternatives](/alternatives/terra-alternatives).\n\n## What we could not verify\n\n- Whether the $0.003 rate applies only to credits past 1,000,000, as we assume, or to every extra credit once you pass it.\n- Whether monthly billing changes the per-credit rates; the tier table names no billing period.\n- The Health Rewards price: the pricing page says from $499 a month, the docs say contact Terra.\n- Enterprise prices and terms, and the price of lab and DNA tests.\n\n*Prices above are from Terra's pages as read on November 4, 2026. Re-read the live pricing page and pricing docs before you budget.*",
+    "faqs": [
+      {
+        "q": "How do Terra's Unified API credits work?",
+        "a": "Terra's Quick Start plan includes 100,000 Unified API credits a month, which reset each billing period and do not roll over. As of November 4, 2026, each active authentication, meaning one data source one user has connected, costs 200 credits a month, the first 400 events per source each month are free, and further events cost 0.5 credits. Extra credits cost $0.005, falling to $0.003 past 1,000,000 a month."
+      },
+      {
+        "q": "Is Terra cheaper on annual billing?",
+        "a": "Yes, at the subscription level. Terra's pricing FAQ, read on November 4, 2026, says subscriptions start from $399 a month billed annually or $499 a month billed monthly, each including 100,000 Unified API credits. Its credit tier table names no billing period, so we assume extra credits cost the same either way; confirm that with Terra before you model growth."
+      },
+      {
+        "q": "How much does Terra cost for 1,000 users?",
+        "a": "About $899 a month on annual billing, or $999 billed monthly, by our arithmetic from Terra's list prices on November 4, 2026, if each user connects one source and stays inside the free 400 events. 1,000 sources use 200,000 credits; 100,000 are included and the other 100,000 cost $0.005 each. Two sources per user doubles the credits. This is our calculation, not a quote."
+      },
+      {
+        "q": "Does Terra's Quick Start plan include a BAA?",
+        "a": "No. As of November 4, 2026, Terra's pricing page lists a signed BAA (data protection agreement) among the Enterprise plan's items, alongside tailored MSAs and SLAs, a dedicated server and data storage, and Enterprise is a custom quote. Whether your product needs a BAA depends on your role under HIPAA."
+      }
+    ],
+    "related": [
+      {
+        "href": "/integrate/terra-api",
+        "label": "Integrate the Terra API"
+      },
+      {
+        "href": "/alternatives/terra-alternatives",
+        "label": "Terra alternatives"
+      },
+      {
+        "href": "/pricing/health-data-aggregator-pricing",
+        "label": "Health-data aggregator pricing compared"
+      },
+      {
+        "href": "/pricing/rook-api-pricing",
+        "label": "ROOK API pricing"
+      },
+      {
+        "href": "/compare/terra-vs-rook",
+        "label": "Terra vs ROOK"
+      },
+      {
+        "href": "/pricing",
+        "label": "All fitness & health API pricing"
+      }
+    ],
+    "cta": {
+      "pitch": "Terra's credits, add-ons and plan prices change. Subscribe and we will tell you when a rate, an allowance or the BAA tier moves."
+    },
+    "sources": [
+      {
+        "url": "https://tryterra.co/pricing",
+        "checked": "2026-11-04",
+        "note": "Quick Start and Enterprise, credits FAQ, add-ons, BAA, destinations (snapshot)"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/pricing",
+        "checked": "2026-11-04",
+        "note": "credit consumption, tiers, spike protection, add-on table (snapshot)"
+      },
+      {
+        "url": "https://tryterra.co/",
+        "checked": "2026-11-04",
+        "note": "lab and DNA test ordering (snapshot)"
+      },
+      {
+        "url": "https://tryrook.io/pricing/",
+        "checked": "2026-11-04",
+        "note": "ROOK plans for comparison (snapshot)"
+      },
+      {
+        "url": "https://www.junction.com/pricing",
+        "checked": "2026-11-04",
+        "note": "Junction Launch for comparison (snapshot)"
+      },
+      {
+        "url": "https://sahha.ai/pricing/",
+        "checked": "2026-11-04",
+        "note": "Sahha plans for comparison (snapshot)"
+      }
+    ]
+  },
+  {
+    "slug": "rook-api-pricing",
+    "primaryQuery": "rook api pricing",
+    "h1": "ROOK API Pricing (tryrook.io): Plans, Active Users and Add-ons",
+    "metaTitle": "ROOK API Pricing (2026): Core, Core+, Business, Add-ons",
+    "metaDescription": "ROOK's plans as of November 2026: Core $399 a month for 750 active users, Core+ $999 for 5,000, Business $1,999 for 15,000, add-ons and a 12-month term.",
+    "updated": "2026-11-04",
+    "answer": "As of November 4, 2026, ROOK's pricing page lists Core at $399 a month for up to 750 active users, Core+ at $999 for up to 5,000, Business at $1,999 for up to 15,000, and a custom Enterprise plan with unlimited users. On Core, add-ons such as Health Scores or Granular Data cost $79 to $499 a month each; Core+ includes three of your choice and Business includes all of them. ROOK's standard contract term is 12 months with 30 days' notice to cancel, and past a plan's active-user limit billing adjusts by usage at a rate its sales team shares when you contract.",
+    "body": "## What ROOK charges\n\nROOK's pricing page says \"ROOK pricing is based on the plan and the number of active users, with usage-based billing and the flexibility to activate only the products and add-ons needed.\" As we read it on November 4, 2026:\n\n| Plan | Price a month | Active users | What the plan adds |\n|---|---|---|---|\n| Core | $399 | Up to 750 | All ROOK Connect Wearable API integrations, multiple data sources per user, the developer and admin portal, sandbox and production, email and Intercom support, basic SLAs |\n| Core+ | $999 | Up to 5,000 | Everything in Core and 3 free add-ons of your choice |\n| Business | $1,999 | Up to 15,000 | Everything in Core+, assisted onboarding with a CS engineer, advanced SLAs, all products and add-ons included |\n| Enterprise | Custom | Unlimited | Enterprise SLAs, a dedicated CS engineer, dedicated servers, custom integrations, an enterprise contracting process |\n\nThe page marks Business \"Most popular\". Past a plan's ceiling, \"billing adjusts based on usage\", and \"The sales team shares the details at the time of contracting.\" Every page on this site about ROOK is collected in the [ROOK API overview](/apis/rook).\n\n## Products and add-ons by plan\n\nThe Wearable API and the Medical Device API are included on every plan; the EHR/EMR API is a waitlist item. The rest is priced per month on Core:\n\n| Product or add-on | Core | Core+ | Business and Enterprise |\n|---|---|---|---|\n| ROOK App | +$499 | One of the 3 free | Included |\n| Health Scores, User Health Profiles, Health Monitor | +$249 each | One of the 3 free | Included |\n| Granular Data, Steps Events in API, Multiple Accounts and Instances | +$249 each | One of the 3 free | Included |\n| Proprietary and Unstructured Data | +$149 | One of the 3 free | Included |\n| Notification Webhook | +$99 | One of the 3 free | Included |\n| Clinical Ready (FHIR R4) | +$79 | One of the 3 free | Included |\n| Basic Auth and Okta Token, Branded Auth | +$249 each | +$249 each | Included |\n\nThe callback URL, pre-existing data and medical-device metadata are included on every plan. Branded Auth is marked \"On hold\". On Core+, \"the listed price applies from the fourth on\".\n\n## Lab Data API, billed by files\n\n\"Lab Data API is billed by the files processed each month, on every plan.\" Starter is $249 a month for up to 300 files and Growth $299 for up to 750; six more tiers run from $349 up to $1,299 for up to 20,000 files a month, and above that the price is custom.\n\n## Our arithmetic\n\nOur calculations from the list prices, not a quote from ROOK:\n\n- **Price per active user at each ceiling.** Core is about $0.53 a user at 750, Core+ about $0.20 at 5,000, and Business about $0.13 at 15,000.\n- **Core+ can be cheaper than Core below 750 users.** Core with three $249 add-ons costs $1,146 a month ($399 plus $747); Core+ costs $999 with three add-ons included. With two $249 add-ons, Core ($897) is still cheaper.\n- **Between ceilings you pay for the next plan.** At 751 to 5,000 active users the list price is Core+, $999, unless ROOK's unpublished usage rate past Core's ceiling comes to less.\n\n## Contract, payment and trial\n\n- **Term.** \"ROOK's standard contract term is 12 months, with the flexibility to cancel with 30 days' prior notice.\"\n- **Trial.** ROOK \"provides Sandbox access to test the portal and integration before enabling Production\". Production \"requires an active plan and execution of the applicable agreements.\"\n- **Payment.** \"ROOK accepts card payments through Stripe\"; bank transfer is confirmed per agreement.\n- **Startups.** \"Entry plans, discounts, and startup programs can change over time\", so ask ROOK's sales team.\n- **BAA.** ROOK signs one \"when the customer is a Covered Entity or Business Associate and a BAA applies to the relationship\", with eligibility reviewed during contracting. Its compliance page says it \"signs BAAs with covered entities\" and processes EU personal data under GDPR as a data processor. This is general information, not legal advice; see [HIPAA for fitness apps](/compliance/hipaa-compliance-fitness-app).\n\n## What the plans connect to\n\nROOK's data-sources page says it covers \"over 400 health data sources and wearable devices\", through direct APIs for cloud providers such as Fitbit, Garmin, Oura, Polar and Withings, and through SDKs for Apple Health and Health Connect. For four providers there is a cost in time rather than money: its docs say clients must create their own developer accounts with Dexcom, Samsung Health, Strava and WHOOP, a process that \"can take several weeks\".\n\n## Evaluating ROOK on price\n\nIf ROOK's plans are the ones you are pricing, check four things against your own product:\n\n- **Your active-user count a year out.** The contract is 12 months, so price the plan you will be on, not the one you start on.\n- **The add-ons you need.** Count them: three or more on Core is where Core+ wins.\n- **Lab report volume.** The Lab Data API is billed by files on every plan, so model your files a month separately.\n- **Your own developer accounts.** Dexcom, Samsung Health, Strava and WHOOP need them; start those applications early.\n\nFor ROOK's data model, delivery and normalization, see the evaluation section of [Terra vs ROOK](/compare/terra-vs-rook).\n\n## How it compares\n\nAt list price on November 4, 2026, ROOK's Core at $399 for 750 active users matches Terra's $399 annual entry price, which includes 100,000 credits, enough for 500 connected sources at 200 credits each. Junction's Launch is a flat $300 a month for up to 500 connected users, and Sahha's Starter $299 a month billed annually with 1,000 users included. By our arithmetic ROOK stays flat longer than Terra: at 5,000 users with one source each, Core+ is $999 against about $4,899 on Terra. See [Terra API pricing](/pricing/terra-api-pricing), [Junction API pricing](/pricing/junction-api-pricing), the side-by-side [aggregator pricing](/pricing/health-data-aggregator-pricing), and [ROOK alternatives](/alternatives/rook-alternatives) if ROOK does not fit.\n\n## What we could not verify\n\n- The usage rate past each plan's active-user limit; ROOK shares it at contracting.\n- How ROOK defines an active user for billing; the pricing page uses the term without defining it.\n- The prices of the six middle Lab Data API tiers, which the page summarizes as \"From $349 USD / month\".\n\n*Prices and add-ons above are from ROOK's pricing page as read on November 4, 2026. Re-read it before you sign.*",
+    "faqs": [
+      {
+        "q": "What happens when I pass my ROOK plan's active-user limit?",
+        "a": "ROOK's pricing page, read on November 4, 2026, says each plan includes an active-user limit and that beyond it billing adjusts based on usage; the sales team shares the details at contracting. It does not publish the rate. The next plan's list price is the ceiling to compare against: Core+ is $999 a month for up to 5,000 active users and Business $1,999 for up to 15,000."
+      },
+      {
+        "q": "Is ROOK Core+ cheaper than Core with add-ons?",
+        "a": "From three add-ons, by our arithmetic. As of November 4, 2026, most ROOK add-ons cost $249 a month each on Core, so Core with three of them is $1,146, while Core+ costs $999 and includes three add-ons of your choice, plus a higher ceiling of 5,000 active users. With two $249 add-ons, Core at $897 is still cheaper. This is our calculation from list prices, not a quote."
+      },
+      {
+        "q": "How is ROOK's Lab Data API billed?",
+        "a": "By files processed each month, on every plan, separately from the active-user price. As of November 4, 2026, ROOK lists Starter at $249 a month for up to 300 files, Growth at $299 for up to 750, six more tiers from $349 to $1,299 for up to 20,000 files, and custom pricing above 20,000 files a month."
+      },
+      {
+        "q": "Can I cancel a ROOK contract early?",
+        "a": "ROOK's pricing FAQ, read on November 4, 2026, says its standard contract term is 12 months, with the flexibility to cancel with 30 days' prior notice. Check the notice clause in the agreement you sign, since Enterprise contracts go through a separate contracting process."
+      }
+    ],
+    "related": [
+      {
+        "href": "/compare/terra-vs-rook",
+        "label": "Terra vs ROOK"
+      },
+      {
+        "href": "/alternatives/rook-alternatives",
+        "label": "ROOK alternatives"
+      },
+      {
+        "href": "/pricing/terra-api-pricing",
+        "label": "Terra API pricing"
+      },
+      {
+        "href": "/pricing/health-data-aggregator-pricing",
+        "label": "Health-data aggregator pricing compared"
+      },
+      {
+        "href": "/compare/rook-vs-spike",
+        "label": "ROOK vs Spike"
+      },
+      {
+        "href": "/pricing",
+        "label": "All fitness & health API pricing"
+      }
+    ],
+    "cta": {
+      "pitch": "ROOK reshuffles its add-ons and tiers. Subscribe and we will tell you when a plan price, an active-user ceiling or the contract term changes."
+    },
+    "sources": [
+      {
+        "url": "https://tryrook.io/pricing/",
+        "checked": "2026-11-04",
+        "note": "plans, add-ons by plan, Lab Data API tiers, pricing FAQ (snapshot)"
+      },
+      {
+        "url": "https://tryrook.io/compliance/",
+        "checked": "2026-11-04",
+        "note": "BAA with covered entities, GDPR processor (snapshot)"
+      },
+      {
+        "url": "https://docs.tryrook.io/data-sources/",
+        "checked": "2026-11-04",
+        "note": "400+ sources, own developer accounts (snapshot)"
+      },
+      {
+        "url": "https://tryterra.co/pricing",
+        "checked": "2026-11-04",
+        "note": "Terra entry price for comparison (snapshot)"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/pricing",
+        "checked": "2026-11-04",
+        "note": "Terra credits for comparison (snapshot)"
+      },
+      {
+        "url": "https://www.junction.com/pricing",
+        "checked": "2026-11-04",
+        "note": "Junction Launch for comparison (snapshot)"
+      },
+      {
+        "url": "https://sahha.ai/pricing/",
+        "checked": "2026-11-04",
+        "note": "Sahha Starter for comparison (snapshot)"
+      }
+    ]
+  },
+  {
+    "slug": "junction-api-pricing",
+    "primaryQuery": "junction api pricing",
+    "h1": "Junction API Pricing (formerly Vital): Launch, Enterprise and Labs",
+    "metaTitle": "Junction API Pricing (2026): $300 Launch Plan vs Enterprise",
+    "metaDescription": "Junction (ex-Vital) lists Launch at $300 a month for up to 500 connected users, billed monthly; labs, unlimited users and the BAA are on custom Enterprise.",
+    "updated": "2026-11-04",
+    "answer": "As of November 4, 2026, Junction's pricing page lists two plans: Launch at a flat $300 a month, billed monthly, for 1 to 500 connected users and 300+ devices, and Enterprise at a custom price, billed annually, with unlimited users. Lab testing, the signed HIPAA Business Associate Agreement, custom OAuth credentials, ETL pipelines and uptime SLAs are Enterprise items. Junction offers no startup discount, and its sandbox and developer docs are free, so you can build an integration before you pay.",
+    "body": "## What Junction charges\n\nJunction, the aggregator this site used to cover as Vital, publishes two plans. As we read its pricing page on November 4, 2026:\n\n| Plan | Price | Billing | Connected users | What it is for |\n|---|---|---|---|---|\n| Launch | $300 a month | Monthly | 1 to 500 | \"Wearables\": \"For startups and scaleups shipping on health data.\" |\n| Enterprise | Custom | Annually | Unlimited | \"Wearables + Lab testing\": \"For organizations that need scale, SLAs, and white-glove support.\" |\n\nThe page's headline promise is \"Two plans, no per-seat surprises.\" Every page on this site about Junction is collected in the [Junction API overview](/apis/junction); for how it differs from Terra, see [Terra vs Vital (Junction)](/fitness-apis/terra-vs-vital).\n\n## What each plan includes\n\nThe page's per-plan lists, read side by side:\n\n| | Launch | Enterprise adds |\n|---|---|---|\n| Devices | 300+ device integrations, the Link widget, sandbox and developer docs | Premium and Bluetooth integrations, custom OAuth credentials, the Junction iOS app, prioritized integration requests |\n| Data | Usage analytics, normalized device metrics | The Analytics API, ETL pipelines to your warehouse |\n| Labs | None | The lab testing API, a nationwide lab network (NY, NJ and RI included), at-home kits and phlebotomy, custom test panels, operations support six days a week |\n| Compliance | HIPAA compliant, GDPR ready | The signed HIPAA Business Associate Agreement, SOC 2 Type 2 and ISO 27001 reports, customer-managed encryption keys |\n| Support | Community Slack, basic implementation support | White-glove implementation, a dedicated Slack channel, uptime SLAs, volume discounts |\n\nJunction's FAQ puts the dividing line in one sentence: \"Move to Enterprise when you need lab testing, unlimited users, uptime SLAs, or a signed BAA.\"\n\n## Our arithmetic\n\nLaunch is a flat fee, so its price per user falls as you fill it. By our arithmetic from the list price: $3.00 a connected user a month at 100 users, $1.20 at 250 and $0.60 at 500. There is no published price past 500: \"If you expect to grow past that, talk to sales and we will size an Enterprise plan around your volume.\" So Junction's list price answers the budget question only up to 500 connected users.\n\n## No discount, free to build\n\n- **No startup discount.** \"Do you offer startup discounts? No.\" Junction's reason is a marketing claim, that \"Launch is the cheapest plan on the market at $300 a month\"; volume discounts are an Enterprise item.\n- **Free to build.** \"The sandbox and developer docs are free, so your team can build and test a full integration before committing to a plan.\" Its docs also offer Demo Connections, which \"emit synthetic data mimicking selected providers\".\n- **No annual contract on Launch.** \"Launch is billed monthly, so there is no annual contract to get started.\"\n- **Time to live.** \"Device data is typically flowing within days of picking up the API keys.\"\n\n## What lab testing costs you in time and volume\n\nLabs are Enterprise only, and Junction does not publish the plan's price or the tests' prices. What it does publish:\n\n- \"There are no upcharges on the tests themselves.\"\n- Setup takes \"about 4-6 weeks\" depending on customization.\n- \"Our current minimum order quantity is 250 kits\", with smaller quantities on request.\n- It uses \"CLIA and CAP certified labs\", and provides \"the doctor's order for the test\" but no physician consults.\n- Results come \"within 2-3 days\" of the sample reaching the lab, in business days.\n\n## Evaluating Junction on price\n\nIf Junction is the API you are evaluating, check four things first:\n\n- **Your users in a year.** Past 500 connected users you are on a custom Enterprise quote, billed annually.\n- **Whether you need a BAA.** It is an Enterprise item, so a HIPAA covered entity or business associate is pricing Enterprise from day one. See [HIPAA for fitness apps](/compliance/hipaa-compliance-fitness-app); this is general information, not legal advice.\n- **Whose OAuth credentials.** Custom OAuth credentials appear in Enterprise's list, not Launch's; if your users must see your app's name on a provider's consent screen, ask Junction what Launch shows them.\n- **Labs.** A 250-kit minimum and four to six weeks of setup are commitments to plan around.\n\n## How it compares\n\nAt list price on November 4, 2026, Junction's $300 Launch, billed monthly with no annual contract, sits beside the other entry prices we read that day: Terra's Quick Start is $499 billed monthly or $399 billed annually, ROOK's Core $399 a month for up to 750 active users, and Sahha's Starter $299 a month billed annually with 1,000 users. Above 500 users the comparison turns on Junction's Enterprise quote, which we cannot see. See [Terra API pricing](/pricing/terra-api-pricing), [ROOK API pricing](/pricing/rook-api-pricing) and the side-by-side [aggregator pricing](/pricing/health-data-aggregator-pricing); for all the options, the [health-data aggregator comparison](/fitness-apis/health-data-aggregator-apis).\n\n## What we could not verify\n\n- Enterprise prices, and the prices of lab tests.\n- What counts as a connected user for Launch's 500 limit.\n- What \"Basic integrations\" on Launch's card leaves out compared with the \"Premium and Bluetooth integrations\" listed under Enterprise.\n- The Vital name: the Junction pages we read on November 4, 2026 do not mention it, so the rename is as recorded on [Terra vs Vital (Junction)](/fitness-apis/terra-vs-vital).\n\n*Plans above are from Junction's pages as read on November 4, 2026. Re-read the live pricing page before you budget.*",
+    "faqs": [
+      {
+        "q": "What happens when a Junction app passes 500 connected users?",
+        "a": "It moves to Enterprise. As of November 4, 2026, Junction's Launch plan covers 1 to 500 connected users for $300 a month, and its FAQ says that if you expect to grow past that, its sales team sizes an Enterprise plan around your volume, with unlimited users, volume discounts and uptime SLAs. Enterprise is billed annually at a custom price Junction does not publish."
+      },
+      {
+        "q": "Does Junction's Launch plan include lab testing?",
+        "a": "No. As of November 4, 2026, Junction's pricing page lists the lab testing API, its nationwide lab network, at-home kits and phlebotomy and custom panels under Enterprise only. Junction says there are no upcharges on the tests themselves, that setup takes about four to six weeks, and that the current minimum order is 250 kits."
+      },
+      {
+        "q": "Does Junction offer a startup discount?",
+        "a": "No. Junction's pricing FAQ, read on November 4, 2026, answers that question with no, calling its $300-a-month Launch plan the cheapest on the market, which is its own marketing claim. Volume discounts are listed under Enterprise. The sandbox and developer docs are free, and Launch is billed monthly with no annual contract."
+      },
+      {
+        "q": "Which Junction plan includes a BAA?",
+        "a": "Enterprise. Junction's pricing FAQ, read on November 4, 2026, says every plan handles data in a HIPAA-compliant way, and that the signed Business Associate Agreement, its SOC 2 Type 2 and ISO 27001 reports and customer-managed encryption keys are part of Enterprise. Whether you need a BAA depends on your role under HIPAA."
+      }
+    ],
+    "related": [
+      {
+        "href": "/fitness-apis/terra-vs-vital",
+        "label": "Terra vs Vital (Junction)"
+      },
+      {
+        "href": "/pricing/terra-api-pricing",
+        "label": "Terra API pricing"
+      },
+      {
+        "href": "/pricing/rook-api-pricing",
+        "label": "ROOK API pricing"
+      },
+      {
+        "href": "/pricing/health-data-aggregator-pricing",
+        "label": "Health-data aggregator pricing compared"
+      },
+      {
+        "href": "/fitness-apis/health-data-aggregator-apis",
+        "label": "Best health-data aggregator APIs"
+      },
+      {
+        "href": "/pricing",
+        "label": "All fitness & health API pricing"
+      }
+    ],
+    "cta": {
+      "pitch": "Junction's plans are short and they change. Subscribe and we will tell you when the Launch price, its user limit or what Enterprise includes moves."
+    },
+    "sources": [
+      {
+        "url": "https://www.junction.com/pricing",
+        "checked": "2026-11-04",
+        "note": "Launch and Enterprise plans, per-plan lists, pricing and lab FAQ (snapshot)"
+      },
+      {
+        "url": "https://www.junction.com/",
+        "checked": "2026-11-04",
+        "note": "300+ devices, labs in all 50 states (snapshot)"
+      },
+      {
+        "url": "https://docs.junction.com/home/welcome",
+        "checked": "2026-11-04",
+        "note": "Demo Connections synthetic data (snapshot)"
+      },
+      {
+        "url": "https://tryterra.co/pricing",
+        "checked": "2026-11-04",
+        "note": "Terra entry price for comparison (snapshot)"
+      },
+      {
+        "url": "https://tryrook.io/pricing/",
+        "checked": "2026-11-04",
+        "note": "ROOK Core for comparison (snapshot)"
+      },
+      {
+        "url": "https://sahha.ai/pricing/",
+        "checked": "2026-11-04",
+        "note": "Sahha Starter for comparison (snapshot)"
+      }
+    ]
+  },
+  {
+    "slug": "nutritionix-api-pricing",
+    "primaryQuery": "nutritionix api pricing",
+    "h1": "Nutritionix API Pricing: Plans, Active-User Limits and Trials",
+    "metaTitle": "Nutritionix API Pricing (2026): Starter, MVP, Unicorn Plans",
+    "metaDescription": "Nutritionix lists Starter at $499 a month for 200 active users, MVP at $999 for 1,000 and Unicorn from $1,850, billed annually. No public free tier.",
+    "updated": "2026-11-04",
+    "answer": "As of November 4, 2026, Nutritionix's API page lists four plans, billed annually: a free Business Trial for up to 2 monthly active users, Starter at $499 a month for up to 200, MVP at $999 for up to 1,000, and Unicorn from $1,850 a month with a customizable user count. Its developer portal says it no longer keeps a public free-access tier and offers limited trial accounts through its sales team, and the API page says it no longer offers non-commercial free trials. Freemium apps, hardware products and apps above 100K monthly active users are sent to a custom plan.",
+    "body": "## What Nutritionix charges\n\nNutritionix publishes its plan table on its API page. As we read it on November 4, 2026:\n\n| Plan | List price | Monthly active users | Attribution |\n|---|---|---|---|\n| Business Trial | Free | Up to 2 | Required |\n| Starter | $499 a month | Up to 200 | Required |\n| MVP | $999 a month | Up to 1,000 | Required |\n| Unicorn | From $1,850 a month | Customizable | \"Removable Option\" |\n\n\"API plans are billed annually.\" The page also says: \"If you have a freemium app business model, sell a hardware product, or have more than 100K monthly active users, please contact us to discuss a customized pricing plan to fit your needs.\" Every page on this site about Nutritionix is collected in the [Nutritionix API overview](/apis/nutritionix); to call it, see the [Nutritionix API integration guide](/integrate/nutritionix-api).\n\n## The free trial is no longer public\n\nThe plan table still shows a free Business Trial with a \"Request an API Key\" row, but Nutritionix's developer portal tells a different story: \"due to increased misuse of free trial accounts, we are no longer able to maintain a public free-access tier.\" Instead, for \"a commercial, research, or enterprise application\", its team will \"provide a limited trial account tailored to your use case\" after you contact sales. The API page's FAQ adds: \"we no longer offer non-commercial free trials.\" Plan for a sales conversation before your first API key.\n\n## Our arithmetic\n\nOur calculations from the list prices, not a quote from Nutritionix:\n\n| Plan | A year at list price | Price per active user at the limit |\n|---|---|---|\n| Starter | $5,988 | About $2.50 |\n| MVP | $11,988 | About $1.00 |\n| Unicorn | From $22,200 | Depends on the users you negotiate |\n\nBecause billing is annual, the commitment is the yearly figure, not the monthly one. Your 201st monthly active user moves you from Starter to MVP, doubling the list price.\n\n**Non-profits.** \"For non-profits on annual pricing plans over $6K/year, we offer a 10% discount.\" By our arithmetic Starter, at $5,988 a year, sits just under that line; MVP clears it, so the discount would be about $1,199 a year.\n\n## What the price buys\n\nNutritionix's API page describes natural-language food logging (\"Turn spoken text into precise nutrition analysis\"), autocomplete search, common foods built from the USDA database and curated by its dietitians, and \"over 1M grocery foods with barcodes and 203K restaurant foods\". The table's other rows are Natural Language Engine, Barcode Scanning, Derived Wellness Claims, Caching Allowed, Request Database Additions, Support and an uptime guarantee of 99.9%. Which plan gets which of those is shown with marks that did not come through in the page text we read, so confirm the row you care about, caching above all, with Nutritionix.\n\n**Bulk licensing instead.** If you would rather hold the data, Nutritionix sells \"a monthly export of our entire database in CSV format\" under Bulk Database Licensing, priced by contact.\n\n**The company behind it.** The site's footer reads \"© 2026 Syndigo LLC\", and its homepage says \"Our full website is temporarily offline while we roll out major upgrades\", with the database and API \"still available\" to registered partners.\n\n## Evaluating Nutritionix on price\n\nIf Nutritionix is the API you are evaluating, check four things first:\n\n- **Your monthly active users.** The plan limits are 2, 200 and 1,000, and Nutritionix's pages we read do not define a monthly active user; ask how it counts one.\n- **Caching.** If you plan to store results, confirm that your plan allows caching.\n- **Attribution.** It is required on every plan below Unicorn, which offers a removable option.\n- **Your business model.** Freemium apps and hardware products are sent to a custom plan, so the table may not apply to you at all.\n\n## How it compares\n\nNutritionix's entry price is higher than most nutrition data sources this site covers, several of which are free. [Nutrition API pricing](/pricing/nutrition-api-pricing) compares the field, [Nutritionix vs Edamam](/compare/nutritionix-vs-edamam) the closest commercial pair, and [Nutritionix alternatives](/alternatives/nutritionix-alternatives) the free and paid options if the plans do not fit.\n\n## What we could not verify\n\n- Which features each plan includes; the plan table's marks are images.\n- How Nutritionix counts a monthly active user.\n- Which plans the Support and uptime rows apply to: the page text shows three values each for four plans.\n- Whether a Business Trial key can still be requested self-serve, since the developer portal says trials now go through sales.\n\n*Plans above are from Nutritionix's pages as read on November 4, 2026. Re-read the live API page before you sign.*",
+    "faqs": [
+      {
+        "q": "Can I still sign up for a free Nutritionix API key?",
+        "a": "Not publicly. As of November 4, 2026, Nutritionix's developer portal says misuse of free trial accounts means it no longer maintains a public free-access tier, and that its sales team provides limited trial accounts for commercial, research or enterprise projects. Its API page also says it no longer offers non-commercial free trials, although its plan table still lists a free Business Trial for 2 active users."
+      },
+      {
+        "q": "How much does Nutritionix cost per year?",
+        "a": "By our arithmetic from its list prices on November 4, 2026: $5,988 for Starter ($499 a month, up to 200 monthly active users), $11,988 for MVP ($999 a month, up to 1,000) and from $22,200 for Unicorn (from $1,850 a month). Nutritionix bills API plans annually, so the yearly figure is the commitment. Freemium and hardware products get a custom plan."
+      },
+      {
+        "q": "Which Nutritionix plan lets me remove attribution?",
+        "a": "Only Unicorn. Nutritionix's plan table, read on November 4, 2026, shows attribution as required on the Business Trial, Starter and MVP plans and a removable option on Unicorn, which starts at $1,850 a month billed annually. If your design cannot show a Nutritionix credit, price Unicorn."
+      },
+      {
+        "q": "Does Nutritionix offer a non-profit discount?",
+        "a": "Yes, above a threshold. Its API page, read on November 4, 2026, says non-profits on annual pricing plans over $6K a year get a 10% discount. By our arithmetic, Starter at $5,988 a year falls just below that line and MVP at $11,988 clears it, for a discount of about $1,199 a year."
+      }
+    ],
+    "related": [
+      {
+        "href": "/integrate/nutritionix-api",
+        "label": "Integrate the Nutritionix API"
+      },
+      {
+        "href": "/alternatives/nutritionix-alternatives",
+        "label": "Nutritionix alternatives"
+      },
+      {
+        "href": "/compare/nutritionix-vs-edamam",
+        "label": "Nutritionix vs Edamam"
+      },
+      {
+        "href": "/pricing/nutrition-api-pricing",
+        "label": "Nutrition API pricing"
+      },
+      {
+        "href": "/pricing",
+        "label": "All fitness & health API pricing"
+      }
+    ],
+    "cta": {
+      "pitch": "Nutritionix changed its trial policy without much notice. Subscribe and we will tell you when its plans, limits or trial terms move again."
+    },
+    "sources": [
+      {
+        "url": "https://www.nutritionix.com/api",
+        "checked": "2026-11-04",
+        "note": "plan table, annual billing, custom plans, FAQ, data coverage (snapshot)"
+      },
+      {
+        "url": "https://developer.nutritionix.com/",
+        "checked": "2026-11-04",
+        "note": "no public free-access tier, limited trials via sales (snapshot)"
+      },
+      {
+        "url": "https://www.nutritionix.com/",
+        "checked": "2026-11-04",
+        "note": "site offline notice, bulk licensing, Syndigo (snapshot)"
       }
     ]
   }

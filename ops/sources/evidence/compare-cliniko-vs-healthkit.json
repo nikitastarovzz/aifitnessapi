@@ -1,0 +1,247 @@
+[
+  {
+    "claim": "Cliniko is a practice management system for healthcare practitioners.",
+    "url": "https://docs.api.cliniko.com/",
+    "quote": "Cliniko is a practice management system for healthcare practitioners."
+  },
+  {
+    "claim": "Cliniko's API is REST and returns JSON.",
+    "url": "https://docs.api.cliniko.com/",
+    "quote": "JSON will be returned in all responses from the API."
+  },
+  {
+    "claim": "HealthKit is a central repository for health and fitness data on iPhone and Apple Watch.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit.json",
+    "quote": "HealthKit provides a central repository for health and fitness data on iPhone and Apple Watch."
+  },
+  {
+    "claim": "Accounts created in Europe are stored in Ireland, per Cliniko.",
+    "url": "https://www.cliniko.com/security/",
+    "quote": "For those of you creating your account in Europe, we've got you covered with data storage in Ireland"
+  },
+  {
+    "claim": "The user's device stores all HealthKit data locally.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/protecting-user-privacy.json",
+    "quote": "The user's device stores all HealthKit data locally."
+  },
+  {
+    "claim": "Cliniko's connected-apps directory lists 95 apps.",
+    "url": "https://www.cliniko.com/connected-apps/",
+    "quote": "All apps ( 95 )"
+  },
+  {
+    "claim": "Most connected apps were developed by third parties.",
+    "url": "https://www.cliniko.com/connected-apps/",
+    "quote": "Most of these apps were developed by third parties."
+  },
+  {
+    "claim": "The directory has a Patient care & monitoring category.",
+    "url": "https://www.cliniko.com/connected-apps/",
+    "quote": "Patient care & monitoring ( 11 )"
+  },
+  {
+    "claim": "Help-centre search for apple health returns the Apple calendar article.",
+    "url": "https://help.cliniko.com/en/?q=apple%20health",
+    "quote": "Connect Cliniko to Apple /Mac Calendar"
+  },
+  {
+    "claim": "Help-centre search for apple health returns the Apple Pay article.",
+    "url": "https://help.cliniko.com/en/?q=apple%20health",
+    "quote": "Apple Pay or Google Pay not showing up in online bookings"
+  },
+  {
+    "claim": "Help-centre search for apple health returns the Apple Pencil article.",
+    "url": "https://help.cliniko.com/en/?q=apple%20health",
+    "quote": "Using an Apple Pencil or stylus to write treatment notes"
+  },
+  {
+    "claim": "SST Trainer: reports generated from session data and filed to the Cliniko record.",
+    "url": "https://www.cliniko.com/connected-apps/",
+    "quote": "clearance letters and insurer reports are generated from session data and filed to the Cliniko record"
+  },
+  {
+    "claim": "Vively Health: all patient data syncs to your dashboard.",
+    "url": "https://www.cliniko.com/connected-apps/",
+    "quote": "All patient data syncs to your dashboard."
+  },
+  {
+    "claim": "Apple: with the user's permission, apps communicate with the HealthKit store.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit.json",
+    "quote": "With the user's permission, apps communicate with the HealthKit store to access and share this data."
+  },
+  {
+    "claim": "Apple: the device encrypts the HealthKit store when the user locks the device.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/protecting-user-privacy.json",
+    "quote": "the device encrypts the HealthKit store when the user locks the device"
+  },
+  {
+    "claim": "Apple: the app may not be able to read data in the background.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/protecting-user-privacy.json",
+    "quote": "your app may not be able to read data from the store when it runs in the background"
+  },
+  {
+    "claim": "Apple: iPadOS 16 and earlier and macOS 13 and later don't have a copy of the HealthKit store.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/about-the-healthkit-framework.json",
+    "quote": "these devices don't have a copy of the HealthKit store"
+  },
+  {
+    "claim": "Apple: users grant or deny permission separately for each type.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/protecting-user-privacy.json",
+    "quote": "Users can grant or deny permission separately for each type of data."
+  },
+  {
+    "claim": "Apple: an app isn't aware when the user denies permission to read data.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/protecting-user-privacy.json",
+    "quote": "an app isn't aware when the user denies permission to read data"
+  },
+  {
+    "claim": "Attachment flow step 1: presigned URL.",
+    "url": "https://docs.api.cliniko.com/guides/uploading_patient_attachments",
+    "quote": "Make a GET request for a presigned URL for the patient that you want to upload a file for."
+  },
+  {
+    "claim": "Attachment flow step 2: POST the file.",
+    "url": "https://docs.api.cliniko.com/guides/uploading_patient_attachments",
+    "quote": "make a POST request to the given URL with the file to upload"
+  },
+  {
+    "claim": "Attachment flow step 3: create the patient attachment record.",
+    "url": "https://docs.api.cliniko.com/guides/uploading_patient_attachments",
+    "quote": "To finish, you must create a new patient attachment record."
+  },
+  {
+    "claim": "Cliniko will process the file.",
+    "url": "https://docs.api.cliniko.com/guides/uploading_patient_attachments",
+    "quote": "Cliniko will process the file"
+  },
+  {
+    "claim": "Custom patient buttons send a GET with patient_id.",
+    "url": "https://docs.api.cliniko.com/guides/custom_patient_button",
+    "quote": "Clicking on one of those buttons causes the user's browser to send a GET request to the corresponding URL"
+  },
+  {
+    "claim": "Cliniko has to approve the URL.",
+    "url": "https://docs.api.cliniko.com/guides/custom_patient_button",
+    "quote": "please get in contact with us so we can add its URL to our list of approved applications"
+  },
+  {
+    "claim": "HTTP Basic authentication.",
+    "url": "https://docs.api.cliniko.com/",
+    "quote": "The Cliniko API uses HTTP Basic authentication."
+  },
+  {
+    "claim": "Each Cliniko user has their own API keys.",
+    "url": "https://docs.api.cliniko.com/",
+    "quote": "Each Cliniko user will have their own API key(s)"
+  },
+  {
+    "claim": "The API key has the same permissions as its user.",
+    "url": "https://docs.api.cliniko.com/",
+    "quote": "The API key will have the same permissions as the user it belongs to."
+  },
+  {
+    "claim": "User-Agent rule.",
+    "url": "https://docs.api.cliniko.com/",
+    "quote": "If your requests do not include a User-Agent that contains a name and valid contact email, future requests may be automatically blocked."
+  },
+  {
+    "claim": "Rate limit 200 a minute per user.",
+    "url": "https://docs.api.cliniko.com/",
+    "quote": "API requests are rate limited to 200 per minute per user."
+  },
+  {
+    "claim": "429 with X-RateLimit-Reset.",
+    "url": "https://docs.api.cliniko.com/",
+    "quote": "Requests exceeding the rate limit will receive a response with a 429 status and an X-RateLimit-Reset header"
+  },
+  {
+    "claim": "Pagination: 50 by default, up to 100 with per_page.",
+    "url": "https://docs.api.cliniko.com/",
+    "quote": "Requests that return multiple items will be paginated to 50 items by default. You can specify further pages with the page parameter. You can also set a custom page size up to 100 with the per_page parameter."
+  },
+  {
+    "claim": "Shards: the docs' example is the au1 shard.",
+    "url": "https://docs.api.cliniko.com/",
+    "quote": "to get all the patients on a specific account in the au1 shard"
+  },
+  {
+    "claim": "Polling with an updated_at filter.",
+    "url": "https://docs.api.cliniko.com/",
+    "quote": "You can get records that have been updated since a certain time by sending a filter for updated_at"
+  },
+  {
+    "claim": "Apple: must not disclose to a third party without express permission.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/protecting-user-privacy.json",
+    "quote": "You must not disclose any information gained through HealthKit to a third party without express permission from the user."
+  },
+  {
+    "claim": "Apple: only to a third party that also provides a health or fitness service.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/protecting-user-privacy.json",
+    "quote": "Even with permission, you can only share information to a third party if they also provide a health or fitness service to the user."
+  },
+  {
+    "claim": "Apple: a privacy policy for every HealthKit app.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/protecting-user-privacy.json",
+    "quote": "You must also provide a privacy policy for any app that uses the HealthKit framework."
+  },
+  {
+    "claim": "HHS: providers only if they transmit electronically in a standard transaction.",
+    "url": "https://web.archive.org/web/20261028163611/https://www.hhs.gov/hipaa/for-professionals/covered-entities/index.html",
+    "quote": "but only if they transmit any information in an electronic form in connection with a transaction for which HHS has adopted a standard"
+  },
+  {
+    "claim": "HHS lists clinics and psychologists among providers.",
+    "url": "https://web.archive.org/web/20261028163611/https://www.hhs.gov/hipaa/for-professionals/covered-entities/index.html",
+    "quote": "Doctors Clinics Psychologists"
+  },
+  {
+    "claim": "HHS lists chiropractors among providers.",
+    "url": "https://web.archive.org/web/20261028163611/https://www.hhs.gov/hipaa/for-professionals/covered-entities/index.html",
+    "quote": "Chiropractors"
+  },
+  {
+    "claim": "HHS: an app developer that contracts with a covered entity is a business associate.",
+    "url": "https://web.archive.org/web/20261026014247/https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/business-associates/index.html",
+    "quote": "developer that contracts with a covered entity to provide the health care app to the covered entity's patients"
+  },
+  {
+    "claim": "HHS: monitoring of patients' food and exercise.",
+    "url": "https://web.archive.org/web/20261026014247/https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/business-associates/index.html",
+    "quote": "monitoring of patients' food and exercise"
+  },
+  {
+    "claim": "Cliniko will set up a BAA on request.",
+    "url": "https://www.cliniko.com/security/",
+    "quote": "If you'd like a Business Associate Agreement (BAA), just send us a request"
+  },
+  {
+    "claim": "Cliniko: some integrators may not be HIPAA-compliant.",
+    "url": "https://help.cliniko.com/en/articles/3266884-how-cliniko-helps-you-with-hipaa-compliance",
+    "quote": "some integrators may not be HIPAA-compliant"
+  },
+  {
+    "claim": "The ICO lists data from fitness trackers as health data.",
+    "url": "https://web.archive.org/web/20261017232808/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/special-category-data/what-is-special-category-data/",
+    "quote": "data from fitness trackers"
+  },
+  {
+    "claim": "Cliniko offers a Data Processing Addendum.",
+    "url": "https://help.cliniko.com/en/articles/1908020-how-cliniko-helps-you-with-gdpr-compliance",
+    "quote": "The establishment of a Data Processing Addendum (DPA)"
+  },
+  {
+    "claim": "Cliniko: connected apps often require your API key.",
+    "url": "https://www.cliniko.com/security/",
+    "quote": "Cliniko connected apps often require your API key in order to link with your Cliniko account."
+  },
+  {
+    "claim": "Cliniko: share your API key only with parties you trust.",
+    "url": "https://www.cliniko.com/security/",
+    "quote": "Only share your API key with parties you trust"
+  },
+  {
+    "claim": "HealthKit reads clinical records downloaded from supported institutions.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/accessing-health-records.json",
+    "quote": "Users can download their FHIR records from supported healthcare institutions."
+  }
+]

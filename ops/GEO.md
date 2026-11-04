@@ -24,9 +24,14 @@ as the anti-fabrication rules.
    the HTML so they cannot drift (the five core ones below, plus per-cluster
    RSS, JSON Feed, the digest's plain-text editions and the open datasets —
    see "Current state"):
-   - `/llms.txt` — the map: every page with its "best cited for" query, its
-     markdown mirror, and the site's conventions.
-   - `/llms-full.txt` — capsules + FAQs inline, for direct answering.
+   - `/llms.txt` — the curated map, held under 50 KB: the H1, the summary,
+     the conventions, the pages Search Console says people reach, the money
+     pages, every section with its full-text and answer files, the tools,
+     datasets and API/MCP. `/llms-index.txt` is the exhaustive map: every page
+     with its "best cited for" query and capsule (this was `/llms.txt` until
+     2026-11-04; see the decision below).
+   - `/llms-full.txt` — capsules + FAQs inline, for direct answering; also
+     served one section at a time at `/llms-full/<section>.txt`.
    - **`<page-url>.md`** — the markdown mirror at the address the llms.txt
      proposal specifies (append `.md`; `/index.md` and `/<cluster>.md` for
      directory URLs). Served by the `/md/*` generator via rewrites, so there
@@ -35,7 +40,8 @@ as the anti-fabrication rules.
    - `/answers.json` — the structured index: every question the site owns with
      its answer, canonical URL, markdown URL, review date, `first_party` flag,
      and a deep link per FAQ answer. The surface for agents that want data
-     rather than prose.
+     rather than prose. Also served per section at `/answers/<section>.json`,
+     listed with counts, dates and sizes at `/answers/index.json`.
    - `/changes.xml` — RSS for the dated ecosystem record, graded confirmed vs
      reported. The one thing here with a real reason to be polled.
 5. **Explicit crawler welcome.** `src/app/robots.txt/route.ts` allows ~58
@@ -174,3 +180,76 @@ those (plus documentation links already in the body) become its JSON-LD
 `citation`, its "Sources checked" list and its mirror's `## Sources`. Nothing
 is inferred from prose; an entry without a recorded re-verification has no
 `sources`, and the field may only be set alongside the stamp that check earned.
+
+## Decision 2026-11-04: llms surfaces right-sized (ops/NEXT-10-2026-11-04.md item 4)
+
+Written here because it changes the llms.txt / llms-full.txt / answers.json
+surfaces, which the "never without a written decision" rule above covers.
+Nothing is removed and nothing is hand-edited; one surface moves address and
+two are added.
+
+**Why.** On 2026-11-03 the live files measured /llms.txt 590 KB,
+/llms-full.txt 1.96 MB and /answers.json 2.8 MB. A map that size is cut off
+by whatever reads it, so the pages after the cut are invisible to that
+reader: the opposite of what the map is for. llmstxt.org could not be
+fetched from the dev environment on 2026-11-04 (host blocked), so this
+decision quotes nothing from it; `ops/sources/llmstxt.txt` lists the pages
+for a source-snapshot run, and any wording that leans on the proposal waits
+for that copy.
+
+**What.**
+1. `/llms.txt` becomes a curated map, capped at 50 KB by qa (GEO-LLMS-SIZE).
+   It keeps the H1, the summary blockquote and the conventions, then lists:
+   the 15 most-clicked cluster pages and the 10 /integrate and /fix pages
+   with the most impressions, each with its capsule's opening, ranked from
+   `data/gsc/latest.json` by the rule in `src/data/llmsCuration.ts` (re-ranked
+   by every pull, never by hand); the four glance hubs; every money page by
+   title (MONEY-UNLISTED still holds it to all of them); every section with
+   its hub, its `/llms-full/<id>.txt` and `/answers/<id>.json` and their sizes;
+   the reference hubs; the tools by title; the datasets from the
+   generated manifest; the API and MCP endpoints.
+2. The exhaustive list moves, unchanged in content, to `/llms-index.txt`
+   (`src/lib/llmsIndex.ts`). GEO-LLMS-MISSING now holds every spoke and post
+   to that file; it is relocated with the list, not relaxed.
+3. `/llms-full.txt` stays whole at its documented address and is now built
+   as sections (`src/lib/llmsFull.ts`); each section is also served at
+   `/llms-full/<id>.txt` with exactly the lines it has in the whole
+   (GEO-FULL-DRIFT), every one linked from llms.txt (GEO-FULL-UNLISTED), and
+   together they hold every spoke and post (GEO-FULL-MISSING).
+4. `/answers.json` stays whole (decided: the uptime workflow counts its
+   `answers`, and nothing under `mcp/` or `packages/` reads it, so there is
+   no consumer to migrate; an agent that wants everything should not have to
+   stitch). The same records, unchanged, are served per section at
+   `/answers/<id>.json` — one per cluster, one per generated-reference
+   section, and blog, changes, facts and start-here — listed in
+   `/answers/index.json` with count, newest review date and bytes. qa asserts
+   each count, that every built section is listed, and that the sections'
+   records together are exactly the whole file's (GEO-ANSWERS-INDEX,
+   -SECTION, -UNION).
+5. robots.txt comments, `/developers` and the files themselves describe the
+   new addresses. Everything is `force-static`: built once, no runtime cost.
+
+**Standing rule.** When /llms.txt nears the cap, shorten a list in it
+(fewer Search Console picks, terser lines); never raise GEO-LLMS-SIZE to fit.
+A page dropped from /llms.txt is still in /llms-index.txt and its section
+files, so nothing becomes invisible.
+
+Changed 2026-11-04 (ops/NEXT-10-2026-11-04.md item 6), all gated:
+
+- **Key facts.** Money-cluster spokes (pricing, alternatives, compare,
+  integrate, fix, fitness-apis, motion) open with three to five verbatim,
+  numbered quotes under the capsule, each linking its source. They are rows
+  of the page's `ops/sources/evidence/<cluster>-<slug>.json` whose URL is in
+  the entry's `sources` — never written or inferred (src/lib/keyFacts.ts);
+  a page without three qualifying rows shows no block. KEY-FACTS-SOURCED.
+  Because the evidence files are now a build input,
+  `scripts/vercel-ignore-build.sh` no longer skips `ops/sources/evidence/`.
+- **Cite this page.** A server-rendered box at the foot of every cluster
+  spoke (URL, title, publisher, the `updated` date; plain text and BibTeX).
+  CITE-BOX.
+- **One entity per page.** `citation` and the new `isBasedOn` (the checked
+  `sources`; a translation's is the English article) are plain URLs, not
+  `WebPage` objects, so a page no longer declares one WebPage per source;
+  hub Articles point `mainEntityOfPage` at the hub's CollectionPage `@id`.
+  The site's Organization is defined once, in the layout; the KinesteX
+  `funder` is a separate Organization by design. ORG-ONCE.

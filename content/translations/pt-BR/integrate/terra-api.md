@@ -1,11 +1,11 @@
 ---
 path: "/integrate/terra-api"
-translatedOn: "2026-10-27"
+translatedOn: "2026-11-04"
 sourceUpdated: "2026-10-17"
-sourceHash: "65fda8be5a97c6e5"
-metaTitle: "API de dados de saúde Terra: integre com um webhook (2026)"
+sourceHash: "fafe407511ee05a2"
+metaTitle: "API Terra (2026): um webhook para Garmin, Oura e WHOOP"
 metaDescription: >-
-  Integre o Terra uma vez para ler Garmin, Oura, WHOOP e mais de 500 fontes: o novo endpoint de sessão do widget, assinatura do webhook, backfill e preços.
+  O Terra (tryterra) reúne Garmin, Oura, WHOOP e outros em uma integração: o endpoint de sessão do widget, checagem HMAC de webhooks, backfills e preços.
 h1: "Como integrar o Terra (agregador de dados de saúde) (2026)"
 answer: >-
   O Terra é um agregador de dados de saúde: você integra uma vez e ele devolve dados normalizados de Garmin, Fitbit, Oura, WHOOP, Strava, Apple Health e, pela contagem dele, mais de 500 fornecedores (500+) sob um único esquema. O seu backend se autentica com os headers dev-id e x-api-key, cria uma sessão de widget em POST https://access.tryterra.co/api/widget/session para que o usuário escolha e autorize o fornecedor dele, e recebe eventos normalizados em um destino como um webhook, verificados com um header terra-signature HMAC-SHA256. Em 17 de outubro de 2026, o endpoint antigo /v2/auth/generateWidgetSession está fechado para contas criadas depois de 3 de setembro de 2026, com descontinuação prevista para 3 de novembro de 2026, e alguns fornecedores, entre eles WHOOP, Dexcom e Strava, ainda exigem o seu próprio app de desenvolvedor configurado no painel do Terra.

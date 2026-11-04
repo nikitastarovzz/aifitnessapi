@@ -21,6 +21,9 @@ import AppStack from "@/components/AppStack";
 import PostLinks from "@/components/PostLinks";
 import Feedback from "@/components/Feedback";
 import VendorHubMenu from "@/components/VendorHubMenu";
+import KeyFacts from "@/components/KeyFacts";
+import CiteBox from "@/components/CiteBox";
+import { keyFacts } from "@/lib/keyFacts";
 import { formatDate } from "@/lib/posts";
 import { site, absoluteUrl } from "@/lib/site";
 import { spokeGraph, translationGraph, markdownUrl } from "@/lib/schema";
@@ -31,6 +34,7 @@ import { relatedAcrossSite } from "@/lib/related";
 import { apisOnPage } from "@/lib/apiCoverage";
 import { APIS_PATH } from "@/data/apis";
 import { autolinkGlossary } from "@/lib/autolink";
+import { offersTableEmbeds } from "@/lib/embedTables";
 import { headings } from "@/lib/toc";
 import readingTime from "reading-time";
 import type { ClusterEntry, ClusterConfig } from "@/lib/cluster";
@@ -228,6 +232,10 @@ export default function ClusterPage({
   // page counts, so the number in the link is the number on the page.
   const clusterEntries = clusterMap()[basePath] ?? [];
   const clusterQuestions = clusterEntries.reduce((n, e) => n + e.faqs.length, 0);
+  // Verbatim, numbered quotes from the page's checked sources (lib/keyFacts).
+  // A translation shows the English page's, which its sources list is — and
+  // a stale translation has no sources list, so it shows none.
+  const facts = keyFacts(tr ? tr.enPath : path, entry);
 
   // TechArticle + WebPage graph (review metadata, glossary `about` links,
   // citations, markdown encoding). Built centrally so every spoke agrees.
@@ -463,11 +471,13 @@ export default function ClusterPage({
           {entry.answer}
         </div>
 
+        <KeyFacts facts={facts} locale={tr ? "pt-BR" : undefined} />
+
         {/* Mechanism diagram, on architecture spokes only. Renders nothing for
             a slug with no hand-authored drawing. */}
         {basePath === "/architecture" && <ArchDiagram slug={entry.slug} />}
 
-        {!tr && <PageActions path={path} url={url} title={entry.h1} updated={entry.updated} />}
+        {!tr && <PageActions path={path} url={url} title={entry.h1} updated={entry.updated} citeHref="#cite" />}
 
         <FaqJump
           questions={entry.faqs.map((f) => f.q)}
@@ -514,7 +524,14 @@ export default function ClusterPage({
         )}
 
         <div data-article-body className="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-headings:scroll-mt-24 prose-a:text-brand-600 hover:prose-a:text-brand-500 prose-th:text-left prose-pre:rounded-xl prose-pre:border prose-pre:border-[var(--border)]">
-          <Mdx source={body} />
+          <Mdx
+            source={body}
+            tableEmbeds={
+              !tr && offersTableEmbeds(basePath)
+                ? { basePath, slug: entry.slug, title: entry.h1 }
+                : undefined
+            }
+          />
         </div>
 
         {/* The metric's type on every platform with a generated reference,
@@ -655,6 +672,14 @@ export default function ClusterPage({
         {!tr && <NextSteps />}
 
         {!tr && <Feedback path={path} title={entry.h1} repo={site.social.github || undefined} />}
+
+        <CiteBox
+          path={path}
+          url={url}
+          title={entry.h1}
+          verified={entry.updated}
+          locale={tr ? "pt-BR" : undefined}
+        />
 
         <ClusterDisclaimer
           updated={entry.updated}

@@ -45,16 +45,21 @@ const UPDATED = "2026-07-08";
  *  /questions index is built from so the two can never disagree. */
 const QUESTION_COUNT = releasedEntries().reduce((n, e) => n + e.faqs.length, 0);
 
+// 2026-11-04 (ops/NEXT-10-2026-11-04.md item 8): Google shows the homepage,
+// not this hub, for "fitness api" (126 impressions at 27.1, Oct 4-31). The hub
+// is the page that answers it, so the title, H1 and capsule now say what a
+// fitness API is and which to use, and the at-a-glance table (sourced from
+// the cost model, no new facts) sits directly under the answer.
 export const metadata: Metadata = {
-  title: "Best Fitness & Workout APIs (2026)",
+  title: { absolute: "Fitness API Guide: Which Fitness API to Use (2026)" },
   description:
-    "A builder's guide to fitness and workout APIs — exercise data, wearables, aggregators, nutrition, and AI motion tracking, and how to choose between them.",
+    "What a fitness API is and which one to use: exercise data, wearables, aggregators, nutrition and AI motion tracking, with the APIs for each job compared.",
   alternates: { canonical: PILLAR_PATH },
   openGraph: {
     type: "website",
-    title: "Best Fitness & Workout APIs (2026): The Builder's Guide",
+    title: "Fitness API Guide: Which Fitness API to Use (2026)",
     description:
-      "Exercise data, wearables, aggregators, nutrition, and AI motion tracking — the fitness API landscape, mapped for builders.",
+      "What a fitness API is, the five jobs fitness APIs do, and the APIs for each job: exercise data, wearables, aggregators, nutrition and AI motion tracking.",
     url: PILLAR_PATH,
   },
 };
@@ -118,13 +123,13 @@ export default function FitnessApisPillar() {
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "Best Fitness & Workout APIs (2026): The Builder's Guide",
+    headline: "Fitness APIs: What They Are and Which Fitness API to Use (2026)",
     description: metadata.description,
     datePublished: UPDATED,
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),
-    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    mainEntityOfPage: { "@id": `${url}#collection` },
     url,
     speakable: { "@type": "SpeakableSpecification", cssSelector: ["#answer"] },
   };
@@ -166,7 +171,7 @@ export default function FitnessApisPillar() {
         <ClusterHero label="Fitness APIs" seed={heroSeed(PILLAR_PATH)} />
 
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
-          Best Fitness &amp; Workout APIs for Builders (2026)
+          Fitness APIs: What They Are and Which Fitness API to Use (2026)
         </h1>
 
         <HubFreshness entries={released} basePath={PILLAR_PATH} />
@@ -175,12 +180,24 @@ export default function FitnessApisPillar() {
           id="answer"
           className="speakable mt-6 rounded-2xl border border-brand-400/30 bg-brand-500/5 p-5 text-lg leading-relaxed text-[var(--fg)] sm:p-6"
         >
-          There is no single &ldquo;best&rdquo; fitness API — the right one depends on what you&rsquo;re
-          building. Fitness APIs fall into five jobs: exercise/workout content, wearable &amp; device
-          data, health-data aggregators, nutrition data, and AI motion tracking. Decide which job you
-          need first, then compare the options within that category. This guide maps all five and
-          links a focused comparison for each.
+          A fitness API is a service your app calls for fitness or health data and capabilities you
+          would otherwise build yourself: an exercise library, a user&rsquo;s wearable metrics such as
+          steps, heart rate and sleep, nutrition data, or camera-based workout tracking. Which fitness
+          API to use depends on the job, not the brand, because fitness APIs do five different jobs:
+          exercise and workout content, wearable and device data, health-data aggregators, nutrition
+          data, and AI motion tracking. Name the job first, then compare the options within it; the
+          table below lists the APIs this site covers for each job and how each one bills developers.
         </div>
+
+        <HubGlanceTable hub="/fitness-apis" />
+
+        <p className="mt-5 text-sm text-[var(--muted)]">
+          Still not sure which job you need?{" "}
+          <Link href="/picker" className="text-brand-600 underline hover:text-brand-500">
+            The three-question picker
+          </Link>{" "}
+          narrows it down.
+        </p>
 
         <div className="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-a:text-brand-600 hover:prose-a:text-brand-500">
           <h2>Start with the job, not the brand</h2>
@@ -251,7 +268,6 @@ export default function FitnessApisPillar() {
           </p>
         </div>
 
-        <HubGlanceTable hub="/fitness-apis" />
         <HubDirectAnswers hub="/fitness-apis" />
 
         {/* Hub: crawlable index linking down to every released spoke, grouped. */}

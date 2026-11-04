@@ -59,9 +59,13 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
     blurb: "Aggregators and content APIs that do charge.",
     slugs: [
       "health-data-aggregator-pricing",
+      "terra-api-pricing",
+      "rook-api-pricing",
+      "junction-api-pricing",
       "sahha-api-pricing",
       "thryve-api-pricing",
       "nutrition-api-pricing",
+      "nutritionix-api-pricing",
       "exercise-database-api-pricing",
     ],
   },
@@ -111,7 +115,7 @@ export default function PricingPillar() {
     dateModified: UPDATED,
     author: orgRef(),
     publisher: orgRef(),
-    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    mainEntityOfPage: { "@id": `${url}#collection` },
     url,
     speakable: { "@type": "SpeakableSpecification", cssSelector: ["#answer"] },
   };
