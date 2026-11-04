@@ -14,9 +14,16 @@
  *                                    byQueryPage for queries with 2+ impressions
  *   ops/gsc/bing-<date>.csv          Bing page rows for `npm run gsc`
  *
- * Credentials never live in this repo (it is public):
- *   - Search Console: run inside the aifitnessapi cloud environment, whose
- *     egress proxy injects a read-only service-account credential for
+ * Credentials never live in this repo (it is public). Search Console has two
+ * paths, chosen by the environment:
+ *   - GSC_SERVICE_ACCOUNT_JSON set (the GitHub workflow,
+ *     .github/workflows/search-snapshot.yml, from the repository secret of
+ *     the same name): the service account's JSON key, raw or base64. The
+ *     script signs a JWT with node:crypto, trades it at Google's OAuth token
+ *     endpoint for a one-hour token with the webmasters.readonly scope, and
+ *     sends it as a Bearer header. The key and the token are never printed.
+ *   - Unset: run inside the aifitnessapi cloud environment, whose egress
+ *     proxy injects a read-only service-account credential for
  *     https://www.googleapis.com/webmasters/v3/. Send no Authorization header.
  *     Anywhere else the API answers 401/403 and this script says so.
  *   - Bing: BING_WEBMASTER_API_KEY from the environment. Never printed.
@@ -28,6 +35,7 @@
  * non-zero and writes nothing, rather than replacing good data with a
  * truncated pull.
  */
+import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -49,16 +57,63 @@ function fail(msg) {
   process.exit(1);
 }
 
+/**
+ * Service-account path (OAuth 2.0 for server-to-server applications): an
+ * RS256-signed JWT whose aud is the token endpoint and whose exp is at most
+ * an hour after iat, posted as grant_type
+ * urn:ietf:params:oauth:grant-type:jwt-bearer. Returns null when no key is
+ * configured, so the proxy-injected path below runs exactly as before.
+ */
+const GSC_SCOPE = "https://www.googleapis.com/auth/webmasters.readonly";
+const TOKEN_URL = "https://oauth2.googleapis.com/token";
+
+async function serviceAccountToken() {
+  const raw = process.env.GSC_SERVICE_ACCOUNT_JSON?.trim();
+  if (!raw) return null;
+  let key;
+  try {
+    key = JSON.parse(raw.startsWith("{") ? raw : Buffer.from(raw, "base64").toString("utf8"));
+  } catch {
+    fail("GSC_SERVICE_ACCOUNT_JSON is set but is not a service-account JSON key (raw or base64).");
+  }
+  if (!key?.client_email || !key?.private_key) fail("GSC_SERVICE_ACCOUNT_JSON has no client_email or private_key.");
+  const b64url = (v) => Buffer.from(typeof v === "string" ? v : JSON.stringify(v)).toString("base64url");
+  const iat = Math.floor(Date.now() / 1000);
+  const unsigned = `${b64url({ alg: "RS256", typ: "JWT" })}.${b64url({ iss: key.client_email, scope: GSC_SCOPE, aud: TOKEN_URL, iat, exp: iat + 3600 })}`;
+  let signature;
+  try {
+    signature = crypto.createSign("RSA-SHA256").update(unsigned).sign(key.private_key).toString("base64url");
+  } catch {
+    fail("GSC_SERVICE_ACCOUNT_JSON's private_key could not sign a JWT.");
+  }
+  const res = await fetch(TOKEN_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({ grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer", assertion: `${unsigned}.${signature}` }),
+  });
+  // Google's error body names the problem (invalid_grant, a disabled key)
+  // and never echoes the key, so its error code is safe to print.
+  const json = await res.json().catch(() => ({}));
+  if (!res.ok || !json.access_token) fail(`Google's token endpoint answered HTTP ${res.status} (${json.error ?? "no error code"}) for ${key.client_email}.`);
+  return { token: json.access_token, account: key.client_email };
+}
+const sa = await serviceAccountToken();
+
 async function gsc(dimensions, rowLimit = 25000) {
+  const headers = { "Content-Type": "application/json" };
+  if (sa) headers.Authorization = `Bearer ${sa.token}`;
   const res = await fetch(GSC, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers,
     body: JSON.stringify({ startDate: range.start, endDate: range.end, dimensions, rowLimit }),
   });
   if (res.status === 401 || res.status === 403) {
     fail(
-      `Search Console answered ${res.status}. This script relies on the read-only credential the ` +
-        `aifitnessapi cloud environment's proxy injects; run it there (with NODE_USE_ENV_PROXY=1).`,
+      sa
+        ? `Search Console answered ${res.status} to ${sa.account}. Add that address as a user of ${SITE} ` +
+            `(Search Console → Settings → Users and permissions) and enable the Search Console API in its Google Cloud project.`
+        : `Search Console answered ${res.status}. With no GSC_SERVICE_ACCOUNT_JSON set, this script relies on the read-only ` +
+            `credential the aifitnessapi cloud environment's proxy injects; run it there (with NODE_USE_ENV_PROXY=1).`,
     );
   }
   if (!res.ok) fail(`Search Console ${dimensions.join("+")} answered HTTP ${res.status}.`);
