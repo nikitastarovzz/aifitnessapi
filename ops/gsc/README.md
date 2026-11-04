@@ -47,6 +47,53 @@ mean Bing did not say. A short or failed read writes nothing. Outside that
 environment Search Console answers 401/403 and the committed files are the
 fallback. A weekly routine runs it and opens a pull request.
 
+### On GitHub (since 2026-11-04)
+
+`.github/workflows/search-snapshot.yml` runs the same pull every Monday at
+06:41 UTC and opens a pull request that merges itself once `gates` is green.
+On a runner there is no proxy, so the script takes its own credential: when
+`GSC_SERVICE_ACCOUNT_JSON` is set it signs a JWT with the service account's
+key, trades it at `https://oauth2.googleapis.com/token` for a one-hour
+`webmasters.readonly` token and sends it as a Bearer header; when it is unset
+it behaves exactly as above. The owner sets up, once:
+
+1. **`GSC_SERVICE_ACCOUNT_JSON`** (repository secret). Google Cloud console →
+   a project → enable the *Google Search Console API* → IAM & Admin → Service
+   accounts → Create → Keys → Add key → JSON. Paste the downloaded file's
+   contents (raw JSON, or base64 of it) as the secret. Then in Search Console,
+   property `sc-domain:aifitnessapi.com` → Settings → Users and permissions →
+   Add user → the key's `client_email`, permission *Restricted* (view only).
+2. **`BING_WEBMASTER_API_KEY`** (repository secret): the Bing Webmaster
+   Tools API key the cloud environment already uses.
+3. **Settings → Actions → General → Workflow permissions → "Allow GitHub
+   Actions to create and approve pull requests"**. Without it every bot PR
+   here fails at `gh pr create` (run 6 of this workflow, 2026-10-05).
+
+Missing either secret, the run skips with a notice and succeeds. Because a PR
+opened with `GITHUB_TOKEN` does not start `ci.yml` by itself, the workflow
+dispatches `ci.yml` on the bot branch so the required `gates` check reports.
+
+### Weekly health checks
+
+`npm run gsc` ends with four lists (`scripts/lib/gsc-sections.mjs`, tested by
+`npm run test:gsc`); the workflow copies them into the run summary:
+
+- **(a) CTR anomalies** — Google pages at position ≤ 10 with ≥ 50 impressions
+  earning under half of a rounded position curve (28, 15, 11, 8, 6, 5, 4, 3.5,
+  3, 2.5% for positions 1–10). A heuristic for ordering, not a target.
+- **(b) Cannibalisation** — queries with ≥ 10 impressions split over 2+ of our
+  pages in the query → page join (Google's withholding makes it a floor).
+- **(c) Decay** — impressions down ≥ 30% against an earlier snapshot with the
+  position within ±1.5. Overlapping windows damp the change; the report says
+  how many days two windows share.
+- **(d) Index lag** — sitemap URLs with no Google impressions, bucketed by
+  their first-published date (`src/data/published.ts`) against the window.
+  Needs a build (or `--sitemap <file>`).
+
+`--current <date>` and `--previous <date>` pick the snapshots; by default the
+current one matches `data/gsc/latest.json` and the previous one is the newest
+earlier snapshot with a different window.
+
 ## What to export
 
 Google Search Console → Performance → Pages tab → Export → CSV, named

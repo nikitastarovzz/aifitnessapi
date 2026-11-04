@@ -22,6 +22,19 @@
  *      a time series instead of a single file that each export overwrites.
  *   5. GEO citation proxy: queries that quote the site's own sentences
  *      (ops/GEO.md → Measurement). Always runs when the API snapshot exists.
+ *   6. Weekly health checks (ops/NEXT-10-2026-11-04.md item 3): CTR
+ *      anomalies on page one, cannibalised queries, decay against an earlier
+ *      snapshot at a stable position, and sitemap URLs with no impressions.
+ *      Always runs; the logic is in scripts/lib/gsc-sections.mjs (tested by
+ *      scripts/gsc-sections.test.mjs). Options:
+ *        --current <date>   snapshot to judge (default: the snapshot whose
+ *                           window matches data/gsc/latest.json, else
+ *                           latest.json's own page rows)
+ *        --previous <date>  baseline for decay (default: the newest older
+ *                           snapshot whose window differs)
+ *        --sitemap <file>   sitemap XML (default: the build's
+ *                           .next/server/app/sitemap.xml.body; skipped
+ *                           without one)
  *
  * Methodology note, and the reason this file was rewritten:
  *
@@ -32,13 +45,25 @@
  * around 6%, and the gap between what a position pays and what the page
  * actually takes is the whole point of the report.
  *
- * So the benchmark is now position-aware. The curve below is a public
+ * So the benchmark is now position-aware. The curve (scripts/lib/gsc-sections.mjs) is a public
  * composite and is approximate by nature; it is used only to *rank* pages
  * against each other, never reported as a target. Two pages at the same
  * position are still compared like for like, which is all the ranking needs.
  */
 import fs from "node:fs";
 import path from "node:path";
+import {
+  CTR_CURVE,
+  expectedCtr,
+  mergeByPath,
+  ctrAnomalies,
+  cannibalisation,
+  decay,
+  parseSitemap,
+  parsePublished,
+  indexLag,
+  overlapDays,
+} from "./lib/gsc-sections.mjs";
 
 const CSV_DIR = "ops/gsc";
 const JSON_SNAPSHOT = "data/gsc/latest.json";
@@ -47,20 +72,8 @@ const RETITLED_FILE = "ops/gsc/retitled.txt";
 const ENTRIES_DIR = "src/data";
 const POSTS_DIR = "content/posts";
 
-/**
- * Position → expected CTR. A public composite of several published
- * click-curve studies, rounded; treat as an ordering device, not a forecast.
- * Deliberately conservative past page one, where the curve flattens and the
- * differences stop being meaningful.
- */
-const CTR_CURVE = [0.28, 0.15, 0.11, 0.08, 0.06, 0.05, 0.04, 0.035, 0.03, 0.025];
-function expectedCtr(position) {
-  if (!Number.isFinite(position) || position < 1) return 0.28;
-  if (position <= 10) return CTR_CURVE[Math.max(0, Math.round(position) - 1)];
-  if (position <= 20) return 0.012;
-  if (position <= 30) return 0.006;
-  return 0.003;
-}
+// The position → expected-CTR curve lives in scripts/lib/gsc-sections.mjs,
+// shared with the weekly health checks below so the two cannot drift apart.
 
 function parseCsv(text) {
   const rows = [];
@@ -592,6 +605,165 @@ if (fs.existsSync(TRACKED_FILE)) {
     console.log(`  ${q.padEnd(48).slice(0, 48)} ${cell(engines.google, q)} ${cell(engines.bing, q)}`);
   }
 }
+
+// ---- Weekly health checks ---------------------------------------------------
+// ops/NEXT-10-2026-11-04.md item 3. Four lists that each point at pages to
+// open, not verdicts; the logic and thresholds live in
+// scripts/lib/gsc-sections.mjs so they can be tested without a pull.
+function argValue(flag) {
+  const i = process.argv.indexOf(flag);
+  return i >= 0 ? process.argv[i + 1] : undefined;
+}
+
+function loadSnapshot(date) {
+  const file = path.join(SNAP_DIR, `${date}.json`);
+  if (!fs.existsSync(file)) {
+    const have = fs.existsSync(SNAP_DIR) ? fs.readdirSync(SNAP_DIR).map((f) => f.replace(/\.json$/, "")).sort() : [];
+    console.error(`gsc-report: no snapshot ${file}. Have: ${have.join(", ") || "none"}`);
+    process.exit(1);
+  }
+  return { date, ...JSON.parse(fs.readFileSync(file, "utf8")) };
+}
+
+function healthChecks() {
+  const snapDates = fs.existsSync(SNAP_DIR)
+    ? fs.readdirSync(SNAP_DIR).filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f)).map((f) => f.slice(0, 10)).sort()
+    : [];
+  const sameRange = (a, b) => a?.start && a.start === b?.start && a.end === b?.end;
+
+  // Current: an explicit snapshot, or the one matching latest.json, or
+  // latest.json's own page rows.
+  let current = null;
+  if (argValue("--current")) current = loadSnapshot(argValue("--current"));
+  else {
+    const match = [...snapDates].reverse().map(loadSnapshot).find((s) => sameRange(s.range, apiSnap?.range));
+    if (match) current = match;
+    else if (apiSnap?.byPage?.length) current = { date: "latest.json", range: apiSnap.range, engines: { google: apiSnap.byPage } };
+  }
+  if (!current?.engines?.google?.length) return;
+
+  // Previous: explicit, or the newest earlier snapshot with a different window.
+  let previous = null;
+  if (argValue("--previous")) previous = loadSnapshot(argValue("--previous"));
+  else {
+    const older = snapDates.filter((d) => current.date === "latest.json" || d < current.date).reverse();
+    previous = older.map(loadSnapshot).find((s) => !sameRange(s.range, current.range)) ?? null;
+  }
+
+  const g = mergeByPath(current.engines.google);
+  const b = mergeByPath(current.engines.bing ?? []);
+  const rng = (r) => (r ? `${r.start} → ${r.end}` : "?");
+  const pct = (x, d = 1) => `${(x * 100).toFixed(d)}%`;
+  const col = (s, n) => String(s).padEnd(n).slice(0, n);
+  const LIMIT = 15;
+
+  console.log(`\n${"=".repeat(68)}\nWeekly health checks — current ${current.date} (${rng(current.range)})\n${"=".repeat(68)}`);
+
+  // (a) CTR anomaly.
+  console.log(
+    `\n  (a) CTR anomalies: Google pages at position ≤10 with ≥50 impressions earning under half\n` +
+      `  the curve's CTR for their rounded position. Curve, positions 1–10 (%): ` +
+      `${CTR_CURVE.map((x) => Number((x * 100).toFixed(1))).join(", ")}\n` +
+      `  — a rounded composite of published click-curve studies. A heuristic for ordering pages,\n` +
+      `  not a target: SERP features, brand and intent move real CTR far from any curve.`,
+  );
+  const anomalies = ctrAnomalies(g);
+  if (!anomalies.length) console.log("    none.");
+  else {
+    console.log(`    ${col("page", 52)} ${"imp".padStart(6)} ${"clk".padStart(4)} ${"pos".padStart(5)} ${"ctr".padStart(6)} ${"exp".padStart(6)} ${"short".padStart(6)}`);
+    for (const r of anomalies.slice(0, LIMIT)) {
+      console.log(
+        `    ${col(r.path, 52)} ${String(r.impressions).padStart(6)} ${String(r.clicks).padStart(4)} ${r.position.toFixed(1).padStart(5)} ` +
+          `${pct(r.ctr).padStart(6)} ${pct(r.expected).padStart(6)} ${r.shortfall.toFixed(1).padStart(6)}`,
+      );
+    }
+    if (anomalies.length > LIMIT) console.log(`    …and ${anomalies.length - LIMIT} more (${anomalies.length} in all)`);
+  }
+
+  // (b) Cannibalisation, from the query→page join. Only latest.json carries
+  // it, so it describes latest.json's window, which may not be current's.
+  console.log(`\n  (b) Cannibalisation: queries with ≥10 impressions split across 2+ of our pages (query→page join).`);
+  const joins = [["Google", apiSnap?.byQueryPage, apiSnap?.range]];
+  const BING_JSON_FILE = "data/gsc/bing-latest.json";
+  if (fs.existsSync(BING_JSON_FILE)) {
+    const bj = JSON.parse(fs.readFileSync(BING_JSON_FILE, "utf8"));
+    joins.push(["Bing", bj.byQueryPage, bj.range]);
+  }
+  for (const [label, rows, range] of joins) {
+    if (!Array.isArray(rows)) {
+      console.log(`    ${label}: no query→page rows (Bing writes null when its lookups failed).`);
+      continue;
+    }
+    const note = sameRange(range, current.range) ? "" : `  NOTE: window ${rng(range)}, not the current snapshot's`;
+    const split = cannibalisation(rows);
+    console.log(`    ${label} (${rng(range)}): ${split.length} queries${note}`);
+    for (const c of split.slice(0, label === "Google" ? LIMIT : 5)) {
+      const pages = c.pages
+        .slice(0, 3)
+        .map((p) => `${p.path} ${p.impressions}i @${p.position.toFixed(1)}`)
+        .join(" | ");
+      const more = c.pages.length > 3 ? ` +${c.pages.length - 3}` : "";
+      console.log(`      ${col(c.query, 40)} ${String(c.impressions).padStart(5)}i ${String(c.pages.length).padStart(2)}p top ${pct(c.topShare, 0).padStart(4)}  ${pages}${more}`);
+    }
+  }
+  if (apiSnap?.byQueryPage) {
+    console.log("    Google withholds rare queries from the join, so these are a floor; a split is a lead to check, not proof two pages compete.");
+  }
+
+  // (c) Decay against an earlier snapshot.
+  console.log(`\n  (c) Decay: impressions down ≥30% at a stable position (±1.5), ≥20 impressions before.`);
+  if (!previous) console.log("    no earlier snapshot with a different window — nothing to compare yet.");
+  else {
+    const shared = overlapDays(previous.range, current.range);
+    console.log(`    against ${previous.date} (${rng(previous.range)})${shared ? `; the windows share ${shared} days, which damps every change` : ""}`);
+    for (const [label, now, before] of [
+      ["Google", current.engines.google, previous.engines?.google],
+      ["Bing", current.engines.bing, previous.engines?.bing],
+    ]) {
+      if (!now?.length || !before?.length) continue;
+      const { decayed, vanished } = decay(now, before);
+      console.log(`    ${label}: ${decayed.length} decayed, ${vanished.length} with no impressions now (position unknown, so not called decay)`);
+      for (const d of decayed.slice(0, label === "Google" ? LIMIT : 5)) {
+        console.log(
+          `      ${col(d.path, 52)} ${String(d.before.impressions).padStart(5)} → ${String(d.after.impressions).padEnd(5)} ` +
+            `${pct(d.change, 0).padStart(5)}  pos ${d.before.position.toFixed(1)} → ${d.after.position.toFixed(1)}`,
+        );
+      }
+    }
+  }
+
+  // (d) Index lag: sitemap URLs with no impressions.
+  const smFile = argValue("--sitemap") ?? ".next/server/app/sitemap.xml.body";
+  console.log(`\n  (d) Index lag: sitemap URLs with no Google impressions in ${rng(current.range)}.`);
+  if (!fs.existsSync(smFile)) {
+    console.log(`    no sitemap at ${smFile} — run npm run build first, or pass --sitemap <file>.`);
+  } else {
+    const sitemap = parseSitemap(fs.readFileSync(smFile, "utf8"));
+    const published = fs.existsSync("src/data/published.ts") ? parsePublished(fs.readFileSync("src/data/published.ts", "utf8")) : new Map();
+    const seenG = new Set(g.filter((r) => r.impressions > 0).map((r) => r.path));
+    const seenB = new Set(b.filter((r) => r.impressions > 0).map((r) => r.path));
+    const lag = indexLag(sitemap, seenG, published, current.range);
+    const none = lag.lagging.length + lag.partial.length + lag.tooNew.length + lag.unknown.length;
+    console.log(
+      `    ${sitemap.length} sitemap URLs, ${none} without Google impressions: ${lag.lagging.length} published before the window, ` +
+        `${lag.partial.length} inside it, ${lag.tooNew.length} after it, ${lag.unknown.length} with no date in src/data/published.ts`,
+    );
+    if (lag.lagging.length) {
+      console.log(`    Oldest first (published before the window opened, so the whole window was available):`);
+      for (const r of lag.lagging.slice(0, LIMIT)) {
+        console.log(`      ${col(r.path, 56)} published ${r.published} (${String(r.ageDays).padStart(3)} days at window end)${seenB.has(r.path) ? "  · has Bing impressions" : ""}`);
+      }
+      if (lag.lagging.length > LIMIT) console.log(`      …and ${lag.lagging.length - LIMIT} more`);
+    }
+    if (lag.unknown.length) {
+      const shown = lag.unknown.slice(0, 8).map((r) => r.path).join(", ");
+      console.log(`    No first-published date: ${shown}${lag.unknown.length > 8 ? ` +${lag.unknown.length - 8} more` : ""}`);
+    }
+    console.log("    No impressions is not proof a page is unindexed: it may be indexed and never shown. Check URL Inspection before acting.");
+  }
+}
+
+healthChecks();
 
 // ---- --snapshot: build the time series ------------------------------------
 if (process.argv.includes("--snapshot")) {

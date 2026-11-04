@@ -1,104 +1,150 @@
 name: Weekly search snapshot
 
-# Builds the time series that makes "did the work help?" answerable.
+# The weekly Google + Bing pull, on a schedule (ops/NEXT-10-2026-11-04.md
+# item 3). Runs scripts/search-pull.mjs, which writes data/gsc/latest.json,
+# data/gsc/snapshots/<date>.json, data/gsc/bing-latest.json and
+# ops/gsc/bing-<date>.csv, then opens a pull request with them that merges
+# itself once CI is green. The weekly health checks from
+# scripts/gsc-report.mjs go to the run's job summary.
 #
-# The site has had exactly one Search Console export, covering 2026-07-06 to
-# 08-02. Thirty-four changes shipped on 09-04 and none of them has ever been
-# measured, because the only baseline predates them all and each new export
-# overwrites data/gsc/latest.json rather than accumulating.
+# Why the six earlier runs failed (all six, 2026-10-02 → 10-05):
+#   - Runs 1-5 (push events) created no jobs: the workflow file did not parse.
+#     A continuation line of a multi-line commit message sat at column 0 and
+#     ended the `run: |` block scalar. Fixed before run 6 with two `-m`
+#     arguments (kept below).
+#   - Run 6 (the 10-05 schedule) pinned the snapshot and pushed its branch,
+#     then `gh pr create` failed with "GitHub Actions is not permitted to
+#     create or approve pull requests (createPullRequest)". That is a
+#     repository setting, not something this file can change (see SETUP).
+#   - Separately, the old job never fetched anything: it re-pinned whatever
+#     data/gsc/latest.json already held, because the pull needed a credential
+#     only the aifitnessapi cloud environment's proxy supplies.
 #
-# This commits a dated snapshot every Monday, so `npm run gsc -- --compare
-# <date>` has something to compare against. It deliberately does NOT fetch
-# from the Search Console API: that needs OAuth credentials this public repo
-# should not hold. It snapshots whatever the repo currently knows — the API
-# pull the owner drops into data/gsc/latest.json, plus any CSVs in ops/gsc/.
+# SETUP (owner, once). Without the two secrets the run skips with a notice
+# and succeeds, so a missing credential never emails a failure.
+#   1. Repository secret GSC_SERVICE_ACCOUNT_JSON: the JSON key of a Google
+#      Cloud service account (raw JSON, or base64 of it) with the Search
+#      Console API enabled in its project, added as a Restricted user of the
+#      sc-domain:aifitnessapi.com property in Search Console (Settings →
+#      Users and permissions → Add user → the account's client_email).
+#   2. Repository secret BING_WEBMASTER_API_KEY: the Bing Webmaster Tools API
+#      key, the same one the cloud environment uses.
+#   3. Settings → Actions → General → Workflow permissions: tick "Allow
+#      GitHub Actions to create and approve pull requests". Every bot
+#      workflow here opens its PR this way and fails without it.
 #
-# So the loop is: owner refreshes latest.json (or drops a CSV) → this pins a
-# dated copy → the comparison is possible from then on. Without the refresh
-# it re-pins the same numbers, which is harmless and shows up as a zero diff.
+# The secrets reach only the pull step's environment; search-pull.mjs never
+# prints the key, the token or the Bing key.
 
 on:
-  # PAUSED 2026-10-06 at the owner's request: the automatic triggers below
-  # emailed a failure on every run. Uncomment them to turn this back on.
-  # Manual runs still work (Actions tab, Run workflow).
-  # schedule:
-  #   - cron: "41 6 * * 1" # Mondays, after the weekend's crawling settles
+  schedule:
+    - cron: "41 6 * * 1" # Mondays 06:41 UTC; the window ends three days earlier
   workflow_dispatch: {}
 
 permissions:
   contents: write
   pull-requests: write
+  # To dispatch ci.yml on the bot branch (see the last step).
+  actions: write
 
 concurrency:
   group: search-snapshot
   cancel-in-progress: false
 
 jobs:
-  snapshot:
+  pull:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-
-      - name: Take the snapshot
-        id: snap
+      - name: Check the credentials are configured
+        id: creds
+        env:
+          GSC: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
+          BING: ${{ secrets.BING_WEBMASTER_API_KEY }}
         run: |
-          set -euo pipefail
-          if [ ! -f data/gsc/latest.json ] && [ -z "$(ls -A ops/gsc/*.csv 2>/dev/null || true)" ]; then
-            echo "No search data in the repo yet — nothing to snapshot."
+          missing=""
+          [ -n "$GSC" ] || missing="GSC_SERVICE_ACCOUNT_JSON"
+          [ -n "$BING" ] || missing="${missing:+$missing and }BING_WEBMASTER_API_KEY"
+          if [ -n "$missing" ]; then
+            echo "::notice title=Search pull skipped::Repository secret ${missing} is not set, so there is nothing to authenticate with. See the SETUP comment at the top of .github/workflows/search-snapshot.yml."
             echo "skip=1" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          node scripts/gsc-report.mjs --snapshot | tail -40
           echo "skip=0" >> "$GITHUB_OUTPUT"
 
-      - name: Commit if the series moved
-        if: steps.snap.outputs.skip == '0'
+      - uses: actions/checkout@v4
+        if: steps.creds.outputs.skip == '0'
+
+      - uses: actions/setup-node@v4
+        if: steps.creds.outputs.skip == '0'
+        with:
+          node-version: "22"
+
+      - name: Pull Google Search Console and Bing
+        if: steps.creds.outputs.skip == '0'
+        env:
+          GSC_SERVICE_ACCOUNT_JSON: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
+          BING_WEBMASTER_API_KEY: ${{ secrets.BING_WEBMASTER_API_KEY }}
+        # Exits non-zero and writes nothing on a refused credential or a short
+        # read (fewer than 50 Google page rows), so a bad pull never lands.
+        run: node scripts/search-pull.mjs
+
+      - name: Weekly health checks to the job summary
+        if: steps.creds.outputs.skip == '0'
+        # No build here, so the index-lag check reports that it needs one.
+        run: |
+          set -o pipefail
+          node scripts/gsc-report.mjs > "$RUNNER_TEMP/report.txt"
+          {
+            echo '### Weekly health checks'
+            echo '```text'
+            sed -n '/^Weekly health checks/,$p' "$RUNNER_TEMP/report.txt"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open a pull request with the pull
+        if: steps.creds.outputs.skip == '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/gsc/snapshots/
+          git add data/gsc/latest.json data/gsc/bing-latest.json data/gsc/snapshots/ ops/gsc/
           if git diff --cached --quiet; then
-            echo "Snapshot identical to the last one — nothing to commit."
+            echo "The pull matches what main already holds — nothing to commit."
             exit 0
           fi
           stamp=$(date -u +%Y-%m-%d)
+          window=$(node -e "const r=JSON.parse(require('fs').readFileSync('data/gsc/latest.json','utf8')).range; console.log(r.start+' to '+r.end)")
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           # Two -m arguments, not a multi-line string: a continuation line at
           # column 0 ends the `run: |` block scalar and the whole workflow
-          # stops parsing. That shipped once and every run failed with no jobs.
-          git commit -m "Pin the search snapshot for ${stamp}" \
-            -m "Weekly dated copy of whatever search data the repo holds, so \`npm run gsc -- --compare <date>\` has a baseline. Automated by .github/workflows/search-snapshot.yml."
+          # stops parsing. That shipped once and five runs failed with no jobs.
+          git commit -m "Search pull ${stamp}: Google and Bing, ${window}" \
+            -m "Automated by .github/workflows/search-snapshot.yml (scripts/search-pull.mjs). Compare with: npm run gsc -- --compare <date>."
 
           # PR + auto-merge rather than a direct push: main requires a pull
-          # request and green CI. A snapshot is data-only and will always be
-          # green, so in practice this merges itself within the minute.
-          branch="bot/search-snapshot-${stamp}-${GITHUB_RUN_ID}"
+          # request and the gates check. Data-only, so it is green and merges
+          # itself within minutes.
+          branch="bot/search-pull-${stamp}-${GITHUB_RUN_ID}"
           git checkout -b "$branch"
           git push origin "$branch"
-          gh pr create --base main --head "$branch" \
-            --title "Pin the search snapshot for ${stamp}" \
-            --body "Weekly dated search snapshot so \`npm run gsc -- --compare\` has a baseline. Merges itself once CI is green."
-          gh pr merge --auto --squash --delete-branch "$branch"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Remind if the data has gone stale
-        if: steps.snap.outputs.skip == '0'
-        run: |
-          set -uo pipefail
-          # A snapshot of month-old numbers is a snapshot of nothing. Say so
-          # rather than letting the series quietly fill with duplicates.
-          exported=$(node -e "
-            const fs=require('fs');
-            try { console.log(JSON.parse(fs.readFileSync('data/gsc/latest.json','utf8')).range?.end ?? ''); }
-            catch { console.log(''); }
-          ")
-          [ -z "$exported" ] && exit 0
-          age=$(( ( $(date -u +%s) - $(date -u -d "$exported" +%s) ) / 86400 ))
-          echo "Search data covers up to ${exported} (${age} days ago)."
-          if [ "$age" -gt 45 ]; then
-            echo "::warning::The search data is ${age} days old. Every snapshot since the last refresh is a copy of the same numbers. Refresh data/gsc/latest.json, or export a CSV into ops/gsc/, for the comparison to mean anything."
+          if ! out=$(gh pr create --base main --head "$branch" \
+              --title "Search pull ${stamp}: Google and Bing, ${window}" \
+              --body "Weekly Search Console and Bing pull (scripts/search-pull.mjs). The weekly health checks are in the run summary: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}. Merges itself once CI is green." 2>&1); then
+            echo "$out"
+            if printf '%s' "$out" | grep -q "not permitted to create or approve pull requests"; then
+              echo "::error title=Repository setting needed::Settings → Actions → General → Workflow permissions → tick 'Allow GitHub Actions to create and approve pull requests'. The pull is on branch ${branch}; open its PR by hand this once."
+            fi
+            exit 1
           fi
+          echo "$out"
+          gh pr merge --auto --squash --delete-branch "$branch"
+
+          # A pull request opened with GITHUB_TOKEN does not start ci.yml on
+          # its own (GitHub suppresses events from that token, except
+          # workflow_dispatch and repository_dispatch), so the required
+          # `gates` check would never report and auto-merge would wait
+          # forever. Dispatching CI on the branch runs `gates` on the PR's
+          # head commit.
+          gh workflow run ci.yml --ref "$branch"
