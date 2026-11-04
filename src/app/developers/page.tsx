@@ -17,6 +17,9 @@ import {
   collections,
 } from "@/lib/publicApi";
 import { SERVER_INFO, TOOLS } from "../../../mcp/src/tools.js";
+import { fullSections, fullSectionText, llmsFullText } from "@/lib/llmsFull";
+import { llmsIndexText } from "@/lib/llmsIndex";
+import { answersBody, answersIndexDoc, answersJson } from "@/lib/answersIndex";
 
 /**
  * /developers — how to read the site's verified data by machine: the JSON API
@@ -102,6 +105,15 @@ export default function DevelopersPage() {
   const example = hk && exampleId ? apiDocument(`${hk.path}/${exampleId}`) : undefined;
   if (!example) throw new Error("/developers: no HealthKit item to show as the example response");
   const exampleUrl = absoluteUrl(`${API_BASE}/${example.path}`);
+
+  // The language-model files, sized from the same builders that serve them.
+  const llmsSections = fullSections();
+  const answerIndex = answersIndexDoc();
+  const answerFiles = new Map(answerIndex.sections.map((s) => [s.id, s]));
+  const answerOnly = answerIndex.sections.filter((a) => !llmsSections.some((s) => s.id === a.id));
+  const fullText = llmsFullText();
+  const indexText = llmsIndexText();
+  const answersText = answersJson(answersBody());
 
   const mcpUrl = absoluteUrl(MCP_PATH);
   const remoteJson = JSON.stringify({ mcpServers: { aifitnessapi: { type: "http", url: mcpUrl } } }, null, 2);
@@ -325,6 +337,67 @@ claude mcp add --transport stdio aifitnessapi -- node "$PWD/src/index.js"`}</Cod
             Server {SERVER_INFO.name} {SERVER_INFO.version}. Both servers answer the same questions the same
             way; if they ever disagree, the hosted one has newer data.
           </p>
+        </section>
+
+        <section className="mt-12 space-y-4 text-[var(--fg)]" data-llms-files>
+          <h2 className="text-2xl font-bold tracking-tight">Text and answer files for language models</h2>
+          <p>
+            The same pages are also published as plain text and JSON for assistants that read rather than
+            call. <a href={absoluteUrl("/llms.txt")} className={ext}>/llms.txt</a> is a curated map, held
+            under 50 KB by the build: the most-visited pages by Search Console, the pricing, alternatives,
+            comparison and integration pages, and every section below.{" "}
+            <a href={absoluteUrl("/llms-index.txt")} className={ext}>/llms-index.txt</a> lists every page
+            with its answer ({kb(indexText)}).{" "}
+            <a href={absoluteUrl("/llms-full.txt")} className={ext}>/llms-full.txt</a> carries every
+            page’s answer and FAQs in one file ({kb(fullText)}), and{" "}
+            <a href={absoluteUrl("/answers.json")} className={ext}>/answers.json</a> the same as structured
+            records ({kb(answersText)}); both are also split by section, listed at{" "}
+            <a href={absoluteUrl("/answers/index.json")} className={ext}>/answers/index.json</a> with
+            counts and review dates. Each section file holds the same records as its part of the whole.
+          </p>
+          <div className="overflow-x-auto">
+            <table className="mt-2 w-full text-left text-sm">
+              <thead>
+                <tr className="border-b border-[var(--border)]">
+                  <th className="py-2 pr-4 font-semibold">Section</th>
+                  <th className="py-2 pr-4 font-semibold">Full text</th>
+                  <th className="py-2 font-semibold">Answers</th>
+                </tr>
+              </thead>
+              <tbody>
+                {llmsSections.map((s) => {
+                  const a = answerFiles.get(s.id);
+                  return (
+                    <tr key={s.id} className="border-b border-[var(--border)]">
+                      <td className="py-2 pr-4">{s.title}</td>
+                      <td className="py-2 pr-4">
+                        <a href={absoluteUrl(`/llms-full/${s.id}.txt`)} className={ext}>{`/llms-full/${s.id}.txt`}</a>{" "}
+                        ({kb(fullSectionText(s))})
+                      </td>
+                      <td className="py-2">
+                        {a ? (
+                          <>
+                            <a href={a.url} className={ext}>{`/answers/${a.id}.json`}</a> ({a.count} records)
+                          </>
+                        ) : (
+                          "—"
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+                {answerOnly.map((a) => (
+                  <tr key={a.id} className="border-b border-[var(--border)]">
+                    <td className="py-2 pr-4">{a.title}</td>
+                    <td className="py-2 pr-4">—</td>
+                    <td className="py-2">
+                      <a href={a.url} className={ext}>{`/answers/${a.id}.json`}</a> ({a.count} records)
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <section className="mt-12 space-y-4 text-[var(--fg)]">
