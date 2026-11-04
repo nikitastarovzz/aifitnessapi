@@ -36,6 +36,10 @@ export const RELEASED_PRICING = new Set<string>([
   "withings-api-pricing",
   "suunto-api-pricing",
   "wahoo-api-pricing",
+  "terra-api-pricing",
+  "rook-api-pricing",
+  "junction-api-pricing",
+  "nutritionix-api-pricing",
 ]);
 
 export const allPricing: ClusterEntry[] = pricingEntries;

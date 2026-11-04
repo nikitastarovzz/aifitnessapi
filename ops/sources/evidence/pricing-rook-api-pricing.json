@@ -1,0 +1,197 @@
+[
+  {
+    "claim": "Pricing based on plan and active users.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "ROOK pricing is based on the plan and the number of active users, with usage-based billing and the flexibility to activate only the products and add-ons needed."
+  },
+  {
+    "claim": "Core $399 for up to 750 active users.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Up to 750 active users"
+  },
+  {
+    "claim": "Core features.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "All ROOK Connect Wearable API integrations"
+  },
+  {
+    "claim": "Core lists multiple data sources per user.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Multiple data sources per user"
+  },
+  {
+    "claim": "Core+ $999 for up to 5,000, three free add-ons.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "3 free add-ons of your choice"
+  },
+  {
+    "claim": "Core+ up to 5,000 active users.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Up to 5,000 active users"
+  },
+  {
+    "claim": "Business up to 15,000 active users.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Up to 15,000 active users"
+  },
+  {
+    "claim": "Business: assisted onboarding with CS engineer.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Assisted onboarding with CS Engineer"
+  },
+  {
+    "claim": "Business includes all products and add-ons.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "All products and add-ons included"
+  },
+  {
+    "claim": "Enterprise unlimited users, dedicated servers.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Dedicated CS Engineer + Expert Groups"
+  },
+  {
+    "claim": "Past a plan's ceiling billing adjusts by usage; sales shares details at contracting.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Each plan includes an active user limit. Beyond that limit, billing adjusts based on usage."
+  },
+  {
+    "claim": "Sales shares details at contracting.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "The sales team shares the details at the time of contracting."
+  },
+  {
+    "claim": "Core+ list price from the fourth add-on.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Core+ includes three add-ons of your choice, and the listed price applies from the fourth on."
+  },
+  {
+    "claim": "Basic Auth and Branded Auth paid on Core and Core+.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Branded Auth and Basic Auth & Okta Token are paid on Core and Core+."
+  },
+  {
+    "claim": "ROOK App +$499 on Core.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "ROOK App +$499 , Purchased separately"
+  },
+  {
+    "claim": "Health Scores +$249 on Core.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Health Scores +$249 , Purchased separately"
+  },
+  {
+    "claim": "Notification Webhook +$99 on Core.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Notification Webhook +$99 , Purchased separately"
+  },
+  {
+    "claim": "Proprietary and Unstructured Data +$149 on Core.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Proprietary & Unstructured Data Wearable API only +$149 , Purchased separately"
+  },
+  {
+    "claim": "Clinical Ready (FHIR R4) +$79 on Core.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Clinical Ready (FHIR R4) +$79 , Purchased separately"
+  },
+  {
+    "claim": "Granular Data +$249 on Core.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Granular Data Wearable API only +$249 , Purchased separately"
+  },
+  {
+    "claim": "Branded Auth on hold.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Branded Auth On hold"
+  },
+  {
+    "claim": "Lab Data API billed by files processed, on every plan.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Lab Data API is billed by the files processed each month, on every plan."
+  },
+  {
+    "claim": "Lab Data API Starter $249 for 300 files.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Up to 300 files per month"
+  },
+  {
+    "claim": "Lab Data API Growth $299 for 750 files.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Up to 750 files per month"
+  },
+  {
+    "claim": "Six more tiers from $349 to $1,299 for 20,000 files.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "6 more tiers up to $1,299, for up to 20,000 files per month"
+  },
+  {
+    "claim": "Standard 12-month term, 30 days notice.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "ROOK’s standard contract term is 12 months, with the flexibility to cancel with 30 days’ prior notice."
+  },
+  {
+    "claim": "Sandbox before production.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "ROOK provides Sandbox access to test the portal and integration before enabling Production."
+  },
+  {
+    "claim": "Production requires an active plan and agreements.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Production use requires an active plan and execution of the applicable agreements."
+  },
+  {
+    "claim": "Card payments through Stripe.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "ROOK accepts card payments through Stripe."
+  },
+  {
+    "claim": "Startup programs change over time.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Entry plans, discounts, and startup programs can change over time."
+  },
+  {
+    "claim": "BAA when covered entity or business associate.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Yes, when the customer is a Covered Entity or Business Associate and a BAA applies to the relationship."
+  },
+  {
+    "claim": "Compliance page: signs BAAs with covered entities; GDPR processor.",
+    "url": "https://tryrook.io/compliance/",
+    "quote": "ROOK operates under a HIPAA-aligned security program, signs BAAs with covered entities, and processes EU personal data under GDPR as a data processor."
+  },
+  {
+    "claim": "Over 400 sources; API and SDK extraction.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "The integration ecosystem consolidates access to over 400 health data sources and wearable devices."
+  },
+  {
+    "claim": "Four providers need your own developer accounts.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "clients are required to create their"
+  },
+  {
+    "claim": "Own developer accounts can take several weeks.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "This process can take several weeks and partly depends on the timelines of the respective data sources."
+  },
+  {
+    "claim": "Comparison: Terra from $399 a month billed annually or $499 monthly, 100,000 credits.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly."
+  },
+  {
+    "claim": "Comparison: Terra active authentication 200 credits.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "An active authentication is one connected data source for one end user, and costs 200 Unified API credits per month."
+  },
+  {
+    "claim": "Comparison: Junction Launch a flat $300 a month for up to 500 connected users.",
+    "url": "https://www.junction.com/pricing",
+    "quote": "it covers the Link widget, 300+ device integrations, and usage analytics for a flat $300 a month."
+  },
+  {
+    "claim": "Comparison: Sahha Starter $299 a month billed annually with 1,000 users included.",
+    "url": "https://sahha.ai/pricing/",
+    "quote": "1,000 users included, then $0.40/user"
+  }
+]

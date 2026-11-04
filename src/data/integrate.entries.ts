@@ -1326,6 +1326,10 @@ export const integrateEntries: ClusterEntry[] =
     ],
     "related": [
       {
+        "href": "/alternatives/polar-api-alternatives",
+        "label": "Polar API alternatives"
+      },
+      {
         "href": "/integrate/oura-api",
         "label": "Integrate the Oura API"
       },

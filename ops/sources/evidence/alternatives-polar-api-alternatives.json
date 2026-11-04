@@ -1,0 +1,222 @@
+[
+  {
+    "claim": "Any registered Polar Flow user can create a client.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Any registered Polar Flow user can create API client to AccessLink"
+  },
+  {
+    "claim": "Mandatory consents.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "each user needs to have all mandatory consents accepted in order to be able to access their data."
+  },
+  {
+    "claim": "Consents changed at account.polar.com.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "User consents can be changed anytime"
+  },
+  {
+    "claim": "AccessLink is the channel for data recorded by Polar devices.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "AccessLink is the access channel to the training and daily activity data recorded by Polar devices."
+  },
+  {
+    "claim": "Elixir Biosensing data.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "body temperature data, sleep skin temperature data, skin contacts data"
+  },
+  {
+    "claim": "Elixir wrist ECG and SpO2 reports.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "wrist ECG test report data and SpO2 test report data"
+  },
+  {
+    "claim": "Cardio load resource.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Cardio load is based on training impulse calculation (TRIMP)"
+  },
+  {
+    "claim": "Nightly Recharge resource.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "The resource allows partners to access their users' nightly recharge data."
+  },
+  {
+    "claim": "Exercise FIT export.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Get exercise FIT"
+  },
+  {
+    "claim": "Rate limit 15 min.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "15min rate limit: 500 + number of users x 20"
+  },
+  {
+    "claim": "Rate limit 24h.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "24h rate limit: 5000 + number of users x 100"
+  },
+  {
+    "claim": "429 over the limit; short-term counts toward long-term.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Requests exceeding the limit will return 429 - Too Many Requests. Note that requests violating the short term limit will still count toward the long term limit."
+  },
+  {
+    "claim": "One webhook per client.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Client application can only have one webhook registered."
+  },
+  {
+    "claim": "Webhooks signed with HMAC SHA-256.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Hash-based message authentication code (HMAC SHA-256) is used to sign every webhook payload Accesslink sends."
+  },
+  {
+    "claim": "Signing key not available after create.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "This signing key is not available after create"
+  },
+  {
+    "claim": "Agreement last updated 22 August 2025.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "Latest update: 22 August 2025"
+  },
+  {
+    "claim": "Free of charge at the moment.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "At the moment Polar offers the use and activation of Polar API’s free of charge."
+  },
+  {
+    "claim": "Right to charge fees.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "Polar reserves the right to charge fees from time to time at its discretion."
+  },
+  {
+    "claim": "Terms can change.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "Polar has the right to change the terms and conditions of this Agreement and applicable Privacy Notice from time to time in its sole discretion."
+  },
+  {
+    "claim": "Suspend or terminate for any or no reason.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "to suspend or terminate Your, Your Corporate Customer’s or any Member’s access to Polar Ecosystem for any or no reason, with immediate effect"
+  },
+  {
+    "claim": "No competing service.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "in creating a service similar to or competing with Polar Ecosystem"
+  },
+  {
+    "claim": "Load testing may result in blacklisting.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "Load testing without prior approval by Polar will be construed as interfering with the proper working of Polar Ecosystem and may result in blacklisting of Your application or service by Polar."
+  },
+  {
+    "claim": "DMA gatekeepers ineligible.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "Gatekeepers shall not be eligible to enter into this Agreement."
+  },
+  {
+    "claim": "Polar mobile SDK.",
+    "url": "https://www.polar.com/en/developers",
+    "quote": "Polar mobile SDK enables you to read and interpret live data from Polar devices, including ECG data, acceleration data and heart rate broadcast."
+  },
+  {
+    "claim": "Validic connection.",
+    "url": "https://www.polar.com/en/developers",
+    "quote": "Connections to Polar’s devices are available via the Validic platform and integration."
+  },
+  {
+    "claim": "Terra managed credentials definition.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "Managed credentials for integrations mean that you may create your own credentials and provide them to Terra, using the integration's developer dashboard"
+  },
+  {
+    "claim": "Terra Polar row.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "quote": "Polar POLAR Event-Driven Managed"
+  },
+  {
+    "claim": "ROOK Polar row.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "Polar API Body Physical Sleep"
+  },
+  {
+    "claim": "ROOK four providers need own accounts.",
+    "url": "https://docs.tryrook.io/data-sources/",
+    "quote": "clients are required to create their"
+  },
+  {
+    "claim": "Thryve Polar row.",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "3 Polar Web Ping no yes"
+  },
+  {
+    "claim": "Spike Polar listing.",
+    "url": "https://www.spikeapi.com/integrations",
+    "quote": "A brand of heart rate monitors and fitness watches for athletes and health enthusiasts."
+  },
+  {
+    "claim": "Open Wearables Polar note.",
+    "url": "https://openwearables.io/docs/providers/supported",
+    "quote": "You must register for the Polar API program"
+  },
+  {
+    "claim": "Sahha on-device sources.",
+    "url": "https://sahha.ai/integrations/",
+    "quote": "Sources arrive on-device through Apple Health or Health Connect"
+  },
+  {
+    "claim": "Sahha + Cloud API mark meaning.",
+    "url": "https://sahha.ai/integrations/",
+    "quote": "These sources also offer a deeper dedicated integration"
+  },
+  {
+    "claim": "COROS: no application or approval.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/articles/53181619102996.json",
+    "quote": "No application or approval required."
+  },
+  {
+    "claim": "COROS: single-user scope.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/articles/53181619102996.json",
+    "quote": "All data access is scoped to the authorizing user only (single-user)"
+  },
+  {
+    "claim": "Suunto: no charge.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "We do not charge from the use of the API."
+  },
+  {
+    "claim": "Suunto: no personal use.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "We currently don't offer the API access for personal use."
+  },
+  {
+    "claim": "Suunto: for public audience.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "The API will be provided to companies, organizations who are providing tools / apps / services for public audience."
+  },
+  {
+    "claim": "Suunto: two-week maximum wait.",
+    "url": "https://apizone.suunto.com/",
+    "quote": "There is maximum two week waiting period."
+  },
+  {
+    "claim": "Garmin Personal API.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Secure access to your own Garmin Connect data for individuals"
+  },
+  {
+    "claim": "Garmin Personal API pull only.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Pull only"
+  },
+  {
+    "claim": "ROOK Core price for comparison.",
+    "url": "https://tryrook.io/pricing/",
+    "quote": "Up to 750 active users"
+  },
+  {
+    "claim": "Comparison: Terra from $399 a month billed annually or $499 monthly, 100,000 credits.",
+    "url": "https://tryterra.co/pricing",
+    "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly."
+  }
+]
