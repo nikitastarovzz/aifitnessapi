@@ -1193,13 +1193,70 @@ if (fs.existsSync(matrixPath)) {
     }
   }
 
+  // llms.txt is the curated map and /llms-index.txt the exhaustive one
+  // (ops/GEO.md, decision of 2026-11-04). The every-spoke rule moved with the
+  // list, and the curated file gained its own rules: a size cap, every
+  // cluster hub named, and every per-section file linked and built.
+  const llmsIndex = readBody(".next/server/app/llms-index.txt.body");
+  const LLMS_MAX_BYTES = 50 * 1024;
   if (llms === null) problems.push("GEO-NO-LLMS  llms.txt missing from build output");
   else {
-    for (const r of spokes) {
-      if (!llms.includes(`aifitnessapi.com${r})`)) problems.push(`GEO-LLMS-MISSING  ${r} not listed in llms.txt`);
-    }
-    for (const surface of ["/answers.json", "/changes.xml", "/llms-full.txt"]) {
+    for (const surface of ["/answers.json", "/changes.xml", "/llms-full.txt", "/llms-index.txt", "/answers/index.json"]) {
       if (!llms.includes(surface)) problems.push(`GEO-LLMS-SURFACE  ${surface} not advertised in llms.txt`);
+    }
+    const llmsBytes = Buffer.byteLength(llms, "utf8");
+    if (llmsBytes > LLMS_MAX_BYTES) problems.push(`GEO-LLMS-SIZE  llms.txt is ${llmsBytes} bytes, over the ${LLMS_MAX_BYTES}-byte cap`);
+    if (!llms.startsWith("# ") || !/\n\n> \S/.test(llms.slice(0, 400))) problems.push("GEO-LLMS-SHAPE  llms.txt does not open with an H1 and a summary blockquote");
+    for (const top of clusterTops) {
+      if (!llms.includes(`aifitnessapi.com/${top})`) && !llms.includes(`Hub: https://aifitnessapi.com/${top}.`)) {
+        problems.push(`GEO-LLMS-HUB  the /${top} hub is not named in llms.txt`);
+      }
+    }
+  }
+  if (llmsIndex === null) problems.push("GEO-NO-LLMS-INDEX  llms-index.txt missing from build output");
+  else {
+    for (const r of spokes) {
+      if (!llmsIndex.includes(`aifitnessapi.com${r})`)) problems.push(`GEO-LLMS-MISSING  ${r} not listed in llms-index.txt`);
+    }
+  }
+
+  // Per-section full text: every section file is built, linked from
+  // llms.txt, carries exactly the lines of its part of /llms-full.txt, and
+  // together they hold every cluster spoke and blog post.
+  {
+    const dir = ".next/server/app/llms-full";
+    const files = fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => f.endsWith(".txt.body")) : [];
+    const full = readBody(".next/server/app/llms-full.txt.body");
+    if (files.length === 0) problems.push("GEO-FULL-SECTIONS  no /llms-full/<section>.txt files in the build output");
+    if (full === null) problems.push("GEO-FULL-SECTIONS  llms-full.txt missing from build output");
+    const sectionHeads = new Set();
+    let stitched = "";
+    for (const f of files) {
+      const id = f.replace(/\.txt\.body$/, "");
+      const body = fs.readFileSync(path.join(dir, f), "utf8");
+      if (llms !== null && !llms.includes(`(https://aifitnessapi.com/llms-full/${id}.txt)`)) {
+        problems.push(`GEO-FULL-UNLISTED  /llms-full/${id}.txt is not linked from llms.txt`);
+      }
+      // The section text is everything after the header's first "\n# " line.
+      const start = body.indexOf("\n# ");
+      const section = start === -1 ? "" : body.slice(start + 1);
+      if (!section || (full !== null && !full.includes(section))) {
+        problems.push(`GEO-FULL-DRIFT  /llms-full/${id}.txt is not the same text as its part of llms-full.txt`);
+      }
+      stitched += section;
+      for (const m of section.matchAll(/^## .* — https:\/\/aifitnessapi\.com(\/[^\s#]*)$/gm)) sectionHeads.add(m[1]);
+    }
+    for (const r of spokes) {
+      if (!sectionHeads.has(r)) problems.push(`GEO-FULL-MISSING  ${r} has no entry in any /llms-full/<section>.txt`);
+    }
+    if (full !== null && files.length && Buffer.byteLength(stitched) > Buffer.byteLength(full)) {
+      problems.push("GEO-FULL-DRIFT  the section files together hold more text than llms-full.txt");
+    }
+    if (llms !== null) {
+      for (const m of llms.matchAll(/https:\/\/aifitnessapi\.com\/(llms-full|answers)\/([a-z0-9-]+)\.(txt|json)/g)) {
+        const p = `.next/server/app/${m[1]}/${m[2]}.${m[3]}.body`;
+        if (!fs.existsSync(p)) problems.push(`GEO-SECTION-404  llms.txt links /${m[1]}/${m[2]}.${m[3]}, which the build did not produce`);
+      }
     }
   }
 
@@ -1277,7 +1334,7 @@ if (fs.existsSync(matrixPath)) {
     for (const ua of required) {
       if (!robotsTxt.includes(ua)) problems.push(`GEO-ROBOTS  ${ua} not explicitly allowed in robots.txt`);
     }
-    for (const surface of ["/llms.txt", "/answers.json", "/changes.xml"]) {
+    for (const surface of ["/llms.txt", "/llms-index.txt", "/llms-full.txt", "/answers.json", "/answers/index.json", "/changes.xml"]) {
       if (!robotsTxt.includes(surface)) problems.push(`GEO-ROBOTS-SURFACE  ${surface} not advertised in robots.txt`);
     }
     // The canonical host is set in one place, the hosting provider's domain
@@ -1331,6 +1388,51 @@ if (fs.existsSync(matrixPath)) {
         (a) => !a.question || !a.answer || !a.url || !a.markdown || !a.last_reviewed,
       );
       if (bad.length) problems.push(`GEO-ANSWERS-FIELDS  ${bad.length} answers.json records missing required fields`);
+
+      // The per-section split (ops/GEO.md, 2026-11-04): /answers/index.json
+      // lists every /answers/<id>.json with its count; each count is its
+      // file's record count, every built section file is listed, and the
+      // sections' records together are exactly the whole file's.
+      const dir = ".next/server/app/answers";
+      const indexRaw = readBody(`${dir}/index.json.body`);
+      let index = null;
+      try { index = indexRaw === null ? null : JSON.parse(indexRaw); } catch { /* reported below */ }
+      if (!index || !Array.isArray(index.sections) || index.sections.length === 0) {
+        problems.push("GEO-ANSWERS-INDEX  /answers/index.json is missing, invalid or lists no sections");
+      } else {
+        const built = fs.readdirSync(dir).filter((f) => f.endsWith(".json.body") && f !== "index.json.body").map((f) => f.replace(/\.json\.body$/, ""));
+        const listed = new Set(index.sections.map((s) => s.id));
+        for (const id of built) if (!listed.has(id)) problems.push(`GEO-ANSWERS-INDEX  /answers/${id}.json is built but not listed in /answers/index.json`);
+        const union = { answers: [], reference_pages: [], posts: [], changes: [] };
+        for (const s of index.sections) {
+          if (s.url !== `https://aifitnessapi.com/answers/${s.id}.json`) problems.push(`GEO-ANSWERS-INDEX  section ${s.id} lists url ${s.url}`);
+          if (!s.last_reviewed && s.kind !== "facts") problems.push(`GEO-ANSWERS-INDEX  section ${s.id} carries no date`);
+          const raw = readBody(`${dir}/${s.id}.json.body`);
+          let doc = null;
+          try { doc = raw === null ? null : JSON.parse(raw); } catch { /* reported below */ }
+          if (!doc) { problems.push(`GEO-ANSWERS-SECTION  /answers/${s.id}.json is listed but missing or invalid`); continue; }
+          const records = doc[s.key];
+          const n = Array.isArray(records)
+            ? records.length
+            : s.key === "facts"
+              ? Object.values(records ?? {}).reduce((k, g) => k + (Array.isArray(g?.items) ? g.items.length : 0), 0)
+              : s.key === "start_here"
+                ? (records?.groups ?? []).reduce((k, g) => k + g.pages.length, 0)
+                : -1;
+          if (n !== s.count || doc.count !== s.count) problems.push(`GEO-ANSWERS-SECTION  /answers/${s.id}.json holds ${n} records; the index says ${s.count}, the file says ${doc.count}`);
+          if (union[s.key] && Array.isArray(records)) union[s.key].push(...records);
+          if (s.key === "facts" && JSON.stringify(records) !== JSON.stringify(parsed.facts)) problems.push("GEO-ANSWERS-UNION  /answers/facts.json differs from answers.json facts");
+          if (s.key === "start_here" && JSON.stringify(records) !== JSON.stringify(parsed.start_here)) problems.push("GEO-ANSWERS-UNION  /answers/start-here.json differs from answers.json start_here");
+        }
+        for (const key of Object.keys(union)) {
+          const whole = (parsed[key] ?? []).map((r) => JSON.stringify(r)).sort();
+          const parts = union[key].map((r) => JSON.stringify(r)).sort();
+          if (whole.length !== parts.length || whole.some((r, i) => r !== parts[i])) {
+            problems.push(`GEO-ANSWERS-UNION  the sections' ${key} (${parts.length}) are not exactly answers.json's ${key} (${whole.length})`);
+          }
+          if (index.totals?.[key] !== whole.length) problems.push(`GEO-ANSWERS-UNION  /answers/index.json totals.${key} is ${index.totals?.[key]}, answers.json has ${whole.length}`);
+        }
+      }
     }
   }
 
@@ -4121,7 +4223,10 @@ if (fs.existsSync(matrixPath)) {
 
   // The machine surfaces stay English-only: they index the English pages,
   // and a translation is reachable from its English page's hreflang.
-  for (const f of ["llms.txt", "llms-full.txt", "answers.json", "search-index.json"]) {
+  const sectionFiles = ["llms-full", "answers"].flatMap((d) =>
+    fs.existsSync(`${ROOT}/${d}`) ? fs.readdirSync(`${ROOT}/${d}`).filter((f) => f.endsWith(".body")).map((f) => `${d}/${f.replace(/\.body$/, "")}`) : [],
+  );
+  for (const f of ["llms.txt", "llms-index.txt", "llms-full.txt", "answers.json", "search-index.json", ...sectionFiles]) {
     const p = `${ROOT}/${f}.body`;
     if (fs.existsSync(p) && fs.readFileSync(p, "utf8").includes("/pt-br/")) {
       problems.push(`PTBR-SURFACES  /${f} lists a /pt-br page`);

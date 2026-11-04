@@ -1,0 +1,5 @@
+# The llms.txt proposal (ops/NEXT-10-2026-11-04.md item 4). llmstxt.org was
+# unreachable from the dev environment on 2026-11-04; ops/GEO.md's decision of
+# that date quotes nothing from it until a snapshot of these is read.
+https://llmstxt.org/
+https://llmstxt.org/index.md
