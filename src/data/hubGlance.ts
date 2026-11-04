@@ -464,7 +464,7 @@ export const GLANCE_HUBS = Object.keys(GLANCE) as HubPath[];
 
 /** The hubs' own H1s, for the machine surfaces that list them. */
 export const HUB_NAMES: Record<HubPath, string> = {
-  "/fitness-apis": "Best Fitness & Workout APIs for Builders",
+  "/fitness-apis": "Fitness APIs: What They Are and Which Fitness API to Use",
   "/pricing": "Fitness & Health API Pricing",
   "/alternatives": "Fitness & Health API Alternatives",
   "/compare": "Fitness & Health API Comparisons",

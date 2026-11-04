@@ -2808,5 +2808,134 @@ export const compareEntries: ClusterEntry[] =
       }
     ],
     "firstParty": true
+  },
+  {
+    "slug": "cliniko-vs-healthkit",
+    "primaryQuery": "cliniko vs healthkit",
+    "h1": "Cliniko vs HealthKit: Getting a Patient's Apple Health Data into Cliniko",
+    "metaTitle": "Cliniko vs HealthKit: Apple Health Data in a Clinic",
+    "metaDescription": "Cliniko is clinic software with an API; HealthKit is the patient's on-device health store. Does Cliniko work with Apple Health, and how to connect them?",
+    "updated": "2026-11-04",
+    "answer": "Cliniko and HealthKit are not alternatives to each other. Cliniko is practice management software for healthcare practitioners with a REST API, and HealthKit is Apple's store of health and fitness data on the patient's own iPhone and Apple Watch. The question behind the search is usually whether a clinic can bring a patient's Apple Health data into Cliniko, and as of November 4, 2026 we found no built-in way: none of the 95 apps in Cliniko's connected-apps directory is listed for Apple Health, and its help centre has no article on it. The route that works is an iPhone app the patient installs, which reads HealthKit with their permission and sends the data to your server, which then writes it to the patient's record through Cliniko's API, for example as a file attachment.",
+    "body": "## Two different things with the same patient in them\n\n| | Cliniko | Apple HealthKit |\n| --- | --- | --- |\n| What it is | \"a practice management system for healthcare practitioners\", in its API docs' words | \"a central repository for health and fitness data on iPhone and Apple Watch\", in Apple's |\n| Who uses it | The clinic: appointments, treatment notes, invoices, reports | The patient, and the apps they allow to read or write their data |\n| Where the data lives | Cliniko's servers; accounts created in Europe, it says, are stored in Ireland | On the device: Apple says \"The user's device stores all HealthKit data locally\" |\n| How software gets in | A REST API that returns JSON, authenticated with a Cliniko user's API key | An app on the patient's iPhone or Apple Watch, with the patient's permission for each data type |\n| What it holds | Patients, appointments, treatment notes, attachments, invoices and more | Steps, heart rate, workouts, sleep and the other types Apple defines, from any app or device the patient connects |\n\nSo \"Cliniko vs HealthKit\" is not a choice between two products. A clinic that wants a patient's wearable data needs both: HealthKit is where the data is, and Cliniko is where the clinic wants it to end up.\n\n## Does Cliniko integrate with Apple Health?\n\nNot that we could find, as of November 4, 2026. Cliniko's connected-apps directory lists 95 apps, which it says were mostly \"developed by third parties\", in categories from booking to \"Patient care & monitoring\". None of their listings mentions Apple Health or HealthKit. A search of Cliniko's help centre for \"apple health\" returns articles on the Apple calendar, Apple Pay and the Apple Pencil, and none on health data.\n\nSome listed apps do move patient measurements into Cliniko. SST Trainer describes heart-rate-based rehabilitation whose clearance letters and insurer reports \"are generated from session data and filed to the Cliniko record\", and Vively Health a continuous glucose monitoring programme where \"All patient data syncs to your dashboard\". We did not verify whether any of them reads Apple Health; ask the vendor before you assume it.\n\n## Why a clinic system cannot read HealthKit directly\n\nHealthKit has no server to call. Apple documents that with the user's permission \"apps communicate with the HealthKit store\" on the device, and that \"the device encrypts the HealthKit store when the user locks the device\", so even an installed app \"may not be able to read data from the store when it runs in the background\". A web-based practice system like Cliniko has nothing to connect to. Apple adds that on iPadOS 16 and earlier and on macOS 13 and later the devices \"don't have a copy of the HealthKit store\", so a Mac on the front desk cannot read it either.\n\nPermission is per patient and per type. Apple says \"Users can grant or deny permission separately for each type of data\", and that \"an app isn't aware when the user denies permission to read data\". A clinic app has to treat an empty heart-rate history as possibly denied, not as a patient who never wore a watch. Reading the store is covered in the [Apple HealthKit integration guide](/integrate/healthkit).\n\n## The route that works: patient app, your server, Cliniko's API\n\n1. **A patient app on iPhone.** It asks for read access to the types the clinic needs, reads them with HealthKit queries while the app can, and uploads them to your backend.\n2. **Your server matches the patient.** Cliniko identifies patients by its own IDs, so your system needs a mapping from your app's user to the Cliniko patient.\n3. **Your server writes to Cliniko.** The documented path for a file is the patient attachment flow: request a presigned upload URL for the patient, POST the file to Cliniko's S3 bucket, then create the attachment record, after which \"Cliniko will process the file\". A weekly PDF or CSV summary of a patient's activity fits this shape.\n4. **Practitioners open your view from Cliniko.** Cliniko's custom patient buttons add a button to a patient's page that sends the practitioner's browser to your URL with the patient's Cliniko ID, so they can see the charts in your app. Cliniko has to approve the URL first.\n\nWhat the API docs set out for that server:\n\n- **Authentication.** HTTP Basic with a Cliniko API key as the username. \"Each Cliniko user will have their own API key(s)\", and \"The API key will have the same permissions as the user it belongs to\". Our recommendation is a dedicated Cliniko user for the integration, with only the permissions it needs.\n- **Identify yourself.** Every request needs a User-Agent with your app's name and a contact email; \"If your requests do not include a User-Agent that contains a name and valid contact email, future requests may be automatically blocked.\"\n- **Limits.** \"API requests are rate limited to 200 per minute per user\", over which you get a 429 with an X-RateLimit-Reset header. Lists are paginated, 50 items by default and up to 100 with per_page.\n- **Accounts live on shards.** The base URL depends on the account; the docs' example is the au1 shard, api.au1.cliniko.com.\n\nTwo things we could not verify. The API reference lists a treatment-note resource, but the rendered pages we read did not show which operations it supports, so check whether your integration can write notes or only read them. And we found no webhook resource in the reference's list, so plan to poll with an updated_at filter, which the docs describe, if you need to know when a patient record changes. If the system on the other end is an EHR rather than Cliniko, the standard shape for a wearable reading is a FHIR Observation, covered in [wearable data into health records with FHIR](/fitness-apis/wearable-data-to-ehr-fhir).\n\n## The rules that come with patient health data\n\n**Apple's rules for your app.** Apple's privacy guidance says \"You must not disclose any information gained through HealthKit to a third party without express permission from the user\", and that even with permission you may share it only with a third party that also provides \"a health or fitness service to the user\". In our reading a clinic treating the patient is that kind of service, but ask the patient explicitly and say in your privacy policy that data goes to their clinic. Apple also requires a privacy policy for every HealthKit app.\n\n**HIPAA, for a US clinic.** HHS lists clinics, chiropractors and psychologists among health care providers that are covered entities \"only if they transmit any information in an electronic form in connection with a transaction for which HHS has adopted a standard\". HHS's business associate guidance names as a business associate an app developer \"that contracts with a covered entity to provide the health care app to the covered entity's patients\", including for \"monitoring of patients' food and exercise\". Cliniko says it will set up a Business Associate Agreement on request, and warns in its help centre that \"some integrators may not be HIPAA-compliant\". The wider test is in [does a fitness app need to be HIPAA compliant](/compliance/hipaa-compliance-fitness-app).\n\n**GDPR, for a clinic with patients in Europe or the UK.** Health data is special category data, and the UK regulator, the ICO, lists data from fitness trackers as health data. Cliniko offers a Data Processing Addendum; your patient app and server need the same treatment. See [GDPR for fitness apps](/compliance/gdpr-fitness-app).\n\n**The API key is the keys to the practice.** Cliniko's security page says connected apps \"often require your API key in order to link with your Cliniko account\" and to share it only with parties you trust. Keep it on your server, never in the patient app.\n\n## Which one do you actually need?\n\n- **You run or build for a clinic and want patients' step, heart-rate or workout data in their record** → both: a HealthKit-reading iPhone app for the patient, and Cliniko's API on your server.\n- **You are building a patient app with no clinic system involved** → HealthKit only, plus [Health Connect](/fitness-apis/apple-healthkit-vs-google-health-connect) if your patients also use Android.\n- **You want to automate the clinic's own data, such as bookings, invoices or recalls** → Cliniko's API only; HealthKit has nothing to do with it.\n- **You want patients' data from many wearables without writing a phone app per platform** → a health-data aggregator can collect it for you, compared in [health-data aggregator APIs](/fitness-apis/health-data-aggregator-apis); you would still write it into Cliniko yourself.\n- **You want records to flow the other way, from the health system to the patient's phone** → HealthKit can read clinical records downloaded from supported institutions, covered in [the HealthKit clinical records API](/data/clinical-records-api).\n\n## Sources and limits\n\nCliniko's API documentation, features, security and connected-apps pages and its help centre were read through a source snapshot on November 4, 2026; Apple's HealthKit documentation was read directly the same day. HHS's pages refuse our fetches, so its guidance was read from Internet Archive captures of October 2026. Cliniko's directory changes as vendors join it, so search it again before you build.",
+    "faqs": [
+      {
+        "q": "Does Cliniko integrate with Apple Health?",
+        "a": "Not directly, as far as we could find on November 4, 2026. None of the 95 apps in Cliniko's connected-apps directory is listed for Apple Health or HealthKit, and a search of its help centre for apple health returns calendar, Apple Pay and Apple Pencil articles only. Getting a patient's Apple Health data into Cliniko takes an iPhone app that reads HealthKit with the patient's permission and a server that writes the data through Cliniko's API."
+      },
+      {
+        "q": "Can a clinic read a patient's HealthKit data from its practice software?",
+        "a": "No. Apple documents that the user's device stores all HealthKit data locally and that apps read it on the device with the user's permission, so there is no Apple server a web-based practice system could query. Apple also says Macs and iPads running iPadOS 16 or earlier have no copy of the HealthKit store. The data has to be read by an app on the patient's iPhone or Apple Watch and sent on."
+      },
+      {
+        "q": "How do I add a patient's wearable data to their record through the Cliniko API?",
+        "a": "Cliniko documents a three-step patient attachment upload: request a presigned URL for the patient, POST the file to Cliniko's S3 bucket with the returned fields, then create the patient attachment record with the upload URL, after which Cliniko processes the file. A PDF or CSV summary of the patient's activity fits that flow. We could not confirm from the rendered reference whether the API can also write treatment notes."
+      },
+      {
+        "q": "How does the Cliniko API authenticate, and what is its rate limit?",
+        "a": "Cliniko uses HTTP Basic authentication with a Cliniko user's API key as the username and no password, and the key has the same permissions as the user it belongs to. Requests must carry a User-Agent with an app name and contact email or they may be blocked. Cliniko's docs set the rate limit at 200 requests per minute per user, answered with a 429 and an X-RateLimit-Reset header when exceeded."
+      },
+      {
+        "q": "Can my app share a patient's HealthKit data with their clinic?",
+        "a": "Only with the patient's express permission, under Apple's rules. Apple's privacy guidance says you must not disclose information gained through HealthKit to a third party without express permission from the user, and that even then you may share it only with a third party that also provides a health or fitness service to the user. In our reading a treating clinic qualifies, but ask explicitly and say so in your privacy policy."
+      }
+    ],
+    "related": [
+      {
+        "href": "/integrate/healthkit",
+        "label": "Apple HealthKit integration guide"
+      },
+      {
+        "href": "/fitness-apis/wearable-data-to-ehr-fhir",
+        "label": "Wearable data into health records with FHIR"
+      },
+      {
+        "href": "/compliance/hipaa-compliance-fitness-app",
+        "label": "Does your fitness app need HIPAA?"
+      },
+      {
+        "href": "/fitness-apis/apple-healthkit-vs-google-health-connect",
+        "label": "Apple HealthKit vs Google Health Connect"
+      },
+      {
+        "href": "/compare",
+        "label": "All API comparisons"
+      }
+    ],
+    "cta": {
+      "pitch": "Clinic software directories and Apple's HealthKit rules both change. Subscribe and we will flag it when a route for patient wearable data into practice software opens or closes."
+    },
+    "sources": [
+      {
+        "url": "https://docs.api.cliniko.com/",
+        "checked": "2026-11-04",
+        "note": "What Cliniko is, Basic auth with per-user API keys, User-Agent rule, 200 requests a minute, pagination, shards, the resource list (snapshot)."
+      },
+      {
+        "url": "https://docs.api.cliniko.com/guides/uploading_patient_attachments",
+        "checked": "2026-11-04",
+        "note": "The presigned-URL patient attachment upload (snapshot)."
+      },
+      {
+        "url": "https://docs.api.cliniko.com/guides/custom_patient_button",
+        "checked": "2026-11-04",
+        "note": "Custom patient buttons and Cliniko's approval of the URL (snapshot)."
+      },
+      {
+        "url": "https://www.cliniko.com/connected-apps/",
+        "checked": "2026-11-04",
+        "note": "95 connected apps, categories, SST Trainer and Vively listings (snapshot)."
+      },
+      {
+        "url": "https://www.cliniko.com/security/",
+        "checked": "2026-11-04",
+        "note": "Data regions, API key sharing warning, BAA on request (snapshot)."
+      },
+      {
+        "url": "https://help.cliniko.com/en/?q=apple%20health",
+        "checked": "2026-11-04",
+        "note": "Help-centre search for apple health: no health-data article (snapshot)."
+      },
+      {
+        "url": "https://help.cliniko.com/en/articles/3266884-how-cliniko-helps-you-with-hipaa-compliance",
+        "checked": "2026-11-04",
+        "note": "Integrators may not be HIPAA-compliant (snapshot)."
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit",
+        "checked": "2026-11-04",
+        "note": "HealthKit as a central repository on iPhone and Apple Watch."
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/protecting-user-privacy",
+        "checked": "2026-11-04",
+        "note": "Local storage, per-type permission, encryption when locked, third-party disclosure rule, privacy policy."
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/about-the-healthkit-framework",
+        "checked": "2026-11-04",
+        "note": "Devices without a HealthKit store."
+      },
+      {
+        "url": "https://developer.apple.com/documentation/healthkit/accessing-health-records",
+        "checked": "2026-11-04",
+        "note": "FHIR clinical records downloaded from supported institutions."
+      },
+      {
+        "url": "https://web.archive.org/web/20261017232808/https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/special-category-data/what-is-special-category-data/",
+        "checked": "2026-11-04",
+        "note": "ICO: data from fitness trackers is health data (Internet Archive capture of Oct 17, 2026)."
+      },
+      {
+        "url": "https://web.archive.org/web/20261028163611/https://www.hhs.gov/hipaa/for-professionals/covered-entities/index.html",
+        "checked": "2026-11-04",
+        "note": "HHS covered-entity list (Internet Archive capture of Oct 28, 2026)."
+      },
+      {
+        "url": "https://web.archive.org/web/20261026014247/https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/business-associates/index.html",
+        "checked": "2026-11-04",
+        "note": "HHS business associate examples, including the health care app developer (capture of Oct 26, 2026)."
+      }
+    ]
   }
 ];

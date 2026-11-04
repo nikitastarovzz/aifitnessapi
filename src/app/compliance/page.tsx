@@ -40,6 +40,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
     slugs: [
       "hipaa-compliance-fitness-app",
       "gdpr-fitness-app",
+      "gym-gdpr-compliance",
       "fda-fitness-app-regulation",
       "is-fitness-data-phi",
       "ftc-health-breach-notification-rule",

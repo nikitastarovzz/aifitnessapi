@@ -59,6 +59,11 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
     slugs: ["terra-vs-rook", "terra-vs-spike", "rook-vs-spike", "terra-vs-thryve", "terra-vs-sahha", "terra-vs-open-wearables"],
   },
   {
+    title: "Clinic software and health stores",
+    blurb: "Getting a patient's own health data into the software a clinic runs on.",
+    slugs: ["cliniko-vs-healthkit"],
+  },
+  {
     title: "Nutrition & exercise content",
     blurb: "Food databases and exercise libraries.",
     slugs: [

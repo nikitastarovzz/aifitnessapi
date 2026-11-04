@@ -29,22 +29,22 @@ const RELATED: { href: string; label: string }[] = [
 ];
 
 export const metadata: Metadata = {
-  title: { absolute: "AI Fitness App Builder Guide: No Code, Just APIs" },
+  title: { absolute: "Fitness App Builder: Build an AI Fitness App From APIs" },
   description:
-    "Using a fitness app builder? A worked example of an AI fitness app assembled from APIs: embedded camera coaching, wearables, food logging, almost no code.",
+    "Fitness app builder guide: what a no-code builder can and cannot do, shown with an AI fitness app assembled from APIs, camera coaching to food logging.",
   alternates: { canonical: PAGE_PATH },
   openGraph: {
     type: "article",
-    title: "AI Fitness App Builder Guide: No Code, Just APIs",
+    title: "Fitness App Builder: Build an AI Fitness App From APIs",
     description:
-      "Using a fitness app builder? A worked example of an AI fitness app assembled from APIs: embedded camera coaching, wearables, food logging, almost no code.",
+      "Fitness app builder guide: what a no-code builder can and cannot do, shown with an AI fitness app assembled from APIs, camera coaching to food logging.",
     url: PAGE_PATH,
     images: ["/opengraph-image"],
   },
 };
 
 const ANSWER =
-  "You can assemble a real fitness app almost entirely from APIs because three integration patterns replace the code you would otherwise write: products that ship as an embeddable hosted experience, providers that host the authentication flow for you, and APIs that need nothing more than a key in a header. In our worked example, an embedded AI coaching experience supplies the camera workout product, a health-data aggregator's hosted widget connects the user's wearable, a nutrition API turns a typed sentence into logged calories, and an exercise database fills the browse screen — all wired together in a visual builder's point-and-click API calls. No code does not mean no work: you will configure endpoints, map JSON fields, and hit a few places where a webhook or an event stream needs your builder's low-code escape hatch. This page walks the whole assembly and names those places honestly.";
+  "A fitness app builder, meaning a visual no-code tool, can produce a real fitness app almost entirely from APIs, because three integration patterns replace the code you would otherwise write: products that ship as an embeddable hosted experience, providers that host the authentication flow for you, and APIs that need nothing more than a key in a header. In our worked example, an embedded AI coaching experience supplies the camera workout product, a health-data aggregator's hosted widget connects the user's wearable, a nutrition API turns a typed sentence into logged calories, and an exercise database fills the browse screen — all wired together in a visual builder's point-and-click API calls. No code does not mean no work: you will configure endpoints, map JSON fields, and hit a few places where a webhook or an event stream needs your builder's low-code escape hatch. This page walks the whole assembly and names those places honestly.";
 
 const FAQS: { q: string; a: string }[] = [
   {
@@ -180,7 +180,7 @@ export default function NoCodeFitnessAppPage() {
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "AI Fitness App Builder Guide: Build a Fitness App With No Code, Just APIs",
+    headline: "Fitness App Builder Guide: Build an AI Fitness App With No Code, Just APIs",
     description: metadata.description,
     datePublished: UPDATED,
     dateModified: UPDATED,
@@ -216,7 +216,7 @@ export default function NoCodeFitnessAppPage() {
         <ClusterHero label="Worked Example" seed={2} />
 
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
-          AI Fitness App Builder Guide: Build a Fitness App With No Code, Just APIs
+          Fitness App Builder Guide: Build an AI Fitness App With No Code, Just APIs
         </h1>
         <p className="mt-3 text-sm text-[var(--muted)]">Updated 14 August 2026</p>
 
@@ -238,9 +238,11 @@ export default function NoCodeFitnessAppPage() {
         {/* 2026-10-27 (ops/SEO-10-2026-10-27.md item 8): Google showed this
             worked example for "fitness api" and "workout video api" at
             positions 46 to 90. It is one assembled app, not a comparison, so
-            the searches for an API go to the roundups that own them. The
-            title stays: it answers "fitness app builder", the page's own
-            query at position 21. */}
+            the searches for an API go to the roundups that own them.
+            2026-11-04 (ops/NEXT-10-2026-11-04.md item 8): "fitness app
+            builder" brought 92 impressions here at 22.3 (Oct 4-31), so the
+            title, H1 and the capsule's first sentence now lead with it. No
+            fact changed and the updated date stays. */}
         <p className="mt-5 text-[var(--muted)]">
           This page is one worked example, not a comparison. To choose the APIs themselves, the roundups
           compare{" "}

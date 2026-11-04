@@ -409,10 +409,10 @@ export function fullSections(): FullSection[] {
   });
   const all: FullSection[] = [
     { id: "start-here", title: "Start here: hub answers and money pages", hub: "/", lines: startHereLines() },
-    c(PILLAR_PATH, releasedEntries(), CLUSTER_LABELS[PILLAR_PATH] ?? "Best Fitness & Workout APIs", {
+    c(PILLAR_PATH, releasedEntries(), CLUSTER_LABELS[PILLAR_PATH] ?? "Fitness APIs: what they are and which to use", {
       faqLabel: true,
       intro:
-        "There is no single best fitness API; choose by job — exercise/workout content, wearable & device data, health-data aggregators, nutrition data, or AI motion tracking. Pick the category first, then compare within it.",
+        "A fitness API is a service your app calls for fitness or health data and capabilities: an exercise library, a user's wearable metrics, nutrition data, or camera-based workout tracking. There is no single best fitness API; choose by job — exercise/workout content, wearable & device data, health-data aggregators, nutrition data, or AI motion tracking. Pick the category first, then compare within it.",
     }),
     c(GUIDES_PATH, releasedGuides(), "How-to guides", { faqLabel: true }),
     c(BUILD_PATH, releasedBuilds(), "Build guides", { faqLabel: true }),

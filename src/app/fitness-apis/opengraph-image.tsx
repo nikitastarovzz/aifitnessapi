@@ -6,7 +6,7 @@ import { releasedEntries, FITNESS_APIS_CONFIG } from "@/data/fitnessApis";
  *  build time, so it can never claim more pages than the cluster ships. */
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
-export const alt = "Best Fitness & Workout APIs (2026)";
+export const alt = "Fitness API Guide: Which Fitness API to Use (2026)";
 
 export default function Image() {
   const released = releasedEntries();
@@ -17,7 +17,7 @@ export default function Image() {
   return new ImageResponse(
     ogCard({
       eyebrow: FITNESS_APIS_CONFIG.hubLabel,
-      title: "Best Fitness & Workout APIs (2026)",
+      title: "Fitness API Guide: Which Fitness API to Use (2026)",
       line,
     }),
     { ...OG_SIZE },
