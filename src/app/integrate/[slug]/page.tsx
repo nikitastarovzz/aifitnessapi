@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ClusterPage from "@/components/ClusterPage";
+import InlineSignup from "@/components/InlineSignup";
 import {
   releasedIntegrations,
   getIntegration,
@@ -53,5 +54,11 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
   const entry = getIntegration(slug);
   if (!entry) notFound();
-  return <ClusterPage entry={entry} config={INTEGRATE_CONFIG} />;
+  return (
+    <ClusterPage
+      entry={entry}
+      config={INTEGRATE_CONFIG}
+      signup={<InlineSignup pitch={entry.cta.pitch} section="integrate" />}
+    />
+  );
 }

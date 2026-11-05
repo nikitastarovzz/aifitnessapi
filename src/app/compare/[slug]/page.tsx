@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ClusterPage from "@/components/ClusterPage";
+import InlineSignup from "@/components/InlineSignup";
 import {
   releasedCompare,
   getComparison,
@@ -51,5 +52,11 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
   const entry = getComparison(slug);
   if (!entry) notFound();
-  return <ClusterPage entry={entry} config={COMPARE_CONFIG} />;
+  return (
+    <ClusterPage
+      entry={entry}
+      config={COMPARE_CONFIG}
+      signup={<InlineSignup pitch={entry.cta.pitch} section="compare" />}
+    />
+  );
 }

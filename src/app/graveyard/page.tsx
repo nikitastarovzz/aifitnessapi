@@ -10,6 +10,7 @@ import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 import { PAGE_H1 } from "@/data/pageTitles";
 import { graveyardCopy } from "@/lib/graveyardCopy";
+import ToolNextStep from "@/components/ToolNextStep";
 import {
   fmtGraveDate,
   GRAVEYARD_EMBED_PATH,
@@ -229,6 +230,8 @@ export default function GraveyardPage() {
           the publishers&rsquo; own words, reproduced to attribute each date. Vendors change their notices: check the
           linked source before you plan around a date.
         </p>
+
+        <ToolNextStep path="/graveyard" />
       </div>
     </Container>
   );

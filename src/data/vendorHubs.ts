@@ -36,17 +36,17 @@
  *    version, query or API method) are reached through that reference.
  *
  * Who gets a menu: a vendor with three or more pages; below that a menu is a
- * link to the directory entry and back. Polar (a guide and its entry),
- * Withings (a guide and a library), Suunto and Wahoo (a guide each),
- * USDA FoodData Central, Open Food Facts, MoveNet and Apple Vision have fewer.
+ * link to the directory entry and back. USDA FoodData Central, Open Food
+ * Facts, MoveNet and Apple Vision have fewer.
  * wger reached three on 2026-10-22 with its alternatives page.
+ * Polar (a guide, a pricing page, an alternatives page since 2026-11-04, and
+ * its directory entry) got its menu on 2026-11-05 (ops/MORE-30-2026-11-05.md
+ * item 30).
  * Withings, Samsung Health, Suunto, COROS, Wahoo and Dexcom reached three or
  * more on 2026-10-27 (alternatives pages for all six, pricing pages for
  * Withings, Suunto and Wahoo; ops/SEO-10-2026-10-27.md item 6) but have no
  * product entry in data/apis.ts, which a menu needs for its name and which
- * would add a directory page with cost-model rows. Like Polar (a guide, a
- * pricing page, an alternatives page since 2026-11-04, and its entry) they
- * have no menu yet: an open decision.
+ * would add a directory page with cost-model rows, so they have no menu yet.
  * QuickPose, Sency and MediaPipe reached three on 2026-10-18 (pricing and
  * alternatives pages) and have no menu yet: whether competitors of the site's
  * funder get one is an open decision, not an oversight. KinesteX has five
@@ -143,6 +143,18 @@ export const VENDOR_HUBS: VendorHub[] = [
       "/libraries/stravalib",
       "/migrate/adapt-to-strava-api-changes",
       "/apis/strava",
+    ],
+  },
+  {
+    id: "polar",
+    hub: "/integrate/polar-api",
+    tokens: ["polar"],
+    wraps: [],
+    pages: [
+      "/integrate/polar-api",
+      "/pricing/polar-api-pricing",
+      "/alternatives/polar-api-alternatives",
+      "/apis/polar",
     ],
   },
   {

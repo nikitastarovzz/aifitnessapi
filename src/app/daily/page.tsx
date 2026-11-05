@@ -9,6 +9,7 @@ import { toolGraph } from "@/lib/schema";
 import { PAGE_H1 } from "@/data/pageTitles";
 import { DAILY_CAPSULE, DAILY_PATH, DAILY_SOURCE_DATES, dailyBank, dailyDataDate, dailyFaqs } from "@/lib/dailyBank";
 import { bankSizes } from "@/lib/dailyPuzzle";
+import ToolNextStep from "@/components/ToolNextStep";
 
 /**
  * /daily — one developer puzzle a day, built only from the site's generated
@@ -163,6 +164,8 @@ export default function DailyPage() {
           not affiliated with or endorsed by Apple, Google or the pose-model projects quoted here. Vendor
           wording is quoted as the datasets hold it on their read dates.
         </p>
+
+        <ToolNextStep path="/daily" />
       </div>
     </Container>
   );

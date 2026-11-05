@@ -38,6 +38,11 @@ import { offersTableEmbeds } from "@/lib/embedTables";
 import { headings } from "@/lib/toc";
 import readingTime from "reading-time";
 import type { ClusterEntry, ClusterConfig } from "@/lib/cluster";
+import type { ReactNode } from "react";
+import DecisionKitCta from "@/components/DecisionKitCta";
+
+/** Sections whose pages carry the decision-kit block (ops/MORE-30-2026-11-05.md item 29). */
+const KIT_SECTIONS = new Set(["/pricing", "/alternatives"]);
 
 /**
  * Tool CTAs. The "does" line restates the /tools hub's own blurb (or the
@@ -189,9 +194,16 @@ export default function ClusterPage({
   config,
   translation,
   sourceBody,
+  signup,
 }: {
   entry: ClusterEntry;
   config: ClusterConfig;
+  /**
+   * English money pages only: the inline newsletter form, rendered in the
+   * CTA's place. A slot rather than an import, so the form's client script
+   * ships only on the routes that pass it (components/InlineSignup).
+   */
+  signup?: ReactNode;
   /**
    * Render as a translation (src/lib/translations.ts): `entry` holds the
    * translated text, `config.basePath` the translated section path, and the
@@ -565,16 +577,26 @@ export default function ClusterPage({
           </section>
         )}
 
+        {/* The decision kit, where a reader is weighing one vendor's price
+            or its replacements (item 29). */}
+        {!tr && KIT_SECTIONS.has(basePath) && <DecisionKitCta h1={entry.h1} slug={entry.slug} />}
+
         {/* Every page about the vendor(s) this page belongs to, with the hub
             marked. Renders nothing on a page that is no vendor's. */}
         {!tr && <VendorHubMenu path={path} placement="end" />}
 
-        <ClusterCta
-          pitch={entry.cta.pitch}
-          source="spoke-inline"
-          id={tr ? `cta-ptbr-${entry.slug}` : `cta-${entry.slug}`}
-          locale={tr ? "pt-BR" : undefined}
-        />
+        {/* On the money pages the route passes the inline newsletter form
+            (InlineSignup, item 28), which takes the CTA's place: one per page. */}
+        {signup && !tr ? (
+          signup
+        ) : (
+          <ClusterCta
+            pitch={entry.cta.pitch}
+            source="spoke-inline"
+            id={tr ? `cta-ptbr-${entry.slug}` : `cta-${entry.slug}`}
+            locale={tr ? "pt-BR" : undefined}
+          />
+        )}
 
         {entry.related.length > 0 && (
           <section className="mt-4">

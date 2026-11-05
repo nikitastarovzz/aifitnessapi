@@ -19,6 +19,7 @@ import {
 } from "@/lib/repCounter.mjs";
 import { absoluteUrl, site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
+import ToolNextStep from "@/components/ToolNextStep";
 
 /**
  * /challenge — a 30-second webcam rep challenge (ops/VIRAL-30-2026-10-31.md
@@ -322,6 +323,8 @@ export default function ChallengePage() {
           </Link>
           .
         </p>
+
+        <ToolNextStep path="/challenge" />
       </div>
     </Container>
   );

@@ -8,6 +8,7 @@ import WebhookVerifier from "@/components/tools/WebhookVerifier";
 import { WEBHOOK_VENDORS } from "@/lib/webhookVerifier.mjs";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
+import ToolNextStep from "@/components/ToolNextStep";
 
 /**
  * "Is this webhook real, and what do I do with it?" — asked with a request
@@ -216,6 +217,7 @@ export default function WebhookVerifierPage() {
         </p>
 
         <MoreTools path={PATH} />
+        <ToolNextStep path="/tools/webhook-verifier" />
       </div>
     </Container>
   );

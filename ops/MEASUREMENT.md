@@ -45,6 +45,25 @@ Assistants that open links with `noreferrer` and no utm tag count as
 KinestexNote), `footer_funding` (the sitewide credit), `methodology`, or
 `citation` for a "Sources checked" link to a kinestex.com page.
 
+## CTA ids (`cta_click` → `id`)
+
+Added 2026-11-05 (ops/MORE-30-2026-11-05.md items 27–29). Each is a plain
+element with `data-cta` and `data-cta-source`, counted by the delegated
+listener in `CtaTracker`; none adds a click handler of its own. `page` on the
+event says which page the click came from.
+
+| id | source | Where | What the click is |
+|---|---|---|---|
+| `next-step-<target path, slashes as dashes>`, e.g. `next-step-fitness-apis-health-data-aggregator-apis`, `next-step-integrate` | `tool-next-step` | The "Next step" block at the foot of every tool page: the twelve `/tools/*` tools, `/challenge`, `/daily`, `/play/ship-it`, `/graveyard`, `/market-map`, `/fitness-api-index` (`components/ToolNextStep`, targets in `data/toolNextSteps.ts`) | a link to a money page |
+| `newsletter-pricing`, `newsletter-alternatives`, `newsletter-compare`, `newsletter-integrate` | `money-newsletter` | The "Get the newsletter" button on every English page in those four sections (`components/InlineSignup`), in place of the `cta-<slug>` link those pages carried before | opening (or closing) the inline signup form; it is a `<details>` summary, not a navigation |
+| `kit-checklist`, `kit-scorecard`, `kit-zip` | `money-kit` | The decision-kit block on every English `/pricing` and `/alternatives` page (`components/DecisionKitCta`); `kit-scorecard` only on motion-SDK pages | a direct download of `/kit/api-selection-checklist.md`, `/kit/motion-sdk-scorecard.csv` or `/kit/fitness-api-decision-kit.zip`, ungated |
+
+A completed signup from the inline form also fires `cta_click` with id
+`signup-complete` and source `money-<section>` (the form's own event), and the
+stored signup record carries `source: money-<section>`. Before 2026-11-05 the
+same pages sent `cta-<slug>` / `spoke-inline` from a link to `/#subscribe`;
+compare the two ids across the change date, not within one range.
+
 ## UTM on links to the funder
 
 Every placement link to kinestex.com is built by `funderHref(placement, path)`

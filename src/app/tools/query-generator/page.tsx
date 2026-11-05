@@ -7,6 +7,7 @@ import MoreTools from "@/components/tools/MoreTools";
 import { HK_IDENTIFIERS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
+import ToolNextStep from "@/components/ToolNextStep";
 
 /**
  * HKStatisticsQuery generator.
@@ -239,6 +240,7 @@ export default function QueryGeneratorPage() {
         </p>
 
         <MoreTools path={PATH} />
+        <ToolNextStep path="/tools/query-generator" />
       </div>
     </Container>
   );

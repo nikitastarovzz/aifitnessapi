@@ -11,6 +11,7 @@ import { PAGE_H1 } from "@/data/pageTitles";
 import { DEV_COST_LABELS } from "@/data/apis";
 import { LIBRARIES_FETCHED_ON } from "@/data/libraries";
 import { LIBRARY_GROUPS } from "@/data/librariesEditorial";
+import ToolNextStep from "@/components/ToolNextStep";
 import {
   ACCESS_DATASET,
   API_INDEX_PATH,
@@ -244,6 +245,8 @@ export default function MarketMapPage() {
           above: KinesteX funds this site. Access terms change — confirm current details in each
           provider&rsquo;s documentation.
         </p>
+
+        <ToolNextStep path="/market-map" />
       </div>
     </Container>
   );
