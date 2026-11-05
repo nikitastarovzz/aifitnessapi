@@ -1725,7 +1725,7 @@ if (fs.existsSync(matrixPath)) {
       const r = routeOf(h);
       return (r === "/tools" || r.startsWith("/tools/")) && fs.readFileSync(h, "utf8").includes("data-tool");
     }).length;
-    const EXPECTED_TOOLS = 29; // hub + 28 tools (the 6 lookups, sample-data, webhook-verifier, oauth-playground, starter-scaffold, keypoint-playground, pose-benchmark, heart-rate-lab, step-lab, ftms-lab, cycling-power-lab, ble-gatt-explorer, apple-health-explorer, rep-counter-playground, exercise-form-rules, build-plan, store-submission-checklist, compliance-wizard, api-coverage-matrix, rate-limit-calculator, exercise-taxonomy-crosswalk, gym-software-api-matrix and research-platform-chooser)
+    const EXPECTED_TOOLS = 31; // hub + 30 tools (the 6 lookups, schema-converter, fitbit-to-google-health, sample-data, webhook-verifier, oauth-playground, starter-scaffold, keypoint-playground, pose-benchmark, heart-rate-lab, step-lab, ftms-lab, cycling-power-lab, ble-gatt-explorer, apple-health-explorer, rep-counter-playground, exercise-form-rules, build-plan, store-submission-checklist, compliance-wizard, api-coverage-matrix, rate-limit-calculator, exercise-taxonomy-crosswalk, gym-software-api-matrix and research-platform-chooser)
     if (rendered !== EXPECTED_TOOLS) {
       problems.push(`TOOLS          ${rendered} /tools pages carry data-tool, expected ${EXPECTED_TOOLS}`);
     } else {

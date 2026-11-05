@@ -96,6 +96,15 @@ export const TOOL_NEXT_STEPS: Record<string, string[]> = {
     "/integrate/healthkit",
     "/integrate/google-health-connect",
   ],
+  "/tools/schema-converter": [
+    "/fitness-apis/health-data-aggregator-apis",
+    "/fitness-apis/apple-healthkit-vs-google-health-connect",
+  ],
+  "/tools/fitbit-to-google-health": [
+    "/migrate/fitbit-web-api-to-google-health",
+    "/alternatives/fitbit-api-alternatives",
+    "/fitness-apis/wearable-data-apis",
+  ],
   "/challenge": [
     "/fitness-apis/ai-workout-tracking-apis",
     "/motion/build-vs-buy-ai-motion-tracking",

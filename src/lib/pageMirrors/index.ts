@@ -26,6 +26,9 @@ import { exerciseTaxonomyMirror, gymMatrixMirror, researchChooserMirror } from "
 import { atlasMirror } from "./atlas";
 import { oauthPlaygroundMirror } from "./oauthPlayground";
 import { webhooksMirror } from "./webhooks";
+import { schemaConverterMirror } from "./schemaConverter";
+import { fitbitToGoogleHealthMirror } from "./fitbitToGoogleHealth";
+import { schemaMirror } from "./schema";
 import { graveyardMirror } from "./graveyard";
 import { datasetsMirror } from "./datasets";
 import { changesMirror } from "./changes";
@@ -77,6 +80,9 @@ export const PAGE_MIRRORS: Record<string, () => MirrorDoc> = {
   "/tools/research-platform-chooser": researchChooserMirror,
   "/atlas": atlasMirror,
   "/tools/oauth-playground": oauthPlaygroundMirror,
+  "/tools/schema-converter": schemaConverterMirror,
+  "/tools/fitbit-to-google-health": fitbitToGoogleHealthMirror,
+  "/schema": schemaMirror,
   "/graveyard": graveyardMirror,
   "/webhooks": webhooksMirror,
   "/datasets": datasetsMirror,
