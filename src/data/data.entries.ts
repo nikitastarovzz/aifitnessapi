@@ -945,6 +945,10 @@ export const dataEntries: ClusterEntry[] =
         "label": "Fix required authorization denied"
       },
       {
+        "href": "/compliance/cms-medicare-app-library",
+        "label": "The CMS Medicare App Library"
+      },
+      {
         "href": "/data",
         "label": "All health-data metrics"
       }

@@ -44,6 +44,7 @@ export const RELEASED_COMPLIANCE = new Set<string>([
   "washington-my-health-my-data-act",
   "remote-patient-monitoring-device-requirements",
   "gym-gdpr-compliance",
+  "cms-medicare-app-library",
 ]);
 
 export const allCompliance: ClusterEntry[] = complianceEntries;

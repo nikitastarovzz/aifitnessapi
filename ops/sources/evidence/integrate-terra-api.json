@@ -330,14 +330,14 @@
     "quote": "Terra waits 8 seconds for your server to respond before considering the request timed out."
   },
   {
-    "claim": "Failed deliveries are retried \"up to 10 times with exponential backoff\".",
+    "claim": "Terra retries a failed webhook delivery with exponential backoff for several hours.",
     "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "Terra retries the delivery up to 10 times with exponential backoff"
+    "quote": "Terra retries the delivery automatically with exponential backoff for several hours."
   },
   {
-    "claim": "Over about eight hours.",
+    "claim": "Terra says the number and timing of retries may change without notice.",
     "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "The cumulative window across all retries is ~8 hours"
+    "quote": "The exact number and timing of retries may change without notice, so don't depend on a specific schedule."
   },
   {
     "claim": "\"the event is dropped. There is no notification when this happens\".",
@@ -352,12 +352,12 @@
   {
     "claim": "Per-type endpoints keyed by the Terra user_id.",
     "url": "https://docs.tryterra.co/unified-api/managing-user-health-data/requesting-historical-data",
-    "quote": "user_id (required) start_date (required)"
+    "quote": "user_id (required)"
   },
   {
     "claim": "user_id and start_date are required.",
     "url": "https://docs.tryterra.co/unified-api/managing-user-health-data/requesting-historical-data",
-    "quote": "user_id (required) start_date (required)"
+    "quote": "start_date (required)"
   },
   {
     "claim": "end_date \"is exclusive on these endpoints\".",
@@ -375,9 +375,14 @@
     "quote": "For synchronous data retrieval (if your use case is time-sensitive), just set this parameter to false"
   },
   {
-    "claim": "\"For time ranges longer than 28 days, Terra will default to sending the data asynchronously\".",
+    "claim": "Time ranges longer than one month must use to_webhook=true and arrive asynchronously.",
     "url": "https://docs.tryterra.co/unified-api/managing-user-health-data/requesting-historical-data",
-    "quote": "For time ranges longer than 28 days, Terra will default to sending the data asynchronously"
+    "quote": "Time ranges longer than one month must use to_webhook=true , and Terra sends the data asynchronously ."
+  },
+  {
+    "claim": "The same long request with to_webhook=false returns a 400.",
+    "url": "https://docs.tryterra.co/unified-api/managing-user-health-data/requesting-historical-data",
+    "quote": "The same request with to_webhook=false returns a 400"
   },
   {
     "claim": "In chunks of at most 10MB.",

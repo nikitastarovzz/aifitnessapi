@@ -49,7 +49,7 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
       "Terra relaunched its connect widget. Its documentation says the older session endpoint, POST https://api.tryterra.co/v2/auth/generateWidgetSession, \"keeps working today, with deprecation planned for 3 November 2026\", and that \"Accounts created after 3 September 2026 cannot use it at all.\" New sessions are created at POST https://access.tryterra.co/api/widget/session; the response shape (session_id, url, status, expires_in) is unchanged, while the multi-provider and all-providers options are now sent differently.",
     status: "confirmed",
     page: { href: "/integrate/terra-api", label: "How to integrate Terra" },
-    verifiedOn: "2026-10-17",
+    verifiedOn: "2026-11-05",
   },
   {
     date: "2026-11-02",
@@ -132,6 +132,16 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
     verifiedOn: "2026-10-17",
   },
   {
+    date: "2026-09-08",
+    sortDate: "2026-09-08",
+    title: "Samsung Health accepted into the CMS Medicare App Library",
+    summary:
+      "Samsung Electronics America announced on September 8, 2026 that \"Samsung Health was recently accepted in the Medicare App Library\", the directory on Medicare.gov where people with Medicare find vetted third-party health apps. On November 5, 2026, Medicare.gov carried a Samsung Health listing. CMS's requirements for the library: IAL2/AAL2 identity verification through ID.me or CLEAR, FHIR R4 and SMART on FHIR through a CMS Aligned Network, a DiMe or DirectTrust review, and one of three use cases.",
+    status: "confirmed",
+    page: { href: "/compliance/cms-medicare-app-library", label: "The CMS Medicare App Library" },
+    verifiedOn: "2026-11-05",
+  },
+  {
     date: "2026-12",
     sortDate: "2026-12-31",
     title: "Google Fit APIs: end of documented support",
@@ -184,12 +194,12 @@ export const CHANGE_EVENTS: ChangeEvent[] = [
   {
     date: "2026",
     sortDate: "2026-03-01",
-    title: "Nutritionix open free tier reportedly curtailed",
+    title: "Nutritionix ends its public free-access tier",
     summary:
-      "Reports conflict on whether Nutritionix's open free tier still exists; higher tiers route through a Syndigo sales contact. If the free tier is gone, the freemium classification shifts toward sales-gated.",
-    status: "reported",
+      "Nutritionix's developer portal now says \"due to increased misuse of free trial accounts, we are no longer able to maintain a public free-access tier\", and offers a limited trial through sales instead; it gives no date for the change. When we read its API page on November 5, 2026, it listed a free Business Trial and paid plans of $499, $999 and from $1,850 a month, and said \"API plans are billed annually.\"",
+    status: "confirmed",
     page: { href: "/pricing/nutrition-api-pricing", label: "Nutrition API pricing" },
-    verifiedOn: "2026-08-12",
+    verifiedOn: "2026-11-05",
   },
   {
     date: "2025-12",

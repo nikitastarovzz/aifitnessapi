@@ -46,6 +46,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
       "ftc-health-breach-notification-rule",
       "washington-my-health-my-data-act",
       "remote-patient-monitoring-device-requirements",
+      "cms-medicare-app-library",
     ],
   },
   {
