@@ -23,6 +23,8 @@ import { apiCoverageMatrixMirror } from "./apiCoverageMatrix";
 import { rateLimitCalculatorMirror } from "./rateLimitCalculator";
 import { exerciseTaxonomyMirror, gymMatrixMirror, researchChooserMirror } from "./audienceTools";
 import { atlasMirror } from "./atlas";
+import { oauthPlaygroundMirror } from "./oauthPlayground";
+import { webhooksMirror } from "./webhooks";
 import { graveyardMirror } from "./graveyard";
 import { datasetsMirror } from "./datasets";
 import { changesMirror } from "./changes";
@@ -72,7 +74,9 @@ export const PAGE_MIRRORS: Record<string, () => MirrorDoc> = {
   "/tools/gym-software-api-matrix": gymMatrixMirror,
   "/tools/research-platform-chooser": researchChooserMirror,
   "/atlas": atlasMirror,
+  "/tools/oauth-playground": oauthPlaygroundMirror,
   "/graveyard": graveyardMirror,
+  "/webhooks": webhooksMirror,
   "/datasets": datasetsMirror,
   "/changes": changesMirror,
   "/market-map": marketMapMirror,

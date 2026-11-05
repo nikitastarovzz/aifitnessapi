@@ -64,6 +64,12 @@ export const TOOL_LOOKUPS: Tool[] = [
       "Paste an Oura, WHOOP, Terra, Polar, Strava, Withings, Wahoo or Google Health API webhook: the vendor's documented check, run in your browser.",
   },
   {
+    path: "/tools/oauth-playground",
+    name: "Wearable OAuth playground",
+    blurb:
+      "Pick Oura, WHOOP, Strava, Polar, Withings, Wahoo, Dexcom, Suunto or Google Health: documented endpoints and scopes, an authorize URL, a PKCE pair and token curl. Sends nothing.",
+  },
+  {
     path: "/tools/keypoint-playground",
     name: "Pose keypoint playground",
     blurb:

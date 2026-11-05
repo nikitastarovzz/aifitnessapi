@@ -22,6 +22,8 @@
     "test:perf": "node scripts/perf-audit.mjs",
     "stale": "node scripts/stale-report.mjs",
     "test:webhooks": "node --test scripts/webhook-verifier.test.mjs",
+    "test:webhook-payloads": "node --test scripts/webhook-payloads.test.mjs",
+    "test:oauth": "node --test scripts/oauth-playground.test.mjs",
     "test:keypoints": "node --test scripts/keypoint-mapping.test.mjs",
     "test:hr-lab": "node --test scripts/hr-measurement.test.mjs",
     "test:ble": "node --test scripts/gatt-decode.test.mjs",
