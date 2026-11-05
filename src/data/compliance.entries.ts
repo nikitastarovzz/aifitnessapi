@@ -65,6 +65,10 @@ export const complianceEntries: ClusterEntry[] =
         "label": "Washington's My Health My Data Act for apps"
       },
       {
+        "href": "/compliance/cms-medicare-app-library",
+        "label": "The CMS Medicare App Library requirements"
+      },
+      {
         "href": "/compliance",
         "label": "Health-data compliance & privacy"
       }
@@ -1927,6 +1931,105 @@ export const complianceEntries: ClusterEntry[] =
         "url": "https://help.cliniko.com/en/articles/1908020-how-cliniko-helps-you-with-gdpr-compliance",
         "checked": "2026-11-04",
         "note": "A practice-software vendor's processor and controller roles and its DPA with Standard Contractual Clauses."
+      }
+    ]
+  },
+  {
+    "slug": "cms-medicare-app-library",
+    "primaryQuery": "cms medicare app library requirements for health apps",
+    "h1": "The CMS Medicare App Library: What a Health App Must Meet",
+    "metaTitle": "CMS Medicare App Library: Requirements for Health Apps",
+    "metaDescription": "What CMS requires for its Medicare App Library: IAL2/AAL2 identity, FHIR R4 through a CMS Aligned Network, a DiMe or DirectTrust review, and a use case.",
+    "updated": "2026-11-05",
+    "answer": "The Medicare App Library is CMS's directory on Medicare.gov where people with Medicare find vetted third-party health apps, part of its voluntary Health Technology Ecosystem. CMS says an app must sign the ecosystem pledge, verify identity at IAL2/AAL2 through ID.me or CLEAR, connect to a CMS Aligned Network using FHIR R4 and SMART on FHIR, pass a third-party review by DiMe or by DirectTrust against the CARIN Code of Conduct, and fit one of three use cases: Kill the Clipboard, conversational AI assistants, or diabetes and obesity prevention and management. A step counter or workout app does not qualify on its own; it needs clinical-record access for one of those use cases. This summarizes CMS's pages as read on November 5, 2026; it is not legal advice.",
+    "body": "CMS calls its Health Technology Ecosystem \"a movement, not a mandate\" and \"a call to action, not a regulation\". The Medicare App Library is the part of it a consumer health app can join: in CMS's words, \"a trusted, centralized directory where people with Medicare can discover and access vetted digital health care options.\" This page sets out what CMS's own pages say about it, read on November 5, 2026: [Requirements for the Medicare App Library](https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library), [Submit your app](https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app), [Health Tech Ecosystem Categories](https://www.cms.gov/initiatives/health-technology-ecosystem/overview/health-tech-ecosystem-categories) and the library itself at [medicare.gov/health-apps](https://www.medicare.gov/health-apps). It is general information, not legal advice.\n\n## What the library is\n\nCMS uses \"apps\" as \"an inclusive term that encompasses traditional mobile and web applications, technology-enabled care services, digital health platforms, and innovative care delivery tools\", and says every option in the library \"will have undergone rigorous evaluation to ensure they meet high standards for security, privacy, clinical evidence, usability, and equity.\"\n\nOn Medicare.gov the library is headed \"Third-party apps that connect to Medicare\". It tells beneficiaries the apps were \"developed by private companies\", are \"Independently verified to ensure they meet high standards for protecting and exchanging your health information\", and \"Can only access the Medicare data you choose to share.\" On November 5, 2026 it also listed a group of \"Apps that are almost ready for Medicare\", where \"Medicare is finishing the final checks\".\n\nWhat CMS offers in return, from its requirements page: \"Access to 68+ million Medicare enrollees seeking trusted digital health solutions\", \"Placement in the Medicare.gov App Library\", \"Negotiated identity verification pricing through ID.me and CLEAR\", and access to the CMS Aligned Networks and the identity services on Medicare.gov. CMS's pages do not publish fees for the vetting reviews or for identity verification.\n\n## Who can apply\n\nCMS says the library is for \"Apps that integrate with CMS Aligned Networks and meet one of three use cases\":\n\n| Use case | What CMS asks of the app |\n| --- | --- |\n| Kill the Clipboard | Digital credentials at IAL2/AAL2 through a CMS-approved service; send the patient's information by FHIR as a QR code, SMART Health Card or SMART Health Link; retrieve a visit summary in FHIR format; retrieve health records from a CMS Aligned Network |\n| Conversational AI assistants | Personalized AI support across the clinical record (symptom checking, care planning, chronic disease support); a CMS Aligned Network connection, directly or through a personal health record app; clear AI-generated labels with disclaimers; educational content kept distinct from clinical guidance |\n| Diabetes and obesity prevention and management | A CMS Aligned Network connection, directly or through a personal health record app; coaching, reminders and risk alerts built from the clinical record; support for prevention and active management, including medication, lab trends and nutrition and activity tracking; resources for pre-diabetic patients; HIPAA compliance when applicable |\n\nThe categories page adds a caution for all three: \"The below criteria are meant to be visionary and to illustrate the goals of the initiative. For criteria that are less mature, early adopters will collaborate with CMS to document and publish implementation guidelines.\" It also lists optional extras an app can add, such as modern scheduling, price transparency, real-time benefits and clinical trial matching.\n\n## The six core requirements\n\nOn top of a use case, CMS says \"Patient-facing apps must meet these six core requirements\":\n\n1. **Identity verification.** \"Support secure patient identity verification using CMS-approved IAL2/AAL2 standards (e.g., mDLs, passkeys) to enable access to health records from CMS Aligned Networks.\" The submit page names the services: \"Partner with ID.me or CLEAR to implement secure identity verification.\"\n2. **Medicare connectivity.** \"Enable Medicare.gov notifications for Beneficiaries (notices, EOBs, fraud alerts)\".\n3. **CMS review.** Disclose data sources and terms or agreements, and complete a security checklist.\n4. **Trial access.** \"Provide trial access for Medicare patients if the app charges a fee\".\n5. **Discovery experience.** Allow the app to be featured in the Medicare.gov \"app store\" interface as a recommended option.\n6. **HIPAA compliance.** \"Operate consistent with HIPAA Rules when functioning as a covered entity or business associate\".\n\nParticipants in CMS's ACCESS Model are exempt from the CMS review and trial-access requirements, which CMS says the ACCESS Model covers instead.\n\n## The interoperability and accreditation bar\n\nCMS's submit page groups the pledge requirements into \"security and privacy, interoperability, and independent accreditation\", and is specific on the standards:\n\n- **Interoperability.** \"Your app must support FHIR R4, SMART on FHIR authorization, and integrate with a CMS Aligned Network.\" A CMS Aligned Network is a health data network that meets the CMS Interoperability Framework; the categories page says networks \"will self-attest to meet the interoperability criteria and agree to be reviewed if suspected to not be meeting the criteria.\" An app can reach one directly or through a personal health record app.\n- **Accreditation.** \"Choose either the DiMe Seal or CARIN Alliance Code of Conduct with DirectTrust Accreditation.\" The requirements page says DiMe's review covers \"clinical evidence, privacy and security, usability, equity, and technical standards\", and that \"Regardless of which path you choose, you will need to sign the CARIN Code of Conduct and get reviewed by either DirectTrust or DiME.\"\n\n## The process, step by step\n\nCMS lists seven steps:\n\n1. **Pledge.** Sign the Health Tech Ecosystem pledge and apply as a patient-facing app participant.\n2. **Identity verification.** Implement IAL2/AAL2 verification with ID.me or CLEAR.\n3. **CMS Aligned Network connection.** Connect directly or through a personal health record app \"to enable secure FHIR-based health data exchange.\"\n4. **Third-party review.** DiMe or DirectTrust, plus the CARIN Code of Conduct.\n5. **Medicare App Library application.** CMS says it covers \"developer information, ecosystem integration details, identity provider confirmation, vetting documentation, privacy disclosures, and materials needed for the App Library listing (logos, screenshots, promotional video, and app store links).\"\n6. **CMS review.** \"CMS validates Medicare-specific requirements, including use case alignment, CMS Aligned Network connectivity, data handling capabilities, and legal agreements.\"\n7. **Launch.** The app is featured in the library on Medicare.gov.\n\n## Timeline\n\n| Date | What happened | Source |\n| --- | --- | --- |\n| July 30, 2025 | At a White House event, CMS unveiled voluntary data-exchange criteria and said it \"plans to add an app library to Medicare.gov\", and reported that 30 companies \"pledged to promote real health outcomes with technology\" | CMS press release |\n| September 8, 2026 | Samsung Electronics America announced that Samsung Health \"was recently accepted in the Medicare App Library\" | Samsung's press release |\n| October 8, 2026 | Last modification of CMS's Medicare App Library requirements page | CMS page footer |\n| November 5, 2026 | Medicare.gov listed Samsung Health in the library, and three apps under \"almost ready\" | Medicare.gov |\n\nCMS's pages give no single launch date for the library, and they state no application deadline. The CMS press release is [White House, Tech Leaders Commit to Create Patient-Centric Healthcare Ecosystem](https://www.cms.gov/newsroom/press-releases/white-house-tech-leaders-commit-create-patient-centric-healthcare-ecosystem). Samsung's announcement is on [Samsung Mobile Press](https://samsungmobilepress.com/articles/samsung-health-connected-care-innovation-recognition-medicare-app-library-kill-the-clipboard), and the library's [Samsung Health listing](https://www.medicare.gov/health-apps/Samsung-Health) is live on Medicare.gov.\n\n## What it means for fitness and health app developers\n\nOur reading of CMS's pages, as judgment rather than CMS's words:\n\n- **A fitness app alone is not the target.** Every use case requires a connection to a CMS Aligned Network for clinical records. A step counter, workout logger or wearable dashboard that never touches clinical data does not meet any of the three. The nearest fit is the diabetes and obesity use case, which names \"nutrition/activity tracking\" but only as part of coaching built from the clinical record.\n- **Wearable data is a feature, not the entry ticket.** Samsung's Medicare.gov listing describes activity, food and medication tracking alongside health records. The library rewards an app that joins everyday wellness data to the clinical record, which is the integration job covered in [wearable data to an EHR with FHIR](/fitness-apis/wearable-data-to-ehr-fhir).\n- **Joining does not make you a HIPAA covered entity.** CMS's core requirement is to operate consistent with HIPAA \"when functioning as a covered entity or business associate\", and its pages say nothing in them is intended to \"contravene, supersede, or preempt\" HIPAA or state privacy laws. Whether HIPAA applies to you is the same question it always was; see [does your fitness app need HIPAA](/compliance/hipaa-compliance-fitness-app). Consumer-health laws such as the [FTC Health Breach Notification Rule](/compliance/ftc-health-breach-notification-rule) still apply where HIPAA does not.\n- **Budget for three outside parties.** An identity provider (ID.me or CLEAR), a reviewer (DiMe or DirectTrust) and a network connection, before CMS's own review. None of their prices appear on CMS's pages, so ask each one.\n- **Plan the paid-app rule early.** If you charge, CMS requires trial access for Medicare patients, which affects how a subscription paywall is built.\n\nFor reading clinical records on the device, see the [clinical records APIs](/data/clinical-records-api) page; for Samsung's own developer route, see [how to integrate Samsung Health](/integrate/samsung-health-api).",
+    "faqs": [
+      {
+        "q": "Can a step-tracking or workout app get into the Medicare App Library?",
+        "a": "Not on activity data alone, on our reading of CMS's pages. CMS says the library is for apps that integrate with CMS Aligned Networks and meet one of three use cases: Kill the Clipboard, conversational AI assistants, or diabetes and obesity prevention and management. All three need clinical-record access through a CMS Aligned Network. The diabetes and obesity use case does name nutrition and activity tracking, as part of coaching built from the clinical record."
+      },
+      {
+        "q": "Is the Medicare App Library a regulation health apps must comply with?",
+        "a": "No. CMS calls its Health Technology Ecosystem \"a movement, not a mandate\" and \"a call to action, not a regulation\", and says it asks app developers to voluntarily align around a shared framework. Apps that want a Medicare.gov listing opt in by signing the pledge and meeting the requirements. CMS also says nothing on its pages overrides HIPAA, the Privacy Act of 1974 or state privacy laws, so those still apply as before."
+      },
+      {
+        "q": "Which third-party reviews does CMS accept for Medicare App Library apps?",
+        "a": "Two, as of November 5, 2026: the DiMe Seal from the Digital Medicine Society, or CARIN Consumer-Facing Applications accreditation through DirectTrust, which verifies conformance to the CARIN Code of Conduct. CMS says DiMe evaluates clinical evidence, privacy and security, usability, equity and technical standards, and that whichever path you choose you must sign the CARIN Code of Conduct. CMS's pages do not publish the reviewers' fees."
+      },
+      {
+        "q": "What identity verification does the Medicare App Library require?",
+        "a": "CMS requires patient identity verification at IAL2 and AAL2 through a CMS-approved service, giving mobile driver's licenses and passkeys as examples, so the app can retrieve health records from CMS Aligned Networks. CMS names ID.me and CLEAR as the partners to implement it with, and its requirements page lists negotiated identity verification pricing through both as a benefit of taking part."
+      },
+      {
+        "q": "Is Samsung Health in the Medicare App Library?",
+        "a": "Yes. Samsung Electronics America announced on September 8, 2026 that Samsung Health had been accepted in the Medicare App Library, alongside a CMS Certificate of Recognition for its Kill the Clipboard work with b.well Connected Health. On November 5, 2026, Medicare.gov had a Samsung Health listing, marked free and available on Android."
+      }
+    ],
+    "related": [
+      {
+        "href": "/compliance/hipaa-compliance-fitness-app",
+        "label": "Does your fitness app need HIPAA?"
+      },
+      {
+        "href": "/fitness-apis/wearable-data-to-ehr-fhir",
+        "label": "Wearable data to an EHR with FHIR"
+      },
+      {
+        "href": "/data/clinical-records-api",
+        "label": "Clinical records APIs"
+      },
+      {
+        "href": "/compliance/ftc-health-breach-notification-rule",
+        "label": "The FTC Health Breach Notification Rule"
+      },
+      {
+        "href": "/compliance",
+        "label": "Health-data compliance & privacy"
+      }
+    ],
+    "cta": {
+      "pitch": "CMS is still publishing implementation guidelines for its Medicare App Library use cases. Subscribe and we'll flag requirement changes that affect health and fitness apps."
+    },
+    "sources": [
+      {
+        "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+        "checked": "2026-11-05",
+        "note": "What the library is, the three use cases, the six core requirements, the seven-step process, partners, ACCESS Model exemption, benefits and the HIPAA disclaimer; last modified October 8, 2026."
+      },
+      {
+        "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app",
+        "checked": "2026-11-05",
+        "note": "Pledge first; identity with ID.me or CLEAR; FHIR R4, SMART on FHIR and a CMS Aligned Network; DiMe Seal or CARIN with DirectTrust."
+      },
+      {
+        "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/health-tech-ecosystem-categories",
+        "checked": "2026-11-05",
+        "note": "Patient Facing Apps criteria in full, the visionary-criteria caveat, optional use cases and how CMS Aligned Networks qualify."
+      },
+      {
+        "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview",
+        "checked": "2026-11-05",
+        "note": "Movement, not a mandate; voluntary alignment; the HIPAA and Privacy Act disclaimer."
+      },
+      {
+        "url": "https://www.cms.gov/newsroom/press-releases/white-house-tech-leaders-commit-create-patient-centric-healthcare-ecosystem",
+        "checked": "2026-11-05",
+        "note": "July 30, 2025: voluntary criteria, 30 companies pledging technology tools and the plan to add an app library to Medicare.gov."
+      },
+      {
+        "url": "https://www.medicare.gov/health-apps",
+        "checked": "2026-11-05",
+        "note": "The library on Medicare.gov: what it tells beneficiaries and the apps almost ready."
+      },
+      {
+        "url": "https://www.medicare.gov/health-apps/Samsung-Health",
+        "checked": "2026-11-05",
+        "note": "Samsung Health's library listing."
+      },
+      {
+        "url": "https://samsungmobilepress.com/articles/samsung-health-connected-care-innovation-recognition-medicare-app-library-kill-the-clipboard",
+        "checked": "2026-11-05",
+        "note": "Samsung's September 8, 2026 announcement of Samsung Health's acceptance into the library."
       }
     ]
   }

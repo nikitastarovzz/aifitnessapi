@@ -1675,6 +1675,10 @@ export const entries: ClusterEntry[] =
         "label": "Normalizing wearable data across providers"
       },
       {
+        "href": "/compliance/cms-medicare-app-library",
+        "label": "CMS Medicare App Library requirements"
+      },
+      {
         "href": "/fitness-apis",
         "label": "All fitness and wearable APIs"
       }
