@@ -11,6 +11,7 @@ import Countdown from "@/components/Countdown";
 import ContentAge from "@/components/ContentAge";
 import { WhenUpcoming } from "@/components/UpcomingDeadlines";
 import { changesSorted, WATCH_ITEMS, type ChangeStatus } from "@/data/changes";
+import { vendorChangesPath, vendorFeedPath, vendorTimelines } from "@/lib/vendorChanges";
 
 /**
  * The living record behind the site's "we track the changes" promise:
@@ -57,6 +58,7 @@ export default function ChangesPage() {
   // decided in the browser (WhenUpcoming, Countdown). A static build would
   // freeze the comparison at deploy and keep pulsing dates that have passed.
   const events = changesSorted();
+  const timelines = vendorTimelines();
 
   const itemListJsonLd = {
     "@context": "https://schema.org",
@@ -148,6 +150,27 @@ export default function ChangesPage() {
             </CtaLink>
           </p>
         </div>
+
+        {timelines.length > 0 && (
+          <div className="mt-4 rounded-xl border border-[var(--border)] p-4" data-vendor-timelines>
+            <h2 className="text-sm font-bold tracking-tight text-[var(--fg)]">One vendor at a time</h2>
+            <p className="mt-1 text-sm text-[var(--muted)]">
+              Each vendor named by two or more entries below has its own timeline and RSS feed.
+            </p>
+            <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-sm">
+              {timelines.map((t) => (
+                <li key={t.api.id}>
+                  <Link href={vendorChangesPath(t.api.id)} className="font-medium text-brand-600 hover:text-brand-500">
+                    {t.api.short} ({t.events.length})
+                  </Link>{" "}
+                  <a href={vendorFeedPath(t.api.id)} className="text-xs text-[var(--muted)] hover:text-[var(--fg)]">
+                    RSS
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         <p className="mt-4 text-sm text-[var(--muted)]">
           {"This year's entries, counted by month, with releases and our own verification age: "}

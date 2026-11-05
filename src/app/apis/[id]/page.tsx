@@ -30,6 +30,8 @@ import { HK_IDENTIFIERS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { HK_BASE, buildHkGroups } from "@/data/hkGroupPages";
 import { coverageFor, changesFor, pageCount } from "@/lib/apiCoverage";
 import { allSpokes } from "@/lib/clusterRegistry";
+import { vendorChangesPath, vendorFeedPath, vendorTimeline } from "@/lib/vendorChanges";
+import { API_BASE } from "@/lib/publicApi";
 
 export const dynamicParams = false;
 
@@ -134,6 +136,7 @@ export default async function ApiPage({ params }: { params: Promise<Params> }) {
   const coverage = coverageFor(api.id);
   const total = pageCount(api.id);
   const changes = changesFor(api);
+  const timeline = vendorTimeline(api.id);
   const isFirstParty = api.id === "kinestex";
   // The page the facts were taken from, with its own verification date: a
   // fresher and truer signal than the directory's review date alone
@@ -411,6 +414,16 @@ export default async function ApiPage({ params }: { params: Promise<Params> }) {
                 </li>
               ))}
             </ul>
+            {timeline && (
+              <p className="mt-4 text-sm" data-vendor-changes={api.id}>
+                <Link href={vendorChangesPath(api.id)} className="font-medium text-brand-600 hover:text-brand-500">
+                  {api.short} changes and deadlines timeline →
+                </Link>{" "}
+                <a href={vendorFeedPath(api.id)} className="text-xs text-[var(--muted)] hover:text-[var(--fg)]">
+                  RSS
+                </a>
+              </p>
+            )}
           </section>
         )}
 
@@ -453,6 +466,18 @@ export default async function ApiPage({ params }: { params: Promise<Params> }) {
             </div>
           </section>
         )}
+
+        <p className="mt-10 text-sm text-[var(--muted)]" data-vendor-json={api.id}>
+          This entry as JSON, with every page and tracked change above and the date each was last verified:{" "}
+          <a href={absoluteUrl(`${API_BASE}/vendors/${api.id}`)} className="font-medium text-brand-600 hover:text-brand-500">
+            {`${API_BASE}/vendors/${api.id}`}
+          </a>{" "}
+          (CC BY 4.0, no key;{" "}
+          <Link href="/developers" className="text-brand-600 hover:text-brand-500">
+            the developer API
+          </Link>
+          ).
+        </p>
 
         <NextSteps />
 

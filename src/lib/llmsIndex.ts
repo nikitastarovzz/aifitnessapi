@@ -1,4 +1,5 @@
 import { getAllPosts } from "@/lib/posts";
+import { vendorChangesPath, vendorFeedPath, vendorTimelines } from "@/lib/vendorChanges";
 import { graveyardCopy } from "@/lib/graveyardCopy";
 import { TASKS_VISION_VERSION } from "@/lib/poseBenchmark";
 import { POSE_KEYPOINTS_FETCHED_ON } from "@/data/poseKeypoints";
@@ -101,6 +102,12 @@ export function toolEntries(): { label: string; path: string; text: string }[] {
     { label: `Fitness API index`, path: "/fitness-api-index", text: `raw, sortable ecosystem signals per product, recomputed at every build from the site's data files: vendor SDK and open-source package releases, tracked changes in the last 12 months, billing model, approval gate, and the age of the last verification. No composite score; KinesteX is shown but not ranked. Rows at ${absoluteUrl("/fitness-api-index/data.json")} and ${absoluteUrl("/fitness-api-index/data.csv")}.` },
     { label: `Fitness APIs in 2026, the year in numbers`, path: "/2026", text: `a scroll story of one computed stat per slide: tracked changes dated 2026 and the busiest month, pricing and plan changes, the Google Health API launch date and the Fitbit Web API turn-off date as Google's own pages give them, Health Connect client and open-source package releases, and the median age of this site's verification stamps, each with its source file and date. Recomputed at every build and titled "so far" until the first build of 2027. It counts what the changes tracker records and repeats nothing from the State of Fitness APIs 2026 report.` },
     { label: `The Fitness API Graveyard`, path: "/graveyard", text: `every fitness and health developer API, SDK and endpoint this site could source that its vendor has shut down, scheduled to shut down or deprecated (${graveyard.total}: ${graveyard.dead} dead, ${graveyard.dying} dying, ${graveyard.deprecated} deprecated), each with the end date at the vendor's precision, the replacement the vendor names and a verbatim quote from the vendor's page or an Internet Archive capture of it, with the date it was read. Rows at ${absoluteUrl("/graveyard/data.json")}; embeddable at ${absoluteUrl("/embed/graveyard")}.` },
+    { label: `Press numbers`, path: "/press", text: `counts a reporter or a model can quote about this site and the ecosystem it tracks (products in the directory, dated changes logged, shut-down and deprecated APIs recorded, open datasets and their rows, API collections, pages re-checked in the last 90 days, release cadence across the directory, and every stat of the 2026 story), each computed from a repository file at build time and printed with that file and its date, with a how-to-cite block (plain and BibTeX) and the funder disclosure.` },
+    ...vendorTimelines().map((t) => ({
+      label: `${t.api.short} API changes and deadlines timeline`,
+      path: vendorChangesPath(t.api.id),
+      text: `the ${t.events.length} entries of the changes tracker that name ${t.api.label}, newest first, graded confirmed or reported, each linking its source page; RSS at ${absoluteUrl(vendorFeedPath(t.api.id))}.`,
+    })),
     { label: `Monthly digest archive`, path: "/digest", text: `one issue per month, generated from the changes tracker and the pages' own review dates; each issue also served as plain text at /digest/<month>/digest.md.` },
     { label: `Open datasets`, path: "/datasets", text: `every dataset this site publishes, CC BY 4.0, JSON and CSV, versioned rather than overwritten.` },
     { label: `Developer API & MCP server`, path: "/developers", text: `the same datasets as a free, read-only JSON API (${absoluteUrl("/api/v1")}, described by ${absoluteUrl("/api/v1/openapi.json")}) and as MCP tools for AI assistants at ${absoluteUrl("/mcp")}. Every response carries its source page, license and verification date; a field the site could not verify is null, never guessed.` },
@@ -152,6 +159,7 @@ export function llmsIndexText(): string {
     `- Claims index (one sentence per citable fact): ${absoluteUrl("/claims.json")}`,
     `- Read-only JSON API over the open datasets, no key, CC BY 4.0: ${absoluteUrl("/api/v1")}; OpenAPI 3.1 document: ${absoluteUrl("/api/v1/openapi.json")}`,
     `- Hosted MCP server for AI assistants (Streamable HTTP, stateless, read-only tools): ${absoluteUrl("/mcp")}`,
+    `- One vendor's changes at a time, page and RSS: ${vendorTimelines().map((t) => `${absoluteUrl(vendorChangesPath(t.api.id))} (${absoluteUrl(vendorFeedPath(t.api.id))})`).join(", ")}; everything the site holds on a directory product as JSON: ${absoluteUrl("/api/v1/vendors/<id>")}`,
     `- Per-section RSS: ${absoluteUrl("/feeds/<cluster>.xml")} (e.g. ${absoluteUrl("/feeds/devices.xml")}); blog as JSON Feed: ${absoluteUrl("/feed.json")}`,
     "- Each page states the one question it owns; FAQ answers are individually addressable at `#faq-1`, `#faq-2`, …",
     "- Sourcing: claims trace to a primary source checked on the review date, and unverifiable claims are labeled as such rather than rounded up.",

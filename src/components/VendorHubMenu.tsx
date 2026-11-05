@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { vendorMenu } from "@/lib/vendorMenu";
 import { APIS_PATH } from "@/data/apis";
+import { vendorChangesPath, vendorFeedPath, vendorTimeline } from "@/lib/vendorChanges";
 
 /**
  * Everything the site has about a vendor, on every page about that vendor
@@ -43,6 +44,13 @@ export default function VendorHubMenu({
     ? `${names} ${apis} pages by task`
     : `Everything on this site about the ${names} ${apis}`;
   const headingId = `vendor-menu-${placement}`;
+  // A vendor the changes tracker names often enough has its own timeline
+  // (lib/vendorChanges.ts); the menu links it with its feed, outside the
+  // page groups, since it is a slice of /changes and not a page about the API.
+  const timelines = menu.ids.flatMap((id) => {
+    const t = vendorTimeline(id);
+    return t ? [t] : [];
+  });
   const hubNote = `This page is the hub for the ${names} ${apis} on this site: every other page about ${
     menu.names.length > 1 ? "them" : "it"
   } is linked here.`;
@@ -137,6 +145,21 @@ export default function VendorHubMenu({
           );
         })}
       </dl>
+      {timelines.length > 0 && (
+        <p className="mt-3 border-t border-[var(--border)] pt-3 text-sm text-[var(--muted)]" data-vendor-changes={timelines.map((t) => t.api.id).join(" ")}>
+          {timelines.map((t, n) => (
+            <span key={t.api.id}>
+              {n > 0 && <span aria-hidden className="px-1.5">·</span>}
+              <Link href={vendorChangesPath(t.api.id)} className="text-brand-600 hover:text-brand-500">
+                {t.api.short} changes and deadlines ({t.events.length})
+              </Link>{" "}
+              <a href={vendorFeedPath(t.api.id)} className="text-xs hover:text-[var(--fg)]">
+                RSS
+              </a>
+            </span>
+          ))}
+        </p>
+      )}
     </nav>
   );
 }
