@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import HeadTermLinks from "@/components/HeadTermLinks";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -178,6 +179,8 @@ export default function AlternativesPillar() {
             <Link href="/integrate">integration guide</Link> for whichever alternative you pick.
           </p>
         </div>
+
+        <HeadTermLinks path="/alternatives" />
 
         <HubGlanceTable hub="/alternatives" />
         <HubDirectAnswers hub="/alternatives" />

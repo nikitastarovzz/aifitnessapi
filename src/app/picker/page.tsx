@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import HeadTermLinks from "@/components/HeadTermLinks";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -80,6 +81,8 @@ export default function PickerPage() {
           read next. Independent and free; we&rsquo;re not paid to recommend anything. The picker is a
           router, not a comparison: the roundups below compare the APIs themselves.
         </PageSummary>
+
+        <HeadTermLinks path="/picker" />
 
         <div className="mt-8">
           <ApiPicker />

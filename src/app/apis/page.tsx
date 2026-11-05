@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import HeadTermLinks from "@/components/HeadTermLinks";
+import { entityAnchor } from "@/data/headTerms";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -99,6 +101,8 @@ export default function ApiDirectory() {
           citable source more than a missing one.
         </AnswerCapsule>
 
+        <HeadTermLinks path="/apis" />
+
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           <div className="rounded-2xl border border-[var(--border)] p-5">
             <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
@@ -109,7 +113,7 @@ export default function ApiDirectory() {
                 <span key={a.id}>
                   {i > 0 && ", "}
                   <Link href={`${APIS_PATH}/${a.id}`} className="text-brand-600 hover:text-brand-500">
-                    {a.short}
+                    {entityAnchor(a)}
                   </Link>
                 </span>
               ))}
@@ -128,7 +132,7 @@ export default function ApiDirectory() {
                 <span key={a.id}>
                   {i > 0 && ", "}
                   <Link href={`${APIS_PATH}/${a.id}`} className="text-brand-600 hover:text-brand-500">
-                    {a.short}
+                    {entityAnchor(a)}
                   </Link>
                 </span>
               ))}

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headTermOwner } from "@/data/headTerms";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -200,7 +201,7 @@ export default function WorkoutTypesHub() {
                   {PLATFORM_ORDER.map((p) => (
                     <th key={p} data-platform={p} className={TH}>
                       <Link href={platformPath(p)} className={LINK}>
-                        {platform(p).short}
+                        {headTermOwner(platform(p).short) ? platform(p).name : platform(p).short}
                       </Link>
                     </th>
                   ))}

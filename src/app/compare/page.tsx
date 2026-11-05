@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import HeadTermLinks from "@/components/HeadTermLinks";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -182,6 +183,8 @@ export default function ComparePillar() {
             Costs come up throughout — the <Link href="/pricing">pricing</Link> pages go deeper.
           </p>
         </div>
+
+        <HeadTermLinks path="/compare" />
 
         <HubGlanceTable hub="/compare" />
         <HubDirectAnswers hub="/compare" />

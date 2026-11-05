@@ -247,9 +247,9 @@ export default function NoCodeFitnessAppPage() {
           This page is one worked example, not a comparison. To choose the APIs themselves, the roundups
           compare{" "}
           <Link href="/fitness-apis/exercise-database-apis" className="text-brand-600 underline hover:text-brand-500">
-            exercise database APIs
-          </Link>
-          ,{" "}
+            workout APIs
+          </Link>{" "}
+          (the exercise databases a workout is built from),{" "}
           <Link href="/fitness-apis/exercise-video-apis" className="text-brand-600 underline hover:text-brand-500">
             exercise APIs with demonstration videos
           </Link>{" "}
