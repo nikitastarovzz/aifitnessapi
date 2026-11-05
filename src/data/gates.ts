@@ -15,6 +15,87 @@
  * appears here as `TITLE-*`.
  */
 export const GATES: { code: string; refuses: string; area: string }[] = [
+  // ── Vendor timelines, /press, dataset cards, vendor records (2026-11-05) ──
+  {
+    code: "VENDOR-CHANGES-THIN",
+    area: "Feeds and mirrors",
+    refuses:
+      "A per-vendor change timeline (/changes/<vendor>) with fewer than two entries, or one whose rendered entries disagree with the count it declares. One entry is the /changes row it repeats with a page around it: a thin page.",
+  },
+  {
+    code: "VENDOR-CHANGES-API",
+    area: "Feeds and mirrors",
+    refuses:
+      "A vendor timeline whose entry count or address disagrees with the vendor's record in /api/v1/vendors, or a vendor record naming two or more changes with no timeline built. The page and the API match entries by two separate code paths, so either drifting shows here.",
+  },
+  {
+    code: "VENDOR-CHANGES-FEED",
+    area: "Feeds and mirrors",
+    refuses:
+      "A vendor timeline with no RSS feed at /feeds/vendors/<vendor>.xml, a feed that is not an RSS 2.0 channel linking its page with a self link, served as anything but application/rss+xml, or carrying a different number of items than the page; and a feed published for a vendor with no page.",
+  },
+  {
+    code: "VENDOR-CHANGES-XML",
+    area: "Feeds and mirrors",
+    refuses:
+      "A vendor changes feed, or the site-wide /changes.xml, that is not well-formed XML: an unclosed or misnested element, an unquoted attribute, a bare ampersand or a second root. A feed reader drops a malformed feed silently.",
+  },
+  {
+    code: "VENDOR-CHANGES-LINK",
+    area: "Feeds and mirrors",
+    refuses:
+      "A vendor timeline that /changes, the vendor's directory entry or the vendor's hub does not link, or that does not link its own feed. A timeline nobody can reach is a page with no reader.",
+  },
+  {
+    code: "API-VENDOR-UNLINKED",
+    area: "Datasets and artifacts",
+    refuses: "A directory page (/apis/<id>) that does not link its own record at /api/v1/vendors/<id>.",
+  },
+  {
+    code: "PRESS-MISSING",
+    area: "Datasets and artifacts",
+    refuses: "A build in which /press, the page of citable numbers, did not render.",
+  },
+  {
+    code: "PRESS-UNSOURCED",
+    area: "Datasets and artifacts",
+    refuses:
+      "A figure on /press without a source file and a YYYY-MM-DD date, a source file that is not in the repository, or a page with fewer figures than the site's own six. A number offered for quoting has to say where it was counted.",
+  },
+  {
+    code: "PRESS-DRIFT",
+    area: "Datasets and artifacts",
+    refuses:
+      "A /press count that disagrees with the files it counts, recounted here: the published datasets, the rows of the changes dataset, the API directory and the API's collections.",
+  },
+  {
+    code: "PRESS-DISCLOSURE",
+    area: "Disclosure",
+    refuses: "A /press page that does not say, in its own body, that KinesteX funds the site.",
+  },
+  {
+    code: "DATASET-CARD-MISSING",
+    area: "Datasets and artifacts",
+    refuses:
+      "A published dataset with no generated card beside it (public/datasets/<slug>.md), or a card left behind for a dataset that is no longer published.",
+  },
+  {
+    code: "DATASET-CARD-STALE",
+    area: "Datasets and artifacts",
+    refuses:
+      "A dataset card that does not describe the file as published: a column missing from its field table, a different row count or version, or no license, update-cadence or citation section. The card is regenerated with the files, so a stale one means the generator was skipped.",
+  },
+  {
+    code: "DATASET-CARD-UNLINKED",
+    area: "Datasets and artifacts",
+    refuses: "A dataset that /datasets lists without a link to its card or without its BibTeX entry.",
+  },
+  {
+    code: "DATASET-CFF",
+    area: "Datasets and artifacts",
+    refuses:
+      "A CITATION.cff that is missing, lacks cff-version 1.2.0, a title, authors or the CC-BY-4.0 license, or does not list every published dataset.",
+  },
   // ── Per-page crawl: links, metadata, structured data ──────────────────
   {
     code: "SITEMAP-NOINDEX",

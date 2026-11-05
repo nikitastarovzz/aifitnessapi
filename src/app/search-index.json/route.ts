@@ -21,6 +21,7 @@ import { releasedEngagement, ENGAGEMENT_PATH } from "@/data/engagement";
 import { releasedWatchApps, WATCH_PATH } from "@/data/watchApps";
 import { releasedAccessibility, A11Y_PATH } from "@/data/accessibility";
 import { API_ENTRIES, APIS_PATH, CATEGORY_LABELS, DEV_COST_LABELS } from "@/data/apis";
+import { vendorChangesPath, vendorTimelines } from "@/lib/vendorChanges";
 import { releasedHkGroups, HK_BASE } from "@/data/hkGroupPages";
 import { HK_IDENTIFIERS } from "@/data/healthkitIdentifiers";
 import { releasedAudioCoaching, AUDIO_PATH } from "@/data/audioCoaching";
@@ -456,6 +457,15 @@ export function GET() {
   add("/graveyard", "The Fitness API Graveyard", "Shut-down, dying and deprecated fitness and health APIs, SDKs and endpoints, with end dates, replacements and each vendor's own words.", "graveyard killed shut down shutdown sunset retired deprecated discontinued dead apis end of life removed endpoints fitbit google fit oura strava whoop samsung");
   add("/picker", "Which Fitness API Should I Use? (interactive)", "Three questions, a tailored recommendation.", "picker tool quiz choose");
   add("/cost-planner", "Fitness API Cost Planner (interactive)", "The cost structure of your stack: billing models, user-side costs, approval gates, eng effort.", "cost calculator pricing budget planner tool");
+  for (const t of vendorTimelines()) {
+    add(
+      vendorChangesPath(t.api.id),
+      `${t.api.short} API Changes & Deadlines Timeline`,
+      `${t.events.length} dated ${t.api.short} changes from the tracker, graded confirmed vs reported, with an RSS feed.`,
+      [t.api.aliases.join(" "), "changes deadlines deprecations timeline history rss feed", ...t.events.map((e) => e.title)].join(" "),
+    );
+  }
+  add("/press", "Press Kit: Citable Fitness API Numbers", "Counts of the APIs, changes, deprecations, datasets and fresh pages this site tracks, each with its source file and date.", "press media journalist statistics numbers stats cite citation facts figures kit");
   add("/changes", "Fitness API Changes & Deadlines Tracker", "The dated, graded record of ecosystem changes: deprecations, deadlines, term changes \u2014 confirmed vs reported.", "changes changelog deadlines deprecations tracker news updates");
   add("/2026", "Fitness APIs in 2026: the year in numbers", "One computed stat per slide: tracked changes by month, pricing changes, the Google Health API launch, the Fitbit turn-off, releases, freshness.", "2026 year in review recap so far statistics numbers timeline share changes releases");
   add("/state-of-fitness-apis-2026", "The State of Fitness APIs 2026", "Original research: 25 APIs surveyed on access structure \u2014 free vs gated vs contact-sales \u2014 with an open CC BY dataset.", "state of fitness apis report research dataset statistics survey 2026");

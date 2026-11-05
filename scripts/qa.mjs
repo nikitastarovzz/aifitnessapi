@@ -4668,6 +4668,260 @@ if (fs.existsSync(matrixPath)) {
   );
 }
 
+// ── Vendor timelines, the press page, dataset cards and vendor records
+// (ops/MORE-30-2026-11-05.md items 15–18, added 2026-11-05). Each of these is
+// a second rendering of data the site already publishes, so the failure that
+// matters is the quiet one: a timeline thinner than the floor that justified
+// it, a feed a reader cannot parse, a press figure that no longer matches the
+// files it counts, a dataset card describing columns the file has lost. All
+// read from the build output and the published files, as a client meets them.
+{
+  const SITE = "https://aifitnessapi.com";
+  const readJson = (p) => {
+    try { return JSON.parse(fs.readFileSync(p, "utf8")); } catch { return null; }
+  };
+  const fileOf = new Map(htmls.map((h) => [routeOf(h), h]));
+  const htmlAt = (r) => (fileOf.has(r) && !notFoundSet.has(r) ? fs.readFileSync(fileOf.get(r), "utf8") : null);
+
+  /**
+   * XML well-formedness, by hand (no dependencies): one root element, every
+   * start tag closed in order, quoted attributes, and `&` only as an entity
+   * reference (the five XML names or a character reference). Comments, CDATA,
+   * processing instructions and a doctype are skipped. Returns an error string
+   * or null.
+   */
+  const xmlError = (xml) => {
+    const stack = [];
+    let roots = 0;
+    let i = 0;
+    const text = (s) => {
+      for (const m of s.matchAll(/&([^;\s]{0,12});?/g)) {
+        if (!m[0].endsWith(";") || !/^(?:lt|gt|amp|apos|quot|#\d+|#x[0-9a-fA-F]+)$/.test(m[1])) return `bad entity "${m[0]}"`;
+      }
+      if (s.includes("<")) return "stray <";
+      return null;
+    };
+    while (i < xml.length) {
+      const lt = xml.indexOf("<", i);
+      const chunk = lt === -1 ? xml.slice(i) : xml.slice(i, lt);
+      if (stack.length === 0 && chunk.trim()) return "text outside the root element";
+      const te = text(chunk);
+      if (te) return te;
+      if (lt === -1) break;
+      if (xml.startsWith("<!--", lt)) {
+        const e = xml.indexOf("-->", lt + 4);
+        if (e === -1) return "unclosed comment";
+        i = e + 3;
+      } else if (xml.startsWith("<![CDATA[", lt)) {
+        const e = xml.indexOf("]]>", lt + 9);
+        if (e === -1) return "unclosed CDATA";
+        i = e + 3;
+      } else if (xml.startsWith("<?", lt)) {
+        const e = xml.indexOf("?>", lt + 2);
+        if (e === -1) return "unclosed processing instruction";
+        i = e + 2;
+      } else if (xml.startsWith("<!", lt)) {
+        const e = xml.indexOf(">", lt + 2);
+        if (e === -1) return "unclosed declaration";
+        i = e + 1;
+      } else {
+        const m = /^<(\/?)([A-Za-z_][\w.:-]*)((?:\s+[A-Za-z_][\w.:-]*\s*=\s*(?:"[^"<]*"|'[^'<]*'))*)\s*(\/?)>/.exec(xml.slice(lt));
+        if (!m) return `malformed tag at offset ${lt}`;
+        const [whole, close, name, attrs, self] = m;
+        for (const a of attrs.matchAll(/=\s*(?:"([^"]*)"|'([^']*)')/g)) {
+          const te2 = text(a[1] ?? a[2] ?? "");
+          if (te2) return `${te2} in an attribute of <${name}>`;
+        }
+        if (close) {
+          if (stack.pop() !== name) return `</${name}> closes the wrong element`;
+        } else if (!self) {
+          if (stack.length === 0) roots++;
+          stack.push(name);
+        } else if (stack.length === 0) roots++;
+        if (roots > 1) return "more than one root element";
+        i = lt + whole.length;
+      }
+    }
+    if (stack.length) return `<${stack.at(-1)}> is never closed`;
+    if (roots !== 1) return "no root element";
+    return null;
+  };
+
+  // ── Per-vendor change timelines (/changes/<id>) and their feeds.
+  const changesDir = `${ROOT}/changes`;
+  const timelinePages = fs.existsSync(changesDir)
+    ? fs.readdirSync(changesDir).filter((f) => f.endsWith(".html")).map((f) => f.replace(/\.html$/, ""))
+    : [];
+  const feedDir = `${ROOT}/feeds/vendors`;
+  const feeds = fs.existsSync(feedDir)
+    ? fs.readdirSync(feedDir).filter((f) => f.endsWith(".xml.body")).map((f) => f.replace(/\.xml\.body$/, ""))
+    : [];
+  const changesHub = htmlAt("/changes");
+  const vendorHubSrc = fs.existsSync("src/data/vendorHubs.ts") ? fs.readFileSync("src/data/vendorHubs.ts", "utf8").replace(/^\s*\/\/.*$/gm, "") : "";
+  const hubOf = new Map([...vendorHubSrc.matchAll(/\bid: "([a-z0-9-]+)",\s*hub: "([^"]+)"/g)].map((m) => [m[1], m[2]]));
+  let timelineEntries = 0;
+  for (const id of timelinePages) {
+    const route = `/changes/${id}`;
+    const html = htmlAt(route);
+    if (html === null) continue;
+    const entries = (html.match(/\bdata-vendor-change(?=[\s>=])/g) ?? []).length;
+    const declared = Number(/\bdata-vendor-timeline-count="(\d+)"/.exec(html)?.[1] ?? NaN);
+    timelineEntries += entries;
+    if (entries < 2) problems.push(`VENDOR-CHANGES-THIN  ${route} lists ${entries} change(s); a vendor gets a timeline at two or more`);
+    if (entries !== declared) problems.push(`VENDOR-CHANGES-THIN  ${route} renders ${entries} entries but declares ${declared}`);
+
+    const record = readJson(`${ROOT}/api/v1/vendors/${id}.body`);
+    if (!record || record.item?.changeCount !== entries || record.item?.changesPage !== `${SITE}${route}`) {
+      problems.push(
+        `VENDOR-CHANGES-API  ${route} lists ${entries} entries, but /api/v1/vendors/${id} gives changeCount ${record?.item?.changeCount} and changesPage ${record?.item?.changesPage}`,
+      );
+    }
+
+    const xml = fs.existsSync(`${feedDir}/${id}.xml.body`) ? fs.readFileSync(`${feedDir}/${id}.xml.body`, "utf8") : null;
+    if (xml === null) {
+      problems.push(`VENDOR-CHANGES-FEED  ${route} has no feed at /feeds/vendors/${id}.xml`);
+    } else {
+      const err = xmlError(xml);
+      if (err) problems.push(`VENDOR-CHANGES-XML  /feeds/vendors/${id}.xml is not well-formed XML: ${err}`);
+      const items = (xml.match(/<item>/g) ?? []).length;
+      if (!/^<\?xml[^>]*\?>\s*<rss\b[^>]*version="2\.0"/.test(xml) || !xml.includes(`<link>${SITE}${route}</link>`) || !xml.includes('rel="self"')) {
+        problems.push(`VENDOR-CHANGES-FEED  /feeds/vendors/${id}.xml is not an RSS 2.0 channel linking ${route} with a self link`);
+      }
+      if (items !== entries) problems.push(`VENDOR-CHANGES-FEED  /feeds/vendors/${id}.xml carries ${items} items for the ${entries} on ${route}`);
+      const meta = readJson(`${feedDir}/${id}.xml.meta`);
+      if (!/^application\/rss\+xml\b/.test(meta?.headers?.["content-type"] ?? "")) {
+        problems.push(`VENDOR-CHANGES-FEED  /feeds/vendors/${id}.xml is not served as application/rss+xml`);
+      }
+      if (!html.includes(`href="/feeds/vendors/${id}.xml"`)) problems.push(`VENDOR-CHANGES-LINK  ${route} does not link its feed`);
+    }
+
+    const linkedFrom = [["/changes", changesHub], [`/apis/${id}`, htmlAt(`/apis/${id}`)]];
+    if (hubOf.has(id)) linkedFrom.push([hubOf.get(id), htmlAt(hubOf.get(id))]);
+    for (const [from, page] of linkedFrom) {
+      if (page !== null && page !== undefined && !page.includes(`href="${route}"`)) problems.push(`VENDOR-CHANGES-LINK  ${from} does not link ${route}`);
+    }
+  }
+  for (const id of feeds) {
+    if (!timelinePages.includes(id) || htmlAt(`/changes/${id}`) === null) {
+      problems.push(`VENDOR-CHANGES-FEED  /feeds/vendors/${id}.xml is published but /changes/${id} is not`);
+    }
+  }
+  // Both directions against the API: every vendor record that names two or
+  // more changes must have its page.
+  if (fs.existsSync(`${ROOT}/api/v1/vendors`)) {
+    for (const f of fs.readdirSync(`${ROOT}/api/v1/vendors`).filter((x) => x.endsWith(".body"))) {
+      const id = f.replace(/\.body$/, "");
+      const rec = readJson(`${ROOT}/api/v1/vendors/${f}`);
+      if ((rec?.item?.changeCount ?? 0) >= 2 && !timelinePages.includes(id)) {
+        problems.push(`VENDOR-CHANGES-API  /api/v1/vendors/${id} names ${rec.item.changeCount} changes but /changes/${id} was not built`);
+      }
+    }
+  } else {
+    problems.push("VENDOR-CHANGES-API  /api/v1/vendors was not built");
+  }
+  // The site-wide changes feed is held to the same parser.
+  const sitewide = fs.existsSync(`${ROOT}/changes.xml.body`) ? fs.readFileSync(`${ROOT}/changes.xml.body`, "utf8") : null;
+  const sitewideErr = sitewide === null ? "missing from the build" : xmlError(sitewide);
+  if (sitewideErr) problems.push(`VENDOR-CHANGES-XML  /changes.xml is not well-formed XML: ${sitewideErr}`);
+
+  // ── Vendor records link from their directory pages.
+  let vendorLinks = 0;
+  for (const r of [...valid].filter((x) => /^\/apis\/[a-z0-9-]+$/.test(x))) {
+    const html = htmlAt(r);
+    if (html === null) continue;
+    const id = r.slice("/apis/".length);
+    if (html.includes(`href="${SITE}/api/v1/vendors/${id}"`)) vendorLinks++;
+    else problems.push(`API-VENDOR-UNLINKED  ${r} does not link its record at /api/v1/vendors/${id}`);
+  }
+
+  // ── /press: every figure carries a source file and a date, the files it
+  // names exist, and the counts agree with the files they count.
+  let pressStats = 0;
+  const press = htmlAt("/press");
+  if (press === null) {
+    problems.push("PRESS-MISSING  /press was not built");
+  } else {
+    const stats = [...press.matchAll(/<li\b[^>]*\bdata-press-stat="([^"]+)"[^>]*>/g)].map((m) => ({
+      id: m[1],
+      source: decode(/\bdata-press-source="([^"]*)"/.exec(m[0])?.[1] ?? ""),
+      date: /\bdata-press-date="([^"]*)"/.exec(m[0])?.[1] ?? "",
+      at: m.index,
+    }));
+    pressStats = stats.length;
+    if (stats.length < 6) problems.push(`PRESS-UNSOURCED  /press renders ${stats.length} figures; expected the site's own six and more`);
+    for (const s of stats) {
+      if (!s.source || !/^\d{4}-\d{2}-\d{2}$/.test(s.date)) {
+        problems.push(`PRESS-UNSOURCED  /press figure #${s.id} has no source file or no YYYY-MM-DD date`);
+        continue;
+      }
+      for (const tok of s.source.split(/[,\s()]+/).filter((t) => /^(?:src|public|scripts)\//.test(t) && !t.includes("*"))) {
+        if (!fs.existsSync(tok)) problems.push(`PRESS-UNSOURCED  /press figure #${s.id} names ${tok}, which is not in the repository`);
+      }
+    }
+    // The counts, recounted from the published files.
+    const valueOf = (id) => {
+      const s = stats.find((x) => x.id === id);
+      if (!s) return null;
+      const block = press.slice(s.at, press.indexOf("</li>", s.at));
+      return decode(/<p\b[^>]*>([^<]*)<\/p>/.exec(block)?.[1] ?? "").trim();
+    };
+    const datasetFiles = fs.readdirSync("public/datasets").filter((f) => f.endsWith(".json") && !f.startsWith("manifest"));
+    const expect = {
+      "datasets": String(datasetFiles.length),
+      "changes-logged": String(readJson("public/datasets/fitness-api-changes-2026.json")?.items?.length),
+      "apis-tracked": String(readJson(`${ROOT}/api/v1/apis.body`)?.count),
+      "api": String(readJson(`${ROOT}/api/v1.body`)?.collections?.length),
+    };
+    for (const [id, want] of Object.entries(expect)) {
+      const got = valueOf(id);
+      if (got !== want) problems.push(`PRESS-DRIFT  /press #${id} reads "${got}" but the published files give ${want}`);
+    }
+    if (!/data-press-disclosure[\s\S]*?funded by KinesteX/.test(press)) {
+      problems.push("PRESS-DISCLOSURE  /press does not carry its funder disclosure (funded by KinesteX)");
+    }
+  }
+
+  // ── Dataset cards and CITATION.cff, generated with the files.
+  const cff = fs.existsSync("CITATION.cff") ? fs.readFileSync("CITATION.cff", "utf8") : null;
+  if (cff === null || !/^cff-version: 1\.2\.0$/m.test(cff) || !/^license: CC-BY-4\.0$/m.test(cff) || !/^title: /m.test(cff) || !/^authors:/m.test(cff)) {
+    problems.push("DATASET-CFF  CITATION.cff is missing or lacks cff-version 1.2.0, title, authors or license CC-BY-4.0 — run `npm run datasets`");
+  }
+  const datasetsPage = htmlAt("/datasets");
+  let cards = 0;
+  const jsonSlugs = fs.readdirSync("public/datasets").filter((f) => f.endsWith(".json") && !f.startsWith("manifest")).map((f) => f.replace(/\.json$/, ""));
+  for (const slug of jsonSlugs) {
+    const card = fs.existsSync(`public/datasets/${slug}.md`) ? fs.readFileSync(`public/datasets/${slug}.md`, "utf8") : null;
+    const doc = readJson(`public/datasets/${slug}.json`);
+    if (card === null) {
+      problems.push(`DATASET-CARD-MISSING  public/datasets/${slug}.md — run \`npm run datasets\``);
+      continue;
+    }
+    cards++;
+    const cols = doc?.items?.length ? [...new Set(doc.items.flatMap((it) => Object.keys(it)))] : [];
+    const missing = cols.filter((c) => !card.includes(`| \`${c}\` |`));
+    if (missing.length || !card.includes(`| Rows | ${doc?.items?.length} |`) || !card.includes(`| Version | ${doc?.version} |`)) {
+      problems.push(`DATASET-CARD-STALE  public/datasets/${slug}.md does not describe the file as published${missing.length ? ` (columns missing: ${missing.join(", ")})` : " (rows or version differ)"} — run \`npm run datasets\``);
+    }
+    if (!/## License/.test(card) || !/## Update cadence/.test(card) || !/## Cite as/.test(card)) {
+      problems.push(`DATASET-CARD-STALE  public/datasets/${slug}.md lacks its license, update cadence or citation section`);
+    }
+    if (cff !== null && !cff.includes(`${SITE}/datasets/${slug}.json`)) problems.push(`DATASET-CFF  CITATION.cff does not list ${slug}`);
+    if (datasetsPage !== null) {
+      if (!datasetsPage.includes(`href="/datasets/${slug}.md"`)) problems.push(`DATASET-CARD-UNLINKED  /datasets does not link the card for ${slug}`);
+      if (!datasetsPage.includes(`data-bibtex="${slug}"`)) problems.push(`DATASET-CARD-UNLINKED  /datasets carries no BibTeX entry for ${slug}`);
+    }
+  }
+  for (const f of fs.readdirSync("public/datasets").filter((x) => x.endsWith(".md"))) {
+    if (!jsonSlugs.includes(f.replace(/\.md$/, ""))) problems.push(`DATASET-CARD-MISSING  public/datasets/${f} is a card for no published dataset`);
+  }
+
+  console.log(
+    `Vendor timelines: ${timelinePages.length} pages (${timelineEntries} entries), ${feeds.length} feeds parsed as XML; ` +
+      `${vendorLinks} directory pages link their /api/v1/vendors record; /press: ${pressStats} sourced figures; ` +
+      `dataset cards: ${cards} of ${jsonSlugs.length}, CITATION.cff ${cff ? "ok" : "MISSING"}.`,
+  );
+}
+
 // ── The published gate list ─────────────────────────────────────────────
 // /gates publishes this suite as prose: one row per failure code, saying in
 // a sentence what the build refuses to ship when that code fires. A written

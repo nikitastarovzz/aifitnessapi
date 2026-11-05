@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import { vendorChangesPath, vendorFeedPath, vendorTimelines } from "@/lib/vendorChanges";
 import path from "node:path";
 import { GLANCE_HUBS, HUB_NAMES, hubGlance, hubQa } from "@/data/hubGlance";
 import { moneyPages, moneyCluster, oneLineAnswer, MONEY_GROUP_LABELS, MONEY_GROUP_ORDER } from "@/data/moneyPages";
@@ -80,6 +81,7 @@ export function GET() {
     `- Claims index (one sentence per citable fact): ${absoluteUrl("/claims.json")}`,
     `- Read-only JSON API over the open datasets, no key, CC BY 4.0: ${absoluteUrl("/api/v1")}; OpenAPI 3.1 document: ${absoluteUrl("/api/v1/openapi.json")}`,
     `- Hosted MCP server for AI assistants (Streamable HTTP, stateless, read-only tools): ${absoluteUrl("/mcp")}`,
+    `- One vendor's changes at a time, page and RSS: ${vendorTimelines().map((t) => `${absoluteUrl(vendorChangesPath(t.api.id))} (${absoluteUrl(vendorFeedPath(t.api.id))})`).join(", ")}; everything the site holds on a directory product as JSON: ${absoluteUrl("/api/v1/vendors/<id>")}`,
     `- Per-section RSS: ${absoluteUrl("/feeds/<cluster>.xml")} (e.g. ${absoluteUrl("/feeds/devices.xml")}); blog as JSON Feed: ${absoluteUrl("/feed.json")}`,
     "- Each page states the one question it owns; FAQ answers are individually addressable at `#faq-1`, `#faq-2`, …",
     "- Sourcing: claims trace to a primary source checked on the review date, and unverifiable claims are labeled as such rather than rounded up.",
@@ -135,6 +137,7 @@ export function GET() {
     "",
     "## Datasets (CC BY 4.0)",
     `- [Open datasets](${absoluteUrl("/datasets")}): every dataset this site publishes, JSON and CSV, versioned rather than overwritten.`,
+    `- Each dataset has a generated card (fields, sources, license, update cadence) at ${absoluteUrl("/datasets/<slug>.md")}, a BibTeX entry on ${absoluteUrl("/datasets#cite")}, and the repository carries CITATION.cff.`,
     ...datasetLines(),
     "",
     "## API and MCP",
