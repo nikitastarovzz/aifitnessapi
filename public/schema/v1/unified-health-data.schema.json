@@ -1,0 +1,530 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aifitnessapi.com/schema/v1/unified-health-data.schema.json",
+  "title": "Unified health-data record (aifitnessapi.com, v1)",
+  "description": "A vendor-neutral shape for 9 common health records, each field mapped to HealthKit, Health Connect, the Google Health API and Wear OS Health Services at https://aifitnessapi.com/schema. Version 1.0.0. License: CC BY 4.0 (attribution: aifitnessapi.com).",
+  "x-version": "1.0.0",
+  "x-license": "CC-BY-4.0",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/HeartRate"
+    },
+    {
+      "$ref": "#/$defs/Steps"
+    },
+    {
+      "$ref": "#/$defs/SleepSession"
+    },
+    {
+      "$ref": "#/$defs/Workout"
+    },
+    {
+      "$ref": "#/$defs/BodyMass"
+    },
+    {
+      "$ref": "#/$defs/BodyFat"
+    },
+    {
+      "$ref": "#/$defs/Height"
+    },
+    {
+      "$ref": "#/$defs/HeartRateVariability"
+    },
+    {
+      "$ref": "#/$defs/OxygenSaturation"
+    }
+  ],
+  "$defs": {
+    "Source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "platform",
+        "nativeType"
+      ],
+      "properties": {
+        "platform": {
+          "type": "string",
+          "enum": [
+            "healthkit",
+            "health-connect",
+            "google-health-api",
+            "wear-os"
+          ],
+          "description": "Where the record came from."
+        },
+        "nativeType": {
+          "type": "string",
+          "description": "The source's own type name (an HK identifier, a Health Connect class, a Google Health API data type)."
+        },
+        "sourceName": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The app or device that wrote it, when the source says."
+        }
+      }
+    },
+    "HeartRate": {
+      "type": "object",
+      "title": "Heart rate sample",
+      "description": "One heart-rate reading at one instant, in beats per minute.",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "source",
+        "time",
+        "beatsPerMinute"
+      ],
+      "properties": {
+        "type": {
+          "const": "heartRate"
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        },
+        "time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The instant of the reading, RFC 3339 in UTC (a trailing Z)."
+        },
+        "utcOffset": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[+-]\\d{2}:\\d{2}$",
+          "description": "The user's UTC offset at that instant as ±HH:MM; null when the source does not carry one."
+        },
+        "beatsPerMinute": {
+          "type": "number",
+          "minimum": 0,
+          "x-unit": "count/min",
+          "description": "Heart beats per minute."
+        }
+      }
+    },
+    "Steps": {
+      "type": "object",
+      "title": "Step count over an interval",
+      "description": "The number of steps taken between two instants.",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "source",
+        "startTime",
+        "endTime",
+        "count"
+      ],
+      "properties": {
+        "type": {
+          "const": "steps"
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        },
+        "startTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Start of the interval, RFC 3339 in UTC."
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "End of the interval, RFC 3339 in UTC."
+        },
+        "startUtcOffset": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[+-]\\d{2}:\\d{2}$",
+          "description": "UTC offset at the start as ±HH:MM; null when unknown."
+        },
+        "endUtcOffset": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[+-]\\d{2}:\\d{2}$",
+          "description": "UTC offset at the end as ±HH:MM; null when unknown."
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "x-unit": "count",
+          "description": "Steps in the interval."
+        }
+      }
+    },
+    "SleepSession": {
+      "type": "object",
+      "title": "Sleep session with stages",
+      "description": "One sleep period and the stages inside it, each stage an interval with one value from the unified stage vocabulary.",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "source",
+        "startTime",
+        "endTime",
+        "stages"
+      ],
+      "properties": {
+        "type": {
+          "const": "sleepSession"
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        },
+        "startTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Start of the interval, RFC 3339 in UTC."
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "End of the interval, RFC 3339 in UTC."
+        },
+        "startUtcOffset": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[+-]\\d{2}:\\d{2}$",
+          "description": "UTC offset at the start as ±HH:MM; null when unknown."
+        },
+        "endUtcOffset": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[+-]\\d{2}:\\d{2}$",
+          "description": "UTC offset at the end as ±HH:MM; null when unknown."
+        },
+        "stages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "startTime",
+              "endTime",
+              "stage"
+            ],
+            "properties": {
+              "startTime": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "endTime": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "stage": {
+                "type": "string",
+                "enum": [
+                  "awake",
+                  "awakeInBed",
+                  "outOfBed",
+                  "inBed",
+                  "asleep",
+                  "light",
+                  "deep",
+                  "rem",
+                  "restless",
+                  "unknown"
+                ]
+              }
+            }
+          },
+          "description": "Non-overlapping stage intervals inside the session; empty when the source has none."
+        }
+      }
+    },
+    "Workout": {
+      "type": "object",
+      "title": "Workout session",
+      "description": "One exercise session: when it ran, what it was, and the totals where the source states them.",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "source",
+        "startTime",
+        "endTime",
+        "activityType",
+        "nativeActivityType"
+      ],
+      "properties": {
+        "type": {
+          "const": "workout"
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        },
+        "startTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Start of the interval, RFC 3339 in UTC."
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "End of the interval, RFC 3339 in UTC."
+        },
+        "startUtcOffset": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[+-]\\d{2}:\\d{2}$",
+          "description": "UTC offset at the start as ±HH:MM; null when unknown."
+        },
+        "endUtcOffset": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[+-]\\d{2}:\\d{2}$",
+          "description": "UTC offset at the end as ±HH:MM; null when unknown."
+        },
+        "activityType": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The activity as this site's workout crosswalk key (Two constants share a crosswalk row only when their names are identical after removing a leading EXERCISE_TYPE_ (Health Connect's prefix, which the Google Health API also uses on EXERCISE_TYPE_UNSPECIFIED), lowercasing, and removing every character that is not a letter or a digit). null when the source value is not in the crosswalk data."
+        },
+        "nativeActivityType": {
+          "type": "string",
+          "description": "The source's own activity value, unchanged (an Objective-C constant, an Int as text, or an enum string)."
+        },
+        "energyKcal": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "x-unit": "kcal",
+          "description": "Total energy for the session in kilocalories; null when the source carries none."
+        },
+        "distanceMeters": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "x-unit": "m",
+          "description": "Total distance in meters; null when the source carries none."
+        }
+      }
+    },
+    "BodyMass": {
+      "type": "object",
+      "title": "Body mass (weight)",
+      "description": "The user's weight at one instant, in kilograms.",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "source",
+        "time",
+        "kilograms"
+      ],
+      "properties": {
+        "type": {
+          "const": "bodyMass"
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        },
+        "time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The instant of the reading, RFC 3339 in UTC (a trailing Z)."
+        },
+        "utcOffset": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[+-]\\d{2}:\\d{2}$",
+          "description": "The user's UTC offset at that instant as ±HH:MM; null when the source does not carry one."
+        },
+        "kilograms": {
+          "type": "number",
+          "minimum": 0,
+          "x-unit": "kg",
+          "description": "Body mass in kilograms."
+        }
+      }
+    },
+    "BodyFat": {
+      "type": "object",
+      "title": "Body fat percentage",
+      "description": "Body fat as a percentage from 0 to 100.",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "source",
+        "time",
+        "percent"
+      ],
+      "properties": {
+        "type": {
+          "const": "bodyFat"
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        },
+        "time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The instant of the reading, RFC 3339 in UTC (a trailing Z)."
+        },
+        "utcOffset": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[+-]\\d{2}:\\d{2}$",
+          "description": "The user's UTC offset at that instant as ±HH:MM; null when the source does not carry one."
+        },
+        "percent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "x-unit": "%",
+          "description": "Body fat, 0–100."
+        }
+      }
+    },
+    "Height": {
+      "type": "object",
+      "title": "Height",
+      "description": "The user's height at one instant, in meters.",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "source",
+        "time",
+        "meters"
+      ],
+      "properties": {
+        "type": {
+          "const": "height"
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        },
+        "time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The instant of the reading, RFC 3339 in UTC (a trailing Z)."
+        },
+        "utcOffset": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[+-]\\d{2}:\\d{2}$",
+          "description": "The user's UTC offset at that instant as ±HH:MM; null when the source does not carry one."
+        },
+        "meters": {
+          "type": "number",
+          "minimum": 0,
+          "x-unit": "m",
+          "description": "Height in meters."
+        }
+      }
+    },
+    "HeartRateVariability": {
+      "type": "object",
+      "title": "Heart rate variability",
+      "description": "One HRV reading in milliseconds, tagged with the statistic it is. SDNN and RMSSD are different measures and never convert into each other.",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "source",
+        "time",
+        "metric",
+        "milliseconds"
+      ],
+      "properties": {
+        "type": {
+          "const": "heartRateVariability"
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        },
+        "time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The instant of the reading, RFC 3339 in UTC (a trailing Z)."
+        },
+        "utcOffset": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[+-]\\d{2}:\\d{2}$",
+          "description": "The user's UTC offset at that instant as ±HH:MM; null when the source does not carry one."
+        },
+        "metric": {
+          "type": "string",
+          "enum": [
+            "sdnn",
+            "rmssd"
+          ],
+          "description": "sdnn: standard deviation of heartbeat intervals. rmssd: root mean square of successive differences."
+        },
+        "milliseconds": {
+          "type": "number",
+          "minimum": 0,
+          "x-unit": "ms",
+          "description": "The value in milliseconds."
+        }
+      }
+    },
+    "OxygenSaturation": {
+      "type": "object",
+      "title": "Blood oxygen saturation (SpO2)",
+      "description": "One SpO2 reading as a percentage from 0 to 100.",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "source",
+        "time",
+        "percent"
+      ],
+      "properties": {
+        "type": {
+          "const": "oxygenSaturation"
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        },
+        "time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The instant of the reading, RFC 3339 in UTC (a trailing Z)."
+        },
+        "utcOffset": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[+-]\\d{2}:\\d{2}$",
+          "description": "The user's UTC offset at that instant as ±HH:MM; null when the source does not carry one."
+        },
+        "percent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "x-unit": "%",
+          "description": "Oxygen saturation, 0–100."
+        }
+      }
+    }
+  }
+}

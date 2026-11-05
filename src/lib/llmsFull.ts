@@ -1,3 +1,5 @@
+import { schemaCapsule } from "@/lib/unifiedSchemaView";
+import { converterCapsule, fitbitToolCapsule } from "@/lib/schemaToolsText";
 import { site, absoluteUrl } from "@/lib/site";
 import { TASKS_VISION_VERSION, VERIFIED_ON as POSE_BENCH_VERIFIED_ON } from "@/lib/poseBenchmark";
 import { FORM_RULES_PRIMARY_QUERY, REP_PLAYGROUND_PRIMARY_QUERY, formRulesText, leaderboardText, repPlaygroundText } from "@/lib/poseToolsText";
@@ -319,6 +321,21 @@ function toolLines(): string[] {
   out.push(`Primary query: ${FORM_RULES_PRIMARY_QUERY}`);
   out.push("");
   out.push(formRulesText());
+  out.push("");
+  out.push(`## Unified health-data schema — ${absoluteUrl("/schema")}`);
+  out.push("Primary query: unified health data schema healthkit health connect");
+  out.push("");
+  out.push(schemaCapsule());
+  out.push("");
+  out.push(`## Health data schema converter (runs on your device) — ${absoluteUrl("/tools/schema-converter")}`);
+  out.push("Primary query: convert health connect record to healthkit format");
+  out.push("");
+  out.push(converterCapsule());
+  out.push("");
+  out.push(`## Fitbit Web API to Google Health API mapping — ${absoluteUrl("/tools/fitbit-to-google-health")}`);
+  out.push("Primary query: fitbit web api to google health api endpoint mapping");
+  out.push("");
+  out.push(fitbitToolCapsule());
   out.push("");
   out.push(`## Bluetooth heart-rate lab (runs on your device) — ${absoluteUrl("/tools/heart-rate-lab")}`);
   out.push("Primary query: does my heart rate strap send rr intervals");

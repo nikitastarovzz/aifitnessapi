@@ -75,6 +75,18 @@ export const TOOL_LOOKUPS: Tool[] = [
     blurb:
       "The joint-angle thresholds open-source exercise trackers use for squats, push-ups, lunges, planks, curls and presses, each quoted from its code; null where none says.",
   },
+  {
+    path: "/tools/schema-converter",
+    name: "Health data schema converter",
+    blurb:
+      "Paste a HealthKit export row, Health Connect record or Google Health API data point and see it in one unified schema, each field traced to its source.",
+  },
+  {
+    path: "/tools/fitbit-to-google-health",
+    name: "Fitbit to Google Health API map",
+    blurb:
+      "Search every Fitbit Web API endpoint and see its Google Health API data type, method and scopes from Google's migration tables, or that none is listed.",
+  },
 ];
 
 /** The planners and demos already published on the site. Blurbs match the

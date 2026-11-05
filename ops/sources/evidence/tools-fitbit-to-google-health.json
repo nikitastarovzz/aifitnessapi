@@ -1,0 +1,2332 @@
+[
+  {
+    "claim": "Get AZM Time Series by Date carries Active Zone Minutes data (the page names active-zone-minutes), so it maps to Google's \"Active Zone Minutes\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/active-zone-minutes-timeseries/get-azm-timeseries-by-date/",
+    "quote": "/1/user/[user-id]/activities/active-zone-minutes/date/[date]/[period].json"
+  },
+  {
+    "claim": "Get AZM Time Series by Date: GET /1/user/[user-id]/activities/active-zone-minutes/date/[date]/[period].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/active-zone-minutes-timeseries/get-azm-timeseries-by-date/",
+    "quote": "/1/user/[user-id]/activities/active-zone-minutes/date/[date]/[period].json"
+  },
+  {
+    "claim": "Get AZM Time Series by Date needs the activity scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/active-zone-minutes-timeseries/get-azm-timeseries-by-date/",
+    "quote": "Scope: activity"
+  },
+  {
+    "claim": "Get AZM Time Series by Date, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/active-zone-minutes-timeseries/get-azm-timeseries-by-date/",
+    "quote": "This endpoint returns the daily summary values over a period of time by specifying a date and time period."
+  },
+  {
+    "claim": "Get AZM Time Series by Interval carries Active Zone Minutes data (the page names active-zone-minutes), so it maps to Google's \"Active Zone Minutes\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/active-zone-minutes-timeseries/get-azm-timeseries-by-interval/",
+    "quote": "/1/user/[user-id]/activities/active-zone-minutes/date/[start-date]/[end-date].json"
+  },
+  {
+    "claim": "Get AZM Time Series by Interval: GET /1/user/[user-id]/activities/active-zone-minutes/date/[start-date]/[end-date].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/active-zone-minutes-timeseries/get-azm-timeseries-by-interval/",
+    "quote": "/1/user/[user-id]/activities/active-zone-minutes/date/[start-date]/[end-date].json"
+  },
+  {
+    "claim": "Get AZM Time Series by Interval needs the activity scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/active-zone-minutes-timeseries/get-azm-timeseries-by-interval/",
+    "quote": "Scope: activity"
+  },
+  {
+    "claim": "Get AZM Time Series by Interval, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/active-zone-minutes-timeseries/get-azm-timeseries-by-interval/",
+    "quote": "This endpoint returns the daily summary values over an interval by specifying a date range."
+  },
+  {
+    "claim": "Get Activity Time Series by Date carries Steps data (the page names steps), so it maps to Google's \"Steps\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity-timeseries/get-activity-timeseries-by-date/",
+    "quote": "GET https ://api.fitbit.com/1/user/-/activities/steps/date/2019-01-01/7d.json"
+  },
+  {
+    "claim": "Get Activity Time Series by Date carries Distance data (the page names distance), so it maps to Google's \"Distance\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity-timeseries/get-activity-timeseries-by-date/",
+    "quote": "tracker/distance"
+  },
+  {
+    "claim": "Get Activity Time Series by Date carries Floors data (the page names floors), so it maps to Google's \"Floors\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity-timeseries/get-activity-timeseries-by-date/",
+    "quote": "Elevation time series (/elevation, /floors) are only available for"
+  },
+  {
+    "claim": "Get Activity Time Series by Date carries Elevation data (the page names elevation), so it maps to Google's \"Elevation\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity-timeseries/get-activity-timeseries-by-date/",
+    "quote": "Elevation time series (/elevation, /floors) are only available for"
+  },
+  {
+    "claim": "Get Activity Time Series by Date carries Activity Calories data (the page names activityCalories), so it maps to Google's \"Activity Calories\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity-timeseries/get-activity-timeseries-by-date/",
+    "quote": "activityCalories"
+  },
+  {
+    "claim": "Get Activity Time Series by Date carries Activity `caloriesBMR` data (the page names caloriesBMR), so it maps to Google's \"Activity `caloriesBMR`\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity-timeseries/get-activity-timeseries-by-date/",
+    "quote": "caloriesBMR - Value includes only"
+  },
+  {
+    "claim": "Get Activity Time Series by Date carries Activity time series minutes sedentary data (the page names minutesSedentary), so it maps to Google's \"Activity time series minutes sedentary\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity-timeseries/get-activity-timeseries-by-date/",
+    "quote": "minutesSedentary"
+  },
+  {
+    "claim": "Get Activity Time Series by Date carries Activity time series swimming strokes data (the page names swimming-strokes), so it maps to Google's \"Activity time series swimming strokes\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity-timeseries/get-activity-timeseries-by-date/",
+    "quote": "swimming-strokes"
+  },
+  {
+    "claim": "Get Activity Time Series by Date: GET /1/user/[user-id]/activities/[resource-path]/date/[date]/[period].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity-timeseries/get-activity-timeseries-by-date/",
+    "quote": "/1/user/[user-id]/activities/[resource-path]/date/[date]/[period].json"
+  },
+  {
+    "claim": "Get Activity Time Series by Date needs the activity scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity-timeseries/get-activity-timeseries-by-date/",
+    "quote": "Scope: activity"
+  },
+  {
+    "claim": "Get Activity Time Series by Date, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity-timeseries/get-activity-timeseries-by-date/",
+    "quote": "Retrieves the activity data for a given resource over a period of time by specifying a date and time period. The response will include only the daily summary values."
+  },
+  {
+    "claim": "Get Activity Time Series by Date Range carries Steps data (the page names steps), so it maps to Google's \"Steps\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity-timeseries/get-activity-timeseries-by-date-range/",
+    "quote": "GET https ://api.fitbit.com/1/user/-/activities/steps/date/2019-01-01/2019-01-07.json"
+  },
+  {
+    "claim": "Get Activity Time Series by Date Range carries Distance data (the page names distance), so it maps to Google's \"Distance\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity-timeseries/get-activity-timeseries-by-date-range/",
+    "quote": "tracker/distance"
+  },
+  {
+    "claim": "Get Activity Time Series by Date Range carries Floors data (the page names floors), so it maps to Google's \"Floors\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity-timeseries/get-activity-timeseries-by-date-range/",
+    "quote": "Elevation time series (/elevation, /floors) are only available for"
+  },
+  {
+    "claim": "Get Activity Time Series by Date Range carries Elevation data (the page names elevation), so it maps to Google's \"Elevation\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity-timeseries/get-activity-timeseries-by-date-range/",
+    "quote": "Elevation time series (/elevation, /floors) are only available for"
+  },
+  {
+    "claim": "Get Activity Time Series by Date Range carries Activity Calories data (the page names activityCalories), so it maps to Google's \"Activity Calories\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity-timeseries/get-activity-timeseries-by-date-range/",
+    "quote": "activityCalories"
+  },
+  {
+    "claim": "Get Activity Time Series by Date Range carries Activity `caloriesBMR` data (the page names caloriesBMR), so it maps to Google's \"Activity `caloriesBMR`\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity-timeseries/get-activity-timeseries-by-date-range/",
+    "quote": "caloriesBMR - Value includes only"
+  },
+  {
+    "claim": "Get Activity Time Series by Date Range carries Activity time series minutes sedentary data (the page names minutesSedentary), so it maps to Google's \"Activity time series minutes sedentary\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity-timeseries/get-activity-timeseries-by-date-range/",
+    "quote": "minutesSedentary"
+  },
+  {
+    "claim": "Get Activity Time Series by Date Range carries Activity time series swimming strokes data (the page names swimming-strokes), so it maps to Google's \"Activity time series swimming strokes\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity-timeseries/get-activity-timeseries-by-date-range/",
+    "quote": "swimming-strokes"
+  },
+  {
+    "claim": "Get Activity Time Series by Date Range: GET /1/user/[user-id]/activities/[resource-path]/date/[start-date]/[end-date].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity-timeseries/get-activity-timeseries-by-date-range/",
+    "quote": "/1/user/[user-id]/activities/[resource-path]/date/[start-date]/[end-date].json"
+  },
+  {
+    "claim": "Get Activity Time Series by Date Range needs the activity scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity-timeseries/get-activity-timeseries-by-date-range/",
+    "quote": "Scope: activity"
+  },
+  {
+    "claim": "Get Activity Time Series by Date Range, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity-timeseries/get-activity-timeseries-by-date-range/",
+    "quote": "Retrieves the activity data for a given resource over a period of time by specifying a date range. The response will include only the daily summary values."
+  },
+  {
+    "claim": "Create Activity Goal: POST /1/user/[user-id]/activities/goals/[period].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/create-activity-goals/",
+    "quote": "/1/user/[user-id]/activities/goals/[period].json"
+  },
+  {
+    "claim": "Create Activity Goal needs the activity scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/create-activity-goals/",
+    "quote": "Scope: activity"
+  },
+  {
+    "claim": "Create Activity Goal, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/create-activity-goals/",
+    "quote": "Creates or updates a user's daily or weekly activity goal."
+  },
+  {
+    "claim": "Create Activity Log carries Recorded activity data (the page names activityName), so it maps to Google's \"Recorded activity\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/create-activity-log/",
+    "quote": "activityId or activityName must be provided."
+  },
+  {
+    "claim": "Create Activity Log: POST /1/user/[user-id]/activities.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/create-activity-log/",
+    "quote": "/1/user/[user-id]/activities.json"
+  },
+  {
+    "claim": "Create Activity Log needs the activity scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/create-activity-log/",
+    "quote": "Scope: activity"
+  },
+  {
+    "claim": "Create Activity Log, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/create-activity-log/",
+    "quote": "Creates a log entry containing the Fitbit user's activity or private custom activity."
+  },
+  {
+    "claim": "Create Favorite Activity: POST /1/user/[user-id]/activities/favorite/[activity-id].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/create-favorite-activity/",
+    "quote": "/1/user/[user-id]/activities/favorite/[activity-id].json"
+  },
+  {
+    "claim": "Create Favorite Activity needs the activity scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/create-favorite-activity/",
+    "quote": "Scope: activity"
+  },
+  {
+    "claim": "Create Favorite Activity, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/create-favorite-activity/",
+    "quote": "Adds the activity with the given ID to user's list of favorite activities."
+  },
+  {
+    "claim": "Delete Activity Log carries Recorded activity data (the page names activity-log-id), so it maps to Google's \"Recorded activity\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/delete-activity-log/",
+    "quote": "/1/user/[user-id]/activities/[activity-log-id].json"
+  },
+  {
+    "claim": "Delete Activity Log: DELETE /1/user/[user-id]/activities/[activity-log-id].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/delete-activity-log/",
+    "quote": "/1/user/[user-id]/activities/[activity-log-id].json"
+  },
+  {
+    "claim": "Delete Activity Log needs the activity scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/delete-activity-log/",
+    "quote": "Scope: activity"
+  },
+  {
+    "claim": "Delete Activity Log, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/delete-activity-log/",
+    "quote": "Deletes a user’s activity log entry with the given ID."
+  },
+  {
+    "claim": "Delete Favorite Activity: DELETE /1/user/[user-id]/activities/favorite/[activity-id].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/delete-favorite-activity/",
+    "quote": "/1/user/[user-id]/activities/favorite/[activity-id].json"
+  },
+  {
+    "claim": "Delete Favorite Activity needs the activity scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/delete-favorite-activity/",
+    "quote": "Scope: activity"
+  },
+  {
+    "claim": "Delete Favorite Activity, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/delete-favorite-activity/",
+    "quote": "Removes the activity from a user’s list of favorite activities."
+  },
+  {
+    "claim": "Get Activity Goals: GET /1/user/[user-id]/activities/goals/[period].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-activity-goals/",
+    "quote": "/1/user/[user-id]/activities/goals/[period].json"
+  },
+  {
+    "claim": "Get Activity Goals needs the activity scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-activity-goals/",
+    "quote": "Scope: activity"
+  },
+  {
+    "claim": "Get Activity Goals, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-activity-goals/",
+    "quote": "Retrieves a user's current daily or weekly activity goals."
+  },
+  {
+    "claim": "Get Activity Log List carries Recorded activity data (the page names activityName), so it maps to Google's \"Recorded activity\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-activity-log-list/",
+    "quote": "activities : activityName"
+  },
+  {
+    "claim": "Get Activity Log List: GET /1/user/[user-id]/activities/list.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-activity-log-list/",
+    "quote": "/1/user/[user-id]/activities/list.json"
+  },
+  {
+    "claim": "Get Activity Log List needs the activity scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-activity-log-list/",
+    "quote": "Scope: activity"
+  },
+  {
+    "claim": "Get Activity Log List, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-activity-log-list/",
+    "quote": "Retrieves a list of a user's activity log entries before or after a given day."
+  },
+  {
+    "claim": "Get Activity TCX: GET /1/user/[user-id]/activities/[log-id].tcx",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-activity-tcx/",
+    "quote": "/1/user/[user-id]/activities/[log-id].tcx"
+  },
+  {
+    "claim": "Get Activity TCX needs the activity and location scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-activity-tcx/",
+    "quote": "Scope: activity and location"
+  },
+  {
+    "claim": "Get Activity TCX, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-activity-tcx/",
+    "quote": "The Training Center XML (TCX) is a data exchange format that contains GPS, heart rate, and lap data. This endpoint retrieves the details of a user's location using GPS and heart rate data during a logged exercise."
+  },
+  {
+    "claim": "Get Activity Type: GET /1/activities/[activity-id].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-activity-type/",
+    "quote": "/1/activities/[activity-id].json"
+  },
+  {
+    "claim": "Get Activity Type needs the activity scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-activity-type/",
+    "quote": "Scope: activity"
+  },
+  {
+    "claim": "Get Activity Type, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-activity-type/",
+    "quote": "Retrieves the details for a single activity from the Fitbit activities database in the format requested. If available, activity level details will display."
+  },
+  {
+    "claim": "Get All Activity Types: GET /1/activities.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-all-activity-types/",
+    "quote": "/1/activities.json"
+  },
+  {
+    "claim": "Get All Activity Types needs the activity scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-all-activity-types/",
+    "quote": "Scope: activity"
+  },
+  {
+    "claim": "Get All Activity Types, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-all-activity-types/",
+    "quote": "Retrieves a list of all valid Fitbit public activities and the private, user-created activities from the Fitbit activities database in the format requested. If available, activity level details will display."
+  },
+  {
+    "claim": "Get Daily Activity Summary carries Activity `caloriesOut` data (the page names caloriesOut), so it maps to Google's \"Activity `caloriesOut`\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-daily-activity-summary/",
+    "quote": "goals : caloriesOut"
+  },
+  {
+    "claim": "Get Daily Activity Summary carries Activity `caloriesBMR` data (the page names caloriesBMR), so it maps to Google's \"Activity `caloriesBMR`\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-daily-activity-summary/",
+    "quote": "summary : caloriesBMR"
+  },
+  {
+    "claim": "Get Daily Activity Summary carries Activity Calories data (the page names activityCalories), so it maps to Google's \"Activity Calories\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-daily-activity-summary/",
+    "quote": "summary : activityCalories"
+  },
+  {
+    "claim": "Get Daily Activity Summary carries Steps data (the page names steps), so it maps to Google's \"Steps\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-daily-activity-summary/",
+    "quote": "activities : steps"
+  },
+  {
+    "claim": "Get Daily Activity Summary carries Floors data (the page names floors), so it maps to Google's \"Floors\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-daily-activity-summary/",
+    "quote": "goals : floors"
+  },
+  {
+    "claim": "Get Daily Activity Summary carries Elevation data (the page names elevation), so it maps to Google's \"Elevation\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-daily-activity-summary/",
+    "quote": "summary : elevation"
+  },
+  {
+    "claim": "Get Daily Activity Summary carries Resting heart rate data (the page names restingHeartRate), so it maps to Google's \"Resting heart rate\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-daily-activity-summary/",
+    "quote": "summary : restingHeartRate"
+  },
+  {
+    "claim": "Get Daily Activity Summary: GET /1/user/[user-id]/activities/date/[date].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-daily-activity-summary/",
+    "quote": "/1/user/[user-id]/activities/date/[date].json"
+  },
+  {
+    "claim": "Get Daily Activity Summary needs the activity scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-daily-activity-summary/",
+    "quote": "Scope: activity"
+  },
+  {
+    "claim": "Get Daily Activity Summary, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-daily-activity-summary/",
+    "quote": "Retrieves a summary and list of a user’s activities and activity log entries for a given day."
+  },
+  {
+    "claim": "Get Favorite Activities: GET /1/user/[user-id]/activities/favorite.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-favorite-activities/",
+    "quote": "/1/user/[user-id]/activities/favorite.json"
+  },
+  {
+    "claim": "Get Favorite Activities needs the activity scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-favorite-activities/",
+    "quote": "Scope: activity"
+  },
+  {
+    "claim": "Get Favorite Activities, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-favorite-activities/",
+    "quote": "Retrieves a list of a user's favorite activities."
+  },
+  {
+    "claim": "Get Frequent Activities: GET /1/user/[user-id]/activities/frequent.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-frequent-activities/",
+    "quote": "/1/user/[user-id]/activities/frequent.json"
+  },
+  {
+    "claim": "Get Frequent Activities needs the activity scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-frequent-activities/",
+    "quote": "Scope: activity"
+  },
+  {
+    "claim": "Get Frequent Activities, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-frequent-activities/",
+    "quote": "Retrieves a list of a user's frequent activities."
+  },
+  {
+    "claim": "Get Lifetime Stats: GET /1/user/[user-id]/activities.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-lifetime-stats/",
+    "quote": "/1/user/[user-id]/activities.json"
+  },
+  {
+    "claim": "Get Lifetime Stats needs the activity scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-lifetime-stats/",
+    "quote": "Scope: activity"
+  },
+  {
+    "claim": "Get Lifetime Stats, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-lifetime-stats/",
+    "quote": "Retrieves the user's activity statistics."
+  },
+  {
+    "claim": "Get Recent Activity Types: GET /1/user/[user-id]/activities/recent.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-recent-activity-types/",
+    "quote": "/1/user/[user-id]/activities/recent.json"
+  },
+  {
+    "claim": "Get Recent Activity Types needs the activity scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-recent-activity-types/",
+    "quote": "Scope: activity"
+  },
+  {
+    "claim": "Get Recent Activity Types, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-recent-activity-types/",
+    "quote": "Retrieves a list of a user's recent activities types logged with some details of the last activity log of that type."
+  },
+  {
+    "claim": "Get Workout Summary: GET /1/user/-/activities/[logId]/workout-summary",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-workout-summary/",
+    "quote": "/1/user/-/activities/[logId]/workout-summary"
+  },
+  {
+    "claim": "Get Workout Summary needs the activity scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-workout-summary/",
+    "quote": "Scope: activity"
+  },
+  {
+    "claim": "Get Workout Summary, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/get-workout-summary/",
+    "quote": "Exposes the ground contact time and step cadence collected during Run workouts:"
+  },
+  {
+    "claim": "Authorize: (method not printed) /oauth2/authorize",
+    "url": "https://dev.fitbit.com/build/reference/web-api/authorization/authorize/",
+    "quote": "/oauth2/authorize"
+  },
+  {
+    "claim": "Authorize, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/authorization/authorize/",
+    "quote": "Initiates the OAuth 2.0 authorization flow by presenting the consent screen to the Fitbit user."
+  },
+  {
+    "claim": "Client Credentials Grant Flow: POST /oauth2/token",
+    "url": "https://dev.fitbit.com/build/reference/web-api/authorization/client-credentials/",
+    "quote": "/oauth2/token"
+  },
+  {
+    "claim": "Client Credentials Grant Flow, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/authorization/client-credentials/",
+    "quote": "The /oauth2/token endpoint can do the following:"
+  },
+  {
+    "claim": "Introspect: POST /1.1/oauth2/introspect",
+    "url": "https://dev.fitbit.com/build/reference/web-api/authorization/introspect/",
+    "quote": "/1.1/oauth2/introspect"
+  },
+  {
+    "claim": "Introspect, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/authorization/introspect/",
+    "quote": "Allows the application to retrieve the active state of an OAuth 2.0 token. This endpoint conforms to RFC 7662 ."
+  },
+  {
+    "claim": "OAuth2 Token: POST /oauth2/token",
+    "url": "https://dev.fitbit.com/build/reference/web-api/authorization/oauth2-token/",
+    "quote": "/oauth2/token"
+  },
+  {
+    "claim": "OAuth2 Token, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/authorization/oauth2-token/",
+    "quote": "The /oauth2/token endpoint can do the following:"
+  },
+  {
+    "claim": "Refresh Token: POST /oauth2/token",
+    "url": "https://dev.fitbit.com/build/reference/web-api/authorization/refresh-token/",
+    "quote": "/oauth2/token"
+  },
+  {
+    "claim": "Refresh Token, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/authorization/refresh-token/",
+    "quote": "The /oauth2/token endpoint can do the following:"
+  },
+  {
+    "claim": "Revoke Token: POST /oauth2/revoke",
+    "url": "https://dev.fitbit.com/build/reference/web-api/authorization/revoke-token/",
+    "quote": "/oauth2/revoke"
+  },
+  {
+    "claim": "Revoke Token, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/authorization/revoke-token/",
+    "quote": "Used to disable a user's authorization for an application. The revoke endpoint, specifying either the access token or refresh token, will remove the user's authorizations and all associated tokens. This endpoint conforms to RFC 7009 ."
+  },
+  {
+    "claim": "Get Blood Glucose by Interval carries Blood Glucose data (the page names glucose), so it maps to Google's \"Blood Glucose\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/blood-glucose/get-blood-glucose-by-interval/",
+    "quote": "blood glucose levels within an interval."
+  },
+  {
+    "claim": "Get Blood Glucose by Interval: GET /1/user/-/health/metrics/glucose/values/[startDate]/[endDate].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/blood-glucose/get-blood-glucose-by-interval/",
+    "quote": "/1/user/-/health/metrics/glucose/values/[startDate]/[endDate].json"
+  },
+  {
+    "claim": "Get Blood Glucose by Interval needs the blood_glucose scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/blood-glucose/get-blood-glucose-by-interval/",
+    "quote": "Scope: blood_glucose"
+  },
+  {
+    "claim": "Get Blood Glucose by Interval, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/blood-glucose/get-blood-glucose-by-interval/",
+    "quote": "Retrieves the user's daily, min, max, sum and average values of blood glucose levels within an interval."
+  },
+  {
+    "claim": "Get Body Time Series by Date carries Weight data (the page names weight), so it maps to Google's \"Weight\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/get-body-timeseries-by-date/",
+    "quote": "Retrieves a list of all user's bmi, body fat, or weight for a given"
+  },
+  {
+    "claim": "Get Body Time Series by Date carries Body fat data (the page names fat), so it maps to Google's \"Body fat\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/get-body-timeseries-by-date/",
+    "quote": "Retrieves a list of all user's bmi, body fat, or weight for a given"
+  },
+  {
+    "claim": "Get Body Time Series by Date: GET /1/user/[user-id]/body/[resource]/date/[date]/[period].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/get-body-timeseries-by-date/",
+    "quote": "/1/user/[user-id]/body/[resource]/date/[date]/[period].json"
+  },
+  {
+    "claim": "Get Body Time Series by Date needs the weight scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/get-body-timeseries-by-date/",
+    "quote": "Scope: weight"
+  },
+  {
+    "claim": "Get Body Time Series by Date, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/get-body-timeseries-by-date/",
+    "quote": "Retrieves a list of all user's bmi, body fat, or weight for a given period."
+  },
+  {
+    "claim": "Get Body Time Series by Date Range carries Weight data (the page names weight), so it maps to Google's \"Weight\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/get-body-timeseries-by-date-range/",
+    "quote": "Retrieves a list of all user's bmi, body fat, or weight for a given date"
+  },
+  {
+    "claim": "Get Body Time Series by Date Range carries Body fat data (the page names fat), so it maps to Google's \"Body fat\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/get-body-timeseries-by-date-range/",
+    "quote": "Retrieves a list of all user's bmi, body fat, or weight for a given date"
+  },
+  {
+    "claim": "Get Body Time Series by Date Range: GET /1/user/[user-id]/body/[resource]/date/[begin-date]/[end-date].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/get-body-timeseries-by-date-range/",
+    "quote": "/1/user/[user-id]/body/[resource]/date/[begin-date]/[end-date].json"
+  },
+  {
+    "claim": "Get Body Time Series by Date Range needs the weight scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/get-body-timeseries-by-date-range/",
+    "quote": "Scope: weight"
+  },
+  {
+    "claim": "Get Body Time Series by Date Range, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/get-body-timeseries-by-date-range/",
+    "quote": "Retrieves a list of all user's bmi, body fat, or weight for a given date range."
+  },
+  {
+    "claim": "Get Body Fat Time Series by Date carries Body fat data (the page names fat), so it maps to Google's \"Body fat\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/get-bodyfat-timeseries-by-date/",
+    "quote": "Retrieves a list of all user's body fat log entries for a given period."
+  },
+  {
+    "claim": "Get Body Fat Time Series by Date: GET /1/user/[user-id]/body/log/fat/date/[date]/[period].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/get-bodyfat-timeseries-by-date/",
+    "quote": "/1/user/[user-id]/body/log/fat/date/[date]/[period].json"
+  },
+  {
+    "claim": "Get Body Fat Time Series by Date needs the weight scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/get-bodyfat-timeseries-by-date/",
+    "quote": "Scope: weight"
+  },
+  {
+    "claim": "Get Body Fat Time Series by Date, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/get-bodyfat-timeseries-by-date/",
+    "quote": "Retrieves a list of all user's body fat log entries for a given period."
+  },
+  {
+    "claim": "Get Body Fat Time Series by Date Range carries Body fat data (the page names fat), so it maps to Google's \"Body fat\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/get-bodyfat-timeseries-by-date-range/",
+    "quote": "Retrieves a list of all user's body fat log entries for a given date"
+  },
+  {
+    "claim": "Get Body Fat Time Series by Date Range: GET /1/user/[user-id]/body/log/fat/date/[start-date]/[end-date].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/get-bodyfat-timeseries-by-date-range/",
+    "quote": "/1/user/[user-id]/body/log/fat/date/[start-date]/[end-date].json"
+  },
+  {
+    "claim": "Get Body Fat Time Series by Date Range needs the weight scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/get-bodyfat-timeseries-by-date-range/",
+    "quote": "Scope: weight"
+  },
+  {
+    "claim": "Get Body Fat Time Series by Date Range, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/get-bodyfat-timeseries-by-date-range/",
+    "quote": "Retrieves a list of all user's body fat log entries for a given date range."
+  },
+  {
+    "claim": "Get Weight Time Series by Date carries Weight data (the page names weight), so it maps to Google's \"Weight\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/get-weight-timeseries-by-date/",
+    "quote": "Retrieves a list of all user's weight log entries for a given period."
+  },
+  {
+    "claim": "Get Weight Time Series by Date: GET /1/user/[user-id]/body/log/weight/date/[date]/[period].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/get-weight-timeseries-by-date/",
+    "quote": "/1/user/[user-id]/body/log/weight/date/[date]/[period].json"
+  },
+  {
+    "claim": "Get Weight Time Series by Date needs the weight scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/get-weight-timeseries-by-date/",
+    "quote": "Scope: weight"
+  },
+  {
+    "claim": "Get Weight Time Series by Date, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/get-weight-timeseries-by-date/",
+    "quote": "Retrieves a list of all user's weight log entries for a given period."
+  },
+  {
+    "claim": "Get Weight Time Series by Date Range carries Weight data (the page names weight), so it maps to Google's \"Weight\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/get-weight-timeseries-by-date-range/",
+    "quote": "Retrieves a list of all user's weight log entries for a given date range."
+  },
+  {
+    "claim": "Get Weight Time Series by Date Range: GET /1/user/[user-id]/body/log/weight/date/[start-date]/[end-date].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/get-weight-timeseries-by-date-range/",
+    "quote": "/1/user/[user-id]/body/log/weight/date/[start-date]/[end-date].json"
+  },
+  {
+    "claim": "Get Weight Time Series by Date Range needs the weight scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/get-weight-timeseries-by-date-range/",
+    "quote": "Scope: weight"
+  },
+  {
+    "claim": "Get Weight Time Series by Date Range, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/get-weight-timeseries-by-date-range/",
+    "quote": "Retrieves a list of all user's weight log entries for a given date range."
+  },
+  {
+    "claim": "Create Body Fat Goal: POST /1/user/[user-id]/body/log/fat/goal.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/create-bodyfat-goal/",
+    "quote": "/1/user/[user-id]/body/log/fat/goal.json"
+  },
+  {
+    "claim": "Create Body Fat Goal needs the weight scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/create-bodyfat-goal/",
+    "quote": "Scope: weight"
+  },
+  {
+    "claim": "Create Body Fat Goal, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/create-bodyfat-goal/",
+    "quote": "Create or update a user's body fat goal."
+  },
+  {
+    "claim": "Create Body Fat Log carries Body fat data (the page names fat), so it maps to Google's \"Body fat\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/create-bodyfat-log/",
+    "quote": "Creates a body fat log entry."
+  },
+  {
+    "claim": "Create Body Fat Log: POST /1/user/[user-id]/body/log/fat.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/create-bodyfat-log/",
+    "quote": "/1/user/[user-id]/body/log/fat.json"
+  },
+  {
+    "claim": "Create Body Fat Log needs the weight scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/create-bodyfat-log/",
+    "quote": "Scope: weight"
+  },
+  {
+    "claim": "Create Body Fat Log, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/create-bodyfat-log/",
+    "quote": "Creates a body fat log entry."
+  },
+  {
+    "claim": "Create Weight Goal: POST /1/user/[user-id]/body/log/weight/goal.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/create-weight-goal/",
+    "quote": "/1/user/[user-id]/body/log/weight/goal.json"
+  },
+  {
+    "claim": "Create Weight Goal needs the weight scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/create-weight-goal/",
+    "quote": "Scope: weight"
+  },
+  {
+    "claim": "Create Weight Goal, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/create-weight-goal/",
+    "quote": "Creates or updates a user's weight goal."
+  },
+  {
+    "claim": "Create Weight Log carries Weight data (the page names weight), so it maps to Google's \"Weight\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/create-weight-log/",
+    "quote": "Creates a weight log entry"
+  },
+  {
+    "claim": "Create Weight Log: POST /1/user/[user-id]/body/log/weight.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/create-weight-log/",
+    "quote": "/1/user/[user-id]/body/log/weight.json"
+  },
+  {
+    "claim": "Create Weight Log needs the weight scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/create-weight-log/",
+    "quote": "Scope: weight"
+  },
+  {
+    "claim": "Create Weight Log, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/create-weight-log/",
+    "quote": "Creates a weight log entry"
+  },
+  {
+    "claim": "Delete Body Fat Log carries Body fat data (the page names body-fat-log-id), so it maps to Google's \"Body fat\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/delete-bodyfat-log/",
+    "quote": "/1/user/[user-id]/body/log/fat/[body-fat-log-id].json"
+  },
+  {
+    "claim": "Delete Body Fat Log: DELETE /1/user/[user-id]/body/log/fat/[body-fat-log-id].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/delete-bodyfat-log/",
+    "quote": "/1/user/[user-id]/body/log/fat/[body-fat-log-id].json"
+  },
+  {
+    "claim": "Delete Body Fat Log needs the weight scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/delete-bodyfat-log/",
+    "quote": "Scope: weight"
+  },
+  {
+    "claim": "Delete Body Fat Log, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/delete-bodyfat-log/",
+    "quote": "Deletes a body fat log entry"
+  },
+  {
+    "claim": "Delete Weight Log carries Weight data (the page names weight-log-id), so it maps to Google's \"Weight\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/delete-weight-log/",
+    "quote": "/1/user/[user-id]/body/log/weight/[weight-log-id].json"
+  },
+  {
+    "claim": "Delete Weight Log: DELETE /1/user/[user-id]/body/log/weight/[weight-log-id].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/delete-weight-log/",
+    "quote": "/1/user/[user-id]/body/log/weight/[weight-log-id].json"
+  },
+  {
+    "claim": "Delete Weight Log needs the weight scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/delete-weight-log/",
+    "quote": "Scope: weight"
+  },
+  {
+    "claim": "Delete Weight Log, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/delete-weight-log/",
+    "quote": "Deletes a Weight log entry"
+  },
+  {
+    "claim": "Get Body Goals: GET /1/user/[user-id]/body/log/[goal-type]/goal.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/get-body-goals/",
+    "quote": "/1/user/[user-id]/body/log/[goal-type]/goal.json"
+  },
+  {
+    "claim": "Get Body Goals needs the weight scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/get-body-goals/",
+    "quote": "Scope: weight"
+  },
+  {
+    "claim": "Get Body Goals, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/get-body-goals/",
+    "quote": "Retrieves a user's body fat and weight goals."
+  },
+  {
+    "claim": "Get Body Fat Log carries Body fat data (the page names fat), so it maps to Google's \"Body fat\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/get-bodyfat-log/",
+    "quote": "Retrieves a list of all user's body fat log entries for a given date."
+  },
+  {
+    "claim": "Get Body Fat Log: GET /1/user/[user-id]/body/log/fat/date/[date].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/get-bodyfat-log/",
+    "quote": "/1/user/[user-id]/body/log/fat/date/[date].json"
+  },
+  {
+    "claim": "Get Body Fat Log needs the weight scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/get-bodyfat-log/",
+    "quote": "Scope: weight"
+  },
+  {
+    "claim": "Get Body Fat Log, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/get-bodyfat-log/",
+    "quote": "Retrieves a list of all user's body fat log entries for a given date."
+  },
+  {
+    "claim": "Get Weight Log carries Weight data (the page names weight), so it maps to Google's \"Weight\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/get-weight-log/",
+    "quote": "Retrieves a list of all user's weight log entries for a given date."
+  },
+  {
+    "claim": "Get Weight Log: GET /1/user/[user-id]/body/log/weight/date/[date].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/get-weight-log/",
+    "quote": "/1/user/[user-id]/body/log/weight/date/[date].json"
+  },
+  {
+    "claim": "Get Weight Log needs the weight scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/get-weight-log/",
+    "quote": "Scope: weight"
+  },
+  {
+    "claim": "Get Weight Log, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/get-weight-log/",
+    "quote": "Retrieves a list of all user's weight log entries for a given date."
+  },
+  {
+    "claim": "Get Breathing Rate Summary by Date: GET /1/user/[user-id]/br/date/[date].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/breathing-rate/get-br-summary-by-date/",
+    "quote": "/1/user/[user-id]/br/date/[date].json"
+  },
+  {
+    "claim": "Get Breathing Rate Summary by Date needs the respiratory_rate scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/breathing-rate/get-br-summary-by-date/",
+    "quote": "Scope: respiratory_rate"
+  },
+  {
+    "claim": "Get Breathing Rate Summary by Date, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/breathing-rate/get-br-summary-by-date/",
+    "quote": "This endpoint returns average breathing rate data for a single date. Breathing Rate data applies specifically to a user’s “main sleep,” which is the longest single period of time during which they were asleep on a given date."
+  },
+  {
+    "claim": "Get Breathing Rate Summary by Interval: GET /1/user/[user-id]/br/date/[start-date]/[end-date].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/breathing-rate/get-br-summary-by-interval/",
+    "quote": "/1/user/[user-id]/br/date/[start-date]/[end-date].json"
+  },
+  {
+    "claim": "Get Breathing Rate Summary by Interval needs the respiratory_rate scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/breathing-rate/get-br-summary-by-interval/",
+    "quote": "Scope: respiratory_rate"
+  },
+  {
+    "claim": "Get Breathing Rate Summary by Interval, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/breathing-rate/get-br-summary-by-interval/",
+    "quote": "This endpoint returns average breathing rate data for a date range. Breathing Rate data applies specifically to a user’s “main sleep,” which is the longest single period of time during which they were asleep on a given date."
+  },
+  {
+    "claim": "Get VO2 Max Summary by Date carries VO2 Max value data (the page names vo2Max), so it maps to Google's \"VO2 Max value\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/cardio-fitness-score/get-vo2max-summary-by-date/",
+    "quote": "cardioscore : value : vo2Max"
+  },
+  {
+    "claim": "Get VO2 Max Summary by Date: GET /1/user/[user-id]/cardioscore/date/[date].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/cardio-fitness-score/get-vo2max-summary-by-date/",
+    "quote": "/1/user/[user-id]/cardioscore/date/[date].json"
+  },
+  {
+    "claim": "Get VO2 Max Summary by Date needs the cardio_fitness scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/cardio-fitness-score/get-vo2max-summary-by-date/",
+    "quote": "Scope: cardio_fitness"
+  },
+  {
+    "claim": "Get VO2 Max Summary by Date, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/cardio-fitness-score/get-vo2max-summary-by-date/",
+    "quote": "This endpoint returns the Cardio Fitness Score (also known as VO2 Max) data for a single date. VO2 Max values will be shown as a range if no run data is available or a single numeric value if the user uses a GPS for runs. See Additional"
+  },
+  {
+    "claim": "Get VO2 Max Summary by Interval carries VO2 Max value data (the page names vo2Max), so it maps to Google's \"VO2 Max value\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/cardio-fitness-score/get-vo2max-summary-by-interval/",
+    "quote": "cardioscore : value : vo2Max"
+  },
+  {
+    "claim": "Get VO2 Max Summary by Interval: GET /1/user/[user-id]/cardioscore/date/[start-date]/[end-date].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/cardio-fitness-score/get-vo2max-summary-by-interval/",
+    "quote": "/1/user/[user-id]/cardioscore/date/[start-date]/[end-date].json"
+  },
+  {
+    "claim": "Get VO2 Max Summary by Interval needs the cardio_fitness scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/cardio-fitness-score/get-vo2max-summary-by-interval/",
+    "quote": "Scope: cardio_fitness"
+  },
+  {
+    "claim": "Get VO2 Max Summary by Interval, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/cardio-fitness-score/get-vo2max-summary-by-interval/",
+    "quote": "This endpoint returns the Cardio Fitness Score (also know as VO2 Max) data for a date range. VO2 Max values will be shown as a range if no run data is available or a single numeric value if the user uses a GPS for runs. See Additional"
+  },
+  {
+    "claim": "Create Alarms: POST /1/user/[user-id]/devices/tracker/[tracker-id]/alarms.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/devices/create-alarm/",
+    "quote": "/1/user/[user-id]/devices/tracker/[tracker-id]/alarms.json"
+  },
+  {
+    "claim": "Create Alarms needs the settings scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/devices/create-alarm/",
+    "quote": "Scope: settings"
+  },
+  {
+    "claim": "Create Alarms, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/devices/create-alarm/",
+    "quote": "Creates an alarm for the given device. This endpoint is supported for trackers that support alarms."
+  },
+  {
+    "claim": "Delete Alarm: DELETE /1/user/[user-id]/devices/tracker/[tracker-id]/alarms/[alarm-id].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/devices/delete-alarm/",
+    "quote": "/1/user/[user-id]/devices/tracker/[tracker-id]/alarms/[alarm-id].json"
+  },
+  {
+    "claim": "Delete Alarm needs the settings scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/devices/delete-alarm/",
+    "quote": "Scope: settings"
+  },
+  {
+    "claim": "Delete Alarm, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/devices/delete-alarm/",
+    "quote": "Deletes an alarm on the given device. This endpoint is supported for trackers that support alarms."
+  },
+  {
+    "claim": "Get Alarms: GET /1/user/[user-id]/devices/tracker/[tracker-id]/alarms.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/devices/get-alarms/",
+    "quote": "/1/user/[user-id]/devices/tracker/[tracker-id]/alarms.json"
+  },
+  {
+    "claim": "Get Alarms needs the settings scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/devices/get-alarms/",
+    "quote": "Scope: settings"
+  },
+  {
+    "claim": "Get Alarms, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/devices/get-alarms/",
+    "quote": "Retrieves the alarms enabled for a specific device. This endpoint is supported for trackers that support alarms."
+  },
+  {
+    "claim": "Get Devices: GET /1/user/[user-id]/devices.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/devices/get-devices/",
+    "quote": "/1/user/[user-id]/devices.json"
+  },
+  {
+    "claim": "Get Devices needs the settings scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/devices/get-devices/",
+    "quote": "Scope: settings"
+  },
+  {
+    "claim": "Get Devices, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/devices/get-devices/",
+    "quote": "Retrieves a list of Fitbit devices paired to a user's account."
+  },
+  {
+    "claim": "Update Alarm: POST /1/user/[user-id]/devices/tracker/[tracker-id]/alarms/[alarm-id].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/devices/update-alarm/",
+    "quote": "/1/user/[user-id]/devices/tracker/[tracker-id]/alarms/[alarm-id].json"
+  },
+  {
+    "claim": "Update Alarm needs the settings scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/devices/update-alarm/",
+    "quote": "Scope: settings"
+  },
+  {
+    "claim": "Update Alarm, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/devices/update-alarm/",
+    "quote": "Updates an alarm on the given device. This endpoint is supported for trackers that support alarms."
+  },
+  {
+    "claim": "Get ECG Log List carries Electrocardiogram (ECG) data (the page names ECG), so it maps to Google's \"Electrocardiogram (ECG)\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/electrocardiogram/get-ecg-log-list/",
+    "quote": "Get ECG Log List"
+  },
+  {
+    "claim": "Get ECG Log List: GET /1/user/[user-id]/ecg/list.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/electrocardiogram/get-ecg-log-list/",
+    "quote": "/1/user/[user-id]/ecg/list.json"
+  },
+  {
+    "claim": "Get ECG Log List needs the electrocardiogram scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/electrocardiogram/get-ecg-log-list/",
+    "quote": "Scope: electrocardiogram"
+  },
+  {
+    "claim": "Get ECG Log List, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/electrocardiogram/get-ecg-log-list/",
+    "quote": "This endpoint retrieves a list of the user’s Electrocardiogram (ECG) log entries before or after a given day."
+  },
+  {
+    "claim": "Deprecated. See Friends: GET /1.1/user/[user-id]/friends.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/friends/get-friends/",
+    "quote": "/1.1/user/[user-id]/friends.json"
+  },
+  {
+    "claim": "Deprecated. See Friends needs the social scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/friends/get-friends/",
+    "quote": "Scope: social"
+  },
+  {
+    "claim": "Deprecated. See Friends, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/friends/get-friends/",
+    "quote": "# Get Friends"
+  },
+  {
+    "claim": "Deprecated. See Friends: GET /1.1/user/-/leaderboard/friends.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/friends/get-friends-leaderboard/",
+    "quote": "/1.1/user/-/leaderboard/friends.json"
+  },
+  {
+    "claim": "Deprecated. See Friends needs the social scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/friends/get-friends-leaderboard/",
+    "quote": "Scope: social"
+  },
+  {
+    "claim": "Deprecated. See Friends, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/friends/get-friends-leaderboard/",
+    "quote": "# Get Friends Leaderboard"
+  },
+  {
+    "claim": "Get Heart Rate Time Series by Date carries Resting heart rate data (the page names restingHeartRate), so it maps to Google's \"Resting heart rate\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-timeseries/get-heartrate-timeseries-by-date/",
+    "quote": "activities-heart : value : restingHeartRate"
+  },
+  {
+    "claim": "Get Heart Rate Time Series by Date carries `caloriesOut` in each heart rate zone data (the page names caloriesOut), so it maps to Google's \"`caloriesOut` in each heart rate zone\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-timeseries/get-heartrate-timeseries-by-date/",
+    "quote": "activities-heart : value : customHeartRateZone : caloriesOut"
+  },
+  {
+    "claim": "Get Heart Rate Time Series by Date: GET /1/user/[user-id]/activities/heart/date/[date]/[period].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-timeseries/get-heartrate-timeseries-by-date/",
+    "quote": "/1/user/[user-id]/activities/heart/date/[date]/[period].json"
+  },
+  {
+    "claim": "Get Heart Rate Time Series by Date needs the heartrate scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-timeseries/get-heartrate-timeseries-by-date/",
+    "quote": "Scope: heartrate"
+  },
+  {
+    "claim": "Get Heart Rate Time Series by Date, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-timeseries/get-heartrate-timeseries-by-date/",
+    "quote": "Retrieves the heart rate time series data over a period of time by specifying a date and time period. The response will include only the daily summary values."
+  },
+  {
+    "claim": "Get Heart Rate Time Series by Date Range carries Resting heart rate data (the page names restingHeartRate), so it maps to Google's \"Resting heart rate\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-timeseries/get-heartrate-timeseries-by-date-range/",
+    "quote": "activities-heart : value : restingHeartRate"
+  },
+  {
+    "claim": "Get Heart Rate Time Series by Date Range carries `caloriesOut` in each heart rate zone data (the page names caloriesOut), so it maps to Google's \"`caloriesOut` in each heart rate zone\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-timeseries/get-heartrate-timeseries-by-date-range/",
+    "quote": "activities-heart : value : customHeartRateZone : caloriesOut"
+  },
+  {
+    "claim": "Get Heart Rate Time Series by Date Range: GET /1/user/[user-id]/activities/heart/date/[start-date]/[end-date].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-timeseries/get-heartrate-timeseries-by-date-range/",
+    "quote": "/1/user/[user-id]/activities/heart/date/[start-date]/[end-date].json"
+  },
+  {
+    "claim": "Get Heart Rate Time Series by Date Range needs the heartrate scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-timeseries/get-heartrate-timeseries-by-date-range/",
+    "quote": "Scope: heartrate"
+  },
+  {
+    "claim": "Get Heart Rate Time Series by Date Range, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-timeseries/get-heartrate-timeseries-by-date-range/",
+    "quote": "Retrieves the heart rate time series data over a period of time by specifying a date range. The response will include only the daily summary values."
+  },
+  {
+    "claim": "Get HRV Summary by Date carries HRV summary data (the page names dailyRmssd), so it maps to Google's \"HRV summary\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-variability/get-hrv-summary-by-date/",
+    "quote": "hrv : value : dailyRmssd"
+  },
+  {
+    "claim": "Get HRV Summary by Date: GET /1/user/[user-id]/hrv/date/[date].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-variability/get-hrv-summary-by-date/",
+    "quote": "/1/user/[user-id]/hrv/date/[date].json"
+  },
+  {
+    "claim": "Get HRV Summary by Date needs the heartrate scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-variability/get-hrv-summary-by-date/",
+    "quote": "Scope: heartrate"
+  },
+  {
+    "claim": "Get HRV Summary by Date, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-variability/get-hrv-summary-by-date/",
+    "quote": "This endpoint returns the Heart Rate Variability (HRV) data for a single date. HRV data applies specifically to a user’s “main sleep,” which is the longest single period of time asleep on a given date."
+  },
+  {
+    "claim": "Get HRV Summary by Interval carries HRV summary data (the page names dailyRmssd), so it maps to Google's \"HRV summary\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-variability/get-hrv-summary-by-interval/",
+    "quote": "hrv : value : dailyRmssd"
+  },
+  {
+    "claim": "Get HRV Summary by Interval: GET /1/user/[user-id]/hrv/date/[startDate]/[endDate].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-variability/get-hrv-summary-by-interval/",
+    "quote": "/1/user/[user-id]/hrv/date/[startDate]/[endDate].json"
+  },
+  {
+    "claim": "Get HRV Summary by Interval needs the heartrate scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-variability/get-hrv-summary-by-interval/",
+    "quote": "Scope: heartrate"
+  },
+  {
+    "claim": "Get HRV Summary by Interval, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-variability/get-hrv-summary-by-interval/",
+    "quote": "This endpoint returns the Heart Rate Variability (HRV) data for a date range. HRV data applies specifically to a user’s “main sleep,” which is the longest single period of time asleep on a given date."
+  },
+  {
+    "claim": "Get Activity Intraday by Date carries Steps data (the page names steps), so it maps to Google's \"Steps\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-activity-intraday-by-date/",
+    "quote": "elevation floors steps"
+  },
+  {
+    "claim": "Get Activity Intraday by Date carries Distance data (the page names distance), so it maps to Google's \"Distance\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-activity-intraday-by-date/",
+    "quote": "Supported: calories distance"
+  },
+  {
+    "claim": "Get Activity Intraday by Date carries Floors data (the page names floors), so it maps to Google's \"Floors\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-activity-intraday-by-date/",
+    "quote": "elevation floors steps"
+  },
+  {
+    "claim": "Get Activity Intraday by Date carries Elevation data (the page names elevation), so it maps to Google's \"Elevation\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-activity-intraday-by-date/",
+    "quote": "elevation floors steps"
+  },
+  {
+    "claim": "Get Activity Intraday by Date: GET /1/user/[user-id]/activities/[resource]/date/[date]/1d/[detail-level].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-activity-intraday-by-date/",
+    "quote": "/1/user/[user-id]/activities/[resource]/date/[date]/1d/[detail-level].json"
+  },
+  {
+    "claim": "Get Activity Intraday by Date needs the activity scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-activity-intraday-by-date/",
+    "quote": "Scope: activity"
+  },
+  {
+    "claim": "Get Activity Intraday by Date, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-activity-intraday-by-date/",
+    "quote": "This endpoint retrieves the activity intraday time series data for a given resource on a specific date or 24 hour period. Intraday support can extend the detail-level response to include 1min, 5min and 15min for Activity."
+  },
+  {
+    "claim": "Get Activity Intraday by Interval carries Steps data (the page names steps), so it maps to Google's \"Steps\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-activity-intraday-by-interval/",
+    "quote": "elevation floors steps"
+  },
+  {
+    "claim": "Get Activity Intraday by Interval carries Distance data (the page names distance), so it maps to Google's \"Distance\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-activity-intraday-by-interval/",
+    "quote": "Supported: calories distance"
+  },
+  {
+    "claim": "Get Activity Intraday by Interval carries Floors data (the page names floors), so it maps to Google's \"Floors\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-activity-intraday-by-interval/",
+    "quote": "elevation floors steps"
+  },
+  {
+    "claim": "Get Activity Intraday by Interval carries Elevation data (the page names elevation), so it maps to Google's \"Elevation\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-activity-intraday-by-interval/",
+    "quote": "elevation floors steps"
+  },
+  {
+    "claim": "Get Activity Intraday by Interval: GET /1/user/[user-id]/activities/[resource]/date/[start-date]/[end-date]/[detail-level].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-activity-intraday-by-interval/",
+    "quote": "/1/user/[user-id]/activities/[resource]/date/[start-date]/[end-date]/[detail-level].json"
+  },
+  {
+    "claim": "Get Activity Intraday by Interval needs the activity scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-activity-intraday-by-interval/",
+    "quote": "Scope: activity"
+  },
+  {
+    "claim": "Get Activity Intraday by Interval, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-activity-intraday-by-interval/",
+    "quote": "This endpoint retrieves the activity intraday time series data for a given resource on a specific date range for a 24 hour period. Intraday support can extend the detail-level response to include 1min, 5min and 15min for Activity."
+  },
+  {
+    "claim": "Get AZM Intraday by Date carries Active Zone Minutes data (the page names active-zone-minutes), so it maps to Google's \"Active Zone Minutes\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-azm-intraday-by-date/",
+    "quote": "/1/user/[user-id]/activities/active-zone-minutes/date/[date]/1d/[detail-level].json"
+  },
+  {
+    "claim": "Get AZM Intraday by Date: GET /1/user/[user-id]/activities/active-zone-minutes/date/[date]/1d/[detail-level].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-azm-intraday-by-date/",
+    "quote": "/1/user/[user-id]/activities/active-zone-minutes/date/[date]/1d/[detail-level].json"
+  },
+  {
+    "claim": "Get AZM Intraday by Date needs the activity scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-azm-intraday-by-date/",
+    "quote": "Scope: activity"
+  },
+  {
+    "claim": "Get AZM Intraday by Date, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-azm-intraday-by-date/",
+    "quote": "This endpoint retrieves the active zone minute (AZM) intraday time series data for a specific date or 24 hour period. Intraday support can extend the detail-level response to include 1min, 5min and 15min for Active Zone Minutes."
+  },
+  {
+    "claim": "Get AZM Intraday by Interval carries Active Zone Minutes data (the page names active-zone-minutes), so it maps to Google's \"Active Zone Minutes\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-azm-intraday-by-interval/",
+    "quote": "/1/user/[user-id]/activities/active-zone-minutes/date/[start-date]/[end-date]/[detail-level].json"
+  },
+  {
+    "claim": "Get AZM Intraday by Interval: GET /1/user/[user-id]/activities/active-zone-minutes/date/[start-date]/[end-date]/[detail-level].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-azm-intraday-by-interval/",
+    "quote": "/1/user/[user-id]/activities/active-zone-minutes/date/[start-date]/[end-date]/[detail-level].json"
+  },
+  {
+    "claim": "Get AZM Intraday by Interval needs the activity scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-azm-intraday-by-interval/",
+    "quote": "Scope: activity"
+  },
+  {
+    "claim": "Get AZM Intraday by Interval, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-azm-intraday-by-interval/",
+    "quote": "This endpoint retrieves the active zone minute (AZM) intraday time series data on a specific date range or 24 hour period. Intraday support can extend the detail-level response to include 1min, 5min and 15min for Active Zone Minutes."
+  },
+  {
+    "claim": "Get Breathing Rate Intraday by Date: GET /1/user/[user-id]/br/date/[date]/all.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-br-intraday-by-date/",
+    "quote": "/1/user/[user-id]/br/date/[date]/all.json"
+  },
+  {
+    "claim": "Get Breathing Rate Intraday by Date needs the respiratory_rate scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-br-intraday-by-date/",
+    "quote": "Scope: respiratory_rate"
+  },
+  {
+    "claim": "Get Breathing Rate Intraday by Date, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-br-intraday-by-date/",
+    "quote": "This endpoint returns intraday breathing rate data for a specified date. It measures the average breathing rate throughout the day and categories your breathing rate by sleep stage. Sleep stages vary between light sleep, deep sleep, REM"
+  },
+  {
+    "claim": "Get Breathing Rate Intraday by Interval: GET /1/user/[user-id]/br/date/[start-date]/[end-date]/all.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-br-intraday-by-interval/",
+    "quote": "/1/user/[user-id]/br/date/[start-date]/[end-date]/all.json"
+  },
+  {
+    "claim": "Get Breathing Rate Intraday by Interval needs the respiratory_rate scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-br-intraday-by-interval/",
+    "quote": "Scope: respiratory_rate"
+  },
+  {
+    "claim": "Get Breathing Rate Intraday by Interval, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-br-intraday-by-interval/",
+    "quote": "This endpoint returns intraday breathing rate data for a date range. It measures the average breathing rate throughout the day and categories your breathing rate by sleep stage. Sleep stages vary between light sleep, deep sleep, REM sleep,"
+  },
+  {
+    "claim": "Get Heart Rate Intraday by Date carries Heart Rate data (the page names heart), so it maps to Google's \"Heart Rate\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-heartrate-intraday-by-date/",
+    "quote": "This endpoint retrieves the heart rate intraday time series data on a"
+  },
+  {
+    "claim": "Get Heart Rate Intraday by Date: GET /1/user/[user-id]/activities/heart/date/[date]/1d/[detail-level].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-heartrate-intraday-by-date/",
+    "quote": "/1/user/[user-id]/activities/heart/date/[date]/1d/[detail-level].json"
+  },
+  {
+    "claim": "Get Heart Rate Intraday by Date needs the heartrate scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-heartrate-intraday-by-date/",
+    "quote": "Scope: heartrate"
+  },
+  {
+    "claim": "Get Heart Rate Intraday by Date, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-heartrate-intraday-by-date/",
+    "quote": "This endpoint retrieves the heart rate intraday time series data on a specific date or 24 hour period. Intraday support can extend the detail-level response to include 1sec, 1min, 5min or 15min for Heart Rate."
+  },
+  {
+    "claim": "Get Heart Rate Intraday by Interval carries Heart Rate data (the page names heart), so it maps to Google's \"Heart Rate\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-heartrate-intraday-by-interval/",
+    "quote": "This endpoint retrieves the heart rate intraday time series data on a"
+  },
+  {
+    "claim": "Get Heart Rate Intraday by Interval: GET /1/user/[user-id]/activities/heart/date/[start-date]/[end-date]/[detail-level].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-heartrate-intraday-by-interval/",
+    "quote": "/1/user/[user-id]/activities/heart/date/[start-date]/[end-date]/[detail-level].json"
+  },
+  {
+    "claim": "Get Heart Rate Intraday by Interval needs the heartrate scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-heartrate-intraday-by-interval/",
+    "quote": "Scope: heartrate"
+  },
+  {
+    "claim": "Get Heart Rate Intraday by Interval, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-heartrate-intraday-by-interval/",
+    "quote": "This endpoint retrieves the heart rate intraday time series data on a specific date range for a 24 hour period. Intraday support can extend the detail-level response to include 1sec, 1min, 5min or 15min for Heart Rate."
+  },
+  {
+    "claim": "Get HRV Intraday by Date carries HRV Intraday data (the page names rmssd), so it maps to Google's \"HRV Intraday\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-hrv-intraday-by-date/",
+    "quote": "Mean Square of Successive Differences (rmssd), Low Frequency (LF), High"
+  },
+  {
+    "claim": "Get HRV Intraday by Date: GET /1/user/[user-id]/hrv/date/[date]/all.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-hrv-intraday-by-date/",
+    "quote": "/1/user/[user-id]/hrv/date/[date]/all.json"
+  },
+  {
+    "claim": "Get HRV Intraday by Date needs the heartrate scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-hrv-intraday-by-date/",
+    "quote": "Scope: heartrate"
+  },
+  {
+    "claim": "Get HRV Intraday by Date, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-hrv-intraday-by-date/",
+    "quote": "This endpoint returns the Heart Rate Variability (HRV) intraday data for a single date. HRV data applies specifically to a user’s “main sleep,” which is the longest single period of time asleep on a given date. It measures the HRV rate at"
+  },
+  {
+    "claim": "Get HRV Intraday by Interval carries HRV Intraday data (the page names rmssd), so it maps to Google's \"HRV Intraday\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-hrv-intraday-by-interval/",
+    "quote": "Differences (rmssd), Low Frequency (LF), High Frequency (HF), and Coverage"
+  },
+  {
+    "claim": "Get HRV Intraday by Interval: GET /1/user/[user-id]/hrv/date/[startDate]/[endDate]/all.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-hrv-intraday-by-interval/",
+    "quote": "/1/user/[user-id]/hrv/date/[startDate]/[endDate]/all.json"
+  },
+  {
+    "claim": "Get HRV Intraday by Interval needs the heartrate scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-hrv-intraday-by-interval/",
+    "quote": "Scope: heartrate"
+  },
+  {
+    "claim": "Get HRV Intraday by Interval, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-hrv-intraday-by-interval/",
+    "quote": "This endpoint returns the Heart Rate Variability (HRV) intraday data for a date range. HRV data applies specifically to a user’s “main sleep,” which is the longest single period of time asleep on a given date. It measures your HRV rate at"
+  },
+  {
+    "claim": "Get SpO2 Intraday by Date carries SpO2 Intraday data (the page names minutes), so it maps to Google's \"SpO2 Intraday\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-spo2-intraday-by-date/",
+    "quote": "minutes : value"
+  },
+  {
+    "claim": "Get SpO2 Intraday by Date: GET /1/user/[user-id]/spo2/date/[date]/all.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-spo2-intraday-by-date/",
+    "quote": "/1/user/[user-id]/spo2/date/[date]/all.json"
+  },
+  {
+    "claim": "Get SpO2 Intraday by Date needs the oxygen_saturation scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-spo2-intraday-by-date/",
+    "quote": "Scope: oxygen_saturation"
+  },
+  {
+    "claim": "Get SpO2 Intraday by Date, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-spo2-intraday-by-date/",
+    "quote": "This endpoint returns the SpO2 intraday data for a single date. SpO2 applies specifically to a user’s “main sleep”, which is the longest single period of time asleep on a given date. Spo2 values are calculated on a 5-minute"
+  },
+  {
+    "claim": "Get SpO2 Intraday by Interval carries SpO2 Intraday data (the page names minutes), so it maps to Google's \"SpO2 Intraday\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-spo2-intraday-by-interval/",
+    "quote": "minutes : value"
+  },
+  {
+    "claim": "Get SpO2 Intraday by Interval: GET /1/user/[user-id]/spo2/date/[start-date]/[end-date]/all.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-spo2-intraday-by-interval/",
+    "quote": "/1/user/[user-id]/spo2/date/[start-date]/[end-date]/all.json"
+  },
+  {
+    "claim": "Get SpO2 Intraday by Interval needs the oxygen_saturation scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-spo2-intraday-by-interval/",
+    "quote": "Scope: oxygen_saturation"
+  },
+  {
+    "claim": "Get SpO2 Intraday by Interval, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/get-spo2-intraday-by-interval/",
+    "quote": "This endpoint returns the SpO2 intraday data for a specified date range. SpO2 applies specifically to a user’s “main sleep”, which is the longest single period of time asleep on a given date. Spo2 values are calculated on a 5-minute"
+  },
+  {
+    "claim": "Get IRN Alerts List carries Irregular Rhythm Notifications (IRN) data (the page names IRN), so it maps to Google's \"Irregular Rhythm Notifications (IRN)\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/irregular-rhythm-notifications/get-irn-alerts-list/",
+    "quote": "Get IRN Alerts List"
+  },
+  {
+    "claim": "Get IRN Alerts List: GET /1/user/[user-id]/irn/alerts/list.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/irregular-rhythm-notifications/get-irn-alerts-list/",
+    "quote": "/1/user/[user-id]/irn/alerts/list.json"
+  },
+  {
+    "claim": "Get IRN Alerts List needs the irregular_rhythm_notifications scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/irregular-rhythm-notifications/get-irn-alerts-list/",
+    "quote": "Scope: irregular_rhythm_notifications"
+  },
+  {
+    "claim": "Get IRN Alerts List, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/irregular-rhythm-notifications/get-irn-alerts-list/",
+    "quote": "This endpoint returns a paginated list of Irregular Rhythm Notifications (IRN) alerts, as well as all of the alert tachograms. This endpoint will only return alerts that the user has read in the Fitbit app already, as that is meant as the"
+  },
+  {
+    "claim": "Get IRN Profile: GET /1/user/[user-id]/irn/profile.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/irregular-rhythm-notifications/get-irn-profile/",
+    "quote": "/1/user/[user-id]/irn/profile.json"
+  },
+  {
+    "claim": "Get IRN Profile needs the irregular_rhythm_notifications scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/irregular-rhythm-notifications/get-irn-profile/",
+    "quote": "Scope: irregular_rhythm_notifications"
+  },
+  {
+    "claim": "Get IRN Profile, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/irregular-rhythm-notifications/get-irn-profile/",
+    "quote": "This endpoint returns the user state for Irregular Rhythm Notifications (IRN). The user state contains most information about the user’s current engagement with the feature, including onboarding progress and algorithm processing state."
+  },
+  {
+    "claim": "Get Nutrition Time Series by Date: GET /1/user/[user-id]/foods/log/[resource]/date/[date]/[period].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition-timeseries/get-nutrition-timeseries-by-date/",
+    "quote": "/1/user/[user-id]/foods/log/[resource]/date/[date]/[period].json"
+  },
+  {
+    "claim": "Get Nutrition Time Series by Date needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition-timeseries/get-nutrition-timeseries-by-date/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Get Nutrition Time Series by Date, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition-timeseries/get-nutrition-timeseries-by-date/",
+    "quote": "Retrieves the food and water consumption data for a given resource over a period of time by specifying a date and time period. The response will include only the daily summary values."
+  },
+  {
+    "claim": "Get Nutrition Time Series by Date Range: GET /1/user/[user-id]/foods/log/[resource]/date/[start-date]/[end-date].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition-timeseries/get-nutrition-timeseries-by-date-range/",
+    "quote": "/1/user/[user-id]/foods/log/[resource]/date/[start-date]/[end-date].json"
+  },
+  {
+    "claim": "Get Nutrition Time Series by Date Range needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition-timeseries/get-nutrition-timeseries-by-date-range/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Get Nutrition Time Series by Date Range, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition-timeseries/get-nutrition-timeseries-by-date-range/",
+    "quote": "Retrieves the food and water consumption data for a given resource over a period of time by specifying a date range. The response will include only the daily summary values."
+  },
+  {
+    "claim": "Add Favorite Foods: POST /1/user/[user-id]/foods/log/favorite/[food-id].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/add-favorite-foods/",
+    "quote": "/1/user/[user-id]/foods/log/favorite/[food-id].json"
+  },
+  {
+    "claim": "Add Favorite Foods needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/add-favorite-foods/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Add Favorite Foods, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/add-favorite-foods/",
+    "quote": "Adds a food with the given ID to the user's list of favorite foods."
+  },
+  {
+    "claim": "Create Food: POST /1/user/[user-id]/foods.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/create-food/",
+    "quote": "/1/user/[user-id]/foods.json"
+  },
+  {
+    "claim": "Create Food needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/create-food/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Create Food, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/create-food/",
+    "quote": "Creates a new private food for a user."
+  },
+  {
+    "claim": "Create Food Goal: POST /1/user/[user-id]/foods/log/goal.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/create-food-goal/",
+    "quote": "/1/user/[user-id]/foods/log/goal.json"
+  },
+  {
+    "claim": "Create Food Goal needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/create-food-goal/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Create Food Goal, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/create-food-goal/",
+    "quote": "Creates or updates a user's daily calorie consumption or food plan goals."
+  },
+  {
+    "claim": "Create Food Log carries Food Log data (the page names foodId), so it maps to Google's \"Food Log\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/create-food-log/",
+    "quote": "ID of the food to be logged. Either foodId or foodName must be"
+  },
+  {
+    "claim": "Create Food Log: POST /1/user/[user-id]/foods/log.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/create-food-log/",
+    "quote": "/1/user/[user-id]/foods/log.json"
+  },
+  {
+    "claim": "Create Food Log needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/create-food-log/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Create Food Log, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/create-food-log/",
+    "quote": "Creates a food log entry for a given day."
+  },
+  {
+    "claim": "Create Meal: POST /1/user/[user-id]/meals.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/create-meal/",
+    "quote": "/1/user/[user-id]/meals.json"
+  },
+  {
+    "claim": "Create Meal needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/create-meal/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Create Meal, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/create-meal/",
+    "quote": "Creates a meal with the given food."
+  },
+  {
+    "claim": "Create Water Goal: POST /1/user/[user-id]/foods/log/water/goal.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/create-water-goal/",
+    "quote": "/1/user/[user-id]/foods/log/water/goal.json"
+  },
+  {
+    "claim": "Create Water Goal needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/create-water-goal/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Create Water Goal, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/create-water-goal/",
+    "quote": "Creates or updates a user's daily water consumption goal."
+  },
+  {
+    "claim": "Create Water Log: POST /1/user/[user-id]/foods/log/water.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/create-water-log/",
+    "quote": "/1/user/[user-id]/foods/log/water.json"
+  },
+  {
+    "claim": "Create Water Log needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/create-water-log/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Create Water Log, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/create-water-log/",
+    "quote": "Create a user's water log entry."
+  },
+  {
+    "claim": "Delete Custom Food: DELETE /1/user/[user-id]/foods/[food-id].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/delete-custom-food/",
+    "quote": "/1/user/[user-id]/foods/[food-id].json"
+  },
+  {
+    "claim": "Delete Custom Food needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/delete-custom-food/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Delete Custom Food, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/delete-custom-food/",
+    "quote": "Deletes a custom food created by the user."
+  },
+  {
+    "claim": "Delete Favorite Foods: DELETE /1/user/[user-id]/foods/log/favorite/[food-id].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/delete-favorite-foods/",
+    "quote": "/1/user/[user-id]/foods/log/favorite/[food-id].json"
+  },
+  {
+    "claim": "Delete Favorite Foods needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/delete-favorite-foods/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Delete Favorite Foods, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/delete-favorite-foods/",
+    "quote": "Deletes a food with the given ID from the user's list of favorite foods."
+  },
+  {
+    "claim": "Delete Food Log carries Food Log data (the page names food-log-id), so it maps to Google's \"Food Log\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/delete-food-log/",
+    "quote": "/1/user/[user-id]/foods/log/[food-log-id].json"
+  },
+  {
+    "claim": "Delete Food Log: DELETE /1/user/[user-id]/foods/log/[food-log-id].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/delete-food-log/",
+    "quote": "/1/user/[user-id]/foods/log/[food-log-id].json"
+  },
+  {
+    "claim": "Delete Food Log needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/delete-food-log/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Delete Food Log, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/delete-food-log/",
+    "quote": "Deletes a user's food log entry using the given log ID."
+  },
+  {
+    "claim": "Delete Meal: DELETE /1/user/[user-id]/meals/[meal-id].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/delete-meal/",
+    "quote": "/1/user/[user-id]/meals/[meal-id].json"
+  },
+  {
+    "claim": "Delete Meal needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/delete-meal/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Delete Meal, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/delete-meal/",
+    "quote": "Deletes an existing meal of the given meal ID."
+  },
+  {
+    "claim": "Delete Water Log: DELETE /1/user/[user-id]/foods/log/water/[water-log-id].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/delete-water-log/",
+    "quote": "/1/user/[user-id]/foods/log/water/[water-log-id].json"
+  },
+  {
+    "claim": "Delete Water Log needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/delete-water-log/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Delete Water Log, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/delete-water-log/",
+    "quote": "Deleted a user's water log entry using the given log ID."
+  },
+  {
+    "claim": "Get Favorite Foods: GET /1/user/[user-id]/foods/log/favorite.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-favorite-foods/",
+    "quote": "/1/user/[user-id]/foods/log/favorite.json"
+  },
+  {
+    "claim": "Get Favorite Foods needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-favorite-foods/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Get Favorite Foods, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-favorite-foods/",
+    "quote": "Retrieves a list of user-specific favorite consumed foods."
+  },
+  {
+    "claim": "Get Food carries Food data (the page names food-id), so it maps to Google's \"Food\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-food/",
+    "quote": "/1/foods/[food-id].json"
+  },
+  {
+    "claim": "Get Food: GET /1/foods/[food-id].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-food/",
+    "quote": "/1/foods/[food-id].json"
+  },
+  {
+    "claim": "Get Food needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-food/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Get Food, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-food/",
+    "quote": "Retrieves the details of a specific food stored in the Fitbit food database or a private food the authorized user has entered."
+  },
+  {
+    "claim": "Get Food Goals: GET /1/user/[user-id]/foods/log/goal.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-food-goals/",
+    "quote": "/1/user/[user-id]/foods/log/goal.json"
+  },
+  {
+    "claim": "Get Food Goals needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-food-goals/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Get Food Goals, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-food-goals/",
+    "quote": "Retrieves the user's current daily calorie consumption goal and/or food plan."
+  },
+  {
+    "claim": "Get Food Locales: GET /1/foods/locales.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-food-locales/",
+    "quote": "/1/foods/locales.json"
+  },
+  {
+    "claim": "Get Food Locales needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-food-locales/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Get Food Locales, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-food-locales/",
+    "quote": "Retrieves the food locales used to search, log or create food."
+  },
+  {
+    "claim": "Get Food Log carries Food Log data (the page names foods), so it maps to Google's \"Food Log\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-food-log/",
+    "quote": "/1/user/[user-id]/foods/log/date/[date].json"
+  },
+  {
+    "claim": "Get Food Log: GET /1/user/[user-id]/foods/log/date/[date].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-food-log/",
+    "quote": "/1/user/[user-id]/foods/log/date/[date].json"
+  },
+  {
+    "claim": "Get Food Log needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-food-log/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Get Food Log, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-food-log/",
+    "quote": "Retrieves a summary of the user's food log entry for a given day."
+  },
+  {
+    "claim": "Get Food Units carries Food Measurement Unit data (the page names units), so it maps to Google's \"Food Measurement Unit\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-food-units/",
+    "quote": "Retrieves a list of all valid Fitbit food units in the format requested."
+  },
+  {
+    "claim": "Get Food Units: GET /1/foods/units.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-food-units/",
+    "quote": "/1/foods/units.json"
+  },
+  {
+    "claim": "Get Food Units needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-food-units/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Get Food Units, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-food-units/",
+    "quote": "Retrieves a list of all valid Fitbit food units in the format requested."
+  },
+  {
+    "claim": "Get Frequent Foods: GET /1/user/[user-id]/foods/log/frequent.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-frequent-foods/",
+    "quote": "/1/user/[user-id]/foods/log/frequent.json"
+  },
+  {
+    "claim": "Get Frequent Foods needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-frequent-foods/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Get Frequent Foods, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-frequent-foods/",
+    "quote": "Retrieves a list of user-specific frequent consumed foods."
+  },
+  {
+    "claim": "Get Meal: GET /1/user/[user-id]/meals/[meal-id].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-meal/",
+    "quote": "/1/user/[user-id]/meals/[meal-id].json"
+  },
+  {
+    "claim": "Get Meal needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-meal/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Get Meal, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-meal/",
+    "quote": "Retrieves a single meal created by the user from their food log given the meal id."
+  },
+  {
+    "claim": "Get Meals: GET /1/user/[user-id]/meals.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-meals/",
+    "quote": "/1/user/[user-id]/meals.json"
+  },
+  {
+    "claim": "Get Meals needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-meals/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Get Meals, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-meals/",
+    "quote": "Retrieves a list of meals created by the user from their food log."
+  },
+  {
+    "claim": "Get Recent Foods: GET /1/user/[user-id]/foods/log/recent.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-recent-foods/",
+    "quote": "/1/user/[user-id]/foods/log/recent.json"
+  },
+  {
+    "claim": "Get Recent Foods needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-recent-foods/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Get Recent Foods, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-recent-foods/",
+    "quote": "Retrieves a list of user-specific recently consumed foods."
+  },
+  {
+    "claim": "Get Water Goal: GET /1/user/[user-id]/foods/log/water/goal.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-water-goal/",
+    "quote": "/1/user/[user-id]/foods/log/water/goal.json"
+  },
+  {
+    "claim": "Get Water Goal needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-water-goal/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Get Water Goal, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-water-goal/",
+    "quote": "Retrieves a user's daily water consumption goal."
+  },
+  {
+    "claim": "Get Water Log: GET /1/user/[user-id]/foods/log/water/date/[date].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-water-log/",
+    "quote": "/1/user/[user-id]/foods/log/water/date/[date].json"
+  },
+  {
+    "claim": "Get Water Log needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-water-log/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Get Water Log, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/get-water-log/",
+    "quote": "Retrieves a summary and list of a user's water log entries for a given day."
+  },
+  {
+    "claim": "Search Foods: GET /1/foods/search.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/search-foods/",
+    "quote": "/1/foods/search.json"
+  },
+  {
+    "claim": "Search Foods needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/search-foods/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Search Foods, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/search-foods/",
+    "quote": "Retrieves a list of public foods from the Fitbit foods database and private foods the user created in the format requested."
+  },
+  {
+    "claim": "Update Food Log carries Food Log data (the page names food-log-id), so it maps to Google's \"Food Log\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/update-food-log/",
+    "quote": "food-log-id required The ID of the food log to edit."
+  },
+  {
+    "claim": "Update Food Log: POST /1/user/[user-id]/foods/log.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/update-food-log/",
+    "quote": "/1/user/[user-id]/foods/log.json"
+  },
+  {
+    "claim": "Update Food Log needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/update-food-log/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Update Food Log, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/update-food-log/",
+    "quote": "Updates the quantity or calories consumed for a user's food log entry with the given Food Log ID. The food item being edited in the food log must contain a foodId with a positive integer value."
+  },
+  {
+    "claim": "Update Meal: POST /1/user/[user-id]/meals/[meal-id].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/update-meal/",
+    "quote": "/1/user/[user-id]/meals/[meal-id].json"
+  },
+  {
+    "claim": "Update Meal needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/update-meal/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Update Meal, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/update-meal/",
+    "quote": "Updates an existing meal with the contents of the request."
+  },
+  {
+    "claim": "Update Water Log: POST /1/user/[user-id]/foods/log/water/[water-log-id].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/update-water-log/",
+    "quote": "/1/user/[user-id]/foods/log/water/[water-log-id].json"
+  },
+  {
+    "claim": "Update Water Log needs the nutrition scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/update-water-log/",
+    "quote": "Scope: nutrition"
+  },
+  {
+    "claim": "Update Water Log, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/update-water-log/",
+    "quote": "Updates the quantity consumed for a user's water log entry with the given Water Log ID."
+  },
+  {
+    "claim": "Create Sleep Goal: POST /1.2/user/[user-id]/sleep/goal.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/create-sleep-goals/",
+    "quote": "/1.2/user/[user-id]/sleep/goal.json"
+  },
+  {
+    "claim": "Create Sleep Goal needs the sleep scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/create-sleep-goals/",
+    "quote": "Scope: sleep"
+  },
+  {
+    "claim": "Create Sleep Goal, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/create-sleep-goals/",
+    "quote": "Create or update a user's sleep goal."
+  },
+  {
+    "claim": "Create Sleep Log carries Sleep data (the page names sleep), so it maps to Google's \"Sleep\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/create-sleep-log/",
+    "quote": "Creates a log entry for a sleep event and returns a response in the format"
+  },
+  {
+    "claim": "Create Sleep Log: POST /1.2/user/[user-id]/sleep.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/create-sleep-log/",
+    "quote": "/1.2/user/[user-id]/sleep.json"
+  },
+  {
+    "claim": "Create Sleep Log needs the sleep scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/create-sleep-log/",
+    "quote": "Scope: sleep"
+  },
+  {
+    "claim": "Create Sleep Log, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/create-sleep-log/",
+    "quote": "Creates a log entry for a sleep event and returns a response in the format requested."
+  },
+  {
+    "claim": "Delete Sleep Log carries Sleep data (the page names sleep), so it maps to Google's \"Sleep\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/delete-sleep-log/",
+    "quote": "Deletes a sleep log with the given log id."
+  },
+  {
+    "claim": "Delete Sleep Log: DELETE /1.2/user/[user-id]/sleep/[log-id].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/delete-sleep-log/",
+    "quote": "/1.2/user/[user-id]/sleep/[log-id].json"
+  },
+  {
+    "claim": "Delete Sleep Log needs the sleep scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/delete-sleep-log/",
+    "quote": "Scope: sleep"
+  },
+  {
+    "claim": "Delete Sleep Log, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/delete-sleep-log/",
+    "quote": "Deletes a sleep log with the given log id."
+  },
+  {
+    "claim": "Get Sleep Goal: GET /1.2/user/[user-id]/sleep/goal.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/get-sleep-goals/",
+    "quote": "/1.2/user/[user-id]/sleep/goal.json"
+  },
+  {
+    "claim": "Get Sleep Goal needs the sleep scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/get-sleep-goals/",
+    "quote": "Scope: sleep"
+  },
+  {
+    "claim": "Get Sleep Goal, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/get-sleep-goals/",
+    "quote": "Returns a user's current sleep goal."
+  },
+  {
+    "claim": "Get Sleep Log by Date carries Sleep data (the page names levels), so it maps to Google's \"Sleep\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/get-sleep-log-by-date/",
+    "quote": "sleep : levels : data : dateTime"
+  },
+  {
+    "claim": "Get Sleep Log by Date: GET /1.2/user/[user-id]/sleep/date/[date].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/get-sleep-log-by-date/",
+    "quote": "/1.2/user/[user-id]/sleep/date/[date].json"
+  },
+  {
+    "claim": "Get Sleep Log by Date needs the sleep scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/get-sleep-log-by-date/",
+    "quote": "Scope: sleep"
+  },
+  {
+    "claim": "Get Sleep Log by Date, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/get-sleep-log-by-date/",
+    "quote": "This endpoint returns a list of a user's sleep log entries for a given date. The data returned can include sleep periods that began on the previous date. For example, if you request a Sleep Log for 2021-12-22, it may return a log entry"
+  },
+  {
+    "claim": "Get Sleep Log by Date Range carries Sleep data (the page names levels), so it maps to Google's \"Sleep\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/get-sleep-log-by-date-range/",
+    "quote": "sleep : levels : data : dateTime"
+  },
+  {
+    "claim": "Get Sleep Log by Date Range: GET /1.2/user/[user-id]/sleep/date/[startDate]/[endDate].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/get-sleep-log-by-date-range/",
+    "quote": "/1.2/user/[user-id]/sleep/date/[startDate]/[endDate].json"
+  },
+  {
+    "claim": "Get Sleep Log by Date Range needs the sleep scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/get-sleep-log-by-date-range/",
+    "quote": "Scope: sleep"
+  },
+  {
+    "claim": "Get Sleep Log by Date Range, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/get-sleep-log-by-date-range/",
+    "quote": "This endpoint returns a list of a user's sleep log entries for a date range. The data returned for either date can include a sleep period that ended that date but began on the previous date. For example, if you request a sleep log between"
+  },
+  {
+    "claim": "Get Sleep Log List carries Sleep data (the page names levels), so it maps to Google's \"Sleep\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/get-sleep-log-list/",
+    "quote": "sleep : levels : data : dateTime"
+  },
+  {
+    "claim": "Get Sleep Log List: GET /1.2/user/[user-id]/sleep/list.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/get-sleep-log-list/",
+    "quote": "/1.2/user/[user-id]/sleep/list.json"
+  },
+  {
+    "claim": "Get Sleep Log List needs the sleep scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/get-sleep-log-list/",
+    "quote": "Scope: sleep"
+  },
+  {
+    "claim": "Get Sleep Log List, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/get-sleep-log-list/",
+    "quote": "This endpoint returns a list of a user's sleep log entries before or after a given date, and specifying offset, limit and sort order. The data returned for different dates can include sleep periods that began on the previous date. For"
+  },
+  {
+    "claim": "Get SpO2 Summary by Date carries SpO2 summary data (the page names avg), so it maps to Google's \"SpO2 summary\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/spo2/get-spo2-summary-by-date/",
+    "quote": "\"avg\": 97.5,"
+  },
+  {
+    "claim": "Get SpO2 Summary by Date: GET /1/user/[user-id]/spo2/date/[date].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/spo2/get-spo2-summary-by-date/",
+    "quote": "/1/user/[user-id]/spo2/date/[date].json"
+  },
+  {
+    "claim": "Get SpO2 Summary by Date needs the oxygen_saturation scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/spo2/get-spo2-summary-by-date/",
+    "quote": "Scope: oxygen_saturation"
+  },
+  {
+    "claim": "Get SpO2 Summary by Date, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/spo2/get-spo2-summary-by-date/",
+    "quote": "This endpoint returns the SpO2 summary data for a single date. SpO2 applies specifically to a user’s “main sleep”, which is the longest single period of time asleep on a given date."
+  },
+  {
+    "claim": "Get SpO2 Summary by Interval carries SpO2 summary data (the page names avg), so it maps to Google's \"SpO2 summary\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/spo2/get-spo2-summary-by-interval/",
+    "quote": "\"avg\": 94.7,"
+  },
+  {
+    "claim": "Get SpO2 Summary by Interval: GET /1/user/[user-id]/spo2/date/[start-date]/[end-date].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/spo2/get-spo2-summary-by-interval/",
+    "quote": "/1/user/[user-id]/spo2/date/[start-date]/[end-date].json"
+  },
+  {
+    "claim": "Get SpO2 Summary by Interval needs the oxygen_saturation scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/spo2/get-spo2-summary-by-interval/",
+    "quote": "Scope: oxygen_saturation"
+  },
+  {
+    "claim": "Get SpO2 Summary by Interval, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/spo2/get-spo2-summary-by-interval/",
+    "quote": "This endpoint returns the SpO2 summary data for a specified date range. SpO2 applies specifically to a user’s “main sleep”, which is the longest single period of time asleep on a given date."
+  },
+  {
+    "claim": "Create Subscription: POST /1/user/[user-id]/[collection-path]/apiSubscriptions/[subscription-id].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/subscription/create-subscription/",
+    "quote": "/1/user/[user-id]/[collection-path]/apiSubscriptions/[subscription-id].json"
+  },
+  {
+    "claim": "Create Subscription needs the See collection-path URI Argument scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/subscription/create-subscription/",
+    "quote": "Scope: See collection-path URI Argument"
+  },
+  {
+    "claim": "Create Subscription, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/subscription/create-subscription/",
+    "quote": "Creates a subscription to notify the application when a user has new data available. See Creating a Subscription for more information."
+  },
+  {
+    "claim": "Delete Subscription: DELETE /1/user/[user-id]/[collection-path]/apiSubscriptions/[subscription-id].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/subscription/delete-subscription/",
+    "quote": "/1/user/[user-id]/[collection-path]/apiSubscriptions/[subscription-id].json"
+  },
+  {
+    "claim": "Delete Subscription needs the See collection-path URI Argument scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/subscription/delete-subscription/",
+    "quote": "Scope: See collection-path URI Argument"
+  },
+  {
+    "claim": "Delete Subscription, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/subscription/delete-subscription/",
+    "quote": "Deletes a subscription for a specific user. See Deleting a Subscription for more information."
+  },
+  {
+    "claim": "Get Subscription List: GET /1/user/[user-id]/[collection-path]/apiSubscriptions.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/subscription/get-subscription-list/",
+    "quote": "/1/user/[user-id]/[collection-path]/apiSubscriptions.json"
+  },
+  {
+    "claim": "Get Subscription List needs the See collection-path URI Argument scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/subscription/get-subscription-list/",
+    "quote": "Scope: See collection-path URI Argument"
+  },
+  {
+    "claim": "Get Subscription List, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/subscription/get-subscription-list/",
+    "quote": "Retrieves a list of subscriptions created by your application for a specific user. You can either fetch subscriptions for a specific collection or the entire list of subscriptions for the user. For best practice, make sure that your"
+  },
+  {
+    "claim": "Get Temperature (Core) Summary by Date carries Temperature (Core) data (the page names core), so it maps to Google's \"Temperature (Core)\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/temperature/get-temperature-core-summary-by-date/",
+    "quote": "/1/user/[user-id]/temp/core/date/[date].json"
+  },
+  {
+    "claim": "Get Temperature (Core) Summary by Date: GET /1/user/[user-id]/temp/core/date/[date].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/temperature/get-temperature-core-summary-by-date/",
+    "quote": "/1/user/[user-id]/temp/core/date/[date].json"
+  },
+  {
+    "claim": "Get Temperature (Core) Summary by Date needs the temperature scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/temperature/get-temperature-core-summary-by-date/",
+    "quote": "Scope: temperature"
+  },
+  {
+    "claim": "Get Temperature (Core) Summary by Date, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/temperature/get-temperature-core-summary-by-date/",
+    "quote": "This endpoint returns the Temperature (Core) data for a single date. Temperature (Core) data applies specifically to data logged manually by the user throughout the day."
+  },
+  {
+    "claim": "Get Temperature (Core) Summary by Interval carries Temperature (Core) data (the page names core), so it maps to Google's \"Temperature (Core)\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/temperature/get-temperature-core-summary-by-interval/",
+    "quote": "/1/user/[user-id]/temp/core/date/[start-date]/[end-date].json"
+  },
+  {
+    "claim": "Get Temperature (Core) Summary by Interval: GET /1/user/[user-id]/temp/core/date/[start-date]/[end-date].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/temperature/get-temperature-core-summary-by-interval/",
+    "quote": "/1/user/[user-id]/temp/core/date/[start-date]/[end-date].json"
+  },
+  {
+    "claim": "Get Temperature (Core) Summary by Interval needs the temperature scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/temperature/get-temperature-core-summary-by-interval/",
+    "quote": "Scope: temperature"
+  },
+  {
+    "claim": "Get Temperature (Core) Summary by Interval, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/temperature/get-temperature-core-summary-by-interval/",
+    "quote": "This endpoint returns Temperature (Core) data for a date range. Temperature (Core) data applies specifically to data logged manually by the user on a given day. It only returns a value for dates on which the Fitbit device was able to"
+  },
+  {
+    "claim": "Get Temperature (Skin) Summary by Date carries Skin temperature data (the page names nightlyRelative), so it maps to Google's \"Skin temperature\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/temperature/get-temperature-skin-summary-by-date/",
+    "quote": "tempSkin : value : nightlyRelative"
+  },
+  {
+    "claim": "Get Temperature (Skin) Summary by Date: GET /1/user/[user-id]/temp/skin/date/[date].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/temperature/get-temperature-skin-summary-by-date/",
+    "quote": "/1/user/[user-id]/temp/skin/date/[date].json"
+  },
+  {
+    "claim": "Get Temperature (Skin) Summary by Date needs the temperature scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/temperature/get-temperature-skin-summary-by-date/",
+    "quote": "Scope: temperature"
+  },
+  {
+    "claim": "Get Temperature (Skin) Summary by Date, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/temperature/get-temperature-skin-summary-by-date/",
+    "quote": "This endpoint returns the Temperature (Skin) data for a single date. It only returns a value for dates on which the Fitbit device was able to record Temperature (skin) data."
+  },
+  {
+    "claim": "Get Temperature (Skin) Summary by Interval carries Skin temperature data (the page names nightlyRelative), so it maps to Google's \"Skin temperature\" row.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/temperature/get-temperature-skin-summary-by-interval/",
+    "quote": "tempSkin : value : nightlyRelative"
+  },
+  {
+    "claim": "Get Temperature (Skin) Summary by Interval: GET /1/user/[user-id]/temp/skin/date/[start-date]/[end-date].json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/temperature/get-temperature-skin-summary-by-interval/",
+    "quote": "/1/user/[user-id]/temp/skin/date/[start-date]/[end-date].json"
+  },
+  {
+    "claim": "Get Temperature (Skin) Summary by Interval needs the temperature scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/temperature/get-temperature-skin-summary-by-interval/",
+    "quote": "Scope: temperature"
+  },
+  {
+    "claim": "Get Temperature (Skin) Summary by Interval, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/temperature/get-temperature-skin-summary-by-interval/",
+    "quote": "This endpoint returns Temperature (Skin) data for a date range. It only returns a value for dates on which the Fitbit device was able to record Temperature (skin) data and the maximum date range cannot exceed 30 days."
+  },
+  {
+    "claim": "Get Badges: GET /1/user/[user-id]/badges.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/user/get-badges/",
+    "quote": "/1/user/[user-id]/badges.json"
+  },
+  {
+    "claim": "Get Badges needs the profile scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/user/get-badges/",
+    "quote": "Scope: profile"
+  },
+  {
+    "claim": "Get Badges, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/user/get-badges/",
+    "quote": "Retrieves a list of the user’s badges."
+  },
+  {
+    "claim": "Get Profile: GET /1/user/[user-id]/profile.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/user/get-profile/",
+    "quote": "/1/user/[user-id]/profile.json"
+  },
+  {
+    "claim": "Get Profile needs the profile scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/user/get-profile/",
+    "quote": "Scope: profile"
+  },
+  {
+    "claim": "Get Profile, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/user/get-profile/",
+    "quote": "Retrieves the user's profile data."
+  },
+  {
+    "claim": "Update Profile: POST /1/user/[user-id]/profile.json",
+    "url": "https://dev.fitbit.com/build/reference/web-api/user/update-profile/",
+    "quote": "/1/user/[user-id]/profile.json"
+  },
+  {
+    "claim": "Update Profile needs the profile scope.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/user/update-profile/",
+    "quote": "Scope: profile"
+  },
+  {
+    "claim": "Update Profile, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/user/update-profile/",
+    "quote": "Modifies a user's profile data."
+  },
+  {
+    "claim": "Fitbit's Web API reference has a Active Zone Minutes (AZM) Time Series section.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/active-zone-minutes-timeseries/",
+    "quote": "Active Zone Minutes (AZM) Time Series"
+  },
+  {
+    "claim": "Fitbit's Web API reference has a Activity section.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity/",
+    "quote": "The Activity endpoints are used to query and/or modify a Fitbit user's daily activity data. The information returned is the step count, distance, elevation, floors, calories burned, active minutes, activity goals, exercise details, etc."
+  },
+  {
+    "claim": "Fitbit's Web API reference has a Activity Time Series section.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/activity-timeseries/",
+    "quote": "Activity Time Series"
+  },
+  {
+    "claim": "Fitbit's Web API reference has a Authorization section.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/authorization/",
+    "quote": "Authorization"
+  },
+  {
+    "claim": "Fitbit's Web API reference has a Blood Glucose section.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/blood-glucose/",
+    "quote": "Blood Glucose"
+  },
+  {
+    "claim": "Fitbit's Web API reference has a Body section.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body/",
+    "quote": "The Body endpoints are used for querying and modifying the user's body fat and weight data."
+  },
+  {
+    "claim": "Fitbit's Web API reference has a Body Time Series section.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/body-timeseries/",
+    "quote": "Body Time Series"
+  },
+  {
+    "claim": "Fitbit's Web API reference has a Breathing Rate section.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/breathing-rate/",
+    "quote": "Breathing Rate"
+  },
+  {
+    "claim": "Fitbit's Web API reference has a Cardio Fitness Score (VO2 Max) section.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/cardio-fitness-score/",
+    "quote": "Cardio Fitness Score (VO2 Max)"
+  },
+  {
+    "claim": "Fitbit's Web API reference has a Devices section.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/devices/",
+    "quote": "The Devices endpoints displays information about the devices paired to a user's account."
+  },
+  {
+    "claim": "Fitbit's Web API reference has a Electrocardiogram (ECG) section.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/electrocardiogram/",
+    "quote": "Electrocardiogram (ECG)"
+  },
+  {
+    "claim": "Fitbit's Web API reference has a Friends section.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/friends/",
+    "quote": "and Get Friends Leaderboard) were deprecated on May 6, 2026. These endpoints will not be available in the Google Health API. Please update your applications to remove dependencies on these endpoints."
+  },
+  {
+    "claim": "Fitbit's Web API reference has a Heart Rate Time Series section.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-timeseries/",
+    "quote": "Heart Rate Time Series"
+  },
+  {
+    "claim": "Fitbit's Web API reference has a Heart Rate Variability section.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/heartrate-variability/",
+    "quote": "Heart Rate Variability"
+  },
+  {
+    "claim": "Fitbit's Web API reference has a Intraday section.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/intraday/",
+    "quote": "The Web APIs have the ability to expose a finer granularity of data collected throughout the day. This collection of data is called Intraday data. Intraday data is made available for the Activities, Breathing Rate, Heart Rate, HRV and SpO2"
+  },
+  {
+    "claim": "Fitbit's Web API reference has a Irregular Rhythm Notifications section.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/irregular-rhythm-notifications/",
+    "quote": "Irregular Rhythm Notifications"
+  },
+  {
+    "claim": "Fitbit's Web API reference has a Nutrition section.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition/",
+    "quote": "The Nutrition endpoints are used for querying and modifying the food and water data."
+  },
+  {
+    "claim": "Fitbit's Web API reference has a Nutrition Time Series section.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/nutrition-timeseries/",
+    "quote": "Nutrition Time Series"
+  },
+  {
+    "claim": "Fitbit's Web API reference has a Sleep section.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/sleep/",
+    "quote": "The Sleep endpoints are used for querying and modifying the user’s general sleep data. Developers can request the following API endpoints when integrating the Sleep data type:"
+  },
+  {
+    "claim": "Fitbit's Web API reference has a Blood Oxygen Saturation (SpO2) section.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/spo2/",
+    "quote": "Blood Oxygen Saturation (SpO2)"
+  },
+  {
+    "claim": "Fitbit's Web API reference has a Subscription section.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/subscription/",
+    "quote": "Subscription"
+  },
+  {
+    "claim": "Fitbit's Web API reference has a Temperature section.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/temperature/",
+    "quote": "The Temperature endpoints are used for querying either the core temperature data logged manually by the user, or the skin temperature recorded by the device while the user is asleep."
+  },
+  {
+    "claim": "Fitbit's Web API reference has a User section.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/user/",
+    "quote": "The User endpoints display information about the user's profile information, the regional locale & language settings, and their badges collected."
+  }
+]

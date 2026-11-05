@@ -28,6 +28,8 @@ import { HK_METADATA_KEYS_FETCHED_ON } from "@/data/healthkitMetadataKeys";
 import { HS_DATA_TYPES_FETCHED_ON } from "@/data/healthServicesDataTypes";
 import { POSE_KEYPOINTS_FETCHED_ON, POSE_SCHEMES } from "@/data/poseKeypoints";
 import { FORM_RULES_FETCHED_ON } from "@/data/formRules";
+import { UNIFIED_READ_ON } from "@/data/unifiedSchema";
+import { FG_UPDATED } from "@/lib/fitbitGoogleMap";
 import { hkPageIdentifiers, hkIdentifierPath, hkPageModified } from "@/data/hkIdentifierPages";
 import { hsPageTypes, hsDataTypePath, hsPageModified } from "@/data/hsDataTypePages";
 import { GHAPI_PATHS, allTypes as ghapiTypes, typePath as ghapiTypePath, ghapiModified } from "@/data/ghapiPages";
@@ -250,6 +252,8 @@ function computeSections(): SitemapSection[] {
     ["/tools/apple-health-explorer", pageStamp("/tools/apple-health-explorer")],
     ["/tools/rep-counter-playground", pageStamp("/tools/rep-counter-playground")],
     ["/tools/exercise-form-rules", FORM_RULES_FETCHED_ON],
+    ["/tools/schema-converter", UNIFIED_READ_ON],
+    ["/tools/fitbit-to-google-health", FG_UPDATED],
   ];
 
   // Routes whose date comes from data, or from the members they index.
@@ -261,6 +265,8 @@ function computeSections(): SitemapSection[] {
     "/blog": newestPost,
     [HK_BASE]: newest([...hkGroupDates.map(([, d]) => d), ...hkPages.map(([, d]) => d)]),
     "/tools": newest(tools.map(([, d]) => d)),
+    // The unified schema page declares the newest read date of its inputs.
+    "/schema": UNIFIED_READ_ON,
     [DIGEST_PATH]: newest(issues.map(digestDate)),
     "/sdk-releases": SDK_CHECKED_ON ?? undefined,
     // The directory pages carry a page-local "last reviewed", not a
@@ -335,6 +341,7 @@ function computeSections(): SitemapSection[] {
     "/compare-apis",
     "/play/ship-it",
     "/datasets",
+    "/schema",
     "/developers",
     "/badges",
     DIGEST_PATH,

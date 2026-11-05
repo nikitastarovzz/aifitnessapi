@@ -121,6 +121,16 @@ const TOOLS = {
     name: "Exercise form rules",
     does: "see the joint-angle thresholds open-source exercise trackers use for this movement, each quoted from its code, with a null where none states one.",
   },
+  schemaConverter: {
+    href: "/tools/schema-converter",
+    name: "Health data schema converter",
+    does: "paste a HealthKit export row, Health Connect record or Google Health API data point and see it in one unified schema, each field traced to its source.",
+  },
+  fitbitGoogle: {
+    href: "/tools/fitbit-to-google-health",
+    name: "Fitbit to Google Health API map",
+    does: "search every Fitbit Web API endpoint and see its Google Health API data type, method and scopes from Google's migration tables, or that none is listed.",
+  },
   sampleData: {
     href: "/tools/sample-data",
     name: "Synthetic health data generator",
@@ -207,6 +217,11 @@ const TOOL_FOR_PATH: Record<string, keyof typeof TOOLS> = {
   "/phone-sensors/cmpedometer": "stepLab",
   // The export how-to: the explorer opens the file that page tells you to make.
   "/own-your-data/apple-health-export": "appleHealthExplorer",
+  // Normalizing wearable data: the converter turns three platforms' payloads into one shape.
+  "/architecture/normalize-wearable-data": "schemaConverter",
+  // The Fitbit move: the map lists every endpoint beside its Google Health API answer.
+  "/migrate/fitbit-web-api-to-google-health": "fitbitGoogle",
+  "/migrate/fitbit-research-studies-after-turndown": "fitbitGoogle",
   // The platform comparison: the generator emits both platforms' fixtures.
   "/fitness-apis/apple-healthkit-vs-google-health-connect": "sampleData",
   // Every build guide: the generator is these guides' stacks, narrowed.
