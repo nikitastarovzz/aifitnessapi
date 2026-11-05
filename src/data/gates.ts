@@ -1488,6 +1488,26 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     area: "Hosting and crawl",
     refuses: "A sitemap carrying changefreq or priority values, fields that were never facts anyone kept true.",
   },
+  {
+    code: "SITEMAP-INDEX",
+    area: "Hosting and crawl",
+    refuses: "A /sitemap.xml that is not a sitemap index, or an index that lists a child sitemap the build did not make, misses one it did make, points off the site or outside /sitemaps/<section>.xml, or a child that is not a non-empty urlset served as XML within the protocol's 50,000-URL and 50 MB limits.",
+  },
+  {
+    code: "SITEMAP-INDEX-LASTMOD",
+    area: "Hosting and crawl",
+    refuses: "A child sitemap whose lastmod in the index is not the newest lastmod among its own rows, or is present when none of its rows is dated.",
+  },
+  {
+    code: "SITEMAP-DUPLICATE",
+    area: "Hosting and crawl",
+    refuses: "A URL listed twice across the child sitemaps, in the same section or in two.",
+  },
+  {
+    code: "SITEMAP-ROBOTS",
+    area: "Hosting and crawl",
+    refuses: "A robots.txt that does not advertise the sitemap index at /sitemap.xml.",
+  },
 
   // ── Freshness markers ─────────────────────────────────────────────────
   {
@@ -1537,6 +1557,12 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     area: "Translations",
     refuses:
       "A current translation missing from sitemap.xml or dated other than its translation day, or a stale one still listed.",
+  },
+  {
+    code: "PTBR-SITEMAP-HREFLANG",
+    area: "Translations",
+    refuses:
+      "A current translation whose sitemap row, or its English page's row, does not carry exactly the en, pt-BR and x-default alternates the pages declare, or a stale translation whose rows still offer pt-BR.",
   },
   {
     code: "PTBR-HREFLANG",

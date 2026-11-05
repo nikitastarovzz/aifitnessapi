@@ -1,6 +1,5 @@
 import fs from "node:fs";
 import path from "node:path";
-import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/posts";
 import { absoluteUrl } from "@/lib/site";
 import { SDK_REPOS, SDK_CHECKED_ON } from "@/data/sdkReleases";
@@ -52,6 +51,15 @@ import { PLATFORM_ORDER as WT_PLATFORM_ORDER, WT_BASE, WT_FETCHED, activityPath 
  * member is newer: the page says when it was last changed, and the sitemap
  * must not say otherwise.
  *
+ * Since 2026-11-05 (ops/MORE-30-2026-11-05.md item 26) /sitemap.xml is a
+ * sitemap index over one child per section (SITEMAP_SECTIONS, served at
+ * /sitemaps/<id>.xml by src/app/sitemaps/[file]/route.ts), so Search
+ * Console reports coverage per section and a crawler can re-read the one
+ * section that moved. The index keeps the URL robots.txt and both webmaster
+ * consoles already hold; each child is dated by the newest lastmod among its
+ * own rows. Current pt-BR translations and their English pages carry
+ * xhtml:link hreflang alternates, the same three their pages declare.
+ *
  * changefreq and priority are gone. Every row used to claim "weekly" or
  * "monthly" whether or not anything had changed, with priorities that were
  * one person's ranking typed once — neither was a fact we could keep true,
@@ -79,12 +87,18 @@ function newest(dates: (string | null | undefined)[]): string | undefined {
   return dates.filter((d): d is string => typeof d === "string" && ISO_DAY.test(d)).sort().at(-1);
 }
 
+/** The sections, in the order the index lists them. Each is one child
+ *  sitemap at /sitemaps/<id>.xml. */
+export const SITEMAP_SECTIONS = ["pages", "guides", "healthkit", "reference", "libraries", "apis", "blog", "pt-br"] as const;
+export type SitemapSectionId = (typeof SITEMAP_SECTIONS)[number];
+export type SitemapAlternate = { hreflang: string; href: string };
+export type SitemapRow = { path: string; lastmod?: string; alternates?: SitemapAlternate[] };
+export type SitemapSection = { id: SitemapSectionId; rows: SitemapRow[]; lastmod?: string };
+
 /** A row, dated only when the date is a real calendar day. A malformed stamp
  *  drops the lastmod instead of throwing at `toISOString()` or guessing. */
-function row(p: string, date?: string | null): MetadataRoute.Sitemap[number] {
-  return date && ISO_DAY.test(date)
-    ? { url: absoluteUrl(p), lastModified: new Date(`${date}T00:00:00Z`) }
-    : { url: absoluteUrl(p) };
+function row(p: string, date?: string | null): SitemapRow {
+  return date && ISO_DAY.test(date) ? { path: p, lastmod: date } : { path: p };
 }
 
 const APP_DIR = path.join(process.cwd(), "src", "app");
@@ -118,7 +132,7 @@ function digestDate(d: Digest): string | undefined {
   return newest([...d.changes.map((c) => c.verifiedOn), ...d.pages.map((p) => p.updated)]);
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+function computeSections(): SitemapSection[] {
   const map = clusterMap();
   const posts = getAllPosts();
   const issues = digests();
@@ -319,48 +333,136 @@ export default function sitemap(): MetadataRoute.Sitemap {
     DIGEST_PATH,
   ];
 
-  const rows: MetadataRoute.Sitemap = [
-    ...standalone.map((p) => row(p, p in derived ? derived[p] : pageStamp(p))),
-    ...hkPages.map(([p, d]) => row(p, d)),
-    ...tools.map(([p, d]) => row(p, d)),
+  // hreflang alternates for each current translation, on both rows — the
+  // same three the two pages declare in their own <head> (qa: PTBR-HREFLANG
+  // for the pages, PTBR-SITEMAP-HREFLANG for these). A stale translation is
+  // out of the sitemap and so are its alternates.
+  const current = ptPages().filter((p) => p.status === "current");
+  const pairs = new Map<string, SitemapAlternate[]>();
+  for (const p of current) {
+    const alts: SitemapAlternate[] = [
+      { hreflang: "en", href: absoluteUrl(p.t.enPath) },
+      { hreflang: "pt-BR", href: absoluteUrl(p.t.path) },
+      { hreflang: "x-default", href: absoluteUrl(p.t.enPath) },
+    ];
+    pairs.set(p.t.enPath, alts);
+    pairs.set(p.t.path, alts);
+  }
+
+  // One child sitemap per section of the site. Each row sits in exactly one
+  // (qa: SITEMAP-DUPLICATE), and the index dates each child by the newest
+  // lastmod among its own rows — never by the build.
+  const standaloneRows = standalone.map((p) => row(p, p in derived ? derived[p] : pageStamp(p)));
+  const sections: Record<SitemapSectionId, SitemapRow[]> = {
+    pages: [
+      ...standaloneRows.filter((r) => !isHk(r.path)),
+      ...tools.map(([p, d]) => row(p, d)),
+    ],
     // Hubs carry the dateModified they declare (see the header comment),
     // else their newest page; spokes carry their own re-verification date —
     // the point of the `updated` stamp is that a recrawl scheduler should
     // see it.
-    ...populated.map(([base]) => row(base, pageStamp(base) ?? newestIn(base))),
-    ...populated.flatMap(([base, entries]) => entries.map((e) => row(`${base}/${e.slug}`, e.updated))),
-    ...hkGroups,
-    ...hkVersionRows,
-    ...hcRows,
-    ...typePageRows,
-    ...ghapiRows,
-    ...libRows,
-    ...generatedRefs.map(([p, d]) => row(p, d)),
-    ...btRows,
-    ...wtRows,
+    guides: [
+      ...populated.map(([base]) => row(base, pageStamp(base) ?? newestIn(base))),
+      ...populated.flatMap(([base, entries]) => entries.map((e) => row(`${base}/${e.slug}`, e.updated))),
+    ],
+    healthkit: [...standaloneRows.filter((r) => isHk(r.path)), ...hkPages.map(([p, d]) => row(p, d)), ...hkGroups, ...hkVersionRows, ...typePageRows.filter((r) => isHk(r.path))],
+    reference: [
+      ...hcRows,
+      ...typePageRows.filter((r) => !isHk(r.path)),
+      ...ghapiRows,
+      ...generatedRefs.map(([p, d]) => row(p, d)),
+      ...btRows,
+      ...wtRows,
+    ],
+    libraries: libRows,
     // Products without search demand of their own are noindex (NOINDEX_APIS).
-    ...API_ENTRIES.filter((a) => !NOINDEX_APIS.has(a.id)).map((a) => row(`${APIS_PATH}/${a.id}`)),
-    // Per-vendor change timelines are noindex: they re-render /changes entries
-    // and would compete with the migration guides for "<vendor> api changes"
-    // (the head-term routing of ops/MORE-30-2026-11-05.md group A).
-    ...issues.map((d) => row(`${DIGEST_PATH}/${d.month}`, digestDate(d))),
-    // lastmod is the re-verification date, not first publication.
-    ...posts.map((post) => row(`/blog/${post.slug}`, post.updated)),
+    apis: API_ENTRIES.filter((a) => !NOINDEX_APIS.has(a.id)).map((a) => row(`${APIS_PATH}/${a.id}`)),
+    blog: [
+      // lastmod is the re-verification date, not first publication.
+      ...posts.map((post) => row(`/blog/${post.slug}`, post.updated)),
+      ...issues.map((d) => row(`${DIGEST_PATH}/${d.month}`, digestDate(d))),
+    ],
     // The Portuguese edition (src/lib/translations.ts): only translations
     // that are current, each dated by its translation day, which is the
     // dateModified the page declares. A stale one is noindex and absent.
     // The index is listed once it is indexable, dated by the newest
     // translation it lists (its declared dateModified).
-    ...ptPages()
-      .filter((p) => p.status === "current")
-      .map((p) => row(p.t.path, p.t.translatedOn)),
-    ...(ptIndexIndexable() ? [row(PT_PREFIX, newest(ptPages().map((p) => p.t.translatedOn)))] : []),
-  ];
+    "pt-br": [
+      ...current.map((p) => row(p.t.path, p.t.translatedOn)),
+      ...(ptIndexIndexable() ? [row(PT_PREFIX, newest(ptPages().map((p) => p.t.translatedOn)))] : []),
+    ],
+  };
 
   // Pages that ask not to be indexed leave the sitemap in one place, whatever
   // section listed them: the hand-written list and the data-driven rule for
   // generated pages (src/data/noindex.ts, src/data/indexDemand.ts;
   // ops/SEO-10-2026-10-27.md item 4). A sitemap row is a request to index, so
   // listing a noindex page would contradict the page (qa: SITEMAP-NOINDEX).
-  return rows.filter((r) => !isNoindexed(new URL(r.url).pathname));
+  return SITEMAP_SECTIONS.map((id) => {
+    const rows = sections[id]
+      .filter((r) => !isNoindexed(r.path))
+      .map((r) => (pairs.has(r.path) ? { ...r, alternates: pairs.get(r.path) } : r));
+    return { id, rows, lastmod: newest(rows.map((r) => r.lastmod)) };
+  });
+}
+
+/** The HealthKit section: the /healthkit hub's pages and the per-identifier
+ *  and per-version references. */
+function isHk(p: string): boolean {
+  return p === HK_BASE || p.startsWith(`${HK_BASE}/`) || p.startsWith("/healthkit-");
+}
+
+/** The sections, memoised for the build: the index and every child
+ *  route read the same computation. */
+let cached: SitemapSection[] | null = null;
+export function sitemapSections(): SitemapSection[] {
+  cached ??= computeSections();
+  return cached;
+}
+
+const xmlEscape = (s: string) =>
+  s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+
+/** The lastmod string as the sitemap has always written it (an ISO instant
+ *  at midnight UTC), so a consumer diffing old against new — indexnow.mjs's
+ *  snapshot — sees no change where the date did not change. */
+const stamp = (d: string) => new Date(`${d}T00:00:00Z`).toISOString();
+
+export const sitemapChildPath = (id: SitemapSectionId) => `/sitemaps/${id}.xml`;
+
+/** /sitemap.xml: the index. Its URL is the one robots.txt, Search Console
+ *  and Bing Webmaster Tools already hold. An empty section is left out — a
+ *  sitemap with no <url> is an error to Search Console. */
+export function sitemapIndexXml(): string {
+  const items = sitemapSections()
+    .filter((s) => s.rows.length > 0)
+    .map(
+      (s) =>
+        `<sitemap>\n<loc>${xmlEscape(absoluteUrl(sitemapChildPath(s.id)))}</loc>\n` +
+        (s.lastmod ? `<lastmod>${stamp(s.lastmod)}</lastmod>\n` : "") +
+        `</sitemap>`,
+    );
+  return (
+    `<?xml version="1.0" encoding="UTF-8"?>\n` +
+    `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${items.join("\n")}\n</sitemapindex>\n`
+  );
+}
+
+/** One child sitemap, or null for a section with no rows. */
+export function sitemapChildXml(id: string): string | null {
+  const s = sitemapSections().find((x) => x.id === id);
+  if (!s || s.rows.length === 0) return null;
+  const hasAlternates = s.rows.some((r) => r.alternates);
+  const urls = s.rows.map(
+    (r) =>
+      `<url>\n<loc>${xmlEscape(absoluteUrl(r.path))}</loc>\n` +
+      (r.alternates ?? [])
+        .map((a) => `<xhtml:link rel="alternate" hreflang="${a.hreflang}" href="${xmlEscape(a.href)}" />\n`)
+        .join("") +
+      (r.lastmod ? `<lastmod>${stamp(r.lastmod)}</lastmod>\n` : "") +
+      `</url>`,
+  );
+  const ns = `xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"${hasAlternates ? ` xmlns:xhtml="http://www.w3.org/1999/xhtml"` : ""}`;
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset ${ns}>\n${urls.join("\n")}\n</urlset>\n`;
 }

@@ -109,7 +109,7 @@ function day(value: unknown, what: string): string {
  * A hand-built page's review date: its page-local `const UPDATED`, only when
  * the page publishes that constant as its WebPage lastReviewed
  * (`updated={UPDATED}` on PageSummary). Next refuses extra exports from a
- * page module, so the constant is read from source, as sitemap.ts reads it;
+ * page module, so the constant is read from source, as src/lib/sitemap.ts reads it;
  * the build has the source. A page that states no review date fails the
  * build rather than lending its dataset one. Callers pass the file as a
  * literal path, so output tracing ships that one source file and not every
