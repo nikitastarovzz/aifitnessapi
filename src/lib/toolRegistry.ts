@@ -69,6 +69,12 @@ export const TOOL_LOOKUPS: Tool[] = [
     blurb:
       "Click a joint and see its index in BlazePose, COCO, OpenPose, ML Kit and Apple Vision, then copy an index map built from matching names only.",
   },
+  {
+    path: "/tools/exercise-form-rules",
+    name: "Exercise form rules",
+    blurb:
+      "The joint-angle thresholds open-source exercise trackers use for squats, push-ups, lunges, planks, curls and presses, each quoted from its code; null where none says.",
+  },
 ];
 
 /** The planners and demos already published on the site. Blurbs match the
@@ -119,7 +125,13 @@ export const TOOL_PLANNERS: Tool[] = [
     path: "/tools/pose-benchmark",
     name: "Pose model benchmark",
     blurb:
-      "Time MediaPipe Pose Landmarker lite, full and heavy on your own device and copy the latency table as markdown.",
+      "Time MediaPipe Pose Landmarker lite, full and heavy on your own device, copy the latency table as markdown and submit it to the leaderboard.",
+  },
+  {
+    path: "/tools/rep-counter-playground",
+    name: "Rep counter playground",
+    blurb:
+      "Load a workout video, see joint angles over time, tune a hysteresis rep counter's thresholds and export the config as JSON. The video stays in your browser.",
   },
   {
     path: "/tools/heart-rate-lab",

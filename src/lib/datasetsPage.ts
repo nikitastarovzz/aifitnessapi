@@ -280,6 +280,22 @@ export const ENTRIES: Entry[] = [
     caveat:
       "crosswalkKey is derived: the name with a leading EXERCISE_TYPE_ removed, lowercased, separators dropped. Constants are joined on that key alone, so a shared key means the names match, not that the platforms define the activity alike, and no Apple or Google page read for it maps one list onto another. Wear OS ids come from the androidx source the reference links, because the reference prints none.",
   },
+  {
+    slug: "exercise-form-rules-2026",
+    unit: "rules",
+    blurb:
+      "The joint-angle, ratio and hold-time thresholds that licensed open-source exercise trackers use to count reps and check form for squats, push-ups, lunges, planks, bicep curls, shoulder presses and deadlifts, each with the verbatim line of code its value was captured from, the line that applies it and the line that computes the angle.",
+    keywords: [
+      "exercise form rules",
+      "squat knee angle threshold",
+      "push-up elbow angle",
+      "rep counting thresholds",
+      "pose estimation exercise dataset",
+    ],
+    presentedBy: { href: "/tools/exercise-form-rules", label: "Exercise form rules" },
+    caveat:
+      "These are the projects' own thresholds for their own camera setups, measured as 2D image angles, not biomechanical standards. A value is null where no licensed source read states one (deadlift, lunge rep counting, shoulder-press reps), with the reason; peer-reviewed definitions on hosts the build could not reach are not copied.",
+  },
 ];
 
 export const LOADED = ENTRIES.map((e) => ({ entry: e, file: loadDataset(e.slug) }));

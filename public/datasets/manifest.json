@@ -14,6 +14,18 @@
       "sha256": "d0e0d5a6d6394b61b98d561d6324c318d3276727f91d12321796e67383adc345"
     },
     {
+      "file": "exercise-form-rules-2026.csv",
+      "bytes": 18641,
+      "rows": 25,
+      "sha256": "26971ed98faa2d68657744feb05890e0057e7a3479a6c56095c23d506b405708"
+    },
+    {
+      "file": "exercise-form-rules-2026.json",
+      "bytes": 33638,
+      "rows": 25,
+      "sha256": "f43f66ad1e97708084b10186192e3cfa1086ff497c33ee3a332d6ba231df0a4c"
+    },
+    {
       "file": "fitness-api-changes-2026.csv",
       "bytes": 13144,
       "rows": 21,

@@ -1,0 +1,11 @@
+# Exercise form-rules dataset (ops/AUDIENCE-30-2026-11-05.md item 16).
+# Peer-reviewed angle definitions that www.ebi.ac.uk and the NCBI hosts
+# blocked from the dev environment on 2026-11-05. The deadlift and lunge rows
+# of src/data/formRules.ts are null until a snapshot of these can be quoted;
+# add a quoted row to scripts/fetch-form-rules.mjs only from the artifact.
+# Finite-state exercise definitions with angle transitions (squat, lunge, deadlift):
+https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13204307/fullTextXML
+# 2026 phone-placement study whose example squat definition /challenge uses:
+https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12978916/fullTextXML
+# Lunge joint angles against marker-based capture by camera view:
+https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11819822/fullTextXML
