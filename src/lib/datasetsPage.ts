@@ -296,6 +296,22 @@ export const ENTRIES: Entry[] = [
     caveat:
       "These are the projects' own thresholds for their own camera setups, measured as 2D image angles, not biomechanical standards. A value is null where no licensed source read states one (deadlift, lunge rep counting, shoulder-press reps), with the reason; peer-reviewed definitions on hosts the build could not reach are not copied.",
   },
+  {
+    slug: "exercise-taxonomy-crosswalk-2026",
+    unit: "terms",
+    blurb:
+      "Every category, equipment, muscle and body-part term of free-exercise-db, wger and ExerciseDB v1, spelled as each database spells it, with the HealthKit and Health Connect workout and segment types that share its name, and the exercise names that match a Health Connect constant.",
+    keywords: [
+      "ExerciseDB body parts",
+      "wger exercise categories",
+      "free-exercise-db",
+      "exercise database to HealthKit",
+      "Health Connect exercise type mapping",
+    ],
+    presentedBy: { href: "/tools/exercise-taxonomy-crosswalk", label: "Exercise taxonomy crosswalk" },
+    caveat:
+      "Matches are by name alone: a category or exercise name maps only where its normalized name equals a constant's, so most terms are unmapped by design. Equipment, muscle and body-part terms are never mapped; the nameContains columns are text coincidences for browsing. The databases' own licenses cover their content; this file republishes the term names.",
+  },
 ];
 
 export const LOADED = ENTRIES.map((e) => ({ entry: e, file: loadDataset(e.slug) }));

@@ -75,6 +75,12 @@ export const TOOL_LOOKUPS: Tool[] = [
     blurb:
       "The joint-angle thresholds open-source exercise trackers use for squats, push-ups, lunges, planks, curls and presses, each quoted from its code; null where none says.",
   },
+  {
+    path: "/tools/exercise-taxonomy-crosswalk",
+    name: "Exercise taxonomy crosswalk",
+    blurb:
+      "free-exercise-db, wger and ExerciseDB v1 categories, equipment and muscles against HealthKit and Health Connect workout types, matched by name only.",
+  },
 ];
 
 /** The planners and demos already published on the site. Blurbs match the
@@ -216,6 +222,18 @@ export const TOOL_PLANNERS: Tool[] = [
     name: "Apple Health export explorer",
     blurb:
       "Open your iPhone Health export.zip in the browser: record types with counts and dates, sources, a daily chart and a CSV per type. Nothing is uploaded.",
+  },
+  {
+    path: "/tools/gym-software-api-matrix",
+    name: "Gym software API matrix",
+    blurb:
+      "Mindbody, Glofox, TeamUp, Mariana Tek, Wodify and more: auth, access, pricing, webhooks and coverage, filterable, each cell quoting its vendor source.",
+  },
+  {
+    path: "/tools/research-platform-chooser",
+    name: "Research platform chooser",
+    blurb:
+      "Fitabase, Labfront, Empatica and Ametris: tick what your study needs and see which platforms document it, each answer quoting the vendor's page.",
   },
 ];
 

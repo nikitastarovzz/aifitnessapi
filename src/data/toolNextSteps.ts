@@ -9,6 +9,20 @@
  * and a path routeLabel does not know fails the build (components/ToolNextStep).
  */
 export const TOOL_NEXT_STEPS: Record<string, string[]> = {
+  "/tools/exercise-taxonomy-crosswalk": [
+    "/fitness-apis/exercise-database-apis",
+    "/compare/exercisedb-vs-wger",
+    "/compare/exercisedb-vs-free-exercise-db",
+  ],
+  "/tools/gym-software-api-matrix": [
+    "/fitness-apis/gym-management-software-apis",
+    "/integrate/mindbody-api",
+    "/pricing/mindbody-api-pricing",
+  ],
+  "/tools/research-platform-chooser": [
+    "/fitness-apis/wearable-research-data-platforms",
+    "/migrate/fitbit-research-studies-after-turndown",
+  ],
   "/tools/error-diagnoser": [
     "/integrate/healthkit",
     "/integrate/google-health-connect",

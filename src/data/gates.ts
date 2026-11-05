@@ -1267,6 +1267,27 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
       "A Bluetooth lab (FTMS, cycling power, GATT explorer) whose decoder no longer matches the Bluetooth SIG structures it is built from: a lab page that does not print the layout of a characteristic it is for with exactly the field count the generated structure has, or an explorer that offers fewer or more decoders than the dataset has structures.",
   },
   {
+    code: "EXERCISE-TAXONOMY",
+    area: "Derived blocks",
+    refuses:
+      "An exercise taxonomy crosswalk page that leaves out a term the generator read from free-exercise-db, wger or ExerciseDB, or a term shown as mapped without a same-name HealthKit or Health Connect constant, or an equipment, muscle or body-part term given a mapping at all.",
+  },
+  {
+    code: "EVIDENCE-MATRIX",
+    area: "Derived blocks",
+    refuses: "A gym-software or research-platform matrix page that does not render every platform row its data module holds.",
+  },
+  {
+    code: "ATLAS-FILE",
+    area: "Derived blocks",
+    refuses: "A missing Atlas poster SVG or PDF, a PDF that is not a PDF, or either file over 2 MB.",
+  },
+  {
+    code: "ATLAS-STALE",
+    area: "Derived blocks",
+    refuses: "An Atlas poster that leaves out a product in the API directory or an entry in the API graveyard, because the data changed and the poster was not redrawn.",
+  },
+  {
     code: "BT-GATT-THIN",
     area: "Derived blocks",
     refuses: "A Bluetooth characteristic page built for a structure with fewer than two fields and no flags field, or a characteristic whose page flag disagrees with that rule.",

@@ -37,7 +37,11 @@
     "test:answer-search": "node --test scripts/answer-search.test.mjs",
     "test:planners": "node --test scripts/planner-tools.test.mjs",
     "test:rate-limits": "node --test scripts/rate-limit-calc.test.mjs",
-    "test:coverage": "node --test scripts/api-coverage.test.mjs"
+    "test:coverage": "node --test scripts/api-coverage.test.mjs",
+    "test:exercise-taxonomy": "node --test scripts/exercise-taxonomy.test.mjs",
+    "test:matrices": "node --test scripts/evidence-matrix.test.mjs",
+    "test:atlas": "node --test scripts/atlas.test.mjs",
+    "atlas": "node scripts/build-atlas.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "~1.32.0",

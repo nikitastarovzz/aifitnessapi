@@ -2,6 +2,22 @@ import { site, absoluteUrl } from "@/lib/site";
 import { COVERAGE_PATH, RATE_LIMIT_PATH, coverageCapsule, rateLimitCapsule } from "@/lib/coverageView";
 import { TASKS_VISION_VERSION, VERIFIED_ON as POSE_BENCH_VERIFIED_ON } from "@/lib/poseBenchmark";
 import { FORM_RULES_PRIMARY_QUERY, REP_PLAYGROUND_PRIMARY_QUERY, formRulesText, leaderboardText, repPlaygroundText } from "@/lib/poseToolsText";
+import {
+  ATLAS_PATH,
+  GYM_PATH,
+  GYM_PRIMARY_QUERY,
+  RESEARCH_PATH,
+  RESEARCH_PRIMARY_QUERY,
+  TAXONOMY_PATH,
+  TAXONOMY_PRIMARY_QUERY,
+  gymCapsule,
+  matrixText,
+  researchCapsule,
+  taxonomyText,
+} from "@/lib/audienceTools";
+import { atlasCapsule } from "@/lib/atlasView";
+import { GYM_API_MATRIX } from "@/data/gymApiMatrix";
+import { RESEARCH_PLATFORM_MATRIX } from "@/data/researchPlatformMatrix";
 import { POSE_CROSSWALK, POSE_KEYPOINTS_FETCHED_ON, POSE_SCHEMES } from "@/data/poseKeypoints";
 import { totalPairs } from "@/lib/keypointMapping.mjs";
 import { DEFAULT_PARAMS as STEP_DEFAULTS, REPLAY_TRUE_STEPS as STEP_REPLAY_TRUE } from "@/lib/stepDetector.mjs";
@@ -329,6 +345,25 @@ function toolLines(): string[] {
     out.push(t.text);
     out.push("");
   }
+  out.push(`## Exercise taxonomy crosswalk — ${absoluteUrl(TAXONOMY_PATH)}`);
+  out.push(`Primary query: ${TAXONOMY_PRIMARY_QUERY}`);
+  out.push("");
+  out.push(taxonomyText());
+  out.push("");
+  out.push(`## Gym software API matrix — ${absoluteUrl(GYM_PATH)}`);
+  out.push(`Primary query: ${GYM_PRIMARY_QUERY}`);
+  out.push("");
+  out.push(`${gymCapsule()} ${matrixText(GYM_API_MATRIX)}`);
+  out.push("");
+  out.push(`## Research platform chooser — ${absoluteUrl(RESEARCH_PATH)}`);
+  out.push(`Primary query: ${RESEARCH_PRIMARY_QUERY}`);
+  out.push("");
+  out.push(`${researchCapsule()} ${matrixText(RESEARCH_PLATFORM_MATRIX)}`);
+  out.push("");
+  out.push(`## The Fitness API Atlas (printable poster) — ${absoluteUrl(ATLAS_PATH)}`);
+  out.push("");
+  out.push(atlasCapsule());
+  out.push("");
   out.push(`## Bluetooth heart-rate lab (runs on your device) — ${absoluteUrl("/tools/heart-rate-lab")}`);
   out.push("Primary query: does my heart rate strap send rr intervals");
   out.push("");
