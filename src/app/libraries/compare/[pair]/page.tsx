@@ -269,14 +269,14 @@ export default async function LibraryComparisonPage({ params }: { params: Promis
 
         <section id="faq" className="mt-14 scroll-mt-24">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Questions</h2>
-          <dl className="mt-6 divide-y divide-[var(--border)]">
+          <div className="mt-6 divide-y divide-[var(--border)]">
             {c.faqs.map((f, i) => (
               <div key={f.q} id={faqId(i)} className="scroll-mt-24 py-5">
-                <dt className="font-semibold text-[var(--fg)]">{f.q}</dt>
-                <dd className="mt-2 text-[var(--muted)]">{f.a}</dd>
+                <h3 className="text-base font-semibold text-[var(--fg)]">{f.q}</h3>
+                <p className="mt-2 text-[var(--muted)]">{f.a}</p>
               </div>
             ))}
-          </dl>
+          </div>
         </section>
 
         <nav aria-label="Package pages" className="mt-10 grid gap-3 sm:grid-cols-2">

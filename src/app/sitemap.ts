@@ -286,7 +286,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // it is empty, and a sitemap must never advertise a 404.
     ...(SDK_REPOS.length > 0 ? ["/sdk-releases"] : []),
     "/blog",
-    "/changelog",
+    // /changelog is noindex,follow since 2026-11-05 (ops/MORE-30-2026-11-05.md
+    // item 7): a ledger that drew impressions and no clicks. Linked from the
+    // footer, so it stays reachable without asking to be indexed.
     "/newsletter",
     "/tools",
     "/paths",

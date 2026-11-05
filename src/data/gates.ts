@@ -100,6 +100,30 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "A page whose meta description is longer than 155 characters.",
   },
   {
+    code: "TITLE-CLAMPED",
+    area: "Metadata",
+    refuses:
+      "An indexable page whose title ends in the ellipsis the length clamp adds. The clamp keeps every title under 60 characters, so an over-long source title never trips the length check; it ships cut mid-phrase instead. This makes the cut itself the failure.",
+  },
+  {
+    code: "DESC-CLAMPED",
+    area: "Metadata",
+    refuses:
+      "An indexable page whose meta description ends in the ellipsis the length clamp adds: source copy over 155 characters that would otherwise ship as a sentence cut mid-word.",
+  },
+  {
+    code: "FAQ-HEADING",
+    area: "Structured data / GEO",
+    refuses:
+      "A page with FAQPage structured data and per-answer anchors whose question is not an h3 heading opening its #faq-N block, or whose heading differs from the question the structured data names. A question-shaped heading is what a \"People also ask\" box can match, and the anchor is what the structured data links to.",
+  },
+  {
+    code: "FUNDER-NO-BEST",
+    area: "Disclosure",
+    refuses:
+      "A sentence on any built page, its title or its description included, that names KinesteX, the company that funds this site, and calls something \"best\" (\"melhor\" on the Portuguese pages). Only a negation (\"never the best\") or words in quotation marks, such as a searcher's query or a quoted source, pass; nothing else is exempt.",
+  },
+  {
     code: "NO-CANONICAL",
     area: "Metadata",
     refuses: "A page with no rel=canonical link telling crawlers which URL is the real one.",

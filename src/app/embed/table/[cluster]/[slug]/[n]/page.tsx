@@ -61,8 +61,16 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const { table, name, path } = r;
   const suffix = ` · table ${table.n} (embed)`;
   const title = `${clampTitle(name, 60 - suffix.length)}${suffix}`;
+  // The longest whole sentence that fits, so the clamp never cuts one mid-word
+  // (qa DESC-CLAMPED): the canonical path is already named in the first
+  // clause, so it goes first, then the table's section heading.
+  const section = table.section ? ` (${table.section})` : "";
   const description = clampDescription(
-    `Embeddable widget: table ${table.n} of ${path}${table.section ? ` (${table.section})` : ""}, with its verification date and a link back. Canonical page: ${path}.`,
+    [
+      `Embeddable widget: table ${table.n} of ${path}${section}, with its verification date and a link back. Canonical page: ${path}.`,
+      `Embeddable widget: table ${table.n} of ${path}${section}, with its verification date and a link back.`,
+      `Embeddable widget: table ${table.n} of ${path}, with its verification date and a link back.`,
+    ].find((d) => d.length <= 155) ?? `Embeddable widget: table ${table.n} of ${path}.`,
   );
   return {
     title: { absolute: title },

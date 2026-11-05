@@ -373,14 +373,14 @@ export default function StateOfFitnessApis2026Page() {
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">
             Frequently asked questions
           </h2>
-          <dl className="mt-6 divide-y divide-[var(--border)]">
+          <div className="mt-6 divide-y divide-[var(--border)]">
             {FAQS.map((f) => (
               <div key={f.q} className="py-5">
-                <dt className="font-semibold text-[var(--fg)]">{f.q}</dt>
-                <dd className="mt-2 text-[var(--muted)]">{f.a}</dd>
+                <h3 className="text-base font-semibold text-[var(--fg)]">{f.q}</h3>
+                <p className="mt-2 text-[var(--muted)]">{f.a}</p>
               </div>
             ))}
-          </dl>
+          </div>
         </section>
 
         <ClusterCta pitch="Access structure changes quietly: an approval gate opens, a membership requirement lands, a license line appears. We re-verify this dataset and publish what moved — get the next edition when it ships." source="pillar-inline" id="cta-state-of-2026" />

@@ -544,14 +544,19 @@ export default function ClusterPage({
             <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">
               {tr ? "Perguntas frequentes" : "Frequently asked questions"}
             </h2>
-            <dl className="mt-6 divide-y divide-[var(--border)]">
+            {/* Each question is its own h3 under the FAQ h2, so a question-shaped
+                heading can match a "People also ask" query (ops/MORE-30-2026-11-05.md
+                item 8). The #faq-N anchor stays on the wrapper and the answer
+                stays the wrapper's only other child: FAQPage JSON-LD links the
+                anchor, and qa (FAQ-HEADING, PTBR-*) reads the item by it. */}
+            <div className="mt-6 divide-y divide-[var(--border)]">
               {entry.faqs.map((f, i) => (
                 <div key={f.q} id={faqId(i)} className="scroll-mt-24 py-5">
-                  <dt className="font-semibold text-[var(--fg)]">{f.q}</dt>
-                  <dd className="mt-2 text-[var(--muted)]">{f.a}</dd>
+                  <h3 className="text-base font-semibold text-[var(--fg)]">{f.q}</h3>
+                  <p className="mt-2 text-[var(--muted)]">{f.a}</p>
                 </div>
               ))}
-            </dl>
+            </div>
             {!tr && clusterEntries.length > 0 && (
               <p className="mt-2 text-sm">
                 <Link
