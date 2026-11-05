@@ -5,12 +5,13 @@ import { moneyPages, moneyCluster, oneLineAnswer, MONEY_GROUP_LABELS, MONEY_GROU
 import { searchConsoleCuration } from "@/data/llmsCuration";
 import { site, absoluteUrl } from "@/lib/site";
 import { byteLength, fullSections, fullSectionText } from "@/lib/llmsFull";
-import { toolEntries } from "@/lib/llmsIndex";
+import { pageMirrorLines, toolEntries } from "@/lib/llmsIndex";
 import { answersIndexDoc } from "@/lib/answersIndex";
 import { HK_BASE } from "@/data/hkGroupPages";
 import { BT_BASE } from "@/data/btPages";
 import { WT_BASE } from "@/data/workoutTypePages";
 import { POSE_BASE } from "@/data/poseKeypointPages";
+import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
 
 /**
  * llms.txt — the curated map (ops/NEXT-10-2026-11-04.md item 4; the decision
@@ -133,6 +134,8 @@ export function GET() {
     `## Tools (each described in full in ${absoluteUrl("/llms-index.txt")})`,
     ...toolEntries().map((t) => `- [${t.label}](${absoluteUrl(t.path)})`),
     "",
+    ...pageMirrorLines(),
+    "",
     "## Datasets (CC BY 4.0)",
     `- [Open datasets](${absoluteUrl("/datasets")}): every dataset this site publishes, JSON and CSV, versioned rather than overwritten.`,
     ...datasetLines(),
@@ -153,6 +156,6 @@ export function GET() {
   ];
 
   return new Response(lines.join("\n"), {
-    headers: { "content-type": "text/plain; charset=utf-8" },
+    headers: { "content-type": "text/plain; charset=utf-8", "cache-control": MACHINE_CACHE_CONTROL },
   });
 }

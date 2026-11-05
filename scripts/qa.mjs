@@ -2093,6 +2093,472 @@ if (fs.existsSync(matrixPath)) {
   );
 }
 
+// ── Page mirrors (ops/MORE-30-2026-11-05.md item 20, ops/GEO.md decision of
+// 2026-11-05). The tools, the records, /datasets and the games have markdown
+// mirrors at <page>.md, assembled in src/lib/pageMirrors from the data the page
+// renders plus the page's prose copied as markdown. Copied prose is how a
+// mirror drifts, so these gates hold every mirror line to the page's built
+// HTML, every page heading and FAQ to the mirror, and the discovery wiring
+// (rel=alternate, Link header, llms files) to the mirror's existence. Every
+// text/markdown alternate anywhere on the site must also resolve to a built
+// document, cluster mirrors included.
+{
+  const SITE = "https://aifitnessapi.com";
+  const readBody = (p) => (fs.existsSync(p) ? fs.readFileSync(p, "utf8") : null);
+  const fullDecode = (s) =>
+    decode(s)
+      .replace(/&nbsp;/g, " ")
+      .replace(/&lsquo;/g, "‘")
+      .replace(/&ldquo;/g, "“")
+      .replace(/&rdquo;/g, "”")
+      .replace(/&ndash;/g, "–")
+      .replace(/&hellip;/g, "…")
+      .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
+      .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)));
+  // Letters and digits only: punctuation, quotes, dashes and whitespace differ
+  // between JSX and markdown without the words differing.
+  const norm = (s) => s.normalize("NFKC").toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
+  const mainOf = (html) => {
+    const m = /<main\b[^>]*>([\s\S]*)<\/main>/.exec(html);
+    return (m ? m[1] : html)
+      .replace(/<!--[\s\S]*?-->/g, "")
+      .replace(/<(script|style|template|noscript)\b[\s\S]*?<\/\1>/gi, "");
+  };
+  /** Remove every element whose opening tag matches `re`, children included. */
+  const VOID = new Set(["br", "img", "input", "hr", "meta", "link", "source", "wbr", "area", "col", "embed", "track"]);
+  const dropElements = (html, re) => {
+    let out = "";
+    let skipDepth = 0;
+    let last = 0;
+    for (const m of html.matchAll(/<(\/?)([a-zA-Z][a-zA-Z0-9-]*)([^>]*)>/g)) {
+      const [tag, close, name, attrs] = m;
+      const isVoid = VOID.has(name.toLowerCase()) || attrs.endsWith("/");
+      if (skipDepth === 0) {
+        out += html.slice(last, m.index);
+        if (!close && !isVoid && re.test(tag)) skipDepth = 1;
+        else out += tag;
+      } else if (!isVoid) {
+        skipDepth += close ? -1 : 1;
+      }
+      last = m.index + tag.length;
+    }
+    if (skipDepth === 0) out += html.slice(last);
+    return out;
+  };
+  const textOf = (html) => fullDecode(html.replace(/<[^>]+>/g, ""));
+  /** Mirror markdown line -> the plain text it should share with the page. */
+  const plain = (line) =>
+    line
+      .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
+      .replace(/\[([^\]]*)\]\((?:[^()]|\([^)]*\))*\)/g, "$1")
+      .replace(/^#{1,6}\s+/, "")
+      .replace(/^\s*(?:[-*]|\d+\.)\s+/, "")
+      .replace(/^>\s?/, "");
+
+  // Every mirror the build produced outside the cluster generator (/md), the
+  // Portuguese mirrors (/pt-br/md) and the digest editions.
+  const pageMirrors = [];
+  (function walk(dir) {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      const p = path.join(dir, e.name);
+      if (e.isDirectory()) walk(p);
+      else if (e.name.endsWith(".md.body")) {
+        const r = p.slice(ROOT.length).replace(/\.md\.body$/, "");
+        if (r.startsWith("/md/") || r.startsWith("/pt-br/") || /\/digest$/.test(r)) continue;
+        pageMirrors.push(r);
+      }
+    }
+  })(ROOT);
+  pageMirrors.sort();
+
+  // The pages ops/MORE-30 item 20 names, plus every built /tools/<slug>.
+  const REQUIRED = ["/tools", "/graveyard", "/datasets", "/changes", "/market-map", "/fitness-api-index", "/2026", "/daily", "/play/ship-it", "/challenge"];
+  const toolPages = htmls.map(routeOf).filter((r) => /^\/tools\/[a-z0-9-]+$/.test(r) && !notFoundSet.has(r));
+  for (const r of [...new Set([...REQUIRED, ...toolPages])]) {
+    if (!pageMirrors.includes(r)) problems.push(`GEO-PAGE-MD-MISSING  ${r} has no markdown mirror at ${r}.md`);
+  }
+
+  let rm = null;
+  try {
+    rm = JSON.parse(fs.readFileSync(".next/routes-manifest.json", "utf8"));
+  } catch {
+    /* GEO-ALT-HEADER already reports a missing manifest */
+  }
+  const headerRules = (rm?.headers ?? []).map((h) => ({
+    re: new RegExp(h.regex, rm.caseSensitive ? "" : "i"),
+    link: (h.headers ?? []).filter((x) => x.key.toLowerCase() === "link").map((x) => x.value),
+  }));
+  const effectiveLink = (p) => {
+    let v = "";
+    for (const r of headerRules) if (r.link.length && r.re.test(p)) v = r.link.at(-1);
+    return v;
+  };
+
+  const llms = readBody(`${ROOT}/llms.txt.body`) ?? "";
+  const llmsIndex = readBody(`${ROOT}/llms-index.txt.body`) ?? "";
+  const fileOf = new Map(htmls.map((h) => [routeOf(h), h]));
+  let lines = 0;
+  for (const r of pageMirrors) {
+    const mdUrl = `${SITE}${r}.md`;
+    const pageFile = fileOf.get(r);
+    if (!pageFile || notFoundSet.has(r)) {
+      problems.push(`GEO-PAGE-MD-ORPHAN  ${r}.md is built but ${r} is not a page`);
+      continue;
+    }
+    const html = fs.readFileSync(pageFile, "utf8");
+    const body = readBody(`${ROOT}${r}.md.body`) ?? "";
+    let meta = null;
+    try {
+      meta = JSON.parse(fs.readFileSync(`${ROOT}${r}.md.meta`, "utf8"));
+    } catch {
+      /* reported below */
+    }
+    const h = meta?.headers ?? {};
+    const canon = canonicalOf(html);
+    const fmCanon = /^canonical: "([^"]+)"/m.exec(body)?.[1];
+    if (!body.startsWith("---\n") || !fmCanon || !/^(?:last_reviewed|data_read): "\d{4}-\d{2}-\d{2}"$/m.test(body)) {
+      problems.push(`GEO-PAGE-MD-FRONTMATTER  ${r}.md does not open with front matter carrying canonical and a last_reviewed (or data_read) date`);
+    }
+    // Front matter names the page as the page names itself.
+    const yv = (k) => {
+      const m = new RegExp(`^${k}: "((?:[^"\\\\]|\\\\.)*)"$`, "m").exec(body);
+      return m ? m[1].replace(/\\(["\\])/g, "$1") : null;
+    };
+    const h1 = /<h1\b[^>]*>([\s\S]*?)<\/h1>/.exec(html);
+    const pageTitle = h1 ? fullDecode(h1[1].replace(/<[^>]+>/g, "")).replace(/\s+/g, " ").trim() : null;
+    const pageDesc = fullDecode(/<meta name="description" content="([^"]*)"/.exec(html)?.[1] ?? "");
+    if (yv("title") !== pageTitle) problems.push(`GEO-PAGE-MD-FRONTMATTER  ${r}.md title ${JSON.stringify(yv("title"))} is not the page's H1 ${JSON.stringify(pageTitle)}`);
+    if (yv("description") !== pageDesc) problems.push(`GEO-PAGE-MD-FRONTMATTER  ${r}.md description is not the page's meta description ${JSON.stringify(pageDesc)}`);
+    // The review date is one the page itself declares, never a new one.
+    const declared = new Set([...html.matchAll(/"(?:lastReviewed|dateModified)":"(\d{4}-\d{2}-\d{2})/g)].map((m) => m[1]));
+    const reviewed = yv("last_reviewed");
+    if (reviewed && declared.size && !declared.has(reviewed)) {
+      problems.push(`GEO-PAGE-MD-FRONTMATTER  ${r}.md last_reviewed ${reviewed} is not a date ${r} declares (${[...declared].join(", ")})`);
+    }
+    if (!reviewed && declared.size) problems.push(`GEO-PAGE-MD-FRONTMATTER  ${r}.md has no last_reviewed although ${r} declares ${[...declared].join(", ")}`);
+    if (!/^text\/markdown\b/.test(h["content-type"] ?? "")) {
+      problems.push(`GEO-PAGE-MD-LINK  ${r}.md is not served as text/markdown`);
+    }
+    const linkM = /^<([^>]+)>; rel="canonical", <https:\/\/aifitnessapi\.com\/llms\.txt>; rel="describedby"; type="text\/plain"$/.exec(h.link ?? "");
+    if (!linkM || !canon || decode(canon) !== linkM[1] || fmCanon !== linkM[1]) {
+      problems.push(`GEO-PAGE-MD-LINK  ${r}.md Link header ${JSON.stringify(h.link)} does not name ${r}'s canonical ${canon} (front matter: ${fmCanon})`);
+    }
+    const alt = [...html.matchAll(/<link\b[^>]*>/g)].map((m) => m[0]).find((t) => /rel="alternate"/.test(t) && /type="text\/markdown"/.test(t));
+    if (!alt || decode(/href="([^"]*)"/.exec(alt)?.[1] ?? "") !== mdUrl) {
+      problems.push(`GEO-PAGE-MD-ALT  ${r} has no <link rel="alternate" type="text/markdown" href="${mdUrl}">`);
+    }
+    if (rm) {
+      const v = effectiveLink(r);
+      if (!v.includes(`<${mdUrl}>; rel="alternate"`) || !v.includes('rel="describedby"')) {
+        problems.push(`GEO-PAGE-MD-HEADER  ${r} response Link header lacks <${r}.md> rel=alternate or describedby: "${v}"`);
+      }
+      if (effectiveLink(`${r}.md`)) problems.push(`GEO-PAGE-MD-HEADER  a next.config Link rule matches ${r}.md and replaces the mirror's own canonical Link header`);
+    }
+    if (!llms.includes(`(${mdUrl})`)) problems.push(`GEO-PAGE-MD-UNLISTED  ${mdUrl} is not linked from llms.txt`);
+    if (!llmsIndex.includes(`(${mdUrl})`)) problems.push(`GEO-PAGE-MD-UNLISTED  ${mdUrl} is not linked from llms-index.txt`);
+
+    // Text: every line after the citation header, plus the capsule, must be
+    // on the page. Table rows are checked cell by cell (a page may lay a row
+    // out as a card); the one interactive-tool note and the FAQ permalinks
+    // are the mirror's own and are skipped.
+    const main = mainOf(html);
+    const pageText = norm(textOf(main));
+    const parts = body.split(/\n---\n/);
+    const docBody = parts.slice(2).join("\n---\n");
+    const capsule = /^> (.*)$/m.exec(parts[1] ?? "")?.[1] ?? "";
+    const missing = [];
+    const units = [capsule];
+    // A table's header row is the mirror's own column labels, not page text.
+    const bodyLines = docBody.split("\n");
+    for (const [i, line] of bodyLines.entries()) {
+      const t = line.trim();
+      if (t.startsWith("|") && /^\|(?:-{3,}\|)+$/.test((bodyLines[i + 1] ?? "").trim())) continue;
+      if (!t || /^\|?\s*-{3,}/.test(t) || /^\*\[Interactive: /.test(t) || /^\[Permalink\]\(/.test(t) || /^```/.test(t)) continue;
+      if (t.startsWith("|")) units.push(...t.replace(/^\||\|$/g, "").split(/(?<!\\)\|/).map((c) => c.replace(/\\\|/g, "|")));
+      else units.push(t);
+    }
+    for (const u of units) {
+      const n = norm(plain(u));
+      if (!n) continue;
+      lines++;
+      if (!pageText.includes(n)) missing.push(plain(u).trim());
+    }
+    if (missing.length) {
+      problems.push(
+        `GEO-PAGE-MD-TEXT  ${r}.md has ${missing.length} line(s) not on ${r} — edit src/lib/pageMirrors to match the page: ` +
+          missing.slice(0, 3).map((m) => JSON.stringify(m.length > 90 ? `${m.slice(0, 90)}…` : m)).join("; "),
+      );
+    }
+
+    // Coverage: the page's visible section headings (outside the interactive
+    // tool and screen-reader-only labels) and its FAQ questions.
+    const mirrorText = norm(docBody.split("\n").map(plain).join("\n"));
+    const visible = dropElements(main, /\sdata-tool="|\sclass="[^"]*\bsr-only\b/);
+    const heads = [...visible.matchAll(/<h2\b[^>]*>([\s\S]*?)<\/h2>/g)].map((m) => textOf(m[1]).trim()).filter(Boolean);
+    const faqQs = [];
+    for (const m of html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) {
+      try {
+        const j = JSON.parse(m[1]);
+        for (const node of [j, ...(j["@graph"] ?? [])]) {
+          if (node?.["@type"] === "FAQPage") for (const q of node.mainEntity ?? []) faqQs.push(q.name);
+        }
+      } catch {
+        /* JSON-LD validity is another gate's */
+      }
+    }
+    const uncovered = [...heads, ...faqQs].filter((x) => !mirrorText.includes(norm(x)));
+    if (uncovered.length) {
+      problems.push(`GEO-PAGE-MD-COVER  ${r}.md leaves out ${uncovered.length} of the page's headings or FAQ questions: ${uncovered.slice(0, 3).map((x) => JSON.stringify(x)).join("; ")}`);
+    }
+  }
+
+  // Every text/markdown alternate on any built page resolves to a built
+  // markdown document: a page mirror route, a cluster or blog mirror behind
+  // the /md rewrite, a Portuguese mirror or a digest edition.
+  const resolvesMd = (p) => {
+    if (p === "/index.md") return fs.existsSync(`${ROOT}/md/index.body`);
+    const stem = p.replace(/\.md$/, "");
+    return (
+      fs.existsSync(`${ROOT}${p}.body`) ||
+      fs.existsSync(`${ROOT}/md${stem}.body`) ||
+      (p.startsWith("/pt-br/") && fs.existsSync(`${ROOT}/pt-br/md${stem.slice("/pt-br".length)}.body`))
+    );
+  };
+  let alts = 0;
+  const deadAlts = new Set();
+  for (const hf of htmls) {
+    const r = routeOf(hf);
+    if (notFoundSet.has(r) || r.startsWith("/_")) continue;
+    const html = fs.readFileSync(hf, "utf8");
+    for (const m of html.matchAll(/<link\b[^>]*>/g)) {
+      if (!/rel="alternate"/.test(m[0]) || !/type="text\/markdown"/.test(m[0])) continue;
+      const href = decode(/href="([^"]*)"/.exec(m[0])?.[1] ?? "");
+      alts++;
+      const p = href.startsWith(SITE) ? href.slice(SITE.length) : href;
+      if (!p.startsWith("/") || !p.endsWith(".md") || !resolvesMd(p)) deadAlts.add(`${r} → ${href}`);
+    }
+  }
+  for (const d of [...deadAlts].slice(0, 20)) problems.push(`GEO-MD-ALT-DEAD  ${d} names a markdown alternate that was not built`);
+  if (deadAlts.size > 20) problems.push(`GEO-MD-ALT-DEAD  …and ${deadAlts.size - 20} more`);
+
+  console.log(
+    `Page mirrors: ${pageMirrors.length} (${lines} lines held to their pages); ` +
+      `${alts} text/markdown alternates across the site, ${deadAlts.size} unresolved.`,
+  );
+}
+
+// ── Vendor entities (ops/MORE-30-2026-11-05.md item 21). A sameAs to a
+// Wikidata item is a claim of identity, so it ships only with its evidence:
+// a row in src/data/wikidataEntities.json carrying the QID, the label and the
+// P856 official-website claims as fetched, with the fetch's URL and time. The
+// chosen official site must be one of those claims and sit on the domain the
+// vendor's own pages here cite, and every page a row names must carry it.
+{
+  const SITE = "https://aifitnessapi.com";
+  let rows = [];
+  try {
+    rows = JSON.parse(fs.readFileSync("src/data/wikidataEntities.json", "utf8"));
+  } catch {
+    problems.push("ENTITY-DATA  src/data/wikidataEntities.json is missing or not JSON");
+  }
+  // Registrable domain: the last two labels, or three under a two-part
+  // public suffix. github.io is a public suffix, so a project page there is
+  // its own domain, never "github.io".
+  const TWO_PART = new Set(["co.uk", "com.au", "co.jp", "github.io", "com.br"]);
+  const regDomain = (u) => {
+    let h;
+    try {
+      h = new URL(u).hostname.toLowerCase();
+    } catch {
+      return null;
+    }
+    const parts = h.split(".");
+    const last2 = parts.slice(-2).join(".");
+    return TWO_PART.has(last2) ? parts.slice(-3).join(".") : last2;
+  };
+  const byQid = new Map();
+  for (const e of rows) {
+    const where = `${e.id ?? "?"} (${e.qid ?? "no QID"})`;
+    const missing = [];
+    if (!/^Q\d+$/.test(e.qid ?? "")) missing.push("a QID");
+    if (!e.label) missing.push("the Wikidata label");
+    if (!["Organization", "SoftwareApplication"].includes(e.schemaType)) missing.push("schemaType Organization or SoftwareApplication");
+    if (!Array.isArray(e.p856) || e.p856.length === 0) missing.push("P856 claims");
+    const ev = e.evidence ?? {};
+    if (!String(ev.claimsUrl ?? "").startsWith("https://www.wikidata.org/w/api.php?") || !String(ev.claimsUrl).includes(`entity=${e.qid}`) || !/P856/.test(ev.claimsUrl)) missing.push("the P856 claims URL it was read from");
+    if (!/^\d{4}-\d{2}-\d{2}T/.test(ev.claimsFetched ?? "")) missing.push("the claims fetch time");
+    if (!String(ev.labelUrl ?? "").includes(e.qid) || !/^\d{4}-\d{2}-\d{2}T/.test(ev.labelFetched ?? "")) missing.push("the label's source and fetch time");
+    if (missing.length) {
+      problems.push(`ENTITY-EVIDENCE  ${where} lacks ${missing.join(", ")}`);
+      continue;
+    }
+    if (!e.p856.some((c) => c.value === e.officialSite && c.rank !== "deprecated")) {
+      problems.push(`ENTITY-OFFICIAL-SITE  ${where} officialSite ${e.officialSite} is not one of its non-deprecated P856 claims`);
+    }
+    if (regDomain(e.officialSite) !== e.matchedDomain) {
+      problems.push(`ENTITY-OFFICIAL-SITE  ${where} officialSite ${e.officialSite} is not on its matched domain ${e.matchedDomain}`);
+    }
+    if (byQid.has(e.qid)) problems.push(`ENTITY-EVIDENCE  ${e.qid} has two rows`);
+    byQid.set(e.qid, e);
+  }
+
+  const fileOf = new Map(htmls.map((h) => [routeOf(h), h]));
+  const sameAsSeen = new Map(); // qid -> Set(route)
+  for (const h of htmls) {
+    const r = routeOf(h);
+    if (notFoundSet.has(r)) continue;
+    const html = fs.readFileSync(h, "utf8");
+    if (!html.includes("wikidata.org")) continue;
+    for (const m of html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) {
+      let j;
+      try {
+        j = JSON.parse(m[1]);
+      } catch {
+        continue;
+      }
+      const walk = (n) => {
+        if (!n || typeof n !== "object") return;
+        if (Array.isArray(n)) return n.forEach(walk);
+        const sa = Array.isArray(n.sameAs) ? n.sameAs : n.sameAs ? [n.sameAs] : [];
+        for (const s of sa) {
+          const q = /^https:\/\/www\.wikidata\.org\/wiki\/(Q\d+)$/.exec(s)?.[1];
+          if (!q && /wikidata\.org/.test(s)) problems.push(`ENTITY-SAMEAS  ${r} names Wikidata as ${s}, not https://www.wikidata.org/wiki/Q…`);
+          if (!q) continue;
+          const row = byQid.get(q);
+          if (!row) {
+            problems.push(`ENTITY-SAMEAS  ${r} declares sameAs ${s} with no evidence row in src/data/wikidataEntities.json`);
+            continue;
+          }
+          if (!row.pages.includes(r)) problems.push(`ENTITY-SAMEAS  ${r} declares ${q} but its row does not list the page`);
+          if (!sa.includes(row.officialSite) || n.name !== row.label || n["@type"] !== row.schemaType) {
+            problems.push(`ENTITY-SAMEAS  ${r} ${q} node is not the row's ${row.schemaType} "${row.label}" with sameAs ${row.officialSite}`);
+          }
+          if (!sameAsSeen.has(q)) sameAsSeen.set(q, new Set());
+          sameAsSeen.get(q).add(r);
+        }
+        for (const v of Object.values(n)) if (v && typeof v === "object") walk(v);
+      };
+      walk(j);
+    }
+  }
+  for (const e of byQid.values()) {
+    let linked = false;
+    for (const p of e.pages) {
+      if (!fileOf.has(p) || notFoundSet.has(p)) {
+        problems.push(`ENTITY-PAGES  ${e.id} (${e.qid}) lists ${p}, which is not a built page`);
+        continue;
+      }
+      if (!sameAsSeen.get(e.qid)?.has(p)) problems.push(`ENTITY-PAGES  ${p} does not carry ${e.id} (${e.qid}) in its JSON-LD`);
+      const html = fs.readFileSync(fileOf.get(p), "utf8");
+      for (const m of html.matchAll(/href="(https?:\/\/[^"]+)"/g)) if (regDomain(decode(m[1])) === e.matchedDomain) linked = true;
+    }
+    if (!linked) problems.push(`ENTITY-DOMAIN  no page ${e.id} (${e.qid}) is attached to links its matched domain ${e.matchedDomain}, so the official-site match has no evidence here`);
+  }
+  const attached = [...sameAsSeen.values()].reduce((n, s) => n + s.size, 0);
+  console.log(`Vendor entities: ${byQid.size} Wikidata items with P856 evidence, on ${attached} pages.`);
+}
+
+// ── Glossary anchors (ops/MORE-30-2026-11-05.md item 22). A DefinedTerm's
+// @id is a promise that the fragment scrolls somewhere: every one on the site
+// must be an element on /glossary, each term's id must be unique, and every
+// term must name the glossary's one DefinedTermSet.
+{
+  const SITE = "https://aifitnessapi.com";
+  const gFile = htmls.find((h) => routeOf(h) === "/glossary");
+  if (!gFile) problems.push("GLOSSARY-SET  /glossary was not built");
+  else {
+    const g = fs.readFileSync(gFile, "utf8");
+    const ids = [...g.matchAll(/\sid="(term-[^"]*)"/g)].map((m) => m[1]);
+    const dup = ids.filter((x, i) => ids.indexOf(x) !== i);
+    if (dup.length) problems.push(`GLOSSARY-ANCHOR  /glossary repeats term ids: ${[...new Set(dup)].join(", ")}`);
+    const idSet = new Set(ids);
+    const SET_ID = `${SITE}/glossary#termset`;
+    let set = null;
+    for (const m of g.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) {
+      try {
+        const j = JSON.parse(m[1]);
+        if (j["@type"] === "DefinedTermSet") set = j;
+      } catch {
+        /* another gate's */
+      }
+    }
+    if (!set || set["@id"] !== SET_ID) problems.push(`GLOSSARY-SET  /glossary has no DefinedTermSet with @id ${SET_ID}`);
+    const terms = set?.hasDefinedTerm ?? [];
+    if (set && terms.length !== ids.length) problems.push(`GLOSSARY-SET  /glossary declares ${terms.length} DefinedTerms but renders ${ids.length} term anchors`);
+    for (const t of terms) {
+      if (t.inDefinedTermSet?.["@id"] !== SET_ID || !t.termCode || t["@id"] !== `${SITE}/glossary#term-${t.termCode}`) {
+        problems.push(`GLOSSARY-SET  /glossary term ${JSON.stringify(t.name)} lacks inDefinedTermSet ${SET_ID}, a termCode, or an @id built from it`);
+      }
+    }
+    // Every DefinedTerm @id anywhere resolves to an anchor on /glossary.
+    let refs = 0;
+    for (const h of htmls) {
+      const r = routeOf(h);
+      if (notFoundSet.has(r)) continue;
+      const html = fs.readFileSync(h, "utf8");
+      if (!html.includes('"DefinedTerm"')) continue;
+      for (const m of html.matchAll(/"@id":"https:\/\/aifitnessapi\.com\/glossary#(term-[^"]*)"/g)) {
+        refs++;
+        if (!idSet.has(m[1])) problems.push(`GLOSSARY-ANCHOR  ${r} names glossary term #${m[1]}, which is not an element on /glossary`);
+      }
+      for (const m of html.matchAll(/"inDefinedTermSet":(\{[^}]*\}|"[^"]*")/g)) {
+        if (!m[1].includes(SET_ID)) problems.push(`GLOSSARY-SET  ${r} names a DefinedTermSet other than ${SET_ID}: ${m[1]}`);
+      }
+    }
+    console.log(`Glossary: ${ids.length} term anchors, ${refs} DefinedTerm references across the site, all resolving.`);
+  }
+}
+
+// ── Machine-file caching (ops/MORE-30-2026-11-05.md item 23). The static
+// machine surfaces carry one Cache-Control (src/lib/machineHeaders.ts), and
+// nothing that answers per request may borrow it: a dynamic route that set a
+// shared-cache policy could hand one reader's response to another.
+{
+  const policy = /export const MACHINE_CACHE_CONTROL = "([^"]+)"/.exec(
+    fs.existsSync("src/lib/machineHeaders.ts") ? fs.readFileSync("src/lib/machineHeaders.ts", "utf8") : "",
+  )?.[1];
+  if (!policy) problems.push("MACHINE-CACHE  src/lib/machineHeaders.ts does not export MACHINE_CACHE_CONTROL");
+  const isMachine = (r) =>
+    /\.(md|txt|json|xml|csv)$/.test(r) || r.startsWith("/md/") || r.startsWith("/pt-br/md/") ||
+    r.startsWith("/llms-full/") || r.startsWith("/answers/") || r.startsWith("/feeds/") || r.startsWith("/api/v1");
+  let served = 0;
+  (function walk(dir) {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      const p = path.join(dir, e.name);
+      if (e.isDirectory()) walk(p);
+      else if (e.name.endsWith(".meta")) {
+        const r = p.slice(ROOT.length).replace(/\.meta$/, "");
+        if (fs.existsSync(p.replace(/\.meta$/, ".html")) || !fs.existsSync(p.replace(/\.meta$/, ".body"))) continue;
+        if (!isMachine(r) || r === "/robots.txt" || r === "/opensearch.xml" || r.startsWith("/sitemap")) continue;
+        let h = {};
+        try {
+          h = JSON.parse(fs.readFileSync(p, "utf8")).headers ?? {};
+        } catch {
+          /* unreadable meta: reported as a missing header */
+        }
+        served++;
+        if (policy && h["cache-control"] !== policy) {
+          problems.push(`MACHINE-CACHE  ${r} is served with Cache-Control ${JSON.stringify(h["cache-control"] ?? null)}, not the machine-file policy "${policy}"`);
+        }
+      }
+    }
+  })(ROOT);
+  // Dynamic handlers: none may import the shared policy.
+  (function walkSrc(dir) {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      const p = path.join(dir, e.name);
+      if (e.isDirectory()) walkSrc(p);
+      else if (/^route\.tsx?$/.test(e.name)) {
+        const src = fs.readFileSync(p, "utf8");
+        if (!/export const dynamic = "force-static"/.test(src) && /MACHINE_CACHE_CONTROL|machineHeaders|servePageMirror|apiJson/.test(src)) {
+          problems.push(`MACHINE-CACHE  ${p} is not force-static but uses the shared machine-file cache policy`);
+        }
+      }
+    }
+  })("src/app");
+  console.log(`Machine-file caching: ${served} static machine files checked against "${policy}".`);
+}
+
 // ── First-party disclosure gate (ops/GEO.md). KinesteX funds this site; any
 // page whose PROSE substantively features it must say so in the rendered
 // output. Link labels and the RSC flight payload are stripped first so nav

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
   title: { absolute: "Fitness API Changes & Deadlines Tracker" },
   description:
     "The dated record of fitness-API ecosystem changes: deprecations, term changes, deadlines — graded confirmed vs reported, each linked to its source.",
-  alternates: { canonical: PAGE_PATH },
+  alternates: pageMirrorAlternates(PAGE_PATH),
   openGraph: {
     type: "website",
     title: "Fitness API Changes & Deadlines Tracker",

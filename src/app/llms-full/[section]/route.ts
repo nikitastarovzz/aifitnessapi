@@ -1,4 +1,5 @@
 import { fullSections, fullSectionText } from "@/lib/llmsFull";
+import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
 
 /**
  * /llms-full/<section>.txt — one section of /llms-full.txt on its own, so an
@@ -21,6 +22,6 @@ export async function GET(_req: Request, { params }: { params: Promise<{ section
   const s = fullSections().find((x) => `${x.id}.txt` === section);
   if (!s) return new Response("Not found", { status: 404 });
   return new Response(fullSectionText(s), {
-    headers: { "content-type": "text/plain; charset=utf-8" },
+    headers: { "content-type": "text/plain; charset=utf-8", "cache-control": MACHINE_CACHE_CONTROL },
   });
 }

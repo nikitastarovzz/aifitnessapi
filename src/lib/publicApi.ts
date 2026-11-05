@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { absoluteUrl } from "@/lib/site";
+import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
 import { API_ENTRIES, APIS_PATH } from "@/data/apis";
 import { coverageFor } from "@/lib/apiCoverage";
 import { allSpokes } from "@/lib/clusterRegistry";
@@ -38,7 +39,7 @@ export const API_VERSION = "1.0.0";
 
 /** Responses are files regenerated on every deploy, so a client may reuse
  *  one for an hour and keep using it while it revalidates. */
-export const CACHE_CONTROL = "public, max-age=3600, stale-while-revalidate=86400";
+export const CACHE_CONTROL = MACHINE_CACHE_CONTROL;
 
 const API_HEADERS = {
   "content-type": "application/json; charset=utf-8",

@@ -1,5 +1,6 @@
 import { absoluteUrl } from "@/lib/site";
 import { answerSectionDoc, answerSections, answersBody, answersIndexDoc, answersJson } from "@/lib/answersIndex";
+import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
 
 /**
  * /answers/<section>.json — one section of /answers.json, and
@@ -21,6 +22,7 @@ export function generateStaticParams(): { section: string }[] {
 
 const headers = {
   "content-type": "application/json; charset=utf-8",
+  "cache-control": MACHINE_CACHE_CONTROL,
   link: `<${absoluteUrl("/llms.txt")}>; rel="describedby"; type="text/plain"`,
 };
 

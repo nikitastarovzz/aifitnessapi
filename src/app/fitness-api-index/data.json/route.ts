@@ -1,6 +1,7 @@
 import { absoluteUrl, site } from "@/lib/site";
 import { API_INDEX_PATH, indexDataDate, indexExport, indexInputDates } from "@/lib/ecosystemSignals";
 import { WINDOW_DAYS } from "@/lib/ecosystemDerive";
+import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
 
 /**
  * /fitness-api-index as JSON: the rows the page renders, as of the build.
@@ -25,6 +26,6 @@ export function GET() {
     items: indexExport(asOf),
   };
   return new Response(JSON.stringify(body, null, 2), {
-    headers: { "content-type": "application/json; charset=utf-8" },
+    headers: { "content-type": "application/json; charset=utf-8", "cache-control": MACHINE_CACHE_CONTROL },
   });
 }

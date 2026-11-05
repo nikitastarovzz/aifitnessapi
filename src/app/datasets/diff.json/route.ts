@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { absoluteUrl, site } from "@/lib/site";
+import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
 
 /**
  * What changed in the published datasets between the last two regenerations,
@@ -51,6 +52,6 @@ export function GET() {
     manifest: absoluteUrl("/datasets/manifest.json"),
   };
   return new Response(JSON.stringify(body, null, 2), {
-    headers: { "content-type": "application/json; charset=utf-8" },
+    headers: { "content-type": "application/json; charset=utf-8", "cache-control": MACHINE_CACHE_CONTROL },
   });
 }

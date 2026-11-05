@@ -3,6 +3,7 @@ import { getAllPosts } from "@/lib/posts";
 import { absoluteUrl, site } from "@/lib/site";
 import { markdownUrl } from "@/lib/schema";
 import { hubGlanceMarkdown, isGlanceHub } from "@/data/hubGlance";
+import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
 
 /**
  * Clean-markdown mirrors (GEO). Generated from the same data modules as the
@@ -58,6 +59,7 @@ function md(body: string, canonical: string) {
   return new Response(body, {
     headers: {
       "content-type": "text/markdown; charset=utf-8",
+      "cache-control": MACHINE_CACHE_CONTROL,
       link:
         `<${new URL(canonical).href}>; rel="canonical", ` +
         `<${absoluteUrl("/llms.txt")}>; rel="describedby"; type="text/plain"`,

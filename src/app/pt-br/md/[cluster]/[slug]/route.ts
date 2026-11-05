@@ -1,6 +1,7 @@
 import { absoluteUrl, site } from "@/lib/site";
 import { markdownUrl } from "@/lib/schema";
 import { ptPages, ptEntry } from "@/lib/translations";
+import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
 
 /**
  * Markdown mirror of a translated spoke, served at /pt-br/<cluster>/<slug>.md
@@ -79,6 +80,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ cluster
   return new Response(out.join("\n"), {
     headers: {
       "content-type": "text/markdown; charset=utf-8",
+      "cache-control": MACHINE_CACHE_CONTROL,
       "content-language": "pt-BR",
       link: `<${canonical}>; rel="canonical", <${absoluteUrl("/llms.txt")}>; rel="describedby"; type="text/plain"`,
     },

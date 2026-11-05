@@ -253,3 +253,69 @@ Changed 2026-11-04 (ops/NEXT-10-2026-11-04.md item 6), all gated:
   hub Articles point `mainEntityOfPage` at the hub's CollectionPage `@id`.
   The site's Organization is defined once, in the layout; the KinesteX
   `funder` is a separate Organization by design. ORG-ONCE.
+
+## Decision 2026-11-05: page mirrors, vendor entities, glossary set, machine-file caching (ops/MORE-30-2026-11-05.md items 20-23)
+
+Written here because it adds markdown surfaces and changes the cache policy
+of the existing ones. Nothing is removed; every cluster mirror is unchanged.
+
+**Page mirrors (item 20).** The 13 `/tools` pages and `/graveyard`,
+`/datasets`, `/changes`, `/market-map`, `/fitness-api-index`, `/2026`,
+`/daily`, `/play/ship-it` and `/challenge` have a mirror at the page's URL
+with `.md` appended, built by `src/lib/pageMirrors` and served by a route
+folder `src/app/<page>.md/route.ts` (no rewrite: the address is the file).
+A mirror carries the page's server-rendered explanatory text, tables, lists
+and FAQs, front matter (canonical, and `last_reviewed`, or for /market-map,
+which declares no review date, `data_read`), the canonical-plus-describedby
+Link header the cluster mirrors send, and one line saying where the
+interactive part runs. It does not reproduce the interactive UI, the CTAs
+or the KinesteX notes. Tables and counts are computed from the same data
+modules and helpers the page renders (several page-local constants moved to
+`src/lib/*Page.ts`-style modules so both import one copy); prose is copied.
+Copied prose is how a mirror drifts, so qa holds it: GEO-PAGE-MD-TEXT fails
+on any mirror line or table cell whose words are not on the built page,
+GEO-PAGE-MD-COVER on any visible h2 or declared FAQ question the mirror
+leaves out, GEO-PAGE-MD-FRONTMATTER on a title, description or review date
+the page does not state. The pages carry `<link rel="alternate"
+type="text/markdown">` and an exact-path Link header rule (`PAGE_MIRRORS`
+in next.config.ts); both llms files list every mirror (GEO-PAGE-MD-ALT,
+-HEADER, -UNLISTED). GEO-MD-ALT-DEAD checks that every text/markdown
+alternate on the site resolves to a built document. Rule: edit a mirrored
+page's words and its mirror in the same change; qa names the stale line.
+
+**Vendor entities (item 21).** Vendor pages (/apis, /integrate, /pricing,
+/alternatives, for 14 vendors) add the vendor to `about` as an Organization
+or SoftwareApplication with `sameAs` to its Wikidata item and its official
+site. Rows live in `src/data/wikidataEntities.json` with the QID, the English
+label and description, every P856 claim with its rank, and the API URL and
+time each was read, through source-snapshot.yml because www.wikidata.org is
+blocked from the dev environment. A vendor is included only when a P856
+value sits on the registrable domain the site's own pages already cite for
+it. Left out, with the reason: HealthKit (the search found the Apple Health
+app, not the framework); Health Connect and TeamUp (no P856); Terra,
+Nutritionix, ExerciseDB, Mariana Tek, Wodify, Glofox, Sahha, Thryve,
+QuickPose, Sency, Rook, Junction, Spike, Human API, wger, Edamam and MoveNet
+(no matching item found); OpenPose (its P856 host is not one the site
+links); Fitbit (Q5455414, P856 www.fitbit.com) and Google Fit (Q18150347,
+P856 www.google.com/fit/), because none of their pages here links that
+domain (the Fitbit pages cite Google's developers.google.com/health), so the
+official-site match would rest on nothing the site cites; FoodData Central and Open Food Facts (their items are a database and
+a wiki, not an Organization or SoftwareApplication). KinesteX has no item a
+search found, and none is invented. ENTITY-* gates hold the evidence.
+
+**Glossary (item 22).** The DefinedTermSet has the stable `@id`
+`/glossary#termset`; every term carries `termCode`, its `#term-…` `@id` and
+`inDefinedTermSet` naming the set, on the glossary and in the spokes'
+`about`. No site-wide auto-linking of term mentions (decided against: it
+would put links into prose nobody wrote). GLOSSARY-ANCHOR, GLOSSARY-SET.
+
+**Caching (item 23).** Every static machine file (all markdown mirrors,
+llms*.txt, the answers files, claims.json, the feeds, the dataset diff, the
+index and graveyard downloads, /api/v1) sends `Cache-Control: public,
+max-age=3600, stale-while-revalidate=86400`, the value /api/v1 already sent
+and /developers documents, now defined once in `src/lib/machineHeaders.ts`.
+They are static per deploy, read no cookies and hold nothing personal. HTML
+pages, robots.txt, the OpenSearch descriptor, sitemaps, the calendar feed
+and the dynamic API routes are unchanged. MACHINE-CACHE fails on a static
+machine file with any other value and on a non-static route that borrows the
+policy.

@@ -1,5 +1,6 @@
 import { site, absoluteUrl } from "@/lib/site";
 import { changesSorted } from "@/data/changes";
+import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
 
 /**
  * RSS feed for the changes & deadlines tracker.
@@ -55,6 +56,7 @@ ${items}
   return new Response(xml, {
     headers: {
       "content-type": "application/rss+xml; charset=utf-8",
+      "cache-control": MACHINE_CACHE_CONTROL,
       link: `<${absoluteUrl("/llms.txt")}>; rel="describedby"; type="text/plain"`,
     },
   });

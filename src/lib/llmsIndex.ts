@@ -10,6 +10,7 @@ import { GLANCE_HUBS, HUB_NAMES, hubGlance, hubQa } from "@/data/hubGlance";
 import { moneyPages, moneyCluster, MONEY_GROUP_LABELS, MONEY_GROUP_ORDER } from "@/data/moneyPages";
 import { site, absoluteUrl } from "@/lib/site";
 import { markdownUrl } from "@/lib/schema";
+import { pageMirrorList } from "@/lib/pageMirrors";
 import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
 import { releasedGuides, GUIDES_PATH } from "@/data/guides";
 import { releasedBuilds, BUILD_PATH } from "@/data/build";
@@ -91,6 +92,16 @@ import {
  * it reached 590 KB; /llms.txt is now the curated map and links here
  * (ops/NEXT-10-2026-11-04.md item 4; the decision is in ops/GEO.md).
  */
+/** The markdown mirrors of the tools, records and games (src/lib/pageMirrors),
+ *  one line each; printed by both /llms.txt and /llms-index.txt. */
+export function pageMirrorLines(): string[] {
+  return [
+    "## Markdown mirrors of the tools, records and games",
+    "Each page's explanatory text, tables and FAQs as markdown at its URL with `.md` appended; the interactive part runs only on the page.",
+    ...pageMirrorList().map((m) => `- [${m.title}](${markdownUrl(m.path)})`),
+  ];
+}
+
 /** The site's tools, each with the description the exhaustive index prints.
  *  Shared with /llms.txt, which prints only each description's first sentence. */
 export function toolEntries(): { label: string; path: string; text: string }[] {
@@ -601,6 +612,8 @@ export function llmsIndexText(): string {
     "",
     "## Tools",
     ...toolEntries().map((t) => `- [${t.label}](${absoluteUrl(t.path)}): ${t.text}`),
+    "",
+    ...pageMirrorLines(),
     "",
     "## About",
     `- [About ${site.name}](${absoluteUrl("/about")})`,

@@ -13,6 +13,7 @@ import { VENDOR_HUBS } from "@/data/vendorHubs";
 import { menuLabel } from "@/lib/vendorMenu";
 import { site, absoluteUrl } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
+import { vendorEntitiesFor, vendorEntityNode } from "@/lib/vendorEntities";
 import { clampTitle, clampDescription } from "@/lib/cluster";
 import {
   API_ENTRIES,
@@ -190,12 +191,17 @@ export default async function ApiPage({ params }: { params: Promise<Params> }) {
         // The subject of the page. SoftwareApplication is the core-vocabulary
         // type; schema.org's WebAPI is still marked pending, and this file
         // does not emit pending terms (see the note in lib/schema.ts).
-        about: {
-          "@type": "SoftwareApplication",
-          name: api.label,
-          applicationCategory: "DeveloperApplication",
-          applicationSubCategory: CATEGORY_LABELS[api.category],
-        },
+        // The vendor joins it where its Wikidata item and official site were
+        // fetched and matched (src/lib/vendorEntities.ts).
+        about: [
+          {
+            "@type": "SoftwareApplication",
+            name: api.label,
+            applicationCategory: "DeveloperApplication",
+            applicationSubCategory: CATEGORY_LABELS[api.category],
+          },
+          ...vendorEntitiesFor(`${APIS_PATH}/${api.id}`).map(vendorEntityNode),
+        ],
         mainEntity: {
           "@type": "ItemList",
           name: `Pages about ${api.label} on ${site.name}`,
