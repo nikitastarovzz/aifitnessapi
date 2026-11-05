@@ -130,6 +130,21 @@ for (const h of htmls) {
     if (d.length > DESC_MAX) problems.push(`DESC-${d.length}      ${route}`);
   }
 
+  // The two caps above can never fire on a page whose metadata goes through
+  // clampTitle / clampDescription (src/lib/cluster.ts): the clamp cuts the
+  // source copy to fit and ends it with "…". So an over-budget metaTitle or
+  // metaDescription ships as a sentence cut mid-word instead of failing, and
+  // on 2026-11-05 two indexable pages did, by one character each
+  // (ops/MORE-30-2026-11-05.md item 9). The caps are
+  // only universal if the clamp's mark fails too, so it does, on every page a
+  // results page can show (noindex pages — the embed widgets — are not shown
+  // in results; their titles carry the clamp by design, under a suffix).
+  // Fix the source copy to fit; never lengthen the clamp.
+  if (!robotsOf(html).some((r) => /\bnoindex\b/i.test(r))) {
+    if (tm && /…$/.test(decode(tm[1]).trim())) problems.push(`TITLE-CLAMPED  ${route}: "${decode(tm[1])}" — the source title is over ${TITLE_MAX} and was cut`);
+    if (dm && /…$/.test(decode(dm[1]).trim())) problems.push(`DESC-CLAMPED  ${route}: the source description is over ${DESC_MAX} and was cut: "…${decode(dm[1]).slice(-50)}"`);
+  }
+
   if (!/rel="canonical"/.test(html)) problems.push(`NO-CANONICAL   ${route}`);
   if (!/property="og:image"/.test(html)) problems.push(`NO-OG-IMAGE    ${route}`);
 
@@ -4754,6 +4769,138 @@ if (fs.existsSync(matrixPath)) {
       `Head terms: ${terms.length} terms held to one owner each on ${pages} English pages; ${anchors} internal links carry a head term as their text, ${hits.length} pointing elsewhere.`,
     );
   }
+}
+
+// ── FAQ questions as headings (ops/MORE-30-2026-11-05.md item 8). Every page
+// that declares FAQPage JSON-LD and anchors its answers renders each question
+// as an h3 that opens its #faq-N block, with the same text the JSON-LD names:
+// a question-shaped heading is what a "People also ask" box can match, and
+// the anchor is what the JSON-LD's deep link points at. A template change
+// that turns the questions back into bold text, moves the anchor off the
+// question, or lets the heading drift from the structured data fails here.
+{
+  const decodeText = (s) =>
+    s
+      .replace(/<[^>]+>/g, "")
+      .replace(/&nbsp;/g, " ")
+      .replace(/&quot;/g, '"')
+      .replace(/&#x27;|&#39;|&apos;/g, "'")
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
+      .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)))
+      .replace(/&amp;/g, "&")
+      .replace(/\s+/g, " ")
+      .trim();
+  const faqQuestions = (html) => {
+    for (const m of html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) {
+      let data;
+      try {
+        data = JSON.parse(m[1]);
+      } catch {
+        continue;
+      }
+      const nodes = [data, ...(Array.isArray(data?.["@graph"]) ? data["@graph"] : [])].flat();
+      const faq = nodes.find((n) => n?.["@type"] === "FAQPage");
+      if (faq) return (faq.mainEntity ?? []).map((q) => String(q.name ?? "").replace(/\s+/g, " ").trim());
+    }
+    return null;
+  };
+  let pages = 0;
+  let headings = 0;
+  for (const h of htmls) {
+    const route = routeOf(h);
+    if (route.startsWith("/_") || notFoundSet.has(route)) continue;
+    const html = fs.readFileSync(h, "utf8");
+    if (!html.includes('"FAQPage"') || !html.includes('id="faq-1"')) continue;
+    const qs = faqQuestions(html);
+    if (!qs || qs.length === 0) continue;
+    pages++;
+    qs.forEach((q, i) => {
+      const block = new RegExp(`<div\\b[^>]*\\bid="faq-${i + 1}"[^>]*>\\s*<h3\\b[^>]*>([\\s\\S]*?)<\\/h3>`).exec(html);
+      if (!block) {
+        problems.push(`FAQ-HEADING  ${route} #faq-${i + 1} does not open with an h3 question heading`);
+        return;
+      }
+      if (decodeText(block[1]) !== q) {
+        problems.push(`FAQ-HEADING  ${route} #faq-${i + 1} heading "${decodeText(block[1]).slice(0, 60)}" is not the FAQPage question "${q.slice(0, 60)}"`);
+        return;
+      }
+      headings++;
+    });
+  }
+  if (pages === 0) problems.push("FAQ-HEADING  no page with FAQPage JSON-LD and #faq-N anchors was found; the build layout moved");
+  console.log(`FAQ headings: ${headings} questions rendered as h3 headings on ${pages} FAQ pages.`);
+}
+
+// ── No "best" beside the funder's name (ops/GEO.md: never crown KinesteX).
+// ops/MORE-30-2026-11-05.md item 9. Every built page's visible prose, title
+// and meta description is split into sentences; a sentence that names
+// KinesteX and also says "best" (on /pt-br, "melhor") fails. That is the
+// claim the rule forbids, and the sentence is the smallest unit a reader or
+// an assistant quotes. Not a crown, so not a hit:
+//   - a negation of the claim: not / never / no / nor / neither / n't within
+//     four words before "best" ("we never call KinesteX the best");
+//   - "best" inside double quotation marks: a searcher's query or a source's
+//     words shown as such ("best ai fitness api" as typed into Google);
+//   - text in <code>, <pre>, <blockquote> or <q>: identifiers and quoted
+//     source passages, which pageProse already sets aside.
+// Nothing else is exempt. A hit is fixed by rewriting the sentence, never by
+// adding a pattern here.
+{
+  const SENT_BREAK = " ";
+  const blockEnds = /<\/(p|li|h[1-6]|td|th|dt|dd|div|section|article|aside|figcaption|caption|summary|title|option)>|<br\s*\/?>/gi;
+  const NEG = /\b(not|never|no|nor|neither|cannot|without|n[ãa]o|nunca|nem)\b|n't\b|n’t\b/i;
+  let scanned = 0;
+  let sentences = 0;
+  let exemptions = 0;
+  const hits = [];
+  for (const h of htmls) {
+    const route = routeOf(h);
+    if (route.startsWith("/_") || notFoundSet.has(route)) continue;
+    const raw = fs.readFileSync(h, "utf8");
+    if (!/kinestex/i.test(raw)) continue;
+    scanned++;
+    const best = route.startsWith("/pt-br") ? /\b(best|melhor(?:es)?)\b/gi : /\bbest\b/gi;
+    // The title and the description are sentences of their own: end each
+    // inside its own text, since pageProse joins them to the body.
+    const marked = raw
+      .replace(/<title>([^<]*)<\/title>/, `<title>$1${SENT_BREAK}</title>`)
+      .replace(/(<meta\b[^>]*\bname="description"[^>]*\bcontent=")([^"]*)"/, `$1$2${SENT_BREAK}"`)
+      .replace(blockEnds, (m) => `${m}${SENT_BREAK}`)
+      // Cards set a title span and a description span side by side with no
+      // text between: two lines on screen, so two sentences here. An inline
+      // element inside a sentence is followed by text (a space at least), so
+      // this never splits running prose.
+      .replace(/<\/(span|a|strong|em|b|i|small)>(?=<(?!!--))/gi, (m) => `${m}${SENT_BREAK}`);
+    const prose = pageProse(marked);
+    const chunks = prose.split(SENT_BREAK).flatMap((c) => c.split(/(?<=[.!?])\s+(?=[A-Z0-9"“(‘])/));
+    for (const s0 of chunks) {
+      const s = s0.replace(/\s+/g, " ").trim();
+      if (!/kinestex/i.test(s)) continue;
+      sentences++;
+      for (const m of s.matchAll(best)) {
+        const before = s.slice(0, m.index);
+        const quotes = (before.match(/["“”]/g) ?? []).length;
+        if (quotes % 2 === 1) {
+          exemptions++;
+          continue;
+        }
+        const lead = before.split(/\s+/).filter(Boolean).slice(-4).join(" ");
+        if (NEG.test(lead)) {
+          exemptions++;
+          continue;
+        }
+        hits.push(`${route}: "${s.length > 200 ? `${s.slice(0, 200)}…` : s}"`);
+        break;
+      }
+    }
+  }
+  for (const hit of hits) problems.push(`FUNDER-NO-BEST  ${hit}`);
+  if (scanned === 0) problems.push("FUNDER-NO-BEST  no built page names KinesteX; the scan read nothing, so the build layout moved");
+  console.log(
+    `Funder not crowned: ${sentences} sentences naming KinesteX on ${scanned} pages, ${hits.length} with "best"; ${exemptions} negated or quoted.`,
+  );
 }
 
 // ── The published gate list ─────────────────────────────────────────────

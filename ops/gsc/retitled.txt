@@ -89,3 +89,16 @@
 /libraries/oura-ring
 /libraries/oura-python
 /libraries/withings-api
+# 2026-11-05: MORE-30 item 6 (ops/MORE-30-2026-11-05.md), CTR anomalies from
+# `node scripts/gsc-report.mjs --current 2026-11-03 --previous 2026-10-27` section (a) (Google, Oct 4-31),
+# outside the held cohorts: title and description rewritten to answer the page's top queries
+# (data/gsc/latest.json byQueryPage) with a fact the page already sources. Generated reference pages in the
+# list (/healthkit-identifiers/*, /pose-keypoints/coco-17) are template-titled and were left alone.
+/motion/mediapipe-pose-landmarker-models
+/libraries/compare/garminconnect-vs-garth
+/compare/terra-vs-spike
+/compare/rook-vs-spike
+/watch-apps/apple-watch-background-execution
+# Not retitles, so not listed as treated: the same day (item 9's DESC-CLAMPED gate) the descriptions of
+# /fix/health-connect-no-data (held, 2026-10-27) and /pricing/exercise-database-api-pricing lost a final
+# period: each was 156 characters and rendered cut to "…"; every word now shows. /changelog went noindex (item 7).

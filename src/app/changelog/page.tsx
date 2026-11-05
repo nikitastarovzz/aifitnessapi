@@ -52,6 +52,13 @@ export const metadata: Metadata = {
   title: { absolute: "AIFitnessAPI Changelog: Every Content Change, Dated" },
   description: DESCRIPTION,
   alternates: { canonical: "/changelog" },
+  // noindex, follow (ops/MORE-30-2026-11-05.md item 7). This is a ledger, not
+  // a search destination: Google, 2026-10-04 to 2026-10-31, showed it 198
+  // times at an average position of 6.7 for no click. It stays linked from
+  // the footer and from /changes, and `follow` keeps every link on it passing
+  // equity to the pages it records. It is out of the sitemap (src/app/sitemap.ts);
+  // SITEMAP-NOINDEX in qa.mjs stops it coming back there.
+  robots: { index: false, follow: true },
   openGraph: {
     type: "website",
     title: TITLE,

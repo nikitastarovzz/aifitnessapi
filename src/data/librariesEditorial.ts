@@ -1544,9 +1544,9 @@ export const LIBRARY_COMPARISONS: LibraryComparison[] = [
     slug: "garminconnect-vs-garth",
     a: "garminconnect",
     b: "garth",
-    title: "garminconnect vs garth: Unofficial Garmin Connect in Python",
+    title: "garminconnect vs garth: Python Garmin API, garth Deprecated",
     metaDescription:
-      "garth is deprecated and new logins fail; garminconnect, the unofficial Garmin Connect Python client, signs in itself. Migration, tokens, the Personal API.",
+      "Unofficial Garmin Connect API in Python: garth is deprecated and new logins fail; garminconnect dropped it in 0.3.0 and signs in itself, on Python 3.12+.",
     h1: "garminconnect vs garth: Garmin Connect in Python",
     primaryQuery: "garminconnect vs garth",
     answer: `Use garminconnect; garth is finished. garth's README says it is deprecated and no longer maintained because Garmin changed its auth flow, so new logins fail and only a saved session with a valid OAuth1 token keeps working until that token expires, about a year after issue${lib("garth").registryStatus ? `; its PyPI classifier reads "${lib("garth").registryStatus}"` : ""}. garminconnect, the unofficial Garmin Connect client that used garth until 0.3.0, now signs in through Garmin's mobile SSO flow itself, but garth session files cannot be converted, so plan one fresh login. For your own data only, Garmin now documents an official Personal API as well.`,

@@ -189,14 +189,14 @@ export default function ArchitecturePillar() {
 
         <section className="mt-14">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Frequently asked questions</h2>
-          <dl className="mt-6 divide-y divide-[var(--border)]">
+          <div className="mt-6 divide-y divide-[var(--border)]">
             {FAQS.map((f) => (
               <div key={f.q} className="py-5">
-                <dt className="font-semibold text-[var(--fg)]">{f.q}</dt>
-                <dd className="mt-2 text-[var(--muted)]">{f.a}</dd>
+                <h3 className="text-base font-semibold text-[var(--fg)]">{f.q}</h3>
+                <p className="mt-2 text-[var(--muted)]">{f.a}</p>
               </div>
             ))}
-          </dl>
+          </div>
           <p className="mt-6 text-sm text-[var(--muted)]">
             <Link href="/questions/architecture" className="text-brand-600 hover:text-brand-500">
               All {QUESTION_COUNT} questions in {ARCHITECTURE_CONFIG.hubLabel}, answered
