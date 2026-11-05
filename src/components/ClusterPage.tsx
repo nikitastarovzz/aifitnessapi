@@ -85,6 +85,16 @@ const TOOLS = {
     name: "Step lab",
     does: "walk with your phone and watch a visible step detector count; move its threshold and interval to see why two apps disagree.",
   },
+  repCounter: {
+    href: "/tools/rep-counter-playground",
+    name: "Rep counter playground",
+    does: "load a workout video, see joint angles over time, tune a hysteresis rep counter's thresholds and export the config as JSON; the video stays in your browser.",
+  },
+  formRules: {
+    href: "/tools/exercise-form-rules",
+    name: "Exercise form rules",
+    does: "see the joint-angle thresholds open-source exercise trackers use for this movement, each quoted from its code, with a null where none states one.",
+  },
   sampleData: {
     href: "/tools/sample-data",
     name: "Synthetic health data generator",
@@ -139,6 +149,17 @@ const TOOL_FOR_PATH: Record<string, keyof typeof TOOLS> = {
   "/motion/apple-vision-body-pose": "keypoints",
   "/motion/yolo-pose-models": "keypoints",
   "/motion/mediapipe-pose-landmarker-models": "poseBenchmark",
+  // Rep counting: the playground runs the state machine this page describes
+  // on the reader's own video, every threshold exposed.
+  "/motion/how-rep-counting-works": "repCounter",
+  // Exercise pages the form-rules dataset has thresholds for, and the
+  // form-feedback method page whose angle rules it collects.
+  "/motion/how-form-feedback-works": "formRules",
+  "/motion/squat-detection-pose-estimation": "formRules",
+  "/motion/push-up-counter-computer-vision": "formRules",
+  "/motion/bicep-curl-counter-pose-estimation": "formRules",
+  "/motion/lunge-detection-pose-estimation": "formRules",
+  "/motion/plank-detection-pose-estimation": "formRules",
   // The Bluetooth heart-rate pages: the lab decodes the standard Heart Rate
   // Measurement characteristic these guides explain, over Web Bluetooth.
   "/devices/ant-plus-vs-bluetooth": "heartRate",

@@ -118,7 +118,7 @@
     },
     {
       "term": "Exercise database API",
-      "definition": "A catalogue of exercises with metadata and media. Watch the licensing — some open options are AGPL copyleft, which matters for closed-source apps.",
+      "definition": "A catalog of exercises with metadata and media. Watch the licensing — some open options are AGPL copyleft, which matters for closed-source apps.",
       "group": "Platforms & providers",
       "href": "https://aifitnessapi.com/fitness-apis/exercise-database-apis",
       "anchor": "#term-exercise-database-api",
@@ -126,7 +126,7 @@
     },
     {
       "term": "Fitness API",
-      "definition": "Any API a developer uses to get fitness or health data or content — wearables, aggregators, exercise or nutrition catalogues, or AI motion tracking. Choose by job.",
+      "definition": "Any API a developer uses to get fitness or health data or content — wearables, aggregators, exercise or nutrition catalogs, or AI motion tracking. Choose by job.",
       "group": "Platforms & providers",
       "href": "https://aifitnessapi.com/learn/what-is-a-fitness-api",
       "anchor": "#term-fitness-api",
@@ -190,7 +190,7 @@
     },
     {
       "term": "Rep counting",
-      "definition": "Turning a keypoint stream into a count — a classification problem, tested with precision and recall against a labelled corpus, not a demo of ten push-ups.",
+      "definition": "Turning a keypoint stream into a count — a classification problem, tested with precision and recall against a labeled corpus, not a demo of ten push-ups.",
       "group": "AI motion & camera",
       "href": "https://aifitnessapi.com/motion/how-rep-counting-works",
       "anchor": "#term-rep-counting",
@@ -374,7 +374,7 @@
     },
     {
       "term": "RAG / grounding",
-      "definition": "Constraining an LLM to a vetted catalogue instead of free-generating. For a few-thousand-row exercise table, plain retrieval usually beats vector search.",
+      "definition": "Constraining an LLM to a vetted catalog instead of free-generating. For a few-thousand-row exercise table, plain retrieval usually beats vector search.",
       "group": "Compliance & AI",
       "href": "https://aifitnessapi.com/ai/ground-llm-in-exercise-database",
       "anchor": "#term-rag-grounding",

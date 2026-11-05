@@ -27,6 +27,7 @@ import { HC_RELEASES_FETCHED_ON } from "@/data/hcReleases";
 import { HK_METADATA_KEYS_FETCHED_ON } from "@/data/healthkitMetadataKeys";
 import { HS_DATA_TYPES_FETCHED_ON } from "@/data/healthServicesDataTypes";
 import { POSE_KEYPOINTS_FETCHED_ON, POSE_SCHEMES } from "@/data/poseKeypoints";
+import { FORM_RULES_FETCHED_ON } from "@/data/formRules";
 import { hkPageIdentifiers, hkIdentifierPath, hkPageModified } from "@/data/hkIdentifierPages";
 import { hsPageTypes, hsDataTypePath, hsPageModified } from "@/data/hsDataTypePages";
 import { GHAPI_PATHS, allTypes as ghapiTypes, typePath as ghapiTypePath, ghapiModified } from "@/data/ghapiPages";
@@ -228,6 +229,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/tools/webhook-verifier", pageStamp("/tools/webhook-verifier")],
     ["/tools/keypoint-playground", pageStamp("/tools/keypoint-playground")],
     ["/tools/step-lab", pageStamp("/tools/step-lab")],
+    ["/tools/rep-counter-playground", pageStamp("/tools/rep-counter-playground")],
+    ["/tools/exercise-form-rules", FORM_RULES_FETCHED_ON],
   ];
 
   // Routes whose date comes from data, or from the members they index.

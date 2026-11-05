@@ -206,7 +206,10 @@ export default function MotionPillar() {
             squats or jumping jacks from the webcam with the rules{" "}
             <Link href="/motion/how-rep-counting-works">rep counting</Link> describes, and{" "}
             <Link href="/tools/pose-benchmark">the pose model benchmark</Link> times the model on your
-            own device. Both run in the browser and never upload camera frames.
+            own device. Both run in the browser and never upload camera frames. To tune a counter on
+            your own footage, the <Link href="/tools/rep-counter-playground">rep counter playground</Link>{" "}
+            traces joint angles from a video file and exports the thresholds as JSON, starting if you
+            like from <Link href="/tools/exercise-form-rules">the joint-angle rules open-source trackers use</Link>.
           </p>
         </div>
 

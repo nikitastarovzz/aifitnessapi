@@ -11,6 +11,7 @@ import {
   mib,
   type BenchModel,
 } from "@/lib/poseBenchmark";
+import { ACCEPT_LABEL, buildIssue, resultRecord } from "@/lib/poseBenchmarkSubmission.mjs";
 
 /**
  * The in-browser pose benchmark.
@@ -385,6 +386,16 @@ export default function PoseBenchmark() {
   // cannot differ between server and client renders.
   const top = headlineRow(rows);
   const share = top ? { ...top, date: localDate() } : null;
+  // The leaderboard submission: a prefilled GitHub issue, opened only when
+  // the reader clicks, and sent only when they press Submit on GitHub.
+  const okRows = rows.filter((r) => r.status === "ok");
+  const issue =
+    !running && okRows.length > 0
+      ? buildIssue(
+          resultRecord({ runtime: TASKS_VISION_VERSION, measuredAt: when, input, device, rows }),
+          toMarkdown(rows, device, input, when),
+        )
+      : null;
   const nothingPicked =!Object.values(models).some(Boolean) || !Object.values(delegates).some(Boolean);
   const box = "rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6";
   const chip = "inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1.5 text-sm text-[var(--fg)]";
@@ -547,6 +558,42 @@ export default function PoseBenchmark() {
             aria-label="Results as markdown"
             className="mt-3 h-40 w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] p-3 font-mono text-xs text-[var(--fg)]"
           />
+          {issue && (
+            <div data-bench-submit className="mt-5 rounded-lg border border-[var(--border)] bg-[var(--bg)] p-4 text-sm">
+              <p className="font-semibold text-[var(--fg)]">Add this run to the leaderboard</p>
+              <p className="mt-1 text-[var(--muted)]">
+                Opens a prefilled issue on GitHub in a new tab. Nothing is sent until you press Submit
+                there, and you can edit the notes first. The issue is public, including the user agent and
+                GPU name above. A maintainer checks it and adds the{" "}
+                <code className="font-mono text-xs">{ACCEPT_LABEL}</code> label; accepted runs appear
+                below at the next site build.
+              </p>
+              <a
+                href={issue.url}
+                target="_blank"
+                rel="noopener"
+                data-bench-submit-link
+                className="mt-3 inline-block rounded-md bg-brand-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-brand-500"
+              >
+                Submit to the leaderboard on GitHub
+              </a>
+              {issue.tooLong && (
+                <p className="mt-2 text-xs text-[var(--muted)]">
+                  This run is long for a URL. If GitHub refuses it, open a blank issue from the template and
+                  paste the text below.
+                </p>
+              )}
+              <details className="mt-3">
+                <summary className="cursor-pointer text-xs text-[var(--muted)]">The issue text, to paste by hand</summary>
+                <textarea
+                  readOnly
+                  value={issue.body}
+                  aria-label="Leaderboard issue text"
+                  className="mt-2 h-40 w-full rounded-lg border border-[var(--border)] bg-[var(--surface)] p-3 font-mono text-xs text-[var(--fg)]"
+                />
+              </details>
+            </div>
+          )}
           {!running && share && (
             <ShareCard
               filename={`pose-benchmark-${share.date}.png`}

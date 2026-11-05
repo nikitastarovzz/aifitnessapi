@@ -337,6 +337,7 @@ if (fs.existsSync(matrixPath)) {
     "health-mcp-servers-2026",
     "bluetooth-fitness-gatt-2026",
     "workout-types-crosswalk-2026",
+    "exercise-form-rules-2026",
   ];
   // Both directions. Listing files catches a DELETION (a dataset a page
   // still cites); scanning the directory catches an ADDITION that was never
@@ -1689,7 +1690,7 @@ if (fs.existsSync(matrixPath)) {
       const r = routeOf(h);
       return (r === "/tools" || r.startsWith("/tools/")) && fs.readFileSync(h, "utf8").includes("data-tool");
     }).length;
-    const EXPECTED_TOOLS = 13; // hub + 12 tools (the 6 lookups, sample-data, webhook-verifier, keypoint-playground, pose-benchmark, heart-rate-lab and step-lab)
+    const EXPECTED_TOOLS = 15; // hub + 14 tools (the 6 lookups, sample-data, webhook-verifier, keypoint-playground, pose-benchmark, heart-rate-lab, step-lab, rep-counter-playground and exercise-form-rules)
     if (rendered !== EXPECTED_TOOLS) {
       problems.push(`TOOLS          ${rendered} /tools pages carry data-tool, expected ${EXPECTED_TOOLS}`);
     } else {
@@ -1725,8 +1726,9 @@ if (fs.existsSync(matrixPath)) {
     // 13 pages where KinesteX is the subject or one listed option, plus 47
     // build-vs-buy camera-motion pages, /tools/pose-benchmark,
     // /tools/keypoint-playground and /challenge (widened 2026-10-31; the
-    // placement rule is in the component's header comment).
-    const EXPECTED = 63;
+    // placement rule is in the component's header comment), plus
+    // /tools/rep-counter-playground (2026-11-05).
+    const EXPECTED = 64;
     if (withNote.length !== EXPECTED) {
       problems.push(
         `KINESTEX-NOTE  ${withNote.length} pages render the first-party link, expected ${EXPECTED} — a mapped path was probably renamed`,

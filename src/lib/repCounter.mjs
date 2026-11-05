@@ -91,6 +91,8 @@ export const COUNTDOWN_SECONDS = 3;
  *   rest: Zone, active: Zone,
  *   restName: string, activeName: string,
  *   minCycleMs: number,
+ *   minHoldFrames?: number,
+ *   smoothingMs?: number,
  * }} Exercise
  */
 
@@ -232,15 +234,20 @@ export function step(s, angle, t) {
     // No reading: hold the phase, but a zone has to be re-established.
     return { ...s, held: 0, lastT: t, missing: s.missing + 1, event: null };
   }
-  const w = 1 - Math.exp(-dt / SMOOTHING_MS);
-  const smoothed = s.smoothed === null ? angle : w * angle + (1 - w) * s.smoothed;
   const ex = s.exercise;
+  // Optional per-exercise overrides (the /tools/rep-counter-playground config):
+  // smoothingMs 0 turns the average off; minHoldFrames counts whole frames
+  // instead of milliseconds. Without them, the challenge's constants apply.
+  const tau = ex.smoothingMs ?? SMOOTHING_MS;
+  const w = tau > 0 ? 1 - Math.exp(-dt / tau) : 1;
+  const smoothed = s.smoothed === null ? angle : w * angle + (1 - w) * s.smoothed;
   const base = { ...s, smoothed, lastT: t, event: null };
   const target = s.phase === "rest" ? ex.active : ex.rest;
   if (!inZone(target, smoothed)) return { ...base, held: 0 };
   // A frame stands for the interval since the previous one.
-  const held = s.held + dt;
-  if (held < MIN_HOLD_MS) return { ...base, held };
+  const byFrames = Number.isInteger(ex.minHoldFrames) && ex.minHoldFrames > 0;
+  const held = s.held + (byFrames ? 1 : dt);
+  if (held < (byFrames ? ex.minHoldFrames : MIN_HOLD_MS)) return { ...base, held };
 
   if (s.phase === "waiting") return { ...base, held: 0, phase: "rest", event: "phase" };
   if (s.phase === "rest") return { ...base, held: 0, phase: "active", event: "phase" };

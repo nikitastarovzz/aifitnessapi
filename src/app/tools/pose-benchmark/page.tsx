@@ -5,6 +5,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterHero from "@/components/ClusterHero";
 import KinestexNote from "@/components/KinestexNote";
 import PoseBenchmark from "@/components/tools/PoseBenchmark";
+import PoseLeaderboard from "@/components/tools/PoseLeaderboard";
 import { POSE_SCHEMES, POSE_KEYPOINTS_FETCHED_ON } from "@/data/poseKeypoints";
 import { BENCH_MODELS, TASKS_VISION_USAGE_LOG_URL, TASKS_VISION_VERSION, VERIFIED_ON, mib } from "@/lib/poseBenchmark";
 import { site } from "@/lib/site";
@@ -99,6 +100,8 @@ export default function PoseBenchmarkPage() {
         <section data-tool="pose-benchmark" aria-label="In-browser pose model benchmark">
           <PoseBenchmark />
         </section>
+
+        <PoseLeaderboard />
 
         <section className="mt-14">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">What it runs</h2>
