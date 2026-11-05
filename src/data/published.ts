@@ -8,7 +8,7 @@
  * posts and translations: the commit that added the file; generated
  * sections: the commit that added the route, or the item to the data file if
  * that came later). Keyed by URL path without the leading slash.
- * 572 rows.
+ * 582 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -183,13 +183,23 @@ export const PUBLISHED: Record<string, string> = {
   "compliance/store-health-data-securely": "2026-07-14",
   "compliance/washington-my-health-my-data-act": "2026-10-18",
   "cookbook/backfill-checkpointer": "2026-08-12",
+  "cookbook/ble-heart-rate-parser": "2026-11-05",
+  "cookbook/cursor-pagination": "2026-11-05",
   "cookbook/day-boundary-rollup": "2026-08-12",
   "cookbook/dedupe-health-samples": "2026-10-02",
+  "cookbook/health-connect-error-policy": "2026-11-05",
   "cookbook/incremental-sync-anchor": "2026-10-02",
+  "cookbook/multi-window-rate-pacer": "2026-11-05",
+  "cookbook/pkce-authorize-url": "2026-11-05",
   "cookbook/rate-limit-fetcher": "2026-08-12",
   "cookbook/refresh-rotation": "2026-08-12",
   "cookbook/rep-counter": "2026-08-12",
+  "cookbook/token-vault": "2026-11-05",
+  "cookbook/vendor-webhook-signatures": "2026-11-05",
+  "cookbook/webhook-handshakes": "2026-11-05",
   "cookbook/webhook-receiver": "2026-08-12",
+  "cookbook/withings-notification-router": "2026-11-05",
+  "cookbook/workout-type-crosswalk": "2026-11-05",
   "data/active-minutes-api": "2026-10-18",
   "data/blood-glucose-api": "2026-08-12",
   "data/blood-oxygen-api": "2026-07-24",
