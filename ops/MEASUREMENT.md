@@ -58,6 +58,16 @@ event says which page the click came from.
 | `newsletter-pricing`, `newsletter-alternatives`, `newsletter-compare`, `newsletter-integrate` | `money-newsletter` | The "Get the newsletter" button on every English page in those four sections (`components/InlineSignup`), in place of the `cta-<slug>` link those pages carried before | opening (or closing) the inline signup form; it is a `<details>` summary, not a navigation |
 | `kit-checklist`, `kit-scorecard`, `kit-zip` | `money-kit` | The decision-kit block on every English `/pricing` and `/alternatives` page (`components/DecisionKitCta`); `kit-scorecard` only on motion-SDK pages | a direct download of `/kit/api-selection-checklist.md`, `/kit/motion-sdk-scorecard.csv` or `/kit/fitness-api-decision-kit.zip`, ungated |
 
+Added 2026-11-05 (ops/AUDIENCE-30-2026-11-05.md items 24–26):
+
+| id | source | Where | What the click is |
+|---|---|---|---|
+| `search-to-answers-search` | `search-results` | The result count line on `/search` (`components/SearchResults`) | a link to `/answers-search?q=<the same query>` |
+| `embed_countdown_copy` | the page path | The copy button in every "Embed a countdown" control (`components/CountdownEmbed`): `/badges`, `/graveyard`, `/changes/<vendor>`, `/fitbit-api-shutdown`, `/google-fit-shutdown` | a successful copy of a countdown widget's iframe code (fired by `CopySnippet`, not a navigation) |
+
+`/my-stack` and `/answers-search` send no events of their own: the stack and
+the query stay in the browser.
+
 A completed signup from the inline form also fires `cta_click` with id
 `signup-complete` and source `money-<section>` (the form's own event), and the
 stored signup record carries `source: money-<section>`. Before 2026-11-05 the

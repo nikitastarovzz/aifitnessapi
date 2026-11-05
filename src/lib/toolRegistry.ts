@@ -158,6 +158,18 @@ export const TOOL_PLANNERS: Tool[] = [
       "Connect any Bluetooth LE device: services and characteristics by SIG name, read or notify, values decoded where the SIG defines a structure.",
   },
   {
+    path: "/my-stack",
+    name: "My stack",
+    blurb:
+      "Pick the APIs your product depends on: their tracked changes and deadlines, every page here about them with its date, and a calendar to save. Stays in your browser.",
+  },
+  {
+    path: "/answers-search",
+    name: "Answer search",
+    blurb:
+      "Search the full text of every answer capsule, FAQ answer and tracked change, ranked in your browser, with links to the exact answer.",
+  },
+  {
     path: "/daily",
     name: "Daily health-API developer puzzle",
     blurb:

@@ -73,6 +73,8 @@ const PAGE_MIRRORS = [
   "/daily",
   "/play/ship-it",
   "/challenge",
+  "/my-stack",
+  "/answers-search",
 ];
 
 const nextConfig: NextConfig = {

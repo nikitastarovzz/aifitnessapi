@@ -7,6 +7,7 @@ import ClusterCta from "@/components/ClusterCta";
 import ContentAge from "@/components/ContentAge";
 import MigrationWizard from "@/components/MigrationWizard";
 import VendorHubMenu from "@/components/VendorHubMenu";
+import CountdownEmbed from "@/components/CountdownEmbed";
 import { Mdx } from "@/components/mdx";
 import { PAGE_H1 } from "@/data/pageTitles";
 import { absoluteUrl, site } from "@/lib/site";
@@ -293,6 +294,7 @@ export default function FitbitApiShutdownPage() {
           <div className="mt-5">
             <MigrationWizard first="fitbit-web" currentPath={PAGE_PATH} />
           </div>
+          <CountdownEmbed id="fitbit-web-api" label="Embed a Fitbit Web API turn-off countdown" className="mt-5" />
         </section>
 
         <div className="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-headings:scroll-mt-24 prose-a:text-brand-600 hover:prose-a:text-brand-500 prose-th:text-left">

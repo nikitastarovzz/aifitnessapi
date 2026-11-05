@@ -77,6 +77,16 @@ export const TOOL_NEXT_STEPS: Record<string, string[]> = {
     "/fitness-apis/health-data-aggregator-apis",
     "/pricing/how-much-does-a-fitness-api-cost",
   ],
+  "/my-stack": [
+    "/alternatives/fitbit-api-alternatives",
+    "/fitness-apis/health-data-aggregator-apis",
+    "/fitness-apis/wearable-data-apis",
+  ],
+  "/answers-search": [
+    "/fitness-apis/wearable-data-apis",
+    "/fitness-apis/health-data-aggregator-apis",
+    "/pricing/how-much-does-a-fitness-api-cost",
+  ],
   "/graveyard": [
     "/alternatives/fitbit-api-alternatives",
     "/alternatives/google-fit-api-alternatives",

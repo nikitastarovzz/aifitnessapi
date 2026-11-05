@@ -32,7 +32,9 @@
     "test:pose-leaderboard": "node --test scripts/pose-benchmark-submission.test.mjs",
     "test:gsc": "node --test scripts/gsc-sections.test.mjs",
     "test:measure": "node --test scripts/measure.test.mjs",
-    "test:health-export": "node --test scripts/apple-health-export.test.mjs"
+    "test:health-export": "node --test scripts/apple-health-export.test.mjs",
+    "test:my-stack": "node --test scripts/my-stack.test.mjs",
+    "test:answer-search": "node --test scripts/answer-search.test.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "~1.32.0",
