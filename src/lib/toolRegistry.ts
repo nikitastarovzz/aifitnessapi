@@ -110,6 +110,18 @@ export const TOOL_PLANNERS: Tool[] = [
       "Access structure, user-side cost and approval gates for any two products in the directory.",
   },
   {
+    path: "/tools/api-coverage-matrix",
+    name: "Wearable API coverage matrix",
+    blurb:
+      "Which wearable and fitness APIs document which metrics, at what resolution, how far back, and by webhook or pull. Every mark sourced; unknown where no page says.",
+  },
+  {
+    path: "/tools/rate-limit-calculator",
+    name: "Rate-limit and quota calculator",
+    blurb:
+      "Users × syncs × endpoints against each fitness API's documented rate limits: which binds first, the most users it supports, and the vendor's own mitigations.",
+  },
+  {
     path: "/day-boundaries",
     name: "Why “today’s steps” is a bug",
     blurb:

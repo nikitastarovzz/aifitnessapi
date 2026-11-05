@@ -71,6 +71,11 @@ const TOOLS = {
     name: "Pose keypoint playground",
     does: "click a joint and see its index in BlazePose, COCO, OpenPose, ML Kit and Apple Vision, then copy an index map built from matching names only.",
   },
+  rateLimit: {
+    href: "/tools/rate-limit-calculator",
+    name: "Rate-limit calculator",
+    does: "put your users, sync frequency and endpoints per sync against this vendor's documented rate limit and see which limit binds first.",
+  },
   webhook: {
     href: "/tools/webhook-verifier",
     name: "Webhook verifier",
@@ -167,6 +172,12 @@ const TOOL_FOR_PATH: Record<string, keyof typeof TOOLS> = {
   "/integrate/withings-api": "webhook",
   "/integrate/wahoo-api": "webhook",
   "/fix/strava-webhook-not-firing": "webhook",
+  // Guides whose vendor documents a rate limit the calculator models and no
+  // webhook-verifier rule.
+  "/integrate/dexcom-api": "rateLimit",
+  "/integrate/coros-api": "rateLimit",
+  "/integrate/teamup-api": "rateLimit",
+  "/integrate/wodify-api": "rateLimit",
   // The model comparison readers leave for the keypoint maps once a model is chosen.
   "/motion/pose-estimation-models-compared": "keypoints",
   // Model pages whose keypoint scheme the playground maps (Apple Vision; the

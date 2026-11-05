@@ -64,6 +64,8 @@ const PAGE_MIRRORS = [
   "/tools/exercise-form-rules",
   "/tools/ftms-lab",
   "/tools/rep-counter-playground",
+  "/tools/api-coverage-matrix",
+  "/tools/rate-limit-calculator",
   "/graveyard",
   "/datasets",
   "/changes",

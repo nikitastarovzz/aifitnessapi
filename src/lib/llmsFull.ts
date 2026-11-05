@@ -1,4 +1,5 @@
 import { site, absoluteUrl } from "@/lib/site";
+import { COVERAGE_PATH, RATE_LIMIT_PATH, coverageCapsule, rateLimitCapsule } from "@/lib/coverageView";
 import { TASKS_VISION_VERSION, VERIFIED_ON as POSE_BENCH_VERIFIED_ON } from "@/lib/poseBenchmark";
 import { FORM_RULES_PRIMARY_QUERY, REP_PLAYGROUND_PRIMARY_QUERY, formRulesText, leaderboardText, repPlaygroundText } from "@/lib/poseToolsText";
 import { POSE_CROSSWALK, POSE_KEYPOINTS_FETCHED_ON, POSE_SCHEMES } from "@/data/poseKeypoints";
@@ -365,6 +366,16 @@ function toolLines(): string[] {
       `A browser game: pick squats or jumping jacks, a ${REP_COUNTDOWN_SECONDS}-second countdown, then ${REP_CHALLENGE_SECONDS} seconds counted live from the webcam by MediaPipe Pose Landmarker lite (@mediapipe/tasks-vision ${TASKS_VISION_VERSION}) and a two-phase state machine with hysteresis on one angle per frame, computed from the model's world landmarks. Squat: knee angle (hip-knee-ankle), a rep is ${describeZone(sq.active)} and back ${describeZone(sq.rest)}, the example definition the squat detection page reports from a 2026 study. Jumping jack: arm angle (hip-shoulder-wrist, both arms visible), ${describeZone(jj.active)} and back ${describeZone(jj.rest)}, the site's own uncalibrated choice. A zone must hold ${REP_MIN_HOLD_MS} ms; cycles faster than ${sq.minCycleMs} ms (squat) or ${jj.minCycleMs} ms (jumping jack) are rejected. The end screen draws a share card on a canvas and offers a one-line text result with pace squares per 5-second slice. It is a demo of the method, not a measurement, coaching or medical advice, and the count can be wrong. Frames never leave the tab and no scores are stored; the runtime posts its own usage report to Google (timings, no images).`,
     );
   }
+  out.push("");
+  out.push(`## Wearable API coverage matrix — ${absoluteUrl(COVERAGE_PATH)}`);
+  out.push("Primary query: which wearable apis have which health metrics");
+  out.push("");
+  out.push(coverageCapsule());
+  out.push("");
+  out.push(`## Rate-limit and quota calculator (runs on your device) — ${absoluteUrl(RATE_LIMIT_PATH)}`);
+  out.push("Primary query: fitness api rate limit calculator");
+  out.push("");
+  out.push(rateLimitCapsule());
   out.push("");
   out.push(`## Wearable webhook verifier — ${absoluteUrl("/tools/webhook-verifier")}`);
   out.push("Primary query: how to verify a wearable webhook signature");

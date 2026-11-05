@@ -1709,11 +1709,46 @@ if (fs.existsSync(matrixPath)) {
       const r = routeOf(h);
       return (r === "/tools" || r.startsWith("/tools/")) && fs.readFileSync(h, "utf8").includes("data-tool");
     }).length;
-    const EXPECTED_TOOLS = 19; // hub + 18 tools (the 6 lookups, sample-data, webhook-verifier, keypoint-playground, pose-benchmark, heart-rate-lab, step-lab, ftms-lab, cycling-power-lab, ble-gatt-explorer, apple-health-explorer, rep-counter-playground and exercise-form-rules)
+    const EXPECTED_TOOLS = 21; // hub + 20 tools (the 6 lookups, sample-data, webhook-verifier, keypoint-playground, pose-benchmark, heart-rate-lab, step-lab, ftms-lab, cycling-power-lab, ble-gatt-explorer, apple-health-explorer, rep-counter-playground, exercise-form-rules, api-coverage-matrix and rate-limit-calculator)
     if (rendered !== EXPECTED_TOOLS) {
       problems.push(`TOOLS          ${rendered} /tools pages carry data-tool, expected ${EXPECTED_TOOLS}`);
     } else {
       console.log(`Tools: ${EXPECTED_TOOLS - 1} interactive tools + hub render.`);
+    }
+  }
+
+  // ── Coverage matrix and rate-limit calculator: sourced, and rendered ──
+  // Every mark on /tools/api-coverage-matrix and every limit on
+  // /tools/rate-limit-calculator cites { url, quote, ev }. The quote must sit
+  // in its evidence file under the same URL (the files source-quotes.yml
+  // re-checks against the live pages), a limit's number must be stated in
+  // its own quote, and every documented or denied cell must reach the built
+  // page, so a cell cannot be typed without a source or dropped silently.
+  {
+    const { checkAll, statesNumber } = await import(new URL("./lib/evidence-check.mjs", import.meta.url));
+    const cov = await import(new URL("../src/lib/vendorCoverage.mjs", import.meta.url));
+    const rl = await import(new URL("../src/lib/rateLimitCalc.mjs", import.meta.url));
+    const bad = checkAll(".", { cov: cov.COVERAGE_VENDORS, rl: rl.RATE_LIMIT_VENDORS, nd: rl.NOT_DOCUMENTED });
+    for (const b of bad) problems.push(`COVERAGE-EVIDENCE  ${b}`);
+    for (const v of rl.RATE_LIMIT_VENDORS)
+      for (const t of v.tiers)
+        for (const l of t.limits) {
+          if (!statesNumber(l.src.quote, l.max)) problems.push(`COVERAGE-LIMIT-NUMBER  ${v.id}/${t.id} "${l.label}": ${l.max} is not stated in its quote`);
+          if (l.perUser && !statesNumber(l.src.quote, l.perUser)) problems.push(`COVERAGE-LIMIT-NUMBER  ${v.id}/${t.id} "${l.label}": per-user ${l.perUser} is not stated in its quote`);
+        }
+    const page = htmls.find((h) => routeOf(h) === "/tools/api-coverage-matrix");
+    if (!page) problems.push("COVERAGE-RENDER  /tools/api-coverage-matrix was not built");
+    else {
+      const html = fs.readFileSync(page, "utf8");
+      let cells = 0;
+      for (const v of cov.COVERAGE_VENDORS)
+        for (const m of cov.COVERAGE_METRICS) {
+          const { state } = cov.cellState(v, m.id);
+          if (state === "unknown") continue;
+          cells++;
+          if (!html.includes(`data-cell="${v.id}:${m.id}:${state}"`)) problems.push(`COVERAGE-RENDER  ${v.id} × ${m.id} (${state}) does not render on /tools/api-coverage-matrix`);
+        }
+      if (bad.length === 0) console.log(`Coverage matrix: ${cells} sourced cells render; rate-limit calculator: ${rl.RATE_LIMIT_VENDORS.length} vendors, every quote in its evidence file.`);
     }
   }
 

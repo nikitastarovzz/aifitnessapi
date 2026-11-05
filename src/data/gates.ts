@@ -15,6 +15,25 @@
  * appears here as `TITLE-*`.
  */
 export const GATES: { code: string; refuses: string; area: string }[] = [
+  // ── API coverage matrix and rate-limit calculator (2026-11-05) ──
+  {
+    code: "COVERAGE-EVIDENCE",
+    area: "Content integrity",
+    refuses:
+      "A coverage-matrix cell, delivery or history note, rate limit, scope note or mitigation whose quoted vendor sentence is not in the integration guide's evidence file under the same URL. The tools cite only what the guides already source.",
+  },
+  {
+    code: "COVERAGE-LIMIT-NUMBER",
+    area: "Content integrity",
+    refuses:
+      "A rate limit in the calculator whose number (or per-user increment) does not appear in the vendor sentence it quotes, so a limit cannot be typed differently from its source.",
+  },
+  {
+    code: "COVERAGE-RENDER",
+    area: "Derived blocks",
+    refuses:
+      "A coverage matrix build where a documented or vendor-denied cell from the data module does not reach the prerendered /tools/api-coverage-matrix page.",
+  },
   // ── Vendor timelines, /press, dataset cards, vendor records (2026-11-05) ──
   {
     code: "VENDOR-CHANGES-THIN",
