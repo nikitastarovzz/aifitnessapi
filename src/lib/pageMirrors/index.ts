@@ -18,6 +18,8 @@ import { cyclingPowerLabMirror } from "./cyclingPowerLab";
 import { exerciseFormRulesMirror } from "./exerciseFormRules";
 import { ftmsLabMirror } from "./ftmsLab";
 import { repCounterPlaygroundMirror } from "./repCounterPlayground";
+import { oauthPlaygroundMirror } from "./oauthPlayground";
+import { webhooksMirror } from "./webhooks";
 import { graveyardMirror } from "./graveyard";
 import { datasetsMirror } from "./datasets";
 import { changesMirror } from "./changes";
@@ -56,7 +58,9 @@ export const PAGE_MIRRORS: Record<string, () => MirrorDoc> = {
   "/tools/exercise-form-rules": exerciseFormRulesMirror,
   "/tools/ftms-lab": ftmsLabMirror,
   "/tools/rep-counter-playground": repCounterPlaygroundMirror,
+  "/tools/oauth-playground": oauthPlaygroundMirror,
   "/graveyard": graveyardMirror,
+  "/webhooks": webhooksMirror,
   "/datasets": datasetsMirror,
   "/changes": changesMirror,
   "/market-map": marketMapMirror,

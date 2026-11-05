@@ -10,6 +10,8 @@ import { HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { changesSorted } from "@/data/changes";
 import { PRESS_PATH, pressDataDate } from "@/lib/press";
 import { GRAVEYARD_PATH, graveyardCheckedOn } from "@/data/graveyard";
+import { OAUTH_FETCHED_ON } from "@/data/oauthVendors";
+import { WEBHOOKS_FETCHED_ON } from "@/data/webhookPayloads";
 import { API_ENTRIES, APIS_PATH, NOINDEX_APIS } from "@/data/apis";
 import { API_INDEX_PATH, MARKET_MAP_PATH, indexDataDate } from "@/lib/ecosystemSignals";
 import { DAILY_PATH, dailyDataDate } from "@/lib/dailyBank";
@@ -250,6 +252,7 @@ function computeSections(): SitemapSection[] {
     ["/tools/apple-health-explorer", pageStamp("/tools/apple-health-explorer")],
     ["/tools/rep-counter-playground", pageStamp("/tools/rep-counter-playground")],
     ["/tools/exercise-form-rules", FORM_RULES_FETCHED_ON],
+    ["/tools/oauth-playground", OAUTH_FETCHED_ON],
   ];
 
   // Routes whose date comes from data, or from the members they index.
@@ -282,6 +285,8 @@ function computeSections(): SitemapSection[] {
     // The graveyard declares the newest day any entry's source was read as its
     // dateModified; this reads the same function.
     [GRAVEYARD_PATH]: graveyardCheckedOn(),
+    // The webhook payload library declares the day its vendor pages were read.
+    "/webhooks": WEBHOOKS_FETCHED_ON,
     // The press page declares the newest date any of its inputs was written
     // or checked, through the same function.
     [PRESS_PATH]: pressDataDate(),
@@ -330,6 +335,7 @@ function computeSections(): SitemapSection[] {
     API_INDEX_PATH,
     DAILY_PATH,
     GRAVEYARD_PATH,
+    "/webhooks",
     PRESS_PATH,
     "/alerts",
     "/compare-apis",

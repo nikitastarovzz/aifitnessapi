@@ -59,6 +59,8 @@ import { hkVersionPages, versionH1, versionPrimaryQuery, versionCapsule, version
 import { HK_ID_BASE, hkPageIdentifiers, hkIdentifierPath, hkPageH1, hkPageCapsule, hkPageFaqs } from "@/data/hkIdentifierPages";
 import { HS_BASE, hsPageTypes, hsDataTypePath, hsPageH1, hsPageCapsule, hsPageFaqs } from "@/data/hsDataTypePages";
 import { PAGE_H1 } from "@/data/pageTitles";
+import { PLAYGROUND_PATH, PLAYGROUND_TITLE, playgroundCapsule } from "@/lib/oauthPlaygroundData";
+import { WEBHOOKS_PATH, webhooksCapsule } from "@/lib/webhooksPage";
 import { DAILY_CAPSULE, DAILY_PATH, DAILY_PRIMARY_QUERY, dailyFaqs } from "@/lib/dailyBank";
 
 import { CLUSTER_LABELS } from "@/lib/clusterRegistry";
@@ -372,6 +374,16 @@ function toolLines(): string[] {
   out.push(
     "A client-side webhook debugger. Pick Oura, WHOOP, Terra, Polar, Strava, Withings, Wahoo or the Google Health API, paste the received body, headers and your secret, and it checks the request the way that vendor documents, using WebCrypto in the browser (the secret never leaves the tab). As read from each vendor's page on 2026-10-31: Oura signs the x-oura-timestamp value + JSON.stringify(body) with HMAC-SHA256 keyed by the client secret, upper-case hex, in x-oura-signature; WHOOP signs the X-WHOOP-Signature-Timestamp value + the raw body with the client secret, base64, in X-WHOOP-Signature; Terra signs timestamp + '.' + raw body with the destination's signing secret, hex, in terra-signature (t=…,v1=…); Polar signs the payload with the signature_secret_key returned at webhook creation, hex, in Polar-Webhook-Signature. Strava documents no signature on events, only a hub.challenge validation GET answered within two seconds; Withings suggests a secret query parameter on the callback URL plus its published IP allowlist; Wahoo sends the webhook_token you configured in the JSON body; the Google Health API sends your configured endpointAuthorization secret in the Authorization header. The tool also explains each payload field, the response and time limit each vendor expects, and the call that fetches the data.",
   );
+  out.push("");
+  out.push(`## ${PLAYGROUND_TITLE} — ${absoluteUrl(PLAYGROUND_PATH)}`);
+  out.push("Primary query: wearable api oauth endpoints and scopes");
+  out.push("");
+  out.push(playgroundCapsule());
+  out.push("");
+  out.push(`## ${PAGE_H1[WEBHOOKS_PATH]} — ${absoluteUrl(WEBHOOKS_PATH)}`);
+  out.push("Primary query: wearable webhook payload example");
+  out.push("");
+  out.push(webhooksCapsule());
   out.push("");
   out.push(`## ${PAGE_H1[DAILY_PATH]} — ${absoluteUrl(DAILY_PATH)}`);
   out.push(`Primary query: ${DAILY_PRIMARY_QUERY}`);

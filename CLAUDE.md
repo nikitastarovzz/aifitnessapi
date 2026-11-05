@@ -68,6 +68,7 @@ silently reverts it.
 | `src/data/indexDemand.ts` | `npm run build && node scripts/build-index-demand.mjs`, then build again (after every pull: reads `data/gsc/snapshots/*.json` and the build's page list; noindexes generated per-item pages with zero Google and Bing impressions across their pulls once 60 days old; its dates are a ledger, so never delete the file — see the script header) |
 | `public/datasets/*.{json,csv}` + `manifest*.json` | `npm run datasets` (build + manifest) |
 | `public/kit/*` | `node scripts/build-kit.mjs` |
+| `public/webhooks/send-sample.mjs` | `node scripts/build-webhook-sender.mjs` (template `scripts/templates/send-sample.template.mjs` + the documented examples in `src/data/webhookPayloads.ts`; `--check` fails when stale, run by `npm run test:webhook-payloads`) |
 | `public/favicon.ico`, `public/icon-192.png`, `public/icon-512.png`, `public/logo.png` | `node scripts/build-icons.mjs` (rasterizes `src/app/icon.svg` with Playwright's Chromium) |
 | `mcp/data/`, `packages/health-data/data/` | `node scripts/bundle-package-data.mjs` |
 
