@@ -979,6 +979,12 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "A Bluetooth GATT hub that lacks a row for any in-scope characteristic, does not link every characteristic page, or leaves out the field of a structure it keeps as a row instead of a page.",
   },
   {
+    code: "BLE-LAB-LAYOUT",
+    area: "Derived blocks",
+    refuses:
+      "A Bluetooth lab (FTMS, cycling power, GATT explorer) whose decoder no longer matches the Bluetooth SIG structures it is built from: a lab page that does not print the layout of a characteristic it is for with exactly the field count the generated structure has, or an explorer that offers fewer or more decoders than the dataset has structures.",
+  },
+  {
     code: "BT-GATT-THIN",
     area: "Derived blocks",
     refuses: "A Bluetooth characteristic page built for a structure with fewer than two fields and no flags field, or a characteristic whose page flag disagrees with that rule.",

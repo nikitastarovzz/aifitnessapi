@@ -315,6 +315,27 @@ function toolLines(): string[] {
     "A client-side Web Bluetooth tool. The reader picks a heart-rate device in the browser's chooser; the page subscribes to Heart Rate Measurement (0x2A37) notifications and shows each one as bytes, colored by field, decoded against the Bluetooth SIG's GATT Specification Supplement structure as this site's generated dataset holds it: the Flags octet bit by bit, the uint8 or uint16 heart-rate value, sensor contact, Energy Expended and RR-intervals (1/1024 s each, as many as the remaining octets hold). Whether a device can give HRV is in those bytes: RR intervals are present only when bit 4 of Flags is set, and without them there is no beat-to-beat timing to compute HRV from. The page gives a running yes/no, a demo RMSSD (not a medical measurement), Body Sensor Location and Battery Level where present, a CSV of the session and a share card made on a canvas. Byte order is little-endian per the Web Bluetooth specification's heart-rate example. Browsers without Web Bluetooth get a synthetic replay, labeled as synthetic. Nothing is uploaded or stored.",
   );
   out.push("");
+  out.push(`## FTMS lab (runs on your device) — ${absoluteUrl("/tools/ftms-lab")}`);
+  out.push("Primary query: ftms protocol treadmill data format");
+  out.push("");
+  out.push(
+    "A client-side Web Bluetooth tool for the Fitness Machine Service (0x1826). The reader picks a treadmill, indoor bike, rower or cross trainer in the browser's chooser; the page lists the characteristics the service exposes, subscribes to the ones that notify (never the Control Point), reads the Supported Range characteristics once, and decodes each value against the Bluetooth SIG's GATT Specification Supplement structure as this site's generated dataset holds it: the Flags field bit by bit, which fields those bits make present, each field's octets, unit and resolution (M × 10^d × 2^b from the field's own \"Represented values\" line). In Treadmill Data (0x2ACD), Instantaneous Speed is present when bit 0 (More Data) is 0 and is in 1/100 km/h; Indoor Bike cadence is in 1/2 rpm. A paste box decodes any hex value, and synthetic two-minute sessions (labeled synthetic) replay without a machine. Fitness Machine Feature, Status, Training Status and Control Point have no gss file in the SIG's repository at the dataset's commit, so they are shown as hex and the lab writes nothing to the machine. Where the SIG's own lines disagree (Resistance Level: d = 1 beside \"Unit is 1\"), both readings are shown. Nothing is uploaded or stored.",
+  );
+  out.push("");
+  out.push(`## Cycling power and cadence lab (runs on your device) — ${absoluteUrl("/tools/cycling-power-lab")}`);
+  out.push("Primary query: calculate cadence from csc measurement crank revolutions");
+  out.push("");
+  out.push(
+    "A client-side Web Bluetooth tool for Cycling Power Measurement (0x2A63) and CSC Measurement (0x2A5B). Neither sends cadence or speed: each sends cumulative wheel and crank revolution counts and the time of the last revolution event. The lab decodes each notification against the Bluetooth SIG's structure and computes cadence (Δcrank revolutions ÷ Δt × 60) and speed (Δwheel revolutions × the circumference the reader enters ÷ Δt) from consecutive pairs, wrapping each counter at its own width. The structures give the tick: 1/1024 s for both CSC event times, but 1/2048 s for the Cycling Power wheel event time and 1/1024 s for its crank. An unchanged event time is reported as no new event, not 0 rpm. Paste mode takes two hex values; a synthetic ride (labeled synthetic) replays with wraps and a coast. Nothing is written to the sensor or uploaded.",
+  );
+  out.push("");
+  out.push(`## BLE GATT explorer (runs on your device) — ${absoluteUrl("/tools/ble-gatt-explorer")}`);
+  out.push("Primary query: web bluetooth gatt explorer");
+  out.push("");
+  out.push(
+    "A client-side Web Bluetooth tool for any Bluetooth LE device. It uses acceptAllDevices and names every service in this site's Bluetooth dataset plus Battery (and any UUID the reader adds) as optionalServices, because the Web Bluetooth specification says a page using acceptAllDevices \"will only be able to use services listed in optionalServices\". It lists services and characteristics by their Bluetooth SIG names, reads or subscribes on request, and decodes values against the SIG's gss structures where the dataset has one, stopping at medfloat16/medfloat32 fields and conditions that are not Flags bits; other values show as hex. A paste box decodes any of those characteristics without a device. Nothing is written to the device or uploaded.",
+  );
+  out.push("");
   out.push(`## Ship It: a fitness-app survival game — ${absoluteUrl(SHIP_IT_PATH)}`);
   out.push("Primary query: fitness api deprecation game");
   out.push("");
