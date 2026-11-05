@@ -8,7 +8,7 @@ import { WhenUpcoming } from "@/components/UpcomingDeadlines";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
 import { clampDescription } from "@/lib/cluster";
-import { APIS_PATH, NOINDEX_APIS } from "@/data/apis";
+import { APIS_PATH } from "@/data/apis";
 import { VENDOR_HUBS } from "@/data/vendorHubs";
 import { menuLabel } from "@/lib/vendorMenu";
 import type { ChangeStatus } from "@/data/changes";
@@ -78,9 +78,9 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
       canonical,
       types: { "application/rss+xml": [{ url: vendorFeedPath(t.api.id), title: `${title} (RSS)` }] },
     },
-    // A product without search demand of its own is noindex in the directory
-    // (NOINDEX_APIS); its timeline follows the same decision.
-    ...(NOINDEX_APIS.has(t.api.id) ? { robots: { index: false, follow: true } } : {}),
+    // Noindex, follow: a timeline re-renders /changes entries and would compete
+    // with the migration guides for "<vendor> api changes" (MORE-30 group A).
+    robots: { index: false, follow: true },
     openGraph: { type: "website", title, description, url: canonical, images: ["/changes/opengraph-image"] },
   };
 }

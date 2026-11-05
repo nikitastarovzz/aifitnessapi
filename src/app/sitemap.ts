@@ -9,7 +9,6 @@ import { releasedHkGroups, HK_BASE, hkGroupModified } from "@/data/hkGroupPages"
 import { hkStandaloneModified } from "@/data/hkStandalone";
 import { HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { changesSorted } from "@/data/changes";
-import { vendorChangesPath, vendorTimelines, timelineCheckedOn } from "@/lib/vendorChanges";
 import { PRESS_PATH, pressDataDate } from "@/lib/press";
 import { GRAVEYARD_PATH, graveyardCheckedOn } from "@/data/graveyard";
 import { API_ENTRIES, APIS_PATH, NOINDEX_APIS } from "@/data/apis";
@@ -341,12 +340,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...wtRows,
     // Products without search demand of their own are noindex (NOINDEX_APIS).
     ...API_ENTRIES.filter((a) => !NOINDEX_APIS.has(a.id)).map((a) => row(`${APIS_PATH}/${a.id}`)),
-    // Per-vendor change timelines: each declares the newest day one of its
-    // entries was checked as its dateModified, and follows its product's
-    // directory index decision.
-    ...vendorTimelines()
-      .filter((t) => !NOINDEX_APIS.has(t.api.id))
-      .map((t) => row(vendorChangesPath(t.api.id), timelineCheckedOn(t))),
+    // Per-vendor change timelines are noindex: they re-render /changes entries
+    // and would compete with the migration guides for "<vendor> api changes"
+    // (the head-term routing of ops/MORE-30-2026-11-05.md group A).
     ...issues.map((d) => row(`${DIGEST_PATH}/${d.month}`, digestDate(d))),
     // lastmod is the re-verification date, not first publication.
     ...posts.map((post) => row(`/blog/${post.slug}`, post.updated)),
