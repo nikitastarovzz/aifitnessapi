@@ -121,6 +121,21 @@ const TOOLS = {
     name: "Exercise form rules",
     does: "see the joint-angle thresholds open-source exercise trackers use for this movement, each quoted from its code, with a null where none states one.",
   },
+  buildPlan: {
+    href: "/tools/build-plan",
+    name: "Build plan and PRD generator",
+    does: "pick an app type, platforms, data sources and features and get a shareable build plan and a PRD template from the site's sourced pages.",
+  },
+  storeChecklist: {
+    href: "/tools/store-submission-checklist",
+    name: "Store submission checklist",
+    does: "every App Store and Google Play rule a health app is reviewed against, quoted item by item, with your progress kept in your browser.",
+  },
+  complianceWizard: {
+    href: "/tools/compliance-wizard",
+    name: "Compliance wizard",
+    does: "answer nine questions and see which rules likely apply to your app, each quoted from HHS, the FTC, the GDPR, Washington, the FDA or the stores.",
+  },
   sampleData: {
     href: "/tools/sample-data",
     name: "Synthetic health data generator",
@@ -233,7 +248,26 @@ const TOOL_FOR_PATH: Record<string, keyof typeof TOOLS> = {
   "/build/hiit-app": "stack",
   "/build/triathlon-app": "stack",
   "/build/kids-fitness-app": "stack",
-  "/build/fitness-app-tech-stack": "stack",
+  "/build/fitness-app-tech-stack": "buildPlan",
+  // Compliance spokes: the store-rule pages hand on to the checklist that
+  // quotes those rules item by item; the law pages to the wizard that routes
+  // an app to them (ops/AUDIENCE-30-2026-11-05.md items 19–20).
+  "/compliance/app-store-health-data-rules": "storeChecklist",
+  "/compliance/google-play-health-data-policy": "storeChecklist",
+  "/compliance/google-play-health-connect-publishing-requirements": "storeChecklist",
+  "/compliance/app-store-guideline-5-1-3-health-research": "storeChecklist",
+  "/compliance/app-store-guideline-5-1-1-data-collection-storage": "storeChecklist",
+  "/compliance/app-store-guideline-5-1-2-data-use-sharing": "storeChecklist",
+  "/compliance/app-store-guideline-1-4-1-physical-harm": "storeChecklist",
+  "/compliance/app-store-guideline-2-5-1-healthkit-software-requirements": "storeChecklist",
+  "/compliance/app-store-guideline-3-1-3-d-person-to-person-fitness": "storeChecklist",
+  "/compliance/hipaa-compliance-fitness-app": "complianceWizard",
+  "/compliance/is-fitness-data-phi": "complianceWizard",
+  "/compliance/gdpr-fitness-app": "complianceWizard",
+  "/compliance/gym-gdpr-compliance": "complianceWizard",
+  "/compliance/ftc-health-breach-notification-rule": "complianceWizard",
+  "/compliance/washington-my-health-my-data-act": "complianceWizard",
+  "/compliance/fda-fitness-app-regulation": "complianceWizard",
 };
 
 /**

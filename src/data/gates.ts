@@ -15,6 +15,19 @@
  * appears here as `TITLE-*`.
  */
 export const GATES: { code: string; refuses: string; area: string }[] = [
+  // ── Planning tools: build plan, store checklist, compliance wizard (2026-11-05) ──
+  {
+    code: "PLANNER-QUOTE",
+    area: "Content integrity",
+    refuses:
+      "A rule shown by the build plan, the store submission checklist or the compliance wizard whose quote and source address are not a row of that tool's evidence file, or that names a source the tools do not define. The evidence file is what the weekly source-quotes run checks against the live page, so a quote missing from it would never be re-checked.",
+  },
+  {
+    code: "PLANNER-RENDER",
+    area: "Content integrity",
+    refuses:
+      "A planning-tool page that was not built, or that does not render a quote it is built to show: every store item on the checklist, every regime's quotes on the wizard, every platform edge case on the build plan.",
+  },
   // ── Vendor timelines, /press, dataset cards, vendor records (2026-11-05) ──
   {
     code: "VENDOR-CHANGES-THIN",
