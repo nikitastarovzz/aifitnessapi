@@ -23,13 +23,19 @@ export const YEAR_FAQS: { q: string; a: string }[] = [
 ];
 
 
+/** A slide's date value with the year once: the slides already carry it. */
+function withYear(value: string | number): string {
+  const v = String(value);
+  return v.endsWith(String(YEAR)) ? v : `${v}, ${YEAR}`;
+}
+
 /** The capsule, from the slides computed for `asOf`. */
 export function yearCapsule(asOf: string, all: Slide[]): string {
   const by = Object.fromEntries(all.map((s) => [s.id, s]));
   return [
     by.changes && `As of ${formatDate(asOf)}, this site's changes tracker holds ${by.changes.value} ${by.changes.label}${by["busiest-month"] ? `, and ${by["busiest-month"].value} ${by["busiest-month"].label}` : ""}.`,
     by["google-health-api"] && by["fitbit-turn-off"] &&
-      `Google's release notes date the Google Health API launch to ${by["google-health-api"].value}, ${YEAR}, and Google gives ${by["fitbit-turn-off"].value}, ${YEAR} for the Fitbit Web API turn-off.`,
+      `Google's release notes date the Google Health API launch to ${withYear(by["google-health-api"].value)}, and Google gives ${withYear(by["fitbit-turn-off"].value)} for the Fitbit Web API turn-off.`,
     by["health-connect-client"] && by.packages &&
       `Health Connect's connect-client shipped ${by["health-connect-client"].value} releases in ${YEAR}, and ${by.packages.value} ${by.packages.label}.`,
     by.freshness && `The median verification stamp on this site was ${by.freshness.value} old on the build date.`,
