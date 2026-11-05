@@ -357,6 +357,7 @@ if (fs.existsSync(matrixPath)) {
     "bluetooth-fitness-gatt-2026",
     "workout-types-crosswalk-2026",
     "exercise-form-rules-2026",
+    "exercise-taxonomy-crosswalk-2026",
   ];
   // Both directions. Listing files catches a DELETION (a dataset a page
   // still cites); scanning the directory catches an ADDITION that was never
@@ -473,6 +474,21 @@ if (fs.existsSync(matrixPath)) {
   if (!openapi || typeof openapi.openapi !== "string" || !openapi.openapi.startsWith("3.1.") || typeof openapi.paths !== "object") {
     problems.push("API-OPENAPI  /api/v1/openapi.json is missing from the build output or is not an OpenAPI 3.1 document");
   } else {
+    // The typed client's generated types must match the document they were
+    // generated from (ops/AUDIENCE-30-2026-11-05.md item 4). A column added,
+    // removed or retyped in a dataset is a breaking change for the client.
+    {
+      const { renderSchemaModule, OUT } = await import("./build-api-client.mjs");
+      let want = null;
+      try {
+        want = renderSchemaModule(openapi);
+      } catch (e) {
+        problems.push(`API-CLIENT-DRIFT  scripts/build-api-client.mjs cannot render the built OpenAPI document: ${e.message}`);
+      }
+      if (want !== null && (!fs.existsSync(OUT) || fs.readFileSync(OUT, "utf8") !== want)) {
+        problems.push(`API-CLIENT-DRIFT  ${OUT} does not match the built /api/v1/openapi.json — run node scripts/build-api-client.mjs`);
+      }
+    }
     // Expand each documented path into the concrete URLs it promises. An item
     // path must enumerate its ids, or there is no way to hold it to the build.
     const documented = new Set();
@@ -1709,11 +1725,88 @@ if (fs.existsSync(matrixPath)) {
       const r = routeOf(h);
       return (r === "/tools" || r.startsWith("/tools/")) && fs.readFileSync(h, "utf8").includes("data-tool");
     }).length;
-    const EXPECTED_TOOLS = 19; // hub + 18 tools (the 6 lookups, sample-data, webhook-verifier, keypoint-playground, pose-benchmark, heart-rate-lab, step-lab, ftms-lab, cycling-power-lab, ble-gatt-explorer, apple-health-explorer, rep-counter-playground and exercise-form-rules)
+    const EXPECTED_TOOLS = 31; // hub + 30 tools (the 6 lookups, schema-converter, fitbit-to-google-health, sample-data, webhook-verifier, oauth-playground, starter-scaffold, keypoint-playground, pose-benchmark, heart-rate-lab, step-lab, ftms-lab, cycling-power-lab, ble-gatt-explorer, apple-health-explorer, rep-counter-playground, exercise-form-rules, build-plan, store-submission-checklist, compliance-wizard, api-coverage-matrix, rate-limit-calculator, exercise-taxonomy-crosswalk, gym-software-api-matrix and research-platform-chooser)
     if (rendered !== EXPECTED_TOOLS) {
       problems.push(`TOOLS          ${rendered} /tools pages carry data-tool, expected ${EXPECTED_TOOLS}`);
     } else {
       console.log(`Tools: ${EXPECTED_TOOLS - 1} interactive tools + hub render.`);
+    }
+  }
+
+  // ── Planning tools: quoted rules (ops/AUDIENCE-30-2026-11-05.md 17–20) ──
+  // /tools/build-plan, /tools/store-submission-checklist and
+  // /tools/compliance-wizard show rules only as quotes from
+  // src/data/plannerSources.mjs. Each quote must sit, with the same url, in
+  // the tool's evidence file, so the weekly source-quotes run re-checks it
+  // against the live source (PLANNER-QUOTE); and each page must render every
+  // quote it is built to show (PLANNER-RENDER): all store items on the
+  // checklist, every regime's quotes on the wizard, every edge case on the
+  // build plan. A quote edited in one place and not the other fails here.
+  {
+    const { PLANNER_SOURCES, STORE_ITEMS, REGIMES, EDGE_CASES } = await import(new URL("../src/data/plannerSources.mjs", import.meta.url));
+    const qnorm = (s) => String(s).normalize("NFKC").replace(/[‘’]/g, "'").replace(/[“”]/g, '"').replace(/\s+/g, " ").trim();
+    const groups = [
+      ["/tools/store-submission-checklist", "tools-store-submission-checklist.json", STORE_ITEMS.map((i) => ({ id: i.id, quote: i.quote, source: i.source }))],
+      ["/tools/compliance-wizard", "tools-compliance-wizard.json", REGIMES.flatMap((r) => r.quotes.map((q, k) => ({ id: `${r.id}#${k}`, quote: q.quote, source: q.source })))],
+      ["/tools/build-plan", "tools-build-plan.json", EDGE_CASES.map((e) => ({ id: e.id, quote: e.quote, source: e.source }))],
+    ];
+    let quotes = 0;
+    for (const [route, file, rows] of groups) {
+      let evidence = [];
+      try {
+        evidence = JSON.parse(fs.readFileSync(path.join("ops/sources/evidence", file), "utf8"));
+      } catch {
+        problems.push(`PLANNER-QUOTE  ops/sources/evidence/${file} is missing or not JSON`);
+      }
+      const ev = new Set(evidence.map((r) => `${r.url}\n${qnorm(r.quote)}`));
+      const h = htmls.find((f) => routeOf(f) === route);
+      const text = h ? qnorm(decode(fs.readFileSync(h, "utf8").replace(/<script[\s\S]*?<\/script>/g, " ").replace(/<!-- -->/g, "").replace(/<[^>]+>/g, " "))) : null;
+      if (!text) problems.push(`PLANNER-RENDER  ${route} was not built`);
+      for (const r of rows) {
+        quotes++;
+        const src = PLANNER_SOURCES[r.source];
+        if (!src) {
+          problems.push(`PLANNER-QUOTE  ${r.id} names source "${r.source}", which src/data/plannerSources.mjs does not define`);
+          continue;
+        }
+        if (!ev.has(`${src.url}\n${qnorm(r.quote)}`)) problems.push(`PLANNER-QUOTE  ${r.id}: its quote and url are not a row of ops/sources/evidence/${file}`);
+        if (text && !text.includes(qnorm(r.quote))) problems.push(`PLANNER-RENDER  ${route} does not render the quote of ${r.id}`);
+      }
+    }
+    console.log(`Planning tools: ${quotes} quoted rules, each in an evidence file and rendered on its page.`);
+  }
+  // ── Coverage matrix and rate-limit calculator: sourced, and rendered ──
+  // Every mark on /tools/api-coverage-matrix and every limit on
+  // /tools/rate-limit-calculator cites { url, quote, ev }. The quote must sit
+  // in its evidence file under the same URL (the files source-quotes.yml
+  // re-checks against the live pages), a limit's number must be stated in
+  // its own quote, and every documented or denied cell must reach the built
+  // page, so a cell cannot be typed without a source or dropped silently.
+  {
+    const { checkAll, statesNumber } = await import(new URL("./lib/evidence-check.mjs", import.meta.url));
+    const cov = await import(new URL("../src/lib/vendorCoverage.mjs", import.meta.url));
+    const rl = await import(new URL("../src/lib/rateLimitCalc.mjs", import.meta.url));
+    const bad = checkAll(".", { cov: cov.COVERAGE_VENDORS, rl: rl.RATE_LIMIT_VENDORS, nd: rl.NOT_DOCUMENTED });
+    for (const b of bad) problems.push(`COVERAGE-EVIDENCE  ${b}`);
+    for (const v of rl.RATE_LIMIT_VENDORS)
+      for (const t of v.tiers)
+        for (const l of t.limits) {
+          if (!statesNumber(l.src.quote, l.max)) problems.push(`COVERAGE-LIMIT-NUMBER  ${v.id}/${t.id} "${l.label}": ${l.max} is not stated in its quote`);
+          if (l.perUser && !statesNumber(l.src.quote, l.perUser)) problems.push(`COVERAGE-LIMIT-NUMBER  ${v.id}/${t.id} "${l.label}": per-user ${l.perUser} is not stated in its quote`);
+        }
+    const page = htmls.find((h) => routeOf(h) === "/tools/api-coverage-matrix");
+    if (!page) problems.push("COVERAGE-RENDER  /tools/api-coverage-matrix was not built");
+    else {
+      const html = fs.readFileSync(page, "utf8");
+      let cells = 0;
+      for (const v of cov.COVERAGE_VENDORS)
+        for (const m of cov.COVERAGE_METRICS) {
+          const { state } = cov.cellState(v, m.id);
+          if (state === "unknown") continue;
+          cells++;
+          if (!html.includes(`data-cell="${v.id}:${m.id}:${state}"`)) problems.push(`COVERAGE-RENDER  ${v.id} × ${m.id} (${state}) does not render on /tools/api-coverage-matrix`);
+        }
+      if (bad.length === 0) console.log(`Coverage matrix: ${cells} sourced cells render; rate-limit calculator: ${rl.RATE_LIMIT_VENDORS.length} vendors, every quote in its evidence file.`);
     }
   }
 
@@ -1874,6 +1967,42 @@ if (fs.existsSync(matrixPath)) {
           (due ? `, ${due} at ${STALE_AFTER_DAYS}d or older (run \`npm run stale\`)` : ""),
       );
     }
+  }
+
+  // ── Cookbook: the page is the file ──────────────────────────────────────
+  //
+  // Added 2026-11-05 with the ten integrator recipes (ops/AUDIENCE-30 item 9).
+  // Every recipe page claims its code is a byte-verbatim copy of a CI-tested
+  // file in /cookbook. Until now nothing checked that: an edit to the file
+  // without the page (or the reverse) would publish code the tests never ran.
+  {
+    let recipes = 0;
+    for (const f of fs.readdirSync("src/data").filter((n) => /^cookbook(\.[a-z]+)?\.entries\.ts$/.test(n))) {
+      const src = fs.readFileSync(`src/data/${f}`, "utf8");
+      const start = src.indexOf("= [");
+      let entries = [];
+      try {
+        entries = JSON.parse(src.slice(start + 2, src.lastIndexOf("]") + 1));
+      } catch (e) {
+        problems.push(`COOKBOOK-VERBATIM  src/data/${f} is not the JSON-shaped entry list this gate reads (${e.message})`);
+        continue;
+      }
+      for (const e of entries) {
+        recipes++;
+        const file = `cookbook/${e.slug}.mjs`;
+        if (!fs.existsSync(file) || !fs.existsSync(`cookbook/${e.slug}.test.mjs`)) {
+          problems.push(`COOKBOOK-UNTESTED  /cookbook/${e.slug} has no ${file} with a ${e.slug}.test.mjs beside it`);
+          continue;
+        }
+        const blocks = [...String(e.body).matchAll(/```js\n([\s\S]*?)```/g)].map((m) => m[1]);
+        if (blocks.length !== 1 || blocks[0] !== fs.readFileSync(file, "utf8")) {
+          problems.push(
+            `COOKBOOK-VERBATIM  /cookbook/${e.slug} ${blocks.length === 1 ? "shows code that differs from" : `has ${blocks.length} js blocks instead of one copy of`} ${file}`,
+          );
+        }
+      }
+    }
+    console.log(`Cookbook: ${recipes} recipes, each page's code checked byte for byte against its tested file.`);
   }
 
   // ── Query ownership: one query, one page ──────────────────────────────
@@ -3697,6 +3826,82 @@ function checkSitemapIndex(SITE) {
     if (checked && offered === decodable) console.log(`BLE labs: ${checked} lab layouts match the SIG structures; the explorer offers all ${decodable} decoders.`);
   }
 
+  // AUDIENCE-30 wave 3 (items 27-30, added 2026-11-05).
+  // The exercise taxonomy crosswalk must render every generated term at its
+  // anchor (the dataset's page column points there), and show as mapped only
+  // the terms the generator mapped. The two evidence matrices must render
+  // every row of their data module; their cells' evidence is checked when the
+  // page builds (src/lib/evidenceMatrixCore.mjs throws on a dangling index).
+  // The Atlas poster is generated, not built: its files must exist, stay
+  // under 2 MB, and name every directory product and graveyard entry, so a
+  // product added to the directory without redrawing the poster is caught.
+  {
+    const et = fs.readFileSync("src/data/exerciseTaxonomy.ts", "utf8");
+    const terms = jsonArray(et, "ET_TERMS") ?? [];
+    const html = htmlOf("/tools/exercise-taxonomy-crosswalk");
+    if (!html) problems.push("EXERCISE-TAXONOMY  /tools/exercise-taxonomy-crosswalk was not built");
+    else {
+      const missing = terms.filter((t) => !html.includes(`id="${t.id}"`));
+      if (!terms.length) problems.push("EXERCISE-TAXONOMY  src/data/exerciseTaxonomy.ts has no ET_TERMS");
+      if (missing.length) problems.push(`EXERCISE-TAXONOMY  ${missing.length} of ${terms.length} terms have no row on /tools/exercise-taxonomy-crosswalk: ${missing.slice(0, 3).map((t) => t.id).join(", ")}`);
+      for (const t of terms) {
+        if (t.status === "mapped" && !(t.matchable && [t.healthkit, t.healthConnect, t.hcSegment].some((m) => m.exact.length))) {
+          problems.push(`EXERCISE-TAXONOMY  ${t.id} is marked mapped without a same-name constant on a matchable facet`);
+        }
+        if (!t.matchable && [t.healthkit, t.healthConnect, t.hcSegment].some((m) => m.exact.length)) {
+          problems.push(`EXERCISE-TAXONOMY  ${t.id} is a ${t.facet} term but carries a mapping`);
+        }
+      }
+      if (terms.length && !missing.length) console.log(`Exercise taxonomy: ${terms.length} terms rendered, ${terms.filter((t) => t.status === "mapped").length} mapped by name.`);
+    }
+
+    for (const [route, mod, name] of [
+      ["/tools/gym-software-api-matrix", "src/data/gymApiMatrix.ts", "GYM_API_MATRIX"],
+      ["/tools/research-platform-chooser", "src/data/researchPlatformMatrix.ts", "RESEARCH_PLATFORM_MATRIX"],
+    ]) {
+      const page = htmlOf(route);
+      const ids = [...fs.readFileSync(mod, "utf8").matchAll(/^ {6}id: "([^"]+)",$/gm)].map((m) => m[1]);
+      if (!page) problems.push(`EVIDENCE-MATRIX  ${route} was not built`);
+      else if (!ids.length) problems.push(`EVIDENCE-MATRIX  could not read the row ids of ${name} from ${mod}`);
+      else {
+        const missing = ids.filter((id) => !new RegExp(`<tr[^>]*\\bid="${id}"`).test(page));
+        if (missing.length) problems.push(`EVIDENCE-MATRIX  ${route} does not render ${missing.length} of ${ids.length} rows: ${missing.join(", ")}`);
+        else console.log(`Evidence matrix ${route}: all ${ids.length} rows rendered with their quotes.`);
+      }
+    }
+
+    const ATLAS = { svg: "public/atlas/fitness-api-atlas.svg", pdf: "public/atlas/fitness-api-atlas.pdf" };
+    const MAX = 2 * 1024 * 1024;
+    let atlasOk = true;
+    for (const f of Object.values(ATLAS)) {
+      if (!fs.existsSync(f)) {
+        problems.push(`ATLAS-FILE  ${f} is missing; run node scripts/build-atlas.mjs`);
+        atlasOk = false;
+      } else if (fs.statSync(f).size > MAX) {
+        problems.push(`ATLAS-FILE  ${f} is ${fs.statSync(f).size} bytes, over 2 MB`);
+        atlasOk = false;
+      }
+    }
+    if (fs.existsSync(ATLAS.pdf) && !fs.readFileSync(ATLAS.pdf).subarray(0, 5).toString().startsWith("%PDF")) {
+      problems.push(`ATLAS-FILE  ${ATLAS.pdf} is not a PDF`);
+      atlasOk = false;
+    }
+    if (fs.existsSync(ATLAS.svg)) {
+      const svg = fs.readFileSync(ATLAS.svg, "utf8");
+      const unesc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+      const excluded = new Set([...(/const EXCLUDED = new Set\(\[([^\]]*)\]\)/.exec(fs.readFileSync("src/data/apis.ts", "utf8"))?.[1] ?? "").matchAll(/"([^"]+)"/g)].map((m) => m[1]));
+      const products = JSON.parse(fs.readFileSync("public/datasets/fitness-apis-2026.json", "utf8")).items.filter((i) => !excluded.has(i.id));
+      const graves = [...fs.readFileSync("src/data/graveyard.ts", "utf8").matchAll(/^ {4}name: "([^"]+)",$/gm)].map((m) => m[1]);
+      const absent = [...products.map((p) => p.label), ...graves].filter((n) => !svg.includes(`>${unesc(n)}<`) && !svg.includes(`◆ ${unesc(n)}<`));
+      if (!graves.length) problems.push("ATLAS-STALE  could not read graveyard names from src/data/graveyard.ts");
+      if (absent.length) {
+        problems.push(`ATLAS-STALE  the poster leaves out ${absent.length} directory product(s) or graveyard entr(ies): ${absent.slice(0, 3).join("; ")} — run node scripts/build-atlas.mjs`);
+        atlasOk = false;
+      }
+      if (atlasOk) console.log(`Atlas: ${products.length} products and ${graves.length} graveyard entries on the poster; SVG ${fs.statSync(ATLAS.svg).size} B, PDF ${fs.statSync(ATLAS.pdf).size} B.`);
+    }
+  }
+
   // Workout types across four platforms (added 2026-10-18). Apple's
   // HKWorkoutActivityType (84 cases), Health Connect's ExerciseSessionRecord
   // EXERCISE_TYPE_* (61), Wear OS Health Services' ExerciseType (85 public) and
@@ -5028,6 +5233,94 @@ function checkSitemapIndex(SITE) {
   console.log(
     `Embeds: ${embeds.length} widgets, all held to noindex, canonical and backlink; ` +
       `${tableEmbeds.length} table widgets for ${tableCount} tables on ${pages.length} pages in ${clusters.filter(Boolean).join(", ")}.`,
+  );
+}
+
+// ── Countdown widgets, /my-stack and /answers-search
+// (ops/AUDIENCE-30-2026-11-05.md items 24–26).
+//
+// A countdown widget renders on someone else's page with a date in large
+// type, so its date is held to the records it claims to come from: every date
+// a widget carries (data-countdown-dates) must be the `end` of a stone in the
+// graveyard's own data.json or the `date` of a tracker entry in
+// /answers/changes.json, at that precision — and a stone's widget must carry
+// exactly that stone's end. Every built widget is offered by at least one
+// "Embed a countdown" control (data-embed-countdown) on a built page outside
+// /embed, every control offers a built widget, and /badges lists them all.
+//
+// /my-stack offers one option per directory product (one per built
+// /apis/<id> page). /answers-search must stay light: its HTML carries the
+// section list, never the answer records, which load only when the reader
+// searches.
+{
+  const fileByRoute = new Map(htmls.map((h) => [routeOf(h), h]));
+  const read = (r) => (fileByRoute.has(r) ? fs.readFileSync(fileByRoute.get(r), "utf8") : "");
+  const built = (r) => valid.has(r) && !notFoundSet.has(r);
+  const readJson = (p) => {
+    try {
+      return JSON.parse(fs.readFileSync(p, "utf8"));
+    } catch {
+      return null;
+    }
+  };
+  const gy = readJson(`${ROOT}/graveyard/data.json.body`);
+  const ch = readJson(`${ROOT}/answers/changes.json.body`);
+  const stoneEnd = new Map((gy?.items ?? []).map((e) => [e.id, e.end]));
+  const sourced = new Set([
+    ...(gy?.items ?? []).map((e) => e.end).filter(Boolean),
+    ...(ch?.changes ?? []).map((c) => c.date),
+  ]);
+  if (!gy || !ch) problems.push("COUNTDOWN-DATE  the graveyard data.json or /answers/changes.json could not be read, so countdown dates cannot be checked");
+
+  const widgets = [...valid].filter((r) => r.startsWith("/embed/countdown/") && !notFoundSet.has(r)).sort();
+  for (const r of widgets) {
+    const html = read(r);
+    const id = r.slice("/embed/countdown/".length);
+    const kind = /\bdata-countdown-kind="([a-z]+)"/.exec(html)?.[1];
+    const dates = (/\bdata-countdown-dates="([^"]*)"/.exec(html)?.[1] ?? "").split(" ").filter(Boolean);
+    if (!kind || dates.length === 0) {
+      problems.push(`COUNTDOWN-DATE  ${r} renders no data-countdown-kind or no dates`);
+      continue;
+    }
+    for (const d of dates) if (!sourced.has(d)) problems.push(`COUNTDOWN-DATE  ${r} counts to ${d}, which is no stone's end and no tracker entry's date`);
+    if (kind === "entry" && (dates.length !== 1 || stoneEnd.get(id) !== dates[0])) {
+      problems.push(`COUNTDOWN-DATE  ${r} carries ${dates.join(", ")}, but the graveyard stone ${id} ends ${stoneEnd.get(id) ?? "(no such stone)"}`);
+    }
+  }
+
+  const offeredBy = new Map();
+  for (const h of htmls) {
+    const page = routeOf(h);
+    if (page.startsWith("/embed/") || notFoundSet.has(page)) continue;
+    const html = fs.readFileSync(h, "utf8");
+    for (const m of html.matchAll(/\bdata-embed-countdown="([^"]+)"/g)) {
+      if (!offeredBy.has(m[1])) offeredBy.set(m[1], new Set());
+      offeredBy.get(m[1]).add(page);
+    }
+  }
+  for (const [route, pages] of offeredBy) {
+    if (!built(route)) problems.push(`COUNTDOWN-EMBED-ROUTE  ${[...pages][0]} offers ${route}, which was not built`);
+  }
+  for (const r of widgets) {
+    if (!offeredBy.has(r)) problems.push(`COUNTDOWN-EMBED-ORPHAN  ${r} is built but no page offers its embed code`);
+    else if (!offeredBy.get(r).has("/badges")) problems.push(`COUNTDOWN-EMBED-ORPHAN  ${r} is not listed on /badges`);
+  }
+
+  const apis = [...valid].filter((r) => /^\/apis\/[a-z0-9-]+$/.test(r) && !notFoundSet.has(r)).length;
+  const stack = read("/my-stack");
+  const options = new Set([...stack.matchAll(/\bdata-stack-option="([a-z0-9-]+)"/g)].map((m) => m[1]));
+  if (!stack) problems.push("MY-STACK-OPTIONS  /my-stack was not built");
+  else if (options.size !== apis) problems.push(`MY-STACK-OPTIONS  /my-stack offers ${options.size} products; the directory has ${apis} built entries`);
+
+  const ANSWER_SEARCH_MAX = 160 * 1024;
+  const as = read("/answers-search");
+  const asBytes = Buffer.byteLength(as, "utf8");
+  if (!as) problems.push("ANSWER-SEARCH-WEIGHT  /answers-search was not built");
+  else if (asBytes > ANSWER_SEARCH_MAX || /"faqs":\[/.test(as)) {
+    problems.push(`ANSWER-SEARCH-WEIGHT  /answers-search is ${asBytes} bytes${/"faqs":\[/.test(as) ? " and embeds answer records" : ""}; the answers must load on search, not with the page (cap ${ANSWER_SEARCH_MAX})`);
+  }
+  console.log(
+    `Countdowns: ${widgets.length} widgets, every date sourced and every widget offered; /my-stack ${options.size} products; /answers-search ${Math.round(asBytes / 1024)} KB before any search.`,
   );
 }
 

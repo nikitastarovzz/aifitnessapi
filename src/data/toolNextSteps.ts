@@ -9,6 +9,20 @@
  * and a path routeLabel does not know fails the build (components/ToolNextStep).
  */
 export const TOOL_NEXT_STEPS: Record<string, string[]> = {
+  "/tools/exercise-taxonomy-crosswalk": [
+    "/fitness-apis/exercise-database-apis",
+    "/compare/exercisedb-vs-wger",
+    "/compare/exercisedb-vs-free-exercise-db",
+  ],
+  "/tools/gym-software-api-matrix": [
+    "/fitness-apis/gym-management-software-apis",
+    "/integrate/mindbody-api",
+    "/pricing/mindbody-api-pricing",
+  ],
+  "/tools/research-platform-chooser": [
+    "/fitness-apis/wearable-research-data-platforms",
+    "/migrate/fitbit-research-studies-after-turndown",
+  ],
   "/tools/error-diagnoser": [
     "/integrate/healthkit",
     "/integrate/google-health-connect",
@@ -36,9 +50,29 @@ export const TOOL_NEXT_STEPS: Record<string, string[]> = {
     "/fitness-apis/health-data-aggregator-apis",
     "/pricing/how-much-does-a-fitness-api-cost",
   ],
+  "/tools/build-plan": [
+    "/build/fitness-app-tech-stack",
+    "/fitness-apis/wearable-data-apis",
+    "/pricing/how-much-does-a-fitness-api-cost",
+  ],
+  "/tools/store-submission-checklist": [
+    "/compliance/app-store-health-data-rules",
+    "/compliance/google-play-health-connect-publishing-requirements",
+    "/fitness-apis/apple-healthkit-vs-google-health-connect",
+  ],
+  "/tools/compliance-wizard": [
+    "/compliance/hipaa-compliance-fitness-app",
+    "/compliance/ftc-health-breach-notification-rule",
+    "/compliance/gdpr-fitness-app",
+  ],
   "/tools/sample-data": [
     "/fitness-apis/wearable-data-apis",
     "/fitness-apis/health-data-aggregator-apis",
+  ],
+  "/tools/starter-scaffold": [
+    "/integrate",
+    "/fitness-apis/wearable-data-apis",
+    "/pricing/how-much-does-a-fitness-api-cost",
   ],
   "/tools/webhook-verifier": [
     "/integrate",
@@ -62,6 +96,15 @@ export const TOOL_NEXT_STEPS: Record<string, string[]> = {
     "/integrate/healthkit",
     "/integrate/google-health-connect",
   ],
+  "/tools/schema-converter": [
+    "/fitness-apis/health-data-aggregator-apis",
+    "/fitness-apis/apple-healthkit-vs-google-health-connect",
+  ],
+  "/tools/fitbit-to-google-health": [
+    "/migrate/fitbit-web-api-to-google-health",
+    "/alternatives/fitbit-api-alternatives",
+    "/fitness-apis/wearable-data-apis",
+  ],
   "/challenge": [
     "/fitness-apis/ai-workout-tracking-apis",
     "/motion/build-vs-buy-ai-motion-tracking",
@@ -77,6 +120,26 @@ export const TOOL_NEXT_STEPS: Record<string, string[]> = {
     "/fitness-apis/health-data-aggregator-apis",
     "/pricing/how-much-does-a-fitness-api-cost",
   ],
+  "/my-stack": [
+    "/alternatives/fitbit-api-alternatives",
+    "/fitness-apis/health-data-aggregator-apis",
+    "/fitness-apis/wearable-data-apis",
+  ],
+  "/answers-search": [
+    "/fitness-apis/wearable-data-apis",
+    "/fitness-apis/health-data-aggregator-apis",
+    "/pricing/how-much-does-a-fitness-api-cost",
+  ],
+  "/tools/oauth-playground": [
+    "/integrate",
+    "/fitness-apis/wearable-data-apis",
+    "/fitness-apis/health-data-aggregator-apis",
+  ],
+  "/webhooks": [
+    "/fitness-apis/health-data-aggregator-apis",
+    "/pricing/health-data-aggregator-pricing",
+    "/integrate",
+  ],
   "/graveyard": [
     "/alternatives/fitbit-api-alternatives",
     "/alternatives/google-fit-api-alternatives",
@@ -86,6 +149,16 @@ export const TOOL_NEXT_STEPS: Record<string, string[]> = {
     "/fitness-apis",
     "/pricing/how-much-does-a-fitness-api-cost",
     "/fitness-apis/free-fitness-apis",
+  ],
+  "/tools/api-coverage-matrix": [
+    "/fitness-apis/wearable-data-apis",
+    "/fitness-apis/health-data-aggregator-apis",
+    "/pricing/how-much-does-a-fitness-api-cost",
+  ],
+  "/tools/rate-limit-calculator": [
+    "/fitness-apis/health-data-aggregator-apis",
+    "/pricing/health-data-aggregator-pricing",
+    "/integrate",
   ],
   "/fitness-api-index": [
     "/fitness-apis",

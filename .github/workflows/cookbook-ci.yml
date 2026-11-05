@@ -8,9 +8,10 @@ name: cookbook-ci
 on:
   push:
     branches: [main]
-    paths: ["cookbook/**", ".github/workflows/cookbook-ci.yml"]
+    paths: ["cookbook/**", ".github/workflows/cookbook-ci.yml", "src/lib/webhookVerifier.mjs", "src/lib/hrMeasurement.mjs", "src/data/bluetoothGatt.ts", "src/data/errorCodes.ts", "src/data/workoutTypes.ts", "public/datasets/workout-types-crosswalk-2026.json"]
   pull_request:
-    paths: ["cookbook/**"]
+    # The recipe suites also read the site data they were written from.
+    paths: ["cookbook/**", ".github/workflows/cookbook-ci.yml", "src/lib/webhookVerifier.mjs", "src/lib/hrMeasurement.mjs", "src/data/bluetoothGatt.ts", "src/data/errorCodes.ts", "src/data/workoutTypes.ts", "public/datasets/workout-types-crosswalk-2026.json"]
   workflow_dispatch: {}
 
 jobs:

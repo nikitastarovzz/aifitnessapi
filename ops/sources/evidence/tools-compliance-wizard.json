@@ -1,0 +1,132 @@
+[
+  {
+    "claim": "Compliance wizard, HIPAA, as a covered entity: the statement shown for this regime.",
+    "url": "https://www.ecfr.gov/api/renderer/v1/content/enhanced/current/title-45?part=160&section=160.103",
+    "quote": "Covered entity means: ( 1 ) A health plan. ( 2 ) A health care clearinghouse. ( 3 ) A health care provider who transmits any health information in electronic form in connection with a transaction covered by this subchapter."
+  },
+  {
+    "claim": "Compliance wizard, HIPAA, as a covered entity: the statement shown for this regime.",
+    "url": "https://www.ftc.gov/business-guidance/resources/mobile-health-apps-interactive-tool",
+    "quote": "5. Do consumers need a prescription to access your app? Yes HIPAA: You may be a HIPAA covered health care provider and therefore subject to the HIPAA Rules ."
+  },
+  {
+    "claim": "Compliance wizard, HIPAA, as a business associate: the statement shown for this regime.",
+    "url": "https://www.ftc.gov/business-guidance/resources/mobile-health-apps-interactive-tool",
+    "quote": "Are you developing, offering, or operating an app on behalf of a HIPAA covered entity (such as a hospital, doctor’s office, health insurer, or health plan’s wellness program)? Or are you acting as a subcontractor to another entity providing services to a covered entity?"
+  },
+  {
+    "claim": "Compliance wizard, HIPAA, as a business associate: the statement shown for this regime.",
+    "url": "https://www.ftc.gov/business-guidance/resources/mobile-health-apps-interactive-tool",
+    "quote": "You likely are a HIPAA business associate , and therefore subject to the HIPAA Security Rule and specific provisions of the HIPAA Privacy and Breach Notification Rules"
+  },
+  {
+    "claim": "Compliance wizard, HIPAA, as a business associate: the statement shown for this regime.",
+    "url": "https://web.archive.org/web/20261026014247/https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/business-associates/index.html",
+    "quote": "developer that contracts with a covered entity to provide the health care app to the covered entity's patients"
+  },
+  {
+    "claim": "Compliance wizard, HIPAA (neither a covered entity nor a business associate): the statement shown for this regime.",
+    "url": "https://web.archive.org/web/20261028163611/https://www.hhs.gov/hipaa/for-professionals/covered-entities/index.html",
+    "quote": "If an entity does not meet the definition of a covered entity or business associate, it does not have to comply with the HIPAA Rules."
+  },
+  {
+    "claim": "Compliance wizard, HIPAA (neither a covered entity nor a business associate): the statement shown for this regime.",
+    "url": "https://www.ftc.gov/business-guidance/resources/mobile-health-apps-interactive-tool",
+    "quote": "You likely are not covered by HIPAA. (Other laws, like the FTC Act, may also apply, but we’ll get to that.)"
+  },
+  {
+    "claim": "Compliance wizard, FTC Health Breach Notification Rule: the statement shown for this regime.",
+    "url": "https://www.ftc.gov/business-guidance/resources/mobile-health-apps-interactive-tool",
+    "quote": "The FTC’s Health Breach Notification Rule applies to most health apps that aren’t covered by HIPAA because most developers of health apps are acting as “health care providers”"
+  },
+  {
+    "claim": "Compliance wizard, FTC Health Breach Notification Rule: the statement shown for this regime.",
+    "url": "https://www.ftc.gov/business-guidance/resources/complying-ftcs-health-breach-notification-rule-0",
+    "quote": "For example, if you develop a health app that collects information from consumers and can sync with a consumer’s fitness tracker, you’re probably a vendor of personal health records."
+  },
+  {
+    "claim": "Compliance wizard, FTC Health Breach Notification Rule: the statement shown for this regime.",
+    "url": "https://www.ecfr.gov/api/renderer/v1/content/enhanced/current/title-16?part=318",
+    "quote": "This part does not apply to HIPAA-covered entities, or to any other entity to the extent that it engages in activities as a business associate of a HIPAA-covered entity."
+  },
+  {
+    "claim": "Compliance wizard, FTC Health Breach Notification Rule: the statement shown for this regime.",
+    "url": "https://www.ftc.gov/business-guidance/resources/complying-ftcs-health-breach-notification-rule-0",
+    "quote": "If your company is a HIPAA business associate that also offers personal health record services to the public, you may be subject to both the HHS and FTC Breach Notification Rules."
+  },
+  {
+    "claim": "Compliance wizard, FTC Health Breach Notification Rule: sharing without consent: the statement shown for this regime.",
+    "url": "https://www.ecfr.gov/api/renderer/v1/content/enhanced/current/title-16?part=318",
+    "quote": "A breach of security includes an unauthorized acquisition of unsecured PHR identifiable health information in a personal health record that occurs as a result of a data breach or an unauthorized disclosure."
+  },
+  {
+    "claim": "Compliance wizard, FTC Health Breach Notification Rule: sharing without consent: the statement shown for this regime.",
+    "url": "https://www.ftc.gov/business-guidance/resources/complying-ftcs-health-breach-notification-rule-0",
+    "quote": "if you disclose consumers’ unsecured, individually identifiable health information without their consent, a breach has occurred."
+  },
+  {
+    "claim": "Compliance wizard, FTC Act: what you claim about privacy: the statement shown for this regime.",
+    "url": "https://www.ftc.gov/business-guidance/resources/collecting-using-or-sharing-consumer-health-information-look-hipaa-ftc-act-health-breach",
+    "quote": "don’t make false or misleading claims that you are “HIPAA Compliant,” “HIPAA Secure,” “HIPAA Certified” or the like."
+  },
+  {
+    "claim": "Compliance wizard, GDPR, Article 9 (data concerning health): the statement shown for this regime.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/4/adopted",
+    "quote": "personal data related to the physical or mental health of a natural person, including the provision of health care services, which reveal information about his or her health status"
+  },
+  {
+    "claim": "Compliance wizard, GDPR, Article 9 (data concerning health): the statement shown for this regime.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/9/adopted",
+    "quote": "biometric data for the purpose of uniquely identifying a natural person, data concerning health or data concerning a natural person's sex life or sexual orientation shall be prohibited"
+  },
+  {
+    "claim": "Compliance wizard, GDPR, Article 9 (data concerning health): the statement shown for this regime.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/9/adopted",
+    "quote": "the data subject has given explicit consent to the processing of those personal data for one or more specified purposes"
+  },
+  {
+    "claim": "Compliance wizard, GDPR for a gym or studio: controller and processor: the statement shown for this regime.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/4/adopted",
+    "quote": "alone or jointly with others, determines the purposes and means of the processing of personal data"
+  },
+  {
+    "claim": "Compliance wizard, GDPR for a gym or studio: controller and processor: the statement shown for this regime.",
+    "url": "https://www.legislation.gov.uk/eur/2016/679/article/4/adopted",
+    "quote": "which processes personal data on behalf of the controller"
+  },
+  {
+    "claim": "Compliance wizard, Washington My Health My Data Act: the statement shown for this regime.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "\"Regulated entity\" means any legal entity that: (a) Conducts business in Washington, or produces or provides products or services that are targeted to consumers in Washington; and (b) alone or jointly with others, determines the purpose and means of collecting, processing, sharing, or selling of consumer health data."
+  },
+  {
+    "claim": "Compliance wizard, Washington My Health My Data Act: the statement shown for this regime.",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
+    "quote": "\"Consumer health data\" means personal information that is linked or reasonably linkable to a consumer and that identifies the consumer's past, present, or future physical or mental health status."
+  },
+  {
+    "claim": "Compliance wizard, Washington My Health My Data Act: the statement shown for this regime.",
+    "url": "https://www.atg.wa.gov/protecting-washingtonians-personal-health-data-and-privacy",
+    "quote": "For example, while information about the purchase of toilet paper or deodorant is not consumer health data, an app that tracks someone’s digestion or perspiration is collecting consumer health data."
+  },
+  {
+    "claim": "Compliance wizard, FDA: general wellness or medical device: the statement shown for this regime.",
+    "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/general-wellness-policy-low-risk-devices",
+    "quote": "Section 520(o)(1)(B) of the FD&C Act, states that software that is intended \"for maintaining or encouraging a healthy lifestyle and is unrelated to the diagnosis, cure, mitigation, prevention, or treatment of a disease or condition\" is not a device under section 201(h) of the FD&C Act."
+  },
+  {
+    "claim": "Compliance wizard, Apple App Review Guidelines: the statement shown for this regime.",
+    "url": "https://developer.apple.com/app-store/review/guidelines/",
+    "quote": "Apps may not use or disclose to third parties data gathered in the health, fitness, and medical research context—including from the Clinical Health Records API, HealthKit API, Motion and Fitness, MovementDisorder APIs, or health-related human subject research—for advertising, marketing, or other use-based data mining purposes other than improving health management, or for the purpose of health research, and then only with permission."
+  },
+  {
+    "claim": "Compliance wizard, Google Play Health apps and Health Connect policies: the statement shown for this regime.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16679511?hl=en",
+    "quote": "All developers must complete the Health apps declaration form on the App content page"
+  },
+  {
+    "claim": "Compliance wizard, Google Play Health apps and Health Connect policies: the statement shown for this regime.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16324062?hl=en",
+    "quote": "Data accessed through Health Connect Permissions is regarded as personal and sensitive user data subject to the User Data policy"
+  }
+]

@@ -1,0 +1,582 @@
+[
+  {
+    "claim": "wger lists the category \"Abs\".",
+    "url": "https://wger.de/api/v2/exercisecategory/?format=json",
+    "quote": "{\"id\":10,\"name\":\"Abs\"}"
+  },
+  {
+    "claim": "wger lists the category \"Arms\".",
+    "url": "https://wger.de/api/v2/exercisecategory/?format=json",
+    "quote": "{\"id\":8,\"name\":\"Arms\"}"
+  },
+  {
+    "claim": "wger lists the category \"Back\".",
+    "url": "https://wger.de/api/v2/exercisecategory/?format=json",
+    "quote": "{\"id\":12,\"name\":\"Back\"}"
+  },
+  {
+    "claim": "wger lists the category \"Calves\".",
+    "url": "https://wger.de/api/v2/exercisecategory/?format=json",
+    "quote": "{\"id\":14,\"name\":\"Calves\"}"
+  },
+  {
+    "claim": "wger lists the category \"Cardio\".",
+    "url": "https://wger.de/api/v2/exercisecategory/?format=json",
+    "quote": "{\"id\":15,\"name\":\"Cardio\"}"
+  },
+  {
+    "claim": "wger lists the category \"Chest\".",
+    "url": "https://wger.de/api/v2/exercisecategory/?format=json",
+    "quote": "{\"id\":11,\"name\":\"Chest\"}"
+  },
+  {
+    "claim": "wger lists the category \"Legs\".",
+    "url": "https://wger.de/api/v2/exercisecategory/?format=json",
+    "quote": "{\"id\":9,\"name\":\"Legs\"}"
+  },
+  {
+    "claim": "wger lists the category \"Shoulders\".",
+    "url": "https://wger.de/api/v2/exercisecategory/?format=json",
+    "quote": "{\"id\":13,\"name\":\"Shoulders\"}"
+  },
+  {
+    "claim": "wger lists the equipment \"Barbell\".",
+    "url": "https://wger.de/api/v2/equipment/?format=json",
+    "quote": "{\"id\":1,\"name\":\"Barbell\"}"
+  },
+  {
+    "claim": "wger lists the equipment \"Bench\".",
+    "url": "https://wger.de/api/v2/equipment/?format=json",
+    "quote": "{\"id\":8,\"name\":\"Bench\"}"
+  },
+  {
+    "claim": "wger lists the equipment \"Cable machine\".",
+    "url": "https://wger.de/api/v2/equipment/?format=json",
+    "quote": "{\"id\":12,\"name\":\"Cable machine\"}"
+  },
+  {
+    "claim": "wger lists the equipment \"Dumbbell\".",
+    "url": "https://wger.de/api/v2/equipment/?format=json",
+    "quote": "{\"id\":3,\"name\":\"Dumbbell\"}"
+  },
+  {
+    "claim": "wger lists the equipment \"Gym mat\".",
+    "url": "https://wger.de/api/v2/equipment/?format=json",
+    "quote": "{\"id\":4,\"name\":\"Gym mat\"}"
+  },
+  {
+    "claim": "wger lists the equipment \"Incline bench\".",
+    "url": "https://wger.de/api/v2/equipment/?format=json",
+    "quote": "{\"id\":9,\"name\":\"Incline bench\"}"
+  },
+  {
+    "claim": "wger lists the equipment \"Kettlebell\".",
+    "url": "https://wger.de/api/v2/equipment/?format=json",
+    "quote": "{\"id\":10,\"name\":\"Kettlebell\"}"
+  },
+  {
+    "claim": "wger lists the equipment \"Pull-up bar\".",
+    "url": "https://wger.de/api/v2/equipment/?format=json",
+    "quote": "{\"id\":6,\"name\":\"Pull-up bar\"}"
+  },
+  {
+    "claim": "wger lists the equipment \"Resistance band\".",
+    "url": "https://wger.de/api/v2/equipment/?format=json",
+    "quote": "{\"id\":11,\"name\":\"Resistance band\"}"
+  },
+  {
+    "claim": "wger lists the equipment \"SZ-Bar\".",
+    "url": "https://wger.de/api/v2/equipment/?format=json",
+    "quote": "{\"id\":2,\"name\":\"SZ-Bar\"}"
+  },
+  {
+    "claim": "wger lists the equipment \"Swiss Ball\".",
+    "url": "https://wger.de/api/v2/equipment/?format=json",
+    "quote": "{\"id\":5,\"name\":\"Swiss Ball\"}"
+  },
+  {
+    "claim": "wger lists the equipment \"none (bodyweight exercise)\".",
+    "url": "https://wger.de/api/v2/equipment/?format=json",
+    "quote": "{\"id\":7,\"name\":\"none (bodyweight exercise)\"}"
+  },
+  {
+    "claim": "wger lists the muscle \"Anterior deltoid\".",
+    "url": "https://wger.de/api/v2/muscle/?format=json",
+    "quote": "{\"id\":2,\"name\":\"Anterior deltoid\",\"name_en\":\"Shoulders\""
+  },
+  {
+    "claim": "wger lists the muscle \"Biceps brachii\".",
+    "url": "https://wger.de/api/v2/muscle/?format=json",
+    "quote": "{\"id\":1,\"name\":\"Biceps brachii\",\"name_en\":\"Biceps\""
+  },
+  {
+    "claim": "wger lists the muscle \"Biceps femoris\".",
+    "url": "https://wger.de/api/v2/muscle/?format=json",
+    "quote": "{\"id\":11,\"name\":\"Biceps femoris\",\"name_en\":\"Hamstrings\""
+  },
+  {
+    "claim": "wger lists the muscle \"Brachialis\".",
+    "url": "https://wger.de/api/v2/muscle/?format=json",
+    "quote": "{\"id\":13,\"name\":\"Brachialis\",\"name_en\":\"\""
+  },
+  {
+    "claim": "wger lists the muscle \"Gastrocnemius\".",
+    "url": "https://wger.de/api/v2/muscle/?format=json",
+    "quote": "{\"id\":7,\"name\":\"Gastrocnemius\",\"name_en\":\"Calves\""
+  },
+  {
+    "claim": "wger lists the muscle \"Gluteus maximus\".",
+    "url": "https://wger.de/api/v2/muscle/?format=json",
+    "quote": "{\"id\":8,\"name\":\"Gluteus maximus\",\"name_en\":\"Glutes\""
+  },
+  {
+    "claim": "wger lists the muscle \"Latissimus dorsi\".",
+    "url": "https://wger.de/api/v2/muscle/?format=json",
+    "quote": "{\"id\":12,\"name\":\"Latissimus dorsi\",\"name_en\":\"Lats\""
+  },
+  {
+    "claim": "wger lists the muscle \"Obliquus externus abdominis\".",
+    "url": "https://wger.de/api/v2/muscle/?format=json",
+    "quote": "{\"id\":14,\"name\":\"Obliquus externus abdominis\",\"name_en\":\"\""
+  },
+  {
+    "claim": "wger lists the muscle \"Pectoralis major\".",
+    "url": "https://wger.de/api/v2/muscle/?format=json",
+    "quote": "{\"id\":4,\"name\":\"Pectoralis major\",\"name_en\":\"Chest\""
+  },
+  {
+    "claim": "wger lists the muscle \"Quadriceps femoris\".",
+    "url": "https://wger.de/api/v2/muscle/?format=json",
+    "quote": "{\"id\":10,\"name\":\"Quadriceps femoris\",\"name_en\":\"Quads\""
+  },
+  {
+    "claim": "wger lists the muscle \"Rectus abdominis\".",
+    "url": "https://wger.de/api/v2/muscle/?format=json",
+    "quote": "{\"id\":6,\"name\":\"Rectus abdominis\",\"name_en\":\"Abs\""
+  },
+  {
+    "claim": "wger lists the muscle \"Serratus anterior\".",
+    "url": "https://wger.de/api/v2/muscle/?format=json",
+    "quote": "{\"id\":3,\"name\":\"Serratus anterior\",\"name_en\":\"\""
+  },
+  {
+    "claim": "wger lists the muscle \"Soleus\".",
+    "url": "https://wger.de/api/v2/muscle/?format=json",
+    "quote": "{\"id\":15,\"name\":\"Soleus\",\"name_en\":\"\""
+  },
+  {
+    "claim": "wger lists the muscle \"Trapezius\".",
+    "url": "https://wger.de/api/v2/muscle/?format=json",
+    "quote": "{\"id\":9,\"name\":\"Trapezius\",\"name_en\":\"\""
+  },
+  {
+    "claim": "wger lists the muscle \"Triceps brachii\".",
+    "url": "https://wger.de/api/v2/muscle/?format=json",
+    "quote": "{\"id\":5,\"name\":\"Triceps brachii\",\"name_en\":\"Triceps\""
+  },
+  {
+    "claim": "ExerciseDB v1 lists the body-part \"neck\".",
+    "url": "https://oss.exercisedb.dev/api/v1/bodyparts",
+    "quote": "{\"name\":\"neck\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the body-part \"lower arms\".",
+    "url": "https://oss.exercisedb.dev/api/v1/bodyparts",
+    "quote": "{\"name\":\"lower arms\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the body-part \"shoulders\".",
+    "url": "https://oss.exercisedb.dev/api/v1/bodyparts",
+    "quote": "{\"name\":\"shoulders\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the body-part \"cardio\".",
+    "url": "https://oss.exercisedb.dev/api/v1/bodyparts",
+    "quote": "{\"name\":\"cardio\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the body-part \"upper arms\".",
+    "url": "https://oss.exercisedb.dev/api/v1/bodyparts",
+    "quote": "{\"name\":\"upper arms\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the body-part \"chest\".",
+    "url": "https://oss.exercisedb.dev/api/v1/bodyparts",
+    "quote": "{\"name\":\"chest\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the body-part \"lower legs\".",
+    "url": "https://oss.exercisedb.dev/api/v1/bodyparts",
+    "quote": "{\"name\":\"lower legs\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the body-part \"back\".",
+    "url": "https://oss.exercisedb.dev/api/v1/bodyparts",
+    "quote": "{\"name\":\"back\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the body-part \"upper legs\".",
+    "url": "https://oss.exercisedb.dev/api/v1/bodyparts",
+    "quote": "{\"name\":\"upper legs\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the body-part \"waist\".",
+    "url": "https://oss.exercisedb.dev/api/v1/bodyparts",
+    "quote": "{\"name\":\"waist\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"stepmill machine\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"stepmill machine\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"elliptical machine\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"elliptical machine\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"trap bar\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"trap bar\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"tire\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"tire\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"stationary bike\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"stationary bike\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"ab wheel\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"ab wheel\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"smith machine\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"smith machine\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"hammer\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"hammer\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"ski ergometer\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"ski ergometer\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"roller\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"roller\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"resistance band\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"resistance band\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"bosu ball\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"bosu ball\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"weighted\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"weighted\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"olympic barbell\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"olympic barbell\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"kettlebell\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"kettlebell\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"upper body ergometer\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"upper body ergometer\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"sled machine\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"sled machine\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"EZ bar\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"EZ bar\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"dumbbell\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"dumbbell\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"rope\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"rope\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"barbell\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"barbell\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"stability ball\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"stability ball\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"medicine ball\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"medicine ball\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"assisted\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"assisted\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"leverage machine\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"leverage machine\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"cable\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"cable\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"bodyweight\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"bodyweight\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"towel\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"towel\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"tennis ball\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"tennis ball\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the equipment \"suspension trainer\".",
+    "url": "https://oss.exercisedb.dev/api/v1/equipments",
+    "quote": "{\"name\":\"suspension trainer\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"tibialis anterior\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"tibialis anterior\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"hands\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"hands\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"sternocleidomastoid\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"sternocleidomastoid\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"soleus\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"soleus\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"adductors\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"adductors\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"abdominals\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"abdominals\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"grip muscles\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"grip muscles\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"wrist extensors\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"wrist extensors\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"wrist flexors\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"wrist flexors\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"latissimus dorsi\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"latissimus dorsi\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"pectorals\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"pectorals\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"rotator cuff\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"rotator cuff\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"wrists\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"wrists\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"brachialis\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"brachialis\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"deltoids\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"deltoids\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"feet\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"feet\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"ankles\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"ankles\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"trapezius\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"trapezius\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"rear deltoids\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"rear deltoids\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"quadriceps\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"quadriceps\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"back\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"back\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"core\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"core\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"ankle stabilizers\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"ankle stabilizers\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"rhomboids\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"rhomboids\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"obliques\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"obliques\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"erector spinae\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"erector spinae\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"hip flexors\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"hip flexors\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"levator scapulae\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"levator scapulae\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"abductors\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"abductors\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"serratus anterior\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"serratus anterior\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"forearms\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"forearms\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"biceps\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"biceps\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"upper back\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"upper back\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"cardiovascular system\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"cardiovascular system\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"triceps\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"triceps\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"hamstrings\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"hamstrings\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"glutes\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"glutes\"}"
+  },
+  {
+    "claim": "ExerciseDB v1 lists the muscle \"calves\".",
+    "url": "https://oss.exercisedb.dev/api/v1/muscles",
+    "quote": "{\"name\":\"calves\"}"
+  },
+  {
+    "claim": "oss.exercisedb.dev serves the free ExerciseDB V1 API.",
+    "url": "https://oss.exercisedb.dev/",
+    "quote": "ExerciseDB V1 API (Free Version)"
+  },
+  {
+    "claim": "Its home page now carries the AscendAPI name and says it was previously ExerciseDB.",
+    "url": "https://oss.exercisedb.dev/",
+    "quote": "Previously ExerciseDB"
+  },
+  {
+    "claim": "The free V1 API needs no sign-up and no API key.",
+    "url": "https://oss.exercisedb.dev/",
+    "quote": "No sign-up, no API key"
+  }
+]

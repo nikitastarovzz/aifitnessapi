@@ -297,13 +297,22 @@ export default function SearchPalette({
         </ul>
         <div className="flex flex-wrap items-center justify-between gap-2 border-t border-[var(--border)] px-4 py-2.5 text-xs text-[var(--muted)]">
           {q ? (
-            <button
-              type="button"
-              className="text-brand-600 hover:text-brand-500"
-              onClick={() => go(`/search?q=${encodeURIComponent(q)}`)}
-            >
-              See all results for “{q}” →
-            </button>
+            <span className="flex flex-wrap gap-x-3 gap-y-1">
+              <button
+                type="button"
+                className="text-brand-600 hover:text-brand-500"
+                onClick={() => go(`/search?q=${encodeURIComponent(q)}`)}
+              >
+                See all results for “{q}” →
+              </button>
+              <button
+                type="button"
+                className="text-brand-600 hover:text-brand-500"
+                onClick={() => go(`/answers-search?q=${encodeURIComponent(q.trim())}`)}
+              >
+                Search full answer text →
+              </button>
+            </span>
           ) : (
             <span>Type an error, a question, or a HealthKit identifier.</span>
           )}

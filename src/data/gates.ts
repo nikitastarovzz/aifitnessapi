@@ -15,6 +15,87 @@
  * appears here as `TITLE-*`.
  */
 export const GATES: { code: string; refuses: string; area: string }[] = [
+  // ── Countdown widgets, /my-stack, /answers-search (2026-11-05) ──
+  {
+    code: "COUNTDOWN-DATE",
+    area: "Hosting and crawl",
+    refuses:
+      "A deadline countdown widget (/embed/countdown/<id>) carrying a date that is neither a graveyard stone's end nor a changes-tracker entry's date at that precision, or a stone's widget whose date is not that stone's end. A countdown on someone else's page shows its date in large type, so the date must be one the site sourced.",
+  },
+  {
+    code: "COUNTDOWN-EMBED-ROUTE",
+    area: "Hosting and crawl",
+    refuses:
+      "An \"Embed a countdown\" control offering a widget address that was not built, so the code a reader copies would frame a 404.",
+  },
+  {
+    code: "COUNTDOWN-EMBED-ORPHAN",
+    area: "Hosting and crawl",
+    refuses:
+      "A countdown widget that is built but offered by no page's embed control, or missing from the list on /badges.",
+  },
+  {
+    code: "MY-STACK-OPTIONS",
+    area: "Content integrity",
+    refuses:
+      "A /my-stack dashboard that is missing, or offers a different number of products than the API directory has built entries, so a product a reader uses could not be picked.",
+  },
+  {
+    code: "ANSWER-SEARCH-WEIGHT",
+    area: "Content integrity",
+    refuses:
+      "An /answers-search page over 160 KB, or one that embeds answer records in its HTML. The answer files are megabytes; they must load when the reader searches, not with the page.",
+  },
+  // ── Planning tools: build plan, store checklist, compliance wizard (2026-11-05) ──
+  {
+    code: "PLANNER-QUOTE",
+    area: "Content integrity",
+    refuses:
+      "A rule shown by the build plan, the store submission checklist or the compliance wizard whose quote and source address are not a row of that tool's evidence file, or that names a source the tools do not define. The evidence file is what the weekly source-quotes run checks against the live page, so a quote missing from it would never be re-checked.",
+  },
+  {
+    code: "PLANNER-RENDER",
+    area: "Content integrity",
+    refuses:
+      "A planning-tool page that was not built, or that does not render a quote it is built to show: every store item on the checklist, every regime's quotes on the wizard, every platform edge case on the build plan.",
+  },
+  // ── API coverage matrix and rate-limit calculator (2026-11-05) ──
+  {
+    code: "COVERAGE-EVIDENCE",
+    area: "Content integrity",
+    refuses:
+      "A coverage-matrix cell, delivery or history note, rate limit, scope note or mitigation whose quoted vendor sentence is not in the integration guide's evidence file under the same URL. The tools cite only what the guides already source.",
+  },
+  {
+    code: "COVERAGE-LIMIT-NUMBER",
+    area: "Content integrity",
+    refuses:
+      "A rate limit in the calculator whose number (or per-user increment) does not appear in the vendor sentence it quotes, so a limit cannot be typed differently from its source.",
+  },
+  {
+    code: "COVERAGE-RENDER",
+    area: "Derived blocks",
+    refuses:
+      "A coverage matrix build where a documented or vendor-denied cell from the data module does not reach the prerendered /tools/api-coverage-matrix page.",
+  },
+  // ── Cookbook recipes, the typed API client, the starter scaffold (2026-11-05) ──
+  {
+    code: "COOKBOOK-VERBATIM",
+    area: "Content integrity",
+    refuses:
+      "A cookbook recipe page whose code block is not a byte-for-byte copy of its file in /cookbook, or that shows more or fewer than one code listing. The page says the code is the CI-tested file; this is what makes that true.",
+  },
+  {
+    code: "COOKBOOK-UNTESTED",
+    area: "Content integrity",
+    refuses: "A cookbook recipe page with no file in /cookbook, or a file with no test suite beside it.",
+  },
+  {
+    code: "API-CLIENT-DRIFT",
+    area: "Datasets and artifacts",
+    refuses:
+      "A build whose /api/v1/openapi.json no longer matches the generated types in packages/api-client/src/schema.ts: a dataset column added, removed or retyped would ship a typed client that lies about the API it calls.",
+  },
   // ── Vendor timelines, /press, dataset cards, vendor records (2026-11-05) ──
   {
     code: "VENDOR-CHANGES-THIN",
@@ -1202,6 +1283,27 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     area: "Derived blocks",
     refuses:
       "A Bluetooth lab (FTMS, cycling power, GATT explorer) whose decoder no longer matches the Bluetooth SIG structures it is built from: a lab page that does not print the layout of a characteristic it is for with exactly the field count the generated structure has, or an explorer that offers fewer or more decoders than the dataset has structures.",
+  },
+  {
+    code: "EXERCISE-TAXONOMY",
+    area: "Derived blocks",
+    refuses:
+      "An exercise taxonomy crosswalk page that leaves out a term the generator read from free-exercise-db, wger or ExerciseDB, or a term shown as mapped without a same-name HealthKit or Health Connect constant, or an equipment, muscle or body-part term given a mapping at all.",
+  },
+  {
+    code: "EVIDENCE-MATRIX",
+    area: "Derived blocks",
+    refuses: "A gym-software or research-platform matrix page that does not render every platform row its data module holds.",
+  },
+  {
+    code: "ATLAS-FILE",
+    area: "Derived blocks",
+    refuses: "A missing Atlas poster SVG or PDF, a PDF that is not a PDF, or either file over 2 MB.",
+  },
+  {
+    code: "ATLAS-STALE",
+    area: "Derived blocks",
+    refuses: "An Atlas poster that leaves out a product in the API directory or an entry in the API graveyard, because the data changed and the poster was not redrawn.",
   },
   {
     code: "BT-GATT-THIN",

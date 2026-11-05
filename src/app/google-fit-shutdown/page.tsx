@@ -7,6 +7,7 @@ import ClusterHero from "@/components/ClusterHero";
 import ContentAge from "@/components/ContentAge";
 import MigrationWizard from "@/components/MigrationWizard";
 import VendorHubMenu from "@/components/VendorHubMenu";
+import CountdownEmbed from "@/components/CountdownEmbed";
 import { PAGE_H1 } from "@/data/pageTitles";
 import { absoluteUrl } from "@/lib/site";
 import { orgRef } from "@/lib/schema";
@@ -209,6 +210,7 @@ export default function GoogleFitShutdownPage() {
           <div className="mt-5">
             <MigrationWizard currentPath={PATH} />
           </div>
+          <CountdownEmbed id="google-fit-apis" label="Embed a Google Fit APIs end-of-support countdown" className="mt-5" />
         </section>
 
         <section className="mt-12">

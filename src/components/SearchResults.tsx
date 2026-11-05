@@ -82,7 +82,15 @@ export default function SearchResults() {
         <p className="mt-6 text-sm text-[var(--muted)]">
           {results.length === 0
             ? "Nothing matches."
-            : `${results.length}${results.length === 40 ? "+" : ""} result${results.length === 1 ? "" : "s"}`}
+            : `${results.length}${results.length === 40 ? "+" : ""} result${results.length === 1 ? "" : "s"}`}{" "}
+          <Link
+            href={`/answers-search?q=${encodeURIComponent(q.trim())}`}
+            className="text-brand-600 hover:text-brand-500"
+            data-cta="search-to-answers-search"
+            data-cta-source="search-results"
+          >
+            Search the full text of every answer instead →
+          </Link>
         </p>
       )}
 

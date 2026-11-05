@@ -1,0 +1,47 @@
+[
+  {
+    "claim": "A code verifier is 43 to 128 unreserved characters: letters, digits, hyphen, period, underscore and tilde.",
+    "url": "https://www.rfc-editor.org/rfc/rfc7636.txt",
+    "quote": "unreserved = ALPHA / DIGIT / \"-\" / \".\" / \"_\" / \"~\""
+  },
+  {
+    "claim": "RFC 7636 recommends 32 random octets, base64url-encoded into a 43-character verifier.",
+    "url": "https://www.rfc-editor.org/rfc/rfc7636.txt",
+    "quote": "The octet sequence is then base64url-encoded to produce a 43-octet URL safe string to use as the code verifier."
+  },
+  {
+    "claim": "The S256 challenge is BASE64URL-ENCODE(SHA256(ASCII(code_verifier))).",
+    "url": "https://www.rfc-editor.org/rfc/rfc7636.txt",
+    "quote": "code_challenge = BASE64URL-ENCODE(SHA256(ASCII(code_verifier)))"
+  },
+  {
+    "claim": "A client that can use S256 must use it.",
+    "url": "https://www.rfc-editor.org/rfc/rfc7636.txt",
+    "quote": "If the client is capable of using \"S256\", it MUST use \"S256\""
+  },
+  {
+    "claim": "code_challenge_method defaults to plain when it is left out.",
+    "url": "https://www.rfc-editor.org/rfc/rfc7636.txt",
+    "quote": "OPTIONAL, defaults to \"plain\" if not present in the request."
+  },
+  {
+    "claim": "A client must not downgrade to plain after trying S256.",
+    "url": "https://www.rfc-editor.org/rfc/rfc7636.txt",
+    "quote": "Clients MUST NOT downgrade to \"plain\" after trying the \"S256\" method."
+  },
+  {
+    "claim": "Appendix B's example verifier.",
+    "url": "https://www.rfc-editor.org/rfc/rfc7636.txt",
+    "quote": "dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk"
+  },
+  {
+    "claim": "Appendix B's example challenge for that verifier.",
+    "url": "https://www.rfc-editor.org/rfc/rfc7636.txt",
+    "quote": "E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM"
+  },
+  {
+    "claim": "A verifier that does not match the challenge is answered with invalid_grant.",
+    "url": "https://www.rfc-editor.org/rfc/rfc7636.txt",
+    "quote": "equal, an error response indicating \"invalid_grant\" as described in"
+  }
+]

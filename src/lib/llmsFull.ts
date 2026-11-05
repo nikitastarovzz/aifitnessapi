@@ -1,6 +1,25 @@
+import { schemaCapsule } from "@/lib/unifiedSchemaView";
+import { converterCapsule, fitbitToolCapsule } from "@/lib/schemaToolsText";
 import { site, absoluteUrl } from "@/lib/site";
+import { COVERAGE_PATH, RATE_LIMIT_PATH, coverageCapsule, rateLimitCapsule } from "@/lib/coverageView";
 import { TASKS_VISION_VERSION, VERIFIED_ON as POSE_BENCH_VERIFIED_ON } from "@/lib/poseBenchmark";
 import { FORM_RULES_PRIMARY_QUERY, REP_PLAYGROUND_PRIMARY_QUERY, formRulesText, leaderboardText, repPlaygroundText } from "@/lib/poseToolsText";
+import {
+  ATLAS_PATH,
+  GYM_PATH,
+  GYM_PRIMARY_QUERY,
+  RESEARCH_PATH,
+  RESEARCH_PRIMARY_QUERY,
+  TAXONOMY_PATH,
+  TAXONOMY_PRIMARY_QUERY,
+  gymCapsule,
+  matrixText,
+  researchCapsule,
+  taxonomyText,
+} from "@/lib/audienceTools";
+import { atlasCapsule } from "@/lib/atlasView";
+import { GYM_API_MATRIX } from "@/data/gymApiMatrix";
+import { RESEARCH_PLATFORM_MATRIX } from "@/data/researchPlatformMatrix";
 import { POSE_CROSSWALK, POSE_KEYPOINTS_FETCHED_ON, POSE_SCHEMES } from "@/data/poseKeypoints";
 import { totalPairs } from "@/lib/keypointMapping.mjs";
 import { DEFAULT_PARAMS as STEP_DEFAULTS, REPLAY_TRUE_STEPS as STEP_REPLAY_TRUE } from "@/lib/stepDetector.mjs";
@@ -59,6 +78,9 @@ import { hkVersionPages, versionH1, versionPrimaryQuery, versionCapsule, version
 import { HK_ID_BASE, hkPageIdentifiers, hkIdentifierPath, hkPageH1, hkPageCapsule, hkPageFaqs } from "@/data/hkIdentifierPages";
 import { HS_BASE, hsPageTypes, hsDataTypePath, hsPageH1, hsPageCapsule, hsPageFaqs } from "@/data/hsDataTypePages";
 import { PAGE_H1 } from "@/data/pageTitles";
+import { PLANNER_LLMS } from "@/lib/plannerPages";
+import { PLAYGROUND_PATH, PLAYGROUND_TITLE, playgroundCapsule } from "@/lib/oauthPlaygroundData";
+import { WEBHOOKS_PATH, webhooksCapsule } from "@/lib/webhooksPage";
 import { DAILY_CAPSULE, DAILY_PATH, DAILY_PRIMARY_QUERY, dailyFaqs } from "@/lib/dailyBank";
 
 import { CLUSTER_LABELS } from "@/lib/clusterRegistry";
@@ -320,6 +342,47 @@ function toolLines(): string[] {
   out.push("");
   out.push(formRulesText());
   out.push("");
+  for (const t of PLANNER_LLMS) {
+    out.push(`## ${t.label} (runs on your device) — ${absoluteUrl(t.path)}`);
+    out.push(`Primary query: ${t.primaryQuery}`);
+    out.push("");
+    out.push(t.text);
+    out.push("");
+  }
+  out.push(`## Exercise taxonomy crosswalk — ${absoluteUrl(TAXONOMY_PATH)}`);
+  out.push(`Primary query: ${TAXONOMY_PRIMARY_QUERY}`);
+  out.push("");
+  out.push(taxonomyText());
+  out.push("");
+  out.push(`## Gym software API matrix — ${absoluteUrl(GYM_PATH)}`);
+  out.push(`Primary query: ${GYM_PRIMARY_QUERY}`);
+  out.push("");
+  out.push(`${gymCapsule()} ${matrixText(GYM_API_MATRIX)}`);
+  out.push("");
+  out.push(`## Research platform chooser — ${absoluteUrl(RESEARCH_PATH)}`);
+  out.push(`Primary query: ${RESEARCH_PRIMARY_QUERY}`);
+  out.push("");
+  out.push(`${researchCapsule()} ${matrixText(RESEARCH_PLATFORM_MATRIX)}`);
+  out.push("");
+  out.push(`## The Fitness API Atlas (printable poster) — ${absoluteUrl(ATLAS_PATH)}`);
+  out.push("");
+  out.push(atlasCapsule());
+  out.push("");
+  out.push(`## Unified health-data schema — ${absoluteUrl("/schema")}`);
+  out.push("Primary query: unified health data schema healthkit health connect");
+  out.push("");
+  out.push(schemaCapsule());
+  out.push("");
+  out.push(`## Health data schema converter (runs on your device) — ${absoluteUrl("/tools/schema-converter")}`);
+  out.push("Primary query: convert health connect record to healthkit format");
+  out.push("");
+  out.push(converterCapsule());
+  out.push("");
+  out.push(`## Fitbit Web API to Google Health API mapping — ${absoluteUrl("/tools/fitbit-to-google-health")}`);
+  out.push("Primary query: fitbit web api to google health api endpoint mapping");
+  out.push("");
+  out.push(fitbitToolCapsule());
+  out.push("");
   out.push(`## Bluetooth heart-rate lab (runs on your device) — ${absoluteUrl("/tools/heart-rate-lab")}`);
   out.push("Primary query: does my heart rate strap send rr intervals");
   out.push("");
@@ -366,12 +429,39 @@ function toolLines(): string[] {
     );
   }
   out.push("");
+  out.push(`## Wearable API coverage matrix — ${absoluteUrl(COVERAGE_PATH)}`);
+  out.push("Primary query: which wearable apis have which health metrics");
+  out.push("");
+  out.push(coverageCapsule());
+  out.push("");
+  out.push(`## Rate-limit and quota calculator (runs on your device) — ${absoluteUrl(RATE_LIMIT_PATH)}`);
+  out.push("Primary query: fitness api rate limit calculator");
+  out.push("");
+  out.push(rateLimitCapsule());
+  out.push("");
+  out.push(`## Starter scaffold generator — ${absoluteUrl("/tools/starter-scaffold")}`);
+  out.push("Primary query: fitness api starter project oauth webhook boilerplate");
+  out.push("");
+  out.push(
+    "A client-side generator: " + "pick a stack (Node.js with Express, Next.js route handlers, or Python with FastAPI) and the vendors (Oura, WHOOP, Polar AccessLink, Strava, Wahoo), and download a project skeleton as a .zip built in the browser: OAuth start and callback routes with a state check and PKCE where the vendor documents it (Oura) and WHOOP's eight-character state, the vendor's token endpoint with credentials in the form body or, for Polar, HTTP Basic, a token-store interface with an in-memory stand-in, a webhook endpoint per vendor that answers its handshake and checks its documented signature or token (Oura, WHOOP and Polar HMAC-SHA256; Strava's hub.challenge; Wahoo's webhook_token), a .env.example and a README. OAuth facts from the site's integration guides, webhook rules from the webhook verifier (read 2026-10-31). Every stack with every vendor is compiled (node --check, tsc --strict, python -m py_compile) and run against the vendors' documented example webhooks in the site's tests. Withings, Terra, the Google Health API and Garmin are left out, with the reason for each.",
+  );
+  out.push("");
   out.push(`## Wearable webhook verifier — ${absoluteUrl("/tools/webhook-verifier")}`);
   out.push("Primary query: how to verify a wearable webhook signature");
   out.push("");
   out.push(
     "A client-side webhook debugger. Pick Oura, WHOOP, Terra, Polar, Strava, Withings, Wahoo or the Google Health API, paste the received body, headers and your secret, and it checks the request the way that vendor documents, using WebCrypto in the browser (the secret never leaves the tab). As read from each vendor's page on 2026-10-31: Oura signs the x-oura-timestamp value + JSON.stringify(body) with HMAC-SHA256 keyed by the client secret, upper-case hex, in x-oura-signature; WHOOP signs the X-WHOOP-Signature-Timestamp value + the raw body with the client secret, base64, in X-WHOOP-Signature; Terra signs timestamp + '.' + raw body with the destination's signing secret, hex, in terra-signature (t=…,v1=…); Polar signs the payload with the signature_secret_key returned at webhook creation, hex, in Polar-Webhook-Signature. Strava documents no signature on events, only a hub.challenge validation GET answered within two seconds; Withings suggests a secret query parameter on the callback URL plus its published IP allowlist; Wahoo sends the webhook_token you configured in the JSON body; the Google Health API sends your configured endpointAuthorization secret in the Authorization header. The tool also explains each payload field, the response and time limit each vendor expects, and the call that fetches the data.",
   );
+  out.push("");
+  out.push(`## ${PLAYGROUND_TITLE} — ${absoluteUrl(PLAYGROUND_PATH)}`);
+  out.push("Primary query: wearable api oauth endpoints and scopes");
+  out.push("");
+  out.push(playgroundCapsule());
+  out.push("");
+  out.push(`## ${PAGE_H1[WEBHOOKS_PATH]} — ${absoluteUrl(WEBHOOKS_PATH)}`);
+  out.push("Primary query: wearable webhook payload example");
+  out.push("");
+  out.push(webhooksCapsule());
   out.push("");
   out.push(`## ${PAGE_H1[DAILY_PATH]} — ${absoluteUrl(DAILY_PATH)}`);
   out.push(`Primary query: ${DAILY_PRIMARY_QUERY}`);
@@ -392,6 +482,26 @@ function toolLines(): string[] {
   out.push("");
   out.push(
     "A client-side tool that opens the file the iPhone Health app makes with Export All Health Data (Apple's iPhone User Guide, read 2026-11-05: \"all of your health and fitness data from Health in XML format\"). The reader picks export.zip or export.xml; a Web Worker streams it in chunks (ZIP central directory read, only export.xml inflated with the browser's DecompressionStream) and keeps per-type summaries, so a file of hundreds of megabytes does not have to fit in memory. It lists every record type with count, first and last date, units and sources, the devices named in the file, a daily chart for a chosen type (daily total for types Apple describes as cumulative, daily mean for discrete ones, grouped by the calendar day written on each record) and a CSV per type built by a second pass over the local file. Types link to the site's HealthKit identifier pages. Nothing is uploaded; the page has no server code. Apple publishes no schema for export.xml that the site could find, so the page describes the elements and attributes the tool reads (Record, Workout, ActivitySummary, ExportDate) as its own behavior, not as Apple's format. A synthetic, labeled sample ZIP is provided.",
+  );
+  out.push("");
+  out.push(`## My stack: deadlines and changes for the APIs you use — ${absoluteUrl("/my-stack")}`);
+  out.push("Primary query: track deprecations and deadlines for the fitness apis my app uses");
+  out.push("");
+  out.push(
+    `A client-side dashboard over data the site already holds. The reader picks products from the /apis directory; for each, the page shows the changes-tracker entries whose title or summary names it as a whole word (the directory's own rule), graded confirmed or reported, with the date at its source's precision and the day it was last checked; any matching stones in the Fitness API Graveyard with the vendor's quote; every page on the site about it (its vendor menu, or the pages that cover it most) with the date each page declares, flagged past 90 days; and the next dated items with days remaining on the reader's clock. Downloads are built in the tab: a calendar (.ics) of the stack's tracker entries in the same format as ${absoluteUrl("/changes/calendar.ics")}, an OPML file subscribing a feed reader to each product's live feed (${absoluteUrl("/feeds/vendors/<id>.xml")}, or /changes.xml for a product with fewer than two entries), and an RSS snapshot. The stack is stored only in localStorage and in the address (${absoluteUrl("/my-stack?v=<id>,<id>")}); nothing is sent anywhere.`,
+  );
+  out.push("");
+  out.push(`## Answer search — ${absoluteUrl("/answers-search")}`);
+  out.push("Primary query: search the full text of aifitnessapi answers");
+  out.push("");
+  out.push(
+    `A client-side full-text search over the per-section answer files listed at ${absoluteUrl("/answers/index.json")}: answer capsules, FAQ answers, blog-post answers and tracked changes, in full, where the site search index carries only the first 180 characters of an answer. Nothing loads with the page; the first search fetches the ticked sections (guides and comparisons, blog and changes by default; the generated references on request), indexes them in the tab and ranks with BM25, questions and titles weighted three times the answer text, the last word also matched as a prefix. Each result links the exact answer at its #faq-N anchor, and the page prints the bytes fetched. ${absoluteUrl("/answers-search?q=<terms>")} is a working URL.`,
+  );
+  out.push("");
+  out.push(`## Deadline countdown widgets — ${absoluteUrl("/badges#countdowns")}`);
+  out.push("");
+  out.push(
+    `Embeddable, noindex widgets at ${absoluteUrl("/embed/countdown/<id>")}: one per graveyard stone ending on or after 2025-01-01 (the stone's id) and one per directory product with a dated item (the product's id), counting in the reader's browser to 00:00 UTC on a stated day, or to the last day of a stated month or year, and saying which. Dates come only from the changes tracker and the graveyard; a stone's widget quotes the vendor, a product's widget shows its entry's confirmed or reported grade, and each links back to the page that sources the date.`,
   );
   out.push("");
   {

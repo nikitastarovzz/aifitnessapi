@@ -64,6 +64,18 @@ export const TOOL_LOOKUPS: Tool[] = [
       "Paste an Oura, WHOOP, Terra, Polar, Strava, Withings, Wahoo or Google Health API webhook: the vendor's documented check, run in your browser.",
   },
   {
+    path: "/tools/oauth-playground",
+    name: "Wearable OAuth playground",
+    blurb:
+      "Pick Oura, WHOOP, Strava, Polar, Withings, Wahoo, Dexcom, Suunto or Google Health: documented endpoints and scopes, an authorize URL, a PKCE pair and token curl. Sends nothing.",
+  },
+  {
+    path: "/tools/starter-scaffold",
+    name: "Starter scaffold generator",
+    blurb:
+      "Pick Express, Next.js or FastAPI and Oura, WHOOP, Polar, Strava or Wahoo: a tested project skeleton with OAuth routes, a token store and verified webhooks, as a .zip.",
+  },
+  {
     path: "/tools/keypoint-playground",
     name: "Pose keypoint playground",
     blurb:
@@ -75,11 +87,47 @@ export const TOOL_LOOKUPS: Tool[] = [
     blurb:
       "The joint-angle thresholds open-source exercise trackers use for squats, push-ups, lunges, planks, curls and presses, each quoted from its code; null where none says.",
   },
+  {
+    path: "/tools/exercise-taxonomy-crosswalk",
+    name: "Exercise taxonomy crosswalk",
+    blurb:
+      "free-exercise-db, wger and ExerciseDB v1 categories, equipment and muscles against HealthKit and Health Connect workout types, matched by name only.",
+  },
+  {
+    path: "/tools/schema-converter",
+    name: "Health data schema converter",
+    blurb:
+      "Paste a HealthKit export row, Health Connect record or Google Health API data point and see it in one unified schema, each field traced to its source.",
+  },
+  {
+    path: "/tools/fitbit-to-google-health",
+    name: "Fitbit to Google Health API map",
+    blurb:
+      "Search every Fitbit Web API endpoint and see its Google Health API data type, method and scopes from Google's migration tables, or that none is listed.",
+  },
 ];
 
 /** The planners and demos already published on the site. Blurbs match the
  *  descriptions used in the site search index. */
 export const TOOL_PLANNERS: Tool[] = [
+  {
+    path: "/tools/build-plan",
+    name: "Fitness app build plan and PRD generator",
+    blurb:
+      "Pick an app type, platforms, data sources and features: a shareable build plan and a PRD template with the APIs, compliance items, store rules and cost shape.",
+  },
+  {
+    path: "/tools/store-submission-checklist",
+    name: "App Store and Google Play submission checklist",
+    blurb:
+      "Apple's App Review Guidelines and Google Play's health policies, quoted item by item and narrowed to what your app does, with progress kept in your browser.",
+  },
+  {
+    path: "/tools/compliance-wizard",
+    name: "Health app compliance wizard",
+    blurb:
+      "Nine questions route your app to the rules that likely apply (HIPAA, the FTC breach rule, GDPR, Washington, FDA, app stores), each quoted from its source.",
+  },
   {
     path: "/picker",
     name: "Which fitness API should I use?",
@@ -108,6 +156,18 @@ export const TOOL_PLANNERS: Tool[] = [
     name: "Compare two fitness APIs side by side",
     blurb:
       "Access structure, user-side cost and approval gates for any two products in the directory.",
+  },
+  {
+    path: "/tools/api-coverage-matrix",
+    name: "Wearable API coverage matrix",
+    blurb:
+      "Which wearable and fitness APIs document which metrics, at what resolution, how far back, and by webhook or pull. Every mark sourced; unknown where no page says.",
+  },
+  {
+    path: "/tools/rate-limit-calculator",
+    name: "Rate-limit and quota calculator",
+    blurb:
+      "Users × syncs × endpoints against each fitness API's documented rate limits: which binds first, the most users it supports, and the vendor's own mitigations.",
   },
   {
     path: "/day-boundaries",
@@ -158,6 +218,18 @@ export const TOOL_PLANNERS: Tool[] = [
       "Connect any Bluetooth LE device: services and characteristics by SIG name, read or notify, values decoded where the SIG defines a structure.",
   },
   {
+    path: "/my-stack",
+    name: "My stack",
+    blurb:
+      "Pick the APIs your product depends on: their tracked changes and deadlines, every page here about them with its date, and a calendar to save. Stays in your browser.",
+  },
+  {
+    path: "/answers-search",
+    name: "Answer search",
+    blurb:
+      "Search the full text of every answer capsule, FAQ answer and tracked change, ranked in your browser, with links to the exact answer.",
+  },
+  {
     path: "/daily",
     name: "Daily health-API developer puzzle",
     blurb:
@@ -174,6 +246,18 @@ export const TOOL_PLANNERS: Tool[] = [
     name: "Apple Health export explorer",
     blurb:
       "Open your iPhone Health export.zip in the browser: record types with counts and dates, sources, a daily chart and a CSV per type. Nothing is uploaded.",
+  },
+  {
+    path: "/tools/gym-software-api-matrix",
+    name: "Gym software API matrix",
+    blurb:
+      "Mindbody, Glofox, TeamUp, Mariana Tek, Wodify and more: auth, access, pricing, webhooks and coverage, filterable, each cell quoting its vendor source.",
+  },
+  {
+    path: "/tools/research-platform-chooser",
+    name: "Research platform chooser",
+    blurb:
+      "Fitabase, Labfront, Empatica and Ametris: tick what your study needs and see which platforms document it, each answer quoting the vendor's page.",
   },
 ];
 

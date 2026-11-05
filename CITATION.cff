@@ -11,7 +11,7 @@ repository-code: "https://github.com/nikitastarovzz/aifitnessapi"
 authors:
   - name: "AIFitnessAPI"
     website: "https://aifitnessapi.com"
-abstract: "15 open datasets about fitness and health APIs, each in JSON and CSV, built from the data modules that render aifitnessapi.com: State of Fitness APIs 2026; Health Data Type Matrix 2026 (HealthKit ↔ Health Connect); Fitness API Changes & Deadlines 2026; Fitness & Health API Glossary 2026; HealthKit Type Identifiers 2026; Health Connect Record Types 2026; Health Connect Permission Strings 2026; HealthKit Metadata Keys 2026; Wear OS Health Services Data Types 2026; Pose Keypoint Maps 2026; Google Health API Data Types 2026; Health and Fitness MCP Servers 2026; Bluetooth Fitness GATT Characteristics 2026; Workout Types Crosswalk 2026 (HealthKit, Health Connect, Wear OS, Google Health API); Exercise Form Rules 2026 (joint-angle thresholds from open-source trackers)."
+abstract: "16 open datasets about fitness and health APIs, each in JSON and CSV, built from the data modules that render aifitnessapi.com: State of Fitness APIs 2026; Health Data Type Matrix 2026 (HealthKit ↔ Health Connect); Fitness API Changes & Deadlines 2026; Fitness & Health API Glossary 2026; HealthKit Type Identifiers 2026; Health Connect Record Types 2026; Health Connect Permission Strings 2026; HealthKit Metadata Keys 2026; Wear OS Health Services Data Types 2026; Pose Keypoint Maps 2026; Google Health API Data Types 2026; Health and Fitness MCP Servers 2026; Bluetooth Fitness GATT Characteristics 2026; Workout Types Crosswalk 2026 (HealthKit, Health Connect, Wear OS, Google Health API); Exercise Form Rules 2026 (joint-angle thresholds from open-source trackers); Exercise Taxonomy Crosswalk 2026 (free-exercise-db, wger, ExerciseDB v1 to HealthKit and Health Connect)."
 keywords:
   - "fitness API"
   - "health data"
@@ -140,3 +140,11 @@ references:
     license: CC-BY-4.0
     url: "https://aifitnessapi.com/datasets/exercise-form-rules-2026.json"
     notes: "25 rows; card at https://aifitnessapi.com/datasets/exercise-form-rules-2026.md"
+  - type: dataset
+    title: "Exercise Taxonomy Crosswalk 2026 (free-exercise-db, wger, ExerciseDB v1 to HealthKit and Health Connect)"
+    version: "2026.1"
+    authors:
+      - name: "AIFitnessAPI"
+    license: CC-BY-4.0
+    url: "https://aifitnessapi.com/datasets/exercise-taxonomy-crosswalk-2026.json"
+    notes: "155 rows; card at https://aifitnessapi.com/datasets/exercise-taxonomy-crosswalk-2026.md"

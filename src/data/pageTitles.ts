@@ -31,4 +31,8 @@ export const PAGE_H1 = {
   "/daily": "The daily health-API developer puzzle",
   "/graveyard": "The Fitness API Graveyard",
   "/play/ship-it": "Ship It: a fitness-app survival game",
+  "/tools/build-plan": "Fitness app build plan and PRD generator",
+  "/tools/store-submission-checklist": "App Store and Google Play submission checklist for health apps",
+  "/tools/compliance-wizard": "Health app compliance wizard: which rules apply to your app?",
+  "/webhooks": "Wearable webhook payloads, as each vendor documents them",
 } as const;

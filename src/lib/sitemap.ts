@@ -10,6 +10,8 @@ import { HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { changesSorted } from "@/data/changes";
 import { PRESS_PATH, pressDataDate } from "@/lib/press";
 import { GRAVEYARD_PATH, graveyardCheckedOn } from "@/data/graveyard";
+import { OAUTH_FETCHED_ON } from "@/data/oauthVendors";
+import { WEBHOOKS_FETCHED_ON } from "@/data/webhookPayloads";
 import { API_ENTRIES, APIS_PATH, NOINDEX_APIS } from "@/data/apis";
 import { API_INDEX_PATH, MARKET_MAP_PATH, indexDataDate } from "@/lib/ecosystemSignals";
 import { DAILY_PATH, dailyDataDate } from "@/lib/dailyBank";
@@ -28,6 +30,15 @@ import { HK_METADATA_KEYS_FETCHED_ON } from "@/data/healthkitMetadataKeys";
 import { HS_DATA_TYPES_FETCHED_ON } from "@/data/healthServicesDataTypes";
 import { POSE_KEYPOINTS_FETCHED_ON, POSE_SCHEMES } from "@/data/poseKeypoints";
 import { FORM_RULES_FETCHED_ON } from "@/data/formRules";
+import { PLANNER_READ_ON } from "@/data/plannerSources.mjs";
+import { COVERAGE_UPDATED, RATE_UPDATED } from "@/lib/coverageView";
+import { ET_FETCHED_ON } from "@/data/exerciseTaxonomy";
+import { ATLAS_PATH } from "@/lib/audienceTools";
+import { atlasAsOf } from "@/lib/atlasView";
+import { GYM_API_MATRIX } from "@/data/gymApiMatrix";
+import { RESEARCH_PLATFORM_MATRIX } from "@/data/researchPlatformMatrix";
+import { UNIFIED_READ_ON } from "@/data/unifiedSchema";
+import { FG_UPDATED } from "@/lib/fitbitGoogleMap";
 import { hkPageIdentifiers, hkIdentifierPath, hkPageModified } from "@/data/hkIdentifierPages";
 import { hsPageTypes, hsDataTypePath, hsPageModified } from "@/data/hsDataTypePages";
 import { GHAPI_PATHS, allTypes as ghapiTypes, typePath as ghapiTypePath, ghapiModified } from "@/data/ghapiPages";
@@ -242,6 +253,7 @@ function computeSections(): SitemapSection[] {
     ["/tools/pose-benchmark", pageStamp("/tools/pose-benchmark")],
     ["/tools/heart-rate-lab", pageStamp("/tools/heart-rate-lab")],
     ["/tools/webhook-verifier", pageStamp("/tools/webhook-verifier")],
+    ["/tools/starter-scaffold", pageStamp("/tools/starter-scaffold")],
     ["/tools/keypoint-playground", pageStamp("/tools/keypoint-playground")],
     ["/tools/step-lab", pageStamp("/tools/step-lab")],
     ["/tools/ftms-lab", pageStamp("/tools/ftms-lab")],
@@ -250,6 +262,18 @@ function computeSections(): SitemapSection[] {
     ["/tools/apple-health-explorer", pageStamp("/tools/apple-health-explorer")],
     ["/tools/rep-counter-playground", pageStamp("/tools/rep-counter-playground")],
     ["/tools/exercise-form-rules", FORM_RULES_FETCHED_ON],
+    ["/tools/build-plan", PLANNER_READ_ON],
+    ["/tools/store-submission-checklist", PLANNER_READ_ON],
+    ["/tools/compliance-wizard", PLANNER_READ_ON],
+    // The newest date any vendor in them was read (lib/coverageView).
+    ["/tools/api-coverage-matrix", COVERAGE_UPDATED],
+    ["/tools/rate-limit-calculator", RATE_UPDATED],
+    ["/tools/exercise-taxonomy-crosswalk", ET_FETCHED_ON],
+    ["/tools/gym-software-api-matrix", GYM_API_MATRIX.checkedOn],
+    ["/tools/research-platform-chooser", RESEARCH_PLATFORM_MATRIX.checkedOn],
+    ["/tools/oauth-playground", OAUTH_FETCHED_ON],
+    ["/tools/schema-converter", UNIFIED_READ_ON],
+    ["/tools/fitbit-to-google-health", FG_UPDATED],
   ];
 
   // Routes whose date comes from data, or from the members they index.
@@ -261,6 +285,8 @@ function computeSections(): SitemapSection[] {
     "/blog": newestPost,
     [HK_BASE]: newest([...hkGroupDates.map(([, d]) => d), ...hkPages.map(([, d]) => d)]),
     "/tools": newest(tools.map(([, d]) => d)),
+    // The unified schema page declares the newest read date of its inputs.
+    "/schema": UNIFIED_READ_ON,
     [DIGEST_PATH]: newest(issues.map(digestDate)),
     "/sdk-releases": SDK_CHECKED_ON ?? undefined,
     // The directory pages carry a page-local "last reviewed", not a
@@ -282,9 +308,13 @@ function computeSections(): SitemapSection[] {
     // The graveyard declares the newest day any entry's source was read as its
     // dateModified; this reads the same function.
     [GRAVEYARD_PATH]: graveyardCheckedOn(),
+    // The webhook payload library declares the day its vendor pages were read.
+    "/webhooks": WEBHOOKS_FETCHED_ON,
     // The press page declares the newest date any of its inputs was written
     // or checked, through the same function.
     [PRESS_PATH]: pressDataDate(),
+    // The poster declares the newest date its inputs were checked.
+    [ATLAS_PATH]: atlasAsOf(),
   };
 
   const standalone = [
@@ -327,14 +357,19 @@ function computeSections(): SitemapSection[] {
     // qa.mjs stops it, or anything else noindexed, coming back.
     APIS_PATH,
     MARKET_MAP_PATH,
+    ATLAS_PATH,
     API_INDEX_PATH,
     DAILY_PATH,
     GRAVEYARD_PATH,
+    "/webhooks",
     PRESS_PATH,
     "/alerts",
+    "/my-stack",
+    "/answers-search",
     "/compare-apis",
     "/play/ship-it",
     "/datasets",
+    "/schema",
     "/developers",
     "/badges",
     DIGEST_PATH,

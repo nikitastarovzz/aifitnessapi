@@ -1,0 +1,542 @@
+[
+  {
+    "claim": "Oura: authorization URL https://cloud.ouraring.com/oauth/authorize. Authorization URL.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "Authorize: https://cloud.ouraring.com/oauth/authorize"
+  },
+  {
+    "claim": "Oura: Universal-link authorization URL for new OAuth clients; on a phone with the Oura app it can open the consent page in the app.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "An alternative authorization URL is now provided at https://developer.ouraring.com/authorize for new OAuth clients."
+  },
+  {
+    "claim": "Oura: token URL https://api.ouraring.com/oauth/token. Token URL.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "Access Token URL: https://api.ouraring.com/oauth/token"
+  },
+  {
+    "claim": "Oura: scope email grants Email address of the user.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "email Email address of the user"
+  },
+  {
+    "claim": "Oura: scope personal grants Personal information (gender, age, height, weight).",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "personal Personal information (gender, age, height, weight)"
+  },
+  {
+    "claim": "Oura: scope daily grants Daily summaries of sleep, activity and readiness.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "daily Daily summaries of sleep, activity and readiness"
+  },
+  {
+    "claim": "Oura: scope heartrate grants Time series heart rate for Gen 3 users.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "heartrate Time series heart rate for Gen 3 users"
+  },
+  {
+    "claim": "Oura: scope workout grants Summaries for auto-detected and user entered workouts.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "workout Summaries for auto-detected and user entered workouts"
+  },
+  {
+    "claim": "Oura: scope tag grants User entered tags.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "tag User entered tags"
+  },
+  {
+    "claim": "Oura: scope session grants Guided and unguided sessions in the Oura app.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "session Guided and unguided sessions in the Oura app"
+  },
+  {
+    "claim": "Oura: scope spo2 grants Daily SpO2 Average recorded during sleep.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "spo2 Daily SpO2 Average recorded during sleep"
+  },
+  {
+    "claim": "Oura: scope heart_health grants Heart health data (listed in the OpenAPI document, not on the Authentication page).",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "\"heart_health\": \"Heart health data\""
+  },
+  {
+    "claim": "Oura: Space-separated. Left blank, the app requests every scope; the user can switch scopes off at consent.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "If left blank, the application will request all available scopes."
+  },
+  {
+    "claim": "Oura: PKCE Recommended. code_challenge_method must be S256; the verifier is 43 to 128 characters, hashed with SHA-256 and base64url-encoded without padding.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "between 43 and 128 characters long (inclusive), then hash it with SHA256 and encode the digest in base64url format without padding"
+  },
+  {
+    "claim": "Oura: refresh. grant_type=refresh_token at the token URL returns a new access token and a new refresh token; each refresh token works once.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "The refresh token is single-use, meaning it is invalidated after being used."
+  },
+  {
+    "claim": "Oura: lifetime. Returned in expires_in. The page states no fixed number for the server-side flow; the client-side flow's token is currently 30 days and has no refresh token.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "Once a token expires (currently set to 30 days), the user will need to re-authenticate your app."
+  },
+  {
+    "claim": "Oura: Client credentials go in the form body or as HTTP Basic (client_id as user name, client_secret as password).",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "Instead of providing client_id and client_secret as parameters, they can be given using the HTTP Basic Authorization, with client_id as username and client_secret as password."
+  },
+  {
+    "claim": "Oura: Every request to the Oura API needs a non-empty User-Agent header, so the commands below send one.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "All requests to the Oura API must include a non-empty User-Agent header."
+  },
+  {
+    "claim": "Oura: Revoke a token with GET https://api.ouraring.com/oauth/revoke?access_token=….",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "https://api.ouraring.com/oauth/revoke?access_token={access_token}"
+  },
+  {
+    "claim": "WHOOP: authorization URL https://api.prod.whoop.com/oauth/oauth2/auth. Authorization URL (the API reference's authorizationCode flow).",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "Authorization URL: https://api.prod.whoop.com/oauth/oauth2/auth"
+  },
+  {
+    "claim": "WHOOP: token URL https://api.prod.whoop.com/oauth/oauth2/token. Token URL, also used for refresh.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "Token URL: https://api.prod.whoop.com/oauth/oauth2/token"
+  },
+  {
+    "claim": "WHOOP: scope read:recovery grants Recovery data, including score, heart rate variability, and resting heart rate.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "read:recovery - Read Recovery data, including score, heart rate variability, and resting heart rate."
+  },
+  {
+    "claim": "WHOOP: scope read:cycles grants Cycles data, including day Strain and average heart rate during a physiological cycle.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "read:cycles - Read cycles data, including day Strain and average heart rate during a physiological cycle."
+  },
+  {
+    "claim": "WHOOP: scope read:workout grants Workout data, including activity Strain and average heart rate.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "read:workout - Read workout data, including activity Strain and average heart rate."
+  },
+  {
+    "claim": "WHOOP: scope read:sleep grants Sleep data, including performance % and duration per sleep stage.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "read:sleep - Read sleep data, including performance % and duration per sleep stage."
+  },
+  {
+    "claim": "WHOOP: scope read:profile grants Profile data, including name and email.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "read:profile - Read profile data, including name and email."
+  },
+  {
+    "claim": "WHOOP: scope read:body_measurement grants Body measurements data, including height, weight, and max heart rate.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "read:body_measurement - Read body measurements data, including height, weight, and max heart rate."
+  },
+  {
+    "claim": "WHOOP: scope offline grants A refresh token; without it WHOOP issues none.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "You must request the offline scope to receive a refresh token."
+  },
+  {
+    "claim": "WHOOP: The pages read here do not state the separator for the authorize request. WHOOP's sample token response lists granted scopes separated by spaces, so this tool joins them with spaces.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "\"scope\" : \"offline other-scopes-requested\""
+  },
+  {
+    "claim": "WHOOP: refresh. Using the refresh token invalidates the existing access tokens; the refresh token in the response replaces the old one, and of two simultaneous refreshes only the first succeeds.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "Existing access tokens are invalidated once your app uses the refresh token to generate a new access token."
+  },
+  {
+    "claim": "WHOOP: lifetime. Returned in expires_in, in seconds; WHOOP's sample refresh response shows 3600.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "WHOOP provides the token expiry in the expires_in parameter"
+  },
+  {
+    "claim": "WHOOP: If you generate state yourself it must be eight characters long; this tool generates eight.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "The state parameter must be eight characters long if you need to generate it yourself."
+  },
+  {
+    "claim": "WHOOP: The redirect URL must be registered in the WHOOP Developer Dashboard.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "You must register the Redirect URL in the WHOOP Developer Dashboard."
+  },
+  {
+    "claim": "WHOOP: WHOOP's sample refresh payload sends client_id, client_secret and scope offline in the body.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "\"scope\" : \"offline\""
+  },
+  {
+    "claim": "Strava: authorization URL https://www.strava.com/oauth/authorize. Authorization URL for web apps.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "Redirect the user to GET https://www.strava.com/oauth/authorize"
+  },
+  {
+    "claim": "Strava: Mobile apps (Android intent or iOS) use the mobile authorize endpoint; the Strava app opens if installed.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "GET https://www.strava.com/oauth/mobile/authorize endpoint"
+  },
+  {
+    "claim": "Strava: token URL https://www.strava.com/oauth/token. Token URL, with the client ID and secret, for both the code exchange and refresh. (Strava's own curl samples post to https://www.strava.com/api/v3/oauth/token.)",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "The application must now call the POST https://www.strava.com/oauth/token with its client ID and client secret"
+  },
+  {
+    "claim": "Strava: scope read grants Public segments, public routes, public profile data, public posts, public events, club feeds, and leaderboards.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "read public segments, public routes, public profile data, public posts, public events, club feeds, and leaderboards"
+  },
+  {
+    "claim": "Strava: scope read_all grants Private routes, private segments, and private events for the user.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "read private routes, private segments, and private events for the user"
+  },
+  {
+    "claim": "Strava: scope profile:read_all grants All profile information, even if the user set profile visibility to Followers or Only You.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "read all profile information even if the user has set their profile visibility to Followers or Only You"
+  },
+  {
+    "claim": "Strava: scope profile:write grants Update the user's weight and Functional Threshold Power (FTP), and star or unstar segments.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "update the user's weight and Functional Threshold Power (FTP), and access to star or unstar segments on their behalf"
+  },
+  {
+    "claim": "Strava: scope activity:read grants Activities visible to Everyone and Followers, excluding privacy zone data; required for activity webhooks.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "read the user's activity data for activities that are visible to Everyone and Followers, excluding privacy zone data"
+  },
+  {
+    "claim": "Strava: scope activity:read_all grants As activity:read, plus privacy zone data and Only You activities.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "plus privacy zone data and access to read the user's activities with visibility set to Only You"
+  },
+  {
+    "claim": "Strava: scope activity:write grants Create manual activities and uploads, and edit activities visible to the app.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "access to create manual activities and uploads, and access to edit any activities that are visible to the app"
+  },
+  {
+    "claim": "Strava: Required. Comma- or space-delimited; this tool uses commas. The athlete can untick any requested scope, so check the scope the redirect returns.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "Requested scopes, as a comma- or URL-safe space-delimited string"
+  },
+  {
+    "claim": "Strava: refresh. Refresh with grant_type=refresh_token. If the current access token expires in more than an hour, the same one comes back; once a new refresh token is returned the old one stops working.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "Once a new refresh token is returned, the older refresh token is invalidated immediately."
+  },
+  {
+    "claim": "Strava: lifetime. Six hours from creation.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "Access tokens expire six hours after they are created"
+  },
+  {
+    "claim": "Strava: The authorization code is short-lived and single-use.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "code is short lived and can only be used once."
+  },
+  {
+    "claim": "Strava: approval_prompt is auto by default; force always shows the prompt.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "use force to always show the authorization prompt even if the user has already authorized the current application, default is auto"
+  },
+  {
+    "claim": "Strava: localhost and 127.0.0.1 are allowed as redirect hosts.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "localhost and 127.0.0.1 are white-listed."
+  },
+  {
+    "claim": "Strava: Deauthorize with POST https://www.strava.com/oauth/revoke (HTTP Basic, the token in the body), the only supported endpoint from June 1, 2027.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "This is the recommended method for deauthorization and will be the only endpoint supported for deauthorization effective June 1, 2027."
+  },
+  {
+    "claim": "Polar AccessLink: authorization URL https://flow.polar.com/oauth2/authorization. Authorization endpoint in Polar Flow.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "GET https://flow.polar.com/oauth2/authorization"
+  },
+  {
+    "claim": "Polar AccessLink: token URL https://polarremote.com/v2/oauth2/token. Token endpoint in Polar Remote, authenticated with HTTP Basic.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "POST https://polarremote.com/v2/oauth2/token"
+  },
+  {
+    "claim": "Polar AccessLink: scope accesslink.read_all grants Access to the user's data.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Accesslink uses accesslink.read_all -scope, which allows access to user's data."
+  },
+  {
+    "claim": "Polar AccessLink: Optional: without it the user is asked to grant every scope linked to your client.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "If not provided, user will be asked to grant authorization for all scopes linked to client."
+  },
+  {
+    "claim": "Polar AccessLink: refresh. No refresh flow is documented: the token response lists no refresh_token, and the reference says access tokens do not expire unless revoked.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Access tokens will not expire unless explicitly revoked by partners or users."
+  },
+  {
+    "claim": "Polar AccessLink: lifetime. expires_in is in seconds; Polar's example, 31535999, is about one year.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "the value \"31535999\" denotes that the access token will expire about one year from the time the response was generated"
+  },
+  {
+    "claim": "Polar AccessLink: The code expires in 10 minutes and must be used once; reuse is denied and deletes every issued token.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Authorization code that expires in 10 minutes. This code must only be used once."
+  },
+  {
+    "claim": "Polar AccessLink: redirect_uri goes to the token endpoint only if it was sent to the authorization endpoint.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Must be specified if redirect_uri was passed to authorization endpoint"
+  },
+  {
+    "claim": "Polar AccessLink: After the exchange, register the user before reading their data.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Register user using register user endpoint to be able to access user's data"
+  },
+  {
+    "claim": "Polar AccessLink: The token request sends Content-Type application/x-www-form-urlencoded and Accept application/json;charset=UTF-8.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Accept = application/json;charset=UTF-8"
+  },
+  {
+    "claim": "Withings: authorization URL https://account.withings.com/oauth2_user/authorize2. Authorization URL.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/oauth-authorization-url/",
+    "quote": "https://account.withings.com/oauth2_user/authorize2?response_type=code&client_id=YOUR_CLIENT_ID"
+  },
+  {
+    "claim": "Withings: token URL https://wbsapi.withings.net/v2/oauth2. Token exchange: POST action=requesttoken to https://wbsapi.withings.net/v2/oauth2, with a nonce and a signature computed from your client secret (Withings' “Request Signature” page).",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/access-and-refresh-tokens-no-recover/",
+    "quote": "await axios.post(API_ENDPOINT + '/v2/oauth2', params);"
+  },
+  {
+    "claim": "Withings: scope user.info grants Account information, linked devices, goals, and device linking; also needed to list and subscribe to user-related notifications.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/oauth-authorization-url/",
+    "quote": "Access user account information, linked devices, goals, and manage device linking."
+  },
+  {
+    "claim": "Withings: scope user.metrics grants Health measurements, heart recordings, stethoscope data and goals; also needed for notification management.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/oauth-authorization-url/",
+    "quote": "Get data related to user health measurements, heart recordings, stethoscope data, and user goals."
+  },
+  {
+    "claim": "Withings: scope user.activity grants Physical activity and sleep; also needed for notification management.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/oauth-authorization-url/",
+    "quote": "Get data related to user physical activity and sleep activities."
+  },
+  {
+    "claim": "Withings: scope user.sleepevents grants Notifications for sleep events (bed in, bed out, inflate done).",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/oauth-authorization-url/",
+    "quote": "Scope used to receive notifications when sleep events happen (bed in, bed out, inflate done)."
+  },
+  {
+    "claim": "Withings: Comma-separated, as in Withings' example URL.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/oauth-authorization-url/",
+    "quote": "scope=user.info,user.metrics,user.activity"
+  },
+  {
+    "claim": "Withings: refresh. Withings says to call the same requesttoken service with the refresh token and always keep the new refresh token, but its snippet shows only the code exchange, so this tool prints no refresh command rather than guess its parameters.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/access-and-refresh-tokens-no-recover/",
+    "quote": "To request a new access_token using the refresh_token, call the requesttoken webservice"
+  },
+  {
+    "claim": "Withings: lifetime. Access token 3 hours; refresh token 1 year; the old refresh token lasts 8 hours after a new one is issued, or until the new access token is used.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/access-and-refresh-tokens-no-recover/",
+    "quote": "access_token : Expires after 3 hours"
+  },
+  {
+    "claim": "Withings: The authorization code is valid for 30 seconds.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/oauth-authorization-url/",
+    "quote": "Please note that the authorization code is only valid for 30 seconds."
+  },
+  {
+    "claim": "Withings: Refresh tokens rotate: replace the stored one every time.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/access-and-refresh-tokens-no-recover/",
+    "quote": "Always replace the previous refresh_token with the new one."
+  },
+  {
+    "claim": "Withings: mode=demo on the authorization URL logs in a demo user for testing.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/oauth-authorization-url/",
+    "quote": "you can use the optional parameter mode with the value demo"
+  },
+  {
+    "claim": "Withings: The token request is signed: Withings' snippet adds a signature computed with the client secret.",
+    "url": "https://developer.withings.com/developer-guide/v3/integration-guide/public-health-data-api/get-access/access-and-refresh-tokens-no-recover/",
+    "quote": "params.signature = sign(params, CLIENT_SECRET);"
+  },
+  {
+    "claim": "Wahoo: authorization URL https://api.wahooligan.com/oauth/authorize. Authorization URL (base_url is api.wahooligan.com).",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "https://api.wahooligan.com/oauth/authorize?client_id=<client_id>&redirect_uri=<redirect-uri>&scope=<scopes>&response_type=code"
+  },
+  {
+    "claim": "Wahoo: token URL https://api.wahooligan.com/oauth/token. Token URL. Wahoo documents the parameters in the query string of the POST.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "https://<base_url>/oauth/token?client_secret=<client_secret>&code=<code>&redirect_uri=<redirect_uri>&grant_type=authorization_code&client_id=<client_id>"
+  },
+  {
+    "claim": "Wahoo: scope email grants Access your email address.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Access your email address"
+  },
+  {
+    "claim": "Wahoo: scope user_read grants Access your user data; without it the API returns 403.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "If the user_read scope is not included the API will return a 403 response."
+  },
+  {
+    "claim": "Wahoo: scope user_write grants Update your user data.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Update your user data"
+  },
+  {
+    "claim": "Wahoo: scope workouts_read grants Access your workout history.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Access your workout history"
+  },
+  {
+    "claim": "Wahoo: scope workouts_write grants Update your workout history.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Update your workout history"
+  },
+  {
+    "claim": "Wahoo: scope offline_data grants Receive data even when the app is closed; needed for webhooks.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Receive data even when the app is closed"
+  },
+  {
+    "claim": "Wahoo: scope power_zones_read grants Listed on Wahoo's developer portal, without a description.",
+    "url": "https://developers.wahooligan.com/cloud",
+    "quote": "email user_read user_write power_zones_read power_zones_write workouts_read workouts_write"
+  },
+  {
+    "claim": "Wahoo: scope plans_read grants Listed on Wahoo's developer portal, without a description.",
+    "url": "https://developers.wahooligan.com/cloud",
+    "quote": "plans_read plans_write routes_read routes_write offline_data"
+  },
+  {
+    "claim": "Wahoo: Space-separated, or set the app's scopes in the developer portal instead.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "you can append the requested scopes as a space separated list of values"
+  },
+  {
+    "claim": "Wahoo: PKCE Supported once the app's Confidential field is set to No; S256 or plain. With PKCE the token and refresh calls send code_verifier instead of client_secret.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "The Wahoo API does allow users to use the PKCE flow for authorization."
+  },
+  {
+    "claim": "Wahoo: refresh. Refresh returns a new access and refresh token. The previous pair is revoked only when an API call uses the new access token, so refresh just before a request: apps are limited to 10 unrevoked tokens per user.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Access tokens should only be refreshed immediately prior to making an API request."
+  },
+  {
+    "claim": "Wahoo: lifetime. Two hours.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "When the access_token expires after 2 hours you can use the refresh_token to get a new access_token and a new refresh_token."
+  },
+  {
+    "claim": "Wahoo: From January 1, 2026, 10 unrevoked access tokens per user; unrevoked tokens are deleted 60 days after creation.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "applications will be limited to 10 unrevoked access tokens per user"
+  },
+  {
+    "claim": "Wahoo: Old tokens are revoked once an API call is made with the refreshed token.",
+    "url": "https://cloud-api.wahooligan.com/",
+    "quote": "Once an API call is made with the refreshed access token the previous access token and refresh tokens will be revoked."
+  },
+  {
+    "claim": "Dexcom: authorization URL https://api.dexcom.com/v3/oauth2/login. Login URL for the US production environment; the sandbox replaces the base URL with https://sandbox-api.dexcom.com.",
+    "url": "https://developer.dexcom.com/docs/dexcom/authentication",
+    "quote": "https://api.dexcom.com/v3/oauth2/login?client_id={{your_client_id}}&redirect_uri={{your_redirect_uri}}&response_type=code&scope=offline_access"
+  },
+  {
+    "claim": "Dexcom: Sandbox login (no password; a drop-down of sandbox users).",
+    "url": "https://developer.dexcom.com/docs/dexcom/authentication",
+    "quote": "When targeting the sandbox environment, the base URL above should be replaced with https://sandbox-api.dexcom.com"
+  },
+  {
+    "claim": "Dexcom: token URL https://api.dexcom.com/v3/oauth2/token. Token URL (US production), form-encoded, for the exchange and refresh.",
+    "url": "https://developer.dexcom.com/docs/dexcom/authentication",
+    "quote": "The Content-Type field in the header should be set to application/x-www-form-urlencoded"
+  },
+  {
+    "claim": "Dexcom: One scope only: offline_access, always sent.",
+    "url": "https://developer.dexcom.com/docs/dexcom/authentication",
+    "quote": "currently, offline_access is the only acceptable input"
+  },
+  {
+    "claim": "Dexcom: refresh. Each refresh token works once and is replaced by a new one; each lasts at most a year. A 400 on refresh means it is no longer valid: send the user through login again.",
+    "url": "https://developer.dexcom.com/docs/dexcom/authentication",
+    "quote": "Each refresh_token can be used only once."
+  },
+  {
+    "claim": "Dexcom: lifetime. expires_in is in seconds; Dexcom's sample response shows 7200 (two hours).",
+    "url": "https://developer.dexcom.com/docs/dexcom/authentication",
+    "quote": "The expires_in value is expressed in seconds."
+  },
+  {
+    "claim": "Dexcom: The authorization code is single-use and expires after one minute.",
+    "url": "https://developer.dexcom.com/docs/dexcom/authentication",
+    "quote": "Note that the authorization_code is single-use and expires after one minute."
+  },
+  {
+    "claim": "Dexcom: Tokens and the client secret must be stored on your servers, never on the mobile device.",
+    "url": "https://developer.dexcom.com/docs/dexcom/authentication",
+    "quote": "Dexcom requires that partners store tokens (e.g., client secret, access tokens) on their servers."
+  },
+  {
+    "claim": "Dexcom: A refresh token is valid for at most one year.",
+    "url": "https://developer.dexcom.com/docs/dexcom/authentication",
+    "quote": "Each refresh_token is valid for a maximum of one year."
+  },
+  {
+    "claim": "Suunto: authorization URL https://cloudapi-oauth.suunto.com/oauth/authorize. Authorization URL.",
+    "url": "https://apizone.suunto.com/how-to-start",
+    "quote": "https://cloudapi-oauth.suunto.com/oauth/authorize?response_type=code&client_id=<CLIENT_ID>&redirect_uri=<REDIRECT_URI>"
+  },
+  {
+    "claim": "Suunto: token URL https://cloudapi-oauth.suunto.com/oauth/token. Token URL, with HTTP Basic client credentials.",
+    "url": "https://apizone.suunto.com/how-to-start",
+    "quote": "curl -v https://cloudapi-oauth.suunto.com/oauth/token --user <CLIENT_ID>:<CLIENT_SECRET> -d grant_type=authorization_code"
+  },
+  {
+    "claim": "Suunto: No scope list is published on the pages read here and Suunto's authorization URL carries no scope parameter; its sample token response shows the scope workout.",
+    "url": "https://apizone.suunto.com/how-to-start",
+    "quote": "\"expires_in\": 86400, \"scope\": \"workout\""
+  },
+  {
+    "claim": "Suunto: refresh. The token response includes a refresh_token, but the pages read here document no refresh request, so this tool prints none.",
+    "url": "https://apizone.suunto.com/how-to-start",
+    "quote": "\"refresh_token\": \"<JWT_REFRESH_TOKEN>\""
+  },
+  {
+    "claim": "Suunto: lifetime. Suunto's sample response shows expires_in 86400 (24 hours). The access token is a JWT whose user claim is the Suunto app user name.",
+    "url": "https://apizone.suunto.com/how-to-start",
+    "quote": "\"expires_in\": 86400"
+  },
+  {
+    "claim": "Suunto: The token endpoint uses HTTP Basic: Base64(clientid:clientsecret).",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "The endpoint is protected using Basic authentication scheme in the following format:"
+  },
+  {
+    "claim": "Suunto: OAuth requests need no subscription key; Cloud API data calls do (Ocp-Apim-Subscription-Key).",
+    "url": "https://apizone.suunto.com/faq",
+    "quote": "Ocp-Apim-Subscription-Key parameter is required for Cloud API requests but not for OAuth related requests."
+  },
+  {
+    "claim": "Oura: worked PKCE example, the code_challenge Oura derived for its example verifier.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "code_challenge=43Kb1gELSIjkvwzrPtAg0Lz2HqCG3BtS_SUMAQhjv7c&code_challenge_method=S256"
+  },
+  {
+    "claim": "Oura: worked PKCE example, the code_verifier.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "QUW2bsoMYITWSSPUgCDEc4CXCBfcVyu8TkujreHe8CXP4K4d4463gRztuxfo96YP"
+  }
+]

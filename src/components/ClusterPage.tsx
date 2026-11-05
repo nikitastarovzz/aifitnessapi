@@ -71,6 +71,11 @@ const TOOLS = {
     name: "Pose keypoint playground",
     does: "click a joint and see its index in BlazePose, COCO, OpenPose, ML Kit and Apple Vision, then copy an index map built from matching names only.",
   },
+  rateLimit: {
+    href: "/tools/rate-limit-calculator",
+    name: "Rate-limit calculator",
+    does: "put your users, sync frequency and endpoints per sync against this vendor's documented rate limit and see which limit binds first.",
+  },
   webhook: {
     href: "/tools/webhook-verifier",
     name: "Webhook verifier",
@@ -116,10 +121,50 @@ const TOOLS = {
     name: "Rep counter playground",
     does: "load a workout video, see joint angles over time, tune a hysteresis rep counter's thresholds and export the config as JSON; the video stays in your browser.",
   },
+  exerciseTaxonomy: {
+    href: "/tools/exercise-taxonomy-crosswalk",
+    name: "Exercise taxonomy crosswalk",
+    does: "see how free-exercise-db, wger and ExerciseDB v1 categories, equipment and muscles line up with HealthKit and Health Connect workout types, matched by name only.",
+  },
+  gymMatrix: {
+    href: "/tools/gym-software-api-matrix",
+    name: "Gym software API matrix",
+    does: "filter the gym and studio platforms by webhooks, sandbox, bookings, members, payments and check-ins, each cell quoting its vendor source.",
+  },
+  researchChooser: {
+    href: "/tools/research-platform-chooser",
+    name: "Research platform chooser",
+    does: "tick what your study needs and see which research platforms document it, each answer quoting the vendor's page.",
+  },
   formRules: {
     href: "/tools/exercise-form-rules",
     name: "Exercise form rules",
     does: "see the joint-angle thresholds open-source exercise trackers use for this movement, each quoted from its code, with a null where none states one.",
+  },
+  buildPlan: {
+    href: "/tools/build-plan",
+    name: "Build plan and PRD generator",
+    does: "pick an app type, platforms, data sources and features and get a shareable build plan and a PRD template from the site's sourced pages.",
+  },
+  storeChecklist: {
+    href: "/tools/store-submission-checklist",
+    name: "Store submission checklist",
+    does: "every App Store and Google Play rule a health app is reviewed against, quoted item by item, with your progress kept in your browser.",
+  },
+  complianceWizard: {
+    href: "/tools/compliance-wizard",
+    name: "Compliance wizard",
+    does: "answer nine questions and see which rules likely apply to your app, each quoted from HHS, the FTC, the GDPR, Washington, the FDA or the stores.",
+  },
+  schemaConverter: {
+    href: "/tools/schema-converter",
+    name: "Health data schema converter",
+    does: "paste a HealthKit export row, Health Connect record or Google Health API data point and see it in one unified schema, each field traced to its source.",
+  },
+  fitbitGoogle: {
+    href: "/tools/fitbit-to-google-health",
+    name: "Fitbit to Google Health API map",
+    does: "search every Fitbit Web API endpoint and see its Google Health API data type, method and scopes from Google's migration tables, or that none is listed.",
   },
   sampleData: {
     href: "/tools/sample-data",
@@ -167,6 +212,10 @@ const TOOL_FOR_PATH: Record<string, keyof typeof TOOLS> = {
   "/integrate/withings-api": "webhook",
   "/integrate/wahoo-api": "webhook",
   "/fix/strava-webhook-not-firing": "webhook",
+  // Guides whose vendor documents a rate limit the calculator models and no
+  // webhook-verifier rule.
+  "/integrate/dexcom-api": "rateLimit",
+  "/integrate/coros-api": "rateLimit",
   // The model comparison readers leave for the keypoint maps once a model is chosen.
   "/motion/pose-estimation-models-compared": "keypoints",
   // Model pages whose keypoint scheme the playground maps (Apple Vision; the
@@ -181,6 +230,20 @@ const TOOL_FOR_PATH: Record<string, keyof typeof TOOLS> = {
   // Exercise pages the form-rules dataset has thresholds for, and the
   // form-feedback method page whose angle rules it collects.
   "/motion/how-form-feedback-works": "formRules",
+  // Exercise-content pages whose databases the taxonomy crosswalk reads, the
+  // gym roundup and the integration guides its matrix covers, and the research
+  // pages the chooser is built from.
+  "/fitness-apis/exercise-database-apis": "exerciseTaxonomy",
+  "/compare/exercisedb-vs-wger": "exerciseTaxonomy",
+  "/compare/exercisedb-vs-free-exercise-db": "exerciseTaxonomy",
+  "/fitness-apis/gym-management-software-apis": "gymMatrix",
+  "/integrate/mindbody-api": "gymMatrix",
+  "/integrate/glofox-api": "gymMatrix",
+  "/integrate/teamup-api": "gymMatrix",
+  "/integrate/mariana-tek-api": "gymMatrix",
+  "/integrate/wodify-api": "gymMatrix",
+  "/fitness-apis/wearable-research-data-platforms": "researchChooser",
+  "/migrate/fitbit-research-studies-after-turndown": "researchChooser",
   "/motion/squat-detection-pose-estimation": "formRules",
   "/motion/push-up-counter-computer-vision": "formRules",
   "/motion/bicep-curl-counter-pose-estimation": "formRules",
@@ -207,6 +270,10 @@ const TOOL_FOR_PATH: Record<string, keyof typeof TOOLS> = {
   "/phone-sensors/cmpedometer": "stepLab",
   // The export how-to: the explorer opens the file that page tells you to make.
   "/own-your-data/apple-health-export": "appleHealthExplorer",
+  // Normalizing wearable data: the converter turns three platforms' payloads into one shape.
+  "/architecture/normalize-wearable-data": "schemaConverter",
+  // The Fitbit move: the map lists every endpoint beside its Google Health API answer.
+  "/migrate/fitbit-web-api-to-google-health": "fitbitGoogle",
   // The platform comparison: the generator emits both platforms' fixtures.
   "/fitness-apis/apple-healthkit-vs-google-health-connect": "sampleData",
   // Every build guide: the generator is these guides' stacks, narrowed.
@@ -233,7 +300,26 @@ const TOOL_FOR_PATH: Record<string, keyof typeof TOOLS> = {
   "/build/hiit-app": "stack",
   "/build/triathlon-app": "stack",
   "/build/kids-fitness-app": "stack",
-  "/build/fitness-app-tech-stack": "stack",
+  "/build/fitness-app-tech-stack": "buildPlan",
+  // Compliance spokes: the store-rule pages hand on to the checklist that
+  // quotes those rules item by item; the law pages to the wizard that routes
+  // an app to them (ops/AUDIENCE-30-2026-11-05.md items 19–20).
+  "/compliance/app-store-health-data-rules": "storeChecklist",
+  "/compliance/google-play-health-data-policy": "storeChecklist",
+  "/compliance/google-play-health-connect-publishing-requirements": "storeChecklist",
+  "/compliance/app-store-guideline-5-1-3-health-research": "storeChecklist",
+  "/compliance/app-store-guideline-5-1-1-data-collection-storage": "storeChecklist",
+  "/compliance/app-store-guideline-5-1-2-data-use-sharing": "storeChecklist",
+  "/compliance/app-store-guideline-1-4-1-physical-harm": "storeChecklist",
+  "/compliance/app-store-guideline-2-5-1-healthkit-software-requirements": "storeChecklist",
+  "/compliance/app-store-guideline-3-1-3-d-person-to-person-fitness": "storeChecklist",
+  "/compliance/hipaa-compliance-fitness-app": "complianceWizard",
+  "/compliance/is-fitness-data-phi": "complianceWizard",
+  "/compliance/gdpr-fitness-app": "complianceWizard",
+  "/compliance/gym-gdpr-compliance": "complianceWizard",
+  "/compliance/ftc-health-breach-notification-rule": "complianceWizard",
+  "/compliance/washington-my-health-my-data-act": "complianceWizard",
+  "/compliance/fda-fitness-app-regulation": "complianceWizard",
 };
 
 /**

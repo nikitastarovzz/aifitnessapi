@@ -22,6 +22,8 @@ import {
   type VendorTimeline,
 } from "@/lib/vendorChanges";
 import { API_BASE } from "@/lib/publicApi";
+import CountdownEmbed from "@/components/CountdownEmbed";
+import { countdownFor } from "@/lib/vendorDeadlines";
 
 /**
  * One vendor's slice of the changes tracker (ops/MORE-30-2026-11-05.md item
@@ -177,7 +179,11 @@ export default async function VendorChangesPage({ params }: { params: Promise<Pa
             <a href={absoluteUrl(`${API_BASE}/vendors/${api.id}`)} className="font-medium text-brand-600 hover:text-brand-500">
               As JSON →
             </a>
+            <Link href={`/my-stack?v=${api.id}`} className="font-medium text-brand-600 hover:text-brand-500">
+              Add {api.short} to my stack →
+            </Link>
           </p>
+          {countdownFor(api.id) && <CountdownEmbed id={api.id} className="mt-3" />}
         </div>
 
         <section className="mt-10">

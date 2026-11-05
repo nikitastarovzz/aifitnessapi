@@ -6,6 +6,8 @@ import AnswerCapsule from "@/components/AnswerCapsule";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 import { ROWS } from "@/data/matrix";
+import CountdownEmbed from "@/components/CountdownEmbed";
+import { countdownTargets } from "@/lib/vendorDeadlines";
 import { allEmbeddableTables, clusterLabel, EMBED_TABLE_CLUSTERS, embedSnippets, embedTablePath } from "@/lib/embedTables";
 
 /**
@@ -254,6 +256,29 @@ export default async function BadgesPage() {
             />
           </p>
           <Snippet code={BADGE_SNIPPET} label="HTML for the link badge" />
+        </section>
+
+        <section id="countdowns" className="mt-12 scroll-mt-24" data-countdown-list="">
+          <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Deadline countdowns</h2>
+          <p className="mt-3 text-[var(--muted)]">
+            A live countdown to one dated deadline, for a post or a status page: the end date of an API in{" "}
+            <Link href="/graveyard" className="text-brand-600 hover:text-brand-500">
+              the Fitness API Graveyard
+            </Link>
+            , or the next dated item for one product in{" "}
+            <Link href="/changes" className="text-brand-600 hover:text-brand-500">
+              the changes tracker
+            </Link>
+            . Every date is one of those two records&rsquo; own, at the precision the source gives: the count runs to
+            00:00 UTC on a stated day, or to the last day of a stated month or year, and says which under the number.
+            A stone&rsquo;s widget quotes the vendor; a product&rsquo;s widget shows whether its entry is confirmed or
+            reported. Once a date passes, the widget says how long ago, rather than disappearing from your page.
+          </p>
+          <div className="mt-5 space-y-3">
+            {countdownTargets().map((t) => (
+              <CountdownEmbed key={t.id} id={t.id} />
+            ))}
+          </div>
         </section>
 
         <section id="tables" className="mt-12 scroll-mt-24">
