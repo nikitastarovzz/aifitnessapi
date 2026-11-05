@@ -112,6 +112,16 @@ export const TOOL_NEXT_STEPS: Record<string, string[]> = {
     "/pricing/how-much-does-a-fitness-api-cost",
     "/fitness-apis/free-fitness-apis",
   ],
+  "/tools/api-coverage-matrix": [
+    "/fitness-apis/wearable-data-apis",
+    "/fitness-apis/health-data-aggregator-apis",
+    "/pricing/how-much-does-a-fitness-api-cost",
+  ],
+  "/tools/rate-limit-calculator": [
+    "/fitness-apis/health-data-aggregator-apis",
+    "/pricing/health-data-aggregator-pricing",
+    "/integrate",
+  ],
   "/fitness-api-index": [
     "/fitness-apis",
     "/pricing",

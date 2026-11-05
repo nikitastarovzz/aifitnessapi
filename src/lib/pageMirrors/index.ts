@@ -19,6 +19,8 @@ import { exerciseFormRulesMirror } from "./exerciseFormRules";
 import { ftmsLabMirror } from "./ftmsLab";
 import { repCounterPlaygroundMirror } from "./repCounterPlayground";
 import { buildPlanMirror, complianceWizardMirror, storeChecklistMirror } from "./plannerTools";
+import { apiCoverageMatrixMirror } from "./apiCoverageMatrix";
+import { rateLimitCalculatorMirror } from "./rateLimitCalculator";
 import { graveyardMirror } from "./graveyard";
 import { datasetsMirror } from "./datasets";
 import { changesMirror } from "./changes";
@@ -62,6 +64,8 @@ export const PAGE_MIRRORS: Record<string, () => MirrorDoc> = {
   "/tools/build-plan": buildPlanMirror,
   "/tools/store-submission-checklist": storeChecklistMirror,
   "/tools/compliance-wizard": complianceWizardMirror,
+  "/tools/api-coverage-matrix": apiCoverageMatrixMirror,
+  "/tools/rate-limit-calculator": rateLimitCalculatorMirror,
   "/graveyard": graveyardMirror,
   "/datasets": datasetsMirror,
   "/changes": changesMirror,

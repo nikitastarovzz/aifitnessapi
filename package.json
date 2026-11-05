@@ -35,7 +35,9 @@
     "test:health-export": "node --test scripts/apple-health-export.test.mjs",
     "test:my-stack": "node --test scripts/my-stack.test.mjs",
     "test:answer-search": "node --test scripts/answer-search.test.mjs",
-    "test:planners": "node --test scripts/planner-tools.test.mjs"
+    "test:planners": "node --test scripts/planner-tools.test.mjs",
+    "test:rate-limits": "node --test scripts/rate-limit-calc.test.mjs",
+    "test:coverage": "node --test scripts/api-coverage.test.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "~1.32.0",

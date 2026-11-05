@@ -43,6 +43,8 @@ const STEP_LAB = { href: "/tools/step-lab", label: name("/tools/step-lab") };
 const FTMS_LAB = { href: "/tools/ftms-lab", label: name("/tools/ftms-lab") };
 const CP_LAB = { href: "/tools/cycling-power-lab", label: name("/tools/cycling-power-lab") };
 const GATT = { href: "/tools/ble-gatt-explorer", label: name("/tools/ble-gatt-explorer") };
+const COVERAGE = { href: "/tools/api-coverage-matrix", label: name("/tools/api-coverage-matrix") };
+const RATE_CALC = { href: "/tools/rate-limit-calculator", label: name("/tools/rate-limit-calculator") };
 
 const MAP: Record<string, Pointer[]> = {
   // ── Pose and motion ──────────────────────────────────────────────────
@@ -99,6 +101,10 @@ const MAP: Record<string, Pointer[]> = {
     {
       ...GRAVEYARD,
       why: "WHOOP API v1 is listed there with the line from WHOOP's migration guide that ended its support.",
+    },
+    {
+      ...RATE_CALC,
+      why: "Put your user count and sync schedule against WHOOP's 100 a minute and 10,000 a day, beside other vendors' documented limits.",
     },
   ],
   "/integrate/terra-api": [
@@ -222,6 +228,10 @@ const MAP: Record<string, Pointer[]> = {
     },
   ],
   "/matrix": [
+    {
+      ...COVERAGE,
+      why: "The cloud-vendor side of this table: which wearable APIs document each metric, at what resolution and with what history, each mark sourced.",
+    },
     {
       ...SAMPLE_DATA,
       why: "The same metric as HealthKit, Health Connect or Google Health API fixtures, to test both sides of a row.",

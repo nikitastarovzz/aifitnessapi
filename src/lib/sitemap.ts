@@ -29,6 +29,7 @@ import { HS_DATA_TYPES_FETCHED_ON } from "@/data/healthServicesDataTypes";
 import { POSE_KEYPOINTS_FETCHED_ON, POSE_SCHEMES } from "@/data/poseKeypoints";
 import { FORM_RULES_FETCHED_ON } from "@/data/formRules";
 import { PLANNER_READ_ON } from "@/data/plannerSources.mjs";
+import { COVERAGE_UPDATED, RATE_UPDATED } from "@/lib/coverageView";
 import { hkPageIdentifiers, hkIdentifierPath, hkPageModified } from "@/data/hkIdentifierPages";
 import { hsPageTypes, hsDataTypePath, hsPageModified } from "@/data/hsDataTypePages";
 import { GHAPI_PATHS, allTypes as ghapiTypes, typePath as ghapiTypePath, ghapiModified } from "@/data/ghapiPages";
@@ -254,6 +255,9 @@ function computeSections(): SitemapSection[] {
     ["/tools/build-plan", PLANNER_READ_ON],
     ["/tools/store-submission-checklist", PLANNER_READ_ON],
     ["/tools/compliance-wizard", PLANNER_READ_ON],
+    // The newest date any vendor in them was read (lib/coverageView).
+    ["/tools/api-coverage-matrix", COVERAGE_UPDATED],
+    ["/tools/rate-limit-calculator", RATE_UPDATED],
   ];
 
   // Routes whose date comes from data, or from the members they index.

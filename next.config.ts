@@ -67,6 +67,8 @@ const PAGE_MIRRORS = [
   "/tools/build-plan",
   "/tools/store-submission-checklist",
   "/tools/compliance-wizard",
+  "/tools/api-coverage-matrix",
+  "/tools/rate-limit-calculator",
   "/graveyard",
   "/datasets",
   "/changes",
