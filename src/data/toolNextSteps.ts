@@ -36,6 +36,21 @@ export const TOOL_NEXT_STEPS: Record<string, string[]> = {
     "/fitness-apis/health-data-aggregator-apis",
     "/pricing/how-much-does-a-fitness-api-cost",
   ],
+  "/tools/build-plan": [
+    "/build/fitness-app-tech-stack",
+    "/fitness-apis/wearable-data-apis",
+    "/pricing/how-much-does-a-fitness-api-cost",
+  ],
+  "/tools/store-submission-checklist": [
+    "/compliance/app-store-health-data-rules",
+    "/compliance/google-play-health-connect-publishing-requirements",
+    "/fitness-apis/apple-healthkit-vs-google-health-connect",
+  ],
+  "/tools/compliance-wizard": [
+    "/compliance/hipaa-compliance-fitness-app",
+    "/compliance/ftc-health-breach-notification-rule",
+    "/compliance/gdpr-fitness-app",
+  ],
   "/tools/sample-data": [
     "/fitness-apis/wearable-data-apis",
     "/fitness-apis/health-data-aggregator-apis",

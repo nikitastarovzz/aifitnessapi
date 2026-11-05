@@ -18,6 +18,7 @@ import { cyclingPowerLabMirror } from "./cyclingPowerLab";
 import { exerciseFormRulesMirror } from "./exerciseFormRules";
 import { ftmsLabMirror } from "./ftmsLab";
 import { repCounterPlaygroundMirror } from "./repCounterPlayground";
+import { buildPlanMirror, complianceWizardMirror, storeChecklistMirror } from "./plannerTools";
 import { graveyardMirror } from "./graveyard";
 import { datasetsMirror } from "./datasets";
 import { changesMirror } from "./changes";
@@ -58,6 +59,9 @@ export const PAGE_MIRRORS: Record<string, () => MirrorDoc> = {
   "/tools/exercise-form-rules": exerciseFormRulesMirror,
   "/tools/ftms-lab": ftmsLabMirror,
   "/tools/rep-counter-playground": repCounterPlaygroundMirror,
+  "/tools/build-plan": buildPlanMirror,
+  "/tools/store-submission-checklist": storeChecklistMirror,
+  "/tools/compliance-wizard": complianceWizardMirror,
   "/graveyard": graveyardMirror,
   "/datasets": datasetsMirror,
   "/changes": changesMirror,

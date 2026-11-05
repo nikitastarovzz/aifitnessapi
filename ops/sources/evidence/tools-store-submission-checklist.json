@@ -1,0 +1,237 @@
+[
+  {
+    "claim": "Store checklist, App Store 5.1.1(i): Link the privacy policy in App Store Connect and inside the app.",
+    "url": "https://developer.apple.com/app-store/review/guidelines/",
+    "quote": "All apps must include a link to their privacy policy in the App Store Connect metadata field and within the app in an easily accessible manner."
+  },
+  {
+    "claim": "Store checklist, App Store 5.1.1(i): Say in the policy how long you keep data and how users revoke consent or delete it.",
+    "url": "https://developer.apple.com/app-store/review/guidelines/",
+    "quote": "Explain its data retention/deletion policies and describe how a user can revoke consent and/or request deletion of the user’s data."
+  },
+  {
+    "claim": "Store checklist, App Store 5.1.1(ii): Get consent before collecting user or usage data.",
+    "url": "https://developer.apple.com/app-store/review/guidelines/",
+    "quote": "Apps that collect user or usage data must secure user consent for the collection, even if such data is considered to be anonymous at the time of or immediately following collection."
+  },
+  {
+    "claim": "Store checklist, App Store 5.1.1(ii): Write purpose strings that describe the whole use of the data.",
+    "url": "https://developer.apple.com/app-store/review/guidelines/",
+    "quote": "Ensure your purpose strings clearly and completely describe your use of the data."
+  },
+  {
+    "claim": "Store checklist, App Store 5.1.1(iii): Request only the data types the core features use.",
+    "url": "https://developer.apple.com/app-store/review/guidelines/",
+    "quote": "Apps should only request access to data relevant to the core functionality of the app and should only collect and use data that is required to accomplish the relevant task."
+  },
+  {
+    "claim": "Store checklist, App Store 5.1.1(v): Offer account deletion inside the app.",
+    "url": "https://developer.apple.com/app-store/review/guidelines/",
+    "quote": "If your app supports account creation, you must also offer account deletion within the app"
+  },
+  {
+    "claim": "Store checklist, App Store 5.1.1(ix): Submit as the legal entity that provides a regulated healthcare service.",
+    "url": "https://developer.apple.com/app-store/review/guidelines/",
+    "quote": "Apps that provide services in highly regulated fields (such as banking and financial services, healthcare, gambling, legal cannabis use, air travel and crypto exchanges) or that require sensitive user information should be submitted by a legal entity that provides the services, and not by an individual developer."
+  },
+  {
+    "claim": "Store checklist, App Store 5.1.2(i): Disclose and get explicit permission before sharing personal data with a third-party AI.",
+    "url": "https://developer.apple.com/app-store/review/guidelines/",
+    "quote": "You must clearly disclose where personal data will be shared with third parties, including with third-party AI, and obtain explicit permission before doing so."
+  },
+  {
+    "claim": "Store checklist, App Store 5.1.2(vi): Keep HealthKit and camera-derived data out of marketing, advertising and data mining.",
+    "url": "https://developer.apple.com/app-store/review/guidelines/",
+    "quote": "Data gathered from the HomeKit API, HealthKit, Clinical Health Records API, MovementDisorder APIs, ClassKit or from depth and/or facial mapping tools (such as ARKit, Camera APIs, or Photo APIs) may not be used for marketing, advertising or use-based data mining, including by third parties."
+  },
+  {
+    "claim": "Store checklist, App Store 5.1.3(i): Use health and fitness data only to improve health management or for permitted research.",
+    "url": "https://developer.apple.com/app-store/review/guidelines/",
+    "quote": "Apps may not use or disclose to third parties data gathered in the health, fitness, and medical research context—including from the Clinical Health Records API, HealthKit API, Motion and Fitness, MovementDisorder APIs, or health-related human subject research—for advertising, marketing, or other use-based data mining purposes other than improving health management, or for the purpose of health research, and then only with permission."
+  },
+  {
+    "claim": "Store checklist, App Store 5.1.3(i): Disclose the specific health data you collect from the device.",
+    "url": "https://developer.apple.com/app-store/review/guidelines/",
+    "quote": "You must disclose the specific health data that you are collecting from the device."
+  },
+  {
+    "claim": "Store checklist, App Store 5.1.3(ii): Never write false data to HealthKit, and keep personal health information out of iCloud.",
+    "url": "https://developer.apple.com/app-store/review/guidelines/",
+    "quote": "Apps must not write false or inaccurate data into HealthKit or any other medical research or health management apps, and may not store personal health information in iCloud."
+  },
+  {
+    "claim": "Store checklist, App Store 5.1.3(iii): Get research consent that covers the five points Apple lists.",
+    "url": "https://developer.apple.com/app-store/review/guidelines/",
+    "quote": "Apps conducting health-related human subject research must obtain consent from participants or, in the case of minors, their parent or guardian."
+  },
+  {
+    "claim": "Store checklist, App Store 5.1.3(iv): Have ethics review board approval ready to show.",
+    "url": "https://developer.apple.com/app-store/review/guidelines/",
+    "quote": "Apps conducting health-related human subject research must secure approval from an independent ethics review board. Proof of such approval must be provided upon request."
+  },
+  {
+    "claim": "Store checklist, App Store 2.5.1: Use HealthKit for health and fitness, integrated with the Health app, and say so in the description.",
+    "url": "https://developer.apple.com/app-store/review/guidelines/",
+    "quote": "Apps should use APIs and frameworks for their intended purposes and indicate that integration in their app description. For example, the HomeKit framework should provide home automation services; and HealthKit should be used for health and fitness purposes and integrate with the Health app."
+  },
+  {
+    "claim": "Store checklist, App Store 1.4.1: Back every health-measurement accuracy claim with data and methodology.",
+    "url": "https://developer.apple.com/app-store/review/guidelines/",
+    "quote": "Apps must clearly disclose data and methodology to support accuracy claims relating to health measurements, and if the level of accuracy or methodology cannot be validated, we will reject your app."
+  },
+  {
+    "claim": "Store checklist, App Store 1.4.1: Remind users to check with a doctor before medical decisions.",
+    "url": "https://developer.apple.com/app-store/review/guidelines/",
+    "quote": "Apps should remind users to check with a doctor in addition to using the app and before making medical decisions."
+  },
+  {
+    "claim": "Store checklist, App Store 1.4.1: Attach your regulatory clearance documentation, if you have one.",
+    "url": "https://developer.apple.com/app-store/review/guidelines/",
+    "quote": "If your medical app has received regulatory clearance, please submit a link to that documentation with your app."
+  },
+  {
+    "claim": "Store checklist, App Store 2.5.18: No targeted or behavioral ads based on health data.",
+    "url": "https://developer.apple.com/app-store/review/guidelines/",
+    "quote": "may not engage in targeted or behavioral advertising based on sensitive user data such as health/medical data (such as from the HealthKit APIs)"
+  },
+  {
+    "claim": "Store checklist, App Store 3.1.3(d): One-to-one live training may skip in-app purchase; group live sessions may not.",
+    "url": "https://developer.apple.com/app-store/review/guidelines/",
+    "quote": "One-to-few and one-to-many real-time services must use in-app purchase."
+  },
+  {
+    "claim": "Store checklist, Google Play Health apps: Console Declaration: Complete the Health apps declaration in Play Console.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16679511?hl=en",
+    "quote": "All developers must complete the Health apps declaration form on the App content page"
+  },
+  {
+    "claim": "Store checklist, Google Play Health apps: Privacy Policy and Prominent Disclosure: Treat the app as a health app even if health is not its main purpose.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16679511?hl=en",
+    "quote": "If your app is not primarily a health app, but has health-related features and accesses health data, it is still in scope of the Health App policy."
+  },
+  {
+    "claim": "Store checklist, Google Play Health apps: Privacy Policy and Prominent Disclosure: Put the privacy policy link in Play Console and inside the app.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16679511?hl=en",
+    "quote": "Your app must post a privacy policy link in the designated field within Play Console, and a privacy policy link or text within the app itself."
+  },
+  {
+    "claim": "Store checklist, Google Play Health apps: Privacy Policy and Prominent Disclosure: Host the policy at a public, non-geofenced URL, not a PDF.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16679511?hl=en",
+    "quote": "Please make sure your privacy policy is available on an active, publicly accessible and non-geofenced URL (no PDFs) and is non-editable"
+  },
+  {
+    "claim": "Store checklist, Google Play Health apps: Privacy Policy and Prominent Disclosure: Remove every permission the core function does not need.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16679511?hl=en",
+    "quote": "Permissions that are not required for a health app to perform its core functionality should not be requested and unused permissions must be removed."
+  },
+  {
+    "claim": "Store checklist, Google Play What permissions are in scope of the health apps policy?: Show a prominent disclosure and get affirmative consent for in-scope permissions (activity recognition, body sensors, Bluetooth, camera, location and others).",
+    "url": "https://support.google.com/googleplay/android-developer/answer/13996367?hl=en",
+    "quote": "If your app requires any of these permissions, it must prominently disclose how user data will be used, describe the type of data being accessed, and have the user provide affirmative consent for such use."
+  },
+  {
+    "claim": "Store checklist, Google Play Health apps: Health and Medical Functionalities: State the external hardware the medical function needs in the description.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16679511?hl=en",
+    "quote": "Apps that connect to external hardware or devices (e.g., blood glucose monitors) to perform their medical function, must clearly disclose these external hardware requirements in the app description."
+  },
+  {
+    "claim": "Store checklist, Google Play Health apps: Health and Medical Functionalities: List device compatibility for health functions that use the camera or other sensors.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16679511?hl=en",
+    "quote": "Apps that use device sensors (e.g., camera) for health functions must clearly state device compatibility information in the app description."
+  },
+  {
+    "claim": "Store checklist, Google Play Health apps: Health and Medical Functionalities: Declare a regulated medical device, and have proof of clearance ready.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16679511?hl=en",
+    "quote": "Apps that are regulated as a medical device must provide proof of approval, clearance or certification by the relevant authority upon request."
+  },
+  {
+    "claim": "Store checklist, Google Play Health apps: Health and Medical Functionalities: Otherwise, carry the not-a-medical-device disclaimer in the description.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16679511?hl=en",
+    "quote": "Other health and medical apps must include a clear disclaimer in their app description indicating that the app is “not a medical device and does not diagnose, treat, cure, or prevent any medical condition.”"
+  },
+  {
+    "claim": "Store checklist, Google Play Health apps: Health and Medical Functionalities: Remind users to consult a healthcare professional.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16679511?hl=en",
+    "quote": "Apps must also remind users to consult a healthcare professional for medical advice, diagnosis, or treatment."
+  },
+  {
+    "claim": "Store checklist, Google Play Health apps: Additional requirements: Get informed consent and IRB or ethics approval for health research.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16679511?hl=en",
+    "quote": "Health Research apps should also secure approval from an Institutional Review Board (IRB) and/or equivalent independent ethics committee unless otherwise exempt."
+  },
+  {
+    "claim": "Store checklist, Google Play Payments - Clinical Services: Do not bill regulated clinical services through Play billing.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16679511?hl=en",
+    "quote": "Transactions involving regulated clinical services should not use Google Play’s billing system."
+  },
+  {
+    "claim": "Store checklist, Google Play User Data: Never sell personal and sensitive user data.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10144311?hl=en",
+    "quote": "Not sell personal and sensitive user data."
+  },
+  {
+    "claim": "Store checklist, Google Play User Data: Offer a way to delete the account and its data.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/10144311?hl=en",
+    "quote": "Additionally, you must offer users a way to delete their accounts and associated data."
+  },
+  {
+    "claim": "Store checklist, Google Play Health Connect: publish guide: Complete the required Play Console steps: policies, Data safety, Health apps declaration.",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/publish?hl=en",
+    "quote": "To get your health app published on Google Play, you must complete a few required steps in the Play Console."
+  },
+  {
+    "claim": "Store checklist, Google Play Health Connect: publish guide: Fill in the Data safety section.",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/publish?hl=en",
+    "quote": "As part of your app publishing process, you must provide information for Google Play's Data safety section"
+  },
+  {
+    "claim": "Store checklist, Google Play Health Connect: publish guide: Declare the Health Connect data types again whenever the set changes.",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/publish?hl=en",
+    "quote": "This process must be completed for all publishing requests, both for a new app that has not been published yet, or when updating an existing, already published app that now uses a different set of data types."
+  },
+  {
+    "claim": "Store checklist, Google Play Health Connect: publish guide: Use the same privacy policy on the Play listing and in Health Connect.",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/publish?hl=en",
+    "quote": "This must be the same privacy policy that is displayed to users when they click the privacy policy link in Health Connect"
+  },
+  {
+    "claim": "Store checklist, Google Play Health Connect: Appropriate Access: Fit one of Health Connect's approved use cases.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16324062?hl=en",
+    "quote": "Approved use cases include: fitness and wellness, rewards, fitness coaching, corporate wellness, medical care, health research, and games."
+  },
+  {
+    "claim": "Store checklist, Google Play Health Connect: Minimum Scope: Request only the Health Connect permissions your features need.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16324062?hl=en",
+    "quote": "You must only request access to the permissions that are necessary to implementing your product's features or services."
+  },
+  {
+    "claim": "Store checklist, Google Play Health Connect: Limited Use: Never use Health Connect data to serve ads.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16324062?hl=en",
+    "quote": "Transferring, selling, or using user data for serving ads, including personalized or interest-based advertising."
+  },
+  {
+    "claim": "Store checklist, Google Play Health Connect: Limited Use: Never transfer or sell Health Connect data to ad platforms or data brokers.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16324062?hl=en",
+    "quote": "Transferring or selling user data to third parties like advertising platforms, data brokers, or any information resellers."
+  },
+  {
+    "claim": "Store checklist, Google Play Health Connect: Appropriate Access: No headless apps: the app needs a visible icon.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16324062?hl=en",
+    "quote": "Do not access data obtained through Health Connect using headless apps."
+  },
+  {
+    "claim": "Store checklist, Google Play Health Connect: Appropriate Access: Do not connect Health Connect to features that solely target children.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16324062?hl=en",
+    "quote": "Do not use Health Connect to connect to applications, services, or features that solely target children."
+  },
+  {
+    "claim": "Store checklist, Google Play Health Connect: Transparent and Accurate Notice: Publish help explaining how users manage and delete their data.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16324062?hl=en",
+    "quote": "User help documentation explaining how users can manage and delete their data from the app, and what happens to the data when an account is deactivated and/or deleted."
+  },
+  {
+    "claim": "Store checklist, Google Play Health Connect: Transparent and Accurate Notice: Say how you secure data, including HTTPS in transit.",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16324062?hl=en",
+    "quote": "Information regarding handling all personal and sensitive user data securely, including transmitting it using modern cryptography (for example, over HTTPS)."
+  }
+]

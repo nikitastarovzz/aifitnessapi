@@ -28,6 +28,7 @@ import { HK_METADATA_KEYS_FETCHED_ON } from "@/data/healthkitMetadataKeys";
 import { HS_DATA_TYPES_FETCHED_ON } from "@/data/healthServicesDataTypes";
 import { POSE_KEYPOINTS_FETCHED_ON, POSE_SCHEMES } from "@/data/poseKeypoints";
 import { FORM_RULES_FETCHED_ON } from "@/data/formRules";
+import { PLANNER_READ_ON } from "@/data/plannerSources.mjs";
 import { hkPageIdentifiers, hkIdentifierPath, hkPageModified } from "@/data/hkIdentifierPages";
 import { hsPageTypes, hsDataTypePath, hsPageModified } from "@/data/hsDataTypePages";
 import { GHAPI_PATHS, allTypes as ghapiTypes, typePath as ghapiTypePath, ghapiModified } from "@/data/ghapiPages";
@@ -250,6 +251,9 @@ function computeSections(): SitemapSection[] {
     ["/tools/apple-health-explorer", pageStamp("/tools/apple-health-explorer")],
     ["/tools/rep-counter-playground", pageStamp("/tools/rep-counter-playground")],
     ["/tools/exercise-form-rules", FORM_RULES_FETCHED_ON],
+    ["/tools/build-plan", PLANNER_READ_ON],
+    ["/tools/store-submission-checklist", PLANNER_READ_ON],
+    ["/tools/compliance-wizard", PLANNER_READ_ON],
   ];
 
   // Routes whose date comes from data, or from the members they index.

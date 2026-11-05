@@ -81,6 +81,24 @@ export const TOOL_LOOKUPS: Tool[] = [
  *  descriptions used in the site search index. */
 export const TOOL_PLANNERS: Tool[] = [
   {
+    path: "/tools/build-plan",
+    name: "Fitness app build plan and PRD generator",
+    blurb:
+      "Pick an app type, platforms, data sources and features: a shareable build plan and a PRD template with the APIs, compliance items, store rules and cost shape.",
+  },
+  {
+    path: "/tools/store-submission-checklist",
+    name: "App Store and Google Play submission checklist",
+    blurb:
+      "Apple's App Review Guidelines and Google Play's health policies, quoted item by item and narrowed to what your app does, with progress kept in your browser.",
+  },
+  {
+    path: "/tools/compliance-wizard",
+    name: "Health app compliance wizard",
+    blurb:
+      "Nine questions route your app to the rules that likely apply (HIPAA, the FTC breach rule, GDPR, Washington, FDA, app stores), each quoted from its source.",
+  },
+  {
     path: "/picker",
     name: "Which fitness API should I use?",
     blurb: "Three questions, a tailored recommendation.",

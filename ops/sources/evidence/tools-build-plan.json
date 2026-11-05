@@ -1,0 +1,27 @@
+[
+  {
+    "claim": "Build plan and PRD edge case: A denied HealthKit read looks exactly like no data.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/hkhealthstore/authorizationstatus(for:).json",
+    "quote": "To help prevent possible leaks of sensitive health information, your app cannot determine whether or not a user has granted permission to read data. If you are not given permission, it simply appears as if there is no data of the requested type in the HealthKit store."
+  },
+  {
+    "claim": "Build plan and PRD edge case: Health Connect reads stop at 30 days before the first grant.",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/read-data?hl=en",
+    "quote": "By default, all applications can read data from Health Connect for up to 30 days prior to when any permission was first granted."
+  },
+  {
+    "claim": "Build plan and PRD edge case: Older history needs its own permission.",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/read-data?hl=en",
+    "quote": "Otherwise, without this permission, an attempt to read records older than 30 days results in an error."
+  },
+  {
+    "claim": "Build plan and PRD edge case: An unused Health Connect changes token expires.",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/sync-data?hl=en",
+    "quote": "Since an unused Changes token expires within 30 days, you must use a sync strategy that avoids losing information in such a case."
+  },
+  {
+    "claim": "Build plan and PRD edge case: Google Fit is not a foundation to build on.",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit?hl=en",
+    "quote": "The Google Fit API (including the REST API) will only be supported until the end of 2026."
+  }
+]

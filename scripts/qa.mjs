@@ -1709,12 +1709,55 @@ if (fs.existsSync(matrixPath)) {
       const r = routeOf(h);
       return (r === "/tools" || r.startsWith("/tools/")) && fs.readFileSync(h, "utf8").includes("data-tool");
     }).length;
-    const EXPECTED_TOOLS = 19; // hub + 18 tools (the 6 lookups, sample-data, webhook-verifier, keypoint-playground, pose-benchmark, heart-rate-lab, step-lab, ftms-lab, cycling-power-lab, ble-gatt-explorer, apple-health-explorer, rep-counter-playground and exercise-form-rules)
+    const EXPECTED_TOOLS = 22; // hub + 21 tools (the 6 lookups, sample-data, webhook-verifier, keypoint-playground, pose-benchmark, heart-rate-lab, step-lab, ftms-lab, cycling-power-lab, ble-gatt-explorer, apple-health-explorer, rep-counter-playground, exercise-form-rules, build-plan, store-submission-checklist and compliance-wizard)
     if (rendered !== EXPECTED_TOOLS) {
       problems.push(`TOOLS          ${rendered} /tools pages carry data-tool, expected ${EXPECTED_TOOLS}`);
     } else {
       console.log(`Tools: ${EXPECTED_TOOLS - 1} interactive tools + hub render.`);
     }
+  }
+
+  // ── Planning tools: quoted rules (ops/AUDIENCE-30-2026-11-05.md 17–20) ──
+  // /tools/build-plan, /tools/store-submission-checklist and
+  // /tools/compliance-wizard show rules only as quotes from
+  // src/data/plannerSources.mjs. Each quote must sit, with the same url, in
+  // the tool's evidence file, so the weekly source-quotes run re-checks it
+  // against the live source (PLANNER-QUOTE); and each page must render every
+  // quote it is built to show (PLANNER-RENDER): all store items on the
+  // checklist, every regime's quotes on the wizard, every edge case on the
+  // build plan. A quote edited in one place and not the other fails here.
+  {
+    const { PLANNER_SOURCES, STORE_ITEMS, REGIMES, EDGE_CASES } = await import(new URL("../src/data/plannerSources.mjs", import.meta.url));
+    const qnorm = (s) => String(s).normalize("NFKC").replace(/[‘’]/g, "'").replace(/[“”]/g, '"').replace(/\s+/g, " ").trim();
+    const groups = [
+      ["/tools/store-submission-checklist", "tools-store-submission-checklist.json", STORE_ITEMS.map((i) => ({ id: i.id, quote: i.quote, source: i.source }))],
+      ["/tools/compliance-wizard", "tools-compliance-wizard.json", REGIMES.flatMap((r) => r.quotes.map((q, k) => ({ id: `${r.id}#${k}`, quote: q.quote, source: q.source })))],
+      ["/tools/build-plan", "tools-build-plan.json", EDGE_CASES.map((e) => ({ id: e.id, quote: e.quote, source: e.source }))],
+    ];
+    let quotes = 0;
+    for (const [route, file, rows] of groups) {
+      let evidence = [];
+      try {
+        evidence = JSON.parse(fs.readFileSync(path.join("ops/sources/evidence", file), "utf8"));
+      } catch {
+        problems.push(`PLANNER-QUOTE  ops/sources/evidence/${file} is missing or not JSON`);
+      }
+      const ev = new Set(evidence.map((r) => `${r.url}\n${qnorm(r.quote)}`));
+      const h = htmls.find((f) => routeOf(f) === route);
+      const text = h ? qnorm(decode(fs.readFileSync(h, "utf8").replace(/<script[\s\S]*?<\/script>/g, " ").replace(/<!-- -->/g, "").replace(/<[^>]+>/g, " "))) : null;
+      if (!text) problems.push(`PLANNER-RENDER  ${route} was not built`);
+      for (const r of rows) {
+        quotes++;
+        const src = PLANNER_SOURCES[r.source];
+        if (!src) {
+          problems.push(`PLANNER-QUOTE  ${r.id} names source "${r.source}", which src/data/plannerSources.mjs does not define`);
+          continue;
+        }
+        if (!ev.has(`${src.url}\n${qnorm(r.quote)}`)) problems.push(`PLANNER-QUOTE  ${r.id}: its quote and url are not a row of ops/sources/evidence/${file}`);
+        if (text && !text.includes(qnorm(r.quote))) problems.push(`PLANNER-RENDER  ${route} does not render the quote of ${r.id}`);
+      }
+    }
+    console.log(`Planning tools: ${quotes} quoted rules, each in an evidence file and rendered on its page.`);
   }
 
   // ── Own-your-data notebooks and sample ────────────────────────────────

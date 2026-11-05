@@ -59,6 +59,7 @@ import { hkVersionPages, versionH1, versionPrimaryQuery, versionCapsule, version
 import { HK_ID_BASE, hkPageIdentifiers, hkIdentifierPath, hkPageH1, hkPageCapsule, hkPageFaqs } from "@/data/hkIdentifierPages";
 import { HS_BASE, hsPageTypes, hsDataTypePath, hsPageH1, hsPageCapsule, hsPageFaqs } from "@/data/hsDataTypePages";
 import { PAGE_H1 } from "@/data/pageTitles";
+import { PLANNER_LLMS } from "@/lib/plannerPages";
 import { DAILY_CAPSULE, DAILY_PATH, DAILY_PRIMARY_QUERY, dailyFaqs } from "@/lib/dailyBank";
 
 import { CLUSTER_LABELS } from "@/lib/clusterRegistry";
@@ -320,6 +321,13 @@ function toolLines(): string[] {
   out.push("");
   out.push(formRulesText());
   out.push("");
+  for (const t of PLANNER_LLMS) {
+    out.push(`## ${t.label} (runs on your device) — ${absoluteUrl(t.path)}`);
+    out.push(`Primary query: ${t.primaryQuery}`);
+    out.push("");
+    out.push(t.text);
+    out.push("");
+  }
   out.push(`## Bluetooth heart-rate lab (runs on your device) — ${absoluteUrl("/tools/heart-rate-lab")}`);
   out.push("Primary query: does my heart rate strap send rr intervals");
   out.push("");
