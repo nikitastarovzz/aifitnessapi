@@ -332,6 +332,8 @@ function computeSections(): SitemapSection[] {
     GRAVEYARD_PATH,
     PRESS_PATH,
     "/alerts",
+    "/my-stack",
+    "/answers-search",
     "/compare-apis",
     "/play/ship-it",
     "/datasets",

@@ -15,6 +15,37 @@
  * appears here as `TITLE-*`.
  */
 export const GATES: { code: string; refuses: string; area: string }[] = [
+  // ── Countdown widgets, /my-stack, /answers-search (2026-11-05) ──
+  {
+    code: "COUNTDOWN-DATE",
+    area: "Hosting and crawl",
+    refuses:
+      "A deadline countdown widget (/embed/countdown/<id>) carrying a date that is neither a graveyard stone's end nor a changes-tracker entry's date at that precision, or a stone's widget whose date is not that stone's end. A countdown on someone else's page shows its date in large type, so the date must be one the site sourced.",
+  },
+  {
+    code: "COUNTDOWN-EMBED-ROUTE",
+    area: "Hosting and crawl",
+    refuses:
+      "An \"Embed a countdown\" control offering a widget address that was not built, so the code a reader copies would frame a 404.",
+  },
+  {
+    code: "COUNTDOWN-EMBED-ORPHAN",
+    area: "Hosting and crawl",
+    refuses:
+      "A countdown widget that is built but offered by no page's embed control, or missing from the list on /badges.",
+  },
+  {
+    code: "MY-STACK-OPTIONS",
+    area: "Content integrity",
+    refuses:
+      "A /my-stack dashboard that is missing, or offers a different number of products than the API directory has built entries, so a product a reader uses could not be picked.",
+  },
+  {
+    code: "ANSWER-SEARCH-WEIGHT",
+    area: "Content integrity",
+    refuses:
+      "An /answers-search page over 160 KB, or one that embeds answer records in its HTML. The answer files are megabytes; they must load when the reader searches, not with the page.",
+  },
   // ── Vendor timelines, /press, dataset cards, vendor records (2026-11-05) ──
   {
     code: "VENDOR-CHANGES-THIN",

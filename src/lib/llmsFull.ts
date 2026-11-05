@@ -394,6 +394,26 @@ function toolLines(): string[] {
     "A client-side tool that opens the file the iPhone Health app makes with Export All Health Data (Apple's iPhone User Guide, read 2026-11-05: \"all of your health and fitness data from Health in XML format\"). The reader picks export.zip or export.xml; a Web Worker streams it in chunks (ZIP central directory read, only export.xml inflated with the browser's DecompressionStream) and keeps per-type summaries, so a file of hundreds of megabytes does not have to fit in memory. It lists every record type with count, first and last date, units and sources, the devices named in the file, a daily chart for a chosen type (daily total for types Apple describes as cumulative, daily mean for discrete ones, grouped by the calendar day written on each record) and a CSV per type built by a second pass over the local file. Types link to the site's HealthKit identifier pages. Nothing is uploaded; the page has no server code. Apple publishes no schema for export.xml that the site could find, so the page describes the elements and attributes the tool reads (Record, Workout, ActivitySummary, ExportDate) as its own behavior, not as Apple's format. A synthetic, labeled sample ZIP is provided.",
   );
   out.push("");
+  out.push(`## My stack: deadlines and changes for the APIs you use — ${absoluteUrl("/my-stack")}`);
+  out.push("Primary query: track deprecations and deadlines for the fitness apis my app uses");
+  out.push("");
+  out.push(
+    `A client-side dashboard over data the site already holds. The reader picks products from the /apis directory; for each, the page shows the changes-tracker entries whose title or summary names it as a whole word (the directory's own rule), graded confirmed or reported, with the date at its source's precision and the day it was last checked; any matching stones in the Fitness API Graveyard with the vendor's quote; every page on the site about it (its vendor menu, or the pages that cover it most) with the date each page declares, flagged past 90 days; and the next dated items with days remaining on the reader's clock. Downloads are built in the tab: a calendar (.ics) of the stack's tracker entries in the same format as ${absoluteUrl("/changes/calendar.ics")}, an OPML file subscribing a feed reader to each product's live feed (${absoluteUrl("/feeds/vendors/<id>.xml")}, or /changes.xml for a product with fewer than two entries), and an RSS snapshot. The stack is stored only in localStorage and in the address (${absoluteUrl("/my-stack?v=<id>,<id>")}); nothing is sent anywhere.`,
+  );
+  out.push("");
+  out.push(`## Answer search — ${absoluteUrl("/answers-search")}`);
+  out.push("Primary query: search the full text of aifitnessapi answers");
+  out.push("");
+  out.push(
+    `A client-side full-text search over the per-section answer files listed at ${absoluteUrl("/answers/index.json")}: answer capsules, FAQ answers, blog-post answers and tracked changes, in full, where the site search index carries only the first 180 characters of an answer. Nothing loads with the page; the first search fetches the ticked sections (guides and comparisons, blog and changes by default; the generated references on request), indexes them in the tab and ranks with BM25, questions and titles weighted three times the answer text, the last word also matched as a prefix. Each result links the exact answer at its #faq-N anchor, and the page prints the bytes fetched. ${absoluteUrl("/answers-search?q=<terms>")} is a working URL.`,
+  );
+  out.push("");
+  out.push(`## Deadline countdown widgets — ${absoluteUrl("/badges#countdowns")}`);
+  out.push("");
+  out.push(
+    `Embeddable, noindex widgets at ${absoluteUrl("/embed/countdown/<id>")}: one per graveyard stone ending on or after 2025-01-01 (the stone's id) and one per directory product with a dated item (the product's id), counting in the reader's browser to 00:00 UTC on a stated day, or to the last day of a stated month or year, and saying which. Dates come only from the changes tracker and the graveyard; a stone's widget quotes the vendor, a product's widget shows its entry's confirmed or reported grade, and each links back to the page that sources the date.`,
+  );
+  out.push("");
   {
     const g = graveyardCopy();
     out.push(`## The Fitness API Graveyard — ${absoluteUrl("/graveyard")}`);

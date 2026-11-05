@@ -5031,6 +5031,94 @@ function checkSitemapIndex(SITE) {
   );
 }
 
+// ── Countdown widgets, /my-stack and /answers-search
+// (ops/AUDIENCE-30-2026-11-05.md items 24–26).
+//
+// A countdown widget renders on someone else's page with a date in large
+// type, so its date is held to the records it claims to come from: every date
+// a widget carries (data-countdown-dates) must be the `end` of a stone in the
+// graveyard's own data.json or the `date` of a tracker entry in
+// /answers/changes.json, at that precision — and a stone's widget must carry
+// exactly that stone's end. Every built widget is offered by at least one
+// "Embed a countdown" control (data-embed-countdown) on a built page outside
+// /embed, every control offers a built widget, and /badges lists them all.
+//
+// /my-stack offers one option per directory product (one per built
+// /apis/<id> page). /answers-search must stay light: its HTML carries the
+// section list, never the answer records, which load only when the reader
+// searches.
+{
+  const fileByRoute = new Map(htmls.map((h) => [routeOf(h), h]));
+  const read = (r) => (fileByRoute.has(r) ? fs.readFileSync(fileByRoute.get(r), "utf8") : "");
+  const built = (r) => valid.has(r) && !notFoundSet.has(r);
+  const readJson = (p) => {
+    try {
+      return JSON.parse(fs.readFileSync(p, "utf8"));
+    } catch {
+      return null;
+    }
+  };
+  const gy = readJson(`${ROOT}/graveyard/data.json.body`);
+  const ch = readJson(`${ROOT}/answers/changes.json.body`);
+  const stoneEnd = new Map((gy?.items ?? []).map((e) => [e.id, e.end]));
+  const sourced = new Set([
+    ...(gy?.items ?? []).map((e) => e.end).filter(Boolean),
+    ...(ch?.changes ?? []).map((c) => c.date),
+  ]);
+  if (!gy || !ch) problems.push("COUNTDOWN-DATE  the graveyard data.json or /answers/changes.json could not be read, so countdown dates cannot be checked");
+
+  const widgets = [...valid].filter((r) => r.startsWith("/embed/countdown/") && !notFoundSet.has(r)).sort();
+  for (const r of widgets) {
+    const html = read(r);
+    const id = r.slice("/embed/countdown/".length);
+    const kind = /\bdata-countdown-kind="([a-z]+)"/.exec(html)?.[1];
+    const dates = (/\bdata-countdown-dates="([^"]*)"/.exec(html)?.[1] ?? "").split(" ").filter(Boolean);
+    if (!kind || dates.length === 0) {
+      problems.push(`COUNTDOWN-DATE  ${r} renders no data-countdown-kind or no dates`);
+      continue;
+    }
+    for (const d of dates) if (!sourced.has(d)) problems.push(`COUNTDOWN-DATE  ${r} counts to ${d}, which is no stone's end and no tracker entry's date`);
+    if (kind === "entry" && (dates.length !== 1 || stoneEnd.get(id) !== dates[0])) {
+      problems.push(`COUNTDOWN-DATE  ${r} carries ${dates.join(", ")}, but the graveyard stone ${id} ends ${stoneEnd.get(id) ?? "(no such stone)"}`);
+    }
+  }
+
+  const offeredBy = new Map();
+  for (const h of htmls) {
+    const page = routeOf(h);
+    if (page.startsWith("/embed/") || notFoundSet.has(page)) continue;
+    const html = fs.readFileSync(h, "utf8");
+    for (const m of html.matchAll(/\bdata-embed-countdown="([^"]+)"/g)) {
+      if (!offeredBy.has(m[1])) offeredBy.set(m[1], new Set());
+      offeredBy.get(m[1]).add(page);
+    }
+  }
+  for (const [route, pages] of offeredBy) {
+    if (!built(route)) problems.push(`COUNTDOWN-EMBED-ROUTE  ${[...pages][0]} offers ${route}, which was not built`);
+  }
+  for (const r of widgets) {
+    if (!offeredBy.has(r)) problems.push(`COUNTDOWN-EMBED-ORPHAN  ${r} is built but no page offers its embed code`);
+    else if (!offeredBy.get(r).has("/badges")) problems.push(`COUNTDOWN-EMBED-ORPHAN  ${r} is not listed on /badges`);
+  }
+
+  const apis = [...valid].filter((r) => /^\/apis\/[a-z0-9-]+$/.test(r) && !notFoundSet.has(r)).length;
+  const stack = read("/my-stack");
+  const options = new Set([...stack.matchAll(/\bdata-stack-option="([a-z0-9-]+)"/g)].map((m) => m[1]));
+  if (!stack) problems.push("MY-STACK-OPTIONS  /my-stack was not built");
+  else if (options.size !== apis) problems.push(`MY-STACK-OPTIONS  /my-stack offers ${options.size} products; the directory has ${apis} built entries`);
+
+  const ANSWER_SEARCH_MAX = 160 * 1024;
+  const as = read("/answers-search");
+  const asBytes = Buffer.byteLength(as, "utf8");
+  if (!as) problems.push("ANSWER-SEARCH-WEIGHT  /answers-search was not built");
+  else if (asBytes > ANSWER_SEARCH_MAX || /"faqs":\[/.test(as)) {
+    problems.push(`ANSWER-SEARCH-WEIGHT  /answers-search is ${asBytes} bytes${/"faqs":\[/.test(as) ? " and embeds answer records" : ""}; the answers must load on search, not with the page (cap ${ANSWER_SEARCH_MAX})`);
+  }
+  console.log(
+    `Countdowns: ${widgets.length} widgets, every date sourced and every widget offered; /my-stack ${options.size} products; /answers-search ${Math.round(asBytes / 1024)} KB before any search.`,
+  );
+}
+
 // ── Entity, key facts and citation box (ops/NEXT-10-2026-11-04.md item 6) ──
 // ORG-ONCE: the site's Organization is defined once per page — the root
 // layout's node, with its logo, knowsAbout and funder — and everything else

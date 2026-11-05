@@ -27,6 +27,8 @@ import { year2026Mirror } from "./year2026";
 import { dailyMirror } from "./daily";
 import { shipItMirror } from "./shipIt";
 import { challengeMirror } from "./challenge";
+import { myStackMirror } from "./myStack";
+import { answersSearchMirror } from "./answersSearch";
 
 /**
  * Every non-cluster page with a markdown mirror, by page path. Each entry has
@@ -65,6 +67,8 @@ export const PAGE_MIRRORS: Record<string, () => MirrorDoc> = {
   "/daily": dailyMirror,
   "/play/ship-it": shipItMirror,
   "/challenge": challengeMirror,
+  "/my-stack": myStackMirror,
+  "/answers-search": answersSearchMirror,
 };
 
 /** The GET handler body for a mirror route. */

@@ -7,6 +7,8 @@ import AnswerCapsule from "@/components/AnswerCapsule";
 import ContentAge from "@/components/ContentAge";
 import CopySnippet from "@/components/CopySnippet";
 import Graveyard from "@/components/Graveyard";
+import CountdownEmbed from "@/components/CountdownEmbed";
+import { countdownTargets } from "@/lib/vendorDeadlines";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 import { PAGE_H1 } from "@/data/pageTitles";
@@ -191,6 +193,16 @@ export default function GraveyardPage() {
             .
           </p>
           <CopySnippet code={EMBED_SNIPPET} label="Embed code for the Fitness API Graveyard" />
+          <p className="mt-6 leading-relaxed text-[var(--muted)]">
+            Or one stone as a live countdown to its end date, with the vendor&rsquo;s sentence under the count:
+          </p>
+          <div className="mt-3 space-y-2">
+            {countdownTargets()
+              .filter((t) => t.kind === "entry")
+              .map((t) => (
+                <CountdownEmbed key={t.id} id={t.id} />
+              ))}
+          </div>
         </section>
 
         <section className="mt-14" id="faq">
