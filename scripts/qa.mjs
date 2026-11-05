@@ -357,6 +357,7 @@ if (fs.existsSync(matrixPath)) {
     "bluetooth-fitness-gatt-2026",
     "workout-types-crosswalk-2026",
     "exercise-form-rules-2026",
+    "exercise-taxonomy-crosswalk-2026",
   ];
   // Both directions. Listing files catches a DELETION (a dataset a page
   // still cites); scanning the directory catches an ADDITION that was never
@@ -1709,7 +1710,7 @@ if (fs.existsSync(matrixPath)) {
       const r = routeOf(h);
       return (r === "/tools" || r.startsWith("/tools/")) && fs.readFileSync(h, "utf8").includes("data-tool");
     }).length;
-    const EXPECTED_TOOLS = 19; // hub + 18 tools (the 6 lookups, sample-data, webhook-verifier, keypoint-playground, pose-benchmark, heart-rate-lab, step-lab, ftms-lab, cycling-power-lab, ble-gatt-explorer, apple-health-explorer, rep-counter-playground and exercise-form-rules)
+    const EXPECTED_TOOLS = 22; // hub + 21 tools (the 6 lookups, sample-data, webhook-verifier, keypoint-playground, pose-benchmark, heart-rate-lab, step-lab, ftms-lab, cycling-power-lab, ble-gatt-explorer, apple-health-explorer, rep-counter-playground, exercise-form-rules, exercise-taxonomy-crosswalk, gym-software-api-matrix and research-platform-chooser)
     if (rendered !== EXPECTED_TOOLS) {
       problems.push(`TOOLS          ${rendered} /tools pages carry data-tool, expected ${EXPECTED_TOOLS}`);
     } else {
@@ -3695,6 +3696,82 @@ function checkSitemapIndex(SITE) {
       problems.push(`BLE-LAB-LAYOUT  /tools/ble-gatt-explorer offers ${offered ?? "no"} decoders; the dataset has ${decodable - 1} structures plus Battery Level`);
     }
     if (checked && offered === decodable) console.log(`BLE labs: ${checked} lab layouts match the SIG structures; the explorer offers all ${decodable} decoders.`);
+  }
+
+  // AUDIENCE-30 wave 3 (items 27-30, added 2026-11-05).
+  // The exercise taxonomy crosswalk must render every generated term at its
+  // anchor (the dataset's page column points there), and show as mapped only
+  // the terms the generator mapped. The two evidence matrices must render
+  // every row of their data module; their cells' evidence is checked when the
+  // page builds (src/lib/evidenceMatrixCore.mjs throws on a dangling index).
+  // The Atlas poster is generated, not built: its files must exist, stay
+  // under 2 MB, and name every directory product and graveyard entry, so a
+  // product added to the directory without redrawing the poster is caught.
+  {
+    const et = fs.readFileSync("src/data/exerciseTaxonomy.ts", "utf8");
+    const terms = jsonArray(et, "ET_TERMS") ?? [];
+    const html = htmlOf("/tools/exercise-taxonomy-crosswalk");
+    if (!html) problems.push("EXERCISE-TAXONOMY  /tools/exercise-taxonomy-crosswalk was not built");
+    else {
+      const missing = terms.filter((t) => !html.includes(`id="${t.id}"`));
+      if (!terms.length) problems.push("EXERCISE-TAXONOMY  src/data/exerciseTaxonomy.ts has no ET_TERMS");
+      if (missing.length) problems.push(`EXERCISE-TAXONOMY  ${missing.length} of ${terms.length} terms have no row on /tools/exercise-taxonomy-crosswalk: ${missing.slice(0, 3).map((t) => t.id).join(", ")}`);
+      for (const t of terms) {
+        if (t.status === "mapped" && !(t.matchable && [t.healthkit, t.healthConnect, t.hcSegment].some((m) => m.exact.length))) {
+          problems.push(`EXERCISE-TAXONOMY  ${t.id} is marked mapped without a same-name constant on a matchable facet`);
+        }
+        if (!t.matchable && [t.healthkit, t.healthConnect, t.hcSegment].some((m) => m.exact.length)) {
+          problems.push(`EXERCISE-TAXONOMY  ${t.id} is a ${t.facet} term but carries a mapping`);
+        }
+      }
+      if (terms.length && !missing.length) console.log(`Exercise taxonomy: ${terms.length} terms rendered, ${terms.filter((t) => t.status === "mapped").length} mapped by name.`);
+    }
+
+    for (const [route, mod, name] of [
+      ["/tools/gym-software-api-matrix", "src/data/gymApiMatrix.ts", "GYM_API_MATRIX"],
+      ["/tools/research-platform-chooser", "src/data/researchPlatformMatrix.ts", "RESEARCH_PLATFORM_MATRIX"],
+    ]) {
+      const page = htmlOf(route);
+      const ids = [...fs.readFileSync(mod, "utf8").matchAll(/^ {6}id: "([^"]+)",$/gm)].map((m) => m[1]);
+      if (!page) problems.push(`EVIDENCE-MATRIX  ${route} was not built`);
+      else if (!ids.length) problems.push(`EVIDENCE-MATRIX  could not read the row ids of ${name} from ${mod}`);
+      else {
+        const missing = ids.filter((id) => !new RegExp(`<tr[^>]*\\bid="${id}"`).test(page));
+        if (missing.length) problems.push(`EVIDENCE-MATRIX  ${route} does not render ${missing.length} of ${ids.length} rows: ${missing.join(", ")}`);
+        else console.log(`Evidence matrix ${route}: all ${ids.length} rows rendered with their quotes.`);
+      }
+    }
+
+    const ATLAS = { svg: "public/atlas/fitness-api-atlas.svg", pdf: "public/atlas/fitness-api-atlas.pdf" };
+    const MAX = 2 * 1024 * 1024;
+    let atlasOk = true;
+    for (const f of Object.values(ATLAS)) {
+      if (!fs.existsSync(f)) {
+        problems.push(`ATLAS-FILE  ${f} is missing; run node scripts/build-atlas.mjs`);
+        atlasOk = false;
+      } else if (fs.statSync(f).size > MAX) {
+        problems.push(`ATLAS-FILE  ${f} is ${fs.statSync(f).size} bytes, over 2 MB`);
+        atlasOk = false;
+      }
+    }
+    if (fs.existsSync(ATLAS.pdf) && !fs.readFileSync(ATLAS.pdf).subarray(0, 5).toString().startsWith("%PDF")) {
+      problems.push(`ATLAS-FILE  ${ATLAS.pdf} is not a PDF`);
+      atlasOk = false;
+    }
+    if (fs.existsSync(ATLAS.svg)) {
+      const svg = fs.readFileSync(ATLAS.svg, "utf8");
+      const unesc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+      const excluded = new Set([...(/const EXCLUDED = new Set\(\[([^\]]*)\]\)/.exec(fs.readFileSync("src/data/apis.ts", "utf8"))?.[1] ?? "").matchAll(/"([^"]+)"/g)].map((m) => m[1]));
+      const products = JSON.parse(fs.readFileSync("public/datasets/fitness-apis-2026.json", "utf8")).items.filter((i) => !excluded.has(i.id));
+      const graves = [...fs.readFileSync("src/data/graveyard.ts", "utf8").matchAll(/^ {4}name: "([^"]+)",$/gm)].map((m) => m[1]);
+      const absent = [...products.map((p) => p.label), ...graves].filter((n) => !svg.includes(`>${unesc(n)}<`) && !svg.includes(`◆ ${unesc(n)}<`));
+      if (!graves.length) problems.push("ATLAS-STALE  could not read graveyard names from src/data/graveyard.ts");
+      if (absent.length) {
+        problems.push(`ATLAS-STALE  the poster leaves out ${absent.length} directory product(s) or graveyard entr(ies): ${absent.slice(0, 3).join("; ")} — run node scripts/build-atlas.mjs`);
+        atlasOk = false;
+      }
+      if (atlasOk) console.log(`Atlas: ${products.length} products and ${graves.length} graveyard entries on the poster; SVG ${fs.statSync(ATLAS.svg).size} B, PDF ${fs.statSync(ATLAS.pdf).size} B.`);
+    }
   }
 
   // Workout types across four platforms (added 2026-10-18). Apple's

@@ -116,6 +116,21 @@ const TOOLS = {
     name: "Rep counter playground",
     does: "load a workout video, see joint angles over time, tune a hysteresis rep counter's thresholds and export the config as JSON; the video stays in your browser.",
   },
+  exerciseTaxonomy: {
+    href: "/tools/exercise-taxonomy-crosswalk",
+    name: "Exercise taxonomy crosswalk",
+    does: "see how free-exercise-db, wger and ExerciseDB v1 categories, equipment and muscles line up with HealthKit and Health Connect workout types, matched by name only.",
+  },
+  gymMatrix: {
+    href: "/tools/gym-software-api-matrix",
+    name: "Gym software API matrix",
+    does: "filter the gym and studio platforms by webhooks, sandbox, bookings, members, payments and check-ins, each cell quoting its vendor source.",
+  },
+  researchChooser: {
+    href: "/tools/research-platform-chooser",
+    name: "Research platform chooser",
+    does: "tick what your study needs and see which research platforms document it, each answer quoting the vendor's page.",
+  },
   formRules: {
     href: "/tools/exercise-form-rules",
     name: "Exercise form rules",
@@ -181,6 +196,20 @@ const TOOL_FOR_PATH: Record<string, keyof typeof TOOLS> = {
   // Exercise pages the form-rules dataset has thresholds for, and the
   // form-feedback method page whose angle rules it collects.
   "/motion/how-form-feedback-works": "formRules",
+  // Exercise-content pages whose databases the taxonomy crosswalk reads, the
+  // gym roundup and the integration guides its matrix covers, and the research
+  // pages the chooser is built from.
+  "/fitness-apis/exercise-database-apis": "exerciseTaxonomy",
+  "/compare/exercisedb-vs-wger": "exerciseTaxonomy",
+  "/compare/exercisedb-vs-free-exercise-db": "exerciseTaxonomy",
+  "/fitness-apis/gym-management-software-apis": "gymMatrix",
+  "/integrate/mindbody-api": "gymMatrix",
+  "/integrate/glofox-api": "gymMatrix",
+  "/integrate/teamup-api": "gymMatrix",
+  "/integrate/mariana-tek-api": "gymMatrix",
+  "/integrate/wodify-api": "gymMatrix",
+  "/fitness-apis/wearable-research-data-platforms": "researchChooser",
+  "/migrate/fitbit-research-studies-after-turndown": "researchChooser",
   "/motion/squat-detection-pose-estimation": "formRules",
   "/motion/push-up-counter-computer-vision": "formRules",
   "/motion/bicep-curl-counter-pose-estimation": "formRules",

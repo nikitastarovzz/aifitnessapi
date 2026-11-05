@@ -76,6 +76,7 @@ export function marketMapMirror(): MirrorDoc {
       `- ${link("The fitness API list, product by product", "/apis")}`,
       `- ${link("Compare two APIs side by side", "/compare-apis")}`,
       `- ${link("The State of Fitness APIs 2026", "/state-of-fitness-apis-2026")}`,
+      `- ${link("The Fitness API Atlas: this directory as a printable poster", "/atlas")}`,
       "",
       `By ${site.name}. Product and company names are trademarks of their respective owners; ${site.name} is not affiliated with, endorsed by, or sponsored by any product on this map, with one exception stated above: KinesteX funds this site. Access terms change — confirm current details in each provider’s documentation.`,
     ],

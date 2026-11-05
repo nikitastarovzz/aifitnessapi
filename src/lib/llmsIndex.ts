@@ -3,6 +3,10 @@ import { vendorChangesPath, vendorFeedPath, vendorTimelines } from "@/lib/vendor
 import { graveyardCopy } from "@/lib/graveyardCopy";
 import { TASKS_VISION_VERSION } from "@/lib/poseBenchmark";
 import { formRulesText, leaderboardText, repPlaygroundText } from "@/lib/poseToolsText";
+import { ATLAS_PATH, GYM_PATH, RESEARCH_PATH, TAXONOMY_PATH, gymCapsule, matrixText, researchCapsule, taxonomyText } from "@/lib/audienceTools";
+import { atlasCapsule } from "@/lib/atlasView";
+import { GYM_API_MATRIX } from "@/data/gymApiMatrix";
+import { RESEARCH_PLATFORM_MATRIX } from "@/data/researchPlatformMatrix";
 import { POSE_KEYPOINTS_FETCHED_ON } from "@/data/poseKeypoints";
 import { totalPairs } from "@/lib/keypointMapping.mjs";
 import { DEFAULT_PARAMS, REPLAY_TRUE_STEPS } from "@/lib/stepDetector.mjs";
@@ -132,6 +136,10 @@ export function toolEntries(): { label: string; path: string; text: string }[] {
     { label: `Pose model benchmark`, path: "/tools/pose-benchmark", text: `runs MediaPipe Pose Landmarker lite, full and heavy (@mediapipe/tasks-vision ${TASKS_VISION_VERSION}) in the reader's browser on their camera or a synthetic frame, and reports load time, median and p95 inference latency, FPS and delegate as a copyable markdown table. Camera frames are not uploaded (the runtime sends Google its own usage report: timings and the library version, no images), and the page states no speed figure of its own; MoveNet is left out until its tfhub.dev weight URLs can be verified. ${leaderboardText()}` },
     { label: `Rep counter playground`, path: "/tools/rep-counter-playground", text: repPlaygroundText() },
     { label: `Exercise form rules`, path: "/tools/exercise-form-rules", text: formRulesText() },
+    { label: `Exercise taxonomy crosswalk`, path: TAXONOMY_PATH, text: taxonomyText() },
+    { label: `Gym software API matrix`, path: GYM_PATH, text: `${gymCapsule()} ${matrixText(GYM_API_MATRIX)}` },
+    { label: `Research platform chooser`, path: RESEARCH_PATH, text: `${researchCapsule()} ${matrixText(RESEARCH_PLATFORM_MATRIX)}` },
+    { label: `The Fitness API Atlas (printable poster)`, path: ATLAS_PATH, text: atlasCapsule() },
     { label: `30-second webcam rep challenge`, path: "/challenge", text: `a browser game that counts squats or jumping jacks for 30 seconds from the reader's webcam with MediaPipe Pose Landmarker lite (@mediapipe/tasks-vision ${TASKS_VISION_VERSION}) and a two-phase angle state machine with hysteresis, every threshold printed on the page; ends with a canvas-drawn share card and a one-line text result. A demo, not a measurement or coaching: the thresholds are uncalibrated starting values. Frames never leave the tab; the runtime sends Google its own usage report (timings, no images).` },
     { label: `Bluetooth heart-rate lab`, path: "/tools/heart-rate-lab", text: `connects a BLE heart-rate strap or broadcasting watch over Web Bluetooth in the reader's browser and shows every Heart Rate Measurement (0x2A37) notification as bytes, each field decoded against the Bluetooth SIG's GATT Specification Supplement structure (Flags bits, uint8/uint16 heart rate, sensor contact, Energy Expended, RR-intervals in 1/1024 s), plus Body Sensor Location and Battery Level when present. It answers whether the device sends RR intervals (bit 4 of Flags) — without them HRV cannot be computed — and shows a demo RMSSD, labeled not medical. Browsers without Web Bluetooth get a synthetic replay, labeled synthetic. Nothing leaves the tab.` },
     { label: `FTMS lab`, path: "/tools/ftms-lab", text: `connects a treadmill, indoor bike, rower or cross trainer over Web Bluetooth (Fitness Machine Service 0x1826) in the reader's browser, or takes pasted hex, and decodes Treadmill, Indoor Bike, Rower, Cross Trainer, Step Climber and Stair Climber Data and the Supported Range characteristics against the Bluetooth SIG's GATT Specification Supplement structures: each Flags bit, which fields it makes present, octets, unit and resolution with the line it comes from. Fitness Machine Feature, Status, Training Status and Control Point have no SIG structure in the dataset and show as hex; the lab writes nothing to the machine. Synthetic replays are labeled synthetic.` },

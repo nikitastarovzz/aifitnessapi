@@ -28,6 +28,11 @@ import { HK_METADATA_KEYS_FETCHED_ON } from "@/data/healthkitMetadataKeys";
 import { HS_DATA_TYPES_FETCHED_ON } from "@/data/healthServicesDataTypes";
 import { POSE_KEYPOINTS_FETCHED_ON, POSE_SCHEMES } from "@/data/poseKeypoints";
 import { FORM_RULES_FETCHED_ON } from "@/data/formRules";
+import { ET_FETCHED_ON } from "@/data/exerciseTaxonomy";
+import { ATLAS_PATH } from "@/lib/audienceTools";
+import { atlasAsOf } from "@/lib/atlasView";
+import { GYM_API_MATRIX } from "@/data/gymApiMatrix";
+import { RESEARCH_PLATFORM_MATRIX } from "@/data/researchPlatformMatrix";
 import { hkPageIdentifiers, hkIdentifierPath, hkPageModified } from "@/data/hkIdentifierPages";
 import { hsPageTypes, hsDataTypePath, hsPageModified } from "@/data/hsDataTypePages";
 import { GHAPI_PATHS, allTypes as ghapiTypes, typePath as ghapiTypePath, ghapiModified } from "@/data/ghapiPages";
@@ -250,6 +255,9 @@ function computeSections(): SitemapSection[] {
     ["/tools/apple-health-explorer", pageStamp("/tools/apple-health-explorer")],
     ["/tools/rep-counter-playground", pageStamp("/tools/rep-counter-playground")],
     ["/tools/exercise-form-rules", FORM_RULES_FETCHED_ON],
+    ["/tools/exercise-taxonomy-crosswalk", ET_FETCHED_ON],
+    ["/tools/gym-software-api-matrix", GYM_API_MATRIX.checkedOn],
+    ["/tools/research-platform-chooser", RESEARCH_PLATFORM_MATRIX.checkedOn],
   ];
 
   // Routes whose date comes from data, or from the members they index.
@@ -285,6 +293,8 @@ function computeSections(): SitemapSection[] {
     // The press page declares the newest date any of its inputs was written
     // or checked, through the same function.
     [PRESS_PATH]: pressDataDate(),
+    // The poster declares the newest date its inputs were checked.
+    [ATLAS_PATH]: atlasAsOf(),
   };
 
   const standalone = [
@@ -327,6 +337,7 @@ function computeSections(): SitemapSection[] {
     // qa.mjs stops it, or anything else noindexed, coming back.
     APIS_PATH,
     MARKET_MAP_PATH,
+    ATLAS_PATH,
     API_INDEX_PATH,
     DAILY_PATH,
     GRAVEYARD_PATH,

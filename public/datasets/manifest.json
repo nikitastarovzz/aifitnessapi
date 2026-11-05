@@ -26,6 +26,18 @@
       "sha256": "f43f66ad1e97708084b10186192e3cfa1086ff497c33ee3a332d6ba231df0a4c"
     },
     {
+      "file": "exercise-taxonomy-crosswalk-2026.csv",
+      "bytes": 48514,
+      "rows": 155,
+      "sha256": "865ccf15b82313e63d715764b9ea7f310b0f0bc7a76cfa446905852e946f9a95"
+    },
+    {
+      "file": "exercise-taxonomy-crosswalk-2026.json",
+      "bytes": 112485,
+      "rows": 155,
+      "sha256": "bff0ec54f41ad5c98073e016542025eac224cfcaa9123715ab15d8e1e6f491fe"
+    },
+    {
       "file": "fitness-api-changes-2026.csv",
       "bytes": 14061,
       "rows": 22,

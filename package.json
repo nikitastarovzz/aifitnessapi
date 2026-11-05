@@ -32,7 +32,11 @@
     "test:pose-leaderboard": "node --test scripts/pose-benchmark-submission.test.mjs",
     "test:gsc": "node --test scripts/gsc-sections.test.mjs",
     "test:measure": "node --test scripts/measure.test.mjs",
-    "test:health-export": "node --test scripts/apple-health-export.test.mjs"
+    "test:health-export": "node --test scripts/apple-health-export.test.mjs",
+    "test:exercise-taxonomy": "node --test scripts/exercise-taxonomy.test.mjs",
+    "test:matrices": "node --test scripts/evidence-matrix.test.mjs",
+    "test:atlas": "node --test scripts/atlas.test.mjs",
+    "atlas": "node scripts/build-atlas.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "~1.32.0",

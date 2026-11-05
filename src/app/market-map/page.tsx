@@ -227,6 +227,7 @@ export default function MarketMapPage() {
               { href: "/apis", label: "The fitness API list, product by product" },
               { href: "/compare-apis", label: "Compare two APIs side by side" },
               { href: "/state-of-fitness-apis-2026", label: "The State of Fitness APIs 2026" },
+              { href: "/atlas", label: "The Fitness API Atlas: this directory as a printable poster" },
             ].map((r) => (
               <li key={r.href}>
                 <Link
