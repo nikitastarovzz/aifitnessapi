@@ -678,6 +678,114 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "A markdown mirror whose Link header is not one canonical-plus-llms.txt value naming the same URL as its front matter and its HTML page.",
   },
   {
+    code: "GEO-PAGE-MD-MISSING",
+    area: "Feeds and mirrors",
+    refuses:
+      "A tool page, or one of /graveyard, /datasets, /changes, /market-map, /fitness-api-index, /2026, /daily, /play/ship-it and /challenge, built without its markdown mirror at the page's URL with .md appended.",
+  },
+  {
+    code: "GEO-PAGE-MD-ORPHAN",
+    area: "Feeds and mirrors",
+    refuses: "A page mirror built at <path>.md for a path that is not a built page: a mirror of nothing.",
+  },
+  {
+    code: "GEO-PAGE-MD-FRONTMATTER",
+    area: "Feeds and mirrors",
+    refuses: "A page mirror that does not open with YAML front matter carrying its canonical URL and a last_reviewed date.",
+  },
+  {
+    code: "GEO-PAGE-MD-LINK",
+    area: "Feeds and mirrors",
+    refuses:
+      "A page mirror not served as text/markdown, or whose Link header is not one canonical-plus-llms.txt value naming the same URL as its front matter and its page's rel=canonical.",
+  },
+  {
+    code: "GEO-PAGE-MD-ALT",
+    area: "Feeds and mirrors",
+    refuses: "A page with a markdown mirror whose HTML has no <link rel=\"alternate\" type=\"text/markdown\"> naming that mirror.",
+  },
+  {
+    code: "GEO-PAGE-MD-HEADER",
+    area: "Feeds and mirrors",
+    refuses:
+      "A page with a markdown mirror whose HTTP Link header does not name the mirror as rel=alternate beside describedby, or a header rule that also matches the .md address and replaces the mirror's own canonical.",
+  },
+  {
+    code: "GEO-PAGE-MD-UNLISTED",
+    area: "Feeds and mirrors",
+    refuses: "A page mirror that /llms.txt or /llms-index.txt does not link, so an agent reading the map never learns it exists.",
+  },
+  {
+    code: "GEO-PAGE-MD-TEXT",
+    area: "Feeds and mirrors",
+    refuses:
+      "A page mirror line, or table cell, whose words do not appear on the page it mirrors. The prose in these mirrors is copied, so this is how a mirror is held to the page: edit the page and the stale mirror line is named.",
+  },
+  {
+    code: "GEO-PAGE-MD-COVER",
+    area: "Feeds and mirrors",
+    refuses:
+      "A page mirror that leaves out one of its page's visible section headings (outside the interactive tool) or one of the FAQ questions the page declares in FAQPage JSON-LD.",
+  },
+  {
+    code: "GEO-MD-ALT-DEAD",
+    area: "Feeds and mirrors",
+    refuses:
+      "A <link rel=\"alternate\" type=\"text/markdown\"> anywhere on the site whose target is not a built markdown document: a page mirror, a cluster or blog mirror behind the /md rewrite, a Portuguese mirror or a digest edition.",
+  },
+  {
+    code: "ENTITY-DATA",
+    area: "Structured data / GEO",
+    refuses: "A build in which the vendor-entity evidence file, src/data/wikidataEntities.json, is missing or unreadable.",
+  },
+  {
+    code: "ENTITY-EVIDENCE",
+    area: "Structured data / GEO",
+    refuses:
+      "A vendor entity row without its QID, its Wikidata label, its schema type, its P856 official-website claims as fetched, or the URL and time each was read from, or two rows for one QID.",
+  },
+  {
+    code: "ENTITY-OFFICIAL-SITE",
+    area: "Structured data / GEO",
+    refuses:
+      "A vendor entity whose official site is not one of the item's own non-deprecated P856 claims, or is not on the domain the row says this site's pages cite for the vendor.",
+  },
+  {
+    code: "ENTITY-SAMEAS",
+    area: "Structured data / GEO",
+    refuses:
+      "A sameAs to a Wikidata item on a page that has no evidence row for it, a row that does not list that page, or a node that is not the row's type, label and official site.",
+  },
+  {
+    code: "ENTITY-PAGES",
+    area: "Structured data / GEO",
+    refuses: "A vendor entity row naming a page that is not built, or a named page whose JSON-LD does not carry the entity.",
+  },
+  {
+    code: "ENTITY-DOMAIN",
+    area: "Structured data / GEO",
+    refuses:
+      "A vendor entity none of whose pages links its matched domain: the official-site match would rest on nothing this site cites.",
+  },
+  {
+    code: "GLOSSARY-ANCHOR",
+    area: "Structured data / GEO",
+    refuses:
+      "A DefinedTerm @id anywhere on the site whose #term-… fragment is not an element on /glossary, or a term id the glossary renders twice.",
+  },
+  {
+    code: "GLOSSARY-SET",
+    area: "Structured data / GEO",
+    refuses:
+      "A glossary without one DefinedTermSet at /glossary#termset whose terms each carry a termCode, the @id built from it and inDefinedTermSet naming that set, a term count that differs from the anchors rendered, or a DefinedTerm anywhere naming another set.",
+  },
+  {
+    code: "MACHINE-CACHE",
+    area: "Hosting and crawl",
+    refuses:
+      "A static machine file (markdown mirror, llms or answers file, claims, feed, dataset JSON or CSV, /api/v1) served with any Cache-Control but the one machine-file policy in src/lib/machineHeaders.ts, or a route that answers per request using that shared-cache policy.",
+  },
+  {
     code: "GEO-ALT-HEADER",
     area: "Feeds and mirrors",
     refuses: "A spoke or blog post whose HTTP Link header does not name its own markdown mirror and llms.txt, or a hub or the homepage whose header does not name llms.txt.",

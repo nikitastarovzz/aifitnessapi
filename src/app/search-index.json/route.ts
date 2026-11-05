@@ -77,6 +77,7 @@ import {
   typePath as ghapiTypePath,
   typeTitle as ghapiTypeTitle,
 } from "@/data/ghapiPages";
+import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
 
 /**
  * Site search index — generated from the same data modules as the pages
@@ -515,6 +516,6 @@ export function GET() {
   for (const p of getAllPosts()) add(`/blog/${p.slug}`, p.title, p.description, "blog post");
 
   return Response.json(recs, {
-    headers: { "cache-control": "public, max-age=3600" },
+    headers: { "cache-control": MACHINE_CACHE_CONTROL },
   });
 }

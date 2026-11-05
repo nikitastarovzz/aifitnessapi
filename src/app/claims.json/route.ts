@@ -7,6 +7,7 @@ import { allSpokes } from "@/lib/clusterRegistry";
 import { DEV_COST_LABELS } from "@/data/costModel";
 import { DEV_COST_MEANING, GLANCE_COST_ITEMS } from "@/data/hubGlance";
 import { moneyPages } from "@/data/moneyPages";
+import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
 
 /**
  * The claims index: every citable fact this site publishes, flattened to one
@@ -118,6 +119,7 @@ export function GET() {
   return new Response(JSON.stringify(body, null, 2), {
     headers: {
       "content-type": "application/json; charset=utf-8",
+      "cache-control": MACHINE_CACHE_CONTROL,
       link: `<${absoluteUrl("/llms.txt")}>; rel="describedby"; type="text/plain"`,
     },
   });

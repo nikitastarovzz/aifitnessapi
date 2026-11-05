@@ -1,5 +1,6 @@
 import { getAllPosts } from "@/lib/posts";
 import { site, absoluteUrl } from "@/lib/site";
+import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
 
 /**
  * JSON Feed 1.1 for the blog — the same posts `/feed.xml` publishes, in the
@@ -49,6 +50,7 @@ export function GET(): Response {
       // The media type JSON Feed registers for itself; `application/json`
       // would work but tells a client nothing about what it is holding.
       "content-type": "application/feed+json; charset=utf-8",
+      "cache-control": MACHINE_CACHE_CONTROL,
       link: `<${absoluteUrl("/llms.txt")}>; rel="describedby"; type="text/plain"`,
     },
   });

@@ -1,4 +1,5 @@
 import { indexExport } from "@/lib/ecosystemSignals";
+import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
 
 /**
  * /fitness-api-index as CSV (RFC 4180, every non-null cell quoted, null as an
@@ -20,6 +21,7 @@ export function GET() {
   return new Response(csv, {
     headers: {
       "content-type": "text/csv; charset=utf-8",
+      "cache-control": MACHINE_CACHE_CONTROL,
       "content-disposition": 'inline; filename="fitness-api-index.csv"',
     },
   });

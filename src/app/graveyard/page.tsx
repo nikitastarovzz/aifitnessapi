@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -40,7 +41,7 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   title: { absolute: META_TITLE },
   description: DESCRIPTION,
-  alternates: { canonical: GRAVEYARD_PATH },
+  alternates: pageMirrorAlternates(GRAVEYARD_PATH),
   openGraph: {
     type: "website",
     title: "The Fitness API Graveyard",

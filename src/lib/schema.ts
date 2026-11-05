@@ -9,7 +9,8 @@
  * `reviewedBy` are attached to a WebPage node and never to the Article.
  */
 import { site, absoluteUrl } from "@/lib/site";
-import { termsDefining, termId } from "@/data/glossary";
+import { GLOSSARY_SET_ID, termsDefining, termId } from "@/data/glossary";
+import { vendorEntitiesFor, vendorEntityNode } from "@/lib/vendorEntities";
 import { PUBLISHED } from "@/data/published";
 import type { ClusterEntry } from "@/lib/cluster";
 
@@ -303,13 +304,18 @@ export function spokeGraph({
   const articleId = `${url}#article`;
 
   const defines = termsDefining(path);
-  const about = defines.map((t) => ({
-    "@type": "DefinedTerm",
-    "@id": termId(t.term),
-    name: t.term,
-    description: t.def,
-    inDefinedTermSet: absoluteUrl("/glossary"),
-  }));
+  const about = [
+    ...defines.map((t) => ({
+      "@type": "DefinedTerm",
+      "@id": termId(t.term),
+      name: t.term,
+      description: t.def,
+      inDefinedTermSet: { "@id": GLOSSARY_SET_ID },
+    })),
+    // The vendor the page is about, linked to its Wikidata item and official
+    // site (src/lib/vendorEntities.ts; ops/MORE-30-2026-11-05.md item 21).
+    ...vendorEntitiesFor(path).map(vendorEntityNode),
+  ];
   const citation = entryCitations(entry);
   const basis = entryBasis(entry);
   // A page cited as evidence is not also merely "mentioned".

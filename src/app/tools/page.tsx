@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
   // every title here is inside 45 characters for exactly that.
   title: TITLE,
   description: DESCRIPTION,
-  alternates: { canonical: PATH },
+  alternates: pageMirrorAlternates(PATH),
   openGraph: {
     type: "website",
     title: TITLE,
@@ -63,7 +64,9 @@ export default function ToolsHubPage() {
   const url = absoluteUrl(PATH);
 
   // CollectionPage + ItemList, hand-rolled rather than via hubGraph(): these
-  // are tools, not cluster spokes, and there is no markdown mirror to declare.
+  // are tools, not cluster spokes. The markdown mirror (/tools.md, from
+  // src/lib/pageMirrors) is declared by the text/markdown alternate in
+  // metadata.
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",

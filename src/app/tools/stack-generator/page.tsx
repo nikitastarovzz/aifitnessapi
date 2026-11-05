@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
   title: "Fitness app stack generator",
   description:
     "Answer four questions, get a concrete stack: the health data types, the APIs that fit, and the reason each survived the cut. Built from verified data.",
-  alternates: { canonical: PATH },
+  alternates: pageMirrorAlternates(PATH),
   openGraph: {
     type: "website",
     title: "Fitness app stack generator",

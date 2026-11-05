@@ -1,0 +1,402 @@
+[
+  {
+    "id": "strava",
+    "qid": "Q13884156",
+    "label": "Strava",
+    "description": "fitness tracking app for iOS and Android",
+    "schemaType": "SoftwareApplication",
+    "officialSite": "https://www.strava.com/",
+    "matchedDomain": "strava.com",
+    "p856": [
+      {
+        "value": "https://www.strava.com/",
+        "rank": "normal"
+      }
+    ],
+    "evidence": {
+      "claimsUrl": "https://www.wikidata.org/w/api.php?action=wbgetclaims&format=json&property=P856&entity=Q13884156",
+      "claimsFetched": "2026-11-05T16:53:31.103Z",
+      "labelUrl": "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&props=labels%7Cdescriptions&languages=en&ids=Q19863865%7CQ116451464%7CQ5455414%7CQ63676444%7CQ13884156%7CQ30338591%7CQ658789%7CQ65241898%7CQ28154806%7CQ18689220%7CQ3569499%7CQ25377472%7CQ740115%7CQ24197338%7CQ15109865%7CQ81003%7CQ18150347%7CQ124667322%7CQ109595481%7CQ7866379%7CQ1500857%7CQ3353146%7CQ49001",
+      "labelFetched": "2026-11-05T16:53:46.649Z",
+      "via": "source-snapshot.yml run 42069070926 (www.wikidata.org is blocked from the dev environment)"
+    },
+    "pages": [
+      "/apis/strava",
+      "/integrate/strava-api",
+      "/pricing/strava-api-pricing",
+      "/alternatives/strava-api-alternatives"
+    ]
+  },
+  {
+    "id": "garmin",
+    "qid": "Q658789",
+    "label": "Garmin Group",
+    "description": "US hardware subsidiary of GPS devices",
+    "schemaType": "Organization",
+    "officialSite": "https://www.garmin.com",
+    "matchedDomain": "garmin.com",
+    "p856": [
+      {
+        "value": "https://www.garmin.com",
+        "rank": "normal"
+      }
+    ],
+    "evidence": {
+      "claimsUrl": "https://www.wikidata.org/w/api.php?action=wbgetclaims&format=json&property=P856&entity=Q658789",
+      "claimsFetched": "2026-11-05T16:53:32.726Z",
+      "labelUrl": "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&props=labels%7Cdescriptions&languages=en&ids=Q19863865%7CQ116451464%7CQ5455414%7CQ63676444%7CQ13884156%7CQ30338591%7CQ658789%7CQ65241898%7CQ28154806%7CQ18689220%7CQ3569499%7CQ25377472%7CQ740115%7CQ24197338%7CQ15109865%7CQ81003%7CQ18150347%7CQ124667322%7CQ109595481%7CQ7866379%7CQ1500857%7CQ3353146%7CQ49001",
+      "labelFetched": "2026-11-05T16:53:46.649Z",
+      "via": "source-snapshot.yml run 42069070926 (www.wikidata.org is blocked from the dev environment)"
+    },
+    "pages": [
+      "/apis/garmin",
+      "/integrate/garmin-api",
+      "/pricing/garmin-api-pricing",
+      "/alternatives/garmin-api-alternatives"
+    ]
+  },
+  {
+    "id": "oura",
+    "qid": "Q65241898",
+    "label": "Oura Health",
+    "description": "Finnish technology company",
+    "schemaType": "Organization",
+    "officialSite": "https://ouraring.com/",
+    "matchedDomain": "ouraring.com",
+    "p856": [
+      {
+        "value": "https://ouraring.com/",
+        "rank": "normal"
+      }
+    ],
+    "evidence": {
+      "claimsUrl": "https://www.wikidata.org/w/api.php?action=wbgetclaims&format=json&property=P856&entity=Q65241898",
+      "claimsFetched": "2026-11-05T16:53:33.544Z",
+      "labelUrl": "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&props=labels%7Cdescriptions&languages=en&ids=Q19863865%7CQ116451464%7CQ5455414%7CQ63676444%7CQ13884156%7CQ30338591%7CQ658789%7CQ65241898%7CQ28154806%7CQ18689220%7CQ3569499%7CQ25377472%7CQ740115%7CQ24197338%7CQ15109865%7CQ81003%7CQ18150347%7CQ124667322%7CQ109595481%7CQ7866379%7CQ1500857%7CQ3353146%7CQ49001",
+      "labelFetched": "2026-11-05T16:53:46.649Z",
+      "via": "source-snapshot.yml run 42069070926 (www.wikidata.org is blocked from the dev environment)"
+    },
+    "pages": [
+      "/apis/oura",
+      "/integrate/oura-api",
+      "/pricing/oura-api-pricing",
+      "/alternatives/oura-api-alternatives"
+    ]
+  },
+  {
+    "id": "polar",
+    "qid": "Q1500857",
+    "label": "Polar Electro",
+    "description": "Manufacturer of sports training devices",
+    "schemaType": "Organization",
+    "officialSite": "https://www.polar.com/",
+    "matchedDomain": "polar.com",
+    "p856": [
+      {
+        "value": "https://www.polar.com/",
+        "rank": "normal"
+      },
+      {
+        "value": "https://www.polar.com/zh-hans",
+        "rank": "normal"
+      }
+    ],
+    "evidence": {
+      "claimsUrl": "https://www.wikidata.org/w/api.php?action=wbgetclaims&format=json&property=P856&entity=Q1500857",
+      "claimsFetched": "2026-11-05T16:53:44.195Z",
+      "labelUrl": "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&props=labels%7Cdescriptions&languages=en&ids=Q19863865%7CQ116451464%7CQ5455414%7CQ63676444%7CQ13884156%7CQ30338591%7CQ658789%7CQ65241898%7CQ28154806%7CQ18689220%7CQ3569499%7CQ25377472%7CQ740115%7CQ24197338%7CQ15109865%7CQ81003%7CQ18150347%7CQ124667322%7CQ109595481%7CQ7866379%7CQ1500857%7CQ3353146%7CQ49001",
+      "labelFetched": "2026-11-05T16:53:46.649Z",
+      "via": "source-snapshot.yml run 42069070926 (www.wikidata.org is blocked from the dev environment)"
+    },
+    "pages": [
+      "/apis/polar",
+      "/integrate/polar-api",
+      "/pricing/polar-api-pricing",
+      "/alternatives/polar-api-alternatives"
+    ]
+  },
+  {
+    "id": "mindbody",
+    "qid": "Q28154806",
+    "label": "MINDBODY",
+    "description": "American multinational software as a service corporation based in San Luis Obispo, California",
+    "schemaType": "Organization",
+    "officialSite": "https://mindbodyonline.com",
+    "matchedDomain": "mindbodyonline.com",
+    "p856": [
+      {
+        "value": "https://mindbodyonline.com",
+        "rank": "preferred"
+      },
+      {
+        "value": "https://uk.mindbodyonline.com",
+        "rank": "normal"
+      },
+      {
+        "value": "https://de.mindbodyonline.com",
+        "rank": "normal"
+      },
+      {
+        "value": "https://es.mindbodyonline.com",
+        "rank": "normal"
+      },
+      {
+        "value": "https://clients.mindbodyonline.com/",
+        "rank": "normal"
+      }
+    ],
+    "evidence": {
+      "claimsUrl": "https://www.wikidata.org/w/api.php?action=wbgetclaims&format=json&property=P856&entity=Q28154806",
+      "claimsFetched": "2026-11-05T16:53:34.355Z",
+      "labelUrl": "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&props=labels%7Cdescriptions&languages=en&ids=Q19863865%7CQ116451464%7CQ5455414%7CQ63676444%7CQ13884156%7CQ30338591%7CQ658789%7CQ65241898%7CQ28154806%7CQ18689220%7CQ3569499%7CQ25377472%7CQ740115%7CQ24197338%7CQ15109865%7CQ81003%7CQ18150347%7CQ124667322%7CQ109595481%7CQ7866379%7CQ1500857%7CQ3353146%7CQ49001",
+      "labelFetched": "2026-11-05T16:53:46.649Z",
+      "via": "source-snapshot.yml run 42069070926 (www.wikidata.org is blocked from the dev environment)"
+    },
+    "pages": [
+      "/integrate/mindbody-api",
+      "/pricing/mindbody-api-pricing"
+    ]
+  },
+  {
+    "id": "withings",
+    "qid": "Q3569499",
+    "label": "Withings",
+    "description": "consumer electronics company",
+    "schemaType": "Organization",
+    "officialSite": "https://www.withings.com",
+    "matchedDomain": "withings.com",
+    "p856": [
+      {
+        "value": "https://www.withings.com",
+        "rank": "normal"
+      }
+    ],
+    "evidence": {
+      "claimsUrl": "https://www.wikidata.org/w/api.php?action=wbgetclaims&format=json&property=P856&entity=Q3569499",
+      "claimsFetched": "2026-11-05T16:53:35.992Z",
+      "labelUrl": "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&props=labels%7Cdescriptions&languages=en&ids=Q19863865%7CQ116451464%7CQ5455414%7CQ63676444%7CQ13884156%7CQ30338591%7CQ658789%7CQ65241898%7CQ28154806%7CQ18689220%7CQ3569499%7CQ25377472%7CQ740115%7CQ24197338%7CQ15109865%7CQ81003%7CQ18150347%7CQ124667322%7CQ109595481%7CQ7866379%7CQ1500857%7CQ3353146%7CQ49001",
+      "labelFetched": "2026-11-05T16:53:46.649Z",
+      "via": "source-snapshot.yml run 42069070926 (www.wikidata.org is blocked from the dev environment)"
+    },
+    "pages": [
+      "/integrate/withings-api",
+      "/pricing/withings-api-pricing",
+      "/alternatives/withings-api-alternatives"
+    ]
+  },
+  {
+    "id": "samsung-health",
+    "qid": "Q25377472",
+    "label": "Samsung Health",
+    "description": "app",
+    "schemaType": "SoftwareApplication",
+    "officialSite": "https://health.apps.samsung.com/",
+    "matchedDomain": "samsung.com",
+    "p856": [
+      {
+        "value": "https://health.apps.samsung.com/",
+        "rank": "normal"
+      }
+    ],
+    "evidence": {
+      "claimsUrl": "https://www.wikidata.org/w/api.php?action=wbgetclaims&format=json&property=P856&entity=Q25377472",
+      "claimsFetched": "2026-11-05T16:53:36.828Z",
+      "labelUrl": "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&props=labels%7Cdescriptions&languages=en&ids=Q19863865%7CQ116451464%7CQ5455414%7CQ63676444%7CQ13884156%7CQ30338591%7CQ658789%7CQ65241898%7CQ28154806%7CQ18689220%7CQ3569499%7CQ25377472%7CQ740115%7CQ24197338%7CQ15109865%7CQ81003%7CQ18150347%7CQ124667322%7CQ109595481%7CQ7866379%7CQ1500857%7CQ3353146%7CQ49001",
+      "labelFetched": "2026-11-05T16:53:46.649Z",
+      "via": "source-snapshot.yml run 42069070926 (www.wikidata.org is blocked from the dev environment)"
+    },
+    "pages": [
+      "/integrate/samsung-health-api",
+      "/alternatives/samsung-health-api-alternatives"
+    ]
+  },
+  {
+    "id": "suunto",
+    "qid": "Q740115",
+    "label": "Suunto",
+    "description": "Finnish manufacturer of sports training devices",
+    "schemaType": "Organization",
+    "officialSite": "http://www.suunto.com/",
+    "matchedDomain": "suunto.com",
+    "p856": [
+      {
+        "value": "http://www.suunto.com/",
+        "rank": "normal"
+      }
+    ],
+    "evidence": {
+      "claimsUrl": "https://www.wikidata.org/w/api.php?action=wbgetclaims&format=json&property=P856&entity=Q740115",
+      "claimsFetched": "2026-11-05T16:53:37.637Z",
+      "labelUrl": "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&props=labels%7Cdescriptions&languages=en&ids=Q19863865%7CQ116451464%7CQ5455414%7CQ63676444%7CQ13884156%7CQ30338591%7CQ658789%7CQ65241898%7CQ28154806%7CQ18689220%7CQ3569499%7CQ25377472%7CQ740115%7CQ24197338%7CQ15109865%7CQ81003%7CQ18150347%7CQ124667322%7CQ109595481%7CQ7866379%7CQ1500857%7CQ3353146%7CQ49001",
+      "labelFetched": "2026-11-05T16:53:46.649Z",
+      "via": "source-snapshot.yml run 42069070926 (www.wikidata.org is blocked from the dev environment)"
+    },
+    "pages": [
+      "/integrate/suunto-api",
+      "/pricing/suunto-api-pricing",
+      "/alternatives/suunto-api-alternatives"
+    ]
+  },
+  {
+    "id": "wahoo",
+    "qid": "Q24197338",
+    "label": "Wahoo Fitness",
+    "description": "fitness technology company based in Atlanta, Georgia",
+    "schemaType": "Organization",
+    "officialSite": "http://www.wahoofitness.com/",
+    "matchedDomain": "wahoofitness.com",
+    "p856": [
+      {
+        "value": "http://www.wahoofitness.com/",
+        "rank": "normal"
+      }
+    ],
+    "evidence": {
+      "claimsUrl": "https://www.wikidata.org/w/api.php?action=wbgetclaims&format=json&property=P856&entity=Q24197338",
+      "claimsFetched": "2026-11-05T16:53:38.454Z",
+      "labelUrl": "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&props=labels%7Cdescriptions&languages=en&ids=Q19863865%7CQ116451464%7CQ5455414%7CQ63676444%7CQ13884156%7CQ30338591%7CQ658789%7CQ65241898%7CQ28154806%7CQ18689220%7CQ3569499%7CQ25377472%7CQ740115%7CQ24197338%7CQ15109865%7CQ81003%7CQ18150347%7CQ124667322%7CQ109595481%7CQ7866379%7CQ1500857%7CQ3353146%7CQ49001",
+      "labelFetched": "2026-11-05T16:53:46.649Z",
+      "via": "source-snapshot.yml run 42069070926 (www.wikidata.org is blocked from the dev environment)"
+    },
+    "pages": [
+      "/integrate/wahoo-api",
+      "/pricing/wahoo-api-pricing",
+      "/alternatives/wahoo-api-alternatives"
+    ]
+  },
+  {
+    "id": "dexcom",
+    "qid": "Q15109865",
+    "label": "Dexcom",
+    "description": "company that develops, manufactures and distributes continuous glucose monitoring systems",
+    "schemaType": "Organization",
+    "officialSite": "http://dexcom.com/",
+    "matchedDomain": "dexcom.com",
+    "p856": [
+      {
+        "value": "http://dexcom.com/",
+        "rank": "normal"
+      }
+    ],
+    "evidence": {
+      "claimsUrl": "https://www.wikidata.org/w/api.php?action=wbgetclaims&format=json&property=P856&entity=Q15109865",
+      "claimsFetched": "2026-11-05T16:53:39.266Z",
+      "labelUrl": "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&props=labels%7Cdescriptions&languages=en&ids=Q19863865%7CQ116451464%7CQ5455414%7CQ63676444%7CQ13884156%7CQ30338591%7CQ658789%7CQ65241898%7CQ28154806%7CQ18689220%7CQ3569499%7CQ25377472%7CQ740115%7CQ24197338%7CQ15109865%7CQ81003%7CQ18150347%7CQ124667322%7CQ109595481%7CQ7866379%7CQ1500857%7CQ3353146%7CQ49001",
+      "labelFetched": "2026-11-05T16:53:46.649Z",
+      "via": "source-snapshot.yml run 42069070926 (www.wikidata.org is blocked from the dev environment)"
+    },
+    "pages": [
+      "/integrate/dexcom-api",
+      "/alternatives/dexcom-api-alternatives"
+    ]
+  },
+  {
+    "id": "concept2",
+    "qid": "Q81003",
+    "label": "Concept2",
+    "description": "American manufacturer of rowing equipment",
+    "schemaType": "Organization",
+    "officialSite": "https://www.concept2.com",
+    "matchedDomain": "concept2.com",
+    "p856": [
+      {
+        "value": "https://www.concept2.com",
+        "rank": "normal"
+      }
+    ],
+    "evidence": {
+      "claimsUrl": "https://www.wikidata.org/w/api.php?action=wbgetclaims&format=json&property=P856&entity=Q81003",
+      "claimsFetched": "2026-11-05T16:53:40.071Z",
+      "labelUrl": "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&props=labels%7Cdescriptions&languages=en&ids=Q19863865%7CQ116451464%7CQ5455414%7CQ63676444%7CQ13884156%7CQ30338591%7CQ658789%7CQ65241898%7CQ28154806%7CQ18689220%7CQ3569499%7CQ25377472%7CQ740115%7CQ24197338%7CQ15109865%7CQ81003%7CQ18150347%7CQ124667322%7CQ109595481%7CQ7866379%7CQ1500857%7CQ3353146%7CQ49001",
+      "labelFetched": "2026-11-05T16:53:46.649Z",
+      "via": "source-snapshot.yml run 42069070926 (www.wikidata.org is blocked from the dev environment)"
+    },
+    "pages": [
+      "/integrate/concept2-api"
+    ]
+  },
+  {
+    "id": "mediapipe",
+    "qid": "Q124667322",
+    "label": "MediaPipe",
+    "description": "open source machine learning software library",
+    "schemaType": "SoftwareApplication",
+    "officialSite": "https://developers.google.com/mediapipe",
+    "matchedDomain": "google.com",
+    "p856": [
+      {
+        "value": "https://developers.google.com/mediapipe",
+        "rank": "normal"
+      }
+    ],
+    "evidence": {
+      "claimsUrl": "https://www.wikidata.org/w/api.php?action=wbgetclaims&format=json&property=P856&entity=Q124667322",
+      "claimsFetched": "2026-11-05T16:53:41.701Z",
+      "labelUrl": "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&props=labels%7Cdescriptions&languages=en&ids=Q19863865%7CQ116451464%7CQ5455414%7CQ63676444%7CQ13884156%7CQ30338591%7CQ658789%7CQ65241898%7CQ28154806%7CQ18689220%7CQ3569499%7CQ25377472%7CQ740115%7CQ24197338%7CQ15109865%7CQ81003%7CQ18150347%7CQ124667322%7CQ109595481%7CQ7866379%7CQ1500857%7CQ3353146%7CQ49001",
+      "labelFetched": "2026-11-05T16:53:46.649Z",
+      "via": "source-snapshot.yml run 42069070926 (www.wikidata.org is blocked from the dev environment)"
+    },
+    "pages": [
+      "/apis/mediapipe",
+      "/alternatives/mediapipe-alternatives"
+    ]
+  },
+  {
+    "id": "whoop",
+    "qid": "Q108907426",
+    "label": "WHOOP",
+    "description": "Wearable technology company",
+    "schemaType": "Organization",
+    "officialSite": "https://whoop.com/",
+    "matchedDomain": "whoop.com",
+    "p856": [
+      {
+        "value": "https://whoop.com/",
+        "rank": "normal"
+      }
+    ],
+    "evidence": {
+      "claimsUrl": "https://www.wikidata.org/w/api.php?action=wbgetclaims&format=json&property=P856&entity=Q108907426",
+      "claimsFetched": "2026-11-05T17:29:25.878Z",
+      "labelUrl": "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&props=labels%7Cdescriptions&languages=en&ids=Q108907426",
+      "labelFetched": "2026-11-05T17:29:27.032Z",
+      "via": "source-snapshot.yml run 42075087207 (www.wikidata.org is blocked from the dev environment); found by wbsearchentities search=WHOOP in run 42074886557"
+    },
+    "pages": [
+      "/apis/whoop",
+      "/integrate/whoop-api",
+      "/pricing/whoop-api-pricing",
+      "/alternatives/whoop-api-alternatives"
+    ]
+  },
+  {
+    "id": "coros",
+    "qid": "Q109381583",
+    "label": "COROS Wearables Inc",
+    "description": "sports wearables company",
+    "schemaType": "Organization",
+    "officialSite": "https://coros.com",
+    "matchedDomain": "coros.com",
+    "p856": [
+      {
+        "value": "https://cn.coros.com/",
+        "rank": "normal"
+      },
+      {
+        "value": "https://coros.com",
+        "rank": "preferred"
+      }
+    ],
+    "evidence": {
+      "claimsUrl": "https://www.wikidata.org/w/api.php?action=wbgetclaims&format=json&property=P856&entity=Q109381583",
+      "claimsFetched": "2026-11-05T17:28:09.428Z",
+      "labelUrl": "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&props=labels%7Cdescriptions&languages=en&ids=Q109381583",
+      "labelFetched": "2026-11-05T17:28:11.128Z",
+      "via": "source-snapshot.yml run 42074886557 (www.wikidata.org is blocked from the dev environment); found by wbsearchentities search=COROS%20Wearables in run 42069070926"
+    },
+    "pages": [
+      "/integrate/coros-api",
+      "/alternatives/coros-api-alternatives"
+    ]
+  }
+]

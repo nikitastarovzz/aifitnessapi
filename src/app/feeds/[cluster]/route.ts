@@ -1,5 +1,6 @@
 import { clusterMap, CLUSTER_LABELS } from "@/lib/clusterRegistry";
 import { site, absoluteUrl } from "@/lib/site";
+import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
 
 /**
  * Per-cluster RSS — one feed per content cluster, at `/feeds/<cluster>.xml`.
@@ -130,6 +131,7 @@ ${items}
   return new Response(xml, {
     headers: {
       "content-type": "application/rss+xml; charset=utf-8",
+      "cache-control": MACHINE_CACHE_CONTROL,
       link: `<${absoluteUrl("/llms.txt")}>; rel="describedby"; type="text/plain"`,
     },
   });

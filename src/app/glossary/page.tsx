@@ -4,7 +4,8 @@ import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { absoluteUrl } from "@/lib/site";
-import { GROUPS, termId, termSlug } from "@/data/glossary";
+import { GLOSSARY_SET_ID, GROUPS, termId, termSlug } from "@/data/glossary";
+import { orgRef } from "@/lib/schema";
 import PageSummary from "@/components/PageSummary";
 
 const PATH = "/glossary";
@@ -55,18 +56,30 @@ const IN_DEPTH: Record<string, string> = {
 
 export default function GlossaryPage() {
   const url = absoluteUrl(PATH);
+  // One DefinedTermSet with a stable @id, every term in it with its own @id
+  // (the #term-… anchor rendered below), its slug as termCode and the set it
+  // belongs to. Spokes that are a term's canonical explanation emit the same
+  // DefinedTerm @id in their `about` (lib/schema.ts spokeGraph), so a term is
+  // one node wherever it appears. qa's GLOSSARY-* gates hold the anchors.
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "DefinedTermSet",
+    "@id": GLOSSARY_SET_ID,
     name: "Fitness & Health API Glossary",
+    description: DESCRIPTION,
     url,
+    inLanguage: "en",
+    publisher: orgRef(),
+    dateModified: UPDATED,
     hasDefinedTerm: GROUPS.flatMap((g) =>
       g.terms.map((t) => ({
         "@type": "DefinedTerm",
         "@id": termId(t.term),
         name: t.term,
+        termCode: termSlug(t.term),
         description: t.def,
         url: absoluteUrl(t.href),
+        inDefinedTermSet: { "@id": GLOSSARY_SET_ID },
       })),
     ),
   };

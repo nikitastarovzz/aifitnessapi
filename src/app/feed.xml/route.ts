@@ -1,5 +1,6 @@
 import { getAllPosts } from "@/lib/posts";
 import { site, absoluteUrl } from "@/lib/site";
+import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
 
 export const dynamic = "force-static";
 
@@ -53,7 +54,7 @@ ${items}
   return new Response(xml, {
     headers: {
       "Content-Type": "application/xml; charset=utf-8",
-      "Cache-Control": "public, max-age=3600, s-maxage=3600",
+      "cache-control": MACHINE_CACHE_CONTROL,
     },
   });
 }

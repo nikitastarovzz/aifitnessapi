@@ -136,7 +136,7 @@ const TOOL_FOR_PATH: Record<string, keyof typeof TOOLS> = {
   "/fix/healthkit-guest-user-mode": "diagnoser",
   "/fix/healthkit-undocumented-errors": "diagnoser",
   // Non-HealthKit errors only where the diagnoser's authored keyword map
-  // (FIX_KEYWORDS in app/tools/error-diagnoser/page.tsx) routes to the page.
+  // (FIX_KEYWORDS in lib/errorDiagnoserKeywords.ts) routes to the page.
   "/fix/fitbit-error-code-401": "diagnoser",
   "/fix/fitbit-api-410-gone": "diagnoser",
   "/fix/fitbit-api-429-rate-limit": "diagnoser",
