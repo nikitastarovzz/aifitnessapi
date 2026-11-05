@@ -11,6 +11,7 @@ import { CROSSWALK_RULE, POSE_BASE, schemePath, sideMismatches } from "@/data/po
 import { mappingBetween, totalPairs, type KRow, type KScheme } from "@/lib/keypointMapping.mjs";
 import { absoluteUrl, site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
+import ToolNextStep from "@/components/ToolNextStep";
 
 /**
  * One drawn body, every keypoint scheme in the generated dataset.
@@ -267,6 +268,7 @@ export default function KeypointPlaygroundPage() {
           <KinestexNote path={PATH} />
 
           <MoreTools path={PATH} />
+          <ToolNextStep path="/tools/keypoint-playground" />
 
           <p className="mt-8 text-sm text-[var(--muted)]">
             A free tool from {site.name}. The full index tables are on the{" "}

@@ -12,6 +12,7 @@ import * as wt from "@/data/workoutTypes";
 import { buildSampleSpecs, MAX_DAYS, type SamplePlatform, type SampleSpec } from "@/lib/sampleData.mjs";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
+import ToolNextStep from "@/components/ToolNextStep";
 
 /**
  * Synthetic test-data generator.
@@ -382,6 +383,7 @@ export default function SampleDataPage() {
         </p>
 
         <MoreTools path={PATH} />
+        <ToolNextStep path="/tools/sample-data" />
       </div>
     </Container>
   );

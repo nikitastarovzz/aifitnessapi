@@ -10,6 +10,7 @@ import { fixEntries } from "@/data/fix.entries";
 import { RELEASED_FIX } from "@/data/fix";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
+import ToolNextStep from "@/components/ToolNextStep";
 
 /**
  * "What is this error?" — the question a developer asks at the moment
@@ -283,6 +284,7 @@ export default function ErrorDiagnoserPage() {
         </p>
 
         <MoreTools path={PATH} />
+        <ToolNextStep path="/tools/error-diagnoser" />
       </div>
     </Container>
   );

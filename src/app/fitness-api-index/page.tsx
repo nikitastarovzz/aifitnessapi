@@ -11,6 +11,7 @@ import { PAGE_H1 } from "@/data/pageTitles";
 import { HC_RELEASES_SOURCE } from "@/data/hcReleases";
 import { CATEGORIES, API_INDEX_PATH, MARKET_MAP_PATH, indexDataDate, indexInputDates, indexRows } from "@/lib/ecosystemSignals";
 import { derive, shortDate, WINDOW_DAYS } from "@/lib/ecosystemDerive";
+import ToolNextStep from "@/components/ToolNextStep";
 
 /**
  * The fitness API index: measurable ecosystem signals per directory product,
@@ -413,6 +414,8 @@ export default function FitnessApiIndexPage() {
           as of {formatDate(buildDate)}. Product and company names are trademarks of their respective owners;
           KinesteX funds this site.
         </p>
+
+        <ToolNextStep path="/fitness-api-index" />
       </div>
     </Container>
   );

@@ -12,6 +12,7 @@ import { HK_IDENTIFIERS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { ROWS as MATRIX_ROWS } from "@/data/matrix";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
+import ToolNextStep from "@/components/ToolNextStep";
 
 /**
  * HealthKit identifier ↔ Health Connect record, both directions.
@@ -152,6 +153,7 @@ export default function IdentifierTranslatorPage() {
         </p>
 
         <MoreTools path={PATH} />
+        <ToolNextStep path="/tools/identifier-translator" />
       </div>
     </Container>
   );

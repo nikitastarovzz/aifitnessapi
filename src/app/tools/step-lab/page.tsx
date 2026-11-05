@@ -8,6 +8,7 @@ import { DEFAULT_PARAMS, REPLAY_TRUE_STEPS } from "@/lib/stepDetector.mjs";
 import { SOURCES_CHECKED_ON, STEP_LAB_SOURCES } from "@/lib/stepLab";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
+import ToolNextStep from "@/components/ToolNextStep";
 
 /**
  * A step counter you can watch think.
@@ -276,6 +277,8 @@ export default function StepLabPage() {
           </Link>
           .
         </p>
+
+        <ToolNextStep path="/tools/step-lab" />
       </div>
     </Container>
   );

@@ -9,6 +9,7 @@ import { POSE_SCHEMES, POSE_KEYPOINTS_FETCHED_ON } from "@/data/poseKeypoints";
 import { BENCH_MODELS, TASKS_VISION_USAGE_LOG_URL, TASKS_VISION_VERSION, VERIFIED_ON, mib } from "@/lib/poseBenchmark";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
+import ToolNextStep from "@/components/ToolNextStep";
 
 /**
  * An in-browser Pose Landmarker benchmark.
@@ -280,6 +281,8 @@ export default function PoseBenchmarkPage() {
           </Link>
           .
         </p>
+
+        <ToolNextStep path="/tools/pose-benchmark" />
       </div>
     </Container>
   );

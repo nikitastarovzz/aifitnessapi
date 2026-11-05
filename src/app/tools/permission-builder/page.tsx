@@ -9,6 +9,7 @@ import { HK_READONLY } from "@/data/healthkitWritability";
 import { ROWS as MATRIX_ROWS } from "@/data/matrix";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
+import ToolNextStep from "@/components/ToolNextStep";
 
 /**
  * HealthKit permission builder.
@@ -227,6 +228,7 @@ export default function PermissionBuilderPage() {
         </p>
 
         <MoreTools path={PATH} />
+        <ToolNextStep path="/tools/permission-builder" />
       </div>
     </Container>
   );

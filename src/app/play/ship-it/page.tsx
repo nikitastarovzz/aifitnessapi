@@ -7,6 +7,7 @@ import ShipIt from "@/components/play/ShipIt";
 import { PAGE_H1 } from "@/data/pageTitles";
 import { absoluteUrl, site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
+import ToolNextStep from "@/components/ToolNextStep";
 import {
   EVENTS,
   KICKOFF,
@@ -279,6 +280,8 @@ export default function ShipItPage() {
           </Link>
           .
         </p>
+
+        <ToolNextStep path="/play/ship-it" />
       </div>
     </Container>
   );

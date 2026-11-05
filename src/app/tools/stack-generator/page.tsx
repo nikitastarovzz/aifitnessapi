@@ -17,6 +17,7 @@ import { allBuilds, RELEASED_BUILD, BUILD_PATH } from "@/data/build";
 import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
+import ToolNextStep from "@/components/ToolNextStep";
 
 /**
  * The stack generator — the /build guides' concrete stack, narrowed by four
@@ -219,6 +220,7 @@ export default function StackGeneratorPage() {
         </p>
 
         <MoreTools path={PATH} />
+        <ToolNextStep path="/tools/stack-generator" />
       </div>
     </Container>
   );

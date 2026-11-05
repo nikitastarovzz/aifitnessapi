@@ -14,6 +14,7 @@ import {
 } from "@/lib/hrMeasurement.mjs";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
+import ToolNextStep from "@/components/ToolNextStep";
 
 /**
  * A Web Bluetooth heart-rate lab.
@@ -336,6 +337,8 @@ export default function HeartRateLabPage() {
           </Link>
           .
         </p>
+
+        <ToolNextStep path="/tools/heart-rate-lab" />
       </div>
     </Container>
   );

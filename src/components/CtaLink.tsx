@@ -16,7 +16,12 @@ export type CtaSource =
   | "hub-card"
   | "spoke-inline"
   | "spoke-footer"
-  | "directory";
+  | "directory"
+  // ops/MORE-30-2026-11-05.md items 27-29, set as data-cta-source on plain
+  // elements the delegated listener counts (see ops/MEASUREMENT.md).
+  | "tool-next-step"
+  | "money-newsletter"
+  | "money-kit";
 
 type Props = {
   href: string;

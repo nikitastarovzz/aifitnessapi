@@ -10,6 +10,7 @@ import { HK_READONLY } from "@/data/healthkitWritability";
 import { hkGroupSlugOf, hkGroupLabel } from "@/data/hkGroupPages";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
+import ToolNextStep from "@/components/ToolNextStep";
 
 /**
  * ".cumulativeSum or .discreteAverage?" for one identifier at a time.
@@ -197,6 +198,7 @@ export default function AggregationCheckerPage() {
         </p>
 
         <MoreTools path={PATH} />
+        <ToolNextStep path="/tools/aggregation-checker" />
       </div>
     </Container>
   );
