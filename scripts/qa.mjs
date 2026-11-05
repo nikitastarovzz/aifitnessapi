@@ -16,8 +16,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import { findBritish, fromGenerated, generatedPairs, pageProse } from "./lib/usEnglish.mjs";
+import { readBuiltSitemap } from "./lib/sitemap-files.mjs";
 
 const ROOT = ".next/server/app";
+// /sitemap.xml is an index; the <url> rows are in the children it lists.
+// Every sitemap gate below reads the rows through this (SITEMAP.xml).
+const SITEMAP = readBuiltSitemap(ROOT);
 const TITLE_MAX = 60;
 const DESC_MAX = 155;
 
@@ -2172,6 +2176,60 @@ if (fs.existsSync(matrixPath)) {
   );
 }
 
+// ── Sitemap index (ops/MORE-30-2026-11-05.md item 26). /sitemap.xml lists
+// one child per section; the row gates below read the children through
+// SITEMAP.xml. The index itself is held to what makes it worth having: it is
+// a real index that robots.txt advertises, it lists every child the build
+// made and nothing else, each child is a non-empty <urlset> within the
+// protocol's 50,000-URL / 50 MB limits, served as XML, and dated by the
+// newest lastmod among its own rows (absent when none is dated — never the
+// build date). A URL sits in exactly one child, once.
+function checkSitemapIndex(SITE) {
+  problems.push(...SITEMAP.problems);
+  const robots = fs.existsSync(`${ROOT}/robots.txt.body`) ? fs.readFileSync(`${ROOT}/robots.txt.body`, "utf8") : "";
+  if (!robots.split("\n").includes(`Sitemap: ${SITE}/sitemap.xml`)) {
+    problems.push(`SITEMAP-ROBOTS  robots.txt does not advertise Sitemap: ${SITE}/sitemap.xml`);
+  }
+  if (SITEMAP.children.length === 0) problems.push("SITEMAP-INDEX  /sitemap.xml lists no child sitemaps");
+  const listedFiles = new Set(SITEMAP.children.map((c) => c.file).filter(Boolean));
+  const childDir = `${ROOT}/sitemaps`;
+  const built = fs.existsSync(childDir) ? fs.readdirSync(childDir).filter((f) => f.endsWith(".xml.body")) : [];
+  for (const f of built) {
+    if (!listedFiles.has(`${childDir}/${f}`)) problems.push(`SITEMAP-INDEX  /sitemaps/${f.replace(/\.body$/, "")} is built but the index does not list it`);
+  }
+  const seenIn = new Map();
+  let urls = 0;
+  for (const c of SITEMAP.children) {
+    if (c.xml === null) continue;
+    const name = c.loc.slice(SITE.length);
+    if (!/^\/sitemaps\/[a-z0-9-]+\.xml$/.test(name)) problems.push(`SITEMAP-INDEX  child ${name} is not at /sitemaps/<section>.xml`);
+    if (!/<urlset\b/.test(c.xml) || /<sitemapindex\b/.test(c.xml)) problems.push(`SITEMAP-INDEX  ${name} is not a <urlset>`);
+    const meta = fs.existsSync(c.file.replace(/\.body$/, ".meta")) ? fs.readFileSync(c.file.replace(/\.body$/, ".meta"), "utf8") : "";
+    if (!/"content-type":"application\/xml/.test(meta)) problems.push(`SITEMAP-INDEX  ${name} is not served as application/xml`);
+    if (Buffer.byteLength(c.xml) > 50 * 1024 * 1024) problems.push(`SITEMAP-INDEX  ${name} is over 50 MB`);
+    if (/<xhtml:link\b/.test(c.xml) && !/xmlns:xhtml="http:\/\/www\.w3\.org\/1999\/xhtml"/.test(c.xml)) {
+      problems.push(`SITEMAP-INDEX  ${name} uses xhtml:link without declaring the xhtml namespace`);
+    }
+    const rows = [...c.xml.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(([, u]) => ({
+      loc: /<loc>([^<]*)<\/loc>/.exec(u)?.[1] ?? "",
+      lastmod: /<lastmod>([^<]*)<\/lastmod>/.exec(u)?.[1] ?? null,
+    }));
+    urls += rows.length;
+    if (rows.length === 0) problems.push(`SITEMAP-INDEX  ${name} has no <url> rows — an empty section must leave the index`);
+    if (rows.length > 50000) problems.push(`SITEMAP-INDEX  ${name} has ${rows.length} rows, over the protocol's 50,000`);
+    for (const r of rows) {
+      const prev = seenIn.get(r.loc);
+      if (prev) problems.push(`SITEMAP-DUPLICATE  ${r.loc} is listed in ${prev} and again in ${name}`);
+      else seenIn.set(r.loc, name);
+    }
+    const newestRow = rows.map((r) => r.lastmod).filter(Boolean).sort().at(-1) ?? null;
+    if (newestRow !== c.lastmod) {
+      problems.push(`SITEMAP-INDEX-LASTMOD  ${name}: the index says ${c.lastmod ?? "(none)"} but its newest row is ${newestRow ?? "(none)"}`);
+    }
+  }
+  console.log(`Sitemap index: ${SITEMAP.children.length} child sitemaps, ${urls} URLs, each child dated by its newest row.`);
+}
+
 // ── Sitemap. lastmod is the one sitemap field a crawler still reads, and it
 // is only worth reading if it agrees with the page: a row is held to the
 // newest dateModified the page's own JSON-LD declares. A row with no such
@@ -2179,9 +2237,10 @@ if (fs.existsSync(matrixPath)) {
 // not). Every row must resolve to a page that builds and does not 404.
 {
   const SITE = "https://aifitnessapi.com";
-  const sm = fs.existsSync(`${ROOT}/sitemap.xml.body`) ? fs.readFileSync(`${ROOT}/sitemap.xml.body`, "utf8") : null;
+  const sm = SITEMAP.index === null ? null : SITEMAP.xml;
   if (sm === null) problems.push("SITEMAP-MISSING  sitemap.xml missing from build output");
   else {
+    checkSitemapIndex(SITE);
     // changefreq and priority were dropped deliberately: neither was a fact
     // anyone kept true, and a field that is always "weekly" teaches a
     // crawler to ignore the file.
@@ -2228,7 +2287,7 @@ if (fs.existsSync(matrixPath)) {
 // folded away has to leave the list too).
 {
   const SITE = "https://aifitnessapi.com";
-  const sm = fs.existsSync(`${ROOT}/sitemap.xml.body`) ? fs.readFileSync(`${ROOT}/sitemap.xml.body`, "utf8") : "";
+  const sm = SITEMAP.xml;
   const listed = new Set(
     [...sm.matchAll(/<loc>([^<]*)<\/loc>/g)].map(([, loc]) => (loc === SITE ? "/" : loc.slice(SITE.length))),
   );
@@ -4014,11 +4073,20 @@ if (fs.existsSync(matrixPath)) {
     if (frag && !/^(faq-\d+|answer)$/.test(frag)) return href;
     return currentPt.has(p) ? `/pt-br${href}` : href;
   };
-  const sm = fs.existsSync(`${ROOT}/sitemap.xml.body`) ? fs.readFileSync(`${ROOT}/sitemap.xml.body`, "utf8") : "";
+  const sm = SITEMAP.xml;
   const smRows = new Map(
     [...sm.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(([, u]) => [
       (/<loc>([^<]*)<\/loc>/.exec(u)?.[1] ?? "").replace(SITE, "") || "/",
       /<lastmod>([^<]*)<\/lastmod>/.exec(u)?.[1]?.slice(0, 10),
+    ]),
+  );
+  // hreflang alternates per sitemap row (xhtml:link), path → {lang: href}.
+  const smAlts = new Map(
+    [...sm.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(([, u]) => [
+      (/<loc>([^<]*)<\/loc>/.exec(u)?.[1] ?? "").replace(SITE, "") || "/",
+      Object.fromEntries(
+        [...u.matchAll(/<xhtml:link\b[^>]*>/g)].map(([l]) => [/\bhreflang="([^"]+)"/.exec(l)?.[1], /\bhref="([^"]*)"/.exec(l)?.[1]]),
+      ),
     ]),
   );
   const hreflangsOf = (html) =>
@@ -4068,6 +4136,20 @@ if (fs.existsSync(matrixPath)) {
       problems.push(`PTBR-SITEMAP  ${tag} ${listed ? `has lastmod ${smRows.get(t.path)}, not its translatedOn ${t.translatedOn}` : "is not in sitemap.xml"}`);
     }
     if (st === "stale" && listed) problems.push(`PTBR-SITEMAP  ${tag} is in sitemap.xml`);
+    // The sitemap states the same pairing as the pages: both rows carry
+    // exactly the three alternates while current; a stale pair carries none.
+    {
+      const wantAlts = { en: `${SITE}${t.enPath}`, "pt-BR": `${SITE}${t.path}`, "x-default": `${SITE}${t.enPath}` };
+      for (const p of [t.path, t.enPath]) {
+        const got = smAlts.get(p);
+        if (st === "current") {
+          const same = got && Object.keys(got).length === 3 && Object.entries(wantAlts).every(([k, v]) => got[k] === v);
+          if (!same) problems.push(`PTBR-SITEMAP-HREFLANG  ${tag}: sitemap row ${p} carries ${got ? JSON.stringify(got) : "no row"}, expected ${JSON.stringify(wantAlts)}`);
+        } else if (got && got["pt-BR"]) {
+          problems.push(`PTBR-SITEMAP-HREFLANG  ${tag}: sitemap row ${p} still offers hreflang pt-BR`);
+        }
+      }
+    }
 
     // hreflang both ways while current, on neither page once stale; the
     // language switch on the English page follows the same rule.
@@ -4308,7 +4390,7 @@ if (fs.existsSync(matrixPath)) {
       problems.push(`EMBED-BACKLINK  ${r} has no visible backlink to its canonical page ${canonical}`);
     }
   }
-  const sm = fs.existsSync(`${ROOT}/sitemap.xml.body`) ? fs.readFileSync(`${ROOT}/sitemap.xml.body`, "utf8") : "";
+  const sm = SITEMAP.xml;
   for (const m of sm.matchAll(/<loc>[^<]*?(\/embed\/[^<]*)<\/loc>/g)) {
     problems.push(`EMBED-SITEMAP  sitemap.xml lists the widget ${m[1]}`);
   }

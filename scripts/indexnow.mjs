@@ -57,15 +57,35 @@ const FIRST_RUN_WINDOW_DAYS = 7;
 // past this many, the rest are counted rather than printed.
 const LIST_LIMIT = 60;
 
-async function readSitemapXml(file) {
-  if (file) return readFileSync(file, "utf8");
-  const res = await fetch(`${SITE_URL}/sitemap.xml`, {
+async function fetchXml(url) {
+  const res = await fetch(url, {
     headers: { "user-agent": "aifitnessapi-indexnow/1.0" },
   });
   // A non-200 sitemap is the alert, not a reason to submit nothing quietly:
   // the job going red is how a broken deploy (or a paused one) gets noticed.
-  if (!res.ok) throw new Error(`Could not fetch sitemap (${res.status}). Is the site deployed?`);
+  if (!res.ok) throw new Error(`Could not fetch sitemap ${url} (${res.status}). Is the site deployed?`);
   return res.text();
+}
+
+/**
+ * The live sitemap's <url> rows. /sitemap.xml is a sitemap index since
+ * 2026-11-05 (ops/MORE-30-2026-11-05.md item 26): the rows are in the child
+ * sitemaps it lists, fetched here and concatenated, so the snapshot and the
+ * diff see the same URLs and lastmod strings the single file used to carry.
+ * Only children on this site are followed. --sitemap-file reads one file as
+ * given (a <urlset>, or several concatenated).
+ */
+async function readSitemapXml(file) {
+  if (file) return readFileSync(file, "utf8");
+  const top = await fetchXml(`${SITE_URL}/sitemap.xml`);
+  if (!/<sitemapindex\b/.test(top)) return top;
+  const children = [...top.matchAll(/<sitemap>[\s\S]*?<loc>([^<]+)<\/loc>[\s\S]*?<\/sitemap>/g)]
+    .map((m) => unescapeXml(m[1].trim()))
+    .filter((u) => u.startsWith(`${SITE_URL}/`));
+  if (!children.length) throw new Error("The sitemap index lists no child sitemaps on this site.");
+  const parts = [];
+  for (const u of children) parts.push(await fetchXml(u));
+  return parts.join("\n");
 }
 
 const unescapeXml = (s) =>

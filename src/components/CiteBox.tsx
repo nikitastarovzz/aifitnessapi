@@ -5,7 +5,9 @@ import { formatDatePt, PT_UI } from "@/lib/translations";
 /**
  * "Cite this page", at the foot of every cluster spoke. The citation text is
  * server-rendered — a reader or a crawler gets it without JavaScript — and
- * the buttons only copy what is already on the page.
+ * the buttons only copy what is already on the page: each copies the <pre>
+ * in its own [data-copy-scope] (CopyButton), so the citation is not shipped
+ * a second time as a client prop.
  *
  * The date is the entry's `updated` stamp: the day the facts were last
  * checked, which is the honest date to cite. A translation cites its own URL
@@ -75,21 +77,21 @@ export default function CiteBox({
         </dd>
       </dl>
       <div className="mt-4 space-y-3">
-        <div>
+        <div data-copy-scope>
           <div className="flex items-center justify-between gap-3">
             <span className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">
               {pt ? PT_UI.citePlain : "Plain text"}
             </span>
-            <CopyButton text={plain} label={pt ? PT_UI.citeCopyPlain : "Copy text"} copied={copied} failed={failed} />
+            <CopyButton label={pt ? PT_UI.citeCopyPlain : "Copy text"} copied={copied} failed={failed} />
           </div>
           <pre className={pre} data-cite-plain>
             {plain}
           </pre>
         </div>
-        <div>
+        <div data-copy-scope>
           <div className="flex items-center justify-between gap-3">
             <span className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">BibTeX</span>
-            <CopyButton text={bibtex} label={pt ? PT_UI.citeCopyBibtex : "Copy BibTeX"} copied={copied} failed={failed} />
+            <CopyButton label={pt ? PT_UI.citeCopyBibtex : "Copy BibTeX"} copied={copied} failed={failed} />
           </div>
           <pre className={pre} data-cite-bibtex>
             {bibtex}
