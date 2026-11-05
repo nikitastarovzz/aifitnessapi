@@ -15,6 +15,24 @@
  * appears here as `TITLE-*`.
  */
 export const GATES: { code: string; refuses: string; area: string }[] = [
+  // ── Cookbook recipes, the typed API client, the starter scaffold (2026-11-05) ──
+  {
+    code: "COOKBOOK-VERBATIM",
+    area: "Content integrity",
+    refuses:
+      "A cookbook recipe page whose code block is not a byte-for-byte copy of its file in /cookbook, or that shows more or fewer than one code listing. The page says the code is the CI-tested file; this is what makes that true.",
+  },
+  {
+    code: "COOKBOOK-UNTESTED",
+    area: "Content integrity",
+    refuses: "A cookbook recipe page with no file in /cookbook, or a file with no test suite beside it.",
+  },
+  {
+    code: "API-CLIENT-DRIFT",
+    area: "Datasets and artifacts",
+    refuses:
+      "A build whose /api/v1/openapi.json no longer matches the generated types in packages/api-client/src/schema.ts: a dataset column added, removed or retyped would ship a typed client that lies about the API it calls.",
+  },
   // ── Vendor timelines, /press, dataset cards, vendor records (2026-11-05) ──
   {
     code: "VENDOR-CHANGES-THIN",

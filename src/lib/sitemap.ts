@@ -242,6 +242,7 @@ function computeSections(): SitemapSection[] {
     ["/tools/pose-benchmark", pageStamp("/tools/pose-benchmark")],
     ["/tools/heart-rate-lab", pageStamp("/tools/heart-rate-lab")],
     ["/tools/webhook-verifier", pageStamp("/tools/webhook-verifier")],
+    ["/tools/starter-scaffold", pageStamp("/tools/starter-scaffold")],
     ["/tools/keypoint-playground", pageStamp("/tools/keypoint-playground")],
     ["/tools/step-lab", pageStamp("/tools/step-lab")],
     ["/tools/ftms-lab", pageStamp("/tools/ftms-lab")],

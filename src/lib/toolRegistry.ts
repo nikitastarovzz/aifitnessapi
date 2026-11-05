@@ -64,6 +64,12 @@ export const TOOL_LOOKUPS: Tool[] = [
       "Paste an Oura, WHOOP, Terra, Polar, Strava, Withings, Wahoo or Google Health API webhook: the vendor's documented check, run in your browser.",
   },
   {
+    path: "/tools/starter-scaffold",
+    name: "Starter scaffold generator",
+    blurb:
+      "Pick Express, Next.js or FastAPI and Oura, WHOOP, Polar, Strava or Wahoo: a tested project skeleton with OAuth routes, a token store and verified webhooks, as a .zip.",
+  },
+  {
     path: "/tools/keypoint-playground",
     name: "Pose keypoint playground",
     blurb:

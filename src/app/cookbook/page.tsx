@@ -36,17 +36,30 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Auth & API clients",
     blurb: "The failure modes that break every user at once.",
-    slugs: ["refresh-rotation", "rate-limit-fetcher"],
+    slugs: ["refresh-rotation", "rate-limit-fetcher", "pkce-authorize-url", "token-vault", "multi-window-rate-pacer", "cursor-pagination"],
   },
   {
     title: "Data ingestion",
     blurb: "Webhooks, backfills and incremental syncs that survive duplicates, reordering, and outages.",
-    slugs: ["webhook-receiver", "backfill-checkpointer", "incremental-sync-anchor", "dedupe-health-samples"],
+    slugs: [
+      "webhook-receiver",
+      "vendor-webhook-signatures",
+      "webhook-handshakes",
+      "withings-notification-router",
+      "backfill-checkpointer",
+      "incremental-sync-anchor",
+      "dedupe-health-samples",
+    ],
   },
   {
     title: "Correctness & motion",
     blurb: "The rollup that survives DST, and the rep counter that earns its counts.",
     slugs: ["day-boundary-rollup", "rep-counter"],
+  },
+  {
+    title: "Platforms & devices",
+    blurb: "Workout types across four platforms, Health Connect's error codes, and the Bluetooth heart-rate packet.",
+    slugs: ["workout-type-crosswalk", "health-connect-error-policy", "ble-heart-rate-parser"],
   },
 ];
 

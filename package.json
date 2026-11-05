@@ -32,7 +32,10 @@
     "test:pose-leaderboard": "node --test scripts/pose-benchmark-submission.test.mjs",
     "test:gsc": "node --test scripts/gsc-sections.test.mjs",
     "test:measure": "node --test scripts/measure.test.mjs",
-    "test:health-export": "node --test scripts/apple-health-export.test.mjs"
+    "test:health-export": "node --test scripts/apple-health-export.test.mjs",
+    "test:api-client": "node --test packages/api-client/test/run.mjs",
+    "test:scaffold": "node --test scripts/starter-scaffold.test.mjs",
+    "api-client": "node scripts/build-api-client.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "~1.32.0",

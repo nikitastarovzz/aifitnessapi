@@ -287,6 +287,36 @@ const { item, source, verified, citeAs } = await res.json();`}</Code>
           </p>
         </section>
 
+        <section className="mt-12" id="typed-client" data-api-client>
+          <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">A typed TypeScript client</h2>
+          <p className="mt-3 text-[var(--fg)]">
+            <code>packages/api-client</code> in the repository is a zero-dependency client for these
+            endpoints. Its types are generated from <a href={absoluteUrl(OPENAPI_PATH)} className={ext}>the OpenAPI document</a>{" "}
+            by <code>scripts/build-api-client.mjs</code>, and the site&rsquo;s build refuses to ship when
+            the two disagree, so a renamed or retyped column breaks a type check instead of a client.
+            Fields the data does not state are typed <code>| null</code>, the API&rsquo;s rule for
+            &ldquo;not stated&rdquo;. It is not published on npm; use it from a clone:
+          </p>
+          <Code>{`git clone ${REPO}.git
+cd aifitnessapi/packages/api-client
+npx -p typescript tsc -p tsconfig.build.json   # emits dist/
+# then, in your project: npm install /path/to/aifitnessapi/packages/api-client`}</Code>
+          <Code>{`import { createClient, ApiError } from "@aifitnessapi/api-client";
+
+const api = createClient(); // https://aifitnessapi.com, globalThis.fetch
+const { items } = await api.list("healthkit/types");        // HealthkitType[]
+const steps = await api.get("health-connect/records", "StepsRecord");
+steps.item.readPermissions;                                   // string | null
+await api.find("healthkit/types", "notAType");                // null, not a throw`}</Code>
+          <p className="mt-3 text-sm text-[var(--muted)]">
+            {all.length} collections, one method per call shape (<code>index</code>, <code>openapi</code>,{" "}
+            <code>list</code>, <code>get</code>, <code>find</code>), no retries and no cache of its own: the
+            responses are static files with <code>Cache-Control</code>, so the HTTP cache is the cache. Its
+            tests run against the site&rsquo;s build output rather than the network, reading every
+            collection and one item from each.
+          </p>
+        </section>
+
         <section className="mt-12">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Connect an AI assistant (MCP)</h2>
           <p className="mt-3 text-[var(--fg)]">
