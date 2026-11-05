@@ -40,6 +40,9 @@ const SAMPLE_DATA = { href: "/tools/sample-data", label: name("/tools/sample-dat
 const HR_LAB = { href: "/tools/heart-rate-lab", label: name("/tools/heart-rate-lab") };
 const WEBHOOK = { href: "/tools/webhook-verifier", label: name("/tools/webhook-verifier") };
 const STEP_LAB = { href: "/tools/step-lab", label: name("/tools/step-lab") };
+const FTMS_LAB = { href: "/tools/ftms-lab", label: name("/tools/ftms-lab") };
+const CP_LAB = { href: "/tools/cycling-power-lab", label: name("/tools/cycling-power-lab") };
+const GATT = { href: "/tools/ble-gatt-explorer", label: name("/tools/ble-gatt-explorer") };
 
 const MAP: Record<string, Pointer[]> = {
   // ── Pose and motion ──────────────────────────────────────────────────
@@ -249,6 +252,37 @@ const MAP: Record<string, Pointer[]> = {
       ...HR_LAB,
       why: "Connect a heart-rate strap in the browser and watch every Heart Rate Measurement byte decoded live.",
     },
+    {
+      ...FTMS_LAB,
+      why: "Treadmill, Indoor Bike, Rower and Cross Trainer Data decoded flag by flag, from a machine or pasted hex.",
+    },
+    {
+      ...CP_LAB,
+      why: "Cycling Power and CSC Measurement decoded, with cadence and speed computed from revolution counts.",
+    },
+    {
+      ...GATT,
+      why: "Connect any device and decode every characteristic below that has a SIG structure; hex for the rest.",
+    },
+  ],
+  // ── Bluetooth fitness machines and cycling sensors ───────────────────
+  "/bluetooth-fitness/treadmill-data": [
+    { ...FTMS_LAB, why: "This characteristic decoded from your treadmill or from pasted hex: each Flags bit, field and resolution." },
+  ],
+  "/bluetooth-fitness/indoor-bike-data": [
+    { ...FTMS_LAB, why: "This characteristic decoded from your bike or trainer, or from pasted hex, with cadence in half-rpm units." },
+  ],
+  "/bluetooth-fitness/rower-data": [
+    { ...FTMS_LAB, why: "This characteristic decoded from your rower or from pasted hex: stroke rate, count, pace and power." },
+  ],
+  "/bluetooth-fitness/cross-trainer-data": [
+    { ...FTMS_LAB, why: "This characteristic decoded from your cross trainer or from pasted hex, three-octet Flags included." },
+  ],
+  "/bluetooth-fitness/cycling-power-measurement": [
+    { ...CP_LAB, why: "This characteristic decoded live or pasted, with crank and wheel revolutions turned into cadence and speed." },
+  ],
+  "/bluetooth-fitness/csc-measurement": [
+    { ...CP_LAB, why: "Two notifications in, cadence and speed out: the revolution and event-time arithmetic, wraps included." },
   ],
   "/bluetooth-fitness/heart-rate-measurement": [
     {

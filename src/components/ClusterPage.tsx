@@ -86,6 +86,21 @@ const TOOLS = {
     name: "Bluetooth heart-rate lab",
     does: "connect a BLE heart-rate strap in the browser: every 0x2A37 byte decoded, and whether it sends the RR intervals HRV needs.",
   },
+  ftms: {
+    href: "/tools/ftms-lab",
+    name: "FTMS lab",
+    does: "connect a treadmill, indoor bike, rower or cross trainer in the browser, or paste hex, and see each FTMS value decoded flag by flag against the Bluetooth SIG structure.",
+  },
+  cyclingPower: {
+    href: "/tools/cycling-power-lab",
+    name: "Cycling power and cadence lab",
+    does: "decode Cycling Power (0x2A63) and CSC (0x2A5B) values and watch cadence and speed computed from cumulative revolutions and event times, live or pasted.",
+  },
+  gattExplorer: {
+    href: "/tools/ble-gatt-explorer",
+    name: "BLE GATT explorer",
+    does: "connect any Bluetooth LE device in the browser, list its services and characteristics by SIG name, and decode the values the SIG defines.",
+  },
   stepLab: {
     href: "/tools/step-lab",
     name: "Step lab",
@@ -150,6 +165,16 @@ const TOOL_FOR_PATH: Record<string, keyof typeof TOOLS> = {
   "/devices/ant-plus-vs-bluetooth": "heartRate",
   "/devices/bluetooth-heart-rate-monitor": "heartRate",
   "/devices/web-bluetooth-fitness": "heartRate",
+  // FTMS and cycling sensors: the labs decode the characteristics these
+  // guides name, over Web Bluetooth or from pasted hex.
+  "/devices/ftms-fitness-machine-service": "ftms",
+  "/devices/treadmill-app-integration": "ftms",
+  "/devices/indoor-bike-trainer-integration": "ftms",
+  "/devices/rowing-machine-data": "ftms",
+  "/devices/cycling-sensors-power-cadence": "cyclingPower",
+  // Testing and the iOS guide are about devices of every kind.
+  "/devices/testing-ble-fitness-devices": "gattExplorer",
+  "/devices/ios-ble-fitness-devices": "gattExplorer",
   // The phone step-counter APIs: they return a count, and the lab shows a
   // step detector deciding one from the accelerometer, thresholds visible.
   "/phone-sensors/android-step-counter-sensor": "stepLab",

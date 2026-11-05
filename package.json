@@ -24,6 +24,7 @@
     "test:webhooks": "node --test scripts/webhook-verifier.test.mjs",
     "test:keypoints": "node --test scripts/keypoint-mapping.test.mjs",
     "test:hr-lab": "node --test scripts/hr-measurement.test.mjs",
+    "test:ble": "node --test scripts/gatt-decode.test.mjs",
     "test:daily": "node --test scripts/daily-puzzle.test.mjs",
     "test:step-lab": "node --test scripts/step-detector.test.mjs",
     "test:reps": "node --test scripts/rep-counter.test.mjs",

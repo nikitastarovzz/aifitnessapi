@@ -128,6 +128,24 @@ export const TOOL_PLANNERS: Tool[] = [
       "Connect a BLE heart-rate strap in the browser: every 0x2A37 byte decoded, and whether it sends the RR intervals HRV needs.",
   },
   {
+    path: "/tools/ftms-lab",
+    name: "FTMS lab",
+    blurb:
+      "Connect a treadmill, indoor bike, rower or cross trainer over Web Bluetooth, or paste hex: every FTMS flag bit and field decoded against the SIG structure.",
+  },
+  {
+    path: "/tools/cycling-power-lab",
+    name: "Cycling power and cadence lab",
+    blurb:
+      "Cycling Power (0x2A63) and CSC (0x2A5B) decoded, with cadence and speed computed from cumulative revolutions and event times, live or pasted.",
+  },
+  {
+    path: "/tools/ble-gatt-explorer",
+    name: "BLE GATT explorer",
+    blurb:
+      "Connect any Bluetooth LE device: services and characteristics by SIG name, read or notify, values decoded where the SIG defines a structure.",
+  },
+  {
     path: "/daily",
     name: "Daily health-API developer puzzle",
     blurb:

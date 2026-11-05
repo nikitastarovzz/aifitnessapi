@@ -1489,7 +1489,7 @@ if (fs.existsSync(matrixPath)) {
     const rendered = new Set(
       htmls.filter((h) => fs.readFileSync(h, "utf8").includes("data-see-also")).map(routeOf),
     );
-    const EXPECTED = 32;
+    const EXPECTED = 38;
     if (mapped.size !== EXPECTED) {
       problems.push(`SEE-ALSO-MAP  SeeAlsoCallout maps ${mapped.size} paths, expected ${EXPECTED} — update the count with the map`);
     }
@@ -1708,7 +1708,7 @@ if (fs.existsSync(matrixPath)) {
       const r = routeOf(h);
       return (r === "/tools" || r.startsWith("/tools/")) && fs.readFileSync(h, "utf8").includes("data-tool");
     }).length;
-    const EXPECTED_TOOLS = 13; // hub + 12 tools (the 6 lookups, sample-data, webhook-verifier, keypoint-playground, pose-benchmark, heart-rate-lab and step-lab)
+    const EXPECTED_TOOLS = 16; // hub + 15 tools (the 6 lookups, sample-data, webhook-verifier, keypoint-playground, pose-benchmark, heart-rate-lab, step-lab, ftms-lab, cycling-power-lab and ble-gatt-explorer)
     if (rendered !== EXPECTED_TOOLS) {
       problems.push(`TOOLS          ${rendered} /tools pages carry data-tool, expected ${EXPECTED_TOOLS}`);
     } else {
@@ -3139,6 +3139,47 @@ function checkSitemapIndex(SITE) {
         `Bluetooth GATT: ${chars.length} characteristics with a hub row, ${eligible.length} pages, ${fieldsShown} structure fields shown with name, type and size.`,
       );
     }
+  }
+
+  // BLE labs (ops/AUDIENCE-30-2026-11-05.md items 21–23, added 2026-11-05).
+  // The FTMS and cycling labs decode with layouts compiled from
+  // src/data/bluetoothGatt.ts at build time, and each page prints the layout
+  // it compiled (data-gatt-layout, data-gatt-fields). The quiet failure is a
+  // regeneration that drops or reshapes a structure: the lab still builds and
+  // still decodes something. So every characteristic each lab is for must be
+  // printed with exactly the field count the generated structure has, and the
+  // explorer must offer a decoder for every characteristic that has one (plus
+  // Battery Level, which it adds from the heart-rate lab's sourced record).
+  {
+    const chars = jsonArray(fs.readFileSync("src/data/bluetoothGatt.ts", "utf8"), "BT_CHARACTERISTICS") ?? [];
+    const LABS = {
+      "/tools/ftms-lab": ["0x2ACD", "0x2ACE", "0x2ACF", "0x2AD0", "0x2AD1", "0x2AD2"],
+      "/tools/cycling-power-lab": ["0x2A63", "0x2A5B"],
+    };
+    let checked = 0;
+    for (const [route, uuids] of Object.entries(LABS)) {
+      const html = htmlOf(route);
+      if (!html) {
+        problems.push(`BLE-LAB-LAYOUT  ${route} was not built`);
+        continue;
+      }
+      for (const u of uuids) {
+        const c = chars.find((x) => x.uuid === u);
+        const want = c?.gss?.structure?.length ?? 0;
+        const tag = new RegExp(`<[^>]*data-gatt-layout="${u}"[^>]*>`).exec(html)?.[0];
+        const shown = tag ? Number(/data-gatt-fields="(\d+)"/.exec(tag)?.[1]) : null;
+        if (!want) problems.push(`BLE-LAB-LAYOUT  ${u} has no gss structure in src/data/bluetoothGatt.ts, but ${route} is built to decode it`);
+        else if (shown !== want) problems.push(`BLE-LAB-LAYOUT  ${route} prints ${shown ?? "no"} layout for ${u} (${c.name}); the SIG structure has ${want} fields`);
+        else checked++;
+      }
+    }
+    const explorer = htmlOf("/tools/ble-gatt-explorer");
+    const decodable = chars.filter((c) => c.gss?.structure?.length).length + 1;
+    const offered = explorer ? Number(/data-gatt-decodable="(\d+)"/.exec(explorer)?.[1]) : null;
+    if (offered !== decodable) {
+      problems.push(`BLE-LAB-LAYOUT  /tools/ble-gatt-explorer offers ${offered ?? "no"} decoders; the dataset has ${decodable - 1} structures plus Battery Level`);
+    }
+    if (checked && offered === decodable) console.log(`BLE labs: ${checked} lab layouts match the SIG structures; the explorer offers all ${decodable} decoders.`);
   }
 
   // Workout types across four platforms (added 2026-10-18). Apple's
