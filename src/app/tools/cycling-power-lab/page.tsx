@@ -14,10 +14,11 @@ import {
   cyclingLayouts,
   cyclingReplay,
   cyclingSamplePairs,
-  layoutOf,
 } from "@/lib/bleTools";
+import { bitsOf, cyclingFacts, tick, wrapSeconds } from "@/lib/bleLabFacts";
+import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import { BLE_BROWSER_SUPPORT } from "@/lib/bleBrowserSupport";
-import { BYTE_ORDER_SOURCE, fmt, type GattLayout } from "@/lib/gattDecode.mjs";
+import { BYTE_ORDER_SOURCE } from "@/lib/gattDecode.mjs";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
 
@@ -47,7 +48,7 @@ const EXAMPLE_CIRCUMFERENCE_MM = 2100;
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  alternates: { canonical: PATH },
+  alternates: pageMirrorAlternates(PATH),
   openGraph: {
     type: "website",
     title: TITLE,
@@ -60,23 +61,7 @@ export const metadata: Metadata = {
 const LAYOUTS = cyclingLayouts();
 const PAIRS = cyclingSamplePairs();
 const REPLAY = cyclingReplay(180, EXAMPLE_CIRCUMFERENCE_MM);
-const CP = layoutOf("0x2A63");
-const CSC = layoutOf("0x2A5B");
-
-function revData(l: GattLayout, name: string) {
-  const f = l.fields.find((x) => x.name === name);
-  const revs = f?.children?.find((c) => /^Cumulative .* Revolutions$/.test(c.name));
-  const time = f?.children?.find((c) => /^Last .* Event Time$/.test(c.name));
-  if (!f?.presence || !revs || !time?.scale) throw new Error(`cycling-power-lab: ${l.name} ${name} lost its structure`);
-  return { field: f, presence: f.presence, revs, time, scale: time.scale };
-}
-const CSC_WHEEL = revData(CSC, "Wheel Revolution Data");
-const CSC_CRANK = revData(CSC, "Crank Revolution Data");
-const CP_WHEEL = revData(CP, "Wheel Revolution Data");
-const CP_CRANK = revData(CP, "Crank Revolution Data");
-const tick = (f: number) => `1/${Math.round(1 / f)} s`;
-const wrapSeconds = (bits: number, f: number) => fmt(Number((2 ** bits * f).toFixed(3)));
-const bitsOf = (type: string) => Number(/(\d+)$/.exec(type)?.[1]);
+const { CP, CSC, CSC_WHEEL, CSC_CRANK, CP_WHEEL, CP_CRANK } = cyclingFacts();
 
 const linkCls = "font-medium text-brand-600 hover:text-brand-500";
 const code = "font-mono text-sm";

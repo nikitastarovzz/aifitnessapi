@@ -1,6 +1,7 @@
 import { BT_GATT_SOURCE } from "@/data/bluetoothGatt";
 import { explorerLayouts } from "@/lib/bleTools";
 import { absoluteUrl, site } from "@/lib/site";
+import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
 
 /**
  * Every decodable characteristic layout the GATT explorer knows, compiled at
@@ -22,6 +23,6 @@ export function GET() {
     layouts,
   };
   return new Response(JSON.stringify(body), {
-    headers: { "content-type": "application/json; charset=utf-8" },
+    headers: { "content-type": "application/json; charset=utf-8", "cache-control": MACHINE_CACHE_CONTROL },
   });
 }

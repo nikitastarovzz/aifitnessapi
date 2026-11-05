@@ -1,5 +1,6 @@
 import { changesSorted, WATCH_ITEMS } from "@/data/changes";
 import { site } from "@/lib/site";
+import { vendorChangesPath, vendorFeedPath, vendorTimelines } from "@/lib/vendorChanges";
 import { link, type MirrorDoc } from "./core";
 
 const PATH = "/changes";
@@ -17,6 +18,17 @@ function fmtDate(d: string): string {
 /** /changes.md — mirrors src/app/changes/page.tsx: every dated entry and every
  *  watch item from src/data/changes.ts, graded as on the page. */
 export function changesMirror(): MirrorDoc {
+  const timelines = vendorTimelines();
+  const perVendor = timelines.length
+    ? [
+        "## One vendor at a time",
+        "",
+        "Each vendor named by two or more entries below has its own timeline and RSS feed.",
+        "",
+        ...timelines.map((t) => `- ${link(`${t.api.short} (${t.events.length})`, vendorChangesPath(t.api.id))} · ${link("RSS", vendorFeedPath(t.api.id))}`),
+        "",
+      ]
+    : [];
   const events = changesSorted().flatMap((e) => [
     `## ${e.title}`,
     "",
@@ -48,6 +60,7 @@ export function changesMirror(): MirrorDoc {
       "",
       `${link("Subscribe (.ics)", "/changes/calendar.ics")} · ${link("RSS feed", "/changes.xml")} · ${link("By email", "/newsletter")}`,
       "",
+      ...perVendor,
       `This year's entries, counted by month, with releases and our own verification age: ${link("Fitness APIs in 2026, in numbers", "/2026")}`,
       "",
       `Looking only for the endings? ${link("The Fitness API Graveyard", "/graveyard")} collects every shut-down, dying and deprecated fitness and health API we could source, with the vendor’s own words, filters, an embed and a JSON download.`,

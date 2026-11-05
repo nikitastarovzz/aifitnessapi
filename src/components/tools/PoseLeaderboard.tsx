@@ -1,5 +1,6 @@
-import { POSE_BENCHMARK_RESULTS, POSE_BENCHMARK_RESULTS_IMPORTED_ON } from "@/data/poseBenchmarkResults";
-import { ACCEPT_LABEL, NEW_ISSUE_URL, REPO, TITLE_PREFIX } from "@/lib/poseBenchmarkSubmission.mjs";
+import { POSE_BENCHMARK_RESULTS_IMPORTED_ON } from "@/data/poseBenchmarkResults";
+import { ACCEPT_LABEL, REPO, TITLE_PREFIX } from "@/lib/poseBenchmarkSubmission.mjs";
+import { LEADERBOARD_TEMPLATE_URL, leaderboardGroups, leaderboardMs } from "@/lib/poseLeaderboard";
 
 /**
  * The crowdsourced leaderboard for /tools/pose-benchmark, rendered at build
@@ -14,21 +15,12 @@ import { ACCEPT_LABEL, NEW_ISSUE_URL, REPO, TITLE_PREFIX } from "@/lib/poseBench
  * there is nothing to show the section says so.
  */
 
-const TEMPLATE_URL = `${NEW_ISSUE_URL}?template=pose-benchmark-result.md`;
-const ms = (n: number) => n.toFixed(1);
+const TEMPLATE_URL = LEADERBOARD_TEMPLATE_URL;
+const ms = leaderboardMs;
 const linkCls = "font-medium text-brand-600 hover:text-brand-500";
 
 export default function PoseLeaderboard() {
-  const groups = new Map<string, { model: string; delegate: string; rows: { sub: (typeof POSE_BENCHMARK_RESULTS)[number]; row: (typeof POSE_BENCHMARK_RESULTS)[number]["rows"][number] }[] }>();
-  for (const sub of POSE_BENCHMARK_RESULTS) {
-    for (const row of sub.rows) {
-      const k = `${row.model}|${row.delegate}`;
-      if (!groups.has(k)) groups.set(k, { model: row.model, delegate: row.delegate, rows: [] });
-      groups.get(k)!.rows.push({ sub, row });
-    }
-  }
-  for (const g of groups.values()) g.rows.sort((a, b) => a.row.medianMs - b.row.medianMs);
-  const ordered = [...groups.values()].sort((a, b) => a.model.localeCompare(b.model) || a.delegate.localeCompare(b.delegate));
+  const ordered = leaderboardGroups();
 
   return (
     <section id="leaderboard" data-pose-leaderboard className="mt-14">

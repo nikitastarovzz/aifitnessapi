@@ -1,4 +1,5 @@
 import { site, absoluteUrl } from "@/lib/site";
+import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
 import { vendorChangesPath, vendorFeedPath, vendorTimeline, vendorTimelines, timelineCheckedOn } from "@/lib/vendorChanges";
 
 /**
@@ -66,6 +67,7 @@ ${items}
   return new Response(xml, {
     headers: {
       "content-type": "application/rss+xml; charset=utf-8",
+      "cache-control": MACHINE_CACHE_CONTROL,
       link: `<${absoluteUrl("/llms.txt")}>; rel="describedby"; type="text/plain"`,
     },
   });

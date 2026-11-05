@@ -6,7 +6,9 @@ import ClusterHero from "@/components/ClusterHero";
 import GattExplorer from "@/components/tools/GattExplorer";
 import { BT_GATT_SOURCE } from "@/data/bluetoothGatt";
 import { BT_COMMIT_SHORT, BT_FETCHED } from "@/data/btPages";
-import { EXPLORER_LAYOUTS_PATH, explorerCharacteristics, explorerLayouts, explorerServices, layoutOf } from "@/lib/bleTools";
+import { EXPLORER_LAYOUTS_PATH, explorerCharacteristics, explorerServices, layoutOf } from "@/lib/bleTools";
+import { explorerDecodeGroups, gattLayoutHref } from "@/lib/bleLabFacts";
+import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import { BLE_BROWSER_SUPPORT, WEB_BLUETOOTH_SERVICES_RULE } from "@/lib/bleBrowserSupport";
 import { BYTE_ORDER_SOURCE, encode, toHex } from "@/lib/gattDecode.mjs";
 import { site } from "@/lib/site";
@@ -35,7 +37,7 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  alternates: { canonical: PATH },
+  alternates: pageMirrorAlternates(PATH),
   openGraph: {
     type: "website",
     title: TITLE,
@@ -47,11 +49,8 @@ export const metadata: Metadata = {
 
 const SERVICES = explorerServices();
 const CHARACTERISTICS = explorerCharacteristics();
-const LAYOUTS = explorerLayouts();
+const { layouts: LAYOUTS, full: FULL, partial: PARTIAL, noStructure: NO_STRUCTURE, fullHref } = explorerDecodeGroups();
 const DECODABLE = LAYOUTS.map((l) => ({ uuid: l.uuid, name: l.name }));
-const FULL = LAYOUTS.filter((l) => !l.unsupported);
-const PARTIAL = LAYOUTS.filter((l) => l.unsupported);
-const NO_STRUCTURE = CHARACTERISTICS.filter((c) => !LAYOUTS.some((l) => l.uuid === c.uuid));
 // The default value in the paste box: a synthetic RSC Measurement, built by
 // the decoder's own encoder from the SIG's field names.
 const RSC = layoutOf("0x2A53");
@@ -152,7 +151,7 @@ export default function BleGattExplorerPage() {
                 {FULL.map((l, i) => (
                   <span key={l.uuid}>
                     {i ? ", " : ""}
-                    <Link href={l.hasPage ? `/bluetooth-fitness/${l.slug}` : l.slug === "battery-level" ? "/tools/heart-rate-lab" : `/bluetooth-fitness#char-${l.slug}`} className={linkCls}>
+                    <Link href={fullHref(l)} className={linkCls}>
                       {l.name}
                     </Link>{" "}
                     <span className="font-mono text-xs">{l.uuid}</span>
@@ -165,7 +164,7 @@ export default function BleGattExplorerPage() {
               <ul className="mt-1 space-y-1 text-sm text-[var(--muted)]">
                 {PARTIAL.map((l) => (
                   <li key={l.uuid}>
-                    <Link href={l.hasPage ? `/bluetooth-fitness/${l.slug}` : `/bluetooth-fitness#char-${l.slug}`} className={linkCls}>
+                    <Link href={gattLayoutHref(l)} className={linkCls}>
                       {l.name}
                     </Link>{" "}
                     <span className="font-mono text-xs">{l.uuid}</span>: {l.unsupported}

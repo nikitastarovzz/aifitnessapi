@@ -9,8 +9,9 @@ import {
   FORM_RULE_PRESETS,
   FORM_RULE_SOURCES,
   FORM_RULES_FETCHED_ON,
-  type FormRule,
 } from "@/data/formRules";
+import { formRuleSource as src, formRuleValueText as valueText, formRulesCapsule } from "@/lib/formRulesView";
+import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
 
@@ -41,7 +42,7 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  alternates: { canonical: PATH },
+  alternates: pageMirrorAlternates(PATH),
   openGraph: {
     type: "website",
     title: TITLE,
@@ -53,18 +54,6 @@ export const metadata: Metadata = {
 };
 
 const linkCls = "font-medium text-brand-600 hover:text-brand-500";
-const src = (id: string | null) => FORM_RULE_SOURCES.find((s) => s.id === id);
-
-function valueText(r: FormRule) {
-  if (r.value === null) return "null";
-  const u = r.unit === "degrees" ? "°" : r.unit === "frames" ? " frames" : "";
-  if (r.comparison === "within") return `${r.value}${u} to ${r.value2}${u}`;
-  return `${r.comparison} ${r.value}${u}`;
-}
-
-const nonNull = FORM_RULES.filter((r) => r.value !== null);
-const nulls = FORM_RULES.filter((r) => r.value === null);
-const pushUps = FORM_RULE_PRESETS.filter((p) => p.exercise === "push-up");
 
 export default function ExerciseFormRulesPage() {
   const jsonLd = toolGraph({
@@ -96,20 +85,7 @@ export default function ExerciseFormRulesPage() {
         </h1>
 
         <p id="answer" className="speakable mt-4 leading-relaxed text-[var(--muted)]">
-          Open-source pose-estimation exercise trackers count and check reps with fixed joint-angle
-          thresholds, and they do not agree: {pushUps.length >= 2 ? (
-            <>
-              one licensed project counts a push-up between elbow angles of {pushUps[0].top} and{" "}
-              {pushUps[0].bottom} degrees, another between {pushUps[1].top} and {pushUps[1].bottom}.
-            </>
-          ) : (
-            <>each picks its own top and bottom angles.</>
-          )}{" "}
-          This dataset collects {nonNull.length} such
-          thresholds for {FORM_RULE_EXERCISES.length} exercises from {FORM_RULE_SOURCES.length} licensed
-          projects, each with the line of code it was read from on {FORM_RULES_FETCHED_ON}, and marks{" "}
-          {nulls.length}{" "}rules null where no source read states a number. They are the authors&rsquo; choices,
-          not biomechanical standards. CC BY 4.0, JSON and CSV.
+          {formRulesCapsule()}
         </p>
 
         <section data-tool="exercise-form-rules" aria-label="Exercise form-rules dataset">

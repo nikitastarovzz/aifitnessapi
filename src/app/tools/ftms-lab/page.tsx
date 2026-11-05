@@ -7,7 +7,9 @@ import FtmsLab from "@/components/tools/FtmsLab";
 import GattLayoutTable from "@/components/tools/GattLayoutTable";
 import { BT_GATT_SOURCE } from "@/data/bluetoothGatt";
 import { BT_COMMIT_SHORT, BT_FETCHED } from "@/data/btPages";
-import { FTMS_DATA_UUIDS, FTMS_RANGE_UUIDS, FTMS_RAW_UUIDS, FTMS_SERVICE, ftmsLayouts, ftmsReplays, ftmsSamples, layoutOf, scaleCheck } from "@/lib/bleTools";
+import { FTMS_DATA_UUIDS, FTMS_RANGE_UUIDS, FTMS_RAW_UUIDS, FTMS_SERVICE, ftmsLayouts, ftmsReplays, ftmsSamples } from "@/lib/bleTools";
+import { ftmsFacts } from "@/lib/bleLabFacts";
+import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import { BLE_BROWSER_SUPPORT } from "@/lib/bleBrowserSupport";
 import { BYTE_ORDER_SOURCE } from "@/lib/gattDecode.mjs";
 import { site } from "@/lib/site";
@@ -38,7 +40,7 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  alternates: { canonical: PATH },
+  alternates: pageMirrorAlternates(PATH),
   openGraph: {
     type: "website",
     title: TITLE,
@@ -51,20 +53,7 @@ export const metadata: Metadata = {
 const LAYOUTS = ftmsLayouts();
 const SAMPLES = ftmsSamples();
 const REPLAYS = ftmsReplays();
-const TREADMILL = layoutOf("0x2ACD");
-const BIKE = layoutOf("0x2AD2");
-function must<T>(v: T | null | undefined, what: string): T {
-  if (v == null) throw new Error(`ftms-lab: the SIG structure no longer has ${what}, which this page explains`);
-  return v;
-}
-const MORE_DATA = must(TREADMILL.fields[0].bits?.find((b) => b.bits.length === 1 && b.bits[0] === 0), "Treadmill Data Flags bit 0");
-const SPEED_FIELD = must(TREADMILL.fields.find((f) => f.name === "Instantaneous Speed"), "Treadmill Instantaneous Speed");
-const SPEED = { presence: must(SPEED_FIELD.presence, "a speed condition"), scale: must(SPEED_FIELD.scale, "a speed scale") };
-const RESISTANCE = { scale: must(BIKE.fields.find((f) => f.name === "Resistance Level")?.scale, "Indoor Bike Resistance Level") };
-const CADENCE = { scale: must(BIKE.fields.find((f) => f.name === "Instantaneous Cadence")?.scale, "Indoor Bike Instantaneous Cadence") };
-const SCALES = scaleCheck();
-const RESISTANCE_CONFLICTS = SCALES.conflicts.filter((c) => /Resistance Level|^Minimum Increment$/.test(c.name) && /^0x2A(CE|D1|D2|D6)$/.test(c.uuid)).length;
-const rawNames =FTMS_RAW_UUIDS.map((u) => LAYOUTS.find((l) => l.uuid === u)!).map((l) => `${l.name} (${l.uuid})`);
+const { TREADMILL, MORE_DATA, SPEED, RESISTANCE, CADENCE, SCALES, RESISTANCE_CONFLICTS, rawNames } = ftmsFacts(LAYOUTS);
 
 const linkCls = "font-medium text-brand-600 hover:text-brand-500";
 const code = "font-mono text-sm";

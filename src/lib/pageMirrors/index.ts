@@ -12,6 +12,12 @@ import { sampleDataMirror } from "./sampleData";
 import { stackGeneratorMirror } from "./stackGenerator";
 import { stepLabMirror } from "./stepLab";
 import { webhookVerifierMirror } from "./webhookVerifier";
+import { appleHealthExplorerMirror } from "./appleHealthExplorer";
+import { bleGattExplorerMirror } from "./bleGattExplorer";
+import { cyclingPowerLabMirror } from "./cyclingPowerLab";
+import { exerciseFormRulesMirror } from "./exerciseFormRules";
+import { ftmsLabMirror } from "./ftmsLab";
+import { repCounterPlaygroundMirror } from "./repCounterPlayground";
 import { graveyardMirror } from "./graveyard";
 import { datasetsMirror } from "./datasets";
 import { changesMirror } from "./changes";
@@ -44,6 +50,12 @@ export const PAGE_MIRRORS: Record<string, () => MirrorDoc> = {
   "/tools/stack-generator": stackGeneratorMirror,
   "/tools/step-lab": stepLabMirror,
   "/tools/webhook-verifier": webhookVerifierMirror,
+  "/tools/apple-health-explorer": appleHealthExplorerMirror,
+  "/tools/ble-gatt-explorer": bleGattExplorerMirror,
+  "/tools/cycling-power-lab": cyclingPowerLabMirror,
+  "/tools/exercise-form-rules": exerciseFormRulesMirror,
+  "/tools/ftms-lab": ftmsLabMirror,
+  "/tools/rep-counter-playground": repCounterPlaygroundMirror,
   "/graveyard": graveyardMirror,
   "/datasets": datasetsMirror,
   "/changes": changesMirror,

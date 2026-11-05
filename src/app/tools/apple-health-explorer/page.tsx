@@ -6,6 +6,7 @@ import ClusterHero from "@/components/ClusterHero";
 import AppleHealthExplorer, { type HkLookup } from "@/components/tools/AppleHealthExplorer";
 import { HK_IDENTIFIERS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { hkGroupRowHref, hkIdentifierPagePath } from "@/data/hkIdentifierPages";
+import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
 
@@ -33,7 +34,7 @@ const APPLE_GUIDE = "https://support.apple.com/guide/iphone/share-your-health-da
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  alternates: { canonical: PATH },
+  alternates: pageMirrorAlternates(PATH),
   openGraph: {
     type: "website",
     title: TITLE,

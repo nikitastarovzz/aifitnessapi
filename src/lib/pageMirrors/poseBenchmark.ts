@@ -1,13 +1,50 @@
 import { POSE_SCHEMES, POSE_KEYPOINTS_FETCHED_ON } from "@/data/poseKeypoints";
 import { BENCH_MODELS, TASKS_VISION_USAGE_LOG_URL, TASKS_VISION_VERSION, VERIFIED_ON, mib } from "@/lib/poseBenchmark";
+import { POSE_BENCHMARK_RESULTS_IMPORTED_ON } from "@/data/poseBenchmarkResults";
+import { ACCEPT_LABEL, REPO, TITLE_PREFIX } from "@/lib/poseBenchmarkSubmission.mjs";
+import { LEADERBOARD_TEMPLATE_URL, leaderboardGroups, leaderboardMs } from "@/lib/poseLeaderboard";
 import { site } from "@/lib/site";
-import { interactiveNote, link, type MirrorDoc } from "./core";
+import { interactiveNote, link, table, type MirrorDoc } from "./core";
 
 const PATH = "/tools/pose-benchmark";
 const UPDATED = "2026-10-31";
 
 /** /tools/pose-benchmark.md — mirrors src/app/tools/pose-benchmark/page.tsx. */
 export function poseBenchmarkMirror(): MirrorDoc {
+  const groups = leaderboardGroups();
+  const leaderboard = [
+    "## Leaderboard: runs readers submitted",
+    "",
+    `After a run, the page offers a prefilled GitHub issue in this site’s public repository (${link(REPO, `https://github.com/${REPO}`)}). A maintainer checks that the numbers came from the page and adds the \`${ACCEPT_LABEL}\` label, and the next build lists the run here with a link to its issue. Each row is one run on one device, copied as submitted; the order within a model is by median latency on that run and is not a ranking of hardware.`,
+    "",
+    ...(groups.length === 0
+      ? [
+          "No submissions yet. Be the first.",
+          "",
+          `Run the benchmark above, then press **Submit to the leaderboard on GitHub**. You can also start from the ${link("issue template", LEADERBOARD_TEMPLATE_URL)} (titles start with \`${TITLE_PREFIX}\`). This table shows no numbers until a real run is accepted: none are filled in for it.`,
+          "",
+        ]
+      : [
+          ...groups.flatMap((g) => [
+            `### ${g.model}, ${g.delegate} delegate`,
+            "",
+            ...table(
+              ["Platform", "GPU (as reported)", "Median ms", "p95 ms", "Loop fps", "Runtime", "Issue"],
+              g.rows.map(({ sub, row }) => [
+                sub.device?.platform ?? "not reported",
+                sub.device?.gpu ?? "not reported",
+                leaderboardMs(row.medianMs),
+                leaderboardMs(row.p95Ms),
+                row.loopFps === null ? "—" : row.loopFps.toFixed(1),
+                sub.runtime,
+                `${link(`#${sub.issue}`, sub.issueUrl)}${sub.submittedOn ? ` · ${sub.submittedOn}` : ""}`,
+              ]),
+            ),
+          ]),
+          `Imported ${POSE_BENCHMARK_RESULTS_IMPORTED_ON}.`,
+          "",
+        ]),
+  ];
   const blazepose = POSE_SCHEMES.find((s) => s.slug === "blazepose-33");
   const coco = POSE_SCHEMES.find((s) => s.slug === "coco-17");
   const plEvidence = blazepose?.usedBy.find((u) => u.modelId === "mediapipe-pose-landmarker");
@@ -27,6 +64,7 @@ export function poseBenchmarkMirror(): MirrorDoc {
     body: [
       interactiveNote(PATH, "the benchmark runner"),
       "",
+      ...leaderboard,
       "## What it runs",
       "",
       `Google’s \`@mediapipe/tasks-vision\` package, version ${TASKS_VISION_VERSION} (the stable release on the npm registry when this page was checked on ${VERIFIED_ON}), loaded from cdn.jsdelivr.net only when you press Run. It runs in WebAssembly, and the package’s *delegate* option asks for inference on the GPU or the CPU; the benchmark times each one you tick. If the landmarker cannot be created with a delegate on your browser, that row says so instead of a number.`,

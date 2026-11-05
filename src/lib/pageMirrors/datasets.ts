@@ -1,5 +1,6 @@
 import { DATASETS_UPDATED, LICENSE_URL, LOADED, citeAs, fmtUpdated } from "@/lib/datasetsPage";
-import { site } from "@/lib/site";
+import { absoluteUrl, site } from "@/lib/site";
+import { datasetBibtex } from "@/lib/cite";
 import { link, type MirrorDoc } from "./core";
 
 const PATH = "/datasets";
@@ -40,6 +41,16 @@ export function datasetsMirror(): MirrorDoc {
       `${LOADED.length} datasets · ${totalRows} rows · ${versionLabel} · CC BY 4.0 · updated ${fmtUpdated(DATASETS_UPDATED)}`,
       "",
       ...sets,
+      "## How to cite the datasets",
+      "",
+      `Each dataset above carries its own citation string and BibTeX entry. For the collection as a whole, the repository’s ${link("CITATION.cff", `${site.social.github}/blob/main/CITATION.cff`)} is generated with the files and lists every dataset, so GitHub’s “Cite this repository” button and reference managers that read CFF give the same answer as this page.`,
+      "",
+      "```bibtex",
+      datasetBibtex({ slug: "datasets", name: "AIFitnessAPI Open Datasets", version: versions.at(-1) as string, url: absoluteUrl(PATH), license: "CC BY 4.0" }),
+      "```",
+      "",
+      `Citable counts about the datasets and the site, each with its source file and date, are on ${link("the press page", "/press")}.`,
+      "",
       "## The rules these files follow",
       "",
       `**No dollar figures, by design.** There is not one monetary value in any of these datasets. Most serious tiers in this market are contact-sales, published figures move within a quarter, and a stale number damages a citable source more than a missing one. What we publish instead is structure: how a vendor bills, what gates a launch, what the end user must already own. The ${link("cost planner", "/cost-planner")} works the same way and likewise refuses to produce a total.`,

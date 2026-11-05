@@ -10,6 +10,7 @@ import { FORM_RULE_PRESETS, FORM_RULE_SOURCES, FORM_RULES_FETCHED_ON } from "@/d
 import { BENCH_MODELS, TASKS_VISION_USAGE_LOG_URL, TASKS_VISION_VERSION, VERIFIED_ON, mib } from "@/lib/poseBenchmark";
 import { LANDMARKS } from "@/lib/repCounter.mjs";
 import { DEFAULT_CONFIG, JOINTS } from "@/lib/repPlayground.mjs";
+import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
 
@@ -38,7 +39,7 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  alternates: { canonical: PATH },
+  alternates: pageMirrorAlternates(PATH),
   openGraph: {
     type: "website",
     title: TITLE,

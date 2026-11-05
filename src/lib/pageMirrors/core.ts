@@ -2,6 +2,8 @@ import { absoluteUrl, site } from "@/lib/site";
 import { markdownUrl } from "@/lib/schema";
 import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
 import { otherLookups } from "@/lib/toolRegistry";
+import { routeLabel } from "@/lib/routeLabel";
+import { TOOL_NEXT_STEPS } from "@/data/toolNextSteps";
 
 /**
  * Markdown mirrors for pages that are not cluster spokes — the tools, the
@@ -117,6 +119,9 @@ export function renderMirror(doc: MirrorDoc): string {
     "",
   );
   out.push(...doc.body);
+  // A page that ends with ToolNextStep ends its mirror with the same block,
+  // from the same list, so no mirror has to remember to add it.
+  out.push("", ...nextStepSection(doc.path));
   return out.join("\n").replace(/\n{3,}/g, "\n\n").trimEnd() + "\n";
 }
 
@@ -150,4 +155,22 @@ export function moreToolsSection(path: string): string[] {
     `The planners and demos — the API picker, the cost planner, the side-by-side comparison, the day-boundary demo, the pose-model benchmark, the Bluetooth heart-rate lab and the step lab — are listed with these on ${link("free tools for health-app builders", "/tools")}.`,
     "",
   ];
+}
+
+/**
+ * The "Next step" block a page ends with (src/components/ToolNextStep.tsx),
+ * from the same list in src/data/toolNextSteps.ts and with the same link text
+ * (each target's own H1, via routeLabel). Empty for a page with no entry.
+ * renderMirror appends it, so every mirror whose page carries the block
+ * carries it too.
+ */
+export function nextStepSection(path: string): string[] {
+  const targets = TOOL_NEXT_STEPS[path];
+  if (!targets) return [];
+  const links = targets.map((href) => {
+    const label = routeLabel(href);
+    if (!label) throw new Error(`nextStepSection: ${path} lists ${href}, which routeLabel does not know`);
+    return `- ${link(label, href)}`;
+  });
+  return ["## Next step", "", "Turning this into a choice of API:", "", ...links, ""];
 }

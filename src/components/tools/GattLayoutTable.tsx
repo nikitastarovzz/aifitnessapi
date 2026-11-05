@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { fmt, type GattLayout } from "@/lib/gattDecode.mjs";
 import { sigFileUrl } from "@/data/btPages";
+import { gattChildrenText, gattFieldCount, gattLayoutHref, gattPresenceText } from "@/lib/bleLabFacts";
 
 /**
  * A compiled layout as a server-rendered table: what the decoder will read,
@@ -10,7 +11,7 @@ import { sigFileUrl } from "@/data/btPages";
  */
 export default function GattLayoutTable({ layout, open = false }: { layout: GattLayout; open?: boolean }) {
   const linkCls = "font-medium text-brand-600 hover:text-brand-500";
-  const href = layout.hasPage ? `/bluetooth-fitness/${layout.slug}` : `/bluetooth-fitness#char-${layout.slug}`;
+  const href = gattLayoutHref(layout);
   return (
     <details
       open={open}
@@ -21,7 +22,7 @@ export default function GattLayoutTable({ layout, open = false }: { layout: Gatt
       <summary className="cursor-pointer font-semibold text-[var(--fg)]">
         {layout.name} ({layout.uuid}){" "}
         <span className="font-normal text-[var(--muted)]">
-          · {layout.fields.length ? `${layout.fields.length} fields` : "no structure: shown raw"}
+          · {gattFieldCount(layout)}
         </span>
       </summary>
       {layout.fields.length ? (
@@ -42,15 +43,13 @@ export default function GattLayoutTable({ layout, open = false }: { layout: Gatt
                   <td className="py-1.5 pr-3 text-[var(--fg)]">
                     {f.name}
                     {f.children ? (
-                      <span className="block text-xs text-[var(--muted)]">
-                        {f.children.map((c) => `${c.name} (${c.type}${c.scale ? `, × ${fmt(c.scale.factor)}` : ""})`).join("; ")}
-                      </span>
+                      <span className="block text-xs text-[var(--muted)]">{gattChildrenText(f)}</span>
                     ) : null}
                   </td>
                   <td className="py-1.5 pr-3 font-mono text-xs">{f.type}</td>
                   <td className="py-1.5 pr-3">{f.size}</td>
                   <td className="py-1.5 pr-3 text-xs">
-                    {f.presence ? `bit ${f.presence.bit} of ${f.presence.field} is ${f.presence.value}` : f.sizeKind === "fixed" ? "always" : (f.presenceText ?? "—")}
+                    {gattPresenceText(f)}
                   </td>
                   <td className="py-1.5 text-xs">
                     {f.kind === "unsupported" ? (

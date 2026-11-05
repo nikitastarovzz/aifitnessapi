@@ -121,7 +121,7 @@ Not one this site could find. HealthKit is read on the phone by an app the user 
     "h1": "How to export your Health Connect data on Android",
     "metaTitle": "Export Health Connect Data: Scheduled Export and Import",
     metaDescription:
-      "Google's Health Connect scheduled export: Android 14 and up, a zip in your cloud storage, daily, weekly or monthly, import on another phone, and its limits.",
+      "Health Connect scheduled export: Android 14 and up, a zip in your cloud storage, daily, weekly or monthly, import on another phone, and its limits.",
     "updated": CHECKED,
     answer:
       "Health Connect exports through Settings: search Health Connect, then Manage data, Backup and restore, Scheduled export. Google says the data is bundled in a zip file and saved to a cloud storage provider of your choice, on a daily, weekly or monthly schedule, and that the feature needs Android 14 and up. The file is named \"Health Connect.zip\" by default and is meant to be imported into Health Connect on another device; Google does not document its contents as a format for analysis, and health records are not included.",
@@ -247,7 +247,7 @@ If Samsung Health shares data with Health Connect on your phone, Health Connect'
     "h1": "How to get your own data out of Garmin Connect",
     "metaTitle": "Export Garmin Connect Data: Personal API and Libraries",
     metaDescription:
-      "Garmin's Personal API for your own data (JSON and FIT, pull only), what we could not verify about the account export, and where garth and garminconnect stand.",
+      "Garmin's Personal API for your own data (JSON and FIT, pull only), the account export we could not verify, and where garth and garminconnect stand.",
     "updated": CHECKED,
     answer:
       "Garmin's developer site now offers a Personal tier: secure access to your own Garmin Connect data, where you log in to the Garmin Connect website to retrieve a personal API key and generate access tokens, with activity data as JSON and FIT, health and women's health data as JSON, pull only. Garmin's account-wide data export could not be verified for this page: Garmin's support and account pages could not be read from where it was written. Of the two Python libraries people search for, garth's README says it is deprecated and new logins will not work.",
@@ -390,7 +390,7 @@ Takeout and the Fitbit archive are files you then have to parse. The [daily-summ
     "h1": "How to export your Oura data",
     "metaTitle": "Export Oura Data: Membership Hub, Reports and the API",
     metaDescription:
-      "Oura's Membership Hub export for every user, with or without membership: up to 10 days to prepare, durations in seconds, plus Shareable Reports and the API.",
+      "Oura's Membership Hub export for every user, member or not: up to 10 days to prepare, durations in seconds, plus Shareable Reports and the API.",
     "updated": CHECKED,
     answer:
       "Log in to Oura's Membership Hub, select Export data, then Request your data. Oura's support article says this option is available for all Oura users, with or without active membership, that it may take up to 10 days before the data is ready, and that Oura emails you when it is. Durations in the download are in total seconds, not hours and minutes. Oura also offers Shareable Reports (a PDF summary) and the Oura API, whose documentation now marks personal access tokens as deprecated.",
@@ -661,7 +661,7 @@ FIT files need a parser (the FIT SDK or a library for it) before pandas can use 
     "h1": "How to bulk export your COROS data",
     "metaTitle": "COROS Bulk Export: Training Hub FIT or TCX, and Daily Data",
     metaDescription:
-      "COROS's own steps: bulk export every activity as FIT or TCX from Training Hub on a desktop, single workouts from the app, and daily data by support request.",
+      "COROS's own steps: bulk export every activity as FIT or TCX from Training Hub on a desktop, single workouts from the app, daily data by support request.",
     "updated": CHECKED,
     answer:
       "Log in to COROS Training Hub from a desktop computer, click the Activity List tab, and select Export Data on the right side of the screen; COROS asks for a file format, either .FIT or .TCX, and an email address to receive the files, and says other file types are not supported. Single workouts export from the COROS app as FIT or GPX. Sleep and daily data such as heart rate are not in the bulk export: COROS says to request them from support in the app, with a date range.",

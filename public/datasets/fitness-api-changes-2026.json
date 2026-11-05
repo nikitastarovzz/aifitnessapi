@@ -16,13 +16,13 @@
     "verifiedOn": "Date this entry was last checked against its source page"
   },
   "stats": {
-    "totalItems": 21,
+    "totalItems": 22,
     "byStatus": {
-      "confirmed": 17,
-      "reported": 4
+      "confirmed": 19,
+      "reported": 3
     },
-    "confirmed": 17,
-    "reported": 4,
+    "confirmed": 19,
+    "reported": 3,
     "watch": 0,
     "earliestSortDate": "2023-04-15",
     "latestSortDate": "2026-12-31"
@@ -46,7 +46,7 @@
       "status": "confirmed",
       "source": "https://aifitnessapi.com/integrate/terra-api",
       "sourceLabel": "How to integrate Terra",
-      "verifiedOn": "2026-10-17"
+      "verifiedOn": "2026-11-05"
     },
     {
       "date": "2026-11-02",
@@ -129,6 +129,16 @@
       "verifiedOn": "2026-10-17"
     },
     {
+      "date": "2026-09-08",
+      "sortDate": "2026-09-08",
+      "title": "Samsung Health accepted into the CMS Medicare App Library",
+      "summary": "Samsung Electronics America announced on September 8, 2026 that \"Samsung Health was recently accepted in the Medicare App Library\", the directory on Medicare.gov where people with Medicare find vetted third-party health apps. On November 5, 2026, Medicare.gov carried a Samsung Health listing. CMS's requirements for the library: IAL2/AAL2 identity verification through ID.me or CLEAR, FHIR R4 and SMART on FHIR through a CMS Aligned Network, a DiMe or DirectTrust review, and one of three use cases.",
+      "status": "confirmed",
+      "source": "https://aifitnessapi.com/compliance/cms-medicare-app-library",
+      "sourceLabel": "The CMS Medicare App Library",
+      "verifiedOn": "2026-11-05"
+    },
+    {
       "date": "2026",
       "sortDate": "2026-06-01",
       "title": "Strava developer terms: Standard Tier subscription",
@@ -171,12 +181,12 @@
     {
       "date": "2026",
       "sortDate": "2026-03-01",
-      "title": "Nutritionix open free tier reportedly curtailed",
-      "summary": "Reports conflict on whether Nutritionix's open free tier still exists; higher tiers route through a Syndigo sales contact. If the free tier is gone, the freemium classification shifts toward sales-gated.",
-      "status": "reported",
+      "title": "Nutritionix ends its public free-access tier",
+      "summary": "Nutritionix's developer portal now says \"due to increased misuse of free trial accounts, we are no longer able to maintain a public free-access tier\", and offers a limited trial through sales instead; it gives no date for the change. When we read its API page on November 5, 2026, it listed a free Business Trial and paid plans of $499, $999 and from $1,850 a month, and said \"API plans are billed annually.\"",
+      "status": "confirmed",
       "source": "https://aifitnessapi.com/pricing/nutrition-api-pricing",
       "sourceLabel": "Nutrition API pricing",
-      "verifiedOn": "2026-08-12"
+      "verifiedOn": "2026-11-05"
     },
     {
       "date": "2025-12",

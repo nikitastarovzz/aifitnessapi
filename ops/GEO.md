@@ -259,7 +259,8 @@ Changed 2026-11-04 (ops/NEXT-10-2026-11-04.md item 6), all gated:
 Written here because it adds markdown surfaces and changes the cache policy
 of the existing ones. Nothing is removed; every cluster mirror is unchanged.
 
-**Page mirrors (item 20).** The 13 `/tools` pages and `/graveyard`,
+**Page mirrors (item 20).** Every `/tools` page (19 on 2026-11-05; qa
+requires one for each built `/tools/<slug>`) and `/graveyard`,
 `/datasets`, `/changes`, `/market-map`, `/fitness-api-index`, `/2026`,
 `/daily`, `/play/ship-it` and `/challenge` have a mirror at the page's URL
 with `.md` appended, built by `src/lib/pageMirrors` and served by a route
@@ -276,7 +277,10 @@ Copied prose is how a mirror drifts, so qa holds it: GEO-PAGE-MD-TEXT fails
 on any mirror line or table cell whose words are not on the built page,
 GEO-PAGE-MD-COVER on any visible h2 or declared FAQ question the mirror
 leaves out, GEO-PAGE-MD-FRONTMATTER on a title, description or review date
-the page does not state. The pages carry `<link rel="alternate"
+the page does not state. The "Next step" block (`ToolNextStep`,
+`src/data/toolNextSteps.ts`) is appended by `renderMirror` in
+`src/lib/pageMirrors/core.ts` from the same list, so a page that gains one
+needs no mirror edit. The pages carry `<link rel="alternate"
 type="text/markdown">` and an exact-path Link header rule (`PAGE_MIRRORS`
 in next.config.ts); both llms files list every mirror (GEO-PAGE-MD-ALT,
 -HEADER, -UNLISTED). GEO-MD-ALT-DEAD checks that every text/markdown
