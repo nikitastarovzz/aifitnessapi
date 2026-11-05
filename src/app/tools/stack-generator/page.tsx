@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -17,6 +18,7 @@ import { allBuilds, RELEASED_BUILD, BUILD_PATH } from "@/data/build";
 import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
+import ToolNextStep from "@/components/ToolNextStep";
 
 /**
  * The stack generator — the /build guides' concrete stack, narrowed by four
@@ -41,7 +43,7 @@ export const metadata: Metadata = {
   title: "Fitness app stack generator",
   description:
     "Answer four questions, get a concrete stack: the health data types, the APIs that fit, and the reason each survived the cut. Built from verified data.",
-  alternates: { canonical: PATH },
+  alternates: pageMirrorAlternates(PATH),
   openGraph: {
     type: "website",
     title: "Fitness app stack generator",
@@ -219,6 +221,7 @@ export default function StackGeneratorPage() {
         </p>
 
         <MoreTools path={PATH} />
+        <ToolNextStep path="/tools/stack-generator" />
       </div>
     </Container>
   );

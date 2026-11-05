@@ -302,6 +302,10 @@ const MAP: Record<string, Note> = {
     anchor: "KinesteX",
     lead: "If you would rather ship a hosted camera experience than tune a pose pipeline, see",
   },
+  "/tools/rep-counter-playground": {
+    anchor: "KinesteX",
+    lead: "This playground is a single angle rule you tune by hand, and no accuracy is claimed for it or for any vendor. If you would rather integrate rep counting than tune thresholds per exercise yourself, check the exercise coverage of a packaged motion SDK such as",
+  },
   "/tools/keypoint-playground": {
     anchor: "KinesteX",
     lead: "If you would rather not map keypoints between models at all, a packaged motion SDK hands you reps and form events instead. One, from the company that funds this site, is",

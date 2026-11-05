@@ -1,0 +1,227 @@
+[
+  {
+    "claim": "Nutritionix Starter is $499 a month.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "$ 499 /Month*"
+  },
+  {
+    "claim": "Nutritionix MVP is $999 a month.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "$ 999 /Month*"
+  },
+  {
+    "claim": "Nutritionix Unicorn starts at $1,850 a month.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "$ 1850 /Month*"
+  },
+  {
+    "claim": "Nutritionix bills its API plans annually.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "API plans are billed annually."
+  },
+  {
+    "claim": "Nutritionix plans are sized by monthly active users: up to 2, 200 and 1,000, then customizable.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "up to 2 up to 200 up to 1000 Customizable"
+  },
+  {
+    "claim": "The free Nutritionix plan is the Business Trial.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "Business Trial"
+  },
+  {
+    "claim": "Attribution is required on every Nutritionix plan except Unicorn, where it is removable.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "Attribution Requirement Required Required Required Removable Option"
+  },
+  {
+    "claim": "Upgrades start with a scheduled call.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "To get started with upgraded API access, please schedule a call with a team member using the form below."
+  },
+  {
+    "claim": "Freemium apps, hardware products and apps over 100K monthly active users are told to ask for a custom plan.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "If you have a freemium app business model, sell a hardware product, or have more than 100K monthly active"
+  },
+  {
+    "claim": "Nutritionix no longer offers non-commercial free trials.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "Unfortunately, we no longer offer non-commercial free trials."
+  },
+  {
+    "claim": "Nutritionix withdrew its public free-access tier because of misuse of free trial accounts.",
+    "url": "https://developer.nutritionix.com/",
+    "quote": "due to increased misuse of free trial accounts, we are no longer able to maintain a public free-access tier."
+  },
+  {
+    "claim": "Nutritionix offers a limited trial through sales.",
+    "url": "https://developer.nutritionix.com/",
+    "quote": "our team would be happy to provide a limited trial account tailored to your use case."
+  },
+  {
+    "claim": "USDA FoodData Central data are public domain under CC0 1.0.",
+    "url": "https://fdc.nal.usda.gov/api-guide",
+    "quote": "USDA FoodData Central data are in the public domain and they are not copyrighted. They are published under CC0 1.0 Universal (CC0 1.0)"
+  },
+  {
+    "claim": "A data.gov API key is required on every FoodData Central request.",
+    "url": "https://fdc.nal.usda.gov/api-guide",
+    "quote": "Anyone may access and use the API. However, a data.gov API key must be incorporated into each API request."
+  },
+  {
+    "claim": "FoodData Central's default limit is 1,000 requests per hour per IP address.",
+    "url": "https://fdc.nal.usda.gov/api-guide",
+    "quote": "FoodData Central currently limits the number of API requests to a default rate of 1,000 requests per hour per IP address"
+  },
+  {
+    "claim": "Going over the limit blocks the key for an hour.",
+    "url": "https://fdc.nal.usda.gov/api-guide",
+    "quote": "Exceeding this limit will cause the API key to be temporarily blocked for 1 hour."
+  },
+  {
+    "claim": "Contact FoodData Central for a higher rate.",
+    "url": "https://fdc.nal.usda.gov/api-guide",
+    "quote": "Contact FoodData Central if a higher request rate setting is needed."
+  },
+  {
+    "claim": "The FoodData Central API covers SR Legacy, the USDA Global Branded Foods Database, Foundation Foods and FNDDS.",
+    "url": "https://fdc.nal.usda.gov/api-guide",
+    "quote": "This new API allows users to obtain Standard Reference (SR) Legacy data, provides the most current data from the USDA Global Branded Foods Database, and give users the ability to search for specific foods in Foundation Foods and the Food and Nutrient Database for Dietary Studies (FNDDS) 2019-2020."
+  },
+  {
+    "claim": "FoodData Central's home page states the CC0 licensing.",
+    "url": "https://fdc.nal.usda.gov/",
+    "quote": "USDA FoodData Central data are in the public domain and they are not copyrighted."
+  },
+  {
+    "claim": "The Open Food Facts database is under the ODbL.",
+    "url": "https://world.openfoodfacts.org/data",
+    "quote": "The Open Food Facts database is available under the Open Database License (ODbL) ."
+  },
+  {
+    "claim": "Open Food Facts requires attribution of any public use.",
+    "url": "https://world.openfoodfacts.org/data",
+    "quote": "Attribute: You must attribute any public use of the database, or works produced from the database, in the manner specified in the ODbL"
+  },
+  {
+    "claim": "Publicly using an adapted Open Food Facts database requires offering it under the ODbL.",
+    "url": "https://world.openfoodfacts.org/data",
+    "quote": "Share-Alike: If you publicly use any adapted version of this database, or works produced from an adapted database, you must also offer that adapted database under the ODbL and share your modifications back."
+  },
+  {
+    "claim": "Reading from Open Food Facts needs no authentication beyond a custom User-Agent.",
+    "url": "https://openfoodfacts.github.io/openfoodfacts-server/api/",
+    "quote": "READ operations (getting info about a product, etc...) do not require authentication other than the custom User-Agent."
+  },
+  {
+    "claim": "Open Food Facts allows 15 product reads a minute per IP.",
+    "url": "https://openfoodfacts.github.io/openfoodfacts-server/api/",
+    "quote": "15 req/min/IP address for all read product queries"
+  },
+  {
+    "claim": "Open Food Facts allows 10 searches a minute per IP.",
+    "url": "https://openfoodfacts.github.io/openfoodfacts-server/api/",
+    "quote": "10 req/min/IP address for all search queries"
+  },
+  {
+    "claim": "Edamam Food Database API Enterprise Basic Vision is $14 a month with a 30-day trial.",
+    "url": "https://developer.edamam.com/food-database-api",
+    "quote": "Enterprise Basic Vision $14 per month Prepaid Subscribe now 30 days Trial period"
+  },
+  {
+    "claim": "Edamam Food Database API Enterprise Core is $69 a month.",
+    "url": "https://developer.edamam.com/food-database-api",
+    "quote": "$69 per month"
+  },
+  {
+    "claim": "Included calls: 100,000, 750,000 and 5,000,000 a month.",
+    "url": "https://developer.edamam.com/food-database-api",
+    "quote": "Included API calls 100,000 calls/month 750,000 calls/month 5,000,000 calls/month"
+  },
+  {
+    "claim": "Edamam Nutrition Analysis API Enterprise Basic Multilingual is $29 a month with a 10-day trial.",
+    "url": "https://developer.edamam.com/edamam-nutrition-api",
+    "quote": "Enterprise Basic Multilingual $29 per month Prepaid Subscribe now 10 days Trial period"
+  },
+  {
+    "claim": "Nutrition Analysis recipe limits of 2,500 and 50,000 a month.",
+    "url": "https://developer.edamam.com/edamam-nutrition-api",
+    "quote": "Full recipes analyzed monthly 2,500 recipes/month 50,000 recipes/month"
+  },
+  {
+    "claim": "Edamam allows only human, end-user-driven requests and prohibits automated requests to collect, scrape or save data.",
+    "url": "https://developer.edamam.com/food-database-api",
+    "quote": "All plans allow only human, end user driven requests. The terms of the API prohibit any automated programatic requests with the goal to collect, scrape or save data provided by the API."
+  },
+  {
+    "claim": "Edamam caching is limited to the four basic macronutrients on plans that allow it.",
+    "url": "https://developer.edamam.com/edamam-nutrition-api",
+    "quote": "API customers can cache only the four basic macro nutrient data points - protein, total fat, net carbs, and calories."
+  },
+  {
+    "claim": "Edamam's Meal Planner API has a free Developer plan with 10,000 meal-plan calls a month.",
+    "url": "https://developer.edamam.com/meal-planner-api",
+    "quote": "Meal plan calls per month - 10,000"
+  },
+  {
+    "claim": "Spoonacular has five plans: Free, Cook $29, Culinarian $79, Chef $149, and custom Enterprise.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "We offer five plans: Free ($0/month), Cook ($29/month), Culinarian ($79/month), Chef ($149/month), and Enterprise (custom pricing for large clients)."
+  },
+  {
+    "claim": "Spoonacular's free plan gives 50 points a day.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "50 points/day then no more calls"
+  },
+  {
+    "claim": "Cook includes 1,500 points a day, then $0.005 a point.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "1,500 points/day then $0.005 /point"
+  },
+  {
+    "claim": "Culinarian includes 4,500 points a day, then $0.004 a point.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "4,500 points/day then $0.004 /point"
+  },
+  {
+    "claim": "Chef includes 10,000 points a day, then $0.002 a point.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "10,000 points/day then $0.002 /point"
+  },
+  {
+    "claim": "Spoonacular Enterprise starts at $300.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "starting at $300"
+  },
+  {
+    "claim": "A Spoonacular call usually costs 1 point plus 0.01 points per result.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "usually 1 point per request plus 0.01 points per result, with exceptions"
+  },
+  {
+    "claim": "On the free plan an exhausted quota returns HTTP 402.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "On the free plan, when daily quota is used up, the API responds with error code 402 until quota resets."
+  },
+  {
+    "claim": "The daily quota resets at midnight UTC.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "points used today (resets at midnight UTC)"
+  },
+  {
+    "claim": "Spoonacular plans are month to month.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "All plans are month to month and can be cancelled at any time."
+  },
+  {
+    "claim": "Spoonacular allows caching user-requested data for at most an hour.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "You may cache user-requested data to improve performance (for a maximum of 1 hour)."
+  },
+  {
+    "claim": "RapidAPI's free plan needs a credit card because overage applies; subscribing directly needs none.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "RapidAPI requires a credit card because overage charges apply if you exceed allotted requests. If you subscribe directly through our API platform, there is no"
+  }
+]

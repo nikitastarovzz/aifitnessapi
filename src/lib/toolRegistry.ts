@@ -69,6 +69,12 @@ export const TOOL_LOOKUPS: Tool[] = [
     blurb:
       "Click a joint and see its index in BlazePose, COCO, OpenPose, ML Kit and Apple Vision, then copy an index map built from matching names only.",
   },
+  {
+    path: "/tools/exercise-form-rules",
+    name: "Exercise form rules",
+    blurb:
+      "The joint-angle thresholds open-source exercise trackers use for squats, push-ups, lunges, planks, curls and presses, each quoted from its code; null where none says.",
+  },
 ];
 
 /** The planners and demos already published on the site. Blurbs match the
@@ -119,13 +125,37 @@ export const TOOL_PLANNERS: Tool[] = [
     path: "/tools/pose-benchmark",
     name: "Pose model benchmark",
     blurb:
-      "Time MediaPipe Pose Landmarker lite, full and heavy on your own device and copy the latency table as markdown.",
+      "Time MediaPipe Pose Landmarker lite, full and heavy on your own device, copy the latency table as markdown and submit it to the leaderboard.",
+  },
+  {
+    path: "/tools/rep-counter-playground",
+    name: "Rep counter playground",
+    blurb:
+      "Load a workout video, see joint angles over time, tune a hysteresis rep counter's thresholds and export the config as JSON. The video stays in your browser.",
   },
   {
     path: "/tools/heart-rate-lab",
     name: "Bluetooth heart-rate lab",
     blurb:
       "Connect a BLE heart-rate strap in the browser: every 0x2A37 byte decoded, and whether it sends the RR intervals HRV needs.",
+  },
+  {
+    path: "/tools/ftms-lab",
+    name: "FTMS lab",
+    blurb:
+      "Connect a treadmill, indoor bike, rower or cross trainer over Web Bluetooth, or paste hex: every FTMS flag bit and field decoded against the SIG structure.",
+  },
+  {
+    path: "/tools/cycling-power-lab",
+    name: "Cycling power and cadence lab",
+    blurb:
+      "Cycling Power (0x2A63) and CSC (0x2A5B) decoded, with cadence and speed computed from cumulative revolutions and event times, live or pasted.",
+  },
+  {
+    path: "/tools/ble-gatt-explorer",
+    name: "BLE GATT explorer",
+    blurb:
+      "Connect any Bluetooth LE device: services and characteristics by SIG name, read or notify, values decoded where the SIG defines a structure.",
   },
   {
     path: "/daily",
@@ -138,6 +168,12 @@ export const TOOL_PLANNERS: Tool[] = [
     name: "Step lab",
     blurb:
       "Walk with your phone and watch a visible step detector count; move its threshold and interval to see why two apps disagree.",
+  },
+  {
+    path: "/tools/apple-health-explorer",
+    name: "Apple Health export explorer",
+    blurb:
+      "Open your iPhone Health export.zip in the browser: record types with counts and dates, sources, a daily chart and a CSV per type. Nothing is uploaded.",
   },
 ];
 

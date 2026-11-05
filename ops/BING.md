@@ -24,7 +24,7 @@ Google does not use it.
 |---|---|---|
 | `bingbot` explicitly allowed | `src/app/robots.txt/route.ts` | Named group, same shared `RULES` as every other group (`Allow: /`). Was already allowed via `User-agent: *`; now it is legible and inside the "a Disallow reaches every named agent" rule. No `Crawl-delay` — see below. |
 | Sitemap advertised to every crawler | same file, `Sitemap:` line, outside the groups | `https://aifitnessapi.com/sitemap.xml`. Necessary, not sufficient — Bing still wants it submitted in the console. |
-| `lastmod` accuracy | `src/app/sitemap.ts` | Every row is dated from the page's own declared `dateModified`, or carries no `lastmod` at all. Never build time. Re-audited 2026-10-03; `npm run qa` gates it per row (`SITEMAP-LASTMOD`). |
+| `lastmod` accuracy | `src/lib/sitemap.ts` (index at `/sitemap.xml`, one child per section at `/sitemaps/<section>.xml`) | Every row is dated from the page's own declared `dateModified`, or carries no `lastmod` at all. Never build time. Re-audited 2026-10-03; `npm run qa` gates it per row (`SITEMAP-LASTMOD`). |
 | IndexNow key file | `public/7ab02ba01079101c36facfcb28908c50.txt` | Public by design. IndexNow 403s if it stops being reachable. |
 | IndexNow on every push to `main` | `.github/workflows/indexnow.yml` | Automatic, diff mode. No one has to remember `npm run indexnow`. |
 | IndexNow `--all` after an outage | `.github/workflows/uptime.yml`, the recovery branch | Fires once when the probes go from failing to passing with a site-down issue open. |

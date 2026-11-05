@@ -21,12 +21,14 @@ import { releasedEngagement, ENGAGEMENT_PATH } from "@/data/engagement";
 import { releasedWatchApps, WATCH_PATH } from "@/data/watchApps";
 import { releasedAccessibility, A11Y_PATH } from "@/data/accessibility";
 import { API_ENTRIES, APIS_PATH, CATEGORY_LABELS, DEV_COST_LABELS } from "@/data/apis";
+import { vendorChangesPath, vendorTimelines } from "@/lib/vendorChanges";
 import { releasedHkGroups, HK_BASE } from "@/data/hkGroupPages";
 import { HK_IDENTIFIERS } from "@/data/healthkitIdentifiers";
 import { releasedAudioCoaching, AUDIO_PATH } from "@/data/audioCoaching";
 import { releasedHealthkitQueries, HKQ_PATH } from "@/data/healthkitQueries";
 import { releasedPhoneSensors, SENSORS_PATH } from "@/data/phoneSensors";
 import { releasedHealthConnectApi, HCAPI_PATH } from "@/data/healthConnectApi";
+import { releasedOwnYourData, OWN_DATA_PATH } from "@/data/ownYourData";
 import { HK_METADATA_KEYS } from "@/data/healthkitMetadataKeys";
 import { HS_DATA_TYPES } from "@/data/healthServicesDataTypes";
 import { POSE_SCHEMES } from "@/data/poseKeypoints";
@@ -76,6 +78,7 @@ import {
   typePath as ghapiTypePath,
   typeTitle as ghapiTypeTitle,
 } from "@/data/ghapiPages";
+import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
 
 /**
  * Site search index — generated from the same data modules as the pages
@@ -146,6 +149,7 @@ export function GET() {
     [HKQ_PATH, "HealthKit Queries", releasedHealthkitQueries()],
     [SENSORS_PATH, "Phone Sensors", releasedPhoneSensors()],
     [HCAPI_PATH, "Health Connect API", releasedHealthConnectApi()],
+    [OWN_DATA_PATH, "Own Your Data", releasedOwnYourData()],
   ];
 
   const hubBlurbs: Record<string, string> = {
@@ -173,6 +177,7 @@ export function GET() {
     [AUDIO_PATH]: "Workout cues over the user's music: ducking, interruptions, background audio, Android audio focus, TextToSpeech, watch speakers.",
     [HKQ_PATH]: "How each HealthKit query class works and where it bites: sample, statistics, anchored, observer, descriptors, routes, rings.",
     [SENSORS_PATH]: "Fitness features from the phone's own motion sensors: steps, activity, altitude, head motion, and the Android permission rules around them.",
+    [OWN_DATA_PATH]: "Export your own data: Apple Health, Health Connect, Samsung Health, Garmin, Fitbit, Oura, Polar, Strava, Suunto, COROS, with personal-use APIs and notebooks.",
     [HCAPI_PATH]: "How each Health Connect Jetpack call works and where it bites: readRecords paging, aggregates, getChanges, upserts, deletes, permissions, background and history reads, routes, training plans.",
     [ENGAGEMENT_PATH]: "Getting people back: notifications, Live Activities, widgets, streaks, leaderboards \u2014 and how to measure lift honestly.",
   };
@@ -456,6 +461,15 @@ export function GET() {
   add("/graveyard", "The Fitness API Graveyard", "Shut-down, dying and deprecated fitness and health APIs, SDKs and endpoints, with end dates, replacements and each vendor's own words.", "graveyard killed shut down shutdown sunset retired deprecated discontinued dead apis end of life removed endpoints fitbit google fit oura strava whoop samsung");
   add("/picker", "Which Fitness API Should I Use? (interactive)", "Three questions, a tailored recommendation.", "picker tool quiz choose");
   add("/cost-planner", "Fitness API Cost Planner (interactive)", "The cost structure of your stack: billing models, user-side costs, approval gates, eng effort.", "cost calculator pricing budget planner tool");
+  for (const t of vendorTimelines()) {
+    add(
+      vendorChangesPath(t.api.id),
+      `${t.api.short} API Changes & Deadlines Timeline`,
+      `${t.events.length} dated ${t.api.short} changes from the tracker, graded confirmed vs reported, with an RSS feed.`,
+      [t.api.aliases.join(" "), "changes deadlines deprecations timeline history rss feed", ...t.events.map((e) => e.title)].join(" "),
+    );
+  }
+  add("/press", "Press Kit: Citable Fitness API Numbers", "Counts of the APIs, changes, deprecations, datasets and fresh pages this site tracks, each with its source file and date.", "press media journalist statistics numbers stats cite citation facts figures kit");
   add("/changes", "Fitness API Changes & Deadlines Tracker", "The dated, graded record of ecosystem changes: deprecations, deadlines, term changes \u2014 confirmed vs reported.", "changes changelog deadlines deprecations tracker news updates");
   add("/2026", "Fitness APIs in 2026: the year in numbers", "One computed stat per slide: tracked changes by month, pricing changes, the Google Health API launch, the Fitbit turn-off, releases, freshness.", "2026 year in review recap so far statistics numbers timeline share changes releases");
   add("/state-of-fitness-apis-2026", "The State of Fitness APIs 2026", "Original research: 25 APIs surveyed on access structure \u2014 free vs gated vs contact-sales \u2014 with an open CC BY dataset.", "state of fitness apis report research dataset statistics survey 2026");
@@ -491,9 +505,15 @@ export function GET() {
   add("/tools/stack-generator", "Fitness app stack generator", "Four questions in, a concrete recommended stack out, composed from the directory and type data with reasons stated.", "stack generator wizard recommend apis tool");
   add("/tools/keypoint-playground", "Pose keypoint playground", "Click a joint and see its index in BlazePose, COCO, OpenPose, ML Kit and Apple Vision, then copy an index map built from matching names only.", "pose keypoint index mapping convert coco 17 blazepose 33 mediapipe openpose body_25 ml kit apple vision joint landmark crosswalk converter python typescript dict tool");
   add("/challenge", "30-Second Webcam Rep Challenge", "Squats or jumping jacks for 30 seconds, counted live in your browser by a pose model and angle rules; get a share card. Camera frames stay on your device.", "challenge game webcam rep counter squat jumping jack 30 seconds pose estimation mediapipe share score card demo");
-  add("/tools/pose-benchmark", "Pose model benchmark on your device", "Run MediaPipe Pose Landmarker lite, full and heavy in the browser; get load time, median and p95 latency and FPS as a markdown table.", "pose benchmark latency fps mediapipe pose landmarker lite full heavy movenet webgl wasm gpu delegate speed test tool");
+  add("/tools/pose-benchmark", "Pose model benchmark on your device", "Run MediaPipe Pose Landmarker lite, full and heavy in the browser; get load time, median and p95 latency and FPS as a markdown table, and submit it to the leaderboard.", "pose benchmark latency fps mediapipe pose landmarker lite full heavy movenet webgl wasm gpu delegate speed test leaderboard crowdsourced results tool");
+  add("/tools/rep-counter-playground", "Rep counter playground", "Load a workout video, see joint angles over time, tune a hysteresis rep counter's thresholds and export the config as JSON. The video stays in your browser.", "rep counter repetition counting video pose estimation mediapipe pose landmarker joint angle knee hip elbow shoulder threshold hysteresis squat push-up curl config json tool");
+  add("/tools/exercise-form-rules", "Exercise form rules: joint-angle thresholds", "The joint-angle thresholds open-source exercise trackers use for squats, push-ups, lunges, planks, curls and presses, each quoted from its code; null where none says.", "exercise form rules joint angle thresholds squat knee angle push-up elbow angle lunge plank hip bicep curl shoulder press deadlift dataset open source pose estimation json csv");
   add("/tools/heart-rate-lab", "Bluetooth heart-rate lab", "Connect a BLE heart-rate strap in the browser: every 0x2A37 byte decoded, and whether it sends the RR intervals HRV needs.", "web bluetooth heart rate monitor strap chest ble 0x2a37 0x180d rr interval hrv rmssd decoder flags body sensor location battery tool");
+  add("/tools/ftms-lab", "FTMS lab: treadmill, bike and rower data decoded", "Connect a treadmill, indoor bike, rower or cross trainer over Web Bluetooth, or paste hex: every FTMS flag bit and field decoded against the SIG structure.", "ftms fitness machine service 0x1826 treadmill data 0x2acd indoor bike data 0x2ad2 rower data 0x2ad1 cross trainer 0x2ace protocol data format flags more data decoder web bluetooth hex tool");
+  add("/tools/cycling-power-lab", "Cycling power and cadence lab", "Cycling Power (0x2A63) and CSC (0x2A5B) decoded, with cadence and speed computed from cumulative revolutions and event times, live or pasted.", "cycling power measurement 0x2a63 csc measurement 0x2a5b speed cadence sensor crank wheel revolutions event time 1/1024 1/2048 rollover wrap power meter web bluetooth decoder tool");
+  add("/tools/ble-gatt-explorer", "BLE GATT explorer", "Connect any Bluetooth LE device: services and characteristics by SIG name, read or notify, values decoded where the SIG defines a structure.", "ble gatt explorer bluetooth low energy services characteristics uuid read notify web bluetooth acceptalldevices optionalservices decoder sig gss hex tool");
   add("/tools/step-lab", "Step lab: watch a step counter think", "Walk with your phone and watch a visible step detector count; move its threshold and interval to see why two apps disagree.", "step counter pedometer accelerometer devicemotion step detection threshold peak why step counts differ apps disagree phone sensor tool");
+  add("/tools/apple-health-explorer", "Apple Health export explorer", "Open your iPhone Health export.zip in the browser: record types with counts and dates, sources, a daily chart and a CSV per type. Nothing is uploaded.", "apple health export xml zip export.xml parse viewer explorer csv convert healthkit records steps heart rate sleep own data personal download browser no upload tool");
   add("/newsletter", "The AIFitnessAPI newsletter", "What changed in fitness and health APIs, verified before it is sent. The archive is the sample.", "newsletter subscribe email digest updates");
   add("/changelog", "Site changelog", "Every content change, rendered from the operational log it is generated from.", "changelog history what changed updates");
   add("/corrections", "Corrections log", "Published corrections, and the errors the build gates caught before publish.", "corrections errata errors fixed accuracy");
@@ -502,6 +522,6 @@ export function GET() {
   for (const p of getAllPosts()) add(`/blog/${p.slug}`, p.title, p.description, "blog post");
 
   return Response.json(recs, {
-    headers: { "cache-control": "public, max-age=3600" },
+    headers: { "cache-control": MACHINE_CACHE_CONTROL },
   });
 }

@@ -1,0 +1,42 @@
+[
+  {
+    "claim": "Email when ready.",
+    "url": "https://support.polar.com/en/how-to-download-all-your-data-from-polar-flow",
+    "quote": "You will get an email when your data is ready to be downloaded."
+  },
+  {
+    "claim": "Two weeks to download.",
+    "url": "https://support.polar.com/en/how-to-download-all-your-data-from-polar-flow",
+    "quote": "You will have two weeks to download the data, once you get the email."
+  },
+  {
+    "claim": "Contents: data you provided and most device data.",
+    "url": "https://support.polar.com/en/how-to-download-all-your-data-from-polar-flow",
+    "quote": "and most of the data coming from the Polar devices or Polar apps you use."
+  },
+  {
+    "claim": "Derived activity and sleep excluded.",
+    "url": "https://support.polar.com/en/how-to-download-all-your-data-from-polar-flow",
+    "quote": "activity and sleep information are not included in the exported file."
+  },
+  {
+    "claim": "Team Pro: download or transfer via the Team Pro API.",
+    "url": "https://support.polar.com/en/how-to-download-all-your-data-from-polar-flow",
+    "quote": "Data can be downloaded or transferred to a third party via the Team Pro API."
+  },
+  {
+    "claim": "AccessLink: the channel to training and daily activity data.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "AccessLink is the access channel to the training and daily activity data recorded by Polar devices."
+  },
+  {
+    "claim": "Any registered Polar Flow user can create an API client.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Polar Flow user can create API client to AccessLink by filling application details at"
+  },
+  {
+    "claim": "AccessLink uses OAuth2.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "AccessLink uses OAuth2 as authentication protocol."
+  }
+]

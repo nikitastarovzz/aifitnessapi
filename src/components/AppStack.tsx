@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { entityAnchor } from "@/data/headTerms";
 import { HK_IDENTIFIERS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { ROWS as MATRIX_ROWS } from "@/data/matrix";
 import { API_ENTRIES } from "@/data/apis";
@@ -239,7 +240,7 @@ export default function AppStack({ path }: { path: string }) {
               href={`/apis/${a.id}`}
               className="inline-block rounded-full border border-[var(--border)] px-3 py-1 text-sm text-[var(--fg)] hover:border-brand-400"
             >
-              {a.short}
+              {entityAnchor(a)}
             </Link>
           </li>
         ))}

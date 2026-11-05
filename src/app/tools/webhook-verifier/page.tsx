@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -8,6 +9,7 @@ import WebhookVerifier from "@/components/tools/WebhookVerifier";
 import { WEBHOOK_VENDORS } from "@/lib/webhookVerifier.mjs";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
+import ToolNextStep from "@/components/ToolNextStep";
 
 /**
  * "Is this webhook real, and what do I do with it?" — asked with a request
@@ -33,7 +35,7 @@ export const metadata: Metadata = {
   // Plain, not `absolute` — the layout template appends the site suffix.
   title: TITLE,
   description: DESCRIPTION,
-  alternates: { canonical: PATH },
+  alternates: pageMirrorAlternates(PATH),
   openGraph: {
     type: "website",
     title: TITLE,
@@ -216,6 +218,7 @@ export default function WebhookVerifierPage() {
         </p>
 
         <MoreTools path={PATH} />
+        <ToolNextStep path="/tools/webhook-verifier" />
       </div>
     </Container>
   );

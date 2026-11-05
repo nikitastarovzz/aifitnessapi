@@ -1,0 +1,42 @@
+[
+  {
+    "claim": "Membership Hub export for every user.",
+    "url": "https://support.ouraring.com/hc/en-us/articles/360025441594-Export-Share-Your-Oura-Data",
+    "quote": "This option is available for all Oura users, with or without active membership"
+  },
+  {
+    "claim": "Up to 10 days.",
+    "url": "https://support.ouraring.com/hc/en-us/articles/360025441594-Export-Share-Your-Oura-Data",
+    "quote": "Note that it may take up to 10 days from the time of request before your data is available for download"
+  },
+  {
+    "claim": "Durations in seconds.",
+    "url": "https://support.ouraring.com/hc/en-us/articles/360025441594-Export-Share-Your-Oura-Data",
+    "quote": "Time duration for downloaded Oura data is presented in total seconds, not in hours and minutes."
+  },
+  {
+    "claim": "Data models in the API V2 docs.",
+    "url": "https://support.ouraring.com/hc/en-us/articles/360025441594-Export-Share-Your-Oura-Data",
+    "quote": "Data models are described in the documentation for the Oura API V2"
+  },
+  {
+    "claim": "API fetches your data.",
+    "url": "https://support.ouraring.com/hc/en-us/articles/360025441594-Export-Share-Your-Oura-Data",
+    "quote": "The Oura API can be used to fetch your Oura data or build an integration that allows anyone to share their Oura data with a third-party service."
+  },
+  {
+    "claim": "Shareable Reports: no adjusting timeframe or type.",
+    "url": "https://support.ouraring.com/hc/en-us/articles/360025441594-Export-Share-Your-Oura-Data",
+    "quote": "Currently, you cannot adjust the timeframes or type of data that is shared."
+  },
+  {
+    "claim": "Oura API authenticates with OAuth2.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "The Oura Cloud API supports authentication through the industry-standard OAuth2 protocol."
+  },
+  {
+    "claim": "Docs menu marks personal access tokens deprecated.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "Personal Access Tokens [Deprecated]"
+  }
+]

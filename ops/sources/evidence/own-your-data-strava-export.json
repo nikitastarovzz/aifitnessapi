@@ -1,0 +1,67 @@
+[
+  {
+    "claim": "Bulk export steps: Get Started under Download your account.",
+    "url": "https://support.strava.com/en-us/articles/15401919-how-do-i-export-my-strava-data",
+    "quote": "Select \"Get Started\" under \"Download your account.\""
+  },
+  {
+    "claim": "Bulk export: Request download.",
+    "url": "https://support.strava.com/en-us/articles/15401919-how-do-i-export-my-strava-data",
+    "quote": "On the next page, select \"Request download.\""
+  },
+  {
+    "claim": "Strava emails a link; may take a few hours.",
+    "url": "https://support.strava.com/en-us/articles/15401919-how-do-i-export-my-strava-data",
+    "quote": "You will receive an email with a link to download your data (this may take a few hours)."
+  },
+  {
+    "claim": "Exporting is only available on the website.",
+    "url": "https://support.strava.com/en-us/articles/15401919-how-do-i-export-my-strava-data",
+    "quote": "Please note that exporting your data is only available on the Strava website."
+  },
+  {
+    "claim": "Bulk export available since May 25, 2018.",
+    "url": "https://support.strava.com/en-us/articles/15401919-how-do-i-export-my-strava-data",
+    "quote": "As of May 25th, 2018, Strava provides the option to export an archive of your account."
+  },
+  {
+    "claim": "Export Original is often FIT.",
+    "url": "https://support.strava.com/en-us/articles/15401919-how-do-i-export-my-strava-data",
+    "quote": "In many cases, the original will be in FIT (Flexible and Interoperable Data Transfer) format."
+  },
+  {
+    "claim": "TCX via /export_tcx; GPS only.",
+    "url": "https://support.strava.com/en-us/articles/15401919-how-do-i-export-my-strava-data",
+    "quote": "TCX export only works for activities with GPS data, which may exclude indoor activities with no GPS."
+  },
+  {
+    "claim": "TCX carries heart rate, cadence and watts.",
+    "url": "https://support.strava.com/en-us/articles/15401919-how-do-i-export-my-strava-data",
+    "quote": "TCX files contain more information than GPX files, such as heart rate, cadence, and watts."
+  },
+  {
+    "claim": "GPX without GPS is unreadable or empty.",
+    "url": "https://support.strava.com/en-us/articles/15401919-how-do-i-export-my-strava-data",
+    "quote": "any activity that does not contain GPS data will produce an unreadable or empty file"
+  },
+  {
+    "claim": "GPX includes power-meter power, not estimated power.",
+    "url": "https://support.strava.com/en-us/articles/15401919-how-do-i-export-my-strava-data",
+    "quote": "GPX files exported from Strava will contain power data recorded with a power meter but not estimated power."
+  },
+  {
+    "claim": "New apps start in single-player mode.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "All new applications start in single-player mode."
+  },
+  {
+    "claim": "Single-player: only your own account can authenticate.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "only your own Strava account can authenticate with the app"
+  },
+  {
+    "claim": "Subscription prerequisite.",
+    "url": "https://developers.strava.com/docs/getting-started/",
+    "quote": "A Strava subscription is a prerequisite for creating an app."
+  }
+]

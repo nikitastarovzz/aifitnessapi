@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { headTermOwner } from "@/data/headTerms";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { absoluteUrl } from "@/lib/site";
-import { GROUPS, termId, termSlug } from "@/data/glossary";
+import { GLOSSARY_SET_ID, GROUPS, termId, termSlug } from "@/data/glossary";
+import { orgRef } from "@/lib/schema";
 import PageSummary from "@/components/PageSummary";
 
 const PATH = "/glossary";
@@ -42,20 +44,42 @@ const alpha = GROUPS.flatMap((g) => g.terms)
   .map((t) => t.term)
   .sort((a, b) => a.localeCompare(b));
 
+/**
+ * A held head term ("Fitness API", "HealthKit": src/data/headTerms.ts) links
+ * its name to the page that owns the term, and the page that explains it in
+ * depth keeps a link under its own name, so neither link is lost.
+ */
+const IN_DEPTH: Record<string, string> = {
+  "/learn/what-is-a-fitness-api": "What is a fitness API?",
+  "/integrate/healthkit": "Apple HealthKit integration guide",
+};
+
 export default function GlossaryPage() {
   const url = absoluteUrl(PATH);
+  // One DefinedTermSet with a stable @id, every term in it with its own @id
+  // (the #term-… anchor rendered below), its slug as termCode and the set it
+  // belongs to. Spokes that are a term's canonical explanation emit the same
+  // DefinedTerm @id in their `about` (lib/schema.ts spokeGraph), so a term is
+  // one node wherever it appears. qa's GLOSSARY-* gates hold the anchors.
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "DefinedTermSet",
+    "@id": GLOSSARY_SET_ID,
     name: "Fitness & Health API Glossary",
+    description: DESCRIPTION,
     url,
+    inLanguage: "en",
+    publisher: orgRef(),
+    dateModified: UPDATED,
     hasDefinedTerm: GROUPS.flatMap((g) =>
       g.terms.map((t) => ({
         "@type": "DefinedTerm",
         "@id": termId(t.term),
         name: t.term,
+        termCode: termSlug(t.term),
         description: t.def,
         url: absoluteUrl(t.href),
+        inDefinedTermSet: { "@id": GLOSSARY_SET_ID },
       })),
     ),
   };
@@ -88,9 +112,20 @@ export default function GlossaryPage() {
                     className="grid scroll-mt-24 gap-1 py-4 sm:grid-cols-[minmax(0,14rem)_1fr] sm:gap-6"
                   >
                     <dt className="font-semibold text-[var(--fg)]">
-                      <Link href={t.href} className="hover:text-brand-600">{t.term}</Link>
+                      <Link href={headTermOwner(t.term) ?? t.href} className="hover:text-brand-600">{t.term}</Link>
                     </dt>
-                    <dd className="text-sm leading-relaxed text-[var(--muted)]">{t.def}</dd>
+                    <dd className="text-sm leading-relaxed text-[var(--muted)]">
+                      {t.def}
+                      {headTermOwner(t.term) && headTermOwner(t.term) !== t.href && (
+                        <>
+                          {" "}
+                          <Link href={t.href} className="text-brand-600 hover:text-brand-500">
+                            {IN_DEPTH[t.href] ?? "In depth"}
+                          </Link>
+                          .
+                        </>
+                      )}
+                    </dd>
                   </div>
                 ))}
               </dl>

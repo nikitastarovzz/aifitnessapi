@@ -1,5 +1,6 @@
 import { site, absoluteUrl } from "@/lib/site";
 import { TASKS_VISION_VERSION, VERIFIED_ON as POSE_BENCH_VERIFIED_ON } from "@/lib/poseBenchmark";
+import { FORM_RULES_PRIMARY_QUERY, REP_PLAYGROUND_PRIMARY_QUERY, formRulesText, leaderboardText, repPlaygroundText } from "@/lib/poseToolsText";
 import { POSE_CROSSWALK, POSE_KEYPOINTS_FETCHED_ON, POSE_SCHEMES } from "@/data/poseKeypoints";
 import { totalPairs } from "@/lib/keypointMapping.mjs";
 import { DEFAULT_PARAMS as STEP_DEFAULTS, REPLAY_TRUE_STEPS as STEP_REPLAY_TRUE } from "@/lib/stepDetector.mjs";
@@ -42,6 +43,7 @@ import { releasedAudioCoaching, AUDIO_PATH } from "@/data/audioCoaching";
 import { releasedHealthkitQueries, HKQ_PATH } from "@/data/healthkitQueries";
 import { releasedPhoneSensors, SENSORS_PATH } from "@/data/phoneSensors";
 import { releasedHealthConnectApi, HCAPI_PATH } from "@/data/healthConnectApi";
+import { releasedOwnYourData, OWN_DATA_PATH } from "@/data/ownYourData";
 import { orderedRecords, recordPath, recordH1, recordCapsule, recordFaqs, HC_BASE } from "@/data/hcPages";
 import {
   GHAPI_BASE,
@@ -305,14 +307,45 @@ function toolLines(): string[] {
   out.push("Primary query: mediapipe pose landmarker benchmark");
   out.push("");
   out.push(
-    `A client-side tool that loads Google's @mediapipe/tasks-vision ${TASKS_VISION_VERSION} runtime and the Pose Landmarker lite, full and heavy model files when the reader presses Run, times them on the reader's own camera or a synthetic test frame with the GPU and CPU delegates, and reports load time, median and p95 inference time, FPS and the browser's device details as a markdown table. Frames never leave the tab; the runtime itself posts a usage report to Google (task name, running mode, OS family, library version and timing counters, no images). The page publishes no latency or accuracy figure of its own: the only honest number is the one measured on the target hardware. MoveNet is not included because its default weights load from tfhub.dev, which could not be reached to verify on ${POSE_BENCH_VERIFIED_ON}.`,
+    `A client-side tool that loads Google's @mediapipe/tasks-vision ${TASKS_VISION_VERSION} runtime and the Pose Landmarker lite, full and heavy model files when the reader presses Run, times them on the reader's own camera or a synthetic test frame with the GPU and CPU delegates, and reports load time, median and p95 inference time, FPS and the browser's device details as a markdown table. Frames never leave the tab; the runtime itself posts a usage report to Google (task name, running mode, OS family, library version and timing counters, no images). The page publishes no latency or accuracy figure of its own: the only honest number is the one measured on the target hardware. MoveNet is not included because its default weights load from tfhub.dev, which could not be reached to verify on ${POSE_BENCH_VERIFIED_ON}. ${leaderboardText()}`,
   );
+  out.push("");
+  out.push(`## Rep counter playground (runs on your device) — ${absoluteUrl("/tools/rep-counter-playground")}`);
+  out.push(`Primary query: ${REP_PLAYGROUND_PRIMARY_QUERY}`);
+  out.push("");
+  out.push(repPlaygroundText());
+  out.push("");
+  out.push(`## Exercise form rules: joint-angle thresholds from open-source trackers — ${absoluteUrl("/tools/exercise-form-rules")}`);
+  out.push(`Primary query: ${FORM_RULES_PRIMARY_QUERY}`);
+  out.push("");
+  out.push(formRulesText());
   out.push("");
   out.push(`## Bluetooth heart-rate lab (runs on your device) — ${absoluteUrl("/tools/heart-rate-lab")}`);
   out.push("Primary query: does my heart rate strap send rr intervals");
   out.push("");
   out.push(
     "A client-side Web Bluetooth tool. The reader picks a heart-rate device in the browser's chooser; the page subscribes to Heart Rate Measurement (0x2A37) notifications and shows each one as bytes, colored by field, decoded against the Bluetooth SIG's GATT Specification Supplement structure as this site's generated dataset holds it: the Flags octet bit by bit, the uint8 or uint16 heart-rate value, sensor contact, Energy Expended and RR-intervals (1/1024 s each, as many as the remaining octets hold). Whether a device can give HRV is in those bytes: RR intervals are present only when bit 4 of Flags is set, and without them there is no beat-to-beat timing to compute HRV from. The page gives a running yes/no, a demo RMSSD (not a medical measurement), Body Sensor Location and Battery Level where present, a CSV of the session and a share card made on a canvas. Byte order is little-endian per the Web Bluetooth specification's heart-rate example. Browsers without Web Bluetooth get a synthetic replay, labeled as synthetic. Nothing is uploaded or stored.",
+  );
+  out.push("");
+  out.push(`## FTMS lab (runs on your device) — ${absoluteUrl("/tools/ftms-lab")}`);
+  out.push("Primary query: ftms protocol treadmill data format");
+  out.push("");
+  out.push(
+    "A client-side Web Bluetooth tool for the Fitness Machine Service (0x1826). The reader picks a treadmill, indoor bike, rower or cross trainer in the browser's chooser; the page lists the characteristics the service exposes, subscribes to the ones that notify (never the Control Point), reads the Supported Range characteristics once, and decodes each value against the Bluetooth SIG's GATT Specification Supplement structure as this site's generated dataset holds it: the Flags field bit by bit, which fields those bits make present, each field's octets, unit and resolution (M × 10^d × 2^b from the field's own \"Represented values\" line). In Treadmill Data (0x2ACD), Instantaneous Speed is present when bit 0 (More Data) is 0 and is in 1/100 km/h; Indoor Bike cadence is in 1/2 rpm. A paste box decodes any hex value, and synthetic two-minute sessions (labeled synthetic) replay without a machine. Fitness Machine Feature, Status, Training Status and Control Point have no gss file in the SIG's repository at the dataset's commit, so they are shown as hex and the lab writes nothing to the machine. Where the SIG's own lines disagree (Resistance Level: d = 1 beside \"Unit is 1\"), both readings are shown. Nothing is uploaded or stored.",
+  );
+  out.push("");
+  out.push(`## Cycling power and cadence lab (runs on your device) — ${absoluteUrl("/tools/cycling-power-lab")}`);
+  out.push("Primary query: calculate cadence from csc measurement crank revolutions");
+  out.push("");
+  out.push(
+    "A client-side Web Bluetooth tool for Cycling Power Measurement (0x2A63) and CSC Measurement (0x2A5B). Neither sends cadence or speed: each sends cumulative wheel and crank revolution counts and the time of the last revolution event. The lab decodes each notification against the Bluetooth SIG's structure and computes cadence (Δcrank revolutions ÷ Δt × 60) and speed (Δwheel revolutions × the circumference the reader enters ÷ Δt) from consecutive pairs, wrapping each counter at its own width. The structures give the tick: 1/1024 s for both CSC event times, but 1/2048 s for the Cycling Power wheel event time and 1/1024 s for its crank. An unchanged event time is reported as no new event, not 0 rpm. Paste mode takes two hex values; a synthetic ride (labeled synthetic) replays with wraps and a coast. Nothing is written to the sensor or uploaded.",
+  );
+  out.push("");
+  out.push(`## BLE GATT explorer (runs on your device) — ${absoluteUrl("/tools/ble-gatt-explorer")}`);
+  out.push("Primary query: web bluetooth gatt explorer");
+  out.push("");
+  out.push(
+    "A client-side Web Bluetooth tool for any Bluetooth LE device. It uses acceptAllDevices and names every service in this site's Bluetooth dataset plus Battery (and any UUID the reader adds) as optionalServices, because the Web Bluetooth specification says a page using acceptAllDevices \"will only be able to use services listed in optionalServices\". It lists services and characteristics by their Bluetooth SIG names, reads or subscribes on request, and decodes values against the SIG's gss structures where the dataset has one, stopping at medfloat16/medfloat32 fields and conditions that are not Flags bits; other values show as hex. A paste box decodes any of those characteristics without a device. Nothing is written to the device or uploaded.",
   );
   out.push("");
   out.push(`## Ship It: a fitness-app survival game — ${absoluteUrl(SHIP_IT_PATH)}`);
@@ -352,6 +385,13 @@ function toolLines(): string[] {
   out.push("");
   out.push(
     `A client-side tool. On a phone, Start reads the browser's devicemotion event (MDN: accelerationIncludingGravity, in m/s², "represents the raw data measured by an accelerometer"; on iOS Safari DeviceMotionEvent.requestPermission() must be called from a tap and resolves "granted" or "denied"), and runs a detector written for the page, not any platform's: acceleration magnitude, an exponential low-pass at ${STEP_DEFAULTS.cutoffHz} Hz, a ${STEP_DEFAULTS.baselineSeconds} s running baseline, and a step at each filtered peak at least a threshold (default ${STEP_DEFAULTS.threshold} m/s²) above the baseline and at least a minimum interval (default ${STEP_DEFAULTS.minIntervalMs} ms) after the last step. Every counted step is marked on the live trace, and sliders recount the whole recording, which is the point: the same walk gives different counts under different settings. Without a sensor it replays a synthetic, labeled trace of ${STEP_REPLAY_TRUE} generated steps (three soft, one double impact, a jitter burst). Motion data never leaves the device; the share card is drawn on a canvas in the browser. The W3C Device Orientation and Motion draft tells browsers to limit acceleration precision to no more than 0.1 m/s² and to expose the API only in secure contexts. Platform step counters are not described beyond what the site's phone-sensor pages quote: Google's motion guide says Android's step counter and detector "are either hardware-based or software-based", and Apple calls CMPedometer's data system-generated. Browser-API sources read ${STEP_LAB_CHECKED_ON}.`,
+  );
+  out.push("");
+  out.push(`## Apple Health export explorer — ${absoluteUrl("/tools/apple-health-explorer")}`);
+  out.push("Primary query: apple health export.xml viewer");
+  out.push("");
+  out.push(
+    "A client-side tool that opens the file the iPhone Health app makes with Export All Health Data (Apple's iPhone User Guide, read 2026-11-05: \"all of your health and fitness data from Health in XML format\"). The reader picks export.zip or export.xml; a Web Worker streams it in chunks (ZIP central directory read, only export.xml inflated with the browser's DecompressionStream) and keeps per-type summaries, so a file of hundreds of megabytes does not have to fit in memory. It lists every record type with count, first and last date, units and sources, the devices named in the file, a daily chart for a chosen type (daily total for types Apple describes as cumulative, daily mean for discrete ones, grouped by the calendar day written on each record) and a CSV per type built by a second pass over the local file. Types link to the site's HealthKit identifier pages. Nothing is uploaded; the page has no server code. Apple publishes no schema for export.xml that the site could find, so the page describes the elements and attributes the tool reads (Record, Workout, ActivitySummary, ExportDate) as its own behavior, not as Apple's format. A synthetic, labeled sample ZIP is provided.",
   );
   out.push("");
   {
@@ -496,6 +536,10 @@ export function fullSections(): FullSection[] {
     c(HCAPI_PATH, releasedHealthConnectApi(), "Health Connect Jetpack API", {
       intro:
         "How each Health Connect Jetpack call works and where it bites, one method or class per page, from Google's own guides and the androidx.health.connect.client reference: readRecords paging, aggregates, getChanges, upserts, deletes, permissions, background and history reads, routes and training plans.",
+    }),
+    c(OWN_DATA_PATH, releasedOwnYourData(), "Exporting your own health and fitness data", {
+      intro:
+        "How a person downloads their own data from each phone platform, wearable and fitness app: the vendor's official export path, the format it states, what it leaves out, any personal-use API, and the Python libraries, from each vendor's own help center or developer page. Where the vendor's page could not be read, the page says so.",
     }),
     { id: HC_BASE.slice(1), title: "Health Connect record reference", hub: HC_BASE, lines: hcRecordLines() },
     { id: HK_ID_BASE.slice(1), title: "HealthKit identifier pages", hub: HK_ID_BASE, lines: hkIdentifierLines() },

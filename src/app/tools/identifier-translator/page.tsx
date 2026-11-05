@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -12,6 +13,7 @@ import { HK_IDENTIFIERS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { ROWS as MATRIX_ROWS } from "@/data/matrix";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
+import ToolNextStep from "@/components/ToolNextStep";
 
 /**
  * HealthKit identifier ↔ Health Connect record, both directions.
@@ -34,7 +36,7 @@ export const metadata: Metadata = {
   // every title here is inside 45 characters for exactly that.
   title: TITLE,
   description: DESCRIPTION,
-  alternates: { canonical: PATH },
+  alternates: pageMirrorAlternates(PATH),
   openGraph: {
     type: "website",
     title: TITLE,
@@ -152,6 +154,7 @@ export default function IdentifierTranslatorPage() {
         </p>
 
         <MoreTools path={PATH} />
+        <ToolNextStep path="/tools/identifier-translator" />
       </div>
     </Container>
   );

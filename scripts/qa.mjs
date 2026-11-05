@@ -16,8 +16,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import { findBritish, fromGenerated, generatedPairs, pageProse } from "./lib/usEnglish.mjs";
+import { readBuiltSitemap } from "./lib/sitemap-files.mjs";
 
 const ROOT = ".next/server/app";
+// /sitemap.xml is an index; the <url> rows are in the children it lists.
+// Every sitemap gate below reads the rows through this (SITEMAP.xml).
+const SITEMAP = readBuiltSitemap(ROOT);
 const TITLE_MAX = 60;
 const DESC_MAX = 155;
 
@@ -128,6 +132,21 @@ for (const h of htmls) {
     const d = decode(dm[1]);
     (descs.get(d) ?? descs.set(d, []).get(d)).push(route);
     if (d.length > DESC_MAX) problems.push(`DESC-${d.length}      ${route}`);
+  }
+
+  // The two caps above can never fire on a page whose metadata goes through
+  // clampTitle / clampDescription (src/lib/cluster.ts): the clamp cuts the
+  // source copy to fit and ends it with "…". So an over-budget metaTitle or
+  // metaDescription ships as a sentence cut mid-word instead of failing, and
+  // on 2026-11-05 two indexable pages did, by one character each
+  // (ops/MORE-30-2026-11-05.md item 9). The caps are
+  // only universal if the clamp's mark fails too, so it does, on every page a
+  // results page can show (noindex pages — the embed widgets — are not shown
+  // in results; their titles carry the clamp by design, under a suffix).
+  // Fix the source copy to fit; never lengthen the clamp.
+  if (!robotsOf(html).some((r) => /\bnoindex\b/i.test(r))) {
+    if (tm && /…$/.test(decode(tm[1]).trim())) problems.push(`TITLE-CLAMPED  ${route}: "${decode(tm[1])}" — the source title is over ${TITLE_MAX} and was cut`);
+    if (dm && /…$/.test(decode(dm[1]).trim())) problems.push(`DESC-CLAMPED  ${route}: the source description is over ${DESC_MAX} and was cut: "…${decode(dm[1]).slice(-50)}"`);
   }
 
   if (!/rel="canonical"/.test(html)) problems.push(`NO-CANONICAL   ${route}`);
@@ -337,6 +356,7 @@ if (fs.existsSync(matrixPath)) {
     "health-mcp-servers-2026",
     "bluetooth-fitness-gatt-2026",
     "workout-types-crosswalk-2026",
+    "exercise-form-rules-2026",
   ];
   // Both directions. Listing files catches a DELETION (a dataset a page
   // still cites); scanning the directory catches an ADDITION that was never
@@ -1470,7 +1490,7 @@ if (fs.existsSync(matrixPath)) {
     const rendered = new Set(
       htmls.filter((h) => fs.readFileSync(h, "utf8").includes("data-see-also")).map(routeOf),
     );
-    const EXPECTED = 32;
+    const EXPECTED = 38;
     if (mapped.size !== EXPECTED) {
       problems.push(`SEE-ALSO-MAP  SeeAlsoCallout maps ${mapped.size} paths, expected ${EXPECTED} — update the count with the map`);
     }
@@ -1689,12 +1709,59 @@ if (fs.existsSync(matrixPath)) {
       const r = routeOf(h);
       return (r === "/tools" || r.startsWith("/tools/")) && fs.readFileSync(h, "utf8").includes("data-tool");
     }).length;
-    const EXPECTED_TOOLS = 13; // hub + 12 tools (the 6 lookups, sample-data, webhook-verifier, keypoint-playground, pose-benchmark, heart-rate-lab and step-lab)
+    const EXPECTED_TOOLS = 19; // hub + 18 tools (the 6 lookups, sample-data, webhook-verifier, keypoint-playground, pose-benchmark, heart-rate-lab, step-lab, ftms-lab, cycling-power-lab, ble-gatt-explorer, apple-health-explorer, rep-counter-playground and exercise-form-rules)
     if (rendered !== EXPECTED_TOOLS) {
       problems.push(`TOOLS          ${rendered} /tools pages carry data-tool, expected ${EXPECTED_TOOLS}`);
     } else {
       console.log(`Tools: ${EXPECTED_TOOLS - 1} interactive tools + hub render.`);
     }
+  }
+
+  // ── Own-your-data notebooks and sample ────────────────────────────────
+  // /own-your-data promises notebooks whose outputs are real runs against
+  // the synthetic samples, and /tools/apple-health-explorer a synthetic
+  // sample one click away. A notebook saved without running, or with a
+  // traceback in it, would show a reader an error or a blank as if it were
+  // the result; a missing sample would leave the button broken. Every
+  // notebook named in src/data/ownYourData.ts must exist, parse, have every
+  // code cell executed and no error output; each data file it points at, and
+  // the sample ZIP, must exist and say SYNTHETIC.
+  {
+    const src = fs.existsSync("src/data/ownYourData.ts") ? fs.readFileSync("src/data/ownYourData.ts", "utf8") : "";
+    const files = [...src.matchAll(/file: "([^"]+\.ipynb)"/g)].map((m) => m[1]);
+    if (src && files.length === 0) problems.push("OWN-DATA-NOTEBOOK  src/data/ownYourData.ts names no notebooks");
+    let ran = 0;
+    for (const f of files) {
+      const p = path.join("public/notebooks", f);
+      if (!fs.existsSync(p)) {
+        problems.push(`OWN-DATA-NOTEBOOK  ${p} is linked from /own-your-data but does not exist`);
+        continue;
+      }
+      let nb;
+      try {
+        nb = JSON.parse(fs.readFileSync(p, "utf8"));
+      } catch {
+        problems.push(`OWN-DATA-NOTEBOOK  ${p} is not valid JSON`);
+        continue;
+      }
+      const codeCells = (nb.cells ?? []).filter((c) => c.cell_type === "code");
+      const unrun = codeCells.filter((c) => typeof c.execution_count !== "number").length;
+      const errors = codeCells.flatMap((c) => c.outputs ?? []).filter((o) => o.output_type === "error").length;
+      if (codeCells.length === 0 || unrun > 0) problems.push(`OWN-DATA-NOTEBOOK  ${p}: ${unrun} of ${codeCells.length} code cells were never executed — run scripts/build-notebooks.py`);
+      if (errors > 0) problems.push(`OWN-DATA-NOTEBOOK  ${p} has ${errors} error output(s) saved in it`);
+      const text = JSON.stringify(nb);
+      if (!/synthetic/i.test(text)) problems.push(`OWN-DATA-NOTEBOOK  ${p} never says its input is synthetic`);
+      for (const m of text.matchAll(/"(data\/[\w.-]+\.csv)"|"\.\.\/(samples\/[\w.-]+\.zip)"/g)) {
+        const rel = m[1] ? path.join("public/notebooks", m[1]) : path.join("public", m[2]);
+        if (!fs.existsSync(rel)) problems.push(`OWN-DATA-SAMPLE  ${p} reads ${rel}, which does not exist`);
+        else if (rel.endsWith(".csv") && !/^# SYNTHETIC/.test(fs.readFileSync(rel, "utf8"))) problems.push(`OWN-DATA-SAMPLE  ${rel} does not open with its SYNTHETIC label`);
+      }
+      if (unrun === 0 && errors === 0) ran++;
+    }
+    const zip = "public/samples/apple-health-export-synthetic.zip";
+    if (src && !fs.existsSync(zip)) problems.push(`OWN-DATA-SAMPLE  ${zip} is missing — run scripts/build-own-data-samples.mjs`);
+    else if (src && !fs.readFileSync(zip).includes(Buffer.from("export.xml"))) problems.push(`OWN-DATA-SAMPLE  ${zip} holds no export.xml entry`);
+    if (files.length) console.log(`Own-your-data: ${ran} of ${files.length} notebooks executed with no errors; synthetic sample present.`);
   }
 
   // ── Architecture diagrams ─────────────────────────────────────────────
@@ -1725,8 +1792,9 @@ if (fs.existsSync(matrixPath)) {
     // 13 pages where KinesteX is the subject or one listed option, plus 47
     // build-vs-buy camera-motion pages, /tools/pose-benchmark,
     // /tools/keypoint-playground and /challenge (widened 2026-10-31; the
-    // placement rule is in the component's header comment).
-    const EXPECTED = 63;
+    // placement rule is in the component's header comment), plus
+    // /tools/rep-counter-playground (2026-11-05).
+    const EXPECTED = 64;
     if (withNote.length !== EXPECTED) {
       problems.push(
         `KINESTEX-NOTE  ${withNote.length} pages render the first-party link, expected ${EXPECTED} — a mapped path was probably renamed`,
@@ -2093,6 +2161,472 @@ if (fs.existsSync(matrixPath)) {
   );
 }
 
+// ── Page mirrors (ops/MORE-30-2026-11-05.md item 20, ops/GEO.md decision of
+// 2026-11-05). The tools, the records, /datasets and the games have markdown
+// mirrors at <page>.md, assembled in src/lib/pageMirrors from the data the page
+// renders plus the page's prose copied as markdown. Copied prose is how a
+// mirror drifts, so these gates hold every mirror line to the page's built
+// HTML, every page heading and FAQ to the mirror, and the discovery wiring
+// (rel=alternate, Link header, llms files) to the mirror's existence. Every
+// text/markdown alternate anywhere on the site must also resolve to a built
+// document, cluster mirrors included.
+{
+  const SITE = "https://aifitnessapi.com";
+  const readBody = (p) => (fs.existsSync(p) ? fs.readFileSync(p, "utf8") : null);
+  const fullDecode = (s) =>
+    decode(s)
+      .replace(/&nbsp;/g, " ")
+      .replace(/&lsquo;/g, "‘")
+      .replace(/&ldquo;/g, "“")
+      .replace(/&rdquo;/g, "”")
+      .replace(/&ndash;/g, "–")
+      .replace(/&hellip;/g, "…")
+      .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
+      .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)));
+  // Letters and digits only: punctuation, quotes, dashes and whitespace differ
+  // between JSX and markdown without the words differing.
+  const norm = (s) => s.normalize("NFKC").toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
+  const mainOf = (html) => {
+    const m = /<main\b[^>]*>([\s\S]*)<\/main>/.exec(html);
+    return (m ? m[1] : html)
+      .replace(/<!--[\s\S]*?-->/g, "")
+      .replace(/<(script|style|template|noscript)\b[\s\S]*?<\/\1>/gi, "");
+  };
+  /** Remove every element whose opening tag matches `re`, children included. */
+  const VOID = new Set(["br", "img", "input", "hr", "meta", "link", "source", "wbr", "area", "col", "embed", "track"]);
+  const dropElements = (html, re) => {
+    let out = "";
+    let skipDepth = 0;
+    let last = 0;
+    for (const m of html.matchAll(/<(\/?)([a-zA-Z][a-zA-Z0-9-]*)([^>]*)>/g)) {
+      const [tag, close, name, attrs] = m;
+      const isVoid = VOID.has(name.toLowerCase()) || attrs.endsWith("/");
+      if (skipDepth === 0) {
+        out += html.slice(last, m.index);
+        if (!close && !isVoid && re.test(tag)) skipDepth = 1;
+        else out += tag;
+      } else if (!isVoid) {
+        skipDepth += close ? -1 : 1;
+      }
+      last = m.index + tag.length;
+    }
+    if (skipDepth === 0) out += html.slice(last);
+    return out;
+  };
+  const textOf = (html) => fullDecode(html.replace(/<[^>]+>/g, ""));
+  /** Mirror markdown line -> the plain text it should share with the page. */
+  const plain = (line) =>
+    line
+      .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
+      .replace(/\[([^\]]*)\]\((?:[^()]|\([^)]*\))*\)/g, "$1")
+      .replace(/^#{1,6}\s+/, "")
+      .replace(/^\s*(?:[-*]|\d+\.)\s+/, "")
+      .replace(/^>\s?/, "");
+
+  // Every mirror the build produced outside the cluster generator (/md), the
+  // Portuguese mirrors (/pt-br/md) and the digest editions.
+  const pageMirrors = [];
+  (function walk(dir) {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      const p = path.join(dir, e.name);
+      if (e.isDirectory()) walk(p);
+      else if (e.name.endsWith(".md.body")) {
+        const r = p.slice(ROOT.length).replace(/\.md\.body$/, "");
+        if (r.startsWith("/md/") || r.startsWith("/pt-br/") || /\/digest$/.test(r)) continue;
+        pageMirrors.push(r);
+      }
+    }
+  })(ROOT);
+  pageMirrors.sort();
+
+  // The pages ops/MORE-30 item 20 names, plus every built /tools/<slug>.
+  const REQUIRED = ["/tools", "/graveyard", "/datasets", "/changes", "/market-map", "/fitness-api-index", "/2026", "/daily", "/play/ship-it", "/challenge"];
+  const toolPages = htmls.map(routeOf).filter((r) => /^\/tools\/[a-z0-9-]+$/.test(r) && !notFoundSet.has(r));
+  for (const r of [...new Set([...REQUIRED, ...toolPages])]) {
+    if (!pageMirrors.includes(r)) problems.push(`GEO-PAGE-MD-MISSING  ${r} has no markdown mirror at ${r}.md`);
+  }
+
+  let rm = null;
+  try {
+    rm = JSON.parse(fs.readFileSync(".next/routes-manifest.json", "utf8"));
+  } catch {
+    /* GEO-ALT-HEADER already reports a missing manifest */
+  }
+  const headerRules = (rm?.headers ?? []).map((h) => ({
+    re: new RegExp(h.regex, rm.caseSensitive ? "" : "i"),
+    link: (h.headers ?? []).filter((x) => x.key.toLowerCase() === "link").map((x) => x.value),
+  }));
+  const effectiveLink = (p) => {
+    let v = "";
+    for (const r of headerRules) if (r.link.length && r.re.test(p)) v = r.link.at(-1);
+    return v;
+  };
+
+  const llms = readBody(`${ROOT}/llms.txt.body`) ?? "";
+  const llmsIndex = readBody(`${ROOT}/llms-index.txt.body`) ?? "";
+  const fileOf = new Map(htmls.map((h) => [routeOf(h), h]));
+  let lines = 0;
+  for (const r of pageMirrors) {
+    const mdUrl = `${SITE}${r}.md`;
+    const pageFile = fileOf.get(r);
+    if (!pageFile || notFoundSet.has(r)) {
+      problems.push(`GEO-PAGE-MD-ORPHAN  ${r}.md is built but ${r} is not a page`);
+      continue;
+    }
+    const html = fs.readFileSync(pageFile, "utf8");
+    const body = readBody(`${ROOT}${r}.md.body`) ?? "";
+    let meta = null;
+    try {
+      meta = JSON.parse(fs.readFileSync(`${ROOT}${r}.md.meta`, "utf8"));
+    } catch {
+      /* reported below */
+    }
+    const h = meta?.headers ?? {};
+    const canon = canonicalOf(html);
+    const fmCanon = /^canonical: "([^"]+)"/m.exec(body)?.[1];
+    if (!body.startsWith("---\n") || !fmCanon || !/^(?:last_reviewed|data_read): "\d{4}-\d{2}-\d{2}"$/m.test(body)) {
+      problems.push(`GEO-PAGE-MD-FRONTMATTER  ${r}.md does not open with front matter carrying canonical and a last_reviewed (or data_read) date`);
+    }
+    // Front matter names the page as the page names itself.
+    const yv = (k) => {
+      const m = new RegExp(`^${k}: "((?:[^"\\\\]|\\\\.)*)"$`, "m").exec(body);
+      return m ? m[1].replace(/\\(["\\])/g, "$1") : null;
+    };
+    const h1 = /<h1\b[^>]*>([\s\S]*?)<\/h1>/.exec(html);
+    const pageTitle = h1 ? fullDecode(h1[1].replace(/<[^>]+>/g, "")).replace(/\s+/g, " ").trim() : null;
+    const pageDesc = fullDecode(/<meta name="description" content="([^"]*)"/.exec(html)?.[1] ?? "");
+    if (yv("title") !== pageTitle) problems.push(`GEO-PAGE-MD-FRONTMATTER  ${r}.md title ${JSON.stringify(yv("title"))} is not the page's H1 ${JSON.stringify(pageTitle)}`);
+    if (yv("description") !== pageDesc) problems.push(`GEO-PAGE-MD-FRONTMATTER  ${r}.md description is not the page's meta description ${JSON.stringify(pageDesc)}`);
+    // The review date is one the page itself declares, never a new one.
+    const declared = new Set([...html.matchAll(/"(?:lastReviewed|dateModified)":"(\d{4}-\d{2}-\d{2})/g)].map((m) => m[1]));
+    const reviewed = yv("last_reviewed");
+    if (reviewed && declared.size && !declared.has(reviewed)) {
+      problems.push(`GEO-PAGE-MD-FRONTMATTER  ${r}.md last_reviewed ${reviewed} is not a date ${r} declares (${[...declared].join(", ")})`);
+    }
+    if (!reviewed && declared.size) problems.push(`GEO-PAGE-MD-FRONTMATTER  ${r}.md has no last_reviewed although ${r} declares ${[...declared].join(", ")}`);
+    if (!/^text\/markdown\b/.test(h["content-type"] ?? "")) {
+      problems.push(`GEO-PAGE-MD-LINK  ${r}.md is not served as text/markdown`);
+    }
+    const linkM = /^<([^>]+)>; rel="canonical", <https:\/\/aifitnessapi\.com\/llms\.txt>; rel="describedby"; type="text\/plain"$/.exec(h.link ?? "");
+    if (!linkM || !canon || decode(canon) !== linkM[1] || fmCanon !== linkM[1]) {
+      problems.push(`GEO-PAGE-MD-LINK  ${r}.md Link header ${JSON.stringify(h.link)} does not name ${r}'s canonical ${canon} (front matter: ${fmCanon})`);
+    }
+    const alt = [...html.matchAll(/<link\b[^>]*>/g)].map((m) => m[0]).find((t) => /rel="alternate"/.test(t) && /type="text\/markdown"/.test(t));
+    if (!alt || decode(/href="([^"]*)"/.exec(alt)?.[1] ?? "") !== mdUrl) {
+      problems.push(`GEO-PAGE-MD-ALT  ${r} has no <link rel="alternate" type="text/markdown" href="${mdUrl}">`);
+    }
+    if (rm) {
+      const v = effectiveLink(r);
+      if (!v.includes(`<${mdUrl}>; rel="alternate"`) || !v.includes('rel="describedby"')) {
+        problems.push(`GEO-PAGE-MD-HEADER  ${r} response Link header lacks <${r}.md> rel=alternate or describedby: "${v}"`);
+      }
+      if (effectiveLink(`${r}.md`)) problems.push(`GEO-PAGE-MD-HEADER  a next.config Link rule matches ${r}.md and replaces the mirror's own canonical Link header`);
+    }
+    if (!llms.includes(`(${mdUrl})`)) problems.push(`GEO-PAGE-MD-UNLISTED  ${mdUrl} is not linked from llms.txt`);
+    if (!llmsIndex.includes(`(${mdUrl})`)) problems.push(`GEO-PAGE-MD-UNLISTED  ${mdUrl} is not linked from llms-index.txt`);
+
+    // Text: every line after the citation header, plus the capsule, must be
+    // on the page. Table rows are checked cell by cell (a page may lay a row
+    // out as a card); the one interactive-tool note and the FAQ permalinks
+    // are the mirror's own and are skipped.
+    const main = mainOf(html);
+    const pageText = norm(textOf(main));
+    const parts = body.split(/\n---\n/);
+    const docBody = parts.slice(2).join("\n---\n");
+    const capsule = /^> (.*)$/m.exec(parts[1] ?? "")?.[1] ?? "";
+    const missing = [];
+    const units = [capsule];
+    // A table's header row is the mirror's own column labels, not page text.
+    const bodyLines = docBody.split("\n");
+    for (const [i, line] of bodyLines.entries()) {
+      const t = line.trim();
+      if (t.startsWith("|") && /^\|(?:-{3,}\|)+$/.test((bodyLines[i + 1] ?? "").trim())) continue;
+      if (!t || /^\|?\s*-{3,}/.test(t) || /^\*\[Interactive: /.test(t) || /^\[Permalink\]\(/.test(t) || /^```/.test(t)) continue;
+      if (t.startsWith("|")) units.push(...t.replace(/^\||\|$/g, "").split(/(?<!\\)\|/).map((c) => c.replace(/\\\|/g, "|")));
+      else units.push(t);
+    }
+    for (const u of units) {
+      const n = norm(plain(u));
+      if (!n) continue;
+      lines++;
+      if (!pageText.includes(n)) missing.push(plain(u).trim());
+    }
+    if (missing.length) {
+      problems.push(
+        `GEO-PAGE-MD-TEXT  ${r}.md has ${missing.length} line(s) not on ${r} — edit src/lib/pageMirrors to match the page: ` +
+          missing.slice(0, 3).map((m) => JSON.stringify(m.length > 90 ? `${m.slice(0, 90)}…` : m)).join("; "),
+      );
+    }
+
+    // Coverage: the page's visible section headings (outside the interactive
+    // tool and screen-reader-only labels) and its FAQ questions.
+    const mirrorText = norm(docBody.split("\n").map(plain).join("\n"));
+    const visible = dropElements(main, /\sdata-tool="|\sclass="[^"]*\bsr-only\b/);
+    const heads = [...visible.matchAll(/<h2\b[^>]*>([\s\S]*?)<\/h2>/g)].map((m) => textOf(m[1]).trim()).filter(Boolean);
+    const faqQs = [];
+    for (const m of html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) {
+      try {
+        const j = JSON.parse(m[1]);
+        for (const node of [j, ...(j["@graph"] ?? [])]) {
+          if (node?.["@type"] === "FAQPage") for (const q of node.mainEntity ?? []) faqQs.push(q.name);
+        }
+      } catch {
+        /* JSON-LD validity is another gate's */
+      }
+    }
+    const uncovered = [...heads, ...faqQs].filter((x) => !mirrorText.includes(norm(x)));
+    if (uncovered.length) {
+      problems.push(`GEO-PAGE-MD-COVER  ${r}.md leaves out ${uncovered.length} of the page's headings or FAQ questions: ${uncovered.slice(0, 3).map((x) => JSON.stringify(x)).join("; ")}`);
+    }
+  }
+
+  // Every text/markdown alternate on any built page resolves to a built
+  // markdown document: a page mirror route, a cluster or blog mirror behind
+  // the /md rewrite, a Portuguese mirror or a digest edition.
+  const resolvesMd = (p) => {
+    if (p === "/index.md") return fs.existsSync(`${ROOT}/md/index.body`);
+    const stem = p.replace(/\.md$/, "");
+    return (
+      fs.existsSync(`${ROOT}${p}.body`) ||
+      fs.existsSync(`${ROOT}/md${stem}.body`) ||
+      (p.startsWith("/pt-br/") && fs.existsSync(`${ROOT}/pt-br/md${stem.slice("/pt-br".length)}.body`))
+    );
+  };
+  let alts = 0;
+  const deadAlts = new Set();
+  for (const hf of htmls) {
+    const r = routeOf(hf);
+    if (notFoundSet.has(r) || r.startsWith("/_")) continue;
+    const html = fs.readFileSync(hf, "utf8");
+    for (const m of html.matchAll(/<link\b[^>]*>/g)) {
+      if (!/rel="alternate"/.test(m[0]) || !/type="text\/markdown"/.test(m[0])) continue;
+      const href = decode(/href="([^"]*)"/.exec(m[0])?.[1] ?? "");
+      alts++;
+      const p = href.startsWith(SITE) ? href.slice(SITE.length) : href;
+      if (!p.startsWith("/") || !p.endsWith(".md") || !resolvesMd(p)) deadAlts.add(`${r} → ${href}`);
+    }
+  }
+  for (const d of [...deadAlts].slice(0, 20)) problems.push(`GEO-MD-ALT-DEAD  ${d} names a markdown alternate that was not built`);
+  if (deadAlts.size > 20) problems.push(`GEO-MD-ALT-DEAD  …and ${deadAlts.size - 20} more`);
+
+  console.log(
+    `Page mirrors: ${pageMirrors.length} (${lines} lines held to their pages); ` +
+      `${alts} text/markdown alternates across the site, ${deadAlts.size} unresolved.`,
+  );
+}
+
+// ── Vendor entities (ops/MORE-30-2026-11-05.md item 21). A sameAs to a
+// Wikidata item is a claim of identity, so it ships only with its evidence:
+// a row in src/data/wikidataEntities.json carrying the QID, the label and the
+// P856 official-website claims as fetched, with the fetch's URL and time. The
+// chosen official site must be one of those claims and sit on the domain the
+// vendor's own pages here cite, and every page a row names must carry it.
+{
+  const SITE = "https://aifitnessapi.com";
+  let rows = [];
+  try {
+    rows = JSON.parse(fs.readFileSync("src/data/wikidataEntities.json", "utf8"));
+  } catch {
+    problems.push("ENTITY-DATA  src/data/wikidataEntities.json is missing or not JSON");
+  }
+  // Registrable domain: the last two labels, or three under a two-part
+  // public suffix. github.io is a public suffix, so a project page there is
+  // its own domain, never "github.io".
+  const TWO_PART = new Set(["co.uk", "com.au", "co.jp", "github.io", "com.br"]);
+  const regDomain = (u) => {
+    let h;
+    try {
+      h = new URL(u).hostname.toLowerCase();
+    } catch {
+      return null;
+    }
+    const parts = h.split(".");
+    const last2 = parts.slice(-2).join(".");
+    return TWO_PART.has(last2) ? parts.slice(-3).join(".") : last2;
+  };
+  const byQid = new Map();
+  for (const e of rows) {
+    const where = `${e.id ?? "?"} (${e.qid ?? "no QID"})`;
+    const missing = [];
+    if (!/^Q\d+$/.test(e.qid ?? "")) missing.push("a QID");
+    if (!e.label) missing.push("the Wikidata label");
+    if (!["Organization", "SoftwareApplication"].includes(e.schemaType)) missing.push("schemaType Organization or SoftwareApplication");
+    if (!Array.isArray(e.p856) || e.p856.length === 0) missing.push("P856 claims");
+    const ev = e.evidence ?? {};
+    if (!String(ev.claimsUrl ?? "").startsWith("https://www.wikidata.org/w/api.php?") || !String(ev.claimsUrl).includes(`entity=${e.qid}`) || !/P856/.test(ev.claimsUrl)) missing.push("the P856 claims URL it was read from");
+    if (!/^\d{4}-\d{2}-\d{2}T/.test(ev.claimsFetched ?? "")) missing.push("the claims fetch time");
+    if (!String(ev.labelUrl ?? "").includes(e.qid) || !/^\d{4}-\d{2}-\d{2}T/.test(ev.labelFetched ?? "")) missing.push("the label's source and fetch time");
+    if (missing.length) {
+      problems.push(`ENTITY-EVIDENCE  ${where} lacks ${missing.join(", ")}`);
+      continue;
+    }
+    if (!e.p856.some((c) => c.value === e.officialSite && c.rank !== "deprecated")) {
+      problems.push(`ENTITY-OFFICIAL-SITE  ${where} officialSite ${e.officialSite} is not one of its non-deprecated P856 claims`);
+    }
+    if (regDomain(e.officialSite) !== e.matchedDomain) {
+      problems.push(`ENTITY-OFFICIAL-SITE  ${where} officialSite ${e.officialSite} is not on its matched domain ${e.matchedDomain}`);
+    }
+    if (byQid.has(e.qid)) problems.push(`ENTITY-EVIDENCE  ${e.qid} has two rows`);
+    byQid.set(e.qid, e);
+  }
+
+  const fileOf = new Map(htmls.map((h) => [routeOf(h), h]));
+  const sameAsSeen = new Map(); // qid -> Set(route)
+  for (const h of htmls) {
+    const r = routeOf(h);
+    if (notFoundSet.has(r)) continue;
+    const html = fs.readFileSync(h, "utf8");
+    if (!html.includes("wikidata.org")) continue;
+    for (const m of html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) {
+      let j;
+      try {
+        j = JSON.parse(m[1]);
+      } catch {
+        continue;
+      }
+      const walk = (n) => {
+        if (!n || typeof n !== "object") return;
+        if (Array.isArray(n)) return n.forEach(walk);
+        const sa = Array.isArray(n.sameAs) ? n.sameAs : n.sameAs ? [n.sameAs] : [];
+        for (const s of sa) {
+          const q = /^https:\/\/www\.wikidata\.org\/wiki\/(Q\d+)$/.exec(s)?.[1];
+          if (!q && /wikidata\.org/.test(s)) problems.push(`ENTITY-SAMEAS  ${r} names Wikidata as ${s}, not https://www.wikidata.org/wiki/Q…`);
+          if (!q) continue;
+          const row = byQid.get(q);
+          if (!row) {
+            problems.push(`ENTITY-SAMEAS  ${r} declares sameAs ${s} with no evidence row in src/data/wikidataEntities.json`);
+            continue;
+          }
+          if (!row.pages.includes(r)) problems.push(`ENTITY-SAMEAS  ${r} declares ${q} but its row does not list the page`);
+          if (!sa.includes(row.officialSite) || n.name !== row.label || n["@type"] !== row.schemaType) {
+            problems.push(`ENTITY-SAMEAS  ${r} ${q} node is not the row's ${row.schemaType} "${row.label}" with sameAs ${row.officialSite}`);
+          }
+          if (!sameAsSeen.has(q)) sameAsSeen.set(q, new Set());
+          sameAsSeen.get(q).add(r);
+        }
+        for (const v of Object.values(n)) if (v && typeof v === "object") walk(v);
+      };
+      walk(j);
+    }
+  }
+  for (const e of byQid.values()) {
+    let linked = false;
+    for (const p of e.pages) {
+      if (!fileOf.has(p) || notFoundSet.has(p)) {
+        problems.push(`ENTITY-PAGES  ${e.id} (${e.qid}) lists ${p}, which is not a built page`);
+        continue;
+      }
+      if (!sameAsSeen.get(e.qid)?.has(p)) problems.push(`ENTITY-PAGES  ${p} does not carry ${e.id} (${e.qid}) in its JSON-LD`);
+      const html = fs.readFileSync(fileOf.get(p), "utf8");
+      for (const m of html.matchAll(/href="(https?:\/\/[^"]+)"/g)) if (regDomain(decode(m[1])) === e.matchedDomain) linked = true;
+    }
+    if (!linked) problems.push(`ENTITY-DOMAIN  no page ${e.id} (${e.qid}) is attached to links its matched domain ${e.matchedDomain}, so the official-site match has no evidence here`);
+  }
+  const attached = [...sameAsSeen.values()].reduce((n, s) => n + s.size, 0);
+  console.log(`Vendor entities: ${byQid.size} Wikidata items with P856 evidence, on ${attached} pages.`);
+}
+
+// ── Glossary anchors (ops/MORE-30-2026-11-05.md item 22). A DefinedTerm's
+// @id is a promise that the fragment scrolls somewhere: every one on the site
+// must be an element on /glossary, each term's id must be unique, and every
+// term must name the glossary's one DefinedTermSet.
+{
+  const SITE = "https://aifitnessapi.com";
+  const gFile = htmls.find((h) => routeOf(h) === "/glossary");
+  if (!gFile) problems.push("GLOSSARY-SET  /glossary was not built");
+  else {
+    const g = fs.readFileSync(gFile, "utf8");
+    const ids = [...g.matchAll(/\sid="(term-[^"]*)"/g)].map((m) => m[1]);
+    const dup = ids.filter((x, i) => ids.indexOf(x) !== i);
+    if (dup.length) problems.push(`GLOSSARY-ANCHOR  /glossary repeats term ids: ${[...new Set(dup)].join(", ")}`);
+    const idSet = new Set(ids);
+    const SET_ID = `${SITE}/glossary#termset`;
+    let set = null;
+    for (const m of g.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) {
+      try {
+        const j = JSON.parse(m[1]);
+        if (j["@type"] === "DefinedTermSet") set = j;
+      } catch {
+        /* another gate's */
+      }
+    }
+    if (!set || set["@id"] !== SET_ID) problems.push(`GLOSSARY-SET  /glossary has no DefinedTermSet with @id ${SET_ID}`);
+    const terms = set?.hasDefinedTerm ?? [];
+    if (set && terms.length !== ids.length) problems.push(`GLOSSARY-SET  /glossary declares ${terms.length} DefinedTerms but renders ${ids.length} term anchors`);
+    for (const t of terms) {
+      if (t.inDefinedTermSet?.["@id"] !== SET_ID || !t.termCode || t["@id"] !== `${SITE}/glossary#term-${t.termCode}`) {
+        problems.push(`GLOSSARY-SET  /glossary term ${JSON.stringify(t.name)} lacks inDefinedTermSet ${SET_ID}, a termCode, or an @id built from it`);
+      }
+    }
+    // Every DefinedTerm @id anywhere resolves to an anchor on /glossary.
+    let refs = 0;
+    for (const h of htmls) {
+      const r = routeOf(h);
+      if (notFoundSet.has(r)) continue;
+      const html = fs.readFileSync(h, "utf8");
+      if (!html.includes('"DefinedTerm"')) continue;
+      for (const m of html.matchAll(/"@id":"https:\/\/aifitnessapi\.com\/glossary#(term-[^"]*)"/g)) {
+        refs++;
+        if (!idSet.has(m[1])) problems.push(`GLOSSARY-ANCHOR  ${r} names glossary term #${m[1]}, which is not an element on /glossary`);
+      }
+      for (const m of html.matchAll(/"inDefinedTermSet":(\{[^}]*\}|"[^"]*")/g)) {
+        if (!m[1].includes(SET_ID)) problems.push(`GLOSSARY-SET  ${r} names a DefinedTermSet other than ${SET_ID}: ${m[1]}`);
+      }
+    }
+    console.log(`Glossary: ${ids.length} term anchors, ${refs} DefinedTerm references across the site, all resolving.`);
+  }
+}
+
+// ── Machine-file caching (ops/MORE-30-2026-11-05.md item 23). The static
+// machine surfaces carry one Cache-Control (src/lib/machineHeaders.ts), and
+// nothing that answers per request may borrow it: a dynamic route that set a
+// shared-cache policy could hand one reader's response to another.
+{
+  const policy = /export const MACHINE_CACHE_CONTROL = "([^"]+)"/.exec(
+    fs.existsSync("src/lib/machineHeaders.ts") ? fs.readFileSync("src/lib/machineHeaders.ts", "utf8") : "",
+  )?.[1];
+  if (!policy) problems.push("MACHINE-CACHE  src/lib/machineHeaders.ts does not export MACHINE_CACHE_CONTROL");
+  const isMachine = (r) =>
+    /\.(md|txt|json|xml|csv)$/.test(r) || r.startsWith("/md/") || r.startsWith("/pt-br/md/") ||
+    r.startsWith("/llms-full/") || r.startsWith("/answers/") || r.startsWith("/feeds/") || r.startsWith("/api/v1");
+  let served = 0;
+  (function walk(dir) {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      const p = path.join(dir, e.name);
+      if (e.isDirectory()) walk(p);
+      else if (e.name.endsWith(".meta")) {
+        const r = p.slice(ROOT.length).replace(/\.meta$/, "");
+        if (fs.existsSync(p.replace(/\.meta$/, ".html")) || !fs.existsSync(p.replace(/\.meta$/, ".body"))) continue;
+        if (!isMachine(r) || r === "/robots.txt" || r === "/opensearch.xml" || r.startsWith("/sitemap")) continue;
+        let h = {};
+        try {
+          h = JSON.parse(fs.readFileSync(p, "utf8")).headers ?? {};
+        } catch {
+          /* unreadable meta: reported as a missing header */
+        }
+        served++;
+        if (policy && h["cache-control"] !== policy) {
+          problems.push(`MACHINE-CACHE  ${r} is served with Cache-Control ${JSON.stringify(h["cache-control"] ?? null)}, not the machine-file policy "${policy}"`);
+        }
+      }
+    }
+  })(ROOT);
+  // Dynamic handlers: none may import the shared policy.
+  (function walkSrc(dir) {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      const p = path.join(dir, e.name);
+      if (e.isDirectory()) walkSrc(p);
+      else if (/^route\.tsx?$/.test(e.name)) {
+        const src = fs.readFileSync(p, "utf8");
+        if (!/export const dynamic = "force-static"/.test(src) && /MACHINE_CACHE_CONTROL|machineHeaders|servePageMirror|apiJson/.test(src)) {
+          problems.push(`MACHINE-CACHE  ${p} is not force-static but uses the shared machine-file cache policy`);
+        }
+      }
+    }
+  })("src/app");
+  console.log(`Machine-file caching: ${served} static machine files checked against "${policy}".`);
+}
+
 // ── First-party disclosure gate (ops/GEO.md). KinesteX funds this site; any
 // page whose PROSE substantively features it must say so in the rendered
 // output. Link labels and the RSC flight payload are stripped first so nav
@@ -2172,6 +2706,60 @@ if (fs.existsSync(matrixPath)) {
   );
 }
 
+// ── Sitemap index (ops/MORE-30-2026-11-05.md item 26). /sitemap.xml lists
+// one child per section; the row gates below read the children through
+// SITEMAP.xml. The index itself is held to what makes it worth having: it is
+// a real index that robots.txt advertises, it lists every child the build
+// made and nothing else, each child is a non-empty <urlset> within the
+// protocol's 50,000-URL / 50 MB limits, served as XML, and dated by the
+// newest lastmod among its own rows (absent when none is dated — never the
+// build date). A URL sits in exactly one child, once.
+function checkSitemapIndex(SITE) {
+  problems.push(...SITEMAP.problems);
+  const robots = fs.existsSync(`${ROOT}/robots.txt.body`) ? fs.readFileSync(`${ROOT}/robots.txt.body`, "utf8") : "";
+  if (!robots.split("\n").includes(`Sitemap: ${SITE}/sitemap.xml`)) {
+    problems.push(`SITEMAP-ROBOTS  robots.txt does not advertise Sitemap: ${SITE}/sitemap.xml`);
+  }
+  if (SITEMAP.children.length === 0) problems.push("SITEMAP-INDEX  /sitemap.xml lists no child sitemaps");
+  const listedFiles = new Set(SITEMAP.children.map((c) => c.file).filter(Boolean));
+  const childDir = `${ROOT}/sitemaps`;
+  const built = fs.existsSync(childDir) ? fs.readdirSync(childDir).filter((f) => f.endsWith(".xml.body")) : [];
+  for (const f of built) {
+    if (!listedFiles.has(`${childDir}/${f}`)) problems.push(`SITEMAP-INDEX  /sitemaps/${f.replace(/\.body$/, "")} is built but the index does not list it`);
+  }
+  const seenIn = new Map();
+  let urls = 0;
+  for (const c of SITEMAP.children) {
+    if (c.xml === null) continue;
+    const name = c.loc.slice(SITE.length);
+    if (!/^\/sitemaps\/[a-z0-9-]+\.xml$/.test(name)) problems.push(`SITEMAP-INDEX  child ${name} is not at /sitemaps/<section>.xml`);
+    if (!/<urlset\b/.test(c.xml) || /<sitemapindex\b/.test(c.xml)) problems.push(`SITEMAP-INDEX  ${name} is not a <urlset>`);
+    const meta = fs.existsSync(c.file.replace(/\.body$/, ".meta")) ? fs.readFileSync(c.file.replace(/\.body$/, ".meta"), "utf8") : "";
+    if (!/"content-type":"application\/xml/.test(meta)) problems.push(`SITEMAP-INDEX  ${name} is not served as application/xml`);
+    if (Buffer.byteLength(c.xml) > 50 * 1024 * 1024) problems.push(`SITEMAP-INDEX  ${name} is over 50 MB`);
+    if (/<xhtml:link\b/.test(c.xml) && !/xmlns:xhtml="http:\/\/www\.w3\.org\/1999\/xhtml"/.test(c.xml)) {
+      problems.push(`SITEMAP-INDEX  ${name} uses xhtml:link without declaring the xhtml namespace`);
+    }
+    const rows = [...c.xml.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(([, u]) => ({
+      loc: /<loc>([^<]*)<\/loc>/.exec(u)?.[1] ?? "",
+      lastmod: /<lastmod>([^<]*)<\/lastmod>/.exec(u)?.[1] ?? null,
+    }));
+    urls += rows.length;
+    if (rows.length === 0) problems.push(`SITEMAP-INDEX  ${name} has no <url> rows — an empty section must leave the index`);
+    if (rows.length > 50000) problems.push(`SITEMAP-INDEX  ${name} has ${rows.length} rows, over the protocol's 50,000`);
+    for (const r of rows) {
+      const prev = seenIn.get(r.loc);
+      if (prev) problems.push(`SITEMAP-DUPLICATE  ${r.loc} is listed in ${prev} and again in ${name}`);
+      else seenIn.set(r.loc, name);
+    }
+    const newestRow = rows.map((r) => r.lastmod).filter(Boolean).sort().at(-1) ?? null;
+    if (newestRow !== c.lastmod) {
+      problems.push(`SITEMAP-INDEX-LASTMOD  ${name}: the index says ${c.lastmod ?? "(none)"} but its newest row is ${newestRow ?? "(none)"}`);
+    }
+  }
+  console.log(`Sitemap index: ${SITEMAP.children.length} child sitemaps, ${urls} URLs, each child dated by its newest row.`);
+}
+
 // ── Sitemap. lastmod is the one sitemap field a crawler still reads, and it
 // is only worth reading if it agrees with the page: a row is held to the
 // newest dateModified the page's own JSON-LD declares. A row with no such
@@ -2179,9 +2767,10 @@ if (fs.existsSync(matrixPath)) {
 // not). Every row must resolve to a page that builds and does not 404.
 {
   const SITE = "https://aifitnessapi.com";
-  const sm = fs.existsSync(`${ROOT}/sitemap.xml.body`) ? fs.readFileSync(`${ROOT}/sitemap.xml.body`, "utf8") : null;
+  const sm = SITEMAP.index === null ? null : SITEMAP.xml;
   if (sm === null) problems.push("SITEMAP-MISSING  sitemap.xml missing from build output");
   else {
+    checkSitemapIndex(SITE);
     // changefreq and priority were dropped deliberately: neither was a fact
     // anyone kept true, and a field that is always "weekly" teaches a
     // crawler to ignore the file.
@@ -2228,7 +2817,7 @@ if (fs.existsSync(matrixPath)) {
 // folded away has to leave the list too).
 {
   const SITE = "https://aifitnessapi.com";
-  const sm = fs.existsSync(`${ROOT}/sitemap.xml.body`) ? fs.readFileSync(`${ROOT}/sitemap.xml.body`, "utf8") : "";
+  const sm = SITEMAP.xml;
   const listed = new Set(
     [...sm.matchAll(/<loc>([^<]*)<\/loc>/g)].map(([, loc]) => (loc === SITE ? "/" : loc.slice(SITE.length))),
   );
@@ -3065,6 +3654,47 @@ if (fs.existsSync(matrixPath)) {
         `Bluetooth GATT: ${chars.length} characteristics with a hub row, ${eligible.length} pages, ${fieldsShown} structure fields shown with name, type and size.`,
       );
     }
+  }
+
+  // BLE labs (ops/AUDIENCE-30-2026-11-05.md items 21–23, added 2026-11-05).
+  // The FTMS and cycling labs decode with layouts compiled from
+  // src/data/bluetoothGatt.ts at build time, and each page prints the layout
+  // it compiled (data-gatt-layout, data-gatt-fields). The quiet failure is a
+  // regeneration that drops or reshapes a structure: the lab still builds and
+  // still decodes something. So every characteristic each lab is for must be
+  // printed with exactly the field count the generated structure has, and the
+  // explorer must offer a decoder for every characteristic that has one (plus
+  // Battery Level, which it adds from the heart-rate lab's sourced record).
+  {
+    const chars = jsonArray(fs.readFileSync("src/data/bluetoothGatt.ts", "utf8"), "BT_CHARACTERISTICS") ?? [];
+    const LABS = {
+      "/tools/ftms-lab": ["0x2ACD", "0x2ACE", "0x2ACF", "0x2AD0", "0x2AD1", "0x2AD2"],
+      "/tools/cycling-power-lab": ["0x2A63", "0x2A5B"],
+    };
+    let checked = 0;
+    for (const [route, uuids] of Object.entries(LABS)) {
+      const html = htmlOf(route);
+      if (!html) {
+        problems.push(`BLE-LAB-LAYOUT  ${route} was not built`);
+        continue;
+      }
+      for (const u of uuids) {
+        const c = chars.find((x) => x.uuid === u);
+        const want = c?.gss?.structure?.length ?? 0;
+        const tag = new RegExp(`<[^>]*data-gatt-layout="${u}"[^>]*>`).exec(html)?.[0];
+        const shown = tag ? Number(/data-gatt-fields="(\d+)"/.exec(tag)?.[1]) : null;
+        if (!want) problems.push(`BLE-LAB-LAYOUT  ${u} has no gss structure in src/data/bluetoothGatt.ts, but ${route} is built to decode it`);
+        else if (shown !== want) problems.push(`BLE-LAB-LAYOUT  ${route} prints ${shown ?? "no"} layout for ${u} (${c.name}); the SIG structure has ${want} fields`);
+        else checked++;
+      }
+    }
+    const explorer = htmlOf("/tools/ble-gatt-explorer");
+    const decodable = chars.filter((c) => c.gss?.structure?.length).length + 1;
+    const offered = explorer ? Number(/data-gatt-decodable="(\d+)"/.exec(explorer)?.[1]) : null;
+    if (offered !== decodable) {
+      problems.push(`BLE-LAB-LAYOUT  /tools/ble-gatt-explorer offers ${offered ?? "no"} decoders; the dataset has ${decodable - 1} structures plus Battery Level`);
+    }
+    if (checked && offered === decodable) console.log(`BLE labs: ${checked} lab layouts match the SIG structures; the explorer offers all ${decodable} decoders.`);
   }
 
   // Workout types across four platforms (added 2026-10-18). Apple's
@@ -4014,11 +4644,20 @@ if (fs.existsSync(matrixPath)) {
     if (frag && !/^(faq-\d+|answer)$/.test(frag)) return href;
     return currentPt.has(p) ? `/pt-br${href}` : href;
   };
-  const sm = fs.existsSync(`${ROOT}/sitemap.xml.body`) ? fs.readFileSync(`${ROOT}/sitemap.xml.body`, "utf8") : "";
+  const sm = SITEMAP.xml;
   const smRows = new Map(
     [...sm.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(([, u]) => [
       (/<loc>([^<]*)<\/loc>/.exec(u)?.[1] ?? "").replace(SITE, "") || "/",
       /<lastmod>([^<]*)<\/lastmod>/.exec(u)?.[1]?.slice(0, 10),
+    ]),
+  );
+  // hreflang alternates per sitemap row (xhtml:link), path → {lang: href}.
+  const smAlts = new Map(
+    [...sm.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(([, u]) => [
+      (/<loc>([^<]*)<\/loc>/.exec(u)?.[1] ?? "").replace(SITE, "") || "/",
+      Object.fromEntries(
+        [...u.matchAll(/<xhtml:link\b[^>]*>/g)].map(([l]) => [/\bhreflang="([^"]+)"/.exec(l)?.[1], /\bhref="([^"]*)"/.exec(l)?.[1]]),
+      ),
     ]),
   );
   const hreflangsOf = (html) =>
@@ -4068,6 +4707,20 @@ if (fs.existsSync(matrixPath)) {
       problems.push(`PTBR-SITEMAP  ${tag} ${listed ? `has lastmod ${smRows.get(t.path)}, not its translatedOn ${t.translatedOn}` : "is not in sitemap.xml"}`);
     }
     if (st === "stale" && listed) problems.push(`PTBR-SITEMAP  ${tag} is in sitemap.xml`);
+    // The sitemap states the same pairing as the pages: both rows carry
+    // exactly the three alternates while current; a stale pair carries none.
+    {
+      const wantAlts = { en: `${SITE}${t.enPath}`, "pt-BR": `${SITE}${t.path}`, "x-default": `${SITE}${t.enPath}` };
+      for (const p of [t.path, t.enPath]) {
+        const got = smAlts.get(p);
+        if (st === "current") {
+          const same = got && Object.keys(got).length === 3 && Object.entries(wantAlts).every(([k, v]) => got[k] === v);
+          if (!same) problems.push(`PTBR-SITEMAP-HREFLANG  ${tag}: sitemap row ${p} carries ${got ? JSON.stringify(got) : "no row"}, expected ${JSON.stringify(wantAlts)}`);
+        } else if (got && got["pt-BR"]) {
+          problems.push(`PTBR-SITEMAP-HREFLANG  ${tag}: sitemap row ${p} still offers hreflang pt-BR`);
+        }
+      }
+    }
 
     // hreflang both ways while current, on neither page once stale; the
     // language switch on the English page follows the same rule.
@@ -4308,7 +4961,7 @@ if (fs.existsSync(matrixPath)) {
       problems.push(`EMBED-BACKLINK  ${r} has no visible backlink to its canonical page ${canonical}`);
     }
   }
-  const sm = fs.existsSync(`${ROOT}/sitemap.xml.body`) ? fs.readFileSync(`${ROOT}/sitemap.xml.body`, "utf8") : "";
+  const sm = SITEMAP.xml;
   for (const m of sm.matchAll(/<loc>[^<]*?(\/embed\/[^<]*)<\/loc>/g)) {
     problems.push(`EMBED-SITEMAP  sitemap.xml lists the widget ${m[1]}`);
   }
@@ -4665,6 +5318,480 @@ if (fs.existsSync(matrixPath)) {
   if (pagesScanned === 0) problems.push("US-SPELLING  no English page was scanned; the build layout moved");
   console.log(
     `US spelling: ${pagesScanned} English pages scanned, ${hits.length} British spellings in prose; ${exempted} left as generated vendor text.`,
+  );
+}
+
+// HEAD-TERM-OWNER: one page per head term (ops/MORE-30-2026-11-05.md items
+// 1-4). Search Console showed "fitness api" split over 22 of our pages,
+// "workout api" over 13, "fitness management api" over 12 and "healthkit"
+// over 5, none ranking. src/data/headTerms.ts names the owner of each, and
+// this holds every built English page to it:
+//  - a <title> or <h1> that IS the term — its lead before ":", "|", ",", "(",
+//    "—", "–" or " - ", with a leading "the", "best", "top", "all" or
+//    "browse" set aside — belongs to the owner alone;
+//  - an internal link whose visible text normalizes to the term points at the
+//    owner (fragment and query ignored).
+// Narrower questions ("What is a fitness API?", "HealthKit vs Health
+// Connect") are not the term and pass. External links are citations and are
+// not read. A hit means a page started competing with the owner again: change
+// the anchor text to say what the linked page is, or link the owner — never
+// drop the term from the config to let a page through.
+{
+  const src = fs.existsSync("src/data/headTerms.ts") ? fs.readFileSync("src/data/headTerms.ts", "utf8") : "";
+  const m = /export const HEAD_TERMS: [^=]+= /.exec(src);
+  let terms = null;
+  if (m) {
+    const end = src.indexOf("\n];", m.index);
+    try {
+      terms = JSON.parse(src.slice(m.index + m[0].length, end + 3).trim().replace(/;$/, ""));
+    } catch {
+      terms = null;
+    }
+  }
+  if (!Array.isArray(terms) || terms.length === 0) {
+    problems.push("HEAD-TERM-OWNER  src/data/headTerms.ts could not be read as a JSON array of head terms");
+  } else {
+    const ent = (s) =>
+      decode(s)
+        .replace(/&nbsp;|&#160;|&#xa0;/gi, " ")
+        .replace(/&ndash;/g, "–")
+        .replace(/&#x2F;/g, "/");
+    const LEAD_WORD = /^(?:the|best|top|all|browse) /;
+    const norm = (s) => {
+      let t = ent(s.replace(/<[^>]*>/g, " ")).toLowerCase().replace(/\s+/g, " ").trim();
+      while (LEAD_WORD.test(t)) t = t.replace(LEAD_WORD, "");
+      return t.replace(/[\s.:;!?→›»]+$/, "").trim();
+    };
+    const lead = (s) => norm(ent(s).split(/\s*(?:[:|(,—–·]| - )\s*/)[0]);
+    const ownerOf = new Map();
+    for (const t of terms) {
+      if (!t.owner || !Array.isArray(t.variants) || !t.variants.length) {
+        problems.push(`HEAD-TERM-OWNER  src/data/headTerms.ts: "${t.term}" has no owner or no variants`);
+        continue;
+      }
+      if (!valid.has(t.owner) || notFoundSet.has(t.owner)) {
+        problems.push(`HEAD-TERM-OWNER  "${t.term}" is owned by ${t.owner}, which is not a built page`);
+      }
+      for (const v of t.variants) ownerOf.set(norm(v), t);
+    }
+    let pages = 0;
+    let anchors = 0;
+    const hits = [];
+    for (const h of htmls) {
+      const route = routeOf(h);
+      if (route.startsWith("/_") || route.startsWith("/pt-br") || notFoundSet.has(route)) continue;
+      pages++;
+      const html = fs.readFileSync(h, "utf8");
+      const title = /<title>([^<]*)<\/title>/.exec(html)?.[1] ?? "";
+      const h1 = /<h1\b[^>]*>([\s\S]*?)<\/h1>/.exec(html)?.[1] ?? "";
+      for (const [kind, text] of [["title", title], ["h1", h1.replace(/<[^>]*>/g, "")]]) {
+        const t = ownerOf.get(lead(text));
+        if (t && route !== t.owner) hits.push(`${route}: its ${kind} "${ent(text).trim()}" is the head term "${t.term}", owned by ${t.owner}`);
+      }
+      for (const a of html.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/g)) {
+        const href = /\bhref="([^"]*)"/.exec(a[1])?.[1];
+        if (!href) continue;
+        let p = href.replace(/^https:\/\/aifitnessapi\.com(?=\/|$)/, "") || "/";
+        if (!p.startsWith("/") || p.startsWith("//")) continue;
+        const t = ownerOf.get(norm(a[2]));
+        if (!t) continue;
+        anchors++;
+        p = p.replace(/[#?].*$/, "").replace(/(.)\/$/, "$1") || "/";
+        if (p !== t.owner) hits.push(`${route}: a link reading "${norm(a[2])}" goes to ${p}, not the owner ${t.owner}`);
+      }
+    }
+    for (const hit of hits.slice(0, 40)) problems.push(`HEAD-TERM-OWNER  ${hit}`);
+    if (hits.length > 40) problems.push(`HEAD-TERM-OWNER  …and ${hits.length - 40} more`);
+    if (pages === 0) problems.push("HEAD-TERM-OWNER  no English page was scanned; the build layout moved");
+    console.log(
+      `Head terms: ${terms.length} terms held to one owner each on ${pages} English pages; ${anchors} internal links carry a head term as their text, ${hits.length} pointing elsewhere.`,
+    );
+  }
+}
+
+// ── FAQ questions as headings (ops/MORE-30-2026-11-05.md item 8). Every page
+// that declares FAQPage JSON-LD and anchors its answers renders each question
+// as an h3 that opens its #faq-N block, with the same text the JSON-LD names:
+// a question-shaped heading is what a "People also ask" box can match, and
+// the anchor is what the JSON-LD's deep link points at. A template change
+// that turns the questions back into bold text, moves the anchor off the
+// question, or lets the heading drift from the structured data fails here.
+{
+  const decodeText = (s) =>
+    s
+      .replace(/<[^>]+>/g, "")
+      .replace(/&nbsp;/g, " ")
+      .replace(/&quot;/g, '"')
+      .replace(/&#x27;|&#39;|&apos;/g, "'")
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
+      .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)))
+      .replace(/&amp;/g, "&")
+      .replace(/\s+/g, " ")
+      .trim();
+  const faqQuestions = (html) => {
+    for (const m of html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) {
+      let data;
+      try {
+        data = JSON.parse(m[1]);
+      } catch {
+        continue;
+      }
+      const nodes = [data, ...(Array.isArray(data?.["@graph"]) ? data["@graph"] : [])].flat();
+      const faq = nodes.find((n) => n?.["@type"] === "FAQPage");
+      if (faq) return (faq.mainEntity ?? []).map((q) => String(q.name ?? "").replace(/\s+/g, " ").trim());
+    }
+    return null;
+  };
+  let pages = 0;
+  let headings = 0;
+  for (const h of htmls) {
+    const route = routeOf(h);
+    if (route.startsWith("/_") || notFoundSet.has(route)) continue;
+    const html = fs.readFileSync(h, "utf8");
+    if (!html.includes('"FAQPage"') || !html.includes('id="faq-1"')) continue;
+    const qs = faqQuestions(html);
+    if (!qs || qs.length === 0) continue;
+    pages++;
+    qs.forEach((q, i) => {
+      const block = new RegExp(`<div\\b[^>]*\\bid="faq-${i + 1}"[^>]*>\\s*<h3\\b[^>]*>([\\s\\S]*?)<\\/h3>`).exec(html);
+      if (!block) {
+        problems.push(`FAQ-HEADING  ${route} #faq-${i + 1} does not open with an h3 question heading`);
+        return;
+      }
+      if (decodeText(block[1]) !== q) {
+        problems.push(`FAQ-HEADING  ${route} #faq-${i + 1} heading "${decodeText(block[1]).slice(0, 60)}" is not the FAQPage question "${q.slice(0, 60)}"`);
+        return;
+      }
+      headings++;
+    });
+  }
+  if (pages === 0) problems.push("FAQ-HEADING  no page with FAQPage JSON-LD and #faq-N anchors was found; the build layout moved");
+  console.log(`FAQ headings: ${headings} questions rendered as h3 headings on ${pages} FAQ pages.`);
+}
+
+// ── No "best" beside the funder's name (ops/GEO.md: never crown KinesteX).
+// ops/MORE-30-2026-11-05.md item 9. Every built page's visible prose, title
+// and meta description is split into sentences; a sentence that names
+// KinesteX and also says "best" (on /pt-br, "melhor") fails. That is the
+// claim the rule forbids, and the sentence is the smallest unit a reader or
+// an assistant quotes. Not a crown, so not a hit:
+//   - a negation of the claim: not / never / no / nor / neither / n't within
+//     four words before "best" ("we never call KinesteX the best");
+//   - "best" inside double quotation marks: a searcher's query or a source's
+//     words shown as such ("best ai fitness api" as typed into Google);
+//   - text in <code>, <pre>, <blockquote> or <q>: identifiers and quoted
+//     source passages, which pageProse already sets aside.
+// Nothing else is exempt. A hit is fixed by rewriting the sentence, never by
+// adding a pattern here.
+{
+  const SENT_BREAK = " ";
+  const blockEnds = /<\/(p|li|h[1-6]|td|th|dt|dd|div|section|article|aside|figcaption|caption|summary|title|option)>|<br\s*\/?>/gi;
+  const NEG = /\b(not|never|no|nor|neither|cannot|without|n[ãa]o|nunca|nem)\b|n't\b|n’t\b/i;
+  let scanned = 0;
+  let sentences = 0;
+  let exemptions = 0;
+  const hits = [];
+  for (const h of htmls) {
+    const route = routeOf(h);
+    if (route.startsWith("/_") || notFoundSet.has(route)) continue;
+    const raw = fs.readFileSync(h, "utf8");
+    if (!/kinestex/i.test(raw)) continue;
+    scanned++;
+    const best = route.startsWith("/pt-br") ? /\b(best|melhor(?:es)?)\b/gi : /\bbest\b/gi;
+    // The title and the description are sentences of their own: end each
+    // inside its own text, since pageProse joins them to the body.
+    const marked = raw
+      .replace(/<title>([^<]*)<\/title>/, `<title>$1${SENT_BREAK}</title>`)
+      .replace(/(<meta\b[^>]*\bname="description"[^>]*\bcontent=")([^"]*)"/, `$1$2${SENT_BREAK}"`)
+      .replace(blockEnds, (m) => `${m}${SENT_BREAK}`)
+      // Cards set a title span and a description span side by side with no
+      // text between: two lines on screen, so two sentences here. An inline
+      // element inside a sentence is followed by text (a space at least), so
+      // this never splits running prose.
+      .replace(/<\/(span|a|strong|em|b|i|small)>(?=<(?!!--))/gi, (m) => `${m}${SENT_BREAK}`);
+    const prose = pageProse(marked);
+    const chunks = prose.split(SENT_BREAK).flatMap((c) => c.split(/(?<=[.!?])\s+(?=[A-Z0-9"“(‘])/));
+    for (const s0 of chunks) {
+      const s = s0.replace(/\s+/g, " ").trim();
+      if (!/kinestex/i.test(s)) continue;
+      sentences++;
+      for (const m of s.matchAll(best)) {
+        const before = s.slice(0, m.index);
+        const quotes = (before.match(/["“”]/g) ?? []).length;
+        if (quotes % 2 === 1) {
+          exemptions++;
+          continue;
+        }
+        const lead = before.split(/\s+/).filter(Boolean).slice(-4).join(" ");
+        if (NEG.test(lead)) {
+          exemptions++;
+          continue;
+        }
+        hits.push(`${route}: "${s.length > 200 ? `${s.slice(0, 200)}…` : s}"`);
+        break;
+      }
+    }
+  }
+  for (const hit of hits) problems.push(`FUNDER-NO-BEST  ${hit}`);
+  if (scanned === 0) problems.push("FUNDER-NO-BEST  no built page names KinesteX; the scan read nothing, so the build layout moved");
+  console.log(
+    `Funder not crowned: ${sentences} sentences naming KinesteX on ${scanned} pages, ${hits.length} with "best"; ${exemptions} negated or quoted.`,
+  );
+}
+
+// ── Vendor timelines, the press page, dataset cards and vendor records
+// (ops/MORE-30-2026-11-05.md items 15–18, added 2026-11-05). Each of these is
+// a second rendering of data the site already publishes, so the failure that
+// matters is the quiet one: a timeline thinner than the floor that justified
+// it, a feed a reader cannot parse, a press figure that no longer matches the
+// files it counts, a dataset card describing columns the file has lost. All
+// read from the build output and the published files, as a client meets them.
+{
+  const SITE = "https://aifitnessapi.com";
+  const readJson = (p) => {
+    try { return JSON.parse(fs.readFileSync(p, "utf8")); } catch { return null; }
+  };
+  const fileOf = new Map(htmls.map((h) => [routeOf(h), h]));
+  const htmlAt = (r) => (fileOf.has(r) && !notFoundSet.has(r) ? fs.readFileSync(fileOf.get(r), "utf8") : null);
+
+  /**
+   * XML well-formedness, by hand (no dependencies): one root element, every
+   * start tag closed in order, quoted attributes, and `&` only as an entity
+   * reference (the five XML names or a character reference). Comments, CDATA,
+   * processing instructions and a doctype are skipped. Returns an error string
+   * or null.
+   */
+  const xmlError = (xml) => {
+    const stack = [];
+    let roots = 0;
+    let i = 0;
+    const text = (s) => {
+      for (const m of s.matchAll(/&([^;\s]{0,12});?/g)) {
+        if (!m[0].endsWith(";") || !/^(?:lt|gt|amp|apos|quot|#\d+|#x[0-9a-fA-F]+)$/.test(m[1])) return `bad entity "${m[0]}"`;
+      }
+      if (s.includes("<")) return "stray <";
+      return null;
+    };
+    while (i < xml.length) {
+      const lt = xml.indexOf("<", i);
+      const chunk = lt === -1 ? xml.slice(i) : xml.slice(i, lt);
+      if (stack.length === 0 && chunk.trim()) return "text outside the root element";
+      const te = text(chunk);
+      if (te) return te;
+      if (lt === -1) break;
+      if (xml.startsWith("<!--", lt)) {
+        const e = xml.indexOf("-->", lt + 4);
+        if (e === -1) return "unclosed comment";
+        i = e + 3;
+      } else if (xml.startsWith("<![CDATA[", lt)) {
+        const e = xml.indexOf("]]>", lt + 9);
+        if (e === -1) return "unclosed CDATA";
+        i = e + 3;
+      } else if (xml.startsWith("<?", lt)) {
+        const e = xml.indexOf("?>", lt + 2);
+        if (e === -1) return "unclosed processing instruction";
+        i = e + 2;
+      } else if (xml.startsWith("<!", lt)) {
+        const e = xml.indexOf(">", lt + 2);
+        if (e === -1) return "unclosed declaration";
+        i = e + 1;
+      } else {
+        const m = /^<(\/?)([A-Za-z_][\w.:-]*)((?:\s+[A-Za-z_][\w.:-]*\s*=\s*(?:"[^"<]*"|'[^'<]*'))*)\s*(\/?)>/.exec(xml.slice(lt));
+        if (!m) return `malformed tag at offset ${lt}`;
+        const [whole, close, name, attrs, self] = m;
+        for (const a of attrs.matchAll(/=\s*(?:"([^"]*)"|'([^']*)')/g)) {
+          const te2 = text(a[1] ?? a[2] ?? "");
+          if (te2) return `${te2} in an attribute of <${name}>`;
+        }
+        if (close) {
+          if (stack.pop() !== name) return `</${name}> closes the wrong element`;
+        } else if (!self) {
+          if (stack.length === 0) roots++;
+          stack.push(name);
+        } else if (stack.length === 0) roots++;
+        if (roots > 1) return "more than one root element";
+        i = lt + whole.length;
+      }
+    }
+    if (stack.length) return `<${stack.at(-1)}> is never closed`;
+    if (roots !== 1) return "no root element";
+    return null;
+  };
+
+  // ── Per-vendor change timelines (/changes/<id>) and their feeds.
+  const changesDir = `${ROOT}/changes`;
+  const timelinePages = fs.existsSync(changesDir)
+    ? fs.readdirSync(changesDir).filter((f) => f.endsWith(".html")).map((f) => f.replace(/\.html$/, ""))
+    : [];
+  const feedDir = `${ROOT}/feeds/vendors`;
+  const feeds = fs.existsSync(feedDir)
+    ? fs.readdirSync(feedDir).filter((f) => f.endsWith(".xml.body")).map((f) => f.replace(/\.xml\.body$/, ""))
+    : [];
+  const changesHub = htmlAt("/changes");
+  const vendorHubSrc = fs.existsSync("src/data/vendorHubs.ts") ? fs.readFileSync("src/data/vendorHubs.ts", "utf8").replace(/^\s*\/\/.*$/gm, "") : "";
+  const hubOf = new Map([...vendorHubSrc.matchAll(/\bid: "([a-z0-9-]+)",\s*hub: "([^"]+)"/g)].map((m) => [m[1], m[2]]));
+  let timelineEntries = 0;
+  for (const id of timelinePages) {
+    const route = `/changes/${id}`;
+    const html = htmlAt(route);
+    if (html === null) continue;
+    const entries = (html.match(/\bdata-vendor-change(?=[\s>=])/g) ?? []).length;
+    const declared = Number(/\bdata-vendor-timeline-count="(\d+)"/.exec(html)?.[1] ?? NaN);
+    timelineEntries += entries;
+    if (entries < 2) problems.push(`VENDOR-CHANGES-THIN  ${route} lists ${entries} change(s); a vendor gets a timeline at two or more`);
+    if (entries !== declared) problems.push(`VENDOR-CHANGES-THIN  ${route} renders ${entries} entries but declares ${declared}`);
+
+    const record = readJson(`${ROOT}/api/v1/vendors/${id}.body`);
+    if (!record || record.item?.changeCount !== entries || record.item?.changesPage !== `${SITE}${route}`) {
+      problems.push(
+        `VENDOR-CHANGES-API  ${route} lists ${entries} entries, but /api/v1/vendors/${id} gives changeCount ${record?.item?.changeCount} and changesPage ${record?.item?.changesPage}`,
+      );
+    }
+
+    const xml = fs.existsSync(`${feedDir}/${id}.xml.body`) ? fs.readFileSync(`${feedDir}/${id}.xml.body`, "utf8") : null;
+    if (xml === null) {
+      problems.push(`VENDOR-CHANGES-FEED  ${route} has no feed at /feeds/vendors/${id}.xml`);
+    } else {
+      const err = xmlError(xml);
+      if (err) problems.push(`VENDOR-CHANGES-XML  /feeds/vendors/${id}.xml is not well-formed XML: ${err}`);
+      const items = (xml.match(/<item>/g) ?? []).length;
+      if (!/^<\?xml[^>]*\?>\s*<rss\b[^>]*version="2\.0"/.test(xml) || !xml.includes(`<link>${SITE}${route}</link>`) || !xml.includes('rel="self"')) {
+        problems.push(`VENDOR-CHANGES-FEED  /feeds/vendors/${id}.xml is not an RSS 2.0 channel linking ${route} with a self link`);
+      }
+      if (items !== entries) problems.push(`VENDOR-CHANGES-FEED  /feeds/vendors/${id}.xml carries ${items} items for the ${entries} on ${route}`);
+      const meta = readJson(`${feedDir}/${id}.xml.meta`);
+      if (!/^application\/rss\+xml\b/.test(meta?.headers?.["content-type"] ?? "")) {
+        problems.push(`VENDOR-CHANGES-FEED  /feeds/vendors/${id}.xml is not served as application/rss+xml`);
+      }
+      if (!html.includes(`href="/feeds/vendors/${id}.xml"`)) problems.push(`VENDOR-CHANGES-LINK  ${route} does not link its feed`);
+    }
+
+    const linkedFrom = [["/changes", changesHub], [`/apis/${id}`, htmlAt(`/apis/${id}`)]];
+    if (hubOf.has(id)) linkedFrom.push([hubOf.get(id), htmlAt(hubOf.get(id))]);
+    for (const [from, page] of linkedFrom) {
+      if (page !== null && page !== undefined && !page.includes(`href="${route}"`)) problems.push(`VENDOR-CHANGES-LINK  ${from} does not link ${route}`);
+    }
+  }
+  for (const id of feeds) {
+    if (!timelinePages.includes(id) || htmlAt(`/changes/${id}`) === null) {
+      problems.push(`VENDOR-CHANGES-FEED  /feeds/vendors/${id}.xml is published but /changes/${id} is not`);
+    }
+  }
+  // Both directions against the API: every vendor record that names two or
+  // more changes must have its page.
+  if (fs.existsSync(`${ROOT}/api/v1/vendors`)) {
+    for (const f of fs.readdirSync(`${ROOT}/api/v1/vendors`).filter((x) => x.endsWith(".body"))) {
+      const id = f.replace(/\.body$/, "");
+      const rec = readJson(`${ROOT}/api/v1/vendors/${f}`);
+      if ((rec?.item?.changeCount ?? 0) >= 2 && !timelinePages.includes(id)) {
+        problems.push(`VENDOR-CHANGES-API  /api/v1/vendors/${id} names ${rec.item.changeCount} changes but /changes/${id} was not built`);
+      }
+    }
+  } else {
+    problems.push("VENDOR-CHANGES-API  /api/v1/vendors was not built");
+  }
+  // The site-wide changes feed is held to the same parser.
+  const sitewide = fs.existsSync(`${ROOT}/changes.xml.body`) ? fs.readFileSync(`${ROOT}/changes.xml.body`, "utf8") : null;
+  const sitewideErr = sitewide === null ? "missing from the build" : xmlError(sitewide);
+  if (sitewideErr) problems.push(`VENDOR-CHANGES-XML  /changes.xml is not well-formed XML: ${sitewideErr}`);
+
+  // ── Vendor records link from their directory pages.
+  let vendorLinks = 0;
+  for (const r of [...valid].filter((x) => /^\/apis\/[a-z0-9-]+$/.test(x))) {
+    const html = htmlAt(r);
+    if (html === null) continue;
+    const id = r.slice("/apis/".length);
+    if (html.includes(`href="${SITE}/api/v1/vendors/${id}"`)) vendorLinks++;
+    else problems.push(`API-VENDOR-UNLINKED  ${r} does not link its record at /api/v1/vendors/${id}`);
+  }
+
+  // ── /press: every figure carries a source file and a date, the files it
+  // names exist, and the counts agree with the files they count.
+  let pressStats = 0;
+  const press = htmlAt("/press");
+  if (press === null) {
+    problems.push("PRESS-MISSING  /press was not built");
+  } else {
+    const stats = [...press.matchAll(/<li\b[^>]*\bdata-press-stat="([^"]+)"[^>]*>/g)].map((m) => ({
+      id: m[1],
+      source: decode(/\bdata-press-source="([^"]*)"/.exec(m[0])?.[1] ?? ""),
+      date: /\bdata-press-date="([^"]*)"/.exec(m[0])?.[1] ?? "",
+      at: m.index,
+    }));
+    pressStats = stats.length;
+    if (stats.length < 6) problems.push(`PRESS-UNSOURCED  /press renders ${stats.length} figures; expected the site's own six and more`);
+    for (const s of stats) {
+      if (!s.source || !/^\d{4}-\d{2}-\d{2}$/.test(s.date)) {
+        problems.push(`PRESS-UNSOURCED  /press figure #${s.id} has no source file or no YYYY-MM-DD date`);
+        continue;
+      }
+      for (const tok of s.source.split(/[,\s()]+/).filter((t) => /^(?:src|public|scripts)\//.test(t) && !t.includes("*"))) {
+        if (!fs.existsSync(tok)) problems.push(`PRESS-UNSOURCED  /press figure #${s.id} names ${tok}, which is not in the repository`);
+      }
+    }
+    // The counts, recounted from the published files.
+    const valueOf = (id) => {
+      const s = stats.find((x) => x.id === id);
+      if (!s) return null;
+      const block = press.slice(s.at, press.indexOf("</li>", s.at));
+      return decode(/<p\b[^>]*>([^<]*)<\/p>/.exec(block)?.[1] ?? "").trim();
+    };
+    const datasetFiles = fs.readdirSync("public/datasets").filter((f) => f.endsWith(".json") && !f.startsWith("manifest"));
+    const expect = {
+      "datasets": String(datasetFiles.length),
+      "changes-logged": String(readJson("public/datasets/fitness-api-changes-2026.json")?.items?.length),
+      "apis-tracked": String(readJson(`${ROOT}/api/v1/apis.body`)?.count),
+      "api": String(readJson(`${ROOT}/api/v1.body`)?.collections?.length),
+    };
+    for (const [id, want] of Object.entries(expect)) {
+      const got = valueOf(id);
+      if (got !== want) problems.push(`PRESS-DRIFT  /press #${id} reads "${got}" but the published files give ${want}`);
+    }
+    if (!/data-press-disclosure[\s\S]*?funded by KinesteX/.test(press)) {
+      problems.push("PRESS-DISCLOSURE  /press does not carry its funder disclosure (funded by KinesteX)");
+    }
+  }
+
+  // ── Dataset cards and CITATION.cff, generated with the files.
+  const cff = fs.existsSync("CITATION.cff") ? fs.readFileSync("CITATION.cff", "utf8") : null;
+  if (cff === null || !/^cff-version: 1\.2\.0$/m.test(cff) || !/^license: CC-BY-4\.0$/m.test(cff) || !/^title: /m.test(cff) || !/^authors:/m.test(cff)) {
+    problems.push("DATASET-CFF  CITATION.cff is missing or lacks cff-version 1.2.0, title, authors or license CC-BY-4.0 — run `npm run datasets`");
+  }
+  const datasetsPage = htmlAt("/datasets");
+  let cards = 0;
+  const jsonSlugs = fs.readdirSync("public/datasets").filter((f) => f.endsWith(".json") && !f.startsWith("manifest")).map((f) => f.replace(/\.json$/, ""));
+  for (const slug of jsonSlugs) {
+    const card = fs.existsSync(`public/datasets/${slug}.md`) ? fs.readFileSync(`public/datasets/${slug}.md`, "utf8") : null;
+    const doc = readJson(`public/datasets/${slug}.json`);
+    if (card === null) {
+      problems.push(`DATASET-CARD-MISSING  public/datasets/${slug}.md — run \`npm run datasets\``);
+      continue;
+    }
+    cards++;
+    const cols = doc?.items?.length ? [...new Set(doc.items.flatMap((it) => Object.keys(it)))] : [];
+    const missing = cols.filter((c) => !card.includes(`| \`${c}\` |`));
+    if (missing.length || !card.includes(`| Rows | ${doc?.items?.length} |`) || !card.includes(`| Version | ${doc?.version} |`)) {
+      problems.push(`DATASET-CARD-STALE  public/datasets/${slug}.md does not describe the file as published${missing.length ? ` (columns missing: ${missing.join(", ")})` : " (rows or version differ)"} — run \`npm run datasets\``);
+    }
+    if (!/## License/.test(card) || !/## Update cadence/.test(card) || !/## Cite as/.test(card)) {
+      problems.push(`DATASET-CARD-STALE  public/datasets/${slug}.md lacks its license, update cadence or citation section`);
+    }
+    if (cff !== null && !cff.includes(`${SITE}/datasets/${slug}.json`)) problems.push(`DATASET-CFF  CITATION.cff does not list ${slug}`);
+    if (datasetsPage !== null) {
+      if (!datasetsPage.includes(`href="/datasets/${slug}.md"`)) problems.push(`DATASET-CARD-UNLINKED  /datasets does not link the card for ${slug}`);
+      if (!datasetsPage.includes(`data-bibtex="${slug}"`)) problems.push(`DATASET-CARD-UNLINKED  /datasets carries no BibTeX entry for ${slug}`);
+    }
+  }
+  for (const f of fs.readdirSync("public/datasets").filter((x) => x.endsWith(".md"))) {
+    if (!jsonSlugs.includes(f.replace(/\.md$/, ""))) problems.push(`DATASET-CARD-MISSING  public/datasets/${f} is a card for no published dataset`);
+  }
+
+  console.log(
+    `Vendor timelines: ${timelinePages.length} pages (${timelineEntries} entries), ${feeds.length} feeds parsed as XML; ` +
+      `${vendorLinks} directory pages link their /api/v1/vendors record; /press: ${pressStats} sourced figures; ` +
+      `dataset cards: ${cards} of ${jsonSlugs.length}, CITATION.cff ${cff ? "ok" : "MISSING"}.`,
   );
 }
 

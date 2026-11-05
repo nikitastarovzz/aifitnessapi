@@ -68,3 +68,34 @@ export function bibtexCitation({
   ];
   return lines.join("\n");
 }
+
+/**
+ * BibTeX @misc entry for one published dataset edition (/datasets, /press).
+ * The year is the edition's, read off its version string ("2026.1"), not a
+ * date typed here; the access date is the citing reader's to add.
+ */
+export function datasetBibtex({
+  slug,
+  name,
+  version,
+  url,
+  license,
+}: {
+  slug: string;
+  name: string;
+  version: string;
+  url: string;
+  license: string;
+}): string {
+  return [
+    `@misc{aifitnessapi-${slug},`,
+    `  author = {{${PUBLISHER}}},`,
+    `  title = {${bibEscape(name)}},`,
+    `  version = {${version}},`,
+    `  year = {${version.slice(0, 4)}},`,
+    `  publisher = {aifitnessapi.com},`,
+    `  url = {${url}},`,
+    `  note = {${bibEscape(`Dataset, ${license}`)}}`,
+    `}`,
+  ].join("\n");
+}

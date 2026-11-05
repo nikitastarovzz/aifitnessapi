@@ -24,11 +24,15 @@
     "test:webhooks": "node --test scripts/webhook-verifier.test.mjs",
     "test:keypoints": "node --test scripts/keypoint-mapping.test.mjs",
     "test:hr-lab": "node --test scripts/hr-measurement.test.mjs",
+    "test:ble": "node --test scripts/gatt-decode.test.mjs",
     "test:daily": "node --test scripts/daily-puzzle.test.mjs",
     "test:step-lab": "node --test scripts/step-detector.test.mjs",
     "test:reps": "node --test scripts/rep-counter.test.mjs",
+    "test:rep-playground": "node --test scripts/rep-playground.test.mjs",
+    "test:pose-leaderboard": "node --test scripts/pose-benchmark-submission.test.mjs",
     "test:gsc": "node --test scripts/gsc-sections.test.mjs",
-    "test:measure": "node --test scripts/measure.test.mjs"
+    "test:measure": "node --test scripts/measure.test.mjs",
+    "test:health-export": "node --test scripts/apple-health-export.test.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "~1.32.0",

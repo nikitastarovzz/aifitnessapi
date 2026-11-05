@@ -11,6 +11,10 @@ import { absoluteUrl } from "@/lib/site";
 
 export const GLOSSARY_PATH = "/glossary";
 
+/** The @id of the glossary's DefinedTermSet node; every DefinedTerm, on the
+ *  glossary and on the spokes that define one, names it as inDefinedTermSet. */
+export const GLOSSARY_SET_ID = `${absoluteUrl(GLOSSARY_PATH)}#termset`;
+
 export type Term = { term: string; def: string; href: string };
 export type Group = { title: string; terms: Term[] };
 

@@ -140,7 +140,7 @@ Steps, heart rate, sleep, HRV, workouts and energy, arriving by one of three rou
 
 Nobody builds this layer, but "buy" here is a coverage decision rather than one purchase. A cross-platform app implements both on-device stores, because they are not alternatives — they are the same job on two operating systems. Beyond that, each direct integration is its own approval, schema and maintenance, which argues for an aggregator; each aggregator is a recurring bill scaling with your connected users, which argues against.
 
-- [Apple HealthKit vs Google Health Connect](/fitness-apis/apple-healthkit-vs-google-health-connect), plus the integration guides for [HealthKit](/integrate/healthkit) and [Health Connect](/integrate/google-health-connect).
+- [Apple HealthKit vs Google Health Connect](/fitness-apis/apple-healthkit-vs-google-health-connect), plus the integration guides for [Apple HealthKit](/integrate/healthkit) and [Health Connect](/integrate/google-health-connect).
 - [Wearable data APIs](/fitness-apis/wearable-data-apis) and [health-data aggregator APIs](/fitness-apis/health-data-aggregator-apis) — direct versus one-integration coverage.
 - [The data-type matrix](/matrix) and the [metric-by-metric pages](/data/heart-rate-api) — which sources actually expose the field you need.
 - [The architecture cluster](/architecture) — sync, dedupe, day boundaries and storage, which is where health-data integrations actually go wrong.
@@ -347,14 +347,14 @@ export default function AiFitnessAppPage() {
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">
             Frequently asked questions
           </h2>
-          <dl className="mt-6 divide-y divide-[var(--border)]">
+          <div className="mt-6 divide-y divide-[var(--border)]">
             {FAQS.map((f) => (
               <div key={f.q} className="py-5">
-                <dt className="font-semibold text-[var(--fg)]">{f.q}</dt>
-                <dd className="mt-2 text-[var(--muted)]">{f.a}</dd>
+                <h3 className="text-base font-semibold text-[var(--fg)]">{f.q}</h3>
+                <p className="mt-2 text-[var(--muted)]">{f.a}</p>
               </div>
             ))}
-          </dl>
+          </div>
         </section>
 
         <KinestexNote path="/ai-fitness-app" />

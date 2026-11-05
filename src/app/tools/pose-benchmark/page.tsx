@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
+import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterHero from "@/components/ClusterHero";
 import KinestexNote from "@/components/KinestexNote";
 import PoseBenchmark from "@/components/tools/PoseBenchmark";
+import PoseLeaderboard from "@/components/tools/PoseLeaderboard";
 import { POSE_SCHEMES, POSE_KEYPOINTS_FETCHED_ON } from "@/data/poseKeypoints";
 import { BENCH_MODELS, TASKS_VISION_USAGE_LOG_URL, TASKS_VISION_VERSION, VERIFIED_ON, mib } from "@/lib/poseBenchmark";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
+import ToolNextStep from "@/components/ToolNextStep";
 
 /**
  * An in-browser Pose Landmarker benchmark.
@@ -37,7 +40,7 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  alternates: { canonical: PATH },
+  alternates: pageMirrorAlternates(PATH),
   openGraph: {
     type: "website",
     title: TITLE,
@@ -99,6 +102,8 @@ export default function PoseBenchmarkPage() {
         <section data-tool="pose-benchmark" aria-label="In-browser pose model benchmark">
           <PoseBenchmark />
         </section>
+
+        <PoseLeaderboard />
 
         <section className="mt-14">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">What it runs</h2>
@@ -280,6 +285,8 @@ export default function PoseBenchmarkPage() {
           </Link>
           .
         </p>
+
+        <ToolNextStep path="/tools/pose-benchmark" />
       </div>
     </Container>
   );

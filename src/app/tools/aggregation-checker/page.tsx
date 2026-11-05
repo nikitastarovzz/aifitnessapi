@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -10,6 +11,7 @@ import { HK_READONLY } from "@/data/healthkitWritability";
 import { hkGroupSlugOf, hkGroupLabel } from "@/data/hkGroupPages";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
+import ToolNextStep from "@/components/ToolNextStep";
 
 /**
  * ".cumulativeSum or .discreteAverage?" for one identifier at a time.
@@ -38,7 +40,7 @@ export const metadata: Metadata = {
   // every title here is inside 45 characters for exactly that.
   title: TITLE,
   description: DESCRIPTION,
-  alternates: { canonical: PATH },
+  alternates: pageMirrorAlternates(PATH),
   openGraph: {
     type: "website",
     title: TITLE,
@@ -197,6 +199,7 @@ export default function AggregationCheckerPage() {
         </p>
 
         <MoreTools path={PATH} />
+        <ToolNextStep path="/tools/aggregation-checker" />
       </div>
     </Container>
   );

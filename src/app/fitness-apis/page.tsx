@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { entityAnchor } from "@/data/headTerms";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -31,7 +32,7 @@ function InDirectory({ categories }: { categories: CostCategory[] }) {
       {items.map((a, i) => (
         <span key={a.id}>
           {i > 0 && ", "}
-          <Link href={`${APIS_PATH}/${a.id}`}>{a.short}</Link>
+          <Link href={`${APIS_PATH}/${a.id}`}>{entityAnchor(a)}</Link>
         </span>
       ))}
       .
@@ -298,14 +299,14 @@ export default function FitnessApisPillar() {
 
         <section className="mt-14">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Frequently asked questions</h2>
-          <dl className="mt-6 divide-y divide-[var(--border)]">
+          <div className="mt-6 divide-y divide-[var(--border)]">
             {FAQS.map((f) => (
               <div key={f.q} className="py-5">
-                <dt className="font-semibold text-[var(--fg)]">{f.q}</dt>
-                <dd className="mt-2 text-[var(--muted)]">{f.a}</dd>
+                <h3 className="text-base font-semibold text-[var(--fg)]">{f.q}</h3>
+                <p className="mt-2 text-[var(--muted)]">{f.a}</p>
               </div>
             ))}
-          </dl>
+          </div>
           <p className="mt-6 text-sm text-[var(--muted)]">
             <Link href="/questions/fitness-apis" className="text-brand-600 hover:text-brand-500">
               All {QUESTION_COUNT} questions in {FITNESS_APIS_CONFIG.hubLabel}, answered

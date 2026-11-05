@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -6,10 +7,10 @@ import ClusterHero from "@/components/ClusterHero";
 import ErrorDiagnoser, { type ErrorHint, type FixHint } from "@/components/tools/ErrorDiagnoser";
 import MoreTools from "@/components/tools/MoreTools";
 import { HK_ERRORS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
-import { fixEntries } from "@/data/fix.entries";
-import { RELEASED_FIX } from "@/data/fix";
+import { FIX_KEYWORDS, diagnoserFixEntries } from "@/lib/errorDiagnoserKeywords";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
+import ToolNextStep from "@/components/ToolNextStep";
 
 /**
  * "What is this error?" — the question a developer asks at the moment
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
   // every title here is inside 45 characters for exactly that.
   title: TITLE,
   description: DESCRIPTION,
-  alternates: { canonical: PATH },
+  alternates: pageMirrorAlternates(PATH),
   openGraph: {
     type: "website",
     title: TITLE,
@@ -97,88 +98,8 @@ const ERROR_HINTS: ErrorHint[] = HK_ERRORS.map((e) => ({
   kw: contentWords(`${e.abstract} ${e.discussion ?? ""}`).filter((w) => (DF.get(w) ?? 0) <= 5),
 }));
 
-/**
- * Authored keyword -> troubleshooting page map.
- *
- * Phrases only, in the words that actually appear in an error string, a
- * status line, or a provider's error body. A slug missing from fixEntries or
- * not yet released is dropped rather than linked into a 404.
- */
-const FIX_KEYWORDS: Record<string, string[]> = {
-  "fitness-api-401-unauthorized": [
-    "401",
-    "unauthorized",
-    "invalid_token",
-    "www-authenticate",
-    "bearer",
-    "expired token",
-    "access token expired",
-  ],
-  "fitbit-error-code-401": ["fitbit", "expired_token", "errortype"],
-  "fitbit-api-410-gone": ["410", "410 gone", "http 410"],
-  "strava-api-401-unauthorized": ["strava", "authorization error", "access_token"],
-  "oauth-redirect-uri-mismatch": [
-    "redirect_uri",
-    "redirect uri mismatch",
-    "invalid redirect",
-    "callback url mismatch",
-    "redirect_uri_mismatch",
-  ],
-  "refresh-token-not-working": [
-    "refresh token",
-    "refresh_token",
-    "invalid_grant",
-    "token rotation",
-    "grant_type",
-  ],
-  "fitbit-api-429-rate-limit": [
-    "429",
-    "rate limit",
-    "too many requests",
-    "quota exceeded",
-    "retry-after",
-  ],
-  "healthkit-no-data": [
-    "errornodata",
-    "no data",
-    "empty result",
-    "hkstatisticsquery",
-    "hksamplequery",
-    "returns nothing",
-  ],
-  "health-connect-no-data": ["health connect", "healthconnectclient", "readrecords"],
-  "strava-webhook-not-firing": [
-    "webhook",
-    "not firing",
-    "subscription",
-    "hub.challenge",
-    "callback not firing",
-    "push subscription",
-  ],
-  "wearable-data-delayed": ["delayed", "stale data", "out of date", "sync lag", "not syncing"],
-  "garmin-api-approval": ["garmin", "partner program", "access approval", "api approval"],
-  "google-fit-api-deprecated": ["google fit", "fitness api deprecated", "sunset", "shutting down"],
-  "oura-personal-access-token-deprecated": ["oura", "personal access token"],
-  "healthkit-authorization-denied": [
-    "errorauthorizationdenied",
-    "errorauthorizationnotdetermined",
-    "errorrequiredauthorizationdenied",
-    "authorization denied",
-    "not determined",
-    "requestauthorization",
-    "com.apple.healthkit",
-  ],
-  "healthkit-background-delivery-not-working": [
-    "background delivery",
-    "hkobserverquery",
-    "observer query",
-    "enablebackgrounddelivery",
-    "never fires",
-  ],
-};
 
-const FIX_HINTS: FixHint[] = fixEntries
-  .filter((e) => RELEASED_FIX.has(e.slug) && FIX_KEYWORDS[e.slug])
+const FIX_HINTS: FixHint[] = diagnoserFixEntries()
   .map((e) => ({
     slug: e.slug,
     h1: e.h1,
@@ -283,6 +204,7 @@ export default function ErrorDiagnoserPage() {
         </p>
 
         <MoreTools path={PATH} />
+        <ToolNextStep path="/tools/error-diagnoser" />
       </div>
     </Container>
   );

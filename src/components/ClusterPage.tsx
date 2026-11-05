@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { entityAnchor } from "@/data/headTerms";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterCta from "@/components/ClusterCta";
@@ -38,6 +39,11 @@ import { offersTableEmbeds } from "@/lib/embedTables";
 import { headings } from "@/lib/toc";
 import readingTime from "reading-time";
 import type { ClusterEntry, ClusterConfig } from "@/lib/cluster";
+import type { ReactNode } from "react";
+import DecisionKitCta from "@/components/DecisionKitCta";
+
+/** Sections whose pages carry the decision-kit block (ops/MORE-30-2026-11-05.md item 29). */
+const KIT_SECTIONS = new Set(["/pricing", "/alternatives"]);
 
 /**
  * Tool CTAs. The "does" line restates the /tools hub's own blurb (or the
@@ -80,10 +86,40 @@ const TOOLS = {
     name: "Bluetooth heart-rate lab",
     does: "connect a BLE heart-rate strap in the browser: every 0x2A37 byte decoded, and whether it sends the RR intervals HRV needs.",
   },
+  ftms: {
+    href: "/tools/ftms-lab",
+    name: "FTMS lab",
+    does: "connect a treadmill, indoor bike, rower or cross trainer in the browser, or paste hex, and see each FTMS value decoded flag by flag against the Bluetooth SIG structure.",
+  },
+  cyclingPower: {
+    href: "/tools/cycling-power-lab",
+    name: "Cycling power and cadence lab",
+    does: "decode Cycling Power (0x2A63) and CSC (0x2A5B) values and watch cadence and speed computed from cumulative revolutions and event times, live or pasted.",
+  },
+  gattExplorer: {
+    href: "/tools/ble-gatt-explorer",
+    name: "BLE GATT explorer",
+    does: "connect any Bluetooth LE device in the browser, list its services and characteristics by SIG name, and decode the values the SIG defines.",
+  },
   stepLab: {
     href: "/tools/step-lab",
     name: "Step lab",
     does: "walk with your phone and watch a visible step detector count; move its threshold and interval to see why two apps disagree.",
+  },
+  appleHealthExplorer: {
+    href: "/tools/apple-health-explorer",
+    name: "Apple Health export explorer",
+    does: "open your Health export.zip in the browser and see every record type with counts, dates, sources, a daily chart and a CSV per type; nothing is uploaded.",
+  },
+  repCounter: {
+    href: "/tools/rep-counter-playground",
+    name: "Rep counter playground",
+    does: "load a workout video, see joint angles over time, tune a hysteresis rep counter's thresholds and export the config as JSON; the video stays in your browser.",
+  },
+  formRules: {
+    href: "/tools/exercise-form-rules",
+    name: "Exercise form rules",
+    does: "see the joint-angle thresholds open-source exercise trackers use for this movement, each quoted from its code, with a null where none states one.",
   },
   sampleData: {
     href: "/tools/sample-data",
@@ -115,7 +151,7 @@ const TOOL_FOR_PATH: Record<string, keyof typeof TOOLS> = {
   "/fix/healthkit-guest-user-mode": "diagnoser",
   "/fix/healthkit-undocumented-errors": "diagnoser",
   // Non-HealthKit errors only where the diagnoser's authored keyword map
-  // (FIX_KEYWORDS in app/tools/error-diagnoser/page.tsx) routes to the page.
+  // (FIX_KEYWORDS in lib/errorDiagnoserKeywords.ts) routes to the page.
   "/fix/fitbit-error-code-401": "diagnoser",
   "/fix/fitbit-api-410-gone": "diagnoser",
   "/fix/fitbit-api-429-rate-limit": "diagnoser",
@@ -139,15 +175,38 @@ const TOOL_FOR_PATH: Record<string, keyof typeof TOOLS> = {
   "/motion/apple-vision-body-pose": "keypoints",
   "/motion/yolo-pose-models": "keypoints",
   "/motion/mediapipe-pose-landmarker-models": "poseBenchmark",
+  // Rep counting: the playground runs the state machine this page describes
+  // on the reader's own video, every threshold exposed.
+  "/motion/how-rep-counting-works": "repCounter",
+  // Exercise pages the form-rules dataset has thresholds for, and the
+  // form-feedback method page whose angle rules it collects.
+  "/motion/how-form-feedback-works": "formRules",
+  "/motion/squat-detection-pose-estimation": "formRules",
+  "/motion/push-up-counter-computer-vision": "formRules",
+  "/motion/bicep-curl-counter-pose-estimation": "formRules",
+  "/motion/lunge-detection-pose-estimation": "formRules",
+  "/motion/plank-detection-pose-estimation": "formRules",
   // The Bluetooth heart-rate pages: the lab decodes the standard Heart Rate
   // Measurement characteristic these guides explain, over Web Bluetooth.
   "/devices/ant-plus-vs-bluetooth": "heartRate",
   "/devices/bluetooth-heart-rate-monitor": "heartRate",
   "/devices/web-bluetooth-fitness": "heartRate",
+  // FTMS and cycling sensors: the labs decode the characteristics these
+  // guides name, over Web Bluetooth or from pasted hex.
+  "/devices/ftms-fitness-machine-service": "ftms",
+  "/devices/treadmill-app-integration": "ftms",
+  "/devices/indoor-bike-trainer-integration": "ftms",
+  "/devices/rowing-machine-data": "ftms",
+  "/devices/cycling-sensors-power-cadence": "cyclingPower",
+  // Testing and the iOS guide are about devices of every kind.
+  "/devices/testing-ble-fitness-devices": "gattExplorer",
+  "/devices/ios-ble-fitness-devices": "gattExplorer",
   // The phone step-counter APIs: they return a count, and the lab shows a
   // step detector deciding one from the accelerometer, thresholds visible.
   "/phone-sensors/android-step-counter-sensor": "stepLab",
   "/phone-sensors/cmpedometer": "stepLab",
+  // The export how-to: the explorer opens the file that page tells you to make.
+  "/own-your-data/apple-health-export": "appleHealthExplorer",
   // The platform comparison: the generator emits both platforms' fixtures.
   "/fitness-apis/apple-healthkit-vs-google-health-connect": "sampleData",
   // Every build guide: the generator is these guides' stacks, narrowed.
@@ -189,9 +248,16 @@ export default function ClusterPage({
   config,
   translation,
   sourceBody,
+  signup,
 }: {
   entry: ClusterEntry;
   config: ClusterConfig;
+  /**
+   * English money pages only: the inline newsletter form, rendered in the
+   * CTA's place. A slot rather than an import, so the form's client script
+   * ships only on the routes that pass it (components/InlineSignup).
+   */
+  signup?: ReactNode;
   /**
    * Render as a translation (src/lib/translations.ts): `entry` holds the
    * translated text, `config.basePath` the translated section path, and the
@@ -498,7 +564,7 @@ export default function ClusterPage({
                 href={`${APIS_PATH}/${p.id}`}
                 className="rounded-full border border-[var(--border)] px-2.5 py-0.5 text-xs text-[var(--fg)] transition-colors hover:border-brand-400"
               >
-                {p.short}
+                {entityAnchor(p)}
               </Link>
             ))}
           </p>
@@ -544,14 +610,19 @@ export default function ClusterPage({
             <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">
               {tr ? "Perguntas frequentes" : "Frequently asked questions"}
             </h2>
-            <dl className="mt-6 divide-y divide-[var(--border)]">
+            {/* Each question is its own h3 under the FAQ h2, so a question-shaped
+                heading can match a "People also ask" query (ops/MORE-30-2026-11-05.md
+                item 8). The #faq-N anchor stays on the wrapper and the answer
+                stays the wrapper's only other child: FAQPage JSON-LD links the
+                anchor, and qa (FAQ-HEADING, PTBR-*) reads the item by it. */}
+            <div className="mt-6 divide-y divide-[var(--border)]">
               {entry.faqs.map((f, i) => (
                 <div key={f.q} id={faqId(i)} className="scroll-mt-24 py-5">
-                  <dt className="font-semibold text-[var(--fg)]">{f.q}</dt>
-                  <dd className="mt-2 text-[var(--muted)]">{f.a}</dd>
+                  <h3 className="text-base font-semibold text-[var(--fg)]">{f.q}</h3>
+                  <p className="mt-2 text-[var(--muted)]">{f.a}</p>
                 </div>
               ))}
-            </dl>
+            </div>
             {!tr && clusterEntries.length > 0 && (
               <p className="mt-2 text-sm">
                 <Link
@@ -565,16 +636,26 @@ export default function ClusterPage({
           </section>
         )}
 
+        {/* The decision kit, where a reader is weighing one vendor's price
+            or its replacements (item 29). */}
+        {!tr && KIT_SECTIONS.has(basePath) && <DecisionKitCta h1={entry.h1} slug={entry.slug} />}
+
         {/* Every page about the vendor(s) this page belongs to, with the hub
             marked. Renders nothing on a page that is no vendor's. */}
         {!tr && <VendorHubMenu path={path} placement="end" />}
 
-        <ClusterCta
-          pitch={entry.cta.pitch}
-          source="spoke-inline"
-          id={tr ? `cta-ptbr-${entry.slug}` : `cta-${entry.slug}`}
-          locale={tr ? "pt-BR" : undefined}
-        />
+        {/* On the money pages the route passes the inline newsletter form
+            (InlineSignup, item 28), which takes the CTA's place: one per page. */}
+        {signup && !tr ? (
+          signup
+        ) : (
+          <ClusterCta
+            pitch={entry.cta.pitch}
+            source="spoke-inline"
+            id={tr ? `cta-ptbr-${entry.slug}` : `cta-${entry.slug}`}
+            locale={tr ? "pt-BR" : undefined}
+          />
+        )}
 
         {entry.related.length > 0 && (
           <section className="mt-4">

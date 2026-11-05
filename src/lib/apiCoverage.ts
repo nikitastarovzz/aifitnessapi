@@ -84,20 +84,20 @@ export function pageCount(id: string): number {
  * as links into the directory, so the entity layer is reachable from the
  * prose that discusses it rather than only from its own index.
  */
-export function apisOnPage(basePath: string, slug: string): { id: string; short: string }[] {
+export function apisOnPage(basePath: string, slug: string): { id: string; short: string; label: string }[] {
   CACHE ??= build();
   const href = `${basePath}/${slug}`;
-  const out: { id: string; short: string; score: number }[] = [];
+  const out: { id: string; short: string; label: string; score: number }[] = [];
   for (const api of API_ENTRIES) {
     for (const c of CACHE.get(api.id) ?? []) {
       const hit = c.pages.find((p) => p.href === href);
-      if (hit) out.push({ id: api.id, short: api.short, score: hit.score });
+      if (hit) out.push({ id: api.id, short: api.short, label: api.label, score: hit.score });
     }
   }
   return out
     .sort((a, b) => b.score - a.score)
     .slice(0, 6)
-    .map(({ id, short }) => ({ id, short }));
+    .map(({ id, short, label }) => ({ id, short, label }));
 }
 
 /** Tracked ecosystem changes whose title or summary names this product. */

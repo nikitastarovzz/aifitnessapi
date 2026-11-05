@@ -3,8 +3,9 @@ name: Weekly search snapshot
 # The weekly Google + Bing pull, on a schedule (ops/NEXT-10-2026-11-04.md
 # item 3). Runs scripts/search-pull.mjs, which writes data/gsc/latest.json,
 # data/gsc/snapshots/<date>.json, data/gsc/bing-latest.json and
-# ops/gsc/bing-<date>.csv, then opens a pull request with them that merges
-# itself once CI is green. The weekly health checks from
+# ops/gsc/bing-<date>.csv, refreshes ops/QUEUE.md from them
+# (scripts/build-ops-queue.mjs), then opens a pull request with all of it
+# that merges itself once CI is green. The weekly health checks from
 # scripts/gsc-report.mjs go to the run's job summary.
 #
 # Why the six earlier runs failed (all six, 2026-10-02 → 10-05):
@@ -102,13 +103,26 @@ jobs:
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Refresh the ops queue
+        if: steps.creds.outputs.skip == '0'
+        # ops/QUEUE.md: CTR anomalies, decay, stale stamps and index lag on one
+        # scale, top 20 (scripts/build-ops-queue.mjs, ops/MORE-30-2026-11-05.md
+        # item 10). There is no build here, so index lag reads the live
+        # sitemap; if that fetch fails the queue says so and ranks the rest.
+        run: |
+          node scripts/build-ops-queue.mjs --sitemap-url https://aifitnessapi.com/sitemap.xml
+          {
+            echo '### Ops queue'
+            sed -n '/^## Top/,/^## Held/p' ops/QUEUE.md | sed '$d'
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Open a pull request with the pull
         if: steps.creds.outputs.skip == '0'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
-          git add data/gsc/latest.json data/gsc/bing-latest.json data/gsc/snapshots/ ops/gsc/
+          git add data/gsc/latest.json data/gsc/bing-latest.json data/gsc/snapshots/ ops/gsc/ ops/QUEUE.md
           if git diff --cached --quiet; then
             echo "The pull matches what main already holds — nothing to commit."
             exit 0

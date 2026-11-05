@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ClusterPage from "@/components/ClusterPage";
+import InlineSignup from "@/components/InlineSignup";
 import {
   releasedAlternatives,
   getAlternative,
@@ -53,5 +54,11 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
   const entry = getAlternative(slug);
   if (!entry) notFound();
-  return <ClusterPage entry={entry} config={ALTERNATIVES_CONFIG} />;
+  return (
+    <ClusterPage
+      entry={entry}
+      config={ALTERNATIVES_CONFIG}
+      signup={<InlineSignup pitch={entry.cta.pitch} section="alternatives" />}
+    />
+  );
 }

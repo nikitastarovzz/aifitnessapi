@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import HeadTermLinks from "@/components/HeadTermLinks";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -162,6 +163,8 @@ export default function IntegratePillar() {
           instead. These guides walk each provider end to end.
         </div>
 
+        <HeadTermLinks path="/integrate" />
+
         <div className="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-a:text-brand-600 hover:prose-a:text-brand-500">
           <h2>The shared integration pattern</h2>
           <p>
@@ -227,14 +230,14 @@ export default function IntegratePillar() {
 
         <section className="mt-14">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Frequently asked questions</h2>
-          <dl className="mt-6 divide-y divide-[var(--border)]">
+          <div className="mt-6 divide-y divide-[var(--border)]">
             {FAQS.map((f) => (
               <div key={f.q} className="py-5">
-                <dt className="font-semibold text-[var(--fg)]">{f.q}</dt>
-                <dd className="mt-2 text-[var(--muted)]">{f.a}</dd>
+                <h3 className="text-base font-semibold text-[var(--fg)]">{f.q}</h3>
+                <p className="mt-2 text-[var(--muted)]">{f.a}</p>
               </div>
             ))}
-          </dl>
+          </div>
           <p className="mt-6 text-sm text-[var(--muted)]">
             <Link href="/questions/integrate" className="text-brand-600 hover:text-brand-500">
               All {QUESTION_COUNT} questions in {INTEGRATE_CONFIG.hubLabel}, answered

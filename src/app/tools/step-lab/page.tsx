@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -8,6 +9,7 @@ import { DEFAULT_PARAMS, REPLAY_TRUE_STEPS } from "@/lib/stepDetector.mjs";
 import { SOURCES_CHECKED_ON, STEP_LAB_SOURCES } from "@/lib/stepLab";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
+import ToolNextStep from "@/components/ToolNextStep";
 
 /**
  * A step counter you can watch think.
@@ -36,7 +38,7 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  alternates: { canonical: PATH },
+  alternates: pageMirrorAlternates(PATH),
   openGraph: {
     type: "website",
     title: TITLE,
@@ -276,6 +278,8 @@ export default function StepLabPage() {
           </Link>
           .
         </p>
+
+        <ToolNextStep path="/tools/step-lab" />
       </div>
     </Container>
   );

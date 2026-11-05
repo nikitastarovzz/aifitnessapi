@@ -109,6 +109,11 @@ export default function Footer() {
               Health Connect API
             </FooterLink>
           )}
+          {has("/own-your-data") && (
+            <FooterLink href="/own-your-data" className="py-1 hover:text-[var(--fg)]">
+              Own Your Data
+            </FooterLink>
+          )}
           {has("/watch-apps") && (
             <FooterLink href="/watch-apps" className="py-1 hover:text-[var(--fg)]">
               Watch Apps
@@ -155,6 +160,9 @@ export default function Footer() {
           </FooterLink>
           <FooterLink href="/2026" className="py-1 hover:text-[var(--fg)]">
             Fitness APIs in 2026
+          </FooterLink>
+          <FooterLink href="/press" className="py-1 hover:text-[var(--fg)]">
+            Press numbers
           </FooterLink>
           <FooterLink href="/changes" className="py-1 hover:text-[var(--fg)]">
             Changes &amp; Deadlines

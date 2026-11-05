@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Container from "@/components/Container";
@@ -7,6 +8,7 @@ import MoreTools from "@/components/tools/MoreTools";
 import { HK_IDENTIFIERS, HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
+import ToolNextStep from "@/components/ToolNextStep";
 
 /**
  * HKStatisticsQuery generator.
@@ -28,7 +30,7 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  alternates: { canonical: PATH },
+  alternates: pageMirrorAlternates(PATH),
   openGraph: {
     type: "article",
     title: TITLE,
@@ -239,6 +241,7 @@ export default function QueryGeneratorPage() {
         </p>
 
         <MoreTools path={PATH} />
+        <ToolNextStep path="/tools/query-generator" />
       </div>
     </Container>
   );

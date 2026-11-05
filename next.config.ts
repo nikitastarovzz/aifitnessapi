@@ -31,9 +31,49 @@ const CLUSTERS = [
   "healthkit-queries",
   "phone-sensors",
   "health-connect-api",
+  "own-your-data",
 ];
 
 const SITE = "https://aifitnessapi.com";
+
+/**
+ * Non-cluster pages with a markdown mirror at `<page>.md`
+ * (src/lib/pageMirrors, ops/MORE-30-2026-11-05.md item 20). The mirrors are
+ * route folders, so they need no rewrite; this list only gives each page the
+ * same Link header a cluster spoke sends. A literal for the same reason as
+ * CLUSTERS; qa's GEO-PAGE-MD-HEADER fails for any built mirror whose page is
+ * missing here.
+ */
+const PAGE_MIRRORS = [
+  "/tools",
+  "/tools/aggregation-checker",
+  "/tools/error-diagnoser",
+  "/tools/heart-rate-lab",
+  "/tools/identifier-translator",
+  "/tools/keypoint-playground",
+  "/tools/permission-builder",
+  "/tools/pose-benchmark",
+  "/tools/query-generator",
+  "/tools/sample-data",
+  "/tools/stack-generator",
+  "/tools/step-lab",
+  "/tools/webhook-verifier",
+  "/tools/apple-health-explorer",
+  "/tools/ble-gatt-explorer",
+  "/tools/cycling-power-lab",
+  "/tools/exercise-form-rules",
+  "/tools/ftms-lab",
+  "/tools/rep-counter-playground",
+  "/graveyard",
+  "/datasets",
+  "/changes",
+  "/market-map",
+  "/fitness-api-index",
+  "/2026",
+  "/daily",
+  "/play/ship-it",
+  "/challenge",
+];
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -172,6 +212,19 @@ const nextConfig: NextConfig = {
             key: "Link",
             value:
               `<${SITE}/${c}/:slug.md>; rel="alternate"; type="text/markdown", ` +
+              `<${SITE}/llms.txt>; rel="describedby"; type="text/plain"`,
+          },
+        ],
+      })),
+      // Pages with a mirror outside the clusters: an exact-path rule each, so
+      // it never matches the `.md` address itself.
+      ...PAGE_MIRRORS.map((p) => ({
+        source: p,
+        headers: [
+          {
+            key: "Link",
+            value:
+              `<${SITE}${p}.md>; rel="alternate"; type="text/markdown", ` +
               `<${SITE}/llms.txt>; rel="describedby"; type="text/plain"`,
           },
         ],

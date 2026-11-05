@@ -115,6 +115,11 @@ export default function MatrixPage() {
           on each platform — and to know where they quietly disagree. Here are {ROWS.length}{" "}
           common metrics side by side, checked against Apple&rsquo;s and Google&rsquo;s own docs.
         </PageSummary>
+        <p className="mt-4 text-sm text-[var(--muted)]">
+          Here for HealthKit on its own rather than the pairing? Every type identifier, unit, error
+          code and query class Apple documents is in the <Link href="/healthkit">HealthKit</Link>{" "}
+          reference hub.
+        </p>
       </div>
 
       <div className="mx-auto mt-10 max-w-5xl">
@@ -231,7 +236,7 @@ export default function MatrixPage() {
           </p>
           <h2>Where to go next</h2>
           <p>
-            Setting one up? The <Link href="/integrate/healthkit">HealthKit</Link> and{" "}
+            Setting one up? The <Link href="/integrate/healthkit">Apple HealthKit</Link> and{" "}
             <Link href="/integrate/google-health-connect">Health Connect</Link> integration guides walk the
             wiring. Deciding between them — or whether you need both — is covered in{" "}
             <Link href="/fitness-apis/apple-healthkit-vs-google-health-connect">HealthKit vs Health Connect</Link>{" "}
@@ -253,14 +258,14 @@ export default function MatrixPage() {
 
         <section className="mt-14">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Frequently asked questions</h2>
-          <dl className="mt-6 divide-y divide-[var(--border)]">
+          <div className="mt-6 divide-y divide-[var(--border)]">
             {FAQS.map((f) => (
               <div key={f.q} className="py-5">
-                <dt className="font-semibold text-[var(--fg)]">{f.q}</dt>
-                <dd className="mt-2 text-[var(--muted)]">{f.a}</dd>
+                <h3 className="text-base font-semibold text-[var(--fg)]">{f.q}</h3>
+                <p className="mt-2 text-[var(--muted)]">{f.a}</p>
               </div>
             ))}
-          </dl>
+          </div>
         </section>
 
         <SeeAlsoCallout path={MATRIX_PATH} />

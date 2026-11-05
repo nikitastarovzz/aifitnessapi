@@ -32,9 +32,10 @@
  *                           latest.json's own page rows)
  *        --previous <date>  baseline for decay (default: the newest older
  *                           snapshot whose window differs)
- *        --sitemap <file>   sitemap XML (default: the build's
- *                           .next/server/app/sitemap.xml.body; skipped
- *                           without one)
+ *        --sitemap <file>   a sitemap <urlset> XML file (default: the
+ *                           build's sitemap index and every child sitemap
+ *                           it lists, under .next/server/app; skipped
+ *                           without a build)
  *
  * Methodology note, and the reason this file was rewritten:
  *
@@ -52,6 +53,7 @@
  */
 import fs from "node:fs";
 import path from "node:path";
+import { readBuiltSitemap } from "./lib/sitemap-files.mjs";
 import {
   CTR_CURVE,
   expectedCtr,
@@ -733,12 +735,17 @@ function healthChecks() {
   }
 
   // (d) Index lag: sitemap URLs with no impressions.
-  const smFile = argValue("--sitemap") ?? ".next/server/app/sitemap.xml.body";
+  // /sitemap.xml is an index; the rows are in the children it lists.
+  const smArg = argValue("--sitemap");
+  const smXml = smArg ? (fs.existsSync(smArg) ? fs.readFileSync(smArg, "utf8") : null) : (() => {
+    const built = readBuiltSitemap(".next/server/app");
+    return built.index === null ? null : built.xml;
+  })();
   console.log(`\n  (d) Index lag: sitemap URLs with no Google impressions in ${rng(current.range)}.`);
-  if (!fs.existsSync(smFile)) {
-    console.log(`    no sitemap at ${smFile} — run npm run build first, or pass --sitemap <file>.`);
+  if (smXml === null) {
+    console.log(`    no sitemap at ${smArg ?? ".next/server/app/sitemap.xml.body"} — run npm run build first, or pass --sitemap <file>.`);
   } else {
-    const sitemap = parseSitemap(fs.readFileSync(smFile, "utf8"));
+    const sitemap = parseSitemap(smXml);
     const published = fs.existsSync("src/data/published.ts") ? parsePublished(fs.readFileSync("src/data/published.ts", "utf8")) : new Map();
     const seenG = new Set(g.filter((r) => r.impressions > 0).map((r) => r.path));
     const seenB = new Set(b.filter((r) => r.impressions > 0).map((r) => r.path));

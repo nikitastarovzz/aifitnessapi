@@ -1,5 +1,6 @@
 import { absoluteUrl, site } from "@/lib/site";
 import { GRAVEYARD_PATH, graveyardCheckedOn, graveyardSorted } from "@/data/graveyard";
+import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
 
 /**
  * /graveyard as JSON: every entry the page renders, written once per build.
@@ -27,6 +28,6 @@ export function GET() {
     items: graveyardSorted().map((e) => ({ ...e, url: `${absoluteUrl(GRAVEYARD_PATH)}#${e.id}` })),
   };
   return new Response(JSON.stringify(body, null, 2), {
-    headers: { "content-type": "application/json; charset=utf-8" },
+    headers: { "content-type": "application/json; charset=utf-8", "cache-control": MACHINE_CACHE_CONTROL },
   });
 }

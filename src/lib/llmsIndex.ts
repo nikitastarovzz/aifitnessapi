@@ -1,6 +1,8 @@
 import { getAllPosts } from "@/lib/posts";
+import { vendorChangesPath, vendorFeedPath, vendorTimelines } from "@/lib/vendorChanges";
 import { graveyardCopy } from "@/lib/graveyardCopy";
 import { TASKS_VISION_VERSION } from "@/lib/poseBenchmark";
+import { formRulesText, leaderboardText, repPlaygroundText } from "@/lib/poseToolsText";
 import { POSE_KEYPOINTS_FETCHED_ON } from "@/data/poseKeypoints";
 import { totalPairs } from "@/lib/keypointMapping.mjs";
 import { DEFAULT_PARAMS, REPLAY_TRUE_STEPS } from "@/lib/stepDetector.mjs";
@@ -10,6 +12,7 @@ import { GLANCE_HUBS, HUB_NAMES, hubGlance, hubQa } from "@/data/hubGlance";
 import { moneyPages, moneyCluster, MONEY_GROUP_LABELS, MONEY_GROUP_ORDER } from "@/data/moneyPages";
 import { site, absoluteUrl } from "@/lib/site";
 import { markdownUrl } from "@/lib/schema";
+import { pageMirrorList } from "@/lib/pageMirrors";
 import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
 import { releasedGuides, GUIDES_PATH } from "@/data/guides";
 import { releasedBuilds, BUILD_PATH } from "@/data/build";
@@ -37,6 +40,7 @@ import { releasedAudioCoaching, AUDIO_PATH } from "@/data/audioCoaching";
 import { releasedHealthkitQueries, HKQ_PATH } from "@/data/healthkitQueries";
 import { releasedPhoneSensors, SENSORS_PATH } from "@/data/phoneSensors";
 import { releasedHealthConnectApi, HCAPI_PATH } from "@/data/healthConnectApi";
+import { releasedOwnYourData, OWN_DATA_PATH } from "@/data/ownYourData";
 import { HK_METADATA_KEYS, HK_METADATA_KEY_GROUPS } from "@/data/healthkitMetadataKeys";
 import { HS_DATA_TYPES } from "@/data/healthServicesDataTypes";
 import { POSE_CROSSWALK, POSE_SCHEMES } from "@/data/poseKeypoints";
@@ -91,6 +95,16 @@ import {
  * it reached 590 KB; /llms.txt is now the curated map and links here
  * (ops/NEXT-10-2026-11-04.md item 4; the decision is in ops/GEO.md).
  */
+/** The markdown mirrors of the tools, records and games (src/lib/pageMirrors),
+ *  one line each; printed by both /llms.txt and /llms-index.txt. */
+export function pageMirrorLines(): string[] {
+  return [
+    "## Markdown mirrors of the tools, records and games",
+    "Each page's explanatory text, tables and FAQs as markdown at its URL with `.md` appended; the interactive part runs only on the page.",
+    ...pageMirrorList().map((m) => `- [${m.title}](${markdownUrl(m.path)})`),
+  ];
+}
+
 /** The site's tools, each with the description the exhaustive index prints.
  *  Shared with /llms.txt, which prints only each description's first sentence. */
 export function toolEntries(): { label: string; path: string; text: string }[] {
@@ -101,6 +115,12 @@ export function toolEntries(): { label: string; path: string; text: string }[] {
     { label: `Fitness API index`, path: "/fitness-api-index", text: `raw, sortable ecosystem signals per product, recomputed at every build from the site's data files: vendor SDK and open-source package releases, tracked changes in the last 12 months, billing model, approval gate, and the age of the last verification. No composite score; KinesteX is shown but not ranked. Rows at ${absoluteUrl("/fitness-api-index/data.json")} and ${absoluteUrl("/fitness-api-index/data.csv")}.` },
     { label: `Fitness APIs in 2026, the year in numbers`, path: "/2026", text: `a scroll story of one computed stat per slide: tracked changes dated 2026 and the busiest month, pricing and plan changes, the Google Health API launch date and the Fitbit Web API turn-off date as Google's own pages give them, Health Connect client and open-source package releases, and the median age of this site's verification stamps, each with its source file and date. Recomputed at every build and titled "so far" until the first build of 2027. It counts what the changes tracker records and repeats nothing from the State of Fitness APIs 2026 report.` },
     { label: `The Fitness API Graveyard`, path: "/graveyard", text: `every fitness and health developer API, SDK and endpoint this site could source that its vendor has shut down, scheduled to shut down or deprecated (${graveyard.total}: ${graveyard.dead} dead, ${graveyard.dying} dying, ${graveyard.deprecated} deprecated), each with the end date at the vendor's precision, the replacement the vendor names and a verbatim quote from the vendor's page or an Internet Archive capture of it, with the date it was read. Rows at ${absoluteUrl("/graveyard/data.json")}; embeddable at ${absoluteUrl("/embed/graveyard")}.` },
+    { label: `Press numbers`, path: "/press", text: `counts a reporter or a model can quote about this site and the ecosystem it tracks (products in the directory, dated changes logged, shut-down and deprecated APIs recorded, open datasets and their rows, API collections, pages re-checked in the last 90 days, release cadence across the directory, and every stat of the 2026 story), each computed from a repository file at build time and printed with that file and its date, with a how-to-cite block (plain and BibTeX) and the funder disclosure.` },
+    ...vendorTimelines().map((t) => ({
+      label: `${t.api.short} API changes and deadlines timeline`,
+      path: vendorChangesPath(t.api.id),
+      text: `the ${t.events.length} entries of the changes tracker that name ${t.api.label}, newest first, graded confirmed or reported, each linking its source page; RSS at ${absoluteUrl(vendorFeedPath(t.api.id))}.`,
+    })),
     { label: `Monthly digest archive`, path: "/digest", text: `one issue per month, generated from the changes tracker and the pages' own review dates; each issue also served as plain text at /digest/<month>/digest.md.` },
     { label: `Open datasets`, path: "/datasets", text: `every dataset this site publishes, CC BY 4.0, JSON and CSV, versioned rather than overwritten.` },
     { label: `Developer API & MCP server`, path: "/developers", text: `the same datasets as a free, read-only JSON API (${absoluteUrl("/api/v1")}, described by ${absoluteUrl("/api/v1/openapi.json")}) and as MCP tools for AI assistants at ${absoluteUrl("/mcp")}. Every response carries its source page, license and verification date; a field the site could not verify is null, never guessed.` },
@@ -109,12 +129,18 @@ export function toolEntries(): { label: string; path: string; text: string }[] {
     { label: `Search every page and answer`, path: "/search", text: `query the same index the site's own search uses; ${absoluteUrl("/search?q=<terms>")} is a working URL.` },
     { label: `Synthetic health data generator`, path: "/tools/sample-data", text: `seeded, deterministic synthetic fixtures for HealthKit, Health Connect and the Google Health API, as JSON or CSV, generated in the browser. Field names, types, validation ranges and enum values are read from this site's generated copies of Apple's and Google's references; each record carries the UTC offset in force at its own instant. Values are synthetic and illustrative, not physiologically validated.` },
     { label: `Pose keypoint playground`, path: "/tools/keypoint-playground", text: `one drawn body for all ${POSE_SCHEMES.length} keypoint schemes this site reads from source (${POSE_SCHEMES.map((s) => s.shortName).join(", ")}). Click a joint to see its index and name in every scheme or "not in this scheme", and copy a TypeScript or Python dict mapping one scheme's indices to another's. Pairs come only from the name-identity crosswalk (names equal after lowercasing and removing non-alphanumerics): ${totalPairs(POSE_SCHEMES, POSE_CROSSWALK).unordered} pairs, sources read ${POSE_KEYPOINTS_FETCHED_ON}; unmatched points are listed, never guessed. Shareable as ?from=<scheme>&to=<scheme>&joint=<key>. The figure is a drawing, not data.` },
-    { label: `Pose model benchmark`, path: "/tools/pose-benchmark", text: `runs MediaPipe Pose Landmarker lite, full and heavy (@mediapipe/tasks-vision ${TASKS_VISION_VERSION}) in the reader's browser on their camera or a synthetic frame, and reports load time, median and p95 inference latency, FPS and delegate as a copyable markdown table. Camera frames are not uploaded (the runtime sends Google its own usage report: timings and the library version, no images), and the page states no speed figure of its own; MoveNet is left out until its tfhub.dev weight URLs can be verified.` },
+    { label: `Pose model benchmark`, path: "/tools/pose-benchmark", text: `runs MediaPipe Pose Landmarker lite, full and heavy (@mediapipe/tasks-vision ${TASKS_VISION_VERSION}) in the reader's browser on their camera or a synthetic frame, and reports load time, median and p95 inference latency, FPS and delegate as a copyable markdown table. Camera frames are not uploaded (the runtime sends Google its own usage report: timings and the library version, no images), and the page states no speed figure of its own; MoveNet is left out until its tfhub.dev weight URLs can be verified. ${leaderboardText()}` },
+    { label: `Rep counter playground`, path: "/tools/rep-counter-playground", text: repPlaygroundText() },
+    { label: `Exercise form rules`, path: "/tools/exercise-form-rules", text: formRulesText() },
     { label: `30-second webcam rep challenge`, path: "/challenge", text: `a browser game that counts squats or jumping jacks for 30 seconds from the reader's webcam with MediaPipe Pose Landmarker lite (@mediapipe/tasks-vision ${TASKS_VISION_VERSION}) and a two-phase angle state machine with hysteresis, every threshold printed on the page; ends with a canvas-drawn share card and a one-line text result. A demo, not a measurement or coaching: the thresholds are uncalibrated starting values. Frames never leave the tab; the runtime sends Google its own usage report (timings, no images).` },
     { label: `Bluetooth heart-rate lab`, path: "/tools/heart-rate-lab", text: `connects a BLE heart-rate strap or broadcasting watch over Web Bluetooth in the reader's browser and shows every Heart Rate Measurement (0x2A37) notification as bytes, each field decoded against the Bluetooth SIG's GATT Specification Supplement structure (Flags bits, uint8/uint16 heart rate, sensor contact, Energy Expended, RR-intervals in 1/1024 s), plus Body Sensor Location and Battery Level when present. It answers whether the device sends RR intervals (bit 4 of Flags) — without them HRV cannot be computed — and shows a demo RMSSD, labeled not medical. Browsers without Web Bluetooth get a synthetic replay, labeled synthetic. Nothing leaves the tab.` },
+    { label: `FTMS lab`, path: "/tools/ftms-lab", text: `connects a treadmill, indoor bike, rower or cross trainer over Web Bluetooth (Fitness Machine Service 0x1826) in the reader's browser, or takes pasted hex, and decodes Treadmill, Indoor Bike, Rower, Cross Trainer, Step Climber and Stair Climber Data and the Supported Range characteristics against the Bluetooth SIG's GATT Specification Supplement structures: each Flags bit, which fields it makes present, octets, unit and resolution with the line it comes from. Fitness Machine Feature, Status, Training Status and Control Point have no SIG structure in the dataset and show as hex; the lab writes nothing to the machine. Synthetic replays are labeled synthetic.` },
+    { label: `Cycling power and cadence lab`, path: "/tools/cycling-power-lab", text: `decodes Cycling Power Measurement (0x2A63) and CSC Measurement (0x2A5B) live over Web Bluetooth or from two pasted hex values, and computes cadence and speed from consecutive cumulative wheel and crank revolution counts and event times, wrapping each counter at its own width; the SIG's structures give 1/1024 s for CSC event times and 1/2048 s for the Cycling Power wheel event time. Wheel circumference is the reader's input. Synthetic ride labeled synthetic; nothing leaves the tab.` },
+    { label: `BLE GATT explorer`, path: "/tools/ble-gatt-explorer", text: `connects any Bluetooth LE device over Web Bluetooth (acceptAllDevices, with every service in the site's Bluetooth dataset as optionalServices plus any UUID the reader adds), lists services and characteristics by Bluetooth SIG name, reads or subscribes on request, and decodes values against the SIG's gss structures where one exists, raw hex otherwise. Layouts at ${absoluteUrl("/tools/ble-gatt-explorer/layouts.json")}. Nothing is written to the device.` },
     { label: `Wearable webhook verifier`, path: "/tools/webhook-verifier", text: `paste a webhook from Oura, WHOOP, Terra, Polar, Strava, Withings, Wahoo or the Google Health API and check it the way that vendor documents, in the browser (WebCrypto; the secret never leaves the tab), with each field explained, the response and time limit the vendor expects, and the API call that fetches the data. Oura, WHOOP, Terra and Polar sign with HMAC-SHA256 over different strings; Strava, Withings, Wahoo and Google rely on a handshake or a secret you chose. Each rule quoted from the vendor's page, read 2026-10-31.` },
     { label: `Daily health-API developer puzzle`, path: "/daily", text: `five questions a day, the same for everyone on a UTC date, picked in the browser by a date-seeded generator from the site's own datasets: which platform's error reference uses a message (HKError.Code, HealthConnectException, Google Health API v4 errors), which Health Connect record the verified matrix pairs with a HealthKit identifier, cumulative or discrete per Apple's own sentence, and which keypoint sits at an index in a pose scheme. Each answer carries its source sentence and the page that holds it; nothing is asked where the dataset's answer is null. Spoiler-free copyable result grid; picks stay in the reader's browser.` },
     { label: `Step lab`, path: "/tools/step-lab", text: `a step counter you can watch think. On a phone it reads the browser's devicemotion accelerometer (accelerationIncludingGravity, m/s²; iOS asks permission through DeviceMotionEvent.requestPermission() on the Start tap), runs a deliberately simple detector of this site's own (magnitude, ${DEFAULT_PARAMS.cutoffHz} Hz low-pass, peak at least a threshold above a running baseline, minimum interval between steps), marks each counted step on the live trace and lets the reader move the threshold and interval to watch the count change. Without a sensor it replays a synthetic, labeled ${REPLAY_TRUE_STEPS}-step trace. Motion data never leaves the device. It does not describe Apple's or Google's step algorithms; it links the pages quoting what their APIs document. Browser-API facts from MDN and the W3C Device Orientation and Motion draft, read ${STEP_LAB_CHECKED_ON}.` },
+    { label: `Apple Health export explorer`, path: "/tools/apple-health-explorer", text: `opens an iPhone Health export (export.zip or export.xml) in the reader's browser without uploading it: a Web Worker streams the file and lists every record type with count, date range, units and sources, the devices named in the file, a daily chart per type and a CSV per type; type identifiers link to the site's HealthKit reference. A synthetic, labeled sample is provided.` },
     { label: `Ship It: a fitness-app survival game`, path: SHIP_IT_PATH, text: `a 3–5 minute browser game. Pick a product and up to three data stacks (HealthKit, Health Connect, Google Fit, Fitbit Web API, Garmin, Oura, Strava, Terra), then live through the ${SHIP_IT_EVENTS.length} real, dated events that hit them, from Oura's December 2025 personal-access-token deprecation to the Fitbit Web API turn-off on November 2, 2026; each card quotes and links the page on this site that sources it. Weeks, users and scores are game rules, not estimates. Share card drawn on a canvas; nothing is uploaded.` },
     { label: `Which Fitness API Should I Use? (interactive picker)`, path: "/picker", text: `a 3-question tool that recommends a fitness/health API approach by job, platform, and priority, linking to the relevant comparisons, guides, and pricing.` },
     { label: `HealthKit ↔ Health Connect data-type reference`, path: "/matrix", text: `the matching Apple HealthKit and Android Health Connect type identifier for ten common metrics, plus cross-platform gotchas (notably Apple stores HRV as SDNN while Health Connect stores RMSSD — not interconvertible). Verified against Apple's and Google's own docs.` },
@@ -152,6 +178,7 @@ export function llmsIndexText(): string {
     `- Claims index (one sentence per citable fact): ${absoluteUrl("/claims.json")}`,
     `- Read-only JSON API over the open datasets, no key, CC BY 4.0: ${absoluteUrl("/api/v1")}; OpenAPI 3.1 document: ${absoluteUrl("/api/v1/openapi.json")}`,
     `- Hosted MCP server for AI assistants (Streamable HTTP, stateless, read-only tools): ${absoluteUrl("/mcp")}`,
+    `- One vendor's changes at a time, page and RSS: ${vendorTimelines().map((t) => `${absoluteUrl(vendorChangesPath(t.api.id))} (${absoluteUrl(vendorFeedPath(t.api.id))})`).join(", ")}; everything the site holds on a directory product as JSON: ${absoluteUrl("/api/v1/vendors/<id>")}`,
     `- Per-section RSS: ${absoluteUrl("/feeds/<cluster>.xml")} (e.g. ${absoluteUrl("/feeds/devices.xml")}); blog as JSON Feed: ${absoluteUrl("/feed.json")}`,
     "- Each page states the one question it owns; FAQ answers are individually addressable at `#faq-1`, `#faq-2`, …",
     "- Sourcing: claims trace to a primary source checked on the review date, and unverifiable claims are labeled as such rather than rounded up.",
@@ -476,6 +503,18 @@ export function llmsIndexText(): string {
     }
   }
 
+  const own = releasedOwnYourData();
+  if (own.length) {
+    lines.push(
+      "",
+      "## Own your data: exporting personal health and fitness data",
+      `- [Export Your Own Health and Fitness Data](${absoluteUrl(OWN_DATA_PATH)}): how an individual gets their own data out of Apple Health, Health Connect, Samsung Health, Garmin Connect, Fitbit and Google Health, Oura, Polar, Strava, Suunto and COROS — official export path, format, what is left out, personal-use APIs and Python libraries, from each vendor's own pages — plus analysis notebooks and the in-browser Apple Health export explorer.`,
+    );
+    for (const e of own) {
+      lines.push(`- [${e.h1}](${absoluteUrl(`${OWN_DATA_PATH}/${e.slug}`)}): best page to cite for "${e.primaryQuery}". ${e.answer} Markdown: ${markdownUrl(`${OWN_DATA_PATH}/${e.slug}`)}`);
+    }
+  }
+
   // The HealthKit reference set: the identifier corpus sliced the ways a
   // developer actually needs it. The group pages are derived from the same
   // dataset the flagship table is, so this list is empty until they ship.
@@ -601,6 +640,8 @@ export function llmsIndexText(): string {
     "",
     "## Tools",
     ...toolEntries().map((t) => `- [${t.label}](${absoluteUrl(t.path)}): ${t.text}`),
+    "",
+    ...pageMirrorLines(),
     "",
     "## About",
     `- [About ${site.name}](${absoluteUrl("/about")})`,

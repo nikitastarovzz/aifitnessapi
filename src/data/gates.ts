@@ -15,6 +15,87 @@
  * appears here as `TITLE-*`.
  */
 export const GATES: { code: string; refuses: string; area: string }[] = [
+  // ── Vendor timelines, /press, dataset cards, vendor records (2026-11-05) ──
+  {
+    code: "VENDOR-CHANGES-THIN",
+    area: "Feeds and mirrors",
+    refuses:
+      "A per-vendor change timeline (/changes/<vendor>) with fewer than two entries, or one whose rendered entries disagree with the count it declares. One entry is the /changes row it repeats with a page around it: a thin page.",
+  },
+  {
+    code: "VENDOR-CHANGES-API",
+    area: "Feeds and mirrors",
+    refuses:
+      "A vendor timeline whose entry count or address disagrees with the vendor's record in /api/v1/vendors, or a vendor record naming two or more changes with no timeline built. The page and the API match entries by two separate code paths, so either drifting shows here.",
+  },
+  {
+    code: "VENDOR-CHANGES-FEED",
+    area: "Feeds and mirrors",
+    refuses:
+      "A vendor timeline with no RSS feed at /feeds/vendors/<vendor>.xml, a feed that is not an RSS 2.0 channel linking its page with a self link, served as anything but application/rss+xml, or carrying a different number of items than the page; and a feed published for a vendor with no page.",
+  },
+  {
+    code: "VENDOR-CHANGES-XML",
+    area: "Feeds and mirrors",
+    refuses:
+      "A vendor changes feed, or the site-wide /changes.xml, that is not well-formed XML: an unclosed or misnested element, an unquoted attribute, a bare ampersand or a second root. A feed reader drops a malformed feed silently.",
+  },
+  {
+    code: "VENDOR-CHANGES-LINK",
+    area: "Feeds and mirrors",
+    refuses:
+      "A vendor timeline that /changes, the vendor's directory entry or the vendor's hub does not link, or that does not link its own feed. A timeline nobody can reach is a page with no reader.",
+  },
+  {
+    code: "API-VENDOR-UNLINKED",
+    area: "Datasets and artifacts",
+    refuses: "A directory page (/apis/<id>) that does not link its own record at /api/v1/vendors/<id>.",
+  },
+  {
+    code: "PRESS-MISSING",
+    area: "Datasets and artifacts",
+    refuses: "A build in which /press, the page of citable numbers, did not render.",
+  },
+  {
+    code: "PRESS-UNSOURCED",
+    area: "Datasets and artifacts",
+    refuses:
+      "A figure on /press without a source file and a YYYY-MM-DD date, a source file that is not in the repository, or a page with fewer figures than the site's own six. A number offered for quoting has to say where it was counted.",
+  },
+  {
+    code: "PRESS-DRIFT",
+    area: "Datasets and artifacts",
+    refuses:
+      "A /press count that disagrees with the files it counts, recounted here: the published datasets, the rows of the changes dataset, the API directory and the API's collections.",
+  },
+  {
+    code: "PRESS-DISCLOSURE",
+    area: "Disclosure",
+    refuses: "A /press page that does not say, in its own body, that KinesteX funds the site.",
+  },
+  {
+    code: "DATASET-CARD-MISSING",
+    area: "Datasets and artifacts",
+    refuses:
+      "A published dataset with no generated card beside it (public/datasets/<slug>.md), or a card left behind for a dataset that is no longer published.",
+  },
+  {
+    code: "DATASET-CARD-STALE",
+    area: "Datasets and artifacts",
+    refuses:
+      "A dataset card that does not describe the file as published: a column missing from its field table, a different row count or version, or no license, update-cadence or citation section. The card is regenerated with the files, so a stale one means the generator was skipped.",
+  },
+  {
+    code: "DATASET-CARD-UNLINKED",
+    area: "Datasets and artifacts",
+    refuses: "A dataset that /datasets lists without a link to its card or without its BibTeX entry.",
+  },
+  {
+    code: "DATASET-CFF",
+    area: "Datasets and artifacts",
+    refuses:
+      "A CITATION.cff that is missing, lacks cff-version 1.2.0, a title, authors or the CC-BY-4.0 license, or does not list every published dataset.",
+  },
   // ── Per-page crawl: links, metadata, structured data ──────────────────
   {
     code: "SITEMAP-NOINDEX",
@@ -98,6 +179,30 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     code: "DESC-*",
     area: "Metadata",
     refuses: "A page whose meta description is longer than 155 characters.",
+  },
+  {
+    code: "TITLE-CLAMPED",
+    area: "Metadata",
+    refuses:
+      "An indexable page whose title ends in the ellipsis the length clamp adds. The clamp keeps every title under 60 characters, so an over-long source title never trips the length check; it ships cut mid-phrase instead. This makes the cut itself the failure.",
+  },
+  {
+    code: "DESC-CLAMPED",
+    area: "Metadata",
+    refuses:
+      "An indexable page whose meta description ends in the ellipsis the length clamp adds: source copy over 155 characters that would otherwise ship as a sentence cut mid-word.",
+  },
+  {
+    code: "FAQ-HEADING",
+    area: "Structured data / GEO",
+    refuses:
+      "A page with FAQPage structured data and per-answer anchors whose question is not an h3 heading opening its #faq-N block, or whose heading differs from the question the structured data names. A question-shaped heading is what a \"People also ask\" box can match, and the anchor is what the structured data links to.",
+  },
+  {
+    code: "FUNDER-NO-BEST",
+    area: "Disclosure",
+    refuses:
+      "A sentence on any built page, its title or its description included, that names KinesteX, the company that funds this site, and calls something \"best\" (\"melhor\" on the Portuguese pages). Only a negation (\"never the best\") or words in quotation marks, such as a searcher's query or a quoted source, pass; nothing else is exempt.",
   },
   {
     code: "NO-CANONICAL",
@@ -229,6 +334,12 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     area: "Content integrity",
     refuses:
       "A British spelling from the site's word list (\"licence\", \"behaviour\", \"catalogue\", \"colour\", \"centre\", \"normalise\", \"judgement\" and the rest) in an English page's own prose. Text in quotation marks, blockquotes, code, URLs, organizations' own names and wording the generated data files take from vendors keeps its original spelling and is not counted.",
+  },
+  {
+    code: "HEAD-TERM-OWNER",
+    area: "Content integrity",
+    refuses:
+      "A second page competing for one of the site's head terms (\"fitness api\", \"workout api\", \"fitness management api\", \"healthkit\", each with one owner page in src/data/headTerms.ts): a title or H1 other than the owner's that leads with the bare term, or an internal link whose text is the term but points somewhere other than its owner. Narrower questions and external citations are not held.",
   },
 
   // ── Type reference ────────────────────────────────────────────────────
@@ -565,6 +676,114 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     code: "GEO-MD-LINK-CANONICAL",
     area: "Feeds and mirrors",
     refuses: "A markdown mirror whose Link header is not one canonical-plus-llms.txt value naming the same URL as its front matter and its HTML page.",
+  },
+  {
+    code: "GEO-PAGE-MD-MISSING",
+    area: "Feeds and mirrors",
+    refuses:
+      "A tool page, or one of /graveyard, /datasets, /changes, /market-map, /fitness-api-index, /2026, /daily, /play/ship-it and /challenge, built without its markdown mirror at the page's URL with .md appended.",
+  },
+  {
+    code: "GEO-PAGE-MD-ORPHAN",
+    area: "Feeds and mirrors",
+    refuses: "A page mirror built at <path>.md for a path that is not a built page: a mirror of nothing.",
+  },
+  {
+    code: "GEO-PAGE-MD-FRONTMATTER",
+    area: "Feeds and mirrors",
+    refuses: "A page mirror that does not open with YAML front matter carrying its canonical URL and a last_reviewed date.",
+  },
+  {
+    code: "GEO-PAGE-MD-LINK",
+    area: "Feeds and mirrors",
+    refuses:
+      "A page mirror not served as text/markdown, or whose Link header is not one canonical-plus-llms.txt value naming the same URL as its front matter and its page's rel=canonical.",
+  },
+  {
+    code: "GEO-PAGE-MD-ALT",
+    area: "Feeds and mirrors",
+    refuses: "A page with a markdown mirror whose HTML has no <link rel=\"alternate\" type=\"text/markdown\"> naming that mirror.",
+  },
+  {
+    code: "GEO-PAGE-MD-HEADER",
+    area: "Feeds and mirrors",
+    refuses:
+      "A page with a markdown mirror whose HTTP Link header does not name the mirror as rel=alternate beside describedby, or a header rule that also matches the .md address and replaces the mirror's own canonical.",
+  },
+  {
+    code: "GEO-PAGE-MD-UNLISTED",
+    area: "Feeds and mirrors",
+    refuses: "A page mirror that /llms.txt or /llms-index.txt does not link, so an agent reading the map never learns it exists.",
+  },
+  {
+    code: "GEO-PAGE-MD-TEXT",
+    area: "Feeds and mirrors",
+    refuses:
+      "A page mirror line, or table cell, whose words do not appear on the page it mirrors. The prose in these mirrors is copied, so this is how a mirror is held to the page: edit the page and the stale mirror line is named.",
+  },
+  {
+    code: "GEO-PAGE-MD-COVER",
+    area: "Feeds and mirrors",
+    refuses:
+      "A page mirror that leaves out one of its page's visible section headings (outside the interactive tool) or one of the FAQ questions the page declares in FAQPage JSON-LD.",
+  },
+  {
+    code: "GEO-MD-ALT-DEAD",
+    area: "Feeds and mirrors",
+    refuses:
+      "A <link rel=\"alternate\" type=\"text/markdown\"> anywhere on the site whose target is not a built markdown document: a page mirror, a cluster or blog mirror behind the /md rewrite, a Portuguese mirror or a digest edition.",
+  },
+  {
+    code: "ENTITY-DATA",
+    area: "Structured data / GEO",
+    refuses: "A build in which the vendor-entity evidence file, src/data/wikidataEntities.json, is missing or unreadable.",
+  },
+  {
+    code: "ENTITY-EVIDENCE",
+    area: "Structured data / GEO",
+    refuses:
+      "A vendor entity row without its QID, its Wikidata label, its schema type, its P856 official-website claims as fetched, or the URL and time each was read from, or two rows for one QID.",
+  },
+  {
+    code: "ENTITY-OFFICIAL-SITE",
+    area: "Structured data / GEO",
+    refuses:
+      "A vendor entity whose official site is not one of the item's own non-deprecated P856 claims, or is not on the domain the row says this site's pages cite for the vendor.",
+  },
+  {
+    code: "ENTITY-SAMEAS",
+    area: "Structured data / GEO",
+    refuses:
+      "A sameAs to a Wikidata item on a page that has no evidence row for it, a row that does not list that page, or a node that is not the row's type, label and official site.",
+  },
+  {
+    code: "ENTITY-PAGES",
+    area: "Structured data / GEO",
+    refuses: "A vendor entity row naming a page that is not built, or a named page whose JSON-LD does not carry the entity.",
+  },
+  {
+    code: "ENTITY-DOMAIN",
+    area: "Structured data / GEO",
+    refuses:
+      "A vendor entity none of whose pages links its matched domain: the official-site match would rest on nothing this site cites.",
+  },
+  {
+    code: "GLOSSARY-ANCHOR",
+    area: "Structured data / GEO",
+    refuses:
+      "A DefinedTerm @id anywhere on the site whose #term-… fragment is not an element on /glossary, or a term id the glossary renders twice.",
+  },
+  {
+    code: "GLOSSARY-SET",
+    area: "Structured data / GEO",
+    refuses:
+      "A glossary without one DefinedTermSet at /glossary#termset whose terms each carry a termCode, the @id built from it and inDefinedTermSet naming that set, a term count that differs from the anchors rendered, or a DefinedTerm anywhere naming another set.",
+  },
+  {
+    code: "MACHINE-CACHE",
+    area: "Hosting and crawl",
+    refuses:
+      "A static machine file (markdown mirror, llms or answers file, claims, feed, dataset JSON or CSV, /api/v1) served with any Cache-Control but the one machine-file policy in src/lib/machineHeaders.ts, or a route that answers per request using that shared-cache policy.",
   },
   {
     code: "GEO-ALT-HEADER",
@@ -979,6 +1198,12 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "A Bluetooth GATT hub that lacks a row for any in-scope characteristic, does not link every characteristic page, or leaves out the field of a structure it keeps as a row instead of a page.",
   },
   {
+    code: "BLE-LAB-LAYOUT",
+    area: "Derived blocks",
+    refuses:
+      "A Bluetooth lab (FTMS, cycling power, GATT explorer) whose decoder no longer matches the Bluetooth SIG structures it is built from: a lab page that does not print the layout of a characteristic it is for with exactly the field count the generated structure has, or an explorer that offers fewer or more decoders than the dataset has structures.",
+  },
+  {
     code: "BT-GATT-THIN",
     area: "Derived blocks",
     refuses: "A Bluetooth characteristic page built for a structure with fewer than two fields and no flags field, or a characteristic whose page flag disagrees with that rule.",
@@ -1063,6 +1288,18 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     code: "TOOLS",
     area: "Content integrity",
     refuses: "A build where an interactive tool page has dropped out, which nothing else would notice because the tools have no data file behind them.",
+  },
+  {
+    code: "OWN-DATA-NOTEBOOK",
+    area: "Content integrity",
+    refuses:
+      "An analysis notebook linked from /own-your-data that is missing, does not parse, was saved with a code cell never executed or with an error output in it, or never says its input is synthetic. The page promises outputs that are real runs; an unrun or failing notebook would show a reader a blank or a traceback as the result.",
+  },
+  {
+    code: "OWN-DATA-SAMPLE",
+    area: "Content integrity",
+    refuses:
+      "A missing synthetic sample behind /tools/apple-health-explorer or the notebooks, a sample ZIP with no export.xml entry, or a sample CSV that does not open with its SYNTHETIC label. Without the file the try-it button and the notebooks break; without the label generated data could pass for someone's export.",
   },
 
   // ── Disclosure ────────────────────────────────────────────────────────
@@ -1377,6 +1614,26 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     area: "Hosting and crawl",
     refuses: "A sitemap carrying changefreq or priority values, fields that were never facts anyone kept true.",
   },
+  {
+    code: "SITEMAP-INDEX",
+    area: "Hosting and crawl",
+    refuses: "A /sitemap.xml that is not a sitemap index, or an index that lists a child sitemap the build did not make, misses one it did make, points off the site or outside /sitemaps/<section>.xml, or a child that is not a non-empty urlset served as XML within the protocol's 50,000-URL and 50 MB limits.",
+  },
+  {
+    code: "SITEMAP-INDEX-LASTMOD",
+    area: "Hosting and crawl",
+    refuses: "A child sitemap whose lastmod in the index is not the newest lastmod among its own rows, or is present when none of its rows is dated.",
+  },
+  {
+    code: "SITEMAP-DUPLICATE",
+    area: "Hosting and crawl",
+    refuses: "A URL listed twice across the child sitemaps, in the same section or in two.",
+  },
+  {
+    code: "SITEMAP-ROBOTS",
+    area: "Hosting and crawl",
+    refuses: "A robots.txt that does not advertise the sitemap index at /sitemap.xml.",
+  },
 
   // ── Freshness markers ─────────────────────────────────────────────────
   {
@@ -1426,6 +1683,12 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     area: "Translations",
     refuses:
       "A current translation missing from sitemap.xml or dated other than its translation day, or a stale one still listed.",
+  },
+  {
+    code: "PTBR-SITEMAP-HREFLANG",
+    area: "Translations",
+    refuses:
+      "A current translation whose sitemap row, or its English page's row, does not carry exactly the en, pt-BR and x-default alternates the pages declare, or a stale translation whose rows still offer pt-BR.",
   },
   {
     code: "PTBR-HREFLANG",

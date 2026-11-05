@@ -1,11 +1,15 @@
 import fs from "node:fs";
 import path from "node:path";
 import { absoluteUrl } from "@/lib/site";
+import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
 import { API_ENTRIES, APIS_PATH } from "@/data/apis";
 import { coverageFor } from "@/lib/apiCoverage";
 import { allSpokes } from "@/lib/clusterRegistry";
 import { HK_BASE, GROUP_TO_SLUG, releasedHkGroups } from "@/data/hkGroupPages";
 import { HC_PERMISSIONS_PATH, permissionAnchor } from "@/data/hcPages";
+import { VENDOR_HUBS } from "@/data/vendorHubs";
+import { INTENTS, intentOf, menuLabel } from "@/lib/vendorMenu";
+import { vendorChangesPath, vendorFeedPath, vendorTimeline } from "@/lib/vendorChanges";
 
 /**
  * The public read-only JSON API (/api/v1) — the published datasets, served
@@ -38,7 +42,7 @@ export const API_VERSION = "1.0.0";
 
 /** Responses are files regenerated on every deploy, so a client may reuse
  *  one for an hour and keep using it while it revalidates. */
-export const CACHE_CONTROL = "public, max-age=3600, stale-while-revalidate=86400";
+export const CACHE_CONTROL = MACHINE_CACHE_CONTROL;
 
 const API_HEADERS = {
   "content-type": "application/json; charset=utf-8",
@@ -106,7 +110,7 @@ function day(value: unknown, what: string): string {
  * A hand-built page's review date: its page-local `const UPDATED`, only when
  * the page publishes that constant as its WebPage lastReviewed
  * (`updated={UPDATED}` on PageSummary). Next refuses extra exports from a
- * page module, so the constant is read from source, as sitemap.ts reads it;
+ * page module, so the constant is read from source, as src/lib/sitemap.ts reads it;
  * the build has the source. A page that states no review date fails the
  * build rather than lending its dataset one. Callers pass the file as a
  * literal path, so output tracing ships that one source file and not every
@@ -181,6 +185,30 @@ function keypointId(r: Row): string {
 function names(text: unknown, alias: string): boolean {
   const re = new RegExp(`(?<![\\w-])${alias.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?![\\w-])`);
   return re.test(String(text ?? ""));
+}
+
+/** True when a published change row names the directory product `id`. */
+function namesProduct(id: string, c: Row): boolean {
+  const api = API_ENTRIES.find((a) => a.id === id);
+  return Boolean(api && api.aliases.some((a) => names(c.title, a) || names(c.summary, a)));
+}
+
+const INTENT_LABEL = Object.fromEntries(INTENTS.map((i) => [i.key, i.label])) as Record<string, string>;
+
+/** Every page about a product: its vendor menu first (in menu order), then the
+ *  coverage match's pages it does not already hold. */
+function vendorPages(id: string): { title: string; url: string; group: string; lastVerified: string | null }[] {
+  const out = new Map<string, { title: string; url: string; group: string; lastVerified: string | null }>();
+  const hub = VENDOR_HUBS.find((v) => v.id === id);
+  for (const p of hub?.pages ?? []) {
+    out.set(p, { title: menuLabel(p), url: absoluteUrl(p), group: INTENT_LABEL[intentOf(p)], lastVerified: SPOKE_UPDATED.get(p) ?? null });
+  }
+  for (const c of coverageFor(id)) {
+    for (const p of c.pages) {
+      if (!out.has(p.href)) out.set(p.href, { title: p.h1, url: absoluteUrl(p.href), group: c.clusterLabel, lastVerified: SPOKE_UPDATED.get(p.href) ?? null });
+    }
+  }
+  return [...out.values()];
 }
 
 /* ─────────────────────────── the configuration ─────────────────────────── */
@@ -330,6 +358,169 @@ const COLLECTIONS: Collection[] = [
       category:
         "Directory category: wearable-direct, aggregator, platform-store, nutrition, exercise-content, motion-sdk or pose-model",
       source: "aifitnessapi.com page carrying the verified claims",
+    },
+  },
+  {
+    // One record per directory product: everything this site holds about it
+    // in one response (ops/MORE-30-2026-11-05.md item 18). It is the
+    // directory dataset again, joined to the site's own data modules: the
+    // vendor menu (data/vendorHubs.ts), the coverage match (lib/apiCoverage),
+    // the published change rows and the timeline page where one exists. No
+    // field is typed here; the access facts are the cost model's, as quoted
+    // in fitness-apis-2026, and every page and change carries its own date.
+    dataset: "fitness-apis-2026",
+    path: "vendors",
+    param: "id",
+    key: (r) => String(r.id),
+    plural: "Vendors",
+    singular: "Vendor",
+    tag: "Vendors",
+    title: "Vendor records",
+    description:
+      "One record per product in the directory: the access facts the cost model holds (how the vendor bills developers, what each end user must own, what approval gates a launch, quoted from the linked source page), every page on this site about it, every tracked change naming it, and when each part was last verified. No prices, by design.",
+    page: APIS_PATH,
+    exclude: (r) => {
+      if (API_ENTRIES.some((a) => a.id === r.id)) return null;
+      if (r.category === "llm-features") {
+        return "A category, not a product: it stands for whichever LLM vendor you use, so the directory gives it no page and it has no vendor record. It stays in the dataset download.";
+      }
+      throw new Error(`fitness-apis-2026 row "${String(r.id)}" has no directory entry — regenerate the datasets (npm run datasets).`);
+    },
+    extra: {
+      compute: (r) => {
+        const id = String(r.id);
+        const api = API_ENTRIES.find((a) => a.id === id);
+        if (!api) throw new Error(`no directory entry for ${id}`);
+        const updated = SPOKE_UPDATED.get(relPath(r.source));
+        const timeline = vendorTimeline(id);
+        const hub = VENDOR_HUBS.find((v) => v.id === id)?.hub ?? null;
+        return {
+          name: api.short,
+          page: absoluteUrl(`${APIS_PATH}/${id}`),
+          hub: hub ? absoluteUrl(hub) : null,
+          record: absoluteUrl(`${API_BASE}/apis/${id}`),
+          sourceLastVerified: updated ? day(updated, `${id} source page updated`) : null,
+          pageCount: vendorPages(id).length,
+          changeCount: changeRows().filter((c) => namesProduct(id, c)).length,
+          changesPage: timeline ? absoluteUrl(vendorChangesPath(id)) : null,
+          changesFeed: timeline ? absoluteUrl(vendorFeedPath(id)) : null,
+        };
+      },
+      schema: {
+        name: { type: "string", description: "The product's colloquial name, as the site's prose uses it" },
+        page: { type: "string", format: "uri", description: "The product's page in the aifitnessapi.com directory" },
+        hub: {
+          type: ["string", "null"],
+          format: "uri",
+          description: "The page that links every other page about the vendor (its integration guide, else its directory entry); null where the vendor has no menu",
+        },
+        record: { type: "string", format: "uri", description: "The product's row in /api/v1/apis" },
+        sourceLastVerified: {
+          type: ["string", "null"],
+          format: "date",
+          description: "When the page the access facts are quoted from was last verified",
+        },
+        pageCount: { type: "integer", description: "How many pages on aifitnessapi.com are about the product (the length of pages in the item response)" },
+        changeCount: { type: "integer", description: "How many tracked changes name the product (the length of changes in the item response)" },
+        changesPage: {
+          type: ["string", "null"],
+          format: "uri",
+          description: "The product's change timeline page; null where fewer than two tracked changes name it",
+        },
+        changesFeed: {
+          type: ["string", "null"],
+          format: "uri",
+          description: "The RSS feed of that timeline; null where there is no timeline",
+        },
+      },
+    },
+    detail: {
+      compute: (r, changes) => {
+        const id = String(r.id);
+        return {
+          pages: vendorPages(id),
+          changes: changes
+            .filter((c) => namesProduct(id, c))
+            .map((c) => ({
+              id: changeId(c),
+              date: c.date,
+              title: c.title,
+              summary: c.summary,
+              status: c.status,
+              verifiedOn: c.verifiedOn,
+              source: c.source,
+              url: absoluteUrl(`${API_BASE}/changes/${changeId(c)}`),
+            })),
+        };
+      },
+      schema: {
+        pages: {
+          type: "array",
+          description:
+            "Every page on aifitnessapi.com about the product: first the vendor menu's pages by task, where the vendor has a menu, then every other page the directory's coverage match finds, most relevant first",
+          items: {
+            type: "object",
+            required: ["title", "url", "group", "lastVerified"],
+            properties: {
+              title: { type: "string", description: "The page's H1" },
+              url: { type: "string", format: "uri" },
+              group: { type: "string", description: "The menu group (Integration guide, Pricing, and so on) or, for a coverage match, the site section" },
+              lastVerified: {
+                type: ["string", "null"],
+                format: "date",
+                description: "The page's own updated stamp; null for pages that are not dated cluster pages",
+              },
+            },
+          },
+        },
+        changes: {
+          type: "array",
+          description: "Every tracked change that names the product, newest first (rows of /api/v1/changes)",
+          items: {
+            type: "object",
+            required: ["id", "date", "title", "summary", "status", "verifiedOn", "source", "url"],
+            properties: {
+              id: { type: "string" },
+              date: { type: "string", description: "At the precision the source supports" },
+              title: { type: "string" },
+              summary: { type: "string" },
+              status: { type: "string", description: "confirmed or reported" },
+              verifiedOn: { type: "string", format: "date" },
+              source: { type: "string", format: "uri", description: "The page carrying the sourced claim" },
+              url: { type: "string", format: "uri", description: "The change's own /api/v1 response" },
+            },
+          },
+        },
+      },
+    },
+    verified: (_doc, rows) => {
+      const dates = rows.map((r) => r.sourceLastVerified).filter((d): d is string => typeof d === "string");
+      return {
+        date: oldest(dates),
+        meaning:
+          "The oldest last-verified date of the pages the records' access facts are quoted from. Each record states its own, and each page and change inside a record carries its own date.",
+      };
+    },
+    itemVerified: (r) => {
+      const id = String(r.id);
+      const dates = [
+        day(r.sourceLastVerified, `${id} sourceLastVerified`),
+        ...changeRows()
+          .filter((c) => namesProduct(id, c))
+          .map((c) => day(c.verifiedOn, `change "${String(c.title)}" verifiedOn`)),
+      ];
+      return {
+        date: oldest(dates),
+        meaning: `The oldest of the dates this record rests on: when ${String(r.source)}, the page the access facts are quoted from, was last verified, and when each tracked change naming the product was last checked against its page. Each part carries its own date in the record.`,
+      };
+    },
+    itemSource: (r) => absoluteUrl(`${APIS_PATH}/${String(r.id)}`),
+    fieldNotes: {
+      id: "Product id, also the slug of the product's directory page (/apis/<id>)",
+      label: "The product as the directory names it",
+      category:
+        "Directory category: wearable-direct, aggregator, platform-store, nutrition, exercise-content, motion-sdk or pose-model",
+      source: "aifitnessapi.com page carrying the verified access facts",
     },
   },
   {

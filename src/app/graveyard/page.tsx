@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -10,6 +11,7 @@ import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 import { PAGE_H1 } from "@/data/pageTitles";
 import { graveyardCopy } from "@/lib/graveyardCopy";
+import ToolNextStep from "@/components/ToolNextStep";
 import {
   fmtGraveDate,
   GRAVEYARD_EMBED_PATH,
@@ -39,7 +41,7 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   title: { absolute: META_TITLE },
   description: DESCRIPTION,
-  alternates: { canonical: GRAVEYARD_PATH },
+  alternates: pageMirrorAlternates(GRAVEYARD_PATH),
   openGraph: {
     type: "website",
     title: "The Fitness API Graveyard",
@@ -193,14 +195,14 @@ export default function GraveyardPage() {
 
         <section className="mt-14" id="faq">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">Frequently asked questions</h2>
-          <dl className="mt-6 divide-y divide-[var(--border)]">
+          <div className="mt-6 divide-y divide-[var(--border)]">
             {faqs.map((f, i) => (
               <div key={f.q} id={`faq-${i + 1}`} className="scroll-mt-24 py-5">
-                <dt className="font-semibold text-[var(--fg)]">{f.q}</dt>
-                <dd className="mt-2 text-[var(--muted)]">{f.a}</dd>
+                <h3 className="text-base font-semibold text-[var(--fg)]">{f.q}</h3>
+                <p className="mt-2 text-[var(--muted)]">{f.a}</p>
               </div>
             ))}
-          </dl>
+          </div>
         </section>
 
         <section className="mt-12">
@@ -229,6 +231,8 @@ export default function GraveyardPage() {
           the publishers&rsquo; own words, reproduced to attribute each date. Vendors change their notices: check the
           linked source before you plan around a date.
         </p>
+
+        <ToolNextStep path="/graveyard" />
       </div>
     </Container>
   );

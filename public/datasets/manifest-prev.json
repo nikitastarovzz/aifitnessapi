@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-22",
+  "generated": "2026-11-05",
   "files": [
     {
       "file": "bluetooth-fitness-gatt-2026.csv",
@@ -14,28 +14,40 @@
       "sha256": "d0e0d5a6d6394b61b98d561d6324c318d3276727f91d12321796e67383adc345"
     },
     {
+      "file": "exercise-form-rules-2026.csv",
+      "bytes": 18641,
+      "rows": 25,
+      "sha256": "26971ed98faa2d68657744feb05890e0057e7a3479a6c56095c23d506b405708"
+    },
+    {
+      "file": "exercise-form-rules-2026.json",
+      "bytes": 33638,
+      "rows": 25,
+      "sha256": "f43f66ad1e97708084b10186192e3cfa1086ff497c33ee3a332d6ba231df0a4c"
+    },
+    {
       "file": "fitness-api-changes-2026.csv",
-      "bytes": 11823,
-      "rows": 19,
-      "sha256": "3e25e5854c25b590226eb9bb6d149e72d226710bf82be733091dc98215cb31e5"
+      "bytes": 13144,
+      "rows": 21,
+      "sha256": "89b12c40b04f2a8130c2456380f419ff5b1188ae0b41f23e44caa1cd8a409209"
     },
     {
       "file": "fitness-api-changes-2026.json",
-      "bytes": 16538,
-      "rows": 19,
-      "sha256": "fdbdaecbee5fe92963b9a9e1c0859336e5242c28929b862557e60cd6c36eeaf0"
+      "bytes": 18173,
+      "rows": 21,
+      "sha256": "9f15e6af87ddd5454204b3075768c43aa0513376671a6337fbdad597c2a668ae"
     },
     {
       "file": "fitness-api-glossary-2026.csv",
-      "bytes": 17315,
+      "bytes": 17308,
       "rows": 45,
-      "sha256": "5b8712bcd85c2c6f7a909fb97e7d63b7874cc37d469c23e8a6ca68ebb40c7003"
+      "sha256": "efa648e9320558652f5189649d073d408350b5a16fc1bd0f72117c2f68c918ec"
     },
     {
       "file": "fitness-api-glossary-2026.json",
-      "bytes": 23740,
+      "bytes": 23733,
       "rows": 45,
-      "sha256": "7606c068f0c0972a4f02e70d5d67624e902d841771bbe950c7d4afa026207234"
+      "sha256": "a47d820f829c0957fd89a4b56b3c9e09568c33ccdc498388ae8193aaa0ff1a0a"
     },
     {
       "file": "fitness-apis-2026.csv",
@@ -59,7 +71,7 @@
       "file": "google-health-api-data-types-2026.json",
       "bytes": 70003,
       "rows": 44,
-      "sha256": "0b1faed6f09933ceece4531a5cec4384b8ca70db1c4c79e9cc43252ea3f84f91"
+      "sha256": "9ce1d1c69adb8523664510709aa7a6773ba8cbc18a0b16fb52650c243f35b1e0"
     },
     {
       "file": "health-connect-permissions-2026.csv",
@@ -87,15 +99,15 @@
     },
     {
       "file": "health-data-type-matrix-2026.csv",
-      "bytes": 3637,
+      "bytes": 3636,
       "rows": 10,
-      "sha256": "5611f1d02ec29bb5bf2bbde2e4f631a6222c41b8ca7b1422f54272a28682d4b0"
+      "sha256": "7676ff87ef27b737f6f1e6960439682f69c4956d79790605271e573f7a4c3e11"
     },
     {
       "file": "health-data-type-matrix-2026.json",
-      "bytes": 6550,
+      "bytes": 6549,
       "rows": 10,
-      "sha256": "9be00b02108f40024d5ef34685fdf919323f9ab3e2da608d6a798d4bc8f4636a"
+      "sha256": "6a2f443d467451d978109f095e54747ca44c42dde3c830c216c5af7f0378fc4f"
     },
     {
       "file": "health-mcp-servers-2026.csv",

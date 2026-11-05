@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMirrorAlternates } from "@/lib/pageMirrors/alternates";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -14,6 +15,7 @@ import {
 } from "@/lib/hrMeasurement.mjs";
 import { site } from "@/lib/site";
 import { toolGraph } from "@/lib/schema";
+import ToolNextStep from "@/components/ToolNextStep";
 
 /**
  * A Web Bluetooth heart-rate lab.
@@ -45,7 +47,7 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  alternates: { canonical: PATH },
+  alternates: pageMirrorAlternates(PATH),
   openGraph: {
     type: "website",
     title: TITLE,
@@ -336,6 +338,8 @@ export default function HeartRateLabPage() {
           </Link>
           .
         </p>
+
+        <ToolNextStep path="/tools/heart-rate-lab" />
       </div>
     </Container>
   );

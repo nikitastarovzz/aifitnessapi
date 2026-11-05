@@ -36,6 +36,7 @@ const PAGES = ["/", "/devices", "/devices/ftms-fitness-machine-service", "/matri
   "/audio-coaching/audiofocus-request-failed-android-15",
   "/healthkit-queries", "/healthkit-queries/hkstatisticscollectionquery",
   "/phone-sensors", "/phone-sensors/cmpedometer",
+  "/own-your-data", "/own-your-data/apple-health-export", "/tools/apple-health-explorer",
   "/health-connect", "/health-connect/steps-record", "/health-connect/permissions",
   "/libraries", "/libraries/react-native-health", "/libraries/compare/garminconnect-vs-garth", "/libraries/python",
   "/healthkit-versions/ios-8", "/health-connect-releases",

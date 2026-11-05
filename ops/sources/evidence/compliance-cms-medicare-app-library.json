@@ -1,0 +1,262 @@
+[
+  {
+    "claim": "CMS calls the Health Technology Ecosystem a movement, not a mandate, and a call to action, not a regulation.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "This is a movement, not a mandate. It is a call to action, not a regulation."
+  },
+  {
+    "claim": "The Medicare App Library is a centralized directory where people with Medicare discover vetted digital health options.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "The Medicare App Library is a trusted, centralized directory where people with Medicare can discover and access vetted digital health care options."
+  },
+  {
+    "claim": "CMS asks app developers to voluntarily align around a shared framework.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "We are calling on health app developers, tech-enabled organizations, and innovators to voluntarily align around a shared framework for data and access that empowers people, improves care, and accelerates progress."
+  },
+  {
+    "claim": "CMS's definition of apps.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "We use \"apps\" as an inclusive term that encompasses traditional mobile and web applications, technology-enabled care services, digital health platforms, and innovative care delivery tools."
+  },
+  {
+    "claim": "Every option in the library will have undergone rigorous evaluation.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "All care options in the library will have undergone rigorous evaluation to ensure they meet high standards for security, privacy, clinical evidence, usability, and equity."
+  },
+  {
+    "claim": "Who should apply: apps that integrate with CMS Aligned Networks and meet one of three use cases.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "Apps that integrate with CMS Aligned Networks and meet one of three use cases:"
+  },
+  {
+    "claim": "Patient-facing apps must meet six core requirements.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "Patient-facing apps must meet these six core requirements:"
+  },
+  {
+    "claim": "Identity verification requirement.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "Support secure patient identity verification using CMS-approved IAL2/AAL2 standards (e.g., mDLs, passkeys) to enable access to health records from CMS Aligned Networks"
+  },
+  {
+    "claim": "Medicare connectivity requirement.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "Enable Medicare.gov notifications for Beneficiaries (notices, EOBs, fraud alerts)"
+  },
+  {
+    "claim": "CMS review requirement.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "Participate in CMS review process by disclosing data sources, terms/agreements, and completing a security checklist"
+  },
+  {
+    "claim": "Trial access requirement for paid apps.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "Provide trial access for Medicare patients if the app charges a fee"
+  },
+  {
+    "claim": "Discovery experience requirement.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "Allow the app to be featured in the Medicare.gov \"app store\" interface as a recommended option"
+  },
+  {
+    "claim": "HIPAA requirement applies when the app functions as a covered entity or business associate.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "Operate consistent with HIPAA Rules when functioning as a covered entity or business associate"
+  },
+  {
+    "claim": "ACCESS Model participants are exempt from CMS review and trial access.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "ACCESS Model participants are exempt from CMS Review and Trial Access requirements, as these are addressed through ACCESS Model participation requirements."
+  },
+  {
+    "claim": "Kill the Clipboard app requirements: IAL2/AAL2 credentials and FHIR transmission.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "FHIR data transmission (QR code, Smart Health Card, or Smart Health Links)"
+  },
+  {
+    "claim": "Conversational AI app requirements: AI-generated labels.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "Clear AI-generated result indicators with disclaimers"
+  },
+  {
+    "claim": "Diabetes and obesity app requirements include clinical record integration.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "Clinical record integration for personalized coaching, reminders, and alerts"
+  },
+  {
+    "claim": "Diabetes and obesity: pre-diabetic resources and HIPAA when applicable.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "HIPAA compliance when applicable"
+  },
+  {
+    "claim": "Participants reach 68+ million Medicare enrollees.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "Access to 68+ million Medicare enrollees seeking trusted digital health solutions"
+  },
+  {
+    "claim": "Negotiated identity verification pricing through ID.me and CLEAR.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "Negotiated identity verification pricing through ID.me and CLEAR"
+  },
+  {
+    "claim": "Access to CMS Aligned Networks and Medicare.gov identity services.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "Access to CMS infrastructure, including the CMS Aligned Networks and modern identity services on Medicare.gov"
+  },
+  {
+    "claim": "Third-party review covers clinical evidence, privacy, security, usability, equity and technical standards; CARIN Code of Conduct on either path.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "Regardless of which path you choose, you will need to sign the CARIN Code of Conduct and get reviewed by either DirectTrust or DiME."
+  },
+  {
+    "claim": "DiMe evaluates apps across clinical evidence, privacy and security, usability, equity and technical standards.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "DiMe evaluates apps across key pillars including clinical evidence, privacy and security, usability, equity, and technical standards."
+  },
+  {
+    "claim": "DirectTrust assessors verify conformance to the CARIN Code of Conduct.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "Complete independent third-party validation through DirectTrust Assessors who verify conformance to the CARIN Code of Conduct criteria."
+  },
+  {
+    "claim": "The CMS Aligned Network connection enables FHIR-based exchange, directly or via a PHR app.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "Connect to a CMS Aligned Network, either directly or via a Personal Health Record application, to enable secure FHIR-based health data exchange."
+  },
+  {
+    "claim": "What the application includes.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "This submission includes developer information, ecosystem integration details, identity provider confirmation, vetting documentation, privacy disclosures, and materials needed for the App Library listing (logos, screenshots, promotional video, and app store links)."
+  },
+  {
+    "claim": "What CMS validates in its review.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "CMS validates Medicare-specific requirements, including use case alignment, CMS Aligned Network connectivity, data handling capabilities, and legal agreements."
+  },
+  {
+    "claim": "Approved apps are featured in the library on Medicare.gov.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "Once approved, the app is featured in the Medicare App Library on Medicare.gov, where Medicare beneficiaries can discover and access trusted digital health tools."
+  },
+  {
+    "claim": "Nothing on CMS's page is intended to contravene, supersede or preempt HIPAA or the Privacy Act.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "For clarity, nothing in this document is intended to contravene, supersede, or preempt federal or state healthcare or privacy laws, such as the Health Insurance Portability and Accountability Act of 1996 Privacy, Security, and Breach Notification Rules (HIPAA Rules), and the Privacy Act of 1974."
+  },
+  {
+    "claim": "The requirements page was last modified October 8, 2026.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app/requirements-medicare-app-library",
+    "quote": "10/08/2026"
+  },
+  {
+    "claim": "Pledge requirements cover security and privacy, interoperability and independent accreditation.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app",
+    "quote": "Your app must meet CMS pledge requirements across these areas: security and privacy, interoperability, and independent accreditation."
+  },
+  {
+    "claim": "Apps must support FHIR R4, SMART on FHIR and a CMS Aligned Network.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app",
+    "quote": "Your app must support FHIR R4, SMART on FHIR authorization, and integrate with a CMS Aligned Network."
+  },
+  {
+    "claim": "Identity verification with ID.me or CLEAR.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app",
+    "quote": "Partner with ID.me or CLEAR to implement secure identity verification."
+  },
+  {
+    "claim": "Accreditation: DiMe Seal or CARIN Code of Conduct with DirectTrust.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app",
+    "quote": "Choose either the DiMe Seal or CARIN Alliance Code of Conduct with DirectTrust Accreditation."
+  },
+  {
+    "claim": "The pledge comes first.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/submit-your-app",
+    "quote": "You'll need to sign the CMS Health Tech Ecosystem Pledge before getting started."
+  },
+  {
+    "claim": "The use-case criteria are visionary; implementation guidelines are still being published.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/health-tech-ecosystem-categories",
+    "quote": "The below criteria are meant to be visionary and to illustrate the goals of the initiative. For criteria that are less mature, early adopters will collaborate with CMS to document and publish implementation guidelines."
+  },
+  {
+    "claim": "Diabetes and obesity apps support prevention and active management, including nutrition and activity tracking.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/health-tech-ecosystem-categories",
+    "quote": "including medication, lab trends, and nutrition/activity tracking."
+  },
+  {
+    "claim": "Networks self-attest to the interoperability criteria.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/health-tech-ecosystem-categories",
+    "quote": "Networks will self-attest to meet the interoperability criteria and agree to be reviewed if suspected to not be meeting the criteria."
+  },
+  {
+    "claim": "Networks that meet the framework are designated CMS Aligned Networks.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview/health-tech-ecosystem-categories",
+    "quote": "Networks that meet the CMS Interoperability Framework will be designated as CMS Aligned Networks."
+  },
+  {
+    "claim": "The ecosystem overview: movement, not a mandate.",
+    "url": "https://www.cms.gov/initiatives/health-technology-ecosystem/overview",
+    "quote": "This is a movement, not a mandate. It is a call to action, not a regulation."
+  },
+  {
+    "claim": "July 30, 2025: CMS unveiled voluntary criteria for data exchange.",
+    "url": "https://www.cms.gov/newsroom/press-releases/white-house-tech-leaders-commit-create-patient-centric-healthcare-ecosystem",
+    "quote": "At the White House event, CMS unveiled voluntary criteria for trusted, patient-centered and practical data exchange"
+  },
+  {
+    "claim": "30 companies pledged to promote real health outcomes with technology.",
+    "url": "https://www.cms.gov/newsroom/press-releases/white-house-tech-leaders-commit-create-patient-centric-healthcare-ecosystem",
+    "quote": "In addition, 30 companies pledged to promote real health outcomes with technology over the coming months."
+  },
+  {
+    "claim": "CMS planned to add an app library to Medicare.gov.",
+    "url": "https://www.cms.gov/newsroom/press-releases/white-house-tech-leaders-commit-create-patient-centric-healthcare-ecosystem",
+    "quote": "CMS plans to add an app library to Medicare.gov to highlight trusted, personalized digital health tools focused on prevention, chronic disease management, and cost-effective care navigation."
+  },
+  {
+    "claim": "The press release is dated July 30, 2025.",
+    "url": "https://www.cms.gov/newsroom/press-releases/white-house-tech-leaders-commit-create-patient-centric-healthcare-ecosystem",
+    "quote": "Jul 30, 2025"
+  },
+  {
+    "claim": "Medicare.gov heads the library Third-party apps that connect to Medicare.",
+    "url": "https://www.medicare.gov/health-apps",
+    "quote": "Third-party apps that connect to Medicare"
+  },
+  {
+    "claim": "Medicare.gov says the apps are independently verified.",
+    "url": "https://www.medicare.gov/health-apps",
+    "quote": "Independently verified to ensure they meet high standards for protecting and exchanging your health information."
+  },
+  {
+    "claim": "Apps can only access the Medicare data the user chooses to share.",
+    "url": "https://www.medicare.gov/health-apps",
+    "quote": "Can only access the Medicare data you choose to share."
+  },
+  {
+    "claim": "Medicare.gov lists apps almost ready for Medicare.",
+    "url": "https://www.medicare.gov/health-apps",
+    "quote": "Medicare is finishing the final checks to make sure these apps are ready for you."
+  },
+  {
+    "claim": "Medicare.gov's Samsung Health listing: free, Android.",
+    "url": "https://www.medicare.gov/health-apps/Samsung-Health",
+    "quote": "Start healthy habits for yourself with Samsung Health."
+  },
+  {
+    "claim": "Samsung Health's listing describes health records.",
+    "url": "https://www.medicare.gov/health-apps/Samsung-Health",
+    "quote": "You can securely store medical records, treatment information, and other health documents within the app."
+  },
+  {
+    "claim": "Samsung announced on September 8, 2026 that Samsung Health was accepted in the Medicare App Library.",
+    "url": "https://samsungmobilepress.com/articles/samsung-health-connected-care-innovation-recognition-medicare-app-library-kill-the-clipboard",
+    "quote": "September 8, 2026 – Samsung Electronics America today announced Samsung Health was recently accepted in the Medicare App Library"
+  },
+  {
+    "claim": "Samsung's CMS Certificate of Recognition for Kill the Clipboard with b.well Connected Health.",
+    "url": "https://samsungmobilepress.com/articles/samsung-health-connected-care-innovation-recognition-medicare-app-library-kill-the-clipboard",
+    "quote": "a collaborative effort between Samsung and digital health platform b.well Connected Health"
+  }
+]

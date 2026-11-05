@@ -1,4 +1,5 @@
 import { digests, getDigest, digestMarkdown } from "@/data/digest";
+import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
 
 /**
  * The plain-text edition of one digest issue, at
@@ -23,7 +24,7 @@ export async function GET(
   return new Response(digestMarkdown(d), {
     headers: {
       "content-type": "text/markdown; charset=utf-8",
-      "cache-control": "public, max-age=3600",
+      "cache-control": MACHINE_CACHE_CONTROL,
     },
   });
 }

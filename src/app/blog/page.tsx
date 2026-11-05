@@ -108,8 +108,9 @@ export default function BlogIndex() {
           </Link>
           ,{" "}
           <Link href="/fitness-apis/exercise-database-apis" className="text-brand-600 underline hover:text-brand-500">
-            exercise database APIs
+            workout APIs
           </Link>{" "}
+          (the exercise databases a workout is built from){" "}
           and{" "}
           <Link href="/fitness-apis/exercise-video-apis" className="text-brand-600 underline hover:text-brand-500">
             exercise APIs with demonstration videos
