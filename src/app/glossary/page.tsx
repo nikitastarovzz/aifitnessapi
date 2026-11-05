@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headTermOwner } from "@/data/headTerms";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -41,6 +42,16 @@ export const metadata: Metadata = {
 const alpha = GROUPS.flatMap((g) => g.terms)
   .map((t) => t.term)
   .sort((a, b) => a.localeCompare(b));
+
+/**
+ * A held head term ("Fitness API", "HealthKit": src/data/headTerms.ts) links
+ * its name to the page that owns the term, and the page that explains it in
+ * depth keeps a link under its own name, so neither link is lost.
+ */
+const IN_DEPTH: Record<string, string> = {
+  "/learn/what-is-a-fitness-api": "What is a fitness API?",
+  "/integrate/healthkit": "Apple HealthKit integration guide",
+};
 
 export default function GlossaryPage() {
   const url = absoluteUrl(PATH);
@@ -88,9 +99,20 @@ export default function GlossaryPage() {
                     className="grid scroll-mt-24 gap-1 py-4 sm:grid-cols-[minmax(0,14rem)_1fr] sm:gap-6"
                   >
                     <dt className="font-semibold text-[var(--fg)]">
-                      <Link href={t.href} className="hover:text-brand-600">{t.term}</Link>
+                      <Link href={headTermOwner(t.term) ?? t.href} className="hover:text-brand-600">{t.term}</Link>
                     </dt>
-                    <dd className="text-sm leading-relaxed text-[var(--muted)]">{t.def}</dd>
+                    <dd className="text-sm leading-relaxed text-[var(--muted)]">
+                      {t.def}
+                      {headTermOwner(t.term) && headTermOwner(t.term) !== t.href && (
+                        <>
+                          {" "}
+                          <Link href={t.href} className="text-brand-600 hover:text-brand-500">
+                            {IN_DEPTH[t.href] ?? "In depth"}
+                          </Link>
+                          .
+                        </>
+                      )}
+                    </dd>
                   </div>
                 ))}
               </dl>

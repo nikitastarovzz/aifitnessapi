@@ -1,4 +1,5 @@
 import { ALL_TERMS, GLOSSARY_PATH } from "@/data/glossary";
+import { headTermOwner } from "@/data/headTerms";
 
 /**
  * First-mention glossary linking. Every cluster body already uses the site's
@@ -13,6 +14,10 @@ import { ALL_TERMS, GLOSSARY_PATH } from "@/data/glossary";
  *    raw HTML tag — the places where an injected link would corrupt meaning
  *  - never on the page the glossary itself points at for that term (a page
  *    does not link to the glossary to explain its own subject)
+ *  - a held head term (src/data/headTerms.ts: "fitness API", "HealthKit")
+ *    links to the page that owns the term rather than to its glossary row,
+ *    and never on that owner page, so the site's own links name one page for
+ *    the term (HEAD-TERM-OWNER in scripts/qa.mjs)
  */
 
 const MAX = 5;
@@ -25,11 +30,16 @@ const slugOf = (term: string) =>
     .replace(/^-|-$/g, "");
 
 /** Term → the phrase that actually appears in prose, longest first. */
-const PHRASES = ALL_TERMS.map((t) => ({
-  href: t.href,
-  target: `${GLOSSARY_PATH}#term-${slugOf(t.term)}`,
-  phrase: t.term.replace(/\s*\([^)]*\)\s*/g, " ").trim(),
-}))
+const PHRASES = ALL_TERMS.map((t) => {
+  const phrase = t.term.replace(/\s*\([^)]*\)\s*/g, " ").trim();
+  const owner = headTermOwner(phrase);
+  return {
+    href: t.href,
+    owner,
+    target: owner ?? `${GLOSSARY_PATH}#term-${slugOf(t.term)}`,
+    phrase,
+  };
+})
   .filter((t) => t.phrase.length >= 4)
   .sort((a, b) => b.phrase.length - a.phrase.length);
 
@@ -39,7 +49,7 @@ const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const PROTECTED = /(`[^`]*`|\[[^\]]*\]\([^)]*\)|!\[[^\]]*\]|<[^>]+>|https?:\/\/\S+)/g;
 
 export function autolinkGlossary(body: string, currentPath: string): string {
-  const remaining = PHRASES.filter((p) => p.href !== currentPath);
+  const remaining = PHRASES.filter((p) => p.href !== currentPath && p.owner !== currentPath);
   const used = new Set<string>();
   const lines = body.split("\n");
   let inFence = false;

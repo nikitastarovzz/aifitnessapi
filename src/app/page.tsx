@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import HeadTermLinks from "@/components/HeadTermLinks";
 import Link from "next/link";
 import Container from "@/components/Container";
 import PostCard from "@/components/PostCard";
@@ -234,6 +235,7 @@ export default function Home() {
             documented down to the failure modes, with the deprecations and deadline traps
             called out before they cost you a rewrite.
           </p>
+          <HeadTermLinks path="/" className="mx-auto mt-4 max-w-2xl" />
           <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/#subscribe"

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import HeadTermLinks from "@/components/HeadTermLinks";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -161,6 +162,8 @@ export default function IntegratePillar() {
           stores (Apple HealthKit, Google Health Connect) are the exception, using OS permissions
           instead. These guides walk each provider end to end.
         </div>
+
+        <HeadTermLinks path="/integrate" />
 
         <div className="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-a:text-brand-600 hover:prose-a:text-brand-500">
           <h2>The shared integration pattern</h2>

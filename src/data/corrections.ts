@@ -198,7 +198,7 @@ export const CORRECTIONS: Correction[] = [
   },
   {
     date: "2026-10-02",
-    page: { href: "/blog/healthkit-240-types-ios-8", label: "HealthKit: 127 of 240 Types Are iOS 8.0" },
+    page: { href: "/blog/healthkit-240-types-ios-8", label: "127 of 240 HealthKit Types Are iOS 8.0" },
     was: "The post's description, an FAQ answer and a section headed \"Nothing is marked deprecated\" said none of the 240 identifiers carried a deprecation marker, and a later section built on \"zero deprecations\".",
     now: "Four did: dance, danceInspiredTraining, mixedMetabolicCardioTraining and audioExposureEvent, deprecated in iOS 10.0 to 14.0. All four places now say so under a dated correction note. None of the four has been removed, which is the point the section still makes.",
     how: "Found while re-checking HealthKit claims against the 2026-10-02 re-read, once the generator read Apple's deprecatedAt versions.",

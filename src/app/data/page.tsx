@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import HeadTermLinks from "@/components/HeadTermLinks";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -182,6 +183,8 @@ export default function DataPillar() {
             the <Link href="/integrate">integration guides</Link> take it from there.
           </p>
         </div>
+
+        <HeadTermLinks path="/data" />
 
         {GROUPS.map((group) => {
           const items = group.slugs.map((s) => getDataPage(s)).filter((e) => e !== undefined);

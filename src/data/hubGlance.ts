@@ -54,7 +54,7 @@ export type QaPart = { segs: Seg[]; href: string; label: string };
 export type HubQa = {
   id: string;
   q: string;
-  /** The Bing query (data/gsc/bing-latest.json) the question is worded after. */
+  /** The search query the question is worded after: Bing (data/gsc/bing-latest.json), or Google where noted. */
   bingQuery: string;
   /** answer = answered here and marked up; route = owned elsewhere, pointer only. */
   kind: "answer" | "route";
@@ -356,6 +356,35 @@ function fitnessApisQa(): HubQa[] {
           segs: [t("Those are the wearables in this site's cost model; the integration guides walk through more providers, one page each.")],
           href: "/integrate",
           label: "Integration guides",
+        },
+      ],
+    },
+    {
+      // ops/MORE-30-2026-11-05.md item 5: Google's "best api for fitness app
+      // data in united states" (13 impressions, Oct 4-31) split over ten
+      // pages, the homepage best at 36. This hub owns "fitness api"
+      // (src/data/headTerms.ts), so the answer lives here, quoted from the
+      // capsules of the pages that compare each job. The one US-specific
+      // fact is the Terra vs Junction capsule's.
+      id: "ask-best-fitness-data-api-us",
+      q: "What is the best API for fitness app data in the United States?",
+      bingQuery: "best api for fitness app data in united states (Google, data/gsc/latest.json)",
+      kind: "answer",
+      parts: [
+        {
+          segs: [t("It depends on which data the app needs, so this site answers it by job. For a user's own wearable: "), capsule("/fitness-apis/wearable-data-apis", 0), t(" "), capsule("/fitness-apis/wearable-data-apis", 1)],
+          href: "/fitness-apis/wearable-data-apis",
+          label: page("/fitness-apis/wearable-data-apis").h1,
+        },
+        {
+          segs: [t("For many wearables through one integration: "), capsule("/fitness-apis/health-data-aggregator-apis", 0)],
+          href: "/fitness-apis/health-data-aggregator-apis",
+          label: page("/fitness-apis/health-data-aggregator-apis").h1,
+        },
+        {
+          segs: [t("Where the users are in the US and the app also orders lab tests: "), capsule("/fitness-apis/terra-vs-vital", 1)],
+          href: "/fitness-apis/terra-vs-vital",
+          label: page("/fitness-apis/terra-vs-vital").h1,
         },
       ],
     },

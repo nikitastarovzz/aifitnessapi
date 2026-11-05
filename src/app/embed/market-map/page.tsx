@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { entityAnchor } from "@/data/headTerms";
 import EmbedFrame from "@/components/EmbedFrame";
 import { absoluteUrl } from "@/lib/site";
 import { CATEGORIES, MARKET_MAP_PATH, marketMapItems } from "@/lib/ecosystemSignals";
@@ -75,7 +76,7 @@ export default function EmbedMarketMap() {
                       rel="noreferrer"
                       className="break-words font-semibold text-[var(--fg)] hover:text-brand-600"
                     >
-                      {i.short}
+                      {entityAnchor(i)}
                     </a>
                     {i.firstParty && <span className="italic text-[var(--muted)]">· funds aifitnessapi.com</span>}
                   </li>

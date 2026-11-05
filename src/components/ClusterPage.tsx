@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { entityAnchor } from "@/data/headTerms";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterCta from "@/components/ClusterCta";
@@ -498,7 +499,7 @@ export default function ClusterPage({
                 href={`${APIS_PATH}/${p.id}`}
                 className="rounded-full border border-[var(--border)] px-2.5 py-0.5 text-xs text-[var(--fg)] transition-colors hover:border-brand-400"
               >
-                {p.short}
+                {entityAnchor(p)}
               </Link>
             ))}
           </p>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { entityAnchor } from "@/data/headTerms";
 import Link from "next/link";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -31,7 +32,7 @@ function InDirectory({ categories }: { categories: CostCategory[] }) {
       {items.map((a, i) => (
         <span key={a.id}>
           {i > 0 && ", "}
-          <Link href={`${APIS_PATH}/${a.id}`}>{a.short}</Link>
+          <Link href={`${APIS_PATH}/${a.id}`}>{entityAnchor(a)}</Link>
         </span>
       ))}
       .

@@ -1204,6 +1204,10 @@ export const alternativesEntries: ClusterEntry[] =
       {
         "q": "What should I plan for when migrating off Human API?",
         "a": "Three things: every user re-consents through the new vendor's connect flow, because their authorizations were granted to Human API; medical-record access may move from a consumer-permission basis to treatment access through a covered entity, which needs legal review; and each vendor normalizes into its own schema, so fields need re-mapping. Budget for the re-consent campaign as much as for the code."
+      },
+      {
+        "q": "How do the Spike API, Terra and Human API compare?",
+        "a": "On their own pages as of October 17, 2026, Terra and Spike are self-serve aggregators with published entry prices and Human API is not. Terra says one API call returns data from 500+ providers, starts at $399 a month billed annually with credits per connected data source, and orders blood and DNA tests in the US and the UK. Spike connects 500+ wearables and IoT sensors, says it accesses clinical data, parses lab reports, and its Sandbox starts from $450 a month; its acquisition by Raintree Systems has been announced. Human API is now a LexisNexis product offered through a contact form, with no public price or self-serve sign-up."
       }
     ],
     "related": [

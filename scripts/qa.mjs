@@ -4668,6 +4668,94 @@ if (fs.existsSync(matrixPath)) {
   );
 }
 
+// HEAD-TERM-OWNER: one page per head term (ops/MORE-30-2026-11-05.md items
+// 1-4). Search Console showed "fitness api" split over 22 of our pages,
+// "workout api" over 13, "fitness management api" over 12 and "healthkit"
+// over 5, none ranking. src/data/headTerms.ts names the owner of each, and
+// this holds every built English page to it:
+//  - a <title> or <h1> that IS the term — its lead before ":", "|", ",", "(",
+//    "—", "–" or " - ", with a leading "the", "best", "top", "all" or
+//    "browse" set aside — belongs to the owner alone;
+//  - an internal link whose visible text normalizes to the term points at the
+//    owner (fragment and query ignored).
+// Narrower questions ("What is a fitness API?", "HealthKit vs Health
+// Connect") are not the term and pass. External links are citations and are
+// not read. A hit means a page started competing with the owner again: change
+// the anchor text to say what the linked page is, or link the owner — never
+// drop the term from the config to let a page through.
+{
+  const src = fs.existsSync("src/data/headTerms.ts") ? fs.readFileSync("src/data/headTerms.ts", "utf8") : "";
+  const m = /export const HEAD_TERMS: [^=]+= /.exec(src);
+  let terms = null;
+  if (m) {
+    const end = src.indexOf("\n];", m.index);
+    try {
+      terms = JSON.parse(src.slice(m.index + m[0].length, end + 3).trim().replace(/;$/, ""));
+    } catch {
+      terms = null;
+    }
+  }
+  if (!Array.isArray(terms) || terms.length === 0) {
+    problems.push("HEAD-TERM-OWNER  src/data/headTerms.ts could not be read as a JSON array of head terms");
+  } else {
+    const ent = (s) =>
+      decode(s)
+        .replace(/&nbsp;|&#160;|&#xa0;/gi, " ")
+        .replace(/&ndash;/g, "–")
+        .replace(/&#x2F;/g, "/");
+    const LEAD_WORD = /^(?:the|best|top|all|browse) /;
+    const norm = (s) => {
+      let t = ent(s.replace(/<[^>]*>/g, " ")).toLowerCase().replace(/\s+/g, " ").trim();
+      while (LEAD_WORD.test(t)) t = t.replace(LEAD_WORD, "");
+      return t.replace(/[\s.:;!?→›»]+$/, "").trim();
+    };
+    const lead = (s) => norm(ent(s).split(/\s*(?:[:|(,—–·]| - )\s*/)[0]);
+    const ownerOf = new Map();
+    for (const t of terms) {
+      if (!t.owner || !Array.isArray(t.variants) || !t.variants.length) {
+        problems.push(`HEAD-TERM-OWNER  src/data/headTerms.ts: "${t.term}" has no owner or no variants`);
+        continue;
+      }
+      if (!valid.has(t.owner) || notFoundSet.has(t.owner)) {
+        problems.push(`HEAD-TERM-OWNER  "${t.term}" is owned by ${t.owner}, which is not a built page`);
+      }
+      for (const v of t.variants) ownerOf.set(norm(v), t);
+    }
+    let pages = 0;
+    let anchors = 0;
+    const hits = [];
+    for (const h of htmls) {
+      const route = routeOf(h);
+      if (route.startsWith("/_") || route.startsWith("/pt-br") || notFoundSet.has(route)) continue;
+      pages++;
+      const html = fs.readFileSync(h, "utf8");
+      const title = /<title>([^<]*)<\/title>/.exec(html)?.[1] ?? "";
+      const h1 = /<h1\b[^>]*>([\s\S]*?)<\/h1>/.exec(html)?.[1] ?? "";
+      for (const [kind, text] of [["title", title], ["h1", h1.replace(/<[^>]*>/g, "")]]) {
+        const t = ownerOf.get(lead(text));
+        if (t && route !== t.owner) hits.push(`${route}: its ${kind} "${ent(text).trim()}" is the head term "${t.term}", owned by ${t.owner}`);
+      }
+      for (const a of html.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/g)) {
+        const href = /\bhref="([^"]*)"/.exec(a[1])?.[1];
+        if (!href) continue;
+        let p = href.replace(/^https:\/\/aifitnessapi\.com(?=\/|$)/, "") || "/";
+        if (!p.startsWith("/") || p.startsWith("//")) continue;
+        const t = ownerOf.get(norm(a[2]));
+        if (!t) continue;
+        anchors++;
+        p = p.replace(/[#?].*$/, "").replace(/(.)\/$/, "$1") || "/";
+        if (p !== t.owner) hits.push(`${route}: a link reading "${norm(a[2])}" goes to ${p}, not the owner ${t.owner}`);
+      }
+    }
+    for (const hit of hits.slice(0, 40)) problems.push(`HEAD-TERM-OWNER  ${hit}`);
+    if (hits.length > 40) problems.push(`HEAD-TERM-OWNER  …and ${hits.length - 40} more`);
+    if (pages === 0) problems.push("HEAD-TERM-OWNER  no English page was scanned; the build layout moved");
+    console.log(
+      `Head terms: ${terms.length} terms held to one owner each on ${pages} English pages; ${anchors} internal links carry a head term as their text, ${hits.length} pointing elsewhere.`,
+    );
+  }
+}
+
 // ── The published gate list ─────────────────────────────────────────────
 // /gates publishes this suite as prose: one row per failure code, saying in
 // a sentence what the build refuses to ship when that code fires. A written

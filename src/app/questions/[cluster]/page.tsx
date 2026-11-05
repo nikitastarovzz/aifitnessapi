@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headTermOwner } from "@/data/headTerms";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Container from "@/components/Container";
@@ -63,6 +64,9 @@ function getCluster(cluster: string): Cluster | undefined {
  * can never push a title past the budget unnoticed.
  */
 function indexTitle(label: string): string {
+  // A label that is a held head term ("Fitness APIs") does not lead the title:
+  // the bare term's title belongs to its owner (src/data/headTerms.ts).
+  if (headTermOwner(label)) return clampTitle(`Every Question on ${label}, Answered`, TITLE_MAX);
   const full = `${label}: Every Question Answered`;
   if (full.length <= TITLE_MAX) return full;
   return clampTitle(`${label} — Questions`, TITLE_MAX);

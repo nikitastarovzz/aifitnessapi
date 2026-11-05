@@ -230,6 +230,12 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses:
       "A British spelling from the site's word list (\"licence\", \"behaviour\", \"catalogue\", \"colour\", \"centre\", \"normalise\", \"judgement\" and the rest) in an English page's own prose. Text in quotation marks, blockquotes, code, URLs, organizations' own names and wording the generated data files take from vendors keeps its original spelling and is not counted.",
   },
+  {
+    code: "HEAD-TERM-OWNER",
+    area: "Content integrity",
+    refuses:
+      "A second page competing for one of the site's head terms (\"fitness api\", \"workout api\", \"fitness management api\", \"healthkit\", each with one owner page in src/data/headTerms.ts): a title or H1 other than the owner's that leads with the bare term, or an internal link whose text is the term but points somewhere other than its owner. Narrower questions and external citations are not held.",
+  },
 
   // ── Type reference ────────────────────────────────────────────────────
   {
