@@ -980,34 +980,44 @@
     "quote": "This endpoint retrieves a list of the user’s Electrocardiogram (ECG) log entries before or after a given day."
   },
   {
-    "claim": "Deprecated. See Friends: GET /1.1/user/[user-id]/friends.json",
+    "claim": "Get Friends: GET /1.1/user/[user-id]/friends.json",
     "url": "https://dev.fitbit.com/build/reference/web-api/friends/get-friends/",
     "quote": "/1.1/user/[user-id]/friends.json"
   },
   {
-    "claim": "Deprecated. See Friends needs the social scope.",
+    "claim": "Get Friends needs the social scope.",
     "url": "https://dev.fitbit.com/build/reference/web-api/friends/get-friends/",
     "quote": "Scope: social"
   },
   {
-    "claim": "Deprecated. See Friends, in Fitbit's words.",
+    "claim": "Fitbit's Get Friends page is headed \"Deprecated. See Friends\".",
     "url": "https://dev.fitbit.com/build/reference/web-api/friends/get-friends/",
-    "quote": "# Get Friends"
+    "quote": "Deprecated. See Friends"
   },
   {
-    "claim": "Deprecated. See Friends: GET /1.1/user/-/leaderboard/friends.json",
+    "claim": "Get Friends, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/friends/get-friends/",
+    "quote": "This endpoint allows the application to retrieves a list of the specified Fitbit user's friends. This scope does not provide access to the friend's Fitbit data. Those users will need to individually consent to share their data with your"
+  },
+  {
+    "claim": "Get Friends Leaderboard: GET /1.1/user/-/leaderboard/friends.json",
     "url": "https://dev.fitbit.com/build/reference/web-api/friends/get-friends-leaderboard/",
     "quote": "/1.1/user/-/leaderboard/friends.json"
   },
   {
-    "claim": "Deprecated. See Friends needs the social scope.",
+    "claim": "Get Friends Leaderboard needs the social scope.",
     "url": "https://dev.fitbit.com/build/reference/web-api/friends/get-friends-leaderboard/",
     "quote": "Scope: social"
   },
   {
-    "claim": "Deprecated. See Friends, in Fitbit's words.",
+    "claim": "Fitbit's Get Friends Leaderboard page is headed \"Deprecated. See Friends\".",
     "url": "https://dev.fitbit.com/build/reference/web-api/friends/get-friends-leaderboard/",
-    "quote": "# Get Friends Leaderboard"
+    "quote": "Deprecated. See Friends"
+  },
+  {
+    "claim": "Get Friends Leaderboard, in Fitbit's words.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/friends/get-friends-leaderboard/",
+    "quote": "This endpoint returns the user's friend leaderboard in the format requested using units in the unit system which corresponds to the Accept-Language header provided. This scope does not provide access to the friend's Fitbit data. Those"
   },
   {
     "claim": "Get Heart Rate Time Series by Date carries Resting heart rate data (the page names restingHeartRate), so it maps to Google's \"Resting heart rate\" row.",
@@ -2272,7 +2282,7 @@
   {
     "claim": "Fitbit's Web API reference has a Friends section.",
     "url": "https://dev.fitbit.com/build/reference/web-api/friends/",
-    "quote": "and Get Friends Leaderboard) were deprecated on May 6, 2026. These endpoints will not be available in the Google Health API. Please update your applications to remove dependencies on these endpoints."
+    "quote": "The Friends endpoints display information about the specified user's friends and the friend's leaderboard."
   },
   {
     "claim": "Fitbit's Web API reference has a Heart Rate Time Series section.",

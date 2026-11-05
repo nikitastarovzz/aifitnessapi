@@ -101,6 +101,7 @@ export default function FitbitGoogleMap({ rows, categories }: { rows: FgRow[]; c
                   </a>
                 </h3>
                 <p className="text-xs text-[var(--muted)]">{r.categoryTitle}</p>
+                {r.notice && <p className="mt-1 text-xs font-semibold text-amber-700 dark:text-amber-400">Fitbit: “{r.notice}”</p>}
               </div>
               <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${STATUS[r.status].cls}`}>{STATUS[r.status].label}</span>
             </div>
