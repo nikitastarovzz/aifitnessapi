@@ -70,6 +70,12 @@ export const TOOL_LOOKUPS: Tool[] = [
       "Pick Oura, WHOOP, Strava, Polar, Withings, Wahoo, Dexcom, Suunto or Google Health: documented endpoints and scopes, an authorize URL, a PKCE pair and token curl. Sends nothing.",
   },
   {
+    path: "/tools/starter-scaffold",
+    name: "Starter scaffold generator",
+    blurb:
+      "Pick Express, Next.js or FastAPI and Oura, WHOOP, Polar, Strava or Wahoo: a tested project skeleton with OAuth routes, a token store and verified webhooks, as a .zip.",
+  },
+  {
     path: "/tools/keypoint-playground",
     name: "Pose keypoint playground",
     blurb:

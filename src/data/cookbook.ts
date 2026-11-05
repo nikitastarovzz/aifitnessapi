@@ -3,6 +3,7 @@
  * rule). Article + FAQPage; no HowTo steps — the code is the procedure.
  */
 import { cookbookEntries } from "./cookbook.entries";
+import { cookbookIntegratorEntries } from "./cookbook.integrator.entries";
 import type { ClusterEntry } from "@/lib/cluster";
 
 export type { ClusterEntry } from "@/lib/cluster";
@@ -21,9 +22,20 @@ export const RELEASED_COOKBOOK = new Set<string>([
   "backfill-checkpointer",
   "dedupe-health-samples",
   "incremental-sync-anchor",
+  // Integrator recipes (ops/AUDIENCE-30-2026-11-05.md item 9).
+  "vendor-webhook-signatures",
+  "webhook-handshakes",
+  "cursor-pagination",
+  "multi-window-rate-pacer",
+  "pkce-authorize-url",
+  "token-vault",
+  "workout-type-crosswalk",
+  "health-connect-error-policy",
+  "ble-heart-rate-parser",
+  "withings-notification-router",
 ]);
 
-export const allCookbook: ClusterEntry[] = cookbookEntries;
+export const allCookbook: ClusterEntry[] = [...cookbookEntries, ...cookbookIntegratorEntries];
 
 export function releasedCookbook(): ClusterEntry[] {
   return allCookbook.filter((e) => RELEASED_COOKBOOK.has(e.slug));

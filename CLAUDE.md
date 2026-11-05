@@ -73,6 +73,7 @@ silently reverts it.
 | `public/webhooks/send-sample.mjs` | `node scripts/build-webhook-sender.mjs` (template `scripts/templates/send-sample.template.mjs` + the documented examples in `src/data/webhookPayloads.ts`; `--check` fails when stale, run by `npm run test:webhook-payloads`) |
 | `public/favicon.ico`, `public/icon-192.png`, `public/icon-512.png`, `public/logo.png` | `node scripts/build-icons.mjs` (rasterizes `src/app/icon.svg` with Playwright's Chromium) |
 | `mcp/data/`, `packages/health-data/data/` | `node scripts/bundle-package-data.mjs` |
+| `packages/api-client/src/schema.ts` | `npm run build && node scripts/build-api-client.mjs` (renders the built `/api/v1/openapi.json`; qa's API-CLIENT-DRIFT fails when they differ, so rerun it after any dataset column change) |
 
 Two rules the generators enforce and a change must not weaken:
 

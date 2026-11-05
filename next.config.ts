@@ -58,6 +58,7 @@ const PAGE_MIRRORS = [
   "/tools/stack-generator",
   "/tools/step-lab",
   "/tools/webhook-verifier",
+  "/tools/starter-scaffold",
   "/tools/apple-health-explorer",
   "/tools/ble-gatt-explorer",
   "/tools/cycling-power-lab",

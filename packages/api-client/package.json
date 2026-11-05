@@ -1,0 +1,21 @@
+{
+  "name": "@aifitnessapi/api-client",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Typed, zero-dependency client for the read-only aifitnessapi.com JSON API (/api/v1), with types generated from its OpenAPI document.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": { ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" } },
+  "files": ["dist", "src", "README.md"],
+  "sideEffects": false,
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "node test/run.mjs"
+  },
+  "keywords": ["healthkit", "health-connect", "fitness-api", "openapi", "typed-client"],
+  "homepage": "https://aifitnessapi.com/developers#typed-client",
+  "repository": { "type": "git", "url": "https://github.com/nikitastarovzz/aifitnessapi", "directory": "packages/api-client" }
+}

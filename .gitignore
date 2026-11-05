@@ -43,3 +43,6 @@ next-env.d.ts
 
 # IndexNow diff snapshot (restored/saved by the Actions cache, never committed)
 .indexnow/
+
+# scripts/starter-scaffold.test.mjs scratch output
+/.scaffold-test-*/

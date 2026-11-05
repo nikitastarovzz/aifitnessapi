@@ -69,6 +69,11 @@ export const TOOL_NEXT_STEPS: Record<string, string[]> = {
     "/fitness-apis/wearable-data-apis",
     "/fitness-apis/health-data-aggregator-apis",
   ],
+  "/tools/starter-scaffold": [
+    "/integrate",
+    "/fitness-apis/wearable-data-apis",
+    "/pricing/how-much-does-a-fitness-api-cost",
+  ],
   "/tools/webhook-verifier": [
     "/integrate",
     "/fitness-apis/health-data-aggregator-apis",

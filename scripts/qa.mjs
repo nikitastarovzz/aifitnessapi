@@ -474,6 +474,21 @@ if (fs.existsSync(matrixPath)) {
   if (!openapi || typeof openapi.openapi !== "string" || !openapi.openapi.startsWith("3.1.") || typeof openapi.paths !== "object") {
     problems.push("API-OPENAPI  /api/v1/openapi.json is missing from the build output or is not an OpenAPI 3.1 document");
   } else {
+    // The typed client's generated types must match the document they were
+    // generated from (ops/AUDIENCE-30-2026-11-05.md item 4). A column added,
+    // removed or retyped in a dataset is a breaking change for the client.
+    {
+      const { renderSchemaModule, OUT } = await import("./build-api-client.mjs");
+      let want = null;
+      try {
+        want = renderSchemaModule(openapi);
+      } catch (e) {
+        problems.push(`API-CLIENT-DRIFT  scripts/build-api-client.mjs cannot render the built OpenAPI document: ${e.message}`);
+      }
+      if (want !== null && (!fs.existsSync(OUT) || fs.readFileSync(OUT, "utf8") !== want)) {
+        problems.push(`API-CLIENT-DRIFT  ${OUT} does not match the built /api/v1/openapi.json — run node scripts/build-api-client.mjs`);
+      }
+    }
     // Expand each documented path into the concrete URLs it promises. An item
     // path must enumerate its ids, or there is no way to hold it to the build.
     const documented = new Set();
@@ -1710,7 +1725,7 @@ if (fs.existsSync(matrixPath)) {
       const r = routeOf(h);
       return (r === "/tools" || r.startsWith("/tools/")) && fs.readFileSync(h, "utf8").includes("data-tool");
     }).length;
-    const EXPECTED_TOOLS = 28; // hub + 27 tools (the 6 lookups, sample-data, webhook-verifier, oauth-playground, keypoint-playground, pose-benchmark, heart-rate-lab, step-lab, ftms-lab, cycling-power-lab, ble-gatt-explorer, apple-health-explorer, rep-counter-playground, exercise-form-rules, build-plan, store-submission-checklist, compliance-wizard, api-coverage-matrix, rate-limit-calculator, exercise-taxonomy-crosswalk, gym-software-api-matrix and research-platform-chooser)
+    const EXPECTED_TOOLS = 29; // hub + 28 tools (the 6 lookups, sample-data, webhook-verifier, oauth-playground, starter-scaffold, keypoint-playground, pose-benchmark, heart-rate-lab, step-lab, ftms-lab, cycling-power-lab, ble-gatt-explorer, apple-health-explorer, rep-counter-playground, exercise-form-rules, build-plan, store-submission-checklist, compliance-wizard, api-coverage-matrix, rate-limit-calculator, exercise-taxonomy-crosswalk, gym-software-api-matrix and research-platform-chooser)
     if (rendered !== EXPECTED_TOOLS) {
       problems.push(`TOOLS          ${rendered} /tools pages carry data-tool, expected ${EXPECTED_TOOLS}`);
     } else {
@@ -1952,6 +1967,42 @@ if (fs.existsSync(matrixPath)) {
           (due ? `, ${due} at ${STALE_AFTER_DAYS}d or older (run \`npm run stale\`)` : ""),
       );
     }
+  }
+
+  // ── Cookbook: the page is the file ──────────────────────────────────────
+  //
+  // Added 2026-11-05 with the ten integrator recipes (ops/AUDIENCE-30 item 9).
+  // Every recipe page claims its code is a byte-verbatim copy of a CI-tested
+  // file in /cookbook. Until now nothing checked that: an edit to the file
+  // without the page (or the reverse) would publish code the tests never ran.
+  {
+    let recipes = 0;
+    for (const f of fs.readdirSync("src/data").filter((n) => /^cookbook(\.[a-z]+)?\.entries\.ts$/.test(n))) {
+      const src = fs.readFileSync(`src/data/${f}`, "utf8");
+      const start = src.indexOf("= [");
+      let entries = [];
+      try {
+        entries = JSON.parse(src.slice(start + 2, src.lastIndexOf("]") + 1));
+      } catch (e) {
+        problems.push(`COOKBOOK-VERBATIM  src/data/${f} is not the JSON-shaped entry list this gate reads (${e.message})`);
+        continue;
+      }
+      for (const e of entries) {
+        recipes++;
+        const file = `cookbook/${e.slug}.mjs`;
+        if (!fs.existsSync(file) || !fs.existsSync(`cookbook/${e.slug}.test.mjs`)) {
+          problems.push(`COOKBOOK-UNTESTED  /cookbook/${e.slug} has no ${file} with a ${e.slug}.test.mjs beside it`);
+          continue;
+        }
+        const blocks = [...String(e.body).matchAll(/```js\n([\s\S]*?)```/g)].map((m) => m[1]);
+        if (blocks.length !== 1 || blocks[0] !== fs.readFileSync(file, "utf8")) {
+          problems.push(
+            `COOKBOOK-VERBATIM  /cookbook/${e.slug} ${blocks.length === 1 ? "shows code that differs from" : `has ${blocks.length} js blocks instead of one copy of`} ${file}`,
+          );
+        }
+      }
+    }
+    console.log(`Cookbook: ${recipes} recipes, each page's code checked byte for byte against its tested file.`);
   }
 
   // ── Query ownership: one query, one page ──────────────────────────────

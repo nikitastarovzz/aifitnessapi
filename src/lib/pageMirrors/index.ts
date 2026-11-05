@@ -12,6 +12,7 @@ import { sampleDataMirror } from "./sampleData";
 import { stackGeneratorMirror } from "./stackGenerator";
 import { stepLabMirror } from "./stepLab";
 import { webhookVerifierMirror } from "./webhookVerifier";
+import { starterScaffoldMirror } from "./starterScaffold";
 import { appleHealthExplorerMirror } from "./appleHealthExplorer";
 import { bleGattExplorerMirror } from "./bleGattExplorer";
 import { cyclingPowerLabMirror } from "./cyclingPowerLab";
@@ -59,6 +60,7 @@ export const PAGE_MIRRORS: Record<string, () => MirrorDoc> = {
   "/tools/stack-generator": stackGeneratorMirror,
   "/tools/step-lab": stepLabMirror,
   "/tools/webhook-verifier": webhookVerifierMirror,
+  "/tools/starter-scaffold": starterScaffoldMirror,
   "/tools/apple-health-explorer": appleHealthExplorerMirror,
   "/tools/ble-gatt-explorer": bleGattExplorerMirror,
   "/tools/cycling-power-lab": cyclingPowerLabMirror,

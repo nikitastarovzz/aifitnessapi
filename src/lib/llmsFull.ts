@@ -422,6 +422,13 @@ function toolLines(): string[] {
   out.push("");
   out.push(rateLimitCapsule());
   out.push("");
+  out.push(`## Starter scaffold generator — ${absoluteUrl("/tools/starter-scaffold")}`);
+  out.push("Primary query: fitness api starter project oauth webhook boilerplate");
+  out.push("");
+  out.push(
+    "A client-side generator: " + "pick a stack (Node.js with Express, Next.js route handlers, or Python with FastAPI) and the vendors (Oura, WHOOP, Polar AccessLink, Strava, Wahoo), and download a project skeleton as a .zip built in the browser: OAuth start and callback routes with a state check and PKCE where the vendor documents it (Oura) and WHOOP's eight-character state, the vendor's token endpoint with credentials in the form body or, for Polar, HTTP Basic, a token-store interface with an in-memory stand-in, a webhook endpoint per vendor that answers its handshake and checks its documented signature or token (Oura, WHOOP and Polar HMAC-SHA256; Strava's hub.challenge; Wahoo's webhook_token), a .env.example and a README. OAuth facts from the site's integration guides, webhook rules from the webhook verifier (read 2026-10-31). Every stack with every vendor is compiled (node --check, tsc --strict, python -m py_compile) and run against the vendors' documented example webhooks in the site's tests. Withings, Terra, the Google Health API and Garmin are left out, with the reason for each.",
+  );
+  out.push("");
   out.push(`## Wearable webhook verifier — ${absoluteUrl("/tools/webhook-verifier")}`);
   out.push("Primary query: how to verify a wearable webhook signature");
   out.push("");
