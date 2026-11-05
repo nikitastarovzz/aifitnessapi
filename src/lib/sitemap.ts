@@ -246,6 +246,7 @@ function computeSections(): SitemapSection[] {
     ["/tools/ftms-lab", pageStamp("/tools/ftms-lab")],
     ["/tools/cycling-power-lab", pageStamp("/tools/cycling-power-lab")],
     ["/tools/ble-gatt-explorer", pageStamp("/tools/ble-gatt-explorer")],
+    ["/tools/apple-health-explorer", pageStamp("/tools/apple-health-explorer")],
   ];
 
   // Routes whose date comes from data, or from the members they index.

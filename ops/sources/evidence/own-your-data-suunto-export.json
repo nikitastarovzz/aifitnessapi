@@ -1,0 +1,37 @@
+[
+  {
+    "claim": "FIT contains all relevant information.",
+    "url": "https://www.suunto.com/Support/faq-articles/suunto-app/what-type-of-files-can-i-export-from-the-suunto-app/",
+    "quote": "A workout in a FIT format is a file including all the relevant information from your workout: location, time, timestamps, heart rate, power, cadence, etc."
+  },
+  {
+    "claim": "FIT is preferred.",
+    "url": "https://www.suunto.com/Support/faq-articles/suunto-app/what-type-of-files-can-i-export-from-the-suunto-app/",
+    "quote": "They are the preferred format for workout export and use in different services."
+  },
+  {
+    "claim": "GPX workout contents.",
+    "url": "https://www.suunto.com/Support/faq-articles/suunto-app/what-type-of-files-can-i-export-from-the-suunto-app/",
+    "quote": "A workout in a GPX format is a file including both location and time information from your workout (and, where available, heart rate data)."
+  },
+  {
+    "claim": "GPX doesn't contain everything.",
+    "url": "https://www.suunto.com/Support/faq-articles/suunto-app/what-type-of-files-can-i-export-from-the-suunto-app/",
+    "quote": "don't contain all the information available in the Suunto app."
+  },
+  {
+    "claim": "Route GPX is location only.",
+    "url": "https://www.suunto.com/Support/faq-articles/suunto-app/what-type-of-files-can-i-export-from-the-suunto-app/",
+    "quote": "A route in a GPX format is a file including only the location information from your workout."
+  },
+  {
+    "claim": "Export path: three dots, top right.",
+    "url": "https://www.suunto.com/Support/faq-articles/suunto-app/what-type-of-files-can-i-export-from-the-suunto-app/",
+    "quote": "and in the top right corner, tap the three dots."
+  },
+  {
+    "claim": "No GPS: FIT only.",
+    "url": "https://www.suunto.com/Support/faq-articles/suunto-app/what-type-of-files-can-i-export-from-the-suunto-app/",
+    "quote": "exercise recordings without GPS will not have the possibility of exporting GPX files, only FIT files."
+  }
+]

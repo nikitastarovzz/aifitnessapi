@@ -92,6 +92,7 @@ export const CLUSTER_SEED: Record<string, number> = {
   "/healthkit-queries": 23,
   "/phone-sensors": 24,
   "/health-connect-api": 25,
+  "/own-your-data": 26,
 };
 export function heroSeed(basePath: string): number {
   return CLUSTER_SEED[basePath] ?? 0;

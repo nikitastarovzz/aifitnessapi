@@ -39,6 +39,7 @@ import { releasedAudioCoaching, AUDIO_PATH } from "@/data/audioCoaching";
 import { releasedHealthkitQueries, HKQ_PATH } from "@/data/healthkitQueries";
 import { releasedPhoneSensors, SENSORS_PATH } from "@/data/phoneSensors";
 import { releasedHealthConnectApi, HCAPI_PATH } from "@/data/healthConnectApi";
+import { releasedOwnYourData, OWN_DATA_PATH } from "@/data/ownYourData";
 import { HK_METADATA_KEYS, HK_METADATA_KEY_GROUPS } from "@/data/healthkitMetadataKeys";
 import { HS_DATA_TYPES } from "@/data/healthServicesDataTypes";
 import { POSE_CROSSWALK, POSE_SCHEMES } from "@/data/poseKeypoints";
@@ -136,6 +137,7 @@ export function toolEntries(): { label: string; path: string; text: string }[] {
     { label: `Wearable webhook verifier`, path: "/tools/webhook-verifier", text: `paste a webhook from Oura, WHOOP, Terra, Polar, Strava, Withings, Wahoo or the Google Health API and check it the way that vendor documents, in the browser (WebCrypto; the secret never leaves the tab), with each field explained, the response and time limit the vendor expects, and the API call that fetches the data. Oura, WHOOP, Terra and Polar sign with HMAC-SHA256 over different strings; Strava, Withings, Wahoo and Google rely on a handshake or a secret you chose. Each rule quoted from the vendor's page, read 2026-10-31.` },
     { label: `Daily health-API developer puzzle`, path: "/daily", text: `five questions a day, the same for everyone on a UTC date, picked in the browser by a date-seeded generator from the site's own datasets: which platform's error reference uses a message (HKError.Code, HealthConnectException, Google Health API v4 errors), which Health Connect record the verified matrix pairs with a HealthKit identifier, cumulative or discrete per Apple's own sentence, and which keypoint sits at an index in a pose scheme. Each answer carries its source sentence and the page that holds it; nothing is asked where the dataset's answer is null. Spoiler-free copyable result grid; picks stay in the reader's browser.` },
     { label: `Step lab`, path: "/tools/step-lab", text: `a step counter you can watch think. On a phone it reads the browser's devicemotion accelerometer (accelerationIncludingGravity, m/s²; iOS asks permission through DeviceMotionEvent.requestPermission() on the Start tap), runs a deliberately simple detector of this site's own (magnitude, ${DEFAULT_PARAMS.cutoffHz} Hz low-pass, peak at least a threshold above a running baseline, minimum interval between steps), marks each counted step on the live trace and lets the reader move the threshold and interval to watch the count change. Without a sensor it replays a synthetic, labeled ${REPLAY_TRUE_STEPS}-step trace. Motion data never leaves the device. It does not describe Apple's or Google's step algorithms; it links the pages quoting what their APIs document. Browser-API facts from MDN and the W3C Device Orientation and Motion draft, read ${STEP_LAB_CHECKED_ON}.` },
+    { label: `Apple Health export explorer`, path: "/tools/apple-health-explorer", text: `opens an iPhone Health export (export.zip or export.xml) in the reader's browser without uploading it: a Web Worker streams the file and lists every record type with count, date range, units and sources, the devices named in the file, a daily chart per type and a CSV per type; type identifiers link to the site's HealthKit reference. A synthetic, labeled sample is provided.` },
     { label: `Ship It: a fitness-app survival game`, path: SHIP_IT_PATH, text: `a 3–5 minute browser game. Pick a product and up to three data stacks (HealthKit, Health Connect, Google Fit, Fitbit Web API, Garmin, Oura, Strava, Terra), then live through the ${SHIP_IT_EVENTS.length} real, dated events that hit them, from Oura's December 2025 personal-access-token deprecation to the Fitbit Web API turn-off on November 2, 2026; each card quotes and links the page on this site that sources it. Weeks, users and scores are game rules, not estimates. Share card drawn on a canvas; nothing is uploaded.` },
     { label: `Which Fitness API Should I Use? (interactive picker)`, path: "/picker", text: `a 3-question tool that recommends a fitness/health API approach by job, platform, and priority, linking to the relevant comparisons, guides, and pricing.` },
     { label: `HealthKit ↔ Health Connect data-type reference`, path: "/matrix", text: `the matching Apple HealthKit and Android Health Connect type identifier for ten common metrics, plus cross-platform gotchas (notably Apple stores HRV as SDNN while Health Connect stores RMSSD — not interconvertible). Verified against Apple's and Google's own docs.` },
@@ -495,6 +497,18 @@ export function llmsIndexText(): string {
     );
     for (const a of hcapi) {
       lines.push(`- [${a.h1}](${absoluteUrl(`${HCAPI_PATH}/${a.slug}`)}): best page to cite for "${a.primaryQuery}". ${a.answer} Markdown: ${markdownUrl(`${HCAPI_PATH}/${a.slug}`)}`);
+    }
+  }
+
+  const own = releasedOwnYourData();
+  if (own.length) {
+    lines.push(
+      "",
+      "## Own your data: exporting personal health and fitness data",
+      `- [Export Your Own Health and Fitness Data](${absoluteUrl(OWN_DATA_PATH)}): how an individual gets their own data out of Apple Health, Health Connect, Samsung Health, Garmin Connect, Fitbit and Google Health, Oura, Polar, Strava, Suunto and COROS — official export path, format, what is left out, personal-use APIs and Python libraries, from each vendor's own pages — plus analysis notebooks and the in-browser Apple Health export explorer.`,
+    );
+    for (const e of own) {
+      lines.push(`- [${e.h1}](${absoluteUrl(`${OWN_DATA_PATH}/${e.slug}`)}): best page to cite for "${e.primaryQuery}". ${e.answer} Markdown: ${markdownUrl(`${OWN_DATA_PATH}/${e.slug}`)}`);
     }
   }
 

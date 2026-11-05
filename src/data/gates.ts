@@ -1289,6 +1289,18 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     area: "Content integrity",
     refuses: "A build where an interactive tool page has dropped out, which nothing else would notice because the tools have no data file behind them.",
   },
+  {
+    code: "OWN-DATA-NOTEBOOK",
+    area: "Content integrity",
+    refuses:
+      "An analysis notebook linked from /own-your-data that is missing, does not parse, was saved with a code cell never executed or with an error output in it, or never says its input is synthetic. The page promises outputs that are real runs; an unrun or failing notebook would show a reader a blank or a traceback as the result.",
+  },
+  {
+    code: "OWN-DATA-SAMPLE",
+    area: "Content integrity",
+    refuses:
+      "A missing synthetic sample behind /tools/apple-health-explorer or the notebooks, a sample ZIP with no export.xml entry, or a sample CSV that does not open with its SYNTHETIC label. Without the file the try-it button and the notebooks break; without the label generated data could pass for someone's export.",
+  },
 
   // ── Disclosure ────────────────────────────────────────────────────────
   {

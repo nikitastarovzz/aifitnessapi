@@ -157,6 +157,12 @@ export const TOOL_PLANNERS: Tool[] = [
     blurb:
       "Walk with your phone and watch a visible step detector count; move its threshold and interval to see why two apps disagree.",
   },
+  {
+    path: "/tools/apple-health-explorer",
+    name: "Apple Health export explorer",
+    blurb:
+      "Open your iPhone Health export.zip in the browser: record types with counts and dates, sources, a daily chart and a CSV per type. Nothing is uploaded.",
+  },
 ];
 
 export const ALL_TOOLS: Tool[] = [...TOOL_LOOKUPS, ...TOOL_PLANNERS];

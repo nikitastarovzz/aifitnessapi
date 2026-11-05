@@ -1,0 +1,27 @@
+[
+  {
+    "claim": "Download to see your personal data.",
+    "url": "https://www.samsung.com/us/support/answer/ANS10001379/",
+    "quote": "you can download and view the data to get a better idea."
+  },
+  {
+    "claim": "Sign-in step.",
+    "url": "https://www.samsung.com/us/support/answer/ANS10001379/",
+    "quote": "enter your Samsung account information, wait for the information to download, and then tap"
+  },
+  {
+    "claim": "Allow permissions.",
+    "url": "https://www.samsung.com/us/support/answer/ANS10001379/",
+    "quote": "Allow the necessary permissions."
+  },
+  {
+    "claim": "Erase deletes phone and server data.",
+    "url": "https://www.samsung.com/us/support/answer/ANS10001379/",
+    "quote": "All of your Samsung Health data stored on the phone or tablet, as well as in Samsung Health and on the Samsung Health server, will be permanently deleted."
+  },
+  {
+    "claim": "No sign-in until deletion completes.",
+    "url": "https://www.samsung.com/us/support/answer/ANS10001379/",
+    "quote": "You won't be able to sign into your account until all of the data is completely deleted."
+  }
+]

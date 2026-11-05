@@ -28,6 +28,7 @@ import { releasedAudioCoaching, AUDIO_PATH } from "@/data/audioCoaching";
 import { releasedHealthkitQueries, HKQ_PATH } from "@/data/healthkitQueries";
 import { releasedPhoneSensors, SENSORS_PATH } from "@/data/phoneSensors";
 import { releasedHealthConnectApi, HCAPI_PATH } from "@/data/healthConnectApi";
+import { releasedOwnYourData, OWN_DATA_PATH } from "@/data/ownYourData";
 import { HK_METADATA_KEYS } from "@/data/healthkitMetadataKeys";
 import { HS_DATA_TYPES } from "@/data/healthServicesDataTypes";
 import { POSE_SCHEMES } from "@/data/poseKeypoints";
@@ -148,6 +149,7 @@ export function GET() {
     [HKQ_PATH, "HealthKit Queries", releasedHealthkitQueries()],
     [SENSORS_PATH, "Phone Sensors", releasedPhoneSensors()],
     [HCAPI_PATH, "Health Connect API", releasedHealthConnectApi()],
+    [OWN_DATA_PATH, "Own Your Data", releasedOwnYourData()],
   ];
 
   const hubBlurbs: Record<string, string> = {
@@ -175,6 +177,7 @@ export function GET() {
     [AUDIO_PATH]: "Workout cues over the user's music: ducking, interruptions, background audio, Android audio focus, TextToSpeech, watch speakers.",
     [HKQ_PATH]: "How each HealthKit query class works and where it bites: sample, statistics, anchored, observer, descriptors, routes, rings.",
     [SENSORS_PATH]: "Fitness features from the phone's own motion sensors: steps, activity, altitude, head motion, and the Android permission rules around them.",
+    [OWN_DATA_PATH]: "Export your own data: Apple Health, Health Connect, Samsung Health, Garmin, Fitbit, Oura, Polar, Strava, Suunto, COROS, with personal-use APIs and notebooks.",
     [HCAPI_PATH]: "How each Health Connect Jetpack call works and where it bites: readRecords paging, aggregates, getChanges, upserts, deletes, permissions, background and history reads, routes, training plans.",
     [ENGAGEMENT_PATH]: "Getting people back: notifications, Live Activities, widgets, streaks, leaderboards \u2014 and how to measure lift honestly.",
   };
@@ -508,6 +511,7 @@ export function GET() {
   add("/tools/cycling-power-lab", "Cycling power and cadence lab", "Cycling Power (0x2A63) and CSC (0x2A5B) decoded, with cadence and speed computed from cumulative revolutions and event times, live or pasted.", "cycling power measurement 0x2a63 csc measurement 0x2a5b speed cadence sensor crank wheel revolutions event time 1/1024 1/2048 rollover wrap power meter web bluetooth decoder tool");
   add("/tools/ble-gatt-explorer", "BLE GATT explorer", "Connect any Bluetooth LE device: services and characteristics by SIG name, read or notify, values decoded where the SIG defines a structure.", "ble gatt explorer bluetooth low energy services characteristics uuid read notify web bluetooth acceptalldevices optionalservices decoder sig gss hex tool");
   add("/tools/step-lab", "Step lab: watch a step counter think", "Walk with your phone and watch a visible step detector count; move its threshold and interval to see why two apps disagree.", "step counter pedometer accelerometer devicemotion step detection threshold peak why step counts differ apps disagree phone sensor tool");
+  add("/tools/apple-health-explorer", "Apple Health export explorer", "Open your iPhone Health export.zip in the browser: record types with counts and dates, sources, a daily chart and a CSV per type. Nothing is uploaded.", "apple health export xml zip export.xml parse viewer explorer csv convert healthkit records steps heart rate sleep own data personal download browser no upload tool");
   add("/newsletter", "The AIFitnessAPI newsletter", "What changed in fitness and health APIs, verified before it is sent. The archive is the sample.", "newsletter subscribe email digest updates");
   add("/changelog", "Site changelog", "Every content change, rendered from the operational log it is generated from.", "changelog history what changed updates");
   add("/corrections", "Corrections log", "Published corrections, and the errors the build gates caught before publish.", "corrections errata errors fixed accuracy");

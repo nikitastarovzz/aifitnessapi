@@ -31,6 +31,7 @@ const MOBILE_LINKS = [
   { href: "/health-connect-api", label: "Health Connect API" },
   { href: "/health-connect", label: "Health Connect records" },
   { href: "/libraries", label: "Open-source libraries" },
+  { href: "/own-your-data", label: "Export your own data" },
   { href: "/picker", label: "API Picker" },
   { href: "/tools", label: "Free tools" },
   { href: "/cookbook", label: "Cookbook" },

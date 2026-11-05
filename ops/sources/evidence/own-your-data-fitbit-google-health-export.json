@@ -1,0 +1,12 @@
+[
+  {
+    "claim": "Personal apps: only the developer's account, intraday included.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/developer-guide/application-design/",
+    "quote": "The application can only access the data in the developer's Fitbit account, including their intraday data."
+  },
+  {
+    "claim": "No intraday request form for Personal.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/developer-guide/application-design/",
+    "quote": "Completing the Intraday Request form is not needed."
+  }
+]
