@@ -145,14 +145,14 @@
     "quote": "Every webhook sent by Terra includes an HMAC-based signature header"
   },
   {
-    "claim": "Terra: up to 10 retries.",
+    "claim": "Terra: retries with exponential backoff for several hours.",
     "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "Terra retries the delivery up to 10 times with exponential backoff"
+    "quote": "Terra retries the delivery automatically with exponential backoff for several hours."
   },
   {
-    "claim": "Terra: about 8 hours across retries.",
+    "claim": "Terra: no fixed retry count or schedule.",
     "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "The cumulative window across all retries is ~8 hours"
+    "quote": "The exact number and timing of retries may change without notice, so don't depend on a specific schedule."
   },
   {
     "claim": "Terra: 8-second timeout.",
@@ -220,14 +220,14 @@
     "quote": "Every webhook sent by Terra includes an HMAC-based signature header"
   },
   {
-    "claim": "It \"retries the delivery up to 10 times with exponential backoff\".",
+    "claim": "It \"retries the delivery automatically with exponential backoff for several hours\".",
     "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "Terra retries the delivery up to 10 times with exponential backoff"
+    "quote": "Terra retries the delivery automatically with exponential backoff for several hours."
   },
   {
-    "claim": "\"The cumulative window across all retries is ~8 hours\".",
+    "claim": "\"The exact number and timing of retries may change without notice\".",
     "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "The cumulative window across all retries is ~8 hours"
+    "quote": "The exact number and timing of retries may change without notice, so don't depend on a specific schedule."
   },
   {
     "claim": "Thryve retries \"up to 3 times\".",

@@ -150,9 +150,9 @@
     "quote": "Every webhook sent by Terra includes an HMAC-based signature header"
   },
   {
-    "claim": "Terra \"retries the delivery up to 10 times with exponential backoff\".",
+    "claim": "Terra \"retries the delivery automatically with exponential backoff for several hours\".",
     "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "Terra retries the delivery up to 10 times with exponential backoff"
+    "quote": "Terra retries the delivery automatically with exponential backoff for several hours."
   },
   {
     "claim": "\"Self-hosted, MIT license, $0 per user\".",

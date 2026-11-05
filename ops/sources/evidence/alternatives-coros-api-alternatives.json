@@ -85,9 +85,9 @@
     "quote": "https://support.coros.com/hc/en-us/articles/17085887816340-Submit-an-API-Application"
   },
   {
-    "claim": "Terra's table explains Managed credentials: you may create your own credentials and give them to Terra.",
+    "claim": "Terra's table explains Managed credentials: the integration works with Terra's credentials, so you don't need an account with it; some also let you use your own.",
     "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
-    "quote": "Managed credentials for integrations mean that you may create your own credentials and provide them to Terra, using the integration's developer dashboard"
+    "quote": "Managed integrations work with Terra's credentials, so you don't need an account with the integration. Some also let you use your own credentials"
   },
   {
     "claim": "Spike lists COROS.",

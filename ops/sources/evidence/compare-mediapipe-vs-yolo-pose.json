@@ -12,7 +12,7 @@
   {
     "claim": "Ultralytics presents YOLO26 pose models.",
     "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/en/tasks/pose.md",
-    "quote": "YOLO26 Pose models use the `-pose` suffix, i.e., `yolo26n-pose.pt`, and are pretrained on"
+    "quote": "YOLO26 Pose models use the `-pose` suffix, e.g., `yolo26n-pose.pt`, and are pretrained on"
   },
   {
     "claim": "num_poses defaults to 1.",
@@ -162,7 +162,7 @@
   {
     "claim": "Docs train YOLO26n-pose.",
     "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/en/tasks/pose.md",
-    "quote": "Train YOLO26n-pose on the [COCO8-pose](../datasets/pose/coco8-pose.md) dataset"
+    "quote": "a [YOLO26n-pose](https://platform.ultralytics.com/ultralytics/yolo26/yolo26n-pose) model on the [COCO8-pose](https://platform.ultralytics.com/ultralytics/datasets/coco8-pose) dataset"
   },
   {
     "claim": "MediaPipe ships pre-trained, ready-to-run models.",

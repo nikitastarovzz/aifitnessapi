@@ -170,19 +170,19 @@
     "quote": "To recognize poses we use the k-nearest neighbors algorithm (k-NN)"
   },
   {
-    "claim": "MediaPipe running modes.",
+    "claim": "MediaPipe running modes: IMAGE, VIDEO and LIVE_STREAM on Android, iOS and Python; the web table lists only IMAGE and VIDEO.",
     "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker?hl=en",
-    "quote": "LIVE_STREAM: The mode for a livestream of input"
+    "quote": "LIVE_STREAM : Livestream of camera input data (requires asynchronous listener/delegate). { IMAGE , VIDEO , LIVE_STREAM }"
   },
   {
     "claim": "MediaPipe num_poses option.",
     "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker?hl=en",
-    "quote": "The maximum number of poses that can be detected by the Pose Landmarker."
+    "quote": "num_poses The maximum number of poses detected by the Pose Landmarker."
   },
   {
     "claim": "MediaPipe segmentation masks.",
     "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker?hl=en",
-    "quote": "Whether Pose Landmarker outputs a segmentation mask for the detected"
+    "quote": "Whether Pose Landmarker outputs a foreground segmentation mask for each detected pose"
   },
   {
     "claim": "MediaPipe web guide.",
@@ -191,13 +191,13 @@
   },
   {
     "claim": "MediaPipe Android library.",
-    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker/android?hl=en",
-    "quote": "The Pose Landmarker task uses the com.google.mediapipe:tasks-vision library."
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker?hl=en",
+    "quote": "Android (Kotlin) Gradle implementation(\"com.google.mediapipe:tasks-vision:latest.release\")"
   },
   {
     "claim": "MediaPipe iOS library.",
-    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker/ios?hl=en",
-    "quote": "Pose Landmarker uses the MediaPipeTasksVision library, which can be installed"
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker?hl=en",
+    "quote": "iOS SwiftPM https://github.com/google-ai-edge/mediapipe → MediaPipeTasksVision Package.swift"
   },
   {
     "claim": "World landmarks in meters.",

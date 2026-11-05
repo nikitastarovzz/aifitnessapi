@@ -56,22 +56,22 @@
   },
   {
     "claim": "Step 2: the overview's Business section (served in the page's script bundle since the overview HTML now renders the Personal plan) says you create an app with Starter Access and request Enterprise Access through the Developer Portal.",
-    "url": "https://developer.garmin.com/bacb893da51e7512e517ca68243a172efd33dfce-d7c4ee3c7fafda5c76df.js",
+    "url": "https://developer.garmin.com/bacb893da51e7512e517ca68243a172efd33dfce-0436fbb800ba7e9202f1.js",
     "quote": "Apply for the Garmin Connect Developer Program and create an app with Starter Access. As your business and integration needs evolve, you can request Enterprise Access through Garmin Developer Portal."
   },
   {
     "claim": "Step 2: Starter is push-only (the Starter plan's Delivery cell in the overview bundle).",
-    "url": "https://developer.garmin.com/bacb893da51e7512e517ca68243a172efd33dfce-d7c4ee3c7fafda5c76df.js",
+    "url": "https://developer.garmin.com/bacb893da51e7512e517ca68243a172efd33dfce-0436fbb800ba7e9202f1.js",
     "quote": "s.a.createElement(\"p\",null,\"Push only\")"
   },
   {
     "claim": "Step 2: Starter has no historical data.",
-    "url": "https://developer.garmin.com/bacb893da51e7512e517ca68243a172efd33dfce-d7c4ee3c7fafda5c76df.js",
+    "url": "https://developer.garmin.com/bacb893da51e7512e517ca68243a172efd33dfce-0436fbb800ba7e9202f1.js",
     "quote": "\"Historical Data\"),s.a.createElement(\"p\",null,\"Not included\")"
   },
   {
     "claim": "Step 2: Starter has limited user capacity.",
-    "url": "https://developer.garmin.com/bacb893da51e7512e517ca68243a172efd33dfce-d7c4ee3c7fafda5c76df.js",
+    "url": "https://developer.garmin.com/bacb893da51e7512e517ca68243a172efd33dfce-0436fbb800ba7e9202f1.js",
     "quote": "\"User Capacity\"),s.a.createElement(\"p\",null,\"Limited\")"
   },
   {
