@@ -36,6 +36,10 @@ export const integrateEntries: ClusterEntry[] =
       {
         "q": "How should I read step totals without double-counting?",
         "a": "Use HKStatisticsQuery with the cumulativeSum option rather than fetching raw samples and adding them yourself. Apple says statistics queries merge the data from all of your sources before calculating, so an iPhone and an Apple Watch that both record steps are not simply added together. Verify version-gated details like the HKQuantityType(.stepCount) initializer, which is iOS 15+, against current Apple docs."
+      },
+      {
+        "q": "How should developers evaluate Apple HealthKit's API?",
+        "a": "Per Apple's docs, checked October 2, 2026. Access: no partner approval; the gate is App Review, whose Guideline 5.1.1 wants clear purpose strings and minimal data. Pricing: Apple lists the HealthKit capability for free and paid developer accounts, but App Store distribution needs the paid Developer Program. Coverage: on-device only, on iPhone, Apple Watch, Vision Pro and iPads on iPadOS 17 or later, with no Android or server endpoint. Auth: a permission sheet, not OAuth, and read denials are invisible. Updates: background delivery is best-effort, at most hourly for steps."
       }
     ],
     "related": [
@@ -62,6 +66,10 @@ export const integrateEntries: ClusterEntry[] =
       {
         "href": "/guides/ai-workout-tracking-ios-swift",
         "label": "AI workout tracking on iOS"
+      },
+      {
+        "href": "/alternatives/healthkit-alternatives",
+        "label": "Apple HealthKit alternatives"
       },
       {
         "href": "/integrate",
@@ -240,6 +248,10 @@ export const integrateEntries: ClusterEntry[] =
       {
         "q": "Is Health Connect available on all Android devices?",
         "a": "No. Google says Health Connect needs Android 9 or later with Google Play services. On Android 14 and later it is part of the platform, while on Android 13 and lower it is a separate app the user installs from the Play Store. Always check HealthConnectClient.getSdkStatus and prompt the user to install or update Health Connect when it is unavailable, rather than assuming it is present."
+      },
+      {
+        "q": "How should developers evaluate Google Health Connect's API?",
+        "a": "Per Google's pages, read October 2, 2026. Access and cost: Google lists registration as a Play Store project plus the Play Console Health apps declaration, which justifies every data type and may be reviewed again with a new app version. Coverage: 42 record types, Android 9 or later only. Auth: per-type permissions, and Health Connect reports which were granted. Limits: reads stop 30 days before the first grant without the history permission, and background reads need their own. Versions: the connect-client library changes often, so pin it."
       }
     ],
     "related": [
@@ -392,6 +404,10 @@ export const integrateEntries: ClusterEntry[] =
       {
         "q": "Does Fitbit require approval for intraday data?",
         "a": "Yes. Minute- and second-level intraday data is available by default only to Personal apps for their own account. Other app types must request intraday access from Fitbit/Google, and each intraday request is limited to a 24-hour window."
+      },
+      {
+        "q": "How should developers evaluate Fitbit's API?",
+        "a": "Start with deprecation, because it decides the rest: Google's Google Health API page, read October 31, 2026, set November 2, 2026 as the legacy Fitbit Web API's turn-off date, after which requests return 410 Gone, and existing tokens cannot be transferred to the Google Health API. Otherwise check access (an app registered at dev.fitbit.com, with separate approval for intraday data outside Personal apps), auth (OAuth 2.0, PKCE for public clients) and limits (150 requests per hour per user). Fitbit API pricing and Fitbit API alternatives cover cost and other routes."
       }
     ],
     "related": [
@@ -410,6 +426,14 @@ export const integrateEntries: ClusterEntry[] =
       {
         "href": "/fitness-apis/wearable-data-apis",
         "label": "Best wearable data APIs"
+      },
+      {
+        "href": "/pricing/fitbit-api-pricing",
+        "label": "Fitbit API pricing"
+      },
+      {
+        "href": "/alternatives/fitbit-api-alternatives",
+        "label": "Fitbit API alternatives"
       },
       {
         "href": "/integrate",
@@ -834,6 +858,10 @@ export const integrateEntries: ClusterEntry[] =
       {
         "q": "Which WHOOP webhook events exist, and how do I verify them?",
         "a": "WHOOP sends workout.updated, workout.deleted, sleep.updated, sleep.deleted, recovery.updated and recovery.deleted, with creates delivered as updates. Verify each one by computing base64 of HMAC-SHA256 over the X-WHOOP-Signature-Timestamp value plus the raw body, keyed by your client secret, and comparing it with X-WHOOP-Signature. WHOOP retries failures five times over about an hour."
+      },
+      {
+        "q": "How should developers evaluate WHOOP's API?",
+        "a": "Per WHOOP's pages, read October 17, 2026. Access: you need a WHOOP membership to build, and apps climb manually reviewed tiers from Sandbox (10 members) to Production (unlimited). Pricing: the API Terms say access is currently provided at no charge; WHOOP API pricing covers the membership costs. Coverage: cycles, recovery, sleep, workouts, profile and body measurements. Auth and webhooks: OAuth 2.0 with rotating refresh tokens, and signed webhooks that can be missed. Limits: 100 requests a minute. Risk: v1 is no longer supported, and the terms forbid AI training on WHOOP data."
       }
     ],
     "related": [
@@ -1173,6 +1201,10 @@ export const integrateEntries: ClusterEntry[] =
       {
         "q": "Can I call Nutritionix directly from a mobile or web app?",
         "a": "You can technically, but you should not. Because auth is just two static header values with no per-user token, anyone who extracts the pair from a client bundle can spend your quota. Proxy the calls through your own backend instead."
+      },
+      {
+        "q": "How should developers evaluate Nutritionix's API?",
+        "a": "From this guide: access means creating an application and getting an App ID and App Key, with no OAuth flow. Auth: two static headers and no per-user token, so route calls through your backend. Coverage: natural-language nutrients, instant search over common and branded foods, and item lookup by ID or UPC barcode at trackapi.nutritionix.com/v2, not the legacy apibeta host older snippets use. Pricing and limits: free-tier quotas have changed over time and this guide does not confirm them; see Nutritionix API pricing and Nutritionix alternatives."
       }
     ],
     "related": [
@@ -1187,6 +1219,14 @@ export const integrateEntries: ClusterEntry[] =
       {
         "href": "/integrate/exercisedb-api",
         "label": "Integrate ExerciseDB"
+      },
+      {
+        "href": "/pricing/nutritionix-api-pricing",
+        "label": "Nutritionix API pricing"
+      },
+      {
+        "href": "/alternatives/nutritionix-alternatives",
+        "label": "Nutritionix alternatives"
       },
       {
         "href": "/integrate",
@@ -1248,6 +1288,10 @@ export const integrateEntries: ClusterEntry[] =
       {
         "q": "What data does each ExerciseDB exercise return?",
         "a": "Each exercise object includes id, name, bodyPart, target, equipment, and an animated gifUrl. Newer listing versions may add secondaryMuscles and instructions arrays, but verify those against the current docs before relying on them."
+      },
+      {
+        "q": "How should developers evaluate ExerciseDB's API?",
+        "a": "First pick an ExerciseDB: the original RapidAPI listing and AscendAPI's V1 and V2 differ in hosts and fields. Access: no approval step; a RapidAPI key, or none for AscendAPI's V1. Pricing: as of October 22, 2026, V1 has a free keyless tier and V2 a free Basic plan of 2,000 requests a month, while the original listing's free tier was reported as tiny. Coverage: name, target muscle, body part, equipment and a GIF; V2 adds MP4 video. Lock-in: neither is self-hostable. Exercise database API pricing and ExerciseDB alternatives cover the rest."
       }
     ],
     "related": [
@@ -1262,6 +1306,10 @@ export const integrateEntries: ClusterEntry[] =
       {
         "href": "/integrate/nutritionix-api",
         "label": "Integrate the Nutritionix API"
+      },
+      {
+        "href": "/pricing/exercise-database-api-pricing",
+        "label": "Exercise database API pricing"
       },
       {
         "href": "/integrate",
@@ -1322,6 +1370,10 @@ export const integrateEntries: ClusterEntry[] =
       {
         "q": "Does Polar AccessLink support webhooks and publish rate limits?",
         "a": "Yes to both. Each client can register one webhook, signed with HMAC SHA-256 using a secret returned only at creation, for events such as EXERCISE, SLEEP and ACTIVITY_SUMMARY. Rate limits scale with your registered users: 500 plus 20 per user per 15 minutes, and 5,000 plus 100 per user per 24 hours."
+      },
+      {
+        "q": "How should developers evaluate Polar's API?",
+        "a": "Per Polar's AccessLink v3 pages, read October 17, 2026. Access: self-serve for any registered Polar Flow user, with no review described. Pricing: free of charge at the moment, with the right to charge later; see Polar API pricing. Coverage: exercises, daily activity, sleep, Nightly Recharge, continuous heart rate and Elixir biosensing, mostly in 28- or 30-day windows. Auth and webhooks: OAuth 2.0 with one scope, and one signed webhook per client. Limits: they scale with registered users. Deprecation: the transactional endpoints are deprecated, so build on plain GET endpoints."
       }
     ],
     "related": [
@@ -1423,6 +1475,10 @@ export const integrateEntries: ClusterEntry[] =
       {
         "q": "Can I keep a copy of Mindbody data in my own database?",
         "a": "Only with care. Mindbody's API Terms of Use list caching Mindbody Data in excess of 48 hours among the prohibited uses, and its Webhooks documentation recommends re-syncing cached data through the Public API every 24 hours. In our reading that points to a short-lived cache refreshed from Mindbody rather than a permanent copy. Read the full clause with counsel; this is not legal advice."
+      },
+      {
+        "q": "How should developers evaluate Mindbody's API?",
+        "a": "Per Mindbody's pages, read October 17, 2026. Access: a self-serve developer account, then Mindbody's approval to go live, then each business activates you with a link or code. Pricing and limits: daily call limits come with your API key, and Mindbody may charge for calls over them; Mindbody API pricing has the numbers. Coverage: appointments, classes, clients, sales, sites and staff, though Mindbody says the API cannot do everything yet. Auth and webhooks: a server-side API key, and signed webhooks retried for 3 hours. Terms: no caching beyond 48 hours."
       }
     ],
     "related": [
@@ -1543,6 +1599,10 @@ export const integrateEntries: ClusterEntry[] =
       {
         "q": "How do I find a business's TeamUp provider ID?",
         "a": "It is the number at the start of the business's Customer Site URL; for a site at goteamup.com/p/12345-your-business-name, the provider ID is 12345. You can also call GET /auth/application, whose scoped_providers field lists the provider IDs your credentials can access. Send it in the TeamUp-Provider-ID header when your credentials reach more than one business."
+      },
+      {
+        "q": "How should developers evaluate TeamUp's API?",
+        "a": "Per TeamUp's docs, read October 17, 2026. Access: a super admin at the business creates an API Application in its dashboard. Pricing: no extra fee for API access and no paid plan needed. Coverage: one unified v2 REST API, the same one TeamUp's own apps use. Auth: OAuth, M2M tokens or approval-gated Direct Authentication, with no static API keys. Limits: 250 requests per minute per caller. Testing: no sandbox, so use a free trial business. Webhooks: listed as a next step, but we did not read those pages."
       }
     ],
     "related": [
@@ -1663,6 +1723,10 @@ export const integrateEntries: ClusterEntry[] =
       {
         "q": "What is a Mariana Tek tenant name?",
         "a": "It is the MT subdomain that identifies a live studio or a sandbox, and you need it to call the API and set up Web Integrations; the sandbox API lives at your tenant name followed by .marianatek.com/api. Sandbox tenant names often end in .sandbox, and you receive yours once you are set up as a developer with Mariana Tek."
+      },
+      {
+        "q": "How should developers evaluate Mariana Tek's API?",
+        "a": "Per Mariana Tek's guides, read October 17, 2026. Access: no open sign-up; you register through integrations@marianatek.com, build in a sandbox tenant, and may face a technical review of up to 1 to 3 weeks, after which access is scoped to the approved endpoints. Pricing and rate limits: neither appears in the guides we read, so ask Integrations. Coverage: Admin, Customer, Studio, MT Stripe, Documents and Pricing APIs. Auth: OAuth 2.0, with PKCE for public clients, or a server-side API key. Webhooks: by request; production needs the studio owner's approval."
       }
     ],
     "related": [
@@ -1794,6 +1858,10 @@ export const integrateEntries: ClusterEntry[] =
       {
         "q": "What base URL and header does the Wodify API use?",
         "a": "Wodify's getting-started guide gives https://api.wodify.com/v1 as the base URL for all requests, and every request carries the API key in an x-api-key header. Note that the example on Wodify's authentication page sends Host: app-api.wodify.com, so if a call fails, confirm the host with Wodify."
+      },
+      {
+        "q": "How should developers evaluate Wodify's API?",
+        "a": "Per Wodify's docs, read October 17, 2026. Access: a gym's own key from Wodify Core, or the Developer Portal for partners; the guides do not say how to become a partner or whether there is a fee, so ask Wodify. Coverage: leads, clients, memberships, classes, appointments, communications, financials and workouts. Auth: one API key in an x-api-key header. Limits: 5 requests a second, bursts of 20 and 500,000 requests a month. Webhooks: we found none documented, so plan on polling within that monthly quota."
       }
     ],
     "related": [
@@ -1905,6 +1973,10 @@ export const integrateEntries: ClusterEntry[] =
       {
         "q": "Does the Glofox API send webhooks?",
         "a": "Yes. The navigation of Glofox's API reference lists webhook events for access, bookings, course bookings, electronic agreements, events, invoices, members, memberships, services and push notifications. We did not read those sections in full, so check the reference and Glofox's API portal for how to register an endpoint."
+      },
+      {
+        "q": "How should developers evaluate Glofox's API?",
+        "a": "Per Glofox's API reference 2.3.0, read October 17, 2026. Access: requested through Glofox's API portal, whose process we could not read, so ask about approval, fees and rate-limit numbers. Coverage: members, memberships, credits, classes, bookings and payments, scoped by branch and namespace. Auth: three headers, x-glofox-branch-id, x-api-key and x-glofox-api-token, kept on your backend. Webhooks: events listed for bookings, members, invoices and more. Errors: older endpoints can return 200 with success set to false, and 429 means you hit the rate limit."
       }
     ],
     "related": [
@@ -2005,6 +2077,10 @@ export const integrateEntries: ClusterEntry[] =
       {
         "q": "What is the Withings API rate limit?",
         "a": "Withings says the standard API enforces 120 requests per minute across your application, which is why it recommends notifications over polling. The Enterprise plan unlocks higher limits and dedicated support; Withings' plans page did not render when we read the site, so we do not quote its prices."
+      },
+      {
+        "q": "How should developers evaluate Withings' API?",
+        "a": "Per Withings' pages, read October 17, 2026. Access: free with no prerequisites and no review described, but an app whose callback URL misses the rules stays limited to 10 users. Pricing: Withings announced that accounts created after October 12, 2026 need Withings+ to share with a free-plan app (a notice gone by October 22); see Withings API pricing. Coverage: 96 biomarkers, some on the Advanced Biomarkers plan, plus users' history. Auth and webhooks: OAuth 2.0 with signed requests and a 30-second code; notifications are pointers. Limits: 120 requests a minute."
       }
     ],
     "related": [
@@ -2147,6 +2223,10 @@ export const integrateEntries: ClusterEntry[] =
       {
         "q": "Which devices does the Samsung Health Data SDK run on?",
         "a": "Android 10 (API level 29) or later with Samsung Health 6.30.2 or later installed. Samsung says Samsung Health runs on all Samsung smartphones and on non-Samsung Android phones. The SDK needs Java 17 or later and does not support emulators."
+      },
+      {
+        "q": "How should developers evaluate Samsung Health's API?",
+        "a": "Per Samsung's pages, read October 17, 2026. Access: development runs in Samsung Health's developer mode; releasing needs a partnership request that registers your package name and signature, and writes need an access code. Pricing: Samsung's pages do not mention fees. Coverage: the Data SDK reads Samsung Health on an Android phone, including synced Galaxy Watch and Ring data; no cloud API is described. Webhooks and limits: none described; use readChanges(). Deprecation: the older Samsung Health SDK for Android was deprecated on July 31, 2025. See Samsung Health API alternatives."
       }
     ],
     "related": [
@@ -2254,6 +2334,10 @@ export const integrateEntries: ClusterEntry[] =
       {
         "q": "What headers does the Suunto API need?",
         "a": "Two on every data call to https://cloudapi.suunto.com: Authorization with the user's JWT access token, and Ocp-Apim-Subscription-Key with a key from your API Zone profile. The OAuth token endpoint at cloudapi-oauth.suunto.com takes HTTP Basic client credentials instead and needs no subscription key."
+      },
+      {
+        "q": "How should developers evaluate Suunto's API?",
+        "a": "Per Suunto's API Zone, read October 17, 2026. Access: companies and organizations only, through the partner program and API agreement, reviewed weekly with at most a two-week wait. Pricing: Suunto says it does not charge for use of the API; see Suunto API pricing. Coverage: workouts and daily steps and calories, with routes and workouts written back, but no sleep or personal data yet. Auth and webhooks: OAuth 2.0 plus a subscription key, and a webhook for new workouts only. Limits: not published. See Suunto API alternatives."
       }
     ],
     "related": [
@@ -2355,6 +2439,10 @@ export const integrateEntries: ClusterEntry[] =
       {
         "q": "How do I apply for the COROS Partner API?",
         "a": "Have an authorized technical representative submit COROS's API application form and email api@coros.com with your company details, technical contacts and OAuth 2.0 redirect URIs, then accept COROS's standard API Terms of Use. Once COROS verifies your identity and security specifications, it issues your API client ID and secret."
+      },
+      {
+        "q": "How should developers evaluate COROS's API?",
+        "a": "Per COROS's help center, read October 17, 2026. Access: the MCP endpoint needs no approval but serves one authorizing user; the Partner API needs an established platform, a registered company and COROS's API Terms. Pricing: this guide quotes no fee, and COROS calls its terms standard and non-discriminatory. Coverage: activities, daily health, sleep, HRV and fitness metrics, but no cycling power in standard queries. Webhooks: Partner API only. Limits: 1,000 calls a minute on the Partner API, 50 FIT files a day on the MCP. See COROS API alternatives."
       }
     ],
     "related": [
@@ -2457,6 +2545,10 @@ export const integrateEntries: ClusterEntry[] =
       {
         "q": "What are the Wahoo API rate limits?",
         "a": "Sandbox apps get 25 requests every 5 minutes, 100 an hour and 250 a day; production apps 200, 1,000 and 5,000. Authentication, token refreshes and file downloads do not count, every response reports usage in X-RateLimit headers, and Wahoo raises limits on request through support."
+      },
+      {
+        "q": "How should developers evaluate Wahoo's API?",
+        "a": "Per Wahoo's pages, read October 17, 2026. Access: by request and approval at developers.wahooligan.com, with separate Sandbox and Production apps and a further production review. Pricing: currently free under the Public API Agreement, which bars charging users for API access; see Wahoo API pricing. Coverage: profile, power zones, plans, routes and workouts, but not workouts recorded in third-party apps. Auth and webhooks: OAuth 2.0, 2-hour tokens, 10 unrevoked tokens per user; workout_summary webhooks. Limits: 250 requests a day in sandbox, 5,000 in production."
       }
     ],
     "related": [
@@ -2553,6 +2645,10 @@ export const integrateEntries: ClusterEntry[] =
       {
         "q": "What are the Dexcom API rate limits?",
         "a": "Dexcom limits requests to 60,000 calls per app per hour and returns 429 when you exceed it. Each data query is also capped at a 30-day window between startDate and endDate; a longer window returns 400. The API requires TLS 1.3."
+      },
+      {
+        "q": "How should developers evaluate Dexcom's API?",
+        "a": "Per Dexcom's docs, read October 17, 2026. Access: free registration and a sandbox, then Limited Access for 5 real users under a Data Licensing Agreement, then Full Access after a technical and commercial review. Pricing: the public docs state no fees, so read that agreement. Coverage: glucose values, events, calibrations, alerts and devices from G6, G7 and Dexcom ONE sensors, in mg/dL, an hour late in the US for app uploads. Auth: OAuth 2.0 with one all-or-nothing scope. Limits: 60,000 calls an hour, 30-day query windows. See Dexcom API alternatives."
       }
     ],
     "related": [
@@ -2664,6 +2760,10 @@ export const integrateEntries: ClusterEntry[] =
       {
         "q": "Does the Concept2 API have rate limits?",
         "a": "Not currently. Concept2's documentation says the API is not rate limited today, that this may change, and that abuse will result in rate limits or removal of access. Results lists are paginated at 50 per page by default and up to 250 per request."
+      },
+      {
+        "q": "How should developers evaluate Concept2's API?",
+        "a": "Per Concept2's pages, read October 17, 2026. Access: create a client yourself; reading needs no approval, while apps that write must be built on log-dev.concept2.com and approved by Concept2. Pricing: the pages do not mention fees. Coverage: user profiles and workout results from the rower, SkiErg, bike and more, with CSV, FIT or TCX export. Auth and webhooks: OAuth 2.0 with seven-day access tokens and one-year refresh tokens, and one webhook for added, updated or deleted results. Limits: not rate limited today, which Concept2 says may change."
       }
     ],
     "related": [
