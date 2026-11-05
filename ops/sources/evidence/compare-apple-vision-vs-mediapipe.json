@@ -127,7 +127,7 @@
   {
     "claim": "MediaPipe num_poses option.",
     "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker?hl=en",
-    "quote": "The maximum number of poses that can be detected by the Pose Landmarker."
+    "quote": "num_poses The maximum number of poses detected by the Pose Landmarker."
   },
   {
     "claim": "MediaPipe estimates 33 3D landmarks.",
@@ -146,18 +146,18 @@
   },
   {
     "claim": "MediaPipe iOS uses MediaPipeTasksVision through Swift Package Manager.",
-    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker/ios?hl=en",
-    "quote": "Pose Landmarker uses the MediaPipeTasksVision library, which can be installed"
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker?hl=en",
+    "quote": "iOS SwiftPM https://github.com/google-ai-edge/mediapipe → MediaPipeTasksVision Package.swift"
   },
   {
     "claim": "MediaPipe iOS loads the model from the app bundle.",
-    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker/ios?hl=en",
-    "quote": "property to specify the path to the model"
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker?hl=en",
+    "quote": "guard let modelPath = Bundle . main . path ( forResource : \"pose_landmarker_lite\" , ofType : \"task\" )"
   },
   {
     "claim": "MediaPipe Android library.",
-    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker/android?hl=en",
-    "quote": "The Pose Landmarker task uses the com.google.mediapipe:tasks-vision library."
+    "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker?hl=en",
+    "quote": "Android (Kotlin) Gradle implementation(\"com.google.mediapipe:tasks-vision:latest.release\")"
   },
   {
     "claim": "MediaPipe web npm package.",

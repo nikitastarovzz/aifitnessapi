@@ -232,7 +232,7 @@ export const WEBHOOK_VENDORS = [
     },
     respond: [
       "Respond with a 2XX within 8 seconds — Terra's own advice is to accept immediately (return 200) and process asynchronously.",
-      "Otherwise Terra retries up to 10 times with exponential backoff, starting at 30 seconds and roughly doubling, across about 8 hours; after that the event is dropped with no notification.",
+      "Otherwise Terra retries with exponential backoff for several hours, and says the exact number and timing of retries may change without notice; after that the event is dropped with no notification.",
       "Terra requires the raw, unaltered body for verification: read it before any JSON parsing.",
     ],
     fields: {

@@ -27,7 +27,7 @@
   {
     "claim": "Ultralytics' pose docs present YOLO26 pose models pretrained on COCO keypoints.",
     "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/en/tasks/pose.md",
-    "quote": "YOLO26 Pose models use the `-pose` suffix, i.e., `yolo26n-pose.pt`, and are pretrained on"
+    "quote": "YOLO26 Pose models use the `-pose` suffix, e.g., `yolo26n-pose.pt`, and are pretrained on"
   },
   {
     "claim": "The default YOLO26 pose models predict the 17 COCO keypoints.",

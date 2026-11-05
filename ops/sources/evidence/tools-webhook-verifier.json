@@ -120,9 +120,9 @@
     "quote": "Terra requires the raw, unaltered body of the request to perform signature verification."
   },
   {
-    "claim": "Terra: up to 10 retries with exponential backoff from 30 seconds, about 8 hours in total.",
+    "claim": "Terra: retries with exponential backoff for several hours; the number and timing may change without notice.",
     "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "Terra retries the delivery up to 10 times with exponential backoff , starting at 30 seconds between the first and second attempt and approximately doubling between each subsequent attempt. The cumulative window across all retries is ~8 hours ."
+    "quote": "Terra retries the delivery automatically with exponential backoff for several hours. The exact number and timing of retries may change without notice"
   },
   {
     "claim": "Terra: after the retry budget the event is dropped without notification.",

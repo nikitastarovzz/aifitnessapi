@@ -25,8 +25,8 @@
     "quote": "Oura OURA Event-Driven Managed"
   },
   {
-    "claim": "Managed means your own credentials are optional.",
+    "claim": "Managed means your own credentials are optional: the integration works with Terra's credentials, and some also let you use your own.",
     "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
-    "quote": "Managed credentials for integrations mean that you may create your own credentials and provide them to Terra, using the integration's developer dashboard"
+    "quote": "Managed integrations work with Terra's credentials, so you don't need an account with the integration. Some also let you use your own credentials"
   }
 ]

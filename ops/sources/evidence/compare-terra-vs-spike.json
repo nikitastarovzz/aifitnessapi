@@ -235,9 +235,14 @@
     "quote": "The signature is computed by signing the raw request body as-is using a shared secret key."
   },
   {
-    "claim": "Terra retries a failed delivery \"up to 10 times with exponential backoff\".",
+    "claim": "Terra retries a failed delivery \"with exponential backoff for several hours\".",
     "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "Terra retries the delivery up to 10 times with exponential backoff"
+    "quote": "Terra retries the delivery automatically with exponential backoff for several hours."
+  },
+  {
+    "claim": "Terra commits to no retry count: \"The exact number and timing of retries may change without notice\".",
+    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "quote": "The exact number and timing of retries may change without notice, so don't depend on a specific schedule."
   },
   {
     "claim": "Spike will \"retry the request up to 10 times with exponential backoff\".",
