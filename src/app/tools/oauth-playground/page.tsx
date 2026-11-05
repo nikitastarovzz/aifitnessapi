@@ -84,13 +84,13 @@ export default function OAuthPlaygroundPage() {
           </p>
           <div className="mt-6 space-y-6">
             {PLAYGROUND_VENDORS.map((v) => (
-              <article key={v.id} id={`vendor-${v.id}`} data-oauth-vendor={v.id} className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
+              <article key={v.id} id={`vendor-${v.id}`} data-oauth-vendor={v.id} className="min-w-0 overflow-x-auto rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
                 <h3 className="text-lg font-bold text-[var(--fg)]">{v.name}</h3>
                 <dl className="mt-3 space-y-2 text-sm leading-relaxed">
                   {vendorRows(v).map((r, i) => (
                     <div key={i} className="grid gap-1 sm:grid-cols-[9rem_1fr]">
                       <dt className="font-semibold text-[var(--fg)]">{r.label}</dt>
-                      <dd className="break-words text-[var(--fg)]">
+                      <dd className="min-w-0 break-all text-[var(--fg)]">
                         {r.text}{" "}
                         <a href={r.source.url} className={`text-xs ${link}`} rel="noopener">
                           Source
