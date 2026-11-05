@@ -10,8 +10,18 @@
  *
  *   - the reference index (the category list and each category's sentence),
  *   - each category page (its endpoint list, one sentence per endpoint),
- *   - each endpoint page: its title, its opening paragraph, its "Scope:"
- *     line, and the HTTP method and path(s) in its Request table.
+ *   - each endpoint page: its title (the first level-1 heading), any heading
+ *     printed above it (a notice such as "Deprecated. See Friends"), its
+ *     opening prose paragraph (never a heading), its "Scope:" line, and the
+ *     HTTP method and path(s) in its Request table.
+ *
+ * Every evidence quote is held to scripts/check-source-quotes.mjs's own rule
+ * (its norm() and 12-character minimum) and must be in the snapshot text, or
+ * the script fails.
+ *
+ * Saving the logs: get_job_logs returns at most the last 5,000 lines of a job,
+ * so dispatch about nine endpoint pages per run, strip the runner's leading
+ * timestamps, and check that every URL has a "===== SNAPSHOT" header.
  *
  * and writes, for every endpoint, those fields verbatim plus two things this
  * site adds, both kept apart from Fitbit's text:
@@ -77,6 +87,62 @@ for (const f of files) {
 const squash = (s) => s.replace(/\s+/g, " ").trim();
 const slugOf = (url) => url.slice(BASE.length).replace(/\/$/, "");
 
+/**
+ * The page's title: its first level-1 heading, with where its line starts and
+ * ends. A level-2 heading can sit above it (the Friends pages print
+ * "## Deprecated. See Friends" first), so the first heading of any level is
+ * not the title; a level-2 heading is the fallback only for a page with no
+ * level-1 heading at all.
+ */
+function headingOf(t) {
+  const m = /^# (.+)$/m.exec(t) ?? /^## (.+)$/m.exec(t);
+  return m ? { title: m[1].trim(), at: m.index, end: m.index + m[0].length } : null;
+}
+
+/** Headings printed above the title (e.g. "Deprecated. See Friends"), verbatim; null for none. */
+function noticeOf(t, h) {
+  const notices = [...t.slice(0, h.at).matchAll(/^#{1,6} (.+)$/gm)].map((m) => m[1].trim());
+  return notices.length ? notices.join(" ") : null;
+}
+
+/**
+ * The page's opening paragraph after its title: the first block that is
+ * prose, never a heading, a table row or a "Scope:" line, and never past the
+ * Request table. Null when the page prints none.
+ */
+function openingParagraph(t, h) {
+  for (const block of t.slice(h.end).split(/\n\s*\n/)) {
+    const b = block.trim();
+    if (!b) continue;
+    if (/^## Request\b/.test(b)) break;
+    if (/^#{1,6} /.test(b) || /^\||^Scopes?: /.test(b)) continue;
+    return squash(b);
+  }
+  return null;
+}
+
+// ── The checker's rule, enforced here ────────────────────────────────────
+// scripts/check-source-quotes.mjs normalises a quote with norm() and rejects
+// it as "too short to be evidence" under 12 characters, then looks for it in
+// the page's normalised text. This is the same norm() and the same rule, and
+// the generator also requires each quote in the snapshot's own normalised
+// text, so it can never write an evidence row the checker would reject.
+const norm = (s) =>
+  s
+    .normalize("NFKC")
+    .replace(/[‘’‚′]/g, "'")
+    .replace(/[“”„″]/g, '"')
+    .replace(/[–—−]/g, "-")
+    .replace(/ /g, " ")
+    .replace(/\|/g, " ")
+    .replace(/(^|\s)#{1,6}(?=\s)/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+const MIN_QUOTE = 12;
+const quotable = (q) => typeof q === "string" && norm(q).length >= MIN_QUOTE;
+const clip = (s) => (s.length > 240 ? s.slice(0, 240).replace(/\s\S*$/, "") : s);
+
 // ── Index: categories ────────────────────────────────────────────────────
 const index = pages.get(BASE) ?? fail(`index ${BASE} not in the snapshots`);
 const catLinks = index.links.filter((l) => l.startsWith(BASE) && /^[a-z0-9-]+\/$/.test(l.slice(BASE.length)));
@@ -87,8 +153,8 @@ for (const url of catLinks) {
   if (SKIP.has(slug)) continue;
   const p = pages.get(url);
   if (!p) fail(`category page ${url} not in the snapshots`);
-  const title = /^#{1,2} (.+)$/m.exec(p.text)?.[1].trim() ?? fail(`${url}: no title`);
-  categories.push({ slug, title, url, fetchedOn: p.fetched });
+  const h = headingOf(p.text) ?? fail(`${url}: no title`);
+  categories.push({ slug, title: h.title, url, fetchedOn: p.fetched });
 }
 if (categories.length < EXPECTED_MIN_CATEGORIES) fail(`${categories.length} categories, expected at least ${EXPECTED_MIN_CATEGORIES}`);
 
@@ -102,16 +168,17 @@ for (const [url, p] of pages) {
   const cat = categories.find((c) => c.slug === category);
   if (!cat) continue;
   const t = p.text;
-  const title = /^#{1,2} (.+)$/m.exec(t)?.[1].trim() ?? fail(`${url}: no title`);
-  const afterTitle = t.slice(t.indexOf(title) + title.length).trim();
-  const description = squash(afterTitle.split(/\n\n/)[0]);
+  const h = headingOf(t) ?? fail(`${url}: no title`);
+  const title = h.title;
+  const notice = noticeOf(t, h);
+  const description = openingParagraph(t, h) ?? fail(`${url}: no opening paragraph after "${title}"`);
   const scope = /^Scopes?: (.+)$/m.exec(t)?.[1].trim() ?? null;
   const reqStart = t.indexOf("## Request");
   const req = reqStart === -1 ? "" : t.slice(reqStart).split(/\n(?:URI Arguments|Query Parameters|Request Headers|Body Parameters|POST Parameters|Form Parameters|Examples|## (?!Request))/)[0];
   const method = /\b(GET|POST|DELETE|PUT|PATCH)\b/.exec(req)?.[1] ?? null;
   const paths = [...req.matchAll(/(\/(?:\d(?:\.\d)?|oauth2)\/[^\s|]*)/g)].map((m) => m[1]);
   if (!paths.length) fail(`${url}: no request path`);
-  endpoints.push({ id: rest, category, categoryTitle: cat.title, title, description, url, fetchedOn: p.fetched, method, paths, scope });
+  endpoints.push({ id: rest, category, categoryTitle: cat.title, title, notice, description, url, fetchedOn: p.fetched, method, paths, scope });
 }
 endpoints.sort((a, b) => a.id.localeCompare(b.id));
 if (endpoints.length < EXPECTED_MIN_ENDPOINTS) fail(`${endpoints.length} endpoint pages, expected at least ${EXPECTED_MIN_ENDPOINTS}`);
@@ -280,12 +347,12 @@ function lineWith(t, needle) {
   for (const raw of t.split("\n")) {
     if (!raw.includes(needle)) continue;
     const line = squash(raw.replace(/\|/g, " ").replace(/^#{1,6}\s+/, "").replace(/^-\s+/, ""));
-    if (line.length >= 12 && !/[`*]/.test(line)) return line.length > 240 ? line.slice(0, 240).replace(/\s\S*$/, "") : line;
+    if (quotable(line) && !/[`*]/.test(line)) return clip(line);
   }
   // A short line: take the paragraph around it.
   const i = t.indexOf(needle);
   const para = squash(t.slice(Math.max(0, t.lastIndexOf("\n\n", i)), t.indexOf("\n\n", i) === -1 ? undefined : t.indexOf("\n\n", i)).replace(/\|/g, " "));
-  return para.length >= 12 ? para.slice(0, 240) : null;
+  return quotable(para) ? para.slice(0, 240) : null;
 }
 
 const allIds = new Set(endpoints.map((e) => e.id));
@@ -307,17 +374,33 @@ for (const e of endpoints) {
   e.nameMatch = NAME_MATCHES[e.id] ?? null;
   evidence.push({ claim: `${e.title}: ${e.method ?? "(method not printed)"} ${e.paths[0]}`, url: e.url, quote: e.paths[0] });
   if (e.scope) evidence.push({ claim: `${e.title} needs the ${e.scope} scope.`, url: e.url, quote: `Scope: ${e.scope}` });
-  if (e.description.length >= 12) evidence.push({ claim: `${e.title}, in Fitbit's words.`, url: e.url, quote: e.description.length > 240 ? e.description.slice(0, 240).replace(/\s\S*$/, "") : e.description });
+  // A notice too short to quote on its own is quoted with the title under it.
+  if (e.notice) evidence.push({ claim: `Fitbit's ${e.title} page is headed "${e.notice}".`, url: e.url, quote: quotable(e.notice) ? e.notice : `${e.notice} ${e.title}` });
+  // The description is optional evidence: a sentence too short to count is
+  // not quoted, and no claim is made on it.
+  if (quotable(clip(e.description))) evidence.push({ claim: `${e.title}, in Fitbit's words.`, url: e.url, quote: clip(e.description) });
 }
 for (const c of categories) {
-  const t = pages.get(c.url).text;
-  const intro = squash(t.slice(t.indexOf(c.title) + c.title.length).trim().split(/\n\n/)[0]);
-  const quote = c.title.length >= 12 ? c.title : intro.length > 240 ? intro.slice(0, 240).replace(/\s\S*$/, "") : intro;
+  const p = pages.get(c.url);
+  const intro = openingParagraph(p.text, headingOf(p.text)) ?? "";
+  const quote = quotable(c.title) ? c.title : quotable(intro) ? clip(intro) : `${c.title} ${intro}`.trim();
   evidence.push({ claim: `Fitbit's Web API reference has a ${c.title} section.`, url: c.url, quote });
 }
-// Drop evidence rows whose quote is too short to count, rather than ship one
-// the checker would reject; the claim still stands on the path quote.
-const kept = evidence.filter((x) => x.quote && x.quote.length >= 12);
+// Every quote must pass the checker's length rule under its norm() and be in
+// the page as snapshotted. One that is not is a parser bug: fail, never drop
+// it silently or ship it.
+const normText = new Map();
+const bad = [];
+for (const [i, x] of evidence.entries()) {
+  if (!quotable(x.quote)) {
+    bad.push(`[${i}] too short under the checker's norm() (${MIN_QUOTE} characters): ${JSON.stringify(x.quote)} (${x.url})`);
+    continue;
+  }
+  if (!normText.has(x.url)) normText.set(x.url, norm(pages.get(x.url)?.text ?? ""));
+  if (!normText.get(x.url).includes(norm(x.quote))) bad.push(`[${i}] not in the snapshot of ${x.url}: ${JSON.stringify(x.quote.slice(0, 120))}`);
+}
+if (bad.length) fail(`${bad.length} evidence quote(s) that scripts/check-source-quotes.mjs would reject:\n  ${bad.join("\n  ")}`);
+const kept = evidence;
 
 const fetchedOn = [...new Set(endpoints.map((e) => e.fetchedOn))].sort();
 const head = `// GENERATED by scripts/build-fitbit-web-api.mjs from source-snapshot text of
@@ -336,7 +419,9 @@ export type FitbitEndpoint = {
   categoryTitle: string;
   /** The page's title, verbatim. */
   title: string;
-  /** The page's opening paragraph, verbatim (whitespace collapsed). */
+  /** A heading the page prints above its title (e.g. "Deprecated. See Friends"), verbatim; null for none. */
+  notice: string | null;
+  /** The page's opening paragraph after its title, verbatim (whitespace collapsed); never a heading. */
   description: string;
   url: string;
   fetchedOn: string;

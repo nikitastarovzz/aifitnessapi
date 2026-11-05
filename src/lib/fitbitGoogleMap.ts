@@ -51,6 +51,8 @@ export type FgRow = {
   category: string;
   categoryTitle: string;
   title: string;
+  /** A heading Fitbit prints above the page title (e.g. a deprecation notice), verbatim; null for none. */
+  notice: string | null;
   description: string;
   url: string;
   method: string | null;
@@ -157,6 +159,7 @@ function rowOf(e: FitbitEndpoint): FgRow {
     category: e.category,
     categoryTitle: e.categoryTitle,
     title: e.title,
+    notice: e.notice,
     description: e.description,
     url: e.url,
     method: e.method,
