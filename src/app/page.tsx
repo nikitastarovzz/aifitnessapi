@@ -101,6 +101,7 @@ const CLUSTERS: { href: string; title: string; blurb: string }[] = [
   { href: "/healthkit-queries", title: "HealthKit query classes", blurb: "HKSampleQuery, statistics, anchored and observer queries, async descriptors, routes and rings: how each works and where it bites." },
   { href: "/phone-sensors", title: "Phone sensors", blurb: "Steps, activity, altitude and AirPods head motion from the phone itself: CMPedometer, Android step sensors, activity transitions, health permissions." },
   { href: "/health-connect-api", title: "Health Connect API", blurb: "The Jetpack API method by method: readRecords paging, aggregates, getChanges, clientRecordId upserts, permissions, background and history reads." },
+  { href: "/own-your-data", title: "Own your data", blurb: "Export your own data from Apple Health, Health Connect, Garmin, Fitbit, Oura, Polar, Strava and more, with notebooks to analyze it." },
 ];
 
 /** The providers and SDKs people actually arrive searching for. Every href is
@@ -108,12 +109,12 @@ const CLUSTERS: { href: string; title: string; blurb: string }[] = [
 /** The "New on the site" row. Each blurb is the page's own description,
  *  shortened, or its blurb on /tools. */
 const NEW_PAGES: { href: string; title: string; blurb: string }[] = [
+  { href: "/tools/apple-health-explorer", title: "Apple Health export explorer", blurb: "Open your Health export.zip in the browser: record types, date ranges, sources, a daily chart and CSV per type. Nothing is uploaded." },
   { href: "/graveyard", title: "The Fitness API Graveyard", blurb: "Shut-down, dying and deprecated fitness and health APIs: end dates, replacements, each vendor's own words." },
   { href: "/tools/heart-rate-lab", title: "Bluetooth heart-rate lab", blurb: "Connect a BLE heart-rate strap in the browser: every 0x2A37 byte decoded, and whether it sends the RR intervals HRV needs." },
   { href: "/challenge", title: "30-second webcam rep challenge", blurb: "A pose model in your browser counts your squats or jumping jacks live from your webcam; the video stays on your device." },
   { href: "/daily", title: "Daily health-API developer puzzle", blurb: "Five questions a day from our HealthKit, Health Connect, Google Health API and pose-keypoint datasets." },
   { href: "/play/ship-it", title: "Ship It: a fitness-app survival game", blurb: "Pick a fitness app and its data stack, then survive the real, dated API changes of 2025–26." },
-  { href: "/tools/pose-benchmark", title: "Pose model benchmark", blurb: "Time MediaPipe Pose Landmarker lite, full and heavy on your own device and copy the latency table as markdown." },
 ];
 
 const POPULAR: { href: string; name: string; tag: string; blurb: string }[] = [

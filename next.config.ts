@@ -31,6 +31,7 @@ const CLUSTERS = [
   "healthkit-queries",
   "phone-sensors",
   "health-connect-api",
+  "own-your-data",
 ];
 
 const SITE = "https://aifitnessapi.com";

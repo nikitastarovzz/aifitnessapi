@@ -1,0 +1,27 @@
+[
+  {
+    "claim": "Personal: your own Garmin Connect data.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Secure access to your own Garmin Connect data for individuals who want to explore, analyze, and build personalized experiences using their own data."
+  },
+  {
+    "claim": "Personal: key from Garmin Connect web.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Log in to the Garmin Connect website to retrieve your personal API key and generate access tokens for Garmin Connect API requests."
+  },
+  {
+    "claim": "Garth deprecated.",
+    "url": "https://raw.githubusercontent.com/matin/garth/main/README.md",
+    "quote": "Garth is deprecated and no longer maintained."
+  },
+  {
+    "claim": "Garth: new logins will not work.",
+    "url": "https://raw.githubusercontent.com/matin/garth/main/README.md",
+    "quote": "New logins will not work."
+  },
+  {
+    "claim": "garminconnect documents the web app's endpoints.",
+    "url": "https://raw.githubusercontent.com/cyberjunky/python-garminconnect/master/README.md",
+    "quote": "the endpoints the Garmin Connect web app uses"
+  }
+]

@@ -85,6 +85,11 @@ const TOOLS = {
     name: "Step lab",
     does: "walk with your phone and watch a visible step detector count; move its threshold and interval to see why two apps disagree.",
   },
+  appleHealthExplorer: {
+    href: "/tools/apple-health-explorer",
+    name: "Apple Health export explorer",
+    does: "open your Health export.zip in the browser and see every record type with counts, dates, sources, a daily chart and a CSV per type; nothing is uploaded.",
+  },
   sampleData: {
     href: "/tools/sample-data",
     name: "Synthetic health data generator",
@@ -148,6 +153,8 @@ const TOOL_FOR_PATH: Record<string, keyof typeof TOOLS> = {
   // step detector deciding one from the accelerometer, thresholds visible.
   "/phone-sensors/android-step-counter-sensor": "stepLab",
   "/phone-sensors/cmpedometer": "stepLab",
+  // The export how-to: the explorer opens the file that page tells you to make.
+  "/own-your-data/apple-health-export": "appleHealthExplorer",
   // The platform comparison: the generator emits both platforms' fixtures.
   "/fitness-apis/apple-healthkit-vs-google-health-connect": "sampleData",
   // Every build guide: the generator is these guides' stacks, narrowed.

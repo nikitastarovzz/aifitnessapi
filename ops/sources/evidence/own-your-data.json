@@ -1,0 +1,17 @@
+[
+  {
+    "claim": "WHOOP: create an App in the Developer Dashboard.",
+    "url": "https://developer.whoop.com/docs/developing/getting-started/",
+    "quote": "To start developing with WHOOP, you first need to create an App in the WHOOP Developer Dashboard"
+  },
+  {
+    "claim": "WHOOP: up to 5 apps.",
+    "url": "https://developer.whoop.com/docs/developing/getting-started/",
+    "quote": "You can create up to 5 Apps."
+  },
+  {
+    "claim": "Withings Public API for individuals.",
+    "url": "https://developer.withings.com/api-reference/",
+    "quote": "designed for individuals and partners without a formal contract"
+  }
+]

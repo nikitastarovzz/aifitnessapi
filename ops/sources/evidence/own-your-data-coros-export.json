@@ -1,0 +1,37 @@
+[
+  {
+    "claim": "Bulk export: entire activity history from Training Hub.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/articles/33125636125204.json",
+    "quote": "To export your entire activity history, login to"
+  },
+  {
+    "claim": "Activity List tab.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/articles/25002333092500.json",
+    "quote": "Click the Activity List tab at the top of the screen"
+  },
+  {
+    "claim": "Other formats not supported.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/articles/25002333092500.json",
+    "quote": "Exporting to other file types are not supported at this time."
+  },
+  {
+    "claim": "Daily and sleep data via support.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/articles/25002333092500.json",
+    "quote": "To request an export of non-activity data recorded by your watch, such as daily metrics, sleep data, or heart rate, please contact our support team"
+  },
+  {
+    "claim": "Give a date range.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/articles/25002333092500.json",
+    "quote": "Provide the specific date range for the data you wish to receive"
+  },
+  {
+    "claim": "Single workout: GPX or FIT.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/articles/360043975752.json",
+    "quote": "Otherwise .FIT is a popular option."
+  },
+  {
+    "claim": "Daily data cannot be exported.",
+    "url": "https://support.coros.com/api/v2/help_center/en-us/articles/360043975752.json",
+    "quote": "Daily data like HR and steps cannot be exported from COROS currently."
+  }
+]

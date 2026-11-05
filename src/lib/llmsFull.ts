@@ -42,6 +42,7 @@ import { releasedAudioCoaching, AUDIO_PATH } from "@/data/audioCoaching";
 import { releasedHealthkitQueries, HKQ_PATH } from "@/data/healthkitQueries";
 import { releasedPhoneSensors, SENSORS_PATH } from "@/data/phoneSensors";
 import { releasedHealthConnectApi, HCAPI_PATH } from "@/data/healthConnectApi";
+import { releasedOwnYourData, OWN_DATA_PATH } from "@/data/ownYourData";
 import { orderedRecords, recordPath, recordH1, recordCapsule, recordFaqs, HC_BASE } from "@/data/hcPages";
 import {
   GHAPI_BASE,
@@ -354,6 +355,13 @@ function toolLines(): string[] {
     `A client-side tool. On a phone, Start reads the browser's devicemotion event (MDN: accelerationIncludingGravity, in m/s², "represents the raw data measured by an accelerometer"; on iOS Safari DeviceMotionEvent.requestPermission() must be called from a tap and resolves "granted" or "denied"), and runs a detector written for the page, not any platform's: acceleration magnitude, an exponential low-pass at ${STEP_DEFAULTS.cutoffHz} Hz, a ${STEP_DEFAULTS.baselineSeconds} s running baseline, and a step at each filtered peak at least a threshold (default ${STEP_DEFAULTS.threshold} m/s²) above the baseline and at least a minimum interval (default ${STEP_DEFAULTS.minIntervalMs} ms) after the last step. Every counted step is marked on the live trace, and sliders recount the whole recording, which is the point: the same walk gives different counts under different settings. Without a sensor it replays a synthetic, labeled trace of ${STEP_REPLAY_TRUE} generated steps (three soft, one double impact, a jitter burst). Motion data never leaves the device; the share card is drawn on a canvas in the browser. The W3C Device Orientation and Motion draft tells browsers to limit acceleration precision to no more than 0.1 m/s² and to expose the API only in secure contexts. Platform step counters are not described beyond what the site's phone-sensor pages quote: Google's motion guide says Android's step counter and detector "are either hardware-based or software-based", and Apple calls CMPedometer's data system-generated. Browser-API sources read ${STEP_LAB_CHECKED_ON}.`,
   );
   out.push("");
+  out.push(`## Apple Health export explorer — ${absoluteUrl("/tools/apple-health-explorer")}`);
+  out.push("Primary query: apple health export.xml viewer");
+  out.push("");
+  out.push(
+    "A client-side tool that opens the file the iPhone Health app makes with Export All Health Data (Apple's iPhone User Guide, read 2026-11-05: \"all of your health and fitness data from Health in XML format\"). The reader picks export.zip or export.xml; a Web Worker streams it in chunks (ZIP central directory read, only export.xml inflated with the browser's DecompressionStream) and keeps per-type summaries, so a file of hundreds of megabytes does not have to fit in memory. It lists every record type with count, first and last date, units and sources, the devices named in the file, a daily chart for a chosen type (daily total for types Apple describes as cumulative, daily mean for discrete ones, grouped by the calendar day written on each record) and a CSV per type built by a second pass over the local file. Types link to the site's HealthKit identifier pages. Nothing is uploaded; the page has no server code. Apple publishes no schema for export.xml that the site could find, so the page describes the elements and attributes the tool reads (Record, Workout, ActivitySummary, ExportDate) as its own behavior, not as Apple's format. A synthetic, labeled sample ZIP is provided.",
+  );
+  out.push("");
   {
     const g = graveyardCopy();
     out.push(`## The Fitness API Graveyard — ${absoluteUrl("/graveyard")}`);
@@ -496,6 +504,10 @@ export function fullSections(): FullSection[] {
     c(HCAPI_PATH, releasedHealthConnectApi(), "Health Connect Jetpack API", {
       intro:
         "How each Health Connect Jetpack call works and where it bites, one method or class per page, from Google's own guides and the androidx.health.connect.client reference: readRecords paging, aggregates, getChanges, upserts, deletes, permissions, background and history reads, routes and training plans.",
+    }),
+    c(OWN_DATA_PATH, releasedOwnYourData(), "Exporting your own health and fitness data", {
+      intro:
+        "How a person downloads their own data from each phone platform, wearable and fitness app: the vendor's official export path, the format it states, what it leaves out, any personal-use API, and the Python libraries, from each vendor's own help center or developer page. Where the vendor's page could not be read, the page says so.",
     }),
     { id: HC_BASE.slice(1), title: "Health Connect record reference", hub: HC_BASE, lines: hcRecordLines() },
     { id: HK_ID_BASE.slice(1), title: "HealthKit identifier pages", hub: HK_ID_BASE, lines: hkIdentifierLines() },

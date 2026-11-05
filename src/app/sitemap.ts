@@ -228,6 +228,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/tools/webhook-verifier", pageStamp("/tools/webhook-verifier")],
     ["/tools/keypoint-playground", pageStamp("/tools/keypoint-playground")],
     ["/tools/step-lab", pageStamp("/tools/step-lab")],
+    ["/tools/apple-health-explorer", pageStamp("/tools/apple-health-explorer")],
   ];
 
   // Routes whose date comes from data, or from the members they index.

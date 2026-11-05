@@ -1689,12 +1689,59 @@ if (fs.existsSync(matrixPath)) {
       const r = routeOf(h);
       return (r === "/tools" || r.startsWith("/tools/")) && fs.readFileSync(h, "utf8").includes("data-tool");
     }).length;
-    const EXPECTED_TOOLS = 13; // hub + 12 tools (the 6 lookups, sample-data, webhook-verifier, keypoint-playground, pose-benchmark, heart-rate-lab and step-lab)
+    const EXPECTED_TOOLS = 14; // hub + 13 tools (the 6 lookups, sample-data, webhook-verifier, keypoint-playground, pose-benchmark, heart-rate-lab, step-lab and apple-health-explorer)
     if (rendered !== EXPECTED_TOOLS) {
       problems.push(`TOOLS          ${rendered} /tools pages carry data-tool, expected ${EXPECTED_TOOLS}`);
     } else {
       console.log(`Tools: ${EXPECTED_TOOLS - 1} interactive tools + hub render.`);
     }
+  }
+
+  // ── Own-your-data notebooks and sample ────────────────────────────────
+  // /own-your-data promises notebooks whose outputs are real runs against
+  // the synthetic samples, and /tools/apple-health-explorer a synthetic
+  // sample one click away. A notebook saved without running, or with a
+  // traceback in it, would show a reader an error or a blank as if it were
+  // the result; a missing sample would leave the button broken. Every
+  // notebook named in src/data/ownYourData.ts must exist, parse, have every
+  // code cell executed and no error output; each data file it points at, and
+  // the sample ZIP, must exist and say SYNTHETIC.
+  {
+    const src = fs.existsSync("src/data/ownYourData.ts") ? fs.readFileSync("src/data/ownYourData.ts", "utf8") : "";
+    const files = [...src.matchAll(/file: "([^"]+\.ipynb)"/g)].map((m) => m[1]);
+    if (src && files.length === 0) problems.push("OWN-DATA-NOTEBOOK  src/data/ownYourData.ts names no notebooks");
+    let ran = 0;
+    for (const f of files) {
+      const p = path.join("public/notebooks", f);
+      if (!fs.existsSync(p)) {
+        problems.push(`OWN-DATA-NOTEBOOK  ${p} is linked from /own-your-data but does not exist`);
+        continue;
+      }
+      let nb;
+      try {
+        nb = JSON.parse(fs.readFileSync(p, "utf8"));
+      } catch {
+        problems.push(`OWN-DATA-NOTEBOOK  ${p} is not valid JSON`);
+        continue;
+      }
+      const codeCells = (nb.cells ?? []).filter((c) => c.cell_type === "code");
+      const unrun = codeCells.filter((c) => typeof c.execution_count !== "number").length;
+      const errors = codeCells.flatMap((c) => c.outputs ?? []).filter((o) => o.output_type === "error").length;
+      if (codeCells.length === 0 || unrun > 0) problems.push(`OWN-DATA-NOTEBOOK  ${p}: ${unrun} of ${codeCells.length} code cells were never executed — run scripts/build-notebooks.py`);
+      if (errors > 0) problems.push(`OWN-DATA-NOTEBOOK  ${p} has ${errors} error output(s) saved in it`);
+      const text = JSON.stringify(nb);
+      if (!/synthetic/i.test(text)) problems.push(`OWN-DATA-NOTEBOOK  ${p} never says its input is synthetic`);
+      for (const m of text.matchAll(/"(data\/[\w.-]+\.csv)"|"\.\.\/(samples\/[\w.-]+\.zip)"/g)) {
+        const rel = m[1] ? path.join("public/notebooks", m[1]) : path.join("public", m[2]);
+        if (!fs.existsSync(rel)) problems.push(`OWN-DATA-SAMPLE  ${p} reads ${rel}, which does not exist`);
+        else if (rel.endsWith(".csv") && !/^# SYNTHETIC/.test(fs.readFileSync(rel, "utf8"))) problems.push(`OWN-DATA-SAMPLE  ${rel} does not open with its SYNTHETIC label`);
+      }
+      if (unrun === 0 && errors === 0) ran++;
+    }
+    const zip = "public/samples/apple-health-export-synthetic.zip";
+    if (src && !fs.existsSync(zip)) problems.push(`OWN-DATA-SAMPLE  ${zip} is missing — run scripts/build-own-data-samples.mjs`);
+    else if (src && !fs.readFileSync(zip).includes(Buffer.from("export.xml"))) problems.push(`OWN-DATA-SAMPLE  ${zip} holds no export.xml entry`);
+    if (files.length) console.log(`Own-your-data: ${ran} of ${files.length} notebooks executed with no errors; synthetic sample present.`);
   }
 
   // ── Architecture diagrams ─────────────────────────────────────────────
