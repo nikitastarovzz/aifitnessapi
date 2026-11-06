@@ -1,25 +1,36 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import ShareRow from "@/components/ShareRow";
 import { canvasBlob, drawShareCard, type ShareCardSpec } from "@/lib/shareCard";
 
 /**
  * A result card the reader can save, share or copy as text.
  *
- * Shared by /challenge and /tools/pose-benchmark. The PNG is drawn in the
+ * Shared by /challenge, /tools/pose-benchmark and /my-stack (which passes its
+ * own `draw`, and `intents` for the share links). The PNG is drawn in the
  * browser (src/lib/shareCard.ts) and only ever leaves the device if the
  * reader saves it or picks a target in the system share sheet; the text is a
  * single line for pasting anywhere.
  */
-export default function ShareCard({
+export default function ShareCard<S = ShareCardSpec>({
   spec,
   text,
   filename,
+  draw,
+  alt,
+  intents,
 }: {
-  spec: ShareCardSpec;
+  spec: S;
   /** The copyable one-line result. */
   text: string;
   filename: string;
+  /** Draws `spec` on the canvas; defaults to drawShareCard. */
+  draw?: (canvas: HTMLCanvasElement, spec: S) => void;
+  /** Alt text for the card; defaults to one built from a ShareCardSpec. */
+  alt?: string;
+  /** Adds a ShareRow of intent links for this URL under the card. */
+  intents?: { place: string; url: string; track?: boolean };
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [src, setSrc] = useState("");
@@ -30,7 +41,8 @@ export default function ShareCard({
   useEffect(() => {
     const c = canvasRef.current;
     if (!c) return;
-    drawShareCard(c, spec);
+    if (draw) draw(c, spec);
+    else drawShareCard(c, spec as unknown as ShareCardSpec);
     setSrc(c.toDataURL("image/png"));
     setCopied(false);
     try {
@@ -76,7 +88,7 @@ export default function ShareCard({
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={src}
-          alt={`Share card: ${spec.eyebrow}, ${spec.headline}. ${spec.lines.join(". ")}`}
+          alt={alt ?? defaultAlt(spec as unknown as ShareCardSpec)}
           width={1200}
           height={630}
           className="h-auto w-full rounded-xl border border-[var(--border)]"
@@ -107,6 +119,11 @@ export default function ShareCard({
       <p className="mt-2 text-xs text-[var(--muted)]">
         The card is drawn in your browser and goes nowhere unless you save or post it yourself.
       </p>
+      {intents && <ShareRow place={intents.place} url={intents.url} text={text} track={intents.track ?? true} label="Post the link" />}
     </div>
   );
+}
+
+function defaultAlt(spec: ShareCardSpec): string {
+  return `Share card: ${spec.eyebrow}, ${spec.headline}. ${spec.lines.join(". ")}`;
 }

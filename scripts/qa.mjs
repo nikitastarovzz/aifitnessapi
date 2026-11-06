@@ -17,6 +17,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { findBritish, fromGenerated, generatedPairs, pageProse } from "./lib/usEnglish.mjs";
 import { readBuiltSitemap } from "./lib/sitemap-files.mjs";
+import { headlines as researchHeadlines } from "../src/lib/researchStats.mjs";
 
 const ROOT = ".next/server/app";
 // /sitemap.xml is an index; the <url> rows are in the children it lists.
@@ -358,6 +359,9 @@ if (fs.existsSync(matrixPath)) {
     "workout-types-crosswalk-2026",
     "exercise-form-rules-2026",
     "exercise-taxonomy-crosswalk-2026",
+    "fitness-api-docs-drift-2026",
+    "fitness-api-shutdown-notice-2026",
+    "fitness-api-pricing-transparency-2026",
   ];
   // Both directions. Listing files catches a DELETION (a dataset a page
   // still cites); scanning the directory catches an ADDITION that was never
@@ -754,6 +758,25 @@ if (fs.existsSync(matrixPath)) {
         problems.push("API-INDEX-SCORE  /fitness-api-index renders a composite score; it publishes raw signals only");
       }
     }
+  }
+}
+
+// ── Deprecation scanner rules (added 2026-11-06, ops/VIRAL-20 items 14–15).
+// /tools/deprecation-scanner and the GitHub Action in
+// actions/fitness-api-deprecation-check run one generated bundle and one
+// engine. The generator's --check rebuilds both from the graveyard, the
+// Fitbit map, the libraries dataset and the hand-sourced signatures and fails
+// when any committed copy differs — so a graveyard edit, a Fitbit
+// regeneration or an engine change cannot ship to one of the two and not the
+// other, and the Action never runs rules the site has moved past. The
+// generator itself refuses a graveyard entry with neither a rule nor a stated
+// reason, a pattern that does not match its own example, and a short rule set.
+{
+  const { spawnSync } = await import("node:child_process");
+  const r = spawnSync(process.execPath, ["--no-warnings", "scripts/build-deprecation-rules.mjs", "--check"], { encoding: "utf8" });
+  if (r.status !== 0) {
+    const msg = `${r.stderr || ""}${r.stdout || ""}`.trim().split("\n").filter(Boolean).pop() ?? "no output";
+    problems.push(`DEPRECATION-RULES-STALE  ${msg.slice(0, 300)}`);
   }
 }
 
@@ -1725,7 +1748,7 @@ if (fs.existsSync(matrixPath)) {
       const r = routeOf(h);
       return (r === "/tools" || r.startsWith("/tools/")) && fs.readFileSync(h, "utf8").includes("data-tool");
     }).length;
-    const EXPECTED_TOOLS = 31; // hub + 30 tools (the 6 lookups, schema-converter, fitbit-to-google-health, sample-data, webhook-verifier, oauth-playground, starter-scaffold, keypoint-playground, pose-benchmark, heart-rate-lab, step-lab, ftms-lab, cycling-power-lab, ble-gatt-explorer, apple-health-explorer, rep-counter-playground, exercise-form-rules, build-plan, store-submission-checklist, compliance-wizard, api-coverage-matrix, rate-limit-calculator, exercise-taxonomy-crosswalk, gym-software-api-matrix and research-platform-chooser)
+    const EXPECTED_TOOLS = 33; // hub + 32 tools (the 6 lookups, schema-converter, fitbit-to-google-health, deprecation-scanner, sample-data, webhook-verifier, oauth-playground, starter-scaffold, keypoint-playground, pose-benchmark, heart-rate-lab, step-lab, ftms-lab, cycling-power-lab, ble-gatt-explorer, apple-health-explorer, rep-counter-playground, exercise-form-rules, build-plan, store-submission-checklist, compliance-wizard, api-coverage-matrix, rate-limit-calculator, exercise-taxonomy-crosswalk, gym-software-api-matrix, research-platform-chooser and aggregator-chooser)
     if (rendered !== EXPECTED_TOOLS) {
       problems.push(`TOOLS          ${rendered} /tools pages carry data-tool, expected ${EXPECTED_TOOLS}`);
     } else {
@@ -1810,6 +1833,81 @@ if (fs.existsSync(matrixPath)) {
     }
   }
 
+  // ── Openness index and README status badges (ops/VIRAL-20-2026-11-06.md
+  // items 4 and 5). Every cell of /openness-index is re-derived here from the
+  // same source modules the page reads (scripts/lib/openness-sources.mjs):
+  // each quote must be a row of its evidence file under the same URL, a
+  // documented quote must carry a word of its check, and every cell, count
+  // and quote must reach the built page with the state the sources give it.
+  // Every graveyard stone and every scored vendor must have a built badge
+  // whose text is recomputed here exactly (a stone's countdown with the as-of
+  // day the badge itself names), listed on /badges with the same text.
+  {
+    const { loadOpennessSources } = await import(new URL("./lib/openness-sources.mjs", import.meta.url));
+    const { checkSource } = await import(new URL("./lib/evidence-check.mjs", import.meta.url));
+    const oi = await import(new URL("../src/lib/opennessIndex.mjs", import.meta.url));
+    const sb = await import(new URL("../src/lib/statusBadges.mjs", import.meta.url));
+    const { GRAVEYARD } = await import(new URL("../src/data/graveyard.ts", import.meta.url));
+    let vendors = [];
+    try {
+      vendors = oi.deriveOpenness(await loadOpennessSources());
+    } catch (e) {
+      problems.push(`OPENNESS-RULE  the index does not derive: ${e instanceof Error ? e.message : e}`);
+    }
+    for (const s of oi.opennessSources(vendors)) for (const b of checkSource(".", s)) problems.push(`OPENNESS-EVIDENCE  ${b}`);
+    for (const v of vendors)
+      for (const [k, c] of Object.entries(v.cells)) {
+        if ((c.status === "documented" || c.status === "absent") && !c.src?.quote) problems.push(`OPENNESS-RULE  ${v.id} × ${k} is ${c.status} without a quote`);
+        else if (c.status === "documented" && !oi.CHECK_WORDS[k].test(c.src.quote)) problems.push(`OPENNESS-RULE  ${v.id} × ${k}: its quote does not mention the check ("${c.src.quote.slice(0, 80)}")`);
+      }
+    const pageFile = htmls.find((h) => routeOf(h) === oi.OPENNESS_PATH);
+    let cells = 0;
+    if (!pageFile) problems.push(`OPENNESS-RENDER  ${oi.OPENNESS_PATH} was not built`);
+    else {
+      const html = fs.readFileSync(pageFile, "utf8");
+      const text = decode(html.replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ");
+      const squash = (s) => s.replace(/\s+/g, " ").trim();
+      for (const v of vendors) {
+        if (!html.includes(`data-score="${v.id}:${v.documented}/${v.applicable}"`)) problems.push(`OPENNESS-RENDER  ${v.id}'s count ${v.documented}/${v.applicable} does not render`);
+        for (const [k, c] of Object.entries(v.cells)) {
+          cells++;
+          if (!html.includes(`data-cell="${v.id}:${k}:${c.status}"`)) problems.push(`OPENNESS-RENDER  ${v.id} × ${k} (${c.status}) does not render`);
+          if (c.src && !text.includes(squash(c.src.quote))) problems.push(`OPENNESS-RENDER  the quote for ${v.id} × ${k} is not on the page`);
+        }
+      }
+    }
+    // Badges.
+    const svgText = (p) => {
+      const f = `${ROOT}${p}.body`;
+      if (!fs.existsSync(f)) return null;
+      const m = /aria-label="([^"]*)"/.exec(fs.readFileSync(f, "utf8"));
+      return m ? decode(m[1]) : "";
+    };
+    const badgesHtml = (() => {
+      const f = htmls.find((h) => routeOf(h) === "/badges");
+      return f ? fs.readFileSync(f, "utf8") : "";
+    })();
+    const listed = new Map([...badgesHtml.matchAll(/data-badge="([^"]+)" data-badge-alt="([^"]*)"/g)].map((m) => [m[1], decode(m[2])]));
+    const today = new Date().toISOString().slice(0, 10);
+    let badges = 0;
+    const expectBadge = (p, expected, what) => {
+      badges++;
+      const got = svgText(p);
+      if (got === null) problems.push(`BADGE-MISSING  ${p} (${what}) was not built`);
+      else if (got !== expected) problems.push(`BADGE-TEXT  ${p} reads ${JSON.stringify(got)}, its sources give ${JSON.stringify(expected)}`);
+      if (!listed.has(p)) problems.push(`BADGE-MISSING  ${p} (${what}) is not listed on /badges`);
+      else if (listed.get(p) !== expected) problems.push(`BADGE-TEXT  /badges lists ${p} as ${JSON.stringify(listed.get(p))}, its sources give ${JSON.stringify(expected)}`);
+    };
+    for (const g of GRAVEYARD) {
+      const p = sb.stoneBadgePath(g.id);
+      const asOf = /\(as of (\d{4}-\d{2}-\d{2})\)/.exec(svgText(p) ?? "")?.[1] ?? today;
+      if (sb.daysBetween(asOf, today) > 2 || sb.daysBetween(asOf, today) < 0) problems.push(`BADGE-TEXT  ${p} was computed as of ${asOf}, not this build`);
+      expectBadge(p, sb.badgeAlt(sb.stoneBadge(g, asOf)), g.name);
+    }
+    for (const v of vendors) expectBadge(sb.opennessBadgePath(v.id), sb.badgeAlt(sb.opennessBadge(v)), `${v.name} openness`);
+    console.log(`Openness index: ${vendors.length} APIs, ${cells} cells re-derived and rendered; status badges: ${badges} recomputed and listed on /badges.`);
+  }
+
   // ── Own-your-data notebooks and sample ────────────────────────────────
   // /own-your-data promises notebooks whose outputs are real runs against
   // the synthetic samples, and /tools/apple-health-explorer a synthetic
@@ -1886,8 +1984,9 @@ if (fs.existsSync(matrixPath)) {
     // build-vs-buy camera-motion pages, /tools/pose-benchmark,
     // /tools/keypoint-playground and /challenge (widened 2026-10-31; the
     // placement rule is in the component's header comment), plus
-    // /tools/rep-counter-playground (2026-11-05).
-    const EXPECTED = 64;
+    // /tools/rep-counter-playground (2026-11-05), plus the quiz's
+    // camera-motion result page (2026-11-06).
+    const EXPECTED = 65;
     if (withNote.length !== EXPECTED) {
       problems.push(
         `KINESTEX-NOTE  ${withNote.length} pages render the first-party link, expected ${EXPECTED} — a mapped path was probably renamed`,
@@ -3858,6 +3957,7 @@ function checkSitemapIndex(SITE) {
     for (const [route, mod, name] of [
       ["/tools/gym-software-api-matrix", "src/data/gymApiMatrix.ts", "GYM_API_MATRIX"],
       ["/tools/research-platform-chooser", "src/data/researchPlatformMatrix.ts", "RESEARCH_PLATFORM_MATRIX"],
+      ["/tools/aggregator-chooser", "src/data/aggregatorChooser.ts", "AGGREGATOR_MATRIX"],
     ]) {
       const page = htmlOf(route);
       const ids = [...fs.readFileSync(mod, "utf8").matchAll(/^ {6}id: "([^"]+)",$/gm)].map((m) => m[1]);
@@ -3867,6 +3967,116 @@ function checkSitemapIndex(SITE) {
         const missing = ids.filter((id) => !new RegExp(`<tr[^>]*\\bid="${id}"`).test(page));
         if (missing.length) problems.push(`EVIDENCE-MATRIX  ${route} does not render ${missing.length} of ${ids.length} rows: ${missing.join(", ")}`);
         else console.log(`Evidence matrix ${route}: all ${ids.length} rows rendered with their quotes.`);
+      }
+    }
+
+    // ── AGGREGATOR-CHOOSER (ops/VIRAL-20-2026-11-06.md item 16). The chooser
+    // draws its cells from twelve evidence files, so every cell is re-checked
+    // here against its evidence rows, independently of the page code: each
+    // cited row must exist and come from that vendor's own hosts, and the
+    // built row must print the cell's text, every cited quote and a link to
+    // every cited URL. A quote edited in an evidence file without the cell, or
+    // a page change that drops the quotes, fails the build.
+    {
+      const route = "/tools/aggregator-chooser";
+      let agg = null;
+      try {
+        const core = await import(new URL("../src/lib/evidenceMatrixCore.mjs", import.meta.url));
+        const { AGGREGATOR_MATRIX } = await import(new URL("../src/data/aggregatorChooser.ts", import.meta.url));
+        agg = { core, m: AGGREGATOR_MATRIX };
+      } catch (e) {
+        problems.push(`AGGREGATOR-CHOOSER  could not load src/data/aggregatorChooser.ts: ${String(e.message).slice(0, 80)}`);
+      }
+      const page = htmlOf(route);
+      if (agg && !page) problems.push(`AGGREGATOR-CHOOSER  ${route} was not built`);
+      if (agg && page) {
+        const { core, m } = agg;
+        const files = {};
+        for (const f of core.filesCited(m)) {
+          const p = `ops/sources/evidence/${f}.json`;
+          if (!fs.existsSync(p)) problems.push(`AGGREGATOR-CHOOSER  ${p} is cited but missing`);
+          else files[f] = JSON.parse(fs.readFileSync(p, "utf8"));
+        }
+        for (const p of core.matrixProblems(m, files[m.evidenceFile] ?? [], files)) problems.push(`AGGREGATOR-CHOOSER  ${p}`);
+        // Entities decoded with &amp; last, so a quote that itself contains
+        // an entity's text (Validic's "&middot;") round-trips exactly.
+        const unent = (s) =>
+          s
+            .replace(/&nbsp;/g, " ")
+            .replace(/&quot;/g, '"')
+            .replace(/&#x27;|&#39;|&apos;/g, "'")
+            .replace(/&lt;/g, "<")
+            .replace(/&gt;/g, ">")
+            .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
+            .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)))
+            .replace(/&amp;/g, "&");
+        const plain = (s) => unent(s.replace(/<!--[\s\S]*?-->/g, "").replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").trim();
+        const squash = (s) => s.replace(/\s+/g, " ").trim();
+        let cells = 0;
+        let quotes = 0;
+        for (const r of m.rows) {
+          const start = new RegExp(`<tr[^>]*\\bid="${r.id}"`).exec(page);
+          const seg = start ? page.slice(start.index, page.indexOf("</tr>", start.index)) : "";
+          if (!seg) {
+            problems.push(`AGGREGATOR-CHOOSER  ${route} has no row for ${r.id}`);
+            continue;
+          }
+          const text = plain(seg);
+          const hrefs = new Set([...seg.matchAll(/\bhref="([^"]*)"/g)].map((x) => unent(x[1])));
+          for (const c of m.columns) {
+            const cell = r.cells[c.id];
+            if (!cell) continue;
+            cells++;
+            if (!text.includes(squash(cell.text))) problems.push(`AGGREGATOR-CHOOSER  ${r.id}.${c.id}: the page does not print the cell text "${cell.text.slice(0, 50)}"`);
+            for (const ref of cell.ev) {
+              const ev = core.rowOf(ref, files[m.evidenceFile] ?? [], files);
+              if (!ev) continue; // reported by matrixProblems
+              quotes++;
+              if (!text.includes(squash(ev.quote))) problems.push(`AGGREGATOR-CHOOSER  ${r.id}.${c.id}: evidence row ${ref} is cited but its quote is not on the page`);
+              if (!hrefs.has(ev.url)) problems.push(`AGGREGATOR-CHOOSER  ${r.id}.${c.id}: evidence row ${ref} is cited but ${ev.url} is not linked in its row`);
+            }
+          }
+        }
+        if (cells) console.log(`Aggregator chooser: ${m.rows.length} vendors, ${cells} cells, ${quotes} cited quotes each found on the page with its link.`);
+      }
+    }
+
+    // ── CONTRIBUTOR-CREDIT (ops/VIRAL-20-2026-11-06.md item 17). /contributors
+    // names exactly the readers that src/data/corrections.ts credits, each with
+    // an issue of this repository; while nobody is credited it is noindex and
+    // still offers the prefilled report link. The question that earns credit
+    // must reach the reader: the issue template and every page's "Suggest a
+    // correction" link carry the same credit line.
+    {
+      const route = "/contributors";
+      try {
+        const cr = await import(new URL("../src/lib/correctionReport.mjs", import.meta.url));
+        const { CORRECTIONS } = await import(new URL("../src/data/corrections.ts", import.meta.url));
+        for (const p of cr.creditProblems(CORRECTIONS)) problems.push(`CONTRIBUTOR-CREDIT  src/data/corrections.ts ${p}`);
+        const people = cr.contributorsFrom(CORRECTIONS);
+        const page = htmlOf(route);
+        if (!page) problems.push(`CONTRIBUTOR-CREDIT  ${route} was not built`);
+        else {
+          const shown = [...page.matchAll(/\bdata-contributor="([^"]*)"/g)].map((x) => x[1].replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#x27;/g, "'"));
+          const want = people.map((p) => p.name);
+          if (shown.join("\n") !== want.join("\n")) problems.push(`CONTRIBUTOR-CREDIT  ${route} lists [${shown.join(", ")}], corrections.ts credits [${want.join(", ")}]`);
+          for (const p of people) for (const c of p.corrections) if (!page.includes(`href="${c.issue}"`)) problems.push(`CONTRIBUTOR-CREDIT  ${route} does not link ${p.name}'s report ${c.issue}`);
+          const noindex = robotsOf(page).some((r) => /noindex/i.test(r));
+          if (people.length === 0 && !noindex) problems.push(`CONTRIBUTOR-CREDIT  ${route} credits nobody but is indexable`);
+          if (people.length > 0 && noindex) problems.push(`CONTRIBUTOR-CREDIT  ${route} credits ${people.length} but is still noindex`);
+          const report = /<a\b[^>]*data-report-stale-fact[^>]*>/.exec(page)?.[0] ?? /<a\b[^>]*href="[^"]*"[^>]*data-report-stale-fact/.exec(page)?.[0];
+          if (!report || !report.includes(cr.NEW_ISSUE_URL)) problems.push(`CONTRIBUTOR-CREDIT  ${route} has no "Report a stale fact" link to ${cr.NEW_ISSUE_URL}`);
+        }
+        const encodedLine = encodeURIComponent(cr.CREDIT_LINE);
+        const tpl = `.github/ISSUE_TEMPLATE/${cr.TEMPLATE_FILE}`;
+        if (!fs.existsSync(tpl) || !fs.readFileSync(tpl, "utf8").includes(`${cr.CREDIT_LINE}:`)) problems.push(`CONTRIBUTOR-CREDIT  ${tpl} is missing or does not ask "${cr.CREDIT_LINE}:"`);
+        const sample = htmlOf("/fitness-apis/health-data-aggregator-apis");
+        if (sample && !sample.replace(/&amp;/g, "&").includes(encodedLine))
+          problems.push(`CONTRIBUTOR-CREDIT  the "Suggest a correction" link on /fitness-apis/health-data-aggregator-apis does not ask the credit question`);
+        if (!problems.some((p) => p.startsWith("CONTRIBUTOR-CREDIT")))
+          console.log(`Contributors: ${people.length} credited ${people.length === 1 ? "reader" : "readers"} across ${CORRECTIONS.length} corrections; the report link and template ask for credit.`);
+      } catch (e) {
+        problems.push(`CONTRIBUTOR-CREDIT  could not check ${route}: ${String(e.message).slice(0, 80)}`);
       }
     }
 
@@ -3899,6 +4109,69 @@ function checkSitemapIndex(SITE) {
         atlasOk = false;
       }
       if (atlasOk) console.log(`Atlas: ${products.length} products and ${graves.length} graveyard entries on the poster; SVG ${fs.statSync(ATLAS.svg).size} B, PDF ${fs.statSync(ATLAS.pdf).size} B.`);
+    }
+  }
+
+  // VIRAL-20 items 11-13 (added 2026-11-06). AWESOME.md, public/collections
+  // and public/cheat-sheets are generated, not built: each must equal what its
+  // script renders from today's data, and each page must show all of it.
+  {
+    // AWESOME-STALE / AWESOME-PAGE
+    const { render } = await import(new URL("./build-awesome.mjs", import.meta.url));
+    const want = await render();
+    const have = fs.existsSync("AWESOME.md") ? fs.readFileSync("AWESOME.md", "utf8") : null;
+    if (have === null) problems.push("AWESOME-STALE  AWESOME.md is missing; run node scripts/build-awesome.mjs");
+    else if (have !== want) problems.push("AWESOME-STALE  AWESOME.md differs from what the data renders today; run node scripts/build-awesome.mjs");
+    const entries = (have ?? "").split("\n").filter((l) => l.startsWith("- [") && l.includes("](http"));
+    const mirror = fs.existsSync(".next/server/app/awesome.md.body") ? fs.readFileSync(".next/server/app/awesome.md.body", "utf8") : null;
+    const page = htmlOf("/awesome");
+    if (!mirror || !page) problems.push("AWESOME-PAGE  /awesome or /awesome.md was not built");
+    else {
+      const missing = entries.filter((l) => !mirror.includes(l));
+      if (missing.length) problems.push(`AWESOME-PAGE  /awesome.md lacks ${missing.length} of AWESOME.md's ${entries.length} entries: ${missing[0].slice(0, 80)}`);
+      const sections = [...(have ?? "").matchAll(/^## (.+)$/gm)].map((m) => m[1]).filter((t) => !["Contents", "About this list", "License"].includes(t));
+      const absent = sections.filter((t) => !page.includes(`>${t.replace(/&/g, "&amp;")}</h2>`));
+      if (absent.length) problems.push(`AWESOME-PAGE  /awesome does not render the section(s) ${absent.join(", ")}`);
+      if (have === want && !missing.length && !absent.length) console.log(`Awesome list: AWESOME.md current, ${entries.length} entries, all on /awesome.md.`);
+    }
+
+    // COLLECTIONS
+    const { outputs } = await import(new URL("./build-collections.mjs", import.meta.url));
+    const files = await outputs();
+    const dir = "public/collections";
+    const stale = Object.entries(files).filter(([f, buf]) => !fs.existsSync(path.join(dir, f)) || !fs.readFileSync(path.join(dir, f)).equals(buf));
+    const extra = fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => !(f in files)) : [];
+    if (stale.length || extra.length) problems.push(`COLLECTIONS  public/collections is stale (${[...stale.map(([f]) => f), ...extra].slice(0, 4).join(", ")}); run node scripts/build-collections.mjs`);
+    const SECRET_VARS = ["client_secret", "auth_code", "refresh_token", "code_verifier", "code_challenge", "signature", "nonce", "webhook_token"];
+    const postmanFiles = Object.keys(files).filter((f) => f.endsWith(".postman_collection.json"));
+    for (const f of postmanFiles) {
+      const c = JSON.parse(files[f].toString("utf8"));
+      if (c.info?.schema !== "https://schema.getpostman.com/json/collection/v2.1.0/collection.json" || !c.info?.name || !Array.isArray(c.item) || !c.item.length) {
+        problems.push(`COLLECTIONS  ${f} is not a v2.1.0 collection with info and items`);
+      }
+      const leaked = (c.variable ?? []).filter((x) => SECRET_VARS.includes(x.key) && x.value !== "");
+      if (leaked.length) problems.push(`COLLECTIONS  ${f} ships a value for ${leaked.map((x) => x.key).join(", ")}`);
+    }
+    const cpage = htmlOf("/collections");
+    const ids = postmanFiles.map((f) => f.replace(".postman_collection.json", ""));
+    if (!cpage) problems.push("COLLECTIONS  /collections was not built");
+    else {
+      const unlisted = ids.filter((id) => !cpage.includes(`data-collection="${id}"`));
+      if (unlisted.length) problems.push(`COLLECTIONS  /collections does not list ${unlisted.join(", ")}`);
+      else if (!stale.length && !extra.length) console.log(`Collections: ${ids.length} vendors, Postman v2.1 and Bruno, current and listed on /collections.`);
+    }
+
+    // CHEATSHEET
+    const { checkSheets } = await import(new URL("./build-cheat-sheets.mjs", import.meta.url));
+    const sheetProblems = await checkSheets();
+    for (const p of sheetProblems) problems.push(`CHEATSHEET  ${p}; run node scripts/build-cheat-sheets.mjs`);
+    const spage = htmlOf("/cheat-sheets");
+    const manifest = fs.existsSync("public/cheat-sheets/manifest.json") ? JSON.parse(fs.readFileSync("public/cheat-sheets/manifest.json", "utf8")).sheets : [];
+    if (!spage) problems.push("CHEATSHEET  /cheat-sheets was not built");
+    else {
+      const unshown = manifest.filter((s) => !spage.includes(`data-cheat-sheet="${s.slug}"`) || !spage.includes(s.pdf) || !spage.includes(s.png));
+      if (unshown.length) problems.push(`CHEATSHEET  /cheat-sheets does not show ${unshown.map((s) => s.slug).join(", ")} with both files`);
+      else if (!sheetProblems.length) console.log(`Cheat sheets: ${manifest.length} sheets current; largest file ${Math.max(...manifest.flatMap((s) => [s.pdfBytes, s.pngBytes]))} B.`);
     }
   }
 
@@ -6047,6 +6320,60 @@ function checkSitemapIndex(SITE) {
     }
   }
 
+  // ── /research: every headline figure a study page prints, recomputed here
+  // from the published dataset with the same functions (src/lib/researchStats.mjs).
+  // A page whose figure differs from its download fails, as /press does.
+  let researchFigures = 0;
+  {
+    const STUDIES = [
+      { id: "docs-drift", path: "/research/docs-drift", slug: "fitness-api-docs-drift-2026" },
+      { id: "shutdown-notice", path: "/research/shutdown-notice", slug: "fitness-api-shutdown-notice-2026" },
+      { id: "pricing-transparency", path: "/research/pricing-transparency", slug: "fitness-api-pricing-transparency-2026" },
+    ];
+    if (htmlAt("/research") === null) problems.push("RESEARCH-MISSING  /research was not built");
+    for (const st of STUDIES) {
+      const html = htmlAt(st.path);
+      const doc = readJson(`public/datasets/${st.slug}.json`);
+      if (html === null || !doc?.items?.length) {
+        problems.push(`RESEARCH-MISSING  ${st.path} was not built or public/datasets/${st.slug}.json has no rows — run \`npm run datasets\``);
+        continue;
+      }
+      const want = researchHeadlines(st.id, doc.items, { historyThrough: doc.historyThrough });
+      const got = new Map(
+        [...html.matchAll(/<li\b[^>]*\bdata-research-stat="([^"]+)"[^>]*\bdata-research-value="([^"]*)"[^>]*>([\s\S]*?)<\/li>/g)].map((m) => [
+          m[1],
+          { attr: decode(m[2]), text: decode(/<p\b[^>]*>([^<]*)<\/p>/.exec(m[3])?.[1] ?? "").trim() },
+        ]),
+      );
+      for (const w of want) {
+        const g = got.get(w.id);
+        researchFigures++;
+        if (!g) problems.push(`RESEARCH-DRIFT  ${st.path} does not print #${w.id}; the published file gives ${w.value}`);
+        else if (g.attr !== w.value || g.text !== w.value) problems.push(`RESEARCH-DRIFT  ${st.path} #${w.id} reads "${g.text}" but public/datasets/${st.slug}.json gives ${w.value}`);
+      }
+      for (const id of got.keys()) if (!want.some((w) => w.id === id)) problems.push(`RESEARCH-DRIFT  ${st.path} prints #${id}, which no published file recomputes`);
+    }
+    // The notice study covers every graveyard entry, and no other.
+    const notice = readJson("public/datasets/fitness-api-shutdown-notice-2026.json");
+    const graveIds = [...fs.readFileSync("src/data/graveyard.ts", "utf8").matchAll(/^ {4}id: "([^"]+)"/gm)].map((m) => m[1]).sort();
+    const noticeIds = (notice?.items ?? []).map((i) => i.id).sort();
+    if (graveIds.join() !== noticeIds.join()) {
+      problems.push(`RESEARCH-STALE  the shutdown-notice dataset covers [${noticeIds.join(", ")}] but the graveyard holds [${graveIds.join(", ")}] — run \`node scripts/build-research.mjs && npm run datasets\``);
+    }
+    // Every counted vendor's line is still in the evidence file it names, at its URL.
+    const pricing = readJson("public/datasets/fitness-api-pricing-transparency-2026.json");
+    for (const r of (pricing?.items ?? []).filter((x) => x.class)) {
+      const ev = readJson(r.evidenceFile);
+      if (!Array.isArray(ev) || !ev.some((e) => e.url === r.url && typeof e.quote === "string" && e.quote.includes(r.line))) {
+        problems.push(`RESEARCH-STALE  ${r.vendor}'s line is no longer quoted at ${r.url} in ${r.evidenceFile} — re-read the source, update ops/research/pricing-transparency.json, then regenerate`);
+      }
+    }
+    const pricingHtml = htmlAt("/research/pricing-transparency");
+    if (pricingHtml !== null && !/data-research-disclosure[\s\S]*?funded by KinesteX/.test(pricingHtml)) {
+      problems.push("RESEARCH-DISCLOSURE  /research/pricing-transparency does not carry its funder disclosure (funded by KinesteX)");
+    }
+  }
+
   // ── Dataset cards and CITATION.cff, generated with the files.
   const cff = fs.existsSync("CITATION.cff") ? fs.readFileSync("CITATION.cff", "utf8") : null;
   if (cff === null || !/^cff-version: 1\.2\.0$/m.test(cff) || !/^license: CC-BY-4\.0$/m.test(cff) || !/^title: /m.test(cff) || !/^authors:/m.test(cff)) {
@@ -6083,7 +6410,7 @@ function checkSitemapIndex(SITE) {
 
   console.log(
     `Vendor timelines: ${timelinePages.length} pages (${timelineEntries} entries), ${feeds.length} feeds parsed as XML; ` +
-      `${vendorLinks} directory pages link their /api/v1/vendors record; /press: ${pressStats} sourced figures; ` +
+      `${vendorLinks} directory pages link their /api/v1/vendors record; /press: ${pressStats} sourced figures; /research: ${researchFigures} figures recomputed; ` +
       `dataset cards: ${cards} of ${jsonSlugs.length}, CITATION.cff ${cff ? "ok" : "MISSING"}.`,
   );
 }
@@ -6154,6 +6481,66 @@ function checkSitemapIndex(SITE) {
     }
   }
   console.log(`Gates: ${live.size} refusals in qa.mjs, ${described.length} described on /gates.`);
+}
+
+// ── The weekly roundup and the visual history (ops/VIRAL-20-2026-11-06.md
+// items 9 and 10). The week pages are a finer cut of the monthly digest's
+// records, so each must say noindex, follow and stay out of the sitemap, and
+// the feed must carry exactly the weeks that were built. The history poster
+// is drawn from graveyard.ts and changes.ts: the committed SVG must be the
+// one the current records draw, byte for byte, and /history must render a
+// mark for every dated record the drawing places.
+{
+  const weekRoutes = htmls.map(routeOf).filter((r) => /^\/weekly\/\d{4}-w\d{2}$/.test(r) && !notFoundSet.has(r));
+  const listed = new Set([...SITEMAP.xml.matchAll(/<loc>https:\/\/aifitnessapi\.com([^<]*)<\/loc>/g)].map((m) => m[1]));
+  const fileOf = new Map(htmls.map((h) => [routeOf(h), h]));
+  for (const r of weekRoutes) {
+    const robots = robotsOf(fs.readFileSync(fileOf.get(r), "utf8")).join(" | ");
+    if (!/\bnoindex\b/.test(robots) || !/\bfollow\b/.test(robots) || /nofollow/.test(robots)) problems.push(`WEEKLY-INDEX  ${r} renders robots "${robots}", expected noindex, follow`);
+    if (listed.has(r)) problems.push(`WEEKLY-INDEX  ${r} is in sitemap.xml; week pages are noindex`);
+  }
+  if (!fileOf.has("/weekly") || !listed.has("/weekly")) problems.push("WEEKLY-INDEX  /weekly is not built or not in sitemap.xml");
+  const feed = fs.existsSync(`${ROOT}/weekly/feed.xml.body`) ? fs.readFileSync(`${ROOT}/weekly/feed.xml.body`, "utf8") : null;
+  if (feed === null) problems.push("WEEKLY-FEED  /weekly/feed.xml was not built");
+  else {
+    const inFeed = [...feed.matchAll(/<link>https:\/\/aifitnessapi\.com(\/weekly\/[^<]+)<\/link>/g)].map((m) => m[1]).sort();
+    const built = [...weekRoutes].sort();
+    if (!feed.includes('rel="self"') || inFeed.join() !== built.join()) {
+      problems.push(`WEEKLY-FEED  /weekly/feed.xml lists ${inFeed.length} weeks for ${built.length} built week pages, or has no self link`);
+    }
+  }
+  if (!problems.some((p) => p.startsWith("WEEKLY-"))) console.log(`Weekly: ${weekRoutes.length} week pages, noindex and out of the sitemap; the feed lists each once.`);
+
+  const HISTORY = { svg: "public/history/fitness-api-history.svg", png: "public/history/fitness-api-history.png" };
+  let historyOk = true;
+  for (const f of Object.values(HISTORY)) {
+    if (!fs.existsSync(f)) {
+      problems.push(`HISTORY-FILE  ${f} is missing; run node scripts/build-history.mjs`);
+      historyOk = false;
+    } else if (fs.statSync(f).size > 2 * 1024 * 1024) {
+      problems.push(`HISTORY-FILE  ${f} is ${fs.statSync(f).size} bytes, over 2 MB`);
+      historyOk = false;
+    }
+  }
+  if (fs.existsSync(HISTORY.png) && !fs.readFileSync(HISTORY.png).subarray(1, 4).equals(Buffer.from("PNG"))) {
+    problems.push(`HISTORY-FILE  ${HISTORY.png} is not a PNG`);
+    historyOk = false;
+  }
+  const { historyModel, historySvg } = await import("../src/lib/historyCore.mjs");
+  const { GRAVEYARD } = await import("../src/data/graveyard.ts");
+  const { CHANGE_EVENTS } = await import("../src/data/changes.ts");
+  const model = historyModel({ graveyard: GRAVEYARD, changes: CHANGE_EVENTS });
+  if (fs.existsSync(HISTORY.svg) && fs.readFileSync(HISTORY.svg, "utf8") !== historySvg(model, { poster: true })) {
+    problems.push("HISTORY-STALE  public/history/fitness-api-history.svg is not what the current graveyard and changes records draw — run node scripts/build-history.mjs");
+    historyOk = false;
+  }
+  const page = fileOf.get("/history") ? fs.readFileSync(fileOf.get("/history"), "utf8") : "";
+  const unmarked = [...model.marks, ...model.undated].filter((m) => !page.includes(`data-id="${m.id}"`));
+  if (!page || unmarked.length) {
+    problems.push(`HISTORY-STALE  /history ${page ? `renders no mark for ${unmarked.length} record(s): ${unmarked.slice(0, 3).map((m) => m.id).join(", ")}` : "was not built"}`);
+    historyOk = false;
+  }
+  if (historyOk) console.log(`History: ${model.marks.length} dated marks and ${model.undated.length} undated on /history and the poster; SVG ${fs.statSync(HISTORY.svg).size} B, PNG ${fs.statSync(HISTORY.png).size} B.`);
 }
 
 if (notFoundRoutes.length) {

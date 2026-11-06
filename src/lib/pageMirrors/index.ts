@@ -24,10 +24,16 @@ import { apiCoverageMatrixMirror } from "./apiCoverageMatrix";
 import { rateLimitCalculatorMirror } from "./rateLimitCalculator";
 import { exerciseTaxonomyMirror, gymMatrixMirror, researchChooserMirror } from "./audienceTools";
 import { atlasMirror } from "./atlas";
+import { aggregatorChooserMirror } from "./aggregatorChooser";
+import { weeklyMirror } from "./weekly";
+import { historyMirror } from "./history";
+import { awesomeMirror } from "./awesome";
+import { cheatSheetsMirror, collectionsMirror } from "./kits";
 import { oauthPlaygroundMirror } from "./oauthPlayground";
 import { webhooksMirror } from "./webhooks";
 import { schemaConverterMirror } from "./schemaConverter";
 import { fitbitToGoogleHealthMirror } from "./fitbitToGoogleHealth";
+import { deprecationScannerMirror } from "./deprecationScanner";
 import { schemaMirror } from "./schema";
 import { graveyardMirror } from "./graveyard";
 import { datasetsMirror } from "./datasets";
@@ -38,8 +44,11 @@ import { year2026Mirror } from "./year2026";
 import { dailyMirror } from "./daily";
 import { shipItMirror } from "./shipIt";
 import { challengeMirror } from "./challenge";
+import { wearableQuizMirror } from "./wearableQuiz";
 import { myStackMirror } from "./myStack";
 import { answersSearchMirror } from "./answersSearch";
+import { opennessIndexMirror } from "./opennessIndex";
+import { driftMirror, noticeMirror, pricingMirror, researchHubMirror } from "./research";
 
 /**
  * Every non-cluster page with a markdown mirror, by page path. Each entry has
@@ -78,10 +87,17 @@ export const PAGE_MIRRORS: Record<string, () => MirrorDoc> = {
   "/tools/exercise-taxonomy-crosswalk": exerciseTaxonomyMirror,
   "/tools/gym-software-api-matrix": gymMatrixMirror,
   "/tools/research-platform-chooser": researchChooserMirror,
+  "/tools/aggregator-chooser": aggregatorChooserMirror,
   "/atlas": atlasMirror,
+  "/weekly": weeklyMirror,
+  "/history": historyMirror,
+  "/awesome": awesomeMirror,
+  "/collections": collectionsMirror,
+  "/cheat-sheets": cheatSheetsMirror,
   "/tools/oauth-playground": oauthPlaygroundMirror,
   "/tools/schema-converter": schemaConverterMirror,
   "/tools/fitbit-to-google-health": fitbitToGoogleHealthMirror,
+  "/tools/deprecation-scanner": deprecationScannerMirror,
   "/schema": schemaMirror,
   "/graveyard": graveyardMirror,
   "/webhooks": webhooksMirror,
@@ -94,7 +110,13 @@ export const PAGE_MIRRORS: Record<string, () => MirrorDoc> = {
   "/play/ship-it": shipItMirror,
   "/challenge": challengeMirror,
   "/my-stack": myStackMirror,
+  "/quiz/which-wearable-api": wearableQuizMirror,
   "/answers-search": answersSearchMirror,
+  "/openness-index": opennessIndexMirror,
+  "/research": researchHubMirror,
+  "/research/docs-drift": driftMirror,
+  "/research/shutdown-notice": noticeMirror,
+  "/research/pricing-transparency": pricingMirror,
 };
 
 /** The GET handler body for a mirror route. */

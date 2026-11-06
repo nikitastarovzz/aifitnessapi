@@ -1,0 +1,37 @@
+[
+  {
+    "claim": "Postman files use Collection Format v2.1.0, whose schema is https://schema.getpostman.com/json/collection/v2.1.0/collection.json (every generated file validated against it on 2026-11-06).",
+    "url": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "quote": "https://schema.getpostman.com/json/collection/v2.1.0/"
+  },
+  {
+    "claim": "In Postman, open your workspace, click Use resources or import, select the Import tab, and drop the file in or paste its URL.",
+    "url": "https://learning.postman.com/docs/getting-started/importing-and-exporting/importing-data/",
+    "quote": "Select your file or folder, drag it into the import window, or paste raw text or a URL."
+  },
+  {
+    "claim": "Postman imports a dropped file (the collection can be dragged straight in).",
+    "url": "https://learning.postman.com/docs/getting-started/importing-and-exporting/importing-data/",
+    "quote": "You can also drag and drop files or folders directly into Postman."
+  },
+  {
+    "claim": "In Bruno, click the + button and select Import Collection.",
+    "url": "https://docs.usebruno.com/get-started/import-export-data/import-collections",
+    "quote": "Click the + button in the top-left corner and select Import Collection"
+  },
+  {
+    "claim": "Choose Bruno Collection and select the unzipped folder.",
+    "url": "https://docs.usebruno.com/get-started/import-export-data/import-collections",
+    "quote": "Browse and select your Bruno collection folder"
+  },
+  {
+    "claim": "Bruno also imports the Postman file directly.",
+    "url": "https://docs.usebruno.com/get-started/import-export-data/import-collections",
+    "quote": "Drag and drop your exported .json file, or click to browse"
+  },
+  {
+    "claim": "A Bruno collection is a folder of plain-text .bru files, one per request.",
+    "url": "https://docs.usebruno.com/bru-lang/overview",
+    "quote": "The API requests in your collections are stored as plain text files using this language."
+  }
+]

@@ -164,6 +164,9 @@ export default function Footer() {
           <FooterLink href="/press" className="py-1 hover:text-[var(--fg)]">
             Press numbers
           </FooterLink>
+          <FooterLink href="/research" className="py-1 hover:text-[var(--fg)]">
+            Research
+          </FooterLink>
           <FooterLink href="/changes" className="py-1 hover:text-[var(--fg)]">
             Changes &amp; Deadlines
           </FooterLink>
@@ -172,6 +175,12 @@ export default function Footer() {
           </FooterLink>
           <FooterLink href="/digest" className="py-1 hover:text-[var(--fg)]">
             Monthly Digest
+          </FooterLink>
+          <FooterLink href="/weekly" className="py-1 hover:text-[var(--fg)]">
+            Weekly Roundup
+          </FooterLink>
+          <FooterLink href="/history" className="py-1 hover:text-[var(--fg)]">
+            Fitness API History
           </FooterLink>
           <FooterLink href="/matrix" className="py-1 hover:text-[var(--fg)]">
             Type Reference
@@ -264,6 +273,9 @@ export default function Footer() {
           </FooterLink>
           <FooterLink href="/corrections" className="py-1 hover:text-[var(--fg)]">
             Corrections
+          </FooterLink>
+          <FooterLink href="/contributors" className="py-1 hover:text-[var(--fg)]">
+            Contributors
           </FooterLink>
           <FooterLink href="/methodology" className="py-1 hover:text-[var(--fg)]">
             How We Verify

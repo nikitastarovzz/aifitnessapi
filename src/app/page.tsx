@@ -300,6 +300,10 @@ export default function Home() {
             <li key={p.href}>
               <Link
                 href={p.href}
+                // These are the site's heaviest client tools (Web Bluetooth
+                // decoders, pose models, the export reader); prefetching all six
+                // from the homepage pushed it past the perf budget's JS cap.
+                prefetch={false}
                 data-cta={`home-new-${p.href.replace(/^\//, "").replace(/\//g, "-")}`}
                 data-cta-source="home-new"
                 className="group flex h-full flex-col rounded-2xl border border-[var(--border)] p-5 transition hover:-translate-y-0.5 hover:border-brand-400 hover:bg-[var(--surface)]"

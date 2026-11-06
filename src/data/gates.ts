@@ -15,6 +15,59 @@
  * appears here as `TITLE-*`.
  */
 export const GATES: { code: string; refuses: string; area: string }[] = [
+  // ── Openness index and README status badges (2026-11-06) ──
+  {
+    code: "OPENNESS-EVIDENCE",
+    area: "Content integrity",
+    refuses:
+      "An openness-index cell whose quote is not a row of its evidence file under the same source address (or, for a fact read directly, is not in the module that states it), so the weekly source-quotes run would never re-check it.",
+  },
+  {
+    code: "OPENNESS-RULE",
+    area: "Content integrity",
+    refuses:
+      "An openness index that does not derive from its source modules (a hand-written cell standing in for the OAuth playground, webhook library or rate-limit calculator), a documented or 'says otherwise' mark with no quote, or a documented quote that does not mention what its check asks about.",
+  },
+  {
+    code: "OPENNESS-RENDER",
+    area: "Derived blocks",
+    refuses:
+      "An /openness-index page that was not built, or that does not show a cell with the state its sources give, a vendor's count, or a cell's quote.",
+  },
+  {
+    code: "BADGE-TEXT",
+    area: "Hosting and crawl",
+    refuses:
+      "A README status or openness badge whose text is not exactly what the graveyard stone or the openness index gives (a countdown recomputed with the as-of day the badge names, which must be this build's), or that /badges lists with different text.",
+  },
+  {
+    code: "BADGE-MISSING",
+    area: "Hosting and crawl",
+    refuses: "A graveyard stone or openness-index vendor with no built badge under /badges/api or /badges/openness, or a badge /badges does not list.",
+  },
+  // ── /research studies (2026-11-06, ops/VIRAL-20-2026-11-06.md items 1-3) ──
+  {
+    code: "RESEARCH-MISSING",
+    area: "Datasets and artifacts",
+    refuses: "A build in which /research or one of its study pages did not render, or a study's dataset has no rows.",
+  },
+  {
+    code: "RESEARCH-DRIFT",
+    area: "Datasets and artifacts",
+    refuses:
+      "A headline figure on a /research study page that differs from what its published dataset gives when recomputed here, a figure the page leaves out, or one no published file recomputes.",
+  },
+  {
+    code: "RESEARCH-STALE",
+    area: "Datasets and artifacts",
+    refuses:
+      "A shutdown-notice dataset that does not cover exactly the graveyard's entries, or a pricing-transparency row whose vendor line is no longer quoted at its URL in the evidence file it names.",
+  },
+  {
+    code: "RESEARCH-DISCLOSURE",
+    area: "Disclosure",
+    refuses: "A pricing-transparency study that does not say, in its own body, that KinesteX funds the site.",
+  },
   // ── Countdown widgets, /my-stack, /answers-search (2026-11-05) ──
   {
     code: "COUNTDOWN-DATE",
@@ -669,6 +722,14 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
       "A fitness API index that renders a composite score or rating. It publishes raw signals and leaves the weighting to the reader.",
   },
 
+  // ── Deprecation scanner and its GitHub Action (2026-11-06) ────────────
+  {
+    code: "DEPRECATION-RULES-STALE",
+    area: "Datasets and artifacts",
+    refuses:
+      "A build whose deprecation-scanner rules, as committed for the site (src/data/deprecationRules.json) or for the GitHub Action (actions/fitness-api-deprecation-check/dist/), differ from what scripts/build-deprecation-rules.mjs writes from the graveyard, the Fitbit endpoint map and the sourced signatures; or whose generator refuses: a graveyard entry with neither a rule nor a stated reason, or a pattern that does not match its own example. The page and the Action must never disagree about what is dead.",
+  },
+
   // ── Fitness API Graveyard ─────────────────────────────────────────────
   {
     code: "GRAVEYARD-READ",
@@ -1293,7 +1354,19 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
   {
     code: "EVIDENCE-MATRIX",
     area: "Derived blocks",
-    refuses: "A gym-software or research-platform matrix page that does not render every platform row its data module holds.",
+    refuses: "A gym-software, research-platform or aggregator matrix page that does not render every platform row its data module holds.",
+  },
+  {
+    code: "CONTRIBUTOR-CREDIT",
+    area: "Content integrity",
+    refuses:
+      "A contributors page that names anyone the corrections log does not credit (or leaves out someone it does), a credit without an issue of this repository, an empty contributors page left indexable, or a correction report link or issue template that no longer asks the reporter whether they want credit.",
+  },
+  {
+    code: "AGGREGATOR-CHOOSER",
+    area: "Derived blocks",
+    refuses:
+      "An aggregator chooser cell that cites an evidence row that does not exist or quotes another vendor's site, says yes or no with no evidence, or whose built row does not print the cell's text, every quote it cites and a link to each quote's source.",
   },
   {
     code: "ATLAS-FILE",
@@ -1304,6 +1377,46 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     code: "ATLAS-STALE",
     area: "Derived blocks",
     refuses: "An Atlas poster that leaves out a product in the API directory or an entry in the API graveyard, because the data changed and the poster was not redrawn.",
+  },
+  {
+    code: "HISTORY-FILE",
+    area: "Derived blocks",
+    refuses: "A missing history poster SVG or PNG, a PNG that is not a PNG, or either file over 2 MB.",
+  },
+  {
+    code: "HISTORY-STALE",
+    area: "Derived blocks",
+    refuses: "A history poster that is not byte for byte what the current graveyard and changes records draw, or a /history page missing a mark for a record the drawing places.",
+  },
+  {
+    code: "WEEKLY-INDEX",
+    area: "Derived blocks",
+    refuses: "A weekly roundup week page that does not render noindex, follow or is listed in the sitemap (the monthly digest is the indexed archive of the same records), or a /weekly hub that is not built and listed.",
+  },
+  {
+    code: "WEEKLY-FEED",
+    area: "Derived blocks",
+    refuses: "A /weekly/feed.xml that is missing, has no self link, or does not list exactly the week pages that were built.",
+  },
+  {
+    code: "AWESOME-STALE",
+    area: "Derived blocks",
+    refuses: "An AWESOME.md at the repository root that differs from what scripts/build-awesome.mjs renders from the directory, libraries, MCP servers, datasets and tools today, because the data changed and the list was not regenerated.",
+  },
+  {
+    code: "AWESOME-PAGE",
+    area: "Derived blocks",
+    refuses: "A built /awesome.md mirror missing any entry line of AWESOME.md, or an /awesome page that does not render every section, so the page and the file in the repository cannot list different things.",
+  },
+  {
+    code: "COLLECTIONS",
+    area: "Derived blocks",
+    refuses: "A Postman or Bruno collection in public/collections that differs from what scripts/build-collections.mjs builds from the OAuth and webhook data, a Postman file without the v2.1.0 schema, info or items, any collection variable shipped with a value for a secret, or a /collections page that does not list every vendor.",
+  },
+  {
+    code: "CHEATSHEET",
+    area: "Derived blocks",
+    refuses: "A cheat sheet PDF or PNG that is missing, is not a PDF or PNG, passes 1.5 MB, or was drawn from different data than the generated modules hold now, or a /cheat-sheets page that does not show every sheet.",
   },
   {
     code: "BT-GATT-THIN",

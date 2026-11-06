@@ -1,0 +1,42 @@
+[
+  {
+    "claim": "Strava's changelog lists the Running Races deprecation, with its October 15 and November 1, 2021 dates, under its entry of October 1st, 2021 (read 2026-11-06).",
+    "url": "https://developers.strava.com/docs/changelog/",
+    "quote": "The get running race and list races endpoints will start to return empty values starting October 15th, 2021, and will be removed completely by November 1st, 2021."
+  },
+  {
+    "claim": "Strava's changelog lists the club endpoints' removal for September 1, 2026 under its entry of June 1, 2026 (read 2026-11-06).",
+    "url": "https://developers.strava.com/docs/changelog/",
+    "quote": "and Club Admins endpoints will be removed on September 1, 2026"
+  },
+  {
+    "claim": "Google's blog post announcing the Google Health retirement is timestamped June 24, 2011 (Internet Archive capture of January 7, 2012, read 2026-11-06).",
+    "url": "https://web.archive.org/web/20120107124413/http://googleblog.blogspot.com/2011/06/update-on-google-health-and-google.html",
+    "quote": "6/24/2011 11:01:00 AM"
+  },
+  {
+    "claim": "The same post gives January 1, 2012 as Google Health's retirement date.",
+    "url": "https://web.archive.org/web/20120107124413/http://googleblog.blogspot.com/2011/06/update-on-google-health-and-google.html",
+    "quote": "Google Health (retiring January 1, 2012; data available for download through January 1, 2013)"
+  },
+  {
+    "claim": "Terra's widget documentation gives the planned deprecation date and a cut-off for new accounts, but no announcement date (read 2026-11-06).",
+    "url": "https://docs.tryterra.co/unified-api/user-authentication/implementation-terra-widget",
+    "quote": "Existing integrations keep working today, and the legacy endpoint is planned for deprecation on 3 November 2026. Accounts created after 3 September 2026 cannot use it at all."
+  },
+  {
+    "claim": "Samsung's overview page dates the SDK's deprecation, not its announcement (read 2026-11-06).",
+    "url": "https://developer.samsung.com/health/android/overview.html",
+    "quote": "Samsung Health SDK for Android has been depricated as of 31 July, 2025."
+  },
+  {
+    "claim": "Oura's API V1 page dates the removal, not its announcement (read 2026-11-06).",
+    "url": "https://cloud.ouraring.com/docs/",
+    "quote": "The V1 API was removed on January 22nd, 2024."
+  },
+  {
+    "claim": "The Internet Archive capture of the Moves developer site records the shutdown date, not when it was announced (read 2026-11-06).",
+    "url": "https://web.archive.org/web/20181231164810/https://dev.moves-app.com/",
+    "quote": "you can no longer log in or use the Moves app."
+  }
+]

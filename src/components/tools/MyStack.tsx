@@ -12,6 +12,9 @@ import {
   stackQuery,
 } from "@/lib/stackFeeds.mjs";
 import { countdownSnippet } from "@/lib/countdownSnippet";
+import ShareCard from "@/components/ShareCard";
+import { drawStackCard, type StackCardSpec } from "@/lib/shareCard";
+import { stackCardModel } from "@/lib/stackCard.mjs";
 import type { StackData, StackVendor } from "@/lib/myStack";
 import type { DeadlineItem } from "@/lib/vendorDeadlines";
 
@@ -154,6 +157,13 @@ export default function MyStack({ data, origin }: { data: StackData; origin: str
   const ahead = today ? deadlines.filter((x) => x.d.target >= today).sort((a, b) => (a.d.target < b.d.target ? -1 : 1)) : [];
   const recent = today ? deadlines.filter((x) => x.d.target < today).sort((a, b) => (a.d.target < b.d.target ? 1 : -1)).slice(0, 6) : [];
 
+  const card = today
+    ? stackCardModel({
+        products: vendors.map((v) => v.short),
+        deadlines: deadlines.map((x) => ({ title: x.d.title, target: x.d.target, exact: x.d.exact, who: x.who })),
+        today,
+      })
+    : null;
   const abs = (p: string) => `${origin}${p}`;
   const fileStem = `aifitnessapi-stack-${picked.slice(0, 4).join("-")}${picked.length > 4 ? "-and-more" : ""}`;
 
@@ -300,6 +310,24 @@ export default function MyStack({ data, origin }: { data: StackData; origin: str
               .
             </p>
           </section>
+
+          {card && (
+            <section className="mt-8" aria-label="Share card" data-stack-card>
+              <h2 className="text-xl font-bold tracking-tight text-[var(--fg)]">Share your stack</h2>
+              <p className="mt-1 text-sm text-[var(--muted)]">
+                A card of these products and their next deadlines, drawn in this tab. Save it, or post the share link,
+                which opens this page with the same products.
+              </p>
+              <ShareCard<StackCardSpec>
+                spec={{ products: card.products, more: card.more, deadlines: card.deadlines, url: "aifitnessapi.com/my-stack", stamp: today ?? undefined }}
+                draw={drawStackCard}
+                alt={`Share card: my health-data stack, ${card.products.join(", ")}${card.more ? ` and ${card.more} more` : ""}. ${card.deadlines.join(". ") || "No dated item ahead."}`}
+                text={card.text}
+                filename={`${fileStem}.png`}
+                intents={{ place: "my-stack", url: shareUrl, track: false }}
+              />
+            </section>
+          )}
 
           <section className="mt-8">
             <h2 className="text-xl font-bold tracking-tight text-[var(--fg)]">Deadlines ahead</h2>

@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { track } from "@/lib/track";
+import ShareRow from "@/components/ShareRow";
+import { site } from "@/lib/site";
 import {
   recommend,
   JOB_OPTIONS,
@@ -142,6 +144,13 @@ export default function ApiPicker() {
             Share card
           </a>
         </div>
+        {/* /s is the picker's share target: it previews with this answer's own card. */}
+        <ShareRow
+          place="picker"
+          url={`${site.url}/s?t=picker&${query}`}
+          text={`Fitness API picker: ${result.title}`}
+          label="Share this answer"
+        />
       </div>
     );
   }

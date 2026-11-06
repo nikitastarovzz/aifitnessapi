@@ -134,9 +134,18 @@ const normVersion = (v: string) => v.replace(/^v/i, "");
  * libraries.ts package's latest registry publish.
  */
 export function yearReleases(asOf = buildDate()): ReleaseEvent[] {
+  return datedReleases(asOf, inYear);
+}
+
+/**
+ * The same collection without the year filter: every dated release the repo
+ * holds on or before `asOf` that `keep` accepts. The weekly roundup
+ * (src/lib/weekly.ts) reads it, so /2026 and /weekly count releases one way.
+ */
+export function datedReleases(asOf = buildDate(), keep: (date: string) => boolean = () => true): ReleaseEvent[] {
   const out = new Map<string, ReleaseEvent>();
   const put = (r: ReleaseEvent) => {
-    if (!inYear(r.date) || r.date > asOf) return;
+    if (!keep(r.date) || r.date > asOf) return;
     const k = `${r.pkg}@${normVersion(r.version)}`;
     if (!out.has(k)) out.set(k, r);
   };

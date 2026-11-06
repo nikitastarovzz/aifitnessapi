@@ -1,0 +1,46 @@
+name: Fitness API deprecation check
+description: Finds references to shut-down, dying or deprecated fitness APIs and SDKs (Fitbit Web API, Google Fit, and more) and names each replacement.
+author: aifitnessapi.com
+branding:
+  icon: alert-triangle
+  color: orange
+
+# The same rules as https://aifitnessapi.com/tools/deprecation-scanner, built
+# from that site's sourced data by scripts/build-deprecation-rules.mjs (dist/
+# is generated; do not edit it). Zero dependencies: it runs the runner's own
+# Node, reads files and never sends them anywhere.
+
+inputs:
+  path:
+    description: Files or directories to scan, separated by spaces or newlines.
+    required: false
+    default: "."
+  exclude:
+    description: Path prefixes to skip, separated by spaces or newlines (node_modules, .git and common build folders are always skipped).
+    required: false
+    default: ""
+  fail-on:
+    description: "error (default): fail when an API is gone or its end date has passed. warning: fail on any hit. never: report only."
+    required: false
+    default: error
+outputs:
+  hits:
+    description: Number of references found.
+    value: ${{ steps.scan.outputs.hits }}
+  errors:
+    description: References to APIs that are gone or past their end date.
+    value: ${{ steps.scan.outputs.errors }}
+  warnings:
+    description: References to APIs that are deprecated or have a future end date.
+    value: ${{ steps.scan.outputs.warnings }}
+
+runs:
+  using: composite
+  steps:
+    - id: scan
+      shell: bash
+      env:
+        FADC_PATH: ${{ inputs.path }}
+        FADC_EXCLUDE: ${{ inputs.exclude }}
+        FADC_FAIL_ON: ${{ inputs.fail-on }}
+      run: node "$GITHUB_ACTION_PATH/run.mjs"

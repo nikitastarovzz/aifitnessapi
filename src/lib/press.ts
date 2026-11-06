@@ -9,6 +9,7 @@ import { derive, shortDate, WINDOW_DAYS } from "@/lib/ecosystemDerive";
 import { buildDate, freshness, slides, yearDataDate, YEAR_PATH, type Slide } from "@/lib/year2026";
 import { vendorTimelines } from "@/lib/vendorChanges";
 import { collections } from "@/lib/publicApi";
+import { studies as researchStudies } from "@/lib/researchPages";
 
 /**
  * The numbers behind /press (ops/MORE-30-2026-11-05.md item 16): figures a
@@ -201,5 +202,24 @@ export { YEAR_PATH };
  * words, as /2026 does, rather than re-dating itself.
  */
 export function pressDataDate(): string {
-  return newest([yearDataDate(), indexDataDate(), graveyardCheckedOn(), datasetsDate(), ...collections().map((c) => c.verifiedNow.date)]);
+  return newest([yearDataDate(), indexDataDate(), graveyardCheckedOn(), datasetsDate(), ...collections().map((c) => c.verifiedNow.date), ...researchStudies().map((s) => s.dataDate)]);
+}
+
+/**
+ * The headline figures of the /research studies, as each study page prints
+ * them (src/lib/researchPages.ts), with the published dataset as the source
+ * file. qa's RESEARCH-DRIFT holds the study pages to those files; these are
+ * the same strings.
+ */
+export function researchPressStats(): PressStat[] {
+  return researchStudies().flatMap((s) =>
+    s.headlines.slice(0, 2).map((h) => ({
+      id: `research-${h.id}`,
+      value: h.value,
+      label: h.label,
+      detail: "",
+      source: { file: `public/datasets/${s.dataset}.json`, date: s.dataDate, dateLabel: s.dataDateLabel.replace(/^./, (c) => c.toLowerCase()) },
+      link: { href: s.path, label: s.h1 },
+    })),
+  );
 }

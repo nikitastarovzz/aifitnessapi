@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { CONTRIBUTORS_PATH, correctionIssueUrl } from "@/lib/correctionReport.mjs";
 
 /**
  * Two questions at the end of a page: was this useful, and is anything wrong.
@@ -35,13 +36,9 @@ export default function Feedback({
     });
   };
 
-  const issueUrl =
-    repo &&
-    `${repo}/issues/new?title=${encodeURIComponent(
-      `Correction: ${title}`,
-    )}&body=${encodeURIComponent(
-      `Page: https://aifitnessapi.com${path}\n\nWhat's wrong:\n\n\nSource that shows it (a link to the vendor's own documentation is ideal):\n`,
-    )}`;
+  // The issue asks whether the reporter wants credit on /contributors
+  // (src/lib/correctionReport.mjs, the same body as the issue template).
+  const issueUrl = repo && correctionIssueUrl({ path, title, repoUrl: repo });
 
   const btn =
     "rounded-lg border border-[var(--border)] px-3 py-1.5 text-sm text-[var(--muted)] transition-colors hover:border-brand-400 hover:text-[var(--fg)]";
@@ -70,6 +67,16 @@ export default function Feedback({
           )}
         </div>
       </div>
+
+      {issueUrl && (
+        <p className="mt-2 text-xs text-[var(--muted)]">
+          Corrections that change a page are logged, and credited by name if you ask:{" "}
+          <a href={CONTRIBUTORS_PATH} className="text-brand-600 hover:text-brand-500">
+            contributors
+          </a>
+          .
+        </p>
+      )}
 
       {vote === "down" && !sentNote && (
         <form

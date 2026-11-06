@@ -76,6 +76,17 @@ export default function DigestIndex() {
             Get the newsletter →
           </CtaLink>
         </p>
+        <p className="mt-2 text-sm text-[var(--muted)]">
+          Shorter cuts of the same record:{" "}
+          <Link href="/weekly" className="font-medium text-brand-600 hover:text-brand-500">
+            the weekly roundup
+          </Link>{" "}
+          (with an RSS feed), and every dated event on one{" "}
+          <Link href="/history" className="font-medium text-brand-600 hover:text-brand-500">
+            timeline
+          </Link>
+          .
+        </p>
 
         <ul className="mt-10 space-y-4">
           {all.map((d) => (

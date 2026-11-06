@@ -14,6 +14,8 @@ import { OAUTH_FETCHED_ON } from "@/data/oauthVendors";
 import { WEBHOOKS_FETCHED_ON } from "@/data/webhookPayloads";
 import { API_ENTRIES, APIS_PATH, NOINDEX_APIS } from "@/data/apis";
 import { API_INDEX_PATH, MARKET_MAP_PATH, indexDataDate } from "@/lib/ecosystemSignals";
+import { OPENNESS_UPDATED } from "@/lib/openness";
+import { OPENNESS_PATH } from "@/lib/opennessIndex.mjs";
 import { DAILY_PATH, dailyDataDate } from "@/lib/dailyBank";
 import { YEAR_PATH, yearDataDate } from "@/lib/year2026";
 import { isNoindexed } from "@/data/noindex";
@@ -35,15 +37,24 @@ import { COVERAGE_UPDATED, RATE_UPDATED } from "@/lib/coverageView";
 import { ET_FETCHED_ON } from "@/data/exerciseTaxonomy";
 import { ATLAS_PATH } from "@/lib/audienceTools";
 import { atlasAsOf } from "@/lib/atlasView";
+import { weeklyDataDate, WEEKLY_PATH } from "@/lib/weekly";
+import { historyAsOf, HISTORY_PATH } from "@/lib/historyView";
+import { AWESOME_PATH, awesomeAsOf } from "@/lib/awesomeView";
+import { CHEATSHEETS_PATH, COLLECTIONS_PATH, cheatSheetsAsOf, collectionsAsOf } from "@/lib/kitPages";
 import { GYM_API_MATRIX } from "@/data/gymApiMatrix";
 import { RESEARCH_PLATFORM_MATRIX } from "@/data/researchPlatformMatrix";
+import { AGGREGATOR_MATRIX } from "@/data/aggregatorChooser";
+import { CORRECTIONS } from "@/data/corrections";
+import { contributorsFrom } from "@/lib/correctionReport.mjs";
 import { UNIFIED_READ_ON } from "@/data/unifiedSchema";
 import { FG_UPDATED } from "@/lib/fitbitGoogleMap";
+import { DS_UPDATED } from "@/lib/deprecationScannerText";
 import { hkPageIdentifiers, hkIdentifierPath, hkPageModified } from "@/data/hkIdentifierPages";
 import { hsPageTypes, hsDataTypePath, hsPageModified } from "@/data/hsDataTypePages";
 import { GHAPI_PATHS, allTypes as ghapiTypes, typePath as ghapiTypePath, ghapiModified } from "@/data/ghapiPages";
 import { MCP_SERVERS_FETCHED_ON } from "@/data/mcpHealthServers";
 import { BT_BASE, BT_FETCHED, BT_PAGES, btPath } from "@/data/btPages";
+import { RESEARCH_PATH, hubDataDate, studies as researchStudies } from "@/lib/researchPages";
 import { PLATFORM_ORDER as WT_PLATFORM_ORDER, WT_BASE, WT_FETCHED, activityPath as wtActivityPath, activityRows as wtActivityRows, platformPath as wtPlatformPath } from "@/data/workoutTypePages";
 
 /**
@@ -271,9 +282,11 @@ function computeSections(): SitemapSection[] {
     ["/tools/exercise-taxonomy-crosswalk", ET_FETCHED_ON],
     ["/tools/gym-software-api-matrix", GYM_API_MATRIX.checkedOn],
     ["/tools/research-platform-chooser", RESEARCH_PLATFORM_MATRIX.checkedOn],
+    ["/tools/aggregator-chooser", AGGREGATOR_MATRIX.checkedOn],
     ["/tools/oauth-playground", OAUTH_FETCHED_ON],
     ["/tools/schema-converter", UNIFIED_READ_ON],
     ["/tools/fitbit-to-google-health", FG_UPDATED],
+    ["/tools/deprecation-scanner", DS_UPDATED],
   ];
 
   // Routes whose date comes from data, or from the members they index.
@@ -298,6 +311,8 @@ function computeSections(): SitemapSection[] {
     // or checked, and this reads the same function.
     [MARKET_MAP_PATH]: undefined,
     [API_INDEX_PATH]: indexDataDate(),
+    // The openness index declares the day it was compiled; same constant.
+    [OPENNESS_PATH]: OPENNESS_UPDATED,
     // The daily puzzle declares the newest read date of the datasets its
     // bank draws from, not the date of today's draw: the page itself is the
     // same static file every day.
@@ -313,8 +328,22 @@ function computeSections(): SitemapSection[] {
     // The press page declares the newest date any of its inputs was written
     // or checked, through the same function.
     [PRESS_PATH]: pressDataDate(),
+    // Each study declares the newest date its data was read; the hub the
+    // newest of the three.
+    [RESEARCH_PATH]: hubDataDate(),
+    ...Object.fromEntries(researchStudies().map((s) => [s.path, s.dataDate])),
     // The poster declares the newest date its inputs were checked.
     [ATLAS_PATH]: atlasAsOf(),
+    // The weekly hub declares the newest record any of its weeks holds; the
+    // week pages are noindex (src/lib/weekly.ts) and so are not listed.
+    [WEEKLY_PATH]: weeklyDataDate(),
+    // The timeline declares the newest day any graveyard or tracker record was checked.
+    [HISTORY_PATH]: historyAsOf(),
+    // The awesome list, the collections and the cheat sheets declare the
+    // newest date their generated inputs were read (their mirrors say so).
+    [AWESOME_PATH]: awesomeAsOf(),
+    [COLLECTIONS_PATH]: collectionsAsOf(),
+    [CHEATSHEETS_PATH]: cheatSheetsAsOf(),
   };
 
   const standalone = [
@@ -348,6 +377,9 @@ function computeSections(): SitemapSection[] {
     "/tools",
     "/paths",
     "/corrections",
+    // /contributors is noindex,follow until a correction credits a reader
+    // (src/app/contributors/page.tsx), so it is listed only from then on.
+    ...(contributorsFrom(CORRECTIONS).length > 0 ? ["/contributors"] : []),
     "/gates",
     "/about",
     // /site-index is deliberately absent: it is noindex,follow (see
@@ -358,14 +390,23 @@ function computeSections(): SitemapSection[] {
     APIS_PATH,
     MARKET_MAP_PATH,
     ATLAS_PATH,
+    WEEKLY_PATH,
+    HISTORY_PATH,
+    AWESOME_PATH,
+    COLLECTIONS_PATH,
+    CHEATSHEETS_PATH,
     API_INDEX_PATH,
     DAILY_PATH,
     GRAVEYARD_PATH,
     "/webhooks",
     PRESS_PATH,
+    RESEARCH_PATH,
+    ...researchStudies().map((s) => s.path),
     "/alerts",
     "/my-stack",
     "/answers-search",
+    "/quiz/which-wearable-api",
+    "/openness-index",
     "/compare-apis",
     "/play/ship-it",
     "/datasets",

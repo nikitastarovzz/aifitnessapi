@@ -19,6 +19,11 @@ export const TOOL_NEXT_STEPS: Record<string, string[]> = {
     "/integrate/mindbody-api",
     "/pricing/mindbody-api-pricing",
   ],
+  "/tools/aggregator-chooser": [
+    "/fitness-apis/health-data-aggregator-apis",
+    "/pricing/health-data-aggregator-pricing",
+    "/alternatives/terra-alternatives",
+  ],
   "/tools/research-platform-chooser": [
     "/fitness-apis/wearable-research-data-platforms",
     "/migrate/fitbit-research-studies-after-turndown",
@@ -100,6 +105,11 @@ export const TOOL_NEXT_STEPS: Record<string, string[]> = {
     "/fitness-apis/health-data-aggregator-apis",
     "/fitness-apis/apple-healthkit-vs-google-health-connect",
   ],
+  "/tools/deprecation-scanner": [
+    "/migrate/fitbit-web-api-to-google-health",
+    "/migrate/google-fit-to-health-connect",
+    "/migrate/migrate-off-a-deprecated-fitness-api",
+  ],
   "/tools/fitbit-to-google-health": [
     "/migrate/fitbit-web-api-to-google-health",
     "/alternatives/fitbit-api-alternatives",
@@ -119,6 +129,11 @@ export const TOOL_NEXT_STEPS: Record<string, string[]> = {
     "/fitness-apis/wearable-data-apis",
     "/fitness-apis/health-data-aggregator-apis",
     "/pricing/how-much-does-a-fitness-api-cost",
+  ],
+  "/quiz/which-wearable-api": [
+    "/fitness-apis/wearable-data-apis",
+    "/fitness-apis/health-data-aggregator-apis",
+    "/fitness-apis/apple-healthkit-vs-google-health-connect",
   ],
   "/my-stack": [
     "/alternatives/fitbit-api-alternatives",
@@ -164,6 +179,11 @@ export const TOOL_NEXT_STEPS: Record<string, string[]> = {
     "/fitness-apis",
     "/pricing",
     "/alternatives",
+  ],
+  "/openness-index": [
+    "/fitness-apis/wearable-data-apis",
+    "/fitness-apis/health-data-aggregator-apis",
+    "/pricing/health-data-aggregator-pricing",
   ],
 };
 

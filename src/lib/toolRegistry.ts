@@ -105,6 +105,12 @@ export const TOOL_LOOKUPS: Tool[] = [
     blurb:
       "Search every Fitbit Web API endpoint and see its Google Health API data type, method and scopes from Google's migration tables, or that none is listed.",
   },
+  {
+    path: "/tools/deprecation-scanner",
+    name: "Deprecation scanner",
+    blurb:
+      "Paste code or a manifest and find Fitbit Web API, Google Fit and other retired fitness API calls, each with its replacement. Also a GitHub Action.",
+  },
 ];
 
 /** The planners and demos already published on the site. Blurbs match the
@@ -150,6 +156,12 @@ export const TOOL_PLANNERS: Tool[] = [
     name: "Fitness API index",
     blurb:
       "Sortable raw signals per product: SDK and library releases, dated changes in the last 12 months, approval gates, verification age. No score.",
+  },
+  {
+    path: "/openness-index",
+    name: "Fitness API openness index",
+    blurb:
+      "Which developer basics each wearable and health-data API documents: self-serve start, sandbox, pricing, rate limits, signed webhooks, PKCE, refresh, deletion.",
   },
   {
     path: "/compare-apis",
@@ -218,6 +230,12 @@ export const TOOL_PLANNERS: Tool[] = [
       "Connect any Bluetooth LE device: services and characteristics by SIG name, read or notify, values decoded where the SIG defines a structure.",
   },
   {
+    path: "/quiz/which-wearable-api",
+    name: "Which wearable API quiz",
+    blurb:
+      "Eight questions on platform, devices, data depth, webhooks, budget and team decide how your app should get wearable data, with a shareable result.",
+  },
+  {
     path: "/my-stack",
     name: "My stack",
     blurb:
@@ -258,6 +276,12 @@ export const TOOL_PLANNERS: Tool[] = [
     name: "Research platform chooser",
     blurb:
       "Fitabase, Labfront, Empatica and Ametris: tick what your study needs and see which platforms document it, each answer quoting the vendor's page.",
+  },
+  {
+    path: "/tools/aggregator-chooser",
+    name: "Health data aggregator chooser",
+    blurb:
+      "Terra, ROOK, Junction, Spike, Thryve, Sahha, Open Wearables and Validic: tick sources, price, webhooks, BAA, data region or self-hosting; every cell quotes its source.",
   },
 ];
 

@@ -18,7 +18,7 @@
  */
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { createHmac } from "node:crypto";
+import { createHmac, generateKeyPairSync, sign as nodeSign } from "node:crypto";
 import {
   WEBHOOK_VENDORS,
   buildExample,
@@ -26,6 +26,10 @@ import {
   explainPayload,
   safeEqual,
   DEMO_SECRET,
+  verifyGoogleHealthSignature,
+  parseTinkEcdsaKeyset,
+  derToP1363,
+  p1363ToDer,
 } from "../src/lib/webhookVerifier.mjs";
 
 /** Flip one byte of `s` at `i` to a different printable character. */
@@ -156,6 +160,104 @@ test("Google Health API: unauthenticated verification request is told to answer 
   assert.equal(r.status, "invalid");
   assert.match(r.detail.join(" "), /401 Unauthorized or 403 Forbidden/);
 });
+/* Google Health API: Tink ECDSA P-256. The keyset and signature here are
+ * built with Node's own crypto (DER output, JWK export), independent of the
+ * module's WebCrypto path, in the shape Google's page describes. */
+function tinkKeyset(publicKey, keyId) {
+  const jwk = publicKey.export({ format: "jwk" });
+  const x = Buffer.from(jwk.x, "base64url");
+  const y = Buffer.from(jwk.y, "base64url");
+  const field = (n, b) => Buffer.concat([Buffer.from([n * 8 + 2, b.length]), b]);
+  const params = Buffer.from([0x08, 3, 0x10, 2, 0x18, 2]);
+  const value = Buffer.concat([field(2, params), field(3, Buffer.concat([Buffer.from([0]), x])), field(4, Buffer.concat([Buffer.from([0]), y]))]);
+  return JSON.stringify({
+    primaryKeyId: keyId,
+    key: [{ keyData: { typeUrl: "type.googleapis.com/google.crypto.tink.EcdsaPublicKey", value: value.toString("base64"), keyMaterialType: "ASYMMETRIC_PUBLIC" }, status: "ENABLED", keyId, outputPrefixType: "TINK" }],
+  });
+}
+function tinkSign(privateKey, keyId, body) {
+  const prefix = Buffer.alloc(5);
+  prefix[0] = 1;
+  prefix.writeUInt32BE(keyId, 1);
+  const der = nodeSign("sha256", Buffer.from(body), { key: privateKey, dsaEncoding: "der" });
+  return Buffer.concat([prefix, der]).toString("base64");
+}
+
+test("Google Health API: Tink-prefixed DER ECDSA P-256 over the raw body verifies; one changed byte does not", async () => {
+  const { publicKey, privateKey } = generateKeyPairSync("ec", { namedCurve: "P-256" });
+  const keyId = 3908867516; // above 2^31: the keyId is read as unsigned
+  const keyset = tinkKeyset(publicKey, keyId);
+  const body = '{"data":{"version":"1","operation":"UPSERT","dataType":"steps"}}';
+  const sig = tinkSign(privateKey, keyId, body);
+  const ok = await verifyGoogleHealthSignature(body, sig, keyset);
+  assert.equal(ok.ok, true, ok.detail);
+  assert.equal(ok.keyId, keyId);
+  const bad = await verifyGoogleHealthSignature(body.replace("steps", "sleep"), sig, keyset);
+  assert.equal(bad.ok, false);
+  const reformatted = await verifyGoogleHealthSignature(JSON.stringify(JSON.parse(body), null, 2), sig, keyset);
+  assert.equal(reformatted.ok, false, "re-serialized JSON is not the raw body");
+  const r = await verifyWebhook("google-health", { method: "POST", url: "", headers: `Authorization: Bearer s\nGOOGLE-HEALTH-API-SIGNATURE: ${sig}`, body, secret: "Bearer s", keyset });
+  assert.equal(r.status, "valid", r.detail.join(" "));
+  const r2 = await verifyWebhook("google-health", { method: "POST", url: "", headers: `Authorization: Bearer s\nGOOGLE-HEALTH-API-SIGNATURE: ${sig}`, body: body + " ", secret: "Bearer s", keyset });
+  assert.equal(r2.status, "invalid", "a matching token does not rescue a bad signature");
+});
+
+test("Google Health API: a keyId missing from the keyset says to fetch the current keyset", async () => {
+  const { publicKey, privateKey } = generateKeyPairSync("ec", { namedCurve: "P-256" });
+  const sig = tinkSign(privateKey, 42, "{}");
+  const r = await verifyGoogleHealthSignature("{}", sig, tinkKeyset(publicKey, 43));
+  assert.equal(r.ok, false);
+  assert.match(r.detail, /No key with keyId 42/);
+  assert.match(r.detail, /30 days/);
+});
+
+test("Google Health API: without a keyset the signature is reported as not checked, not as verified", async () => {
+  const r = await verifyWebhook("google-health", { method: "POST", url: "", headers: "Authorization: Bearer s\nGOOGLE-HEALTH-API-SIGNATURE: AQAAAAEw", body: "{}", secret: "Bearer s" });
+  assert.equal(r.status, "valid");
+  assert.equal(r.title, "Authorization matches");
+  assert.match(r.detail.join(" "), /was not checked/);
+});
+
+test("Google Health API: a key from Google's published keyset (read 2026-11-06) parses to a P-256 point", async () => {
+  const keyset = JSON.stringify({
+    primaryKeyId: 2280854714,
+    key: [
+      {
+        keyData: {
+          typeUrl: "type.googleapis.com/google.crypto.tink.EcdsaPublicKey",
+          value: "EgYIAxACGAIaIQCIzcy8t+sL9L+sRQoMi137RNzNZNwhrmX2GFMXI8bNyiIhAO5YZDWEqK4ZVheKzZTEi0MZ1ylp0R/7wpBFsZZ1NuhF",
+          keyMaterialType: "ASYMMETRIC_PUBLIC",
+        },
+        status: "ENABLED",
+        keyId: 2280854714,
+        outputPrefixType: "TINK",
+      },
+    ],
+  });
+  const [k] = parseTinkEcdsaKeyset(keyset);
+  assert.equal(k.error, undefined, k.error);
+  assert.equal(k.primary, true);
+  assert.equal(k.x.length, 32);
+  assert.equal(k.y.length, 32);
+  const raw = Uint8Array.from([4, ...k.x, ...k.y]);
+  await assert.doesNotReject(globalThis.crypto.subtle.importKey("raw", raw, { name: "ECDSA", namedCurve: "P-256" }, false, ["verify"]));
+});
+
+test("Google Health API: the page's example checks both the token and the signature, and a body byte breaks it", async () => {
+  const ex = await buildExample("google-health");
+  const r = await verifyWebhook("google-health", ex);
+  assert.equal(r.title, "Authorization and signature verified");
+  const tampered = await verifyWebhook("google-health", { ...ex, body: flipAt(ex.body, indexInJsonValue(ex.body)) });
+  assert.equal(tampered.status, "invalid");
+});
+
+test("DER <-> r||s round trip, including high-bit and short integers", () => {
+  const sig = new Uint8Array(64);
+  sig[0] = 0x80; // r needs a 0x00 sign byte in DER
+  sig[63] = 1; // s is a single byte
+  assert.deepEqual(derToP1363(p1363ToDer(sig)), sig);
+});
+
 test("safeEqual", () => {
   assert.equal(safeEqual("abc", "abc"), true);
   assert.equal(safeEqual("abc", "abd"), false);

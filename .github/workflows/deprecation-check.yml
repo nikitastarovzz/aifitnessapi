@@ -1,0 +1,82 @@
+name: Deprecation check action
+
+# CI for actions/fitness-api-deprecation-check (ops/VIRAL-20-2026-11-06.md
+# item 15): runs the Action from this repository, the way a user's workflow
+# would (uses: ./actions/...), against its own fixtures, and fails unless it
+# reports exactly what test/expected.json says. The unit tests run beside it.
+#
+# The rules themselves are held by qa's DEPRECATION-RULES-STALE in ci.yml,
+# which fails when dist/ is not what scripts/build-deprecation-rules.mjs writes.
+# "Today" is pinned so a date passing does not move the expected counts.
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "actions/fitness-api-deprecation-check/**"
+      - "src/lib/deprecationScan.mjs"
+      - "src/data/deprecationRules.json"
+      - "scripts/deprecation-scan.test.mjs"
+      - ".github/workflows/deprecation-check.yml"
+  push:
+    branches: [main]
+    paths:
+      - "actions/fitness-api-deprecation-check/**"
+      - "src/lib/deprecationScan.mjs"
+      - "src/data/deprecationRules.json"
+      - "scripts/deprecation-scan.test.mjs"
+      - ".github/workflows/deprecation-check.yml"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  action:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      FADC_TODAY: "2026-11-06"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run the Action on the fixtures (report only)
+        id: scan
+        uses: ./actions/fitness-api-deprecation-check
+        with:
+          path: actions/fitness-api-deprecation-check/test/fixtures
+          fail-on: never
+
+      - name: Outputs match test/expected.json
+        env:
+          HITS: ${{ steps.scan.outputs.hits }}
+          ERRORS: ${{ steps.scan.outputs.errors }}
+          WARNINGS: ${{ steps.scan.outputs.warnings }}
+        run: |
+          node -e '
+            const x = require("./actions/fitness-api-deprecation-check/test/expected.json");
+            const got = { hits: +process.env.HITS, errors: +process.env.ERRORS, warnings: +process.env.WARNINGS };
+            const want = { hits: x.hits.length, errors: x.errors, warnings: x.warnings };
+            console.log("got", got, "want", want);
+            if (JSON.stringify(got) !== JSON.stringify(want)) process.exit(1);
+          '
+
+      - name: Run the Action where it must fail
+        id: strict
+        continue-on-error: true
+        uses: ./actions/fitness-api-deprecation-check
+        with:
+          path: actions/fitness-api-deprecation-check/test/fixtures/server
+          fail-on: error
+
+      - name: The strict run failed, and a clean tree passes
+        run: |
+          test "${{ steps.strict.outcome }}" = "failure"
+          node actions/fitness-api-deprecation-check/run.mjs actions/fitness-api-deprecation-check/test/fixtures/clean --fail-on warning
+
+      - name: Unit tests
+        run: node --test scripts/deprecation-scan.test.mjs

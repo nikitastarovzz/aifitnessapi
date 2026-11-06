@@ -1,5 +1,6 @@
 import { schemaCapsule } from "@/lib/unifiedSchemaView";
 import { converterCapsule, fitbitToolCapsule } from "@/lib/schemaToolsText";
+import { DS_PATH, DS_PRIMARY_QUERY, dsActionText, dsCapsule } from "@/lib/deprecationScannerText";
 import { site, absoluteUrl } from "@/lib/site";
 import { COVERAGE_PATH, RATE_LIMIT_PATH, coverageCapsule, rateLimitCapsule } from "@/lib/coverageView";
 import { TASKS_VISION_VERSION, VERIFIED_ON as POSE_BENCH_VERIFIED_ON } from "@/lib/poseBenchmark";
@@ -18,6 +19,11 @@ import {
   taxonomyText,
 } from "@/lib/audienceTools";
 import { atlasCapsule } from "@/lib/atlasView";
+import { AGG_PATH, AGG_PRIMARY_QUERY, aggregatorCapsule, aggregatorText } from "@/lib/aggregatorChooserView";
+import { weeklyCapsule, WEEKLY_PATH } from "@/lib/weekly";
+import { historyCapsule, HISTORY_PATH } from "@/lib/historyView";
+import { AWESOME_PATH, awesomeCapsule } from "@/lib/awesomeView";
+import { CHEATSHEETS_PATH, COLLECTIONS_PATH, cheatSheetsCapsule, collectionsCapsule } from "@/lib/kitPages";
 import { GYM_API_MATRIX } from "@/data/gymApiMatrix";
 import { RESEARCH_PLATFORM_MATRIX } from "@/data/researchPlatformMatrix";
 import { POSE_CROSSWALK, POSE_KEYPOINTS_FETCHED_ON, POSE_SCHEMES } from "@/data/poseKeypoints";
@@ -33,6 +39,7 @@ import {
 } from "@/lib/repCounter.mjs";
 import { getAllPosts } from "@/lib/posts";
 import { slides as yearSlides, storyTitle as yearTitle } from "@/lib/year2026";
+import { studies as researchStudies } from "@/lib/researchPages";
 import { graveyardCopy } from "@/lib/graveyardCopy";
 import { EVENTS as SHIP_IT_EVENTS, PATH as SHIP_IT_PATH, RUNWAY_WEEKS as SHIP_IT_RUNWAY } from "@/lib/shipIt";
 import { GLANCE_HUBS, hubQa, segText } from "@/data/hubGlance";
@@ -81,6 +88,7 @@ import { PAGE_H1 } from "@/data/pageTitles";
 import { PLANNER_LLMS } from "@/lib/plannerPages";
 import { PLAYGROUND_PATH, PLAYGROUND_TITLE, playgroundCapsule } from "@/lib/oauthPlaygroundData";
 import { WEBHOOKS_PATH, webhooksCapsule } from "@/lib/webhooksPage";
+import { opennessCapsule, opennessFaqs } from "@/lib/openness";
 import { DAILY_CAPSULE, DAILY_PATH, DAILY_PRIMARY_QUERY, dailyFaqs } from "@/lib/dailyBank";
 
 import { CLUSTER_LABELS } from "@/lib/clusterRegistry";
@@ -308,6 +316,15 @@ function toolLines(): string[] {
     );
     out.push("");
   }
+  for (const s of researchStudies()) {
+    out.push(`## ${s.h1} — ${absoluteUrl(s.path)}`);
+    out.push(`Primary query: ${s.primaryQuery}`);
+    out.push("");
+    out.push(`${s.capsule} Data: ${absoluteUrl(`/datasets/${s.dataset}.json`)} (${s.dataDateLabel}).`);
+    out.push("");
+    for (const f of s.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
+    out.push("");
+  }
   out.push(`## Synthetic health data generator — ${absoluteUrl("/tools/sample-data")}`);
   out.push("Primary query: synthetic healthkit health connect test data generator");
   out.push("");
@@ -364,9 +381,35 @@ function toolLines(): string[] {
   out.push("");
   out.push(`${researchCapsule()} ${matrixText(RESEARCH_PLATFORM_MATRIX)}`);
   out.push("");
+  out.push(`## Health data aggregator chooser — ${absoluteUrl(AGG_PATH)}`);
+  out.push(`Primary query: ${AGG_PRIMARY_QUERY}`);
+  out.push("");
+  out.push(`${aggregatorCapsule()} ${aggregatorText()}`);
+  out.push("");
   out.push(`## The Fitness API Atlas (printable poster) — ${absoluteUrl(ATLAS_PATH)}`);
   out.push("");
   out.push(atlasCapsule());
+  out.push("");
+  out.push(`## A visual history of fitness and health APIs — ${absoluteUrl(HISTORY_PATH)}`);
+  out.push("Primary query: history of fitness api shutdowns and launches timeline");
+  out.push("");
+  out.push(historyCapsule());
+  out.push("");
+  out.push(`## The weekly fitness API roundup — ${absoluteUrl(WEEKLY_PATH)}`);
+  out.push("");
+  out.push(weeklyCapsule());
+  out.push("");
+  out.push(`## Awesome Fitness APIs (generated awesome-list) — ${absoluteUrl(AWESOME_PATH)}`);
+  out.push("");
+  out.push(awesomeCapsule());
+  out.push("");
+  out.push(`## Postman and Bruno collections — ${absoluteUrl(COLLECTIONS_PATH)}`);
+  out.push("");
+  out.push(collectionsCapsule());
+  out.push("");
+  out.push(`## Printable cheat sheets — ${absoluteUrl(CHEATSHEETS_PATH)}`);
+  out.push("");
+  out.push(cheatSheetsCapsule());
   out.push("");
   out.push(`## Unified health-data schema — ${absoluteUrl("/schema")}`);
   out.push("Primary query: unified health data schema healthkit health connect");
@@ -382,6 +425,11 @@ function toolLines(): string[] {
   out.push("Primary query: fitbit web api to google health api endpoint mapping");
   out.push("");
   out.push(fitbitToolCapsule());
+  out.push("");
+  out.push(`## Fitness API deprecation scanner (runs on your device) — ${absoluteUrl(DS_PATH)}`);
+  out.push(`Primary query: ${DS_PRIMARY_QUERY}`);
+  out.push("");
+  out.push(`${dsCapsule()} ${dsActionText()}`);
   out.push("");
   out.push(`## Bluetooth heart-rate lab (runs on your device) — ${absoluteUrl("/tools/heart-rate-lab")}`);
   out.push("Primary query: does my heart rate strap send rr intervals");
@@ -490,6 +538,20 @@ function toolLines(): string[] {
   out.push(
     `A client-side dashboard over data the site already holds. The reader picks products from the /apis directory; for each, the page shows the changes-tracker entries whose title or summary names it as a whole word (the directory's own rule), graded confirmed or reported, with the date at its source's precision and the day it was last checked; any matching stones in the Fitness API Graveyard with the vendor's quote; every page on the site about it (its vendor menu, or the pages that cover it most) with the date each page declares, flagged past 90 days; and the next dated items with days remaining on the reader's clock. Downloads are built in the tab: a calendar (.ics) of the stack's tracker entries in the same format as ${absoluteUrl("/changes/calendar.ics")}, an OPML file subscribing a feed reader to each product's live feed (${absoluteUrl("/feeds/vendors/<id>.xml")}, or /changes.xml for a product with fewer than two entries), and an RSS snapshot. The stack is stored only in localStorage and in the address (${absoluteUrl("/my-stack?v=<id>,<id>")}); nothing is sent anywhere.`,
   );
+  out.push("");
+  out.push(`## Which wearable API should you use? (eight-question quiz) — ${absoluteUrl("/quiz/which-wearable-api")}`);
+  out.push("Primary query: which wearable API should I use");
+  out.push("");
+  out.push(
+    `A client-side quiz, narrower than the picker at ${absoluteUrl("/picker")}: eight questions (platform, the devices users own, summary vs detailed data, whether data must reach a backend by webhook, budget model, compliance, team, timeline) decide how an app should get wearable data. Three answers decide on their own (movement or no wearable gives camera pose tracking; an IRB study gives a research platform; Bluetooth sensors give reading the sensors directly); otherwise every answer adds or removes printed points for the platform stores, direct APIs or an aggregator. Each of the eight results is a static page at ${absoluteUrl("/quiz/which-wearable-api/<result>")} (healthkit, health-connect, healthkit-and-health-connect, direct-wearable-apis, aggregator, bluetooth-direct, research-platform, camera-motion) with its own social card, listing that approach's products alphabetically with the facts the site's cost model, coverage matrix and research chooser source; no product is ranked, and KinesteX, which funds the site, appears only among the camera options, disclosed. Answers live only in the address (?a=<eight digits>).`,
+  );
+  out.push("");
+  out.push(`## The fitness API openness index — ${absoluteUrl("/openness-index")}`);
+  out.push("Primary query: which wearable apis document pkce, signed webhooks, sandbox and rate limits");
+  out.push("");
+  out.push(opennessCapsule());
+  out.push("");
+  for (const f of opennessFaqs()) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
   out.push("");
   out.push(`## Answer search — ${absoluteUrl("/answers-search")}`);
   out.push("Primary query: search the full text of aifitnessapi answers");

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import ShareRow from "@/components/ShareRow";
 import {
   BOUNDS,
   DEFAULT_INPUTS,
@@ -110,6 +111,8 @@ export default function RateLimitCalculator({ vendors }: { vendors: RateLimitVen
           </p>
         </div>
       </div>
+
+      <ShareRow place="rate-limit-calculator" text="Will my app hit wearable API rate limits? My numbers, against every documented limit:" />
 
       <div className="mt-6 overflow-x-auto">
         <table className="w-full min-w-[820px] text-left text-sm" data-rate-results>

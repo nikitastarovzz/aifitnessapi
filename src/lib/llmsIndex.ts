@@ -1,15 +1,22 @@
 import { getAllPosts } from "@/lib/posts";
+import { OPENNESS_VENDORS } from "@/lib/opennessIndex.mjs";
 import { PLAYGROUND_PATH, playgroundCapsule } from "@/lib/oauthPlaygroundData";
 import { WEBHOOKS_PATH, webhooksCapsule } from "@/lib/webhooksPage";
 import { PAGE_H1 } from "@/data/pageTitles";
 import { vendorChangesPath, vendorFeedPath, vendorTimelines } from "@/lib/vendorChanges";
 import { graveyardCopy } from "@/lib/graveyardCopy";
+import { studies as researchStudies } from "@/lib/researchPages";
 import { TASKS_VISION_VERSION } from "@/lib/poseBenchmark";
 import { formRulesText, leaderboardText, repPlaygroundText } from "@/lib/poseToolsText";
 import { PLANNER_LLMS } from "@/lib/plannerPages";
 import { COVERAGE_PATH, RATE_LIMIT_PATH, coverageCapsule, rateLimitCapsule } from "@/lib/coverageView";
 import { ATLAS_PATH, GYM_PATH, RESEARCH_PATH, TAXONOMY_PATH, gymCapsule, matrixText, researchCapsule, taxonomyText } from "@/lib/audienceTools";
 import { atlasCapsule } from "@/lib/atlasView";
+import { AGG_PATH, aggregatorCapsule, aggregatorText } from "@/lib/aggregatorChooserView";
+import { weeklyCapsule, WEEKLY_FEED_PATH, WEEKLY_PATH } from "@/lib/weekly";
+import { historyCapsule, HISTORY_PATH } from "@/lib/historyView";
+import { AWESOME_PATH, awesomeCapsule } from "@/lib/awesomeView";
+import { CHEATSHEETS_PATH, COLLECTIONS_PATH, cheatSheetsCapsule, collectionsCapsule } from "@/lib/kitPages";
 import { GYM_API_MATRIX } from "@/data/gymApiMatrix";
 import { RESEARCH_PLATFORM_MATRIX } from "@/data/researchPlatformMatrix";
 import { POSE_KEYPOINTS_FETCHED_ON } from "@/data/poseKeypoints";
@@ -24,6 +31,7 @@ import { markdownUrl } from "@/lib/schema";
 import { pageMirrorList } from "@/lib/pageMirrors";
 import { schemaCapsule } from "@/lib/unifiedSchemaView";
 import { converterCapsule, fitbitToolCapsule } from "@/lib/schemaToolsText";
+import { DS_PATH, dsActionText, dsCapsule } from "@/lib/deprecationScannerText";
 import { releasedEntries, PILLAR_PATH } from "@/data/fitnessApis";
 import { releasedGuides, GUIDES_PATH } from "@/data/guides";
 import { releasedBuilds, BUILD_PATH } from "@/data/build";
@@ -124,20 +132,26 @@ export function toolEntries(): { label: string; path: string; text: string }[] {
     { label: `Fitness & health API directory`, path: "/apis", text: `one page per product (Fitbit, Garmin, Oura, WHOOP, Strava, Polar, HealthKit, Health Connect, Terra, Junction, Rook, Spike, Nutritionix, Edamam, USDA FoodData Central, Open Food Facts, ExerciseDB, wger, KinesteX, Sency, QuickPose, MediaPipe, MoveNet, Apple Vision) stating how it bills developers, what each end user must own, what approval gates launch, and every page here that covers it. No prices, by design.` },
     { label: `Fitness & health API market map`, path: "/market-map", text: `every directory product as one map, grouped by the cost model's categories and filterable by billing model, approval gate and tracked open-source library; not ranked, and KinesteX (which funds this site) is marked. Embeddable at ${absoluteUrl("/embed/market-map")}; the fields are the fitness-apis-2026 open dataset.` },
     { label: `Fitness API index`, path: "/fitness-api-index", text: `raw, sortable ecosystem signals per product, recomputed at every build from the site's data files: vendor SDK and open-source package releases, tracked changes in the last 12 months, billing model, approval gate, and the age of the last verification. No composite score; KinesteX is shown but not ranked. Rows at ${absoluteUrl("/fitness-api-index/data.json")} and ${absoluteUrl("/fitness-api-index/data.csv")}.` },
+    { label: `Fitness API openness index`, path: "/openness-index", text: `for ${OPENNESS_VENDORS.length} wearable and health-data APIs, which of eight developer basics the vendor's own pages document (self-serve start, sandbox or test mode, public pricing, published rate limits, signed webhooks, PKCE, refresh tokens, a disconnect or deletion call), each mark linked to the quoted sentence. "Not documented in the pages read" is never shown as "no"; the score is a plain count with no weighting or rank. Per-vendor badges at ${absoluteUrl("/badges/openness/<id>.svg")}.` },
     { label: `Fitness APIs in 2026, the year in numbers`, path: "/2026", text: `a scroll story of one computed stat per slide: tracked changes dated 2026 and the busiest month, pricing and plan changes, the Google Health API launch date and the Fitbit Web API turn-off date as Google's own pages give them, Health Connect client and open-source package releases, and the median age of this site's verification stamps, each with its source file and date. Recomputed at every build and titled "so far" until the first build of 2027. It counts what the changes tracker records and repeats nothing from the State of Fitness APIs 2026 report.` },
     { label: `The Fitness API Graveyard`, path: "/graveyard", text: `every fitness and health developer API, SDK and endpoint this site could source that its vendor has shut down, scheduled to shut down or deprecated (${graveyard.total}: ${graveyard.dead} dead, ${graveyard.dying} dying, ${graveyard.deprecated} deprecated), each with the end date at the vendor's precision, the replacement the vendor names and a verbatim quote from the vendor's page or an Internet Archive capture of it, with the date it was read. Rows at ${absoluteUrl("/graveyard/data.json")}; embeddable at ${absoluteUrl("/embed/graveyard")}.` },
     { label: `Press numbers`, path: "/press", text: `counts a reporter or a model can quote about this site and the ecosystem it tracks (products in the directory, dated changes logged, shut-down and deprecated APIs recorded, open datasets and their rows, API collections, pages re-checked in the last 90 days, release cadence across the directory, and every stat of the 2026 story), each computed from a repository file at build time and printed with that file and its date, with a how-to-cite block (plain and BibTeX) and the funder disclosure.` },
+    { label: `Fitness API research`, path: "/research", text: `three original studies computed from this site's repository, each with its method, its limits, an open CC BY 4.0 dataset and a how-to-cite block; every headline figure is recomputed from the published dataset at each build.` },
+    ...researchStudies().map((s) => ({ label: s.h1, path: s.path, text: s.capsule })),
     ...vendorTimelines().map((t) => ({
       label: `${t.api.short} API changes and deadlines timeline`,
       path: vendorChangesPath(t.api.id),
       text: `the ${t.events.length} entries of the changes tracker that name ${t.api.label}, newest first, graded confirmed or reported, each linking its source page; RSS at ${absoluteUrl(vendorFeedPath(t.api.id))}.`,
     })),
+    { label: `Weekly fitness API roundup`, path: WEEKLY_PATH, text: `${weeklyCapsule()} RSS at ${absoluteUrl(WEEKLY_FEED_PATH)}; the week pages are noindex and the monthly digest is the indexed archive.` },
+    { label: `A visual history of fitness and health APIs`, path: HISTORY_PATH, text: `${historyCapsule()} Deep links: ${absoluteUrl(`${HISTORY_PATH}?vendor=<id>&kind=<launch,change,milestone,end>`)}.` },
     { label: `Monthly digest archive`, path: "/digest", text: `one issue per month, generated from the changes tracker and the pages' own review dates; each issue also served as plain text at /digest/<month>/digest.md.` },
     { label: `Open datasets`, path: "/datasets", text: `every dataset this site publishes, CC BY 4.0, JSON and CSV, versioned rather than overwritten.` },
     { label: `Developer API & MCP server`, path: "/developers", text: `the same datasets as a free, read-only JSON API (${absoluteUrl("/api/v1")}, described by ${absoluteUrl("/api/v1/openapi.json")}) and as MCP tools for AI assistants at ${absoluteUrl("/mcp")}. Every response carries its source page, license and verification date; a field the site could not verify is null, never guessed.` },
     { label: `Compare two APIs side by side`, path: "/compare-apis", text: `the verified access fields for any two products, shareable as ?a=<id>&b=<id>. No score and no winner: the fields describe access, not quality.` },
     { label: `API change alerts`, path: "/alerts", text: `subscribe to dated changes for specific products.` },
     { label: `My stack`, path: "/my-stack", text: `pick the directory products an app depends on and see, from the changes tracker and the graveyard, each one's dated changes and deadlines (graded confirmed or reported), its stones, every page here about it with the date each page declares (flagged past 90 days), and save a calendar (.ics), an OPML list of the live per-vendor feeds and an RSS snapshot, built in the browser. The choice stays in localStorage and in the shareable address ${absoluteUrl("/my-stack?v=<id>,<id>")}.` },
+    { label: `Which wearable API quiz`, path: "/quiz/which-wearable-api", text: `eight questions (platform, devices, data depth, webhooks, budget, compliance, team, timeline) land on one of eight approaches (HealthKit, Health Connect, both stores, the device makers' APIs, an aggregator, Bluetooth sensors, a research platform, camera pose tracking), each a static result page at ${absoluteUrl("/quiz/which-wearable-api/<result>")} listing its products alphabetically from the site's sourced cost model. The scoring rules are printed on the page.` },
     { label: `Answer search`, path: "/answers-search", text: `full-text search, in the browser, over the per-section answer files (${absoluteUrl("/answers/index.json")}): every answer capsule, FAQ answer, blog-post answer and tracked change, ranked by BM25 with questions weighted, each result linking the exact #faq-N answer. Nothing loads until the first search; the page shows the bytes it fetched. ${absoluteUrl("/answers-search?q=<terms>")} is a working URL.` },
     { label: `Search every page and answer`, path: "/search", text: `query the same index the site's own search uses; ${absoluteUrl("/search?q=<terms>")} is a working URL.` },
     { label: `Synthetic health data generator`, path: "/tools/sample-data", text: `seeded, deterministic synthetic fixtures for HealthKit, Health Connect and the Google Health API, as JSON or CSV, generated in the browser. Field names, types, validation ranges and enum values are read from this site's generated copies of Apple's and Google's references; each record carries the UTC offset in force at its own instant. Values are synthetic and illustrative, not physiologically validated.` },
@@ -151,10 +165,15 @@ export function toolEntries(): { label: string; path: string; text: string }[] {
     { label: `Exercise taxonomy crosswalk`, path: TAXONOMY_PATH, text: taxonomyText() },
     { label: `Gym software API matrix`, path: GYM_PATH, text: `${gymCapsule()} ${matrixText(GYM_API_MATRIX)}` },
     { label: `Research platform chooser`, path: RESEARCH_PATH, text: `${researchCapsule()} ${matrixText(RESEARCH_PLATFORM_MATRIX)}` },
+    { label: `Health data aggregator chooser`, path: AGG_PATH, text: `${aggregatorCapsule()} ${aggregatorText()}` },
     { label: `The Fitness API Atlas (printable poster)`, path: ATLAS_PATH, text: atlasCapsule() },
+    { label: `Awesome Fitness APIs (generated awesome-list)`, path: AWESOME_PATH, text: `${awesomeCapsule()} The same list is AWESOME.md in the site's public repository.` },
+    { label: `Postman and Bruno collections`, path: COLLECTIONS_PATH, text: collectionsCapsule() },
+    { label: `Printable cheat sheets`, path: CHEATSHEETS_PATH, text: cheatSheetsCapsule() },
     { label: `Unified health-data schema`, path: "/schema", text: schemaCapsule() },
     { label: `Health data schema converter`, path: "/tools/schema-converter", text: converterCapsule() },
     { label: `Fitbit to Google Health API map`, path: "/tools/fitbit-to-google-health", text: fitbitToolCapsule() },
+    { label: `Fitness API deprecation scanner`, path: DS_PATH, text: `${dsCapsule()} ${dsActionText()}` },
     { label: `30-second webcam rep challenge`, path: "/challenge", text: `a browser game that counts squats or jumping jacks for 30 seconds from the reader's webcam with MediaPipe Pose Landmarker lite (@mediapipe/tasks-vision ${TASKS_VISION_VERSION}) and a two-phase angle state machine with hysteresis, every threshold printed on the page; ends with a canvas-drawn share card and a one-line text result. A demo, not a measurement or coaching: the thresholds are uncalibrated starting values. Frames never leave the tab; the runtime sends Google its own usage report (timings, no images).` },
     { label: `Bluetooth heart-rate lab`, path: "/tools/heart-rate-lab", text: `connects a BLE heart-rate strap or broadcasting watch over Web Bluetooth in the reader's browser and shows every Heart Rate Measurement (0x2A37) notification as bytes, each field decoded against the Bluetooth SIG's GATT Specification Supplement structure (Flags bits, uint8/uint16 heart rate, sensor contact, Energy Expended, RR-intervals in 1/1024 s), plus Body Sensor Location and Battery Level when present. It answers whether the device sends RR intervals (bit 4 of Flags) — without them HRV cannot be computed — and shows a demo RMSSD, labeled not medical. Browsers without Web Bluetooth get a synthetic replay, labeled synthetic. Nothing leaves the tab.` },
     { label: `FTMS lab`, path: "/tools/ftms-lab", text: `connects a treadmill, indoor bike, rower or cross trainer over Web Bluetooth (Fitness Machine Service 0x1826) in the reader's browser, or takes pasted hex, and decodes Treadmill, Indoor Bike, Rower, Cross Trainer, Step Climber and Stair Climber Data and the Supported Range characteristics against the Bluetooth SIG's GATT Specification Supplement structures: each Flags bit, which fields it makes present, octets, unit and resolution with the line it comes from. Fitness Machine Feature, Status, Training Status and Control Point have no SIG structure in the dataset and show as hex; the lab writes nothing to the machine. Synthetic replays are labeled synthetic.` },

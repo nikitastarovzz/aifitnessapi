@@ -88,6 +88,15 @@ export default function PickerPage() {
           <ApiPicker />
         </div>
 
+        <p className="mt-4 text-sm text-[var(--muted)]">
+          Already know you need wearable or health data, and want to know how to get it?{" "}
+          <Link href="/quiz/which-wearable-api" className="font-medium text-brand-600 hover:text-brand-500">
+            The eight-question wearable API quiz
+          </Link>{" "}
+          decides between HealthKit, Health Connect, the device makers&rsquo; APIs, an aggregator, Bluetooth and the
+          camera.
+        </p>
+
         <section className="mt-14">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">
             Prefer to browse?

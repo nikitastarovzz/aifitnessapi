@@ -50,6 +50,7 @@ const KIND_LABEL: Record<string, string> = {
   hmac: "HMAC signature",
   token: "Shared token, no signature",
   handshake: "Validation handshake, events unsigned",
+  "token+ecdsa": "Shared token plus ECDSA signature",
 };
 
 export default function WebhookVerifierPage() {
@@ -84,8 +85,10 @@ export default function WebhookVerifierPage() {
         <p id="answer" className="speakable mt-4 leading-relaxed text-[var(--muted)]">
           Pick the vendor, paste the request you received and your secret, and this checks it the
           way that vendor documents. {signed.map((v) => v.name).join(", ").replace(/, ([^,]*)$/, " and $1")}{" "}
-          sign each delivery with HMAC-SHA256, each over a different string; Strava, Withings, Wahoo
-          and the Google Health API instead rely on a validation handshake or a secret you chose. It
+          sign each delivery with HMAC-SHA256, each over a different string; Strava, Withings and
+          Wahoo instead rely on a validation handshake or a secret you chose; and the Google Health
+          API sends a secret you chose plus a Tink ECDSA P-256 signature, checked here against
+          Google&rsquo;s published keyset. It
           then explains each field, states the response and time limit the vendor expects, and names
           the API call that fetches the data. Each rule was read from the vendor&rsquo;s own page on{" "}
           {UPDATED}. It all runs in your browser: the secret never leaves the tab.
@@ -187,9 +190,11 @@ export default function WebhookVerifierPage() {
           <div className="mt-3 space-y-3 text-sm leading-relaxed text-[var(--muted)]">
             <p>
               The page makes no network request with what you paste. Signatures are recomputed with the
-              browser&rsquo;s WebCrypto API (<code className="font-mono text-xs">crypto.subtle</code>,
-              HMAC with SHA-256) and compared in constant time; the secret field is a password input
-              with autocomplete off, and nothing is written to storage.
+              browser&rsquo;s WebCrypto API (<code className="font-mono text-xs">crypto.subtle</code>:
+              HMAC with SHA-256, and ECDSA P-256 for the Google Health API) and compared in constant
+              time; the secret field is a password input with autocomplete off, and nothing is written
+              to storage. The only request the page can make is a GET of Google&rsquo;s public keyset
+              from gstatic.com, when you press the button.
             </p>
             <p>
               Paste the body exactly as it arrived. Every signed scheme here except Oura&rsquo;s signs
