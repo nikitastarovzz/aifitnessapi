@@ -1,0 +1,4 @@
+requests==2.32.3
+fitbit==0.3.1
+python-fitbit-helpers==1.0
+stravalib>=2.0

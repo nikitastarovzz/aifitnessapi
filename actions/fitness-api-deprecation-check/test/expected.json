@@ -1,0 +1,30 @@
+{
+  "_comment": "Every hit the rules must report on test/fixtures, and nothing else. Checked by scripts/deprecation-scan.test.mjs and .github/workflows/deprecation-check.yml (today pinned to 2026-11-06).",
+  "today": "2026-11-06",
+  "errors": 9,
+  "warnings": 13,
+  "hits": [
+    ["android/app/FitReader.kt", 2, "samsung-health-sdk-android"],
+    ["android/app/FitReader.kt", 5, "google-fit-history-client"],
+    ["android/app/FitReader.kt", 6, "google-fit-sessions-client"],
+    ["android/app/FitReader.kt", 7, "google-fit-recording-client"],
+    ["android/app/FitReader.kt", 8, "google-fit-sensors-client"],
+    ["android/app/FitReader.kt", 9, "google-fit-goals-client"],
+    ["android/app/build.gradle.kts", 6, "google-fit-android-sdk"],
+    ["server/fitbit_sync.py", 5, "fitbit:host"],
+    ["server/fitbit_sync.py", 9, "fitbit:activity-timeseries/get-activity-timeseries-by-date"],
+    ["server/fitbit_sync.py", 13, "fitbit:intraday/get-heartrate-intraday-by-date"],
+    ["server/fitbit_sync.py", 17, "fitbit:path-prefix"],
+    ["server/fitbit_sync.py", 21, "fitbit:authorization/client-credentials"],
+    ["server/fitbit_sync.py", 29, "oura-api-v1"],
+    ["server/fitbit_sync.py", 33, "whoop-v1-recovery"],
+    ["server/fitbit_sync.py", 37, "strava-club-members"],
+    ["server/requirements.txt", 2, "library:pypi:fitbit"],
+    ["web/connect.ts", 2, "library:npm:react-native-google-fit"],
+    ["web/connect.ts", 5, "terra-generate-widget-session"],
+    ["web/connect.ts", 12, "google-fit-rest"],
+    ["web/package.json", 5, "mediapipe-legacy-pose-npm"],
+    ["web/package.json", 7, "tfjs-posenet"],
+    ["web/package.json", 9, "library:npm:react-native-google-fit"]
+  ]
+}

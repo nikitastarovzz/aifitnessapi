@@ -77,6 +77,7 @@ const PAGE_MIRRORS = [
   "/tools/oauth-playground",
   "/tools/schema-converter",
   "/tools/fitbit-to-google-health",
+  "/tools/deprecation-scanner",
   "/schema",
   "/graveyard",
   "/webhooks",

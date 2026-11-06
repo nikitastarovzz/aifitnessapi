@@ -105,6 +105,12 @@ export const TOOL_LOOKUPS: Tool[] = [
     blurb:
       "Search every Fitbit Web API endpoint and see its Google Health API data type, method and scopes from Google's migration tables, or that none is listed.",
   },
+  {
+    path: "/tools/deprecation-scanner",
+    name: "Deprecation scanner",
+    blurb:
+      "Paste code or a manifest and find Fitbit Web API, Google Fit and other retired fitness API calls, each with its replacement. Also a GitHub Action.",
+  },
 ];
 
 /** The planners and demos already published on the site. Blurbs match the

@@ -757,6 +757,25 @@ if (fs.existsSync(matrixPath)) {
   }
 }
 
+// ── Deprecation scanner rules (added 2026-11-06, ops/VIRAL-20 items 14–15).
+// /tools/deprecation-scanner and the GitHub Action in
+// actions/fitness-api-deprecation-check run one generated bundle and one
+// engine. The generator's --check rebuilds both from the graveyard, the
+// Fitbit map, the libraries dataset and the hand-sourced signatures and fails
+// when any committed copy differs — so a graveyard edit, a Fitbit
+// regeneration or an engine change cannot ship to one of the two and not the
+// other, and the Action never runs rules the site has moved past. The
+// generator itself refuses a graveyard entry with neither a rule nor a stated
+// reason, a pattern that does not match its own example, and a short rule set.
+{
+  const { spawnSync } = await import("node:child_process");
+  const r = spawnSync(process.execPath, ["--no-warnings", "scripts/build-deprecation-rules.mjs", "--check"], { encoding: "utf8" });
+  if (r.status !== 0) {
+    const msg = `${r.stderr || ""}${r.stdout || ""}`.trim().split("\n").filter(Boolean).pop() ?? "no output";
+    problems.push(`DEPRECATION-RULES-STALE  ${msg.slice(0, 300)}`);
+  }
+}
+
 // ── The Fitness API Graveyard (added 2026-10-31, ops/VIRAL-30 item 1). Every
 // stone is a claim about a vendor's own words, so the gate holds each entry to
 // its evidence: a source URL, the day it was read and a non-empty verbatim
@@ -1725,7 +1744,7 @@ if (fs.existsSync(matrixPath)) {
       const r = routeOf(h);
       return (r === "/tools" || r.startsWith("/tools/")) && fs.readFileSync(h, "utf8").includes("data-tool");
     }).length;
-    const EXPECTED_TOOLS = 31; // hub + 30 tools (the 6 lookups, schema-converter, fitbit-to-google-health, sample-data, webhook-verifier, oauth-playground, starter-scaffold, keypoint-playground, pose-benchmark, heart-rate-lab, step-lab, ftms-lab, cycling-power-lab, ble-gatt-explorer, apple-health-explorer, rep-counter-playground, exercise-form-rules, build-plan, store-submission-checklist, compliance-wizard, api-coverage-matrix, rate-limit-calculator, exercise-taxonomy-crosswalk, gym-software-api-matrix and research-platform-chooser)
+    const EXPECTED_TOOLS = 32; // hub + 31 tools (the 6 lookups, schema-converter, fitbit-to-google-health, deprecation-scanner, sample-data, webhook-verifier, oauth-playground, starter-scaffold, keypoint-playground, pose-benchmark, heart-rate-lab, step-lab, ftms-lab, cycling-power-lab, ble-gatt-explorer, apple-health-explorer, rep-counter-playground, exercise-form-rules, build-plan, store-submission-checklist, compliance-wizard, api-coverage-matrix, rate-limit-calculator, exercise-taxonomy-crosswalk, gym-software-api-matrix and research-platform-chooser)
     if (rendered !== EXPECTED_TOOLS) {
       problems.push(`TOOLS          ${rendered} /tools pages carry data-tool, expected ${EXPECTED_TOOLS}`);
     } else {

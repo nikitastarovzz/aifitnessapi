@@ -1,5 +1,6 @@
 import { schemaCapsule } from "@/lib/unifiedSchemaView";
 import { converterCapsule, fitbitToolCapsule } from "@/lib/schemaToolsText";
+import { DS_PATH, DS_PRIMARY_QUERY, dsActionText, dsCapsule } from "@/lib/deprecationScannerText";
 import { site, absoluteUrl } from "@/lib/site";
 import { COVERAGE_PATH, RATE_LIMIT_PATH, coverageCapsule, rateLimitCapsule } from "@/lib/coverageView";
 import { TASKS_VISION_VERSION, VERIFIED_ON as POSE_BENCH_VERIFIED_ON } from "@/lib/poseBenchmark";
@@ -382,6 +383,11 @@ function toolLines(): string[] {
   out.push("Primary query: fitbit web api to google health api endpoint mapping");
   out.push("");
   out.push(fitbitToolCapsule());
+  out.push("");
+  out.push(`## Fitness API deprecation scanner (runs on your device) — ${absoluteUrl(DS_PATH)}`);
+  out.push(`Primary query: ${DS_PRIMARY_QUERY}`);
+  out.push("");
+  out.push(`${dsCapsule()} ${dsActionText()}`);
   out.push("");
   out.push(`## Bluetooth heart-rate lab (runs on your device) — ${absoluteUrl("/tools/heart-rate-lab")}`);
   out.push("Primary query: does my heart rate strap send rr intervals");

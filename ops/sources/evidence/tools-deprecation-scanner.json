@@ -1,0 +1,167 @@
+[
+  {
+    "claim": "Google Fit REST API (www.googleapis.com/fitness/v1): the scanner's pattern for \"www.googleapis.com/fitness/v1\" rests on this passage.",
+    "url": "https://developers.google.com/fit/rest/v1/reference",
+    "quote": "URIs relative to https://www.googleapis.com/fitness/v1/users, unless otherwise noted"
+  },
+  {
+    "claim": "Google Fit REST API (www.googleapis.com/fitness/v1): the replacement the scanner names.",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit",
+    "quote": "The Google Fit API (including the REST API) will only be supported until the end of 2026. We recommend migrating to the Google Health API for cloud-based integrations or Health Connect for step tracking and mobile-first apps."
+  },
+  {
+    "claim": "Google Fit Android SDK (com.google.android.gms:play-services-fitness): the scanner's pattern for \"com.google.android.gms:play-services-fitness\" rests on this passage.",
+    "url": "https://developers.google.com/fit/android/get-started",
+    "quote": "com.google.android.gms:play-services-fitness:21.3.0"
+  },
+  {
+    "claim": "Google Fit History API (Fitness.getHistoryClient): the scanner's pattern for \"Fitness.getHistoryClient\" rests on this passage.",
+    "url": "https://developers.google.com/fit/android/history",
+    "quote": "Fitness . getHistoryClient ( this , GoogleSignIn . getAccountForExtension ( this , fitnessOptions"
+  },
+  {
+    "claim": "Google Fit History API (Fitness.getHistoryClient): the replacement the scanner names.",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit",
+    "quote": "Fit History API and Fit Session API | Google Health API | Available"
+  },
+  {
+    "claim": "Google Fit Session API (Fitness.getSessionsClient): the scanner's pattern for \"Fitness.getSessionsClient\" rests on this passage.",
+    "url": "https://developers.google.com/fit/android/using-sessions",
+    "quote": "Fitness . getSessionsClient ( this , googleSigninAccount )"
+  },
+  {
+    "claim": "Google Fit Session API (Fitness.getSessionsClient): the replacement the scanner names.",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit",
+    "quote": "Start/stop: Not applicable. The application should track the state of ongoing sessions internally. Read/write: Transition to the Google Health API"
+  },
+  {
+    "claim": "Google Fit Session API (Fitness.getSessionsClient): the replacement the scanner names.",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit",
+    "quote": "Start/stop: Use Health Services (ExerciseClient) Read/write: Use Health Connect with your mobile app."
+  },
+  {
+    "claim": "Google Fit Recording API (Fitness.getRecordingClient): the scanner's pattern for \"Fitness.getRecordingClient\" rests on this passage.",
+    "url": "https://developers.google.com/fit/android/record",
+    "quote": "Fitness . getRecordingClient ( this , GoogleSignIn . getAccountForExtension ( this , fitnessOptions"
+  },
+  {
+    "claim": "Google Fit Recording API (Fitness.getRecordingClient): the replacement the scanner names.",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit",
+    "quote": "Reading mobile steps (with Google Fit Recording API) | Health Connect | Available"
+  },
+  {
+    "claim": "Google Fit Recording API (Fitness.getRecordingClient): the replacement the scanner names.",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit",
+    "quote": "Use Health Services: PassiveMonitoringClient ExerciseClient"
+  },
+  {
+    "claim": "Google Fit Sensors API (Fitness.getSensorsClient): the scanner's pattern for \"Fitness.getSensorsClient\" rests on this passage.",
+    "url": "https://developers.google.com/fit/android/sensors",
+    "quote": "Fitness . getSensorsClient ( this , GoogleSignIn . getAccountForExtension ( this , fitnessOptions"
+  },
+  {
+    "claim": "Google Fit Sensors API (Fitness.getSensorsClient): the replacement the scanner names.",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit",
+    "quote": "Use the Android Sensors framework or the Fused Location Provider API for real-time raw data."
+  },
+  {
+    "claim": "Google Fit Goals API (Fitness.getGoalsClient): the scanner's pattern for \"Fitness.getGoalsClient\" rests on this passage.",
+    "url": "https://developers.google.com/fit/android/using-goals",
+    "quote": "Fitness . getGoalsClient ( requireContext (), getGoogleAccount ())"
+  },
+  {
+    "claim": "Terra legacy widget session (POST /v2/auth/generateWidgetSession): the scanner's pattern for \"/v2/auth/generateWidgetSession\" rests on this passage.",
+    "url": "https://docs.tryterra.co/unified-api/user-authentication/implementation-terra-widget",
+    "quote": "POST https://api.tryterra.co/v2/auth/generateWidgetSession"
+  },
+  {
+    "claim": "Terra legacy widget session (POST /v2/auth/generateWidgetSession): the replacement the scanner names.",
+    "url": "https://docs.tryterra.co/unified-api/user-authentication/implementation-terra-widget",
+    "quote": "POST https://access.tryterra.co/api/widget/session"
+  },
+  {
+    "claim": "WHOOP API v1 (/developer/v1/activity/sleep): the scanner's pattern for \"v1/activity/sleep\" rests on this passage.",
+    "url": "https://developer.whoop.com/docs/developing/v1-v2-migration/",
+    "quote": "v1/activity/sleep | v2/activity/sleep"
+  },
+  {
+    "claim": "WHOOP API v1 (/developer/v1/activity/sleep): the scanner's pattern for \"api.prod.whoop.com/developer\" rests on this passage.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "Token URL: https://api.prod.whoop.com/developer/v2/partner/token"
+  },
+  {
+    "claim": "WHOOP API v1 (/developer/v1/activity/workout): the scanner's pattern for \"v1/activity/workout\" rests on this passage.",
+    "url": "https://developer.whoop.com/docs/developing/v1-v2-migration/",
+    "quote": "v1/activity/workout | v2/activity/workout"
+  },
+  {
+    "claim": "WHOOP API v1 (/developer/v1/cycle): the scanner's pattern for \"v1/cycle\" rests on this passage.",
+    "url": "https://developer.whoop.com/docs/developing/v1-v2-migration/",
+    "quote": "v1/cycle | v2/cycle"
+  },
+  {
+    "claim": "WHOOP API v1 (/developer/v1/recovery): the scanner's pattern for \"v1/recovery\" rests on this passage.",
+    "url": "https://developer.whoop.com/docs/developing/v1-v2-migration/",
+    "quote": "v1/recovery | v2/recovery"
+  },
+  {
+    "claim": "Strava club activities endpoint (/api/v3/clubs/{id}/activities): the scanner's pattern for \"/clubs/{id}/activities\" rests on this passage.",
+    "url": "https://web.archive.org/web/20211103231613id_/https://developers.strava.com/swagger/swagger.json",
+    "quote": "\"/clubs/{id}/activities\""
+  },
+  {
+    "claim": "Strava club activities endpoint (/api/v3/clubs/{id}/activities): the scanner's pattern for \"/api/v3\" rests on this passage.",
+    "url": "https://web.archive.org/web/20260513030150id_/https://developers.strava.com/swagger/swagger.json",
+    "quote": "\"basePath\": \"/api/v3\""
+  },
+  {
+    "claim": "Strava club members endpoint (/api/v3/clubs/{id}/members): the scanner's pattern for \"/clubs/{id}/members\" rests on this passage.",
+    "url": "https://web.archive.org/web/20211103231613id_/https://developers.strava.com/swagger/swagger.json",
+    "quote": "\"/clubs/{id}/members\""
+  },
+  {
+    "claim": "Strava club admins endpoint (/api/v3/clubs/{id}/admins): the scanner's pattern for \"/clubs/{id}/admins\" rests on this passage.",
+    "url": "https://web.archive.org/web/20211103231613id_/https://developers.strava.com/swagger/swagger.json",
+    "quote": "\"/clubs/{id}/admins\""
+  },
+  {
+    "claim": "Strava running races endpoints (/api/v3/running_races): the scanner's pattern for \"/running_races\" rests on this passage.",
+    "url": "https://web.archive.org/web/20211103231613id_/https://developers.strava.com/swagger/swagger.json",
+    "quote": "\"/running_races\""
+  },
+  {
+    "claim": "Samsung Health SDK for Android (package com.samsung.android.sdk.healthdata): the scanner's pattern for \"com.samsung.android.sdk.healthdata\" rests on this passage.",
+    "url": "https://developer.samsung.com/health/android/data/api-reference/com/samsung/android/sdk/healthdata/HealthConstants.html",
+    "quote": "com.samsung.android.sdk.healthdata.HealthConstants"
+  },
+  {
+    "claim": "Oura API V1 (api.ouraring.com/v1/): the scanner's pattern for \"api.ouraring.com/v1/\" rests on this passage.",
+    "url": "https://web.archive.org/web/20230528195054/https://cloud.ouraring.com/docs/authentication",
+    "quote": "https://api.ouraring.com/v1/userinfo"
+  },
+  {
+    "claim": "MediaPipe Pose legacy solution (mp.solutions.pose): the scanner's pattern for \"mp.solutions.pose\" rests on this passage.",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "quote": "mp_pose = mp.solutions.pose"
+  },
+  {
+    "claim": "MediaPipe Pose legacy web package (@mediapipe/pose): the scanner's pattern for \"@mediapipe/pose\" rests on this passage.",
+    "url": "https://registry.npmjs.org/@mediapipe/pose",
+    "quote": "\"name\":\"@mediapipe/pose\""
+  },
+  {
+    "claim": "PoseNet for TensorFlow.js (@tensorflow-models/posenet): the scanner's pattern for \"@tensorflow-models/posenet\" rests on this passage.",
+    "url": "https://registry.npmjs.org/@tensorflow-models/posenet",
+    "quote": "\"name\":\"@tensorflow-models/posenet\""
+  },
+  {
+    "claim": "Moves API (api.moves-app.com): the scanner's pattern for \"api.moves-app.com\" rests on this passage.",
+    "url": "https://web.archive.org/web/20180703063554/https://dev.moves-app.com/docs/api",
+    "quote": "The base url to the API is: https://api.moves-app.com/api/1.1"
+  },
+  {
+    "claim": "Google Health data feeds (www.google.com/health/feeds): the scanner's pattern for \"https://www.google.com/health/feeds/\" rests on this passage.",
+    "url": "https://web.archive.org/web/20110617235942/http://code.google.com/apis/health/docs/2.0/developers_guide_protocol.html",
+    "quote": "For Google Health, this parameter should be set to https://www.google.com/health/feeds/"
+  }
+]
