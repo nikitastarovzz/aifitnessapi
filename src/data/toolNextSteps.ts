@@ -175,6 +175,11 @@ export const TOOL_NEXT_STEPS: Record<string, string[]> = {
     "/pricing",
     "/alternatives",
   ],
+  "/openness-index": [
+    "/fitness-apis/wearable-data-apis",
+    "/fitness-apis/health-data-aggregator-apis",
+    "/pricing/health-data-aggregator-pricing",
+  ],
 };
 
 /** The data-cta id of a next-step link: its target path, slashes as dashes. */

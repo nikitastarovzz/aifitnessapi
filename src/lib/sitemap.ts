@@ -14,6 +14,8 @@ import { OAUTH_FETCHED_ON } from "@/data/oauthVendors";
 import { WEBHOOKS_FETCHED_ON } from "@/data/webhookPayloads";
 import { API_ENTRIES, APIS_PATH, NOINDEX_APIS } from "@/data/apis";
 import { API_INDEX_PATH, MARKET_MAP_PATH, indexDataDate } from "@/lib/ecosystemSignals";
+import { OPENNESS_UPDATED } from "@/lib/openness";
+import { OPENNESS_PATH } from "@/lib/opennessIndex.mjs";
 import { DAILY_PATH, dailyDataDate } from "@/lib/dailyBank";
 import { YEAR_PATH, yearDataDate } from "@/lib/year2026";
 import { isNoindexed } from "@/data/noindex";
@@ -304,6 +306,8 @@ function computeSections(): SitemapSection[] {
     // or checked, and this reads the same function.
     [MARKET_MAP_PATH]: undefined,
     [API_INDEX_PATH]: indexDataDate(),
+    // The openness index declares the day it was compiled; same constant.
+    [OPENNESS_PATH]: OPENNESS_UPDATED,
     // The daily puzzle declares the newest read date of the datasets its
     // bank draws from, not the date of today's draw: the page itself is the
     // same static file every day.
@@ -383,6 +387,7 @@ function computeSections(): SitemapSection[] {
     "/my-stack",
     "/answers-search",
     "/quiz/which-wearable-api",
+    "/openness-index",
     "/compare-apis",
     "/play/ship-it",
     "/datasets",

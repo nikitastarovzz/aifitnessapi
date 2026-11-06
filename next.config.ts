@@ -94,6 +94,7 @@ const PAGE_MIRRORS = [
   "/my-stack",
   "/answers-search",
   "/quiz/which-wearable-api",
+  "/openness-index",
 ];
 
 const nextConfig: NextConfig = {

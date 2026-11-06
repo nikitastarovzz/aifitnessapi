@@ -84,6 +84,7 @@ import { PAGE_H1 } from "@/data/pageTitles";
 import { PLANNER_LLMS } from "@/lib/plannerPages";
 import { PLAYGROUND_PATH, PLAYGROUND_TITLE, playgroundCapsule } from "@/lib/oauthPlaygroundData";
 import { WEBHOOKS_PATH, webhooksCapsule } from "@/lib/webhooksPage";
+import { opennessCapsule, opennessFaqs } from "@/lib/openness";
 import { DAILY_CAPSULE, DAILY_PATH, DAILY_PRIMARY_QUERY, dailyFaqs } from "@/lib/dailyBank";
 
 import { CLUSTER_LABELS } from "@/lib/clusterRegistry";
@@ -514,6 +515,13 @@ function toolLines(): string[] {
   out.push(
     `A client-side quiz, narrower than the picker at ${absoluteUrl("/picker")}: eight questions (platform, the devices users own, summary vs detailed data, whether data must reach a backend by webhook, budget model, compliance, team, timeline) decide how an app should get wearable data. Three answers decide on their own (movement or no wearable gives camera pose tracking; an IRB study gives a research platform; Bluetooth sensors give reading the sensors directly); otherwise every answer adds or removes printed points for the platform stores, direct APIs or an aggregator. Each of the eight results is a static page at ${absoluteUrl("/quiz/which-wearable-api/<result>")} (healthkit, health-connect, healthkit-and-health-connect, direct-wearable-apis, aggregator, bluetooth-direct, research-platform, camera-motion) with its own social card, listing that approach's products alphabetically with the facts the site's cost model, coverage matrix and research chooser source; no product is ranked, and KinesteX, which funds the site, appears only among the camera options, disclosed. Answers live only in the address (?a=<eight digits>).`,
   );
+  out.push("");
+  out.push(`## The fitness API openness index — ${absoluteUrl("/openness-index")}`);
+  out.push("Primary query: which wearable apis document pkce, signed webhooks, sandbox and rate limits");
+  out.push("");
+  out.push(opennessCapsule());
+  out.push("");
+  for (const f of opennessFaqs()) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
   out.push("");
   out.push(`## Answer search — ${absoluteUrl("/answers-search")}`);
   out.push("Primary query: search the full text of aifitnessapi answers");

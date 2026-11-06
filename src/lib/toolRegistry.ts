@@ -152,6 +152,12 @@ export const TOOL_PLANNERS: Tool[] = [
       "Sortable raw signals per product: SDK and library releases, dated changes in the last 12 months, approval gates, verification age. No score.",
   },
   {
+    path: "/openness-index",
+    name: "Fitness API openness index",
+    blurb:
+      "Which developer basics each wearable and health-data API documents: self-serve start, sandbox, pricing, rate limits, signed webhooks, PKCE, refresh, deletion.",
+  },
+  {
     path: "/compare-apis",
     name: "Compare two fitness APIs side by side",
     blurb:

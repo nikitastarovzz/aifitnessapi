@@ -9,6 +9,19 @@ import { ROWS } from "@/data/matrix";
 import CountdownEmbed from "@/components/CountdownEmbed";
 import { countdownTargets } from "@/lib/vendorDeadlines";
 import { allEmbeddableTables, clusterLabel, EMBED_TABLE_CLUSTERS, embedSnippets, embedTablePath } from "@/lib/embedTables";
+import { GRAVEYARD, GRAVEYARD_PATH } from "@/data/graveyard";
+import { opennessVendors } from "@/lib/openness";
+import { OPENNESS_PATH, vendorAnchor } from "@/lib/opennessIndex.mjs";
+import {
+  badgeAlt,
+  badgeMarkdown,
+  opennessBadge,
+  opennessBadgeAlt,
+  opennessBadgePath,
+  stoneBadge,
+  stoneBadgeAlt,
+  stoneBadgePath,
+} from "@/lib/statusBadges.mjs";
 
 /**
  * The embed page: the three iframe widgets under /embed plus the link badge,
@@ -95,6 +108,9 @@ function Snippet({ code, label }: { code: string; label: string }) {
 }
 
 export default async function BadgesPage() {
+  // The build day: the status badges are computed with it, so this page
+  // states the same day the badges do.
+  const asOf = new Date().toISOString().slice(0, 10);
   const tables = await allEmbeddableTables();
   const tablePages = new Set(tables.map((t) => `${t.basePath}/${t.entry.slug}`)).size;
   // The first pricing table: the kind of table people quote most.
@@ -368,6 +384,67 @@ export default async function BadgesPage() {
                 />
               </div>
             ))}
+          </div>
+        </section>
+
+        <section id="status-badges" className="mt-14 scroll-mt-24" data-status-badges="">
+          <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">API status badges</h2>
+          <p className="mt-3 leading-relaxed text-[var(--muted)]">
+            One badge per API in{" "}
+            <Link href="/graveyard" className="text-brand-600 hover:text-brand-500">
+              the Fitness API Graveyard
+            </Link>
+            , for the README of a project that depends on it. The badge shows the API&rsquo;s name and the
+            vendor&rsquo;s own words for its end, with the date at the precision the vendor gives (a day, a month or a
+            year), never sharper. For an end that is still scheduled it adds the days left, and because that number is
+            computed when this site is built, the badge names the day it was computed: &ldquo;(as of{" "}
+            {asOf})&rdquo; on the current build. A cached copy can be out of date; it cannot pass for today&rsquo;s. A
+            year or month counts to its last day and reads &ldquo;within&rdquo;; once the date is reached the badge
+            says &ldquo;date passed&rdquo; and claims nothing the vendor has not announced.
+          </p>
+          <div className="mt-6 space-y-6">
+            {GRAVEYARD.map((g) => {
+              const b = stoneBadge(g, asOf);
+              return (
+                <div key={g.id} data-badge={stoneBadgePath(g.id)} data-badge-alt={badgeAlt(b)}>
+                  <p className="flex flex-wrap items-center gap-3">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={stoneBadgePath(g.id)} alt={badgeAlt(b)} height={20} loading="lazy" />
+                  </p>
+                  <Snippet
+                    code={badgeMarkdown(stoneBadgeAlt(g), stoneBadgePath(g.id), g.page?.href ?? `${GRAVEYARD_PATH}#${g.id}`)}
+                    label={`Markdown for the ${g.name} status badge`}
+                  />
+                </div>
+              );
+            })}
+          </div>
+
+          <h3 className="mt-10 text-lg font-bold tracking-tight text-[var(--fg)]">Openness badges</h3>
+          <p className="mt-3 leading-relaxed text-[var(--muted)]">
+            The count from{" "}
+            <Link href={OPENNESS_PATH} className="text-brand-600 hover:text-brand-500">
+              the fitness API openness index
+            </Link>
+            : how many of eight developer basics the vendor&rsquo;s own pages document, out of those that apply. It is
+            a count of what the pages read state, not a rating, and it links to the row with every quote.
+          </p>
+          <div className="mt-6 space-y-6">
+            {opennessVendors().map((v) => {
+              const b = opennessBadge(v);
+              return (
+                <div key={v.id} data-badge={opennessBadgePath(v.id)} data-badge-alt={badgeAlt(b)}>
+                  <p className="flex flex-wrap items-center gap-3">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={opennessBadgePath(v.id)} alt={badgeAlt(b)} height={20} loading="lazy" />
+                  </p>
+                  <Snippet
+                    code={badgeMarkdown(opennessBadgeAlt(v), opennessBadgePath(v.id), `${OPENNESS_PATH}#${vendorAnchor(v.id)}`)}
+                    label={`Markdown for the ${v.name} openness badge`}
+                  />
+                </div>
+              );
+            })}
           </div>
         </section>
 
