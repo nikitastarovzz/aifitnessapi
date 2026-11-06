@@ -81,6 +81,7 @@ import { PAGE_H1 } from "@/data/pageTitles";
 import { PLANNER_LLMS } from "@/lib/plannerPages";
 import { PLAYGROUND_PATH, PLAYGROUND_TITLE, playgroundCapsule } from "@/lib/oauthPlaygroundData";
 import { WEBHOOKS_PATH, webhooksCapsule } from "@/lib/webhooksPage";
+import { opennessCapsule, opennessFaqs } from "@/lib/openness";
 import { DAILY_CAPSULE, DAILY_PATH, DAILY_PRIMARY_QUERY, dailyFaqs } from "@/lib/dailyBank";
 
 import { CLUSTER_LABELS } from "@/lib/clusterRegistry";
@@ -490,6 +491,13 @@ function toolLines(): string[] {
   out.push(
     `A client-side dashboard over data the site already holds. The reader picks products from the /apis directory; for each, the page shows the changes-tracker entries whose title or summary names it as a whole word (the directory's own rule), graded confirmed or reported, with the date at its source's precision and the day it was last checked; any matching stones in the Fitness API Graveyard with the vendor's quote; every page on the site about it (its vendor menu, or the pages that cover it most) with the date each page declares, flagged past 90 days; and the next dated items with days remaining on the reader's clock. Downloads are built in the tab: a calendar (.ics) of the stack's tracker entries in the same format as ${absoluteUrl("/changes/calendar.ics")}, an OPML file subscribing a feed reader to each product's live feed (${absoluteUrl("/feeds/vendors/<id>.xml")}, or /changes.xml for a product with fewer than two entries), and an RSS snapshot. The stack is stored only in localStorage and in the address (${absoluteUrl("/my-stack?v=<id>,<id>")}); nothing is sent anywhere.`,
   );
+  out.push("");
+  out.push(`## The fitness API openness index — ${absoluteUrl("/openness-index")}`);
+  out.push("Primary query: which wearable apis document pkce, signed webhooks, sandbox and rate limits");
+  out.push("");
+  out.push(opennessCapsule());
+  out.push("");
+  for (const f of opennessFaqs()) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
   out.push("");
   out.push(`## Answer search — ${absoluteUrl("/answers-search")}`);
   out.push("Primary query: search the full text of aifitnessapi answers");

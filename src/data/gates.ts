@@ -15,6 +15,36 @@
  * appears here as `TITLE-*`.
  */
 export const GATES: { code: string; refuses: string; area: string }[] = [
+  // ── Openness index and README status badges (2026-11-06) ──
+  {
+    code: "OPENNESS-EVIDENCE",
+    area: "Content integrity",
+    refuses:
+      "An openness-index cell whose quote is not a row of its evidence file under the same source address (or, for a fact read directly, is not in the module that states it), so the weekly source-quotes run would never re-check it.",
+  },
+  {
+    code: "OPENNESS-RULE",
+    area: "Content integrity",
+    refuses:
+      "An openness index that does not derive from its source modules (a hand-written cell standing in for the OAuth playground, webhook library or rate-limit calculator), a documented or 'says otherwise' mark with no quote, or a documented quote that does not mention what its check asks about.",
+  },
+  {
+    code: "OPENNESS-RENDER",
+    area: "Derived blocks",
+    refuses:
+      "An /openness-index page that was not built, or that does not show a cell with the state its sources give, a vendor's count, or a cell's quote.",
+  },
+  {
+    code: "BADGE-TEXT",
+    area: "Hosting and crawl",
+    refuses:
+      "A README status or openness badge whose text is not exactly what the graveyard stone or the openness index gives (a countdown recomputed with the as-of day the badge names, which must be this build's), or that /badges lists with different text.",
+  },
+  {
+    code: "BADGE-MISSING",
+    area: "Hosting and crawl",
+    refuses: "A graveyard stone or openness-index vendor with no built badge under /badges/api or /badges/openness, or a badge /badges does not list.",
+  },
   // ── Countdown widgets, /my-stack, /answers-search (2026-11-05) ──
   {
     code: "COUNTDOWN-DATE",

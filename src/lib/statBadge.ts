@@ -16,6 +16,8 @@
  *    box was built around.
  */
 
+import { MACHINE_CACHE_CONTROL } from "@/lib/machineHeaders";
+
 const FONT = "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
 
 /** Rough advance widths at font-size 1, for a bold humanist sans. */
@@ -34,7 +36,7 @@ function textWidth(s: string, size: number): number {
 const escape = (s: string) =>
   s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
-export function statBadge(label: string, value: string): string {
+export function statBadge(label: string, value: string, color = "#059669"): string {
   const SIZE = 11;
   const PAD = 8;
   const H = 20;
@@ -48,7 +50,7 @@ export function statBadge(label: string, value: string): string {
   <clipPath id="r"><rect width="${total}" height="${H}" rx="4"/></clipPath>
   <g clip-path="url(#r)">
     <rect width="${lw}" height="${H}" fill="#334155"/>
-    <rect x="${lw}" width="${vw}" height="${H}" fill="#059669"/>
+    <rect x="${lw}" width="${vw}" height="${H}" fill="${color}"/>
   </g>
   <g font-family="${FONT}" font-size="${SIZE}" font-weight="600" fill="#ffffff">
     <text x="${PAD}" y="${H / 2}" dominant-baseline="central" textLength="${lw - PAD * 2}" lengthAdjust="spacingAndGlyphs">${escape(label)}</text>
@@ -56,6 +58,19 @@ export function statBadge(label: string, value: string): string {
   </g>
 </svg>
 `;
+}
+
+/**
+ * The status and openness badges (/badges/api/*, /badges/openness/*) are
+ * force-static files written at build, so they take the site's machine-file
+ * policy (src/lib/machineHeaders.ts): a client may reuse a copy for an hour
+ * and serve it for a day while it revalidates. Their countdown text names the
+ * day it was computed, so a cached copy can be old but never claims to be new.
+ */
+export function machineBadgeResponse(svg: string): Response {
+  return new Response(svg, {
+    headers: { "Content-Type": "image/svg+xml; charset=utf-8", "Cache-Control": MACHINE_CACHE_CONTROL },
+  });
 }
 
 export function badgeResponse(svg: string): Response {

@@ -1810,6 +1810,81 @@ if (fs.existsSync(matrixPath)) {
     }
   }
 
+  // ── Openness index and README status badges (ops/VIRAL-20-2026-11-06.md
+  // items 4 and 5). Every cell of /openness-index is re-derived here from the
+  // same source modules the page reads (scripts/lib/openness-sources.mjs):
+  // each quote must be a row of its evidence file under the same URL, a
+  // documented quote must carry a word of its check, and every cell, count
+  // and quote must reach the built page with the state the sources give it.
+  // Every graveyard stone and every scored vendor must have a built badge
+  // whose text is recomputed here exactly (a stone's countdown with the as-of
+  // day the badge itself names), listed on /badges with the same text.
+  {
+    const { loadOpennessSources } = await import(new URL("./lib/openness-sources.mjs", import.meta.url));
+    const { checkSource } = await import(new URL("./lib/evidence-check.mjs", import.meta.url));
+    const oi = await import(new URL("../src/lib/opennessIndex.mjs", import.meta.url));
+    const sb = await import(new URL("../src/lib/statusBadges.mjs", import.meta.url));
+    const { GRAVEYARD } = await import(new URL("../src/data/graveyard.ts", import.meta.url));
+    let vendors = [];
+    try {
+      vendors = oi.deriveOpenness(await loadOpennessSources());
+    } catch (e) {
+      problems.push(`OPENNESS-RULE  the index does not derive: ${e instanceof Error ? e.message : e}`);
+    }
+    for (const s of oi.opennessSources(vendors)) for (const b of checkSource(".", s)) problems.push(`OPENNESS-EVIDENCE  ${b}`);
+    for (const v of vendors)
+      for (const [k, c] of Object.entries(v.cells)) {
+        if ((c.status === "documented" || c.status === "absent") && !c.src?.quote) problems.push(`OPENNESS-RULE  ${v.id} × ${k} is ${c.status} without a quote`);
+        else if (c.status === "documented" && !oi.CHECK_WORDS[k].test(c.src.quote)) problems.push(`OPENNESS-RULE  ${v.id} × ${k}: its quote does not mention the check ("${c.src.quote.slice(0, 80)}")`);
+      }
+    const pageFile = htmls.find((h) => routeOf(h) === oi.OPENNESS_PATH);
+    let cells = 0;
+    if (!pageFile) problems.push(`OPENNESS-RENDER  ${oi.OPENNESS_PATH} was not built`);
+    else {
+      const html = fs.readFileSync(pageFile, "utf8");
+      const text = decode(html.replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ");
+      const squash = (s) => s.replace(/\s+/g, " ").trim();
+      for (const v of vendors) {
+        if (!html.includes(`data-score="${v.id}:${v.documented}/${v.applicable}"`)) problems.push(`OPENNESS-RENDER  ${v.id}'s count ${v.documented}/${v.applicable} does not render`);
+        for (const [k, c] of Object.entries(v.cells)) {
+          cells++;
+          if (!html.includes(`data-cell="${v.id}:${k}:${c.status}"`)) problems.push(`OPENNESS-RENDER  ${v.id} × ${k} (${c.status}) does not render`);
+          if (c.src && !text.includes(squash(c.src.quote))) problems.push(`OPENNESS-RENDER  the quote for ${v.id} × ${k} is not on the page`);
+        }
+      }
+    }
+    // Badges.
+    const svgText = (p) => {
+      const f = `${ROOT}${p}.body`;
+      if (!fs.existsSync(f)) return null;
+      const m = /aria-label="([^"]*)"/.exec(fs.readFileSync(f, "utf8"));
+      return m ? decode(m[1]) : "";
+    };
+    const badgesHtml = (() => {
+      const f = htmls.find((h) => routeOf(h) === "/badges");
+      return f ? fs.readFileSync(f, "utf8") : "";
+    })();
+    const listed = new Map([...badgesHtml.matchAll(/data-badge="([^"]+)" data-badge-alt="([^"]*)"/g)].map((m) => [m[1], decode(m[2])]));
+    const today = new Date().toISOString().slice(0, 10);
+    let badges = 0;
+    const expectBadge = (p, expected, what) => {
+      badges++;
+      const got = svgText(p);
+      if (got === null) problems.push(`BADGE-MISSING  ${p} (${what}) was not built`);
+      else if (got !== expected) problems.push(`BADGE-TEXT  ${p} reads ${JSON.stringify(got)}, its sources give ${JSON.stringify(expected)}`);
+      if (!listed.has(p)) problems.push(`BADGE-MISSING  ${p} (${what}) is not listed on /badges`);
+      else if (listed.get(p) !== expected) problems.push(`BADGE-TEXT  /badges lists ${p} as ${JSON.stringify(listed.get(p))}, its sources give ${JSON.stringify(expected)}`);
+    };
+    for (const g of GRAVEYARD) {
+      const p = sb.stoneBadgePath(g.id);
+      const asOf = /\(as of (\d{4}-\d{2}-\d{2})\)/.exec(svgText(p) ?? "")?.[1] ?? today;
+      if (sb.daysBetween(asOf, today) > 2 || sb.daysBetween(asOf, today) < 0) problems.push(`BADGE-TEXT  ${p} was computed as of ${asOf}, not this build`);
+      expectBadge(p, sb.badgeAlt(sb.stoneBadge(g, asOf)), g.name);
+    }
+    for (const v of vendors) expectBadge(sb.opennessBadgePath(v.id), sb.badgeAlt(sb.opennessBadge(v)), `${v.name} openness`);
+    console.log(`Openness index: ${vendors.length} APIs, ${cells} cells re-derived and rendered; status badges: ${badges} recomputed and listed on /badges.`);
+  }
+
   // ── Own-your-data notebooks and sample ────────────────────────────────
   // /own-your-data promises notebooks whose outputs are real runs against
   // the synthetic samples, and /tools/apple-health-explorer a synthetic

@@ -90,6 +90,7 @@ const PAGE_MIRRORS = [
   "/challenge",
   "/my-stack",
   "/answers-search",
+  "/openness-index",
 ];
 
 const nextConfig: NextConfig = {
