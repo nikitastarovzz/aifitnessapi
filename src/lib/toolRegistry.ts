@@ -259,6 +259,12 @@ export const TOOL_PLANNERS: Tool[] = [
     blurb:
       "Fitabase, Labfront, Empatica and Ametris: tick what your study needs and see which platforms document it, each answer quoting the vendor's page.",
   },
+  {
+    path: "/tools/aggregator-chooser",
+    name: "Health data aggregator chooser",
+    blurb:
+      "Terra, ROOK, Junction, Spike, Thryve, Sahha, Open Wearables and Validic: tick sources, price, webhooks, BAA, data region or self-hosting; every cell quotes its source.",
+  },
 ];
 
 export const ALL_TOOLS: Tool[] = [...TOOL_LOOKUPS, ...TOOL_PLANNERS];

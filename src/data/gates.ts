@@ -1293,7 +1293,19 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
   {
     code: "EVIDENCE-MATRIX",
     area: "Derived blocks",
-    refuses: "A gym-software or research-platform matrix page that does not render every platform row its data module holds.",
+    refuses: "A gym-software, research-platform or aggregator matrix page that does not render every platform row its data module holds.",
+  },
+  {
+    code: "CONTRIBUTOR-CREDIT",
+    area: "Content integrity",
+    refuses:
+      "A contributors page that names anyone the corrections log does not credit (or leaves out someone it does), a credit without an issue of this repository, an empty contributors page left indexable, or a correction report link or issue template that no longer asks the reporter whether they want credit.",
+  },
+  {
+    code: "AGGREGATOR-CHOOSER",
+    area: "Derived blocks",
+    refuses:
+      "An aggregator chooser cell that cites an evidence row that does not exist or quotes another vendor's site, says yes or no with no evidence, or whose built row does not print the cell's text, every quote it cites and a link to each quote's source.",
   },
   {
     code: "ATLAS-FILE",

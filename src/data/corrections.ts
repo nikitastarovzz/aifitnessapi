@@ -5,12 +5,20 @@
  * this list with near-misses would inflate the site's error rate; hiding
  * them would inflate its accuracy. Both lists are real.
  */
+import type { ReportedBy } from "../lib/correctionReport.mjs";
 export type Correction = {
   date: string; // when corrected
   page: { href: string; label: string };
   was: string;
   now: string;
   how: string;
+  /**
+   * The reader whose correction issue led to this fix, set only when their
+   * issue answered the credit question with a name (src/lib/correctionReport.mjs,
+   * ops/VIRAL-20-2026-11-06.md item 17). /contributors lists exactly these;
+   * never fill it from anything but the reporter's own answer.
+   */
+  reportedBy?: ReportedBy;
 };
 
 export const CORRECTIONS: Correction[] = [

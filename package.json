@@ -42,6 +42,7 @@
     "test:coverage": "node --test scripts/api-coverage.test.mjs",
     "test:exercise-taxonomy": "node --test scripts/exercise-taxonomy.test.mjs",
     "test:matrices": "node --test scripts/evidence-matrix.test.mjs",
+    "test:corrections": "node --test scripts/correction-report.test.mjs",
     "test:atlas": "node --test scripts/atlas.test.mjs",
     "atlas": "node scripts/build-atlas.mjs",
     "test:api-client": "node --test packages/api-client/test/run.mjs",

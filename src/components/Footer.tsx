@@ -265,6 +265,9 @@ export default function Footer() {
           <FooterLink href="/corrections" className="py-1 hover:text-[var(--fg)]">
             Corrections
           </FooterLink>
+          <FooterLink href="/contributors" className="py-1 hover:text-[var(--fg)]">
+            Contributors
+          </FooterLink>
           <FooterLink href="/methodology" className="py-1 hover:text-[var(--fg)]">
             How We Verify
           </FooterLink>
