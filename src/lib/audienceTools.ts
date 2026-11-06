@@ -8,7 +8,7 @@ import {
 } from "@/data/exerciseTaxonomy";
 import { GYM_API_MATRIX } from "@/data/gymApiMatrix";
 import { RESEARCH_PLATFORM_MATRIX } from "@/data/researchPlatformMatrix";
-import { columnCounts, type EvidenceMatrix } from "@/lib/evidenceMatrix";
+import { columnCounts, matrixFiles, type EvidenceMatrix } from "@/lib/evidenceMatrix";
 import { constantId, platformPath } from "@/data/workoutTypePages";
 
 /**
@@ -143,6 +143,14 @@ export function matrixText(m: EvidenceMatrix): string {
 
 /** The "How this matrix is built" list, on the page and in its mirror. */
 export function matrixMethodLines(m: EvidenceMatrix): string[] {
+  const others = matrixFiles(m).slice(1);
+  if (others.length)
+    return [
+      `Every cell cites rows of ops/sources/evidence/${m.evidenceFile}.json, the evidence the roundup page was written from, or of the evidence files of the site's pages on the same vendors (${others.map((f) => `${f}.json`).join(", ")}), and the page prints each row's verbatim quote under the cell. No fact here is new.`,
+      `Every quote in those files was found again in its live source by the source-quotes workflow (run ${m.checkRun}) on ${m.checkedOn}, and each vendor's cells may only quote that vendor's own sites.`,
+      `"Not stated" means the vendor passages read do not say. It is not a "no": a cell says no only where a quoted passage does.`,
+      "The order after you tick needs counts documented features only. It ranks documentation, not products, and nothing on this page is a recommendation.",
+    ];
   return [
     `Every cell cites rows of ops/sources/evidence/${m.evidenceFile}.json, the evidence the roundup page was written from, and the page prints each row's verbatim quote under the cell. No fact here is new.`,
     `Every quote in that file was found again in its live source by the source-quotes workflow (run ${m.checkRun}) on ${m.checkedOn}.`,

@@ -73,6 +73,7 @@ const PAGE_MIRRORS = [
   "/tools/exercise-taxonomy-crosswalk",
   "/tools/gym-software-api-matrix",
   "/tools/research-platform-chooser",
+  "/tools/aggregator-chooser",
   "/atlas",
   "/tools/oauth-playground",
   "/tools/schema-converter",

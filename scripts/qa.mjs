@@ -1725,7 +1725,7 @@ if (fs.existsSync(matrixPath)) {
       const r = routeOf(h);
       return (r === "/tools" || r.startsWith("/tools/")) && fs.readFileSync(h, "utf8").includes("data-tool");
     }).length;
-    const EXPECTED_TOOLS = 31; // hub + 30 tools (the 6 lookups, schema-converter, fitbit-to-google-health, sample-data, webhook-verifier, oauth-playground, starter-scaffold, keypoint-playground, pose-benchmark, heart-rate-lab, step-lab, ftms-lab, cycling-power-lab, ble-gatt-explorer, apple-health-explorer, rep-counter-playground, exercise-form-rules, build-plan, store-submission-checklist, compliance-wizard, api-coverage-matrix, rate-limit-calculator, exercise-taxonomy-crosswalk, gym-software-api-matrix and research-platform-chooser)
+    const EXPECTED_TOOLS = 32; // hub + 31 tools (the 6 lookups, schema-converter, fitbit-to-google-health, sample-data, webhook-verifier, oauth-playground, starter-scaffold, keypoint-playground, pose-benchmark, heart-rate-lab, step-lab, ftms-lab, cycling-power-lab, ble-gatt-explorer, apple-health-explorer, rep-counter-playground, exercise-form-rules, build-plan, store-submission-checklist, compliance-wizard, api-coverage-matrix, rate-limit-calculator, exercise-taxonomy-crosswalk, gym-software-api-matrix, research-platform-chooser and aggregator-chooser)
     if (rendered !== EXPECTED_TOOLS) {
       problems.push(`TOOLS          ${rendered} /tools pages carry data-tool, expected ${EXPECTED_TOOLS}`);
     } else {
@@ -3858,6 +3858,7 @@ function checkSitemapIndex(SITE) {
     for (const [route, mod, name] of [
       ["/tools/gym-software-api-matrix", "src/data/gymApiMatrix.ts", "GYM_API_MATRIX"],
       ["/tools/research-platform-chooser", "src/data/researchPlatformMatrix.ts", "RESEARCH_PLATFORM_MATRIX"],
+      ["/tools/aggregator-chooser", "src/data/aggregatorChooser.ts", "AGGREGATOR_MATRIX"],
     ]) {
       const page = htmlOf(route);
       const ids = [...fs.readFileSync(mod, "utf8").matchAll(/^ {6}id: "([^"]+)",$/gm)].map((m) => m[1]);
@@ -3867,6 +3868,116 @@ function checkSitemapIndex(SITE) {
         const missing = ids.filter((id) => !new RegExp(`<tr[^>]*\\bid="${id}"`).test(page));
         if (missing.length) problems.push(`EVIDENCE-MATRIX  ${route} does not render ${missing.length} of ${ids.length} rows: ${missing.join(", ")}`);
         else console.log(`Evidence matrix ${route}: all ${ids.length} rows rendered with their quotes.`);
+      }
+    }
+
+    // ── AGGREGATOR-CHOOSER (ops/VIRAL-20-2026-11-06.md item 16). The chooser
+    // draws its cells from twelve evidence files, so every cell is re-checked
+    // here against its evidence rows, independently of the page code: each
+    // cited row must exist and come from that vendor's own hosts, and the
+    // built row must print the cell's text, every cited quote and a link to
+    // every cited URL. A quote edited in an evidence file without the cell, or
+    // a page change that drops the quotes, fails the build.
+    {
+      const route = "/tools/aggregator-chooser";
+      let agg = null;
+      try {
+        const core = await import(new URL("../src/lib/evidenceMatrixCore.mjs", import.meta.url));
+        const { AGGREGATOR_MATRIX } = await import(new URL("../src/data/aggregatorChooser.ts", import.meta.url));
+        agg = { core, m: AGGREGATOR_MATRIX };
+      } catch (e) {
+        problems.push(`AGGREGATOR-CHOOSER  could not load src/data/aggregatorChooser.ts: ${String(e.message).slice(0, 80)}`);
+      }
+      const page = htmlOf(route);
+      if (agg && !page) problems.push(`AGGREGATOR-CHOOSER  ${route} was not built`);
+      if (agg && page) {
+        const { core, m } = agg;
+        const files = {};
+        for (const f of core.filesCited(m)) {
+          const p = `ops/sources/evidence/${f}.json`;
+          if (!fs.existsSync(p)) problems.push(`AGGREGATOR-CHOOSER  ${p} is cited but missing`);
+          else files[f] = JSON.parse(fs.readFileSync(p, "utf8"));
+        }
+        for (const p of core.matrixProblems(m, files[m.evidenceFile] ?? [], files)) problems.push(`AGGREGATOR-CHOOSER  ${p}`);
+        // Entities decoded with &amp; last, so a quote that itself contains
+        // an entity's text (Validic's "&middot;") round-trips exactly.
+        const unent = (s) =>
+          s
+            .replace(/&nbsp;/g, " ")
+            .replace(/&quot;/g, '"')
+            .replace(/&#x27;|&#39;|&apos;/g, "'")
+            .replace(/&lt;/g, "<")
+            .replace(/&gt;/g, ">")
+            .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
+            .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)))
+            .replace(/&amp;/g, "&");
+        const plain = (s) => unent(s.replace(/<!--[\s\S]*?-->/g, "").replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").trim();
+        const squash = (s) => s.replace(/\s+/g, " ").trim();
+        let cells = 0;
+        let quotes = 0;
+        for (const r of m.rows) {
+          const start = new RegExp(`<tr[^>]*\\bid="${r.id}"`).exec(page);
+          const seg = start ? page.slice(start.index, page.indexOf("</tr>", start.index)) : "";
+          if (!seg) {
+            problems.push(`AGGREGATOR-CHOOSER  ${route} has no row for ${r.id}`);
+            continue;
+          }
+          const text = plain(seg);
+          const hrefs = new Set([...seg.matchAll(/\bhref="([^"]*)"/g)].map((x) => unent(x[1])));
+          for (const c of m.columns) {
+            const cell = r.cells[c.id];
+            if (!cell) continue;
+            cells++;
+            if (!text.includes(squash(cell.text))) problems.push(`AGGREGATOR-CHOOSER  ${r.id}.${c.id}: the page does not print the cell text "${cell.text.slice(0, 50)}"`);
+            for (const ref of cell.ev) {
+              const ev = core.rowOf(ref, files[m.evidenceFile] ?? [], files);
+              if (!ev) continue; // reported by matrixProblems
+              quotes++;
+              if (!text.includes(squash(ev.quote))) problems.push(`AGGREGATOR-CHOOSER  ${r.id}.${c.id}: evidence row ${ref} is cited but its quote is not on the page`);
+              if (!hrefs.has(ev.url)) problems.push(`AGGREGATOR-CHOOSER  ${r.id}.${c.id}: evidence row ${ref} is cited but ${ev.url} is not linked in its row`);
+            }
+          }
+        }
+        if (cells) console.log(`Aggregator chooser: ${m.rows.length} vendors, ${cells} cells, ${quotes} cited quotes each found on the page with its link.`);
+      }
+    }
+
+    // ── CONTRIBUTOR-CREDIT (ops/VIRAL-20-2026-11-06.md item 17). /contributors
+    // names exactly the readers that src/data/corrections.ts credits, each with
+    // an issue of this repository; while nobody is credited it is noindex and
+    // still offers the prefilled report link. The question that earns credit
+    // must reach the reader: the issue template and every page's "Suggest a
+    // correction" link carry the same credit line.
+    {
+      const route = "/contributors";
+      try {
+        const cr = await import(new URL("../src/lib/correctionReport.mjs", import.meta.url));
+        const { CORRECTIONS } = await import(new URL("../src/data/corrections.ts", import.meta.url));
+        for (const p of cr.creditProblems(CORRECTIONS)) problems.push(`CONTRIBUTOR-CREDIT  src/data/corrections.ts ${p}`);
+        const people = cr.contributorsFrom(CORRECTIONS);
+        const page = htmlOf(route);
+        if (!page) problems.push(`CONTRIBUTOR-CREDIT  ${route} was not built`);
+        else {
+          const shown = [...page.matchAll(/\bdata-contributor="([^"]*)"/g)].map((x) => x[1].replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#x27;/g, "'"));
+          const want = people.map((p) => p.name);
+          if (shown.join("\n") !== want.join("\n")) problems.push(`CONTRIBUTOR-CREDIT  ${route} lists [${shown.join(", ")}], corrections.ts credits [${want.join(", ")}]`);
+          for (const p of people) for (const c of p.corrections) if (!page.includes(`href="${c.issue}"`)) problems.push(`CONTRIBUTOR-CREDIT  ${route} does not link ${p.name}'s report ${c.issue}`);
+          const noindex = robotsOf(page).some((r) => /noindex/i.test(r));
+          if (people.length === 0 && !noindex) problems.push(`CONTRIBUTOR-CREDIT  ${route} credits nobody but is indexable`);
+          if (people.length > 0 && noindex) problems.push(`CONTRIBUTOR-CREDIT  ${route} credits ${people.length} but is still noindex`);
+          const report = /<a\b[^>]*data-report-stale-fact[^>]*>/.exec(page)?.[0] ?? /<a\b[^>]*href="[^"]*"[^>]*data-report-stale-fact/.exec(page)?.[0];
+          if (!report || !report.includes(cr.NEW_ISSUE_URL)) problems.push(`CONTRIBUTOR-CREDIT  ${route} has no "Report a stale fact" link to ${cr.NEW_ISSUE_URL}`);
+        }
+        const encodedLine = encodeURIComponent(cr.CREDIT_LINE);
+        const tpl = `.github/ISSUE_TEMPLATE/${cr.TEMPLATE_FILE}`;
+        if (!fs.existsSync(tpl) || !fs.readFileSync(tpl, "utf8").includes(`${cr.CREDIT_LINE}:`)) problems.push(`CONTRIBUTOR-CREDIT  ${tpl} is missing or does not ask "${cr.CREDIT_LINE}:"`);
+        const sample = htmlOf("/fitness-apis/health-data-aggregator-apis");
+        if (sample && !sample.replace(/&amp;/g, "&").includes(encodedLine))
+          problems.push(`CONTRIBUTOR-CREDIT  the "Suggest a correction" link on /fitness-apis/health-data-aggregator-apis does not ask the credit question`);
+        if (!problems.some((p) => p.startsWith("CONTRIBUTOR-CREDIT")))
+          console.log(`Contributors: ${people.length} credited ${people.length === 1 ? "reader" : "readers"} across ${CORRECTIONS.length} corrections; the report link and template ask for credit.`);
+      } catch (e) {
+        problems.push(`CONTRIBUTOR-CREDIT  could not check ${route}: ${String(e.message).slice(0, 80)}`);
       }
     }
 

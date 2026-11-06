@@ -19,6 +19,11 @@ export const TOOL_NEXT_STEPS: Record<string, string[]> = {
     "/integrate/mindbody-api",
     "/pricing/mindbody-api-pricing",
   ],
+  "/tools/aggregator-chooser": [
+    "/fitness-apis/health-data-aggregator-apis",
+    "/pricing/health-data-aggregator-pricing",
+    "/alternatives/terra-alternatives",
+  ],
   "/tools/research-platform-chooser": [
     "/fitness-apis/wearable-research-data-platforms",
     "/migrate/fitbit-research-studies-after-turndown",

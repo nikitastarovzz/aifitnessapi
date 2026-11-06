@@ -10,6 +10,7 @@ import { PLANNER_LLMS } from "@/lib/plannerPages";
 import { COVERAGE_PATH, RATE_LIMIT_PATH, coverageCapsule, rateLimitCapsule } from "@/lib/coverageView";
 import { ATLAS_PATH, GYM_PATH, RESEARCH_PATH, TAXONOMY_PATH, gymCapsule, matrixText, researchCapsule, taxonomyText } from "@/lib/audienceTools";
 import { atlasCapsule } from "@/lib/atlasView";
+import { AGG_PATH, aggregatorCapsule, aggregatorText } from "@/lib/aggregatorChooserView";
 import { GYM_API_MATRIX } from "@/data/gymApiMatrix";
 import { RESEARCH_PLATFORM_MATRIX } from "@/data/researchPlatformMatrix";
 import { POSE_KEYPOINTS_FETCHED_ON } from "@/data/poseKeypoints";
@@ -151,6 +152,7 @@ export function toolEntries(): { label: string; path: string; text: string }[] {
     { label: `Exercise taxonomy crosswalk`, path: TAXONOMY_PATH, text: taxonomyText() },
     { label: `Gym software API matrix`, path: GYM_PATH, text: `${gymCapsule()} ${matrixText(GYM_API_MATRIX)}` },
     { label: `Research platform chooser`, path: RESEARCH_PATH, text: `${researchCapsule()} ${matrixText(RESEARCH_PLATFORM_MATRIX)}` },
+    { label: `Health data aggregator chooser`, path: AGG_PATH, text: `${aggregatorCapsule()} ${aggregatorText()}` },
     { label: `The Fitness API Atlas (printable poster)`, path: ATLAS_PATH, text: atlasCapsule() },
     { label: `Unified health-data schema`, path: "/schema", text: schemaCapsule() },
     { label: `Health data schema converter`, path: "/tools/schema-converter", text: converterCapsule() },

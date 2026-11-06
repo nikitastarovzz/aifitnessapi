@@ -39,7 +39,11 @@ export default function CorrectionsPage() {
         <Link href="/about" className="font-medium text-brand-600 hover:text-brand-500">
           tell us
         </Link>{" "}
-        — it will be logged here.
+        — it will be logged here. Readers whose reports change a page are credited by name, if they ask, on{" "}
+        <Link href="/contributors" className="font-medium text-brand-600 hover:text-brand-500">
+          contributors
+        </Link>
+        .
       </p>
 
       <section className="mt-10">

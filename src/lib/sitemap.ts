@@ -37,6 +37,9 @@ import { ATLAS_PATH } from "@/lib/audienceTools";
 import { atlasAsOf } from "@/lib/atlasView";
 import { GYM_API_MATRIX } from "@/data/gymApiMatrix";
 import { RESEARCH_PLATFORM_MATRIX } from "@/data/researchPlatformMatrix";
+import { AGGREGATOR_MATRIX } from "@/data/aggregatorChooser";
+import { CORRECTIONS } from "@/data/corrections";
+import { contributorsFrom } from "@/lib/correctionReport.mjs";
 import { UNIFIED_READ_ON } from "@/data/unifiedSchema";
 import { FG_UPDATED } from "@/lib/fitbitGoogleMap";
 import { hkPageIdentifiers, hkIdentifierPath, hkPageModified } from "@/data/hkIdentifierPages";
@@ -271,6 +274,7 @@ function computeSections(): SitemapSection[] {
     ["/tools/exercise-taxonomy-crosswalk", ET_FETCHED_ON],
     ["/tools/gym-software-api-matrix", GYM_API_MATRIX.checkedOn],
     ["/tools/research-platform-chooser", RESEARCH_PLATFORM_MATRIX.checkedOn],
+    ["/tools/aggregator-chooser", AGGREGATOR_MATRIX.checkedOn],
     ["/tools/oauth-playground", OAUTH_FETCHED_ON],
     ["/tools/schema-converter", UNIFIED_READ_ON],
     ["/tools/fitbit-to-google-health", FG_UPDATED],
@@ -348,6 +352,9 @@ function computeSections(): SitemapSection[] {
     "/tools",
     "/paths",
     "/corrections",
+    // /contributors is noindex,follow until a correction credits a reader
+    // (src/app/contributors/page.tsx), so it is listed only from then on.
+    ...(contributorsFrom(CORRECTIONS).length > 0 ? ["/contributors"] : []),
     "/gates",
     "/about",
     // /site-index is deliberately absent: it is noindex,follow (see

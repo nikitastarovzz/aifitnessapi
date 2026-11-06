@@ -18,6 +18,7 @@ import {
   taxonomyText,
 } from "@/lib/audienceTools";
 import { atlasCapsule } from "@/lib/atlasView";
+import { AGG_PATH, AGG_PRIMARY_QUERY, aggregatorCapsule, aggregatorText } from "@/lib/aggregatorChooserView";
 import { GYM_API_MATRIX } from "@/data/gymApiMatrix";
 import { RESEARCH_PLATFORM_MATRIX } from "@/data/researchPlatformMatrix";
 import { POSE_CROSSWALK, POSE_KEYPOINTS_FETCHED_ON, POSE_SCHEMES } from "@/data/poseKeypoints";
@@ -363,6 +364,11 @@ function toolLines(): string[] {
   out.push(`Primary query: ${RESEARCH_PRIMARY_QUERY}`);
   out.push("");
   out.push(`${researchCapsule()} ${matrixText(RESEARCH_PLATFORM_MATRIX)}`);
+  out.push("");
+  out.push(`## Health data aggregator chooser — ${absoluteUrl(AGG_PATH)}`);
+  out.push(`Primary query: ${AGG_PRIMARY_QUERY}`);
+  out.push("");
+  out.push(`${aggregatorCapsule()} ${aggregatorText()}`);
   out.push("");
   out.push(`## The Fitness API Atlas (printable poster) — ${absoluteUrl(ATLAS_PATH)}`);
   out.push("");
