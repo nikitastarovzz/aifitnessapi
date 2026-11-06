@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import ShareRow from "@/components/ShareRow";
 import type { PlannerSource, Regime } from "@/data/plannerSources.mjs";
 import {
   STORES,
@@ -76,6 +77,7 @@ export default function ComplianceWizardTool({
         </button>
         <CopyLink path={`/tools/compliance-wizard${encodeWizard(a)}`} />
       </div>
+      <ShareRow place="compliance-wizard" text="Does HIPAA, GDPR or the FTC Health Breach Notification Rule apply to a health app? My answers, mapped:" label="Share these answers" />
 
       <div className="mt-8" aria-live="polite" data-wizard-results={result.length}>
         <h3 className="text-lg font-bold tracking-tight text-[var(--fg)]">What your answers point to</h3>

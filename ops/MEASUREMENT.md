@@ -65,8 +65,26 @@ Added 2026-11-05 (ops/AUDIENCE-30-2026-11-05.md items 24–26):
 | `search-to-answers-search` | `search-results` | The result count line on `/search` (`components/SearchResults`) | a link to `/answers-search?q=<the same query>` |
 | `embed_countdown_copy` | the page path | The copy button in every "Embed a countdown" control (`components/CountdownEmbed`): `/badges`, `/graveyard`, `/changes/<vendor>`, `/fitbit-api-shutdown`, `/google-fit-shutdown` | a successful copy of a countdown widget's iframe code (fired by `CopySnippet`, not a navigation) |
 
+Added 2026-11-06 (ops/VIRAL-20-2026-11-06.md items 6–8). Share rows
+(`components/ShareRow`) build plain compose URLs (`lib/shareIntents.mjs`); the
+id is fixed in code, so no event carries a reader's answers, inputs or stack.
+`<target>` is `copy`, `x`, `linkedin`, `bluesky` or `reddit`.
+
+| id | source | Where | What the click is |
+|---|---|---|---|
+| `share-quiz-<target>` | `share-row` | The result box of `/quiz/which-wearable-api` | copying, or opening a compose page for, the static result page's URL |
+| `share-quiz-result-<target>` | `share-row` | Every `/quiz/which-wearable-api/<result>` page | the same, from the result page |
+| `quiz-result-page` | `quiz` | The result box of the quiz | a link to the full static result page |
+| `share-picker-<target>` | `share-row` | The `/picker` result | the `/s?t=picker&…` share address, which has the answer's own card |
+| `share-rate-limit-calculator-<target>` | `share-row` | `/tools/rate-limit-calculator`, under the inputs | the page's current address, read at the moment of the click |
+| `share-build-plan-<target>` | `share-row` | `/tools/build-plan`, under the download buttons | the same |
+| `share-compliance-wizard-<target>` | `share-row` | `/tools/compliance-wizard`, under the download button | the same |
+| `share-api-coverage-matrix-<target>` | `share-row` | `/tools/api-coverage-matrix`, under the filters | the same |
+
 `/my-stack` and `/answers-search` send no events of their own: the stack and
-the query stay in the browser.
+the query stay in the browser. The `/my-stack` share card (drawn on a canvas
+in the tab) and its share row carry no `data-cta`, so they send nothing
+either.
 
 A completed signup from the inline form also fires `cta_click` with id
 `signup-complete` and source `money-<section>` (the form's own event), and the

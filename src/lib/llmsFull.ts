@@ -491,6 +491,13 @@ function toolLines(): string[] {
     `A client-side dashboard over data the site already holds. The reader picks products from the /apis directory; for each, the page shows the changes-tracker entries whose title or summary names it as a whole word (the directory's own rule), graded confirmed or reported, with the date at its source's precision and the day it was last checked; any matching stones in the Fitness API Graveyard with the vendor's quote; every page on the site about it (its vendor menu, or the pages that cover it most) with the date each page declares, flagged past 90 days; and the next dated items with days remaining on the reader's clock. Downloads are built in the tab: a calendar (.ics) of the stack's tracker entries in the same format as ${absoluteUrl("/changes/calendar.ics")}, an OPML file subscribing a feed reader to each product's live feed (${absoluteUrl("/feeds/vendors/<id>.xml")}, or /changes.xml for a product with fewer than two entries), and an RSS snapshot. The stack is stored only in localStorage and in the address (${absoluteUrl("/my-stack?v=<id>,<id>")}); nothing is sent anywhere.`,
   );
   out.push("");
+  out.push(`## Which wearable API should you use? (eight-question quiz) — ${absoluteUrl("/quiz/which-wearable-api")}`);
+  out.push("Primary query: which wearable API should I use");
+  out.push("");
+  out.push(
+    `A client-side quiz, narrower than the picker at ${absoluteUrl("/picker")}: eight questions (platform, the devices users own, summary vs detailed data, whether data must reach a backend by webhook, budget model, compliance, team, timeline) decide how an app should get wearable data. Three answers decide on their own (movement or no wearable gives camera pose tracking; an IRB study gives a research platform; Bluetooth sensors give reading the sensors directly); otherwise every answer adds or removes printed points for the platform stores, direct APIs or an aggregator. Each of the eight results is a static page at ${absoluteUrl("/quiz/which-wearable-api/<result>")} (healthkit, health-connect, healthkit-and-health-connect, direct-wearable-apis, aggregator, bluetooth-direct, research-platform, camera-motion) with its own social card, listing that approach's products alphabetically with the facts the site's cost model, coverage matrix and research chooser source; no product is ranked, and KinesteX, which funds the site, appears only among the camera options, disclosed. Answers live only in the address (?a=<eight digits>).`,
+  );
+  out.push("");
   out.push(`## Answer search — ${absoluteUrl("/answers-search")}`);
   out.push("Primary query: search the full text of aifitnessapi answers");
   out.push("");

@@ -90,6 +90,7 @@ const PAGE_MIRRORS = [
   "/challenge",
   "/my-stack",
   "/answers-search",
+  "/quiz/which-wearable-api",
 ];
 
 const nextConfig: NextConfig = {

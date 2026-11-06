@@ -218,6 +218,12 @@ export const TOOL_PLANNERS: Tool[] = [
       "Connect any Bluetooth LE device: services and characteristics by SIG name, read or notify, values decoded where the SIG defines a structure.",
   },
   {
+    path: "/quiz/which-wearable-api",
+    name: "Which wearable API quiz",
+    blurb:
+      "Eight questions on platform, devices, data depth, webhooks, budget and team decide how your app should get wearable data, with a shareable result.",
+  },
+  {
     path: "/my-stack",
     name: "My stack",
     blurb:

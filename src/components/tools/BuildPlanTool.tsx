@@ -2,6 +2,7 @@
 
 import { useCallback, useMemo, useState } from "react";
 import Link from "next/link";
+import ShareRow from "@/components/ShareRow";
 import {
   DATA_SOURCES,
   EFFORT_NOTE,
@@ -107,6 +108,7 @@ export default function BuildPlanTool({ bundle, origin, initial, date }: { bundl
         </button>
         <CopyLink path={plan.links.self} />
       </div>
+      <ShareRow place="build-plan" text={`A fitness app build plan: ${plan.appType.label}. Architecture, APIs, compliance and a PRD template:`} label="Share this plan" />
       {preview !== "none" && (
         <pre className="mt-4 max-h-[32rem] overflow-auto whitespace-pre-wrap rounded-xl border border-[var(--border)] bg-[var(--bg)] p-4 text-xs text-[var(--fg)]">
           {preview === "prd" ? prdMarkdown(plan, bundle, { origin, date }) : planMarkdown(plan, bundle, { origin, date })}
