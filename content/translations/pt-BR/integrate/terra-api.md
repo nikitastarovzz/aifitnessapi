@@ -1,20 +1,20 @@
 ---
 path: "/integrate/terra-api"
-translatedOn: "2026-11-05"
+translatedOn: "2026-11-06"
 sourceUpdated: "2026-11-05"
-sourceHash: "0ea07cbf8092750e"
+sourceHash: "d9cfbd61c47b3e26"
 metaTitle: "API Terra (2026): um webhook para Garmin, Oura e WHOOP"
 metaDescription: >-
   O Terra (tryterra) reúne Garmin, Oura, WHOOP e outros em uma integração: o endpoint de sessão do widget, checagem HMAC de webhooks, backfills e preços.
 h1: "Como integrar o Terra (agregador de dados de saúde) (2026)"
 answer: >-
-  O Terra é um agregador de dados de saúde: você integra uma vez e ele devolve dados normalizados de Garmin, Fitbit, Oura, WHOOP, Strava, Apple Health e, pela contagem dele, mais de 500 fornecedores (500+) sob um único esquema. O seu backend se autentica com os headers dev-id e x-api-key, cria uma sessão de widget em POST https://access.tryterra.co/api/widget/session para que o usuário escolha e autorize o fornecedor dele, e recebe eventos normalizados em um destino como um webhook, verificados com um header terra-signature HMAC-SHA256. Em 5 de novembro de 2026, o endpoint antigo /v2/auth/generateWidgetSession está fechado para contas criadas depois de 3 de setembro de 2026, e a documentação do Terra ainda dá 3 de novembro de 2026, data que já passou, como a descontinuação prevista; alguns fornecedores, entre eles WHOOP, Dexcom e Strava, ainda exigem o seu próprio app de desenvolvedor configurado no painel do Terra.
+  O Terra é um agregador de dados de saúde: você integra uma vez e ele devolve dados normalizados de Garmin, Oura, WHOOP, Strava, Apple Health e, pela contagem dele, mais de 500 fornecedores (500+) sob um único esquema. O seu backend se autentica com os headers dev-id e x-api-key, cria uma sessão de widget em POST https://access.tryterra.co/api/widget/session para que o usuário escolha e autorize o fornecedor dele, e recebe eventos normalizados em um destino como um webhook, verificados com um header terra-signature HMAC-SHA256. Em 5 de novembro de 2026, o endpoint antigo /v2/auth/generateWidgetSession está fechado para contas criadas depois de 3 de setembro de 2026, e a documentação do Terra ainda dá 3 de novembro de 2026, data que já passou, como a descontinuação prevista; alguns fornecedores, entre eles WHOOP, Dexcom e Strava, ainda exigem o seu próprio app de desenvolvedor configurado no painel do Terra.
 cta: >-
   Publicamos passo a passos de integração com wearables e agregadores e registramos mudanças de endpoint como o relançamento do widget do Terra, então assine e conecte o próximo dispositivo sem surpresas.
 faqs:
   - q: "O que diferencia o Terra de integrar cada wearable diretamente?"
     a: >-
-      O Terra é um agregador: você constrói uma integração e recebe Garmin, Fitbit, Oura, WHOOP, Strava, Apple Health e outras fontes normalizados em um único esquema, em um só destino, de um webhook a um banco de dados ou fila. Em vez de fluxos OAuth e parsers separados por dispositivo, você escreve um único receptor. As contrapartidas são uma conta baseada em créditos, a partir de US$ 399 por mês com cobrança anual em 5 de novembro de 2026, e o seu próprio app de desenvolvedor para alguns fornecedores.
+      O Terra é um agregador: você constrói uma integração e recebe Garmin, Oura, WHOOP, Strava, Apple Health e outras fontes normalizados em um único esquema, em um só destino, de um webhook a um banco de dados ou fila. O Fitbit não é mais uma delas: em 6 de novembro de 2026, a página de integrações suportadas do Terra dizia "Fitbit has been retired" [o Fitbit foi aposentado] porque o Google desligou a Fitbit Web API em 2 de novembro de 2026, e direcionava os usuários ao Google Health (GOOGLE_HEALTH). Em vez de fluxos OAuth e parsers separados por dispositivo, você escreve um único receptor. As contrapartidas são uma conta baseada em créditos, a partir de US$ 399 por mês com cobrança anual em 5 de novembro de 2026, e o seu próprio app de desenvolvedor para alguns fornecedores.
   - q: "Ainda preciso das minhas próprias credenciais de desenvolvedor em cada fornecedor?"
     a: >-
       Para alguns. Em 5 de novembro de 2026, a documentação do Terra diz que ele gerencia as chaves de API dos fornecedores em geral, mas cita WHOOP, Dexcom, Huawei, Strava e Virtuagym como exigindo processos especiais; WHOOP e Dexcom exigem o seu próprio app nos portais de desenvolvedor deles, com URLs em um domínio seu. A tabela de integrações dele também marca Garmin e Samsung como Required [obrigatório], enquanto a página inicial diz que os dados da Garmin passam pela integração de parceiro do Terra, então confira a página Connections do seu painel.
@@ -119,7 +119,7 @@ curl --request POST "https://access.tryterra.co/api/widget/session" \
   --header "Content-Type: application/json" \
   --data '{
     "reference_id": "user-1234",
-    "providers": "GARMIN,FITBIT,OURA,WHOOP,STRAVA",
+    "providers": "GARMIN,OURA,WHOOP,STRAVA",
     "auth_success_redirect_url": "https://yourapp.com/success",
     "auth_failure_redirect_url": "https://yourapp.com/failure"
   }'

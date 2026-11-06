@@ -5,9 +5,10 @@
  * scripts/webhook-verifier.test.mjs, so the test exercises exactly the code a
  * reader runs. It is plain ESM with no dependencies: the only crypto is
  * WebCrypto (`globalThis.crypto.subtle`), which every current browser and
- * Node 20+ provide. Nothing here makes a network call. A secret typed into the
- * page is handed to `crypto.subtle.importKey` in that tab and goes nowhere
- * else.
+ * Node 20+ provide. Nothing here makes a network call (the Google Health API
+ * keyset is fetched by the page's component, only when the reader asks, and
+ * passed in). A secret typed into the page is handed to
+ * `crypto.subtle.importKey` in that tab and goes nowhere else.
  *
  * Every vendor below is here because its signing or token rule was read from
  * the vendor's own page on the date in `source.fetched`, and the sentence that
@@ -23,6 +24,9 @@
  *                URL or a header); compare it in constant time. This proves
  *                the sender knows the secret, not that the body is untouched,
  *                and the page says so.
+ *   token+ecdsa — Google Health API: the Authorization token as above, plus a
+ *                Tink ECDSA P-256 signature over the raw body, checked when
+ *                the reader supplies Google's public keyset.
  *   handshake  — a subscription-validation request (GET with a challenge);
  *                check the token and build the exact response body.
  */
@@ -55,6 +59,208 @@ export function toBase64(bytes) {
   let bin = "";
   for (const b of bytes) bin += String.fromCharCode(b);
   return btoa(bin);
+}
+
+/** Standard or URL-safe base64 (padding optional) → bytes. Throws on bad input. */
+export function fromBase64(s) {
+  const clean = String(s).trim().replace(/-/g, "+").replace(/_/g, "/").replace(/\s+/g, "");
+  const padded = clean + "=".repeat((4 - (clean.length % 4)) % 4);
+  const bin = atob(padded);
+  const out = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+  return out;
+}
+
+/* ---------------------------------------------------------------------- *
+ * Google Health API: Tink ECDSA P-256 signatures
+ *
+ * Google's "Webhook subscriptions" page (read 2026-11-06) documents the
+ * scheme and a manual path without Tink, which is what this follows:
+ *   1. base64-decode GOOGLE-HEALTH-API-SIGNATURE; the first 5 bytes are the
+ *      Tink prefix (1-byte version, 4-byte keyId), the rest a DER signature;
+ *   2. find the key with that keyId in the JSON keyset Google publishes, and
+ *      base64-decode its value, a serialized EcdsaPublicKey protobuf;
+ *   3. take x and y (protobuf tags 3 and 4), build a P-256 public key;
+ *   4. verify the raw JSON body against the DER signature with SHA-256.
+ * Field numbers and enum values below are from Tink's own proto files
+ * (tink-crypto/tink-java proto/ecdsa.proto, common.proto, tink.proto, read
+ * 2026-11-06): EcdsaPublicKey {version=1, params=2, x=3, y=4}, EcdsaParams
+ * {hash_type=1, curve=2, encoding=3}, SHA256=3, NIST_P256=2, DER=2; a TINK
+ * output prefix "is 5 bytes, starts with \x01". The keyset itself is fetched
+ * by the page's component, never by this module.
+ * ---------------------------------------------------------------------- */
+
+export const GOOGLE_HEALTH_KEYSET_URL = "https://www.gstatic.com/googlehealthapi/webhooks/webhooks_public_keyset.json";
+
+/** Minimal protobuf reader: field number → list of {wire, value}. */
+function readProto(bytes) {
+  const fields = {};
+  let i = 0;
+  const varint = () => {
+    let v = 0;
+    let mul = 1;
+    for (;;) {
+      if (i >= bytes.length) throw new Error("truncated varint");
+      const b = bytes[i++];
+      v += (b & 0x7f) * mul;
+      if (!(b & 0x80)) return v;
+      mul *= 128;
+      if (mul > 2 ** 49) throw new Error("varint too long");
+    }
+  };
+  while (i < bytes.length) {
+    const tag = varint();
+    const field = Math.floor(tag / 8);
+    const wire = tag & 7;
+    let value;
+    if (wire === 0) value = varint();
+    else if (wire === 2) {
+      const len = varint();
+      if (i + len > bytes.length) throw new Error("truncated field");
+      value = bytes.slice(i, i + len);
+      i += len;
+    } else throw new Error(`unsupported protobuf wire type ${wire}`);
+    (fields[field] ??= []).push({ wire, value });
+  }
+  return fields;
+}
+
+/** A big-endian unsigned integer → exactly `size` bytes (strips sign bytes, left-pads). */
+function fixedWidth(bytes, size) {
+  let b = bytes;
+  while (b.length > size && b[0] === 0) b = b.slice(1);
+  if (b.length > size) throw new Error(`integer longer than ${size} bytes`);
+  const out = new Uint8Array(size);
+  out.set(b, size - b.length);
+  return out;
+}
+
+/**
+ * Parse a Tink JSON keyset of EcdsaPublicKey entries (the format at
+ * GOOGLE_HEALTH_KEYSET_URL). Returns one entry per key, with an `error`
+ * string on keys that are not ECDSA P-256 / SHA-256 / DER.
+ */
+export function parseTinkEcdsaKeyset(json) {
+  const ks = typeof json === "string" ? JSON.parse(json) : json;
+  if (!ks || !Array.isArray(ks.key)) throw new Error("Not a Tink keyset: no \"key\" array.");
+  return ks.key.map((k) => {
+    const entry = { keyId: Number(k.keyId), status: k.status, outputPrefixType: k.outputPrefixType, primary: Number(k.keyId) === Number(ks.primaryKeyId) };
+    try {
+      if (k.keyData?.typeUrl !== "type.googleapis.com/google.crypto.tink.EcdsaPublicKey") throw new Error(`key type ${k.keyData?.typeUrl} is not EcdsaPublicKey`);
+      const f = readProto(fromBase64(k.keyData.value));
+      const version = f[1]?.[0]?.value ?? 0;
+      if (version !== 0) throw new Error(`unknown key version ${version}`);
+      const params = f[2]?.[0] ? readProto(f[2][0].value) : {};
+      const hash = params[1]?.[0]?.value;
+      const curve = params[2]?.[0]?.value;
+      const encoding = params[3]?.[0]?.value;
+      if (hash !== 3) throw new Error(`hash_type ${hash} is not SHA256 (3)`);
+      if (curve !== 2) throw new Error(`curve ${curve} is not NIST_P256 (2)`);
+      if (encoding !== 2) throw new Error(`encoding ${encoding} is not DER (2)`);
+      if (!f[3] || !f[4]) throw new Error("missing x or y coordinate");
+      entry.x = fixedWidth(f[3][0].value, 32);
+      entry.y = fixedWidth(f[4][0].value, 32);
+    } catch (e) {
+      entry.error = e instanceof Error ? e.message : String(e);
+    }
+    return entry;
+  });
+}
+
+/** DER ECDSA-Sig-Value (SEQUENCE { r INTEGER, s INTEGER }) → r || s, each `size` bytes. */
+export function derToP1363(der, size = 32) {
+  let i = 0;
+  const len = () => {
+    let l = der[i++];
+    if (l & 0x80) {
+      const n = l & 0x7f;
+      if (n < 1 || n > 2) throw new Error("bad DER length");
+      l = 0;
+      for (let k = 0; k < n; k++) l = l * 256 + der[i++];
+    }
+    return l;
+  };
+  if (der[i++] !== 0x30) throw new Error("signature is not a DER SEQUENCE");
+  const seqLen = len();
+  if (i + seqLen !== der.length) throw new Error("DER SEQUENCE length does not match the signature");
+  const int = () => {
+    if (der[i++] !== 0x02) throw new Error("expected a DER INTEGER");
+    const l = len();
+    const v = der.slice(i, i + l);
+    i += l;
+    return fixedWidth(v, size);
+  };
+  const r = int();
+  const s = int();
+  if (i !== der.length) throw new Error("trailing bytes after the DER signature");
+  const out = new Uint8Array(size * 2);
+  out.set(r, 0);
+  out.set(s, size);
+  return out;
+}
+
+/** r || s → DER, the inverse of derToP1363 (used to build the demo example). */
+export function p1363ToDer(sig) {
+  const half = sig.length / 2;
+  const intDer = (b) => {
+    let v = b;
+    while (v.length > 1 && v[0] === 0) v = v.slice(1);
+    if (v[0] & 0x80) v = Uint8Array.of(0, ...v);
+    return [0x02, v.length, ...v];
+  };
+  const body = [...intDer(sig.slice(0, half)), ...intDer(sig.slice(half))];
+  return Uint8Array.from([0x30, body.length, ...body]);
+}
+
+/**
+ * Verify a GOOGLE-HEALTH-API-SIGNATURE header against the raw body with a
+ * Tink JSON keyset. Pure: the caller supplies the keyset text.
+ *
+ * @returns {Promise<{ ok: boolean, keyId?: number, detail: string }>}
+ */
+export async function verifyGoogleHealthSignature(rawBody, signatureHeader, keysetJson) {
+  let sig;
+  try {
+    sig = fromBase64(signatureHeader);
+  } catch {
+    return { ok: false, detail: "GOOGLE-HEALTH-API-SIGNATURE is not valid base64." };
+  }
+  if (sig.length < 6) return { ok: false, detail: "GOOGLE-HEALTH-API-SIGNATURE is too short to hold the 5-byte Tink prefix and a signature." };
+  if (sig[0] !== 0x01) return { ok: false, detail: `The signature's first byte is 0x${sig[0].toString(16).padStart(2, "0")}, not the 0x01 a Tink-prefixed signature starts with.` };
+  const keyId = ((sig[1] << 24) >>> 0) + (sig[2] << 16) + (sig[3] << 8) + sig[4];
+  let keys;
+  try {
+    keys = parseTinkEcdsaKeyset(keysetJson);
+  } catch (e) {
+    return { ok: false, keyId, detail: `Could not read the keyset: ${e instanceof Error ? e.message : String(e)}` };
+  }
+  const key = keys.find((k) => k.keyId === keyId);
+  if (!key) return { ok: false, keyId, detail: `No key with keyId ${keyId} in the keyset (it has ${keys.map((k) => k.keyId).join(", ")}). Fetch the current keyset: Google rotates its signing keys every 30 days.` };
+  if (key.error) return { ok: false, keyId, detail: `Key ${keyId} cannot be used: ${key.error}.` };
+  let p1363;
+  try {
+    p1363 = derToP1363(sig.slice(5), 32);
+  } catch (e) {
+    return { ok: false, keyId, detail: `The signature after the prefix is not DER: ${e instanceof Error ? e.message : String(e)}.` };
+  }
+  const raw = new Uint8Array(65);
+  raw[0] = 0x04;
+  raw.set(key.x, 1);
+  raw.set(key.y, 33);
+  let pub;
+  try {
+    pub = await subtle().importKey("raw", raw, { name: "ECDSA", namedCurve: "P-256" }, false, ["verify"]);
+  } catch {
+    return { ok: false, keyId, detail: `Key ${keyId}'s x and y are not a point on P-256.` };
+  }
+  const ok = await subtle().verify({ name: "ECDSA", hash: "SHA-256" }, pub, p1363, enc.encode(rawBody));
+  return {
+    ok,
+    keyId,
+    detail: ok
+      ? `ECDSA P-256 / SHA-256 signature verified over the raw body with key ${keyId}${key.primary ? " (the keyset's primary key)" : ""}.`
+      : `The signature does not match the raw body under key ${keyId}. Check that the body is byte-for-byte what arrived.`,
+  };
 }
 
 /**
@@ -117,7 +323,7 @@ function preview(s, n = 160) {
 const FETCHED = "2026-10-31";
 
 /**
- * @typedef {{ method: "POST" | "GET", url: string, headers: string, body: string, secret: string }} WebhookInput
+ * @typedef {{ method: "POST" | "GET", url: string, headers: string, body: string, secret: string, keyset?: string }} WebhookInput
  * @typedef {{ status: "valid" | "invalid" | "unsigned" | "error", title: string, detail: string[],
  *             computed?: string, received?: string, signedString?: string, reply?: string }} VerifyResult
  */
@@ -419,18 +625,23 @@ export const WEBHOOK_VENDORS = [
     id: "google-health",
     name: "Google Health API",
     integrate: "/google-health-api",
-    kind: "token",
+    kind: "token+ecdsa",
     secretLabel: "The endpointAuthorization secret you configured (e.g. “Bearer …”)",
     summary:
-      "The documented check is the Authorization header: Google sends the endpointAuthorization secret you configured with every notification. A GOOGLE-HEALTH-API-SIGNATURE header appears in Google's examples, but the page does not say how it is computed, so this tool does not check it.",
-    headers: ["authorization"],
+      "Two checks. Google sends the endpointAuthorization secret you configured in the Authorization header with every notification. It also signs the raw JSON body with Tink's PublicKeySign and sends the signature base64-encoded in GOOGLE-HEALTH-API-SIGNATURE: a 5-byte Tink prefix (a version byte and a 4-byte keyId), then an ECDSA P-256 signature in DER, verified with SHA-256. The public keys rotate every 30 days and are published as a JSON keyset at a permanent gstatic.com URL; load it below and this tool checks the signature too.",
+    headers: ["authorization", "google-health-api-signature"],
     source: {
       url: "https://developers.google.com/health/webhooks",
       label: "Google Health API, “Webhook subscriptions”",
-      fetched: FETCHED,
+      fetched: "2026-11-06",
       via: "direct",
       quote: [
         "The value of secret is sent in the Authorization header with each notification message. You can use this token to verify that incoming requests are from the Google Health API.",
+        "the raw JSON payload of every outgoing webhook notification is signed with a private key using Tink's PublicKeySign, providing the Base64-encoded signature in the GOOGLE-HEALTH-API-SIGNATURE HTTP header in the request.",
+        "These signing keys are automatically rotated every 30 days, and the corresponding official public keyset is distributed as a JSON file at the permanent URL https://www.gstatic.com/googlehealthapi/webhooks/webhooks_public_keyset.json.",
+        "Base64-decodes the GOOGLE-HEALTH-API-SIGNATURE header to separate the 5-byte Tink prefix (which contains a 1-byte version prefix and a 4-byte keyId) from the actual DER-encoded signature.",
+        "Instantiate a standard ECDSA P-256 public key in a built-in cryptography library using the extracted x and y coordinates.",
+        "Verify the raw webhook JSON payload against the extracted DER signature using the SHA-256 algorithm.",
       ],
     },
     respond: [
@@ -647,8 +858,31 @@ export async function verifyWebhook(vendorId, /** @type {WebhookInput} */ input)
       if (ok && isVerification) detail.push("Authorized verification request: respond 200 OK or 201 Created.");
       else if (ok) detail.push("Respond 204 No Content immediately, then process asynchronously.");
       else detail.push("The Authorization value must equal the full secret string you configured, scheme included (e.g. “Bearer …”).");
-      if (h["google-health-api-signature"]) detail.push("A GOOGLE-HEALTH-API-SIGNATURE header is present; Google's page does not document how it is computed, so it is not checked here.");
-      return { status: ok ? "valid" : "invalid", title: ok ? "Authorization matches" : "Authorization does not match", detail, received: auth.trim() };
+      const sigHeader = h["google-health-api-signature"];
+      const keyset = (input.keyset ?? "").trim();
+      let sigOk = true;
+      if (sigHeader && keyset) {
+        const sv = await verifyGoogleHealthSignature(body, sigHeader, keyset);
+        sigOk = sv.ok;
+        detail.push(sv.ok ? `Signature: ${sv.detail}` : `Signature check failed: ${sv.detail}`);
+      } else if (sigHeader) {
+        detail.push("A GOOGLE-HEALTH-API-SIGNATURE header is present but was not checked: load Google's public keyset (or paste it) and verify again.");
+      } else {
+        detail.push("No GOOGLE-HEALTH-API-SIGNATURE header, so only the Authorization token was checked.");
+      }
+      const valid = ok && sigOk;
+      return {
+        status: valid ? "valid" : "invalid",
+        title: !ok
+          ? "Authorization does not match"
+          : !sigOk
+            ? "Authorization matches, signature does not"
+            : sigHeader && keyset
+              ? "Authorization and signature verified"
+              : "Authorization matches",
+        detail,
+        received: auth.trim(),
+      };
     }
   }
   return { status: "error", title: "No verifier", detail: [] };
@@ -800,7 +1034,42 @@ export async function buildExample(vendorId, now = Date.now()) {
         null,
         2,
       );
-      return { method: "POST", url: "https://your-endpoint-uri", headers: `Authorization: ${s}\nContent-Type: application/json`, body, secret: s, tamperField: "headers" };
+      // A throwaway P-256 key made now stands in for Google's: the example's
+      // keyset has the same shape as the published one, so the signature path
+      // runs end to end, but it is a demo key, not Google's.
+      const pair = await subtle().generateKey({ name: "ECDSA", namedCurve: "P-256" }, true, ["sign", "verify"]);
+      const raw = new Uint8Array(await subtle().exportKey("raw", pair.publicKey));
+      const p1363 = new Uint8Array(await subtle().sign({ name: "ECDSA", hash: "SHA-256" }, pair.privateKey, enc.encode(body)));
+      const keyId = 123456789;
+      const der = p1363ToDer(p1363);
+      const sig = Uint8Array.from([0x01, (keyId >>> 24) & 255, (keyId >>> 16) & 255, (keyId >>> 8) & 255, keyId & 255, ...der]);
+      const field = (n, bytes) => [n * 8 + 2, bytes.length, ...bytes];
+      const params = [0x08, 3, 0x10, 2, 0x18, 2]; // hash_type SHA256, curve NIST_P256, encoding DER
+      const keyProto = Uint8Array.from([...field(2, params), ...field(3, [0, ...raw.slice(1, 33)]), ...field(4, [0, ...raw.slice(33)])]);
+      const keyset = JSON.stringify(
+        {
+          primaryKeyId: keyId,
+          key: [
+            {
+              keyData: { typeUrl: "type.googleapis.com/google.crypto.tink.EcdsaPublicKey", value: toBase64(keyProto), keyMaterialType: "ASYMMETRIC_PUBLIC" },
+              status: "ENABLED",
+              keyId,
+              outputPrefixType: "TINK",
+            },
+          ],
+        },
+        null,
+        2,
+      );
+      return {
+        method: "POST",
+        url: "https://your-endpoint-uri",
+        headers: `Authorization: ${s}\nGOOGLE-HEALTH-API-SIGNATURE: ${toBase64(sig)}\nContent-Type: application/json`,
+        body,
+        secret: s,
+        keyset,
+        tamperField: "headers",
+      };
     }
   }
   throw new Error(`No example for ${vendorId}`);
