@@ -1,0 +1,458 @@
+{
+  "generatedBy": "scripts/build-collections.mjs",
+  "postmanSchema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+  "collections": [
+    {
+      "id": "oura",
+      "name": "Oura",
+      "folders": [
+        {
+          "name": "OAuth 2.0",
+          "requests": [
+            "1. Authorization URL (open in a browser)",
+            "2. Exchange the code for tokens",
+            "3. Refresh the access token"
+          ]
+        },
+        {
+          "name": "Webhook samples",
+          "requests": [
+            "Data event"
+          ]
+        }
+      ],
+      "variables": [
+        "client_id",
+        "client_secret",
+        "redirect_uri",
+        "scope",
+        "state",
+        "code_verifier",
+        "code_challenge",
+        "auth_code",
+        "refresh_token",
+        "local_url"
+      ],
+      "postman": "/collections/oura.postman_collection.json",
+      "bruno": "/collections/oura.bruno.zip",
+      "postmanBytes": 13628,
+      "brunoBytes": 8560,
+      "brunoFiles": [
+        "bruno.json",
+        "collection.bru",
+        "OAuth 2.0/folder.bru",
+        "OAuth 2.0/1. Authorization URL (open in a browser).bru",
+        "OAuth 2.0/2. Exchange the code for tokens.bru",
+        "OAuth 2.0/3. Refresh the access token.bru",
+        "Webhook samples/folder.bru",
+        "Webhook samples/Data event.bru",
+        "environments/Local.bru"
+      ]
+    },
+    {
+      "id": "whoop",
+      "name": "WHOOP",
+      "folders": [
+        {
+          "name": "OAuth 2.0",
+          "requests": [
+            "1. Authorization URL (open in a browser)",
+            "2. Exchange the code for tokens",
+            "3. Refresh the access token"
+          ]
+        },
+        {
+          "name": "Webhook samples",
+          "requests": [
+            "v2 example: sleep.updated",
+            "Field-table example: workout.updated"
+          ]
+        }
+      ],
+      "variables": [
+        "client_id",
+        "client_secret",
+        "redirect_uri",
+        "scope",
+        "state",
+        "auth_code",
+        "refresh_token",
+        "local_url"
+      ],
+      "postman": "/collections/whoop.postman_collection.json",
+      "bruno": "/collections/whoop.bruno.zip",
+      "postmanBytes": 12864,
+      "brunoBytes": 8437,
+      "brunoFiles": [
+        "bruno.json",
+        "collection.bru",
+        "OAuth 2.0/folder.bru",
+        "OAuth 2.0/1. Authorization URL (open in a browser).bru",
+        "OAuth 2.0/2. Exchange the code for tokens.bru",
+        "OAuth 2.0/3. Refresh the access token.bru",
+        "Webhook samples/folder.bru",
+        "Webhook samples/v2 example sleep.updated.bru",
+        "Webhook samples/Field-table example workout.updated.bru",
+        "environments/Local.bru"
+      ]
+    },
+    {
+      "id": "strava",
+      "name": "Strava",
+      "folders": [
+        {
+          "name": "OAuth 2.0",
+          "requests": [
+            "1. Authorization URL (open in a browser)",
+            "2. Exchange the code for tokens",
+            "3. Refresh the access token"
+          ]
+        },
+        {
+          "name": "Webhook samples",
+          "requests": [
+            "Activity update"
+          ]
+        }
+      ],
+      "variables": [
+        "client_id",
+        "client_secret",
+        "redirect_uri",
+        "scope",
+        "state",
+        "auth_code",
+        "refresh_token",
+        "local_url"
+      ],
+      "postman": "/collections/strava.postman_collection.json",
+      "bruno": "/collections/strava.bruno.zip",
+      "postmanBytes": 12104,
+      "brunoBytes": 8280,
+      "brunoFiles": [
+        "bruno.json",
+        "collection.bru",
+        "OAuth 2.0/folder.bru",
+        "OAuth 2.0/1. Authorization URL (open in a browser).bru",
+        "OAuth 2.0/2. Exchange the code for tokens.bru",
+        "OAuth 2.0/3. Refresh the access token.bru",
+        "Webhook samples/folder.bru",
+        "Webhook samples/Activity update.bru",
+        "environments/Local.bru"
+      ]
+    },
+    {
+      "id": "polar",
+      "name": "Polar AccessLink",
+      "folders": [
+        {
+          "name": "OAuth 2.0",
+          "requests": [
+            "1. Authorization URL (open in a browser)",
+            "2. Exchange the code for tokens"
+          ]
+        },
+        {
+          "name": "Webhook samples",
+          "requests": [
+            "PING",
+            "Exercise",
+            "Sleep",
+            "Continuous heart rate",
+            "SleepWise circadian bedtime",
+            "SleepWise alertness",
+            "Activity summary",
+            "Physical information"
+          ]
+        }
+      ],
+      "variables": [
+        "client_id",
+        "client_secret",
+        "redirect_uri",
+        "scope",
+        "state",
+        "auth_code",
+        "local_url"
+      ],
+      "postman": "/collections/polar.postman_collection.json",
+      "bruno": "/collections/polar.bruno.zip",
+      "postmanBytes": 19476,
+      "brunoBytes": 12364,
+      "brunoFiles": [
+        "bruno.json",
+        "collection.bru",
+        "OAuth 2.0/folder.bru",
+        "OAuth 2.0/1. Authorization URL (open in a browser).bru",
+        "OAuth 2.0/2. Exchange the code for tokens.bru",
+        "Webhook samples/folder.bru",
+        "Webhook samples/PING.bru",
+        "Webhook samples/Exercise.bru",
+        "Webhook samples/Sleep.bru",
+        "Webhook samples/Continuous heart rate.bru",
+        "Webhook samples/SleepWise circadian bedtime.bru",
+        "Webhook samples/SleepWise alertness.bru",
+        "Webhook samples/Activity summary.bru",
+        "Webhook samples/Physical information.bru",
+        "environments/Local.bru"
+      ]
+    },
+    {
+      "id": "withings",
+      "name": "Withings",
+      "folders": [
+        {
+          "name": "OAuth 2.0",
+          "requests": [
+            "1. Authorization URL (open in a browser)",
+            "2. Exchange the code for tokens"
+          ]
+        },
+        {
+          "name": "Webhook samples",
+          "requests": [
+            "appli 1: Weight & body composition",
+            "appli 4: Blood pressure & heart rate",
+            "appli 16: Activity",
+            "appli 44: Sleep summary",
+            "appli 54: ECG measurement",
+            "appli 55: ECG measurement failed",
+            "appli 50: Bed in",
+            "appli 46: User profile change"
+          ]
+        }
+      ],
+      "variables": [
+        "client_id",
+        "redirect_uri",
+        "scope",
+        "state",
+        "auth_code",
+        "nonce",
+        "signature",
+        "local_url"
+      ],
+      "postman": "/collections/withings.postman_collection.json",
+      "bruno": "/collections/withings.bruno.zip",
+      "postmanBytes": 22125,
+      "brunoBytes": 13823,
+      "brunoFiles": [
+        "bruno.json",
+        "collection.bru",
+        "OAuth 2.0/folder.bru",
+        "OAuth 2.0/1. Authorization URL (open in a browser).bru",
+        "OAuth 2.0/2. Exchange the code for tokens.bru",
+        "Webhook samples/folder.bru",
+        "Webhook samples/appli 1 Weight & body composition.bru",
+        "Webhook samples/appli 4 Blood pressure & heart rate.bru",
+        "Webhook samples/appli 16 Activity.bru",
+        "Webhook samples/appli 44 Sleep summary.bru",
+        "Webhook samples/appli 54 ECG measurement.bru",
+        "Webhook samples/appli 55 ECG measurement failed.bru",
+        "Webhook samples/appli 50 Bed in.bru",
+        "Webhook samples/appli 46 User profile change.bru",
+        "environments/Local.bru"
+      ]
+    },
+    {
+      "id": "wahoo",
+      "name": "Wahoo",
+      "folders": [
+        {
+          "name": "OAuth 2.0",
+          "requests": [
+            "1. Authorization URL (open in a browser)",
+            "2. Exchange the code for tokens",
+            "2b. Exchange the code for tokens (PKCE app)",
+            "3. Refresh the access token",
+            "3b. Refresh the access token (PKCE app)"
+          ]
+        },
+        {
+          "name": "Webhook samples",
+          "requests": [
+            "Workout summary"
+          ]
+        }
+      ],
+      "variables": [
+        "client_id",
+        "client_secret",
+        "redirect_uri",
+        "scope",
+        "state",
+        "code_verifier",
+        "code_challenge",
+        "auth_code",
+        "refresh_token",
+        "local_url",
+        "webhook_token"
+      ],
+      "postman": "/collections/wahoo.postman_collection.json",
+      "bruno": "/collections/wahoo.bruno.zip",
+      "postmanBytes": 16614,
+      "brunoBytes": 11584,
+      "brunoFiles": [
+        "bruno.json",
+        "collection.bru",
+        "OAuth 2.0/folder.bru",
+        "OAuth 2.0/1. Authorization URL (open in a browser).bru",
+        "OAuth 2.0/2. Exchange the code for tokens.bru",
+        "OAuth 2.0/2b. Exchange the code for tokens (PKCE app).bru",
+        "OAuth 2.0/3. Refresh the access token.bru",
+        "OAuth 2.0/3b. Refresh the access token (PKCE app).bru",
+        "Webhook samples/folder.bru",
+        "Webhook samples/Workout summary.bru",
+        "environments/Local.bru"
+      ]
+    },
+    {
+      "id": "dexcom",
+      "name": "Dexcom",
+      "folders": [
+        {
+          "name": "OAuth 2.0",
+          "requests": [
+            "1. Authorization URL (open in a browser)",
+            "2. Exchange the code for tokens",
+            "3. Refresh the access token"
+          ]
+        }
+      ],
+      "variables": [
+        "client_id",
+        "client_secret",
+        "redirect_uri",
+        "scope",
+        "state",
+        "auth_code",
+        "refresh_token"
+      ],
+      "postman": "/collections/dexcom.postman_collection.json",
+      "bruno": "/collections/dexcom.bruno.zip",
+      "postmanBytes": 8856,
+      "brunoBytes": 5476,
+      "brunoFiles": [
+        "bruno.json",
+        "collection.bru",
+        "OAuth 2.0/folder.bru",
+        "OAuth 2.0/1. Authorization URL (open in a browser).bru",
+        "OAuth 2.0/2. Exchange the code for tokens.bru",
+        "OAuth 2.0/3. Refresh the access token.bru",
+        "environments/Local.bru"
+      ]
+    },
+    {
+      "id": "suunto",
+      "name": "Suunto",
+      "folders": [
+        {
+          "name": "OAuth 2.0",
+          "requests": [
+            "1. Authorization URL (open in a browser)",
+            "2. Exchange the code for tokens"
+          ]
+        }
+      ],
+      "variables": [
+        "client_id",
+        "client_secret",
+        "redirect_uri",
+        "scope",
+        "state",
+        "auth_code"
+      ],
+      "postman": "/collections/suunto.postman_collection.json",
+      "bruno": "/collections/suunto.bruno.zip",
+      "postmanBytes": 6564,
+      "brunoBytes": 4180,
+      "brunoFiles": [
+        "bruno.json",
+        "collection.bru",
+        "OAuth 2.0/folder.bru",
+        "OAuth 2.0/1. Authorization URL (open in a browser).bru",
+        "OAuth 2.0/2. Exchange the code for tokens.bru",
+        "environments/Local.bru"
+      ]
+    },
+    {
+      "id": "google-health",
+      "name": "Google Health API",
+      "folders": [
+        {
+          "name": "OAuth 2.0",
+          "requests": [
+            "1. Authorization URL (open in a browser)",
+            "2. Exchange the code for tokens",
+            "3. Refresh the access token"
+          ]
+        },
+        {
+          "name": "Webhook samples",
+          "requests": [
+            "Upsert (time-series data)",
+            "Delete (time-series data)",
+            "Delete (identifiable data)",
+            "Full-day activity",
+            "Endpoint verification"
+          ]
+        }
+      ],
+      "variables": [
+        "client_id",
+        "client_secret",
+        "redirect_uri",
+        "scope",
+        "state",
+        "auth_code",
+        "refresh_token",
+        "local_url"
+      ],
+      "postman": "/collections/google-health.postman_collection.json",
+      "bruno": "/collections/google-health.bruno.zip",
+      "postmanBytes": 21756,
+      "brunoBytes": 15942,
+      "brunoFiles": [
+        "bruno.json",
+        "collection.bru",
+        "OAuth 2.0/folder.bru",
+        "OAuth 2.0/1. Authorization URL (open in a browser).bru",
+        "OAuth 2.0/2. Exchange the code for tokens.bru",
+        "OAuth 2.0/3. Refresh the access token.bru",
+        "Webhook samples/folder.bru",
+        "Webhook samples/Upsert (time-series data).bru",
+        "Webhook samples/Delete (time-series data).bru",
+        "Webhook samples/Delete (identifiable data).bru",
+        "Webhook samples/Full-day activity.bru",
+        "Webhook samples/Endpoint verification.bru",
+        "environments/Local.bru"
+      ]
+    },
+    {
+      "id": "terra",
+      "name": "Terra",
+      "folders": [
+        {
+          "name": "Webhook samples",
+          "requests": [
+            "S3 payload (ping mode)"
+          ]
+        }
+      ],
+      "variables": [
+        "local_url"
+      ],
+      "postman": "/collections/terra.postman_collection.json",
+      "bruno": "/collections/terra.bruno.zip",
+      "postmanBytes": 2840,
+      "brunoBytes": 2661,
+      "brunoFiles": [
+        "bruno.json",
+        "collection.bru",
+        "Webhook samples/folder.bru",
+        "Webhook samples/S3 payload (ping mode).bru",
+        "environments/Local.bru"
+      ]
+    }
+  ]
+}

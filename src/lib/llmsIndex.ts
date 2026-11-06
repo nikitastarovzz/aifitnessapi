@@ -14,6 +14,8 @@ import { atlasCapsule } from "@/lib/atlasView";
 import { AGG_PATH, aggregatorCapsule, aggregatorText } from "@/lib/aggregatorChooserView";
 import { weeklyCapsule, WEEKLY_FEED_PATH, WEEKLY_PATH } from "@/lib/weekly";
 import { historyCapsule, HISTORY_PATH } from "@/lib/historyView";
+import { AWESOME_PATH, awesomeCapsule } from "@/lib/awesomeView";
+import { CHEATSHEETS_PATH, COLLECTIONS_PATH, cheatSheetsCapsule, collectionsCapsule } from "@/lib/kitPages";
 import { GYM_API_MATRIX } from "@/data/gymApiMatrix";
 import { RESEARCH_PLATFORM_MATRIX } from "@/data/researchPlatformMatrix";
 import { POSE_KEYPOINTS_FETCHED_ON } from "@/data/poseKeypoints";
@@ -161,6 +163,9 @@ export function toolEntries(): { label: string; path: string; text: string }[] {
     { label: `Research platform chooser`, path: RESEARCH_PATH, text: `${researchCapsule()} ${matrixText(RESEARCH_PLATFORM_MATRIX)}` },
     { label: `Health data aggregator chooser`, path: AGG_PATH, text: `${aggregatorCapsule()} ${aggregatorText()}` },
     { label: `The Fitness API Atlas (printable poster)`, path: ATLAS_PATH, text: atlasCapsule() },
+    { label: `Awesome Fitness APIs (generated awesome-list)`, path: AWESOME_PATH, text: `${awesomeCapsule()} The same list is AWESOME.md in the site's public repository.` },
+    { label: `Postman and Bruno collections`, path: COLLECTIONS_PATH, text: collectionsCapsule() },
+    { label: `Printable cheat sheets`, path: CHEATSHEETS_PATH, text: cheatSheetsCapsule() },
     { label: `Unified health-data schema`, path: "/schema", text: schemaCapsule() },
     { label: `Health data schema converter`, path: "/tools/schema-converter", text: converterCapsule() },
     { label: `Fitbit to Google Health API map`, path: "/tools/fitbit-to-google-health", text: fitbitToolCapsule() },

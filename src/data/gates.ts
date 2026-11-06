@@ -1368,6 +1368,26 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "A /weekly/feed.xml that is missing, has no self link, or does not list exactly the week pages that were built.",
   },
   {
+    code: "AWESOME-STALE",
+    area: "Derived blocks",
+    refuses: "An AWESOME.md at the repository root that differs from what scripts/build-awesome.mjs renders from the directory, libraries, MCP servers, datasets and tools today, because the data changed and the list was not regenerated.",
+  },
+  {
+    code: "AWESOME-PAGE",
+    area: "Derived blocks",
+    refuses: "A built /awesome.md mirror missing any entry line of AWESOME.md, or an /awesome page that does not render every section, so the page and the file in the repository cannot list different things.",
+  },
+  {
+    code: "COLLECTIONS",
+    area: "Derived blocks",
+    refuses: "A Postman or Bruno collection in public/collections that differs from what scripts/build-collections.mjs builds from the OAuth and webhook data, a Postman file without the v2.1.0 schema, info or items, any collection variable shipped with a value for a secret, or a /collections page that does not list every vendor.",
+  },
+  {
+    code: "CHEATSHEET",
+    area: "Derived blocks",
+    refuses: "A cheat sheet PDF or PNG that is missing, is not a PDF or PNG, passes 1.5 MB, or was drawn from different data than the generated modules hold now, or a /cheat-sheets page that does not show every sheet.",
+  },
+  {
     code: "BT-GATT-THIN",
     area: "Derived blocks",
     refuses: "A Bluetooth characteristic page built for a structure with fewer than two fields and no flags field, or a characteristic whose page flag disagrees with that rule.",

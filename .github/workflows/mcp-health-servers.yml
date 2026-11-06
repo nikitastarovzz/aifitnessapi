@@ -40,7 +40,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22" # 22: build-awesome.mjs imports the .ts data modules (type stripping)
 
       - name: Read the MCP Registry, npm and PyPI
         # Exits non-zero (and writes nothing) on a short read of the registry,
@@ -56,6 +56,7 @@ jobs:
         run: |
           node scripts/build-datasets.mjs
           node scripts/build-dataset-manifest.mjs
+          node scripts/build-awesome.mjs
 
       - name: Commit if something meaningful changed
         env:
@@ -67,7 +68,7 @@ jobs:
           set -euo pipefail
           if git diff --quiet -- src/data/mcpHealthServers.ts; then
             echo "No changes."
-            git checkout -- public/datasets
+            git checkout -- public/datasets AWESOME.md
             exit 0
           fi
 
@@ -93,7 +94,7 @@ jobs:
             echo "Only the listing size / the read date moved:"
             printf '%s\n' "$changed"
             echo "Holding this back until the month's first run so it does not redeploy the site."
-            git checkout -- src/data/mcpHealthServers.ts public/datasets
+            git checkout -- src/data/mcpHealthServers.ts public/datasets AWESOME.md
             exit 0
           fi
           if [ -z "$meaningful" ]; then
@@ -105,7 +106,7 @@ jobs:
 
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add src/data/mcpHealthServers.ts public/datasets
+          git add src/data/mcpHealthServers.ts public/datasets AWESOME.md
           git commit -m "Refresh health MCP server directory"
 
           # Via a PR with auto-merge, not a direct push: main requires a pull

@@ -39,6 +39,8 @@ import { ATLAS_PATH } from "@/lib/audienceTools";
 import { atlasAsOf } from "@/lib/atlasView";
 import { weeklyDataDate, WEEKLY_PATH } from "@/lib/weekly";
 import { historyAsOf, HISTORY_PATH } from "@/lib/historyView";
+import { AWESOME_PATH, awesomeAsOf } from "@/lib/awesomeView";
+import { CHEATSHEETS_PATH, COLLECTIONS_PATH, cheatSheetsAsOf, collectionsAsOf } from "@/lib/kitPages";
 import { GYM_API_MATRIX } from "@/data/gymApiMatrix";
 import { RESEARCH_PLATFORM_MATRIX } from "@/data/researchPlatformMatrix";
 import { AGGREGATOR_MATRIX } from "@/data/aggregatorChooser";
@@ -330,6 +332,11 @@ function computeSections(): SitemapSection[] {
     [WEEKLY_PATH]: weeklyDataDate(),
     // The timeline declares the newest day any graveyard or tracker record was checked.
     [HISTORY_PATH]: historyAsOf(),
+    // The awesome list, the collections and the cheat sheets declare the
+    // newest date their generated inputs were read (their mirrors say so).
+    [AWESOME_PATH]: awesomeAsOf(),
+    [COLLECTIONS_PATH]: collectionsAsOf(),
+    [CHEATSHEETS_PATH]: cheatSheetsAsOf(),
   };
 
   const standalone = [
@@ -378,6 +385,9 @@ function computeSections(): SitemapSection[] {
     ATLAS_PATH,
     WEEKLY_PATH,
     HISTORY_PATH,
+    AWESOME_PATH,
+    COLLECTIONS_PATH,
+    CHEATSHEETS_PATH,
     API_INDEX_PATH,
     DAILY_PATH,
     GRAVEYARD_PATH,

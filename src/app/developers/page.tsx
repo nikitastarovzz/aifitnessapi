@@ -222,6 +222,15 @@ export default function DevelopersPage() {
               <strong>Datasets.</strong> The JSON and CSV downloads the API is built from, with their
               methodology, on <Link href="/datasets" className="text-brand-600 hover:text-brand-500">Open Datasets</Link>.
             </li>
+            <li>
+              <strong>Kits.</strong>{" "}
+              <Link href="/collections" className="text-brand-600 hover:text-brand-500">Postman and Bruno collections</Link> for the
+              vendor OAuth flows and webhook samples documented here,{" "}
+              <Link href="/cheat-sheets" className="text-brand-600 hover:text-brand-500">printable cheat sheets</Link> for HealthKit,
+              Health Connect and pose keypoints, and the{" "}
+              <Link href="/awesome" className="text-brand-600 hover:text-brand-500">Awesome Fitness APIs list</Link>, also AWESOME.md
+              in the repository.
+            </li>
           </ul>
 
           <div className="mt-8 overflow-x-auto rounded-2xl border border-[var(--border)]">
