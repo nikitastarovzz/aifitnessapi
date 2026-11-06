@@ -40,6 +40,7 @@ import { shipItMirror } from "./shipIt";
 import { challengeMirror } from "./challenge";
 import { myStackMirror } from "./myStack";
 import { answersSearchMirror } from "./answersSearch";
+import { driftMirror, noticeMirror, pricingMirror, researchHubMirror } from "./research";
 
 /**
  * Every non-cluster page with a markdown mirror, by page path. Each entry has
@@ -95,6 +96,10 @@ export const PAGE_MIRRORS: Record<string, () => MirrorDoc> = {
   "/challenge": challengeMirror,
   "/my-stack": myStackMirror,
   "/answers-search": answersSearchMirror,
+  "/research": researchHubMirror,
+  "/research/docs-drift": driftMirror,
+  "/research/shutdown-notice": noticeMirror,
+  "/research/pricing-transparency": pricingMirror,
 };
 
 /** The GET handler body for a mirror route. */

@@ -44,6 +44,7 @@ import { hsPageTypes, hsDataTypePath, hsPageModified } from "@/data/hsDataTypePa
 import { GHAPI_PATHS, allTypes as ghapiTypes, typePath as ghapiTypePath, ghapiModified } from "@/data/ghapiPages";
 import { MCP_SERVERS_FETCHED_ON } from "@/data/mcpHealthServers";
 import { BT_BASE, BT_FETCHED, BT_PAGES, btPath } from "@/data/btPages";
+import { RESEARCH_PATH, hubDataDate, studies as researchStudies } from "@/lib/researchPages";
 import { PLATFORM_ORDER as WT_PLATFORM_ORDER, WT_BASE, WT_FETCHED, activityPath as wtActivityPath, activityRows as wtActivityRows, platformPath as wtPlatformPath } from "@/data/workoutTypePages";
 
 /**
@@ -313,6 +314,10 @@ function computeSections(): SitemapSection[] {
     // The press page declares the newest date any of its inputs was written
     // or checked, through the same function.
     [PRESS_PATH]: pressDataDate(),
+    // Each study declares the newest date its data was read; the hub the
+    // newest of the three.
+    [RESEARCH_PATH]: hubDataDate(),
+    ...Object.fromEntries(researchStudies().map((s) => [s.path, s.dataDate])),
     // The poster declares the newest date its inputs were checked.
     [ATLAS_PATH]: atlasAsOf(),
   };
@@ -363,6 +368,8 @@ function computeSections(): SitemapSection[] {
     GRAVEYARD_PATH,
     "/webhooks",
     PRESS_PATH,
+    RESEARCH_PATH,
+    ...researchStudies().map((s) => s.path),
     "/alerts",
     "/my-stack",
     "/answers-search",

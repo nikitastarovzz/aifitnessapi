@@ -90,6 +90,10 @@ const PAGE_MIRRORS = [
   "/challenge",
   "/my-stack",
   "/answers-search",
+  "/research",
+  "/research/docs-drift",
+  "/research/shutdown-notice",
+  "/research/pricing-transparency",
 ];
 
 const nextConfig: NextConfig = {

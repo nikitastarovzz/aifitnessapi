@@ -4,6 +4,7 @@ import { WEBHOOKS_PATH, webhooksCapsule } from "@/lib/webhooksPage";
 import { PAGE_H1 } from "@/data/pageTitles";
 import { vendorChangesPath, vendorFeedPath, vendorTimelines } from "@/lib/vendorChanges";
 import { graveyardCopy } from "@/lib/graveyardCopy";
+import { studies as researchStudies } from "@/lib/researchPages";
 import { TASKS_VISION_VERSION } from "@/lib/poseBenchmark";
 import { formRulesText, leaderboardText, repPlaygroundText } from "@/lib/poseToolsText";
 import { PLANNER_LLMS } from "@/lib/plannerPages";
@@ -127,6 +128,8 @@ export function toolEntries(): { label: string; path: string; text: string }[] {
     { label: `Fitness APIs in 2026, the year in numbers`, path: "/2026", text: `a scroll story of one computed stat per slide: tracked changes dated 2026 and the busiest month, pricing and plan changes, the Google Health API launch date and the Fitbit Web API turn-off date as Google's own pages give them, Health Connect client and open-source package releases, and the median age of this site's verification stamps, each with its source file and date. Recomputed at every build and titled "so far" until the first build of 2027. It counts what the changes tracker records and repeats nothing from the State of Fitness APIs 2026 report.` },
     { label: `The Fitness API Graveyard`, path: "/graveyard", text: `every fitness and health developer API, SDK and endpoint this site could source that its vendor has shut down, scheduled to shut down or deprecated (${graveyard.total}: ${graveyard.dead} dead, ${graveyard.dying} dying, ${graveyard.deprecated} deprecated), each with the end date at the vendor's precision, the replacement the vendor names and a verbatim quote from the vendor's page or an Internet Archive capture of it, with the date it was read. Rows at ${absoluteUrl("/graveyard/data.json")}; embeddable at ${absoluteUrl("/embed/graveyard")}.` },
     { label: `Press numbers`, path: "/press", text: `counts a reporter or a model can quote about this site and the ecosystem it tracks (products in the directory, dated changes logged, shut-down and deprecated APIs recorded, open datasets and their rows, API collections, pages re-checked in the last 90 days, release cadence across the directory, and every stat of the 2026 story), each computed from a repository file at build time and printed with that file and its date, with a how-to-cite block (plain and BibTeX) and the funder disclosure.` },
+    { label: `Fitness API research`, path: "/research", text: `three original studies computed from this site's repository, each with its method, its limits, an open CC BY 4.0 dataset and a how-to-cite block; every headline figure is recomputed from the published dataset at each build.` },
+    ...researchStudies().map((s) => ({ label: s.h1, path: s.path, text: s.capsule })),
     ...vendorTimelines().map((t) => ({
       label: `${t.api.short} API changes and deadlines timeline`,
       path: vendorChangesPath(t.api.id),

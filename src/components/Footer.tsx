@@ -164,6 +164,9 @@ export default function Footer() {
           <FooterLink href="/press" className="py-1 hover:text-[var(--fg)]">
             Press numbers
           </FooterLink>
+          <FooterLink href="/research" className="py-1 hover:text-[var(--fg)]">
+            Research
+          </FooterLink>
           <FooterLink href="/changes" className="py-1 hover:text-[var(--fg)]">
             Changes &amp; Deadlines
           </FooterLink>

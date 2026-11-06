@@ -15,6 +15,29 @@
  * appears here as `TITLE-*`.
  */
 export const GATES: { code: string; refuses: string; area: string }[] = [
+  // ── /research studies (2026-11-06, ops/VIRAL-20-2026-11-06.md items 1-3) ──
+  {
+    code: "RESEARCH-MISSING",
+    area: "Datasets and artifacts",
+    refuses: "A build in which /research or one of its study pages did not render, or a study's dataset has no rows.",
+  },
+  {
+    code: "RESEARCH-DRIFT",
+    area: "Datasets and artifacts",
+    refuses:
+      "A headline figure on a /research study page that differs from what its published dataset gives when recomputed here, a figure the page leaves out, or one no published file recomputes.",
+  },
+  {
+    code: "RESEARCH-STALE",
+    area: "Datasets and artifacts",
+    refuses:
+      "A shutdown-notice dataset that does not cover exactly the graveyard's entries, or a pricing-transparency row whose vendor line is no longer quoted at its URL in the evidence file it names.",
+  },
+  {
+    code: "RESEARCH-DISCLOSURE",
+    area: "Disclosure",
+    refuses: "A pricing-transparency study that does not say, in its own body, that KinesteX funds the site.",
+  },
   // ── Countdown widgets, /my-stack, /answers-search (2026-11-05) ──
   {
     code: "COUNTDOWN-DATE",

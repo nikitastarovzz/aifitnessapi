@@ -33,6 +33,7 @@ import {
 } from "@/lib/repCounter.mjs";
 import { getAllPosts } from "@/lib/posts";
 import { slides as yearSlides, storyTitle as yearTitle } from "@/lib/year2026";
+import { studies as researchStudies } from "@/lib/researchPages";
 import { graveyardCopy } from "@/lib/graveyardCopy";
 import { EVENTS as SHIP_IT_EVENTS, PATH as SHIP_IT_PATH, RUNWAY_WEEKS as SHIP_IT_RUNWAY } from "@/lib/shipIt";
 import { GLANCE_HUBS, hubQa, segText } from "@/data/hubGlance";
@@ -306,6 +307,15 @@ function toolLines(): string[] {
     out.push(
       `A scroll story of one computed number per slide, recomputed from this site's data files at every build and titled "so far" until the first build of 2027. It counts what the changes tracker (/changes) records and repeats nothing from the State of Fitness APIs 2026 report. As of this build: ${ys.map((s) => `${s.value} ${s.label} (${s.source.file}, ${s.source.dateLabel})`).join("; ")}.`,
     );
+    out.push("");
+  }
+  for (const s of researchStudies()) {
+    out.push(`## ${s.h1} — ${absoluteUrl(s.path)}`);
+    out.push(`Primary query: ${s.primaryQuery}`);
+    out.push("");
+    out.push(`${s.capsule} Data: ${absoluteUrl(`/datasets/${s.dataset}.json`)} (${s.dataDateLabel}).`);
+    out.push("");
+    for (const f of s.faqs) out.push(`- Q: ${f.q}\n  A: ${f.a}`);
     out.push("");
   }
   out.push(`## Synthetic health data generator — ${absoluteUrl("/tools/sample-data")}`);

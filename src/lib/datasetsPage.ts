@@ -312,6 +312,36 @@ export const ENTRIES: Entry[] = [
     caveat:
       "Matches are by name alone: a category or exercise name maps only where its normalized name equals a constant's, so most terms are unmapped by design. Equipment, muscle and body-part terms are never mapped; the nameContains columns are text coincidences for browsing. The databases' own licenses cover their content; this file republishes the term names.",
   },
+  {
+    slug: "fitness-api-docs-drift-2026",
+    unit: "row groups",
+    blurb:
+      "Every evidence row this site has written (a claim, a source URL and a verbatim quote), followed through the repository's commit history to the commit that replaced or removed it, with the reason that commit's message gives: the vendor's page changed, this site changed the quote, or the source stopped answering.",
+    keywords: ["api documentation drift", "how often api docs change", "vendor documentation changes", "source quote history", "fitness api docs"],
+    presentedBy: { href: "/research/docs-drift", label: "How often fitness API documentation changes under us" },
+    caveat:
+      "Rows that share every column are grouped, and rows counts them. Causes come only from commit messages; dates are merge dates on main. A change that was never committed, or a page no row quotes, is not here.",
+  },
+  {
+    slug: "fitness-api-shutdown-notice-2026",
+    unit: "entries",
+    blurb:
+      "One row per Fitness API Graveyard entry: the end date at the vendor's precision, the day the vendor announced it where a vendor page dates the notice, the days between them, and for every other entry the reason it cannot be measured.",
+    keywords: ["api deprecation notice period", "shutdown notice", "api sunset announcement", "fitness api graveyard", "deprecation timeline"],
+    presentedBy: { href: "/research/shutdown-notice", label: "How much notice fitness API shutdowns gave" },
+    caveat:
+      "Notice is computed only where both dates are to the day, which few vendor pages allow. A missing announcement date means none was found on the pages read, not that none was given.",
+  },
+  {
+    slug: "fitness-api-pricing-transparency-2026",
+    unit: "vendors",
+    blurb:
+      "Every vendor on this site's pricing pages, classed as publishing a price, naming a paid plan without one, or free, each with the vendor's own line as the pages' evidence files quote it, plus any free entry or unpriced tier.",
+    keywords: ["api pricing transparency", "contact sales pricing", "health data api prices", "wearable api free", "published api prices"],
+    presentedBy: { href: "/research/pricing-transparency", label: "Which fitness API vendors publish their prices" },
+    caveat:
+      "The class records what the vendor's page says on the evidence files' read dates, not what a customer pays. KinesteX, which funds this site, and vendors whose lines state no price either way are listed but not counted.",
+  },
 ];
 
 export const LOADED = ENTRIES.map((e) => ({ entry: e, file: loadDataset(e.slug) }));

@@ -8,7 +8,7 @@ import { orgRef } from "@/lib/schema";
 import { bibtexCitation, plainCitation } from "@/lib/cite";
 import { shortDate } from "@/lib/ecosystemDerive";
 import { buildDate } from "@/lib/year2026";
-import { PRESS_PATH, YEAR_PATH, indexStats, pressDataDate, siteStats, yearStats, type PressSource } from "@/lib/press";
+import { PRESS_PATH, YEAR_PATH, indexStats, pressDataDate, researchPressStats, siteStats, yearStats, type PressSource } from "@/lib/press";
 
 /**
  * /press — numbers about this site and the ecosystem it tracks, for anyone
@@ -56,6 +56,7 @@ export default function PressPage() {
   const own = siteStats(asOf);
   const index = indexStats(asOf);
   const year = yearStats(asOf);
+  const research = researchPressStats();
   const url = absoluteUrl(PRESS_PATH);
   const byId = Object.fromEntries(own.map((s) => [s.id, s]));
 
@@ -169,6 +170,20 @@ export default function PressPage() {
                 ),
               )}
             </ul>
+          </section>
+        )}
+
+        {research.length > 0 && (
+          <section className="mt-12">
+            <h2 className="text-2xl font-bold tracking-tight text-[var(--fg)]">From the research</h2>
+            <p className="mt-2 text-sm text-[var(--muted)]">
+              Headline figures of{" "}
+              <Link href="/research" className="text-brand-600 hover:text-brand-500">
+                the site&rsquo;s original studies
+              </Link>
+              , each recomputed from its open dataset; the study page carries the method and its limits.
+            </p>
+            <ul className="mt-5 grid gap-4 sm:grid-cols-2">{research.map((s) => stat(s))}</ul>
           </section>
         )}
 

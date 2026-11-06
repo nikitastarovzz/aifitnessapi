@@ -35,4 +35,8 @@ export const PAGE_H1 = {
   "/tools/store-submission-checklist": "App Store and Google Play submission checklist for health apps",
   "/tools/compliance-wizard": "Health app compliance wizard: which rules apply to your app?",
   "/webhooks": "Wearable webhook payloads, as each vendor documents them",
+  "/research": "Fitness API research",
+  "/research/docs-drift": "How often fitness API documentation changes under us",
+  "/research/shutdown-notice": "How much notice fitness API shutdowns gave",
+  "/research/pricing-transparency": "Which fitness API vendors publish their prices",
 } as const;
