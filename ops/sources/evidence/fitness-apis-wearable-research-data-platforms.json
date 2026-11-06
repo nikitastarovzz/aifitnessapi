@@ -463,5 +463,25 @@
     "claim": "Washington's My Health My Data Act leaves out research that an institutional review board approves, monitors and governs.",
     "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=19.373&full=true",
     "quote": "is approved, monitored, and governed by an institutional review board, human subjects research ethics review board, or a similar independent oversight entity"
+  },
+  {
+    "claim": "Fitabase dates the Fitbit Web API shut-off October 30, 2026 (re-read November 6, 2026).",
+    "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/migration-overview/",
+    "quote": "Google is shutting it down on October 30, 2026."
+  },
+  {
+    "claim": "Fitabase's who-needs-to-reauthorize page also says October 30, 2026 (re-read November 6, 2026).",
+    "url": "https://www.fitabase.com/resources/knowledge-base/google-health-api-migration/who-needs-to-reauthorize/",
+    "quote": "whether they'll keep collecting data after the Fitbit Web API shuts off on October 30, 2026."
+  },
+  {
+    "claim": "Google's own pages give November 2, 2026 as the turn-off (read November 6, 2026).",
+    "url": "https://developers.google.com/health/migration?hl=en",
+    "quote": "the legacy Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users."
+  },
+  {
+    "claim": "Google's pages date the turn-off November 2, 2026.",
+    "url": "https://developers.google.com/health/migration?hl=en",
+    "quote": "On November 2, 2026 , the legacy Fitbit Web API"
   }
 ]

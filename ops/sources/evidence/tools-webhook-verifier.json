@@ -340,9 +340,94 @@
     "quote": "To fetch the updated data for each notified interval, call the reconcile endpoint with a filter for the interval's time range."
   },
   {
-    "claim": "Google Health API: example notifications show a GOOGLE-HEALTH-API-SIGNATURE header (its computation is not described).",
+    "claim": "Google Health API: example notifications carry a GOOGLE-HEALTH-API-SIGNATURE header.",
     "url": "https://developers.google.com/health/webhooks?hl=en",
     "quote": "GOOGLE-HEALTH-API-SIGNATURE: signature-value"
+  },
+  {
+    "claim": "Google Health API: the raw JSON payload is signed with Tink's PublicKeySign; the base64 signature is in GOOGLE-HEALTH-API-SIGNATURE (read 2026-11-06).",
+    "url": "https://developers.google.com/health/webhooks?hl=en",
+    "quote": "the raw JSON payload of every outgoing webhook notification is signed with a private key using Tink's"
+  },
+  {
+    "claim": "Google Health API: the signature is base64-encoded in the GOOGLE-HEALTH-API-SIGNATURE header.",
+    "url": "https://developers.google.com/health/webhooks?hl=en",
+    "quote": "providing the Base64-encoded signature in the GOOGLE-HEALTH-API-SIGNATURE HTTP header in the request."
+  },
+  {
+    "claim": "Google Health API: signing keys rotate every 30 days.",
+    "url": "https://developers.google.com/health/webhooks?hl=en",
+    "quote": "These signing keys are automatically rotated every 30 days"
+  },
+  {
+    "claim": "Google Health API: the public keyset is a JSON file at a permanent gstatic URL.",
+    "url": "https://developers.google.com/health/webhooks?hl=en",
+    "quote": "https://www.gstatic.com/googlehealthapi/webhooks/webhooks_public_keyset.json"
+  },
+  {
+    "claim": "Google Health API: the header holds a 5-byte Tink prefix (1-byte version, 4-byte keyId) then a DER signature.",
+    "url": "https://developers.google.com/health/webhooks?hl=en",
+    "quote": "5-byte Tink prefix (which contains a 1-byte version prefix and a 4-byte keyId) from the actual DER-encoded signature."
+  },
+  {
+    "claim": "Google Health API: each key's value is a serialized EcdsaPublicKey protobuf.",
+    "url": "https://developers.google.com/health/webhooks?hl=en",
+    "quote": "which contains a serialized EcdsaPublicKey Protocol Buffer."
+  },
+  {
+    "claim": "Google Health API: x and y are protobuf tags 3 and 4.",
+    "url": "https://developers.google.com/health/webhooks?hl=en",
+    "quote": "Extract the big-endian x and y coordinates (Protobuf tags 3 and 4) from"
+  },
+  {
+    "claim": "Google Health API: build an ECDSA P-256 public key from x and y.",
+    "url": "https://developers.google.com/health/webhooks?hl=en",
+    "quote": "Instantiate a standard ECDSA P-256 public key in a built-in cryptography"
+  },
+  {
+    "claim": "Google Health API: verify the raw JSON payload with SHA-256.",
+    "url": "https://developers.google.com/health/webhooks?hl=en",
+    "quote": "Verify the raw webhook JSON payload against the extracted DER signature"
+  },
+  {
+    "claim": "Google Health API keyset is served cross-origin (access-control-allow-origin: *), so the browser can fetch it; each key is an EcdsaPublicKey with TINK output prefix.",
+    "url": "https://www.gstatic.com/googlehealthapi/webhooks/webhooks_public_keyset.json",
+    "quote": "\"typeUrl\": \"type.googleapis.com/google.crypto.tink.EcdsaPublicKey\""
+  },
+  {
+    "claim": "Tink: EcdsaParams field numbers (hash_type 1, curve 2, encoding 3).",
+    "url": "https://raw.githubusercontent.com/tink-crypto/tink-java/main/proto/ecdsa.proto",
+    "quote": "EcdsaSignatureEncoding encoding = 3;"
+  },
+  {
+    "claim": "Tink: DER encoding enum value is 2.",
+    "url": "https://raw.githubusercontent.com/tink-crypto/tink-java/main/proto/ecdsa.proto",
+    "quote": "// s INTEGER // } DER = 2;"
+  },
+  {
+    "claim": "Tink: EcdsaPublicKey x is field 3.",
+    "url": "https://raw.githubusercontent.com/tink-crypto/tink-java/main/proto/ecdsa.proto",
+    "quote": "bytes x = 3;"
+  },
+  {
+    "claim": "Tink: EcdsaPublicKey y is field 4.",
+    "url": "https://raw.githubusercontent.com/tink-crypto/tink-java/main/proto/ecdsa.proto",
+    "quote": "bytes y = 4;"
+  },
+  {
+    "claim": "Tink: SHA256 hash enum value is 3.",
+    "url": "https://raw.githubusercontent.com/tink-crypto/tink-java/main/proto/common.proto",
+    "quote": "SHA384 = 2; SHA256 = 3;"
+  },
+  {
+    "claim": "Tink: NIST_P256 curve enum value is 2.",
+    "url": "https://raw.githubusercontent.com/tink-crypto/tink-java/main/proto/common.proto",
+    "quote": "NIST_P256 = 2;"
+  },
+  {
+    "claim": "Tink: a TINK output prefix is 5 bytes starting with 0x01.",
+    "url": "https://raw.githubusercontent.com/tink-crypto/tink-java/main/proto/tink.proto",
+    "quote": "Tink  : prefix is 5 bytes, starts with \\x01 and followed by 4-byte"
   },
   {
     "claim": "Fitbit Web API: legacy API and Fitbit OAuth endpoints turned off on November 2, 2026.",

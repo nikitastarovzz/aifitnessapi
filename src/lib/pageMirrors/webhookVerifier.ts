@@ -9,6 +9,7 @@ const KIND_LABEL: Record<string, string> = {
   hmac: "HMAC signature",
   token: "Shared token, no signature",
   handshake: "Validation handshake, events unsigned",
+  "token+ecdsa": "Shared token plus ECDSA signature",
 };
 
 /** /tools/webhook-verifier.md — mirrors src/app/tools/webhook-verifier/page.tsx,
@@ -45,7 +46,7 @@ export function webhookVerifierMirror(): MirrorDoc {
     capsule: `Pick the vendor, paste the request you received and your secret, and this checks it the way that vendor documents. ${signed
       .map((v) => v.name)
       .join(", ")
-      .replace(/, ([^,]*)$/, " and $1")} sign each delivery with HMAC-SHA256, each over a different string; Strava, Withings, Wahoo and the Google Health API instead rely on a validation handshake or a secret you chose. It then explains each field, states the response and time limit the vendor expects, and names the API call that fetches the data. Each rule was read from the vendor’s own page on ${UPDATED}. It all runs in your browser: the secret never leaves the tab.`,
+      .replace(/, ([^,]*)$/, " and $1")} sign each delivery with HMAC-SHA256, each over a different string; Strava, Withings and Wahoo instead rely on a validation handshake or a secret you chose; and the Google Health API sends a secret you chose plus a Tink ECDSA P-256 signature, checked here against Google's published keyset. It then explains each field, states the response and time limit the vendor expects, and names the API call that fetches the data. Each rule was read from the vendor’s own page on ${UPDATED}. It all runs in your browser: the secret never leaves the tab.`,
     body: [
       interactiveNote(PATH, "the signature checker"),
       "",
@@ -62,7 +63,7 @@ export function webhookVerifierMirror(): MirrorDoc {
       "",
       "## How this works",
       "",
-      "The page makes no network request with what you paste. Signatures are recomputed with the browser’s WebCrypto API (`crypto.subtle`, HMAC with SHA-256) and compared in constant time; the secret field is a password input with autocomplete off, and nothing is written to storage.",
+      "The page makes no network request with what you paste. Signatures are recomputed with the browser’s WebCrypto API (`crypto.subtle`: HMAC with SHA-256, and ECDSA P-256 for the Google Health API) and compared in constant time; the secret field is a password input with autocomplete off, and nothing is written to storage. The only request the page can make is a GET of Google’s public keyset from gstatic.com, when you press the button.",
       "",
       "Paste the body exactly as it arrived. Every signed scheme here except Oura’s signs the raw bytes, and a framework that parses and re-serializes JSON before your handler sees it is the most common reason a genuine request fails verification.",
       "",

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
+  GOOGLE_HEALTH_KEYSET_URL,
   WEBHOOK_VENDORS,
   buildExample,
   explainPayload,
@@ -17,6 +18,11 @@ import {
  * input is a password field with autocomplete off so the browser does not
  * offer to remember it. The verifier itself is src/lib/webhookVerifier.mjs —
  * the same file scripts/webhook-verifier.test.mjs exercises.
+ *
+ * The one network request this component can make is a GET of Google's
+ * public webhook keyset (GOOGLE_HEALTH_KEYSET_URL, served with
+ * access-control-allow-origin: *), and only when the reader presses the
+ * button; nothing typed into the form is sent with it.
  */
 
 type Vendor = (typeof WEBHOOK_VENDORS)[number];
@@ -50,12 +56,14 @@ export default function WebhookVerifier() {
   const [headers, setHeaders] = useState("");
   const [body, setBody] = useState("");
   const [secret, setSecret] = useState("");
+  const [keyset, setKeyset] = useState("");
+  const [keysetNote, setKeysetNote] = useState("");
   const [result, setResult] = useState<Result | null>(null);
   const [busy, setBusy] = useState(false);
   const [exampleLoaded, setExampleLoaded] = useState(false);
 
   const run = useCallback(
-    async (input: { method: string; url: string; headers: string; body: string; secret: string }) => {
+    async (input: { method: string; url: string; headers: string; body: string; secret: string; keyset?: string }) => {
       setBusy(true);
       try {
         setResult(await verifyWebhook(vendor.id, input as Parameters<typeof verifyWebhook>[1]));
@@ -72,6 +80,8 @@ export default function WebhookVerifier() {
   useEffect(() => {
     setResult(null);
     setExampleLoaded(false);
+    setKeyset("");
+    setKeysetNote("");
     setMethod(vendor.id === "strava" ? "GET" : "POST");
   }, [vendor.id]);
 
@@ -82,6 +92,8 @@ export default function WebhookVerifier() {
     setHeaders(ex.headers);
     setBody(ex.body);
     setSecret(ex.secret);
+    setKeyset("keyset" in ex && typeof ex.keyset === "string" ? ex.keyset : "");
+    setKeysetNote("keyset" in ex && ex.keyset ? "Demo keyset: a throwaway key made in this tab for the example, not Google's." : "");
     setExampleLoaded(true);
     await run(ex);
   }
@@ -122,7 +134,7 @@ export default function WebhookVerifier() {
         className="mt-5 space-y-4"
         onSubmit={(e) => {
           e.preventDefault();
-          void run({ method, url, headers, body, secret });
+          void run({ method, url, headers, body, secret, keyset });
         }}
       >
         <div className="flex flex-wrap items-end gap-4">
@@ -199,6 +211,51 @@ export default function WebhookVerifier() {
             {exampleLoaded && " The example uses a demo secret, not a real key."}
           </span>
         </label>
+
+        {vendor.id === "google-health" && (
+          <div>
+            <label className="block text-sm font-semibold text-[var(--fg)]">
+              Google&rsquo;s public keyset{" "}
+              <span className="font-normal text-[var(--muted)]">(JSON, to check GOOGLE-HEALTH-API-SIGNATURE; optional)</span>
+              <textarea
+                value={keyset}
+                onChange={(e) => {
+                  setKeyset(e.target.value);
+                  setKeysetNote("");
+                }}
+                rows={4}
+                spellCheck={false}
+                name="keyset"
+                placeholder='{ "primaryKeyId": …, "key": [ … ] }'
+                className={field}
+              />
+            </label>
+            <div className="mt-2 flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                data-action="fetch-keyset"
+                onClick={async () => {
+                  setKeysetNote("Fetching…");
+                  try {
+                    const r = await fetch(GOOGLE_HEALTH_KEYSET_URL, { cache: "no-store", credentials: "omit" });
+                    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+                    setKeyset(await r.text());
+                    setKeysetNote(`Loaded from ${GOOGLE_HEALTH_KEYSET_URL} just now.`);
+                  } catch (e) {
+                    setKeysetNote(`Could not fetch the keyset (${e instanceof Error ? e.message : String(e)}). Open the URL and paste its JSON instead.`);
+                  }
+                }}
+                className="rounded-full border border-[var(--border)] px-4 py-2 text-sm font-medium text-[var(--fg)] hover:border-brand-400"
+              >
+                Fetch Google&rsquo;s current keyset
+              </button>
+              <span className="text-xs text-[var(--muted)]">
+                {keysetNote ||
+                  "A plain GET of gstatic.com's public file; nothing you typed is sent. Keys rotate every 30 days, so fetch it again for a new delivery."}
+              </span>
+            </div>
+          </div>
+        )}
 
         <button
           type="submit"
