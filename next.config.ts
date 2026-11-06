@@ -74,6 +74,8 @@ const PAGE_MIRRORS = [
   "/tools/gym-software-api-matrix",
   "/tools/research-platform-chooser",
   "/atlas",
+  "/weekly",
+  "/history",
   "/tools/oauth-playground",
   "/tools/schema-converter",
   "/tools/fitbit-to-google-health",

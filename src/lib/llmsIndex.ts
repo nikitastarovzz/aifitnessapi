@@ -10,6 +10,8 @@ import { PLANNER_LLMS } from "@/lib/plannerPages";
 import { COVERAGE_PATH, RATE_LIMIT_PATH, coverageCapsule, rateLimitCapsule } from "@/lib/coverageView";
 import { ATLAS_PATH, GYM_PATH, RESEARCH_PATH, TAXONOMY_PATH, gymCapsule, matrixText, researchCapsule, taxonomyText } from "@/lib/audienceTools";
 import { atlasCapsule } from "@/lib/atlasView";
+import { weeklyCapsule, WEEKLY_FEED_PATH, WEEKLY_PATH } from "@/lib/weekly";
+import { historyCapsule, HISTORY_PATH } from "@/lib/historyView";
 import { GYM_API_MATRIX } from "@/data/gymApiMatrix";
 import { RESEARCH_PLATFORM_MATRIX } from "@/data/researchPlatformMatrix";
 import { POSE_KEYPOINTS_FETCHED_ON } from "@/data/poseKeypoints";
@@ -132,6 +134,8 @@ export function toolEntries(): { label: string; path: string; text: string }[] {
       path: vendorChangesPath(t.api.id),
       text: `the ${t.events.length} entries of the changes tracker that name ${t.api.label}, newest first, graded confirmed or reported, each linking its source page; RSS at ${absoluteUrl(vendorFeedPath(t.api.id))}.`,
     })),
+    { label: `Weekly fitness API roundup`, path: WEEKLY_PATH, text: `${weeklyCapsule()} RSS at ${absoluteUrl(WEEKLY_FEED_PATH)}; the week pages are noindex and the monthly digest is the indexed archive.` },
+    { label: `A visual history of fitness and health APIs`, path: HISTORY_PATH, text: `${historyCapsule()} Deep links: ${absoluteUrl(`${HISTORY_PATH}?vendor=<id>&kind=<launch,change,milestone,end>`)}.` },
     { label: `Monthly digest archive`, path: "/digest", text: `one issue per month, generated from the changes tracker and the pages' own review dates; each issue also served as plain text at /digest/<month>/digest.md.` },
     { label: `Open datasets`, path: "/datasets", text: `every dataset this site publishes, CC BY 4.0, JSON and CSV, versioned rather than overwritten.` },
     { label: `Developer API & MCP server`, path: "/developers", text: `the same datasets as a free, read-only JSON API (${absoluteUrl("/api/v1")}, described by ${absoluteUrl("/api/v1/openapi.json")}) and as MCP tools for AI assistants at ${absoluteUrl("/mcp")}. Every response carries its source page, license and verification date; a field the site could not verify is null, never guessed.` },

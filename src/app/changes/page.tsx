@@ -181,6 +181,18 @@ export default function ChangesPage() {
         </p>
 
         <p className="mt-2 text-sm text-[var(--muted)]">
+          {"Every entry below and every graveyard date on one time axis: "}
+          <Link href="/history" className="font-medium text-brand-600 hover:text-brand-500">
+            the visual history of fitness APIs
+          </Link>
+          {". Week by week, with releases: "}
+          <Link href="/weekly" className="font-medium text-brand-600 hover:text-brand-500">
+            the weekly roundup
+          </Link>
+          .
+        </p>
+
+        <p className="mt-2 text-sm text-[var(--muted)]">
           Looking only for the endings?{" "}
           <Link href="/graveyard" className="font-medium text-brand-600 hover:text-brand-500">
             The Fitness API Graveyard

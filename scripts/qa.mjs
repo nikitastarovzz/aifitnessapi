@@ -6156,6 +6156,66 @@ function checkSitemapIndex(SITE) {
   console.log(`Gates: ${live.size} refusals in qa.mjs, ${described.length} described on /gates.`);
 }
 
+// ── The weekly roundup and the visual history (ops/VIRAL-20-2026-11-06.md
+// items 9 and 10). The week pages are a finer cut of the monthly digest's
+// records, so each must say noindex, follow and stay out of the sitemap, and
+// the feed must carry exactly the weeks that were built. The history poster
+// is drawn from graveyard.ts and changes.ts: the committed SVG must be the
+// one the current records draw, byte for byte, and /history must render a
+// mark for every dated record the drawing places.
+{
+  const weekRoutes = htmls.map(routeOf).filter((r) => /^\/weekly\/\d{4}-w\d{2}$/.test(r) && !notFoundSet.has(r));
+  const listed = new Set([...SITEMAP.xml.matchAll(/<loc>https:\/\/aifitnessapi\.com([^<]*)<\/loc>/g)].map((m) => m[1]));
+  const fileOf = new Map(htmls.map((h) => [routeOf(h), h]));
+  for (const r of weekRoutes) {
+    const robots = robotsOf(fs.readFileSync(fileOf.get(r), "utf8")).join(" | ");
+    if (!/\bnoindex\b/.test(robots) || !/\bfollow\b/.test(robots) || /nofollow/.test(robots)) problems.push(`WEEKLY-INDEX  ${r} renders robots "${robots}", expected noindex, follow`);
+    if (listed.has(r)) problems.push(`WEEKLY-INDEX  ${r} is in sitemap.xml; week pages are noindex`);
+  }
+  if (!fileOf.has("/weekly") || !listed.has("/weekly")) problems.push("WEEKLY-INDEX  /weekly is not built or not in sitemap.xml");
+  const feed = fs.existsSync(`${ROOT}/weekly/feed.xml.body`) ? fs.readFileSync(`${ROOT}/weekly/feed.xml.body`, "utf8") : null;
+  if (feed === null) problems.push("WEEKLY-FEED  /weekly/feed.xml was not built");
+  else {
+    const inFeed = [...feed.matchAll(/<link>https:\/\/aifitnessapi\.com(\/weekly\/[^<]+)<\/link>/g)].map((m) => m[1]).sort();
+    const built = [...weekRoutes].sort();
+    if (!feed.includes('rel="self"') || inFeed.join() !== built.join()) {
+      problems.push(`WEEKLY-FEED  /weekly/feed.xml lists ${inFeed.length} weeks for ${built.length} built week pages, or has no self link`);
+    }
+  }
+  if (!problems.some((p) => p.startsWith("WEEKLY-"))) console.log(`Weekly: ${weekRoutes.length} week pages, noindex and out of the sitemap; the feed lists each once.`);
+
+  const HISTORY = { svg: "public/history/fitness-api-history.svg", png: "public/history/fitness-api-history.png" };
+  let historyOk = true;
+  for (const f of Object.values(HISTORY)) {
+    if (!fs.existsSync(f)) {
+      problems.push(`HISTORY-FILE  ${f} is missing; run node scripts/build-history.mjs`);
+      historyOk = false;
+    } else if (fs.statSync(f).size > 2 * 1024 * 1024) {
+      problems.push(`HISTORY-FILE  ${f} is ${fs.statSync(f).size} bytes, over 2 MB`);
+      historyOk = false;
+    }
+  }
+  if (fs.existsSync(HISTORY.png) && !fs.readFileSync(HISTORY.png).subarray(1, 4).equals(Buffer.from("PNG"))) {
+    problems.push(`HISTORY-FILE  ${HISTORY.png} is not a PNG`);
+    historyOk = false;
+  }
+  const { historyModel, historySvg } = await import("../src/lib/historyCore.mjs");
+  const { GRAVEYARD } = await import("../src/data/graveyard.ts");
+  const { CHANGE_EVENTS } = await import("../src/data/changes.ts");
+  const model = historyModel({ graveyard: GRAVEYARD, changes: CHANGE_EVENTS });
+  if (fs.existsSync(HISTORY.svg) && fs.readFileSync(HISTORY.svg, "utf8") !== historySvg(model, { poster: true })) {
+    problems.push("HISTORY-STALE  public/history/fitness-api-history.svg is not what the current graveyard and changes records draw — run node scripts/build-history.mjs");
+    historyOk = false;
+  }
+  const page = fileOf.get("/history") ? fs.readFileSync(fileOf.get("/history"), "utf8") : "";
+  const unmarked = [...model.marks, ...model.undated].filter((m) => !page.includes(`data-id="${m.id}"`));
+  if (!page || unmarked.length) {
+    problems.push(`HISTORY-STALE  /history ${page ? `renders no mark for ${unmarked.length} record(s): ${unmarked.slice(0, 3).map((m) => m.id).join(", ")}` : "was not built"}`);
+    historyOk = false;
+  }
+  if (historyOk) console.log(`History: ${model.marks.length} dated marks and ${model.undated.length} undated on /history and the poster; SVG ${fs.statSync(HISTORY.svg).size} B, PNG ${fs.statSync(HISTORY.png).size} B.`);
+}
+
 if (notFoundRoutes.length) {
   console.log(
     `Not published (route renders notFound, e.g. a tracker awaiting its first CI run): ${notFoundRoutes.join(", ")}`,
