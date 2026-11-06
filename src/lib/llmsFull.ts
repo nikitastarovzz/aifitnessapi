@@ -18,6 +18,8 @@ import {
   taxonomyText,
 } from "@/lib/audienceTools";
 import { atlasCapsule } from "@/lib/atlasView";
+import { AWESOME_PATH, awesomeCapsule } from "@/lib/awesomeView";
+import { CHEATSHEETS_PATH, COLLECTIONS_PATH, cheatSheetsCapsule, collectionsCapsule } from "@/lib/kitPages";
 import { GYM_API_MATRIX } from "@/data/gymApiMatrix";
 import { RESEARCH_PLATFORM_MATRIX } from "@/data/researchPlatformMatrix";
 import { POSE_CROSSWALK, POSE_KEYPOINTS_FETCHED_ON, POSE_SCHEMES } from "@/data/poseKeypoints";
@@ -367,6 +369,18 @@ function toolLines(): string[] {
   out.push(`## The Fitness API Atlas (printable poster) — ${absoluteUrl(ATLAS_PATH)}`);
   out.push("");
   out.push(atlasCapsule());
+  out.push("");
+  out.push(`## Awesome Fitness APIs (generated awesome-list) — ${absoluteUrl(AWESOME_PATH)}`);
+  out.push("");
+  out.push(awesomeCapsule());
+  out.push("");
+  out.push(`## Postman and Bruno collections — ${absoluteUrl(COLLECTIONS_PATH)}`);
+  out.push("");
+  out.push(collectionsCapsule());
+  out.push("");
+  out.push(`## Printable cheat sheets — ${absoluteUrl(CHEATSHEETS_PATH)}`);
+  out.push("");
+  out.push(cheatSheetsCapsule());
   out.push("");
   out.push(`## Unified health-data schema — ${absoluteUrl("/schema")}`);
   out.push("Primary query: unified health data schema healthkit health connect");

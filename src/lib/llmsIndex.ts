@@ -10,6 +10,8 @@ import { PLANNER_LLMS } from "@/lib/plannerPages";
 import { COVERAGE_PATH, RATE_LIMIT_PATH, coverageCapsule, rateLimitCapsule } from "@/lib/coverageView";
 import { ATLAS_PATH, GYM_PATH, RESEARCH_PATH, TAXONOMY_PATH, gymCapsule, matrixText, researchCapsule, taxonomyText } from "@/lib/audienceTools";
 import { atlasCapsule } from "@/lib/atlasView";
+import { AWESOME_PATH, awesomeCapsule } from "@/lib/awesomeView";
+import { CHEATSHEETS_PATH, COLLECTIONS_PATH, cheatSheetsCapsule, collectionsCapsule } from "@/lib/kitPages";
 import { GYM_API_MATRIX } from "@/data/gymApiMatrix";
 import { RESEARCH_PLATFORM_MATRIX } from "@/data/researchPlatformMatrix";
 import { POSE_KEYPOINTS_FETCHED_ON } from "@/data/poseKeypoints";
@@ -152,6 +154,9 @@ export function toolEntries(): { label: string; path: string; text: string }[] {
     { label: `Gym software API matrix`, path: GYM_PATH, text: `${gymCapsule()} ${matrixText(GYM_API_MATRIX)}` },
     { label: `Research platform chooser`, path: RESEARCH_PATH, text: `${researchCapsule()} ${matrixText(RESEARCH_PLATFORM_MATRIX)}` },
     { label: `The Fitness API Atlas (printable poster)`, path: ATLAS_PATH, text: atlasCapsule() },
+    { label: `Awesome Fitness APIs (generated awesome-list)`, path: AWESOME_PATH, text: `${awesomeCapsule()} The same list is AWESOME.md in the site's public repository.` },
+    { label: `Postman and Bruno collections`, path: COLLECTIONS_PATH, text: collectionsCapsule() },
+    { label: `Printable cheat sheets`, path: CHEATSHEETS_PATH, text: cheatSheetsCapsule() },
     { label: `Unified health-data schema`, path: "/schema", text: schemaCapsule() },
     { label: `Health data schema converter`, path: "/tools/schema-converter", text: converterCapsule() },
     { label: `Fitbit to Google Health API map`, path: "/tools/fitbit-to-google-health", text: fitbitToolCapsule() },

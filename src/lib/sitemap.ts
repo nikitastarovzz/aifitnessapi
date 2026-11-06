@@ -35,6 +35,8 @@ import { COVERAGE_UPDATED, RATE_UPDATED } from "@/lib/coverageView";
 import { ET_FETCHED_ON } from "@/data/exerciseTaxonomy";
 import { ATLAS_PATH } from "@/lib/audienceTools";
 import { atlasAsOf } from "@/lib/atlasView";
+import { AWESOME_PATH, awesomeAsOf } from "@/lib/awesomeView";
+import { CHEATSHEETS_PATH, COLLECTIONS_PATH, cheatSheetsAsOf, collectionsAsOf } from "@/lib/kitPages";
 import { GYM_API_MATRIX } from "@/data/gymApiMatrix";
 import { RESEARCH_PLATFORM_MATRIX } from "@/data/researchPlatformMatrix";
 import { UNIFIED_READ_ON } from "@/data/unifiedSchema";
@@ -315,6 +317,11 @@ function computeSections(): SitemapSection[] {
     [PRESS_PATH]: pressDataDate(),
     // The poster declares the newest date its inputs were checked.
     [ATLAS_PATH]: atlasAsOf(),
+    // The awesome list, the collections and the cheat sheets declare the
+    // newest date their generated inputs were read (their mirrors say so).
+    [AWESOME_PATH]: awesomeAsOf(),
+    [COLLECTIONS_PATH]: collectionsAsOf(),
+    [CHEATSHEETS_PATH]: cheatSheetsAsOf(),
   };
 
   const standalone = [
@@ -358,6 +365,9 @@ function computeSections(): SitemapSection[] {
     APIS_PATH,
     MARKET_MAP_PATH,
     ATLAS_PATH,
+    AWESOME_PATH,
+    COLLECTIONS_PATH,
+    CHEATSHEETS_PATH,
     API_INDEX_PATH,
     DAILY_PATH,
     GRAVEYARD_PATH,

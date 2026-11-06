@@ -30,7 +30,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22" # 22: build-awesome.mjs imports the .ts data modules (type stripping)
 
       - name: Fetch registry and repository data
         env:
@@ -40,6 +40,11 @@ jobs:
         # Exits non-zero (and writes nothing) if any registry lookup fails —
         # a partial set is never published.
         run: node scripts/fetch-libraries.mjs
+
+      - name: Regenerate AWESOME.md from the refreshed module
+        # Plain Node, no dependencies. qa's AWESOME-STALE gate fails a PR whose
+        # libraries.ts moved without the list (VIRAL-20 item 11).
+        run: node scripts/build-awesome.mjs
 
       - name: Commit if something meaningful changed
         env:
@@ -75,7 +80,7 @@ jobs:
             echo "Only counters / activity dates / check stamps moved:"
             printf '%s\n' "$changed"
             echo "Holding this back until the month's first run so it does not redeploy the site."
-            git checkout -- src/data/libraries.ts
+            git checkout -- src/data/libraries.ts AWESOME.md
             exit 0
           fi
           if [ -z "$meaningful" ]; then
@@ -87,7 +92,7 @@ jobs:
 
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add src/data/libraries.ts
+          git add src/data/libraries.ts AWESOME.md
           git commit -m "Refresh open-source library tracker"
 
           # Via a PR with auto-merge, not a direct push: main requires a pull

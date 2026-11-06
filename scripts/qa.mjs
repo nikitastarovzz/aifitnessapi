@@ -3902,6 +3902,69 @@ function checkSitemapIndex(SITE) {
     }
   }
 
+  // VIRAL-20 items 11-13 (added 2026-11-06). AWESOME.md, public/collections
+  // and public/cheat-sheets are generated, not built: each must equal what its
+  // script renders from today's data, and each page must show all of it.
+  {
+    // AWESOME-STALE / AWESOME-PAGE
+    const { render } = await import(new URL("./build-awesome.mjs", import.meta.url));
+    const want = await render();
+    const have = fs.existsSync("AWESOME.md") ? fs.readFileSync("AWESOME.md", "utf8") : null;
+    if (have === null) problems.push("AWESOME-STALE  AWESOME.md is missing; run node scripts/build-awesome.mjs");
+    else if (have !== want) problems.push("AWESOME-STALE  AWESOME.md differs from what the data renders today; run node scripts/build-awesome.mjs");
+    const entries = (have ?? "").split("\n").filter((l) => l.startsWith("- [") && l.includes("](http"));
+    const mirror = fs.existsSync(".next/server/app/awesome.md.body") ? fs.readFileSync(".next/server/app/awesome.md.body", "utf8") : null;
+    const page = htmlOf("/awesome");
+    if (!mirror || !page) problems.push("AWESOME-PAGE  /awesome or /awesome.md was not built");
+    else {
+      const missing = entries.filter((l) => !mirror.includes(l));
+      if (missing.length) problems.push(`AWESOME-PAGE  /awesome.md lacks ${missing.length} of AWESOME.md's ${entries.length} entries: ${missing[0].slice(0, 80)}`);
+      const sections = [...(have ?? "").matchAll(/^## (.+)$/gm)].map((m) => m[1]).filter((t) => !["Contents", "About this list", "License"].includes(t));
+      const absent = sections.filter((t) => !page.includes(`>${t.replace(/&/g, "&amp;")}</h2>`));
+      if (absent.length) problems.push(`AWESOME-PAGE  /awesome does not render the section(s) ${absent.join(", ")}`);
+      if (have === want && !missing.length && !absent.length) console.log(`Awesome list: AWESOME.md current, ${entries.length} entries, all on /awesome.md.`);
+    }
+
+    // COLLECTIONS
+    const { outputs } = await import(new URL("./build-collections.mjs", import.meta.url));
+    const files = await outputs();
+    const dir = "public/collections";
+    const stale = Object.entries(files).filter(([f, buf]) => !fs.existsSync(path.join(dir, f)) || !fs.readFileSync(path.join(dir, f)).equals(buf));
+    const extra = fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => !(f in files)) : [];
+    if (stale.length || extra.length) problems.push(`COLLECTIONS  public/collections is stale (${[...stale.map(([f]) => f), ...extra].slice(0, 4).join(", ")}); run node scripts/build-collections.mjs`);
+    const SECRET_VARS = ["client_secret", "auth_code", "refresh_token", "code_verifier", "code_challenge", "signature", "nonce", "webhook_token"];
+    const postmanFiles = Object.keys(files).filter((f) => f.endsWith(".postman_collection.json"));
+    for (const f of postmanFiles) {
+      const c = JSON.parse(files[f].toString("utf8"));
+      if (c.info?.schema !== "https://schema.getpostman.com/json/collection/v2.1.0/collection.json" || !c.info?.name || !Array.isArray(c.item) || !c.item.length) {
+        problems.push(`COLLECTIONS  ${f} is not a v2.1.0 collection with info and items`);
+      }
+      const leaked = (c.variable ?? []).filter((x) => SECRET_VARS.includes(x.key) && x.value !== "");
+      if (leaked.length) problems.push(`COLLECTIONS  ${f} ships a value for ${leaked.map((x) => x.key).join(", ")}`);
+    }
+    const cpage = htmlOf("/collections");
+    const ids = postmanFiles.map((f) => f.replace(".postman_collection.json", ""));
+    if (!cpage) problems.push("COLLECTIONS  /collections was not built");
+    else {
+      const unlisted = ids.filter((id) => !cpage.includes(`data-collection="${id}"`));
+      if (unlisted.length) problems.push(`COLLECTIONS  /collections does not list ${unlisted.join(", ")}`);
+      else if (!stale.length && !extra.length) console.log(`Collections: ${ids.length} vendors, Postman v2.1 and Bruno, current and listed on /collections.`);
+    }
+
+    // CHEATSHEET
+    const { checkSheets } = await import(new URL("./build-cheat-sheets.mjs", import.meta.url));
+    const sheetProblems = await checkSheets();
+    for (const p of sheetProblems) problems.push(`CHEATSHEET  ${p}; run node scripts/build-cheat-sheets.mjs`);
+    const spage = htmlOf("/cheat-sheets");
+    const manifest = fs.existsSync("public/cheat-sheets/manifest.json") ? JSON.parse(fs.readFileSync("public/cheat-sheets/manifest.json", "utf8")).sheets : [];
+    if (!spage) problems.push("CHEATSHEET  /cheat-sheets was not built");
+    else {
+      const unshown = manifest.filter((s) => !spage.includes(`data-cheat-sheet="${s.slug}"`) || !spage.includes(s.pdf) || !spage.includes(s.png));
+      if (unshown.length) problems.push(`CHEATSHEET  /cheat-sheets does not show ${unshown.map((s) => s.slug).join(", ")} with both files`);
+      else if (!sheetProblems.length) console.log(`Cheat sheets: ${manifest.length} sheets current; largest file ${Math.max(...manifest.flatMap((s) => [s.pdfBytes, s.pngBytes]))} B.`);
+    }
+  }
+
   // Workout types across four platforms (added 2026-10-18). Apple's
   // HKWorkoutActivityType (84 cases), Health Connect's ExerciseSessionRecord
   // EXERCISE_TYPE_* (61), Wear OS Health Services' ExerciseType (85 public) and

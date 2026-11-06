@@ -1,0 +1,41 @@
+{
+  "generatedBy": "scripts/build-cheat-sheets.mjs",
+  "sheets": [
+    {
+      "slug": "healthkit",
+      "title": "HealthKit cheat sheet",
+      "asOf": "2026-10-02",
+      "htmlSha256": "f2ae7a9a0d92b558a0deb794e14abca2a850178c4bf934ab4885aaa051013a7f",
+      "pdf": "/cheat-sheets/healthkit.pdf",
+      "png": "/cheat-sheets/healthkit.png",
+      "pdfBytes": 42821,
+      "pngBytes": 511741,
+      "pngWidth": 1588,
+      "pngHeight": 2246
+    },
+    {
+      "slug": "health-connect",
+      "title": "Health Connect cheat sheet",
+      "asOf": "2026-10-03",
+      "htmlSha256": "dfd3ad51c38fbda1ece4f09be73161e137b23c47a49a1a23fee9287bb3a6fdf6",
+      "pdf": "/cheat-sheets/health-connect.pdf",
+      "png": "/cheat-sheets/health-connect.png",
+      "pdfBytes": 43317,
+      "pngBytes": 635141,
+      "pngWidth": 1588,
+      "pngHeight": 2246
+    },
+    {
+      "slug": "pose-keypoints",
+      "title": "Pose keypoints cheat sheet",
+      "asOf": "2026-10-17",
+      "htmlSha256": "dda1152ffb14c04df9a4cec5bf5c7f07583de416789518e61002d24c03e5efd5",
+      "pdf": "/cheat-sheets/pose-keypoints.pdf",
+      "png": "/cheat-sheets/pose-keypoints.png",
+      "pdfBytes": 41603,
+      "pngBytes": 325252,
+      "pngWidth": 1588,
+      "pngHeight": 2246
+    }
+  ]
+}
