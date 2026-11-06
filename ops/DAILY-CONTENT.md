@@ -131,6 +131,13 @@ rules, never sharper than the source page. Updating an existing entry's
 status from reported to confirmed (with the new source) is a first-class
 piece for rung (a).
 
+Two posters are drawn from this file and `src/data/graveyard.ts`, and qa
+fails when they lag (HISTORY-STALE, ATLAS-STALE). After any edit to either
+file — a new entry, a status change, even a `verifiedOn` bump — run
+`npm run datasets && node scripts/build-atlas.mjs && node scripts/build-history.mjs`
+before the gates, and commit the regenerated `public/atlas/*` and
+`public/history/*` with the change.
+
 ## 3. Research before writing — non-negotiable
 
 - New factual claims need a reachable primary source, fetched THIS run.
