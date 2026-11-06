@@ -41,6 +41,7 @@ import { year2026Mirror } from "./year2026";
 import { dailyMirror } from "./daily";
 import { shipItMirror } from "./shipIt";
 import { challengeMirror } from "./challenge";
+import { wearableQuizMirror } from "./wearableQuiz";
 import { myStackMirror } from "./myStack";
 import { answersSearchMirror } from "./answersSearch";
 
@@ -100,6 +101,7 @@ export const PAGE_MIRRORS: Record<string, () => MirrorDoc> = {
   "/play/ship-it": shipItMirror,
   "/challenge": challengeMirror,
   "/my-stack": myStackMirror,
+  "/quiz/which-wearable-api": wearableQuizMirror,
   "/answers-search": answersSearchMirror,
 };
 

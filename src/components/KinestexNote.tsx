@@ -315,6 +315,12 @@ const MAP: Record<string, Note> = {
     anchor: "KinesteX",
     lead: "This counter is a few dozen lines of angle rules. If you want rep counting and form feedback in your own app without tuning them yourself, see",
   },
+  // The quiz's camera result (ops/VIRAL-20-2026-11-06.md item 6): a reader
+  // deciding between building on a pose model and buying a motion SDK.
+  "/quiz/which-wearable-api/camera-motion": {
+    anchor: "the KinesteX documentation",
+    lead: "KinesteX is one of the six options above. To check what it covers before comparing it with the others, read",
+  },
 };
 
 /** Paths this component covers, for the qa gate. */

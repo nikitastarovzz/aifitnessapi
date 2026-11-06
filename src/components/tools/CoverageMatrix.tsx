@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import ShareRow from "@/components/ShareRow";
 import {
   COVERAGE_METRICS,
   DELIVERY_LABELS,
@@ -118,6 +119,7 @@ export default function CoverageMatrix({ vendors, checked }: { vendors: Coverage
             {shown.length} of {vendors.length} vendors
           </span>
         </div>
+        <ShareRow place="api-coverage-matrix" text="Which wearable APIs document which health metrics, at what resolution, by webhook or pull:" label="Share this view" />
       </div>
 
       <div className="mt-6 overflow-x-auto">

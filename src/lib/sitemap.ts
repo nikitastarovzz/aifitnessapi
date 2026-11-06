@@ -382,6 +382,7 @@ function computeSections(): SitemapSection[] {
     "/alerts",
     "/my-stack",
     "/answers-search",
+    "/quiz/which-wearable-api",
     "/compare-apis",
     "/play/ship-it",
     "/datasets",

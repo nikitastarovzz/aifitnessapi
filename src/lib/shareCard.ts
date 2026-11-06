@@ -116,6 +116,118 @@ export function canvasBlob(canvas: HTMLCanvasElement): Promise<Blob | null> {
   return new Promise((res) => canvas.toBlob((b) => res(b), "image/png"));
 }
 
+export type StackCardSpec = {
+  /** Product names, already capped (src/lib/stackCard.mjs). */
+  products: string[];
+  /** How many more products the stack has than are drawn. */
+  more: number;
+  /** Up to three "in N days · who: title" lines. */
+  deadlines: string[];
+  url: string;
+  stamp?: string;
+};
+
+/**
+ * The /my-stack card (ops/VIRAL-20-2026-11-06.md item 7): the stack as chips,
+ * then the next deadlines. Same frame and brand row as drawShareCard.
+ */
+export function drawStackCard(canvas: HTMLCanvasElement, spec: StackCardSpec): void {
+  canvas.width = CARD_W;
+  canvas.height = CARD_H;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+  const pad = 72;
+
+  ctx.fillStyle = "#0a0a0a";
+  ctx.fillRect(0, 0, CARD_W, CARD_H);
+  const g = ctx.createRadialGradient(CARD_W / 2, 0, 0, CARD_W / 2, 0, CARD_W * 0.6);
+  g.addColorStop(0, "#064e3b");
+  g.addColorStop(1, "rgba(10,10,10,0)");
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, CARD_W, CARD_H);
+
+  const mark = ctx.createLinearGradient(pad, 56, pad + 40, 96);
+  mark.addColorStop(0, "#34d399");
+  mark.addColorStop(1, "#059669");
+  ctx.fillStyle = mark;
+  ctx.beginPath();
+  if (typeof ctx.roundRect === "function") ctx.roundRect(pad, 56, 40, 40, 11);
+  else ctx.rect(pad, 56, 40, 40);
+  ctx.fill();
+  ctx.textBaseline = "middle";
+  ctx.fillStyle = "#34d399";
+  ctx.font = `600 28px ${FONT}`;
+  ctx.fillText("AIFitnessAPI", pad + 56, 77);
+  ctx.fillStyle = "#6ee7b7";
+  ctx.font = `600 24px ${FONT}`;
+  const eyebrow = "MY HEALTH-DATA STACK";
+  ctx.fillText(eyebrow, CARD_W - pad - ctx.measureText(eyebrow).width, 77);
+
+  // Chips, wrapped, at most three rows; anything left is folded into "+N more".
+  ctx.font = `600 30px ${FONT}`;
+  const chipH = 52;
+  const gap = 14;
+  let x = pad;
+  let y = 140;
+  let row = 0;
+  let hidden = spec.more;
+  for (let i = 0; i < spec.products.length; i++) {
+    const label = spec.products[i];
+    const w = ctx.measureText(label).width + 40;
+    if (x + w > CARD_W - pad) {
+      row++;
+      x = pad;
+      y += chipH + gap;
+    }
+    if (row > 2) {
+      hidden += spec.products.length - i;
+      y -= chipH + gap;
+      break;
+    }
+    ctx.fillStyle = "rgba(52,211,153,0.12)";
+    ctx.strokeStyle = "rgba(52,211,153,0.55)";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    if (typeof ctx.roundRect === "function") ctx.roundRect(x, y, w, chipH, chipH / 2);
+    else ctx.rect(x, y, w, chipH);
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillStyle = "#f5f5f5";
+    ctx.fillText(label, x + 20, y + chipH / 2 + 1);
+    x += w + gap;
+  }
+  if (hidden > 0) {
+    ctx.fillStyle = "#a3a3a3";
+    ctx.font = `500 26px ${FONT}`;
+    ctx.fillText(`+${hidden} more`, Math.min(x + 4, CARD_W - pad - 140), y + chipH / 2 + 1);
+  }
+
+  // Deadlines.
+  y = Math.max(y + chipH + 56, 330);
+  ctx.textBaseline = "alphabetic";
+  ctx.fillStyle = "#6ee7b7";
+  ctx.font = `600 24px ${FONT}`;
+  ctx.fillText(spec.deadlines.length ? "DEADLINES AHEAD" : "NO DATED ITEM AHEAD IN THE TRACKER", pad, y);
+  ctx.font = `400 28px ${FONT}`;
+  ctx.fillStyle = "#e5e5e5";
+  for (const line of spec.deadlines) {
+    y += 44;
+    if (y > CARD_H - pad - 40) break;
+    let l = line;
+    while (ctx.measureText(l).width > CARD_W - pad * 2 && l.length > 10) l = `${l.slice(0, -2).trimEnd()}…`;
+    ctx.fillText(l, pad, y);
+  }
+
+  ctx.font = `500 26px ${FONT}`;
+  ctx.fillStyle = "#d4d4d4";
+  ctx.fillText(spec.url, pad, CARD_H - pad + 10);
+  if (spec.stamp) {
+    ctx.fillStyle = "#a3a3a3";
+    const w = ctx.measureText(spec.stamp).width;
+    ctx.fillText(spec.stamp, CARD_W - pad - w, CARD_H - pad + 10);
+  }
+}
+
 /** Today's date on the reader's clock, as YYYY-MM-DD. */
 export function localDate(d = new Date()): string {
   const p = (n: number) => String(n).padStart(2, "0");

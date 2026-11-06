@@ -125,6 +125,11 @@ export const TOOL_NEXT_STEPS: Record<string, string[]> = {
     "/fitness-apis/health-data-aggregator-apis",
     "/pricing/how-much-does-a-fitness-api-cost",
   ],
+  "/quiz/which-wearable-api": [
+    "/fitness-apis/wearable-data-apis",
+    "/fitness-apis/health-data-aggregator-apis",
+    "/fitness-apis/apple-healthkit-vs-google-health-connect",
+  ],
   "/my-stack": [
     "/alternatives/fitbit-api-alternatives",
     "/fitness-apis/health-data-aggregator-apis",
