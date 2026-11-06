@@ -105,6 +105,11 @@ export const TOOL_NEXT_STEPS: Record<string, string[]> = {
     "/fitness-apis/health-data-aggregator-apis",
     "/fitness-apis/apple-healthkit-vs-google-health-connect",
   ],
+  "/tools/deprecation-scanner": [
+    "/migrate/fitbit-web-api-to-google-health",
+    "/migrate/google-fit-to-health-connect",
+    "/migrate/migrate-off-a-deprecated-fitness-api",
+  ],
   "/tools/fitbit-to-google-health": [
     "/migrate/fitbit-web-api-to-google-health",
     "/alternatives/fitbit-api-alternatives",

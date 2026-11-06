@@ -61,7 +61,8 @@
     "test:api-client": "node --test packages/api-client/test/run.mjs",
     "test:scaffold": "node --test scripts/starter-scaffold.test.mjs",
     "api-client": "node scripts/build-api-client.mjs",
-    "test:schema-converter": "node --test scripts/unified-convert.test.mjs"
+    "test:schema-converter": "node --test scripts/unified-convert.test.mjs",
+    "test:deprecation-scan": "node --test scripts/deprecation-scan.test.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "~1.32.0",

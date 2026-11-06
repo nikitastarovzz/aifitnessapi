@@ -699,6 +699,14 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
       "A fitness API index that renders a composite score or rating. It publishes raw signals and leaves the weighting to the reader.",
   },
 
+  // ── Deprecation scanner and its GitHub Action (2026-11-06) ────────────
+  {
+    code: "DEPRECATION-RULES-STALE",
+    area: "Datasets and artifacts",
+    refuses:
+      "A build whose deprecation-scanner rules, as committed for the site (src/data/deprecationRules.json) or for the GitHub Action (actions/fitness-api-deprecation-check/dist/), differ from what scripts/build-deprecation-rules.mjs writes from the graveyard, the Fitbit endpoint map and the sourced signatures; or whose generator refuses: a graveyard entry with neither a rule nor a stated reason, or a pattern that does not match its own example. The page and the Action must never disagree about what is dead.",
+  },
+
   // ── Fitness API Graveyard ─────────────────────────────────────────────
   {
     code: "GRAVEYARD-READ",

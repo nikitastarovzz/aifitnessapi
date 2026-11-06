@@ -48,6 +48,7 @@ import { CORRECTIONS } from "@/data/corrections";
 import { contributorsFrom } from "@/lib/correctionReport.mjs";
 import { UNIFIED_READ_ON } from "@/data/unifiedSchema";
 import { FG_UPDATED } from "@/lib/fitbitGoogleMap";
+import { DS_UPDATED } from "@/lib/deprecationScannerText";
 import { hkPageIdentifiers, hkIdentifierPath, hkPageModified } from "@/data/hkIdentifierPages";
 import { hsPageTypes, hsDataTypePath, hsPageModified } from "@/data/hsDataTypePages";
 import { GHAPI_PATHS, allTypes as ghapiTypes, typePath as ghapiTypePath, ghapiModified } from "@/data/ghapiPages";
@@ -284,6 +285,7 @@ function computeSections(): SitemapSection[] {
     ["/tools/oauth-playground", OAUTH_FETCHED_ON],
     ["/tools/schema-converter", UNIFIED_READ_ON],
     ["/tools/fitbit-to-google-health", FG_UPDATED],
+    ["/tools/deprecation-scanner", DS_UPDATED],
   ];
 
   // Routes whose date comes from data, or from the members they index.
