@@ -1,6 +1,6 @@
 # Awesome Fitness APIs
 
-> A list of 24 fitness and health APIs and platforms, 20 open-source libraries, 176 MCP servers, 16 open datasets and 40 free tools for developers building with wearable, health and workout data. Generated from aifitnessapi.com's sourced data by a script, so every line restates a published fact and nothing is ranked.
+> A list of 24 fitness and health APIs and platforms, 20 open-source libraries, 176 MCP servers, 19 open datasets and 44 free tools for developers building with wearable, health and workout data. Generated from aifitnessapi.com's sourced data by a script, so every line restates a published fact and nothing is ranked.
 
 The same list is served at [aifitnessapi.com/awesome](https://aifitnessapi.com/awesome), with a markdown copy at [/awesome.md](https://aifitnessapi.com/awesome.md).
 
@@ -368,7 +368,10 @@ Datasets aifitnessapi.com publishes, each as JSON and CSV under the license it s
 - [Exercise Form Rules 2026 (joint-angle thresholds from open-source trackers)](https://aifitnessapi.com/datasets#exercise-form-rules-2026) - JSON at https://aifitnessapi.com/datasets/exercise-form-rules-2026.json, CSV beside it; CC BY 4.0.
 - [Exercise Taxonomy Crosswalk 2026 (free-exercise-db, wger, ExerciseDB v1 to HealthKit and Health Connect)](https://aifitnessapi.com/datasets#exercise-taxonomy-crosswalk-2026) - JSON at https://aifitnessapi.com/datasets/exercise-taxonomy-crosswalk-2026.json, CSV beside it; CC BY 4.0.
 - [Fitness API Changes & Deadlines 2026](https://aifitnessapi.com/datasets#fitness-api-changes-2026) - JSON at https://aifitnessapi.com/datasets/fitness-api-changes-2026.json, CSV beside it; CC BY 4.0.
+- [Fitness API Docs Drift 2026 (how often the sources behind this site's quotes changed)](https://aifitnessapi.com/datasets#fitness-api-docs-drift-2026) - JSON at https://aifitnessapi.com/datasets/fitness-api-docs-drift-2026.json, CSV beside it; CC BY 4.0.
 - [Fitness & Health API Glossary 2026](https://aifitnessapi.com/datasets#fitness-api-glossary-2026) - JSON at https://aifitnessapi.com/datasets/fitness-api-glossary-2026.json, CSV beside it; CC BY 4.0.
+- [Fitness API Pricing Transparency 2026 (who publishes a price, per vendor)](https://aifitnessapi.com/datasets#fitness-api-pricing-transparency-2026) - JSON at https://aifitnessapi.com/datasets/fitness-api-pricing-transparency-2026.json, CSV beside it; CC BY 4.0.
+- [Fitness API Shutdown Notice 2026 (announcement to end date, per graveyard entry)](https://aifitnessapi.com/datasets#fitness-api-shutdown-notice-2026) - JSON at https://aifitnessapi.com/datasets/fitness-api-shutdown-notice-2026.json, CSV beside it; CC BY 4.0.
 - [State of Fitness APIs 2026](https://aifitnessapi.com/datasets#fitness-apis-2026) - JSON at https://aifitnessapi.com/datasets/fitness-apis-2026.json, CSV beside it; CC BY 4.0.
 - [Google Health API Data Types 2026](https://aifitnessapi.com/datasets#google-health-api-data-types-2026) - JSON at https://aifitnessapi.com/datasets/google-health-api-data-types-2026.json, CSV beside it; CC BY 4.0.
 - [Health Connect Permission Strings 2026](https://aifitnessapi.com/datasets#health-connect-permissions-2026) - JSON at https://aifitnessapi.com/datasets/health-connect-permissions-2026.json, CSV beside it; CC BY 4.0.
@@ -400,6 +403,7 @@ Browser tools on aifitnessapi.com built on the same data. They run on your devic
 - [Exercise taxonomy crosswalk](https://aifitnessapi.com/tools/exercise-taxonomy-crosswalk) - free-exercise-db, wger and ExerciseDB v1 categories, equipment and muscles against HealthKit and Health Connect workout types, matched by name only.
 - [Health data schema converter](https://aifitnessapi.com/tools/schema-converter) - Paste a HealthKit export row, Health Connect record or Google Health API data point and see it in one unified schema, each field traced to its source.
 - [Fitbit to Google Health API map](https://aifitnessapi.com/tools/fitbit-to-google-health) - Search every Fitbit Web API endpoint and see its Google Health API data type, method and scopes from Google's migration tables, or that none is listed.
+- [Deprecation scanner](https://aifitnessapi.com/tools/deprecation-scanner) - Paste code or a manifest and find Fitbit Web API, Google Fit and other retired fitness API calls, each with its replacement. Also a GitHub Action.
 - [Fitness app build plan and PRD generator](https://aifitnessapi.com/tools/build-plan) - Pick an app type, platforms, data sources and features: a shareable build plan and a PRD template with the APIs, compliance items, store rules and cost shape.
 - [App Store and Google Play submission checklist](https://aifitnessapi.com/tools/store-submission-checklist) - Apple's App Review Guidelines and Google Play's health policies, quoted item by item and narrowed to what your app does, with progress kept in your browser.
 - [Health app compliance wizard](https://aifitnessapi.com/tools/compliance-wizard) - Nine questions route your app to the rules that likely apply (HIPAA, the FTC breach rule, GDPR, Washington, FDA, app stores), each quoted from its source.
@@ -407,6 +411,7 @@ Browser tools on aifitnessapi.com built on the same data. They run on your devic
 - [Fitness API cost planner](https://aifitnessapi.com/cost-planner) - The cost structure of your stack: billing models, user-side costs, approval gates, eng effort.
 - [Fitness & health API market map](https://aifitnessapi.com/market-map) - Every product in the directory as one map, grouped by category, filterable by billing model, approval gate and tracked library.
 - [Fitness API index](https://aifitnessapi.com/fitness-api-index) - Sortable raw signals per product: SDK and library releases, dated changes in the last 12 months, approval gates, verification age. No score.
+- [Fitness API openness index](https://aifitnessapi.com/openness-index) - Which developer basics each wearable and health-data API documents: self-serve start, sandbox, pricing, rate limits, signed webhooks, PKCE, refresh, deletion.
 - [Compare two fitness APIs side by side](https://aifitnessapi.com/compare-apis) - Access structure, user-side cost and approval gates for any two products in the directory.
 - [Wearable API coverage matrix](https://aifitnessapi.com/tools/api-coverage-matrix) - Which wearable and fitness APIs document which metrics, at what resolution, how far back, and by webhook or pull. Every mark sourced; unknown where no page says.
 - [Rate-limit and quota calculator](https://aifitnessapi.com/tools/rate-limit-calculator) - Users × syncs × endpoints against each fitness API's documented rate limits: which binds first, the most users it supports, and the vendor's own mitigations.
@@ -418,6 +423,7 @@ Browser tools on aifitnessapi.com built on the same data. They run on your devic
 - [FTMS lab](https://aifitnessapi.com/tools/ftms-lab) - Connect a treadmill, indoor bike, rower or cross trainer over Web Bluetooth, or paste hex: every FTMS flag bit and field decoded against the SIG structure.
 - [Cycling power and cadence lab](https://aifitnessapi.com/tools/cycling-power-lab) - Cycling Power (0x2A63) and CSC (0x2A5B) decoded, with cadence and speed computed from cumulative revolutions and event times, live or pasted.
 - [BLE GATT explorer](https://aifitnessapi.com/tools/ble-gatt-explorer) - Connect any Bluetooth LE device: services and characteristics by SIG name, read or notify, values decoded where the SIG defines a structure.
+- [Which wearable API quiz](https://aifitnessapi.com/quiz/which-wearable-api) - Eight questions on platform, devices, data depth, webhooks, budget and team decide how your app should get wearable data, with a shareable result.
 - [My stack](https://aifitnessapi.com/my-stack) - Pick the APIs your product depends on: their tracked changes and deadlines, every page here about them with its date, and a calendar to save. Stays in your browser.
 - [Answer search](https://aifitnessapi.com/answers-search) - Search the full text of every answer capsule, FAQ answer and tracked change, ranked in your browser, with links to the exact answer.
 - [Daily health-API developer puzzle](https://aifitnessapi.com/daily) - Five questions a day from the site's datasets: which platform throws this error, HealthKit to Health Connect, sum or average, name the keypoint.
@@ -425,6 +431,7 @@ Browser tools on aifitnessapi.com built on the same data. They run on your devic
 - [Apple Health export explorer](https://aifitnessapi.com/tools/apple-health-explorer) - Open your iPhone Health export.zip in the browser: record types with counts and dates, sources, a daily chart and a CSV per type. Nothing is uploaded.
 - [Gym software API matrix](https://aifitnessapi.com/tools/gym-software-api-matrix) - Mindbody, Glofox, TeamUp, Mariana Tek, Wodify and more: auth, access, pricing, webhooks and coverage, filterable, each cell quoting its vendor source.
 - [Research platform chooser](https://aifitnessapi.com/tools/research-platform-chooser) - Fitabase, Labfront, Empatica and Ametris: tick what your study needs and see which platforms document it, each answer quoting the vendor's page.
+- [Health data aggregator chooser](https://aifitnessapi.com/tools/aggregator-chooser) - Terra, ROOK, Junction, Spike, Thryve, Sahha, Open Wearables and Validic: tick sources, price, webhooks, BAA, data region or self-hosting; every cell quotes its source.
 
 ## About this list
 

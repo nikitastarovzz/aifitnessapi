@@ -2,7 +2,7 @@ import fs from "node:fs";
 import { vendorChangesPath, vendorFeedPath, vendorTimelines } from "@/lib/vendorChanges";
 import path from "node:path";
 import { GLANCE_HUBS, HUB_NAMES, hubGlance, hubQa } from "@/data/hubGlance";
-import { moneyPages, moneyCluster, oneLineAnswer, MONEY_GROUP_LABELS, MONEY_GROUP_ORDER } from "@/data/moneyPages";
+import { moneyPages, moneyCluster, MONEY_GROUP_LABELS, MONEY_GROUP_ORDER } from "@/data/moneyPages";
 import { searchConsoleCuration } from "@/data/llmsCuration";
 import { site, absoluteUrl } from "@/lib/site";
 import { byteLength, fullSections, fullSectionText } from "@/lib/llmsFull";
@@ -89,12 +89,14 @@ export function GET() {
     "- Funding: this site is funded by KinesteX, an AI motion SDK. Pages covering KinesteX carry a disclosure and are flagged `first_party` in answers.json.",
     "",
     // The pages people reach from Google, ranked by the rule in
-    // src/data/llmsCuration.ts, each with the opening of its own capsule.
+    // src/data/llmsCuration.ts, each with its own meta description (at most
+    // 155 characters, so the curated file stays under its 50 KB cap; the full
+    // capsule opening is in /llms-index.txt and /answers/start-here.json).
     `## Start here — most-visited pages (Google Search Console, ${range})`,
-    ...curated.visited.map((p) => `- [${p.entry.h1}](${absoluteUrl(p.path)}): ${oneLineAnswer(p.entry.answer)}`),
+    ...curated.visited.map((p) => `- [${p.entry.h1}](${absoluteUrl(p.path)}): ${p.entry.metaDescription}`),
     "",
     `## Start here — integration and troubleshooting pages searchers reach most (by impressions, ${range})`,
-    ...curated.integrateFix.map((p) => `- [${p.entry.h1}](${absoluteUrl(p.path)}): ${oneLineAnswer(p.entry.answer)}`),
+    ...curated.integrateFix.map((p) => `- [${p.entry.h1}](${absoluteUrl(p.path)}): ${p.entry.metaDescription}`),
     "",
     "## Start here: section hubs with an at-a-glance table and direct answers",
     ...GLANCE_HUBS.map(
