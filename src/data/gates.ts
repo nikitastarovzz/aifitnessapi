@@ -1318,6 +1318,26 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "An Atlas poster that leaves out a product in the API directory or an entry in the API graveyard, because the data changed and the poster was not redrawn.",
   },
   {
+    code: "HISTORY-FILE",
+    area: "Derived blocks",
+    refuses: "A missing history poster SVG or PNG, a PNG that is not a PNG, or either file over 2 MB.",
+  },
+  {
+    code: "HISTORY-STALE",
+    area: "Derived blocks",
+    refuses: "A history poster that is not byte for byte what the current graveyard and changes records draw, or a /history page missing a mark for a record the drawing places.",
+  },
+  {
+    code: "WEEKLY-INDEX",
+    area: "Derived blocks",
+    refuses: "A weekly roundup week page that does not render noindex, follow or is listed in the sitemap (the monthly digest is the indexed archive of the same records), or a /weekly hub that is not built and listed.",
+  },
+  {
+    code: "WEEKLY-FEED",
+    area: "Derived blocks",
+    refuses: "A /weekly/feed.xml that is missing, has no self link, or does not list exactly the week pages that were built.",
+  },
+  {
     code: "BT-GATT-THIN",
     area: "Derived blocks",
     refuses: "A Bluetooth characteristic page built for a structure with fewer than two fields and no flags field, or a characteristic whose page flag disagrees with that rule.",

@@ -173,6 +173,12 @@ export default function Footer() {
           <FooterLink href="/digest" className="py-1 hover:text-[var(--fg)]">
             Monthly Digest
           </FooterLink>
+          <FooterLink href="/weekly" className="py-1 hover:text-[var(--fg)]">
+            Weekly Roundup
+          </FooterLink>
+          <FooterLink href="/history" className="py-1 hover:text-[var(--fg)]">
+            Fitness API History
+          </FooterLink>
           <FooterLink href="/matrix" className="py-1 hover:text-[var(--fg)]">
             Type Reference
           </FooterLink>

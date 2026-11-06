@@ -35,6 +35,8 @@ import { COVERAGE_UPDATED, RATE_UPDATED } from "@/lib/coverageView";
 import { ET_FETCHED_ON } from "@/data/exerciseTaxonomy";
 import { ATLAS_PATH } from "@/lib/audienceTools";
 import { atlasAsOf } from "@/lib/atlasView";
+import { weeklyDataDate, WEEKLY_PATH } from "@/lib/weekly";
+import { historyAsOf, HISTORY_PATH } from "@/lib/historyView";
 import { GYM_API_MATRIX } from "@/data/gymApiMatrix";
 import { RESEARCH_PLATFORM_MATRIX } from "@/data/researchPlatformMatrix";
 import { AGGREGATOR_MATRIX } from "@/data/aggregatorChooser";
@@ -319,6 +321,11 @@ function computeSections(): SitemapSection[] {
     [PRESS_PATH]: pressDataDate(),
     // The poster declares the newest date its inputs were checked.
     [ATLAS_PATH]: atlasAsOf(),
+    // The weekly hub declares the newest record any of its weeks holds; the
+    // week pages are noindex (src/lib/weekly.ts) and so are not listed.
+    [WEEKLY_PATH]: weeklyDataDate(),
+    // The timeline declares the newest day any graveyard or tracker record was checked.
+    [HISTORY_PATH]: historyAsOf(),
   };
 
   const standalone = [
@@ -365,6 +372,8 @@ function computeSections(): SitemapSection[] {
     APIS_PATH,
     MARKET_MAP_PATH,
     ATLAS_PATH,
+    WEEKLY_PATH,
+    HISTORY_PATH,
     API_INDEX_PATH,
     DAILY_PATH,
     GRAVEYARD_PATH,

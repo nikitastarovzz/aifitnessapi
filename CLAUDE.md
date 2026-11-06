@@ -73,6 +73,7 @@ silently reverts it.
 | `public/datasets/*.{json,csv}` + `manifest*.json` | `npm run datasets` (build + manifest) |
 | `public/kit/*` | `node scripts/build-kit.mjs` |
 | `public/atlas/*` | `npm run datasets && node scripts/build-atlas.mjs` (draws the poster from the directory and changes datasets and `src/data/graveyard.ts`; the PDF is printed by Playwright's Chromium; qa's ATLAS-STALE fails when a product or graveyard entry is missing from it) |
+| `public/history/*` | `node scripts/build-history.mjs` (the /history timeline as a poster: `src/lib/historyCore.mjs` draws `src/data/graveyard.ts` and `src/data/changes.ts`, the PNG is rendered by Playwright's Chromium; rerun after either file changes, or qa's HISTORY-STALE fails because the SVG is no longer what the records draw) |
 | `public/webhooks/send-sample.mjs` | `node scripts/build-webhook-sender.mjs` (template `scripts/templates/send-sample.template.mjs` + the documented examples in `src/data/webhookPayloads.ts`; `--check` fails when stale, run by `npm run test:webhook-payloads`) |
 | `public/favicon.ico`, `public/icon-192.png`, `public/icon-512.png`, `public/logo.png` | `node scripts/build-icons.mjs` (rasterizes `src/app/icon.svg` with Playwright's Chromium) |
 | `mcp/data/`, `packages/health-data/data/` | `node scripts/bundle-package-data.mjs` |

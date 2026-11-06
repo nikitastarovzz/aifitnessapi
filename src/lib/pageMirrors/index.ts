@@ -25,6 +25,8 @@ import { rateLimitCalculatorMirror } from "./rateLimitCalculator";
 import { exerciseTaxonomyMirror, gymMatrixMirror, researchChooserMirror } from "./audienceTools";
 import { atlasMirror } from "./atlas";
 import { aggregatorChooserMirror } from "./aggregatorChooser";
+import { weeklyMirror } from "./weekly";
+import { historyMirror } from "./history";
 import { oauthPlaygroundMirror } from "./oauthPlayground";
 import { webhooksMirror } from "./webhooks";
 import { schemaConverterMirror } from "./schemaConverter";
@@ -81,6 +83,8 @@ export const PAGE_MIRRORS: Record<string, () => MirrorDoc> = {
   "/tools/research-platform-chooser": researchChooserMirror,
   "/tools/aggregator-chooser": aggregatorChooserMirror,
   "/atlas": atlasMirror,
+  "/weekly": weeklyMirror,
+  "/history": historyMirror,
   "/tools/oauth-playground": oauthPlaygroundMirror,
   "/tools/schema-converter": schemaConverterMirror,
   "/tools/fitbit-to-google-health": fitbitToGoogleHealthMirror,

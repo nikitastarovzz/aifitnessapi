@@ -19,6 +19,8 @@ import {
 } from "@/lib/audienceTools";
 import { atlasCapsule } from "@/lib/atlasView";
 import { AGG_PATH, AGG_PRIMARY_QUERY, aggregatorCapsule, aggregatorText } from "@/lib/aggregatorChooserView";
+import { weeklyCapsule, WEEKLY_PATH } from "@/lib/weekly";
+import { historyCapsule, HISTORY_PATH } from "@/lib/historyView";
 import { GYM_API_MATRIX } from "@/data/gymApiMatrix";
 import { RESEARCH_PLATFORM_MATRIX } from "@/data/researchPlatformMatrix";
 import { POSE_CROSSWALK, POSE_KEYPOINTS_FETCHED_ON, POSE_SCHEMES } from "@/data/poseKeypoints";
@@ -373,6 +375,15 @@ function toolLines(): string[] {
   out.push(`## The Fitness API Atlas (printable poster) — ${absoluteUrl(ATLAS_PATH)}`);
   out.push("");
   out.push(atlasCapsule());
+  out.push("");
+  out.push(`## A visual history of fitness and health APIs — ${absoluteUrl(HISTORY_PATH)}`);
+  out.push("Primary query: history of fitness api shutdowns and launches timeline");
+  out.push("");
+  out.push(historyCapsule());
+  out.push("");
+  out.push(`## The weekly fitness API roundup — ${absoluteUrl(WEEKLY_PATH)}`);
+  out.push("");
+  out.push(weeklyCapsule());
   out.push("");
   out.push(`## Unified health-data schema — ${absoluteUrl("/schema")}`);
   out.push("Primary query: unified health data schema healthkit health connect");

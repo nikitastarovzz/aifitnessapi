@@ -75,6 +75,8 @@ const PAGE_MIRRORS = [
   "/tools/research-platform-chooser",
   "/tools/aggregator-chooser",
   "/atlas",
+  "/weekly",
+  "/history",
   "/tools/oauth-playground",
   "/tools/schema-converter",
   "/tools/fitbit-to-google-health",
