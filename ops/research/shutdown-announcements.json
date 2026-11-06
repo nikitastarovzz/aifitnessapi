@@ -1,0 +1,39 @@
+{
+  "about": "Input to scripts/build-research.mjs for /research/shutdown-notice. For every entry of src/data/graveyard.ts: either `announced`, the day the vendor published the notice, with the page and a quote that is a row of ops/sources/evidence/research-shutdown-notice.json, or `note`, what the pages read say instead. The generator fails if a graveyard entry is missing here, if a quote is not in the evidence file, or if a graveyard milestone labelled as an announcement disagrees with `announced`. Pages were read on `readOn` through source-snapshot.yml (run logs deleted after reading) or directly where the host is reachable.",
+  "readOn": "2026-11-06",
+  "entries": [
+    { "id": "fitbit-web-api", "note": "Google's Google Health API page, read 2026-11-06, gives the end of support (September 30, 2026) and the turn-off (November 2, 2026) but no date for when either was announced." },
+    { "id": "terra-legacy-widget-session", "note": "Terra's widget documentation, read 2026-11-06, gives the planned deprecation date and a 3 September 2026 cut-off for new accounts, but not when the deprecation was announced." },
+    { "id": "google-fit-apis", "note": "Google's Fit page, read 2026-11-06, says the APIs will be deprecated in 2026; its May 1, 2024 date is when new sign-ups closed, not an announcement." },
+    { "id": "google-fit-goals-api", "note": "Google's migration guide lists it among the features with no replacement and dates the end only to 2026." },
+    { "id": "google-fit-sensors-ble-apis", "note": "Google's migration guide lists both among the features with no direct replacement and dates the end only to 2026." },
+    {
+      "id": "strava-club-endpoints",
+      "announced": "2026-06-01",
+      "how": "Strava's changelog lists the removal under its entry of June 1, 2026.",
+      "url": "https://developers.strava.com/docs/changelog/",
+      "quote": "and Club Admins endpoints will be removed on September 1, 2026"
+    },
+    { "id": "samsung-health-sdk-android", "note": "Samsung's overview page, read 2026-11-06, dates the deprecation, not its announcement." },
+    { "id": "oura-api-v1", "note": "Oura's API V1 page, read 2026-11-06, dates the removal, not its announcement." },
+    { "id": "oura-personal-access-tokens", "note": "Oura's API specification, as quoted in the graveyard, dates the deprecation to December 2025 and gives no announcement date." },
+    { "id": "whoop-api-v1", "note": "WHOOP's migration guide says v1 is no longer supported and gives no date." },
+    { "id": "mediapipe-legacy-pose", "note": "Google's legacy-solution page and solutions guide, as quoted in the graveyard, date the upgrade and the end of support, not an announcement." },
+    { "id": "tfjs-posenet", "note": "The package README says it is deprecated and gives no date." },
+    {
+      "id": "strava-running-races",
+      "announced": "2021-10-01",
+      "how": "Strava's changelog lists the deprecation, with both dates, under its entry of October 1st, 2021.",
+      "url": "https://developers.strava.com/docs/changelog/",
+      "quote": "The get running race and list races endpoints will start to return empty values starting October 15th, 2021, and will be removed completely by November 1st, 2021."
+    },
+    { "id": "moves-api", "note": "The Internet Archive capture of the Moves developer site, read 2026-11-06, records the shutdown, not when it was announced." },
+    {
+      "id": "google-health-2008",
+      "announced": "2011-06-24",
+      "how": "Google's blog post giving the retirement date is timestamped 6/24/2011 (Internet Archive capture of January 7, 2012).",
+      "url": "https://web.archive.org/web/20120107124413/http://googleblog.blogspot.com/2011/06/update-on-google-health-and-google.html",
+      "quote": "6/24/2011 11:01:00 AM"
+    }
+  ]
+}

@@ -48,7 +48,7 @@ export type MirrorDoc = {
    */
   dateKind?: "last_reviewed" | "data_read";
   /** What kind of page: front matter `type`. */
-  type: "tool" | "tools-index" | "record" | "dataset-index" | "game";
+  type: "tool" | "tools-index" | "record" | "dataset-index" | "game" | "research";
   /** The page's own opening paragraph (its #answer capsule), verbatim. */
   capsule: string;
   /** Markdown body, already assembled. */

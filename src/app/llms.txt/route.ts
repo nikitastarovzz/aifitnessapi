@@ -54,7 +54,7 @@ function datasetLines(): string[] {
   const csv = new Set(manifest.files.map((f) => f.file));
   return manifest.files
     .filter((f) => f.file.endsWith(".json"))
-    .map((f) => `- [${f.file.replace(/\.json$/, "")}](${absoluteUrl(`/datasets/${f.file}`)}): ${f.rows} rows${csv.has(f.file.replace(/\.json$/, ".csv")) ? "; CSV at the same name ending .csv" : ""}`);
+    .map((f) => `- [${f.file.replace(/\.json$/, "")}](${absoluteUrl(`/datasets/${f.file}`)}): ${f.rows} rows${csv.has(f.file.replace(/\.json$/, ".csv")) ? "; also .csv" : ""}`);
 }
 
 export function GET() {

@@ -48,6 +48,7 @@ import { wearableQuizMirror } from "./wearableQuiz";
 import { myStackMirror } from "./myStack";
 import { answersSearchMirror } from "./answersSearch";
 import { opennessIndexMirror } from "./opennessIndex";
+import { driftMirror, noticeMirror, pricingMirror, researchHubMirror } from "./research";
 
 /**
  * Every non-cluster page with a markdown mirror, by page path. Each entry has
@@ -112,6 +113,10 @@ export const PAGE_MIRRORS: Record<string, () => MirrorDoc> = {
   "/quiz/which-wearable-api": wearableQuizMirror,
   "/answers-search": answersSearchMirror,
   "/openness-index": opennessIndexMirror,
+  "/research": researchHubMirror,
+  "/research/docs-drift": driftMirror,
+  "/research/shutdown-notice": noticeMirror,
+  "/research/pricing-transparency": pricingMirror,
 };
 
 /** The GET handler body for a mirror route. */

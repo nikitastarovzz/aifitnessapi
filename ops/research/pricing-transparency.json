@@ -1,0 +1,55 @@
+{
+  "about": "Input to scripts/build-research.mjs for /research/pricing-transparency. One row per vendor named on a /pricing page, classified from the vendor's own lines as this site's evidence files quote them. Rule, applied in order: published-price when the vendor lists a price for any paid developer plan; no-published-price when it names a paid plan or commercial terms without a price; free when it says developer access costs nothing and names no paid plan. Each `line` is copied from a quote in `file` (ops/sources/evidence); the generator fails unless every line is a substring of a quote in that file, and takes the URL from that row. `freeEntry` is a line showing a free plan, trial or sandbox; `unpricedTier` a line naming a paid tier without a price. A vendor with `excluded` is listed with the reason and left out of every count.",
+  "classes": {
+    "published-price": "Publishes a price",
+    "no-published-price": "No published price",
+    "free": "Free, no paid plan named"
+  },
+  "categories": {
+    "wearable": "Wearable APIs",
+    "aggregator": "Health-data aggregators",
+    "nutrition": "Nutrition and food data",
+    "exercise": "Exercise content",
+    "motion": "AI motion SDKs",
+    "gym": "Gym and studio software"
+  },
+  "vendors": [
+    { "vendor": "Garmin", "category": "wearable", "page": "/pricing/garmin-api-pricing", "class": "no-published-price", "file": "pricing-garmin-api-pricing.json", "line": "Available options and commercial terms are tailored based on business and technical requirements." },
+    { "vendor": "Strava", "category": "wearable", "page": "/pricing/strava-api-pricing", "class": "free", "file": "pricing-strava-api-pricing.json", "line": "Access to and use of the Strava API Materials and the Strava Platform are currently provided at no charge." },
+    { "vendor": "Oura", "category": "wearable", "page": "/pricing/oura-api-pricing", "class": "free", "file": "pricing-oura-api-pricing.json", "line": "Yes, the Oura API is free to use for both personal and commercial applications." },
+    { "vendor": "WHOOP", "category": "wearable", "page": "/pricing/whoop-api-pricing", "class": "free", "file": "pricing-whoop-api-pricing.json", "line": "Access to and use of the APIs is currently provided at no charge." },
+    { "vendor": "Polar", "category": "wearable", "page": "/pricing/polar-api-pricing", "class": "free", "file": "pricing-polar-api-pricing.json", "line": "At the moment Polar offers the use and activation of Polar API's free of charge." },
+    { "vendor": "Withings", "category": "wearable", "page": "/pricing/withings-api-pricing", "class": "no-published-price", "file": "pricing-withings-api-pricing.json", "line": "the Enterprise plan unlocks higher limits and dedicated support", "freeEntry": "There are no prerequisites, and free access is provided." },
+    { "vendor": "Suunto", "category": "wearable", "page": "/pricing/suunto-api-pricing", "class": "free", "file": "pricing-suunto-api-pricing.json", "line": "We do not charge from the use of the API." },
+    { "vendor": "Wahoo", "category": "wearable", "page": "/pricing/wahoo-api-pricing", "class": "free", "file": "pricing-wahoo-api-pricing.json", "line": "Access to and use of the Wahoo API Materials and Wahoo Platform are currently provided at no charge." },
+    { "vendor": "Fitbit", "category": "wearable", "page": "/pricing/fitbit-api-pricing", "excluded": "Its pricing page has no evidence file of quoted vendor lines, and Google gives November 2, 2026 as the turn-off of the Fitbit Web API." },
+
+    { "vendor": "Terra", "category": "aggregator", "page": "/pricing/terra-api-pricing", "class": "published-price", "file": "pricing-terra-api-pricing.json", "line": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly.", "unpricedTier": "Plans tailored to your usage" },
+    { "vendor": "Junction", "category": "aggregator", "page": "/pricing/junction-api-pricing", "class": "published-price", "file": "pricing-junction-api-pricing.json", "line": "Launch $300 /mo Billed monthly", "freeEntry": "The sandbox and developer docs are free", "unpricedTier": "Enterprise Custom Billed annually" },
+    { "vendor": "ROOK", "category": "aggregator", "page": "/pricing/rook-api-pricing", "class": "published-price", "file": "pricing-health-data-aggregator-pricing.json", "line": "For getting started with ROOK. $399 USD per month Up to 750 active users", "unpricedTier": "Custom Custom pricing Unlimited users" },
+    { "vendor": "Spike", "category": "aggregator", "page": "/pricing/health-data-aggregator-pricing", "class": "published-price", "file": "pricing-health-data-aggregator-pricing.json", "line": "Starts from $450 /month" },
+    { "vendor": "Sahha", "category": "aggregator", "page": "/pricing/sahha-api-pricing", "class": "published-price", "file": "pricing-sahha-api-pricing.json", "line": "Production plans start at $299 a month", "freeEntry": "Every plan starts with a 30-day free trial.", "unpricedTier": "Volume pricing Unlimited projects / workspaces SLAs & Custom contracting (MSA)" },
+    { "vendor": "Thryve", "category": "aggregator", "page": "/pricing/thryve-api-pricing", "class": "published-price", "file": "pricing-thryve-api-pricing.json", "line": "Start Up Starts at 499 € / Per Month", "freeEntry": "Start 14-day free trial now", "unpricedTier": "Enterprise Price Bespoke" },
+    { "vendor": "Open Wearables", "category": "aggregator", "page": "/pricing/health-data-aggregator-pricing", "class": "published-price", "file": "pricing-health-data-aggregator-pricing.json", "line": "From $999 a month, per deployment", "freeEntry": "You run the open-source platform yourself. $0 Forever" },
+    { "vendor": "Validic", "category": "aggregator", "page": "/pricing/health-data-aggregator-pricing", "class": "no-published-price", "file": "pricing-health-data-aggregator-pricing.json", "line": "Negotiated pricing. Production-ready from day one.", "freeEntry": "Starting today, people can sign up for Inform at no cost." },
+    { "vendor": "LexisNexis Human API", "category": "aggregator", "page": "/pricing/health-data-aggregator-pricing", "class": "no-published-price", "file": "pricing-health-data-aggregator-pricing.json", "line": "Contact Us For More Information" },
+    { "vendor": "Metriport", "category": "aggregator", "page": "/pricing/health-data-aggregator-pricing", "class": "no-published-price", "file": "pricing-health-data-aggregator-pricing.json", "line": "Press Book an Intro Call and select a time and a date to talk to us." },
+
+    { "vendor": "Nutritionix", "category": "nutrition", "page": "/pricing/nutritionix-api-pricing", "class": "published-price", "file": "pricing-nutritionix-api-pricing.json", "line": "$ 499 /Month*", "freeEntry": "Business Trial", "unpricedTier": "If you have a freemium app business model, sell a hardware product, or have more than 100K monthly active" },
+    { "vendor": "Edamam", "category": "nutrition", "page": "/pricing/nutrition-api-pricing", "class": "published-price", "file": "pricing-nutrition-api-pricing.json", "line": "Enterprise Basic Vision $14 per month Prepaid" },
+    { "vendor": "Spoonacular", "category": "nutrition", "page": "/pricing/nutrition-api-pricing", "class": "published-price", "file": "pricing-nutrition-api-pricing.json", "line": "We offer five plans: Free ($0/month), Cook ($29/month), Culinarian ($79/month), Chef ($149/month)", "freeEntry": "50 points/day then no more calls" },
+    { "vendor": "USDA FoodData Central", "category": "nutrition", "page": "/pricing/nutrition-api-pricing", "excluded": "The quoted lines give its CC0 license, the API-key rule and the rate limit, but none states a price or that access costs nothing." },
+    { "vendor": "Open Food Facts", "category": "nutrition", "page": "/pricing/nutrition-api-pricing", "excluded": "The quoted lines give its ODbL license and read limits, but none states a price or that access costs nothing." },
+
+    { "vendor": "API Ninjas", "category": "exercise", "page": "/pricing/exercise-database-api-pricing", "class": "published-price", "file": "pricing-exercise-database-api-pricing.json", "line": "$ 59 $ 39 / month", "freeEntry": "Evaluation and demo purposes only - no payment information required" },
+    { "vendor": "AscendAPI (ExerciseDB)", "category": "exercise", "page": "/pricing/exercise-database-api-pricing", "excluded": "Its free tiers are quoted, but its paid tier is priced on RapidAPI, and no quoted line gives that price." },
+    { "vendor": "free-exercise-db", "category": "exercise", "page": "/pricing/exercise-database-api-pricing", "excluded": "An open dataset: the quoted lines are its license, not a price." },
+    { "vendor": "wger", "category": "exercise", "page": "/pricing/exercise-database-api-pricing", "excluded": "Open-source software and data: the quoted lines are its licenses, not a price." },
+
+    { "vendor": "QuickPose", "category": "motion", "page": "/pricing/quickpose-pricing", "class": "published-price", "file": "pricing-quickpose-pricing.json", "line": "Price | Free | $25/mo | $50/mo | $100/mo | $200/mo |", "freeEntry": "Up to 10 devices is free — no card required.", "unpricedTier": "for over 100,000 monthly devices or enterprise requirements including custom SLAs" },
+    { "vendor": "Sency", "category": "motion", "page": "/pricing/sency-pricing", "class": "published-price", "file": "pricing-sency-pricing.json", "line": "Publish & Monetize From $499 / month", "freeEntry": "Build & Launch FREE", "unpricedTier": "A Solution for All Let’s Discuss" },
+    { "vendor": "KinesteX", "category": "motion", "page": "/pricing/sency-pricing", "excluded": "KinesteX funds this site, so it is left out of cross-vendor counts, as /press and the fitness API index leave it out." },
+
+    { "vendor": "Mindbody", "category": "gym", "page": "/pricing/mindbody-api-pricing", "class": "published-price", "file": "pricing-mindbody-api-pricing.json", "line": "Once this limit is reached, you will be charged one third of a cent for every call.", "freeEntry": "Testing through the sandbox is free of charge" }
+  ]
+}

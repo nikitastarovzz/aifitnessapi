@@ -1,0 +1,45 @@
+{
+  "about": "Input to scripts/build-research.mjs for /research/docs-drift. Each entry names a commit that touched ops/sources/evidence/*.json, the source hosts (host, or host/owner for raw.githubusercontent.com and github.com) whose ended evidence rows it explains, why those rows changed, and the kind of change, each only as the commit message states it. `statement` is copied from the commit message; the generator fails unless every statement is in that commit's message (whitespace collapsed). cause: source-changed (the vendor's page changed), our-change (this site changed the quote or URL; the source did not), source-unreachable (the page stopped answering). kind: fact, wording, mixed, or null where the message does not say. `endKinds` limits an entry to rows that ended that way. Rows no entry explains are counted as not stated.",
+  "annotations": [
+    { "commit": "2979aee", "sources": ["developer.garmin.com"], "cause": "source-changed", "kind": "fact", "statements": ["a source snapshot of 2026-10-22 shows Garmin reorganised its developer program between our 2026-10-17 and 2026-10-22 reads"] },
+
+    { "commit": "fad6ea2", "sources": ["sahha.ai"], "cause": "source-changed", "kind": "fact", "statements": ["Sahha: the pricing page dropped its Free plan"] },
+    { "commit": "fad6ea2", "sources": ["developer.withings.com"], "cause": "source-changed", "kind": "fact", "statements": ["the Withings+ notice (required on Start for Free from 2026-10-12) and the Advanced Research API are gone from developer.withings.com"] },
+    { "commit": "fad6ea2", "sources": ["raw.githubusercontent.com/sency-ai"], "cause": "source-changed", "kind": "fact", "statements": ["Sency: the Android demo README documents SMKit Android 1.9.6"] },
+    { "commit": "fad6ea2", "sources": ["raw.githubusercontent.com/tryterra"], "cause": "source-changed", "kind": "fact", "statements": ["Terra OpenAPI spec 2026.10.08.1 -> 2026.10.21.1."] },
+    { "commit": "fad6ea2", "sources": ["www.thryve.health"], "cause": "source-changed", "kind": "fact", "statements": ["Thryve: the Start Up feature list now reads"] },
+    { "commit": "fad6ea2", "sources": ["support.coros.com"], "cause": "source-changed", "kind": "fact", "statements": ["COROS: \"Submit an API Application\" last updated 2026-10-20."] },
+    { "commit": "fad6ea2", "sources": ["ringconn.com"], "cause": "source-changed", "kind": "fact", "statements": ["RingConn's \"friends and family\" sharing sentence (the app-features page no longer renders it)"] },
+
+    { "commit": "560d0d2", "sources": ["tryterra.co"], "cause": "source-changed", "kind": "wording", "statements": ["Terra /pricing: wording only."] },
+    { "commit": "560d0d2", "sources": ["openwearables.io", "raw.githubusercontent.com/the-momentum"], "cause": "source-changed", "kind": "fact", "statements": ["Open Wearables: redesign with fact changes."] },
+    { "commit": "560d0d2", "sources": ["sahha.ai"], "cause": "source-changed", "kind": "fact", "statements": ["Sahha: the trial card with \"Card required\" is gone"] },
+    { "commit": "560d0d2", "sources": ["www.thryve.health"], "cause": "source-changed", "kind": null, "statements": ["Thryve: BAA line re-quoted"] },
+    { "commit": "560d0d2", "sources": ["validic.com"], "cause": "source-changed", "kind": "fact", "statements": ["Validic: the restricted list no longer names Fitbit"] },
+    { "commit": "560d0d2", "sources": ["raw.githubusercontent.com/tryterra"], "cause": "source-changed", "kind": "fact", "statements": ["Terra OpenAPI: version number dropped from the page (bumps weekly)."] },
+
+    { "commit": "af070f5", "sources": ["cloud.ouraring.com"], "cause": "source-changed", "kind": null, "statements": ["Oura's openapi-1.42.json now answers 404 while 1.43 is live"] },
+    { "commit": "af070f5", "sources": ["developers.google.com"], "cause": "our-change", "kind": null, "statements": ["every other developers.google.com evidence row pins ?hl=en"] },
+
+    { "commit": "b92bce2", "sources": ["raw.githubusercontent.com/the-momentum"], "cause": "source-changed", "kind": "fact", "statements": ["Open Wearables rewrote its README."] },
+    { "commit": "b92bce2", "sources": ["docs.thryve.health"], "cause": "source-changed", "kind": "fact", "statements": ["Thryve's data-sources table no longer says \"Deprecating on Oct 29 2026\""] },
+    { "commit": "b92bce2", "sources": ["gymvisual.com", "www.gymvisual.com"], "cause": "source-unreachable", "kind": null, "statements": ["gymvisual.com answers 403 to the runner and to source-snapshot.yml."] },
+    { "commit": "b92bce2", "sources": ["docs.wodify.com"], "cause": "source-changed", "kind": "fact", "statements": ["Wodify's API reference now says to request a key"] },
+    { "commit": "b92bce2", "sources": ["tryrook.io"], "cause": "source-changed", "kind": null, "statements": ["ROOK's pricing calls the Signals product \"Health Monitor\""] },
+    { "commit": "b92bce2", "sources": ["www.ultrahuman.com"], "cause": "source-changed", "kind": "wording", "statements": ["Ultrahuman's homepage quote replaced (claim unchanged)."] },
+
+    { "commit": "36be64d", "sources": ["docs.tryterra.co"], "cause": "source-changed", "kind": "fact", "statements": ["Changed: webhook retries are now documented as \"several hours\", with no count given"] },
+
+    { "commit": "cccee2b", "sources": ["www.cms.gov"], "cause": "our-change", "kind": null, "statements": ["CMS page-modified quote long enough to count"] },
+
+    { "commit": "177ebfb", "sources": ["docs.tryterra.co"], "cause": "source-changed", "kind": "fact", "statements": ["Terra now defines Managed credentials as working with Terra's own", "Terra's webhook docs no longer give 10 retries or ~8 hours"] },
+    { "commit": "177ebfb", "sources": ["developers.google.com"], "cause": "source-changed", "kind": "mixed", "statements": ["MediaPipe num_poses wording; LIVE_STREAM is not listed for the web.", "MediaPipe iOS/Android pages redirect to one tabbed guide"] },
+    { "commit": "177ebfb", "sources": ["www.cliniko.com"], "cause": "source-changed", "kind": "fact", "statements": ["Cliniko's connected-apps directory lists 96 apps (was 95)."] },
+    { "commit": "177ebfb", "sources": ["support.coros.com"], "cause": "source-changed", "kind": "fact", "statements": ["COROS Partner API Access / Submit an API Application updated_at moved."] },
+    { "commit": "177ebfb", "sources": ["raw.githubusercontent.com/ultralytics"], "cause": "source-changed", "kind": "wording", "statements": ["Ultralytics rewording"] },
+    { "commit": "177ebfb", "sources": ["developer.garmin.com"], "endKinds": ["url"], "cause": "source-changed", "kind": "wording", "statements": ["Garmin bundle renamed with the same text"] },
+    { "commit": "177ebfb", "sources": ["developer.garmin.com", "tryrook.io", "openwearables.io", "www.spikeapi.com"], "endKinds": ["quote"], "cause": "our-change", "kind": null, "statements": ["short quotes lengthened"] },
+
+    { "commit": "8fb512e", "sources": ["dev.fitbit.com"], "cause": "our-change", "kind": null, "statements": ["The parser took the first heading of any level as the title"] }
+  ]
+}

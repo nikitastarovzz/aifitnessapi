@@ -99,6 +99,10 @@ const PAGE_MIRRORS = [
   "/answers-search",
   "/quiz/which-wearable-api",
   "/openness-index",
+  "/research",
+  "/research/docs-drift",
+  "/research/shutdown-notice",
+  "/research/pricing-transparency",
 ];
 
 const nextConfig: NextConfig = {

@@ -17,6 +17,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { findBritish, fromGenerated, generatedPairs, pageProse } from "./lib/usEnglish.mjs";
 import { readBuiltSitemap } from "./lib/sitemap-files.mjs";
+import { headlines as researchHeadlines } from "../src/lib/researchStats.mjs";
 
 const ROOT = ".next/server/app";
 // /sitemap.xml is an index; the <url> rows are in the children it lists.
@@ -358,6 +359,9 @@ if (fs.existsSync(matrixPath)) {
     "workout-types-crosswalk-2026",
     "exercise-form-rules-2026",
     "exercise-taxonomy-crosswalk-2026",
+    "fitness-api-docs-drift-2026",
+    "fitness-api-shutdown-notice-2026",
+    "fitness-api-pricing-transparency-2026",
   ];
   // Both directions. Listing files catches a DELETION (a dataset a page
   // still cites); scanning the directory catches an ADDITION that was never
@@ -6316,6 +6320,60 @@ function checkSitemapIndex(SITE) {
     }
   }
 
+  // ── /research: every headline figure a study page prints, recomputed here
+  // from the published dataset with the same functions (src/lib/researchStats.mjs).
+  // A page whose figure differs from its download fails, as /press does.
+  let researchFigures = 0;
+  {
+    const STUDIES = [
+      { id: "docs-drift", path: "/research/docs-drift", slug: "fitness-api-docs-drift-2026" },
+      { id: "shutdown-notice", path: "/research/shutdown-notice", slug: "fitness-api-shutdown-notice-2026" },
+      { id: "pricing-transparency", path: "/research/pricing-transparency", slug: "fitness-api-pricing-transparency-2026" },
+    ];
+    if (htmlAt("/research") === null) problems.push("RESEARCH-MISSING  /research was not built");
+    for (const st of STUDIES) {
+      const html = htmlAt(st.path);
+      const doc = readJson(`public/datasets/${st.slug}.json`);
+      if (html === null || !doc?.items?.length) {
+        problems.push(`RESEARCH-MISSING  ${st.path} was not built or public/datasets/${st.slug}.json has no rows — run \`npm run datasets\``);
+        continue;
+      }
+      const want = researchHeadlines(st.id, doc.items, { historyThrough: doc.historyThrough });
+      const got = new Map(
+        [...html.matchAll(/<li\b[^>]*\bdata-research-stat="([^"]+)"[^>]*\bdata-research-value="([^"]*)"[^>]*>([\s\S]*?)<\/li>/g)].map((m) => [
+          m[1],
+          { attr: decode(m[2]), text: decode(/<p\b[^>]*>([^<]*)<\/p>/.exec(m[3])?.[1] ?? "").trim() },
+        ]),
+      );
+      for (const w of want) {
+        const g = got.get(w.id);
+        researchFigures++;
+        if (!g) problems.push(`RESEARCH-DRIFT  ${st.path} does not print #${w.id}; the published file gives ${w.value}`);
+        else if (g.attr !== w.value || g.text !== w.value) problems.push(`RESEARCH-DRIFT  ${st.path} #${w.id} reads "${g.text}" but public/datasets/${st.slug}.json gives ${w.value}`);
+      }
+      for (const id of got.keys()) if (!want.some((w) => w.id === id)) problems.push(`RESEARCH-DRIFT  ${st.path} prints #${id}, which no published file recomputes`);
+    }
+    // The notice study covers every graveyard entry, and no other.
+    const notice = readJson("public/datasets/fitness-api-shutdown-notice-2026.json");
+    const graveIds = [...fs.readFileSync("src/data/graveyard.ts", "utf8").matchAll(/^ {4}id: "([^"]+)"/gm)].map((m) => m[1]).sort();
+    const noticeIds = (notice?.items ?? []).map((i) => i.id).sort();
+    if (graveIds.join() !== noticeIds.join()) {
+      problems.push(`RESEARCH-STALE  the shutdown-notice dataset covers [${noticeIds.join(", ")}] but the graveyard holds [${graveIds.join(", ")}] — run \`node scripts/build-research.mjs && npm run datasets\``);
+    }
+    // Every counted vendor's line is still in the evidence file it names, at its URL.
+    const pricing = readJson("public/datasets/fitness-api-pricing-transparency-2026.json");
+    for (const r of (pricing?.items ?? []).filter((x) => x.class)) {
+      const ev = readJson(r.evidenceFile);
+      if (!Array.isArray(ev) || !ev.some((e) => e.url === r.url && typeof e.quote === "string" && e.quote.includes(r.line))) {
+        problems.push(`RESEARCH-STALE  ${r.vendor}'s line is no longer quoted at ${r.url} in ${r.evidenceFile} — re-read the source, update ops/research/pricing-transparency.json, then regenerate`);
+      }
+    }
+    const pricingHtml = htmlAt("/research/pricing-transparency");
+    if (pricingHtml !== null && !/data-research-disclosure[\s\S]*?funded by KinesteX/.test(pricingHtml)) {
+      problems.push("RESEARCH-DISCLOSURE  /research/pricing-transparency does not carry its funder disclosure (funded by KinesteX)");
+    }
+  }
+
   // ── Dataset cards and CITATION.cff, generated with the files.
   const cff = fs.existsSync("CITATION.cff") ? fs.readFileSync("CITATION.cff", "utf8") : null;
   if (cff === null || !/^cff-version: 1\.2\.0$/m.test(cff) || !/^license: CC-BY-4\.0$/m.test(cff) || !/^title: /m.test(cff) || !/^authors:/m.test(cff)) {
@@ -6352,7 +6410,7 @@ function checkSitemapIndex(SITE) {
 
   console.log(
     `Vendor timelines: ${timelinePages.length} pages (${timelineEntries} entries), ${feeds.length} feeds parsed as XML; ` +
-      `${vendorLinks} directory pages link their /api/v1/vendors record; /press: ${pressStats} sourced figures; ` +
+      `${vendorLinks} directory pages link their /api/v1/vendors record; /press: ${pressStats} sourced figures; /research: ${researchFigures} figures recomputed; ` +
       `dataset cards: ${cards} of ${jsonSlugs.length}, CITATION.cff ${cff ? "ok" : "MISSING"}.`,
   );
 }
