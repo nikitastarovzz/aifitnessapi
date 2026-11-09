@@ -1,0 +1,222 @@
+[
+  {
+    "claim": "PoseTracker is a service developed by Movelytics SAS.",
+    "url": "https://www.posetracker.com/terms-of-use",
+    "quote": "Welcome to PoseTracker, a service developed by Movelytics SAS."
+  },
+  {
+    "claim": "PoseTracker runs MoveNet on the phone and returns reps, angles and a form score.",
+    "url": "https://www.posetracker.com/",
+    "quote": "PoseTracker runs MoveNet on the phone, so the app gets keypoints, then reps, angles and a form score."
+  },
+  {
+    "claim": "17 COCO keypoints, on-device.",
+    "url": "https://www.posetracker.com/",
+    "quote": "COCO keypoints, on-device, no video upload"
+  },
+  {
+    "claim": "Keypoints need no API key.",
+    "url": "https://www.posetracker.com/",
+    "quote": "Keypoints need no API key. Try the snippet or see pricing ."
+  },
+  {
+    "claim": "Freemium is limited to 200 tracking calls a month.",
+    "url": "https://www.posetracker.com/",
+    "quote": "Up to 200 tracking API calls monthly (strict limit)"
+  },
+  {
+    "claim": "Freemium shows a Powered by PoseTracker link.",
+    "url": "https://www.posetracker.com/",
+    "quote": "Limited pose estimation data. Includes a Powered by PoseTracker link."
+  },
+  {
+    "claim": "Developer plan includes 1,000 calls a month with no cut above it.",
+    "url": "https://www.posetracker.com/",
+    "quote": "1000 tracking API calls included monthly — no service cut above it"
+  },
+  {
+    "claim": "Business plan quotas per 12-month period.",
+    "url": "https://www.posetracker.com/",
+    "quote": "100k , 500k or 1M tracking API calls per 12-month period — no monthly cap"
+  },
+  {
+    "claim": "Extra calls on paid plans are invoiced at €0.01 or covered by a higher plan.",
+    "url": "https://www.posetracker.com/",
+    "quote": "On paid plans, tracking keeps working for your users above the included calls: extra calls are counted and, within 14 days, we agree together on a higher plan or invoice them at €0.01 excl. VAT per call."
+  },
+  {
+    "claim": "The developer SDK targets React Native (Expo Go) and the web.",
+    "url": "https://www.posetracker.com/",
+    "quote": "Native pose estimation SDK for React Native (Expo Go) and the web. Free on-device keypoints, optional API-key exercise engine."
+  },
+  {
+    "claim": "The classic integration embeds the camera in a WebView or iframe.",
+    "url": "https://www.posetracker.com/",
+    "quote": "The classic PoseTracker integration: embed the camera in an existing WebView or iframe with one line of code."
+  },
+  {
+    "claim": "PoseTracker says it is not a medical device.",
+    "url": "https://www.posetracker.com/",
+    "quote": "It is not a medical device and it does not replace a clinician."
+  },
+  {
+    "claim": "Offline React Native package bundles MoveNet.",
+    "url": "https://www.posetracker.com/",
+    "quote": "The offline React Native package bundles the MoveNet model on the device, so inference needs no network; the light package fetches the model at runtime."
+  },
+  {
+    "claim": "The web SDK runs MoveNet over TensorFlow.js.",
+    "url": "https://www.posetracker.com/",
+    "quote": "The PoseTracker web SDK runs MoveNet in the browser over TensorFlow.js, with free on-device keypoints, from a script tag, an ESM import or a React wrapper."
+  },
+  {
+    "claim": "Keypoints are free; apiToken only for the movement engine.",
+    "url": "https://docs.posetracker.com/quickstart",
+    "quote": "No. Keypoints are free. Pass apiToken only for the movement engine."
+  },
+  {
+    "claim": "The RN packages run MoveNet inside react-native-webview.",
+    "url": "https://docs.posetracker.com/quickstart",
+    "quote": "The RN packages run MoveNet inside react-native-webview ( WebViewPoseView )."
+  },
+  {
+    "claim": "One call equals one open session.",
+    "url": "https://docs.posetracker.com/reference/features-plans",
+    "quote": "One call = one open session, not one exercise."
+  },
+  {
+    "claim": "With a key, internet is required to authenticate and meter.",
+    "url": "https://docs.posetracker.com/reference/features-plans",
+    "quote": "With a key, internet is required to authenticate and meter ( POST /api/sdk/configure , POST /api/sdk/track camera_start )."
+  },
+  {
+    "claim": "The SDK accepts external frames.",
+    "url": "https://docs.posetracker.com/reference/features-plans",
+    "quote": "startExercise() again while processFrame keeps running"
+  },
+  {
+    "claim": "BlazePose is selectable on light and web packages.",
+    "url": "https://docs.posetracker.com/reference/features-plans",
+    "quote": "Select BlazePose with options.model = 'blazepose' on light / web (not via features )."
+  },
+  {
+    "claim": "KinesteX names its standardized movement tests.",
+    "url": "https://www.kinestex.com/",
+    "quote": "Rehab and telerehabilitation teams use KinesteX to guide home exercise programs and to run standardized movement tests such as Timed Up and Go, gait speed, sit-to-stand, balance stands, functional reach and shoulder range of motion."
+  },
+  {
+    "claim": "Same MoveNet engine available as native npm packages.",
+    "url": "https://www.posetracker.com/news/posetracker-sdk-react-native-web",
+    "quote": "For years it shipped as a single WebView/iframe API; today the same MoveNet engine is also available as native npm packages, so you pick how you integrate instead of being forced into an embed."
+  },
+  {
+    "claim": "PoseTracker's comparison describes KinesteX-style as a hosted camera/content embed.",
+    "url": "https://www.posetracker.com/compare/pose-estimation-sdks",
+    "quote": "Hosted camera / content embed"
+  },
+  {
+    "claim": "PoseTracker suggests a hosted WebView (KinesteX-style) if you want their workout UI.",
+    "url": "https://www.posetracker.com/compare/pose-estimation-sdks",
+    "quote": "A hosted WebView (KinesteX-style) if you want their workout UI more than you want to own the camera."
+  },
+  {
+    "claim": "PoseTracker says KinesteX and Sency are often sales-led.",
+    "url": "https://www.posetracker.com/compare/pose-estimation-sdks",
+    "quote": "KinesteX / Sency often sales-led. Treat quotes as current only from the vendor."
+  },
+  {
+    "claim": "PoseTracker has no first-party Flutter SDK.",
+    "url": "https://www.posetracker.com/compare/pose-estimation-sdks",
+    "quote": "Flutter-only (no first-party Flutter SDK)."
+  },
+  {
+    "claim": "No independent lab ranks these SDKs.",
+    "url": "https://www.posetracker.com/compare/pose-estimation-sdks",
+    "quote": "No independent lab ranks these SDKs on a shared accuracy set. Compare architecture and constraints, then test your movements."
+  },
+  {
+    "claim": "Paid plans are not cut at the included calls.",
+    "url": "https://www.posetracker.com/terms-of-use",
+    "quote": "On paid plans with an included number of tracking API calls (Developer, Business 100k, 500k and 1M), PoseTracker does not cut the service when the included calls are reached: tracking keeps working for your end users and no error is returned to them."
+  },
+  {
+    "claim": "Managed plans are concluded outside the self-serve Developer checkout.",
+    "url": "https://www.posetracker.com/terms-of-use",
+    "quote": "Some Business plans are concluded directly with Movelytics SAS (a “managed plan”) rather than through the self-serve Developer checkout."
+  },
+  {
+    "claim": "KinesteX is a white-label SDK inside your app.",
+    "url": "https://www.kinestex.com/",
+    "quote": "A white-label SDK that coaches every rep through your users' own camera, inside your app."
+  },
+  {
+    "claim": "KinesteX's SDK list per its docs.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Our white-label solution supports any camera-enabled device across Android, iOS, and web, with SDKs for Swift, Kotlin, Flutter, React Native and React (TypeScript), plus a plain HTML/JavaScript iframe integration for any web page or PWA."
+  },
+  {
+    "claim": "AI Trainer Chat is KinesteX's recommended starting point.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Conversational AI personal trainer with in-app fitness assessment, personalized workout generation, post-workout check-ins, and next-session scheduling. The recommended starting point for new integrations."
+  },
+  {
+    "claim": "Camera Component streams motion events and pose landmarks on request.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Build your own workout UI on top of our motion tracking. The camera component streams real-time motion events (reps, holds, form feedback, presence, activity, plus opt-in form state and framing hints) and, on request, pose landmarks. See real-time motion events ."
+  },
+  {
+    "claim": "Requirements: iOS 14.0+ and Xcode 16.3+.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "iOS 14.0+ (Swift KinesteXAIKit , Xcode 16.3+)"
+  },
+  {
+    "claim": "Requirements: Android 9+ (API 28).",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Android 9+ (API 28, Kotlin KinesteX-SDK-Kotlin )"
+  },
+  {
+    "claim": "KinesteX's SwiftUI kit embeds the experience as a WebView.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-AI-Kit/main/README.md",
+    "quote": "A SwiftUI package that embeds KinesteX’s AI-powered camera workout experience as a WebView."
+  },
+  {
+    "claim": "KinesteX's site counts 500+ exercises.",
+    "url": "https://www.kinestex.com/product/workouts",
+    "quote": "500+ exercises spanning cardio, strength, core, flexibility and mobility, so users have what they need to get fitter and move better."
+  },
+  {
+    "claim": "KinesteX supports 19 languages with right-to-left support.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Yes. The SDK's guided workout experience supports 19 languages (English, Spanish, French, German, Dutch, Italian, Portuguese, Russian, Arabic, Hebrew, Hindi, Bengali, Indonesian, Danish, Greek, Chinese, Uzbek, Urdu, and Kazakh), with right-to-left support for Arabic, Hebrew, and Urdu."
+  },
+  {
+    "claim": "KinesteX's white-label solution carries no KinesteX logos.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Yes, we offer a fully white-labeled solution, enabling seamless branding integration without any KinesteX logos or marks."
+  },
+  {
+    "claim": "KinesteX's pricing is per active user per month.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "The pricing per-active-user-per-month will smoothly go down as you scale and reach new tiers."
+  },
+  {
+    "claim": "KinesteX claims 97.2% accuracy.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Our AI-powered motion tracking achieves 97.2% accuracy, offering feedback similar to a personal trainer."
+  },
+  {
+    "claim": "Ready-made Experiences take a week or less with one developer.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "Live in a week or less with one developer. We handle maintenance."
+  },
+  {
+    "claim": "KinesteX security page: camera and vision processing stays on-device.",
+    "url": "https://www.kinestex.com/product/security",
+    "quote": "All camera and vision processing stays on-device; only pseudonymized movement data, session metrics, and an opaque partner-supplied user identifier ever reach KinesteX."
+  },
+  {
+    "claim": "KinesteX READMEs say optional edge processing.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-ReactNative/main/README.md",
+    "quote": "Ensures data security with optional edge processing (no cloud transmission)."
+  }
+]

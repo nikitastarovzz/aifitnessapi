@@ -70,11 +70,6 @@
     "quote": "All inference runs on the device's NPU. No video frames are ever sent to a server"
   },
   {
-    "claim": "QuickPose's docs home mentions Wasm SDKs.",
-    "url": "https://docs.quickpose.ai/",
-    "quote": "Add Pose Estimation and Detection to your apps quickly with our iOS, Android and Wasm SDKs."
-  },
-  {
     "claim": "QuickPose: free for 10 devices.",
     "url": "https://quickpose.ai/sdk-pricing/",
     "quote": "Up to 10 devices is free — no card required."
@@ -120,11 +115,6 @@
     "quote": "may be subject to fees, which the User agrees to pay in a timely manner."
   },
   {
-    "claim": "The JointTrack page's older answer about the Launch tier.",
-    "url": "https://quickpose.ai/products/jointtrack/pricing/",
-    "quote": "You move to the Launch tier if your app has more than 100 monthly active devices."
-  },
-  {
     "claim": "Apache-2.0 LICENSE in the QuickPose iOS repo.",
     "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/LICENSE",
     "quote": "Apache License Version 2.0, January 2004"
@@ -135,9 +125,9 @@
     "quote": "A SwiftUI package that embeds KinesteX’s AI-powered camera workout experience as a WebView."
   },
   {
-    "claim": "KinesteX's installation docs point Swift users to the SwiftUI kit.",
-    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
-    "quote": "2. Enter URL: https://github.com/KinesteX/KinesteX-AI-Kit.git"
+    "claim": "KinesteX's docs name KinesteXAIKit for Swift, iOS 14.0+ and Xcode 16.3+.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "iOS 14.0+ (Swift KinesteXAIKit , Xcode 16.3+)"
   },
   {
     "claim": "The web path is an iframe.",
@@ -151,18 +141,18 @@
   },
   {
     "claim": "React Native installs alongside react-native-webview.",
-    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+    "url": "https://www.kinestex.com/docs/installation",
     "quote": "npm install kinestex-sdk-react-native react-native-webview"
   },
   {
     "claim": "A React TypeScript package.",
-    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+    "url": "https://www.kinestex.com/docs/installation",
     "quote": "npm i kinestex-sdk-react-ts"
   },
   {
-    "claim": "A personalized-plan view in beta.",
-    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-Swift-Demo/main/docs/integration/overview.md",
-    "quote": "Personalized AI Workout Plan (Beta)"
+    "claim": "KinesteX's docs mark Personalized Plan View as Sunset.",
+    "url": "https://www.kinestex.com/docs/ai-trainer-chat",
+    "quote": "Personalized Plan View Sunset"
   },
   {
     "claim": "A custom camera component with pose analysis and feedback.",
@@ -220,11 +210,6 @@
     "quote": "Balance risk assessment"
   },
   {
-    "claim": "iOS 14 and macOS 11 in the Swift packages.",
-    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-Swift/main/Package.swift",
-    "quote": ".iOS(.v14), .macOS(.v11)"
-  },
-  {
     "claim": "The Android README's feature table lists range of motion.",
     "url": "https://raw.githubusercontent.com/quickpose/quickpose-android-sdk/main/README.md",
     "quote": "<p><b>Health - Range Of Motion</b></p>"
@@ -236,17 +221,17 @@
   },
   {
     "claim": "Camera permission on iOS.",
-    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+    "url": "https://www.kinestex.com/docs/installation",
     "quote": "<string>Camera access is required for AI-powered workout tracking</string>"
   },
   {
     "claim": "A motion-sensor usage description on iOS.",
-    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+    "url": "https://www.kinestex.com/docs/installation",
     "quote": "<key>NSMotionUsageDescription</key>"
   },
   {
     "claim": "CAMERA and INTERNET permissions on Android.",
-    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+    "url": "https://www.kinestex.com/docs/installation",
     "quote": "<uses-permission android:name=\"android.permission.INTERNET\" />"
   },
   {
@@ -266,7 +251,7 @@
   },
   {
     "claim": "Contact form for demo access and an API key.",
-    "url": "https://www.kinestex.com/docs",
+    "url": "https://www.kinestex.com/docs/getting-started",
     "quote": "To get demo access and your API key, fill out the contact form on our website."
   },
   {
@@ -313,5 +298,170 @@
     "claim": "The security page says the cloud delivers content and AI models.",
     "url": "https://www.kinestex.com/product/security",
     "quote": "The KinesteX cloud is used only to deliver content and AI models and to store derived, non-identifying session metrics."
+  },
+  {
+    "claim": "KinesteX's docs recommend AI Trainer Chat as the starting point for new integrations.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "The recommended starting point for new integrations."
+  },
+  {
+    "claim": "AI Trainer Chat runs onboarding with an optional camera fitness assessment, a workout, a post-workout check-in and next-session scheduling.",
+    "url": "https://www.kinestex.com/docs/ai-trainer-chat",
+    "quote": "profile setup (with an optional camera-based fitness assessment) → readiness check-in → workout → post-workout check-in → scheduling the next session."
+  },
+  {
+    "claim": "KinesteX lists a Plan View.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Display a specific workout plan with schedule and multiple workouts."
+  },
+  {
+    "claim": "KinesteX lists a Workout View.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Launch directly into a specific workout by name or ID."
+  },
+  {
+    "claim": "KinesteX lists a Challenge View with leaderboards.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Gamified exercise challenges with leaderboards and rep tracking."
+  },
+  {
+    "claim": "KinesteX lists a Leaderboard View.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Display real-time leaderboards for challenge exercises as a standalone view."
+  },
+  {
+    "claim": "KinesteX's AI Experiences are motion games: Balloon Pop, Color Chase and Alien Squat Shooter.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Interactive fitness games like Balloon Pop, Color Chase, and Alien Squat Shooter."
+  },
+  {
+    "claim": "KinesteX lists an embedded Admin Workout Editor.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Embedded view for creating and managing workouts and exercises."
+  },
+  {
+    "claim": "KinesteX lists a Custom Workout option.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Create personalized workout sequences with custom exercises, reps, durations, and rest periods."
+  },
+  {
+    "claim": "KinesteX's Camera Component streams reps, holds, form feedback and presence, and pose landmarks on request.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "The camera component streams real-time motion events (reps, holds, form feedback, presence, activity, plus opt-in form state and framing hints) and, on request, pose landmarks."
+  },
+  {
+    "claim": "KinesteX offers REST content APIs.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Fetch workout plans, exercises, and content data via REST APIs."
+  },
+  {
+    "claim": "KinesteX's content APIs are served from data.kinestex.com.",
+    "url": "https://www.kinestex.com/docs/content-api-v2",
+    "quote": "Base URL: https://data.kinestex.com"
+  },
+  {
+    "claim": "KinesteX's content APIs are authenticated with an API key, paginated, filterable and localized.",
+    "url": "https://www.kinestex.com/docs/content-api-v2",
+    "quote": "authenticated with your company API key, paginated, filterable, and localized."
+  },
+  {
+    "claim": "KinesteX's docs mark Complete UX (Main) as Sunset.",
+    "url": "https://www.kinestex.com/docs/ai-trainer-chat",
+    "quote": "Complete UX (Main) Sunset"
+  },
+  {
+    "claim": "KinesteX lists SDKs for Swift, Kotlin, Flutter, React Native and React (TypeScript), plus an HTML/JavaScript iframe for any web page or PWA.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "with SDKs for Swift, Kotlin, Flutter, React Native and React (TypeScript), plus a plain HTML/JavaScript iframe integration for any web page or PWA."
+  },
+  {
+    "claim": "KinesteX requires Android 9+ (API 28).",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Android 9+ (API 28, Kotlin KinesteX-SDK-Kotlin )"
+  },
+  {
+    "claim": "KinesteX supports Chrome, Safari, Firefox and Edge.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Web browser support (Chrome, Safari, Firefox, Edge)"
+  },
+  {
+    "claim": "KinesteX's install docs show Kotlin SDK 2.5.0 via JitPack.",
+    "url": "https://www.kinestex.com/docs/installation",
+    "quote": "implementation(\"com.github.KinesteX:KinesteX-SDK-Kotlin:2.5.0\")"
+  },
+  {
+    "claim": "KinesteX's Kotlin SDK needs minSdk 28.",
+    "url": "https://www.kinestex.com/docs/installation",
+    "quote": "the SDK needs minSdk 28 or higher"
+  },
+  {
+    "claim": "KinesteX's FAQ says integration typically takes under a day.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Integration is simple and typically takes under a day"
+  },
+  {
+    "claim": "KinesteX's FAQ says 300+ data points per workout session.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "300+ data points per workout session"
+  },
+  {
+    "claim": "KinesteX's FAQ lists 19 languages for the guided workout experience.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "The SDK's guided workout experience supports 19 languages"
+  },
+  {
+    "claim": "KinesteX's home page lists 19 interface languages.",
+    "url": "https://www.kinestex.com/",
+    "quote": "The interface is available in 19 languages, including Arabic, Hebrew and Urdu."
+  },
+  {
+    "claim": "KinesteX's home page says 500+ AI exercises.",
+    "url": "https://www.kinestex.com/",
+    "quote": "AI exercises, ready to use | 500+"
+  },
+  {
+    "claim": "KinesteX's SDK integration page: ready-made in 1 week or less, guided 2 to 3 weeks, build-your-own about a month.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "1 week or less with Ready-made Experiences, 2 to 3 weeks with the Guided Workout, and about a month when you build every screen."
+  },
+  {
+    "claim": "KinesteX's SDK integration page says a developer connects the SDK in about a day.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "A developer connects our SDK to your iOS, Android or web app in about a day."
+  },
+  {
+    "claim": "KinesteX's SDK integration page says camera video never leaves the device and is not stored.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "The camera video never leaves it and is not stored"
+  },
+  {
+    "claim": "KinesteX's SDK integration page says the AI Personal Trainer chat needs internet.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "The AI Personal Trainer chat needs internet, because it talks to an AI model."
+  },
+  {
+    "claim": "KinesteX gives demo access and an API key when you book a call.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "We give you demo access and your API key when you book a call."
+  },
+  {
+    "claim": "KinesteX needs camera access and internet on users' phones.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "Camera access and internet"
+  },
+  {
+    "claim": "QuickPose's Builder plan is $25 a month for up to 100 devices.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Up to 100 monthly devices"
+  },
+  {
+    "claim": "QuickPose's SDK pages list a React Native SDK.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "React Native SDK"
+  },
+  {
+    "claim": "QuickPose's iOS product page says all inference runs on the device.",
+    "url": "https://quickpose.ai/products/ios-sdk/",
+    "quote": "All inference runs on the device's Neural Engine. No video frames are ever sent to a server"
   }
 ]

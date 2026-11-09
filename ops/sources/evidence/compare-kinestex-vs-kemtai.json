@@ -1,0 +1,227 @@
+[
+  {
+    "claim": "FDA-listed and CE-marked medical device (home page).",
+    "url": "https://kemtai.com/",
+    "quote": "FDA-listed and CE-marked medical device"
+  },
+  {
+    "claim": "FAQ wording on regulatory status.",
+    "url": "https://kemtai.com/faqs",
+    "quote": "Yes, it’s FDA-listed as a medical device, CE‑marked (MDR 2017/745) as a medical device, ISO‑certified (13485, 27799, 27001), and complies with HIPAA & GDPR regulations."
+  },
+  {
+    "claim": "Library of 2,000+ exercises.",
+    "url": "https://kemtai.com/",
+    "quote": "Library of 2,000+ exercises and movement variations"
+  },
+  {
+    "claim": "The library spans physio, neuro, pilates and high-intensity work.",
+    "url": "https://kemtai.com/faqs",
+    "quote": "Kemtai’s library has more than 2,000 exercises, ranging from physiotherapy & MSK, neuro & chronic-care, to pilates, easy stretching and high-intensity professional exercises."
+  },
+  {
+    "claim": "111 body data points (home).",
+    "url": "https://kemtai.com/",
+    "quote": "Analyzes 111 data points on the patient’s body"
+  },
+  {
+    "claim": "113-point tracking (EU page).",
+    "url": "https://eu.kemtai.com/digital-health-platforms/",
+    "quote": "113-Point Tracking"
+  },
+  {
+    "claim": "Works on any device with a camera.",
+    "url": "https://kemtai.com/",
+    "quote": "Works on any device with a camera (laptops, tablets, mobile phones)"
+  },
+  {
+    "claim": "Kemtai CARE is a web app with no installs.",
+    "url": "https://kemtai.com/",
+    "quote": "Web app. No downloads. No installations"
+  },
+  {
+    "claim": "Kemtai CARE features.",
+    "url": "https://kemtai.com/faqs",
+    "quote": "Kemtai Care lets staff register patients, create templates of protocols and assessments, prescribe AI-guided home exercise protocols, and track granular adherence and performance data – no development needed."
+  },
+  {
+    "claim": "Kemtai CARE is for organizations not using the API.",
+    "url": "https://kemtai.com/faqs",
+    "quote": "Kemtai Care is a standalone clinician platform we provide to healthcare organizations that don’t implement Kemtai using its API."
+  },
+  {
+    "claim": "Embeddable Exercise Player.",
+    "url": "https://kemtai.com/kemtai-api-and-embeddables/",
+    "quote": "Deliver computer vision–powered exercises and assessments inside your platform — with set-up instructions, real-time tracking, live corrective guidance, rep counting, and performance results."
+  },
+  {
+    "claim": "Management APIs.",
+    "url": "https://kemtai.com/kemtai-api-and-embeddables/",
+    "quote": "Leverage APIs to create patients and staff members, generate exercise protocol and templates, assign care plans to patients, and terminate activities without any manual intervention."
+  },
+  {
+    "claim": "Two main levels of the API.",
+    "url": "https://eu.kemtai.com/api-integration/",
+    "quote": "There are two main levels of the API: (1) embedding Kemtai UX components directly into both your patient-facing and clinician-facing app or EMR"
+  },
+  {
+    "claim": "Edge processing, no video recorded.",
+    "url": "https://kemtai.com/",
+    "quote": "Processing is done on the edge device, and video is not recorded"
+  },
+  {
+    "claim": "Validation study against a 10-camera motion lab.",
+    "url": "https://kemtai.com/",
+    "quote": "Kemtai’s accuracy on a standard consumer device was scientifically validated in a study comparing it to a gold-standard motion lab that used 10 3D cameras and body sensors"
+  },
+  {
+    "claim": "Study footnote: data on file.",
+    "url": "https://kemtai.com/",
+    "quote": "Kemtai data on file. Kemtai Accuracy Study, ALYN. March 2025."
+  },
+  {
+    "claim": "FAQ calls it a peer-reviewed study against Vicon.",
+    "url": "https://kemtai.com/faqs",
+    "quote": "Its accuracy was scientifically validated in a peer-reviewed study that compared Kemtai’s motion tracking capabilities to a gold-standard motion capture laboratory (Vicon system)."
+  },
+  {
+    "claim": "API docs by email request.",
+    "url": "https://kemtai.com/",
+    "quote": "Please enter your email address to receive access to Kemtai’s API docs"
+  },
+  {
+    "claim": "RTM listed among Kemtai's solutions.",
+    "url": "https://kemtai.com/",
+    "quote": "Remote Therapeutic Monitoring (RTM)"
+  },
+  {
+    "claim": "Who uses Kemtai.",
+    "url": "https://kemtai.com/faqs",
+    "quote": "Kemtai is used today by healthcare systems, payers, rehabilitation clinics and medical device providers – in 5 continents."
+  },
+  {
+    "claim": "Kemtai's digital health audience includes wellness apps.",
+    "url": "https://kemtai.com/",
+    "quote": "Digital Platforms, Health & Wellness Apps"
+  },
+  {
+    "claim": "Launch in weeks via SDK and APIs.",
+    "url": "https://eu.kemtai.com/digital-health-platforms/",
+    "quote": "Launch advanced motion-tracking features in weeks instead of years through Kemtai's SDK and APIs, a production-ready, FDA-listed, HIPAA-compliant platform."
+  },
+  {
+    "claim": "Computer-vision page: a B2B physical therapy platform.",
+    "url": "https://kemtai.com/product/computer-vision-rehab/",
+    "quote": "Kemtai provides a B2B physical therapy platform that uses proprietary neural network algorithms to accurately analyze human motion and provide real-time corrective guidance to patients."
+  },
+  {
+    "claim": "KinesteX describes itself as a white-label SDK that coaches through the user's camera inside the app.",
+    "url": "https://www.kinestex.com/",
+    "quote": "A white-label SDK that coaches every rep through your users' own camera, inside your app."
+  },
+  {
+    "claim": "The SwiftUI kit embeds KinesteX's hosted camera workout experience as a WebView.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-AI-Kit/main/README.md",
+    "quote": "A SwiftUI package that embeds KinesteX’s AI-powered camera workout experience as a WebView."
+  },
+  {
+    "claim": "SDKs for Swift, Kotlin, Flutter, React Native and React TypeScript plus an HTML/JavaScript iframe.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "with SDKs for Swift, Kotlin, Flutter, React Native and React (TypeScript), plus a plain HTML/JavaScript iframe integration for any web page or PWA."
+  },
+  {
+    "claim": "AI Trainer Chat is the recommended starting point and includes assessment, workout generation, check-ins and scheduling.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Conversational AI personal trainer with in-app fitness assessment, personalized workout generation, post-workout check-ins, and next-session scheduling."
+  },
+  {
+    "claim": "The Camera Component streams reps, holds, form feedback, presence and, on request, pose landmarks.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "The camera component streams real-time motion events (reps, holds, form feedback, presence, activity, plus opt-in form state and framing hints) and, on request, pose landmarks."
+  },
+  {
+    "claim": "The Content API serves exercises, workouts and multi-week plans.",
+    "url": "https://www.kinestex.com/docs/content-api-v2",
+    "quote": "The Content API serves the KinesteX catalog: exercises , workouts , and multi-week plans ."
+  },
+  {
+    "claim": "Integration typically takes under a day.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Integration is simple and typically takes under a day, with minimal adjustments to your existing platform."
+  },
+  {
+    "claim": "19 languages.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "The SDK's guided workout experience supports 19 languages"
+  },
+  {
+    "claim": "Integration fees may apply.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Integration fees may apply depending on the complexity of your requirements"
+  },
+  {
+    "claim": "KinesteX's 97.2% accuracy claim.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Our AI-powered motion tracking achieves 97.2% accuracy, offering feedback similar to a personal trainer."
+  },
+  {
+    "claim": "The README accuracy claim.",
+    "url": "https://raw.githubusercontent.com/KinesteX/AI-Fitness-SDK/main/README.md",
+    "quote": "Our movements recognition models consistently exceed 90% accuracy"
+  },
+  {
+    "claim": "A developer connects the SDK in about a day.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "A developer connects our SDK to your iOS, Android or web app in about a day."
+  },
+  {
+    "claim": "Project timelines by integration way.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "1 week or less with Ready-made Experiences, 2 to 3 weeks with the Guided Workout, and about a month when you build every screen."
+  },
+  {
+    "claim": "Camera video never leaves the device and is not stored.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "The camera video never leaves it and is not stored; only the results, like reps and calories, are sent."
+  },
+  {
+    "claim": "Security page: all camera and vision processing on-device.",
+    "url": "https://www.kinestex.com/product/security",
+    "quote": "All camera and vision processing stays on-device"
+  },
+  {
+    "claim": "README wording: optional edge processing.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-Kotlin/main/README.md",
+    "quote": "Ensures data security with optional edge processing (no cloud transmission)."
+  },
+  {
+    "claim": "Movement tests are listed on the KinesteX home page.",
+    "url": "https://www.kinestex.com/",
+    "quote": "Timed Up and Go, sit-to-stand and balance tests"
+  },
+  {
+    "claim": "Test results are not a diagnosis.",
+    "url": "https://www.kinestex.com/",
+    "quote": "Test results support clinical judgment; they are not a diagnosis."
+  },
+  {
+    "claim": "Timed Up and Go assessment.",
+    "url": "https://www.kinestex.com/docs/data-points",
+    "quote": "TUG (Timed Up and Go) - assessmentType: \"tug\""
+  },
+  {
+    "claim": "Single Leg Stand assessment.",
+    "url": "https://www.kinestex.com/docs/data-points",
+    "quote": "SLS (Single Leg Stand) - assessmentType: \"sls\""
+  },
+  {
+    "claim": "30-Second Sit-to-Stand assessment.",
+    "url": "https://www.kinestex.com/docs/data-points",
+    "quote": "STS (30-Second Sit-to-Stand) - assessmentType: \"sts\""
+  },
+  {
+    "claim": "Clinician progress dashboards on the PT page.",
+    "url": "https://www.kinestex.com/solutions/physical-therapy",
+    "quote": "Comprehensive tracking for clinicians to monitor patient improvement"
+  }
+]

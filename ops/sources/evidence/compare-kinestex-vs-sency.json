@@ -26,7 +26,7 @@
   },
   {
     "claim": "The React Native SDK needs react-native-webview.",
-    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+    "url": "https://www.kinestex.com/docs/installation",
     "quote": "npm install kinestex-sdk-react-native react-native-webview"
   },
   {
@@ -36,12 +36,12 @@
   },
   {
     "claim": "KinesteX publishes SDKs for iOS, Android, React Native, Flutter and the web.",
-    "url": "https://www.kinestex.com/docs",
-    "quote": "with SDKs for React Native, Flutter, Kotlin, Swift, Java, PWA, and JavaScript for quick integration."
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "with SDKs for Swift, Kotlin, Flutter, React Native and React (TypeScript), plus a plain HTML/JavaScript iframe integration for any web page or PWA."
   },
   {
     "claim": "A React TypeScript package.",
-    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+    "url": "https://www.kinestex.com/docs/installation",
     "quote": "npm i kinestex-sdk-react-ts"
   },
   {
@@ -176,7 +176,7 @@
   },
   {
     "claim": "KinesteX Android via JitPack.",
-    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+    "url": "https://www.kinestex.com/docs/installation",
     "quote": "maven { url = uri(\"https://jitpack.io\") }"
   },
   {
@@ -191,7 +191,7 @@
   },
   {
     "claim": "Sency Maven artifacts.",
-    "url": "https://raw.githubusercontent.com/sency-ai/smkit-android-demo/main/app/build.gradle",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-android-demo/main/README.md",
     "quote": "implementation \"com.sency.smkit:smkit:1.9.6\""
   },
   {
@@ -246,7 +246,7 @@
   },
   {
     "claim": "KinesteX: access via contact form and API key.",
-    "url": "https://www.kinestex.com/docs",
+    "url": "https://www.kinestex.com/docs/getting-started",
     "quote": "To get demo access and your API key, fill out the contact form on our website."
   },
   {
@@ -267,7 +267,7 @@
   {
     "claim": "Sency's packages page lists a free Starter plan.",
     "url": "https://www.sency.ai/pricing-packages",
-    "quote": "Build & Launch FREE"
+    "quote": "Build & Launch | FREE"
   },
   {
     "claim": "Sency's Starter plan covers up to 100 monthly active users.",
@@ -277,7 +277,7 @@
   {
     "claim": "Sency's Growth plan starts from $499 a month.",
     "url": "https://www.sency.ai/pricing-packages",
-    "quote": "Publish & Monetize From $499 / month"
+    "quote": "Publish & Monetize | From $499 / month"
   },
   {
     "claim": "Sency's Growth plan covers up to 3,800 monthly active users.",
@@ -292,7 +292,7 @@
   {
     "claim": "Sency's Customized plan is on request.",
     "url": "https://www.sency.ai/pricing-packages",
-    "quote": "A Solution for All Let’s Discuss"
+    "quote": "A Solution for All | Let’s Discuss"
   },
   {
     "claim": "Sency's FAQ says data is analyzed on the user's device and never sent to the cloud.",
@@ -321,8 +321,8 @@
   },
   {
     "claim": "Sency's Android demo app builds with minSdk 24.",
-    "url": "https://raw.githubusercontent.com/sency-ai/smkit-android-demo/main/app/build.gradle",
-    "quote": "minSdk 24 targetSdk 36"
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-android-demo/main/README.md",
+    "quote": "Android minSdk 24"
   },
   {
     "claim": "Sency's iOS demo: you own the camera preview, session lifecycle, exercise UI, skeleton rendering and results.",
@@ -333,5 +333,225 @@
     "claim": "Sency documents an MCP server that gives AI coding tools its SDK documentation.",
     "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
     "quote": "Sency provides an MCP server for AI development tools that need direct SMKit documentation and exercise context."
+  },
+  {
+    "claim": "KinesteX's docs recommend AI Trainer Chat as the starting point for new integrations.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "The recommended starting point for new integrations."
+  },
+  {
+    "claim": "AI Trainer Chat runs onboarding with an optional camera fitness assessment, a workout, a post-workout check-in and next-session scheduling.",
+    "url": "https://www.kinestex.com/docs/ai-trainer-chat",
+    "quote": "profile setup (with an optional camera-based fitness assessment) → readiness check-in → workout → post-workout check-in → scheduling the next session."
+  },
+  {
+    "claim": "KinesteX lists a Plan View.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Display a specific workout plan with schedule and multiple workouts."
+  },
+  {
+    "claim": "KinesteX lists a Workout View.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Launch directly into a specific workout by name or ID."
+  },
+  {
+    "claim": "KinesteX lists a Challenge View with leaderboards.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Gamified exercise challenges with leaderboards and rep tracking."
+  },
+  {
+    "claim": "KinesteX lists a Leaderboard View.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Display real-time leaderboards for challenge exercises as a standalone view."
+  },
+  {
+    "claim": "KinesteX's AI Experiences are motion games: Balloon Pop, Color Chase and Alien Squat Shooter.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Interactive fitness games like Balloon Pop, Color Chase, and Alien Squat Shooter."
+  },
+  {
+    "claim": "KinesteX lists an embedded Admin Workout Editor.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Embedded view for creating and managing workouts and exercises."
+  },
+  {
+    "claim": "KinesteX lists a Custom Workout option.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Create personalized workout sequences with custom exercises, reps, durations, and rest periods."
+  },
+  {
+    "claim": "KinesteX's Camera Component streams reps, holds, form feedback and presence, and pose landmarks on request.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "The camera component streams real-time motion events (reps, holds, form feedback, presence, activity, plus opt-in form state and framing hints) and, on request, pose landmarks."
+  },
+  {
+    "claim": "KinesteX offers REST content APIs.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Fetch workout plans, exercises, and content data via REST APIs."
+  },
+  {
+    "claim": "KinesteX's content APIs are served from data.kinestex.com.",
+    "url": "https://www.kinestex.com/docs/content-api-v2",
+    "quote": "Base URL: https://data.kinestex.com"
+  },
+  {
+    "claim": "KinesteX's content APIs are authenticated with an API key, paginated, filterable and localized.",
+    "url": "https://www.kinestex.com/docs/content-api-v2",
+    "quote": "authenticated with your company API key, paginated, filterable, and localized."
+  },
+  {
+    "claim": "KinesteX's docs mark Complete UX (Main) as Sunset.",
+    "url": "https://www.kinestex.com/docs/ai-trainer-chat",
+    "quote": "Complete UX (Main) Sunset"
+  },
+  {
+    "claim": "KinesteX's docs mark Personalized Plan View as Sunset.",
+    "url": "https://www.kinestex.com/docs/ai-trainer-chat",
+    "quote": "Personalized Plan View Sunset"
+  },
+  {
+    "claim": "KinesteX requires iOS 14.0+ and Xcode 16.3+ for KinesteXAIKit.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "iOS 14.0+ (Swift KinesteXAIKit , Xcode 16.3+)"
+  },
+  {
+    "claim": "KinesteX requires Android 9+ (API 28).",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Android 9+ (API 28, Kotlin KinesteX-SDK-Kotlin )"
+  },
+  {
+    "claim": "KinesteX supports Chrome, Safari, Firefox and Edge.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Web browser support (Chrome, Safari, Firefox, Edge)"
+  },
+  {
+    "claim": "KinesteX's install docs show Kotlin SDK 2.5.0 via JitPack.",
+    "url": "https://www.kinestex.com/docs/installation",
+    "quote": "implementation(\"com.github.KinesteX:KinesteX-SDK-Kotlin:2.5.0\")"
+  },
+  {
+    "claim": "KinesteX's Kotlin SDK needs minSdk 28.",
+    "url": "https://www.kinestex.com/docs/installation",
+    "quote": "the SDK needs minSdk 28 or higher"
+  },
+  {
+    "claim": "KinesteX's FAQ says integration typically takes under a day.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Integration is simple and typically takes under a day"
+  },
+  {
+    "claim": "KinesteX's FAQ says 300+ data points per workout session.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "300+ data points per workout session"
+  },
+  {
+    "claim": "KinesteX's FAQ lists 19 languages for the guided workout experience.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "The SDK's guided workout experience supports 19 languages"
+  },
+  {
+    "claim": "KinesteX's home page lists 19 interface languages.",
+    "url": "https://www.kinestex.com/",
+    "quote": "The interface is available in 19 languages, including Arabic, Hebrew and Urdu."
+  },
+  {
+    "claim": "KinesteX's home page says 500+ AI exercises.",
+    "url": "https://www.kinestex.com/",
+    "quote": "AI exercises, ready to use | 500+"
+  },
+  {
+    "claim": "KinesteX's SDK integration page: ready-made in 1 week or less, guided 2 to 3 weeks, build-your-own about a month.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "1 week or less with Ready-made Experiences, 2 to 3 weeks with the Guided Workout, and about a month when you build every screen."
+  },
+  {
+    "claim": "KinesteX's SDK integration page says a developer connects the SDK in about a day.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "A developer connects our SDK to your iOS, Android or web app in about a day."
+  },
+  {
+    "claim": "KinesteX's SDK integration page says camera video never leaves the device and is not stored.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "The camera video never leaves it and is not stored"
+  },
+  {
+    "claim": "KinesteX's SDK integration page says the AI Personal Trainer chat needs internet.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "The AI Personal Trainer chat needs internet, because it talks to an AI model."
+  },
+  {
+    "claim": "Sency's packages page: the 101-500 band is $499 a month at $0.99 per user.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "101 - 500 | $499 | $0.99"
+  },
+  {
+    "claim": "Sency's packages page: the 1,200-1,700 band is $1,499 a month.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "1200 - 1700 | $1,499 | $0.88"
+  },
+  {
+    "claim": "Sency's packages page: the 3,001-3,800 band is $3,000 a month at $0.79 per user.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "3001 - 3800 | $3,000 | $0.79"
+  },
+  {
+    "claim": "Sency's pricing page: up to 100 users is $99.99, a fixed price.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "Up to 100 users | $99.99 | Fixed price"
+  },
+  {
+    "claim": "Sency's pricing page jumps from the 3,001-3,800 band to 5,001-10,000.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "3,001 - 3,800 | $3,000 | $0.79 | 5,001 - 10,000"
+  },
+  {
+    "claim": "Sency's pricing page: 5,001-10,000 users is $5,500 a month.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "5,001 - 10,000 | $5,500 | $0.55"
+  },
+  {
+    "claim": "Sency's pricing page: above 10,000 users, up to $0.1 per active user.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "10,000+ | Up to $0.1 per active user"
+  },
+  {
+    "claim": "Sency's pricing FAQ claims a 54-minute record from installing the SDK to a working fitness assessment.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "The current record is 54 minutes from installing the SDK to having a full fitness assessment working on our partner's app."
+  },
+  {
+    "claim": "Sency's Motion SDK page lists a 4-step onboarding assessment.",
+    "url": "https://www.sency.ai/motion-sdk",
+    "quote": "A 4-step onboarding assessment to provide the most personalized and engaging user experience from the start."
+  },
+  {
+    "claim": "Sency's Motion SDK page lists a low back pain injury-risk assessment.",
+    "url": "https://www.sency.ai/motion-sdk",
+    "quote": "An injury risk assessment capable of delivering accurate data and tailored recommendations on users' health."
+  },
+  {
+    "claim": "Sency's Motion SDK page lists 8 shoulder-to-ankle mobility tests.",
+    "url": "https://www.sency.ai/motion-sdk",
+    "quote": "8 AI-driven shoulder-to-ankle mobility tests to enhance athlete performance and reduce the risk of injuries."
+  },
+  {
+    "claim": "Sency's README version table still lists iOS SMKit 2.0.7.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "| **Custom Kit** | iOS SMKit | 2.0.7 | Native no-UI SDK. |"
+  },
+  {
+    "claim": "Sency's README version table still lists Android smkit 1.7.1.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
+    "quote": "| **Custom Kit** | Android smkit | 1.7.1 | Native no-UI artifact. |"
+  },
+  {
+    "claim": "Sency's iOS demo installs SMKit 2.3.6.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
+    "quote": "Latest version: `SMKit '2.3.6'`"
+  },
+  {
+    "claim": "Sency's Android demo targets SMKit 1.9.6.",
+    "url": "https://raw.githubusercontent.com/sency-ai/smkit-android-demo/main/README.md",
+    "quote": "This application is the customer-facing reference for SMKit 1.9.6's low-level camera and movement-detection API."
   }
 ]
