@@ -6,7 +6,7 @@
   },
   {
     "claim": "React Native installs alongside react-native-webview.",
-    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+    "url": "https://www.kinestex.com/docs/installation",
     "quote": "npm install kinestex-sdk-react-native react-native-webview"
   },
   {
@@ -21,7 +21,7 @@
   },
   {
     "claim": "The Android installation docs ask for the INTERNET permission.",
-    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+    "url": "https://www.kinestex.com/docs/installation",
     "quote": "<uses-permission android:name=\"android.permission.INTERNET\" />"
   },
   {
@@ -51,7 +51,7 @@
   },
   {
     "claim": "Demo access and an API key come through a contact form.",
-    "url": "https://www.kinestex.com/docs",
+    "url": "https://www.kinestex.com/docs/getting-started",
     "quote": "To get demo access and your API key, fill out the contact form on our website."
   },
   {
@@ -120,11 +120,6 @@
     "quote": "Initial Movement and Fitness Assessments:"
   },
   {
-    "claim": "Monthly progress evaluations.",
-    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
-    "quote": "Track improvements with regular monthly assessments."
-  },
-  {
     "claim": "JavaScript marked NA.",
     "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/README.md",
     "quote": "| **JavaScript** | NA | NA |"
@@ -140,39 +135,14 @@
     "quote": "platform :ios, '16.0'"
   },
   {
-    "claim": "SMKitUI needs iOS 15 or later.",
-    "url": "https://raw.githubusercontent.com/sency-ai/smkit-ui-ios-demo/main/README.md",
-    "quote": "Support: iOS 15 or later; officially validated on iPhone X and newer."
-  },
-  {
     "claim": "Sency's iOS SDK downloads its models from the server, with no bundled fallback.",
     "url": "https://raw.githubusercontent.com/sency-ai/smkit-ios-demo/main/README.md",
     "quote": "SMKit 2.3.6 downloads models and required SDK assets from the server. It does not include bundled fallback models."
   },
   {
-    "claim": "Sency's Android SDK obtains its models from the server.",
-    "url": "https://raw.githubusercontent.com/sency-ai/smkit-android-demo/main/README.md",
-    "quote": "SMKit 1.9.6 obtains configuration and required models from the server and validates them before use."
-  },
-  {
     "claim": "Sency's FAQ says data is analyzed on the user's device and never sent to the cloud.",
     "url": "https://www.sency.ai/faq-motion-tracking",
     "quote": "All data is processed using edge computing, meaning it's analyzed directly on the user's device, never sent to the cloud."
-  },
-  {
-    "claim": "Commercial or production use needs a separate paid agreement.",
-    "url": "https://raw.githubusercontent.com/sency-ai/smkit-sdk/main/LICENSE",
-    "quote": "ANY COMMERCIAL OR PRODUCTION USE OF THE SERVICES OR THE SOLUTION SHALL BE GOVERNED BY A SEPARATE PAID ENTERPRISE/PERSONAL SERVICE AGREEMENT"
-  },
-  {
-    "claim": "Sency's packages page lists a free Starter plan.",
-    "url": "https://www.sency.ai/pricing-packages",
-    "quote": "Build & Launch FREE"
-  },
-  {
-    "claim": "Sency's packages page lists a Growth plan from $499 a month.",
-    "url": "https://www.sency.ai/pricing-packages",
-    "quote": "Publish & Monetize From $499 / month"
   },
   {
     "claim": "Sency's main pricing page describes a free trial and then a minimal monthly fee.",
@@ -190,11 +160,6 @@
     "quote": "QuickPose provides developer-oriented cutting edge ML features of MediaPipe and BlazePose"
   },
   {
-    "claim": "MediaPipe lite, full and heavy libraries as modules.",
-    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
-    "quote": "Mediapipe Heavy Library"
-  },
-  {
     "claim": "QuickPose's product pages say all inference runs on the device.",
     "url": "https://quickpose.ai/products/android-sdk/",
     "quote": "All inference runs on the device's NPU. No video frames are ever sent to a server"
@@ -205,24 +170,9 @@
     "quote": "Health - Range Of Motion"
   },
   {
-    "claim": "iOS 14.0 or later.",
-    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
-    "quote": "iOS 14.0+ - Xcode 10.0+"
-  },
-  {
     "claim": "Android from API 26.",
     "url": "https://docs.quickpose.ai/docs/MobileSDK",
     "quote": "Quickpose Min API 26, but sample code is restricted by camera X at Min API 28."
-  },
-  {
-    "claim": "A React Native plugin for iOS and Android.",
-    "url": "https://raw.githubusercontent.com/quickpose/quickpose-react-native-pose-estimation/main/README.md",
-    "quote": "Provides real-time body tracking, fitness rep counting, range of motion measurement, and skeleton overlays on iOS and Android."
-  },
-  {
-    "claim": "A free key, usage limits may apply.",
-    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
-    "quote": "usage limits may apply. SDK Keys are linked to your bundle ID"
   },
   {
     "claim": "QuickPose: free for 10 devices.",
@@ -230,59 +180,9 @@
     "quote": "Up to 10 devices is free — no card required."
   },
   {
-    "claim": "QuickPose: $25 for the first paid plan.",
-    "url": "https://quickpose.ai/sdk-pricing/",
-    "quote": "Price | Free | $25/mo | $50/mo | $100/mo | $200/mo |"
-  },
-  {
-    "claim": "QuickPose: $1,000 a month for the Agency plan.",
-    "url": "https://quickpose.ai/sdk-pricing/",
-    "quote": "Agency $ 1,000 per month"
-  },
-  {
     "claim": "QuickPose: up to 100,000 devices on the Agency plan.",
     "url": "https://quickpose.ai/sdk-pricing/",
     "quote": "Up to 100,000 monthly devices"
-  },
-  {
-    "claim": "Every feature on every plan.",
-    "url": "https://quickpose.ai/sdk-pricing/",
-    "quote": "The plans differ only in device limits and support level."
-  },
-  {
-    "claim": "Apache-2.0 iOS repo.",
-    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/LICENSE",
-    "quote": "Apache License Version 2.0, January 2004"
-  },
-  {
-    "claim": "QuickPose's terms license the SDK under Apache 2.0 subject to the agreement.",
-    "url": "https://quickpose.ai/terms-and-conditions/",
-    "quote": "QuickPose AI SDK and JointTrack API are licensed to the User under the Apache 2.0 license, subject to the terms of this agreement."
-  },
-  {
-    "claim": "QuickPose's terms: use may be subject to fees.",
-    "url": "https://quickpose.ai/terms-and-conditions/",
-    "quote": "may be subject to fees, which the User agrees to pay in a timely manner."
-  },
-  {
-    "claim": "MediaPipe world landmarks in meters.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
-    "quote": "Real-world 3D coordinates in meters with the origin at the center between hips."
-  },
-  {
-    "claim": "MediaPipe is Apache-2.0.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/LICENSE",
-    "quote": "Apache License Version 2.0, January 2004"
-  },
-  {
-    "claim": "MoveNet: 17 keypoints.",
-    "url": "https://raw.githubusercontent.com/tensorflow/tfjs-models/master/pose-detection/README.md",
-    "quote": "MoveNet is an ultra fast and accurate model that detects 17 keypoints of a body."
-  },
-  {
-    "claim": "ML Kit Pose Detection detects one person.",
-    "url": "https://developers.google.com/ml-kit/vision/pose-detection?hl=en",
-    "quote": "Pose detection can only detect one person in an image."
   },
   {
     "claim": "Kemtai: embeddable components.",
@@ -320,19 +220,9 @@
     "quote": "Identifies 111 body points including joints, rotations and the spine"
   },
   {
-    "claim": "Kemtai's computer-vision page: 113 body points.",
-    "url": "https://kemtai.com/our-computer-vision/",
-    "quote": "Tracks 113 different points on the body, including the spine, joint rotation points, and joint angles."
-  },
-  {
     "claim": "Kemtai's API docs are behind an email request.",
     "url": "https://kemtai.com/",
     "quote": "Please enter your email address to receive access to Kemtai’s API docs"
-  },
-  {
-    "claim": "Kemtai routes buyers to a demo request.",
-    "url": "https://kemtai.com/",
-    "quote": "Please enter your business email to receive more information and a demo"
   },
   {
     "claim": "Exer AI: Exer Scan for providers.",
@@ -348,5 +238,455 @@
     "claim": "Exer AI: a demo request.",
     "url": "https://www.exer.ai/",
     "quote": "Interested in learning more? Get in touch"
+  },
+  {
+    "claim": "The docs list SDKs for Swift, Kotlin, Flutter, React Native and React (TypeScript), plus an HTML/JavaScript iframe integration.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "with SDKs for Swift, Kotlin, Flutter, React Native and React (TypeScript), plus a plain HTML/JavaScript iframe integration for any web page or PWA."
+  },
+  {
+    "claim": "The docs recommend AI Trainer Chat for a new integration.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "For a new integration we recommend AI Trainer Chat"
+  },
+  {
+    "claim": "AI Experiences include Balloon Pop, Color Chase and Alien Squat Shooter.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Interactive fitness games like Balloon Pop, Color Chase, and Alien Squat Shooter."
+  },
+  {
+    "claim": "The Camera Component streams real-time motion events and, on request, pose landmarks.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "The camera component streams real-time motion events (reps, holds, form feedback, presence, activity, plus opt-in form state and framing hints) and, on request, pose landmarks."
+  },
+  {
+    "claim": "The docs list an internet connection among the prerequisites.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "- Internet connection"
+  },
+  {
+    "claim": "The Content API base URL is data.kinestex.com.",
+    "url": "https://www.kinestex.com/docs/content-api-v2",
+    "quote": "Base URL: https://data.kinestex.com"
+  },
+  {
+    "claim": "Balance and reach tests return a low, moderate or high risk level.",
+    "url": "https://www.kinestex.com/",
+    "quote": "Balance and reach tests return a low, moderate or high risk level"
+  },
+  {
+    "claim": "Test results support clinical judgment and are not a diagnosis.",
+    "url": "https://www.kinestex.com/",
+    "quote": "Test results support clinical judgment; they are not a diagnosis."
+  },
+  {
+    "claim": "The FAQ lists 19 languages for the guided workout experience.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "The SDK's guided workout experience supports 19 languages"
+  },
+  {
+    "claim": "The FAQ says integration typically takes under a day.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Integration is simple and typically takes under a day"
+  },
+  {
+    "claim": "The API key comes when you book a call.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "We give you demo access and your API key when you book a call."
+  },
+  {
+    "claim": "New exercises are added together with KinesteX's team.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "New exercises are added together with our team, because each movement needs its own tracking."
+  },
+  {
+    "claim": "The Flutter README carries the same optional edge processing line.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-Flutter/main/README.md",
+    "quote": "Ensures data security with optional edge processing (no cloud transmission)."
+  },
+  {
+    "claim": "The React Native README carries the same optional edge processing line.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-ReactNative/main/README.md",
+    "quote": "Ensures data security with optional edge processing (no cloud transmission)."
+  },
+  {
+    "claim": "The KinesteX-AI-Kit, Kotlin and Swift repositories were updated on November 5, 2026.",
+    "url": "https://github.com/orgs/KinesteX/repositories",
+    "quote": "Updated Nov 5, 2026"
+  },
+  {
+    "claim": "The React Native repository was updated on October 9, 2026.",
+    "url": "https://github.com/orgs/KinesteX/repositories",
+    "quote": "Updated Oct 9, 2026"
+  },
+  {
+    "claim": "Sency's packages page: Starter for up to 100 monthly active users.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "Up to 100 monthly active users"
+  },
+  {
+    "claim": "Sency's packages page: Growth from $499 a month.",
+    "url": "https://www.sency.ai/pricing-packages",
+    "quote": "From $499 / month"
+  },
+  {
+    "claim": "Sency's pricing page: a fixed monthly fee for up to 100 users after a free trial.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "Fixed monthly fee for up to 100 users"
+  },
+  {
+    "claim": "Sency's pricing page: tiers reaching up to $0.1 per active user past 10,000.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "Up to $0.1 per active user"
+  },
+  {
+    "claim": "Sency's pricing page: start with a free trial.",
+    "url": "https://www.sency.ai/pricing",
+    "quote": "Start with a free trial , no commitment required, integrate in one day, then pay based on usage."
+  },
+  {
+    "claim": "QuickPose's free key, usage limits may apply.",
+    "url": "https://raw.githubusercontent.com/quickpose/quickpose-ios-sdk/main/README.md",
+    "quote": "usage limits may apply."
+  },
+  {
+    "claim": "QuickPose prices plans by monthly active device.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "Pricing is based on monthly active devices — a device is counted once per month regardless of how many sessions it runs."
+  },
+  {
+    "claim": "QuickPose's $25 Builder plan covers up to 100 devices.",
+    "url": "https://quickpose.ai/sdk-pricing/",
+    "quote": "✓ Up to 100 monthly devices"
+  },
+  {
+    "claim": "Asensei calls itself the leading SDK for computer vision-based movement recognition and coaching intelligence.",
+    "url": "https://asensei.ai/",
+    "quote": "ASENSEI is the leading software development kit (SDK) for computer vision-based movement recognition and coaching intelligence."
+  },
+  {
+    "claim": "Asensei's showcase names Tonal.",
+    "url": "https://asensei.ai/",
+    "quote": "Learn how Connected Fitness brands like Tonal and Alter drive acquisition, engagement and retention of customers with personalization powered by form-tracking."
+  },
+  {
+    "claim": "Asensei's customers include the National Health Service.",
+    "url": "https://asensei.ai/",
+    "quote": "Learn how customers including the National Health Service can deliver personalized physical therapy at digital scale, with guided instruction and real-time form feedback."
+  },
+  {
+    "claim": "Asensei's developer links offer SDK access by request.",
+    "url": "https://asensei.ai/",
+    "quote": "Request SDK Access Getting Started Documentation"
+  },
+  {
+    "claim": "Asensei: cross-platform SDK for native iOS and Android, Web, Ionic, React and Unity.",
+    "url": "https://asensei.ai/ai",
+    "quote": "ASENSEI is a cross-platform SDK supporting both native IOS and Android, Web, as well as platforms including Ionic, React, and Unity."
+  },
+  {
+    "claim": "Asensei is a headless SDK.",
+    "url": "https://asensei.ai/ai",
+    "quote": "ASENSEI is a headless SDK , providing the real-time information streams to power user-experiences without imposing them."
+  },
+  {
+    "claim": "Asensei is optimized to run on-device, from low-power connected fitness hardware to the latest smartphone.",
+    "url": "https://asensei.ai/ai",
+    "quote": "ASENSEI is optimized to run on-device , from low-power connected fitness hardware to the latest smartphone."
+  },
+  {
+    "claim": "Asensei offers a cloud deployment for sport and broadcast.",
+    "url": "https://asensei.ai/ai",
+    "quote": "We offer a cloud-based deployment for sport and broadcast solutions that demand it."
+  },
+  {
+    "claim": "Cloud Coach deploys Asensei in a container environment.",
+    "url": "https://asensei.ai/cloud-coach",
+    "quote": "Deploy ASENSEI in a container environment for easy-to-use application endpoints, compute-intensive vision models or to process terabytes of multi-camera game footage."
+  },
+  {
+    "claim": "Coach IQ: tools for content and coaching teams.",
+    "url": "https://asensei.ai/coach-iq",
+    "quote": "The tools for your content and coaching teams to create a personalized experience with the right coaching, to the right athlete, at the right time."
+  },
+  {
+    "claim": "Coach IQ: dynamic audio in your coach's voice.",
+    "url": "https://asensei.ai/coach-iq",
+    "quote": "Dynamic Audio using your Coach’s voice."
+  },
+  {
+    "claim": "Asensei's contact form has an SDK enquiry type.",
+    "url": "https://asensei.ai/contact",
+    "quote": "Inquire about ASENSEI SDK"
+  },
+  {
+    "claim": "ASENSEI Spark cites 3D Computer Vision, Spatial Computing and Equipment Recognition.",
+    "url": "https://apps.apple.com/us/app/asensei-spark/id6450310525",
+    "quote": "powered by 3D Computer Vision, Spatial Computing, and Equipment Recognition, using only the camera on your phone or tablet."
+  },
+  {
+    "claim": "ASENSEI Spark version 1.3.1, October 21.",
+    "url": "https://apps.apple.com/us/app/asensei-spark/id6450310525",
+    "quote": "1.3.1 Oct 21"
+  },
+  {
+    "claim": "Hyperhuman describes per-member tiers for its own Asensei-powered module.",
+    "url": "https://blog.hyperhuman.cc/ai-movement-recognition-white-label-fitness-app/",
+    "quote": "Tiered pricing based on volume (e.g., starting bands for up to 10k, 10–50k, 50k+ members)"
+  },
+  {
+    "claim": "Hyperhuman says its module is not marketed or approved as a medical or clinical tool.",
+    "url": "https://blog.hyperhuman.cc/ai-movement-recognition-white-label-fitness-app/",
+    "quote": "It is not marketed or approved as a medical or clinical tool."
+  },
+  {
+    "claim": "PoseTracker runs MoveNet on the phone and adds reps, angles and a form score.",
+    "url": "https://www.posetracker.com/",
+    "quote": "PoseTracker runs MoveNet on the phone, so the app gets keypoints, then reps, angles and a form score."
+  },
+  {
+    "claim": "PoseTracker: 17 COCO keypoints, on-device, no video upload.",
+    "url": "https://www.posetracker.com/",
+    "quote": "COCO keypoints, on-device, no video upload"
+  },
+  {
+    "claim": "PoseTracker: keypoints need no API key.",
+    "url": "https://www.posetracker.com/",
+    "quote": "Keypoints need no API key."
+  },
+  {
+    "claim": "PoseTracker's SDK covers React Native (Expo Go) and the web.",
+    "url": "https://www.posetracker.com/",
+    "quote": "Native pose estimation SDK for React Native (Expo Go) and the web. Free on-device keypoints, optional API-key exercise engine."
+  },
+  {
+    "claim": "PoseTracker also offers a WebView or iframe integration.",
+    "url": "https://www.posetracker.com/",
+    "quote": "The classic PoseTracker integration: embed the camera in an existing WebView or iframe with one line of code."
+  },
+  {
+    "claim": "PoseTracker Freemium: only non-commercial use.",
+    "url": "https://www.posetracker.com/",
+    "quote": "- Only non-commercial use"
+  },
+  {
+    "claim": "PoseTracker Freemium: up to 200 tracking API calls a month.",
+    "url": "https://www.posetracker.com/",
+    "quote": "- Up to 200 tracking API calls monthly (strict limit)"
+  },
+  {
+    "claim": "PoseTracker Freemium shows a Powered by PoseTracker link.",
+    "url": "https://www.posetracker.com/",
+    "quote": "Limited pose estimation data. Includes a Powered by PoseTracker link."
+  },
+  {
+    "claim": "PoseTracker Developer: 1,000 tracking calls a month.",
+    "url": "https://www.posetracker.com/",
+    "quote": "- 1000 tracking API calls included monthly — no service cut above it"
+  },
+  {
+    "claim": "PoseTracker Business: 100k, 500k or 1M calls per 12-month period.",
+    "url": "https://www.posetracker.com/",
+    "quote": "- 100k , 500k or 1M tracking API calls per 12-month period — no monthly cap"
+  },
+  {
+    "claim": "PoseTracker extra calls at €0.01 excl. VAT.",
+    "url": "https://www.posetracker.com/",
+    "quote": "invoice them at €0.01 excl. VAT per call"
+  },
+  {
+    "claim": "PoseTracker says it is not a medical device.",
+    "url": "https://www.posetracker.com/",
+    "quote": "It is not a medical device and it does not replace a clinician."
+  },
+  {
+    "claim": "With a PoseTracker key, internet is required to authenticate and meter.",
+    "url": "https://docs.posetracker.com/reference/features-plans",
+    "quote": "With a key, internet is required to authenticate and meter"
+  },
+  {
+    "claim": "PoseTracker's quickstart: 17 keypoints with no API key.",
+    "url": "https://docs.posetracker.com/quickstart",
+    "quote": "Install a PoseTracker React Native SDK, mount WebViewPoseView, get 17 free keypoints — no API key."
+  },
+  {
+    "claim": "PoseTracker lists Flutter-only apps among the cases not to use it.",
+    "url": "https://www.posetracker.com/compare/pose-estimation-sdks",
+    "quote": "- Flutter-only (no first-party Flutter SDK)."
+  },
+  {
+    "claim": "PoseTracker's comparison describes KinesteX as a hosted camera and content embed.",
+    "url": "https://www.posetracker.com/compare/pose-estimation-sdks",
+    "quote": "Hosted camera / content embed"
+  },
+  {
+    "claim": "PoseTracker's comparison: KinesteX and Sency often sales-led.",
+    "url": "https://www.posetracker.com/compare/pose-estimation-sdks",
+    "quote": "KinesteX / Sency often sales-led."
+  },
+  {
+    "claim": "PoseTracker is developed by Movelytics SAS.",
+    "url": "https://www.posetracker.com/terms-of-use",
+    "quote": "Welcome to PoseTracker, a service developed by Movelytics SAS."
+  },
+  {
+    "claim": "Kemtai provides a B2B physical therapy platform.",
+    "url": "https://kemtai.com/product/computer-vision-rehab/",
+    "quote": "Kemtai provides a B2B physical therapy platform that uses proprietary neural network algorithms to accurately analyze human motion and provide real-time corrective guidance to patients."
+  },
+  {
+    "claim": "Kemtai's home page: analyzes 111 data points.",
+    "url": "https://kemtai.com/",
+    "quote": "Analyzes 111 data points on the patient’s body"
+  },
+  {
+    "claim": "Kemtai CARE is a web app.",
+    "url": "https://kemtai.com/",
+    "quote": "- Web app. No downloads. No installations"
+  },
+  {
+    "claim": "Kemtai works on any device with a camera.",
+    "url": "https://kemtai.com/",
+    "quote": "- Works on any device with a camera (laptops, tablets, mobile phones)"
+  },
+  {
+    "claim": "Kemtai's accuracy study is Kemtai data on file.",
+    "url": "https://kemtai.com/",
+    "quote": "2. Kemtai data on file. Kemtai Accuracy Study, ALYN. March 2025."
+  },
+  {
+    "claim": "Kemtai's FAQ: FDA-listed, CE-marked under MDR 2017/745, ISO-certified.",
+    "url": "https://kemtai.com/faqs",
+    "quote": "FDA-listed as a medical device, CE‑marked (MDR 2017/745) as a medical device, ISO‑certified (13485, 27799, 27001)"
+  },
+  {
+    "claim": "Kemtai is also a web app.",
+    "url": "https://kemtai.com/faqs",
+    "quote": "Kemtai is also a web app, so you don’t need to download anything to your device."
+  },
+  {
+    "claim": "Kemtai CARE is for organizations that do not implement Kemtai through its API.",
+    "url": "https://kemtai.com/faqs",
+    "quote": "Kemtai Care is a standalone clinician platform we provide to healthcare organizations that don’t implement Kemtai using its API."
+  },
+  {
+    "claim": "Kemtai's APIs page: an embeddable exercise player with rep counting and live corrective guidance.",
+    "url": "https://kemtai.com/kemtai-api-and-embeddables/",
+    "quote": "Deliver computer vision–powered exercises and assessments inside your platform"
+  },
+  {
+    "claim": "Kemtai's APIs page: patient and protocol management components.",
+    "url": "https://kemtai.com/kemtai-api-and-embeddables/",
+    "quote": "Clinicians can review patient performance, prescribe protocols, and modify care plans without leaving your product."
+  },
+  {
+    "claim": "Kemtai's APIs page: management APIs.",
+    "url": "https://kemtai.com/kemtai-api-and-embeddables/",
+    "quote": "Leverage APIs to create patients and staff members, generate exercise protocol and templates, assign care plans to patients, and terminate activities without any manual intervention."
+  },
+  {
+    "claim": "Kemtai's EU digital-health page: 113-point tracking.",
+    "url": "https://eu.kemtai.com/digital-health-platforms/",
+    "quote": "113-Point Tracking"
+  },
+  {
+    "claim": "Kemtai's EU API page: two main levels of the API.",
+    "url": "https://eu.kemtai.com/api-integration/",
+    "quote": "There are two main levels of the API"
+  },
+  {
+    "claim": "Exer Scan: a mobile-first solution for clinicians to capture and analyze motion data in real time.",
+    "url": "https://www.exer.ai/product/scan",
+    "quote": "Exer Scan is a mobile-first solution that allows clinicians to capture and analyze objective motion data in real time"
+  },
+  {
+    "claim": "Exer Hands: hand and wrist disorders.",
+    "url": "https://www.exer.ai/",
+    "quote": "Support for the management of dozens of acute and chronic hand and wrist disorders like rheumatoid arthritis and carpal tunnel syndrome."
+  },
+  {
+    "claim": "Exer Health: a patient app from the app store.",
+    "url": "https://www.exer.ai/product/health",
+    "quote": "Your patients can start right away using an app downloaded from the app store."
+  },
+  {
+    "claim": "Exer: FDA Class II Medical Device (software), validated.",
+    "url": "https://www.exer.ai/",
+    "quote": "FDA Class II Medical Device (software), validated."
+  },
+  {
+    "claim": "Exer: HIPAA compliant.",
+    "url": "https://www.exer.ai/",
+    "quote": "Complete data privacy protection across the platform."
+  },
+  {
+    "claim": "Exer: APIs to streamline integrations and billing.",
+    "url": "https://www.exer.ai/",
+    "quote": "Barcode into charts in clinic, APIs to streamline integrations and billing."
+  },
+  {
+    "claim": "Exer: a hand/wrist module introduced at Mayo Clinic.",
+    "url": "https://www.exer.ai/",
+    "quote": "Exer AI Announces Exer Scan App’s Hand/Wrist Module Introduced at Mayo Clinic to"
+  },
+  {
+    "claim": "Exer's validation post: tremor model ICC = 0.96.",
+    "url": "https://www.exer.ai/posts/exer-ai-clinical-validation-studies-presented-at-assh-and-cns-in-oct-2025",
+    "quote": "The AI model achieved exceptional inter-rater reliability ( ICC = 0.96 ), matching clinician consistency ( ICC = 0.94 )."
+  },
+  {
+    "claim": "Exer's validation post: ROM within ± 5° of manual goniometry.",
+    "url": "https://www.exer.ai/posts/exer-ai-clinical-validation-studies-presented-at-assh-and-cns-in-oct-2025",
+    "quote": "Bland-Altman analysis confirmed Exer’s ROM measurements were within ± 5° of manual goniometry across all motions."
+  },
+  {
+    "claim": "Uplift Capture is for organizations that already use the Uplift platform.",
+    "url": "https://apps.apple.com/us/app/uplift-capture/id1501907981",
+    "quote": "Please note: This app is for organizations that currently use the Uplift platform."
+  },
+  {
+    "claim": "Hinge Health's program is covered by employers and health plans.",
+    "url": "https://www.hingehealth.com/",
+    "quote": "all covered by employers and health plans."
+  },
+  {
+    "claim": "KinesteX's HIPAA page says KinesteX is HIPAA compliant.",
+    "url": "https://www.kinestex.com/product/hipaa",
+    "quote": "KinesteX is HIPAA compliant."
+  },
+  {
+    "claim": "Zing Coach's methodology page describes personalized virtual coaching.",
+    "url": "https://www.zing.coach/methodology",
+    "quote": "Discover a science-based approach to changing your behavior, with the help of personalized virtual coaching."
+  },
+  {
+    "claim": "Zing Coach says its product is built on AI technology and specialist expertise.",
+    "url": "https://www.zing.coach/methodology",
+    "quote": "Zing Coach's methodology towards health and exercise is built on the most advanced AI technology and expertise of world-class fitness and wellness specialists."
+  },
+  {
+    "claim": "Fitify's business page describes unlimited employee access.",
+    "url": "https://gofitify.com/business",
+    "quote": "Your employees will get an unlimited access to Fitify to use it as much as they want, when they want, where they want."
+  },
+  {
+    "claim": "Fitify's business page cites 900+ exercises including yoga, meditation and breathing.",
+    "url": "https://gofitify.com/business",
+    "quote": "Your team will not only have an access to tailored fitness plan but also to 900+ exercises, including yoga, meditation and breathing routines for stress management."
+  },
+  {
+    "claim": "Fitify's corporate onboarding usually takes about 2-3 weeks.",
+    "url": "https://gofitify.com/business",
+    "quote": "The onboarding process usually takes about 2-3 weeks, depending on the size of the team, general, and individual requests."
+  },
+  {
+    "claim": "Hinge Health sells a care program covered by employers and health plans.",
+    "url": "https://www.hingehealth.com/",
+    "quote": "all covered by employers and health plans."
+  },
+  {
+    "claim": "Hinge Health's exercise guidance uses its TrueMotion technology.",
+    "url": "https://www.hingehealth.com/",
+    "quote": "Our TrueMotion technology analyzes your range of motion, delivers real-time feedback, and tracks your progress in the app"
   }
 ]
