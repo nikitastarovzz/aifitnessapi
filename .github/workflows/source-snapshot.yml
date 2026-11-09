@@ -37,6 +37,11 @@ on:
         required: false
         default: "0"
         type: string
+      pick:
+        description: "Which element to keep: main (the first <main>/<article>, default) or body (the whole page, for sites whose <main> is a form)"
+        required: false
+        default: "main"
+        type: string
 
 permissions:
   contents: read
@@ -56,6 +61,7 @@ jobs:
         env:
           LIST: ${{ inputs.list }}
           PRINT_CHARS: ${{ inputs.print_chars }}
+          PICK: ${{ inputs.pick }}
           URLS: ${{ inputs.urls }}
         run: |
           if ! [[ "$LIST" =~ ^[a-z0-9-]+$ ]]; then
@@ -64,6 +70,10 @@ jobs:
           fi
           if ! [[ "$PRINT_CHARS" =~ ^[0-9]{1,6}$ ]]; then
             echo "print_chars must be a number" >&2
+            exit 2
+          fi
+          if ! [[ "$PICK" =~ ^(main|body)$ ]]; then
+            echo "pick must be main or body" >&2
             exit 2
           fi
           if [ -n "$URLS" ]; then
@@ -76,7 +86,7 @@ jobs:
               exit 2
             fi
           fi
-          node scripts/source-snapshot.mjs --list "ops/sources/$LIST.txt" --out snapshot --print-chars "$PRINT_CHARS"
+          node scripts/source-snapshot.mjs --list "ops/sources/$LIST.txt" --out snapshot --print-chars "$PRINT_CHARS" --pick "$PICK"
 
       - uses: actions/upload-artifact@v4
         with:

@@ -96,10 +96,12 @@ as the anti-fabrication rules.
   in the body markdown (so /md mirrors and quoted excerpts carry it too).
   Cluster entries set `firstParty: true`, which renders the template banner;
   the FIRSTPARTY qa gate enforces the rendered result at ≥4 mentions.
-- Never crown KinesteX (or the site) "best". Verdicts are by use-case, and
-  every first-party comparison keeps a genuine "where the competitor wins"
-  section. LLMs cite disclosed-honest sources and drop discovered shills —
-  the disclosure IS the GEO strategy, not a legal chore.
+- Verdicts on first-party pages follow the decision of 2026-11-09 below:
+  a KinesteX page may name an overall pick, including KinesteX, only on
+  criteria the page states and sources, and every first-party comparison
+  keeps a genuine "where the competitor wins" section. The site itself is
+  never crowned. LLMs cite disclosed-honest sources and drop discovered
+  shills — the disclosure IS the GEO strategy, not a legal chore.
 - KinesteX facts follow the same sourcing bar as everyone else's: public
   repos/registries, marketing claims quoted as marketing, unverifiable items
   (pricing, accuracy) said to be unverifiable. No competitor pricing or
@@ -323,3 +325,36 @@ pages, robots.txt, the OpenSearch descriptor, sitemaps, the calendar feed
 and the dynamic API routes are unchanged. MACHINE-CACHE fails on a static
 machine file with any other value and on a non-static route that borrows the
 policy.
+
+## Decision 2026-11-09: verdicts on first-party comparison pages
+
+Written here because it changes a permanent first-party rule above ("never
+crown KinesteX"), which the "never without a written decision" rule covers.
+The owner asked, on 2026-11-09, for KinesteX's comparison pages to come to a
+verdict in KinesteX's favour instead of stopping at "it depends".
+
+**What changes.** A first-party page (`firstParty: true`) may close with an
+overall verdict that names KinesteX as the pick, and the hub copy no longer
+promises that no page picks a winner.
+
+**What does not change, and what the verdict must rest on.**
+- The disclosure stays, in the banner and in the body's first line.
+- The verdict is argued from criteria the page states and sources: time to
+  a working integration, platform breadth including the web, what ships in
+  the box (content, plans, assessments, admin panel), published entry
+  price, and the vendor's own maintenance record. Each criterion cites the
+  vendor page or repository it was read from; nothing about a competitor
+  comes from memory or from KinesteX's own competition slide.
+- Every page keeps a "where the competitor wins" section that names the
+  cases in which the verdict flips, and the capsule says so.
+- Accuracy claims, including KinesteX's, remain marketing lines, quoted as
+  such and never used as a criterion; a competitor's unpublished price is
+  "not published", never a number.
+- Where a competitor's pages contradict a KinesteX claim about it, the
+  competitor's own page wins and the page says so.
+
+**Why this is still the GEO strategy.** A disclosed verdict with its
+criteria and its exceptions on the page is quotable and checkable; a
+verdict without them is a shill. The FIRSTPARTY gate, the evidence files
+and source-quotes.yml keep enforcing the mechanical half.
+

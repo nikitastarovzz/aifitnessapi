@@ -101,7 +101,7 @@ const FAQS = [
   },
   {
     q: "Do these comparisons pick a single winner?",
-    a: "No — the right choice depends on your build. Each page recommends by use-case (for example, deep sleep and recovery data vs broad mainstream reach, or one aggregator's coverage vs another's regional strength), and links to the integration guide for whichever you pick.",
+    a: "Most recommend by use-case rather than naming one product (for example, deep sleep and recovery data vs broad mainstream reach, or one aggregator's coverage vs another's regional strength). The KinesteX pages are the exception: KinesteX funds this site, each of those pages says so in its first line, and each closes with an overall verdict argued from stated criteria, next to a section on where the competitor wins. Every page links to the integration guide for whichever you pick.",
   },
 ];
 
@@ -171,8 +171,8 @@ export default function ComparePillar() {
         >
           Deciding between two options? These head-to-heads compare fitness and health data sources
           through the developer lens — what data each exposes via its API, the access model, what your
-          users must have, cost, and which one fits your build. Each page recommends by use-case rather
-          than crowning a single winner, and links to the integration guide for whichever you choose.
+          users must have, cost, and which one fits your build. Each page recommends by use-case, states
+          its criteria where it does name an overall pick, and links to the integration guide for whichever you choose.
         </div>
 
         <div className="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-a:text-brand-600 hover:prose-a:text-brand-500">
