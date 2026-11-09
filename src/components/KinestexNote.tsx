@@ -61,6 +61,26 @@ const MAP: Record<string, Note> = {
     anchor: "KinesteX",
     lead: "We make one of these two products, so verify our description of it against the source:",
   },
+  "/compare/kinestex-vs-kemtai": {
+    anchor: "KinesteX's own documentation",
+    lead: "The company behind one of these two products writes this page. Read the source before you take our word for it:",
+  },
+  "/compare/kinestex-vs-asensei": {
+    anchor: "the KinesteX SDK docs",
+    lead: "One side of this comparison funds this site. Its documentation is public; check our description against it:",
+  },
+  "/compare/kinestex-vs-exer-ai": {
+    anchor: "KinesteX's developer docs",
+    lead: "We make one of these two products. The documentation is the primary source for everything we say about it:",
+  },
+  "/compare/kinestex-vs-posetracker": {
+    anchor: "KinesteX",
+    lead: "This page is written by the company behind one of the two SDKs. Verify our description of it at the source:",
+  },
+  "/compare/kinestex-vs-competitors": {
+    anchor: "KinesteX's own documentation",
+    lead: "Every vendor on this page is described from its own pages, including ours. Start with the source for the one we make:",
+  },
   "/alternatives/kinestex-alternatives": {
     anchor: "what KinesteX actually does",
     lead: "This page lists alternatives to our own product. If you have not yet ruled it in or out, start with",

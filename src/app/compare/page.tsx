@@ -79,8 +79,18 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "AI motion tracking SDKs",
     blurb:
-      "Camera-based coaching SDKs head-to-head. KinesteX funds this site — these pages disclose that up front and are verified from public repos and the vendors' own pages.",
-    slugs: ["quickpose-vs-sency", "kinestex-vs-sency", "kinestex-vs-quickpose", "kinestex-vs-mediapipe"],
+      "Camera-based coaching SDKs head-to-head, plus one page that puts KinesteX against every competitor at once. KinesteX funds this site — these pages disclose that up front, are verified from public repos and the vendors' own pages, and each KinesteX page states the criteria behind its verdict next to where the competitor wins.",
+    slugs: [
+      "kinestex-vs-competitors",
+      "kinestex-vs-sency",
+      "kinestex-vs-quickpose",
+      "kinestex-vs-kemtai",
+      "kinestex-vs-asensei",
+      "kinestex-vs-posetracker",
+      "kinestex-vs-exer-ai",
+      "kinestex-vs-mediapipe",
+      "quickpose-vs-sency",
+    ],
   },
   {
     title: "Pose estimation models",

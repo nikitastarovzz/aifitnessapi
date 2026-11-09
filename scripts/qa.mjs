@@ -1986,7 +1986,7 @@ if (fs.existsSync(matrixPath)) {
     // placement rule is in the component's header comment), plus
     // /tools/rep-counter-playground (2026-11-05), plus the quiz's
     // camera-motion result page (2026-11-06).
-    const EXPECTED = 65;
+    const EXPECTED = 70;
     if (withNote.length !== EXPECTED) {
       problems.push(
         `KINESTEX-NOTE  ${withNote.length} pages render the first-party link, expected ${EXPECTED} — a mapped path was probably renamed`,

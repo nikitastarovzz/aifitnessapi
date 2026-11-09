@@ -3,8 +3,9 @@ import type { ClusterEntry } from "@/lib/cluster";
 /**
  * AUTO-ASSEMBLED "X vs Y" developer comparison pages (originally auto-assembled;
  * since hand-edited — edit here). Article + FAQPage (no HowTo).
- * Framed through the API/developer lens; recommends by use-case, not a single
- * winner; every volatile specific hedged "verify".
+ * Framed through the API/developer lens; recommends by use-case (the KinesteX
+ * pages close with a verdict on stated criteria, ops/GEO.md 2026-11-09); every
+ * volatile specific hedged "verify".
  */
 export const compareEntries: ClusterEntry[] =
 [
