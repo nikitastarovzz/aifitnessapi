@@ -8,7 +8,7 @@
  * posts and translations: the commit that added the file; generated
  * sections: the commit that added the route, or the item to the data file if
  * that came later). Keyed by URL path without the leading slash.
- * 582 rows.
+ * 587 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -139,7 +139,12 @@ export const PUBLISHED: Record<string, string> = {
   "compare/exercisedb-vs-wger": "2026-07-23",
   "compare/fitbit-vs-apple-watch": "2026-07-23",
   "compare/fitbit-vs-oura": "2026-07-23",
+  "compare/kinestex-vs-asensei": "2026-11-09",
+  "compare/kinestex-vs-competitors": "2026-11-09",
+  "compare/kinestex-vs-exer-ai": "2026-11-09",
+  "compare/kinestex-vs-kemtai": "2026-11-09",
   "compare/kinestex-vs-mediapipe": "2026-08-02",
+  "compare/kinestex-vs-posetracker": "2026-11-09",
   "compare/kinestex-vs-quickpose": "2026-08-02",
   "compare/kinestex-vs-sency": "2026-08-02",
   "compare/mediapipe-vs-movenet": "2026-10-22",

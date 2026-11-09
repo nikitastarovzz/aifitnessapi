@@ -3,8 +3,9 @@ import type { ClusterEntry } from "@/lib/cluster";
 /**
  * AUTO-ASSEMBLED "X vs Y" developer comparison pages (originally auto-assembled;
  * since hand-edited — edit here). Article + FAQPage (no HowTo).
- * Framed through the API/developer lens; recommends by use-case, not a single
- * winner; every volatile specific hedged "verify".
+ * Framed through the API/developer lens; recommends by use-case (the KinesteX
+ * pages close with a verdict on stated criteria, ops/GEO.md 2026-11-09); every
+ * volatile specific hedged "verify".
  */
 export const compareEntries: ClusterEntry[] =
 [
@@ -883,34 +884,34 @@ export const compareEntries: ClusterEntry[] =
     "h1": "KinesteX vs Sency: Which Motion Tracking SDK?",
     "metaTitle": "KinesteX vs Sency (2026): Motion Tracking SDKs Compared",
     "metaDescription": "KinesteX vs Sency for AI motion tracking: WebView embed vs native SDK, platforms, licenses, prices and what we could verify. KinesteX funds this site.",
-    "updated": "2026-10-18",
-    "answer": "KinesteX (this site's own product) and Sency are both AI motion tracking SDKs for fitness apps, and the honest difference is architectural, not better-versus-worse: KinesteX embeds a hosted camera experience via WebView or iframe with prebuilt workout content, views and a content API across iOS, Android, React Native, Flutter and the web, while Sency's SMKit is a native no-UI SDK, plus a branded UI kit, for iOS, Android, React Native and Flutter, where you own the camera preview and UI. Pick KinesteX if you need a web surface or want content and gamified experiences shipped in the box; pick Sency if you need native rendering and full UI control with no embedded web experience. Sency lists plans and prices, from a free Starter tier to a Growth plan from $499 a month, while KinesteX publishes no prices; no accuracy claim on either side has been independently benchmarked, so test both against your own movements before committing.",
+    "updated": "2026-11-09",
+    "answer": "KinesteX (this site's own product; KinesteX funds this site) is our overall pick over Sency on stated criteria: more ships in the box, from an AI Trainer Chat and ready-made views to content APIs and an admin workout editor, and it covers the web as well as Swift, Kotlin, React Native and Flutter, where Sency's own platform table marks JavaScript NA. The difference is architectural: KinesteX embeds a hosted camera experience in a WebView or iframe, while Sency's SMKit is a native SDK, with an optional branded UI kit, where you own the camera preview and UI. Pick Sency instead if you need an in-process native kit with no prebuilt UI, a free tier for up to 100 monthly active users (if its packages page governs) or its published prices, which run below the $1.50 per MAU and $1,500 monthly minimum in KinesteX's seed deck, or Sency's MCP server and assessments inside your own UI. No accuracy claim on either side has been independently benchmarked.",
     "faqs": [
       {
         "q": "Is KinesteX a native SDK like Sency's SMKit?",
-        "a": "No, and this is the core difference. KinesteX's public repos describe its SDKs as WebView and iframe wrappers that embed a hosted camera workout experience, communicating via postMessage events plus a content REST API. Sency's README describes its core SMKit as a native no-UI SDK where the developer owns the camera preview and UI in the Custom Kit. Neither shape is wrong — a hosted experience ships faster with content included, while a native SDK gives you full rendering control."
+        "a": "No, and this is the core difference. KinesteX's public repos describe its SDKs as WebView and iframe wrappers that embed a hosted camera workout experience, communicating via postMessage events, plus REST content APIs; even its Camera Component, which can stream pose landmarks, comes through the same WebView kit. Sency's README describes its core SMKit as a native no-UI SDK where the developer owns the camera preview and UI in the Custom Kit. A hosted experience ships faster with content included; a native SDK gives you full rendering control."
       },
       {
         "q": "Does Sency support web or JavaScript apps?",
-        "a": "Not per its own public documentation: Sency's platform table in the smkit-sdk README lists iOS, Android, React Native and Flutter, and marks JavaScript and Unity as NA. KinesteX publishes HTML and JavaScript iframe, PWA and React TypeScript integrations for browser-based products. If your product includes a web surface, that gap currently decides the comparison on its own — but re-check Sency's repos before ruling it out, since platform tables change."
+        "a": "Not per its own public documentation: Sency's platform table in the smkit-sdk README lists iOS, Android, React Native and Flutter, and marks JavaScript and Unity as NA. KinesteX's Getting Started page lists a React (TypeScript) SDK and a plain HTML and JavaScript iframe integration for any web page or PWA. If your product includes a web surface, that gap decides the comparison on its own, but re-check Sency's repos before ruling it out, since platform tables change."
       },
       {
         "q": "How much do KinesteX and Sency cost?",
-        "a": "KinesteX publishes no price list, so this page will not guess its number: access goes through a contact form and API key, and its FAQ describes usage-based pricing per active user per month that falls at higher tiers, with possible integration fees. Sency's pricing packages page lists a free Starter plan for up to 100 monthly active users, a Growth plan from $499 a month for up to 3,800 and a Customized plan on request, though its main pricing page describes the first 100 users as a paid tier after a free trial. Get a written quote from both before you budget."
+        "a": "KinesteX publishes no price list on its website; its public seed pitch deck states $1.50 per monthly active user with a $1,500 monthly minimum, and its FAQ adds that integration fees may apply, so confirm with KinesteX. Sency's packages page lists a free Starter plan for up to 100 monthly active users and Growth from $499 a month up to 3,800, while its pricing page lists $99.99 fixed for the first 100 users after a free trial. On those figures Sency is cheaper. Get written quotes from both."
       },
       {
         "q": "Are KinesteX or Sency open source?",
-        "a": "Neither product is open source, though the repo licensing differs. Most KinesteX wrapper and demo repos (Swift, Kotlin, React Native, HTML-JS) carry an Apache-2.0 LICENSE, but the hosted experience behind them is a commercial, API-key-gated service, and the Flutter, SwiftUI-kit and PWA repos have no LICENSE file. Sency's repo LICENSE is its own proprietary Terms of Use, which puts commercial use under a separate paid agreement. In both cases you are buying a commercial service; the public repos are integration code, not the product."
+        "a": "Neither product is open source, though the repo licensing differs. Most KinesteX wrapper and demo repos (Swift, Kotlin, React Native, HTML-JS) carry an Apache-2.0 LICENSE, but the hosted experience behind them is a commercial, API-key-gated service, and the Flutter, SwiftUI-kit and PWA repos have no LICENSE file. Sency's repo LICENSE is its own proprietary Terms of Use, which puts commercial use under a separate paid agreement. In both cases you are buying a commercial service; the public repos are integration code."
       },
       {
         "q": "Which is more accurate, KinesteX or Sency?",
-        "a": "Unknown, and be wary of anyone who answers confidently — including us, since KinesteX funds this site. KinesteX's README claims its models consistently exceed 90% accuracy and its FAQ claims 97.2%, which are first-party marketing lines, not independent benchmarks, and they do not agree with each other. Sency publishes no comparable figure in its public repos or on its pricing and FAQ pages, though its FAQ calls its accuracy unmatched. No independent accuracy comparison of the two exists that we could verify, so run both SDKs on your actual exercises, devices and lighting conditions before deciding."
+        "a": "Unknown, and be wary of anyone who answers confidently, including us, since KinesteX funds this site. KinesteX's README claims its models consistently exceed 90% accuracy and its FAQ claims 97.2%: first-party marketing lines, not independent benchmarks, and they do not agree with each other. Sency publishes no comparable figure, though its FAQ calls its accuracy unmatched. No independent comparison of the two exists that we could verify, so run both SDKs on your exercises, devices and lighting."
       }
     ],
     "cta": {
-      "pitch": "We compare motion tracking SDKs the same way we compare everyone else's APIs — from public repos, with the gaps and our own conflicts labeled — so subscribe and get the next teardown before you sit through a sales demo."
+      "pitch": "We compare motion tracking SDKs the same way we compare everyone else's APIs, from public repos and vendor pages with the gaps and our own conflicts labeled, so subscribe and get the next teardown before you sit through a sales demo."
     },
-    "body": "**Disclosure: KinesteX is this site's own product.** AIFitnessAPI is funded by KinesteX, so treat this page the way you would treat any first-party comparison — skeptically. To keep it honest, every factual claim below traces to the two vendors' public GitHub repositories, their package registries, or their own published pages as fetched on October 17 and 18, 2026; marketing claims are quoted as marketing; everything we could not verify is called out plainly, including accuracy for both vendors; and Sency's real strengths get their own section, not a token nod. The disclosure is checked at build time too: [the list of automated refusals that run before this site deploys](/gates) includes a check that fails any page linking to the site's funder without one.\n\n## How to compare KinesteX and Sency\n\nBoth products sell the same promise — AI motion tracking for fitness apps through a phone camera, no extra hardware — and both use nearly identical category language (\"AI motion analysis SDK\" for KinesteX, \"AI motion analysis technology\" for Sency). Three things actually separate them, and all are verifiable:\n\n- **Integration architecture.** KinesteX's SDKs embed a hosted web experience: its SwiftUI kit README describes \"a SwiftUI package that embeds KinesteX's AI-powered camera workout experience as a WebView,\" the web integration is an iframe, and the React Native SDK needs `react-native-webview`. Sency's SMKit is the opposite: its version table calls the core iOS kit a \"Native no-UI SDK\" — a native library where, in the Custom Kit, the developer owns the camera preview and all UI.\n- **Platform coverage.** KinesteX publishes SDKs for iOS, Android, React Native, Flutter and the web (HTML and JavaScript, PWA, and a React TypeScript package). Sency's platform table covers iOS, Android, React Native and Flutter — and explicitly marks JavaScript and Unity as \"NA.\"\n- **What ships in the box.** KinesteX bundles content and prebuilt experiences (workout, plan, challenge and leaderboard views plus a content API). Sency's README centers on assessments, progress evaluations and personalized workout plans, delivered either as a white-label Branded Kit (SMKitUI) or a no-UI Custom Kit (SMKit).\n\nEverything on this page comes from places you can audit yourself: the [KinesteX GitHub org](https://github.com/KinesteX) and the [Sency GitHub org (sency-ai)](https://github.com/sency-ai), npm and pub.dev, and each company's own site. Where a fact could not be verified, the table says so instead of guessing.\n\n## KinesteX vs Sency at a glance\n\n| Dimension | KinesteX | Sency | Verified from |\n|---|---|---|---|\n| Integration surface | WebView and iframe wrappers around a hosted camera experience, with postMessage events and a content REST API | Native SDK; core SMKit is a \"Native no-UI SDK\"; SMKitUI adds prebuilt white-label UI | KinesteX AI-Kit, PWA and org READMEs; Sency smkit-sdk README |\n| Platforms | iOS, Android, React Native, Flutter, web (HTML and JS iframe, PWA, React TypeScript) | iOS, Android, React Native, Flutter; JavaScript and Unity marked \"NA\" | KinesteX docs; Sency README platform table |\n| Product tiers | Plug-and-play views (category, plan, workout, challenge, leaderboard, experience) or a custom camera component plus content API | Branded Kit (SMKitUI, \"quick, low-code\") or Custom Kit (SMKit, no predefined UI) | KinesteX docs and Swift-Demo integration docs; Sency smkit-sdk README |\n| Stated features | Real-time reps, mistakes, posture alignment, calories; assessments (TUG, gait speed, sit-to-stand, balance stands and more); white-label theming | Movement and fitness assessments, monthly progress evaluations, personalized workout plans; Body Calibration, Adaptive ROM, Session Lifecycle in the iOS docs | Each vendor's own READMEs — vendor statements, not tested by us |\n| Data events | Per-rep events with reps, calories, a mistakes array and per-rep accuracy; workout summary scores | Session lifecycle, body calibration and result data types documented in the iOS demo | KinesteX org README; Sency smkit-ios-demo README |\n| Where the models come from | Not stated in the repos; KinesteX's security page says its cloud delivers content and AI models and the SDK runs pose estimation on the device | Downloaded from Sency's server at configuration, no bundled fallback; a valid cache can be used offline later; its FAQ says data is analyzed on the user's device and never sent to the cloud | KinesteX security page; Sency iOS and Android demo READMEs and FAQ |\n| iOS floor | iOS 14 (Package.swift and docs) | iOS 16 for the Custom Kit demo Podfile; iOS 15 or later for SMKitUI | Package.swift and KinesteX docs; Sency demo READMEs |\n| Distribution | SPM, JitPack, npm (kinestex-sdk-react-native 1.4.1, 2026-10-09), pub.dev (kinestex_sdk_flutter 1.5.1, 2026-07-04) | CocoaPods and SPM from a Sency Bitbucket repo; Maven; npm (@sency/react-native-smkit-ui 2.4.3, 2026-09-23); pub.dev (flutter_smkit_ui 1.6.0, 2026-09-23) | Public registries, both vendors' repos |\n| Repo license | Apache-2.0 LICENSE in the Swift, Kotlin, React Native, HTML-JS and demo repos; none in the Flutter, SwiftUI-kit and PWA repos; the hosted service itself is commercial (API key required) | Proprietary — the repo LICENSE file is \"Sency Terms of Use\" (2022), and commercial or production use needs a separate paid service agreement. Not open source | Raw LICENSE fetches from both orgs |\n| Repo activity | Pushes through 2026-10-14 (Kotlin) and 2026-10-09 (React Native) | Demo repos pushed through 2026-09-23 | GitHub, both orgs |\n| Pricing | No price list. KinesteX's FAQ describes usage-based plans priced per active user per month that fall as you reach new tiers, and says integration fees may apply; access via contact form and API key | Published, on two pages that differ: a packages page lists Starter free up to 100 monthly active users, Growth from $499 a month up to 3,800 and Customized on request; the main pricing page describes a free trial, then a minimal monthly fee covering up to 100 active users | KinesteX FAQ and docs; Sency's two pricing pages |\n| Accuracy | Not verified. KinesteX claims its models \"consistently exceed 90% accuracy\" (README) and \"97.2% accuracy\" (FAQ) — first-party marketing lines, not independent benchmarks | Not verified. No accuracy figure in Sency's repos or on its pricing pages; its FAQ calls its accuracy \"unmatched\" without a number | Neither vendor's accuracy has been independently tested here |\n\n## What we could not verify — for either vendor\n\nBeing straight about the gaps matters more on a first-party page, so here they are:\n\n- **Prices, for both, in different ways.** KinesteX publishes no price list: its FAQ describes the model — usage-based, per active user per month, lower per-user rates at higher tiers, possible integration fees, no termination penalties — but gives no figure, and access starts with a contact form. Sency does publish plans, but its two pricing pages disagree about the start: its packages page lists a free Starter plan for up to 100 monthly active users and a Growth plan from $499 a month for up to 3,800, while its main pricing page describes a free trial followed by a \"minimal monthly fee\" that includes up to 100 active users. The packages page also does not say how Growth's $499 base and its $0.79 per-active-user rate combine. Budget for a conversation with both.\n- **Accuracy, for both.** No independent accuracy benchmark exists for either SDK that we could verify. KinesteX's two figures — above 90 percent in a README, 97.2 percent in its FAQ — are its own marketing claims, and they do not even agree with each other; Sency makes no comparable public claim. Do not choose between these products on accuracy claims — run both on your own movements and lighting conditions.\n- **On-device processing, for KinesteX.** KinesteX's security page says \"All camera and vision processing stays on-device\", while its SDK READMEs still say \"optional edge processing (no cloud transmission)\". The two statements are not the same promise, so get the behavior of your configuration in writing.\n- **Sency's Android floor.** Its Android demo app builds with minSdk 24; we found no separate statement of SMKit's own minimum.\n\n## Where KinesteX wins\n\nKinesteX's edge is coverage and content. It is the only one of the two with a web story: its documentation covers HTML and JavaScript through an iframe, a PWA path and a React TypeScript package, where Sency's own platform table marks JavaScript \"NA\" — if your product includes a web or PWA surface, that difference is decisive on its own. Its public repos and docs also document a broader prebuilt layer — our reading of the two sets, since neither vendor publishes a feature matrix: plug-and-play workout, plan, challenge, leaderboard and gamified experience views, a content API for fetching workouts and plans, an assessment spec (timed-up-and-go, gait speed, sit-to-stand variants, balance stands), and per-rep data events. To be fair, assessments are not a KinesteX exclusive — Sency's README leads with movement and fitness assessments and personalized plans; the difference is the content-and-views layer around them. The iOS floor is lower (iOS 14 versus Sency's iOS 15 for SMKitUI and iOS 16 for the Custom Kit demo), and the wrapper code carries an Apache-2.0 license where LICENSE files exist — though be clear-eyed that the hosted experience behind the wrapper is a commercial, API-key-gated service either way, and that the WebView architecture means your workout screen is a hosted web app, not native rendering you control.\n\n## Where Sency wins\n\nSency's edge is architectural, and it is a real one: SMKit is a native SDK, not a WebView. Its version table says it plainly — the core iOS kit is a \"Native no-UI SDK\" — and its iOS demo says the developer owns the camera preview, session lifecycle, exercise UI, skeleton rendering and results. If you are building a polished native experience where the workout screen must match your design system frame-for-frame, integrate with your own rendering pipeline, or avoid embedding a hosted web experience inside your app, Sency's shape is simply the right shape and KinesteX's is not. The iOS demo docs go deeper on native concerns than anything comparable in KinesteX's public repos — Body Calibration, Adaptive ROM and Session Lifecycle are documented as first-class SDK concepts. Sency also offers a genuine two-tier choice within the same native architecture: a low-code Branded Kit when you want speed, and the no-UI Custom Kit when you want control. It is more transparent about price than we are: its packages page lists plans with prices — a free Starter plan for up to 100 monthly active users and a Growth plan from $499 a month for up to 3,800 — where KinesteX publishes no figure at all, even if Sency's main pricing page describes the first 100 users differently. It documents an MCP server that gives AI coding tools its SDK documentation. And its repos are actively maintained, with demo and package releases through September 2026 — this is not an abandoned competitor, and we are not going to pretend otherwise.\n\n## How to choose\n\nBy use-case, not by crowning a winner:\n\n- **Your product has a web or PWA surface** → KinesteX, by elimination: Sency's platform table marks JavaScript \"NA,\" and KinesteX documents iframe integration for exactly this.\n- **You want workouts, plans, challenges and leaderboards without building content systems** → KinesteX's plug-and-play views and content API cover ground Sency's public repos do not document.\n- **You need a native, no-WebView integration where you own the camera preview and UI** → Sency's Custom Kit. That is its architecture's core promise, and KinesteX's WebView approach cannot match it.\n- **You want prebuilt UI but insist on native rendering** → Sency's Branded Kit sits exactly in that gap: white-label prebuilt UI, still a native SDK underneath.\n- **You need a number for a budget before a sales call** → Sency, not KinesteX: Sency's packages page lists Starter and Growth prices, while KinesteX publishes none. QuickPose, a third option, publishes a full per-device price list — see [Sency pricing](/pricing/sency-pricing) and [QuickPose vs Sency](/compare/quickpose-vs-sency).\n- **You are deciding whether to use either SDK or build on a raw pose model** → read [build vs buy for AI motion tracking](/motion/build-vs-buy-ai-motion-tracking) first, and [the pose estimation model comparison](/motion/pose-estimation-models-compared) for what the free model layer actually gives you. The short version: the pose model is free; the exercise logic, feedback content and UX are the product.\n- **You are earlier than a vendor decision** → the [camera pose tracking guide](/guides/camera-pose-tracking) covers the fundamentals, and [Sency alternatives](/alternatives/sency-alternatives) maps the wider field with the same disclosure as this page.\n\n## The fine print\n\nEverything above is a snapshot of two actively developed products, verified on 2026-10-17 and 2026-10-18 from public repos, registries and both vendors' own pages. Versions, platform tables, iOS floors, prices and README claims all move. Before you commit, re-check both GitHub orgs, request demo access from both vendors — KinesteX publishes no price list, and Sency's two pricing pages disagree about the first 100 users — and test each SDK against your own exercises, devices and lighting. That last step matters most: no accuracy claim on either side has been independently verified, including our own.",
+    "body": "**Disclosure: KinesteX funds this site. KinesteX is this site's own product, and this page is written by the company behind it.** Treat it the way you would treat any first-party comparison: skeptically. Every factual claim below traces to the vendors' public repos, package registries, their own pages or, for one KinesteX price, its public seed pitch deck, all as read on November 9, 2026. Marketing claims are quoted as marketing, gaps are called out, including accuracy for both, and Sency's strengths get their own section. The disclosure is checked at build time too: [the list of automated refusals that run before this site deploys](/gates) includes a check that fails any page linking to the site's funder without one.\n\n## How to compare KinesteX and Sency\n\nBoth products sell the same promise, AI motion tracking for fitness apps through a phone camera with no extra hardware, and both use nearly identical category language (\"AI motion analysis SDK\" for KinesteX, \"AI motion analysis technology\" for Sency). Four things actually separate them, and all are verifiable:\n\n- **Integration architecture.** KinesteX's SDKs embed a hosted web experience: its SwiftUI kit README describes \"a SwiftUI package that embeds KinesteX's AI-powered camera workout experience as a WebView,\" the web integration is an iframe, and the React Native SDK installs alongside `react-native-webview`. Sency's SMKit is the opposite: its version table calls the core iOS kit a \"Native no-UI SDK\", a native library where, in the Custom Kit, the developer owns the camera preview and all UI.\n- **Platform coverage.** KinesteX's Getting Started page lists SDKs for Swift, Kotlin, Flutter, React Native and React (TypeScript), plus a plain HTML and JavaScript iframe integration for any web page or PWA. Sency's platform table covers iOS, Android, React Native and Flutter, and explicitly marks JavaScript and Unity as \"NA.\"\n- **What ships in the box.** KinesteX's docs now recommend AI Trainer Chat, a white-labeled AI personal trainer, as \"the recommended starting point for new integrations\", and list plan, workout, challenge and leaderboard views, three motion games, an embedded Admin Workout Editor, a Camera Component and REST content APIs. Sency's README centers on assessments, progress evaluations and personalized workout plans, delivered either as a white-label Branded Kit (SMKitUI) or a no-UI Custom Kit (SMKit).\n- **Price.** Sency publishes plans with prices, on two pages that disagree about the first 100 users. KinesteX publishes no price list on kinestex.com; the only public figure is in its seed pitch deck.\n\nYou can audit all of it: the [KinesteX GitHub org](https://github.com/KinesteX), [Sency's smkit-sdk repository](https://github.com/sency-ai/smkit-sdk) and demo repos, npm, pub.dev and each company's site.\n\n## KinesteX vs Sency at a glance\n\n| Dimension | KinesteX | Sency | Verified from |\n|---|---|---|---|\n| Integration surface | WebView and iframe wrappers around a hosted camera experience, with postMessage events and REST content APIs | Native SDK; core SMKit is a \"Native no-UI SDK\"; SMKitUI adds prebuilt white-label UI | KinesteX AI-Kit and PWA READMEs; Sency smkit-sdk README |\n| Platforms | Swift, Kotlin, Flutter, React Native, React (TypeScript), and an HTML and JavaScript iframe for any web page or PWA | iOS, Android, React Native, Flutter; JavaScript and Unity marked \"NA\" | KinesteX Getting Started; Sency README platform table |\n| Product tiers | Plug-and-play: AI Trainer Chat (recommended), Plan, Workout, Challenge and Leaderboard views, AI Experiences, Admin Workout Editor. Custom: Custom Workout, Camera Component, content APIs. Complete UX (Main) and Personalized Plan View are marked \"Sunset\" | Branded Kit (SMKitUI, \"quick, low-code\") or Custom Kit (SMKit, no predefined UI) | KinesteX docs; Sency smkit-sdk README |\n| Stated features | Reps, mistakes, posture alignment, calories; assessments (TUG, gait speed, sit-to-stand, balance stands); 19 languages per its FAQ; admin-panel theming | Fitness assessments, monthly progress evaluations, personalized plans; Body Calibration, Adaptive ROM, Session Lifecycle; 4-step fitness, low back pain and 8 mobility assessments | Vendor statements, not tested by us |\n| Data events | Per-rep accuracy and mistakes, workout scores; the Camera Component adds pose landmarks on request; \"300+ data points per workout session\" per its FAQ | Session lifecycle, body calibration and result data types in the iOS demo | KinesteX docs and FAQ; Sency iOS demo |\n| Where the models come from | Security page: the cloud delivers content and AI models; pose estimation runs on the device | Downloaded from Sency's server, no bundled fallback; a valid cache works offline later; FAQ: data never sent to the cloud | KinesteX security page; Sency demos and FAQ |\n| OS floors | iOS 14.0+ (Xcode 16.3+); Android 9+ (API 28) | iOS 16 in the Custom Kit demo Podfile, iOS 15 or later for SMKitUI; Android demo builds with minSdk 24 | KinesteX Getting Started; Sency demo READMEs |\n| Distribution | SPM; JitPack (Kotlin SDK 2.5.0); npm (kinestex-sdk-react-native 1.5.0, 2026-10-19); pub.dev (kinestex_sdk_flutter 1.5.1, 2026-07-04) | CocoaPods and SPM from Bitbucket (SMKit 2.3.6); Maven (SMKit 1.9.6); npm (@sency/react-native-smkit-ui 2.4.4, 2026-10-21); pub.dev (flutter_smkit_ui 1.6.1, 2026-10-21) | Install docs, demo READMEs, registries |\n| Repo license | Apache-2.0 in the Swift, Kotlin, React Native and HTML-JS repos; none in the Flutter, SwiftUI-kit and PWA repos; the hosted service is commercial | Proprietary \"Sency Terms of Use\" (2022); commercial use needs a separate paid agreement | Raw LICENSE files |\n| Repo activity | KinesteX-AI-Kit, KinesteX-SDK-Kotlin and KinesteX-SDK-Swift updated November 5, 2026; React Native repo October 9, 2026 | React Native and Flutter UI packages both published October 21, 2026 | KinesteX GitHub org listing; npm and pub.dev |\n| Pricing | No price list on kinestex.com. Its seed deck states \"$1.50 per MAU. $1,500 monthly minimum.\" The FAQ says per-user rates fall with tiers and integration fees may apply. Confirm with the vendor | Packages page: Starter free up to 100 monthly active users; Growth from $499 a month (101-500 users, $0.99 each) to $3,000 (3,001-3,800, $0.79); Customized on request. Pricing page: free trial, then $99.99 fixed for up to 100 users, $5,500 for 5,001-10,000, \"Up to $0.1 per active user\" above 10,000 | KinesteX deck and FAQ; Sency's two pricing pages |\n| Accuracy | Not verified: \"consistently exceed 90% accuracy\" (README) and \"97.2% accuracy\" (FAQ) are vendor claims | Not verified: its FAQ calls its accuracy \"unmatched\" without a number | No independent benchmark |\n\n## What we could not verify, for either vendor\n\n- **Prices, for both, in different ways.** KinesteX's FAQ describes the model (usage-based, per active user per month, possible integration fees, no termination penalties) but kinestex.com gives no figure. The one public number is in its seed pitch deck, an investor document rather than a rate card, so confirm it with the vendor. Sency's two pages still disagree about the start: free for up to 100 monthly active users on the packages page, $99.99 fixed after a free trial on the pricing page, whose FAQ calls it a \"minimal monthly fee\". The pricing page also skips from 3,800 to 5,001 users, and neither page says how a band's monthly fee and per-user price combine.\n- **Accuracy, for both.** No independent benchmark compares these products. KinesteX's two figures, above 90 percent in a README and 97.2 percent in its FAQ, are its own claims and do not agree with each other; Sency publishes no figure. Run both on your own movements and lighting.\n- **On-device processing, for KinesteX.** KinesteX's security page says \"All camera and vision processing stays on-device\", and its SDK integration page says \"The camera video never leaves it and is not stored\", while its SDK READMEs still say \"optional edge processing (no cloud transmission)\". Those are not the same promise, and the integration page adds that the AI Personal Trainer chat needs internet, so get your configuration's behavior in writing.\n- **Sency's version table.** The smkit-sdk README's version table still lists iOS SMKit 2.0.7 and Android smkit 1.7.1, while the iOS demo installs SMKit 2.3.6 and the Android demo SMKit 1.9.6. Go by the demos and the registries, and ask Sency which is current.\n- **Sency's Android floor.** Its Android demo app builds with minSdk 24; we found no separate statement of SMKit's own minimum.\n- **KinesteX's own numbers.** Its home page says 500+ AI exercises and 19 languages; its seed deck says \"550+ exercises built in\" and, on its competition slide, 17 languages. We report both and cannot say which count is current.\n\n## Where Sency wins\n\nSency's edge is architectural, and it is a real one: SMKit is a native SDK, not a WebView. Its version table says it plainly, calling the core iOS kit a \"Native no-UI SDK\", and its iOS demo says the developer owns the camera preview, session lifecycle, exercise UI, skeleton rendering and results. If the workout screen must match your design system frame for frame, plug into your own rendering pipeline, or avoid a hosted web experience inside your app, Sency's shape is the right one and KinesteX's is not. Its iOS docs treat Body Calibration, Adaptive ROM and Session Lifecycle as first-class SDK concepts, deeper on native concerns than KinesteX's public repos, and it offers a low-code Branded Kit and a no-UI Custom Kit on the same native core.\n\nIt reaches older Android phones: its Android demo builds with minSdk 24, where KinesteX's docs require Android 9 (API 28). Its assessments are productized: the Motion SDK page lists a 4-step onboarding assessment, a low back pain injury-risk assessment and 8 shoulder-to-ankle mobility tests, and its pricing FAQ claims a record of 54 minutes from installing the SDK to a working fitness assessment in a partner's app, a vendor claim we have not tested.\n\nIt is also more transparent about price than we are, and cheaper on the published figures. Its packages page lists a free Starter plan for up to 100 monthly active users and Growth bands from $499 a month for 101-500 users to $3,000 for 3,001-3,800, at $0.79 per active user in the top band. Against the $1.50 per MAU and $1,500 monthly minimum in KinesteX's seed deck, every Sency band up to 1,700 users costs less than KinesteX's minimum, and Sency's top Growth rate is about half KinesteX's per-user figure. It documents an MCP server that gives AI coding tools its SDK documentation. And it is actively maintained, with its React Native and Flutter UI packages both published on October 21, 2026: this is not an abandoned competitor, and we are not going to pretend otherwise.\n\n## Where KinesteX wins\n\nKinesteX's edge is coverage and what ships in the box. It is the only one of the two with a web story: its Getting Started page covers a plain HTML and JavaScript iframe for any web page or PWA and a React (TypeScript) SDK, where Sency's own platform table marks JavaScript \"NA\". If your product includes a web or PWA surface, that difference is decisive on its own.\n\nIts docs also describe a broader prebuilt layer, in our reading of the two sets: AI Trainer Chat, which runs onboarding, an optional camera fitness assessment, a generated workout, a check-in and next-session scheduling; plan, workout, challenge and leaderboard views; the Balloon Pop, Color Chase and Alien Squat Shooter games; an Admin Workout Editor; content APIs for exercises, workouts and plans at data.kinestex.com; an assessment spec; and 19 languages. KinesteX's SDK integration page sets out three ways in, from ready-made experiences in \"1 week or less\" to building every screen in about a month, and its FAQ says integration \"typically takes under a day\". To be fair, assessments are not a KinesteX exclusive, since Sency's README leads with movement and fitness assessments and personalized plans; the difference is the content, chat and views layer around them.\n\nThe iOS floor is lower (iOS 14 versus Sency's iOS 15 for SMKitUI and iOS 16 for the Custom Kit demo), though the Android floor is higher, and the wrapper code carries an Apache-2.0 license where LICENSE files exist. The hosted experience behind the wrapper is a commercial, API-key-gated service, and your workout screen is a hosted web app, not native rendering you control.\n\n## Verdict\n\nOur verdict, written by the company behind KinesteX: KinesteX is the overall pick in this comparison on four stated criteria, and it does not win all four.\n\n- **What ships in the box and time to integrate: KinesteX.** A trainer chat, ready-made views, games, an admin editor, content APIs, assessments and 19 languages, with integration put at under a day. Sency documents assessments and a branded UI kit, but no chat trainer, content API or admin editor on the pages we read.\n- **Platform breadth: KinesteX.** Six paths including the web, against four with JavaScript marked \"NA\".\n- **Price: Sency.** Sency publishes its plans, and they are lower than the $1.50 per MAU and $1,500 monthly minimum in KinesteX's seed deck at every volume both name.\n- **Maintenance: even.** KinesteX's AI-Kit, Kotlin and Swift repos were updated on November 5, 2026 and kinestex-sdk-react-native 1.5.0 shipped on October 19; Sency's React Native and Flutter UI packages shipped on October 21. Both are active.\n\nThe verdict flips to Sency when you need an in-process native kit with no WebView and no prebuilt UI, a free tier for up to 100 monthly active users (if its packages page governs rather than its pricing page) or the lower published price at your volume, or Sency's MCP server and its assessments inside your own UI.\n\n## How to choose\n\nBy use case:\n\n- **Your product has a web or PWA surface** → KinesteX, by elimination: Sency's platform table marks JavaScript \"NA,\" and KinesteX documents iframe and React (TypeScript) integration for exactly this.\n- **You want a trainer, workouts, plans, challenges and leaderboards without building content systems** → KinesteX's AI Trainer Chat, plug-and-play views and content APIs cover ground Sency's public repos do not document.\n- **You need a native, no-WebView integration where you own the camera preview and UI** → Sency's Custom Kit. That is its architecture's core promise, and KinesteX's WebView approach cannot match it.\n- **You want prebuilt UI but insist on native rendering** → Sency's Branded Kit sits exactly in that gap: white-label prebuilt UI, still a native SDK underneath.\n- **You need a budget number before a sales call** → Sency publishes two price pages; KinesteX's only figure is in its deck. See [Sency pricing](/pricing/sency-pricing) and, for a per-device price list, [QuickPose vs Sency](/compare/quickpose-vs-sency).\n- **You might build on a raw pose model instead** → read [build vs buy for AI motion tracking](/motion/build-vs-buy-ai-motion-tracking) and [the pose estimation model comparison](/motion/pose-estimation-models-compared): the pose model is free; the exercise logic, feedback and UX are the product.\n- **You are earlier than a vendor decision** → the [camera pose tracking guide](/guides/camera-pose-tracking) covers the fundamentals, and [Sency alternatives](/alternatives/sency-alternatives) maps the wider field with the same disclosure as this page.\n\n## The fine print\n\nEverything above is a snapshot of two actively developed products, verified on November 9, 2026. Versions, platform tables, OS floors, prices and README claims all move. Before you commit, re-check both GitHub orgs, get written prices from both vendors and test each SDK against your own exercises, devices and lighting. That last step matters most: no accuracy claim on either side has been independently verified, including our own.",
     "related": [
       {
         "href": "/compare/kinestex-vs-quickpose",
@@ -936,99 +937,144 @@ export const compareEntries: ClusterEntry[] =
     "firstParty": true,
     "sources": [
       {
+        "url": "https://github.com/KinesteX",
+        "checked": "2026-11-09",
+        "note": "12 public repositories; AI-Kit, Kotlin and Swift updated Nov 5, 2026, React Native Oct 9, 2026 (snapshot of the org repository listing)"
+      },
+      {
         "url": "https://github.com/KinesteX/KinesteX-AI-Kit",
-        "checked": "2026-10-17",
+        "checked": "2026-11-09",
         "note": "WebView architecture, iOS 14 package floor, no LICENSE file"
       },
       {
         "url": "https://github.com/KinesteX/KinesteX-SDK-PWA",
-        "checked": "2026-10-17",
+        "checked": "2026-11-09",
         "note": "iframe and postMessage web integration, no LICENSE file"
       },
       {
         "url": "https://github.com/KinesteX/.github",
-        "checked": "2026-10-17",
-        "note": "postMessage events, assessment data, contact-form access"
+        "checked": "2026-11-09",
+        "note": "postMessage events, assessment data"
+      },
+      {
+        "url": "https://github.com/KinesteX/KinesteX-Swift-Demo",
+        "checked": "2026-11-09",
+        "note": "integration options, iOS 14 minimum"
       },
       {
         "url": "https://github.com/KinesteX/AI-Fitness-SDK",
-        "checked": "2026-10-17",
+        "checked": "2026-11-09",
         "note": "the 90% accuracy claim"
       },
       {
         "url": "https://github.com/KinesteX/KinesteX-SDK-Kotlin",
-        "checked": "2026-10-17",
-        "note": "optional edge processing line, Apache-2.0 LICENSE.txt, INTERNET permission"
+        "checked": "2026-11-09",
+        "note": "optional edge processing line, admin portal, Apache-2.0 LICENSE.txt"
       },
       {
         "url": "https://www.npmjs.com/package/kinestex-sdk-react-native",
-        "checked": "2026-10-17",
-        "note": "1.4.1 on 2026-10-09; react-native-webview peer dependency"
+        "checked": "2026-11-09",
+        "note": "1.5.0 on 2026-10-19, Apache-2.0"
       },
       {
         "url": "https://pub.dev/packages/kinestex_sdk_flutter",
-        "checked": "2026-10-17",
+        "checked": "2026-11-09",
         "note": "1.5.1 on 2026-07-04"
       },
       {
-        "url": "https://www.kinestex.com/docs",
-        "checked": "2026-10-17",
-        "note": "platforms, requirements, contact-form API key (snapshot)"
+        "url": "https://www.kinestex.com/docs/getting-started",
+        "checked": "2026-11-09",
+        "note": "SDK list, AI Trainer Chat recommended, plug-and-play and custom integrations, requirements, contact-form API key (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/installation",
+        "checked": "2026-11-09",
+        "note": "KinesteXAIKit, Kotlin SDK 2.5.0 and minSdk 28 via JitPack, react-native-webview, React TypeScript package (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/ai-trainer-chat",
+        "checked": "2026-11-09",
+        "note": "AI Trainer Chat flow; Complete UX (Main) and Personalized Plan View marked Sunset (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/content-api-v2",
+        "checked": "2026-11-09",
+        "note": "content APIs at data.kinestex.com (snapshot)"
       },
       {
         "url": "https://www.kinestex.com/product/faqs",
-        "checked": "2026-10-17",
-        "note": "pricing model answers and the 97.2% claim (snapshot)"
+        "checked": "2026-11-09",
+        "note": "integration time, 300+ data points, 19 languages, pricing model and the 97.2% claim (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/product/sdk-integration",
+        "checked": "2026-11-09",
+        "note": "three ways in with timelines, camera video statement, trainer chat needs internet (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/",
+        "checked": "2026-11-09",
+        "note": "500+ AI exercises and 19 languages (snapshot)"
       },
       {
         "url": "https://www.kinestex.com/product/security",
-        "checked": "2026-10-17",
+        "checked": "2026-11-09",
         "note": "on-device processing statement (snapshot)"
       },
       {
+        "url": "https://kinestex-pitch.vercel.app/",
+        "checked": "2026-11-09",
+        "note": "KinesteX's public seed pitch deck: $1.50 per MAU, $1,500 monthly minimum, 550+ exercises, 17 languages (rendered in a browser)"
+      },
+      {
         "url": "https://github.com/sency-ai/smkit-sdk",
-        "checked": "2026-10-17",
+        "checked": "2026-11-09",
         "note": "kits, platform and version tables, features, FAQ, Terms of Use LICENSE"
       },
       {
         "url": "https://github.com/sency-ai/smkit-ios-demo",
-        "checked": "2026-10-17",
-        "note": "iOS 16.0, Bitbucket distribution, server-downloaded models, calibration, adaptive ROM, session lifecycle, MCP server"
+        "checked": "2026-11-09",
+        "note": "iOS 16.0, Bitbucket distribution, SMKit 2.3.6, server-downloaded models, calibration, adaptive ROM, session lifecycle, MCP server"
       },
       {
         "url": "https://github.com/sency-ai/smkit-ui-ios-demo",
-        "checked": "2026-10-17",
+        "checked": "2026-11-09",
         "note": "SMKitUI iOS 15 or later"
       },
       {
         "url": "https://github.com/sency-ai/smkit-android-demo",
-        "checked": "2026-10-17",
-        "note": "minSdk 24 and server-delivered models"
+        "checked": "2026-11-09",
+        "note": "SMKit 1.9.6, minSdk 24 and server-delivered models"
       },
       {
         "url": "https://www.npmjs.com/package/@sency/react-native-smkit-ui",
-        "checked": "2026-10-17",
-        "note": "2.4.3 on 2026-09-23"
+        "checked": "2026-11-09",
+        "note": "2.4.4 on 2026-10-21"
       },
       {
         "url": "https://pub.dev/packages/flutter_smkit_ui",
-        "checked": "2026-10-17",
-        "note": "1.6.0 on 2026-09-23"
+        "checked": "2026-11-09",
+        "note": "1.6.1 on 2026-10-21"
       },
       {
         "url": "https://www.sency.ai/pricing-packages",
-        "checked": "2026-10-18",
-        "note": "Starter, Growth and Customized plans, user limits, prices and per-user rate (read through a text reader; quotes re-checked on the page by CI)"
+        "checked": "2026-11-09",
+        "note": "Starter, Growth and Customized plans, Growth tier table (snapshot)"
       },
       {
         "url": "https://www.sency.ai/pricing",
-        "checked": "2026-10-17",
-        "note": "trial, minimal monthly fee for up to 100 active users, pay-as-you-go (read through a text reader; quotes re-checked on the page by CI)"
+        "checked": "2026-11-09",
+        "note": "free trial, $99.99 fixed for up to 100 users, tier table to 10,000+, 54-minute record claim (snapshot)"
       },
       {
         "url": "https://www.sency.ai/faq-motion-tracking",
-        "checked": "2026-10-18",
-        "note": "on-device processing and accuracy wording (read through a text reader; quotes re-checked on the page by CI)"
+        "checked": "2026-11-09",
+        "note": "on-device processing and accuracy wording (snapshot)"
+      },
+      {
+        "url": "https://www.sency.ai/motion-sdk",
+        "checked": "2026-11-09",
+        "note": "assessments: 4-step fitness, low back pain, 8 mobility tests (snapshot)"
       }
     ]
   },
@@ -1038,12 +1084,12 @@ export const compareEntries: ClusterEntry[] =
     "h1": "KinesteX vs QuickPose: Decide by How Much You Want to Build",
     "metaTitle": "KinesteX vs QuickPose: Different Layers of the Stack",
     "metaDescription": "KinesteX vs QuickPose: a hosted coaching embed vs a MediaPipe toolkit, platforms, published prices and licenses, verified. KinesteX funds this site.",
-    "updated": "2026-10-17",
-    "answer": "These are not the same product wearing different logos. QuickPose is a developer toolkit on top of MediaPipe and BlazePose for iOS, Android and React Native, with counters, range-of-motion measurement and overlays you place inside your own app, and it publishes per-device prices starting with a free tier for 10 devices. KinesteX (this site's own product) is an embedded coaching product whose iOS, Android, Flutter, React Native and web SDKs load a hosted camera workout experience in a WebView or iframe, plus a content API, and it publishes no prices. Lean QuickPose when you will build the experience yourself and want to start without a sales call; lean KinesteX to ship a white-label workout experience, including on the web, across every platform at once.",
+    "updated": "2026-11-09",
+    "answer": "KinesteX (this site's own product; KinesteX funds this site) is our overall pick over QuickPose on stated criteria: it ships a complete hosted coaching layer, including AI Trainer Chat, ready-made views, content APIs and an admin workout editor, and it covers Flutter and the web as well as Swift, Kotlin and React Native. The two sit at different layers: KinesteX embeds a hosted experience in a WebView or iframe, while QuickPose is a MediaPipe and BlazePose toolkit that runs in your app and leaves the UI and content to you. Pick QuickPose instead if you want building blocks inside your own UI on iOS, Android or React Native, a start at $25 a month (free for up to 10 devices) rather than the $1,500 monthly minimum in KinesteX's seed deck, or in-process MediaPipe with a free key today.",
     "faqs": [
       {
         "q": "Are KinesteX and QuickPose direct competitors?",
-        "a": "Only partially. They meet at camera-based exercise tracking, but they sell different layers: QuickPose provides pose estimation, skeleton tracking, exercise counters and range-of-motion measurement as native building blocks with no workout content or prebuilt coaching UI in its repos, while KinesteX embeds a complete hosted coaching experience, with content, plans, leaderboards and assessments, behind a WebView or iframe. A team choosing between them is really choosing how much product to build versus configure."
+        "a": "Only partially. They meet at camera-based exercise tracking, but they sell different layers: QuickPose provides pose estimation, skeleton tracking, exercise counters and range-of-motion measurement as native building blocks with no workout content or prebuilt coaching UI in its repos, while KinesteX embeds a complete hosted coaching experience, with an AI trainer chat, content, plans, leaderboards and assessments, behind a WebView or iframe. A team choosing between them is really choosing how much product to build versus configure."
       },
       {
         "q": "Is QuickPose open source?",
@@ -1051,21 +1097,21 @@ export const compareEntries: ClusterEntry[] =
       },
       {
         "q": "Does KinesteX process video on-device?",
-        "a": "Its two public statements differ. The SDK READMEs say the platform ensures data security with optional edge processing and no cloud transmission, and the word optional matters; KinesteX's security page says all camera and vision processing stays on-device and that its cloud delivers content and AI models. Its Android integration asks for the INTERNET permission. If on-device processing is a compliance requirement, get the behavior of your specific configuration from KinesteX in writing."
+        "a": "Its public statements differ. The SDK READMEs say the platform ensures data security with optional edge processing and no cloud transmission, and the word optional matters; KinesteX's security page says all camera and vision processing stays on-device and that its cloud delivers content and AI models, and its SDK integration page says camera video never leaves the device but the AI trainer chat needs internet. If on-device processing is a compliance requirement, get your configuration's behavior from KinesteX in writing."
       },
       {
         "q": "Can I use QuickPose on Android or React Native?",
-        "a": "Yes. QuickPose's documentation gives a minimum of Android API 26, with sample code needing API 28 because of CameraX, and the Android SDK is distributed through Maven. The React Native plugin, published on npm as @quickpose/react-native, provides body tracking, rep counting, range-of-motion measurement and skeleton overlays on iOS and Android; its latest version when we checked was 0.7.1, published in August 2026. The Android README's feature table lists joint positions, overlays, range of motion and the exercise counters, but not the iOS table's measuring line, gesture inputs or body-position feedback, so check the features you need on each platform."
+        "a": "Yes. QuickPose's documentation gives a minimum of Android API 26, with sample code needing API 28 because of CameraX, and the Android SDK is distributed through Maven. The React Native plugin, published on npm as @quickpose/react-native, provides body tracking, rep counting, range-of-motion measurement and skeleton overlays on iOS and Android; its latest version when we checked was 0.7.2, published November 2, 2026. The Android README's feature table omits the iOS table's measuring line, gesture inputs and body-position feedback, so check each platform."
       },
       {
         "q": "What do KinesteX and QuickPose cost?",
-        "a": "QuickPose publishes its SDK prices per monthly active device: free for up to 10 devices, then from $25 a month for up to 100 devices to $1,000 a month for up to 100,000, with every SDK feature on every plan and services priced separately. KinesteX publishes no figures; its FAQ describes usage-based plans priced per active user per month that fall at higher tiers, with integration fees possible, and access starts with a contact form. Confirm current terms with both before you commit."
+        "a": "QuickPose publishes its SDK prices per monthly active device: free for up to 10 devices, then from $25 a month for up to 100 devices to $1,000 a month for up to 100,000, with every SDK feature on every plan and services priced separately. KinesteX publishes no price list on its website; its public seed pitch deck states $1.50 per monthly active user with a $1,500 monthly minimum, and its FAQ says integration fees may apply. Confirm current terms with both before you commit."
       }
     ],
     "cta": {
-      "pitch": "Both of these products live in public GitHub repos that moved within weeks of our check — get our developer notes when platform support, licensing, or access models actually change."
+      "pitch": "Both of these products live in public GitHub repos that moved within days of our check, so get our developer notes when platform support, licensing, pricing or access models actually change."
     },
-    "body": "**Disclosure: KinesteX funds this site. Because of that, this page holds itself to a stricter rule than usual: every claim about either vendor traces to their public GitHub repositories, package registries or their own published pages as checked on October 17, 2026, judgment calls are labeled as judgment calls, and the \"Where QuickPose wins\" section is not decorative.** Both vendors' sites were read through our source-snapshot workflow, and every passage we quote from them is re-tested against the live page by an automated check. One rule is enforced by the build itself: [the automated checks that gate every deploy](/gates) refuse a page that links to this site's funder without a disclosure beside it.\n\nThe first honest thing to say is that these two products mostly sit at different layers of the stack. QuickPose is a developer toolkit: it hands you pose estimation, skeleton tracking, rep counting and range-of-motion measurement as native building blocks, and you build the product. KinesteX is an embeddable product: its SDKs drop a complete, hosted AI coaching experience into your app, and you configure it. They overlap at \"AI watches a user exercise through a phone camera\", which is why people search this comparison, but the real question is how much of the experience you intend to build yourself. If the answer is \"all of it, from a raw model\", neither is your page; start with [build vs buy for AI motion tracking](/motion/build-vs-buy-ai-motion-tracking).\n\n## What each one is, per its own repos and pages\n\n**QuickPose** describes itself in its [iOS SDK README](https://github.com/quickpose/quickpose-ios-sdk) as providing \"developer-oriented cutting edge ML features of MediaPipe and BlazePose, with easy integration and production ready code\", aimed at faster implementation of \"pose estimation, skeleton tracking and fitness counting features into mobile applications\". The README backs that with specifics: joint positions and overlays, range-of-motion measurement for shoulders, hips, knees, back and neck, detection and counting for 20 named exercises (squat, push-up, plank, lunges, biceps curls and more), feedback events for body position and a named limb out of view, a measuring line in beta, and raised-finger and thumbs-up inputs. The Swift package ships MediaPipe lite, full and heavy libraries as modules, and QuickPose's product pages say all inference runs on the device and that no video frames are sent to a server. It runs on iOS 14.0 or later, on Android from API 26 (its sample code needs API 28), and in React Native through the @quickpose/react-native plugin. The SDK key is free to register; the README's words are \"Get your free SDK key on https://dev.quickpose.ai, usage limits may apply\". What you will not find in the repositories is workout content, plans or a prebuilt coaching UI. In our reading, QuickPose is build-assist tooling, not a turnkey experience.\n\n**KinesteX** has 11 public repositories in the [KinesteX GitHub org](https://github.com/KinesteX), covering iOS (an older Swift SDK and a newer SwiftUI kit, which KinesteX's installation docs now point to), Android, Flutter, React Native and two web integration paths, and its docs add a React TypeScript package. The integration surface is consistent and the repos are upfront about it: the SwiftUI kit README calls itself \"a SwiftUI package that embeds KinesteX's AI-powered camera workout experience as a WebView\", the web path is an iframe that communicates over `postMessage`, and the React Native SDK installs alongside `react-native-webview`. So the SDKs are thin native wrappers around one hosted web experience, paired with a content API. What ships inside that experience, per the docs: plug-and-play views for workouts, plans, challenges, leaderboards and gamified experiences (plus a personalized-plan view in beta); a custom camera component with pose analysis and feedback for teams that want only the tracking; real-time monitoring of reps, mistakes, posture alignment and calories; rep, mistake, exercise and workout data events; theming through an admin portal; and a documented set of movement assessments, among them Timed Up and Go, gait speed, sit-to-stand variants, the Functional Reach Test and balance stands, with risk-level outputs.\n\n## Side by side\n\nEverything in this table was checked on October 17, 2026 against the vendors' public repos, npm and pub.dev, and their own pages. Gaps in the public record are marked as gaps rather than filled in from memory.\n\n| Dimension | QuickPose | KinesteX |\n|---|---|---|\n| Layer of the stack | Native pose-estimation toolkit (MediaPipe and BlazePose) you build a product on | Hosted coaching experience embedded via WebView or iframe, plus a content API |\n| Platforms | iOS 14.0+; Android API 26 (samples API 28); React Native plugin; its docs home mentions Wasm SDKs, but we found no public web package | iOS, Android, Flutter, React Native and the web (HTML and JavaScript iframe, PWA, React TypeScript) |\n| Integration model | MediaPipe libraries ship in the SDK modules; your app owns the camera, rendering and UI | A native wrapper loads the hosted experience; events cross a `postMessage` bridge |\n| Fitness features in the box | Range of motion for five joint groups, counters for 20 exercises, feedback events, gesture inputs | Workout, plan, challenge and leaderboard views, rep and mistake events, calorie estimates, assessments, admin-portal theming |\n| Workout content included | None in the repos | Yes, through the views, the content API or the admin portal |\n| Requirements | iOS 14.0+ or Android API 26+, SDK key tied to your bundle ID | iOS 14 and macOS 11 in the Swift packages; camera permission and a motion-sensor usage description on iOS; `CAMERA` and `INTERNET` permissions on Android |\n| Published pricing | Yes, per monthly active device: free for 10, then $25 a month for 100 up to $1,000 a month for 100,000, every feature on every plan | No price list. Its FAQ describes usage-based plans priced per active user per month that fall at higher tiers, and says integration fees may apply |\n| Getting a key | Free registration at dev.quickpose.ai | Contact form for demo access and an API key |\n| License | Apache-2.0 LICENSE in the iOS repo; QuickPose's terms license the SDK under Apache 2.0 subject to the agreement and fees; no LICENSE file in the Android repo; the npm plugin is MIT | Apache-2.0 in the Swift, Kotlin, React Native, HTML-JS and demo repos; no LICENSE file in the Flutter, SwiftUI-kit and PWA repos; the hosted service is commercial and needs an API key |\n| Recent activity | iOS SDK pushed 2026-08-26 and Android SDK 2026-08-27; npm plugin 0.7.1 on 2026-08-26; demo apps pushed in September 2026 | Kotlin repo pushed 2026-10-14; npm kinestex-sdk-react-native 1.4.1 on 2026-10-09; pub.dev kinestex_sdk_flutter 1.5.1 on 2026-07-04 |\n| Accuracy | No figure published in the repos | \"Consistently exceed 90% accuracy\" in a README and \"97.2% accuracy\" in its FAQ: vendor claims, not benchmarks |\n\n## Where QuickPose wins\n\nThis section exists because it is earned, not because a checklist demanded it.\n\n**Native integration, all the way down.** QuickPose's modules bundle the MediaPipe libraries and run inside your app process. You own the camera session, the skeleton overlay and every pixel of UI. For a team that cares about exact visual control, transition animations or keeping the camera pipeline in-process, that is the architecturally tighter fit, a judgment but one grounded in what the repos show. KinesteX's repos describe a WebView surface; there is no native-rendering mode in evidence.\n\n**Real fitness primitives without buying an experience.** This is not a bare MediaPipe wrapper. Range-of-motion measurement across five joint groups, counters for 20 named exercises and feedback events for body position and out-of-frame limbs are a meaningful head start for a team that wants to keep its own product identity.\n\n**A published price list and a self-serve start.** QuickPose publishes every SDK plan, device limit and support level, from a free tier for 10 monthly active devices to $1,000 a month for 100,000, and its key is a free signup. KinesteX publishes no figures and starts with a contact form. For a developer who wants to evaluate something this afternoon, or a founder who needs a number in a budget this week, that difference is decisive. [QuickPose pricing](/pricing/quickpose-pricing) sets out the plans, including a second QuickPose page that still carries an older answer about tiers.\n\n**Public traction and worked examples.** The iOS SDK repository had 326 stars when we checked, and the org publishes runnable demo apps, among them FitCount, a squat counter, a push-up rep counter, a biomechanics demo and BikeVision, with new iOS and Android demo apps pushed in September 2026. You can read exactly how the integration feels before committing.\n\n## Where KinesteX wins\n\n**Platform coverage, including the web.** Public repos across iOS, Android, Flutter, React Native and the web, all wrapping the same hosted experience, with current packages on npm and pub.dev. QuickPose now documents Android and React Native as well as iOS, so the gap is narrower than it was, but the browser is the clear difference: KinesteX documents iframe, PWA and React TypeScript integrations, and we found no public QuickPose web package.\n\n**The product in the box.** KinesteX's repos document prebuilt workout, plan, challenge and leaderboard views, a content API, admin-portal theming and rep-level analytics events. A team using QuickPose builds all of that; a team using KinesteX configures it. For a white-label coaching product on a deadline, that is the whole argument.\n\n**An assessment layer.** The documented movement assessments, with risk-level outputs, target health and screening use cases that QuickPose's repos do not address.\n\n**Server-side updates.** Because the experience is hosted, content and experience changes do not require app-store releases on every platform. The flip side is the next section; this is a bet, not a free lunch.\n\n## The trade-off neither vendor states this plainly\n\nJudgment, clearly labeled: native SDK versus WebView embed is the real decision on this page, and each choice costs something. Native (QuickPose) feels tighter because it is tighter, with in-process inference, your rendering and your UX, and in exchange you build and maintain the product per platform. A WebView or iframe surface (KinesteX) ships everywhere at once and evolves without app releases, and in exchange the embedded experience is the vendor's experience: customization runs through their theming, app-to-experience communication crosses a `postMessage` bridge, and the Android integration asks for the `INTERNET` permission.\n\nTwo cautions on claims you will meet. KinesteX's SDK READMEs say \"optional edge processing (no cloud transmission)\", while its security page says \"All camera and vision processing stays on-device\" and that its cloud delivers content and AI models; the two lines are not the same promise, so get the behavior of your configuration in writing. Symmetrically, do not read QuickPose's Apache-2.0 iOS license as \"fully open source\": the SDK is keyed, and QuickPose's terms say its use may be subject to fees.\n\n## What we could not verify, for both vendors\n\n- **Accuracy.** No independent accuracy benchmark exists for either. KinesteX's README line (\"consistently exceed 90% accuracy\") and its FAQ figure (\"97.2% accuracy\") are the vendor's own claims, and they do not agree with each other. QuickPose publishes no accuracy figure in its repos.\n- **KinesteX prices.** The FAQ describes the model but no figure is published anywhere we looked.\n- **QuickPose's tier answers.** Its JointTrack pricing page still carries an older SDK answer about when you move to the Launch tier that does not match the SDK pricing page; we go by the SDK pricing page.\n- **QuickPose on the web.** Its docs home mentions Wasm SDKs; we found no public package or documentation for one.\n- **License files.** QuickPose's Android repo and KinesteX's Flutter, SwiftUI-kit and PWA repos carry no LICENSE file, and neither vendor's commercial terms for its hosted or keyed service are in the repos.\n\n## Which should you pick?\n\n- **Native integration, your own UX and content, on iOS, Android or React Native** → QuickPose is the honest lean. Pair it with our [iOS workout-tracking build guide](/guides/ai-workout-tracking-ios-swift), and check [Apple's Vision body pose](/motion/apple-vision-body-pose) first so you know what the platform already gives you before paying for a wrapper's conveniences.\n- **A cross-platform white-label coaching experience on a deadline, or a web surface** → KinesteX is the honest lean. One hosted experience across iOS, Android, Flutter, React Native and the web is what its repos demonstrate.\n- **You need a number for a budget before any call** → QuickPose, whose SDK pricing page lists every plan; KinesteX publishes none.\n- **You want neither** → [QuickPose alternatives](/alternatives/quickpose-alternatives) and [KinesteX alternatives](/alternatives/kinestex-alternatives) map the wider field with the same disclosure, and [AI workout tracking APIs](/fitness-apis/ai-workout-tracking-apis) compares the category.\n- **You suspect you should build on raw models instead** → run the numbers in [build vs buy](/motion/build-vs-buy-ai-motion-tracking) first; the pose model is the free part, and both of these products exist because everything above it is not.\n\nWhichever way you lean, re-verify against the repos and the vendors' own pages before you sign anything: both codebases moved within weeks of our check, and this page will age.",
+    "body": "**Disclosure: KinesteX funds this site. KinesteX is this site's own product and this page is written by the company behind it, so it holds itself to a stricter rule than usual: every claim about either vendor traces to their public GitHub repositories, package registries, their own published pages or, for one KinesteX price figure, its public seed pitch deck, as checked on November 9, 2026, judgment calls are labeled as judgment calls, and the \"Where QuickPose wins\" section is not decorative.** Every passage we quote from either vendor's site is re-tested against the live page by an automated check, and [the automated checks that gate every deploy](/gates) refuse a page that links to this site's funder without a disclosure beside it.\n\nThe first honest thing to say is that these two products mostly sit at different layers of the stack. QuickPose is a developer toolkit: it hands you pose estimation, skeleton tracking, rep counting and range-of-motion measurement as native building blocks, and you build the product. KinesteX is an embeddable product: its SDKs drop a complete, hosted AI coaching experience into your app, and you configure it. They overlap at \"AI watches a user exercise through a phone camera\", which is why people search this comparison, but the real question is how much of the experience you intend to build yourself. If the answer is \"all of it, from a raw model\", neither is your page; start with [build vs buy for AI motion tracking](/motion/build-vs-buy-ai-motion-tracking).\n\n## What each one is, per its own repos and pages\n\n**QuickPose** describes itself in its [iOS SDK README](https://github.com/quickpose/quickpose-ios-sdk) as providing \"developer-oriented cutting edge ML features of MediaPipe and BlazePose, with easy integration and production ready code\", aimed at faster implementation of \"pose estimation, skeleton tracking and fitness counting features into mobile applications\". The README backs that with specifics: joint positions and overlays, range-of-motion measurement for shoulders, hips, knees, back and neck, detection and counting for 20 named exercises (squat, push-up, plank, lunges, biceps curls and more), feedback events for body position and a named limb out of view, a measuring line in beta, and raised-finger and thumbs-up inputs. The Swift package ships MediaPipe lite, full and heavy libraries as modules, and QuickPose's product pages say all inference runs on the device and that no video frames are sent to a server. It runs on iOS 14.0 or later, on Android from API 26 (its sample code needs API 28), and in React Native through the @quickpose/react-native plugin. The SDK key is free to register; the README's words are \"Get your free SDK key on https://dev.quickpose.ai, usage limits may apply\". What you will not find in the repositories is workout content, plans or a prebuilt coaching UI. In our reading, QuickPose is build-assist tooling, not a turnkey experience.\n\n**KinesteX** lists 12 public repositories in the [KinesteX GitHub org](https://github.com/KinesteX), covering iOS (an older Swift SDK and the newer KinesteXAIKit, which its docs now name for Swift), Android, Flutter, React Native and two web integration paths, and its Getting Started page lists SDKs for Swift, Kotlin, Flutter, React Native and React (TypeScript), \"plus a plain HTML/JavaScript iframe integration for any web page or PWA\". The integration surface is consistent and the repos are upfront about it: the SwiftUI kit README calls itself \"a SwiftUI package that embeds KinesteX's AI-powered camera workout experience as a WebView\", the web path is an iframe that communicates over `postMessage`, and the React Native SDK installs alongside `react-native-webview`. So the SDKs are thin native wrappers around one hosted web experience, paired with REST content APIs.\n\nWhat ships inside that experience, per the docs as read on November 9, 2026: AI Trainer Chat, which the docs call \"the recommended starting point for new integrations\", a white-labeled trainer that runs onboarding, an optional camera fitness assessment, a generated workout, a post-workout check-in and next-session scheduling; plan, workout, challenge and leaderboard views; AI Experiences (the Balloon Pop, Color Chase and Alien Squat Shooter games); and an embedded Admin Workout Editor. For teams that want only the tracking there is a Custom Workout option and a Camera Component that streams reps, holds, form feedback and presence, and pose landmarks on request, plus content APIs for exercises, workouts and plans at data.kinestex.com. The older Complete UX (Main) and Personalized Plan View integrations are marked \"Sunset\" in the docs. Around that sit rep, mistake and workout data events, admin-panel theming, 19 languages per its FAQ, and documented movement assessments (Timed Up and Go, gait speed, sit-to-stand variants, the Functional Reach Test, balance stands) with risk-level outputs.\n\n## Side by side\n\nChecked on November 9, 2026; gaps in the public record are marked as gaps rather than filled in from memory.\n\n| Dimension | QuickPose | KinesteX |\n|---|---|---|\n| Layer of the stack | Native pose-estimation toolkit (MediaPipe and BlazePose) you build a product on | Hosted coaching experience embedded via WebView or iframe, plus REST content APIs |\n| Platforms | iOS 14.0+; Android API 26 (samples API 28); React Native plugin; we found no public web package | Swift, Kotlin, Flutter, React Native, React (TypeScript) and an HTML and JavaScript iframe for the web |\n| Integration model | MediaPipe libraries ship in the SDK modules; your app owns the camera, rendering and UI | A native wrapper loads the hosted experience; events cross a `postMessage` bridge |\n| Fitness features in the box | Range of motion for five joint groups, counters for 20 exercises, feedback events, gesture inputs | AI Trainer Chat; workout, plan, challenge and leaderboard views; games; rep and mistake events; calorie estimates; assessments; an Admin Workout Editor |\n| Workout content included | None in the repos | Yes, through the views, the content APIs or the admin panel |\n| Requirements | iOS 14.0+ or Android API 26+, SDK key tied to your bundle ID | iOS 14.0+ with Xcode 16.3+; Android 9+ (API 28; the Kotlin SDK needs minSdk 28); camera permission and a motion-sensor usage description on iOS; `CAMERA` and `INTERNET` permissions on Android; an internet connection |\n| Published pricing | Yes, per monthly active device: free for 10, then $25 a month for 100 up to $1,000 a month for 100,000, every feature on every plan | No price list on kinestex.com. Its seed deck states \"$1.50 per MAU. $1,500 monthly minimum.\"; its FAQ says per-user rates fall at higher tiers and integration fees may apply. Confirm with the vendor |\n| Getting a key | Free registration at dev.quickpose.ai | Contact form or a booked call for demo access and an API key |\n| License | Apache-2.0 LICENSE in the iOS repo; QuickPose's terms license the SDK under Apache 2.0 subject to the agreement and fees; no LICENSE file in the Android repo; the npm plugin is MIT | Apache-2.0 in the Swift, Kotlin, React Native and HTML-JS repos; no LICENSE file in the Flutter, SwiftUI-kit and PWA repos; the hosted service is commercial and needs an API key |\n| Recent activity | iOS, Android and React Native repos updated November 2, 2026; npm plugin 0.7.2 on 2026-11-02; demo apps updated in September 2026 | KinesteX-AI-Kit, Kotlin and Swift repos updated November 5, 2026; npm kinestex-sdk-react-native 1.5.0 on 2026-10-19; pub.dev kinestex_sdk_flutter 1.5.1 on 2026-07-04 |\n| Accuracy | No figure published in the repos | \"Consistently exceed 90% accuracy\" in a README and \"97.2% accuracy\" in its FAQ: vendor claims, not benchmarks |\n\n## Where QuickPose wins\n\nThis section exists because it is earned, not because a checklist demanded it.\n\n**Native integration, all the way down.** QuickPose's modules bundle the MediaPipe libraries and run inside your app process. You own the camera session, the skeleton overlay and every pixel of UI. For exact visual control or an in-process camera pipeline, that is the tighter fit, a judgment grounded in what the repos show. KinesteX's Camera Component lets you build your own UI around its tracking, but on iOS it is a `createCameraView` call on the same kit that embeds the experience as a WebView; there is no in-process native mode in evidence.\n\n**Real fitness primitives without buying an experience.** This is not a bare MediaPipe wrapper. Range-of-motion measurement across five joint groups, counters for 20 named exercises and feedback events for body position and out-of-frame limbs are a meaningful head start for a team that wants to keep its own product identity. It also reaches slightly older Android phones: API 26 for the SDK, against KinesteX's Android 9 (API 28).\n\n**A published price list, a lower price and a self-serve start.** QuickPose publishes every SDK plan, device limit and support level, from a free tier for 10 monthly active devices and $25 a month for 100 to $1,000 a month for 100,000, and its key is a free signup. KinesteX publishes no figures on its website, and the $1,500 monthly minimum in its seed deck is 60 times QuickPose's Builder plan. The units differ (devices against users) and QuickPose leaves the product to you, so it is not like for like, but for a developer evaluating this afternoon or a founder budgeting this week, it is decisive. [QuickPose pricing](/pricing/quickpose-pricing) sets out the plans.\n\n**Public traction and worked examples.** The iOS SDK repository had 327 stars when we checked, and the org publishes runnable demo apps, among them FitCount, a squat counter, a push-up rep counter, a biomechanics demo and BikeVision, with new iOS and Android demo apps updated in September 2026. You can read exactly how the integration feels before committing.\n\n## Where KinesteX wins\n\n**Platform coverage, including the web.** Public repos and SDKs across Swift, Kotlin, Flutter, React Native, React (TypeScript) and an HTML and JavaScript iframe, all wrapping the same hosted experience, with current packages on npm and pub.dev. QuickPose's SDK pages list iOS, Android and React Native, and we found no public QuickPose Flutter or web package.\n\n**The product in the box.** KinesteX's docs document AI Trainer Chat, prebuilt workout, plan, challenge and leaderboard views, motion games, an Admin Workout Editor, content APIs and rep-level analytics events, in 19 languages per its FAQ. A team using QuickPose builds all of that; a team using KinesteX configures it. KinesteX's SDK integration page puts the ready-made route at \"1 week or less\" with one developer, and its FAQ says integration \"typically takes under a day\". For a white-label coaching product on a deadline, that is the whole argument.\n\n**An assessment layer.** The documented movement assessments, with risk-level outputs, target health and screening use cases that QuickPose's repos do not address.\n\n**Server-side updates.** Because the experience is hosted, content and experience changes do not require app-store releases on every platform. The flip side is the next section; this is a bet, not a free lunch.\n\n## The trade-off neither vendor states this plainly\n\nJudgment, clearly labeled: native SDK versus WebView embed is the real decision on this page, and each choice costs something. Native (QuickPose) feels tighter because it is tighter, with in-process inference, your rendering and your UX, and in exchange you build and maintain the product per platform. A WebView or iframe surface (KinesteX) ships everywhere at once and evolves without app releases, and in exchange the embedded experience is the vendor's experience: customization runs through their theming, app-to-experience communication crosses a `postMessage` bridge, and the Android integration asks for the `INTERNET` permission.\n\nTwo cautions on claims you will meet. KinesteX's SDK READMEs say \"optional edge processing (no cloud transmission)\", while its security page says \"All camera and vision processing stays on-device\" and that its cloud delivers content and AI models, and its SDK integration page adds that the AI Personal Trainer chat needs internet; the lines are not the same promise, so get the behavior of your configuration in writing. Symmetrically, do not read QuickPose's Apache-2.0 iOS license as \"fully open source\": the SDK is keyed, and QuickPose's terms say its use may be subject to fees.\n\n## What we could not verify, for both vendors\n\n- **Accuracy.** No independent accuracy benchmark compares these products. KinesteX's README line (\"consistently exceed 90% accuracy\") and its FAQ figure (\"97.2% accuracy\") are the vendor's own claims, and they do not agree with each other. QuickPose publishes no accuracy figure in its repos.\n- **KinesteX prices.** The FAQ describes the model but kinestex.com publishes no figure; the $1.50 per MAU and $1,500 monthly minimum come from an investor deck, not a rate card, so confirm them with KinesteX.\n- **QuickPose on the web.** Its GitHub org and SDK pages list iOS, Android and React Native SDKs; we found no public web package or documentation for one.\n- **KinesteX's own counts.** Its home page says 500+ AI exercises and 19 languages; its seed deck says 550+ exercises and 17 languages.\n- **License files.** QuickPose's Android repo and KinesteX's Flutter, SwiftUI-kit and PWA repos carry no LICENSE file, and neither vendor's commercial terms for its hosted or keyed service are in the repos.\n\n## Verdict\n\nOur verdict, from the company behind KinesteX: KinesteX is the overall pick in this comparison on four stated criteria, and QuickPose takes one of them outright.\n\n- **What ships in the box and time to a working integration: KinesteX.** AI Trainer Chat, ready-made views, games, an Admin Workout Editor, content APIs, assessments and 19 languages, with integration put at under a day. QuickPose ships primitives and leaves the product to you.\n- **Platform breadth: KinesteX.** Six integration paths including Flutter and the web, against iOS, Android and React Native.\n- **Price: QuickPose.** Both name a number, and QuickPose's published plans, free for 10 devices and $25 a month for 100, sit far below the $1,500 monthly minimum in KinesteX's seed deck.\n- **Maintenance: even.** QuickPose's three SDK repos and its React Native plugin 0.7.2 moved on November 2, 2026; KinesteX's AI-Kit, Kotlin and Swift repos on November 5 and kinestex-sdk-react-native 1.5.0 on October 19.\n\nThe verdict flips to QuickPose when you want building blocks inside your own UI on iOS, Android or React Native, a start at $25 a month (or free for up to 10 devices), or in-process MediaPipe with a free key today.\n\n## Which should you pick?\n\n- **Native integration, your own UX and content, on iOS, Android or React Native** → QuickPose is the honest lean. Pair it with our guides to [adding rep counting](/guides/add-rep-counting) and [form feedback](/guides/add-form-feedback), and check [Apple's Vision body pose](/motion/apple-vision-body-pose) first so you know what the platform already gives you before paying for a wrapper's conveniences.\n- **A cross-platform white-label coaching experience on a deadline, or a web surface** → KinesteX. One hosted experience across Swift, Kotlin, Flutter, React Native, React and the web is what its docs and repos demonstrate.\n- **You need the smallest possible number in a budget before any call** → QuickPose, whose SDK pricing page lists every plan; KinesteX's only figure is the deck's.\n- **You want neither** → [QuickPose alternatives](/alternatives/quickpose-alternatives) and [KinesteX alternatives](/alternatives/kinestex-alternatives) map the wider field with the same disclosure, and [AI workout tracking APIs](/fitness-apis/ai-workout-tracking-apis) compares the category.\n- **You suspect you should build on raw models instead** → run the numbers in [build vs buy](/motion/build-vs-buy-ai-motion-tracking) first; the pose model is the free part, and both of these products exist because everything above it is not.\n\nWhichever way you lean, re-verify against the repos and the vendors' own pages before you sign anything: both codebases moved within days of our check, and this page will age.",
     "related": [
       {
         "href": "/compare/kinestex-vs-sency",
@@ -1092,113 +1138,143 @@ export const compareEntries: ClusterEntry[] =
     "sources": [
       {
         "url": "https://github.com/quickpose/quickpose-ios-sdk",
-        "checked": "2026-10-17",
-        "note": "README description, features, modules, iOS 14.0, free SDK key, Apache-2.0, 326 stars, pushed 2026-08-26"
+        "checked": "2026-11-09",
+        "note": "README description, features, modules, iOS 14.0, free SDK key, Apache-2.0"
       },
       {
         "url": "https://github.com/quickpose/quickpose-android-sdk",
-        "checked": "2026-10-17",
-        "note": "README, Android SDK 26, Maven artifacts, no LICENSE file, pushed 2026-08-27"
+        "checked": "2026-11-09",
+        "note": "README, Android SDK 26, Maven artifacts, no LICENSE file"
+      },
+      {
+        "url": "https://github.com/quickpose/quickpose-react-native-pose-estimation",
+        "checked": "2026-11-09",
+        "note": "React Native plugin README"
       },
       {
         "url": "https://www.npmjs.com/package/@quickpose/react-native",
-        "checked": "2026-10-17",
-        "note": "0.7.1 on 2026-08-26, MIT"
+        "checked": "2026-11-09",
+        "note": "0.7.2 on 2026-11-02, MIT"
       },
       {
         "url": "https://github.com/quickpose",
-        "checked": "2026-10-17",
-        "note": "demo app repositories and push dates"
+        "checked": "2026-11-09",
+        "note": "327 stars on the iOS SDK; iOS, Android and React Native repos updated Nov 2, 2026; demo apps (snapshot)"
       },
       {
         "url": "https://docs.quickpose.ai/docs/MobileSDK",
-        "checked": "2026-10-17",
+        "checked": "2026-11-09",
         "note": "min API 26, samples API 28 (snapshot)"
       },
       {
-        "url": "https://docs.quickpose.ai/",
-        "checked": "2026-10-17",
-        "note": "Wasm SDKs mentioned (snapshot)"
-      },
-      {
         "url": "https://quickpose.ai/sdk-pricing/",
-        "checked": "2026-10-17",
+        "checked": "2026-11-09",
         "note": "plans by monthly active device (snapshot)"
       },
       {
         "url": "https://quickpose.ai/products/android-sdk/",
-        "checked": "2026-10-17",
+        "checked": "2026-11-09",
         "note": "on-device inference, no frames sent to a server (snapshot)"
       },
       {
+        "url": "https://quickpose.ai/products/ios-sdk/",
+        "checked": "2026-11-09",
+        "note": "on-device inference (snapshot)"
+      },
+      {
         "url": "https://quickpose.ai/terms-and-conditions/",
-        "checked": "2026-10-17",
+        "checked": "2026-11-09",
         "note": "Apache 2.0 license clause and fees (snapshot)"
       },
       {
-        "url": "https://quickpose.ai/products/jointtrack/pricing/",
-        "checked": "2026-10-17",
-        "note": "older SDK tier answer (snapshot)"
-      },
-      {
         "url": "https://github.com/KinesteX",
-        "checked": "2026-10-17",
-        "note": "11 public repositories, licenses and push dates"
+        "checked": "2026-11-09",
+        "note": "12 public repositories; AI-Kit, Kotlin and Swift updated Nov 5, 2026 (snapshot of the org repository listing)"
       },
       {
         "url": "https://github.com/KinesteX/KinesteX-AI-Kit",
-        "checked": "2026-10-17",
-        "note": "WebView architecture, iOS 14 and macOS 11"
+        "checked": "2026-11-09",
+        "note": "WebView architecture"
       },
       {
         "url": "https://github.com/KinesteX/KinesteX-SDK-PWA",
-        "checked": "2026-10-17",
+        "checked": "2026-11-09",
         "note": "iframe and postMessage"
       },
       {
         "url": "https://github.com/KinesteX/KinesteX-Swift-Demo",
-        "checked": "2026-10-17",
-        "note": "views, camera component, data events"
+        "checked": "2026-11-09",
+        "note": "camera component, data events"
       },
       {
         "url": "https://github.com/KinesteX/.github",
-        "checked": "2026-10-17",
+        "checked": "2026-11-09",
         "note": "assessments, risk levels, data payloads"
       },
       {
         "url": "https://github.com/KinesteX/KinesteX-SDK-Kotlin",
-        "checked": "2026-10-17",
+        "checked": "2026-11-09",
         "note": "features, optional edge processing line, Apache-2.0 LICENSE.txt"
       },
       {
         "url": "https://github.com/KinesteX/AI-Fitness-SDK",
-        "checked": "2026-10-17",
+        "checked": "2026-11-09",
         "note": "the 90% accuracy claim"
       },
       {
         "url": "https://www.npmjs.com/package/kinestex-sdk-react-native",
-        "checked": "2026-10-17",
-        "note": "1.4.1 on 2026-10-09"
+        "checked": "2026-11-09",
+        "note": "1.5.0 on 2026-10-19"
       },
       {
         "url": "https://pub.dev/packages/kinestex_sdk_flutter",
-        "checked": "2026-10-17",
+        "checked": "2026-11-09",
         "note": "1.5.1 on 2026-07-04"
       },
       {
-        "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
-        "checked": "2026-10-17",
-        "note": "SwiftUI kit URL, react-native-webview, React TypeScript package, permissions (snapshot)"
+        "url": "https://www.kinestex.com/docs/getting-started",
+        "checked": "2026-11-09",
+        "note": "SDK list, AI Trainer Chat recommended, integrations, requirements, contact-form API key (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/installation",
+        "checked": "2026-11-09",
+        "note": "Kotlin SDK 2.5.0 and minSdk 28, react-native-webview, React TypeScript package, permissions (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/ai-trainer-chat",
+        "checked": "2026-11-09",
+        "note": "AI Trainer Chat flow; Sunset integrations (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/content-api-v2",
+        "checked": "2026-11-09",
+        "note": "content APIs at data.kinestex.com (snapshot)"
       },
       {
         "url": "https://www.kinestex.com/product/faqs",
-        "checked": "2026-10-17",
-        "note": "pricing model and the 97.2% claim (snapshot)"
+        "checked": "2026-11-09",
+        "note": "integration time, 19 languages, pricing model and the 97.2% claim (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/product/sdk-integration",
+        "checked": "2026-11-09",
+        "note": "timelines, API key on a booked call, camera and internet requirements (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/",
+        "checked": "2026-11-09",
+        "note": "500+ AI exercises and 19 languages (snapshot)"
       },
       {
         "url": "https://www.kinestex.com/product/security",
-        "checked": "2026-10-17",
+        "checked": "2026-11-09",
         "note": "on-device processing and model delivery (snapshot)"
+      },
+      {
+        "url": "https://kinestex-pitch.vercel.app/",
+        "checked": "2026-11-09",
+        "note": "KinesteX's public seed pitch deck: $1.50 per MAU, $1,500 monthly minimum, 550+ exercises, 17 languages (rendered in a browser)"
       }
     ]
   },
@@ -1207,35 +1283,35 @@ export const compareEntries: ClusterEntry[] =
     "primaryQuery": "kinestex vs mediapipe",
     "h1": "KinesteX vs MediaPipe: Which Layer Do You Want to Own?",
     "metaTitle": "KinesteX vs MediaPipe: Build or Buy the Layer? (2026)",
-    "metaDescription": "MediaPipe is free and gives you 33 keypoints; KinesteX sells the layer above them: rep counting, form feedback, content. Which layer should you own?",
-    "updated": "2026-10-18",
-    "answer": "These two are not peers, and that is the real answer: MediaPipe is a free, Apache-2.0 pose model that outputs 33 landmarks per frame and nothing else, while KinesteX (this site's own product) is a commercial SDK selling the application layer above the keypoints — rep counting, mistake feedback, workout content, and a WebView-embedded cross-platform experience, per its public repos. Build on MediaPipe when motion analysis is your core product and you have the team to own rep logic, content, and per-platform camera pipelines at zero per-user vendor cost. Buy KinesteX when time-to-market, content breadth, and one integration across five platforms matter more than owning the stack. KinesteX publishes no prices, only a per-active-user pricing model in its FAQ, so get figures from the vendor before you commit.",
+    "metaDescription": "MediaPipe gives free keypoints; KinesteX sells the layer above. Our verdict, its criteria, and when to build instead. KinesteX funds this site.",
+    "updated": "2026-11-09",
+    "answer": "MediaPipe is a free, Apache-2.0 pose model that returns 33 landmarks per frame; KinesteX (this site's own product) sells the layer above them: an AI trainer, rep counting, form feedback, workout content and one integration for iOS, Android, React Native, Flutter and the web. For a team shipping a fitness or rehab feature, our verdict is KinesteX, on what ships in the box, time to integrate, platform breadth, a stated entry price ($1.50 per monthly active user with a $1,500 monthly minimum, from its seed deck; confirm with the vendor) and vendor maintenance. Build on MediaPipe instead when motion analysis is your core IP, you have computer-vision engineers, frames must never leave your own process, or you need exercise logic KinesteX's library does not cover.",
     "faqs": [
       {
         "q": "Does MediaPipe include rep counting or form feedback?",
-        "a": "No. MediaPipe Pose Landmarker outputs 33 landmarks per frame — coordinates, visibility, and presence — and nothing more. Google's model card lists fitness and repetition counting as an intended application domain, but the counting state machines, per-exercise form rules, mistake feedback, and exercise content are all yours to build. That gap between keypoints and a working fitness feature is the entire substance of the KinesteX vs MediaPipe question."
+        "a": "No. Pose Landmarker returns landmarks: 33 per frame, in image coordinates and in 3D world coordinates, each with visibility and presence. Google's model card lists fitness and repetition counting as an intended use, but the counting state machines, per-exercise form rules, feedback content and exercise library are yours to build. That gap between keypoints and a working fitness feature is what the KinesteX vs MediaPipe question is really about."
       },
       {
         "q": "Is KinesteX a native SDK or a WebView wrapper?",
-        "a": "Per its own public repositories, every KinesteX SDK — Swift, Kotlin, React Native, Flutter, and web — is a thin wrapper that embeds a hosted web experience via WKWebView, Android WebView, react-native-webview, or an iframe, communicating through postMessage events, with internet permission required. That is not a criticism; it is how one vendor implementation serves five platforms at once. But you are integrating an embedded experience, not an in-process inference library, and you should weigh that against MediaPipe's in-process, offline-capable model."
+        "a": "A wrapper around an embedded experience. KinesteX's SwiftUI kit README says it embeds the camera workout experience \"as a WebView\", the React Native SDK installs with react-native-webview, and the web integration is an iframe; events cross a postMessage bridge and an internet connection is required. That is how one implementation serves iOS, Android, React Native, Flutter and the web. You still get structured data: the Camera Component streams reps, holds and form events and, on request, pose landmarks."
       },
       {
         "q": "How much does KinesteX cost compared to free MediaPipe?",
-        "a": "MediaPipe's framework and pose models are Apache-2.0 and cost nothing; you pay in engineering time. KinesteX is commercial — an API key is required and demo access goes through a contact form — and it publishes no prices as of October 2026: its FAQ describes usage-based plans priced per active user per month that fall at higher tiers, with possible integration fees, but gives no figure, so we cannot quote a number and will not guess one. Price the decision as free plus substantial build effort (quarters, in our estimate) versus a vendor fee you must obtain directly from KinesteX in writing."
+        "a": "MediaPipe's framework and models are Apache-2.0 and free; you pay in engineering time. KinesteX's public seed deck states \"$1.50 per MAU. $1,500 monthly minimum.\" kinestex.com publishes no price list on the pages we read on November 9, 2026: its FAQ describes usage-based pricing per active user per month that falls as you scale, with integration fees that may apply. Treat the deck figure as an entry price to confirm with KinesteX in writing."
       },
       {
         "q": "Is KinesteX built on top of MediaPipe?",
-        "a": "We could not verify what pose model runs inside KinesteX's hosted experience; its public repositories do not document the underlying model, so do not assume either way. For this decision it barely matters: what KinesteX sells is the interpretation, content, and cross-platform layer above the keypoints, and what MediaPipe gives you free is the keypoints. The comparison is between layers of the stack, not between two pose models."
+        "a": "We could not verify it. Neither KinesteX's repositories nor its security page name the pose model inside its experience; the security page says only that pose estimation runs on the user's device and that its cloud delivers content and AI models. For this decision it matters little: KinesteX sells the interpretation, content and cross-platform layer, and MediaPipe gives you the keypoints."
       },
       {
         "q": "Can I start with KinesteX and migrate to my own MediaPipe pipeline later?",
-        "a": "Yes in principle, and it is a sane de-risking path: ship on the vendor layer while you validate the product, then bring tracking in-house if motion analysis becomes your core IP. Plan for a real rewrite rather than a swap, though — KinesteX hands you interpreted events from an embedded experience, while a MediaPipe pipeline means owning camera plumbing, rep logic, and content yourself, so little integration code transfers. The reverse move, from an in-house pipeline to a vendor SDK, is usually the easier migration."
+        "a": "Yes, and it is a sane de-risking path: ship on the vendor layer while you validate the product, then bring tracking in-house if motion analysis becomes your core IP. Plan for a rewrite rather than a swap. KinesteX hands you events from an embedded experience, while a MediaPipe pipeline means owning camera plumbing, rep logic and content yourself, so little integration code carries over. The reverse move, from an in-house pipeline to a vendor SDK, is usually easier."
       }
     ],
     "cta": {
-      "pitch": "The application layer is where camera fitness products win or lose — get our developer notes when the motion SDKs or the free pose models actually change."
+      "pitch": "The application layer is where camera fitness products win or lose. Get our developer notes when the motion SDKs or the free pose models actually change."
     },
-    "body": "*Disclosure: KinesteX funds AIFitnessAPI, and KinesteX is one of the two names on this page. So let us say the most important sentence first, the one a dishonest version of this page would bury: MediaPipe is free. Apache-2.0, no API key, no vendor. If you have the team to build the application layer yourself, you do not need KinesteX. Every KinesteX claim below traces to its public GitHub repos or its own published pages; every MediaPipe claim to Google's model card, repo docs and source, all checked on October 17 and 18, 2026.*\n\n## Not apples-to-apples — and that is the answer\n\n\"KinesteX vs MediaPipe\" reads like a product comparison, but the two things do not sit at the same layer of the stack. MediaPipe Pose Landmarker is a free pose-estimation primitive: it turns camera frames into 33 landmarks per frame, and that is the entire product. KinesteX is a commercial application-layer SDK: it sells what you would otherwise build *on top of* keypoints — rep counting, mistake feedback, workout content, and a cross-platform embed. Pretending these are peers would make this page useless.\n\nSo the real question is not \"which is better\" — it is **which layer do you want to own**. That is the build-vs-buy decision in its most-searched form, and the general version of it (team requirements, cost curves, hybrid paths) lives in our [build vs buy guide for AI motion tracking](/motion/build-vs-buy-ai-motion-tracking). This page is the named-vendor instance.\n\n## What each one actually is\n\n**MediaPipe Pose Landmarker** (BlazePose GHUM, in the [google-ai-edge/mediapipe](https://github.com/google-ai-edge/mediapipe) repo) is Google's on-device pose model. Per its model card and repo docs: 33 landmarks per frame — the 17 COCO keypoints plus face, hand, and foot points — each with x, y, z, visibility, and presence, plus world landmarks documented as meters from a hip-center origin (with the honest caveat that z is \"up to scale\", not metric). Three variants (`pose_landmarker_lite`, `pose_landmarker_full`, `pose_landmarker_heavy`) trade size for accuracy; the card says the models are \"optimized for on-device, real-time fitness applications\" and lists \"fitness and repetition counting\" as an intended domain. Framework and models are Apache-2.0. The card also states the model \"tracks only one person on scene if multiple present\" and lists subjects beyond roughly 4 meters as out of scope — and the served model files were last modified in April 2023, so treat the weights as frozen. The newer Tasks API does expose a `num_poses` option, documented as \"the maximum number of poses can be detected by the PoseLandmarker\" and defaulting to 1, but the card does not evaluate more than one person, so treat raising it as something to test. Variant selection is covered in [the MediaPipe Pose Landmarker model guide](/motion/mediapipe-pose-landmarker-models), and the MediaPipe-vs-MoveNet model decision in [MediaPipe vs MoveNet](/compare/mediapipe-vs-movenet).\n\n**KinesteX** (public repos at [github.com/KinesteX](https://github.com/KinesteX)) is a commercial \"AI motion analysis SDK\" — its own category term. What the repos and KinesteX's own pages verify, as of October 17, 2026:\n\n- **SDKs for five surfaces** — Swift (iOS 14+), Kotlin, React Native, Flutter, and the web (HTML and JavaScript, a PWA path and a React TypeScript package) — with pushes as recent as October 14, 2026 (Kotlin) and October 9, 2026 (React Native). Not every repo is that active: the original Swift SDK repo was last pushed in April 2025, and KinesteX's docs now point Swift users to the newer SwiftUI kit.\n- **Integration surface**: every SDK is a thin wrapper embedding a hosted web experience. The Swift package README says it \"embeds KinesteX's AI-powered camera workout experience as a WebView\" (`WKWebView` on iOS; Android WebView, `react-native-webview`, or an iframe elsewhere), communicating via `postMessage` events. KinesteX's installation docs ask for camera permission plus a motion-sensor usage description on iOS, and the Android manifest they show includes the `INTERNET` permission.\n- **Application features per the READMEs**: real-time monitoring of repetitions, mistakes, posture alignment and calories burned; plug-and-play views for workouts, plans, challenges, leaderboards, and gamified experiences; a custom camera component with pose analysis and feedback; a content API and admin portal for building your own workouts; white-label theming; and a documented assessment suite (Timed Up-and-Go, gait speed, sit-to-stand variants, functional reach, plus gamified assessments) with risk-level outputs.\n- **Data events**: `reps` and `mistake` events fire per repetition and per detected mistake; `exercise_completed` payloads carry reps, calories, a mistakes array and an optional average accuracy; `exercise_overview` items can carry per-rep accuracy scores; and `workout_overview` carries accuracy and efficiency scores.\n- **Commercials**: an API key plus company name is required, and demo access goes through a contact form. Stated plainly: **KinesteX publishes no prices**. Its FAQ describes usage-based plans priced per active user per month that fall as you reach higher tiers, with integration fees possible, but gives no figure. The wrapper code is Apache-2.0 where a LICENSE file exists, but the hosted service itself is commercial.\n\nOne more honesty note: KinesteX's own README claims its movement-recognition models \"consistently exceed 90% accuracy\", and its FAQ says its motion tracking \"achieves 97.2% accuracy\". Those are first-party marketing claims, not independent benchmarks; they do not agree with each other, and we found no third-party verification of either.\n\n## Layer by layer\n\n| Layer | MediaPipe (build) | KinesteX (buy) |\n|---|---|---|\n| Keypoints | 33 landmarks per frame, yours to consume raw | Internal to the hosted experience; the public repos document interpreted events (reps, mistakes, accuracy), not a raw landmark stream |\n| Interpretation (reps, form, mistakes) | You build all of it | Ships: rep counting, mistake detection, posture alignment, calorie estimates, per-rep accuracy events |\n| Content (exercises, plans, assessments) | You build or license it | Ships: workout/plan/challenge/leaderboard views, content API, admin portal, assessment suite |\n| Platforms | You integrate per platform (Android sample floor is SDK 24; you own each pipeline) | Swift, Kotlin, React Native, Flutter, HTML/JS — five wrappers around one hosted web experience |\n| Runtime model | In-process, on-device inference; works offline | WebView/iframe embed of a hosted experience; internet permission required; KinesteX's security page says camera and vision processing stays on the device |\n| Cost structure | Free, Apache-2.0; you pay in engineering time | Commercial API key; no published prices — the FAQ describes per-active-user plans; obtain figures from the vendor |\n| Who owns maintenance | You: camera pipelines, model updates (served model files last modified April 2023), device edge cases | Vendor owns the tracking pipeline and content; you own thin wrapper updates |\n\n## What MediaPipe actually leaves you to build\n\nThis list is our engineering judgment of what \"parity with a fitness SDK\" requires on top of raw keypoints — it is scope, not a knock on the free models, and Google's own model card explicitly targets fitness use:\n\n1. **Exercise definitions and form logic** — per-exercise joint-angle rules, phase detection, hold detection, per camera angle.\n2. **Rep-counting state machines** — debouncing, partial-rep rejection, tempo. The only free starter we found is ML Kit's sample squat/pushup classifier, which is a demo, not a product.\n3. **Mistake detection and feedback content** — mapping deviations to human-readable corrections, audio cues, localization.\n4. **Calibration and framing UX** — person-in-frame checks and distance guidance (the vendors' own cards put usable range at roughly 3–6 ft for MoveNet and under ~4 m for BlazePose), camera selection, orientation.\n5. **Content** — an exercise library, workout and plan structures, progression logic. This is exactly what KinesteX ships as views plus a content API.\n6. **Analytics plumbing** — session summaries, per-rep accuracy, engagement events.\n7. **Cross-device robustness** — variant selection, thermal and frame-rate management, lighting and clothing edge cases, and a separate camera pipeline per platform (our [camera pose tracking guide](/guides/camera-pose-tracking) covers this layer).\n\nNone of this is exotic. All of it is real, ongoing work that a team must staff — which is the entire price of \"free\".\n\n## The WebView question, stated fairly\n\nThe starkest architectural difference deserves a fair reading in both directions. KinesteX's SDKs are WebView/iframe embeds of a hosted experience; a MediaPipe pipeline runs in-process in your app.\n\n**What the embed costs you:** you do not control the camera pipeline, the rendering, or the pixels — customization is white-label theming through the vendor's portal, not arbitrary native UI. The app requires internet permission. And on privacy, KinesteX's two public statements do not match: its SDK READMEs say \"optional edge processing (no cloud transmission)\", while its security page says \"All camera and vision processing stays on-device\" and that its cloud is used to deliver content and AI models. Ask the vendor what your configuration does, and get it in writing, rather than relying on either line.\n\n**What the embed buys you:** one vendor implementation genuinely serving five platforms, which is precisely why \"cross-platform without five codebases\" is credible here, and a tracking pipeline the vendor updates without you shipping releases for it (that last consequence is our inference from the architecture, not a repo quote).\n\n**In-process MediaPipe is the mirror image:** full control of the camera pipeline, true offline operation, no vendor runtime and no per-user dependency — and full ownership of every platform-specific camera stack, model-update decision, and device edge case, forever.\n\n## When building on MediaPipe clearly wins\n\nWe will concede this genuinely, because it is often the right call:\n\n- **Motion analysis is your core IP.** If your differentiation is novel exercise logic, sport-specific analysis, or thresholds you must own and audit, you cannot rent the layer that makes you different.\n- **You have (or are hiring) CV/ML engineers.** The judgment list above is a roadmap, not a wall, for a team that has shipped camera pipelines before.\n- **Zero per-user vendor cost.** At scale, \"free forever, per user, offline\" is a structural advantage no commercial SDK can match.\n- **Full control** of camera, UI, data flow, and privacy posture — including the ability to guarantee frames never leave the device, which an embedded hosted experience cannot let you unilaterally guarantee.\n\nIf most of those describe you, stop here and start with the [Pose Landmarker model guide](/motion/mediapipe-pose-landmarker-models).\n\n## When buying the KinesteX layer wins\n\n- **Time-to-market.** In our judgment — an estimate, not a measured figure — embedding a view and subscribing to `exercise_completed` events is weeks of work, where the seven-item build list is quarters.\n- **Breadth of content.** Workout, plan, challenge, and leaderboard experiences plus a documented assessment suite exist on day one; content is the slowest thing to build well.\n- **Cross-platform reach without five implementations.** iOS, Android, React Native, Flutter, and web from one integration pattern.\n- **No CV team required.** You consume interpreted events instead of building interpretation.\n\n## What we could not verify\n\n- **KinesteX prices.** Its FAQ describes the model, per active user per month with lower rates at higher tiers and possible integration fees, but no figure is published anywhere we looked, and access is by contact form. We will not guess a number, and neither should you — get it in writing before you commit.\n- **What pose model KinesteX runs internally.** Neither the public repos nor KinesteX's security page names it; the security page says only that pose estimation runs on the user's device and that its cloud delivers AI models. Do not assume it is (or is not) MediaPipe.\n- **Edge-processing conditions.** The READMEs say \"optional edge processing\"; the security page says all camera and vision processing stays on-device. Which statement governs your configuration is not documented.\n- **MediaPipe with several people in frame.** The Tasks API's `num_poses` option exists, with a default of 1, but Google's model card describes and evaluates a single person; we found no published evaluation of the model with several people in frame.\n\n## Verdict, by use-case\n\n- **Fitness feature inside a broader app, small team, shipping this quarter** → buy the layer. KinesteX (or another application-layer SDK — the field is compared in [AI workout tracking APIs](/fitness-apis/ai-workout-tracking-apis)) gets you rep and form events without building interpretation.\n- **Motion analysis is the product, and you have CV engineering** → build on MediaPipe. Own the layer that differentiates you; the primitive is free and fitness-targeted by Google's own card.\n- **Hard requirement that video never leaves the device** → build, or get KinesteX's edge-processing behavior for your configuration in writing first.\n- **Deep custom exercise logic the vendor's content model does not cover** → build. Renting the application layer only pays when the vendor's application matches yours.\n- **Unsure** → buy first, validate the product, and treat a later in-house pipeline as a planned migration, not a failure. The general economics of that path are in the [build vs buy guide](/motion/build-vs-buy-ai-motion-tracking).\n\nThe honest summary: MediaPipe gives you free keypoints and total ownership of everything above them; KinesteX sells the everything-above-them. Decide which layer you want to own, and the vendor question answers itself.",
+    "body": "**KinesteX funds this site, and this page is written by the company behind KinesteX, one of the two names in its title.** So the sentence a dishonest version of this page would bury comes first: MediaPipe is free. Apache-2.0, no API key, no vendor. If motion analysis is your product and you have the team to build the application layer, you do not need KinesteX. Every KinesteX claim traces to its GitHub repositories, package registries, web pages and, for the one published price, its public seed deck; every MediaPipe claim to Google's Pose Landmarker page, model cards and repository docs. All of it was re-read on November 9, 2026. The verdict names this site's own product as the overall pick, on stated criteria, and names the cases where building on MediaPipe wins.\n\n## Not apples-to-apples, and that is the answer\n\nThe two sit at different layers of the stack. MediaPipe Pose Landmarker is a free pose-estimation primitive: Google's page describes a task to \"Track 33 3D full-body skeletal landmarks in image, video, or camera streams\", and landmarks are what it returns. KinesteX is a commercial application layer: it sells what you would otherwise build on top of keypoints.\n\nSo the useful question is which layer you want to own. The general version of that decision lives in our [build vs buy guide for AI motion tracking](/motion/build-vs-buy-ai-motion-tracking); this page is the named-vendor instance.\n\n## What each one actually is\n\n**MediaPipe Pose Landmarker** (BlazePose GHUM) is Google's on-device pose model. Its page says the task \"outputs body pose landmarks in image coordinates and in 3-dimensional world coordinates\", and its quickstart covers four targets: the web through the npm package `@mediapipe/tasks-vision` (its quickstart loads a WebAssembly build), Android through Gradle, iOS through Swift Package Manager, and Python through pip. The model card gives the rest: Lite (3 MB), Full (6 MB) and Heavy (26 MB) models, \"Optimized for on-device, real-time fitness applications\"; an output of 33 points, each with x, y, z, visibility and presence, where \"Z is not metric but up to scale\"; \"Fitness and repetition counting\" listed as an intended use; and the Apache License, Version 2.0. It also states the limits: the model \"Tracks only one person on scene if multiple present\", and people further than 14 feet or 4 meters from the camera are out of scope. The legacy pose doc adds world landmarks in meters, with the origin at the center between the hips. The Tasks API takes a `numPoses` option, set to 1 in every quickstart snippet on Google's page. Variant choice is in [the Pose Landmarker model guide](/motion/mediapipe-pose-landmarker-models), and MediaPipe against MoveNet in [pose estimation models compared](/motion/pose-estimation-models-compared).\n\n**KinesteX** (public repositories at [github.com/KinesteX](https://github.com/KinesteX)) calls itself a \"plug-and-play and custom AI motion analysis SDK\". What its pages and repositories show as of November 9, 2026:\n\n- **Platforms.** The docs' Getting Started page lists \"SDKs for Swift, Kotlin, Flutter, React Native and React (TypeScript), plus a plain HTML/JavaScript iframe integration for any web page or PWA\". Requirements: iOS 14.0+ with Xcode 16.3+, Android 9+ (API 28) and an internet connection. The install docs pin the Kotlin SDK at 2.5.0 from JitPack and say it \"needs minSdk 28 or higher\"; npm shows kinestex-sdk-react-native 1.5.0 published on October 19, 2026, and pub.dev shows kinestex_sdk_flutter 1.5.1 from July 4, 2026. The GitHub org listing shows the KinesteX-AI-Kit, KinesteX-SDK-Kotlin and KinesteX-SDK-Swift repositories updated on November 5, 2026, and the React Native repository on October 9, 2026.\n- **Integration surface.** The SwiftUI kit's README says it \"embeds KinesteX's AI-powered camera workout experience as a WebView\" (a `WKWebView` under the hood). React Native installs with `react-native-webview` as a peer dependency, the web integration is an iframe pointed at ai.kinestex.com, and the Android manifest in the install docs includes the `INTERNET` permission.\n- **What ships.** The docs recommend AI Trainer Chat for new integrations: \"a white-labeled AI personal trainer with onboarding, a camera fitness assessment, a workout generated for every session and next-session scheduling\". Beside it sit Plan, Workout, Challenge and Leaderboard views, AI Experiences (Balloon Pop, Color Chase and Alien Squat Shooter) and an embedded Admin Workout Editor. The older Complete UX (Main) and Personalized Plan View integrations are marked \"Sunset\" in the docs sidebar. The FAQ lists 19 languages, the home page counts \"500+\" AI exercises, and movement tests such as Timed Up and Go, sit-to-stand and functional reach return a low, moderate or high risk level for balance and reach.\n- **Build-your-own pieces.** A Custom Workout, which can also run as a scored assessment; a Camera Component that \"streams real-time motion events (reps, holds, form feedback, presence, activity, plus opt-in form state and framing hints) and, on request, pose landmarks\"; and Content APIs at `data.kinestex.com` for exercises, workouts and plans, authenticated with an `x-api-key` header. The data-points docs say a typical 10-exercise workout sends about 30 events carrying 300 or more data values.\n- **Commercials.** An API key is required. The docs say to get demo access and a key through the contact form, and the SDK-integration page says the key comes when you book a call. kinestex.com publishes no price list on the pages we read: its FAQ describes \"usage-based plans\", a per-active-user-per-month price that falls as you scale, and integration fees that \"may apply\". The one published figure, priced per monthly active user (MAU), is in KinesteX's public seed deck: \"$1.50 per MAU. $1,500 monthly minimum.\" Treat it as a stated entry price to confirm with the vendor in writing.\n\nOne honesty note on accuracy. KinesteX's FAQ and home page claim 97.2% accuracy, and an older README says its models \"consistently exceed 90% accuracy\". Those are first-party marketing claims, they do not agree with each other, and no independent benchmark compares KinesteX with MediaPipe. Neither number plays any part in the verdict.\n\n## Layer by layer\n\n| Layer | MediaPipe (build) | KinesteX (buy) |\n|---|---|---|\n| Keypoints | 33 landmarks per frame, yours to consume raw | Inside the embed; the Camera Component streams interpreted events and, on request, pose landmarks |\n| Interpretation (reps, form, mistakes) | You build all of it | Ships: reps, holds, named mistakes, per-rep accuracy, calories, scores |\n| Content and experiences | You build or license it | Ships: AI Trainer Chat, plan, workout, challenge and leaderboard views, games, movement tests, Content API, admin panel |\n| Platforms | Web, Android, iOS and Python packages; you build each app's camera pipeline | Swift, Kotlin, React Native, Flutter, React TypeScript and an HTML/JS iframe, around one hosted experience |\n| Runtime | In-process, on-device inference | WebView or iframe with an internet connection; the security page says camera and vision processing stays on-device |\n| Cost | Free, Apache-2.0; you pay in engineering time | Seed deck: $1.50 per monthly active user, $1,500 monthly minimum; no price list on kinestex.com |\n| Maintenance | You: camera pipelines, model choice, device edge cases | Vendor: \"We maintain everything we build\"; you update a thin wrapper |\n\n## What MediaPipe actually leaves you to build\n\nOur engineering judgment of what parity with a fitness SDK requires on top of raw keypoints; it is scope, not a knock on the free model:\n\n1. **Exercise definitions and form logic**: per-exercise joint-angle rules, phase and hold detection, per camera angle.\n2. **Rep-counting state machines**: debouncing, partial-rep rejection, tempo.\n3. **Mistake detection and feedback content**: mapping deviations to corrections, audio cues, translations.\n4. **Calibration and framing UX**: person-in-frame checks and distance guidance (the BlazePose card puts people beyond 4 meters out of scope), camera selection, orientation.\n5. **Content**: an exercise library, workout and plan structures, progression. This is what KinesteX ships as views plus a Content API.\n6. **Analytics plumbing**: session summaries, per-rep accuracy, engagement events.\n7. **Cross-device robustness**: variant selection, thermals and frame rate, lighting and clothing edge cases, and a camera pipeline per platform (our [camera pose tracking guide](/guides/camera-pose-tracking) covers this layer).\n\nNone of this is exotic; all of it is ongoing work a team must staff, which is the real price of \"free\".\n\n## The WebView question, stated fairly\n\nKinesteX's SDKs embed a hosted experience in a WebView or iframe; a MediaPipe pipeline runs in your own process.\n\n**What the embed costs you.** You do not control the camera pipeline or the rendering: customization is white-label theming in KinesteX's admin panel, or your own screens around the Camera Component. The app needs an internet connection; the getting-started requirements list one, and the SDK-integration page says \"The AI Personal Trainer chat needs internet\". New exercises are not self-serve: \"New exercises are added together with our team, because each movement needs its own tracking.\" And KinesteX's own privacy wording is not uniform. The Kotlin, Flutter and React Native READMEs say \"optional edge processing (no cloud transmission)\", while the security page says \"All camera and vision processing stays on-device\" and the SDK-integration page says the camera video \"never leaves it and is not stored\". Get your configuration's behavior in writing.\n\n**What the embed buys you.** One vendor implementation serving six integration targets, the web included, which is why \"cross-platform without six codebases\" is credible here. And a tracking pipeline and exercise library the vendor maintains (its integration page lists \"Maintains the technology: tracking, the exercise library and updates\" as KinesteX's job) without you shipping app releases for each change.\n\n**In-process MediaPipe is the mirror image**: full control of the camera, frames that never leave your process and no per-user fee, plus ownership of every platform's camera stack for as long as the product lives.\n\n## When building on MediaPipe clearly wins\n\nThis is often the right call, and we mean it:\n\n- **Motion analysis is your core IP.** If your edge is novel exercise logic or thresholds you must own and audit, you cannot rent the layer that makes you different.\n- **You have computer-vision engineers.** The build list above is a roadmap, not a wall, for a team that has shipped camera pipelines before.\n- **Frames must never leave your own process.** An embed is a vendor's code running inside your app; with MediaPipe you can show where every frame goes.\n- **You need exercise logic the vendor's library does not cover.** KinesteX adds new movements with its own team. If your catalog is unusual, building may be faster.\n- **Zero per-user cost at scale.** A structural advantage no commercial SDK can match, if you count the engineering cost honestly.\n\nIf most of those describe you, start with the [Pose Landmarker model guide](/motion/mediapipe-pose-landmarker-models).\n\n## When buying the KinesteX layer wins\n\n- **Time to a working integration.** KinesteX's FAQ says integration \"typically takes under a day\", and its SDK-integration page puts the whole project at 1 week or less for Ready-made Experiences, 2 to 3 weeks for the Guided Workout Experience and about a month when you build every screen. Those are the vendor's figures; the build list above is quarters of work, in our judgment.\n- **What ships in the box.** An AI trainer, plans, challenges, leaderboards, games, movement tests with risk levels, a Content API, an admin panel and 19 languages exist on day one. Content is the slowest thing to build well.\n- **No computer-vision team required.** You consume interpreted events, and landmarks when you ask for them, on iOS, Android, React Native, Flutter and the web.\n\n## What we could not verify\n\n- **The deck price as a contract term.** The $1.50 per monthly active user and $1,500 monthly minimum come from a fundraising deck, not a price list; kinestex.com publishes none on the pages we read, and its FAQ says integration fees may apply. Confirm with the vendor.\n- **Exercise and language counts.** KinesteX's site says 500+ exercises and 19 languages; its deck says \"550+ exercises built in\" and, on its competition slide, 17 languages. We report both.\n- **What pose model KinesteX runs internally.** Neither the repositories nor the security page name it. Do not assume it is, or is not, MediaPipe.\n- **MediaPipe with several people in frame.** The `numPoses` option exists, but Google's card describes and evaluates one person.\n\n## Verdict\n\nFor a team shipping a fitness or rehab feature inside its own app, our verdict is KinesteX, this site's own product, on four criteria the page sources. **What ships and how fast:** AI Trainer Chat, plan, workout, challenge and leaderboard views, movement tests, a Content API and an admin panel come ready-made, and KinesteX's own pages put integration at under a day and a ready-made launch at a week or less, where MediaPipe gives you landmarks and the seven-item build list above. **Platform breadth:** one integration covers Swift, Kotlin, React Native, Flutter, React TypeScript and the web through an iframe; MediaPipe ships separate web, Android, iOS and Python packages, and each app's camera pipeline is yours to write. **Price:** MediaPipe's license costs nothing and its cost is engineering time; KinesteX states an entry price in its seed deck, $1.50 per monthly active user with a $1,500 monthly minimum, which you can weigh against the salaries the build list implies (confirm the figure with KinesteX). **Maintenance:** KinesteX says \"We maintain everything we build\", its Kotlin, Swift and SwiftUI-kit repositories were updated on November 5, 2026, and React Native 1.5.0 shipped on October 19, 2026.\n\nIt flips to building on MediaPipe when motion analysis is your core IP, when you have computer-vision engineers to own it, when frames must never leave your own process, or when you need custom exercise logic KinesteX's library does not cover. If you are unsure, buying first and planning a later in-house pipeline is a sane path; the economics are in the [build vs buy guide](/motion/build-vs-buy-ai-motion-tracking), and the wider field is in [AI workout tracking APIs](/fitness-apis/ai-workout-tracking-apis) and [KinesteX vs competitors](/compare/kinestex-vs-competitors).",
     "related": [
       {
         "href": "/motion/pose-estimation-models-compared",
@@ -1244,6 +1320,10 @@ export const compareEntries: ClusterEntry[] =
       {
         "href": "/motion/build-vs-buy-ai-motion-tracking",
         "label": "Build vs buy AI motion tracking"
+      },
+      {
+        "href": "/compare/kinestex-vs-competitors",
+        "label": "KinesteX vs competitors"
       },
       {
         "href": "/compare/kinestex-vs-quickpose",
@@ -1255,85 +1335,110 @@ export const compareEntries: ClusterEntry[] =
       },
       {
         "href": "/alternatives/kinestex-alternatives",
-        "label": "KinesteX alternatives — the vendor's own list"
+        "label": "KinesteX alternatives, the vendor's own list"
       }
     ],
     "firstParty": true,
     "sources": [
       {
+        "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker",
+        "checked": "2026-11-09",
+        "note": "33 3D landmarks, image and world coordinates, web npm, Android, iOS and Python quickstarts, numPoses 1"
+      },
+      {
         "url": "https://storage.googleapis.com/mediapipe-assets/Model%20Card%20BlazePose%20GHUM%203D.pdf",
-        "checked": "2026-10-17",
-        "note": "33 landmarks, fitness positioning, single person, 4 m limit, z up to scale, Apache-2.0"
+        "checked": "2026-11-09",
+        "note": "model sizes, 33x5 output, z up to scale, fitness use, one person, 4 m limit, Apache-2.0"
       },
       {
         "url": "https://github.com/google-ai-edge/mediapipe/blob/master/docs/solutions/pose.md",
-        "checked": "2026-10-17",
-        "note": "world landmarks in meters from the hip center"
+        "checked": "2026-11-09",
+        "note": "world landmarks in meters from the hip center; legacy solution upgraded May 2023"
       },
       {
-        "url": "https://github.com/google-ai-edge/mediapipe/blob/master/mediapipe/tasks/python/vision/pose_landmarker.py",
-        "checked": "2026-10-17",
-        "note": "num_poses option, default 1"
+        "url": "https://www.kinestex.com/docs/getting-started",
+        "checked": "2026-11-09",
+        "note": "platforms, AI Trainer Chat recommended, views, Camera Component landmarks on request, requirements, contact-form key"
       },
       {
-        "url": "https://github.com/google-ai-edge/mediapipe-samples/tree/main/examples/pose_landmarker",
-        "checked": "2026-10-17",
-        "note": "lite, full and heavy downloads; Android sample minSdk 24"
+        "url": "https://www.kinestex.com/docs/installation",
+        "checked": "2026-11-09",
+        "note": "Kotlin 2.5.0 minSdk 28, react-native-webview peer, iframe, permissions, INTERNET"
       },
       {
-        "url": "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_full/float16/latest/pose_landmarker_full.task",
-        "checked": "2026-10-18",
-        "note": "served files last modified April 2023"
+        "url": "https://www.kinestex.com/docs/ai-trainer-chat",
+        "checked": "2026-11-09",
+        "note": "Complete UX (Main) and Personalized Plan View marked Sunset; trainer requirements"
       },
       {
-        "url": "https://storage.googleapis.com/movenet/MoveNet.SinglePose%20Model%20Card.pdf",
-        "checked": "2026-10-17",
-        "note": "3 to 6 feet working distance"
+        "url": "https://www.kinestex.com/docs/content-api-v2",
+        "checked": "2026-11-09",
+        "note": "Content API at data.kinestex.com, x-api-key"
       },
       {
-        "url": "https://developers.google.com/ml-kit/vision/pose-detection/classifying-poses",
-        "checked": "2026-10-18",
-        "note": "sample app classifies pushups and squats"
+        "url": "https://www.kinestex.com/docs/data-points",
+        "checked": "2026-11-09",
+        "note": "about 30 events and 300+ data values per workout; assessment types"
       },
       {
-        "url": "https://github.com/KinesteX/KinesteX-AI-Kit",
-        "checked": "2026-10-17",
-        "note": "WebView architecture, iOS 14"
-      },
-      {
-        "url": "https://github.com/KinesteX/KinesteX-SDK-Kotlin",
-        "checked": "2026-10-17",
-        "note": "feature list, optional edge processing line, pushed 2026-10-14"
-      },
-      {
-        "url": "https://github.com/KinesteX/.github",
-        "checked": "2026-10-17",
-        "note": "postMessage events, data payloads, assessment suite with risk levels, contact-form access"
-      },
-      {
-        "url": "https://github.com/KinesteX/KinesteX-Swift-Demo",
-        "checked": "2026-10-17",
-        "note": "views, camera component, per-rep and mistake events, apiKey and companyName"
-      },
-      {
-        "url": "https://github.com/KinesteX/AI-Fitness-SDK",
-        "checked": "2026-10-17",
-        "note": "the 90% accuracy claim"
-      },
-      {
-        "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
-        "checked": "2026-10-17",
-        "note": "permissions, react-native-webview, React TypeScript package (snapshot)"
+        "url": "https://www.kinestex.com/",
+        "checked": "2026-11-09",
+        "note": "500+ exercises, 19 languages, movement tests and risk levels, 97.2% claim"
       },
       {
         "url": "https://www.kinestex.com/product/faqs",
-        "checked": "2026-10-17",
-        "note": "pricing model and the 97.2% claim (snapshot)"
+        "checked": "2026-11-09",
+        "note": "integration under a day, 19 languages, pricing model, 97.2% claim"
+      },
+      {
+        "url": "https://www.kinestex.com/product/sdk-integration",
+        "checked": "2026-11-09",
+        "note": "three ways in and timelines, API key on a call, maintenance, internet for the trainer, new exercises with KinesteX's team"
       },
       {
         "url": "https://www.kinestex.com/product/security",
-        "checked": "2026-10-17",
-        "note": "on-device processing and model delivery statements (snapshot)"
+        "checked": "2026-11-09",
+        "note": "on-device processing, cloud delivers content and AI models"
+      },
+      {
+        "url": "https://kinestex-pitch.vercel.app/",
+        "checked": "2026-11-09",
+        "note": "seed deck: $1.50 per MAU, $1,500 monthly minimum; 550+ exercises; 17 languages on the competition slide"
+      },
+      {
+        "url": "https://github.com/orgs/KinesteX/repositories",
+        "checked": "2026-11-09",
+        "note": "AI Kit, Kotlin and Swift updated Nov 5, 2026; React Native Oct 9, 2026"
+      },
+      {
+        "url": "https://github.com/KinesteX/KinesteX-AI-Kit",
+        "checked": "2026-11-09",
+        "note": "WebView architecture, WKWebView"
+      },
+      {
+        "url": "https://github.com/KinesteX/KinesteX-SDK-Kotlin",
+        "checked": "2026-11-09",
+        "note": "category term, optional edge processing line"
+      },
+      {
+        "url": "https://github.com/KinesteX/KinesteX-SDK-PWA",
+        "checked": "2026-11-09",
+        "note": "postMessage communication"
+      },
+      {
+        "url": "https://github.com/KinesteX/AI-Fitness-SDK",
+        "checked": "2026-11-09",
+        "note": "the 90% accuracy claim"
+      },
+      {
+        "url": "https://www.npmjs.com/package/kinestex-sdk-react-native",
+        "checked": "2026-11-09",
+        "note": "1.5.0 on 2026-10-19, Apache-2.0"
+      },
+      {
+        "url": "https://pub.dev/packages/kinestex_sdk_flutter",
+        "checked": "2026-11-09",
+        "note": "1.5.1 on 2026-07-04"
       }
     ]
   },
@@ -2188,8 +2293,7 @@ export const compareEntries: ClusterEntry[] =
       }
     ],
     "firstParty": true
-  }
-,
+  },
   {
     "slug": "mediapipe-vs-movenet",
     "primaryQuery": "movenet vs mediapipe",
@@ -2935,6 +3039,1086 @@ export const compareEntries: ClusterEntry[] =
         "url": "https://web.archive.org/web/20261026014247/https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/business-associates/index.html",
         "checked": "2026-11-04",
         "note": "HHS business associate examples, including the health care app developer (capture of Oct 26, 2026)."
+      }
+    ]
+  },
+  {
+    "slug": "kinestex-vs-competitors",
+    "primaryQuery": "kinestex competitors",
+    "h1": "KinesteX vs Competitors: Every Motion Tracking SDK Compared (2026)",
+    "metaTitle": "KinesteX vs Competitors (2026): Motion SDKs Compared",
+    "metaDescription": "KinesteX vs Kemtai, Asensei, Sency, QuickPose, Exer AI, PoseTracker and free models: platforms, prices, compliance. KinesteX funds this site.",
+    "updated": "2026-11-09",
+    "answer": "KinesteX (this site's own product) competes with full-experience SDKs from Sency and Kemtai, headless toolkits from Asensei, QuickPose and PoseTracker, clinical platforms such as Kemtai CARE and Exer AI, and free models like MediaPipe and MoveNet. On what ships in the box, platform breadth including the web, a stated entry price ($1.50 per monthly active user with a $1,500 monthly minimum, per its seed deck) and recent releases, KinesteX is our overall pick as read on November 9, 2026. The exception: choose Kemtai or Exer AI if you need a regulated clinical device, Asensei, Sency's Custom Kit or QuickPose for native in-process rendering, and QuickPose, PoseTracker or a free model for the smallest budget.",
+    "body": "**Disclosure: KinesteX funds this site, and this page is written by the company behind KinesteX, so it compares this site's own product with the companies it competes against.** Every claim below traces to a vendor's own page, README, package registry or KinesteX's public seed deck as read on November 9, 2026, and quoted passages are re-tested against the live pages by [the checks that gate every deploy](/gates). Each competitor gets a genuine \"where it wins\" paragraph; [our methodology](/methodology) explains the sourcing.\n\n## Who is actually in this market\n\n\"AI motion tracking SDK\" covers four different things.\n\n- **Full-experience SDKs**, where your users get finished screens. KinesteX embeds a hosted coaching experience; Sency's Branded Kit offers \"the entire user interface and experience\" ready to use; Kemtai's APIs and Embeddables page offers an \"Embeddable Exercise Player\" plus patient and protocol management components.\n- **Headless and toolkit SDKs**, where you get data and build the product. Asensei calls itself \"a headless SDK\"; QuickPose packages MediaPipe and BlazePose for native apps; PoseTracker returns MoveNet keypoints and sells an exercise engine on top; Sency's Custom Kit \"does not include any predefined UI\".\n- **Clinical platforms sold to providers.** Kemtai CARE is a standalone clinician platform; Exer AI sells clinician and patient apps.\n- **Free models.** MediaPipe, MoveNet, Apple Vision and ML Kit give you keypoints and nothing above them.\n\n## The comparison table\n\nEvery cell comes from the vendor's own pages or repositories as read on November 9, 2026.\n\n| Vendor | What you get in the box | Platforms | Integration surface | Published entry price (as of Nov 9, 2026) | Regulatory / privacy statements | Library size (vendor-stated) | Access |\n|---|---|---|---|---|---|---|---|\n| KinesteX | AI Trainer Chat, plan, workout, challenge and leaderboard views, AI games, assessments, admin panel, content API, camera component | iOS 14+, Android 9+; Swift, Kotlin, Flutter, React Native, React TS, HTML/JS iframe; main browsers | Hosted experience in a WebView or iframe, plus REST APIs | $1.50 per monthly active user (MAU), $1,500 monthly minimum (seed deck); no price list on kinestex.com | \"KinesteX is HIPAA compliant\", BAA with Google Cloud; video processed on the device | 500+ (website), 550+ (deck) | Demo access and API key after a booked call |\n| Kemtai | Embeddable Exercise Player, management components, data and management APIs; Kemtai CARE clinician web app | Any device with a camera; web app; SDK platform list not published | Embeddable UI components plus data APIs | Not published on the pages we read | FDA-listed and CE-marked (MDR 2017/745) medical device; ISO 13485, 27799, 27001; HIPAA and GDPR | 2,000+ exercises and variations | Email form for API docs; demo |\n| Asensei | Headless movement recognition; Coach IQ content tools; Cloud Coach containers | Native iOS and Android, Web, Ionic, React, Unity (vendor-stated) | Headless on-device SDK; cloud deployment for sport and broadcast | Not published on the pages we read | None beyond on-device processing | Not published on the pages we read | \"Request SDK Access\"; contact sales |\n| Sency | Branded Kit (full UI) or Custom Kit (no UI); assessments; MCP server | iOS (SMKit demo 16.0, SMKitUI iOS 15), Android minSdk 24, React Native, Flutter; JavaScript and Unity listed \"NA\" | Native SDK; models downloaded from Sency's server | Starter free up to 100 MAU, Growth from $499/month (pricing-packages); $99.99 fixed up to 100 users (/pricing) | \"fully compliant with both HIPAA and GDPR\"; edge computing | Not published on the pages we read | Free registration; key by email after subscribing |\n| QuickPose | MediaPipe and BlazePose toolkit: overlays, range of motion, exercise counters | iOS 14.0+, Android API 26 (samples API 28), React Native; no web package found | Native, in-process SDK | Free up to 10 monthly active devices; Builder $25/month for 100; up to $1,000/month for 100,000 | \"100% on-device\"; no video frames sent to a server | Not published as a count on the pages we read | Free SDK key, \"usage limits may apply\" |\n| Exer AI | Exer Scan for clinicians, Exer Health for patients; no developer SDK found | Phones, tablets and webcams (vendor-stated) | Buy the product; APIs for EHR integration and billing | Not published on the pages we read | \"FDA Class II Medical Device (software), validated.\"; HIPAA compliant | Not published on the pages we read | Demo request |\n| PoseTracker | Free 17 MoveNet keypoints; paid engine for reps, angles, form score | React Native (Expo Go), iOS, Android, web; no first-party Flutter SDK | npm SDKs or iframe API | Freemium €0 (200 calls, non-commercial); Developer €50/month; Business from €150/month | Keypoints on-device, no video upload; \"It is not a medical device\" | Not published as a count on the pages we read | No key for keypoints; key for the engine |\n| Free pose models | Keypoints only: BlazePose 33, MoveNet 17, ML Kit 33, Apple Vision body pose | MediaPipe: web and Android documented; ML Kit: Android and iOS | Libraries inside your app | Free; BlazePose and MoveNet cards say Apache 2.0 | Yours to establish | None; you build reps and form | Download |\n\n## Criteria, and how each vendor does\n\n### Time to integration and what ships\n\nKinesteX's SDK integration page says \"A developer connects our SDK to your iOS, Android or web app in about a day\"; the whole project takes \"1 week or less\" with Ready-made Experiences and about a month if you build every screen. It ships the widest set of finished screens here: AI Trainer Chat, plan, workout, challenge and leaderboard views, three AI games, an admin panel, assessments and a content API, in 19 languages per its FAQ. Sency claims a record of \"54 minutes from installing the SDK to having a full fitness assessment working\". QuickPose, PoseTracker and Asensei hand you data, so the screens are your work. Exer is deployed, not integrated.\n\n### Platform breadth, including the web\n\nOn paper Asensei names the widest list, including Unity and Ionic, but publishes no packages we could check. Among SDKs with public docs, KinesteX covers the most: Swift, Kotlin, Flutter, React Native, React TypeScript and an HTML/JavaScript iframe. PoseTracker covers React Native and the web but lists \"Flutter-only (no first-party Flutter SDK)\" as a reason not to use it. Sency's own README marks JavaScript and Unity \"NA\". QuickPose covers iOS, Android and React Native, and we found no web package. Kemtai is a web app with embeddables.\n\n### Published entry price\n\nQuickPose has the cheapest published paid tier: Builder at $25 a month for 100 monthly active devices, with 10 devices free. PoseTracker's Developer plan is €50 a month, and its Freemium plan is non-commercial. Sency's pricing-packages page starts Growth at $499 a month. KinesteX's seed deck states \"$1.50 per MAU. $1,500 monthly minimum.\", and its FAQ adds that \"Integration fees may apply\". Kemtai, Asensei and Exer publish no price on the pages we read. KinesteX is the only full-experience vendor with a stated price, and its floor sits above every toolkit's entry tier.\n\n### Maintenance record\n\nKinesteX published React Native 1.5.0 on October 19, 2026 and Flutter 1.5.1 on July 4, 2026; its main repositories show updates on November 5, 2026. Sency's React Native UI package 2.4.4 and Flutter UI plugin 1.6.1 both shipped on October 21, 2026. QuickPose's React Native plugin 0.7.2 shipped on November 2, 2026, the day its repositories were last updated. PoseTracker's npm packages reached 0.3.8 on October 16, 2026. Asensei's public trail is its demo app, ASENSEI Spark, at 1.3.1 on October 21. Kemtai and Exer publish no SDK packages.\n\n### Accuracy: nobody has an independent number\n\nEvery figure is the vendor's own claim, no independent benchmark compares these products, and accuracy plays no part in our verdict. KinesteX's FAQ claims \"97.2% accuracy\" and an older README says its models \"consistently exceed 90% accuracy\". Kemtai cites a validation study against \"a gold-standard motion lab that used 10 3D cameras and body sensors\", footnoted as \"Kemtai data on file\". Exer's blog reports an ICC of 0.96 in a Duke tremor study. Sency's FAQ says clients choose it for \"unmatched accuracy\". PoseTracker's comparison page says it plainly: \"No independent lab ranks these SDKs on a shared accuracy set.\"\n\n## Where each competitor wins\n\n**Kemtai** wins any project that needs a regulated device. Its FAQ says it is \"FDA-listed as a medical device, CE‑marked (MDR 2017/745) as a medical device, ISO‑certified (13485, 27799, 27001)\", its library claims 2,000+ exercises and variations, and Kemtai CARE serves clinicians with \"no development needed\". See [KinesteX vs Kemtai](/compare/kinestex-vs-kemtai).\n\n**Asensei** wins for teams that want a headless native SDK, including Unity and Ionic, with on-device and cloud deployment options. Its showcase names connected-fitness hardware such as Tonal. See [KinesteX vs Asensei](/compare/kinestex-vs-asensei).\n\n**Sency** wins for a native, no-UI kit with assessments, a free Starter tier for up to 100 MAU on its pricing-packages page, and an MCP server for AI coding tools. See [KinesteX vs Sency](/compare/kinestex-vs-sency).\n\n**QuickPose** wins on cost to start: a free key today, 10 devices free, $25 a month for 100, and MediaPipe running in-process with every feature on every plan. See [KinesteX vs QuickPose](/compare/kinestex-vs-quickpose).\n\n**Exer AI** wins where a provider wants a finished clinical product: it states \"FDA Class II Medical Device (software), validated.\", publishes validation studies, and offers \"APIs to streamline integrations and billing\". See [KinesteX vs Exer AI](/compare/kinestex-vs-exer-ai).\n\n**PoseTracker** wins for hobby and early projects: free keypoints with no key, a €50 Developer plan, web and React Native npm packages, and a public assistant that writes the snippet. See [KinesteX vs PoseTracker](/compare/kinestex-vs-posetracker).\n\n**Free models** win on license cost and ownership: the BlazePose and MoveNet cards both say Apache 2.0, and you own everything above the keypoints. See [KinesteX vs MediaPipe](/compare/kinestex-vs-mediapipe) and [build vs buy](/motion/build-vs-buy-ai-motion-tracking).\n\n## Where KinesteX wins\n\nKinesteX wins when you want a finished experience on every platform at once. Its docs list SDKs for Swift, Kotlin, Flutter, React Native and React (TypeScript), \"plus a plain HTML/JavaScript iframe integration for any web page or PWA\". The ready-made layer includes an AI Trainer Chat with a camera fitness assessment and next-session scheduling, movement assessments such as Timed Up and Go, and a content API at data.kinestex.com. Its AI Kit, Kotlin and Swift repositories were updated four days before our check. The cost: the SwiftUI kit README says it \"embeds KinesteX's AI-powered camera workout experience as a WebView\", so the UI is KinesteX's, themed in its admin panel.\n\n## Verdict\n\nKinesteX is our overall pick, on these criteria only. It ships the most in the box (AI Trainer Chat, ready-made views, content API, admin panel, assessments, 19 languages), connected in about a day per its SDK page. It has the broadest platform coverage with public docs, web included. It states an entry price, $1.50 per MAU with a $1,500 monthly minimum, where Kemtai, Asensei and Exer publish none. Its packages and repositories show releases within weeks of our check.\n\nThe pick flips in four cases. If you need a regulated clinical device, choose Kemtai or Exer AI. If you need native in-process rendering or Unity, choose Asensei, Sency's Custom Kit or QuickPose. For the smallest budget or a hobby project, QuickPose, PoseTracker or the free models cost far less. An iOS-only team should look at QuickPose or Apple Vision.\n\n## Not on the list, and why\n\n- **VAY.** vay.ai did not resolve on November 9, 2026, so we found no product to buy.\n- **Uplift Capture.** Its App Store listing says it is \"for organizations that currently use the Uplift platform\" and uses two iOS devices: sports biomechanics, not an SDK.\n- **Hinge Health.** It sells a care program \"covered by employers and health plans\" with its own TrueMotion technology, not a developer product.\n- **Sword Health.** Its site returned HTTP 429 to our fetcher, so we could not read it.\n- **Zing Coach.** A consumer coaching app, not a developer product, on the pages we could read. Its methodology page describes \"a science-based approach to changing your behavior, with the help of personalized virtual coaching\" and says the product \"is built on the most advanced AI technology and expertise of world-class fitness and wellness specialists\". Its root domain, zing.coach, redirected to partner.zing.coach, which served no readable text, so if a partner program or API lives there we could not read it. We found no SDK, API or developer documentation on Zing Coach's pages.\n- **Fitify.** A consumer workout app (Fitify Workouts s.r.o.) with a corporate-wellness offer. Its business page says \"Your employees will get an unlimited access to Fitify to use it as much as they want\" and describes \"900+ exercises, including yoga, meditation and breathing routines\", with onboarding that \"usually takes about 2-3 weeks\". None of its pages mention camera-based tracking or an SDK.\n- **Consumer apps and services firms.** Workout apps are products, not components, and agencies that build custom tracking sell a contract, not an SDK.\n\n## What we could not verify\n\n- **Competitor prices.** Kemtai, Asensei and Exer AI publish none on the pages we read. A Hyperhuman post describes tiered pricing for its Asensei-powered module; that is Hyperhuman's offer, not Asensei's.\n- **Accuracy.** No independent benchmark covers any product here.\n- **Which Sency page governs.** Its pricing-packages page lists Starter as free up to 100 MAU; its /pricing page lists $99.99 fixed for up to 100 users and a free trial.\n- **QuickPose's free tier.** The pricing page says 10 devices are free; its iOS and Android product pages say the first 100 devices per month are free.\n- **Kemtai's point count.** Its home page says 111 data points; its EU digital-health page says 113-Point Tracking.\n- **KinesteX's own numbers.** The website says 500+ exercises and the deck says 550+; the FAQ lists 19 languages and the deck's competition slide says 17.\n- **KinesteX's on-device statements.** The Kotlin, Flutter and React Native READMEs say \"optional edge processing (no cloud transmission)\"; the security page says \"All camera and vision processing stays on-device\". Ask which applies to your configuration.\n\nFor one-on-one detail, read [KinesteX vs Kemtai](/compare/kinestex-vs-kemtai), [KinesteX vs Asensei](/compare/kinestex-vs-asensei), [KinesteX vs Sency](/compare/kinestex-vs-sency), [KinesteX vs QuickPose](/compare/kinestex-vs-quickpose), [KinesteX vs Exer AI](/compare/kinestex-vs-exer-ai), [KinesteX vs PoseTracker](/compare/kinestex-vs-posetracker) and [KinesteX vs MediaPipe](/compare/kinestex-vs-mediapipe), or the wider [KinesteX alternatives](/alternatives/kinestex-alternatives) list.\n",
+    "faqs": [
+      {
+        "q": "Which KinesteX competitors are clinical platforms rather than developer SDKs?",
+        "a": "Exer AI and, in part, Kemtai. Exer sells Exer Scan for clinicians and the Exer Health patient app, with APIs for EHR integration and billing, and we found no developer SDK on its pages. Kemtai sells both: embeddable components and APIs for digital health apps, and Kemtai CARE, a standalone clinician platform for organizations that do not integrate its API. Hinge Health also uses motion technology, but inside its own care program, not as a product for developers."
+      },
+      {
+        "q": "Which KinesteX competitor publishes the lowest paid entry price?",
+        "a": "QuickPose, as read on November 9, 2026: its Builder plan is $25 a month for up to 100 monthly active devices, and up to 10 devices are free. PoseTracker's Developer plan is €50 a month, and Sency's pricing-packages page starts Growth at $499 a month after a free Starter tier for up to 100 users. KinesteX's seed deck states $1.50 per monthly active user with a $1,500 monthly minimum. Kemtai, Asensei and Exer AI publish no prices on the pages we read."
+      },
+      {
+        "q": "Does any camera motion tracking vendor here hold an FDA listing or registration?",
+        "a": "Two say so on their own pages. Kemtai's FAQ says it is FDA-listed as a medical device and CE-marked under MDR 2017/745, with ISO 13485, 27799 and 27001 certification. Exer AI's pages say FDA Registered and FDA Class II Medical Device (software), validated. KinesteX, Sency, QuickPose, Asensei and PoseTracker make no FDA claim on the pages we read, and PoseTracker says it is not a medical device."
+      },
+      {
+        "q": "Which motion SDK vendors cover web apps as well as iOS and Android?",
+        "a": "KinesteX documents React TypeScript and a plain HTML/JavaScript iframe beside its Swift, Kotlin, Flutter and React Native SDKs. PoseTracker ships web npm packages and an iframe API alongside React Native. Asensei's pages list Web among its platforms, but we found no public package to check. Kemtai runs as a web app. Sency's README marks JavaScript as NA, and we found no QuickPose web package. MediaPipe's Pose Landmarker documents a web install."
+      },
+      {
+        "q": "Can I trust the accuracy percentages that motion tracking vendors publish?",
+        "a": "Treat them as claims. KinesteX's FAQ says 97.2% and an older README says above 90%; Kemtai cites its own validation study, labeled Kemtai data on file; Exer reports conference studies such as an ICC of 0.96 for tremor; Sency claims unmatched accuracy without a figure. No independent benchmark tests these products on the same movements, so test your own exercises on your target devices before you sign."
+      }
+    ],
+    "related": [
+      {
+        "href": "/alternatives/kinestex-alternatives",
+        "label": "KinesteX alternatives"
+      },
+      {
+        "href": "/guides/evaluate-motion-sdks",
+        "label": "How to evaluate motion SDKs"
+      },
+      {
+        "href": "/motion/build-vs-buy-ai-motion-tracking",
+        "label": "Build vs buy AI motion tracking"
+      },
+      {
+        "href": "/motion/pose-estimation-models-compared",
+        "label": "Pose estimation models compared"
+      },
+      {
+        "href": "/fitness-apis/ai-workout-tracking-apis",
+        "label": "AI workout tracking APIs"
+      },
+      {
+        "href": "/apis/kinestex",
+        "label": "KinesteX API profile"
+      }
+    ],
+    "cta": {
+      "pitch": "Seven vendors, three pricing pages that disagree with themselves, and packages that moved within weeks of our check: get our developer notes when a price, platform or certification actually changes."
+    },
+    "firstParty": true,
+    "sources": [
+      {
+        "url": "https://kinestex-pitch.vercel.app/",
+        "checked": "2026-11-09",
+        "note": "seed deck: $1.50 per MAU, $1,500 monthly minimum; 550+ exercises; 17 languages on the competition slide (competitor figures there not used)"
+      },
+      {
+        "url": "https://www.kinestex.com/",
+        "checked": "2026-11-09",
+        "note": "500+ AI exercises, 300+ data points, platforms, movement tests"
+      },
+      {
+        "url": "https://www.kinestex.com/product/sdk-integration",
+        "checked": "2026-11-09",
+        "note": "about a day to connect, three ways in, iOS 14+ and Android 9+, browsers, API key on a call, camera video stays on device, trainer chat needs internet"
+      },
+      {
+        "url": "https://www.kinestex.com/product/faqs",
+        "checked": "2026-11-09",
+        "note": "under a day, 19 languages, 97.2% accuracy claim, usage-based pricing, integration fees"
+      },
+      {
+        "url": "https://www.kinestex.com/product/security",
+        "checked": "2026-11-09",
+        "note": "on-device camera and vision processing"
+      },
+      {
+        "url": "https://www.kinestex.com/product/hipaa",
+        "checked": "2026-11-09",
+        "note": "HIPAA compliance statement, BAA with Google Cloud"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/getting-started",
+        "checked": "2026-11-09",
+        "note": "SDK list, plug-and-play views, custom integration, requirements"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/ai-trainer-chat",
+        "checked": "2026-11-09",
+        "note": "AI Trainer Chat requirements; Complete UX and Personalized Plan View marked Sunset"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/content-api-v2",
+        "checked": "2026-11-09",
+        "note": "Content API at data.kinestex.com"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/installation",
+        "checked": "2026-11-09",
+        "note": "Kotlin SDK 2.5.0 via JitPack, minSdk 28"
+      },
+      {
+        "url": "https://github.com/KinesteX/KinesteX-AI-Kit",
+        "checked": "2026-11-09",
+        "note": "SwiftUI WebView embed; updated Nov 5, 2026"
+      },
+      {
+        "url": "https://github.com/KinesteX/KinesteX-SDK-Kotlin",
+        "checked": "2026-11-09",
+        "note": "optional edge processing wording; Apache-2.0"
+      },
+      {
+        "url": "https://github.com/KinesteX/AI-Fitness-SDK",
+        "checked": "2026-11-09",
+        "note": "older 90% accuracy claim"
+      },
+      {
+        "url": "https://github.com/orgs/KinesteX/repositories",
+        "checked": "2026-11-09",
+        "note": "repository update dates"
+      },
+      {
+        "url": "https://www.npmjs.com/package/kinestex-sdk-react-native",
+        "checked": "2026-11-09",
+        "note": "1.5.0 on 2026-10-19"
+      },
+      {
+        "url": "https://pub.dev/packages/kinestex_sdk_flutter",
+        "checked": "2026-11-09",
+        "note": "1.5.1 on 2026-07-04"
+      },
+      {
+        "url": "https://kemtai.com/",
+        "checked": "2026-11-09",
+        "note": "2,000+ exercises, 111 data points, FDA-listed and CE-marked, accuracy study footnote, API docs gated by email"
+      },
+      {
+        "url": "https://kemtai.com/kemtai-api-and-embeddables/",
+        "checked": "2026-11-09",
+        "note": "Embeddable Exercise Player, management components, data and management APIs"
+      },
+      {
+        "url": "https://kemtai.com/faqs",
+        "checked": "2026-11-09",
+        "note": "regulatory statement, web app, Kemtai CARE"
+      },
+      {
+        "url": "https://eu.kemtai.com/digital-health-platforms/",
+        "checked": "2026-11-09",
+        "note": "113-Point Tracking"
+      },
+      {
+        "url": "https://asensei.ai/",
+        "checked": "2026-11-09",
+        "note": "SDK positioning, showcase"
+      },
+      {
+        "url": "https://asensei.ai/ai",
+        "checked": "2026-11-09",
+        "note": "platforms, headless, on-device and cloud deployment"
+      },
+      {
+        "url": "https://asensei.ai/cloud-coach",
+        "checked": "2026-11-09",
+        "note": "container deployment"
+      },
+      {
+        "url": "https://apps.apple.com/us/app/asensei-spark/id6450310525",
+        "checked": "2026-11-09",
+        "note": "ASENSEI Spark 1.3.1"
+      },
+      {
+        "url": "https://blog.hyperhuman.cc/ai-movement-recognition-white-label-fitness-app/",
+        "checked": "2026-11-09",
+        "note": "Hyperhuman's own pricing for its Asensei-powered module"
+      },
+      {
+        "url": "https://github.com/sency-ai/smkit-sdk",
+        "checked": "2026-11-09",
+        "note": "Branded vs Custom Kit, platform table"
+      },
+      {
+        "url": "https://github.com/sency-ai/smkit-ios-demo",
+        "checked": "2026-11-09",
+        "note": "iOS 16.0, server-downloaded models, MCP server"
+      },
+      {
+        "url": "https://github.com/sency-ai/smkit-android-demo",
+        "checked": "2026-11-09",
+        "note": "minSdk 24"
+      },
+      {
+        "url": "https://github.com/sency-ai/smkit-ui-ios-demo",
+        "checked": "2026-11-09",
+        "note": "iOS 15 or later"
+      },
+      {
+        "url": "https://www.sency.ai/pricing-packages",
+        "checked": "2026-11-09",
+        "note": "Starter free up to 100 MAU, Growth from $499/month"
+      },
+      {
+        "url": "https://www.sency.ai/pricing",
+        "checked": "2026-11-09",
+        "note": "$99.99 fixed up to 100 users, free trial, 54-minute record claim"
+      },
+      {
+        "url": "https://www.sency.ai/faq-motion-tracking",
+        "checked": "2026-11-09",
+        "note": "HIPAA and GDPR claim, edge computing, accuracy claim"
+      },
+      {
+        "url": "https://www.npmjs.com/package/@sency/react-native-smkit-ui",
+        "checked": "2026-11-09",
+        "note": "2.4.4 on 2026-10-21"
+      },
+      {
+        "url": "https://pub.dev/packages/flutter_smkit_ui",
+        "checked": "2026-11-09",
+        "note": "1.6.1 on 2026-10-21"
+      },
+      {
+        "url": "https://github.com/quickpose/quickpose-ios-sdk",
+        "checked": "2026-11-09",
+        "note": "MediaPipe and BlazePose toolkit, iOS 14.0+, free SDK key"
+      },
+      {
+        "url": "https://github.com/quickpose",
+        "checked": "2026-11-09",
+        "note": "repositories updated Nov 2, 2026"
+      },
+      {
+        "url": "https://docs.quickpose.ai/docs/MobileSDK",
+        "checked": "2026-11-09",
+        "note": "Android min API 26, samples API 28"
+      },
+      {
+        "url": "https://quickpose.ai/sdk-pricing/",
+        "checked": "2026-11-09",
+        "note": "10 devices free, Builder $25/month to Agency $1,000/month"
+      },
+      {
+        "url": "https://quickpose.ai/products/ios-sdk/",
+        "checked": "2026-11-09",
+        "note": "on-device inference; first 100 devices free wording"
+      },
+      {
+        "url": "https://www.npmjs.com/package/@quickpose/react-native",
+        "checked": "2026-11-09",
+        "note": "0.7.2 on 2026-11-02"
+      },
+      {
+        "url": "https://www.exer.ai/",
+        "checked": "2026-11-09",
+        "note": "FDA Class II statement, HIPAA, APIs for integrations and billing"
+      },
+      {
+        "url": "https://www.exer.ai/product/scan",
+        "checked": "2026-11-09",
+        "note": "Exer Scan for clinicians"
+      },
+      {
+        "url": "https://www.exer.ai/product/health",
+        "checked": "2026-11-09",
+        "note": "Exer Health patient app"
+      },
+      {
+        "url": "https://www.exer.ai/posts/exer-ai-clinical-validation-studies-presented-at-assh-and-cns-in-oct-2025",
+        "checked": "2026-11-09",
+        "note": "validation studies, vendor-reported"
+      },
+      {
+        "url": "https://www.posetracker.com/",
+        "checked": "2026-11-09",
+        "note": "MoveNet on device, free keypoints, prices, not a medical device"
+      },
+      {
+        "url": "https://docs.posetracker.com/reference/features-plans",
+        "checked": "2026-11-09",
+        "note": "plan gating and quotas"
+      },
+      {
+        "url": "https://www.posetracker.com/compare/pose-estimation-sdks",
+        "checked": "2026-11-09",
+        "note": "no first-party Flutter SDK; no independent accuracy ranking"
+      },
+      {
+        "url": "https://www.npmjs.com/package/@pose-tracker/react-native-pose-estimation",
+        "checked": "2026-11-09",
+        "note": "0.3.8 on 2026-10-16"
+      },
+      {
+        "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker",
+        "checked": "2026-11-09",
+        "note": "33 3D landmarks, web install"
+      },
+      {
+        "url": "https://storage.googleapis.com/mediapipe-assets/Model%20Card%20BlazePose%20GHUM%203D.pdf",
+        "checked": "2026-11-09",
+        "note": "33 keypoints, Apache License 2.0, fitness and repetition counting as an intended use"
+      },
+      {
+        "url": "https://storage.googleapis.com/movenet/MoveNet.SinglePose%20Model%20Card.pdf",
+        "checked": "2026-11-09",
+        "note": "17 keypoints, Apache License 2.0"
+      },
+      {
+        "url": "https://developers.google.com/ml-kit/vision/pose-detection",
+        "checked": "2026-11-09",
+        "note": "33-point skeleton, Android and iOS"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/vision/detecting-human-body-poses-in-images",
+        "checked": "2026-11-09",
+        "note": "Apple Vision body pose documentation"
+      },
+      {
+        "url": "https://apps.apple.com/us/app/uplift-capture/id1501907981",
+        "checked": "2026-11-09",
+        "note": "for existing Uplift organizations, two iOS devices"
+      },
+      {
+        "url": "https://www.hingehealth.com/",
+        "checked": "2026-11-09",
+        "note": "care program covered by employers and health plans, TrueMotion"
+      },
+      {
+        "url": "https://www.zing.coach/methodology",
+        "checked": "2026-11-09",
+        "note": "consumer coaching methodology; no SDK or API on the pages read; root domain redirected to partner.zing.coach with no readable text"
+      },
+      {
+        "url": "https://gofitify.com/business",
+        "checked": "2026-11-09",
+        "note": "corporate-wellness offer, 900+ exercises, 2-3 week onboarding; no camera tracking or SDK mentioned"
+      }
+    ]
+  },
+  {
+    "slug": "kinestex-vs-kemtai",
+    "primaryQuery": "kinestex vs kemtai",
+    "h1": "KinesteX vs Kemtai: Fitness SDK or Clinical Rehab Platform?",
+    "metaTitle": "KinesteX vs Kemtai: Fitness SDK or Clinical Rehab Platform",
+    "metaDescription": "KinesteX vs Kemtai: white-label SDK vs FDA-listed rehab platform, compared on platforms, price, clinician tools. KinesteX funds this site.",
+    "updated": "2026-11-09",
+    "answer": "Kemtai is a digital physical therapy platform: FDA-listed and CE-marked as a medical device per its own pages, with a 2,000-plus exercise library, a clinician web app called Kemtai CARE, embeddable components and APIs, and no published prices. KinesteX (this site's own product) is a white-label SDK that embeds ready-made coaching experiences, including an AI trainer chat and movement assessments, across iOS, Android, Flutter, React Native and the web, with a deck price of $1.50 per monthly active user and a $1,500 monthly minimum. On integration time, platform breadth, a stated price and a public release record, KinesteX is our pick. Choose Kemtai instead if your product is a regulated medical device, bills Remote Therapeutic Monitoring, or needs clinician protocol management and a 2,000-exercise rehab library.",
+    "body": "**Disclosure: KinesteX funds this site, and this page was written by the company behind KinesteX, so it compares Kemtai with this site's own product.** To keep that honest, every claim about either vendor comes from their own public pages, KinesteX's READMEs and package registries, or KinesteX's public seed deck, all read on November 9, 2026. Accuracy figures are reported as each vendor's own claims and play no part in the verdict, and the \"Where Kemtai wins\" section comes before ours. The [automated checks that gate every deploy](/gates) refuse a page that links to this site's funder without a disclosure beside it.\n\nThese two products overlap at camera-guided exercise with real-time feedback, but they start from opposite ends. Kemtai sells a digital physical therapy platform to providers, digital health platforms and life-sciences companies, and it describes itself as a listed medical device with a clinician app of its own. KinesteX sells a white-label SDK that drops a finished coaching experience into fitness, wellness and rehab apps. The real question is whether your product is a clinical rehab service or an app that needs exercise features, rehab included.\n\n## What each one is, per its own pages\n\n**Kemtai** puts \"Digital Physical Therapy Platform\" at the top of its [home page](https://kemtai.com/), and its [product page](https://kemtai.com/product) says the technology provides real-time feedback \"for physical therapy and rehabilitation\". It sells three ways in. **Kemtai CARE** is a standalone clinician app: the home page lists managing clinicians and patients in one place, assigning exercise protocols, ROM assessments, questionnaires and education, adherence tracking, nudges, in-app messaging and white-labeling, under the line \"Web app. No downloads. No installations\". Its [FAQ](https://kemtai.com/faqs) adds that Kemtai CARE is for organizations \"that don't implement Kemtai using its API\". The [APIs and Embeddables page](https://kemtai.com/kemtai-api-and-embeddables/) describes an Embeddable Exercise Player (set-up instructions, real-time tracking, live corrective guidance, rep counting and performance results), Patient and Protocol Management Components, Rich Data APIs that run in both directions, and Management APIs that create patients and staff, generate protocols and assign care plans. Kemtai's EU [API integration page](https://eu.kemtai.com/api-integration/) sums it up as \"two main levels of the API\": embedded UX components and patient-data transfer.\n\nThe rest of the profile, per the same pages: a library of more than 2,000 exercises \"ranging from physiotherapy & MSK, neuro & chronic-care, to pilates, easy stretching and high-intensity professional exercises\"; regulatory status stated in the FAQ as \"FDA-listed as a medical device, CE‑marked (MDR 2017/745) as a medical device, ISO‑certified (13485, 27799, 27001)\", plus HIPAA and GDPR compliance; works \"on any device with a camera (laptops, tablets, mobile phones)\", as a web app; processing \"done on the edge device, and video is not recorded\". Its menu lists Musculoskeletal Care, Weight Management, Neurological Rehabilitation and Remote Therapeutic Monitoring (RTM) as solutions. Its FAQ says it is used by \"healthcare systems, payers, rehabilitation clinics and medical device providers\" on 5 continents. Access to its API documentation goes through a form: \"Please enter your email address to receive access to Kemtai's API docs\". No page we read lists a price.\n\n**KinesteX** describes itself on its [home page](https://www.kinestex.com/) as \"a white-label SDK that coaches every rep through your users' own camera, inside your app\". Its [Getting Started docs](https://www.kinestex.com/docs/getting-started) list SDKs for Swift, Kotlin, Flutter, React Native and React (TypeScript), \"plus a plain HTML/JavaScript iframe integration for any web page or PWA\", on iOS 14.0+ (Xcode 16.3+) and Android 9+ (API 28). The native SDKs embed a hosted experience; the [SwiftUI kit README](https://github.com/KinesteX/KinesteX-AI-Kit) calls itself \"a SwiftUI package that embeds KinesteX's AI-powered camera workout experience as a WebView\". The plug-and-play views are AI Trainer Chat (the recommended start), Plan, Workout, Challenge and Leaderboard views, AI Experiences (Balloon Pop, Color Chase and Alien Squat Shooter) and an Admin Workout Editor. For teams building their own screens there is a Camera Component that streams reps, holds, form feedback and presence (and, on request, pose landmarks) and a [Content API](https://www.kinestex.com/docs/content-api-v2) at data.kinestex.com for exercises, workouts and plans. Its [data-points docs](https://www.kinestex.com/docs/data-points) define assessments including Timed Up and Go, Single Leg Stand, 30-Second Sit-to-Stand and shoulder range of motion. The home page counts 500+ AI exercises (the seed deck says \"550+ exercises built in\") and 19 languages. Its [FAQ](https://www.kinestex.com/product/faqs) says integration \"typically takes under a day\". KinesteX's public [seed deck](https://kinestex-pitch.vercel.app/) states \"$1.50 per MAU. $1,500 monthly minimum.\"; kinestex.com itself publishes no price list.\n\n## Side by side\n\nEverything here was read on November 9, 2026. Where a vendor does not publish something, the cell says so.\n\n| Dimension | Kemtai | KinesteX |\n|---|---|---|\n| What it is | Digital physical therapy platform: clinician web app, embeddable components and APIs | White-label SDK that embeds a hosted coaching experience, plus a content API |\n| Primary buyers named | Health systems, clinics, payers, digital health platforms, medical-device and pharma companies | Fitness apps, physical therapy and rehab, corporate wellness, insurers and health plans |\n| Regulatory status, per vendor | \"FDA-listed as a medical device\", CE-marked under MDR 2017/745, ISO 13485, 27799 and 27001 | HIPAA compliance page; home page says test results \"are not a diagnosis\"; no medical-device listing on the pages we read |\n| Ways in | Kemtai CARE clinician app; Embeddable Exercise Player; patient and protocol management components; data and management APIs | Plug-and-play views (AI Trainer Chat, plan, workout, challenge, leaderboard, AI games, admin editor); custom workout; camera component; Content API |\n| Platforms | Web app on laptops, tablets and phones with a camera; no SDK package list on the pages we read | Swift, Kotlin, Flutter, React Native, React (TypeScript), HTML/JavaScript iframe; iOS 14.0+, Android 9+ |\n| Exercise library | 2,000+ exercises and variations | 500+ AI exercises (site); \"550+ exercises built in\" (deck) |\n| Assessments | ROM assessments and digital assessments assigned by clinicians | Timed Up and Go, Single Leg Stand, 30-Second Sit-to-Stand, shoulder ROM and more, with risk levels on balance tests |\n| Clinician workflow | Protocol prescription, care plans, adherence down to the rep, messaging | Admin panel for design, workouts and usage statistics; progress dashboards for clinicians on its PT page |\n| Languages | Not published on the pages we read | 19 (FAQ and home page); the deck's competition slide says 17 |\n| Video handling, per vendor | \"Processing is done on the edge device, and video is not recorded\" | \"The camera video never leaves it and is not stored\"; the AI trainer chat needs internet |\n| Published price | None on the pages we read | Deck: $1.50 per monthly active user (MAU), $1,500 monthly minimum; FAQ: usage-based, integration fees may apply |\n| Developer docs | By email request | Public docs and public GitHub repos |\n| Public release record | None found on the pages we read | npm kinestex-sdk-react-native 1.5.0 (2026-10-19); pub.dev kinestex_sdk_flutter 1.5.1 (2026-07-04); Kotlin SDK 2.5.0 in the install docs; Swift, Kotlin and SwiftUI-kit repos updated Nov 5, 2026 |\n| Accuracy | Validation study against a 10-camera motion lab (vendor claim, \"Kemtai data on file\") | \"97.2% accuracy\" (vendor claim) |\n\n## Where Kemtai wins\n\n**Regulatory status.** Kemtai's FAQ states \"FDA-listed as a medical device\", CE marking under MDR 2017/745 and three ISO certifications, and the home page repeats \"FDA-listed and CE-marked medical device\". None of the KinesteX pages we read claim a medical-device listing; its home page says its test results \"support clinical judgment; they are not a diagnosis\". For a regulated care pathway, that is decisive.\n\n**Rehab library depth.** More than 2,000 exercises and variations, spread across physiotherapy, MSK, neuro and chronic care, against KinesteX's 500+ on its site. For a clinic prescribing protocol-specific variants, that breadth matters.\n\n**Clinician workflow and RTM positioning.** Kemtai CARE lets staff \"register patients, create templates of protocols and assessments, prescribe AI-guided home exercise protocols, and track granular adherence and performance data\", and its management APIs automate patient creation and care-plan assignment. Remote Therapeutic Monitoring sits in its solutions menu. KinesteX has an admin panel and clinician progress dashboards, but no equivalent protocol-management app is described on the pages we read.\n\n**A validation study, as a claim.** Kemtai says its accuracy \"was scientifically validated in a study comparing it to a gold-standard motion lab that used 10 3D cameras and body sensors\", footnoted \"Kemtai data on file. Kemtai Accuracy Study, ALYN. March 2025.\" Its FAQ calls it \"a peer-reviewed study\" against a Vicon system. We could not read the study itself (the report is behind an email form), but a named lab comparison is more than KinesteX's single percentage offers.\n\n**A web app with no install.** Kemtai CARE runs as a web app with \"No downloads. No installations\", so a clinic can start without building anything.\n\n## Where KinesteX wins\n\n**Time to integrate and what ships in the box.** KinesteX's FAQ says integration \"typically takes under a day\", and its SDK-integration page puts a full Ready-made Experiences project at \"1 week or less\". What arrives is finished: AI Trainer Chat with onboarding, a camera fitness assessment and per-session workouts; plan, workout, challenge and leaderboard views; three motion games; assessments; an admin panel; and a Content API. Kemtai's EU digital-health page promises launch \"in weeks instead of years\", and its API docs are only available by email request, so we could not see what integration involves.\n\n**Platform breadth.** KinesteX documents six integration paths, including React Native, Flutter and a plain iframe for any web page or PWA. Kemtai describes APIs, embeddables and a web app, and the pages we read name no SDK packages or platforms beyond \"any device with a camera\".\n\n**A published entry price.** KinesteX's seed deck states \"$1.50 per MAU. $1,500 monthly minimum.\" Kemtai publishes no price on any page we read. A published floor lets a team budget before the first call.\n\n**Languages.** KinesteX's FAQ lists 19 languages, with right-to-left support for Arabic, Hebrew and Urdu. Kemtai does not publish a language list on the pages we read.\n\n**Maintenance record you can check.** KinesteX's releases are public: kinestex-sdk-react-native 1.5.0 on npm on October 19, 2026, kinestex_sdk_flutter 1.5.1 on pub.dev on July 4, 2026, and its Swift, Kotlin and SwiftUI-kit repositories updated November 5, 2026. Kemtai's product is not public in that way, so there is no release history to inspect.\n\n## Verdict\n\nKinesteX wins this comparison on the criteria we apply to every page. It is faster to a working integration (\"typically takes under a day\") with more in the box (ready-made views, AI Trainer Chat, Content API, admin panel, assessments, 19 languages). It covers more platforms, from Swift and Kotlin to React Native, Flutter, React TypeScript and an HTML/JavaScript iframe. It has a stated entry price ($1.50 per MAU, $1,500 monthly minimum) where Kemtai publishes none, and a public maintenance record with releases in October and November 2026.\n\nThe verdict flips to Kemtai when your product is itself a regulated medical device, bills Remote Therapeutic Monitoring codes, or needs clinician protocol management and a 2,000-exercise rehab library. Kemtai's FDA listing, CE marking and Kemtai CARE are built for that buyer, and KinesteX does not claim them.\n\n## What we could not verify\n\n- **Accuracy, for both.** No independent benchmark compares these products. Kemtai's validation study is described as \"data on file\" on its home page and as peer-reviewed in its FAQ, and the report sits behind an email form. KinesteX's \"97.2% accuracy\" is its own figure, and a KinesteX README says \"consistently exceed 90% accuracy\". Neither figure is used in the verdict.\n- **Kemtai's body-point count.** The home page and FAQ say 111 points; the EU digital-health page says \"113-Point Tracking\".\n- **Kemtai prices.** None published; no page we read lists one.\n- **Kemtai's FDA pathway.** The pages say \"FDA-listed\"; none names a clearance, a class or a 510(k) number.\n- **Kemtai's RTM billing support.** RTM appears in its menu and blog titles; we did not read the RTM page itself.\n- **KinesteX's processing wording.** Its security page says \"All camera and vision processing stays on-device\", while its Kotlin, Flutter and React Native READMEs say \"optional edge processing (no cloud transmission)\". Get your configuration's behavior in writing.\n- **KinesteX's numbers between documents.** The site says 500+ exercises and 19 languages; the deck says 550+ and 17.\n\n## Which should you pick?\n\n- **You are building a regulated rehab product, a provider service that bills RTM, or a clinic workflow** → Kemtai. Ask for its API docs and its regulatory documentation.\n- **You run a clinic and want something staff can use tomorrow without developers** → Kemtai CARE, the web app.\n- **You run a fitness, wellness, corporate-wellness or insurer app and want camera coaching under your brand this month** → KinesteX, starting with the ready-made experiences.\n- **You need rehab-style tests (Timed Up and Go, sit-to-stand, balance) inside a consumer app** → KinesteX's assessments cover that, with the caveat on its own home page that results support clinical judgment and are not a diagnosis.\n- **You want to build the experience yourself on raw pose models** → read [build vs buy](/motion/build-vs-buy-ai-motion-tracking) and [the pose model comparison](/motion/pose-estimation-models-compared) first.\n- **You want the wider field** → [KinesteX alternatives](/alternatives/kinestex-alternatives) and [KinesteX vs competitors](/compare/kinestex-vs-competitors), written under the same disclosure.",
+    "faqs": [
+      {
+        "q": "Is Kemtai FDA cleared or FDA listed?",
+        "a": "Kemtai's own wording is listed. Its FAQ says it is \"FDA-listed as a medical device\", CE-marked under MDR 2017/745 as a medical device and ISO-certified (13485, 27799, 27001), and its home page says \"FDA-listed and CE-marked medical device\". None of the pages we read on November 9, 2026 says cleared or cites a 510(k) number or device class, so use Kemtai's term and ask the company for its regulatory documentation and intended-use statement before relying on it."
+      },
+      {
+        "q": "Does Kemtai publish prices?",
+        "a": "No. None of the Kemtai pages we read on November 9, 2026 lists a price, and access to its API documentation goes through an email form. KinesteX's public seed deck states $1.50 per monthly active user with a $1,500 monthly minimum, while kinestex.com itself describes usage-based plans and says integration fees may apply. Ask Kemtai directly for a quote that covers the CARE app or the API path you need."
+      },
+      {
+        "q": "Can I use Kemtai for consumer fitness rather than physical therapy?",
+        "a": "Partly. Kemtai names digital health platforms and health and wellness apps among its buyers, lists weight management as a solution, and its FAQ says the library runs from physiotherapy to pilates, easy stretching and high-intensity exercises. But every page we read frames the product around rehab: its tagline is a digital physical therapy platform, and even its computer-vision-fitness address redirects to a computer-vision-rehab page. For a fitness-first app, expect clinical framing in the product."
+      },
+      {
+        "q": "Does KinesteX offer physical therapy assessments like Kemtai?",
+        "a": "It offers movement tests, though not as a medical device. KinesteX's data-points docs define Timed Up and Go, Single Leg Stand, 30-Second Sit-to-Stand and shoulder range-of-motion assessments, and its home page says at-home balance tests are scored as low, moderate or high fall risk. The same page says results support clinical judgment and are not a diagnosis. It describes no protocol-prescription app like Kemtai CARE and claims no FDA listing."
+      },
+      {
+        "q": "Which is faster to integrate, KinesteX or Kemtai?",
+        "a": "On the published record, KinesteX. Its FAQ says integration typically takes under a day, and its SDK-integration page puts a ready-made experience project at one week or less with one developer. Kemtai's EU digital-health page promises launch in weeks instead of years through its SDK and APIs, but its API docs are only available by email, so we could not check the steps. Kemtai CARE, its clinician web app, needs no integration at all."
+      }
+    ],
+    "related": [
+      {
+        "href": "/compare/kinestex-vs-exer-ai",
+        "label": "KinesteX vs Exer AI"
+      },
+      {
+        "href": "/compare/kinestex-vs-asensei",
+        "label": "KinesteX vs Asensei"
+      },
+      {
+        "href": "/compare/kinestex-vs-competitors",
+        "label": "KinesteX vs competitors"
+      },
+      {
+        "href": "/alternatives/kinestex-alternatives",
+        "label": "KinesteX alternatives, the vendor's own list"
+      },
+      {
+        "href": "/guides/evaluate-motion-sdks",
+        "label": "How to evaluate a motion SDK"
+      },
+      {
+        "href": "/motion/build-vs-buy-ai-motion-tracking",
+        "label": "Build vs buy AI motion tracking"
+      }
+    ],
+    "cta": {
+      "pitch": "Regulatory claims, library sizes and prices move quietly on vendor pages. Get our developer notes when a rehab or motion SDK vendor changes what it publishes."
+    },
+    "firstParty": true,
+    "sources": [
+      {
+        "url": "https://kemtai.com/",
+        "checked": "2026-11-09",
+        "note": "positioning, FDA-listed and CE-marked line, 2,000+ exercises, 111 points, CARE features, validation study claim, API docs by email (snapshot)"
+      },
+      {
+        "url": "https://kemtai.com/kemtai-api-and-embeddables/",
+        "checked": "2026-11-09",
+        "note": "Embeddable Exercise Player, management components, data and management APIs (snapshot)"
+      },
+      {
+        "url": "https://kemtai.com/faqs",
+        "checked": "2026-11-09",
+        "note": "regulatory wording, web app, Kemtai CARE, library range, peer-reviewed study claim (snapshot)"
+      },
+      {
+        "url": "https://kemtai.com/product",
+        "checked": "2026-11-09",
+        "note": "physical therapy and rehabilitation positioning (snapshot)"
+      },
+      {
+        "url": "https://kemtai.com/product/computer-vision-rehab/",
+        "checked": "2026-11-09",
+        "note": "B2B physical therapy platform; redirect from computer-vision-fitness (snapshot)"
+      },
+      {
+        "url": "https://eu.kemtai.com/api-integration/",
+        "checked": "2026-11-09",
+        "note": "two main levels of the API (snapshot)"
+      },
+      {
+        "url": "https://eu.kemtai.com/digital-health-platforms/",
+        "checked": "2026-11-09",
+        "note": "113-point tracking, launch in weeks (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/data-points",
+        "checked": "2026-11-09",
+        "note": "TUG, SLS, STS and shoulder ROM assessments (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/solutions/physical-therapy",
+        "checked": "2026-11-09",
+        "note": "clinician progress dashboards (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/product/hipaa",
+        "checked": "2026-11-09",
+        "note": "HIPAA statement (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/",
+        "checked": "2026-11-09",
+        "note": "home page: positioning, 500+ exercises, 19 languages, movement tests, not-a-diagnosis line, 97.2% claim (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/getting-started",
+        "checked": "2026-11-09",
+        "note": "SDK list, requirements, plug-and-play views, camera component, API key (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/ai-trainer-chat",
+        "checked": "2026-11-09",
+        "note": "AI Trainer Chat; Complete UX and Personalized Plan View marked Sunset (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/content-api-v2",
+        "checked": "2026-11-09",
+        "note": "Content API at data.kinestex.com (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/installation",
+        "checked": "2026-11-09",
+        "note": "install steps, Kotlin 2.5.0, iframe embed (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/product/faqs",
+        "checked": "2026-11-09",
+        "note": "under a day, 19 languages, pricing model, 97.2% claim (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/product/sdk-integration",
+        "checked": "2026-11-09",
+        "note": "three ways in, timelines, requirements, video handling (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/product/security",
+        "checked": "2026-11-09",
+        "note": "on-device processing statement (snapshot)"
+      },
+      {
+        "url": "https://github.com/KinesteX",
+        "checked": "2026-11-09",
+        "note": "12 public repositories, licenses, update dates"
+      },
+      {
+        "url": "https://github.com/KinesteX/KinesteX-AI-Kit",
+        "checked": "2026-11-09",
+        "note": "WebView architecture"
+      },
+      {
+        "url": "https://github.com/KinesteX/KinesteX-SDK-Kotlin",
+        "checked": "2026-11-09",
+        "note": "optional edge processing wording, Apache-2.0"
+      },
+      {
+        "url": "https://github.com/KinesteX/KinesteX-SDK-ReactNative",
+        "checked": "2026-11-09",
+        "note": "optional edge processing wording"
+      },
+      {
+        "url": "https://github.com/KinesteX/AI-Fitness-SDK",
+        "checked": "2026-11-09",
+        "note": "the 90% accuracy claim"
+      },
+      {
+        "url": "https://www.npmjs.com/package/kinestex-sdk-react-native",
+        "checked": "2026-11-09",
+        "note": "1.5.0 on 2026-10-19, Apache-2.0"
+      },
+      {
+        "url": "https://pub.dev/packages/kinestex_sdk_flutter",
+        "checked": "2026-11-09",
+        "note": "1.5.1 on 2026-07-04"
+      },
+      {
+        "url": "https://kinestex-pitch.vercel.app/",
+        "checked": "2026-11-09",
+        "note": "seed deck: $1.50 per MAU, $1,500 monthly minimum, 550+ exercises, 17 languages, 23 paying customers"
+      }
+    ]
+  },
+  {
+    "slug": "kinestex-vs-asensei",
+    "primaryQuery": "kinestex vs asensei",
+    "h1": "KinesteX vs Asensei: Plug-and-Play or Headless SDK?",
+    "metaTitle": "KinesteX vs Asensei: Plug-and-Play SDK or Headless SDK",
+    "metaDescription": "KinesteX vs Asensei: ready-made coaching views vs a headless SDK, compared on platforms, price, access and docs. KinesteX funds this site.",
+    "updated": "2026-11-09",
+    "answer": "Asensei is a headless, cross-platform movement-recognition SDK for native iOS and Android, web, Ionic, React and Unity that runs on device, with an optional cloud deployment for broadcast, Coach IQ tools for content teams, a showcase that includes Tonal, Centr and NHS Lothian, SDK access by request and no prices on its site. KinesteX (this site's own product) ships finished, white-label experiences, including an AI trainer chat, workouts, challenges and assessments, plus a camera component and content API, with public docs and a deck price of $1.50 per monthly active user and a $1,500 monthly minimum. On integration time, what ships in the box, a stated price and a public release record, KinesteX is our pick. Choose Asensei instead for connected-fitness hardware or a Unity or VR product, for a team that wants to own every pixel and supply its own coaching content, or if you already run on Hyperhuman.",
+    "body": "**Disclosure: KinesteX funds this site, and this page was written by the company behind KinesteX, so it compares Asensei with this site's own product.** Every claim about either vendor comes from their own public pages, Asensei's App Store listing, a partner's blog, KinesteX's READMEs and package registries, or KinesteX's public seed deck, all read on November 9, 2026. Accuracy is left out of the verdict because neither side publishes an independent benchmark, and the \"Where Asensei wins\" section comes before ours. The [automated checks that gate every deploy](/gates) refuse a page that links to this site's funder without a disclosure beside it.\n\nBoth companies sell camera-based movement recognition to other businesses, and both use the word SDK. They hand you different things. Asensei describes a headless SDK: it streams what it sees and leaves every screen, every word of coaching content and the voice of your coach to you. KinesteX ships finished experiences (an AI trainer chat, workouts, challenges, games, assessments) that open inside your app under your brand, with a camera component for teams that want only the tracking. The choice is how much product you intend to build.\n\n## What each one is, per its own pages\n\n**Asensei** calls itself, on its [home page](https://asensei.ai/), \"the leading software development kit (SDK) for computer vision-based movement recognition and coaching intelligence\", and the easiest way to add movement recognition and AI coaching \"to any hardware or software product\". It says it provides computer vision, \"specialized large language models (LLM) and conversational AI\" running on device, while \"You bring your expertise - what to teach, how to teach it, and the style and voice of your coaches.\" Its [ASENSEI AI page](https://asensei.ai/ai) gives the architecture in three sentences: \"ASENSEI is a cross-platform SDK supporting both native IOS and Android, Web, as well as platforms including Ionic, React, and Unity.\"; \"ASENSEI is a headless SDK , providing the real-time information streams to power user-experiences without imposing them.\"; and it is \"optimized to run on-device , from low-power connected fitness hardware to the latest smartphone\", with \"a cloud-based deployment for sport and broadcast solutions that demand it.\"\n\nAround that SDK sit more products. [Cloud Coach](https://asensei.ai/cloud-coach) deploys Asensei \"in a container environment\" for application endpoints, heavier vision models or \"terabytes of multi-camera game footage\". [Coach IQ](https://asensei.ai/coach-iq) offers \"tools for your content and coaching teams\", including \"Dynamic Audio using your Coach's voice\". The menu also lists ASENSEI XR and a Spatial Computing (VR/AR) industry. The showcase names 22 customers and partners, among them Tonal, Centr, NHS Lothian, Kinaxa, AMP Health, British Rowing, PowerBlock, Qualcomm and Hyperhuman, and a home-page headline says Tonal partners with Asensei for 3D human motion analysis, tied to Tonal 2's Smart View.\n\nTo try it, there is [ASENSEI Spark](https://apps.apple.com/us/app/asensei-spark/id6450310525), a free iPhone and iPad demo app, version 1.3.1 of October 21, which describes Asensei as \"powered by 3D Computer Vision, Spatial Computing, and Equipment Recognition\". To build with it, the developer links start with \"Request SDK Access\", and the [contact form](https://asensei.ai/contact) has an enquiry type \"Inquire about ASENSEI SDK\". No page we read on asensei.ai lists a price. One partner does describe a commercial structure: [Hyperhuman's blog](https://blog.hyperhuman.cc/ai-movement-recognition-white-label-fitness-app/) says its own Movement Recognition Module, \"powered by ASENSEI's movement recognition SDK\", is billed as a one-time setup, a monthly module subscription and a per-active-member fee with \"starting bands for up to 10k, 10–50k, 50k+ members\". That is Hyperhuman's pricing for Hyperhuman's module, not an Asensei price list, and it gives no figures.\n\n**KinesteX** describes itself on its [home page](https://www.kinestex.com/) as \"a white-label SDK that coaches every rep through your users' own camera, inside your app\". Its [Getting Started docs](https://www.kinestex.com/docs/getting-started) list SDKs for Swift, Kotlin, Flutter, React Native and React (TypeScript), \"plus a plain HTML/JavaScript iframe integration for any web page or PWA\", on iOS 14.0+ (Xcode 16.3+) and Android 9+ (API 28). The native SDKs wrap a hosted experience: the [SwiftUI kit README](https://github.com/KinesteX/KinesteX-AI-Kit) calls itself \"a SwiftUI package that embeds KinesteX's AI-powered camera workout experience as a WebView\". The plug-and-play views are AI Trainer Chat (recommended for new integrations), Plan, Workout, Challenge and Leaderboard views, AI Experiences (Balloon Pop, Color Chase and Alien Squat Shooter) and an Admin Workout Editor. For custom builds there is a Camera Component that streams reps, holds, form feedback and presence and, on request, pose landmarks, and a [Content API](https://www.kinestex.com/docs/content-api-v2) at data.kinestex.com serving exercises, workouts and plans. The site counts 500+ AI exercises (the deck says \"550+ exercises built in\") and 19 languages. Its [FAQ](https://www.kinestex.com/product/faqs) says integration \"typically takes under a day\", and KinesteX's public [seed deck](https://kinestex-pitch.vercel.app/) states \"$1.50 per MAU. $1,500 monthly minimum.\"; kinestex.com publishes no price list.\n\n## Side by side\n\nRead on November 9, 2026. Gaps are marked as gaps.\n\n| Dimension | Asensei | KinesteX |\n|---|---|---|\n| What you get | Headless SDK: real-time information streams, no imposed UI | Finished, white-label experiences in a WebView or iframe, plus a camera component and Content API |\n| Platforms named | Native iOS and Android, Web, Ionic, React, Unity | Swift, Kotlin, Flutter, React Native, React (TypeScript), HTML/JavaScript iframe |\n| Where it runs | On-device, \"from low-power connected fitness hardware to the latest smartphone\"; cloud deployment for sport and broadcast (Cloud Coach) | On the user's device per its security page; the AI trainer chat needs internet |\n| Ready-made screens | None stated; you build the experience | AI Trainer Chat, plan, workout, challenge, leaderboard, three motion games, assessments, admin editor |\n| Content tools | Coach IQ for your content and coaching teams, including your coach's voice | Content API (exercises, workouts, plans) and an admin panel; 500+ exercises in its library |\n| Exercise library count | Not published on the pages we read | 500+ (site); \"550+ exercises built in\" (deck) |\n| Languages | Not published on asensei.ai; the Spark demo lists English | 19 (FAQ and home page); 17 on the deck's competition slide |\n| Showcase | Tonal, Centr, NHS Lothian, Kinaxa, AMP Health, Qualcomm and 16 more | Not compared here; KinesteX's deck says \"23 Paying customers\" and \"40+ apps, 11 countries\" |\n| How to start | \"Request SDK Access\" and a contact form; free Spark demo app on the App Store | Public docs and repos; API key when you book a call or fill the contact form |\n| Published price | None on asensei.ai; Hyperhuman describes per-member tiers for its own Asensei-powered module, without figures | Deck: $1.50 per monthly active user (MAU), $1,500 monthly minimum; FAQ: usage-based, integration fees may apply |\n| Public release record | Spark app 1.3.1, October 21; no public SDK packages or repositories found on the pages we read | npm kinestex-sdk-react-native 1.5.0 (2026-10-19); pub.dev kinestex_sdk_flutter 1.5.1 (2026-07-04); repos updated Nov 5, 2026 |\n| Accuracy | No figure on the pages we read | \"97.2% accuracy\" (vendor claim) |\n\n## Where Asensei wins\n\n**Headless, native information streams.** Asensei's own words are that it powers user experiences \"without imposing them\". A team that wants every pixel of the workout screen in its own native code, its own rendering and its own transitions gets that by design. KinesteX's ready-made path is a hosted web experience inside a WebView, and its custom path still runs through the camera component it provides.\n\n**Unity and connected-fitness hardware.** Asensei lists Unity among its platforms and says it runs on \"low-power connected fitness hardware\", and its menu carries ASENSEI XR and Spatial Computing (VR/AR). The Spark listing says it supports Apple Vision on visionOS 1.0 or later. KinesteX documents no Unity SDK. For a strength machine, a rower or a VR title, Asensei is the one claiming that ground.\n\n**Equipment recognition and 3D, as claims.** The Spark listing describes \"3D Computer Vision, Spatial Computing, and Equipment Recognition\", and Tonal's partnership is described as 3D human motion analysis. We have not tested any of this, and no independent benchmark exists, but KinesteX does not make an equipment-recognition claim on the pages we read.\n\n**Cloud deployment for broadcast.** Cloud Coach processes multi-camera game footage in containers and exposes \"API Endpoints for Near Real-Time Applications\". KinesteX describes no comparable broadcast product.\n\n**Your coaches, your voice.** Coach IQ is built for content teams to \"Teach ASENSEI how to train like your trainers\", with dynamic audio in your coach's voice. If your brand is its coaches, that is the right shape.\n\n**A big-brand showcase.** Tonal, Centr and NHS Lothian are names procurement teams recognize, and AMP's chief executive is quoted on the home page calling the integration \"one of the smoothest technical collaborations I've experienced\".\n\n## Where KinesteX wins\n\n**Ready-made experiences and an AI trainer.** KinesteX's docs recommend AI Trainer Chat, \"Conversational AI personal trainer with in-app fitness assessment, personalized workout generation, post-workout check-ins, and next-session scheduling\", and its SDK-integration page puts a Ready-made Experiences project at \"1 week or less\" with one developer. Asensei's headless design means your team builds the equivalent screens.\n\n**A drop-in web path.** Both list the web. KinesteX's web integration is an iframe that opens finished screens on any page or PWA, documented step by step alongside a React TypeScript package; its docs name Chrome, Safari, Firefox and Edge.\n\n**A published entry price.** KinesteX's deck states \"$1.50 per MAU. $1,500 monthly minimum.\" Asensei publishes no price on asensei.ai, and the only structure we found is Hyperhuman's description of its own module.\n\n**Content API and admin panel.** KinesteX ships a catalog (500+ exercises on its site) and serves it through a REST Content API at data.kinestex.com, with an admin panel for design, workouts and usage statistics. Asensei gives your content team tools, but the content is yours to supply.\n\n**Documentation and code you can read before any call.** KinesteX's docs are public and its GitHub organization lists 12 repositories, with an Apache-2.0 license in the Kotlin, Swift and HTML-JS SDK repos (none at the root of the SwiftUI-kit, PWA and Flutter repos). Asensei's developer path starts at \"Request SDK Access\"; AMP's CEO calls its documentation \"top-notch\", but we could not read it.\n\n**A maintenance record.** kinestex-sdk-react-native 1.5.0 on npm on October 19, 2026, kinestex_sdk_flutter 1.5.1 on pub.dev on July 4, 2026, and Swift, Kotlin and SwiftUI-kit repositories updated November 5, 2026. For Asensei, the public record we could read is the Spark demo app's version history.\n\n## Verdict\n\nKinesteX wins this comparison on the criteria we apply to every page. It is faster to a working integration (\"typically takes under a day\") with more in the box (ready-made views, AI Trainer Chat, Content API, admin panel, assessments, 19 languages). It covers native and web, from Swift and Kotlin to React Native, Flutter, React TypeScript and an HTML/JavaScript iframe. It has a stated entry price ($1.50 per MAU, $1,500 monthly minimum) where Asensei publishes none, and a public maintenance record with releases in October and November 2026.\n\nThe verdict flips to Asensei for a connected-fitness hardware product or a Unity or VR title, for a team that wants to own every pixel and feed in its own coaching content and coach's voice, and for a company already running on Hyperhuman, whose white-label app offers an Asensei-powered module.\n\n## What we could not verify\n\n- **Accuracy, for both.** No independent benchmark compares these products. KinesteX's \"97.2% accuracy\" is its own claim; Asensei publishes no figure on the pages we read. Neither enters the verdict.\n- **Asensei prices.** None on asensei.ai. Hyperhuman's tiers apply to Hyperhuman's module and carry no figures.\n- **Asensei's SDK documentation, packages and minimum OS versions.** Access is by request, so we could not read them. The Spark demo requires iOS 14.0 or later.\n- **Asensei's exercise coverage and languages.** Not published on the pages we read.\n- **Asensei's data handling in production.** Its site says processing runs on device; the Spark demo's App Store privacy label, as declared by the developer, lists Photos or Videos among data that may be collected. That label covers the demo app, not necessarily an SDK integration.\n- **KinesteX's processing wording.** Its security page says \"All camera and vision processing stays on-device\", while its Kotlin, Flutter and React Native READMEs say \"optional edge processing (no cloud transmission)\". Get your configuration's behavior in writing.\n- **KinesteX's numbers between documents.** The site says 500+ exercises and 19 languages; the deck says 550+ and 17.\n\n## Which should you pick?\n\n- **Connected-fitness hardware, Unity, or VR** → Asensei. Request SDK access and ask for the platform list for your device.\n- **A native app where your designers own every screen and your coaches' voices are the product** → Asensei's headless SDK and Coach IQ.\n- **You already run a Hyperhuman white-label app** → its Asensei-powered module is the shortest route.\n- **A mobile or web app that needs camera coaching under its brand within weeks** → KinesteX, starting with AI Trainer Chat or the ready-made experiences.\n- **You want to own the UI but not the content** → KinesteX's camera component and Content API, as a middle path.\n- **You are unsure whether to buy at all** → [build vs buy](/motion/build-vs-buy-ai-motion-tracking) and [the pose model comparison](/motion/pose-estimation-models-compared) set out what raw models leave you to build, and [KinesteX alternatives](/alternatives/kinestex-alternatives) maps the field under the same disclosure.",
+    "faqs": [
+      {
+        "q": "Does Asensei publish SDK pricing?",
+        "a": "Not on asensei.ai as read on November 9, 2026; its pages lead to contact sales, a demo booking and an SDK access request. The only commercial structure we found is from Hyperhuman, a partner, which says its own Asensei-powered module is billed as a setup fee, a monthly module subscription and per-active-member tiers with bands up to 10k, 10 to 50k and 50k-plus members, without figures. KinesteX's seed deck states $1.50 per monthly active user with a $1,500 monthly minimum."
+      },
+      {
+        "q": "Does Asensei support Unity or VR?",
+        "a": "Asensei lists Unity among its supported platforms, alongside native iOS and Android, Web, Ionic and React. Its menu includes an ASENSEI XR product and a Spatial Computing (VR/AR) industry page, and the App Store listing for its Spark demo app says it runs on Apple Vision with visionOS 1.0 or later. We did not read the XR page itself. KinesteX documents no Unity SDK."
+      },
+      {
+        "q": "Is the Asensei SDK headless?",
+        "a": "Yes, by its own description: \"ASENSEI is a headless SDK\", providing real-time information streams to power user experiences without imposing them. In practice your team designs and builds the workout screens, coaching cues and content, with Coach IQ tools to shape the coaching. KinesteX takes the other route: its plug-and-play views ship finished screens, and its camera component is the option for teams that want only the tracking events."
+      },
+      {
+        "q": "Is there a free Asensei demo app I can try?",
+        "a": "Yes. ASENSEI Spark is free on the App Store for iPhone and iPad, requires iOS 14.0 or later, and was at version 1.3.1, dated October 21, when we checked on November 9, 2026. Asensei describes it as built for partners evaluating its SDK, with mobile and kiosk modes and a set of pre-built movement assessments. The SDK itself is not self-serve: the developer path starts with a request for SDK access."
+      },
+      {
+        "q": "Does Asensei process video on the device or in the cloud?",
+        "a": "Both options are described. Asensei says its SDK is optimized to run on device, from low-power connected fitness hardware to smartphones, and offers a cloud deployment, Cloud Coach, for sport and broadcast work such as multi-camera game footage. The App Store privacy label for its Spark demo, as declared by the developer, lists photos or videos among data that may be collected. Confirm the behavior of your own integration in writing."
+      }
+    ],
+    "related": [
+      {
+        "href": "/compare/kinestex-vs-kemtai",
+        "label": "KinesteX vs Kemtai"
+      },
+      {
+        "href": "/compare/kinestex-vs-sency",
+        "label": "KinesteX vs Sency"
+      },
+      {
+        "href": "/compare/kinestex-vs-quickpose",
+        "label": "KinesteX vs QuickPose"
+      },
+      {
+        "href": "/alternatives/kinestex-alternatives",
+        "label": "KinesteX alternatives, the vendor's own list"
+      },
+      {
+        "href": "/fitness-apis/ai-workout-tracking-apis",
+        "label": "AI workout tracking APIs"
+      },
+      {
+        "href": "/guides/camera-pose-tracking",
+        "label": "Camera pose tracking guide"
+      }
+    ],
+    "cta": {
+      "pitch": "Request-only SDKs change without a changelog you can read. Get our developer notes when a motion SDK vendor opens its docs, publishes a price or adds a platform."
+    },
+    "firstParty": true,
+    "sources": [
+      {
+        "url": "https://asensei.ai/",
+        "checked": "2026-11-09",
+        "note": "positioning, on-device LLM and vision claim, showcase, Tonal and NHS stories, AMP quote, Request SDK Access (snapshot)"
+      },
+      {
+        "url": "https://www.asensei.ai/",
+        "checked": "2026-11-09",
+        "note": "same home page on the www host (snapshot)"
+      },
+      {
+        "url": "https://asensei.ai/ai",
+        "checked": "2026-11-09",
+        "note": "platforms, headless SDK, on-device, cloud deployment (snapshot)"
+      },
+      {
+        "url": "https://asensei.ai/cloud-coach",
+        "checked": "2026-11-09",
+        "note": "container deployment, game footage, API endpoints (snapshot)"
+      },
+      {
+        "url": "https://asensei.ai/coach-iq",
+        "checked": "2026-11-09",
+        "note": "tools for content teams, coach's voice (snapshot)"
+      },
+      {
+        "url": "https://asensei.ai/contact",
+        "checked": "2026-11-09",
+        "note": "SDK enquiry type on the contact form (snapshot)"
+      },
+      {
+        "url": "https://apps.apple.com/us/app/asensei-spark/id6450310525",
+        "checked": "2026-11-09",
+        "note": "Spark demo app: free, 1.3.1 Oct 21, iOS 14.0, visionOS 1.0, 3D and equipment recognition claims, privacy label (snapshot)"
+      },
+      {
+        "url": "https://blog.hyperhuman.cc/ai-movement-recognition-white-label-fitness-app/",
+        "checked": "2026-11-09",
+        "note": "Hyperhuman's Asensei-powered module and its indicative pricing structure; Hyperhuman, not Asensei (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/",
+        "checked": "2026-11-09",
+        "note": "home page: positioning, 500+ exercises, 19 languages, movement tests, not-a-diagnosis line, 97.2% claim (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/getting-started",
+        "checked": "2026-11-09",
+        "note": "SDK list, requirements, plug-and-play views, camera component, API key (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/ai-trainer-chat",
+        "checked": "2026-11-09",
+        "note": "AI Trainer Chat; Complete UX and Personalized Plan View marked Sunset (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/content-api-v2",
+        "checked": "2026-11-09",
+        "note": "Content API at data.kinestex.com (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/installation",
+        "checked": "2026-11-09",
+        "note": "install steps, Kotlin 2.5.0, iframe embed (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/product/faqs",
+        "checked": "2026-11-09",
+        "note": "under a day, 19 languages, pricing model, 97.2% claim (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/product/sdk-integration",
+        "checked": "2026-11-09",
+        "note": "three ways in, timelines, requirements, video handling (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/product/security",
+        "checked": "2026-11-09",
+        "note": "on-device processing statement (snapshot)"
+      },
+      {
+        "url": "https://github.com/KinesteX",
+        "checked": "2026-11-09",
+        "note": "12 public repositories, licenses, update dates"
+      },
+      {
+        "url": "https://github.com/KinesteX/KinesteX-AI-Kit",
+        "checked": "2026-11-09",
+        "note": "WebView architecture"
+      },
+      {
+        "url": "https://github.com/KinesteX/KinesteX-SDK-Kotlin",
+        "checked": "2026-11-09",
+        "note": "optional edge processing wording, Apache-2.0"
+      },
+      {
+        "url": "https://github.com/KinesteX/KinesteX-SDK-ReactNative",
+        "checked": "2026-11-09",
+        "note": "optional edge processing wording"
+      },
+      {
+        "url": "https://github.com/KinesteX/AI-Fitness-SDK",
+        "checked": "2026-11-09",
+        "note": "the 90% accuracy claim"
+      },
+      {
+        "url": "https://www.npmjs.com/package/kinestex-sdk-react-native",
+        "checked": "2026-11-09",
+        "note": "1.5.0 on 2026-10-19, Apache-2.0"
+      },
+      {
+        "url": "https://pub.dev/packages/kinestex_sdk_flutter",
+        "checked": "2026-11-09",
+        "note": "1.5.1 on 2026-07-04"
+      },
+      {
+        "url": "https://kinestex-pitch.vercel.app/",
+        "checked": "2026-11-09",
+        "note": "seed deck: $1.50 per MAU, $1,500 monthly minimum, 550+ exercises, 17 languages, 23 paying customers"
+      }
+    ]
+  },
+  {
+    "slug": "kinestex-vs-exer-ai",
+    "primaryQuery": "kinestex vs exer ai",
+    "h1": "KinesteX vs Exer AI: Developer SDK or Clinical Platform?",
+    "metaTitle": "KinesteX vs Exer AI: SDK or Clinical Platform?",
+    "metaDescription": "KinesteX vs Exer AI: a white-label SDK vs an FDA Class II clinical platform, platforms, prices and validation, checked. KinesteX funds this site.",
+    "updated": "2026-11-09",
+    "answer": "Exer AI and KinesteX (this site's own product) sell different things: Exer AI sells a clinical motion platform to healthcare providers, with a clinician scan app, a patient app from the app store and a hand and wrist module, and describes itself as an FDA Class II medical device (software), while KinesteX is a white-label SDK a developer embeds in their own iOS, Android, Flutter, React Native or web app. KinesteX is our overall pick for anyone building an app, on what ships in the box, platform breadth including the web, a stated entry price in its seed deck ($1.50 per monthly active user with a $1,500 monthly minimum) where Exer publishes none, and public packages updated in October and November 2026. The verdict flips to Exer AI if you are a provider buying a finished clinical tool rather than building one, or if you need a product its maker describes as a registered Class II medical device.",
+    "body": "**Disclosure: KinesteX funds this site, and this page is written by the company behind KinesteX, so read it as a first-party comparison.** KinesteX is this site's own product. Every claim about either company traces to its own public pages, its GitHub READMEs, a package registry or, for KinesteX's price, its public seed deck, as read on November 9, 2026, and quoted passages are re-tested against the live pages by an automated check. [The automated checks that gate every deploy](/gates) also refuse any page that links to this site's funder without a disclosure beside it.\n\nThe first honest thing to say is that these two companies do not sell the same kind of product. Exer AI sells a clinical AI platform to healthcare providers: apps for clinicians and patients, a data portal, billing reports and a regulatory status. KinesteX sells a white-label SDK that a developer puts inside an app they own. They meet at \"AI measures movement through an ordinary camera\", but the real question is whether you are building an app or buying a clinical tool. Answer that first and most of the comparison answers itself.\n\n## What each one is, per its own pages\n\n**Exer AI** (the footer reads \"Exer Labs, Inc\", with an address in Denver) describes itself on its [home page](https://www.exer.ai/) as a \"Clinical AI platform\" that \"turns motion into actionable insights for precision care - without the need for wearables or sensors.\" It sells three named products. [Exer Scan](https://www.exer.ai/product/scan) is \"a mobile-first solution that allows clinicians to capture and analyze objective motion data in real time\", built to run on tablets already in the clinic. [Exer Health](https://www.exer.ai/product/health) is the at-home side, where \"Your patients can start right away using an app downloaded from the app store\", with reminders, streaks and AI form correction. Exer Hands targets \"dozens of acute and chronic hand and wrist disorders like rheumatoid arthritis and carpal tunnel syndrome.\" Solution pages cover orthopedics, senior care, neurology, primary care, rehab and health plans.\n\nThe workflow list on the home page is a provider's list, not a developer's: an at-home patient app, an in-clinic scan app, a real-time data portal backend, automated billing reports, standardized outcome measures, customizable templates and daily engagement tools. The trust block on every product page claims \"HIPAA Compliant\", \"FDA Registered\" with the line \"FDA Class II Medical Device (software), validated.\", \"Proprietary AI\" built on neural networks Exer trains itself, and \"EHR Friendly\", described as \"Barcode into charts in clinic, APIs to streamline integrations and billing.\" Its [tech page](https://www.exer.ai/tech) says \"Everything runs \"on the edge\" - on common laptops, phones and tablets.\" A separate [RTM page](https://www.exer.ai/product/rtm) is built around Remote Therapeutic Monitoring billing codes. The way in is a demo request. On the pages we read there is no developer documentation, no SDK, no package and no price.\n\n**KinesteX** describes itself on its [home page](https://www.kinestex.com/) as \"A white-label SDK that coaches every rep through your users' own camera, inside your app.\" Its [Getting Started docs](https://www.kinestex.com/docs/getting-started) list SDKs for Swift, Kotlin, Flutter, React Native and React (TypeScript), \"plus a plain HTML/JavaScript iframe integration for any web page or PWA\". The architecture is consistent and stated plainly: the [SwiftUI kit README](https://github.com/KinesteX/KinesteX-AI-Kit) calls it \"A SwiftUI package that embeds KinesteX's AI-powered camera workout experience as a WebView.\" The docs list ready-made views (AI Trainer Chat, which they recommend for new integrations, plus Plan, Workout, Challenge and Leaderboard views, AI Experiences such as Balloon Pop, Color Chase and Alien Squat Shooter, and an Admin Workout Editor), and custom options: a Custom Workout, a Camera Component that streams reps, holds, form feedback and presence and, on request, pose landmarks, and REST Content APIs at data.kinestex.com. Two older views, Complete UX (Main) and Personalized Plan View, are marked \"Sunset\" in the docs sidebar.\n\nOn the clinical side, KinesteX's home page lists mobility tests, balance and fall risk, range of motion and home programs for patients, names Timed Up and Go, sit-to-stand and balance tests and shoulder range of motion, and says at-home balance tests are scored as low, moderate or high fall risk; its GitHub organization README adds gait speed and the Functional Reach Test to the assessment list. The same page adds: \"Test results support clinical judgment; they are not a diagnosis.\" Its [HIPAA page](https://www.kinestex.com/product/hipaa) says \"KinesteX is HIPAA compliant.\" The requirements are iOS 14.0+ (Xcode 16.3+) and Android 9+ (API 28) plus the main browsers. KinesteX's [FAQ](https://www.kinestex.com/product/faqs) lists 19 languages and says integration \"typically takes under a day\". kinestex.com publishes no price list; the only figure is in KinesteX's public seed deck, which prices per monthly active user (MAU): \"$1.50 per MAU. $1,500 monthly minimum.\"\n\n## Side by side\n\nEverything in this table was checked on November 9, 2026 against each company's own pages, KinesteX's READMEs and registries, and KinesteX's seed deck. Gaps are marked as gaps.\n\n| Dimension | Exer AI | KinesteX |\n|---|---|---|\n| What it is | Clinical AI platform for providers: Exer Scan, Exer Health, Exer Hands | White-label SDK embedded in your app, plus REST content APIs |\n| Who it is sold to | Clinicians, clinics, senior care, health plans | App developers and the companies behind fitness, rehab, wellness and insurer apps |\n| How you start | Request a demo | Book a call or fill out the contact form for demo access and an API key |\n| Platforms | Clinician app on tablets, patient app from the app store; \"any mobile device (phone, tablet, webcam)\" | Swift, Kotlin, Flutter, React Native, React (TypeScript), HTML/JS iframe; iOS 14+, Android 9+, Chrome, Safari, Firefox, Edge |\n| Regulatory status | \"FDA Class II Medical Device (software), validated.\" (Exer's claim) | No FDA registration claim on the pages we read; \"not a diagnosis\" |\n| Privacy claims | HIPAA compliant; runs \"on the edge\"; no \"cloud-stored patient videos\" | HIPAA compliant, BAA with Google Cloud; camera processing on-device (wording varies, see below) |\n| Integrations | EHR barcode charting and \"APIs to streamline integrations and billing\" | SDK events in your app, content API, AI Trainer API |\n| What ships in the box | Provider workflow: scan app, data portal, billing reports, outcome measures, templates | AI Trainer Chat, workouts, plans, challenges, leaderboards, games, assessments, admin panel, 19 languages |\n| Billing support | RTM codes 98975, 98977, 98980, 98981 explained | None |\n| Validation published | Two conference studies summarized on its blog (ICC figures) | 97.2% accuracy claim, no study described on the pages we read |\n| Published price | Not published on the pages we read | Seed deck: $1.50 per monthly active user, $1,500 monthly minimum |\n| Developer docs and packages | None found on the pages we read | Public docs; npm kinestex-sdk-react-native 1.5.0 (2026-10-19); pub.dev kinestex_sdk_flutter 1.5.1 (2026-07-04) |\n\n## Where Exer AI wins\n\n**A regulatory class KinesteX does not claim.** Exer's product pages say \"FDA Class II Medical Device (software), validated.\" KinesteX makes no FDA registration claim on the pages we read and says its test results are not a diagnosis. If your organization needs a registered medical device, that one line settles the comparison. It matters for billing too: Exer's RTM page notes that \"RTM codes still require the device used to meet the FDA’s definition of a medical device\".\n\n**Clinical validation it publishes in detail.** Exer's [validation post](https://www.exer.ai/posts/exer-ai-clinical-validation-studies-presented-at-assh-and-cns-in-oct-2025) summarizes two studies presented in October 2025. In a Duke Health tremor study, \"The AI model achieved exceptional inter-rater reliability ( ICC = 0.96 ), matching clinician consistency ( ICC = 0.94 ).\" In a hand, wrist and forearm study presented at ASSH, Exer reports ICC above 0.9 against manual goniometry for 96% of motions and measurements \"within ± 5° of manual goniometry across all motions.\" These are Exer's summaries of its own studies, and we do not use them to rank either product, but they are a kind of evidence KinesteX's pages do not offer: KinesteX publishes a single \"97.2% accuracy\" figure with no study described.\n\n**Provider workflows.** A data portal backend, automated billing reports, standardized outcome measures and an in-clinic scan app are built for a clinic's day. With KinesteX, the clinical workflow around its events is yours to build.\n\n**RTM and EHR.** Exer's RTM page walks through four CPT codes and how often each can be billed, and its EHR line covers charting and integration APIs. KinesteX's pages have nothing comparable.\n\n**Hand and wrist depth.** Exer Hands and the Mayo Clinic hand and wrist module announced on its home page go deeper into one clinical area than anything KinesteX lists.\n\n## Where KinesteX wins\n\n**It is an SDK you can embed at all.** We found no Exer SDK, package or developer documentation on the pages we read; the only \"APIs\" Exer mentions sit in an EHR and billing context. If the product you are shipping is your own app, Exer is not a component you can put inside it on the evidence available, and KinesteX is built for exactly that.\n\n**Platform breadth, including the web.** Swift, Kotlin, Flutter, React Native, React (TypeScript) and a plain iframe, with browser support for Chrome, Safari, Firefox and Edge. Exer describes apps for phones, tablets and webcams, but not packages a developer can install.\n\n**Ready-made experiences and an AI trainer.** AI Trainer Chat (\"Conversational AI personal trainer with in-app fitness assessment, personalized workout generation, post-workout check-ins, and next-session scheduling\"), workout, plan, challenge and leaderboard views, three motion games, movement assessments and an admin panel for design and workouts. KinesteX's home page counts 500+ AI exercises; its seed deck says \"550+ exercises built in\". Its [SDK integration page](https://www.kinestex.com/product/sdk-integration) puts the ready-made route at \"1 week or less\" with one developer.\n\n**A published entry price.** KinesteX's seed deck states $1.50 per monthly active user with a $1,500 monthly minimum, and its FAQ says integration fees may apply. Exer publishes no price on the pages we read.\n\n**Open docs and public repositories.** KinesteX's docs are public, its Kotlin, Swift and HTML-JS repositories carry an Apache-2.0 license, and the [GitHub org listing](https://github.com/orgs/KinesteX/repositories) showed KinesteX-AI-Kit, KinesteX-SDK-Kotlin and KinesteX-SDK-Swift updated on November 5, 2026. You can read how the integration works before any call.\n\n## Verdict\n\nKinesteX wins this comparison for anyone building their own app, and our verdict rests on four criteria, each tied to a sourced fact. First, what ships in the box and how fast: AI Trainer Chat, ready-made views, a content API, an admin panel, movement assessments and 19 languages, with a stated \"1 week or less\" for the ready-made route, against no developer integration at all on Exer's pages. Second, platform breadth: six documented integration paths including the web, against apps you deploy rather than embed. Third, price: KinesteX's deck states an entry price of $1.50 per monthly active user with a $1,500 monthly minimum, and Exer publishes none. Fourth, maintenance record: kinestex-sdk-react-native 1.5.0 on October 19, 2026 and three repositories pushed on November 5, 2026, against no public packages from Exer to judge.\n\nThe verdict flips to Exer AI when you are a provider, such as a clinic, hospital system or senior-living operator, buying a finished clinical tool for your clinicians and patients rather than building an app, or when you need a product its maker describes as an FDA Class II medical device. In both cases Exer is the right call and KinesteX does not claim to be that product.\n\n## What we could not verify\n\n- **Exer's FDA status in detail.** The Class II line is Exer's own claim; we did not check FDA's databases, and the pages do not say which product or indication it covers.\n- **Exer prices.** None on the pages we read; the dollar figures on its RTM page are reimbursement amounts it says \"vary by geographic regions, payors and plans\", not Exer's prices.\n- **A developer route at Exer.** The pages mention \"APIs\" only for EHR integrations and billing. Whether Exer licenses its engine to developers is not stated.\n- **Accuracy.** No independent benchmark compares these products. Exer's ICC figures are its own summaries of conference presentations, which we did not read in full. KinesteX's FAQ says \"97.2% accuracy\" while an older README says its models \"consistently exceed 90% accuracy\"; both are vendor claims.\n- **KinesteX's on-device wording.** Its security page says \"All camera and vision processing stays on-device\", while its Kotlin, Flutter and React Native READMEs say \"optional edge processing (no cloud transmission)\". The AI Trainer chat needs internet, per the SDK integration page.\n- **KinesteX's own numbers.** The FAQ lists 19 languages and the deck's competition slide says 17; the website says 500+ exercises and the deck 550+.\n\n## Which should you pick?\n\n- **You are building a fitness, wellness or rehab app and want camera coaching inside it** → KinesteX. Exer offers no embeddable component on the pages we read.\n- **You run a clinic or health system and want a tool your clinicians and patients use tomorrow** → Exer AI, which is built and sold for that.\n- **You need an FDA-registered device or RTM billing support** → Exer AI.\n- **You want to compare clinical-leaning options that do have developer access** → see [KinesteX vs Kemtai](/compare/kinestex-vs-kemtai) and the wider field in [KinesteX alternatives](/alternatives/kinestex-alternatives).\n- **You are unsure whether to build on raw pose models instead** → read [build vs buy for AI motion tracking](/motion/build-vs-buy-ai-motion-tracking) first.\n\nRe-check both companies' pages before you sign: product lines and regulatory claims move, and this page will age.\n",
+    "faqs": [
+      {
+        "q": "Does Exer AI offer an SDK or API for developers?",
+        "a": "Not on the pages we read on November 9, 2026. Exer AI's site describes apps for clinicians and patients and a provider portal, and the only mention of APIs is its EHR line: \"Barcode into charts in clinic, APIs to streamline integrations and billing.\" We found no SDK, package, developer documentation or self-serve key. If you need an engine inside your own app, ask Exer directly; KinesteX documents SDKs for Swift, Kotlin, Flutter, React Native, React and an HTML iframe."
+      },
+      {
+        "q": "Is Exer AI an FDA-registered medical device?",
+        "a": "Exer AI says so. Its product pages carry the line \"FDA Class II Medical Device (software), validated.\" under an \"FDA Registered\" heading. We did not check FDA's own databases, and the pages do not say which product or indication the registration covers, so confirm the details with Exer before relying on it. KinesteX makes no FDA claim on the pages we read and says its test results support clinical judgment and are not a diagnosis."
+      },
+      {
+        "q": "Can a fitness app use Exer AI?",
+        "a": "Not as a component, on the evidence we have. Exer AI markets its platform to providers in orthopedics, senior care, neurology, primary care, rehab and health plans, and its patient app is something patients download from the app store. Nothing on the pages we read describes embedding Exer's tracking in a third-party fitness app. A fitness app that wants camera coaching under its own brand is the case KinesteX's white-label SDK is built for."
+      },
+      {
+        "q": "Does KinesteX have clinical validation like Exer AI?",
+        "a": "Not of the same kind, on the pages we read. Exer AI's blog summarizes two conference studies with ICC figures, including ICC = 0.96 in a Duke tremor study. KinesteX publishes a 97.2% accuracy figure without describing a study, and an older README says its models \"consistently exceed 90% accuracy\". All of these are vendor claims; no independent benchmark compares the two products."
+      },
+      {
+        "q": "Where does Exer AI process patient video?",
+        "a": "On the device, per its own pages. Exer AI's tech page says \"Everything runs \"on the edge\" - on common laptops, phones and tablets\", and its Exer Health page promises monitoring without \"cloud-stored patient videos\". KinesteX's security page says all camera and vision processing stays on-device, though its SDK READMEs describe \"optional edge processing\", and its AI Trainer chat needs internet. Get the behavior of your configuration in writing from either vendor."
+      }
+    ],
+    "related": [
+      {
+        "href": "/compare/kinestex-vs-kemtai",
+        "label": "KinesteX vs Kemtai"
+      },
+      {
+        "href": "/compare/kinestex-vs-competitors",
+        "label": "KinesteX vs competitors"
+      },
+      {
+        "href": "/alternatives/kinestex-alternatives",
+        "label": "KinesteX alternatives, the vendor's own list"
+      },
+      {
+        "href": "/compare/kinestex-vs-posetracker",
+        "label": "KinesteX vs PoseTracker"
+      },
+      {
+        "href": "/motion/build-vs-buy-ai-motion-tracking",
+        "label": "Build vs buy AI motion tracking"
+      },
+      {
+        "href": "/apis/kinestex",
+        "label": "KinesteX API profile"
+      }
+    ],
+    "cta": {
+      "pitch": "We track motion-tracking vendors from their own pages, registries and repos, with our conflict labeled; get our developer notes when a product line, price or regulatory claim changes."
+    },
+    "firstParty": true,
+    "sources": [
+      {
+        "url": "https://www.exer.ai/",
+        "checked": "2026-11-09",
+        "note": "Clinical AI platform, three products, workflow list, HIPAA, FDA Class II claim, EHR APIs, demo request (snapshot)"
+      },
+      {
+        "url": "https://www.exer.ai/product/scan",
+        "checked": "2026-11-09",
+        "note": "Exer Scan for clinicians, runs on tablets (snapshot)"
+      },
+      {
+        "url": "https://www.exer.ai/product/health",
+        "checked": "2026-11-09",
+        "note": "Exer Health patient app from the app store, no cloud-stored videos (snapshot)"
+      },
+      {
+        "url": "https://www.exer.ai/product/rtm",
+        "checked": "2026-11-09",
+        "note": "RTM billing codes and the medical-device requirement (snapshot)"
+      },
+      {
+        "url": "https://www.exer.ai/tech",
+        "checked": "2026-11-09",
+        "note": "proprietary engine, runs on the edge (snapshot)"
+      },
+      {
+        "url": "https://www.exer.ai/posts/exer-ai-clinical-validation-studies-presented-at-assh-and-cns-in-oct-2025",
+        "checked": "2026-11-09",
+        "note": "Duke tremor and ASSH hand/wrist validation summaries (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/",
+        "checked": "2026-11-09",
+        "note": "white-label SDK, 500+ exercises, 19 languages, assessments, not a diagnosis (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/product/workouts",
+        "checked": "2026-11-09",
+        "note": "500+ exercises (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/getting-started",
+        "checked": "2026-11-09",
+        "note": "SDK list, views, custom integration, requirements (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/installation",
+        "checked": "2026-11-09",
+        "note": "Kotlin 2.5.0, minSdk 28, Xcode 16.3 (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/ai-trainer-chat",
+        "checked": "2026-11-09",
+        "note": "AI Trainer Chat, Sunset labels (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/content-api-v2",
+        "checked": "2026-11-09",
+        "note": "Content API base URL data.kinestex.com (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/product/faqs",
+        "checked": "2026-11-09",
+        "note": "integration time, 19 languages, pricing model, 97.2% claim (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/product/sdk-integration",
+        "checked": "2026-11-09",
+        "note": "three ways in and timelines, requirements, AI trainer needs internet (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/product/security",
+        "checked": "2026-11-09",
+        "note": "on-device camera processing statement (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/product/hipaa",
+        "checked": "2026-11-09",
+        "note": "HIPAA compliance and Google Cloud BAA (snapshot)"
+      },
+      {
+        "url": "https://github.com/KinesteX/KinesteX-AI-Kit",
+        "checked": "2026-11-09",
+        "note": "WebView architecture"
+      },
+      {
+        "url": "https://github.com/KinesteX/KinesteX-SDK-Kotlin",
+        "checked": "2026-11-09",
+        "note": "optional edge processing wording, Apache-2.0"
+      },
+      {
+        "url": "https://github.com/KinesteX/AI-Fitness-SDK",
+        "checked": "2026-11-09",
+        "note": "the 90% accuracy claim"
+      },
+      {
+        "url": "https://github.com/orgs/KinesteX/repositories",
+        "checked": "2026-11-09",
+        "note": "repository update dates and licenses (snapshot)"
+      },
+      {
+        "url": "https://www.npmjs.com/package/kinestex-sdk-react-native",
+        "checked": "2026-11-09",
+        "note": "1.5.0 published 2026-10-19, Apache-2.0"
+      },
+      {
+        "url": "https://pub.dev/packages/kinestex_sdk_flutter",
+        "checked": "2026-11-09",
+        "note": "1.5.1 published 2026-07-04"
+      },
+      {
+        "url": "https://kinestex-pitch.vercel.app/",
+        "checked": "2026-11-09",
+        "note": "public seed deck: $1.50 per MAU, $1,500 monthly minimum, 550+ exercises, 17 languages"
+      }
+    ]
+  },
+  {
+    "slug": "kinestex-vs-posetracker",
+    "primaryQuery": "kinestex vs posetracker",
+    "h1": "KinesteX vs PoseTracker: Coaching Experience or MoveNet Blocks?",
+    "metaTitle": "KinesteX vs PoseTracker: Coaching SDK or MoveNet Kit?",
+    "metaDescription": "KinesteX vs PoseTracker: finished coaching SDK vs on-device MoveNet with per-call pricing, platforms and prices checked. KinesteX funds this site.",
+    "updated": "2026-11-09",
+    "answer": "PoseTracker, a service of Movelytics SAS, is a MoveNet building block: 17 on-device keypoints free without an API key, React Native and web npm packages plus a WebView or iframe API, and a paid exercise engine for reps, angles and a form score, metered per tracking call from €50 a month. KinesteX (this site's own product) ships finished white-label coaching experiences, content, assessments, an admin panel and 19 languages across Flutter, Swift, Kotlin, React Native and the web, and its seed deck states $1.50 per monthly active user with a $1,500 monthly minimum. KinesteX is our overall pick on what ships in the box and platform breadth, but the verdict flips to PoseTracker for a developer who wants raw keypoints or has a €50 budget, a React Native or web team that will own its UI, or a prototype that has to run today without a sales call.",
+    "body": "**Disclosure: KinesteX funds this site, and this page is written by the company behind KinesteX, so read it as a first-party comparison.** KinesteX is this site's own product. Every claim about either company traces to its own public pages, docs, READMEs and package registries or, for KinesteX's price, its public seed deck, as read on November 9, 2026, and quoted passages are re-tested against the live pages by an automated check. [The automated checks that gate every deploy](/gates) also refuse any page that links to this site's funder without a disclosure beside it. PoseTracker publishes its own comparison that includes KinesteX; we quote it where it describes us, so you can weigh both views.\n\nThese two products sit at different heights of the same stack. PoseTracker gives you a pose model on the device and an exercise engine on top, and you build the coaching product. KinesteX gives you the coaching product, with screens, content and an AI trainer, and you configure it. Which one fits depends far more on how much your team wants to build than on any model detail.\n\n## What each one is, per its own pages\n\n**PoseTracker** is \"a service developed by Movelytics SAS\", per its [terms of use](https://www.posetracker.com/terms-of-use). Its [home page](https://www.posetracker.com/) states the core plainly: \"PoseTracker runs MoveNet on the phone, so the app gets keypoints, then reps, angles and a form score.\" It advertises \"17 COCO keypoints, on-device, no video upload\" and names Flexifit, Kobi, How2Jump and MoveBreak as production apps. There are three ways in: a developer SDK for React Native (Expo Go) and the web, the \"classic\" WebView or iframe API, and built-in tools such as a back flexibility test, a flexibility analysis tool and a pose comparison system. Its [SDK announcement](https://www.posetracker.com/news/posetracker-sdk-react-native-web) says the same MoveNet engine \"is also available as native npm packages\". On npm the current packages are @pose-tracker/react-native-pose-estimation, a -light variant and @pose-tracker/pose-estimation-web, all at 0.3.8, published October 16, 2026, under a proprietary Movelytics license.\n\nThe pricing model is the clearest on either side. Keypoints are free and need no key; the [quickstart](https://docs.posetracker.com/quickstart) says \"Keypoints are free. Pass apiToken only for the movement engine.\" The paid key unlocks the engine. The home page lists Freemium at €0 (up to 200 tracking API calls a month, \"Only non-commercial use\", with a \"Powered by PoseTracker\" link on the camera), Developer at €50 a month with 1,000 calls, and Business from €150 a month with 100k, 500k or 1M calls per 12-month period. Its [features and plans reference](https://docs.posetracker.com/reference/features-plans) defines the unit: \"One call = one open session, not one exercise.\" On paid plans the limit is soft: extra calls go through and are either covered by an upgrade or invoiced at €0.01 excluding VAT per call. With a key, \"internet is required to authenticate and meter\".\n\n**KinesteX** describes itself on its [home page](https://www.kinestex.com/) as \"A white-label SDK that coaches every rep through your users' own camera, inside your app.\" Its [Getting Started docs](https://www.kinestex.com/docs/getting-started) list SDKs for Swift, Kotlin, Flutter, React Native and React (TypeScript), plus a plain HTML/JavaScript iframe. The [SwiftUI kit README](https://github.com/KinesteX/KinesteX-AI-Kit) is explicit about the architecture: \"A SwiftUI package that embeds KinesteX's AI-powered camera workout experience as a WebView.\" The docs list ready-made views (AI Trainer Chat, recommended for new integrations, plus Plan, Workout, Challenge and Leaderboard views, three AI games and an Admin Workout Editor) and custom options: a Custom Workout, a Camera Component that streams reps, holds, form feedback and presence and, on request, pose landmarks, and REST Content APIs at data.kinestex.com. Complete UX (Main) and Personalized Plan View are marked \"Sunset\". Requirements are iOS 14.0+ (Xcode 16.3+) and Android 9+ (API 28). KinesteX's [FAQ](https://www.kinestex.com/product/faqs) lists 19 languages and says integration \"typically takes under a day\". kinestex.com publishes no price list; KinesteX's public seed deck prices per monthly active user (MAU) and states \"$1.50 per MAU. $1,500 monthly minimum.\"\n\n## Side by side\n\nChecked on November 9, 2026 against both companies' pages and docs, npm and pub.dev, and KinesteX's seed deck.\n\n| Dimension | PoseTracker | KinesteX |\n|---|---|---|\n| What it is | On-device MoveNet SDK plus a metered exercise engine | White-label coaching experience embedded via WebView or iframe, plus content APIs |\n| Company | Movelytics SAS | KinesteX |\n| Pose model | MoveNet, 17 COCO keypoints; BlazePose selectable on the light and web packages | Not named on the pages we read; pose landmarks available on request from the Camera Component |\n| Platforms | React Native (Expo Go) and web npm packages; WebView or iframe API; no first-party Flutter SDK | Swift, Kotlin, Flutter, React Native, React (TypeScript), HTML/JS iframe |\n| Free without a key | Keypoints | Nothing; an API key comes with demo access |\n| Paid features | Reps, angles, form score, recommendations | Bundled in the experience: reps, mistakes, calories, scores, assessments |\n| Published price | €0 Freemium (200 calls, non-commercial), €50 a month Developer (1,000 calls), Business from €150 a month | Seed deck: $1.50 per monthly active user, $1,500 monthly minimum; integration fees may apply |\n| Billing unit | Tracking call, one per open camera session | Monthly active user |\n| Above the quota | Free: strict, refused; paid: soft, €0.01 per extra call or an upgrade | Not stated |\n| UI and content | Built-in tools; your app builds the coaching screens | AI Trainer Chat, workouts, plans, challenges, leaderboards, games, admin panel, 500+ exercises (550+ in the deck) |\n| Languages | Not stated | 19 per the FAQ (17 on the deck's competition slide) |\n| Getting started | Self-serve signup; Business and managed plans by quote | Book a call or contact form |\n| License | Proprietary, Movelytics SAS | Apache-2.0 in the Kotlin, Swift and HTML-JS repos; commercial hosted service |\n| Recent releases | npm 0.3.8 on 2026-10-16; features doc modified November 2, 2026 | npm kinestex-sdk-react-native 1.5.0 on 2026-10-19; pub.dev 1.5.1 on 2026-07-04; three repos pushed November 5, 2026 |\n| Accuracy | No figure; its comparison page says no independent lab ranks these SDKs | \"97.2% accuracy\" claim in its FAQ |\n\n## Where PoseTracker wins\n\n**Free keypoints without a key.** Install a package, mount a view and 17 keypoints arrive on the device, with no account and no token. KinesteX has no free tier on its pages.\n\n**The cheapest published paid plan.** PoseTracker's Developer plan is €50 a month for 1,000 tracking calls with commercial use. KinesteX's only published figure has a $1,500 monthly minimum. For a small app or a side project, that gap decides it.\n\n**Self-serve today.** Freemium and Developer start from a \"Get started\" button, and its terms describe a \"self-serve Developer checkout\". KinesteX starts with a call or a contact form. PoseTracker's own comparison page puts it this way: \"KinesteX / Sency often sales-led.\"\n\n**npm packages for web and React Native, including offline.** The offline React Native package bundles MoveNet so inference needs no network; the web SDK runs in the browser over TensorFlow.js from a script tag, an ESM import or a React wrapper.\n\n**Your own camera and your own UI.** Besides its own camera view, the SDK can take external frames (\"startExercise() again while processFrame keeps running\"), so a team with an existing camera pipeline keeps it. Every screen is yours.\n\n**Public pricing with a soft limit.** Paid plans do not cut users off at the quota; the terms say \"PoseTracker does not cut the service when the included calls are reached\". That is a predictable rule, written down.\n\n## Where KinesteX wins\n\n**A complete experience and a content library.** KinesteX ships the screens: workouts, plans, challenges with leaderboards and games, run on a library its site counts at 500+ exercises, served through a content API. PoseTracker gives you reps and a form score and leaves the product to you. Its own comparison page describes the KinesteX approach as a \"Hosted camera / content embed\" and says it suits teams that want \"their workout UI more than you want to own the camera\".\n\n**An AI trainer and assessments.** AI Trainer Chat handles onboarding, a camera fitness assessment, a workout per session and next-session scheduling. KinesteX also documents standardized movement tests such as Timed Up and Go, gait speed, sit-to-stand, balance stands, functional reach and shoulder range of motion. PoseTracker offers flexibility and pose-comparison tools and, in its own words, \"is not a medical device\".\n\n**Flutter and native Swift and Kotlin packages.** PoseTracker lists \"Flutter-only (no first-party Flutter SDK)\" under when not to use it, and its native coverage comes through React Native. KinesteX publishes kinestex_sdk_flutter on pub.dev, a Swift package and a Kotlin SDK (2.5.0 in its install docs).\n\n**A white-label admin panel.** Colors, fonts, light or dark themes, workouts and usage statistics are managed in one panel, and the FAQ promises no KinesteX logos.\n\n**Languages.** The guided experience runs in 19 languages, with right-to-left support for Arabic, Hebrew and Urdu, per the FAQ.\n\n**No per-call metering.** KinesteX bills per monthly active user per its deck. PoseTracker counts every open camera session, which is simple to reason about but grows with how often each user trains.\n\n## Verdict\n\nKinesteX wins this comparison overall, and our verdict rests on four criteria, each tied to a sourced fact. First, what ships in the box: AI Trainer Chat, ready-made views, a content API, an admin panel, assessments and 19 languages, against an engine that returns reps, angles and a form score for screens you build; KinesteX's SDK integration page puts its ready-made route at \"1 week or less\" with one developer. Second, platform breadth: Swift, Kotlin, Flutter, React Native, React and an iframe, against React Native and web packages with no first-party Flutter SDK. Third, price, where PoseTracker is ahead at entry and we say so: €50 a month against a $1,500 monthly minimum, though KinesteX's figure buys the finished experience, not keypoints. Fourth, maintenance: both are active, with PoseTracker's packages at 0.3.8 on October 16, 2026 and KinesteX's React Native SDK at 1.5.0 on October 19, 2026 and three repos pushed on November 5, 2026.\n\nThe verdict flips to PoseTracker for a developer who wants raw keypoints or has a €50 budget, for a React Native or web-only team that will own its UI, or for a prototype that has to run today without a sales call.\n\n## What we could not verify\n\n- **Accuracy.** No independent benchmark compares the two. PoseTracker's comparison page says \"No independent lab ranks these SDKs on a shared accuracy set.\" KinesteX's 97.2% figure is its own claim, and an older README says \"consistently exceed 90% accuracy\".\n- **Cost at scale.** Tracking calls and monthly active users are different units, and neither side publishes how many sessions a typical user opens, so we do not convert one into the other.\n- **KinesteX's prices beyond the deck.** kinestex.com publishes no price list; the FAQ says integration fees may apply.\n- **PoseTracker's docs versions.** The quickstart's note for language models still names 0.3.0 and the SDK announcement's web snippet pins 0.2.0, while npm shows 0.3.8.\n- **KinesteX's on-device wording.** Its security page says \"All camera and vision processing stays on-device\"; its SDK READMEs say \"optional edge processing (no cloud transmission)\".\n- **KinesteX's own numbers.** 19 languages in the FAQ, 17 in the deck; 500+ exercises on the site, 550+ in the deck.\n\n## Which should you pick?\n\n- **You want keypoints, reps and a form score inside screens you design, on React Native or the web** → PoseTracker. Read [MoveNet models](/motion/movenet-models) to know what the 17 points give you.\n- **You need a finished, white-label coaching experience, an AI trainer or assessments, on any platform including Flutter** → KinesteX.\n- **You have €50, not $1,500, or need to ship this week without a call** → PoseTracker's Developer or Freemium plan.\n- **You are weighing other toolkits** → [KinesteX vs QuickPose](/compare/kinestex-vs-quickpose), [KinesteX vs MediaPipe](/compare/kinestex-vs-mediapipe) and [how to evaluate motion SDKs](/guides/evaluate-motion-sdks).\n\nRe-check both vendors' pages before you sign: PoseTracker's docs changed in November 2026 and KinesteX's repos the same month, and this page will age.\n",
+    "faqs": [
+      {
+        "q": "Is PoseTracker free?",
+        "a": "Partly. PoseTracker's keypoints are free and need no API key: its quickstart says \"Keypoints are free.\" The exercise engine, with reps, angles and a form score, is metered. The Freemium plan is €0 for up to 200 tracking calls a month, non-commercial only, with a \"Powered by PoseTracker\" link on the camera. Commercial use starts with the Developer plan at €50 a month, as listed on its home page on November 9, 2026."
+      },
+      {
+        "q": "What is the difference between PoseTracker's tracking calls and KinesteX's monthly active users?",
+        "a": "They count different things. PoseTracker counts a tracking call each time a camera session opens: \"One call = one open session, not one exercise.\" KinesteX's seed deck prices per monthly active user, $1.50 each with a $1,500 monthly minimum, so a user who trains every day counts once a month. Neither vendor publishes sessions per user, so test your own usage before comparing bills."
+      },
+      {
+        "q": "Does PoseTracker support Flutter?",
+        "a": "Not with a first-party package. PoseTracker's own comparison page lists \"Flutter-only (no first-party Flutter SDK)\" under when not to use it. Its packages target React Native (including Expo Go) and the web, and its WebView or iframe API can be embedded in any app that shows a web view. KinesteX publishes a Flutter package, kinestex_sdk_flutter, at 1.5.1 on pub.dev as of July 4, 2026."
+      },
+      {
+        "q": "Does PoseTracker use MediaPipe or MoveNet?",
+        "a": "MoveNet by default. PoseTracker's home page says it \"runs MoveNet on the phone\" and returns 17 COCO keypoints. Its features reference adds that BlazePose can be selected with options.model on the light and web packages, and its npm README says native MediaPipe is not in the SDK. If you need 33 landmarks or 3D, PoseTracker's own pages point to MediaPipe."
+      },
+      {
+        "q": "Can I buy PoseTracker's Developer plan without a quote?",
+        "a": "Yes, per its pages on November 9, 2026. Freemium and Developer start from a \"Get started\" button, and its terms describe a \"self-serve Developer checkout\". Business plans and managed plans go through a quote or email agreed with Movelytics SAS. KinesteX has no self-serve checkout: you book a call or fill out a contact form for demo access and an API key."
+      }
+    ],
+    "related": [
+      {
+        "href": "/compare/kinestex-vs-quickpose",
+        "label": "KinesteX vs QuickPose"
+      },
+      {
+        "href": "/compare/kinestex-vs-mediapipe",
+        "label": "KinesteX vs MediaPipe"
+      },
+      {
+        "href": "/motion/movenet-models",
+        "label": "MoveNet models"
+      },
+      {
+        "href": "/compare/kinestex-vs-exer-ai",
+        "label": "KinesteX vs Exer AI"
+      },
+      {
+        "href": "/alternatives/kinestex-alternatives",
+        "label": "KinesteX alternatives, the vendor's own list"
+      },
+      {
+        "href": "/guides/evaluate-motion-sdks",
+        "label": "How to evaluate motion SDKs"
+      }
+    ],
+    "cta": {
+      "pitch": "Both of these vendors changed their docs or repos in November 2026; get our developer notes when platforms, plans or metering rules actually change."
+    },
+    "firstParty": true,
+    "sources": [
+      {
+        "url": "https://www.posetracker.com/",
+        "checked": "2026-11-09",
+        "note": "MoveNet on-device, 17 keypoints, three integration paths, prices and plan limits, production apps (snapshot)"
+      },
+      {
+        "url": "https://docs.posetracker.com/quickstart",
+        "checked": "2026-11-09",
+        "note": "free keypoints without a key, RN packages run MoveNet in a WebView (snapshot)"
+      },
+      {
+        "url": "https://docs.posetracker.com/reference/features-plans",
+        "checked": "2026-11-09",
+        "note": "one call per open session, quotas, soft limit, external frames, BlazePose option, watermark (snapshot)"
+      },
+      {
+        "url": "https://www.posetracker.com/compare/pose-estimation-sdks",
+        "checked": "2026-11-09",
+        "note": "PoseTracker's comparison: KinesteX-style hosted embed, sales-led, no first-party Flutter SDK (snapshot)"
+      },
+      {
+        "url": "https://www.posetracker.com/news/posetracker-sdk-react-native-web",
+        "checked": "2026-11-09",
+        "note": "native npm packages alongside the WebView/iframe API (snapshot)"
+      },
+      {
+        "url": "https://www.posetracker.com/terms-of-use",
+        "checked": "2026-11-09",
+        "note": "Movelytics SAS, plan terms, self-serve checkout, extra calls (snapshot)"
+      },
+      {
+        "url": "https://www.npmjs.com/package/@pose-tracker/react-native-pose-estimation",
+        "checked": "2026-11-09",
+        "note": "0.3.8 published 2026-10-16, proprietary license, native MediaPipe not in the SDK"
+      },
+      {
+        "url": "https://www.npmjs.com/package/@pose-tracker/pose-estimation-web",
+        "checked": "2026-11-09",
+        "note": "0.3.8 published 2026-10-16"
+      },
+      {
+        "url": "https://www.kinestex.com/",
+        "checked": "2026-11-09",
+        "note": "white-label SDK (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/getting-started",
+        "checked": "2026-11-09",
+        "note": "SDK list, views, Camera Component, requirements (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/installation",
+        "checked": "2026-11-09",
+        "note": "Kotlin 2.5.0, Flutter package, React TS package (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/product/workouts",
+        "checked": "2026-11-09",
+        "note": "500+ exercises (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/product/faqs",
+        "checked": "2026-11-09",
+        "note": "19 languages, white-label, pricing model, 97.2% claim (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/product/sdk-integration",
+        "checked": "2026-11-09",
+        "note": "ready-made route timeline, API key on booking a call (snapshot)"
+      },
+      {
+        "url": "https://www.kinestex.com/product/security",
+        "checked": "2026-11-09",
+        "note": "on-device camera processing statement (snapshot)"
+      },
+      {
+        "url": "https://github.com/KinesteX/KinesteX-AI-Kit",
+        "checked": "2026-11-09",
+        "note": "WebView architecture"
+      },
+      {
+        "url": "https://github.com/KinesteX/KinesteX-SDK-ReactNative",
+        "checked": "2026-11-09",
+        "note": "optional edge processing wording"
+      },
+      {
+        "url": "https://github.com/KinesteX/AI-Fitness-SDK",
+        "checked": "2026-11-09",
+        "note": "the 90% accuracy claim"
+      },
+      {
+        "url": "https://github.com/orgs/KinesteX/repositories",
+        "checked": "2026-11-09",
+        "note": "repository update dates and licenses (snapshot)"
+      },
+      {
+        "url": "https://www.npmjs.com/package/kinestex-sdk-react-native",
+        "checked": "2026-11-09",
+        "note": "1.5.0 published 2026-10-19, Apache-2.0"
+      },
+      {
+        "url": "https://pub.dev/packages/kinestex_sdk_flutter",
+        "checked": "2026-11-09",
+        "note": "1.5.1 published 2026-07-04"
+      },
+      {
+        "url": "https://kinestex-pitch.vercel.app/",
+        "checked": "2026-11-09",
+        "note": "public seed deck: $1.50 per MAU, $1,500 monthly minimum, 550+ exercises, 17 languages"
       }
     ]
   }

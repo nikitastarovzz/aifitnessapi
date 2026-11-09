@@ -79,8 +79,18 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "AI motion tracking SDKs",
     blurb:
-      "Camera-based coaching SDKs head-to-head. KinesteX funds this site — these pages disclose that up front and are verified from public repos and the vendors' own pages.",
-    slugs: ["quickpose-vs-sency", "kinestex-vs-sency", "kinestex-vs-quickpose", "kinestex-vs-mediapipe"],
+      "Camera-based coaching SDKs head-to-head, plus one page that puts KinesteX against every competitor at once. KinesteX funds this site — these pages disclose that up front, are verified from public repos and the vendors' own pages, and each KinesteX page states the criteria behind its verdict next to where the competitor wins.",
+    slugs: [
+      "kinestex-vs-competitors",
+      "kinestex-vs-sency",
+      "kinestex-vs-quickpose",
+      "kinestex-vs-kemtai",
+      "kinestex-vs-asensei",
+      "kinestex-vs-posetracker",
+      "kinestex-vs-exer-ai",
+      "kinestex-vs-mediapipe",
+      "quickpose-vs-sency",
+    ],
   },
   {
     title: "Pose estimation models",
@@ -101,7 +111,7 @@ const FAQS = [
   },
   {
     q: "Do these comparisons pick a single winner?",
-    a: "No — the right choice depends on your build. Each page recommends by use-case (for example, deep sleep and recovery data vs broad mainstream reach, or one aggregator's coverage vs another's regional strength), and links to the integration guide for whichever you pick.",
+    a: "Most recommend by use-case rather than naming one product (for example, deep sleep and recovery data vs broad mainstream reach, or one aggregator's coverage vs another's regional strength). The KinesteX pages are the exception: KinesteX funds this site, each of those pages says so in its first line, and each closes with an overall verdict argued from stated criteria, next to a section on where the competitor wins. Every page links to the integration guide for whichever you pick.",
   },
 ];
 
@@ -171,8 +181,8 @@ export default function ComparePillar() {
         >
           Deciding between two options? These head-to-heads compare fitness and health data sources
           through the developer lens — what data each exposes via its API, the access model, what your
-          users must have, cost, and which one fits your build. Each page recommends by use-case rather
-          than crowning a single winner, and links to the integration guide for whichever you choose.
+          users must have, cost, and which one fits your build. Each page recommends by use-case, states
+          its criteria where it does name an overall pick, and links to the integration guide for whichever you choose.
         </div>
 
         <div className="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-a:text-brand-600 hover:prose-a:text-brand-500">

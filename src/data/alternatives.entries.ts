@@ -966,36 +966,40 @@ export const alternativesEntries: ClusterEntry[] =
     "primaryQuery": "kinestex alternatives",
     "h1": "KinesteX Alternatives, From the Team Behind KinesteX (2026)",
     "metaTitle": "KinesteX Alternatives (2026): The Vendor's Own Honest List",
-    "metaDescription": "KinesteX funds this site; this page lists its alternatives anyway: Sency, QuickPose, Kemtai and free pose models, each tied to a verified reason to switch.",
-    "updated": "2026-10-18",
-    "answer": "The verifiable alternatives to KinesteX (this site's own product) are Sency, a native SDK with a no-UI kit and a branded UI kit for iOS, Android, React Native and Flutter; QuickPose, a MediaPipe-based toolkit with exercise counters, range-of-motion measurement and a published per-device price list; Kemtai for clinical rehab, which describes an FDA listing and CE marking; and free pose models such as MediaPipe, MoveNet, Apple Vision or ML Kit if you want to own the whole stack. Route by your reason to switch: an in-process native SDK points to Sency or QuickPose, a price you can read before a call to QuickPose or Sency, owning the computer-vision layer to the pose models, and clinical scope to Kemtai.",
+    "metaDescription": "Sency, QuickPose, Asensei, PoseTracker, Kemtai, Exer AI and free models, routed by reason to switch, with our verdict. KinesteX funds this site.",
+    "updated": "2026-11-09",
+    "answer": "The verifiable alternatives to KinesteX (this site's own product) are Sency and QuickPose for native in-process SDKs, Asensei for a headless SDK aimed at connected-fitness hardware, Unity and VR, PoseTracker and free pose models such as MediaPipe, MoveNet and ML Kit for free keypoints on a small budget, and Kemtai or Exer AI for regulated clinical rehab. For a team whose reason to switch is none of those, our pick remains KinesteX, on what ships in the box (an AI trainer, ready-made workouts and movement tests), one integration for iOS, Android, Flutter, React Native and the web, a stated entry price of $1.50 per monthly active user with a $1,500 monthly minimum in its seed deck, and active releases. The verdict flips for in-process native rendering (Sency, QuickPose, Asensei), a regulated clinical device (Kemtai, Exer AI), or the smallest budget and raw keypoints (PoseTracker, QuickPose, free models).",
     "faqs": [
       {
         "q": "Why would a KinesteX-funded site publish a KinesteX alternatives page?",
-        "a": "Because the alternative is worse: pretending no alternatives exist, which no developer believes. This site is run by the team behind KinesteX and says so in the first line. The page earns its keep by being method-bound: every claim, including claims about KinesteX itself, is limited to what public repositories, package registries, model documentation and the vendors' own pages show, and anything we could not verify is labeled as unverified rather than described from search snippets."
+        "a": "Because pretending no alternatives exist would convince no developer. This site is run by the company behind KinesteX and says so in its first line. The page earns its keep by method: every claim, including those about KinesteX, is limited to public repositories, registries, model documentation and the vendors' own pages, unverifiable items are labeled, and the verdict for KinesteX states its criteria and the switch reasons that overturn it."
       },
       {
         "q": "What is the most direct competitor to KinesteX?",
-        "a": "Sency, based on what is publicly verifiable. Its repositories document a similar two-tier shape, a white-label branded UI kit plus a no-UI custom kit, across iOS, Android, React Native and Flutter, with assessments and workout plans. The key architectural difference is the integration surface: Sency's SMKit is a native no-UI SDK that runs in your process, while KinesteX's repositories describe WebView and iframe wrappers around a hosted experience. Sency has no web target and a proprietary license, downloads its models from its server at configuration, and publishes per-user prices on two pages that disagree about the first 100 users."
+        "a": "Sency, on what is publicly verifiable. Its repositories document the same two-tier shape, a branded UI kit plus a no-UI custom kit, across iOS, Android, React Native and Flutter, with assessments and workout plans. The difference is the surface: Sency's SMKit runs natively in your process, while KinesteX embeds a hosted experience in a WebView or iframe. Sency marks JavaScript \"NA\", downloads its models from its server, and publishes per-user prices on two pages that disagree about the first 100 users."
       },
       {
         "q": "Which KinesteX alternative can I try without talking to sales?",
-        "a": "QuickPose is the self-serve option: its README says to get a free SDK key at dev.quickpose.ai, with usage limits that may apply, and its pricing page lists every plan from a free tier for 10 monthly active devices upward. Sency's packages page lists a free Starter plan, but its README says the API key arrives by email after you subscribe to a plan, and its sign-up path runs through a contact form. KinesteX starts with a contact form. The fully gate-free path is Apple Vision or the open pose models, which need no key at all."
+        "a": "PoseTracker and QuickPose. PoseTracker's keypoints need no API key, and its Developer plan is €50 a month on its home page. QuickPose's README offers a free SDK key (\"usage limits may apply\") and its pricing page lists a free tier for 10 devices. Sency lists a free Starter plan, though its README says the key arrives by email after you subscribe. KinesteX, Asensei, Kemtai and Exer AI start with a form or a call, and the free pose models need no key at all."
       },
       {
         "q": "If I leave KinesteX for raw pose models, what am I signing up to build?",
-        "a": "A pose model gives you per-frame keypoints and nothing else. To match a commercial fitness SDK you build per-exercise form rules and phase detection, rep-counting state machines, mistake-to-feedback content, calibration and framing UX, an exercise library with plans and progression, analytics events, and cross-device robustness across lighting, thermals, and model variants. The models themselves are free and fitness-targeted by Google's own documentation; the exercise intelligence and content are the real product you are taking on."
+        "a": "A pose model gives you per-frame keypoints and nothing else. To match a commercial fitness SDK you build per-exercise form rules and phase detection, rep-counting state machines, mistake-to-feedback content, calibration and framing UX, an exercise library with plans, analytics events, and robustness across devices, lighting and model variants. Google's model card names fitness as an intended use; the exercise intelligence and content are the product you take on. PoseTracker sits in between: free MoveNet keypoints plus a paid rep-and-form engine."
       },
       {
         "q": "Is Kemtai a verified alternative to KinesteX for physio and rehab?",
-        "a": "Its offering is now verifiable from its own site, which describes embeddable exercise and patient-management components, data APIs, a library of more than 2,000 exercises, processing on the device with no video recorded, and an FDA listing and CE marking as a medical device. Its accuracy claim rests on a validation study it describes but we have not read, its API documentation is behind an email request, and it publishes no prices. If your product is clinical, verify the regulatory status and the study with Kemtai directly."
+        "a": "Its offering is verifiable from its own site: embeddable exercise and patient-management components, data and management APIs, a standalone clinician app called Kemtai CARE, more than 2,000 exercises, and edge processing with no video recorded. Its FAQ says it is \"FDA-listed as a medical device\" and CE-marked under MDR 2017/745. Its accuracy study is cited as Kemtai's own data on file, its pages disagree on 111 versus 113 tracked points, its API docs are behind an email form, and it publishes no prices."
       }
     ],
     "cta": {
-      "pitch": "We publish what the repos actually show — for our own product and everyone else's. Get the update when a vendor in this category changes its SDK, license, or access model."
+      "pitch": "We publish what the repos and vendor pages actually show, for our own product and everyone else's. Get the update when a vendor in this category changes its SDK, license, or prices."
     },
-    "body": "**Disclosure: this site is run by the team behind KinesteX, and KinesteX funds this site. You are reading a \"KinesteX alternatives\" page written by the vendor it lists alternatives to. Every claim below is restricted to what we could verify from public GitHub repositories, package registries, model documentation and each vendor's own published pages — including the claims about our own product — and the things we could not verify are labeled as such.** The disclosure is also checked mechanically: [the automated checks this site runs before every deploy](/gates) refuse any page that links to the site's funder without one.\n\nNobody expects a vendor-funded site to publish this page, so here is the deal that makes it worth your time: we name the real, verifiable reasons a team would decide against KinesteX, and we route each reason to the alternative that actually fits it. The sections below are organized by your reason for switching, not by who we would prefer you pick. For what this site has verified about KinesteX access in one place, see the [KinesteX API overview](/apis/kinestex).\n\n## The verified reasons people switch away from KinesteX\n\nThese are not hypothetical objections. Each one traces to KinesteX's own repositories or pages, so you can check them yourself at [github.com/KinesteX](https://github.com/KinesteX) and kinestex.com.\n\n**The integration surface is a WebView, not an in-process native library.** The KinesteX AI Kit README describes itself as \"a SwiftUI package that embeds KinesteX's AI-powered camera workout experience as a WebView\". The React Native SDK installs alongside `react-native-webview`, the web integration is an iframe communicating over `postMessage`, and the Android installation docs ask for the `INTERNET` permission. That architecture is what makes the SDK thin and cross-platform, but if your requirement is in-process inference, with direct access to camera frames, your own rendering pipeline and no hosted web surface inside your app, it is a structural mismatch, not something a version bump will change.\n\n**You want to own the computer-vision layer outright.** KinesteX's custom tier is its camera component plus `postMessage` events: reps, mistakes, accuracy and workout summaries. If motion analysis is your core IP and you want the raw keypoints, your own exercise logic and eventually your own models, you are shopping in a different layer of the stack, and the honest answer is a pose-estimation model, not any commercial fitness SDK.\n\n**No published prices, and access starts with a contact form.** KinesteX's FAQ describes usage-based plans priced per active user per month, with lower rates at higher tiers and integration fees that may apply, but gives no figure, and demo access and an API key come through a contact form. Two direct competitors now publish prices, QuickPose per monthly active device and Sency per monthly active user, so if you need a number before a call, that alone is a valid reason to look elsewhere.\n\n**Our on-device statements do not match each other.** The SDK READMEs say KinesteX \"ensures data security with optional edge processing (no cloud transmission)\", while KinesteX's security page says \"All camera and vision processing stays on-device\" and that its cloud delivers content and AI models. If your compliance posture needs an unconditional on-device guarantee, get the behavior of your configuration from KinesteX in writing, or use a stack where inference verifiably runs in your own process.\n\n**You ship one platform.** KinesteX's breadth (iOS, Android, React Native, Flutter and the web) is a cost, not a benefit, if you ship one platform. An iOS-first team can get closer to the metal with QuickPose or Apple's own Vision framework.\n\nFor balance, the verified reasons people stay: the same sources show broad platform coverage including the web, plug-and-play workout, plan, challenge and leaderboard views, a content API, a documented set of movement assessments with risk-level outputs (Timed Up and Go, gait speed, sit-to-stand variants, the Functional Reach Test and balance stands), white-label theming, and active maintenance, with the Kotlin repository pushed on October 14, 2026 and kinestex-sdk-react-native 1.4.1 published on October 9, 2026. If none of the switch reasons above apply to you, the switching cost may not buy you anything.\n\n## The alternatives, by reason to switch\n\n### You want a native, in-process SDK with assessments and plans → Sency\n\nSency is the strongest verifiable direct competitor. Its [public repositories](https://github.com/sency-ai) document two kits: SMKitUI, a white-label Branded Kit where \"the entire user interface and experience are ready to use\", and SMKit, which its version table calls a \"Native no-UI SDK\", where you own the camera preview and UI. The README leads with movement and fitness assessments, monthly progress evaluations and personalized workout plans, across iOS, Android, React Native and Flutter, with JavaScript and Unity marked \"NA\". The Custom Kit's iOS demo pins iOS 16.0 and SMKitUI needs iOS 15 or later. Its iOS and Android SDKs download their models from Sency's server during configuration, with no bundled fallback, though Sency's FAQ says data is analyzed on the user's device and never sent to the cloud. The license is Sency's own Terms of Use, which puts commercial or production use under a separate paid agreement. Sency publishes prices per monthly active user, though on two pages that disagree about the first 100 users: one lists a free Starter plan and a Growth plan from $499 a month, the other a free trial followed by a minimal monthly fee.\n\nTrade-offs against KinesteX: no web target (KinesteX has one), a higher iOS floor, a proprietary license, and models fetched at first configuration. The full head-to-head is at [KinesteX vs Sency](/compare/kinestex-vs-sency), the plans are in [Sency pricing](/pricing/sency-pricing), and [Sency alternatives](/alternatives/sency-alternatives) maps the field from Sency's side.\n\n### You want pose building blocks with a published price list → QuickPose\n\nQuickPose sits one layer down the stack. Its [iOS SDK repository](https://github.com/quickpose/quickpose-ios-sdk) describes \"developer-oriented cutting edge ML features of MediaPipe and BlazePose\" for \"pose estimation, skeleton tracking and fitness counting\", and its Swift package ships MediaPipe lite, full and heavy libraries as modules; its product pages say all inference runs on the device. The README documents joint overlays, range-of-motion measurement for shoulders, hips, knees, back and neck, and counters for 20 named exercises, on iOS 14.0 or later; its docs add Android from API 26, and a React Native plugin covers both. The key is free to register (\"usage limits may apply\"), and QuickPose publishes its SDK plans per monthly active device, free for 10 and then $25 to $1,000 a month up to 100,000, with every feature on every plan. The iOS repository is Apache-2.0, and QuickPose's terms license the SDK under Apache 2.0 subject to the agreement and its fees, so treat it as a keyed commercial SDK with open wrapper code, not as open source.\n\nWhat QuickPose does not give you: workout content, plans, prebuilt coaching UX or assessments. Everything above the keypoint-and-counter layer is yours to build, which makes it the middle path between buying a full experience and building from raw models. Details in [KinesteX vs QuickPose](/compare/kinestex-vs-quickpose) and [QuickPose pricing](/pricing/quickpose-pricing).\n\n### You want to own the whole stack → MediaPipe, MoveNet, Apple Vision or ML Kit\n\nIf the WebView objection is really an ownership objection, skip commercial SDKs entirely and build on a free pose model:\n\n- **MediaPipe Pose Landmarker (BlazePose GHUM)** — 33 landmarks with estimated 3D world landmarks in meters, three model sizes (lite, full and heavy), Apache-2.0, and Google's model card names \"fitness and repetition counting\" as an intended domain. The strongest choice when form feedback needs joint angles that survive viewpoint changes. See [KinesteX vs MediaPipe](/compare/kinestex-vs-mediapipe) and [MediaPipe alternatives](/alternatives/mediapipe-alternatives).\n- **MoveNet** — 17 COCO keypoints in 2D, tuned per its model card for fitness and fast movement, with a MultiPose variant documented to detect up to 6 people. Apache 2.0 on the SinglePose card. The lean choice for rep counting; see [MoveNet models](/motion/movenet-models).\n- **Apple Vision body pose** — an OS framework with no SDK key and no vendor: 19 2D joints from iOS 14, 3D joints from iOS 17. The natural pick for the iOS-only team that wants no third-party dependency; see [Apple Vision body pose](/motion/apple-vision-body-pose).\n- **ML Kit Pose Detection** — 33 landmarks on Android and iOS for one person, offered in beta without an SLA; see [ML Kit pose detection](/motion/ml-kit-pose-detection).\n\nThe honest cost: a pose model outputs per-frame keypoints and nothing else. To reach parity with what KinesteX or Sency ship, you build per-exercise form rules and phase detection, rep-counting state machines, mistake-to-feedback mapping, calibration and framing UX, an exercise and content library, analytics plumbing, and cross-device robustness. The pose model is free; the exercise intelligence, content and UX are the product. Work through [build vs buy for AI motion tracking](/motion/build-vs-buy-ai-motion-tracking) before committing, then the implementation set: [camera pose tracking](/guides/camera-pose-tracking), [rep counting](/guides/add-rep-counting) and [form feedback](/guides/add-form-feedback).\n\n### You need a clinical or physiotherapy focus → Kemtai, and a look at Exer AI\n\n**Kemtai** positions itself for regulated rehab work, and its own site, read on October 17, 2026, describes embeddable exercise and patient-management components, data APIs that return exercise scores and range-of-motion results, a library of more than 2,000 exercises, processing on the device with no video recorded, and an FDA listing and CE marking as a medical device. It says its accuracy was validated in a study against a gold-standard motion lab that used 10 3D cameras and body sensors, which is a vendor statement about a study to ask to see. Two of its own pages disagree on how many body points it tracks, 111 on its home page and 113 on its computer-vision page. Its API documentation is behind an email request, it publishes no prices, and the pages we read route buyers to a demo request.\n\n**Exer AI** is a clinical platform rather than a developer SDK, on the pages we read: Exer Scan, Exer Health and Exer Hands for providers in orthopedics, senior care, neurology and rehab, a technology page saying everything runs on the edge on common laptops, phones and tablets, and a demo request. If you are building a clinical product of your own rather than buying one, it may not fit; if you are a provider, it may fit better than any SDK here.\n\nOther names circulate in listicles for this category. We list only vendors whose own pages or repositories we could read in this pass.\n\n## What we verified, and where\n\nThis table is the page's spine. Anything not in the \"verified\" column is something we are not claiming.\n\n| Vendor | What we verified | From where | What we could not verify |\n| --- | --- | --- | --- |\n| KinesteX | WebView and iframe surface; iOS, Android, React Native, Flutter and web; rep, mistake and accuracy events; assessment suite; Apache-2.0 on repos that carry a LICENSE file; per-active-user pricing model with no figures; two different on-device statements | [github.com/KinesteX](https://github.com/KinesteX), npm, pub.dev, kinestex.com | Prices; which on-device statement governs a given configuration; accuracy |\n| Sency | No-UI kit and branded UI kit; iOS, Android, React Native and Flutter (JavaScript and Unity \"NA\"); iOS 16 and 15 floors; server-downloaded models; Terms of Use license; per-user plans on two pages | [github.com/sency-ai](https://github.com/sency-ai), npm, pub.dev, sency.ai | Which pricing page applies to the first 100 users; how the Growth base and per-user rate combine; accuracy |\n| QuickPose | MediaPipe and BlazePose toolkit; iOS 14, Android API 26, React Native; range of motion and 20 exercise counters; free key; per-device plans; Apache-2.0 iOS repo under fee-bearing terms | [github.com/quickpose](https://github.com/quickpose), npm, docs.quickpose.ai, quickpose.ai | The Wasm SDK its docs home mentions; accuracy |\n| MediaPipe and MoveNet | Landmark counts, variants, licenses, fitness positioning, MoveNet MultiPose's 6-person limit | Google's model cards and repositories ([mediapipe](https://github.com/google-ai-edge/mediapipe), [tfjs-models](https://github.com/tensorflow/tfjs-models)) | Behavior on your exercises |\n| Apple Vision | 19 2D joints from iOS 14, 3D joints from iOS 17 | Apple developer documentation | Accuracy figures (none published in the pages we read) |\n| ML Kit | 33 landmarks, one person, beta without an SLA | Google's ML Kit guide | Accuracy figures |\n| Kemtai | Embeddables, data APIs, 2,000+ exercises, edge processing, FDA listing and CE marking, a validation study claim | kemtai.com | API docs (email-gated); prices; the study itself |\n| Exer AI | Clinical products for providers; edge processing; demo request | exer.ai | Any developer SDK or API |\n\n## Routing by reason\n\n- **In-process native SDK, assessments and plans, willing to buy** → Sency.\n- **Keypoints plus counters and measurements, a price you can read today, self-serve key** → QuickPose.\n- **Motion analysis is your IP, or you need on-device processing you control** → MediaPipe, MoveNet, Apple Vision or ML Kit, plus the build cost above.\n- **Clinical or PT product** → Kemtai, with every regulatory and accuracy claim verified first-hand, and compare against building on MediaPipe with clinical logic you own.\n- **None of the switch reasons apply** → staying is a legitimate answer; the [AI workout tracking APIs overview](/fitness-apis/ai-workout-tracking-apis) maps the whole category if you want the wider view before deciding.\n\n## Is switching easy?\n\nCode-wise, leaving KinesteX is unusually cheap: the integration is a thin WebView or iframe wrapper plus event handlers, so there is little SDK surface to rip out. What is not cheap is replacing what the hosted experience did for you: the workout content, coaching UI, feedback logic and assessments all lived on KinesteX's side of the WebView. Moving to Sency means re-integrating a native SDK and, on its Custom Kit, owning the UI; moving to QuickPose or raw pose models means owning everything above the keypoints. Budget for rebuilding the experience, not for deleting the wrapper.\n\n*Everything above reflects public repositories, registries and vendor pages as read on October 17 and 18, 2026. Vendors change pages, prices and repositories without notice, so confirm current terms with each vendor before you commit.*",
+    "body": "**KinesteX funds this site, and this page is written by the company behind KinesteX: a \"KinesteX alternatives\" page from the vendor it lists alternatives to. Every claim is limited to what public repositories, registries, model documentation and each vendor's own pages showed on November 9, 2026, including claims about this site's own product, and what we could not verify is labeled.** The disclosure is also checked mechanically: [the automated checks this site runs before every deploy](/gates) refuse any page that links to the site's funder without one.\n\nThe deal: we name the real reasons a team decides against KinesteX and route each to the alternative that fits it. The page reaches a verdict for KinesteX where no switch reason applies, argued on stated criteria, with the reasons that overturn it beside it. See also the [KinesteX API overview](/apis/kinestex) and [KinesteX vs competitors](/compare/kinestex-vs-competitors).\n\n## The verified reasons people switch away from KinesteX\n\nEach traces to KinesteX's own repositories ([github.com/KinesteX](https://github.com/KinesteX)) or pages.\n\n**The integration surface is a WebView, not an in-process native library.** The KinesteX AI Kit README describes \"a SwiftUI package that embeds KinesteX's AI-powered camera workout experience as a WebView\". React Native installs alongside `react-native-webview`, the web integration is an iframe talking over `postMessage`, and the docs list an internet connection as a prerequisite. That is what makes the SDK thin and cross-platform; if you need inference and rendering in your own process, it is a structural mismatch no version bump will change.\n\n**You want to own the computer-vision layer outright.** KinesteX's custom tier is its Camera Component, which the docs say streams reps, holds, form feedback and presence \"and, on request, pose landmarks\". It is still the vendor's tracking inside the vendor's embed, and new exercises \"are added together with our team\". If motion analysis is your core IP, you are shopping one layer down.\n\n**A deck price, not a price list.** kinestex.com publishes no price list on the pages we read; its FAQ describes usage-based plans per active user per month, integration fees may apply, and the API key comes after a call. The only published figure is in KinesteX's public seed deck, priced per monthly active user (MAU): \"$1.50 per MAU. $1,500 monthly minimum.\" QuickPose, Sency and PoseTracker publish price tables with self-serve tiers below that minimum.\n\n**Our on-device statements do not match each other.** The Kotlin, Flutter and React Native READMEs say \"optional edge processing (no cloud transmission)\"; the security page says \"All camera and vision processing stays on-device\". If compliance needs an unconditional guarantee, get your configuration's behavior in writing, or run inference in your own process.\n\n**You need a regulated medical device.** KinesteX's HIPAA page says \"KinesteX is HIPAA compliant\", and its home page says test results \"support clinical judgment; they are not a diagnosis\". The pages we read describe no FDA listing or CE marking for KinesteX; Kemtai's and Exer AI's do for theirs.\n\n**You ship one platform, or hardware.** KinesteX's breadth is a cost, not a benefit, if you ship one platform or a fitness machine that wants a data stream rather than screens.\n\nFor balance, the reasons people stay: AI Trainer Chat (the docs' recommended start), ready-made views, motion games, movement tests with risk levels, a Content API at data.kinestex.com, an admin panel, 19 languages per the FAQ, and active maintenance (the KinesteX-AI-Kit, Kotlin and Swift repositories were updated on November 5, 2026; kinestex-sdk-react-native 1.5.0 was published on October 19, 2026).\n\n## The alternatives, by reason to switch\n\n### You want a native, in-process SDK with assessments and plans → Sency\n\nSency is the closest verifiable direct competitor. Its [public repositories](https://github.com/sency-ai/smkit-sdk) document SMKitUI, a Branded Kit where \"the entire user interface and experience are ready to use\", and SMKit, a \"Native no-UI SDK\" where you own the camera preview and UI, with assessments and personalized plans across iOS, Android, React Native and Flutter; JavaScript and Unity are marked \"NA\". The iOS demo pins iOS 16.0 and downloads its models from Sency's server with no bundled fallback; Sency's FAQ says data is \"never sent to the cloud\". The license is Sency's own Terms of Use. Its two pricing pages disagree about the first 100 users: pricing-packages lists a free Starter plan for \"Up to 100 monthly active users\" and Growth \"From $499 / month\", while the pricing page lists a free trial, then $99.99 as a \"Fixed price\" for up to 100 users. See [KinesteX vs Sency](/compare/kinestex-vs-sency), [Sency pricing](/pricing/sency-pricing) and [Sency alternatives](/alternatives/sency-alternatives).\n\n### You want a headless native SDK for connected-fitness hardware, Unity or VR → Asensei\n\nAsensei's home page calls it \"the leading software development kit (SDK) for computer vision-based movement recognition and coaching intelligence\". Its SDK page says it supports \"native IOS and Android, Web, as well as platforms including Ionic, React, and Unity\", that it is \"a headless SDK\" streaming real-time data \"without imposing\" a user experience, and that it is \"optimized to run on-device\", \"from low-power connected fitness hardware to the latest smartphone\", with a cloud deployment \"for sport and broadcast solutions that demand it\". Coach IQ adds tools for content teams, including \"Dynamic Audio using your Coach's voice\". Its showcase names Tonal, Centr, NHS Lothian and AMP among others, and its ASENSEI Spark demo app (version 1.3.1, October 21) cites \"3D Computer Vision, Spatial Computing, and Equipment Recognition\". Access is by request (\"Request SDK Access\"), and asensei.ai publishes no prices or exercise-library count on the pages we read. A partner, Hyperhuman, describes per-member tiers for its own Asensei-powered module (\"starting bands for up to 10k, 10–50k, 50k+ members\") and says it \"is not marketed or approved as a medical or clinical tool\"; that is Hyperhuman's pricing, not Asensei's. Headless means you build every screen: the point for a hardware maker, a cost for an app team. See [KinesteX vs Asensei](/compare/kinestex-vs-asensei).\n\n### You want pose building blocks with a published price list → QuickPose\n\nQuickPose sits one layer down. Its [iOS SDK repository](https://github.com/quickpose/quickpose-ios-sdk) describes \"developer-oriented cutting edge ML features of MediaPipe and BlazePose\" with range-of-motion measurement and exercise counters on iOS 14.0+; its docs add Android from API 26, and @quickpose/react-native reached 0.7.2 on November 2, 2026. Its product pages say all inference runs on the device. The key is free (\"usage limits may apply\"), and its pricing page lists plans per monthly active device: free up to 10, then $25 a month for 100 up to $1,000 a month for 100,000. We found no web package, and no workout content, plans or assessments. See [KinesteX vs QuickPose](/compare/kinestex-vs-quickpose) and [QuickPose pricing](/pricing/quickpose-pricing).\n\n### You want free keypoints and a self-serve exercise engine on a small budget → PoseTracker\n\nPoseTracker, from Movelytics SAS, says it \"runs MoveNet on the phone, so the app gets keypoints, then reps, angles and a form score\", with \"17 COCO keypoints, on-device, no video upload\". Keypoints need no API key; a key unlocks the exercise engine, and then \"internet is required to authenticate and meter\". It ships React Native (Expo Go) and web npm packages (0.3.8, October 16, 2026, proprietary license) plus a WebView and iframe API. Its home page lists Freemium at €0 (non-commercial, a watermark link, 200 tracking calls a month), Developer at €50 a month with 1,000 calls, and Business from €150 a month, with extra calls at €0.01. Its comparison page lists \"Flutter-only (no first-party Flutter SDK)\" as a case not to use it and calls KinesteX a \"Hosted camera / content embed\"; that is PoseTracker's view. Its FAQ says it \"is not a medical device\". See [KinesteX vs PoseTracker](/compare/kinestex-vs-posetracker).\n\n### You want to own the whole stack → MediaPipe, MoveNet, Apple Vision or ML Kit\n\n- **MediaPipe Pose Landmarker** tracks \"33 3D full-body skeletal landmarks\" per Google's page, with web (`@mediapipe/tasks-vision`), Android, iOS and Python packages; its model card lists three sizes, Apache 2.0, \"Fitness and repetition counting\" as an intended use, and one person. See [KinesteX vs MediaPipe](/compare/kinestex-vs-mediapipe) and [MediaPipe alternatives](/alternatives/mediapipe-alternatives).\n- **MoveNet** predicts 17 keypoints for a single person, per its model card, in Lightning and Thunder variants, Apache 2.0, targeting movement and fitness. See [MoveNet models](/motion/movenet-models).\n- **Apple Vision**: the documentation page we fetched returned no readable text this pass, so we restate none of its figures. See [Apple Vision body pose](/motion/apple-vision-body-pose).\n- **ML Kit Pose Detection** returns 33 landmarks for one person on Android and iOS and is offered in beta without a service-level agreement, per Google's guide. See [ML Kit pose detection](/motion/ml-kit-pose-detection).\n\nThe honest cost: a pose model outputs keypoints and nothing else; form rules, rep counting, feedback, framing UX, content and analytics are yours. Work through [build vs buy for AI motion tracking](/motion/build-vs-buy-ai-motion-tracking), then [camera pose tracking](/guides/camera-pose-tracking), [rep counting](/guides/add-rep-counting) and [form feedback](/guides/add-form-feedback).\n\n### You need a regulated clinical or physiotherapy product → Kemtai or Exer AI\n\n**Kemtai** calls itself a \"Digital Physical Therapy Platform\". Its FAQ says it is \"FDA-listed as a medical device, CE‑marked (MDR 2017/745) as a medical device, ISO‑certified (13485, 27799, 27001)\". Its APIs and Embeddables page describes an Embeddable Exercise Player, patient and protocol management components, and data and management APIs; Kemtai CARE is a standalone clinician web app. Its home page lists 2,000+ exercises and says \"Processing is done on the edge device, and video is not recorded\". Its pages disagree on body points: the home page says it \"Analyzes 111 data points\", the EU digital-health page lists \"113-Point Tracking\". Its accuracy validation against a 10-camera motion lab is cited as \"Kemtai data on file\". API docs are behind an email form, and no prices are published on the pages we read. See [KinesteX vs Kemtai](/compare/kinestex-vs-kemtai).\n\n**Exer AI** is a clinical product you buy, not an SDK you build on. Its pages describe Exer Scan, \"a mobile-first solution that allows clinicians to capture and analyze objective motion data in real time\", the Exer Health patient app and Exer Hands. It lists \"FDA Class II Medical Device (software), validated.\" under \"FDA Registered\", says it is HIPAA compliant and that \"Everything runs \"on the edge\"\", and offers \"APIs to streamline integrations and billing\" for EHRs. A validation post reports a Duke tremor study with ICC = 0.96 and hand and wrist ranges within ± 5° of manual goniometry, Exer's summaries of studies we have not read. We found no developer SDK, docs or prices; the route in is a demo request. See [KinesteX vs Exer AI](/compare/kinestex-vs-exer-ai).\n\nOther names circulate in listicles. On November 9, 2026, vay.ai did not resolve, Uplift Capture's app is \"for organizations that currently use the Uplift platform\", Hinge Health's program is \"covered by employers and health plans\", and Sword Health's site refused our reader. None is a developer SDK on our evidence.\n\n### Names that come up but are not SDKs: Zing Coach, Fitify, VAY, Hinge Health\n\nFour names appear in searches for KinesteX alternatives without being products a developer can integrate, on the pages we could read on November 9, 2026. **Zing Coach** is a consumer coaching app: its methodology page describes \"a science-based approach to changing your behavior, with the help of personalized virtual coaching\", and its root domain redirected to partner.zing.coach, a page that served no readable text, so we found no SDK or API. **Fitify** (Fitify Workouts s.r.o.) is a consumer workout app with a corporate-wellness offer; its business page describes \"900+ exercises, including yoga, meditation and breathing routines\" and onboarding that \"usually takes about 2-3 weeks\", and none of its pages mention camera tracking or an SDK. **VAY**'s former domain, vay.ai, did not resolve when we checked. **Hinge Health** sells a care program \"covered by employers and health plans\" built on its own TrueMotion technology, not a component for other apps. If one of these is what you meant by an alternative, the comparable KinesteX surface is its ready-made experiences, not its SDK, and the rest of this page is the right list.\n\n## What we verified, and where\n\n| Vendor | What we verified | From where | What we could not verify |\n| --- | --- | --- | --- |\n| KinesteX | WebView and iframe surface on six targets; AI Trainer Chat and ready-made views; landmarks on request; Content API; deck price | [github.com/KinesteX](https://github.com/KinesteX), npm, pub.dev, kinestex.com, deck | A price list; which on-device statement applies; accuracy |\n| Sency | No-UI and branded kits; four mobile targets; server-downloaded models; prices on two pages | [github.com/sency-ai/smkit-sdk](https://github.com/sency-ai/smkit-sdk), sency.ai | Which page prices the first 100 users; accuracy |\n| QuickPose | MediaPipe toolkit; iOS 14, Android API 26, React Native; free key; per-device plans | [github.com/quickpose](https://github.com/quickpose), npm, docs.quickpose.ai, quickpose.ai | A web package; accuracy |\n| Asensei | Headless SDK incl. Ionic, React, Unity; on-device, cloud option; access by request | asensei.ai, App Store | Prices; exercise count; docs |\n| PoseTracker | MoveNet, 17 free keypoints; €0, €50 and from-€150 plans; React Native and web | posetracker.com, docs, npm | Accuracy |\n| MediaPipe and MoveNet | Landmark counts, variants, licenses, fitness positioning, one person | Google's Pose Landmarker page and model cards | Behavior on your exercises |\n| Apple Vision | Nothing this pass (page returned no text) | Apple developer documentation | Joint counts and versions |\n| ML Kit | 33 landmarks, one person, beta without an SLA | Google's ML Kit guide | Accuracy figures |\n| Kemtai | Embeddables, APIs, Kemtai CARE, 2,000+ exercises, edge processing, FDA listing, CE marking | kemtai.com, eu.kemtai.com | API docs; prices; the study; 111 or 113 points |\n| Exer AI | Clinical apps; FDA Class II software; edge processing | exer.ai | A developer SDK; prices; the studies |\n\n## Verdict\n\nFor a team whose reason to switch is not on the list above, our pick remains KinesteX, this site's own product, on four sourced criteria. **What ships in the box:** AI Trainer Chat, ready-made workout, plan and challenge views, movement tests, a Content API and an admin panel, live in under a day per its FAQ. **Reach:** iOS, Android, Flutter, React Native and the web from one integration, where Sency's README marks JavaScript \"NA\", we found no QuickPose web package, and Asensei's breadth comes as a headless SDK you build screens on. **Price:** a stated entry price of $1.50 per monthly active user with a $1,500 monthly minimum in KinesteX's seed deck, to confirm with the vendor, where Kemtai, Asensei and Exer AI publish none; Sency, QuickPose and PoseTracker do publish prices, and their self-serve tiers start below that minimum. **Active releases:** repositories updated November 5, 2026, and React Native 1.5.0 on October 19, 2026.\n\nThe verdict genuinely flips for three reasons. In-process native rendering points to Sency, QuickPose or Asensei. A regulated clinical device points to Kemtai or Exer AI. The smallest budget, or raw keypoints, points to PoseTracker, QuickPose or the free models.\n\n## Routing by reason\n\n- **In-process native SDK, assessments and plans, willing to buy** → Sency.\n- **Headless SDK for connected-fitness hardware, Unity or VR** → Asensei.\n- **Keypoints plus counters and measurements, a price you can read today** → QuickPose.\n- **Free keypoints and a cheap self-serve exercise engine, React Native or web** → PoseTracker.\n- **Motion analysis is your IP** → MediaPipe, MoveNet or ML Kit, plus the build cost above.\n- **Regulated clinical or PT product** → Kemtai to embed, Exer AI to buy, verifying every regulatory claim first-hand.\n- **None of the switch reasons apply** → KinesteX; [AI workout tracking APIs](/fitness-apis/ai-workout-tracking-apis) maps the category.\n\n## Is switching easy?\n\nCode-wise, leaving KinesteX is cheap: the integration is a thin wrapper plus event handlers. What is not cheap is replacing what the hosted experience did: the trainer, content, coaching UI, feedback logic and assessments all lived on KinesteX's side of the WebView. Budget for rebuilding the experience, not for deleting the wrapper.\n\n*Everything above reflects public repositories, registries and vendor pages as read on November 9, 2026. Vendors change pages, prices and repositories without notice, so confirm current terms with each vendor before you commit.*",
     "related": [
+      {
+        "href": "/compare/kinestex-vs-competitors",
+        "label": "KinesteX vs competitors"
+      },
       {
         "href": "/compare/kinestex-vs-sency",
         "label": "KinesteX vs Sency"
@@ -1005,173 +1009,297 @@ export const alternativesEntries: ClusterEntry[] =
         "label": "KinesteX vs QuickPose"
       },
       {
+        "href": "/compare/kinestex-vs-asensei",
+        "label": "KinesteX vs Asensei"
+      },
+      {
+        "href": "/compare/kinestex-vs-posetracker",
+        "label": "KinesteX vs PoseTracker"
+      },
+      {
+        "href": "/compare/kinestex-vs-kemtai",
+        "label": "KinesteX vs Kemtai"
+      },
+      {
+        "href": "/compare/kinestex-vs-exer-ai",
+        "label": "KinesteX vs Exer AI"
+      },
+      {
         "href": "/compare/kinestex-vs-mediapipe",
         "label": "KinesteX vs MediaPipe"
-      },
-      {
-        "href": "/alternatives/sency-alternatives",
-        "label": "Sency alternatives"
-      },
-      {
-        "href": "/alternatives/quickpose-alternatives",
-        "label": "QuickPose alternatives"
-      },
-      {
-        "href": "/fitness-apis/ai-workout-tracking-apis",
-        "label": "Best AI workout tracking APIs"
       }
     ],
     "firstParty": true,
     "sources": [
       {
-        "url": "https://github.com/KinesteX",
-        "checked": "2026-10-17",
-        "note": "repositories, licenses, push dates"
+        "url": "https://github.com/orgs/KinesteX/repositories",
+        "checked": "2026-11-09",
+        "note": "repositories, licenses, update dates"
       },
       {
         "url": "https://github.com/KinesteX/KinesteX-AI-Kit",
-        "checked": "2026-10-17",
+        "checked": "2026-11-09",
         "note": "WebView architecture"
       },
       {
-        "url": "https://github.com/KinesteX/.github",
-        "checked": "2026-10-17",
-        "note": "events, assessments with risk levels"
+        "url": "https://github.com/KinesteX/KinesteX-SDK-Kotlin",
+        "checked": "2026-11-09",
+        "note": "optional edge processing line"
       },
       {
-        "url": "https://github.com/KinesteX/KinesteX-SDK-Kotlin",
-        "checked": "2026-10-17",
-        "note": "optional edge processing line; pushed 2026-10-14"
+        "url": "https://github.com/KinesteX/KinesteX-SDK-PWA",
+        "checked": "2026-11-09",
+        "note": "iframe and postMessage"
       },
       {
         "url": "https://www.npmjs.com/package/kinestex-sdk-react-native",
-        "checked": "2026-10-17",
-        "note": "1.4.1 on 2026-10-09"
+        "checked": "2026-11-09",
+        "note": "1.5.0 on 2026-10-19"
       },
       {
-        "url": "https://www.kinestex.com/docs",
-        "checked": "2026-10-17",
-        "note": "platforms, contact-form access (snapshot)"
+        "url": "https://www.kinestex.com/docs/getting-started",
+        "checked": "2026-11-09",
+        "note": "platforms, AI Trainer Chat, Camera Component landmarks on request, internet prerequisite"
       },
       {
-        "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
-        "checked": "2026-10-17",
-        "note": "react-native-webview, INTERNET permission (snapshot)"
+        "url": "https://www.kinestex.com/docs/installation",
+        "checked": "2026-11-09",
+        "note": "react-native-webview peer"
+      },
+      {
+        "url": "https://www.kinestex.com/docs/content-api-v2",
+        "checked": "2026-11-09",
+        "note": "Content API at data.kinestex.com"
+      },
+      {
+        "url": "https://www.kinestex.com/",
+        "checked": "2026-11-09",
+        "note": "not a diagnosis line, risk levels"
       },
       {
         "url": "https://www.kinestex.com/product/faqs",
-        "checked": "2026-10-17",
-        "note": "pricing model (snapshot)"
+        "checked": "2026-11-09",
+        "note": "pricing model, 19 languages, integration under a day"
+      },
+      {
+        "url": "https://www.kinestex.com/product/sdk-integration",
+        "checked": "2026-11-09",
+        "note": "API key on a call, new exercises with KinesteX's team"
       },
       {
         "url": "https://www.kinestex.com/product/security",
-        "checked": "2026-10-17",
-        "note": "on-device statement, model delivery (snapshot)"
+        "checked": "2026-11-09",
+        "note": "on-device statement"
+      },
+      {
+        "url": "https://www.kinestex.com/product/hipaa",
+        "checked": "2026-11-09",
+        "note": "HIPAA statement"
+      },
+      {
+        "url": "https://kinestex-pitch.vercel.app/",
+        "checked": "2026-11-09",
+        "note": "seed deck: $1.50 per MAU, $1,500 monthly minimum"
       },
       {
         "url": "https://github.com/sency-ai/smkit-sdk",
-        "checked": "2026-10-17",
-        "note": "kits, platform table, features, key by email, Terms of Use LICENSE"
+        "checked": "2026-11-09",
+        "note": "kits, platform table, Terms of Use license, key by email"
       },
       {
         "url": "https://github.com/sency-ai/smkit-ios-demo",
-        "checked": "2026-10-17",
+        "checked": "2026-11-09",
         "note": "iOS 16.0, server-downloaded models"
       },
       {
-        "url": "https://github.com/sency-ai/smkit-ui-ios-demo",
-        "checked": "2026-10-17",
-        "note": "SMKitUI iOS 15 or later"
-      },
-      {
         "url": "https://www.sency.ai/pricing-packages",
-        "checked": "2026-10-18",
-        "note": "Starter and Growth plans (read through a text reader; quotes re-checked on the page by CI)"
+        "checked": "2026-11-09",
+        "note": "Starter up to 100 MAU free, Growth from $499 a month"
       },
       {
         "url": "https://www.sency.ai/pricing",
-        "checked": "2026-10-17",
-        "note": "trial and minimal monthly fee (read through a text reader; quotes re-checked on the page by CI)"
+        "checked": "2026-11-09",
+        "note": "free trial, $99.99 fixed for up to 100 users, tiers to 10,000+"
       },
       {
         "url": "https://www.sency.ai/faq-motion-tracking",
-        "checked": "2026-10-18",
-        "note": "on-device processing claim (read through a text reader; quotes re-checked on the page by CI)"
+        "checked": "2026-11-09",
+        "note": "edge processing claim"
+      },
+      {
+        "url": "https://asensei.ai/",
+        "checked": "2026-11-09",
+        "note": "SDK positioning, showcase, Request SDK Access"
+      },
+      {
+        "url": "https://asensei.ai/ai",
+        "checked": "2026-11-09",
+        "note": "cross-platform headless SDK, on-device, cloud option"
+      },
+      {
+        "url": "https://asensei.ai/coach-iq",
+        "checked": "2026-11-09",
+        "note": "content tools, coach voice audio"
+      },
+      {
+        "url": "https://asensei.ai/cloud-coach",
+        "checked": "2026-11-09",
+        "note": "container deployment"
+      },
+      {
+        "url": "https://asensei.ai/contact",
+        "checked": "2026-11-09",
+        "note": "SDK enquiry type"
+      },
+      {
+        "url": "https://apps.apple.com/us/app/asensei-spark/id6450310525",
+        "checked": "2026-11-09",
+        "note": "ASENSEI Spark demo app, version 1.3.1"
+      },
+      {
+        "url": "https://blog.hyperhuman.cc/ai-movement-recognition-white-label-fitness-app/",
+        "checked": "2026-11-09",
+        "note": "Hyperhuman's per-member tiers for its own Asensei-powered module"
       },
       {
         "url": "https://github.com/quickpose/quickpose-ios-sdk",
-        "checked": "2026-10-17",
-        "note": "description, modules, features, iOS 14.0, free key, Apache-2.0"
+        "checked": "2026-11-09",
+        "note": "MediaPipe and BlazePose toolkit, iOS 14.0, free key"
       },
       {
         "url": "https://docs.quickpose.ai/docs/MobileSDK",
-        "checked": "2026-10-17",
-        "note": "Android API 26 (snapshot)"
+        "checked": "2026-11-09",
+        "note": "Android API 26"
       },
       {
         "url": "https://quickpose.ai/sdk-pricing/",
-        "checked": "2026-10-17",
-        "note": "plans by monthly active device (snapshot)"
+        "checked": "2026-11-09",
+        "note": "plans by monthly active device"
       },
       {
         "url": "https://quickpose.ai/products/android-sdk/",
-        "checked": "2026-10-17",
-        "note": "on-device inference (snapshot)"
+        "checked": "2026-11-09",
+        "note": "on-device inference"
       },
       {
-        "url": "https://quickpose.ai/terms-and-conditions/",
-        "checked": "2026-10-17",
-        "note": "Apache 2.0 clause and fees (snapshot)"
+        "url": "https://www.npmjs.com/package/@quickpose/react-native",
+        "checked": "2026-11-09",
+        "note": "0.7.2 on 2026-11-02"
+      },
+      {
+        "url": "https://www.posetracker.com/",
+        "checked": "2026-11-09",
+        "note": "MoveNet, 17 keypoints, prices, FAQ"
+      },
+      {
+        "url": "https://docs.posetracker.com/reference/features-plans",
+        "checked": "2026-11-09",
+        "note": "free keypoints, metering, quotas"
+      },
+      {
+        "url": "https://www.posetracker.com/compare/pose-estimation-sdks",
+        "checked": "2026-11-09",
+        "note": "no first-party Flutter SDK; its view of KinesteX"
+      },
+      {
+        "url": "https://www.npmjs.com/package/@pose-tracker/react-native-pose-estimation",
+        "checked": "2026-11-09",
+        "note": "0.3.8 on 2026-10-16, proprietary"
+      },
+      {
+        "url": "https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker",
+        "checked": "2026-11-09",
+        "note": "33 3D landmarks, packages"
       },
       {
         "url": "https://storage.googleapis.com/mediapipe-assets/Model%20Card%20BlazePose%20GHUM%203D.pdf",
-        "checked": "2026-10-17",
-        "note": "33 landmarks, fitness domain, Apache-2.0"
+        "checked": "2026-11-09",
+        "note": "sizes, fitness use, Apache-2.0, one person"
       },
       {
         "url": "https://storage.googleapis.com/movenet/MoveNet.SinglePose%20Model%20Card.pdf",
-        "checked": "2026-10-17",
-        "note": "fitness and fast movement, Apache 2.0"
-      },
-      {
-        "url": "https://storage.googleapis.com/movenet/MoveNet.MultiPose%20Model%20Card.pdf",
-        "checked": "2026-10-17",
-        "note": "up to 6 people"
-      },
-      {
-        "url": "https://developer.apple.com/documentation/vision/vnhumanbodyposeobservation/jointname",
-        "checked": "2026-10-18",
-        "note": "19 2D joints; the 3D request from iOS 17"
+        "checked": "2026-11-09",
+        "note": "17 keypoints, single person, Apache 2.0"
       },
       {
         "url": "https://developers.google.com/ml-kit/vision/pose-detection",
-        "checked": "2026-10-17",
-        "note": "one person, 33 landmarks, beta, no SLA"
+        "checked": "2026-11-09",
+        "note": "33 landmarks, one person, beta without an SLA"
+      },
+      {
+        "url": "https://developer.apple.com/documentation/vision/detecting-human-body-poses-in-images",
+        "checked": "2026-11-09",
+        "note": "returned no readable text this pass"
       },
       {
         "url": "https://kemtai.com/",
-        "checked": "2026-10-17",
-        "note": "exercises, edge processing, regulatory and validation claims, 111 points, API docs by email (snapshot)"
+        "checked": "2026-11-09",
+        "note": "platform, 111 points, 2,000+ exercises, edge processing, validation claim, API docs by email"
       },
       {
         "url": "https://kemtai.com/kemtai-api-and-embeddables/",
-        "checked": "2026-10-17",
-        "note": "embeddables and data APIs (snapshot)"
+        "checked": "2026-11-09",
+        "note": "embeddables, data and management APIs"
       },
       {
-        "url": "https://kemtai.com/our-computer-vision/",
-        "checked": "2026-10-17",
-        "note": "113 body points (snapshot)"
+        "url": "https://kemtai.com/faqs",
+        "checked": "2026-11-09",
+        "note": "FDA listing, CE marking under MDR 2017/745, ISO certifications, Kemtai CARE"
+      },
+      {
+        "url": "https://eu.kemtai.com/digital-health-platforms/",
+        "checked": "2026-11-09",
+        "note": "113-point tracking"
+      },
+      {
+        "url": "https://eu.kemtai.com/api-integration/",
+        "checked": "2026-11-09",
+        "note": "two levels of the API"
       },
       {
         "url": "https://www.exer.ai/",
-        "checked": "2026-10-17",
-        "note": "clinical products, demo request (snapshot)"
+        "checked": "2026-11-09",
+        "note": "products, FDA Class II software, HIPAA, EHR APIs, demo request"
+      },
+      {
+        "url": "https://www.exer.ai/product/scan",
+        "checked": "2026-11-09",
+        "note": "Exer Scan description"
       },
       {
         "url": "https://www.exer.ai/tech",
-        "checked": "2026-10-17",
-        "note": "edge processing (snapshot)"
+        "checked": "2026-11-09",
+        "note": "edge processing"
+      },
+      {
+        "url": "https://www.exer.ai/posts/exer-ai-clinical-validation-studies-presented-at-assh-and-cns-in-oct-2025",
+        "checked": "2026-11-09",
+        "note": "validation summaries"
+      },
+      {
+        "url": "https://apps.apple.com/us/app/uplift-capture/id1501907981",
+        "checked": "2026-11-09",
+        "note": "for organizations already on the Uplift platform"
+      },
+      {
+        "url": "https://www.hingehealth.com/",
+        "checked": "2026-11-09",
+        "note": "care program covered by employers and health plans"
+      },
+      {
+        "url": "https://www.zing.coach/methodology",
+        "checked": "2026-11-09",
+        "note": "consumer coaching app; root domain redirected to partner.zing.coach with no readable text; no SDK or API on the pages read"
+      },
+      {
+        "url": "https://gofitify.com/business",
+        "checked": "2026-11-09",
+        "note": "corporate-wellness offer, 900+ exercises, 2-3 week onboarding; no camera tracking or SDK mentioned"
+      },
+      {
+        "url": "https://www.hingehealth.com/",
+        "checked": "2026-11-09",
+        "note": "care program covered by employers and health plans; TrueMotion technology"
       }
     ]
   },
@@ -1798,8 +1926,7 @@ export const alternativesEntries: ClusterEntry[] =
       }
     ],
     "firstParty": true
-  }
-,
+  },
   {
     "slug": "openpose-alternatives",
     "primaryQuery": "openpose alternatives",
@@ -2607,364 +2734,364 @@ export const alternativesEntries: ClusterEntry[] =
       }
     ]
   },
-    {
-      "slug": "rook-alternatives",
-      "primaryQuery": "ROOK alternatives",
-      "h1": "The Best ROOK (tryrook.io) Alternatives (2026)",
-      "metaTitle": "ROOK API Alternatives (2026): 6 Health-Data Options",
-      "metaDescription": "ROOK (tryrook.io) alternatives as of November 2026: Terra, Junction, Spike, Sahha, Thryve and Open Wearables, with prices, trade-offs and when to stay.",
-      "updated": "2026-11-02",
-      "answer": "The main ROOK (tryrook.io) alternatives, from the vendors' own pages on November 2, 2026, are Terra for lab ordering in the US and UK and delivery into your own storage, Junction (formerly Vital) for a flat $300 a month up to 500 users and US lab testing, Spike for a dedicated implementation engineer, food-photo nutrition and EMR data, Sahha for phone-first data and ready-made scores, Thryve for hosting in Germany, and Open Wearables if you want MIT-licensed software you run yourself. Pick by what is pushing you off ROOK: its 12-month standard contract, add-on prices on Core, the four providers that need your own developer accounts, or something it does not sell, such as ordering lab tests. Stay with ROOK if you want published active-user tiers from $399 a month for up to 750 users and medical-device readings tagged with the device that took them.",
-      "body": "ROOK is a health-data aggregator: one API and set of mobile SDKs that reach wearables, phone health stores, medical devices and lab reports, priced by plan and active users. Teams that shop around are rarely unhappy with the data; they have hit a contract term, an add-on bill, a provider that needs their own developer account, or something ROOK does not sell. Everything below is from the vendors' own pages as we read them on November 2, 2026. For a head-to-head with the category's best-known name, see [Terra vs ROOK](/compare/terra-vs-rook).\n\n## First, what ROOK is and what it costs\n\nROOK describes itself as \"the health data aggregation and intelligence platform for digital health, wellness and insurance products\", founded by biomedical engineers; its docs name Rookeries Development Corp (RookDev) as \"the company behind the ROOK platform\". Its homepage pitch is \"Wearables, medical devices, EHR/EMR and labs.\"\n\n- **ROOK Connect.** A Wearable API and SDK, a Medical Device API that tags glucose, blood pressure, SpO2, temperature and ECG readings with the device that recorded them, a Lab Data API that turns PDF and image lab reports into LOINC-coded biomarkers, and an EHR/EMR API that is still a waitlist item on the pricing page.\n- **Coverage.** Its docs say \"400+ wearables and health data sources\"; its integrations page counts 72 sources, of which 9 connect by API, 4 by SDK and 59 indirectly through Apple Health and Health Connect.\n- **Price.** \"ROOK pricing is based on the plan and the number of active users\": Core $399 a month for up to 750 active users, Core+ $999 for up to 5,000, Business $1,999 for up to 15,000, and custom Enterprise. Past a plan's limit, \"billing adjusts based on usage\", at a rate the page does not publish.\n- **Contract.** \"ROOK's standard contract term is 12 months, with the flexibility to cancel with 30 days' prior notice.\" Sandbox access is available before you buy.\n\n## Why teams look for a ROOK alternative\n\n- **The contract.** A 12-month standard term is a commitment many early products would rather not make before they know their retention.\n- **Add-ons on Core.** Health Scores, Health Monitor and Granular Data each list at $249 a month on Core, the ROOK App at $499 and the Notification Webhook at $99; Core+ includes three add-ons of your choice and Business includes all of them.\n- **Your own developer accounts.** ROOK's docs say that for Dexcom, Samsung Health, Strava and WHOOP \"clients are required to create their own developer accounts with these providers\", which \"can take several weeks\".\n- **History on connect.** ROOK's FAQ gives, \"as a reference\", up to seven previous days from API-based sources and up to 29 days from SDK-based ones. Products that need a long baseline on day one may want more.\n- **Something ROOK does not sell.** We found no lab-test ordering on ROOK's pages (it parses reports users already have), no EU-only hosting statement, and no self-hosted option.\n\n## The alternatives\n\n### Terra (tryterra.co)\n\n**What it is.** The best-known aggregator, billed in credits. Terra's docs put the Quick Start plan at 100,000 Unified API credits a month that \"reset monthly\" and do not roll over, with \"200 Unified API credits per active authentication per month\" (one connected source for one user), the first 400 events per active authentication free, and extra credits at $0.005 up to 1,000,000. The pricing page text we fetched shows Quick Start \"From $499 / month\", with a 30-day money-back guarantee. It orders blood and DNA tests (\"Nationwide US, plus the UK\") and lists \"Access to 9 destinations\" for delivery, such as AWS S3, Google Cloud Storage and MongoDB.\n\n**Best for.** Ordering lab tests for users in the US or UK, or pushing data straight into your own storage instead of handling webhooks.\n\n**Trade-off.** The bill grows with every source a user connects, not with every person, and Terra lists the signed BAA under Enterprise. See [Terra vs ROOK](/compare/terra-vs-rook).\n\n### Junction (formerly Vital)\n\n**What it is.** Wearables plus lab testing. Junction's Launch plan is \"$300 /mo\", billed monthly, for 1 to 500 connected users and \"300+ devices\"; its Enterprise plan, billed annually, adds the \"Lab testing API and ETL pipelines\", with lab testing \"spanning all 50 states\" through \"a nationwide network of labs (NY, NJ, and RI included)\".\n\n**Best for.** US lab ordering at scale, and the simplest flat bill at small user counts.\n\n**Trade-off.** Labs and anything past 500 users mean a custom Enterprise quote. See [Terra vs Vital (Junction)](/fitness-apis/terra-vs-vital).\n\n### Spike (spikeapi.com)\n\n**What it is.** The closest match to ROOK's scope: wearables, medical IoT devices, lab-report data, EMR and EHR connections, plus food-photo nutrition (\"Convert any food image into complete nutritional data\"). Its Sandbox plan \"Starts from $450 /month\" and lists \"Access 40+ providers and 500+ devices via single SDK\", and \"Every organization gets a dedicated implementation engineer from the sandbox level\".\n\n**Best for.** Teams that want a person on their implementation, food logging from photos, or EMR data today; ROOK's own EHR/EMR API is still on a waitlist.\n\n**Trade-off.** Pricing past the starting point is not itemized, and Spike's integrations page carries the banner \"Raintree Systems Acquires Spike Technologies\". See [ROOK vs Spike](/compare/rook-vs-spike).\n\n### Sahha (sahha.ai)\n\n**What it is.** Phone-first health data: Sahha \"turns the smartphone itself into a passive sensor for sleep, activity, and behavior\" and returns biomarkers, scores and archetypes. Starter is $299 a month billed annually with \"1,000 users included, then $0.40/user\", and \"Every plan starts with a 30-day free trial.\"\n\n**Best for.** Users who do not own a wearable, and products that want scores rather than raw data.\n\n**Trade-off.** Its direct cloud integrations for Garmin, Oura and WHOOP \"are in public beta and are Sandbox only\", Starter keeps 30 days of data, and the BAA starts at Pro. See [Sahha alternatives](/alternatives/sahha-alternatives) and [Sahha API pricing](/pricing/sahha-api-pricing).\n\n### Thryve (thryve.health)\n\n**What it is.** A European aggregator, \"Developed and hosted entirely in Europe\"; its pricing FAQ says \"All data processed and stored by Thryve is hosted in Germany.\" Start Up is 499 euros a month for up to 500 users plus \"€0.50 per additional user\".\n\n**Best for.** EU buyers whose data-protection review wants German hosting.\n\n**Trade-off.** Its docs say that \"When no shared oAuth-client is available, you must bring your own oAuth-client\", and its data-sources table marks WHOOP and Dexcom among those without one. See [Terra vs Thryve](/compare/terra-vs-thryve).\n\n### Open Wearables (openwearables.io)\n\n**What it is.** Open-source software you run in your own cloud. The Core is \"$0 Forever\", self-hosted, \"Open source, MIT license\"; a Pro subscription with health scores and other modules is \"From $999 a month, per deployment\".\n\n**Best for.** Health data that never leaves your infrastructure, and no per-user fee.\n\n**Trade-off.** You register with each provider yourself: its provider table says \"You must apply for Garmin Developer Program\", and lists registration steps for Polar and Suunto too. See [Terra vs Open Wearables](/compare/terra-vs-open-wearables).\n\n| Alternative | Best for | Entry price (Nov 2, 2026) | Watch out |\n| --- | --- | --- | --- |\n| Terra | Lab ordering in the US and UK; delivery into your own storage | From $499 a month, 100,000 credits | Billed per connected source; BAA on Enterprise |\n| Junction | US labs; a flat bill up to 500 users | $300 a month, billed monthly | Labs and more users need Enterprise |\n| Spike | An implementation engineer; food photos; EMR data | From $450 a month | Pricing not itemized; announced acquisition |\n| Sahha | Users without wearables; ready-made scores | $299 a month billed annually, 1,000 users | Cloud integrations beta, Sandbox only |\n| Thryve | Hosting in Germany | 499 euros a month, 500 users | Own OAuth client for some providers |\n| Open Wearables | Data that stays on your servers | $0 to self-host | You hold every provider registration |\n\nGoing direct to each provider, or reading HealthKit and Health Connect on the phone yourself, is the other way out of an aggregator; the [health-data aggregator comparison](/fitness-apis/health-data-aggregator-apis) covers when that pays.\n\n## Which should you pick?\n\n- **You need lab tests ordered, not just parsed** → Junction for US users across every state, Terra for the US and the UK.\n- **You want data pushed into your warehouse or bucket** → Terra's destinations.\n- **You want help building, or nutrition from photos** → Spike.\n- **Many of your users have no wearable** → Sahha.\n- **Your buyers require EU hosting** → Thryve.\n- **Health data must stay on your own servers** → Open Wearables.\n\n[Aggregator pricing](/pricing/health-data-aggregator-pricing) runs the same user counts through each vendor's price sheet.\n\n## When to stay with ROOK\n\nROOK is a sound choice for a lot of products, and switching costs a reconnect campaign. Stay if:\n\n- **You want a bill you can read off one table.** ROOK publishes every self-serve ceiling, and at a few thousand users with one device each, Core+ at $999 for up to 5,000 active users is easy to plan against.\n- **The device behind a reading matters.** The Medical Device API sends the manufacturer, model, device type and source type with each glucose, blood pressure, SpO2, temperature or ECG reading, which remote-monitoring programs need.\n- **You read lab reports users already have.** The Lab Data API parses PDF and image reports into LOINC-coded biomarkers with FHIR R4 output, billed by files processed from $249 a month for up to 300 files.\n- **You have no mobile app.** The ROOK App \"lets end users connect supported sources without embedding the SDKs\".\n- **You need a BAA.** ROOK's compliance page says it \"signs BAAs with covered entities\", and its pricing FAQ reviews eligibility during contracting.\n\n## Is switching easy?\n\nIt is a re-integration, not a config change. Expect a new app registration with the new vendor and with any provider that needs your own credentials, field mapping from ROOK's summaries and events to a different schema, and every existing user reconnecting through the new vendor's flow. Check your contract's notice period first: on ROOK's standard terms that is 30 days. The [guide to migrating between health-data aggregators](/migrate/between-health-data-aggregators) walks the order of work.\n\n## What we could not verify\n\n- ROOK's usage rate past a plan's active-user limit; its pricing page says the sales team shares it at contracting.\n- Terra's price on annual billing: the page has a Monthly and Yearly toggle, and the text we fetched showed only \"From $499 / month\".\n- Which Junction plan includes the BAA: its comparison table lists the row, but the plan marks did not come through in the page text.\n\n*Prices, plans and coverage above are from November 2, 2026 and change often; re-check each vendor's live pricing and integrations pages before you sign.*",
-      "faqs": [
-        {
-          "q": "Why do teams look for a ROOK alternative?",
-          "a": "Usually the terms rather than the data. As of November 2, 2026, ROOK's standard contract runs 12 months with 30 days' notice to cancel, add-ons such as health scores cost extra on its Core plan, and Dexcom, Samsung Health, Strava and WHOOP need your own developer accounts, which ROOK says can take several weeks. Others need lab ordering, EU hosting or self-hosting, none of which we found on ROOK's pages."
-        },
-        {
-          "q": "Which ROOK alternative is cheapest for a small app?",
-          "a": "On list prices as of November 2, 2026, Junction's Launch plan at $300 a month for up to 500 connected users and Sahha's Starter at $299 a month billed annually for 1,000 users sit below ROOK's Core at $399 for 750 active users. Open Wearables costs nothing to self-host, but you pay for the hosting and the work. Compare what each plan includes, not only the entry price."
-        },
-        {
-          "q": "Is there a ROOK alternative that orders lab tests?",
-          "a": "Yes. ROOK's Lab Data API parses lab reports your users already have, and we found no lab ordering on its pages. As of November 2, 2026, Junction orders tests across all 50 US states on its Enterprise plan, and Terra orders blood and DNA tests in the US and the UK. Spike, like ROOK, parses lab reports."
-        },
-        {
-          "q": "When should I stay with ROOK instead of switching?",
-          "a": "When its price sheet and products fit. ROOK publishes every self-serve ceiling, from Core at $399 a month for 750 active users to Business at $1,999 for 15,000, as of November 2, 2026. It tags medical-device readings with the device that took them, parses lab reports into LOINC-coded biomarkers, and offers the ROOK App for programs without their own mobile app. A switch also means every user reconnects."
-        }
-      ],
-      "related": [
-        {
-          "href": "/compare/terra-vs-rook",
-          "label": "Terra vs ROOK"
-        },
-        {
-          "href": "/compare/rook-vs-spike",
-          "label": "ROOK vs Spike"
-        },
-        {
-          "href": "/alternatives/sahha-alternatives",
-          "label": "Sahha alternatives"
-        },
-        {
-          "href": "/alternatives/terra-alternatives",
-          "label": "Terra alternatives"
-        },
-        {
-          "href": "/pricing/health-data-aggregator-pricing",
-          "label": "Aggregator pricing compared"
-        },
-        {
-          "href": "/alternatives",
-          "label": "All fitness & health API alternatives"
-        }
-      ],
-      "cta": {
-        "pitch": "We re-read aggregator price sheets and coverage lists as they change. Subscribe and pick your next vendor on current numbers."
+  {
+    "slug": "rook-alternatives",
+    "primaryQuery": "ROOK alternatives",
+    "h1": "The Best ROOK (tryrook.io) Alternatives (2026)",
+    "metaTitle": "ROOK API Alternatives (2026): 6 Health-Data Options",
+    "metaDescription": "ROOK (tryrook.io) alternatives as of November 2026: Terra, Junction, Spike, Sahha, Thryve and Open Wearables, with prices, trade-offs and when to stay.",
+    "updated": "2026-11-02",
+    "answer": "The main ROOK (tryrook.io) alternatives, from the vendors' own pages on November 2, 2026, are Terra for lab ordering in the US and UK and delivery into your own storage, Junction (formerly Vital) for a flat $300 a month up to 500 users and US lab testing, Spike for a dedicated implementation engineer, food-photo nutrition and EMR data, Sahha for phone-first data and ready-made scores, Thryve for hosting in Germany, and Open Wearables if you want MIT-licensed software you run yourself. Pick by what is pushing you off ROOK: its 12-month standard contract, add-on prices on Core, the four providers that need your own developer accounts, or something it does not sell, such as ordering lab tests. Stay with ROOK if you want published active-user tiers from $399 a month for up to 750 users and medical-device readings tagged with the device that took them.",
+    "body": "ROOK is a health-data aggregator: one API and set of mobile SDKs that reach wearables, phone health stores, medical devices and lab reports, priced by plan and active users. Teams that shop around are rarely unhappy with the data; they have hit a contract term, an add-on bill, a provider that needs their own developer account, or something ROOK does not sell. Everything below is from the vendors' own pages as we read them on November 2, 2026. For a head-to-head with the category's best-known name, see [Terra vs ROOK](/compare/terra-vs-rook).\n\n## First, what ROOK is and what it costs\n\nROOK describes itself as \"the health data aggregation and intelligence platform for digital health, wellness and insurance products\", founded by biomedical engineers; its docs name Rookeries Development Corp (RookDev) as \"the company behind the ROOK platform\". Its homepage pitch is \"Wearables, medical devices, EHR/EMR and labs.\"\n\n- **ROOK Connect.** A Wearable API and SDK, a Medical Device API that tags glucose, blood pressure, SpO2, temperature and ECG readings with the device that recorded them, a Lab Data API that turns PDF and image lab reports into LOINC-coded biomarkers, and an EHR/EMR API that is still a waitlist item on the pricing page.\n- **Coverage.** Its docs say \"400+ wearables and health data sources\"; its integrations page counts 72 sources, of which 9 connect by API, 4 by SDK and 59 indirectly through Apple Health and Health Connect.\n- **Price.** \"ROOK pricing is based on the plan and the number of active users\": Core $399 a month for up to 750 active users, Core+ $999 for up to 5,000, Business $1,999 for up to 15,000, and custom Enterprise. Past a plan's limit, \"billing adjusts based on usage\", at a rate the page does not publish.\n- **Contract.** \"ROOK's standard contract term is 12 months, with the flexibility to cancel with 30 days' prior notice.\" Sandbox access is available before you buy.\n\n## Why teams look for a ROOK alternative\n\n- **The contract.** A 12-month standard term is a commitment many early products would rather not make before they know their retention.\n- **Add-ons on Core.** Health Scores, Health Monitor and Granular Data each list at $249 a month on Core, the ROOK App at $499 and the Notification Webhook at $99; Core+ includes three add-ons of your choice and Business includes all of them.\n- **Your own developer accounts.** ROOK's docs say that for Dexcom, Samsung Health, Strava and WHOOP \"clients are required to create their own developer accounts with these providers\", which \"can take several weeks\".\n- **History on connect.** ROOK's FAQ gives, \"as a reference\", up to seven previous days from API-based sources and up to 29 days from SDK-based ones. Products that need a long baseline on day one may want more.\n- **Something ROOK does not sell.** We found no lab-test ordering on ROOK's pages (it parses reports users already have), no EU-only hosting statement, and no self-hosted option.\n\n## The alternatives\n\n### Terra (tryterra.co)\n\n**What it is.** The best-known aggregator, billed in credits. Terra's docs put the Quick Start plan at 100,000 Unified API credits a month that \"reset monthly\" and do not roll over, with \"200 Unified API credits per active authentication per month\" (one connected source for one user), the first 400 events per active authentication free, and extra credits at $0.005 up to 1,000,000. The pricing page text we fetched shows Quick Start \"From $499 / month\", with a 30-day money-back guarantee. It orders blood and DNA tests (\"Nationwide US, plus the UK\") and lists \"Access to 9 destinations\" for delivery, such as AWS S3, Google Cloud Storage and MongoDB.\n\n**Best for.** Ordering lab tests for users in the US or UK, or pushing data straight into your own storage instead of handling webhooks.\n\n**Trade-off.** The bill grows with every source a user connects, not with every person, and Terra lists the signed BAA under Enterprise. See [Terra vs ROOK](/compare/terra-vs-rook).\n\n### Junction (formerly Vital)\n\n**What it is.** Wearables plus lab testing. Junction's Launch plan is \"$300 /mo\", billed monthly, for 1 to 500 connected users and \"300+ devices\"; its Enterprise plan, billed annually, adds the \"Lab testing API and ETL pipelines\", with lab testing \"spanning all 50 states\" through \"a nationwide network of labs (NY, NJ, and RI included)\".\n\n**Best for.** US lab ordering at scale, and the simplest flat bill at small user counts.\n\n**Trade-off.** Labs and anything past 500 users mean a custom Enterprise quote. See [Terra vs Vital (Junction)](/fitness-apis/terra-vs-vital).\n\n### Spike (spikeapi.com)\n\n**What it is.** The closest match to ROOK's scope: wearables, medical IoT devices, lab-report data, EMR and EHR connections, plus food-photo nutrition (\"Convert any food image into complete nutritional data\"). Its Sandbox plan \"Starts from $450 /month\" and lists \"Access 40+ providers and 500+ devices via single SDK\", and \"Every organization gets a dedicated implementation engineer from the sandbox level\".\n\n**Best for.** Teams that want a person on their implementation, food logging from photos, or EMR data today; ROOK's own EHR/EMR API is still on a waitlist.\n\n**Trade-off.** Pricing past the starting point is not itemized, and Spike's integrations page carries the banner \"Raintree Systems Acquires Spike Technologies\". See [ROOK vs Spike](/compare/rook-vs-spike).\n\n### Sahha (sahha.ai)\n\n**What it is.** Phone-first health data: Sahha \"turns the smartphone itself into a passive sensor for sleep, activity, and behavior\" and returns biomarkers, scores and archetypes. Starter is $299 a month billed annually with \"1,000 users included, then $0.40/user\", and \"Every plan starts with a 30-day free trial.\"\n\n**Best for.** Users who do not own a wearable, and products that want scores rather than raw data.\n\n**Trade-off.** Its direct cloud integrations for Garmin, Oura and WHOOP \"are in public beta and are Sandbox only\", Starter keeps 30 days of data, and the BAA starts at Pro. See [Sahha alternatives](/alternatives/sahha-alternatives) and [Sahha API pricing](/pricing/sahha-api-pricing).\n\n### Thryve (thryve.health)\n\n**What it is.** A European aggregator, \"Developed and hosted entirely in Europe\"; its pricing FAQ says \"All data processed and stored by Thryve is hosted in Germany.\" Start Up is 499 euros a month for up to 500 users plus \"€0.50 per additional user\".\n\n**Best for.** EU buyers whose data-protection review wants German hosting.\n\n**Trade-off.** Its docs say that \"When no shared oAuth-client is available, you must bring your own oAuth-client\", and its data-sources table marks WHOOP and Dexcom among those without one. See [Terra vs Thryve](/compare/terra-vs-thryve).\n\n### Open Wearables (openwearables.io)\n\n**What it is.** Open-source software you run in your own cloud. The Core is \"$0 Forever\", self-hosted, \"Open source, MIT license\"; a Pro subscription with health scores and other modules is \"From $999 a month, per deployment\".\n\n**Best for.** Health data that never leaves your infrastructure, and no per-user fee.\n\n**Trade-off.** You register with each provider yourself: its provider table says \"You must apply for Garmin Developer Program\", and lists registration steps for Polar and Suunto too. See [Terra vs Open Wearables](/compare/terra-vs-open-wearables).\n\n| Alternative | Best for | Entry price (Nov 2, 2026) | Watch out |\n| --- | --- | --- | --- |\n| Terra | Lab ordering in the US and UK; delivery into your own storage | From $499 a month, 100,000 credits | Billed per connected source; BAA on Enterprise |\n| Junction | US labs; a flat bill up to 500 users | $300 a month, billed monthly | Labs and more users need Enterprise |\n| Spike | An implementation engineer; food photos; EMR data | From $450 a month | Pricing not itemized; announced acquisition |\n| Sahha | Users without wearables; ready-made scores | $299 a month billed annually, 1,000 users | Cloud integrations beta, Sandbox only |\n| Thryve | Hosting in Germany | 499 euros a month, 500 users | Own OAuth client for some providers |\n| Open Wearables | Data that stays on your servers | $0 to self-host | You hold every provider registration |\n\nGoing direct to each provider, or reading HealthKit and Health Connect on the phone yourself, is the other way out of an aggregator; the [health-data aggregator comparison](/fitness-apis/health-data-aggregator-apis) covers when that pays.\n\n## Which should you pick?\n\n- **You need lab tests ordered, not just parsed** → Junction for US users across every state, Terra for the US and the UK.\n- **You want data pushed into your warehouse or bucket** → Terra's destinations.\n- **You want help building, or nutrition from photos** → Spike.\n- **Many of your users have no wearable** → Sahha.\n- **Your buyers require EU hosting** → Thryve.\n- **Health data must stay on your own servers** → Open Wearables.\n\n[Aggregator pricing](/pricing/health-data-aggregator-pricing) runs the same user counts through each vendor's price sheet.\n\n## When to stay with ROOK\n\nROOK is a sound choice for a lot of products, and switching costs a reconnect campaign. Stay if:\n\n- **You want a bill you can read off one table.** ROOK publishes every self-serve ceiling, and at a few thousand users with one device each, Core+ at $999 for up to 5,000 active users is easy to plan against.\n- **The device behind a reading matters.** The Medical Device API sends the manufacturer, model, device type and source type with each glucose, blood pressure, SpO2, temperature or ECG reading, which remote-monitoring programs need.\n- **You read lab reports users already have.** The Lab Data API parses PDF and image reports into LOINC-coded biomarkers with FHIR R4 output, billed by files processed from $249 a month for up to 300 files.\n- **You have no mobile app.** The ROOK App \"lets end users connect supported sources without embedding the SDKs\".\n- **You need a BAA.** ROOK's compliance page says it \"signs BAAs with covered entities\", and its pricing FAQ reviews eligibility during contracting.\n\n## Is switching easy?\n\nIt is a re-integration, not a config change. Expect a new app registration with the new vendor and with any provider that needs your own credentials, field mapping from ROOK's summaries and events to a different schema, and every existing user reconnecting through the new vendor's flow. Check your contract's notice period first: on ROOK's standard terms that is 30 days. The [guide to migrating between health-data aggregators](/migrate/between-health-data-aggregators) walks the order of work.\n\n## What we could not verify\n\n- ROOK's usage rate past a plan's active-user limit; its pricing page says the sales team shares it at contracting.\n- Terra's price on annual billing: the page has a Monthly and Yearly toggle, and the text we fetched showed only \"From $499 / month\".\n- Which Junction plan includes the BAA: its comparison table lists the row, but the plan marks did not come through in the page text.\n\n*Prices, plans and coverage above are from November 2, 2026 and change often; re-check each vendor's live pricing and integrations pages before you sign.*",
+    "faqs": [
+      {
+        "q": "Why do teams look for a ROOK alternative?",
+        "a": "Usually the terms rather than the data. As of November 2, 2026, ROOK's standard contract runs 12 months with 30 days' notice to cancel, add-ons such as health scores cost extra on its Core plan, and Dexcom, Samsung Health, Strava and WHOOP need your own developer accounts, which ROOK says can take several weeks. Others need lab ordering, EU hosting or self-hosting, none of which we found on ROOK's pages."
       },
-      "sources": [
-        {
-          "url": "https://tryrook.io/",
-          "checked": "2026-11-02",
-          "note": "ROOK product scope (snapshot)"
-        },
-        {
-          "url": "https://tryrook.io/about-us/",
-          "checked": "2026-11-02",
-          "note": "ROOK company description (snapshot)"
-        },
-        {
-          "url": "https://docs.tryrook.io/docs/definitions/",
-          "checked": "2026-11-02",
-          "note": "RookDev, ROOK definitions (snapshot)"
-        },
-        {
-          "url": "https://tryrook.io/pricing/",
-          "checked": "2026-11-02",
-          "note": "ROOK plans, add-ons, Lab Data API tiers, contract (snapshot)"
-        },
-        {
-          "url": "https://docs.tryrook.io/data-sources/",
-          "checked": "2026-11-02",
-          "note": "ROOK data sources and own developer accounts (snapshot)"
-        },
-        {
-          "url": "https://tryrook.io/wearable-api-sdk/integrations/",
-          "checked": "2026-11-02",
-          "note": "ROOK source catalog (snapshot)"
-        },
-        {
-          "url": "https://tryrook.io/rookconnect/wearable-api/",
-          "checked": "2026-11-02",
-          "note": "ROOK Wearable API, ROOK App, history (snapshot)"
-        },
-        {
-          "url": "https://tryrook.io/rookconnect/medical-device-api/",
-          "checked": "2026-11-02",
-          "note": "ROOK Medical Device API (snapshot)"
-        },
-        {
-          "url": "https://tryrook.io/rookconnect/lab-data-api/",
-          "checked": "2026-11-02",
-          "note": "ROOK Lab Data API (snapshot)"
-        },
-        {
-          "url": "https://tryrook.io/compliance/",
-          "checked": "2026-11-02",
-          "note": "ROOK BAA and GDPR (snapshot)"
-        },
-        {
-          "url": "https://tryterra.co/pricing",
-          "checked": "2026-11-02",
-          "note": "Terra Quick Start, destinations, Enterprise BAA (snapshot)"
-        },
-        {
-          "url": "https://docs.tryterra.co/unified-api/pricing",
-          "checked": "2026-11-02",
-          "note": "Terra credits (snapshot)"
-        },
-        {
-          "url": "https://tryterra.co/",
-          "checked": "2026-11-02",
-          "note": "Terra blood and DNA testing (snapshot)"
-        },
-        {
-          "url": "https://tryterra.co/products/lab-testing",
-          "checked": "2026-11-02",
-          "note": "Terra lab testing geography (snapshot)"
-        },
-        {
-          "url": "https://www.junction.com/",
-          "checked": "2026-11-02",
-          "note": "Junction labs and devices (snapshot)"
-        },
-        {
-          "url": "https://www.junction.com/pricing",
-          "checked": "2026-11-02",
-          "note": "Junction Launch and Enterprise (snapshot)"
-        },
-        {
-          "url": "https://www.spikeapi.com/",
-          "checked": "2026-11-02",
-          "note": "Spike scope and implementation engineer (snapshot)"
-        },
-        {
-          "url": "https://www.spikeapi.com/pricing",
-          "checked": "2026-11-02",
-          "note": "Spike Sandbox plan (snapshot)"
-        },
-        {
-          "url": "https://www.spikeapi.com/integrations",
-          "checked": "2026-11-02",
-          "note": "Spike acquisition banner (snapshot)"
-        },
-        {
-          "url": "https://sahha.ai/",
-          "checked": "2026-11-02",
-          "note": "Sahha phone-first positioning (snapshot)"
-        },
-        {
-          "url": "https://sahha.ai/pricing/",
-          "checked": "2026-11-02",
-          "note": "Sahha plans (snapshot)"
-        },
-        {
-          "url": "https://docs.sahha.ai/docs/connect/integrations",
-          "checked": "2026-11-02",
-          "note": "Sahha cloud integrations beta (snapshot)"
-        },
-        {
-          "url": "https://www.thryve.health/",
-          "checked": "2026-11-02",
-          "note": "Thryve hosting (snapshot)"
-        },
-        {
-          "url": "https://www.thryve.health/pricing",
-          "checked": "2026-11-02",
-          "note": "Thryve plans and hosting (snapshot)"
-        },
-        {
-          "url": "https://docs.thryve.health/thryve-data-sources/overview",
-          "checked": "2026-11-02",
-          "note": "Thryve OAuth clients (snapshot)"
-        },
-        {
-          "url": "https://openwearables.io/pricing",
-          "checked": "2026-11-02",
-          "note": "Open Wearables Core and Pro (snapshot)"
-        },
-        {
-          "url": "https://openwearables.io/docs/providers/supported",
-          "checked": "2026-11-02",
-          "note": "Open Wearables provider registration (snapshot)"
-        }
-      ]
-    },
-    {
-      "slug": "sahha-alternatives",
-      "primaryQuery": "Sahha alternatives",
-      "h1": "The Best Sahha (sahha.ai) Alternatives (2026)",
-      "metaTitle": "Sahha API Alternatives (2026): 6 Health-Data Options",
-      "metaDescription": "Sahha (sahha.ai) alternatives as of November 2026: ROOK, Terra, Junction, Thryve, Open Wearables, or HealthKit and Health Connect direct, and when to stay.",
-      "updated": "2026-11-02",
-      "answer": "The main Sahha (sahha.ai) alternatives, from the vendors' own pages on November 2, 2026, are ROOK for cloud wearables and medical-device readings in production from $399 a month for 750 active users, Terra for server-side data delivered into your own storage plus lab ordering, Junction (formerly Vital) for a flat $300 a month up to 500 users, Thryve for hosting in Germany, Open Wearables for MIT-licensed software you run yourself, and reading HealthKit and Health Connect directly if you only need phone data. Pick by what Sahha's phone-first, score-first model does not give you: its direct Garmin, Oura and WHOOP cloud integrations are in public beta and Sandbox only per its docs, Starter keeps 30 days of data, and the BAA starts at its $1,499 Pro plan. Stay with Sahha if many of your users have no wearable or you want ready-made scores from $299 a month billed annually for 1,000 users.",
-      "body": "Sahha is a health-data platform built around the phone rather than the wearable: it reads Apple Health and Health Connect through its SDK, senses sleep and activity from the phone itself, and returns biomarkers, scores and archetypes instead of raw device payloads. Teams that look elsewhere usually need something that model does not give them: server-side wearable data in production, raw data without the scoring layer, a long history, medical devices or labs, or a different hosting model. Everything below is from the vendors' own pages as we read them on November 2, 2026. For Sahha's full price sheet, see [Sahha API pricing](/pricing/sahha-api-pricing).\n\n## First, what Sahha is and what it costs\n\nSahha's homepage headline is \"Health data for every user, wearable or not.\" It says \"Sahha turns the smartphone itself into a passive sensor for sleep, activity, and behavior\", and that when users do have a wearable, its data is reconciled and deduplicated with phone data into one stream.\n\n- **What it returns.** Its pricing page lists 100+ biomarkers, 5 scores, 100+ archetypes, 75+ tags and 100+ insights on every plan. Its docs describe the scores as \"simple 0-1 scores\" with explainable factors; Wellbeing, Activity, Sleep, Mental Wellbeing and Readiness are live.\n- **Where the data comes from.** \"800+ devices across 165 integrations\"; on its integrations page, sources \"arrive on-device through Apple Health or Health Connect\", and for select providers Sahha \"also connects directly through their cloud API\".\n- **Price.** Starter is $299 a month billed annually with \"1,000 users included, then $0.40/user\" and 30-day data retention; Pro is $1,499 a month billed annually with \"10,000 users included, then $0.20/user\", \"HIPAA (BAA)\" and 120-day retention; Enterprise is custom. \"Every plan starts with a 30-day free trial.\"\n\n## Why teams look for a Sahha alternative\n\n- **Server-side wearable data in production.** Sahha's docs say its direct cloud integrations, for Garmin, Oura and WHOOP, \"are in public beta and are Sandbox only\", and each uses an app you register with the provider. Its homepage FAQ also offers connecting \"a partner cloud like Garmin, Oura, WHOOP, or Dexcom directly, with no mobile app required\"; ask Sahha which of those is available in production for your account.\n- **Raw data rather than scores.** Sahha's value is the layer it computes. Teams that want device payloads they model themselves may prefer an aggregator that leads with normalized raw data.\n- **History and retention.** Starter keeps data for 30 days and Pro for 120, and Sahha backfills up to 30 days when a user connects.\n- **Compliance tier.** The BAA starts at Pro, $1,499 a month billed annually; Starter includes the DPA only.\n- **Device-tagged readings, labs and hosting.** We found no product that tags medical readings with the device that took them, no lab-report parsing or lab ordering, no EU-only hosting statement and no self-hosted option on Sahha's pages.\n\n## The alternatives\n\n### ROOK (tryrook.io)\n\n**What it is.** A health-data aggregator with a Wearable API and SDK, a Medical Device API, a Lab Data API that parses lab reports, and 0 to 100 health scores. Core is $399 a month for up to 750 active users, Core+ $999 for up to 5,000, Business $1,999 for up to 15,000. Like Sahha, it reads Apple Health and Health Connect through SDKs, and the ROOK App \"lets end users connect supported sources without embedding the SDKs\".\n\n**Best for.** Products that need cloud wearable data and medical-device readings in production alongside the phone stores, with a published price sheet.\n\n**Trade-off.** \"ROOK's standard contract term is 12 months\", scores are an add-on on Core, and Dexcom, Samsung Health, Strava and WHOOP need your own developer accounts. See [ROOK alternatives](/alternatives/rook-alternatives).\n\n### Terra (tryterra.co)\n\n**What it is.** The best-known aggregator, billed in credits: 100,000 Unified API credits a month on Quick Start, \"200 Unified API credits per active authentication per month\", and the first 400 events per active authentication free. The pricing page text we fetched shows Quick Start \"From $499 / month\". It also orders lab tests (\"Nationwide US, plus the UK\") and delivers to destinations such as AWS S3, Google Cloud Storage and MongoDB.\n\n**Best for.** Server-side wearable data in production, delivery into your own storage, and lab ordering.\n\n**Trade-off.** The bill counts each source a user connects, and the signed BAA is on Enterprise. See [Terra vs Sahha](/compare/terra-vs-sahha).\n\n### Junction (formerly Vital)\n\n**What it is.** Wearables plus US lab testing: Launch is \"$300 /mo\", billed monthly, for 1 to 500 connected users and \"300+ devices\"; Enterprise adds the \"Lab testing API and ETL pipelines\".\n\n**Best for.** A small app that wants a flat monthly bill, or a care product that orders lab tests in the US.\n\n**Trade-off.** Past 500 users, and for labs, you need a custom Enterprise quote. See [Terra vs Vital (Junction)](/fitness-apis/terra-vs-vital).\n\n### Thryve (thryve.health)\n\n**What it is.** A European aggregator, \"Developed and hosted entirely in Europe\", whose pricing FAQ says \"All data processed and stored by Thryve is hosted in Germany.\" Start Up is 499 euros a month for up to 500 users plus \"€0.50 per additional user\".\n\n**Best for.** EU buyers who need German hosting and raw, harmonized data rather than scores.\n\n**Trade-off.** Some providers have no shared OAuth client, and then \"you must bring your own oAuth-client\". See [Thryve API pricing](/pricing/thryve-api-pricing).\n\n### Open Wearables (openwearables.io)\n\n**What it is.** Open-source software you run in your own cloud: Core is \"$0 Forever\", \"Open source, MIT license\", with SDKs for Apple Health, Health Connect and Samsung Health; Pro, with health scores, is \"From $999 a month, per deployment\".\n\n**Best for.** Teams whose health data must never leave their own infrastructure.\n\n**Trade-off.** You register with each cloud provider yourself (\"You must apply for Garmin Developer Program\") and operate the platform. See [Terra vs Open Wearables](/compare/terra-vs-open-wearables).\n\n### HealthKit and Health Connect, read directly\n\n**What it is.** Apple's and Google's on-device health stores, read by your own app with no vendor in between. Sahha's integrations page says its sources \"arrive on-device through Apple Health or Health Connect\", with a direct cloud API for select providers.\n\n**Best for.** Teams that only need data already on the phone and will build their own scores.\n\n**Trade-off.** Two platform integrations to build and maintain, no server-side pull, and no scores, archetypes or phone sensing unless you build them. See [Apple HealthKit vs Google Health Connect](/fitness-apis/apple-healthkit-vs-google-health-connect).\n\n| Alternative | Best for | Entry price (Nov 2, 2026) | Watch out |\n| --- | --- | --- | --- |\n| ROOK | Cloud wearables and medical devices in production | $399 a month, 750 active users | 12-month standard contract; add-ons on Core |\n| Terra | Server-side data into your storage; lab ordering | From $499 a month, 100,000 credits | Billed per connected source |\n| Junction | A flat bill up to 500 users; US labs | $300 a month, billed monthly | Labs and more users need Enterprise |\n| Thryve | Hosting in Germany | 499 euros a month, 500 users | Own OAuth client for some providers |\n| Open Wearables | Data that stays on your servers | $0 to self-host | You hold every provider registration |\n| HealthKit / Health Connect | Phone data with no vendor | No vendor fee | Two platforms; no scores; no server-side pull |\n\n## Which should you pick?\n\n- **You need Garmin, Oura or WHOOP data server-side in production** → ROOK or Terra, after checking which providers need your own developer account.\n- **You need medical-device readings or lab reports** → ROOK; for lab ordering, Terra or Junction.\n- **You want a flat bill at a few hundred users** → Junction's Launch plan.\n- **You need EU hosting** → Thryve.\n- **Data must stay on your servers** → Open Wearables.\n- **You only need phone data and will model it yourself** → HealthKit and Health Connect directly.\n\n[Aggregator pricing](/pricing/health-data-aggregator-pricing) runs the same user counts through each vendor's price sheet.\n\n## When to stay with Sahha\n\nSahha fits a lot of products better than any of the above. Stay if:\n\n- **Many of your users have no wearable.** None of the alternatives here markets the phone itself as a passive sensor the way Sahha does.\n- **You want scores, not a data-science project.** Sleep, Activity, Readiness, Wellbeing and Mental Wellbeing scores, archetypes and insights come on every plan; with the others you build them, buy them as add-ons, or go without.\n- **You want personalization on day one.** Sahha backfills up to 30 days of history when a user connects.\n- **Your user count is in the thousands.** Starter includes 1,000 users at $299 a month billed annually, and Pro 10,000 at $1,499; by our arithmetic Pro is cheaper than Starter above 4,000 users.\n- **You want to try before you commit.** \"Every plan starts with a 30-day free trial\", and Sahha's homepage describes a separate sandbox with sample profiles.\n\n## Is switching easy?\n\nIt is a re-integration. Sahha's scores and archetypes have no direct equivalent elsewhere, so moving to a raw-data aggregator means either building those features yourself or dropping them. Users who connected through Sahha's SDK will grant permissions again through the new vendor's SDK or your own HealthKit and Health Connect code, and cloud-connected users reconnect through the new vendor's flow. Keep your own copy of the history you need before you switch, since Starter retains 30 days. The [guide to migrating between health-data aggregators](/migrate/between-health-data-aggregators) covers the order of work.\n\n## What we could not verify\n\n- Whether Sahha's cloud integrations are available in production for a new account: its docs say Sandbox only, its homepage FAQ offers them without that caveat.\n- What Sahha counts as a user, and whether the per-user overage is monthly: the answers to those pricing-page FAQs did not come through in the page text we fetched.\n- Terra's price on annual billing: the page has a Monthly and Yearly toggle, and the text we fetched showed only \"From $499 / month\".\n\n*Prices, plans and coverage above are from November 2, 2026 and change often; re-check each vendor's live pricing and integrations pages before you sign.*",
-      "faqs": [
-        {
-          "q": "Why do teams look for a Sahha alternative?",
-          "a": "Mostly for what its phone-first model does not cover. As of November 2, 2026, Sahha's docs say its direct Garmin, Oura and WHOOP cloud integrations are in public beta and Sandbox only, Starter keeps 30 days of data, and the BAA starts at Pro, $1,499 a month billed annually. Others want raw data rather than scores, medical-device readings, lab ordering, EU hosting or self-hosting."
-        },
-        {
-          "q": "Which Sahha alternative works for users without a wearable?",
-          "a": "None of the aggregators compared here markets the phone itself as a passive sensor the way Sahha does, so for users without a wearable Sahha is still the closest fit. ROOK, Terra and Open Wearables read Apple Health and Health Connect through mobile SDKs, which captures whatever the phone and other apps write there, but they do not sell phone-sensed sleep or behavior scores. Checked November 2, 2026."
-        },
-        {
-          "q": "Is there a Sahha alternative with medical devices or lab reports?",
-          "a": "Yes. As of November 2, 2026, ROOK's Medical Device API delivers glucose, blood pressure, SpO2, temperature and ECG readings tagged with the device that took them, and its Lab Data API parses lab reports into LOINC-coded biomarkers. Terra and Junction order lab tests, Terra in the US and the UK and Junction across all 50 US states on its Enterprise plan. We found no lab or device-tagging product on Sahha's pages."
-        },
-        {
-          "q": "Can I replace Sahha with HealthKit and Health Connect directly?",
-          "a": "For raw phone data, yes: most of Sahha's sources arrive through Apple Health or Health Connect, which your own app can read with no vendor fee. What you give up is Sahha's layer on top, its scores, archetypes, insights and deduplication across devices, plus any cloud wearable data. You also build and maintain two platform integrations, one per operating system."
-        }
-      ],
-      "related": [
-        {
-          "href": "/pricing/sahha-api-pricing",
-          "label": "Sahha API pricing"
-        },
-        {
-          "href": "/compare/terra-vs-sahha",
-          "label": "Terra vs Sahha"
-        },
-        {
-          "href": "/alternatives/rook-alternatives",
-          "label": "ROOK alternatives"
-        },
-        {
-          "href": "/alternatives/terra-alternatives",
-          "label": "Terra alternatives"
-        },
-        {
-          "href": "/fitness-apis/health-data-aggregator-apis",
-          "label": "Best health-data aggregator APIs"
-        },
-        {
-          "href": "/alternatives",
-          "label": "All fitness & health API alternatives"
-        }
-      ],
-      "cta": {
-        "pitch": "We track health-data platforms' prices, beta labels and coverage as they move. Subscribe and choose on what the vendors say today."
+      {
+        "q": "Which ROOK alternative is cheapest for a small app?",
+        "a": "On list prices as of November 2, 2026, Junction's Launch plan at $300 a month for up to 500 connected users and Sahha's Starter at $299 a month billed annually for 1,000 users sit below ROOK's Core at $399 for 750 active users. Open Wearables costs nothing to self-host, but you pay for the hosting and the work. Compare what each plan includes, not only the entry price."
       },
-      "sources": [
-        {
-          "url": "https://sahha.ai/",
-          "checked": "2026-11-02",
-          "note": "Sahha positioning, coverage, FAQ, compliance (snapshot)"
-        },
-        {
-          "url": "https://sahha.ai/pricing/",
-          "checked": "2026-11-02",
-          "note": "Sahha plans, trial, retention, BAA (snapshot)"
-        },
-        {
-          "url": "https://sahha.ai/integrations/",
-          "checked": "2026-11-02",
-          "note": "Sahha integrations and cloud API sources (snapshot)"
-        },
-        {
-          "url": "https://docs.sahha.ai/docs/connect/integrations",
-          "checked": "2026-11-02",
-          "note": "Sahha cloud integrations beta and backfill (snapshot)"
-        },
-        {
-          "url": "https://www.sahha.ai/docs/products/scores/",
-          "checked": "2026-11-02",
-          "note": "Sahha scores (snapshot)"
-        },
-        {
-          "url": "https://tryrook.io/pricing/",
-          "checked": "2026-11-02",
-          "note": "ROOK plans, add-ons, contract (snapshot)"
-        },
-        {
-          "url": "https://tryrook.io/rookconnect/wearable-api/",
-          "checked": "2026-11-02",
-          "note": "ROOK SDKs and ROOK App (snapshot)"
-        },
-        {
-          "url": "https://tryrook.io/rookconnect/medical-device-api/",
-          "checked": "2026-11-02",
-          "note": "ROOK Medical Device API (snapshot)"
-        },
-        {
-          "url": "https://tryrook.io/rookconnect/lab-data-api/",
-          "checked": "2026-11-02",
-          "note": "ROOK Lab Data API (snapshot)"
-        },
-        {
-          "url": "https://docs.tryrook.io/",
-          "checked": "2026-11-02",
-          "note": "ROOK Score (snapshot)"
-        },
-        {
-          "url": "https://docs.tryrook.io/data-sources/",
-          "checked": "2026-11-02",
-          "note": "ROOK own developer accounts (snapshot)"
-        },
-        {
-          "url": "https://tryterra.co/pricing",
-          "checked": "2026-11-02",
-          "note": "Terra Quick Start, destinations, Enterprise BAA (snapshot)"
-        },
-        {
-          "url": "https://docs.tryterra.co/unified-api/pricing",
-          "checked": "2026-11-02",
-          "note": "Terra credits (snapshot)"
-        },
-        {
-          "url": "https://tryterra.co/products/lab-testing",
-          "checked": "2026-11-02",
-          "note": "Terra lab testing geography (snapshot)"
-        },
-        {
-          "url": "https://www.junction.com/",
-          "checked": "2026-11-02",
-          "note": "Junction labs (snapshot)"
-        },
-        {
-          "url": "https://www.junction.com/pricing",
-          "checked": "2026-11-02",
-          "note": "Junction Launch and Enterprise (snapshot)"
-        },
-        {
-          "url": "https://www.thryve.health/",
-          "checked": "2026-11-02",
-          "note": "Thryve hosting (snapshot)"
-        },
-        {
-          "url": "https://www.thryve.health/pricing",
-          "checked": "2026-11-02",
-          "note": "Thryve plans and hosting (snapshot)"
-        },
-        {
-          "url": "https://docs.thryve.health/thryve-data-sources/overview",
-          "checked": "2026-11-02",
-          "note": "Thryve OAuth clients (snapshot)"
-        },
-        {
-          "url": "https://openwearables.io/pricing",
-          "checked": "2026-11-02",
-          "note": "Open Wearables Core and Pro (snapshot)"
-        },
-        {
-          "url": "https://openwearables.io/docs/providers/supported",
-          "checked": "2026-11-02",
-          "note": "Open Wearables provider registration (snapshot)"
-        }
-      ]
+      {
+        "q": "Is there a ROOK alternative that orders lab tests?",
+        "a": "Yes. ROOK's Lab Data API parses lab reports your users already have, and we found no lab ordering on its pages. As of November 2, 2026, Junction orders tests across all 50 US states on its Enterprise plan, and Terra orders blood and DNA tests in the US and the UK. Spike, like ROOK, parses lab reports."
+      },
+      {
+        "q": "When should I stay with ROOK instead of switching?",
+        "a": "When its price sheet and products fit. ROOK publishes every self-serve ceiling, from Core at $399 a month for 750 active users to Business at $1,999 for 15,000, as of November 2, 2026. It tags medical-device readings with the device that took them, parses lab reports into LOINC-coded biomarkers, and offers the ROOK App for programs without their own mobile app. A switch also means every user reconnects."
+      }
+    ],
+    "related": [
+      {
+        "href": "/compare/terra-vs-rook",
+        "label": "Terra vs ROOK"
+      },
+      {
+        "href": "/compare/rook-vs-spike",
+        "label": "ROOK vs Spike"
+      },
+      {
+        "href": "/alternatives/sahha-alternatives",
+        "label": "Sahha alternatives"
+      },
+      {
+        "href": "/alternatives/terra-alternatives",
+        "label": "Terra alternatives"
+      },
+      {
+        "href": "/pricing/health-data-aggregator-pricing",
+        "label": "Aggregator pricing compared"
+      },
+      {
+        "href": "/alternatives",
+        "label": "All fitness & health API alternatives"
+      }
+    ],
+    "cta": {
+      "pitch": "We re-read aggregator price sheets and coverage lists as they change. Subscribe and pick your next vendor on current numbers."
     },
+    "sources": [
+      {
+        "url": "https://tryrook.io/",
+        "checked": "2026-11-02",
+        "note": "ROOK product scope (snapshot)"
+      },
+      {
+        "url": "https://tryrook.io/about-us/",
+        "checked": "2026-11-02",
+        "note": "ROOK company description (snapshot)"
+      },
+      {
+        "url": "https://docs.tryrook.io/docs/definitions/",
+        "checked": "2026-11-02",
+        "note": "RookDev, ROOK definitions (snapshot)"
+      },
+      {
+        "url": "https://tryrook.io/pricing/",
+        "checked": "2026-11-02",
+        "note": "ROOK plans, add-ons, Lab Data API tiers, contract (snapshot)"
+      },
+      {
+        "url": "https://docs.tryrook.io/data-sources/",
+        "checked": "2026-11-02",
+        "note": "ROOK data sources and own developer accounts (snapshot)"
+      },
+      {
+        "url": "https://tryrook.io/wearable-api-sdk/integrations/",
+        "checked": "2026-11-02",
+        "note": "ROOK source catalog (snapshot)"
+      },
+      {
+        "url": "https://tryrook.io/rookconnect/wearable-api/",
+        "checked": "2026-11-02",
+        "note": "ROOK Wearable API, ROOK App, history (snapshot)"
+      },
+      {
+        "url": "https://tryrook.io/rookconnect/medical-device-api/",
+        "checked": "2026-11-02",
+        "note": "ROOK Medical Device API (snapshot)"
+      },
+      {
+        "url": "https://tryrook.io/rookconnect/lab-data-api/",
+        "checked": "2026-11-02",
+        "note": "ROOK Lab Data API (snapshot)"
+      },
+      {
+        "url": "https://tryrook.io/compliance/",
+        "checked": "2026-11-02",
+        "note": "ROOK BAA and GDPR (snapshot)"
+      },
+      {
+        "url": "https://tryterra.co/pricing",
+        "checked": "2026-11-02",
+        "note": "Terra Quick Start, destinations, Enterprise BAA (snapshot)"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/pricing",
+        "checked": "2026-11-02",
+        "note": "Terra credits (snapshot)"
+      },
+      {
+        "url": "https://tryterra.co/",
+        "checked": "2026-11-02",
+        "note": "Terra blood and DNA testing (snapshot)"
+      },
+      {
+        "url": "https://tryterra.co/products/lab-testing",
+        "checked": "2026-11-02",
+        "note": "Terra lab testing geography (snapshot)"
+      },
+      {
+        "url": "https://www.junction.com/",
+        "checked": "2026-11-02",
+        "note": "Junction labs and devices (snapshot)"
+      },
+      {
+        "url": "https://www.junction.com/pricing",
+        "checked": "2026-11-02",
+        "note": "Junction Launch and Enterprise (snapshot)"
+      },
+      {
+        "url": "https://www.spikeapi.com/",
+        "checked": "2026-11-02",
+        "note": "Spike scope and implementation engineer (snapshot)"
+      },
+      {
+        "url": "https://www.spikeapi.com/pricing",
+        "checked": "2026-11-02",
+        "note": "Spike Sandbox plan (snapshot)"
+      },
+      {
+        "url": "https://www.spikeapi.com/integrations",
+        "checked": "2026-11-02",
+        "note": "Spike acquisition banner (snapshot)"
+      },
+      {
+        "url": "https://sahha.ai/",
+        "checked": "2026-11-02",
+        "note": "Sahha phone-first positioning (snapshot)"
+      },
+      {
+        "url": "https://sahha.ai/pricing/",
+        "checked": "2026-11-02",
+        "note": "Sahha plans (snapshot)"
+      },
+      {
+        "url": "https://docs.sahha.ai/docs/connect/integrations",
+        "checked": "2026-11-02",
+        "note": "Sahha cloud integrations beta (snapshot)"
+      },
+      {
+        "url": "https://www.thryve.health/",
+        "checked": "2026-11-02",
+        "note": "Thryve hosting (snapshot)"
+      },
+      {
+        "url": "https://www.thryve.health/pricing",
+        "checked": "2026-11-02",
+        "note": "Thryve plans and hosting (snapshot)"
+      },
+      {
+        "url": "https://docs.thryve.health/thryve-data-sources/overview",
+        "checked": "2026-11-02",
+        "note": "Thryve OAuth clients (snapshot)"
+      },
+      {
+        "url": "https://openwearables.io/pricing",
+        "checked": "2026-11-02",
+        "note": "Open Wearables Core and Pro (snapshot)"
+      },
+      {
+        "url": "https://openwearables.io/docs/providers/supported",
+        "checked": "2026-11-02",
+        "note": "Open Wearables provider registration (snapshot)"
+      }
+    ]
+  },
+  {
+    "slug": "sahha-alternatives",
+    "primaryQuery": "Sahha alternatives",
+    "h1": "The Best Sahha (sahha.ai) Alternatives (2026)",
+    "metaTitle": "Sahha API Alternatives (2026): 6 Health-Data Options",
+    "metaDescription": "Sahha (sahha.ai) alternatives as of November 2026: ROOK, Terra, Junction, Thryve, Open Wearables, or HealthKit and Health Connect direct, and when to stay.",
+    "updated": "2026-11-02",
+    "answer": "The main Sahha (sahha.ai) alternatives, from the vendors' own pages on November 2, 2026, are ROOK for cloud wearables and medical-device readings in production from $399 a month for 750 active users, Terra for server-side data delivered into your own storage plus lab ordering, Junction (formerly Vital) for a flat $300 a month up to 500 users, Thryve for hosting in Germany, Open Wearables for MIT-licensed software you run yourself, and reading HealthKit and Health Connect directly if you only need phone data. Pick by what Sahha's phone-first, score-first model does not give you: its direct Garmin, Oura and WHOOP cloud integrations are in public beta and Sandbox only per its docs, Starter keeps 30 days of data, and the BAA starts at its $1,499 Pro plan. Stay with Sahha if many of your users have no wearable or you want ready-made scores from $299 a month billed annually for 1,000 users.",
+    "body": "Sahha is a health-data platform built around the phone rather than the wearable: it reads Apple Health and Health Connect through its SDK, senses sleep and activity from the phone itself, and returns biomarkers, scores and archetypes instead of raw device payloads. Teams that look elsewhere usually need something that model does not give them: server-side wearable data in production, raw data without the scoring layer, a long history, medical devices or labs, or a different hosting model. Everything below is from the vendors' own pages as we read them on November 2, 2026. For Sahha's full price sheet, see [Sahha API pricing](/pricing/sahha-api-pricing).\n\n## First, what Sahha is and what it costs\n\nSahha's homepage headline is \"Health data for every user, wearable or not.\" It says \"Sahha turns the smartphone itself into a passive sensor for sleep, activity, and behavior\", and that when users do have a wearable, its data is reconciled and deduplicated with phone data into one stream.\n\n- **What it returns.** Its pricing page lists 100+ biomarkers, 5 scores, 100+ archetypes, 75+ tags and 100+ insights on every plan. Its docs describe the scores as \"simple 0-1 scores\" with explainable factors; Wellbeing, Activity, Sleep, Mental Wellbeing and Readiness are live.\n- **Where the data comes from.** \"800+ devices across 165 integrations\"; on its integrations page, sources \"arrive on-device through Apple Health or Health Connect\", and for select providers Sahha \"also connects directly through their cloud API\".\n- **Price.** Starter is $299 a month billed annually with \"1,000 users included, then $0.40/user\" and 30-day data retention; Pro is $1,499 a month billed annually with \"10,000 users included, then $0.20/user\", \"HIPAA (BAA)\" and 120-day retention; Enterprise is custom. \"Every plan starts with a 30-day free trial.\"\n\n## Why teams look for a Sahha alternative\n\n- **Server-side wearable data in production.** Sahha's docs say its direct cloud integrations, for Garmin, Oura and WHOOP, \"are in public beta and are Sandbox only\", and each uses an app you register with the provider. Its homepage FAQ also offers connecting \"a partner cloud like Garmin, Oura, WHOOP, or Dexcom directly, with no mobile app required\"; ask Sahha which of those is available in production for your account.\n- **Raw data rather than scores.** Sahha's value is the layer it computes. Teams that want device payloads they model themselves may prefer an aggregator that leads with normalized raw data.\n- **History and retention.** Starter keeps data for 30 days and Pro for 120, and Sahha backfills up to 30 days when a user connects.\n- **Compliance tier.** The BAA starts at Pro, $1,499 a month billed annually; Starter includes the DPA only.\n- **Device-tagged readings, labs and hosting.** We found no product that tags medical readings with the device that took them, no lab-report parsing or lab ordering, no EU-only hosting statement and no self-hosted option on Sahha's pages.\n\n## The alternatives\n\n### ROOK (tryrook.io)\n\n**What it is.** A health-data aggregator with a Wearable API and SDK, a Medical Device API, a Lab Data API that parses lab reports, and 0 to 100 health scores. Core is $399 a month for up to 750 active users, Core+ $999 for up to 5,000, Business $1,999 for up to 15,000. Like Sahha, it reads Apple Health and Health Connect through SDKs, and the ROOK App \"lets end users connect supported sources without embedding the SDKs\".\n\n**Best for.** Products that need cloud wearable data and medical-device readings in production alongside the phone stores, with a published price sheet.\n\n**Trade-off.** \"ROOK's standard contract term is 12 months\", scores are an add-on on Core, and Dexcom, Samsung Health, Strava and WHOOP need your own developer accounts. See [ROOK alternatives](/alternatives/rook-alternatives).\n\n### Terra (tryterra.co)\n\n**What it is.** The best-known aggregator, billed in credits: 100,000 Unified API credits a month on Quick Start, \"200 Unified API credits per active authentication per month\", and the first 400 events per active authentication free. The pricing page text we fetched shows Quick Start \"From $499 / month\". It also orders lab tests (\"Nationwide US, plus the UK\") and delivers to destinations such as AWS S3, Google Cloud Storage and MongoDB.\n\n**Best for.** Server-side wearable data in production, delivery into your own storage, and lab ordering.\n\n**Trade-off.** The bill counts each source a user connects, and the signed BAA is on Enterprise. See [Terra vs Sahha](/compare/terra-vs-sahha).\n\n### Junction (formerly Vital)\n\n**What it is.** Wearables plus US lab testing: Launch is \"$300 /mo\", billed monthly, for 1 to 500 connected users and \"300+ devices\"; Enterprise adds the \"Lab testing API and ETL pipelines\".\n\n**Best for.** A small app that wants a flat monthly bill, or a care product that orders lab tests in the US.\n\n**Trade-off.** Past 500 users, and for labs, you need a custom Enterprise quote. See [Terra vs Vital (Junction)](/fitness-apis/terra-vs-vital).\n\n### Thryve (thryve.health)\n\n**What it is.** A European aggregator, \"Developed and hosted entirely in Europe\", whose pricing FAQ says \"All data processed and stored by Thryve is hosted in Germany.\" Start Up is 499 euros a month for up to 500 users plus \"€0.50 per additional user\".\n\n**Best for.** EU buyers who need German hosting and raw, harmonized data rather than scores.\n\n**Trade-off.** Some providers have no shared OAuth client, and then \"you must bring your own oAuth-client\". See [Thryve API pricing](/pricing/thryve-api-pricing).\n\n### Open Wearables (openwearables.io)\n\n**What it is.** Open-source software you run in your own cloud: Core is \"$0 Forever\", \"Open source, MIT license\", with SDKs for Apple Health, Health Connect and Samsung Health; Pro, with health scores, is \"From $999 a month, per deployment\".\n\n**Best for.** Teams whose health data must never leave their own infrastructure.\n\n**Trade-off.** You register with each cloud provider yourself (\"You must apply for Garmin Developer Program\") and operate the platform. See [Terra vs Open Wearables](/compare/terra-vs-open-wearables).\n\n### HealthKit and Health Connect, read directly\n\n**What it is.** Apple's and Google's on-device health stores, read by your own app with no vendor in between. Sahha's integrations page says its sources \"arrive on-device through Apple Health or Health Connect\", with a direct cloud API for select providers.\n\n**Best for.** Teams that only need data already on the phone and will build their own scores.\n\n**Trade-off.** Two platform integrations to build and maintain, no server-side pull, and no scores, archetypes or phone sensing unless you build them. See [Apple HealthKit vs Google Health Connect](/fitness-apis/apple-healthkit-vs-google-health-connect).\n\n| Alternative | Best for | Entry price (Nov 2, 2026) | Watch out |\n| --- | --- | --- | --- |\n| ROOK | Cloud wearables and medical devices in production | $399 a month, 750 active users | 12-month standard contract; add-ons on Core |\n| Terra | Server-side data into your storage; lab ordering | From $499 a month, 100,000 credits | Billed per connected source |\n| Junction | A flat bill up to 500 users; US labs | $300 a month, billed monthly | Labs and more users need Enterprise |\n| Thryve | Hosting in Germany | 499 euros a month, 500 users | Own OAuth client for some providers |\n| Open Wearables | Data that stays on your servers | $0 to self-host | You hold every provider registration |\n| HealthKit / Health Connect | Phone data with no vendor | No vendor fee | Two platforms; no scores; no server-side pull |\n\n## Which should you pick?\n\n- **You need Garmin, Oura or WHOOP data server-side in production** → ROOK or Terra, after checking which providers need your own developer account.\n- **You need medical-device readings or lab reports** → ROOK; for lab ordering, Terra or Junction.\n- **You want a flat bill at a few hundred users** → Junction's Launch plan.\n- **You need EU hosting** → Thryve.\n- **Data must stay on your servers** → Open Wearables.\n- **You only need phone data and will model it yourself** → HealthKit and Health Connect directly.\n\n[Aggregator pricing](/pricing/health-data-aggregator-pricing) runs the same user counts through each vendor's price sheet.\n\n## When to stay with Sahha\n\nSahha fits a lot of products better than any of the above. Stay if:\n\n- **Many of your users have no wearable.** None of the alternatives here markets the phone itself as a passive sensor the way Sahha does.\n- **You want scores, not a data-science project.** Sleep, Activity, Readiness, Wellbeing and Mental Wellbeing scores, archetypes and insights come on every plan; with the others you build them, buy them as add-ons, or go without.\n- **You want personalization on day one.** Sahha backfills up to 30 days of history when a user connects.\n- **Your user count is in the thousands.** Starter includes 1,000 users at $299 a month billed annually, and Pro 10,000 at $1,499; by our arithmetic Pro is cheaper than Starter above 4,000 users.\n- **You want to try before you commit.** \"Every plan starts with a 30-day free trial\", and Sahha's homepage describes a separate sandbox with sample profiles.\n\n## Is switching easy?\n\nIt is a re-integration. Sahha's scores and archetypes have no direct equivalent elsewhere, so moving to a raw-data aggregator means either building those features yourself or dropping them. Users who connected through Sahha's SDK will grant permissions again through the new vendor's SDK or your own HealthKit and Health Connect code, and cloud-connected users reconnect through the new vendor's flow. Keep your own copy of the history you need before you switch, since Starter retains 30 days. The [guide to migrating between health-data aggregators](/migrate/between-health-data-aggregators) covers the order of work.\n\n## What we could not verify\n\n- Whether Sahha's cloud integrations are available in production for a new account: its docs say Sandbox only, its homepage FAQ offers them without that caveat.\n- What Sahha counts as a user, and whether the per-user overage is monthly: the answers to those pricing-page FAQs did not come through in the page text we fetched.\n- Terra's price on annual billing: the page has a Monthly and Yearly toggle, and the text we fetched showed only \"From $499 / month\".\n\n*Prices, plans and coverage above are from November 2, 2026 and change often; re-check each vendor's live pricing and integrations pages before you sign.*",
+    "faqs": [
+      {
+        "q": "Why do teams look for a Sahha alternative?",
+        "a": "Mostly for what its phone-first model does not cover. As of November 2, 2026, Sahha's docs say its direct Garmin, Oura and WHOOP cloud integrations are in public beta and Sandbox only, Starter keeps 30 days of data, and the BAA starts at Pro, $1,499 a month billed annually. Others want raw data rather than scores, medical-device readings, lab ordering, EU hosting or self-hosting."
+      },
+      {
+        "q": "Which Sahha alternative works for users without a wearable?",
+        "a": "None of the aggregators compared here markets the phone itself as a passive sensor the way Sahha does, so for users without a wearable Sahha is still the closest fit. ROOK, Terra and Open Wearables read Apple Health and Health Connect through mobile SDKs, which captures whatever the phone and other apps write there, but they do not sell phone-sensed sleep or behavior scores. Checked November 2, 2026."
+      },
+      {
+        "q": "Is there a Sahha alternative with medical devices or lab reports?",
+        "a": "Yes. As of November 2, 2026, ROOK's Medical Device API delivers glucose, blood pressure, SpO2, temperature and ECG readings tagged with the device that took them, and its Lab Data API parses lab reports into LOINC-coded biomarkers. Terra and Junction order lab tests, Terra in the US and the UK and Junction across all 50 US states on its Enterprise plan. We found no lab or device-tagging product on Sahha's pages."
+      },
+      {
+        "q": "Can I replace Sahha with HealthKit and Health Connect directly?",
+        "a": "For raw phone data, yes: most of Sahha's sources arrive through Apple Health or Health Connect, which your own app can read with no vendor fee. What you give up is Sahha's layer on top, its scores, archetypes, insights and deduplication across devices, plus any cloud wearable data. You also build and maintain two platform integrations, one per operating system."
+      }
+    ],
+    "related": [
+      {
+        "href": "/pricing/sahha-api-pricing",
+        "label": "Sahha API pricing"
+      },
+      {
+        "href": "/compare/terra-vs-sahha",
+        "label": "Terra vs Sahha"
+      },
+      {
+        "href": "/alternatives/rook-alternatives",
+        "label": "ROOK alternatives"
+      },
+      {
+        "href": "/alternatives/terra-alternatives",
+        "label": "Terra alternatives"
+      },
+      {
+        "href": "/fitness-apis/health-data-aggregator-apis",
+        "label": "Best health-data aggregator APIs"
+      },
+      {
+        "href": "/alternatives",
+        "label": "All fitness & health API alternatives"
+      }
+    ],
+    "cta": {
+      "pitch": "We track health-data platforms' prices, beta labels and coverage as they move. Subscribe and choose on what the vendors say today."
+    },
+    "sources": [
+      {
+        "url": "https://sahha.ai/",
+        "checked": "2026-11-02",
+        "note": "Sahha positioning, coverage, FAQ, compliance (snapshot)"
+      },
+      {
+        "url": "https://sahha.ai/pricing/",
+        "checked": "2026-11-02",
+        "note": "Sahha plans, trial, retention, BAA (snapshot)"
+      },
+      {
+        "url": "https://sahha.ai/integrations/",
+        "checked": "2026-11-02",
+        "note": "Sahha integrations and cloud API sources (snapshot)"
+      },
+      {
+        "url": "https://docs.sahha.ai/docs/connect/integrations",
+        "checked": "2026-11-02",
+        "note": "Sahha cloud integrations beta and backfill (snapshot)"
+      },
+      {
+        "url": "https://www.sahha.ai/docs/products/scores/",
+        "checked": "2026-11-02",
+        "note": "Sahha scores (snapshot)"
+      },
+      {
+        "url": "https://tryrook.io/pricing/",
+        "checked": "2026-11-02",
+        "note": "ROOK plans, add-ons, contract (snapshot)"
+      },
+      {
+        "url": "https://tryrook.io/rookconnect/wearable-api/",
+        "checked": "2026-11-02",
+        "note": "ROOK SDKs and ROOK App (snapshot)"
+      },
+      {
+        "url": "https://tryrook.io/rookconnect/medical-device-api/",
+        "checked": "2026-11-02",
+        "note": "ROOK Medical Device API (snapshot)"
+      },
+      {
+        "url": "https://tryrook.io/rookconnect/lab-data-api/",
+        "checked": "2026-11-02",
+        "note": "ROOK Lab Data API (snapshot)"
+      },
+      {
+        "url": "https://docs.tryrook.io/",
+        "checked": "2026-11-02",
+        "note": "ROOK Score (snapshot)"
+      },
+      {
+        "url": "https://docs.tryrook.io/data-sources/",
+        "checked": "2026-11-02",
+        "note": "ROOK own developer accounts (snapshot)"
+      },
+      {
+        "url": "https://tryterra.co/pricing",
+        "checked": "2026-11-02",
+        "note": "Terra Quick Start, destinations, Enterprise BAA (snapshot)"
+      },
+      {
+        "url": "https://docs.tryterra.co/unified-api/pricing",
+        "checked": "2026-11-02",
+        "note": "Terra credits (snapshot)"
+      },
+      {
+        "url": "https://tryterra.co/products/lab-testing",
+        "checked": "2026-11-02",
+        "note": "Terra lab testing geography (snapshot)"
+      },
+      {
+        "url": "https://www.junction.com/",
+        "checked": "2026-11-02",
+        "note": "Junction labs (snapshot)"
+      },
+      {
+        "url": "https://www.junction.com/pricing",
+        "checked": "2026-11-02",
+        "note": "Junction Launch and Enterprise (snapshot)"
+      },
+      {
+        "url": "https://www.thryve.health/",
+        "checked": "2026-11-02",
+        "note": "Thryve hosting (snapshot)"
+      },
+      {
+        "url": "https://www.thryve.health/pricing",
+        "checked": "2026-11-02",
+        "note": "Thryve plans and hosting (snapshot)"
+      },
+      {
+        "url": "https://docs.thryve.health/thryve-data-sources/overview",
+        "checked": "2026-11-02",
+        "note": "Thryve OAuth clients (snapshot)"
+      },
+      {
+        "url": "https://openwearables.io/pricing",
+        "checked": "2026-11-02",
+        "note": "Open Wearables Core and Pro (snapshot)"
+      },
+      {
+        "url": "https://openwearables.io/docs/providers/supported",
+        "checked": "2026-11-02",
+        "note": "Open Wearables provider registration (snapshot)"
+      }
+    ]
+  },
   {
     "slug": "spike-api-alternatives",
     "primaryQuery": "spike api alternatives",

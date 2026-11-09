@@ -5,3 +5,26 @@ https://quickpose.ai/pricing/
 https://www.sency.ai/
 https://kemtai.com/
 https://www.exer.ai/
+# Added 2026-11-09 for the KinesteX comparison pages (dispatch with pick=body for sency.ai).
+https://www.kinestex.com/product/faqs
+https://www.kinestex.com/product/security
+https://www.kinestex.com/product/sdk-integration
+https://www.kinestex.com/docs/getting-started
+https://www.kinestex.com/docs/installation
+https://www.kinestex.com/docs/ai-trainer-chat
+https://www.kinestex.com/docs/content-api-v2
+https://kemtai.com/kemtai-api-and-embeddables/
+https://kemtai.com/faqs
+https://eu.kemtai.com/digital-health-platforms/
+https://asensei.ai/ai
+https://www.sency.ai/pricing-packages
+https://www.sency.ai/pricing
+https://www.sency.ai/faq-motion-tracking
+https://quickpose.ai/sdk-pricing/
+https://www.exer.ai/product/scan
+https://www.exer.ai/tech
+https://www.posetracker.com/
+https://docs.posetracker.com/reference/features-plans
+https://www.posetracker.com/compare/pose-estimation-sdks
+https://gofitify.com/business
+https://www.zing.coach/methodology

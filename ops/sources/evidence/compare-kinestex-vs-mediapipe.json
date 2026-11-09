@@ -1,33 +1,8 @@
 [
   {
-    "claim": "The Tasks API's num_poses option is documented as the maximum number of poses the PoseLandmarker can detect.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/cc/vision/pose_landmarker/pose_landmarker.h",
-    "quote": "The maximum number of poses can be detected by the PoseLandmarker."
-  },
-  {
-    "claim": "num_poses defaults to 1.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/mediapipe/tasks/python/vision/pose_landmarker.py",
-    "quote": "num_poses: int = 1"
-  },
-  {
     "claim": "World landmarks are meters from a hip-centre origin.",
     "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
-    "quote": "Real-world 3D coordinates in meters with the origin at the center between hips."
-  },
-  {
-    "claim": "Three variants: lite, full and heavy.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe-samples/main/examples/pose_landmarker/android/app/download_tasks.gradle",
-    "quote": "dest project.ext.ASSET_DIR + '/pose_landmarker_lite.task'"
-  },
-  {
-    "claim": "MediaPipe's Android sample floor is SDK 24.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe-samples/main/examples/pose_landmarker/android/app/build.gradle",
-    "quote": "minSdk 24 targetSdk 34"
-  },
-  {
-    "claim": "ML Kit's sample app classifies pushups and squats.",
-    "url": "https://developers.google.com/ml-kit/vision/pose-detection/classifying-poses?hl=en",
-    "quote": "Now you should be able to classify pushups and squats."
+    "quote": "Real-world 3D coordinates in meters with the origin at the"
   },
   {
     "claim": "KinesteX's own category term: AI motion analysis SDK.",
@@ -45,33 +20,13 @@
     "quote": "Currently supported communication is via HTTP postMessages."
   },
   {
-    "claim": "The docs list SDKs for React Native, Flutter, Kotlin, Swift, Java, PWA and JavaScript.",
-    "url": "https://www.kinestex.com/docs",
-    "quote": "with SDKs for React Native, Flutter, Kotlin, Swift, Java, PWA, and JavaScript for quick integration."
-  },
-  {
     "claim": "A React TypeScript package.",
-    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+    "url": "https://www.kinestex.com/docs/installation",
     "quote": "npm i kinestex-sdk-react-ts"
   },
   {
-    "claim": "The docs point Swift users to the SwiftUI kit.",
-    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
-    "quote": "2. Enter URL: https://github.com/KinesteX/KinesteX-AI-Kit.git"
-  },
-  {
-    "claim": "The installation docs ask for camera permission.",
-    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
-    "quote": "<key>NSCameraUsageDescription</key>"
-  },
-  {
-    "claim": "The installation docs ask for a motion-sensor usage description on iOS.",
-    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
-    "quote": "<string>Motion sensors help position your device correctly for workouts</string>"
-  },
-  {
     "claim": "The Android manifest shown includes the INTERNET permission.",
-    "url": "https://www.kinestex.com/docs/installation.md?lang=kotlin",
+    "url": "https://www.kinestex.com/docs/installation",
     "quote": "<uses-permission android:name=\"android.permission.INTERNET\" />"
   },
   {
@@ -110,29 +65,14 @@
     "quote": "Fall risk assessment"
   },
   {
-    "claim": "Gamified assessments.",
-    "url": "https://raw.githubusercontent.com/KinesteX/.github/main/profile/README.md",
-    "quote": "### Balloon Pop Game"
-  },
-  {
     "claim": "Per-repetition and per-mistake events.",
     "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-Swift-Demo/main/docs/data.md",
     "quote": "reps([String: Any]) - Logs successful repetitions."
   },
   {
-    "claim": "exercise_completed carries an optional average accuracy.",
-    "url": "https://raw.githubusercontent.com/KinesteX/.github/main/profile/README.md",
-    "quote": "average_accuracy?: number      // Average accuracy (0-1, optional)"
-  },
-  {
     "claim": "exercise_overview items can carry per-rep accuracy scores.",
     "url": "https://raw.githubusercontent.com/KinesteX/.github/main/profile/README.md",
     "quote": "accuracy_reps?: number[],          // Optional: Per-rep accuracy scores"
-  },
-  {
-    "claim": "workout_overview carries an efficiency score.",
-    "url": "https://raw.githubusercontent.com/KinesteX/.github/main/profile/README.md",
-    "quote": "efficiency_score: number,               // Efficiency metric (0-100)"
   },
   {
     "claim": "An API key plus company name is required.",
@@ -141,7 +81,7 @@
   },
   {
     "claim": "Demo access goes through a contact form.",
-    "url": "https://www.kinestex.com/docs",
+    "url": "https://www.kinestex.com/docs/getting-started",
     "quote": "To get demo access and your API key, fill out the contact form on our website."
   },
   {
@@ -188,5 +128,230 @@
     "claim": "The security page says pose estimation runs on the user's device.",
     "url": "https://www.kinestex.com/product/security",
     "quote": "The SDK renders workouts and performs real-time pose estimation and motion analysis directly on the end user's device."
+  },
+  {
+    "claim": "The docs list SDKs for Swift, Kotlin, Flutter, React Native and React (TypeScript), plus an HTML/JavaScript iframe integration.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "with SDKs for Swift, Kotlin, Flutter, React Native and React (TypeScript), plus a plain HTML/JavaScript iframe integration for any web page or PWA."
+  },
+  {
+    "claim": "The docs recommend AI Trainer Chat for a new integration.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "For a new integration we recommend AI Trainer Chat"
+  },
+  {
+    "claim": "AI Trainer Chat: onboarding, a camera fitness assessment, a generated workout and next-session scheduling.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "a white-labeled AI personal trainer with onboarding, a camera fitness assessment, a workout generated for every session and next-session scheduling"
+  },
+  {
+    "claim": "Plan View is a ready-made view.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Display a specific workout plan with schedule and multiple workouts."
+  },
+  {
+    "claim": "Challenge View: gamified challenges with leaderboards.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Gamified exercise challenges with leaderboards and rep tracking."
+  },
+  {
+    "claim": "AI Experiences include Balloon Pop, Color Chase and Alien Squat Shooter.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Interactive fitness games like Balloon Pop, Color Chase, and Alien Squat Shooter."
+  },
+  {
+    "claim": "An embedded Admin Workout Editor.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Embedded view for creating and managing workouts and exercises."
+  },
+  {
+    "claim": "A Custom Workout can run as a scored fitness assessment.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "A custom workout can also run as a scored fitness assessment"
+  },
+  {
+    "claim": "The Camera Component streams real-time motion events and, on request, pose landmarks.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "The camera component streams real-time motion events (reps, holds, form feedback, presence, activity, plus opt-in form state and framing hints) and, on request, pose landmarks."
+  },
+  {
+    "claim": "Requirement: iOS 14.0+ with Xcode 16.3+.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "iOS 14.0+ (Swift KinesteXAIKit , Xcode 16.3+)"
+  },
+  {
+    "claim": "Requirement: Android 9+ (API 28).",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Android 9+ (API 28, Kotlin KinesteX-SDK-Kotlin )"
+  },
+  {
+    "claim": "The docs list an internet connection among the prerequisites.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "- Internet connection"
+  },
+  {
+    "claim": "The Kotlin SDK needs minSdk 28.",
+    "url": "https://www.kinestex.com/docs/installation",
+    "quote": "(the SDK needs minSdk 28 or higher)"
+  },
+  {
+    "claim": "The install docs pin the Kotlin SDK at 2.5.0 from JitPack.",
+    "url": "https://www.kinestex.com/docs/installation",
+    "quote": "implementation(\"com.github.KinesteX:KinesteX-SDK-Kotlin:2.5.0\")"
+  },
+  {
+    "claim": "React Native installs with react-native-webview as a peer dependency.",
+    "url": "https://www.kinestex.com/docs/installation",
+    "quote": "npm install kinestex-sdk-react-native react-native-webview"
+  },
+  {
+    "claim": "The web integration is an iframe pointed at ai.kinestex.com.",
+    "url": "https://www.kinestex.com/docs/installation",
+    "quote": "const srcURL = 'https://ai.kinestex.com';"
+  },
+  {
+    "claim": "Complete UX (Main) is marked Sunset in the docs sidebar.",
+    "url": "https://www.kinestex.com/docs/ai-trainer-chat",
+    "quote": "- Complete UX (Main) Sunset"
+  },
+  {
+    "claim": "Personalized Plan View is marked Sunset in the docs sidebar.",
+    "url": "https://www.kinestex.com/docs/ai-trainer-chat",
+    "quote": "- Personalized Plan View Sunset"
+  },
+  {
+    "claim": "The Content API base URL is data.kinestex.com.",
+    "url": "https://www.kinestex.com/docs/content-api-v2",
+    "quote": "Base URL: https://data.kinestex.com"
+  },
+  {
+    "claim": "The Content API serves exercises, workouts and plans, authenticated with a company API key.",
+    "url": "https://www.kinestex.com/docs/content-api-v2",
+    "quote": "Every endpoint is a plain REST GET , authenticated with your company API key, paginated, filterable, and localized."
+  },
+  {
+    "claim": "Requests carry an x-api-key header.",
+    "url": "https://www.kinestex.com/docs/content-api-v2",
+    "quote": "-H \"x-api-key: YOUR_API_KEY\" \\"
+  },
+  {
+    "claim": "A typical 10-exercise workout sends about 30 events carrying 300 or more data values.",
+    "url": "https://www.kinestex.com/docs/data-points",
+    "quote": "A typical 10-exercise workout in the Workout view sends about 30 events carrying 300 or more data values"
+  },
+  {
+    "claim": "The home page counts 500+ AI exercises.",
+    "url": "https://www.kinestex.com/",
+    "quote": "AI-powered exercises for strength, cardio, core, flexibility and mobility, ready for your programs."
+  },
+  {
+    "claim": "The workouts page: 500+ exercises.",
+    "url": "https://www.kinestex.com/product/workouts",
+    "quote": "500+ exercises spanning cardio, strength, core, flexibility and mobility"
+  },
+  {
+    "claim": "The interface is available in 19 languages.",
+    "url": "https://www.kinestex.com/",
+    "quote": "The interface is available in 19 languages, including Arabic, Hebrew and Urdu."
+  },
+  {
+    "claim": "Movement tests include Timed Up and Go, gait speed, sit-to-stand, balance stands, functional reach and shoulder range of motion.",
+    "url": "https://www.kinestex.com/",
+    "quote": "standardized movement tests such as Timed Up and Go, gait speed, sit-to-stand, balance stands, functional reach and shoulder range of motion"
+  },
+  {
+    "claim": "Balance and reach tests return a low, moderate or high risk level.",
+    "url": "https://www.kinestex.com/",
+    "quote": "Balance and reach tests return a low, moderate or high risk level"
+  },
+  {
+    "claim": "Test results support clinical judgment and are not a diagnosis.",
+    "url": "https://www.kinestex.com/",
+    "quote": "Test results support clinical judgment; they are not a diagnosis."
+  },
+  {
+    "claim": "The home page also claims 97.2% accuracy.",
+    "url": "https://www.kinestex.com/",
+    "quote": "KinesteX tracks movement with 97.2% accuracy across its supported exercises"
+  },
+  {
+    "claim": "The FAQ lists 19 languages for the guided workout experience.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "The SDK's guided workout experience supports 19 languages"
+  },
+  {
+    "claim": "The FAQ says integration typically takes under a day.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Integration is simple and typically takes under a day"
+  },
+  {
+    "claim": "The SDK-integration page: a developer connects the SDK in about a day.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "A developer connects our SDK to your iOS, Android or web app in about a day."
+  },
+  {
+    "claim": "Ready-made Experiences: 1 week or less, 2 to 3 weeks for the Guided Workout, about a month to build every screen.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "1 week or less with Ready-made Experiences, 2 to 3 weeks with the Guided Workout, and about a month when you build every screen."
+  },
+  {
+    "claim": "KinesteX says it maintains everything it builds.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "We maintain everything we build."
+  },
+  {
+    "claim": "KinesteX's team maintains the tracking, the exercise library and updates.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "- Maintains the technology: tracking, the exercise library and updates."
+  },
+  {
+    "claim": "The API key comes when you book a call.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "We give you demo access and your API key when you book a call."
+  },
+  {
+    "claim": "The AI Personal Trainer chat needs internet.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "The AI Personal Trainer chat needs internet, because it talks to an AI model."
+  },
+  {
+    "claim": "The camera video never leaves the device and is not stored.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "The camera video never leaves it and is not stored"
+  },
+  {
+    "claim": "New exercises are added together with KinesteX's team.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "New exercises are added together with our team, because each movement needs its own tracking."
+  },
+  {
+    "claim": "White-label colors and fonts are set in the admin panel.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "Set colors and fonts, in light or dark, in the admin panel."
+  },
+  {
+    "claim": "The Flutter README carries the same optional edge processing line.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-Flutter/main/README.md",
+    "quote": "Ensures data security with optional edge processing (no cloud transmission)."
+  },
+  {
+    "claim": "The React Native README carries the same optional edge processing line.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-ReactNative/main/README.md",
+    "quote": "Ensures data security with optional edge processing (no cloud transmission)."
+  },
+  {
+    "claim": "The SwiftUI kit wraps a WKWebView.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-AI-Kit/main/README.md",
+    "quote": "Instantiates a `KinestexView` wrapping a `WKWebView`"
+  },
+  {
+    "claim": "The KinesteX-AI-Kit, Kotlin and Swift repositories were updated on November 5, 2026.",
+    "url": "https://github.com/orgs/KinesteX/repositories",
+    "quote": "Updated Nov 5, 2026"
+  },
+  {
+    "claim": "The React Native repository was updated on October 9, 2026.",
+    "url": "https://github.com/orgs/KinesteX/repositories",
+    "quote": "Updated Oct 9, 2026"
   }
 ]

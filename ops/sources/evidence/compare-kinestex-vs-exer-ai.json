@@ -1,0 +1,222 @@
+[
+  {
+    "claim": "Exer AI describes a Clinical AI platform that turns motion into insights without wearables or sensors.",
+    "url": "https://www.exer.ai/",
+    "quote": "Our Clinical AI platform turns motion into actionable insights for precision care - without the need for wearables or sensors."
+  },
+  {
+    "claim": "Exer Scan assesses and monitors patients for MSK issues.",
+    "url": "https://www.exer.ai/",
+    "quote": "Assess and monitor patients for MSK-related issues without sensors, hardware, or human error."
+  },
+  {
+    "claim": "Exer Hands targets hand and wrist disorders.",
+    "url": "https://www.exer.ai/",
+    "quote": "Support for the management of dozens of acute and chronic hand and wrist disorders like rheumatoid arthritis and carpal tunnel syndrome."
+  },
+  {
+    "claim": "Exer announces a hand/wrist module introduced at Mayo Clinic.",
+    "url": "https://www.exer.ai/",
+    "quote": "Exer AI Announces Exer Scan App’s Hand/Wrist Module Introduced at Mayo Clinic to Advance Musculoskeletal Care and Clinical Workflow Efficiency"
+  },
+  {
+    "claim": "Exer runs a gait analysis beta program.",
+    "url": "https://www.exer.ai/",
+    "quote": "Are you doing gait analysis in a clinic, fitness center or community residence? Join the Exer Gait beta program here ."
+  },
+  {
+    "claim": "Exer's workflow includes automated billing reports.",
+    "url": "https://www.exer.ai/",
+    "quote": "Automated Billing Reports"
+  },
+  {
+    "claim": "Exer claims HIPAA compliance.",
+    "url": "https://www.exer.ai/",
+    "quote": "Complete data privacy protection across the platform."
+  },
+  {
+    "claim": "Exer says it is an FDA Class II medical device (software).",
+    "url": "https://www.exer.ai/",
+    "quote": "FDA Class II Medical Device (software), validated."
+  },
+  {
+    "claim": "Exer trains its own neural networks.",
+    "url": "https://www.exer.ai/",
+    "quote": "Cutting-edge, wholly-controlled neural networks we train ourselves."
+  },
+  {
+    "claim": "Exer's apps run on phones, tablets and webcams.",
+    "url": "https://www.exer.ai/",
+    "quote": "A suite of apps running on any mobile device (phone, tablet, webcam)"
+  },
+  {
+    "claim": "Exer mentions APIs for EHR integrations and billing.",
+    "url": "https://www.exer.ai/",
+    "quote": "Barcode into charts in clinic, APIs to streamline integrations and billing."
+  },
+  {
+    "claim": "Exer Scan is a mobile-first solution for clinicians.",
+    "url": "https://www.exer.ai/product/scan",
+    "quote": "Exer Scan is a mobile-first solution that allows clinicians to capture and analyze objective motion data in real time, offering a new layer of insight to support clinical evaluation and decision-making."
+  },
+  {
+    "claim": "Exer Scan runs on tablets already in the clinic.",
+    "url": "https://www.exer.ai/product/scan",
+    "quote": "Using devices already in clinic streamlines deployment and avoids clunky hardware that never gets used."
+  },
+  {
+    "claim": "Exer Health patients download the app from the app store.",
+    "url": "https://www.exer.ai/product/health",
+    "quote": "Your patients can start right away using an app downloaded from the app store."
+  },
+  {
+    "claim": "Exer Health monitors without cloud-stored patient videos.",
+    "url": "https://www.exer.ai/product/health",
+    "quote": "Monitor severity and progress of acute or chronic MSK-related conditions using AI and computer vision, without invasive wearables or cloud-stored patient videos."
+  },
+  {
+    "claim": "Exer Health uses reminders, streaks and AI form correction.",
+    "url": "https://www.exer.ai/product/health",
+    "quote": "Daily reminders, streaks and supportive AI-powered form correction keep patients engaged."
+  },
+  {
+    "claim": "Exer's tech page says everything runs on the edge.",
+    "url": "https://www.exer.ai/tech",
+    "quote": "Everything runs \"on the edge\" - on common laptops, phones and tablets."
+  },
+  {
+    "claim": "Exer's RTM page describes AI-based RTM software.",
+    "url": "https://www.exer.ai/product/rtm",
+    "quote": "AI-based RTM software unlocks the objective, auditable data your team needs to satisfy public and private payors while monitoring patient progress and improving overall outcomes."
+  },
+  {
+    "claim": "RTM reimbursement amounts vary by region, payor and plan.",
+    "url": "https://www.exer.ai/product/rtm",
+    "quote": "*Exact reimbursement amounts vary by geographic regions, payors and plans."
+  },
+  {
+    "claim": "RTM codes require the device to meet FDA's definition of a medical device.",
+    "url": "https://www.exer.ai/product/rtm",
+    "quote": "RTM codes still require the device used to meet the FDA’s definition of a medical device"
+  },
+  {
+    "claim": "Exer's Duke tremor study reports ICC = 0.96 vs clinician ICC = 0.94.",
+    "url": "https://www.exer.ai/posts/exer-ai-clinical-validation-studies-presented-at-assh-and-cns-in-oct-2025",
+    "quote": "The AI model achieved exceptional inter-rater reliability ( ICC = 0.96 ), matching clinician consistency ( ICC = 0.94 )."
+  },
+  {
+    "claim": "ASSH study: ICC > 0.9 vs manual goniometry for 96% of hand/wrist motions.",
+    "url": "https://www.exer.ai/posts/exer-ai-clinical-validation-studies-presented-at-assh-and-cns-in-oct-2025",
+    "quote": "Excellent inter-rater reliability (ICC > 0.9) versus manual goniometry for 96% of hand/wrist motions."
+  },
+  {
+    "claim": "ASSH study: ROM within ±5° of manual goniometry.",
+    "url": "https://www.exer.ai/posts/exer-ai-clinical-validation-studies-presented-at-assh-and-cns-in-oct-2025",
+    "quote": "Bland-Altman analysis confirmed Exer’s ROM measurements were within ± 5° of manual goniometry across all motions."
+  },
+  {
+    "claim": "KinesteX is a white-label SDK inside your app.",
+    "url": "https://www.kinestex.com/",
+    "quote": "A white-label SDK that coaches every rep through your users' own camera, inside your app."
+  },
+  {
+    "claim": "KinesteX says test results are not a diagnosis.",
+    "url": "https://www.kinestex.com/",
+    "quote": "Test results support clinical judgment; they are not a diagnosis."
+  },
+  {
+    "claim": "KinesteX's site counts 500+ exercises.",
+    "url": "https://www.kinestex.com/product/workouts",
+    "quote": "500+ exercises spanning cardio, strength, core, flexibility and mobility, so users have what they need to get fitter and move better."
+  },
+  {
+    "claim": "KinesteX's FAQ names its standardized movement tests.",
+    "url": "https://www.kinestex.com/",
+    "quote": "Rehab and telerehabilitation teams use KinesteX to guide home exercise programs and to run standardized movement tests such as Timed Up and Go, gait speed, sit-to-stand, balance stands, functional reach and shoulder range of motion."
+  },
+  {
+    "claim": "KinesteX's SDK list per its docs.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Our white-label solution supports any camera-enabled device across Android, iOS, and web, with SDKs for Swift, Kotlin, Flutter, React Native and React (TypeScript), plus a plain HTML/JavaScript iframe integration for any web page or PWA."
+  },
+  {
+    "claim": "AI Trainer Chat is KinesteX's recommended starting point.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Conversational AI personal trainer with in-app fitness assessment, personalized workout generation, post-workout check-ins, and next-session scheduling. The recommended starting point for new integrations."
+  },
+  {
+    "claim": "AI Experiences include Balloon Pop, Color Chase and Alien Squat Shooter.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Interactive fitness games like Balloon Pop, Color Chase, and Alien Squat Shooter."
+  },
+  {
+    "claim": "Requirements: iOS 14.0+ and Xcode 16.3+.",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "iOS 14.0+ (Swift KinesteXAIKit , Xcode 16.3+)"
+  },
+  {
+    "claim": "Requirements: Android 9+ (API 28).",
+    "url": "https://www.kinestex.com/docs/getting-started",
+    "quote": "Android 9+ (API 28, Kotlin KinesteX-SDK-Kotlin )"
+  },
+  {
+    "claim": "Complete UX (Main) is marked Sunset.",
+    "url": "https://www.kinestex.com/docs/ai-trainer-chat",
+    "quote": "Complete UX (Main) Sunset"
+  },
+  {
+    "claim": "KinesteX's SwiftUI kit embeds the experience as a WebView.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-AI-Kit/main/README.md",
+    "quote": "A SwiftUI package that embeds KinesteX’s AI-powered camera workout experience as a WebView."
+  },
+  {
+    "claim": "KinesteX integration typically takes under a day.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Integration is simple and typically takes under a day, with minimal adjustments to your existing platform."
+  },
+  {
+    "claim": "KinesteX claims 97.2% accuracy.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Our AI-powered motion tracking achieves 97.2% accuracy, offering feedback similar to a personal trainer."
+  },
+  {
+    "claim": "KinesteX's pricing is usage-based.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Our pricing is adaptable to your use case and business model, with usage-based plans that scale to support clients of different sizes."
+  },
+  {
+    "claim": "KinesteX integration fees may apply.",
+    "url": "https://www.kinestex.com/product/faqs",
+    "quote": "Integration fees may apply depending on the complexity of your requirements, and ongoing monthly costs are determined by your specific use case and usage levels."
+  },
+  {
+    "claim": "Ready-made Experiences take 1 week or less.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "Live in a week or less with one developer. We handle maintenance."
+  },
+  {
+    "claim": "The AI Personal Trainer chat needs internet.",
+    "url": "https://www.kinestex.com/product/sdk-integration",
+    "quote": "The AI Personal Trainer chat needs internet, because it talks to an AI model."
+  },
+  {
+    "claim": "KinesteX security page: camera and vision processing stays on-device.",
+    "url": "https://www.kinestex.com/product/security",
+    "quote": "All camera and vision processing stays on-device; only pseudonymized movement data, session metrics, and an opaque partner-supplied user identifier ever reach KinesteX."
+  },
+  {
+    "claim": "KinesteX's HIPAA statement.",
+    "url": "https://www.kinestex.com/product/hipaa",
+    "quote": "KinesteX is HIPAA compliant. We have completed a HIPAA compliance assessment of our platform, and our cloud infrastructure operates under a Business Associate Agreement (BAA) with Google Cloud using HIPAA-eligible services."
+  },
+  {
+    "claim": "KinesteX READMEs say optional edge processing.",
+    "url": "https://raw.githubusercontent.com/KinesteX/KinesteX-SDK-Kotlin/main/README.md",
+    "quote": "Ensures data security with optional edge processing (no cloud transmission)."
+  },
+  {
+    "claim": "Older KinesteX README: models exceed 90% accuracy.",
+    "url": "https://raw.githubusercontent.com/KinesteX/AI-Fitness-SDK/main/README.md",
+    "quote": "Our movements recognition models consistently exceed 90% accuracy, enhancing user's workout experience, and helping them achieve their fitness goals faster."
+  }
+]

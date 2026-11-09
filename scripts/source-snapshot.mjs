@@ -35,6 +35,15 @@ const OUT = arg("--out") ?? "snapshot";
 // With --print-chars N each page's text (first N characters) is also written to
 // stdout, for readers who can reach the job log but not the artifact store.
 const PRINT_CHARS = Math.max(0, Number(arg("--print-chars") ?? 0) || 0);
+// --pick body keeps the whole <body> instead of the first <main>/<article>.
+// Some sites (sency.ai) put a contact-form modal in their only <main>, so the
+// default pick holds nothing but that form; the artifact then carries the
+// form and the page's text is lost.
+const PICK = arg("--pick") ?? "main";
+if (!["main", "body"].includes(PICK)) {
+  console.error("source-snapshot: --pick must be main or body");
+  process.exit(2);
+}
 if (!LIST || !/^ops\/sources\/[a-z0-9-]+\.txt$/.test(LIST)) {
   console.error("source-snapshot: --list must be ops/sources/<name>.txt (lowercase, digits, hyphens)");
   process.exit(2);
@@ -73,7 +82,7 @@ function htmlToText(html) {
     const m = s.match(new RegExp(`<${tag}\\b[^>]*>([\\s\\S]*?)<\\/${tag}>`, "i"));
     return m ? m[1] : null;
   };
-  s = pick("main") ?? pick("article") ?? pick("body") ?? s;
+  s = (PICK === "body" ? null : pick("main") ?? pick("article")) ?? pick("body") ?? s;
   s = s
     .replace(/<(h[1-6])\b[^>]*>/gi, (_, h) => `\n\n${"#".repeat(Number(h[1]))} `)
     .replace(/<\/h[1-6]>/gi, "\n")
