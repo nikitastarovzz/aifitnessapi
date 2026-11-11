@@ -14,7 +14,9 @@ import { useEffect, useRef, useState } from "react";
  * not the glyph.
  */
 // The list comes from Header, which drops any cluster with no released pages.
-export default function MobileNav({ links }: { links: { href: string; label: string }[] }) {
+type MobileLink = { href: string; label: string; group?: string };
+
+export default function MobileNav({ links }: { links: MobileLink[] }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const wrap = useRef<HTMLDivElement>(null);
@@ -45,7 +47,7 @@ export default function MobileNav({ links }: { links: { href: string; label: str
         aria-expanded={open}
         aria-controls="mobile-nav-panel"
         aria-label={open ? "Close menu" : "Open menu"}
-        className="grid h-10 w-10 place-items-center rounded-md border border-[var(--border)] text-[var(--fg)] transition-colors hover:border-brand-400"
+        className="grid h-11 w-11 place-items-center rounded-md border border-[var(--border)] text-[var(--fg)] transition-colors hover:border-brand-400"
       >
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden>
           {open ? (
@@ -67,16 +69,50 @@ export default function MobileNav({ links }: { links: { href: string; label: str
         >
           <nav aria-label="Mobile" className="mx-auto max-w-6xl px-4 py-2 sm:px-6">
             <ul>
-              {links.map((l) => (
-                <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className="block rounded-md px-2 py-3 text-base text-[var(--fg)] transition-colors hover:bg-[var(--surface)]"
-                  >
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
+              {links.map((l, i) => {
+                // A grouped row renders once, as a folded <details> holding
+                // every row of its group, where the group's first row sits.
+                // The panel unmounts on close, so a group is folded again the
+                // next time the menu opens.
+                if (l.group) {
+                  if (links.findIndex((o) => o.group === l.group) !== i) return null;
+                  const group = links.filter((o) => o.group === l.group);
+                  return (
+                    <li key={l.group}>
+                      <details className="nav-group">
+                        <summary className="flex min-h-[44px] cursor-pointer list-none items-center justify-between rounded-md px-2 py-3 text-base text-[var(--fg)] transition-colors hover:bg-[var(--surface)] [&::-webkit-details-marker]:hidden">
+                          <span>{l.group}</span>
+                          <svg className="nav-group-chevron h-4 w-4 shrink-0 text-[var(--muted)] transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+                            <path d="m6 9 6 6 6-6" />
+                          </svg>
+                        </summary>
+                        <ul className="pb-1 pl-3">
+                          {group.map((g) => (
+                            <li key={g.href}>
+                              <Link
+                                href={g.href}
+                                className="block rounded-md px-2 py-3 text-base text-[var(--fg)] transition-colors hover:bg-[var(--surface)]"
+                              >
+                                {g.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </details>
+                    </li>
+                  );
+                }
+                return (
+                  <li key={l.href}>
+                    <Link
+                      href={l.href}
+                      className="block rounded-md px-2 py-3 text-base text-[var(--fg)] transition-colors hover:bg-[var(--surface)]"
+                    >
+                      {l.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
         </div>

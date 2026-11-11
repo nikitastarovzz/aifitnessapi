@@ -81,7 +81,7 @@ export default function SiteSearch() {
         type="button"
         onClick={show}
         aria-label="Search the site"
-        className="flex items-center gap-2 rounded-md border border-[var(--border)] px-2.5 py-1.5 text-sm text-[var(--muted)] transition-colors hover:border-brand-400 hover:text-[var(--fg)]"
+        className="flex min-h-[44px] min-w-[44px] items-center justify-center gap-2 rounded-md border border-[var(--border)] px-2.5 py-1.5 text-sm text-[var(--muted)] transition-colors hover:border-brand-400 hover:text-[var(--fg)]"
       >
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" aria-hidden>
           <circle cx="11" cy="11" r="7" />

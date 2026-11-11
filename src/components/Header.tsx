@@ -16,27 +16,33 @@ const nav = [
   { href: "/changes", label: "Changes" },
 ];
 
+// The phone menu. Seven rows a first visit asks for, then the thirteen topic
+// guides folded under one disclosure (Hick's law: the menu used to open on
+// twenty-one flat rows, and a reader scanned all of them to find the one they
+// wanted), then the full index. Grouped rows render inside a <details> in
+// MobileNav; they are still in the served HTML.
+const GUIDES = "Guides by topic";
 const MOBILE_LINKS = [
   { href: "/fitness-apis", label: "Fitness APIs" },
   { href: "/apis", label: "API directory" },
-  { href: "/market-map", label: "API market map" },
-  { href: "/integrate", label: "Integration guides" },
-  { href: "/devices", label: "Connected devices" },
-  { href: "/engagement", label: "Engagement" },
-  { href: "/watch-apps", label: "Watch apps" },
-  { href: "/accessibility", label: "Accessibility" },
-  { href: "/audio-coaching", label: "Audio coaching" },
-  { href: "/healthkit-queries", label: "HealthKit queries" },
-  { href: "/phone-sensors", label: "Phone sensors" },
-  { href: "/health-connect-api", label: "Health Connect API" },
-  { href: "/health-connect", label: "Health Connect records" },
-  { href: "/libraries", label: "Open-source libraries" },
-  { href: "/own-your-data", label: "Export your own data" },
   { href: "/picker", label: "API Picker" },
   { href: "/tools", label: "Free tools" },
   { href: "/cookbook", label: "Cookbook" },
   { href: "/changes", label: "Changes & deadlines" },
   { href: "/blog", label: "Blog" },
+  { href: "/integrate", label: "Integration guides", group: GUIDES },
+  { href: "/devices", label: "Connected devices", group: GUIDES },
+  { href: "/engagement", label: "Engagement", group: GUIDES },
+  { href: "/watch-apps", label: "Watch apps", group: GUIDES },
+  { href: "/accessibility", label: "Accessibility", group: GUIDES },
+  { href: "/audio-coaching", label: "Audio coaching", group: GUIDES },
+  { href: "/healthkit-queries", label: "HealthKit queries", group: GUIDES },
+  { href: "/phone-sensors", label: "Phone sensors", group: GUIDES },
+  { href: "/health-connect-api", label: "Health Connect API", group: GUIDES },
+  { href: "/health-connect", label: "Health Connect records", group: GUIDES },
+  { href: "/libraries", label: "Open-source libraries", group: GUIDES },
+  { href: "/own-your-data", label: "Export your own data", group: GUIDES },
+  { href: "/market-map", label: "API market map", group: GUIDES },
   { href: "/site-index", label: "All topics" },
 ];
 
@@ -49,7 +55,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--bg)]/80 backdrop-blur">
       <Container className="flex h-16 items-center justify-between">
-        <Link href="/" className="group flex items-center gap-2 font-semibold">
+        <Link href="/" className="group flex min-h-[44px] items-center gap-2 font-semibold">
           <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand-500 text-sm font-bold text-white">
             AF
           </span>
@@ -71,7 +77,7 @@ export default function Header() {
           <SiteSearch />
           <Link
             href="/#subscribe"
-            className="ml-1 rounded-md bg-brand-600 px-3.5 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-500"
+            className="ml-1 inline-flex min-h-[44px] items-center rounded-md bg-brand-600 px-3.5 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-500"
           >
             Subscribe
           </Link>

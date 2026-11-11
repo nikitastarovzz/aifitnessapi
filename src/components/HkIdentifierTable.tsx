@@ -158,7 +158,7 @@ export default function HkIdentifierTable({
                   {groupPages[r.g] && (
                     <a
                       href={`/healthkit/${groupPages[r.g].slug}#id-${r.c.toLowerCase()}`}
-                      className="mt-1 inline-block text-[11px] text-brand-600 hover:text-brand-500"
+                      className="mt-0.5 inline-flex min-h-[32px] items-center text-xs text-brand-600 hover:text-brand-500"
                     >
                       {groupPages[r.g].label} →
                     </a>

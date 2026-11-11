@@ -26,7 +26,7 @@ export default function Breadcrumbs({ trail }: { trail: Crumb[] }) {
                 </span>
               ) : (
                 <>
-                  <Link href={crumb.path} className="hover:text-[var(--fg)]">
+                  <Link href={crumb.path} className="inline-flex min-h-[44px] items-center hover:text-[var(--fg)]">
                     {crumb.name}
                   </Link>
                   <span aria-hidden>/</span>
