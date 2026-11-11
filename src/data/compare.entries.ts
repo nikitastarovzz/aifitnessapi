@@ -4121,5 +4121,599 @@ export const compareEntries: ClusterEntry[] =
         "note": "public seed deck: $1.50 per MAU, $1,500 monthly minimum, 550+ exercises, 17 languages"
       }
     ]
+  },
+  {
+    "slug": "your-move-vs-exercisedb",
+    "primaryQuery": "your move vs exercisedb",
+    "h1": "Your Move vs ExerciseDB: Filmed HD Video or the Bigger Free Catalog?",
+    "metaTitle": "Your Move vs ExerciseDB (2026): Exercise Video APIs",
+    "metaDescription": "Your Move vs ExerciseDB (AscendAPI): HLS and MP4 video vs GIFs and MP4, free tiers, the $19 to $299 price list, exercise caps, licenses and field mapping.",
+    "updated": "2026-11-11",
+    "answer": "Pick Your Move (ymove.app) when your app needs filmed HD video with HLS streaming, a published price list from $19 a month with a 7-day trial, and workouts and programs generated on the same key. Pick ExerciseDB, now sold by AscendAPI, when you want to start free, since V1 serves 1,500 exercises with GIFs and no key and V2's free Basic plan includes video, or when you need the larger catalog, 11,000+ exercises by AscendAPI's figure. Both were read on November 11, 2026.",
+    "body": "Your Move (ymove.app) sells an exercise API from Your Move B.V., a Dutch company that also makes a white-label fitness app builder. Its pitch is filmed video: its README promises \"2,005+ exercises and 2,600+ HD videos\", \"filmed with trainers and physiotherapists\", with \"No AI-generated clips, no GIFs\". ExerciseDB is the best-known name in exercise APIs, and the company that sells it now trades as AscendAPI. Everything below was read on November 11, 2026 from each vendor's own docs, pricing pages and repositories, and every count is the vendor's own figure; we did not count either catalog.\n\nThe short version: ExerciseDB is the bigger and cheaper way in, with two free tiers, and Your Move is the one with a published price list, HLS streaming and workout generation on the same key. The full Your Move walkthrough is in [how to integrate the Your Move Exercise API](/integrate/your-move-exercise-api), its directory entry is [Your Move](/apis/your-move), and the ExerciseDB walkthrough is [how to integrate ExerciseDB](/integrate/exercisedb-api).\n\n## First, which ExerciseDB?\n\nThe exercisedb.dev home page now reads \"Previously ExerciseDB\" above the name AscendAPI. AscendAPI's docs describe two exercise products under the ExerciseDB name, and they behave very differently:\n\n- **ExerciseDB V1, free.** The V1 overview offers \"1,500 exercises with 180p GIFs. No authentication required\", called at `oss.exercisedb.dev`. The live endpoint answered on November 11 with `\"total\":1500` and a `gifUrl` per exercise.\n- **ExerciseDB V1, paid.** The same overview calls V1 \"over 2,000 structured exercises\" in total, with a paid tier on RapidAPI that adds difficulty, exercise types, an overview text and images and GIFs at 360p to 1080p.\n- **ExerciseDB V2.** On RapidAPI only, free and paid. AscendAPI's V2 overview says it holds \"11,000+ exercises, 15,000+ videos, and 20,000+ images\", and \"Each exercise includes an MP4 demonstration video for in-app playback.\"\n\nThere is also a public GitHub repository, ExerciseDB/exercisedb-api, under an AGPL-3.0 license with 761 stars, which describes the API and links to its plans. The AGPL covers that repository; nothing on the pages we read says it licenses the API's data. On this page \"ExerciseDB\" means V1 and V2 as AscendAPI documents them.\n\n## Your Move vs ExerciseDB at a glance\n\n| | Your Move (ymove.app) | ExerciseDB (AscendAPI) |\n| --- | --- | --- |\n| What you get | Exercises with video, plus workout and program generation, form analysis, nutrition and recipes on one key | V1: exercises with GIFs and images; V2: exercises with MP4 video and images |\n| Catalog, vendor's figure | 2,005+ (README, OpenAPI) or 2,200+ (product page) exercises; 2,600+ HD videos | V1: 1,500 free, \"over 2,000\" in total; V2: 11,000+ exercises, 15,000+ videos |\n| Media | HD video as HLS and MP4, mostly portrait; static thumbnails in five framings | V1 free: one 180p GIF; V1 paid: images and GIFs at four sizes; V2: one MP4 and images at four sizes |\n| Free entry point | No permanent free tier: a 7-day trial capped at 100 exercises with video | V1 free, no key; V2 Basic plan, 2,000 requests a month and 200 exercises |\n| Price | Starter $19, Pro $29, Scale $79, Enterprise $299 a month | Paid prices sit on RapidAPI listings we did not read |\n| License and terms | API Terms with a Brand License per registered brand; videos licensed only while subscribed | Commercial terms not stated on the pages we read |\n| Hosting | Streamed from Your Move's CDN; self-hosting is a separate license | Hosted by AscendAPI; no data download on the pages we read |\n| Caps and limits | Video minutes a month, plus 250 or 350 distinct exercises with video per 30 days on monthly Starter and Pro | Free: 1,000 requests an hour; paid: \"no strict rate limit\" |\n| SDK and docs | One docs page, an OpenAPI document, MIT TypeScript SDK and MCP server | Mintlify docs, OpenAPI specs for V1 and V2 listed in its llms.txt |\n| Auth | `X-API-Key` header or `?api_key=` | None for V1 free; `X-RapidAPI-Key` for the rest |\n\nEvery plan's price is in [exercise database API pricing](/pricing/exercise-database-api-pricing).\n\n## Where Your Move pulls ahead\n\n**Streaming video, not a single file.** Your Move's README says every exercise ships with \"an HD video (HLS + MP4)\", and its OpenAPI schema carries both a `videoUrl` and a `videoHlsUrl`, a \"Pre-signed CDN URL for HLS playlist\". ExerciseDB V2 has video too, one MP4 per exercise per its overview, so this is a smaller gap than Your Move's own comparison page suggests (more on that below). What AscendAPI's pages do not mention is an HLS stream. The product page says Your Move clips are filmed with male and female models on a white studio background.\n\n**A price list you can read.** Your Move's pricing page lists Starter at $19 a month with watermarked video, Pro at $29 with clean video, Scale at $79 with an on-device offline cache and three brand licenses, and Enterprise at $299 with ten. \"Every paid plan starts with a 7-day free trial.\" AscendAPI's docs point to RapidAPI for paid plans, and our read of its pages found no paid prices.\n\n**More on the same key.** Your Move's docs list `/workouts/generate` and `/programs/generate` beside the exercise endpoints, plus `POST /posture/analyze` for AI form analysis from a video (beta, up to 100MB), and food, recipe and meal-plan endpoints. AscendAPI's docs pair ExerciseDB with a separate Muscle Visualizer; Your Move draws the muscles worked at `/exercises/{id}/body-map`, as an SVG.\n\n**Thumbnails you may keep.** Every Your Move exercise and video carries a `thumbnails` object with \"five framings of the same frame\": default 3:4 up to 600x800, square, portrait 9:16, landscape 16:9 and the original. The docs say thumbnail URLs \"are static, carry no token, and are safe to cache or store\". ExerciseDB V2 serves four image sizes, 360p to 1080p, but the pages we read do not say whether you may store them.\n\n**Tooling.** Your Move publishes an OpenAPI document, an MIT-licensed TypeScript SDK (`ymove-exercise-api`) and an MIT-licensed MCP server (`ymove-exercise-mcp`) with tools such as `search_exercises` and `generate_workout`. AscendAPI's llms.txt lists OpenAPI specs for both ExerciseDB versions but no SDK.\n\n## Where ExerciseDB pulls ahead\n\n**It is free to start, twice.** This is the biggest gap. ExerciseDB V1 serves 1,500 exercises with no sign-up and no key. V2's Basic plan, per AscendAPI's quickstart, costs nothing: \"2,000 requests / month\", \"200 exercises in library\", images and videos, \"No credit card required\". Your Move has no permanent free tier: the 7-day trial reaches 100 distinct exercises with video and turns into a paid plan unless you cancel.\n\n**A much larger stated catalog.** AscendAPI states 11,000+ exercises and 15,000+ videos for V2. Your Move states 2,005+ or 2,200+ exercises depending on the page, and 2,600+ videos.\n\n**No per-exercise cap.** On monthly Starter and Pro, Your Move caps how many different exercises you can pull with video in a rolling 30 days, 250 and 350, and over the cap it strips the video fields from new exercises. AscendAPI's rate-limit guide gives free plans \"1,000 requests per hour per API key\" and says \"Paid plans have no strict rate limit\", with media served through its CDN and \"generally unlimited\". Beyond the free V2 plan's 200-exercise library, its pages state no cap on distinct exercises.\n\n**Richer text per exercise on V2.** A V2 record carries `overview`, `exerciseTips`, `variations`, `keywords` and `relatedExerciseIds`, and its `targetMuscles` name muscles down to the head, such as \"PECTORALIS MAJOR STERNAL HEAD\". Your Move's `muscleGroups` is comparably detailed (its docs say about nine muscles per exercise across 83 distinct muscles) but it has no variations or related-exercise field in its schema.\n\n## The catches on each side\n\n**Your Move.**\n\n- Video URLs are pre-signed and \"will stop working after 48 hours\". The docs say never store them, fetch fresh data before playing, and \"Always call the YMove API from your backend and proxy the video URLs to your frontend.\" Plan a backend and a re-fetch path.\n- Keys created on or after July 7, 2026 default to `includeVideos=false` on `/exercises` and the generators, per the v2.5.0 changelog, so a first list call returns no video until you ask for it.\n- The counts disagree: 2,005+ in the README and OpenAPI, 2,200+ on the product page; 15 muscle groups everywhere, but \"31 equipment types\" in one product FAQ and 37 elsewhere. The schema also has a `hasVideo` flag and filter, so check video coverage for the exercises you need.\n- The watermark line differs between pages. The pricing page says Starter is watermarked and \"Pro and above\" clean; the docs say \"Trial and Starter plans receive watermarked videos. Pro and Enterprise plans receive clean, unwatermarked videos.\"\n- The OpenAPI document reports version 2.5.0 while the docs page header and changelog are at 2.8.0, dated October 30, 2026. The main repository showed 3 stars on November 11, a small open-source footprint.\n\n**ExerciseDB.**\n\n- Free V2 media is watermarked; AscendAPI says paid plans serve \"clean, watermark-free assets\".\n- Several schema fields are marked \"Next Update\" or \"Coming Soon\": muscle activation images on both versions, and on V2 `difficultyLevel`, `caloriesBurned` and `movementType`. V2 has no difficulty field yet, which Your Move has.\n- The rate-limit guide says that on paid plans \"response times may be gradually increased\" for a key whose usage its AI system flags as unusual. That is a soft limit you cannot see in advance.\n- We could not read AscendAPI's paid prices or its terms of use, so we cannot say what commercial use or storage is allowed.\n\n## Which should you pick?\n\n- **You want to prototype for free, today** → ExerciseDB: V1 needs no key, and V2 Basic is free with video.\n- **You need the largest stated catalog** → ExerciseDB V2, at 11,000+ by AscendAPI's figure.\n- **You want filmed video with HLS, a price you can budget, and workouts or programs generated on the same key** → Your Move, starting with the 7-day trial and its 25 free sample clips.\n- **You will serve many distinct exercises a month on a small budget** → price Your Move's yearly plans or Scale, which have no exercise cap, against ExerciseDB V2's paid plans on RapidAPI.\n- **You want to own the data outright** → neither; see [Your Move vs free-exercise-db](/compare/your-move-vs-free-exercise-db) and [Your Move vs wger](/compare/your-move-vs-wger).\n\nThe wider field is in [exercise database APIs compared](/fitness-apis/exercise-database-apis), [exercise APIs with video](/fitness-apis/exercise-video-apis) and [ExerciseDB alternatives](/alternatives/exercisedb-alternatives).\n\n## Moving between them\n\nBoth return JSON exercise records over REST, so a move is mostly renaming fields. Names are from AscendAPI's schema tables and Your Move's OpenAPI `Exercise` schema.\n\n| Your Move | ExerciseDB V1 | ExerciseDB V2 | Notes |\n| --- | --- | --- | --- |\n| `id` (UUID), `slug` | `exerciseId` | `exerciseId` | Your Move's `/exercises/{id}` takes either ID or slug |\n| `title` | `name` | `name` | |\n| `muscleGroup` | `bodyParts`, `targetMuscles` | `bodyParts`, `targetMuscles` | One of 15 coarse groups in Your Move |\n| `muscleGroups`, `secondaryMuscles` | `secondaryMuscles` | `secondaryMuscles` | Your Move's `muscleGroups` lists every muscle worked |\n| `equipment` (string) | `equipments` (array) | `equipments` (array) | V2 values are upper case, such as `BARBELL` |\n| `instructions` | `instructions` | `instructions` | V1 steps start with \"Step:1\" |\n| `description`, `importantPoints` | `overview` (paid) | `overview`, `exerciseTips` | |\n| `difficulty` | `difficulty` (paid) | not yet | Your Move: beginner, intermediate, advanced |\n| `exerciseType` (array) | `exerciseTypes` (paid) | `exerciseType` (string) | |\n| `videoUrl`, `videoHlsUrl` | `gifUrl`, `gifUrls` | `videoUrl` | Your Move's expire after 48 hours |\n| `thumbnails`, `thumbnailUrl` | `imageUrls` (paid) | `imageUrl`, `imageUrls` | |\n\nTwo things change in your code when you move to Your Move: video URLs must be refetched rather than stored, and you add `includeVideos=true` (or call `/exercises/{id}`) where you want video. Pagination is `page` and `pageSize` up to 50; AscendAPI's endpoints use cursor-based pagination.\n\n## Watch the fine print\n\n**Your Move's commercial terms run through a brand license.** Its API Terms say \"Every API subscription includes a Brand License that limits API content use to the Brands you register\", and \"Each Brand covers one website and one mobile application under the same brand name.\" The general terms below them, \"Last updated August 07, 2025\", grant content \"for your personal, non-commercial use or internal business purpose only\", which the API Terms supplement. Videos are licensed \"only while your subscription is active\", and cached or downloaded files must be deleted when it ends. Self-hosting is \"a separate self-hosting license\"; you \"cannot redistribute, sub-license, or resell the video content\"; and training or motion-tracking models on the videos \"needs a separate data license\". Get the Brand License document, which the terms say is \"issued via email at sign-up\", before you ship. This is not legal advice.\n\n**Your Move's trial wording conflicts.** The signup page and API Terms say a 7-day trial that converts to the paid plan unless cancelled; the docs' `POST /upgrade` section says \"Subscriptions start immediately (no trial period)\" for upgrades started through the API.\n\n**Your Move's own comparison is out of date on video.** Its compare page says \"ExerciseDB serves animated GIFs, not video\", and that ExerciseDB's free tier \"stays GIF-only\". AscendAPI's V2 overview documents an MP4 per exercise, and its quickstart lists images and videos on the free Basic plan. Read the vendor's page as its framing.\n\n**ExerciseDB's terms are elsewhere.** Its README links a terms-of-use page we did not read, and its paid plans are priced on RapidAPI. Read both before launch, including whether you may keep copies of media.",
+    "faqs": [
+      {
+        "q": "Can I move from ExerciseDB to Your Move?",
+        "a": "Yes, and most of the work is renaming fields: ExerciseDB's exerciseId becomes Your Move's id or slug, name becomes title, the equipments array becomes a single equipment string, targetMuscles and bodyParts map to muscleGroup and muscleGroups, and gifUrl or videoUrl map to videoUrl and videoHlsUrl. Two things change in your code: Your Move video URLs expire after 48 hours, so fetch them fresh through your backend, and keys created on or after July 7, 2026 need includeVideos=true on /exercises to get video at all."
+      },
+      {
+        "q": "Does ExerciseDB have real video, or only the GIFs Your Move describes?",
+        "a": "Both, depending on the version. AscendAPI's V2 overview says each exercise includes an MP4 demonstration video, while V1 serves GIFs, a 180p GIF free and 360p to 1080p on its paid tier. Your Move's comparison page says ExerciseDB serves animated GIFs, not video, which does not match AscendAPI's V2 docs as we read them on November 11, 2026. What Your Move adds is an HLS stream beside the MP4."
+      },
+      {
+        "q": "Which has more exercises, Your Move or ExerciseDB?",
+        "a": "ExerciseDB, by the vendors' own figures. AscendAPI states 11,000+ exercises and 15,000+ videos for V2, and 1,500 free and over 2,000 in total for V1. Your Move states 2,005+ exercises in its README and OpenAPI description and 2,200+ on its product page, with 2,600+ HD videos. We did not count either catalog."
+      },
+      {
+        "q": "Is Your Move or ExerciseDB cheaper to start with?",
+        "a": "ExerciseDB: its V1 tier is free with no key, and AscendAPI's quickstart describes a free V2 Basic plan with 2,000 requests a month, 200 exercises and video, with no credit card. Your Move has no permanent free tier; plans run from $19 a month (watermarked) and $29 (clean) to $299, each with a 7-day trial. ExerciseDB's paid prices sit on RapidAPI listings we did not read, so compare the paid plans yourself."
+      },
+      {
+        "q": "Do Your Move and ExerciseDB watermark their videos?",
+        "a": "Both do on their cheapest option. AscendAPI says ExerciseDB V2 free-tier media is watermarked and paid tiers are clean. Your Move's pricing page says Starter videos carry a small watermark and Pro and above are clean; its docs say Trial and Starter are watermarked and Pro and Enterprise clean, without naming Scale."
+      },
+      {
+        "q": "Can I keep copies of Your Move or ExerciseDB media on my own servers?",
+        "a": "For Your Move, only the thumbnails: its docs say thumbnail URLs are static and safe to cache or store, while video URLs must never be stored. Scale and Enterprise allow an on-device cache for offline workouts, running the files on your own servers needs a separate self-hosting license, and cached video files must be deleted when the subscription ends. AscendAPI's pages that we read do not state whether ExerciseDB media may be stored."
+      }
+    ],
+    "related": [
+      {
+        "href": "/integrate/exercisedb-api",
+        "label": "How to integrate ExerciseDB"
+      },
+      {
+        "href": "/alternatives/exercisedb-alternatives",
+        "label": "ExerciseDB alternatives"
+      },
+      {
+        "href": "/compare/exercisedb-vs-api-ninjas",
+        "label": "ExerciseDB vs API Ninjas"
+      },
+      {
+        "href": "/integrate/your-move-exercise-api",
+        "label": "How to integrate the Your Move Exercise API"
+      },
+      {
+        "href": "/apis/your-move",
+        "label": "Your Move"
+      },
+      {
+        "href": "/pricing/exercise-database-api-pricing",
+        "label": "Exercise database API pricing"
+      },
+      {
+        "href": "/fitness-apis/exercise-database-apis",
+        "label": "Best exercise database APIs"
+      },
+      {
+        "href": "/fitness-apis/exercise-video-apis",
+        "label": "Exercise APIs with video"
+      },
+      {
+        "href": "/compare",
+        "label": "All API comparisons"
+      }
+    ],
+    "cta": {
+      "pitch": "Exercise API plans, caps and watermarks change often. Subscribe and we will flag it when Your Move or ExerciseDB changes what you get."
+    },
+    "sources": [
+      {
+        "url": "https://raw.githubusercontent.com/ymove-app/exercise-api/main/README.md",
+        "checked": "2026-11-11",
+        "note": "Your Move README: 2,005+ exercises, 2,600+ videos, HLS and MP4, 37 equipment types"
+      },
+      {
+        "url": "https://ymove.app/exercise-api",
+        "checked": "2026-11-11",
+        "note": "Your Move product page: 2,200+ exercises, 31 equipment types in its FAQ"
+      },
+      {
+        "url": "https://exercise-api.ymove.app/api/v2/openapi.json",
+        "checked": "2026-11-11",
+        "note": "Your Move OpenAPI 2.5.0: Exercise schema, parameters, 429 response"
+      },
+      {
+        "url": "https://ymove.app/exercise-api/docs",
+        "checked": "2026-11-11",
+        "note": "Your Move docs v2.8.0: auth, 48-hour video URLs, thumbnails, exercise caps, watermark, upgrade, changelog"
+      },
+      {
+        "url": "https://ymove.app/exercise-api/pricing",
+        "checked": "2026-11-11",
+        "note": "Your Move plans, minutes, exercise cap FAQ, watermark, self-hosting, resale, data license"
+      },
+      {
+        "url": "https://ymove.app/terms-and-conditions",
+        "checked": "2026-11-11",
+        "note": "Your Move API Terms (Brand License, active subscription, trial, limits) and general terms"
+      },
+      {
+        "url": "https://github.com/ymove-app/exercise-api",
+        "checked": "2026-11-11",
+        "note": "Your Move repository, 3 stars"
+      },
+      {
+        "url": "https://ymove.app/exercise-api/top-exercise-apis",
+        "checked": "2026-11-11",
+        "note": "Your Move's own roundup, used for plan prices quoted with their features"
+      },
+      {
+        "url": "https://exercisedb.dev/",
+        "checked": "2026-11-11",
+        "note": "AscendAPI, previously ExerciseDB; free V1"
+      },
+      {
+        "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+        "checked": "2026-11-11",
+        "note": "V1 free and paid tiers, GIFs, schema"
+      },
+      {
+        "url": "https://oss.exercisedb.dev/api/v1/exercises",
+        "checked": "2026-11-11",
+        "note": "Live V1 endpoint, total 1,500"
+      },
+      {
+        "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+        "checked": "2026-11-11",
+        "note": "V2 catalog figures, MP4 video, watermark, schema"
+      },
+      {
+        "url": "https://docs.ascendapi.com/quickstart/overview",
+        "checked": "2026-11-11",
+        "note": "Free V2 Basic plan on RapidAPI"
+      },
+      {
+        "url": "https://docs.ascendapi.com/guides/ratelimiting",
+        "checked": "2026-11-11",
+        "note": "Free and paid rate limits, media calls"
+      },
+      {
+        "url": "https://github.com/ExerciseDB/exercisedb-api",
+        "checked": "2026-11-11",
+        "note": "ExerciseDB repository, AGPL-3.0, 761 stars"
+      },
+      {
+        "url": "https://ymove.app/exercise-api/compare",
+        "checked": "2026-11-11",
+        "note": "Your Move's own ExerciseDB comparison, cited as vendor framing"
+      }
+    ]
+  },
+  {
+    "slug": "your-move-vs-wger",
+    "primaryQuery": "your move vs wger",
+    "h1": "Your Move vs wger: Rent Filmed Video or Self-Host Open Data?",
+    "metaTitle": "Your Move vs wger: Paid Video API or Free Self-Host?",
+    "metaDescription": "Your Move streams filmed HD exercise video from $19/mo after a 7-day trial. wger is a free AGPL workout manager you self-host, with a REST API.",
+    "updated": "2026-11-11",
+    "answer": "Pick Your Move when you want filmed HD exercise video, as MP4 and HLS, from a hosted API and can pay from $19 a month after a 7-day trial, under a brand license rather than an open one. Pick wger when you want software and data you run yourself with no license fee: its README describes a free workout manager under AGPL-3.0-or-later with a REST API, self-hosted with Docker, and exercise data under Creative Commons set per entry. Both were read on November 11, 2026.",
+    "body": "Your Move (ymove.app) is Your Move B.V., registered in the Netherlands at an Amsterdam address, that started as a white-label fitness app builder and now sells an Exercise API: a hosted library of filmed exercise videos with workout and program generation on the same key. wger is the opposite kind of project. Its README calls it \"a free workout and fitness manager\": open-source software you deploy yourself, with a REST API among its features. Everything below was read on November 11, 2026, from Your Move's product, pricing, documentation and terms pages, its OpenAPI document and GitHub repositories, and from wger's README, LICENSE.txt and GitHub repository page.\n\nOne gap first. wger's API documentation page at wger.readthedocs.io/en/latest/api.html answered 404 when we requested it that day, so this page names no wger endpoint, authentication scheme or field. wger's facts here come from its README and repository page only. For its API, read the documentation of the wger version you deploy.\n\nFor the setup side of each, see [how to integrate the Your Move Exercise API](/integrate/your-move-exercise-api), [the Your Move directory entry](/apis/your-move) and [wger alternatives](/alternatives/wger-alternatives); [ExerciseDB vs wger](/compare/exercisedb-vs-wger) compares wger with the other hosted option.\n\n## Your Move vs wger at a glance\n\n| | Your Move Exercise API | wger |\n|---|---|---|\n| What you get | A hosted exercise API: 2,005+ exercises per its README, 2,200+ per its product page, 2,600+ HD videos; workouts, programs, form analysis, nutrition and recipes on the same key | A whole workout manager: routines with weight progression, diet and body-weight tracking, a food database from Open Food Facts, progress photos, an exercise wiki, basic gym management, and a REST API |\n| Media | Filmed HD video as MP4 and HLS, mostly portrait; static thumbnails in five framings; a body-map SVG per exercise | Not described in the README or repository page we read |\n| Free entry point | A 7-day free trial on every paid plan, plus 25 free sample clips; no permanent free tier | The software is free; a live system runs at wger.de |\n| Price | Starter $19 a month (watermarked), Pro $29, Scale $79, Enterprise $299 | No license fee; you pay for hosting and operations |\n| License and terms | A Brand License per registered brand (one website and one mobile app); videos licensed only while you subscribe; no resale | Code AGPL-3.0-or-later; exercise and ingredient data Creative Commons, set per entry; documentation CC-BY-SA-4.0 |\n| Hosting | Your Move's API and Bunny CDN; self-hosting is a separate license; on-device offline cache on Scale and Enterprise | Self-host with Docker, or use wger.de |\n| Caps and limits | Video minutes per month (10,000 to 100,000); monthly Starter and Pro plans cap distinct exercises with video at 250 and 350 per rolling 30 days | Whatever you configure on your own instance; wger.de's limits not read |\n| SDK and docs | One documentation page, an OpenAPI document, an MIT TypeScript SDK and MCP server | Documentation at wger.readthedocs.io (API page unreadable on November 11, 2026); apps on Android, iOS, F-Droid and Flathub |\n\nThe full price list for the category is in [exercise database API pricing](/pricing/exercise-database-api-pricing).\n\n## Where Your Move pulls ahead\n\n**Filmed video on the exercise record.** Your Move's README says every exercise \"ships with an HD video (HLS + MP4)\", filmed with trainers and physiotherapists, \"No AI-generated clips, no GIFs\". The product page names Movement Based Therapy, a sports physiotherapy practice, and the gym Elite Fitness among the people it films with, and shows male and female models on a white studio background; it also says a few gym-machine exercises exist only with a gym background for now. The Exercise schema carries a `hasVideo` boolean and the docs' own code example filters on `hasVideo=true`, so check that flag rather than assume every row plays. wger's README and repository page, as we read them, say nothing about its media; Your Move's own ranking page describes wger's demonstrations as \"Images, a few user videos\", a competitor's figure we could not check against wger.\n\n**Media you can lay out without editing.** Every exercise and video carries a `thumbnails` object with five framings of one frame (default 3:4, square, portrait 9:16, landscape 16:9 and the original), static and safe to cache, and `GET /exercises/{id}/body-map` returns the muscles worked as an SVG. The docs say `muscleGroups` lists \"about nine muscles per exercise across 83 distinct muscles\", against one coarse `muscleGroup` from 15 used for filtering.\n\n**Nothing to operate.** Your Move is a base URL (`https://exercise-api.ymove.app/api/v2`) and an `X-API-Key` header; the pricing FAQ says videos come through Bunny CDN. With wger you run a Django application, its database and its uploads.\n\n**Generated sessions on the same key.** `GET /workouts/generate` builds a structured workout, with a `structure` parameter for supersets, circuits or an automatic choice, and `GET /programs/generate` a multi-week program. wger has routines with \"automatic weight progression rules\", but as an app feature a user builds, not, as far as the README says, a generator your backend calls.\n\n**Developer tooling.** A published OpenAPI document, an MIT TypeScript SDK (`ymove-exercise-api`) and an MIT MCP server (`ymove-exercise-mcp`), plus a price list with a 7-day trial on every paid plan and 25 free sample clips.\n\n## Where wger pulls ahead\n\n**It costs nothing to license, and Your Move has no free tier.** wger's README says \"100% Free & Open Source\", licensed AGPL-3.0 or later. Your Move's pricing page opens with \"Start free, scale as you grow\", but the free part is a 7-day trial that converts to a paid plan unless cancelled; the docs cap a trial at 100 distinct exercises with video.\n\n**You own the stack and the data.** Self-hosting \"is basically just a `docker compose up -d` away\", per the README, and nothing stops working if you stop paying anyone. Your Move's API Terms say \"Videos are licensed to you only while your subscription is active\", and that you must delete cached or downloaded video files when it ends. Every Your Move plan lists \"No self-hosting (separate license)\".\n\n**Licenses you can read in advance.** wger states three: AGPL-3.0-or-later for code, \"Creative Commons (see individual entries)\" for exercise and ingredient data, and CC-BY-SA-4.0 for documentation. Your Move's arrangement takes more reading: API Terms that \"supplement the general Terms and Conditions\", general terms last updated August 07, 2025 that grant content \"for your personal, non-commercial use or internal business purpose only\", and a Brand License, issued by email at sign-up, that permits use for the brands you register.\n\n**More than an exercise list.** wger is a complete app: diet plans and calorie logging, body weight and measurements, a progress gallery, multi-user support, community translation through Weblate, and released apps on four stores. If you need a tracker, not just content, wger already is one.\n\n**No caps you did not set.** Your Move's monthly Starter and Pro plans cap distinct exercises pulled with video per rolling 30 days, at 250 and 350; past the cap the API removes the video fields from exercises you have not accessed and adds a `_warning`. A wger instance answers as far as your hardware does.\n\n**A much larger open-source footprint.** wger's repository showed 7.3k stars, 1.1k forks and 9,835 commits. Your Move's exercise-api repository showed 3 stars and 6 commits, its SDK repository 0 stars and its MCP repository 1.\n\n## The AGPL copyleft question\n\nThis is about wger's code, not its data. Section 13 of the GNU Affero General Public License in wger's LICENSE.txt says that if you modify the program, \"your modified version must prominently offer all users interacting with it remotely through a computer network\" a way to receive its source.\n\n- **Running wger unmodified**, and calling its REST API from your own app, is a different situation from changing wger's code and serving it to users.\n- **Modifying wger and serving it** to users over a network is what brings the source-offer obligation into play.\n- **The data is licensed separately**, per entry under Creative Commons, so attribution (and, for share-alike entries, share-alike) follows the exercises wherever you take them.\n\nYour Move has no copyleft at all. Its constraints are contractual: content limited to the brands you register, an active subscription, no resale or sub-licensing of the videos, no product \"whose primary purpose is to compete with Your Move by redistributing our exercise library\", and no training of models on the content without a separate agreement. The pricing FAQ adds that training, fine-tuning or motion-tracking models on the videos, or bulk downloading them, \"needs a separate data license\". Ask for the Brand License document before you ship. None of this is legal advice.\n\n## Which should you pick?\n\n- **Your app's core screen is a demonstration video**, and you would rather pay than film: Your Move. Start the trial on a monthly plan to see the cap in practice, and move to yearly or Scale if 250 or 350 distinct exercises a month is too few.\n- **You want a free, self-hosted tracker you control end to end**: wger, if your team can run a Django service and work within AGPL for code changes and Creative Commons for data.\n- **You want both**: run wger for logging and routines, and fetch Your Move video for the exercises you show, from your backend. Check the Brand License covers that app.\n- **You need no license strings at all**: neither; the public-domain option is compared in [Your Move vs free-exercise-db](/compare/your-move-vs-free-exercise-db).\n\nHosted alternatives are compared in [Your Move vs ExerciseDB](/compare/your-move-vs-exercisedb) and [Your Move vs API Ninjas](/compare/your-move-vs-api-ninjas), and the whole field in [exercise database APIs](/fitness-apis/exercise-database-apis) and [exercise video APIs](/fitness-apis/exercise-video-apis).\n\n## Moving between them\n\nYour Move's Exercise schema, from its OpenAPI document, carries `id` (a UUID), `slug`, `title`, `description`, `instructions` (an array), `importantPoints`, `muscleGroup` (one coarse value), `muscleGroups` and `secondaryMuscles`, `equipment`, `category`, `difficulty`, `exerciseType` (an array), `videoUrl`, `videoHlsUrl`, `thumbnailUrl`, `thumbnails` and a `videos` array whose items each have a stable `id`. We cannot give you the wger side of the table: its API page did not load, so read its field names from the documentation of the version you run rather than from us.\n\nWhat we can say about the move:\n\n- **Match on names, keep your own IDs.** Neither project shares identifiers with the other, so keep a mapping table keyed by your own exercise IDs. On the Your Move side, store the exercise `id` or `slug`, or a `videos[].id`, never `videoUrl`: the docs say video URLs are pre-signed, \"will stop working after 48 hours\", and must not be stored.\n- **Filter vocabulary.** Your Move's 15 muscle groups are `chest`, `back`, `shoulders`, `biceps`, `triceps`, `forearms`, `quads`, `hamstrings`, `glutes`, `calves`, `legs`, `core`, `neck`, `full_body` and `cardio`, and its equipment filter treats hyphens, underscores and spaces alike.\n- **Browse mode.** Keys created on or after 2026-07-07 default to `includeVideos=false` on `/exercises`, so a catalog crawl for mapping costs nothing against the cap; ask for video only on the exercises you render.\n\n```bash\ncurl -H \"X-API-Key: your_api_key\" \\\n  \"https://exercise-api.ymove.app/api/v2/exercises?muscleGroup=chest&equipment=dumbbell&pageSize=5\"\n```\n\n`pageSize` tops out at 50 per the OpenAPI document. Going from Your Move to wger costs you the video: Your Move's files cannot come with you, because the license ends with the subscription and redistribution is barred, so a wger deployment shows whatever media its entries carry or you upload. Going from wger to Your Move, your users' logged history stays in your wger database; only the exercise content changes.\n\n## Watch the fine print\n\n- **Counts disagree on Your Move's own pages.** 2,005+ exercises in the README and OpenAPI description, 2,200+ on the product and pricing pages; 31 equipment types in the product FAQ, 37 in its stats block and docs.\n- **The OpenAPI document lags the docs.** It reads version 2.5.0; the docs header reads v 2.8.0 of 30 October 2026.\n- **Two trial stories.** The signup page and terms describe a 7-day free trial that converts automatically; the docs say a subscription started through `POST /upgrade` begins \"immediately (no trial period)\".\n- **Watermark wording.** The pricing page says Starter is watermarked and \"Pro and above\" are clean; the docs say Trial and Starter are watermarked and Pro and Enterprise clean.\n- **Rate limits.** `/usage` reports a `rateLimit` in requests per minute \"allowed for your plan\"; we found no figure published.\n- **The vendor's own framing.** Your Move's ranking page, which says \"We run Your Move\" up front, lists its own commercial use as \"All paid plans\"; the terms put it through the Brand License, so read that document.\n- **wger.** Its API documentation answered 404 and we did not read wger.de's terms or limits on November 11, 2026. Confirm the license on each exercise entry you ship.",
+    "faqs": [
+      {
+        "q": "Does wger have exercise videos?",
+        "a": "wger's README and GitHub page, as read on November 11, 2026, do not describe its media, and its API documentation page answered 404 that day, so we cannot say from wger's own pages. Your Move's ranking page describes wger as having images and a few user videos, but that is a competitor's description we could not verify. Your Move's README says every exercise ships with an HD video as HLS and MP4."
+      },
+      {
+        "q": "Is it cheaper to self-host wger than to pay for Your Move?",
+        "a": "In license fees, yes: wger is free under AGPL-3.0-or-later, and Your Move's plans run $19, $29, $79 and $299 a month after a 7-day trial. But a wger instance still costs servers, backups, upgrades and someone's time, and it does not come with filmed video. Price the hosting and the media you would need before deciding."
+      },
+      {
+        "q": "Does Your Move's license have copyleft like wger's AGPL?",
+        "a": "No. Your Move's obligations are contractual, not copyleft: a Brand License per registered brand, videos licensed only while you subscribe, no resale or sub-licensing, and no model training without a separate agreement. wger's AGPL applies to its code if you modify it and serve it over a network, and its exercise data is Creative Commons per entry. Not legal advice."
+      },
+      {
+        "q": "Can I use wger for tracking and Your Move for exercise videos in one app?",
+        "a": "Nothing on the pages we read forbids it. Fetch Your Move exercises from your backend, as its docs require, and keep your own mapping between wger exercises and Your Move IDs or slugs. Check that the app sits under a brand registered on your Your Move license, and that you honor the Creative Commons terms on each wger entry you show."
+      },
+      {
+        "q": "Can I move my exercise catalog from wger to Your Move?",
+        "a": "Only by mapping, since the two share no identifiers. Your Move's exercises carry title, slug, muscleGroup, equipment, difficulty and instructions, so match on names and keep your own ID table; we could not read wger's API field names on November 11, 2026. Your users' workout history stays in your wger database."
+      },
+      {
+        "q": "Does Your Move have anything like wger's self-hosting?",
+        "a": "Not on its standard plans: every plan lists no self-hosting, with a separate self-hosting license offered on request. Scale and Enterprise allow an on-device cache for offline workouts, and the API Terms say cached files must be deleted when the subscription ends. wger, by contrast, is self-hosted with Docker by design."
+      }
+    ],
+    "related": [
+      {
+        "href": "/integrate/your-move-exercise-api",
+        "label": "How to integrate the Your Move Exercise API"
+      },
+      {
+        "href": "/apis/your-move",
+        "label": "Your Move directory entry"
+      },
+      {
+        "href": "/compare/exercisedb-vs-wger",
+        "label": "ExerciseDB vs wger"
+      },
+      {
+        "href": "/alternatives/wger-alternatives",
+        "label": "wger alternatives"
+      },
+      {
+        "href": "/pricing/exercise-database-api-pricing",
+        "label": "Exercise database API pricing"
+      },
+      {
+        "href": "/fitness-apis/exercise-database-apis",
+        "label": "Exercise database APIs"
+      },
+      {
+        "href": "/fitness-apis/exercise-video-apis",
+        "label": "Exercise video APIs"
+      },
+      {
+        "href": "/compare",
+        "label": "All API comparisons"
+      }
+    ],
+    "cta": {
+      "pitch": "Exercise API prices and open-source licenses both move - subscribe for plain-English updates when Your Move or wger changes terms."
+    },
+    "sources": [
+      {
+        "url": "https://ymove.app/exercise-api",
+        "checked": "2026-11-11",
+        "note": "catalog figures, filming partners, models, FAQ"
+      },
+      {
+        "url": "https://ymove.app/exercise-api/pricing",
+        "checked": "2026-11-11",
+        "note": "plans, trial, caps, Bunny CDN, self-hosting, resale, data license"
+      },
+      {
+        "url": "https://ymove.app/exercise-api/docs",
+        "checked": "2026-11-11",
+        "note": "auth, 48-hour URLs, thumbnails, muscles, caps, watermark, upgrade, changelog"
+      },
+      {
+        "url": "https://exercise-api.ymove.app/api/v2/openapi.json",
+        "checked": "2026-11-11",
+        "note": "Exercise schema, version 2.5.0, rateLimit, pageSize"
+      },
+      {
+        "url": "https://ymove.app/terms-and-conditions",
+        "checked": "2026-11-11",
+        "note": "API Terms: Brand License, active subscription, acceptable use; general terms"
+      },
+      {
+        "url": "https://ymove.app/exercise-api/signup",
+        "checked": "2026-11-11",
+        "note": "7-day trial wording"
+      },
+      {
+        "url": "https://ymove.app/exercise-api/top-exercise-apis",
+        "checked": "2026-11-11",
+        "note": "vendor's own ranking, quoted as its framing only"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/ymove-app/exercise-api/main/README.md",
+        "checked": "2026-11-11",
+        "note": "README counts, HLS + MP4, quickstart curl"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/ymove-app/exercise-api/main/free-videos/README.md",
+        "checked": "2026-11-11",
+        "note": "25 free sample clips"
+      },
+      {
+        "url": "https://github.com/ymove-app/exercise-api",
+        "checked": "2026-11-11",
+        "note": "3 stars, 6 commits"
+      },
+      {
+        "url": "https://github.com/ymove-app/exercise-api-sdk",
+        "checked": "2026-11-11",
+        "note": "MIT SDK, 0 stars"
+      },
+      {
+        "url": "https://github.com/ymove-app/exercise-api-mcp",
+        "checked": "2026-11-11",
+        "note": "MIT MCP server, 1 star"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/wger-project/wger/master/README.md",
+        "checked": "2026-11-11",
+        "note": "features, REST API, Docker self-hosting, licenses"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/wger-project/wger/master/LICENSE.txt",
+        "checked": "2026-11-11",
+        "note": "AGPL-3.0 text, section 13"
+      },
+      {
+        "url": "https://github.com/wger-project/wger",
+        "checked": "2026-11-11",
+        "note": "stars, forks, commits, topics"
+      }
+    ]
+  },
+  {
+    "slug": "your-move-vs-api-ninjas",
+    "primaryQuery": "your move vs api ninjas",
+    "h1": "Your Move vs API Ninjas: Exercise Video or a Simple Text Lookup?",
+    "metaTitle": "Your Move vs API Ninjas (2026): Exercise APIs Compared",
+    "metaDescription": "Your Move vs API Ninjas Exercises: HD video vs start and finish photos, $19 vs $59 entry plans, free tiers, storage rules, caps and field mapping.",
+    "updated": "2026-11-11",
+    "answer": "Pick Your Move (ymove.app) when your app needs demonstration video: its exercises ship HD video as HLS and MP4, and plans start at $19 a month with a 7-day trial. Pick API Ninjas Exercises when text, safety notes and a premium start and finish photo are enough and you want a free evaluation plan and terms in one table; commercial use there starts at $59 a month, or $39 billed yearly. Both were read on November 11, 2026.",
+    "body": "Your Move (ymove.app) sells an exercise API from Your Move B.V., a Dutch company that also makes a white-label fitness app builder, and its case rests on filmed video: its README promises \"2,005+ exercises and 2,600+ HD videos\", \"filmed with trainers and physiotherapists\". API Ninjas sells a catalog of small APIs under one account, and its Exercises API is a text lookup with, on paid plans, a start and finish photo. Everything below was read on November 11, 2026 from each vendor's own docs and pricing pages, and every count is the vendor's own figure; we did not count either catalog.\n\nThey answer different questions. API Ninjas tells your app which biceps exercises exist and how to do them, in a few lines of JSON, with a free plan for trying it and terms in one table. Your Move shows your user the movement, with a video for the exercise and a generated workout around it, at a lower paid entry price but with no free tier and more rules. The full Your Move walkthrough is [how to integrate the Your Move Exercise API](/integrate/your-move-exercise-api), and its directory entry is [Your Move](/apis/your-move).\n\n## Your Move vs API Ninjas at a glance\n\n| | Your Move (ymove.app) | API Ninjas Exercises |\n| --- | --- | --- |\n| What you get | Exercises with video, plus workout and program generation, form analysis, nutrition and recipes on one key | Exercise name, type, muscle, difficulty, instructions, equipment and safety notes |\n| Catalog, vendor's figure | 2,005+ (README, OpenAPI) or 2,200+ (product page) exercises; 2,600+ HD videos | \"over 3000 exercises\" |\n| Media | HD video as HLS and MP4; static thumbnails in five framings | `images`, premium only: photos \"usually the start and finish positions\"; no video |\n| Free entry point | No permanent free tier: a 7-day trial capped at 100 exercises with video | Free plan: 3,000 calls a month, 100 an hour, evaluation and demo only |\n| Price | Starter $19, Pro $29, Scale $79, Enterprise $299 a month | Developer $59 a month, or $39 billed yearly; Business $149 or $99; Professional $299 or $199 |\n| License and terms | API Terms with a Brand License per registered brand; videos licensed only while subscribed | Commercial use on every paid plan; attribution required on Free |\n| Storing data | Thumbnails may be stored; video URLs may not; on-device video cache on Scale and up | \"Data caching/storing allowed\" from Business up |\n| Caps and limits | Video minutes a month, plus 250 or 350 distinct exercises with video per 30 days on monthly Starter and Pro | Calls a month: 100,000 on Developer, 1,000,000 on Business |\n| Results per call | `pageSize` up to 50 | `/v1/exercises` \"Returns up to 5 exercises\"; `offset` is premium only |\n| Uptime | No SLA stated | 99% on Developer, 99.95% on Business |\n| SDK and docs | One docs page, an OpenAPI document, MIT TypeScript SDK and MCP server | One reference page with code samples in many languages |\n| Auth | `X-API-Key` header or `?api_key=` | `X-Api-Key` header |\n\nEvery plan's price is in [exercise database API pricing](/pricing/exercise-database-api-pricing).\n\n## Where Your Move pulls ahead\n\n**Video.** This is the whole difference for a workout player. Your Move's README says every exercise ships with \"an HD video (HLS + MP4)\", and its schema has `videoUrl` and `videoHlsUrl` on each record, plus a `videos` array whose items carry a stable `id`. API Ninjas documents no video at all: its `images` field is \"Array of image URLs showing the exercise, in movement order\", and only on premium plans.\n\n**A lower price for a commercial launch.** API Ninjas' pricing page puts commercial use at the Developer plan, $59 a month or $39 billed yearly. Your Move's Starter is $19 and Pro $29, and \"Every paid plan starts with a 7-day free trial\". The cheap plan has a catch: Your Move's pricing page says Starter videos \"include a small Your Move watermark\", so a clean app starts at $29.\n\n**More per call.** `/v1/exercises` \"Returns up to 5 exercises that satisfy the given parameters\", and paging past them with `offset` is premium only. The list of every exercise name for a muscle, `/v1/allexercises`, is for \"Business tier and above, or any annual plan\". Your Move's `/exercises` pages with `page` and `pageSize`, up to 50 a page, and filters by muscle group, equipment, difficulty, exercise type, video and title search.\n\n**Workouts and programs on the same key.** Your Move's docs list `/workouts/generate`, which builds a session with warmup and cooldown blocks, and `/programs/generate` for multi-week plans, plus `POST /posture/analyze` for AI form analysis from a video (beta). API Ninjas' exercise page suggests pairing its exercises with its separate Calories Burned API; it generates no workouts.\n\n**Thumbnails and tooling.** Every Your Move exercise with a video carries \"five framings of the same frame\", from a 3:4 default up to 600x800 to a 16:9 landscape, and the docs say thumbnail URLs are static and safe to cache or store. Your Move also publishes an OpenAPI document, an MIT-licensed TypeScript SDK and an MIT-licensed MCP server.\n\n## Where API Ninjas pulls ahead\n\n**A free plan.** This is Your Move's clearest loss. API Ninjas' Free plan gives 3,000 calls a month with \"no payment information required\", and its exercise page has a live demo that needs no key. It is \"Evaluation and demo purposes only\", with attribution required and no commercial use, but you can build against it for as long as you like. Your Move's 7-day trial reaches 100 distinct exercises with video and converts to a paid plan unless you cancel.\n\n**A larger stated catalog.** API Ninjas states \"over 3000 exercises targeting every major muscle group\". Your Move states 2,005+ in its README and OpenAPI description and 2,200+ on its product page.\n\n**Terms in one table.** API Ninjas' pricing page puts commercial use, data caching, rate limiting, attribution and uptime SLA side by side for every plan: Developer allows commercial use but not storing data, and Business adds \"Data caching/storing allowed\". Your Move's rules are real but spread across the pricing page, docs, API Terms and general terms, and two of them disagree (see the fine print).\n\n**Predictable failure.** API Ninjas' FAQ says that at your monthly quota \"Your API requests will simply be denied\", and \"you will never be charged more than the plan you signed up for\". Your Move's pricing FAQ says \"We never block requests\" when you pass your video minutes and that it will contact you about a plan that fits, while its API Terms say \"We may throttle, degrade, or suspend access that exceeds these limits\". The exercise cap is enforced in the response: video fields disappear from new exercises.\n\n**A published SLA.** Developer carries a 99% uptime SLA and Business 99.95%. The Your Move pages we read state neither an uptime figure nor a rate limit, though its OpenAPI document defines a 429 \"Rate limit exceeded\" response.\n\n## The catches on each side\n\n**Your Move.**\n\n- Monthly Starter and Pro cap distinct exercises pulled with video in a rolling 30 days, at 250 and 350; Scale, Enterprise and every yearly plan are uncapped. Over the cap, the docs say video properties \"are removed entirely (not set to null)\" from new exercises and a `_warning` with reason `monthly_exercise_cap` is added, so handle missing keys.\n- Video URLs \"will stop working after 48 hours\". Never store them, re-fetch on error, and call the API from your backend: the docs say \"Never expose your API key in client-side code.\"\n- Keys created on or after July 7, 2026 default to `includeVideos=false` on `/exercises`, per the v2.5.0 changelog; add `includeVideos=true` when you want video.\n- The counts disagree across its own pages (2,005+ and 2,200+ exercises; 31 and 37 equipment types), and the OpenAPI document says version 2.5.0 while the docs are at 2.8.0, dated October 30, 2026.\n\n**API Ninjas.**\n\n- Photos are premium only, and they are stills: start and finish, no motion.\n- Five results per search call on every plan, with `offset` paging premium only, and the full per-muscle list needs Business or an annual plan.\n- The Developer plan forbids caching or storing data, so an app that keeps a local copy of the catalog needs Business at $149 a month, or $99 billed yearly.\n- Each exercise has one `muscle`, from 16 values; there is no secondary-muscle field in the documented response.\n\n## Which should you pick?\n\n- **You need demonstration video in the app** → Your Move. API Ninjas has none.\n- **You want to try an exercise API with no card and no deadline** → API Ninjas' Free plan, within its evaluation-only terms.\n- **Text and a still photo are enough, and you want terms you can cite in one table** → API Ninjas on a paid plan; Business if you store the data.\n- **A commercial launch on the smallest monthly bill** → Your Move Starter at $19 if a watermark is acceptable, Pro at $29 if not, against API Ninjas Developer at $39 a month billed yearly.\n- **Generated workouts or multi-week programs** → Your Move.\n- **No API at all, data you own** → see [Your Move vs free-exercise-db](/compare/your-move-vs-free-exercise-db), [Your Move vs wger](/compare/your-move-vs-wger) and [ExerciseDB vs API Ninjas](/compare/exercisedb-vs-api-ninjas).\n\nThe wider field is in [exercise database APIs compared](/fitness-apis/exercise-database-apis) and [exercise APIs with video](/fitness-apis/exercise-video-apis).\n\n## Moving between them\n\nThe field names below are from API Ninjas' response reference and Your Move's OpenAPI `Exercise` schema.\n\n| API Ninjas | Your Move | Notes |\n| --- | --- | --- |\n| `name` | `title`, `slug` | Your Move also has a UUID `id`; `/exercises/{id}` takes ID or slug |\n| `type` | `exerciseType` (array) | API Ninjas' olympic_weightlifting, powerlifting and strongman have no matching Your Move type; plyometrics maps to plyometric |\n| `muscle` | `muscleGroup` | 16 values against 15; abdominals maps to core, lats and middle_back to back |\n| (none) | `muscleGroups`, `secondaryMuscles` | Your Move lists every muscle worked |\n| `difficulty` | `difficulty` | expert maps to advanced |\n| `instructions` (string) | `instructions` (array) | Split into steps or join them |\n| `equipments` (array) | `equipment` (string) | One equipment value per Your Move record |\n| `safety_info` | `importantPoints` | Closest match; check the content |\n| `images` (premium) | `thumbnails`, `videoUrl`, `videoHlsUrl` | |\n\nYour Move's `muscleGroup` filter accepts aliases such as `quadriceps`, and its docs say detail muscle names sent to that filter roll up to their group, so a query written for API Ninjas' `muscle=quadriceps` needs little change. The bigger change is in your backend: store Your Move exercise IDs and thumbnails, never video URLs.\n\n## Watch the fine print\n\n**Your Move's commercial terms run through a brand license.** Its API Terms say \"Every API subscription includes a Brand License that limits API content use to the Brands you register\", and \"Each Brand covers one website and one mobile application under the same brand name.\" Starter and Pro include one, Scale three, Enterprise ten. The general terms below, \"Last updated August 07, 2025\", grant content \"for your personal, non-commercial use or internal business purpose only\", which the API Terms supplement. The API Terms define \"Videos\" to include \"any associated thumbnails, transcripts, or metadata returned through the API\", and Videos are licensed \"only while your subscription is active\". Self-hosting needs a separate license, and the pricing page says you \"cannot redistribute, sub-license, or resell the video content\". Get the Brand License document, \"issued via email at sign-up\", before you ship. This is not legal advice.\n\n**Your Move's trial wording conflicts.** The signup page and API Terms describe a 7-day trial that converts to the paid plan unless cancelled; the docs' `POST /upgrade` section says \"Subscriptions start immediately (no trial period)\" for subscriptions started through the API.\n\n**Your Move's watermark wording differs.** The pricing page says Starter is watermarked and \"Pro and above\" are clean; the docs say \"Trial and Starter plans receive watermarked videos. Pro and Enterprise plans receive clean, unwatermarked videos.\"\n\n**API Ninjas' Free plan is not a launch plan.** Its FAQ says \"Commercial use of the Exercises API is not permitted on the free tier\", and the Free plan requires attribution. Budget the Developer plan from day one of a commercial app.\n\nYour Move also gives away 25 royalty-free HD sample clips, \"Free for commercial use\" with \"Do not resell\", which is enough to test a player before you start the trial.",
+    "faqs": [
+      {
+        "q": "Is Your Move cheaper than API Ninjas?",
+        "a": "At the paid entry point, yes. Your Move's Starter plan is $19 a month with watermarked video and Pro is $29 with clean video. API Ninjas puts commercial use on its Developer plan at $59 a month, or $39 billed yearly. API Ninjas has a free plan for evaluation and demos, which Your Move does not, and if you store data API Ninjas needs its Business plan at $149, or $99 billed yearly."
+      },
+      {
+        "q": "Does API Ninjas return exercise video the way Your Move does?",
+        "a": "No. API Ninjas documents an images field, premium only, holding image URLs in movement order, usually the start and finish positions, and no video. Your Move's README says every exercise ships with an HD video as HLS and MP4, and its schema carries videoUrl and videoHlsUrl on each record, as pre-signed URLs that expire after 48 hours."
+      },
+      {
+        "q": "Which has a free tier, Your Move or API Ninjas?",
+        "a": "API Ninjas. Its Free plan gives 3,000 calls a month and 100 an hour with no payment information, for evaluation and demo purposes only, with attribution required and no commercial use. Your Move has no permanent free tier: every paid plan starts with a 7-day trial, capped at 100 distinct exercises with video, which converts to the paid plan unless you cancel."
+      },
+      {
+        "q": "Can I store API Ninjas or Your Move exercise data in my app?",
+        "a": "On API Ninjas, from the Business plan up: its pricing table marks data caching and storing as not allowed on Free and Developer. On Your Move, thumbnails may be cached and stored but video URLs may not, Scale and Enterprise allow an on-device video cache for offline workouts, and its API Terms say videos, defined to include associated thumbnails and metadata, are licensed only while your subscription is active."
+      },
+      {
+        "q": "What happens when I go over my limit on Your Move or API Ninjas?",
+        "a": "API Ninjas says requests are simply denied once you hit your monthly quota and you are never charged more than your plan. Your Move says it never blocks requests when you pass your video minutes and will contact you about a plan that fits, though its API Terms reserve the right to throttle or suspend. Past the monthly exercise cap on Starter or Pro, Your Move strips the video fields from exercises you have not accessed in the window and adds a _warning."
+      },
+      {
+        "q": "How do API Ninjas exercise fields map to Your Move?",
+        "a": "name maps to title, type to exerciseType, muscle to muscleGroup, difficulty to difficulty with expert becoming advanced, the instructions string to an instructions array, the equipments array to a single equipment string, safety_info roughly to importantPoints, and images to thumbnails and the video URLs. Your Move's muscleGroup filter accepts aliases such as quadriceps, and its muscleGroups field adds the full list of muscles worked, which API Ninjas does not return."
+      }
+    ],
+    "related": [
+      {
+        "href": "/compare/exercisedb-vs-api-ninjas",
+        "label": "ExerciseDB vs API Ninjas"
+      },
+      {
+        "href": "/integrate/your-move-exercise-api",
+        "label": "How to integrate the Your Move Exercise API"
+      },
+      {
+        "href": "/apis/your-move",
+        "label": "Your Move"
+      },
+      {
+        "href": "/pricing/exercise-database-api-pricing",
+        "label": "Exercise database API pricing"
+      },
+      {
+        "href": "/fitness-apis/exercise-database-apis",
+        "label": "Best exercise database APIs"
+      },
+      {
+        "href": "/fitness-apis/exercise-video-apis",
+        "label": "Exercise APIs with video"
+      },
+      {
+        "href": "/alternatives/exercisedb-alternatives",
+        "label": "ExerciseDB alternatives"
+      },
+      {
+        "href": "/compare",
+        "label": "All API comparisons"
+      }
+    ],
+    "cta": {
+      "pitch": "Exercise API prices, free plans and storage rules move often. Subscribe and we will flag it when Your Move or API Ninjas changes its terms."
+    },
+    "sources": [
+      {
+        "url": "https://raw.githubusercontent.com/ymove-app/exercise-api/main/README.md",
+        "checked": "2026-11-11",
+        "note": "Your Move README: 2,005+ exercises, 2,600+ videos, HLS and MP4, 37 equipment types"
+      },
+      {
+        "url": "https://ymove.app/exercise-api",
+        "checked": "2026-11-11",
+        "note": "Your Move product page: 2,200+ exercises, 31 equipment types in its FAQ"
+      },
+      {
+        "url": "https://exercise-api.ymove.app/api/v2/openapi.json",
+        "checked": "2026-11-11",
+        "note": "Your Move OpenAPI 2.5.0: Exercise schema, parameters, 429 response"
+      },
+      {
+        "url": "https://ymove.app/exercise-api/docs",
+        "checked": "2026-11-11",
+        "note": "Your Move docs v2.8.0: auth, 48-hour video URLs, thumbnails, exercise caps, watermark, upgrade, changelog"
+      },
+      {
+        "url": "https://ymove.app/exercise-api/pricing",
+        "checked": "2026-11-11",
+        "note": "Your Move plans, minutes, exercise cap FAQ, watermark, self-hosting, resale, data license"
+      },
+      {
+        "url": "https://ymove.app/terms-and-conditions",
+        "checked": "2026-11-11",
+        "note": "Your Move API Terms (Brand License, active subscription, trial, limits) and general terms"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/ymove-app/exercise-api/main/free-videos/README.md",
+        "checked": "2026-11-11",
+        "note": "25 free sample clips and their license"
+      },
+      {
+        "url": "https://ymove.app/exercise-api/top-exercise-apis",
+        "checked": "2026-11-11",
+        "note": "Your Move's own roundup, used for plan prices quoted with their features"
+      },
+      {
+        "url": "https://api-ninjas.com/api/exercises",
+        "checked": "2026-11-11",
+        "note": "Exercises API endpoints, parameters, fields, premium images and offset, FAQ"
+      },
+      {
+        "url": "https://api-ninjas.com/pricing",
+        "checked": "2026-11-11",
+        "note": "API Ninjas plans, calls, commercial use, storage, rate limit, SLA"
+      }
+    ]
+  },
+  {
+    "slug": "your-move-vs-free-exercise-db",
+    "primaryQuery": "your move vs free-exercise-db",
+    "h1": "Your Move vs free-exercise-db: Paid Video API or Free Public-Domain Dataset?",
+    "metaTitle": "Your Move vs free-exercise-db: Video API or Free JSON?",
+    "metaDescription": "Your Move streams filmed HD exercise video from $19/mo after a 7-day trial; free-exercise-db is 876 public-domain exercises as JSON with 1,746 JPEGs.",
+    "updated": "2026-11-11",
+    "answer": "Pick Your Move when your app needs filmed HD exercise video, as MP4 and HLS, from a hosted API and you can pay from $19 a month after a 7-day trial, under a brand license that lasts only while you subscribe. Pick free-exercise-db when you want exercise data you own outright: a public-domain (Unlicense) JSON dataset on GitHub with no key, fee or API, which held 876 exercises and 1,746 still JPEG images when we counted it on November 11, 2026.",
+    "body": "Your Move (ymove.app), the Amsterdam-based Your Move B.V., sells a hosted Exercise API: filmed HD exercise video, thumbnails and muscle data behind an API key, with workout and program generation on the same key. free-exercise-db is a GitHub repository its README calls an \"Open Public Domain Exercise Dataset in `JSON` format\": files you download and own, with still photos and no API at all. The question between them is less \"which API\" than \"rent media, or own data\". Everything below was read on November 11, 2026, from Your Move's product, pricing, documentation and terms pages, its OpenAPI document and GitHub repositories, and from free-exercise-db's README, LICENSE.md, schema.json, combined `dist/exercises.json` and repository page. The counts are our own, from that day's `dist/exercises.json`.\n\nSetup for each is covered in [how to integrate the Your Move Exercise API](/integrate/your-move-exercise-api) and [ExerciseDB vs free-exercise-db](/compare/exercisedb-vs-free-exercise-db); the [Your Move directory entry](/apis/your-move) has the vendor summary.\n\n## Your Move vs free-exercise-db at a glance\n\n| | Your Move Exercise API | free-exercise-db |\n|---|---|---|\n| What you get | A hosted API: 2,005+ exercises per its README, 2,200+ per its product page, 2,600+ HD videos; workouts, programs, form analysis, nutrition and recipes on the same key | A static dataset: 876 exercises in `dist/exercises.json` (the README says 800+), one JSON file per exercise plus a combined file |\n| Media | Filmed HD video as MP4 and HLS, mostly portrait; static thumbnails in five framings; a body-map SVG | 1,746 JPEG image paths: two each for 873 exercises, none for 3; no video or GIF |\n| Free entry point | A 7-day free trial on every paid plan, plus 25 free sample clips; no permanent free tier | Everything, at $0, with no key or sign-up |\n| Price | Starter $19 a month (watermarked), Pro $29, Scale $79, Enterprise $299 | $0; you pay for wherever you host the files |\n| License and terms | A Brand License per registered brand (one website and one mobile app); videos licensed only while you subscribe; no resale; no model training without a data license | The Unlicense: public domain, \"for any purpose, commercial or non-commercial\" |\n| Hosting | Your Move's API and Bunny CDN; self-hosting is a separate license; on-device offline cache on Scale and Enterprise | Yours: clone the repository, or fetch raw GitHub URLs as the README describes |\n| Caps and limits | Video minutes per month (10,000 to 100,000); monthly Starter and Pro plans cap distinct exercises with video at 250 and 350 per rolling 30 days | None: the files are yours |\n| SDK and docs | One documentation page, an OpenAPI document, an MIT TypeScript SDK and MCP server | README, a JSON Schema, Makefile tasks and a browsable Vue front end |\n\nFor what every exercise data option costs, see [exercise database API pricing](/pricing/exercise-database-api-pricing).\n\n## Where Your Move pulls ahead\n\n**Motion.** free-exercise-db has none: every image path in its combined file ends in `.jpg`. Your Move's README says every exercise \"ships with an HD video (HLS + MP4)\", filmed with trainers and physiotherapists, \"No AI-generated clips, no GIFs\". The product page names Movement Based Therapy, a sports physiotherapy practice, and the gym Elite Fitness among the people it films with, and says a few gym-machine exercises exist only with a gym background for now. Its Exercise schema carries a `hasVideo` boolean and the docs' own example filters on `hasVideo=true`, so check that flag per row. If your screen is a looping demonstration, this decides it; [exercise video APIs](/fitness-apis/exercise-video-apis) lists every source of demo video.\n\n**A larger, richer record.** Even at the lower of its two counts, Your Move states more than twice free-exercise-db's 876 exercises. Its `muscleGroups` field averages \"about nine muscles per exercise across 83 distinct muscles\", per the docs, where free-exercise-db's `primaryMuscles` and `secondaryMuscles` draw from 17 broad values. Records add `description`, `importantPoints` (coaching points), `exerciseType` as an array, and five static thumbnail framings: default 3:4, square, portrait 9:16, landscape 16:9 and the original frame. `GET /exercises/{id}/body-map` returns the muscles as an SVG.\n\n**Something maintained and generated for you.** The docs' changelog runs from v 2.3.0 in April to v 2.8.0 on 30 October 2026, the last adding treadmill, rower and bike equipment filmed in October. `GET /workouts/generate` and `GET /programs/generate` build sessions and multi-week programs from the catalog. With free-exercise-db, any search, filtering or generation is code you write.\n\n**Developer tooling.** An OpenAPI document, an MIT TypeScript SDK (`ymove-exercise-api`), an MIT MCP server (`ymove-exercise-mcp`), and a published price list with a 7-day trial on every paid plan.\n\n## Where free-exercise-db pulls ahead\n\n**It is free, permanently, and Your Move is not.** free-exercise-db costs nothing and asks for nothing. Your Move's pricing page opens with \"Start free, scale as you grow\", but the free part is a 7-day trial that converts to a paid plan unless cancelled; its docs cap a trial at 100 distinct exercises with video. Its 25 free sample clips, free for commercial use but not for resale, are what you can keep without a subscription.\n\n**Public domain against a licensed rental.** free-exercise-db's LICENSE.md is the Unlicense: \"Anyone is free to copy, modify, publish, use, compile, sell, or distribute this software, either in source code form or as a compiled binary, for any purpose, commercial or non-commercial\". Your Move's API Terms limit content to \"the Brands you register\", one website and one mobile application each; its general terms, last updated August 07, 2025, grant content \"for your personal, non-commercial use or internal business purpose only\", which the Brand License supplements; resale and sub-licensing are barred; and training models on the videos \"needs a separate data license\".\n\n**You keep it.** Your Move's terms say \"Videos are licensed to you only while your subscription is active\", and cached or downloaded files must be deleted when it ends. Every plan lists \"No self-hosting (separate license)\", and on-device offline caching is a Scale and Enterprise feature. free-exercise-db's combined JSON is about a megabyte, so you can ship it inside an app and search it offline on any budget.\n\n**No meter.** Your Move counts video minutes and, on monthly Starter and Pro, distinct exercises with video per rolling 30 days (250 and 350); past the cap the API strips video fields from exercises you have not accessed. A JSON file has no quota, no key to leak and no backend proxy to run.\n\n**A bigger open community.** The repository showed 2.1k stars and 535 forks. Your Move's exercise-api repository showed 3 stars and 6 commits.\n\n## What is actually in free-exercise-db\n\nWe counted `dist/exercises.json` ourselves rather than repeat the README's \"800+\". It held 876 records, each with `id`, `name`, `force`, `level`, `mechanic`, `equipment`, `primaryMuscles`, `secondaryMuscles`, `instructions`, `category` and `images`, the fields in its JSON Schema.\n\n| Category | Exercises |\n|---|---|\n| strength | 584 |\n| stretching | 123 |\n| plyometrics | 61 |\n| powerlifting | 38 |\n| olympic weightlifting | 35 |\n| strongman | 21 |\n| cardio | 14 |\n\nBy level, 525 are beginner, 294 intermediate and 57 expert. The README warns that `force`, `mechanic` and `equipment` are \"incomplete in _some_ `JSON` files\"; in our count they were null in 30, 87 and 77 records. Five records have an empty instruction list, and the README notes \"a small number of duplicate images\" (25 duplicate files in 22 sets, in its own scan). Equipment comes from 12 values plus null, among them `body only`, `kettlebells`, `bands`, `foam roll` and `e-z curl bar`.\n\nHosting is up to you. The README's shortcut is to fetch the combined file and \"prefix any of image path's contained in the `JSON` with `https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/`\"; for production, copy the files to your own storage. On provenance, the README says the data was restructured from wrkout/exercises.json, credited to Ollie Jennings. We did not read that upstream repository's license on November 11, 2026, and neither README we read names who took the photographs; if that matters to your legal review, ask.\n\n## Which should you pick?\n\n- **Your users watch the movement before they do it**: Your Move. free-exercise-db's two stills per exercise cannot show tempo or range.\n- **You need data you can own, ship and modify with no strings**: free-exercise-db. No license on this page is more permissive.\n- **You are prototyping on no budget**: free-exercise-db, or Your Move's 25 free clips for a demo; the Your Move trial lasts 7 days and caps at 100 exercises.\n- **You want both**: use free-exercise-db as your catalog and fetch Your Move video only for the exercises you render. A few hundred featured movements fits the monthly caps; check the Brand License covers your app.\n- **You want an open catalog with a running API instead**: see [Your Move vs wger](/compare/your-move-vs-wger).\n\nOther hosted options are in [Your Move vs ExerciseDB](/compare/your-move-vs-exercisedb) and [Your Move vs API Ninjas](/compare/your-move-vs-api-ninjas), and the field in [exercise database APIs](/fitness-apis/exercise-database-apis).\n\n## Moving between them\n\nThe field names are close; the vocabularies are not.\n\n| free-exercise-db | Your Move | Notes |\n|---|---|---|\n| `id` (e.g. `Alternate_Incline_Dumbbell_Curl`) | `id` (UUID) and `slug` | No shared identifiers: keep a mapping table |\n| `name` | `title` | Match on names, then check by hand |\n| `primaryMuscles` (array of 17 values) | `muscleGroup` (one of 15) and `muscleGroups` | `quadriceps` against `quads`; `abdominals` against `core`; `lats` and `middle back` roll up to `back` |\n| `secondaryMuscles` | `secondaryMuscles` | Same name, different vocabulary |\n| `equipment` (one string or null) | `equipment` | `body only` against `bodyweight`, `kettlebells` against `kettlebell`, `bands` against `band` |\n| `level` | `difficulty` | free-exercise-db: beginner, intermediate, expert |\n| `category` | `exerciseType` (array) and `category` | Your Move allows several types per exercise |\n| `instructions` (array) | `instructions` (array) | Your Move adds `importantPoints` |\n| `images` (two JPEG paths) | `thumbnails`, `videoUrl`, `videoHlsUrl`, `videos[]` | Store a `videos[].id`, never a video URL |\n\nThe vocabulary pairs above are our reading of the two published lists, free-exercise-db's schema.json and Your Move's muscle and equipment references, not a mapping either project publishes. Your Move's equipment filter treats hyphens, underscores and spaces alike, and the docs show a barbell row's `muscleGroups` including `lats` and `middle_back`.\n\nTwo rules matter on the Your Move side. Video URLs are pre-signed and \"will stop working after 48 hours\", so store the exercise `id` or `slug` and re-fetch. And keys created on or after 2026-07-07 default to `includeVideos=false` on `/exercises`, so a full crawl to build the mapping costs nothing against the cap:\n\n```bash\ncurl -O https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/dist/exercises.json\ncurl -H \"X-API-Key: your_api_key\" \\\n  \"https://exercise-api.ymove.app/api/v2/exercises?muscleGroup=chest&equipment=dumbbell&pageSize=5\"\n```\n\nLeaving Your Move for free-exercise-db means losing the video, since the license ends with the subscription. Leaving free-exercise-db for Your Move means checking that the exercises your users logged exist in the new catalog.\n\n## Watch the fine print\n\n- **Your Move's counts disagree.** 2,005+ exercises in the README and OpenAPI description, 2,200+ on the product and pricing pages; 31 equipment types in the product FAQ, 37 in its stats block and docs.\n- **The OpenAPI document lags.** It reads version 2.5.0; the docs header reads v 2.8.0 of 30 October 2026.\n- **Two trial stories.** The signup page and terms describe a 7-day trial that converts automatically; the docs say a subscription started through `POST /upgrade` begins \"immediately (no trial period)\".\n- **Watermarks.** The pricing page says Starter is watermarked and \"Pro and above\" are clean; the docs say Trial and Starter are watermarked and Pro and Enterprise clean.\n- **Rate limits.** `/usage` reports a per-minute `rateLimit`; we found no figure published.\n- **free-exercise-db moves too.** Our counts describe the main branch on November 11, 2026; recount after you pull. This is not legal advice on either license.",
+    "faqs": [
+      {
+        "q": "Is free-exercise-db really free for commercial use?",
+        "a": "Its LICENSE.md is the Unlicense, which says anyone may copy, modify, publish, use, sell or distribute the work for any purpose, commercial or non-commercial, and dedicates it to the public domain. As read on November 11, 2026, neither its README nor the upstream credit names who took the photographs, so ask that question if your legal review needs provenance. Not legal advice."
+      },
+      {
+        "q": "Can I add Your Move videos to free-exercise-db exercises?",
+        "a": "Yes, by mapping: the two share no IDs, so match free-exercise-db names to Your Move titles or slugs and keep a table. Fetch Your Move from your backend, store the exercise ID or a videos[].id rather than the video URL, which expires after 48 hours, and watch the monthly cap of 250 or 350 distinct exercises on monthly Starter and Pro."
+      },
+      {
+        "q": "Can I download and keep Your Move's exercise data the way I can with free-exercise-db?",
+        "a": "No. Your Move's API Terms license videos only while your subscription is active and require you to delete cached or downloaded files when it ends; self-hosting is a separate license, and bulk downloading or training models on the videos needs a separate data license. free-exercise-db is public domain, so a copy is yours to keep."
+      },
+      {
+        "q": "How big is free-exercise-db compared with Your Move's catalog?",
+        "a": "We counted 876 exercises and 1,746 JPEG image paths in free-exercise-db's dist/exercises.json on November 11, 2026. Your Move states 2,005+ exercises in its README and 2,200+ on its product page, with 2,600+ HD videos; those are the vendor's own figures, and they disagree with each other."
+      },
+      {
+        "q": "Can a free-exercise-db app work offline, and can Your Move?",
+        "a": "free-exercise-db's combined JSON is about a megabyte, so you can bundle it and its images in the app. Your Move allows an on-device cache for offline workouts only on Scale ($79 a month) and Enterprise, and the cached files must be deleted if the subscription ends."
+      },
+      {
+        "q": "Why pay for Your Move when free-exercise-db costs nothing?",
+        "a": "For motion and upkeep: free-exercise-db has two still photos per exercise and changes only when someone commits, while Your Move serves filmed HD video as MP4 and HLS, five thumbnail framings, detailed muscle data and generated workouts. If stills are enough for your app, free-exercise-db is the better deal."
+      }
+    ],
+    "related": [
+      {
+        "href": "/integrate/your-move-exercise-api",
+        "label": "How to integrate the Your Move Exercise API"
+      },
+      {
+        "href": "/apis/your-move",
+        "label": "Your Move directory entry"
+      },
+      {
+        "href": "/compare/exercisedb-vs-free-exercise-db",
+        "label": "ExerciseDB vs free-exercise-db"
+      },
+      {
+        "href": "/alternatives/exercisedb-alternatives",
+        "label": "ExerciseDB alternatives"
+      },
+      {
+        "href": "/pricing/exercise-database-api-pricing",
+        "label": "Exercise database API pricing"
+      },
+      {
+        "href": "/fitness-apis/exercise-database-apis",
+        "label": "Exercise database APIs"
+      },
+      {
+        "href": "/fitness-apis/exercise-video-apis",
+        "label": "Exercise video APIs"
+      },
+      {
+        "href": "/compare",
+        "label": "All API comparisons"
+      }
+    ],
+    "cta": {
+      "pitch": "Exercise video prices shift and open datasets drift - subscribe for plain-English updates when Your Move or free-exercise-db changes."
+    },
+    "sources": [
+      {
+        "url": "https://ymove.app/exercise-api",
+        "checked": "2026-11-11",
+        "note": "catalog figures, filming partners, FAQ"
+      },
+      {
+        "url": "https://ymove.app/exercise-api/pricing",
+        "checked": "2026-11-11",
+        "note": "plans, trial, caps, self-hosting, data license"
+      },
+      {
+        "url": "https://ymove.app/exercise-api/docs",
+        "checked": "2026-11-11",
+        "note": "48-hour URLs, thumbnails, muscles, caps, watermark, upgrade, changelog"
+      },
+      {
+        "url": "https://exercise-api.ymove.app/api/v2/openapi.json",
+        "checked": "2026-11-11",
+        "note": "Exercise schema, version 2.5.0"
+      },
+      {
+        "url": "https://ymove.app/terms-and-conditions",
+        "checked": "2026-11-11",
+        "note": "API Terms: Brand License, active subscription; general terms"
+      },
+      {
+        "url": "https://ymove.app/exercise-api/signup",
+        "checked": "2026-11-11",
+        "note": "7-day trial wording"
+      },
+      {
+        "url": "https://ymove.app/exercise-api/top-exercise-apis",
+        "checked": "2026-11-11",
+        "note": "vendor's own ranking, quoted for prices only"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/ymove-app/exercise-api/main/README.md",
+        "checked": "2026-11-11",
+        "note": "README counts, HLS + MP4, quickstart curl"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/ymove-app/exercise-api/main/free-videos/README.md",
+        "checked": "2026-11-11",
+        "note": "25 free sample clips"
+      },
+      {
+        "url": "https://github.com/ymove-app/exercise-api",
+        "checked": "2026-11-11",
+        "note": "3 stars, 6 commits"
+      },
+      {
+        "url": "https://github.com/ymove-app/exercise-api-sdk",
+        "checked": "2026-11-11",
+        "note": "MIT SDK"
+      },
+      {
+        "url": "https://github.com/ymove-app/exercise-api-mcp",
+        "checked": "2026-11-11",
+        "note": "MIT MCP server"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+        "checked": "2026-11-11",
+        "note": "dataset description, raw-URL hosting, incomplete fields, duplicates, provenance"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/LICENSE.md",
+        "checked": "2026-11-11",
+        "note": "Unlicense"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/schema.json",
+        "checked": "2026-11-11",
+        "note": "fields, muscle, equipment, category and level enums"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/dist/exercises.json",
+        "checked": "2026-11-11",
+        "note": "counted: 876 exercises, 1,746 JPEG paths, categories, levels, null fields"
+      },
+      {
+        "url": "https://github.com/yuhonas/free-exercise-db",
+        "checked": "2026-11-11",
+        "note": "stars, forks, commits"
+      }
+    ]
   }
 ];

@@ -1,0 +1,252 @@
+[
+  {
+    "claim": "Your Move's README states 2,005+ exercises and 2,600+ HD videos, with HLS and MP4 on every exercise and no AI clips or GIFs",
+    "url": "https://raw.githubusercontent.com/ymove-app/exercise-api/main/README.md",
+    "quote": "is an exercise database API with **2,005+ exercises and 2,600+ HD videos**, filmed with trainers and physiotherapists. No AI-generated clips, no GIFs. Every exercise ships with an HD video (HLS + MP4)"
+  },
+  {
+    "claim": "The product page states 2,200+ exercises with 2,600+ HD videos",
+    "url": "https://ymove.app/exercise-api",
+    "quote": "2,200 + exercises with 2,600 + HD videos"
+  },
+  {
+    "claim": "The product FAQ says 31 equipment types",
+    "url": "https://ymove.app/exercise-api",
+    "quote": "covering 15 muscle groups and 31 equipment types"
+  },
+  {
+    "claim": "The README says 15 muscle groups and 37 equipment types",
+    "url": "https://raw.githubusercontent.com/ymove-app/exercise-api/main/README.md",
+    "quote": "across 15 muscle groups and 37 equipment types"
+  },
+  {
+    "claim": "The docs say muscleGroups averages about nine muscles across 83 distinct muscles",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "averaging about nine muscles per exercise across 83 distinct muscles"
+  },
+  {
+    "claim": "Filmed with Movement Based Therapy, Elite Fitness and a personal trainer",
+    "url": "https://ymove.app/exercise-api",
+    "quote": "Our library is filmed with practising professionals, including sports physiotherapy practice Movement Based Therapy, personal training gym Elite Fitness and personal trainer Fredy Meijer."
+  },
+  {
+    "claim": "A few gym-machine exercises ship only with a gym background",
+    "url": "https://ymove.app/exercise-api",
+    "quote": "A few gym-machine exercises aren't available in white background yet."
+  },
+  {
+    "claim": "Docs code example filters hasVideo=true",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "const exercises = await fetch(`${BASE}/exercises?muscleGroup=chest&hasVideo=true`, {"
+  },
+  {
+    "claim": "Five thumbnail framings",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Every exercise and every video carries a thumbnails object with five framings of the same frame."
+  },
+  {
+    "claim": "Video URLs expire after 48 hours",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Video URLs Expire After 48 Hours - Refetch Them"
+  },
+  {
+    "claim": "Starter is $19/mo with a 7-day trial (vendor ranking row; pricing page price lines are too short to quote)",
+    "url": "https://ymove.app/exercise-api/top-exercise-apis",
+    "quote": "Your Move Our pick | Real HD video, own white studio | 2,200+ exercises, 2,600+ videos | $19/mo | 7-day free trial | All paid plans |"
+  },
+  {
+    "claim": "Pro $29 clean video, Scale $79 offline caching (vendor page; pricing page lines too short to quote)",
+    "url": "https://ymove.app/exercise-api/top-exercise-apis",
+    "quote": "Clean, unwatermarked video from $29/mo (Pro); offline on-device caching on Scale ($79/mo)"
+  },
+  {
+    "claim": "Pricing page tagline says start free",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "Simple, usage-based pricing. Start free, scale as you grow."
+  },
+  {
+    "claim": "Trial keys are capped at 100 exercises",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Trial | 100 |"
+  },
+  {
+    "claim": "Brand License per registered brand, one website and one app",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "Every API subscription includes a Brand License that limits API content use to the Brands you register with us. Each Brand covers one website and one mobile application under the same brand name."
+  },
+  {
+    "claim": "General terms grant content for non-commercial or internal use",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "for your personal, non-commercial use or internal business purpose only."
+  },
+  {
+    "claim": "Videos licensed only while subscribed",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "Videos are licensed to you only while your subscription is active."
+  },
+  {
+    "claim": "Delete cached files when the subscription ends",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "delete any cached or downloaded Video files from your systems"
+  },
+  {
+    "claim": "Self-hosting needs a separate license",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "No self-hosting (separate license)"
+  },
+  {
+    "claim": "Training models on the videos needs a data license",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "needs a separate data license."
+  },
+  {
+    "claim": "Monthly cap of distinct exercises: 250 Starter, 350 Pro",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "The exercise video limit is about variety: it counts how many different exercises you have pulled with video in a rolling 30-day window, 250 on Starter and 350 on Pro with monthly billing."
+  },
+  {
+    "claim": "Exercise API repo has 3 stars",
+    "url": "https://github.com/ymove-app/exercise-api",
+    "quote": "Star 3 ( 3 ) You must be signed in to star a repository"
+  },
+  {
+    "claim": "includeVideos defaults to false for keys created on or after 2026-07-07",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Changed default: for API keys created on or after 2026-07-07, /exercises, /workouts/generate, and /programs/generate now default to includeVideos=false (browse mode)."
+  },
+  {
+    "claim": "Barbell row muscleGroups example",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "\"muscleGroups\": [\"back\", \"lats\", \"upper_back\", \"middle_back\", \"rhomboids\","
+  },
+  {
+    "claim": "OpenAPI version 2.5.0",
+    "url": "https://exercise-api.ymove.app/api/v2/openapi.json",
+    "quote": "\"title\":\"YMove Fitness API\",\"version\":\"2.5.0\""
+  },
+  {
+    "claim": "Docs version 2.8.0",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "v2 v 2.8.0 , 30 Oct 2026"
+  },
+  {
+    "claim": "Docs say API upgrades start with no trial",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Subscriptions start immediately (no trial period)."
+  },
+  {
+    "claim": "Free clips are free for commercial use, not for resale",
+    "url": "https://raw.githubusercontent.com/ymove-app/exercise-api/main/free-videos/README.md",
+    "quote": "You may not sell or redistribute the videos as a standalone product or library."
+  },
+  {
+    "claim": "Docs watermark wording",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Trial and Starter plans receive watermarked videos. Pro and Enterprise plans receive clean, unwatermarked videos."
+  },
+  {
+    "claim": "free-exercise-db describes itself as an open public-domain JSON dataset of 800+ exercises",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "Open Public Domain Exercise Dataset in `JSON` format, 800+ exercises with a browsable public searchable frontend"
+  },
+  {
+    "claim": "Raw GitHub hosting shortcut for images",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "prefix any of image path's contained in the `JSON` with `https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/`"
+  },
+  {
+    "claim": "Restructured from wrkout/exercises.json",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "which was amazing though the data wasn't structured the way I wanted it"
+  },
+  {
+    "claim": "Original dataset credited to Ollie Jennings",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "for the original dataset at [exercises.json](https://github.com/wrkout/exercises.json)"
+  },
+  {
+    "claim": "Incomplete fields allow null",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "The following fields are incomplete in _some_ `JSON` files and in such have had to allow `null` in [schema.json](./schema.json)"
+  },
+  {
+    "claim": "Duplicate images",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "There are also a small number of duplicate images eg."
+  },
+  {
+    "claim": "Duplicate image scan result",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "25 duplicate files (in 22 sets), occupying 809 KB"
+  },
+  {
+    "claim": "Makefile tasks and PostgreSQL import",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "To combine all `JSON` files into [Newline Delimeted JSON]"
+  },
+  {
+    "claim": "Vue front end",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/README.md",
+    "quote": "There is a simple searchable/browsable frontend to the data written in [Vue.js](https://vuejs.org/)"
+  },
+  {
+    "claim": "Unlicense permits any purpose, commercial or not",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/LICENSE.md",
+    "quote": "distribute this software, either in source code form or as a compiled"
+  },
+  {
+    "claim": "Unlicense public domain",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/LICENSE.md",
+    "quote": "This is free and unencumbered software released into the public domain."
+  },
+  {
+    "claim": "Schema field names",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/schema.json",
+    "quote": "\"primaryMuscles\": {"
+  },
+  {
+    "claim": "Schema level enum includes expert",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/schema.json",
+    "quote": "\"intermediate\","
+  },
+  {
+    "claim": "Schema equipment value body only",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/schema.json",
+    "quote": "\"body only\","
+  },
+  {
+    "claim": "Schema equipment value e-z curl bar",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/schema.json",
+    "quote": "\"e-z curl bar\","
+  },
+  {
+    "claim": "Schema muscle value quadriceps",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/schema.json",
+    "quote": "\"quadriceps\","
+  },
+  {
+    "claim": "Counted 876 exercises with these fields (counts computed from the file)",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/dist/exercises.json",
+    "quote": "\"secondaryMuscles\": ["
+  },
+  {
+    "claim": "Category counts computed from the file, e.g. olympic weightlifting",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/dist/exercises.json",
+    "quote": "\"category\": \"olympic weightlifting\","
+  },
+  {
+    "claim": "Image paths are JPEG (1,746 counted)",
+    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/dist/exercises.json",
+    "quote": "\"3_4_Sit-Up/0.jpg\","
+  },
+  {
+    "claim": "Repository stars",
+    "url": "https://github.com/yuhonas/free-exercise-db",
+    "quote": "Star 2.1k ( 2.1k ) You must be signed in to star a repository"
+  },
+  {
+    "claim": "Repository forks",
+    "url": "https://github.com/yuhonas/free-exercise-db",
+    "quote": "Fork 535 ( 535 )"
+  }
+]

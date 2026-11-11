@@ -366,6 +366,7 @@ export const VENDOR_HUBS: VendorHub[] = [
       "/compare/exercisedb-vs-wger",
       "/compare/exercisedb-vs-free-exercise-db",
       "/compare/exercisedb-vs-api-ninjas",
+      "/compare/your-move-vs-exercisedb",
       "/apis/exercisedb",
     ],
   },
@@ -374,7 +375,7 @@ export const VENDOR_HUBS: VendorHub[] = [
     hub: "/apis/wger",
     tokens: ["wger"],
     wraps: [],
-    pages: ["/apis/wger", "/alternatives/wger-alternatives", "/compare/exercisedb-vs-wger"],
+    pages: ["/apis/wger", "/alternatives/wger-alternatives", "/compare/exercisedb-vs-wger", "/compare/your-move-vs-wger"],
   },
   {
     id: "your-move",
@@ -384,6 +385,10 @@ export const VENDOR_HUBS: VendorHub[] = [
     pages: [
       "/integrate/your-move-exercise-api",
       "/pricing/exercise-database-api-pricing",
+      "/compare/your-move-vs-exercisedb",
+      "/compare/your-move-vs-wger",
+      "/compare/your-move-vs-api-ninjas",
+      "/compare/your-move-vs-free-exercise-db",
       "/apis/your-move",
     ],
   },
