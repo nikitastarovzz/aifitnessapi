@@ -412,7 +412,7 @@ export const COST_ITEMS: CostItem[] = [
   // provenance: "Its docs say they are pre-signed and \"expire after 48 hours\", so refetch rather than store them" — /fitness-apis/exercise-database-apis
   // provenance: "Your Move (ymove.app) has no free API tier, only a 7-day trial" — /fitness-apis/exercise-video-apis
   // devCost is "usage-based" under the DevCost definition above: the published plans are tiered by
-  // video minutes and distinct exercises with video, the vendor's own pricing page calls it
+  // video minutes and distinct exercises with video, the pricing page of the vendor calls it
   // "usage-based", and there is no free entry point that runs out (a 7-day trial is not a tier).
   {
     id: "your-move",
