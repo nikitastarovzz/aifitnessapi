@@ -13,21 +13,8 @@ import { useEffect, useRef, useState } from "react";
  * an outside tap. Links are full-width rows so the touch target is the row,
  * not the glyph.
  */
-const LINKS = [
-  { href: "/fitness-apis", label: "Fitness APIs" },
-  { href: "/integrate", label: "Integration guides" },
-  { href: "/devices", label: "Connected devices" },
-  { href: "/picker", label: "API Picker" },
-  { href: "/tools", label: "Free tools" },
-  { href: "/engagement", label: "Engagement" },
-  { href: "/watch-apps", label: "Watch apps" },
-  { href: "/cookbook", label: "Cookbook" },
-  { href: "/changes", label: "Changes & deadlines" },
-  { href: "/blog", label: "Blog" },
-  { href: "/site-index", label: "All topics" },
-];
-
-export default function MobileNav({ links = LINKS }: { links?: { href: string; label: string }[] }) {
+// The list comes from Header, which drops any cluster with no released pages.
+export default function MobileNav({ links }: { links: { href: string; label: string }[] }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const wrap = useRef<HTMLDivElement>(null);

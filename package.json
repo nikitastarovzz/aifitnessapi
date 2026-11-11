@@ -64,7 +64,8 @@
     "test:schema-converter": "node --test scripts/unified-convert.test.mjs",
     "test:deprecation-scan": "node --test scripts/deprecation-scan.test.mjs",
     "test:research": "node --test scripts/research-stats.test.mjs",
-    "research": "node scripts/build-research.mjs"
+    "research": "node scripts/build-research.mjs",
+    "links:external": "node scripts/external-links.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "~1.32.0",

@@ -1,0 +1,59 @@
+name: External link audit
+
+# Probes every external URL the built site links to (scripts/external-links.mjs)
+# and fails when any is gone: 404, 410, or a host that no longer resolves. The
+# citations are the site's evidence, and nothing else notices when a vendor
+# moves a docs page. Bot walls, rate limits and server errors are listed in
+# the job summary as "unverified" but never fail the run; the full result is
+# uploaded as an artifact.
+#
+# Runs from GitHub's runners because the dev environment's proxy blocks most
+# vendor hosts.
+on:
+  # PAUSED like the other trackers (see libraries.yml): a failure here emails
+  # the owner, so the schedule stays off until they turn it on.
+  # Manual runs work (Actions tab, Run workflow).
+  # schedule:
+  #   # 05:13 UTC every Wednesday. Off the hour and on a day no other
+  #   # tracker uses.
+  #   - cron: "13 5 * * 3"
+  workflow_dispatch:
+    inputs:
+      filter:
+        description: "Only probe URLs containing this substring (optional)"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency:
+  group: external-links
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+
+      - name: Probe external links
+        run: node scripts/external-links.mjs ${{ inputs.filter && format('--filter "{0}"', inputs.filter) || '' }}
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: external-links-report
+          path: .cache/external-links/report.json
+          if-no-files-found: ignore
