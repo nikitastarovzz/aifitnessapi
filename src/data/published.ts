@@ -8,7 +8,7 @@
  * posts and translations: the commit that added the file; generated
  * sections: the commit that added the route, or the item to the data file if
  * that came later). Keyed by URL path without the leading slash.
- * 587 rows.
+ * 588 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -435,6 +435,7 @@ export const PUBLISHED: Record<string, string> = {
   "integrate/whoop-api": "2026-07-09",
   "integrate/withings-api": "2026-10-18",
   "integrate/wodify-api": "2026-10-18",
+  "integrate/your-move-exercise-api": "2026-11-11",
   "learn/how-fitness-apps-estimate-calories": "2026-07-13",
   "learn/on-device-vs-cloud-health-data": "2026-07-13",
   "learn/webhooks-vs-polling-for-fitness-data": "2026-08-12",

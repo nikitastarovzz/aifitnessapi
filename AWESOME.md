@@ -1,6 +1,6 @@
 # Awesome Fitness APIs
 
-> A list of 24 fitness and health APIs and platforms, 20 open-source libraries, 176 MCP servers, 19 open datasets and 44 free tools for developers building with wearable, health and workout data. Generated from aifitnessapi.com's sourced data by a script, so every line restates a published fact and nothing is ranked.
+> A list of 25 fitness and health APIs and platforms, 20 open-source libraries, 176 MCP servers, 19 open datasets and 44 free tools for developers building with wearable, health and workout data. Generated from aifitnessapi.com's sourced data by a script, so every line restates a published fact and nothing is ranked.
 
 The same list is served at [aifitnessapi.com/awesome](https://aifitnessapi.com/awesome), with a markdown copy at [/awesome.md](https://aifitnessapi.com/awesome.md).
 
@@ -77,6 +77,7 @@ Every product in the site's API directory, by category, with how it bills develo
 
 - [ExerciseDB (AscendAPI)](https://aifitnessapi.com/apis/exercisedb) - Developer billing: Free tier.
 - [wger (self-hosted)](https://aifitnessapi.com/apis/wger) - Developer billing: Free.
+- [Your Move Exercise API](https://aifitnessapi.com/apis/your-move) - Developer billing: Usage-based. An approval, review or declaration stands before production.
 
 ### AI motion / coaching SDKs
 
