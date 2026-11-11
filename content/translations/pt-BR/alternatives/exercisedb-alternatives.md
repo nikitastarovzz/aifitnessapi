@@ -5,7 +5,7 @@ sourceUpdated: "2026-10-22"
 sourceHash: "7a49d38e3dd539e8"
 metaTitle: "Alternativas ao ExerciseDB (2026): 5 opções comparadas"
 metaDescription: >-
-  Alternativas ao ExerciseDB: free-exercise-db (domínio público), wger (AGPL), API Ninjas (a partir de US$ 39/mês), Your Move (vídeo, a partir de US$ 19/mês) e bancos de vídeo.
+  Alternativas ao ExerciseDB: free-exercise-db (domínio público), wger (AGPL), API Ninjas (de US$ 39/mês), Your Move (vídeo, de US$ 19/mês) e bancos de vídeo.
 h1: "As melhores alternativas ao ExerciseDB (2026)"
 answer: >-
   As principais alternativas ao ExerciseDB, hoje vendido pela AscendAPI, são o free-exercise-db, um conjunto de dados em domínio público com 876 exercícios e imagens que você mesmo hospeda; o wger, uma aplicação sob licença AGPL que você hospeda por conta própria, com API REST; a API Ninjas Exercises, uma API hospedada com texto e fotos de início e fim do movimento, de US$ 39 a US$ 59 por mês para uso comercial; o Your Move (ymove.app), uma API hospedada com vídeo filmado em HD, em MP4 e HLS, a partir de US$ 19 por mês, conforme lido em 11 de novembro de 2026; e bancos de mídia como o GymVisual, se você quer ser dono de arquivos de vídeo licenciados. Escolha pelo que está afastando você: licença e posse dos dados apontam para o free-exercise-db ou o wger, uma API hospedada mais simples aponta para a API Ninjas, vídeo hospedado pago aponta para o Your Move, e mídia sob seu controle aponta para um banco de mídia. Antes de trocar, confira os planos gratuitos da própria AscendAPI, que em 22 de outubro de 2026 incluíam 1.500 exercícios em GIF sem chave de API.
