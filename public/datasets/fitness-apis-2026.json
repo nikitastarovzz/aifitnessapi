@@ -12,10 +12,10 @@
     "sourceHref": "aifitnessapi.com page carrying the verified claims"
   },
   "stats": {
-    "totalItems": 25,
+    "totalItems": 26,
     "byDevCost": {
       "free": 14,
-      "usage-based": 6,
+      "usage-based": 7,
       "free-tier-then-paid": 4,
       "contact-sales": 1
     },
@@ -24,16 +24,16 @@
       "platform-store": 2,
       "aggregator": 4,
       "nutrition": 4,
-      "exercise-content": 2,
+      "exercise-content": 3,
       "motion-sdk": 3,
       "pose-model": 3,
       "llm-features": 1
     },
-    "withApprovalGate": 13,
+    "withApprovalGate": 14,
     "withUserSideCost": 6,
     "contactSalesShare": 4,
-    "freeShare": 56,
-    "gatedShare": 52,
+    "freeShare": 54,
+    "gatedShare": 54,
     "refreshTokenRotators": [
       "Strava",
       "WHOOP",
@@ -204,6 +204,15 @@
       "userSideCost": null,
       "approvalGate": null,
       "source": "https://aifitnessapi.com/compare/exercisedb-vs-wger"
+    },
+    {
+      "id": "your-move",
+      "label": "Your Move Exercise API",
+      "category": "exercise-content",
+      "devCost": "usage-based",
+      "userSideCost": null,
+      "approvalGate": "No review: a trial key comes with sign-up, and the API Terms' brand license limits the content to the apps and sites you register, one website and one mobile app per brand.",
+      "source": "https://aifitnessapi.com/integrate/your-move-exercise-api"
     },
     {
       "id": "kinestex",

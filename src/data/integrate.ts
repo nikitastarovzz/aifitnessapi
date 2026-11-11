@@ -38,6 +38,7 @@ export const RELEASED_INTEGRATE = new Set<string>([
   "wahoo-api",
   "dexcom-api",
   "concept2-api",
+  "your-move-exercise-api",
 ]);
 
 export const allIntegrations: ClusterEntry[] = integrateEntries;

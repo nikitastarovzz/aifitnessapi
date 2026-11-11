@@ -5,7 +5,7 @@
 | | |
 |---|---|
 | Version | 2026.1 |
-| Rows | 25 |
+| Rows | 26 |
 | Columns | 7 |
 | Publisher | AIFitnessAPI (aifitnessapi.com) |
 | License | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) |
@@ -25,13 +25,13 @@ Every field verified against vendor primary sources (developer docs, public repo
 
 | Field | Description | JSON types | Null in |
 |---|---|---|---|
-| `id` | Not described in the dataset's fields dictionary. | string | 0 of 25 rows |
-| `label` | Not described in the dataset's fields dictionary. | string | 0 of 25 rows |
-| `category` | Not described in the dataset's fields dictionary. | string | 0 of 25 rows |
-| `devCost` | How the vendor bills developers: free \| free-tier-then-paid \| usage-based \| contact-sales | string | 0 of 25 rows |
-| `userSideCost` | What each end user must own or pay for before data flows (null = none documented) | null, string | 19 of 25 rows |
-| `approvalGate` | Review/approval gating launch (null = none documented) | null, string | 12 of 25 rows |
-| `source` | Not described in the dataset's fields dictionary. | string | 0 of 25 rows |
+| `id` | Not described in the dataset's fields dictionary. | string | 0 of 26 rows |
+| `label` | Not described in the dataset's fields dictionary. | string | 0 of 26 rows |
+| `category` | Not described in the dataset's fields dictionary. | string | 0 of 26 rows |
+| `devCost` | How the vendor bills developers: free \| free-tier-then-paid \| usage-based \| contact-sales | string | 0 of 26 rows |
+| `userSideCost` | What each end user must own or pay for before data flows (null = none documented) | null, string | 20 of 26 rows |
+| `approvalGate` | Review/approval gating launch (null = none documented) | null, string | 12 of 26 rows |
+| `source` | Not described in the dataset's fields dictionary. | string | 0 of 26 rows |
 
 A null means the source does not state the value or it could not be verified. It never means zero, and it is never a guess. In the CSV a null is an empty unquoted field.
 

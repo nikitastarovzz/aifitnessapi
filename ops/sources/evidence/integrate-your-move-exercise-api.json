@@ -1,0 +1,347 @@
+[
+  {
+    "claim": "Your Move B.V. is registered in the Netherlands, in Amsterdam.",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "a company registered in the Netherlands at Sumastrastraat 203p , Amsterdam"
+  },
+  {
+    "claim": "The homepage leads with the white-label app builder.",
+    "url": "https://ymove.app/",
+    "quote": "Create your own white label fitness, coaching or yoga app"
+  },
+  {
+    "claim": "The builder includes a 2,200-exercise library.",
+    "url": "https://ymove.app/app/white-label-fitness-app",
+    "quote": "Access a built-in white label exercise library with 2,200 exercises and HD video demonstrations"
+  },
+  {
+    "claim": "The company started as a white-label fitness app business and launched the API in February 2026.",
+    "url": "https://ymove.app/exercise-api/top-exercise-apis",
+    "quote": "We launched the API in February 2026"
+  },
+  {
+    "claim": "Company history as a white-label app business.",
+    "url": "https://ymove.app/exercise-api/top-exercise-apis",
+    "quote": "We started as a white-label fitness app business."
+  },
+  {
+    "claim": "Product page library size: 2,200+ exercises, 2,600+ videos.",
+    "url": "https://ymove.app/exercise-api",
+    "quote": "2,200 + exercises with 2,600 + HD videos"
+  },
+  {
+    "claim": "README: 2,005+ exercises and 2,600+ HD videos, filmed with trainers and physiotherapists, no AI clips or GIFs, HD video as HLS and MP4.",
+    "url": "https://raw.githubusercontent.com/ymove-app/exercise-api/main/README.md",
+    "quote": "is an exercise database API with **2,005+ exercises and 2,600+ HD videos**, filmed with trainers and physiotherapists. No AI-generated clips, no GIFs. Every exercise ships with an HD video (HLS + MP4)"
+  },
+  {
+    "claim": "OpenAPI description states 2005+ videos.",
+    "url": "https://exercise-api.ymove.app/api/v2/openapi.json",
+    "quote": "Access 2005+ professional exercise videos"
+  },
+  {
+    "claim": "Product FAQ says 31 equipment types.",
+    "url": "https://ymove.app/exercise-api",
+    "quote": "covering 15 muscle groups and 31 equipment types"
+  },
+  {
+    "claim": "Filming partners include physiotherapy practice Movement Based Therapy and gym Elite Fitness.",
+    "url": "https://ymove.app/exercise-api",
+    "quote": "Our library is filmed with practising professionals, including sports physiotherapy practice Movement Based Therapy, personal training gym Elite Fitness and personal trainer Fredy Meijer."
+  },
+  {
+    "claim": "Key goes in the X-API-Key header.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Include your API key in the X-API-Key header with every request:"
+  },
+  {
+    "claim": "Key can be passed as a query parameter; keys look like ym_.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Alternatively, pass as a query parameter: ?api_key=ym_your_key_here"
+  },
+  {
+    "claim": "Keep the key server-side and proxy video URLs.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Never expose your API key in client-side code. Always call the YMove API from your backend and proxy the video URLs to your frontend."
+  },
+  {
+    "claim": "Keys created on or after 2026-07-07 default to browse mode.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "/exercises, /workouts/generate, and /programs/generate now default to includeVideos=false (browse mode)."
+  },
+  {
+    "claim": "/exercises/{id} always includes video.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "/exercises/{id} is unchanged and always includes the video (it counts toward your cap)."
+  },
+  {
+    "claim": "muscleGroup is one of the 15 coarse groups.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "muscleGroup is the single coarse group the filters use, one of the 15 above."
+  },
+  {
+    "claim": "muscleGroups averages about nine muscles across 83 distinct muscles.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "averaging about nine muscles per exercise across 83 distinct muscles"
+  },
+  {
+    "claim": "Video URLs expire after 48 hours.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Video URLs Expire After 48 Hours - Refetch Them"
+  },
+  {
+    "claim": "Never store video URLs.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Never store or cache video URLs in your database"
+  },
+  {
+    "claim": "Videos are served via Bunny CDN.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "Videos are served via Bunny CDN for fast global delivery."
+  },
+  {
+    "claim": "Each video has a stable id.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Video ID: Every item in videos has a stable id ."
+  },
+  {
+    "claim": "Most clips are portrait.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Most exercise clips are portrait (vertical, ~9:16) , shot for mobile."
+  },
+  {
+    "claim": "Thumbnails are static and cacheable.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Thumbnail URLs are not: they are static, carry no token, and are safe to cache or store."
+  },
+  {
+    "claim": "Body map is an SVG, use ?api_key= in img tags, free of the cap.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Use ?api_key= when putting it in an <img> tag, since an image request cannot send headers. Free: it does not touch the monthly exercise cap."
+  },
+  {
+    "claim": "Video minute allowances per plan.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Starter: 10,000 min/mo, Scale: 50,000 min/mo, Pro: 25,000 min/mo, Enterprise: 100,000 min/mo."
+  },
+  {
+    "claim": "Requests are never blocked over minutes.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "We never block requests."
+  },
+  {
+    "claim": "Trial cap is 100 unique exercises.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Trial | 100 |"
+  },
+  {
+    "claim": "Two counters: minutes for volume, a distinct-exercise limit for variety, 250 on Starter and 350 on Pro with monthly billing.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "They are two different counters. API minutes are about volume: every time a video is served, its length is added to your monthly minutes. The exercise video limit is about variety: it counts how many different exercises you have pulled with video in a rolling 30-day window, 250 on Starter and 350 on Pro with monthly billing."
+  },
+  {
+    "claim": "_warning with reason monthly_exercise_cap.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Responses include a _warning object with reason: \"monthly_exercise_cap\""
+  },
+  {
+    "claim": "Video properties are removed entirely.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Video properties are removed entirely (not set to null) from new exercises"
+  },
+  {
+    "claim": "OpenAPI cap warning also lists thumbnailUrl and videos.",
+    "url": "https://exercise-api.ymove.app/api/v2/openapi.json",
+    "quote": "will have their video properties (videoUrl, videoHlsUrl, thumbnailUrl, videoDurationSecs, videos) removed entirely"
+  },
+  {
+    "claim": "Usage reports a per-plan rateLimit without a published figure.",
+    "url": "https://exercise-api.ymove.app/api/v2/openapi.json",
+    "quote": "Requests per minute allowed for your plan"
+  },
+  {
+    "claim": "Form analysis allowances and overage price.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Additional analyses are $0.25 each."
+  },
+  {
+    "claim": "SDK README example sends images for posture analysis.",
+    "url": "https://raw.githubusercontent.com/ymove-app/exercise-api-sdk/main/README.md",
+    "quote": "images: [{ type: 'base64', data: imageBase64, media_type: 'image/jpeg' }],"
+  },
+  {
+    "claim": "SDK and MCP are MIT licensed.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Official open-source TypeScript SDK and Model Context Protocol (MCP) server, both MIT licensed."
+  },
+  {
+    "claim": "SDK latest version 1.2.0.",
+    "url": "https://registry.npmjs.org/ymove-exercise-api",
+    "quote": "\"dist-tags\":{\"latest\":\"1.2.0\"}"
+  },
+  {
+    "claim": "SDK package created 2026-05-29.",
+    "url": "https://registry.npmjs.org/ymove-exercise-api",
+    "quote": "\"created\":\"2026-05-29T11:01:41.129Z\""
+  },
+  {
+    "claim": "MCP latest version 1.1.4.",
+    "url": "https://registry.npmjs.org/ymove-exercise-mcp",
+    "quote": "\"dist-tags\":{\"latest\":\"1.1.4\"}"
+  },
+  {
+    "claim": "Hosted MCP endpoint with X-API-Key header.",
+    "url": "https://raw.githubusercontent.com/ymove-app/exercise-api-mcp/main/README.md",
+    "quote": "Clients that support remote MCP servers can connect to the hosted endpoint directly. Send your API key in the `X-API-Key` header."
+  },
+  {
+    "claim": "OpenAPI title and version 2.5.0.",
+    "url": "https://exercise-api.ymove.app/api/v2/openapi.json",
+    "quote": "\"title\":\"YMove Fitness API\",\"version\":\"2.5.0\""
+  },
+  {
+    "claim": "Docs header shows v 2.8.0 dated 30 Oct 2026.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "v2 v 2.8.0 , 30 Oct 2026"
+  },
+  {
+    "claim": "Nutrition data sources.",
+    "url": "https://ymove.app/nutrition-api",
+    "quote": "A complete nutrition API powered by USDA FoodData Central and Open Food Facts."
+  },
+  {
+    "claim": "Signup checkbox wording on auto-conversion.",
+    "url": "https://ymove.app/exercise-api/signup",
+    "quote": "the 7-day free trial auto-converting to a paid plan, and the requirement to keep an active subscription to use exercise videos."
+  },
+  {
+    "claim": "Terms on trial conversion.",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "your subscription converts to the paid plan you selected and your payment method is charged automatically."
+  },
+  {
+    "claim": "API upgrade starts immediately with no trial.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Subscriptions start immediately (no trial period)."
+  },
+  {
+    "claim": "Yearly billing saves one month.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "save the equivalent of one month per year."
+  },
+  {
+    "claim": "Plans start at $19 a month.",
+    "url": "https://ymove.app/exercise-api/top-exercise-apis",
+    "quote": "workouts and secondary muscles are included on every Your Move plan from $19/mo,"
+  },
+  {
+    "claim": "Pricing FAQ watermark wording.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "Starter plan videos include a small Your Move watermark. Pro and above get clean, unwatermarked videos"
+  },
+  {
+    "claim": "Docs watermark wording.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Trial and Starter plans receive watermarked videos. Pro and Enterprise plans receive clean, unwatermarked videos."
+  },
+  {
+    "claim": "General terms date.",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "Last updated August 07, 2025"
+  },
+  {
+    "claim": "General terms non-commercial clause.",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "for your personal, non-commercial use or internal business purpose only."
+  },
+  {
+    "claim": "Every API subscription includes a Brand License; each Brand is one website and one mobile app; the license document is emailed at sign-up.",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "Every API subscription includes a Brand License that limits API content use to the Brands you register with us. Each Brand covers one website and one mobile application under the same brand name."
+  },
+  {
+    "claim": "No resale of video content.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "You cannot redistribute, sub-license, or resell the video content to other developers."
+  },
+  {
+    "claim": "Separate data license for model training.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "needs a separate data license."
+  },
+  {
+    "claim": "HIPAA not supported.",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "The Services are not tailored to comply with industry-specific regulations (Health Insurance Portability and Accountability Act (HIPAA)"
+  },
+  {
+    "claim": "Free videos: 14 studio and 11 gym clips.",
+    "url": "https://raw.githubusercontent.com/ymove-app/exercise-api/main/free-videos/README.md",
+    "quote": "Fourteen studio clips on a clean white background plus eleven shot on the real machines in a working gym."
+  },
+  {
+    "claim": "README: attribution appreciated, not required.",
+    "url": "https://raw.githubusercontent.com/ymove-app/exercise-api/main/free-videos/README.md",
+    "quote": "A link to ymove.app is appreciated but not required"
+  },
+  {
+    "claim": "Web page: credit required.",
+    "url": "https://ymove.app/free-exercise-videos",
+    "quote": "Show \"Exercise video by Your Move\" with a link to ymove.app wherever the video appears."
+  },
+  {
+    "claim": "Repository has 3 stars.",
+    "url": "https://github.com/ymove-app/exercise-api",
+    "quote": "Star 3 ( 3 ) You must be signed in to star a repository"
+  },
+  {
+    "claim": "Terms usage limits: yearly plans have no monthly exercise cap; access over limits may be throttled.",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "(b) the monthly exercise cap on monthly plans (yearly plans have no monthly exercise cap), (c) the number of Brand Licenses, and (d) form-analysis and food-analysis quotas. We may throttle, degrade, or suspend access that exceeds these limits."
+  },
+  {
+    "claim": "The Brand License document is issued by email at sign-up.",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "A printable Brand License document is available for download from your dashboard and is issued via email at sign-up."
+  },
+  {
+    "claim": "Signup page: no charge until the trial ends.",
+    "url": "https://ymove.app/exercise-api/signup",
+    "quote": "Start with a 7-day free trial. No charge until your trial ends."
+  },
+  {
+    "claim": "Thumbnails without a video on /exercises are Scale only.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "On /exercises and /exercises/{id} without a video, they are for Scale only"
+  },
+  {
+    "claim": "How a video minute is counted.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "A video minute is counted when your API request returns exercise data that includes video URLs."
+  },
+  {
+    "claim": "Food searches, barcode scans and recipe searches are unlimited.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "Food searches, barcode scans and recipe searches are unlimited on every plan."
+  },
+  {
+    "claim": "Every plan excludes self-hosting, which is a separate license.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "No self-hosting (separate license)"
+  },
+  {
+    "claim": "The free videos page was last updated 9 November 2026.",
+    "url": "https://ymove.app/free-exercise-videos",
+    "quote": "Last updated 9 November 2026"
+  },
+  {
+    "claim": "App builder plans have a 7-day free trial.",
+    "url": "https://ymove.app/",
+    "quote": "Try it free for the first 7 days!"
+  },
+  {
+    "claim": "Claude Code skill file version 1.1.0.",
+    "url": "https://ymove.app/exercise-api/skill",
+    "quote": "version: 1.1.0"
+  }
+]
