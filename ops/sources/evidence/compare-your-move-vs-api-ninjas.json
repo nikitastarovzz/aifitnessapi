@@ -1,0 +1,252 @@
+[
+  {
+    "claim": "Your Move's README states 2,005+ exercises and 2,600+ HD videos filmed with trainers and physiotherapists.",
+    "url": "https://raw.githubusercontent.com/ymove-app/exercise-api/main/README.md",
+    "quote": "2,005+ exercises and 2,600+ HD videos**, filmed with trainers and physiotherapists"
+  },
+  {
+    "claim": "Every exercise ships with HD video as HLS and MP4, per the README.",
+    "url": "https://raw.githubusercontent.com/ymove-app/exercise-api/main/README.md",
+    "quote": "Every exercise ships with an HD video (HLS + MP4)"
+  },
+  {
+    "claim": "The product page states 2,200+ exercises.",
+    "url": "https://ymove.app/exercise-api",
+    "quote": "Showing 24 of 2,200 exercises"
+  },
+  {
+    "claim": "The OpenAPI document reports version 2.5.0.",
+    "url": "https://exercise-api.ymove.app/api/v2/openapi.json",
+    "quote": "\"title\":\"YMove Fitness API\",\"version\":\"2.5.0\""
+  },
+  {
+    "claim": "The docs page header and changelog are at v2.8.0, dated October 30, 2026.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "v 2.8.0 2026-10-30"
+  },
+  {
+    "claim": "A product FAQ says 31 equipment types.",
+    "url": "https://ymove.app/exercise-api",
+    "quote": "covering 15 muscle groups and 31 equipment types"
+  },
+  {
+    "claim": "The README says 37 equipment types.",
+    "url": "https://raw.githubusercontent.com/ymove-app/exercise-api/main/README.md",
+    "quote": "across 15 muscle groups and 37 equipment types"
+  },
+  {
+    "claim": "Video URLs are pre-signed and stop working after 48 hours.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "They will stop working after 48 hours."
+  },
+  {
+    "claim": "Every exercise and video carries a thumbnails object with five framings.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Every exercise and every video carries a thumbnails object with five framings of the same frame."
+  },
+  {
+    "claim": "Keys created on or after 2026-07-07 default to includeVideos=false.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "for API keys created on or after 2026-07-07, /exercises, /workouts/generate, and /programs/generate now default to includeVideos=false (browse mode)"
+  },
+  {
+    "claim": "The docs cap the unique exercises a key can access with video per month; the limits table lists Trial at 100.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "To prevent bulk scraping, the number of unique exercises you can access with video URLs per month is capped."
+  },
+  {
+    "claim": "The pricing FAQ gives 250 on Starter and 350 on Pro with monthly billing, and no limit on Scale, Enterprise and yearly plans.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "250 on Starter and 350 on Pro with monthly billing"
+  },
+  {
+    "claim": "Scale, Enterprise and every yearly plan have no exercise video limit.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "Scale, Enterprise and every yearly plan have no exercise video limit."
+  },
+  {
+    "claim": "Over the cap, video properties are removed from new exercises.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Video properties are removed entirely (not set to null) from new exercises"
+  },
+  {
+    "claim": "Every paid plan starts with a 7-day free trial.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "Every paid plan starts with a 7-day free trial."
+  },
+  {
+    "claim": "Starter videos carry a watermark; Pro and above are clean.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "Starter plan videos include a small Your Move watermark. Pro and above get clean, unwatermarked videos"
+  },
+  {
+    "claim": "No resale or redistribution of the videos.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "You cannot redistribute, sub-license, or resell the video content to other developers."
+  },
+  {
+    "claim": "Every API subscription includes a Brand License limited to registered brands.",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "Every API subscription includes a Brand License that limits API content use to the Brands you register with us."
+  },
+  {
+    "claim": "Each Brand covers one website and one mobile application.",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "Each Brand covers one website and one mobile application under the same brand name."
+  },
+  {
+    "claim": "Videos are licensed only while the subscription is active.",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "Videos are licensed to you only while your subscription is active."
+  },
+  {
+    "claim": "The general terms grant content for personal, non-commercial use or internal business purpose only.",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "for your personal, non-commercial use or internal business purpose only."
+  },
+  {
+    "claim": "The docs' POST /upgrade route starts subscriptions immediately with no trial.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Subscriptions start immediately (no trial period)."
+  },
+  {
+    "claim": "The signup page and terms say the trial auto-converts to a paid plan.",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "New subscriptions include a 7-day free trial. If you do not cancel before the trial ends, your subscription converts to the paid plan you selected"
+  },
+  {
+    "claim": "25 free sample clips, free for commercial use.",
+    "url": "https://raw.githubusercontent.com/ymove-app/exercise-api/main/free-videos/README.md",
+    "quote": "**Free for commercial use.** Use in your app, website, social media or client materials."
+  },
+  {
+    "claim": "Starter is $19 a month with watermarked video (Your Move's roundup page; the pricing page lists $19 /mo as a line too short to quote).",
+    "url": "https://ymove.app/exercise-api/top-exercise-apis",
+    "quote": "Starter ($19/mo) videos carry a small watermark"
+  },
+  {
+    "claim": "Pro is $29 a month with clean video; Scale is $79 with on-device caching.",
+    "url": "https://ymove.app/exercise-api/top-exercise-apis",
+    "quote": "Clean, unwatermarked video from $29/mo (Pro); offline on-device caching on Scale ($79/mo)"
+  },
+  {
+    "claim": "API Ninjas states over 3000 exercises.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "The Exercises API provides access to a comprehensive list of over 3000 exercises targeting every major muscle group."
+  },
+  {
+    "claim": "/v1/exercises returns up to 5 exercises.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Returns up to 5 exercises that satisfy the given parameters."
+  },
+  {
+    "claim": "offset is premium only.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "offset optional Premium only"
+  },
+  {
+    "claim": "/v1/allexercises needs Business tier and above or an annual plan.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Business tier and above, or any annual plan"
+  },
+  {
+    "claim": "images is premium only, start and finish positions.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Array of image URLs showing the exercise, in movement order (usually the start and finish positions)."
+  },
+  {
+    "claim": "Difficulty values are beginner, intermediate, expert.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Difficulty level of the exercise. Possible values are: beginner , intermediate , expert ."
+  },
+  {
+    "claim": "Type values include olympic_weightlifting, powerlifting and strongman.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Possible values are: cardio , olympic_weightlifting , plyometrics , powerlifting , strength , stretching , strongman ."
+  },
+  {
+    "claim": "Muscle values (16).",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "abdominals abductors adductors biceps calves chest forearms glutes hamstrings lats lower_back middle_back neck quadriceps traps triceps"
+  },
+  {
+    "claim": "Commercial use not permitted on the free tier.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Commercial use of the Exercises API is not permitted on the free tier."
+  },
+  {
+    "claim": "Over quota, requests are denied and never overcharged.",
+    "url": "https://api-ninjas.com/api/exercises",
+    "quote": "Your API requests will simply be denied once you hit your monthly quota"
+  },
+  {
+    "claim": "Free plan: evaluation and demo only, no payment information required.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "Evaluation and demo purposes only - no payment information required"
+  },
+  {
+    "claim": "Developer: $59 or $39 a month billed yearly.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "$ 59 $ 39 / month"
+  },
+  {
+    "claim": "Business: $149 or $99.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "$ 149 $ 99 / month"
+  },
+  {
+    "claim": "Free plan rate limit of 100 calls an hour.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "100 API calls per hour"
+  },
+  {
+    "claim": "Video minutes: we never block requests.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "We never block requests."
+  },
+  {
+    "claim": "API Terms: may throttle, degrade or suspend access over limits.",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "We may throttle, degrade, or suspend access that exceeds these limits."
+  },
+  {
+    "claim": "The OpenAPI defines a 429 Rate limit exceeded response.",
+    "url": "https://exercise-api.ymove.app/api/v2/openapi.json",
+    "quote": "\"429\":{\"description\":\"Rate limit exceeded\""
+  },
+  {
+    "claim": "The muscleGroup filter accepts quadriceps as an alias.",
+    "url": "https://exercise-api.ymove.app/api/v2/openapi.json",
+    "quote": "\"full_body\",\"cardio\",\"quadriceps\""
+  },
+  {
+    "claim": "Your Move difficulty enum: beginner, intermediate, advanced.",
+    "url": "https://exercise-api.ymove.app/api/v2/openapi.json",
+    "quote": "\"enum\":[\"beginner\",\"intermediate\",\"advanced\"]"
+  },
+  {
+    "claim": "The API Terms define Videos to include thumbnails and metadata.",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "any associated thumbnails, transcripts, or metadata returned through the API"
+  },
+  {
+    "claim": "25 free sample clips: do not resell.",
+    "url": "https://raw.githubusercontent.com/ymove-app/exercise-api/main/free-videos/README.md",
+    "quote": "**Do not resell.** You may not sell or redistribute the videos as a standalone product or library."
+  },
+  {
+    "claim": "Data caching/storing allowed is a plan row; Business is Production integrations with data storage.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "Production integrations with data storage and priority support"
+  },
+  {
+    "claim": "Developer carries a 99% uptime SLA, Business 99.95%.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "99.99% | 99.95% | 99.95% | 99% | None |"
+  },
+  {
+    "claim": "Free plan: 3,000 calls a month; Developer 100,000; Business 1,000,000.",
+    "url": "https://api-ninjas.com/pricing",
+    "quote": "Custom | 10,000,000 | 1,000,000 | 100,000 | 3,000 |"
+  }
+]

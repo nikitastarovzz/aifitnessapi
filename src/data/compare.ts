@@ -49,6 +49,10 @@ export const RELEASED_COMPARE = new Set<string>([
   "ml-kit-vs-mediapipe",
   "exercisedb-vs-api-ninjas",
   "cliniko-vs-healthkit",
+  "your-move-vs-exercisedb",
+  "your-move-vs-wger",
+  "your-move-vs-api-ninjas",
+  "your-move-vs-free-exercise-db",
 ]);
 
 export const allCompare: ClusterEntry[] = compareEntries;

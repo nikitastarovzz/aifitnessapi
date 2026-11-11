@@ -208,5 +208,155 @@
     "claim": "wger's exercise and ingredient data is Creative Commons, per entry.",
     "url": "https://raw.githubusercontent.com/wger-project/wger/master/README.md",
     "quote": "Exercise/Ingredient Data: Creative Commons (see individual entries)"
+  },
+  {
+    "claim": "Starter includes 10,000 exercise video minutes a month, about 40,000 plays",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "10,000 exercise video minutes/mo (~40K plays)"
+  },
+  {
+    "claim": "Pro includes 25,000 video minutes a month",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "25,000 exercise video minutes/mo (~100K plays)"
+  },
+  {
+    "claim": "Scale includes 50,000 video minutes a month",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "50,000 exercise video minutes/mo (~200K plays)"
+  },
+  {
+    "claim": "Enterprise includes 100,000 video minutes a month",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "100,000 exercise video minutes/mo (~400K plays)"
+  },
+  {
+    "claim": "Clean video from the $29 Pro plan; offline caching on the $79 Scale plan (Your Move's own comparison page; the pricing page lists $19, $29, $79 and $299 /mo as standalone lines too short to quote)",
+    "url": "https://ymove.app/exercise-api/top-exercise-apis",
+    "quote": "Clean, unwatermarked video from $29/mo (Pro); offline on-device caching on Scale ($79/mo)"
+  },
+  {
+    "claim": "Every paid plan starts with a 7-day free trial",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "Every paid plan starts with a 7-day free trial."
+  },
+  {
+    "claim": "Yearly billing saves about one month",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "Toggle to yearly billing on the pricing page or during signup to save the equivalent of one month per year."
+  },
+  {
+    "claim": "Video minutes counted when a response includes video URLs",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "A video minute is counted when your API request returns exercise data that includes video URLs."
+  },
+  {
+    "claim": "Requests are not blocked past the minute limit",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "We never block requests. If you run past your monthly minutes your API keeps responding, and we get in touch to help you move to a plan that fits your traffic, no surprise charges."
+  },
+  {
+    "claim": "Exercise video limit: 250 on Starter, 350 on Pro, rolling 30 days, monthly billing",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "The exercise video limit is about variety: it counts how many different exercises you have pulled with video in a rolling 30-day window, 250 on Starter and 350 on Pro with monthly billing."
+  },
+  {
+    "claim": "Scale, Enterprise and yearly plans have no exercise video limit; includeVideos=false counts toward neither",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "Scale, Enterprise and every yearly plan have no exercise video limit."
+  },
+  {
+    "claim": "Form analyses past the allowance cost $0.25 each",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "After your included analyses are used, additional analyses are billed at $0.25 each."
+  },
+  {
+    "claim": "Food, barcode and recipe searches unlimited on every plan",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "Food searches, barcode scans and recipe searches are unlimited on every plan."
+  },
+  {
+    "claim": "Starter watermarked, Pro and above clean",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "Starter plan videos include a small Your Move watermark. Pro and above get clean, unwatermarked videos ready for white-label use in your app."
+  },
+  {
+    "claim": "No resale or redistribution of the videos",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "You cannot redistribute, sub-license, or resell the video content to other developers."
+  },
+  {
+    "claim": "Training or bulk downloading needs a separate data license",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "The only exception is the video files: training, fine-tuning or motion-tracking models on the videos, or bulk downloading them, needs a separate data license."
+  },
+  {
+    "claim": "Self-hosting is a separate license; Scale and Enterprise may cache for offline use",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "On Scale and Enterprise your app can also cache videos on the user's device for offline workouts."
+  },
+  {
+    "claim": "Self-hosting license",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "And if you'd rather run the files on your own infrastructure, we offer that as a separate self-hosting license - happy to talk it through."
+  },
+  {
+    "claim": "Signup: no charge until the trial ends",
+    "url": "https://ymove.app/exercise-api/signup",
+    "quote": "Start with a 7-day free trial. No charge until your trial ends."
+  },
+  {
+    "claim": "Docs: Starter (basic) plan allowances: 10,000 minutes, 10 form analyses, 1 brand",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "{ \"plan\": \"basic\", \"minutesLimit\": 10000, \"postureLimit\": 10, \"brandLimit\": 1 },"
+  },
+  {
+    "claim": "Over the cap, video URLs are removed from exercises not previously accessed",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "When the cap is exceeded, the API still returns exercise data but removes the video URLs ( videoUrl , videoHlsUrl , videoDurationSecs ) from exercises you have not previously accessed. Thumbnails are kept."
+  },
+  {
+    "claim": "Docs: Trial and Starter watermarked, Pro and Enterprise clean",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Watermarking: Trial and Starter plans receive watermarked videos. Pro and Enterprise plans receive clean, unwatermarked videos."
+  },
+  {
+    "claim": "Video URLs expire after 48 hours",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Video URLs returned by the API are pre-signed and temporary. They will stop working after 48 hours."
+  },
+  {
+    "claim": "POST /upgrade subscriptions have no trial",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Subscriptions start immediately (no trial period)."
+  },
+  {
+    "claim": "Brand license per website and mobile app",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "Every API subscription includes a Brand License that limits API content use to the Brands you register with us. Each Brand covers one website and one mobile application under the same brand name."
+  },
+  {
+    "claim": "Yearly plans have no monthly exercise cap; access over limits may be throttled",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "We may throttle, degrade, or suspend access that exceeds these limits."
+  },
+  {
+    "claim": "Videos licensed only while subscribed; delete cached files",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "Videos are licensed to you only while your subscription is active."
+  },
+  {
+    "claim": "Trial converts to paid unless cancelled",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "If you do not cancel before the trial ends, your subscription converts to the paid plan you selected and your payment method is charged automatically."
+  },
+  {
+    "claim": "General terms: personal, non-commercial or internal business use; last updated August 07, 2025",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "The Content and Marks are provided in or through the Services \"AS IS\" for your personal, non-commercial use or internal business purpose only."
+  },
+  {
+    "claim": "25 free clips, free for commercial use, do not resell",
+    "url": "https://raw.githubusercontent.com/ymove-app/exercise-api/main/free-videos/README.md",
+    "quote": "You may not sell or redistribute the videos as a standalone product or library."
   }
 ]

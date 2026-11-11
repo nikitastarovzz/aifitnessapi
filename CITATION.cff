@@ -27,7 +27,7 @@ references:
       - name: "AIFitnessAPI"
     license: CC-BY-4.0
     url: "https://aifitnessapi.com/datasets/fitness-apis-2026.json"
-    notes: "25 rows; card at https://aifitnessapi.com/datasets/fitness-apis-2026.md"
+    notes: "26 rows; card at https://aifitnessapi.com/datasets/fitness-apis-2026.md"
   - type: dataset
     title: "Health Data Type Matrix 2026 (HealthKit ↔ Health Connect)"
     version: "2026.1"

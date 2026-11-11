@@ -73,7 +73,7 @@ const GROUPS: { title: string; blurb: string; slugs: string[] }[] = [
   {
     title: "Content & nutrition",
     blurb: "API-key REST — the simplest to start.",
-    slugs: ["exercisedb-api", "nutritionix-api"],
+    slugs: ["exercisedb-api", "your-move-exercise-api", "nutritionix-api"],
   },
   {
     title: "Gym & studio software",

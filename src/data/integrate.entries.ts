@@ -2829,5 +2829,197 @@ export const integrateEntries: ClusterEntry[] =
         "note": "URLs, versioning, rate limiting, pagination, errors, OAuth grants, scopes, tokens, users, results, webhook"
       }
     ]
+  },
+  {
+    "slug": "your-move-exercise-api",
+    "primaryQuery": "Your Move exercise API",
+    "h1": "How to Integrate the Your Move Exercise API (2026)",
+    "metaTitle": "Your Move Exercise API (2026): Integration Guide",
+    "metaDescription": "Integrate the Your Move Exercise API: X-API-Key auth, 48-hour signed video URLs, the monthly exercise cap, SDK and MCP server, plans from $19 a month.",
+    "updated": "2026-11-11",
+    "answer": "Your Move (ymove.app) is Your Move B.V., a company registered in the Netherlands at an Amsterdam address, that sells a white-label fitness app builder and an Exercise API of filmed HD exercise videos. You authenticate by sending your key in the X-API-Key header to https://exercise-api.ymove.app/api/v2. Each exercise returns instructions, muscle data, static thumbnails and MP4 and HLS video URLs that expire after 48 hours. As read on November 11, 2026, plans start at $19 a month (watermarked) after a 7-day free trial.",
+    "body": "Your Move (ymove.app) is Your Move B.V., registered in the Netherlands at an Amsterdam address, that started out selling a no-code builder for branded fitness apps and now also sells developer APIs: an Exercise API, Nutrition API, Workout API, Recipe API, Food Barcode API and Yoga Video API, plus a WordPress nutrition plugin, free exercise videos and fitness stock photos. Everything below was read on November 11, 2026, from the company's product pages, its single documentation page, its OpenAPI document, its GitHub READMEs and the npm registry.\n\nThis guide covers the Exercise API: a trial key, the first request, playing the video, budgeting the two usage counters, the SDK and MCP server, what else rides on the key, and the license terms. For the wider field, see the [exercise database APIs](/fitness-apis/exercise-database-apis) roundup and the [exercise video APIs](/fitness-apis/exercise-video-apis) comparison. Every page on this site about the company is listed in [the Your Move directory entry](/apis/your-move), and the other guides live in [the integration hub](/integrate).\n\n## What you'll need\n\n- An email address for the signup form at `ymove.app/exercise-api/signup`, and a payment method, since the trial converts to a paid plan.\n- A backend. The docs say: \"Never expose your API key in client-side code. Always call the YMove API from your backend and proxy the video URLs to your frontend.\"\n- A player for HLS or MP4. Every exercise ships, in the README's words, \"an HD video (HLS + MP4)\".\n- Optionally, Node for the TypeScript SDK or an MCP client for the MCP server.\n\n## Step 1: Start a trial and get your key\n\nThe signup page offers four plans, each including a 7-day trial, and says \"No charge until your trial ends.\" The checkbox you tick accepts \"the 7-day free trial auto-converting to a paid plan, and the requirement to keep an active subscription to use exercise videos.\" The API Terms agree: if you do not cancel, the subscription \"converts to the paid plan you selected and your payment method is charged automatically.\"\n\nA trial key is capped. The docs' Monthly Exercise Limits table allows a **Trial** key 100 unique exercises with video per rolling 30 days and a **Demo** key 10. Keys look like `ym_...`; the docs' examples use `ym_your_key_here`. Keep yours in a server environment variable:\n\n```bash\nexport YMOVE_API_KEY=\"ym_your_key_here\"\n```\n\n## Step 2: Make your first request\n\nThe base URL is `https://exercise-api.ymove.app/api/v2`. The docs say to send the key \"in the X-API-Key header with every request\", or \"Alternatively, pass as a query parameter: ?api_key=\". The OpenAPI document declares both. Use the header server-side and save the query form for the body-map image in Step 3.\n\n```bash\ncurl -H \"X-API-Key: $YMOVE_API_KEY\" \\\n  \"https://exercise-api.ymove.app/api/v2/exercises?muscleGroup=chest&equipment=dumbbell&pageSize=5&includeVideos=false\"\n```\n\nThe same call from a Node backend:\n\n```js\nconst BASE = \"https://exercise-api.ymove.app/api/v2\";\n\nconst res = await fetch(\n  `${BASE}/exercises?muscleGroup=chest&equipment=dumbbell&pageSize=5&includeVideos=false`,\n  { headers: { \"X-API-Key\": process.env.YMOVE_API_KEY } }\n);\nif (!res.ok) throw new Error(`YMove ${res.status}`);\nconst { data, pagination } = await res.json();\nfor (const ex of data) console.log(ex.slug, ex.muscleGroup, ex.difficulty);\n```\n\n**Why `includeVideos=false`.** The changelog for v 2.5.0 says that for keys created on or after 2026-07-07, `/exercises`, `/workouts/generate` and `/programs/generate` \"now default to includeVideos=false (browse mode)\". Older keys keep videos on, and an explicit `includeVideos` always wins. Browse mode does not count toward the monthly cap, so page through the catalog with it, then fetch the exercises you render with video. `GET /exercises/{id}` takes an ID or slug and works the other way: it \"always includes the video\". Since v 2.7.0 you can pass `?excludeVideos=1` there for metadata only.\n\n**Filters and fields.** The OpenAPI document lists `muscleGroup`, `equipment`, `difficulty`, `exerciseType`, `hasVideo` and `search` among the filters, with `page` and a `pageSize` that defaults to 20 and tops out at 50. Each exercise carries `id`, `title`, `slug`, `description`, `instructions`, `importantPoints`, `muscleGroup`, `secondaryMuscles`, `muscleGroups`, `equipment`, `category`, `difficulty`, `videoUrl`, `videoHlsUrl`, `thumbnailUrl`, `thumbnails`, `videoDurationSecs`, `exerciseType`, `hasVideo`, `hasVideoWhite`, `hasVideoGym` and `videos`. `muscleGroup` is \"the single coarse group the filters use, one of the 15\"; `muscleGroups` is the full anatomy, which the docs say averages \"about nine muscles per exercise across 83 distinct muscles.\"\n\n## Step 3: Play the video and show the thumbnails\n\nVideo comes as an MP4 (`videoUrl`) and an HLS playlist (`videoHlsUrl`), on the exercise and on each item in `videos`. The docs show the URL shape `https://vz-603865.b-cdn.net/abc123/play_720p.mp4?token=xyz&expires=...`, and the pricing FAQ says \"Videos are served via Bunny CDN for fast global delivery.\"\n\nThree rules come with those URLs:\n\n1. **They expire.** The docs' heading reads \"Video URLs Expire After 48 Hours - Refetch Them.\" \"Never store or cache video URLs in your database\", fetch fresh data before display, and re-fetch when a video fails to load.\n2. **Store the video ID instead.** The docs say every item in `videos` has a stable `id` that \"does not change when the signed URLs do.\"\n3. **Size the player for portrait.** The docs say most clips are portrait, about 9:16, shot for mobile. Read each video's `orientation` field.\n\nIn practice, store slugs and video IDs, and call `GET /exercises/{slug}` whenever a screen needs a clip.\n\n**Thumbnails are static.** The docs say they \"carry no token, and are safe to cache or store.\" Each exercise and video has a `thumbnails` object with five framings: `default` (3:4, up to 600x800, where `thumbnailUrl` points), `square` (600x600), `portrait` (9:16, 720x1280), `landscape` (16:9, 1280x720) and `original`. Images are never upscaled, so older clips top out around 720px wide. On `/exercises` and `/exercises/{id}` without a video, thumbnails \"are for Scale only\"; the workout and program generators always include them.\n\n**Body maps.** `GET /exercises/{id}/body-map` returns the muscles worked \"as an SVG image you can embed.\" The docs say to use `?api_key=` in an `<img>` tag, \"since an image request cannot send headers\", and that it \"does not touch the monthly exercise cap.\" The OpenAPI document adds `view`, `height` and hex colors; the product page shows `?primary=6D2BE8` to draw it in your brand color.\n\n## Step 4: Budget the two counters\n\nThe pricing FAQ puts it plainly: \"They are two different counters.\"\n\n**Video minutes (volume).** \"A video minute is counted when your API request returns exercise data that includes video URLs.\" The docs list Starter 10,000, Pro 25,000, Scale 50,000 and Enterprise 100,000 minutes a month; the pricing page puts the average clip at 10 to 15 seconds. Overage does not cut you off: \"We never block requests.\" The API Terms still reserve the right to \"throttle, degrade, or suspend access that exceeds these limits.\"\n\n**Unique exercises with video (variety).** Counted over a rolling 30 days; a repeat fetch counts once. From the docs:\n\n| Plan | Unique exercises with video per 30 days |\n|---|---|\n| Demo | 10 |\n| Trial | 100 |\n| Light (Starter) | 250 |\n| Pro | 350 |\n| Scale, Enterprise | Unlimited |\n| Yearly (any plan) | Unlimited |\n\nOver the cap the API keeps answering but strips video fields from exercises you have not already accessed and adds a `_warning` with `reason: \"monthly_exercise_cap\"`. The fields \"are removed entirely (not set to null)\". The docs name `videoUrl`, `videoHlsUrl` and `videoDurationSecs`; the OpenAPI `MonthlyCapWarning` schema adds `thumbnailUrl` and `videos`, so code for all five going missing.\n\n```bash\ncurl -H \"X-API-Key: $YMOVE_API_KEY\" \"https://exercise-api.ymove.app/api/v2/usage\"\n```\n\nThe OpenAPI `Usage` schema returns `plan`, `status`, `minutesUsed`, `minutesLimit`, `minutesRemaining`, `rateLimit`, `monthlyExercisesUsed`, `monthlyExerciseLimit` (unlimited on yearly plans), `postureAnalyses` and `trialEndsAt`. `rateLimit` is \"Requests per minute allowed for your plan\" and 429 responses carry `retryAfterMs`, but we found no published rate-limit figure anywhere in the pack.\n\n## Step 5: Use the SDK, the MCP server or the OpenAPI document\n\n**TypeScript SDK.** `ymove-exercise-api`, MIT; the npm registry showed 1.2.0 as latest, published 2026-10-27. Its README documents `exercises.list`, `exercises.get`, `exercises.muscleGroups`, `exercises.exerciseTypes`, `workouts.generate`, `programs.generate`, `posture.analyze`, `getUsage` and a `YMoveError` with `status`:\n\n```typescript\nimport { YMoveClient, YMoveError } from \"ymove-exercise-api\";\n\nconst ymove = new YMoveClient(process.env.YMOVE_API_KEY!);\n\nconst { data, pagination } = await ymove.exercises.list({\n  muscleGroup: \"chest\",\n  equipment: \"dumbbell\",\n  page: 1,\n  pageSize: 20,\n});\n\ntry {\n  const squat = await ymove.exercises.get(\"barbell-back-squat\");\n  console.log(squat.title, squat.videoHlsUrl);\n} catch (err) {\n  if (err instanceof YMoveError) console.error(err.status, err.message);\n}\n```\n\nAn `McpTransport` option routes calls through the MCP server, minus `getUsage` and `posture.analyze`.\n\n**MCP server.** `ymove-exercise-mcp`, MIT, latest 1.1.4. Connect to the hosted endpoint `https://exercise-api.ymove.app/mcp` with an `X-API-Key` header, or run `npx ymove-exercise-mcp` locally with `YMOVE_API_KEY` set. Its tools are `search_exercises`, `get_exercise`, `generate_workout`, `generate_program`, `list_muscle_groups` and `list_exercise_types`. A Claude Code skill file (version 1.1.0) is on the company's skill page.\n\n**OpenAPI.** The spec at `https://exercise-api.ymove.app/api/v2/openapi.json` is titled \"YMove Fitness API\", version 2.5.0, while the docs page header shows v 2.8.0, dated 30 Oct 2026, matching its newest changelog entry. The spec already carries later parameters such as `structure` and `excludeVideos`, so the version string looks stale, but trust the docs where they differ.\n\n## Also on the same key\n\n**Workouts and programs.** `GET /workouts/generate` builds a session with sets, reps and rest from a required `muscleGroup` (lists and aliases such as `upper_body` work). Since v 2.6.0 a `structure` parameter takes `straight`, `superset`, `circuit` or `auto`, and keys created on or after 2026-08-19 default to `auto`. `GET /programs/generate` takes a `goal`, `daysPerWeek` from 3 to 6 and `weeks` of 4, 8 or 12. Both add warmup and cooldown blocks by default, and the OpenAPI document says those count toward the cap. To write the programming yourself, see [how to build a strength training app](/build/strength-training-app).\n\n**Form analysis.** `POST /posture/analyze` is in beta. The OpenAPI body requires a `video` (base64 or a public URL) and an `exercise_name`, with optional `num_frames` from 4 to 20; the docs cap video at 100MB. It returns a `score` from 0 to 100, `issues` and a `summary`. The SDK README's example sends still `images` instead, so code to the OpenAPI document. Plans include 10, 25, 50 or 200 analyses a month, and \"Additional analyses are $0.25 each.\" We could not verify what the model measures beyond that.\n\n**Nutrition, recipes and meal plans.** The key also reaches `/foods`, `/foods/barcode/{upc}` (the nutrition page names USDA FoodData Central and Open Food Facts), AI food logging from text, photo or audio on Pro and above, glycemic endpoints behind a waiver, `/recipes/search` and `GET /mealplans/generate` for one to seven days. The pricing FAQ says food, barcode and recipe searches \"are unlimited on every plan\".\n\n## Pricing and licensing\n\nFrom the pricing page, monthly billing:\n\n| Plan | Price | Video minutes | Videos | Brand licenses | Offline cache |\n|---|---|---|---|---|---|\n| Starter | $19/mo | 10,000 | Watermarked | 1 | No |\n| Pro | $29/mo | 25,000 | Clean | 1 | No |\n| Scale | $79/mo | 50,000 | Clean | 3 | On-device |\n| Enterprise | $299/mo | 100,000 | Clean | 10 | On-device |\n\nEvery paid plan starts with the 7-day trial, and yearly billing saves \"the equivalent of one month per year\"; no yearly price is printed. Every plan reads \"No self-hosting (separate license)\".\n\n**Trial wording conflicts.** The signup page and API Terms describe a 7-day trial. The docs' `POST /upgrade` section, which returns a Stripe Checkout URL, says \"Subscriptions start immediately (no trial period).\" Per the docs, then, upgrading through the API skips the trial; the signup page includes it.\n\n**So does the watermark wording.** The pricing FAQ: \"Starter plan videos include a small Your Move watermark. Pro and above get clean, unwatermarked videos\". The docs: \"Trial and Starter plans receive watermarked videos. Pro and Enterprise plans receive clean, unwatermarked videos,\" which skips Scale. Expect watermarks during the trial.\n\n**Commercial use runs through the brand license.** The general terms, \"Last updated August 07, 2025\", grant Content \"for your personal, non-commercial use or internal business purpose only.\" The API Terms supplement them: \"Every API subscription includes a Brand License that limits API content use to the Brands you register\", and \"Each Brand covers one website and one mobile application under the same brand name.\" The license document is \"issued via email at sign-up\"; read it before you ship. Videos are licensed only while you subscribe, and cached files must be deleted when you stop. \"You cannot redistribute, sub-license, or resell the video content\", and training models on the videos or bulk downloading \"needs a separate data license\". This is a summary, not legal advice.\n\n**Free sample.** Twenty-five 720p portrait MP4 clips, 14 studio and 11 gym, sit in the GitHub repository's `free-videos` folder and at `ymove.app/free-exercise-videos`, free for commercial use but not for resale. On credit they disagree: the README calls attribution \"appreciated but not required\", while the web page, \"Last updated 9 November 2026\", says to show \"Exercise video by Your Move\" with a link to ymove.app wherever a clip appears.\n\n## The company behind it\n\nYour Move B.V. is registered in the Netherlands (footer: KvK 42008883). Its homepage leads with the app builder, \"Create your own white label fitness, coaching or yoga app\", with a drag-and-drop editor and publishing under the customer's brand in the Apple and Google stores. Plans run from Starter at $39 a month for up to 20 paying users through Pro ($99), Growth ($199) and Big ($299, up to 500 paying users) to a Colossal tier through sales, and \"Try it free for the first 7 days!\" Its listed use cases run from telehealth and kettlebell apps to yoga and nutrition apps.\n\nIts own \"top exercise APIs\" page says \"We started as a white-label fitness app business\" and that the API launched in February 2026. The builder includes \"a built-in white label exercise library with 2,200 exercises and HD video demonstrations\". The product page names sports physiotherapy practice Movement Based Therapy and personal training gym Elite Fitness, both in Amsterdam, among the professionals who film the library. The README: \"No AI-generated clips, no GIFs.\"\n\n## What to weigh before you commit\n\n- **No permanent free tier**: a 7-day trial capped at 100 exercises, or a 10-exercise demo key. For free or self-hosted catalogs, see [ExerciseDB alternatives](/alternatives/exercisedb-alternatives) and [how to integrate ExerciseDB](/integrate/exercisedb-api); for costs side by side, [exercise database API pricing](/pricing/exercise-database-api-pricing).\n- **Monthly plans cap variety**: 250 distinct exercises with video on Starter, 350 on Pro. Scale, Enterprise or a yearly plan lifts it.\n- **Signed URLs need plumbing**: a backend proxy and a re-fetch path, with offline caching only on Scale and Enterprise.\n- **The vendor's numbers disagree**: the product page says \"2,200 + exercises with 2,600 + HD videos\" while the README and OpenAPI say 2,005+; the FAQ says \"31 equipment types\" where the docs list 37; the product page says \"65+\" specific muscles, the docs 83.\n- **The general terms are non-commercial**; the brand license supplies the commercial rights, and you see it after signup.\n- **A small open-source footprint**: 3 stars and 6 commits on the `exercise-api` repository; both npm packages first appeared on 2026-05-29.\n- **The OpenAPI version lags the docs** (2.5.0 against 2.8.0).\n- **Not verified**: a rate-limit figure, uptime or an SLA, customer counts. The terms say the Services \"are not tailored to comply with\" HIPAA. Docs sub-pages such as `/exercise-api/docs/authentication` returned 404.\n\n## Endpoint reference\n\nPaths are relative to `https://exercise-api.ymove.app/api/v2`.\n\n| Purpose | Method and path | Notes |\n|---|---|---|\n| List and search | `GET /exercises` | `pageSize` up to 50, `includeVideos` |\n| One exercise | `GET /exercises/{id}` | UUID or slug, `excludeVideos=1` |\n| Lookups | `GET /exercises/muscle-groups`, `/equipment`, `/exercise-types` | Counts per value |\n| Body map | `GET /exercises/{id}/body-map` | SVG, free of the cap |\n| Workout | `GET /workouts/generate` | `muscleGroup` required |\n| Program | `GET /programs/generate` | `goal`, `daysPerWeek`, `weeks` |\n| Form analysis | `POST /posture/analyze` | Beta, video up to 100MB |\n| Usage | `GET /usage` | Minutes and exercise cap |\n| Billing | `GET /upgrade`, `POST /upgrade` | Stripe Checkout |\n| Nutrition | `GET /foods`, `/foods/{id}`, `/foods/barcode/{upc}` | Unmetered |\n| Recipes, meal plans | `GET /recipes/search`, `/recipes/{id}`, `/mealplans/generate` | |\n\n## Gotchas and production notes\n\n- **Set `includeVideos` explicitly.** The default depends on your key's creation date.\n- **Never persist video URLs.** Store slugs and `videos[].id`, and re-fetch on display or error.\n- **Handle absent keys.** Over the cap, video fields vanish rather than turning null.\n- **Warmups count.** Pass `includeWarmup=false` and `includeCooldown=false` if you render only the main block.\n- **Watch `/usage`** and back off on a 429 using `retryAfterMs`.\n- **Register every brand.** One brand license covers one site and one app under one name.\n- **Re-run filters after a changelog entry.** v 2.8.0 moved cardio machines out of `machine` and pull-ups out of `bodyweight`.\n\nYour Move's Exercise API is a paid catalog of filmed video with workouts, programs and nutrition on the same key, from a company that came to APIs through white-label apps. The REST calls are simple; the work goes into the signed-URL proxy, the two counters and a careful read of the brand license.",
+    "faqs": [
+      {
+        "q": "Does the Your Move Exercise API have a free tier?",
+        "a": "No permanent one, as read on November 11, 2026. Every paid plan starts with a 7-day free trial that converts to the plan you picked unless you cancel, and a trial key is capped at 100 unique exercises with video per rolling 30 days (a demo key at 10). The cheapest plan after that is Starter at $19 a month with watermarked videos. Separately, 25 free MP4 clips are offered for commercial use, not resale."
+      },
+      {
+        "q": "Why do Your Move video URLs stop working?",
+        "a": "They are pre-signed CDN URLs that expire after 48 hours, by design. The docs say never to store or cache them, to fetch fresh exercise data before showing a video, and to re-fetch on error. Store the exercise slug and the stable videos[].id instead. Thumbnail URLs are static and safe to cache."
+      },
+      {
+        "q": "What is the monthly exercise cap on the Your Move API?",
+        "a": "It counts distinct exercises you pull with video in a rolling 30 days: 10 on a demo key, 100 on a trial, 250 on Starter and 350 on Pro, and unlimited on Scale, Enterprise and any yearly plan. Over the cap the API still answers but removes the video fields from exercises you have not already accessed and adds a _warning with reason monthly_exercise_cap. It is separate from the video-minutes allowance, and GET /usage reports both."
+      },
+      {
+        "q": "Does the Your Move API have an SDK or MCP server?",
+        "a": "Both, MIT licensed. The TypeScript SDK is ymove-exercise-api (1.2.0 on npm as of November 11, 2026) with a YMoveClient class. The MCP server is ymove-exercise-mcp (1.1.4), available as a hosted endpoint at https://exercise-api.ymove.app/mcp with an X-API-Key header or locally through npx, with tools such as search_exercises, get_exercise and generate_workout. An OpenAPI document is published too, though its version string (2.5.0) lags the docs (2.8.0)."
+      },
+      {
+        "q": "Can I use Your Move exercise videos commercially in my app?",
+        "a": "Through the brand license, yes. Your Move's general terms limit site content to personal, non-commercial or internal business use, and its API Terms supplement them with a Brand License on every API subscription covering the brands you register, each one website plus one mobile app under one name. Videos are licensed only while the subscription is active, resale and sub-licensing are prohibited, and training models on the videos needs a separate data license. Read the license document Your Move emails at signup before shipping; this is not legal advice."
+      },
+      {
+        "q": "What else is on a Your Move API key besides exercises?",
+        "a": "Workout generation (straight sets, supersets or circuits), multi-week program generation, a beta AI form analysis endpoint that takes a video, and the nutrition side: food search, barcode lookup, AI food logging on Pro and above, recipe search and meal-plan generation. The pricing page says food, barcode and recipe searches are unlimited on every plan."
+      }
+    ],
+    "related": [
+      {
+        "href": "/apis/your-move",
+        "label": "Your Move API overview"
+      },
+      {
+        "href": "/fitness-apis/exercise-database-apis",
+        "label": "Best exercise database APIs"
+      },
+      {
+        "href": "/fitness-apis/exercise-video-apis",
+        "label": "Exercise video APIs compared"
+      },
+      {
+        "href": "/alternatives/exercisedb-alternatives",
+        "label": "ExerciseDB alternatives"
+      },
+      {
+        "href": "/pricing/exercise-database-api-pricing",
+        "label": "Exercise database API pricing"
+      },
+      {
+        "href": "/integrate/exercisedb-api",
+        "label": "How to integrate ExerciseDB"
+      },
+      {
+        "href": "/build/strength-training-app",
+        "label": "How to build a strength training app"
+      },
+      {
+        "href": "/integrate",
+        "label": "How to integrate a fitness or health API"
+      }
+    ],
+    "cta": {
+      "pitch": "Want more integration playbooks like this one? Subscribe for practical fitness-API tutorials delivered as we publish them."
+    },
+    "steps": [
+      {
+        "name": "Start a trial and get your key",
+        "text": "Sign up at ymove.app/exercise-api/signup for a 7-day free trial on any plan; it converts to that paid plan unless you cancel. A trial key is capped at 100 unique exercises with video per 30 days. Keep the ym_ key on your server."
+      },
+      {
+        "name": "Make your first request",
+        "text": "Call GET https://exercise-api.ymove.app/api/v2/exercises with the X-API-Key header and pass includeVideos explicitly, since keys created on or after 2026-07-07 default to browse mode. Each exercise returns instructions, muscleGroup, muscleGroups, equipment, difficulty, thumbnails and, with video on, MP4 and HLS URLs."
+      },
+      {
+        "name": "Play the video and show the thumbnails",
+        "text": "Proxy video URLs from your backend and never store them: they are pre-signed and expire after 48 hours. Store slugs and videos[].id, size the player for portrait clips, cache the five static thumbnail framings, and embed the body-map SVG with ?api_key=."
+      },
+      {
+        "name": "Budget the two counters",
+        "text": "Video minutes measure volume (10,000 to 100,000 a month by plan) and the monthly exercise cap measures variety (250 on Starter, 350 on Pro, unlimited on Scale, Enterprise and yearly plans). Check GET /usage and handle the _warning and missing video fields over the cap."
+      },
+      {
+        "name": "Use the SDK, the MCP server or the OpenAPI document",
+        "text": "Install ymove-exercise-api for a typed YMoveClient, connect AI tools to the ymove-exercise-mcp server hosted at exercise-api.ymove.app/mcp, or generate a client from the OpenAPI document, checking it against the docs since its version string lags."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://ymove.app/",
+        "checked": "2026-11-11",
+        "note": "company homepage: white-label fitness app builder, its plans and use cases"
+      },
+      {
+        "url": "https://ymove.app/app/white-label-fitness-app",
+        "checked": "2026-11-11",
+        "note": "app builder page; built-in library of 2,200 exercises"
+      },
+      {
+        "url": "https://ymove.app/terms-and-conditions",
+        "checked": "2026-11-11",
+        "note": "API Terms (brand license, usage limits, trial, acceptable use) and general terms"
+      },
+      {
+        "url": "https://ymove.app/exercise-api",
+        "checked": "2026-11-11",
+        "note": "product page: library counts, filming partners, body-map color, FAQ"
+      },
+      {
+        "url": "https://ymove.app/exercise-api/docs",
+        "checked": "2026-11-11",
+        "note": "single docs page, v 2.8.0: auth, endpoints, thumbnails, limits, video access, changelog"
+      },
+      {
+        "url": "https://exercise-api.ymove.app/api/v2/openapi.json",
+        "checked": "2026-11-11",
+        "note": "OpenAPI 3.0.3 document, version 2.5.0: paths, parameters and schemas"
+      },
+      {
+        "url": "https://ymove.app/exercise-api/pricing",
+        "checked": "2026-11-11",
+        "note": "plans, video minutes, watermark, two-counter FAQ, resale and data license"
+      },
+      {
+        "url": "https://ymove.app/exercise-api/signup",
+        "checked": "2026-11-11",
+        "note": "signup form and 7-day trial wording"
+      },
+      {
+        "url": "https://ymove.app/nutrition-api",
+        "checked": "2026-11-11",
+        "note": "food data sources on the same key"
+      },
+      {
+        "url": "https://ymove.app/exercise-api/top-exercise-apis",
+        "checked": "2026-11-11",
+        "note": "company's own account of its history and API launch date"
+      },
+      {
+        "url": "https://ymove.app/exercise-api/skill",
+        "checked": "2026-11-11",
+        "note": "Claude Code skill file, version 1.1.0"
+      },
+      {
+        "url": "https://ymove.app/free-exercise-videos",
+        "checked": "2026-11-11",
+        "note": "25 free clips and their credit terms"
+      },
+      {
+        "url": "https://github.com/ymove-app/exercise-api",
+        "checked": "2026-11-11",
+        "note": "repository stars and commits"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/ymove-app/exercise-api/main/README.md",
+        "checked": "2026-11-11",
+        "note": "main README: quickstart, endpoints, library counts"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/ymove-app/exercise-api-sdk/main/README.md",
+        "checked": "2026-11-11",
+        "note": "SDK README: methods, errors, transports"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/ymove-app/exercise-api-mcp/main/README.md",
+        "checked": "2026-11-11",
+        "note": "MCP README: hosted and local setup, tools"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/ymove-app/exercise-api/main/free-videos/README.md",
+        "checked": "2026-11-11",
+        "note": "free video license as stated in the repository"
+      },
+      {
+        "url": "https://registry.npmjs.org/ymove-exercise-api",
+        "checked": "2026-11-11",
+        "note": "latest 1.2.0, published 2026-10-27, MIT"
+      },
+      {
+        "url": "https://registry.npmjs.org/ymove-exercise-mcp",
+        "checked": "2026-11-11",
+        "note": "latest 1.1.4, published 2026-10-27, MIT"
+      }
+    ]
   }
 ];

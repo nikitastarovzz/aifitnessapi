@@ -1,0 +1,252 @@
+[
+  {
+    "claim": "Your Move's README states 2,005+ exercises and 2,600+ HD videos filmed with trainers and physiotherapists.",
+    "url": "https://raw.githubusercontent.com/ymove-app/exercise-api/main/README.md",
+    "quote": "2,005+ exercises and 2,600+ HD videos**, filmed with trainers and physiotherapists"
+  },
+  {
+    "claim": "Every exercise ships with HD video as HLS and MP4, per the README.",
+    "url": "https://raw.githubusercontent.com/ymove-app/exercise-api/main/README.md",
+    "quote": "Every exercise ships with an HD video (HLS + MP4)"
+  },
+  {
+    "claim": "The product page states 2,200+ exercises.",
+    "url": "https://ymove.app/exercise-api",
+    "quote": "Showing 24 of 2,200 exercises"
+  },
+  {
+    "claim": "The OpenAPI document reports version 2.5.0.",
+    "url": "https://exercise-api.ymove.app/api/v2/openapi.json",
+    "quote": "\"title\":\"YMove Fitness API\",\"version\":\"2.5.0\""
+  },
+  {
+    "claim": "The docs page header and changelog are at v2.8.0, dated October 30, 2026.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "v 2.8.0 2026-10-30"
+  },
+  {
+    "claim": "A product FAQ says 31 equipment types.",
+    "url": "https://ymove.app/exercise-api",
+    "quote": "covering 15 muscle groups and 31 equipment types"
+  },
+  {
+    "claim": "The README says 37 equipment types.",
+    "url": "https://raw.githubusercontent.com/ymove-app/exercise-api/main/README.md",
+    "quote": "across 15 muscle groups and 37 equipment types"
+  },
+  {
+    "claim": "Video URLs are pre-signed and stop working after 48 hours.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "They will stop working after 48 hours."
+  },
+  {
+    "claim": "The OpenAPI schema describes videoHlsUrl as a pre-signed HLS playlist URL.",
+    "url": "https://exercise-api.ymove.app/api/v2/openapi.json",
+    "quote": "Pre-signed CDN URL for HLS playlist. Expires after 48 hours."
+  },
+  {
+    "claim": "Thumbnails are static and safe to cache or store.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "they are static, carry no token, and are safe to cache or store"
+  },
+  {
+    "claim": "The docs say never expose the key client-side and proxy video URLs from a backend.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Always call the YMove API from your backend and proxy the video URLs to your frontend."
+  },
+  {
+    "claim": "Every exercise and video carries a thumbnails object with five framings.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Every exercise and every video carries a thumbnails object with five framings of the same frame."
+  },
+  {
+    "claim": "Keys created on or after 2026-07-07 default to includeVideos=false.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "for API keys created on or after 2026-07-07, /exercises, /workouts/generate, and /programs/generate now default to includeVideos=false (browse mode)"
+  },
+  {
+    "claim": "The docs cap the unique exercises a key can access with video per month; the limits table lists Trial at 100.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "To prevent bulk scraping, the number of unique exercises you can access with video URLs per month is capped."
+  },
+  {
+    "claim": "The pricing FAQ gives 250 on Starter and 350 on Pro with monthly billing, and no limit on Scale, Enterprise and yearly plans.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "250 on Starter and 350 on Pro with monthly billing"
+  },
+  {
+    "claim": "Every paid plan starts with a 7-day free trial.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "Every paid plan starts with a 7-day free trial."
+  },
+  {
+    "claim": "Starter videos carry a watermark; Pro and above are clean.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "Starter plan videos include a small Your Move watermark. Pro and above get clean, unwatermarked videos"
+  },
+  {
+    "claim": "The docs say Trial and Starter are watermarked, Pro and Enterprise clean.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Trial and Starter plans receive watermarked videos. Pro and Enterprise plans receive clean, unwatermarked videos."
+  },
+  {
+    "claim": "No resale or redistribution of the videos.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "You cannot redistribute, sub-license, or resell the video content to other developers."
+  },
+  {
+    "claim": "Training or motion-tracking models on the videos needs a separate data license.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "bulk downloading them, needs a separate data license"
+  },
+  {
+    "claim": "Self-hosting is a separate license.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "we offer that as a separate self-hosting license"
+  },
+  {
+    "claim": "Every API subscription includes a Brand License limited to registered brands.",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "Every API subscription includes a Brand License that limits API content use to the Brands you register with us."
+  },
+  {
+    "claim": "Each Brand covers one website and one mobile application.",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "Each Brand covers one website and one mobile application under the same brand name."
+  },
+  {
+    "claim": "Videos are licensed only while the subscription is active.",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "Videos are licensed to you only while your subscription is active."
+  },
+  {
+    "claim": "The general terms grant content for personal, non-commercial use or internal business purpose only.",
+    "url": "https://ymove.app/terms-and-conditions",
+    "quote": "for your personal, non-commercial use or internal business purpose only."
+  },
+  {
+    "claim": "The docs' POST /upgrade route starts subscriptions immediately with no trial.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Subscriptions start immediately (no trial period)."
+  },
+  {
+    "claim": "The SDK and MCP server are MIT licensed.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Official open-source TypeScript SDK and Model Context Protocol (MCP) server, both MIT licensed."
+  },
+  {
+    "claim": "The main exercise-api repository showed 3 stars.",
+    "url": "https://github.com/ymove-app/exercise-api",
+    "quote": "Star 3 ( 3 ) You must be signed in to star a repository"
+  },
+  {
+    "claim": "Starter is $19 a month with watermarked video (Your Move's roundup page; the pricing page lists $19 /mo as a line too short to quote).",
+    "url": "https://ymove.app/exercise-api/top-exercise-apis",
+    "quote": "Starter ($19/mo) videos carry a small watermark"
+  },
+  {
+    "claim": "Pro is $29 a month with clean video; Scale is $79 with on-device caching.",
+    "url": "https://ymove.app/exercise-api/top-exercise-apis",
+    "quote": "Clean, unwatermarked video from $29/mo (Pro); offline on-device caching on Scale ($79/mo)"
+  },
+  {
+    "claim": "exercisedb.dev now reads Previously ExerciseDB above AscendAPI.",
+    "url": "https://exercisedb.dev/",
+    "quote": "Previously ExerciseDB"
+  },
+  {
+    "claim": "V1 free: 1,500 exercises with 180p GIFs, no authentication.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "1,500 exercises with 180p GIFs. No authentication required, just call the hosted API directly."
+  },
+  {
+    "claim": "V1 is described as over 2,000 structured exercises with a free hosted tier and a paid RapidAPI tier.",
+    "url": "https://docs.ascendapi.com/products/edb-v1/overview",
+    "quote": "featuring over 2,000 structured exercises with rich metadata, images, and GIFs"
+  },
+  {
+    "claim": "The live V1 endpoint reports a total of 1,500.",
+    "url": "https://oss.exercisedb.dev/api/v1/exercises",
+    "quote": "\"meta\":{\"total\":1500,\"hasNextPage\":true"
+  },
+  {
+    "claim": "V2 states 11,000+ exercises, 15,000+ videos and 20,000+ images.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "A multipurpose exercise dataset with 11,000+ exercises, 15,000+ videos, and 20,000+ images"
+  },
+  {
+    "claim": "V2 free and paid tiers are on RapidAPI; free media is watermarked.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "Both free and paid tiers are accessed via RapidAPI. The only difference is that free tier media is watermarked ."
+  },
+  {
+    "claim": "V2 includes an MP4 demonstration video per exercise.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "Each exercise includes an MP4 demonstration video for in-app playback."
+  },
+  {
+    "claim": "V2 paid serves clean, watermark-free assets.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "Paid tier serves clean, watermark-free assets across all resolutions."
+  },
+  {
+    "claim": "V2 difficultyLevel is marked Coming Soon.",
+    "url": "https://docs.ascendapi.com/products/edb-v2/overview",
+    "quote": "difficultyLevel | string | Difficulty level | 🔵 Coming Soon |"
+  },
+  {
+    "claim": "V2 Basic plan: 2,000 requests a month.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "2,000 requests / month"
+  },
+  {
+    "claim": "V2 Basic plan: 200 exercises in library.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "200 exercises in library"
+  },
+  {
+    "claim": "V2 Basic plan is free with no credit card required.",
+    "url": "https://docs.ascendapi.com/quickstart/overview",
+    "quote": "No credit card required"
+  },
+  {
+    "claim": "Free plans have 1,000 requests per hour per key.",
+    "url": "https://docs.ascendapi.com/guides/ratelimiting",
+    "quote": "All free plans include a limit of 1,000 requests per hour per API key."
+  },
+  {
+    "claim": "Paid plans have no strict rate limit.",
+    "url": "https://docs.ascendapi.com/guides/ratelimiting",
+    "quote": "Paid plans have no strict rate limit."
+  },
+  {
+    "claim": "Flagged keys may get gradually slower responses.",
+    "url": "https://docs.ascendapi.com/guides/ratelimiting",
+    "quote": "response times may be gradually increased for that key until the behavior is resolved"
+  },
+  {
+    "claim": "Media served through the CDN is generally unlimited.",
+    "url": "https://docs.ascendapi.com/guides/ratelimiting",
+    "quote": "is served through our CDN and is generally unlimited"
+  },
+  {
+    "claim": "The exercisedb-api GitHub repo is AGPL-3.0.",
+    "url": "https://github.com/ExerciseDB/exercisedb-api",
+    "quote": "AGPL-3.0 license"
+  },
+  {
+    "claim": "Your Move's compare page says ExerciseDB serves GIFs, not video.",
+    "url": "https://ymove.app/exercise-api/compare",
+    "quote": "ExerciseDB serves animated GIFs, not video."
+  },
+  {
+    "claim": "Your Move's compare page says ExerciseDB's free tier stays GIF-only.",
+    "url": "https://ymove.app/exercise-api/compare",
+    "quote": "ExerciseDB offers a limited free tier through RapidAPI, but it stays GIF-only."
+  },
+  {
+    "claim": "The exercisedb-api repo has 761 stars.",
+    "url": "https://github.com/ExerciseDB/exercisedb-api",
+    "quote": "Star 761 ( 761 ) You must be signed in to star a repository"
+  }
+]
