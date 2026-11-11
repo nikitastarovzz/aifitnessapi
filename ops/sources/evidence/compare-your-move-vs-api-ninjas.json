@@ -50,9 +50,9 @@
     "quote": "for API keys created on or after 2026-07-07, /exercises, /workouts/generate, and /programs/generate now default to includeVideos=false (browse mode)"
   },
   {
-    "claim": "The trial is capped at 100 unique exercises with video.",
+    "claim": "The docs cap the unique exercises a key can access with video per month; the limits table lists Trial at 100.",
     "url": "https://ymove.app/exercise-api/docs",
-    "quote": "Trial | 100 |"
+    "quote": "To prevent bulk scraping, the number of unique exercises you can access with video URLs per month is capped."
   },
   {
     "claim": "The pricing FAQ gives 250 on Starter and 350 on Pro with monthly billing, and no limit on Scale, Enterprise and yearly plans.",

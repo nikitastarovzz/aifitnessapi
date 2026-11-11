@@ -5,9 +5,9 @@
     "quote": "a company registered in the Netherlands at Sumastrastraat 203p , Amsterdam"
   },
   {
-    "claim": "The homepage leads with the white-label app builder.",
-    "url": "https://ymove.app/",
-    "quote": "Create your own white label fitness, coaching or yoga app"
+    "claim": "Your Move's white-label page leads with the app builder, published under the customer's brand in the app stores.",
+    "url": "https://ymove.app/app/white-label-fitness-app",
+    "quote": "Launch your own white label fitness app (whitelabel fitness app) with your brand, icon, and name in the Apple App Store and Google Play."
   },
   {
     "claim": "The builder includes a 2,200-exercise library.",
@@ -130,9 +130,9 @@
     "quote": "We never block requests."
   },
   {
-    "claim": "Trial cap is 100 unique exercises.",
+    "claim": "The docs cap the unique exercises a key can access with video per month; the limits table lists Trial at 100.",
     "url": "https://ymove.app/exercise-api/docs",
-    "quote": "Trial | 100 |"
+    "quote": "To prevent bulk scraping, the number of unique exercises you can access with video URLs per month is capped."
   },
   {
     "claim": "Two counters: minutes for volume, a distinct-exercise limit for variety, 250 on Starter and 350 on Pro with monthly billing.",
@@ -336,7 +336,7 @@
   },
   {
     "claim": "App builder plans have a 7-day free trial.",
-    "url": "https://ymove.app/",
+    "url": "https://ymove.app/app/white-label-fitness-app",
     "quote": "Try it free for the first 7 days!"
   },
   {
