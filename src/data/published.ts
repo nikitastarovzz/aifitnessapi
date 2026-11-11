@@ -8,7 +8,7 @@
  * posts and translations: the commit that added the file; generated
  * sections: the commit that added the route, or the item to the data file if
  * that came later). Keyed by URL path without the leading slash.
- * 588 rows.
+ * 592 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -162,6 +162,10 @@ export const PUBLISHED: Record<string, string> = {
   "compare/terra-vs-thryve": "2026-10-18",
   "compare/usda-fooddata-central-vs-open-food-facts": "2026-08-12",
   "compare/whoop-vs-garmin": "2026-07-23",
+  "compare/your-move-vs-api-ninjas": "2026-11-11",
+  "compare/your-move-vs-exercisedb": "2026-11-11",
+  "compare/your-move-vs-free-exercise-db": "2026-11-11",
+  "compare/your-move-vs-wger": "2026-11-11",
   "compliance/app-store-guideline-1-4-1-physical-harm": "2026-10-03",
   "compliance/app-store-guideline-2-5-1-healthkit-software-requirements": "2026-10-03",
   "compliance/app-store-guideline-2-5-11-sirikit-shortcuts": "2026-10-03",
