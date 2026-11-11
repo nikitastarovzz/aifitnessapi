@@ -187,7 +187,7 @@
   {
     "claim": "The docs list an internet connection among the prerequisites.",
     "url": "https://www.kinestex.com/docs/getting-started",
-    "quote": "- Internet connection"
+    "quote": "Internet connection"
   },
   {
     "claim": "The Kotlin SDK needs minSdk 28.",
@@ -212,12 +212,12 @@
   {
     "claim": "Complete UX (Main) is marked Sunset in the docs sidebar.",
     "url": "https://www.kinestex.com/docs/ai-trainer-chat",
-    "quote": "- Complete UX (Main) Sunset"
+    "quote": "Complete UX (Main) Sunset"
   },
   {
     "claim": "Personalized Plan View is marked Sunset in the docs sidebar.",
     "url": "https://www.kinestex.com/docs/ai-trainer-chat",
-    "quote": "- Personalized Plan View Sunset"
+    "quote": "Personalized Plan View Sunset"
   },
   {
     "claim": "The Content API base URL is data.kinestex.com.",
@@ -302,7 +302,7 @@
   {
     "claim": "KinesteX's team maintains the tracking, the exercise library and updates.",
     "url": "https://www.kinestex.com/product/sdk-integration",
-    "quote": "- Maintains the technology: tracking, the exercise library and updates."
+    "quote": "Maintains the technology: tracking, the exercise library and updates."
   },
   {
     "claim": "The API key comes when you book a call.",

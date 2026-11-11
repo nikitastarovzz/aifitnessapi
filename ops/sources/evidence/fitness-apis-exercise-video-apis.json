@@ -303,5 +303,180 @@
     "claim": "API Ninjas lists monthly and yearly prices, yearly at 34% off.",
     "url": "https://api-ninjas.com/pricing",
     "quote": "Monthly Yearly 34% off"
+  },
+  {
+    "claim": "Your Move: the key goes in an X-API-Key header.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Include your API key in the X-API-Key header with every request:"
+  },
+  {
+    "claim": "Your Move: the docs describe an official TypeScript SDK and MCP server, both MIT licensed.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Official open-source TypeScript SDK and Model Context Protocol (MCP) server, both MIT licensed."
+  },
+  {
+    "claim": "Your Move: an OpenAPI document; its description gives 2005+ exercise videos.",
+    "url": "https://exercise-api.ymove.app/api/v2/openapi.json",
+    "quote": "Access 2005+ professional exercise videos"
+  },
+  {
+    "claim": "Your Move: the product page states 2,200+ exercises and 2,600+ HD videos.",
+    "url": "https://ymove.app/exercise-api",
+    "quote": "2,200 + exercises with 2,600 + HD videos, filmed with trainers and physiotherapists (no AI, no GIFs)"
+  },
+  {
+    "claim": "Your Move: the GitHub README states 2,005+ exercises and 2,600+ HD videos, filmed with trainers and physiotherapists.",
+    "url": "https://github.com/ymove-app/exercise-api",
+    "quote": "Exercise API docs: 2,005+ exercises and 2,600+ HD videos filmed with trainers and physiotherapists"
+  },
+  {
+    "claim": "Your Move: every exercise ships with an HD video as HLS and MP4, thumbnails, instructions and muscle data.",
+    "url": "https://github.com/ymove-app/exercise-api",
+    "quote": "Every exercise ships with an HD video (HLS + MP4), thumbnails, step-by-step instructions and primary and secondary muscle data"
+  },
+  {
+    "claim": "Your Move: no AI-generated clips and no GIFs.",
+    "url": "https://github.com/ymove-app/exercise-api",
+    "quote": "No AI-generated clips, no GIFs."
+  },
+  {
+    "claim": "Your Move: workouts, multi-week programs and posture analysis on the same key.",
+    "url": "https://github.com/ymove-app/exercise-api",
+    "quote": "On the same key: workout generation, multi-week training programs and AI posture analysis."
+  },
+  {
+    "claim": "Your Move: videoUrl is a pre-signed MP4 URL.",
+    "url": "https://exercise-api.ymove.app/api/v2/openapi.json",
+    "quote": "Pre-signed CDN URL for MP4 video. Expires after 48 hours."
+  },
+  {
+    "claim": "Your Move: videoHlsUrl is a pre-signed HLS playlist URL.",
+    "url": "https://exercise-api.ymove.app/api/v2/openapi.json",
+    "quote": "Pre-signed CDN URL for HLS playlist. Expires after 48 hours."
+  },
+  {
+    "claim": "Your Move: video URLs expire after 48 hours and must not be stored.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Important: Video URLs expire after 48 hours. Do not store or cache these URLs."
+  },
+  {
+    "claim": "Your Move: thumbnails are static and safe to cache.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Thumbnail URLs are not: they are static, carry no token, and are safe to cache or store."
+  },
+  {
+    "claim": "Your Move: thumbnails come in five framings.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Every exercise and every video carries a thumbnails object with five framings of the same frame."
+  },
+  {
+    "claim": "Your Move: most clips are portrait, about 9:16.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Most exercise clips are portrait (vertical, ~9:16)"
+  },
+  {
+    "claim": "Your Move: the example video URL is a 720p MP4 on a b-cdn.net host.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "https://vz-603865.b-cdn.net/abc123/play_720p.mp4"
+  },
+  {
+    "claim": "Your Move: videos are served via Bunny CDN.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "Videos are served via Bunny CDN for fast global delivery."
+  },
+  {
+    "claim": "Your Move: Starter at $19 a month.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "For apps getting started with exercise content. $19 /mo"
+  },
+  {
+    "claim": "Your Move: Pro at $29 a month, clean video.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "Clean, unwatermarked videos for your app. $29 /mo"
+  },
+  {
+    "claim": "Your Move: Scale at $79 a month.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "For growing platforms with higher volume needs. $79 /mo"
+  },
+  {
+    "claim": "Your Move: Enterprise at $299 a month.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "For large platforms with custom needs. $299 /mo"
+  },
+  {
+    "claim": "Your Move: video minutes per plan (10,000, 25,000, 50,000, 100,000).",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Starter: 10,000 min/mo, Scale: 50,000 min/mo, Pro: 25,000 min/mo, Enterprise: 100,000 min/mo."
+  },
+  {
+    "claim": "Your Move: Starter is watermarked, Pro and above clean (pricing page).",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "Starter plan videos include a small Your Move watermark. Pro and above get clean, unwatermarked videos ready for white-label use in your app."
+  },
+  {
+    "claim": "Your Move: the docs name Trial and Starter as watermarked and Pro and Enterprise as clean.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "Watermarking: Trial and Starter plans receive watermarked videos. Pro and Enterprise plans receive clean, unwatermarked videos."
+  },
+  {
+    "claim": "Your Move: offline cache on Scale and Enterprise.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "On Scale and Enterprise your app can also cache videos on the user's device for offline workouts."
+  },
+  {
+    "claim": "Your Move: 7-day free trial on every paid plan.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "Every paid plan starts with a 7-day free trial."
+  },
+  {
+    "claim": "Your Move: monthly exercise cap of 250 on Starter and 350 on Pro, rolling 30 days; none on Scale, Enterprise and yearly plans.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "250 on Starter and 350 on Pro with monthly billing"
+  },
+  {
+    "claim": "Your Move: Scale, Enterprise and yearly plans have no exercise video limit.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "Scale, Enterprise and every yearly plan have no exercise video limit."
+  },
+  {
+    "claim": "Your Move: over the cap the API keeps metadata but removes video URLs from exercises not accessed before.",
+    "url": "https://ymove.app/exercise-api/docs",
+    "quote": "When the cap is exceeded, the API still returns exercise data but removes the video URLs"
+  },
+  {
+    "claim": "Your Move: self-hosting is a separate license.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "we offer that as a separate self-hosting license"
+  },
+  {
+    "claim": "Your Move: no redistribution, sub-licensing or resale of the videos.",
+    "url": "https://ymove.app/exercise-api/pricing",
+    "quote": "You cannot redistribute, sub-license, or resell the video content to other developers."
+  },
+  {
+    "claim": "Your Move: 25 free HD clips, downloadable as MP4 and usable commercially.",
+    "url": "https://ymove.app/free-exercise-videos",
+    "quote": "25 of the most-used gym exercises as royalty-free HD video."
+  },
+  {
+    "claim": "Your Move: free clips are usable commercially.",
+    "url": "https://ymove.app/free-exercise-videos",
+    "quote": "free to download as MP4 and use commercially"
+  },
+  {
+    "claim": "Your Move: the free-clips web page requires a credit line.",
+    "url": "https://ymove.app/free-exercise-videos",
+    "quote": "Show \"Exercise video by Your Move\" with a link to ymove.app wherever the video appears."
+  },
+  {
+    "claim": "Your Move: the GitHub copy of the free clips calls a link appreciated but not required.",
+    "url": "https://raw.githubusercontent.com/ymove-app/exercise-api/main/free-videos/README.md",
+    "quote": "A link to ymove.app is appreciated but not required"
+  },
+  {
+    "claim": "Your Move's comparison page frames ExerciseDB as GIF-based.",
+    "url": "https://ymove.app/exercise-api/compare",
+    "quote": "ExerciseDB and most alternatives ship animated GIFs."
   }
 ]

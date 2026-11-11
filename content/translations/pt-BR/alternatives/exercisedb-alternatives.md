@@ -1,14 +1,14 @@
 ---
 path: "/alternatives/exercisedb-alternatives"
-translatedOn: "2026-11-02"
+translatedOn: "2026-11-11"
 sourceUpdated: "2026-10-22"
-sourceHash: "6d863fe72c410005"
-metaTitle: "Alternativas ao ExerciseDB (2026): 4 opções comparadas"
+sourceHash: "7a49d38e3dd539e8"
+metaTitle: "Alternativas ao ExerciseDB (2026): 5 opções comparadas"
 metaDescription: >-
-  Alternativas ao ExerciseDB: free-exercise-db (domínio público), wger (auto-hospedado, AGPL), API Ninjas (a partir de US$ 39/mês) e bancos de vídeo.
+  Alternativas ao ExerciseDB: free-exercise-db (domínio público), wger (AGPL), API Ninjas (US$ 39/mês), Your Move (vídeo, US$ 19/mês) e bancos de vídeo.
 h1: "As melhores alternativas ao ExerciseDB (2026)"
 answer: >-
-  As principais alternativas ao ExerciseDB, hoje vendido pela AscendAPI, são o free-exercise-db, um conjunto de dados em domínio público com 876 exercícios e imagens que você mesmo hospeda; o wger, uma aplicação sob licença AGPL que você hospeda por conta própria, com API REST; a API Ninjas Exercises, uma API hospedada com texto e fotos de início e fim do movimento, de US$ 39 a US$ 59 por mês para uso comercial; e bancos de mídia como o GymVisual, se você quer ser dono de arquivos de vídeo licenciados. Escolha pelo que está afastando você: licença e posse dos dados apontam para o free-exercise-db ou o wger, uma API hospedada mais simples aponta para a API Ninjas, e mídia sob seu controle aponta para um banco de mídia. Antes de trocar, confira os planos gratuitos da própria AscendAPI, que em 22 de outubro de 2026 incluíam 1.500 exercícios em GIF sem chave de API.
+  As principais alternativas ao ExerciseDB, hoje vendido pela AscendAPI, são o free-exercise-db, um conjunto de dados em domínio público com 876 exercícios e imagens que você mesmo hospeda; o wger, uma aplicação sob licença AGPL que você hospeda por conta própria, com API REST; a API Ninjas Exercises, uma API hospedada com texto e fotos de início e fim do movimento, de US$ 39 a US$ 59 por mês para uso comercial; o Your Move (ymove.app), uma API hospedada com vídeo filmado em HD, em MP4 e HLS, a partir de US$ 19 por mês, conforme lido em 11 de novembro de 2026; e bancos de mídia como o GymVisual, se você quer ser dono de arquivos de vídeo licenciados. Escolha pelo que está afastando você: licença e posse dos dados apontam para o free-exercise-db ou o wger, uma API hospedada mais simples aponta para a API Ninjas, vídeo hospedado pago aponta para o Your Move, e mídia sob seu controle aponta para um banco de mídia. Antes de trocar, confira os planos gratuitos da própria AscendAPI, que em 22 de outubro de 2026 incluíam 1.500 exercícios em GIF sem chave de API.
 cta: >-
   Toda semana destrinchamos uma API de fitness ou de dados de exercícios — pegadinhas de licença, cobertura de mídia e os prós e contras de hospedar por conta própria —, então assine e evite surpresas.
 faqs:
@@ -20,7 +20,7 @@ faqs:
       Depende das suas necessidades de licença e de mídia. O free-exercise-db é de domínio público (o mais permissivo daqui): 876 exercícios em JSON com 1.746 imagens JPEG quando contamos em 22 de outubro de 2026, mas é um conjunto de dados estático, não uma API ao vivo. O wger é gratuito e pode ser auto-hospedado, mas é AGPL-3.0-or-later, com dados Creative Commons definidos por entrada. Se você só precisa de uma API hospedada gratuita, o ExerciseDB V1 da própria AscendAPI é gratuito e sem chave.
   - q: "Qual alternativa ao ExerciseDB tem GIFs ou vídeos de exercícios?"
     a: >-
-      Nenhuma das alternativas em forma de API entrega vídeo. O free-exercise-db traz JPEGs estáticos, a API Ninjas devolve fotos de início e fim nos planos premium, e o código do wger aceita vídeos que você envia para o seu próprio servidor. Para arquivos de vídeo sob seu controle, um banco de mídia como o GymVisual vende clipes e GIFs royalty-free. Se você precisa de vídeo vindo de uma API, o ExerciseDB V2 da AscendAPI dá a cada exercício um MP4, com marca d'água no plano gratuito.
+      Uma alternativa em forma de API aqui entrega vídeo: o Your Move (ymove.app), com um clipe em HD por exercício em MP4 e HLS, a partir de US$ 19 por mês após um teste gratuito de 7 dias e com marca d'água até o plano Pro de US$ 29, conforme lido em 11 de novembro de 2026. O free-exercise-db traz JPEGs estáticos, a API Ninjas devolve fotos de início e fim nos planos premium, e o código do wger aceita vídeos que você envia para o seu próprio servidor. Para arquivos de vídeo sob seu controle, um banco de mídia como o GymVisual vende clipes e GIFs royalty-free. Se você precisa de vídeo vindo de uma API de graça, o ExerciseDB V2 da AscendAPI dá a cada exercício um MP4, com marca d'água no plano gratuito.
   - q: "Posso hospedar os dados de exercícios eu mesmo em vez de usar o RapidAPI?"
     a: >-
       Sim, com o wger ou o free-exercise-db. O wger é uma plataforma open source que pode ser auto-hospedada, com API REST (AGPL-3.0-or-later), e o free-exercise-db permite embutir um conjunto de dados JSON em domínio público e as imagens direto no seu app. O ExerciseDB não é uma opção de auto-hospedagem: em 22 de outubro de 2026 o repositório exercisedb-api continha apenas um README e um arquivo de licença AGPL-3.0. Hospedar por conta própria elimina as cotas do gateway, mas significa que você hospeda e mantém os dados.
@@ -72,6 +72,10 @@ Uma aplicação de fitness open source que pode ser auto-hospedada (rotinas, reg
 
 Uma API hospedada que, segundo o fabricante, cobre "over 3000 exercises" [mais de 3000 exercícios], devolvendo nome, tipo, músculo, dificuldade, instruções, equipamento e observações de segurança e, nos planos premium, um array `images` com fotos de início e fim. Cada chamada a `/v1/exercises` devolve até cinco resultados. O plano gratuito é "Evaluation and demo purposes only" [só para avaliação e demonstração], e a página de preços, lida em 22 de outubro de 2026, lista uso comercial a partir do plano Developer, a US$ 59 por mês ou US$ 39 por mês com cobrança anual; armazenar os dados é permitido a partir do plano Business, a US$ 149 ou US$ 99. Melhor para uma consulta hospedada simples, com fotos. Contrapartida: sem GIFs nem vídeo, páginas de resultados pequenas e uma regra de armazenamento a conferir se você guardar o catálogo em cache.
 
+### Your Move Exercise API
+
+Uma API hospedada da Your Move (ymove.app) que se apresenta aos usuários do ExerciseDB: a página de comparação dela diz "ExerciseDB and most alternatives ship animated GIFs" [o ExerciseDB e a maioria das alternativas entregam GIFs animados]. Na nossa leitura, isso descreve o ExerciseDB V1, já que o V2 da AscendAPI entrega um MP4 por exercício. Conforme lido em 11 de novembro de 2026, o README da Your Move no GitHub diz que todo exercício vem com "an HD video (HLS + MP4)" [um vídeo em HD (HLS + MP4)], miniaturas, instruções e dados de músculos, e as contagens dela vão de 2.005+ exercícios (README) a 2.200+ (página do produto). A página de preços lista o Starter a US$ 19 por mês com vídeo com marca d'água, o Pro a US$ 29 com vídeo limpo, o Scale a US$ 79 e o Enterprise a US$ 299, cada um após um teste gratuito de 7 dias, e vende licenças de marca para uso white-label. Nos planos mensais Starter e Pro, há um teto de exercícios diferentes puxados com vídeo: 250 e 350 em uma janela móvel de 30 dias; os planos anuais não têm teto. Ela publica um documento OpenAPI e um SDK em TypeScript e um servidor MCP sob licença MIT. Melhor para vídeo filmado em HD com streaming e uma tabela de preços legível. Contrapartida: nenhum plano gratuito, enquanto o ExerciseDB tem dois, nada de auto-hospedagem sem uma licença separada, nada de revenda dos vídeos, e uma página de licença que não conseguimos ler: as URLs que tentamos devolveram 404.
+
 ### Um banco de vídeos de exercícios
 
 Se o que você quer do ExerciseDB é mídia de demonstração, comprar arquivos é o outro caminho. O GymVisual, por exemplo, vende "royalty-free workout animations, GIFs, and fitness illustrations" [animações de treino, GIFs e ilustrações de fitness royalty-free], e a licença dele lista apps Android e iOS entre os usos permitidos, enquanto proíbe revenda ou redistribuição e, na captura do Internet Archive de 29 de julho de 2026, publicar os arquivos "on any Artificial Intelligence (AI) platform" [em qualquer plataforma de inteligência artificial (IA)] ou usá-los para gerar conteúdo com ferramentas de IA. Você paga por arquivo e hospeda por conta própria; não há API. Bancos, formatos e marcas d'água são comparados em [opções de APIs de vídeos de exercícios](/fitness-apis/exercise-video-apis).
@@ -83,11 +87,13 @@ Se o que você quer do ExerciseDB é mídia de demonstração, comprar arquivos 
 | free-exercise-db | Ser dono dos dados de vez | Unlicense; US$ 0 | 1.746 JPEGs | Arquivos estáticos, sem API, só em inglês |
 | wger | Uma plataforma aberta auto-hospedada | Código AGPL-3.0-or-later, dados Creative Commons; US$ 0 mais hospedagem | Imagens estáticas; vídeo que você fornece | Você roda o app; compartilhamento pela mesma licença em boa parte dos dados |
 | API Ninjas Exercises | Uma consulta hospedada simples | Uso comercial de US$ 39 a US$ 59 por mês | Fotos de início e fim (premium) | Cinco resultados por chamada; armazenar exige o Business |
+| Your Move Exercise API | Vídeo em HD hospedado com preço publicado | Proprietária; de US$ 19 a US$ 299 por mês após um teste de 7 dias | Vídeo em HD, MP4 e HLS; marca d'água no Starter | Sem plano gratuito; 250 a 350 exercícios por mês nos planos mensais Starter e Pro |
 | Banco de mídia (ex.: GymVisual) | Arquivos de vídeo sob seu controle | Licença royalty-free, por arquivo | Vídeo, GIFs, ilustrações | Sem API; sem redistribuição nem uso em IA |
 
 ## Qual escolher?
 
-- **Você precisa de demonstrações em GIF ou vídeo vindas de uma API:** fique no ExerciseDB; nenhuma das alternativas em forma de API aqui entrega vídeo. Teste o plano gratuito do V2 e leia os preços pagos e os termos no RapidAPI.
+- **Você precisa de demonstrações em GIF ou vídeo vindas de uma API de graça:** fique no ExerciseDB, a única opção aqui com planos gratuitos para isso. Teste o plano gratuito do V2 e leia os preços pagos e os termos no RapidAPI.
+- **Você quer vídeo filmado em HD com streaming e vai pagar:** Your Move, a partir de US$ 19 por mês com marca d'água ou US$ 29 sem, após um teste de 7 dias.
 - **Você quer mídia que seja sua:** um banco de mídia, depois de conferir a licença dele contra o seu produto.
 - **Você quer atrito zero de licença e imagens estáticas bastam:** free-exercise-db.
 - **Você quer uma plataforma open source completa:** wger, com as obrigações da AGPL e da Creative Commons.
