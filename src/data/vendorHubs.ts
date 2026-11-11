@@ -39,6 +39,9 @@
  * link to the directory entry and back. USDA FoodData Central, Open Food
  * Facts, MoveNet and Apple Vision have fewer.
  * wger reached three on 2026-10-22 with its alternatives page.
+ * Your Move reached three on 2026-11-11 (its integration guide, the shared
+ * exercise pricing page whose capsule names it, and its directory entry); the
+ * four roundup and alternatives pages that cover it belong to no vendor.
  * Polar (a guide, a pricing page, an alternatives page since 2026-11-04, and
  * its directory entry) got its menu on 2026-11-05 (ops/MORE-30-2026-11-05.md
  * item 30).
@@ -372,6 +375,17 @@ export const VENDOR_HUBS: VendorHub[] = [
     tokens: ["wger"],
     wraps: [],
     pages: ["/apis/wger", "/alternatives/wger-alternatives", "/compare/exercisedb-vs-wger"],
+  },
+  {
+    id: "your-move",
+    hub: "/integrate/your-move-exercise-api",
+    tokens: ["your-move"],
+    wraps: [],
+    pages: [
+      "/integrate/your-move-exercise-api",
+      "/pricing/exercise-database-api-pricing",
+      "/apis/your-move",
+    ],
   },
   {
     id: "nutritionix",

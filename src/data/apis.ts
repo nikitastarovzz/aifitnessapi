@@ -57,6 +57,7 @@ const ALIASES: Record<string, string[]> = {
   "open-food-facts": ["Open Food Facts"],
   exercisedb: ["ExerciseDB"],
   wger: ["wger"],
+  "your-move": ["Your Move", "YMove", "ymove.app"],
   kinestex: ["KinesteX"],
   sency: ["Sency", "SMKit"],
   quickpose: ["QuickPose"],
@@ -86,6 +87,7 @@ const SHORT: Record<string, string> = {
   "open-food-facts": "Open Food Facts",
   exercisedb: "ExerciseDB",
   wger: "wger",
+  "your-move": "Your Move",
   kinestex: "KinesteX",
   sency: "Sency",
   quickpose: "QuickPose",
@@ -120,6 +122,9 @@ export const API_ENTRIES: ApiEntry[] = COST_ITEMS.filter((i) => !EXCLUDED.has(i.
  * Vision (21 Google) and Junction (15 Bing, now surfacing a page here) cleared
  * the bar and are indexed. Re-judged again at the 2026-10-31 review;
  * scripts/build-api-demand.mjs prints where each pull disagrees with this list.
+ * Your Move (added 2026-11-11) starts noindexed like every product with no
+ * product-named search in a pull yet; its integration guide and the pricing
+ * page carry its searches until a pull shows demand for the entry itself.
  */
 export const NOINDEX_APIS = new Set([
   "rook",
@@ -131,6 +136,7 @@ export const NOINDEX_APIS = new Set([
   "kinestex",
   "sency",
   "quickpose",
+  "your-move",
 ]);
 
 export function getApi(id: string): ApiEntry | undefined {

@@ -1,0 +1,33 @@
+# Exercise content APIs: Your Move (ymove.app), read 2026-11-11 for the four
+# exercise pages (PR #59) and the integration guide, directory entry and
+# pricing section. The docs sub-pages (/exercise-api/docs/*) answer 404; the
+# single docs page holds the reference. www.npmjs.com answers 403 to the
+# runner; read the packages from registry.npmjs.org directly instead.
+https://ymove.app/
+https://ymove.app/exercise-api
+https://ymove.app/exercise-api/docs
+https://ymove.app/exercise-api/pricing
+https://ymove.app/exercise-api/signup
+https://ymove.app/exercise-api/compare
+https://ymove.app/exercise-api/skill
+https://ymove.app/exercise-api/posture-demo
+https://ymove.app/exercise-api/top-exercise-apis
+https://ymove.app/workout-api
+https://ymove.app/nutrition-api
+https://ymove.app/recipe-api
+https://ymove.app/exercise-video-library
+https://ymove.app/yoga-pose-library
+https://ymove.app/free-exercise-videos
+https://ymove.app/app/white-label-fitness-app
+https://ymove.app/software/best-white-label-fitness-app-software
+https://ymove.app/terms-and-conditions
+https://ymove.app/docs
+https://exercise-api.ymove.app/api/v2/openapi.json
+https://github.com/ymove-app
+https://github.com/ymove-app/exercise-api
+https://github.com/ymove-app/exercise-api-sdk
+https://github.com/ymove-app/exercise-api-mcp
+https://raw.githubusercontent.com/ymove-app/exercise-api/main/README.md
+https://raw.githubusercontent.com/ymove-app/exercise-api/main/free-videos/README.md
+https://raw.githubusercontent.com/ymove-app/exercise-api-sdk/main/README.md
+https://raw.githubusercontent.com/ymove-app/exercise-api-mcp/main/README.md
