@@ -405,6 +405,10 @@ export const COST_ITEMS: CostItem[] = [
 
   // provenance: "Your Move (ymove.app) serves each exercise as MP4 and HLS from $19 a month after a 7-day trial" — /fitness-apis/exercise-database-apis
   // provenance: "Your Move (ymove.app) has no free API tier, only a 7-day trial" — /fitness-apis/exercise-video-apis
+  // provenance: "Every API subscription includes a Brand License that limits API content use to the Brands you register" — /integrate/your-move-exercise-api
+  // provenance: "Each Brand covers one website and one mobile application under the same brand name" — /integrate/your-move-exercise-api
+  // provenance: "No permanent free tier: a 7-day trial capped at 100 exercises, or a 10-exercise demo key" — /integrate/your-move-exercise-api
+  // provenance: "Every plan reads \"No self-hosting (separate license)\"" — /integrate/your-move-exercise-api
   // provenance: "Its docs say they are pre-signed and \"expire after 48 hours\", so refetch rather than store them" — /fitness-apis/exercise-database-apis
   // provenance: "Your Move (ymove.app) has no free API tier, only a 7-day trial" — /fitness-apis/exercise-video-apis
   // devCost is "usage-based" under the DevCost definition above: the published plans are tiered by
@@ -417,10 +421,10 @@ export const COST_ITEMS: CostItem[] = [
     devCost: "usage-based",
     userSideCost: null,
     approvalGate:
-      "No review: a trial key comes with sign-up and the 7-day trial leads into the paid plans; the monthly Starter and Pro plans cap distinct exercises served with video at 250 and 350 in a rolling 30 days.",
+      "No review: a trial key comes with sign-up, and the API Terms' brand license limits the content to the apps and sites you register, one website and one mobile app per brand.",
     engEffort: "low",
     notes:
-      "Hosted exercise API with a filmed HD video per exercise as MP4 and HLS, priced from $19 a month after a 7-day trial and with no permanent free tier. Its video URLs are pre-signed and expire after 48 hours, so you re-fetch them rather than store them, and self-hosting is a separate license.",
+      "Hosted exercise API with a filmed HD video per exercise as MP4 and HLS, priced from $19 a month after a 7-day trial and with no permanent free tier; monthly Starter and Pro plans cap distinct exercises served with video at 250 and 350 in a rolling 30 days. Its video URLs are pre-signed and expire after 48 hours, so you re-fetch them rather than store them, and self-hosting is a separate license.",
     sourceHref: "/integrate/your-move-exercise-api",
   },
 
