@@ -2,316 +2,187 @@ import Link from "next/link";
 import type { ComponentProps } from "react";
 import Container from "./Container";
 import FooterFunding from "./FooterFunding";
+import FooterGroup from "./FooterGroup";
 import { SDK_REPOS } from "@/data/sdkReleases";
 import { site } from "@/lib/site";
 import { clusterMap } from "@/lib/clusterRegistry";
 
-// No prefetch: ~50 footer links on every page would each fetch a route payload
+// No prefetch: ~90 footer links on every page would each fetch a route payload
 // once scrolled into view (or hovered) — edge requests nobody asked for.
 function FooterLink(props: ComponentProps<typeof Link>) {
   return <Link {...props} prefetch={false} />;
 }
 
+type FooterEntry = { href: string; label: string; cluster?: string; external?: boolean };
+
+/**
+ * The footer's links, in five titled groups. Every href the flat footer
+ * carried is still here (qa's ORPHAN and inbound counts read them), only
+ * sorted by the question a reader brings: which section, which tool, what
+ * changed, which reference table, who runs this. Rows are 44px on phones
+ * (Fitts's law, the 2.5.5 target size) and denser on wider screens.
+ */
+const GROUPS: { title: string; links: FooterEntry[] }[] = [
+  {
+    title: "Sections",
+    links: [
+      { href: "/fitness-apis", label: "Fitness APIs" },
+      { href: "/guides", label: "Guides" },
+      { href: "/build", label: "Build" },
+      { href: "/integrate", label: "Integrate" },
+      { href: "/fix", label: "Troubleshooting" },
+      { href: "/learn", label: "Concepts" },
+      { href: "/alternatives", label: "Alternatives" },
+      { href: "/compliance", label: "Compliance" },
+      { href: "/migrate", label: "Migrations" },
+      { href: "/pricing", label: "Pricing" },
+      { href: "/compare", label: "Comparisons" },
+      { href: "/data", label: "Health Data" },
+      { href: "/motion", label: "AI Motion" },
+      { href: "/ai", label: "AI Features" },
+      { href: "/architecture", label: "Architecture" },
+      { href: "/test", label: "Testing" },
+      { href: "/cookbook", label: "Cookbook" },
+      { href: "/devices", label: "Connected Devices" },
+      { href: "/engagement", label: "Engagement & Retention" },
+      { href: "/accessibility", label: "Accessibility", cluster: "/accessibility" },
+      { href: "/audio-coaching", label: "Audio Coaching", cluster: "/audio-coaching" },
+      { href: "/healthkit-queries", label: "HealthKit Queries", cluster: "/healthkit-queries" },
+      { href: "/phone-sensors", label: "Phone Sensors", cluster: "/phone-sensors" },
+      { href: "/health-connect-api", label: "Health Connect API", cluster: "/health-connect-api" },
+      { href: "/own-your-data", label: "Own Your Data", cluster: "/own-your-data" },
+      { href: "/watch-apps", label: "Watch Apps", cluster: "/watch-apps" },
+    ],
+  },
+  {
+    title: "Directory & tools",
+    links: [
+      { href: "/apis", label: "API Directory" },
+      { href: "/market-map", label: "API Market Map" },
+      { href: "/fitness-api-index", label: "Fitness API Index" },
+      { href: "/graveyard", label: "API Graveyard" },
+      { href: "/compare-apis", label: "Compare APIs" },
+      { href: "/picker", label: "API Picker" },
+      { href: "/cost-planner", label: "Cost Planner" },
+      { href: "/tools", label: "Tools" },
+      { href: "/daily", label: "Daily Puzzle" },
+      { href: "/play/ship-it", label: "Ship It (game)" },
+      { href: "/challenge", label: "Rep Challenge" },
+      { href: "/paths", label: "Reading paths" },
+      { href: "/saved", label: "Saved pages" },
+      { href: "/glossary", label: "Glossary" },
+      { href: "/questions", label: "All questions" },
+      { href: "/search", label: "Search" },
+      { href: "/site-index", label: "Site index" },
+    ],
+  },
+  {
+    title: "Reports & updates",
+    links: [
+      { href: "/ai-fitness-app", label: "Build an AI Fitness App" },
+      { href: "/no-code-fitness-app", label: "No-Code Fitness App" },
+      { href: "/state-of-fitness-apis-2026", label: "State of Fitness APIs" },
+      { href: "/2026", label: "Fitness APIs in 2026" },
+      { href: "/press", label: "Press numbers" },
+      { href: "/research", label: "Research" },
+      { href: "/changes", label: "Changes & Deadlines" },
+      { href: "/alerts", label: "Change Alerts" },
+      { href: "/digest", label: "Monthly Digest" },
+      { href: "/weekly", label: "Weekly Roundup" },
+      { href: "/history", label: "Fitness API History" },
+      { href: "/blog", label: "Blog" },
+      { href: "/newsletter", label: "Newsletter" },
+      { href: "/signup", label: "Free decision kit" },
+      { href: "/changelog", label: "Changelog" },
+      { href: "/feed.xml", label: "RSS", external: true },
+    ],
+  },
+  {
+    title: "Reference data",
+    links: [
+      { href: "/matrix", label: "Type Reference" },
+      { href: "/healthkit", label: "HealthKit reference" },
+      { href: "/healthkit-identifiers", label: "Every HealthKit identifier" },
+      { href: "/healthkit-errors", label: "Every HealthKit error code" },
+      { href: "/healthkit-units", label: "HKUnit families by type" },
+      { href: "/healthkit-metadata-keys", label: "HealthKit metadata keys" },
+      { href: "/healthkit-versions", label: "HealthKit types by iOS version" },
+      { href: "/health-connect", label: "Health Connect record types" },
+      { href: "/error-codes", label: "Error code reference" },
+      { href: "/health-connect-releases", label: "Health Connect SDK releases" },
+      { href: "/wear-os-data-types", label: "Wear OS Health Services data types" },
+      { href: "/pose-keypoints", label: "Pose keypoint maps" },
+      { href: "/google-health-api", label: "Google Health API reference" },
+      { href: "/health-mcp-servers", label: "Health MCP servers" },
+      { href: "/bluetooth-fitness", label: "Bluetooth GATT byte layouts" },
+      { href: "/workout-types", label: "Workout type crosswalk" },
+      { href: "/sdk-releases", label: "SDK release tracker", cluster: "sdk" },
+      { href: "/libraries", label: "Open-source libraries" },
+      { href: "/datasets", label: "Open Datasets" },
+      { href: "/developers", label: "Developer API & MCP" },
+      { href: "/badges", label: "Embeds & Badges" },
+    ],
+  },
+  {
+    title: "About",
+    links: [
+      { href: "/about", label: "About" },
+      { href: "/contributors", label: "Contributors" },
+      { href: "/methodology", label: "How We Verify" },
+      { href: "/gates", label: "What We Refuse To Ship" },
+      { href: "/corrections", label: "Corrections" },
+      { href: "/privacy", label: "Privacy" },
+      ...(site.social.github ? [{ href: site.social.github, label: "GitHub", external: true }] : []),
+    ],
+  },
+];
+
+const LINK_CLASS =
+  "inline-flex min-h-[44px] items-center text-sm text-[var(--muted)] transition-colors hover:text-[var(--fg)] md:min-h-[32px]";
+
 export default function Footer() {
   const year = new Date().getFullYear();
   // Never link a cluster that has no released pages — its hub 404s.
   const populated = clusterMap();
-  const has = (p: string) => (populated[p]?.length ?? 0) > 0;
+  const shown = (l: FooterEntry) => {
+    if (!l.cluster) return true;
+    if (l.cluster === "sdk") return SDK_REPOS.length > 0;
+    return (populated[l.cluster]?.length ?? 0) > 0;
+  };
   return (
     <footer className="mt-24 border-t border-[var(--border)]">
-      <Container className="flex flex-col-reverse items-center gap-6 py-10">
-        <div className="flex max-w-xl flex-col items-center gap-2 text-center">
+      <Container className="py-10">
+        <nav aria-label="Footer" className="grid gap-x-8 gap-y-2 md:grid-cols-3 md:gap-y-8 lg:grid-cols-5">
+          {GROUPS.map((g) => (
+            <FooterGroup key={g.title} title={g.title}>
+              <ul className="pb-2 md:pb-0 md:pt-3">
+                {g.links.filter(shown).map((l) => (
+                  <li key={l.href}>
+                    {l.external ? (
+                      <a
+                        href={l.href}
+                        className={LINK_CLASS}
+                        {...(l.href.startsWith("http") ? { target: "_blank", rel: "me noreferrer" } : {})}
+                      >
+                        {l.label}
+                      </a>
+                    ) : (
+                      <FooterLink href={l.href} className={LINK_CLASS}>
+                        {l.label}
+                      </FooterLink>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </FooterGroup>
+          ))}
+        </nav>
+        <div className="mt-8 flex flex-col items-center gap-2 border-t border-[var(--border)] pt-6 text-center">
           <p className="text-sm text-[var(--muted)]">
             © {year} {site.name}. All rights reserved.
           </p>
           <FooterFunding />
         </div>
-        <nav aria-label="Footer" className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-[var(--muted)]">
-          <FooterLink href="/fitness-apis" className="py-1 hover:text-[var(--fg)]">
-            Fitness APIs
-          </FooterLink>
-          <FooterLink href="/guides" className="py-1 hover:text-[var(--fg)]">
-            Guides
-          </FooterLink>
-          <FooterLink href="/build" className="py-1 hover:text-[var(--fg)]">
-            Build
-          </FooterLink>
-          <FooterLink href="/integrate" className="py-1 hover:text-[var(--fg)]">
-            Integrate
-          </FooterLink>
-          <FooterLink href="/fix" className="py-1 hover:text-[var(--fg)]">
-            Troubleshooting
-          </FooterLink>
-          <FooterLink href="/learn" className="py-1 hover:text-[var(--fg)]">
-            Concepts
-          </FooterLink>
-          <FooterLink href="/alternatives" className="py-1 hover:text-[var(--fg)]">
-            Alternatives
-          </FooterLink>
-          <FooterLink href="/compliance" className="py-1 hover:text-[var(--fg)]">
-            Compliance
-          </FooterLink>
-          <FooterLink href="/migrate" className="py-1 hover:text-[var(--fg)]">
-            Migrations
-          </FooterLink>
-          <FooterLink href="/pricing" className="py-1 hover:text-[var(--fg)]">
-            Pricing
-          </FooterLink>
-          <FooterLink href="/compare" className="py-1 hover:text-[var(--fg)]">
-            Comparisons
-          </FooterLink>
-          <FooterLink href="/data" className="py-1 hover:text-[var(--fg)]">
-            Health Data
-          </FooterLink>
-          <FooterLink href="/motion" className="py-1 hover:text-[var(--fg)]">
-            AI Motion
-          </FooterLink>
-          <FooterLink href="/ai" className="py-1 hover:text-[var(--fg)]">
-            AI Features
-          </FooterLink>
-          <FooterLink href="/architecture" className="py-1 hover:text-[var(--fg)]">
-            Architecture
-          </FooterLink>
-          <FooterLink href="/test" className="py-1 hover:text-[var(--fg)]">
-            Testing
-          </FooterLink>
-          <FooterLink href="/cookbook" className="py-1 hover:text-[var(--fg)]">
-            Cookbook
-          </FooterLink>
-          <FooterLink href="/devices" className="py-1 hover:text-[var(--fg)]">
-            Connected Devices
-          </FooterLink>
-          <FooterLink href="/engagement" className="py-1 hover:text-[var(--fg)]">
-            Engagement &amp; Retention
-          </FooterLink>
-          {has("/accessibility") && (
-            <FooterLink href="/accessibility" className="py-1 hover:text-[var(--fg)]">
-              Accessibility
-            </FooterLink>
-          )}
-          {has("/audio-coaching") && (
-            <FooterLink href="/audio-coaching" className="py-1 hover:text-[var(--fg)]">
-              Audio Coaching
-            </FooterLink>
-          )}
-          {has("/healthkit-queries") && (
-            <FooterLink href="/healthkit-queries" className="py-1 hover:text-[var(--fg)]">
-              HealthKit Queries
-            </FooterLink>
-          )}
-          {has("/phone-sensors") && (
-            <FooterLink href="/phone-sensors" className="py-1 hover:text-[var(--fg)]">
-              Phone Sensors
-            </FooterLink>
-          )}
-          {has("/health-connect-api") && (
-            <FooterLink href="/health-connect-api" className="py-1 hover:text-[var(--fg)]">
-              Health Connect API
-            </FooterLink>
-          )}
-          {has("/own-your-data") && (
-            <FooterLink href="/own-your-data" className="py-1 hover:text-[var(--fg)]">
-              Own Your Data
-            </FooterLink>
-          )}
-          {has("/watch-apps") && (
-            <FooterLink href="/watch-apps" className="py-1 hover:text-[var(--fg)]">
-              Watch Apps
-            </FooterLink>
-          )}
-          <FooterLink href="/apis" className="py-1 hover:text-[var(--fg)]">
-            API Directory
-          </FooterLink>
-          <FooterLink href="/market-map" className="py-1 hover:text-[var(--fg)]">
-            API Market Map
-          </FooterLink>
-          <FooterLink href="/fitness-api-index" className="py-1 hover:text-[var(--fg)]">
-            Fitness API Index
-          </FooterLink>
-          <FooterLink href="/graveyard" className="py-1 hover:text-[var(--fg)]">
-            API Graveyard
-          </FooterLink>
-          <FooterLink href="/compare-apis" className="py-1 hover:text-[var(--fg)]">
-            Compare APIs
-          </FooterLink>
-          <FooterLink href="/daily" className="py-1 hover:text-[var(--fg)]">
-            Daily Puzzle
-          </FooterLink>
-          <FooterLink href="/play/ship-it" className="py-1 hover:text-[var(--fg)]">
-            Ship It (game)
-          </FooterLink>
-          <FooterLink href="/picker" className="py-1 hover:text-[var(--fg)]">
-            API Picker
-          </FooterLink>
-          <FooterLink href="/cost-planner" className="py-1 hover:text-[var(--fg)]">
-            Cost Planner
-          </FooterLink>
-          <FooterLink href="/challenge" className="py-1 hover:text-[var(--fg)]">
-            Rep Challenge
-          </FooterLink>
-          <FooterLink href="/ai-fitness-app" className="py-1 hover:text-[var(--fg)]">
-            Build an AI Fitness App
-          </FooterLink>
-          <FooterLink href="/no-code-fitness-app" className="py-1 hover:text-[var(--fg)]">
-            No-Code Fitness App
-          </FooterLink>
-          <FooterLink href="/state-of-fitness-apis-2026" className="py-1 hover:text-[var(--fg)]">
-            State of Fitness APIs
-          </FooterLink>
-          <FooterLink href="/2026" className="py-1 hover:text-[var(--fg)]">
-            Fitness APIs in 2026
-          </FooterLink>
-          <FooterLink href="/press" className="py-1 hover:text-[var(--fg)]">
-            Press numbers
-          </FooterLink>
-          <FooterLink href="/research" className="py-1 hover:text-[var(--fg)]">
-            Research
-          </FooterLink>
-          <FooterLink href="/changes" className="py-1 hover:text-[var(--fg)]">
-            Changes &amp; Deadlines
-          </FooterLink>
-          <FooterLink href="/alerts" className="py-1 hover:text-[var(--fg)]">
-            Change Alerts
-          </FooterLink>
-          <FooterLink href="/digest" className="py-1 hover:text-[var(--fg)]">
-            Monthly Digest
-          </FooterLink>
-          <FooterLink href="/weekly" className="py-1 hover:text-[var(--fg)]">
-            Weekly Roundup
-          </FooterLink>
-          <FooterLink href="/history" className="py-1 hover:text-[var(--fg)]">
-            Fitness API History
-          </FooterLink>
-          <FooterLink href="/matrix" className="py-1 hover:text-[var(--fg)]">
-            Type Reference
-          </FooterLink>
-          <FooterLink href="/healthkit-identifiers" className="py-1 hover:text-[var(--fg)]">
-            Every HealthKit identifier
-          </FooterLink>
-          <FooterLink href="/healthkit-errors" className="py-1 hover:text-[var(--fg)]">
-            Every HealthKit error code
-          </FooterLink>
-          <FooterLink href="/healthkit-units" className="py-1 hover:text-[var(--fg)]">
-            HKUnit families by type
-          </FooterLink>
-          <FooterLink href="/healthkit-metadata-keys" className="py-1 hover:text-[var(--fg)]">
-            HealthKit metadata keys
-          </FooterLink>
-          <FooterLink href="/healthkit-versions" className="py-1 hover:text-[var(--fg)]">
-            HealthKit types by iOS version
-          </FooterLink>
-          <FooterLink href="/health-connect" className="py-1 hover:text-[var(--fg)]">
-            Health Connect record types
-          </FooterLink>
-          <FooterLink href="/error-codes" className="py-1 hover:text-[var(--fg)]">
-            Error code reference
-          </FooterLink>
-          <FooterLink href="/health-connect-releases" className="py-1 hover:text-[var(--fg)]">
-            Health Connect SDK releases
-          </FooterLink>
-          <FooterLink href="/wear-os-data-types" className="py-1 hover:text-[var(--fg)]">
-            Wear OS Health Services data types
-          </FooterLink>
-          <FooterLink href="/pose-keypoints" className="py-1 hover:text-[var(--fg)]">
-            Pose keypoint maps
-          </FooterLink>
-          <FooterLink href="/google-health-api" className="py-1 hover:text-[var(--fg)]">
-            Google Health API reference
-          </FooterLink>
-          <FooterLink href="/health-mcp-servers" className="py-1 hover:text-[var(--fg)]">
-            Health MCP servers
-          </FooterLink>
-          <FooterLink href="/bluetooth-fitness" className="py-1 hover:text-[var(--fg)]">
-            Bluetooth GATT byte layouts
-          </FooterLink>
-          <FooterLink href="/workout-types" className="py-1 hover:text-[var(--fg)]">
-            Workout type crosswalk
-          </FooterLink>
-          {SDK_REPOS.length > 0 && (
-            <FooterLink href="/sdk-releases" className="py-1 hover:text-[var(--fg)]">
-              SDK release tracker
-            </FooterLink>
-          )}
-          <FooterLink href="/libraries" className="py-1 hover:text-[var(--fg)]">
-            Open-source libraries
-          </FooterLink>
-          <FooterLink href="/blog" className="py-1 hover:text-[var(--fg)]">
-            Blog
-          </FooterLink>
-          <FooterLink href="/about" className="py-1 hover:text-[var(--fg)]">
-            About
-          </FooterLink>
-          <FooterLink href="/signup" className="py-1 hover:text-[var(--fg)]">
-            Free decision kit
-          </FooterLink>
-          <FooterLink href="/datasets" className="py-1 hover:text-[var(--fg)]">
-            Open Datasets
-          </FooterLink>
-          <FooterLink href="/developers" className="py-1 hover:text-[var(--fg)]">
-            Developer API &amp; MCP
-          </FooterLink>
-          <FooterLink href="/badges" className="py-1 hover:text-[var(--fg)]">
-            Embeds &amp; Badges
-          </FooterLink>
-          <FooterLink href="/paths" className="py-1 hover:text-[var(--fg)]">
-            Reading paths
-          </FooterLink>
-          <FooterLink href="/saved" className="py-1 hover:text-[var(--fg)]">
-            Saved pages
-          </FooterLink>
-          <FooterLink href="/tools" className="py-1 hover:text-[var(--fg)]">
-            Tools
-          </FooterLink>
-          <FooterLink href="/newsletter" className="py-1 hover:text-[var(--fg)]">
-            Newsletter
-          </FooterLink>
-          <FooterLink href="/healthkit" className="py-1 hover:text-[var(--fg)]">
-            HealthKit reference
-          </FooterLink>
-          <FooterLink href="/changelog" className="py-1 hover:text-[var(--fg)]">
-            Changelog
-          </FooterLink>
-          <FooterLink href="/corrections" className="py-1 hover:text-[var(--fg)]">
-            Corrections
-          </FooterLink>
-          <FooterLink href="/contributors" className="py-1 hover:text-[var(--fg)]">
-            Contributors
-          </FooterLink>
-          <FooterLink href="/methodology" className="py-1 hover:text-[var(--fg)]">
-            How We Verify
-          </FooterLink>
-          <FooterLink href="/gates" className="py-1 hover:text-[var(--fg)]">
-            What We Refuse To Ship
-          </FooterLink>
-          <FooterLink href="/privacy" className="py-1 hover:text-[var(--fg)]">
-            Privacy
-          </FooterLink>
-          <FooterLink href="/glossary" className="py-1 hover:text-[var(--fg)]">
-            Glossary
-          </FooterLink>
-          <FooterLink href="/questions" className="py-1 hover:text-[var(--fg)]">
-            All questions
-          </FooterLink>
-          <FooterLink href="/site-index" className="py-1 hover:text-[var(--fg)]">
-            Site index
-          </FooterLink>
-          <FooterLink href="/search" className="py-1 hover:text-[var(--fg)]">
-            Search
-          </FooterLink>
-          <a href="/feed.xml" className="py-1 hover:text-[var(--fg)]">
-            RSS
-          </a>
-          {site.social.github && (
-            <a
-              href={site.social.github}
-              target="_blank"
-              rel="me noreferrer"
-              className="py-1 hover:text-[var(--fg)]"
-            >
-              GitHub
-            </a>
-          )}
-        </nav>
       </Container>
     </footer>
   );
