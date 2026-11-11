@@ -262,7 +262,7 @@
   {
     "claim": "The docs list an internet connection among the prerequisites.",
     "url": "https://www.kinestex.com/docs/getting-started",
-    "quote": "- Internet connection"
+    "quote": "Internet connection"
   },
   {
     "claim": "The Content API base URL is data.kinestex.com.",
@@ -467,12 +467,12 @@
   {
     "claim": "PoseTracker Freemium: only non-commercial use.",
     "url": "https://www.posetracker.com/",
-    "quote": "- Only non-commercial use"
+    "quote": "Only non-commercial use"
   },
   {
     "claim": "PoseTracker Freemium: up to 200 tracking API calls a month.",
     "url": "https://www.posetracker.com/",
-    "quote": "- Up to 200 tracking API calls monthly (strict limit)"
+    "quote": "Up to 200 tracking API calls monthly (strict limit)"
   },
   {
     "claim": "PoseTracker Freemium shows a Powered by PoseTracker link.",
@@ -482,12 +482,12 @@
   {
     "claim": "PoseTracker Developer: 1,000 tracking calls a month.",
     "url": "https://www.posetracker.com/",
-    "quote": "- 1000 tracking API calls included monthly — no service cut above it"
+    "quote": "1000 tracking API calls included monthly — no service cut above it"
   },
   {
     "claim": "PoseTracker Business: 100k, 500k or 1M calls per 12-month period.",
     "url": "https://www.posetracker.com/",
-    "quote": "- 100k , 500k or 1M tracking API calls per 12-month period — no monthly cap"
+    "quote": "100k , 500k or 1M tracking API calls per 12-month period — no monthly cap"
   },
   {
     "claim": "PoseTracker extra calls at €0.01 excl. VAT.",
@@ -512,7 +512,7 @@
   {
     "claim": "PoseTracker lists Flutter-only apps among the cases not to use it.",
     "url": "https://www.posetracker.com/compare/pose-estimation-sdks",
-    "quote": "- Flutter-only (no first-party Flutter SDK)."
+    "quote": "Flutter-only (no first-party Flutter SDK)."
   },
   {
     "claim": "PoseTracker's comparison describes KinesteX as a hosted camera and content embed.",
@@ -542,12 +542,12 @@
   {
     "claim": "Kemtai CARE is a web app.",
     "url": "https://kemtai.com/",
-    "quote": "- Web app. No downloads. No installations"
+    "quote": "Web app. No downloads. No installations"
   },
   {
     "claim": "Kemtai works on any device with a camera.",
     "url": "https://kemtai.com/",
-    "quote": "- Works on any device with a camera (laptops, tablets, mobile phones)"
+    "quote": "Works on any device with a camera (laptops, tablets, mobile phones)"
   },
   {
     "claim": "Kemtai's accuracy study is Kemtai data on file.",
