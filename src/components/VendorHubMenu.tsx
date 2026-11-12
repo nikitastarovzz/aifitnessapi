@@ -79,7 +79,7 @@ export default function VendorHubMenu({
           // request to read it.
           const folded = g.items.length > FOLD_OVER;
           const list = (
-            <ul className={folded ? "mt-1.5 space-y-1" : "inline sm:block sm:space-y-1"}>
+            <ul className={folded ? "mt-1.5" : "inline sm:block sm:space-y-1"}>
               {g.items.map((i, n) => (
                 <li
                   key={i.path}
@@ -103,10 +103,19 @@ export default function VendorHubMenu({
                     </>
                   ) : (
                     <>
+                      {/* A folded group is a stacked list, one link a row:
+                          about 33px rows (Fitts's law; 17px before the
+                          2026-11-12 audit of the pages that earn 80% of
+                          clicks). A full-width block, so the whole row is the
+                          target and a long unspaced name such as
+                          SDK_UNAVAILABLE_PROVIDER_UPDATE_REQUIRED still
+                          breaks: an inline-flex or inline-block link sized
+                          itself to that word and widened
+                          /fix/health-connect-no-data by 10px. */}
                       <Link
                         href={i.path}
                         data-vendor-page={i.path}
-                        className="text-brand-600 hover:text-brand-500"
+                        className={`text-brand-600 hover:text-brand-500${folded ? " block py-2" : ""}`}
                       >
                         {i.label}
                       </Link>

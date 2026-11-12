@@ -128,18 +128,31 @@ export default function SignupForm({ source = "signup-form" }: { source?: string
         <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
+      {/* Parkinson's law: a task grows to fill the time it seems to need.
+          Ten fields read as a long form, so the two that are required come
+          first, together, and the rest are labelled as what they are: help
+          for the newsletter, skippable. Field names, order of submission and
+          the stored data are unchanged. */}
+      <p className="mb-3 text-sm text-[var(--muted)]">
+        Only your first name and email are required.
+      </p>
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label className={label} htmlFor="firstName">First name *</label>
           <input id="firstName" name="firstName" required maxLength={200} autoComplete="given-name" className={input} />
         </div>
         <div>
+          <label className={label} htmlFor="email">Work email *</label>
+          <input id="email" name="email" type="email" required maxLength={200} autoComplete="email" inputMode="email" className={input} />
+        </div>
+      </div>
+      <p className="mb-3 mt-6 text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">
+        Optional: helps us send what fits
+      </p>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div>
           <label className={label} htmlFor="lastName">Last name</label>
           <input id="lastName" name="lastName" maxLength={200} autoComplete="family-name" className={input} />
-        </div>
-        <div className="sm:col-span-2">
-          <label className={label} htmlFor="email">Work email *</label>
-          <input id="email" name="email" type="email" required maxLength={200} autoComplete="email" className={input} />
         </div>
         <div>
           <label className={label} htmlFor="country">Country</label>

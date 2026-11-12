@@ -30,7 +30,7 @@ export default function TableEmbed({
   const { iframe, link } = embedSnippets({ basePath, slug, title, n, rows, section });
   return (
     <details data-embed-table={route} className="not-prose group -mt-5 mb-8 text-sm">
-      <summary className="ml-auto w-fit cursor-pointer list-none select-none rounded-full border border-[var(--border)] px-3 py-0.5 text-xs text-[var(--muted)] transition-colors hover:border-brand-400 hover:text-[var(--fg)] [&::-webkit-details-marker]:hidden">
+      <summary className="ml-auto flex min-h-[44px] w-fit cursor-pointer list-none select-none items-center rounded-full border border-[var(--border)] px-3 py-0.5 text-xs sm:min-h-[32px] text-[var(--muted)] transition-colors hover:border-brand-400 hover:text-[var(--fg)] [&::-webkit-details-marker]:hidden">
         Embed<span className="sr-only"> this table</span>
         <span aria-hidden className="ml-1 inline-block transition-transform group-open:rotate-180">
           ▾

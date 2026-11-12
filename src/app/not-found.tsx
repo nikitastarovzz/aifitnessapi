@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/Container";
+import NotFoundSuggest from "@/components/NotFoundSuggest";
 import { clusterMap, CLUSTER_LABELS } from "@/lib/clusterRegistry";
 
 /**
@@ -63,6 +64,8 @@ export default function NotFound() {
           individual answers inside them — press <kbd className="rounded border border-[var(--border)] px-1 text-xs">/</kbd>{" "}
           anywhere on the site, or start here:
         </p>
+
+        <NotFoundSuggest />
 
         <form action="/search" method="get" role="search" className="mt-6 flex gap-2">
           <label htmlFor="nf-q" className="sr-only">

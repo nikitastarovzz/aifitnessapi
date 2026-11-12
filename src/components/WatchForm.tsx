@@ -151,6 +151,8 @@ export default function WatchForm({ options }: { options: WatchOption[] }) {
           <input
             required
             type="email"
+            autoComplete="email"
+            inputMode="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="mt-1 w-full rounded-xl border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-[var(--fg)] focus:border-brand-400 focus:outline-none"

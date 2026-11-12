@@ -20,7 +20,10 @@ export default function ClusterDownload({
   filename: string;
 }) {
   return (
-    <aside className="not-prose mt-14 rounded-2xl border border-brand-400/30 bg-brand-500/5 p-5 sm:p-6">
+    // Neutral surface: the answer capsule is the one green-tinted box on a
+    // page (Von Restorff effect; found on /devices by the 2026-11-12 audit
+    // of the pages that earn 80% of search clicks).
+    <aside className="not-prose mt-14 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
       <p className="text-xs font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-300">
         Free download — no email required
       </p>

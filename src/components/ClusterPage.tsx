@@ -690,7 +690,7 @@ export default function ClusterPage({
               <Link
                 key={p.id}
                 href={`${APIS_PATH}/${p.id}`}
-                className="rounded-full border border-[var(--border)] px-2.5 py-0.5 text-xs text-[var(--fg)] transition-colors hover:border-brand-400"
+                className="inline-flex min-h-[32px] items-center rounded-full border border-[var(--border)] px-2.5 py-0.5 text-xs text-[var(--fg)] transition-colors hover:border-brand-400"
               >
                 {entityAnchor(p)}
               </Link>

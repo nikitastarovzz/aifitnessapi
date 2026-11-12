@@ -245,7 +245,7 @@ function ServerTable({ rows }: { rows: McpHealthServer[] }) {
                     {s.statusMessage ? ` (${s.statusMessage})` : ""}
                   </span>
                 )}
-                <a href={s.registryEntryUrl} rel="nofollow" className="mt-1 block text-xs text-brand-600 hover:text-brand-500">
+                <a href={s.registryEntryUrl} rel="nofollow" className="mt-1 flex min-h-[32px] items-center text-xs text-brand-600 hover:text-brand-500">
                   Registry record
                 </a>
               </td>
@@ -265,12 +265,12 @@ function ServerTable({ rows }: { rows: McpHealthServer[] }) {
                   </ul>
                 )}
                 {s.repositoryUrl && (
-                  <a href={s.repositoryUrl} rel="nofollow" className={`mt-1 block break-all ${LINK}`}>
+                  <a href={s.repositoryUrl} rel="nofollow" className={`mt-1 flex min-h-[32px] items-center break-all ${LINK}`}>
                     Repository, as listed
                   </a>
                 )}
                 {s.websiteUrl && (
-                  <a href={s.websiteUrl} rel="nofollow" className={`mt-1 block break-all ${LINK}`}>
+                  <a href={s.websiteUrl} rel="nofollow" className={`mt-1 flex min-h-[32px] items-center break-all ${LINK}`}>
                     Website, as listed
                   </a>
                 )}

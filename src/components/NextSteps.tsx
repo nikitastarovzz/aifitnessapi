@@ -17,12 +17,11 @@ const STEPS: { href: string; label: string; blurb: string }[] = [
     label: "Price the decision",
     blurb: "Billing models, user-side costs and the effort nobody quotes.",
   },
-  {
-    href: "/signup",
-    label: "Get what changes",
-    blurb: "Deprecations and deadlines that affect what you just read.",
-  },
 ];
+// Occam's razor (2026-11-12): a third card, "Get what changes" to /signup,
+// repeated the newsletter ask that every spoke already makes a few blocks
+// above (ClusterCta, or the inline signup on the money pages). Two exits that
+// do different jobs remain; the newsletter keeps one ask per page.
 
 export default function NextSteps() {
   return (
@@ -33,7 +32,7 @@ export default function NextSteps() {
       >
         Next steps
       </h2>
-      <ul className="mt-4 grid gap-3 sm:grid-cols-3">
+      <ul className="mt-4 grid gap-3 sm:grid-cols-2">
         {STEPS.map((s) => (
           <li key={s.href}>
             <Link
