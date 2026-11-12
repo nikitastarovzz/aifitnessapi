@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { scoreRec, reportMiss, type Rec } from "@/lib/searchScore";
+import { queryTokens, scoreRec, typoScore, reportMiss, type Rec } from "@/lib/searchScore";
 
 /**
  * The full-page search results view behind /search?q=…
@@ -34,15 +34,20 @@ export default function SearchResults() {
       .catch(() => setIndex([]));
   }, []);
 
-  const tokens = useMemo(() => q.toLowerCase().split(/\s+/).filter(Boolean), [q]);
+  const tokens = useMemo(() => queryTokens(q), [q]);
   const results = useMemo(() => {
     if (!index || tokens.length === 0) return [];
-    return index
-      .map((r) => [scoreRec(r, tokens), r] as const)
-      .filter(([s]) => s > 0)
-      .sort((a, b) => b[0] - a[0])
-      .slice(0, 40)
-      .map(([, r]) => r);
+    const rank = (score: (r: Rec, t: string[]) => number) =>
+      index
+        .map((r) => [score(r, tokens), r] as const)
+        .filter(([s]) => s > 0)
+        .sort((a, b) => b[0] - a[0])
+        .slice(0, 40)
+        .map(([, r]) => r);
+    // Exact matches first; only when none exist, the same typo tolerance as
+    // the palette (Postel's law).
+    const exact = rank(scoreRec);
+    return exact.length ? exact : rank(typoScore);
   }, [index, tokens]);
 
   useEffect(() => {

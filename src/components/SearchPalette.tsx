@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { scoreRec, reportMiss, type Rec } from "@/lib/searchScore";
+import { queryTokens, scoreRec, typoScore, reportMiss, type Rec } from "@/lib/searchScore";
 
 /**
  * Site-wide command palette. Dependency-free: fetches /search-index.json on
@@ -210,10 +210,15 @@ export default function SearchPalette({
     };
   }, []);
 
-  const raw = useMemo(() => q.split(/\s+/).filter(Boolean), [q]);
+  // Raw tokens keep their capitals for the identifier boost; punctuation is
+  // dropped either way (Postel's law, queryTokens in lib/searchScore).
+  const raw = useMemo(
+    () => q.replace(/[\u2010-\u2015\-_/\\,;:!?()[\]{}"“”`|<>]+/g, " ").split(/\s+/).filter(Boolean),
+    [q],
+  );
   const results = useMemo(() => {
     if (!index || raw.length === 0) return [];
-    const lower = raw.map((t) => t.toLowerCase());
+    const lower = queryTokens(q);
     const spelled = raw.some(isIdentifier)
       ? raw.map((t) => (isIdentifier(t) ? decamel(t) : t.toLowerCase()))
       : lower;
@@ -223,6 +228,14 @@ export default function SearchPalette({
       .filter(([s]) => s > 0)
       .sort((a, b) => b[0] - a[0]);
     if (strict.length) return strict.slice(0, 8).map(([, r]) => r);
+
+    // A misspelled whole word ("helathkit", "webhok"): within one or two
+    // edits of a word in the title or keywords (typoScore).
+    const typo = index
+      .map((r) => [typoScore(r, lower), r] as const)
+      .filter(([s]) => s > 0)
+      .sort((a, b) => b[0] - a[0]);
+    if (typo.length) return typo.slice(0, 8).map(([, r]) => r);
 
     // Nothing matched plainly — only now is a typo the likeliest explanation.
     const fuzzy = index
