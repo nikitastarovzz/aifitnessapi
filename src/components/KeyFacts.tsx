@@ -14,9 +14,12 @@ import { PT_UI } from "@/lib/translations";
 export default function KeyFacts({
   facts,
   locale,
+  attached = false,
 }: {
   facts: KeyFact[];
   locale?: "pt-BR";
+  /** Joined to the answer capsule above it, as the bottom half of one card. */
+  attached?: boolean;
 }) {
   if (facts.length === 0) return null;
   const pt = locale === "pt-BR";
@@ -24,7 +27,11 @@ export default function KeyFacts({
     <section
       data-key-facts
       aria-labelledby="key-facts"
-      className="mt-6 rounded-2xl border border-[var(--border)] p-5 sm:p-6"
+      className={
+        attached
+          ? "rounded-b-2xl border border-t-0 border-brand-400/30 p-5 sm:p-6"
+          : "mt-6 rounded-2xl border border-[var(--border)] p-5 sm:p-6"
+      }
     >
       <h2 id="key-facts" className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
         {pt ? PT_UI.keyFacts : "Key facts"}

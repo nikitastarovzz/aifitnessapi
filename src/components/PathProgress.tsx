@@ -118,7 +118,10 @@ export default function PathProgress({ slug, steps }: { slug: string; steps: Pat
         {steps.map((step, i) => {
           const ticked = isDone(step.href);
           return (
-            <li key={step.href}>
+            <li
+              key={step.href}
+              className={i < steps.length - 1 ? `path-rail relative${ticked ? " path-rail-done" : ""}` : "relative"}
+            >
               <div
                 className={`flex gap-4 rounded-2xl border p-4 transition-colors sm:p-5 ${
                   ticked
