@@ -799,7 +799,10 @@ export default function ClusterPage({
           const { prev, next } = clusterNeighbors(basePath, entry.slug);
           if (!prev && !next) return null;
           return (
-            <nav aria-label="More in this section" className="mt-10 grid gap-3 sm:grid-cols-2">
+            // mt-3, not mt-10 (law of proximity): previous and next are
+            // more reading, the same family as "Keep reading" above, so they
+            // sit with it rather than a section's gap away.
+            <nav aria-label="More in this section" className="mt-3 grid gap-3 sm:grid-cols-2">
               {prev ? (
                 <Link
                   href={`${basePath}/${prev.slug}`}

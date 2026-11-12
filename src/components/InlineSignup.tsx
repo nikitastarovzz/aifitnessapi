@@ -18,7 +18,9 @@ import SignupForm from "./SignupForm";
  */
 export default function InlineSignup({ pitch, section }: { pitch: string; section: string }) {
   return (
-    <aside className="not-prose my-12 rounded-2xl border border-brand-400/30 bg-brand-500/5 p-6 sm:p-8">
+    // Neutral surface for the same reason as ClusterCta: the answer capsule
+    // is the only green-tinted box on the page (Von Restorff effect).
+    <aside className="not-prose my-12 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-8">
       <p className="text-base text-[var(--fg)]">{pitch}</p>
       <details id="subscribe" data-signup-inline={section} className="group/signup mt-5 scroll-mt-24">
         <summary

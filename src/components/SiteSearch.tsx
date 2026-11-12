@@ -17,6 +17,24 @@ import dynamic from "next/dynamic";
  */
 const SearchPalette = dynamic(() => import("./SearchPalette"), { ssr: false });
 
+/**
+ * Warm the palette before the tap lands (Doherty threshold): the chunk and
+ * both index tiers start downloading on the first sign of intent, a hover,
+ * a focus or a finger touching the button, so the open palette has its code
+ * and, usually, its first index already. Nothing loads for a reader who
+ * never reaches for search.
+ */
+let warmed = false;
+function warm() {
+  if (warmed) return;
+  warmed = true;
+  void import("./SearchPalette")
+    .then((m) => m.preloadSearch())
+    .catch(() => {
+      warmed = false;
+    });
+}
+
 export default function SiteSearch() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -25,12 +43,26 @@ export default function SiteSearch() {
   const [chord, setChord] = useState("/");
   const restoreTo = useRef<HTMLElement | null>(null);
 
+  // The palette's code (about 3 KB gzipped) loads when the page goes idle,
+  // so the box opens on the tap instead of after a chunk download. Code only:
+  // the index waits for intent (warm, above).
+  useEffect(() => {
+    const load = () => void import("./SearchPalette").catch(() => {});
+    if ("requestIdleCallback" in window) {
+      const id = window.requestIdleCallback(load, { timeout: 4000 });
+      return () => window.cancelIdleCallback(id);
+    }
+    const t = setTimeout(load, 2500);
+    return () => clearTimeout(t);
+  }, []);
+
   useEffect(() => {
     const mac = /mac|iphone|ipad|ipod/i.test(navigator.platform || navigator.userAgent);
     setChord(mac ? "⌘K" : "Ctrl K");
   }, []);
 
   const show = useCallback(() => {
+    warm();
     restoreTo.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     setOpen(true);
   }, []);
@@ -80,6 +112,9 @@ export default function SiteSearch() {
       <button
         type="button"
         onClick={show}
+        onPointerEnter={warm}
+        onFocus={warm}
+        onTouchStart={warm}
         aria-label="Search the site"
         className="flex min-h-[44px] min-w-[44px] items-center justify-center gap-2 rounded-md border border-[var(--border)] px-2.5 py-1.5 text-sm text-[var(--muted)] transition-colors hover:border-brand-400 hover:text-[var(--fg)]"
       >

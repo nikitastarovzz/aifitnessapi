@@ -54,7 +54,7 @@ export default function ReferenceCallout({ path }: { path: string }) {
   if (!refs) return null;
 
   return (
-    <aside data-reference-callout className="mt-12 rounded-xl border border-brand-400/30 bg-brand-500/5 p-5">
+    <aside data-reference-callout className="mt-12 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5">
       <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
         Generated reference
       </h2>

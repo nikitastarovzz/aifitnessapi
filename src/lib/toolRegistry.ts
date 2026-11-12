@@ -298,3 +298,134 @@ export const ALL_TOOLS: Tool[] = [...TOOL_LOOKUPS, ...TOOL_PLANNERS];
 export function otherLookups(path: string): Tool[] {
   return TOOL_LOOKUPS.filter((t) => t.path !== path);
 }
+
+/**
+ * The hub's groups (Miller's law, 2026-11-12).
+ *
+ * Miller (1956) put the span of immediate memory at about seven items, and
+ * the practical reading is chunking: a list is easier to scan as a few
+ * labelled groups than as one run. The hub showed 44 tools as two lists, one
+ * of them 28 long, so a reader looking for "the Bluetooth one" had to read
+ * every card. Seven groups of four to eight, each named for the job.
+ *
+ * Every tool sits in exactly one group. toolGroups() throws at build time on
+ * a tool with no group or a path listed twice, so a tool added to the
+ * registry cannot silently drop off the hub.
+ */
+const GROUPS: { id: string; title: string; blurb: string; paths: string[] }[] = [
+  {
+    id: "health-stores",
+    title: "HealthKit and Health Connect lookups",
+    blurb:
+      "Identifiers, permissions, queries, error codes, sample data and schema mapping for Apple's and Google's health stores.",
+    paths: [
+      "/tools/error-diagnoser",
+      "/tools/aggregation-checker",
+      "/tools/identifier-translator",
+      "/tools/permission-builder",
+      "/tools/query-generator",
+      "/tools/stack-generator",
+      "/tools/sample-data",
+      "/tools/schema-converter",
+    ],
+  },
+  {
+    id: "wearable-apis",
+    title: "Wearable API auth, webhooks and migrations",
+    blurb:
+      "OAuth flows, webhook signatures, rate limits, metric coverage and the Fitbit and Google Fit migrations, from each vendor's own documentation.",
+    paths: [
+      "/tools/oauth-playground",
+      "/tools/webhook-verifier",
+      "/tools/starter-scaffold",
+      "/tools/rate-limit-calculator",
+      "/tools/api-coverage-matrix",
+      "/tools/fitbit-to-google-health",
+      "/tools/deprecation-scanner",
+    ],
+  },
+  {
+    id: "choose",
+    title: "Choose and price an API",
+    blurb: "Narrow the directory to your use case, compare products side by side and see how each one bills.",
+    paths: [
+      "/picker",
+      "/quiz/which-wearable-api",
+      "/compare-apis",
+      "/cost-planner",
+      "/tools/aggregator-chooser",
+      "/market-map",
+      "/fitness-api-index",
+      "/openness-index",
+    ],
+  },
+  {
+    id: "ship",
+    title: "Plan and ship an app",
+    blurb:
+      "Build plans, store submission rules, compliance routing, your own stack's deadlines, and the vendor matrices for gym software and research platforms.",
+    paths: [
+      "/tools/build-plan",
+      "/tools/store-submission-checklist",
+      "/tools/compliance-wizard",
+      "/my-stack",
+      "/tools/gym-software-api-matrix",
+      "/tools/research-platform-chooser",
+    ],
+  },
+  {
+    id: "motion",
+    title: "Motion and pose",
+    blurb: "Keypoint maps, form-rule thresholds, exercise taxonomies, a pose model benchmark and a rep counter you can tune.",
+    paths: [
+      "/tools/keypoint-playground",
+      "/tools/exercise-form-rules",
+      "/tools/exercise-taxonomy-crosswalk",
+      "/tools/pose-benchmark",
+      "/tools/rep-counter-playground",
+    ],
+  },
+  {
+    id: "devices",
+    title: "Bluetooth and on-device data",
+    blurb:
+      "Decode your own straps, machines and sensors in the browser, and open your Apple Health export without uploading it.",
+    paths: [
+      "/tools/heart-rate-lab",
+      "/tools/ftms-lab",
+      "/tools/cycling-power-lab",
+      "/tools/ble-gatt-explorer",
+      "/tools/step-lab",
+      "/tools/apple-health-explorer",
+    ],
+  },
+  {
+    id: "search-and-play",
+    title: "Search, puzzles and demos",
+    blurb:
+      "Full-text answer search, the daily puzzle, the day-boundary bug demo and a survival game built on dated API events.",
+    paths: ["/answers-search", "/daily", "/day-boundaries", "/play/ship-it"],
+  },
+];
+
+export type ToolGroup = { id: string; title: string; blurb: string; tools: Tool[] };
+
+export function toolGroups(): ToolGroup[] {
+  const byPath = new Map(ALL_TOOLS.map((t) => [t.path, t]));
+  const seen = new Set<string>();
+  const groups = GROUPS.map((g) => ({
+    id: g.id,
+    title: g.title,
+    blurb: g.blurb,
+    tools: g.paths.map((p) => {
+      const t = byPath.get(p);
+      if (!t) throw new Error(`toolRegistry: group "${g.id}" lists ${p}, which is not a registered tool`);
+      if (seen.has(p)) throw new Error(`toolRegistry: ${p} is listed in two hub groups`);
+      seen.add(p);
+      return t;
+    }),
+  }));
+  const missing = ALL_TOOLS.filter((t) => !seen.has(t.path)).map((t) => t.path);
+  if (missing.length) throw new Error(`toolRegistry: no hub group for ${missing.join(", ")}`);
+  return groups;
+}
