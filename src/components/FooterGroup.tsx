@@ -18,10 +18,16 @@ import { useEffect, useState, type ReactNode } from "react";
  */
 export default function FooterGroup({ title, children }: { title: string; children: ReactNode }) {
   const [open, setOpen] = useState(true);
+  // On wider screens the summary is the column's heading, not a control:
+  // out of the tab order too, so Enter on it cannot fold a column.
+  const [phone, setPhone] = useState(false);
 
   useEffect(() => {
     const phone = window.matchMedia("(max-width: 767px)");
-    const sync = () => setOpen(!phone.matches);
+    const sync = () => {
+      setPhone(phone.matches);
+      setOpen(!phone.matches);
+    };
     sync();
     phone.addEventListener("change", sync);
     return () => phone.removeEventListener("change", sync);
@@ -29,7 +35,7 @@ export default function FooterGroup({ title, children }: { title: string; childr
 
   return (
     <details className="footer-group" open={open} onToggle={(e) => setOpen(e.currentTarget.open)}>
-      <summary className="flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-2 py-2 text-xs font-semibold uppercase tracking-wider text-[var(--fg)] [&::-webkit-details-marker]:hidden md:pointer-events-none md:min-h-0 md:py-0">
+      <summary tabIndex={phone ? 0 : -1} className="flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-2 py-2 text-xs font-semibold uppercase tracking-wider text-[var(--fg)] [&::-webkit-details-marker]:hidden md:pointer-events-none md:min-h-0 md:py-0">
         <span>{title}</span>
         <svg
           className="footer-group-chevron h-4 w-4 shrink-0 text-[var(--muted)] transition-transform md:hidden"
