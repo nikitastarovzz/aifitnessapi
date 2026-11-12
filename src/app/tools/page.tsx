@@ -6,7 +6,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import ClusterHero from "@/components/ClusterHero";
 import ClusterCta from "@/components/ClusterCta";
 import { HK_FETCHED_ON } from "@/data/healthkitIdentifiers";
-import { ALL_TOOLS, TOOL_LOOKUPS, TOOL_PLANNERS, type Tool } from "@/lib/toolRegistry";
+import { ALL_TOOLS, toolGroups, type Tool } from "@/lib/toolRegistry";
 import { absoluteUrl, site } from "@/lib/site";
 import { orgRef, WEBSITE_ID } from "@/lib/schema";
 
@@ -61,6 +61,7 @@ function ToolCard({ tool }: { tool: Tool }) {
 }
 
 export default function ToolsHubPage() {
+  const groups = toolGroups();
   const url = absoluteUrl(PATH);
 
   // CollectionPage + ItemList, hand-rolled rather than via hubGraph(): these
@@ -120,34 +121,32 @@ export default function ToolsHubPage() {
         </p>
 
         <section data-tool="hub" aria-label="Free developer tools">
-          <h2 className="mt-12 text-2xl font-bold tracking-tight text-[var(--fg)]">
-            Lookups and generators
-          </h2>
-          <p className="mt-2 text-sm text-[var(--muted)]">
-            Built on the HealthKit identifier dataset, the verified cross-platform matrix, the pose
-            keypoint dataset and, for webhooks, the vendors&rsquo; own signing rules.
-          </p>
-          <ul className="mt-5 grid gap-4 sm:grid-cols-2">
-            {TOOL_LOOKUPS.map((t) => (
-              <ToolCard key={t.path} tool={t} />
+          {/* Chunked by job (Miller's law; see toolGroups in lib/toolRegistry).
+              The jump row is the chunk list itself: seven names a reader can
+              hold at once, each opening its group. */}
+          <nav aria-label="Tool groups" className="mt-8 flex flex-wrap gap-2">
+            {groups.map((g) => (
+              <a
+                key={g.id}
+                href={`#${g.id}`}
+                className="inline-flex min-h-[44px] items-center rounded-full border border-[var(--border)] px-3.5 text-sm text-[var(--fg)] transition-colors hover:border-brand-400 sm:min-h-[36px]"
+              >
+                {g.title}
+                <span className="ml-1.5 text-xs text-[var(--muted)]">{g.tools.length}</span>
+              </a>
             ))}
-          </ul>
-
-          <h2 className="mt-12 text-2xl font-bold tracking-tight text-[var(--fg)]">
-            Planners and demos
-          </h2>
-          <p className="mt-2 text-sm text-[var(--muted)]">
-            Decision support for picking a stack, one demo of the bug that costs the most debugging
-            time, a pose-model benchmark that times Google&rsquo;s published models on your
-            hardware, a heart-rate lab that decodes your own strap&rsquo;s Bluetooth notifications, a
-            step lab that shows why two step counters disagree, and a daily five-question puzzle drawn
-            from the same datasets.
-          </p>
-          <ul className="mt-5 grid gap-4 sm:grid-cols-2">
-            {TOOL_PLANNERS.map((t) => (
-              <ToolCard key={t.path} tool={t} />
-            ))}
-          </ul>
+          </nav>
+          {groups.map((g) => (
+            <div key={g.id} id={g.id} className="scroll-mt-24">
+              <h2 className="mt-12 text-2xl font-bold tracking-tight text-[var(--fg)]">{g.title}</h2>
+              <p className="mt-2 text-sm text-[var(--muted)]">{g.blurb}</p>
+              <ul className="mt-5 grid gap-4 sm:grid-cols-2">
+                {g.tools.map((t) => (
+                  <ToolCard key={t.path} tool={t} />
+                ))}
+              </ul>
+            </div>
+          ))}
         </section>
 
         <section className="mt-14">

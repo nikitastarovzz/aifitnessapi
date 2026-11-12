@@ -62,10 +62,16 @@ export default function PageActions({
   const share = encodeURIComponent(url);
   const text = encodeURIComponent(title);
   const btn =
-    "inline-flex items-center gap-1.5 rounded-lg border border-[var(--border)] px-2.5 py-1.5 text-xs font-medium text-[var(--muted)] transition-colors hover:border-brand-400 hover:text-[var(--fg)]";
-
+    "inline-flex min-h-[44px] items-center gap-1.5 rounded-lg border border-[var(--border)] px-2.5 py-1.5 text-xs font-medium text-[var(--muted)] transition-colors hover:border-brand-400 hover:text-[var(--fg)] sm:min-h-[32px]";
+  // Law of proximity: two kinds of action, two groups. Taking the page
+  // somewhere (an assistant, a citation) and sending it to people used to sit
+  // in one evenly spaced row with a 1px divider that wrapped onto the end of a
+  // phone line, so "Cite this page" and "Post" read as the same family. Each
+  // group is now its own row on a phone, side by side with a wide gap from
+  // sm up, and the share row says what it is.
   return (
-    <div className="not-prose mt-6 flex flex-wrap items-center gap-2">
+    <div className="not-prose mt-6 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6">
+      <div role="group" aria-label="Use this page" className="flex flex-wrap items-center gap-2">
       {markdown && (
         <>
       <button type="button" onClick={copyMarkdown} className={btn}>
@@ -96,7 +102,9 @@ export default function PageActions({
           Cite this page
         </button>
       )}
-      <span aria-hidden className="mx-0.5 h-4 w-px bg-[var(--border)]" />
+      </div>
+      <div role="group" aria-label="Share this page" className="flex flex-wrap items-center gap-2">
+      <span className="text-xs font-medium text-[var(--muted)]">Share</span>
       <a
         className={btn}
         href={`https://x.com/intent/tweet?url=${share}&text=${text}`}
@@ -129,6 +137,7 @@ export default function PageActions({
       >
         LinkedIn
       </a>
+      </div>
 
       {!citeHref && showCite && (
         <div className="mt-2 w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4">

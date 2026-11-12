@@ -20,7 +20,11 @@ export default function ClusterCta({
 }) {
   const pt = locale === "pt-BR";
   return (
-    <aside className="not-prose my-12 rounded-2xl border border-brand-400/30 bg-brand-500/5 p-6 sm:p-8">
+    // Neutral surface, brand button (Von Restorff effect, 2026-11-12): the
+    // answer capsule is the one green-tinted box on a spoke, so the thing a
+    // reader came for is the thing that stands out, and a promo is never
+    // mistaken for the answer. The button keeps the brand fill.
+    <aside className="not-prose my-12 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-8">
       <p className="text-base text-[var(--fg)]">{pitch}</p>
       <div className="mt-5 flex flex-wrap items-center gap-3">
         <CtaLink

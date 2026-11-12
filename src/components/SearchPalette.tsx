@@ -115,17 +115,65 @@ function strictScore(rec: Rec, raw: string[], lower: string[], spelled: string[]
 const FUZZY_CUTOFF = 0.35;
 const FUZZY_MAX = 6;
 
-/** The index, fetched once per page load and kept across opens — the
- *  palette unmounts when it closes, the module (and this) does not. */
-let cachedIndex: Rec[] | null = null;
-let pendingIndex: Promise<Rec[]> | null = null;
-function loadIndex(): Promise<Rec[]> {
-  if (cachedIndex) return Promise.resolve(cachedIndex);
-  pendingIndex ??= fetch("/search-index.json")
-    .then((r) => r.json())
-    .then((d: Rec[]) => (cachedIndex = d))
-    .catch(() => (cachedIndex = []));
-  return pendingIndex;
+/**
+ * The index, in two tiers, fetched once per page load and kept across opens
+ * (the palette unmounts when it closes, the module does not).
+ *
+ * Doherty threshold: the full index is about 1 MB (262 KB gzipped), so on a
+ * phone the first answer used to wait well over a second for it. The page
+ * records alone (/search-index-pages.json, about a third of the size) arrive
+ * first and answer title matches; the full index, FAQ answers included,
+ * replaces them when it lands. Both requests start together, the moment a
+ * reader shows intent (preloadSearch, called by SiteSearch on hover, focus
+ * or touch), not when the palette has already opened.
+ */
+let pagesIndex: Rec[] | null = null;
+let fullIndex: Rec[] | null = null;
+let pendingPages: Promise<Rec[]> | null = null;
+let pendingFull: Promise<Rec[]> | null = null;
+const listeners = new Set<() => void>();
+const notify = () => listeners.forEach((f) => f());
+
+function fetchIndex(url: string): Promise<Rec[]> {
+  return fetch(url)
+    .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
+    .then((d: Rec[]) => d);
+}
+
+/**
+ * Start the downloads (idempotent; safe before the palette mounts). In
+ * sequence, not in parallel: on a slow link the full index would otherwise
+ * share the bandwidth with the small one and delay the first answer, which
+ * is the whole point of the small one.
+ */
+export function preloadSearch(): void {
+  pendingPages ??= fetchIndex("/search-index-pages.json")
+    .then((d) => {
+      pagesIndex = d;
+      notify();
+      return d;
+    })
+    .catch(() => (pagesIndex = []));
+  pendingFull ??= pendingPages
+    .then(() => fetchIndex("/search-index.json"))
+    .then((d) => {
+      fullIndex = d;
+      notify();
+      return d;
+    })
+    .catch(() => {
+      // The page tier still answers; an empty full tier must not hide it.
+      fullIndex = pagesIndex ?? [];
+      notify();
+      return fullIndex;
+    });
+}
+
+/** The best index available right now, and whether answers are still coming. */
+function currentIndex(): { index: Rec[] | null; partial: boolean } {
+  if (fullIndex) return { index: fullIndex, partial: false };
+  if (pagesIndex) return { index: pagesIndex, partial: true };
+  return { index: null, partial: true };
 }
 
 /**
@@ -143,19 +191,22 @@ export default function SearchPalette({
 }) {
   const [q, setQ] = useState("");
   const [sel, setSel] = useState(0);
-  const [index, setIndex] = useState<Rec[] | null>(cachedIndex);
+  const [{ index, partial }, setTier] = useState(currentIndex);
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
-    let live = true;
-    loadIndex().then((d) => {
-      if (live) setIndex(d);
-    });
-    const t = setTimeout(() => inputRef.current?.focus(), 30);
+    const update = () => setTier(currentIndex());
+    listeners.add(update);
+    preloadSearch();
+    update();
+    // Focus on the next frame, not after a fixed delay: the input exists as
+    // soon as this effect runs, and every millisecond here is before the
+    // reader can type.
+    const raf = requestAnimationFrame(() => inputRef.current?.focus());
     return () => {
-      live = false;
-      clearTimeout(t);
+      listeners.delete(update);
+      cancelAnimationFrame(raf);
     };
   }, []);
 
@@ -195,13 +246,13 @@ export default function SearchPalette({
   // A query that matches nothing is a content request; log the words.
   const missed = useRef<string>("");
   useEffect(() => {
-    if (!index || raw.length === 0 || results.length > 0 || missed.current === q) return;
+    if (!index || partial || raw.length === 0 || results.length > 0 || missed.current === q) return;
     const t = setTimeout(() => {
       missed.current = q;
       reportMiss(q);
     }, 1400);
     return () => clearTimeout(t);
-  }, [index, raw.length, results.length, q]);
+  }, [index, partial, raw.length, results.length, q]);
 
   const go = onNavigate;
   const optionId = (i: number) => `site-search-option-${i}`;
@@ -261,7 +312,19 @@ export default function SearchPalette({
           aria-label="Search results"
           className="max-h-[50vh] overflow-y-auto p-2"
         >
-          {q && index && results.length === 0 && (
+          {/* Feedback inside the threshold even before any index has
+              landed: the reader always sees that the box heard them. */}
+          {q && !index && (
+            <li role="status" className="px-3 py-6 text-center text-sm text-[var(--muted)]">
+              Loading the search index…
+            </li>
+          )}
+          {q && index && results.length === 0 && partial && (
+            <li role="status" className="px-3 py-6 text-center text-sm text-[var(--muted)]">
+              No page title matches yet. Searching the answers too…
+            </li>
+          )}
+          {q && index && results.length === 0 && !partial && (
             <li className="px-3 py-6 text-center text-sm text-[var(--muted)]">
               Nothing matches — try fewer words, or browse the{" "}
               <a href="/site-index" className="underline">site index</a>.

@@ -17,6 +17,17 @@ export default function PageToc({ headings }: { headings: Heading[] }) {
   const [progress, setProgress] = useState(0);
   const [active, setActive] = useState<string>("");
   const ticking = useRef(false);
+  // The phone contents control (minimize target distance, 2026-11-12). Below
+  // xl the section list had no place on screen, so on a 17,000px spoke the
+  // only way to another section was a long scroll back to the top. A button
+  // in the thumb zone, bottom right, opens the same list as a bottom sheet:
+  // the target sits where the thumb already is, and every section is one tap
+  // from anywhere on the page. It appears once the reader has scrolled past
+  // the opening screen, where the top of the page is still in reach.
+  const [sheet, setSheet] = useState(false);
+  const [showButton, setShowButton] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const sheetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -26,6 +37,7 @@ export default function PageToc({ headings }: { headings: Heading[] }) {
         ticking.current = false;
         const max = document.documentElement.scrollHeight - window.innerHeight;
         setProgress(max > 0 ? Math.min(1, window.scrollY / max) : 0);
+        setShowButton(window.scrollY > window.innerHeight * 0.75);
       });
     };
     onScroll();
@@ -55,6 +67,21 @@ export default function PageToc({ headings }: { headings: Heading[] }) {
     for (const el of els) io.observe(el);
     return () => io.disconnect();
   }, [headings]);
+
+  useEffect(() => {
+    if (!sheet) return;
+    sheetRef.current?.querySelector<HTMLElement>("a, button")?.focus({ preventScroll: true });
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeSheet();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [sheet]);
+
+  function closeSheet(returnFocus = true) {
+    setSheet(false);
+    if (returnFocus) buttonRef.current?.focus({ preventScroll: true });
+  }
 
   return (
     <>
@@ -91,6 +118,78 @@ export default function PageToc({ headings }: { headings: Heading[] }) {
             ))}
           </ul>
         </nav>
+      )}
+      {headings.length >= 3 && (
+        <>
+          <button
+            ref={buttonRef}
+            type="button"
+            onClick={() => setSheet(true)}
+            aria-expanded={sheet}
+            aria-controls="page-contents-sheet"
+            aria-hidden={!showButton}
+            tabIndex={showButton ? 0 : -1}
+            className={`fixed right-4 z-50 inline-flex min-h-[48px] items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--bg)] px-4 text-sm font-medium text-[var(--fg)] shadow-lg transition-[opacity,transform] duration-200 xl:hidden ${
+              showButton ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-2 opacity-0"
+            }`}
+            style={{ bottom: "max(1rem, env(safe-area-inset-bottom))" }}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden>
+              <path d="M4 6h16M4 12h10M4 18h13" />
+            </svg>
+            Contents
+          </button>
+          {sheet && (
+            <div className="fixed inset-0 z-[80] xl:hidden" role="dialog" aria-modal="true" aria-label="Contents">
+              <div className="absolute inset-0 bg-black/30" onClick={() => closeSheet()} aria-hidden />
+              <div
+                ref={sheetRef}
+                id="page-contents-sheet"
+                className="absolute inset-x-0 bottom-0 max-h-[75vh] overflow-y-auto rounded-t-2xl border-t border-[var(--border)] bg-[var(--bg)] px-4 pt-3 shadow-2xl"
+                style={{ paddingBottom: "max(1rem, env(safe-area-inset-bottom))" }}
+              >
+                <div className="flex items-center justify-between">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">On this page</p>
+                  <button
+                    type="button"
+                    onClick={() => closeSheet()}
+                    aria-label="Close contents"
+                    className="grid h-11 w-11 place-items-center rounded-md text-[var(--muted)] hover:text-[var(--fg)]"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden>
+                      <path d="M5 5l14 14M19 5L5 19" />
+                    </svg>
+                  </button>
+                </div>
+                <ul className="mt-1">
+                  {headings.map((h) => (
+                    <li key={h.id}>
+                      <a
+                        href={`#${h.id}`}
+                        onClick={() => closeSheet(false)}
+                        className={`flex min-h-[44px] items-center rounded-lg py-2 text-sm leading-snug ${
+                          h.depth === 3 ? "pl-6 pr-2" : "px-2"
+                        } ${active === h.id ? "bg-brand-500/10 font-medium text-brand-700 dark:text-brand-300" : "text-[var(--fg)]"}`}
+                      >
+                        {h.text}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                <button
+                  type="button"
+                  onClick={() => {
+                    closeSheet(false);
+                    window.scrollTo({ top: 0 });
+                  }}
+                  className="mt-2 flex min-h-[44px] w-full items-center justify-center rounded-lg border border-[var(--border)] text-sm text-[var(--muted)] hover:text-[var(--fg)]"
+                >
+                  Back to top
+                </button>
+              </div>
+            </div>
+          )}
+        </>
       )}
     </>
   );

@@ -9,41 +9,55 @@ import { clusterMap } from "@/lib/clusterRegistry";
 // document 20px wider than a 768px iPad in portrait, which is the exact
 // regression scripts/responsive-audit.mjs exists to catch. /tools is reached
 // from the phone menu and the footer instead.
+// Serial position effect (Ebbinghaus): the first and last items in a row
+// are the ones remembered. Ordered on Search Console clicks, 2026-08-13 to
+// 2026-11-10: the category hub first, the deadline tracker that is this
+// site's reason to return last, and Pricing (the section with the most search
+// clicks, 91 of 607) in the row. Cookbook (no search clicks in that window)
+// moves to the phone menu's Reference group and the footer.
 const nav = [
   { href: "/fitness-apis", label: "Fitness APIs" },
+  { href: "/pricing", label: "Pricing" },
   { href: "/picker", label: "API Picker" },
-  { href: "/cookbook", label: "Cookbook" },
   { href: "/changes", label: "Changes" },
 ];
 
-// The phone menu. Seven rows a first visit asks for, then the thirteen topic
-// guides folded under one disclosure (Hick's law: the menu used to open on
-// twenty-one flat rows, and a reader scanned all of them to find the one they
-// wanted), then the full index. Grouped rows render inside a <details> in
-// MobileNav; they are still in the served HTML.
-const GUIDES = "Guides by topic";
+// The phone menu (UX laws, 2026-11-11 and 2026-11-12).
+//
+// Hick's law: it opens on nine rows, not twenty-one. Miller's law: the guides
+// are two named chunks of seven and eight instead of one fold of thirteen.
+// Serial position effect: the first rows are the sections people come to this
+// site for, by Search Console clicks over 90 days to 2026-11-10 (Pricing 91,
+// Alternatives 71, Fitness APIs 40 of 607), and the last row is the deadline
+// tracker. Grouped rows render inside a <details> in MobileNav. Clusters with
+// no search clicks in that window (market map, accessibility, audio coaching,
+// own-your-data) stay one tap away in the footer; the panel only renders
+// while open, so the menu carries no crawl weight either way.
+const GUIDES = "Guides";
+const REFERENCE = "Reference";
 const MOBILE_LINKS = [
   { href: "/fitness-apis", label: "Fitness APIs" },
-  { href: "/apis", label: "API directory" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/alternatives", label: "Alternatives" },
   { href: "/picker", label: "API Picker" },
   { href: "/tools", label: "Free tools" },
-  { href: "/cookbook", label: "Cookbook" },
-  { href: "/changes", label: "Changes & deadlines" },
-  { href: "/blog", label: "Blog" },
   { href: "/integrate", label: "Integration guides", group: GUIDES },
+  { href: "/fix", label: "Troubleshooting", group: GUIDES },
+  { href: "/compare", label: "Comparisons", group: GUIDES },
+  { href: "/motion", label: "AI motion tracking", group: GUIDES },
   { href: "/devices", label: "Connected devices", group: GUIDES },
-  { href: "/engagement", label: "Engagement", group: GUIDES },
   { href: "/watch-apps", label: "Watch apps", group: GUIDES },
-  { href: "/accessibility", label: "Accessibility", group: GUIDES },
-  { href: "/audio-coaching", label: "Audio coaching", group: GUIDES },
-  { href: "/healthkit-queries", label: "HealthKit queries", group: GUIDES },
-  { href: "/phone-sensors", label: "Phone sensors", group: GUIDES },
-  { href: "/health-connect-api", label: "Health Connect API", group: GUIDES },
-  { href: "/health-connect", label: "Health Connect records", group: GUIDES },
-  { href: "/libraries", label: "Open-source libraries", group: GUIDES },
-  { href: "/own-your-data", label: "Export your own data", group: GUIDES },
-  { href: "/market-map", label: "API market map", group: GUIDES },
-  { href: "/site-index", label: "All topics" },
+  { href: "/engagement", label: "Engagement", group: GUIDES },
+  { href: "/apis", label: "API directory", group: REFERENCE },
+  { href: "/health-connect", label: "Health Connect records", group: REFERENCE },
+  { href: "/health-connect-api", label: "Health Connect API", group: REFERENCE },
+  { href: "/healthkit-queries", label: "HealthKit queries", group: REFERENCE },
+  { href: "/phone-sensors", label: "Phone sensors", group: REFERENCE },
+  { href: "/libraries", label: "Open-source libraries", group: REFERENCE },
+  { href: "/cookbook", label: "Cookbook", group: REFERENCE },
+  { href: "/site-index", label: "All topics", group: REFERENCE },
+  { href: "/blog", label: "Blog" },
+  { href: "/changes", label: "Changes & deadlines" },
 ];
 
 export default function Header() {
