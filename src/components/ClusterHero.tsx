@@ -53,11 +53,18 @@ export default function ClusterHero({
   }
 
   return (
-    <div className="relative mb-8 overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)]">
+    // Law of Prägnanz (Wertheimer): people read a complex figure as the
+    // simplest form it allows, and process simple forms faster. On a phone
+    // this banner was a 100px box of jittered nodes and moving "packets"
+    // above every H1, saying no more than its label. Below sm it is now just
+    // the label, the one shape that carries meaning, and the answer starts
+    // about 70px higher on every page that uses it. From sm up, where the
+    // banner is a band beside wide margins, it is unchanged.
+    <div className="relative mb-5 sm:mb-8 sm:overflow-hidden sm:rounded-2xl sm:border sm:border-[var(--border)] sm:bg-[var(--surface)]">
       {/* Brand gradient wash */}
       <div
         aria-hidden
-        className="absolute inset-0"
+        className="absolute inset-0 hidden sm:block"
         style={{
           background:
             "radial-gradient(120% 130% at 12% 0%, rgba(16,185,129,0.22), transparent 58%), radial-gradient(120% 130% at 95% 110%, rgba(52,211,153,0.12), transparent 55%)",
@@ -68,7 +75,7 @@ export default function ClusterHero({
         aria-hidden
         viewBox="0 0 320 90"
         preserveAspectRatio="xMidYMid slice"
-        className="absolute inset-0 h-full w-full text-brand-500"
+        className="absolute inset-0 hidden h-full w-full text-brand-500 sm:block"
       >
         <g stroke="currentColor" strokeOpacity="0.22" strokeWidth="0.5">
           {edges.map(([a, b], i) => (
@@ -104,7 +111,7 @@ export default function ClusterHero({
         </g>
       </svg>
 
-      <div className="relative px-6 py-9 sm:px-9 sm:py-12">
+      <div className="relative sm:px-9 sm:py-12">
         <span className="inline-flex items-center rounded-full border border-brand-400/40 bg-brand-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700 dark:text-brand-300">
           {label}
         </span>

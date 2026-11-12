@@ -41,6 +41,8 @@ import readingTime from "reading-time";
 import type { ClusterEntry, ClusterConfig } from "@/lib/cluster";
 import type { ReactNode } from "react";
 import DecisionKitCta from "@/components/DecisionKitCta";
+import PathResume, { type PathHere } from "@/components/PathResume";
+import { READING_PATHS } from "@/data/readingPaths";
 
 /** Sections whose pages carry the decision-kit block (ops/MORE-30-2026-11-05.md item 29). */
 const KIT_SECTIONS = new Set(["/pricing", "/alternatives"]);
@@ -415,6 +417,14 @@ export default function ClusterPage({
   // A translation shows the English page's, which its sources list is — and
   // a stale translation has no sources list, so it shows none.
   const facts = keyFacts(tr ? tr.enPath : path, entry);
+  // The reading paths this page is a step of (usually none), cut down to what
+  // PathResume shows, so the client island carries a few labels, not the
+  // whole path catalogue.
+  const pathsHere: PathHere[] = READING_PATHS.filter((p) => p.steps.some((st) => st.href === path)).map((p) => ({
+    slug: p.slug,
+    title: p.title,
+    steps: p.steps.map((st) => ({ href: st.href, label: st.label })),
+  }));
 
   // TechArticle + WebPage graph (review metadata, glossary `about` links,
   // citations, markdown encoding). Built centrally so every spoke agrees.
@@ -645,12 +655,17 @@ export default function ClusterPage({
         {/* Answer-first capsule — the block voice assistants read and LLMs quote. */}
         <div
           id={capsuleId}
-          className="speakable mt-6 rounded-2xl border border-brand-400/30 bg-brand-500/5 p-5 text-lg leading-relaxed text-[var(--fg)] sm:p-6"
+          className={`speakable mt-6 border border-brand-400/30 bg-brand-500/5 p-5 text-lg leading-relaxed text-[var(--fg)] sm:p-6 ${
+            facts.length > 0 ? "rounded-t-2xl" : "rounded-2xl"
+          }`}
         >
           {entry.answer}
         </div>
 
-        <KeyFacts facts={facts} locale={tr ? "pt-BR" : undefined} />
+        {/* Uniform connectedness: the key facts are the answer's evidence, so
+            they hang from the capsule as one bordered card rather than a
+            second box a margin away. */}
+        <KeyFacts facts={facts} locale={tr ? "pt-BR" : undefined} attached />
 
         {/* Mechanism diagram, on architecture spokes only. Renders nothing for
             a slug with no hand-authored drawing. */}
@@ -866,8 +881,11 @@ export default function ClusterPage({
           </section>
         )}
 
-        {!tr && <NextSteps />}
-
+        {/* Peak-end rule (Kahneman et al., 1993): a reading is remembered by
+            its best moment and its last one. The page used to end on a
+            700px citation form; it now ends on where to go next. The
+            utilities (was it useful, cite it) come first, then the reading
+            path this page belongs to, then the three next steps. */}
         {!tr && <Feedback path={path} title={entry.h1} repo={site.social.github || undefined} />}
 
         <CiteBox
@@ -877,6 +895,10 @@ export default function ClusterPage({
           verified={entry.updated}
           locale={tr ? "pt-BR" : undefined}
         />
+
+        {!tr && <PathResume current={path} paths={pathsHere} />}
+
+        {!tr && <NextSteps />}
 
         <ClusterDisclaimer
           updated={entry.updated}

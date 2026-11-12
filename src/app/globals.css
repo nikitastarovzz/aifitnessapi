@@ -194,6 +194,23 @@ table {
   contain-intrinsic-size: auto 600px;
 }
 
+/* Law of similarity, and WCAG 1.4.1 (use of colour): a link inside a
+   sentence has to look different from the sentence by more than its colour.
+   An audit of fourteen templates on 2026-11-12 found about seventy such links
+   outside the article prose (which the typography plugin already underlines)
+   at 1.28:1 against their sentence, and the footer's funding link at 1:1.
+   Underlined here, with a quiet decoration so a paragraph of them does not
+   shout. Button-shaped and block links (rounded, flex, block, grid in the
+   class) are controls, not words in a sentence, and are left alone. */
+:where(p, td, dd, figcaption, aside) > a:not(.heading-anchor):not([class*="rounded"]):not([class*="flex"]):not([class*="block"]):not([class*="grid"]):not([class*="no-underline"]) {
+  text-decoration-line: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+  text-underline-offset: 3px;
+}
+:where(p, td, dd, figcaption, aside) > a:not(.heading-anchor):not([class*="rounded"]):not([class*="flex"]):not([class*="block"]):not([class*="grid"]):not([class*="no-underline"]):hover {
+  text-decoration-color: currentColor;
+}
+
 /* Heading anchors (rehype-autolink-headings, behavior: "append"). A visible
    handle on hover/focus that a reader can copy; invisible otherwise so the
    headings still read as headings. */
@@ -209,6 +226,19 @@ h2:hover > .heading-anchor,
 h3:hover > .heading-anchor,
 h4:hover > .heading-anchor {
   opacity: 1;
+}
+/* Tesler's law: getting a link to one section was the reader's job, and on a
+   touch screen the handle above never appeared (hover only). It now shows,
+   quietly, wherever there is no hover, with a padded tap area; a tap copies
+   the section's full URL (HeadingLinkCopy in the root layout). */
+.heading-anchor {
+  padding: 0.15em 0.3em;
+  border-radius: 0.375rem;
+}
+@media (hover: none) {
+  .heading-anchor {
+    opacity: 0.45;
+  }
 }
 
 /* Kill switch: users who ask for less motion get none (WCAG 2.3.3). */
@@ -313,4 +343,26 @@ h4:hover > .heading-anchor {
 .nav-group[open] > summary .nav-group-chevron,
 .footer-group[open] > summary .footer-group-chevron {
   transform: rotate(180deg);
+}
+
+/* Uniform connectedness: the steps of a reading path are one sequence, so a
+   line joins their markers (PathProgress). */
+.path-rail::after {
+  content: "";
+  position: absolute;
+  left: calc(1rem + 0.875rem - 0.5px);
+  top: calc(1rem + 0.125rem + 1.75rem);
+  bottom: calc(-0.75rem - 1rem - 0.125rem);
+  width: 1px;
+  background: var(--border);
+}
+@media (min-width: 640px) {
+  .path-rail::after {
+    left: calc(1.25rem + 0.875rem - 0.5px);
+    top: calc(1.25rem + 0.125rem + 1.75rem);
+    bottom: calc(-0.75rem - 1.25rem - 0.125rem);
+  }
+}
+.path-rail.path-rail-done::after {
+  background: rgb(52 211 153 / 0.6);
 }

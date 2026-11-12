@@ -47,7 +47,7 @@ export default function Feedback({
     <section className="defer-paint not-prose mt-12 rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-5 py-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="text-sm text-[var(--fg)]">
-          {vote === null ? "Was this page useful?" : "Thanks — noted."}
+          {vote === null ? "Was this page useful?" : vote === "up" ? "Thanks — glad it helped." : "Thanks — noted."}
         </p>
         <div className="flex flex-wrap items-center gap-2">
           {vote === null ? (
@@ -99,9 +99,32 @@ export default function Feedback({
           </button>
         </form>
       )}
-      {sentNote && (
+      {/* Peak-end rule: a reader who says the page did not help is having
+          the visit's worst moment, and people remember the bad ones best.
+          The widget used to end it with a sentence; it now ends it with a
+          way forward: search for what they were after, and the promise
+          linked to the page that keeps it. */}
+      {vote === "down" && (
         <p className="mt-2 text-xs text-[var(--muted)]">
-          Sent. If it needs a fix, it gets one — see how we verify.
+          {sentNote ? "Sent. If it needs a fix, it gets one: " : "Not what you needed? "}
+          {sentNote ? (
+            <a href="/methodology" className="text-brand-600 hover:text-brand-500">
+              how we verify
+            </a>
+          ) : (
+            <a href="/search" className="text-brand-600 hover:text-brand-500">
+              search every page and answer
+            </a>
+          )}
+          {sentNote && note.trim() ? (
+            <>
+              {". "}
+              <a href={`/search?q=${encodeURIComponent(note.trim().slice(0, 80))}`} className="text-brand-600 hover:text-brand-500">
+                Search for it now
+              </a>
+            </>
+          ) : null}
+          .
         </p>
       )}
     </section>

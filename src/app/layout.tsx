@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { site, absoluteUrl } from "@/lib/site";
+import HeadingLinkCopy from "@/components/HeadingLinkCopy";
 import SiteInstrumentation from "@/components/SiteInstrumentation";
 import HtmlRoot from "@/components/HtmlRoot";
 import { organizationNode, searchActionNode, ORG_ID, WEBSITE_ID } from "@/lib/schema";
@@ -170,6 +171,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <SiteInstrumentation />
+        <HeadingLinkCopy />
       </body>
     </HtmlRoot>
   );
