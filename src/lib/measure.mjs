@@ -1,6 +1,6 @@
 /**
- * Measurement helpers: where a visit came from, and the tagged link to the
- * site's funder.
+ * Measurement helpers: where a visit came from, the tagged link to the
+ * site's funder, and the picker answer that later clicks carry.
  *
  * One module, imported by the client tracker (src/components/CtaTracker.tsx),
  * the components that link to kinestex.com, and scripts/measure.test.mjs, so
@@ -182,4 +182,66 @@ export function funderHref(placement, pagePath, target = "/") {
 export function isFunderUrl(href) {
   const u = parseUrl(href);
   return !!u && (u.host === "kinestex.com" || u.host.endsWith(".kinestex.com"));
+}
+
+// ── The picker answer on later clicks ─────────────────────────────────────
+
+/**
+ * sessionStorage key for the last picker answer this browser session reached
+ * (on /picker or a shared /s?t=picker link). cta_click and funder_click carry
+ * it as `picker`, so a funder or CTA click can be traced to the
+ * recommendation that preceded it. Same storage, same lifetime as the
+ * `aifa_landed` flag: gone when the tab closes.
+ */
+export const PICKER_KEY = "aifa_picker";
+
+/** One option value: lower-case words joined by hyphens, as picker.ts uses. */
+const PICKER_PART = /^[a-z]+(-[a-z]+)*$/;
+const PICKER_PART_MAX = 24;
+
+/**
+ * The answer id for a picker result: `<job>.<platform>.<priority>`, e.g.
+ * `ai-motion.ios.ship-fast`. The three values are the picker's own option
+ * values (src/lib/picker.ts), never text a reader typed; anything that is not
+ * a short hyphenated slug returns null, so nothing free-text can become an id.
+ *
+ * @param {string | null | undefined} job
+ * @param {string | null | undefined} platform
+ * @param {string | null | undefined} priority
+ * @returns {string | null}
+ */
+export function pickerAnswerId(job, platform, priority) {
+  const parts = [job, platform, priority];
+  if (!parts.every((p) => typeof p === "string" && p.length <= PICKER_PART_MAX && PICKER_PART.test(p))) return null;
+  return parts.join(".");
+}
+
+/**
+ * A stored value read back as an answer id, or null. The stored string is
+ * re-checked rather than trusted, so a hand-edited or stale value never
+ * reaches an event.
+ *
+ * @param {unknown} raw
+ * @returns {string | null}
+ */
+export function parsePickerId(raw) {
+  if (typeof raw !== "string") return null;
+  const parts = raw.split(".");
+  return parts.length === 3 ? pickerAnswerId(parts[0], parts[1], parts[2]) : null;
+}
+
+/**
+ * Event properties with `picker` added when `raw` is a valid answer id, and
+ * returned unchanged (a copy) otherwise: no answer, no property, never an
+ * empty one. An existing `picker` property is not overwritten.
+ *
+ * @template {Record<string, string>} T
+ * @param {T} props
+ * @param {unknown} raw the value stored under PICKER_KEY
+ * @returns {T & { picker?: string }}
+ */
+export function withPicker(props, raw) {
+  const id = parsePickerId(raw);
+  if (!id || "picker" in props) return { ...props };
+  return { ...props, picker: id };
 }

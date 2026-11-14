@@ -3,6 +3,7 @@ import Link from "next/link";
 import Container from "@/components/Container";
 import { absoluteUrl, site } from "@/lib/site";
 import { shareAnswer } from "@/lib/picker";
+import PickerSeen from "@/components/PickerSeen";
 
 /**
  * The share target for a tool result.
@@ -102,6 +103,7 @@ export default async function SharePage({ searchParams }: { searchParams: SP }) 
   return (
     <Container className="py-14">
       <div className="mx-auto max-w-2xl">
+        <PickerSeen job={one(sp.j)} platform={one(sp.p)} priority={one(sp.pr)} />
         <p className="text-xs font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-300">
           Shared from the API picker
         </p>

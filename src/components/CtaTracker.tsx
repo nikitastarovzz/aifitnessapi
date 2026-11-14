@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { track, trackEvent, markHandled } from "@/lib/track";
+import { track, trackEvent, markHandled, withPickerProp } from "@/lib/track";
 import { classifySource, isFunderUrl } from "@/lib/measure.mjs";
 
 const LANDED = "aifa_landed";
@@ -34,7 +34,8 @@ function sendLanding() {
  * Delegated backstop: catches clicks on ANY element carrying a data-cta
  * attribute, even ones that didn't go through <CtaLink>, and every link to
  * the funder's site (funder_click, with the data-funder placement or
- * "citation" for a source link). Mounted once in the root layout, outside
+ * "citation" for a source link). Both carry `picker`, the last picker
+ * answer this session reached, when there is one (src/lib/track.ts). Mounted once in the root layout, outside
  * /embed. Runs in the bubble phase so <CtaLink>'s own onClick (which marks
  * the event handled) fires first — markHandled() then dedupes, so any given
  * click is counted exactly once.
@@ -47,10 +48,13 @@ export default function CtaTracker() {
       const funder = target?.closest("a[href]") as HTMLAnchorElement | null;
       if (funder && isFunderUrl(funder.href)) {
         if (!markHandled(e)) return;
-        trackEvent("funder_click", {
-          placement: funder.getAttribute("data-funder") ?? "citation",
-          page: window.location.pathname,
-        });
+        trackEvent(
+          "funder_click",
+          withPickerProp({
+            placement: funder.getAttribute("data-funder") ?? "citation",
+            page: window.location.pathname,
+          }),
+        );
         return;
       }
       const el = target?.closest("[data-cta]");

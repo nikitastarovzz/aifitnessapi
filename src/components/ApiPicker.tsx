@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { track } from "@/lib/track";
 import ShareRow from "@/components/ShareRow";
+import PickerSeen from "@/components/PickerSeen";
 import { site } from "@/lib/site";
 import {
   recommend,
@@ -76,9 +77,10 @@ export default function ApiPicker() {
     setPriority(null);
   }
 
-  if (result) {
+  if (result && job && platform && priority) {
     return (
       <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-8">
+        <PickerSeen job={job} platform={platform} priority={priority} />
         <p className="text-xs font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-300">
           Our suggestion
         </p>

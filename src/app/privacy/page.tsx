@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Container from "@/components/Container";
 import { site } from "@/lib/site";
 
-const UPDATED = "2026-11-04";
+const UPDATED = "2026-11-14";
 
 const TITLE = "Privacy";
 const DESCRIPTION =
@@ -90,6 +91,16 @@ export default function PrivacyPage() {
           <li>
             <strong>Which calls-to-action get clicked</strong>: an identifier
             for the button or link, where on the page it sits, and the page.
+          </li>
+          <li>
+            <strong>Which API picker answer came before a click.</strong> If
+            you get a recommendation from the <Link href="/picker">API picker</Link>,
+            or open a link to one, the three choices behind it (for example &ldquo;ai-motion&rdquo;,
+            &ldquo;ios&rdquo; and &ldquo;ship-fast&rdquo;) are kept in your
+            browser&rsquo;s session storage and added to the two kinds of click
+            above for the rest of that session. Only the picker&rsquo;s own
+            fixed options are kept, never anything you type, and they are gone
+            when you close the tab.
           </li>
           <li>
             <strong>Clicks on links to KinesteX</strong>, the company that
