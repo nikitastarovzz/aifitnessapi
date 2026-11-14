@@ -65,7 +65,7 @@ export const entries: ClusterEntry[] =
       },
       {
         "href": "/fitness-apis",
-        "label": "All fitness & workout APIs"
+        "label": "All APIs by job"
       }
     ],
     "cta": {
@@ -218,7 +218,7 @@ export const entries: ClusterEntry[] =
       },
       {
         "href": "/fitness-apis",
-        "label": "All fitness & workout APIs"
+        "label": "All APIs by job"
       }
     ],
     "cta": {
@@ -399,7 +399,7 @@ export const entries: ClusterEntry[] =
       },
       {
         "href": "/fitness-apis",
-        "label": "All fitness & workout APIs"
+        "label": "All APIs by job"
       }
     ],
     "cta": {
@@ -460,7 +460,7 @@ export const entries: ClusterEntry[] =
       },
       {
         "href": "/fitness-apis",
-        "label": "All fitness & workout APIs"
+        "label": "All APIs by job"
       }
     ],
     "cta": {
@@ -794,7 +794,7 @@ export const entries: ClusterEntry[] =
       },
       {
         "href": "/fitness-apis",
-        "label": "All fitness & workout APIs"
+        "label": "All APIs by job"
       }
     ],
     "cta": {
@@ -961,7 +961,7 @@ export const entries: ClusterEntry[] =
       },
       {
         "href": "/fitness-apis",
-        "label": "All fitness & workout APIs"
+        "label": "All APIs by job"
       }
     ],
     "cta": {
@@ -1010,7 +1010,7 @@ export const entries: ClusterEntry[] =
       },
       {
         "href": "/fitness-apis",
-        "label": "All fitness & workout APIs"
+        "label": "All APIs by job"
       }
     ],
     "cta": {
@@ -1067,7 +1067,7 @@ export const entries: ClusterEntry[] =
       },
       {
         "href": "/fitness-apis",
-        "label": "All fitness & workout APIs"
+        "label": "All APIs by job"
       }
     ],
     "cta": {
@@ -1221,7 +1221,7 @@ export const entries: ClusterEntry[] =
       },
       {
         "href": "/fitness-apis",
-        "label": "All fitness & workout APIs"
+        "label": "All APIs by job"
       }
     ],
     "cta": {
@@ -1337,7 +1337,7 @@ export const entries: ClusterEntry[] =
       },
       {
         "href": "/fitness-apis",
-        "label": "All fitness & workout APIs"
+        "label": "All APIs by job"
       }
     ],
     "cta": {
@@ -1386,7 +1386,7 @@ export const entries: ClusterEntry[] =
       },
       {
         "href": "/fitness-apis",
-        "label": "All fitness & workout APIs"
+        "label": "All APIs by job"
       }
     ],
     "cta": {
@@ -1447,7 +1447,7 @@ export const entries: ClusterEntry[] =
       },
       {
         "href": "/fitness-apis",
-        "label": "All fitness & workout APIs"
+        "label": "All APIs by job"
       }
     ],
     "cta": {
@@ -2031,7 +2031,7 @@ export const entries: ClusterEntry[] =
       },
       {
         "href": "/fitness-apis",
-        "label": "All fitness & workout APIs"
+        "label": "All APIs by job"
       }
     ],
     "cta": {

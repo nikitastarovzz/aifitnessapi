@@ -1,8 +1,8 @@
 ---
 path: "/fitness-apis/wearable-data-apis"
-translatedOn: "2026-11-02"
+translatedOn: "2026-11-14"
 sourceUpdated: "2026-07-08"
-sourceHash: "cd96cdacc50a32eb"
+sourceHash: "4c29388fc770396f"
 metaTitle: "As melhores APIs de wearables: Fitbit, Garmin, Oura e mais"
 metaDescription: >-
   Compare as melhores APIs de wearables de fitness em 2026 — Fitbit, Garmin, Oura, WHOOP e Polar — em dados, aprovação e preço para escolher a certa.
@@ -33,7 +33,7 @@ related:
   - href: "/fitness-apis/fitbit-api-vs-garmin-api"
     label: "API da Fitbit vs API da Garmin"
   - href: "/fitness-apis"
-    label: "Todas as APIs de fitness e treino"
+    label: "Todas as APIs por tarefa"
 ---
 Se você precisa de uma API de wearable de fitness, a escolha depende mais de uma coisa do que de dados ou de preço: da facilidade de conseguir aprovação para ler dados de outras pessoas. Todas as cinco principais opções aqui — Fitbit (agora Google), Garmin, Oura, WHOOP e Polar — usam `OAuth 2.0` com consentimento por usuário, e todas são documentadas como de uso gratuito em 2026 (sempre confira os termos comerciais atuais). O que de fato as separa é o portão de aprovação, a profundidade dos dados e, no caso da Fitbit, uma migração para a Google Health API que muda a forma de integrar.
 

@@ -140,9 +140,14 @@
     "quote": "SR Legacy Foods"
   },
   {
-    "claim": "Open Food Facts: 4,000,000+ products from 150 countries.",
+    "claim": "Open Food Facts: over 100,000 contributors from 150+ countries have cataloged millions of products (read 2026-11-14).",
     "url": "https://world.openfoodfacts.org/discover",
-    "quote": "have added 4 000 000+ products from 150 countries"
+    "quote": "Over 100,000 contributors from 150+ countries have cataloged millions of products"
+  },
+  {
+    "claim": "Open Food Facts counts about 4.8 million products (\"4,8M Products\", read 2026-11-14).",
+    "url": "https://world.openfoodfacts.org/discover",
+    "quote": "4,8M Products"
   },
   {
     "claim": "Open Food Facts is under the Open Database License.",

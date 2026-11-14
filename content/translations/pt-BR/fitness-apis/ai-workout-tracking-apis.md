@@ -1,8 +1,8 @@
 ---
 path: "/fitness-apis/ai-workout-tracking-apis"
-translatedOn: "2026-10-27"
+translatedOn: "2026-11-14"
 sourceUpdated: "2026-10-18"
-sourceHash: "79af380dc6ef5ab0"
+sourceHash: "f6616aef67043153"
 metaTitle: "Melhores APIs e SDKs para rastrear treinos com IA (2026)"
 metaDescription: >-
   SDKs de rastreamento de treinos com IA comparados pela documentação deles: QuickPose, Sency, Kemtai e KinesteX (que financia este site), vs MediaPipe.
@@ -37,7 +37,7 @@ related:
   - href: "/fitness-apis/fitness-api-vs-build-your-own"
     label: "API de fitness vs construir a sua"
   - href: "/fitness-apis"
-    label: "Todas as APIs de fitness e treino"
+    label: "Todas as APIs por tarefa"
 ---
 **Aviso: o KinesteX, um dos quatro SDKs abaixo, é o produto deste próprio site, e o KinesteX financia este site.** Ele aparece por último, descrito com o mesmo critério factual dos outros, e nada aqui o coloca em primeiro lugar. Todo fato sobre fornecedores nesta página vem dos repositórios, da documentação ou das páginas publicadas pelo próprio fornecedor, como lidos em 17 e 18 de outubro de 2026.
 

@@ -1,0 +1,342 @@
+[
+  {
+    "claim": "The Food Data API returns up to 258 nutrient parameters across over one million generic and branded foods and recipes.",
+    "url": "https://www.nutritics.com/en/product/food-data-api/",
+    "quote": "Retrieve nutrient information on up to 258 parameters with access to over one million generic, branded foods and recipes."
+  },
+  {
+    "claim": "Nutritics's FAQ gives its database as over 750,000 foods.",
+    "url": "https://www.nutritics.com/en/faqs/",
+    "quote": "Nutritics currently contains over 750,000 foods, and this is growing by the day!"
+  },
+  {
+    "claim": "Nutritics's homepage gives its database as over 1.5m foods.",
+    "url": "https://www.nutritics.com/en/",
+    "quote": "Our database holds over 1.5m foods and can connect directly with your supply chain."
+  },
+  {
+    "claim": "Nutritics Professional's FAQ gives a food database of over 1.6 million products.",
+    "url": "https://www.nutritics.com/en/sectors/education/diet-nutrition-management-sign-up/",
+    "quote": "using our food database of over 1.6 million products"
+  },
+  {
+    "claim": "The API runs Nutritics in your platform's backend.",
+    "url": "https://www.nutritics.com/en/product/food-data-api/",
+    "quote": "Our Food Data API allows you to use the power of Nutritics in your platform’s backend."
+  },
+  {
+    "claim": "The company page gives over one million foods.",
+    "url": "https://www.nutritics.com/en/our-story/company/",
+    "quote": "Over one million foods in our database"
+  },
+  {
+    "claim": "The API draws calorie, allergen and nutrition data from official national, international and branded databases for multiple regions.",
+    "url": "https://www.nutritics.com/en/product/food-data-api/",
+    "quote": "Easily integrate over one million foods, incorporating calorie, allergen and nutrition data from official national, international and branded databases for multiple regions."
+  },
+  {
+    "claim": "The API is an HTTP REST API with basic authentication in the header, GET and POST, and JSON results.",
+    "url": "https://www.nutritics.com/en/product/food-data-api/",
+    "quote": "Compatible with all common coding languages, the HTTP REST API’s basic authentication is done in the header, and supports both HTTP GET and HTTP POST methods and returns JSON format results."
+  },
+  {
+    "claim": "Search results can be ordered by food popularity, allergen, diet types and suppliers.",
+    "url": "https://www.nutritics.com/en/product/food-data-api/",
+    "quote": "with the ability to order search results by food popularity, allergen, diet types and suppliers"
+  },
+  {
+    "claim": "The API is marketed for recipe and meal-plan analysis from your own platform.",
+    "url": "https://www.nutritics.com/en/product/food-data-api/",
+    "quote": "Analyse recipes and meal plans from your own platform while generating meal plans using the information you’ve pulled"
+  },
+  {
+    "claim": "Labels for the EU, US, Australia, New Zealand and South Africa, and a list of accepted units.",
+    "url": "https://www.nutritics.com/en/product/food-data-api/",
+    "quote": "From EU, US, Australia, New Zealand and South Africa optimised good labels, to measurement quantities accepted in g, kg, lb, oz, st, ml, l, floz, pt, qt and gl"
+  },
+  {
+    "claim": "The API page's call to action is a free quote request.",
+    "url": "https://www.nutritics.com/en/product/food-data-api/",
+    "quote": "Request free quote"
+  },
+  {
+    "claim": "Integration starts with the contact form and a call.",
+    "url": "https://www.nutritics.com/en/product/food-data-api/",
+    "quote": "Get in touch using our contact form to let us know what your needs are. We’ll kick things off with a call and establish how we can help to build the link that you need."
+  },
+  {
+    "claim": "A dedicated Integrations Manager is allocated during implementation.",
+    "url": "https://www.nutritics.com/en/product/food-data-api/",
+    "quote": "You will be allocated a dedicated Integrations Manager during implementation"
+  },
+  {
+    "claim": "After integration, a dedicated support inbox for API users with access to specialist developers.",
+    "url": "https://www.nutritics.com/en/product/food-data-api/",
+    "quote": "we have a dedicated support inbox for API users, with access direct to specialist developers."
+  },
+  {
+    "claim": "The pricing page is an inquiry form.",
+    "url": "https://www.nutritics.com/en/pricing",
+    "quote": "To find out more about how our solutions can help your business, enter your details below."
+  },
+  {
+    "claim": "The FAQ sends advanced and enterprise buyers to contact Nutritics.",
+    "url": "https://www.nutritics.com/en/faqs/",
+    "quote": "If you are interested in purchasing a more advanced account, or you are an enterprise customer, please contact us for further details, as our basic account offering may not be suitable for your needs."
+  },
+  {
+    "claim": "Single-site licenses start from 10 users.",
+    "url": "https://www.nutritics.com/en/single-site/",
+    "quote": "Licenses for departments, consultancies, and single-site operators, starting from 10 users"
+  },
+  {
+    "claim": "Single-site editions can be purchased online.",
+    "url": "https://www.nutritics.com/en/single-site/",
+    "quote": "These editions are available in a number of packages and can be quickly purchased online."
+  },
+  {
+    "claim": "The database is built from official national databases, augmented.",
+    "url": "https://www.nutritics.com/en/faqs/",
+    "quote": "The Nutritics database is comprised of the official national databases for each country, significantly augmented with additional data."
+  },
+  {
+    "claim": "The UK source is CoFID including McCance and Widdowson.",
+    "url": "https://www.nutritics.com/en/faqs/",
+    "quote": "United Kingdom (2015 COFIDS including McCance and Widdowson 7th edition, 2015)"
+  },
+  {
+    "claim": "The US source is USDA 28 and the Branded Food Products Database.",
+    "url": "https://www.nutritics.com/en/faqs/",
+    "quote": "United States (English) (USDA 28 & Branded Food Products Database)"
+  },
+  {
+    "claim": "Canada's source is the Canadian Nutrient File 2015.",
+    "url": "https://www.nutritics.com/en/faqs/",
+    "quote": "Canada (Canadian Nutrient File 2015)"
+  },
+  {
+    "claim": "Australia's source is AUSNUT 2016.",
+    "url": "https://www.nutritics.com/en/faqs/",
+    "quote": "Australia (AUSNUT 2016 (2011-13 Australian Health Study))"
+  },
+  {
+    "claim": "The Netherlands' sources.",
+    "url": "https://www.nutritics.com/en/faqs/",
+    "quote": "The Netherlands (Dutch Food Composition Database 2016, 2021 & Dutch Branded Food Products Database 2019)"
+  },
+  {
+    "claim": "Germany's source.",
+    "url": "https://www.nutritics.com/en/faqs/",
+    "quote": "Germany (2014 German Nutrient Database BLS 3.02)"
+  },
+  {
+    "claim": "New Zealand's source.",
+    "url": "https://www.nutritics.com/en/faqs/",
+    "quote": "New Zealand (The Concise New Zealand Food Composition Tables 13th Edition 2018)"
+  },
+  {
+    "claim": "Poland's source.",
+    "url": "https://www.nutritics.com/en/faqs/",
+    "quote": "Poland (2005 Polish Food & Nutrition Institute)"
+  },
+  {
+    "claim": "Spain's source.",
+    "url": "https://www.nutritics.com/en/faqs/",
+    "quote": "Spain (Spanish Food Composition Database 2017)"
+  },
+  {
+    "claim": "Switzerland's source.",
+    "url": "https://www.nutritics.com/en/faqs/",
+    "quote": "Switzerland (2015 Swiss Food Composition Database, Version 5.2)"
+  },
+  {
+    "claim": "Nutritics's nutritionists augment the national databases.",
+    "url": "https://www.nutritics.com/en/faqs/",
+    "quote": "Our nutritionists have manually augmented our global databases"
+  },
+  {
+    "claim": "Brand, supplier, retail and clinical-feed databases.",
+    "url": "https://www.nutritics.com/en/faqs/",
+    "quote": "we maintain toggleable databases from brands, food suppliers, retail chains and clinical feeds"
+  },
+  {
+    "claim": "Nutritics says its data sources suit labeling and research.",
+    "url": "https://www.nutritics.com/en/faqs/",
+    "quote": "Yes, Nutritics uses official national data sources, which are suitable for food labelling and research purposes."
+  },
+  {
+    "claim": "Nutritics's product scope on its homepage.",
+    "url": "https://www.nutritics.com/en/",
+    "quote": "Recipe management, meal planning, cost and margin setting, accessible menus, digital publishing, labelling, meal ordering and carbon calculation."
+  },
+  {
+    "claim": "Nutritics Professional: diet analysis and meal planning.",
+    "url": "https://www.nutritics.com/en/",
+    "quote": "Nutritics Professional Diet Analysis & Meal Planning"
+  },
+  {
+    "claim": "Labelmagic: food label design and printing.",
+    "url": "https://www.nutritics.com/en/",
+    "quote": "Labelmagic Food Label Design & Printing"
+  },
+  {
+    "claim": "Tenkites: menu publishing.",
+    "url": "https://www.nutritics.com/en/",
+    "quote": "Tenkites Menu Publishing"
+  },
+  {
+    "claim": "Foodprint: carbon footprint calculator.",
+    "url": "https://www.nutritics.com/en/",
+    "quote": "Foodprint Carbon Footprint Calculator"
+  },
+  {
+    "claim": "Quickdish: meal ordering.",
+    "url": "https://www.nutritics.com/en/",
+    "quote": "Quickdish Meal Ordering"
+  },
+  {
+    "claim": "Nutritics Research: teaching and academic publishing.",
+    "url": "https://www.nutritics.com/en/",
+    "quote": "Nutritics Research Teaching & Academic Publishing"
+  },
+  {
+    "claim": "Performance Edition is for sports professionals.",
+    "url": "https://www.nutritics.com/en/sectors/sports-nutrition/",
+    "quote": "Our Performance Edition of Nutritics is tailor-made for sports professionals."
+  },
+  {
+    "claim": "Libro is an iOS and Android app for clients' food diaries.",
+    "url": "https://www.nutritics.com/en/single-site/",
+    "quote": "A mobile app for iOS and Android allows your clients to input their food diaries directly."
+  },
+  {
+    "claim": "Nutritics launched in 2013.",
+    "url": "https://www.nutritics.com/en/our-story/company/",
+    "quote": "Since Nutritics launched in 2013"
+  },
+  {
+    "claim": "Offices in Ireland, the UK and Australia.",
+    "url": "https://www.nutritics.com/en/our-story/company/",
+    "quote": "Office in Ireland, the UK and Australia"
+  },
+  {
+    "claim": "Edamam's Food Database API uses natural language processing.",
+    "url": "https://developer.edamam.com/food-database-api",
+    "quote": "The Food API uses Natural Language Processing and semantically structured data."
+  },
+  {
+    "claim": "Edamam Food Database API from $14 a month, prepaid, with a 30-day trial.",
+    "url": "https://developer.edamam.com/food-database-api",
+    "quote": "Enterprise Basic Vision $14 per month Prepaid Subscribe now 30 days Trial period"
+  },
+  {
+    "claim": "Edamam enriches food data with diet, allergy and nutrition labels.",
+    "url": "https://developer.edamam.com/food-database-api",
+    "quote": "All food database data is enriched with diet, allergy and nutrition labeling, as calculated by Edamam based on the food's ingredients."
+  },
+  {
+    "claim": "Edamam returns 28 nutrients for basic foods.",
+    "url": "https://developer.edamam.com/food-database-api",
+    "quote": "Edamam returns data for calories, fats, carbohydrates, protein, cholesterol, sodium, etc. for a total of 28 nutrients."
+  },
+  {
+    "claim": "Edamam allows only human, end-user-driven requests.",
+    "url": "https://developer.edamam.com/food-database-api",
+    "quote": "All plans allow only human, end user driven requests."
+  },
+  {
+    "claim": "Edamam Nutrition Analysis API from $29 a month with a 10-day trial.",
+    "url": "https://developer.edamam.com/edamam-nutrition-api",
+    "quote": "Enterprise Basic Multilingual $29 per month Prepaid Subscribe now 10 days Trial period"
+  },
+  {
+    "claim": "Nutritionix: a free Business Trial, then Starter at $499 a month.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "FREE Business Trial $ 499 /Month* Starter"
+  },
+  {
+    "claim": "MVP at $999 a month and Unicorn from $1,850 a month.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "$ 999 /Month* MVP starting at $ 1850 /Month* Unicorn"
+  },
+  {
+    "claim": "Nutritionix plans are billed annually.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "API plans are billed annually."
+  },
+  {
+    "claim": "Upgraded access starts with a scheduled call.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "To get started with upgraded API access, please schedule a call with a team member using the form below."
+  },
+  {
+    "claim": "Nutritionix offers natural-language food logging.",
+    "url": "https://www.nutritionix.com/api",
+    "quote": "Turn spoken text into precise nutrition analysis with our state-of-the-art natural language functionality."
+  },
+  {
+    "claim": "Nutritionix restaurant coverage: 202,837 items from 860 restaurants.",
+    "url": "https://www.nutritionix.com/database",
+    "quote": "202,837 items from 860 restaurants"
+  },
+  {
+    "claim": "Nutritionix states grocery coverage for the US and Canada.",
+    "url": "https://www.nutritionix.com/database",
+    "quote": "coverage for over 92% of grocery items in the U.S. and Canada"
+  },
+  {
+    "claim": "FoodData Central data are public domain under CC0 1.0.",
+    "url": "https://fdc.nal.usda.gov/api-guide",
+    "quote": "USDA FoodData Central data are in the public domain and they are not copyrighted. They are published under CC0 1.0 Universal (CC0 1.0)"
+  },
+  {
+    "claim": "A free data.gov API key goes on each request.",
+    "url": "https://fdc.nal.usda.gov/api-guide",
+    "quote": "Anyone may access and use the API. However, a data.gov API key must be incorporated into each API request."
+  },
+  {
+    "claim": "Default limit of 1,000 requests per hour per IP address.",
+    "url": "https://fdc.nal.usda.gov/api-guide",
+    "quote": "FoodData Central currently limits the number of API requests to a default rate of 1,000 requests per hour per IP address"
+  },
+  {
+    "claim": "FoodData Central covers SR Legacy, Branded Foods, Foundation Foods and FNDDS.",
+    "url": "https://fdc.nal.usda.gov/api-guide",
+    "quote": "This new API allows users to obtain Standard Reference (SR) Legacy data, provides the most current data from the USDA Global Branded Foods Database, and give users the ability to search for specific foods in Foundation Foods and the Food and Nutrient Database for Dietary Studies (FNDDS) 2019-2020."
+  },
+  {
+    "claim": "Open Food Facts: over 100,000 contributors from 150+ countries have cataloged millions of products.",
+    "url": "https://world.openfoodfacts.org/discover",
+    "quote": "Over 100,000 contributors from 150+ countries have cataloged millions of products using our Android and iOS apps."
+  },
+  {
+    "claim": "The Open Food Facts database is under the ODbL.",
+    "url": "https://world.openfoodfacts.org/data",
+    "quote": "The Open Food Facts database is available under the Open Database License (ODbL)"
+  },
+  {
+    "claim": "Share-alike for adapted databases used publicly.",
+    "url": "https://world.openfoodfacts.org/data",
+    "quote": "If you publicly use any adapted version of this database, or works produced from an adapted database, you must also offer that adapted database under the ODbL"
+  },
+  {
+    "claim": "Reads need no authentication beyond a custom User-Agent.",
+    "url": "https://openfoodfacts.github.io/openfoodfacts-server/api/",
+    "quote": "READ operations (getting info about a product, etc...) do not require authentication other than the custom User-Agent."
+  },
+  {
+    "claim": "Spoonacular's five plans.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "We offer five plans: Free ($0/month), Cook ($29/month), Culinarian ($79/month), Chef ($149/month), and Enterprise (custom pricing for large clients)."
+  },
+  {
+    "claim": "Spoonacular's free plan is 50 points a day.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "Free $ 0 /mo 50 points/day then no more calls"
+  },
+  {
+    "claim": "Cook is $29 a month for 1,500 points a day, then $0.005 a point.",
+    "url": "https://spoonacular.com/food-api/pricing",
+    "quote": "Cook $ 29 /mo 1,500 points/day then $0.005 /point"
+  }
+]
