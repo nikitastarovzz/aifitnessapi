@@ -193,7 +193,7 @@ async function bingPagesFor(query) {
   const key = process.env.BING_WEBMASTER_API_KEY;
   const url = `${BING}/GetQueryPageStats?siteUrl=${encodeURIComponent(BING_SITE)}&query=${encodeURIComponent(query)}&apikey=${encodeURIComponent(key)}`;
   for (const wait of [5000, 15000, 45000, null]) {
-    const res = await fetch(url).catch(() => null);
+    const res = await fetch(url, { signal: AbortSignal.timeout(30_000) }).catch(() => null);
     if (res?.ok) {
       const json = await res.json().catch(() => null);
       if (Array.isArray(json?.d)) return json.d;
@@ -206,10 +206,25 @@ async function bingPagesFor(query) {
 const pairQueries = bingQueries.filter((r) => r.impressions >= BING_PAIR_FLOOR).map((r) => r.keys[0]);
 let bingQueryPage = [];
 let pairFailures = 0;
-for (const q of pairQueries) {
+// One call a second for ~200 queries is several minutes, which looked like a
+// hang on 2026-11-13 (a 5-minute shell timeout killed a healthy run). So the
+// loop reports progress, each call gives up after 30 s, and the whole pass has
+// a budget (BING_PAIR_BUDGET_MIN, default 15): queries left when it runs out
+// count as failed lookups, so the ten-percent rule below decides honestly
+// whether the pairs are complete enough to write.
+const PAIR_BUDGET_MS = Math.max(1, Number(process.env.BING_PAIR_BUDGET_MIN ?? 15) || 15) * 60_000;
+const pairStart = Date.now();
+console.log(`search-pull: Bing page lookups for ${pairQueries.length} queries (about one a second; budget ${PAIR_BUDGET_MS / 60_000} min)`);
+for (const [i, q] of pairQueries.entries()) {
+  if (Date.now() - pairStart > PAIR_BUDGET_MS) {
+    pairFailures += pairQueries.length - i;
+    console.warn(`search-pull: Bing lookup budget spent after ${i} of ${pairQueries.length} queries; the rest count as failed.`);
+    break;
+  }
   const rows = await bingPagesFor(q);
   if (!rows) pairFailures++;
   else for (const r of bingWindow(rows)) bingQueryPage.push({ ...r, keys: [q, r.keys[0]] });
+  if ((i + 1) % 25 === 0) console.log(`  …${i + 1}/${pairQueries.length} looked up, ${pairFailures} failed`);
   await sleep(1000);
 }
 // A few lost lookups only drop those queries' pages. Losing more than one in

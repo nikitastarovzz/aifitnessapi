@@ -139,6 +139,51 @@ export const NOINDEX_APIS = new Set([
   "your-move",
 ]);
 
+/**
+ * Products whose searches a dedicated guide already owns. Their directory
+ * page is noindex, follow and out of the sitemap too, whatever the demand
+ * bar above says, and it links the guide first. ops/GSC-10-2026-11-13.md
+ * item 1.
+ *
+ * Why: the demand bar indexed the directory page of exactly the products
+ * with the strongest guides. From 2026-11-01 Google began showing those
+ * entries for the guides' searches and the guides fell. The clearest case:
+ * /motion/mediapipe-pose-landmarker-models went from about 30 impressions a
+ * day (Oct 16 to 30) to none from Nov 1, the day /apis/mediapipe first drew
+ * impressions (about 4 a day at position 10.6). Over Oct 30 to Nov 12 the
+ * WHOOP, HealthKit, Oura and Polar entries ranked 7 to 12 while their
+ * /integrate guides lost 25 to 50% of their impressions against
+ * Oct 16 to 29. A directory row that restates the cost model should not
+ * compete with the page that answers the search.
+ *
+ * Each value must be a page this site builds; qa's APIS-GUIDE gate checks
+ * it. Products without a guide (Junction, Spike and the other entries
+ * whose vendor hub is the directory page itself) keep the demand rule.
+ */
+export const API_GUIDES: Record<string, string> = {
+  garmin: "/integrate/garmin-api",
+  fitbit: "/integrate/fitbit-api",
+  strava: "/integrate/strava-api",
+  polar: "/integrate/polar-api",
+  whoop: "/integrate/whoop-api",
+  oura: "/integrate/oura-api",
+  healthkit: "/integrate/healthkit",
+  "health-connect": "/integrate/google-health-connect",
+  terra: "/integrate/terra-api",
+  exercisedb: "/integrate/exercisedb-api",
+  "your-move": "/integrate/your-move-exercise-api",
+  nutritionix: "/integrate/nutritionix-api",
+  mediapipe: "/motion/mediapipe-pose-landmarker-models",
+  movenet: "/motion/movenet-models",
+  "apple-vision": "/motion/apple-vision-body-pose",
+};
+
+/** True when the directory page stays out of search indexes: no demand of
+ *  its own (NOINDEX_APIS), or a guide owns its searches (API_GUIDES). */
+export function isNoindexApi(id: string): boolean {
+  return NOINDEX_APIS.has(id) || id in API_GUIDES;
+}
+
 export function getApi(id: string): ApiEntry | undefined {
   return API_ENTRIES.find((a) => a.id === id);
 }

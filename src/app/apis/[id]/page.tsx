@@ -18,7 +18,8 @@ import { clampTitle, clampDescription } from "@/lib/cluster";
 import {
   API_ENTRIES,
   APIS_PATH,
-  NOINDEX_APIS,
+  API_GUIDES,
+  isNoindexApi,
   getApi,
   CATEGORY_LABELS,
   DEV_COST_LABELS,
@@ -105,9 +106,10 @@ export async function generateMetadata({
     title: { absolute: title },
     description,
     alternates: { canonical },
-    // Products without search demand of their own stay out of the index
-    // (NOINDEX_APIS in data/apis.ts says why and how that was decided).
-    ...(NOINDEX_APIS.has(api.id) ? { robots: { index: false, follow: true } } : {}),
+    // Products without search demand of their own, and products whose
+    // searches a guide owns, stay out of the index (NOINDEX_APIS and
+    // API_GUIDES in data/apis.ts say why and how that was decided).
+    ...(isNoindexApi(api.id) ? { robots: { index: false, follow: true } } : {}),
     openGraph: { type: "article", title, description, url: canonical },
     twitter: { card: "summary_large_image", title, description },
   };
@@ -133,7 +135,8 @@ export default async function ApiPage({ params }: { params: Promise<Params> }) {
 
   const path = `${APIS_PATH}/${api.id}`;
   const url = absoluteUrl(path);
-  const integrateHub = VENDOR_HUBS.find((v) => v.id === api.id && v.hub.startsWith("/integrate/"))?.hub;
+  const integrateHub =
+    API_GUIDES[api.id] ?? VENDOR_HUBS.find((v) => v.id === api.id && v.hub.startsWith("/integrate/"))?.hub;
   const coverage = coverageFor(api.id);
   const total = pageCount(api.id);
   const changes = changesFor(api);

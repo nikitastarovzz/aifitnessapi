@@ -12,7 +12,7 @@ import { PRESS_PATH, pressDataDate } from "@/lib/press";
 import { GRAVEYARD_PATH, graveyardCheckedOn } from "@/data/graveyard";
 import { OAUTH_FETCHED_ON } from "@/data/oauthVendors";
 import { WEBHOOKS_FETCHED_ON } from "@/data/webhookPayloads";
-import { API_ENTRIES, APIS_PATH, NOINDEX_APIS } from "@/data/apis";
+import { API_ENTRIES, APIS_PATH, isNoindexApi } from "@/data/apis";
 import { API_INDEX_PATH, MARKET_MAP_PATH, indexDataDate } from "@/lib/ecosystemSignals";
 import { OPENNESS_UPDATED } from "@/lib/openness";
 import { OPENNESS_PATH } from "@/lib/opennessIndex.mjs";
@@ -459,8 +459,9 @@ function computeSections(): SitemapSection[] {
       ...wtRows,
     ],
     libraries: libRows,
-    // Products without search demand of their own are noindex (NOINDEX_APIS).
-    apis: API_ENTRIES.filter((a) => !NOINDEX_APIS.has(a.id)).map((a) => row(`${APIS_PATH}/${a.id}`)),
+    // Products without search demand of their own, or whose searches a guide
+    // owns, are noindex (NOINDEX_APIS, API_GUIDES).
+    apis: API_ENTRIES.filter((a) => !isNoindexApi(a.id)).map((a) => row(`${APIS_PATH}/${a.id}`)),
     blog: [
       // lastmod is the re-verification date, not first publication.
       ...posts.map((post) => row(`/blog/${post.slug}`, post.updated)),

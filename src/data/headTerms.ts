@@ -41,15 +41,15 @@ export const HEAD_TERMS: HeadTerm[] = [
     "term": "fitness api",
     "label": "fitness APIs",
     "variants": ["fitness api", "fitness apis", "api fitness", "fitness & workout apis", "fitness and workout apis"],
-    "owner": "/fitness-apis",
-    "why": "The pillar answers what a fitness API is and which to use for each job (made the pillar 2026-11-04). 'fitness api' drew 373 impressions over 22 pages, 'fitness apis' 75 over 18, 'api fitness' 37 over 9."
+    "owner": "/",
+    "why": "Moved from /fitness-apis to the homepage 2026-11-13 (ops/GSC-10-2026-11-13.md item 2): Google never took the pillar for it (about one impression a day, Oct 16 to Nov 12) and ranks the homepage, which answers which fitness API to pick and lists all of them. 'fitness api' drew 373 impressions over 22 pages, 'fitness apis' 75 over 18, 'api fitness' 37 over 9 (Oct 4-31)."
   },
   {
     "term": "workout api",
     "label": "workout APIs",
     "variants": ["workout api", "workout apis"],
-    "owner": "/fitness-apis/exercise-database-apis",
-    "why": "A workout API most often means the exercise content a workout is built from (exercises, instructions, media, routines), which the exercise database roundup compares; tracking a user's own workout by camera is the narrower AI workout tracking page. 30 impressions over 13 pages."
+    "owner": "/pricing/exercise-database-api-pricing",
+    "why": "Moved from the exercise database roundup to the exercise database API pricing page 2026-11-13 (ops/GSC-10-2026-11-13.md item 3): between Oct 16-29 and Oct 30-Nov 12 Google moved the exercise searches to the pricing page (307 to 565 impressions, 21 clicks, the most-clicked page on the site) and the roundup fell from 131 impressions to 8, so the page Google chose owns the term and the roundup links it. Earlier rationale: a workout API most often means the exercise content a workout is built from (exercises, instructions, media, routines), which the exercise database roundup compares; tracking a user's own workout by camera is the narrower AI workout tracking page. 30 impressions over 13 pages."
   },
   {
     "term": "fitness management api",

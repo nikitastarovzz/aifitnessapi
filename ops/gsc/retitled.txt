@@ -102,3 +102,6 @@
 # Not retitles, so not listed as treated: the same day (item 9's DESC-CLAMPED gate) the descriptions of
 # /fix/health-connect-no-data (held, 2026-10-27) and /pricing/exercise-database-api-pricing lost a final
 # period: each was 156 characters and rendered cut to "…"; every word now shows. /changelog went noindex (item 7).
+# 2026-11-13: GSC-10 item 2 and 3 (ops/GSC-10-2026-11-13.md): /fitness-apis gives "fitness api" to the homepage; the exercise roundup gives the exercise searches to the pricing page.
+/fitness-apis
+/fitness-apis/exercise-database-apis

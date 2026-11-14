@@ -10,8 +10,8 @@ export const entries: ClusterEntry[] =
   {
     "slug": "exercise-database-apis",
     "primaryQuery": "exercise database API",
-    "h1": "The Best Exercise Database APIs for Developers (2026)",
-    "metaTitle": "Exercise Database APIs for Developers (2026): 6 Compared",
+    "h1": "Exercise Database APIs Compared: License, Media and Coverage (2026)",
+    "metaTitle": "Exercise Database APIs Compared: License, Media, Coverage",
     "metaDescription": "Exercise database APIs compared: ExerciseDB (AscendAPI), wger, API Ninjas, Your Move and free-exercise-db by free tier, price, license, media and size.",
     "updated": "2026-10-22",
     "answer": "For data you own outright, use free-exercise-db, a public-domain dataset of 876 exercises with images; for a self-hosted open stack, use wger. For a free hosted API, AscendAPI's ExerciseDB, formerly exercisedb.dev, offers 1,500 exercises with GIFs and no key on V1, or a 200-exercise V2 trial with watermarked MP4 video, with full catalogs on paid RapidAPI plans. For paid filmed video, Your Move (ymove.app) serves each exercise as MP4 and HLS from $19 a month after a 7-day trial, while API Ninjas Exercises suits text metadata plus start and finish photos, with commercial use from $39 to $59 a month. Your Move was read on November 11, 2026 and the rest checked on October 22, 2026.",

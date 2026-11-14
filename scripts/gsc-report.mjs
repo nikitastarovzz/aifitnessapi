@@ -59,6 +59,8 @@ import {
   expectedCtr,
   mergeByPath,
   ctrAnomalies,
+  machineQueries,
+  withoutMachineQueries,
   cannibalisation,
   decay,
   parseSitemap,
@@ -669,7 +671,15 @@ function healthChecks() {
       `  — a rounded composite of published click-curve studies. A heuristic for ordering pages,\n` +
       `  not a target: SERP features, brand and intent move real CTR far from any curve.`,
   );
-  const anomalies = ctrAnomalies(g);
+  // Machine-like queries out first (ops/GSC-10-2026-11-13.md item 5), when
+  // the query join covers this window.
+  const joined = apiSnap?.byQueryPage && apiSnap?.byQuery && sameRange(apiSnap.range, current.range);
+  const machine = joined ? machineQueries(apiSnap.byQuery) : new Set();
+  if (joined) {
+    const imp = apiSnap.byQuery.filter((r) => machine.has(r.keys?.[0])).reduce((n, r) => n + r.impressions, 0);
+    console.log(`  Machine-like queries set aside: ${machine.size} (${imp} impressions, no clicks)${machine.size ? `, e.g. ${[...machine].slice(0, 3).map((q) => `"${q}"`).join(", ")}` : ""}.`);
+  }
+  const anomalies = ctrAnomalies(joined ? withoutMachineQueries(g, apiSnap.byQueryPage, machine) : g);
   if (!anomalies.length) console.log("    none.");
   else {
     console.log(`    ${col("page", 52)} ${"imp".padStart(6)} ${"clk".padStart(4)} ${"pos".padStart(5)} ${"ctr".padStart(6)} ${"exp".padStart(6)} ${"short".padStart(6)}`);

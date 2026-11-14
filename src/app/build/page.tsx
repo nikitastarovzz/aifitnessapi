@@ -197,7 +197,9 @@ export default function BuildPillar() {
             <li>
               <strong>Choose a stack.</strong> Native or cross-platform, and a backend — the{" "}
               <Link href={`${BUILD_PATH}/fitness-app-tech-stack`}>tech-stack guide</Link> covers the
-              trade-offs.
+              trade-offs. Using a fitness app builder instead of code? The{" "}
+              <Link href="/no-code-fitness-app">fitness app builder guide</Link> assembles a whole app in a
+              visual builder from APIs and names the two places that still need a little code.
             </li>
             <li>
               <strong>Build the MVP of the core loop.</strong> One workflow, done well. Wire the
