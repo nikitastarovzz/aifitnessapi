@@ -16,12 +16,12 @@
   },
   {
     "claim": "World landmarks in meters with a hip-centre origin.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/3eb8983cde1517fdff4abbfb33586316af6d45be/docs/solutions/pose.md",
     "quote": "Real-world 3D coordinates in meters with the origin at the center between hips."
   },
   {
     "claim": "The legacy Pose solution was upgraded to the Tasks version on May 10, 2023.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/3eb8983cde1517fdff4abbfb33586316af6d45be/docs/solutions/pose.md",
     "quote": "As of May 10, 2023, this solution was upgraded to a new MediaPipe Solution."
   },
   {

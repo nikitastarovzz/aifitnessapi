@@ -31,7 +31,7 @@
   },
   {
     "claim": "World landmarks in meters with the origin between the hips.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/3eb8983cde1517fdff4abbfb33586316af6d45be/docs/solutions/pose.md",
     "quote": "Real-world 3D coordinates in meters with the origin at the center between hips."
   },
   {
@@ -106,7 +106,7 @@
   },
   {
     "claim": "MediaPipe Pose targets fitness applications.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/3eb8983cde1517fdff4abbfb33586316af6d45be/docs/solutions/pose.md",
     "quote": "it can form the basis for yoga, dance, and fitness applications."
   },
   {
@@ -146,12 +146,12 @@
   },
   {
     "claim": "BlazePose quality table compares with AlphaPose and Apple Vision.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/3eb8983cde1517fdff4abbfb33586316af6d45be/docs/solutions/pose.md",
     "quote": "[AlphaPose ResNet50](https://github.com/MVIG-SJTU/AlphaPose)"
   },
   {
     "claim": "BlazePose quality table includes Apple Vision.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/3eb8983cde1517fdff4abbfb33586316af6d45be/docs/solutions/pose.md",
     "quote": "[Apple Vision](https://developer.apple.com/documentation/vision/detecting_human_body_poses_in_images)"
   },
   {

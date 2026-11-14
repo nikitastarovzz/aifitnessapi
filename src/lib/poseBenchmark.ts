@@ -11,7 +11,8 @@
  *    FilesetResolver.forVisionTasks() is pointed at in the package README;
  *  - the three model URLs against Google's own sources: the package README
  *    gives the lite URL on the `float16/1/` path, Google's Android sample
- *    (mediapipe-samples, examples/pose_landmarker/android/app/download_tasks.gradle)
+ *    (mediapipe-samples, examples/pose_landmarker/android/app/download_tasks.gradle;
+ *    since 2026-11-11 download_tasks.gradle.kts, read 2026-11-14 with the same URLs)
  *    downloads all three from that same path, and each answered HTTP 200 with
  *    `access-control-allow-origin: *` and the byte size recorded below.
  *
