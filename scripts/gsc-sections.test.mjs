@@ -14,6 +14,8 @@ import {
   parsePublished,
   indexLag,
   overlapDays,
+  machineQueries,
+  withoutMachineQueries,
 } from "./lib/gsc-sections.mjs";
 
 test("expectedCtr follows the curve on page one and flattens after", () => {
@@ -135,4 +137,43 @@ test("overlapDays counts shared calendar days", () => {
   assert.equal(overlapDays({ start: "2026-09-27", end: "2026-10-24" }, { start: "2026-10-04", end: "2026-10-31" }), 21);
   assert.equal(overlapDays({ start: "2026-09-01", end: "2026-09-28" }, { start: "2026-10-04", end: "2026-10-31" }), 0);
   assert.equal(overlapDays(null, { start: "2026-10-04", end: "2026-10-31" }), 0);
+});
+
+test("machineQueries flags unclicked top-3 bulk and AI-tool shapes, never a clicked query", () => {
+  const q = (keys, impressions, position, clicks = 0) => ({ keys: [keys], impressions, position, clicks });
+  const rows = [
+    q("tryrook.io alternatives", 301, 2.1),
+    q("api fitness alternatives", 125, 1.1),
+    q("evaluate rook on health data api for developers", 86, 8.1),
+    q("best wearable health data api for developers", 99, 6.0),
+    q("terra api alternatives", 229, 5.0, 1), // clicked: a person
+    q("fitness app builder", 106, 21.4), // deep and plain: a person
+    q("coco 17 keypoints", 16, 9.2),
+    q("best wearable api", 30, 9.0), // "best" but short: kept
+    q("halpe26", 20, 4.8),
+  ];
+  const m = machineQueries(rows);
+  assert.deepEqual(
+    [...m].sort(),
+    ["api fitness alternatives", "best wearable health data api for developers", "evaluate rook on health data api for developers", "tryrook.io alternatives"],
+  );
+});
+
+test("withoutMachineQueries takes machine impressions out of page rows and re-weights position", () => {
+  const pages = [
+    { path: "/alt", impressions: 400, clicks: 2, position: 3 },
+    { path: "/all-machine", impressions: 50, clicks: 0, position: 1 },
+    { path: "/untouched", impressions: 60, clicks: 0, position: 5 },
+  ];
+  const join = [
+    { keys: ["tryrook.io alternatives", "https://aifitnessapi.com/alt"], impressions: 300, position: 2, clicks: 0 },
+    { keys: ["api fitness alternatives", "https://www.aifitnessapi.com/all-machine/"], impressions: 50, position: 1, clicks: 0 },
+  ];
+  const out = withoutMachineQueries(pages, join, new Set(["tryrook.io alternatives", "api fitness alternatives"]));
+  assert.equal(out.length, 2);
+  const alt = out.find((r) => r.path === "/alt");
+  assert.equal(alt.impressions, 100);
+  assert.equal(alt.removed, 300);
+  assert.equal(alt.position, 6); // (3*400 - 2*300) / 100
+  assert.equal(out.find((r) => r.path === "/untouched").removed, 0);
 });

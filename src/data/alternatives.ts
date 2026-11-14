@@ -42,6 +42,7 @@ export const RELEASED_ALTERNATIVES = new Set<string>([
   "sahha-alternatives",
   "spike-api-alternatives",
   "polar-api-alternatives",
+  "nutritics-alternatives",
 ]);
 
 export const allAlternatives: ClusterEntry[] = alternativesEntries;

@@ -8,7 +8,7 @@
  * posts and translations: the commit that added the file; generated
  * sections: the commit that added the route, or the item to the data file if
  * that came later). Keyed by URL path without the leading slash.
- * 592 rows.
+ * 593 rows.
  *
  * This is datePublished; an entry's `updated` stamp is dateModified. A key
  * missing here means the page postdates the last regeneration — rerun the
@@ -49,6 +49,7 @@ export const PUBLISHED: Record<string, string> = {
   "alternatives/human-api-alternatives": "2026-10-18",
   "alternatives/kinestex-alternatives": "2026-08-02",
   "alternatives/mediapipe-alternatives": "2026-10-18",
+  "alternatives/nutritics-alternatives": "2026-11-14",
   "alternatives/nutritionix-alternatives": "2026-07-13",
   "alternatives/openpose-alternatives": "2026-10-22",
   "alternatives/oura-api-alternatives": "2026-07-13",

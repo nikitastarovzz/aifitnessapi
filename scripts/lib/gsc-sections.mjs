@@ -6,7 +6,8 @@
  * Four checks, each a heuristic that points at pages to look at, never a
  * verdict:
  *   ctrAnomalies     page one (position ≤ 10) earning under half the CTR the
- *                    curve below expects for its position
+ *                    curve below expects for its position, read without
+ *                    machineQueries (AI-tool searches nobody clicks)
  *   cannibalisation  a query with ≥ 10 impressions spread over 2+ of our pages
  *   decay            impressions down ≥ 30% against an earlier snapshot while
  *                    the position held (±1.5), so the loss is demand or
@@ -80,6 +81,75 @@ export function ctrAnomalies(pages, { maxPosition = 10, minImpressions = 50, rat
     })
     .filter((r) => r.ctr < r.expected * ratio)
     .sort((a, b) => b.shortfall - a.shortfall);
+}
+
+/**
+ * (a′) Queries that look machine-issued rather than typed by a person
+ * (ops/GSC-10-2026-11-13.md item 5). Search Console counts the searches AI
+ * answer engines and agent tools run against Google while they ground an
+ * answer. They arrive in bulk, sit at the top of the results and are never
+ * clicked: "tryrook.io alternatives" 301 impressions at 2.1, "api fitness
+ * alternatives" 125 at 1.1, "evaluate rook on health data api for
+ * developers" 86 at 8.1, all with no click (Oct 30 to Nov 12). Rewriting a
+ * title for them cannot win a click, so the CTR check reads pages without
+ * them. A query is machine-like when it has no click and either
+ *   - `minTopImpressions` or more impressions at position ≤ `topPosition`
+ *     (a person shown a top-3 result that often clicks it at least once), or
+ *   - `minPatternImpressions` or more impressions and the shape such tools
+ *     write: "evaluate <x> on …", "best <x> for <y>" of five or more words,
+ *     a bare domain followed by "alternatives", or a question of nine or more
+ *     words.
+ * A heuristic that sets pages aside for a person to look at, never a
+ * verdict on who searched. Input: byQuery rows ({keys: [query], clicks,
+ * impressions, position}). Returns a Set of query strings.
+ */
+export const MACHINE_PATTERNS = [
+  /^evaluate \S.* on /,
+  /^best \S+(?: \S+)* for \S+(?: \S+)*$/,
+  /^[a-z0-9-]+\.(?:io|co|com|ai|app|dev|health)\b.* alternatives?$/,
+];
+export function machineQueries(byQuery, { topPosition = 3, minTopImpressions = 20, minPatternImpressions = 10 } = {}) {
+  const out = new Set();
+  for (const r of byQuery ?? []) {
+    const q = String(r.keys?.[0] ?? "").toLowerCase().trim();
+    if (!q || r.clicks > 0) continue;
+    const words = q.split(/\s+/).length;
+    const top = r.impressions >= minTopImpressions && r.position > 0 && r.position <= topPosition;
+    const shaped =
+      r.impressions >= minPatternImpressions &&
+      ((MACHINE_PATTERNS.some((re) => re.test(q)) && (words >= 5 || !/^best /.test(q))) || (q.endsWith("?") && words >= 9));
+    if (top || shaped) out.add(r.keys[0]);
+  }
+  return out;
+}
+
+/**
+ * Page rows with the impressions of `machine` queries taken out, from the
+ * query→page join. Position is re-weighted over what remains; a page whose
+ * impressions were all machine-like drops out. Clicks are untouched (a
+ * machine-like query has none). `removed` on each row says how many
+ * impressions went.
+ */
+export function withoutMachineQueries(pages, byQueryPage, machine) {
+  const cut = new Map();
+  for (const r of byQueryPage ?? []) {
+    if (!machine.has(r.keys?.[0])) continue;
+    const p = normalisePath(r.keys?.[1]);
+    const c = cut.get(p) ?? { impressions: 0, posWeighted: 0 };
+    c.impressions += r.impressions;
+    c.posWeighted += r.position * r.impressions;
+    cut.set(p, c);
+  }
+  const out = [];
+  for (const r of pages) {
+    const c = cut.get(r.path);
+    if (!c) { out.push({ ...r, removed: 0 }); continue; }
+    const impressions = Math.max(0, r.impressions - c.impressions);
+    if (impressions === 0) continue;
+    const position = Math.max(1, (r.position * r.impressions - c.posWeighted) / impressions);
+    out.push({ ...r, impressions, position, ctr: r.clicks / impressions, removed: r.impressions - impressions });
+  }
+  return out;
 }
 
 /**

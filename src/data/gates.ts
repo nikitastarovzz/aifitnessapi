@@ -772,6 +772,12 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     area: "Structured data / GEO",
     refuses: "A directory page with no SoftwareApplication node identifying the product it describes.",
   },
+  {
+    code: "APIS-GUIDE",
+    area: "Hosting and crawl",
+    refuses:
+      "A directory page competing with the guide that owns its product's searches: for every product in API_GUIDES (src/data/apis.ts), a guide that was not built, or an /apis page that is indexable or does not link its guide.",
+  },
 
   // ── Markdown mirrors and llms.txt ─────────────────────────────────────
   {

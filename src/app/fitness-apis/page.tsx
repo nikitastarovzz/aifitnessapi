@@ -51,14 +51,23 @@ const QUESTION_COUNT = releasedEntries().reduce((n, e) => n + e.faqs.length, 0);
 // is the page that answers it, so the title, H1 and capsule now say what a
 // fitness API is and which to use, and the at-a-glance table (sourced from
 // the cost model, no new facts) sits directly under the answer.
+//
+// 2026-11-13 (ops/GSC-10-2026-11-13.md item 2): it did not take. Over
+// Oct 16 to Nov 12 Google showed this hub about once a day and the homepage,
+// titled "Fitness API Guide: …" as well, carried the term (1,232 impressions
+// since Aug at 27.9; position 16.3 → 10.9 between the two halves of the
+// window). Two pages leading with the same words split one search, and Google
+// had already picked the homepage, so the homepage owns "fitness api"
+// (src/data/headTerms.ts) and this hub is titled for what only it does:
+// comparing the APIs by the job they do.
 export const metadata: Metadata = {
-  title: { absolute: "Fitness API Guide: Which Fitness API to Use (2026)" },
+  title: { absolute: "Compare APIs by Job: Exercise, Wearables, Nutrition, Motion" },
   description:
-    "What a fitness API is and which one to use: exercise data, wearables, aggregators, nutrition and AI motion tracking, with the APIs for each job compared.",
+    "The APIs for each job a fitness app has, compared: exercise data, wearables, aggregators, nutrition and AI motion tracking, with what each costs and gates.",
   alternates: { canonical: PILLAR_PATH },
   openGraph: {
     type: "website",
-    title: "Fitness API Guide: Which Fitness API to Use (2026)",
+    title: "Compare APIs by Job: Exercise, Wearables, Nutrition, Motion",
     description:
       "What a fitness API is, the five jobs fitness APIs do, and the APIs for each job: exercise data, wearables, aggregators, nutrition and AI motion tracking.",
     url: PILLAR_PATH,
@@ -124,7 +133,7 @@ export default function FitnessApisPillar() {
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "Fitness APIs: What They Are and Which Fitness API to Use (2026)",
+    headline: "Fitness and Workout APIs Compared by Job (2026)",
     description: metadata.description,
     datePublished: UPDATED,
     dateModified: UPDATED,
@@ -167,12 +176,12 @@ export default function FitnessApisPillar() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
 
       <div className="mx-auto max-w-2xl">
-        <Breadcrumbs trail={[{ name: "Home", path: "/" }, { name: "Fitness APIs", path: PILLAR_PATH }]} />
+        <Breadcrumbs trail={[{ name: "Home", path: "/" }, { name: "APIs by job", path: PILLAR_PATH }]} />
 
-        <ClusterHero label="Fitness APIs" seed={heroSeed(PILLAR_PATH)} />
+        <ClusterHero label="APIs by job" seed={heroSeed(PILLAR_PATH)} />
 
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
-          Fitness APIs: What They Are and Which Fitness API to Use (2026)
+          Fitness and Workout APIs Compared by Job (2026)
         </h1>
 
         <HubFreshness entries={released} basePath={PILLAR_PATH} />

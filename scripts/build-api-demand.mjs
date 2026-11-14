@@ -67,6 +67,8 @@ const MATCH = {
   "open-food-facts": /\bopen ?food ?facts\b|\bopenfoodfacts\b/,
   exercisedb: /\bexercise ?db\b/,
   wger: /\bwger\b/,
+  // Added 2026-11-13: the entry shipped 2026-11-11 without one, which stopped this script.
+  "your-move": /\by(?:our ?)?move\b.*\b(?:api|exercise|app)\b|\bymove\b/,
   kinestex: /\bkinestex\b/,
   sency: /\bsency\b|\bsmkit\b/,
   quickpose: /\bquick ?pose\b/,
@@ -239,12 +241,16 @@ fs.writeFileSync(OUT, body);
 const noindexBlock = /NOINDEX_APIS[^=]*=\s*new Set\(\[([\s\S]*?)\]\)/.exec(apisSrc)?.[1];
 if (noindexBlock === undefined) fail("could not find NOINDEX_APIS in src/data/apis.ts");
 const noindex = new Set([...noindexBlock.matchAll(/"([a-z0-9-]+)"/g)].map((m) => m[1]));
+// Products a guide owns (API_GUIDES, ops/GSC-10-2026-11-13.md item 1) stay
+// noindex whatever the bar says, so this pull cannot disagree about them.
+const guideBlock = /API_GUIDES[^=]*=\s*\{([\s\S]*?)\};/.exec(apisSrc)?.[1] ?? "";
+const guided = new Set([...guideBlock.matchAll(/^\s*"?([a-z0-9-]+)"?:\s*"/gm)].map((m) => m[1]));
 const meetsBar = (r) => (r.google >= 20 || r.bing >= 10) && r.pages.length > 0;
 
 console.log(`build-api-demand: ${google.range.start} → ${google.range.end}, ${ids.length} products → ${OUT}`);
 for (const id of ids) {
   const r = result[id];
-  const listed = noindex.has(id) ? "noindex" : "indexed";
-  const drift = meetsBar(r) === noindex.has(id) ? `  ← this pull says ${meetsBar(r) ? "index" : "noindex"}` : "";
+  const listed = guided.has(id) ? "noindex (guide)" : noindex.has(id) ? "noindex" : "indexed";
+  const drift = !guided.has(id) && meetsBar(r) === noindex.has(id) ? `  ← this pull says ${meetsBar(r) ? "index" : "noindex"}` : "";
   console.log(`  ${id.padEnd(16)} Google ${String(r.google).padStart(4)}  Bing ${String(r.bing).padStart(4)}  ${r.pages.length} pages  ${listed}${drift}`);
 }

@@ -153,7 +153,7 @@ export default function LearnPillar() {
           </Link>
           ,{" "}
           <Link href="/fitness-apis/exercise-database-apis" className="text-brand-600 underline hover:text-brand-500">
-            workout APIs
+            exercise database APIs
           </Link>{" "}
           (the exercise databases a workout is built from){" "}
           and{" "}

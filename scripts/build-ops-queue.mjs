@@ -56,6 +56,8 @@ import {
   expectedCtr,
   mergeByPath,
   ctrAnomalies,
+  machineQueries,
+  withoutMachineQueries,
   decay,
   parseSitemap,
   parsePublished,
@@ -234,7 +236,17 @@ const topQueries = (p, n = 3) =>
     .map((q) => `"${q.q}" ${q.impressions}i @${q.position.toFixed(1)}`)
     .join(", ");
 
-const anomalies = ctrAnomalies(google).filter((r) => !noindex.has(r.path));
+// Machine-like queries (AI tools grounding an answer; nobody clicks them) are
+// taken out before the CTR check, so a page is not sent for a retitle that
+// cannot win a click (ops/GSC-10-2026-11-13.md item 5). Needs the query join
+// for the same window; without it the check reads the pages as they are.
+const joinSameWindow = latest?.byQueryPage && latest?.byQuery && sameRange(latest.range, current.range);
+const machine = joinSameWindow ? machineQueries(latest.byQuery) : new Set();
+const machineImpressions = joinSameWindow
+  ? latest.byQuery.filter((r) => machine.has(r.keys?.[0])).reduce((n, r) => n + r.impressions, 0)
+  : 0;
+const googleForCtr = joinSameWindow ? withoutMachineQueries(google, latest.byQueryPage, machine) : google;
+const anomalies = ctrAnomalies(googleForCtr).filter((r) => !noindex.has(r.path));
 for (const r of anomalies) {
   const ev = `CTR ${pct(r.ctr)} vs ${pct(r.expected)} expected at position ${r.position.toFixed(1)}; ${r.impressions} impressions, ${r.clicks} clicks`;
   const h = heldSince(r.path);
@@ -299,6 +311,7 @@ lines.push(
 );
 lines.push("");
 lines.push(`- Google window: ${current.range.start} to ${current.range.end} (snapshot ${current.date})`);
+lines.push(`- Machine-like queries set aside before the CTR check: ${joinSameWindow ? `${machine.size} queries, ${machineImpressions} impressions` : "none (no query join for this window)"}`);
 lines.push(`- CTR anomalies: ${anomalies.length} pages at position 10 or better earning under half the curve, ${anomalies.length - held.filter((h) => h.why.startsWith("CTR")).length} actionable`);
 lines.push(`- Decay: ${decayNote}`);
 lines.push(`- Stale: ${staleNote}`);

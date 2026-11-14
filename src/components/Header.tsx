@@ -16,7 +16,7 @@ import { clusterMap } from "@/lib/clusterRegistry";
 // clicks, 91 of 607) in the row. Cookbook (no search clicks in that window)
 // moves to the phone menu's Reference group and the footer.
 const nav = [
-  { href: "/fitness-apis", label: "Fitness APIs" },
+  { href: "/fitness-apis", label: "APIs by job" },
   { href: "/pricing", label: "Pricing" },
   { href: "/picker", label: "API Picker" },
   { href: "/changes", label: "Changes" },
@@ -36,7 +36,7 @@ const nav = [
 const GUIDES = "Guides";
 const REFERENCE = "Reference";
 const MOBILE_LINKS = [
-  { href: "/fitness-apis", label: "Fitness APIs" },
+  { href: "/fitness-apis", label: "APIs by job" },
   { href: "/pricing", label: "Pricing" },
   { href: "/alternatives", label: "Alternatives" },
   { href: "/picker", label: "API Picker" },

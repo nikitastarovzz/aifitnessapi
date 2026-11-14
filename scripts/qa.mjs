@@ -716,6 +716,29 @@ if (fs.existsSync(matrixPath)) {
   }
   console.log(`Directory: ${dir.length} product pages, ${thin} with no coverage.`);
 
+  // ── APIS-GUIDE (ops/GSC-10-2026-11-13.md item 1). A product whose searches a
+  // guide owns keeps its directory page for readers, but noindex, follow and
+  // linking the guide, so the two never compete for the same search. Read from
+  // API_GUIDES in src/data/apis.ts: every guide must be built, and every such
+  // directory page must say noindex and link it.
+  {
+    const apisSrc = fs.readFileSync("src/data/apis.ts", "utf8");
+    const block = /API_GUIDES[^=]*=\s*\{([\s\S]*?)\};/.exec(apisSrc)?.[1];
+    if (block === undefined) problems.push("APIS-GUIDE  could not read API_GUIDES in src/data/apis.ts");
+    const pairs = block ? [...block.matchAll(/^\s*"?([a-z0-9-]+)"?:\s*"([^"]+)",/gm)].map((m) => [m[1], m[2]]) : [];
+    if (block && pairs.length < 10) problems.push(`APIS-GUIDE  read ${pairs.length} guide pairs from API_GUIDES; expected at least 10`);
+    const routes = new Set(htmls.map(routeOf));
+    for (const [id, guide] of pairs) {
+      if (!routes.has(guide)) { problems.push(`APIS-GUIDE  ${id}'s guide ${guide} was not built`); continue; }
+      const h = htmls.find((x) => routeOf(x) === `/apis/${id}`);
+      if (!h) continue; // APIS-MISSING reports it
+      const html = fs.readFileSync(h, "utf8");
+      if (!/<meta name="robots" content="noindex, follow"/.test(html)) problems.push(`APIS-GUIDE  /apis/${id} is indexable although ${guide} owns its searches`);
+      if (!html.includes(`href="${guide}"`)) problems.push(`APIS-GUIDE  /apis/${id} does not link its guide ${guide}`);
+    }
+    console.log(`Directory guides: ${pairs.length} product pages defer to a guide (noindex, follow).`);
+  }
+
   // ── The market map and the index (added 2026-10-31). Both are derived views
   // of the directory, so the directory's product set is what they must show:
   // a tile or a row that quietly drops out is a landscape with a hole in it.

@@ -18,7 +18,7 @@ export { clampTitle, clampDescription } from "@/lib/cluster";
 
 export const PILLAR_PATH = "/fitness-apis";
 /** Shared-template config for this cluster. */
-export const FITNESS_APIS_CONFIG = { basePath: PILLAR_PATH, hubLabel: "Fitness APIs" };
+export const FITNESS_APIS_CONFIG = { basePath: PILLAR_PATH, hubLabel: "APIs by job" };
 
 /** All authored entries, in a stable display order. */
 export const allEntries: ClusterEntry[] = entries;
