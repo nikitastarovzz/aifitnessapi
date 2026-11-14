@@ -1,12 +1,12 @@
 [
   {
     "claim": "Google's Google Health API page gives November 2, 2026 as the turn-off of the Fitbit Web API and Fitbit OAuth endpoints, still in the future tense when read on November 14, 2026.",
-    "url": "https://developers.google.com/health/about",
+    "url": "https://developers.google.com/health/about?hl=en",
     "quote": "November 2, 2026 (API turn-off): The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users."
   },
   {
     "claim": "Requests to the Fitbit Web API and Fitbit OAuth endpoints fail with HTTP 410 Gone after the turn-off.",
-    "url": "https://developers.google.com/health/about",
+    "url": "https://developers.google.com/health/about?hl=en",
     "quote": "Requests to these endpoints will fail and return an HTTP 410 Gone status code."
   },
   {

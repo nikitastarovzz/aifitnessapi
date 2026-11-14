@@ -171,12 +171,12 @@
   },
   {
     "claim": "On-device section: Health Connect uses the standard Android permission declaration format.",
-    "url": "https://developer.android.com/health-and-fitness/health-connect/get-started",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/get-started?hl=en",
     "quote": "Health Connect uses the standard Android permission declaration format."
   },
   {
     "claim": "On-device section: one permission per data type, such as heart rate and steps.",
-    "url": "https://developer.android.com/health-and-fitness/health-connect/get-started",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/get-started?hl=en",
     "quote": "android.permission.health.READ_HEART_RATE"
   },
   {
