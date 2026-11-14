@@ -274,9 +274,9 @@ export const pricingEntries: ClusterEntry[] =
     },
     "sources": [
       {
-        "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.42.json",
+        "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
         "checked": "2026-10-17",
-        "note": "API V2 spec FAQ: free for personal and commercial use, approval past 10 users, 403 on expired subscription, rate limits, personal access tokens"
+        "note": "API V2 spec FAQ: free for personal and commercial use, approval past 10 users, 403 on expired subscription, rate limits, personal access tokens (read as spec 1.42 on 2026-10-17; Oura has since replaced that file with openapi-1.43.json, which answered on 2026-11-14 and is linked here, not re-read for this page)"
       },
       {
         "url": "https://cloud.ouraring.com/docs/",
