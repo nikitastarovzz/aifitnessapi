@@ -59,11 +59,16 @@ const LEANS_ON_CONTEXT = /^(It|Its|They|Their|This|These|That|Those|Yes|No|After
 export type KeyFact = { quote: string; url: string; host: string };
 type EvidenceRow = { claim?: string; url?: string; quote?: string };
 
-/** Same identity rule schema.ts uses for citations: no fragment, no trailing slash. */
+/** Same identity rule schema.ts uses for citations: no fragment, no trailing
+ *  slash, and no `hl` language parameter. Evidence rows on Google hosts carry
+ *  `?hl=en` so the checker is not redirected to a machine-translated edition
+ *  (ops/MORE-20-2026-11-14.md item 4); the page's `sources` name the same
+ *  document without it, and both are one source. */
 export function urlKey(url: string): string {
   try {
     const u = new URL(url);
     u.hash = "";
+    u.searchParams.delete("hl");
     return decodeURI(u.href).replace(/\/$/, "");
   } catch {
     return url;

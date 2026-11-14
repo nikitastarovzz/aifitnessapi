@@ -5676,10 +5676,12 @@ function checkSitemapIndex(SITE) {
       .replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(Number(d)))
       .replace(/&nbsp;/g, " ");
   const textOf = (h) => fullDecode(h.replace(/<!--[\s\S]*?-->/g, "").replace(/<[^>]+>/g, "")).replace(/\s+/g, " ").trim();
+  // Mirrors urlKey in src/lib/keyFacts.ts, `hl` language parameter included.
   const urlKey = (u) => {
     try {
       const x = new URL(u);
       x.hash = "";
+      x.searchParams.delete("hl");
       return decodeURI(x.href).replace(/\/$/, "");
     } catch {
       return u;
