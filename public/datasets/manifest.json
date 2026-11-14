@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-11",
+  "generated": "2026-11-14",
   "files": [
     {
       "file": "bluetooth-fitness-gatt-2026.csv",
@@ -15,15 +15,15 @@
     },
     {
       "file": "exercise-form-rules-2026.csv",
-      "bytes": 18641,
-      "rows": 25,
-      "sha256": "26971ed98faa2d68657744feb05890e0057e7a3479a6c56095c23d506b405708"
+      "bytes": 12590,
+      "rows": 16,
+      "sha256": "ad3363ea09bfd3b4b9a8fe14868958b8606ff2fde5963d8e2507d6f9ec297f72"
     },
     {
       "file": "exercise-form-rules-2026.json",
-      "bytes": 33638,
-      "rows": 25,
-      "sha256": "f43f66ad1e97708084b10186192e3cfa1086ff497c33ee3a332d6ba231df0a4c"
+      "bytes": 23244,
+      "rows": 16,
+      "sha256": "1f855bcbfed732b1ca6ab050d0c5b27f4045c4edf0ef4e67db4c96fac142727c"
     },
     {
       "file": "exercise-taxonomy-crosswalk-2026.csv",

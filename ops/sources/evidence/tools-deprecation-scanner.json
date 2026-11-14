@@ -1,72 +1,72 @@
 [
   {
     "claim": "Google Fit REST API (www.googleapis.com/fitness/v1): the scanner's pattern for \"www.googleapis.com/fitness/v1\" rests on this passage.",
-    "url": "https://developers.google.com/fit/rest/v1/reference",
+    "url": "https://developers.google.com/fit/rest/v1/reference?hl=en",
     "quote": "URIs relative to https://www.googleapis.com/fitness/v1/users, unless otherwise noted"
   },
   {
     "claim": "Google Fit REST API (www.googleapis.com/fitness/v1): the replacement the scanner names.",
-    "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit?hl=en",
     "quote": "The Google Fit API (including the REST API) will only be supported until the end of 2026. We recommend migrating to the Google Health API for cloud-based integrations or Health Connect for step tracking and mobile-first apps."
   },
   {
     "claim": "Google Fit Android SDK (com.google.android.gms:play-services-fitness): the scanner's pattern for \"com.google.android.gms:play-services-fitness\" rests on this passage.",
-    "url": "https://developers.google.com/fit/android/get-started",
+    "url": "https://developers.google.com/fit/android/get-started?hl=en",
     "quote": "com.google.android.gms:play-services-fitness:21.3.0"
   },
   {
     "claim": "Google Fit History API (Fitness.getHistoryClient): the scanner's pattern for \"Fitness.getHistoryClient\" rests on this passage.",
-    "url": "https://developers.google.com/fit/android/history",
+    "url": "https://developers.google.com/fit/android/history?hl=en",
     "quote": "Fitness . getHistoryClient ( this , GoogleSignIn . getAccountForExtension ( this , fitnessOptions"
   },
   {
     "claim": "Google Fit History API (Fitness.getHistoryClient): the replacement the scanner names.",
-    "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit?hl=en",
     "quote": "Fit History API and Fit Session API | Google Health API | Available"
   },
   {
     "claim": "Google Fit Session API (Fitness.getSessionsClient): the scanner's pattern for \"Fitness.getSessionsClient\" rests on this passage.",
-    "url": "https://developers.google.com/fit/android/using-sessions",
+    "url": "https://developers.google.com/fit/android/using-sessions?hl=en",
     "quote": "Fitness . getSessionsClient ( this , googleSigninAccount )"
   },
   {
     "claim": "Google Fit Session API (Fitness.getSessionsClient): the replacement the scanner names.",
-    "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit?hl=en",
     "quote": "Start/stop: Not applicable. The application should track the state of ongoing sessions internally. Read/write: Transition to the Google Health API"
   },
   {
     "claim": "Google Fit Session API (Fitness.getSessionsClient): the replacement the scanner names.",
-    "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit?hl=en",
     "quote": "Start/stop: Use Health Services (ExerciseClient) Read/write: Use Health Connect with your mobile app."
   },
   {
     "claim": "Google Fit Recording API (Fitness.getRecordingClient): the scanner's pattern for \"Fitness.getRecordingClient\" rests on this passage.",
-    "url": "https://developers.google.com/fit/android/record",
+    "url": "https://developers.google.com/fit/android/record?hl=en",
     "quote": "Fitness . getRecordingClient ( this , GoogleSignIn . getAccountForExtension ( this , fitnessOptions"
   },
   {
     "claim": "Google Fit Recording API (Fitness.getRecordingClient): the replacement the scanner names.",
-    "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit?hl=en",
     "quote": "Reading mobile steps (with Google Fit Recording API) | Health Connect | Available"
   },
   {
     "claim": "Google Fit Recording API (Fitness.getRecordingClient): the replacement the scanner names.",
-    "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit?hl=en",
     "quote": "Use Health Services: PassiveMonitoringClient ExerciseClient"
   },
   {
     "claim": "Google Fit Sensors API (Fitness.getSensorsClient): the scanner's pattern for \"Fitness.getSensorsClient\" rests on this passage.",
-    "url": "https://developers.google.com/fit/android/sensors",
+    "url": "https://developers.google.com/fit/android/sensors?hl=en",
     "quote": "Fitness . getSensorsClient ( this , GoogleSignIn . getAccountForExtension ( this , fitnessOptions"
   },
   {
     "claim": "Google Fit Sensors API (Fitness.getSensorsClient): the replacement the scanner names.",
-    "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit?hl=en",
     "quote": "Use the Android Sensors framework or the Fused Location Provider API for real-time raw data."
   },
   {
     "claim": "Google Fit Goals API (Fitness.getGoalsClient): the scanner's pattern for \"Fitness.getGoalsClient\" rests on this passage.",
-    "url": "https://developers.google.com/fit/android/using-goals",
+    "url": "https://developers.google.com/fit/android/using-goals?hl=en",
     "quote": "Fitness . getGoalsClient ( requireContext (), getGoogleAccount ())"
   },
   {
@@ -141,7 +141,7 @@
   },
   {
     "claim": "MediaPipe Pose legacy solution (mp.solutions.pose): the scanner's pattern for \"mp.solutions.pose\" rests on this passage.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/3eb8983cde1517fdff4abbfb33586316af6d45be/docs/solutions/pose.md",
     "quote": "mp_pose = mp.solutions.pose"
   },
   {

@@ -166,22 +166,22 @@
   },
   {
     "claim": "World landmarks in meters from the hip centre.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/3eb8983cde1517fdff4abbfb33586316af6d45be/docs/solutions/pose.md",
     "quote": "Real-world 3D coordinates in meters with the origin at the center between hips."
   },
   {
     "claim": "Google's quality table: single person 2-4 m, 17 COCO keypoints.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/3eb8983cde1517fdff4abbfb33586316af6d45be/docs/solutions/pose.md",
     "quote": "Each image contains only a single person located 2-4 meters from the camera."
   },
   {
     "claim": "Google's quality table row for Apple Vision.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/3eb8983cde1517fdff4abbfb33586316af6d45be/docs/solutions/pose.md",
     "quote": "| 32.8               | **82.7**               | 36.4                | **91.4**                | 44.5               | **88.6**"
   },
   {
     "claim": "Google's quality table row for BlazePose GHUM Heavy.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/3eb8983cde1517fdff4abbfb33586316af6d45be/docs/solutions/pose.md",
     "quote": "BlazePose GHUM Heavy                                                                                  | 68.1               | **96.4**               | 73.0                | **97.2**                | 74.0"
   },
   {

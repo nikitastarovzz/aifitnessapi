@@ -342,9 +342,11 @@ export const GRAVEYARD: GraveEntry[] = [
     summary:
       "The original MediaPipe Pose solution (mp.solutions.pose and the @mediapipe/pose web package). Google upgraded it to Pose Landmarker; its legacy-solutions guide says the code and prebuilt binaries stay available on an as-is basis.",
     source: {
-      url: "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+      // Google deleted docs/ from the repository on 2026-11-09 (commit 6dd7cf90); this is the
+      // guide at the last commit that touched it (3eb8983, 2024-11-15), read 2026-11-14.
+      url: "https://raw.githubusercontent.com/google-ai-edge/mediapipe/3eb8983cde1517fdff4abbfb33586316af6d45be/docs/solutions/pose.md",
       publisher: "MediaPipe repository (Google)",
-      checkedOn: CHECKED,
+      checkedOn: "2026-11-14",
       quote: "As of May 10, 2023, this solution was upgraded to a new MediaPipe Solution.",
       via: "direct",
     },

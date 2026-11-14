@@ -1,12 +1,12 @@
 [
   {
     "claim": "MediaPipe Pose is built on BlazePose research.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/3eb8983cde1517fdff4abbfb33586316af6d45be/docs/solutions/pose.md",
     "quote": "research that also powers the [ML Kit Pose Detection API]"
   },
   {
     "claim": "BlazePose link in that sentence.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/3eb8983cde1517fdff4abbfb33586316af6d45be/docs/solutions/pose.md",
     "quote": "[BlazePose](https://ai.googleblog.com/2020/08/on-device-real-time-body-pose-tracking.html)"
   },
   {
@@ -107,12 +107,12 @@
   {
     "claim": "Export to NCNN.",
     "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/macros/export-table.md",
-    "quote": "| [NCNN]({{ integrations_path or \"../integrations\" }}/ncnn.md)                    | `ncnn`            | `{{ model_name or \"yolo26n\" }}_ncnn_model/`       | ✅       | `imgsz`, `quantize`, `batch`, `device`                                                                                   |"
+    "quote": "| [NCNN]({{ integrations_path or \"../integrations\" }}/ncnn.md)                    | `ncnn`            | `{{ model_name or \"yolo26n\" }}_ncnn_model/`       | ✅"
   },
   {
     "claim": "Export to ExecuTorch.",
     "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/macros/export-table.md",
-    "quote": "| [ExecuTorch]({{ integrations_path or \"../integrations\" }}/executorch.md)        | `executorch`      | `{{ model_name or \"yolo26n\" }}_executorch_model/` | ✅       | `imgsz`, `batch`, `device`                                                                                               |"
+    "quote": "| [ExecuTorch]({{ integrations_path or \"../integrations\" }}/executorch.md)        | `executorch`      | `{{ model_name or \"yolo26n\" }}_executorch_model/` | ✅"
   },
   {
     "claim": "Export to TensorRT.",
@@ -221,22 +221,22 @@
   },
   {
     "claim": "World landmarks in meters from the hip centre.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/3eb8983cde1517fdff4abbfb33586316af6d45be/docs/solutions/pose.md",
     "quote": "Real-world 3D coordinates in meters with the origin at the center between hips."
   },
   {
     "claim": "BlazePose GHUM Heavy 68.1 / 73.0 / 74.0 mAP on Yoga, Dance, HIIT.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/3eb8983cde1517fdff4abbfb33586316af6d45be/docs/solutions/pose.md",
     "quote": "BlazePose GHUM Heavy                                                                                  | 68.1               | **96.4**               | 73.0                | **97.2**                | 74.0               | **97.5**"
   },
   {
     "claim": "Quality sets have one person 2 to 4 meters away, scored on 17 COCO keypoints.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/3eb8983cde1517fdff4abbfb33586316af6d45be/docs/solutions/pose.md",
     "quote": "Each image contains only a single person located 2-4 meters from the camera. To be consistent with other solutions, we perform evaluation only for 17 keypoints"
   },
   {
     "claim": "Validation sets are Yoga, Dance and HIIT.",
-    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+    "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/3eb8983cde1517fdff4abbfb33586316af6d45be/docs/solutions/pose.md",
     "quote": "we use three different validation datasets, representing different verticals: Yoga, Dance and HIIT."
   },
   {
