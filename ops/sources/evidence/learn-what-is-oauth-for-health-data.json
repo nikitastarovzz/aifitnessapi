@@ -1,0 +1,187 @@
+[
+  {
+    "claim": "Answer / body: OAuth 2.0 is the IETF framework in RFC 6749.",
+    "url": "https://www.rfc-editor.org/rfc/rfc6749.txt",
+    "quote": "The OAuth 2.0 Authorization Framework"
+  },
+  {
+    "claim": "Answer / FAQ 1: it gives a third-party app limited access to an HTTP service on behalf of the user.",
+    "url": "https://www.rfc-editor.org/rfc/rfc6749.txt",
+    "quote": "The OAuth 2.0 authorization framework enables a third-party application to obtain limited access to an HTTP service"
+  },
+  {
+    "claim": "Body: instead of using the owner's credentials, the client obtains an access token denoting scope and lifetime.",
+    "url": "https://www.rfc-editor.org/rfc/rfc6749.txt",
+    "quote": "Instead of using the resource owner's credentials to access protected resources, the client obtains an access token -- a string denoting a specific scope, lifetime, and other access attributes."
+  },
+  {
+    "claim": "Body / FAQ 3: refresh tokens are used to obtain a new access token when the current one expires.",
+    "url": "https://www.rfc-editor.org/rfc/rfc6749.txt",
+    "quote": "Refresh tokens are credentials used to obtain access tokens."
+  },
+  {
+    "claim": "Body: scope strings are defined by each authorization server.",
+    "url": "https://www.rfc-editor.org/rfc/rfc6749.txt",
+    "quote": "The strings are defined by the authorization server."
+  },
+  {
+    "claim": "Body: RFC 6749 recommends the state parameter and says it should be used to prevent CSRF.",
+    "url": "https://www.rfc-editor.org/rfc/rfc6749.txt",
+    "quote": "The parameter SHOULD be used for preventing cross-site request forgery as described in Section 10.12."
+  },
+  {
+    "claim": "Body: PKCE (RFC 7636) mitigates authorization code interception.",
+    "url": "https://www.rfc-editor.org/rfc/rfc7636.txt",
+    "quote": "OAuth 2.0 public clients utilizing the Authorization Code Grant are susceptible to the authorization code interception attack."
+  },
+  {
+    "claim": "Body: PKCE stands for Proof Key for Code Exchange.",
+    "url": "https://www.rfc-editor.org/rfc/rfc7636.txt",
+    "quote": "Proof Key for Code Exchange"
+  },
+  {
+    "claim": "Answer / body: Strava documents the authorization-code flow.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "If the user authorized the application, the URL query string will include an authorization code and the scope accepted by the user."
+  },
+  {
+    "claim": "Answer / body: the code is exchanged for a refresh token and a short-lived access token.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "Applications complete the authorization process by exchanging the authorization code for a refresh token and short-lived access token."
+  },
+  {
+    "claim": "Body: Strava lets the user opt out of requested scopes.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "A user can opt out of the scopes requested by the application."
+  },
+  {
+    "claim": "Answer / body: users can grant and revoke access per application.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "It allows users to grant and revoke API access on a per-application basis and keeps users' authentication details safe."
+  },
+  {
+    "claim": "Table / FAQ 3: Strava's access tokens expire six hours after they are created and each refresh returns a new refresh token.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "Access tokens expire six hours after they are created, so they must be refreshed in order for an application to maintain access to a user"
+  },
+  {
+    "claim": "Table / FAQ 3: Strava returns a new refresh token with every new access token.",
+    "url": "https://developers.strava.com/docs/authentication/",
+    "quote": "Every time you get a new access token, we return a new refresh token as well."
+  },
+  {
+    "claim": "Answer / body: Oura uses OAuth2.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "The Oura Cloud API supports authentication through the industry-standard OAuth2 protocol."
+  },
+  {
+    "claim": "Body: Oura lets the user enable and disable scopes.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "When an Oura user authorizes access to your application, she can enable and disable scopes based on her preferences."
+  },
+  {
+    "claim": "Example: Oura's daily scope covers daily summaries of sleep, activity and readiness.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "daily Daily summaries of sleep, activity and readiness"
+  },
+  {
+    "claim": "Body: Oura marks the PKCE code challenge as recommended.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "PKCE code challenge. Generate a random string (the"
+  },
+  {
+    "claim": "Body: Oura says the state should contain a random string against CSRF.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "It should also contain a random string to protect against cross-site request forgery attacks."
+  },
+  {
+    "claim": "Table / example / FAQ 3: Oura's refresh tokens are single-use.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "The refresh token is single-use, meaning it is invalidated after being used."
+  },
+  {
+    "claim": "Body: WHOOP requires an eight-character state if you generate it.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "The state parameter must be eight characters long if you need to generate it yourself."
+  },
+  {
+    "claim": "Table / FAQ 3: WHOOP's sample response gives expires_in of 3600.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "\"expires_in\" : 3600 ,"
+  },
+  {
+    "claim": "Body: an expired access token gets a 401.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "WHOOP will respond with a (401 - Unauthorized) HTTP status code if your app sends a request with an expired access token."
+  },
+  {
+    "claim": "Body: WHOOP returns a refresh token only with the offline scope.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "You must request the offline scope to receive a refresh token."
+  },
+  {
+    "claim": "Body: Garmin says all Developer Program APIs use OAuth 2.0.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "What OAuth format do the Developer Program APIs use? All APIs in the Developer Program use OAUTH 2.0."
+  },
+  {
+    "claim": "Answer / table / example / FAQ 5: the Google Health API replaces the Fitbit Web API and Fitbit authorization with Google OAuth 2.0.",
+    "url": "https://developers.google.com/health/about?hl=en",
+    "quote": "replace legacy Fitbit authorization (FOT) with Google OAuth 2.0."
+  },
+  {
+    "claim": "Example: Google Health API scopes are passed to Google's OAuth endpoint and the token holds only the granted scopes.",
+    "url": "https://developers.google.com/health/scopes?hl=en",
+    "quote": "The access token issued will only contain the scopes the consenting user has authorized."
+  },
+  {
+    "claim": "Example: the Google Health API has a sleep read scope.",
+    "url": "https://developers.google.com/health/scopes?hl=en",
+    "quote": ".sleep.readonly See your Google Health sleep data."
+  },
+  {
+    "claim": "On-device section: an app doesn't know whether read permission was granted or denied.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/authorizing-access-to-health-data.json",
+    "quote": "As part of the privacy protections, your app doesn’t know whether someone granted or denied permission to read data from HealthKit."
+  },
+  {
+    "claim": "On-device section: people can change your app's permissions at any time in Settings or Health.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/authorizing-access-to-health-data.json",
+    "quote": "A person can change the permissions for your app at any time using either the Settings or Health app."
+  },
+  {
+    "claim": "On-device section: people can grant only a limited window of recent data.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/authorizing-access-to-health-data.json",
+    "quote": "In addition, people can choose to grant your app access to only a limited window of recent data rather than their full history."
+  },
+  {
+    "claim": "On-device section: users grant or deny permission separately per data type.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/protecting-user-privacy.json",
+    "quote": "Users can grant or deny permission separately for each type of data."
+  },
+  {
+    "claim": "On-device section: an app isn't aware when the user denies read permission; no data appears to exist.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/healthkit/protecting-user-privacy.json",
+    "quote": "To prevent possible information leaks, an app isn’t aware when the user denies permission to read data. From the app’s point of view, no data of that type exists."
+  },
+  {
+    "claim": "On-device section: Health Connect requires per-app permission to read and write.",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/architecture",
+    "quote": "Health Connect requires you to request the user's permission to read and write their health and fitness data on a per-app basis."
+  },
+  {
+    "claim": "On-device section: Health Connect uses the standard Android permission declaration format.",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/get-started",
+    "quote": "Health Connect uses the standard Android permission declaration format."
+  },
+  {
+    "claim": "On-device section: one permission per data type, such as heart rate and steps.",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/get-started",
+    "quote": "android.permission.health.READ_HEART_RATE"
+  },
+  {
+    "claim": "On-device section: the Health Connect APK sits on the user's device.",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/architecture",
+    "quote": "The Health Connect APK is made available directly on the user's device."
+  }
+]
