@@ -1575,7 +1575,7 @@ if (fs.existsSync(matrixPath)) {
     const rendered = new Set(
       htmls.filter((h) => fs.readFileSync(h, "utf8").includes("data-see-also")).map(routeOf),
     );
-    const EXPECTED = 38;
+    const EXPECTED = 41; // +3 nutrition pages pointing at /alternatives/nutritics-alternatives (ops/MORE-20-2026-11-14.md item 19)
     if (mapped.size !== EXPECTED) {
       problems.push(`SEE-ALSO-MAP  SeeAlsoCallout maps ${mapped.size} paths, expected ${EXPECTED} — update the count with the map`);
     }
