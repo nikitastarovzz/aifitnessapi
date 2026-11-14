@@ -37,7 +37,7 @@
   {
     "claim": "Maven artifacts ai.quickpose.",
     "url": "https://raw.githubusercontent.com/quickpose/quickpose-android-sdk/main/README.md",
-    "quote": "implementation(\"ai.quickpose:quickpose-core:0.25\")"
+    "quote": "implementation(\"ai.quickpose:quickpose-core:0.26\")"
   },
   {
     "claim": "React Native plugin for iOS and Android.",

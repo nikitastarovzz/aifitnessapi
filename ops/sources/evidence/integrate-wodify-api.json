@@ -90,9 +90,9 @@
     "quote": "Host: app-api.wodify.com"
   },
   {
-    "claim": "Wodify customers: if the business uses the Wodify Workflows feature, it already has a key in Wodify Core under Digital Presence, Web Integrations, API Keys; click EDIT and look for the key named Wodify API.",
+    "claim": "As of November 14, 2026, Wodify's authentication guide says to go to Automations → Integrations in Wodify Core, open the API & MCP section, and click Add API Key under API Keys to create one.",
     "url": "https://docs.wodify.com/docs/authentication",
-    "quote": "For Wodify Customers: If you use the Wodify Workflows feature, you already have an API key set up and ready to use! You can find it in Wodify Core via Digital Presence > Web Integrations > API Keys. Click the 'EDIT' button and locate the API key with the name 'Wodify API.'"
+    "quote": "For Wodify Customers: In Wodify Core, go to Automations → Integrations and open the API & MCP section. Under API Keys , click Add API Key to create a key."
   },
   {
     "claim": "As of November 2, 2026 the API reference tells you to request a key through the Automations → Integrations page if you don't have one.",

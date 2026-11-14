@@ -1,0 +1,47 @@
+[
+  {
+    "claim": "Google's Google Health API page gives November 2, 2026 as the turn-off of the Fitbit Web API and Fitbit OAuth endpoints, still in the future tense when read on November 14, 2026.",
+    "url": "https://developers.google.com/health/about",
+    "quote": "November 2, 2026 (API turn-off): The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users."
+  },
+  {
+    "claim": "Requests to the Fitbit Web API and Fitbit OAuth endpoints fail with HTTP 410 Gone after the turn-off.",
+    "url": "https://developers.google.com/health/about",
+    "quote": "Requests to these endpoints will fail and return an HTTP 410 Gone status code."
+  },
+  {
+    "claim": "Google's Health Status Dashboard: \"we will turn down legacy Fitbit Web API and Fitbit OAuth traffic on Monday, November 2, 2026.\"",
+    "url": "https://status.healthapp.google.com/",
+    "quote": "we will turn down legacy Fitbit Web API and Fitbit OAuth traffic on Monday, November 2, 2026."
+  },
+  {
+    "claim": "Google's Health Status Dashboard: \"the Legacy Fitbit Web APIs will be officially turned down on October 30, 2026\".",
+    "url": "https://status.healthapp.google.com/",
+    "quote": "the Legacy Fitbit Web APIs will be officially turned down on October 30, 2026."
+  },
+  {
+    "claim": "The banner on Fitbit's Web API reference still says \"On October 30, 2026, the Fitbit Web API will be turned off and will no longer function or sync data to or from Fitbit users.\" (read November 14, 2026).",
+    "url": "https://dev.fitbit.com/build/reference/web-api/",
+    "quote": "On October 30, 2026, the Fitbit Web API will be turned off and will no longer function or sync data to or from Fitbit users."
+  },
+  {
+    "claim": "Fitbit's error-messages reference lists expired_token on a 401.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/troubleshooting-guide/error-messages/",
+    "quote": "Access token expired: [access_token]"
+  },
+  {
+    "claim": "Fitbit's error-messages reference lists invalid_token on a 401.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/troubleshooting-guide/error-messages/",
+    "quote": "Access token invalid: [access_token]"
+  },
+  {
+    "claim": "A wrong client secret shows up as invalid_client, not as 410.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/troubleshooting-guide/error-messages/",
+    "quote": "Invalid authorization header. Client secret invalid"
+  },
+  {
+    "claim": "An invalid refresh token shows up as invalid_grant, not as 410.",
+    "url": "https://dev.fitbit.com/build/reference/web-api/troubleshooting-guide/error-messages/",
+    "quote": "Refresh token invalid: [refresh_token]"
+  }
+]

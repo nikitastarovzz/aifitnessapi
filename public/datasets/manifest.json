@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-11",
+  "generated": "2026-11-14",
   "files": [
     {
       "file": "bluetooth-fitness-gatt-2026.csv",
@@ -15,15 +15,15 @@
     },
     {
       "file": "exercise-form-rules-2026.csv",
-      "bytes": 18641,
-      "rows": 25,
-      "sha256": "26971ed98faa2d68657744feb05890e0057e7a3479a6c56095c23d506b405708"
+      "bytes": 12590,
+      "rows": 16,
+      "sha256": "ad3363ea09bfd3b4b9a8fe14868958b8606ff2fde5963d8e2507d6f9ec297f72"
     },
     {
       "file": "exercise-form-rules-2026.json",
-      "bytes": 33638,
-      "rows": 25,
-      "sha256": "f43f66ad1e97708084b10186192e3cfa1086ff497c33ee3a332d6ba231df0a4c"
+      "bytes": 23244,
+      "rows": 16,
+      "sha256": "1f855bcbfed732b1ca6ab050d0c5b27f4045c4edf0ef4e67db4c96fac142727c"
     },
     {
       "file": "exercise-taxonomy-crosswalk-2026.csv",
@@ -39,15 +39,15 @@
     },
     {
       "file": "fitness-api-changes-2026.csv",
-      "bytes": 14061,
-      "rows": 22,
-      "sha256": "6ffdb9ae3a2c76c53a7d8275ba022d66ef147d95d0cb9cca1d1e280d7afbe0dd"
+      "bytes": 14644,
+      "rows": 23,
+      "sha256": "54bf17a71cba1de3e0b8074e87df6125c659a0b6c597cbd7b0d9fdf0d32a42fc"
     },
     {
       "file": "fitness-api-changes-2026.json",
-      "bytes": 19247,
-      "rows": 22,
-      "sha256": "2a6476240019e4dc5a51679a7fdf1bfff2dd38d97ecc69f1ee42b9277f29b31d"
+      "bytes": 19987,
+      "rows": 23,
+      "sha256": "30faf9846fd1c1d135e54b250635ad9aa7ad8b652d0e068fead2d7074943e4c9"
     },
     {
       "file": "fitness-api-docs-drift-2026.csv",

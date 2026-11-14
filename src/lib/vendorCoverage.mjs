@@ -956,7 +956,7 @@ export const COVERAGE_VENDORS =[
         "note": "/activity: completed workout sessions",
         "src": {
           "url": "https://raw.githubusercontent.com/tryterra/openapi/master/dist/core/v2-bundled.yaml",
-          "quote": "Returns completed workout sessions, each with a defined start and end time and an activity type such as running or cycling.",
+          "quote": "Returns a user's completed workout sessions in a date range, each with a start and end time and an activity type such as running or cycling.",
           "ev": "ops/sources/evidence/integrate-terra-api.json"
         }
       },
@@ -984,7 +984,7 @@ export const COVERAGE_VENDORS =[
         "mode": "pull",
         "note": "Requests over a month must use to_webhook and arrive asynchronously",
         "src": {
-          "url": "https://docs.tryterra.co/unified-api/managing-user-health-data/requesting-historical-data",
+          "url": "https://docs.tryterra.co/unified-api/requesting-historical-data",
           "quote": "Time ranges longer than one month must use to_webhook=true , and Terra sends the data asynchronously .",
           "ev": "ops/sources/evidence/integrate-terra-api.json"
         }
@@ -995,7 +995,7 @@ export const COVERAGE_VENDORS =[
         "note": "No single request may span more than five years",
         "src": {
           "url": "https://docs.tryterra.co/reference/health-and-fitness-api/rate-limits",
-          "quote": "your start_date / end_date window is wider than 5 years",
+          "quote": "your start_date to end_date window is wider than 5 years",
           "ev": "ops/sources/evidence/integrate-terra-api.json"
         }
       }
@@ -1004,7 +1004,7 @@ export const COVERAGE_VENDORS =[
       {
         "note": "with_samples must be true for granular data",
         "src": {
-          "url": "https://docs.tryterra.co/unified-api/managing-user-health-data/requesting-historical-data",
+          "url": "https://docs.tryterra.co/unified-api/requesting-historical-data",
           "quote": "must be set to true to receive granular data",
           "ev": "ops/sources/evidence/integrate-terra-api.json"
         }

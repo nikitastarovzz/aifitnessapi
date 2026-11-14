@@ -1,0 +1,312 @@
+[
+  {
+    "claim": "Answer / body / FAQ 1: the SIG registry lists the Fitness Machine Service as 0x1826.",
+    "url": "https://bitbucket.org/bluetooth-SIG/public/raw/main/assigned_numbers/uuids/service_uuids.yaml",
+    "quote": "uuid: 0x1826 name: Fitness Machine id: org.bluetooth.service.fitness_machine"
+  },
+  {
+    "claim": "What FTMS is not: Heart Rate has its own service, 0x180D.",
+    "url": "https://bitbucket.org/bluetooth-SIG/public/raw/main/assigned_numbers/uuids/service_uuids.yaml",
+    "quote": "uuid: 0x180D name: Heart Rate id: org.bluetooth.service.heart_rate"
+  },
+  {
+    "claim": "What FTMS is not: the standalone Cycling Power service.",
+    "url": "https://bitbucket.org/bluetooth-SIG/public/raw/main/assigned_numbers/uuids/service_uuids.yaml",
+    "quote": "uuid: 0x1818 name: Cycling Power id: org.bluetooth.service.cycling_power"
+  },
+  {
+    "claim": "Answer / body / FAQs: Fitness Machine Feature is 0x2ACC.",
+    "url": "https://bitbucket.org/bluetooth-SIG/public/raw/main/assigned_numbers/uuids/characteristic_uuids.yaml",
+    "quote": "uuid: 0x2ACC name: Fitness Machine Feature id: org.bluetooth.characteristic.fitness_machine_feature"
+  },
+  {
+    "claim": "Answer / body / FAQs: Treadmill Data is 0x2ACD.",
+    "url": "https://bitbucket.org/bluetooth-SIG/public/raw/main/assigned_numbers/uuids/characteristic_uuids.yaml",
+    "quote": "uuid: 0x2ACD name: Treadmill Data id: org.bluetooth.characteristic.treadmill_data"
+  },
+  {
+    "claim": "Answer / body / FAQs: Cross Trainer Data is 0x2ACE.",
+    "url": "https://bitbucket.org/bluetooth-SIG/public/raw/main/assigned_numbers/uuids/characteristic_uuids.yaml",
+    "quote": "uuid: 0x2ACE name: Cross Trainer Data id: org.bluetooth.characteristic.cross_trainer_data"
+  },
+  {
+    "claim": "Answer / body / FAQs: Step Climber Data is 0x2ACF.",
+    "url": "https://bitbucket.org/bluetooth-SIG/public/raw/main/assigned_numbers/uuids/characteristic_uuids.yaml",
+    "quote": "uuid: 0x2ACF name: Step Climber Data id: org.bluetooth.characteristic.step_climber_data"
+  },
+  {
+    "claim": "Answer / body / FAQs: Stair Climber Data is 0x2AD0.",
+    "url": "https://bitbucket.org/bluetooth-SIG/public/raw/main/assigned_numbers/uuids/characteristic_uuids.yaml",
+    "quote": "uuid: 0x2AD0 name: Stair Climber Data id: org.bluetooth.characteristic.stair_climber_data"
+  },
+  {
+    "claim": "Answer / body / FAQs: Rower Data is 0x2AD1.",
+    "url": "https://bitbucket.org/bluetooth-SIG/public/raw/main/assigned_numbers/uuids/characteristic_uuids.yaml",
+    "quote": "uuid: 0x2AD1 name: Rower Data id: org.bluetooth.characteristic.rower_data"
+  },
+  {
+    "claim": "Answer / body / FAQs: Indoor Bike Data is 0x2AD2.",
+    "url": "https://bitbucket.org/bluetooth-SIG/public/raw/main/assigned_numbers/uuids/characteristic_uuids.yaml",
+    "quote": "uuid: 0x2AD2 name: Indoor Bike Data id: org.bluetooth.characteristic.indoor_bike_data"
+  },
+  {
+    "claim": "Answer / body / FAQs: Training Status is 0x2AD3.",
+    "url": "https://bitbucket.org/bluetooth-SIG/public/raw/main/assigned_numbers/uuids/characteristic_uuids.yaml",
+    "quote": "uuid: 0x2AD3 name: Training Status id: org.bluetooth.characteristic.training_status"
+  },
+  {
+    "claim": "Answer / body / FAQs: Supported Speed Range is 0x2AD4.",
+    "url": "https://bitbucket.org/bluetooth-SIG/public/raw/main/assigned_numbers/uuids/characteristic_uuids.yaml",
+    "quote": "uuid: 0x2AD4 name: Supported Speed Range id: org.bluetooth.characteristic.supported_speed_range"
+  },
+  {
+    "claim": "Answer / body / FAQs: Supported Inclination Range is 0x2AD5.",
+    "url": "https://bitbucket.org/bluetooth-SIG/public/raw/main/assigned_numbers/uuids/characteristic_uuids.yaml",
+    "quote": "uuid: 0x2AD5 name: Supported Inclination Range id: org.bluetooth.characteristic.supported_inclination_range"
+  },
+  {
+    "claim": "Answer / body / FAQs: Supported Resistance Level Range is 0x2AD6.",
+    "url": "https://bitbucket.org/bluetooth-SIG/public/raw/main/assigned_numbers/uuids/characteristic_uuids.yaml",
+    "quote": "uuid: 0x2AD6 name: Supported Resistance Level Range id: org.bluetooth.characteristic.supported_resistance_level_range"
+  },
+  {
+    "claim": "Answer / body / FAQs: Supported Heart Rate Range is 0x2AD7.",
+    "url": "https://bitbucket.org/bluetooth-SIG/public/raw/main/assigned_numbers/uuids/characteristic_uuids.yaml",
+    "quote": "uuid: 0x2AD7 name: Supported Heart Rate Range id: org.bluetooth.characteristic.supported_heart_rate_range"
+  },
+  {
+    "claim": "Answer / body / FAQs: Supported Power Range is 0x2AD8.",
+    "url": "https://bitbucket.org/bluetooth-SIG/public/raw/main/assigned_numbers/uuids/characteristic_uuids.yaml",
+    "quote": "uuid: 0x2AD8 name: Supported Power Range id: org.bluetooth.characteristic.supported_power_range"
+  },
+  {
+    "claim": "Answer / body / FAQs: Fitness Machine Control Point is 0x2AD9.",
+    "url": "https://bitbucket.org/bluetooth-SIG/public/raw/main/assigned_numbers/uuids/characteristic_uuids.yaml",
+    "quote": "uuid: 0x2AD9 name: Fitness Machine Control Point id: org.bluetooth.characteristic.fitness_machine_control_point"
+  },
+  {
+    "claim": "Answer / body / FAQs: Fitness Machine Status is 0x2ADA.",
+    "url": "https://bitbucket.org/bluetooth-SIG/public/raw/main/assigned_numbers/uuids/characteristic_uuids.yaml",
+    "quote": "uuid: 0x2ADA name: Fitness Machine Status id: org.bluetooth.characteristic.fitness_machine_status"
+  },
+  {
+    "claim": "Answer: FTMS lets a fitness machine send training data to an app; the SIG's page lists version 1.0.1.",
+    "url": "https://www.bluetooth.com/specifications/specs/fitness-machine-service-1-0-1/",
+    "quote": "This service exposes training-related data in the sports and fitness environment, which allows a Server (e.g., a fitness machine) to send training-related data to a Client."
+  },
+  {
+    "claim": "Answer / body: the specification's introduction: the client collects training data while a user exercises on the machine.",
+    "url": "https://www.bluetooth.com/specifications/specs/html/?src=ftms-v1-0-1_1756429637/FTMS_v1.0.1/out/en/index-en.html",
+    "quote": "The Fitness Machine Service (FTMS) exposes training-related data in the sports and fitness environment, which allows a Client to collect training data while a user is exercising with a fitness machine (Server)."
+  },
+  {
+    "claim": "Body: Training Status sends training status to the app, e.g. warming up or a low or high intensity phase.",
+    "url": "https://www.bluetooth.com/specifications/specs/html/?src=ftms-v1-0-1_1756429637/FTMS_v1.0.1/out/en/index-en.html",
+    "quote": "The Training Status characteristic shall be used by the Server to send the training status information to the Client."
+  },
+  {
+    "claim": "Body: training status examples.",
+    "url": "https://www.bluetooth.com/specifications/specs/html/?src=ftms-v1-0-1_1756429637/FTMS_v1.0.1/out/en/index-en.html",
+    "quote": "in order to provide feedback to the Client about training status (e.g., warming up, low or high intensity phase,"
+  },
+  {
+    "claim": "Capability discovery: Fitness Machine Feature describes the supported features.",
+    "url": "https://www.bluetooth.com/specifications/specs/html/?src=ftms-v1-0-1_1756429637/FTMS_v1.0.1/out/en/index-en.html",
+    "quote": "The Fitness Machine Feature characteristic shall be used to describe the supported features of the Server."
+  },
+  {
+    "claim": "Control point: the Control Point is used to request a function on the machine.",
+    "url": "https://www.bluetooth.com/specifications/specs/html/?src=ftms-v1-0-1_1756429637/FTMS_v1.0.1/out/en/index-en.html",
+    "quote": "The Fitness Machine Control Point characteristic is used to request a specific function to be executed on the Server."
+  },
+  {
+    "claim": "Control point: the Control Point provides a way to remotely control the machine.",
+    "url": "https://www.bluetooth.com/specifications/specs/html/?src=ftms-v1-0-1_1756429637/FTMS_v1.0.1/out/en/index-en.html",
+    "quote": "The Fitness Machine Control Point may also be exposed by the Server in order to provide a mechanism to remotely control a fitness machine (e.g., start, stop, increase the speed, etc.)"
+  },
+  {
+    "claim": "Control point: Fitness Machine Status reports machine status such as started or stopped by the user.",
+    "url": "https://www.bluetooth.com/specifications/specs/html/?src=ftms-v1-0-1_1756429637/FTMS_v1.0.1/out/en/index-en.html",
+    "quote": "the service may also expose the Fitness Machine Status characteristic to send information to the Client about the status of the machine (e.g., started by the user, stopped by the user, etc.)"
+  },
+  {
+    "claim": "Control point: every control procedure requires control permission from the machine.",
+    "url": "https://www.bluetooth.com/specifications/specs/html/?src=ftms-v1-0-1_1756429637/FTMS_v1.0.1/out/en/index-en.html",
+    "quote": "requires control permission from the Server."
+  },
+  {
+    "claim": "Control point: after Request Control returns Success, the machine allows the other control procedures.",
+    "url": "https://www.bluetooth.com/specifications/specs/html/?src=ftms-v1-0-1_1756429637/FTMS_v1.0.1/out/en/index-en.html",
+    "quote": "When the Request Control Op Code is written to the Fitness Machine Control Point and the Result Code is ‘Success’, the Server shall allow the Client to perform any supported control procedures"
+  },
+  {
+    "claim": "Capability discovery: Supported Speed Range represents the speed range a fitness machine supports.",
+    "url": "https://bitbucket.org/bluetooth-SIG/public/raw/main/gss/org.bluetooth.characteristic.supported_speed_range.yaml",
+    "quote": "The Supported Speed Range characteristic is used to represent the speed range supported by a fitness machine."
+  },
+  {
+    "claim": "Table, QZ: runs on macOS or Linux, iOS and Android.",
+    "url": "https://raw.githubusercontent.com/cagnulein/qdomyos-zwift/HEAD/README.md",
+    "quote": "The QDomyos-Zwift application can run on [Macintosh or Linux devices](docs/10_Installation.md) iOS, and Android."
+  },
+  {
+    "claim": "Table / FAQ, QZ: supports any FTMS-compatible application.",
+    "url": "https://raw.githubusercontent.com/cagnulein/qdomyos-zwift/HEAD/README.md",
+    "quote": "It supports any [FTMS-compatible application](docs/20_supported_devices_and_applications.md) software"
+  },
+  {
+    "claim": "Table, QZ: bikes, treadmills, ellipticals and rowers.",
+    "url": "https://raw.githubusercontent.com/cagnulein/qdomyos-zwift/HEAD/README.md",
+    "quote": "|Feature|Bike|Treadmill|Elliptical|Rower|Notes|"
+  },
+  {
+    "claim": "Table, QZ: GPL-3.0.",
+    "url": "https://raw.githubusercontent.com/cagnulein/qdomyos-zwift/HEAD/LICENSE",
+    "quote": "GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007"
+  },
+  {
+    "claim": "Table, Auuki: browser-based progressive web app using Web Bluetooth.",
+    "url": "https://raw.githubusercontent.com/dvmarinoff/Auuki/HEAD/README.md",
+    "quote": "It makes use of some of the most advanced Browser APIs like: Web Bluetooth, Web Serial, and Web Components."
+  },
+  {
+    "claim": "Table / FAQ, Auuki: works with trainers that implement FTMS or Tacx FE-C over BLE.",
+    "url": "https://raw.githubusercontent.com/dvmarinoff/Auuki/HEAD/README.md",
+    "quote": "Works with all trainers that implement the bluetooth Fitness Machine Service (FTMS) or the Tacx FE-C over BLE solution."
+  },
+  {
+    "claim": "Table, Auuki: AGPL-3.0.",
+    "url": "https://raw.githubusercontent.com/dvmarinoff/Auuki/HEAD/LICENSE.txt",
+    "quote": "GNU AFFERO GENERAL PUBLIC LICENSE Version 3, 19 November 2007"
+  },
+  {
+    "claim": "Table, OpenRowingMonitor: runs on a Raspberry Pi and calculates rowing metrics.",
+    "url": "https://raw.githubusercontent.com/JaapvanEkris/openrowingmonitor/HEAD/docs/README.md",
+    "quote": "It runs on cheap (Raspberry Pi) hardware to calculate rowing metrics, such as power, split time, speed, stroke rate, distance and calories."
+  },
+  {
+    "claim": "Table, OpenRowingMonitor: measures the flywheel.",
+    "url": "https://raw.githubusercontent.com/JaapvanEkris/openrowingmonitor/HEAD/docs/README.md",
+    "quote": "as long as you can add something to measure the speed of the flywheel, like magnets."
+  },
+  {
+    "claim": "Table / FAQ, OpenRowingMonitor: broadcasts as an FTMS Rower.",
+    "url": "https://raw.githubusercontent.com/JaapvanEkris/openrowingmonitor/HEAD/docs/README.md",
+    "quote": "**FTMS Rower**: This is the FTMS profile for rowing machines and supports all rowing specific metrics (such as stroke rate)."
+  },
+  {
+    "claim": "Table, OpenRowingMonitor: or as an FTMS Indoor Bike.",
+    "url": "https://raw.githubusercontent.com/JaapvanEkris/openrowingmonitor/HEAD/docs/README.md",
+    "quote": "**FTMS Indoor Bike**: This FTMS profile is used by Smart Bike Trainers and widely adopted by bike training apps."
+  },
+  {
+    "claim": "Table, OpenRowingMonitor: GPL-3.0.",
+    "url": "https://raw.githubusercontent.com/JaapvanEkris/openrowingmonitor/HEAD/LICENSE",
+    "quote": "GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007"
+  },
+  {
+    "claim": "Notes: the original repository is archived and points to the fork for active development.",
+    "url": "https://raw.githubusercontent.com/laberning/openrowingmonitor/HEAD/docs/README.md",
+    "quote": "This repository has been archived and is no longer actively maintained. Development continues on an [active fork here](https://github.com/JaapvanEkris/openrowingmonitor)."
+  },
+  {
+    "claim": "Table, Zwack: simulates FTMS with partial support.",
+    "url": "https://raw.githubusercontent.com/paixaop/zwack/HEAD/README.md",
+    "quote": "Cycling Power and Cadence (FTMS Bluetooth profile - partial support)"
+  },
+  {
+    "claim": "Table / FAQ, Zwack: simulates an indoor bike trainer for testing.",
+    "url": "https://raw.githubusercontent.com/paixaop/zwack/HEAD/README.md",
+    "quote": "Simulate an indoor bike trainer (turbo) generating cyclist power,cadence & speed data to test bike computers fitness, or virtual indoor bike apps."
+  },
+  {
+    "claim": "Table, Zwack: runs on macOS and Raspberry Pi.",
+    "url": "https://raw.githubusercontent.com/paixaop/zwack/HEAD/README.md",
+    "quote": "At this time Zwack runs succesfuly on Mac OSX (Please check Requirements below) and Raspberry PI."
+  },
+  {
+    "claim": "Table, Zwack: MIT.",
+    "url": "https://raw.githubusercontent.com/paixaop/zwack/HEAD/LICENSE",
+    "quote": "The MIT License (MIT)"
+  },
+  {
+    "claim": "Table, pycycling: built on Bleak, cross-platform Windows, macOS, Linux.",
+    "url": "https://raw.githubusercontent.com/zacharyedwardbull/pycycling/HEAD/README.md",
+    "quote": "Bleak is cross-platform with support for Windows, MacOS, and Linux."
+  },
+  {
+    "claim": "Table, pycycling: FTMS is listed under Supported protocols.",
+    "url": "https://raw.githubusercontent.com/zacharyedwardbull/pycycling/HEAD/README.md",
+    "quote": "FiTness Machine Service (FTMS)"
+  },
+  {
+    "claim": "Table, pycycling: MIT.",
+    "url": "https://raw.githubusercontent.com/zacharyedwardbull/pycycling/HEAD/LICENSE",
+    "quote": "MIT License Copyright (c) 2020 Zachary Bull"
+  },
+  {
+    "claim": "Table, pycycling: latest release 0.4.1 on PyPI.",
+    "url": "https://pypi.org/pypi/pycycling/json",
+    "quote": "\"version\":\"0.4.1\""
+  },
+  {
+    "claim": "Table, pycycling: released 2025-01-25.",
+    "url": "https://pypi.org/pypi/pycycling/json",
+    "quote": "\"upload_time\":\"2025-01-25T14:14:25\""
+  },
+  {
+    "claim": "Table, flutter_ftms: built on flutter_blue_plus.",
+    "url": "https://raw.githubusercontent.com/Malte2036/flutter_ftms/HEAD/README.md",
+    "quote": "as this package is based on it."
+  },
+  {
+    "claim": "Table, flutter_ftms: step climber not implemented.",
+    "url": "https://raw.githubusercontent.com/Malte2036/flutter_ftms/HEAD/README.md",
+    "quote": "| Step Climber  | ❌ (not implemented) |"
+  },
+  {
+    "claim": "Table, flutter_ftms: treadmill implemented.",
+    "url": "https://raw.githubusercontent.com/Malte2036/flutter_ftms/HEAD/README.md",
+    "quote": "| Treadmill     | ✅ (implemented)     |"
+  },
+  {
+    "claim": "Table, flutter_ftms: BSD-3-Clause.",
+    "url": "https://raw.githubusercontent.com/Malte2036/flutter_ftms/HEAD/LICENSE",
+    "quote": "BSD 3-Clause License"
+  },
+  {
+    "claim": "Table, flutter_ftms: latest release 1.4.0 on pub.dev, 2026-01-12.",
+    "url": "https://pub.dev/api/packages/flutter_ftms",
+    "quote": "\"latest\":{\"version\":\"1.4.0\""
+  },
+  {
+    "claim": "Table, flutter_ftms: 1.4.0 was published 2026-01-12.",
+    "url": "https://pub.dev/api/packages/flutter_ftms",
+    "quote": "\"published\":\"2026-01-12T22:02:25.634207Z\""
+  },
+  {
+    "claim": "Platform notes: usage description keys, or the app crashes.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/corebluetooth.json",
+    "quote": " doesn’t include usage description keys for the types of data it needs to access. To access Core Bluetooth APIs on apps linked on or after iOS 13, include the "
+  },
+  {
+    "claim": "Platform notes: overriding Core Bluetooth classes is unsupported.",
+    "url": "https://developer.apple.com/tutorials/data/documentation/corebluetooth.json",
+    "quote": "Don’t subclass any of the classes of the Core Bluetooth framework. Overriding these classes isn’t supported and results in undefined behavior."
+  },
+  {
+    "claim": "Platform notes: Web Bluetooth from Chrome 56.",
+    "url": "https://raw.githubusercontent.com/Fyrd/caniuse/main/features-json/web-bluetooth.json",
+    "quote": "\"55\":\"n d #1 #3\", \"56\":\"y #4\""
+  },
+  {
+    "claim": "Platform notes: Web Bluetooth from Opera 43.",
+    "url": "https://raw.githubusercontent.com/Fyrd/caniuse/main/features-json/web-bluetooth.json",
+    "quote": "\"42\":\"n d #1 #3\", \"43\":\"y #4\""
+  },
+  {
+    "claim": "Platform notes: Web Bluetooth from Samsung Internet 6.2.",
+    "url": "https://raw.githubusercontent.com/Fyrd/caniuse/main/features-json/web-bluetooth.json",
+    "quote": "\"5.0-5.4\":\"n\", \"6.2-6.4\":\"y\""
+  }
+]

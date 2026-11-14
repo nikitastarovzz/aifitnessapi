@@ -75,9 +75,9 @@
     "quote": "Launch covers 1-500 connected users."
   },
   {
-    "claim": "Terra's docs say phone health stores \"have no cloud API for third parties, so your mobile app reads them with the Terra SDK and sends the data to Terra\".",
+    "claim": "Terra's docs say phone health stores \"have no cloud API for third parties, so your mobile app reads them with the Terra mobile SDKs and sends the data to Terra\".",
     "url": "https://docs.tryterra.co/unified-api/getting-started",
-    "quote": "These have no cloud API for third parties, so your mobile app reads them with the Terra SDK and sends the data to Terra."
+    "quote": "These have no cloud API for third parties, so your mobile app reads them with the Terra mobile SDKs and sends the data to Terra."
   },
   {
     "claim": "Rook names Dexcom and WHOOP among providers needing your own developer accounts.",
@@ -116,27 +116,27 @@
   },
   {
     "claim": "Terra's integrations table marks Garmin as Required.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Garmin GARMIN Event-Driven Required"
   },
   {
     "claim": "Terra's integrations table marks WHOOP as Required.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Whoop WHOOP Event-Driven Required"
   },
   {
     "claim": "Terra's integrations table marks Strava as Required.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Strava STRAVA Event-Driven Required"
   },
   {
     "claim": "Terra's integrations table marks Dexcom as Required.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Dexcom DEXCOM Periodically fetched Required"
   },
   {
     "claim": "Terra's integrations table marks Samsung as Required.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Samsung SAMSUNG Event-Driven Required"
   },
   {
@@ -290,9 +290,9 @@
     "quote": "Register as a developer with the provider Create an OAuth application to obtain client credentials"
   },
   {
-    "claim": "Open Wearables: pre-1.0 APIs.",
+    "claim": "Open Wearables: version 1.0.0 as of November 14, 2026.",
     "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/backend/pyproject.toml",
-    "quote": "version = \"0.11.0\""
+    "quote": "version = \"1.0.0\""
   },
   {
     "claim": "Terra's FAQ describes one API that \"returns standardised data from 500+ providers, including Garmin, Fitbit, Apple Health, Oura, WHOOP and Strava\".",
@@ -300,9 +300,9 @@
     "quote": "One API call returns standardised data from 500+ providers, including Garmin, Fitbit, Apple Health, Oura, WHOOP and Strava, without writing separate authentication flows or data parsers."
   },
   {
-    "claim": "Terra's setup docs put the dashboard list at \"over 150+ Data Sources\".",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
-    "quote": "The Unified API supports over 150+ Data Sources"
+    "claim": "Terra's setup docs say to \"choose from 150+ integrations\" in the dashboard.",
+    "url": "https://docs.tryterra.co/unified-api/setting-up-data-sources",
+    "quote": "Click Add New and choose from 150+ integrations."
   },
   {
     "claim": "Terra data types cover sleep stages and latency, workouts, heart rate, HRV, VO2max, SpO2, CGM, menstrual cycle, body composition and per-set strength training.",
@@ -335,14 +335,14 @@
     "quote": "Only pay more when you go beyond 100,000 Unified API credits. Starting at $0.005 / credit."
   },
   {
-    "claim": "Terra's docs say it \"manages API Keys of data sources\".",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/dedicated-data-source-api-keys",
-    "quote": "Terra manages API Keys of data sources, meaning you can connect users without having to apply for each API Key."
+    "claim": "Terra's docs say it \"manages the API keys of data sources\".",
+    "url": "https://docs.tryterra.co/unified-api/dedicated-data-source-api-keys",
+    "quote": "Terra manages the API keys of data sources, so you can connect users without applying for each key yourself."
   },
   {
-    "claim": "Terra names WHOOP, Dexcom, Huawei, Strava and Virtuagym as needing special processes.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
-    "quote": "Some providers require special processes before being able to start using them: WHOOP Dexcom Huawei Strava Virtuagym"
+    "claim": "Terra says WHOOP, Dexcom, Huawei, Strava and Virtuagym \"need your own developer app or keys before you can enable them\".",
+    "url": "https://docs.tryterra.co/unified-api/setting-up-data-sources",
+    "quote": "These providers need your own developer app or keys before you can enable them: WHOOP Dexcom Huawei Strava Virtuagym"
   },
   {
     "claim": "Terra's homepage FAQ says Garmin data flows through Terra's own long-standing partner integration.",
@@ -765,9 +765,9 @@
     "quote": "You must register for the Polar API program"
   },
   {
-    "claim": "It is still pre-1.0: its backend declared version 0.11.0 when we read it on November 2, 2026.",
+    "claim": "Its backend declared version 1.0.0 when we read it on November 14, 2026 (0.11.0 on November 2).",
     "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/backend/pyproject.toml",
-    "quote": "version = \"0.11.0\""
+    "quote": "version = \"1.0.0\""
   },
   {
     "claim": "Its README tells you to read the release notes before upgrading.",
@@ -925,13 +925,13 @@
     "quote": "Dedicated instance to localised area"
   },
   {
-    "claim": "Terra's supported-integrations page says Fitbit has been retired after Google turned off the Fitbit Web API on November 2, 2026 (read November 6, 2026).",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
-    "quote": "Fitbit has been retired. Google turned off the Fitbit Web API on 2 November 2026, so Fitbit connections no longer receive data and new users can't connect through Fitbit."
+    "claim": "Terra's supported-integrations page says Fitbit is retired after Google turned off the Fitbit Web API on November 2, 2026 (read November 14, 2026).",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
+    "quote": "Fitbit is retired. Google turned off the Fitbit Web API on 2 November 2026, so Fitbit connections no longer receive data and end users can't connect through Fitbit."
   },
   {
     "claim": "Terra points Fitbit users to its Google Health source (GOOGLE_HEALTH).",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
-    "quote": "Move your users to Google Health ( GOOGLE_HEALTH )"
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
+    "quote": "Move your end users to Google Health ( GOOGLE_HEALTH )"
   }
 ]

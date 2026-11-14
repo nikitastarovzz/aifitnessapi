@@ -739,6 +739,29 @@ if (fs.existsSync(matrixPath)) {
     console.log(`Directory guides: ${pairs.length} product pages defer to a guide (noindex, follow).`);
   }
 
+  // ── API-DEMAND-MATCHER (ops/MORE-20-2026-11-14.md item 18). Every directory
+  // product needs a search matcher in scripts/build-api-demand.mjs, which
+  // refuses to run without one. That script runs after a search pull, not on
+  // a pull request, so Your Move (added 2026-11-11) stopped it for three days
+  // before anyone saw. Held here, where a new product is reviewed.
+  {
+    const apisSrc = fs.readFileSync("src/data/apis.ts", "utf8");
+    const demandSrc = fs.existsSync("scripts/build-api-demand.mjs") ? fs.readFileSync("scripts/build-api-demand.mjs", "utf8") : "";
+    const aliasBlock = /const ALIASES[^=]*=\s*\{([\s\S]*?)\n\};/.exec(apisSrc)?.[1];
+    const matchBlock = /const MATCH = \{([\s\S]*?)\n\};/.exec(demandSrc)?.[1];
+    if (!aliasBlock || !matchBlock) {
+      problems.push("API-DEMAND-MATCHER  could not read ALIASES in src/data/apis.ts or MATCH in scripts/build-api-demand.mjs");
+    } else {
+      const ids = [...aliasBlock.matchAll(/^\s*"?([a-z0-9-]+)"?:\s*\[/gm)].map((m) => m[1]);
+      const matchers = new Set([...matchBlock.matchAll(/^\s*"?([a-z0-9-]+)"?:\s*\//gm)].map((m) => m[1]));
+      if (ids.length < 20) problems.push(`API-DEMAND-MATCHER  read only ${ids.length} products from src/data/apis.ts`);
+      for (const id of ids) {
+        if (!matchers.has(id)) problems.push(`API-DEMAND-MATCHER  ${id} is a directory product with no search matcher in scripts/build-api-demand.mjs (MATCH), so the next demand build stops`);
+      }
+      console.log(`Demand matchers: ${ids.filter((id) => matchers.has(id)).length} of ${ids.length} directory products.`);
+    }
+  }
+
   // ── The market map and the index (added 2026-10-31). Both are derived views
   // of the directory, so the directory's product set is what they must show:
   // a tile or a row that quietly drops out is a landscape with a hole in it.
@@ -1552,7 +1575,7 @@ if (fs.existsSync(matrixPath)) {
     const rendered = new Set(
       htmls.filter((h) => fs.readFileSync(h, "utf8").includes("data-see-also")).map(routeOf),
     );
-    const EXPECTED = 38;
+    const EXPECTED = 41; // +3 nutrition pages pointing at /alternatives/nutritics-alternatives (ops/MORE-20-2026-11-14.md item 19)
     if (mapped.size !== EXPECTED) {
       problems.push(`SEE-ALSO-MAP  SeeAlsoCallout maps ${mapped.size} paths, expected ${EXPECTED} — update the count with the map`);
     }

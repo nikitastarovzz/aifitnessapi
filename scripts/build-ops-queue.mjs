@@ -64,6 +64,7 @@ import {
   indexLag,
   normalisePath,
 } from "./lib/gsc-sections.mjs";
+import { readBuiltSitemap } from "./lib/sitemap-files.mjs";
 
 const SNAP_DIR = "data/gsc/snapshots";
 const LATEST = "data/gsc/latest.json";
@@ -213,9 +214,18 @@ async function sitemapPaths() {
     await fetchXml(url);
     return { paths: locs.map(normalisePath), from: url };
   }
-  const file = arg("--sitemap") ?? ".next/server/app/sitemap.xml.body";
-  if (!fs.existsSync(file)) return { paths: null, from: file };
-  return { paths: parseSitemap(fs.readFileSync(file, "utf8")), from: file };
+  const file = arg("--sitemap");
+  if (file) {
+    if (!fs.existsSync(file)) return { paths: null, from: file };
+    return { paths: parseSitemap(fs.readFileSync(file, "utf8")), from: file };
+  }
+  // /sitemap.xml has been an index since 2026-11-05 (ops/MORE-30-2026-11-05.md
+  // item 26): its eight <loc>s are child sitemaps, not pages. Read it the way
+  // gsc-report.mjs and qa.mjs do, children included; until 2026-11-14 this
+  // judged the eight child URLs and reported "0 of 8" (ops/MORE-20-2026-11-14.md).
+  const built = readBuiltSitemap(".next/server/app");
+  if (built.index === null) return { paths: null, from: ".next/server/app/sitemap.xml.body" };
+  return { paths: parseSitemap(built.xml), from: `.next/server/app/sitemap.xml.body and its ${built.children.length} child sitemaps` };
 }
 
 // ── Collect and score ────────────────────────────────────────────────────
@@ -283,10 +293,19 @@ for (const e of stale) {
 
 const sm = await sitemapPaths().catch((e) => ({ paths: null, from: `${arg("--sitemap-url")} (${e.message})` }));
 let lagNote = `not computed: no sitemap at ${sm.from} (run npm run build, or pass --sitemap / --sitemap-url)`;
+// Every sitemap URL Google showed not once in the window, newest first: the
+// list the owner pastes into URL Inspection → Request indexing. Includes
+// pages published inside the window, which index lag leaves out because they
+// have not had a full window yet (ops/MORE-20-2026-11-14.md).
+let unseen = null;
 if (sm.paths) {
   const published = fs.existsSync("src/data/published.ts") ? parsePublished(fs.readFileSync("src/data/published.ts", "utf8")) : new Map();
   const seen = new Set(google.filter((r) => r.impressions > 0).map((r) => r.path));
   const lag = indexLag(sm.paths, seen, published, current.range);
+  unseen = [...new Set(sm.paths)]
+    .filter((p) => !seen.has(p) && !noindex.has(p))
+    .map((p) => ({ path: p, published: published.get(p) ?? published.get(p.replace(/^\//, "")) ?? null }))
+    .sort((a, b) => (b.published ?? "").localeCompare(a.published ?? "") || a.path.localeCompare(b.path));
   lagNote = `${lag.lagging.length} of ${sm.paths.length} sitemap URLs (${sm.from}) published before the window with no Google impression`;
   for (const r of lag.lagging) {
     if (noindex.has(r.path)) continue;
@@ -334,6 +353,20 @@ top.forEach((a, i) => {
 });
 lines.push("");
 lines.push(`All ranked pages by signal: ${Object.entries(counts).map(([k, n]) => `${k} ${n}`).join(", ") || "none"}.`);
+lines.push("");
+lines.push("## Request indexing");
+lines.push("");
+if (!unseen) lines.push(`Not computed: ${lagNote}.`);
+else {
+  const dated = unseen.filter((u) => u.published);
+  lines.push(
+    `${unseen.length} sitemap URLs had no Google impression in ${current.range.start} to ${current.range.end}; ` +
+      `the ${Math.min(30, dated.length)} most recently published are below (src/data/published.ts dates; hubs and tools without a date are left out). ` +
+      "Search Console → URL Inspection → paste the full URL → Request indexing. Google limits how many a day.",
+  );
+  lines.push("");
+  for (const u of dated.slice(0, 30)) lines.push(`- https://aifitnessapi.com${u.path} (published ${u.published})`);
+}
 lines.push("");
 lines.push("## Held");
 lines.push("");

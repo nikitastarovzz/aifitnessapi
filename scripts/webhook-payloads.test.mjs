@@ -137,7 +137,7 @@ test("the CLI posts the signed bytes to a local server, and refuses a remote one
     });
   });
   assert.equal(got.url, "/terra");
-  const res = await verifyWebhook("terra", { method: "POST", url: "", headers: { "terra-signature": got.headers["terra-signature"] }, body: got.body, secret: DEMO_SECRET });
+  const res = await verifyWebhook("terra", { method: "POST", url: "", headers: { "x-terra-signature": got.headers["x-terra-signature"] }, body: got.body, secret: DEMO_SECRET });
   assert.equal(res.status, "valid", res.title);
   const r = spawnSync(process.execPath, [path.join(ROOT, "public/webhooks/send-sample.mjs"), "polar", "--url", "https://example.com/x"], { encoding: "utf8" });
   assert.equal(r.status, 2);

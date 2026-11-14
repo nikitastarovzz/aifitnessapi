@@ -423,12 +423,12 @@ export const WEBHOOK_VENDORS = [
     kind: "hmac",
     secretLabel: "Destination signing secret",
     summary:
-      "terra-signature: t=<timestamp>,v1=<signature>. HMAC-SHA256, keyed by the endpoint's signing secret, over timestamp + \".\" + raw body; compare with every v1 value, ignore other schemes.",
-    headers: ["terra-signature"],
+      "X-Terra-Signature: t=<timestamp>,v1=<signature>. HMAC-SHA256, keyed by the endpoint's signing secret, over timestamp + \".\" + raw body; compare with every v1 value, ignore other schemes.",
+    headers: ["X-Terra-Signature", "terra-signature"],
     source: {
-      url: "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-      label: "Terra docs, “Webhooks” (data destinations)",
-      fetched: FETCHED,
+      url: "https://docs.tryterra.co/destinations/webhooks",
+      label: "Terra docs, “Webhooks” (destinations)",
+      fetched: "2026-11-14",
       via: "snapshot",
       quote: [
         "The signed_payload string is created by concatenating:",
@@ -438,7 +438,7 @@ export const WEBHOOK_VENDORS = [
     },
     respond: [
       "Respond with a 2XX within 8 seconds — Terra's own advice is to accept immediately (return 200) and process asynchronously.",
-      "Otherwise Terra retries with exponential backoff for several hours, and says the exact number and timing of retries may change without notice; after that the event is dropped with no notification.",
+      "Otherwise Terra retries with exponential backoff for several hours, and says the number and timing of retries can change; when the retries run out the delivery becomes failed, with no notification, and you can resend it from the Events page of Terra's dashboard.",
       "Terra requires the raw, unaltered body for verification: read it before any JSON parsing.",
     ],
     fields: {
@@ -743,8 +743,12 @@ export async function verifyWebhook(vendorId, /** @type {WebhookInput} */ input)
     }
 
     case "terra": {
-      const header = h["terra-signature"];
-      if (!header) return missing("terra-signature header");
+      // Terra's webhooks page (read 2026-11-14) names the header
+      // X-Terra-Signature; its own JavaScript SDK on GitHub (terra-client-js,
+      // src/utils.ts, read the same day) still documents 'terra-signature'.
+      // Accept either, and say which one the delivery used.
+      const header = h["x-terra-signature"] ?? h["terra-signature"];
+      if (!header) return missing("X-Terra-Signature (or terra-signature) header");
       if (!secret) return missing("signing secret");
       let t = null;
       const v1 = [];
@@ -756,7 +760,7 @@ export async function verifyWebhook(vendorId, /** @type {WebhookInput} */ input)
         if (k === "t") t = val;
         else if (k === "v1") v1.push(val);
       }
-      if (!t || !v1.length) return { status: "error", title: "terra-signature is malformed", detail: ["Expected t=<timestamp>,v1=<signature>."] };
+      if (!t || !v1.length) return { status: "error", title: "X-Terra-Signature is malformed", detail: ["Expected t=<timestamp>,v1=<signature>."] };
       const signed = `${t}.${body}`;
       const computed = toHex(await hmacSha256(secret, signed));
       let ok = false;
@@ -966,7 +970,7 @@ export async function buildExample(vendorId, now = Date.now()) {
       });
       const t = String(Math.floor(now / 1000));
       const sig = toHex(await hmacSha256(secret, `${t}.${body}`));
-      return { method: "POST", url: "", headers: `terra-signature: t=${t},v1=${sig}\nContent-Type: application/json`, body, secret, tamperField: "body" };
+      return { method: "POST", url: "", headers: `X-Terra-Signature: t=${t},v1=${sig}\nContent-Type: application/json`, body, secret, tamperField: "body" };
     }
     case "polar": {
       const body = JSON.stringify({ event: "EXERCISE", user_id: 475, entity_id: "aQlC83", timestamp: "2018-05-15T14:22:24Z", url: "https://www.polaraccesslink.com/v3/exercises/aQlC83" });

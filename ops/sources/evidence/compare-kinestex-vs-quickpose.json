@@ -57,7 +57,7 @@
   {
     "claim": "The Android SDK is distributed through Maven.",
     "url": "https://raw.githubusercontent.com/quickpose/quickpose-android-sdk/main/README.md",
-    "quote": "implementation(\"ai.quickpose:quickpose-core:0.25\")"
+    "quote": "implementation(\"ai.quickpose:quickpose-core:0.26\")"
   },
   {
     "claim": "The React Native plugin covers body tracking, rep counting, range of motion and overlays on iOS and Android.",

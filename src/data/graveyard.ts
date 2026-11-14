@@ -81,9 +81,15 @@ export const GRAVEYARD: GraveEntry[] = [
     status: "dying",
     end: "2026-11-02",
     // Google's heading is "November 2, 2026 (API turn-off)" and, read again on
-    // 2026-11-02, still words it as future ("will be turned off"). So the stone
-    // names the scheduled event, not a completed one, and stays dying until a
-    // Google page says the endpoints are off.
+    // 2026-11-02 and on 2026-11-14 (page last updated 2026-10-30), still words
+    // it as future ("will be turned off"); so do the migration guide (last
+    // updated 2026-10-28), the dev.fitbit.com banner (which still says October
+    // 30) and Google's Health Status Dashboard. So the stone names the
+    // scheduled event, not a completed one, and stays dying until a Google page
+    // says the endpoints are off. Not a page, and not quotable here because it
+    // answers 410: on 2026-11-14 api.fitbit.com/oauth2/token answered "The
+    // legacy Fitbit Web API and OAuth 2.0 endpoints were decommissioned on
+    // October 30, 2026." (source-snapshot run 43591822938, our own request).
     endLabel: "Turn-off",
     launched: null,
     replacedBy: [{ label: "Google Health API", href: "/google-health-api" }],
@@ -92,7 +98,7 @@ export const GRAVEYARD: GraveEntry[] = [
     source: {
       url: "https://developers.google.com/health/about",
       publisher: "Google for Developers",
-      checkedOn: CHECKED,
+      checkedOn: "2026-11-14",
       quote:
         "The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users. Requests to these endpoints will fail and return an HTTP 410 Gone status code.",
       via: "direct",
@@ -342,9 +348,11 @@ export const GRAVEYARD: GraveEntry[] = [
     summary:
       "The original MediaPipe Pose solution (mp.solutions.pose and the @mediapipe/pose web package). Google upgraded it to Pose Landmarker; its legacy-solutions guide says the code and prebuilt binaries stay available on an as-is basis.",
     source: {
-      url: "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+      // Google deleted docs/ from the repository on 2026-11-09 (commit 6dd7cf90); this is the
+      // guide at the last commit that touched it (3eb8983, 2024-11-15), read 2026-11-14.
+      url: "https://raw.githubusercontent.com/google-ai-edge/mediapipe/3eb8983cde1517fdff4abbfb33586316af6d45be/docs/solutions/pose.md",
       publisher: "MediaPipe repository (Google)",
-      checkedOn: CHECKED,
+      checkedOn: "2026-11-14",
       quote: "As of May 10, 2023, this solution was upgraded to a new MediaPipe Solution.",
       via: "direct",
     },

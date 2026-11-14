@@ -21,12 +21,12 @@
   },
   {
     "claim": "Why: Terra lists Samsung Health as a mobile-based integration.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+    "url": "https://docs.tryterra.co/unified-api/setting-up-data-sources",
     "quote": "These integrations are mobile-based integrations."
   },
   {
     "claim": "Why: mobile-based integrations need a Mobile SDK on the user's device.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+    "url": "https://docs.tryterra.co/unified-api/setting-up-data-sources",
     "quote": "They require a mobile app with a Mobile SDK integration on the user's device to fetch the data."
   },
   {
@@ -81,12 +81,12 @@
   },
   {
     "claim": "Aggregators / FAQ: Terra lists Samsung event-driven with Required credentials.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Samsung SAMSUNG Event-Driven Required"
   },
   {
     "claim": "Aggregators: Terra sends Samsung Health to the Mobile SDK.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
+    "url": "https://docs.tryterra.co/unified-api/setting-up-data-sources",
     "quote": "To connect to Apple Health, Google Health, Samsung Health, please refer to the Terra Mobile SDK"
   },
   {

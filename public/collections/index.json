@@ -444,8 +444,8 @@
       ],
       "postman": "/collections/terra.postman_collection.json",
       "bruno": "/collections/terra.bruno.zip",
-      "postmanBytes": 2840,
-      "brunoBytes": 2661,
+      "postmanBytes": 2796,
+      "brunoBytes": 2617,
       "brunoFiles": [
         "bruno.json",
         "collection.bru",

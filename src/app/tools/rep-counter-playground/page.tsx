@@ -170,8 +170,8 @@ export default function RepCounterPlaygroundPage() {
               .map((s) => `${s.name}, ${s.license}`)
               .join("; ")}), each number read from the project&rsquo;s code on {FORM_RULES_FETCHED_ON}{" "}
             with the line it came from. A preset sets the joint, side, direction and the two angles; the
-            frames, cycle time and smoothing stay this page&rsquo;s, because those projects count differently
-            (some on the way down, some on the way back) and none states them in the same terms. Their
+            frames, cycle time and smoothing stay this page&rsquo;s, because none of those projects states them
+            in the same terms. Their
             thresholds are the authors&rsquo; choices for their own setups, not biomechanical standards, and
             the sources compute angles in 2D image coordinates, which is why that is the default here.
           </p>

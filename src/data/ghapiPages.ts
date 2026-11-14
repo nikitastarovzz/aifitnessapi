@@ -365,7 +365,15 @@ export function nameLower(t: GhapiDataType): string {
 const article = (w: string) => (/^[AEIOU]/i.test(w) ? "an" : "a");
 
 export function typeTitle(t: GhapiDataType): string {
+  // 2026-11-14 (ops/MORE-20-2026-11-14.md item 15): the searches reaching
+  // these pages name the type the way the renamed Google Health app shows it
+  // ("what is floors in google health" 15 impressions at 8.8, "google health
+  // vo2 max" 10 at 10.1, "google health active energy burned" 10 at 5.4,
+  // Oct 15 to Nov 11), so the title leads with that phrase and keeps the API
+  // and the id, which is what the page documents.
   return fitTitle([
+    `${t.name} in Google Health: the ${t.dataType} API data type`,
+    `${t.name} in Google Health: ${t.dataType} API data type`,
     `Google Health API ${t.name} (${t.dataType})${SITE_SUFFIX}`,
     `Google Health API ${t.name} (${t.dataType})`,
     `${t.name} (${t.dataType}) · Google Health API`,

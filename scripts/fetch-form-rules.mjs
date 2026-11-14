@@ -28,7 +28,12 @@
  * Sources are limited to code under an open-source license whose LICENSE file
  * the script also reads (its first line is quoted and checked). Repositories
  * whose README claims a license but that ship no LICENSE file were read on
- * 2026-11-05 and left out. Peer-reviewed definitions (for example the
+ * 2026-11-05 and left out. thphuc05/PythonExcercisePoseEstimation (MIT), the
+ * source of 11 squat, push-up and plank rows, answered 404 on 2026-11-14 (its
+ * files on raw.githubusercontent.com, its GitHub page, and the GitHub API's
+ * repository endpoint, while the owner's account still answers): deleted or
+ * made private, so it was removed rather than kept from an old copy, and the
+ * squat rep-count and plank hold rules it alone filled are null rows now. Peer-reviewed definitions (for example the
  * finite-state exercise definitions in Europe PMC PMC13204307, which
  * /motion/deadlift-pose-estimation and /motion/lunge-detection-pose-estimation
  * cite) are on hosts the build environment cannot reach; they are listed in
@@ -127,19 +132,6 @@ const PROJECTS = {
       quote: "angleInDeg = angleInDeg if angleInDeg <= 180 else 360 - angleInDeg",
     },
   },
-  thphuc05: {
-    name: "PythonExcercisePoseEstimation (thphuc05)",
-    repo: "thphuc05/PythonExcercisePoseEstimation",
-    branch: "main",
-    license: "MIT",
-    licenseFile: gh("thphuc05/PythonExcercisePoseEstimation", "main", "LICENSE"),
-    licenseQuote: "MIT License",
-    poseModel: "MediaPipe Pose Landmarker (BlazePose 33 landmarks)",
-    files: {
-      main: gh("thphuc05/PythonExcercisePoseEstimation", "main", "pose_estimation.py"),
-    },
-    angleQuote: { file: "main", quote: "if angle > 180.0: angle = 360 - angle" },
-  },
 };
 
 /**
@@ -151,89 +143,20 @@ const PROJECTS = {
 const ROWS = [
   // ── Squat ──────────────────────────────────────────────────────────────
   {
-    id: "squat-knee-top-thphuc05",
+    id: "squat-rep-count-null",
     exercise: "squat",
     purpose: "rep-count",
-    role: "top",
+    role: "top-and-bottom",
     measure: "joint-angle",
     joint: "knee",
     points: ["hip", "knee", "ankle"],
-    comparison: ">",
-    meaning: "Back at the top (standing): knee angle above this, together with the hip angle above its own top value, ends a rep.",
-    project: "thphuc05",
-    file: "main",
-    quote: 'ExerciseConfig(name="Squat", knee_angle_up=160, knee_angle_down_entry=100,',
-    pick: /knee_angle_up=(\d+(?:\.\d+)?)/,
-    usage: "if knee_angle > cfg.knee_angle_up and hip_angle > cfg.hip_angle_up:",
-    measureQuote: "knee_angle = calculate_angle(hip, knee, ankle)",
-  },
-  {
-    id: "squat-knee-bottom-thphuc05",
-    exercise: "squat",
-    purpose: "rep-count",
-    role: "bottom",
-    measure: "joint-angle",
-    joint: "knee",
-    points: ["hip", "knee", "ankle"],
-    comparison: "<",
-    meaning: "Going down: knee angle below this, from the top, enters the down phase.",
-    project: "thphuc05",
-    file: "main",
-    quote: 'ExerciseConfig(name="Squat", knee_angle_up=160, knee_angle_down_entry=100,',
-    pick: /knee_angle_down_entry=(\d+(?:\.\d+)?)/,
-    usage: 'if knee_angle < cfg.knee_angle_down_entry and stage == "up":',
-    measureQuote: "knee_angle = calculate_angle(hip, knee, ankle)",
-  },
-  {
-    id: "squat-hip-top-thphuc05",
-    exercise: "squat",
-    purpose: "rep-count",
-    role: "top",
-    measure: "joint-angle",
-    joint: "hip",
-    points: ["knee", "hip", "shoulder"],
-    comparison: ">",
-    meaning: "Back at the top: hip angle above this is also required to end a rep.",
-    project: "thphuc05",
-    file: "main",
-    quote: "knee_angle_down_entry=100, # Squat hip_angle_up=160, correct_knee_max=95",
-    pick: /hip_angle_up=(\d+(?:\.\d+)?)/,
-    usage: "if knee_angle > cfg.knee_angle_up and hip_angle > cfg.hip_angle_up:",
-    measureQuote: "hip_angle = calculate_angle(knee, hip, shouder)",
-  },
-  {
-    id: "squat-knee-depth-thphuc05",
-    exercise: "squat",
-    purpose: "form-check",
-    role: "depth",
-    measure: "joint-angle",
-    joint: "knee",
-    points: ["hip", "knee", "ankle"],
-    comparison: "<",
-    meaning: "Depth: the smallest knee angle of the rep must fall below this (with the hip and hip-drop checks) for the rep to be marked correct.",
-    project: "thphuc05",
-    file: "main",
-    quote: "knee_angle_down_entry=100, # Squat hip_angle_up=160, correct_knee_max=95",
-    pick: /correct_knee_max=(\d+(?:\.\d+)?)/,
-    usage: "if is_hip_drop and min_knee_angle < cfg.correct_knee_max and min_hip_angle < cfg.correct_hip_max:",
-    measureQuote: "knee_angle = calculate_angle(hip, knee, ankle)",
-  },
-  {
-    id: "squat-hip-depth-thphuc05",
-    exercise: "squat",
-    purpose: "form-check",
-    role: "depth",
-    measure: "joint-angle",
-    joint: "hip",
-    points: ["knee", "hip", "shoulder"],
-    comparison: "<",
-    meaning: "Depth: the smallest hip angle of the rep must fall below this (with the knee check) for the rep to be marked correct.",
-    project: "thphuc05",
-    file: "main",
-    quote: "correct_knee_max=95, correct_hip_max=95, hip_drop_min=0.08)",
-    pick: /correct_hip_max=(\d+(?:\.\d+)?)/,
-    usage: "if is_hip_drop and min_knee_angle < cfg.correct_knee_max and min_hip_angle < cfg.correct_hip_max:",
-    measureQuote: "hip_angle = calculate_angle(knee, hip, shouder)",
+    comparison: null,
+    meaning: "Top and bottom knee angles for counting squat reps.",
+    project: "exerciseCorrection",
+    nullReason:
+      "The one licensed squat source read counts squat stages with a trained classifier, not an angle threshold, so it states no top or bottom knee angle. The project that gave the squat angles here until November 2026 (thphuc05/PythonExcercisePoseEstimation) answered 404 on 2026-11-14 and was dropped.",
+    file: "squat",
+    reasonQuote: 'ML_MODEL_PATH = get_static_file_url("model/squat_model.pkl")',
   },
   {
     id: "squat-stance-ratio-exercise-correction",
@@ -293,74 +216,6 @@ const ROWS = [
     measureQuote: "kpts=[6, 8, 10],  # keypoints for monitoring specific exercise, by default it's for pushup",
     measureFile: "docs",
   },
-  {
-    id: "push-up-elbow-top-thphuc05",
-    exercise: "push-up",
-    purpose: "rep-count",
-    role: "top",
-    measure: "joint-angle",
-    joint: "elbow",
-    points: ["wrist", "elbow", "shoulder"],
-    comparison: ">",
-    meaning: "Up: elbow angle above this, with the body straight, ends a rep.",
-    project: "thphuc05",
-    file: "main",
-    quote: 'ExerciseConfig(name="PushUp", elbow_angle_up=160, elbow_angle_down_entry=90,',
-    pick: /elbow_angle_up=(\d+(?:\.\d+)?)/,
-    usage: "if elbow_angle > cfg.elbow_angle_up:",
-    measureQuote: "elbow_angle = calculate_angle(wrist, elbow, shouder)",
-  },
-  {
-    id: "push-up-elbow-bottom-thphuc05",
-    exercise: "push-up",
-    purpose: "rep-count",
-    role: "bottom",
-    measure: "joint-angle",
-    joint: "elbow",
-    points: ["wrist", "elbow", "shoulder"],
-    comparison: "<",
-    meaning: "Down: elbow angle below this, from the top, enters the down phase.",
-    project: "thphuc05",
-    file: "main",
-    quote: 'ExerciseConfig(name="PushUp", elbow_angle_up=160, elbow_angle_down_entry=90,',
-    pick: /elbow_angle_down_entry=(\d+(?:\.\d+)?)/,
-    usage: 'if elbow_angle < cfg.elbow_angle_down_entry and stage == "up":',
-    measureQuote: "elbow_angle = calculate_angle(wrist, elbow, shouder)",
-  },
-  {
-    id: "push-up-elbow-depth-thphuc05",
-    exercise: "push-up",
-    purpose: "form-check",
-    role: "depth",
-    measure: "joint-angle",
-    joint: "elbow",
-    points: ["wrist", "elbow", "shoulder"],
-    comparison: "<",
-    meaning: "Depth: the smallest elbow angle of the rep must fall below this for the rep to be marked correct.",
-    project: "thphuc05",
-    file: "main",
-    quote: "correct_elbow_max=90, body_straight_min=160)",
-    pick: /correct_elbow_max=(\d+(?:\.\d+)?)/,
-    usage: "if min_elbow_angle < cfg.correct_elbow_max:",
-    measureQuote: "elbow_angle = calculate_angle(wrist, elbow, shouder)",
-  },
-  {
-    id: "push-up-body-line-thphuc05",
-    exercise: "push-up",
-    purpose: "form-check",
-    role: "minimum",
-    measure: "joint-angle",
-    joint: "body-line",
-    points: ["shoulder", "hip", "ankle"],
-    comparison: ">",
-    meaning: "Straight body: the shoulder-hip-ankle angle must stay above this for the source to track the rep at all.",
-    project: "thphuc05",
-    file: "main",
-    quote: "correct_elbow_max=90, body_straight_min=160)",
-    pick: /body_straight_min=(\d+(?:\.\d+)?)/,
-    usage: "is_body_straight = body_line_angle > cfg.body_straight_min",
-    measureQuote: "body_line_angle = calculate_angle(shouder, hip, ankle)",
-  },
 
   // ── Lunge ──────────────────────────────────────────────────────────────
   {
@@ -399,39 +254,20 @@ const ROWS = [
 
   // ── Plank ──────────────────────────────────────────────────────────────
   {
-    id: "plank-hip-hold-thphuc05",
+    id: "plank-hold-null",
     exercise: "plank",
     purpose: "hold",
     role: "minimum",
     measure: "joint-angle",
     joint: "hip",
     points: ["knee", "hip", "shoulder"],
-    comparison: ">",
-    meaning: "Hold: the hip angle must stay above this; dropping below stops the hold timer.",
-    project: "thphuc05",
-    file: "main",
-    quote: 'ExerciseConfig(name="Plank", plank_hip_min=160, hold_frames_required=60)',
-    pick: /plank_hip_min=(\d+(?:\.\d+)?)/,
-    usage: "if hip_angle > cfg.plank_hip_min:",
-    measureQuote: "hip_angle = calculate_angle(knee, hip, shouder)",
-  },
-  {
-    id: "plank-hold-frames-thphuc05",
-    exercise: "plank",
-    purpose: "hold",
-    role: "frames",
-    measure: "frames",
-    joint: null,
-    points: null,
-    comparison: ">=",
-    unit: "frames",
-    meaning: "Hold start: the hip rule must hold for this many consecutive frames before the timer starts (the source's comment says 2 s at 30 fps).",
-    project: "thphuc05",
-    file: "main",
-    quote: 'ExerciseConfig(name="Plank", plank_hip_min=160, hold_frames_required=60)',
-    pick: /hold_frames_required=(\d+(?:\.\d+)?)/,
-    usage: "if down_frame_counter >= cfg.hold_frames_required and not timer_running:",
-    measureQuote: "down_frame_counter += 1",
+    comparison: null,
+    meaning: "The hip angle a plank must hold, and how long before the hold counts.",
+    project: "exerciseCorrection",
+    nullReason:
+      "The one licensed plank source read judges plank form with a trained classifier, not an angle threshold, so it states no hip angle and no hold time. The project that gave both here until November 2026 (thphuc05/PythonExcercisePoseEstimation) answered 404 on 2026-11-14 and was dropped.",
+    file: "plank",
+    reasonQuote: 'ML_MODEL_PATH = get_static_file_url("model/plank_model.pkl")',
   },
 
   // ── Bicep curl ─────────────────────────────────────────────────────────
@@ -603,8 +439,8 @@ const EXERCISES = [
   { id: "shoulder-press", name: "Shoulder press", motion: "/motion/overhead-press-pose-estimation" },
   { id: "deadlift", name: "Deadlift", motion: "/motion/deadlift-pose-estimation" },
 ];
-const EXPECTED_ROWS = 25;
-const EXPECTED_NULLS = 3;
+const EXPECTED_ROWS = 16;
+const EXPECTED_NULLS = 5;
 
 /* ───────────────────────────────── fetching ───────────────────────────── */
 
@@ -825,7 +661,7 @@ for (const ex of EXERCISES) {
     if (!top || !bottom) continue;
     if (!(top.value > bottom.value)) problems.push(`${k}: top ${top.value} is not above bottom ${bottom.value}`);
     const [sourceId, joint] = k.split("|");
-    const side = sourceId === "ultralytics" ? "right" : sourceId === "thphuc05" ? "best" : "left";
+    const side = sourceId === "ultralytics" ? "right" : "left";
     presets.push({
       id: `${ex.id}-${joint}-${sourceId === "exerciseCorrection" ? "exercise-correction" : sourceId}`,
       exercise: ex.id,

@@ -20,9 +20,9 @@
     "quote": "49 Google Health Web Bulk yes no"
   },
   {
-    "claim": "Thryve's docs mark Fitbit as deprecated (as of November 2, 2026).",
+    "claim": "Thryve's data-sources table lists \"Fitbit (Removed Support)\" (as of November 14, 2026).",
     "url": "https://docs.thryve.health/thryve-data-sources/overview",
-    "quote": "Fitbit (Deprecated)"
+    "quote": "Fitbit (Removed Support)"
   },
   {
     "claim": "Thryve publishes guidance on the Fitbit shutdown.",
@@ -33,5 +33,10 @@
     "claim": "Sahha says Fitbit data on Android reaches its SDK through Health Connect.",
     "url": "https://sahha.ai/integrations/",
     "quote": "Samsung Health, Fitbit, Garmin, and hundreds of Android apps write to Health Connect — the same SDK reads it all on Android."
+  },
+  {
+    "claim": "Thryve's page says \"Removed Fitbit from the available sources following the shutdown from Google.\" (November 14, 2026).",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Removed Fitbit from the available sources following the shutdown from Google."
   }
 ]

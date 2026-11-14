@@ -1,48 +1,133 @@
 [
   {
-    "claim": "Table, Garmin row: no price for Starter; Enterprise terms tailored.",
+    "claim": "Answer / intro / pricing criterion / FAQ: Oura documents its API as free for personal and commercial apps.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "Yes, the Oura API is free to use for both personal and commercial applications."
+  },
+  {
+    "claim": "Answer / intro / table, WHOOP row / FAQ: WHOOP's API is currently provided at no charge.",
+    "url": "https://developer.whoop.com/api-terms-of-use/",
+    "quote": "Access to and use of the APIs is currently provided at no charge. In the event WHOOP decides to start charging for use of the APIs in the future, WHOOP will provide Company with prior notice."
+  },
+  {
+    "claim": "Answer / intro / table, Polar row / FAQ: Polar's API agreement says the API is free of charge at the moment.",
+    "url": "https://www.polar.com/en/legal/polar-api-agreement",
+    "quote": "At the moment Polar offers the use and activation of Polar API's free of charge."
+  },
+  {
+    "claim": "Table, Garmin row / pricing criterion / FAQ: no price for Starter; Enterprise commercial terms tailored.",
     "url": "https://developer.garmin.com/gc-developer-program/overview/",
     "quote": "Designed for companies operating at scale requiring capabilities beyond Starter Access. Available options and commercial terms are tailored based on business and technical requirements."
   },
   {
-    "claim": "Table, Garmin row / Garmin section / which to pick: Starter is push only; ping/pull, backfill and some metrics are Enterprise-only.",
-    "url": "https://developer.garmin.com/gc-developer-program/overview/",
-    "quote": "Push only Historical Data Not included User Capacity Limited"
+    "claim": "Answer / table, Fitbit row / Fitbit section / FAQ: Google classes all Google Health API scopes as restricted, which needs a privacy and security review.",
+    "url": "https://developers.google.com/health/about?hl=en",
+    "quote": "all google health api scopes are categorized as restricted, necessitating a privacy and security review for access."
   },
   {
-    "claim": "Table, Garmin row / Garmin section / which to pick: Starter is push only; ping/pull, backfill and some metrics are Enterprise-only.",
+    "claim": "Table, Fitbit row / Fitbit section / FAQ: an unverified app is limited to 100 users.",
+    "url": "https://developers.google.com/health/app-verification?hl=en",
+    "quote": "If your app isn't verified, it's limited to 100 users. To support more users, you must complete the verification process."
+  },
+  {
+    "claim": "Fitbit section: apps using restricted scopes must also complete an annual CASA security assessment.",
+    "url": "https://developers.google.com/health/app-verification?hl=en",
+    "quote": "apps using restricted scopes must also complete an annual security assessment based on the Cloud App Security Assessment framework (CASA)"
+  },
+  {
+    "claim": "Pricing criterion / table, Fitbit row / Fitbit section / FAQ: the assessment takes 2-3 or 4-6 weeks and assessor fees run $500 to $4,500.",
+    "url": "https://developers.google.com/health/app-verification?hl=en",
+    "quote": "The security assessment can take 2-3 weeks for tier-2 applications and 4-6 weeks for tier-3 applications to complete and involves fees payable to the third-party assessor, ranging from $500 to $4,500 USD, depending on your app's complexity."
+  },
+  {
+    "claim": "Intro / Fitbit section: the Fitbit Web API was improved and is now called the Google Health API.",
+    "url": "https://developers.google.com/health/about?hl=en",
+    "quote": "The Fitbit Web API has been improved and modernized to provide a more standardized, consistent, and scalable foundation for developer integrations, and is now called the Google Health API."
+  },
+  {
+    "claim": "Table, Fitbit row / Fitbit section: all Fitbit devices and Pixel Watches collect data returned through the Google Health API.",
+    "url": "https://developers.google.com/health/about?hl=en",
+    "quote": "All Fitbit devices and Google Pixel Watches, current and previous, will collect data that is returned through the Google Health API."
+  },
+  {
+    "claim": "Fitbit section / FAQ: intraday data and webhooks are available for all relevant data types.",
+    "url": "https://developers.google.com/health/about?hl=en",
+    "quote": "intraday data and webhooks are now available for all relevant data types through a dedicated list endpoint."
+  },
+  {
+    "claim": "Fitbit section: heart rate is a data type stored at 1-second resolution.",
+    "url": "https://developers.google.com/health/data-types?hl=en",
+    "quote": "heart rate datatype: heart-rate filter parameter: heart_rate record type: sample storage resolution: 1 second"
+  },
+  {
+    "claim": "Fitbit section: heart rate variability is among the data types.",
+    "url": "https://developers.google.com/health/data-types?hl=en",
+    "quote": "heart rate variability datatype: heart-rate-variability"
+  },
+  {
+    "claim": "Fitbit section: oxygen saturation is among the data types.",
+    "url": "https://developers.google.com/health/data-types?hl=en",
+    "quote": "oxygen saturation datatype: oxygen-saturation"
+  },
+  {
+    "claim": "Fitbit section: steps, sleep, exercise and VO2 max are among the data types.",
+    "url": "https://developers.google.com/health/data-types?hl=en",
+    "quote": "steps datatype: steps"
+  },
+  {
+    "claim": "Fitbit section: sleep is among the data types.",
+    "url": "https://developers.google.com/health/data-types?hl=en",
+    "quote": "sleep datatype: sleep"
+  },
+  {
+    "claim": "Fitbit section: exercise is among the data types.",
+    "url": "https://developers.google.com/health/data-types?hl=en",
+    "quote": "exercise datatype: exercise"
+  },
+  {
+    "claim": "Fitbit section: VO2 max is among the data types.",
+    "url": "https://developers.google.com/health/data-types?hl=en",
+    "quote": "vo2 max datatype: vo2-max"
+  },
+  {
+    "claim": "Fitbit section: sleep data sits under the .sleep.readonly scope.",
+    "url": "https://developers.google.com/health/scopes?hl=en",
+    "quote": ".sleep.readonly See your Google Health sleep data."
+  },
+  {
+    "claim": "Fitbit section: the default per-user limit is 300 requests per minute.",
+    "url": "https://developers.google.com/health/rate-limits?hl=en",
+    "quote": "Per user (minutely) 300 requests / minute"
+  },
+  {
+    "claim": "Table, Fitbit row / Fitbit section: support for the legacy Fitbit Web API ended on September 30, 2026.",
+    "url": "https://developers.google.com/health/about?hl=en",
+    "quote": "September 30, 2026 (End of Support): Support for the Fitbit Web API ends."
+  },
+  {
+    "claim": "Table, Fitbit row / Fitbit section: Google gives November 2, 2026 as the turn-off date, after which requests return 410 Gone.",
+    "url": "https://developers.google.com/health/about?hl=en",
+    "quote": "November 2, 2026 (API Turn-off): The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users. Requests to these endpoints will fail and return an HTTP 410 Gone status code."
+  },
+  {
+    "claim": "Table, Fitbit row / Fitbit section: existing tokens cannot be transferred, so users re-consent.",
+    "url": "https://developers.google.com/health/migration?hl=en",
+    "quote": "existing access and refresh tokens cannot be transferred, requiring users to re-consent to your updated integration."
+  },
+  {
+    "claim": "Migration criterion / Fitbit section: the Fit migration guide lists the Google Health API for Fitbit Web API integrations.",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit",
+    "quote": "Fitbit Web API Google Health API Available"
+  },
+  {
+    "claim": "Migration criterion / Fitbit section: the Fit migration guide was last updated September 10, 2026.",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit",
+    "quote": "Last updated 2026-09-10 UTC."
+  },
+  {
+    "claim": "Garmin section / which to pick: the Health API page lists steps, intensity minutes, sleep, calories, heart rate, stress, Pulse Ox, Body Battery, body composition, respiration and blood pressure.",
     "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
-    "quote": "Push or *Ping/Pull Architecture: Choose the integration option that best matches your needs"
-  },
-  {
-    "claim": "Table, Garmin row / Garmin section / which to pick: Starter is push only; ping/pull, backfill and some metrics are Enterprise-only.",
-    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
-    "quote": "Developer Web Tools: Easy on-boarding, sample data, *backfill user data, and auto-verification of your integration before production"
-  },
-  {
-    "claim": "Table, Garmin row / Garmin section / which to pick: Starter is push only; ping/pull, backfill and some metrics are Enterprise-only.",
-    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
-    "quote": "Enhanced Beat-To-Beat Interval *"
-  },
-  {
-    "claim": "Table, Garmin row / Garmin section / which to pick: Starter is push only; ping/pull, backfill and some metrics are Enterprise-only.",
-    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
-    "quote": "Supported with Enterprise Access only"
-  },
-  {
-    "claim": "Garmin section: since October 2026 the program comes as Starter and Enterprise Access.",
-    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
-    "quote": "Starter Access: Developers can gain immediate access and launch with Garmin, with access to core data and tools."
-  },
-  {
-    "claim": "Garmin section: since October 2026 the program comes as Starter and Enterprise Access.",
-    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
-    "quote": "Enterprise Access: For companies operating at scale, this new model aligns with growth, offering expanded data access, reliability, and enterprise-grade support."
-  },
-  {
-    "claim": "FAQ, GPS and running: Garmin requires approval into its Connect Developer Program.",
-    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
-    "quote": "After you request access to the Garmin Connect Developer Program and your request has been approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
+    "quote": "Steps Intensity Minutes Sleep Calories Heart Rate Stress Pulse Ox Body Battery Body Composition Respiration Blood Pressure"
   },
   {
     "claim": "Answer / Garmin section / FAQ: the Activity API covers per-activity data such as running, cycling and swimming.",
@@ -50,44 +135,104 @@
     "quote": "Running Cycling Swimming Yoga Strength Training Activity Details"
   },
   {
-    "claim": "Garmin section / FAQ: Garmin's official Personal API for your own data.",
+    "claim": "Garmin section / FAQ: activity files come in .FIT, GPX and .TCX formats.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/activity-api/",
+    "quote": "Full Activity Details Access: Activity data files (.FIT, GPX, .TCX formats) available for complete activity details"
+  },
+  {
+    "claim": "Garmin section: all Developer Program APIs use OAuth 2.0.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "What OAuth format do the Developer Program APIs use? All APIs in the Developer Program use OAUTH 2.0."
+  },
+  {
+    "claim": "Table, Garmin row / FAQ: Garmin requires approval into its Connect Developer Program.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "After you request access to the Garmin Connect Developer Program and your request has been approved, you will be granted access to the Garmin Developer Portal and can get started on your integration right away."
+  },
+  {
+    "claim": "Garmin section: a typical integration takes between 1 and 4 weeks.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "A typical integration takes between 1 and 4 weeks."
+  },
+  {
+    "claim": "Garmin section: the business program comes as Starter and Enterprise Access.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Starter Access: Developers can gain immediate access and launch with Garmin, with access to core data and tools."
+  },
+  {
+    "claim": "Garmin section: the business program comes as Starter and Enterprise Access.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/program-faq/",
+    "quote": "Enterprise Access: For companies operating at scale, this new model aligns with growth, offering expanded data access, reliability, and enterprise-grade support."
+  },
+  {
+    "claim": "Table, Garmin row / Garmin section / which to pick / FAQ: Starter is push only, with no historical data and limited user capacity.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Push only Historical Data Not included User Capacity Limited"
+  },
+  {
+    "claim": "Garmin section: you create an app with Starter Access and request Enterprise Access through the portal.",
+    "url": "https://developer.garmin.com/gc-developer-program/overview/",
+    "quote": "Apply for the Garmin Connect Developer Program and create an app with Starter Access. As your business and integration needs evolve, you can request Enterprise Access through Garmin Developer Portal."
+  },
+  {
+    "claim": "Table, Garmin row / Garmin section / which to pick / FAQ: ping/pull, backfill and enhanced beat-to-beat interval are Enterprise-only.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Push or *Ping/Pull Architecture: Choose the integration option that best matches your needs"
+  },
+  {
+    "claim": "Table, Garmin row / Garmin section / which to pick: backfill is Enterprise-only.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Developer Web Tools: Easy on-boarding, sample data, *backfill user data, and auto-verification of your integration before production"
+  },
+  {
+    "claim": "Garmin section: enhanced beat-to-beat interval is Enterprise-only.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Enhanced Beat-To-Beat Interval *"
+  },
+  {
+    "claim": "Table, Garmin row / Garmin section: the asterisked items are supported with Enterprise Access only.",
+    "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
+    "quote": "Supported with Enterprise Access only"
+  },
+  {
+    "claim": "Intro / Garmin section / FAQ: Garmin's official Personal API for your own data.",
     "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
     "quote": "The Garmin Connect Personal API is available for personal use and is the quickest way to gain access to your data for use in personal applications."
   },
   {
-    "claim": "Table, Oura row: free for personal and commercial apps.",
+    "claim": "Intro: the Personal API uses a self-generated key, separate from the Developer Program.",
+    "url": "https://developer.garmin.com/gc-developer-program/personal/personal-faq/",
+    "quote": "The Personal API provides access to an individual user's own data using a self-generated API key."
+  },
+  {
+    "claim": "Oura section: the v2 API is the only available integration point.",
     "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
-    "quote": "Yes, the Oura API is free to use for both personal and commercial applications."
+    "quote": "This document describes the Oura API Version 2 (V2), which is the only available integration point for Oura data. The previous V1 API has been sunset."
   },
   {
-    "claim": "Table, WHOOP row: Sandbox tier of 10 members.",
-    "url": "https://developer.whoop.com/docs/developing/app-approval/",
-    "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect."
+    "claim": "Oura section: the API returns sleep, activity, readiness, heart rate and HRV, workouts, tags and sessions.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "The Oura API provides access to various data types including:"
   },
   {
-    "claim": "Table, WHOOP row: reviewed tiers above it.",
-    "url": "https://developer.whoop.com/docs/developing/app-approval/",
-    "quote": "Requests are reviewed manually, in the order they are received."
+    "claim": "Oura section: eight documented scopes.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "You can request access to 8 different scopes of user data:"
   },
   {
-    "claim": "Table, WHOOP row: API currently provided at no charge.",
-    "url": "https://developer.whoop.com/api-terms-of-use/",
-    "quote": "Access to and use of the APIs is currently provided at no charge. In the event WHOOP decides to start charging for use of the APIs in the future, WHOOP will provide Company with prior notice."
+    "claim": "Oura section: users can toggle scopes individually.",
+    "url": "https://cloud.ouraring.com/docs/authentication",
+    "quote": "When an Oura user authorizes access to your application, she can enable and disable scopes based on her preferences."
   },
   {
-    "claim": "Table, WHOOP row: users are WHOOP members.",
-    "url": "https://developer.whoop.com/docs/developing/overview/",
-    "quote": "you can use the OAuth standard to request consent from WHOOP members to access data on their behalf."
+    "claim": "Table, Oura row / Oura section: an app is capped at 10 users until Oura approves it.",
+    "url": "https://cloud.ouraring.com/docs/",
+    "quote": "By default, API Applications have a ten user limit. If you want to release your application to a wider audience, your application needs to be approved."
   },
   {
-    "claim": "Table, WHOOP row: 10-member Sandbox cap until WHOOP approves the next tier.",
-    "url": "https://developer.whoop.com/docs/developing/app-approval/",
-    "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect. You can build and test on Sandbox without submitting a request. When you need more members, request the next tier from the Developer Dashboard ."
-  },
-  {
-    "claim": "Table, Polar row: free of charge at the moment, per Polar's API agreement.",
-    "url": "https://www.polar.com/en/legal/polar-api-agreement",
-    "quote": "At the moment Polar offers the use and activation of Polar API's free of charge."
+    "claim": "Oura section: there is no user limit once an application is approved.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "There is no limit once an application is approved."
   },
   {
     "claim": "Oura section: Oura documents 5,000 requests per 5-minute period.",
@@ -100,9 +245,59 @@
     "quote": "The API enforces rate limits at two layers to ensure fair access across all applications:"
   },
   {
+    "claim": "Table, Oura row / Oura section: personal access tokens were deprecated in December 2025.",
+    "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
+    "quote": "personal access tokens were deprecated in December 2025 and are no longer available for use."
+  },
+  {
     "claim": "Oura section: the API returns 403 when a user's Oura subscription has expired.",
     "url": "https://cloud.ouraring.com/v2/static/json/openapi-1.43.json",
     "quote": "The requested resource requires additional permissions or the user's Oura subscription has expired."
+  },
+  {
+    "claim": "WHOOP section: scopes cover recovery including score, HRV and resting heart rate.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "read:recovery - Read Recovery data, including score, heart rate variability, and resting heart rate."
+  },
+  {
+    "claim": "WHOOP section: scopes cover cycles, with day Strain.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "read:cycles - Read cycles data, including day Strain and average heart rate during a physiological cycle."
+  },
+  {
+    "claim": "WHOOP section: scopes cover workouts with Strain.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "read:workout - Read workout data, including activity Strain and average heart rate."
+  },
+  {
+    "claim": "WHOOP section: scopes cover body measurements.",
+    "url": "https://developer.whoop.com/api/",
+    "quote": "read:body_measurement - Read body measurements data, including height, weight, and max heart rate."
+  },
+  {
+    "claim": "WHOOP section: you need a WHOOP membership to develop an app.",
+    "url": "https://developer.whoop.com/docs/developing/overview/",
+    "quote": "You must have a WHOOP membership to develop an app on the Developer Platform."
+  },
+  {
+    "claim": "Table, WHOOP row / WHOOP section: Client ID and secret from the Developer Dashboard, OAuth consent from WHOOP members.",
+    "url": "https://developer.whoop.com/docs/developing/overview/",
+    "quote": "you can use the OAuth standard to request consent from WHOOP members to access data on their behalf."
+  },
+  {
+    "claim": "WHOOP section: access tokens are short-lived.",
+    "url": "https://developer.whoop.com/docs/developing/oauth/",
+    "quote": "Access tokens are only valid for a short time."
+  },
+  {
+    "claim": "WHOOP section / FAQ: WHOOP documents webhooks.",
+    "url": "https://developer.whoop.com/docs/developing/webhooks/",
+    "quote": "Simply add your HTTPS URL to the Webhook URL section at the bottom of the page and save the app."
+  },
+  {
+    "claim": "Table, WHOOP row: Sandbox tier of 10 members.",
+    "url": "https://developer.whoop.com/docs/developing/app-approval/",
+    "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect."
   },
   {
     "claim": "WHOOP section: every new app starts on the Sandbox tier, which allows up to 10 WHOOP members.",
@@ -110,7 +305,7 @@
     "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect."
   },
   {
-    "claim": "WHOOP section: you request the next tier from the Developer Dashboard.",
+    "claim": "Table, WHOOP row / WHOOP section: every new app starts on the Sandbox tier of 10 members, and you request the next tier from the Developer Dashboard.",
     "url": "https://developer.whoop.com/docs/developing/app-approval/",
     "quote": "Every new app starts on the Sandbox tier, which allows up to 10 WHOOP members to connect. You can build and test on Sandbox without submitting a request. When you need more members, request the next tier from the Developer Dashboard ."
   },
@@ -125,6 +320,21 @@
     "quote": "In particular, make sure your App Name , Contact Email(s) , and Privacy Policy URL are filled in and accurate to accelerate the review."
   },
   {
+    "claim": "WHOOP section: by default 100 requests per minute and 10,000 per day per client.",
+    "url": "https://developer.whoop.com/docs/developing/rate-limiting/",
+    "quote": "All clients are subject to two sets of rate limiting for requests. By default, clients may only send:"
+  },
+  {
+    "claim": "WHOOP section: the default limits are 100 per minute and 10,000 per day, shown in the rate-limit header.",
+    "url": "https://developer.whoop.com/docs/developing/rate-limiting/",
+    "quote": "describes the first rate limit of 100 requests per minute (60 seconds)."
+  },
+  {
+    "claim": "WHOOP section: increases are available on request.",
+    "url": "https://developer.whoop.com/docs/developing/rate-limiting/",
+    "quote": "Upon request, WHOOP can increase your rate limits."
+  },
+  {
     "claim": "WHOOP section: the tiers above Sandbox are 100, 1,000, 5,000, then unlimited members.",
     "url": "https://developer.whoop.com/docs/developing/app-approval/",
     "quote": "Sandbox 10 Build 100 Growth 1,000 Scale 5,000 Production Unlimited"
@@ -132,16 +342,86 @@
   {
     "claim": "WHOOP section: tiers are earned one at a time.",
     "url": "https://developer.whoop.com/docs/developing/app-approval/",
-    "quote": "Tiers are earned one at a time. You can only request the tier directly above your current one. From Build onward, moving up requires at least 50% of your current tier's member limit to be connected."
+    "quote": "Tiers are earned one at a time. You can only request the tier directly above your current one."
   },
   {
-    "claim": "WHOOP section: through a manual review.",
+    "claim": "Table, WHOOP row / WHOOP section: through a manual review.",
     "url": "https://developer.whoop.com/docs/developing/app-approval/",
     "quote": "Requests are reviewed manually, in the order they are received."
   },
   {
-    "claim": "WHOOP section: every user who connects is a WHOOP member.",
-    "url": "https://developer.whoop.com/docs/developing/overview/",
-    "quote": "you can use the OAuth standard to request consent from WHOOP members to access data on their behalf."
+    "claim": "Polar section: register a client at the admin portal with Polar Flow credentials.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Go to https://admin.polaraccesslink.com and log in using your Polar Flow credentials"
+  },
+  {
+    "claim": "Polar section: after authorization, register the user before you can read their data.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Register user using register user endpoint to be able to access user's data"
+  },
+  {
+    "claim": "Polar section / which to pick / FAQ: Polar's example access token lasts about a year.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "denotes that the access token will expire about one year from the time the response was generated."
+  },
+  {
+    "claim": "Polar section: exercise samples include heart rate, speed, cadence, altitude and distance.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "Key Sample type Unit 0 Heart rate bpm 1 Speed km/h 2 Cadence rpm 3 Altitude m"
+  },
+  {
+    "claim": "Polar section: the API covers daily activity data.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "The resource allows partners to access their users' daily activity data."
+  },
+  {
+    "claim": "Polar section: the API covers continuous heart rate.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "The resource allows partners to access their users' continuous heart rate data."
+  },
+  {
+    "claim": "Polar section: Nightly Recharge is based on HRV and overnight heart rate.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "It is based on heart rate variability (HRV) and overnight heart rate data."
+  },
+  {
+    "claim": "Polar section: exercises carry duration and distance.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "\"duration\" : \"PT2H44M\" ,"
+  },
+  {
+    "claim": "Polar section: Nightly Recharge data includes HRV, breathing rate and ANS charge.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "\"heart_rate_variability_avg\" : 28 , \"breathing_rate_avg\" : 14.1 , \"nightly_recharge_status\" : 3 , \"ans_charge\" : 0 ,"
+  },
+  {
+    "claim": "Polar section: heart-rate zones are available per exercise.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "/exercises/{exercise-id}/heart-rate-zones"
+  },
+  {
+    "claim": "Polar section / FAQ: Polar offers webhooks for data availability.",
+    "url": "https://www.polar.com/accesslink-api/",
+    "quote": "The resource allows partners to register webhooks to let them know when their users' data is available for retrieval."
+  },
+  {
+    "claim": "Table, Polar row / Polar section / FAQ: only exercises uploaded in the last 30 days are returned.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "Only Exercises uploaded to Flow in the last 30 days are returned. Only exercises that have been uploaded to Flow after the user is registered with your client will be returned."
+  },
+  {
+    "claim": "Polar section: sleep data covers the last 28 days.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "List sleep data of user for the last 28 days."
+  },
+  {
+    "claim": "Polar section: Nightly Recharge covers the last 28 days.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "List Nightly Recharge data of user for the last 28 days."
+  },
+  {
+    "claim": "Polar section / FAQ: exercises export as FIT, TCX and GPX.",
+    "url": "https://www.polar.com/accesslink-api/swagger.yaml",
+    "quote": "FIT file for users exercise. Only Exercises uploaded to Flow in the last 30 days are available."
   }
 ]

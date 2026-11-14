@@ -1,6 +1,8 @@
 {
   "about": "Input to scripts/build-research.mjs for /research/docs-drift. Each entry names a commit that touched ops/sources/evidence/*.json, the source hosts (host, or host/owner for raw.githubusercontent.com and github.com) whose ended evidence rows it explains, why those rows changed, and the kind of change, each only as the commit message states it. `statement` is copied from the commit message; the generator fails unless every statement is in that commit's message (whitespace collapsed). cause: source-changed (the vendor's page changed), our-change (this site changed the quote or URL; the source did not), source-unreachable (the page stopped answering). kind: fact, wording, mixed, or null where the message does not say. `endKinds` limits an entry to rows that ended that way. Rows no entry explains are counted as not stated.",
   "annotations": [
+    { "commit": "69969e2", "sources": ["docs.tryterra.co"], "cause": "source-changed", "kind": "fact", "statements": ["Terra retired Fitbit (supported-integrations page, 2026-11-06 snapshot): removed Fitbit from Terra source lists and quoted the retirement"] },
+
     { "commit": "2979aee", "sources": ["developer.garmin.com"], "cause": "source-changed", "kind": "fact", "statements": ["a source snapshot of 2026-10-22 shows Garmin reorganised its developer program between our 2026-10-17 and 2026-10-22 reads"] },
 
     { "commit": "fad6ea2", "sources": ["sahha.ai"], "cause": "source-changed", "kind": "fact", "statements": ["Sahha: the pricing page dropped its Free plan"] },

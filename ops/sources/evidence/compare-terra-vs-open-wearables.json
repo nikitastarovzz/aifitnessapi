@@ -25,9 +25,9 @@
     "quote": "One API call returns standardised data from 500+ providers, including Garmin, Fitbit, Apple Health, Oura, WHOOP and Strava, without writing separate authentication flows or data parsers."
   },
   {
-    "claim": "Terra docs: \"over 150+ Data Sources\".",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
-    "quote": "The Unified API supports over 150+ Data Sources"
+    "claim": "Terra's setup docs say to \"choose from 150+ integrations\".",
+    "url": "https://docs.tryterra.co/unified-api/setting-up-data-sources",
+    "quote": "Click Add New and choose from 150+ integrations."
   },
   {
     "claim": "Open Wearables cloud providers: Garmin, Oura, Whoop, Polar, Suunto, Strava, Withings, Ultrahuman, SensorBio and Google Health, with Fitbit marked deprecated.",
@@ -37,7 +37,7 @@
   {
     "claim": "Terra: a mobile SDK for Apple Health, Samsung Health and Health Connect.",
     "url": "https://docs.tryterra.co/unified-api/getting-started",
-    "quote": "These have no cloud API for third parties, so your mobile app reads them with the Terra SDK and sends the data to Terra."
+    "quote": "These have no cloud API for third parties, so your mobile app reads them with the Terra mobile SDKs and sends the data to Terra."
   },
   {
     "claim": "Open Wearables: SDKs for Apple Health, Samsung Health and Health Connect.",
@@ -51,13 +51,13 @@
   },
   {
     "claim": "Terra-managed keys for many sources.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/dedicated-data-source-api-keys",
-    "quote": "Terra manages API Keys of data sources, meaning you can connect users without having to apply for each API Key."
+    "url": "https://docs.tryterra.co/unified-api/dedicated-data-source-api-keys",
+    "quote": "Terra manages the API keys of data sources, so you can connect users without applying for each key yourself."
   },
   {
-    "claim": "Terra: special processes for WHOOP, Dexcom, Huawei, Strava and Virtuagym.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
-    "quote": "Some providers require special processes before being able to start using them: WHOOP Dexcom Huawei Strava Virtuagym"
+    "claim": "Terra: your own developer app or keys for WHOOP, Dexcom, Huawei, Strava and Virtuagym.",
+    "url": "https://docs.tryterra.co/unified-api/setting-up-data-sources",
+    "quote": "These providers need your own developer app or keys before you can enable them: WHOOP Dexcom Huawei Strava Virtuagym"
   },
   {
     "claim": "Terra Dexcom: through your own Dexcom developer app.",
@@ -66,7 +66,7 @@
   },
   {
     "claim": "Terra delivery: signed webhooks.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "Every webhook sent by Terra includes an HMAC-based signature header"
   },
   {
@@ -95,9 +95,9 @@
     "quote": "Dedicated instance to localised area"
   },
   {
-    "claim": "Open Wearables maturity: pre-1.0, version 0.11.0 as of November 2, 2026.",
+    "claim": "Open Wearables maturity: version 1.0.0 as of November 14, 2026 (0.11.0 on November 2).",
     "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/backend/pyproject.toml",
-    "quote": "version = \"0.11.0\""
+    "quote": "version = \"1.0.0\""
   },
   {
     "claim": "The README says to read the release notes before upgrading.",
@@ -110,9 +110,9 @@
     "quote": "Subscriptions start from $399 per month billed annually, or $499 per month billed monthly. That includes 100,000 Unified API credits each month, and you only pay extra if your usage goes beyond them."
   },
   {
-    "claim": "\"Terra manages API Keys of data sources, meaning you can connect users without having to apply for each API Key\".",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/dedicated-data-source-api-keys",
-    "quote": "Terra manages API Keys of data sources, meaning you can connect users without having to apply for each API Key."
+    "claim": "\"Terra manages the API keys of data sources, so you can connect users without applying for each key yourself\".",
+    "url": "https://docs.tryterra.co/unified-api/dedicated-data-source-api-keys",
+    "quote": "Terra manages the API keys of data sources, so you can connect users without applying for each key yourself."
   },
   {
     "claim": "\"Garmin data flows through Terra today\".",
@@ -121,7 +121,7 @@
   },
   {
     "claim": "Its integrations table still marks Garmin as Required.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Garmin GARMIN Event-Driven Required"
   },
   {
@@ -131,7 +131,7 @@
   },
   {
     "claim": "Terra supports Dexcom.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Dexcom DEXCOM Periodically fetched Required"
   },
   {
@@ -146,13 +146,13 @@
   },
   {
     "claim": "\"Every webhook sent by Terra includes an HMAC-based signature header\".",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "Every webhook sent by Terra includes an HMAC-based signature header"
   },
   {
-    "claim": "Terra \"retries the delivery automatically with exponential backoff for several hours\".",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "Terra retries the delivery automatically with exponential backoff for several hours."
+    "claim": "Terra \"retries the delivery with exponential backoff for several hours\".",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
+    "quote": "Terra then retries the delivery with exponential backoff for several hours."
   },
   {
     "claim": "\"Self-hosted, MIT license, $0 per user\".",
@@ -277,7 +277,7 @@
   {
     "claim": "Terra publishes an OpenAPI spec.",
     "url": "https://raw.githubusercontent.com/tryterra/openapi/master/dist/core/v2-bundled.yaml",
-    "quote": "openapi: 3.1.0"
+    "quote": "openapi: 3.2.0"
   },
   {
     "claim": "\"There is no hosted version, and that is the design rather than a gap\".",

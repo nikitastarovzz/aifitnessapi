@@ -90,64 +90,64 @@
     "quote": "For recovery events in v2, this is the id (UUID) of the sleep that the recovery is associated with."
   },
   {
-    "claim": "Terra: terra-signature header of the form t=<timestamp>,v1=<signature>.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "Every webhook sent by Terra includes an HMAC-based signature header terra-signature , which takes the form:"
+    "claim": "Terra: X-Terra-Signature header of the form t=<timestamp>,v1=<signature>.",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
+    "quote": "Every webhook sent by Terra includes an HMAC-based signature header X-Terra-Signature , which takes the form:"
   },
   {
     "claim": "Terra: the signed payload is timestamp, a period, then the body.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "The signed_payload string is created by concatenating:"
   },
   {
     "claim": "Terra: HMAC-SHA256 keyed by the endpoint's signing secret.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "Compute an HMAC with the SHA256 hash function. Use the endpoint’s signing secret as the key, and use the signed_payload string as the message."
   },
   {
     "claim": "Terra: ignore schemes other than v1.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "To prevent downgrade attacks , ignore all schemes that aren’t v1"
   },
   {
     "claim": "Terra: compare in constant time against each received signature.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "To protect against timing attacks, use a constant-time-string comparison to compare the expected signature to each of the received signatures."
   },
   {
     "claim": "Terra: the raw, unaltered body is required.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "Terra requires the raw, unaltered body of the request to perform signature verification."
   },
   {
-    "claim": "Terra: retries with exponential backoff for several hours; the number and timing may change without notice.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "Terra retries the delivery automatically with exponential backoff for several hours. The exact number and timing of retries may change without notice"
+    "claim": "Terra: retries with exponential backoff for several hours; the number and timing can change.",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
+    "quote": "Terra then retries the delivery with exponential backoff for several hours."
   },
   {
-    "claim": "Terra: after the retry budget the event is dropped without notification.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "After the retry budget is exhausted, the event is dropped. There is no notification when this happens"
+    "claim": "Terra: when the retries run out the delivery becomes failed, without notification.",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
+    "quote": "When the retries run out, the delivery becomes failed and Terra does not notify you."
   },
   {
     "claim": "Terra: respond within 8 seconds.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "Terra waits 8 seconds for your server to respond before considering the request timed out."
   },
   {
     "claim": "Terra: accept immediately (return 200) and process asynchronously.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "If you need more time to process the data, accept the webhook immediately (return 200) and process it asynchronously."
   },
   {
     "claim": "Terra ping mode: a pre-signed url to download with GET, and expires_in of 300 = 5 minutes.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "expires_in — URL validity in seconds (300 = 5 minutes)."
+    "url": "https://docs.tryterra.co/destinations/webhooks",
+    "quote": "URL validity in seconds (300 = 5 minutes)."
   },
   {
     "claim": "Terra: the healthcheck event format used by the example.",
     "url": "https://docs.tryterra.co/reference/health-and-fitness-api/event-types",
-    "quote": "Healthcheck event sent periodically to verify your event is functional"
+    "quote": "Healthcheck event sent periodically to verify your destination is working"
   },
   {
     "claim": "Polar: HMAC SHA-256 signs every payload with the key given at webhook creation.",
@@ -438,5 +438,10 @@
     "claim": "Garmin: the public Health API page offers push or ping/pull delivery and states no request format or signing rule.",
     "url": "https://developer.garmin.com/gc-developer-program/enterprise/health-api/",
     "quote": "Push or *Ping/Pull Architecture: Choose the integration option that best matches your needs"
+  },
+  {
+    "claim": "Terra: failed deliveries can be resent from the Events page of Terra's dashboard.",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
+    "quote": "Resend failed events from the Events page of the dashboard once your endpoint is fixed."
   }
 ]

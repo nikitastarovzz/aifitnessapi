@@ -5,9 +5,9 @@
     "quote": "One API call returns standardised data from 500+ providers, including Garmin, Fitbit, Apple Health, Oura, WHOOP and Strava, without writing separate authentication flows or data parsers."
   },
   {
-    "claim": "Terra docs: the Unified API \"supports over 150+ Data Sources\".",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
-    "quote": "The Unified API supports over 150+ Data Sources"
+    "claim": "Terra's setup docs say to \"choose from 150+ integrations\".",
+    "url": "https://docs.tryterra.co/unified-api/setting-up-data-sources",
+    "quote": "Click Add New and choose from 150+ integrations."
   },
   {
     "claim": "Thryve: \"500+ Wearables & Health Data Sources\".",
@@ -32,7 +32,7 @@
   {
     "claim": "Terra: a mobile SDK for Apple Health, Samsung Health and Health Connect.",
     "url": "https://docs.tryterra.co/unified-api/getting-started",
-    "quote": "These have no cloud API for third parties, so your mobile app reads them with the Terra SDK and sends the data to Terra."
+    "quote": "These have no cloud API for third parties, so your mobile app reads them with the Terra mobile SDKs and sends the data to Terra."
   },
   {
     "claim": "Thryve: Apple Health native SDK.",
@@ -141,22 +141,22 @@
   },
   {
     "claim": "Terra webhooks signed with HMAC.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "Every webhook sent by Terra includes an HMAC-based signature header"
   },
   {
     "claim": "Terra: retries with exponential backoff for several hours.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "Terra retries the delivery automatically with exponential backoff for several hours."
+    "url": "https://docs.tryterra.co/destinations/webhooks",
+    "quote": "Terra then retries the delivery with exponential backoff for several hours."
   },
   {
     "claim": "Terra: no fixed retry count or schedule.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "The exact number and timing of retries may change without notice, so don't depend on a specific schedule."
+    "url": "https://docs.tryterra.co/destinations/events",
+    "quote": "The number and timing of retries can change, so don't depend on a specific schedule."
   },
   {
     "claim": "Terra: 8-second timeout.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "Terra waits 8 seconds for your server to respond before considering the request timed out."
   },
   {
@@ -216,18 +216,18 @@
   },
   {
     "claim": "\"Every webhook sent by Terra includes an HMAC-based signature header\".",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "Every webhook sent by Terra includes an HMAC-based signature header"
   },
   {
-    "claim": "It \"retries the delivery automatically with exponential backoff for several hours\".",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "Terra retries the delivery automatically with exponential backoff for several hours."
+    "claim": "It \"retries the delivery with exponential backoff for several hours\".",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
+    "quote": "Terra then retries the delivery with exponential backoff for several hours."
   },
   {
-    "claim": "\"The exact number and timing of retries may change without notice\".",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "The exact number and timing of retries may change without notice, so don't depend on a specific schedule."
+    "claim": "\"The number and timing of retries can change\".",
+    "url": "https://docs.tryterra.co/destinations/events",
+    "quote": "The number and timing of retries can change, so don't depend on a specific schedule."
   },
   {
     "claim": "Thryve retries \"up to 3 times\".",
@@ -375,18 +375,18 @@
     "quote": "Basic Auth for your authID:authSecret."
   },
   {
-    "claim": "Terra names \"WHOOP Dexcom Huawei Strava Virtuagym\".",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
-    "quote": "Some providers require special processes before being able to start using them: WHOOP Dexcom Huawei Strava Virtuagym"
+    "claim": "Terra says WHOOP, Dexcom, Huawei, Strava and Virtuagym \"need your own developer app or keys before you can enable them\".",
+    "url": "https://docs.tryterra.co/unified-api/setting-up-data-sources",
+    "quote": "These providers need your own developer app or keys before you can enable them: WHOOP Dexcom Huawei Strava Virtuagym"
   },
   {
     "claim": "Terra table: Garmin Required.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Garmin GARMIN Event-Driven Required"
   },
   {
     "claim": "Terra table: Samsung Required.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Samsung SAMSUNG Event-Driven Required"
   },
   {
@@ -410,9 +410,9 @@
     "quote": "Oura Web Ping yes yes"
   },
   {
-    "claim": "Thryve: the table lists \"Fitbit (Deprecated)\" as of November 2, 2026.",
+    "claim": "Thryve: the table lists \"Fitbit (Removed Support)\" as of November 14, 2026 (\"Fitbit (Deprecated)\" on November 2).",
     "url": "https://docs.thryve.health/thryve-data-sources/overview",
-    "quote": "Fitbit (Deprecated)"
+    "quote": "Fitbit (Removed Support)"
   },
   {
     "claim": "\"Additional users billed at €0.50 each\".",
@@ -441,7 +441,12 @@
   },
   {
     "claim": "FAQ: Terra's integrations table marks Garmin and Samsung as Required.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Garmin GARMIN Event-Driven Required"
+  },
+  {
+    "claim": "Thryve: the page says \"Removed Fitbit from the available sources following the shutdown from Google.\" (November 14, 2026).",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Removed Fitbit from the available sources following the shutdown from Google."
   }
 ]

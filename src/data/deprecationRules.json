@@ -1,13 +1,13 @@
 {
   "generatedBy": "scripts/build-deprecation-rules.mjs",
   "site": "https://aifitnessapi.com",
-  "updated": "2026-11-06",
+  "updated": "2026-11-14",
   "inputs": {
-    "graveyard": "2026-10-31",
+    "graveyard": "2026-11-14",
     "fitbitWebApi": "2026-11-05",
     "googleHealthApi": "2026-10-31",
     "libraries": "2026-10-03",
-    "signatures": "2026-11-06"
+    "signatures": "2026-11-14"
   },
   "counts": {
     "rules": 129,
@@ -30,7 +30,7 @@
       "quote": "The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users. Requests to these endpoints will fail and return an HTTP 410 Gone status code.",
       "url": "https://developers.google.com/health/about",
       "publisher": "Google for Developers",
-      "checkedOn": "2026-10-31",
+      "checkedOn": "2026-11-14",
       "replacedBy": [
         {
           "label": "Google Health API",
@@ -294,9 +294,9 @@
       "endLast": "2023-05-10",
       "endLabel": "Upgraded to a new solution",
       "quote": "As of May 10, 2023, this solution was upgraded to a new MediaPipe Solution.",
-      "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+      "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/3eb8983cde1517fdff4abbfb33586316af6d45be/docs/solutions/pose.md",
       "publisher": "MediaPipe repository (Google)",
-      "checkedOn": "2026-10-31",
+      "checkedOn": "2026-11-14",
       "replacedBy": [
         {
           "label": "MediaPipe Pose Landmarker (Tasks API)",
@@ -5016,17 +5016,17 @@
       "replacementNote": null,
       "replacementQuotes": [
         {
-          "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit",
+          "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit?hl=en",
           "quote": "The Google Fit API (including the REST API) will only be supported until the end of 2026. We recommend migrating to the Google Health API for cloud-based integrations or Health Connect for step tracking and mobile-first apps."
         }
       ],
       "basis": [
         {
-          "url": "https://developers.google.com/fit/rest/v1/reference",
+          "url": "https://developers.google.com/fit/rest/v1/reference?hl=en",
           "publisher": "Google for Developers (Google Fit)",
           "quote": "URIs relative to https://www.googleapis.com/fitness/v1/users, unless otherwise noted",
           "literal": "www.googleapis.com/fitness/v1",
-          "checkedOn": "2026-11-06",
+          "checkedOn": "2026-11-14",
           "via": "direct"
         }
       ],
@@ -5057,11 +5057,11 @@
       "replacementQuotes": [],
       "basis": [
         {
-          "url": "https://developers.google.com/fit/android/get-started",
+          "url": "https://developers.google.com/fit/android/get-started?hl=en",
           "publisher": "Google for Developers (Google Fit)",
           "quote": "implementation(\"com.google.android.gms:play-services-fitness:21.3.0\")",
           "literal": "com.google.android.gms:play-services-fitness",
-          "checkedOn": "2026-11-06",
+          "checkedOn": "2026-11-14",
           "via": "direct"
         }
       ],
@@ -5087,17 +5087,17 @@
       "replacementNote": null,
       "replacementQuotes": [
         {
-          "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit",
+          "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit?hl=en",
           "quote": "Fit History API and Fit Session API | Google Health API | Available"
         }
       ],
       "basis": [
         {
-          "url": "https://developers.google.com/fit/android/history",
+          "url": "https://developers.google.com/fit/android/history?hl=en",
           "publisher": "Google for Developers (Google Fit)",
           "quote": "Fitness.getHistoryClient(this, GoogleSignIn.getAccountForExtension(this, fitnessOptions))",
           "literal": "Fitness.getHistoryClient",
-          "checkedOn": "2026-11-06",
+          "checkedOn": "2026-11-14",
           "via": "direct"
         }
       ],
@@ -5127,21 +5127,21 @@
       "replacementNote": null,
       "replacementQuotes": [
         {
-          "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit",
+          "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit?hl=en",
           "quote": "Start/stop: Not applicable. The application should track the state of ongoing sessions internally. Read/write: Transition to the Google Health API."
         },
         {
-          "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit",
+          "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit?hl=en",
           "quote": "Start/stop: Use Health Services (ExerciseClient) Read/write: Use Health Connect with your mobile app."
         }
       ],
       "basis": [
         {
-          "url": "https://developers.google.com/fit/android/using-sessions",
+          "url": "https://developers.google.com/fit/android/using-sessions?hl=en",
           "publisher": "Google for Developers (Google Fit)",
           "quote": "Fitness.getSessionsClient(this, googleSigninAccount)",
           "literal": "Fitness.getSessionsClient",
-          "checkedOn": "2026-11-06",
+          "checkedOn": "2026-11-14",
           "via": "direct"
         }
       ],
@@ -5171,21 +5171,21 @@
       "replacementNote": null,
       "replacementQuotes": [
         {
-          "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit",
+          "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit?hl=en",
           "quote": "Reading mobile steps (with Google Fit Recording API) | Health Connect | Available"
         },
         {
-          "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit",
+          "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit?hl=en",
           "quote": "Use Health Services: PassiveMonitoringClient ExerciseClient"
         }
       ],
       "basis": [
         {
-          "url": "https://developers.google.com/fit/android/record",
+          "url": "https://developers.google.com/fit/android/record?hl=en",
           "publisher": "Google for Developers (Google Fit)",
           "quote": "Fitness.getRecordingClient(this, GoogleSignIn.getAccountForExtension(this, fitnessOptions))",
           "literal": "Fitness.getRecordingClient",
-          "checkedOn": "2026-11-06",
+          "checkedOn": "2026-11-14",
           "via": "direct"
         }
       ],
@@ -5210,17 +5210,17 @@
       "replacementNote": null,
       "replacementQuotes": [
         {
-          "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit",
+          "url": "https://developer.android.com/health-and-fitness/health-connect/migration/fit?hl=en",
           "quote": "Sensor API: Use the Android Sensors framework or the Fused Location Provider API for real-time raw data."
         }
       ],
       "basis": [
         {
-          "url": "https://developers.google.com/fit/android/sensors",
+          "url": "https://developers.google.com/fit/android/sensors?hl=en",
           "publisher": "Google for Developers (Google Fit)",
           "quote": "Fitness.getSensorsClient(this, GoogleSignIn.getAccountForExtension(this, fitnessOptions))",
           "literal": "Fitness.getSensorsClient",
-          "checkedOn": "2026-11-06",
+          "checkedOn": "2026-11-14",
           "via": "direct"
         }
       ],
@@ -5242,11 +5242,11 @@
       "replacementQuotes": [],
       "basis": [
         {
-          "url": "https://developers.google.com/fit/android/using-goals",
+          "url": "https://developers.google.com/fit/android/using-goals?hl=en",
           "publisher": "Google for Developers (Google Fit)",
           "quote": "Fitness.getGoalsClient(requireContext(), getGoogleAccount())",
           "literal": "Fitness.getGoalsClient",
-          "checkedOn": "2026-11-06",
+          "checkedOn": "2026-11-14",
           "via": "direct"
         }
       ],
@@ -5692,11 +5692,11 @@
       "replacementQuotes": [],
       "basis": [
         {
-          "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+          "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/3eb8983cde1517fdff4abbfb33586316af6d45be/docs/solutions/pose.md",
           "publisher": "MediaPipe repository (Google)",
           "quote": "mp_pose = mp.solutions.pose",
           "literal": "mp.solutions.pose",
-          "checkedOn": "2026-11-06",
+          "checkedOn": "2026-11-14",
           "via": "direct"
         }
       ],

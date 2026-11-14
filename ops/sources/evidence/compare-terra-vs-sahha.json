@@ -15,9 +15,9 @@
     "quote": "One API call returns standardised data from 500+ providers, including Garmin, Fitbit, Apple Health, Oura, WHOOP and Strava, without writing separate authentication flows or data parsers."
   },
   {
-    "claim": "Terra docs: \"over 150+ Data Sources\".",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
-    "quote": "The Unified API supports over 150+ Data Sources"
+    "claim": "Terra's setup docs say to \"choose from 150+ integrations\".",
+    "url": "https://docs.tryterra.co/unified-api/setting-up-data-sources",
+    "quote": "Click Add New and choose from 150+ integrations."
   },
   {
     "claim": "Sahha: \"800+ devices across 165 integrations\".",
@@ -31,8 +31,8 @@
   },
   {
     "claim": "Terra-managed keys for many sources.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/dedicated-data-source-api-keys",
-    "quote": "Terra manages API Keys of data sources, meaning you can connect users without having to apply for each API Key."
+    "url": "https://docs.tryterra.co/unified-api/dedicated-data-source-api-keys",
+    "quote": "Terra manages the API keys of data sources, so you can connect users without applying for each key yourself."
   },
   {
     "claim": "Sahha cloud API \"For select providers\".",
@@ -81,8 +81,8 @@
   },
   {
     "claim": "Terra: testing environments capped at 50 users.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/understanding-terra-environments",
-    "quote": "Note that for testing & staging, there is a user limit of 50 users on each environment."
+    "url": "https://docs.tryterra.co/unified-api/understanding-terra-environments",
+    "quote": "Testing and staging each have a limit of 50 users."
   },
   {
     "claim": "Sahha: 30-day free trial on every plan.",
@@ -115,19 +115,19 @@
     "quote": "$1,499 $1,999 /month, billed annually"
   },
   {
-    "claim": "Terra: HMAC signature header.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "Every webhook sent by Terra includes an HMAC-based signature header"
+    "claim": "Terra: HMAC signature header, X-Terra-Signature.",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
+    "quote": "Every webhook sent by Terra includes an HMAC-based signature header X-Terra-Signature , which takes the form:"
   },
   {
     "claim": "Terra: retries with exponential backoff for several hours.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "Terra retries the delivery automatically with exponential backoff for several hours."
+    "url": "https://docs.tryterra.co/destinations/webhooks",
+    "quote": "Terra then retries the delivery with exponential backoff for several hours."
   },
   {
-    "claim": "Terra gives no fixed retry count or schedule.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "The exact number and timing of retries may change without notice, so don't depend on a specific schedule."
+    "claim": "Terra gives no fixed retry count or schedule (table and FAQ).",
+    "url": "https://docs.tryterra.co/destinations/events",
+    "quote": "The number and timing of retries can change, so don't depend on a specific schedule."
   },
   {
     "claim": "Sahha: HMAC-SHA256 signature.",
@@ -150,9 +150,9 @@
     "quote": "Nationwide US, plus the UK"
   },
   {
-    "claim": "\"Terra manages API Keys of data sources, meaning you can connect users without having to apply for each API Key\".",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/dedicated-data-source-api-keys",
-    "quote": "Terra manages API Keys of data sources, meaning you can connect users without having to apply for each API Key."
+    "claim": "\"Terra manages the API keys of data sources, so you can connect users without applying for each key yourself\".",
+    "url": "https://docs.tryterra.co/unified-api/dedicated-data-source-api-keys",
+    "quote": "Terra manages the API keys of data sources, so you can connect users without applying for each key yourself."
   },
   {
     "claim": "\"Garmin data flows through Terra today\".",
@@ -256,13 +256,13 @@
   },
   {
     "claim": "\"Every webhook sent by Terra includes an HMAC-based signature header\".",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "Every webhook sent by Terra includes an HMAC-based signature header"
   },
   {
-    "claim": "Terra \"retries the delivery automatically with exponential backoff for several hours\".",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "Terra retries the delivery automatically with exponential backoff for several hours."
+    "claim": "Terra says it \"retries the delivery with exponential backoff for several hours\".",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
+    "quote": "Terra then retries the delivery with exponential backoff for several hours."
   },
   {
     "claim": "\"Compute an HMAC-SHA256 hash of the raw request body using your secret key, then compare it to the signature in the header\".",
@@ -296,12 +296,12 @@
   },
   {
     "claim": "FAQ: Terra's integrations table marks Garmin as Required.",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Garmin GARMIN Event-Driven Required"
   },
   {
     "claim": "FAQ: Terra verifies against the raw body.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "Terra requires the raw, unaltered body of the request to perform signature verification."
   }
 ]

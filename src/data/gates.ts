@@ -773,6 +773,12 @@ export const GATES: { code: string; refuses: string; area: string }[] = [
     refuses: "A directory page with no SoftwareApplication node identifying the product it describes.",
   },
   {
+    code: "API-DEMAND-MATCHER",
+    area: "Hosting and crawl",
+    refuses:
+      "A directory product (ALIASES in src/data/apis.ts) with no search matcher in scripts/build-api-demand.mjs, which stops that script at the next search pull.",
+  },
+  {
     code: "APIS-GUIDE",
     area: "Hosting and crawl",
     refuses:

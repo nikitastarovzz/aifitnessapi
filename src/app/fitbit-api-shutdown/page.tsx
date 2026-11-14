@@ -38,6 +38,18 @@ import { orgRef } from "@/lib/schema";
  * the switch-off is confirmed done. The 410 symptom has its own page,
  * /fix/fitbit-api-410-gone. Only the turn-off claims were re-checked, so
  * UPDATED stays put again.
+ *
+ * On 2026-11-14, twelve days after the date, the turn-off claims were re-read
+ * once more: the about page (last updated 2026-10-30) and the migration guide
+ * (last updated 2026-10-28) still word it as future; Fitbit's developer site
+ * (read through a source-snapshot run) still says "On October 30, 2026, the
+ * Fitbit Web API will be turned off"; Google's Health Status Dashboard names
+ * October 30 for the turn-down and November 2 for the traffic. A request to
+ * api.fitbit.com/oauth2/token from the same run answered 410 Gone with a
+ * message saying the endpoints "were decommissioned on October 30, 2026".
+ * The copy reports that observation as ours, dated, and still never says
+ * Google's pages call the turn-off done. Thryve's line was re-read too.
+ * UPDATED stays put: the rest of the page was not re-checked.
  */
 
 const PAGE_PATH = "/fitbit-api-shutdown";
@@ -76,18 +88,18 @@ const RELATED: { href: string; label: string }[] = [
 
 export const metadata: Metadata = {
   title: { absolute: "Fitbit API Shutdown: What's Confirmed for 2026" },
-  description: "Google set the dates: Fitbit Web API support ended Sept 30, 2026, and Nov 2, 2026 is the turn-off, after which requests return 410 Gone. Where to migrate.",
+  description: "Fitbit Web API support ended Sept 30, 2026; Google set Nov 2 as the turn-off, and on Nov 14 Fitbit's token endpoint answered 410 Gone. Where to migrate.",
   alternates: { canonical: PAGE_PATH },
   openGraph: {
     type: "article",
     title: "Fitbit Web API Retirement: Deadlines and the Migration Path",
-    description: "Google set the dates: Fitbit Web API support ended Sept 30, 2026, and Nov 2, 2026 is the turn-off, after which requests return 410 Gone. Where to migrate.",
+    description: "Fitbit Web API support ended Sept 30, 2026; Google set Nov 2 as the turn-off, and on Nov 14 Fitbit's token endpoint answered 410 Gone. Where to migrate.",
     url: PAGE_PATH,
     images: ["/opengraph-image"],
   },
 };
 
-const ANSWER = "Google is retiring the legacy Fitbit Web API in favor of the cloud Google Health API, which uses Google OAuth 2.0, a new developer console, and a new bundled-data-type schema. Google's Google Health API page, read on October 31, 2026, gives the timeline: support ended on September 30, 2026, after which the API kept operating without bug fixes or support, and Google set November 2, 2026 as the turn-off date, after which the Fitbit Web API and Fitbit OAuth endpoints no longer function or sync data and requests to them return HTTP 410 Gone. Google's migration guide says existing access and refresh tokens cannot be transferred, so every user has to re-consent through Google OAuth, after first linking Google Health to their Google Account in the Google Health app. This is a separate event from the Google Fit shutdown, which Google documents as supported until the end of 2026 and which has different migration targets.";
+const ANSWER = "Google is retiring the legacy Fitbit Web API in favor of the cloud Google Health API, which uses Google OAuth 2.0, a new developer console, and a new bundled-data-type schema. Google's Google Health API page, re-read on November 14, 2026, gives the timeline: support ended on September 30, 2026, after which the API kept operating without bug fixes or support, and Google set November 2, 2026 as the turn-off date, after which the Fitbit Web API and Fitbit OAuth endpoints no longer function or sync data and requests to them return HTTP 410 Gone. The page still words the turn-off in the future tense, but on November 14, 2026 Fitbit's OAuth token endpoint answered our request with 410 Gone and a message that the legacy endpoints \"were decommissioned on October 30, 2026\". Google's migration guide says existing access and refresh tokens cannot be transferred, so every user has to re-consent through Google OAuth, after first linking Google Health to their Google Account in the Google Health app. This is a separate event from the Google Fit shutdown, which Google documents as supported until the end of 2026 and which has different migration targets.";
 
 const FAQS: { q: string; a: string }[] = [
   {
@@ -96,7 +108,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     "q": "Has Google published an official Fitbit Web API retirement date we can plan against?",
-    "a": "Yes. Google's Google Health API page, read on October 31, 2026, lists September 30, 2026 as end of support, when the API keeps operating but Google stops fixing bugs or providing support, and November 2, 2026 as the turn-off, after which the Fitbit Web API no longer functions or syncs data. Before Google published that page, the dates circulated only through vendor and community notices; the September 30 date some third-party guides named turned out to be end of support, not the switch-off. Google says every current integration must migrate as soon as possible, and its migration guide advises making re-consent mandatory only after several weeks of warnings, coinciding with the official deadlines."
+    "a": "Yes. Google's Google Health API page, read on October 31, 2026, lists September 30, 2026 as end of support, when the API keeps operating but Google stops fixing bugs or providing support, and November 2, 2026 as the turn-off, after which the Fitbit Web API no longer functions or syncs data. Before Google published that page, the dates circulated only through vendor and community notices; the September 30 date some third-party guides named turned out to be end of support, not the switch-off. Google's own pages do not all agree on the day: on November 14, 2026 Fitbit's developer site still said the Web API would be turned off on October 30, 2026, and Google's Health Status Dashboard named October 30 for the turn-down and November 2 for the traffic. Google says every current integration must migrate as soon as possible, and its migration guide advises making re-consent mandatory only after several weeks of warnings, coinciding with the official deadlines."
   },
   {
     "q": "Which came first, the Google Account requirement or the legacy API turndown?",
@@ -108,7 +120,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     "q": "Will moving to an aggregator let us skip the re-consent campaign?",
-    "a": "It reduces the engineering, not the user action. An aggregator that supports both the legacy Fitbit Web API and the Google Health API can absorb the OAuth provider change and the schema rewrite on its side, so you keep one integration instead of rebuilding yours. Vendors reported to have been preparing for this included Terra, Validic, Thryve, Fitabase and Rook, though readiness varies and you should confirm your provider's current status (Terra's supported-integrations page, read November 6, 2026, says \"Fitbit has been retired\" and moves those users to its Google Health source); Sahha, a separate company from Thryve, says Fitbit data on Android reaches its SDK through Health Connect. What no aggregator removes is the grant itself: when the underlying authorization provider changes, users still reconnect. Budget for the reconnection churn either way, and treat the aggregator as insulation against the next deprecation rather than an escape from this one."
+    "a": "It reduces the engineering, not the user action. An aggregator that supports both the legacy Fitbit Web API and the Google Health API can absorb the OAuth provider change and the schema rewrite on its side, so you keep one integration instead of rebuilding yours. Vendors reported to have been preparing for this included Terra, Validic, Thryve, Fitabase and Rook, though readiness varies and you should confirm your provider's current status (Terra's supported-integrations page, read November 14, 2026, says \"Fitbit is retired\" and moves those users to its Google Health source, and Thryve's data-sources page, read November 14, 2026, lists \"Fitbit (Removed Support)\"); Sahha, a separate company from Thryve, says Fitbit data on Android reaches its SDK through Health Connect. What no aggregator removes is the grant itself: when the underlying authorization provider changes, users still reconnect. Budget for the reconnection churn either way, and treat the aggregator as insulation against the next deprecation rather than an escape from this one."
   }
 ];
 
@@ -140,7 +152,9 @@ This is the section to read twice. For months the dates circulated with more con
 | Existing Fitbit access and refresh tokens do not transfer | **Confirmed.** Google's migration guide: they "cannot be transferred, requiring users to re-consent"; read October 12, 2026 | Google's Health API migration guide |
 | Every user must sign in again with a Google Account and re-grant permissions | **Confirmed** by the same guide, which adds that a user must first link Google Health to their Google Account in the Google Health mobile app | Google's Health API migration guide |
 | End of support on September 30, 2026 | **Confirmed.** "Support for the Fitbit Web API ends. The API will continue to operate, but Google will no longer fix bugs or provide API support." | Google's Google Health API page |
-| Turn-off on November 2, 2026 | **Confirmed.** "The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users. Requests to these endpoints will fail and return an HTTP \`410 Gone\` status code." Read October 31, 2026; when we first read the page on October 12 it gave October 30, and Google moved the date in an update to the page dated October 23. Re-read November 2, 2026: the same words, still in the future tense, so Google has set the date and the status code but its page does not yet say the switch-off has been carried out | Google's Google Health API page |
+| Turn-off on November 2, 2026 | **Confirmed.** "The Fitbit Web API and Fitbit OAuth endpoints will be turned off and will no longer function or sync data to or from Fitbit users. Requests to these endpoints will fail and return an HTTP \`410 Gone\` status code." Read October 31, 2026; when we first read the page on October 12 it gave October 30, and Google moved the date in an update to the page dated October 23. Re-read November 2, 2026 and again November 14, 2026 (page last updated October 30): the same words, still in the future tense, so Google has set the date and the status code but its page does not yet say the switch-off has been carried out | Google's Google Health API page |
+| The turn-off date on Google's other pages | **Two dates.** Fitbit's developer site, read November 14, 2026, still carries the older banner: "On October 30, 2026, the Fitbit Web API will be turned off and will no longer function or sync data to or from Fitbit users." Google's Health Status Dashboard says "the Legacy Fitbit Web APIs will be officially turned down on October 30, 2026" and "we will turn down legacy Fitbit Web API and Fitbit OAuth traffic on Monday, November 2, 2026." | dev.fitbit.com; Google Health Status Dashboard |
+| The legacy endpoints now answer 410 Gone | **Seen on the token endpoint.** On November 14, 2026 a request we sent without credentials to \`https://api.fitbit.com/oauth2/token\` answered HTTP 410 with the message "The legacy Fitbit Web API and OAuth 2.0 endpoints were decommissioned on October 30, 2026." The same kind of request to a data endpoint, \`/1/user/-/profile.json\`, answered 401 asking for credentials, which does not show what an authorized call gets | Our own requests, from a GitHub-hosted runner |
 | September 30, 2026 as the shutoff day | **Superseded.** Third-party guides named it before Google published the timeline; Google makes it the end of support, with the turn-off a month later | Third-party guides, then Google's page |
 | Successor access needs a review | **Confirmed.** "All Google Health API scopes are categorized as Restricted, necessitating a privacy and security review for access." | Google's Google Health API page |
 | Fitbit logins to consolidate to a Google Account by roughly mid-May 2026 | Reported. Google's migration guide confirms the account-linking gate but gives no date | Community and vendor notices |
@@ -149,9 +163,9 @@ This is the section to read twice. For months the dates circulated with more con
 | Google Health API pricing | Could not verify — none of the twelve Google Health API documentation pages we read on October 17, 2026 states a price | — |
 | Google Health API default quotas | **Confirmed.** 86.4M requests a day and 120,000 a minute per project, 300 a minute per user, and unverified apps capped at 100 users; read October 17, 2026, and tabled on [our Google Health API access and limits page](/google-health-api/access-and-limits) | Google's Quotas and Rate Limits page |
 
-Two hygiene notes. First, the turn-off date Google set, November 2, 2026, has arrived: for a user who has not re-consented by then, Google's migration guide says their data stays available as long as they keep syncing their device to the Google Health app, and you can backfill it once they re-authenticate, so plan for a gap you can fill rather than a seamless cutover. Second, do not import figures from the enterprise Google Cloud Healthcare API, which publishes per-request pricing, as if they described the consumer Google Health API — [our Fitbit pricing page](/pricing/fitbit-api-pricing) explains why those are different products.
+Two hygiene notes. First, the turn-off date Google set, November 2, 2026, has passed, and Fitbit's token endpoint answered 410 Gone when we tried it on November 14: for a user who has not re-consented by then, Google's migration guide says their data stays available as long as they keep syncing their device to the Google Health app, and you can backfill it once they re-authenticate, so plan for a gap you can fill rather than a seamless cutover. Second, do not import figures from the enterprise Google Cloud Healthcare API, which publishes per-request pricing, as if they described the consumer Google Health API — [our Fitbit pricing page](/pricing/fitbit-api-pricing) explains why those are different products.
 
-Google's Health API pages are the ones to watch: Google notes that the API "is actively evolving" and that changes may require updates on your end. We could not reach Fitbit's own developer pages, most recently on October 12, 2026.
+Google's Health API pages are the ones to watch: Google notes that the API "is actively evolving" and that changes may require updates on your end. We could not reach Fitbit's own developer pages on October 12, 2026; on November 14, 2026 we read them through a source-snapshot run, and their banner still gives October 30, 2026 as the turn-off, in the future tense.
 
 ## Your migration path by integration shape
 
@@ -165,7 +179,7 @@ Treat it as a re-integration, not a version bump. [The Fitbit Web API to Google 
 
 ### Shape 2: a mobile app reading Fitbit through an aggregator or a platform store
 
-If Fitbit reaches you through a health-data aggregator, the retirement may be largely absorbed for you: an aggregator that supports both the legacy Web API and the Google Health API can take the OAuth and schema change on its side while you keep one integration. Vendors reported to have been preparing for this included Terra, Validic, Thryve, Fitabase and Rook — readiness varies, so confirm your provider's current status rather than assuming. Terra's supported-integrations page, read November 6, 2026, says "Fitbit has been retired" and moves those users to its Google Health source. Sahha, a separate company from Thryve, says Fitbit data on Android reaches its SDK through Health Connect. [The aggregator category roundup](/fitness-apis/health-data-aggregator-apis) explains how the insulation works, and [consolidating wearables behind an aggregator](/migrate/consolidate-wearables-with-aggregator) is the move itself if you were juggling Fitbit alongside three other direct integrations.
+If Fitbit reaches you through a health-data aggregator, the retirement may be largely absorbed for you: an aggregator that supports both the legacy Web API and the Google Health API can take the OAuth and schema change on its side while you keep one integration. Vendors reported to have been preparing for this included Terra, Validic, Thryve, Fitabase and Rook — readiness varies, so confirm your provider's current status rather than assuming. Terra's supported-integrations page, read November 14, 2026, says "Fitbit is retired" and moves those users to its Google Health source. Thryve's data-sources page, read November 14, 2026, lists "Fitbit (Removed Support)" and says "Removed Fitbit from the available sources following the shutdown from Google." Sahha, a separate company from Thryve, says Fitbit data on Android reaches its SDK through Health Connect. [The aggregator category roundup](/fitness-apis/health-data-aggregator-apis) explains how the insulation works, and [consolidating wearables behind an aggregator](/migrate/consolidate-wearables-with-aggregator) is the move itself if you were juggling Fitbit alongside three other direct integrations.
 
 One caveat that no aggregator removes: it caps the engineering to one integration, but it does not erase the user reconnect step. If the underlying grant changes provider, your users still act.
 
@@ -179,17 +193,17 @@ Still deciding whether the successor is even the right destination? [Fitbit API 
 
 ## An action checklist
 
-Per Google's Health API page, support ended on September 30, 2026 and Google set November 2, 2026 as the turn-off date. Up to the turn-off, legacy calls answer without support; after it, Google says requests to the Fitbit Web API and Fitbit OAuth endpoints fail with HTTP \`410 Gone\`. This checklist is ordered by where your migration stands.
+Per Google's Health API page, support ended on September 30, 2026 and Google set November 2, 2026 as the turn-off date. Up to the turn-off, legacy calls answered without support; after it, Google says requests to the Fitbit Web API and Fitbit OAuth endpoints fail with HTTP \`410 Gone\`, and the token endpoint did when we tried it on November 14, 2026. This checklist is ordered by where your migration stands.
 
 **If you have not started.** Inventory every Fitbit endpoint, scope and data type you consume, plus your user volume and where refresh tokens live — the inventory is what turns the rest of this into a lookup instead of a scavenger hunt. Subscribe to Fitbit's and Google's official developer notices and record every date you find with a "verify" flag. Put an abstraction layer over your health-data service so the legacy and successor paths can coexist for as long as both answer. Register on the Google Health API console and confirm what data-type coverage actually exists for the types you depend on; parity is not guaranteed.
 
-**If you have not migrated yet and the legacy path still answers.** Stand up the successor path in parallel and dual-read, comparing values against the legacy path rather than trusting the new one on faith. Ship the re-consent flow as a first-class piece of UX, not a cleanup task, and surface the Google Health account-linking step in your messaging, since Google's migration guide says calls for users who have not linked fail with ACCOUNT_NOT_LINKED. Instrument per-user connection status and data freshness so you can see which cohorts have actually moved. Then migrate in waves with a rollback path, chasing stragglers with reminders. Move as fast as the re-consent flow allows: Google set November 2, 2026 as the date the legacy path stops, and a migration executed under that kind of pressure is where data gets lost.
+**If you have not migrated yet and the legacy path still answers.** Stand up the successor path in parallel and dual-read, comparing values against the legacy path rather than trusting the new one on faith. Ship the re-consent flow as a first-class piece of UX, not a cleanup task, and surface the Google Health account-linking step in your messaging, since Google's migration guide says calls for users who have not linked fail with ACCOUNT_NOT_LINKED. Instrument per-user connection status and data freshness so you can see which cohorts have actually moved. Then migrate in waves with a rollback path, chasing stragglers with reminders. Move as fast as the re-consent flow allows: the November 2, 2026 date Google set for the legacy path to stop has passed, and a migration executed under that kind of pressure is where data gets lost.
 
 **Once the legacy path stops answering.** If your calls or token refreshes now come back \`410 Gone\`, [the Fitbit API 410 Gone fix](/fix/fitbit-api-410-gone) is the short version: stop retrying, re-consent each user through Google OAuth, check the account is linked, then backfill. Expect a long tail of users who never saw the prompt; keep the reconnect flow alive for them and keep reporting the gap honestly rather than backfilling around it. Reconcile your history against what you captured before cutover and document what could not be recovered. Only then retire the legacy Fitbit code. The reusable version of this whole sequence, for the next provider that does this to you, is [migrating off a deprecated fitness API](/migrate/migrate-off-a-deprecated-fitness-api).
 
 ## How this page was sourced
 
-Most facts above are drawn from our own reviewed pages on the Fitbit and Google Fit transitions, each of which carries its own verification date. Vendor statements checked directly: on October 2, 2026, Google's statement on developer.android.com that the Fit APIs "will be supported until the end of 2026", and the table in Google's Fit migration guide (updated September 10, 2026) that lists the Google Health API as the recommended path for Fitbit Web API integrations; on October 31, 2026, [Google's Google Health API page](https://developers.google.com/health/about) for the end-of-support and turn-off dates and the Restricted-scope review, and [Google's Health API migration guide](https://developers.google.com/health/migration) for token transfer, re-consent, account linking and backfill; on November 2, 2026, both pages again for the turn-off wording, which was unchanged; on October 17, 2026, [Google's Quotas and Rate Limits page](https://developers.google.com/health/rate-limits) (last updated May 18, 2026) for the default quotas. We could not reach Fitbit's own developer documentation. Check the current notices before you commit a schedule.
+Most facts above are drawn from our own reviewed pages on the Fitbit and Google Fit transitions, each of which carries its own verification date. Vendor statements checked directly: on October 2, 2026, Google's statement on developer.android.com that the Fit APIs "will be supported until the end of 2026", and the table in Google's Fit migration guide (updated September 10, 2026) that lists the Google Health API as the recommended path for Fitbit Web API integrations; on October 31, 2026, [Google's Google Health API page](https://developers.google.com/health/about) for the end-of-support and turn-off dates and the Restricted-scope review, and [Google's Health API migration guide](https://developers.google.com/health/migration) for token transfer, re-consent, account linking and backfill; on November 2, 2026, both pages again for the turn-off wording, which was unchanged; on October 17, 2026, [Google's Quotas and Rate Limits page](https://developers.google.com/health/rate-limits) (last updated May 18, 2026) for the default quotas. On November 14, 2026 we re-read both Google pages for the turn-off wording (the about page last updated October 30, 2026, the migration guide October 28), read [Google's Health Status Dashboard](https://status.healthapp.google.com/) and, through a source-snapshot run, [Fitbit's Web API reference](https://dev.fitbit.com/build/reference/web-api/), and sent one request without credentials each to \`api.fitbit.com/oauth2/token\` and \`api.fitbit.com/1/user/-/profile.json\` from the same run. Check the current notices before you commit a schedule.
 `;
 
 export default function FitbitApiShutdownPage() {
@@ -235,7 +249,7 @@ export default function FitbitApiShutdownPage() {
             review cycle, so it flags at 30 days, as /changes does. */}
         {/* UPDATED stays at the last full review; the October line names the
             partial re-checks, so the age badge keeps telling the truth. */}
-        <p className="mt-3 text-sm text-[var(--muted)]">Updated 11 August 2026<ContentAge date={UPDATED} staleAfterDays={30} /> — dates re-checked against our sourced pages. On 12 October 2026 we read Google&rsquo;s Health API pages, which publish the timeline: end of support 30 September 2026, turn-off 2 November 2026. On 17 October 2026 we read Google&rsquo;s rate-limits page for the default quotas. On 2 November 2026 we re-read Google&rsquo;s Health API page and migration guide for the turn-off wording. Verify current vendor notices before scheduling.</p>
+        <p className="mt-3 text-sm text-[var(--muted)]">Updated 11 August 2026<ContentAge date={UPDATED} staleAfterDays={30} /> — dates re-checked against our sourced pages. On 12 October 2026 we read Google&rsquo;s Health API pages, which publish the timeline: end of support 30 September 2026, turn-off 2 November 2026. On 17 October 2026 we read Google&rsquo;s rate-limits page for the default quotas. On 2 November 2026 we re-read Google&rsquo;s Health API page and migration guide for the turn-off wording, and on 14 November 2026 we read them again, with Fitbit&rsquo;s developer site and Google&rsquo;s status dashboard, and tried Fitbit&rsquo;s token endpoint, which answered 410 Gone. Verify current vendor notices before scheduling.</p>
 
         {/* Answer-first capsule — quotable, speakable, correctly hedged. */}
         <div
@@ -246,8 +260,10 @@ export default function FitbitApiShutdownPage() {
         </div>
 
         {/* Read 2026-10-31 on developers.google.com/health/about (last updated
-            2026-10-23). The rest of the page still carries the October 12
-            reading; a separate change moves those dates. */}
+            2026-10-23), re-read 2026-11-14 (last updated 2026-10-30, same
+            words). The token-endpoint 410 was our own request of 2026-11-14,
+            sent from a source-snapshot run; the checker cannot hold a non-2xx
+            answer, so it has no evidence row. */}
         <aside
           id="http-410"
           className="mt-6 rounded-2xl border border-amber-500/40 bg-amber-500/5 p-5 text-sm leading-relaxed text-[var(--fg)]"
@@ -259,12 +275,14 @@ export default function FitbitApiShutdownPage() {
             </Link>
           </p>
           <p className="mt-2 text-[var(--muted)]">
-            Google&rsquo;s Google Health API page (last updated October 23, 2026, read October 31 and again November 2, 2026) gives
-            November 2, 2026 as the turn-off: &ldquo;The Fitbit Web API and Fitbit OAuth endpoints will be turned
-            off and will no longer function or sync data to or from Fitbit users. Requests to these endpoints will
-            fail and return an HTTP 410 Gone status code.&rdquo; So after November 2, 2026 a 410 from a Fitbit Web
-            API or Fitbit OAuth endpoint means the turn-off, not a malformed request, and retrying will not bring it
-            back.
+            Google&rsquo;s Google Health API page (last updated October 30, 2026, read October 31, November 2 and
+            November 14, 2026) gives November 2, 2026 as the turn-off: &ldquo;The Fitbit Web API and Fitbit OAuth
+            endpoints will be turned off and will no longer function or sync data to or from Fitbit users. Requests
+            to these endpoints will fail and return an HTTP 410 Gone status code.&rdquo; On November 14, 2026 a
+            request we sent to Fitbit&rsquo;s token endpoint, api.fitbit.com/oauth2/token, answered 410 with the
+            message &ldquo;The legacy Fitbit Web API and OAuth 2.0 endpoints were decommissioned on October 30,
+            2026.&rdquo; So a 410 from a Fitbit Web API or Fitbit OAuth endpoint now means the turn-off, not a
+            malformed request, and retrying will not bring it back.
           </p>
           <p className="mt-2 text-[var(--muted)]">
             The fix is the migration itself. Move each user to the Google Health API with Google OAuth 2.0: Google&rsquo;s
@@ -338,7 +356,7 @@ export default function FitbitApiShutdownPage() {
         </section>
 
         <p className="mt-10 text-sm text-[var(--muted)]">
-          By {site.name}. Sourcing: our reviewed Fitbit and Google Fit pages, each with its own verification date, Google&rsquo;s Fit migration guide (re-checked 2 October 2026), Google&rsquo;s Health API pages (read 12 October 2026, the turn-off wording re-read 2 November 2026), which publish the Fitbit dates, and Google&rsquo;s rate-limits page (read 17 October 2026) for the default quotas.
+          By {site.name}. Sourcing: our reviewed Fitbit and Google Fit pages, each with its own verification date, Google&rsquo;s Fit migration guide (re-checked 2 October 2026), Google&rsquo;s Health API pages (read 12 October 2026, the turn-off wording re-read 2 and 14 November 2026), which publish the Fitbit dates, Fitbit&rsquo;s developer site and Google&rsquo;s Health Status Dashboard (read 14 November 2026), our own requests to two Fitbit endpoints (14 November 2026), and Google&rsquo;s rate-limits page (read 17 October 2026) for the default quotas.
         </p>
       </article>
     </Container>

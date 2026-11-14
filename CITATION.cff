@@ -43,7 +43,7 @@ references:
       - name: "AIFitnessAPI"
     license: CC-BY-4.0
     url: "https://aifitnessapi.com/datasets/fitness-api-changes-2026.json"
-    notes: "22 rows; card at https://aifitnessapi.com/datasets/fitness-api-changes-2026.md"
+    notes: "23 rows; card at https://aifitnessapi.com/datasets/fitness-api-changes-2026.md"
   - type: dataset
     title: "Fitness & Health API Glossary 2026"
     version: "2026.1"
@@ -139,7 +139,7 @@ references:
       - name: "AIFitnessAPI"
     license: CC-BY-4.0
     url: "https://aifitnessapi.com/datasets/exercise-form-rules-2026.json"
-    notes: "25 rows; card at https://aifitnessapi.com/datasets/exercise-form-rules-2026.md"
+    notes: "16 rows; card at https://aifitnessapi.com/datasets/exercise-form-rules-2026.md"
   - type: dataset
     title: "Exercise Taxonomy Crosswalk 2026 (free-exercise-db, wger, ExerciseDB v1 to HealthKit and Health Connect)"
     version: "2026.1"

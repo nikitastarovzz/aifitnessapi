@@ -4,7 +4,7 @@
  * line it was read from.
  *
  * GENERATED — do not hand-edit; regenerate with NODE_USE_ENV_PROXY=1 node scripts/fetch-form-rules.mjs
- * (then `npm run datasets`). Fetched: 2026-11-05
+ * (then `npm run datasets`). Fetched: 2026-11-14
  *
  * Every `value` was captured from `quote` after the generator found `quote`
  * in the fetched file; `usage` is the line that applies it and
@@ -14,7 +14,7 @@
  */
 
 /** The date the generator last read its sources. */
-export const FORM_RULES_FETCHED_ON = "2026-11-05";
+export const FORM_RULES_FETCHED_ON = "2026-11-14";
 
 export type FormRuleSource = {
   id: string;
@@ -57,15 +57,15 @@ export const FORM_RULE_SOURCES: FormRuleSource[] = [
         "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/ultralytics/solutions/config.py",
         "page": "https://github.com/ultralytics/ultralytics/blob/main/ultralytics/solutions/config.py",
         "path": "ultralytics/solutions/config.py",
-        "fetchedOn": "2026-11-05",
-        "sha256": "446647893ac99764ba705ab76118ebebe6b9f3997e44eb38f852094167921bb8"
+        "fetchedOn": "2026-11-14",
+        "sha256": "dfa8a452eba394235deb0ac73908c0992147bf20e9449d48c0048574cb71d316"
       },
       {
         "key": "gym",
         "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/ultralytics/solutions/ai_gym.py",
         "page": "https://github.com/ultralytics/ultralytics/blob/main/ultralytics/solutions/ai_gym.py",
         "path": "ultralytics/solutions/ai_gym.py",
-        "fetchedOn": "2026-11-05",
+        "fetchedOn": "2026-11-14",
         "sha256": "3c08d9a730e6c888f121f6cea284eb166367640b6126420c345f9c98e1f4477b"
       },
       {
@@ -73,15 +73,15 @@ export const FORM_RULE_SOURCES: FormRuleSource[] = [
         "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/ultralytics/solutions/solutions.py",
         "page": "https://github.com/ultralytics/ultralytics/blob/main/ultralytics/solutions/solutions.py",
         "path": "ultralytics/solutions/solutions.py",
-        "fetchedOn": "2026-11-05",
-        "sha256": "0b5aba529ab933cd18b748ddcd0cfbec84577f7f442b6afff1eeacf583a61bf3"
+        "fetchedOn": "2026-11-14",
+        "sha256": "24b8bb8df7409c0ffdfc0ca2b65c4029133c7f2d67b0efe2490fba508ac809f3"
       },
       {
         "key": "docs",
         "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/docs/en/guides/workouts-monitoring.md",
         "page": "https://github.com/ultralytics/ultralytics/blob/main/docs/en/guides/workouts-monitoring.md",
         "path": "docs/en/guides/workouts-monitoring.md",
-        "fetchedOn": "2026-11-05",
+        "fetchedOn": "2026-11-14",
         "sha256": "c924d2ceeca2d93d417a8db7b9166a9f0f07ba102f6ccb369b78743a05557513"
       }
     ]
@@ -106,7 +106,7 @@ export const FORM_RULE_SOURCES: FormRuleSource[] = [
         "url": "https://raw.githubusercontent.com/stevenzchen/pose-trainer/master/evaluate.py",
         "page": "https://github.com/stevenzchen/pose-trainer/blob/master/evaluate.py",
         "path": "evaluate.py",
-        "fetchedOn": "2026-11-05",
+        "fetchedOn": "2026-11-14",
         "sha256": "aac62d08f8eea7883e5eb47ebd8e3de53d700a3982cb3d4cc7463e4f79382a7a"
       },
       {
@@ -114,7 +114,7 @@ export const FORM_RULE_SOURCES: FormRuleSource[] = [
         "url": "https://raw.githubusercontent.com/stevenzchen/pose-trainer/master/README.md",
         "page": "https://github.com/stevenzchen/pose-trainer/blob/master/README.md",
         "path": "README.md",
-        "fetchedOn": "2026-11-05",
+        "fetchedOn": "2026-11-14",
         "sha256": "0c361a1152f7a85786180980a6aa6f212ae8654ed4778ccedfbe0a51ce7d39fe"
       }
     ]
@@ -139,7 +139,7 @@ export const FORM_RULE_SOURCES: FormRuleSource[] = [
         "url": "https://raw.githubusercontent.com/NgoQuocBao1010/Exercise-Correction/main/web/server/detection/bicep_curl.py",
         "page": "https://github.com/NgoQuocBao1010/Exercise-Correction/blob/main/web/server/detection/bicep_curl.py",
         "path": "web/server/detection/bicep_curl.py",
-        "fetchedOn": "2026-11-05",
+        "fetchedOn": "2026-11-14",
         "sha256": "f5d9ff84da762c692407dc136240e98612c3e1434f4add2da2dc75386ec1fa23"
       },
       {
@@ -147,7 +147,7 @@ export const FORM_RULE_SOURCES: FormRuleSource[] = [
         "url": "https://raw.githubusercontent.com/NgoQuocBao1010/Exercise-Correction/main/web/server/detection/lunge.py",
         "page": "https://github.com/NgoQuocBao1010/Exercise-Correction/blob/main/web/server/detection/lunge.py",
         "path": "web/server/detection/lunge.py",
-        "fetchedOn": "2026-11-05",
+        "fetchedOn": "2026-11-14",
         "sha256": "e390497ba7571a85f51ec4eca6216d218ce201b313a84916f028ae480b372101"
       },
       {
@@ -155,7 +155,7 @@ export const FORM_RULE_SOURCES: FormRuleSource[] = [
         "url": "https://raw.githubusercontent.com/NgoQuocBao1010/Exercise-Correction/main/web/server/detection/squat.py",
         "page": "https://github.com/NgoQuocBao1010/Exercise-Correction/blob/main/web/server/detection/squat.py",
         "path": "web/server/detection/squat.py",
-        "fetchedOn": "2026-11-05",
+        "fetchedOn": "2026-11-14",
         "sha256": "89eefc3ed9dc29f0b12bc2b34ebdb800395663b5aa64fe7e50b3437d97b72d40"
       },
       {
@@ -163,7 +163,7 @@ export const FORM_RULE_SOURCES: FormRuleSource[] = [
         "url": "https://raw.githubusercontent.com/NgoQuocBao1010/Exercise-Correction/main/web/server/detection/plank.py",
         "page": "https://github.com/NgoQuocBao1010/Exercise-Correction/blob/main/web/server/detection/plank.py",
         "path": "web/server/detection/plank.py",
-        "fetchedOn": "2026-11-05",
+        "fetchedOn": "2026-11-14",
         "sha256": "f7278e9829d2fcedf81c9555f8b55497d2996f30fff8f5e2395b846af5a5f55d"
       },
       {
@@ -171,33 +171,8 @@ export const FORM_RULE_SOURCES: FormRuleSource[] = [
         "url": "https://raw.githubusercontent.com/NgoQuocBao1010/Exercise-Correction/main/web/server/detection/utils.py",
         "page": "https://github.com/NgoQuocBao1010/Exercise-Correction/blob/main/web/server/detection/utils.py",
         "path": "web/server/detection/utils.py",
-        "fetchedOn": "2026-11-05",
+        "fetchedOn": "2026-11-14",
         "sha256": "509b0bce7e7b76339d95033088187154af303e45e2655c2e54cdc0b17a0b222f"
-      }
-    ]
-  },
-  {
-    "id": "thphuc05",
-    "name": "PythonExcercisePoseEstimation (thphuc05)",
-    "repo": "thphuc05/PythonExcercisePoseEstimation",
-    "repoUrl": "https://github.com/thphuc05/PythonExcercisePoseEstimation",
-    "branch": "main",
-    "license": "MIT",
-    "licenseUrl": "https://github.com/thphuc05/PythonExcercisePoseEstimation/blob/main/LICENSE",
-    "licenseQuote": "MIT License",
-    "licenseSha256": "be3cf2ae83dfe824f01c4c058d086683bf69f2d3cf4e15c8b2c3458e107829c7",
-    "poseModel": "MediaPipe Pose Landmarker (BlazePose 33 landmarks)",
-    "angleMethodQuote": "if angle > 180.0: angle = 360 - angle",
-    "angleMethodSource": "https://github.com/thphuc05/PythonExcercisePoseEstimation/blob/main/pose_estimation.py#L63",
-    "caveat": null,
-    "files": [
-      {
-        "key": "main",
-        "url": "https://raw.githubusercontent.com/thphuc05/PythonExcercisePoseEstimation/main/pose_estimation.py",
-        "page": "https://github.com/thphuc05/PythonExcercisePoseEstimation/blob/main/pose_estimation.py",
-        "path": "pose_estimation.py",
-        "fetchedOn": "2026-11-05",
-        "sha256": "e6af8d71a69b01dd59f771982105545e900625d364226ba968b895158455a668"
       }
     ]
   }
@@ -276,11 +251,11 @@ export type FormRule = {
 
 export const FORM_RULES: FormRule[] = [
   {
-    "id": "squat-knee-top-thphuc05",
+    "id": "squat-rep-count-null",
     "exercise": "squat",
     "exerciseName": "Squat",
     "purpose": "rep-count",
-    "role": "top",
+    "role": "top-and-bottom",
     "measure": "joint-angle",
     "joint": "knee",
     "points": [
@@ -289,126 +264,18 @@ export const FORM_RULES: FormRule[] = [
       "ankle"
     ],
     "keypointIndices": null,
-    "comparison": ">",
+    "comparison": null,
     "unit": "degrees",
-    "meaning": "Back at the top (standing): knee angle above this, together with the hip angle above its own top value, ends a rep.",
-    "sourceId": "thphuc05",
-    "value": 160,
+    "meaning": "Top and bottom knee angles for counting squat reps.",
+    "sourceId": "exerciseCorrection",
+    "value": null,
     "value2": null,
-    "source": "https://github.com/thphuc05/PythonExcercisePoseEstimation/blob/main/pose_estimation.py#L49",
-    "quote": "ExerciseConfig(name=\"Squat\", knee_angle_up=160, knee_angle_down_entry=100,",
-    "usage": "if knee_angle > cfg.knee_angle_up and hip_angle > cfg.hip_angle_up:",
-    "measureQuote": "knee_angle = calculate_angle(hip, knee, ankle)",
-    "reasonQuote": null,
-    "nullReason": null
-  },
-  {
-    "id": "squat-knee-bottom-thphuc05",
-    "exercise": "squat",
-    "exerciseName": "Squat",
-    "purpose": "rep-count",
-    "role": "bottom",
-    "measure": "joint-angle",
-    "joint": "knee",
-    "points": [
-      "hip",
-      "knee",
-      "ankle"
-    ],
-    "keypointIndices": null,
-    "comparison": "<",
-    "unit": "degrees",
-    "meaning": "Going down: knee angle below this, from the top, enters the down phase.",
-    "sourceId": "thphuc05",
-    "value": 100,
-    "value2": null,
-    "source": "https://github.com/thphuc05/PythonExcercisePoseEstimation/blob/main/pose_estimation.py#L49",
-    "quote": "ExerciseConfig(name=\"Squat\", knee_angle_up=160, knee_angle_down_entry=100,",
-    "usage": "if knee_angle < cfg.knee_angle_down_entry and stage == \"up\":",
-    "measureQuote": "knee_angle = calculate_angle(hip, knee, ankle)",
-    "reasonQuote": null,
-    "nullReason": null
-  },
-  {
-    "id": "squat-hip-top-thphuc05",
-    "exercise": "squat",
-    "exerciseName": "Squat",
-    "purpose": "rep-count",
-    "role": "top",
-    "measure": "joint-angle",
-    "joint": "hip",
-    "points": [
-      "knee",
-      "hip",
-      "shoulder"
-    ],
-    "keypointIndices": null,
-    "comparison": ">",
-    "unit": "degrees",
-    "meaning": "Back at the top: hip angle above this is also required to end a rep.",
-    "sourceId": "thphuc05",
-    "value": 160,
-    "value2": null,
-    "source": "https://github.com/thphuc05/PythonExcercisePoseEstimation/blob/main/pose_estimation.py#L49",
-    "quote": "knee_angle_down_entry=100, # Squat hip_angle_up=160, correct_knee_max=95",
-    "usage": "if knee_angle > cfg.knee_angle_up and hip_angle > cfg.hip_angle_up:",
-    "measureQuote": "hip_angle = calculate_angle(knee, hip, shouder)",
-    "reasonQuote": null,
-    "nullReason": null
-  },
-  {
-    "id": "squat-knee-depth-thphuc05",
-    "exercise": "squat",
-    "exerciseName": "Squat",
-    "purpose": "form-check",
-    "role": "depth",
-    "measure": "joint-angle",
-    "joint": "knee",
-    "points": [
-      "hip",
-      "knee",
-      "ankle"
-    ],
-    "keypointIndices": null,
-    "comparison": "<",
-    "unit": "degrees",
-    "meaning": "Depth: the smallest knee angle of the rep must fall below this (with the hip and hip-drop checks) for the rep to be marked correct.",
-    "sourceId": "thphuc05",
-    "value": 95,
-    "value2": null,
-    "source": "https://github.com/thphuc05/PythonExcercisePoseEstimation/blob/main/pose_estimation.py#L49",
-    "quote": "knee_angle_down_entry=100, # Squat hip_angle_up=160, correct_knee_max=95",
-    "usage": "if is_hip_drop and min_knee_angle < cfg.correct_knee_max and min_hip_angle < cfg.correct_hip_max:",
-    "measureQuote": "knee_angle = calculate_angle(hip, knee, ankle)",
-    "reasonQuote": null,
-    "nullReason": null
-  },
-  {
-    "id": "squat-hip-depth-thphuc05",
-    "exercise": "squat",
-    "exerciseName": "Squat",
-    "purpose": "form-check",
-    "role": "depth",
-    "measure": "joint-angle",
-    "joint": "hip",
-    "points": [
-      "knee",
-      "hip",
-      "shoulder"
-    ],
-    "keypointIndices": null,
-    "comparison": "<",
-    "unit": "degrees",
-    "meaning": "Depth: the smallest hip angle of the rep must fall below this (with the knee check) for the rep to be marked correct.",
-    "sourceId": "thphuc05",
-    "value": 95,
-    "value2": null,
-    "source": "https://github.com/thphuc05/PythonExcercisePoseEstimation/blob/main/pose_estimation.py#L50",
-    "quote": "correct_knee_max=95, correct_hip_max=95, hip_drop_min=0.08)",
-    "usage": "if is_hip_drop and min_knee_angle < cfg.correct_knee_max and min_hip_angle < cfg.correct_hip_max:",
-    "measureQuote": "hip_angle = calculate_angle(knee, hip, shouder)",
-    "reasonQuote": null,
-    "nullReason": null
+    "source": "https://github.com/NgoQuocBao1010/Exercise-Correction/blob/main/web/server/detection/squat.py#L158",
+    "quote": null,
+    "usage": null,
+    "measureQuote": null,
+    "reasonQuote": "ML_MODEL_PATH = get_static_file_url(\"model/squat_model.pkl\")",
+    "nullReason": "The one licensed squat source read counts squat stages with a trained classifier, not an angle threshold, so it states no top or bottom knee angle. The project that gave the squat angles here until November 2026 (thphuc05/PythonExcercisePoseEstimation) answered 404 on 2026-11-14 and was dropped."
   },
   {
     "id": "squat-stance-ratio-exercise-correction",
@@ -457,7 +324,7 @@ export const FORM_RULES: FormRule[] = [
     "sourceId": "ultralytics",
     "value": 145,
     "value2": null,
-    "source": "https://github.com/ultralytics/ultralytics/blob/main/ultralytics/solutions/config.py#L79",
+    "source": "https://github.com/ultralytics/ultralytics/blob/main/ultralytics/solutions/config.py#L82",
     "quote": "up_angle: float = 145.0",
     "usage": "elif state[\"angle\"] > self.up_angle:",
     "measureQuote": "kpts=[6, 8, 10],  # keypoints for monitoring specific exercise, by default it's for pushup",
@@ -488,118 +355,10 @@ export const FORM_RULES: FormRule[] = [
     "sourceId": "ultralytics",
     "value": 90,
     "value2": null,
-    "source": "https://github.com/ultralytics/ultralytics/blob/main/ultralytics/solutions/config.py#L80",
+    "source": "https://github.com/ultralytics/ultralytics/blob/main/ultralytics/solutions/config.py#L83",
     "quote": "down_angle: float = 90.0",
     "usage": "if state[\"angle\"] < self.down_angle: if state[\"stage\"] == \"up\": state[\"count\"] += 1",
     "measureQuote": "kpts=[6, 8, 10],  # keypoints for monitoring specific exercise, by default it's for pushup",
-    "reasonQuote": null,
-    "nullReason": null
-  },
-  {
-    "id": "push-up-elbow-top-thphuc05",
-    "exercise": "push-up",
-    "exerciseName": "Push-up",
-    "purpose": "rep-count",
-    "role": "top",
-    "measure": "joint-angle",
-    "joint": "elbow",
-    "points": [
-      "wrist",
-      "elbow",
-      "shoulder"
-    ],
-    "keypointIndices": null,
-    "comparison": ">",
-    "unit": "degrees",
-    "meaning": "Up: elbow angle above this, with the body straight, ends a rep.",
-    "sourceId": "thphuc05",
-    "value": 160,
-    "value2": null,
-    "source": "https://github.com/thphuc05/PythonExcercisePoseEstimation/blob/main/pose_estimation.py#L52",
-    "quote": "ExerciseConfig(name=\"PushUp\", elbow_angle_up=160, elbow_angle_down_entry=90,",
-    "usage": "if elbow_angle > cfg.elbow_angle_up:",
-    "measureQuote": "elbow_angle = calculate_angle(wrist, elbow, shouder)",
-    "reasonQuote": null,
-    "nullReason": null
-  },
-  {
-    "id": "push-up-elbow-bottom-thphuc05",
-    "exercise": "push-up",
-    "exerciseName": "Push-up",
-    "purpose": "rep-count",
-    "role": "bottom",
-    "measure": "joint-angle",
-    "joint": "elbow",
-    "points": [
-      "wrist",
-      "elbow",
-      "shoulder"
-    ],
-    "keypointIndices": null,
-    "comparison": "<",
-    "unit": "degrees",
-    "meaning": "Down: elbow angle below this, from the top, enters the down phase.",
-    "sourceId": "thphuc05",
-    "value": 90,
-    "value2": null,
-    "source": "https://github.com/thphuc05/PythonExcercisePoseEstimation/blob/main/pose_estimation.py#L52",
-    "quote": "ExerciseConfig(name=\"PushUp\", elbow_angle_up=160, elbow_angle_down_entry=90,",
-    "usage": "if elbow_angle < cfg.elbow_angle_down_entry and stage == \"up\":",
-    "measureQuote": "elbow_angle = calculate_angle(wrist, elbow, shouder)",
-    "reasonQuote": null,
-    "nullReason": null
-  },
-  {
-    "id": "push-up-elbow-depth-thphuc05",
-    "exercise": "push-up",
-    "exerciseName": "Push-up",
-    "purpose": "form-check",
-    "role": "depth",
-    "measure": "joint-angle",
-    "joint": "elbow",
-    "points": [
-      "wrist",
-      "elbow",
-      "shoulder"
-    ],
-    "keypointIndices": null,
-    "comparison": "<",
-    "unit": "degrees",
-    "meaning": "Depth: the smallest elbow angle of the rep must fall below this for the rep to be marked correct.",
-    "sourceId": "thphuc05",
-    "value": 90,
-    "value2": null,
-    "source": "https://github.com/thphuc05/PythonExcercisePoseEstimation/blob/main/pose_estimation.py#L53",
-    "quote": "correct_elbow_max=90, body_straight_min=160)",
-    "usage": "if min_elbow_angle < cfg.correct_elbow_max:",
-    "measureQuote": "elbow_angle = calculate_angle(wrist, elbow, shouder)",
-    "reasonQuote": null,
-    "nullReason": null
-  },
-  {
-    "id": "push-up-body-line-thphuc05",
-    "exercise": "push-up",
-    "exerciseName": "Push-up",
-    "purpose": "form-check",
-    "role": "minimum",
-    "measure": "joint-angle",
-    "joint": "body-line",
-    "points": [
-      "shoulder",
-      "hip",
-      "ankle"
-    ],
-    "keypointIndices": null,
-    "comparison": ">",
-    "unit": "degrees",
-    "meaning": "Straight body: the shoulder-hip-ankle angle must stay above this for the source to track the rep at all.",
-    "sourceId": "thphuc05",
-    "value": 160,
-    "value2": null,
-    "source": "https://github.com/thphuc05/PythonExcercisePoseEstimation/blob/main/pose_estimation.py#L53",
-    "quote": "correct_elbow_max=90, body_straight_min=160)",
-    "usage": "is_body_straight = body_line_angle > cfg.body_straight_min",
-    "measureQuote": "body_line_angle = calculate_angle(shouder, hip, ankle)",
     "reasonQuote": null,
     "nullReason": null
   },
@@ -658,7 +417,7 @@ export const FORM_RULES: FormRule[] = [
     "nullReason": "The one licensed lunge source read counts lunge stages with a trained classifier, not an angle threshold, so it states no top or bottom angle. The peer-reviewed state-machine definition cited on /motion/lunge-detection-pose-estimation is on a host the build environment could not reach on the fetch date."
   },
   {
-    "id": "plank-hip-hold-thphuc05",
+    "id": "plank-hold-null",
     "exercise": "plank",
     "exerciseName": "Plank",
     "purpose": "hold",
@@ -671,41 +430,18 @@ export const FORM_RULES: FormRule[] = [
       "shoulder"
     ],
     "keypointIndices": null,
-    "comparison": ">",
+    "comparison": null,
     "unit": "degrees",
-    "meaning": "Hold: the hip angle must stay above this; dropping below stops the hold timer.",
-    "sourceId": "thphuc05",
-    "value": 160,
+    "meaning": "The hip angle a plank must hold, and how long before the hold counts.",
+    "sourceId": "exerciseCorrection",
+    "value": null,
     "value2": null,
-    "source": "https://github.com/thphuc05/PythonExcercisePoseEstimation/blob/main/pose_estimation.py#L51",
-    "quote": "ExerciseConfig(name=\"Plank\", plank_hip_min=160, hold_frames_required=60)",
-    "usage": "if hip_angle > cfg.plank_hip_min:",
-    "measureQuote": "hip_angle = calculate_angle(knee, hip, shouder)",
-    "reasonQuote": null,
-    "nullReason": null
-  },
-  {
-    "id": "plank-hold-frames-thphuc05",
-    "exercise": "plank",
-    "exerciseName": "Plank",
-    "purpose": "hold",
-    "role": "frames",
-    "measure": "frames",
-    "joint": null,
-    "points": null,
-    "keypointIndices": null,
-    "comparison": ">=",
-    "unit": "frames",
-    "meaning": "Hold start: the hip rule must hold for this many consecutive frames before the timer starts (the source's comment says 2 s at 30 fps).",
-    "sourceId": "thphuc05",
-    "value": 60,
-    "value2": null,
-    "source": "https://github.com/thphuc05/PythonExcercisePoseEstimation/blob/main/pose_estimation.py#L51",
-    "quote": "ExerciseConfig(name=\"Plank\", plank_hip_min=160, hold_frames_required=60)",
-    "usage": "if down_frame_counter >= cfg.hold_frames_required and not timer_running:",
-    "measureQuote": "down_frame_counter += 1",
-    "reasonQuote": null,
-    "nullReason": null
+    "source": "https://github.com/NgoQuocBao1010/Exercise-Correction/blob/main/web/server/detection/plank.py#L14",
+    "quote": null,
+    "usage": null,
+    "measureQuote": null,
+    "reasonQuote": "ML_MODEL_PATH = get_static_file_url(\"model/plank_model.pkl\")",
+    "nullReason": "The one licensed plank source read judges plank form with a trained classifier, not an angle threshold, so it states no hip angle and no hold time. The project that gave both here until November 2026 (thphuc05/PythonExcercisePoseEstimation) answered 404 on 2026-11-14 and was dropped."
   },
   {
     "id": "bicep-curl-elbow-top-exercise-correction",
@@ -973,22 +709,6 @@ export type FormRulePreset = {
 
 export const FORM_RULE_PRESETS: FormRulePreset[] = [
   {
-    "id": "squat-knee-thphuc05",
-    "exercise": "squat",
-    "exerciseName": "Squat",
-    "sourceId": "thphuc05",
-    "joint": "knee",
-    "side": "best",
-    "startAt": "high",
-    "top": 160,
-    "bottom": 100,
-    "topRuleId": "squat-knee-top-thphuc05",
-    "bottomRuleId": "squat-knee-bottom-thphuc05",
-    "others": [
-      "squat-hip-top-thphuc05"
-    ]
-  },
-  {
     "id": "push-up-elbow-ultralytics",
     "exercise": "push-up",
     "exerciseName": "Push-up",
@@ -1000,20 +720,6 @@ export const FORM_RULE_PRESETS: FormRulePreset[] = [
     "bottom": 90,
     "topRuleId": "push-up-elbow-top-ultralytics",
     "bottomRuleId": "push-up-elbow-bottom-ultralytics",
-    "others": []
-  },
-  {
-    "id": "push-up-elbow-thphuc05",
-    "exercise": "push-up",
-    "exerciseName": "Push-up",
-    "sourceId": "thphuc05",
-    "joint": "elbow",
-    "side": "best",
-    "startAt": "high",
-    "top": 160,
-    "bottom": 90,
-    "topRuleId": "push-up-elbow-top-thphuc05",
-    "bottomRuleId": "push-up-elbow-bottom-thphuc05",
     "others": []
   },
   {

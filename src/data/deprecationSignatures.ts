@@ -70,7 +70,14 @@ export type DeprecationSignature = {
 
 const READ = "2026-11-06";
 
-const FIT_MIGRATION = "https://developer.android.com/health-and-fitness/health-connect/migration/fit";
+/**
+ * The Google Fit pages, re-read 2026-11-14. Without a language parameter both
+ * hosts answer some requests with a machine-translated edition (a redirect to
+ * ?hl=de, ?hl=fr, ?hl=zh-cn…), so an English quote fails at random in
+ * source-quotes.yml; every Google URL here carries ?hl=en.
+ */
+const READ_FIT = "2026-11-14";
+const FIT_MIGRATION = "https://developer.android.com/health-and-fitness/health-connect/migration/fit?hl=en";
 const FIT_CAUTION =
   "The Google Fit API (including the REST API) will only be supported until the end of 2026. We recommend migrating to the Google Health API for cloud-based integrations or Health Connect for step tracking and mobile-first apps.";
 const ANDROID: SignatureSource["publisher"] = "Google for Developers (Google Fit)";
@@ -116,9 +123,9 @@ export const DEPRECATION_SIGNATURES: DeprecationSignature[] = [
     replacement: [{ label: "Google Health API (cloud integrations)", href: "/google-health-api" }],
     replacementQuotes: [{ url: FIT_MIGRATION, quote: FIT_CAUTION }],
     source: {
-      url: "https://developers.google.com/fit/rest/v1/reference",
+      url: "https://developers.google.com/fit/rest/v1/reference?hl=en",
       publisher: ANDROID,
-      checkedOn: READ,
+      checkedOn: READ_FIT,
       quote: "URIs relative to https://www.googleapis.com/fitness/v1/users, unless otherwise noted",
       via: "direct",
     },
@@ -132,9 +139,9 @@ export const DEPRECATION_SIGNATURES: DeprecationSignature[] = [
     pattern: "com\\.google\\.android\\.gms:play-services-fitness\\b",
     example: '    implementation("com.google.android.gms:play-services-fitness:21.3.0")',
     source: {
-      url: "https://developers.google.com/fit/android/get-started",
+      url: "https://developers.google.com/fit/android/get-started?hl=en",
       publisher: ANDROID,
-      checkedOn: READ,
+      checkedOn: READ_FIT,
       quote: 'implementation("com.google.android.gms:play-services-fitness:21.3.0")',
       evidenceQuote: "com.google.android.gms:play-services-fitness:21.3.0",
       via: "direct",
@@ -151,9 +158,9 @@ export const DEPRECATION_SIGNATURES: DeprecationSignature[] = [
     replacement: [{ label: "Google Health API", href: "/google-health-api" }],
     replacementQuotes: [{ url: FIT_MIGRATION, quote: "Fit History API and Fit Session API | Google Health API | Available" }],
     source: {
-      url: "https://developers.google.com/fit/android/history",
+      url: "https://developers.google.com/fit/android/history?hl=en",
       publisher: ANDROID,
-      checkedOn: READ,
+      checkedOn: READ_FIT,
       quote: "Fitness.getHistoryClient(this, GoogleSignIn.getAccountForExtension(this, fitnessOptions))",
       evidenceQuote: "Fitness . getHistoryClient ( this , GoogleSignIn . getAccountForExtension ( this , fitnessOptions",
       via: "direct",
@@ -178,9 +185,9 @@ export const DEPRECATION_SIGNATURES: DeprecationSignature[] = [
       { url: FIT_MIGRATION, quote: "Start/stop: Use Health Services (ExerciseClient) Read/write: Use Health Connect with your mobile app." },
     ],
     source: {
-      url: "https://developers.google.com/fit/android/using-sessions",
+      url: "https://developers.google.com/fit/android/using-sessions?hl=en",
       publisher: ANDROID,
-      checkedOn: READ,
+      checkedOn: READ_FIT,
       quote: "Fitness.getSessionsClient(this, googleSigninAccount)",
       evidenceQuote: "Fitness . getSessionsClient ( this , googleSigninAccount )",
       via: "direct",
@@ -203,9 +210,9 @@ export const DEPRECATION_SIGNATURES: DeprecationSignature[] = [
       { url: FIT_MIGRATION, quote: "Use Health Services: PassiveMonitoringClient ExerciseClient" },
     ],
     source: {
-      url: "https://developers.google.com/fit/android/record",
+      url: "https://developers.google.com/fit/android/record?hl=en",
       publisher: ANDROID,
-      checkedOn: READ,
+      checkedOn: READ_FIT,
       quote: "Fitness.getRecordingClient(this, GoogleSignIn.getAccountForExtension(this, fitnessOptions))",
       evidenceQuote: "Fitness . getRecordingClient ( this , GoogleSignIn . getAccountForExtension ( this , fitnessOptions",
       via: "direct",
@@ -224,9 +231,9 @@ export const DEPRECATION_SIGNATURES: DeprecationSignature[] = [
         evidenceQuote: "Use the Android Sensors framework or the Fused Location Provider API for real-time raw data.",
       }],
     source: {
-      url: "https://developers.google.com/fit/android/sensors",
+      url: "https://developers.google.com/fit/android/sensors?hl=en",
       publisher: ANDROID,
-      checkedOn: READ,
+      checkedOn: READ_FIT,
       quote: "Fitness.getSensorsClient(this, GoogleSignIn.getAccountForExtension(this, fitnessOptions))",
       evidenceQuote: "Fitness . getSensorsClient ( this , GoogleSignIn . getAccountForExtension ( this , fitnessOptions",
       via: "direct",
@@ -241,9 +248,9 @@ export const DEPRECATION_SIGNATURES: DeprecationSignature[] = [
     pattern: "\\bFitness\\s*\\.\\s*getGoalsClient\\b",
     example: "Fitness.getGoalsClient(requireContext(), getGoogleAccount())",
     source: {
-      url: "https://developers.google.com/fit/android/using-goals",
+      url: "https://developers.google.com/fit/android/using-goals?hl=en",
       publisher: ANDROID,
-      checkedOn: READ,
+      checkedOn: READ_FIT,
       quote: "Fitness.getGoalsClient(requireContext(), getGoogleAccount())",
       evidenceQuote: "Fitness . getGoalsClient ( requireContext (), getGoogleAccount ())",
       via: "direct",
@@ -416,9 +423,10 @@ export const DEPRECATION_SIGNATURES: DeprecationSignature[] = [
     pattern: "\\bmp\\.solutions\\.pose(?![\\w])",
     example: "mp_pose = mp.solutions.pose",
     source: {
-      url: "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md",
+      // docs/ was deleted from the repository on 2026-11-09: the guide at its last commit, read 2026-11-14.
+      url: "https://raw.githubusercontent.com/google-ai-edge/mediapipe/3eb8983cde1517fdff4abbfb33586316af6d45be/docs/solutions/pose.md",
       publisher: "MediaPipe repository (Google)",
-      checkedOn: READ,
+      checkedOn: "2026-11-14",
       quote: "mp_pose = mp.solutions.pose",
       via: "direct",
     },
