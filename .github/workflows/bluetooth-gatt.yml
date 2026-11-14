@@ -6,18 +6,23 @@ name: Bluetooth GATT reference
 # commit to the SIG's repository reaches the site within a week of landing.
 # Same mechanics as .github/workflows/libraries.yml.
 on:
-  # OFF, as libraries.yml is (paused 2026-10-06 at the owner's request: the
-  # automatic triggers emailed a failure on every run). Uncomment to turn the
-  # weekly run on. Manual runs still work (Actions tab, Run workflow).
-  # schedule:
-  #   # 05:13 UTC every Wednesday. Off the hour, and away from the library
-  #   # tracker (Tuesday 04:37) and the daily SDK tracker (06:20).
-  #   - cron: "13 5 * * 3"
+  # On again since 2026-11-14 (ops/AUTOMATION.md, loop 3). It was paused on
+  # 2026-10-06 because the pull request step failed with "GitHub Actions is
+  # not permitted to create or approve pull requests" and emailed a failure
+  # on every run. scripts/bot-pr.sh now ends the run green in that case and
+  # leaves the pushed branch for the daily vendor-watch session to open, and
+  # dispatches ci.yml so the required check runs when the setting is on.
+  schedule:
+    # 05:33 UTC every Wednesday. Off the hour, and twenty minutes after the
+    # MCP directory (05:13).
+    - cron: "33 5 * * 3"
   workflow_dispatch:
 
 permissions:
   contents: write
   pull-requests: write
+  # To dispatch ci.yml on the bot branch (scripts/bot-pr.sh).
+  actions: write
 
 concurrency:
   group: bluetooth-gatt
@@ -97,7 +102,6 @@ jobs:
           branch="bot/bluetooth-gatt-${GITHUB_RUN_ID}"
           git checkout -b "$branch"
           git push origin "$branch"
-          gh pr create --base main --head "$branch" \
-            --title "Refresh Bluetooth GATT reference" \
-            --body "Automated refresh of \`src/data/bluetoothGatt.ts\` and its dataset from the Bluetooth SIG's public repository (${BEFORE} -> ${AFTER}). Merges itself once CI is green. Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
-          gh pr merge --auto --squash --delete-branch "$branch"
+          bash scripts/bot-pr.sh "$branch" \
+            "Refresh Bluetooth GATT reference" \
+            "Automated refresh of \`src/data/bluetoothGatt.ts\` and its dataset from the Bluetooth SIG's public repository (${BEFORE} -> ${AFTER}). Merges itself once CI is green. Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"

@@ -1,0 +1,141 @@
+name: Dataset mirror
+
+# Mirrors public/datasets/ into a standalone public repository that holds
+# only the data (ops/DISTRIBUTION.md section 2), so other projects can pin a
+# commit, link a file and cite it without cloning the site. Runs
+# scripts/mirror-datasets.mjs, which writes data/, README.md, LICENSE and
+# CITATION.cff into a checkout of the mirror and touches nothing else there,
+# then commits and pushes if anything changed.
+#
+# SETUP (owner, once). Until both are set the run skips with a notice and
+# succeeds, so a missing credential never emails a failure.
+#   1. Create the mirror repository yourself, public, for example
+#      nikitastarovzz/health-api-datasets. It may be empty (no README, no
+#      commits); the first run starts it on a `main` branch. This workflow
+#      never creates a repository.
+#   2. Repository variable DATASET_MIRROR_REPO (Settings, Secrets and
+#      variables, Actions, Variables): the mirror as owner/name.
+#   3. Repository secret DATASET_MIRROR_TOKEN: a fine-grained personal access
+#      token with Contents: read and write on that one repository, and no
+#      other repository or permission.
+#
+# The token reaches only the two steps that talk to the mirror. actions/checkout
+# passes it as an HTTP header rather than in a URL, and the empty-repository
+# path below does the same, so it never appears in a remote URL or the log.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "public/datasets/**"
+      - "CITATION.cff"
+      - "scripts/mirror-datasets.mjs"
+      - "scripts/templates/dataset-repo-README.md"
+      - ".github/workflows/dataset-mirror.yml"
+  workflow_dispatch: {}
+
+# Reads this repository only; writes go to the mirror with its own token.
+permissions:
+  contents: read
+
+concurrency:
+  group: dataset-mirror
+  cancel-in-progress: false
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check the mirror is configured
+        id: cfg
+        env:
+          REPO: ${{ vars.DATASET_MIRROR_REPO }}
+          TOKEN: ${{ secrets.DATASET_MIRROR_TOKEN }}
+        run: |
+          missing=""
+          [ -n "$REPO" ] || missing="variable DATASET_MIRROR_REPO"
+          [ -n "$TOKEN" ] || missing="${missing:+$missing and }secret DATASET_MIRROR_TOKEN"
+          if [ -n "$missing" ]; then
+            echo "::notice title=Dataset mirror skipped::Repository ${missing} is not set, so there is no mirror to write to. See the SETUP comment at the top of .github/workflows/dataset-mirror.yml."
+            echo "skip=1" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "skip=0" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v4
+        if: steps.cfg.outputs.skip == '0'
+
+      - uses: actions/setup-node@v4
+        if: steps.cfg.outputs.skip == '0'
+        with:
+          node-version: "22"
+
+      - name: Check out the mirror
+        id: clone
+        if: steps.cfg.outputs.skip == '0'
+        # Fails on a repository with no commits yet; the next step handles
+        # that case and stops the run for any other failure.
+        continue-on-error: true
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ vars.DATASET_MIRROR_REPO }}
+          token: ${{ secrets.DATASET_MIRROR_TOKEN }}
+          path: mirror
+
+      - name: Start an empty mirror on main
+        if: steps.cfg.outputs.skip == '0' && steps.clone.outcome == 'failure'
+        env:
+          REPO: ${{ vars.DATASET_MIRROR_REPO }}
+          TOKEN: ${{ secrets.DATASET_MIRROR_TOKEN }}
+        run: |
+          set -euo pipefail
+          rm -rf mirror
+          git init -b main mirror
+          cd mirror
+          git remote add origin "https://github.com/${REPO}.git"
+          # The header actions/checkout would have set. Masked first: the log
+          # masks the secret itself but not its base64 form.
+          auth=$(printf 'x-access-token:%s' "$TOKEN" | base64 -w0)
+          echo "::add-mask::${auth}"
+          git config http.https://github.com/.extraheader "AUTHORIZATION: basic ${auth}"
+          # Only an empty repository may be started over. If it has any ref,
+          # the checkout failed for another reason (token, name, outage), and
+          # pushing a fresh history there would be wrong.
+          if ! refs=$(git ls-remote origin); then
+            echo "::error title=Mirror unreachable::Could not read ${REPO} with DATASET_MIRROR_TOKEN. Check the repository exists and the token has Contents: read and write on it."
+            exit 1
+          fi
+          if [ -n "$refs" ]; then
+            echo "::error title=Mirror checkout failed::${REPO} has commits but could not be checked out; see the previous step's log."
+            exit 1
+          fi
+          echo "${REPO} is empty; starting it on main."
+
+      - name: Write the datasets into the mirror
+        if: steps.cfg.outputs.skip == '0'
+        # Exits non-zero, writing nothing, on a short read (fewer than 15
+        # datasets in the manifest, or a listed file missing or stale).
+        run: node scripts/mirror-datasets.mjs --out mirror
+
+      - name: Commit and push
+        if: steps.cfg.outputs.skip == '0'
+        working-directory: mirror
+        run: |
+          set -euo pipefail
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "The mirror already matches public/datasets at ${GITHUB_SHA}; nothing to commit."
+            echo "Dataset mirror: unchanged at ${GITHUB_SHA}." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git add -A
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Two -m arguments, not a multi-line string: a continuation line at
+          # column 0 ends the `run: |` block scalar and the workflow stops
+          # parsing (see search-snapshot.yml).
+          git commit -q -m "Sync datasets from ${GITHUB_REPOSITORY}@${GITHUB_SHA}" \
+            -m "Source commit: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}. Automated by .github/workflows/dataset-mirror.yml (scripts/mirror-datasets.mjs)."
+          branch=$(git symbolic-ref --short HEAD)
+          git push origin "HEAD:${branch}"
+          echo "Dataset mirror: pushed $(git rev-parse --short HEAD) to ${branch}, from ${GITHUB_SHA}." >> "$GITHUB_STEP_SUMMARY"
