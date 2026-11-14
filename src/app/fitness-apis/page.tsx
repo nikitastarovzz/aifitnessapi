@@ -176,9 +176,9 @@ export default function FitnessApisPillar() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
 
       <div className="mx-auto max-w-2xl">
-        <Breadcrumbs trail={[{ name: "Home", path: "/" }, { name: "Fitness APIs", path: PILLAR_PATH }]} />
+        <Breadcrumbs trail={[{ name: "Home", path: "/" }, { name: "APIs by job", path: PILLAR_PATH }]} />
 
-        <ClusterHero label="Fitness APIs" seed={heroSeed(PILLAR_PATH)} />
+        <ClusterHero label="APIs by job" seed={heroSeed(PILLAR_PATH)} />
 
         <h1 className="text-4xl font-bold leading-tight tracking-tight text-[var(--fg)] sm:text-5xl">
           Fitness and Workout APIs Compared by Job (2026)

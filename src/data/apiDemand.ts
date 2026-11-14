@@ -4,23 +4,23 @@
  * after scripts/search-pull.mjs (the weekly live pull).
  *
  * What developers searched for about each product in the API directory, in
- * the 28 days 2026-09-27 to 2026-10-24: impressions of the
+ * the 28 days 2026-10-15 to 2026-11-11: impressions of the
  * disclosed queries naming the product, per engine and never added together,
  * and the pages on this site those queries surfaced, with up to three of the
  * queries each. Selection and filtering rules are in the script's header.
- * 24 products.
+ * 25 products.
  */
 
 export type DemandEngine = "Google" | "Bing" | "Google and Bing";
 export type DemandPage = { href: string; queries: { q: string; engine: DemandEngine }[] };
 export type ApiDemand = { google: number; bing: number; pages: DemandPage[] };
 
-export const API_DEMAND_RANGE = {"start":"2026-09-27","end":"2026-10-24"} as const;
+export const API_DEMAND_RANGE = {"start":"2026-10-15","end":"2026-11-11"} as const;
 
 export const API_DEMAND: Record<string, ApiDemand> = {
   "fitbit": {
-    "google": 55,
-    "bing": 78,
+    "google": 46,
+    "bing": 51,
     "pages": [
       {
         "href": "/integrate/fitbit-api",
@@ -40,23 +40,18 @@ export const API_DEMAND: Record<string, ApiDemand> = {
         ]
       },
       {
-        "href": "/alternatives/fitbit-api-alternatives",
-        "queries": [
-          {
-            "q": "should i build my own fitbit api integration or use a research platform? which companies offer this?",
-            "engine": "Google"
-          },
-          {
-            "q": "fitbit web api",
-            "engine": "Google"
-          }
-        ]
-      },
-      {
         "href": "/fitness-apis/wearable-data-apis",
         "queries": [
           {
-            "q": "is there a platform that gives me a single api to pull all my participants' fitbit data at once?",
+            "q": "purina vs fitbit",
+            "engine": "Google"
+          },
+          {
+            "q": "cerave vs fitbit",
+            "engine": "Google"
+          },
+          {
+            "q": "fitbit vs purina",
             "engine": "Google"
           }
         ]
@@ -71,19 +66,28 @@ export const API_DEMAND: Record<string, ApiDemand> = {
         ]
       },
       {
-        "href": "/libraries/python-fitbit",
+        "href": "/alternatives/fitbit-api-alternatives",
         "queries": [
           {
-            "q": "fitbit api python",
+            "q": "what are the best alternatives to labfront for a research study using fitbit devices?",
             "engine": "Google"
           }
         ]
       },
       {
-        "href": "/migrate/fitbit-web-api-to-google-health",
+        "href": "/google-health-api/floors",
         "queries": [
           {
-            "q": "fitbit web",
+            "q": "fitbit air floors",
+            "engine": "Google"
+          }
+        ]
+      },
+      {
+        "href": "/google-health-api/vo2-max",
+        "queries": [
+          {
+            "q": "vo2 max in google fitbit air",
             "engine": "Google"
           }
         ]
@@ -91,69 +95,48 @@ export const API_DEMAND: Record<string, ApiDemand> = {
     ]
   },
   "garmin": {
-    "google": 279,
-    "bing": 55,
+    "google": 125,
+    "bing": 142,
     "pages": [
       {
-        "href": "/libraries/garminconnect",
-        "queries": [
-          {
-            "q": "garmin connect python library garth unofficial api",
-            "engine": "Google"
-          },
-          {
-            "q": "garmin connect python",
-            "engine": "Google"
-          },
-          {
-            "q": "python garmin connect",
-            "engine": "Google"
-          }
-        ]
-      },
-      {
-        "href": "/integrate/terra-api",
-        "queries": [
-          {
-            "q": "terra garmin api",
-            "engine": "Google"
-          },
-          {
-            "q": "terra garmin api terms",
-            "engine": "Bing"
-          },
-          {
-            "q": "terra garmin",
-            "engine": "Google"
-          }
-        ]
-      },
-      {
-        "href": "/fix/garmin-api-approval",
+        "href": "/pricing/garmin-api-pricing",
         "queries": [
           {
             "q": "garmin api",
             "engine": "Google"
           },
           {
-            "q": "garmin connect api",
+            "q": "garmin api cost",
             "engine": "Google"
           },
           {
-            "q": "garmin connect developer program access request form",
+            "q": "garmin api pricing",
             "engine": "Google"
           }
         ]
       },
       {
-        "href": "/fitness-apis/wearable-data-apis",
+        "href": "/fix/garmin-api-personal-use",
         "queries": [
           {
-            "q": "garmin health api oauth developer registration",
-            "engine": "Google"
+            "q": "garmin api for personal use",
+            "engine": "Bing"
           },
           {
-            "q": "garmin connect api private use alternative 2025",
+            "q": "garmin personal api",
+            "engine": "Bing"
+          },
+          {
+            "q": "garmin personal api key",
+            "engine": "Bing"
+          }
+        ]
+      },
+      {
+        "href": "/libraries/compare/garminconnect-vs-garth",
+        "queries": [
+          {
+            "q": "garmin connect python library garth unofficial api",
             "engine": "Google"
           }
         ]
@@ -162,33 +145,50 @@ export const API_DEMAND: Record<string, ApiDemand> = {
         "href": "/integrate/garmin-api",
         "queries": [
           {
-            "q": "garmin connect iq api vs health api unterschied",
+            "q": "garmin connect api",
             "engine": "Google"
           },
           {
             "q": "api garmin",
+            "engine": "Google and Bing"
+          },
+          {
+            "q": "garmin api",
+            "engine": "Bing"
+          }
+        ]
+      },
+      {
+        "href": "/fix/garmin-api-approval",
+        "queries": [
+          {
+            "q": "garmin connect developer program access request form",
             "engine": "Google"
           },
           {
-            "q": "garmin api developer",
+            "q": "garmin api key",
+            "engine": "Google"
+          },
+          {
+            "q": "api settings in garmin",
             "engine": "Google"
           }
         ]
       },
       {
-        "href": "/devices/ant-plus-vs-bluetooth",
+        "href": "/libraries/garminconnect",
         "queries": [
           {
-            "q": "garmin ant+",
-            "engine": "Google"
+            "q": "garmin connect api python",
+            "engine": "Bing"
           }
         ]
       }
     ]
   },
   "oura": {
-    "google": 32,
-    "bing": 21,
+    "google": 39,
+    "bing": 26,
     "pages": [
       {
         "href": "/integrate/oura-api",
@@ -198,11 +198,20 @@ export const API_DEMAND: Record<string, ApiDemand> = {
             "engine": "Google"
           },
           {
-            "q": "oura api",
+            "q": "integracao oura",
             "engine": "Google"
           },
           {
-            "q": "oura ring api",
+            "q": "oura api",
+            "engine": "Google"
+          }
+        ]
+      },
+      {
+        "href": "/alternatives/oura-api-alternatives",
+        "queries": [
+          {
+            "q": "oura member care alternatives",
             "engine": "Google"
           }
         ]
@@ -210,26 +219,9 @@ export const API_DEMAND: Record<string, ApiDemand> = {
     ]
   },
   "whoop": {
-    "google": 64,
-    "bing": 35,
+    "google": 70,
+    "bing": 39,
     "pages": [
-      {
-        "href": "/compare/apple-watch-vs-whoop",
-        "queries": [
-          {
-            "q": "whoop api developer integration",
-            "engine": "Google"
-          },
-          {
-            "q": "whoop vs apple watch",
-            "engine": "Google"
-          },
-          {
-            "q": "whoop vs apple watch app",
-            "engine": "Google"
-          }
-        ]
-      },
       {
         "href": "/integrate/whoop-api",
         "queries": [
@@ -242,16 +234,20 @@ export const API_DEMAND: Record<string, ApiDemand> = {
             "engine": "Google"
           },
           {
-            "q": "whoop developer api",
-            "engine": "Google"
+            "q": "whoop api access",
+            "engine": "Bing"
           }
         ]
       },
       {
-        "href": "/alternatives/whoop-api-alternatives",
+        "href": "/compare/apple-watch-vs-whoop",
         "queries": [
           {
-            "q": "how does whoop compare to alternatives for recovery scoring?",
+            "q": "whoop vs apple watch",
+            "engine": "Google"
+          },
+          {
+            "q": "whoop vs apple watch app",
             "engine": "Google"
           }
         ]
@@ -259,8 +255,8 @@ export const API_DEMAND: Record<string, ApiDemand> = {
     ]
   },
   "strava": {
-    "google": 64,
-    "bing": 16,
+    "google": 33,
+    "bing": 21,
     "pages": [
       {
         "href": "/integrate/strava-api",
@@ -268,63 +264,37 @@ export const API_DEMAND: Record<string, ApiDemand> = {
           {
             "q": "strava api",
             "engine": "Google"
-          },
-          {
-            "q": "strava integration",
-            "engine": "Google"
-          },
-          {
-            "q": "api strava",
-            "engine": "Google"
-          }
-        ]
-      },
-      {
-        "href": "/data/gps-activity-api",
-        "queries": [
-          {
-            "q": "strava developers site route suggestion api endpoint",
-            "engine": "Google"
-          }
-        ]
-      },
-      {
-        "href": "/migrate/adapt-to-strava-api-changes",
-        "queries": [
-          {
-            "q": "strava api integration",
-            "engine": "Google"
           }
         ]
       }
     ]
   },
   "polar": {
-    "google": 16,
-    "bing": 26,
+    "google": 21,
+    "bing": 11,
     "pages": [
       {
         "href": "/integrate/polar-api",
         "queries": [
           {
-            "q": "polar flow api",
-            "engine": "Google and Bing"
-          },
-          {
             "q": "polar api",
             "engine": "Google"
           },
           {
-            "q": "polar access link v3",
-            "engine": "Bing"
+            "q": "polar accesslink",
+            "engine": "Google"
+          },
+          {
+            "q": "polar accesslink api",
+            "engine": "Google"
           }
         ]
       }
     ]
   },
   "healthkit": {
-    "google": 215,
-    "bing": 77,
+    "google": 367,
+    "bing": 76,
     "pages": [
       {
         "href": "/fitness-apis/apple-healthkit-vs-google-health-connect",
@@ -344,19 +314,6 @@ export const API_DEMAND: Record<string, ApiDemand> = {
         ]
       },
       {
-        "href": "/healthkit",
-        "queries": [
-          {
-            "q": "healthkit",
-            "engine": "Google"
-          },
-          {
-            "q": "health kit",
-            "engine": "Google"
-          }
-        ]
-      },
-      {
         "href": "/integrate/healthkit",
         "queries": [
           {
@@ -364,11 +321,20 @@ export const API_DEMAND: Record<string, ApiDemand> = {
             "engine": "Google"
           },
           {
-            "q": "apple healthkit api",
-            "engine": "Google"
+            "q": "healthkit api",
+            "engine": "Bing"
           },
           {
-            "q": "swift healthkit",
+            "q": "apple healthkit api",
+            "engine": "Google"
+          }
+        ]
+      },
+      {
+        "href": "/matrix",
+        "queries": [
+          {
+            "q": "healthkit",
             "engine": "Google"
           }
         ]
@@ -381,11 +347,28 @@ export const API_DEMAND: Record<string, ApiDemand> = {
             "engine": "Google"
           },
           {
-            "q": "react-native-healthkit",
+            "q": "react native health kit",
             "engine": "Google"
           },
           {
-            "q": "react native health kit",
+            "q": "react-native-healthkit",
+            "engine": "Google"
+          }
+        ]
+      },
+      {
+        "href": "/healthkit",
+        "queries": [
+          {
+            "q": "what is healthkit",
+            "engine": "Google"
+          },
+          {
+            "q": "health kit",
+            "engine": "Google"
+          },
+          {
+            "q": "apple healthkit data",
             "engine": "Google"
           }
         ]
@@ -398,40 +381,27 @@ export const API_DEMAND: Record<string, ApiDemand> = {
             "engine": "Google"
           }
         ]
-      },
-      {
-        "href": "/matrix",
-        "queries": [
-          {
-            "q": "what is healthkit",
-            "engine": "Google"
-          }
-        ]
       }
     ]
   },
   "health-connect": {
-    "google": 26,
-    "bing": 57,
+    "google": 13,
+    "bing": 69,
     "pages": [
-      {
-        "href": "/libraries/flutter-health-connect",
-        "queries": [
-          {
-            "q": "flutter health connect",
-            "engine": "Google"
-          },
-          {
-            "q": "health connect flutter",
-            "engine": "Google"
-          }
-        ]
-      },
       {
         "href": "/health-connect-api/permission-ui-guidelines",
         "queries": [
           {
             "q": "health connect permissions",
+            "engine": "Google"
+          }
+        ]
+      },
+      {
+        "href": "/test/health-connect-test-data",
+        "queries": [
+          {
+            "q": "health connect fake steps",
             "engine": "Google"
           }
         ]
@@ -448,22 +418,18 @@ export const API_DEMAND: Record<string, ApiDemand> = {
     ]
   },
   "terra": {
-    "google": 106,
-    "bing": 32,
+    "google": 348,
+    "bing": 25,
     "pages": [
       {
-        "href": "/compare/terra-vs-spike",
+        "href": "/alternatives/terra-alternatives",
         "queries": [
           {
-            "q": "compare spike api vs terra vs human api in united states",
+            "q": "terra api alternatives",
             "engine": "Google"
           },
           {
-            "q": "spike vs terra api in united states",
-            "engine": "Google"
-          },
-          {
-            "q": "terra wearable api",
+            "q": "terra wellness alternatives",
             "engine": "Google"
           }
         ]
@@ -472,7 +438,7 @@ export const API_DEMAND: Record<string, ApiDemand> = {
         "href": "/integrate/terra-api",
         "queries": [
           {
-            "q": "terra aggregator",
+            "q": "terra wearable api",
             "engine": "Google"
           },
           {
@@ -486,14 +452,28 @@ export const API_DEMAND: Record<string, ApiDemand> = {
         ]
       },
       {
-        "href": "/alternatives/terra-alternatives",
+        "href": "/alternatives",
         "queries": [
           {
             "q": "terra api alternative",
             "engine": "Google"
-          },
+          }
+        ]
+      },
+      {
+        "href": "/alternatives/human-api-alternatives",
+        "queries": [
           {
-            "q": "terra api alternatives",
+            "q": "compare spike api vs terra vs human api in united states",
+            "engine": "Google"
+          }
+        ]
+      },
+      {
+        "href": "/compare/terra-vs-spike",
+        "queries": [
+          {
+            "q": "spike vs terra api in united states",
             "engine": "Google"
           }
         ]
@@ -501,11 +481,11 @@ export const API_DEMAND: Record<string, ApiDemand> = {
     ]
   },
   "junction": {
-    "google": 3,
+    "google": 6,
     "bing": 19,
     "pages": [
       {
-        "href": "/alternatives/terra-alternatives",
+        "href": "/alternatives/healthkit-alternatives",
         "queries": [
           {
             "q": "what is the best vital api",
@@ -516,27 +496,41 @@ export const API_DEMAND: Record<string, ApiDemand> = {
     ]
   },
   "rook": {
-    "google": 8,
-    "bing": 13,
+    "google": 138,
+    "bing": 11,
     "pages": []
   },
   "spike": {
-    "google": 48,
+    "google": 35,
     "bing": 2,
     "pages": [
       {
-        "href": "/compare/terra-vs-spike",
+        "href": "/alternatives/human-api-alternatives",
         "queries": [
           {
             "q": "compare spike api vs terra vs human api in united states",
             "engine": "Google"
-          },
+          }
+        ]
+      },
+      {
+        "href": "/compare/terra-vs-spike",
+        "queries": [
           {
             "q": "spike vs terra api in united states",
             "engine": "Google"
           },
           {
             "q": "spike api",
+            "engine": "Google"
+          }
+        ]
+      },
+      {
+        "href": "/compare/rook-vs-spike",
+        "queries": [
+          {
+            "q": "spike api alternatives",
             "engine": "Google"
           }
         ]
@@ -554,17 +548,13 @@ export const API_DEMAND: Record<string, ApiDemand> = {
   },
   "nutritionix": {
     "google": 15,
-    "bing": 3,
+    "bing": 2,
     "pages": [
       {
         "href": "/alternatives/nutritionix-alternatives",
         "queries": [
           {
             "q": "nutritionix alternative",
-            "engine": "Google"
-          },
-          {
-            "q": "nutritionix api alternative",
             "engine": "Google"
           }
         ]
@@ -573,7 +563,7 @@ export const API_DEMAND: Record<string, ApiDemand> = {
         "href": "/compare/nutritionix-vs-edamam",
         "queries": [
           {
-            "q": "nutritionix api",
+            "q": "nutritionix api alternative",
             "engine": "Google"
           },
           {
@@ -585,14 +575,34 @@ export const API_DEMAND: Record<string, ApiDemand> = {
     ]
   },
   "edamam": {
-    "google": 1,
+    "google": 3,
     "bing": 2,
-    "pages": []
+    "pages": [
+      {
+        "href": "/compare/edamam-vs-spoonacular",
+        "queries": [
+          {
+            "q": "edamam",
+            "engine": "Google"
+          }
+        ]
+      }
+    ]
   },
   "usda-fdc": {
-    "google": 0,
-    "bing": 5,
-    "pages": []
+    "google": 2,
+    "bing": 4,
+    "pages": [
+      {
+        "href": "/alternatives/nutritionix-alternatives",
+        "queries": [
+          {
+            "q": "usda fooddata central (.gov) alternatives",
+            "engine": "Google"
+          }
+        ]
+      }
+    ]
   },
   "open-food-facts": {
     "google": 0,
@@ -600,31 +610,22 @@ export const API_DEMAND: Record<string, ApiDemand> = {
     "pages": []
   },
   "exercisedb": {
-    "google": 34,
-    "bing": 14,
+    "google": 106,
+    "bing": 8,
     "pages": [
       {
-        "href": "/alternatives/exercisedb-alternatives",
+        "href": "/pricing/exercise-database-api-pricing",
         "queries": [
           {
             "q": "exercisedb",
             "engine": "Google"
           },
           {
-            "q": "is exercisedb io same as rapiapi exercisedb",
-            "engine": "Bing"
+            "q": "exercisedb free",
+            "engine": "Google"
           },
           {
-            "q": "exercisedb (rapidapi)",
-            "engine": "Google"
-          }
-        ]
-      },
-      {
-        "href": "/pricing/exercise-database-api-pricing",
-        "queries": [
-          {
-            "q": "exercisedb free",
+            "q": "exercisedb api",
             "engine": "Google"
           }
         ]
@@ -632,8 +633,8 @@ export const API_DEMAND: Record<string, ApiDemand> = {
     ]
   },
   "wger": {
-    "google": 14,
-    "bing": 6,
+    "google": 13,
+    "bing": 12,
     "pages": [
       {
         "href": "/alternatives/exercisedb-alternatives",
@@ -647,17 +648,41 @@ export const API_DEMAND: Record<string, ApiDemand> = {
             "engine": "Google"
           }
         ]
+      },
+      {
+        "href": "/fitness-apis/exercise-database-apis",
+        "queries": [
+          {
+            "q": "wger exercise database api free",
+            "engine": "Bing"
+          }
+        ]
+      }
+    ]
+  },
+  "your-move": {
+    "google": 3,
+    "bing": 0,
+    "pages": [
+      {
+        "href": "/integrate",
+        "queries": [
+          {
+            "q": "ymove api",
+            "engine": "Google"
+          }
+        ]
       }
     ]
   },
   "kinestex": {
     "google": 1,
-    "bing": 0,
+    "bing": 2,
     "pages": []
   },
   "sency": {
     "google": 0,
-    "bing": 2,
+    "bing": 0,
     "pages": []
   },
   "quickpose": {
@@ -666,44 +691,8 @@ export const API_DEMAND: Record<string, ApiDemand> = {
     "pages": []
   },
   "mediapipe": {
-    "google": 63,
-    "bing": 58,
-    "pages": [
-      {
-        "href": "/motion/pose-estimation-models-compared",
-        "queries": [
-          {
-            "q": "movenet vs mediapipe",
-            "engine": "Google"
-          },
-          {
-            "q": "mediapipe vs yolo",
-            "engine": "Google"
-          },
-          {
-            "q": "yolo pose vs mediapipe",
-            "engine": "Google"
-          }
-        ]
-      },
-      {
-        "href": "/motion/mediapipe-pose-landmarker-models",
-        "queries": [
-          {
-            "q": "mediapipe pose landmarker",
-            "engine": "Bing"
-          },
-          {
-            "q": "mediapipe pose landmarker lite",
-            "engine": "Bing"
-          }
-        ]
-      }
-    ]
-  },
-  "movenet": {
-    "google": 18,
-    "bing": 9,
+    "google": 56,
+    "bing": 72,
     "pages": [
       {
         "href": "/motion/pose-estimation-models-compared",
@@ -717,7 +706,39 @@ export const API_DEMAND: Record<string, ApiDemand> = {
             "engine": "Google"
           },
           {
-            "q": "movenet model",
+            "q": "yolo pose vs mediapipe",
+            "engine": "Google"
+          }
+        ]
+      },
+      {
+        "href": "/motion/mediapipe-pose-landmarker-models",
+        "queries": [
+          {
+            "q": "mediapipe pose landmarker lite",
+            "engine": "Google and Bing"
+          },
+          {
+            "q": "mediapipe pose landmarker",
+            "engine": "Google and Bing"
+          }
+        ]
+      }
+    ]
+  },
+  "movenet": {
+    "google": 22,
+    "bing": 6,
+    "pages": [
+      {
+        "href": "/motion/pose-estimation-models-compared",
+        "queries": [
+          {
+            "q": "movenet vs mediapipe",
+            "engine": "Google"
+          },
+          {
+            "q": "mediapipe vs movenet",
             "engine": "Google"
           }
         ]
@@ -725,8 +746,8 @@ export const API_DEMAND: Record<string, ApiDemand> = {
     ]
   },
   "apple-vision": {
-    "google": 28,
-    "bing": 1,
+    "google": 38,
+    "bing": 0,
     "pages": [
       {
         "href": "/motion/apple-vision-body-pose",
@@ -737,6 +758,15 @@ export const API_DEMAND: Record<string, ApiDemand> = {
           },
           {
             "q": "vndetecthumanbodypose3drequest",
+            "engine": "Google"
+          }
+        ]
+      },
+      {
+        "href": "/pose-keypoints/apple-vision-3d",
+        "queries": [
+          {
+            "q": "apple vision body pose",
             "engine": "Google"
           }
         ]

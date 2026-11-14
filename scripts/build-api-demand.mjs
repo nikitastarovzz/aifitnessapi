@@ -67,6 +67,8 @@ const MATCH = {
   "open-food-facts": /\bopen ?food ?facts\b|\bopenfoodfacts\b/,
   exercisedb: /\bexercise ?db\b/,
   wger: /\bwger\b/,
+  // Added 2026-11-13: the entry shipped 2026-11-11 without one, which stopped this script.
+  "your-move": /\by(?:our ?)?move\b.*\b(?:api|exercise|app)\b|\bymove\b/,
   kinestex: /\bkinestex\b/,
   sency: /\bsency\b|\bsmkit\b/,
   quickpose: /\bquick ?pose\b/,

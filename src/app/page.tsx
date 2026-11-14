@@ -77,7 +77,7 @@ export const metadata: Metadata = {
 /** Every content cluster, surfaced from the homepage so the highest-
  *  authority page links directly to every pillar hub (discovery + link equity). */
 const CLUSTERS: { href: string; title: string; blurb: string }[] = [
-  { href: "/fitness-apis", title: "Fitness & workout APIs", blurb: "Compare and choose an API by the job — exercise content, wearables, aggregators, nutrition, or AI motion tracking." },
+  { href: "/fitness-apis", title: "APIs by job", blurb: "Compare and choose an API by the job — exercise content, wearables, aggregators, nutrition, or AI motion tracking." },
   { href: "/guides", title: "Add AI workout tracking", blurb: "The capture → pose → interpret pipeline: camera pose, rep counting, form feedback, and per-platform wiring." },
   { href: "/build", title: "Build a workout app", blurb: "End-to-end build playbooks by app type — home workout, coaching, strength, running, rehab, and more." },
   { href: "/integrate", title: "Integration guides", blurb: "Register, OAuth, fetch, and webhooks — a hands-on guide per provider, from HealthKit to Terra." },

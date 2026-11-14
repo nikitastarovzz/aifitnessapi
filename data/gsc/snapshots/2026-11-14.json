@@ -1,0 +1,5065 @@
+{
+  "takenAt": "2026-11-14T11:02:23.093Z",
+  "range": {
+    "start": "2026-10-15",
+    "end": "2026-11-11"
+  },
+  "engines": {
+    "google": [
+      {
+        "path": "/pricing/exercise-database-api-pricing",
+        "clicks": 25,
+        "impressions": 759,
+        "position": 7.53
+      },
+      {
+        "path": "/alternatives/exercisedb-alternatives",
+        "clicks": 16,
+        "impressions": 370,
+        "position": 7
+      },
+      {
+        "path": "/pricing/garmin-api-pricing",
+        "clicks": 14,
+        "impressions": 371,
+        "position": 7
+      },
+      {
+        "path": "/",
+        "clicks": 13,
+        "impressions": 439,
+        "position": 14.11
+      },
+      {
+        "path": "/integrate/garmin-api",
+        "clicks": 8,
+        "impressions": 374,
+        "position": 11.53
+      },
+      {
+        "path": "/motion/mediapipe-pose-landmarker-models",
+        "clicks": 8,
+        "impressions": 514,
+        "position": 5.92
+      },
+      {
+        "path": "/motion/rtmpose-models",
+        "clicks": 8,
+        "impressions": 320,
+        "position": 7.88
+      },
+      {
+        "path": "/fitness-apis/ai-workout-tracking-apis",
+        "clicks": 6,
+        "impressions": 232,
+        "position": 16.31
+      },
+      {
+        "path": "/pose-keypoints/halpe-26",
+        "clicks": 6,
+        "impressions": 132,
+        "position": 4.08
+      },
+      {
+        "path": "/fitness-apis/exercise-database-apis",
+        "clicks": 5,
+        "impressions": 146,
+        "position": 7.34
+      },
+      {
+        "path": "/health-connect-releases",
+        "clicks": 5,
+        "impressions": 225,
+        "position": 7.17
+      },
+      {
+        "path": "/motion/pose-estimation-models-compared",
+        "clicks": 5,
+        "impressions": 378,
+        "position": 6.78
+      },
+      {
+        "path": "/alternatives/terra-alternatives",
+        "clicks": 4,
+        "impressions": 810,
+        "position": 4.2
+      },
+      {
+        "path": "/fix/garmin-api-approval",
+        "clicks": 4,
+        "impressions": 617,
+        "position": 9.35
+      },
+      {
+        "path": "/google-fit-shutdown",
+        "clicks": 4,
+        "impressions": 435,
+        "position": 8.12
+      },
+      {
+        "path": "/integrate/oura-api",
+        "clicks": 4,
+        "impressions": 514,
+        "position": 9.64
+      },
+      {
+        "path": "/motion/apple-vision-body-pose",
+        "clicks": 4,
+        "impressions": 209,
+        "position": 6.71
+      },
+      {
+        "path": "/ai",
+        "clicks": 3,
+        "impressions": 93,
+        "position": 15.52
+      },
+      {
+        "path": "/compare/exercisedb-vs-wger",
+        "clicks": 3,
+        "impressions": 327,
+        "position": 6.82
+      },
+      {
+        "path": "/compliance/app-store-guideline-5-1-3-health-research",
+        "clicks": 3,
+        "impressions": 343,
+        "position": 6.27
+      },
+      {
+        "path": "/devices",
+        "clicks": 3,
+        "impressions": 129,
+        "position": 22.28
+      },
+      {
+        "path": "/fitness-apis/exercise-video-apis",
+        "clicks": 3,
+        "impressions": 13,
+        "position": 5.62
+      },
+      {
+        "path": "/google-health-api/heart-rate",
+        "clicks": 3,
+        "impressions": 42,
+        "position": 7.14
+      },
+      {
+        "path": "/integrate/glofox-api",
+        "clicks": 3,
+        "impressions": 114,
+        "position": 7.96
+      },
+      {
+        "path": "/pose-keypoints/openpose-body-25",
+        "clicks": 3,
+        "impressions": 94,
+        "position": 5.49
+      },
+      {
+        "path": "/bluetooth-fitness/indoor-bike-data",
+        "clicks": 2,
+        "impressions": 24,
+        "position": 3.75
+      },
+      {
+        "path": "/compare/terra-vs-open-wearables",
+        "clicks": 2,
+        "impressions": 30,
+        "position": 6.17
+      },
+      {
+        "path": "/compliance/app-store-health-data-rules",
+        "clicks": 2,
+        "impressions": 131,
+        "position": 14.88
+      },
+      {
+        "path": "/compliance/google-play-health-connect-publishing-requirements",
+        "clicks": 2,
+        "impressions": 200,
+        "position": 12.14
+      },
+      {
+        "path": "/data/blood-glucose-api",
+        "clicks": 2,
+        "impressions": 10,
+        "position": 6.1
+      },
+      {
+        "path": "/fitbit-api-shutdown",
+        "clicks": 2,
+        "impressions": 157,
+        "position": 7.92
+      },
+      {
+        "path": "/google-health-api/floors",
+        "clicks": 2,
+        "impressions": 172,
+        "position": 8.7
+      },
+      {
+        "path": "/google-health-api/food",
+        "clicks": 2,
+        "impressions": 55,
+        "position": 31.93
+      },
+      {
+        "path": "/google-health-api/scopes",
+        "clicks": 2,
+        "impressions": 108,
+        "position": 6.26
+      },
+      {
+        "path": "/health-connect-api/permission-ui-guidelines",
+        "clicks": 2,
+        "impressions": 158,
+        "position": 9.39
+      },
+      {
+        "path": "/health-mcp-servers",
+        "clicks": 2,
+        "impressions": 65,
+        "position": 11.09
+      },
+      {
+        "path": "/healthkit-errors",
+        "clicks": 2,
+        "impressions": 153,
+        "position": 12.03
+      },
+      {
+        "path": "/healthkit-identifiers",
+        "clicks": 2,
+        "impressions": 103,
+        "position": 6.22
+      },
+      {
+        "path": "/integrate/concept2-api",
+        "clicks": 2,
+        "impressions": 164,
+        "position": 5.22
+      },
+      {
+        "path": "/integrate/coros-api",
+        "clicks": 2,
+        "impressions": 251,
+        "position": 7.6
+      },
+      {
+        "path": "/integrate/dexcom-api",
+        "clicks": 2,
+        "impressions": 124,
+        "position": 5.75
+      },
+      {
+        "path": "/libraries",
+        "clicks": 2,
+        "impressions": 100,
+        "position": 12.63
+      },
+      {
+        "path": "/libraries/garth",
+        "clicks": 2,
+        "impressions": 15,
+        "position": 6.07
+      },
+      {
+        "path": "/libraries/kingstinct-react-native-healthkit",
+        "clicks": 2,
+        "impressions": 154,
+        "position": 7.57
+      },
+      {
+        "path": "/libraries/react-native-google-fit",
+        "clicks": 2,
+        "impressions": 29,
+        "position": 5.76
+      },
+      {
+        "path": "/motion/bicep-curl-counter-pose-estimation",
+        "clicks": 2,
+        "impressions": 9,
+        "position": 6.56
+      },
+      {
+        "path": "/motion/movenet-models",
+        "clicks": 2,
+        "impressions": 70,
+        "position": 7.17
+      },
+      {
+        "path": "/phone-sensors",
+        "clicks": 2,
+        "impressions": 57,
+        "position": 9.47
+      },
+      {
+        "path": "/pricing/fitbit-api-pricing",
+        "clicks": 2,
+        "impressions": 54,
+        "position": 5.5
+      },
+      {
+        "path": "/workout-types/high-intensity-interval-training",
+        "clicks": 2,
+        "impressions": 4,
+        "position": 5
+      },
+      {
+        "path": "/fix/health-connect-no-data",
+        "clicks": 2,
+        "impressions": 141,
+        "position": 8.11
+      },
+      {
+        "path": "/ai/ai-fitness-coach-prompts",
+        "clicks": 1,
+        "impressions": 4,
+        "position": 17
+      },
+      {
+        "path": "/alternatives/healthkit-alternatives",
+        "clicks": 1,
+        "impressions": 105,
+        "position": 12.56
+      },
+      {
+        "path": "/alternatives/human-api-alternatives",
+        "clicks": 1,
+        "impressions": 35,
+        "position": 6.43
+      },
+      {
+        "path": "/alternatives/kinestex-alternatives",
+        "clicks": 1,
+        "impressions": 32,
+        "position": 4.69
+      },
+      {
+        "path": "/apis/polar",
+        "clicks": 1,
+        "impressions": 38,
+        "position": 12.82
+      },
+      {
+        "path": "/badges",
+        "clicks": 1,
+        "impressions": 9,
+        "position": 6
+      },
+      {
+        "path": "/blog/health-connect-sdk-release-history",
+        "clicks": 1,
+        "impressions": 112,
+        "position": 7.34
+      },
+      {
+        "path": "/bluetooth-fitness/cycling-power-measurement",
+        "clicks": 1,
+        "impressions": 9,
+        "position": 4.78
+      },
+      {
+        "path": "/bluetooth-fitness/rower-data",
+        "clicks": 1,
+        "impressions": 5,
+        "position": 3.8
+      },
+      {
+        "path": "/bluetooth-fitness/sc-control-point",
+        "clicks": 1,
+        "impressions": 1,
+        "position": 1
+      },
+      {
+        "path": "/bluetooth-fitness/treadmill-data",
+        "clicks": 1,
+        "impressions": 27,
+        "position": 4.85
+      },
+      {
+        "path": "/build/hiking-app",
+        "clicks": 1,
+        "impressions": 19,
+        "position": 6.47
+      },
+      {
+        "path": "/build/weight-loss-app",
+        "clicks": 1,
+        "impressions": 14,
+        "position": 7.79
+      },
+      {
+        "path": "/compare/edamam-vs-spoonacular",
+        "clicks": 1,
+        "impressions": 24,
+        "position": 9.21
+      },
+      {
+        "path": "/compare/kinestex-vs-sency",
+        "clicks": 1,
+        "impressions": 47,
+        "position": 6.23
+      },
+      {
+        "path": "/compare/terra-vs-rook",
+        "clicks": 1,
+        "impressions": 332,
+        "position": 6.06
+      },
+      {
+        "path": "/compare/terra-vs-thryve",
+        "clicks": 1,
+        "impressions": 24,
+        "position": 7.88
+      },
+      {
+        "path": "/compliance/app-store-guideline-5-1-1-data-collection-storage",
+        "clicks": 1,
+        "impressions": 44,
+        "position": 6.43
+      },
+      {
+        "path": "/compliance/app-store-guideline-5-1-2-data-use-sharing",
+        "clicks": 1,
+        "impressions": 26,
+        "position": 6.77
+      },
+      {
+        "path": "/corrections",
+        "clicks": 1,
+        "impressions": 84,
+        "position": 23.44
+      },
+      {
+        "path": "/data/ecg-api",
+        "clicks": 1,
+        "impressions": 31,
+        "position": 8.71
+      },
+      {
+        "path": "/data/respiratory-rate-api",
+        "clicks": 1,
+        "impressions": 2,
+        "position": 5.5
+      },
+      {
+        "path": "/data/state-of-mind-api",
+        "clicks": 1,
+        "impressions": 31,
+        "position": 5.06
+      },
+      {
+        "path": "/data/vo2-max-api",
+        "clicks": 1,
+        "impressions": 7,
+        "position": 6.43
+      },
+      {
+        "path": "/devices/ant-plus-vs-bluetooth",
+        "clicks": 1,
+        "impressions": 181,
+        "position": 11.97
+      },
+      {
+        "path": "/devices/treadmill-app-integration",
+        "clicks": 1,
+        "impressions": 4,
+        "position": 9.75
+      },
+      {
+        "path": "/fitness-apis/apple-healthkit-vs-google-health-connect",
+        "clicks": 1,
+        "impressions": 312,
+        "position": 16.07
+      },
+      {
+        "path": "/fitness-apis/wearable-data-apis",
+        "clicks": 1,
+        "impressions": 858,
+        "position": 10.69
+      },
+      {
+        "path": "/fitness-apis/wearable-research-data-platforms",
+        "clicks": 1,
+        "impressions": 34,
+        "position": 14.71
+      },
+      {
+        "path": "/fix/fitbit-error-code-401",
+        "clicks": 1,
+        "impressions": 14,
+        "position": 6.14
+      },
+      {
+        "path": "/fix/healthkit-background-delivery-not-working",
+        "clicks": 1,
+        "impressions": 37,
+        "position": 8.05
+      },
+      {
+        "path": "/fix/healthkit-no-data",
+        "clicks": 1,
+        "impressions": 77,
+        "position": 8.75
+      },
+      {
+        "path": "/fix/oura-personal-access-token-deprecated",
+        "clicks": 1,
+        "impressions": 12,
+        "position": 5.08
+      },
+      {
+        "path": "/google-health-api",
+        "clicks": 1,
+        "impressions": 339,
+        "position": 10
+      },
+      {
+        "path": "/google-health-api/access-and-limits",
+        "clicks": 1,
+        "impressions": 201,
+        "position": 7.95
+      },
+      {
+        "path": "/google-health-api/active-energy-burned",
+        "clicks": 1,
+        "impressions": 151,
+        "position": 9.29
+      },
+      {
+        "path": "/google-health-api/active-minutes",
+        "clicks": 1,
+        "impressions": 84,
+        "position": 9.61
+      },
+      {
+        "path": "/google-health-api/daily-respiratory-rate",
+        "clicks": 1,
+        "impressions": 8,
+        "position": 7.25
+      },
+      {
+        "path": "/google-health-api/daily-resting-heart-rate",
+        "clicks": 1,
+        "impressions": 23,
+        "position": 7.52
+      },
+      {
+        "path": "/google-health-api/errors",
+        "clicks": 1,
+        "impressions": 85,
+        "position": 12.25
+      },
+      {
+        "path": "/google-health-api/sleep",
+        "clicks": 1,
+        "impressions": 80,
+        "position": 7.65
+      },
+      {
+        "path": "/google-health-api/vo2-max",
+        "clicks": 1,
+        "impressions": 88,
+        "position": 9.47
+      },
+      {
+        "path": "/google-health-api/weight",
+        "clicks": 1,
+        "impressions": 93,
+        "position": 7.4
+      },
+      {
+        "path": "/guides",
+        "clicks": 1,
+        "impressions": 35,
+        "position": 32.37
+      },
+      {
+        "path": "/guides/ai-workout-tracking-ios-swift",
+        "clicks": 1,
+        "impressions": 1,
+        "position": 13
+      },
+      {
+        "path": "/guides/ai-workout-tracking-react-native",
+        "clicks": 1,
+        "impressions": 12,
+        "position": 5.58
+      },
+      {
+        "path": "/health-connect",
+        "clicks": 1,
+        "impressions": 66,
+        "position": 11.14
+      },
+      {
+        "path": "/health-connect-api/planned-exercise-session-training-plans",
+        "clicks": 1,
+        "impressions": 7,
+        "position": 5.57
+      },
+      {
+        "path": "/health-connect/distance-record",
+        "clicks": 1,
+        "impressions": 9,
+        "position": 5.78
+      },
+      {
+        "path": "/health-connect/mindfulness-session-record",
+        "clicks": 1,
+        "impressions": 7,
+        "position": 6
+      },
+      {
+        "path": "/health-connect/steps-cadence-record",
+        "clicks": 1,
+        "impressions": 19,
+        "position": 22.53
+      },
+      {
+        "path": "/health-connect/vo2-max-record",
+        "clicks": 1,
+        "impressions": 6,
+        "position": 4.83
+      },
+      {
+        "path": "/healthkit-identifiers/heart-rate-variability-sdnn",
+        "clicks": 1,
+        "impressions": 131,
+        "position": 7.26
+      },
+      {
+        "path": "/healthkit-identifiers/sleep-analysis",
+        "clicks": 1,
+        "impressions": 49,
+        "position": 7.92
+      },
+      {
+        "path": "/healthkit-queries/hkanchoredobjectquery",
+        "clicks": 1,
+        "impressions": 24,
+        "position": 6.71
+      },
+      {
+        "path": "/integrate/fitbit-api",
+        "clicks": 1,
+        "impressions": 203,
+        "position": 9.94
+      },
+      {
+        "path": "/integrate/healthkit",
+        "clicks": 1,
+        "impressions": 310,
+        "position": 18.17
+      },
+      {
+        "path": "/integrate/teamup-api",
+        "clicks": 1,
+        "impressions": 16,
+        "position": 5.81
+      },
+      {
+        "path": "/integrate/terra-api",
+        "clicks": 1,
+        "impressions": 227,
+        "position": 10.03
+      },
+      {
+        "path": "/integrate/wahoo-api",
+        "clicks": 1,
+        "impressions": 48,
+        "position": 6
+      },
+      {
+        "path": "/libraries/capgo-capacitor-health",
+        "clicks": 1,
+        "impressions": 17,
+        "position": 7.88
+      },
+      {
+        "path": "/libraries/compare/garminconnect-vs-garth",
+        "clicks": 1,
+        "impressions": 326,
+        "position": 6.5
+      },
+      {
+        "path": "/libraries/flutter",
+        "clicks": 1,
+        "impressions": 85,
+        "position": 11.08
+      },
+      {
+        "path": "/libraries/react-native-health",
+        "clicks": 1,
+        "impressions": 136,
+        "position": 7.98
+      },
+      {
+        "path": "/motion/lunge-detection-pose-estimation",
+        "clicks": 1,
+        "impressions": 4,
+        "position": 4.25
+      },
+      {
+        "path": "/motion/ml-kit-pose-detection",
+        "clicks": 1,
+        "impressions": 100,
+        "position": 13.36
+      },
+      {
+        "path": "/motion/openpose-models",
+        "clicks": 1,
+        "impressions": 129,
+        "position": 11
+      },
+      {
+        "path": "/motion/pose-estimation-model-licenses",
+        "clicks": 1,
+        "impressions": 48,
+        "position": 5.29
+      },
+      {
+        "path": "/motion/push-up-counter-computer-vision",
+        "clicks": 1,
+        "impressions": 10,
+        "position": 7.3
+      },
+      {
+        "path": "/motion/yolo-pose-models",
+        "clicks": 1,
+        "impressions": 245,
+        "position": 12.71
+      },
+      {
+        "path": "/pose-keypoints",
+        "clicks": 1,
+        "impressions": 59,
+        "position": 12.64
+      },
+      {
+        "path": "/pose-keypoints/apple-vision-3d",
+        "clicks": 1,
+        "impressions": 21,
+        "position": 6.71
+      },
+      {
+        "path": "/pricing",
+        "clicks": 1,
+        "impressions": 74,
+        "position": 6.31
+      },
+      {
+        "path": "/pricing/fitness-api-free-tiers-compared",
+        "clicks": 1,
+        "impressions": 16,
+        "position": 6.94
+      },
+      {
+        "path": "/pricing/oura-api-pricing",
+        "clicks": 1,
+        "impressions": 19,
+        "position": 4.58
+      },
+      {
+        "path": "/pricing/strava-api-pricing",
+        "clicks": 1,
+        "impressions": 158,
+        "position": 8.32
+      },
+      {
+        "path": "/pricing/thryve-api-pricing",
+        "clicks": 1,
+        "impressions": 46,
+        "position": 6.07
+      },
+      {
+        "path": "/test/health-connect-test-data",
+        "clicks": 1,
+        "impressions": 27,
+        "position": 13.44
+      },
+      {
+        "path": "/tools/pose-benchmark",
+        "clicks": 1,
+        "impressions": 50,
+        "position": 8.9
+      },
+      {
+        "path": "/tools/sample-data",
+        "clicks": 1,
+        "impressions": 5,
+        "position": 5.2
+      },
+      {
+        "path": "/watch-apps/hkworkoutsession-lifecycle-swift",
+        "clicks": 1,
+        "impressions": 37,
+        "position": 7.14
+      },
+      {
+        "path": "/watch-apps/hkworkoutsession-mirroring-api",
+        "clicks": 1,
+        "impressions": 23,
+        "position": 7.04
+      },
+      {
+        "path": "/watch-apps/wear-os-tiles",
+        "clicks": 1,
+        "impressions": 13,
+        "position": 7.23
+      },
+      {
+        "path": "/workout-types/health-connect",
+        "clicks": 1,
+        "impressions": 57,
+        "position": 5.54
+      },
+      {
+        "path": "/accessibility/captions-for-workout-video",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 51.67
+      },
+      {
+        "path": "/accessibility/colour-contrast-outdoors",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 9
+      },
+      {
+        "path": "/accessibility/gestures-and-hands-free-control",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 6
+      },
+      {
+        "path": "/accessibility/reduced-motion-coaching-ui",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 5.5
+      },
+      {
+        "path": "/accessibility/talkback-workout-screens",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 4.67
+      },
+      {
+        "path": "/accessibility/testing-accessibility-fitness-app",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 10
+      },
+      {
+        "path": "/accessibility/touch-targets-during-a-workout",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 6
+      },
+      {
+        "path": "/ai/ai-workout-plan-generation",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 12
+      },
+      {
+        "path": "/ai/choosing-an-llm-for-fitness-apps",
+        "clicks": 0,
+        "impressions": 43,
+        "position": 8.67
+      },
+      {
+        "path": "/ai/connect-wearable-data-to-ai-assistants",
+        "clicks": 0,
+        "impressions": 12,
+        "position": 9.17
+      },
+      {
+        "path": "/ai/llm-safety-fitness-advice",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 14
+      },
+      {
+        "path": "/ai/structured-output-for-workout-plans",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 2
+      },
+      {
+        "path": "/alternatives",
+        "clicks": 0,
+        "impressions": 335,
+        "position": 12
+      },
+      {
+        "path": "/alternatives/coros-api-alternatives",
+        "clicks": 0,
+        "impressions": 9,
+        "position": 6.78
+      },
+      {
+        "path": "/alternatives/fitbit-api-alternatives",
+        "clicks": 0,
+        "impressions": 48,
+        "position": 8.02
+      },
+      {
+        "path": "/alternatives/nutritionix-alternatives",
+        "clicks": 0,
+        "impressions": 58,
+        "position": 16.31
+      },
+      {
+        "path": "/alternatives/oura-api-alternatives",
+        "clicks": 0,
+        "impressions": 26,
+        "position": 8.69
+      },
+      {
+        "path": "/alternatives/sency-alternatives",
+        "clicks": 0,
+        "impressions": 11,
+        "position": 5.91
+      },
+      {
+        "path": "/alternatives/whoop-api-alternatives",
+        "clicks": 0,
+        "impressions": 37,
+        "position": 7.95
+      },
+      {
+        "path": "/apis",
+        "clicks": 0,
+        "impressions": 113,
+        "position": 53.01
+      },
+      {
+        "path": "/apis/apple-vision",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 3.33
+      },
+      {
+        "path": "/apis/edamam",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 1.5
+      },
+      {
+        "path": "/apis/exercisedb",
+        "clicks": 0,
+        "impressions": 16,
+        "position": 14.06
+      },
+      {
+        "path": "/apis/fitbit",
+        "clicks": 0,
+        "impressions": 14,
+        "position": 19.43
+      },
+      {
+        "path": "/apis/garmin",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 26.75
+      },
+      {
+        "path": "/apis/health-connect",
+        "clicks": 0,
+        "impressions": 9,
+        "position": 7.67
+      },
+      {
+        "path": "/apis/healthkit",
+        "clicks": 0,
+        "impressions": 16,
+        "position": 7.31
+      },
+      {
+        "path": "/apis/kinestex",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 4.6
+      },
+      {
+        "path": "/apis/mediapipe",
+        "clicks": 0,
+        "impressions": 45,
+        "position": 11.07
+      },
+      {
+        "path": "/apis/movenet",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 5.75
+      },
+      {
+        "path": "/apis/nutritionix",
+        "clicks": 0,
+        "impressions": 8,
+        "position": 5.75
+      },
+      {
+        "path": "/apis/open-food-facts",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 1
+      },
+      {
+        "path": "/apis/oura",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 8.33
+      },
+      {
+        "path": "/apis/quickpose",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 4
+      },
+      {
+        "path": "/apis/sency",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 5.33
+      },
+      {
+        "path": "/apis/spike",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 19
+      },
+      {
+        "path": "/apis/strava",
+        "clicks": 0,
+        "impressions": 18,
+        "position": 33.17
+      },
+      {
+        "path": "/apis/whoop",
+        "clicks": 0,
+        "impressions": 85,
+        "position": 10.84
+      },
+      {
+        "path": "/architecture",
+        "clicks": 0,
+        "impressions": 46,
+        "position": 57.8
+      },
+      {
+        "path": "/architecture/data-deletion-and-export",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 4
+      },
+      {
+        "path": "/architecture/deduplicate-health-data",
+        "clicks": 0,
+        "impressions": 16,
+        "position": 4.75
+      },
+      {
+        "path": "/architecture/historical-backfill",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 5
+      },
+      {
+        "path": "/architecture/missing-data-and-gaps",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 10
+      },
+      {
+        "path": "/architecture/offline-first-conflict-resolution",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 5
+      },
+      {
+        "path": "/audio-coaching",
+        "clicks": 0,
+        "impressions": 52,
+        "position": 7.44
+      },
+      {
+        "path": "/audio-coaching/android-audio-focus-may-duck",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 10
+      },
+      {
+        "path": "/audio-coaching/audio-interruptions-during-workout-ios",
+        "clicks": 0,
+        "impressions": 22,
+        "position": 5.45
+      },
+      {
+        "path": "/audio-coaching/audioattributes-usage-coaching-cues",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 2
+      },
+      {
+        "path": "/audio-coaching/audiofocus-request-failed-android-15",
+        "clicks": 0,
+        "impressions": 96,
+        "position": 8.47
+      },
+      {
+        "path": "/audio-coaching/avaudiosession-category-workout-app",
+        "clicks": 0,
+        "impressions": 35,
+        "position": 6.83
+      },
+      {
+        "path": "/audio-coaching/avaudiosession-duckothers-workout-cues",
+        "clicks": 0,
+        "impressions": 17,
+        "position": 4.71
+      },
+      {
+        "path": "/audio-coaching/avspeechsynthesizer-workout-cues",
+        "clicks": 0,
+        "impressions": 11,
+        "position": 6.09
+      },
+      {
+        "path": "/audio-coaching/background-audio-workout-app-ios",
+        "clicks": 0,
+        "impressions": 16,
+        "position": 7.25
+      },
+      {
+        "path": "/audio-coaching/headphones-disconnect-route-change",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 5.67
+      },
+      {
+        "path": "/audio-coaching/testing-workout-audio-cues",
+        "clicks": 0,
+        "impressions": 13,
+        "position": 7.38
+      },
+      {
+        "path": "/audio-coaching/texttospeech-workout-cues-android",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 5.75
+      },
+      {
+        "path": "/audio-coaching/wear-os-watchos-workout-audio",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 6
+      },
+      {
+        "path": "/blog",
+        "clicks": 0,
+        "impressions": 68,
+        "position": 46.96
+      },
+      {
+        "path": "/blog/confirmed-vs-reported",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 8
+      },
+      {
+        "path": "/blog/fitness-api-approval-gates",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 14.5
+      },
+      {
+        "path": "/blog/fitness-api-integration-order",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 5
+      },
+      {
+        "path": "/blog/fitness-api-talk-to-sales",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 32
+      },
+      {
+        "path": "/blog/google-fit-timeline",
+        "clicks": 0,
+        "impressions": 10,
+        "position": 9.9
+      },
+      {
+        "path": "/blog/health-connect-219-permissions",
+        "clicks": 0,
+        "impressions": 30,
+        "position": 11.9
+      },
+      {
+        "path": "/blog/healthkit-240-types-ios-8",
+        "clicks": 0,
+        "impressions": 9,
+        "position": 5.78
+      },
+      {
+        "path": "/blog/healthkit-58-silent-types",
+        "clicks": 0,
+        "impressions": 10,
+        "position": 8.9
+      },
+      {
+        "path": "/blog/healthkit-error-that-never-fires",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 8
+      },
+      {
+        "path": "/blog/healthkit-mobility-types-unused",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 1
+      },
+      {
+        "path": "/blog/healthkit-newest-types-roadmap",
+        "clicks": 0,
+        "impressions": 11,
+        "position": 8.36
+      },
+      {
+        "path": "/blog/healthkit-sum-or-average",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 5.67
+      },
+      {
+        "path": "/blog/hrv-sdnn-vs-rmssd",
+        "clicks": 0,
+        "impressions": 10,
+        "position": 7.6
+      },
+      {
+        "path": "/blog/no-data-means-four-things",
+        "clicks": 0,
+        "impressions": 28,
+        "position": 9.07
+      },
+      {
+        "path": "/blog/wearable-api-user-side-cost",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 14.43
+      },
+      {
+        "path": "/bluetooth-fitness",
+        "clicks": 0,
+        "impressions": 75,
+        "position": 5.63
+      },
+      {
+        "path": "/bluetooth-fitness/blood-pressure-measurement",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 2.5
+      },
+      {
+        "path": "/bluetooth-fitness/blood-pressure-record",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 24.5
+      },
+      {
+        "path": "/bluetooth-fitness/body-composition-measurement",
+        "clicks": 0,
+        "impressions": 15,
+        "position": 5.4
+      },
+      {
+        "path": "/bluetooth-fitness/cgm-feature",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 5
+      },
+      {
+        "path": "/bluetooth-fitness/cgm-status",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 11
+      },
+      {
+        "path": "/bluetooth-fitness/csc-measurement",
+        "clicks": 0,
+        "impressions": 9,
+        "position": 3.44
+      },
+      {
+        "path": "/bluetooth-fitness/cycling-power-control-point",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 4
+      },
+      {
+        "path": "/bluetooth-fitness/cycling-power-vector",
+        "clicks": 0,
+        "impressions": 8,
+        "position": 5.5
+      },
+      {
+        "path": "/bluetooth-fitness/date-of-birth",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 4
+      },
+      {
+        "path": "/bluetooth-fitness/date-time",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 2
+      },
+      {
+        "path": "/bluetooth-fitness/enhanced-blood-pressure-measurement",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 54
+      },
+      {
+        "path": "/bluetooth-fitness/enhanced-intermediate-cuff-pressure",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 2.5
+      },
+      {
+        "path": "/bluetooth-fitness/glucose-measurement",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 17.67
+      },
+      {
+        "path": "/bluetooth-fitness/glucose-measurement-context",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 3
+      },
+      {
+        "path": "/bluetooth-fitness/heart-rate-measurement",
+        "clicks": 0,
+        "impressions": 9,
+        "position": 4.89
+      },
+      {
+        "path": "/bluetooth-fitness/intermediate-cuff-pressure",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 5
+      },
+      {
+        "path": "/bluetooth-fitness/intermediate-temperature",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 3.5
+      },
+      {
+        "path": "/bluetooth-fitness/rsc-measurement",
+        "clicks": 0,
+        "impressions": 9,
+        "position": 3.78
+      },
+      {
+        "path": "/bluetooth-fitness/supported-heart-rate-range",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 8.33
+      },
+      {
+        "path": "/bluetooth-fitness/supported-inclination-range",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 2.33
+      },
+      {
+        "path": "/bluetooth-fitness/supported-resistance-level-range",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 3
+      },
+      {
+        "path": "/bluetooth-fitness/temperature-measurement",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 4
+      },
+      {
+        "path": "/bluetooth-fitness/weight-measurement",
+        "clicks": 0,
+        "impressions": 16,
+        "position": 6.88
+      },
+      {
+        "path": "/build/cycle-tracking-app",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 49.5
+      },
+      {
+        "path": "/build/cycling-app",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 4
+      },
+      {
+        "path": "/build/fitness-app-tech-stack",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 6.25
+      },
+      {
+        "path": "/build/hiit-app",
+        "clicks": 0,
+        "impressions": 12,
+        "position": 14.33
+      },
+      {
+        "path": "/build/kids-fitness-app",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 4
+      },
+      {
+        "path": "/build/meal-planning-app",
+        "clicks": 0,
+        "impressions": 17,
+        "position": 43.82
+      },
+      {
+        "path": "/build/meditation-app",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 7.33
+      },
+      {
+        "path": "/build/recovery-app",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 18
+      },
+      {
+        "path": "/build/rehab-physical-therapy-app",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 7.57
+      },
+      {
+        "path": "/build/senior-fitness-app",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 4.5
+      },
+      {
+        "path": "/build/sleep-tracking-app",
+        "clicks": 0,
+        "impressions": 71,
+        "position": 55.11
+      },
+      {
+        "path": "/build/step-challenge-app",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 5
+      },
+      {
+        "path": "/build/swimming-app",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 4.6
+      },
+      {
+        "path": "/build/triathlon-app",
+        "clicks": 0,
+        "impressions": 13,
+        "position": 7.23
+      },
+      {
+        "path": "/changelog",
+        "clicks": 0,
+        "impressions": 324,
+        "position": 6.55
+      },
+      {
+        "path": "/changes",
+        "clicks": 0,
+        "impressions": 109,
+        "position": 16.72
+      },
+      {
+        "path": "/compare",
+        "clicks": 0,
+        "impressions": 109,
+        "position": 32
+      },
+      {
+        "path": "/compare-apis",
+        "clicks": 0,
+        "impressions": 35,
+        "position": 24.06
+      },
+      {
+        "path": "/compare/apple-watch-vs-garmin",
+        "clicks": 0,
+        "impressions": 9,
+        "position": 4.56
+      },
+      {
+        "path": "/compare/apple-watch-vs-whoop",
+        "clicks": 0,
+        "impressions": 49,
+        "position": 26.33
+      },
+      {
+        "path": "/compare/cliniko-vs-healthkit",
+        "clicks": 0,
+        "impressions": 43,
+        "position": 3.28
+      },
+      {
+        "path": "/compare/fitbit-vs-apple-watch",
+        "clicks": 0,
+        "impressions": 11,
+        "position": 7.09
+      },
+      {
+        "path": "/compare/kinestex-vs-quickpose",
+        "clicks": 0,
+        "impressions": 10,
+        "position": 7
+      },
+      {
+        "path": "/compare/nutritionix-vs-edamam",
+        "clicks": 0,
+        "impressions": 35,
+        "position": 10.91
+      },
+      {
+        "path": "/compare/oura-vs-whoop",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 7.33
+      },
+      {
+        "path": "/compare/quickpose-vs-sency",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 7.75
+      },
+      {
+        "path": "/compare/rook-vs-spike",
+        "clicks": 0,
+        "impressions": 108,
+        "position": 4.85
+      },
+      {
+        "path": "/compare/terra-vs-rook",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 4.67
+      },
+      {
+        "path": "/compare/terra-vs-rook",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 4.67
+      },
+      {
+        "path": "/compare/terra-vs-rook",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 4.67
+      },
+      {
+        "path": "/compare/terra-vs-sahha",
+        "clicks": 0,
+        "impressions": 10,
+        "position": 3.2
+      },
+      {
+        "path": "/compare/terra-vs-spike",
+        "clicks": 0,
+        "impressions": 106,
+        "position": 6.92
+      },
+      {
+        "path": "/compare/usda-fooddata-central-vs-open-food-facts",
+        "clicks": 0,
+        "impressions": 29,
+        "position": 5.59
+      },
+      {
+        "path": "/compare/whoop-vs-garmin",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 5.33
+      },
+      {
+        "path": "/compliance",
+        "clicks": 0,
+        "impressions": 140,
+        "position": 48.82
+      },
+      {
+        "path": "/compliance/app-store-guideline-1-4-1-physical-harm",
+        "clicks": 0,
+        "impressions": 50,
+        "position": 5.62
+      },
+      {
+        "path": "/compliance/app-store-guideline-2-5-1-healthkit-software-requirements",
+        "clicks": 0,
+        "impressions": 15,
+        "position": 5.8
+      },
+      {
+        "path": "/compliance/app-store-guideline-2-5-11-sirikit-shortcuts",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 4.8
+      },
+      {
+        "path": "/compliance/app-store-guideline-2-5-4-background-services",
+        "clicks": 0,
+        "impressions": 25,
+        "position": 6.64
+      },
+      {
+        "path": "/compliance/app-store-guideline-3-1-3-d-person-to-person-fitness",
+        "clicks": 0,
+        "impressions": 18,
+        "position": 6.39
+      },
+      {
+        "path": "/compliance/fda-fitness-app-regulation",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 7
+      },
+      {
+        "path": "/compliance/ftc-health-breach-notification-rule",
+        "clicks": 0,
+        "impressions": 58,
+        "position": 9.67
+      },
+      {
+        "path": "/compliance/gdpr-fitness-app",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 26
+      },
+      {
+        "path": "/compliance/is-fitness-data-phi",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 2.33
+      },
+      {
+        "path": "/compliance/remote-patient-monitoring-device-requirements",
+        "clicks": 0,
+        "impressions": 26,
+        "position": 45.19
+      },
+      {
+        "path": "/compliance/washington-my-health-my-data-act",
+        "clicks": 0,
+        "impressions": 43,
+        "position": 7.72
+      },
+      {
+        "path": "/cookbook",
+        "clicks": 0,
+        "impressions": 22,
+        "position": 6
+      },
+      {
+        "path": "/cookbook/backfill-checkpointer",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 9
+      },
+      {
+        "path": "/cookbook/day-boundary-rollup",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 7
+      },
+      {
+        "path": "/cookbook/dedupe-health-samples",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 6.5
+      },
+      {
+        "path": "/cookbook/incremental-sync-anchor",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 6
+      },
+      {
+        "path": "/cookbook/rate-limit-fetcher",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 4.5
+      },
+      {
+        "path": "/cookbook/refresh-rotation",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 7
+      },
+      {
+        "path": "/cost-planner",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 6.5
+      },
+      {
+        "path": "/data",
+        "clicks": 0,
+        "impressions": 31,
+        "position": 68.26
+      },
+      {
+        "path": "/data/active-minutes-api",
+        "clicks": 0,
+        "impressions": 14,
+        "position": 12.57
+      },
+      {
+        "path": "/data/blood-pressure-api",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 6.8
+      },
+      {
+        "path": "/data/body-composition-api",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 2.67
+      },
+      {
+        "path": "/data/cycling-power-api",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 4.25
+      },
+      {
+        "path": "/data/floors-elevation-api",
+        "clicks": 0,
+        "impressions": 49,
+        "position": 6.92
+      },
+      {
+        "path": "/data/gps-activity-api",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 7.25
+      },
+      {
+        "path": "/data/health-connect-medical-records-api",
+        "clicks": 0,
+        "impressions": 18,
+        "position": 6.61
+      },
+      {
+        "path": "/data/heart-rate-api",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 8
+      },
+      {
+        "path": "/data/heart-rate-zones-api",
+        "clicks": 0,
+        "impressions": 14,
+        "position": 7.29
+      },
+      {
+        "path": "/data/hrv-api",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 16.33
+      },
+      {
+        "path": "/data/medications-api",
+        "clicks": 0,
+        "impressions": 17,
+        "position": 7.35
+      },
+      {
+        "path": "/data/mental-health-assessments-api",
+        "clicks": 0,
+        "impressions": 11,
+        "position": 6.82
+      },
+      {
+        "path": "/data/resting-heart-rate-api",
+        "clicks": 0,
+        "impressions": 19,
+        "position": 6.89
+      },
+      {
+        "path": "/data/sleep-tracking-api",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 8.75
+      },
+      {
+        "path": "/data/step-counting-api",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 6.5
+      },
+      {
+        "path": "/data/workout-detection-api",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 6.75
+      },
+      {
+        "path": "/day-boundaries",
+        "clicks": 0,
+        "impressions": 11,
+        "position": 7.36
+      },
+      {
+        "path": "/developers",
+        "clicks": 0,
+        "impressions": 44,
+        "position": 5.77
+      },
+      {
+        "path": "/devices/apple-watch-live-heart-rate",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 5.25
+      },
+      {
+        "path": "/devices/bluetooth-heart-rate-monitor",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 8.5
+      },
+      {
+        "path": "/devices/cycling-sensors-power-cadence",
+        "clicks": 0,
+        "impressions": 38,
+        "position": 8.18
+      },
+      {
+        "path": "/devices/ftms-fitness-machine-service",
+        "clicks": 0,
+        "impressions": 94,
+        "position": 7.36
+      },
+      {
+        "path": "/devices/indoor-bike-trainer-integration",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 3.5
+      },
+      {
+        "path": "/devices/rowing-machine-data",
+        "clicks": 0,
+        "impressions": 9,
+        "position": 6.67
+      },
+      {
+        "path": "/devices/testing-ble-fitness-devices",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 7.5
+      },
+      {
+        "path": "/devices/wear-os-health-services",
+        "clicks": 0,
+        "impressions": 15,
+        "position": 9.73
+      },
+      {
+        "path": "/digest",
+        "clicks": 0,
+        "impressions": 65,
+        "position": 10.85
+      },
+      {
+        "path": "/digest/2026-07",
+        "clicks": 0,
+        "impressions": 9,
+        "position": 19.89
+      },
+      {
+        "path": "/digest/2026-08",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 4.33
+      },
+      {
+        "path": "/digest/2026-10",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 6
+      },
+      {
+        "path": "/engagement",
+        "clicks": 0,
+        "impressions": 63,
+        "position": 52.52
+      },
+      {
+        "path": "/engagement/ab-testing-engagement-features",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 6
+      },
+      {
+        "path": "/engagement/activitykit-live-activity-workout",
+        "clicks": 0,
+        "impressions": 30,
+        "position": 6.07
+      },
+      {
+        "path": "/engagement/android-live-updates-workout",
+        "clicks": 0,
+        "impressions": 32,
+        "position": 6.38
+      },
+      {
+        "path": "/engagement/app-intents-start-workout",
+        "clicks": 0,
+        "impressions": 15,
+        "position": 8.53
+      },
+      {
+        "path": "/engagement/engagement-metrics-that-matter",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 2
+      },
+      {
+        "path": "/engagement/gamification-in-fitness-apps",
+        "clicks": 0,
+        "impressions": 9,
+        "position": 15.67
+      },
+      {
+        "path": "/engagement/live-activities-workout-tracking",
+        "clicks": 0,
+        "impressions": 12,
+        "position": 8.83
+      },
+      {
+        "path": "/engagement/measuring-retention-fitness-app",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 5
+      },
+      {
+        "path": "/engagement/notification-fatigue-and-optout",
+        "clicks": 0,
+        "impressions": 15,
+        "position": 8.87
+      },
+      {
+        "path": "/engagement/push-notifications-fitness-app",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 6.83
+      },
+      {
+        "path": "/engagement/social-features-fitness-app",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 7
+      },
+      {
+        "path": "/engagement/streaks-and-habit-loops",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 7.5
+      },
+      {
+        "path": "/engagement/wear-os-ongoing-activity",
+        "clicks": 0,
+        "impressions": 10,
+        "position": 8.2
+      },
+      {
+        "path": "/engagement/widgets-and-complications",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 2
+      },
+      {
+        "path": "/error-codes",
+        "clicks": 0,
+        "impressions": 109,
+        "position": 13.86
+      },
+      {
+        "path": "/fitness-apis",
+        "clicks": 0,
+        "impressions": 19,
+        "position": 4.32
+      },
+      {
+        "path": "/fitness-apis/ai-workout-tracking-apis",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 11
+      },
+      {
+        "path": "/fitness-apis/ai-workout-tracking-apis",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 11
+      },
+      {
+        "path": "/fitness-apis/ai-workout-tracking-apis",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 11
+      },
+      {
+        "path": "/fitness-apis/ai-workout-tracking-apis",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 11
+      },
+      {
+        "path": "/fitness-apis/ai-workout-tracking-apis",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 11
+      },
+      {
+        "path": "/fitness-apis/ai-workout-tracking-apis",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 11
+      },
+      {
+        "path": "/fitness-apis/apple-healthkit-vs-health-connect",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 1
+      },
+      {
+        "path": "/fitness-apis/garmin-connect-iq-vs-health-api",
+        "clicks": 0,
+        "impressions": 50,
+        "position": 11.02
+      },
+      {
+        "path": "/fitness-apis/gym-management-software-apis",
+        "clicks": 0,
+        "impressions": 123,
+        "position": 6.36
+      },
+      {
+        "path": "/fitness-apis/health-data-aggregator-apis",
+        "clicks": 0,
+        "impressions": 28,
+        "position": 7.43
+      },
+      {
+        "path": "/fitness-apis/terra-vs-vital",
+        "clicks": 0,
+        "impressions": 15,
+        "position": 6.13
+      },
+      {
+        "path": "/fitness-apis/wearable-data-to-ehr-fhir",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 13.75
+      },
+      {
+        "path": "/fix",
+        "clicks": 0,
+        "impressions": 50,
+        "position": 20.38
+      },
+      {
+        "path": "/fix/fitbit-api-429-rate-limit",
+        "clicks": 0,
+        "impressions": 11,
+        "position": 13.64
+      },
+      {
+        "path": "/fix/garmin-api-approval",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 10.5
+      },
+      {
+        "path": "/fix/garmin-api-approval",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 10.5
+      },
+      {
+        "path": "/fix/garmin-api-approval",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 10.5
+      },
+      {
+        "path": "/fix/garmin-api-approval",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 10.5
+      },
+      {
+        "path": "/fix/garmin-api-approval",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 10.5
+      },
+      {
+        "path": "/fix/google-fit-api-deprecated",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 7.67
+      },
+      {
+        "path": "/fix/health-connect-changes-token-expired",
+        "clicks": 0,
+        "impressions": 24,
+        "position": 4.58
+      },
+      {
+        "path": "/fix/health-connect-securityexception",
+        "clicks": 0,
+        "impressions": 9,
+        "position": 6.78
+      },
+      {
+        "path": "/fix/healthkit-authorization-denied",
+        "clicks": 0,
+        "impressions": 10,
+        "position": 6.7
+      },
+      {
+        "path": "/fix/healthkit-authorization-not-determined",
+        "clicks": 0,
+        "impressions": 27,
+        "position": 5.85
+      },
+      {
+        "path": "/fix/healthkit-error-no-data",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 4.25
+      },
+      {
+        "path": "/fix/healthkit-workout-session-errors",
+        "clicks": 0,
+        "impressions": 16,
+        "position": 5.56
+      },
+      {
+        "path": "/fix/oauth-redirect-uri-mismatch",
+        "clicks": 0,
+        "impressions": 16,
+        "position": 20.13
+      },
+      {
+        "path": "/fix/strava-api-401-unauthorized",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 5.33
+      },
+      {
+        "path": "/fix/strava-webhook-not-firing",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 8
+      },
+      {
+        "path": "/glossary",
+        "clicks": 0,
+        "impressions": 33,
+        "position": 43.15
+      },
+      {
+        "path": "/google-health-api/active-zone-minutes",
+        "clicks": 0,
+        "impressions": 75,
+        "position": 8.69
+      },
+      {
+        "path": "/google-health-api/altitude",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 8
+      },
+      {
+        "path": "/google-health-api/blood-glucose",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 7.57
+      },
+      {
+        "path": "/google-health-api/body-fat",
+        "clicks": 0,
+        "impressions": 39,
+        "position": 8.54
+      },
+      {
+        "path": "/google-health-api/calories-in-heart-rate-zone",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 8
+      },
+      {
+        "path": "/google-health-api/core-body-temperature",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 8
+      },
+      {
+        "path": "/google-health-api/daily-heart-rate-variability",
+        "clicks": 0,
+        "impressions": 59,
+        "position": 8.37
+      },
+      {
+        "path": "/google-health-api/daily-heart-rate-zones",
+        "clicks": 0,
+        "impressions": 20,
+        "position": 9.85
+      },
+      {
+        "path": "/google-health-api/daily-oxygen-saturation",
+        "clicks": 0,
+        "impressions": 15,
+        "position": 8.13
+      },
+      {
+        "path": "/google-health-api/daily-sleep-temperature-derivations",
+        "clicks": 0,
+        "impressions": 11,
+        "position": 7.36
+      },
+      {
+        "path": "/google-health-api/daily-vo2-max",
+        "clicks": 0,
+        "impressions": 16,
+        "position": 8.88
+      },
+      {
+        "path": "/google-health-api/distance",
+        "clicks": 0,
+        "impressions": 39,
+        "position": 9.67
+      },
+      {
+        "path": "/google-health-api/electrocardiogram",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 6.75
+      },
+      {
+        "path": "/google-health-api/exercise",
+        "clicks": 0,
+        "impressions": 19,
+        "position": 9
+      },
+      {
+        "path": "/google-health-api/fitbit-web-api-mapping",
+        "clicks": 0,
+        "impressions": 20,
+        "position": 7.7
+      },
+      {
+        "path": "/google-health-api/food-measurement-unit",
+        "clicks": 0,
+        "impressions": 13,
+        "position": 12.23
+      },
+      {
+        "path": "/google-health-api/heart-rate-variability",
+        "clicks": 0,
+        "impressions": 57,
+        "position": 7.63
+      },
+      {
+        "path": "/google-health-api/height",
+        "clicks": 0,
+        "impressions": 32,
+        "position": 13.56
+      },
+      {
+        "path": "/google-health-api/hydration-log",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 8.14
+      },
+      {
+        "path": "/google-health-api/irregular-rhythm-notification",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 7.57
+      },
+      {
+        "path": "/google-health-api/menstrual-period",
+        "clicks": 0,
+        "impressions": 49,
+        "position": 8.37
+      },
+      {
+        "path": "/google-health-api/nutrition-log",
+        "clicks": 0,
+        "impressions": 22,
+        "position": 14.64
+      },
+      {
+        "path": "/google-health-api/ovulation-test",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 61.67
+      },
+      {
+        "path": "/google-health-api/oxygen-saturation",
+        "clicks": 0,
+        "impressions": 26,
+        "position": 6.58
+      },
+      {
+        "path": "/google-health-api/respiratory-rate-sleep-summary",
+        "clicks": 0,
+        "impressions": 19,
+        "position": 11.79
+      },
+      {
+        "path": "/google-health-api/run-vo2-max",
+        "clicks": 0,
+        "impressions": 9,
+        "position": 9.89
+      },
+      {
+        "path": "/google-health-api/sedentary-period",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 8
+      },
+      {
+        "path": "/google-health-api/skin-temperature-sensors",
+        "clicks": 0,
+        "impressions": 12,
+        "position": 8.92
+      },
+      {
+        "path": "/google-health-api/steps",
+        "clicks": 0,
+        "impressions": 85,
+        "position": 20.21
+      },
+      {
+        "path": "/google-health-api/swim-lengths-data",
+        "clicks": 0,
+        "impressions": 22,
+        "position": 11.86
+      },
+      {
+        "path": "/google-health-api/symptoms",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 8.67
+      },
+      {
+        "path": "/google-health-api/time-in-heart-rate-zone",
+        "clicks": 0,
+        "impressions": 17,
+        "position": 7.41
+      },
+      {
+        "path": "/google-health-api/total-calories",
+        "clicks": 0,
+        "impressions": 45,
+        "position": 9.27
+      },
+      {
+        "path": "/google-health-api/webhooks",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 6.5
+      },
+      {
+        "path": "/guides/ai-workout-tracking-web",
+        "clicks": 0,
+        "impressions": 33,
+        "position": 6.27
+      },
+      {
+        "path": "/guides/evaluate-motion-sdks",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 5.5
+      },
+      {
+        "path": "/health-connect-api",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 7.5
+      },
+      {
+        "path": "/health-connect-api/aggregate-request",
+        "clicks": 0,
+        "impressions": 25,
+        "position": 6.12
+      },
+      {
+        "path": "/health-connect-api/aggregategroupbyduration-vs-period",
+        "clicks": 0,
+        "impressions": 8,
+        "position": 5.38
+      },
+      {
+        "path": "/health-connect-api/exercise-route-consent",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 5.5
+      },
+      {
+        "path": "/health-connect-api/getchanges-incremental-sync",
+        "clicks": 0,
+        "impressions": 13,
+        "position": 4.46
+      },
+      {
+        "path": "/health-connect-api/getfeaturestatus-feature-availability",
+        "clicks": 0,
+        "impressions": 8,
+        "position": 6.63
+      },
+      {
+        "path": "/health-connect-api/healthkit-vs-health-connect-api-equivalents",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 4.67
+      },
+      {
+        "path": "/health-connect-api/insertrecords-clientrecordid-upsert",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 1
+      },
+      {
+        "path": "/health-connect-api/metadata-recording-method",
+        "clicks": 0,
+        "impressions": 27,
+        "position": 6.44
+      },
+      {
+        "path": "/health-connect-api/permissioncontroller-request-permissions",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 6
+      },
+      {
+        "path": "/health-connect-api/read-health-data-history",
+        "clicks": 0,
+        "impressions": 69,
+        "position": 6.62
+      },
+      {
+        "path": "/health-connect-api/read-health-data-in-background",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 5
+      },
+      {
+        "path": "/health-connect-api/readrecords-pagination",
+        "clicks": 0,
+        "impressions": 10,
+        "position": 4.6
+      },
+      {
+        "path": "/health-connect/active-calories-burned-record",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 9
+      },
+      {
+        "path": "/health-connect/activity-intensity-record",
+        "clicks": 0,
+        "impressions": 9,
+        "position": 6.56
+      },
+      {
+        "path": "/health-connect/aggregate-metrics",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 6.33
+      },
+      {
+        "path": "/health-connect/basal-body-temperature-record",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 4
+      },
+      {
+        "path": "/health-connect/basal-metabolic-rate-record",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 6.14
+      },
+      {
+        "path": "/health-connect/blood-glucose-record",
+        "clicks": 0,
+        "impressions": 9,
+        "position": 6.33
+      },
+      {
+        "path": "/health-connect/blood-pressure-record",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 8.5
+      },
+      {
+        "path": "/health-connect/body-temperature-record",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 5
+      },
+      {
+        "path": "/health-connect/body-water-mass-record",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 6
+      },
+      {
+        "path": "/health-connect/cycling-pedaling-cadence-record",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 5
+      },
+      {
+        "path": "/health-connect/elevation-gained-record",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 4.33
+      },
+      {
+        "path": "/health-connect/exercise-session-record",
+        "clicks": 0,
+        "impressions": 32,
+        "position": 5.25
+      },
+      {
+        "path": "/health-connect/floors-climbed-record",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 9
+      },
+      {
+        "path": "/health-connect/heart-rate-record",
+        "clicks": 0,
+        "impressions": 11,
+        "position": 6.45
+      },
+      {
+        "path": "/health-connect/heart-rate-variability-rmssd-record",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 7
+      },
+      {
+        "path": "/health-connect/height-record",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 5.5
+      },
+      {
+        "path": "/health-connect/hydration-record",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 6
+      },
+      {
+        "path": "/health-connect/lean-body-mass-record",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 7
+      },
+      {
+        "path": "/health-connect/menstruation-flow-record",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 5
+      },
+      {
+        "path": "/health-connect/menstruation-period-record",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 6.83
+      },
+      {
+        "path": "/health-connect/nutrition-record",
+        "clicks": 0,
+        "impressions": 9,
+        "position": 4.78
+      },
+      {
+        "path": "/health-connect/oxygen-saturation-record",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 4
+      },
+      {
+        "path": "/health-connect/permissions",
+        "clicks": 0,
+        "impressions": 95,
+        "position": 9.28
+      },
+      {
+        "path": "/health-connect/planned-exercise-session-record",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 10
+      },
+      {
+        "path": "/health-connect/power-record",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 9
+      },
+      {
+        "path": "/health-connect/respiratory-rate-record",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 4
+      },
+      {
+        "path": "/health-connect/resting-heart-rate-record",
+        "clicks": 0,
+        "impressions": 10,
+        "position": 6.4
+      },
+      {
+        "path": "/health-connect/sexual-activity-record",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 5.67
+      },
+      {
+        "path": "/health-connect/skin-temperature-record",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 8.4
+      },
+      {
+        "path": "/health-connect/sleep-session-record",
+        "clicks": 0,
+        "impressions": 27,
+        "position": 5.96
+      },
+      {
+        "path": "/health-connect/speed-record",
+        "clicks": 0,
+        "impressions": 11,
+        "position": 9.55
+      },
+      {
+        "path": "/health-connect/steps-record",
+        "clicks": 0,
+        "impressions": 16,
+        "position": 8
+      },
+      {
+        "path": "/health-connect/total-calories-burned-record",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 8.17
+      },
+      {
+        "path": "/health-connect/weight-record",
+        "clicks": 0,
+        "impressions": 36,
+        "position": 5.47
+      },
+      {
+        "path": "/healthkit",
+        "clicks": 0,
+        "impressions": 34,
+        "position": 38.79
+      },
+      {
+        "path": "/healthkit-identifiers/active-energy-burned",
+        "clicks": 0,
+        "impressions": 32,
+        "position": 6.34
+      },
+      {
+        "path": "/healthkit-identifiers/apple-exercise-time",
+        "clicks": 0,
+        "impressions": 12,
+        "position": 7.42
+      },
+      {
+        "path": "/healthkit-identifiers/apple-move-time",
+        "clicks": 0,
+        "impressions": 9,
+        "position": 5.33
+      },
+      {
+        "path": "/healthkit-identifiers/apple-sleeping-wrist-temperature",
+        "clicks": 0,
+        "impressions": 18,
+        "position": 5.28
+      },
+      {
+        "path": "/healthkit-identifiers/apple-stand-time",
+        "clicks": 0,
+        "impressions": 12,
+        "position": 3.5
+      },
+      {
+        "path": "/healthkit-identifiers/apple-walking-steadiness",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 6.5
+      },
+      {
+        "path": "/healthkit-identifiers/atrial-fibrillation-burden",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 3
+      },
+      {
+        "path": "/healthkit-identifiers/basal-body-temperature",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 11
+      },
+      {
+        "path": "/healthkit-identifiers/basal-energy-burned",
+        "clicks": 0,
+        "impressions": 80,
+        "position": 6.13
+      },
+      {
+        "path": "/healthkit-identifiers/blood-alcohol-content",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 5
+      },
+      {
+        "path": "/healthkit-identifiers/blood-glucose",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 6.5
+      },
+      {
+        "path": "/healthkit-identifiers/blood-pressure-diastolic",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 1
+      },
+      {
+        "path": "/healthkit-identifiers/blood-pressure-systolic",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 31.67
+      },
+      {
+        "path": "/healthkit-identifiers/body-fat-percentage",
+        "clicks": 0,
+        "impressions": 8,
+        "position": 6.63
+      },
+      {
+        "path": "/healthkit-identifiers/body-mass",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 6.4
+      },
+      {
+        "path": "/healthkit-identifiers/body-mass-index",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 3
+      },
+      {
+        "path": "/healthkit-identifiers/cross-country-skiing-speed",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 3
+      },
+      {
+        "path": "/healthkit-identifiers/cycling-functional-threshold-power",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 8
+      },
+      {
+        "path": "/healthkit-identifiers/cycling-power",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 5.5
+      },
+      {
+        "path": "/healthkit-identifiers/cycling-speed",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 10
+      },
+      {
+        "path": "/healthkit-identifiers/dietary-calcium",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 6
+      },
+      {
+        "path": "/healthkit-identifiers/dietary-carbohydrates",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 6.5
+      },
+      {
+        "path": "/healthkit-identifiers/dietary-cholesterol",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 5.67
+      },
+      {
+        "path": "/healthkit-identifiers/dietary-energy-consumed",
+        "clicks": 0,
+        "impressions": 8,
+        "position": 6.13
+      },
+      {
+        "path": "/healthkit-identifiers/dietary-fat-total",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 8
+      },
+      {
+        "path": "/healthkit-identifiers/dietary-fiber",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 5.33
+      },
+      {
+        "path": "/healthkit-identifiers/dietary-iodine",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 9
+      },
+      {
+        "path": "/healthkit-identifiers/dietary-manganese",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 4.5
+      },
+      {
+        "path": "/healthkit-identifiers/dietary-potassium",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 10
+      },
+      {
+        "path": "/healthkit-identifiers/dietary-sugar",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 3
+      },
+      {
+        "path": "/healthkit-identifiers/dietary-vitamin-b12",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 7
+      },
+      {
+        "path": "/healthkit-identifiers/dietary-water",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 7.29
+      },
+      {
+        "path": "/healthkit-identifiers/dietary-zinc",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 6.5
+      },
+      {
+        "path": "/healthkit-identifiers/distance-cross-country-skiing",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 4.5
+      },
+      {
+        "path": "/healthkit-identifiers/distance-cycling",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 6.67
+      },
+      {
+        "path": "/healthkit-identifiers/distance-swimming",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 10
+      },
+      {
+        "path": "/healthkit-identifiers/distance-walking-running",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 6
+      },
+      {
+        "path": "/healthkit-identifiers/distance-wheelchair",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 1
+      },
+      {
+        "path": "/healthkit-identifiers/electrodermal-activity",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 5
+      },
+      {
+        "path": "/healthkit-identifiers/environmental-audio-exposure-event",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 7.14
+      },
+      {
+        "path": "/healthkit-identifiers/flights-climbed",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 8
+      },
+      {
+        "path": "/healthkit-identifiers/forced-expiratory-volume1",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 5.67
+      },
+      {
+        "path": "/healthkit-identifiers/forced-vital-capacity",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 7
+      },
+      {
+        "path": "/healthkit-identifiers/heart-rate",
+        "clicks": 0,
+        "impressions": 24,
+        "position": 9.33
+      },
+      {
+        "path": "/healthkit-identifiers/heart-rate-recovery-one-minute",
+        "clicks": 0,
+        "impressions": 16,
+        "position": 6.19
+      },
+      {
+        "path": "/healthkit-identifiers/height",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 4.67
+      },
+      {
+        "path": "/healthkit-identifiers/high-heart-rate-event",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 7.5
+      },
+      {
+        "path": "/healthkit-identifiers/lean-body-mass",
+        "clicks": 0,
+        "impressions": 8,
+        "position": 5.5
+      },
+      {
+        "path": "/healthkit-identifiers/low-cardio-fitness-event",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 5.75
+      },
+      {
+        "path": "/healthkit-identifiers/low-heart-rate-event",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 8
+      },
+      {
+        "path": "/healthkit-identifiers/menstrual-flow",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 4.6
+      },
+      {
+        "path": "/healthkit-identifiers/nike-fuel",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 4
+      },
+      {
+        "path": "/healthkit-identifiers/number-of-alcoholic-beverages",
+        "clicks": 0,
+        "impressions": 9,
+        "position": 5.89
+      },
+      {
+        "path": "/healthkit-identifiers/number-of-times-fallen",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 3.5
+      },
+      {
+        "path": "/healthkit-identifiers/oxygen-saturation",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 4.67
+      },
+      {
+        "path": "/healthkit-identifiers/peak-expiratory-flow-rate",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 17
+      },
+      {
+        "path": "/healthkit-identifiers/peripheral-perfusion-index",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 8.2
+      },
+      {
+        "path": "/healthkit-identifiers/persistent-intermenstrual-bleeding",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 8.5
+      },
+      {
+        "path": "/healthkit-identifiers/prolonged-menstrual-periods",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 7.5
+      },
+      {
+        "path": "/healthkit-identifiers/push-count",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 10
+      },
+      {
+        "path": "/healthkit-identifiers/respiratory-rate",
+        "clicks": 0,
+        "impressions": 8,
+        "position": 4.25
+      },
+      {
+        "path": "/healthkit-identifiers/resting-heart-rate",
+        "clicks": 0,
+        "impressions": 10,
+        "position": 6.7
+      },
+      {
+        "path": "/healthkit-identifiers/running-power",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 1
+      },
+      {
+        "path": "/healthkit-identifiers/running-stride-length",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 6
+      },
+      {
+        "path": "/healthkit-identifiers/running-vertical-oscillation",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 21
+      },
+      {
+        "path": "/healthkit-identifiers/sexual-activity",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 4.5
+      },
+      {
+        "path": "/healthkit-identifiers/six-minute-walk-test-distance",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 6.5
+      },
+      {
+        "path": "/healthkit-identifiers/stair-ascent-speed",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 3
+      },
+      {
+        "path": "/healthkit-identifiers/stair-descent-speed",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 2
+      },
+      {
+        "path": "/healthkit-identifiers/step-count",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 7.86
+      },
+      {
+        "path": "/healthkit-identifiers/time-in-daylight",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 5.33
+      },
+      {
+        "path": "/healthkit-identifiers/underwater-depth",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 12.5
+      },
+      {
+        "path": "/healthkit-identifiers/uv-exposure",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 5
+      },
+      {
+        "path": "/healthkit-identifiers/vo2-max",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 5
+      },
+      {
+        "path": "/healthkit-identifiers/waist-circumference",
+        "clicks": 0,
+        "impressions": 8,
+        "position": 5.13
+      },
+      {
+        "path": "/healthkit-identifiers/walking-asymmetry-percentage",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 4.6
+      },
+      {
+        "path": "/healthkit-identifiers/walking-double-support-percentage",
+        "clicks": 0,
+        "impressions": 12,
+        "position": 8.83
+      },
+      {
+        "path": "/healthkit-identifiers/walking-heart-rate-average",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 4.5
+      },
+      {
+        "path": "/healthkit-identifiers/walking-speed",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 4.5
+      },
+      {
+        "path": "/healthkit-identifiers/walking-step-length",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 4.67
+      },
+      {
+        "path": "/healthkit-metadata-keys",
+        "clicks": 0,
+        "impressions": 30,
+        "position": 7.13
+      },
+      {
+        "path": "/healthkit-queries",
+        "clicks": 0,
+        "impressions": 36,
+        "position": 11.72
+      },
+      {
+        "path": "/healthkit-queries/healthkit-async-query-descriptors",
+        "clicks": 0,
+        "impressions": 20,
+        "position": 5.85
+      },
+      {
+        "path": "/healthkit-queries/hkworkoutroutequery",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 7
+      },
+      {
+        "path": "/healthkit-units",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 9
+      },
+      {
+        "path": "/healthkit-versions",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 6.14
+      },
+      {
+        "path": "/healthkit-versions/ios-10",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 4.5
+      },
+      {
+        "path": "/healthkit-versions/ios-11",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 6
+      },
+      {
+        "path": "/healthkit-versions/ios-12",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 9
+      },
+      {
+        "path": "/healthkit-versions/ios-13",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 5.5
+      },
+      {
+        "path": "/healthkit-versions/ios-16",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 5
+      },
+      {
+        "path": "/healthkit-versions/ios-17",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 3.5
+      },
+      {
+        "path": "/healthkit-versions/ios-18",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 6
+      },
+      {
+        "path": "/healthkit-versions/ios-27",
+        "clicks": 0,
+        "impressions": 9,
+        "position": 4.11
+      },
+      {
+        "path": "/healthkit-versions/ios-8",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 7.33
+      },
+      {
+        "path": "/healthkit-versions/ios-9",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 6
+      },
+      {
+        "path": "/healthkit/activity",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 5.67
+      },
+      {
+        "path": "/healthkit/body-measurements",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 7.67
+      },
+      {
+        "path": "/healthkit/characteristics",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 9
+      },
+      {
+        "path": "/healthkit/environment-and-hearing",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 4.67
+      },
+      {
+        "path": "/healthkit/exercise-and-fitness",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 7.5
+      },
+      {
+        "path": "/healthkit/lab-and-test-results",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 3
+      },
+      {
+        "path": "/healthkit/mobility",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 5
+      },
+      {
+        "path": "/healthkit/nutrition",
+        "clicks": 0,
+        "impressions": 8,
+        "position": 29
+      },
+      {
+        "path": "/healthkit/reproductive-health",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 6.5
+      },
+      {
+        "path": "/healthkit/sleep-mindfulness-self-care",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 6.5
+      },
+      {
+        "path": "/healthkit/vital-signs",
+        "clicks": 0,
+        "impressions": 10,
+        "position": 7
+      },
+      {
+        "path": "/integrate",
+        "clicks": 0,
+        "impressions": 83,
+        "position": 49.8
+      },
+      {
+        "path": "/integrate/google-health-connect",
+        "clicks": 0,
+        "impressions": 64,
+        "position": 10.91
+      },
+      {
+        "path": "/integrate/mariana-tek-api",
+        "clicks": 0,
+        "impressions": 29,
+        "position": 19.24
+      },
+      {
+        "path": "/integrate/polar-api",
+        "clicks": 0,
+        "impressions": 234,
+        "position": 9.16
+      },
+      {
+        "path": "/integrate/strava-api",
+        "clicks": 0,
+        "impressions": 100,
+        "position": 31.96
+      },
+      {
+        "path": "/integrate/whoop-api",
+        "clicks": 0,
+        "impressions": 275,
+        "position": 9.33
+      },
+      {
+        "path": "/integrate/wodify-api",
+        "clicks": 0,
+        "impressions": 17,
+        "position": 7.29
+      },
+      {
+        "path": "/learn",
+        "clicks": 0,
+        "impressions": 100,
+        "position": 38.74
+      },
+      {
+        "path": "/learn/what-are-oauth-scopes",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 9
+      },
+      {
+        "path": "/learn/what-are-sleep-stages",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 4
+      },
+      {
+        "path": "/learn/what-is-a-health-data-aggregator",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 30
+      },
+      {
+        "path": "/learn/what-is-hrv",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 5
+      },
+      {
+        "path": "/learn/what-is-oauth-for-health-data",
+        "clicks": 0,
+        "impressions": 81,
+        "position": 7.74
+      },
+      {
+        "path": "/learn/what-is-rpe",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 7.4
+      },
+      {
+        "path": "/libraries/capacitor-cordova",
+        "clicks": 0,
+        "impressions": 19,
+        "position": 9.74
+      },
+      {
+        "path": "/libraries/capacitor-health",
+        "clicks": 0,
+        "impressions": 9,
+        "position": 7.89
+      },
+      {
+        "path": "/libraries/compare/capacitor-health-vs-capgo-capacitor-health",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 6.75
+      },
+      {
+        "path": "/libraries/compare/flutter-health-vs-health-connector",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 9.5
+      },
+      {
+        "path": "/libraries/cordova-plugin-health",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 4.25
+      },
+      {
+        "path": "/libraries/expo-health-connect",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 4.29
+      },
+      {
+        "path": "/libraries/flutter-health",
+        "clicks": 0,
+        "impressions": 63,
+        "position": 7.25
+      },
+      {
+        "path": "/libraries/flutter-health-connect",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 8.29
+      },
+      {
+        "path": "/libraries/garminconnect",
+        "clicks": 0,
+        "impressions": 84,
+        "position": 6.96
+      },
+      {
+        "path": "/libraries/health-connector",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 7
+      },
+      {
+        "path": "/libraries/health-kit-reporter",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 8
+      },
+      {
+        "path": "/libraries/perfood-capacitor-healthkit",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 4
+      },
+      {
+        "path": "/libraries/python",
+        "clicks": 0,
+        "impressions": 11,
+        "position": 12.27
+      },
+      {
+        "path": "/libraries/python-fitbit",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 4
+      },
+      {
+        "path": "/libraries/react-native",
+        "clicks": 0,
+        "impressions": 113,
+        "position": 8.9
+      },
+      {
+        "path": "/libraries/react-native-health-connect",
+        "clicks": 0,
+        "impressions": 22,
+        "position": 7
+      },
+      {
+        "path": "/libraries/stravalib",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 7
+      },
+      {
+        "path": "/libraries/withings-api",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 8
+      },
+      {
+        "path": "/matrix",
+        "clicks": 0,
+        "impressions": 63,
+        "position": 17.37
+      },
+      {
+        "path": "/methodology",
+        "clicks": 0,
+        "impressions": 29,
+        "position": 35.66
+      },
+      {
+        "path": "/migrate/adapt-to-strava-api-changes",
+        "clicks": 0,
+        "impressions": 9,
+        "position": 8.78
+      },
+      {
+        "path": "/migrate/add-android-to-healthkit-app",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 4.43
+      },
+      {
+        "path": "/migrate/aggregator-to-direct-integration",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 5
+      },
+      {
+        "path": "/migrate/consolidate-wearables-with-aggregator",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 6
+      },
+      {
+        "path": "/migrate/fitbit-research-studies-after-turndown",
+        "clicks": 0,
+        "impressions": 62,
+        "position": 9.69
+      },
+      {
+        "path": "/migrate/fitbit-web-api-to-google-health",
+        "clicks": 0,
+        "impressions": 17,
+        "position": 6.29
+      },
+      {
+        "path": "/migrate/google-fit-to-health-connect",
+        "clicks": 0,
+        "impressions": 21,
+        "position": 6.48
+      },
+      {
+        "path": "/motion/apple-vision-body-pose",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 7
+      },
+      {
+        "path": "/motion/apple-vision-body-pose",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 7
+      },
+      {
+        "path": "/motion/apple-vision-body-pose",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 7
+      },
+      {
+        "path": "/motion/build-vs-buy-ai-motion-tracking",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 4.4
+      },
+      {
+        "path": "/motion/deadlift-pose-estimation",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 6.33
+      },
+      {
+        "path": "/motion/how-form-feedback-works",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 7
+      },
+      {
+        "path": "/motion/how-rep-counting-works",
+        "clicks": 0,
+        "impressions": 8,
+        "position": 5.88
+      },
+      {
+        "path": "/motion/jumping-jack-counter-pose-estimation",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 8
+      },
+      {
+        "path": "/motion/mediapipe-vs-movenet",
+        "clicks": 0,
+        "impressions": 30,
+        "position": 5.3
+      },
+      {
+        "path": "/motion/multi-person-pose-tracking",
+        "clicks": 0,
+        "impressions": 10,
+        "position": 12.2
+      },
+      {
+        "path": "/motion/on-device-vs-cloud-pose-estimation",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 8
+      },
+      {
+        "path": "/motion/overhead-press-pose-estimation",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 5
+      },
+      {
+        "path": "/motion/plank-detection-pose-estimation",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 4.8
+      },
+      {
+        "path": "/motion/pose-estimation-accuracy",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 6.8
+      },
+      {
+        "path": "/motion/pose-estimation-hardware-requirements",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 1.5
+      },
+      {
+        "path": "/motion/pose-estimation-models-compared",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 4
+      },
+      {
+        "path": "/motion/pose-estimation-models-compared",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 6
+      },
+      {
+        "path": "/motion/pose-estimation-models-compared",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 2
+      },
+      {
+        "path": "/motion/pose-estimation-models-compared",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 4
+      },
+      {
+        "path": "/motion/pull-up-counter-computer-vision",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 6
+      },
+      {
+        "path": "/motion/real-time-pose-estimation",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 5
+      },
+      {
+        "path": "/motion/sit-up-counter-pose-estimation",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 10.86
+      },
+      {
+        "path": "/motion/squat-detection-pose-estimation",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 17.8
+      },
+      {
+        "path": "/newsletter",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 17.71
+      },
+      {
+        "path": "/no-code-fitness-app",
+        "clicks": 0,
+        "impressions": 322,
+        "position": 36.71
+      },
+      {
+        "path": "/opensearch.xml",
+        "clicks": 0,
+        "impressions": 16,
+        "position": 57.56
+      },
+      {
+        "path": "/own-your-data/suunto-export",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 8.8
+      },
+      {
+        "path": "/paths",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 10
+      },
+      {
+        "path": "/picker",
+        "clicks": 0,
+        "impressions": 86,
+        "position": 34.62
+      },
+      {
+        "path": "/pose-keypoints/apple-vision-2d",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 6.5
+      },
+      {
+        "path": "/pose-keypoints/blazepose-33",
+        "clicks": 0,
+        "impressions": 30,
+        "position": 10.23
+      },
+      {
+        "path": "/pose-keypoints/coco-17",
+        "clicks": 0,
+        "impressions": 117,
+        "position": 6.73
+      },
+      {
+        "path": "/pose-keypoints/coco-wholebody-133",
+        "clicks": 0,
+        "impressions": 20,
+        "position": 5.7
+      },
+      {
+        "path": "/pose-keypoints/ml-kit",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 7.14
+      },
+      {
+        "path": "/pose-keypoints/openpose-coco-18",
+        "clicks": 0,
+        "impressions": 18,
+        "position": 3.44
+      },
+      {
+        "path": "/pricing/are-fitness-apis-free",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 7
+      },
+      {
+        "path": "/pricing/exercise-database-api-pricing",
+        "clicks": 0,
+        "impressions": 26,
+        "position": 3.85
+      },
+      {
+        "path": "/pricing/exercise-database-api-pricing",
+        "clicks": 0,
+        "impressions": 24,
+        "position": 4.04
+      },
+      {
+        "path": "/pricing/exercise-database-api-pricing",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 2
+      },
+      {
+        "path": "/pricing/exercise-database-api-pricing",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 2.5
+      },
+      {
+        "path": "/pricing/exercise-database-api-pricing",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 3
+      },
+      {
+        "path": "/pricing/exercise-database-api-pricing",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 2
+      },
+      {
+        "path": "/pricing/mindbody-api-pricing",
+        "clicks": 0,
+        "impressions": 17,
+        "position": 13.47
+      },
+      {
+        "path": "/pricing/polar-api-pricing",
+        "clicks": 0,
+        "impressions": 8,
+        "position": 6.38
+      },
+      {
+        "path": "/pricing/quickpose-pricing",
+        "clicks": 0,
+        "impressions": 22,
+        "position": 5.05
+      },
+      {
+        "path": "/pricing/sahha-api-pricing",
+        "clicks": 0,
+        "impressions": 17,
+        "position": 4.65
+      },
+      {
+        "path": "/pricing/sency-pricing",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 5
+      },
+      {
+        "path": "/pricing/whoop-api-pricing",
+        "clicks": 0,
+        "impressions": 70,
+        "position": 6.2
+      },
+      {
+        "path": "/privacy",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 21.6
+      },
+      {
+        "path": "/questions/alternatives",
+        "clicks": 0,
+        "impressions": 80,
+        "position": 8.13
+      },
+      {
+        "path": "/questions/audio-coaching",
+        "clicks": 0,
+        "impressions": 10,
+        "position": 5.7
+      },
+      {
+        "path": "/questions/compliance",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 6.75
+      },
+      {
+        "path": "/questions/data",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 8.67
+      },
+      {
+        "path": "/questions/devices",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 7.5
+      },
+      {
+        "path": "/questions/engagement",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 5.75
+      },
+      {
+        "path": "/questions/fitness-apis",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 31.33
+      },
+      {
+        "path": "/questions/health-connect-api",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 7.33
+      },
+      {
+        "path": "/questions/healthkit-queries",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 7
+      },
+      {
+        "path": "/questions/motion",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 8.5
+      },
+      {
+        "path": "/questions/phone-sensors",
+        "clicks": 0,
+        "impressions": 13,
+        "position": 4.92
+      },
+      {
+        "path": "/questions/pricing",
+        "clicks": 0,
+        "impressions": 8,
+        "position": 8.5
+      },
+      {
+        "path": "/questions/watch-apps",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 4.29
+      },
+      {
+        "path": "/sdk-releases",
+        "clicks": 0,
+        "impressions": 14,
+        "position": 5.57
+      },
+      {
+        "path": "/state-of-fitness-apis-2026",
+        "clicks": 0,
+        "impressions": 38,
+        "position": 7.53
+      },
+      {
+        "path": "/test",
+        "clicks": 0,
+        "impressions": 14,
+        "position": 12.57
+      },
+      {
+        "path": "/test/background-sync",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 8.75
+      },
+      {
+        "path": "/test/device-lab-and-ci",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 5.33
+      },
+      {
+        "path": "/test/pose-detection-accuracy",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 7.29
+      },
+      {
+        "path": "/test/rep-counting",
+        "clicks": 0,
+        "impressions": 8,
+        "position": 19.13
+      },
+      {
+        "path": "/tools",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 4
+      },
+      {
+        "path": "/tools/error-diagnoser",
+        "clicks": 0,
+        "impressions": 9,
+        "position": 10.11
+      },
+      {
+        "path": "/tools/heart-rate-lab",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 2.67
+      },
+      {
+        "path": "/tools/identifier-translator",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 1
+      },
+      {
+        "path": "/tools/keypoint-playground",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 60
+      },
+      {
+        "path": "/tools/permission-builder",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 9
+      },
+      {
+        "path": "/tools/stack-generator",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 8
+      },
+      {
+        "path": "/watch-apps",
+        "clicks": 0,
+        "impressions": 56,
+        "position": 20.86
+      },
+      {
+        "path": "/watch-apps/apple-watch-background-execution",
+        "clicks": 0,
+        "impressions": 84,
+        "position": 7.55
+      },
+      {
+        "path": "/watch-apps/healthkit-on-apple-watch",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 12.33
+      },
+      {
+        "path": "/watch-apps/mirroring-workouts-to-iphone",
+        "clicks": 0,
+        "impressions": 36,
+        "position": 8.69
+      },
+      {
+        "path": "/watch-apps/testing-watch-apps",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 7.83
+      },
+      {
+        "path": "/watch-apps/watch-platform-differences",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 9
+      },
+      {
+        "path": "/watch-apps/watchos-workout-app-anatomy",
+        "clicks": 0,
+        "impressions": 12,
+        "position": 6.33
+      },
+      {
+        "path": "/watch-apps/wear-os-app-anatomy",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 8
+      },
+      {
+        "path": "/watch-apps/wear-os-exercise-tracking",
+        "clicks": 0,
+        "impressions": 11,
+        "position": 8.91
+      },
+      {
+        "path": "/watch-apps/wear-os-exerciseclient-kotlin",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 4.4
+      },
+      {
+        "path": "/watch-apps/wear-os-passive-monitoring-measureclient",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 8.5
+      },
+      {
+        "path": "/watch-apps/wear-os-phone-sync",
+        "clicks": 0,
+        "impressions": 14,
+        "position": 7.36
+      },
+      {
+        "path": "/watch-apps/wear-os-tiles",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 8
+      },
+      {
+        "path": "/watch-apps/wear-os-tiles",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 8
+      },
+      {
+        "path": "/watch-apps/workoutkit-customworkout-swift",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 5.14
+      },
+      {
+        "path": "/watch-apps/workoutkit-scheduled-workouts",
+        "clicks": 0,
+        "impressions": 8,
+        "position": 6.75
+      },
+      {
+        "path": "/wear-os-data-types",
+        "clicks": 0,
+        "impressions": 13,
+        "position": 4.62
+      },
+      {
+        "path": "/wear-os-data-types/calories-daily",
+        "clicks": 0,
+        "impressions": 17,
+        "position": 7.82
+      },
+      {
+        "path": "/wear-os-data-types/floors",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 13.5
+      },
+      {
+        "path": "/wear-os-data-types/heart-rate-bpm",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 8.67
+      },
+      {
+        "path": "/wear-os-data-types/location",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 11
+      },
+      {
+        "path": "/wear-os-data-types/rep-count",
+        "clicks": 0,
+        "impressions": 8,
+        "position": 12.25
+      },
+      {
+        "path": "/wear-os-data-types/running-steps",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 33
+      },
+      {
+        "path": "/wear-os-data-types/speed",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 6
+      },
+      {
+        "path": "/wear-os-data-types/steps",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 4.6
+      },
+      {
+        "path": "/wear-os-data-types/steps-per-minute",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 5.5
+      },
+      {
+        "path": "/wear-os-data-types/swimming-lap-count",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 5
+      },
+      {
+        "path": "/wear-os-data-types/vertical-ratio",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 8
+      },
+      {
+        "path": "/wear-os-data-types/walking-steps",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 10
+      },
+      {
+        "path": "/workout-types/calisthenics",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 5.4
+      },
+      {
+        "path": "/workout-types/elliptical",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 3
+      },
+      {
+        "path": "/workout-types/google-health-api",
+        "clicks": 0,
+        "impressions": 8,
+        "position": 5.38
+      },
+      {
+        "path": "/workout-types/healthkit",
+        "clicks": 0,
+        "impressions": 27,
+        "position": 5.7
+      },
+      {
+        "path": "/workout-types/pilates",
+        "clicks": 0,
+        "impressions": 10,
+        "position": 21.4
+      },
+      {
+        "path": "/workout-types/running",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 7.5
+      },
+      {
+        "path": "/workout-types/stair-climbing",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 8.33
+      },
+      {
+        "path": "/workout-types/walking",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 4
+      },
+      {
+        "path": "/workout-types/wear-os",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 3.25
+      },
+      {
+        "path": "/workout-types/yoga",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 1
+      },
+      {
+        "path": "/ai/evaluating-ai-fitness-features",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 11.5
+      },
+      {
+        "path": "/compare/fitbit-vs-oura",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 8
+      },
+      {
+        "path": "/compliance/app-store-health-data-rules",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 9.25
+      },
+      {
+        "path": "/compliance/hipaa-compliance-fitness-app",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 5.33
+      },
+      {
+        "path": "/data/calorie-tracking-api",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 10.33
+      },
+      {
+        "path": "/fix/fitbit-api-429-rate-limit",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 4
+      },
+      {
+        "path": "/fix/healthkit-no-data",
+        "clicks": 0,
+        "impressions": 12,
+        "position": 5.92
+      },
+      {
+        "path": "/learn/what-are-sleep-stages",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 9
+      },
+      {
+        "path": "/motion/2d-vs-3d-pose-estimation",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 8.33
+      },
+      {
+        "path": "/pricing/how-much-does-a-fitness-api-cost",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 4.67
+      },
+      {
+        "path": "/pricing/nutrition-api-pricing",
+        "clicks": 0,
+        "impressions": 25,
+        "position": 12.44
+      }
+    ],
+    "bing": [
+      {
+        "path": "/integrate/garmin-api",
+        "clicks": 2,
+        "impressions": 203,
+        "position": 7.05
+      },
+      {
+        "path": "/motion/mediapipe-pose-landmarker-models",
+        "clicks": 1,
+        "impressions": 165,
+        "position": 6.75
+      },
+      {
+        "path": "/fix/garmin-api-personal-use",
+        "clicks": 0,
+        "impressions": 135,
+        "position": 7
+      },
+      {
+        "path": "/fitness-apis/nutrition-apis",
+        "clicks": 1,
+        "impressions": 104,
+        "position": 6.32
+      },
+      {
+        "path": "/compliance/app-store-health-data-rules",
+        "clicks": 1,
+        "impressions": 86,
+        "position": 4.41
+      },
+      {
+        "path": "/libraries/garminconnect",
+        "clicks": 0,
+        "impressions": 67,
+        "position": 5.94
+      },
+      {
+        "path": "/migrate/fitbit-web-api-to-google-health",
+        "clicks": 2,
+        "impressions": 64,
+        "position": 5.45
+      },
+      {
+        "path": "/integrate/google-health-connect",
+        "clicks": 0,
+        "impressions": 58,
+        "position": 5.47
+      },
+      {
+        "path": "/integrate/whoop-api",
+        "clicks": 1,
+        "impressions": 56,
+        "position": 6.54
+      },
+      {
+        "path": "/integrate/samsung-health-api",
+        "clicks": 1,
+        "impressions": 55,
+        "position": 5.75
+      },
+      {
+        "path": "/fitness-apis",
+        "clicks": 3,
+        "impressions": 50,
+        "position": 3.96
+      },
+      {
+        "path": "/integrate/strava-api",
+        "clicks": 0,
+        "impressions": 32,
+        "position": 7.13
+      },
+      {
+        "path": "/integrate/oura-api",
+        "clicks": 0,
+        "impressions": 27,
+        "position": 6.59
+      },
+      {
+        "path": "/integrate/healthkit",
+        "clicks": 0,
+        "impressions": 27,
+        "position": 6.85
+      },
+      {
+        "path": "/fitness-apis/exercise-database-apis",
+        "clicks": 0,
+        "impressions": 26,
+        "position": 3.92
+      },
+      {
+        "path": "/motion/rtmpose-models",
+        "clicks": 1,
+        "impressions": 26,
+        "position": 9.23
+      },
+      {
+        "path": "/motion/pose-estimation-models-compared",
+        "clicks": 1,
+        "impressions": 23,
+        "position": 5.7
+      },
+      {
+        "path": "/fitness-apis/free-fitness-apis",
+        "clicks": 2,
+        "impressions": 22,
+        "position": 5.05
+      },
+      {
+        "path": "/integrate/polar-api",
+        "clicks": 0,
+        "impressions": 18,
+        "position": 5.17
+      },
+      {
+        "path": "/health-connect/exercise-session-record",
+        "clicks": 0,
+        "impressions": 18,
+        "position": 4
+      },
+      {
+        "path": "/integrate/withings-api",
+        "clicks": 0,
+        "impressions": 18,
+        "position": 6.78
+      },
+      {
+        "path": "/pricing/garmin-api-pricing",
+        "clicks": 1,
+        "impressions": 15,
+        "position": 4
+      },
+      {
+        "path": "/integrate/fitbit-api",
+        "clicks": 0,
+        "impressions": 14,
+        "position": 7.71
+      },
+      {
+        "path": "/integrate/coros-api",
+        "clicks": 1,
+        "impressions": 13,
+        "position": 6.23
+      },
+      {
+        "path": "/integrate/terra-api",
+        "clicks": 0,
+        "impressions": 9,
+        "position": 6.11
+      },
+      {
+        "path": "/motion/movenet-models",
+        "clicks": 0,
+        "impressions": 9,
+        "position": 4.56
+      },
+      {
+        "path": "/pricing/strava-api-pricing",
+        "clicks": 0,
+        "impressions": 8,
+        "position": 4.38
+      },
+      {
+        "path": "/healthkit-queries/hkobserverquery-background-delivery",
+        "clicks": 1,
+        "impressions": 7,
+        "position": 4.43
+      },
+      {
+        "path": "/fitness-apis/health-data-aggregator-apis",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 3
+      },
+      {
+        "path": "/fitbit-api-shutdown",
+        "clicks": 0,
+        "impressions": 7,
+        "position": 9
+      },
+      {
+        "path": "/health-connect/cervical-mucus-record",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 4
+      },
+      {
+        "path": "/fix/oura-personal-access-token-deprecated",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 6.17
+      },
+      {
+        "path": "/compliance/app-store-guideline-5-1-2-data-use-sharing",
+        "clicks": 0,
+        "impressions": 6,
+        "position": 4.67
+      },
+      {
+        "path": "/fitness-apis/terra-vs-vital",
+        "clicks": 1,
+        "impressions": 6,
+        "position": 6.33
+      },
+      {
+        "path": "/google-health-api/active-minutes",
+        "clicks": 1,
+        "impressions": 6,
+        "position": 4
+      },
+      {
+        "path": "/fix/garmin-api-approval",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 7
+      },
+      {
+        "path": "/devices/ftms-fitness-machine-service",
+        "clicks": 0,
+        "impressions": 5,
+        "position": 3.8
+      },
+      {
+        "path": "/compliance",
+        "clicks": 1,
+        "impressions": 5,
+        "position": 5.4
+      },
+      {
+        "path": "/fix/google-fit-api-deprecated",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 8
+      },
+      {
+        "path": "/guides/camera-pose-tracking",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 6
+      },
+      {
+        "path": "/data/sleep-tracking-api",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 4
+      },
+      {
+        "path": "/devices/treadmill-app-integration",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 8
+      },
+      {
+        "path": "/data/hrv-api",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 12.75
+      },
+      {
+        "path": "/healthkit-errors",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 4
+      },
+      {
+        "path": "/engagement/push-notifications-fitness-app",
+        "clicks": 1,
+        "impressions": 4,
+        "position": 6
+      },
+      {
+        "path": "/integrate/suunto-api",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 6
+      },
+      {
+        "path": "/google-health-api/active-zone-minutes",
+        "clicks": 0,
+        "impressions": 4,
+        "position": 3.75
+      },
+      {
+        "path": "/compliance/google-play-health-connect-publishing-requirements",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 6.67
+      },
+      {
+        "path": "/compliance/app-store-guideline-5-1-1-data-collection-storage",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 5
+      },
+      {
+        "path": "/data/vo2-max-api",
+        "clicks": 1,
+        "impressions": 3,
+        "position": 6
+      },
+      {
+        "path": "/fitness-apis/apple-healthkit-vs-google-health-connect",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 5
+      },
+      {
+        "path": "/google-health-api/active-energy-burned",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 3.33
+      },
+      {
+        "path": "/apis",
+        "clicks": 1,
+        "impressions": 3,
+        "position": 4.67
+      },
+      {
+        "path": "/cookbook/refresh-rotation",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 4
+      },
+      {
+        "path": "/motion/openpose-models",
+        "clicks": 0,
+        "impressions": 3,
+        "position": 9
+      },
+      {
+        "path": "/pricing/whoop-api-pricing",
+        "clicks": 1,
+        "impressions": 3,
+        "position": 1
+      },
+      {
+        "path": "/compliance/gdpr-fitness-app",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 4
+      },
+      {
+        "path": "/compliance/google-play-health-data-policy",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 4
+      },
+      {
+        "path": "/libraries/flutter-health",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 6
+      },
+      {
+        "path": "/watch-apps/wear-os-app-anatomy",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 6
+      },
+      {
+        "path": "/audio-coaching/testing-workout-audio-cues",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 4
+      },
+      {
+        "path": "/libraries/garth",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 6
+      },
+      {
+        "path": "/motion/mediapipe-vs-movenet",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 6
+      },
+      {
+        "path": "/health-connect-api",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 10
+      },
+      {
+        "path": "/",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 7
+      },
+      {
+        "path": "/data/blood-glucose-api",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 6
+      },
+      {
+        "path": "/fitness-apis/ai-workout-tracking-apis",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 3
+      },
+      {
+        "path": "/guides",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 5
+      },
+      {
+        "path": "/build/nutrition-tracking-app",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 2
+      },
+      {
+        "path": "/compliance/store-health-data-securely",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 2
+      },
+      {
+        "path": "/phone-sensors/cmheadphonemotionmanager",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 5
+      },
+      {
+        "path": "/healthkit-identifiers/sleep-analysis",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 6
+      },
+      {
+        "path": "/devices/indoor-bike-trainer-integration",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 8
+      },
+      {
+        "path": "/health-connect/steps-record",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 2.5
+      },
+      {
+        "path": "/compare/mediapipe-vs-movenet",
+        "clicks": 1,
+        "impressions": 2,
+        "position": 4
+      },
+      {
+        "path": "/motion/jumping-jack-counter-pose-estimation",
+        "clicks": 1,
+        "impressions": 2,
+        "position": 8
+      },
+      {
+        "path": "/alternatives/openpose-alternatives",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 7
+      },
+      {
+        "path": "/compliance/app-store-guideline-1-4-1-physical-harm",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 1
+      },
+      {
+        "path": "/bluetooth-fitness/supported-resistance-level-range",
+        "clicks": 1,
+        "impressions": 2,
+        "position": 1
+      },
+      {
+        "path": "/pose-keypoints/coco-17",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 6
+      },
+      {
+        "path": "/google-health-api",
+        "clicks": 0,
+        "impressions": 2,
+        "position": 8
+      },
+      {
+        "path": "/pricing/exercise-database-api-pricing",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 3
+      },
+      {
+        "path": "/matrix",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 7
+      },
+      {
+        "path": "/engagement/gamification-in-fitness-apps",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 7
+      },
+      {
+        "path": "/phone-sensors/cmaltimeter",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 4
+      },
+      {
+        "path": "/fix/healthkit-database-inaccessible",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 6
+      },
+      {
+        "path": "/compliance/app-store-health-data-rules.md",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 3
+      },
+      {
+        "path": "/data/blood-pressure-api",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 10
+      },
+      {
+        "path": "/devices/apple-watch-live-heart-rate",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 7
+      },
+      {
+        "path": "/apis/strava",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 10
+      },
+      {
+        "path": "/architecture/incremental-sync",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 7
+      },
+      {
+        "path": "/healthkit/nutrition",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 7
+      },
+      {
+        "path": "/build/hiking-app",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 2
+      },
+      {
+        "path": "/healthkit-queries/hkanchoredobjectquery",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 5
+      },
+      {
+        "path": "/learn/what-is-a-fitness-api",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 1
+      },
+      {
+        "path": "/build",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 6
+      },
+      {
+        "path": "/health-connect/nutrition-record",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 3
+      },
+      {
+        "path": "/compliance/health-data-retention-deletion",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 7
+      },
+      {
+        "path": "/health-connect/steps-cadence-record",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 3
+      },
+      {
+        "path": "/healthkit-queries/hkworkoutroutequery",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 4
+      },
+      {
+        "path": "/audio-coaching/avspeechsynthesizer-workout-cues",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 7
+      },
+      {
+        "path": "/build/cycle-tracking-app",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 7
+      },
+      {
+        "path": "/integrate/exercisedb-api",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 8
+      },
+      {
+        "path": "/healthkit-identifiers/blood-pressure-diastolic",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 5
+      },
+      {
+        "path": "/phone-sensors/cmpedometer",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 3
+      },
+      {
+        "path": "/audio-coaching/headphones-disconnect-route-change",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 6
+      },
+      {
+        "path": "/bluetooth-fitness/activity-goal",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 8
+      },
+      {
+        "path": "/pose-keypoints/openpose-body-25",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 4
+      },
+      {
+        "path": "/compliance/health-app-privacy-policy",
+        "clicks": 1,
+        "impressions": 1,
+        "position": 9
+      },
+      {
+        "path": "/compare/strava-vs-garmin-connect",
+        "clicks": 1,
+        "impressions": 1,
+        "position": 1
+      },
+      {
+        "path": "/libraries/python",
+        "clicks": 1,
+        "impressions": 1,
+        "position": 1
+      },
+      {
+        "path": "/compare/terra-vs-thryve",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 7
+      },
+      {
+        "path": "/compliance/app-store-guideline-1-4-1-physical-harm.md",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 4
+      },
+      {
+        "path": "/devices/ant-plus-vs-bluetooth",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 9
+      },
+      {
+        "path": "/libraries/capgo-capacitor-health",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 10
+      },
+      {
+        "path": "/bluetooth-fitness/cgm-session-run-time",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 1
+      },
+      {
+        "path": "/pose-keypoints/ml-kit",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 3
+      },
+      {
+        "path": "/healthkit-identifiers/apple-walking-steadiness",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 5
+      },
+      {
+        "path": "/google-health-api/webhooks",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 4
+      },
+      {
+        "path": "/ai",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 3
+      }
+    ]
+  }
+}

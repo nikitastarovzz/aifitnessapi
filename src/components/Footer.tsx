@@ -26,7 +26,7 @@ const GROUPS: { title: string; links: FooterEntry[] }[] = [
   {
     title: "Sections",
     links: [
-      { href: "/fitness-apis", label: "Fitness APIs" },
+      { href: "/fitness-apis", label: "APIs by job" },
       { href: "/guides", label: "Guides" },
       { href: "/build", label: "Build" },
       { href: "/integrate", label: "Integrate" },

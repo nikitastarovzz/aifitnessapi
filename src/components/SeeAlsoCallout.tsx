@@ -45,6 +45,11 @@ const CP_LAB = { href: "/tools/cycling-power-lab", label: name("/tools/cycling-p
 const GATT = { href: "/tools/ble-gatt-explorer", label: name("/tools/ble-gatt-explorer") };
 const COVERAGE = { href: "/tools/api-coverage-matrix", label: name("/tools/api-coverage-matrix") };
 const RATE_CALC = { href: "/tools/rate-limit-calculator", label: name("/tools/rate-limit-calculator") };
+// Pages, not tools: added 2026-11-13 (ops/GSC-10-2026-11-13.md item 8) because
+// Google had shown neither once since they shipped on 2026-11-02, and the
+// pages below are among the ones it shows most.
+const FITBIT_410 = { href: "/fix/fitbit-api-410-gone", label: "Fitbit API 410 Gone: the turn-off and the fix" };
+const ROOK_ALTERNATIVES = { href: "/alternatives/rook-alternatives", label: "ROOK API alternatives" };
 
 const MAP: Record<string, Pointer[]> = {
   // ── Pose and motion ──────────────────────────────────────────────────
@@ -193,6 +198,10 @@ const MAP: Record<string, Pointer[]> = {
     { ...MARKET_MAP, why: "Every product in the directory on one map, grouped by category and filterable by billing model." },
   ],
   "/fitness-apis/wearable-data-apis": [
+    {
+      ...ROOK_ALTERNATIVES,
+      why: "Six alternatives to the ROOK aggregator from the vendors' own pages, and which to pick by what is pushing you off ROOK.",
+    },
     { ...MARKET_MAP, why: "Every wearable and aggregator API in the directory on one map, filterable by approval gate." },
     { ...API_INDEX, why: "Releases, dated changes and verification age for every product we track, sortable." },
   ],
@@ -215,6 +224,10 @@ const MAP: Record<string, Pointer[]> = {
     { ...DAILY, why: "Five questions a day drawn from this dataset and the Health Connect and Google Health API ones." },
   ],
   "/google-health-api": [
+    {
+      ...FITBIT_410,
+      why: "A 410 from a Fitbit Web API or Fitbit OAuth endpoint is the November 2, 2026 turn-off, not a fault in the request; the fix is moving each user to this API with Google OAuth 2.0.",
+    },
     {
       ...SAMPLE_DATA,
       why: "Synthetic Google Health API test data as JSON or CSV, with field names from this site's generated copy of Google's reference.",
@@ -248,6 +261,10 @@ const MAP: Record<string, Pointer[]> = {
     {
       ...SHIP_IT,
       why: "Google Fit's end of support is one of the dated events the game puts your app through.",
+    },
+    {
+      ...FITBIT_410,
+      why: "The other Google turn-off: Fitbit Web API and Fitbit OAuth requests return 410 Gone from November 2, 2026, and retries will not bring them back.",
     },
   ],
   // ── Bluetooth heart rate and steps ───────────────────────────────────
