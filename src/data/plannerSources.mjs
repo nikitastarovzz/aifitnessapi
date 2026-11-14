@@ -55,7 +55,7 @@ export const PLANNER_SOURCES = {
     publisher: "Google Play",
   },
   playPermissions: {
-    url: "https://support.google.com/googleplay/android-developer/answer/16324062?hl=en",
+    url: "https://support.google.com/googleplay/android-developer/answer/16558241?hl=en",
     title: "Permissions and APIs that Access Sensitive Information (Health Connect by Android Permissions)",
     publisher: "Google Play",
   },
