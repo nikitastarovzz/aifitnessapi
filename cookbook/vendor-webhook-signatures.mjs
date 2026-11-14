@@ -11,7 +11,7 @@
  *     whoop  X-WHOOP-Signature = BASE64(HMAC(client secret,
  *              X-WHOOP-Signature-Timestamp + raw body)); the timestamp is
  *              milliseconds since epoch
- *     terra  terra-signature: t=<ts>,v1=<sig>[,v1=<sig>...]; HEX(HMAC(signing
+ *     terra  x-terra-signature: t=<ts>,v1=<sig>[,v1=<sig>...]; HEX(HMAC(signing
  *              secret, t + "." + raw body)), compared with every v1 value;
  *              every other scheme is ignored
  *     polar  Polar-Webhook-Signature = HEX(HMAC(signature_secret_key, raw
@@ -57,7 +57,7 @@ export const REASON = Object.freeze({
 export const SCHEMES = Object.freeze({
   oura: { signatureHeader: "x-oura-signature", timestampHeader: "x-oura-timestamp", encoding: "hex-upper", timestampUnit: null },
   whoop: { signatureHeader: "x-whoop-signature", timestampHeader: "x-whoop-signature-timestamp", encoding: "base64", timestampUnit: "ms" },
-  terra: { signatureHeader: "terra-signature", timestampHeader: null, encoding: "hex", timestampUnit: null },
+  terra: { signatureHeader: "x-terra-signature", timestampHeader: null, encoding: "hex", timestampUnit: null },
   polar: { signatureHeader: "polar-webhook-signature", timestampHeader: null, encoding: "hex-any-case", timestampUnit: null },
 });
 
@@ -195,7 +195,7 @@ export function signLikeVendor(vendor, { rawBody, secret, timestamp }) {
     case "whoop":
       return { "X-WHOOP-Signature": sig, "X-WHOOP-Signature-Timestamp": String(timestamp) };
     case "terra":
-      return { "terra-signature": `t=${timestamp},v1=${sig}` };
+      return { "x-terra-signature": `t=${timestamp},v1=${sig}` };
     case "polar":
       return { "Polar-Webhook-Signature": sig };
     default:

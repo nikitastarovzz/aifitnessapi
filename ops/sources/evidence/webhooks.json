@@ -251,33 +251,33 @@
   },
   {
     "claim": "Terra signature: terra-signature: t=<timestamp>,v1=<signature>; HMAC-SHA256 keyed by the webhook's signing secret over the timestamp, a \".\" and the raw body. Ignore schemes other than v1.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "Compute an HMAC with the SHA256 hash function. Use the endpoint’s signing secret as the key, and use the signed_payload string as the message."
   },
   {
     "claim": "Terra response: Respond within 8 seconds; accept immediately (return 200) and process asynchronously. Sustained timeouts, 5xx and repeated 4xx can trip a per-destination circuit breaker.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "Terra waits 8 seconds for your server to respond before considering the request timed out."
   },
   {
-    "claim": "Terra retries: Retried automatically with exponential backoff for several hours; Terra says the number and timing of retries may change without notice. After the retry budget is spent the event is dropped, with no notification.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "Terra retries the delivery automatically with exponential backoff for several hours."
+    "claim": "Terra retries: Retried with exponential backoff for several hours; Terra says the number and timing of retries can change. When the retries run out the delivery becomes failed, with no notification, and failed events can be resent from the dashboard.",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
+    "quote": "Terra then retries the delivery with exponential backoff for several hours."
   },
   {
     "claim": "Terra: Do not depend on a specific retry schedule.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
-    "quote": "The exact number and timing of retries may change without notice, so don't depend on a specific schedule."
+    "url": "https://docs.tryterra.co/destinations/events",
+    "quote": "The number and timing of retries can change, so don't depend on a specific schedule."
   },
   {
     "claim": "Terra: Each webhook has its own signing secret; rotating one re-signs its retries with the new secret.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "Each webhook has its own signing secret."
   },
   {
-    "claim": "Terra: Every event carries a terra-reference header tying it to the request that caused it.",
+    "claim": "Terra: Every event carries a terra-reference header with a unique identifier for the event.",
     "url": "https://docs.tryterra.co/reference/health-and-fitness-api/event-types.md",
-    "quote": "every event sent from Terra will contain a `terra-reference` header"
+    "quote": "every event sent from Terra, carries a `terra-reference` header with a unique identifier for the request or event."
   },
   {
     "claim": "Terra payload \"S3 payload (ping mode)\": Terra's S3 upload event format.",
@@ -328,5 +328,15 @@
     "claim": "Suunto: Two parameters in the POST: username (find the user's token by the JWT's user claim) and workoutid (fetch the workout's FIT file). No example, encoding or signature is shown, so there is no schema or sample here.",
     "url": "https://apizone.suunto.com/faq",
     "quote": "Suunto partner notification has two parameters passed in the POST request username and workoutid."
+  },
+  {
+    "claim": "Terra signature: X-Terra-Signature: t=<timestamp>,v1=<signature>.",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
+    "quote": "Every webhook sent by Terra includes an HMAC-based signature header X-Terra-Signature , which takes the form:"
+  },
+  {
+    "claim": "Terra: A delivery can arrive more than once, for example after a resend: deduplicate on the event_id in the terra-reference header.",
+    "url": "https://docs.tryterra.co/destinations/events",
+    "quote": "Your server can receive the same event more than once, so deduplicate on event_id"
   }
 ]

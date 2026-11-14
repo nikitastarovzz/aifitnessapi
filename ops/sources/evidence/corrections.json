@@ -1,17 +1,17 @@
 [
   {
     "claim": "Fix page correction: the event Terra later sends to your webhook carries the same terra-reference as the initial request.",
-    "url": "https://docs.tryterra.co/unified-api/managing-user-health-data/requesting-historical-data",
+    "url": "https://docs.tryterra.co/unified-api/requesting-historical-data",
     "quote": "When making a to_webhook=true request, keep track of the value of the terra-reference header. When the event is eventually sent to your webhook, the event's terra-reference will match that of the initial request, allowing you to mark off the data transfer as successfully completed"
   },
   {
     "claim": "Fix page correction: terra-signature is the webhook's HMAC signature header, in the form t=timestamp,v1=signature.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
     "quote": "Every webhook sent by Terra includes an HMAC-based signature header"
   },
   {
     "claim": "Fix page correction: the signature header's form.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-destinations/webhooks",
+    "url": "https://docs.tryterra.co/destinations/webhooks.md",
     "quote": "t=1723808700,v1=a5ee9dba96b4f65aeff6c841aa50121b1f73ec7990d28d53b201523776d4eb00"
   },
   {
@@ -40,9 +40,9 @@
     "quote": "Fitbit (Deprecated)"
   },
   {
-    "claim": "Report and /apis/terra corrections: Terra's docs say some providers \"require special processes before being able to start using them\" and name WHOOP, Dexcom, Huawei, Strava and Virtuagym.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
-    "quote": "Some providers require special processes before being able to start using them: WHOOP Dexcom Huawei Strava Virtuagym"
+    "claim": "Report and /apis/terra corrections: Terra's docs name WHOOP, Dexcom, Huawei, Strava and Virtuagym as providers that \"need your own developer app or keys before you can enable them\" (wording read November 14, 2026).",
+    "url": "https://docs.tryterra.co/unified-api/setting-up-data-sources",
+    "quote": "These providers need your own developer app or keys before you can enable them: WHOOP Dexcom Huawei Strava Virtuagym"
   },
   {
     "claim": "Free tiers correction (dated 2026-10-18): Garmin's program FAQ said there were no licensing or maintenance fees for access to its program, which was only for business use (Wayback Machine capture of 17 October 2026).",
@@ -88,5 +88,40 @@
     "claim": "Strava vs Garmin correction: prohibits operating, offering or facilitating an intermediary or aggregator that re-exposes the Strava API Materials to third parties.",
     "url": "https://www.strava.com/legal/api_policy",
     "quote": "operate, offer, or facilitate any abstraction layer, integration-platform-as-a-service, no-code-AI platform, pass-through proxy, intermediary, or aggregator that re-exposes the Strava API Materials, in whole or in part, to third parties; (b) operate any MCP Server, agent-mediated interface, or analogous mechanism that exposes the Strava API Materials, Strava Data, or any subset thereof"
+  },
+  {
+    "claim": "Terra vs Spike correction: Terra's docs say \"The number and timing of retries can change, so don't depend on a specific schedule.\"",
+    "url": "https://docs.tryterra.co/destinations/events",
+    "quote": "The number and timing of retries can change, so don't depend on a specific schedule."
+  },
+  {
+    "claim": "Terra vs Spike and Terra vs Sahha corrections: Terra retries failed deliveries with exponential backoff for several hours.",
+    "url": "https://docs.tryterra.co/destinations/webhooks",
+    "quote": "Terra then retries the delivery with exponential backoff for several hours."
+  },
+  {
+    "claim": "Wearable-data-delayed correction: Terra's historical-data guide says \"Time ranges longer than one month must use to_webhook=true\".",
+    "url": "https://docs.tryterra.co/unified-api/requesting-historical-data",
+    "quote": "Time ranges longer than one month must use to_webhook=true"
+  },
+  {
+    "claim": "Wearable-data-delayed correction: the same request with to_webhook=false returns a 400.",
+    "url": "https://docs.tryterra.co/unified-api/requesting-historical-data",
+    "quote": "The same request with to_webhook=false returns a 400"
+  },
+  {
+    "claim": "Rate-limit calculator correction: Terra caps one request at 1,825 days.",
+    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/rate-limits",
+    "quote": "Requests of exactly 1,825 days are allowed: only more than 1,825 is rejected."
+  },
+  {
+    "claim": "No-code page correction: Terra's integrations table marks Oura as Managed.",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
+    "quote": "Oura OURA Event-Driven Managed"
+  },
+  {
+    "claim": "No-code page correction: Managed means the integration works with Terra's credentials.",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
+    "quote": "Managed integrations work with Terra's credentials, so you don't need an account with the integration."
   }
 ]

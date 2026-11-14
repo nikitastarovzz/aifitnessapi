@@ -10,14 +10,14 @@
     "quote": "Usage-driven, transparent, and flexible"
   },
   {
-    "claim": "Revision note: Terra's docs say some providers \"require special processes before being able to start using them\" and name WHOOP, Dexcom, Huawei, Strava and Virtuagym.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
-    "quote": "Some providers require special processes before being able to start using them: WHOOP Dexcom Huawei Strava Virtuagym"
+    "claim": "Revision note: Terra's docs name WHOOP, Dexcom, Huawei, Strava and Virtuagym as providers that \"need your own developer app or keys before you can enable them\" (wording read November 14, 2026).",
+    "url": "https://docs.tryterra.co/unified-api/setting-up-data-sources",
+    "quote": "These providers need your own developer app or keys before you can enable them: WHOOP Dexcom Huawei Strava Virtuagym"
   },
   {
-    "claim": "Gate list, Terra: some providers \"require special processes before being able to start using them\": WHOOP, Dexcom, Huawei, Strava and Virtuagym.",
-    "url": "https://docs.tryterra.co/unified-api/integration-setup/setting-up-data-sources",
-    "quote": "Some providers require special processes before being able to start using them: WHOOP Dexcom Huawei Strava Virtuagym"
+    "claim": "Gate list, Terra: WHOOP, Dexcom, Huawei, Strava and Virtuagym \"need your own developer app or keys before you can enable them\" (wording read November 14, 2026).",
+    "url": "https://docs.tryterra.co/unified-api/setting-up-data-sources",
+    "quote": "These providers need your own developer app or keys before you can enable them: WHOOP Dexcom Huawei Strava Virtuagym"
   },
   {
     "claim": "Gate list, Rook: Dexcom and WHOOP need your own developer accounts.",

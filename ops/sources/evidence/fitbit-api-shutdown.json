@@ -25,13 +25,13 @@
     "quote": "Samsung Health, Fitbit, Garmin, and hundreds of Android apps write to Health Connect — the same SDK reads it all on Android."
   },
   {
-    "claim": "Terra's supported-integrations page says Fitbit has been retired after Google turned off the Fitbit Web API on November 2, 2026 (read November 6, 2026).",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
-    "quote": "Fitbit has been retired. Google turned off the Fitbit Web API on 2 November 2026, so Fitbit connections no longer receive data and new users can't connect through Fitbit."
+    "claim": "Terra's supported-integrations page says Fitbit is retired after Google turned off the Fitbit Web API on November 2, 2026 (read November 14, 2026).",
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
+    "quote": "Fitbit is retired. Google turned off the Fitbit Web API on 2 November 2026, so Fitbit connections no longer receive data and end users can't connect through Fitbit."
   },
   {
     "claim": "Terra points Fitbit users to its Google Health source (GOOGLE_HEALTH).",
-    "url": "https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations",
-    "quote": "Move your users to Google Health ( GOOGLE_HEALTH )"
+    "url": "https://docs.tryterra.co/unified-api/supported-integrations",
+    "quote": "Move your end users to Google Health ( GOOGLE_HEALTH )"
   }
 ]

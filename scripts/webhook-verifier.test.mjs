@@ -137,9 +137,9 @@ test("WHOOP: base64 of HMAC(timestamp + raw body)", async () => {
 test("Terra: hex of HMAC(t + '.' + raw body); any v1 may match; other schemes ignored", async () => {
   const body = '{"type":"healthcheck"}';
   const sig = createHmac("sha256", KEY).update(`1723808700.${body}`).digest("hex");
-  const r = await verifyWebhook("terra", { method: "POST", url: "", headers: `terra-signature: t=1723808700,v0=${sig},v1=deadbeef,v1=${sig}`, body, secret: KEY });
+  const r = await verifyWebhook("terra", { method: "POST", url: "", headers: `X-Terra-Signature: t=1723808700,v0=${sig},v1=deadbeef,v1=${sig}`, body, secret: KEY });
   assert.equal(r.status, "valid");
-  const r2 = await verifyWebhook("terra", { method: "POST", url: "", headers: `terra-signature: t=1723808700,v0=${sig}`, body, secret: KEY });
+  const r2 = await verifyWebhook("terra", { method: "POST", url: "", headers: `X-Terra-Signature: t=1723808700,v0=${sig}`, body, secret: KEY });
   assert.equal(r2.status, "error", "a v0-only header is not accepted");
 });
 test("Polar: hex of HMAC(raw body), case-insensitive", async () => {

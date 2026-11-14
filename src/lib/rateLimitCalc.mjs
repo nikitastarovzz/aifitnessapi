@@ -703,7 +703,7 @@ export const RATE_LIMIT_VENDORS =[
             "unit": "days",
             "src": {
               "url": "https://docs.tryterra.co/reference/health-and-fitness-api/rate-limits",
-              "quote": "your code has issued requests for this user totalling more than 6,000 days in the current hour",
+              "quote": "your requests for this user add up to more than 6,000 days in the current hour",
               "ev": "ops/sources/evidence/integrate-terra-api.json"
             }
           }
@@ -711,18 +711,18 @@ export const RATE_LIMIT_VENDORS =[
       }
     ],
     "maxDaysPerRequest": {
-      "days": 1826,
+      "days": 1825,
       "src": {
         "url": "https://docs.tryterra.co/reference/health-and-fitness-api/rate-limits",
-        "quote": "your start_date / end_date window is wider than 5 years",
+        "quote": "Requests of exactly 1,825 days are allowed: only more than 1,825 is rejected.",
         "ev": "ops/sources/evidence/integrate-terra-api.json"
       }
     },
     "scopeNote": {
-      "text": "Terra's limit counts days of data requested, not requests: each request counts the days its date range spans. Terra says it applies rate limits on data-read endpoints.",
+      "text": "Terra's limit counts days of data requested, not requests: each request counts the days its date range spans. Terra says it applies rate limits to data-read endpoints.",
       "src": {
         "url": "https://docs.tryterra.co/reference/health-and-fitness-api/rate-limits",
-        "quote": "Terra applies rate limits on data-read endpoints",
+        "quote": "Terra applies rate limits to data-read endpoints",
         "ev": "ops/sources/evidence/integrate-terra-api.json"
       }
     },
@@ -738,7 +738,7 @@ export const RATE_LIMIT_VENDORS =[
       {
         "text": "Ranges over a month go through to_webhook and arrive asynchronously",
         "src": {
-          "url": "https://docs.tryterra.co/unified-api/managing-user-health-data/requesting-historical-data",
+          "url": "https://docs.tryterra.co/unified-api/requesting-historical-data",
           "quote": "Time ranges longer than one month must use to_webhook=true , and Terra sends the data asynchronously .",
           "ev": "ops/sources/evidence/integrate-terra-api.json"
         }
