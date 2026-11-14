@@ -39,6 +39,41 @@ Score: Google clicks at stake per window, summed over a page's signals. A CTR an
 
 All ranked pages by signal: CTR anomaly 27, Stale 173, Decay 22, Index lag 89.
 
+## Request indexing
+
+318 sitemap URLs had no Google impression in 2026-10-15 to 2026-11-11; the 30 most recently published are below (src/data/published.ts dates; hubs and tools without a date are left out). Search Console → URL Inspection → paste the full URL → Request indexing. Google limits how many a day.
+
+- https://aifitnessapi.com/alternatives/nutritics-alternatives (published 2026-11-14)
+- https://aifitnessapi.com/compare/your-move-vs-api-ninjas (published 2026-11-11)
+- https://aifitnessapi.com/compare/your-move-vs-exercisedb (published 2026-11-11)
+- https://aifitnessapi.com/compare/your-move-vs-free-exercise-db (published 2026-11-11)
+- https://aifitnessapi.com/compare/your-move-vs-wger (published 2026-11-11)
+- https://aifitnessapi.com/integrate/your-move-exercise-api (published 2026-11-11)
+- https://aifitnessapi.com/compare/kinestex-vs-asensei (published 2026-11-09)
+- https://aifitnessapi.com/compare/kinestex-vs-competitors (published 2026-11-09)
+- https://aifitnessapi.com/compare/kinestex-vs-exer-ai (published 2026-11-09)
+- https://aifitnessapi.com/compare/kinestex-vs-kemtai (published 2026-11-09)
+- https://aifitnessapi.com/compare/kinestex-vs-posetracker (published 2026-11-09)
+- https://aifitnessapi.com/compliance/cms-medicare-app-library (published 2026-11-05)
+- https://aifitnessapi.com/cookbook/ble-heart-rate-parser (published 2026-11-05)
+- https://aifitnessapi.com/cookbook/cursor-pagination (published 2026-11-05)
+- https://aifitnessapi.com/cookbook/health-connect-error-policy (published 2026-11-05)
+- https://aifitnessapi.com/cookbook/multi-window-rate-pacer (published 2026-11-05)
+- https://aifitnessapi.com/cookbook/pkce-authorize-url (published 2026-11-05)
+- https://aifitnessapi.com/cookbook/token-vault (published 2026-11-05)
+- https://aifitnessapi.com/cookbook/vendor-webhook-signatures (published 2026-11-05)
+- https://aifitnessapi.com/cookbook/webhook-handshakes (published 2026-11-05)
+- https://aifitnessapi.com/cookbook/withings-notification-router (published 2026-11-05)
+- https://aifitnessapi.com/cookbook/workout-type-crosswalk (published 2026-11-05)
+- https://aifitnessapi.com/own-your-data/apple-health-export (published 2026-11-05)
+- https://aifitnessapi.com/own-your-data/coros-export (published 2026-11-05)
+- https://aifitnessapi.com/own-your-data/fitbit-google-health-export (published 2026-11-05)
+- https://aifitnessapi.com/own-your-data/garmin-connect-export (published 2026-11-05)
+- https://aifitnessapi.com/own-your-data/health-connect-export (published 2026-11-05)
+- https://aifitnessapi.com/own-your-data/oura-export (published 2026-11-05)
+- https://aifitnessapi.com/own-your-data/polar-flow-export (published 2026-11-05)
+- https://aifitnessapi.com/own-your-data/samsung-health-export (published 2026-11-05)
+
 ## Held
 
 Signals on pages retitled inside the current window. Read them at the first pull whose window starts after the retitle.
