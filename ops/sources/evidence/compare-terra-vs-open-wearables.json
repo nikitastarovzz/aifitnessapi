@@ -95,9 +95,9 @@
     "quote": "Dedicated instance to localised area"
   },
   {
-    "claim": "Open Wearables maturity: pre-1.0, version 0.11.0 as of November 2, 2026.",
+    "claim": "Open Wearables maturity: version 1.0.0 as of November 14, 2026 (0.11.0 on November 2).",
     "url": "https://raw.githubusercontent.com/the-momentum/open-wearables/main/backend/pyproject.toml",
-    "quote": "version = \"0.11.0\""
+    "quote": "version = \"1.0.0\""
   },
   {
     "claim": "The README says to read the release notes before upgrading.",

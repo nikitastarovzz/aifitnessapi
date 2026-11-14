@@ -15,9 +15,9 @@
     "quote": "49 Google Health Web Bulk yes no"
   },
   {
-    "claim": "Thryve's docs mark Fitbit as deprecated (as of November 2, 2026).",
+    "claim": "Thryve's data-sources table lists \"Fitbit (Removed Support)\" (as of November 14, 2026).",
     "url": "https://docs.thryve.health/thryve-data-sources/overview",
-    "quote": "Fitbit (Deprecated)"
+    "quote": "Fitbit (Removed Support)"
   },
   {
     "claim": "Sahha says Fitbit data on Android reaches its SDK through Health Connect.",
@@ -33,5 +33,25 @@
     "claim": "Terra points Fitbit users to its Google Health source (GOOGLE_HEALTH).",
     "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Move your end users to Google Health ( GOOGLE_HEALTH )"
+  },
+  {
+    "claim": "Thryve's page says \"Removed Fitbit from the available sources following the shutdown from Google.\" (November 14, 2026).",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Removed Fitbit from the available sources following the shutdown from Google."
+  },
+  {
+    "claim": "Fitbit's developer site, read November 14, 2026, still carries the banner \"On October 30, 2026, the Fitbit Web API will be turned off and will no longer function or sync data to or from Fitbit users.\"",
+    "url": "https://dev.fitbit.com/build/reference/web-api/",
+    "quote": "On October 30, 2026, the Fitbit Web API will be turned off and will no longer function or sync data to or from Fitbit users."
+  },
+  {
+    "claim": "Google's Health Status Dashboard says \"the Legacy Fitbit Web APIs will be officially turned down on October 30, 2026\" (read November 14, 2026).",
+    "url": "https://status.healthapp.google.com/",
+    "quote": "the Legacy Fitbit Web APIs will be officially turned down on October 30, 2026."
+  },
+  {
+    "claim": "Google's Health Status Dashboard says \"we will turn down legacy Fitbit Web API and Fitbit OAuth traffic on Monday, November 2, 2026.\" (read November 14, 2026).",
+    "url": "https://status.healthapp.google.com/",
+    "quote": "we will turn down legacy Fitbit Web API and Fitbit OAuth traffic on Monday, November 2, 2026."
   }
 ]

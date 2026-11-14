@@ -410,9 +410,9 @@
     "quote": "Oura Web Ping yes yes"
   },
   {
-    "claim": "Thryve: the table lists \"Fitbit (Deprecated)\" as of November 2, 2026.",
+    "claim": "Thryve: the table lists \"Fitbit (Removed Support)\" as of November 14, 2026 (\"Fitbit (Deprecated)\" on November 2).",
     "url": "https://docs.thryve.health/thryve-data-sources/overview",
-    "quote": "Fitbit (Deprecated)"
+    "quote": "Fitbit (Removed Support)"
   },
   {
     "claim": "\"Additional users billed at €0.50 each\".",
@@ -443,5 +443,10 @@
     "claim": "FAQ: Terra's integrations table marks Garmin and Samsung as Required.",
     "url": "https://docs.tryterra.co/unified-api/supported-integrations",
     "quote": "Garmin GARMIN Event-Driven Required"
+  },
+  {
+    "claim": "Thryve: the page says \"Removed Fitbit from the available sources following the shutdown from Google.\" (November 14, 2026).",
+    "url": "https://docs.thryve.health/thryve-data-sources/overview",
+    "quote": "Removed Fitbit from the available sources following the shutdown from Google."
   }
 ]
