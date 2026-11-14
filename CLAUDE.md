@@ -31,8 +31,9 @@ gh pr create --fill && gh pr merge --auto --squash --delete-branch
 ```
 
 Auto-merge means green merges itself within a minute and deploys as before;
-red parks as an open PR. The bots do the same — `sdk-releases.yml` and
-`search-snapshot.yml` open PRs rather than pushing.
+red parks as an open PR. The bots do the same: the tracker workflows push a
+`bot/` branch and open its PR through `scripts/bot-pr.sh`, which also
+dispatches `ci.yml` (a PR opened with `GITHUB_TOKEN` does not start it).
 
 This exists because the gates were advisory. There is no `prebuild` script, so
 Vercel runs a plain `next build`, and three things in early October would have
@@ -70,6 +71,7 @@ silently reverts it.
 | `src/data/deprecationRules.json`, `actions/fitness-api-deprecation-check/dist/*`, `ops/sources/evidence/tools-deprecation-scanner.json` | `node scripts/build-deprecation-rules.mjs` (reads `src/data/graveyard.ts`, `src/lib/fitbitGoogleMap.ts` and so `fitbitWebApi.ts` + `googleHealthApi.ts`, `src/data/libraries.ts`, the hand-sourced `src/data/deprecationSignatures.ts`, and copies `src/lib/deprecationScan.mjs` into the Action; rerun after any of those changes, including a new graveyard entry, which needs a signature or a `NOT_SCANNED` reason; qa's DEPRECATION-RULES-STALE runs `--check`; tests `npm run test:deprecation-scan`) |
 | `src/data/researchStudies.ts` | `node scripts/build-research.mjs` (the commit history of `ops/sources/evidence/*.json`, so not from a shallow clone — `git fetch --unshallow origin`; `ops/research/*.json` for drift annotations, shutdown announcements and pricing classes, each checked against commit messages or evidence files; `src/data/graveyard.ts` and `changes.ts`). Then `npm run datasets`. qa's RESEARCH-DRIFT recomputes the /research figures from the published files; RESEARCH-STALE fails when the graveyard or a quoted pricing line moves under it. |
 | `src/data/published.ts` | `node scripts/backfill-published.mjs` |
+| `data/gsc/first-seen.json`, `data/gsc/index-state.json`, `ops/INDEX.md` | `NODE_USE_ENV_PROXY=1 node scripts/index-governor.mjs --sitemap-url https://aifitnessapi.com/sitemap.xml` (the index governor: the day each page was first shown in Google, read from Search Console in the aifitnessapi environment, against `src/data/published.ts`, so run the backfill first and not from a shallow clone; `--offline` recomputes from the ledger; `first-seen.json` is a ledger, so never delete it; the verdict sets how many new pages the daily loop may add, see ops/AUTOMATION.md; tests `npm run test:governor`) |
 | `src/data/apiDemand.ts` | `node scripts/build-api-demand.mjs` (reads the live pull: `NODE_USE_ENV_PROXY=1 node scripts/search-pull.mjs` in the aifitnessapi environment) |
 | `src/data/indexDemand.ts` | `npm run build && node scripts/build-index-demand.mjs`, then build again (after every pull: reads `data/gsc/snapshots/*.json` and the build's page list; noindexes generated per-item pages with zero Google and Bing impressions across their pulls once 60 days old; its dates are a ledger, so never delete the file — see the script header) |
 | `public/datasets/*.{json,csv}` + `manifest*.json` | `npm run datasets` (build + manifest) |
@@ -137,6 +139,12 @@ inglês)", and translating never moves an English stamp.
 
 ## Binding documents
 
+- `ops/AUTOMATION.md` — the four scheduled loops (daily search loop, index
+  governor, vendor watch, weekly distribution), what each may ship, the pause
+  switch (`ops/AUTOMATION-PAUSED`) and what only the owner can do. Their
+  playbooks: `ops/DAILY-CONTENT.md`, `ops/VENDOR-WATCH.md`,
+  `ops/WEEKLY-DISTRIBUTION.md`. An interactive session that adds pages
+  spends the governor's weekly allowance; read `ops/INDEX.md` first.
 - `ops/GEO.md` — citation/GEO rules; binds every content change. First-party
   (KinesteX) pages must carry the disclosure; never crown our own product.
 - `ops/DAILY-CONTENT.md` — the autonomous daily-content playbook, including

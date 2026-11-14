@@ -6,18 +6,23 @@ name: SDK release tracker
 # reachable from the authoring environment, and because a tracker should
 # reflect today rather than whatever was true at the last deploy.
 on:
-  # PAUSED 2026-10-06 at the owner's request: the automatic triggers below
-  # emailed a failure on every run. Uncomment them to turn this back on.
-  # Manual runs still work (Actions tab, Run workflow).
-  # schedule:
-  #   # 06:20 UTC daily. Off the hour so it does not queue behind everything
-  #   # else that runs at :00.
-  #   - cron: "20 6 * * *"
+  # On again since 2026-11-14 (ops/AUTOMATION.md, loop 3). It was paused on
+  # 2026-10-06 because the pull request step failed with "GitHub Actions is
+  # not permitted to create or approve pull requests" and emailed a failure
+  # on every run. scripts/bot-pr.sh now ends the run green in that case and
+  # leaves the pushed branch for the daily vendor-watch session to open, and
+  # dispatches ci.yml so the required check runs when the setting is on.
+  schedule:
+    # 06:20 UTC daily. Off the hour so it does not queue behind everything
+    # else that runs at :00.
+    - cron: "20 6 * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
   pull-requests: write
+  # To dispatch ci.yml on the bot branch (scripts/bot-pr.sh).
+  actions: write
 
 concurrency:
   group: sdk-releases
@@ -102,7 +107,6 @@ jobs:
           branch="bot/sdk-releases-${GITHUB_RUN_ID}"
           git checkout -b "$branch"
           git push origin "$branch"
-          gh pr create --base main --head "$branch" \
-            --title "Refresh SDK release tracker" \
-            --body "Automated daily refresh of \`src/data/sdkReleases.ts\`. Merges itself once CI is green. Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
-          gh pr merge --auto --squash --delete-branch "$branch"
+          bash scripts/bot-pr.sh "$branch" \
+            "Refresh SDK release tracker" \
+            "Automated daily refresh of \`src/data/sdkReleases.ts\`. Merges itself once CI is green. Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"

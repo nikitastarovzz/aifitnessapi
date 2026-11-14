@@ -6,23 +6,23 @@ name: Health MCP server directory
 # file, so a server published, deprecated or deleted in the registry reaches
 # the site within a week of the registry saying so.
 on:
-  # PAUSED from the start, like the library tracker, the SDK release tracker
-  # and the search snapshot: those were paused 2026-10-06 at the owner's
-  # request because they failed at "GitHub Actions is not permitted to create
-  # or approve pull requests" once main became protected, emailing a failure
-  # on every run. This workflow opens its pull request the same way, so it
-  # would fail the same way until that repository setting allows it.
-  # Uncomment the schedule to turn it on. Manual runs still work (Actions
-  # tab, Run workflow).
-  # schedule:
-  #   # 05:13 UTC every Wednesday. Off the hour, and a day after the library
-  #   # tracker (Tuesday 04:37), so the two never race for main.
-  #   - cron: "13 5 * * 3"
+  # On again since 2026-11-14 (ops/AUTOMATION.md, loop 3). It was paused on
+  # 2026-10-06 because the pull request step failed with "GitHub Actions is
+  # not permitted to create or approve pull requests" and emailed a failure
+  # on every run. scripts/bot-pr.sh now ends the run green in that case and
+  # leaves the pushed branch for the daily vendor-watch session to open, and
+  # dispatches ci.yml so the required check runs when the setting is on.
+  schedule:
+    # 05:13 UTC every Wednesday. Off the hour, and a day after the library
+    # tracker (Tuesday 04:37).
+    - cron: "13 5 * * 3"
   workflow_dispatch:
 
 permissions:
   contents: write
   pull-requests: write
+  # To dispatch ci.yml on the bot branch (scripts/bot-pr.sh).
+  actions: write
 
 concurrency:
   group: mcp-health-servers
@@ -115,7 +115,6 @@ jobs:
           branch="bot/mcp-health-servers-${GITHUB_RUN_ID}"
           git checkout -b "$branch"
           git push origin "$branch"
-          gh pr create --base main --head "$branch" \
-            --title "Refresh health MCP server directory" \
-            --body "Automated refresh of \`src/data/mcpHealthServers.ts\` and the health-mcp-servers-2026 dataset from the official MCP Registry, npm and PyPI. Merges itself once CI is green. Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
-          gh pr merge --auto --squash --delete-branch "$branch"
+          bash scripts/bot-pr.sh "$branch" \
+            "Refresh health MCP server directory" \
+            "Automated refresh of \`src/data/mcpHealthServers.ts\` and the health-mcp-servers-2026 dataset from the official MCP Registry, npm and PyPI. Merges itself once CI is green. Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"

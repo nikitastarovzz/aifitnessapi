@@ -9,22 +9,23 @@ name: Google Health API reference
 # dataset built from it (public/datasets/google-health-api-data-types-2026.*)
 # is rebuilt in the same commit.
 on:
-  # Ships PAUSED, like libraries.yml and sdk-releases.yml: since main became
-  # protected, their PR step fails with "GitHub Actions is not permitted to
-  # create or approve pull requests" (#15), and on 2026-10-06 the owner asked
-  # for workflows that email a failure on every run to stay off. Allow
-  # Actions to create pull requests in the repository settings, then
-  # uncomment the schedule below to turn this on.
-  # Manual runs still work (Actions tab, Run workflow).
-  # schedule:
-  #   # 05:52 UTC every Wednesday. Off the hour and away from the other
-  #   # trackers (Monday, Tuesday, daily 06:20) so they never race for main.
-  #   - cron: "52 5 * * 3"
+  # On again since 2026-11-14 (ops/AUTOMATION.md, loop 3). It was paused on
+  # 2026-10-06 because the pull request step failed with "GitHub Actions is
+  # not permitted to create or approve pull requests" and emailed a failure
+  # on every run. scripts/bot-pr.sh now ends the run green in that case and
+  # leaves the pushed branch for the daily vendor-watch session to open, and
+  # dispatches ci.yml so the required check runs when the setting is on.
+  schedule:
+    # 05:52 UTC every Wednesday. Off the hour and away from the other
+    # trackers.
+    - cron: "52 5 * * 3"
   workflow_dispatch:
 
 permissions:
   contents: write
   pull-requests: write
+  # To dispatch ci.yml on the bot branch (scripts/bot-pr.sh).
+  actions: write
 
 concurrency:
   group: google-health-api
@@ -110,7 +111,6 @@ jobs:
           branch="bot/google-health-api-${GITHUB_RUN_ID}"
           git checkout -b "$branch"
           git push origin "$branch"
-          gh pr create --base main --head "$branch" \
-            --title "Refresh Google Health API reference" \
-            --body "Automated weekly refresh of \`src/data/googleHealthApi.ts\` and the dataset built from it. Merges itself once CI is green. Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
-          gh pr merge --auto --squash --delete-branch "$branch"
+          bash scripts/bot-pr.sh "$branch" \
+            "Refresh Google Health API reference" \
+            "Automated weekly refresh of \`src/data/googleHealthApi.ts\` and the dataset built from it. Merges itself once CI is green. Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"

@@ -1,0 +1,125 @@
+name: Publish npm packages
+
+# Publishes @aifitnessapi/mcp (mcp/) and @aifitnessapi/health-data
+# (packages/health-data/) to npm whenever their packed content changes
+# (ops/DISTRIBUTION.md section 1). packages/api-client is private and is not
+# published.
+#
+# scripts/publish-package.mjs decides per package from a content hash, not
+# from the version in package.json: a regenerated dataset in data/ is a new
+# release even when nobody remembered to bump the version. Never published:
+# it publishes the version package.json carries. Unchanged: it does nothing.
+# Changed: it publishes the next patch after the registry's latest. The new
+# version and hash are written into the runner's working copy only, so this
+# workflow never commits and only needs to read the repository.
+#
+# SETUP (owner, once). Without the secret, a push run skips with a notice and
+# succeeds, so a missing credential never emails a failure.
+#   1. Create the @aifitnessapi scope on npm: an npm organization named
+#      aifitnessapi that your account owns. Without it every publish fails
+#      with a scope error.
+#   2. Create a granular access token on npmjs.com with read and write
+#      permission on the @aifitnessapi scope (or organization), and nothing
+#      else.
+#   3. Add it as repository secret NPM_TOKEN (Settings, Secrets and
+#      variables, Actions).
+#
+# A manual run with dry_run ticked needs no token: it packs, decides and runs
+# `npm publish --dry-run`, and the job summary says what would be published.
+#
+# The token reaches only the publish step's environment, as NODE_AUTH_TOKEN
+# for the .npmrc that setup-node writes; nothing here prints it.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "mcp/**"
+      - "packages/health-data/**"
+      - "scripts/publish-package.mjs"
+      - ".github/workflows/publish-packages.yml"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Pack and decide, but do not publish (needs no token)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+# One publish at a time: two pushes close together would otherwise both read
+# the same registry version and both try to publish its next patch.
+concurrency:
+  group: publish-packages
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      skip: ${{ steps.token.outputs.skip }}
+      dry_run: ${{ steps.token.outputs.dry_run }}
+    steps:
+      - name: Check the npm token is configured
+        id: token
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # Empty on push events, where there are no inputs.
+          DRY_RUN: ${{ inputs.dry_run && 'true' || 'false' }}
+        run: |
+          echo "dry_run=${DRY_RUN}" >> "$GITHUB_OUTPUT"
+          if [ -z "$NPM_TOKEN" ] && [ "$DRY_RUN" != "true" ]; then
+            echo "::notice title=npm publish skipped::Repository secret NPM_TOKEN is not set, so there is nothing to publish with. See the SETUP comment at the top of .github/workflows/publish-packages.yml."
+            echo "skip=1" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "skip=0" >> "$GITHUB_OUTPUT"
+
+  publish:
+    needs: check
+    if: needs.check.outputs.skip == '0'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      # One package failing its test must not stop the other from shipping.
+      fail-fast: false
+      matrix:
+        dir: [mcp, packages/health-data]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          registry-url: https://registry.npmjs.org
+
+      - name: Install dependencies
+        # mcp/ depends on @modelcontextprotocol/sdk (its test spawns the
+        # server over stdio); health-data has no dependencies and no lockfile.
+        working-directory: ${{ matrix.dir }}
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci --no-audit --no-fund
+          else
+            echo "No package-lock.json in ${{ matrix.dir }}, nothing to install."
+          fi
+
+      - name: Test
+        # Both tests read the committed data/ bundle; no build is needed.
+        working-directory: ${{ matrix.dir }}
+        run: node test.mjs
+
+      - name: Publish if the content changed
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          DRY_RUN: ${{ needs.check.outputs.dry_run }}
+        # Appends "published <version>", "unchanged" or "dry run" for this
+        # package to the job summary. Exits non-zero on any npm error except
+        # the E404 that means the package was never published.
+        run: |
+          if [ "$DRY_RUN" = "true" ]; then
+            node scripts/publish-package.mjs "${{ matrix.dir }}" --dry-run
+          else
+            node scripts/publish-package.mjs "${{ matrix.dir }}"
+          fi
