@@ -38,6 +38,26 @@ Three findings shaped the loops:
 | 3 | **Vendor watch**: trackers on GitHub's runners, a daily source-drift feed, and a daily session that corrects what moved and re-verifies the stalest page | trackers on their own schedules (below); `source-quotes.yml` daily 06:17 UTC; scheduled task daily 07:43 UTC | ops/VENDOR-WATCH.md | one self-merging pull request, plus the trackers' own |
 | 4 | **Weekly distribution**: packages and datasets publish on change; a Monday session picks the week's posts and drafts vendor notes | `publish-packages.yml` and `dataset-mirror.yml` on push; scheduled task Mondays 05:26 UTC | ops/WEEKLY-DISTRIBUTION.md | an `ops/`-only pull request; Gmail drafts |
 
+### Where the scheduled sessions live
+
+Each of the three scheduled tasks fires into its own long-lived cloud
+session, created 2026-11-14 with this repository attached and tagged
+`aifitnessapi-automation`: "AIFitnessAPI daily search loop (automation)",
+"AIFitnessAPI vendor watch (automation)" and "AIFitnessAPI weekly
+distribution (automation)". Each run's report is the newest message in its
+session.
+
+- **Archiving or deleting one of those sessions stops its loop.** To stop a
+  loop on purpose, disable its scheduled task or use the pause switch below.
+- A scheduled task that starts a fresh session on every firing does not work
+  in this environment: a fresh session comes up with no repository, and the
+  environment's setup script exits 1 without one ("package-lock.json was not
+  found in the cloud workspace"). Tested 2026-11-14; that is why the tasks
+  are bound to sessions.
+- A run starts a new branch from `origin/main` (`auto/search-<date>`,
+  `auto/vendor-watch-<date>`, `auto/distribution-<date>`), never an earlier
+  run's branch.
+
 Loop 5 of the proposal (a monthly data report from `/research`) was not
 asked for and is not built. `node scripts/build-research.mjs` still stops on
 commit 69969e2 (ops/GSC-10-2026-11-13.md, "Not done").
@@ -117,6 +137,11 @@ In order of what it unlocks:
 5. **Optional.** Settings → Actions → General → "Allow GitHub Actions to
    create and approve pull requests" lets the trackers open their own pull
    requests instead of waiting for the vendor-watch session.
+6. **Housekeeping.** Three `bot/` branches from 2026-10-05 and 10-06
+   (`bot/libraries-…`, `bot/sdk-releases-…`, `bot/search-snapshot-…`) are
+   left from the runs whose pull requests GitHub refused. They are older
+   than the seven days the vendor watch will open, so it names them and
+   leaves them; delete them when convenient.
 
 ## How it is judged
 
