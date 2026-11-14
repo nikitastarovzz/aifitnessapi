@@ -1,0 +1,346 @@
+{
+  "generatedOn": "2026-11-14",
+  "asOf": "2026-11-14",
+  "verdict": "closed",
+  "reason": "3 of 54 pages published 2026-10-24 to 2026-11-07 were shown in Google within 7 days",
+  "share": 0.0556,
+  "sample": 54,
+  "shownWithin7": 3,
+  "window": {
+    "from": "2026-10-24",
+    "to": "2026-11-07"
+  },
+  "baseline": {
+    "share": 0.5705,
+    "sample": 447
+  },
+  "allowance": 1,
+  "publishedLast7": 11,
+  "budget": 0,
+  "newPagesToday": 0,
+  "requestIndexing": [
+    {
+      "path": "/alternatives/mediapipe-alternatives",
+      "published": "2026-10-18",
+      "ageDays": 27
+    },
+    {
+      "path": "/alternatives/quickpose-alternatives",
+      "published": "2026-10-18",
+      "ageDays": 27
+    },
+    {
+      "path": "/alternatives/openpose-alternatives",
+      "published": "2026-10-22",
+      "ageDays": 23
+    },
+    {
+      "path": "/alternatives/wger-alternatives",
+      "published": "2026-10-22",
+      "ageDays": 23
+    },
+    {
+      "path": "/alternatives/dexcom-api-alternatives",
+      "published": "2026-10-27",
+      "ageDays": 18
+    },
+    {
+      "path": "/alternatives/samsung-health-api-alternatives",
+      "published": "2026-10-27",
+      "ageDays": 18
+    },
+    {
+      "path": "/alternatives/suunto-api-alternatives",
+      "published": "2026-10-27",
+      "ageDays": 18
+    },
+    {
+      "path": "/alternatives/withings-api-alternatives",
+      "published": "2026-10-27",
+      "ageDays": 18
+    },
+    {
+      "path": "/alternatives/rook-alternatives",
+      "published": "2026-11-02",
+      "ageDays": 12
+    },
+    {
+      "path": "/alternatives/sahha-alternatives",
+      "published": "2026-11-02",
+      "ageDays": 12
+    }
+  ],
+  "listed": {
+    "/alternatives/dexcom-api-alternatives": "2026-11-14",
+    "/alternatives/mediapipe-alternatives": "2026-11-14",
+    "/alternatives/openpose-alternatives": "2026-11-14",
+    "/alternatives/quickpose-alternatives": "2026-11-14",
+    "/alternatives/rook-alternatives": "2026-11-14",
+    "/alternatives/sahha-alternatives": "2026-11-14",
+    "/alternatives/samsung-health-api-alternatives": "2026-11-14",
+    "/alternatives/suunto-api-alternatives": "2026-11-14",
+    "/alternatives/wger-alternatives": "2026-11-14",
+    "/alternatives/withings-api-alternatives": "2026-11-14"
+  },
+  "recovered": [],
+  "previousAsOf": null,
+  "neverSeenCount": 98,
+  "cohorts": [
+    {
+      "date": "2026-07-08",
+      "pages": 21,
+      "within7": 16,
+      "within14": 19,
+      "ever": 20,
+      "ageDays": 129
+    },
+    {
+      "date": "2026-07-09",
+      "pages": 20,
+      "within7": 6,
+      "within14": 12,
+      "ever": 17,
+      "ageDays": 128
+    },
+    {
+      "date": "2026-07-10",
+      "pages": 10,
+      "within7": 4,
+      "within14": 7,
+      "ever": 10,
+      "ageDays": 127
+    },
+    {
+      "date": "2026-07-13",
+      "pages": 20,
+      "within7": 14,
+      "within14": 18,
+      "ever": 20,
+      "ageDays": 124
+    },
+    {
+      "date": "2026-07-14",
+      "pages": 10,
+      "within7": 3,
+      "within14": 6,
+      "ever": 10,
+      "ageDays": 123
+    },
+    {
+      "date": "2026-07-20",
+      "pages": 10,
+      "within7": 4,
+      "within14": 5,
+      "ever": 10,
+      "ageDays": 117
+    },
+    {
+      "date": "2026-07-23",
+      "pages": 20,
+      "within7": 16,
+      "within14": 18,
+      "ever": 19,
+      "ageDays": 114
+    },
+    {
+      "date": "2026-07-24",
+      "pages": 10,
+      "within7": 9,
+      "within14": 9,
+      "ever": 10,
+      "ageDays": 113
+    },
+    {
+      "date": "2026-07-25",
+      "pages": 10,
+      "within7": 8,
+      "within14": 9,
+      "ever": 10,
+      "ageDays": 112
+    },
+    {
+      "date": "2026-07-27",
+      "pages": 24,
+      "within7": 12,
+      "within14": 20,
+      "ever": 24,
+      "ageDays": 110
+    },
+    {
+      "date": "2026-07-30",
+      "pages": 14,
+      "within7": 3,
+      "within14": 6,
+      "ever": 12,
+      "ageDays": 107
+    },
+    {
+      "date": "2026-08-02",
+      "pages": 7,
+      "within7": 0,
+      "within14": 2,
+      "ever": 6,
+      "ageDays": 104
+    },
+    {
+      "date": "2026-08-11",
+      "pages": 4,
+      "within7": 0,
+      "within14": 0,
+      "ever": 4,
+      "ageDays": 95
+    },
+    {
+      "date": "2026-08-12",
+      "pages": 22,
+      "within7": 4,
+      "within14": 4,
+      "ever": 20,
+      "ageDays": 94
+    },
+    {
+      "date": "2026-08-15",
+      "pages": 12,
+      "within7": 7,
+      "within14": 8,
+      "ever": 12,
+      "ageDays": 91
+    },
+    {
+      "date": "2026-08-22",
+      "pages": 38,
+      "within7": 24,
+      "within14": 29,
+      "ever": 37,
+      "ageDays": 84
+    },
+    {
+      "date": "2026-09-01",
+      "pages": 17,
+      "within7": 0,
+      "within14": 0,
+      "ever": 17,
+      "ageDays": 74
+    },
+    {
+      "date": "2026-09-04",
+      "pages": 32,
+      "within7": 0,
+      "within14": 0,
+      "ever": 23,
+      "ageDays": 71
+    },
+    {
+      "date": "2026-10-02",
+      "pages": 2,
+      "within7": 1,
+      "within14": 2,
+      "ever": 2,
+      "ageDays": 43
+    },
+    {
+      "date": "2026-10-03",
+      "pages": 73,
+      "within7": 45,
+      "within14": 53,
+      "ever": 55,
+      "ageDays": 42
+    },
+    {
+      "date": "2026-10-04",
+      "pages": 24,
+      "within7": 21,
+      "within14": 21,
+      "ever": 22,
+      "ageDays": 41
+    },
+    {
+      "date": "2026-10-12",
+      "pages": 4,
+      "within7": 3,
+      "within14": 3,
+      "ever": 3,
+      "ageDays": 33
+    },
+    {
+      "date": "2026-10-17",
+      "pages": 56,
+      "within7": 50,
+      "within14": 53,
+      "ever": 55,
+      "ageDays": 28
+    },
+    {
+      "date": "2026-10-18",
+      "pages": 60,
+      "within7": 46,
+      "within14": 48,
+      "ever": 48,
+      "ageDays": 27
+    },
+    {
+      "date": "2026-10-22",
+      "pages": 8,
+      "within7": 2,
+      "within14": 2,
+      "ever": 2,
+      "ageDays": 23
+    },
+    {
+      "date": "2026-10-27",
+      "pages": 22,
+      "within7": 1,
+      "within14": 1,
+      "ever": 4,
+      "ageDays": 18
+    },
+    {
+      "date": "2026-11-02",
+      "pages": 3,
+      "within7": 0,
+      "within14": 0,
+      "ever": 0,
+      "ageDays": 12
+    },
+    {
+      "date": "2026-11-04",
+      "pages": 8,
+      "within7": 1,
+      "within14": 1,
+      "ever": 1,
+      "ageDays": 10
+    },
+    {
+      "date": "2026-11-05",
+      "pages": 21,
+      "within7": 1,
+      "within14": 1,
+      "ever": 1,
+      "ageDays": 9
+    },
+    {
+      "date": "2026-11-09",
+      "pages": 5,
+      "within7": 0,
+      "within14": 0,
+      "ever": 0,
+      "ageDays": 5
+    },
+    {
+      "date": "2026-11-11",
+      "pages": 5,
+      "within7": 0,
+      "within14": 0,
+      "ever": 0,
+      "ageDays": 3
+    },
+    {
+      "date": "2026-11-14",
+      "pages": 1,
+      "within7": 0,
+      "within14": 0,
+      "ever": 0,
+      "ageDays": 0
+    }
+  ]
+}

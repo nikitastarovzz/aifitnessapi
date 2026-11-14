@@ -1,18 +1,40 @@
-# Daily content routine — playbook
+# Daily search loop — playbook
 
-You are running the daily autonomous content addition for AIFitnessAPI. You have
-standing authorization to push ONE data-driven improvement to `main` per run,
-without human approval. That authorization is conditional on following this
-playbook exactly — the site's entire value is that it does not fabricate, and a
+You are running the daily search loop for AIFitnessAPI (loop 1 of
+ops/AUTOMATION.md; the index governor, loop 2, is its first step). You have
+standing authorization to ship data-driven improvements through ONE pull
+request per run that merges itself when the gates are green, without human
+approval. That authorization is conditional on following this playbook
+exactly — the site's entire value is that it does not fabricate, and a
 single confidently-wrong page costs more than a month of good ones.
 
-**Output contract: ONE piece per day, done to cluster quality. "No piece today,
-here is why" is an acceptable and sometimes correct outcome. Sixteen mediocre
-pieces is never the assignment.**
+**Output contract (since 2026-11-14, owner's request): up to THREE changes per
+run, each done to cluster quality, in one pull request. At most one of the
+three is a new page, and only when the index governor allows it (§1). The
+other two are fixes to pages that already exist: that is where the measured
+clicks are (ops/QUEUE.md). "Nothing today, here is why" is an acceptable and
+sometimes correct outcome. Sixteen mediocre pieces is never the assignment.**
+
+Why new pages are rationed. Of the 219 pages published from 2026-10-02 to
+2026-10-18, Google showed 166 within a week of publication. Of the 62
+published from 2026-10-22 to 2026-11-05, it showed 5 (measured 2026-11-14;
+`ops/INDEX.md` has today's table). A page Google does not
+show earns nothing however good it is, and publishing into that state is the
+likeliest way to keep it going. The governor measures this every run and
+sets the day's allowance; you do not override it.
 
 ## 0. Preflight — you may share this working tree with another session
 
-This routine fires into a shared environment; an interactive session (or a
+**Pause switch.** If the file `ops/AUTOMATION-PAUSED` exists on `main`, stop
+here: report that the automation is paused and what the file says. Change
+nothing.
+
+**History.** A cloud session starts from a shallow clone, and
+`scripts/backfill-published.mjs` reads first-published dates from the whole
+commit history. Run `git rev-parse --is-shallow-repository`; if it prints
+`true`, run `git fetch --unshallow origin` before anything else. Then `npm ci`.
+
+This routine can fire into a shared environment; an interactive session (or a
 previous run) may have left the tree dirty. Before doing anything:
 
 1. `git fetch origin main` then `git status --porcelain`.
@@ -42,13 +64,55 @@ In order of preference:
    `exportedAt` age in your log entry. If it is older than 21 days, prefer
    backlog work (§3c) over data work, because you would be optimizing against
    stale signals.
-Then run `npm run gsc`. It reports Google and Bing separately; never average
-them. Vercel Analytics has no API; it is not part of this loop.
+**Cadence (since 2026-11-14).** The windows are 28 days long, so a pull a
+day apart says the same thing twice and would add a snapshot file a day.
+Run the pull only when the newest file in `data/gsc/snapshots/` is seven or
+more days old; on the other days work from the committed pull. This run is
+what replaces the Monday workflow (`search-snapshot.yml` skips for want of a
+repository secret). After a pull, in this order: `npm run build`,
+`node scripts/build-index-demand.mjs`, `node scripts/build-api-demand.mjs`,
+and commit what they change with the pull (CLAUDE.md, generated data).
 
-## 2. Decide the ONE piece — priority order
+Then, every run:
 
-Log candidates before choosing. Work down this list; take the first rung with a
-qualifying candidate:
+1. `node scripts/backfill-published.mjs` — the governor judges pages by their
+   first-published date, and a page added since the last regeneration is
+   missing from `src/data/published.ts` until this runs.
+2. **The index governor** (loop 2):
+   `NODE_USE_ENV_PROXY=1 node scripts/index-governor.mjs --sitemap-url https://aifitnessapi.com/sitemap.xml`.
+   It reads Search Console for the day each page was first shown, and writes
+   `data/gsc/first-seen.json` (a ledger), `data/gsc/index-state.json` and
+   `ops/INDEX.md`. Commit all three. Read `newPagesToday` in the state file:
+   **0 means this run adds no new page, whatever the queries say.** The
+   verdicts: `open` (half or more of the pages published 7 to 21 days ago
+   were shown within a week: up to seven new pages a week, one per run),
+   `throttled` (a fifth to a half: two a week), `closed` (under a fifth: one
+   a week, kept as the probe that lets the governor see a recovery). Pages
+   published by interactive sessions count against the same weekly
+   allowance, so the loop yields to them. If the governor exits non-zero (a
+   refused credential or a short read), treat the day as `newPagesToday: 0`
+   and say so in the report; never guess a verdict.
+3. `node scripts/build-ops-queue.mjs` when the build exists (it reads the
+   built sitemap), so `ops/QUEUE.md` matches the data you are about to act on.
+4. `node scripts/judge-changes.mjs` — the changes of earlier runs that have
+   now had a full 28-day window (§6 "measure"). A `worse` retitle with
+   `action: revert` is today's first change: restore the title and
+   description recorded in its `measure.previous`, and log it. Run it again
+   with `--record` before committing so each judged entry is marked.
+5. `npm run gsc`. It reports Google and Bing separately; never average
+   them. Vercel Analytics has no API; it is not part of this loop.
+
+## 2. Decide the day's changes — priority order
+
+Log candidates before choosing. Up to three changes: work down this list
+and take candidates in rung order until you have three, or the list is
+exhausted, or the session's research budget is. Rungs (a) and (b) can each
+supply more than one change, on different pages. Rung (c), and a new page
+from §2c, supplies at most one, and none when the governor's
+`newPagesToday` is 0. `ops/QUEUE.md` ranks rung (a)'s candidates by clicks
+at stake: start from its top, skip its "Held" list, and skip any page
+`ops/content-log.jsonl` shows was changed in the last 28 days (a second
+change inside the window makes the first unjudgeable).
 
 a. **Fix a leak.** A page in `npm run gsc`'s "earning under half what their
    position should pay" list (≥20 impressions, CTR below half the CTR its
@@ -119,7 +183,8 @@ Tier-1 item from the map instead of free-form rung (c) work: its
 cannibalization check is already done and its verifiability tag tells you
 whether the sources are reachable. Mark it [x] with the date in the same
 commit. Tier-2 items need a fetched primary source or ≥20 impressions of
-query evidence before writing. The one-piece-per-day contract still holds.
+query evidence before writing. A map item is a new page: it needs the
+governor's `newPagesToday: 1` like any other, and counts as the run's one.
 
 ## 2d. The changes tracker
 
@@ -211,17 +276,34 @@ a new tool, dataset, library or MCP server needs `node scripts/build-awesome.mjs
   passes. Never force-push, never touch other branches.
 - Commit message: what changed and WHICH DATA SIGNAL motivated it (query,
   impressions, CTR). Follow the environment's commit-trailer instructions.
-- Append one line to `ops/content-log.jsonl` in the same commit:
-  `{"date","action":"meta-fix|faq|section|spoke|backlog|none","cluster","slug","signal","notes"}`
+- Append one line per change to `ops/content-log.jsonl` in the same commit:
+  `{"date","action":"meta-fix|faq|section|spoke|backlog|revert|none","cluster","slug","signal","notes","measure"}`
   Read this log BEFORE deciding (§2) — do not repeat recent work, and if the
   last 3 runs were all (c)-rungs, prefer (a)/(b) today.
+- **`measure` is what makes the loop learn.** Every change to a page carries
+  `"measure": {"path": "/cluster/slug", "kind": "retitle|faq|section|new-page", "before": {...}}`
+  where `before` is exactly what `node scripts/judge-changes.mjs --before /cluster/slug`
+  prints (the page's impressions, clicks and position in the current pull;
+  zeros for a new page). A retitle also records
+  `"previous": {"metaTitle": "...", "metaDescription": "..."}`, the strings
+  it replaced, so a later run can put them back. A retitle also goes into
+  `ops/gsc/retitled.txt` under a dated comment line, which is what holds the
+  page out of the queue until it has had a full window.
+- One pull request for the whole run: the governor's three files, the pull
+  when there was one, the changes and the log lines. Title it with the date
+  and what changed; the body lists each change with its data signal and the
+  governor's verdict line.
 - If the gate cannot be made to pass within this session: push NOTHING except
   the log entry recording the failure. A skipped day is fine; a broken deploy
   or a fabricated fact is not.
 
 ## 7. Hard limits
 
-- Max ONE new spoke per run; max ~3 files touched for a meta-fix/FAQ run.
+- Max THREE changes per run; max ONE new page per run, and zero when the
+  governor's `newPagesToday` is 0; max ~3 files touched per meta-fix or FAQ.
+- Never edit `scripts/index-governor.mjs`, its thresholds, `ops/INDEX.md`
+  or the two files under `data/gsc/` it writes to get a different verdict.
+  A verdict you think is wrong goes in the report for the owner.
 - Never delete or rename existing pages or slugs.
 - Never edit pricing/model/regulatory specifics on existing pages unless you
   fetched the primary source this run and the commit message links it.

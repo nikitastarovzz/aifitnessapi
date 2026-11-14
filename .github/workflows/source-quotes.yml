@@ -6,9 +6,22 @@ name: Source quotes
 # found, so a claim cannot ship on a passage its source does not contain
 # (ops/EXPANSION-3-2026-10-17.md item 4.8, scripts/check-source-quotes.mjs).
 #
-# It runs on pull requests that touch evidence, weekly (sources change after
-# publication: a failing weekly run is the signal to re-verify that page), and
-# on demand. Read-only, no secrets.
+# It runs on pull requests that touch evidence, daily (sources change after
+# publication), and on demand. Read-only, no secrets.
+#
+# The two kinds of run answer different questions, so they end differently
+# (ops/AUTOMATION.md, loop 3, 2026-11-14):
+#   - A pull request or a manual run is a gate: a quote that is not found
+#     fails it, as before.
+#   - The daily run is a feed. A vendor rewording its pricing page is not a
+#     failure of this repository, and a run that fails every morning until
+#     someone re-reads the page is the kind of email the owner switched the
+#     trackers off for. So the scheduled run lists what moved in its summary
+#     and its log, raises a warning, and ends green. The daily vendor-watch
+#     session (ops/VENDOR-WATCH.md, step 2) reads the newest scheduled run's
+#     log for its "✗" lines, re-reads those sources and corrects the page
+#     the same day. The weekly run it replaces failed three weeks running
+#     (2026-10-28 to 11-11) with nobody reading it.
 
 on:
   pull_request:
@@ -17,7 +30,7 @@ on:
       - "ops/sources/evidence/**"
       - "scripts/check-source-quotes.mjs"
   schedule:
-    - cron: "17 6 * * 3"
+    - cron: "17 6 * * *" # daily 06:17 UTC, before the vendor-watch session
   workflow_dispatch: {}
 
 permissions:
@@ -36,4 +49,22 @@ jobs:
           node-version: 22
 
       - name: Check every quoted passage against its source
-        run: node scripts/check-source-quotes.mjs
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          set -o pipefail
+          status=0
+          node scripts/check-source-quotes.mjs | tee "$RUNNER_TEMP/quotes.txt" || status=$?
+          moved=$(grep -c '✗' "$RUNNER_TEMP/quotes.txt" || true)
+          {
+            echo "### Source quotes"
+            echo '```text'
+            head -n 1 "$RUNNER_TEMP/quotes.txt"
+            grep '✗' "$RUNNER_TEMP/quotes.txt" || echo "every quote was found in its source"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          if [ "$status" -ne 0 ] && [ "$EVENT_NAME" = "schedule" ]; then
+            echo "::warning title=Sources moved::${moved} quoted passages were not found in their sources. The vendor-watch session re-reads them (ops/VENDOR-WATCH.md)."
+            exit 0
+          fi
+          exit "$status"
