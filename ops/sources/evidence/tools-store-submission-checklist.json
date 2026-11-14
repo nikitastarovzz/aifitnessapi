@@ -196,42 +196,42 @@
   },
   {
     "claim": "Store checklist, Google Play Health Connect: Appropriate Access: Fit one of Health Connect's approved use cases.",
-    "url": "https://support.google.com/googleplay/android-developer/answer/16324062?hl=en",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16558241?hl=en",
     "quote": "Approved use cases include: fitness and wellness, rewards, fitness coaching, corporate wellness, medical care, health research, and games."
   },
   {
     "claim": "Store checklist, Google Play Health Connect: Minimum Scope: Request only the Health Connect permissions your features need.",
-    "url": "https://support.google.com/googleplay/android-developer/answer/16324062?hl=en",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16558241?hl=en",
     "quote": "You must only request access to the permissions that are necessary to implementing your product's features or services."
   },
   {
     "claim": "Store checklist, Google Play Health Connect: Limited Use: Never use Health Connect data to serve ads.",
-    "url": "https://support.google.com/googleplay/android-developer/answer/16324062?hl=en",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16558241?hl=en",
     "quote": "Transferring, selling, or using user data for serving ads, including personalized or interest-based advertising."
   },
   {
     "claim": "Store checklist, Google Play Health Connect: Limited Use: Never transfer or sell Health Connect data to ad platforms or data brokers.",
-    "url": "https://support.google.com/googleplay/android-developer/answer/16324062?hl=en",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16558241?hl=en",
     "quote": "Transferring or selling user data to third parties like advertising platforms, data brokers, or any information resellers."
   },
   {
     "claim": "Store checklist, Google Play Health Connect: Appropriate Access: No headless apps: the app needs a visible icon.",
-    "url": "https://support.google.com/googleplay/android-developer/answer/16324062?hl=en",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16558241?hl=en",
     "quote": "Do not access data obtained through Health Connect using headless apps."
   },
   {
     "claim": "Store checklist, Google Play Health Connect: Appropriate Access: Do not connect Health Connect to features that solely target children.",
-    "url": "https://support.google.com/googleplay/android-developer/answer/16324062?hl=en",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16558241?hl=en",
     "quote": "Do not use Health Connect to connect to applications, services, or features that solely target children."
   },
   {
     "claim": "Store checklist, Google Play Health Connect: Transparent and Accurate Notice: Publish help explaining how users manage and delete their data.",
-    "url": "https://support.google.com/googleplay/android-developer/answer/16324062?hl=en",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16558241?hl=en",
     "quote": "User help documentation explaining how users can manage and delete their data from the app, and what happens to the data when an account is deactivated and/or deleted."
   },
   {
     "claim": "Store checklist, Google Play Health Connect: Transparent and Accurate Notice: Say how you secure data, including HTTPS in transit.",
-    "url": "https://support.google.com/googleplay/android-developer/answer/16324062?hl=en",
+    "url": "https://support.google.com/googleplay/android-developer/answer/16558241?hl=en",
     "quote": "Information regarding handling all personal and sensitive user data securely, including transmitting it using modern cryptography (for example, over HTTPS)."
   }
 ]

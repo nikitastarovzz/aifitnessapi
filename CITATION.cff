@@ -155,7 +155,7 @@ references:
       - name: "AIFitnessAPI"
     license: CC-BY-4.0
     url: "https://aifitnessapi.com/datasets/fitness-api-docs-drift-2026.json"
-    notes: "982 rows; card at https://aifitnessapi.com/datasets/fitness-api-docs-drift-2026.md"
+    notes: "1326 rows; card at https://aifitnessapi.com/datasets/fitness-api-docs-drift-2026.md"
   - type: dataset
     title: "Fitness API Shutdown Notice 2026 (announcement to end date, per graveyard entry)"
     version: "2026.1"

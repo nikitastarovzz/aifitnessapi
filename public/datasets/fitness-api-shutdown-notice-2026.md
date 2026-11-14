@@ -27,7 +27,7 @@ CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/): reuse and redistribute
 - https://cloud.ouraring.com/docs/
 - https://cloud.ouraring.com/v2/static/json/openapi-1.43.json
 - https://developer.whoop.com/docs/developing/v1-v2-migration/
-- https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/docs/solutions/pose.md
+- https://raw.githubusercontent.com/google-ai-edge/mediapipe/3eb8983cde1517fdff4abbfb33586316af6d45be/docs/solutions/pose.md
 - https://raw.githubusercontent.com/tensorflow/tfjs-models/master/posenet/README.md
 - https://web.archive.org/web/20181231164810/https://dev.moves-app.com/
 - https://web.archive.org/web/20120107124413/http://googleblog.blogspot.com/2011/06/update-on-google-health-and-google.html

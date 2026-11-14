@@ -166,7 +166,7 @@
   },
   {
     "claim": "On-device section: Health Connect requires per-app permission to read and write.",
-    "url": "https://developer.android.com/health-and-fitness/health-connect/architecture",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/architecture?hl=en",
     "quote": "Health Connect requires you to request the user's permission to read and write their health and fitness data on a per-app basis."
   },
   {
@@ -181,7 +181,7 @@
   },
   {
     "claim": "On-device section: the Health Connect APK sits on the user's device.",
-    "url": "https://developer.android.com/health-and-fitness/health-connect/architecture",
+    "url": "https://developer.android.com/health-and-fitness/health-connect/architecture?hl=en",
     "quote": "The Health Connect APK is made available directly on the user's device."
   }
 ]
